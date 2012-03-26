@@ -1,26 +1,40 @@
 param($installPath, $toolsPath, $package, $project)
 
-#### Overwrite Global.asax ####
-Write-Host "Setting Application to DowJones.Web.Mvc.HttpApplication..."
+#### Modify Global.asax ####
+$globalAsax = $project.ProjectItems | where { $_.Name -eq "Global.asax" }
+if($globalAsax) {
+	
+	# Fold Global.asax.generated.cs underneather Global.asax
+	$globalAsaxGenerated = $project.ProjectItems | where { $_.Name -eq "Global.asax.generated.cs" }
+	$globalAsaxGenerated.Open()
+	$globalAsax.ProjectItems.AddFromFileCopy($globalAsaxGenerated.Document.FullName)
 
-# Read the transformed text from the custom template included in the package
-$customGlobalAsax = $project.ProjectItems | where { $_.Name -eq "Global.asax.cs.custom" }
-$customGlobalAsax.Open()
-$customGlobalAsax.Document.Activate()
-$customGlobalAsax.Document.Selection.SelectAll(); 
-$replacementGlobalAsax = $customGlobalAsax.Document.Selection.Text;
-$customGlobalAsax.Delete()
+	# Replace the contents of Global.asax.cs with Global.asax.cs.custom
+	$globalAsaxCs = $globalAsax.ProjectItems | where { $_.Name -eq "Global.asax.cs" }
+	$customGlobalAsax = $project.ProjectItems | where { $_.Name -eq "Global.asax.cs.custom" }
+	if($globalAsaxCs -and $customGlobalAsax) {
+		Write-Host "Setting Application to DowJones.Web.Mvc.HttpApplication..."
 
-# Replace the contents of Global.asax.cs
-$globalAsax = $project.ProjectItems | ForEach-Object { $_.ProjectItems } | where { $_.Name -eq "Global.asax.cs" }
-$globalAsax.Open()
-$globalAsax.Document.Activate()
-$globalAsax.Document.Selection.SelectAll()
-$globalAsax.Document.Selection.Insert($replacementGlobalAsax)
-$globalAsax.Document.Selection.StartOfDocument()
-$globalAsax.Document.Close(0)
+		# Read the transformed text from the custom template included in the package
+		$customGlobalAsax.Open()
+		$customGlobalAsax.Document.Activate()
+		$customGlobalAsax.Document.Selection.SelectAll(); 
+		$replacementGlobalAsax = $customGlobalAsax.Document.Selection.Text;
 
+		$globalAsaxCs.Open()
+		$globalAsaxCs.Document.Activate()
+		$globalAsaxCs.Document.Selection.SelectAll()
+		$globalAsaxCs.Document.Selection.Insert($replacementGlobalAsax)
+		$globalAsaxCs.Document.Selection.StartOfDocument()
+		$globalAsaxCs.Document.Close(0)
 
+		$customGlobalAsax.Delete()
+	} else {
+		Write-Host "Global.asax.cs or Global.asax.cs.custom not found -- skipping application base type update"
+	}
+}
+
+	
 	
 #### Modify the Razor pageBaseType #### 
 Write-Host "Setting default Razor base page to DowJones.Web.Mvc.UI.WebViewPage..."
@@ -48,11 +62,15 @@ $customLayout.Document.Selection.SelectAll();
 $replacementLayout = $customLayout.Document.Selection.Text;
 $customLayout.Delete()
 
-# Replace the contents of Global.asax.cs
+# Replace the contents of _Layout.cshtml
 $layout = $sharedViews.ProjectItems | where { $_.Name -eq "_Layout.cshtml" }
-$layout.Open()
-$layout.Document.Activate()
-$layout.Document.Selection.SelectAll()
-$layout.Document.Selection.Insert($replacementLayout)
-$layout.Document.Selection.StartOfDocument()
-$layout.Document.Close(0)
+if($layout) {
+	$layout.Open()
+	$layout.Document.Activate()
+	$layout.Document.Selection.SelectAll()
+	$layout.Document.Selection.Insert($replacementLayout)
+	$layout.Document.Selection.StartOfDocument()
+	$layout.Document.Close(0)
+} else {
+	Write-Host "_Layout.cshtml not found -- skipping update"
+}
