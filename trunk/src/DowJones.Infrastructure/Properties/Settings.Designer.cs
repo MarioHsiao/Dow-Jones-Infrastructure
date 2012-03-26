@@ -386,7 +386,7 @@ namespace DowJones.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("~/Config.xml")]
+        [global::System.Configuration.DefaultSettingValueAttribute("~/LoginServer.config")]
         public string LoginConfigFile {
             get {
                 return ((string)(this["LoginConfigFile"]));
