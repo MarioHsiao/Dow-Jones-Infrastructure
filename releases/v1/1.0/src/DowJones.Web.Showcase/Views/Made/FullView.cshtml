@@ -1,0 +1,39 @@
+﻿@{
+    ViewBag.Title = "FullView";
+    Layout = "~/Views/Shared/_Made.cshtml";
+}
+@section styles
+{
+    <style type="text/css">
+        .page-content-box {background-color: #ddd;}
+        #left-col { width: 200px; }
+        #right-col {width: 790px; position: absolute; left: 200px;top: 0px;}
+        #results-tabs ul { }
+        #results-tabs ul  li { display: inline-block; }
+    </style>
+}
+<div id="left-col">
+    All Results
+</div>
+<div id="right-col">
+    <div id="results-tabs">
+        <ul>
+            <li>
+                Publications #-## of about ### | Next
+            </li>
+            <li>
+                Web
+            </li>
+            <li>
+                Multi Media
+            </li>
+            <li>
+                Blogs
+            </li>
+            <li>
+                Authors
+            </li>
+        </ul>
+    </div>
+</div>
+

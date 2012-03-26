@@ -1,0 +1,24 @@
+﻿@model Employee
+
+@{ ViewBag.Title = "Employee Details: " + Model.FullName; }
+
+	<h2>@Model.FullName</h2>
+
+	<p>
+		@Html.LabelFor(x => x.FirstName):
+		@Html.DisplayTextFor(x => x.FirstName)
+	</p>
+
+	<p>
+		@Html.LabelFor(x => x.LastName):
+		@Html.DisplayTextFor(x => x.LastName)
+	</p>
+
+	<p>
+		@Html.LabelFor(x => x.Salary):
+		@Html.DisplayTextFor(x => x.Salary)
+	</p>
+
+	<div>
+		@Html.ActionLink("Edit", "Edit", "FormsValidation", new { Model.ID }, null)
+	</div>

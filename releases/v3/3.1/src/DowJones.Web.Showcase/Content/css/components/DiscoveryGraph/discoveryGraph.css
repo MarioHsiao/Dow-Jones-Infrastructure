@@ -1,0 +1,83 @@
+﻿/*DiscoveryGraph Slimview Styles*/
+.dj_DiscoveryGraph .dj_widget_slimView { width: 290px; }
+
+.dj_DiscoveryGraph .dj_widget_slimView .scrollable { width: 230px; }
+
+.dj_DiscoveryGraph .dj_widget_slimView .dj_widget_heading { font-size: 12px; font-weight: bold; font-family: Arial; padding-bottom: 8px; }
+
+/*DiscoveryGraph Fullview Styles*/
+.dj_DiscoveryGraph .dj_widget_fullView .dj_widget_heading { font-weight: bold; font-family: Arial; font-size: 12px; float: left; }
+
+.dj_DiscoveryGraph .dj_widget_fullView .scrollable { width: 732px; }
+
+/*DiscoveryGraph Common Styles*/
+.dj_DiscoveryGraph .page-item { width: 250px; }
+
+/*************Scrollable Styles*************/
+/*Scrollable Button Styles*/
+
+/* this makes it possible to add next button beside scrollable */
+.dj_DiscoveryGraph .scrollable { float: left; }
+
+/* prev, next, prevPage and nextPage buttons */
+.dj_DiscoveryGraph a.browse { background: url(img/sprite_carousel-buttons.png) no-repeat; display: block; width: 18px; height: 18px; float: left; margin: 50px 10px; cursor: pointer; font-size: 1px; }
+
+/* right */
+.dj_DiscoveryGraph a.right { background-position: 0 -18px; clear: right; margin-right: 0px; }
+
+/* left */
+.dj_DiscoveryGraph a.left { margin-left: 0px; background-position: 0 -121px; }
+
+/* up and down */
+.dj_DiscoveryGraph a.up, a.down { float: none; margin: 10px 50px; }
+
+/* up */
+.dj_DiscoveryGraph a.up:active { background-position: -60px 0; }
+
+/* down */
+.dj_DiscoveryGraph a.down { background-position: 0 -30px; }
+.dj_DiscoveryGraph a.down:active { background-position: -60px -30px; }
+
+
+/* disabled left navigational button */
+.dj_DiscoveryGraph a.prev.disabled { background-position: -18px -121px; }
+
+/* disabled right navigational button */
+.dj_DiscoveryGraph a.next.disabled { background-position: -18px -18px; }
+
+/*Scrollable Horizontal Styles*/
+
+/*
+	root element for the scrollable.
+	when scrolling occurs this element stays still.
+*/
+.dj_DiscoveryGraph .scrollable { /* required settings */ position: relative; overflow: hidden; width: 950px; height: 118px; }
+
+/*
+	root element for scrollable items. Must be absolutely positioned
+	and it should have a extremely large width to accomodate scrollable items.
+	it's enough that you set the width and height for the root element and
+	not for this element.
+*/
+.dj_DiscoveryGraph .scrollable .items { /* this cannot be too large */ width: 20000em; position: absolute; clear: both; }
+
+.dj_DiscoveryGraph .items div.page { float: left; width: 980px; }
+
+.dj_DiscoveryGraph .items div.page-item { float: left; }
+
+/* active item */
+.dj_DiscoveryGraph .scrollable .active { border: 2px solid #000; position: relative; cursor: default; }
+
+/*Scrollable Navigator Styles*/
+
+/* position and dimensions of the navigator */
+.dj_DiscoveryGraph .navi { width: 200px; height: 20px; }
+
+/* items inside navigator */
+.dj_DiscoveryGraph .navi a { width: 8px; height: 8px; float: left; margin: 3px; background: url(img/navigator.png) 0 0 no-repeat; display: block; font-size: 1px; }
+
+/* mouseover state */
+.dj_DiscoveryGraph .navi a:hover { background-position: 0 -8px; }
+
+/* active state (current page state) */
+.dj_DiscoveryGraph .navi a.active { background-position: 0 -16px; }

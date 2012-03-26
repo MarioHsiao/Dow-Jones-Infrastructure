@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- DO NOT EDIT the project element - the ToolsVersion specified here does not prevent the solutions 
+     and projects in the SolutionToBuild item group from targeting other versions of the .NET framework. 
+     -->
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+
+    <UsingTask AssemblyFile="C:\MSBuild Extensions\Microsoft.Sdc.Tasks.dll" TaskName="Microsoft.Sdc.Tasks.Email"/>
+    <UsingTask AssemblyFile="C:\MSBuild Extensions\Microsoft.Sdc.Tasks.dll" TaskName="Microsoft.Sdc.Tasks.VersionNumber.LoadFileVersion"/>
+    <UsingTask AssemblyFile="C:\MSBuild Extensions\MSBuildExtensions.dll" TaskName="MSBuildLibrary01.DisplayFilesAndVersions"/>
+    <UsingTask AssemblyFile="C:\MSBuild Extensions\MSBuildExtensions.dll" TaskName="MSBuildLibrary01.UpdateReleaseWorkItemForBuild"/>
+    <UsingTask AssemblyFile="C:\MSBuild Extensions\MSBuildExtensions.dll" TaskName="MSBuildLibrary01.GetWorkItem"/>
+    <UsingTask AssemblyFile="C:\MSBuild Extensions\MSBuildExtensions.dll" TaskName="MSBuildLibrary01.GenerateReleaseNotes"/>
+    <UsingTask AssemblyFile="C:\MSBuild Extensions\MSBuildExtensions.dll" TaskName="MSBuildLibrary01.SetAssignedToForResolvedItems"/>
+
+    <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\TeamBuild\Microsoft.TeamFoundation.Build.targets" />
+
+    <ProjectExtensions>
+        <ProjectFileVersion>2</ProjectFileVersion>
+        <Description>This is the Dow Jones Infrastructure nightly Build</Description>
+        <BuildMachine>SBK053LAB07NWS</BuildMachine>
+    </ProjectExtensions>
+
+    <PropertyGroup>
+        <RunTest>true</RunTest>
+        <TreatTestFailureAsBuildFailure>true</TreatTestFailureAsBuildFailure>
+        <RunCodeAnalysis>Default</RunCodeAnalysis>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <SolutionToBuild Include="$(SolutionRoot)\src\Framework.sln">
+            <Targets></Targets>
+            <Properties></Properties>
+        </SolutionToBuild>
+
+        <SolutionToBuild Include="$(SolutionRoot)\src\RazorViewComponentClassGenerator.sln">
+            <Targets></Targets>
+            <Properties></Properties>
+        </SolutionToBuild>
+
+        <ConfigurationToBuild Include="Release|Any CPU">
+            <FlavorToBuild>Release</FlavorToBuild>
+            <PlatformToBuild>Any CPU</PlatformToBuild>
+        </ConfigurationToBuild>
+
+        <TestContainer Include="$(OutDir)\DowJones.Web.Mvc.Tests.dll" />
+        <TestContainer Include="$(OutDir)\RazorViewComponentClassGenerator.Tests.dll" />
+    </ItemGroup>
+
+    <Target Name="DeployNightlyBuild" AfterTargets="AfterEndToEndIteration">
+        <PropertyGroup>
+            <DowJonesMSBuildProjectFile>$(SolutionRoot)\src\default.proj</DowJonesMSBuildProjectFile>
+            <ReleaseDeploymentDestination>$(DropLocation)\..\..\Binaries\$(VersionNumber)</ReleaseDeploymentDestination>
+            <ShowcaseSourceFolder>$(DropLocation)\$(BuildNumber)\%(ConfigurationToBuild.FlavorToBuild)\_PublishedWebsites\DowJones.Web.Showcase</ShowcaseSourceFolder>
+            <ShowcaseDeploymentFolder>\\172.25.18.64\MVCShowCase\</ShowcaseDeploymentFolder>
+            <WebsiteEnvironment>Montana</WebsiteEnvironment>
+        </PropertyGroup>
+
+        <MSBuild Projects="$(DowJonesMSBuildProjectFile)" 
+                 BuildInParallel="true" StopOnFirstFailure="false"
+                 Targets="Framework_Deploy;Showcase_Deploy"
+                 Properties="ReleaseDeploymentDestination=$(ReleaseDeploymentDestination);ShowcaseSourceFolder=$(ShowcaseSourceFolder);ShowcaseDeploymentFolder=$(ShowcaseDeploymentFolder);WebsiteEnvironment=$(WebsiteEnvironment)"
+        />
+    </Target>
+</Project>

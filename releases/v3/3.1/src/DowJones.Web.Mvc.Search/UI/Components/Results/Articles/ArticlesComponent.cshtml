@@ -1,0 +1,32 @@
+﻿@using System.Text;
+@using DowJones.Generators;
+@using System.Collections.Generic;
+@using DowJones.Infrastructure;
+@using DowJones.Extensions;
+@using DowJones.Ajax.Article;
+@using DowJones.Web.Mvc.UI.Components.Models.Article;
+@model DowJones.Web.Mvc.Search.ViewModels.ArticlesModel
+@{ CssClass = "dj_Articles"; }
+@if( Model != null && Model.ArticleModels.Count() > 0 )
+{
+	var length = Model.ArticleModels.Count();
+	for( var i = 0; i < length; i++ )
+	{
+		var model = Model.ArticleModels[i];
+        model.ID = RandomKeyGenerator.GetRandomKey( 4, RandomKeyGenerator.CharacterSet.Numeric );
+        
+		<div id="article-pager-@(model.ArticleDataSet.AccessionNo)" class="dj_articlePager">
+			<a id="article-pager-@(model.ArticleDataSet.AccessionNo)-link" class="hiddenArticleLink article-pager-hiddenLink">&nbsp;</a>
+			<div id="article-pager-@(model.ArticleDataSet.AccessionNo)-nav" class="articleHeader clearfix">
+				<span class="article-pager-title">@(Html.DJ().Token( "article" ))@(Html.DJ().Token("sp")) <span class="article-pager-index"></span></span>
+                <span class="article-pager-nav">
+				    <a class="article-pager-prev">@(Html.DJ().Token("previousArticle"))</a>
+				    <span class="article-pager-pipe">&nbsp;|&nbsp;</span>
+				    <a class="article-pager-next">@(Html.DJ().Token("nextArticle"))</a>
+				</span>
+			</div>
+		</div>
+	
+		@Html.DJ().Render( model )
+	}
+}

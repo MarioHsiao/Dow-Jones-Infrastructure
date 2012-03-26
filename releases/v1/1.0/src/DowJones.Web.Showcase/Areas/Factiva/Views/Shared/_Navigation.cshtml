@@ -1,0 +1,71 @@
+﻿@using DowJones.Web.Navigation
+
+@{ var navigationMenu = ViewData.SingleOrDefault<IMenu>(); }
+
+<script type="text/javascript">
+	//DEV-NOTE: Sample Tab Navigation Setup
+	$(document).ready(function () {
+
+		// Menu Types Options (see: jquery.menu.js for more details)
+		var subscribedMenuOptions = {
+			items: [{
+				name: 'Edit Page Info'
+			}, {
+				name: 'Remove Page'
+			}, {
+				name: 'Share Page'
+			}
+		]
+		};
+		var publishedMenuOptions = {
+			items: [{
+				name: 'Edit Page Info'
+			}, {
+				name: 'Delete Page',
+				disabled: true
+			}, {
+				name: 'Share Page'
+			}, {
+				name: 'Publish Page'
+			}
+		]
+		};
+		var regularMenuOptions = {
+			items: [{
+				name: 'Edit Page Info'
+			}, {
+				name: 'Delete Page'
+			}, {
+				name: 'Share Page'
+			}, {
+				name: 'Publish Page'
+			}, {
+				type: 'separator'
+			}, {
+				// DEV-NOTE: This is an example of how to get the tab id
+				name: 'What is this tab id?',
+				onMouseDown: function (e) {
+					var gearIcon = $(e.target).parents('.menu').data('targetElem');
+					var id = $(gearIcon).parents('.tab-container').attr('id');
+					alert(id);
+				}
+			}
+		]
+		};
+
+
+        function loadHeaderState() {
+
+		    // Read the Header state from the cookie
+		    var headerState = $.cookie('headerState');
+		    // Apply the stored state
+		    if (headerState == 'expanded') {
+			    animateHeader('expand');
+		    }
+        }
+
+        if(window["head"]) head.ready(loadHeaderState);
+        else loadHeaderState();
+
+	});
+</script>

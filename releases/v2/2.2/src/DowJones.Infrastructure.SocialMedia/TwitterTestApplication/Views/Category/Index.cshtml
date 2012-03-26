@@ -1,0 +1,50 @@
+﻿@model TwitterTestApplication.Models.CategoryResultsModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+<div>Categories:</div>
+<div>
+    @{ Html.BeginForm( "Index", "Category", FormMethod.Get, new
+          {
+              id = "base"
+          } );
+     }
+    <div>
+        @Html.DropDownList("cat", Model.Categories, new { id="cat", onchange="onCategorySelectChange(this.value);return false" } )
+    </div>
+    <br />
+    @{ Html.EndForm(); }
+
+    @if( Model.Tweets != null && Model.Tweets.Count > 0 )
+    {
+        <div>
+        @foreach(var tweet in Model.Tweets){
+            <div>user profile-image-url: <img src="@tweet.User.ProfileImageUrl" height="24" width="24" border="0"/></div>
+            <div>html tweet: @Html.Raw( tweet.TextAsHtml )</div>
+            <div>raw tweet: @tweet.Text</div>
+            <div>created date: @tweet.CreatedDate</div>
+            <div>source: @tweet.Source</div>
+            <div>followers: @tweet.User.FollowersCount</div>
+            <div>tweet id: @tweet.Id</div>
+            <div>user id: @tweet.User.Id</div>
+            <div>user name: @tweet.User.Name</div>
+            <div>user timezone: @tweet.User.TimeZone</div>
+            <br />
+        }
+        </div>
+    }
+    else
+    {
+        <div>No results</div>
+    }
+
+</div>
+<script type="text/javascript" lang="javascript">
+    function onCategorySelectChange(v) {
+        $("#base").submit();
+    }
+</script>

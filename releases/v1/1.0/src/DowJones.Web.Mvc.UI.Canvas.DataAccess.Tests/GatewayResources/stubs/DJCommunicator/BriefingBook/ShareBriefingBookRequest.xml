@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<ShareBriefingBookRequest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="urn:factiva:Communicator:BriefingBookService:v1_0">
+  <share>true</share>
+  <briefingBookId>101</briefingBookId>
+</ShareBriefingBookRequest>

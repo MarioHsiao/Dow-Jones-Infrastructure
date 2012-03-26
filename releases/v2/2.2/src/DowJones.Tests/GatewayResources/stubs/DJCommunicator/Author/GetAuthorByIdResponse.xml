@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GetAuthorByIdResponse xmlns="urn:factiva:Communicator:AuthorService:v1_0">
+  <author p2:middleName="middleName1" p2:namePrefix="namePrefix1" p2:nameSuffix="nameSuffix1" p2:gender="Female" p2:lastArticleWrittenDate="1900-01-01T01:01:01+02:00" p2:deceased="true" p2:id="1" p2:firstName="firstName1" p2:lastName="lastName1" p2:pitchNotes="pitchNotes1" p2:biography="biography1" p2:webSite="webSite1" xmlns:p2="urn:factiva:Communicator:AuthorService:v1_0">
+    <p2:outletId>1</p2:outletId>
+    <p2:subjectBeat>
+      <id xmlns="urn:factiva:Communicator:Common:v1_0">1</id>
+      <name xmlns="urn:factiva:Communicator:Common:v1_0">name1</name>
+      <parentBeatId xmlns="urn:factiva:Communicator:Common:v1_0">1</parentBeatId>
+    </p2:subjectBeat>
+    <p2:subjectBeat>
+      <id xmlns="urn:factiva:Communicator:Common:v1_0">-2147483647</id>
+      <name xmlns="urn:factiva:Communicator:Common:v1_0">name2</name>
+      <parentBeatId xmlns="urn:factiva:Communicator:Common:v1_0">-2147483647</parentBeatId>
+    </p2:subjectBeat>
+    <p2:subjectBeat>
+      <id xmlns="urn:factiva:Communicator:Common:v1_0">2147483647</id>
+      <name xmlns="urn:factiva:Communicator:Common:v1_0">name3</name>
+      <parentBeatId xmlns="urn:factiva:Communicator:Common:v1_0">2147483647</parentBeatId>
+    </p2:subjectBeat>
+    <p2:industryBeat>
+      <id xmlns="urn:factiva:Communicator:Common:v1_0">1</id>
+      <name xmlns="urn:factiva:Communicator:Common:v1_0">name1</name>
+      <parentBeatId xmlns="urn:factiva:Communicator:Common:v1_0">1</parentBeatId>
+    </p2:industryBeat>
+    <p2:industryBeat>
+      <id xmlns="urn:factiva:Communicator:Common:v1_0">-2147483647</id>
+      <name xmlns="urn:factiva:Communicator:Common:v1_0">name2</name>
+      <parentBeatId xmlns="urn:factiva:Communicator:Common:v1_0">-2147483647</parentBeatId>
+    </p2:industryBeat>
+    <p2:industryBeat>
+      <id xmlns="urn:factiva:Communicator:Common:v1_0">2147483647</id>
+      <name xmlns="urn:factiva:Communicator:Common:v1_0">name3</name>
+      <parentBeatId xmlns="urn:factiva:Communicator:Common:v1_0">2147483647</parentBeatId>
+    </p2:industryBeat>
+    <p2:regionBeat p4:code="code1" xmlns:p4="urn:factiva:Communicator:Common:v1_0">
+      <p4:id>1</p4:id>
+      <p4:name>name1</p4:name>
+      <p4:parentBeatId>1</p4:parentBeatId>
+    </p2:regionBeat>
+    <p2:regionBeat p4:code="code2" xmlns:p4="urn:factiva:Communicator:Common:v1_0">
+      <p4:id>-2147483647</p4:id>
+      <p4:name>name2</p4:name>
+      <p4:parentBeatId>-2147483647</p4:parentBeatId>
+    </p2:regionBeat>
+    <p2:regionBeat p4:code="code3" xmlns:p4="urn:factiva:Communicator:Common:v1_0">
+      <p4:id>2147483647</p4:id>
+      <p4:name>name3</p4:name>
+      <p4:parentBeatId>2147483647</p4:parentBeatId>
+    </p2:regionBeat>
+    <p2:workingLanguage p4:id="1" p4:Name="Name1" p4:Code="Code1" xmlns:p4="urn:factiva:Communicator:Common:v1_0" />
+    <p2:workingLanguage p4:id="-2147483647" p4:Name="Name2" p4:Code="Code2" xmlns:p4="urn:factiva:Communicator:Common:v1_0" />
+    <p2:workingLanguage p4:id="2147483647" p4:Name="Name3" p4:Code="Code3" xmlns:p4="urn:factiva:Communicator:Common:v1_0" />
+    <p2:address p4:id="1" p4:building="building1" p4:isHeadquarters="true" p4:poBox="poBox1" p4:floor="floor1" p4:room="room1" p4:postOrZip="postOrZip1" p4:line2="line21" p4:line1="line11" xmlns:p4="urn:factiva:Communicator:Common:v1_0">
+      <p4:country p4:id="1" p4:name="name1" p4:code="code1" />
+      <p4:state p4:id="1" p4:name="name1" p4:code="code1" />
+      <p4:city p4:id="1" p4:name="name1" p4:code="code1" />
+    </p2:address>
+    <p2:contactInfo p4:value="value1" p4:isPreferred="true" p4:templateUrl="templateUrl1" p4:icon="AAECAwQFBgcICQoLDA0ODw==" p4:isIM="true" p4:typeName="typeName1" xmlns:p4="urn:factiva:Communicator:Common:v1_0">
+      <p4:type>Email</p4:type>
+    </p2:contactInfo>
+    <p2:contactInfo p4:value="value2" p4:isPreferred="false" p4:templateUrl="templateUrl2" p4:icon="AAECAwQFBgcICQoLDA0ODw==" p4:isIM="false" p4:typeName="typeName2" xmlns:p4="urn:factiva:Communicator:Common:v1_0">
+      <p4:type>EmailWork</p4:type>
+    </p2:contactInfo>
+    <p2:contactInfo p4:value="value3" p4:isPreferred="true" p4:templateUrl="templateUrl3" p4:icon="AAECAwQFBgcICQoLDA0ODw==" p4:isIM="true" p4:typeName="typeName3" xmlns:p4="urn:factiva:Communicator:Common:v1_0">
+      <p4:type>EmailOutlet</p4:type>
+    </p2:contactInfo>
+    <p2:employment p2:id="1" p2:jobTitle="jobTitle1" p2:dateUpdated="1900-01-01T01:01:01+02:00" p2:dateCreated="1900-01-01T01:01:01+02:00" p2:isPrimaryContact="true" p2:typeName="typeName1" p2:bureau="bureau1" p2:email="email1" p2:isPrimaryEmployer="true">
+      <p2:role p2:id="1" p2:name="name1" />
+      <p2:outletId>1</p2:outletId>
+      <p2:yearStart>1</p2:yearStart>
+      <p2:yearEnd>1</p2:yearEnd>
+      <p2:contactInfo p5:value="value1" p5:isPreferred="true" p5:templateUrl="templateUrl1" p5:icon="AAECAwQFBgcICQoLDA0ODw==" p5:isIM="true" p5:typeName="typeName1" xmlns:p5="urn:factiva:Communicator:Common:v1_0">
+        <p5:type>Email</p5:type>
+      </p2:contactInfo>
+      <p2:contactInfo p5:value="value2" p5:isPreferred="false" p5:templateUrl="templateUrl2" p5:icon="AAECAwQFBgcICQoLDA0ODw==" p5:isIM="false" p5:typeName="typeName2" xmlns:p5="urn:factiva:Communicator:Common:v1_0">
+        <p5:type>EmailWork</p5:type>
+      </p2:contactInfo>
+      <p2:contactInfo p5:value="value3" p5:isPreferred="true" p5:templateUrl="templateUrl3" p5:icon="AAECAwQFBgcICQoLDA0ODw==" p5:isIM="true" p5:typeName="typeName3" xmlns:p5="urn:factiva:Communicator:Common:v1_0">
+        <p5:type>EmailOutlet</p5:type>
+      </p2:contactInfo>
+    </p2:employment>
+    <p2:employment p2:id="-2147483647" p2:jobTitle="jobTitle2" p2:dateUpdated="0001-01-01T00:00:00+02:00" p2:dateCreated="0001-01-01T00:00:00+02:00" p2:isPrimaryContact="false" p2:typeName="typeName2" p2:bureau="bureau2" p2:email="email2" p2:isPrimaryEmployer="false">
+      <p2:role p2:id="-2147483647" p2:name="name2" />
+      <p2:outletId>-2147483647</p2:outletId>
+      <p2:yearStart>-2147483647</p2:yearStart>
+      <p2:yearEnd>-2147483647</p2:yearEnd>
+      <p2:contactInfo p5:value="value4" p5:isPreferred="false" p5:templateUrl="templateUrl4" p5:icon="AAECAwQFBgcICQoLDA0ODw==" p5:isIM="false" p5:typeName="typeName4" xmlns:p5="urn:factiva:Communicator:Common:v1_0">
+        <p5:type>Phone</p5:type>
+      </p2:contactInfo>
+      <p2:contactInfo p5:value="value5" p5:isPreferred="true" p5:templateUrl="templateUrl5" p5:icon="AAECAwQFBgcICQoLDA0ODw==" p5:isIM="true" p5:typeName="typeName5" xmlns:p5="urn:factiva:Communicator:Common:v1_0">
+        <p5:type>PhoneWork</p5:type>
+      </p2:contactInfo>
+      <p2:contactInfo p5:value="value6" p5:isPreferred="false" p5:templateUrl="templateUrl6" p5:icon="AAECAwQFBgcICQoLDA0ODw==" p5:isIM="false" p5:typeName="typeName6" xmlns:p5="urn:factiva:Communicator:Common:v1_0">
+        <p5:type>PhoneOutlet</p5:type>
+      </p2:contactInfo>
+    </p2:employment>
+    <p2:employment p2:id="2147483647" p2:jobTitle="jobTitle3" p2:dateUpdated="9999-12-31T23:59:59.9999999+02:00" p2:dateCreated="9999-12-31T23:59:59.9999999+02:00" p2:isPrimaryContact="true" p2:typeName="typeName3" p2:bureau="bureau3" p2:email="email3" p2:isPrimaryEmployer="true">
+      <p2:role p2:id="2147483647" p2:name="name3" />
+      <p2:outletId>2147483647</p2:outletId>
+      <p2:yearStart>2147483647</p2:yearStart>
+      <p2:yearEnd>2147483647</p2:yearEnd>
+      <p2:contactInfo p5:value="value7" p5:isPreferred="true" p5:templateUrl="templateUrl7" p5:icon="AAECAwQFBgcICQoLDA0ODw==" p5:isIM="true" p5:typeName="typeName7" xmlns:p5="urn:factiva:Communicator:Common:v1_0">
+        <p5:type>PhoneOutlet2</p5:type>
+      </p2:contactInfo>
+      <p2:contactInfo p5:value="value8" p5:isPreferred="false" p5:templateUrl="templateUrl8" p5:icon="AAECAwQFBgcICQoLDA0ODw==" p5:isIM="false" p5:typeName="typeName8" xmlns:p5="urn:factiva:Communicator:Common:v1_0">
+        <p5:type>Mobile</p5:type>
+      </p2:contactInfo>
+      <p2:contactInfo p5:value="value9" p5:isPreferred="true" p5:templateUrl="templateUrl9" p5:icon="AAECAwQFBgcICQoLDA0ODw==" p5:isIM="true" p5:typeName="typeName9" xmlns:p5="urn:factiva:Communicator:Common:v1_0">
+        <p5:type>MobileOutlet</p5:type>
+      </p2:contactInfo>
+    </p2:employment>
+    <p2:NNID>1</p2:NNID>
+    <p2:book p2:id="1" p2:name="name1" />
+    <p2:book p2:id="-2147483647" p2:name="name2" />
+    <p2:book p2:id="2147483647" p2:name="name3" />
+    <p2:proprietaryInfoID>1</p2:proprietaryInfoID>
+    <p2:homeCountry p4:id="1" p4:name="name1" p4:code="code1" xmlns:p4="urn:factiva:Communicator:Common:v1_0" />
+    <p2:homeState p4:id="1" p4:name="name1" p4:code="code1" xmlns:p4="urn:factiva:Communicator:Common:v1_0" />
+    <p2:homeCity p4:id="1" p4:name="name1" p4:code="code1" xmlns:p4="urn:factiva:Communicator:Common:v1_0" />
+    <p2:dayBirth>1</p2:dayBirth>
+    <p2:monthBirth>1</p2:monthBirth>
+    <p2:yearBirth>1</p2:yearBirth>
+    <p2:column p4:id="1" p4:name="name1" p4:webAddress="webAddress1" xmlns:p4="urn:factiva:Communicator:Common:v1_0">
+      <p4:authorId>1</p4:authorId>
+      <p4:authorId>-2147483647</p4:authorId>
+      <p4:authorId>2147483647</p4:authorId>
+      <p4:subjectBeat>
+        <p4:id>1</p4:id>
+        <p4:name>name1</p4:name>
+        <p4:parentBeatId>1</p4:parentBeatId>
+      </p4:subjectBeat>
+      <p4:subjectBeat>
+        <p4:id>-2147483647</p4:id>
+        <p4:name>name2</p4:name>
+        <p4:parentBeatId>-2147483647</p4:parentBeatId>
+      </p4:subjectBeat>
+      <p4:subjectBeat>
+        <p4:id>2147483647</p4:id>
+        <p4:name>name3</p4:name>
+        <p4:parentBeatId>2147483647</p4:parentBeatId>
+      </p4:subjectBeat>
+      <p4:industryBeat>
+        <p4:id>1</p4:id>
+        <p4:name>name1</p4:name>
+        <p4:parentBeatId>1</p4:parentBeatId>
+      </p4:industryBeat>
+      <p4:industryBeat>
+        <p4:id>-2147483647</p4:id>
+        <p4:name>name2</p4:name>
+        <p4:parentBeatId>-2147483647</p4:parentBeatId>
+      </p4:industryBeat>
+      <p4:industryBeat>
+        <p4:id>2147483647</p4:id>
+        <p4:name>name3</p4:name>
+        <p4:parentBeatId>2147483647</p4:parentBeatId>
+      </p4:industryBeat>
+      <p4:regionBeat p4:code="code1">
+        <p4:id>1</p4:id>
+        <p4:name>name1</p4:name>
+        <p4:parentBeatId>1</p4:parentBeatId>
+      </p4:regionBeat>
+      <p4:regionBeat p4:code="code2">
+        <p4:id>-2147483647</p4:id>
+        <p4:name>name2</p4:name>
+        <p4:parentBeatId>-2147483647</p4:parentBeatId>
+      </p4:regionBeat>
+      <p4:regionBeat p4:code="code3">
+        <p4:id>2147483647</p4:id>
+        <p4:name>name3</p4:name>
+        <p4:parentBeatId>2147483647</p4:parentBeatId>
+      </p4:regionBeat>
+    </p2:column>
+    <p2:column p4:id="-2147483647" p4:name="name2" p4:webAddress="webAddress2" xmlns:p4="urn:factiva:Communicator:Common:v1_0">
+      <p4:authorId>0</p4:authorId>
+      <p4:authorId>2</p4:authorId>
+      <p4:authorId>-2147483646</p4:authorId>
+      <p4:subjectBeat>
+        <p4:id>0</p4:id>
+        <p4:name>name4</p4:name>
+        <p4:parentBeatId>0</p4:parentBeatId>
+      </p4:subjectBeat>
+      <p4:subjectBeat>
+        <p4:id>2</p4:id>
+        <p4:name>name5</p4:name>
+        <p4:parentBeatId>2</p4:parentBeatId>
+      </p4:subjectBeat>
+      <p4:subjectBeat>
+        <p4:id>-2147483646</p4:id>
+        <p4:name>name6</p4:name>
+        <p4:parentBeatId>-2147483646</p4:parentBeatId>
+      </p4:subjectBeat>
+      <p4:industryBeat>
+        <p4:id>0</p4:id>
+        <p4:name>name4</p4:name>
+        <p4:parentBeatId>0</p4:parentBeatId>
+      </p4:industryBeat>
+      <p4:industryBeat>
+        <p4:id>2</p4:id>
+        <p4:name>name5</p4:name>
+        <p4:parentBeatId>2</p4:parentBeatId>
+      </p4:industryBeat>
+      <p4:industryBeat>
+        <p4:id>-2147483646</p4:id>
+        <p4:name>name6</p4:name>
+        <p4:parentBeatId>-2147483646</p4:parentBeatId>
+      </p4:industryBeat>
+      <p4:regionBeat p4:code="code4">
+        <p4:id>0</p4:id>
+        <p4:name>name4</p4:name>
+        <p4:parentBeatId>0</p4:parentBeatId>
+      </p4:regionBeat>
+      <p4:regionBeat p4:code="code5">
+        <p4:id>2</p4:id>
+        <p4:name>name5</p4:name>
+        <p4:parentBeatId>2</p4:parentBeatId>
+      </p4:regionBeat>
+      <p4:regionBeat p4:code="code6">
+        <p4:id>-2147483646</p4:id>
+        <p4:name>name6</p4:name>
+        <p4:parentBeatId>-2147483646</p4:parentBeatId>
+      </p4:regionBeat>
+    </p2:column>
+    <p2:column p4:id="2147483647" p4:name="name3" p4:webAddress="webAddress3" xmlns:p4="urn:factiva:Communicator:Common:v1_0">
+      <p4:authorId>2147483646</p4:authorId>
+      <p4:authorId>-1</p4:authorId>
+      <p4:authorId>3</p4:authorId>
+      <p4:subjectBeat>
+        <p4:id>2147483646</p4:id>
+        <p4:name>name7</p4:name>
+        <p4:parentBeatId>2147483646</p4:parentBeatId>
+      </p4:subjectBeat>
+      <p4:subjectBeat>
+        <p4:id>-1</p4:id>
+        <p4:name>name8</p4:name>
+        <p4:parentBeatId>-1</p4:parentBeatId>
+      </p4:subjectBeat>
+      <p4:subjectBeat>
+        <p4:id>3</p4:id>
+        <p4:name>name9</p4:name>
+        <p4:parentBeatId>3</p4:parentBeatId>
+      </p4:subjectBeat>
+      <p4:industryBeat>
+        <p4:id>2147483646</p4:id>
+        <p4:name>name7</p4:name>
+        <p4:parentBeatId>2147483646</p4:parentBeatId>
+      </p4:industryBeat>
+      <p4:industryBeat>
+        <p4:id>-1</p4:id>
+        <p4:name>name8</p4:name>
+        <p4:parentBeatId>-1</p4:parentBeatId>
+      </p4:industryBeat>
+      <p4:industryBeat>
+        <p4:id>3</p4:id>
+        <p4:name>name9</p4:name>
+        <p4:parentBeatId>3</p4:parentBeatId>
+      </p4:industryBeat>
+      <p4:regionBeat p4:code="code7">
+        <p4:id>2147483646</p4:id>
+        <p4:name>name7</p4:name>
+        <p4:parentBeatId>2147483646</p4:parentBeatId>
+      </p4:regionBeat>
+      <p4:regionBeat p4:code="code8">
+        <p4:id>-1</p4:id>
+        <p4:name>name8</p4:name>
+        <p4:parentBeatId>-1</p4:parentBeatId>
+      </p4:regionBeat>
+      <p4:regionBeat p4:code="code9">
+        <p4:id>3</p4:id>
+        <p4:name>name9</p4:name>
+        <p4:parentBeatId>3</p4:parentBeatId>
+      </p4:regionBeat>
+    </p2:column>
+    <p2:education p2:id="1" p2:outcome="outcome1">
+      <p2:university p2:id="1" p2:name="name1">
+        <p2:country p6:id="1" p6:name="name1" p6:code="code1" xmlns:p6="urn:factiva:Communicator:Common:v1_0" />
+      </p2:university>
+      <p2:degree p2:type="type1" p2:subject="subject1" />
+      <p2:year>1</p2:year>
+    </p2:education>
+    <p2:education p2:id="-2147483647" p2:outcome="outcome2">
+      <p2:university p2:id="-2147483647" p2:name="name2">
+        <p2:country p6:id="-2147483647" p6:name="name2" p6:code="code2" xmlns:p6="urn:factiva:Communicator:Common:v1_0" />
+      </p2:university>
+      <p2:degree p2:type="type2" p2:subject="subject2" />
+      <p2:year>-2147483647</p2:year>
+    </p2:education>
+    <p2:education p2:id="2147483647" p2:outcome="outcome3">
+      <p2:university p2:id="2147483647" p2:name="name3">
+        <p2:country p6:id="2147483647" p6:name="name3" p6:code="code3" xmlns:p6="urn:factiva:Communicator:Common:v1_0" />
+      </p2:university>
+      <p2:degree p2:type="type3" p2:subject="subject3" />
+      <p2:year>2147483647</p2:year>
+    </p2:education>
+    <p2:socialNetwork p4:id="1" p4:name="name1" p4:url="url1" p4:icon="AAECAwQFBgcICQoLDA0ODw==" p4:templateUrl="templateUrl1" xmlns:p4="urn:factiva:Communicator:Common:v1_0" />
+    <p2:socialNetwork p4:id="-2147483647" p4:name="name2" p4:url="url2" p4:icon="AAECAwQFBgcICQoLDA0ODw==" p4:templateUrl="templateUrl2" xmlns:p4="urn:factiva:Communicator:Common:v1_0" />
+    <p2:socialNetwork p4:id="2147483647" p4:name="name3" p4:url="url3" p4:icon="AAECAwQFBgcICQoLDA0ODw==" p4:templateUrl="templateUrl3" xmlns:p4="urn:factiva:Communicator:Common:v1_0" />
+    <p2:nameVariations p2:id="1" p2:name="name1" p2:type="None" />
+    <p2:nameVariations p2:id="-2147483647" p2:name="name2" p2:type="Alias" />
+    <p2:nameVariations p2:id="2147483647" p2:name="name3" p2:type="Nickname" />
+  </author>
+</GetAuthorByIdResponse>

@@ -1,0 +1,73 @@
+﻿@using DowJones.Web.Mvc.UI.Canvas
+@inherits AbstractCanvasModuleEditor<DowJones.Web.Mvc.UI.Canvas.Editors.AlertsModuleEditor>
+@ScriptResource RelativeResourceName=AlertsCanvasModuleEditor.js
+
+@ClientPlugin dj_AlertsCanvasModuleEditor
+
+<form class="module-edit-options module-edit-options-open">
+            <div class="dj_edit-box dj_create-custom-pg">
+            	
+			 	<div class="edit-details">I suspect we may need some form of "legal" disclaimer. We don't control the content, etc... Aenean lacin ia bibendum nulla sed consectetur. Nullam quisrisus eget urna mollis ornare vel eu leo. Nullam id dolor id nibh ultricies vehicula ut id elit. Maecenas sed diam eget risus</div>
+
+				<div class="dj_edit-content clearfix">
+                    <div class="dj_edit-col">
+                        
+                        <div class="dj_edit-input-wrap">
+                            <label for="" class="dj_edit-label">Module Name</label>
+                            <div class="dj_text-element-wrapper"><input type="text" id=""></div>
+                        </div>
+                        
+                        <div class="dj_edit-input-wrap">
+                            <label for="" class="dj_edit-label">Description</label>
+                            <span class="dj_max-char-note">(250 char. max)</span>
+                            <div class="dj_text-element-wrapper"><textarea id=""></textarea></div>
+                        </div>
+      
+                    </div>
+                    
+                    <div class="dj_edit-col two-thirds">
+                        <label for="" class="dj_edit-label">Alerts</label>
+                        <div class="dj_edit-lists-overflow">
+                        	<span class="dj_edit-list-empty-msg">Currently there are no alerts added to this module</span>
+                            <ul class="dj_edit-lists ui-sortable" id="sortable" style="">
+                                <!--<li class="sortable-item editable-item"><span class="reorder-icon"></span><span class="label">One of my alerts</span></li>
+                                <li class="sortable-item editable-item"><span class="reorder-icon"></span><span class="label">Another alert</span></li>
+                                <li class="sortable-item editable-item warning"><span class="reorder-icon"></span><span class="label">Whoops</span></li>
+                                <li class="sortable-item editable-item"><span class="reorder-icon"></span><span class="label">Look at this alert!</span></li>
+                                <li class="sortable-item editable-item warning"><span class="reorder-icon"></span><span class="label">Kablammo</span></li>
+                                <li class="sortable-item editable-item"><span class="reorder-icon"></span><span class="label">test alert</span></li>
+                                <li class="sortable-item editable-item"><span class="reorder-icon"></span><span class="label">Apple computers in the news</span></li>-->
+                            </ul>
+                        </div>
+                        <div class="dj_edit-lists-add-controls">
+                            <div class="list-message hide">You have added the maximum number of feeds. To add a new alert to this module, you will first need to remove an existing module from the list above.</div>
+                            <div class="add-new-list-item">
+                            	<label for="" class="dj_edit-label">Select an Alert to add to the module</label>
+                                <select class="user-alerts-list">
+                                	
+                                	
+                                	
+                                	
+                                <option value="Select an alert" class="default-option">Select an alert</option><option value="Performance" id="alert-1">Performance</option><option value="Bankruptcy" id="alert-2">Bankruptcy</option><option value="Mergers &amp; Acquisitions" id="alert-3">Mergers &amp; Acquisitions</option><option value="Earnings" id="alert-4">Earnings</option><option value="Press Releases" id="alert-5">Press Releases</option><option value="Funding and Capital" id="alert-6">Funding and Capital</option><option value="Corporate Crime" id="alert-7">Corporate Crime</option><option value="Analyst Comment" id="alert-8">Analyst Comment</option><option value="IPO" id="alert-9">IPO</option><option value="Factiva" id="alert-10">Factiva</option><option value="test alert" id="alert-11">test alert</option><option value="Internet Technology" id="alert-12">Internet Technology</option><option value="Apple Computers" id="alert-13">Apple Computers</option><option value="Microsoft Computers" id="alert-14">Microsoft Computers</option><option value="Social Networks in the News" id="alert-15">Social Networks in the News</option><option value="Gold" id="alert-16">Gold</option><option value="Pete McGrath" id="alert-17">Pete McGrath</option><option value="Green Energy" id="alert-18">Green Energy</option><option value="Electric Cars" id="alert-19">Electric Cars</option><option value="Other Tablets vs. the iPad" id="alert-20">Other Tablets vs. the iPad</option><option value="Factiva iPad App in the News" id="alert-21">Factiva iPad App in the News</option><option value="Factiva Newspages" id="alert-22">Factiva Newspages</option><option value="Dow Jones" id="alert-23">Dow Jones</option><option value="Example Alert 1" id="alert-24">Example Alert 1</option><option value="Example Alert 2" id="alert-25">Example Alert 2</option><option value="Example Alert 3" id="alert-26">Example Alert 3</option><option value="Example Alert 4" id="alert-27">Example Alert 4</option><option value="Example Alert 5" id="alert-28">Example Alert 5</option><option value="Example Alert 6" id="alert-29">Example Alert 6</option><option value="Example Alert 7" id="alert-30">Example Alert 7</option><option value="Example Alert 8" id="alert-31">Example Alert 8</option><option value="Example Alert 9" id="alert-32">Example Alert 9</option><option value="Example Alert 10" id="alert-33">Example Alert 10</option><option value="Example Alert 11" id="alert-34">Example Alert 11</option><option value="Example Alert 12" id="alert-35">Example Alert 12</option><option value="Example Alert 13" id="alert-36">Example Alert 13</option></select>
+                                <ul class="dc_list"> 
+                                    <li class="dc_item">
+                                        <a class="dashboard-control dc_btn dc_btn-2 dc_btn-add" href="#">Add</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+				</div>
+				<div class="button-pane">
+					<ul class="dc_list dc_list-lg"> 
+						<li class="dc_item">
+							<a class="dashboard-control dc_btn dc_btn-2 dc_btn-save" href="#">Save</a>
+						</li>
+						<li class="dc_item">
+							<a class="dashboard-control dc_btn dc_btn-3 dc_btn-cancel" href="#">Cancel</a>
+						</li>
+					</ul>
+				</div>
+            
+            </div><!-- end: .dj_edit-box -->
+        </form>

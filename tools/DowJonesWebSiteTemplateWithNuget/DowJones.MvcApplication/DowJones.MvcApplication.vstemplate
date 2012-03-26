@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<VSTemplate Version="3.0.0" Type="Project" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005">
+  <TemplateData>
+    <Name>DowJones MVC Web Application</Name>
+    <Description>Creates a Dow Jones MVC Framework based ASP.NET MVC3 application</Description>
+    <Icon>DowJones.MvcApplication.png</Icon>
+    <ProjectType>CSharp</ProjectType>
+    <RequiredFrameworkVersion>2.0</RequiredFrameworkVersion>
+    <SortOrder>1000</SortOrder>
+    <TemplateID>c6634bbe-909d-4570-8fec-652f82afea9d</TemplateID>
+    <CreateNewFolder>true</CreateNewFolder>
+    <DefaultName>DowJones.Web.MvcApplication</DefaultName>
+    <ProvideDefaultName>true</ProvideDefaultName>
+  </TemplateData>
+  <TemplateContent>
+    <Project File="ProjectTemplate.csproj" ReplaceParameters="true">
+      <ProjectItem ReplaceParameters="true" TargetFileName="Properties\AssemblyInfo.cs">AssemblyInfo.cs</ProjectItem>
+      <Folder Name="Content" TargetFolderName="Content" />
+      <Folder Name="Controller" TargetFolderName="Controller" />
+      <Folder Name="Models" TargetFolderName="Models" />
+      <Folder Name="Scripts" TargetFolderName="Scripts" />
+      <Folder Name="Views" TargetFolderName="Views">
+        <Folder Name="Shared" TargetFolderName="Shared">
+          <ProjectItem TargetFileName="_Layout.cshtml">_Layout.cshtml</ProjectItem>
+          <ProjectItem TargetFileName="Error.cshtml">Error.cshtml</ProjectItem>
+        </Folder>
+        <ProjectItem TargetFileName="_ViewStart.cshtml">_ViewStart.cshtml</ProjectItem>
+        <ProjectItem TargetFileName="Web.config">Web.config</ProjectItem>
+      </Folder>
+      <ProjectItem TargetFileName="packages.config">packages.config</ProjectItem>
+      <ProjectItem TargetFileName="Global.asax">Global.asax</ProjectItem>
+      <ProjectItem TargetFileName="Web.config">Web.config</ProjectItem>
+      <ProjectItem TargetFileName="Web.Debug.config">Web.Debug.config</ProjectItem>
+      <ProjectItem TargetFileName="Web.Release.config">Web.Release.config</ProjectItem>
+    </Project>
+  </TemplateContent>
+  <WizardExtension>
+    <Assembly>NuGet.VisualStudio.Interop, Version=1.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</Assembly>
+    <FullClassName>NuGet.VisualStudio.TemplateWizard</FullClassName>
+  </WizardExtension>
+  <WizardData>
+    <packages repository="extension"
+          repositoryId="DowJonesMvcApplication.b50542fd-6bce-4710-b8d6-d81a53e723f8">
+      <package id="DowJones.Web.Mvc.Website" version="3.1.0" />
+    </packages>
+  </WizardData>
+  
+</VSTemplate>

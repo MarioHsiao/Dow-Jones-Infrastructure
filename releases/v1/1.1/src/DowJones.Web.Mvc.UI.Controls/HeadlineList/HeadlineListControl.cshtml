@@ -1,0 +1,56 @@
+@model DowJones.Web.Mvc.UI.Components.Models.HeadlineList.HeadlineListModel
+@ClientPlugin dj_HeadlineList
+@ScriptResource RelativeResourceName=HeadlineListControl.js
+@StylesheetResource RelativeResourceName=HeadlineListControl.css
+@ClientTemplate RelativeResourceName=HeadlineListControlClientTemplate.htm, TemplateId=hlcontent
+@{ CssClass = "dj_HeadlineList"; }
+
+@if (Model != null)
+{
+   <ul class="dj_headlineListContainer items">
+    @foreach (var headline in Model.Headlines)
+    {
+    <li class="item" data-djid="@headline.AccessionNumber">
+        <div class="wrap">
+            <h4 class="headline">
+                @if (Model.ShowCheckboxes)
+                {
+                <input class="chk-headline" type="checkbox" value="@headline.AccessionNumber" />
+                }
+                <a class="title" href="#" title="@headline.Snippet" rel="@headline.ExternalUrl">@headline.Title</a>
+            </h4>
+            <div class="meta">
+                <span class="source" data-djid="@headline.SourceCode">@headline.Source</span> |
+                <span class="date-stamp">@headline.PublicationDateDisplay</span>
+                <span class="author">@headline.Author</span>
+                <span class="byline">@headline.Byline</span>
+            </div>
+            @if (headline.DuplicateHeadlines != null && headline.DuplicateHeadlines.Count > 0)
+            {
+                <div class="duplicates">
+                    <a class="trigger" href="#" >
+                        <span class="accent">+</span>
+                        <span class="copy">@headline.DuplicateHeadlines.Count duplicate article(s) identified</span>
+                    </a>
+                    <ul class="items">
+                    @foreach (var dup in headline.DuplicateHeadlines)
+                    {
+                        <li class="item" data-djid="@dup.AccessionNumber" data-parentdjid="@dup.ParentAccessionNumber"  rel="@dup.ExternalUrl">
+                            <h4 class="headline">
+                                <a class="title" href="#" title="@headline.Snippet">@dup.Title</a>
+                            </h4>
+                            <span class="source" data-djid="@dup.SourceCode">@dup.Source</span>
+                        </li>
+                    }
+                    </ul>
+                </div>
+            }
+        </div>
+    </li>
+    }
+    </ul>
+}
+else
+{ 
+    <li><span class="dj_noResults">No Results</span></li>
+}

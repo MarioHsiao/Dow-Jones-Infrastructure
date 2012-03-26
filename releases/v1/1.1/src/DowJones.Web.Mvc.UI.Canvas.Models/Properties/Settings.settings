@@ -1,0 +1,78 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="DowJones.Web.Mvc.UI.Canvas" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="TrendingNewsModuleServiceUrl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">/modules/Trending/1.0/data/json</Value>
+    </Setting>
+    <Setting Name="SuggestServiceUrl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://suggest.dowjones.com/Search/1.0</Value>
+    </Setting>
+    <Setting Name="AlertsModuleServiceUrl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">/modules/Alerts/1.0/data/json</Value>
+    </Setting>
+    <Setting Name="CustomTopicsModuleServiceUrl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">/modules/CustomTopics/1.0/data/json</Value>
+    </Setting>
+    <Setting Name="CompanyOverviewModuleServiceUrl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">/modules/CompanyOverview/1.0/data/json</Value>
+    </Setting>
+    <Setting Name="NewsstandModuleServiceUrl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">/modules/NewsStand/1.0/data/json</Value>
+    </Setting>
+    <Setting Name="RegionalMapModuleServiceUrl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">/modules/RegionalMap/1.0/data/json</Value>
+    </Setting>
+    <Setting Name="SourcesModuleServiceUrl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">/modules/Sources/1.0/data/json</Value>
+    </Setting>
+    <Setting Name="SummaryModuleServiceUrl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">/modules/Summary/1.0/data/json</Value>
+    </Setting>
+    <Setting Name="TopNewsModuleServiceUrl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">/modules/TopNews/1.0/data/json</Value>
+    </Setting>
+    <Setting Name="TrendingNewsModuleServiceUrl1" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">/modules/Trending/1.0/data/json</Value>
+    </Setting>
+    <Setting Name="RadarModuleServiceUrl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">/Modules/Radar/1.0/data/json</Value>
+    </Setting>
+    <Setting Name="CanvasServiceBaseUrl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">/pages/1.0</Value>
+    </Setting>
+    <Setting Name="TopNewsCanvasModuleEditorServiceUrl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">/topnews.svc/1.0/module</Value>
+    </Setting>
+    <Setting Name="CompanyOverviewModuleEditorServiceUrl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">/modules/CompanyOverview/1.0/module/json</Value>
+    </Setting>
+    <Setting Name="SwapModuleEditorServiceUrl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">/modules/EditorData/1.0/json</Value>
+    </Setting>
+    <Setting Name="CreateAlertModuleUrl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">/modules/Alerts/1.0/module/json</Value>
+    </Setting>
+    <Setting Name="CreateCompanyOverviewModuleUrl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">/modules/CompanyOverview/1.0/module/json</Value>
+    </Setting>
+    <Setting Name="CreateUpdateAlertModuleUrl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">/modules/Alerts/1.0/module/json</Value>
+    </Setting>
+    <Setting Name="CreateUpdateCompanyOverviewModuleUrl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">/modules/CompanyOverview/1.0/module/json</Value>
+    </Setting>
+    <Setting Name="SwapModuleServiceUrl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">/Pages/1.0/modules/replace/json</Value>
+    </Setting>
+    <Setting Name="DashboardServiceBaseUrl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://api.dowjones.com/api/dashboard</Value>
+    </Setting>
+    <Setting Name="AlertsListServiceUrl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">/modules/Alerts/1.0/module/json</Value>
+    </Setting>
+    <Setting Name="AlertsModuleEditorServiceUrl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">/modules/Alerts/1.0/module/json</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

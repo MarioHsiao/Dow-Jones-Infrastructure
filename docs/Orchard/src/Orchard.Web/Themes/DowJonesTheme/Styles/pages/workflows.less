@@ -1,0 +1,106 @@
+﻿#workflows
+{
+	h3
+	{
+		font-size: 16px;
+		text-transform: uppercase;
+	}
+	
+	.left-column
+	{
+		float: left;
+		margin-right: @indent2;
+		width: 300px;
+			
+		.workflows
+		{
+			margin: 0;
+		
+			li
+			{
+				font-weight: bold;
+				height: 23px;
+				line-height: 23px;
+				list-style-type: none;
+				padding-left: @indent1;
+			}
+			li.selected
+			{
+				background: url( ../images/right-arrow.png ) right no-repeat;
+				
+				a { color: #fff; }
+			}
+		}
+	}
+	
+	.right-column
+	{
+		float: left;
+		width: 675px;
+
+		.example
+		{
+			float: left;
+			margin-right: @indent2;
+			margin-bottom: 1.5em;
+			width: 675px;
+		
+			.heading
+			{
+				border: solid 1px;
+				border-color: #7F7F7F #7F7F7F #5A5A5A;
+				height: 28px;
+			
+				#editTabs
+				{
+					@start:  #DBDBDB;
+					@end: #B9B9B9;
+	
+					background: @end;
+					background: -moz-linear-gradient( top center, @start, @end );
+					background: -webkit-gradient( linear, 0% 0%, 0% 100%, from( @start ), to( @end ) );
+					height: 26px;
+					margin: 0;
+					padding-left: 8px;
+				
+					li
+					{
+						float: left;
+						font-size: 11px;
+						font-weight: bold;
+						line-height: 26px;
+						list-style-type: none;
+					
+						a
+						{
+							color: #000;
+							float: left;
+						
+							span { padding: 0px 10px 2px; }
+						}
+					}
+					li.selected a span
+					{
+						-moz-border-radius: 10px;
+						-webkit-border-radius: 10px;
+						border-radius: 10px;
+						border: solid 1px;
+						border-color: #565656 #838383 #DCDCDC #838383;
+						background: #838383;
+						color: #FFF;
+					}
+				}
+			}
+		
+			#preview, #source
+			{
+				background: #fff;
+				border: solid 1px #bad2de;
+				border-top: 0;
+				height: 245px;
+			}
+		
+			#source { display: none; }
+		}
+	}
+}

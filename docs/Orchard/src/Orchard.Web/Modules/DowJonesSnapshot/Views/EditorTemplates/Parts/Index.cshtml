@@ -1,0 +1,14 @@
+﻿@model DowJonesSnapshot.Models.SnapshotPart 
+
+<fieldset>
+  <legend>Developer Guidance</legend>
+
+  <div class="editor-label">
+    @Html.LabelFor(model => model.ComponentName)
+  </div>
+  <div class="editor-field">
+    @Html.TextBoxFor(model => model.ComponentName)
+    @Html.ValidationMessageFor(model => model.ComponentName)
+  </div>
+ 
+</fieldset>

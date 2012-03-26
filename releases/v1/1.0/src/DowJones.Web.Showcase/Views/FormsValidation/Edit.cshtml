@@ -1,0 +1,43 @@
+﻿@model Employee
+
+@{ 
+	ViewBag.Title = "Edit Employee";
+	Html.DJ().ScriptRegistry().WithClientSideValidation();
+}
+
+	<h2>@Model.FullName</h2>
+
+	<fieldset>
+
+@using(Html.BeginForm("Update", "FormsValidation")) {
+
+	<p>
+		@Html.ValidationSummary()
+	</p>
+
+		@Html.HiddenFor(x => x.ID)
+
+		<p>
+			@Html.LabelFor(x => x.FirstName):
+			@Html.TextBoxFor(x => x.FirstName)
+			@Html.ValidationMessageFor(x => x.FirstName, "*")
+		</p>
+
+		<p>
+			@Html.LabelFor(x => x.LastName):
+			@Html.TextBoxFor(x => x.LastName)
+			@Html.ValidationMessageFor(x => x.LastName, "*")
+		</p>
+
+		<p>
+			@Html.LabelFor(x => x.Salary):
+			@Html.TextBoxFor(x => x.Salary)
+			@Html.ValidationMessageFor(x => x.Salary, "*")
+		</p>
+
+		<p>
+			<input type="submit" value="Update Employee" />
+		</p>
+}
+
+	</fieldset>

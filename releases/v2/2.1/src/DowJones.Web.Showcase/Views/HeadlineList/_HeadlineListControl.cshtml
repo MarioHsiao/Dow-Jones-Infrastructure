@@ -1,0 +1,87 @@
+﻿@using DowJones.Web.Mvc.Extensions
+@using DowJones.Web.Mvc.UI.Components.HeadlineList
+@using System.Collections.ObjectModel
+@model DowJones.Web.Mvc.UI.Components.HeadlineList.HeadlineListModel
+<ul class="dj_HeadlineList items">
+    @if (Model != null)
+    {
+        foreach (var headline in Model.Headlines)
+        {
+        <li class="headline-box item @(Model.DuplicatesAreVisible(headline) ? " dups" : "")" data-accn-num="@headline.AccessionNumber">
+            @if (Model.ShowCheckboxes)
+            {
+                <div class="select">
+                    <input class="chk-headline" type="checkbox" />
+                    @if (Model.DuplicatesAreVisible(headline))
+                    {
+                        <span class="dj_icon dj_icon-d-arrow-g hide"></span>
+                        <ul class="options hide">
+                            <li class="option">
+                                <input id="select_duplicates_off" type="radio" name="duplicates" value="off" checked="true">
+                                <label for="select_duplicates_off">Select Articles without Duplicates</label>
+                            </li>
+                            <li class="option">
+                                <input id="select_duplicates_on" type="radio" name="duplicates" value="on">
+                                <label for="select_duplicates_on">Select Articles with Duplicates</label>
+                            </li>
+                        </ul>
+                    }
+                </div>
+                
+            }
+            <a class="title" href="#" rel="@headline.ExternalUrl">@headline.Title</a>
+            <div class="meta">
+                <span class="value source drop-down-button" data-djid="@headline.SourceCode">@headline.Source</span>
+                <span class="dj_article-by">By</span>
+                @foreach (var author in headline.Authors)
+                {
+                    <span class="value author drop-down-button" data-djid=@author.Code>@author.Name</span>   
+                }
+                <span class="date-stamp">@headline.PublicationDateDisplay, @headline.WordCount, @headline.Language</span>
+            </div>
+            <p class="snippet">
+                @headline.Snippet
+            </p>
+            <div class="actions">
+                <ol class="options">
+                    <li class="option"><span class="dj_icon dj_icon-print"></span></li>
+                    <li class="option"><span class="dj_icon dj_icon-save"></span></li>
+                    <li class="option"><span class="dj_icon dj_icon-mail"></span></li>
+                </ol>
+            </div>
+            @if (Model.DuplicatesAreVisible(headline))
+            {
+                <div class="duplicateWrapper clearfix">
+                    <p><span class="dj_icon dj_icon-blk-filter-r-arrow"></span><strong>Duplicates</strong>
+                        (@headline.DuplicateHeadlines.Count())</p>
+                    <ul class="hide">
+                        @foreach (var dup in headline.DuplicateHeadlines)
+                        {
+                            <li data-djid="@dup.AccessionNumber" data-parentdjid="@dup.ParentAccessionNumber" rel="@dup.ExternalUrl">
+                                @if (Model.ShowCheckboxes)
+                                {
+                                    <input class="chk-headline" type="checkbox" value="@dup.AccessionNumber" />
+                                }
+                                <a class="title" href="#" title="@headline.Snippet">@dup.Title</a>
+                                <div class="meta">
+                                    <span class="value source drop-down-button" data-djid="@dup.SourceCode">@dup.Source</span>
+                                    <span class="dj_article-by">By</span>
+                                    @foreach (var author in dup.Authors)
+                                    {
+                                        <span class="value author drop-down-button" data-djid=@author.Code>@author.Name</span>   
+                                    }
+                                    <span class="date-stamp">@dup.PublicationDateDisplay</span>
+                                </div>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            }
+        </li>
+        }
+    }
+    else
+    {
+        <li><span class="dj_noResults">No Results</span></li>
+    }
+</ul>

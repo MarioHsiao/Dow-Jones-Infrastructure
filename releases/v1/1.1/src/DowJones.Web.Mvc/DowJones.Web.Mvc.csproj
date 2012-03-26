@@ -1,0 +1,317 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{3E440D53-ACA6-422A-8FC8-778D505AD1E9}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DowJones.Web.Mvc</RootNamespace>
+    <AssemblyName>DowJones.Web.Mvc</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'TestsOnly|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\TestsOnly\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Debug\DowJones.Web.Mvc.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;C:\Program Files\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="log4net">
+      <HintPath>..\packages\log4net.1.2.10\lib\2.0\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.4.0.1\lib\40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject, Version=2.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Ninject.2.2.0.0\lib\.NetFramework 4.0\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Web.Mvc, Version=2.2.0.1, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Ninject.MVC3.2.2.0.1\lib\.NetFramework 4.0\Ninject.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\lib\aspnetmvc\System.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\webpages\System.Web.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.XML" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ActionResults\AuthenticationServerLogoutRedirectActionResult.cs" />
+    <Compile Include="ActionResults\RedirectToAuthenticationServerActionResult.cs" />
+    <Compile Include="Extensions\HtmlHelperExtensions.cs" />
+    <Compile Include="Extensions\UrlHelperExtensions.cs" />
+    <Compile Include="Extensions\ViewDataExtensions.cs" />
+    <Compile Include="Infrastructure\ControllerActionAttributeInfo.cs" />
+    <Compile Include="Infrastructure\ControllerRegistry.cs" />
+    <Compile Include="CoreMvcFrameworkBindingModule.cs" />
+    <Compile Include="..\SolutionInfo.cs">
+      <Link>Properties\SolutionInfo.cs</Link>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Routing\RouteGenerator.cs" />
+    <Compile Include="Routing\IRouteGenerator.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Threading\AspCompatControllerBase.cs" />
+    <Compile Include="DowJonesControllerBase.cs" />
+    <Compile Include="Mobile\MobileDeviceInformationFilter.cs" />
+    <Compile Include="Mobile\MobileDeviceInformationViewDataExtensions.cs" />
+    <Compile Include="Resources\EmbeddedResources.cs" />
+    <Compile Include="Threading\AspCompatAttribute.cs" />
+    <Compile Include="Routing\RouteAttribute.cs" />
+    <Compile Include="Routing\RouteInfo.cs" />
+    <Compile Include="Threading\STAMvcHandler.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Threading\STAMvcRouteHandler.cs" />
+    <Compile Include="DowJonesHttpApplication.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UI\Exceptions\AmbiguousComponentTypeException.cs" />
+    <Compile Include="UI\ClientState\ClientDataAttribute.cs" />
+    <Compile Include="UI\ClientState\ClientEventHandlerAttribute.cs" />
+    <Compile Include="UI\ClientState\ClientPropertyAttribute.cs" />
+    <Compile Include="UI\ClientState\ClientState.cs" />
+    <Compile Include="UI\ClientState\ClientStateAttribute.cs" />
+    <Compile Include="UI\ClientState\ClientStateMapper.cs" />
+    <Compile Include="UI\ClientState\ClientTokenAttribute.cs" />
+    <Compile Include="UI\ContainerComponent.cs" />
+    <Compile Include="UI\ContentContainer.cs" />
+    <Compile Include="UI\ContentContainerModel.cs" />
+    <Compile Include="UI\Exceptions\DuplicateRazorSectionDefinitionException.cs" />
+    <Compile Include="UI\FrameworkResourceAttribute.cs" />
+    <Compile Include="UI\HeadJsScriptRegistryWriter.cs" />
+    <Compile Include="UI\IComponent.cs" />
+    <Compile Include="UI\DowJonesRazorViewEngine.cs" />
+    <Compile Include="UI\Fluent\ComponentBuilderBase.cs" />
+    <Compile Include="UI\IRenderable.cs" />
+    <Compile Include="UI\Fluent\ScriptRegistryBuilder.cs" />
+    <Compile Include="UI\IScriptRegistry.cs" />
+    <Compile Include="UI\IScriptRegistryWriter.cs" />
+    <Compile Include="UI\IViewComponent.cs" />
+    <Compile Include="UI\IViewComponentModel.cs" />
+    <Compile Include="UI\IViewComponentRegistry.cs" />
+    <Compile Include="UI\RazorTemplateBase.cs" />
+    <Compile Include="UI\ScriptRegistryWriter.cs" />
+    <Compile Include="UI\Exceptions\SectionNotImplementedException.cs" />
+    <Compile Include="UI\StylesheetRegistry.cs" />
+    <Compile Include="UI\ScriptRegistry.cs" />
+    <Compile Include="UI\Fluent\StylesheetRegistryBuilder.cs" />
+    <Compile Include="UI\Exceptions\UnknownComponentTypeException.cs" />
+    <Compile Include="UI\ViewComponentBase.cs" />
+    <Compile Include="UI\Fluent\ViewComponentBuilderBase.cs" />
+    <Compile Include="UI\ViewComponentClientResourceRegistry.cs" />
+    <Compile Include="UI\ViewComponentDefinition.cs" />
+    <Compile Include="UI\ViewComponentModelMapper.cs" />
+    <Compile Include="UI\ViewComponentRegistry.cs" />
+    <Compile Include="UI\ViewComponentModelMapping.cs" />
+    <Compile Include="UI\ViewComponentFactory.cs" />
+    <Compile Include="UI\ViewComponentModelMappingRegistration.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UI\ViewComponentModel.cs" />
+    <Compile Include="UI\ViewComponentViewResult.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\js\modernizr.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\images\hl\article.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\images\hl\atom.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\images\hl\audio.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\images\hl\clipIcon.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\images\hl\clipIconGhost.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\images\hl\delete.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\images\hl\flag.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\images\hl\graphic.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\images\hl\html.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\images\hl\multimedia.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\images\hl\pdf.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\images\hl\rss.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\images\hl\video.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\js\jquery.validate.js" />
+    <EmbeddedResource Include="Resources\js\jquery.validate.unobtrusive.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\js\jquery.unobtrusive-ajax.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\js\common.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="DowJones.Web.Mvc.nuspec-template" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Mobile\Extensions\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DowJones.Infrastructure\DowJones.Infrastructure.csproj">
+      <Project>{095DE252-E183-4AE6-824A-B4504AE737C1}</Project>
+      <Name>DowJones.Infrastructure</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\js\ServiceProxy.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\js\jquery.js" />
+    <EmbeddedResource Include="Resources\js\jquery-ui.core.js" />
+    <EmbeddedResource Include="Resources\js\jquery-ui.core.min.js" />
+    <EmbeddedResource Include="Resources\js\jquery-ui.effects.js" />
+    <EmbeddedResource Include="Resources\js\jquery-ui.interactions.js" />
+    <EmbeddedResource Include="Resources\js\jquery-ui.widgets.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\js\head.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\js\underscore.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\js\highcharts.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\js\jquery-vsdoc.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\js\jquery-json.js" />
+    <EmbeddedResource Include="Resources\js\jquery.blockui.js" />
+    <EmbeddedResource Include="Resources\js\jquery.easing.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\js\jquery.cycle.all.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\js\ErrorManager.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\js\json2.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\js\dateFormat.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\js\jquery.touchwipe.js" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

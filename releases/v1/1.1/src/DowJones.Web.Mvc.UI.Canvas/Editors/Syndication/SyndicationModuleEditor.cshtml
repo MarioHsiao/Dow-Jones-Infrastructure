@@ -1,0 +1,53 @@
+﻿@using DowJones.Web.Mvc.UI.Canvas
+@using DowJones.Web.Mvc.Extensions
+@using DowJones.Extensions
+@inherits AbstractCanvasModuleEditor<DowJones.Web.Mvc.UI.Canvas.Editors.SyndicationModuleEditor>
+@ScriptResource RelativeResourceName=SyndicationModuleEditor.js
+@ClientPlugin dj_SyndicationModuleEditor
+@{
+    CssClass += " dj_Editor dj_SyndicationModuleEditor";
+    Html.DJ().ScriptRegistry().WithJQueryUIEffects();
+  }
+<div class="edit-details dj_Edit_RssDisclaimer">@Html.DJ().Token("newsFeedsDisclaimer")
+</div>
+<div class="dj_edit-content clearfix">
+    <div class="dj_edit-col">
+        <div class="dj_edit-input-wrap">
+            <label class="dj_edit-label" for="">
+                @Html.DJ().Token("moduleName")</label>
+            <div class="dj_text-element-wrapper">
+                <input type="text" class="dj_Edit_PageName" maxlength="25" /></div> 
+        </div>
+        <div class="dj_edit-input-wrap">
+            <label class="dj_edit-label" for="">
+                @Html.DJ().Token("description")</label>
+            <span class="dj_max-char-note">(@Html.DJ().Token("max250Chars"))</span>
+            <div class="dj_text-element-wrapper">
+                <textarea class="dj_Edit_PageDescription"></textarea></div>
+        </div>
+    </div>
+    <div class="dj_edit-col two-thirds">
+        <label class="dj_edit-label" for="">
+            @Html.DJ().Token("newsFeeds")</label>
+        <div class="dj_edit-lists-overflow">
+            <ul class="dj_edit-lists ui-sortable">
+            </ul>
+        </div>
+        <div class="dj_edit-lists-add-controls">
+            <div class="list-message hide">
+            </div>
+            <div class="new-item-box hide">
+                <input value="">
+                <div class="controls">
+                    <ul class="dc_list dc_list-lg">
+                        <li class="dc_item"><a href="#" class="dashboard-control dc_btn dc_btn-2 dc_btn-save">
+                            @Html.DJ().Token("addThisNewsFeeds")</a> </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="add-feeds-toggle">
+                <a class="add-feeds-toggle">@Html.DJ().Token("addNewsFeeds")</a>
+            </div>
+        </div>
+    </div>
+</div>

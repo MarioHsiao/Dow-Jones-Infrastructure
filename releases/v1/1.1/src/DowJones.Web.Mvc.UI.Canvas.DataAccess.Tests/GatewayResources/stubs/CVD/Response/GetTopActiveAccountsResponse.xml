@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<IndexSearchResponse ver="01.0">
+  <GetTopActiveAccountsResponse xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ver="1.0" xsi:noNamespaceSchemaLocation="GetTopActiveAccountsResponse.xsd">
+    <status value="0">Success</status>
+    <requestInfo>
+      <accountScope>all</accountScope>
+      <beginDate>2009-01-01</beginDate>
+      <endDate>2009-03-01</endDate>
+    </requestInfo>
+    <accountSummaryList first="1" count="20" total="9290">
+      <accountSummary accountId="9PRI001500" emailActivities="3739746" sessionActivities="156516" totalActivities="3896262">
+        <accountName>PRICEWATERHOUSECOOPERS L.L.P</accountName>
+      </accountSummary>
+      <accountSummary accountId="9ERN000800" emailActivities="2699288" sessionActivities="94110" totalActivities="2793398">
+        <accountName>ERNST &amp; YOUNG, LLP</accountName>
+      </accountSummary>
+      <accountSummary accountId="9DEL001400" emailActivities="2174292" sessionActivities="112207" totalActivities="2286499">
+        <accountName>DELOITTE &amp; TOUCHE LLP</accountName>
+      </accountSummary>
+      <accountSummary accountId="9MOR001400" emailActivities="915096" sessionActivities="71836" totalActivities="986932">
+        <accountName>MORGAN STANLEY</accountName>
+      </accountSummary>
+      <accountSummary accountId="9ZFB000400" emailActivities="634288" sessionActivities="24217" totalActivities="658505">
+        <accountName>ZFBDOW JONES &amp; COMPANY INC</accountName>
+      </accountSummary>
+      <accountSummary accountId="9ZZZ038300" emailActivities="579572" sessionActivities="5259" totalActivities="584831">
+        <accountName>ZZZPREVIEW PASSWORDS</accountName>
+      </accountSummary>
+      <accountSummary accountId="9KPM005400" emailActivities="489076" sessionActivities="36242" totalActivities="525318">
+        <accountName>KPMG INTERNATIONAL</accountName>
+      </accountSummary>
+      <accountSummary accountId="9KPM000500" emailActivities="389560" sessionActivities="11476" totalActivities="401036">
+        <accountName>K P M G</accountName>
+      </accountSummary>
+      <accountSummary accountId="9IBM000900" emailActivities="324258" sessionActivities="11788" totalActivities="336046">
+        <accountName>IBM, INC.</accountName>
+      </accountSummary>
+      <accountSummary accountId="9MOO000100" emailActivities="316914" sessionActivities="12830" totalActivities="329744">
+        <accountName>MOODY&#039;S INVESTORS SERVICE, INC</accountName>
+      </accountSummary>
+      <accountSummary accountId="9SAL002800" emailActivities="298348" sessionActivities="14609" totalActivities="312957">
+        <accountName>SALOMON SMITH BARNEY</accountName>
+      </accountSummary>
+      <accountSummary accountId="9REU000500" emailActivities="274618" sessionActivities="31933" totalActivities="306551">
+        <accountName>REUTERS GROUP PLC</accountName>
+      </accountSummary>
+      <accountSummary accountId="9MCK000700" emailActivities="282638" sessionActivities="21939" totalActivities="304577">
+        <accountName>MCKINSEY &amp; COMPANY, INC.</accountName>
+      </accountSummary>
+      <accountSummary accountId="9JOI000500" emailActivities="281308" sessionActivities="16496" totalActivities="297804">
+        <accountName>JOINT BANK FUND LIBRARY (INC)</accountName>
+      </accountSummary>
+      <accountSummary accountId="9GOL000700" emailActivities="290336" sessionActivities="3583" totalActivities="293919">
+        <accountName>GOLDMAN SACHS</accountName>
+      </accountSummary>
+      <accountSummary accountId="9DEP000100" emailActivities="264856" sessionActivities="10553" totalActivities="275409">
+        <accountName>DEPT OF FOREIGN AFFAIRS</accountName>
+      </accountSummary>
+      <accountSummary accountId="9BAN001400" emailActivities="261484" sessionActivities="8057" totalActivities="269541">
+        <accountName>BANK OF AMERICA</accountName>
+      </accountSummary>
+      <accountSummary accountId="9MIC001000" emailActivities="252708" sessionActivities="8509" totalActivities="261217">
+        <accountName>MICROSOFT CORPORATION</accountName>
+      </accountSummary>
+      <accountSummary accountId="9BAI000400" emailActivities="224704" sessionActivities="17544" totalActivities="242248">
+        <accountName>BAIN &amp; COMPANY INC</accountName>
+      </accountSummary>
+      <accountSummary accountId="9CRE009300" emailActivities="218896" sessionActivities="10762" totalActivities="229658">
+        <accountName>CREDIT SUISSE FINANCIAL PRODUCTS INC</accountName>
+      </accountSummary>
+    </accountSummaryList>
+  </GetTopActiveAccountsResponse>
+</IndexSearchResponse>

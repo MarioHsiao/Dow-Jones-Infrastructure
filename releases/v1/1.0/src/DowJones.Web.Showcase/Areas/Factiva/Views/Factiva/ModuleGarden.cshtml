@@ -1,0 +1,48 @@
+﻿@using DowJones.Web.Mvc.UI.Canvas.Editors
+@{
+    ViewBag.Title = "Module Garden Simulator";
+
+    Html.DJ().ScriptRegistry()
+        .WithServiceProxy()
+        .Include("~/Areas/Factiva/Scripts/modulegarden.js")
+        .OnDocumentReady("moduleGarden.init();");
+}
+<div id="moduleGarden">
+    <select id="moduleTypes">
+        <option value="-1">Select a module type</option>
+        <option value="Alerts|AlertsNewspageModule">Alerts</option>
+        <option value="Syndication|SyndicationNewspageModule">Syndication</option>
+        <option value="Swap|NewsstandNewspageModule">Newsstand</option>
+        <option value="Swap|CustomTopicsNewspageModule">Custom Topics</option>
+        <option value="Swap|SourcesNewspageModule">Sources</option>
+        <option value="Swap|RadarNewspageModule">Radar</option>
+        <option value="Swap|RegionalMapNewspageModule">Regional Map</option>
+        <option value="Swap|TopNewsNewspageModule">Top News</option>
+        <option value="Swap|TrendingNewspageModule">Trending</option>
+        <option value="Swap|SummaryNewspageModule">Summary</option>
+        <option value="CompanyOverview|CompanyOverviewNewspageModule">Company Overview</option>
+    </select>
+    <div class="module-edit-options">
+        <div class="dj_edit-box dj_create-custom-pg">
+            @(Html.DJ().RenderComponent<DowJones.Web.Mvc.UI.Canvas.Editors.Swap.SwapModuleEditor>(Model.SwapModuleEditor))
+        </div>
+        <div class="dj_edit-box dj_create-custom-pg">
+            @(Html.DJ().RenderComponent<DowJones.Web.Mvc.UI.Canvas.Editors.Syndication.SyndicationModuleEditor>(Model.SyndicationEditor))
+        </div>
+        @*@(Html.DJ().RenderComponent<DowJones.Web.Mvc.UI.Canvas.Editors.Alerts.AlertsModuleEditor>())*@
+        @*@(Html.DJ().RenderComponent<DowJones.Web.Mvc.UI.Canvas.Editors.CompanyOverview.CompanyOverviewModuleEditor>())*@
+        <div id="moduleGardenEditorActions">
+            <div class="button-pane">
+                <ul class="dc_list dc_list-lg">
+                    <li class="dc_item"><a href="#" class="dashboard-control dc_btn dc_btn-2 dc_btn-save">
+                        Save</a> </li>
+                    <li class="dc_item"><a href="#" class="dashboard-control dc_btn dc_btn-3 dc_btn-cancel">
+                        Cancel</a> </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+@(Html.DJ().Render(Model))
+</div> 

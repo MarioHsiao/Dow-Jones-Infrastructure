@@ -1,0 +1,7 @@
+﻿# TFSBuild.rsp:  Additional build parameters
+
+/p:Product="DJ Infrastructure"
+/p:RWI=5123
+
+/p:NuGetOutputPath="\\fsegdevw1.win.dowjones.net\WebSites\nuget\main\Packages" 
+/p:FrameworkVersionFile="\\sbkntsfap05.dowjones.net\client_share\DJ Infrastructure\Builds\Releases\v2.2\version.txt"

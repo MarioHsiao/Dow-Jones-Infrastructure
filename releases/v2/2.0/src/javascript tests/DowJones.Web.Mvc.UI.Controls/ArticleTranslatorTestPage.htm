@@ -1,0 +1,82 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+    <title>Article Translator Mock Test Page</title>
+    <link href="../../DowJones.Web.Mvc/Resources/css/base.css" rel="stylesheet" />
+    <link href="../../DowJones.Web.Mvc/Resources/css/reset.css" rel="stylesheet" />
+    <link href="../../DowJones.Web.Mvc/Resources/css/960.css" rel="stylesheet" />
+     <link href="../../DowJones.Web.Showcase/content/emg_default.css" type="text/css"
+        rel="stylesheet" />
+
+    <link href="../../DowJones.Web.Showcase/content/emg_grid.css" type="text/css" rel="stylesheet" />
+    <link href="../../DowJones.Web.Showcase/content/emg_layout.css" type="text/css" rel="stylesheet" />
+    <link href="../../DowJones.Web.Showcase/content/emg_text.css" type="text/css" rel="stylesheet" />
+    <link href="../../DowJones.Web.Showcase/content/showcasestyle.css" type="text/css" rel="stylesheet" />
+    <link href="../../DowJones.Web.Mvc.UI.Components/ArticleTranslator/ArticleTranslator.css"
+        type="text/css" rel="stylesheet" />
+
+        <style type="text/css">
+            .ui-state-active, .ui-widget-content .ui-state-active
+            {
+                border: 1px solid #cccccc;
+                background: #ffffff url(widget_bg.gif) 50% 50% repeat-x;
+                font-weight: normal;
+                color: #FFFFFF;
+                outline: none;
+            }
+        </style>
+</head>
+<body>
+
+    <div class="dj_ArticleTranslatorControl ArticleTranslatorControl" id="ArticleTranslatorControl">
+        <div class="dj_article_translator_icon">
+            <div class="dj_article_translator_translatemainlink" id="translateArticleDiv">
+                <a id="TranslatelinkId" href="javascript:void(0)" tabindex="0"><span class="dj_article_translator_button_span">
+                    Click to translate</span> </a> 
+                  <div id="translateLanguagesDiv" class="dj_article_translator_languagesDiv" >
+                    <div class="dj_article_translator_header">
+                        <div class="dj_article_translator_floatleft" >
+                            <strong>Available Languages</strong></div>
+                        <div class="dj_article_translator_floatright" >
+                            <a id="translateClose" href="javascript:void(0)"><strong>X</strong>&nbsp;<strong>Close</strong></a></div>
+                    </div>
+                    <ul class="dj_article_translator_body ">
+                        <li role="menuitem" >
+                            <a tabindex="-1" 
+                                rel="{accessionnumber:'MDST000020100506e659000io',sourcelanguage:'en',targetlanguageCode:'fr',targetlanguage:'French'}"
+                                href="#" class="dj_article_translator_langclicklink">
+                                French 
+                            </a>
+                        </li>
+                        <li role="menuitem" ><a tabindex="-1" rel="{accessionnumber:'MDST000020100506e659000io',sourcelanguage:'en',targetlanguageCode:'de',targetlanguage:'German'}"
+                            href="#" class="dj_article_translator_langclicklink">German </a></li>
+                        <li role="menuitem" ><a tabindex="-1" rel="{accessionnumber:'MDST000020100506e659000io',sourcelanguage:'en',targetlanguageCode:'ru',targetlanguage:'Rusian'}"
+                            href="#" class="dj_article_translator_langclicklink">Rusian </a></li>
+                        <li role="menuitem" ><a tabindex="-1" rel="{accessionnumber:'MDST000020100506e659000io',sourcelanguage:'en',targetlanguageCode:'es',targetlanguage:'Spanish'}"
+                            href="#" class="dj_article_translator_langclicklink">Spanish </a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../../DowJones.Web.Mvc/Resources/js/jquery.js"></script>
+    <script src="../../DowJones.Web.Mvc/Resources/js/common.js"></script>
+    <script src="../../DowJones.Web.Mvc.UI.Components/ArticleTranslator/ArticleTranslatorControl.js"></script>
+    <script src="../../DowJones.Web.Mvc.UI.Components/ArticleTranslator/ArticleTranslatorMenu.js"></script>
+    <script type="text/javascript">
+        function OnLangClick(e, d) {
+            alert(d.data);
+            var dd=eval('(' + d.data + ')')
+            alert(dd.accessionnumber);
+
+        }
+    </script>
+    <script type="text/javascript">
+
+
+        $(document).ready(function () {
+            jQuery('#ArticleTranslatorControl').dj_ArticleTranslatorControl({ options: { debug: false }, tokens: {}, data: null, eventHandlers: { "dj.ArticleTranslatorControl.langClick": "OnLangClick"} });
+        });
+    </script>
+</body>
+</html>

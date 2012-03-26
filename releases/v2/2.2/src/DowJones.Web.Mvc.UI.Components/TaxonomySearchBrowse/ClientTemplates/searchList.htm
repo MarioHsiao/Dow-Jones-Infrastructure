@@ -1,0 +1,9 @@
+﻿<%  var d, desc;
+    for(var i = 0;i < data.length;i++){ 
+        d = data[i];
+        desc = d.Name || d.desc;
+%>
+    <li class="item" data-code="<%= (d.Code || d.code).toLowerCase() %>">
+        <span><%= desc %></span>
+    </li>
+<% } %>

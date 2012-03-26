@@ -1,0 +1,33 @@
+﻿@{
+	// TODO: Use the Script Registry to register scripts
+	Html.DJ().ScriptRegistry()
+		.Include("~/scripts/site.js", ClientResourceDependencyLevel.Global);
+	
+	// TODO: Use the Stylesheet Registry to register stylesheets and custom inline styles
+	Html.DJ().StylesheetRegistry()
+        .Include("~/content/site.css", ClientResourceDependencyLevel.Global);
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+	<link rel="shortcut icon" href="@Url.Content("~/content/images/favicon.ico")" type="image/x-icon" />
+	<link rel="icon" type="image/ico" href="@Url.Content("~/content/images/favicon.ico")" />
+	
+	@* Write out styles in the header *@
+    @Html.DJ().StylesheetRegistry().ToHtml()
+</head>
+
+<body>
+
+    @RenderBody()
+	
+	@* Write out additional styles that may have been registered during body processing *@
+    @Html.DJ().StylesheetRegistry().ToHtml()
+
+	@* Write out all script includes and inline scripts *@
+    @Html.DJ().ScriptRegistry().ToHtml()
+
+</body>
+</html>

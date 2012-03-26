@@ -1,0 +1,20 @@
+﻿<%
+    var expertsCount = experts.length;
+    for(var i = 0; i < expertsCount; i++) {
+        expert = experts[i];
+        profileUrl = expert.profileUrl;
+        profileHashUrl = expert.profileHashUrl;
+        screenName = expert.screenName; 
+        fullName = expert.fullName;
+        profileImageUrl = expert.profileImageUrl;
+%>
+<li data-user-id="<%= expert.id %>" data-screen-name="<%= expert.screenName %>" class="dj_experts-item clear">
+    <img class="expert-profile-link" alt="<%= fullName %>" src="<%= profileImageUrl %>" />
+    <div class="dj_author-meta">
+        <a title="<%= fullName %>" href="<%= profileUrl %>" class="dj_full-name" target="_blank">
+            <%= fullName %></a> <a class="dj_screen-name" href="<%= profileHashUrl %>" target="_blank">
+                @<%= screenName %></a>
+    </div>
+    <span class="dj_social-btn follow"><span></span><%= Token("follow") %> </span>
+</li>
+<% } %>

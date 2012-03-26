@@ -1,0 +1,91 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+    <title>NavBar Mock</title>
+    <link href="../../../DowJones.Web.Showcase/styles/css/reset.css" type="text/css"
+        rel="stylesheet">
+    <link href="../../../DowJones.Web.Showcase/styles/css/global.css" type="text/css"
+        rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="LegacyAssets/css/globallayout.css" />
+    <link rel="stylesheet" type="text/css" href="LegacyAssets/css/jquery.scrollabletabbar.css" />
+</head>
+<body>
+    <div class="dj_message">
+        <div class="dj_message-wrap container_9">
+            <p>
+                Welcome to the new Factiva Newspages.Return to <a href="http://nevada.dev.us.factiva.com/dotcom42/du/global.aspx">
+                    Factiva.com</a>
+            </p>
+        </div>
+    </div>
+    <div id="dj_header">
+        <div id="dj_header-wrap" class="">
+            <div id="dj_header-top">
+                <div id="dj_header-top-wrap" class="container_9 clearfix">
+                    <ul id="user-nav" class="clearfix">
+                        <li><a id="" class="" href="javascript:void(0);" onclick="DJGlobal.NewWindow({ url:'http://www.surveymonkey.com/s/3B93YNF', windowName: 'feedbackWin' })"
+                            title="${csFeedbackTitle}">Feedback</a></li>
+                        <li><a id="" class="registerMyIPad" href="javascript:void(0);" onclick="" title="${registerMyIPadTitle}">
+                            ${registerMyIPad}</a></li>
+                        <li><a id="" class="" href="http://global.int.factiva.com/factivalogin/logout.asp?productname=global"
+                            onclick="" title="${logoutTitle}">${logout}</a></li>
+                        <li><a id="" class="" href="javascript:void(0);" onclick="DJGlobal.NewWindow({ url: 'http://customer.int.factiva.com?apc=np', windowName: 'supportWin' })"
+                            title="${supportTitle}">Support</a></li>
+                    </ul>
+                    <!-- end: #user-nav -->
+                </div>
+            </div>
+            <!-- end: #dj_header-top -->
+            <div id="dj_header-bottom">
+                <div id="dj_header-bottom-wrap" class="container_9 clearfix">
+                    <div id="dj_header-content" class="clearfix">
+                        <h1 id="dj_header-logo" class="header-logo">
+                            Factiva</h1>
+                        <div id="dj_header-search">
+                        </div>
+                        <!-- end: #dj_header-search -->
+                    </div>
+                    <!-- end: #dj_header-content -->
+                </div>
+            </div>
+            <!-- end: #dj_header-bottom -->
+        </div>
+    </div>
+    <div id="dj_canvas_nav" class="container_9">
+        <div id="tabbar" class="scrollabletabbar container_9 clearfix">
+        </div>
+    </div>
+    <!-- end: #dj_canvas_nav -->
+    <div id="dashboard">
+        <div id="dashboard-wrap" class="container_9 clearfix">
+            <div class=" dj_Canvas" id="NewsPageModulesContainer">
+            </div>
+            <span id="spModuleCount" class="hide">4</span>
+        </div>
+    </div>
+    <input type="hidden" value="/" id="pathname">
+    <input type="hidden" value="True" id="isAd">
+    <input type="hidden" value="False" id="isEditor">
+    <input type="hidden" value="True" id="isSearch">
+    <input type="hidden" value="12" id="tabcount">
+</body>
+<script type="text/javascript" src="../../../DowJones.Web.Mvc/Resources/js/jquery.js"></script>
+<script type="text/javascript" src="../../../DowJones.Web.Mvc/Resources/js/jquery-ui.core.js"></script>
+<script type="text/javascript" src="../../../DowJones.Web.Mvc/Resources/js/jquery-ui.interactions.js"></script>
+<script type="text/javascript" src="LegacyAssets/js/jquery.menu.js"></script>
+<script type="text/javascript" src="../../../DowJones.Web.Mvc/Resources/js/common.js"></script>
+<script type="text/javascript" src="LegacyAssets/js/jquery.scrollabletabbar.js"></script>
+<script type="text/javascript" src="LegacyAssets/js/jquery.cookie.js"></script>
+<script type="text/javascript">
+    var pageViewType = "User";
+</script>
+<script type="text/javascript">
+    if (typeof (HeaderTabs) == 'undefined')
+        HeaderTabs = {};
+    HeaderTabs.PageListItems = [{ "IsCurrentPageActive": true, "PagePosition": 1, "ParentID": "Np_V1_12732_12732_000000", "ID": "Np_V1_12732_12732_000000", "Title": "HP Trending 1", "Description": "HP Trending 1", "ModuleCollection": [], "IsActive": true, "Position": 1, "MetaData": null, "CategoryInfo": null, "AccessQualifier": 0, "AccessScope": 0, "PublishStatusScope": 0, "LastModifiedDate": "\/Date(1304507538000)\/", "OwnerUserId": "pandah1", "OwnerNamespace": "16" }, { "IsCurrentPageActive": false, "PagePosition": 2, "ParentID": "Np_V1_14785_14785_020102", "ID": "Np_V1_14785_14785_020102", "Title": "surya-edit[lz 1.22]", "Description": "test", "ModuleCollection": [], "IsActive": true, "Position": 2, "MetaData": null, "CategoryInfo": null, "AccessQualifier": 1, "AccessScope": 1, "PublishStatusScope": 1, "LastModifiedDate": "\/Date(1304121939000)\/", "OwnerUserId": "lisaadmin", "OwnerNamespace": "16" }, { "IsCurrentPageActive": false, "PagePosition": 3, "ParentID": "Np_V1_14673_14673_020102", "ID": "Np_V1_14673_14673_020102", "Title": "test create page", "Description": "test create page", "ModuleCollection": [], "IsActive": true, "Position": 3, "MetaData": null, "CategoryInfo": null, "AccessQualifier": 1, "AccessScope": 1, "PublishStatusScope": 1, "LastModifiedDate": "\/Date(1303917421000)\/", "OwnerUserId": "snapshot5", "OwnerNamespace": "16" }, { "IsCurrentPageActive": false, "PagePosition": 4, "ParentID": "Np_V1_14647_14647_020102", "ID": "Np_V1_14647_14647_020102", "Title": "Greater China", "Description": "Spot and analyze top trends, news, companies, and people affecting the Greater China region today. ", "ModuleCollection": [], "IsActive": true, "Position": 4, "MetaData": null, "CategoryInfo": null, "AccessQualifier": 1, "AccessScope": 1, "PublishStatusScope": 1, "LastModifiedDate": "\/Date(1303912808000)\/", "OwnerUserId": "snapshot5", "OwnerNamespace": "16" }, { "IsCurrentPageActive": false, "PagePosition": 5, "ParentID": "Np_V1_14101_14101_000000", "ID": "Np_V1_14101_14101_000000", "Title": "Accounting/Consulting", "Description": "Spot and analyze top trends, news, companies, and people in the Accounting/Consulting Industry .", "ModuleCollection": [], "IsActive": true, "Position": 5, "MetaData": null, "CategoryInfo": null, "AccessQualifier": 0, "AccessScope": 0, "PublishStatusScope": 0, "LastModifiedDate": "\/Date(1302874409000)\/", "OwnerUserId": "pandah1", "OwnerNamespace": "16" }, { "IsCurrentPageActive": false, "PagePosition": 6, "ParentID": "Np_V1_13967_13967_000000", "ID": "Np_V1_13967_13967_000000", "Title": "Russia", "Description": "Spot and analyze top trends, news, companies, and people affecting Russia today. ", "ModuleCollection": [], "IsActive": true, "Position": 6, "MetaData": null, "CategoryInfo": null, "AccessQualifier": 0, "AccessScope": 0, "PublishStatusScope": 0, "LastModifiedDate": "\/Date(1302780350000)\/", "OwnerUserId": "pandah1", "OwnerNamespace": "16" }, { "IsCurrentPageActive": false, "PagePosition": 7, "ParentID": "Np_V1_13902_13902_020102", "ID": "Np_V1_13902_13902_020102", "Title": "Banking/Credit - PSC Page", "Description": "Spot and analyze top trends, news, companies, and people in the Banking/Credit Industry.  This is my page, do not delete or modify it!!!", "ModuleCollection": [], "IsActive": true, "Position": 7, "MetaData": null, "CategoryInfo": null, "AccessQualifier": 1, "AccessScope": 1, "PublishStatusScope": 1, "LastModifiedDate": "\/Date(1302715689000)\/", "OwnerUserId": "pcounts09", "OwnerNamespace": "16" }, { "IsCurrentPageActive": false, "PagePosition": 8, "ParentID": "Np_V1_13898_13898_020102", "ID": "Np_V1_13898_13898_020102", "Title": "Pharmaceuticals", "Description": "Spot and analyze top trends, news, companies, and people in the Pharmaceuticals Industry.", "ModuleCollection": [], "IsActive": true, "Position": 8, "MetaData": null, "CategoryInfo": null, "AccessQualifier": 1, "AccessScope": 1, "PublishStatusScope": 1, "LastModifiedDate": "\/Date(1302712600000)\/", "OwnerUserId": "satyanew", "OwnerNamespace": "16" }, { "IsCurrentPageActive": false, "PagePosition": 9, "ParentID": "Np_V1_13608_13608_000000", "ID": "Np_V1_13608_13608_000000", "Title": "UK", "Description": "Spot and analyze top trends, news, companies, and people affecting the United Kingdom today. ", "ModuleCollection": [], "IsActive": true, "Position": 9, "MetaData": null, "CategoryInfo": null, "AccessQualifier": 0, "AccessScope": 0, "PublishStatusScope": 0, "LastModifiedDate": "\/Date(1302800968000)\/", "OwnerUserId": "pandah1", "OwnerNamespace": "16" }, { "IsCurrentPageActive": false, "PagePosition": 10, "ParentID": "Np_V1_14669_14669_000000", "ID": "Np_V1_14669_14669_000000", "Title": "Callout Test - 35743", "Description": "Create a new custom page and add Radar or Trends module.  After the module appears the headline callouts don\u0027t work until the page is reopened.", "ModuleCollection": [], "IsActive": true, "Position": 10, "MetaData": null, "CategoryInfo": null, "AccessQualifier": 0, "AccessScope": 0, "PublishStatusScope": 0, "LastModifiedDate": "\/Date(1303984951000)\/", "OwnerUserId": "pandah1", "OwnerNamespace": "16" }, { "IsCurrentPageActive": false, "PagePosition": 11, "ParentID": "Np_V1_14847_14847_000000", "ID": "Np_V1_14847_14847_000000", "Title": "Etats-Unis", "Description": "Identifier et analyser les principales tendances, des nouvelles, des entreprises et des personnes touchant les États-Unis aujourd\u0027\u0027hui.", "ModuleCollection": [], "IsActive": true, "Position": 11, "MetaData": null, "CategoryInfo": null, "AccessQualifier": 0, "AccessScope": 0, "PublishStatusScope": 0, "LastModifiedDate": "\/Date(1304090228000)\/", "OwnerUserId": "pandah1", "OwnerNamespace": "16" }, { "IsCurrentPageActive": false, "PagePosition": 12, "ParentID": "Np_V1_14848_14848_000000", "ID": "Np_V1_14848_14848_000000", "Title": "Brésil", "Description": "Identifier et analyser les principales tendances, des nouvelles, des entreprises et des personnes touchant le Brésil d\u0027\u0027aujourd\u0027\u0027hui.", "ModuleCollection": [], "IsActive": true, "Position": 12, "MetaData": null, "CategoryInfo": null, "AccessQualifier": 0, "AccessScope": 0, "PublishStatusScope": 0, "LastModifiedDate": "\/Date(1304090716000)\/", "OwnerUserId": "pandah1", "OwnerNamespace": "16" }, { "IsCurrentPageActive": false, "PagePosition": 13, "ParentID": "Np_V1_14851_14851_000000", "ID": "Np_V1_14851_14851_000000", "Title": "US", "Description": "Spot and analyze top trends, news, companies, and people affecting the United States today. ", "ModuleCollection": [], "IsActive": true, "Position": 13, "MetaData": null, "CategoryInfo": null, "AccessQualifier": 0, "AccessScope": 0, "PublishStatusScope": 0, "LastModifiedDate": "\/Date(1304091219000)\/", "OwnerUserId": "pandah1", "OwnerNamespace": "16" }, { "IsCurrentPageActive": false, "PagePosition": 14, "ParentID": "Np_V1_14884_14884_000000", "ID": "Np_V1_14884_14884_000000", "Title": "RSS Test", "Description": null, "ModuleCollection": [], "IsActive": true, "Position": 14, "MetaData": null, "CategoryInfo": null, "AccessQualifier": 0, "AccessScope": 0, "PublishStatusScope": 0, "LastModifiedDate": "\/Date(1304353812000)\/", "OwnerUserId": "pandah1", "OwnerNamespace": "16"}]; ;
+
+</script>
+<script type="text/javascript" src="LegacyAssets/js/ui.headertabs.js"></script>
+<script type="text/javascript" src="LegacyAssets/js/ui.headertabs.menuitems.js" type="text/javascript"></script>
+<script type="text/javascript" src="LegacyAssets/js/ui.headertabs.extensions.js"></script>
+</html>

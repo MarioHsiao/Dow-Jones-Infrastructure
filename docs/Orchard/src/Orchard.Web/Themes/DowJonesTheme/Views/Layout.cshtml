@@ -1,0 +1,205 @@
+﻿ @{
+     // Add the style CSS
+     Style.Include("default.less");
+     Style.Include("fonts.less");
+     Style.Include("html5bp/handheld.css");
+     Style.Include("blueprint/print.css");
+
+     // Add the script refrences
+     Script.Require("jQuery").AtHead();
+     Script.Require("jQueryUtils_Cycle").AtHead();  
+     Script.Include("home.js");
+     
+
+     // Determine which zones are going to be shown
+
+     var displayBasket = (Model.BasketArea != null);
+
+     var displayBeforeBodyOne = (Model.BeforeBodyContentOne != null) || (Model.BeforeBodyImageOne != null);
+     var displayBeforeBodyTwo = (Model.BeforeBodyContentTwo != null) || (Model.BeforeBodyImageTwo!= null);
+     var displayBeforeBodyThree = (Model.BeforeBodyContentThree != null) || (Model.BeforeBodyImageThree != null);
+     var displayBeforeBodyFour = (Model.BeforeBodyContentFour != null) || (Model.BeforeBodyImageFour != null);
+
+     var displayTriPanel = (Model.TriPanelLeft != null) || (Model.TriPanelCenter != null) || (Model.TriPanelRight != null);
+
+     var displayMessages = (Model.Messages != null);
+
+     var displayContent = (Model.Content != null);
+
+     var displayFourPanel = (Model.FourPanelLeft != null) || (Model.FourPanelCenter != null) || (Model.FourPanelRight != null);
+
+     var displayBodySideBar = (Model.BodySideBarOne != null) || (Model.BodySideBarTwo != null) || (Model.BodySideBarThree != null) || (Model.BodySideBarFour != null);
+     
+     
+     // Work out if we need to change the class of the main body area        
+
+     //var bodyClasses = displayBodySideBar ? "" : "without-sidebar";
+
+
+     // Adds user sign in, dashboard links etc to the bottom of the page
+
+     WorkContext.Layout.Footer.Add(New.User(), "10"); // Login , Logout and dashboard links
+  }
+
+  
+  <header class="clearfix" id="header">
+		<div class="container">
+			<h1><span>Dow Jones</span> Widgets</h1>			
+            @Display(Model.Navigation)        
+        </div>			
+	</header>
+  
+  <div id="main">
+    <div id="home">      
+        @if (displayBeforeBodyOne || displayBeforeBodyTwo || displayBeforeBodyThree || displayBeforeBodyFour)
+        { 
+        <div class="header">
+			<div class="container">
+				<div id="slideshow">
+					<div class="slide" style="display: block;">
+						<div class="left-column">							
+							@Display(Model.BeforeBodyContentOne)
+						</div>
+						@Display(Model.BeforeBodyImageOne)
+                    </div>
+					<div class="slide">
+						<div class="left-column">
+							@Display(Model.BeforeBodyContentTwo)
+						</div>
+						@Display(Model.BeforeBodyImageTwo)
+					</div>
+					<div class="slide">
+						<div class="left-column">
+							@Display(Model.BeforeBodyContentThree)
+						</div>
+						@Display(Model.BeforeBodyImageThree)
+					</div>
+					<div class="slide">
+						<div class="left-column">
+							@Display(Model.BeforeBodyContentFour)
+						</div>
+						@Display(Model.BeforeBodyImageFour)
+					</div>
+				</div>
+				<div id="slideshow-pager"></div>
+				<div style="clear: both;"></div>
+			</div>
+		</div>
+        } 
+
+        <div class="body">
+            <div class="container">
+                <div class="left-column">
+                    @Display(Model.Content)
+                                        
+                    <table width="100%" class="learn-more">
+						<tbody>
+                            @if (displayTriPanel)
+                            { 
+							<tr>
+								<td>
+									@Display(Model.TriPanelLeft)
+								</td>
+								<td class="spacer"></td>
+								<td class="vertical-line"></td>
+								<td class="spacer"></td>
+								<td>
+									@Display(Model.TriPanelCenter)
+								</td>
+								<td class="spacer"></td>
+								<td class="vertical-line"></td>
+								<td class="spacer"></td>
+								<td>
+									@Display(Model.TriPanelRight)
+								</td>
+							</tr>
+                            } 
+							<tr>
+								<td colspan="9" class="spacer">&nbsp;</td>
+							</tr>
+							<tr>
+								<td class="horizontal-line"></td>
+								<td colspan="3" class="horizontal-spacer"></td>
+								<td class="horizontal-line"></td>
+								<td colspan="3" class="horizontal-spacer"></td>
+								<td class="horizontal-line"></td>
+							</tr>
+							<tr>
+								<td colspan="9" class="spacer">&nbsp;</td>
+							</tr>
+                            @if (displayFourPanel)
+                            { 
+							<tr>
+								<td>
+					                @Display(Model.FourPanelLeft)
+								</td>
+								<td class="spacer"></td>
+								<td class="vertical-line"></td>
+								<td class="spacer"></td>
+								<td>
+					                @Display(Model.FourPanelCenter)
+								</td>
+								<td class="spacer"></td>
+								<td class="vertical-line"></td>
+								<td class="spacer"></td>
+								<td>
+					               @Display(Model.FourPanelRight)
+								</td>
+							</tr>
+                            } 
+						</tbody>
+					</table>
+            
+
+                </div>
+
+                <div class="right-column">
+                  @if (displayBodySideBar)
+                  { 
+					@Display(Model.BodySideBarOne) 
+
+				    @Display(Model.BodySideBarTwo) 
+
+					@Display(Model.BodySideBarThree)
+
+					@Display(Model.BodySideBarFour)					
+                  } 
+				</div>               
+            </div>
+        </div>
+
+        <div style="clear: both;"></div>
+    </div>
+  </div>
+
+  <div id="layout-footer" class="group">     
+    <footer id="footer">       
+        <div class="container">
+			<ul class="menu">
+				<li class="first"><a href="/Orchard">Home</a><span>|</span></li>
+				<li><a href="http://widgets.dowjones.com/developer/2.0/documentation">Documentation</a><span>|</span></li>
+				<li><a href="http://widgets.dowjones.com/developer/2.0/explore">Widget Explorer</a><span>|</span></li>
+				<li><a href="http://widgets.dowjones.com/developer/2.0/workflow">Workflows</a><span>|</span></li>
+				<li><a href="http://widgets.dowjones.com/developer/Packages">Packages</a><span>|</span></li>
+				<li><a target="_blank" href="http://customer.factiva.com/en/devPortal/devportalmain.aspx?&amp;rty=1">Support</a><span>|</span></li>
+				<li><a href="http://widgets.dowjones.com/developer/Blog">Blog</a><span>|</span></li>
+                <li><a href="http://djlogin.dowjones.com/privacypolicy/privacypolicy_en.html" target="_blank">Privacy Policy</a></li>
+			</ul>
+			<p class="copyright">
+				Copyright &copy; 2011
+				<a href="http://www.dowjones.com">Dow Jones &amp; Company Inc.</a>
+			</p>
+			<a href="http://www.dowjones.com" class="logo"><img alt="Dow Jones" src="/Orchard/Themes/DowJonesTheme/Content/logo.png" /></a>
+			<div style="clear: both;"></div>
+    	</div>
+
+
+        @if (Model.Footer != null)
+        {
+        <div id="footer-sig" class="group">
+            @Display(Model.Footer)
+        </div>
+        }
+    </footer>
+</div>
+

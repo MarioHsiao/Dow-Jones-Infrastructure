@@ -1,0 +1,134 @@
+/*
+
+	-- -- -- -- -- -- --
+	Description: Styles for various buttons used within modules
+	Version: 0.1
+	Last Update: 11/12/2010
+	Author: Ron Edgecomb II, Philippe Arcand, and Pete McGrath
+	Company: Dow Jones & Company Inc.
+	Copyright 2010 Dow Jones & Company Inc.
+	
+	Dependencies
+	 - css/reset.css
+	 - css/global.css
+	-- -- -- -- -- -- --
+	
+*/
+
+/* =Article Group
+----------------------------------------------------------------------------------------------------*/
+.article-group .module-controls { 
+	float:none;
+}
+
+.article-group .article-wrap {
+	margin-bottom:10px;
+}
+
+/* =Article Group >> Article Group Title
+----------------------------------------------------------------------------------------------------*/
+
+.article-group-title {
+}
+
+.article-group-title .article-group-title-img,
+.article-group-title .fi {
+	display: -moz-inline-stack; /* required for ff2 */
+	display: inline-block;
+	vertical-align: center;
+}
+
+.article-group-title a {
+}
+
+.article-group-title-img {
+	height: 16px;
+	width: 16px;
+	background: #eee;
+	border: 0;
+}
+.article-group-title .fi {
+}
+	.article-group-title .fi_r-arrow {
+		margin-top:4px;
+	}
+	
+/* =Article Group >> Article Metadata
+----------------------------------------------------------------------------------------------------*/
+.article-meta {
+	line-height:1;
+}
+.article-meta span {
+	display: -moz-inline-stack; /* required for ff2 */
+	display: inline-block;
+	vertical-align: top;
+	color:#999;
+	font-size:77%;
+	line-height:normal;
+}
+
+.article-meta .article-source,
+.article-meta .pre-released,
+.article-meta .date-stamp {
+	font-weight:bold;
+}
+
+/* =Article Group >> Primary article image
+----------------------------------------------------------------------------------------------------*/
+
+.article-img-wrap .article-img {
+	width:100%;
+}
+
+/* =Article Group >> headlines
+----------------------------------------------------------------------------------------------------*/
+
+.article-headline {
+}
+
+.article-headline a {
+	color:#2f90b3;
+	font-size:93%;
+}
+
+.primary-article .article-headline a {
+	font-size:123.1%;
+}
+
+
+/* =Article Group >> see all button
+----------------------------------------------------------------------------------------------------*/
+
+.article-group .module-controls {
+	padding-left:0;
+}
+
+/* =Article Group >> Audio and Video
+----------------------------------------------------------------------------------------------------*/
+.article-meta .media-length {
+	height:16px;
+	line-height:16px;
+	vertical-align: middle;
+	color:#666;
+}
+
+/* =Article Group >> Opinion and Analysis
+----------------------------------------------------------------------------------------------------*/
+.article-wrap .article-left,
+.article-wrap .article-right {
+	display: -moz-inline-stack; /* required for ff2 */
+	display: inline-block;
+	vertical-align: top;
+	float:left;
+}
+.article-wrap .article-left {
+	width: 44px;
+	margin-right:10px;
+}
+.article-wrap .article-right {
+	width: 246px;
+}
+
+.article-meta .author {
+	color:#666;
+}

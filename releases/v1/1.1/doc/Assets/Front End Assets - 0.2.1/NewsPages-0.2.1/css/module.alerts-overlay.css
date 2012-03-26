@@ -1,0 +1,135 @@
+/*
+
+	-- -- -- -- -- -- --
+	Description: Alerts Overlay Style Rules
+	Version: 0.1
+	Last Update: 1/7/2011
+	Author: Ryan Schoch
+	Company: Dow Jones & Company Inc.
+	Copyright 2010 Dow Jones & Company Inc.
+	
+	Dependencies
+	 - css/reset.css
+	 - css/lib/modules.css
+	-- -- -- -- -- -- --
+	
+*/
+
+/* =Alerts Overlay >> General Overlay Rules
+----------------------------------------------------------------------------------------------------*/
+
+.alerts-overlay {
+	display: none;
+}
+
+#alerts-overlay-wrap {
+	position: relative;
+	width: 960px;
+	height: 545px;
+	padding-top: 40px;
+	background-color: #000;
+	border: 1px solid #999;
+}
+
+.alerts-overlay-close {
+	position: absolute;
+	top: 15px;
+	left: 885px;
+}
+
+.alerts-overlay-close a {
+	color: #FFF;
+	font-weight: bold;
+}
+
+.alerts-overlay-inner-wrap {
+	width: 800px;
+	height: 500px;
+	margin: 0 auto;
+}
+
+.alerts-overlay-content-header {
+	width: 780px;
+	height: 25px;
+	padding: 5px 20px 0 0;
+	background-color: #E5E8EB;
+}
+
+.alerts-overlay-content-wrap {
+	width: 770px;
+	height: 440px;
+	overflow: auto;
+	padding: 30px 0 0 30px;
+	background-color: #FFF;
+}
+
+.alerts-overlay-content {
+	width: 740px;
+	padding-bottom: 20px;
+}
+
+.alerts-overlay-article-source, .alerts-overlay-article-date-stamp,
+.alerts-overlay-article-title, .alerts-overlay-article-para,
+.alerts-overlay-article-meta {
+	color: #000;
+}
+
+.alerts-overlay-close-wrap, .alerts-overlay-article-source,
+.alerts-overlay-article-date-stamp,.alerts-overlay-article-meta  {
+	display: block;
+}
+
+.alerts-overlay-close-wrap a, .alerts-overlay-article-source,
+.alerts-overlay-article-date-stamp, .alerts-overlay-article-para {
+	font-size: 100%;
+}
+
+.alerts-overlay-article-title {
+	font-size: 116%;
+	margin-bottom: 10px;
+}
+
+.alerts-overlay-article-para {
+	line-height: 18px;
+	margin-bottom: 10px;
+}
+
+.alerts-overlay-article-meta {
+	font-size: 93%;
+}
+
+
+/* =FancyBox >> Re-Styles
+----------------------------------------------------------------------------------------------------*/
+
+#fancybox-bg-n, #fancybox-bg-ne, #fancybox-bg-e,
+#fancybox-bg-se, #fancybox-bg-s, #fancybox-bg-sw,
+#fancybox-bg-w, #fancybox-bg-nw   {
+	display: none;
+}
+
+#fancybox-wrap {
+	position: absolute;
+	top: 0;
+	left: 0;
+	padding: 0;
+	z-index: 1101;
+	outline: none;
+	display: none;
+}
+
+#fancybox-outer {
+	background-color: transparent;
+}
+
+#fancybox-close {
+	background: none;
+}
+
+.fancybox-ie6 #fancybox-close {  
+	filter: none; 
+}
+
+#fancybox-content {
+	border: 0px solid transparent;	
+}

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GetTopEntryPointAssetTypeAssetsResponse ver="1.0" xsi:noNamespaceSchemaLocation="GetTopEntryPointAssetTypeAssetsResponse.xsd" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<status value="0">Success</status>
+	<requestInfo>
+		<accountScope>9ZRE123</accountScope>
+		<beginDate>2009-01-01</beginDate>
+		<endDate>2009-02-01</endDate>
+		<assetType>Alert</assetType>		
+		<deliveryMethodList>RSS,Widget</deliveryMethodList>
+	</requestInfo>
+	<assetSummaryList first="1" count="1" total="1">
+		<assetSummary assetId="123" assetType="AL" entryPointCount="450">
+			<assetName>Google</assetName>
+			<deliveryMethodSummaryList first="1" count="2" total="2">
+				<deliveryMethodSummary entryPointCount="250" deliveryMethodName="RSS">
+					<monthlySummary month="01" year="2009" entryPointCount="100"></monthlySummary>
+					<monthlySummary month="02" year="2009" entryPointCount="150"></monthlySummary>
+				</deliveryMethodSummary>
+				<deliveryMethodSummary entryPointCount="200" deliveryMethodName="Widget">
+					<monthlySummary month="01" year="2009" entryPointCount="150"></monthlySummary>
+					<monthlySummary month="02" year="2009" entryPointCount="50"></monthlySummary>
+				</deliveryMethodSummary>
+			</deliveryMethodSummaryList>
+		</assetSummary>
+	</assetSummaryList>
+</GetTopEntryPointAssetTypeAssetsResponse>

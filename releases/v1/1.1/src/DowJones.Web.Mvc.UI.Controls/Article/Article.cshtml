@@ -1,0 +1,473 @@
+﻿@using System.Text;
+@using System.Collections.Generic;
+@using DowJones.Infrastructure;
+@using DowJones.Ajax.Article;
+@using DowJones.Web.Mvc.UI.Components.Article;
+@using Factiva.Gateway.Messages.Archive.V2_0;
+@model DowJones.Web.Mvc.UI.Components.Article.ArticleModel
+@ClientPlugin dj_Article
+@ScriptResource RelativeResourceName=ArticleControl.js
+@{ CssClass = "dj_Article"; }
+
+@if (Model != null)
+{
+    <div class="dj_article_meta" id="articleHead">
+        <div class="dj_article_image" >
+            @foreach (IRenderItem renderItem in Model.ArticleDataSet.ArticleHead)
+            {
+                if (renderItem.ItemMarkUp == MarkUpType.HeadLogo)
+                { 
+                    <img onerror="this.style.visibility='hidden'; this.style.display='none'; this.style.height=0;"
+                        onabort="this.style.visibility='hidden'; this.style.display='none'; this.style.height=0;" 
+                        src="@renderItem.ItemValue" alt="@renderItem.ItemText"/>
+                }
+                else if (renderItem.ItemMarkUp == MarkUpType.HeadImage)
+                {
+                    <p class="dj_article_paragraph">
+                        <img src="@renderItem.ItemValue"/>
+                    </p>
+                }
+            }
+         </div>
+    </div>
+
+    <div class="dj_article_pd">
+        @if (Model.ShowSourceLinks && Model.PostProcessing == PostProcessing.UnSpecified)
+        {
+            foreach (IRenderItem renderItem in Model.ArticleDataSet.ArticleSource)
+            {
+                if (renderItem.ItemMarkUp == MarkUpType.EntityLink)
+                { 
+                <span>
+                    <a href="javascript:void(0)" class="dj_article_source" rel="{{fcode:'{@renderItem.ItemEntityData.Code}',category:'@renderItem.ItemEntityData.Category'}}">@renderItem.ItemEntityData.Name</a>
+                </span>
+                }
+                else if (renderItem.ItemMarkUp == MarkUpType.Span)
+                {
+                <span>
+                    @renderItem.ItemText
+                </span>
+                }
+            }
+        }
+        else
+        {
+            if (Model.ArticleDataSet.ArticleSource.Count>0 && !string.IsNullOrEmpty(Model.ArticleDataSet.ArticleSource[0].ItemText))
+            {
+                <span>@Model.ArticleDataSet.ArticleSource[0].ItemText</span>
+            }
+        }
+        &nbsp;-&nbsp;
+        <span>
+            @Model.ArticleDataSet.ArticlePublicationDate
+        </span>
+        <span>
+            @Model.ArticleDataSet.ArticlePublicationTime
+        </span>
+    </div>
+    
+    if (Model.ArticleDataSet.ArticleHeadline.Count> 0)
+    {
+        <div class="dj_article_hd">
+            @foreach(IRenderItem renderItem in Model.ArticleDataSet.ArticleHeadline)
+            {
+                if (renderItem.ItemMarkUp == MarkUpType.Plain)
+                {
+                    @renderItem.ItemText
+                }
+                else if(renderItem.ItemMarkUp == MarkUpType.Anchor)
+                {
+                    <a href="@renderItem.ItemValue" rel="{{fcode:'@renderItem.ItemText'}}">@renderItem.ItemValue</a>    
+                }
+            }
+        </div>
+    }
+    <div class="dj_article_cp">
+        @foreach(IRenderItem renderItem in Model.ArticleDataSet.ArticleCopyright)
+         {
+                if (renderItem.ItemMarkUp == MarkUpType.Plain)
+                {
+                    @renderItem.ItemText
+                }
+         }
+    </div>
+    
+    @*Build social buttons/ speakers/ translation*@
+    <div class="dj_article_control" id="control">
+        @if (Model.ShowSocialButtons && Model.SocialButtonModel.SocialNetworks.Count > 0)
+        {
+            @(CreateChildControl<DowJones.Web.Mvc.UI.Components.SocialButtons.SocialButtonsControl>(Model.SocialButtonModel))
+        }
+        
+        @*TODO:Speaker needs to go here*@
+        @if (Model.ShowTranslator)
+        {
+            if (Model.ShowReadSpeaker)
+            {
+                <span class="emg_translator_pipe">&nbsp;|&nbsp;</span>
+            }
+            <div id="articleTranslateControlsContainer" style="float:left;display:inline;padding-bottom:10px">
+                @(CreateChildControl<DowJones.Web.Mvc.UI.Components.ArticleTranslator.ArticleTranslatorControl>(Model.TranslatorModel))
+            </div>
+        }    
+    </div>
+    @*Ends Build social buttons and speakers/ translation*@
+    
+    @*Start Body Section*@
+    StringBuilder sb = new StringBuilder();
+    <div class="dj_article_articlebody" id="articleBody">
+        @if (Model.ArticleDataSet.ArticleCorrection != null && Model.ArticleDataSet.ArticleCorrection.Count>0)
+        {
+            sb = new StringBuilder();
+            foreach(Dictionary<string,List<IRenderItem>> dci in Model.ArticleDataSet.ArticleCorrection)
+            {
+                foreach(KeyValuePair<string, List<IRenderItem>> kvc in dci)
+                {
+                    <p class="dj_article_paragraph">
+                    @foreach(IRenderItem renderItem in kvc.Value)
+                    {
+                        if(renderItem.ItemMarkUp == MarkUpType.ArticleHighlight)
+                        {
+                            sb.AppendLine(string.Format("<span class='dj_article_highlight'>{0}</span>",renderItem.ItemText));
+                        }
+                        else if(renderItem.ItemMarkUp == MarkUpType.Image)
+                        {
+                            sb.AppendLine(string.Format("<img src='{0}'/>",renderItem.ItemValue));
+                        }
+                        else if(renderItem.ItemMarkUp == MarkUpType.PostProcessing)
+                        {
+                            switch (renderItem.ItemPostProcessData.Type)
+                            {
+                                case PostProcessing.Print:
+                                    sb.AppendLine(string.Format("<span class='dj_article_colorLinks'>{0} [{1}]</span>",renderItem.ItemPostProcessData.ElinkValue, @renderItem.ItemPostProcessData.ElinkText));
+                                    break;
+                                case PostProcessing.Save:
+                                    sb.AppendLine(renderItem.ItemPostProcessData.ElinkValue);
+                                    sb.AppendLine(renderItem.ItemPostProcessData.ElinkText);
+                                    break;
+                            }
+                        }
+                        else if (renderItem.ItemMarkUp == MarkUpType.ArticleElink)
+                        {
+                            sb.AppendLine(string.Format("<a class='dj_article_elink' href='javascript:void(0)' rel='{{href:'{0}'}}'>{1}</a>",@renderItem.ItemValue,@renderItem.ItemText));
+                        }
+                        else if(renderItem.ItemMarkUp == MarkUpType.Plain)
+                        {
+                            sb.AppendLine(renderItem.ItemText);
+                        }
+                        else if (renderItem.ItemMarkUp == MarkUpType.EntityLink)
+                        {   
+                            sb.AppendLine(string.Format("<a class='dj_article_entity' href='javascript:void();' rel='{{fcode:'{0}',category:'{1}'}}>{2}</a>",@renderItem.ItemEntityData.Code,@renderItem.ItemEntityData.Category,@renderItem.ItemEntityData.Name));
+                        }
+                        else if(renderItem.ItemMarkUp== MarkUpType.SpanAnchor)
+                        {
+                            sb.AppendLine(string.Format("<span><a class='dj_article_entity' href='javascript:void();' rel='{{fcode:'{0}',category:'{1}'}}>{2}</a></span>",@renderItem.ItemEntityData.Code,@renderItem.ItemEntityData.Category,@renderItem.ItemEntityData.Name));
+                        }
+                    }
+                    @if(kvc.Key.Equals("display"))
+                    {
+                        @sb.ToString();
+                    }
+                    else if(kvc.Key.Equals("pre"))
+                    {
+                        <pre>@sb.ToString();</pre>
+                    }
+                    </p>
+                    sb.Clear();
+                }
+            
+            }
+        }
+
+        <div class="dj_article_lp">
+            @if(Model.ArticleDataSet.ArticleLeadParagraph!=null && Model.ArticleDataSet.ArticleLeadParagraph.Count>0)
+            {
+                sb = new StringBuilder();
+                foreach(Dictionary<string,List<IRenderItem>> dci in Model.ArticleDataSet.ArticleLeadParagraph)
+                {
+                   foreach(KeyValuePair<string, List<IRenderItem>> kvc in dci)
+                   {
+                    <p class="dj_article_paragraph">     
+                    @foreach(IRenderItem renderItem in kvc.Value)
+                    {
+                        if(renderItem.ItemMarkUp == MarkUpType.ArticleHighlight)
+                        {
+                            sb.AppendLine(string.Format("<span class='dj_article_highlight'>{0}</span>",renderItem.ItemText));
+                        }
+                        else if(renderItem.ItemMarkUp == MarkUpType.Image)
+                        {
+                            sb.AppendLine(string.Format("<img src='{0}'/>",renderItem.ItemValue));
+                        }
+                        else if(renderItem.ItemMarkUp == MarkUpType.PostProcessing)
+                        {
+                            switch (renderItem.ItemPostProcessData.Type)
+                            {
+                                case PostProcessing.Print:
+                                    sb.AppendLine(string.Format("<span class='dj_article_colorLinks'>{0} [{1}]</span>",renderItem.ItemPostProcessData.ElinkValue, @renderItem.ItemPostProcessData.ElinkText));
+                                    break;
+                                case PostProcessing.Save:
+                                    sb.AppendLine(renderItem.ItemPostProcessData.ElinkValue);
+                                    sb.AppendLine(renderItem.ItemPostProcessData.ElinkText);
+                                    break;
+                            }
+                        }
+                        else if (renderItem.ItemMarkUp == MarkUpType.ArticleElink)
+                        {
+                            sb.AppendLine(string.Format("<a class='dj_article_elink' href='javascript:void(0)' rel='{{href:'{0}'}}'>{1}</a>",@renderItem.ItemValue,@renderItem.ItemText));
+                        }
+                        else if(renderItem.ItemMarkUp == MarkUpType.Plain)
+                        {
+                            sb.AppendLine(renderItem.ItemText);
+                        }
+                        else if (renderItem.ItemMarkUp == MarkUpType.EntityLink)
+                        {   
+                            sb.AppendLine(string.Format("<a class='dj_article_entity' href='javascript:void();' rel='{{fcode:'{0}',category:'{1}'}}>{2}</a>",@renderItem.ItemEntityData.Code,@renderItem.ItemEntityData.Category,@renderItem.ItemEntityData.Name));
+                        }
+                        else if(renderItem.ItemMarkUp== MarkUpType.SpanAnchor)
+                        {
+                            sb.AppendLine(string.Format("<span><a class='dj_article_entity' href='javascript:void();' rel='{{fcode:'{0}',category:'{1}'}}>{2}</a></span>",@renderItem.ItemEntityData.Code,@renderItem.ItemEntityData.Category,@renderItem.ItemEntityData.Name));
+                        }
+                    }
+                    @if(kvc.Key.Equals("display"))
+                    {
+                        @sb.ToString();
+                    }
+                    else if(kvc.Key.Equals("pre"))
+                    {
+                        <pre class="dj_article_paragraph">@sb.ToString();</pre>
+                    }
+                    </p>
+                    @sb.Clear();
+                  }
+                }
+            }
+        </div>
+
+        <div class="dj_article_tp">
+            @if(Model.ArticleDataSet.ArticleTailParagraph!=null && Model.ArticleDataSet.ArticleTailParagraph.Count>0)
+            {
+                sb = new StringBuilder();
+                foreach(Dictionary<string,List<IRenderItem>> dci in Model.ArticleDataSet.ArticleTailParagraph)
+                {
+                   foreach(KeyValuePair<string, List<IRenderItem>> kvc in dci)
+                   {
+                    <p class="dj_article_paragraph">
+                    @foreach(IRenderItem renderItem in kvc.Value)
+                    {
+                        if(renderItem.ItemMarkUp == MarkUpType.ArticleHighlight)
+                        {
+                            sb.AppendLine(string.Format("<span class='dj_article_highlight'>{0}</span>",renderItem.ItemText));
+                        }
+                        else if(renderItem.ItemMarkUp == MarkUpType.Image)
+                        {
+                            sb.AppendLine(string.Format("<img src='{0}'/>",renderItem.ItemValue));
+                        }
+                        else if(renderItem.ItemMarkUp == MarkUpType.PostProcessing)
+                        {
+                            switch (renderItem.ItemPostProcessData.Type)
+                            {
+                                case PostProcessing.Print:
+                                    sb.AppendLine(string.Format("<span class='dj_article_colorLinks'>{0} [{1}]</span>",renderItem.ItemPostProcessData.ElinkValue, @renderItem.ItemPostProcessData.ElinkText));
+                                    break;
+                                case PostProcessing.Save:
+                                    sb.AppendLine(renderItem.ItemPostProcessData.ElinkValue);
+                                    sb.AppendLine(renderItem.ItemPostProcessData.ElinkText);
+                                    break;
+                            }
+                        }
+                        else if (renderItem.ItemMarkUp == MarkUpType.ArticleElink)
+                        {
+                            sb.AppendLine(string.Format("<a class='dj_article_elink' href='javascript:void(0)' rel='{{href:'{0}'}}'>{1}</a>",@renderItem.ItemValue,@renderItem.ItemText));
+                        }
+                        else if(renderItem.ItemMarkUp == MarkUpType.Plain)
+                        {
+                            sb.AppendLine(renderItem.ItemText);
+                        }
+                        else if (renderItem.ItemMarkUp == MarkUpType.EntityLink)
+                        {   
+                            sb.AppendLine(string.Format("<a class='dj_article_entity' href='javascript:void();' rel='{{fcode:'{0}',category:'{1}'}}>{2}</a>",@renderItem.ItemEntityData.Code,@renderItem.ItemEntityData.Category,@renderItem.ItemEntityData.Name));
+                        }
+                        else if(renderItem.ItemMarkUp== MarkUpType.SpanAnchor)
+                        {
+                            sb.AppendLine(string.Format("<span><a class='dj_article_entity' href='javascript:void();' rel='{{fcode:'{0}',category:'{1}'}}>{2}</a></span>",@renderItem.ItemEntityData.Code,@renderItem.ItemEntityData.Category,@renderItem.ItemEntityData.Name));
+                        }
+                    }
+                    
+                    @if(kvc.Key.Equals("display"))
+                    {
+                        @sb.ToString();
+                    }
+                    else if(kvc.Key.Equals("pre"))
+                    {
+                        <pre class="dj_article_paragraph">@sb.ToString();</pre>
+                    }
+                    </p>
+                    @sb.Clear();                    
+                  }
+                }
+            }
+        </div>
+
+       @* Tail Fields *@
+       <div class="dj_article_tf">
+        @if (Model.ArticleDataSet.ArticleContact != null && Model.ArticleDataSet.ArticleContact.Count>0)
+        {
+            sb = new StringBuilder();
+            <p class="dj_article_paragraph">
+                @foreach(IRenderItem renderItem in Model.ArticleDataSet.ArticleContact)
+                {
+                        if(renderItem.ItemMarkUp == MarkUpType.ArticleHighlight)
+                        {
+                            sb.AppendLine(string.Format("<span class='dj_article_highlight'>{0}</span>",renderItem.ItemText));
+                        }
+                        else if(renderItem.ItemMarkUp == MarkUpType.Image)
+                        {
+                            sb.AppendLine(string.Format("<img src='{0}'/>",renderItem.ItemValue));
+                        }
+                        else if(renderItem.ItemMarkUp == MarkUpType.PostProcessing)
+                        {
+                            switch (renderItem.ItemPostProcessData.Type)
+                            {
+                                case PostProcessing.Print:
+                                    sb.AppendLine(string.Format("<span class='dj_article_colorLinks'>{0} [{1}]</span>",renderItem.ItemPostProcessData.ElinkValue, @renderItem.ItemPostProcessData.ElinkText));
+                                    break;
+                                case PostProcessing.Save:
+                                    sb.AppendLine(renderItem.ItemPostProcessData.ElinkValue);
+                                    sb.AppendLine(renderItem.ItemPostProcessData.ElinkText);
+                                    break;
+                            }
+                        }
+                        else if (renderItem.ItemMarkUp == MarkUpType.ArticleElink)
+                        {
+                            sb.AppendLine(string.Format("<a class='dj_article_elink' href='javascript:void(0)' rel='{{href:'{0}'}}'>{1}</a>",@renderItem.ItemValue,@renderItem.ItemText));
+                        }
+                        else if(renderItem.ItemMarkUp == MarkUpType.Plain)
+                        {
+                            sb.AppendLine(renderItem.ItemText);
+                        }
+                        else if (renderItem.ItemMarkUp == MarkUpType.EntityLink)
+                        {   
+                            sb.AppendLine(string.Format("<a class='dj_article_entity' href='javascript:void();' rel='{{fcode:'{0}',category:'{1}'}}>{2}</a>",@renderItem.ItemEntityData.Code,@renderItem.ItemEntityData.Category,@renderItem.ItemEntityData.Name));
+                        }
+                        else if(renderItem.ItemMarkUp== MarkUpType.SpanAnchor)
+                        {
+                            sb.AppendLine(string.Format("<span><a class='dj_article_entity' href='javascript:void();' rel='{{fcode:'{0}',category:'{1}'}}>{2}</a></span>",@renderItem.ItemEntityData.Code,@renderItem.ItemEntityData.Category,@renderItem.ItemEntityData.Name));
+                        }
+                 }
+                 @sb.ToString();
+            </p>
+        }
+       
+        @if (Model.ArticleDataSet.ArticleNotes != null && Model.ArticleDataSet.ArticleNotes.Count>0)
+        {
+            sb = new StringBuilder();
+            <p class="dj_article_paragraph">
+                @foreach(IRenderItem renderItem in Model.ArticleDataSet.ArticleNotes)
+                {
+                        if(renderItem.ItemMarkUp == MarkUpType.ArticleHighlight)
+                        {
+                            sb.AppendLine(string.Format("<span class='dj_article_highlight'>{0}</span>",renderItem.ItemText));
+                        }
+                        else if(renderItem.ItemMarkUp == MarkUpType.Image)
+                        {
+                            sb.AppendLine(string.Format("<img src='{0}'/>",renderItem.ItemValue));
+                        }
+                        else if(renderItem.ItemMarkUp == MarkUpType.PostProcessing)
+                        {
+                            switch (renderItem.ItemPostProcessData.Type)
+                            {
+                                case PostProcessing.Print:
+                                    sb.AppendLine(string.Format("<span class='dj_article_colorLinks'>{0} [{1}]</span>",renderItem.ItemPostProcessData.ElinkValue, @renderItem.ItemPostProcessData.ElinkText));
+                                    break;
+                                case PostProcessing.Save:
+                                    sb.AppendLine(renderItem.ItemPostProcessData.ElinkValue);
+                                    sb.AppendLine(renderItem.ItemPostProcessData.ElinkText);
+                                    break;
+                            }
+                        }
+                        else if (renderItem.ItemMarkUp == MarkUpType.ArticleElink)
+                        {
+                            sb.AppendLine(string.Format("<a class='dj_article_elink' href='javascript:void(0)' rel='{{href:'{0}'}}'>{1}</a>",@renderItem.ItemValue,@renderItem.ItemText));
+                        }
+                        else if(renderItem.ItemMarkUp == MarkUpType.Plain)
+                        {
+                            sb.AppendLine(renderItem.ItemText);
+                        }
+                        else if (renderItem.ItemMarkUp == MarkUpType.EntityLink)
+                        {   
+                            sb.AppendLine(string.Format("<a class='dj_article_entity' href='javascript:void();' rel='{{fcode:'{0}',category:'{1}'}}>{2}</a>",@renderItem.ItemEntityData.Code,@renderItem.ItemEntityData.Category,@renderItem.ItemEntityData.Name));
+                        }
+                        else if(renderItem.ItemMarkUp== MarkUpType.SpanAnchor)
+                        {
+                            sb.AppendLine(string.Format("<span><a class='dj_article_entity' href='javascript:void();' rel='{{fcode:'{0}',category:'{1}'}}>{2}</a></span>",@renderItem.ItemEntityData.Code,@renderItem.ItemEntityData.Category,@renderItem.ItemEntityData.Name));
+                        }
+                 }
+                 @sb.ToString();
+            </p>
+        }
+
+        @if (Model.ArticleDataSet.ArticleArtWorks != null && Model.ArticleDataSet.ArticleArtWorks.Count>0)
+        {
+            sb = new StringBuilder();
+            <p class="dj_article_paragraph">
+                @foreach(IRenderItem renderItem in Model.ArticleDataSet.ArticleArtWorks)
+                {
+                        if(renderItem.ItemMarkUp == MarkUpType.ArticleHighlight)
+                        {
+                            sb.AppendLine(string.Format("<span class='dj_article_highlight'>{0}</span>",renderItem.ItemText));
+                        }
+                        else if(renderItem.ItemMarkUp == MarkUpType.Image)
+                        {
+                            sb.AppendLine(string.Format("<img src='{0}'/>",renderItem.ItemValue));
+                        }
+                        else if(renderItem.ItemMarkUp == MarkUpType.PostProcessing)
+                        {
+                            switch (renderItem.ItemPostProcessData.Type)
+                            {
+                                case PostProcessing.Print:
+                                    sb.AppendLine(string.Format("<span class='dj_article_colorLinks'>{0} [{1}]</span>",renderItem.ItemPostProcessData.ElinkValue, @renderItem.ItemPostProcessData.ElinkText));
+                                    break;
+                                case PostProcessing.Save:
+                                    sb.AppendLine(renderItem.ItemPostProcessData.ElinkValue);
+                                    sb.AppendLine(renderItem.ItemPostProcessData.ElinkText);
+                                    break;
+                            }
+                        }
+                        else if (renderItem.ItemMarkUp == MarkUpType.ArticleElink)
+                        {
+                            sb.AppendLine(string.Format("<a class='dj_article_elink' href='javascript:void(0)' rel='{{href:'{0}'}}'>{1}</a>",renderItem.ItemValue,renderItem.ItemText));
+                        }
+                        else if(renderItem.ItemMarkUp == MarkUpType.Plain)
+                        {
+                            sb.AppendLine(renderItem.ItemText);
+                        }
+                        else if (renderItem.ItemMarkUp == MarkUpType.EntityLink)
+                        {   
+                            sb.AppendLine(string.Format("<a class='dj_article_entity' href='javascript:void();' rel='{{fcode:'{0}',category:'{1}'}}>{2}</a>",@renderItem.ItemEntityData.Code,@renderItem.ItemEntityData.Category,@renderItem.ItemEntityData.Name));
+                        }
+                        else if(renderItem.ItemMarkUp== MarkUpType.SpanAnchor)
+                        {
+                            sb.AppendLine(string.Format("<span><a class='dj_article_entity' href='javascript:void();' rel='{{fcode:'{0}',category:'{1}'}}>{2}</a></span>",@renderItem.ItemEntityData.Code,@renderItem.ItemEntityData.Category,@renderItem.ItemEntityData.Name));
+                        }
+                 }
+                 @sb.ToString();
+            </p>
+        }
+        </div>
+       @if (Model.ArticleDataSet.AccessionNo != null)
+       {
+        <div class="dj_article_an">
+            <p class="dj_article_paragraph">
+                @Model.Tokens.Document&nbsp;@Model.ArticleDataSet.AccessionNo
+            </p>
+        </div>
+       }
+        @if (Model.ArticleObject.contentParts != null && !string.IsNullOrEmpty(Model.ArticleObject.contentParts.contentType) && Model.ArticleObject.contentParts.contentType.ToLower() == ContentType.picture.ToString())
+        {
+            <div class="dj_article_clear" ></div>
+        }
+
+    </div>
+    @*End Body Section*@
+    
+}

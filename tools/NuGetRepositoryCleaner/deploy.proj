@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+
+    <Target Name="CopyProjectOutput" >
+        <PropertyGroup>
+            <DestinationFolder Condition="'$(DestinationFolder)' == ''">.</DestinationFolder>
+            <OutDir Condition="'$(OutDir)' == ''">NuGetRepositoryCleaner\bin\Debug</OutDir>
+            <Executable>$(OutDir)\NuGet.RepositoryCleaner.exe</Executable>
+        </PropertyGroup>
+
+        <ItemGroup>
+            <SourceFiles Include="$(Executable)" />
+        </ItemGroup>
+
+        <Copy SourceFiles="@(SourceFiles)"
+              DestinationFiles="$(DestinationFolder)\__RUN_ME_TO_ARCHIVE_PACKAGES__.exe"
+              OverwriteReadOnlyFiles="true"
+        />
+    </Target>
+
+</Project>

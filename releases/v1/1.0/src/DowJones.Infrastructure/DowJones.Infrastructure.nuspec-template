@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>DowJones.Infrastructure</id>
+        <version>PACKAGE_VERSION</version>
+        <title>Dow Jones Core Infrastructure</title>
+        <description>The Dow Jones Infrastructure library</description>
+        <authors>Dow Jones Platform Integration Team</authors>
+        <tags>DowJones</tags>
+        <language>en-US</language>
+        <projectUrl>http://dowjones.com</projectUrl>
+        <licenseUrl>http://dowjones.com</licenseUrl>
+        <dependencies>
+            <dependency id="Newtonsoft.Json" version="4.0.1" />
+            <dependency id="Argotic.Common" version="2008.0.2.0" />
+            <dependency id="Argotic.Extensions" version="2008.0.2.0" />
+            <dependency id="Argotic.Core" version="2008.0.2.0" />
+            <dependency id="Argotic.Web" version="2008.0.2.0" />
+            <dependency id="log4net" version="1.2.10" />
+            <dependency id="LZO.NET" version="1.0.0.0" />
+            <dependency id="Factiva.Gateway.Wrapper" version="7.5.0.23" />
+            <dependency id="Ninject" version="[2.2.0.0]" />
+        </dependencies>
+    </metadata>
+    <files>
+        <file src="DowJones.Infrastructure.dll" target="lib" />
+    </files>
+</package>

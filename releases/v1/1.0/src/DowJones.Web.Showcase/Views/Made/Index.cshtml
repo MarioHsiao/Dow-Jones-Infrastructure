@@ -1,0 +1,33 @@
+﻿@{
+    ViewBag.Title = "Made: Example 1";
+    Layout = "~/Views/Shared/_Made.cshtml";
+}
+<div class="grid_4 page-content-box-column page-content-box-left module-discovery">
+    <div class="page-content-box-column-content">
+        @if(Model.Discovery != null)
+        {
+			@(Html.DJ().RenderComponent<DowJones.Web.Mvc.UI.Components.Discovery.DiscoveryControl>(Model.Discovery))
+        }  
+    </div>
+</div>
+<div class="grid_6 page-content-box-column page-content-box-center module-results">               
+    <div class="page-content-box-column-content module-content" >
+            @if (Model.HeadlineList != null)
+            {
+				@(Html.DJ().RenderComponent<DowJones.Web.Mvc.UI.Components.HeadlineList.HeadlineListControl>(Model.HeadlineList))
+            }
+            else
+            { 
+                <span class="dj_noResults">No Results</span>
+            }                            
+    </div> 
+</div>
+<div class="grid_6 page-content-box-column page-content-box-right module-article">
+    <div class="page-content-box-column-content module-content">
+    @if(Model.FirstArticle != null)
+    {
+		@(Html.DJ().RenderComponent<DowJones.Web.Mvc.UI.Components.Article.Futures.ArticleControl>(Model.FirstArticle))
+    }
+    </div>
+</div>
+

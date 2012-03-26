@@ -1,0 +1,20 @@
+﻿<% if(obj.Personal && obj.Personal.length > 0 ){%>
+<optgroup label="<%= Token("personalFolders") %>">
+    <% for (var i = 0, len = obj.Personal.length; i < len; i++) { 
+                                  perAlertItem = obj.Personal[i]; %>
+    <option id="<%= perAlertItem.id %>" data-isprivate="<%=perAlertItem.isPrivate %>"
+        value="<%= (perAlertItem.name).replace(/"/g, '&quot;').replace(/'/g, '&apos;') %>">
+        <%= perAlertItem.name %></option>
+    <% } %>
+</optgroup>
+<% } %>
+<% if(obj.Grouped && obj.Grouped.length > 0 ){%>
+<optgroup label="<%= Token("groupFolders") %>">
+    <% for (var i = 0, len = obj.Grouped.length; i < len; i++) { 
+                                groupAlertItem = obj.Grouped[i]; %>
+    <option id="<%= groupAlertItem.id %>" data-isprivate="<%=groupAlertItem.isPrivate %>"
+        value="<%= (groupAlertItem.name).replace(/"/g, '&quot;').replace(/'/g, '&apos;') %>">
+        <%= groupAlertItem.name %></option>
+    <% } %>
+</optgroup>
+<% } %>

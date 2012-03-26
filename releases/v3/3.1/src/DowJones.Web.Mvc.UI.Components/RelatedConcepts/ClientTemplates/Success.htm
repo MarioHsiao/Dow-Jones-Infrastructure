@@ -1,0 +1,6 @@
+﻿<ul class="dj_related-concepts-list">
+    <% var data = self.data;
+       for (var i = 0; i < data.length; i++) { %>
+        <li class="item ellipsis" title="<%=Token("relTermAddToSearch")%>" data-weight="<%= data[i].weight %>"><%= data[i].text %></li>
+    <% } %>
+</ul>

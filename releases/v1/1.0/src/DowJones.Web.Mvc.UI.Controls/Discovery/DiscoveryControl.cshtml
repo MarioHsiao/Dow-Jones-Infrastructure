@@ -1,0 +1,104 @@
+@model DowJones.Web.Mvc.UI.Components.Models.Discovery.DiscoveryModel
+@ClientPlugin dj_Discovery
+@ScriptResource RelativeResourceName=DiscoveryControl.js
+@StylesheetResource RelativeResourceName=DiscoveryControl.css
+@ClientTemplate RelativeResourceName=DiscoveryControlClientTemplate.htm, TemplateId=dsccontent
+@ClientTemplate RelativeResourceName=DiscoveryControlCloudTemplate.htm, TemplateId=dsccloud
+@ClientTemplate RelativeResourceName=DiscoveryControlDateTemplate.htm, TemplateId=dscdate
+@ClientTemplate RelativeResourceName=DiscoveryControlListTemplate.htm, TemplateId=dsclist
+@{ CssClass = "dj_Discovery"; }
+
+@*
+    companies  : FDS
+    subjects   : NS
+    executives : PE
+    regions    : RE
+    industries : IN
+    sources    : SC
+*@
+
+@if (Model != null && Model.DiscoveryCollection != null && Model.DiscoveryCollection.Count > 0)
+{
+    <div class="sections">
+        @foreach (var list in Model.DiscoveryCollection)
+        {
+            if (list != null && list.DiscoveryItems.Count > 0)
+            {
+                switch (list.ChartType)
+                {
+                    case DowJones.Web.Mvc.UI.Components.Models.Discovery.DiscoveryChartTypes.TagCloud:
+                        <div class="section">            
+                            <h3 class="title">@list.Title</h3>
+                            <div class="cloud">
+                                @foreach (var k in list.DiscoveryItems)
+                                { 
+                                    <span class="item" data-type="text" data-name="@k.Value" data-value="@k.Id">
+                                        <a class="size-@Math.Ceiling(k.ShareOfTop / 20)" href="#">@k.Value</a>
+                                    </span>
+                                }
+                            </div>
+                        </div>
+                        break;
+                    case DowJones.Web.Mvc.UI.Components.Models.Discovery.DiscoveryChartTypes.DateNavigator:
+                        var top = list.Top;
+                        <div class="section">
+                            <h3 class="title">@list.Title</h3>
+                            <div class="chart clearfix">
+                                <div class="grid-row-one grid-col-one">
+	                                <div class="y">
+	                                    <div class="y-item y-item-one"><span class="y-item-label">@((top * .2).ToString("0"))</span></div>
+	                                    <div class="y-item y-item-two"><span class="y-item-label">@((top * .4).ToString("0"))</span></div>
+	                                    <div class="y-item y-item-three"><span class="y-item-label">@((top * .6).ToString("0"))</span></div>
+	                                    <div class="y-item y-item-four"><span class="y-item-label">@((top * .8).ToString("0"))</span></div>
+	                                    <div class="y-item y-item-five"><span class="y-item-label">@(top)</span></div>
+	                                </div>
+                                </div>
+                                <div class="grid-row-one grid-col-two">
+	                                <table class="canvas" cellpadding="0" cellspacing=0>
+                                        <tr>
+                                            @foreach (var b in list.DiscoveryItems)
+                                            {
+                                                <td class="item" data-type="date", data-name="@b.Id" data-value="@b.Count" >
+                                                    <a class="bar"title="@b.Id - @b.Count hits" style="height:@b.ShareOfTop%;"></a>
+                                                </td>
+                                            }
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="grid-row-two grid-col-one"></div>
+                                <div class="grid-row-two grid-col-two">
+                                    <div class="x">
+                                        @for (int i = 0; i < list.DiscoveryItems.Count; i++)
+                                        {
+	                                        <div class="x-item" style="left:@((((float)i / (float)list.DiscoveryItems.Count) * 100) + 2)%">
+	                                            <span class="x-itemLabel">@(list.DiscoveryItems[i].Value)</span>
+    	                                    </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                            break;
+                    default:
+                        <div class="section">
+                            <h3 class="title">@list.Title</h3>
+                            <ol class="list">
+                                @foreach (var b in list.DiscoveryItems)
+                                {
+                                    <li class="item" data-type="@list.DataTypeCode" data-name="@b.Value" data-value="@b.Id">
+                                        <a class="title" title="@b.Value" href="#">@b.Value</a>
+                                        <span class="wrapper">
+                                            <span class="bar" title="@b.Value" style="width:@b.ShareOfTop%;">
+                                                <span class="value">@(b.Count > 0 ? b.Count : b.Count)</span>
+                                            </span>
+                                        </span>
+                                    </li>
+                                }
+                            </ol>
+                        </div>
+                         break;
+                }
+            }
+        }
+    </div>
+}

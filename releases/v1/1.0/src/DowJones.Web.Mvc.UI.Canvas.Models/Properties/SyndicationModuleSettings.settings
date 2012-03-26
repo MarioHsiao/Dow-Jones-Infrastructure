@@ -1,0 +1,24 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="DowJones.Web.Mvc.UI.Canvas.Properties" GeneratedClassName="SyndicationModuleSettings">
+  <Profiles />
+  <Settings>
+    <Setting Name="FeedsPerPage" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">3</Value>
+    </Setting>
+    <Setting Name="MaxResultsPerFeed" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">5</Value>
+    </Setting>
+    <Setting Name="GetDataUrl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">/modules/Syndication/1.0/data/json</Value>
+    </Setting>
+    <Setting Name="ValidateSyndicationUrl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">/Syndication/1.0/json</Value>
+    </Setting>
+    <Setting Name="SyndicationModuleUrl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">/modules/Syndication/1.0/module/json</Value>
+    </Setting>
+    <Setting Name="MaximumFeeds" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">25</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

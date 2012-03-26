@@ -1,0 +1,39 @@
+﻿
+<%
+var title = Token("viewProfilePre") + " " + profile.screenName + " " + Token("viewProfilePost") ;
+var subClass = options.splitScreen?" profile-split-screen":"";
+%>
+<div class="profile-info<%= subClass%>">
+    <div class="clearfix">
+        <div class="profile-details-container">
+            <img class="profile-picture" src="<%= profile.profileImageUrl%>" alt="<%= profile.fullName %>"/>
+        </div>
+        <div class="profile-details" data-user-id="<%= profile.id%>" data-screen-name="<%= profile.screenName%>">
+            <div class="profile-title-action" title="<%= title%>">
+                <span class="full-name"><%=profile.fullName %></span>
+                <% if (profile.verified){%>
+                    <span class="verified-icon" title="<%= Token("verified")%>"></span>
+                <%} %><br/>
+                <span class="screen-name">@<%= profile.screenName%></span>
+            </div>
+            <div class="location"><%= profile.location%></div>
+            <div class="last-tweet-and-follow-state">
+                <div class="last-tweet"><%= Token("lastTweetPre") %> <span class="last-tweet-date"></span> <%= Token("lastTweetPost") %></div>
+                <div class="follow-state"> <a class="follow-action" href="javascript:void(0)"><%=Token("follow") %></a></div>
+            </div>
+            <div class="bio"><%= profile.description %> <span class="url"><a target="_blank" href="<%= profile.url%>"><%= profile.url%></a></span></div>
+        </div>
+    </div>
+    <div class="talks-about"><%=Token("talksAbout")%>: <span class="bold"><%= profile.talksAbout %></span></div>
+    <ul class="user-stats clearfix">
+        <li><span class="user-stats-count"><%= profile.tweets%><span class="user-stats-stat"><%= Token("tweets") %></span></span></li>
+        <li><span class="user-stats-count"><%= profile.tweetsPerDay%><span class="user-stats-stat"><%= Token("tweetsPerDay") %></span></span></li>
+         <%if(options.splitScreen){ %>
+             </ul>
+             <ul  class="user-stats clearfix">
+         <%}%>
+        <li><span class="user-stats-count"><%= profile.following%><span class="user-stats-stat"><%= Token("following") %></span></span></li>
+        <li><span class="user-stats-count"><%= profile.followers%><span class="user-stats-stat"><%= Token("followers") %></span></span></li>
+        <li><span class="user-stats-count"><%= profile.listed%><span class="user-stats-stat"><%=Token("listed") %></span></span></li>
+    </ul>
+</div>

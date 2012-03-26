@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<PerformFTTaxCodeSrchResponse xmlns="http://types.factiva.com/symbology/taxonomy">
+  <taxonomyListResult version="2005062716" count="6">
+    <taxonomyCode code="i010013203" scheme="FactivaIndustry">
+      <descriptor lang="en" xmlns="http://types.factiva.com/util">Dry Pea/Bean Farming</descriptor>
+      <codeStatus active="true">
+        <startDate>2000-05-01</startDate>
+      </codeStatus>
+      <role>Core</role>
+      <role>Default</role>
+    </taxonomyCode>
+    <taxonomyCode code="i03001" scheme="FactivaIndustry">
+      <descriptor lang="en" xmlns="http://types.factiva.com/util">Fish Farming</descriptor>
+      <codeStatus active="true">
+        <startDate>2000-05-01</startDate>
+      </codeStatus>
+    </taxonomyCode>
+    <taxonomyCode code="i03" scheme="FactivaIndustry">
+      <descriptor lang="en" xmlns="http://types.factiva.com/util">Fishing</descriptor>
+      <codeStatus active="true">
+        <startDate>1984-01-01</startDate>
+      </codeStatus>
+    </taxonomyCode>
+    <taxonomyCode code="i4142" scheme="FactivaIndustry">
+      <descriptor lang="en" xmlns="http://types.factiva.com/util">Food Canning/Pickling/Drying</descriptor>
+      <codeStatus active="true">
+        <startDate>2000-05-01</startDate>
+      </codeStatus>
+    </taxonomyCode>
+    <taxonomyCode code="i415" scheme="FactivaIndustry">
+      <descriptor lang="en" xmlns="http://types.factiva.com/util">Seafood Products</descriptor>
+      <codeStatus active="true">
+        <startDate>1984-01-01</startDate>
+      </codeStatus>
+    </taxonomyCode>
+    <taxonomyCode code="i6411" scheme="FactivaIndustry">
+      <descriptor lang="en" xmlns="http://types.factiva.com/util">Supermarkets/Grocery Stores</descriptor>
+      <codeStatus active="true">
+        <startDate>2000-05-01</startDate>
+      </codeStatus>
+    </taxonomyCode>
+  </taxonomyListResult>
+</PerformFTTaxCodeSrchResponse>

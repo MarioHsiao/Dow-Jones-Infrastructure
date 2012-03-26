@@ -1,0 +1,114 @@
+﻿@using DowJones.Web.Mvc.UI.Components.HeadlineCarousel
+@using DowJones.Web.Mvc.UI.Components.RegionalMap
+@using DowJones.Web.Mvc.UI.Canvas.Properties
+@using DowJones.Web.Mvc.UI.Components.Pager
+@using DowJones.Web.Mvc.UI.Components.PortalHeadlineList
+@using DowJones.Web.Mvc.UI.Components.NewsChart
+@using DowJones.Web.Mvc.UI.Components.TagCloud
+@using DowJones.Web.Mvc.Extensions
+@inherits DowJones.Web.Mvc.UI.Canvas.AbstractCanvasModule<DowJones.Web.Mvc.UI.Canvas.Models.SummaryModule>
+@ClientPlugin dj_SummaryCanvasModule
+@ScriptResource RelativeResourceName=SummaryCanvasModule.js
+@StylesheetResource RelativeResourceName=SummaryCanvasModule.css
+@{ 
+    CssClass = CssClass + " dj_SummaryCanvasModule dj_summary_module curated-module";
+    Html.DJ().ScriptRegistry().WithJQueryUIWidgets();
+    Html.DJ().ScriptRegistry().WithHighCharts();
+    Html.DJ().ScriptRegistry().WithUnderscoreJS();
+}
+@section ContentArea {
+    @* Main module content *@
+            <div class="top-row module-row clearfix add-border">
+                <div class="latest-headlines module-col"><div class="module-col-wrap standard-padding">
+                    <h3 class="module-col-title">@Html.DJ().Token("latestHeadlines")</h3>
+                    @(CreateChildControl<PortalHeadlineListControl>(Model.PortalHeadlineList))
+                </div></div><!-- end: .latest-headlines -->
+
+                <div class="trending-people module-col"><div class="module-col-wrap standard-padding">
+                    <h3 class="module-col-title">@Html.DJ().Token("trendingPeople")</h3>
+                    <ul class="trending-list">
+                
+                    </ul>
+                </div></div><!-- end: .trending-people -->
+
+                <div class="module-col"><div class="module-col-wrap standard-padding">
+                    <div class="dj_market_index">
+                    
+                        @(CreateChildControl<NewsChartControl>(
+                            new DowJones.Web.Mvc.UI.Components.Models.NewsChartModel() { 
+                                NewsSeriesTitle= Html.DJ().Token("marketIndex").ToString(), 
+                                GraphHeight=152, 
+                                GraphWidth=302,
+                                SummaryGraphDateFormat = "%l%p",
+                                NewsSeriesColor = "#ebebeb",
+                                IsFullChart=false})
+                        )
+                    </div><!-- end: .dj_market_index -->
+
+                    <div class="trending-keywords" style="display:none;">
+
+                        <h3 class="module-col-title">@Html.DJ().Token("trendingKeywords")</h3>
+                        @(CreateChildControl<TagCloud>(
+                            new DowJones.Web.Mvc.UI.Components.Models.TagCloudModel() { EnableEventFiring=true})
+                        )
+
+                    </div><!-- end: .trending-keywords -->
+
+                </div></div><!-- end: .module-col -->  
+
+            </div> <!-- end: .module-row -->
+
+            <div class="bottom-row module-row clearfix no-bottom-margin">
+
+                <div class="module-col "><div class="video-carousel module-col-wrap standard-padding">
+                    <h3 class="module-col-title">@Html.DJ().Token("audioAndVideo")</h3>
+                    @(CreateChildControl<HeadlineCarouselControl>(new HeadlineCarouselModel() { Orientation = CarouselOrientation.Horizontal, 
+                                Mode = CarouselMode.Video, PackageType = TickerPackageType.HeadlineHitCountsPackage, Display = 1, DisplayNoResultsToken=true }))									
+ 
+                </div></div><!-- end: .module-col -->
+
+                <div class="module-col"><div class="trending-companies module-col-wrap standard-padding">
+                    <h3 class="module-col-title">@Html.DJ().Token("trendingCompanies")</h3>
+                    <ul class="trending-list"></ul>
+                </div></div><!-- end: .module-col -->
+
+                <div class="module-col"><div class="module-col-wrap standard-padding">
+
+                    <div class="regional-map-content">
+                        <h3 class="module-col-title">@Html.DJ().Token("telecomNewsByRegion")</h3>
+                        <div class="mini-regional-map">
+                            @(CreateChildControl<RegionalMap>(new RegionalMapModel {ShowTooltips=true,Size=MapSize.Small }))
+                        </div>
+                        <div class="no-results" style="display:none;"></div>
+                    </div><!-- end: regional-map-content -->
+
+                    <div class="trending-subjects" style="display:none;">
+                        <h3 class="module-col-title">@Html.DJ().Token("trendingSubjects")</h3>
+                        <ul class="trending-list"></ul>
+                    </div><!--end: trending-industries-content -->
+
+                </div></div><!-- end: .module-col -->
+            
+            </div> <!-- end: .module-row -->
+ 
+            <div class="no-results" style="display:none;">
+                @Html.DJ().Token("noResults");
+            </div>
+
+}
+@section EditArea {
+     @(CreateChildControl(Model.Editor, 
+        new Dictionary<string, object> { { "class", "dj_Editor" } }))
+}
+@section OptionsArea {
+    @* Module options *@
+}
+@section InfoArea {
+    @* Module Information *@
+}
+@section MessageArea {
+    @* Module Status and Error Messages *@
+}
+@section LoadingArea {
+    @* Section shown while module data is loading *@
+}

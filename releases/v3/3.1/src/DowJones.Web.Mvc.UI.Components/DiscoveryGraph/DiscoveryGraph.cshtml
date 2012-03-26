@@ -1,0 +1,11 @@
+﻿@model DowJones.Web.Mvc.UI.Components.DiscoveryGraph.DiscoveryGraphModel
+@ClientPlugin dj_DiscoveryGraph
+@ScriptResource RelativeResourceName=DiscoveryGraph.js
+@ClientTemplate RelativeResourceName=ClientTemplates.Success.htm, TemplateId=success
+@{ 
+    CssClass = "dj_DiscoveryGraph";
+    DJ.ScriptRegistry()
+        .WithHighCharts()
+        .WithServiceProxy()
+        .WithJQueryTools(); 
+ }

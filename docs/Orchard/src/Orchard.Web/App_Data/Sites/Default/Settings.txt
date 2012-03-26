@@ -1,0 +1,15 @@
+Name: Default
+DataProvider: SqlServer
+DataConnectionString:Data Source=FDRTQDB1.win.dowjones.net;Initial Catalog=Orchard_bak;User Id=sa;Password=Factiva123;
+DataPrefix:
+RequestUrlHost: null
+RequestUrlPrefix: null
+State: Running
+EncryptionAlgorithm: AES
+EncryptionKey: 320DC131174D00E8B989B231B790BD8A0BC7FEAE4DE08D90B4A9BAC5425DE7B1
+HashAlgorithm: HMACSHA256
+HashKey: 27215E19941BF577DE8F70CD90B2025D6466A9DA3318C4E942D4C78199A8DB6C8CDBD79D2FE7269FD7E4F52715AB5C3FC2D04FCE64DEB5E6DDAC6CD110CD659B
+
+
+
+

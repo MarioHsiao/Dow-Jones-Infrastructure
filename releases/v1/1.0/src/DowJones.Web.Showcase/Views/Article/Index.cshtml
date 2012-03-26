@@ -1,0 +1,16 @@
+﻿@{
+    ViewBag.Title = "Article";
+}
+
+
+<script type="text/javascript">
+    function onLangTransClick(e, d) {
+        var dd = eval('(' + d.data + ')');
+        window.open('http://localhost:44355/TranslateArticle/index/id?accessionnumber=' + dd.accessionnumber + '&sourcelanguage=' + dd.sourcelanguage + '&targetlanguagecode=' + dd.targetlanguageCode + '&targetlanguage=' + dd.targetlanguage);
+    }
+</script>
+@(Html.DJ().RenderComponent<DowJones.Web.Mvc.UI.Components.Article.ArticleControl>(Model))
+
+@Html.DJ().StylesheetRegistry().Include("~/Content/css/ArticleControl.css")
+@Html.DJ().StylesheetRegistry().Include("~/Content/css/ArticleTranslator.css")
+@Html.DJ().StylesheetRegistry().Include("~/Content/css/base.css")

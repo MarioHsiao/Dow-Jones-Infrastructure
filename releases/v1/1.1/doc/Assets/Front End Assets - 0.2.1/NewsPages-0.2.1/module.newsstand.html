@@ -1,0 +1,659 @@
+<!doctype html>
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <title>Factiva Newspages</title>
+	<link rel="icon" type="image/png" href="images/favicon.png"> 
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ 
+    <script src="js/libs/modernizr-1.6.min.js"></script>
+
+    <link rel='stylesheet' href='css/reset.css' type='text/css' media='screen, print' />
+    <link rel='stylesheet' href='css/global.css' type='text/css' media='all' />
+	
+    <!-- Dow Jones Dashboard Frame Work styles -->
+    <link rel='stylesheet' href='css/grid.990.9-col.css' type='text/css' media='screen' />
+    <link rel='stylesheet' href='css/style.css' type='text/css' media='screen' />
+    <link rel='stylesheet' href='css/factiva.icons.css' type='text/css' media='screen' />
+    <link rel='stylesheet' href='css/dashboard.controls.css' type='text/css' media='screen' />
+    <link rel='stylesheet' href='css/dashboard.article-group.css' type='text/css' media='screen' />
+    
+    <!-- Library styles -->
+    <link rel='stylesheet' href='css/libs/jquery.fancybox-1.3.4.css' type='text/css' media='screen' />
+	
+    <!-- Project styles -->
+    <link rel='stylesheet' href='css/dashboard.css' type='text/css' media='screen' />
+    <link rel='stylesheet' href='css/dashboard.nav-tabs.css' type='text/css' media='screen' />
+    <link rel='stylesheet' href='css/module.css' type='text/css' media='screen' />
+    <link rel='stylesheet' href='css/module.style.css' type='text/css' media='screen' />
+    <link rel='stylesheet' href='css/module.buttons.css' type='text/css' media='screen' />
+    <link rel='stylesheet' href='css/module.search.css' type='text/css' media='screen' />
+
+    <link rel='stylesheet' href='css/module.edit-options.css' type='text/css' media='screen' />
+
+    <link rel='stylesheet' href='css/module.content.articles.css' type='text/css' media='screen' />
+    
+    <link rel='stylesheet' href='css/module.col.bar-chart.css' type='text/css' media='screen' />
+    <link rel='stylesheet' href='css/module.col.headline.css' type='text/css' media='screen' />
+    
+    <link rel='stylesheet' href='css/module.col.article.css' type='text/css' media='screen' />
+    
+    <link rel='stylesheet' href='css/module.newsstand.css' type='text/css' media='screen' />
+    
+    <link rel='stylesheet' href='css/popup.css' type='text/css' media='screen' />
+	<link rel='stylesheet' href='css/module.article-view.css' type='text/css' media='screen' />
+	<link rel='stylesheet' href='css/module.popup.content.css' type='text/css' media='screen' />
+
+      
+</head>
+
+<body>
+<!-- 
+    begin: sample module data
+-->
+<div id="sample-data" class="hide">
+
+    <!-- 
+	    DEV-NOTE: below is a sample article group for a newsstand module column
+	-->
+    <div class="article-group">
+
+        <h3 class="module-col-title article-group-title">
+            <a href="#">Source Name</a>
+        </h3>
+
+        <ul class="article-list">
+        	<li>
+            	<div class="article-wrap primary-article">
+
+                    <div class="article-meta">
+                        <span class="article-source">The New York Times</span>
+                        - 
+						<span class="date-stamp">December 15, 2010</span>
+                    </div>
+
+                    <h4 class="article-headline">
+                        <a href="#article-view-wrap" class="article-view-trigger">Dow Jones Builds Largest Solar Energy Field on the East Coast</a>								
+                    </h4>
+
+                    <div class="article-img-wrap" style="display:none;">
+                        <img class="article-img" src="images/test-article-img.jpg" title="" />
+                    </div>
+
+                    <p class="article-snip">
+                    The Hatter was the first to break the silence. 'What day of the month is it?' he said, turning to Alice: he had taken his watch out of his pocket, and was looking at it uneasily, shaking...
+                    </p>
+
+                </div>
+            </li>
+            <li>
+            	<div class="article-wrap">
+
+                    <div class="article-meta" style="display:none;">
+                        <span class="article-source">The New York Times</span>
+                        - 
+						<span class="date-stamp">December 15, 2010</span>
+                    </div>
+
+                    <h4 class="article-headline">
+                        <a href="#article-view-wrap" class="article-view-trigger">Dow Jones Builds Largest Solar Energy Field on the East Coast</a>								
+                    </h4>
+
+                </div>
+            </li>
+            <li>
+            	<div class="article-wrap">
+
+                    <div class="article-meta" style="display:none;">
+                        <span class="article-source">The New York Times</span>
+                        - 
+						<span class="date-stamp">December 15, 2010</span>
+                    </div>
+
+                    <h4 class="article-headline">
+                        <a href="#article-view-wrap" class="article-view-trigger">Dow Jones Builds Largest Solar Energy Field on the East Coast</a>								
+                    </h4>
+
+                </div>
+            </li>
+            <li>
+            	<div class="article-wrap">
+
+                    <div class="article-meta" style="display:none;">
+                        <span class="article-source">The New York Times</span>
+                        - 
+						<span class="date-stamp">December 15, 2010</span>
+                    </div>
+
+                    <h4 class="article-headline">
+                        <a href="#article-view-wrap" class="article-view-trigger">Dow Jones Builds Largest Solar Energy Field on the East Coast</a>								
+                    </h4>
+
+                </div>
+            </li>
+        </ul><!-- end: .article-list -->
+
+        <ul class="dc_list">
+            <li class="dc_item">
+                <a href="#" class="dashboard-control dc_btn dc_btn-1">View All</a>
+            </li>
+        </ul>
+
+    </div><!-- end: .article-group -->
+
+</div><!-- end: #sample-data -->
+<!-- 
+    end: sample module data
+-->
+
+<!-- 
+    begin: sample popup data
+-->
+<div id="sample-popup-data" class="hide">
+    
+    <!-- 
+	    DEV-NOTE: below is a sample popup content for selected newsstand links
+	-->
+	<h4 class="category-title">
+		Most Common News Subjects
+	</h4>
+	<div class="topics">
+		<a href="#" class="topic">Acquisiton</a>, <a href="#" class="topic">IPO</a>, <a href="#" class="topic">Aenean</a>, <a href="#" class="topic">Lacinia</a>, <a href="#" class="topic">Bibendum</a>
+	</div>
+	<ul class="article-list">
+        <li>
+        	<div class="article-wrap">
+
+                <div class="article-meta">
+                    <span class="article-source">The New York Times</span>
+                    - 
+					<span class="date-stamp">December 15, 2010</span>
+                </div>
+
+                <h4 class="article-headline">
+                    <a href="#article-view-wrap" class="article-view-trigger">Dow Jones Builds Largest Solar Energy Field on...</a>								
+                </h4>
+
+            </div>
+        </li>
+        <li>
+        	<div class="article-wrap">
+
+                <div class="article-meta">
+                    <span class="article-source">The New York Times</span>
+                    - 
+					<span class="date-stamp">December 15, 2010</span>
+                </div>
+
+                <h4 class="article-headline">
+                    <a href="#article-view-wrap" class="article-view-trigger">Dow Jones Builds Largest Solar Energy Field on...</a>								
+                </h4>
+
+            </div>
+        </li>
+        <li>
+        	<div class="article-wrap">
+
+                <div class="article-meta">
+                    <span class="article-source">The New York Times</span>
+                    - 
+					<span class="date-stamp">December 15, 2010</span>
+                </div>
+
+                <h4 class="article-headline">
+                    <a href="#article-view-wrap" class="article-view-trigger">Dow Jones Builds Largest Solar Energy Field on...</a>								
+                </h4>
+
+            </div>
+        </li>
+        <li>
+        	<div class="article-wrap">
+
+                <div class="article-meta">
+                    <span class="article-source">The New York Times</span>
+                    - 
+					<span class="date-stamp">December 15, 2010</span>
+                </div>
+
+                <h4 class="article-headline">
+                    <a href="#article-view-wrap" class="article-view-trigger">Dow Jones Builds Largest Solar Energy Field on...</a>								
+                </h4>
+
+            </div>
+        </li>
+    </ul>
+
+    <ul class="dc_list">
+        <li class="dc_item">
+            <a href="#" class="dashboard-control dc_btn dc_btn-1">View All</a>
+        </li>
+    </ul>
+</div><!-- end: #sample-popup-data -->
+<!-- 
+    end: sample popup data
+-->
+
+<div id="dashboard"><div id="dashboard-wrap" class="container_9 clearfix">
+
+    <div class="news-stand-module module wrap-9">
+
+        <div class="module-header">
+
+            <h3 class="module-title">News Stand</h3>
+
+            <ul class="dc_list dc_list-fl">
+                <li class="dc_item ">
+                    <a href="#" class="dashboard-control dc_btn dc_btn-1">Technology</a>
+                </li>
+            </ul>
+            
+            <ul class="dc_list dc_list-fr">
+                <li class="dc_item">
+                    <a href="#" class="dashboard-control reload"><span class="fi fi_reload-white"></span></a>
+                </li>
+                <li class="dc_item">
+                    <a href="#" class="dashboard-control settings"><span class="fi fi_gear"></span></a>
+                </li>
+            </ul>
+            
+        </div><!-- end: .module-header -->
+        <form class="module-edit-options">
+            <div class="module-edit-options-header clearfix">
+   	        	<ul class="module-controls mc_actions">
+                    <li class="mc_item jq_has-dropdown mc_item-open drop-open-left">
+                    	<span class="control-wrap">
+                        	<span class="control-content png_bg">
+                            	<span class="control-text">Actions</span>
+                            	<span class="fi fi_d-arrow-g"></span>
+                            </span>
+                        </span>
+                        <ul class="mc_dropdown">
+                        	<li class="mc_dropdown-item">
+                            	<span class="mc_dropdown-content">Move Up</span>
+                                <span class="fi fi_u-arrow-g"></span>
+                            </li>
+                            <li class="mc_dropdown-item">
+                            	<span class="mc_dropdown-content">Move Down</span>
+                                <span class="fi fi_d-arrow-g"></span>
+                            </li>
+                            <li class="mc_dropdown-item">
+                            	<span class="mc_dropdown-content">Clone/Copy</span>
+                            </li>
+                            <li class="mc_dropdown-item">
+                            	<span class="mc_dropdown-content">Remove Module</span>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="module-edit-options-content">
+                <div class="module-row one-two-col clearfix">
+                    <div class="module-col one-third first-col">
+                        <div class="edit-module-name-wrap">
+                            <div class="edit-module-name-label">
+                                <label for="edit-module-name">Module Name</label>
+                            </div>
+                            <div class="edit-module-name-textbox">
+                                <input type="text" id="edit-module-name" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="module-edit-options-footer clearfix">
+                <ul class="dc_list">
+                    <li class="dc_item">
+                        <input type="submit" value="Save and Collapse" class="dashboard-control dc_btn dc_btn-2"/>
+                    </li>
+                    <li class="dc_item ">
+                        <input type="reset" value="Reset" class="dashboard-control dc_btn dc_btn-3"/>
+                    </li>
+                </ul>
+            </div>
+        </form>
+        <div class="module-core">
+            
+            <div class="module-content">
+
+                <div class="module-row add-border clearfix">
+        
+                    <div class="module-search module-col three-thirds">
+                    
+                        <h3 class="module-search-title">Latest News by Source</h3>
+                        
+                        <form class="module-search-form clearfix">
+                            
+                            <div class="module-search-textbox">
+                                <input type="text" />
+                            </div>
+                            <div class="module-search-submit">
+                                <input type="submit" value="search" />
+                            </div>
+                            
+                        </form><!-- end: module-search-form -->
+                        
+                    </div><!-- end: module-search -->
+                    
+                </div><!-- end: module-row -->
+
+                <div class="module-row clearfix">
+        
+                    <div class="module-col three-thirds">
+                    	<!--
+						DEV-NOTE: View Subjects and Companies that surface in the articles. These are determined by what would show in the discovery panel in f.com search results for 'subjects'. TICKER vs. scroll
+						-->
+                        <div class="news-stand-ticker scroll">
+                            
+                            <div class="news-stand-ticker-wrap">
+                            
+                                <ul class="news-ticker">
+                                                                            
+                                    <li class="news-ticker-item">
+                                        <h3>US Government</h3>
+                                        <span>73 articles</span>
+                                    </li>
+                                
+                                    <li class="news-ticker-item">
+                                        <h3>Apple Inc</h3>
+                                        <span>73 articles</span>
+                                    </li>
+                                                                            
+                                    <li class="news-ticker-item">
+                                        <h3>Microsoft</h3>
+                                        <span>73 articles</span>
+                                    </li>
+                                
+                                    <li class="news-ticker-item">
+                                        <h3>iPhone</h3>
+                                        <span>73 articles</span>
+                                    </li>
+
+                                    <li class="news-ticker-item">
+                                        <h3>Verizon</h3>
+                                        <span>73 articles</span>
+                                    </li>
+
+                                    <li class="news-ticker-item">
+                                        <h3>Android</h3>
+                                        <span>73 articles</span>
+                                    </li>
+
+                                    <li class="news-ticker-item">
+                                        <h3>Dell</h3>
+                                        <span>73 articles</span>
+                                    </li>
+
+                                    <li class="news-ticker-item">
+                                        <h3>Subject H</h3>
+                                        <span>73 articles</span>
+                                    </li>
+
+                                    <li class="news-ticker-item">
+                                        <h3>Subject I</h3>
+                                        <span>73 articles</span>
+                                    </li>
+
+                                    <li class="news-ticker-item">
+                                        <h3>Subject J</h3>
+                                        <span>73 articles</span>
+                                    </li>
+
+                                    <li class="news-ticker-item">
+                                        <h3>Subject K</h3>
+                                        <span>73 articles</span>
+                                    </li>
+
+                                    <li class="news-ticker-item">
+                                        <h3>Subject L</h3>
+                                        <span>73 articles</span>
+                                    </li>
+
+                                    <li class="news-ticker-item">
+                                        <h3>Subject M</h3>
+                                        <span>73 articles</span>
+                                    </li>
+                                
+                                </ul><!-- end: .news-ticker -->
+                                
+                            </div><!-- end: .news-stand-ticker-wrap -->
+                            
+                        </div><!-- end: .news-stand-ticker -->
+                        
+                    </div><!-- end: .module-col -->
+                    
+				</div><!-- end: .module-row -->
+                
+                <div class="module-row clearfix">
+                    
+                    <div class="module-col one-third first-col"><div class="module-col-wrap standard-padding">
+        
+                    </div></div><!-- end: .module-col -->
+
+                    <div class="module-col one-third"><div class="module-col-wrap standard-padding">
+        
+                    </div></div><!-- end: .module-col -->
+        
+                    <div class="module-col one-third"><div class="module-col-wrap standard-padding">
+        
+                    </div></div><!-- end: .module-col -->
+    
+                </div><!-- end: .module-row -->
+                            
+                <div class="module-row clearfix">
+                    
+                    <div class="module-col one-third first-col"><div class="module-col-wrap standard-padding">
+        
+                    </div></div><!-- end: .module-col -->
+
+                    <div class="module-col one-third"><div class="module-col-wrap standard-padding">
+        
+                    </div></div><!-- end: .module-col -->
+        
+                    <div class="module-col one-third"><div class="module-col-wrap standard-padding">
+        
+                    </div></div><!-- end: .module-col -->
+                    
+                </div><!-- end: .module-row -->
+                            
+                <div class="module-row clearfix">
+                    
+                    <div class="module-col three-thirds">
+                        <!--
+						DEV-NOTE: View Sources
+						-->
+                        <div class="news-stand-source-carousel scroll">
+                            
+                        	<div class="scroll-source-left"></div>
+							<div class="scroll-source-right"></div>
+							
+                            <div class="source-carousel-wrap">
+                                
+                                <ul class="source-carousel">
+                                    
+                                    <li class="source-carousel-item">
+                                        <h3>[Source Title]</h3>
+                                        <span>73 articles</span>
+                                    </li>
+
+                                    <li class="source-carousel-item">
+                                        <h3>[Source Title]</h3>
+                                        <span>73 articles</span>
+                                    </li>
+
+                                    <li class="source-carousel-item">
+                                        <h3>[Source Title]</h3>
+                                        <span>73 articles</span>
+                                    </li>
+
+                                    <li class="source-carousel-item">
+                                        <h3>[Source Title]</h3>
+                                        <span>73 articles</span>
+                                    </li>
+
+                                    <li class="source-carousel-item">
+                                        <h3>[Source Title]</h3>
+                                        <span>73 articles</span>
+                                    </li>
+
+                                    <li class="source-carousel-item">
+                                        <h3>[Source Title]</h3>
+                                        <span>73 articles</span>
+                                    </li>
+                                    
+                                    <li class="source-carousel-item">
+                                        <h3>[Source Title]</h3>
+                                        <span>73 articles</span>
+                                    </li>
+
+                                    <li class="source-carousel-item">
+                                        <h3>[Source Title]</h3>
+                                        <span>73 articles</span>
+                                    </li>
+
+                                    <li class="source-carousel-item">
+                                        <h3>[Source Title]</h3>
+                                        <span>73 articles</span>
+                                    </li>
+
+                                    <li class="source-carousel-item">
+                                        <h3>[Source Title]</h3>
+                                        <span>73 articles</span>
+                                    </li>
+
+                                    <li class="source-carousel-item">
+                                        <h3>[Source Title]</h3>
+                                        <span>73 articles</span>
+                                    </li>
+
+                                    <li class="source-carousel-item">
+                                        <h3>[Source Title]</h3>
+                                        <span>73 articles</span>
+                                    </li>
+									
+                                </ul><!-- end: .source-carousel -->
+                                
+                            </div><!-- end: source-carousel-wrap -->
+                            
+                        </div><!-- end: .news-stand-source-carousel -->
+                                    
+                    </div><!-- end: .module-col -->  
+
+            	</div><!--- end: .module-row -->
+            
+            </div><!-- end: .module-content -->
+
+            <div class="module-footer">
+                <div class="pager"></div>
+            </div><!-- end: .module-footer -->
+            
+        </div><!-- end: module-core -->
+
+    </div><!-- end: .news-stand-module -->
+    
+</div></div><!-- end: #dashboard -->
+
+
+<!-- Article View Markup -->
+
+<div class="article-view">
+
+    <div id="article-view-wrap">
+    
+    	<div class="article-view-inner-wrap">
+        
+        	<div class="article-view-content-header">
+            
+                <ul class="dc_list dc_list-fr">
+                    <li class="dc_item">
+                    <a href="#" class="dashboard-control dc_btn dc_btn-3">Share</a>
+                    </li>
+                    
+                    <li class="dc_item">
+                    <a href="#" class="dashboard-control dc_btn dc_btn-3">Download</a>
+                    </li>
+                    
+                    <li class="dc_item">
+                    <a href="#" class="dashboard-control dc_btn dc_btn-3">Print</a>
+                    </li>
+                </ul>
+            </div> <!-- end: .article-view-content-header -->
+            
+            <div class="article-view-content-wrap">
+            	
+				<span class="article-view-close">
+                	<a onClick="$.fancybox.close();" href="javascript:;">Close</a>
+                </span>
+                
+                <div class="article-view-content">
+                
+                    <span class="article-view-article-source">The New York Times</span> 
+                    <span class="article-view-article-date-stamp">15 December 2010 10:03</span>
+                    
+                    <h3 class="article-view-article-title">Dow Jones Builds Largest Solar Energy Field on the East Coast</h3>
+                    
+                    <p class="article-view-article-para">The Hatter was the first to break the silence. 'What day of the month is it?' he said, turning to Alice: he had taken his watch out of his pocket, and was looking at it uneasily, shaking.</p>
+                    
+                    <p class="article-view-article-para">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi a sem in felis interdum aliquet. Nulla posuere gravida tincidunt. Fusce nec enim vitae sapien commodo lacinia. Donec dui libero, egestas at convallis ac, iaculis ut magna. Sed ante purus, feugiat quis pretium et, sagittis id nisl. Mauris malesuada magna sed dui sodales at malesuada diam dictum. Vestibulum ultrices, neque quis commodo vehicula, erat urna condimentum massa, sed porttitor est tortor vitae massa. Integer consequat luctus magna ut aliquet. Vivamus ornare luctus quam, a sagittis velit suscipit a. Morbi vehicula dapibus enim sed eleifend. Sed mattis, leo in gravida aliquam, diam ante sodales lacus, vitae sagittis eros purus tristique lectus. Phasellus neque erat, pharetra non vestibulum id, tempor sed quam. Praesent viverra odio tincidunt dui congue dapibus.</p>
+                    
+                    <p class="article-view-article-para">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi a sem in felis interdum aliquet. Nulla posuere gravida tincidunt. Fusce nec enim vitae sapien commodo lacinia. Donec dui libero, egestas at convallis ac, iaculis ut magna. Sed ante purus, feugiat quis pretium et, sagittis id nisl. Mauris malesuada magna sed dui sodales at malesuada diam dictum. Vestibulum ultrices, neque quis commodo vehicula, erat urna condimentum massa, sed porttitor est tortor vitae massa. Integer consequat luctus magna ut aliquet. Vivamus ornare luctus quam, a sagittis velit suscipit a. Morbi vehicula dapibus enim sed eleifend. Sed mattis, leo in gravida aliquam, diam ante sodales lacus, vitae sagittis eros purus tristique lectus. Phasellus neque erat, pharetra non vestibulum id, tempor sed quam. Praesent viverra odio tincidunt dui congue dapibus.</p>
+                    
+                    <p class="article-view-article-para">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi a sem in felis interdum aliquet. Nulla posuere gravida tincidunt. Fusce nec enim vitae sapien commodo lacinia. Donec dui libero, egestas at convallis ac, iaculis ut magna. Sed ante purus, feugiat quis pretium et, sagittis id nisl. Mauris malesuada magna sed dui sodales at malesuada diam dictum. Vestibulum ultrices, neque quis commodo vehicula, erat urna condimentum massa, sed porttitor est tortor vitae massa. Integer consequat luctus magna ut aliquet. Vivamus ornare luctus quam, a sagittis velit suscipit a. Morbi vehicula dapibus enim sed eleifend. Sed mattis, leo in gravida aliquam, diam ante sodales lacus, vitae sagittis eros purus tristique lectus. Phasellus neque erat, pharetra non vestibulum id, tempor sed quam. Praesent viverra odio tincidunt dui congue dapibus.</p>
+
+                    <span class="article-view-article-meta">358 words</span>
+                    <span class="article-view-article-meta">LBA</span>
+                    <span class="article-view-article-meta">English</span>
+                    <span class="article-view-article-meta">(c) 2010 The New York Times</span>
+    
+                </div>
+            
+            </div> <!-- end: .article-view-content-wrap -->
+        	
+        </div> <!-- end: .article-view-inner-wrap -->
+    </div> <!-- end: .article-view-wrap -->
+</div> <!-- end: .article-view -->
+
+<!-- library scripts - 3rd party -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.js"></script>
+<!--<script>!window.jQuery && document.write(unescape('%3Cscript src="js/libs/jquery-1.4.3.min.js"%3E%3C/script%3E'))</script>-->
+<script type='text/javascript' src='js/libs/jquery-ui-1.8.6.custom.min.js'></script>
+<script type='text/javascript' src='js/libs/jquery.fancybox-1.3.4.min.js'></script>
+<script type='text/javascript' src='js/libs/jquery.easing-1.3.min.js'></script>
+<script type='text/javascript' src='js/libs/jquery.blockui.min.js'></script>
+
+<script type='text/javascript' src='js/libs/highcharts.js'></script>
+
+<script type='text/javascript' src='js/libs/jquery.smoothdivscroll.custom.js'></script>
+
+<script type='text/javascript' src='js/module.article-view.js'></script>
+
+<!-- global scripts -->
+<script type='text/javascript' src='js/global.js'></script>
+<script type='text/javascript' src='js/popup.js'></script>
+
+<!-- DEV-NOTE: helper.js is not intended for production use -->
+<script type='text/javascript' src='js/helper.js'></script>
+
+<!-- dashboard library scripts -->
+<script type='text/javascript' src='js/dashboard.js'></script>
+<script type='text/javascript' src='js/module.js'></script>
+<script type='text/javascript' src='js/module.edit-options.js'></script>
+<script type='text/javascript' src='js/module.newsstand.js'></script>
+
+<!-- page script -->
+<script type='text/javascript' src='js/script.js'></script>
+
+<div id="popup" class="dj-popup-window">
+    <div class="dj-popup-arrow"></div>
+    <div class="dj-popup-header"><div class="dj-popup-title ellipsis"></div></div>
+    <div class="dj-popup-body"></div>
+</div>
+
+</body>
+</html>

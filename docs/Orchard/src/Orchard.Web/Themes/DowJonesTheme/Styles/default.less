@@ -1,0 +1,308 @@
+﻿@import "html5bp/style.css";
+
+@dj-font: "DowJonesCooperLight";
+@indent1: 10px;
+@indent2: 20px;
+@font-color: #000;
+@site-width: 1015px;
+
+body
+{
+	color: @font-color;
+	font-family: Helvetica,Arial,sans-serif;
+	font-size: 12px;
+}
+
+a 
+{ 
+	color: #005F8F;
+	text-decoration: none;
+}
+a:hover
+{
+	color: #00A8FF;
+}
+
+h1
+{
+	/*font-family: @dj-font;	*/
+	font-weight: normal;
+}
+
+h3
+{
+	background: url( ../images/hr.png ) bottom repeat-x;
+	color: #002437;
+	font-size: 14px;
+	margin-bottom: 0.5em;
+	padding-bottom: 8px;
+	text-transform: uppercase;
+}
+
+p
+{
+	line-height: 1.5em;
+}
+
+p, ul, ol
+{
+	color: #000000;
+	margin-bottom: 1.5em;
+}
+
+ul.params
+{
+	li
+	{
+		span
+		{
+			color: #425C68;
+			font-weight: bold;
+			margin-right: 0.5em;
+		}
+	}
+}
+
+ul.menu
+{
+	margin: 0;
+	padding: 0;
+	/*position: absolute;*/
+	right: 0px;
+
+	li
+	{
+		float: left;
+		list-style-type: none;
+		margin: 0;
+		padding: 0;
+	}
+}
+
+.header
+{
+	@start:  #0094C8;
+	@end: #008EC4;
+	
+	background: @end;
+	background: -moz-linear-gradient( top center, @start, @end );
+	background: -webkit-gradient( linear, 0% 0%, 0% 100%, from( @start ), to( @end ) );
+	color: #fff;
+	font-size: 18px;
+	height: 46px;
+	line-height: 46px;
+	
+	h2 { font-weight: normal; }
+	
+	.container
+	{
+		padding: 0px;
+	}
+}
+
+.container
+{
+	margin: 0 auto;
+	padding: @indent2 @indent1;
+	position: relative;
+	width: @site-width - ( @indent1 * 2 );
+}
+
+#header
+{ 
+	@height: 40px;
+	@border-bottom-width: 3px;
+	@color: #66A9CA;
+
+	background: #002D3D;
+	border-bottom: #00759E solid @border-bottom-width;
+	color: @color;
+	height: @height;
+	line-height: @height;
+	min-width: @site-width;
+
+	.container
+	{
+		padding: 0 @indent1;
+	
+		a { color: @color; }
+		a:hover { color: #fff; } 
+
+		h1
+		{
+			color: #66CCFF;
+			float: left;
+			margin-right: 60px;
+			font-size: 24px;
+			span { color: #fff; }
+			font-family: @dj-font;				
+		}
+
+		ul.menu
+		{
+			text-transform: uppercase;
+
+			li { margin-right: 40px; }
+			li.selected
+			{
+				border-bottom: #fff solid @border-bottom-width;
+
+				a { color: #fff; }
+			}
+			li.last
+			{
+				margin-right: 0px;
+			}
+		}
+
+		.logout
+		{
+			color: #fff;
+			text-transform: uppercase;
+		}
+	}
+}
+
+.body
+{
+	ul li
+	{
+		line-height: 1.5em;
+	}
+}
+
+footer
+{
+	border-top: solid 1px #CFE3F8;
+
+	.container
+	{
+		padding: 30px @indent1;		
+		position: relative;
+	
+		ul.menu
+		{
+			position: static;
+		
+			li a, li span
+			{
+				color: @font-color;
+				margin-right: 4px;
+			}
+			li a { font-weight: bold; }
+		}
+
+		.copyright
+		{
+			clear: left;
+			color: #666;
+			float: left;
+		}
+		
+		.logo  
+		{
+			position: absolute;
+			right: 0;
+		}
+	}
+}
+
+#main  
+{
+	background: #E7F3FA; 
+	min-width: @site-width;
+}
+
+.content { padding: @indent2 @indent1; }
+
+.star
+{
+	height: 17px;
+	width: 16px;
+}
+
+.external
+{
+	background: url( ../images/external.png ) right no-repeat;
+	margin-right: 2px;
+	padding-right: 13px;
+}
+
+#versionSelector
+{
+	font-size: 12px;
+	position: absolute;
+	right: 0px;
+	top: -40px;
+}
+/*nicer version selector */
+#versionSelector
+{
+	color: #fff;
+	z-index: 2;
+}
+#versionSelector label
+{
+	cursor: default;
+}
+#versionSelector label span
+{
+	cursor: pointer;
+}
+#versionSelector label span:hover
+{
+	color: #F3F3F3;
+}
+#versionSelector .versionID
+{
+	font-size: 2em;
+	font-weight: bold;
+	padding: 0 0 0 11px;
+}
+#versionSelector .dropArrow
+{
+	font-size: .5em;
+}
+#versionSelector ul.versionDrop
+{
+	display: none;
+	position: absolute;
+	left: 0px;
+	top: 40px;
+	border: 1px solid #0094C8;
+	border-top: 0px none;
+	list-style-type: none;
+}
+#versionSelector ul.versionDrop li
+{
+	background-color: #fff;
+    width: 80px;
+    font-size: 2em;
+    color: #0094C8;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    z-index: 5;
+}
+#versionSelector ul.versionDrop li:hover
+{
+	background-color: #F3F3F3;
+}
+#versionSelector ul.versionDrop li.active
+{
+	color: #999;
+	cursor: default;
+}
+.parameters strong{
+	color: #425C68;
+}
+
+@import "pages/error";
+@import "pages/home";
+@import "pages/explorer";
+@import "pages/packages";
+@import "pages/workflows";
+@import "pages/blog";
+@import "pages/documentation";
+@import "pages/download";
+@import "pages/tests";

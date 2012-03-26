@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<GetHeatMapExRequest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <dataSetCodes>Asia</dataSetCodes>
+  <dataSetCodes>Africa</dataSetCodes>
+  <dataSetCodes>Europe</dataSetCodes>
+  <sId>20034</sId>
+  <dataSetType>CurrencyPairList</dataSetType>
+  <sortColumn>PriceMovement</sortColumn>
+  <sortOrder>Asc</sortOrder>
+  <noOfTopBottomInstruments xsi:nil="true" />
+  <variantTypes>
+    <PriceMovement>
+      <timeseries>SixtyMinutes</timeseries>
+      <movingAverage>FifteenDays</movingAverage>
+    </PriceMovement>
+    <Volume>
+      <timeseries>TenMinutes</timeseries>
+      <movingAverage>ThirtyDays</movingAverage>
+    </Volume>
+    <Volatility>
+      <timeseries>OneDay</timeseries>
+      <movingAverage>FiveDays</movingAverage>
+    </Volatility>
+  </variantTypes>
+</GetHeatMapExRequest>

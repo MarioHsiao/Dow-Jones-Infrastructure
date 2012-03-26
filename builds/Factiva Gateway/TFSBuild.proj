@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- DO NOT EDIT the project element - the ToolsVersion specified here does not prevent the solutions 
+     and projects in the SolutionToBuild item group from targeting other versions of the .NET framework. 
+     -->
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+
+    <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\TeamBuild\Microsoft.TeamFoundation.Build.targets" />
+
+    <ProjectExtensions>
+        <ProjectFileVersion>2</ProjectFileVersion>
+        <Description>Factiva Gateway package builder</Description>
+        <BuildMachine>SBKNWSTFSBUILD1</BuildMachine>
+    </ProjectExtensions>
+
+    <Target Name="CreateFactivaPackages" BeforeTargets="DropBuild">
+        <MSBuild Projects="$(SolutionRoot)\Factiva.Gateway\factiva.proj"
+                 Targets="CreateNuGetPackages"
+                 Properties="FactivaVersion=$(FactivaVersion)"
+        />
+    </Target>
+
+
+</Project>

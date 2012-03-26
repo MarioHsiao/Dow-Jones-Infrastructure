@@ -1,0 +1,11 @@
+﻿@{ ViewBag.Title = "Headline List Carousel"; }
+
+<script language="javascript" type="text/javascript">
+    function onHeadlineClick() { alert('headline clicked'); }
+</script>
+
+@(
+ 
+ Html.DJ().HeadlineListCarousel()
+        .ClientEvents(events => events.OnHeadlineClick("onHeadlineClick"))
+) 

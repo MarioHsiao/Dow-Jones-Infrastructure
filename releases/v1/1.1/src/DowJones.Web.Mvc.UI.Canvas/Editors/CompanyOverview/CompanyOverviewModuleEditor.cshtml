@@ -1,0 +1,38 @@
+﻿@using DowJones.Web.Mvc.UI.Canvas
+@using DowJones.Web.Mvc.UI.Canvas.Editors.CompanyOverview
+@using DowJones.Web.Mvc.UI.Components.AutoSuggest
+@inherits AbstractCanvasModuleEditor<CompanyOverviewModuleEditor>
+@ScriptResource RelativeResourceName=CompanyOverviewModuleEditor.js
+@ClientPlugin dj_CompanyOverviewModuleEditor
+@{      
+    CssClass = "dj_Editor dj_CompanyOverviewModuleEditor";
+    Html.DJ().AutoSuggest();
+}
+<div class="dj_edit-col">
+    <div class="dj_edit-input-wrap">
+        <label for="" class="dj_edit-label">
+            @Html.DJ().Token("moduleName")</label>
+        <div class="dj_text-element-wrapper">
+            <input type="text" id="txtModuleName" maxlength="25" /></div> 
+    </div>
+    <div class="dj_edit-input-wrap">
+        <label for="" class="dj_edit-label">
+            @Html.DJ().Token("description")</label>
+        <span class="dj_max-char-note">(@Html.DJ().Token("max250Chars"))</span>
+        <div class="dj_text-element-wrapper">
+            <textarea id="txtDescription"></textarea></div>
+    </div>
+</div>
+<div class="dj_edit-col two-thirds">
+    <div class="dj_edit-input-wrap">
+        <label for="" class="dj_edit-label">
+            @Html.DJ().Token("companyLabel")</label>
+        <div class="dj_text-element-wrapper add-company-wrap approved">
+            <input type="text" class="ac_input" id="txtCompanyEditSearch" />
+        </div>
+        <div class="txtCompany">
+            <ul class="dj_edit-lists ui-sortable" id="dj_company_list" style=""></ul>
+        </div>
+        
+    </div>
+</div>

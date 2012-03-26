@@ -1,0 +1,65 @@
+﻿@using DowJones.Web.Mvc.UI.Canvas.Modules
+@using DowJones.Web.Mvc.Extensions
+@using DowJones.Extensions
+@using DowJones.Web.Mvc.UI.Components.RegionalMap
+@using DowJones.Web.Mvc.UI.Canvas
+@using DowJones.Web.Mvc.UI.Canvas.Modules.Syndication
+@using DowJones.Web.Mvc.UI.Components.Models
+@using CanvasModels = DowJones.Web.Mvc.UI.Canvas.Models;
+@using DowJones.Web.Mvc.UI.Canvas.Properties
+
+@inherits DowJones.Web.Mvc.UI.Canvas.AbstractCanvasModule<DowJones.Web.Mvc.UI.Canvas.Modules.RegionalMapModule>
+@ClientPlugin dj_RegionalMapCanvasModule
+@ScriptResource RelativeResourceName=RegionalMapCanvasModule.js
+@StylesheetResource RelativeResourceName=RegionalMapCanvasModule.css
+
+@{ CssClass = CssClass + "  dj_RegionalMapCanvasModule curated-module"; 
+    
+}
+
+@section OptionsArea {
+}
+
+@section ContentArea {
+    <div class="dj_RegionalMap-container">
+        @(CreateChildControl<RegionalMap>(new RegionalMapModel{Size= MapSize.Large,ShowTooltips=false,ShowTextLabels=true,}))
+    </div>
+    <div class="no-results" style="display:none;">
+        @Html.DJ().Token("noResults")
+    </div>
+}
+
+@section EditArea {
+   @* Module Editor 
+      Override this if Editor is not being set in Model
+   *@
+
+   @(CreateChildControl(Model.Editor, 
+        new Dictionary<string, object> { { "class", "dj_Editor industry" } }))
+}
+
+@section HeaderArea {
+    <div class="scope regionalmap-TimePeriod">
+        @{
+            Array arrTimeFrames = Enum.GetValues(typeof(RegionalMapTimeFrame));
+            Array.Reverse(arrTimeFrames);
+            foreach (RegionalMapTimeFrame timeFrame in arrTimeFrames)
+            {
+                <span class="dj_btn @(Model.TimeFrame == timeFrame ? "" : "no-bg")" days="@timeFrame">@Html.DJ().Token(Model.GetAssignedToken(timeFrame))</span>
+            }
+        }
+    </div>
+}
+
+
+@section InfoArea {
+    @* Module Information *@
+}
+
+@section MessageArea {
+    @* Module Status and Error Messages *@
+}
+
+@section LoadingArea {
+    @* Section shown while module data is loading *@
+}

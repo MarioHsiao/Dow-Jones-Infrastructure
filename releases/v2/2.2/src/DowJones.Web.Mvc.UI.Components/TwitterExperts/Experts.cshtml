@@ -1,0 +1,21 @@
+﻿@model DowJones.Web.Mvc.UI.Components.SocialMedia.ExpertsModel
+@ClientPlugin dj_TwitterExperts
+@ScriptResource RelativeResourceName=TwitterExperts.js
+@ClientTemplate RelativeResourceName=ClientTemplates.experts.htm, TemplateId=experts
+@ClientTemplate RelativeResourceName=ClientTemplates.noData.htm, TemplateId=noData
+@{ CssClass = "dj_twitter-top-experts dj_TwitterExperts ";
+   TagName = "ul";
+   Html.DJ().ScriptRegistry().WithODSManager();
+ }
+@foreach (var expert in Model.Experts)
+{
+    <li data-user-id="@expert.Id" data-screen-name="@expert.ScreenName" data-full-name="@expert.FullName" class="dj_experts-item clear">
+        <img class="expert-profile-link" alt="@expert.FullName" src="@expert.ProfileImageUrl" />
+        <div class="dj_author-meta">
+            <a title="@expert.FullName" href="@expert.ProfileUrl" class="dj_full-name" target="_blank">
+                @expert.FullName </a><a class="dj_screen-name" href="@expert.ProfileHashUrl" target="_blank">@@@expert.ScreenName</a>
+        </div>
+        <span class="dj_social-btn follow"><span></span>@Html.DJ().Token("follow") </span>
+    </li>
+
+}

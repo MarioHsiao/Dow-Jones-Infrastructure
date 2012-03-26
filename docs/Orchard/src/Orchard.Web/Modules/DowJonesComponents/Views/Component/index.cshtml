@@ -1,0 +1,389 @@
+@{
+    Script.Include("jquery.js").AtHead();
+    Script.Include("common.js").AtHead();
+    Script.Include("underscore.js").AtHead();
+    Script.Include("PortalHeadlineList.js").AtHead();
+    Style.Include("global.css");
+}
+
+<h2>@T("Portal Headlines")</h2>
+
+<div id="phlContainer"></div>
+<script type="text/javascript" language="javascript">
+    $.extend(DJ.UI.PortalHeadlineList.prototype.templates, { addNewContent: function (obj) { var __p = [], print = function () { __p.push.apply(__p, arguments); }; with (obj || {}) { __p.push('<div class="add-module-content">\r\n <a href="#">${addNewContent}</a>\r\n</div>\r\n'); } return __p.join(''); } });
+    $.extend(DJ.UI.PortalHeadlineList.prototype.templates, { noData: function (obj) { var __p = [], print = function () { __p.push.apply(__p, arguments); }; with (obj || {}) { __p.push('<span class="dj_noResults">No results.</span>'); } return __p.join(''); } });
+    $.extend(DJ.UI.PortalHeadlineList.prototype.templates, { error: function (obj) { var __p = [], print = function () { __p.push.apply(__p, arguments); }; with (obj || {}) { __p.push('<span class="dj_error">', $dj.formatError(code, message), '</span>'); } return __p.join(''); } });
+    $.extend(DJ.UI.PortalHeadlineList.prototype.templates, { successTimeline: function (obj) { var __p = [], print = function () { __p.push.apply(__p, arguments); }; with (obj || {}) { __p.push('<ul class="realtime-news">\r\n '); var x, title; for (var i = 0, len = Math.min(headlines.length, options.maxNumHeadlinesToShow); i < len; i++) { x = headlines[i]; title = (options.showTruncatedTitle && $.trim(x.truncatedTitle)) || x.title; __p.push('\r\n <li class="dj_entry">\r\n <h4 class="headline">\r\n <a class="article-view-trigger ellipsis" href="#">\r\n <span class="time-stamp">', x.modificationTimeDescriptor, '</span>\r\n <span class="headline-text">', title, '</span>\r\n </a>\r\n </h4>\r\n </li>\r\n '); } __p.push(' \r\n</ul>\r\n'); } return __p.join(''); } });
+    $.extend(DJ.UI.PortalHeadlineList.prototype.templates, { successHeadline: function (obj) { var __p = [], print = function () { __p.push.apply(__p, arguments); }; with (obj || {}) { __p.push('<ul class="article-list">\r\n '); var showSource, showPublicationDateTime, showAuthor, title, x, multimediaMode; for (var i = 0, len = Math.min(headlines.length, options.maxNumHeadlinesToShow); i < len; i++) { x = headlines[i]; showSource = options.showSource && x.sourceCode && x.sourceDescriptor; showPublicationDateTime = options.showPublicationDateTime && x.publicationDateTimeDescriptor; showAuthor = options.showAuthor && x.authors && x.authors.length > 0; title = (options.showTruncatedTitle && $.trim(x.truncatedTitle)) || x.title; multimediaMode = options.multimediaMode && (x.contentCategoryDescriptor && x.contentCategoryDescriptor === 'multimedia'); __p.push('\r\n <li class="dj_entry">\r\n <div class="article-wrap">\r\n <h4 class="article-headline">\r\n <a href="', x.headlineUrl, '" class="article-view-trigger">\r\n ', title, '</a>\r\n </h4>\r\n '); if (showSource || showPublicationDateTime) { __p.push('\r\n <div class="article-meta">\r\n '); if (showSource) { if (options.sourceClickable) { __p.push('\r\n <span class="article-source source-clickable" rel="', x.sourceCode, '">', x.sourceDescriptor, '</span><br />\r\n '); } else { __p.push('\r\n <span class="article-source">', x.sourceDescriptor, '</span><br />\r\n '); } __p.push('\r\n '); } if (showPublicationDateTime) { __p.push('\r\n <span class="date-stamp">', x.publicationDateTimeDescriptor, '</span>\r\n '); } __p.push('\r\n </div>\r\n '); } if (showAuthor) { __p.push('\r\n <div class="article-meta">\r\n '); if (options.authorClickable && x.codedAuthors) { for (var j = 0, jCnt = x.codedAuthors.length; j < jCnt; j++) { var author = x.codedAuthors[j]; for (var k = 0, kCnt = author.items.length; k < kCnt; k++) { var item = author.items[k]; switch (item.entityTypeDescriptor.toLowerCase()) { case "person": case "author": __p.push('\r\n <span class="article-author article-clickable" rel="', item.guid, '">', item.value, '</span> \r\n '); break; case "textual": default: __p.push('\r\n <span class="article-author">', item.value, '</span>\r\n '); break; } } } } else { __p.push('\r\n <span class="author">', x.authors.join(', '), '</span>\r\n '); } __p.push('\r\n </div>\r\n '); } /* if we have a snippet and mode is anything but none, render the first snippet only if mode is hybrid; else render all snippets if mode is inline --> */if (x.snippets && (options.displaySnippets === 1 || (options.displaySnippets === 2 && i === 0))) { for (var j = 0, cnt = x.snippets.length; j < cnt; j++) { __p.push('\r\n <p class="article-snip">\r\n <span class="dj_text" rel="">', x.snippets[j], '</span>\r\n </p>\r\n '); } } __p.push('\r\n '); if (multimediaMode) { __p.push('\r\n <div class="article-meta">\r\n <span class="fi fi_', x.contentSubCategoryDescriptor, '"> </span>\r\n <span class="media-length">[', x.mediaLength, ']</span>\r\n </div>\r\n '); } __p.push('\r\n </div>\r\n </li>\r\n '); } __p.push('\r\n</ul>'); } return __p.join(''); } });
+    $.extend(DJ.UI.PortalHeadlineList.prototype.templates, { successAuthor: function (obj) { var __p = [], print = function () { __p.push.apply(__p, arguments); }; with (obj || {}) { __p.push('<ul class="author-list">\r\n '); var showSource, showPublicationDateTime, showAuthor, title, x, multimediaMode; for (var i = 0, len = Math.min(headlines.length, options.maxNumHeadlinesToShow); i < len; i++) { x = headlines[i]; showSource = options.showSource && x.sourceCode && x.sourceDescriptor; showPublicationDateTime = options.showPublicationDateTime && x.publicationDateTimeDescriptor; showAuthor = true; title = (options.showTruncatedTitle && $.trim(x.truncatedTitle)) || x.title; multimediaMode = options.multimediaMode && (x.contentCategoryDescriptor && x.contentCategoryDescriptor === 'multimedia'); __p.push('\r\n <li class="dj_entry">\r\n <div class="article-wrap">\r\n '); if (showAuthor) { __p.push('\r\n <h3 class="author-meta">\r\n '); if (options.authorClickable && x.codedAuthors) { for (var j = 0, jCnt = x.codedAuthors.length; j < jCnt; j++) { var author = x.codedAuthors[j]; for (var k = 0, kCnt = author.items.length; k < kCnt; k++) { var item = author.items[k]; switch (item.entityTypeDescriptor.toLowerCase()) { case "person": case "author": __p.push('\r\n <span class="article-author article-clickable" rel="', item.guid, '">', item.value, '</span> \r\n '); break; case "textual": default: __p.push('\r\n <span class="article-author">', item.value, '</span>\r\n '); break; } } } } else { __p.push('\r\n <span class="author">', x.authors.join(', '), '</span>\r\n '); } __p.push('\r\n </h3>\r\n '); } if (showSource || showPublicationDateTime) { __p.push('\r\n <div class="article-meta">\r\n '); if (showSource) { if (options.sourceClickable) { __p.push('\r\n <span class="article-source source-clickable" rel="', x.sourceCode, '">', x.sourceDescriptor, '</span><br />\r\n '); } else { __p.push('\r\n <span class="article-source">', x.sourceDescriptor, '</span><br />\r\n '); } __p.push('\r\n '); } if (showPublicationDateTime) { __p.push('\r\n <span class="date-stamp">', x.publicationDateTimeDescriptor, '</span>\r\n '); } __p.push('\r\n </div>\r\n '); } __p.push('\r\n\r\n <h4 class="article-headline">\r\n <a href="', x.headlineUrl, '" class="article-view-trigger">\r\n ', title, '</a>\r\n </h4> \r\n \r\n '); /* if we have a snippet and mode is anything but none, render the first snippet only if mode is hybrid; else render all snippets if mode is inline --> */__p.push('\r\n '); if (x.snippets && (options.displaySnippets === 1 || (options.displaySnippets === 2 && i === 0))) { for (var j = 0, cnt = x.snippets.length; j < cnt; j++) { __p.push('\r\n <p class="article-snip">\r\n <span class="dj_text" rel="">', x.snippets[j], '</span>\r\n </p>\r\n '); } } __p.push('\r\n '); if (multimediaMode) { __p.push('\r\n <div class="article-meta">\r\n <span class="fi fi_', x.contentSubCategoryDescriptor, '"> </span>\r\n <span class="media-length">[', x.mediaLength, ']</span>\r\n </div>\r\n '); } __p.push('\r\n </div>\r\n </li>\r\n '); } __p.push('\r\n</ul>'); } return __p.join(''); } });
+
+    var phlComp = $('#phlContainer').dj_PortalHeadlineList({ options: { maxNumHeadlinesToShow: 5, layout: 0, displaySnippets: 3, displayNoResultsToken: true, sourceClickable: true, authorClickable: true, showAuthor: true, showSource: false, showPublicationDateTime: true, useTimeLineLayout: false, showTruncatedTitle: true, multimediaMode: false }, data: null });
+
+    var data = {
+        "hitCount": {
+            "displayText": {
+                "value": "3,833"
+            },
+            "value": 3833
+        },
+        "resultSet": {
+            "count": {
+                "displayText": {
+                    "value": "5"
+                },
+                "value": 5
+            },
+            "duplicateCount": {
+                "displayText": {
+                    "value": "0"
+                },
+                "value": 0
+            },
+            "first": {
+                "displayText": {
+                    "value": "0"
+                },
+                "value": 0
+            },
+            "headlines": [
+            {
+                "authors": [
+                    "Alan Mitchell\nEconomics Editor "
+                ],
+                "baseLanguage": "en",
+                "baseLanguageDescriptor": "English",
+                "codedAuthors": [
+                    {
+                        "items": [
+                            {
+                                "entityType": 12,
+                                "entityTypeDescriptor": "Author",
+                                "guid": "351593",
+                                "value": "Alan Mitchell"
+                            }
+                        ]
+                    }
+                ],
+                "contentCategoryDescriptor": "publication",
+                "contentSubCategoryDescriptor": "article",
+                "hasPublicationTime": false,
+                "headlineUrl": null,
+                "mediaLength": null,
+                "modificationDateDescriptor": "22 December 2011",
+                "modificationDateTime": "/Date(1324561217000)/",
+                "modificationDateTimeDescriptor": "22 December 2011 1:40 PM GMT",
+                "modificationTimeDescriptor": "1:40 PM GMT",
+                "publicationDateDescriptor": null,
+                "publicationDateTime": "/Date(1324512000000)/",
+                "publicationDateTimeDescriptor": "22 December 2011",
+                "publicationTimeDescriptor": null,
+                "reference": {
+                    "contentCategory": 2,
+                    "contentCategoryDescriptor": "publication",
+                    "contentSubCategory": 9,
+                    "contentSubCategoryDescriptor": "article",
+                    "externalUri": null,
+                    "guid": "AFNR000020111221e7cm0002k",
+                    "imageType": null,
+                    "mimetype": "text/xml",
+                    "ref": null,
+                    "subType": null,
+                    "type": "accessionNo"
+                },
+                "snippets": [
+                    "Kim Carr is going to Detroit to try to persuade the heads of General Motors and Ford to keep manufacturing cars in Australia. And he certainly will succeed if the federal government is prepared to stump up enough money. "
+                ],
+                "sourceCode": "afnr",
+                "sourceDescriptor": "The Australian Financial Review",
+                "thumbnailImage": {
+                    "guid": null,
+                    "src": null,
+                    "uri": null
+                },
+                "title": "Hazardous road ahead for local car industry ",
+                "toolTip": null,
+                "truncatedTitle": "Hazardous road ahead for local car industry",
+                "wordCount": {
+                    "displayText": {
+                        "value": "758"
+                    },
+                    "value": 758
+                },
+                "wordCountDescriptor": "758 words"
+            },
+            {
+                "authors": [
+                    "Zoë Fielding and Ruth Liew "
+                ],
+                "baseLanguage": "en",
+                "baseLanguageDescriptor": "English",
+                "codedAuthors": [
+                    {
+                        "items": [
+                            {
+                                "entityType": 12,
+                                "entityTypeDescriptor": "Author",
+                                "guid": "356301",
+                                "value": "Zoë Fielding"
+                            },
+                            {
+                                "entityType": 12,
+                                "entityTypeDescriptor": "Author",
+                                "guid": "207483",
+                                "value": "ruth liew"
+                            }
+                        ]
+                    }
+                ],
+                "contentCategoryDescriptor": "publication",
+                "contentSubCategoryDescriptor": "article",
+                "hasPublicationTime": false,
+                "headlineUrl": null,
+                "mediaLength": null,
+                "modificationDateDescriptor": "21 December 2011",
+                "modificationDateTime": "/Date(1324488337000)/",
+                "modificationDateTimeDescriptor": "21 December 2011 5:25 PM GMT",
+                "modificationTimeDescriptor": "5:25 PM GMT",
+                "publicationDateDescriptor": null,
+                "publicationDateTime": "/Date(1324512000000)/",
+                "publicationDateTimeDescriptor": "22 December 2011",
+                "publicationTimeDescriptor": null,
+                "reference": {
+                    "contentCategory": 2,
+                    "contentCategoryDescriptor": "publication",
+                    "contentSubCategory": 9,
+                    "contentSubCategoryDescriptor": "article",
+                    "externalUri": null,
+                    "guid": "AFNR000020111221e7cm00010",
+                    "imageType": null,
+                    "mimetype": "text/xml",
+                    "ref": null,
+                    "subType": null,
+                    "type": "accessionNo"
+                },
+                "snippets": [
+                    "A lack of confidence made life difficult for residential investors in the past year, with sellers struggling to obtain the prices they hoped for. "
+                ],
+                "sourceCode": "afnr",
+                "sourceDescriptor": "The Australian Financial Review",
+                "thumbnailImage": {
+                    "guid": null,
+                    "src": null,
+                    "uri": null
+                },
+                "title": "How your property performed ",
+                "toolTip": null,
+                "truncatedTitle": "How your property performed",
+                "wordCount": {
+                    "displayText": {
+                        "value": "1,360"
+                    },
+                    "value": 1360
+                },
+                "wordCountDescriptor": "1,360 words"
+            },
+            {
+                "authors": [
+                    "Geoff Kitney "
+                ],
+                "baseLanguage": "en",
+                "baseLanguageDescriptor": "English",
+                "codedAuthors": [
+                    {
+                        "items": [
+                            {
+                                "entityType": 12,
+                                "entityTypeDescriptor": "Author",
+                                "guid": "17231",
+                                "value": "Geoff Kitney"
+                            }
+                        ]
+                    }
+                ],
+                "contentCategoryDescriptor": "publication",
+                "contentSubCategoryDescriptor": "article",
+                "hasPublicationTime": false,
+                "headlineUrl": null,
+                "mediaLength": null,
+                "modificationDateDescriptor": "21 December 2011",
+                "modificationDateTime": "/Date(1324483376000)/",
+                "modificationDateTimeDescriptor": "21 December 2011 4:02 PM GMT",
+                "modificationTimeDescriptor": "4:02 PM GMT",
+                "publicationDateDescriptor": null,
+                "publicationDateTime": "/Date(1324512000000)/",
+                "publicationDateTimeDescriptor": "22 December 2011",
+                "publicationTimeDescriptor": null,
+                "reference": {
+                    "contentCategory": 2,
+                    "contentCategoryDescriptor": "publication",
+                    "contentSubCategory": 9,
+                    "contentSubCategoryDescriptor": "article",
+                    "externalUri": null,
+                    "guid": "AFNR000020111221e7cm00036",
+                    "imageType": null,
+                    "mimetype": "text/xml",
+                    "ref": null,
+                    "subType": null,
+                    "type": "accessionNo"
+                },
+                "snippets": [
+                    "There can have been few political years that have ended as sourly as the one which closes this week with the beginning of the Christmas holiday season. "
+                ],
+                "sourceCode": "afnr",
+                "sourceDescriptor": "The Australian Financial Review",
+                "thumbnailImage": {
+                    "guid": null,
+                    "src": null,
+                    "uri": null
+                },
+                "title": "Disastrous week in a dismal democracy ",
+                "toolTip": null,
+                "truncatedTitle": "Disastrous week in a dismal democracy",
+                "wordCount": {
+                    "displayText": {
+                        "value": "913"
+                    },
+                    "value": 913
+                },
+                "wordCountDescriptor": "913 words"
+            },
+            {
+                "authors": [
+                    "Deirdre Macken "
+                ],
+                "baseLanguage": "en",
+                "baseLanguageDescriptor": "English",
+                "codedAuthors": [
+                    {
+                        "items": [
+                            {
+                                "entityType": 12,
+                                "entityTypeDescriptor": "Author",
+                                "guid": "15957",
+                                "value": "Deirdre Macken"
+                            }
+                        ]
+                    }
+                ],
+                "contentCategoryDescriptor": "publication",
+                "contentSubCategoryDescriptor": "article",
+                "hasPublicationTime": false,
+                "headlineUrl": null,
+                "mediaLength": null,
+                "modificationDateDescriptor": "21 December 2011",
+                "modificationDateTime": "/Date(1324483376000)/",
+                "modificationDateTimeDescriptor": "21 December 2011 4:02 PM GMT",
+                "modificationTimeDescriptor": "4:02 PM GMT",
+                "publicationDateDescriptor": null,
+                "publicationDateTime": "/Date(1324512000000)/",
+                "publicationDateTimeDescriptor": "22 December 2011",
+                "publicationTimeDescriptor": null,
+                "reference": {
+                    "contentCategory": 2,
+                    "contentCategoryDescriptor": "publication",
+                    "contentSubCategory": 9,
+                    "contentSubCategoryDescriptor": "article",
+                    "externalUri": null,
+                    "guid": "AFNR000020111221e7cm00035",
+                    "imageType": null,
+                    "mimetype": "text/xml",
+                    "ref": null,
+                    "subType": null,
+                    "type": "accessionNo"
+                },
+                "snippets": [
+                    "Sometimes you only realise how crazy something is when you apply the alien test to it. That is, you attempt to describe what's going on to an alien. It's fun to do with pets and reality TV shows but today we'll apply it to Christmas. "
+                ],
+                "sourceCode": "afnr",
+                "sourceDescriptor": "The Australian Financial Review",
+                "thumbnailImage": {
+                    "guid": null,
+                    "src": null,
+                    "uri": null
+                },
+                "title": "Christmas: a time of sleighs and snow jobs ",
+                "toolTip": null,
+                "truncatedTitle": "Christmas: a time of sleighs and snow jobs",
+                "wordCount": {
+                    "displayText": {
+                        "value": "806"
+                    },
+                    "value": 806
+                },
+                "wordCountDescriptor": "806 words"
+            },
+            {
+                "authors": [
+                    "Michael Bleby "
+                ],
+                "baseLanguage": "en",
+                "baseLanguageDescriptor": "English",
+                "codedAuthors": [
+                    {
+                        "items": [
+                            {
+                                "entityType": 12,
+                                "entityTypeDescriptor": "Author",
+                                "guid": "390248",
+                                "value": "Michael Bleby"
+                            }
+                        ]
+                    }
+                ],
+                "contentCategoryDescriptor": "publication",
+                "contentSubCategoryDescriptor": "article",
+                "hasPublicationTime": false,
+                "headlineUrl": null,
+                "mediaLength": null,
+                "modificationDateDescriptor": "21 December 2011",
+                "modificationDateTime": "/Date(1324483376000)/",
+                "modificationDateTimeDescriptor": "21 December 2011 4:02 PM GMT",
+                "modificationTimeDescriptor": "4:02 PM GMT",
+                "publicationDateDescriptor": null,
+                "publicationDateTime": "/Date(1324512000000)/",
+                "publicationDateTimeDescriptor": "22 December 2011",
+                "publicationTimeDescriptor": null,
+                "reference": {
+                    "contentCategory": 2,
+                    "contentCategoryDescriptor": "publication",
+                    "contentSubCategory": 9,
+                    "contentSubCategoryDescriptor": "article",
+                    "externalUri": null,
+                    "guid": "AFNR000020111221e7cm00034",
+                    "imageType": null,
+                    "mimetype": "text/xml",
+                    "ref": null,
+                    "subType": null,
+                    "type": "accessionNo"
+                },
+                "snippets": [
+                    "Spotless Group shareholders are sceptical of the company's promise to lift earnings by as much as 66 per cent over the next three to four years as chairman Peter Smedley continues to hold out for a higher offer from Pacific Equity Partners. "
+                ],
+                "sourceCode": "afnr",
+                "sourceDescriptor": "The Australian Financial Review",
+                "thumbnailImage": {
+                    "guid": null,
+                    "src": null,
+                    "uri": null
+                },
+                "title": "Scepticism on Spotless ",
+                "toolTip": null,
+                "truncatedTitle": "Scepticism on Spotless",
+                "wordCount": {
+                    "displayText": {
+                        "value": "301"
+                    },
+                    "value": 301
+                },
+                "wordCountDescriptor": "301 words"
+            }
+        ]
+        }
+    };
+
+
+    phlComp.bindOnSuccess(data.resultSet);
+
+
+
+</script>

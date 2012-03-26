@@ -1,0 +1,148 @@
+/*
+
+	-- -- -- -- -- -- --
+	Description: Industry module style rules
+	Version: 0.1
+	Last Update: 11/17/2010
+	Authors: Ryan Schoch
+	Company: Dow Jones & Company Inc.
+	Copyright 2010 Dow Jones & Company Inc.
+	
+	Dependencies
+	 - css/reset.css
+	 - css/lib/modules.css
+	-- -- -- -- -- -- --
+	
+*/
+
+/* >> General module rules
+----------------------------------------------------------------------------------------------------*/
+
+.industry-group-title {
+	margin-bottom: 0;
+}
+
+.module-col-secondary-title {
+	font-weight: bold;
+	font-size: 85%;
+	color: #999999;
+	display: inline-block;
+	margin-bottom: 15px;
+}
+
+.industry-item-title {
+	color: #4b9dc8;
+    font-weight: bold;
+}
+
+.industry-item-title a {
+	color: #4b9dc8;
+    font-size: 116%;
+    font-weight: bold;
+}
+
+/* >> top 5 mentioned
+----------------------------------------------------------------------------------------------------*/
+
+.top-five-mentioned { }
+
+.top-five-mentioned ol {
+	list-style-type:decimal;
+	padding-left: 20px;
+}
+	.ie6 .top-five-mentioned ol {
+		padding-left: 25px;
+	}
+
+.top-five-mentioned ol li {
+	margin-bottom:10px;
+}
+
+
+/* >> trending graphs
+----------------------------------------------------------------------------------------------------*/
+.trending-up ul li,
+.trending-down ul li {
+	margin-bottom:10px;
+}
+
+
+.indicator-wrap {
+	margin-top: 5px;
+}
+
+.indicator-data {
+	width:78px;
+	display: -moz-inline-stack; /* required for ff2 */
+	display: inline-block;
+	vertical-align: middle;
+	float: left;
+	color: #999999;
+	font-weight: bold;
+}
+
+.trend-graph {
+	width: 220px; 
+	height: 18px;
+	display: -moz-inline-stack; /* required for ff2 */
+	display: inline-block;
+	vertical-align: middle;
+	float: left;
+	position:relative;
+	background-color: #FFFFFF;
+	border: 1px solid #d0d0d0;
+	z-index: 1;
+}
+.trend-graph .last-week {
+	height: 18px;
+	position: absolute;
+	top:0; left:0;
+	overflow: hidden;
+	color: #FFF;	
+}
+
+.trend-graph .this-week {
+	height: 18px;
+	position:relative;
+	overflow: hidden;
+	color: #FFF;
+}
+
+.article-count {
+	position:absolute;
+	top:0; right:0;
+	font-size: 95%;
+	font-weight: bold;
+	margin: 1px 3px 0 0;
+	color: #FFFFFF;
+	cursor:pointer;
+	z-index:4;
+}
+
+/* >> trending up specifics
+----------------------------------------------------------------------------------------------------*/
+.trending-up .trend-graph .last-week {
+	width: 50px; /*needs to get applied by js*/	
+	z-index: 3;
+}
+.trending-up .trend-graph .this-week {
+	width: 170px; /*needs to get applied by js*/
+	z-index: 2;
+}
+
+/* >> trending down specifics
+----------------------------------------------------------------------------------------------------*/
+.trending-down .trend-graph .this-week {
+	width: 50px; /*needs to get applied by js*/
+	z-index: 3;
+}
+
+.trending-down .trend-graph .last-week {
+	width: 170px; /*needs to get applied by js*/
+	z-index: 2;
+}
+
+
+
+
+

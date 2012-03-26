@@ -1,0 +1,315 @@
+﻿<script src="../template.js"></script> 
+<script>
+setTargetScript('../../DowJones.Web.Mvc/Resources/js/common.js');
+
+$(document).ready(function () {
+
+    module('Core');
+
+    test('findComponent should return the component instance', function () {
+        var SuperClass = Class.extend({});
+        var SubClass = SuperClass.extend({});
+
+        $.plugin('getComponentTest', SubClass);
+
+        var jQueryTestElement = createjQueryTestElement().getComponentTest();
+
+        var test = jQueryTestElement.findComponent(SubClass);
+
+        ok(test instanceof SubClass);
+
+        delete $.fn['getComponentTest'];
+    });
+
+    test(':data() filter should return data- attribute matches', function () {
+        equals($('<div>').data("KEY", "VALUE").filter(':data("KEY=VALUE")').length, 1);
+    });
+
+    test('.filterByData() should return data- attribute matches', function () {
+        equals($('<div>').data("KEY", "VALUE").filterByData("KEY", "VALUE").length, 1);
+    });
+
+    test('should have $dj helper', function () {
+        ok($dj);
+    });
+
+    test('should register deep namespace', function () {
+        ok(!window['My']);
+
+        $dj.registerNamespace('My.Very.Long.Namespace');
+
+        ok(My.Very.Long.Namespace);
+
+        delete My;
+    });
+
+    test('should subscribe to events', function () {
+        var customEventName = 'CustomEvent';
+        var subscriber = {
+            eventHandlerCalled: false,
+            eventHandler: function () { this.eventHandlerCalled = true; }
+        };
+
+        $dj.subscribe(customEventName, subscriber, 'eventHandler');
+
+        $(window).trigger(customEventName);
+
+        ok(subscriber.eventHandlerCalled);
+
+        $(window).unbind(customEventName);
+    });
+
+    test('should publish events', function () {
+        var customEventName = 'CustomEvent';
+        var eventHandlerCalled = false;
+
+        $(window).bind(customEventName, function () { eventHandlerCalled = true; });
+
+        $dj.publish(customEventName);
+
+        ok(eventHandlerCalled);
+
+        $(window).unbind(customEventName);
+    });
+
+    test('should have DJ namespace', function () {
+        ok(DJ);
+    });
+
+    test('Simple Inheritance works', function () {
+        Person = Class.extend({
+            init: function () {
+                this.personConstructorCalled = true;
+            }
+        });
+
+        Ninja = Person.extend({
+            init: function () {
+                this._super();
+            }
+        });
+
+        var ninja = new Ninja();
+
+        ok(ninja instanceof Person);
+        ok(ninja.personConstructorCalled);
+    });
+
+
+    module('Core.Plugin');
+
+    test('should register class as plugin', function () {
+        var expectedValue = "12345";
+        var actualValue = null;
+
+        var SuperClass = Class.extend({
+            updateValue: function () { actualValue = expectedValue; }
+        });
+
+        // Create a SubClass that extends the SuperClass
+        var SubClass = SuperClass.extend({
+            updateValue: function () {
+                actualValue = "INVALID";  // Set to wrong value
+
+                this._super();            // Base method should overwrite the wrong value
+                // so we end up with the right value when we're done
+            }
+        });
+
+        // Register the SubClass class as the "pluginTest" plugin
+        $.plugin('pluginTest', SubClass);
+
+        // Call the new plugin
+        var jQueryTestElement = createjQueryTestElement().pluginTest();
+
+        // Get the underlying plugin class (SubClass) 
+        // from the jQuery object, then call .updateValue()
+        var test = jQueryTestElement.data('pluginTest');
+        test.updateValue();
+
+        // Make sure everything worked as planned
+        equals(expectedValue, actualValue);
+
+        delete $.fn['pluginTest'];   // Clean up!
+    });
+
+    test('should be able to call method on an existing component', function () {
+        var expectedValue = 'Test Value';
+        var actualValue = null;
+
+        var PluginClass = Class.extend({
+            init: function (element, meta) {
+                this.meta = meta;
+            },
+            doSomething: function () { actualValue = this.meta.value; }
+        });
+        $.plugin('pluginTest', PluginClass);
+
+        var element = createjQueryTestElement();
+
+        // First call will initialize
+        element.pluginTest({ value: expectedValue });
+        // Subsequent calls execute a function
+        element.pluginTest('doSomething');
+        element.pluginTest('doSomething');
+        element.pluginTest('doSomething');
+
+        equals(actualValue, expectedValue);
+
+        delete $.fn['pluginTest'];   // Clean up!
+    });
+
+    test('should be able to find a component by type', function () {
+        var componentEl = createjQueryTestElement();
+
+        var expectedComponent = new DJ.Component();
+        componentEl.data('Component', expectedComponent);
+
+        var actualComponent = componentEl.findComponent(DJ.Component);
+
+        equals(actualComponent, expectedComponent);
+    });
+
+    test('should be able to find a component by super type', function () {
+        var componentEl = createjQueryTestElement();
+
+        DJ.SubComponent = DJ.Component.extend({});
+
+        var expectedComponent = new DJ.SubComponent();
+        componentEl.data('Component', expectedComponent);
+
+        var actualComponent = componentEl.findComponent(DJ.Component);
+
+        equals(actualComponent, expectedComponent);
+    });
+
+
+    module('DJ.Component');
+
+    test('should exist', function () {
+        ok(DJ.Component);
+    });
+
+    test('should dispose of delegates', function () {
+        var delegate = $dj.delegate(this, function () { });
+
+        var component = new DJ.Component();
+        component._delegates.MyDelegate = delegate;
+
+        ok(component._delegates.MyDelegate);
+        equals(delegate, component._delegates.MyDelegate);
+
+        component.dispose();
+
+        ok(!component._delegates.MyDelegate);
+    });
+
+    test('toString should return the instance name', function () {
+        var expectedName = 'TestComponent';
+
+        var component = new DJ.Component({ name: expectedName });
+
+        equals(expectedName, component.toString());
+    });
+
+    test('should merge data from meta data', function () {
+        var meta = { data: { test: 'custom'} };
+        var component = new DJ.Component(meta);
+
+        equals(meta.data.test, component.data.test);
+    });
+
+    test('should merge defaults from meta data', function () {
+        var meta = { defaults: { test: 'custom'} };
+        var component = new DJ.Component(meta);
+
+        equals(meta.defaults.test, component.defaults.test);
+    });
+
+    test('should merge options from meta data', function () {
+        var meta = { options: { test: 'custom'} };
+        var component = new DJ.Component(meta);
+
+        equals(meta.options.test, component.options.test);
+    });
+
+    test('should include self as sender when publishing events', function () {
+        var eventName = 'ComponentTestEvent';
+        var actualSender = null;
+
+        $(window).bind(eventName, function (event, message) {
+            actualSender = message.sender;
+        });
+
+        var component = new DJ.Component();
+        component._publish(eventName);
+
+        equals(component, actualSender);
+    });
+
+    test('should be able to subscribe to events', function () {
+        var customEventName = "TestComponent.CustomEvent";
+        var expectedArgs = { message: 'Test!' };
+        var handledEventInfo = {};
+
+        TestComponent = DJ.Component.extend({
+            init: function (meta) {
+                this._super(meta);
+                this._subscribe(customEventName, '_handleCustomEvent');
+            },
+
+            _handleCustomEvent: function (sender, args) {
+                handledEventInfo.sender = sender;
+                handledEventInfo.args = args;
+            }
+        });
+
+        var component = new TestComponent();
+        component._publish(customEventName, expectedArgs);
+
+        equals(component, handledEventInfo.sender);
+        equals(expectedArgs, handledEventInfo.args);
+    });
+
+
+    module('DJ.UI');
+
+    test('should have DJ.UI namespace', function () {
+        ok(DJ.UI);
+    });
+
+
+    module('DJ.UI.Component');
+
+    test('should exist', function () {
+        ok(DJ.UI.Component);
+    });
+
+
+    test('should derive from DJ.Component', function () {
+        var uiComponent = new DJ.UI.Component();
+        ok(uiComponent instanceof DJ.Component);
+    });
+
+    test('should get name from element id', function () {
+        var element = { id: '12345' };
+        var uiComponent = new DJ.UI.Component(element);
+
+        ok(element.id, uiComponent.name);
+    });
+
+    test('super.paint() should call sub._paint()', function () {
+        var subclassPaintWasCalled = false;
+
+        var Subclass = DJ.UI.Component.extend({
+            _paint: function () { subclassPaintWasCalled = true; }
+        });
+
+        var instance = new Subclass();
+        instance.paint();
+
+        ok(subclassPaintWasCalled);
+    });
+
+});
+</script>

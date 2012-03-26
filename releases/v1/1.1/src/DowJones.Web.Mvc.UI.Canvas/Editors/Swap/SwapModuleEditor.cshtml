@@ -1,0 +1,27 @@
+﻿@using DowJones.Web.Mvc.UI.Canvas
+@inherits AbstractCanvasModuleEditor<DowJones.Web.Mvc.UI.Canvas.Editors.SwapModuleEditor>
+@ScriptResource RelativeResourceName=SwapModuleEditor.js
+@ClientPlugin dj_SwapModuleEditor
+@{ CssClass += " curated-module dj_Editor dj_SwapModuleEditor"; } 
+<div class="dj_edit-lens-desc dj_edit-lens-desc-industry-region">@Html.DJ().Token("swapEditorDesc")</div>
+<div class="dj_edit-lens-desc dj_edit-lens-desc-industry">@Html.DJ().Token("swapEditorIndustryDesc")</div>
+<div class="dj_edit-lens-desc dj_edit-lens-desc-region">@Html.DJ().Token("swapEditorRegionDesc")</div>
+<div class="dj_edit-col two-thirds">
+    <div class="dj_edit-lens-row dj_edit-lens-row-industry">
+        <input name="lens" type="radio">
+        <label class="dj_edit-label" for="">
+            @Html.DJ().Token("swapEditorIndustry")</label>
+        <select class="dj_Lens_Industry">
+            <option class="doNotRemove" disabled="disabled" selected="selected" value="0">@Html.DJ().Token("swapEditorSelectIndustry")</option>
+        </select>
+    </div>
+    <div class="dj_edit-lens-row dj_edit-lens-row-region">
+        <input name="lens" type="radio">
+        <label class="dj_edit-label" for="">
+            @Html.DJ().Token("swapEditorRegion")</label>
+        <select class="dj_Lens_Region">
+            <option class="doNotRemove" disabled="disabled" selected="selected" value="0">@Html.DJ().Token("swapEditorSelectRegion")</option>
+        </select>
+    </div>
+</div>
+<div class="clearfix"></div>

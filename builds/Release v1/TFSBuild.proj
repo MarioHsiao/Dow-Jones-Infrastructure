@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- DO NOT EDIT the project element - the ToolsVersion specified here does not prevent the solutions 
+     and projects in the SolutionToBuild item group from targeting other versions of the .NET framework. 
+     -->
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+
+    <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\TeamBuild\Microsoft.TeamFoundation.Build.targets" />
+
+    <ProjectExtensions>
+        <ProjectFileVersion>2</ProjectFileVersion>
+        <Description>This is the Dow Jones Infrastructure nightly Build</Description>
+        <BuildMachine>SBK053LAB07NWS</BuildMachine>
+    </ProjectExtensions>
+
+    <PropertyGroup>
+        <DJInfrastructureOutputRoot>\\sbkntsfap05.dowjones.net\Client_Share\DJ Infrastructure</DJInfrastructureOutputRoot>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <RunTest>true</RunTest>
+        <TreatTestFailureAsBuildFailure>true</TreatTestFailureAsBuildFailure>
+        <RunCodeAnalysis>Default</RunCodeAnalysis>
+        <NuGetOutputDir>\\fsegdevw1\E$\WebSites\nuget\main\Packages</NuGetOutputDir>
+        <DowJonesMSBuildProjectFile>$(SolutionRoot)\src\default.proj</DowJonesMSBuildProjectFile>
+        <SolutionInfoFile>$(SolutionRoot)\src\SolutionInfo.cs</SolutionInfoFile>
+        <ReleaseDeploymentDestination>$(DropLocation)\..\..\Binaries\$(VersionNumber)</ReleaseDeploymentDestination>
+		<ToolsDeploymentDir>$(DJInfrastructureOutputRoot)\Tools</ToolsDeploymentDir>
+    </PropertyGroup>
+
+
+    <Target Name="PreCompile" BeforeTargets="Compile">
+        <MSBuild Projects="$(DowJonesMSBuildProjectFile)"
+                 BuildInParallel="true" StopOnFirstFailure="false"
+                 Targets="UpdateSolutionInfo"
+                 Properties="
+                    FrameworkVersionFile=$(FrameworkVersionFile);
+                    SolutionRoot=$(SolutionRoot)
+                "
+        />
+    </Target>
+
+    <ItemGroup>
+        <ConfigurationToBuild Include="Release|Any CPU">
+            <FlavorToBuild>Release</FlavorToBuild>
+            <PlatformToBuild>Any CPU</PlatformToBuild>
+        </ConfigurationToBuild>
+
+        <SolutionToBuild Include="$(SolutionRoot)\src\Framework.sln">
+            <Targets></Targets>
+            <Properties></Properties>
+        </SolutionToBuild>
+
+        <SolutionToBuild Include="$(SolutionRoot)\src\RazorViewComponentClassGenerator.sln">
+            <Targets></Targets>
+            <Properties></Properties>
+        </SolutionToBuild>
+
+        <TestContainer Include="$(OutDir)\DowJones.Web.Mvc.Tests.dll" />
+        <TestContainer Include="$(OutDir)\RazorViewComponentClassGenerator.Tests.dll" />
+    </ItemGroup>
+
+
+    <Target Name="DeployFramework" AfterTargets="AfterCompile">
+        <MSBuild Projects="$(DowJonesMSBuildProjectFile)"
+                 BuildInParallel="true" StopOnFirstFailure="false"
+                 Targets="Framework_Deploy"
+                 Properties="ReleaseDeploymentDestination=$(ReleaseDeploymentDestination);
+                             SolutionRoot=$(SolutionRoot)"
+        />
+    </Target>
+
+
+    <Target Name="DeployInstallers" AfterTargets="AfterCompile">
+        <ItemGroup>
+            <CustomInstallers Include="$(SolutionRoot)\**\*.vsix" />
+        </ItemGroup>
+
+        <Message Text="Deploying installers to $(ToolsDeploymentDir)" />
+        
+        <Copy SourceFiles="@(CustomInstallers)"
+              DestinationFolder="$(ToolsDeploymentDir)" 
+              OverwriteReadOnlyFiles="true" SkipUnchangedFiles="true" />
+    </Target>
+
+    <Target Name="DeployNuGetPackages" AfterTargets="AfterCompile">
+        <Message Text="Deploying NuGet packages to $(NuGetOutputDir)" />
+        
+        <MSBuild Projects="$(DowJonesMSBuildProjectFile)"
+                 BuildInParallel="true" StopOnFirstFailure="false"
+                 Targets="CreateNuGetPackages"
+                 Properties="
+                     NuGetOutputDir=$(NuGetOutputDir);
+                     SolutionRoot=$(SolutionRoot);
+                     NuGetPackageVersion=$(DowJonesFrameworkVersion);
+                     DeploymentDestination=$(OutDir)
+                 "
+        />
+    </Target>
+
+</Project>

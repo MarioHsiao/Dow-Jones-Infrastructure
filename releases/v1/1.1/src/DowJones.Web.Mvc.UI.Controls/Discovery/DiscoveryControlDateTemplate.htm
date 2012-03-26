@@ -1,0 +1,39 @@
+﻿<div class="section">
+    <h3 class="title">Dates</h3>
+    <div class="chart clearfix">
+        <div class="grid-row-one grid-col-one">
+	        <div class="y">
+                <%
+                    var counts = _.map(dates, function(date, idx) { return parseInt(date.Count, 10); });
+                    var top    = Math.max.apply(this, counts);
+                %>
+	            <div class="y-item y-item-one"><span class="y-item-label"><%= parseInt(top*0.2, 10) %></span></div>
+	            <div class="y-item y-item-two"><span class="y-item-label"><%= parseInt(top*0.4, 10) %></span></div>
+	            <div class="y-item y-item-three"><span class="y-item-label"><%= parseInt(top*0.6, 10) %></span></div>
+	            <div class="y-item y-item-four"><span class="y-item-label"><%= parseInt(top*0.8, 10) %></span></div>
+	            <div class="y-item y-item-five"><span class="y-item-label"><%= top %></span></div>
+	        </div>
+        </div>
+        <div class="grid-row-one grid-col-two">
+	        <table class="canvas" cellpadding="0" cellspacing=0>
+                <tr>
+                    <% _.each(dates, function(date, idx) { %>
+                        <td class="item">
+                            <a class="bar" title="<%= date.Id %> - <%= date.Count %> hits" style="height:<%= date.ShareOfTop %>%;"></a>
+                        </td>
+                    <% }); %>
+                </tr>
+            </table>
+        </div>
+        <div class="grid-row-two grid-col-one"></div>
+        <div class="grid-row-two grid-col-two">
+            <div class="x">
+                <% _.each(dates, function(date, idx) { %>
+	                <div class="x-item" style="left:<%= ((idx / dates.length) * 100) + 2 %>%">
+	                    <span class="x-itemLabel"><%= date.Value %></span>
+    	            </div>
+                <% }); %>
+            </div>
+        </div>
+    </div>
+</div>

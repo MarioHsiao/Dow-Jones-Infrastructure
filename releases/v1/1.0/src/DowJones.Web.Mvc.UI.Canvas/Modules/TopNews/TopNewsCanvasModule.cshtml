@@ -1,0 +1,59 @@
+﻿@using DowJones.Web.Mvc.Extensions
+@using DowJones.Extensions
+@using DowJones.Web.Mvc.UI.Components.PortalHeadlineList
+@using DowJones.Web.Mvc.UI.Components.Models
+@using DowJones.Web.Mvc.UI.Canvas
+@using CanvasModels = DowJones.Web.Mvc.UI.Canvas.Models;
+@inherits AbstractCanvasModule<DowJones.Web.Mvc.UI.Canvas.Models.TopNewsModule>
+@ClientPlugin dj_TopNewsCanvasModule
+@ScriptResource RelativeResourceName=TopNewsCanvasModule.js
+@StylesheetResource RelativeResourceName=TopNewsCanvasModule.css
+@{ 
+    CssClass += " dj_topNewsCanvasModule curated-module";
+}
+@section EditArea {
+    @* Module Editor 
+      Override this if Editor is not being set in Model
+   *@
+    @(CreateChildControl(Model.Editor,
+        new Dictionary<string, object> { { "class", "dj_Editor" } }))
+}
+@section ContentArea {
+    <div class="module-row article-row clearfix">
+        @*  TODO: Remove index based logic and assign type to container to identify *@
+        @for (var j = 0; j < Model.NewsItemsPerPage; j++)
+        { 
+            <div class="module-col one-third">
+                <div class="module-col-wrap standard-padding">
+                    <div class="article-group">
+                        <h3 class="module-col-title article-group-title">
+                        </h3>
+                        @(CreateChildControl<PortalHeadlineListControl>(new PortalHeadlineListModel()
+                    {
+                        MaxNumHeadlinesToShow = 5,
+                        ShowPublicationDateTime = true,
+                        ShowSource = true,
+                        DisplayNoResultsToken = true,
+                        ShowAuthor = (j == (Model.NewsItemsPerPage - 1)),
+                        MultimediaMode = (j == 1)
+                    }))
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <div class="module-row clearfix">
+        @*  TODO: Remove index based logic and assign type to container to identify *@
+        @for (var j = 0; j < Model.NewsItemsPerPage; j++)
+        { 
+            <div class="module-col one-third">
+                <div class="module-col-wrap standard-padding">
+                    <ul class="dc_list view-all-btn">
+                        <li class="dc_item"><a href="javascript:void(0);" class="dashboard-control dc_btn dc_btn-1">@Html.DJ().Token("viewAll")</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        }
+    </div>
+}

@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="DowJones.Web.Mvc.UI.Canvas.DataAccess.Managers.TopNewsNewsPageModuleManager">
+    <Position X="0.5" Y="0.5" Width="10.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAoAAAAAAAEACAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Managers\NewsPages\TopNewsNewsPageModuleManager.cs</FileName>
+      <NewMemberFileName>Managers\NewsPages\RegionalMapNewsPageModuleManager.cs</NewMemberFileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DowJones.Web.Mvc.UI.Canvas.DataAccess.Requests.GetTopNewsNewsPageModuleHeadlinesDataRequest">
+    <Position X="0.5" Y="3.25" Width="4" />
+    <TypeIdentifier>
+      <HashCode>AAEAQAQAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Requests\GetTopNewsNewsPageModuleHeadlinesData.cs</FileName>
+      <NewMemberFileName>Requests\GetRegionalMapHeadlinesData.cs</NewMemberFileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="TopNewsModuleParts" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DowJones.Web.Mvc.UI.Canvas.DataAccess.Responses.GetTopNewsNewsPageModuleHeadlinesDataResponse">
+    <Position X="5.5" Y="3.25" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Responses\GetTopNewsNewsPageModuleHeadlinesDataResponse.cs</FileName>
+      <NewMemberFileName>Responses\GetRegionalMapHeadlinesDataResponse.cs</NewMemberFileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="DowJones.Web.Mvc.UI.Canvas.DataAccess.Managers.Common.TopNewsModuleParts">
+    <Position X="0.5" Y="5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAACAAAAAAgAAAAAAAAAAAAAAAAAAAAg=</HashCode>
+      <FileName>Managers\Common\CommonTypes.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Tahoma" Size="8.25" />
+</ClassDiagram>

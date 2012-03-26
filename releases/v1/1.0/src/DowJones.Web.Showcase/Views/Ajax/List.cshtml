@@ -1,0 +1,20 @@
+﻿@model IEnumerable<Employee>
+
+@{
+    ViewBag.Title = "Employees";
+
+	Html.DJ().ScriptRegistry().WithClientSideValidation();
+}
+
+	<ul class="employee-list">
+	
+	@foreach(var employee in Model) {
+		<li>
+			@Ajax.ActionLink(employee.FullName, "Details", "Ajax", new { id = employee.ID }, new AjaxOptions { UpdateTargetId="employee-details-container" })
+		</li> 
+	}
+
+	</ul>
+
+	<div id="employee-details-container">
+	</div>

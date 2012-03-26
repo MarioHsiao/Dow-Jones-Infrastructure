@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<GetTaxonomyCodeChildResponse xmlns="http://types.factiva.com/symbology/taxonomy">
+  <taxonomyCodeResultSet count="1">
+    <taxonomyCodeResult>
+      <requestedCode code="i1" scheme="FactivaIndustry">
+        <descriptor lang="en" xmlns="http://types.factiva.com/util">Energy</descriptor>
+      </requestedCode>
+      <resultTaxonomyCode type="Industry" code="ialtful" scheme="FactivaIndustry">
+        <descriptor lang="en" xmlns="http://types.factiva.com/util">Alternative Fuels</descriptor>
+        <hasChildren>true</hasChildren>
+        <role>Core</role>
+        <role>Default</role>
+      </resultTaxonomyCode>
+      <resultTaxonomyCode type="Industry" code="i111" scheme="FactivaIndustry">
+        <descriptor lang="en" xmlns="http://types.factiva.com/util">Coal Mining</descriptor>
+        <hasChildren>false</hasChildren>
+      </resultTaxonomyCode>
+      <resultTaxonomyCode type="Industry" code="i112" scheme="FactivaIndustry">
+        <descriptor lang="en" xmlns="http://types.factiva.com/util">Coal Mining Support Activities</descriptor>
+        <hasChildren>false</hasChildren>
+      </resultTaxonomyCode>
+      <resultTaxonomyCode type="Industry" code="i13" scheme="FactivaIndustry">
+        <descriptor lang="en" xmlns="http://types.factiva.com/util">Crude Oil/Natural Gas</descriptor>
+        <hasChildren>true</hasChildren>
+      </resultTaxonomyCode>
+      <resultTaxonomyCode type="Industry" code="i16" scheme="FactivaIndustry">
+        <descriptor lang="en" xmlns="http://types.factiva.com/util">Electricity/Gas Utilities</descriptor>
+        <hasChildren>true</hasChildren>
+      </resultTaxonomyCode>
+      <resultTaxonomyCode type="Industry" code="ifuelcl" scheme="FactivaIndustry">
+        <descriptor lang="en" xmlns="http://types.factiva.com/util">Fuel Cells</descriptor>
+        <hasChildren>false</hasChildren>
+      </resultTaxonomyCode>
+      <resultTaxonomyCode type="Industry" code="i652" scheme="FactivaIndustry">
+        <descriptor lang="en" xmlns="http://types.factiva.com/util">Gasoline Stations</descriptor>
+        <hasChildren>false</hasChildren>
+      </resultTaxonomyCode>
+      <resultTaxonomyCode type="Industry" code="intgpc" scheme="FactivaIndustry">
+        <descriptor lang="en" xmlns="http://types.factiva.com/util">Natural Gas Processing</descriptor>
+        <hasChildren>false</hasChildren>
+      </resultTaxonomyCode>
+      <resultTaxonomyCode type="Industry" code="i15" scheme="FactivaIndustry">
+        <descriptor lang="en" xmlns="http://types.factiva.com/util">Nuclear Fuel</descriptor>
+        <hasChildren>false</hasChildren>
+      </resultTaxonomyCode>
+      <resultTaxonomyCode type="Industry" code="i14" scheme="FactivaIndustry">
+        <descriptor lang="en" xmlns="http://types.factiva.com/util">Petroleum/Coal Products</descriptor>
+        <hasChildren>true</hasChildren>
+      </resultTaxonomyCode>
+      <resultTaxonomyCode type="Industry" code="i17" scheme="FactivaIndustry">
+        <descriptor lang="en" xmlns="http://types.factiva.com/util">Water Utilities</descriptor>
+        <hasChildren>false</hasChildren>
+      </resultTaxonomyCode>
+    </taxonomyCodeResult>
+  </taxonomyCodeResultSet>
+</GetTaxonomyCodeChildResponse>

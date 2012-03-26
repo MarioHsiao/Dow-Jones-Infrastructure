@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>DowJones.Entitlements</id>
+        <version>PACKAGE_VERSION</version>
+        <title>Dow Jones Entitlements</title>
+        <description>The Dow Jones Entitlements library</description>
+        <authors>Dow Jones Platform Integration Team</authors>
+        <tags>DowJones</tags>
+        <language>en-US</language>
+        <projectUrl>http://dowjones.com</projectUrl>
+        <licenseUrl>http://dowjones.com</licenseUrl>
+        <dependencies>
+            <dependency id="Factiva.Gateway.Messages" version="7.5.0.30" />
+        </dependencies>
+    </metadata>
+    <files>
+        <file src="DowJones.Entitlements.dll" target="lib" />
+    </files>
+</package>

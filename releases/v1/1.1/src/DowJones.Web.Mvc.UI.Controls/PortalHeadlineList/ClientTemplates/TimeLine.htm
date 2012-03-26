@@ -1,0 +1,16 @@
+﻿<ul class="realtime-news">
+    <%  var x, title;
+        for (var i = 0, len = Math.min(headlines.length, options.maxNumHeadlinesToShow); i < len; i++) { 
+            x = headlines[i]; 
+            title = (options.showTruncatedTitle && $.trim(x.truncatedTitle)) || x.title;
+    %>
+    <li class="dj_entry">
+        <h4 class="headline">
+            <a class="article-view-trigger ellipsis" href="#">
+                <span class="time-stamp"><%= x.modificationTimeDescriptor %></span>
+                <span class="headline-text"><%= title %></span>
+             </a>
+        </h4>
+    </li>
+    <% } %> 
+</ul>

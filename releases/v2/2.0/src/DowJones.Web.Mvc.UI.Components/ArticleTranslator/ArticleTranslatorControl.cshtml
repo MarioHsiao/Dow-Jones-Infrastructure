@@ -1,0 +1,34 @@
+﻿@using System.Collections.Generic;
+
+@model ArticleTranslatorModel
+@ClientPlugin dj_ArticleTranslatorControl
+@ScriptResource RelativeResourceName=ArticleTranslatorControl.js
+@{ CssClass = "dj_ArticleTranslatorControl"; }
+
+<div class="dj_article_translator_icon">
+   <div id="translateArticleDiv"  class="dj_article_translator_translatemainlink">
+        <a tabindex="0" href="javascript:void(0)" id="TranslatelinkId">
+            <span class="dj_article_translator_button_span"> @Model.Tokens.ArticleTranslatorTitle</span>
+        </a>
+        <div id="translateLanguagesDiv" class="dj_article_translator_languagesDiv" >
+            <div class="dj_article_translator_header">
+                <div class="dj_article_translator_floatleft"><strong>Available Languages</strong></div>
+                <div class="dj_article_translator_floatright"><a href="javascript:void(0)" id="translateClose"><strong>X</strong>&nbsp;<strong>Close</strong></a></div>
+            </div>
+            <ul class="dj_article_translator_body">
+                @foreach (string slang in Model.GetSortedLanguages())
+                {
+                    string[] lang = slang.Split('|');
+                    if (Model.SourceLanguage != lang[1])
+                    {
+                        <li role="menuitem">
+                            <a class="dj_article_translator_langclicklink" href="#" rel="{accessionnumber:'@Model.AccessionNo',sourcelanguage:'@Model.SourceLanguage',targetlanguageCode:'@lang[1]',targetlanguage:'@lang[0]'}" tabindex=-1>
+                                @lang[0]
+                            </a>
+                        </li>
+                    }
+                }
+            </ul>
+        </div>
+   </div>
+</div>

@@ -1,0 +1,13 @@
+﻿<%  var d;
+    for(var i = 0;i < data.length;i++){ 
+        d = data[i];
+%>
+    <li>
+        <div>
+            <% if(d.HasChildren){ %>
+            <span class="dj_icon dj_browse-tree-toggle"></span>
+            <% } %>
+            <div class="browse-item" data-code="<%= d.Code.toLowerCase() %>"><%= (d.Name || d.Code) %></div>
+        </div>
+    </li>
+<% } %>

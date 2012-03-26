@@ -1,0 +1,17 @@
+﻿@model DowJones.Web.Mvc.UI.Components.HeadlineCarousel.HeadlineCarouselModel
+@ClientPlugin dj_HeadlineCarousel
+@ClientTemplate RelativeResourceName=ClientTemplates.VideoX.htm, TemplateId=videoX, PerformSubstitution=true
+@ClientTemplate RelativeResourceName=ClientTemplates.VideoY.htm, TemplateId=videoY, PerformSubstitution=true
+@ClientTemplate RelativeResourceName=ClientTemplates.HeadlineHitCountsPackage.htm, TemplateId=headlineHitCountsPackage, PerformSubstitution=true
+@ClientTemplate RelativeResourceName=ClientTemplates.DiscoveredEntitiesPackage.htm, TemplateId=discoveredEntitiesPackage, PerformSubstitution=true
+@ClientTemplate RelativeResourceName=ClientTemplates.NoData.htm, TemplateId=noData, PerformSubstitution=true
+@ScriptResource RelativeResourceName=HeadlineCarousel.js
+@ScriptResource RelativeResourceName=jquery.ui.headline-carousel.js
+@StylesheetResource RelativeResourceName=HeadlineCarousel.css, PerformSubstitution=true
+@Html.DJ().ScriptRegistry().WithJQueryUIWidgets()
+@{
+    CssClass = "dj_headlineListCarousel";
+    Html.DJ().ScriptRegistry()
+        .WithUnderscoreJS()
+        .WithJQueryTouch();
+ }

@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+    <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\TeamBuild\Microsoft.TeamFoundation.Build.targets" />
+
+    <ProjectExtensions>
+        <ProjectFileVersion>2</ProjectFileVersion>
+        <Description>DJ Infrastructure Continuous Integration build</Description>
+        <BuildMachine>SBK053LAB07NWS</BuildMachine>
+    </ProjectExtensions>
+
+    <PropertyGroup>
+        <RunCodeAnalysis>Default</RunCodeAnalysis>
+        <RunTest>true</RunTest>
+        <TreatTestFailureAsBuildFailure>true</TreatTestFailureAsBuildFailure>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <SolutionToBuild Include="$(SolutionRoot)\src\Framework.sln">
+            <Targets></Targets>
+            <Properties>MvcBuildViews=true</Properties>
+        </SolutionToBuild>
+        
+        <TestContainer Include="$(OutDir)\DowJones.Tests.dll" />
+
+        <ConfigurationToBuild Include="Release|Any CPU">
+            <FlavorToBuild>Release</FlavorToBuild>
+            <PlatformToBuild>Any CPU</PlatformToBuild>
+        </ConfigurationToBuild>
+
+    </ItemGroup>
+    
+</Project>

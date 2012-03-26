@@ -1,0 +1,16 @@
+﻿<%  var d, code, cdesc, extndCodes = '';
+    for(var i = 0;i < data.length;i++){ 
+        d = data[i];
+        code = escape(d.Name);
+        cdesc = d.Name;
+        extndCodes = '';
+        if(d.ByLine){
+            extndCodes = 'data-code1="' + escape(d.ByLine) + '" data-type1="BY" ';
+            cdesc = cdesc + " (" + d.ByLine + ")";
+        }
+%>
+    <li class="item" data-code="<%= code %>" data-type="SN" <%= extndCodes %>>
+        <span><%= cdesc %></span>
+    </li>
+<% } %>
+

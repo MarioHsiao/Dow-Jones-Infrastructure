@@ -1,0 +1,40 @@
+﻿@(
+    Html.DJ().ScriptRegistry()
+        .OnDocumentReady("$dj.debugEnabled=true;")
+        .OnDocumentReady("$('#add-module').click(addModuleDefinition);")
+        .OnDocumentReady("$('#clear-canvas').click(clearCanvas);")
+        .OnDocumentReady("$('#partial-portal-headline').click(loadPortalHeadlineList);")
+        .OnDocumentReady("$('#update-positions').click(function() { getCanvas().saveCanvasModulePositions(); });")
+)
+
+<script type="text/javascript">
+
+    function addModuleDefinition() {
+        var moduleId = $('#moduleIdInput').val();
+        getCanvas().addModule(moduleId);
+    }
+
+    function clearCanvas() {
+        $('.dj_group').empty();
+    }
+
+    function getCanvas() {
+        return $('.dj_Canvas').findComponent(DJ.UI.AbstractCanvas);
+    }
+
+    function loadPortalHeadlineList() {
+        $('#result')
+            .load('@Url.Action("PartialResult", "PortalHeadlineList", new { area = string.Empty })');
+    }
+
+</script>
+
+<input id="moduleIdInput" type="text" value="22479" />
+<button id="add-module">Add module</button>
+<button id="update-positions">Update Positions</button>
+<button id="partial-portal-headline">Partial Portal Headline List</button>
+<button id="clear-canvas">Clear Canvas Modules</button>
+
+@Html.DJ().Render(Model)
+
+<div id="result"></div>

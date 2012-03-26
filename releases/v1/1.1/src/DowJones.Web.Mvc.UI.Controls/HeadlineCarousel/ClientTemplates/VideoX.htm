@@ -1,0 +1,37 @@
+﻿                <div class="dj_video_carousel clearfix">
+        
+                    <ul class="dj_video_carousel-nav">
+            
+                        <li class="dj_video_carousel-scroll scroll-left disabled" title="<%= Token("prevItem") %>"><%= Token("prevItem") %></li>
+                        <li class="dj_video_carousel-scroll scroll-right" title="<%= Token("nextItem") %>"><%= Token("nextItem") %></li>
+            
+                    </ul>
+        
+                    <div class="dj_video_carousel-wrap">
+        
+                        <ul class="clearfix">       
+                            <% 
+                                var title;
+                                for (var index = 0; index < data.headlines.length; index++) { 
+                                    x = data.headlines[index]; 
+                                    title = x.truncatedTitle || x.title;
+                            %>
+                            <li>
+                                <div class="media-thumb">
+                                    <img src="<%= x.thumbnailImage?x.thumbnailImage.uri:"" %>" title="<%= title %>" />
+                                    <span class="media-play"></span>
+                                </div>
+                                <h4 class="media-headline">
+                                    <a href="javascript:void(0);" class="ellipsis" title="<%= title %>"><%= title %></a>
+                                </h4>
+                                <div class="media-meta">
+                                    <span class="fi fi_<%= x.contentSubCategoryDescriptor %>"></span>
+                                    <span class="media-length">[<%= x.mediaLength || "" %>]</span>
+                                </div>
+                            </li>
+                            <% } %>
+                        </ul>
+            
+                    </div><!-- end: .dj_video_carousel-wrap -->
+    
+                </div><!-- end: .dj_video_carousel -->

@@ -1,0 +1,12 @@
+﻿@{
+    ViewBag.Title = "Article";
+}
+
+
+@(Html.DJ().RenderComponent<DowJones.Web.Mvc.UI.Components.Article.Article>(Model))
+
+
+
+@Html.DJ().StylesheetRegistry().Include("~/Content/css/ArticleControl.css")
+@Html.DJ().StylesheetRegistry().Include("~/Content/css/ArticleTranslator.css")
+@Html.DJ().StylesheetRegistry().Include("~/Content/css/base.css")

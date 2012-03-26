@@ -1,0 +1,448 @@
+﻿body {
+    background: none repeat scroll 0 0 #EEEEEE;
+    border-top: 5px solid #000000;
+    color: #333333;
+    font-size: 11px;
+    padding: 0 0 40px;
+}
+a {
+    color: #000000;
+    font-weight: bold;
+    text-decoration: none;
+}
+a:hover {
+    color: #333333;
+}
+.container_12, .container_16 {
+    background: none repeat scroll 0 0 #FFFFFF;
+}
+h1, h2, h3, h4, h5, h6 {
+    line-height: 1.2em;
+    margin-bottom: 0.3em;
+}
+h2 {
+    margin-top: 1em;
+}
+h5 {
+    font-size: 1.2em;
+}
+h6 {
+    font-size: 1em;
+    text-transform: uppercase;
+}
+h1 a {
+    font-weight: normal;
+}
+h1#branding {
+    background: none repeat scroll 0 0 #AAAAAA;
+    font-size: 3em;
+    font-weight: normal;
+    margin-bottom: 0;
+    padding: 0.7em 1em;
+    text-align: left;
+}
+h2#page-heading {
+    border-bottom: 1px solid #CCCCCC;
+    font-weight: normal;
+    margin: 0 0 10px;
+    padding: 0.5em;
+}
+.box {
+    background: none repeat scroll 0 0 #DDDDDD;
+    margin-bottom: 20px;
+    padding: 10px 10px 1px;
+}
+.box h2 {
+    background: none repeat scroll 0 0 #333333;
+    color: #FFFFFF;
+    font-size: 1em;
+    font-weight: normal;
+    margin: -10px -10px 0;
+    padding: 6px 12px;
+    text-transform: uppercase;
+}
+.box h2 a, .box h2 a.visible {
+    background: url("../img/switch_minus.gif") no-repeat scroll 97% 50% #333333;
+    border: medium none;
+    color: #FFFFFF;
+    display: block;
+    margin: -6px -12px;
+    padding: 6px 12px;
+}
+.grid_4 .box h2 a {
+    background-position: 97% 50%;
+}
+.grid_5 .box h2 a {
+    background-position: 98% 50%;
+}
+.grid_12 .box h2 a {
+    background-position: 99% 50%;
+}
+.box h2 a.hidden, .box h2 a.hidden:hover {
+    background-image: url("../img/switch_plus.gif");
+}
+.box h2 a:hover {
+    background-color: #111111;
+}
+.block {
+    padding-top: 10px;
+}
+div.menu {
+    padding: 0;
+}
+div.menu h2 {
+    margin: 0;
+}
+div.menu .block {
+    padding-top: 0;
+}
+p {
+    margin-bottom: 1em;
+}
+blockquote {
+    border-left: 4px solid #CCCCCC;
+    font-family: Georgia,'Times New Roman',serif;
+    font-size: 1.2em;
+    padding-left: 1em;
+}
+blockquote cite {
+    font-size: 0.9em;
+}
+ul, ol {
+    padding-top: 0;
+}
+ul.menu {
+    border-top: 1px solid #BBBBBB;
+    list-style: none outside none;
+}
+ul.menu li {
+    margin: 0;
+}
+ul.menu li a {
+    border-bottom: 1px solid #CCCCCC;
+    display: block;
+    padding: 4px 10px;
+}
+ul.menu li a:hover {
+    background: none repeat scroll 0 0 #EEEEEE;
+}
+ul.menu li a:active {
+    background: none repeat scroll 0 0 #CCCCCC;
+}
+ul.menu ul {
+    list-style: none outside none;
+    margin: 0;
+}
+ul.menu ul li a {
+    padding-left: 30px;
+}
+ul.section {
+    border-top: 0 none;
+    margin-bottom: 0;
+}
+ul.section li {
+    text-transform: uppercase;
+}
+ul.section li a {
+    background: none repeat scroll 0 0 #BBBBBB;
+}
+ul.section li a:hover {
+    background: none repeat scroll 0 0 #AAAAAA;
+}
+ul.section li a:active {
+    background: none repeat scroll 0 0 #666666;
+    color: #FFFFFF;
+}
+ul.section li li a {
+    background: none repeat scroll 0 0 #DDDDDD;
+    border-bottom: 1px solid #EEEEEE;
+}
+ul.section li li a:hover {
+    background: none repeat scroll 0 0 #CCCCCC;
+}
+ul.section li li a:active {
+    background: none repeat scroll 0 0 #FFFFFF;
+    color: #000000;
+}
+ul.section ul li {
+    text-transform: none;
+}
+ul.section ul.current li a {
+    background: none repeat scroll 0 0 #EEEEEE;
+    border-bottom: 1px solid #FFFFFF;
+}
+ul.section ul.current li a:hover {
+    background: none repeat scroll 0 0 #DDDDDD;
+}
+ul.section ul.current li a:active {
+    background: none repeat scroll 0 0 #FFFFFF;
+}
+ul.section li a.current {
+    background: none repeat scroll 0 0 #666666;
+    color: #FFFFFF;
+}
+ul.section li a.current:hover {
+    background: none repeat scroll 0 0 #555555;
+}
+ul.section li a.current:active {
+    background: none repeat scroll 0 0 #444444;
+}
+ul.section li a.active {
+    background: none repeat scroll 0 0 #FFFFFF;
+    cursor: default;
+}
+ul.section li.current > a.active, ul.section li.current > a.active:hover {
+    background: none repeat scroll 0 0 #666666;
+    color: #FFFFFF;
+    cursor: default;
+}
+table {
+    border: 1px solid #BBBBBB;
+    margin-bottom: 10px;
+    width: 100%;
+}
+col.colC {
+    width: 8em;
+}
+th, td {
+    padding: 0.2em 1em;
+    text-align: left;
+}
+thead th {
+    background: none repeat scroll 0 0 #BBBBBB;
+    border-bottom: 2px solid #888888;
+    padding: 0.4em 1em 0.2em;
+}
+thead th.table-head {
+    background: none repeat scroll 0 0 #555555;
+    border: 1px solid #555555;
+    color: #FFFFFF;
+    font-size: 1em;
+    font-weight: normal;
+    text-transform: uppercase;
+}
+tbody th, tbody td {
+    background: none repeat scroll 0 0 #EEEEEE;
+    border-bottom: 1px solid #BBBBBB;
+    border-top: 1px solid #BBBBBB;
+}
+tbody tr.odd th, tbody tr.odd td {
+    background: none repeat scroll 0 0 #FFFFFF;
+}
+tfoot th, tfoot td {
+    background: none repeat scroll 0 0 #EEEEEE;
+    border-top: 2px solid #666666;
+}
+tfoot tr.total th, tfoot tr.total td {
+    border-top: 6px double #666666;
+}
+tfoot tr.total th {
+    text-transform: uppercase;
+}
+th.currency, td.currency {
+    text-align: right;
+}
+form {
+    overflow: hidden;
+}
+fieldset {
+    background: none repeat scroll 0 0 #E9E9E9;
+    border: 1px solid #BBBBBB;
+    margin-bottom: 10px;
+    padding: 10px;
+    position: relative;
+}
+legend {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #BBBBBB;
+    font-size: 1.1em;
+    padding: 0.4em 0.8em;
+}
+fieldset.login p {
+    margin-bottom: 1em;
+    margin-top: 0;
+}
+fieldset p label {
+    width: 98%;
+}
+fieldset p input {
+    width: 98%;
+}
+fieldset p select {
+    width: 99%;
+}
+fieldset.login p label {
+    float: left;
+    line-height: 2em;
+    margin-right: 3%;
+    text-align: right;
+    width: 32%;
+}
+fieldset.login p input {
+    width: 60%;
+}
+fieldset.login input.button {
+    margin-left: 35%;
+}
+form p.notice {
+    font-weight: bold;
+}
+input.search.text {
+    width: 66%;
+}
+input.search.button {
+    margin-left: 2%;
+    width: 28%;
+}
+.articles {
+    padding: 0;
+}
+.articles h2 {
+    margin: 0;
+}
+#articles {
+    padding-top: 0;
+}
+.article {
+    border-top: 1px solid #666666;
+    padding-top: 0.5em;
+}
+.box .article {
+    border-top: 3px solid #FFFFFF;
+    padding: 13px 10px 0;
+}
+.article h2 {
+    background: none repeat scroll 0 0 transparent;
+    border: medium none;
+    color: #333333;
+    font-size: 2em;
+    font-weight: normal;
+    margin: 0;
+    padding: 0;
+    text-transform: none;
+}
+.article h3 {
+    font-size: 1.6em;
+    margin-bottom: 0.2em;
+}
+.box .first {
+    border-top: medium none;
+}
+.article h4 {
+    font-size: 1.2em;
+    margin-bottom: 0.5em;
+    text-transform: uppercase;
+}
+.article a.image {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #BBBBBB;
+    float: left;
+    margin: 3px 10px 3px 0;
+    padding: 4px;
+}
+.article a.image:hover {
+    border: 1px solid #666666;
+}
+.article a.image img {
+    float: left;
+}
+.article p.meta {
+    border-bottom: 1px dotted #999999;
+    border-top: 1px dotted #999999;
+    color: #666666;
+    margin-bottom: 0.8em;
+    padding: 0.3em 0;
+}
+#site_info .box {
+    background: none repeat scroll 0 0 #666666;
+    color: #CCCCCC;
+    margin-bottom: 10px;
+}
+#site_info a {
+    color: #FFFFFF;
+}
+#site_info a:hover {
+    color: #000000;
+}
+#loading {
+    float: right;
+    margin-right: 14px;
+    margin-top: -2px;
+}
+.block {
+    padding-bottom: 1px;
+}
+.toggler {
+    background: none repeat scroll 0 0 #EEEEEE;
+    border-color: #F5F5F5 #DDDDDD #DDDDDD #F5F5F5;
+    border-style: solid;
+    border-width: 1px;
+    color: #222222;
+    font-size: 1.1em;
+    font-weight: normal;
+    margin: 0;
+    padding: 2px 5px;
+}
+.element h4 {
+    line-height: 1.2em;
+    margin: 0;
+    padding: 4px;
+}
+.element p {
+    margin: 0;
+    padding: 4px;
+}
+.float-right {
+    float: right;
+    padding: 10px 20px;
+}
+#accordian-block {
+    padding-bottom: 10px;
+}
+#kwick-box {
+    overflow: hidden;
+    padding: 0;
+}
+#kwick-box h2 {
+    margin: 0;
+}
+#kwick {
+    position: relative;
+}
+#kwick .kwicks {
+    background: none repeat scroll 0 0 #999999;
+    display: block;
+    height: 120px;
+    list-style: none outside none;
+    margin: 0;
+    overflow: hidden;
+}
+#kwick li {
+    float: left;
+    margin: 0;
+    padding: 0;
+}
+#kwick .kwick {
+    background: none repeat scroll 0 0 #FFFFFF;
+    cursor: pointer;
+    display: block;
+    height: 100px;
+    overflow: hidden;
+    padding: 10px;
+    width: 215px;
+}
+#kwick .kwick span {
+    color: #FFFFFF;
+}
+#kwick .one {
+    background: none repeat scroll 0 0 #666666;
+}
+#kwick .two {
+    background: none repeat scroll 0 0 #777777;
+}
+#kwick .three {
+    background: none repeat scroll 0 0 #888888;
+}
+#kwick .four {
+    background: none repeat scroll 0 0 #999999;
+}

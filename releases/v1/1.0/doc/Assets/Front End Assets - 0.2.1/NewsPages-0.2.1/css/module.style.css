@@ -1,0 +1,65 @@
+/*
+
+	-- -- -- -- -- -- --
+	Description: Global module styles rules
+	Version: 0.1
+	Last Update: 11/11/2010
+	Author: Ron Edgecomb II
+	Company: Dow Jones & Company Inc.
+	Copyright 2010 Dow Jones & Company Inc.
+	
+	Dependencies
+	 - css/reset.css
+	 - css/lib/modules.css
+	-- -- -- -- -- -- --
+	
+*/
+
+/* =module >> General module rules
+----------------------------------------------------------------------------------------------------*/
+.module-col-header {
+	margin: 0 19px;
+	padding: 0 0 2px;
+}
+
+.module-row-title {
+	font-size: 153.9%; /* 20px */
+	margin: 0 0 15px;
+}
+
+.module-col-title {
+	font-size: 138.5%; /* 18px */
+	margin: 0 0 15px;
+}
+
+.module-col-title a {
+	position:relative;
+	color:#676767 ;
+	font-weight: bold;
+	line-height:17px;
+}
+
+.module-col-title a:hover {
+	color:#666;
+}
+
+/* =module Meta >> Style rules for module meta
+----------------------------------------------------------------------------------------------------*/
+.module-meta {
+	font-weight: bold;
+}
+
+.module-meta .meta-label {
+	font-weight: normal;
+}
+
+.item-meta,
+.module-meta {
+	font-size: 85%; /* 11px */
+	line-height: 1.45; /* rounds up to 16px */
+}
+
+.item-meta span,
+.module-meta span {
+	color: #9a9a9a;
+}

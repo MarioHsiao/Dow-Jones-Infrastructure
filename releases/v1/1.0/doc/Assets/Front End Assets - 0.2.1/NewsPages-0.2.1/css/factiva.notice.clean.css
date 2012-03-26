@@ -1,0 +1,80 @@
+/*
+	Asset: Dow Jones CSS Notice Library - Style 3
+	Description: Library of CSS for a variety of html notices, clean format with no icons.
+	Version: 0.1
+	Last Update: 9/30/2010
+	Author: Ron Edgecomb II
+	Company: Dow Jones & Company Inc.
+	Copyright 2010 Dow Jones & Company Inc.
+	
+	Dependencies
+	 - reset.css
+	 - grid.24-col.css
+
+
+*/
+
+/* =Notices >> Default Style
+----------------------------------------------------------------------------------------------------*/
+.dj-notice,
+.dj-content .dj-notice {
+	position: relative;
+	color: #205791;
+	margin-bottom: 10px; padding: 10px;
+	background-color: #d5edf8;
+	border: 2px solid #92cae4;
+	-moz-border-radius: 5px;
+	-khtml-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+}
+
+/* informational notice */
+.info-notice,
+.information-notice, /* in case someone spells it out */
+.dj-content .info-notice,
+.dj-content .information-notice {
+	/* uses defualt style rules of dj-notice */
+}
+
+/* success notice */
+.success-notice,
+.dj-content .success-notice {
+	color: #264409;
+	background-color: #e6efc2;
+	border-color: #c6d880;
+}
+
+/* error notice */
+.error-notice,
+.dj-content .error-notice {
+	color: #8a1f11;
+	background-color: #fbe3e4;
+	border-color: #fbc2c4;
+}
+
+/* help notice */
+.help-notice,
+.dj-content .help-notice {
+	/* uses defualt style rules of dj-notice */
+}
+
+/* warning notice */
+.warn-notice,
+.dj-content .warn-notice {
+	color: #514721;
+	background-color: #fff6bf;
+	border-color: #ffd324;
+}
+
+/* =Notices >> Miscellaneous Styles
+----------------------------------------------------------------------------------------------------*/
+.dj-notice-close {
+	width: 14px; height: 14px;
+	position: absolute;
+	top: 0; right: 0;
+	font-size: 14px;
+	line-height: 14px;
+	font-weight: bold;
+	text-align: center;
+}

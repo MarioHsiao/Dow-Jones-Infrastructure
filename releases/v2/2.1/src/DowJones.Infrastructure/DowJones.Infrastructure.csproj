@@ -1,0 +1,915 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{095DE252-E183-4AE6-824A-B4504AE737C1}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DowJones</RootNamespace>
+    <AssemblyName>DowJones.Infrastructure</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <NoWarn>1762,0612</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <GenerateSerializationAssemblies>On</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CommonServiceLocator.NinjectAdapter">
+      <HintPath>..\packages\Ninject.2.2.0.0\lib\.NetFramework 4.0\extensions\CommonServiceLocator.NinjectAdapter.dll</HintPath>
+    </Reference>
+    <Reference Include="factiva.gateway.messages">
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.68\lib\factiva.gateway.messages.dll</HintPath>
+    </Reference>
+    <Reference Include="FactivaGateway">
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.68\lib\FactivaGateway.dll</HintPath>
+    </Reference>
+    <Reference Include="Hammock, Version=1.0.0.0, Culture=neutral, PublicKeyToken=c148cfba29ed1a4d, processorArchitecture=MSIL">
+      <HintPath>..\packages\Hammock.1.2.6\lib\net40\Hammock.dll</HintPath>
+    </Reference>
+    <Reference Include="Interop.FCMLib">
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.68\lib\Interop.FCMLib.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.1.2.10\lib\2.0\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.0.2.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.4.0.3\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject">
+      <HintPath>..\packages\Ninject.2.2.0.0\lib\.NetFramework 4.0\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Ajax\CompanySparkline\CompanySparklineDataResult.cs" />
+    <Compile Include="Alert\AlertProperties.cs" />
+    <Compile Include="Alert\AlertRequest.cs" />
+    <Compile Include="Alert\SearchFilterUtility.cs" />
+    <Compile Include="Alert\SimpleAlertRequest.cs" />
+    <Compile Include="Articles\ArticleDataResult.cs" />
+    <Compile Include="Articles\ArticleResultset.cs" />
+    <Compile Include="Articles\ContentHeadlineToArticleMapper.cs" />
+    <Compile Include="Articles\ElinkReferences.cs" />
+    <Compile Include="Articles\EntityData.cs" />
+    <Compile Include="Articles\IArticleService.cs" />
+    <Compile Include="Articles\IRenderItem.cs" />
+    <Compile Include="Articles\MixedContentArticleRequest.cs" />
+    <Compile Include="Articles\MixedContentArticleResponse.cs" />
+    <Compile Include="Articles\PictureSize.cs" />
+    <Compile Include="Articles\PostProcessData.cs" />
+    <Compile Include="Articles\RenderItem.cs" />
+    <Compile Include="Ajax\FamilyTree\Declarations.cs" />
+    <Compile Include="Ajax\FamilyTree\FamilyTreeDataResult.cs" />
+    <Compile Include="Ajax\FamilyTree\FamilyTreeDataResultSet.cs" />
+    <Compile Include="Ajax\FamilyTree\FamilyTreeInfo.cs" />
+    <Compile Include="Ajax\HeadlineList\SyndicationDataResult.cs" />
+    <Compile Include="Ajax\IListDataResult.cs" />
+    <Compile Include="Ajax\NewsStandTicker\NewsTickerDataResult.cs" />
+    <Compile Include="Ajax\NewsStandTicker\NewsTickerDataResultSet.cs" />
+    <Compile Include="Ajax\NewsStandTicker\NewsTickerInfo.cs" />
+    <Compile Include="Ajax\PortalHeadlineList\PortalHeadlineInfo.cs" />
+    <Compile Include="Ajax\PortalHeadlineList\PortalHeadlineListDataResult.cs" />
+    <Compile Include="Ajax\PortalHeadlineList\PortalHeadlineListResultSet.cs" />
+    <Compile Include="Ajax\Navigator\Navigator.cs" />
+    <Compile Include="Ajax\PortalHeadlineList\TruncationType.cs" />
+    <Compile Include="Ajax\TagCloud\ITag.cs" />
+    <Compile Include="Articles\ArticleService.cs" />
+    <Compile Include="Attributes\ActiveItem.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Attributes\AssignedString.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Converters\JsonEnumConverter.cs" />
+    <Compile Include="Infrastructure\GenericEqualityComparer.cs" />
+    <Compile Include="Infrastructure\EnumHelper.cs" />
+    <Compile Include="Formatters\Globalization\TimeZone\TimeZoneBlobParser.cs" />
+    <Compile Include="Managers\Mobile\MobileUtilitiesManager.cs" />
+    <Compile Include="Managers\SearchContext\SearchContextManager.cs" />
+    <Compile Include="Managers\Search\MetaDataSearch\FIICodeInfo.cs" />
+    <Compile Include="Managers\Search\MetaDataSearch\FIICodeInfoUtility.cs" />
+    <Compile Include="Managers\Search\Preference\AbstractPreferenceLoader.cs" />
+    <Compile Include="Managers\Search\Preference\ISearchPreferenceService.cs" />
+    <Compile Include="Managers\Search\Preference\SearchPreferenceService.cs" />
+    <Compile Include="Managers\Search\SearchManager.PerformMetadataSearch.cs" />
+    <Compile Include="Managers\Alert\AlertManager.cs" />
+    <Compile Include="Managers\Alert\SimpleAlertManager.cs" />
+    <Compile Include="Managers\Query\ContentStructuredQueryBuilder.cs" />
+    <Compile Include="Managers\Query\FCPServiceWrapper.cs" />
+    <Compile Include="Managers\Query\GeneralUtils.cs" />
+    <Compile Include="Managers\Query\MessageObjects.cs" />
+    <Compile Include="Managers\Query\QueryManager.cs" />
+    <Compile Include="Managers\Query\RuleManager.cs" />
+    <Compile Include="Managers\Query\StructuredQueryBuilder.cs" />
+    <Compile Include="Managers\Query\StructuredQueryBuilderBase.cs" />
+    <Compile Include="Managers\Query\StructuredSearchMessages.cs" />
+    <Compile Include="Managers\Search\DateRangeMapper.cs" />
+    <Compile Include="Managers\RelatedConcept\RelatedConceptService.cs" />
+    <Compile Include="Managers\Search\SearchService.cs" />
+    <Compile Include="Managers\Search\SourceFilterTypeTypeMapper.cs" />
+    <Compile Include="Managers\Topics\TopicsManager.cs" />
+    <Compile Include="Models\Search\RelatedConcepts.cs" />
+    <Compile Include="Preferences\CachedPreferenceService.cs" />
+    <Compile Include="Preferences\CachedPreferenceServiceFactory.cs" />
+    <Compile Include="Search\Core\Sources.cs" />
+    <Compile Include="Search\Filters\DateRangeQueryFilter.cs" />
+    <Compile Include="Security\Interfaces\ICommunicatorService.cs" />
+    <Compile Include="Security\Services\CommunicatorService.cs" />
+    <Compile Include="Session\ReferringProduct.cs" />
+    <Compile Include="Session\ReferringProductFactory.cs" />
+    <Compile Include="Token\AssignedToken.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Attributes\AutomatedTranslationSupportedLanguage.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Attributes\EditorsChoiceLanguage.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Attributes\ParameterName.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Attributes\ReadSpeakerSupportedLanguage.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Converters\JsonBooleanConverter.cs" />
+    <Compile Include="Converters\JsonConverterBase.cs" />
+    <Compile Include="Converters\JsonDateTimeConverter.cs" />
+    <Compile Include="Converters\JsonGeoConverter.cs" />
+    <Compile Include="Converters\NameValueCollectionConverter.cs" />
+    <Compile Include="Converters\TalksAboutConverter.cs" />
+    <Compile Include="Converters\UnicodeJsonStringConverter.cs" />
+    <Compile Include="Converters\WordCloudConverter.cs" />
+    <Compile Include="DependencyInjection\IInitializable.cs" />
+    <Compile Include="Extensions\SearchResponseExtensions.cs" />
+    <Compile Include="Extensions\XElementExtensions.cs" />
+    <Compile Include="Infrastructure\DateRange.cs" />
+    <Compile Include="Managers\Abstract\IAggregationManager.cs" />
+    <Compile Include="Managers\Alert\AlertHeadlineManager.cs" />
+    <Compile Include="Managers\Search\ContentSearchResultToRecognizedEntitiesMapper.cs" />
+    <Compile Include="Managers\Search\ContentSearchService.cs" />
+    <Compile Include="Managers\Search\ProductContentSearchResult.cs" />
+    <Compile Include="Managers\Search\ProductSourceGroupConfigurationManager.cs" />
+    <Compile Include="Managers\Search\RecognizedEntity.cs" />
+    <Compile Include="Managers\Search\SearchQueryBuilder.cs" />
+    <Compile Include="Managers\Search\SearchQueryResourceManager.cs" />
+    <Compile Include="Managers\Search\SearchResponse.cs" />
+    <Compile Include="Managers\Sparkline\SparklineService.cs" />
+    <Compile Include="Managers\Sparkline\SparklineServiceResponse.cs" />
+    <Compile Include="Mapping\IMapper.cs" />
+    <Compile Include="Mapping\ITypeMapper.cs" />
+    <Compile Include="Mapping\MappingRegistrationModule.cs" />
+    <Compile Include="Mapping\TypeMapperCollection.cs" />
+    <Compile Include="Mapping\TypeMapperDefinition.cs" />
+    <Compile Include="Converters\PercentageConverter.cs" />
+    <Compile Include="Infrastructure\Mapper.cs" />
+    <Compile Include="Mapping\TypeMapper.cs" />
+    <Compile Include="Mapping\TypeMappingNotFoundException.cs" />
+    <Compile Include="DependencyInjection\Ninject\FactoryProvider.cs" />
+    <Compile Include="DependencyInjection\Ninject\NinjectServiceLocatorFactory.cs" />
+    <Compile Include="DependencyInjection\IServiceLocatorFactory.cs" />
+    <Compile Include="Extensions\CaseInsensitiveComparer.cs" />
+    <Compile Include="Globalization\CultureManager.cs" />
+    <Compile Include="DowJonesInfrastructureBindingModule.cs" />
+    <Compile Include="Exceptions\DowJonesUtilitiesException.cs" />
+    <Compile Include="Extensions\CollectionExtensions.cs" />
+    <Compile Include="Infrastructure\Bootstrapper.cs" />
+    <Compile Include="Infrastructure\IFactory.cs" />
+    <Compile Include="Infrastructure\ContentCacheItem.cs" />
+    <Compile Include="Infrastructure\ContentCacheKey.cs" />
+    <Compile Include="Infrastructure\IContentCache.cs" />
+    <Compile Include="Globalization\IResourceTextManager.cs" />
+    <Compile Include="Mapping\Generics\AmbiguousGenericTypeMappingException.cs" />
+    <Compile Include="Mapping\Generics\GenericTypeMapping.cs" />
+    <Compile Include="Mapping\Generics\GenericTypeMappingExtensions.cs" />
+    <Compile Include="Mapping\Generics\MissingGenericTypeMappingException.cs" />
+    <Compile Include="Mapping\Generics\MultiplePreferredGenericTypeMappingsException.cs" />
+    <Compile Include="Mapping\Generics\GenericTypeMappingException.cs" />
+    <Compile Include="Mapping\TypeMappingRegistrationModule.cs" />
+    <Compile Include="Models\Common\Product.cs" />
+    <Compile Include="Models\Search\Histogram.cs" />
+    <Compile Include="Models\SocialMedia\Audit.cs" />
+    <Compile Include="Models\SocialMedia\Category.cs" />
+    <Compile Include="Models\SocialMedia\CategorySuperList.cs" />
+    <Compile Include="Models\SocialMedia\Core.cs" />
+    <Compile Include="Models\SocialMedia\ITweet.cs" />
+    <Compile Include="Models\SocialMedia\ITweetable.cs" />
+    <Compile Include="Models\SocialMedia\ITweeter.cs" />
+    <Compile Include="Models\SocialMedia\Status.cs" />
+    <Compile Include="Models\SocialMedia\TalksAbout.cs" />
+    <Compile Include="Models\SocialMedia\Transaction.cs" />
+    <Compile Include="Models\SocialMedia\Tweet.cs" />
+    <Compile Include="Models\SocialMedia\TwitterDateTime.cs" />
+    <Compile Include="Models\SocialMedia\TwitterEntities.cs" />
+    <Compile Include="Models\SocialMedia\TwitterGeoLocation.cs" />
+    <Compile Include="Models\SocialMedia\TwitterList.cs" />
+    <Compile Include="Models\SocialMedia\TwitterStatus.cs" />
+    <Compile Include="Models\SocialMedia\TwitterUser.cs" />
+    <Compile Include="Models\SocialMedia\WordCloud.cs" />
+    <Compile Include="Search\AbstractSearchQuery.cs" />
+    <Compile Include="Search\AdvancedSearchQuery.cs" />
+    <Compile Include="Search\AlertSearchQuery.cs" />
+    <Compile Include="Search\NewsFilterCategory.cs" />
+    <Compile Include="Search\SearchFreeTextArea.cs" />
+    <Compile Include="Search\DeduplicationMode.cs" />
+    <Compile Include="Search\Filters\CompoundQueryFilter.cs" />
+    <Compile Include="Search\Filters\ExcludeSubject.cs" />
+    <Compile Include="Search\Filters\ExclusionFilter.cs" />
+    <Compile Include="Search\Filters\InclusionFilter.cs" />
+    <Compile Include="Search\Filters\IQueryFilter.cs" />
+    <Compile Include="Search\Filters\KeywordQueryFilter.cs" />
+    <Compile Include="Search\Filters\SourceFilterType.cs" />
+    <Compile Include="Search\Filters\SourceQueryFilterEntities.cs" />
+    <Compile Include="Search\Filters\SourceQueryFilters.cs" />
+    <Compile Include="Search\Navigation\Keyword.cs" />
+    <Compile Include="Search\Navigation\Navigator.cs" />
+    <Compile Include="Search\Navigation\NavigatorGroup.cs" />
+    <Compile Include="Search\Navigation\NavigatorItem.cs" />
+    <Compile Include="Search\Filters\EntitiesQueryFilter.cs" />
+    <Compile Include="Search\FreeTextSearchQuery.cs" />
+    <Compile Include="Managers\Search\ISearchService.cs" />
+    <Compile Include="Search\ModuleSearchQuery.cs" />
+    <Compile Include="Search\Navigation\ResultNavigator.cs" />
+    <Compile Include="Search\SearchDateRange.cs" />
+    <Compile Include="Search\Filters\SearchQueryFilters.cs" />
+    <Compile Include="Search\SearchFormSearchQuery.cs" />
+    <Compile Include="Search\SearchQueryPagination.cs" />
+    <Compile Include="Search\SearchRank.cs" />
+    <Compile Include="Search\SimpleSearchQuery.cs" />
+    <Compile Include="Search\SortOrder.cs" />
+    <Compile Include="Search\Core\NewsFilter.cs" />
+    <Compile Include="Security\AESEncryption.cs" />
+    <Compile Include="Caching\CacheExiprationPolicy.cs" />
+    <Compile Include="Caching\CacheScope.cs" />
+    <Compile Include="Globalization\ContentLanguageCollection.cs" />
+    <Compile Include="Security\Encryption.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Security\EntitlementsPrincipal.cs" />
+    <Compile Include="Security\Interfaces\IAffiliationService.cs" />
+    <Compile Include="Security\Interfaces\IAlertsService.cs" />
+    <Compile Include="Security\Interfaces\IAnalyzeService.cs" />
+    <Compile Include="Security\Interfaces\IArchiveService.cs" />
+    <Compile Include="Security\Interfaces\ICIBsService.cs" />
+    <Compile Include="Security\Interfaces\IClientMatchService.cs" />
+    <Compile Include="Security\Interfaces\ICoreServicesSubPrinciple.cs" />
+    <Compile Include="Security\Interfaces\ICustomerValueDashboardService.cs" />
+    <Compile Include="Security\Interfaces\IEmailService.cs" />
+    <Compile Include="Security\Interfaces\IFamilyTreeService.cs" />
+    <Compile Include="Security\Interfaces\IFISPrivateMarketsService.cs" />
+    <Compile Include="Security\Interfaces\IFreeSearchService.cs" />
+    <Compile Include="Security\Interfaces\IFSInterfaceService.cs" />
+    <Compile Include="Security\Interfaces\IInterfaceService.cs" />
+    <Compile Include="Security\Interfaces\IMarketDataService.cs" />
+    <Compile Include="Security\Interfaces\IMembershipService.cs" />
+    <Compile Include="Security\Interfaces\INewsstandService.cs" />
+    <Compile Include="Security\Interfaces\INewsViewsService.cs" />
+    <Compile Include="Security\Interfaces\INumericDataService.cs" />
+    <Compile Include="Security\Interfaces\IPlatformAssetManagementService.cs" />
+    <Compile Include="Security\Interfaces\IPrinciple.cs" />
+    <Compile Include="Security\Interfaces\IRelationshipMappingService.cs" />
+    <Compile Include="Security\Interfaces\IRESTService.cs" />
+    <Compile Include="Security\Interfaces\IRuleSet.cs" />
+    <Compile Include="Security\Interfaces\IScreeningService.cs" />
+    <Compile Include="Security\Interfaces\ISearchService.cs" />
+    <Compile Include="Security\Interfaces\IService.cs" />
+    <Compile Include="Security\Interfaces\ISessionService.cs" />
+    <Compile Include="Security\Interfaces\ISnapshotService.cs" />
+    <Compile Include="Security\Interfaces\ISymbologyService.cs" />
+    <Compile Include="Security\Interfaces\ITriggerRepositoryService.cs" />
+    <Compile Include="Security\Interfaces\IUERService.cs" />
+    <Compile Include="Security\Interfaces\IUserSubPrinciple.cs" />
+    <Compile Include="Security\IUserContext.cs" />
+    <Compile Include="Security\UserContext.cs" />
+    <Compile Include="Security\RuleSet.cs" />
+    <Compile Include="Security\Services\AbstractService.cs" />
+    <Compile Include="Security\Services\AffiliationService.cs" />
+    <Compile Include="Security\Services\AlertsService.cs" />
+    <Compile Include="Security\Services\AnalyzeService.cs" />
+    <Compile Include="Security\Services\ArchiveService.cs" />
+    <Compile Include="Security\Services\CIBsService.cs" />
+    <Compile Include="Security\Services\ClientMatchService.cs" />
+    <Compile Include="Security\Services\CustomerValueDashboardService.cs" />
+    <Compile Include="Security\Services\EmailService.cs" />
+    <Compile Include="Security\Services\FamilyTreeService.cs" />
+    <Compile Include="Security\Services\FISPrivateMarketsService.cs" />
+    <Compile Include="Security\Services\FreeSearchService.cs" />
+    <Compile Include="Security\Services\FSInterfaceService.cs" />
+    <Compile Include="Security\Services\InterfaceService.cs" />
+    <Compile Include="Security\Services\MarketDataService.cs" />
+    <Compile Include="Security\Services\MembershipService.cs" />
+    <Compile Include="Security\Services\NewsstandService.cs" />
+    <Compile Include="Security\Services\NewsViewsService.cs" />
+    <Compile Include="Security\Services\NumericDataService.cs" />
+    <Compile Include="Security\Services\PlatformAssetManagementService.cs" />
+    <Compile Include="Security\Services\RelationshipMappingService.cs" />
+    <Compile Include="Security\Services\RESTService.cs" />
+    <Compile Include="Security\Services\ScreeningService.cs" />
+    <Compile Include="Security\Services\SearchService.cs" />
+    <Compile Include="Security\Services\SessionService.cs" />
+    <Compile Include="Security\Services\SnapshotService.cs" />
+    <Compile Include="Security\Services\StringCollectionExtensions.cs" />
+    <Compile Include="Security\Services\SymbologyService.cs" />
+    <Compile Include="Security\Services\TriggerRepositoryService.cs" />
+    <Compile Include="Security\Services\UERService.cs" />
+    <Compile Include="Security\SubPrinciples\CoreServicesSubPrinciple.cs" />
+    <Compile Include="Security\SubPrinciples\UserSubPrinciple.cs" />
+    <Compile Include="Session\ControlDataManager.cs" />
+    <Compile Include="Session\Credentials.cs" />
+    <Compile Include="Session\IControlData.cs" />
+    <Compile Include="Security\ILoginCredentials.cs" />
+    <Compile Include="Preferences\IPreferences.cs" />
+    <Compile Include="Session\ControlData.cs" />
+    <Compile Include="Preferences\IPreferenceService.cs" />
+    <Compile Include="Session\IUserSession.cs" />
+    <Compile Include="Preferences\Preferences.cs" />
+    <Compile Include="Preferences\PreferenceService.cs" />
+    <Compile Include="Session\TransactionCacheControlData.cs" />
+    <Compile Include="Session\UserSession.cs" />
+    <Compile Include="Token\AbstractTokenBase.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Token\EnumTokenResolver.cs" />
+    <Compile Include="Token\TokenRegistry.cs" />
+    <Compile Include="DependencyInjection\DependencyInjectionModule.cs" />
+    <Compile Include="DependencyInjection\Ninject\DowJonesNinjectSettings.cs" />
+    <Compile Include="DependencyInjection\InjectAttribute.cs" />
+    <Compile Include="DependencyInjection\Ninject\NinjectServiceLocator.cs" />
+    <Compile Include="DependencyInjection\ServiceLocator.cs" />
+    <Compile Include="Extensions\Web\HttpContextBaseExtensions.cs" />
+    <Compile Include="Extensions\Web\HttpRequestBaseExtensions.cs" />
+    <Compile Include="Infrastructure\BootstrapperTaskAutoBinder.cs" />
+    <Compile Include="Infrastructure\AssemblyRegistry.cs" />
+    <Compile Include="Infrastructure\CustomAttributeProvider.cs" />
+    <Compile Include="Infrastructure\Enum.cs" />
+    <Compile Include="Infrastructure\IAmFluent.cs" />
+    <Compile Include="Infrastructure\IAssemblyRegistry.cs" />
+    <Compile Include="Infrastructure\IBootstrapperTask.cs" />
+    <Compile Include="Infrastructure\NumberOfModuleGroups.cs" />
+    <Compile Include="Formatters\Globalization\DateTime\W3CDateTime.cs" />
+    <Compile Include="Generators\RandomKeyGenerator.cs" />
+    <Compile Include="Configuration\LightWeightUser.cs" />
+    <Compile Include="Loggers\HttpContextAppender.cs" />
+    <Compile Include="Loggers\TransactionLogger.cs" />
+    <Compile Include="Managers\Abstract\AbstractAggregationManager.cs" />
+    <Compile Include="Managers\Abstract\IRequestDTO.cs" />
+    <Compile Include="Managers\Assets\UserProperties.cs" />
+    <Compile Include="Globalization\TokenTranslationManager.cs" />
+    <Compile Include="Managers\Search\SearchManager.PerformContentSearch.cs" />
+    <Compile Include="Managers\Search\Comparers\AccessionNumberBasedContentItemComparer.cs" />
+    <Compile Include="Managers\Search\Requests\AccessionNumberSearchRequestDTO.cs" />
+    <Compile Include="Managers\Search\Requests\CodedStructuredSearchRequestDTO.cs" />
+    <Compile Include="Managers\Search\Requests\ISearchRequest.cs" />
+    <Compile Include="Managers\Search\Requests\MoreLikeThisSearchRequestDTO.cs" />
+    <Compile Include="Managers\Search\Responses\AccessionNumberSearchResponse.cs" />
+    <Compile Include="Managers\Search\SearchManager.CodedNewsQuerySearch.cs" />
+    <Compile Include="Managers\Search\SearchManager.PerformAccessionNumberSearch.cs" />
+    <Compile Include="Managers\Search\SearchManager.cs" />
+    <Compile Include="Globalization\LanguageUtilityManager.cs" />
+    <Compile Include="Managers\Search\SearchManager.PerformMoreLikeThisSearch.cs" />
+    <Compile Include="OperationalData\UserInterfaceAndDeviceOperationalData.cs" />
+    <Compile Include="Security\ISubPrincipal.cs" />
+    <Compile Include="Globalization\CountryInfo.cs" />
+    <Compile Include="Mapping\IpAddress\IpAddressMapper.cs" />
+    <Compile Include="OperationalData\EntryPoint\CoreAlertOperationalData.cs" />
+    <Compile Include="OperationalData\EntryPoint\EdtionOperationalData.cs" />
+    <Compile Include="OperationalData\EntryPoint\Enum.cs" />
+    <Compile Include="OperationalData\EntryPoint\BaseAssetEntryPointOperationalData.cs" />
+    <Compile Include="OperationalData\AssetActivity\BaseAssetActivityOperationalData.cs" />
+    <Compile Include="OperationalData\EntryPoint\BaseEditionOperationalData.cs" />
+    <Compile Include="OperationalData\EntryPoint\BaseRssOperationalData.cs" />
+    <Compile Include="OperationalData\EntryPoint\BaseWidgetOperationalData.cs" />
+    <Compile Include="OperationalData\AssetActivity\PHPAssetActivityOperationalData.cs" />
+    <Compile Include="OperationalData\AssetActivity\WidgetViewOperationalData.cs" />
+    <Compile Include="OperationalData\EntryPoint\WorkspaceAssetOperationalData.cs" />
+    <Compile Include="..\SolutionInfo.cs">
+      <Link>Properties\SolutionInfo.cs</Link>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\SettingsExtended.cs" />
+    <Compile Include="Readers\CSV\BasicCSVReader.cs" />
+    <Compile Include="Readers\CSV\CachedCsvReader.cs" />
+    <Compile Include="Readers\CSV\CachedCsvReader.CsvBindingList.cs" />
+    <Compile Include="Readers\CSV\CachedCsvReader.CsvPropertyDescriptor.cs" />
+    <Compile Include="Readers\CSV\CachedCsvReader.CsvRecordComparer.cs" />
+    <Compile Include="Readers\CSV\CSVReader.cs" />
+    <Compile Include="Readers\CSV\CsvReader.DataReaderValidations.cs" />
+    <Compile Include="Readers\CSV\CsvReader.RecordEnumerator.cs" />
+    <Compile Include="Readers\CSV\Events\ParseErrorEventArgs.cs" />
+    <Compile Include="Readers\CSV\Exceptions\ExceptionMessage.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Readers\CSV\Exceptions\MalformedCsvException.cs" />
+    <Compile Include="Readers\CSV\Exceptions\MissingFieldCsvException.cs" />
+    <Compile Include="Readers\CSV\MissingFieldAction.cs" />
+    <Compile Include="Readers\CSV\ParseErrorAction.cs" />
+    <Compile Include="Search\Attributes\SearchStringAttribute.cs" />
+    <Compile Include="Search\Core\SearchUtility.cs" />
+    <Compile Include="Search\Core\ISO8601\Core.cs" />
+    <Compile Include="Security\NewsViewsPermissions.cs" />
+    <Compile Include="Syndication\RSS\FeedZeroRssPortalEndPoint.cs" />
+    <Compile Include="Managers\Core\StringUtilitiesManager.cs" />
+    <Compile Include="Formatters\FormattableObjects.cs" />
+    <Compile Include="Formatters\Globalization\Core\BaseAsianRegionalCulture.cs" />
+    <Compile Include="Formatters\Globalization\Core\BaseLatinRegionalCulture.cs" />
+    <Compile Include="Formatters\Globalization\Core\BaseRegionalCulture.cs" />
+    <Compile Include="Formatters\Globalization\Core\ISupportedRegionalCulture.cs" />
+    <Compile Include="Formatters\Globalization\Cultures\ChineseChinaRegionalCulture.cs" />
+    <Compile Include="Formatters\Globalization\Cultures\ChineseTaiwainRegionalCulture.cs" />
+    <Compile Include="Formatters\Globalization\Cultures\EnglishUnitedStatesRegionalCulture.cs" />
+    <Compile Include="Formatters\Globalization\Cultures\FrenchFranceRegionalCulture.cs" />
+    <Compile Include="Formatters\Globalization\Cultures\GermanGermanyRegionalCulture.cs" />
+    <Compile Include="Formatters\Globalization\Cultures\ItalianItalyRegionalCulture.cs" />
+    <Compile Include="Formatters\Globalization\Cultures\JapaneesJapanRegionalCulture.cs" />
+    <Compile Include="Formatters\Globalization\Cultures\PortuguesePortugalRegionalCulture.cs" />
+    <Compile Include="Formatters\Globalization\Cultures\RussianRussiaRegionalCulture.cs" />
+    <Compile Include="Formatters\Globalization\Cultures\SpanishSpainRegionalCulture.cs" />
+    <Compile Include="Formatters\Globalization\DateTime\Date.cs" />
+    <Compile Include="Formatters\Globalization\DateTime\DateTimeFormatter.cs" />
+    <Compile Include="Formatters\Globalization\TimeZone\TimeZoneCollection.cs" />
+    <Compile Include="Formatters\Globalization\TimeZone\TimeZoneManager.cs" />
+    <Compile Include="Formatters\Globalization\TimeZone\TimeZoneMapper.cs" />
+    <Compile Include="Formatters\Globalization\TimeZone\TimeZonePreference.cs" />
+    <Compile Include="Formatters\Globalization\TimeZone\UITimeZone.cs" />
+    <Compile Include="Formatters\Numerical\NumberFormatter.cs" />
+    <Compile Include="Formatters\IFormatter.cs" />
+    <Compile Include="Globalization\ResourceTextManager.cs" />
+    <Compile Include="OperationalData\AbstractOperationalData.cs" />
+    <Compile Include="OperationalData\CommonOperationalData.cs" />
+    <Compile Include="OperationalData\EntryPoint\DirectURLOperationalData.cs" />
+    <Compile Include="OperationalData\EntryPoint\EmailOperationalData.cs" />
+    <Compile Include="OperationalData\EntryPoint\ExternalReaderOperationalData.cs" />
+    <Compile Include="OperationalData\EntryPoint\HomePageOperationalData.cs" />
+    <Compile Include="OperationalData\IBaseOperationalData.cs" />
+    <Compile Include="OperationalData\IParser.cs" />
+    <Compile Include="OperationalData\EntryPoint\NewsletterAssetOperationalData.cs" />
+    <Compile Include="OperationalData\ODSConstants.cs" />
+    <Compile Include="OperationalData\EntryPoint\OperationalDataFacade.cs" />
+    <Compile Include="OperationalData\EntryPoint\RssOperationalData.cs" />
+    <Compile Include="OperationalData\EntryPoint\AlertAssetOperationalData.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Search\Attributes\AssignedContentCategory.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Search\Attributes\AssignedRST.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Search\Attributes\TimeSlice.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Search\Controller\CelexController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Search\Controller\DateController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Search\Controller\FormattingController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Search\Controller\IWorksDateController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Search\Controller\LinquisticsController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Search\Controller\MetaDataController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Search\Core\BasicSearchList.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Search\Core\ComplexSearchList.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Search\Core\Enum.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Search\Core\Sector.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Search\Core\SectorType.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Syndication\RSS\OdeoRssPortalEndPoint.cs" />
+    <Compile Include="Syndication\RSS\SpringWidgetsRssPortalEndPoint.cs" />
+    <Compile Include="Syndication\RSS\LiveDotComRssPortalEndPoint.cs" />
+    <Compile Include="Syndication\RSS\Core\AbstractRssPortalEndPoint.cs" />
+    <Compile Include="Syndication\RSS\Core\IEmbeddedBadgeResource.cs" />
+    <Compile Include="Syndication\RSS\Core\IEmbeddedIconResource.cs" />
+    <Compile Include="Syndication\RSS\Core\IRssPortalEndPoint.cs" />
+    <Compile Include="Syndication\RSS\BloglinesRssPortalEndPoint.cs" />
+    <Compile Include="Syndication\RSS\Core\MimeTypes.cs" />
+    <Compile Include="Syndication\RSS\GenericFeedReaderRssPortalEndPoint.cs" />
+    <Compile Include="Syndication\RSS\GoogleRssPortalEndPoint.cs" />
+    <Compile Include="Syndication\RSS\ItunesRssPortalEndPoint.cs" />
+    <Compile Include="Syndication\RSS\MyAolRssPortalEndPoint.cs" />
+    <Compile Include="Syndication\RSS\MyMsnRssPortalEndPoint.cs" />
+    <Compile Include="Syndication\RSS\MyYahooRssPortalEndPoint.cs" />
+    <Compile Include="Syndication\RSS\NetvibesRssPortalEndPoint.cs" />
+    <Compile Include="Syndication\RSS\NewsgatorRssPortalEndPoint.cs" />
+    <Compile Include="Syndication\RSS\PageFlakesRssPortalEndPoint.cs" />
+    <Compile Include="Syndication\RSS\ZuneRssPortalEndPoint.cs" />
+    <Compile Include="Encoders\Base64.cs" />
+    <Compile Include="Encoders\Base64Encoder.cs" />
+    <Compile Include="Encoders\CustomCharacterEncoder.cs" />
+    <Compile Include="Encoders\DefaultEncoder.cs" />
+    <Compile Include="Topic\TopicRequest.cs" />
+    <Compile Include="Topic\TopicProperties.cs" />
+    <Compile Include="Url\EscapedUri.cs" />
+    <Compile Include="Encoders\IEncoder.cs" />
+    <Compile Include="Url\QueryStringDictionary.cs" />
+    <Compile Include="Url\UrlBuilder.cs" />
+    <Compile Include="Utilities\AESEncryptionUtility.cs" />
+    <Compile Include="Utilities\Serialization.cs" />
+    <Compile Include="Utilities\XmlSerialization.cs" />
+    <Compile Include="Web\ClientResources\ClientResourceAlias.cs" />
+    <Compile Include="Web\ClientResources\ClientResourceAppSettingProcessor.cs" />
+    <Compile Include="Web\ClientResources\ClientResourceCombiner.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\ClientResources\ClientResourceDefinition.cs" />
+    <Compile Include="Web\ClientResources\ClientResourceHandler.cs" />
+    <Compile Include="Web\ClientResources\ClientResourceManagerFactory.cs" />
+    <Compile Include="Web\ClientResources\ClientResourcePopulator.cs" />
+    <Compile Include="Web\Session\GatewaySessionStateProvider.cs" />
+    <Compile Include="Web\Handlers\Proxy\Core\PipeStream.cs" />
+    <Compile Include="Web\Handlers\Proxy\Core\PipeStreamBlock.cs" />
+    <Compile Include="Web\Handlers\Proxy\Core\ProxyHelpers.cs" />
+    <Compile Include="Web\Handlers\Proxy\RegularProxyHandler.cs" />
+    <Compile Include="Web\Handlers\Proxy\StreamingProxyHandler.cs" />
+    <Compile Include="Web\HttpCookieManager.cs" />
+    <Compile Include="Web\HttpApplication.cs" />
+    <Compile Include="Web\ClientResources\IClientResourceManager.cs" />
+    <Compile Include="Web\ClientResources\ClientResourceManager.cs" />
+    <Compile Include="Web\ClientResources\ClientResourceTokenProcessor.cs" />
+    <Compile Include="Web\ClientResources\ClientResourceWebResourceProcessor.cs" />
+    <Compile Include="Web\HttpHandlerBase.cs" />
+    <Compile Include="Web\ClientResources\EmbeddedClientResource.cs" />
+    <Compile Include="Web\HtmlTextWriterRenderer.cs" />
+    <Compile Include="Web\ClientResources\IClientResourceProcessor.cs" />
+    <Compile Include="Web\IISVersion.cs" />
+    <Compile Include="Web\ClientResources\JavaScriptMinifier.cs" />
+    <Compile Include="Web\Mobile\MobileDeviceInformation.cs" />
+    <Compile Include="Web\Mobile\MobileDeviceInformation.KnownDevices.cs" />
+    <Compile Include="Web\Navigation\IMenu.cs" />
+    <Compile Include="Web\Navigation\IMenuDataSource.cs" />
+    <Compile Include="Web\Navigation\IMenuNode.cs" />
+    <Compile Include="Web\Navigation\Menu.cs" />
+    <Compile Include="Web\Navigation\MenuNode.cs" />
+    <Compile Include="Web\ClientResources\ProcessedClientResource.cs" />
+    <Compile Include="Web\ClientResources\ScriptResourceUniquenessProcessor.cs" />
+    <Compile Include="Web\ClientResources\StylesheetResourceImageUrlResolver.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\UI\ChromeColor.cs" />
+    <Compile Include="Web\UI\ClientEvent.cs" />
+    <Compile Include="Web\ClientResources\ClientResource.cs" />
+    <Compile Include="Web\ClientResources\ClientResourceAttribute.cs" />
+    <Compile Include="Web\ClientResources\ClientResourceDependencyLevel.cs" />
+    <Compile Include="Web\ClientResources\ClientResourceKind.cs" />
+    <Compile Include="Web\KnownMimeTypes.cs" />
+    <Compile Include="Web\ClientResources\ClientResourceRegistry.cs" />
+    <Compile Include="Web\UI\ClientSideEnumValueAttribute.cs" />
+    <Compile Include="Web\UI\ClientSideObjectWriter.cs" />
+    <Compile Include="Web\UI\ClientSideObjectWriterFactory.cs" />
+    <Compile Include="Web\UI\ClientTemplateParser.cs" />
+    <Compile Include="Web\UI\ClientTemplateResourceProcessor.cs" />
+    <Compile Include="Web\UI\Exceptions\InvalidClientResourceException.cs" />
+    <Compile Include="Web\ClientResources\IClientResourceRegistry.cs" />
+    <Compile Include="Web\UI\IClientSideObjectWriter.cs" />
+    <Compile Include="Web\UI\IClientSideObjectWriterFactory.cs" />
+    <Compile Include="Web\UI\JSONEventConverter.cs" />
+    <Compile Include="Web\WebContentCache.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Formatters\Globalization\TimeZone\TimeZoneData.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="DowJones.Infrastructure.nuspec-template" />
+    <Content Include="Managers\Search\CodedNewsQueries\Code\USStatesAbbreviations.xml" />
+    <EmbeddedResource Include="Syndication\RSS\feedzero.gif" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <SubType>Designer</SubType>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Syndication\RSS\odeobadge.gif" />
+    <EmbeddedResource Include="Syndication\RSS\livedotcombadge.gif" />
+    <EmbeddedResource Include="Syndication\RSS\zunebadge.gif" />
+    <EmbeddedResource Include="Syndication\RSS\bloglinesicon.gif" />
+    <EmbeddedResource Include="Syndication\RSS\addto.gif" />
+    <EmbeddedResource Include="Syndication\RSS\googleIcon.png" />
+    <EmbeddedResource Include="Syndication\RSS\livedotcom.gif" />
+    <EmbeddedResource Include="Syndication\RSS\mymsn.gif" />
+    <EmbeddedResource Include="Syndication\RSS\netvibes.png" />
+    <EmbeddedResource Include="Syndication\RSS\pageflakes.png" />
+    <EmbeddedResource Include="Syndication\RSS\pageflakes.gif" />
+    <EmbeddedResource Include="Syndication\RSS\newsgator.gif" />
+    <EmbeddedResource Include="Syndication\RSS\netvibes.gif" />
+    <EmbeddedResource Include="Syndication\RSS\myyahoo.gif" />
+    <EmbeddedResource Include="Syndication\RSS\myaol.gif" />
+    <EmbeddedResource Include="Syndication\RSS\googleBadge.gif" />
+    <EmbeddedResource Include="Syndication\RSS\bloglinesbadge.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <EmbeddedResource Include="Mapping\IpAddress\GrpID-SrcMap.csv" />
+    <EmbeddedResource Include="Mapping\IpAddress\Ip-To-GrpIDMap.csv" />
+    <Compile Include="Ajax\AddressContact\AddressContactData.cs" />
+    <Compile Include="Ajax\BusinessDescription\BusinessDescriptionResultSet.cs" />
+    <Compile Include="Ajax\ConnectionResults\ConnectionInfo.cs" />
+    <Compile Include="Ajax\ConnectionResults\ConnectionType.cs" />
+    <Compile Include="Ajax\ConnectionResults\EntityType.cs" />
+    <Compile Include="Ajax\ConnectionResults\JobInfo.cs" />
+    <Compile Include="Ajax\ConnectionResults\RelationshipInfo.cs" />
+    <Compile Include="Ajax\ConnectionResults\ConnectionResultsDataResult.cs" />
+    <Compile Include="Ajax\ConnectionResults\ConnectionResultsDataResultSet.cs" />
+    <Compile Include="Ajax\ConnectionResults\RelationshipType.cs" />
+    <Compile Include="Ajax\HeadlineList\Declarations.cs" />
+    <Compile Include="Ajax\NewsRadar\NewsRadarResultSet.cs" />
+    <Compile Include="Ajax\Security\ProxyCredentials.cs" />
+    <Compile Include="Ajax\StockPrice\StockPriceResultSet.cs" />
+    <Compile Include="Ajax\TabStrip\Declarations.cs" />
+    <Compile Include="Ajax\TabStrip\Tab.cs" />
+    <Compile Include="Ajax\TabStrip\TabStripDataResult.cs" />
+    <Compile Include="Ajax\TabStrip\TabStripDataResultSet.cs" />
+    <Compile Include="Ajax\TabStrip\TabStripDelegates.cs" />
+    <Compile Include="Ajax\TagCloud\Tag.cs" />
+    <Compile Include="Ajax\TagCloud\TagCloudGenerationRules.cs" />
+    <Compile Include="Ajax\TagCloud\TagGenerator.cs" />
+    <Compile Include="Ajax\TagCloud\Utils.cs" />
+    <Compile Include="Ajax\TriggerList\Declarations.cs" />
+    <Compile Include="Ajax\HeadlineList\DedupHeadlineInfo.cs" />
+    <Compile Include="Ajax\HeadlineList\Enclosure.cs" />
+    <Compile Include="Ajax\HeadlineList\Entity.cs" />
+    <Compile Include="Ajax\HeadlineList\EntityType.cs" />
+    <Compile Include="Ajax\HeadlineList\HeadlineInfo.cs" />
+    <Compile Include="Ajax\HeadlineList\HeadlineListDataResult.cs" />
+    <Compile Include="Ajax\HeadlineList\HeadlineListDataResultSet.cs" />
+    <Compile Include="Ajax\TriggerList\TriggerListDataResult.cs" />
+    <Compile Include="Ajax\TriggerList\TriggerListDataResultSet.cs" />
+    <Compile Include="Ajax\TriggerList\TriggerInfo.cs" />
+    <Compile Include="Converters\IFramePathConverter.cs" />
+    <Compile Include="Globalization\ContentLanguage.cs" />
+    <Compile Include="Globalization\InterfaceLanguage.cs" />
+    <Compile Include="Globalization\TextFormat.cs" />
+    <Compile Include="Encoders\AlphaNumericEncoder.cs" />
+    <Compile Include="Exceptions\CombinedException.cs" />
+    <Compile Include="Extensions\ArrayExtensions.cs" />
+    <Compile Include="Extensions\AssemblyExtensions.cs" />
+    <Compile Include="Extensions\BitmapExtensions.cs" />
+    <Compile Include="Extensions\ClientScriptJsonExtensions.cs" />
+    <Compile Include="Extensions\ComparableExtensions.cs" />
+    <Compile Include="Extensions\Converter.cs" />
+    <Compile Include="Extensions\CustomAttributeProviderExtensions.cs" />
+    <Compile Include="Extensions\DataReaderExtenstions.cs" />
+    <Compile Include="Extensions\DateTimeExtensions.cs" />
+    <Compile Include="Extensions\DateTimeOffsetExtensions.cs" />
+    <Compile Include="Extensions\DictionaryExtensions.cs" />
+    <Compile Include="Extensions\DirectoryInfoExtensions.cs" />
+    <Compile Include="Extensions\EnumerableExtensions.cs" />
+    <Compile Include="Extensions\ExpressionExtensions.cs" />
+    <Compile Include="Extensions\FileInfoExtensions.cs" />
+    <Compile Include="Extensions\IConverter.cs" />
+    <Compile Include="Extensions\IntExtensions.cs" />
+    <Compile Include="Extensions\ListExtensions.cs" />
+    <Compile Include="Extensions\ObjectExtensions.cs" />
+    <Compile Include="Extensions\StreamExtensions.cs" />
+    <Compile Include="Extensions\StringConverterEx.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="Extensions\TextReaderExtensions.cs" />
+    <Compile Include="Extensions\TypeExtensions.cs" />
+    <Compile Include="Extensions\Web\ControlExtensions.cs" />
+    <Compile Include="Extensions\Web\HtmlTextWriterExtensions.cs" />
+    <Compile Include="Extensions\Web\HttpResponseExtensions.cs" />
+    <Compile Include="Extensions\Web\HttpSessionStateExtensions .cs" />
+    <Compile Include="Extensions\XmlNodeExtensions.cs" />
+    <Compile Include="Formatters\Algorithms\Text\BiDirectional\ArabicShapeJoiningType.cs" />
+    <Compile Include="Formatters\Algorithms\Text\BiDirectional\BidiCharacterMirrorResolver.generated.cs" />
+    <Compile Include="Formatters\Algorithms\Text\BiDirectional\BidiCharacterType.cs" />
+    <Compile Include="Formatters\Algorithms\Text\BiDirectional\BidiCharacterTypeResolver.generated.cs" />
+    <Compile Include="Formatters\Algorithms\Text\BiDirectional\BidiChars.cs" />
+    <Compile Include="Formatters\Algorithms\Text\BiDirectional\DirectionalOverrideStatus.cs" />
+    <Compile Include="Formatters\Algorithms\Text\BiDirectional\LetterForm.cs" />
+    <Compile Include="Formatters\Algorithms\Text\Bidi.cs" />
+    <Compile Include="Formatters\Algorithms\Text\BiDirectional\UnicodeArabicShapingResolver.generated.cs" />
+    <Compile Include="Formatters\Algorithms\Text\BiDirectional\UnicodeCanonicalClass.cs" />
+    <Compile Include="Formatters\Algorithms\Text\BiDirectional\UnicodeDecompositionType.cs" />
+    <Compile Include="Formatters\Algorithms\Text\BiDirectional\UnicodeGeneralCategory.cs" />
+    <Compile Include="Infrastructure\Guard.cs" />
+    <Compile Include="Managers\AutomatedTranslation\Core\TextInfo.cs" />
+    <Compile Include="DataManager\DbManager.cs" />
+    <Compile Include="DataManager\DbManagerErrors.cs" />
+    <Compile Include="DataManager\DbManangerException.cs" />
+    <Compile Include="DataManager\DbProviderType.cs" />
+    <Compile Include="Managers\AutomatedTranslation\Core\ITranslateArticle.cs" />
+    <Compile Include="Managers\AutomatedTranslation\Core\ITranslateArticleRequest.cs" />
+    <Compile Include="Managers\AutomatedTranslation\Core\ITranslateItem.cs" />
+    <Compile Include="Managers\AutomatedTranslation\Core\ITranslateRequest.cs" />
+    <Compile Include="Managers\AutomatedTranslation\Core\ITranslateResult.cs" />
+    <Compile Include="Managers\AutomatedTranslation\Core\ITranslateTask.cs" />
+    <Compile Include="Managers\AutomatedTranslation\Core\ITranslateText.cs" />
+    <Compile Include="Managers\AutomatedTranslation\Core\ITranslateTextRequest.cs" />
+    <Compile Include="Managers\AutomatedTranslation\Core\ITranslationManager.cs" />
+    <Compile Include="Managers\AutomatedTranslation\LanguagePair.cs" />
+    <Compile Include="Managers\AutomatedTranslation\Providers\Core\ITranslationProvider.cs" />
+    <Compile Include="Managers\AutomatedTranslation\Core\TranslateStatus.cs" />
+    <Compile Include="Managers\AutomatedTranslation\Providers\LanguageWeaver\LanguageMapper.cs" />
+    <Compile Include="Managers\AutomatedTranslation\Providers\LanguageWeaver\LanguagePair.cs" />
+    <Compile Include="Managers\AutomatedTranslation\Providers\LanguageWeaver\LanguagePairCollection.cs" />
+    <Compile Include="Managers\AutomatedTranslation\Providers\LanguageWeaver\ServiceWrapper.cs" />
+    <Compile Include="Managers\AutomatedTranslation\TranslateItem.cs" />
+    <Compile Include="Managers\AutomatedTranslation\Providers\LanguageWeaver\TranslationTask.cs" />
+    <Compile Include="Managers\AutomatedTranslation\Providers\LanguageWeaver\TranslationProvider.cs" />
+    <Compile Include="Managers\AutomatedTranslation\Providers\LanguageWeaver\TranslationResult.cs" />
+    <Compile Include="Managers\AutomatedTranslation\TranslateArticle.cs" />
+    <Compile Include="Managers\AutomatedTranslation\TranslateArticleRequest.cs" />
+    <Compile Include="Managers\AutomatedTranslation\TranslateRequest.cs" />
+    <Compile Include="Managers\AutomatedTranslation\TranslateResult.cs" />
+    <Compile Include="Managers\AutomatedTranslation\TranslateTask.cs" />
+    <Compile Include="Managers\AutomatedTranslation\TranslateText.cs" />
+    <Compile Include="Managers\AutomatedTranslation\TranslateTextRequest.cs" />
+    <Compile Include="Managers\AutomatedTranslation\TranslationManager.cs" />
+    <Compile Include="Managers\DJConsultant\configuration\DJConsultantConfiguration.cs" />
+    <Compile Include="Managers\DJConsultant\DJConsultantManager.cs" />
+    <Compile Include="Managers\Search\Base\FIISearchList.cs" />
+    <Compile Include="Managers\Search\Base\Enum.cs" />
+    <Compile Include="Managers\Search\CodedNewsQueries\Code\AbstractCompanyStructuredQuery.cs" />
+    <Compile Include="Managers\Search\CodedNewsQueries\Code\AbstractGovernmentStructuredQuery.cs" />
+    <Compile Include="Managers\Search\CodedNewsQueries\Code\AbstractIndustryStructuredQuery.cs" />
+    <Compile Include="Managers\Search\CodedNewsQueries\Code\AbstractStructuredQuery.cs" />
+    <Compile Include="Managers\Search\CodedNewsQueries\Code\CompanyAnalysisStructuredQuery.cs" />
+    <Compile Include="Managers\Search\CodedNewsQueries\Code\CompanyEarningCalls.cs" />
+    <Compile Include="Managers\Search\CodedNewsQueries\Code\CompanyKeyDevelopmentStructuredQuery.cs" />
+    <Compile Include="Managers\Search\CodedNewsQueries\Code\CompanyPressReleasesAndTradeStructuredQuery.cs" />
+    <Compile Include="Managers\Search\CodedNewsQueries\Code\CompanyStructuredQuery.cs" />
+    <Compile Include="Managers\Search\CodedNewsQueries\Code\ExecutiveStructuredQuery.cs" />
+    <Compile Include="Managers\Search\CodedNewsQueries\Code\GovernmentStructuredQuery.cs" />
+    <Compile Include="Managers\Search\CodedNewsQueries\Code\IndustryAnalysisAndProfilesStructuredQuery.cs" />
+    <Compile Include="Managers\Search\CodedNewsQueries\Code\IndustryAsiaPulseStructuredQuery.cs" />
+    <Compile Include="Managers\Search\CodedNewsQueries\Code\IndustryChinaReportStructuredQuery.cs" />
+    <Compile Include="Managers\Search\CodedNewsQueries\Code\IndustryEditorChoiceStructuredQuery.cs" />
+    <Compile Include="Managers\Search\CodedNewsQueries\Code\IndustryLatestNewsStructuredQuery.cs" />
+    <Compile Include="Managers\Search\CodedNewsQueries\Code\IStructuredQueries.cs" />
+    <Compile Include="Managers\Search\CodedNewsQueries\Government\Government.cs" />
+    <Compile Include="Managers\Search\CodedNewsQueries\Messages.CodedNewsQuery.cs" />
+    <Compile Include="Managers\Search\CodedNewsQueries\Code\StatesQueryManager.cs" />
+    <Compile Include="Managers\Search\CodedNewsQueries\Code\StructuredQueryFactory.cs" />
+    <Compile Include="Mapping\AutomatedTranslation\TranslationSrcMapper.cs" />
+    <Compile Include="OperationalData\Article\BaseArticleOperationalData.cs" />
+    <Compile Include="OperationalData\Article\ArticleOperationalData.cs" />
+    <Compile Include="OperationalData\Article\EmailFullTextOperationalData.cs" />
+    <Compile Include="OperationalData\Article\SourceCodeOperationalData.cs" />
+    <Compile Include="OperationalData\AssetActivity\BaseCommonRequestOperationalData.cs" />
+    <Compile Include="OperationalData\AssetActivity\AlertViewOperationalData.cs" />
+    <Compile Include="OperationalData\AssetActivity\NewsletterEditionDownloadOperationalData.cs" />
+    <Compile Include="OperationalData\AssetActivity\NewsletterPublishOperationalData.cs" />
+    <Compile Include="OperationalData\AssetActivity\NewsPageViewOperationalData.cs" />
+    <Compile Include="OperationalData\AssetActivity\WorkspacePublishOperationalData.cs" />
+    <Compile Include="OperationalData\Asset\BaseAssetOperationalData.cs" />
+    <Compile Include="OperationalData\Asset\BriefingBookCreationOperationData.cs" />
+    <Compile Include="OperationalData\Asset\CompanySnapshotViewOperationalData.cs" />
+    <Compile Include="OperationalData\Asset\SimpleSearchPreferenceOperationalData.cs" />
+    <Compile Include="OperationalData\Asset\TryItOptionUsageOperationalData.cs" />
+    <Compile Include="OperationalData\Asset\AutoCompleteUsageOperationalData.cs" />
+    <Compile Include="OperationalData\Asset\EntitySearchOperationalData.cs" />
+    <Compile Include="OperationalData\Asset\IndustrySnapshotViewOperationalData.cs" />
+    <Compile Include="OperationalData\Asset\DashboardViewOperationData.cs" />
+    <Compile Include="OperationalData\ErrorData\ODSErrorDataOperationalData.cs" />
+    <Compile Include="OperationalData\Asset\RelationshipMappingOperationalData.cs" />
+    <Compile Include="OperationalData\Search\BaseCoreSearchBuilderOperationalData.cs" />
+    <Compile Include="OperationalData\Search\BaseCoreSearchOperationalData.cs" />
+    <Compile Include="OperationalData\Search\BaseSearchOperationalData.cs" />
+    <Compile Include="OperationalData\Search\SearchOperationalData.cs" />
+    <Compile Include="OperationalData\Asset\SnapshotOperationData.cs" />
+    <EmbeddedResource Include="Mapping\AutomatedTranslation\TranslationSourceWhiteList.csv" />
+    <Compile Include="Managers\Search\SearchManager.NewsPageQueryEntitySearch.cs" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>PublicSettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Ajax\Article\" />
+    <Folder Include="Managers\Query\Cache\" />
+    <Folder Include="MSBuild\" />
+    <Folder Include="OperationalData\DashboardView\" />
+    <Folder Include="OperationalData\RelationshipMapping\" />
+    <Folder Include="OperationalData\Snapshot\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <DontImportPostSharp>True</DontImportPostSharp>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release %28IIS6%29|AnyCPU'">
+    <OutputPath>bin\Release %28IIS6%29\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Release\DowJones.Infrastructure.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;C:\Program Files\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug %28IIS6%29|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug %28IIS6%29\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Debug\DowJones.Infrastructure.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;C:\Program Files\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'TestsOnly|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\TestsOnly\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Debug\DowJones.Infrastructure.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;C:\Program Files\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
+  </PropertyGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>

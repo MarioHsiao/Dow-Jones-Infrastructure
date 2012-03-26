@@ -1,0 +1,91 @@
+﻿@using CanvasModels = DowJones.Web.Mvc.UI.Canvas.Models
+@using DowJones.Web.Mvc.UI.Components.CalloutPopup
+@using DowJones.Web.Mvc.UI.Components.PortalHeadlineList
+@using DowJones.Web.Mvc.UI.Canvas.Editors.Swap
+@using DowJones.Web.Mvc.UI.Components.Models;
+@inherits DowJones.Web.Mvc.UI.Canvas.AbstractCanvasModule<CanvasModels.TrendingNewsModule>
+@ClientPlugin dj_TrendingNewsCanvasModule
+@ScriptResource RelativeResourceName=TrendingNewsCanvasModule.js,PerformSubstitution=true
+
+@StylesheetResource RelativeResourceName=TrendingNewsCanvasModule.css
+@{ CssClass += " curated-module dj_TrendingNewsCanvasModule"; }
+@section ContentArea {
+    <div class="module-content-box clearfix">
+        <div class="module-row clearfix">
+            <!--Top5Trends-->
+            <div class="module-col one-third first-col">
+                <div class="module-col-wrap standard-padding">
+                    <div class="top-five-mentioned">
+                        <!-- Pete- I need this class, if you are changing it, let me know. Ram -->
+                        <h3 class="module-col-title">@Html.DJ().Token("top5Mentioned")</h3>
+                        <span class="module-col-secondary-title">@Html.DJ().Token("basedOnNewsVolume")</span>
+                        <ol>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+            <!--TrendingUp-->
+            <div class="module-col one-third">
+                <div class="module-col-wrap standard-padding">
+                    <div class="trending-up">
+                        <!-- I need this class. Ram-->
+                        <h3 class="module-col-title">@Html.DJ().Token("trendingUp") <span class="fi fi_arrow-increase-green"></span></h3>
+                        <span class="module-col-secondary-title">@Html.DJ().Token("increaseInNewsVolume")</span>
+                        <ul>
+                        </ul>
+                    </div>
+                    <!-- end: .trending-up -->
+                </div>
+            </div>
+            <!--TrendingDown-->
+            <div class="module-col one-third">
+                <div class="module-col-wrap standard-padding">
+                    <div class="trending-down">
+                        <!--need this class - Ram-->
+                        <h3 class="module-col-title industry-group-title">@Html.DJ().Token("trendingDown") <span class="fi fi_arrow-decrease-red"></span></h3>
+                        <span class="module-col-secondary-title">@Html.DJ().Token("decreaseInNewsVolume")</span>
+                        <ul>
+                        </ul>
+                    </div>
+                    <!-- end: .trending-down -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+        
+}
+
+	
+@section EditArea {
+   @* Module Editor 
+      Override this if Editor is not being set in Model
+   *@
+   @(CreateChildControl<SwapModuleEditor>(Model.Editor))
+   
+}
+@section OptionsArea {
+    @* Module options *@
+}
+@section InfoArea {
+    @* Module Information *@
+}
+@section MessageArea {
+    @* Module Status and Error Messages *@
+}
+@section LoadingArea {
+    @* Section shown while module data is loading *@
+}
+@section HeaderArea{
+    <div class="scope trending-timePeriod">
+        <span class="dj_btn" id="trendingTP-0">@Html.DJ().Token("oneWeek")</span>
+        <span class="dj_btn" id="trendingTP-1">@Html.DJ().Token("oneMonth")</span>
+       
+    </div>
+    <div class="scope trending-entityType">
+        <span class="dj_btn" id="trendingENT-0">@Html.DJ().Token("companies")</span>
+        <span class="dj_btn" id="trendingENT-1">@Html.DJ().Token("labelPeople")</span>
+        <span class="dj_btn" id="trendingENT-2">@Html.DJ().Token("newsSubjects")</span>
+    </div>
+}

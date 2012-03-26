@@ -1,0 +1,14 @@
+﻿@using DowJones.Extensions
+@model DowJones.Web.Mvc.UI.Components.Radar.RadarModel
+@ClientPlugin dj_Radar
+@ScriptResource RelativeResourceName=jquery.ba-dotimeout.min.js
+@ScriptResource RelativeResourceName=Radar.js
+@ClientTemplate RelativeResourceName=ClientTemplates.Success.htm, TemplateId=success
+@StylesheetResource RelativeResourceName=Radar.css
+@{ 
+    Html.DJ().ScriptRegistry()
+        .WithJQueryCycle()
+        .WithUnderscoreJS()
+        .WithJQueryTouch();
+    CssClass = "dj_Radar";
+}

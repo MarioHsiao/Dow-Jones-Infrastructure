@@ -1,0 +1,107 @@
+/*
+
+	-- -- -- -- -- -- --
+	Description: Styles for various buttons used within modules
+	Version: 0.1
+	Last Update: 11/12/2010
+	Author: Ron Edgecomb II, Philippe Arcand, and Pete McGrath
+	Company: Dow Jones & Company Inc.
+	Copyright 2010 Dow Jones & Company Inc.
+
+	Notes: md prefix is short for module :-)
+	
+	Dependencies
+	 - css/reset.css
+	 - css/global.css
+	-- -- -- -- -- -- --
+	
+*/
+
+/* =module search 
+----------------------------------------------------------------------------------------------------*/
+.module-search .module-search-title,
+.module-search .module-search-form,
+.module-search .module-search-form {
+	float: left;
+	display: -moz-inline-stack; /* required for ff2 */
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.module-search .module-search-title {
+	line-height: 25px;
+	margin-left: 14px;
+}
+.module-search .module-search-form {
+	float: right;
+	margin-right: 14px;
+}
+
+.module-search-textbox,
+.module-search-submit {
+	float:left;
+	display: -moz-inline-stack; /* required for ff2 */
+	display: inline-block;
+	vertical-align: top;
+}
+
+.module-search-submit {
+	height:25px;
+	background:#0195d3;
+	padding:0 5px;
+}
+
+/*Safari Opera Chrome*/
+.module-search-submit {
+	background: -webkit-gradient(linear, left top, left bottom, from(#0195d3), to(#fefefe));
+}
+
+/*FireFox*/
+.module-search-submit {
+	background: -moz-linear-gradient(top,  #04addf,  #0195d3);
+}
+
+	.module-search-submit input {
+		height:25px;
+		line-height:25px;
+		color:#fff;
+		text-align:center;
+		text-transform:uppercase;
+		background:none;
+		padding:0;
+		border:0;
+	}
+
+.module-search-textbox {
+	height:23px;
+	background:#fefefe;
+	border-top:1px solid #7d7d7d;
+	border-right:1px solid #d3d3d3;
+	border-bottom:1px solid #dadada;
+	border-left:1px solid #9a9a9a;
+}
+
+/*Safari Opera Chrome*/
+.module-search-textbox {
+	background: -webkit-gradient(linear, left top, left bottom, from(#e9e9e9), to(#fefefe));
+}
+
+/*FireFox*/
+.module-search-textbox {
+	background: -moz-linear-gradient(top,  #e9e9e9,  #fefefe);
+}
+
+	.module-search-textbox input {
+		height:23px;
+		width:300px;
+		line-height:23px !important;
+		color:#333;
+		background:none;
+		padding:0;
+		border:0 none;
+	}
+	
+	.ie6 .module-search-textbox input {
+		height:21px;
+		line-height:21px;
+	}

@@ -1,0 +1,230 @@
+﻿@{
+    Layout = null;
+
+    Html.DJ().ScriptRegistry()
+        .WithJQueryUIInteractions()
+        .WithModernizer()
+        .WithHighCharts()
+        .WithUnderscoreJS()
+        .Include("~/Areas/Factiva/Content/ux-temp/js/libs/jquery.easing-1.3.min.js", dependencyLevel: ClientResourceDependencyLevel.Global)
+        .Include("~/Areas/Factiva/Content/ux-temp/js/libs/jquery.ba-resize.min.js", dependencyLevel: ClientResourceDependencyLevel.MidLevel)
+        .Include("~/Areas/Factiva/Content/ux-temp/js/libs/jquery.cookie.js", dependencyLevel: ClientResourceDependencyLevel.MidLevel)
+        .Include("~/Areas/Factiva/Content/ux-temp/js/libs/jquery.blockui.min.js", dependencyLevel: ClientResourceDependencyLevel.MidLevel)
+        .Include("~/Areas/Factiva/Content/ux-temp/js/libs/jquery.simplemodal.1.4.1.min.js", dependencyLevel: ClientResourceDependencyLevel.MidLevel)
+        .Include("~/Areas/Factiva/Content/ux-temp/js/libs/jquery.jscrollpane.js", dependencyLevel: ClientResourceDependencyLevel.MidLevel)
+        .Include("~/Areas/Factiva/Content/ux-temp/js/libs/jquery.mousewheel.js", dependencyLevel: ClientResourceDependencyLevel.MidLevel)
+        .Include("~/Areas/Factiva/Content/ux-temp/js/jquery.labeledslider.js", dependencyLevel: ClientResourceDependencyLevel.MidLevel)
+        .Include("~/Areas/Factiva/Content/ux-temp/js/libs/jquery.autocomplete.js", dependencyLevel: ClientResourceDependencyLevel.MidLevel)
+        .Include("~/Areas/Factiva/Content/ux-temp/js/global.js", dependencyLevel: ClientResourceDependencyLevel.Global, performSubstitution: true)
+        .Include("~/Areas/Factiva/Content/ux-temp/js/popup.js", dependencyLevel: ClientResourceDependencyLevel.MidLevel)
+        .Include("~/Areas/Factiva/Content/ux-temp/js/helper.js", dependencyLevel: ClientResourceDependencyLevel.MidLevel)
+        .Include("~/Areas/Factiva/Content/ux-temp/js/dashboard.js", dependencyLevel: ClientResourceDependencyLevel.MidLevel)
+        .Include("~/Areas/Factiva/Content/ux-temp/js/jquery.menu.js", dependencyLevel: ClientResourceDependencyLevel.MidLevel)
+        .Include("~/Areas/Factiva/Content/ux-temp/js/jquery.scrollabletabbar.js", dependencyLevel: ClientResourceDependencyLevel.MidLevel, performSubstitution: true)
+        .Include("~/Areas/Factiva/Content/ux-temp/js/dashboard.modal.js", dependencyLevel: ClientResourceDependencyLevel.MidLevel)
+        .Include("~/Areas/Factiva/Content/ux-temp/js/module.js", dependencyLevel: ClientResourceDependencyLevel.MidLevel)
+        .Include("~/Areas/Factiva/Content/ux-temp/js/header.js", dependencyLevel: ClientResourceDependencyLevel.MidLevel)
+        .Include("~/Areas/Factiva/Content/ux-temp/js/module.edit-options.js", dependencyLevel: ClientResourceDependencyLevel.MidLevel)
+        .Include("~/Areas/Factiva/Content/ux-temp/js/jquery.popupballoon.js", dependencyLevel: ClientResourceDependencyLevel.MidLevel)
+        .Include("~/Areas/Factiva/Content/ux-temp/js/script.js", dependencyLevel: ClientResourceDependencyLevel.MidLevel)
+        .Include("~/Areas/Factiva/Content/ux-temp/js/page-garden.js", dependencyLevel: ClientResourceDependencyLevel.MidLevel)
+        .Include("~/Areas/Factiva/Content/ux-temp/js/jquery.labeledscrollpane.js", dependencyLevel: ClientResourceDependencyLevel.MidLevel)
+        .Include("~/Areas/Factiva/Content/ux-temp/js/canvas.custom-page.js", dependencyLevel: ClientResourceDependencyLevel.MidLevel); 
+
+    Html.DJ().StylesheetRegistry()
+        .Include("~/Styles/css/reset.css", dependencyLevel: ClientResourceDependencyLevel.Global)
+        .Include("~/Styles/css/global.css", dependencyLevel: ClientResourceDependencyLevel.Global)
+        .Include("~/Styles/css/grid.990.9-col.css", dependencyLevel: ClientResourceDependencyLevel.Global)
+        .Include("~/Styles/css/style.css", dependencyLevel: ClientResourceDependencyLevel.Global)
+        .Include("~/Styles/css/popup.css", dependencyLevel: ClientResourceDependencyLevel.Global)
+
+        .Include("~/Styles/css/GlobalLayout.min.css", dependencyLevel: ClientResourceDependencyLevel.Global)
+        .Include("~/Styles/css/factiva.icons.css", dependencyLevel: ClientResourceDependencyLevel.Global)
+        .Include("~/Styles/css/jquery.jscrollpane.css", dependencyLevel: ClientResourceDependencyLevel.MidLevel)
+        .Include("~/Styles/css/jquery.labeledscrollpane.css", dependencyLevel: ClientResourceDependencyLevel.MidLevel)
+        .Include("~/Styles/css/jquery.menu.css", dependencyLevel: ClientResourceDependencyLevel.MidLevel)
+        .Include("~/Styles/css/jquery.popupballoon.css", dependencyLevel: ClientResourceDependencyLevel.MidLevel)
+        .Include("~/Styles/css/jquery.regional-map.css", dependencyLevel: ClientResourceDependencyLevel.MidLevel)
+        .Include("~/Styles/css/jquery.scrollabletabbar.css", dependencyLevel: ClientResourceDependencyLevel.MidLevel)
+
+        .Include("~/Styles/libs/jquery.autocomplete.css", dependencyLevel: ClientResourceDependencyLevel.MidLevel)
+
+        .Include("~/Styles/css/header.css", dependencyLevel: ClientResourceDependencyLevel.MidLevel)
+
+        .Include("~/Styles/css/canvas.tag-cloud.css", dependencyLevel: ClientResourceDependencyLevel.MidLevel)
+        .Include("~/Styles/css/header.message.css", dependencyLevel: ClientResourceDependencyLevel.MidLevel)
+        .Include("~/Styles/css/canvas.nav.css", dependencyLevel: ClientResourceDependencyLevel.MidLevel)
+        .Include("~/Styles/css/footer.css", dependencyLevel: ClientResourceDependencyLevel.MidLevel)
+
+        .Include("~/Styles/css/dashboard.css", dependencyLevel: ClientResourceDependencyLevel.MidLevel)
+        .Include("~/Styles/css/dashboard.edit.css", dependencyLevel: ClientResourceDependencyLevel.MidLevel)
+        .Include("~/Styles/css/dashboard.forms.css", dependencyLevel: ClientResourceDependencyLevel.MidLevel)
+        .Include("~/Styles/css/dashboard.modal.article.css", dependencyLevel: ClientResourceDependencyLevel.MidLevel)
+        .Include("~/Styles/css/dashboard.modal.css", dependencyLevel: ClientResourceDependencyLevel.MidLevel)
+        .Include("~/Styles/css/dashboard.content.css", dependencyLevel: ClientResourceDependencyLevel.MidLevel)
+        .Include("~/Styles/css/dashboard.controls.css", dependencyLevel: ClientResourceDependencyLevel.MidLevel)
+        .Include("~/Styles/css/dashboard.nav-tabs.css", dependencyLevel: ClientResourceDependencyLevel.MidLevel)
+        .Include("~/Styles/css/dashboard.notice.css", dependencyLevel: ClientResourceDependencyLevel.MidLevel)
+
+        .Include("~/Styles/css/canvas.buttons.css", dependencyLevel: ClientResourceDependencyLevel.MidLevel)
+        .Include("~/Styles/css/canvas.icons.css", dependencyLevel: ClientResourceDependencyLevel.MidLevel)
+        .Include("~/Styles/css/dashboard.article-group.css", dependencyLevel: ClientResourceDependencyLevel.MidLevel)
+
+        .Include("~/Styles/css/module.headline-carousel.css", dependencyLevel: ClientResourceDependencyLevel.MidLevel)
+        .Include("~/Styles/css/module.video-carousel.css", dependencyLevel: ClientResourceDependencyLevel.MidLevel)
+        .Include("~/Styles/css/module.buttons.css", dependencyLevel: ClientResourceDependencyLevel.MidLevel)
+        .Include("~/Styles/css/module.col.article.css", dependencyLevel: ClientResourceDependencyLevel.MidLevel)
+        .Include("~/Styles/css/module.col.headline.css", dependencyLevel: ClientResourceDependencyLevel.MidLevel)
+        .Include("~/Styles/css/module.company-profile.css", dependencyLevel: ClientResourceDependencyLevel.MidLevel)
+        .Include("~/Styles/css/module.content.articles.css", dependencyLevel: ClientResourceDependencyLevel.MidLevel)
+        .Include("~/Styles/css/module.css", dependencyLevel: ClientResourceDependencyLevel.MidLevel)
+        .Include("~/Styles/css/module.edit-options.css", dependencyLevel: ClientResourceDependencyLevel.MidLevel)
+        .Include("~/Styles/css/module.error-notice.css", dependencyLevel: ClientResourceDependencyLevel.MidLevel)
+        .Include("~/Styles/css/module.garden.css", dependencyLevel: ClientResourceDependencyLevel.MidLevel)
+        .Include("~/Styles/css/module.industry.css", dependencyLevel: ClientResourceDependencyLevel.MidLevel)
+        .Include("~/Styles/css/module.newsstand.css", dependencyLevel: ClientResourceDependencyLevel.MidLevel)
+        .Include("~/Styles/css/module.page-garden.css", dependencyLevel: ClientResourceDependencyLevel.MidLevel)
+        .Include("~/Styles/css/module.radar.css", dependencyLevel: ClientResourceDependencyLevel.MidLevel)
+
+        .Include("~/Styles/css/module.search-results.css", dependencyLevel: ClientResourceDependencyLevel.MidLevel)
+        .Include("~/Styles/css/module.search.css", dependencyLevel: ClientResourceDependencyLevel.MidLevel)
+        .Include("~/Styles/css/module.style.css", dependencyLevel: ClientResourceDependencyLevel.MidLevel)
+        .Include("~/Styles/css/module.summary.css", dependencyLevel: ClientResourceDependencyLevel.MidLevel)
+
+        .Include("~/Styles/css/NewsstandCanvasModule.css", dependencyLevel: ClientResourceDependencyLevel.MidLevel)
+        .Include("~/Styles/css/CompanyOverviewCanvasModule.css", dependencyLevel: ClientResourceDependencyLevel.MidLevel)
+        .Include("~/Styles/css/SummaryCanvasModule.css", dependencyLevel: ClientResourceDependencyLevel.MidLevel)
+        .Include("~/Styles/css/TrendingNewsCanvasModule.css", dependencyLevel: ClientResourceDependencyLevel.MidLevel)
+        .Include("~/Styles/css/AlertsCanvasModule.css", dependencyLevel: ClientResourceDependencyLevel.MidLevel);
+}
+<!doctype html>
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html lang="en" class="no-js">
+<!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>@ViewBag.Title</title>
+    <link rel="icon" type="image/png" href="@Url.Content("~/areas/factiva/content/ux-temp/images/favicon.png")">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @Html.DJ().ScriptRegistry().RenderHead()
+    @Html.DJ().StylesheetRegistry().RenderHead()
+    <script>        $dj.debugEnabled = true;</script>
+</head>
+<body>
+    <div class="message">
+        <div class="message-wrap container_9">
+            <p class="message-text">
+                @Html.DJ().Token("WelcomeToNewNewspages")
+                <a href="./Index_files/Index.htm" title="@Html.DJ().Token("ReturnToOldNewspages")">Factiva.com
+                    <span class="fi fi_r-arrow"></span></a>
+            </p>
+        </div>
+    </div>
+    <!-- end: .message -->
+    <div id="header" class="header">
+        <div id="header-top">
+            <div id="header-top-wrap" class="container_9 clearfix">
+                <ul id="welcome-nav" class="clearfix">
+                    <li class="first"><a href="./Index_files/Index.htm" title="@Html.DJ().Token("Welcome"), John Smith!">@Html.DJ().Token("Welcome"),
+                        John Smith!</a></li>
+                </ul>
+                <!-- end: #welcome-nav -->
+                <ul id="user-nav" class="clearfix">
+                    <li class="first"><a href="./Index_files/Index.htm" title="@Html.DJ().Token("PreferencesSubtext")">@Html.DJ().Token("Preferences")</a></li>
+                    <li><a href="#" title="Support">Support</a></li>
+                    <li class="last"><a href="./Index_files/Index.htm" title="@Html.DJ().Token("LogoutSubtext")">@Html.DJ().Token("Logout")</a></li>
+                </ul>
+                <!-- end: #user-nav -->
+            </div>
+        </div>
+        <!-- end: #header-top -->
+        <div id="header-bottom">
+            <div id="header-bottom-wrap" class="container_9">
+                <div id="header-content" class="clearfix">
+                    <div id="product-logo">
+                        <h1 class="png_bg">
+                            Factiva</h1>
+                    </div>
+                    <!-- end: #product-logo -->
+                    <div id="header-search">
+                        <form action="./Index_files/Index.htm" method="post" class="clearfix">
+                        <div class="form-field input">
+                            <input type="text" name="s" id="" value="Search companies, industries, topics, people, documents or news"
+                                class="search-field default" />
+                        </div>
+                        <div class="submit-btn-wrap">
+                            <input type="submit" id="" class="s-btn" value="Search" />
+                        </div>
+                        </form>
+                    </div>
+                    <!-- end: #factiva-search -->
+                </div>
+                <!-- end: #header-search -->
+            </div>
+        </div>
+        <!-- end: #header-bottom -->
+        <div class="tabbar-container">
+            <div class="container_9">
+                <div id="tabbar">
+                </div>
+            </div>
+        </div>
+        <!-- end: .tabbar-container -->
+    </div>
+    <!-- end: #header -->
+    <div id="dashboard">
+        <div id="dashboard-wrap" class="container_9 clearfix">
+            @RenderBody()
+        </div>
+    </div>
+    <!-- end: #dashboard -->
+    <div id="footer">
+        <div id="footer-top">
+            <div id="footer-top-wrap" class="container_9 clearfix">
+                <div id="product-logo">
+                    <h1 class="png_bg">
+                        Factiva</h1>
+                </div>
+                <!-- end: #client-logo -->
+                <div id="footer-search">
+                    <form action="./Index_files/Index.htm" method="post">
+                    <div class="form-field input">
+                        <input type="text" name="s" id="" value="Search companies, industries, topics, people, documents or news"
+                            class="search-field default" />
+                    </div>
+                    <div class="submit-btn-wrap">
+                        <input type="submit" id="" class="s-btn" value="Search" />
+                    </div>
+                    </form>
+                </div>
+                <!-- end: #factiva-search -->
+            </div>
+        </div>
+        <!-- DEV: The footer-links markup remains in place though the content is hidden from the browser.  -->
+        <div id="footer-links">
+            <div id="footer-links-wrap" class="container_9 clearfix">
+                @Html.Partial("_FooterNavigation")
+            </div>
+        </div>
+        <div id="copyright">
+            <div id="copyright-wrap" class="container_9 clearfix">
+                <p class="copyright-text">
+                    © 2011 Dow Jones Factiva | All Rights Reserved</p>
+                <p class="copyright-text-links">
+                    <a href="#">Feedback</a> | <a href="#">What's New</a> | <a href="#">Privacy Policy</a>
+                    | <a href="#">Contact Us</a></p>
+            </div>
+        </div>
+        <!-- end: .copyright -->
+    </div>
+    <!-- end: #footer -->
+    @Html.DJ().StylesheetRegistry().Render()
+    @Html.DJ().ScriptRegistry().Render()
+    @Html.Partial("_Navigation")
+</body>
+</html>

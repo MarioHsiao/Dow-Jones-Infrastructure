@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>DowJones.Scripts</id>
+        <version>$version$</version>
+        <title>Dow Jones Utility Scripts</title>
+        <description>Dow Jones Utility Scripts for use in the Package Manager Console</description>
+        <authors>Dow Jones Platform Integration Team</authors>
+        <tags>DowJones</tags>
+        <language>en-US</language>
+    </metadata>
+    <files>
+        <file src="*.ps1" target="tools" />
+    </files>
+</package>

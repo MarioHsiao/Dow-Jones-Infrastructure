@@ -1,0 +1,14 @@
+﻿@model DowJones.Web.Mvc.UI.Components.Models.NewsChartModel
+@using DowJones.Web.Mvc.Extensions
+@ClientPlugin dj_NewsChartControl
+@ScriptResource RelativeResourceName=NewsChart.js, PerformSubstitution=true
+
+@StylesheetResource RelativeResourceName=NewsChart.css
+@{ 
+    CssClass = "dj_NewsChartControl"; 
+    Html.DJ().ScriptRegistry().WithHighCharts();
+    Html.DJ().ScriptRegistry().WithServiceProxy();
+  
+}
+@ClientTemplate RelativeResourceName=ClientTemplates.MarketIndex.htm, TemplateId=marketindex, PerformSubstitution=true
+@ClientTemplate RelativeResourceName=ClientTemplates.NewsVolume.htm, TemplateId=newsvolume, PerformSubstitution=true

@@ -1,0 +1,707 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{8F187465-8B2C-4557-B3A2-02F7B4A6C0FE}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DowJones.Web.Mvc.UI.Components</RootNamespace>
+    <AssemblyName>DowJones.Web.Mvc.UI.Components</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <UseHostCompilerIfAvailable>False</UseHostCompilerIfAvailable>
+    <CleanRazorTempFiles>false</CleanRazorTempFiles>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;CODE_ANALYSIS</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <NoWarn>1762</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Control n Showcase|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Control n Showcase\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;CODE_ANALYSIS</DefineConstants>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Debug\DowJones.Web.Mvc.UI.Controls.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;C:\Program Files\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'TestsOnly|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\TestsOnly\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;CODE_ANALYSIS</DefineConstants>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Debug\DowJones.Web.Mvc.UI.Controls.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;C:\Program Files\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CommonServiceLocator.NinjectAdapter">
+      <HintPath>..\packages\Ninject.2.2.0.0\lib\.NetFramework 4.0\extensions\CommonServiceLocator.NinjectAdapter.dll</HintPath>
+    </Reference>
+    <Reference Include="factiva.gateway.messages, Version=7.5.0.76, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.76\lib\factiva.gateway.messages.dll</HintPath>
+    </Reference>
+    <Reference Include="FactivaGateway, Version=1.5.0.7, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.76\lib\FactivaGateway.dll</HintPath>
+    </Reference>
+    <Reference Include="Interop.FCMLib">
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.76\lib\Interop.FCMLib.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\packages\log4net.1.2.99\lib\2.0\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.0.3.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL" />
+    <Reference Include="Ninject">
+      <HintPath>..\packages\Ninject.2.2.0.0\lib\.NetFramework 4.0\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>True</SpecificVersion>
+      <HintPath>..\..\lib\aspnetmvc\System.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\webpages\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AlertEditor\AlertEditor.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AlertEditor.cshtml</DependentUpon>
+    </Compile>
+    <Compile Include="ArticleTranslator\ArticleTranslatorControl.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ArticleTranslatorControl.cshtml</DependentUpon>
+    </Compile>
+    <Compile Include="Article\ArticleComponent1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ArticleComponent.cshtml</DependentUpon>
+    </Compile>
+    <Compile Include="Article\Paragraph.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Paragraph.cshtml</DependentUpon>
+    </Compile>
+    <Compile Include="Article\ReadSpeaker.cs" />
+    <Compile Include="AuthorList\AuthorList.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AuthorList.cshtml</DependentUpon>
+    </Compile>
+    <Compile Include="AutoSuggest\AutoSuggestComponent.cs" />
+    <Compile Include="CalloutPopup\CalloutPopup.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CalloutPopup.cshtml</DependentUpon>
+    </Compile>
+    <Compile Include="CalloutPopup\CalloutPopupHelper.cs" />
+    <EmbeddedResource Include="CompanySparkline\ClientTemplates\PillContents.htm" />
+    <Compile Include="CompanySparkline\CompaniesSparklinesComponent.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CompaniesSparklinesComponent.cshtml</DependentUpon>
+    </Compile>
+    <Compile Include="CompanySparkline\CompanySparkline.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CompanySparkline.cshtml</DependentUpon>
+    </Compile>
+    <Compile Include="CompositeAuthor\CompositeAuthor.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CompositeAuthor.cshtml</DependentUpon>
+    </Compile>
+    <Compile Include="CompositeHeadline\CompositeHeadline.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CompositeHeadline.cshtml</DependentUpon>
+    </Compile>
+    <Compile Include="CompositeOutlet\CompositeOutlet.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CompositeOutlet.cshtml</DependentUpon>
+    </Compile>
+    <Compile Include="DateHistogram\DateHistogram.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DateHistogram.cshtml</DependentUpon>
+    </Compile>
+    <Compile Include="EntityList\EntityList.cs" />
+    <Compile Include="EntityList\EntityListComponent.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EntityListComponent.cshtml</DependentUpon>
+    </Compile>
+    <Compile Include="OutletList\OutletList.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OutletList.cshtml</DependentUpon>
+    </Compile>
+    <Compile Include="PersonalizationFilters\PersonalizationFilters.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PersonalizationFilters.cshtml</DependentUpon>
+    </Compile>
+    <Compile Include="PostProcessing\PostProcessing.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PostProcessing.cshtml</DependentUpon>
+    </Compile>
+    <Compile Include="RelatedConcepts\RelatedConceptsComponent.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RelatedConceptsComponent.cshtml</DependentUpon>
+    </Compile>
+    <Compile Include="ScrollBar\ScrollBarExtensions.cs" />
+    <Compile Include="SearchNewsFilter\SearchNewsFilter.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SearchNewsFilter.cshtml</DependentUpon>
+    </Compile>
+    <Compile Include="HeadlinePostProcessing\HeadlinePostProcessing.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HeadlinePostProcessing.cshtml</DependentUpon>
+    </Compile>
+    <Compile Include="SimpleAlert\SimpleAlertControl.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SimpleAlertControl.cshtml</DependentUpon>
+    </Compile>
+    <Compile Include="SocialButtons\SocialButtons.cs" />
+    <Compile Include="SocialButtons\WebResources.cs" />
+    <Compile Include="TaxonomySearchBrowse\TaxonomySearchBrowse.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TaxonomySearchBrowse.cshtml</DependentUpon>
+    </Compile>
+    <Compile Include="TopicEditor\TopicEditor.cs">
+      <DependentUpon>TopicEditor.cshtml</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="HeadlineList\HeadlineListControl.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HeadlineListControl.cshtml</DependentUpon>
+    </Compile>
+    <Compile Include="LoginInfo\LoginInfo.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LoginInfo.cshtml</DependentUpon>
+    </Compile>
+    <Compile Include="Menu\MenuExtensions.cs" />
+    <Compile Include="NavBar\NavBar.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NavBar.cshtml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\ComponentSettings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>ComponentSettings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="HeadlineCarousel\HeadlineCarouselControl.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HeadlineCarouselControl.cshtml</DependentUpon>
+    </Compile>
+    <Compile Include="Quote\QuoteControl.cs">
+      <DependentUpon>QuoteControl.cshtml</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="HeadlineListCarousel\HeadlineListCarouselControl.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HeadlineListCarouselControl.cshtml</DependentUpon>
+    </Compile>
+    <Compile Include="NewsChart\NewsChartControl.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NewsChartControl.cshtml</DependentUpon>
+    </Compile>
+    <Compile Include="Discovery\DiscoveryControl.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DiscoveryControl.cshtml</DependentUpon>
+    </Compile>
+    <Compile Include="HeadlineListCarousel\HeadlineListCarouselControlBuilder.cs" />
+    <Compile Include="InlineMp3Player\InlineMp3Player.cs" />
+    <Compile Include="NewsStandTicker\NewsStandTickerControl.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NewsStandTickerControl.cshtml</DependentUpon>
+    </Compile>
+    <Compile Include="Pager\PagerExtensions.cs" />
+    <Compile Include="PortalArticle\PortalArticleControl.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PortalArticleControl.cshtml</DependentUpon>
+    </Compile>
+    <Compile Include="PortalHeadlineList\PortalHeadlineListControl.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PortalHeadlineListControl.cshtml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="..\SolutionInfo.cs">
+      <Link>Properties\SolutionInfo.cs</Link>
+    </Compile>
+    <Compile Include="Radar\WebResources.cs" />
+    <Compile Include="Radar\RadarComponent.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RadarComponent.cshtml</DependentUpon>
+    </Compile>
+    <Compile Include="RealtimeHeadlineList\RealtimeHeadlineList.cs" />
+    <Compile Include="RealtimeHeadlineList\RealtimeHeadlineListDataResultRenderManager.cs" />
+    <Compile Include="RegionalMap\RegionalMap.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RegionalMap.cshtml</DependentUpon>
+    </Compile>
+    <Compile Include="RegionalMap\WebResources.cs" />
+    <Compile Include="Resources\EmbeddedResources.cs" />
+    <Compile Include="Resources\ScriptRegistryBuilderExtensions.cs" />
+    <Compile Include="SearchBuilder\SearchBuilder.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SearchBuilder.cshtml</DependentUpon>
+    </Compile>
+    <Compile Include="SearchCategoriesLookUp\SearchCategoriesLookUp.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SearchCategoriesLookUp.cshtml</DependentUpon>
+    </Compile>
+    <Compile Include="TagCloud\TagCloud1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TagCloud.cshtml</DependentUpon>
+    </Compile>
+    <Compile Include="TranslateArticle\TranslateArticle.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TranslateArticle.cshtml</DependentUpon>
+    </Compile>
+    <Compile Include="TweetLines\TweetLines.cs">
+      <DependentUpon>TweetLines.cshtml</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="TwitterExperts\Experts.cs">
+      <DependentUpon>Experts.cshtml</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="VideoPlayer\VideoPlayerControl.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VideoPlayerControl.cshtml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="HeadlineListCarousel\HeadlineListCarousel.js" />
+    <EmbeddedResource Include="HeadlineListCarousel\jquery.jcarousel.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ArticleTranslator\ArticleTranslatorControl.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Archive\" />
+    <Folder Include="CompanySparkline\js\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TwitterExperts\ClientTemplates\noData.htm" />
+    <EmbeddedResource Include="TweetLines\ClientTemplates\noData.htm" />
+    <EmbeddedResource Include="ScrollBar\ScrollBar.js" />
+    <EmbeddedResource Include="SearchBuilder\ClientTemplates\categoryOptions.htm" />
+    <EmbeddedResource Include="SearchBuilder\ClientTemplates\filterOptions.htm" />
+    <EmbeddedResource Include="SearchBuilder\SearchBuilder.js" />
+    <EmbeddedResource Include="SearchCategoriesLookUp\ClientTemplates\filterOptions.htm" />
+    <EmbeddedResource Include="SearchCategoriesLookUp\ClientTemplates\listItemOptions.htm" />
+    <EmbeddedResource Include="SearchCategoriesLookUp\ClientTemplates\main.htm" />
+    <EmbeddedResource Include="SearchCategoriesLookUp\ClientTemplates\filterPill.htm" />
+    <EmbeddedResource Include="SearchCategoriesLookUp\ClientTemplates\searchList.htm" />
+    <EmbeddedResource Include="SearchCategoriesLookUp\SearchCategoriesLookUp.js" />
+    <EmbeddedResource Include="LoginInfo\ClientTemplates\logininfo.htm" />
+    <EmbeddedResource Include="LoginInfo\LoginInfo.js" />
+    <EmbeddedResource Include="SearchBuilder\ClientTemplates\modalDialog.htm" />
+    <EmbeddedResource Include="SearchBuilder\ClientTemplates\exclusions.htm" />
+    <EmbeddedResource Include="SearchCategoriesLookUp\ClientTemplates\sourceBrowse.htm" />
+    <EmbeddedResource Include="SearchCategoriesLookUp\ClientTemplates\browseList.htm" />
+    <EmbeddedResource Include="TopicEditor\ClientTemplates\main.htm" />
+    <EmbeddedResource Include="TopicEditor\TopicEditor.js" />
+    <EmbeddedResource Include="SearchCategoriesLookUp\ClientTemplates\sourceLookUpList.htm" />
+    <EmbeddedResource Include="SearchCategoriesLookUp\ClientTemplates\sourceList.htm" />
+    <EmbeddedResource Include="SearchBuilder\ClientTemplates\filterPill.htm" />
+    <EmbeddedResource Include="CompanySparkline\CompanySparkline.js" />
+    <EmbeddedResource Include="TopicEditor\ClientTemplates\filters.htm" />
+    <EmbeddedResource Include="CompanySparkline\CompaniesSparklinesComponent.js" />
+    <EmbeddedResource Include="DateHistogram\DateHistogram.js" />
+    <EmbeddedResource Include="SearchCategoriesLookUp\ClientTemplates\saveSourceList.htm" />
+    <EmbeddedResource Include="SearchCategoriesLookUp\ClientTemplates\djIICode.htm" />
+    <EmbeddedResource Include="SearchCategoriesLookUp\ClientTemplates\extSourceList.htm" />
+    <EmbeddedResource Include="SearchCategoriesLookUp\ClientTemplates\sourceFilterPill.htm" />
+    <EmbeddedResource Include="SearchBuilder\ClientTemplates\sourceFilterPill.htm" />
+    <EmbeddedResource Include="SearchNewsFilter\SearchNewsFilter.js" />
+    <EmbeddedResource Include="SearchNewsFilter\ClientTemplates\newsFilter.htm" />
+    <EmbeddedResource Include="HeadlinePostProcessing\ClientTemplates\formatOptions.htm" />
+    <EmbeddedResource Include="HeadlinePostProcessing\ClientTemplates\modalDialog.htm" />
+    <EmbeddedResource Include="HeadlinePostProcessing\HeadlinePostProcessing.js" />
+    <EmbeddedResource Include="HeadlinePostProcessing\ClientTemplates\saveOptions.htm" />
+    <EmbeddedResource Include="SearchCategoriesLookUp\ClientTemplates\sourceListBrowse.htm" />
+    <EmbeddedResource Include="CompositeHeadline\CompositeHeadline.js" />
+    <EmbeddedResource Include="Discovery\ClientTemplates\DateHistogramContents.htm" />
+    <EmbeddedResource Include="DateHistogram\ClientTemplates\DateHistogramContents.htm" />
+    <EmbeddedResource Include="PostProcessing\ClientTemplates\formatOptions.htm" />
+    <EmbeddedResource Include="PostProcessing\ClientTemplates\modalDialog.htm" />
+    <EmbeddedResource Include="PostProcessing\ClientTemplates\saveOptions.htm" />
+    <EmbeddedResource Include="PostProcessing\PostProcessing.js" />
+    <EmbeddedResource Include="PersonalizationFilters\ClientTemplates\main.htm" />
+    <EmbeddedResource Include="PersonalizationFilters\PersonalizationFilters.js" />
+    <EmbeddedResource Include="PersonalizationFilters\ClientTemplates\modalDialog.htm" />
+    <EmbeddedResource Include="SearchCategoriesLookUp\ClientTemplates\sourceGroupBrowse.htm" />
+    <EmbeddedResource Include="SimpleAlert\ClientTemplates\NewsFilter.htm" />
+    <EmbeddedResource Include="SimpleAlert\ClientTemplates\Options.htm" />
+    <EmbeddedResource Include="SimpleAlert\SimpleAlert.js" />
+    <EmbeddedResource Include="AlertEditor\AlertEditor.js" />
+    <EmbeddedResource Include="AlertEditor\ClientTemplates\filters.htm" />
+    <EmbeddedResource Include="AlertEditor\ClientTemplates\main.htm" />
+    <EmbeddedResource Include="RelatedConcepts\RelatedConceptsComponent.js" />
+    <EmbeddedResource Include="RelatedConcepts\ClientTemplates\Success.htm" />
+    <EmbeddedResource Include="PersonalizationFilters\ClientTemplates\filterPill.htm" />
+    <EmbeddedResource Include="AuthorList\AuthorList.js" />
+    <EmbeddedResource Include="CompositeAuthor\CompositeAuthor.js" />
+    <EmbeddedResource Include="OutletList\OutletList.js" />
+    <EmbeddedResource Include="CompositeOutlet\CompositeOutlet.js" />
+    <EmbeddedResource Include="EntityList\EntityList.js" />
+    <EmbeddedResource Include="EntityList\ClientTemplates\Entity.htm" />
+    <EmbeddedResource Include="SocialButtons\SocialBehavior.js" />
+    <EmbeddedResource Include="TaxonomySearchBrowse\ClientTemplates\browseList.htm" />
+    <EmbeddedResource Include="TaxonomySearchBrowse\ClientTemplates\main.htm" />
+    <EmbeddedResource Include="TaxonomySearchBrowse\ClientTemplates\djIICode.htm" />
+    <EmbeddedResource Include="TaxonomySearchBrowse\ClientTemplates\listItemOptions.htm" />
+    <EmbeddedResource Include="TaxonomySearchBrowse\ClientTemplates\searchList.htm" />
+    <EmbeddedResource Include="TaxonomySearchBrowse\TaxonomySearchBrowse.js" />
+    <EmbeddedResource Include="PortalHeadlineList\ClientTemplates\SuccessAuthor.htm" />
+    <EmbeddedResource Include="TweetLines\ClientTemplates\tweetlines.htm" />
+    <EmbeddedResource Include="TweetLines\TweetLines.js" />
+    <EmbeddedResource Include="TwitterExperts\ClientTemplates\experts.htm" />
+    <EmbeddedResource Include="TwitterExperts\TwitterExperts.js" />
+    <EmbeddedResource Include="Menu\ClientTemplates\SimpleMenu.htm" />
+    <EmbeddedResource Include="Menu\Menu.js" />
+    <EmbeddedResource Include="NavBar\NavBar.js" />
+    <EmbeddedResource Include="Radar\ClientTemplates\Success.htm" />
+    <EmbeddedResource Include="NewsChart\ClientTemplates\NewsVolume.htm" />
+    <EmbeddedResource Include="NewsChart\ClientTemplates\MarketIndex.htm" />
+    <EmbeddedResource Include="PortalHeadlineList\ClientTemplates\SuccessTimeLine.htm" />
+    <EmbeddedResource Include="VideoPlayer\js\VideoPlayer.js" />
+    <EmbeddedResource Include="VideoPlayer\js\scrollable.js" />
+    <EmbeddedResource Include="Radar\images\bar-graph-dkBlue.png" />
+    <EmbeddedResource Include="Radar\images\bar-graph-ltBlue.png" />
+    <EmbeddedResource Include="VideoPlayer\js\flowplayer-combined.js" />
+    <EmbeddedResource Include="TagCloud\TagCloud.js" />
+    <EmbeddedResource Include="Radar\jquery.ba-dotimeout.min.js" />
+    <EmbeddedResource Include="HeadlineCarousel\HeadlineCarousel.js" />
+    <EmbeddedResource Include="NewsStandTicker\jquery.SmoothScrollDiv.js" />
+    <EmbeddedResource Include="NewsStandTicker\NewsStandTicker.js" />
+    <EmbeddedResource Include="Article\ArticleComponent.js" />
+    <EmbeddedResource Include="Discovery\Discovery.js" />
+    <EmbeddedResource Include="PortalHeadlineList\ClientTemplates\AddNewContent.htm" />
+    <EmbeddedResource Include="PortalHeadlineList\ClientTemplates\Error.htm" />
+    <EmbeddedResource Include="PortalHeadlineList\ClientTemplates\NoData.htm" />
+    <EmbeddedResource Include="PortalHeadlineList\ClientTemplates\SuccessHeadline.htm" />
+    <EmbeddedResource Include="Quote\ClientTemplates\Error.htm" />
+    <EmbeddedResource Include="Quote\ClientTemplates\NoData.htm" />
+    <EmbeddedResource Include="Quote\ClientTemplates\Success.htm" />
+    <EmbeddedResource Include="Quote\Quote.js" />
+    <EmbeddedResource Include="Discovery\DiscoveryControl.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>DiscoveryControl.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="AlertEditor\AlertEditor.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>AlertEditor.cs</LastGenOutput>
+    </None>
+    <None Include="app.config" />
+    <None Include="Article\ArticleComponent.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>ArticleComponent1.cs</LastGenOutput>
+    </None>
+    <None Include="Article\Paragraph.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>Paragraph.cs</LastGenOutput>
+    </None>
+    <None Include="AuthorList\AuthorList.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>AuthorList.cs</LastGenOutput>
+    </None>
+    <None Include="CompanySparkline\CompaniesSparklinesComponent.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>CompaniesSparklinesComponent.cs</LastGenOutput>
+    </None>
+    <None Include="CompanySparkline\CompanySparkline.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>CompanySparkline.cs</LastGenOutput>
+    </None>
+    <None Include="CompositeAuthor\CompositeAuthor.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>CompositeAuthor.cs</LastGenOutput>
+    </None>
+    <None Include="CompositeHeadline\CompositeHeadline.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>CompositeHeadline.cs</LastGenOutput>
+    </None>
+    <None Include="CompositeOutlet\CompositeOutlet.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>CompositeOutlet.cs</LastGenOutput>
+    </None>
+    <None Include="EntityList\EntityListComponent.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>EntityListComponent.cs</LastGenOutput>
+    </None>
+    <None Include="OutletList\OutletList.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>OutletList.cs</LastGenOutput>
+    </None>
+    <None Include="PersonalizationFilters\PersonalizationFilters.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>PersonalizationFilters.cs</LastGenOutput>
+    </None>
+    <None Include="PostProcessing\PostProcessing.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>PostProcessing.cs</LastGenOutput>
+    </None>
+    <None Include="RelatedConcepts\RelatedConceptsComponent.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>RelatedConceptsComponent.cs</LastGenOutput>
+    </None>
+    <None Include="SearchNewsFilter\SearchNewsFilter.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>SearchNewsFilter.cs</LastGenOutput>
+    </None>
+    <None Include="DateHistogram\DateHistogram.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>DateHistogram.cs</LastGenOutput>
+    </None>
+    <None Include="SimpleAlert\SimpleAlertControl.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>SimpleAlertControl.cs</LastGenOutput>
+    </None>
+    <None Include="TaxonomySearchBrowse\TaxonomySearchBrowse.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>TaxonomySearchBrowse.cs</LastGenOutput>
+    </None>
+    <None Include="HeadlinePostProcessing\HeadlinePostProcessing.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>HeadlinePostProcessing.cs</LastGenOutput>
+    </None>
+    <None Include="TopicEditor\TopicEditor.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>TopicEditor.cs</LastGenOutput>
+    </None>
+    <None Include="HeadlineList\HeadlineListControl.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>HeadlineListControl.cs</LastGenOutput>
+    </None>
+    <None Include="LoginInfo\LoginInfo.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>LoginInfo.cs</LastGenOutput>
+    </None>
+    <None Include="NavBar\NavBar.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>NavBar.cs</LastGenOutput>
+    </None>
+    <None Include="Properties\ComponentSettings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>ComponentSettings.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>DowJones.Web.Mvc.UI.Components</CustomToolNamespace>
+    </None>
+    <None Include="Quote\QuoteControl.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>QuoteControl.cs</LastGenOutput>
+    </None>
+    <None Include="DowJones.Web.Mvc.UI.Components.nuspec-template" />
+    <None Include="HeadlineCarousel\HeadlineCarouselControl.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>HeadlineCarouselControl.cs</LastGenOutput>
+    </None>
+    <None Include="HeadlineListCarousel\HeadlineListCarouselControl.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>HeadlineListCarouselControl.cs</LastGenOutput>
+    </None>
+    <None Include="NewsStandTicker\NewsStandTickerControl.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>NewsStandTickerControl.cs</LastGenOutput>
+    </None>
+    <None Include="PortalArticle\PortalArticleControl.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>PortalArticleControl.cs</LastGenOutput>
+    </None>
+    <EmbeddedResource Include="Radar\Radar.js" />
+    <EmbeddedResource Include="Resources\js\jquery.ThreeDots.js" />
+    <EmbeddedResource Include="RealtimeHeadlineList\RealtimeHeadlineList.js" />
+    <EmbeddedResource Include="TranslateArticle\TranslateArticle.js" />
+    <EmbeddedResource Include="TranslateArticle\js\jquery.ui.stars.js" />
+    <EmbeddedResource Include="TranslateArticle\js\jquery.uni-form.js" />
+    <EmbeddedResource Include="NewsChart\NewsChart.js" />
+    <EmbeddedResource Include="HeadlineListCarousel\HeadlineListCarouselClientTemplate.htm" />
+    <EmbeddedResource Include="CalloutPopup\js\popup.js" />
+    <EmbeddedResource Include="HeadlineCarousel\ClientTemplates\DiscoveredEntitiesPackage.htm" />
+    <EmbeddedResource Include="HeadlineCarousel\ClientTemplates\HeadlineHitCountsPackage.htm" />
+    <EmbeddedResource Include="HeadlineCarousel\ClientTemplates\VideoX.htm" />
+    <EmbeddedResource Include="HeadlineCarousel\ClientTemplates\VideoY.htm" />
+    <EmbeddedResource Include="HeadlineCarousel\jquery.ui.headline-carousel.js" />
+    <EmbeddedResource Include="HeadlineCarousel\ClientTemplates\NoData.htm" />
+    <EmbeddedResource Include="HeadlineList\ClientTemplates\Success.htm" />
+    <EmbeddedResource Include="HeadlineList\HeadlineList.js" />
+    <EmbeddedResource Include="Discovery\ClientTemplates\Success.htm" />
+    <Content Include="InlineMp3Player\InlineMp3PlayerBehavior.Original.js" />
+    <EmbeddedResource Include="Pager\Pager.js" />
+    <EmbeddedResource Include="RegionalMap\images\world_map.gif" />
+    <EmbeddedResource Include="RegionalMap\RegionalMap.js" />
+    <EmbeddedResource Include="PortalHeadlineList\PortalHeadlineList.js" />
+    <EmbeddedResource Include="InlineMp3Player\InlineMp3PlayerBehavior.js" />
+    <EmbeddedResource Include="InlineMp3Player\players\dewplayer-dowjones.swf" />
+    <EmbeddedResource Include="InlineMp3Player\players\dewplayer-mini.swf" />
+    <EmbeddedResource Include="InlineMp3Player\players\dewplayer-multi.swf" />
+    <EmbeddedResource Include="InlineMp3Player\players\dewplayer-vol.swf" />
+    <EmbeddedResource Include="InlineMp3Player\players\dewplayer.swf" />
+    <EmbeddedResource Include="InlineMp3Player\players\rplayerpro.swf" />
+    <EmbeddedResource Include="InlineMp3Player\speaker.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="CalloutPopup\CalloutPopup.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>CalloutPopup.cs</LastGenOutput>
+    </None>
+    <None Include="NewsChart\NewsChartControl.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>NewsChartControl.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="PortalHeadlineList\PortalHeadlineListControl.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>PortalHeadlineListControl.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Radar\RadarComponent.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>RadarComponent.cs</LastGenOutput>
+    </None>
+    <None Include="RegionalMap\RegionalMap.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>RegionalMap.cs</LastGenOutput>
+    </None>
+    <None Include="SearchBuilder\SearchBuilder.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>SearchBuilder.cs</LastGenOutput>
+    </None>
+    <None Include="SearchCategoriesLookUp\SearchCategoriesLookUp.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>SearchCategoriesLookUp.cs</LastGenOutput>
+    </None>
+    <None Include="TagCloud\TagCloud.cshtml">
+      <LastGenOutput>TagCloud1.cs</LastGenOutput>
+      <Generator>RazorViewComponentClassGenerator</Generator>
+    </None>
+    <None Include="TranslateArticle\TranslateArticle.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>TranslateArticle.cs</LastGenOutput>
+    </None>
+    <None Include="TweetLines\TweetLines.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>TweetLines.cs</LastGenOutput>
+    </None>
+    <None Include="TwitterExperts\Experts.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>Experts.cs</LastGenOutput>
+    </None>
+    <None Include="VideoPlayer\VideoPlayerControl.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>VideoPlayerControl.cs</LastGenOutput>
+    </None>
+    <None Include="Web.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ArticleTranslator\ArticleTranslatorControl.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>ArticleTranslatorControl.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DowJones.Infrastructure\DowJones.Infrastructure.csproj">
+      <Project>{095DE252-E183-4AE6-824A-B4504AE737C1}</Project>
+      <Name>DowJones.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DowJones.Web.Mvc.UI.Components.Models\DowJones.Web.Mvc.UI.Components.Models.csproj">
+      <Project>{32DA5CA1-0038-4110-BC24-938B39439CE7}</Project>
+      <Name>DowJones.Web.Mvc.UI.Components.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DowJones.Web.Mvc\DowJones.Web.Mvc.csproj">
+      <Project>{3E440D53-ACA6-422A-8FC8-778D505AD1E9}</Project>
+      <Name>DowJones.Web.Mvc</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

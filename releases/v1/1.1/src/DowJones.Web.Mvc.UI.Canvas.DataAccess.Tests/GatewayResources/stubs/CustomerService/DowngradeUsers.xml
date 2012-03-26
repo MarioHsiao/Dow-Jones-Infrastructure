@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<response>
+  <ERROR_CODE>0</ERROR_CODE>
+  <ERROR_GENERAL_MSG>Success</ERROR_GENERAL_MSG>
+  <Bad_User_List>
+    <userId>JimS</userId>
+    <userId>16</userId>
+    <ERROR_CODE>0</ERROR_CODE>
+    <ERROR_GENERAL_MSG>Success</ERROR_GENERAL_MSG>
+  </Bad_User_List>
+  <BAD_USER_LIST>
+    <userId>JimS</userId>
+    <userId>16</userId>
+    <ERROR_CODE>0</ERROR_CODE>
+    <ERROR_GENERAL_MSG>Success</ERROR_GENERAL_MSG>
+  </BAD_USER_LIST>
+</response>

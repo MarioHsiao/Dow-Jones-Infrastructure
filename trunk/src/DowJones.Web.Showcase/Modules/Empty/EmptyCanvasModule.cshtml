@@ -1,0 +1,9 @@
+﻿@inherits DowJones.Web.Mvc.UI.Canvas.AbstractCanvasModule<DowJones.Web.Showcase.Modules.Empty.EmptyModule>
+@ClientPlugin dj_EmptyCanvasModule
+@ScriptResource RelativeResourceName=EmptyCanvasModule.js
+@DependsOn AbstractCanvasModule, Pager
+
+@section EditArea { }
+@section ContentArea {
+    <div>If I were a real module, I would be showing some real data here!</div>
+}

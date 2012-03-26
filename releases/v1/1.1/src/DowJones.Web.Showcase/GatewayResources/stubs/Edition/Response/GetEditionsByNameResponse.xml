@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GetEditionByNameResponse xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="urn:factiva:assets:editions:v1_0">
+  <edition>
+    <id>2233</id>
+    <properties>
+      <parentWorkspaceId>1234</parentWorkspaceId>
+      <name>Name</name>
+      <creationDate>2008-12-03T11:06:39.4653136-05:00</creationDate>
+      <lastModifiedDate>2008-12-03T11:06:39.4653136-05:00</lastModifiedDate>
+      <dateline>Dateline</dateline>
+      <footer>Dateline</footer>
+      <masthead xmlns="">
+        <textLarge>Text1</textLarge>
+        <textSmall>Text2</textSmall>
+      </masthead>
+      <showTableOfContents>true</showTableOfContents>
+      <summary>No Summary</summary>
+      <title>Title</title>
+    </properties>
+    <section xmlns="">
+      <id>1221</id>
+      <position>1</position>
+      <name>NAME</name>
+      <Item xsi:type="SeparatorItem">
+        <id>1212</id>
+        <position>1212</position>
+        <isPublished>true</isPublished>
+        <status>12</status>
+        <creationDate>2008-12-03T11:06:39.4653136-05:00</creationDate>
+      </Item>
+    </section>
+  </edition>
+</GetEditionByNameResponse>

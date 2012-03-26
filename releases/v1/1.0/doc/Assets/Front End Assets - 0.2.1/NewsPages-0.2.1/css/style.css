@@ -1,0 +1,439 @@
+/*
+
+	-- -- -- -- -- -- --
+	Dependencies
+	 - css/reset.css
+	 - css/global.css
+	 - css/i/bg_global-message.png
+	 - css/i/bg_header.png
+	 - css/i/bg_header-top.png
+	 - css/i/bg_search-btn.png
+	 - css/i/bg_footer.png
+	
+	-- -- -- -- -- -- --
+	
+*/
+
+/* =HTML Styles >> HTML element style rules
+----------------------------------------------------------------------------------------------------*/
+body {
+	 background-color:#e4eef0;
+}
+
+/* =Global Site Notifications >> 
+----------------------------------------------------------------------------------------------------*/
+
+.dj-hidden{
+	display:none;
+}
+
+.message {
+	background:#3695b7;
+	border-bottom:1px solid #5097b5;
+}
+
+	/*Safari Opera Chrome*/
+	.message {
+		background: -webkit-gradient(linear, left top, left bottom, from(#3695b7), to(#247ea4));
+	}
+	
+	/*FireFox*/
+	.message {
+		background: -moz-linear-gradient(top,  #3695b7,  #247ea4);
+	}
+
+.message .message-wrap {
+	height:25px;
+	position:relative;
+}
+
+.message .message-wrap .message-text {
+	color:#fff;
+	line-height:25px;
+}
+
+	.message .message-wrap .message-text a {
+		position:relative;
+		color:#a5e7fe;
+		text-decoration:underline;
+		padding-right:15px
+	}
+	
+	.message .message-wrap .message-text a:hover {
+	}
+	
+	.message .message-wrap .message-text a .fi {
+		position:absolute;
+		top:4px; right:6px;
+	}
+
+.message .message-wrap .close-message {
+	height:18px;
+	position:absolute;
+	top:2px; right:0;
+}
+
+/* =Header >> Header styles
+----------------------------------------------------------------------------------------------------*/
+.header {
+	background:#232323 url(i/bg_header.png) no-repeat center 0;
+	position:relative;
+}
+
+/* =Header Top >> 
+----------------------------------------------------------------------------------------------------*/
+
+#header-top {
+	height:35px;
+	background: #252525;
+	border-bottom:1px solid #272726;
+}
+
+	/*Safari Opera Chrome*/
+	#header-top {
+		background: -webkit-gradient(linear, left top, left bottom, from(#252525), to(#1a1a19));
+	}
+	
+	/*FireFox*/
+	#header-top {
+		background: -moz-linear-gradient(top,  #252525,  #1a1a19);
+	}
+	
+	
+	#header-top-wrap {
+		position:relative;
+	}
+	
+/* =Header Bottom >> 
+----------------------------------------------------------------------------------------------------*/
+
+#header-bottom {
+	border-top:1px solid #121212;
+}
+	#header-bottom-wrap {
+		position:relative;
+	}
+
+.header #header-toggle {
+	width:26px;
+	height:24px;
+	position:absolute;
+	bottom:-24px; right:0;
+	background:transparent url(i/bg_header-toggle.png) no-repeat 0 0;
+	cursor:pointer;
+}
+.header #header-toggle .fi {
+	margin:3px 5px 0;
+	cursor:pointer;
+}
+
+.ui-state-highlight { height: 1.5em; line-height: 1.2em; }
+
+/* =Header content
+----------------------------------------------------------------------------------------------------*/
+#header-content {
+	padding-bottom:20px;
+}
+
+#header-content.expanded {
+	padding-bottom:64px;
+}
+
+.header #product-logo {
+	height:52px;
+	padding-top:14px;
+	padding-right:10px;
+	float:left;
+}
+
+.header #product-logo h1 {
+	text-indent:-9999px;
+	height:38px;
+	width:152px;
+	background:transparent url(i/factiva.logos.png) no-repeat 0 0;
+}
+
+#header-content.expanded #product-logo {
+	float:none;
+	height:66px;
+	width:100%;
+	padding-top:27px;
+	padding-right:0;
+}
+
+#header-content.expanded #product-logo h1 {
+	margin:0 auto;
+}
+
+#header-content #header-search {
+	width:694px;
+	float:right;
+	padding-top:20px;
+}
+
+#header-content.expanded #header-search {
+	float:none;
+	margin-left:auto;
+	margin-right:auto;
+	padding-top:17px;
+}
+
+/* =Header Search >> Layout and style for the header search
+----------------------------------------------------------------------------------------------------*/
+
+
+#header-search form,
+#footer-search form {
+}
+
+#header-search form .form-field,
+#footer-search form .form-field {
+	display: -moz-inline-stack; /* required for ff2 */
+	display: inline-block;
+	vertical-align: top;
+	float:left;
+}
+
+/* search input */
+.search-field {
+	width: 578px;
+	height:36px;
+	line-height:36px;
+	color: #aaa;
+	font-size: 108%; /* 14px */
+	margin:0;
+	padding: 0 8px;
+	border:0;
+	outline:none;
+}
+
+#header-search input.focus,
+#footer-search input.focus {
+	color: #222;
+}
+
+/* search btn */
+.submit-btn-wrap {
+	height: 36px;
+	width:100px;
+	display: -moz-inline-stack; /* required for ff2 */
+	display: inline-block;
+	vertical-align: top;
+	float:left;
+}
+
+.ie6 .submit-btn-wrap,
+.ie7 .submit-btn-wrap {
+	margin-top:1px;
+}
+
+#header-content.expanded #header-search .submit-btn-wrap {
+}
+#footer-search .submit-btn-wrap {
+}
+
+.s-btn {
+	width:100%;
+	height: 36px;
+	color: #fff;
+	text-align: center;
+	letter-spacing:.1em;
+	background:#04addf;
+	padding: 0;
+	border:0;
+	outline:none;
+	overflow: visible;
+}
+
+	/*Safari Opera Chrome*/
+	.s-btn {
+		background: -webkit-gradient(linear, left top, left bottom, from(#04addf), to(#0195d3));
+	}
+	
+	/*FireFox*/
+	.s-btn {
+		background: -moz-linear-gradient(top,  #04addf,  #0195d3);
+	}
+
+/* =Dashboard Navigation >> Primary navigation structure and style
+----------------------------------------------------------------------------------------------------*/
+#dashboard-nav {
+	position: relative;
+}
+
+/* =Welcome Navigation and User Navigation >> 
+----------------------------------------------------------------------------------------------------*/
+#welcome-nav,
+#user-nav {
+	border-right:1px solid #111110;
+	border-left:1px solid #2c2c2c;
+}
+
+#welcome-nav {
+	float:left;
+}
+
+#user-nav {
+	float:right;
+}
+
+/* nav item */
+#welcome-nav li,
+#user-nav li {
+	float:left;
+	display: -moz-inline-stack; /* required for ff2 */
+	display: inline-block;
+	vertical-align: top;
+	border-left:1px solid #111110;
+	border-right:1px solid #2c2c2c;
+}
+
+/* nav link */
+#welcome-nav li a,
+#user-nav li a {
+	height: 35px;
+	display: -moz-inline-stack; /* required for ff2 */
+	display: inline-block;
+	vertical-align: top;
+	color: #9a9a9a;
+	font-size: 85%; /* 11px */
+	line-height: 35px;
+	text-decoration: none;
+	padding: 0 10px;
+}
+
+
+#welcome-nav li.first a {
+	border-left: none;
+}
+
+
+/* =Footer >> Footer styles
+----------------------------------------------------------------------------------------------------*/
+#footer {
+	clear: both;
+	margin: 20px 0 0;
+	background:#333;
+}
+
+	/*Safari Opera Chrome*/
+	#footer {
+		background: -webkit-gradient(linear, left top, left bottom, from(#404040), to(#2b2b2b));
+	}
+	
+	/*FireFox*/
+	#footer {
+		background: -moz-linear-gradient(top,  #404040,  #2b2b2b);
+	}
+
+	#footer-wrap {
+		position:relative;
+	}
+
+
+/* =Footer Search
+----------------------------------------------------------------------------------------------------*/
+#footer-top {
+	border-bottom:1px solid #626262;
+}
+
+
+#footer-top  #product-logo {
+	height:62px;
+	padding-top:30px;
+	padding-right:10px;
+	float:left;
+	
+}
+
+#footer-top  #product-logo h1 {
+	text-indent:-9999px;
+	height:31px;
+	width:124px;
+	background:transparent url(i/factiva.logos.png) no-repeat 0 -60px;
+}
+
+
+#footer-top #footer-search {
+	width:694px;
+	float:right;
+	padding-top:28px;
+}
+
+/* =Footer Links
+----------------------------------------------------------------------------------------------------*/
+
+#footer-links {
+	padding:20px 0;
+	border-top:1px solid #1d1d1d;
+	border-bottom:1px solid #626262;
+}
+
+
+#footer-links  #industry-links {
+	width:792px;
+	float:left;
+}
+
+
+#footer-links .footer-links-list {
+	margin-bottom:10px;
+}
+
+#footer-links  #industry-links .footer-links-list {
+	width:188px;
+	float:left;
+	padding-right:10px;
+}
+
+	#footer-links .footer-links-list li {
+		width:188px;
+	}
+	
+	#footer-links .footer-links-list li a {
+		width:100%;
+		display: -moz-inline-stack; /* required for ff2 */
+		display: inline-block;
+		vertical-align: top;
+		color:#ade9fe;
+		padding:2px 0;
+	}
+
+#footer-links  #ma-legal-links {
+	width:198px;
+	float:left;
+}
+
+#industry-links .section-title,
+#ma-legal-links .section-title {
+	color:#fff;
+	margin-bottom:5px;
+}
+
+/* =Footer Copyright
+----------------------------------------------------------------------------------------------------*/
+
+#footer #copyright {
+	height:68px;
+	border-top:1px solid #1d1d1d;
+}
+
+#footer #copyright-wrap {
+	position:relative;
+}
+
+#footer #copyright .dj-logo {
+	width:66px;
+	height:17px;
+	position:absolute;
+	top:28px; left:0;
+	background:transparent url(i/factiva.logos.png) no-repeat 0 -120px;
+	text-indent:-9999px;
+}
+
+#footer #copyright .copyright-text {
+	color: #969595;
+	text-align:right;
+	font-size: 85%; /* 11px */
+	line-height:68px;
+}

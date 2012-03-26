@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GetArticleViewCountByAssetResponse ver="1.0" xsi:noNamespaceSchemaLocation="GetArticleViewCountByAssetResponse.xsd" 
+xmlns:common="common" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<status value="0">Success</status>
+	<requestInfo>
+		<common:accountScope xmlns:common="common">ALL</common:accountScope>
+		<common:beginDate>2009-01-01</common:beginDate>
+		<common:endDate>2009-02-01</common:endDate>
+		<common:type>Newsletter</common:type>
+	</requestInfo>
+		<monthlySummaryList total="2" first="1" count="2">
+		<monthlySummary month="01" year="2009" assetCount="24" additionalCount="56" articleViewCount="120"></monthlySummary>
+		<monthlySummary month="02" year="2009" assetCount="35" additionalCount="43" articleViewCount="150"></monthlySummary>
+	</monthlySummaryList>
+</GetArticleViewCountByAssetResponse>

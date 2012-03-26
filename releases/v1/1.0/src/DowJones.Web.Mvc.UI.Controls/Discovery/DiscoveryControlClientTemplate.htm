@@ -1,0 +1,11 @@
+﻿
+    <% var self = this; %>
+    <% _.each(discovery.DiscoveryCollection, function(list) { %>
+        <% if (list.ChartType == 2) { %>
+            <%= self.dsccloud({keywords:list.DiscoveryItems}) %>
+        <% } else if (list.ChartType == 3) { %>
+            <%= self.dscdate({dates:list.DiscoveryItems}) %>
+        <% } else { %>
+            <%= self.dsclist({title:list.Title, type: list.DataTypeCode, items: list.DiscoveryItems}) %>
+        <% } %>
+    <% }); %>

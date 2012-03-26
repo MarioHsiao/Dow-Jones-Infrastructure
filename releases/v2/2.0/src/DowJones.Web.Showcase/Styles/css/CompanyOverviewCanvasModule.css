@@ -1,0 +1,115 @@
+/***  CompanyOverviewCanvasModule  ***/
+
+.CompanyOverviewCanvasModule
+{
+}
+
+/****************** Chart ********************/
+.module-content .module-row {
+    padding: 18px 0 0;
+    /*width: 988px;*/
+}
+
+.no-bottom-padding {
+    padding-bottom: 0 !important;
+}
+
+.module-row .three-thirds {
+    /*width: 988px;*/
+}
+
+.module-col {
+    float: left;
+}
+
+.module-col .standard-padding {
+    padding: 0 14px;
+}
+
+.module-col .module-col-wrap {
+    position: relative;
+}
+
+.module-row-title {
+    font-size: 153.9%;
+    margin: 0 0 15px;
+}
+
+/* =Company Snapshot >> Snapshot Tabs
+----------------------------------------------------------------------------------------------------*/
+.snapshot-tabs {
+	border-bottom:1px solid #333;
+	margin:0 0 10px;
+}
+
+	.ie6 .snapshot-tabs,
+	.ie7 .snapshot-tabs {
+		padding:0 0 1px;
+	}
+
+.snapshot-tabs .tab {
+    width:auto;
+	height:24px;
+	display: -moz-inline-stack; /* required for ff2 */
+	display: inline-block;
+	vertical-align: middle;
+	color: #333;
+	font-size:93%;
+	line-height:24px;
+	text-transform: uppercase;
+	background:#eee;
+	padding:0 8px;
+    margin:0 0 -1px;
+	border:1px solid #333;
+}
+	/*Safari Opera Chrome*/
+	.snapshot-tabs .tab {
+		border-top-left-radius: 5px;
+		border-top-right-radius: 5px;
+		background: -webkit-gradient(linear, left top, left bottom, from(#f0f0f0), to(#cccccc));
+	}
+	
+	/*FireFox*/
+	.snapshot-tabs .tab {
+		-moz-border-radius-topleft: 5px;
+		-moz-border-radius-topright: 5px;
+		background: -moz-linear-gradient(top,  #f0f0f0,  #cccccc);
+	}
+
+.snapshot-tabs .tab:hover {
+	background:#ccc;
+}
+
+/* =Company Snapshot >> Snapshot Tabs -- Active Tab
+----------------------------------------------------------------------------------------------------*/
+
+.snapshot-tabs .active {
+	height:25px;
+	line-height:25px;
+	background:#fff;
+	border-bottom:none;
+	cursor:default;
+}
+	
+.snapshot-tabs .active:hover {
+	background:#fff;
+}
+
+/* =Company Snapshot >> Tab Content
+----------------------------------------------------------------------------------------------------*/
+.tab-content-wrap .tab-content {
+	width:300px;
+}
+
+.analysis-report .dj_headlineListContainer .dj_noResults
+{
+	padding-bottom: 10px;
+    display: block;
+}
+
+.module-col-title a {
+    color: #676767;
+    font-weight: bold;
+    line-height: 17px;
+    position: relative;
+}

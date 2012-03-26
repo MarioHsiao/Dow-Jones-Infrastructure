@@ -1,0 +1,492 @@
+<soap-env:Envelope xmlns:soap-env="http://schemas.xmlsoap.org/soap/envelope/">
+
+            <soap-env:Header>
+
+                        <controlData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="urn:factiva:fcs:v1_0">
+
+                                    <token name="userID">mj0001</token>
+
+                                    <token name="userPassword">mj0001</token>
+
+                                    <token name="productID">16</token>
+
+                                    <token name="contentServerAddress">16385</token>
+
+                        </controlData>
+
+            </soap-env:Header>
+
+            <soap-env:Body>
+
+                        <GetSharedQueueContentResponse xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="urn:emg:RTQReqMgr:v1_0">
+
+                                    <queueContent>
+
+                                                <queueMessage xsi:type="ContentHeadlineQueueMessage">
+
+                                                            <contentHeadline xmlns="http://types.factiva.com/search">
+
+                                                                        <accessionNo>DNCO20090929011782</accessionNo>
+
+                                                                        <attributionCode>DJDN</attributionCode>
+
+                                                                        <baseLanguage>en</baseLanguage>
+
+                                                                        <contentItems>
+
+                                                                                    <contentType>article</contentType>
+
+                                                                                    <item ref="distdoc:archive/ArchiveDoc::Article/DNCO20090929011782" size="1038" type="arttext"/>
+
+                                                                                    <primaryRef>distdoc:archive/ArchiveDoc::Article/DNCO20090929011782</primaryRef>
+
+                                                                        </contentItems>
+
+                                                                        <copyright/>
+
+                                                                        <headline>
+
+                                                                                    <para xmlns="http://types.factiva.com/search">DJ OTC Bulletin Board Price Percentage Losers at 14:00 EDT</para>
+
+                                                                        </headline>
+
+                                                                        <ipDocumentID>DNCO20090929011782</ipDocumentID>
+
+                                                                        <linkage>DNCO20090929011782</linkage>
+
+                                                                        <publicationDate>2009-09-29</publicationDate>
+
+                                                                        <publicationTime>2009-09-29T14:15:09.357-04:00</publicationTime>
+
+                                                                        <sourceCode>djdn</sourceCode>
+
+                                                                        <sourceName>Dow Jones Newswire</sourceName>
+
+                                                                        <wordCount>106</wordCount>
+
+                                                            </contentHeadline>
+
+                                                </queueMessage>
+
+                                                <queueMessage xsi:type="ContentHeadlineQueueMessage">
+
+                                                            <contentHeadline xmlns="http://types.factiva.com/search">
+
+                                                                        <accessionNo>DNCO20090929011776</accessionNo>
+
+                                                                        <attributionCode>DJDN</attributionCode>
+
+                                                                        <baseLanguage>en</baseLanguage>
+
+                                                                        <contentItems>
+
+                                                                                    <contentType>article</contentType>
+
+                                                                                    <item ref="distdoc:archive/ArchiveDoc::Article/DNCO20090929011776" size="1043" type="arttext"/>
+
+                                                                                    <primaryRef>distdoc:archive/ArchiveDoc::Article/DNCO20090929011776</primaryRef>
+
+                                                                        </contentItems>
+
+                                                                        <copyright/>
+
+                                                                        <headline>
+
+                                                                                    <para xmlns="http://types.factiva.com/search">DJ OTC Bulletin Board Price Percentage Gainers at 14:00 EDT</para>
+
+                                                                        </headline>
+
+                                                                        <ipDocumentID>DNCO20090929011776</ipDocumentID>
+
+                                                                        <linkage>DNCO20090929011776</linkage>
+
+                                                                        <publicationDate>2009-09-29</publicationDate>
+
+                                                                        <publicationTime>2009-09-29T14:15:07.345-04:00</publicationTime>
+
+                                                                        <sourceCode>djdn</sourceCode>
+
+                                                                        <sourceName>Dow Jones Newswire</sourceName>
+
+                                                                        <wordCount>107</wordCount>
+
+                                                            </contentHeadline>
+
+                                                </queueMessage>
+
+                                                <queueMessage xsi:type="ContentHeadlineQueueMessage">
+
+                                                            <contentHeadline xmlns="http://types.factiva.com/search">
+
+                                                                        <accessionNo>DNCO20090929011775</accessionNo>
+
+                                                                        <attributionCode>DJDN</attributionCode>
+
+                                                                        <baseLanguage>en</baseLanguage>
+
+                                                                        <contentItems>
+
+                                                                                    <contentType>article</contentType>
+
+                                                                                    <item ref="distdoc:archive/ArchiveDoc::Article/DNCO20090929011775" size="1037" type="arttext"/>
+
+                                                                                    <primaryRef>distdoc:archive/ArchiveDoc::Article/DNCO20090929011775</primaryRef>
+
+                                                                        </contentItems>
+
+                                                                        <copyright/>
+
+                                                                        <headline>
+
+                                                                                    <para xmlns="http://types.factiva.com/search">DJ OTC Bulletin Board Most Actives at 14:00 EDT</para>
+
+                                                                        </headline>
+
+                                                                        <ipDocumentID>DNCO20090929011775</ipDocumentID>
+
+                                                                        <linkage>DNCO20090929011775</linkage>
+
+                                                                        <publicationDate>2009-09-29</publicationDate>
+
+                                                                        <publicationTime>2009-09-29T14:15:06.338-04:00</publicationTime>
+
+                                                                        <sourceCode>djdn</sourceCode>
+
+                                                                        <sourceName>Dow Jones Newswire</sourceName>
+
+                                                                        <wordCount>105</wordCount>
+
+                                                            </contentHeadline>
+
+                                                </queueMessage>
+
+                                                <queueMessage xsi:type="ContentHeadlineQueueMessage">
+
+                                                            <contentHeadline xmlns="http://types.factiva.com/search">
+
+                                                                        <accessionNo>DNCO20090929011774</accessionNo>
+
+                                                                        <attributionCode>DJDN</attributionCode>
+
+                                                                        <baseLanguage>en</baseLanguage>
+
+                                                                        <contentItems>
+
+                                                                                    <contentType>article</contentType>
+
+                                                                                    <item ref="distdoc:archive/ArchiveDoc::Article/DNCO20090929011774" size="4852" type="arttext"/>
+
+                                                                                    <primaryRef>distdoc:archive/ArchiveDoc::Article/DNCO20090929011774</primaryRef>
+
+                                                                        </contentItems>
+
+                                                                        <copyright/>
+
+                                                                        <headline>
+
+                                                                                    <para xmlns="http://types.factiva.com/search">DJ Global Stock Indexes at 14:15 EDT/1815 GMT</para>
+
+                                                                        </headline>
+
+                                                                        <ipDocumentID>DNCO20090929011774</ipDocumentID>
+
+                                                                        <linkage>DNCO20090929011774</linkage>
+
+                                                                        <publicationDate>2009-09-29</publicationDate>
+
+                                                                        <publicationTime>2009-09-29T14:15:04.328-04:00</publicationTime>
+
+                                                                        <sourceCode>djdn</sourceCode>
+
+                                                                        <sourceName>Dow Jones Newswire</sourceName>
+
+                                                                        <wordCount>509</wordCount>
+
+                                                            </contentHeadline>
+
+                                                </queueMessage>
+
+                                                <queueMessage xsi:type="ContentHeadlineQueueMessage">
+
+                                                            <contentHeadline xmlns="http://types.factiva.com/search">
+
+                                                                        <accessionNo>DNCO20090929011772</accessionNo>
+
+                                                                        <attributionCode>DJDN</attributionCode>
+
+                                                                        <baseLanguage>en</baseLanguage>
+
+                                                                        <contentItems>
+
+                                                                                    <contentType>article</contentType>
+
+                                                                                    <item ref="distdoc:archive/ArchiveDoc::Article/DNCO20090929011772" size="3118" type="arttext"/>
+
+                                                                                    <primaryRef>distdoc:archive/ArchiveDoc::Article/DNCO20090929011772</primaryRef>
+
+                                                                        </contentItems>
+
+                                                                        <copyright/>
+
+                                                                        <headline>
+
+                                                                                    <para xmlns="http://types.factiva.com/search">SportsTicker: Rangers-Angels Preview</para>
+
+                                                                        </headline>
+
+                                                                        <ipDocumentID>DNCO20090929011772</ipDocumentID>
+
+                                                                        <linkage>DNCO20090929011772</linkage>
+
+                                                                        <publicationDate>2009-09-29</publicationDate>
+
+                                                                        <publicationTime>2009-09-29T14:14:52.873-04:00</publicationTime>
+
+                                                                        <sourceCode>djdn</sourceCode>
+
+                                                                        <sourceName>Dow Jones Newswire</sourceName>
+
+                                                                        <wordCount>551</wordCount>
+
+                                                            </contentHeadline>
+
+                                                </queueMessage>
+
+                                                <queueMessage xsi:type="ContentHeadlineQueueMessage">
+
+                                                            <contentHeadline xmlns="http://types.factiva.com/search">
+
+                                                                        <accessionNo>DNCO20090929011771</accessionNo>
+
+                                                                        <attributionCode>DJDN</attributionCode>
+
+                                                                        <baseLanguage>en</baseLanguage>
+
+                                                                        <contentItems>
+
+                                                                                    <contentType>article</contentType>
+
+                                                                                    <item ref="distdoc:archive/ArchiveDoc::Article/DNCO20090929011771" size="1092" type="arttext"/>
+
+                                                                                    <primaryRef>distdoc:archive/ArchiveDoc::Article/DNCO20090929011771</primaryRef>
+
+                                                                        </contentItems>
+
+                                                                        <copyright/>
+
+                                                                        <headline>
+
+                                                                                    <para xmlns="http://types.factiva.com/search">DJ Salix Pharmaceuticals Files 8K - Other Events &gt;SLXP</para>
+
+                                                                        </headline>
+
+                                                                        <ipDocumentID>DNCO20090929011771</ipDocumentID>
+
+                                                                        <linkage>DNCO20090929011771</linkage>
+
+                                                                        <publicationDate>2009-09-29</publicationDate>
+
+                                                                        <publicationTime>2009-09-29T14:14:51.454-04:00</publicationTime>
+
+                                                                        <sourceCode>djdn</sourceCode>
+
+                                                                        <sourceName>Dow Jones Newswire</sourceName>
+
+                                                                        <wordCount>171</wordCount>
+
+                                                            </contentHeadline>
+
+                                                </queueMessage>
+
+                                                <queueMessage xsi:type="ContentHeadlineQueueMessage">
+
+                                                            <contentHeadline xmlns="http://types.factiva.com/search">
+
+                                                                        <accessionNo>DNCO20090929011767</accessionNo>
+
+                                                                        <attributionCode>DJDN</attributionCode>
+
+                                                                        <baseLanguage>en</baseLanguage>
+
+                                                                        <contentItems>
+
+                                                                                    <contentType>article</contentType>
+
+                                                                                    <item ref="distdoc:archive/ArchiveDoc::Article/DNCO20090929011767" size="3674" type="arttext"/>
+
+                                                                                    <primaryRef>distdoc:archive/ArchiveDoc::Article/DNCO20090929011767</primaryRef>
+
+                                                                        </contentItems>
+
+                                                                        <copyright/>
+
+                                                                        <headline>
+
+                                                                                    <para xmlns="http://types.factiva.com/search">DJ Lenders Seek To Force Fontainebleau Las Vegas To Liquidate</para>
+
+                                                                        </headline>
+
+                                                                        <ipDocumentID>DNCO20090929011767</ipDocumentID>
+
+                                                                        <linkage>DNCO20090929011767</linkage>
+
+                                                                        <publicationDate>2009-09-29</publicationDate>
+
+                                                                        <publicationTime>2009-09-29T14:14:20.53-04:00</publicationTime>
+
+                                                                        <sourceCode>djdn</sourceCode>
+
+                                                                        <sourceName>Dow Jones Newswire</sourceName>
+
+                                                                        <wordCount>571</wordCount>
+
+                                                            </contentHeadline>
+
+                                                </queueMessage>
+
+                                                <queueMessage xsi:type="ContentHeadlineQueueMessage">
+
+                                                            <contentHeadline xmlns="http://types.factiva.com/search">
+
+                                                                        <accessionNo>DNCO20090929011766</accessionNo>
+
+                                                                        <attributionCode>DJDN</attributionCode>
+
+                                                                        <baseLanguage>en</baseLanguage>
+
+                                                                        <contentItems>
+
+                                                                                    <contentType>article</contentType>
+
+                                                                                    <item ref="distdoc:archive/ArchiveDoc::Article/DNCO20090929011766" size="135" type="arttext"/>
+
+                                                                                    <primaryRef>distdoc:archive/ArchiveDoc::Article/DNCO20090929011766</primaryRef>
+
+                                                                        </contentItems>
+
+                                                                        <copyright/>
+
+                                                                        <headline>
+
+                                                                                    <para xmlns="http://types.factiva.com/search">*DJ USGS: Magnitude 7.9 Earthquake Off Samoa, Tonga</para>
+
+                                                                        </headline>
+
+                                                                        <ipDocumentID>DNCO20090929011766</ipDocumentID>
+
+                                                                        <linkage>DNCO20090929011766</linkage>
+
+                                                                        <publicationDate>2009-09-29</publicationDate>
+
+                                                                        <publicationTime>2009-09-29T14:14:14.229-04:00</publicationTime>
+
+                                                                        <sourceCode>djdn</sourceCode>
+
+                                                                        <sourceName>Dow Jones Newswire</sourceName>
+
+                                                                        <wordCount>23</wordCount>
+
+                                                            </contentHeadline>
+
+                                                </queueMessage>
+
+                                                <queueMessage xsi:type="ContentHeadlineQueueMessage">
+
+                                                            <contentHeadline xmlns="http://types.factiva.com/search">
+
+                                                                        <accessionNo>DNCO20090929011761</accessionNo>
+
+                                                                        <attributionCode>DJDN</attributionCode>
+
+                                                                        <baseLanguage>en</baseLanguage>
+
+                                                                        <contentItems>
+
+                                                                                    <contentType>article</contentType>
+
+                                                                                    <item ref="distdoc:archive/ArchiveDoc::Article/DNCO20090929011761" size="2033" type="arttext"/>
+
+                                                                                    <primaryRef>distdoc:archive/ArchiveDoc::Article/DNCO20090929011761</primaryRef>
+
+                                                                        </contentItems>
+
+                                                                        <copyright/>
+
+                                                                        <headline>
+
+                                                                                    <para xmlns="http://types.factiva.com/search">DJ EIA: July US Lower 48 Gross Gas Output Down 1.1% From June</para>
+
+                                                                        </headline>
+
+                                                                        <ipDocumentID>DNCO20090929011761</ipDocumentID>
+
+                                                                        <linkage>DNCO20090929011463</linkage>
+
+                                                                        <publicationDate>2009-09-29</publicationDate>
+
+                                                                        <publicationTime>2009-09-29T14:14:01.051-04:00</publicationTime>
+
+                                                                        <sourceCode>djdn</sourceCode>
+
+                                                                        <sourceName>Dow Jones Newswire</sourceName>
+
+                                                                        <wordCount>323</wordCount>
+
+                                                            </contentHeadline>
+
+                                                </queueMessage>
+
+                                                <queueMessage xsi:type="ContentHeadlineQueueMessage">
+
+                                                            <contentHeadline xmlns="http://types.factiva.com/search">
+
+                                                                        <accessionNo>DNCO20090929011759</accessionNo>
+
+                                                                        <attributionCode>DJDN</attributionCode>
+
+                                                                        <baseLanguage>en</baseLanguage>
+
+                                                                        <contentItems>
+
+                                                                                    <contentType>article</contentType>
+
+                                                                                    <item ref="distdoc:archive/ArchiveDoc::Article/DNCO20090929011759" size="759" type="arttext"/>
+
+                                                                                    <primaryRef>distdoc:archive/ArchiveDoc::Article/DNCO20090929011759</primaryRef>
+
+                                                                        </contentItems>
+
+                                                                        <copyright/>
+
+                                                                        <headline>
+
+                                                                                    <para xmlns="http://types.factiva.com/search">DJ Nymex Platinum Close - Sep 29</para>
+
+                                                                        </headline>
+
+                                                                        <ipDocumentID>DNCO20090929011759</ipDocumentID>
+
+                                                                        <linkage>DNCO20090929011759</linkage>
+
+                                                                        <publicationDate>2009-09-29</publicationDate>
+
+                                                                        <publicationTime>2009-09-29T14:13:51.926-04:00</publicationTime>
+
+                                                                        <sourceCode>djdn</sourceCode>
+
+                                                                        <sourceName>Dow Jones Newswire</sourceName>
+
+                                                                        <wordCount>116</wordCount>
+
+                                                            </contentHeadline>
+
+                                                </queueMessage>
+
+                                    </queueContent>
+
+                        </GetSharedQueueContentResponse>
+
+            </soap-env:Body>
+
+</soap-env:Envelope>
+

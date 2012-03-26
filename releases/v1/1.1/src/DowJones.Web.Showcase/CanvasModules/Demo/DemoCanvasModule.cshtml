@@ -1,0 +1,34 @@
+﻿@inherits DowJones.Web.Mvc.UI.Canvas.AbstractCanvasModule<DemoModule>
+@ClientPlugin dj_DemoCanvasModule
+@ScriptResource RelativeResourceName=DemoCanvasModule.js
+@StylesheetResource RelativeResourceName=DemoCanvasModule.css
+
+@{ 
+    CssClass += " DemoCanvasModule wrap-9";
+    Html.DJ().ScriptRegistry().WithJQueryUIEffects();
+}
+
+@section LoadingArea {
+    Loading demo module...
+}
+
+@section HeaderArea {
+    @* Editable header section *@
+}
+
+@section ContentArea {
+    <p>
+        <label>Timestamp:</label>
+        <span class='last-updated'></span>
+    </p>
+
+    <p>
+        <label>Global Timestamp:</label>
+        <span class='global-last-updated'></span>
+    </p>
+
+    <div class='actions-container'>
+        <button class='update-button' href='#'>Update</button>
+        <button class='clear-button' href='#'>Clear</button>
+    </div>
+}

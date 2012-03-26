@@ -1,0 +1,249 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TimeZoneList>
+    <TimeZone code="+13:00|1">
+        <StandardName>Tonga Standard Time</StandardName>
+    </TimeZone>
+    <TimeZone code="+12:00|2">
+        <StandardName>Fiji Standard Time</StandardName>
+    </TimeZone>
+    <TimeZone code="+12:00|1">
+        <StandardName>New Zealand Standard Time</StandardName>
+    </TimeZone>
+    <TimeZone code="+11:00|1">
+        <StandardName>Central Pacific Standard Time</StandardName>
+    </TimeZone>
+    <TimeZone code="+10:00|5">
+        <StandardName>Vladivostok Standard Time</StandardName>
+    </TimeZone>
+    <TimeZone code="+10:00|4">
+        <StandardName>AUS Eastern Standard Time</StandardName>
+    </TimeZone>
+    <TimeZone code="+10:00|3">
+        <StandardName>West Pacific Standard Time</StandardName>
+    </TimeZone>
+    <TimeZone code="+10:00|2">
+        <StandardName>Tasmania Standard Time</StandardName>
+    </TimeZone>
+    <TimeZone code="+10:00|1">
+        <StandardName>E. Australia Standard Time</StandardName>
+    </TimeZone>
+    <TimeZone code="+09:30|2">
+        <StandardName>AUS Central Standard Time</StandardName>
+    </TimeZone>
+    <TimeZone code="+09:30|1">
+        <StandardName>Cen. Australia Standard Time</StandardName>
+    </TimeZone>
+    <TimeZone code="+09:00|3">
+        <StandardName>Yakutsk Standard Time</StandardName>
+    </TimeZone>
+    <TimeZone code="+09:00|2">
+        <StandardName>Korea Standard Time</StandardName>
+    </TimeZone>
+    <TimeZone code="+09:00|1">
+        <StandardName>Tokyo Standard Time</StandardName>
+    </TimeZone>
+    <TimeZone code="+08:00|5">
+        <StandardName>Taipei Standard Time</StandardName>
+    </TimeZone>
+    <TimeZone code="+08:00|4">
+        <StandardName>W. Australia Standard Time</StandardName>
+    </TimeZone>
+    <TimeZone code="+08:00|3">
+        <StandardName>North Asia East Standard Time</StandardName>
+    </TimeZone>
+    <TimeZone code="+08:00|2">
+        <StandardName>China Standard Time</StandardName>
+    </TimeZone>
+    <TimeZone code="+08:00|1">
+        <StandardName>Malay Peninsula Standard Time</StandardName>
+    </TimeZone>
+    <TimeZone code="+07:00|2">
+        <StandardName>North Asia Standard Time</StandardName>
+    </TimeZone>
+    <TimeZone code="+07:00|1">
+        <StandardName>SE Asia Standard Time</StandardName>
+    </TimeZone>
+    <TimeZone code="+06:30|1">
+        <StandardName>Myanmar Standard Time</StandardName>
+    </TimeZone>
+    <TimeZone code="+06:00|3">
+        <StandardName>Sri Lanka Standard Time</StandardName>
+    </TimeZone>
+    <TimeZone code="+06:00|2">
+        <StandardName>Central Asia Standard Time</StandardName>
+    </TimeZone>
+    <TimeZone code="+06:00|1">
+        <StandardName>N. Central Asia Standard Time</StandardName>
+    </TimeZone>
+    <TimeZone code="+05:45|1">
+        <StandardName>Nepal Standard Time</StandardName>
+    </TimeZone>
+    <TimeZone code="+05:30|1">
+        <StandardName>India Standard Time</StandardName>
+    </TimeZone>
+    <TimeZone code="+05:00|2">
+        <StandardName>Ekaterinburg Standard Time</StandardName>
+    </TimeZone>
+    <TimeZone code="+05:00|1">
+        <StandardName>West Asia Standard Time</StandardName>
+    </TimeZone>
+    <TimeZone code="+04:30|1">
+        <StandardName>Afghanistan Standard Time</StandardName>
+    </TimeZone>
+    <TimeZone code="+04:00|3">
+        <StandardName>Azerbaijan Standard Time</StandardName>
+    </TimeZone>
+    <TimeZone code="+04:00|2">
+        <StandardName>Caucasus Standard Time</StandardName>
+    </TimeZone>
+    <TimeZone code="+04:00|1">
+        <StandardName>Arabian Standard Time</StandardName>
+    </TimeZone>
+    <TimeZone code="+03:30|1">
+        <StandardName>Iran Standard Time</StandardName>
+    </TimeZone>
+    <TimeZone code="+03:00|5">
+        <StandardName>Georgian Standard Time</StandardName>
+    </TimeZone>
+    <TimeZone code="+03:00|4">
+        <StandardName>E. Africa Standard Time</StandardName>
+    </TimeZone>
+    <TimeZone code="+03:00|3">
+        <StandardName>Arab Standard Time</StandardName>
+    </TimeZone>
+    <TimeZone code="+03:00|2">
+        <StandardName>Arabic Standard Time</StandardName>
+    </TimeZone>
+    <TimeZone code="+03:00|1">
+        <StandardName>Russian Standard Time</StandardName>
+    </TimeZone>
+    <TimeZone code="+02:00|9">
+        <StandardName>Namibia Standard Time</StandardName>
+    </TimeZone>
+    <TimeZone code="+02:00|8">
+        <StandardName>Middle East Standard Time</StandardName>
+    </TimeZone>
+    <TimeZone code="+02:00|7">
+        <StandardName>Jordan Standard Time</StandardName>
+    </TimeZone>
+    <TimeZone code="+02:00|6">
+        <StandardName>FLE Standard Time</StandardName>
+    </TimeZone>
+    <TimeZone code="+02:00|5">
+        <StandardName>Israel Standard Time</StandardName>
+    </TimeZone>
+    <TimeZone code="+02:00|4">
+        <StandardName>South Africa Standard Time</StandardName>
+    </TimeZone>
+    <TimeZone code="+02:00|3">
+        <StandardName>Egypt Standard Time</StandardName>
+    </TimeZone>
+    <TimeZone code="+02:00|2">
+        <StandardName>GTB Standard Time</StandardName>
+    </TimeZone>
+    <TimeZone code="+02:00|1">
+        <StandardName>E. Europe Standard Time</StandardName>
+    </TimeZone>
+    <TimeZone code="+01:00|5">
+        <StandardName>W. Central Africa Standard Time</StandardName>
+    </TimeZone>
+    <TimeZone code="+01:00|4">
+        <StandardName>Central Europe Standard Time</StandardName>
+    </TimeZone>
+    <TimeZone code="+01:00|3">
+        <StandardName>W. Europe Standard Time</StandardName>
+    </TimeZone>
+    <TimeZone code="+01:00|2">
+        <StandardName>Romance Standard Time</StandardName>
+    </TimeZone>
+    <TimeZone code="+01:00|1">
+        <StandardName>Central European Standard Time</StandardName>
+    </TimeZone>
+    <TimeZone code="+00:00|1">
+        <StandardName>Greenwich Standard Time</StandardName>
+    </TimeZone>
+    <TimeZone code="+00:00|2">
+        <StandardName>GMT Standard Time</StandardName>
+    </TimeZone>
+    <TimeZone code="-01:00|1">
+        <StandardName>Azores Standard Time</StandardName>
+    </TimeZone>
+    <TimeZone code="-01:00|2">
+        <StandardName>Cape Verde Standard Time</StandardName>
+    </TimeZone>
+    <TimeZone code="-02:00|1">
+        <StandardName>Mid-Atlantic Standard Time</StandardName>
+    </TimeZone>
+    <TimeZone code="-03:00|1">
+        <StandardName>E. South America Standard Time</StandardName>
+    </TimeZone>
+    <TimeZone code="-03:00|2">
+        <StandardName>SA Eastern Standard Time</StandardName>
+    </TimeZone>
+    <TimeZone code="-03:00|3">
+        <StandardName>Greenland Standard Time</StandardName>
+    </TimeZone>
+    <TimeZone code="-03:00|4">
+        <StandardName>Montevideo Standard Time</StandardName>
+    </TimeZone>
+    <TimeZone code="-03:30|1">
+        <StandardName>Newfoundland Standard Time</StandardName>
+    </TimeZone>
+    <TimeZone code="-04:00|1">
+        <StandardName>Atlantic Standard Time</StandardName>
+    </TimeZone>
+    <TimeZone code="-04:00|2">
+        <StandardName>SA Western Standard Time</StandardName>
+    </TimeZone>
+    <TimeZone code="-04:00|3">
+        <StandardName>Pacific SA Standard Time</StandardName>
+    </TimeZone>
+    <TimeZone code="-04:00|4">
+        <StandardName>Central Brazilian Standard Time</StandardName>
+    </TimeZone>
+    <TimeZone code="-05:00|1">
+        <StandardName>Eastern Standard Time</StandardName>
+    </TimeZone>
+    <TimeZone code="-05:00|2">
+        <StandardName>US Eastern Standard Time</StandardName>
+    </TimeZone>
+    <TimeZone code="-05:00|3">
+        <StandardName>SA Pacific Standard Time</StandardName>
+    </TimeZone>
+    <TimeZone code="-06:00|1">
+        <StandardName>Central Standard Time</StandardName>
+    </TimeZone>
+    <TimeZone code="-06:00|2">
+        <StandardName>Canada Central Standard Time</StandardName>
+    </TimeZone>
+    <TimeZone code="-06:00|3">
+        <StandardName>Central Standard Time (Mexico)</StandardName>
+    </TimeZone>
+    <TimeZone code="-06:00|4">
+        <StandardName>Central America Standard Time</StandardName>
+    </TimeZone>
+    <TimeZone code="-07:00|1">
+        <StandardName>US Mountain Standard Time</StandardName>
+    </TimeZone>
+    <TimeZone code="-07:00|2">
+        <StandardName>Mountain Standard Time</StandardName>
+    </TimeZone>
+    <TimeZone code="-08:00|1">
+        <StandardName>Pacific Standard Time</StandardName>
+    </TimeZone>
+    <TimeZone code="-08:00|2">
+        <StandardName>Pacific Standard Time (Mexico)</StandardName>
+    </TimeZone>
+    <TimeZone code="-09:00|1">
+        <StandardName>Alaskan Standard Time</StandardName>
+    </TimeZone>
+    <TimeZone code="-10:00|1">
+        <StandardName>Hawaiian Standard Time</StandardName>
+    </TimeZone>
+    <TimeZone code="-11:00|1">
+        <StandardName>Samoa Standard Time</StandardName>
+    </TimeZone>
+    <TimeZone code="-12:00|1">
+        <StandardName>Dateline Standard Time</StandardName>
+    </TimeZone>
+</TimeZoneList>

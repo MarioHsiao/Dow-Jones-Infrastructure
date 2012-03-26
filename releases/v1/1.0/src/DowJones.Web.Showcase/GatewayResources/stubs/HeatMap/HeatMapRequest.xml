@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<HeatMapRequest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <variantTypes>Volume</variantTypes>
+  <variantTypes>PriceMovement</variantTypes>
+  <timeSeries>TenMinutes</timeSeries>
+  <timeSeries>TwentyMinutes</timeSeries>
+  <movingAverages>FiveDays</movingAverages>
+  <movingAverages>FiveDays</movingAverages>
+  <dataSetType>EditorialList</dataSetType>
+  <sortColumn>PriceMovement</sortColumn>
+  <sortOrder>Asc</sortOrder>
+  <noOfTopBottomInstruments>0</noOfTopBottomInstruments>
+</HeatMapRequest>

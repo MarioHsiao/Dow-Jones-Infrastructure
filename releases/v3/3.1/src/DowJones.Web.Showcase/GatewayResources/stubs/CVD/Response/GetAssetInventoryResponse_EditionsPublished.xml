@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GetAssetInventoryResponse ver="1.0" xsi:schemaLocation="getAssetInventory GetAssetInventoryResponse.xsd" xmlns="" 
+xmlns:common="common" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<status value="0"></status>
+	<requestInfo>
+		<accountScope>AE12345S,N23DWD23,KF123SDSX</accountScope>
+		<beginDate>2009-01-01</beginDate>
+		<endDate>2009-05-31</endDate>
+		<groupBy>EDPublished</groupBy>
+		<summarizedBy>Month</summarizedBy>
+	</requestInfo>
+	<assetMetadataSummaryList columnGrouping="Counts" rowGrouping="Newsletters Published">
+		<metadataSummary name="Editions Published by Format" count="0">
+			<metadataSummaryList>
+				<metadataSummary name="HTML" count="0">
+					<metadataSummaryList>
+						<metadataSummary name="NumberPublished" count="7"/>
+						<metadataSummary name="CurrentGrandTotal" count="11"/>
+					</metadataSummaryList>
+				</metadataSummary>
+				<metadataSummary name="PDF" count="0">
+					<metadataSummaryList>
+						<metadataSummary name="NumberPublished" count="15"/>
+						<metadataSummary name="CurrentGrandTotal" count="25"/>
+					</metadataSummaryList>
+				</metadataSummary>
+				<metadataSummary name="RTF" count="0">
+					<metadataSummaryList>
+						<metadataSummary name="NumberPublished" count="3"/>
+						<metadataSummary name="CurrentGrandTotal" count="12"/>
+					</metadataSummaryList>
+				</metadataSummary>
+				<metadataSummary name="Mobile (Headlines Only)" count="0">
+					<metadataSummaryList>
+						<metadataSummary name="NumberPublished" count="2"/>
+						<metadataSummary name="CurrentGrandTotal" count="8"/>
+					</metadataSummaryList>
+				</metadataSummary>
+				<metadataSummary name="Mobile" count="0">
+					<metadataSummaryList>
+						<metadataSummary name="NumberPublished" count="2"/>
+						<metadataSummary name="CurrentGrandTotal" count="9"/>
+					</metadataSummaryList>
+				</metadataSummary>
+				<metadataSummary name="Other" count="0">
+					<metadataSummaryList>
+						<metadataSummary name="NumberPublished" count="4"/>
+						<metadataSummary name="CurrentGrandTotal" count="14"/>
+					</metadataSummaryList>
+				</metadataSummary>
+				<columnGrandTotalsList>
+					<columnGrandTotal name="NumberPublished" count="28" ></columnGrandTotal>
+					<columnGrandTotal name="CurrentGrandTotal" count="188" ></columnGrandTotal>
+				</columnGrandTotalsList>
+			</metadataSummaryList>
+		</metadataSummary>		
+	</assetMetadataSummaryList>
+	<accountsStatus>
+		<account status="0" accountID="AE12345S"/>
+		<account status="0" accountID="N23DWD23"/>
+		<account status="1" accountID="KF123SDSX"/>
+	</accountsStatus>
+</GetAssetInventoryResponse>

@@ -1,0 +1,55 @@
+﻿@using DowJones.Web.Mvc.Extensions
+@using DowJones.Extensions
+@using DowJones.Web.Mvc.UI.Components.PortalHeadlineList
+@using DowJones.Web.Mvc.UI.Canvas
+@using DowJones.Web.Mvc.UI.Canvas.Editors.Syndication
+@using DowJones.Web.Mvc.UI.Components.Models
+@using CanvasModels = DowJones.Web.Mvc.UI.Canvas.Models;
+@using DowJones.Web.Mvc.UI.Canvas.Properties
+@using DowJones.Web.Mvc.UI.Components.Pager
+@inherits AbstractCanvasModule<CanvasModels.SyndicationModule>
+@ClientPlugin dj_SyndicationModule
+@ScriptResource RelativeResourceName=SyndicationModule.js
+@ScriptResource ResourceName=DowJones.Web.Mvc.UI.Canvas.Components.AbstractModulePager.js
+@StylesheetResource RelativeResourceName=SyndicationModule.css
+@{ 
+    CssClass += " dj_SyndicationModule";
+    Html.DJ().Pager();
+    Html.DJ().ScriptRegistry().WithJQueryUIEffects();
+}
+@section EditArea {
+    @(CreateChildControl<SyndicationModuleEditor>(Model.Editor))
+}
+@section ContentArea {
+    <div class="module-content-page">
+        <div class="module-row article-row clearfix">
+            @foreach (var phl in Model.PortalHeadlineLists)
+            {
+            
+                <div class="module-col one-third">
+                    <div class="module-col-wrap standard-padding">
+                        <div class="dj_viewAllErr">@Html.DJ().Token("viewAllErrMessage")</div>
+                        <h3 class="module-col-title module-col-title-source-icon">
+                            <img class="module-col-title-source-img" alt="">
+                            <span class="module-col-title-source-icon-text"></span>
+                        </h3>
+                        @(CreateChildControl<PortalHeadlineListControl>(phl))
+                    </div>
+                </div>           
+            }
+        </div>
+        <div class="module-row clearfix">
+            @foreach (var phl in Model.PortalHeadlineLists)
+            {            
+                <div class="module-col one-third">
+                    <div class="module-col-wrap standard-padding">
+                        <ul class="dc_list view-all-btn">
+                            <li class="dc_item"><a href="javascript:void(0);" class="dashboard-control dc_btn dc_btn-1">@Html.DJ().Token("viewAll")</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>           
+            }
+        </div>
+    </div>
+}

@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>DowJones.Charting</id>
+        <version>$version$</version>
+        <title>Dow Jones Charting</title>
+        <description>The Dow Jones Charting</description>
+        <authors>Dow Jones Platform Integration Team</authors>
+        <tags>DowJones</tags>
+        <language>en-US</language>
+        <projectUrl>http://dowjones.com</projectUrl>
+        <licenseUrl>http://dowjones.com</licenseUrl>
+        <dependencies>
+            <dependency id="DowJones.Infrastructure" version="$version$" />
+            <dependency id="Corda.Embedder" version="7.0.0" />
+            <dependency id="log4net" version="1.2.10" />
+        </dependencies>
+    </metadata>
+    <files>
+        <file src="DowJones.Charting.dll" target="lib" />
+        <file src="DowJones.Charting.pdb" target="lib" />
+    </files>
+</package>

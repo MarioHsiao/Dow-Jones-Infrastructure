@@ -1,0 +1,41 @@
+﻿@using DowJones.Extensions
+@model DowJones.Web.Mvc.UI.Components.SocialMedia.TweetLinesModel
+@ClientPlugin dj_TweetLines
+@ScriptResource RelativeResourceName=TweetLines.js
+@ClientTemplate RelativeResourceName=ClientTemplates.tweetlines.htm, TemplateId=tweetlines
+@{ CssClass += " dj_TweetLines ";
+   Html.DJ().ScriptRegistry().WithJQueryTimeAgo();
+}
+
+<div class="dj_more-tweets dj_new-tweets hide"><span></span></div>
+<ul class="dj_twitter-recent-tweets">
+    @foreach (var tweet in Model.Tweets)
+    {
+        <li data-tweet-id="@tweet.Id" data-user-id="@tweet.User.Id" data-screen-name="@tweet.User.ScreenName" data-retweet-id="@tweet.ReTweetId" class="dj_tweet-item">
+            <img data-user-id="@tweet.User.Id" alt="@tweet.User.FullName" src="@tweet.User.ProfileImageUrl">
+            <div class="dj_tweet-content">
+                <div class="dj_tweet-meta">
+                    <a title="@tweet.User.FullName" href="@tweet.User.ProfileUrl" data-user-id="@tweet.User.Id" class="dj_full-name">
+                        @tweet.User.FullName
+                    </a><a href="@tweet.User.ProfileHashUrl" title="@tweet.User.FullName" class="dj_screen-name">
+                        @@@tweet.User.ScreenName
+                    </a><span class="dj_time-stamp" data-time="@tweet.IsoTimeStamp">
+                        <abbr title="@tweet.IsoTimeStamp">
+                        </abbr>
+                        @(string.IsNullOrEmpty(tweet.SourceText) ? "" : string.Format(" {0} {1}", @Html.DJ().Token("via"), tweet.SourceText))</span>
+                    <ul class="dj_post-processing">
+                        <li class="dj_follow" data-action="follow">@Html.DJ().Token("follow")</li>
+                        <li class="dj_reply" data-action="reply">@Html.DJ().Token("reply")</li>
+                        <li class="dj_retweet" data-action="retweet">@Html.DJ().Token("reTweet")</li>
+                        <li class="dj_favorite" data-action="favorite">@Html.DJ().Token("favorite")</li>
+                        <li class="dj_details" data-action="details">@Html.DJ().Token("details")</li>
+                    </ul>
+                </div>
+                <p class="dj_tweet">
+                    @tweet.Text
+                </p>
+            </div>
+        </li>
+    }
+</ul>
+<div class="dj_more-tweets dj_old-tweets "><span>@Html.DJ().Token("loadMoreTweets")</span></div>

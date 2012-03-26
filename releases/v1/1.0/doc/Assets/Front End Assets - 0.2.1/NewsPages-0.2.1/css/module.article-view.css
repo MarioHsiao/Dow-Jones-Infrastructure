@@ -1,0 +1,136 @@
+/*
+
+	-- -- -- -- -- -- --
+	Description: Article View Style Rules
+	Version: 0.1.1
+	Last Update: 1/13/2011
+	Author: Ryan Schoch
+			Philippe Arcand
+	Company: Dow Jones & Company Inc.
+	Copyright 2010 Dow Jones & Company Inc.
+	
+	Dependencies
+	 - css/reset.css
+	 - css/lib/modules.css
+	-- -- -- -- -- -- --
+	
+*/
+
+/* = Article View >> General Overlay Rules
+----------------------------------------------------------------------------------------------------*/
+
+.article-view {
+	display: none;
+}
+
+#article-view-wrap {
+	position: relative;
+	width: 960px;
+	height: 545px;
+	padding-top: 40px;
+	background-color: #000;
+	border: 1px solid #999;
+}
+
+.article-view-close {
+	position: absolute;
+	top: 15px;
+	left: 885px;
+}
+
+.article-view-close a {
+	color: #FFF;
+	font-weight: bold;
+}
+
+.article-view-inner-wrap {
+	width: 800px;
+	height: 500px;
+	margin: 0 auto;
+}
+
+.article-view-content-header {
+	width: 780px;
+	height: 25px;
+	padding: 5px 20px 0 0;
+	background-color: #E5E8EB;
+}
+
+.article-view-content-wrap {
+	width: 770px;
+	height: 440px;
+	overflow: auto;
+	padding: 30px 0 0 30px;
+	background-color: #FFF;
+}
+
+.article-view-content {
+	width: 740px;
+	padding-bottom: 20px;
+}
+
+.article-view-article-source, .article-view-article-date-stamp,
+.article-view-article-title, .article-view-article-para,
+.article-view-article-meta {
+	color: #000;
+}
+
+.article-view-close-wrap, .article-view-article-source,
+.article-view-article-date-stamp,.article-view-article-meta  {
+	display: block;
+}
+
+.article-view-close-wrap a, .article-view-article-source,
+.article-view-article-date-stamp, .article-view-article-para {
+	font-size: 100%;
+}
+
+.article-view-article-title {
+	font-size: 116%;
+	margin-bottom: 10px;
+}
+
+.article-view-article-para {
+	line-height: 18px;
+	margin-bottom: 10px;
+}
+
+.article-view-article-meta {
+	font-size: 93%;
+}
+
+
+/* =FancyBox >> Re-Styles
+----------------------------------------------------------------------------------------------------*/
+
+#fancybox-bg-n, #fancybox-bg-ne, #fancybox-bg-e,
+#fancybox-bg-se, #fancybox-bg-s, #fancybox-bg-sw,
+#fancybox-bg-w, #fancybox-bg-nw   {
+	display: none;
+}
+
+#fancybox-wrap {
+	position: absolute;
+	top: 0;
+	left: 0;
+	padding: 0;
+	z-index: 1101;
+	outline: none;
+	display: none;
+}
+
+#fancybox-outer {
+	background-color: transparent;
+}
+
+#fancybox-close {
+	background: none;
+}
+
+.fancybox-ie6 #fancybox-close {  
+	filter: none; 
+}
+
+#fancybox-content {
+	border: 0px solid transparent;	
+}

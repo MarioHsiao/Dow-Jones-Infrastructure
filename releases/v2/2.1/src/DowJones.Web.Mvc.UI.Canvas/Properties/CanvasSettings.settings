@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="DowJones.Web.Mvc.UI.Canvas" GeneratedClassName="CanvasSettings">
+  <Profiles />
+  <Settings>
+    <Setting Name="CanvasServiceUrl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">/pages/1.0</Value>
+    </Setting>
+    <Setting Name="DashboardServiceBaseUrl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://api.dowjones.com/api/dashboard</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

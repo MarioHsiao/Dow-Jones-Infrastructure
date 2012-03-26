@@ -1,0 +1,40 @@
+﻿<% if (headlines.length > 0) { %>
+        <% _.each(headlines, function(headline) { %>
+            <li class="item" data-djid="<%= headline.AccessionNumber %>">
+                <div class="wrap">
+                    <h4 class="headline">
+                        <% if (headlines.options.showCheckboxes) { %>
+                            <input class="chk-headline" type="checkbox" value="<%=headline.AccessionNumber%>" />
+                        <% } %>
+                        <a class="title" href="%" title="<%= headline.Snippet %>"rel="<%= headline.ExternalUrl %>"><%= headline.Title %></a>
+                    </h4>
+                    <div class="meta">
+                        <span class="source" data-djid="<%= headline.SourceCode %>"><%= headline.Source %></span> |
+                        <span class="date-stamp"><%= headline.PublicationDateDisplay %></span>
+                        <span class="author"><%= headline.Author %></span>
+                        <span class="byline"><%= headline.Byline %></span>
+                    </div>
+                    <% if (headlines.options.showDuplicates && headline.DuplicateHeadlines && headline.DuplicateHeadlines.length > 0) { %>
+                        <div class="duplicates">
+                            <a class="trigger" href="%">
+                                <span class="accent">+</span>
+                                <span class="copy"><%= headline.DuplicateHeadlines.length %> duplicate article(s) identified</span>
+                            </a>
+                            <ul class="items">
+                            <% _.each(headline.DuplicateHeadlines, function(dup, idx, dups) { %>
+                                <li class="item" data-djid="<%= dup.AccessionNumber %>">
+                                    <h4 class="headline">
+                                        <a class="title" href="%" title="<%= dup.Snippet %>" data-parentdjid="<%= dup.ParentAccessionNumber %>"  rel="<%= dup.ExternalUrl %>"><%= dup.Title %></a>
+                                    </h4>
+                                    <span class="source" data-djid="<%= dup.SourceCode %>"><%= dup.Source %></span>
+                                </li>
+                            <% }); %>
+                            </ul>
+                        </div>
+                    <% } %>
+                </div>
+            </li>
+        <% }); %>
+    <% } else { %>
+        <li><span class="dj_noResults">No Results</span></li>
+    <% } %>

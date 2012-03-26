@@ -1,0 +1,76 @@
+﻿<ul class="author-list">
+    <%  var showSource, showPublicationDateTime, showAuthor, title, x, multimediaMode;
+        for (var i = 0, len = Math.min(headlines.length, options.maxNumHeadlinesToShow); i < len; i++) { 
+            x = headlines[i]; 
+            showSource = options.showSource && x.sourceCode && x.sourceDescriptor;
+            showPublicationDateTime = options.showPublicationDateTime && x.publicationDateTimeDescriptor;
+            showAuthor = true;
+            title = (options.showTruncatedTitle && $.trim(x.truncatedTitle)) || x.title;
+            multimediaMode = options.multimediaMode && (x.contentCategoryDescriptor && x.contentCategoryDescriptor === 'multimedia');
+    %>
+    <li class="dj_entry dj_<%= x.baseLanguage %>">
+        <div class="article-wrap">
+            <% if (showAuthor) { %>
+                <h3 class="author-meta">
+                 <% 
+                    if ( options.authorClickable && x.codedAuthors) {
+                        for (var j = 0, jCnt = x.codedAuthors.length; j < jCnt ; j++) {
+                            var author = x.codedAuthors[j]; 
+                            for (var k = 0, kCnt = author.items.length; k < kCnt ; k++) { 
+                                var item = author.items[k];
+                                switch(item.entityTypeDescriptor.toLowerCase()) {
+                                    case "person":
+                                    case "author": %>
+                                        <span class="article-author article-clickable" rel="<%= item.guid %>"><%= item.value %></span>                                    
+                                    <%  break;
+                                    case "textual":
+                                    default: %>
+                                        <span class="article-author"><%= item.value %></span>
+                                    <%  break;
+                                }
+                            }       
+                        } 
+                    } 
+                    else { %>
+                        <span class="author"><%= x.authors.join(', ') %></span>
+                 <% } %>
+                </h3>
+            <% } 
+            
+            if (showSource || showPublicationDateTime) { %>
+                <div class="article-meta">
+                    <% if (showSource) { 
+                        if (options.sourceClickable) { %>
+                            <span class="article-source source-clickable" rel="<%= x.sourceCode %>"><%= x.sourceDescriptor %></span><br />
+                     <% } else { %>
+                            <span class="article-source"><%= x.sourceDescriptor %></span><br />
+                     <% } %>
+                    <% } 
+                       if (showPublicationDateTime) { %>
+                        <span class="date-stamp"><%= x.publicationDateTimeDescriptor %></span>
+                    <% } %>
+                </div>
+            <% } %>
+
+            <h4 class="article-headline">
+                <a href="<%= x.headlineUrl %>" class="article-view-trigger">
+                    <%= title %></a>
+            </h4>           
+              
+            <% /* if we have a snippet and mode is anything but none, render the first snippet only if mode is hybrid; else render all snippets if mode is inline --> */ %>
+            <%  if (x.snippets && (options.displaySnippets === 1 || (options.displaySnippets === 2 && i === 0))) { 
+                for (var j = 0, cnt = x.snippets.length; j < cnt; j++) { %>
+                      <p class="article-snip">
+                          <span class="dj_text" rel=""><%= x.snippets[j] %></span>
+                      </p>
+            <%  } } %>
+            <% if (multimediaMode) { %>
+                <div class="article-meta">
+                    <span class="fi fi_<%= x.contentSubCategoryDescriptor %>"> </span>
+                    <span class="media-length">[<%= x.mediaLength %>]</span>
+                </div>
+            <% } %>
+        </div>
+    </li>
+    <% } %>
+</ul>

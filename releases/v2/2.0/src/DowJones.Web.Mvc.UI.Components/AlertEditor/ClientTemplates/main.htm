@@ -1,0 +1,41 @@
+﻿<div class="save-as-alert-form dj_select-box-alt">
+	<fieldset>
+		<div class="dj_form-field input alert-name">
+			<label><%= Token("alertNameLabel") %></label>
+			<input type="text" maxlength="25"/><span class="input-note"><%= Token("specialCharactersNotValid") %>
+				<br />&lt;&gt;&amp;#\%+|
+			</span>
+		</div>
+        <div class="dj_form-field read-only freeText">
+			<label><%= Token("criteria") %></label>
+			<p></p>
+		</div>
+        <div class="alert-filters"></div>
+		<div class="dj_form-field select alert-email">
+			<label><%= Token("emailAddress") %></label>
+			<input type="text" maxlength="50"/>
+		</div>
+		<div class="dj_form-field select alert-format">
+			<label><%= Token("emailFormat") %></label>
+			<select class="dj_selectbox dj_selectbox-small"></select>
+		</div>
+		<div class="dj_form-field select alert-delivery">
+			<label><%= Token("deliveryTime") %></label>
+			<select class="dj_selectbox dj_selectbox-small"></select>
+		</div>
+		<div class="dj_form-field alert-duplicates">
+			<label><%= Token("removeDuplicates") %></label>
+			<div class="dj_toggle-switch clearfix">
+				<span class="switch"><%= Token("on") %></span>
+				<div class="text-behind">
+					<span class="tb-left"><%= Token("on") %></span>
+					<span class="tb-right"><%= Token("off") %></span>
+				</div>
+			</div>
+		</div>
+	</fieldset>
+</div>
+<div class="footer">
+	<span class="dj_btn dj_btn-drk-gray"><%= Token("cancel") %></span>
+	<span class="dj_btn dj_btn-blue no-margin"><%= Token("save") %></span>
+</div>

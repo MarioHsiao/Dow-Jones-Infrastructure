@@ -1,0 +1,74 @@
+﻿@{
+    Layout = "~/Views/Shared/_CanvasLayout.cshtml";
+}
+
+<script type="text/javascript">
+
+    $(function () {
+
+        // Canvas Stuff
+        function getCanvas() {
+            return $('.dj_Canvas').findComponent(DJ.UI.AbstractCanvas);
+        }
+
+        $('#getModuleIds').click(function () {
+            alert(getCanvas().getModuleIds());
+        });
+
+        $('#getData').click(function () {
+            $dj.debug('Calling canvas.getData()...');
+            getCanvas().getData();
+        });
+
+        $('#addModule').click(function () {
+            $dj.debug('Calling canvas.addModule()...');
+            var canvas = getCanvas();
+            canvas.options.canvasId = 16156;
+            canvas.loadModule(23332, function (domId) { alert(domId); });
+        });
+
+
+        // Module Stuff
+        function getModule(el) {
+            return $(el).closest('.dj_module').findComponent(DJ.UI.AbstractCanvasModule);
+        }
+
+        var testAreas = $('.dj_module .dj_footer').append(_.template($('#moduleTestAreaTemplate').addClass('testArea').html()));
+
+        $('.GetData', testAreas).click(function () {
+            getModule(this).getData();
+        });
+
+        $('.ShowErrorMessage', testAreas).click(function () {
+            getModule(this).showErrorMessage({ code: -1, message: '**** BOOM! ****' });
+        });
+
+        $('.ShowLoading', testAreas).click(function () {
+            getModule(this).showLoadingArea();
+        });
+
+        $('.HideLoading', testAreas).click(function () {
+            getModule(this).hideLoadingArea();
+            getModule(this).showModuleArea();
+        });
+
+    });
+
+</script>
+
+<fieldset class="clearfix">
+    <legend>Canvas Actions</legend>
+    <button id="getModuleIds">Get Module IDs</button>
+    <button id="getData">Refresh Modules</button>
+    <button id="addModule">Add Module</button>
+</fieldset>
+
+
+@DJ.Render(Model)
+
+
+<script id="moduleTestAreaTemplate" type="text/html">
+    <span><a href="#" class="GetData">Get Data</a></span> |
+    <span><a href="#" class="ShowErrorMessage">Trigger Error</a></span> |
+    <span>Loading: (<a href="#" class="ShowLoading">Show</a> / <a href="#" class="HideLoading">Hide</a>)</span>
+</script>

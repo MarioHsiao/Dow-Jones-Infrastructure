@@ -1,0 +1,81 @@
+﻿ @{
+    Html.DJ().ScriptRegistry()
+        .Include("~/content/made/js/content.js", ClientResourceDependencyLevel.Global);
+
+    Html.DJ().StylesheetRegistry()
+     .Include("~/content/made/css/global.css", ClientResourceDependencyLevel.Global)
+     .Include("~/content/made/css/grid.css", ClientResourceDependencyLevel.Global)
+     .Include("~/content/made/css/style.css", ClientResourceDependencyLevel.Global)
+     .Include("~/content/made/css/page.css", ClientResourceDependencyLevel.Global); 
+ }
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Search</title>
+    <script type="text/javascript">
+        var SITE_ROOT = '@Url.Content("~/")';    
+    </script>
+    @Html.DJ().ScriptRegistry().WithUnderscoreJS(true);
+    @Html.DJ().ScriptRegistry().RenderHead()
+    @Html.DJ().StylesheetRegistry().RenderHead()
+    
+    
+
+    @RenderSection("scripts", false)
+    @RenderSection("styles", false)
+
+</head>
+<body>
+    <div class="page container_16">
+        <div class="page-header">
+            <div class="page-header-box">
+                <div class="grid_3">&nbsp;</div>
+				<div class="grid_10 module-search">
+                    <h2 class="page-title">Factiva</h2>
+	                @(Html.DJ().RenderComponent<DowJones.Web.Mvc.UI.Components.SimpleSearch.SimpleSearchControl>(new DowJones.Web.Mvc.UI.Components.Models.SimpleSearch.SimpleSearchControlModel { SearchTerm = ViewBag.SearchTerm ?? string.Empty }))
+				</div>
+                <div class="grid_3">&nbsp;</div>
+            </div>
+        </div>
+        <div class="page-subheader clearfix">
+            <div class="grid_16">
+                @*@Html.DJ().RenderComponent("SearchFilters", new DowJones.Web.Mvc.UI.Components.Models.SearchFilters.SearchFiltersModel { SearchTerm = ViewBag.SearchTerm })*@
+            </div>
+        </div>
+        <div class="page-content clearfix">
+            <div class="page-content-box">
+                @RenderBody()
+            </div>
+        </div>
+        <div class="page-footer"></div>
+    </div>        
+    @Html.DJ().StylesheetRegistry().Render()
+    @Html.DJ().ScriptRegistry().Render()
+    <script type="text/javascript">
+        function itemSSSelect()
+        { }
+        function getSSErrorInfo()
+        { }
+    </script>
+    <script type="text/javascript" src="http://utilities.int.factiva.com/handlers/emg.tools.web.widgets.autosuggest.ashx?390901">{
+    url: "http://suggest.int.factiva.com/Search/1.0",
+    controlId: "page-search-field",
+    autocompletionType: "KeyWord",
+    maxResults: "10",
+    selectFirst: false,
+    resultsClass: "dj_emg_autosuggest_results",
+    resultsOddClass: "dj_emg_autosuggest_odd",
+    resultsEvenClass: "dj_emg_autosuggest_even",
+    resultsOverClass: "dj_emg_autosuggest_over",
+    onItemSelect : itemSSSelect,
+    onError : getSSErrorInfo,
+    useSessionId: "@Session["sessionId"]"
+    }</script>
+    <script type="text/javascript">
+        $(function () {
+            $("h2.page-title").wrap($("<a>").attr("href", "@Url.Content("~/")"));
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,331 @@
+﻿#home
+{
+	h3.learn-more
+	{
+		background: none;
+	}
+	
+	h4
+	{
+		font-size: 12px;
+		font-weight: bold;
+		margin-bottom: 0.5em;
+	}
+
+	.header
+	{
+		color: #fff;
+		background: #007AB7;
+		background: -moz-linear-gradient( top center, #0094C8, #007AB7 );
+		background: -webkit-gradient( linear, 0% 0%, 0% 100%, from( #0094C8 ), to( #007AB7 ) );
+		height: 265px;
+		font-size: 16px;
+		line-height: 21px;
+		
+		p { color: #fff; }
+		
+		.container
+		{
+			padding: @indent2 @indent1;
+		}
+		
+		#slideshow
+		{
+			height: 220px;
+			
+			.slide
+			{
+				display: none;
+			
+				.left-column
+				{
+					float: left;
+					margin-right: 20px;
+					width: 384px;
+
+					.title  
+					{
+						font-size: 26px; 
+						margin-bottom: 16px;
+					}
+					
+					p
+					{
+						font-size: 15px;
+						margin: 0;
+					}
+					
+				}
+		
+				img,.zone-before-body-image-one, .zone-before-body-image-two, .zone-before-body-image-three, .zone-before-body-image-four
+				{
+					float: left; 
+				}
+			}
+		}
+		
+		#slideshow-pager
+		{
+			padding-left: 390px;
+			
+			a
+			{
+				background: url( ../../Content/cycle-button.png ) top left no-repeat;
+				float: left;
+				height: 9px;
+				margin-right: 5px;
+				width: 9px;
+			}
+			a.activeSlide
+			{
+				background-position: bottom left;
+			}
+		}
+	}
+	
+	.body .left-column
+	{
+		float: left;		
+		margin-right: @indent2;
+		width: 715px;	
+	}
+
+	.body .right-column
+	{
+		float: left;
+		width: 260px;
+	}
+	
+	table.learn-more
+	{
+		@shadow-border: solid 1px #C9D8E0;
+		@highlight-border: solid 1px #F7FBFD;
+		
+		p { margin: 0; }
+		
+		td { padding: @indent1; }
+		
+		td.spacer  
+		{
+			line-height: 0px;
+			padding: 3px; 
+		}
+		
+		td.vertical-line  
+		{
+			border-left: @shadow-border;
+			border-right: @highlight-border;
+			padding: 0; 
+		}
+		
+		td.horizontal-line
+		{
+			padding: 0;
+			border-top: @shadow-border;
+			border-bottom: @highlight-border;
+		}
+		
+		td.horizontal-spacer
+		{
+			padding: 0;
+		}
+
+		h4
+		{
+			background-position: left;
+			background-repeat: no-repeat;
+			padding-left: 20px; 
+		}
+
+		.gears{ background-image: url( ../../Content/icon-gears.png ); }
+	
+		.tools{ background-image: url( ../../Content/icon-tools.png ); }
+	
+		.users { background-image: url( ../../Content/icon-users.png ); }
+	
+		.ui { background-image: url( ../../Content/icon-ui.png ); }
+	
+		.dash { background-image: url( ../../Content/icon-dash.png ); }
+	
+		.doc { background-image: url( ../../Content/icon-doc.png ); }
+	}
+	
+	.current-release
+	{
+		background: url( ../../Content/icon-box.png ) left no-repeat;
+		padding-left: 30px;
+	}
+	
+	.blog
+	{
+		margin-left: 0;
+		
+		li
+		{
+			background: url( ../../Content/icon-bubble.png ) left no-repeat;
+			font-weight: bold;
+			height: 21px;
+			line-height: 21px;
+			list-style-type: none;
+			margin-bottom: 5px;
+			padding-left: 30px;
+		}
+	}
+	
+	.get-started
+	{
+		background: #fff;
+		border: solid 1px #B3D8EB;
+		margin-bottom: 15px;
+		
+		ol
+		{
+			margin: 0;
+			padding: 20px 0 0 20px;
+			
+			li
+			{
+				height: 26px;
+				font-size: 14px;
+				font-weight: bold;
+				line-height: 26px;
+				list-style-type: none;
+				margin-bottom: 10px;
+				text-transform: uppercase;
+				
+				span
+				{
+					background: url( ../../Content/blue-circle.png ) top left no-repeat;
+					clear: both;
+					color: #fff;
+					float: left;
+					font-weight: normal;
+					height: 18px;
+					line-height: 20px;
+					padding: 3px 20px 5px 9px;
+				}
+			}
+		}
+		
+		.contact
+		{
+			border-top: solid 1px #D6EAF3;
+			font-size: 9px;
+			padding: 10px 5px;
+			margin: 0 10px;
+			
+			a { font-size: 14px; }
+		}
+	}
+	
+	.visit-link
+	{
+		-moz-border-radius: 4px;
+		-webkit-border-radius: 4px;
+		border-radius: 4px;
+		background: #002D3D;
+		border: solid 1px #002D3D;
+		color: #fff;
+		display: block;
+		font-size: 14px;
+		height: 39px;
+		line-height: 39px;
+		padding-left: 15px;
+		text-transform: uppercase;
+		
+		span 
+		{
+			background: url( ../../Content/blue-arrow.png ) right no-repeat;
+			padding-right: 35px;
+		}
+	}
+
+	.zone-tri-panel-left, .zone-tri-panel-center, .zone-tri-panel-right, .zone-four-panel-left, .zone-four-panel-center, .zone-four-panel-right
+	{
+		header {
+			background-image: url( ../../Content/icon-gears.png );
+			background-repeat:no-repeat;
+			padding-left:20px;
+			background-position:left center;			
+		}
+
+		header h1 
+		{
+			font-size: 12px;
+			font-weight: bold;
+			margin-bottom: 0.5em;
+		}
+	}
+
+	.zone-tri-panel-left,
+	{
+		header {
+			background-image: url( ../../Content/icon-gears.png );
+		} 
+	} 
+
+
+	.zone-tri-panel-center,
+	{
+		header {
+			background-image: url( ../../Content/icon-tools.png );
+		} 
+	}
+
+	.zone-tri-panel-right,
+	{
+		header {
+			background-image: url( ../../Content/icon-users.png );
+		} 
+	}
+
+	.zone-four-panel-left,
+	{
+		header {
+			background-image: url( ../../Content/icon-ui.png );
+		} 
+	}
+	.zone-four-panel-center,
+	{
+		header {
+			background-image: url( ../../Content/icon-dash.png );
+		} 
+	}
+	.zone-four-panel-right,
+	{
+		header {
+			background-image: url( ../../Content/icon-doc.png );
+		} 
+	}
+
+
+	.zone-content, .zone-body-side-bar-one, .zone-body-side-bar-two, .zone-body-side-bar-three, .zone-body-side-bar-four
+		{
+			header h1{ 
+					background: url( ../../Content/hr.png ) bottom repeat-x;
+					color: #002437;
+					font-size: 14px;
+					margin-bottom: 0.5em;
+					padding-bottom: 8px;
+					text-transform: uppercase;
+					font-weight:bold;
+			} 
+		}
+
+	.zone-body-side-bar-one
+	 { 
+		p 
+		{ 
+			background: url( ../../Content/icon-box.png ) left no-repeat;
+			padding-left: 30px;
+		} 
+	 } 
+
+	 .zone-before-body-content-one, .zone-before-body-content-two, .zone-before-body-content-three, .zone-before-body-content-four
+	 { 
+		h1{
+			font-size: 26px; 
+			margin-bottom: 16px; 
+		} 
+	} 
+}

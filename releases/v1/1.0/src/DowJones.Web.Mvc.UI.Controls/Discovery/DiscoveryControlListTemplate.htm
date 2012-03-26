@@ -1,0 +1,15 @@
+﻿<div class="section">
+    <h3 class="title"><%= title %></h3>
+    <ol class="list">
+        <% _.each(items, function(item) { %>
+            <li class="item" data-type="<%= type %>" data-name="<%= item.Value %>" data-value="<%= item.Id %>">
+                <a class="title" title="<%= item.Value %>" href="%"><%= item.Value %></a>
+                <span class="wrapper">
+                    <span class="bar" style="width:<%= item.ShareOfTop %>%;">
+                        <span class="value"><%= item.Count > 0 ? item.Count : '' %></span>
+                    </span>
+                </span>
+            </li>
+        <% }); %>
+    </ol>
+</div>

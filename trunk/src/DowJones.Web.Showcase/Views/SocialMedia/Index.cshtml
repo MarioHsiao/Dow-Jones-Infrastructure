@@ -1,0 +1,11 @@
+﻿@model SocialMediaViewModel
+@{
+    ViewBag.Title = "Social Media";
+    Layout = "_UXWrapper.cshtml";
+}
+@section RecentTweets {
+    @Html.DJ().Render(@Model.TweetLinesModel)
+}
+@section TopExperts {
+    @Html.DJ().Render(@Model.ExpertsModel)
+}

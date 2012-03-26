@@ -1,0 +1,318 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{1E5B6A24-ED92-4ABE-AD3B-9889E16CB01F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DowJones.Web.Mvc.Search</RootNamespace>
+    <AssemblyName>DowJones.Web.Mvc.Search</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CommonServiceLocator.NinjectAdapter">
+      <HintPath>..\packages\Ninject.2.2.0.0\lib\.NetFramework 4.0\extensions\CommonServiceLocator.NinjectAdapter.dll</HintPath>
+    </Reference>
+    <Reference Include="factiva.gateway.messages, Version=7.5.0.68, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.68\lib\factiva.gateway.messages.dll</HintPath>
+    </Reference>
+    <Reference Include="FactivaGateway, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.68\lib\FactivaGateway.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="Interop.FCMLib">
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.68\lib\Interop.FCMLib.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.0.3.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.4.0.3\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject">
+      <HintPath>..\packages\Ninject.2.2.0.0\lib\.NetFramework 4.0\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\aspnetmvc\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\webpages\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controllers\ArticleControllerBase.cs" />
+    <Compile Include="Controllers\SearchBuilderControllerBase.cs" />
+    <Compile Include="Controllers\SearchControllerBase.cs" />
+    <Compile Include="Managers\Preferences\ISearchBuilderPreferences.cs" />
+    <Compile Include="Managers\Preferences\SearchBuilderPreferences.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Requests\Advanced\AdvancedSearchRequest.cs" />
+    <Compile Include="Requests\Alert\AlertSearchRequest.cs" />
+    <Compile Include="Requests\Alert\AlertSearchRequestMapper.cs" />
+    <Compile Include="Requests\Article\ArticlesRequest.cs" />
+    <Compile Include="Requests\Common\SearchRequestDefaultSettingFactory.cs" />
+    <Compile Include="Requests\Filters\QueryFilter.cs" />
+    <Compile Include="Requests\Filters\QueryFilterNameResolver.cs" />
+    <Compile Include="Requests\Filters\QueryFilters.cs" />
+    <Compile Include="Requests\Filters\QueryFiltersToSearchQueryFiltersMapper.cs" />
+    <Compile Include="Requests\Filters\SearchFilter.cs" />
+    <Compile Include="Requests\Filters\SearchQueryFiltersToQueryFiltersMapper.cs" />
+    <Compile Include="Requests\Freetext\FreeTextSearchRequest.cs" />
+    <Compile Include="Requests\Advanced\AdvancedSearchRequestMapper.cs" />
+    <Compile Include="Requests\Common\EntityTypeMapper.cs" />
+    <Compile Include="Requests\Freetext\FreeTextSearchRequestMapper.cs" />
+    <Compile Include="Requests\Freetext\FreeTextSearchRequestToQueryMapper.cs" />
+    <Compile Include="Requests\Modules\ModuleSearchRequest.cs" />
+    <Compile Include="Requests\Modules\ModuleSearchRequestMapper.cs" />
+    <Compile Include="Requests\SearchForm\SearchFormSearchQueryRequestMapper.cs" />
+    <Compile Include="Requests\Common\SourceFilterTypeTypeMapper.cs" />
+    <Compile Include="Requests\SearchForm\SearchFormSearchRequest.cs" />
+    <Compile Include="Requests\Simple\SimpleSearchRequestToQueryMapper.cs" />
+    <Compile Include="Resources\EmbeddedResources.cs" />
+    <Compile Include="UI\Components\Builders\Module\ModuleSearchBuilderComponent.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModuleSearchBuilderComponent.cshtml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Components\Builders\SearchBuilderHelpers.cs" />
+    <Compile Include="UI\Components\Results\Articles\ArticlesComponent2.cs">
+      <DependentUpon>ArticlesComponent.cshtml</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="UI\Components\Results\AuthorOutletNavigator.cs" />
+    <Compile Include="UI\Components\Results\Authors\AuthorsSearchResults.cs" />
+    <Compile Include="UI\Components\Results\Authors\AuthorsSearchResultsComponent.cs">
+      <DependentUpon>AuthorsSearchResultsComponent.cshtml</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="UI\Components\Results\Outlets\OutletsSearchResults.cs" />
+    <Compile Include="UI\Components\Results\Outlets\OutletsSearchResultsComponent.cs">
+      <DependentUpon>OutletsSearchResultsComponent.cshtml</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="UI\Components\Results\SearchResults.cs" />
+    <Compile Include="UI\Components\Results\Headlines\HeadlineSearchResultsComponent.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HeadlineSearchResultsComponent.cshtml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\ArticlesViewModel.cs" />
+    <Compile Include="ViewModels\SearchBuilderViewModel.cs" />
+    <Compile Include="SearchBindingModule.cs" />
+    <Compile Include="UI\Components\Builders\Alert\AlertSearchBuilder.cs" />
+    <Compile Include="UI\Components\Builders\Alert\AlertSearchBuilderComponent.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AlertSearchBuilderComponent.cshtml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Components\Builders\FreeText\FreeTextSearchBuilderComponent.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FreeTextSearchBuilderComponent.cshtml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Components\Builders\FreeText\FreeTextSearchBuilder.cs" />
+    <Compile Include="UI\Components\Builders\Module\ModuleSearchBuilder.cs" />
+    <Compile Include="UI\Components\Builders\QueryBuilderComponent.cs" />
+    <Compile Include="UI\Components\Builders\SearchBuilder.cs" />
+    <Compile Include="UI\Components\Builders\SearchBuilderFactory.cs" />
+    <Compile Include="UI\Components\Builders\Simple\SimpleSearchBuilder.cs" />
+    <Compile Include="UI\Components\Builders\Simple\SimpleSearchBuilderComponent.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SimpleSearchBuilderComponent.cshtml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Components\Builders\SourceListService.cs" />
+    <Compile Include="UI\Components\Filters\SearchFiltersComponent.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SearchFiltersComponent.cshtml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Components\Filters\SearchFilters.cs" />
+    <Compile Include="UI\Components\SearchNavigator\SearchNavigatorComponent.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SearchNavigatorComponent.cshtml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Components\SearchNavigator\SearchNavigatorMapper.cs" />
+    <Compile Include="UI\Components\SearchNavigator\SearchNavigatorNode.cs" />
+    <Compile Include="UI\Components\SearchNavigator\SearchNavigatorTree.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SearchNavigatorTree.cshtml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Components\DidYouMean\DidYouMeanComponent.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DidYouMeanComponent.cshtml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Components\DidYouMean\DidYouMean.cs" />
+    <Compile Include="UI\Components\SearchNavigator\SearchNavigator.cs" />
+    <Compile Include="UI\Components\Results\Headlines\HeadlineSearchResults.cs" />
+    <Compile Include="Requests\Common\SearchRequestMapper.cs" />
+    <Compile Include="Requests\Simple\SimpleSearchRequestMapper.cs" />
+    <Compile Include="Requests\Common\SearchRequest.cs" />
+    <Compile Include="Requests\Common\SearchRequestModelBinder.cs" />
+    <Compile Include="Requests\Simple\SimpleSearchRequest.cs" />
+    <Compile Include="ViewModels\SearchResultsViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UI\Components\Builders\QueryBuilder.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\SearchResultsPage.js" />
+    <EmbeddedResource Include="UI\Components\Builders\Simple\SimpleSearchBuilder.js" />
+    <EmbeddedResource Include="UI\Components\Results\Headlines\HeadlineSearchResults.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="DowJones.Web.Mvc.Search.nuspec-template" />
+    <None Include="packages.config" />
+    <None Include="UI\Components\Builders\Alert\AlertSearchBuilderComponent.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>AlertSearchBuilderComponent.cs</LastGenOutput>
+    </None>
+    <None Include="UI\Components\Builders\FreeText\FreeTextSearchBuilderComponent.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>FreeTextSearchBuilderComponent.cs</LastGenOutput>
+    </None>
+    <None Include="UI\Components\Builders\Module\ModuleSearchBuilderComponent.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>ModuleSearchBuilderComponent.cs</LastGenOutput>
+    </None>
+    <None Include="UI\Components\Builders\Simple\SimpleSearchBuilderComponent.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>SimpleSearchBuilderComponent.cs</LastGenOutput>
+    </None>
+    <None Include="UI\Components\Filters\SearchFiltersComponent.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>SearchFiltersComponent.cs</LastGenOutput>
+    </None>
+    <EmbeddedResource Include="UI\Components\Results\Articles\ArticlesComponent.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>ArticlesComponent2.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="UI\Components\Results\Authors\AuthorsSearchResultsComponent.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>AuthorsSearchResultsComponent.cs</LastGenOutput>
+    </None>
+    <None Include="UI\Components\Results\Outlets\OutletsSearchResultsComponent.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>OutletsSearchResultsComponent.cs</LastGenOutput>
+    </None>
+    <None Include="UI\Components\SearchNavigator\SearchNavigatorComponent.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>SearchNavigatorComponent.cs</LastGenOutput>
+    </None>
+    <None Include="UI\Components\SearchNavigator\SearchNavigatorTree.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>SearchNavigatorTree.cs</LastGenOutput>
+    </None>
+    <None Include="UI\Components\DidYouMean\DidYouMeanComponent.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>DidYouMeanComponent.cs</LastGenOutput>
+    </None>
+    <None Include="UI\Components\Results\Headlines\HeadlineSearchResultsComponent.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>HeadlineSearchResultsComponent.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DowJones.Assemblers\DowJones.Assemblers.csproj">
+      <Project>{2E7ABB0C-DFDE-451E-AFD4-41D2894399BF}</Project>
+      <Name>DowJones.Assemblers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DowJones.Infrastructure\DowJones.Infrastructure.csproj">
+      <Project>{095DE252-E183-4AE6-824A-B4504AE737C1}</Project>
+      <Name>DowJones.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DowJones.Web.Mvc.UI.Components.Models\DowJones.Web.Mvc.UI.Components.Models.csproj">
+      <Project>{32DA5CA1-0038-4110-BC24-938B39439CE7}</Project>
+      <Name>DowJones.Web.Mvc.UI.Components.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DowJones.Web.Mvc.UI.Components\DowJones.Web.Mvc.UI.Components.csproj">
+      <Project>{8F187465-8B2C-4557-B3A2-02F7B4A6C0FE}</Project>
+      <Name>DowJones.Web.Mvc.UI.Components</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DowJones.Web.Mvc\DowJones.Web.Mvc.csproj">
+      <Project>{3E440D53-ACA6-422A-8FC8-778D505AD1E9}</Project>
+      <Name>DowJones.Web.Mvc</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UI\Components\Builders\FreeText\FreeTextSearchBuilder.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UI\Components\DidYouMean\DidYouMean.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UI\Components\Builders\Alert\AlertSearchBuilder.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UI\Components\Filters\SearchFilters.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UI\Components\Filters\SearchFiltersManager.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UI\Components\SearchNavigator\SearchNavigator.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UI\Components\Results\Authors\AuthorsSearchResults.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UI\Components\Results\Headlines\resources.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UI\Components\Results\Outlets\OutletsSearchResults.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UI\Components\Builders\Module\ModuleSearchBuilder.js" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

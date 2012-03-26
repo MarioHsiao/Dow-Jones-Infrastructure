@@ -1,0 +1,43 @@
+﻿@using DowJones.Web.Mvc.UI.Components.Common.Types;
+@using Factiva.Gateway.Messages.CodedNews;
+
+@{ ViewBag.Title = "Simple Headline List"; }
+
+@(Html.DJ().RenderComponent<DowJones.Web.Mvc.UI.Components.HeadlineList.HeadlineListControl>(Model))
+
+
+@*<script language="javascript" type="text/javascript">
+    function OnInternalSnippetLinkClick() { $dj.debug('OnInternalSnippetLinkClick fired'); }
+    function OnHeadlineDrop() { $dj.debug('OnHeadlineDrop fired'); }
+    function OnHeadlineHoverOut() { $dj.debug('OnHeadlineHoverOut fired'); }
+    function OnHeadlineHoverOver() { $dj.debug('OnHeadlineHoverOver fired'); }
+    function OnHeadlineClipClick() { $dj.debug('OnHeadlineClipClick fired'); }
+    function OnMoreLikeThisClick() { $dj.debug('OnMoreLikeThisClick fired'); }
+    function OnEntityClick() { $dj.debug('OnEntityClick fired'); }
+</script>
+@(
+ Html.DJ().HeadlineList()
+        .Named("headlineList")
+        //.MaxNumHeadlinesToShow(4)		// pass
+        .DisplaySnippets(SnippetDisplayType.Inline)		// *pass (need to test Hover)
+        //.DisplayIconography(true)	// pass
+        //.FirstHeadlineToShow(4)	// pass
+        //.DisplayDuplicates(true)	//pass
+        .DisplayMoreLikeThis(true)
+        .DisplayDeleteTrigger(true)		// pass
+        .DisplayClipTrigger (true)     // pass
+        .DisplayNumbering (true)    // pass  
+        .DisplayAccessionNumbers(true)
+        .DisplayNoResultsToken(false)
+        .DisplayHeadlineTooltip(true)
+        .EnableHeadlineDraging(true)		// pass
+        .TruncationType(TruncationType.XSmall)
+        .ClientEvents(events => events.OnInternalSnippetLinkClick("OnInternalSnippetLinkClick"))
+        .ClientEvents(events => events.OnHeadlineClipClick("OnHeadlineClipClick"))
+        .ClientEvents(events => events.OnMoreLikeThisClick("OnMoreLikeThisClick"))
+        .ClientEvents(events => events.OnEntityClick("OnEntityClick"))
+        .ClientEvents(events => events.OnHeadlineHoverOver("OnHeadlineHoverOver"))
+        .ClientEvents(events => events.OnHeadlineHoverOut("OnHeadlineHoverOut"))
+        .ClientEvents(events => events.OnHeadlineDrop("OnHeadlineDrop"))
+
+) *@

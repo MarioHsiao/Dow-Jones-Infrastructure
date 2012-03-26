@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>DowJones.Web.Mvc.Diagnostics.v3</id>
+        <version>$version$</version>
+        <title>Dow Jones ASP.NET MVC Diagnostics extensions</title>
+        <description>Dow Jones ASP.NET MVC Diagnostics extensions</description>
+        <authors>Dow Jones Platform Integration Team</authors>
+        <tags>DowJones</tags>
+        <language>en-US</language>
+        <projectUrl>http://dowjones.com</projectUrl>
+        <licenseUrl>http://dowjones.com</licenseUrl>
+        <dependencies>
+            <dependency id="DowJones.Infrastructure.v3" version="$version$" />
+            <dependency id="DowJones.Web.Mvc.v3" version="$version$" />
+        </dependencies>
+    </metadata>
+    <files>
+        <file src="DowJones.Web.Mvc.Diagnostics.dll" target="lib" />
+        <file src="DowJones.Web.Mvc.Diagnostics.pdb" target="lib" />
+    </files>
+</package>

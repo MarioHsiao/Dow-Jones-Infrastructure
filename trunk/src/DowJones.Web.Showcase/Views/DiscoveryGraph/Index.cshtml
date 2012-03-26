@@ -1,0 +1,353 @@
+﻿@{
+    ViewBag.Title = "Discovery Graph";
+    Html.DJ().StylesheetRegistry()
+        .Include("~/Content/css/Components/DiscoveryGraph/discoveryGraph.css");
+}
+ 
+@Html.DJ().ScriptRegistry().OnDocumentReady("SetDiscoveryGraphData();")
+@Html.DJ().RenderComponent("DiscoveryGraph", Model)
+<script type="text/javascript">
+    function SetDiscoveryGraphData() {
+        var data = {
+            discovery: 
+            {
+                companyNewsEntities: [
+{
+    code: "mcrost",
+    currentTimeFrameNewsVolume: {
+        displayText: {
+            value: "3,319"
+        },
+        value: 3319
+    },
+    descriptor: "Microsoft Corp",
+    searchContextRef: null,
+    type: 1,
+    typeDescriptor: "Company"
+},
+{
+    code: "goog",
+    currentTimeFrameNewsVolume: {
+        displayText: {
+            value: "3,232"
+        },
+        value: 3232
+    },
+    descriptor: "Google Inc",
+    searchContextRef: null,
+    type: 1,
+    typeDescriptor: "Company"
+},
+{
+    code: "whoz",
+    currentTimeFrameNewsVolume: {
+        displayText: {
+            value: "2,301"
+        },
+        value: 2301
+    },
+    descriptor: "World Health Organization",
+    searchContextRef: null,
+    type: 1,
+    typeDescriptor: "Company"
+},
+{
+    code: "usfda",
+    currentTimeFrameNewsVolume: {
+        displayText: {
+            value: "2,186"
+        },
+        value: 2186
+    },
+    descriptor: "Food and Drug Administration",
+    searchContextRef: null,
+    type: 1,
+    typeDescriptor: "Company"
+},
+{
+    code: "ibm",
+    currentTimeFrameNewsVolume: {
+        displayText: {
+            value: "2,085"
+        },
+        value: 2085
+    },
+    descriptor: "International Business Machines Corp",
+    searchContextRef: null,
+    type: 1,
+    typeDescriptor: "Company"
+}
+],
+                industryNewsEntities: [
+{
+    code: "iinv",
+    currentTimeFrameNewsVolume: {
+        displayText: {
+            value: "1,296"
+        },
+        value: 1296
+    },
+    descriptor: "Investing/Securities",
+    searchContextRef: null,
+    type: 4,
+    typeDescriptor: "Industry"
+},
+{
+    code: "i3302",
+    currentTimeFrameNewsVolume: {
+        displayText: {
+            value: "809"
+        },
+        value: 809
+    },
+    descriptor: "Computers/Electronics",
+    searchContextRef: null,
+    type: 4,
+    typeDescriptor: "Industry"
+},
+{
+    code: "i330202",
+    currentTimeFrameNewsVolume: {
+        displayText: {
+            value: "800"
+        },
+        value: 800
+    },
+    descriptor: "Software",
+    searchContextRef: null,
+    type: 4,
+    typeDescriptor: "Industry"
+},
+{
+    code: "iconssv",
+    currentTimeFrameNewsVolume: {
+        displayText: {
+            value: "799"
+        },
+        value: 799
+    },
+    descriptor: "Consumer Services",
+    searchContextRef: null,
+    type: 4,
+    typeDescriptor: "Industry"
+},
+{
+    code: "i3303",
+    currentTimeFrameNewsVolume: {
+        displayText: {
+            value: "650"
+        },
+        value: 650
+    },
+    descriptor: "Networking",
+    searchContextRef: null,
+    type: 4,
+    typeDescriptor: "Industry"
+}
+],
+                personNewsEntities: [
+{
+    code: "12302325",
+    currentTimeFrameNewsVolume: {
+        displayText: {
+            value: "38"
+        },
+        value: 38
+    },
+    descriptor: "Carol A Bartz",
+    searchContextRef: null,
+    type: 2,
+    typeDescriptor: "Person"
+},
+{
+    code: "12399685",
+    currentTimeFrameNewsVolume: {
+        displayText: {
+            value: "34"
+        },
+        value: 34
+    },
+    descriptor: "Scott Thompson",
+    searchContextRef: null,
+    type: 2,
+    typeDescriptor: "Person"
+},
+{
+    code: "12403950",
+    currentTimeFrameNewsVolume: {
+        displayText: {
+            value: "26"
+        },
+        value: 26
+    },
+    descriptor: "Mike Lazaridis",
+    searchContextRef: null,
+    type: 2,
+    typeDescriptor: "Person"
+},
+{
+    code: "48199442",
+    currentTimeFrameNewsVolume: {
+        displayText: {
+            value: "26"
+        },
+        value: 26
+    },
+    descriptor: "Bill A Ackman",
+    searchContextRef: null,
+    type: 2,
+    typeDescriptor: "Person"
+},
+{
+    code: "47859360",
+    currentTimeFrameNewsVolume: {
+        displayText: {
+            value: "24"
+        },
+        value: 24
+    },
+    descriptor: "Thorsten Heins",
+    searchContextRef: null,
+    type: 2,
+    typeDescriptor: "Person"
+}
+],
+                regionNewsEntities: [
+{
+    code: "usa",
+    currentTimeFrameNewsVolume: {
+        displayText: {
+            value: "6,440"
+        },
+        value: 6440
+    },
+    descriptor: "United States",
+    searchContextRef: null,
+    type: 6,
+    typeDescriptor: "Region"
+},
+{
+    code: "usca",
+    currentTimeFrameNewsVolume: {
+        displayText: {
+            value: "2,127"
+        },
+        value: 2127
+    },
+    descriptor: "California",
+    searchContextRef: null,
+    type: 6,
+    typeDescriptor: "Region"
+},
+{
+    code: "usw",
+    currentTimeFrameNewsVolume: {
+        displayText: {
+            value: "2,107"
+        },
+        value: 2107
+    },
+    descriptor: "Western U.S.",
+    searchContextRef: null,
+    type: 6,
+    typeDescriptor: "Region"
+},
+{
+    code: "use",
+    currentTimeFrameNewsVolume: {
+        displayText: {
+            value: "854"
+        },
+        value: 854
+    },
+    descriptor: "Northeast U.S.",
+    searchContextRef: null,
+    type: 6,
+    typeDescriptor: "Region"
+},
+{
+    code: "usny",
+    currentTimeFrameNewsVolume: {
+        displayText: {
+            value: "707"
+        },
+        value: 707
+    },
+    descriptor: "New York",
+    searchContextRef: null,
+    type: 6,
+    typeDescriptor: "Region"
+}
+],
+                subjectNewsEntities: [
+{
+    code: "ccat",
+    currentTimeFrameNewsVolume: {
+        displayText: {
+            value: "4,500"
+        },
+        value: 4500
+    },
+    descriptor: "Corporate/Industrial News",
+    searchContextRef: null,
+    type: 5,
+    typeDescriptor: "NewsSubject"
+},
+{
+    code: "m11",
+    currentTimeFrameNewsVolume: {
+        displayText: {
+            value: "2,805"
+        },
+        value: 2805
+    },
+    descriptor: "Equity Markets",
+    searchContextRef: null,
+    type: 5,
+    typeDescriptor: "NewsSubject"
+},
+{
+    code: "gcat",
+    currentTimeFrameNewsVolume: {
+        displayText: {
+            value: "2,570"
+        },
+        value: 2570
+    },
+    descriptor: "Political/General News",
+    searchContextRef: null,
+    type: 5,
+    typeDescriptor: "NewsSubject"
+},
+{
+    code: "nrmf",
+    currentTimeFrameNewsVolume: {
+        displayText: {
+            value: "1,902"
+        },
+        value: 1902
+    },
+    descriptor: "Routine Market/Financial News",
+    searchContextRef: null,
+    type: 5,
+    typeDescriptor: "NewsSubject"
+},
+{
+    code: "c1522",
+    currentTimeFrameNewsVolume: {
+        displayText: {
+            value: "1,495"
+        },
+        value: 1495
+    },
+    descriptor: "Share Price Movement/Disruptions",
+    searchContextRef: null,
+    type: 5,
+    typeDescriptor: "NewsSubject"
+}
+]
+            }
+        }
+$("#DiscoveryGraph-0").findComponent(DJ.UI.DiscoveryGraph).setData(data);
+    }
+</script>

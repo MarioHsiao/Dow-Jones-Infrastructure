@@ -1,0 +1,10 @@
+﻿<div class="section">
+    <h3 class="title">Keywords</h3>
+    <div class="cloud">
+        <% _.each(keywords, function(keyword) { %>
+            <span class="item" data-type="text" data-name="<%= keyword.Value %>" data-value="<%= keyword.Id %>">
+                <a class="size-<%= Math.ceil(keyword.ShareOfTop / 20) %>" href="%"><%= keyword.Value %></a>
+            </span>
+        <% }); %>
+    </div>
+</div>

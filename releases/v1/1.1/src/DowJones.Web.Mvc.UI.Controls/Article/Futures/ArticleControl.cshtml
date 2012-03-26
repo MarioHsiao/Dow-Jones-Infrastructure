@@ -1,0 +1,31 @@
+@model DowJones.Web.Mvc.UI.Components.Models.Article.ArticleModel
+@ClientPlugin dj_Article
+@ScriptResource RelativeResourceName=ArticleControl.js
+@StylesheetResource RelativeResourceName=ArticleControl.css
+@ClientTemplate RelativeResourceName=ArticleControlClientTemplate.htm, TemplateId=atccontent
+@{ CssClass = "dj_Article"; }
+
+@if (Model != null)
+{
+    <div class="wrap">
+        @if (Model.ShowArticleLogo)
+        {
+        <div class="article-logo">
+            <img title="@Model.Source" src="@Model.ArticleLogoUrl" />
+        </div>
+        }
+        <h4 class="headline">
+            @Model.Headline							
+        </h4>
+        <div class="meta">
+            <span class="source" data-djid="@Model.SourceCode">@Model.Source</span>
+            |
+            <span class="date-stamp">@Model.PublicationDateDisplay</span>
+            <span class="byline">@Model.Byline</span>
+            <span class="author">@Model.Author</span>
+        </div>
+        <div class="body">
+            <p>@Html.Raw(Model.Body)</p>
+        </div>
+    </div>
+}

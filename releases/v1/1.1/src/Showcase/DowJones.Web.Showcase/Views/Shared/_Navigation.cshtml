@@ -1,0 +1,23 @@
+﻿@using DowJones.Web.Navigation
+
+@{ var navigationMenu = ViewData.SingleOrDefault<INavigationMenu>(); }
+
+<ul id="main-nav-menu" class="sf-menu">
+    @foreach (dynamic node in navigationMenu.Nodes) {
+        <li class="@(node.IsActive ? "active-menu-item" : null)" 
+            @foreach (var prop in node.Properties) { @string.Format(@"data-{0}={1}", prop.Key, prop.Value) }
+        >
+            <span>@node.DisplayName</span>
+
+            <ul>
+                @foreach(dynamic child in node) {
+                    <li class="@(child.IsActive ? "active-menu-item" : null)" 
+                        @foreach (var prop in child.Properties) { @string.Format(@"data-{0}={1}", prop.Key, prop.Value) }
+                    >
+                        <a href="@child.ToUrl(Url)"><span>@child.DisplayName</span></a>
+                    </li>
+                }
+            </ul>
+        </li>
+    }
+</ul>

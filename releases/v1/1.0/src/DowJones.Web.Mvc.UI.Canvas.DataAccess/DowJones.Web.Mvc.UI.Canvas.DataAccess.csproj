@@ -1,0 +1,394 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{5CA248B3-9BCE-46D6-96B6-1E1CCB36E3DB}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DowJones.Web.Mvc.UI.Canvas.DataAccess</RootNamespace>
+    <AssemblyName>DowJones.Web.Mvc.UI.Canvas.DataAccess</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <GenerateSerializationAssemblies>On</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Argotic.Common">
+      <HintPath>..\packages\Argotic.Common.2008.0.2.0\lib\Net35\Argotic.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Argotic.Core">
+      <HintPath>..\packages\Argotic.Core.2008.0.2.0\lib\Net35\Argotic.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Argotic.Extensions">
+      <HintPath>..\packages\Argotic.Extensions.2008.0.2.0\lib\Net35\Argotic.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="DowJones.Parallel">
+      <HintPath>..\packages\DowJones.Parallel.2011.1.22\lib\DowJones.Parallel.dll</HintPath>
+    </Reference>
+    <Reference Include="factiva.gateway.messages">
+      <HintPath>..\packages\Factiva.Gateway.Messages.7.5.0.29\lib\factiva.gateway.messages.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FactivaGateway">
+      <HintPath>..\packages\Factiva.Gateway.Messages.7.5.0.29\lib\FactivaGateway.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\packages\log4net.1.2.10\lib\2.0\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.4.0.1\lib\40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject">
+      <HintPath>..\packages\Ninject.2.2.0.0\lib\.NetFramework 4.0\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Assemblers\Common\MarketIndexIntradayResultAssembler.cs" />
+    <Compile Include="Assemblers\Common\ExecutiveAssembler.cs" />
+    <Compile Include="Assemblers\Common\HistoricalNewsDataResultAssembler.cs" />
+    <Compile Include="Assemblers\Common\HistoricalStockDataResultAssembler.cs" />
+    <Compile Include="Assemblers\Common\PortalHeadlineListDataResultAssembler.cs" />
+    <Compile Include="Assemblers\Common\QueryEntityAssembler.cs" />
+    <Compile Include="Assemblers\Common\RegionalMapAssembler.cs" />
+    <Compile Include="Assemblers\Common\SummaryRegionalMapAssembler.cs" />
+    <Compile Include="Assemblers\IAssembler.cs" />
+    <Compile Include="Assemblers\Common\QuoteAssembler.cs" />
+    <Compile Include="Assemblers\NewsPages\AbstractPageModuleAssembler.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Assemblers\NewsPages\ModuleExAssembler.cs" />
+    <Compile Include="Assemblers\NewsPages\NewsPageAssembler.cs" />
+    <Compile Include="Assemblers\NewsPages\NewsPageModuleAssembler.cs" />
+    <Compile Include="Cache\Items\CompanyOverview\CompanyOverviewRecentHeadlinesCacheKeyGenerator.cs" />
+    <Compile Include="Cache\Items\CompanyOverview\CompanyOverviewScreenCacheKeyGenerator.cs" />
+    <Compile Include="Cache\Items\CustomTopics\CustomTopicsCacheKeyGenerator.cs" />
+    <Compile Include="Cache\Items\PageListCacheKeyGenerator.cs" />
+    <Compile Include="Cache\Items\Radar\RadarCacheKeyGnerator.cs" />
+    <Compile Include="Cache\Items\Sources\SourcesCacheKeyGenerator.cs" />
+    <Compile Include="Cache\Items\Summary\AbstractSummaryCacheKeyGenerator.cs" />
+    <Compile Include="Cache\Items\Summary\SummaryRecentHeadlinesCacheKeyGenerator.cs" />
+    <Compile Include="Cache\Items\Summary\SummaryRecentVideosCacheKeyGenerator.cs" />
+    <Compile Include="Cache\Items\Summary\SummaryRegionalMapItemCacheKeyGenerator.cs" />
+    <Compile Include="Cache\Items\Summary\SummaryTrendingDataCacheKeyGenerator.cs" />
+    <Compile Include="Cache\Items\Syndication\SyndicationCacheKeyGenerator.cs" />
+    <Compile Include="Cache\Items\TopNews\TopNewsCacheKeyGenerator.cs" />
+    <Compile Include="Cache\Items\Trending\TrendingCacheKeyGenerator.cs" />
+    <Compile Include="Charting\ChartService.cs" />
+    <Compile Include="Charting\StockDataService.cs" />
+    <Compile Include="Cache\CacheKeyGenerator.cs" />
+    <Compile Include="Cache\Items\Alerts\AlertCachekeyGenerator.cs" />
+    <Compile Include="Cache\Items\Newsstand\NewsstandCacheKeyGenerator.cs" />
+    <Compile Include="Cache\Items\PageCacheKeyGenerator.cs" />
+    <Compile Include="Cache\Items\RegionalMap\RegionalMapItemCacheKeyGenerator.cs" />
+    <Compile Include="CoreDataAccessFrameworkBindingModule.cs" />
+    <Compile Include="Interfaces\ICacheDataList.cs" />
+    <Compile Include="Interfaces\IHeadlinesRequest.cs" />
+    <Compile Include="Interfaces\IModuleList.cs" />
+    <Compile Include="Interfaces\IModuleListRequest.cs" />
+    <Compile Include="Interfaces\IModuleManager.cs" />
+    <Compile Include="Interfaces\IModuleRequest.cs" />
+    <Compile Include="Interfaces\IPage.cs" />
+    <Compile Include="Interfaces\IChacheEnabledPageAssetsManagerFactory.cs" />
+    <Compile Include="Interfaces\IPageRequest.cs" />
+    <Compile Include="Interfaces\IPagesList.cs" />
+    <Compile Include="Interfaces\IPagesListRequest.cs" />
+    <Compile Include="Interfaces\IRequest.cs" />
+    <Compile Include="Interfaces\IServicePartResult.cs" />
+    <Compile Include="Interfaces\IPackage.cs" />
+    <Compile Include="Interfaces\IPortalHeadlines.cs" />
+    <Compile Include="Interfaces\IServiceResult.cs" />
+    <Compile Include="Managers\Common\BaseManager.cs" />
+    <Compile Include="Managers\Common\CanvasRenderingManager.cs" />
+    <Compile Include="Managers\Common\CommonTypes.cs" />
+    <Compile Include="Managers\Common\PageAssetManager.cs" />
+    <Compile Include="Managers\Common\ChacheEnabledPageAssetsManagerFactory.cs" />
+    <Compile Include="Managers\Common\PageListManager.cs" />
+    <Compile Include="..\SolutionInfo.cs">
+      <Link>Properties\SolutionInfo.cs</Link>
+    </Compile>
+    <Compile Include="Assemblers\NewsPages\NewspageMetadataUtility.cs" />
+    <Compile Include="Models\Search\Core.cs" />
+    <Compile Include="Models\Common\Core.cs" />
+    <Compile Include="Models\Common\QueryEntity.cs" />
+    <Compile Include="Models\Enum.cs" />
+    <Compile Include="Models\Executive\Core.cs" />
+    <Compile Include="Models\Multimedia\MediaContents.cs" />
+    <Compile Include="Models\NewsPages\Module.cs" />
+    <Compile Include="Models\NewsPages\NewsPages.cs" />
+    <Compile Include="Models\News\Core.cs" />
+    <Compile Include="Packages\AbstractHeadlinePackage.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Packages\AlertListPackage.cs" />
+    <Compile Include="Packages\AlertsPackage.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Models\Company\Core.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Packages\TopNewsCommunicator\AbstractTopNewsCommunicatorPackage.cs" />
+    <Compile Include="Packages\TopNewsCommunicator\TopNewsCommunicatorBreakingNewsPackage.cs" />
+    <Compile Include="Packages\CompanyOverview\AbstractCompanyPackage.cs" />
+    <Compile Include="Packages\CompanyOverview\CompanyChartPackage.cs" />
+    <Compile Include="Packages\CompanyOverview\CompanyRecentArticlesPackage.cs" />
+    <Compile Include="Packages\CompanyOverview\CompanySnapshotPackage.cs" />
+    <Compile Include="Packages\CompanyOverview\CompanyTrendingPackage.cs" />
+    <Compile Include="Packages\CustomTopicsPackage.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Packages\Headlines\PortalHeadlinesPackage.cs" />
+    <Compile Include="Packages\ModulePackage.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Packages\Multimedia\MultimediaPackage.cs" />
+    <Compile Include="Packages\Page\ReplaceModulePackage.cs" />
+    <Compile Include="Packages\Page\NewsPagesListPackage.cs" />
+    <Compile Include="Packages\Page\NewsPagePackage.cs" />
+    <Compile Include="Packages\NewsstandPackage.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Packages\RadarPackage.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Packages\RegionalMapPackage.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Packages\SourcePackage.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Packages\Page\SubscribableNewsPagesListPackage.cs" />
+    <Compile Include="Packages\SummaryPackage.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Packages\SyndicationItemsPackage.cs" />
+    <Compile Include="Packages\SyndicationPackage.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Packages\TopNewsCommunicator\TopNewsCommunicatorRecentHeadlinesPackage.cs" />
+    <Compile Include="Packages\TopNewsCommunicator\TopNewsCommunicatorTrendingPackage.cs" />
+    <Compile Include="Packages\TopNewsPackage.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Packages\TrendingPortalPackage.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Requests\AbstractModuleGetRequest.cs" />
+    <Compile Include="Requests\SimpleAlertServiceRequest.cs" />
+    <Compile Include="Requests\TopNewsCommunicatorDataRequest.cs" />
+    <Compile Include="Requests\CompanyOverviewNewsPageModuleDataRequest.cs" />
+    <Compile Include="Requests\Core\BaseModuleRequest.cs" />
+    <Compile Include="Requests\Create\AlertsNewsPageModuleCreateRequest.cs" />
+    <Compile Include="Requests\Create\CompanyOverviewNewsPageModuleCreateRequest.cs" />
+    <Compile Include="Requests\Create\SyndicationNewsPageModuleCreateRequest.cs" />
+    <Compile Include="Requests\Headlines\PortalHeadlinesRequest.cs" />
+    <Compile Include="Requests\Multimedia\MultimediaRequest.cs" />
+    <Compile Include="Requests\Page\AddModuleToPageRequest.cs" />
+    <Compile Include="Requests\Page\AddPageByIdRequest.cs" />
+    <Compile Include="Requests\Page\DeletePageRequest.cs" />
+    <Compile Include="Requests\Page\CopyPageRequest.cs" />
+    <Compile Include="Requests\Page\DeclinePageRequest.cs" />
+    <Compile Include="Requests\Page\GetSubscribableNewsPagesListRequest.cs" />
+    <Compile Include="Requests\Page\PageSubscriptionRequest.cs" />
+    <Compile Include="Requests\Page\ReplaceModuleRequest.cs" />
+    <Compile Include="Requests\Page\UpdatePagePositionsRequest.cs" />
+    <Compile Include="Requests\Preferences\PreferencesRequest.cs" />
+    <Compile Include="Requests\SwapModuleEditorRequest.cs" />
+    <Compile Include="ServicePartResult\TopNewsCommunicatorServicePartResult.cs" />
+    <Compile Include="ServicePartResult\RadarNewsPageServicePartResult.cs" />
+    <Compile Include="ServicePartResult\RegionalMapNewsPageServicePartResult.cs" />
+    <Compile Include="ServiceResult\AlertListServiceResult.cs" />
+    <Compile Include="ServiceResult\Audit.cs" />
+    <Compile Include="ServiceResult\SimpleAlertServiceResult.cs" />
+    <Compile Include="ServiceResult\Core\DeleteCanvasModuleServiceResult.cs" />
+    <Compile Include="ServiceResult\Create\AlertNewsPageModuleCreateServiceResult.cs" />
+    <Compile Include="ServiceResult\Create\CompanyOverviewNewsPageModuleCreateServiceResult.cs" />
+    <Compile Include="ServiceResult\Headlines\SearchContext\CompanyOverviewRecentArticlesViewAllSearchContext.cs" />
+    <Compile Include="ServiceResult\Headlines\SearchContext\CompanyOverviewTrendingBubbleSearchContext.cs" />
+    <Compile Include="ServiceResult\Headlines\SearchContext\CustomTopicsViewAllSearchContext.cs" />
+    <Compile Include="ServiceResult\Headlines\SearchContext\NewsstandDiscoveredEntitiesSearchContext.cs" />
+    <Compile Include="ServiceResult\Headlines\SearchContext\NewsstandSectionSearchContext.cs" />
+    <Compile Include="ServiceResult\Headlines\SearchContext\RadarCellSearchContext.cs" />
+    <Compile Include="ServiceResult\Headlines\SearchContext\RegionalMapBubbleSearchContext.cs" />
+    <Compile Include="ServiceResult\Headlines\SearchContext\SearchContextUtility.cs" />
+    <Compile Include="ServiceResult\Headlines\PortalHeadlinesServiceResult.cs" />
+    <Compile Include="ServiceResult\Headlines\SearchContext\AbstractSearchContext.cs" />
+    <Compile Include="ServiceResult\Headlines\SearchContext\SearchContextConstants.cs" />
+    <Compile Include="ServiceResult\Headlines\SearchContext\SearchContextWrapper.cs" />
+    <Compile Include="ServiceResult\Headlines\SearchContext\SourcesViewAllSearchContext.cs" />
+    <Compile Include="ServiceResult\Headlines\SearchContext\SummaryRegionalMapBubbleSearchContext.cs" />
+    <Compile Include="ServiceResult\Headlines\SearchContext\SummaryTrendingSearchContext.cs" />
+    <Compile Include="ServiceResult\Headlines\SearchContext\TopNewsViewAllSearchContext.cs" />
+    <Compile Include="ServiceResult\Multimedia\MultimediaServiceResult.cs" />
+    <Compile Include="ServiceResult\Page\AddModuleIdToPageServiceResult.cs" />
+    <Compile Include="ServiceResult\Page\AddPageByIdServiceResult.cs" />
+    <Compile Include="ServiceResult\Page\DeletePageServiceResult.cs" />
+    <Compile Include="ServiceResult\Page\ReplaceModuleServiceResult.cs" />
+    <Compile Include="ServiceResult\Page\CopyPageServiceResult.cs" />
+    <Compile Include="ServiceResult\Page\SubscribePageServiceResult.cs" />
+    <Compile Include="ServiceResult\Create\SyndicationNewsPageModuleCreateServiceResult.cs" />
+    <Compile Include="ServiceResult\Page\DeclinePageServiceResult.cs" />
+    <Compile Include="ServiceResult\Page\UnsubscribePageServiceResult.cs" />
+    <Compile Include="ServiceResult\Generic\AbstractServiceResult.cs" />
+    <Compile Include="Requests\Update\AlertsNewsPageModuleUpdateRequest.cs" />
+    <Compile Include="Requests\Update\CompanyOverviewNewsPageModuleUpdateRequest.cs" />
+    <Compile Include="Requests\Update\Core.cs" />
+    <Compile Include="Requests\Update\SyndicationNewsPageModuleUpdateRequest.cs" />
+    <Compile Include="Requests\Validation\ValidateSyndicationFeedRequest.cs" />
+    <Compile Include="ServicePartResult\NewsPagesListServicePartResult.cs" />
+    <Compile Include="ServicePartResult\NewsPageServicePartResult.cs" />
+    <Compile Include="ServiceResult\Page\SubscribableNewsPageListServiceResult.cs" />
+    <Compile Include="ServiceResult\Page\UpdatePagePositionsServiceResult.cs" />
+    <Compile Include="ServiceResult\Headlines\SearchContext\TrendingItemSearchContext.cs" />
+    <Compile Include="Packages\SwapModuleEditorPackage.cs" />
+    <Compile Include="ServiceResult\StubData.cs" />
+    <Compile Include="ServiceResult\SwapModuleEditorServiceResult.cs" />
+    <Compile Include="ServiceResult\SyndicationItemsServiceResult.cs" />
+    <Compile Include="ServiceResult\TopNewsCommunicatorServiceResult.cs" />
+    <Compile Include="ServiceResult\Update\AlertNewsPageModuleUpdateServiceResult.cs" />
+    <Compile Include="ServiceResult\Update\CompanyOverviewNewsPageModuleUpdateServiceResult.cs" />
+    <Compile Include="ServiceResult\Validation\ValidateSyndicationFeedServiceResult.cs" />
+    <Compile Include="Properties\SettingsExtended.cs" />
+    <Compile Include="Utilities\AESEncryptionUtility.cs" />
+    <Compile Include="Utilities\SearchFilterUtility.cs" />
+    <Compile Include="Utilities\FaviconUrlBuilder.cs" />
+    <Compile Include="Utilities\IPadUtilitiesManager.cs" />
+    <Compile Include="Utilities\ModuleSearchUtility.cs" />
+    <Compile Include="ServiceResult\Page\NewsPageServiceResult.cs" />
+    <Compile Include="ServiceResult\Page\NewsPagesListServiceResult.cs" />
+    <Compile Include="Requests\Core\DeleteCanvasModuleRequest.cs" />
+    <Compile Include="Requests\Core\UpdateCanvasModulesPositionsRequest.cs" />
+    <Compile Include="Requests\Core\UpdateCanvasModulesPropertiesRequest.cs" />
+    <Compile Include="Requests\Core\UpdateCanvasModuleStateRequest.cs" />
+    <Compile Include="Requests\Page\GetModulesListRequest.cs" />
+    <Compile Include="Requests\Page\GetNewsPageListRequest.cs" />
+    <Compile Include="Requests\Page\GetNewsPageRequest.cs" />
+    <Compile Include="Requests\RadarNewsPageModuleDataRequest.cs" />
+    <Compile Include="Requests\SummaryNewsPageModuleDataRequest.cs" />
+    <Compile Include="ServicePartResult\AbstractServicePartResult.cs" />
+    <Compile Include="ServicePartResult\AlertsNewsPageServicePartResult.cs" />
+    <Compile Include="ServicePartResult\CompanyOverviewNewsPageServicePartResult.cs" />
+    <Compile Include="ServicePartResult\CustomTopicsNewsPageServicePartResult.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ServicePartResult\NewsstandNewsPageServicePartResult.cs" />
+    <Compile Include="ServicePartResult\SourcesNewsPageServicePartResult.cs" />
+    <Compile Include="ServicePartResult\SummaryNewsPageServicePartResult.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ServicePartResult\SyndicationNewsPageServicePartResult.cs" />
+    <Compile Include="ServicePartResult\TopNewsNewsPageServicePartResult.cs" />
+    <Compile Include="ServicePartResult\TrendingNewsPageServicePartResult.cs" />
+    <Compile Include="ServiceResult\AbstractServiceResult.cs" />
+    <Compile Include="ServiceResult\AlertsNewsPageServiceResult.cs" />
+    <Compile Include="ServiceResult\CompanyOverviewNewsPageModuleServiceResult.cs" />
+    <Compile Include="ServiceResult\Core\DeleteCanvasModuleServiceResponse.cs" />
+    <Compile Include="ServiceResult\Core\UpdateCanvasModulesPositionsServiceResult.cs" />
+    <Compile Include="ServiceResult\Core\UpdateCanvasModulesPropertiesServiceResult.cs" />
+    <Compile Include="ServiceResult\Core\UpdateCanvasModuleStateServiceResult.cs" />
+    <Compile Include="ServiceResult\CustomTopicsNewsPageModuleServiceResult.cs" />
+    <Compile Include="ServiceResult\NewsstandNewsPageModuleServiceResult.cs" />
+    <Compile Include="ServiceResult\RadarNewsPageModuleServiceResult.cs" />
+    <Compile Include="ServiceResult\RegionalMapNewsPageModuleServiceResult.cs" />
+    <Compile Include="ServiceResult\SourcesNewsPageModuleServiceResult.cs" />
+    <Compile Include="ServiceResult\SummaryNewsPageModuleServiceResult.cs" />
+    <Compile Include="ServiceResult\SyndicationNewsPageModuleServiceResult.cs" />
+    <Compile Include="Requests\NewsPageHeadlineModuleDataRequest.cs" />
+    <Compile Include="Requests\TopNewsNewsPageModuleDataRequest.cs" />
+    <Compile Include="Requests\RegionalMapNewsPageModuleDataRequest.cs" />
+    <Compile Include="Requests\NewsstandNewsPageModuleDataRequest.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Requests\TrendingNewsPageModuleDataRequest.cs" />
+    <Compile Include="ServiceResult\TopNewsNewsPageModuleServiceResult.cs" />
+    <Compile Include="ServiceResult\Update\SyndicationNewsPageModuleUpdateServiceResult.cs" />
+    <Compile Include="Utilities\TaskFactoryManager.cs" />
+    <Compile Include="ServiceResult\TrendingNewsPageModuleServiceResult.cs" />
+    <Compile Include="Utilities\ModuleDataRetrievalManager.cs" />
+    <Compile Include="Utilities\PreferencesUtilites.cs" />
+    <Compile Include="Utilities\ProxyManager.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DowJones.Infrastructure\DowJones.Infrastructure.csproj">
+      <Project>{095DE252-E183-4AE6-824A-B4504AE737C1}</Project>
+      <Name>DowJones.Infrastructure</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Assemblers\Charting\" />
+    <Folder Include="bin\" />
+    <Folder Include="Managers\MADE\" />
+    <Folder Include="Managers\NewsPages\" />
+    <Folder Include="Requests\Delete\" />
+    <Folder Include="Rest\Thunderball\" />
+    <Folder Include="ServiceResult\Delete\" />
+    <Folder Include="ServiceResult\SwapModuleEditor\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="ClassDiagram1.cd" />
+    <None Include="Diagrams\IndustryOverviewModel.cd" />
+    <None Include="Diagrams\NewsstandDataModel.cd" />
+    <None Include="Diagrams\RegionalMapModel.cd" />
+    <None Include="Diagrams\SyndicationManager.cd" />
+    <None Include="Diagrams\TopNewsModel.cd" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DowJones.Infrastructure\DowJones.Infrastructure.csproj">
+      <Project>{095DE252-E183-4AE6-824A-B4504AE737C1}</Project>
+      <Name>DowJones.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DowJones.Web.Mvc\DowJones.Web.Mvc.csproj">
+      <Project>{3E440D53-ACA6-422A-8FC8-778D505AD1E9}</Project>
+      <Name>DowJones.Web.Mvc</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

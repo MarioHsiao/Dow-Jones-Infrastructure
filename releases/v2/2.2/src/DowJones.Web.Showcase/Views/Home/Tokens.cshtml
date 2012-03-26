@@ -1,0 +1,21 @@
+﻿@{
+    ViewBag.Title = "Tokens";
+}
+
+<ul>
+
+    <li>ResourceTextManager.Instance: @DowJones.Globalization.ResourceTextManager.Instance.GetString("ok")</li>
+
+    <li>Html.DJ().Token: @Html.DJ().Token("ok")</li>
+
+</ul>
+
+<div>
+
+@if(Request["fcpil"].HasValue()) {
+    <a href="?">Show Values</a>
+} else {
+    <a href="?fcpil=template">Show Tokens</a>
+}
+
+</div>

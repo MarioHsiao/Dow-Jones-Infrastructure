@@ -1,0 +1,325 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{C03F69D0-BD01-4861-BF39-BF2D52812797}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DowJones.Web.Mvc.UI.Canvas</RootNamespace>
+    <AssemblyName>DowJones.Web.Mvc.UI.Canvas</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;CODE_ANALYSIS</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Control n Showcase|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Control n Showcase\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;CODE_ANALYSIS</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Debug\DowJones.Web.Mvc.UI.Canvas.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;C:\Program Files\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'TestsOnly|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\TestsOnly\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;CODE_ANALYSIS</DefineConstants>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Debug\DowJones.Web.Mvc.UI.Canvas.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;C:\Program Files\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="factiva.gateway.messages, Version=7.5.0.29, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Factiva.Gateway.Messages.7.5.0.29\lib\factiva.gateway.messages.dll</HintPath>
+    </Reference>
+    <Reference Include="FactivaGateway, Version=1.5.0.5, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Factiva.Gateway.Messages.7.5.0.29\lib\FactivaGateway.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\packages\log4net.1.2.10\lib\2.0\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Extensions.Design" />
+    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>True</SpecificVersion>
+      <HintPath>..\..\lib\aspnetmvc\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Core\CanvasModuleViewResult.cs" />
+    <Compile Include="Components\AbstractCanvasModule.cs" />
+    <Compile Include="Components\AbstractCanvas.cs" />
+    <Compile Include="Components\AbstractCanvasModuleEditor.cs" />
+    <Compile Include="Core\CanvasControllerBase.cs" />
+    <Compile Include="Components\CanvasModulesCollection.cs" />
+    <Compile Include="Core\CanvasViewResult.cs" />
+    <Compile Include="Editors\Alerts\AlertsModuleEditor.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AlertsModuleEditor.cshtml</DependentUpon>
+    </Compile>
+    <Compile Include="Editors\CompanyOverview\CompanyOverviewModuleEditor.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CompanyOverviewModuleEditor.cshtml</DependentUpon>
+    </Compile>
+    <Compile Include="Editors\Swap\SwapModuleEditor.cs">
+      <DependentUpon>SwapModuleEditor.cshtml</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Editors\Syndication\SyndicationModuleEditor.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SyndicationModuleEditor.cshtml</DependentUpon>
+    </Compile>
+    <Compile Include="Components\ICanvasModule.cs" />
+    <Compile Include="..\SolutionInfo.cs">
+      <Link>Properties\SolutionInfo.cs</Link>
+    </Compile>
+    <Compile Include="Modules\Alerts\AlertsCanvasModule.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AlertsCanvasModule.cshtml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\CompanyOverview\CompanyOverviewCanvasModule.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CompanyOverviewCanvasModule.cshtml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Summary\SummaryCanvasModule.cs">
+      <DependentUpon>SummaryCanvasModule.cshtml</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Modules\CustomTopics\CustomTopicsCanvasModule.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CustomTopicsCanvasModule.cshtml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Newsstand\NewsstandCanvasModule.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NewsstandCanvasModule.cshtml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Radar\RadarCanvasModule.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RadarCanvasModule.cshtml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\RegionalMap\RegionalMapCanvasModule.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RegionalMapCanvasModule.cshtml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Sources\SourcesModule.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SourcesModule.cshtml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Syndication\SyndicationModule.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SyndicationModule.cshtml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\TopNews\TopNewsCanvasModule.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TopNewsCanvasModule.cshtml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\TrendingNews\TrendingNewsCanvasModule.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TrendingNewsCanvasModule.cshtml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DowJones.Infrastructure\DowJones.Infrastructure.csproj">
+      <Project>{095DE252-E183-4AE6-824A-B4504AE737C1}</Project>
+      <Name>DowJones.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DowJones.Web.Mvc.UI.Canvas.DataAccess\DowJones.Web.Mvc.UI.Canvas.DataAccess.csproj">
+      <Project>{5CA248B3-9BCE-46D6-96B6-1E1CCB36E3DB}</Project>
+      <Name>DowJones.Web.Mvc.UI.Canvas.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DowJones.Web.Mvc.UI.Canvas.Models\DowJones.Web.Mvc.UI.Canvas.Models.csproj">
+      <Project>{55BE4602-F301-41E5-966E-4990BD1A9D0E}</Project>
+      <Name>DowJones.Web.Mvc.UI.Canvas.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DowJones.Web.Mvc.UI.Components.Models\DowJones.Web.Mvc.UI.Components.Models.csproj">
+      <Project>{32DA5CA1-0038-4110-BC24-938B39439CE7}</Project>
+      <Name>DowJones.Web.Mvc.UI.Components.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DowJones.Web.Mvc.UI.Controls\DowJones.Web.Mvc.UI.Components.csproj">
+      <Project>{8F187465-8B2C-4557-B3A2-02F7B4A6C0FE}</Project>
+      <Name>DowJones.Web.Mvc.UI.Components</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DowJones.Web.Mvc\DowJones.Web.Mvc.csproj">
+      <Project>{3E440D53-ACA6-422A-8FC8-778D505AD1E9}</Project>
+      <Name>DowJones.Web.Mvc</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Components\AbstractCanvasModule.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Components\AbstractCanvas.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="DowJones.Web.Mvc.UI.Canvas.nuspec-template" />
+    <None Include="Editors\Alerts\AlertsModuleEditor.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>AlertsModuleEditor.cs</LastGenOutput>
+    </None>
+    <None Include="Editors\CompanyOverview\CompanyOverviewModuleEditor.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>CompanyOverviewModuleEditor.cs</LastGenOutput>
+    </None>
+    <None Include="Editors\Swap\SwapModuleEditor.cshtml">
+      <LastGenOutput>SwapModuleEditor.cs</LastGenOutput>
+      <Generator>RazorViewComponentClassGenerator</Generator>
+    </None>
+    <None Include="Modules\Alerts\AlertsCanvasModule.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>AlertsCanvasModule.cs</LastGenOutput>
+    </None>
+    <None Include="Modules\CompanyOverview\CompanyOverviewCanvasModule.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>CompanyOverviewCanvasModule.cs</LastGenOutput>
+    </None>
+    <None Include="Modules\Summary\SummaryCanvasModule.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>SummaryCanvasModule.cs</LastGenOutput>
+    </None>
+    <None Include="Modules\CustomTopics\CustomTopicsCanvasModule.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>CustomTopicsCanvasModule.cs</LastGenOutput>
+    </None>
+    <None Include="Modules\Newsstand\NewsstandCanvasModule.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>NewsstandCanvasModule.cs</LastGenOutput>
+    </None>
+    <None Include="Modules\Radar\RadarCanvasModule.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>RadarCanvasModule.cs</LastGenOutput>
+    </None>
+    <None Include="Modules\RegionalMap\RegionalMapCanvasModule.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>RegionalMapCanvasModule.cs</LastGenOutput>
+    </None>
+    <None Include="Modules\Sources\SourcesModule.cshtml">
+      <LastGenOutput>SourcesModule.cs</LastGenOutput>
+      <Generator>RazorViewComponentClassGenerator</Generator>
+    </None>
+    <None Include="Modules\Syndication\SyndicationModule.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>SyndicationModule.cs</LastGenOutput>
+    </None>
+    <None Include="Editors\Syndication\SyndicationModuleEditor.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>SyndicationModuleEditor.cs</LastGenOutput>
+    </None>
+    <None Include="Modules\TopNews\TopNewsCanvasModule.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>TopNewsCanvasModule.cs</LastGenOutput>
+    </None>
+    <None Include="Modules\TrendingNews\TrendingNewsCanvasModule.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>TrendingNewsCanvasModule.cs</LastGenOutput>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Web.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Modules\Summary\SummaryCanvasModule.js" />
+    <EmbeddedResource Include="Editors\Swap\SwapModuleEditor.js" />
+    <EmbeddedResource Include="Modules\TopNews\TopNewsCanvasModule.js" />
+    <EmbeddedResource Include="Modules\RegionalMap\RegionalMapCanvasModule.js" />
+    <EmbeddedResource Include="Modules\Radar\RadarCanvasModule.js" />
+    <EmbeddedResource Include="Modules\Newsstand\NewsstandCanvasModule.js" />
+    <EmbeddedResource Include="Modules\Alerts\AlertsCanvasModule.js" />
+    <EmbeddedResource Include="Modules\CompanyOverview\CompanyOverviewCanvasModule.js" />
+    <EmbeddedResource Include="Modules\CustomTopics\CustomTopicsCanvasModule.js" />
+    <EmbeddedResource Include="Modules\Sources\SourcesModule.js" />
+    <EmbeddedResource Include="Modules\Syndication\SyndicationModule.js" />
+    <EmbeddedResource Include="Components\AbstractCanvasModuleEditor.js" />
+    <EmbeddedResource Include="Editors\Syndication\SyndicationModuleEditor.js" />
+    <EmbeddedResource Include="Modules\TrendingNews\TrendingNewsCanvasModule.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Editors\CompanyOverview\CompanyOverviewModuleEditor.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Components\AbstractModulePager.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Editors\Alerts\AlertsModuleEditor.js" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Editors\Alerts\ClientTemplates\PublishAlertsOverlay.htm" />
+    <EmbeddedResource Include="Editors\Alerts\ClientTemplates\UserAlertsList.htm" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

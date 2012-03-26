@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="DowJones.Web.Mvc.UI.Canvas.DataAccess.Managers.TopNewsNewsPageModuleManager">
+    <Position X="8.5" Y="5.5" Width="10.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAoAAAAAAAEACAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Managers\NewsPages\TopNewsNewsPageModuleManager.cs</FileName>
+      <NewMemberFileName>Managers\NewsPages\RegionalMapNewsPageModuleManager.cs</NewMemberFileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DowJones.Web.Mvc.UI.Canvas.DataAccess.Requests.GetTopNewsNewsPageModuleHeadlinesDataRequest">
+    <Position X="11.25" Y="0.5" Width="4" />
+    <TypeIdentifier>
+      <HashCode>AAEAQAQAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Requests\GetTopNewsNewsPageModuleHeadlinesData.cs</FileName>
+      <NewMemberFileName>Requests\GetRegionalMapHeadlinesData.cs</NewMemberFileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DowJones.Web.Mvc.UI.Canvas.DataAccess.Responses.GetRegionalMapNewsPageModuleDataResponse">
+    <Position X="7.25" Y="3.25" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Responses\GetRegionalMapNewsPageModuleDataResponse.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DowJones.Web.Mvc.UI.Canvas.DataAccess.Responses.GetTopNewsNewsPageModuleHeadlinesDataResponse">
+    <Position X="11.75" Y="2.5" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Responses\GetTopNewsNewsPageModuleHeadlinesDataResponse.cs</FileName>
+      <NewMemberFileName>Responses\GetRegionalMapHeadlinesDataResponse.cs</NewMemberFileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="System.Collections.Generic.List&lt;T&gt;">
+    <Position X="5.25" Y="5.25" Width="1.5" />
+    <NestedTypes>
+      <Struct Name="System.Collections.Generic.List&lt;T&gt;.Enumerator" Collapsed="true">
+        <TypeIdentifier />
+        <Lollipop Position="0.2" />
+      </Struct>
+    </NestedTypes>
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DowJones.Web.Mvc.UI.Canvas.DataAccess.Requests.GetRegionalMapHeadlinesDataRequest">
+    <Position X="0.5" Y="3" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAEAQAAIAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Requests\GetRegionalMapHeadlinesData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DowJones.Web.Mvc.UI.Canvas.DataAccess.Requests.GetRegionalMapNewsPageModuleDataRequest">
+    <Position X="0.5" Y="4.75" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAEAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Requests\GetRegionalMapNewsPageModuleData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DowJones.Web.Mvc.UI.Canvas.DataAccess.Responses.GetRegionalMapHeadlinesDataResponse">
+    <Position X="4" Y="3.25" Width="3" />
+    <AssociationLine Name="Results" Type="System.Collections.Generic.List&lt;T&gt;" FixedToPoint="true">
+      <Path>
+        <Point X="5.5" Y="4.038" />
+        <Point X="5.5" Y="5.25" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.678" Y="1.248" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Responses\GetRegionalMapHeadlinesDataResponse.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Results" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DowJones.Web.Mvc.UI.Canvas.DataAccess.Managers.RegionalMapNewsPageModuleManager">
+    <Position X="0.5" Y="0.5" Width="10.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAoAAAAAAAEACAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Managers\NewsPages\RegionalMapNewsPageModuleManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Tahoma" Size="8.25" />
+</ClassDiagram>

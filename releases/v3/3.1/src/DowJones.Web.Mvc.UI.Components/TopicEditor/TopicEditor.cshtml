@@ -1,0 +1,13 @@
+﻿@using DowJones.Web.Mvc.Extensions;
+@using DowJones.Web.Mvc.UI.Components.AutoSuggest
+@model DowJones.Web.Mvc.UI.Components.Models.TopicEditorModel
+@ClientPlugin dj_TopicEditor
+@ClientTemplate RelativeResourceName=ClientTemplates.main.htm, TemplateId=main
+@ClientTemplate RelativeResourceName=ClientTemplates.filters.htm, TemplateId=filters
+@ScriptResource RelativeResourceName=TopicEditor.js
+@{ 
+    CssClass = "dj_TopicEditor";
+    Html.DJ().ScriptRegistry().WithJQueryUIWidgets().WithColorPicker();
+}
+
+	

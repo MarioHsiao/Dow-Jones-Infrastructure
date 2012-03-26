@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<GetTaxonomyCodesResponse xmlns="http://types.factiva.com/symbology/taxonomy">
+  <taxonomyCodeResultSet count="1">
+    <taxonomyCodeResult>
+      <requestedCode code="PK" scheme="ISORegion">
+        <descriptor lang="en" xmlns="http://types.factiva.com/util">Pakistan</descriptor>
+      </requestedCode>
+      <resultTaxonomyCode type="Region" code="PAKIS" scheme="FactivaRegion">
+        <descriptor lang="en" xmlns="http://types.factiva.com/util">Pakistan</descriptor>
+        <codeStatus active="true">
+          <startDate>1984-01-01</startDate>
+        </codeStatus>
+        <hasChildren>false</hasChildren>
+        <regionType>Country</regionType>
+        <role>Core</role>
+        <role>Default</role>
+      </resultTaxonomyCode>
+    </taxonomyCodeResult>
+  </taxonomyCodeResultSet>
+</GetTaxonomyCodesResponse>

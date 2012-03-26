@@ -1,0 +1,6 @@
+Name: DowJones Theme
+Author: Mamta A.
+Website: 
+Description: Themes for showcase, developer site
+Version: 1.0
+Zones: Content,BeforeBodyContentOne,BeforeBodyContentTwo,BeforeBodyContentThree,BeforeBodyContentFour,BeforeBodyImageOne,BeforeBodyImageTwo,BeforeBodyImageThree,BeforeBodyImageFour,TriPanelLeft,TriPanelCenter,TriPanelRight,FourPanelLeft,FourPanelCenter,FourPanelRight,BodySideBarOne,BodySideBarTwo,BodySideBarThree,BodySideBarFour

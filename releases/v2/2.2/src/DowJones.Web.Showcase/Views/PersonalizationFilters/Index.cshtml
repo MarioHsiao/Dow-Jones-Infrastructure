@@ -1,0 +1,35 @@
+﻿<script language="javascript" type="text/javascript">
+    function selectFilter(args) {
+        //alert(JSON.stringify(data));
+        alert("in handler");
+        alert(args.data);
+        //return false;
+
+        //hard coded for testing purpose, else we need to get it from the user input
+        var usageURL = "u1=" + args.source + "&u2=" + args.type + "&u3=" + args.data.code + "&u4=" + args.data.desc;
+        var objImg = $("#ODImg");
+        objImg.attr('src', 'http://montana.dev.dowjones.com/xUS/xUSS.svc/xUD?' + usageURL);
+     }
+</script>
+<div id="filters">
+@if (Model != null && Model.Count > 0)
+{
+    foreach (var filterModel in Model)
+    {
+        @Html.DJ().Render(filterModel)
+    }
+}
+</div>
+@Html.DJ().StylesheetRegistry().Include("~/Content/css/GlobalLayout.css")
+@Html.DJ().StylesheetRegistry().Include("~/Content/css/dashboard.edit.css")
+@Html.DJ().StylesheetRegistry().Include("~/Content/css/dashboard.modal.css")
+@Html.DJ().StylesheetRegistry().Include("~/Content/css/modal.lookup.css")
+@Html.DJ().StylesheetRegistry().Include("~/Content/css/canvas.pills.css")
+@Html.DJ().StylesheetRegistry().Include("~/Content/css/browse-tree.css")
+@Html.DJ().StylesheetRegistry().Include("~/Content/css/canvas.icons.css")
+@Html.DJ().StylesheetRegistry().Include("~/Content/css/modal.djii.css")
+@Html.DJ().StylesheetRegistry().Include("~/Content/css/canvas.buttons.extended.css")
+@Html.DJ().ScriptRegistry().OnDocumentReady("$dj.subscribe('filterSelectClick.dj.PersonalizationFilters',selectFilter);");
+<img id="ODImg" src="" height="1" width="1" border="0" alt="" />
+
+

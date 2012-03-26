@@ -1,0 +1,69 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WCFWithSTADemoService", "WCFWithSTADemo\WCFWithSTADemoService.csproj", "{E0624E4F-56AB-4D4D-BEE4-C17FA43EB058}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WCFWithSTATestClient", "WCFWithSTATestClient\WCFWithSTATestClient.csproj", "{82987008-E718-4541-89C1-B4EA17D13FB8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "STAOperationWithWCF", "STAOperationWithWCF\STAOperationWithWCF.csproj", "{C5E662CE-5F60-4426-8559-4569801A1397}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 4
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://sbknwstfsdev1:8080/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = STAOperationWithWCF\\STAOperationWithWCF.csproj
+		SccProjectName1 = STAOperationWithWCF
+		SccLocalPath1 = STAOperationWithWCF
+		SccProjectUniqueName2 = WCFWithSTADemo\\WCFWithSTADemoService.csproj
+		SccProjectName2 = WCFWithSTADemo
+		SccLocalPath2 = WCFWithSTADemo
+		SccProjectUniqueName3 = WCFWithSTATestClient\\WCFWithSTATestClient.csproj
+		SccProjectName3 = WCFWithSTATestClient
+		SccLocalPath3 = WCFWithSTATestClient
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|Mixed Platforms = Debug|Mixed Platforms
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|Mixed Platforms = Release|Mixed Platforms
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E0624E4F-56AB-4D4D-BEE4-C17FA43EB058}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E0624E4F-56AB-4D4D-BEE4-C17FA43EB058}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E0624E4F-56AB-4D4D-BEE4-C17FA43EB058}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{E0624E4F-56AB-4D4D-BEE4-C17FA43EB058}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{E0624E4F-56AB-4D4D-BEE4-C17FA43EB058}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{E0624E4F-56AB-4D4D-BEE4-C17FA43EB058}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E0624E4F-56AB-4D4D-BEE4-C17FA43EB058}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E0624E4F-56AB-4D4D-BEE4-C17FA43EB058}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{E0624E4F-56AB-4D4D-BEE4-C17FA43EB058}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{E0624E4F-56AB-4D4D-BEE4-C17FA43EB058}.Release|x86.ActiveCfg = Release|Any CPU
+		{82987008-E718-4541-89C1-B4EA17D13FB8}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{82987008-E718-4541-89C1-B4EA17D13FB8}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{82987008-E718-4541-89C1-B4EA17D13FB8}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{82987008-E718-4541-89C1-B4EA17D13FB8}.Debug|x86.ActiveCfg = Debug|x86
+		{82987008-E718-4541-89C1-B4EA17D13FB8}.Debug|x86.Build.0 = Debug|x86
+		{82987008-E718-4541-89C1-B4EA17D13FB8}.Release|Any CPU.ActiveCfg = Release|x86
+		{82987008-E718-4541-89C1-B4EA17D13FB8}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{82987008-E718-4541-89C1-B4EA17D13FB8}.Release|Mixed Platforms.Build.0 = Release|x86
+		{82987008-E718-4541-89C1-B4EA17D13FB8}.Release|x86.ActiveCfg = Release|x86
+		{82987008-E718-4541-89C1-B4EA17D13FB8}.Release|x86.Build.0 = Release|x86
+		{C5E662CE-5F60-4426-8559-4569801A1397}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5E662CE-5F60-4426-8559-4569801A1397}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5E662CE-5F60-4426-8559-4569801A1397}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{C5E662CE-5F60-4426-8559-4569801A1397}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{C5E662CE-5F60-4426-8559-4569801A1397}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C5E662CE-5F60-4426-8559-4569801A1397}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5E662CE-5F60-4426-8559-4569801A1397}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C5E662CE-5F60-4426-8559-4569801A1397}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{C5E662CE-5F60-4426-8559-4569801A1397}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{C5E662CE-5F60-4426-8559-4569801A1397}.Release|x86.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

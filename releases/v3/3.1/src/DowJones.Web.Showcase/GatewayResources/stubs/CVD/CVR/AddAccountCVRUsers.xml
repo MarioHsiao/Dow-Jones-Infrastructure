@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<AddAccountCVRUsers xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <accountCVRUsers>
+    <internalUsers>
+      <userDetails userId="joyful" userNamespace="16" accountNum="ABC1234" />
+      <userDetails userId="E1234" userNamespace="22" accountNum="ACB2345" />
+    </internalUsers>
+    <externalUsers>
+      <userDetails userId="joyful" userNamespace="16" accountNum="XSF1234" />
+      <userDetails userId="AVB1234" userNamespace="22" accountNum="XSF1234" />
+    </externalUsers>
+  </accountCVRUsers>
+</AddAccountCVRUsers>

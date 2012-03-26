@@ -1,0 +1,208 @@
+﻿@inherits QueryBuilderComponent<FreeTextSearchBuilder>
+@using DowJones.Search;
+@using DowJones.Attributes;
+@using DowJones.Globalization;
+@using DowJones.Extensions
+@using DowJones.Web.Mvc.UI.Components.CalloutPopup
+@using System.Web.Mvc
+@using System.Web.Mvc.Html
+@using DowJones.Infrastructure;
+@ClientPlugin dj_FreeTextSearchBuilder
+@ScriptResource RelativeResourceName=FreeTextSearchBuilder.js
+@{ CssClass += "dj_FreeTextSearchBuilder"; }
+@{
+    DJ.ScriptRegistry().WithJQueryUIWidgets();
+    DJ.CalloutPopup();
+}
+@Html.Hidden("kind", "freetext")
+@Html.Hidden("freeText", Model.FreeText)
+@Html.Hidden("dateRange", Model.DateRange)
+@Html.HiddenFor("exclusions", Model.Exclusions)
+@Html.Hidden("languages", Model.Languages)
+@Html.Hidden("company", Model.Company.ToJson())
+@Html.Hidden("region", Model.Region.ToJson())
+@Html.Hidden("author", Model.Author.ToJson())
+@Html.Hidden("source", Model.Source.ToJson())
+@Html.Hidden("industry", Model.Industry.ToJson())
+@Html.Hidden("subject", Model.Subject.ToJson())
+@Html.Hidden("startDate", DateRange.Serialize(Model.StartDate))
+@Html.Hidden("endDate", DateRange.Serialize(Model.EndDate))
+@Html.HiddenFor("inclusions", Model.Inclusions)
+
+
+<!-- QUERY SUMMARY COMPONENT -->
+<div class="dj_query-summary ui-component">
+    <ul>
+        <li><div class="label">@DJ.Token("search")</div></li>
+        <li class="section-category">@DJ.Token("wordsPhrases")</li>
+        <li class="ellipsis">@Model.FreeText</li>
+        <li class="section-category">@DJ.Token("date")</li>
+        <li class="ellipsis">@DJ.Token(Model.DateRange)</li>
+        <li class="section-category">@DJ.Token("sourcesLabel")</li>
+        <li class="ellipsis">@DJ.DisplayFilters(Model.Source, "allSources")</li>
+    </ul>
+    <div class="clear-expand">
+        <span class="more" title='@Token("showMore")'>@Token("more")</span>
+    </div>
+</div><!-- end: .dj_query-summary -->
+
+<div class="dj_save-search">
+    <span class="dj_btn dj_btn-lrg dj_btn-gray dj_btn-rounded-square save-as_btn">
+		@DJ.Token("saveAs")
+		<span class="dj_btn-down-arrow"></span>
+	</span>
+    <span class='dj_btn dj_btn-lrg dj_btn-blue dj_btn-rounded-square no-margin modifySearch' title='@Token("modifySearch")'>@Token("modifySearch")</span>
+</div><!-- end: .dj_save-search -->
+
+<!-- end: dj_search-phrases -->
+<!-- This is the content of the more callout located in the query summary -->
+<table class='dj_query-summary-table hide'>
+    <thead>
+        <tr>
+            <th scope="col">
+                @DJ.Token("categoryFilter")
+            </th>
+            <th scope="col">
+                @DJ.Token("query")
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th scope="row">
+                @DJ.Token("wordsPhrases")
+            </th>
+            <td headers="itemcolumn col1">
+                <label>@Model.FreeText</label>
+            </td>
+        </tr>
+        <tr>
+            <th scope="row">
+                @DJ.Token("searchIn")
+            </th>
+            <td headers="itemcolumn col1">
+                @DJ.Token(Model.FreeTextIn)
+            </td>
+        </tr>
+        <tr>
+            <th scope="row">
+                @DJ.Token("date")
+            </th>
+            <td headers="itemcolumn col1">
+                <label>@DJ.Token(Model.DateRange)</label>
+            </td>
+        </tr>
+        <tr>
+            <th scope="row">
+                @DJ.Token("sortBy")
+            </th>
+            <td headers="itemcolumn col1">
+                @DJ.Token(Model.Sort)
+            </td>
+        </tr>
+        <tr>
+            <th scope="row">
+                @DJ.Token("duplicates")
+            </th>
+            <td headers="itemcolumn col1">
+                @Model.DeduplicationMode
+            </td>
+        </tr>
+        <tr>
+            <th scope="row">
+                @DJ.Token("socialMedia")
+            </th>
+            <td headers="itemcolumn col1">
+                @Model.SocialMedia
+            </td>
+        </tr>
+        <tr>
+            <th scope="row">
+                @DJ.Token("exclusions")
+            </th>
+            <td headers="itemcolumn col1">
+                @DJ.CombineEnums(Model.Exclusions, "allExclusions")
+            </td>
+        </tr>
+        <tr>
+            <th scope="row">
+                @DJ.Token("sourcesLabel")
+            </th>
+            <td headers="itemcolumn col1">
+                <label>@DJ.DisplayFilters(Model.Source, "allSources")</label>
+            </td>
+        </tr>
+        <tr>
+            <th scope="row">
+                @DJ.Token("languageLabel")
+            </th>
+            <td headers="itemcolumn col1">
+                @DJ.CombineLanguages(Model.Languages, "allLanguages")
+            </td>
+        </tr>
+        <tr>
+            <th scope="row">
+                @DJ.Token("companyLabel")
+            </th>
+            <td headers="itemcolumn col1">
+                @DJ.DisplayFilters(Model.Company, "allCompanies")
+            </td>
+        </tr>
+        <tr>
+            <th scope="row">
+                @DJ.Token("authorLabel")
+            </th>
+            <td headers="itemcolumn col1">
+                @DJ.DisplayFilters(Model.Author, "allAuthors")
+            </td>
+        </tr>
+        <tr>
+            <th scope="row">
+                @DJ.Token("executiveLabel")
+            </th>
+            <td headers="itemcolumn col1">
+                @DJ.DisplayFilters(Model.Executive, "allExecutives")
+            </td>
+        </tr>
+        <tr>
+            <th scope="row">
+                @DJ.Token("subjectLabel")
+            </th>
+            <td headers="itemcolumn col1">
+                @DJ.DisplayFilters(Model.Subject, "allSubjects")
+            </td>
+        </tr>
+        <tr>
+            <th scope="row">
+                @DJ.Token("industryLabel")
+            </th>
+            <td headers="itemcolumn col1">
+                @DJ.DisplayFilters(Model.Industry, "allIndustries")
+            </td>
+        </tr>
+        <tr>
+            <th scope="row">
+                @DJ.Token("regionLabel")
+            </th>
+            <td headers="itemcolumn col1">
+                @DJ.DisplayFilters(Model.Region, "allRegions")
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+
+<!-- Save As Menu -->
+<div class="menu saveAsMenu" style="display:none;">
+    <div class="menuitems">
+        @{
+            foreach (SelectListItem menu in Model.SaveOptions)
+            {
+                <div class="menuitem">
+                    <div class="label" data-saveas="@menu.Value">@menu.Text</div>
+                </div>
+            }
+        }
+    </div>
+</div>
+<!-- Save As Menu -->

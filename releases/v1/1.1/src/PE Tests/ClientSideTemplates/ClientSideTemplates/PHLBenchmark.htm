@@ -1,0 +1,384 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+    <title>Portal Headline List control Templating Benchmarks // Dow Jones</title>
+    <link type="image/x-icon" href="favicon.ico" rel="Shortcut Icon">
+    <link rel="stylesheet" href="styles/styles.css" type="text/css" />
+    <script src="scripts/external/jquery-1.4.4.min.js" type="text/javascript"></script>
+    <script src="scripts/external/jquery.benchmark.js" type="text/javascript"></script>
+    <script src="scripts/external/jquery.flot.min.js" type="text/javascript"></script>
+    <script src="scripts/external/jquery.tmpl.js" type="text/javascript"></script>
+    <script src="scripts/external/underscore.js" type="text/javascript"></script>
+</head>
+<body>
+    <h1>
+        Portal Headline List control Templating Benchmarks</h1>
+    <hr />
+    <h2>
+        &copy;2010 Dow Jones // powered by jQuery // idea taken from Brian Landau</h2>
+    <ul id="contestants">
+        <li>
+            <p>
+                <input type="checkbox" name="contestant" value="underscore" />
+                Underscore</p>
+            <ul class="progress underscore">
+            </ul>
+            <p class="number">
+            </p>
+        </li>
+        <li>
+            <p>
+                <input type="checkbox" name="contestant" value="tmpl" />
+                jQuery Templating Plugin</p>
+            <ul class="progress tmpl">
+            </ul>
+            <p class="number">
+            </p>
+        </li>
+        <li>
+            <input type="checkbox" name="check" value="0" />
+            Check all </li>
+        <li>
+            <button id="run">
+                RUN</button>
+            &#xa0;&#xa0;Portal Headline Controls on page:&#xa0; 
+            <input name="cycles" value="6" maxlength="3" class="testInput" />x
+            <!--
+            &#xa0;&#xa0;Max Headlines in each:&#xa0; 
+            <input name="maxHeadlines" value="10" maxlength="3" class="testInput"  />-->
+        </li>
+    </ul>
+    <h2>
+        █ Single Passed Run &#xa0;&#xa0; Median in ms [Arithm. AVG in ms]</h2>
+    <div id="placeholder">
+    </div>
+    <script type="text/x-jquery-tmpl" id="tmpl_phl">
+           {{each(i, h) loop_p}}<li class="dj_entry"><div class="dj_headline"><div class="dj_headline_body"><div class="dj_meta"><p class="dj_details"><span class="dj_source">${h.sourceDescriptor}</span><span class="dj_publicationDate">${h.publicationDateTimeDescriptor}</span></p></div><h3><a href="${h.headlineUrl}" class="dj_title" title="${h.toolTip}">${h.title}</a></h3></div></div></li>{{/each}}
+    </script>
+    <script type="text/javascript">
+        var CYCLES = $('input[name=cycles]').val(),
+                CONVERSIONS = 1000,
+                RUN_LEAP = Math.round(CONVERSIONS * 0.5),
+                contestants = {};
+
+        function shuffle(v) {
+            for (var j, x, i = v.length; i; j = parseInt(Math.random() * i), x = v[--i], v[i] = v[j], v[j] = x);
+            return v;
+        };
+
+        function mean(array) {
+            if (!array.length) return 0;
+
+            var sum = 0;
+            for (var i = 0; i < array.length; i++)
+                sum += parseFloat(array[i], 4);
+            return (1 / array.length) * sum;
+        }
+
+        function median(array) {
+            if (!array.length) return 0;
+
+            var s = array.sort(function (a, b) { return a - b; }).length;
+            return s % 2 ?
+                    array[(s - 1) / 2] : (array[(s / 2) - 1] + array[s / 2]) / 2;
+        }
+
+        function plot(cons) {
+            var data = [], i = 1;
+
+            for (key in cons) {
+                var result = {
+                    median: median(cons[key].results).toPrecision(2) * 1000,
+                    mean: mean(cons[key].results).toPrecision(2) * 1000
+                };
+
+                data.push({
+                    label: cons[key].name,
+                    data: [[i++, result.median], [i++, null]],
+                    color: cons[key].color,
+                    bars: {
+                        show: true,
+                        barWidth: 1,
+                        lineWidth: 1,
+                        fill: 1,
+                        colors: cons[key].color
+                    }
+                });
+
+                if (cons[key].results.length)
+                    cons[key].number.text(result.median + ' ms [' + result.mean + ' ms]');
+            }
+
+            $.plot($('#placeholder'), data, {
+                xaxis: { ticks: [[2, 'Underscore'], [3, 'jQuery Templating Plugin']], autoscaleMargin: .02 },
+                yaxis: { min: 10, max: 150 },
+                legend: { position: 'ne' },
+                grid: { backgroundColor: '#ffffff' }
+            });
+        }
+
+        $(function () {
+            var benchmarks = {
+                underscore: {
+                    loop_b: function () { this.loop_t(payload); }
+                },
+                tmpl: {
+                    loop_b: function () {
+                        this.loop_t($, { data: payload }).join("");
+                        //$.tmpl(this.loop_t, payload.loop_p);
+                    }
+                }
+            };
+
+            var templates = {
+                underscore: { loop_t: _.template('<% _.each(loop_p, function(x) { %><li class="dj_entry"><div class="dj_headline"><div class="dj_headline_body"><div class="dj_meta"><p class="dj_details"><span class="dj_source"><%= x.sourceDescriptor %></span><span class="dj_publicationDate"><%= x.publicationDateTimeDescriptor %></span></p></div><h3><a href="<%= x.headlineUrl %>" class="dj_title" title="<%= x.toolTip %>"><%= x.title %></a></h3></div></div></li><% }); %>') },
+                tmpl: { loop_t: $('#tmpl_phl').template() }
+            };
+
+            var payload = {
+                "loop_p": 
+                    [
+                        {
+                            "sourceDescriptor": "Dow Jones Global Press Release Wire",
+                            "title": "<span class=\"\">Mediachase</span><span class=\"\">Announces Guidance Solutions</span><span class=\"dj_space\">...</span>",
+                            "headlineUrl": "javascript:void(0)",
+                            "publicationDateTimeDescriptor": "Tuesday, 21 December 2010 2:00 PM GMT",
+                            "author": [
+                                {
+                                    "guid": "guid_text",
+                                    "class": "dj_text",
+                                    "value": "author_text"
+                                },
+                                {
+                                    "guid": "guid_highlight",
+                                    "class": "dj_highlight",
+                                    "value": "author_highlight"
+                                },
+                                {
+                                    "guid": "guid_Company",
+                                    "class": "dj_company",
+                                    "value": "author_Company"
+                                },
+                                {
+                                    "guid": "guid_Person",
+                                    "class": "dj_person",
+                                    "value": "author_Person"
+                                }
+                            ],
+                            "reference": {
+                                "type": "accessionNo",
+                                "guid": "DJGPRW0020101221e6cl0libj",
+                                "mimetype": "text/xml"
+                            },
+                            "snippet": {
+                                "value": "...and choice by including <b>source code</b> and engaging developer communities with each of its software platforms. The flagship"
+                            }
+                        },
+                        {
+                            "sourceDescriptor": "PR Newswire (U.S.)",
+                            "title": "<span class=\"\">Servant Systems Upgrades Franchisee</span><span class=\"dj_space\">...</span>",
+                            "headlineUrl": "javascript:void(0)",
+                            "publicationDateTimeDescriptor": "Tuesday, 21 December 2010 5:54 PM GMT",
+                            "author": [
+                                {
+                                    "guid": "guid_text",
+                                    "class": "dj_text",
+                                    "value": "author_text"
+                                },
+                                {
+                                    "guid": "guid_highlight",
+                                    "class": "dj_highlight",
+                                    "value": "author_highlight"
+                                },
+                                {
+                                    "guid": "guid_Company",
+                                    "class": "dj_company",
+                                    "value": "author_Company"
+                                },
+                                {
+                                    "guid": "guid_Person",
+                                    "class": "dj_person",
+                                    "value": "author_Person"
+                                }
+                            ],
+                            "reference": {
+                                "type": "accessionNo",
+                                "guid": "PRN0000020101221e6cl000ae",
+                                "mimetype": "text/xml"
+                            },
+                            "snippet": {
+                                "value": "...product options and pricing to better serve the needs of customers in their local areas. The site runs on Microsoft's"
+                            }
+                        },
+                        {
+                            "sourceDescriptor": "Business Wire",
+                            "title": "<span class=\"\">GrapeCity Announces ActiveReports</span><span class=\"dj_space\">...</span>",
+                            "headlineUrl": "javascript:void(0)",
+                            "publicationDateTimeDescriptor": "Friday, 17 December 2010 4:04 PM GMT",
+                            "author": [
+                                {
+                                    "guid": "guid_text",
+                                    "class": "dj_text",
+                                    "value": "author_text"
+                                },
+                                {
+                                    "guid": "guid_highlight",
+                                    "class": "dj_highlight",
+                                    "value": "author_highlight"
+                                },
+                                {
+                                    "guid": "guid_Company",
+                                    "class": "dj_company",
+                                    "value": "author_Company"
+                                },
+                                {
+                                    "guid": "guid_Person",
+                                    "class": "dj_person",
+                                    "value": "author_Person"
+                                }
+                            ],
+                            "reference": {
+                                "type": "accessionNo",
+                                "guid": "BWR0000020101217e6ch00086",
+                                "mimetype": "text/xml"
+                            },
+                            "snippet": {
+                                "value": "...New release makes ActiveReports the only .NET reporting tool to offer report viewers for Windows,"
+                            }
+                        },
+                        {
+                            "sourceDescriptor": "Dow Jones Global Press Release Wire",
+                            "title": "<span class=\"\">ORM and Business App Frameworks</span><span class=\"dj_space\">...</span>",
+                            "headlineUrl": "javascript:void(0)",
+                            "publicationDateTimeDescriptor": "Friday, 17 December 2010 9:01 PM GMT",
+                            "author": [
+                                {
+                                    "guid": "guid_text",
+                                    "class": "dj_text",
+                                    "value": "author_text"
+                                },
+                                {
+                                    "guid": "guid_highlight",
+                                    "class": "dj_highlight",
+                                    "value": "author_highlight"
+                                },
+                                {
+                                    "guid": "guid_Company",
+                                    "class": "dj_company",
+                                    "value": "author_Company"
+                                },
+                                {
+                                    "guid": "guid_Person",
+                                    "class": "dj_person",
+                                    "value": "author_Person"
+                                }
+                            ],
+                            "reference": {
+                                "type": "accessionNo",
+                                "guid": "DJGPRW0020101217e6ch0ljj5",
+                                "mimetype": "text/xml"
+                            },
+                            "snippet": {
+                                "value": "... -- Actions in Detail View Layout --"
+                            }
+                        },
+                        {
+                            "sourceDescriptor": "Business Wire",
+                            "title": "<span class=\"\">GrapeCity Announces ActiveReports</span><span class=\"dj_space\">...</span>",
+                            "headlineUrl": "javascript:void(0)",
+                            "publicationDateTimeDescriptor": "Friday, 17 December 2010 4:04 PM GMT",
+                            "author": [
+                                {
+                                    "guid": "guid_text",
+                                    "class": "dj_text",
+                                    "value": "author_text"
+                                },
+                                {
+                                    "guid": "guid_highlight",
+                                    "class": "dj_highlight",
+                                    "value": "author_highlight"
+                                },
+                                {
+                                    "guid": "guid_Company",
+                                    "class": "dj_company",
+                                    "value": "author_Company"
+                                },
+                                {
+                                    "guid": "guid_Person",
+                                    "class": "dj_person",
+                                    "value": "author_Person"
+                                }
+                            ],
+                            "reference": {
+                                "type": "accessionNo",
+                                "guid": "BWRFIN0020101217e6ch000b5",
+                                "mimetype": "text/xml"
+                            },
+                            "snippet": {
+                                "value": "...The new release makes ActiveReports 6 the only .NET reporting tool to provide report viewers for Windows,"
+                            }
+                        }
+                    ]
+                };
+
+            var color = {
+                underscore: '#cd0074',
+                tmpl: '#00f8ff'
+            };
+
+            $('input[name=check]').click(function () {
+                var checked = this.checked;
+
+                $('input[name=contestant]').each(function () {
+                    this.checked = checked;
+                });
+            });
+
+            $('input[name=contestant]').each(function (i) {
+                var key = this.value;
+
+                contestants[key] = {
+                    name: key,
+                    results: [],
+                    input: $(this),
+                    color: color[key],
+                    number: $('p.number', $(this).parents('li')[0]),
+                    progress: $('ul.progress', $(this).parents('li')[0]),
+                    templates: templates[key],
+                    benchmarks: benchmarks[key]
+                };
+            }).click(function () {
+                $('input[name=check]')[0].checked = false;
+            });
+
+            $('#run').click(function () {
+                CYCLES = $('input[name=cycles]').val();
+                $('ul.progress, p.number').empty();
+                $(this).trigger('benchmark');
+
+            }).bind('benchmark', function () {
+                var cons = shuffle($('input[name=contestant]:checked').toArray()),
+                        runs = cons.length;
+
+                if (!runs) return;
+
+                var test_run = setInterval(function () {
+                    var contestant = null;
+
+                    if (!(contestant = cons.shift())) return;
+
+                    $.benchmark(CONVERSIONS, contestants[contestant.value], 'loop_b');
+
+                    contestants[contestant.value].progress.append('<li/>');
+                }, RUN_LEAP);
+
+                setTimeout(function () {
+                    clearInterval(test_run);
+                    (--CYCLES) ? $('#run').trigger('benchmark') : plot(contestants);
+                }, RUN_LEAP * runs + 1500);
+            });
+        });
+    </script>
+</body>
+</html>

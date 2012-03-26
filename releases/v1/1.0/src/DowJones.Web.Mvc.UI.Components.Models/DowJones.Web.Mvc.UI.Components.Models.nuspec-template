@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>DowJones.Web.Mvc.UI.Components.Models</id>
+        <version>PACKAGE_VERSION</version>
+        <title>Dow Jones ASP.NET MVC UI component models</title>
+        <description>Dow Jones ASP.NET MVC UI component models</description>
+        <authors>Dow Jones Platform Integration Team</authors>
+        <tags>DowJones</tags>
+        <language>en-US</language>
+        <projectUrl>http://dowjones.com</projectUrl>
+        <licenseUrl>http://dowjones.com</licenseUrl>
+        <dependencies>
+            <dependency id="DowJones.Infrastructure" version="PACKAGE_VERSION" />
+            <dependency id="DowJones.Web.Mvc" version="PACKAGE_VERSION" />
+            <dependency id="Factiva.Gateway.Messages" version="7.5.0.23" />
+        </dependencies>
+    </metadata>
+    <files>
+        <file src="DowJones.Web.Mvc.UI.Components.Models.dll" target="lib" />
+    </files>
+</package>

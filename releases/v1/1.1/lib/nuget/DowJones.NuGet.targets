@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="CreateNuGetPackages" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+
+    <UsingTask AssemblyFile="NuGet.MSBuild.dll"  TaskName="NuGet.MSBuild.NuGet" />
+
+    <Target Name="CreateNuGetPackages">
+        <CallTarget Targets="TransformNuGetSpecTemplates" Condition="'$(NuSpecTemplateFilenames)' != ''" />
+        <CallTarget Targets="CreateNuGetPackagesInternal" />
+    </Target>
+    
+    
+	<Target Name="TransformNuGetSpecTemplates">
+        <Error Condition="'$(NuGetPackageVersion)' == ''"
+            Text="The NuGetPackageVersion property was not specified" />
+
+        <Error Condition="'$(NuSpecDeploymentPath)' == ''"
+            Text="The NuSpecDeploymentPath property was not specified" />
+
+        <ItemGroup>
+            <NuSpecTemplates Include="$(NuSpecTemplateFilenames)" />
+            <DeploymentDir Include="$(NuSpecDeploymentPath)" />
+        </ItemGroup>
+
+        <Message Importance="low" Text="Copying NuSpec templates: %(NuSpecTemplates.FullPath)" />
+
+        <CombinePath BasePath="%(DeploymentDir.FullPath)" Paths="@(NuSpecTemplates->'%(Filename).nuspec')">
+            <Output TaskParameter="CombinedPaths" ItemName="CopiedNuSpecFiles" />
+        </CombinePath>
+
+        <Copy SourceFiles="@(NuSpecTemplates)"
+              DestinationFiles="@(CopiedNuSpecFiles)"
+              OverwriteReadOnlyFiles="true" />
+
+        <Message Text="Updating NuSpec files: %(CopiedNuSpecFiles.FullPath)" />
+
+        <Attrib Files="@(CopiedNuSpecFiles)" ReadOnly="false" />
+
+        <!-- Update the package version -->
+        <FileUpdate Files="@(CopiedNuSpecFiles)"
+                    Regex="PACKAGE_VERSION"
+                    ReplacementText ="$(NuGetPackageVersion)" />
+
+        <CreateItem Include="@(CopiedNuSpecFiles)">
+            <Output TaskParameter="Include" ItemName="CopiedNuSpecFiles"/>
+        </CreateItem>
+
+        <Message Importance="low"  Text="Done transforming NuSpec templates" />
+    </Target>
+    
+    
+	<Target Name="CreateNuGetPackagesInternal">
+		<Error Condition="'$(NuGetOutputPath)' == ''"
+		       Text="The NuGet output directory (NuGetOutputPath property) was not specified" />
+
+		<ItemGroup>
+			<NuSpecFiles Include="$(NuSpecFilenames)" />
+			<NuGetOutputDir Include="$(NuGetOutputPath)" />
+		</ItemGroup>
+
+        <Message Importance="low" Text="NuSpecFilenames: $(NuSpecFilenames)" />
+        
+        <Error Condition="'%(NuSpecFiles.FullPath)' == ''"
+		       Text="No NuSpec files (NuSpecFiles property) were specified" />
+
+        <CreateProperty Value="%(NuGetOutputDir.FullPath)">
+			<Output TaskParameter="Value" PropertyName="NuGetOutputPath"/>
+		</CreateProperty>
+
+        <MakeDir Directories="$(NuGetOutputPath)" />
+
+        <Message Text="Creating NuGet packages in directory: $(NuGetOutputPath)" />
+		<Message Importance="low" Text="NuSpec files: @(NuSpecFiles->'%(FullPath)', ',')" />
+
+		<NuGet SpecFile="%(NuSpecFiles.FullPath)" PackageDir="$(NuGetOutputPath)" />
+	</Target>
+
+</Project>

@@ -1,0 +1,18 @@
+﻿@model IEnumerable<Employee>
+
+@{
+    ViewBag.Title = "Employees";
+}
+
+	<ul class="employee-list">
+	
+	@foreach(var employee in Model) {
+		<li>
+			@Html.ActionLink(employee.FullName, "Details", "FormsValidation", new { id = employee.ID }, null)
+		</li> 
+	}
+
+	</ul>
+
+	<div id="employee-details-container">
+	</div>

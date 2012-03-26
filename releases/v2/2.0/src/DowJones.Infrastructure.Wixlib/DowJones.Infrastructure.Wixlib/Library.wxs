@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Fragment>
+    
+    <!-- Check for newer products -->
+    <CustomAction Id='NoDowngrade' Error='A later version of [ProductName] is already installed.' />
+    <InstallExecuteSequence>
+      <Custom Action='NoDowngrade' After='FindRelatedProducts'>NEWERFOUND</Custom>
+    </InstallExecuteSequence>
+    
+  </Fragment>
+</Wix>

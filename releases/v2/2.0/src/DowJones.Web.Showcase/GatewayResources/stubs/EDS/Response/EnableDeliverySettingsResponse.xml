@@ -1,0 +1,9 @@
+<EnableDeliveryResponse>
+  <Status value="0"/>
+  <userid>enable user</userid>
+  <productid>987987</productid>
+  <Resultset count="1">
+    <Result DeliveryID="123456"></Result>
+    <Result DeliveryID="908086"></Result>
+  </Resultset>
+</EnableDeliveryResponse>

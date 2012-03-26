@@ -1,0 +1,125 @@
+﻿@using DowJones.Extensions
+@using DowJones.Web.Mvc.Extensions
+@using DowJones.Web.Mvc.UI.Components.HeadlineList
+@using System.Collections.ObjectModel
+@using DowJones.Web.Mvc.UI.Components.Common.Types
+@model DowJones.Web.Mvc.UI.Components.HeadlineList.HeadlineListModel
+@ClientPlugin dj_HeadlineList
+@ScriptResource RelativeResourceName=HeadlineList.js
+@{ CssClass = "dj_HeadlineListControl"; }
+<ul class="dj_HeadlineList items">
+    @if (Model != null)
+    {
+        // need the index for displaying hybrid snippets
+        int i = 0;
+        foreach (var headline in Model.Headlines)
+        {
+            bool showPressClip = (Model.ShowPressClip && !string.IsNullOrEmpty(headline.HeadlineInfo.subType) && headline.HeadlineInfo.subType.ToLower() == "nlapressclip");
+            
+        <li class="headline-box item headlineItem" data-headlineInfo="@headline.HeadlineInfo.ToJson().EscapeForHtml()">
+            @if (Model.ShowCheckboxes)
+            {
+                <div class="select dj_selectActions">
+                    <input class="chk-headline dj_ChkHeadline" type="checkbox" autocomplete="off" />
+                    
+                </div>
+                
+            }
+            @if (Model.ShowContentType)
+
+            {
+                <div class="dj_contentType @headline.HeadlineInfo.contentSubCategory">
+                    &nbsp;</div>
+            }
+            @if (Model.ShowThumbnail)
+            {
+                <div class="articleImage">
+                    <img src="@headline.ThumbnailUrl" alt="@headline.TruncatedTitle" />
+                </div>
+            }
+            <a class="title" href="javascript:void(0)" rel="@headline.ExternalUrl" title="@Model.GetHoverSnippet(headline.Snippet, i)" >@headline.Title</a>
+            @if (showPressClip)
+            {
+                <span class="dj_badge-pressclips">@Html.DJ().Token("pressClipping")</span>    
+            }
+            <div class="meta">
+                <span class="value source drop-down-button @(headline.IsLocked ? "lock" : "")" data-source="@headline.SourceCode">@headline.Source</span>
+                @if (Model.ShowByLine && headline.Authors != null && headline.Authors.Count() > 0)
+                {
+                    <span class="dj_article-by">@Html.DJ().Token("by")</span>
+                    foreach (var author in headline.Authors)
+                    {
+                    <span class="value author drop-down-button" data-author=@author.Code>@author.Name</span>   
+                    }
+                }
+                <span class="date-stamp">@string.Join(", ", new[] { headline.PublicationDateDisplay, headline.WordCount, headline.Language }.Where(s => !string.IsNullOrWhiteSpace(s)))</span>
+            </div>
+            @if (Model.DisplaySnippets == SnippetDisplayType.Inline || 
+                (i == 0 && Model.DisplaySnippets == SnippetDisplayType.Hybrid))
+            {
+                <p class="snippet">
+                    @headline.Snippet
+                </p>
+            }
+            <div class="actions">
+                <ol class="options">
+                    <li class="option"><span class="dj_icon dj_icon-print"></span></li>
+                    <li class="option"><span class="dj_icon dj_icon-save"></span></li>
+                    <li class="option"><span class="dj_icon dj_icon-mail"></span></li>
+                    @if (showPressClip)
+                    {
+                        <li class="option"><span class="dj_icon dj_icon-pressclips"></span></li>    
+                    }
+                </ol>
+            </div>
+            <!-- end: actions -->
+            @if (Model.DuplicatesAreVisible(headline))
+            {
+                <div class="duplicateWrapper clearfix">
+                    <p><span class="dj_icon dj_icon-blk-filter-r-arrow"></span><strong>Duplicates</strong>
+                        (@headline.DuplicateHeadlines.Count())</p>
+                    <ul class="hide">
+                        @foreach (var dup in headline.DuplicateHeadlines)
+                        {
+                            showPressClip = (Model.ShowPressClip && !string.IsNullOrEmpty(dup.HeadlineInfo.subType) && dup.HeadlineInfo.subType.ToLower() == "nlapressclip");
+                            
+                            <li class="headlineItem" data-headlineInfo="@dup.HeadlineInfo.ToJson().EscapeForHtml()">
+                                @if (Model.ShowCheckboxes)
+                                {
+                                    <input class="chk-headline dj_dupChkHeadline" type="checkbox" value="@dup.AccessionNumber" autocomplete="off" />
+                                }
+                                <a class="title" href="#" title="@headline.Snippet.EscapeForHtml()">@dup.Title</a>
+                                @if (showPressClip)
+                                {
+                                    <span class="dj_badge-pressclips">@Html.DJ().Token("pressClipping")</span>    
+                                }
+                                <div class="meta">
+                                    <span class="value source drop-down-button" data-source="@dup.SourceCode">@dup.Source</span>
+                                    @if (Model.ShowByLine && dup.Authors != null && dup.Authors.Count() > 0)
+                                    {
+                                        <span class="dj_article-by">@Html.DJ().Token("by")</span>
+                                        foreach (var author in dup.Authors)
+                                        {
+                                        <span class="value author drop-down-button" data-author=@author.Code>@author.Name</span>   
+                                        }
+                                    }
+                                    <span class="date-stamp">@dup.PublicationDateDisplay, @dup.WordCount, @dup.Language</span>
+                                </div>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            }
+            @if (Model.ShowAccessionNo)
+            {
+                <div class="accessionNo">@DJ.Token("document") @headline.AccessionNumber</div>
+            }
+        </li>
+            i++;
+        }
+    }
+    else
+    {
+        <li><span class="dj_noResults">@DJ.Token("noResults")</span></li>
+    }
+</ul>

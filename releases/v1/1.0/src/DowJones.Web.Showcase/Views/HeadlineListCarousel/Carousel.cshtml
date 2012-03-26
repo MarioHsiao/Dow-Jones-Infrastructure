@@ -1,0 +1,17 @@
+﻿@using Factiva.Gateway.Messages.CodedNews;
+@using DowJones.Web.Mvc.UI.Components.Common.Types;
+@using Factiva.Gateway.Messages.Search.V2_0;
+
+
+@{ ViewBag.Title = "Headline List Carousel"; }
+
+<script language="javascript" type="text/javascript">
+    function onHeadlineClick() { alert('headline clicked'); }
+</script>
+
+
+@(
+ 
+ Html.DJ().HeadlineListCarousel()
+        .ClientEvents(events => events.OnHeadlineClick("onHeadlineClick"))
+) 

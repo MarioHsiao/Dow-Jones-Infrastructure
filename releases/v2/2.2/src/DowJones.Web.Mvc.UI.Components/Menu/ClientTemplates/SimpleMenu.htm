@@ -1,0 +1,18 @@
+﻿<div class="menu dj_menu">
+    <div class="menuitems">
+        <%  var x, title, disabledClass;
+        for (var i = 0, len = menuItems.length; i < len; i++) { 
+            x = menuItems[i];
+            disabledClass = x.disabled ? "disabled" : "";
+            checkedClass = x.checked ? "checked" : "";
+            if (x.type === 'separator') { %>
+                <div class="separator"></div>
+            <% } 
+            else { %>
+                <div class="menuitem <%= disabledClass %> <%= checkedClass %>">
+                    <div class="label"><%= x.label %></div>
+                </div>
+            <% } 
+        } %>
+    </div>
+</div>

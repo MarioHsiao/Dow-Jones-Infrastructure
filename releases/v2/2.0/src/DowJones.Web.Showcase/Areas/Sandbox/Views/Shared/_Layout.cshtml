@@ -1,0 +1,28 @@
+﻿@{
+
+   
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+
+    
+    @Html.DJ().ScriptRegistry().RenderHead()
+    @Html.DJ().StylesheetRegistry().RenderHead()
+    
+    <script type="text/javascript">
+        $(function () {
+            $dj.debugEnabled = true; 
+        });
+    </script>
+
+</head>
+<body>
+    @RenderBody()
+           
+    @Html.DJ().StylesheetRegistry().Render()
+    @Html.DJ().ScriptRegistry().Render()
+    @Html.DJ().GlobalHeaders()
+</body>
+</html>

@@ -1,0 +1,81 @@
+/***  NewsstandCanvasModule  ***/
+
+.NewsstandCanvasModule
+{
+}
+
+
+/*Temporary styles only need to be moved*/
+/***  HeadlineCarousel  ***/
+
+.HeadlineCarousel{font: 13px/1.231 arial,helvetica,clean,sans-serif;}
+
+.video-carousel-x { overflow:hidden; padding: 0 0 10px; }
+.video-carousel-y { overflow:hidden; padding: 10px; width: 162px }
+.video-carousel-x .carousel-content { float: left; width: 350px; height: 225px; overflow: hidden; position: relative; margin-right: 10px; }
+.video-carousel-y .carousel-content { width: 100%; height: 175px; overflow: hidden; position: relative; }
+.video-carousel-x .buttons
+{
+    background: url(../images/sprite_buttons.png) no-repeat 0 -38px;
+    display: block;
+    float: left;
+    width: 18px;
+    height: 37px;
+    overflow: hidden;
+    position: relative; margin-left:0; margin-right:14px; margin-top:30px; margin-bottom:0
+}
+.video-carousel-y .buttons
+{
+    background: url(../images/sprite_buttons.png) no-repeat 0 -38px;
+    display: block;
+    margin-left: 42%;
+    width: 18px;
+    height: 37px;
+    overflow: hidden;
+    position: relative;
+    padding-bottom:10px
+}
+.video-carousel-x .next, .video-carousel-y .next { background-position: 0 0; margin-top: 27px;}
+.video-carousel-x .disable-next, .video-carousel-y .disable-next { background-position: -18px 0; }
+.video-carousel-x .prev, .video-carousel-y .prev { background-position: 0 -106px;  }
+.video-carousel-x .disable-prev, .video-carousel-y .disable-prev { background-position: -18px -106px; }
+.video-carousel-x .carousel-pages, .video-carousel-y .carousel-pages { list-style: none; position: absolute; padding: 0; margin: 0; width: 240px; left: 0; top: 0; }
+.video-carousel-x .section-title, .video-carousel-y .section-title{padding-bottom: 15px;}
+.section-title  { color: #666666; font-size: 108%; padding-bottom: 10px;}
+.video-carousel-x .carousel-pages .cp, .video-carousel-y .carousel-pages .cp {float: left; margin: 0 20px 0 0; padding: 1px; width: 160px; list-style-type: none;}
+.video-carousel-x .cp .item, .video-carousel-y .cp .item {float: left;padding-right: 20px;width: 160px;}
+.video-carousel-x .cp .item .media-thumb, .video-carousel-y .cp .item .media-thumb{ background-color: #CCCCCC; height: 108px; margin-bottom: 5px; width: 160px;}
+.video-carousel-x .cp .item .media-thumb img, .video-carousel-y .cp .item .media-thumb img{display: none}
+.video-carousel-x .cp .item .media-headline, .video-carousel-y .cp .item .media-headline{font-size: 93%}
+.video-carousel-x .cp .item .media-meta , .video-carousel-y .cp .item .media-meta {}
+.video-carousel-x .cp .item .media-headline a, .video-carousel-y .cp .item .media-headline a {color: #2680A0; text-decoration: none;  background: none repeat scroll 0 0 transparent; font-size: 100%; margin: 0; padding: 0; vertical-align: baseline;}
+.video-carousel-x .cp .item .media-meta .media-length, .video-carousel-y .cp .item .media-meta .media-length {color: #999999;display: inline-block;font-size: 93%;height: 16px;line-height: 16px;vertical-align: middle; padding-left: 4px;}
+.video-carousel-x .cp .item .media-meta .fi_video, .video-carousel-y .cp .item .media-meta .fi_video {margin-top: 3px;}
+.video-carousel-x .cp .item .media-meta .fi_video, .video-carousel-y .cp .item .media-meta .fi_video {margin-top: 3px;}
+
+/*Ticker Carousel*/
+.ticker-carousel { overflow:hidden; padding: 0 5px; width: 99% }
+.ticker-carousel .carousel-content { float: left; width: 93%; overflow: hidden; position: relative; margin-right: 10px; }
+.ticker-carousel .buttons
+{
+    background: url(../images/sprite_buttons.png) no-repeat 0 -38px;
+    display: block;
+    text-indent: -999em;
+    float: left;
+    width: 18px;
+    height: 37px;
+    overflow: hidden;
+    position: relative; margin-left:0; margin-right:10px; margin-top:10px; margin-bottom:0
+}
+.ticker-carousel .next { background-position: 0 0; margin-top: 7px }
+.ticker-carousel .disable-next { background-position: -18px 0; }
+.ticker-carousel .prev { background-position: 0 -106px;  }
+.ticker-carousel .disable-prev { background-position: -18px -106px; }
+.ticker-carousel .carousel-pages { list-style: none; position: absolute; padding: 0; margin: 0; width: 240px; left: 0; top: 0; }
+.ticker-carousel .section-title{padding-bottom: 15px;}
+.ticker-carousel .carousel-pages .cp {float: left; margin: 14px 12px 0; padding: 1px; list-style-type: none;}
+.ticker-carousel .cp .source-carousel-item {cursor: pointer;float: left;padding-right: 13px;}
+.ticker-carousel .cp .source-carousel-item span {color: #929292; font-size: 77%; font-weight: normal;}
+.ticker-carousel .cp .source-carousel-item h3 {color: #2F90B3;cursor: pointer;font-size: 138.5%;}
+
+h1, h2, h3, h4, h5, h6 {font-weight: bold;margin:0;padding:0}

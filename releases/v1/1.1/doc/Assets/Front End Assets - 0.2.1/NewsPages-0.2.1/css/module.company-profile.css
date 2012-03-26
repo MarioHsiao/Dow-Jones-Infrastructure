@@ -1,0 +1,267 @@
+/*
+
+	-- -- -- -- -- -- --
+	Description: Company Profile Module Style Rules
+	Version: 0.1
+	Last Update: 01/10/2011
+	Author: Ron Edgecomb II, Pete McGrath
+	Company: Dow Jones & Company Inc.
+	Copyright 2010 Dow Jones & Company Inc.
+	
+	Dependencies
+	 - css/reset.css
+	 - css/lib/modules.css
+	-- -- -- -- -- -- --
+	
+*/
+
+/* =Company Chart >> chart and date range styles
+----------------------------------------------------------------------------------------------------*/
+.company-chart-row .news-volume {
+	border-bottom: 3px solid #ff9300;
+}
+
+.company-chart-row .stock-price {
+	border-bottom: 3px solid #41a4ce;
+}
+
+.company-module-chart {
+	height: 300px;
+}
+
+.company-chart-date-range {
+	text-align: center;
+	margin: 0 0 15px;
+	background-color: #ebebeb;
+	border-radius: 9px;
+    -webkit-border-radius: 9px;
+    -moz-border-radius: 9px;
+}
+	.company-chart-date-range li {
+		color: #999;
+		line-height: 18px;
+		display: inline;
+		padding: 0 5px;
+		margin: 0 10px;
+	} .company-chart-row .quarterly-range li { margin: 0 30px; }
+
+	.js .company-chart-date-range li {
+		cursor: pointer;
+	}
+
+	.company-chart-date-range li.active {
+		color: #333;
+		background-color: #81b000;
+		border-radius: 9px;
+	    -webkit-border-radius: 9px;
+	    -moz-border-radius: 9px;
+	}
+	
+/* =Company Snapshot >> Snapshot Tabs
+----------------------------------------------------------------------------------------------------*/
+.snapshot-tabs {
+	border-bottom:1px solid #333;
+	margin:0 0 10px;
+}
+
+	.ie6 .snapshot-tabs,
+	.ie7 .snapshot-tabs {
+		padding:0 0 1px;
+	}
+
+.snapshot-tabs .tab {
+    width:auto;
+	height:24px;
+	display: -moz-inline-stack; /* required for ff2 */
+	display: inline-block;
+	vertical-align: middle;
+	color: #333;
+	font-size:93%;
+	line-height:24px;
+	text-transform: uppercase;
+	background:#eee;
+	padding:0 8px;
+    margin:0 0 -1px;
+	border:1px solid #333;
+}
+	/*Safari Opera Chrome*/
+	.snapshot-tabs .tab {
+		border-top-left-radius: 5px;
+		border-top-right-radius: 5px;
+		background: -webkit-gradient(linear, left top, left bottom, from(#f0f0f0), to(#cccccc));
+	}
+	
+	/*FireFox*/
+	.snapshot-tabs .tab {
+		-moz-border-radius-topleft: 5px;
+		-moz-border-radius-topright: 5px;
+		background: -moz-linear-gradient(top,  #f0f0f0,  #cccccc);
+	}
+
+.snapshot-tabs .tab:hover {
+	background:#ccc;
+}
+
+/* =Company Snapshot >> Snapshot Tabs -- Active Tab
+----------------------------------------------------------------------------------------------------*/
+
+.snapshot-tabs .active {
+	height:25px;
+	line-height:25px;
+	background:#fff;
+	border-bottom:none;
+	cursor:default;
+}
+	
+.snapshot-tabs .active:hover {
+	background:#fff;
+}
+
+/* =Company Snapshot >> Tab Content
+----------------------------------------------------------------------------------------------------*/
+.tab-content-wrap .tab-content {
+	width:300px;
+	display:none;
+}
+
+/* =Company Snapshot >> Current Price
+----------------------------------------------------------------------------------------------------*/
+.stock-info-header,
+.current-dates-values {
+	margin:0 0 15px;
+}
+
+.stock-info-header span,
+.current-dates-values span  {
+	display: -moz-inline-stack; /* required for ff2 */
+	display: inline-block;
+	vertical-align:baseline;
+	color:#333;
+	font-size:108%;
+	font-weight:bold;
+	margin-right:5px;
+}
+
+.current-dates-values span {
+	font-size:167%;
+	margin-right:20px;
+}
+
+.stock-info-header .ticker-info-label {
+}
+
+.stock-info-header .ticker-symbol {
+	text-transform:uppercase;
+}
+
+.stock-info-header .ticker-symbol-type {
+	color:#666;
+	font-size:85%;
+	text-transform:uppercase;
+}
+
+.current-dates-values .currency-type {
+	display:block;
+	color:#666;
+	font-size:85%;
+}
+
+.current-dates-values .negative {
+	color:#F00;
+}
+
+.current-dates-values .positive {
+	color:#0C6;
+}
+
+
+
+.value-breakdown-wrap { }
+
+.value-breakdown-wrap .value-breakdown {
+	float:left;
+	width:140px;
+	padding-right:10px;
+}
+
+.value-breakdown-wrap .value-breakdown li span {
+	width:100%;
+	display: -moz-inline-stack; /* required for ff2 */
+	display: inline-block;
+	text-transform:uppercase;
+	color:#666;
+	font-weight:bold;
+}
+
+.value-breakdown-wrap .value-breakdown li .value-label {
+	border-bottom:1px solid #666;
+	margin-bottom:3px;
+}
+.value-breakdown-wrap .value-breakdown li .value {
+	font-size:138.5%;
+	margin-bottom:12px;
+}
+
+
+/* =Company Snapshot >> Analysis Report
+----------------------------------------------------------------------------------------------------*/
+.ar-list {
+	margin:0 0 10px;
+}
+
+.ar-list li {
+	margin:0 0 5px;
+}
+
+.ar-list li .ar-type {
+	width:100%;
+	display: -moz-inline-stack; /* required for ff2 */
+	display: inline-block;
+	color:#666;
+	text-transform:uppercase;
+	border-bottom:1px solid #666;
+}
+
+.ar-list li .ar-name {
+	width:100%;
+	display: -moz-inline-stack; /* required for ff2 */
+	display: inline-block;
+	color:#4b9dc8;
+	font-size:123.%;
+	font-weight:bold;
+}
+
+.ar-list li .ar-meta {
+	display: -moz-inline-stack; /* required for ff2 */
+	display: inline-block;
+	color:#666;
+	font-size:85%;
+	font-weight:bold;
+}
+
+
+
+/* =Company Snapshot >> Company Executives
+----------------------------------------------------------------------------------------------------*/
+.co-execs-list li {
+	margin-bottom:10px;
+}
+
+.co-execs-list li .exec-name {
+	width:100%;
+	display: -moz-inline-stack; /* required for ff2 */
+	display: inline-block;
+	color:#4b9dc8;
+	font-size:138.5%;
+	font-weight:bold;
+}
+
+.co-execs-list li .position {
+	width:100%;
+	display: -moz-inline-stack; /* required for ff2 */
+	display: inline-block;
+	color:#666;
+	font-size:85%;
+	font-weight:bold;
+	text-transform:uppercase;
+}

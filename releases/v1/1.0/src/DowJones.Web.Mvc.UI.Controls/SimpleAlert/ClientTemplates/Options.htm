@@ -1,0 +1,7 @@
+﻿<% _.each(items, function(item) { %>
+    <%if(!item.optGroup){ %>
+        <option value="<%= item.id %>"><%= item.name %></option>
+    <%}else{ %>
+         <optgroup label="--------------"></optgroup>
+    <%} %>
+<% }); %>

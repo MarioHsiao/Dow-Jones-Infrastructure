@@ -1,0 +1,12 @@
+﻿@model DowJones.Web.Mvc.UI.Components.Models.PortalHeadlineListModel
+@ClientPlugin dj_PortalHeadlineList
+@ClientTemplate RelativeResourceName=ClientTemplates.Error.htm, TemplateId=error
+@ClientTemplate RelativeResourceName=ClientTemplates.Success.htm, TemplateId=success, PerformSubstitution=true
+@ClientTemplate RelativeResourceName=ClientTemplates.NoData.htm, TemplateId=noData, PerformSubstitution=true
+@ClientTemplate RelativeResourceName=ClientTemplates.AddNewContent.htm, TemplateId=addNewContent, PerformSubstitution=true
+@ClientTemplate RelativeResourceName=ClientTemplates.TimeLine.htm, TemplateId=timeline
+@ScriptResource RelativeResourceName=PortalHeadlineList.js, PerformSubstitution=true
+@{ 
+    CssClass = "dj_headlineListContainer article-group";
+    Html.DJ().ScriptRegistry().WithUnderscoreJS();
+}

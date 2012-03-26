@@ -1,0 +1,52 @@
+/*
+
+	-- -- -- -- -- -- --
+	Description: Bar Chart module Column Style Rules
+	Version: 0.1
+	Last Update: 11/17/2010
+	Author: Ron Edgecomb II
+	Company: Dow Jones & Company Inc.
+	Copyright 2010 Dow Jones & Company Inc.
+	
+	Dependencies
+	 - css/reset.css
+	 - css/lib/modules.css
+	-- -- -- -- -- -- --
+	
+*/
+
+/* =Bar Chart Column >> General module rules
+----------------------------------------------------------------------------------------------------*/
+.bar-chart-col .bar-chart {
+	height: 12px;
+	font-size: 85%; /* 11px */
+	line-height: 12px;
+	background: #f0f0f0;
+	position: relative;
+}
+
+.bar-chart-col .bar-wrap {
+	display: -moz-inline-stack; /* required for ff2 */
+	display: inline-block;
+	vertical-align: middle;
+	position: relative;
+	float: left;
+}
+
+	.bar-chart-col .bar-wrap img {
+		float: left;
+	}
+
+.bar-chart-col .bar-wrap span {
+	position: absolute;
+	top: 0; right: 4px;
+	color: #fff;
+}
+
+.bar-chart-col .bar-chart-items {
+	padding-top: 1px; /* to match border of headline items */
+}
+
+.bar-chart-col .bar-chart-items .module-item {
+	margin-bottom: 1px;  /* to match border of headline items */
+}

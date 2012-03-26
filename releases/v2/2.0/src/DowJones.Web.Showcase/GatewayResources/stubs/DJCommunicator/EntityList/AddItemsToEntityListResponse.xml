@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AddItemsToEntityListResponse xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:cmn="urn:factiva:Communicator:Common:v1_0" xmlns="urn:factiva:Communicator:EntityListService:v1_0">
+	<failedEntityIds>43</failedEntityIds>
+	<failedEntityIds>382</failedEntityIds>
+	<failedEntityIds>571</failedEntityIds>
+</AddItemsToEntityListResponse>

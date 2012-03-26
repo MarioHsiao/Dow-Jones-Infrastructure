@@ -1,0 +1,14 @@
+﻿@model System.Web.Mvc.HandleErrorInfo
+@{
+    var exception = @Model.Exception as DowJones.Utilities.Exceptions.DowJonesUtilitiesException;
+}
+
+<h2>Dow Jones Utility Exception!</h2>
+
+<div>
+
+    <strong>Return Code:</strong>
+
+    <h3>@exception.ReturnCode</h3>
+
+</div>

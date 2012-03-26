@@ -1,0 +1,16 @@
+﻿@using System.Web.Mvc.Html;
+
+@model DowJones.Web.Mvc.Search.UI.Components.Builders.Module.ModuleSearchBuilder
+@ClientPlugin dj_ModuleSearchBuilder
+@ScriptResource RelativeResourceName=ModuleSearchBuilder.js
+@{ CssClass = "dj_ModuleSearchBuilder"; }
+
+
+@Html.Hidden("kind", "module")
+@Html.Hidden("PageId", Model.PageId)
+@Html.Hidden("PageName", Model.PageName)
+@Html.Hidden("ModuleId", Model.ModuleId)
+@Html.Hidden("ModulePart", Model.ModulePart)
+@Html.Hidden("ChartId", Model.ChartId)
+@Html.Hidden("SearchContext", Model.SearchContext)
+

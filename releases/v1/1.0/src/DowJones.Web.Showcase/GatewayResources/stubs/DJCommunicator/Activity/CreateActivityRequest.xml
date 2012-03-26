@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<CreateActivityRequest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="urn:factiva:Communicator:ActivityService:v1_0">
+  <activity id="0" authorFullName="string" authorFirstName="string" authorLastName="string" dueDate="2001-03-30T11:20:02.3125724-04:00" completedDate="2001-03-30T11:20:02.3281965-04:00" comment="string">
+    <authorId>0</authorId>
+    <type name="string">
+      <id>0</id>
+    </type>
+    <access d3p1:name="string" xmlns:d3p1="urn:factiva:Communicator:Common:v1_0">
+      <d3p1:id>1</d3p1:id>
+    </access>
+    <status name="string">
+      <id>1</id>
+    </status>
+    <isKnockDown>true</isKnockDown>
+    <priority name="string">
+      <id>1</id>
+    </priority>
+    <assignedToMadeUserId>0</assignedToMadeUserId>
+  </activity>
+</CreateActivityRequest>

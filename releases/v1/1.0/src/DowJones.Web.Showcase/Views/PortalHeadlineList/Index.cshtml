@@ -1,0 +1,10 @@
+﻿@{
+    ViewBag.Title = "Portal Viewer";
+}
+
+<script language="javascript" type="text/javascript">
+    function OnHeadlineClick() { $dj.debug('OnHeadlineClick fired'); alert("First Control"); }
+    function OnHeadlineClick2() { $dj.debug('OnHeadlineClick2 fired'); alert("Second Control"); }
+</script>
+
+@Html.DJ().RenderComponent("PortalHeadlineListControl", Model)

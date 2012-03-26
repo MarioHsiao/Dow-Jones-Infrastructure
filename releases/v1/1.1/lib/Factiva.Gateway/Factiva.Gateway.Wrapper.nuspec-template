@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>Factiva.Gateway.Wrapper</id>
+        <version>PACKAGE_VERSION</version>
+        <title>Factiva Gateway .NET Wrapper</title>
+        <description>Factiva Gateway .NET Wrapper</description>
+        <authors>Factiva Gateway Team</authors>
+        <tags>DowJones</tags>
+        <language>en-US</language>
+        <projectUrl>http://dowjones.com</projectUrl>
+        <licenseUrl>http://dowjones.com</licenseUrl>
+    </metadata>
+    <files>
+        <file src="CachingWrapper.dll" target="lib"/>
+        <file src="CordaNetEmbedder.dll" target="lib"/>
+        <file src="encryption.dll" target="lib"/>
+        <file src="FactivaGateway.dll" target="lib"/>
+        <file src="Interop.FCMLib.dll" target="lib"/>
+    </files>
+</package>

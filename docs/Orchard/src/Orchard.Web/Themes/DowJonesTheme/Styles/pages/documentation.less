@@ -1,0 +1,125 @@
+﻿#documentation
+{
+	h3
+	{
+		font-size: 16px;
+		text-transform: uppercase;
+	}
+	
+	.left-column
+	{
+		float: left;
+		margin-right: @indent2;
+		width: 220px;		
+		
+		.features
+		{
+			margin: 0;
+			
+			li
+			{
+				height: 23px;
+				font-weight: bold;
+				line-height: 23px;
+				list-style-type: none;
+				padding-left: @indent2;
+			}
+			li.selected
+			{
+				background: url( ../images/right-arrow.png ) right no-repeat;
+				
+				a { color: #fff; }
+			}
+
+			li.heading {
+				padding-left:@indent1;
+				font-size:13px;
+				a { color:#000; }
+			}
+		}
+	}
+	
+	.right-column
+	{
+		float: left;
+		width: 755px;
+		
+		code
+		{
+			background: #fff;
+			display: block;
+			overflow: auto;
+			padding: 10px;
+			width: 100%;
+			border: 1px #777 solid;
+		}
+
+		code.inline {
+			padding:1px 3px;
+			display:inline;
+
+			strong {
+				background-color:#FF9;
+			}
+		}
+	}
+	
+	table
+	{
+		border-collapse: separate;
+		margin-bottom: 1.5em;
+		
+		th  
+		{
+			font-weight: bold;
+		}
+		th, td
+		{
+			padding: 10px;
+		}
+		tbody
+		{
+			background: #D7E5EC;
+
+			th, td  
+			{
+				border-top: solid 1px #E8F0F5;
+				border-bottom: solid 1px #C1D2DB;				
+				margin: 1px 0;
+			}
+			td.center{
+				text-align: center;
+			}
+			td.bold{
+				font-weight: bold;
+			}
+
+
+		}
+	}
+
+	.faqQuestion {
+		font-weight:bold;
+	}
+}
+
+.searchqueries-right-border{
+			border-right: solid 1px #E8F0F5;
+			text-align: center;
+}
+
+.searchqueries {	 
+				border-right: solid 1px #E8F0F5;
+				border-left: solid 1px #C1D2DB;			
+				text-align: center;
+} 
+
+.searchqueries-left-border {	 
+				border-left: solid 1px #C1D2DB;			
+				text-align: center;
+} 
+
+.searchqueries-noborder td{
+				border: none ;
+				text-align: center;
+} 

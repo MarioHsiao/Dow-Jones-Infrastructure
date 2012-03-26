@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<PerformTaxCodeSrchResponse xmlns="http://types.factiva.com/symbology/taxonomy">
+  <taxonomyListResult version="2005011811" count="1">
+    <taxonomyCode code="i415" scheme="FactivaIndustry">
+      <codeStatus active="true">
+        <startDate>1984-01-01</startDate>
+      </codeStatus>
+      <role>Core</role>
+      <role>Default</role>
+    </taxonomyCode>
+  </taxonomyListResult>
+</PerformTaxCodeSrchResponse>
+

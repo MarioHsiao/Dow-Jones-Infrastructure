@@ -1,0 +1,13 @@
+﻿<%  var d, desc;
+    for(var i = 0;i < data.length;i++){ 
+        d = data[i];
+        desc = d.Name || d.desc;
+        if(isAuthor && d.PrimarySource && d.PrimarySource.Description){
+            desc += " (" + d.PrimarySource.Description  +")";
+        }
+%>
+    <li class="item" data-code="<%= (d.Code || d.code).toLowerCase() %>">
+        <span><%= desc %></span>
+    </li>
+<% } %>
+

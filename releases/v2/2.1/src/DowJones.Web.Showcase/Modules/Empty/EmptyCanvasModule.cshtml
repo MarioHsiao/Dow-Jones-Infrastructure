@@ -1,0 +1,11 @@
+﻿@using DowJones.Web.Mvc.UI.Components.Pager
+@inherits DowJones.Web.Mvc.UI.Canvas.AbstractCanvasModule<DowJones.Web.Showcase.Modules.Empty.EmptyModule>
+@ClientPlugin dj_EmptyCanvasModule
+@ScriptResource RelativeResourceName=EmptyCanvasModule.js
+@StylesheetResource RelativeResourceName=EmptyCanvasModule.css
+@{ DJ.Pager(); }
+
+@section EditArea { }
+@section ContentArea {
+    <div>If I were a real module, I would be showing some real data here!</div>
+}

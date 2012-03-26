@@ -1,0 +1,7 @@
+﻿@{
+    ViewBag.Title = "Article: " + Model.Article.Headline;
+}
+<div>
+@(Html.DJ().RenderComponent<DowJones.Web.Mvc.UI.Components.Article.Futures.ArticleControl>(Model.Article))
+</div>
+

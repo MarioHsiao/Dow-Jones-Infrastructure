@@ -1,0 +1,48 @@
+﻿<div class="dj_stockQuotes">
+<div class="dj_headerRow">
+	<span><%= Token("symbol") %></span>						    								
+	<span class="dj_price"><%= Token("priceLabel") %></span>
+	<span class="dj_change"><%= Token("change") %></span>
+	<div class="dj_clear"></div>
+</div>	
+<div class="dj_marketBlock scrollable">        
+    <div class="dj_tickerItems">      
+         <%  var data = self.data, options = self.options, pagesize = options.pagesize, quote, tickerrowselected, j; 
+            for (var i = 0; i < data.length; i++) { 
+                tickerrowselected= "";
+                quote = data[i];  
+                if (i == 0) { tickerrowselected= " selected";}  
+                j = 0;
+         %>
+         <% if (i!=0 && i % pagesize == 0) {j=1; %> </div> <% }  %>
+         <% if (i==0 || j==1) { %> <div> <% } %>
+            <div class="dj_tickerRow<%=tickerrowselected%>">
+                <a class="dj_tickerRowSymbol" title="<%=quote.name %>" data-fcode="<%=quote.fCode%>" data-symbol="<%=quote.symbol%>"><%=quote.symbol%></a>					    								
+			    <span class="dj_price"><%=quote.last.displayText.value %></span>
+			    <span class="<% if (quote.percentChange.displayText.value[0] == '+') {%>dj_positive<%} else{%>dj_negative<%}%>"><%=quote.percentChange.displayText.value%></span>
+	            <div class="dj_clear"></div>
+	        </div>
+        <% } %>
+        <% if(i != 0 && i == data.length) { %> </div> <% } %>
+	</div>    
+</div>
+
+<% if (data.length > pagesize)  { %>
+<div class="dj_actions"> 
+    <a class="prev disabled"></a>
+    <a class="next"></a>
+</div>
+<% } %>
+
+</div> <!-- end of dj_stock quotes -->
+
+<div class="dj_chart">
+<div class="dj_chartContainer"> </div>
+<div class="dj_chartLegend">
+    <div class="dj_chartLastUpdated"></div>
+    <div><%= Token("source") %>: <%=data[0].provider.name %></div>
+    <div><%= Token("delayedQuote") %></div>
+</div>
+</div>
+
+  

@@ -1,0 +1,181 @@
+﻿#packages
+{
+	h3
+	{
+		font-size: 16px;
+		position: relative;
+		text-transform: uppercase;		
+		
+		a
+		{
+			background: url( ../Images/pdf.png ) left no-repeat;
+			color: #000;
+			font-size: 12px;
+			font-weight: bold;
+			padding-left: 16px;
+			position: absolute;
+			text-transform: capitalize;
+			top: 5px;
+			right: 0px;
+		}
+	}
+	
+	.left-column
+	{
+		float: left;
+		margin-right: @indent2;
+		width: 715px;
+	}
+	
+	.right-column
+	{
+		background: #fff;
+		border: solid 1px;
+		float: left;
+		font-size: 11px;
+		margin-top: 20px;
+		padding: 35px 0;
+		text-align: center;
+		width: 258px;
+		
+		a  
+		{
+			color: #000;
+			font-size: 16px; 
+		}
+	}
+	
+	@border: solid 1px #e0e7ed;
+
+	ul.tabs
+	{
+		margin: 0 0 0 230px;
+		padding: 0;
+		
+		li
+		{
+			float: left;
+			list-style-type: none;
+		}
+		li a
+		{
+			color: #333;
+			float: left;
+			font-size: 12px;
+			font-weight: bold;
+			line-height: 23px;
+			margin-right: 20px;
+			margin-bottom: -1px;
+			padding: 0 10px;
+		}
+		li.selected a
+		{
+			background: #fff;
+			border-top: @border;
+			border-left: @border;
+			border-right: @border;
+			border-bottom: #fff;
+			cursor: default;
+		}
+	}
+	
+	div.menu-table-spacer
+	{
+		background: #fff;
+		border-top: @border;
+		border-left: @border;
+		border-right: @border;
+		height: 8px;
+		margin-left: 230px;
+	}
+	
+	table
+	{
+		border-collapse: separate;
+		font-size: 12px;
+		width: 100%;
+		
+		th.news-multimedia, td.news-multimedia, th.people-companies-market-data, td.people-companies-market-data
+		{
+			display: none;
+		}
+		
+		th.news-multimedia.blank, td.news-multimedia.blank
+		{
+			width: 600px;
+		}
+		th.people-companies-market-data.blank, td.people-companies-market-data.blank
+		{
+			width: 130px;
+		}
+		
+		thead
+		{
+			th
+			{
+				background: #fff;
+				border-bottom: @border;
+				border-left: @border;
+				
+				height: 29px;
+				line-height: 29px;
+			}
+			td.blank
+			{
+				border-bottom: @border;
+			}
+		}
+
+		tbody
+		{
+			tr.heading
+			{
+				cursor: pointer;
+				display: table-row;
+			
+				th, td
+				{
+					color: #333;
+					border-left: none 0;
+					font-size: 14px;
+				}
+				th.section
+				{
+					border-top: @border;
+				}
+			}
+		
+			th, td
+			{
+				background: #fff;
+				border-bottom: @border;
+				
+				height: 29px;
+				line-height: 29px;
+			}
+			th  
+			{
+				color: #006699;
+				padding-left: @indent1;
+				text-align: left;
+				text-transform: uppercase;
+				width: 220px;
+			}
+			th span
+			{
+				text-transform: lowercase;
+			}
+			td
+			{
+				border-left: @border;
+				text-align: center;
+			}
+			td.selected
+			{
+				background-image: url( ../images/check.png );
+				background-position: center;
+				background-repeat: no-repeat;
+			}
+		}
+	}
+}

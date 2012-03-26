@@ -1,0 +1,30 @@
+/*
+
+	-- -- -- -- -- -- --
+	Description: Headline module Column Style Rules
+	Version: 0.1
+	Last Update: 11/17/2010
+	Author: Ron Edgecomb II
+	Company: Dow Jones & Company Inc.
+	Copyright 2010 Dow Jones & Company Inc.
+	
+	Dependencies
+	 - css/reset.css
+	 - css/lib/modules.css
+	-- -- -- -- -- -- --
+	
+*/
+
+/* =Headline Column >> General module rules
+----------------------------------------------------------------------------------------------------*/
+.headline-col .headline-items {
+	border-top: 1px solid #ddd;
+}
+
+.headline-col .headline-items .module-item {
+	border-bottom: 1px solid #ddd;
+}
+
+.headline-col .headline-items .item-excerpt {
+	font-size: 93%; /* 12px */
+}

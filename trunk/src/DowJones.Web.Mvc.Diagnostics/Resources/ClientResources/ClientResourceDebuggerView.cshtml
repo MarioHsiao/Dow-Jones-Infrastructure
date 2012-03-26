@@ -1,0 +1,123 @@
+﻿@model ClientResourcesInfo
+@using System.Web.Mvc.Html
+@using System.Collections.Generic
+@{ var Title = "Client Resource Debugger"; }
+<html>
+<head>
+    <title>@Title</title>
+    <style>
+        label {
+            clear: none;
+            display: block;
+            float: left;
+            width: 130px;
+            font-weight: bold;
+        }
+        caption {
+            font-size: 130%;
+            font-weight: bold;
+            text-decoration: underline;
+        }
+        table { border-collapse: collapse; }
+        th { text-align: left; }
+        tbody {
+            border-top: 1px groove;
+            height: 500px;
+            overflow: auto;
+            vertical-align: top;
+        }
+        .hilight { background-color: Yellow; }
+        tr:hover { background-color: #CCC; }
+        tbody tr.selected {
+            color: #FFF;
+            background-color: #666; 
+        }
+    </style>
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.5.2.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('#ClientResourceAliases tr')
+                .click(function () {
+                    $('#ClientResourceAliases tr').removeClass('selected');
+                    $(this).addClass('selected');
+                });
+        });
+    </script>
+</head>
+<body>
+    <h1>@Title</h1>
+
+    <div id="dealias-form" >
+        <form method='POST'>
+            <label>Alias:</label>
+            @Html.TextBox("alias", Model.Alias, new { style = "width: 500px" })
+            <input value='Get Resource Name' type='submit' />
+
+            @if (Model.HasResourceName) {
+                <div>
+                    <label>Resource Name: </label>
+                    <span>@Model.ResourceName</span>
+                </div>
+            }
+        </form>
+    </div>
+
+    <div id="alias-form" >
+        <form method='POST'>
+            <label>Resource Name:</label>
+            @Html.TextBox("ResourceName", Model.ResourceName, new { style = "width: 500px" })
+            <input value='Get Alias' type='submit' />
+
+            @if (Model.HasAlias) {
+                <div>
+                    <label>Alias: </label>
+                    <span>@Model.Alias</span>
+                </div>
+            }
+        </form>
+    </div>
+
+
+    <div id="search-form" >
+        <form method='POST'>
+            <label>Search:</label>
+            @Html.TextBox("query", Model.SearchQuery, new { style = "width: 200px" })
+            <input value='Search' type='submit' />
+            <input value='Reset' type="reset" onclick="window.location.href=window.location.href;" />
+        </form>
+    </div>
+
+@if (Model.Aliases.Any()) {
+
+    <table id="ClientResourceAliases">
+        <caption>Client Resource Aliases</caption>
+
+        <colgroup>
+            <col width="200px" />
+            <col />
+        </colgroup>
+
+        <thead>
+            <tr>
+                <th>Alias</th>
+                <th>Resource Name</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+        @foreach (var alias in Model.Aliases)
+        {
+            <tr class="@((alias.IsSearchMatch == true) ? "hilight" : string.Empty)">
+                <td>@alias.Alias</td>
+                <td>@alias.Name</td>
+            </tr>            
+        }
+
+        </tbody>
+
+    </table>
+}
+
+</body>
+</html>

@@ -1,0 +1,27 @@
+﻿<div class="video-carousel-y carousel">
+    <h3 class="section-title">
+        Video</h3>
+    <a class="buttons prev" href="#">left</a>
+    <div class="carousel-content">
+        <ul class="carousel-pages">
+            <% for (var index = 0; index < data.headlines.length; index++) { 
+                                        x = data.headlines[index];
+            %>
+            <li class="cp">
+                <div class="item">
+                    <div class="media-thumb">
+                        <img title="" src="">
+                    </div>
+                    <h4 class="media-headline">
+                        <a href="#">Dow Jones Builds Largest Solar Energy Field on the East Coast</a>
+                    </h4>
+                    <div class="media-meta">
+                        <span class="fi fi_video"></span><span class="media-length">01:47</span>
+                    </div>
+                </div>
+            </li>
+            <% } %>
+        </ul>
+    </div>
+    <a class="buttons next" style="margin-top: 0" href="#">right</a>
+</div>

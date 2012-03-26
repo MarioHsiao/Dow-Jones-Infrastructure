@@ -1,0 +1,14 @@
+﻿@{ ViewBag.Title = "Simple Headline List";
+   Html.DJ().StylesheetRegistry()
+            .Include("~/styles/css/canvas.icons.css")
+            .Include("~/styles/css/search.headline-list.css")
+            .Include("~/styles/css/search.headline-options.css")
+            .Include("~/styles/css/search.headline-post-processing.css");
+   Html.DJ().ScriptRegistry().OnDocumentReady("$('div.dj_HeadlineListControl').dj_HeadlineList();");
+
+}
+
+<script src="../../Scripts/headlineList.js"></script>
+<div class="dj_HeadlineListControl">
+    @Html.Partial("_HeadlineListControl", (DowJones.Web.Mvc.UI.Components.HeadlineList.HeadlineListModel)Model)
+</div>

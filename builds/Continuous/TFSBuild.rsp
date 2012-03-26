@@ -1,0 +1,4 @@
+﻿# TFSBuild.rsp:  Additional build parameters
+
+# The available verbosity levels are q[uiet], m[inimal], n[ormal], d[etailed], and diag[nostic]
+/verbosity:minimal

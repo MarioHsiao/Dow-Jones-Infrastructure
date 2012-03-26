@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Framework_Compile" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+    <PropertyGroup>
+        <Configuration>Debug</Configuration>
+        <DowJonesTargetsFile>..\lib\dowjones\DowJones.targets</DowJonesTargetsFile>
+        <DeploymentDestination>..\..\Build\$(Configuration)</DeploymentDestination>
+        <NuSpecFilenames>**\*.nuspec</NuSpecFilenames>
+        <NuSpecTemplateFilenames>**\*.nuspec-template</NuSpecTemplateFilenames>
+        <NuGetOutputPath>$(DeploymentDestination)\nuget</NuGetOutputPath>
+        <NuGetPackageVersion>$(AssemblyVersion)</NuGetPackageVersion>
+        <NuSpecDeploymentPath>$(DeploymentDestination)</NuSpecDeploymentPath>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <BuildDir Include="..\..\Build" Condition="'@(BuildDir)' == ''"  />
+        <BuildTempDir Include="%(BuildDir->'%(FullPath)\work')" />
+        <DeploymentDir Include="$(DeploymentDestination)" />
+    </ItemGroup>
+    
+
+    <Import Project="$(DowJonesTargetsFile)"/>
+    <Import Project="..\lib\NuGet\DowJones.NuGet.targets"/>
+
+    <Target Name="MimicBuildServerFrameworkBuild" DependsOnTargets="UpdateSolutionInfo">
+
+        <RemoveDir Directories="@(DeploymentDir)" />
+        
+        <MSBuild Projects="Framework.sln"
+                 Targets="Clean;Rebuild"
+                 BuildInParallel="true"
+                 Properties="
+                    Configuration=$(Configuration);
+                    OutDir=%(DeploymentDir.FullPath)\
+                 "
+        />
+        
+    </Target>
+
+
+    <Target Name="GetNuGetPackageVersion" BeforeTargets="CreateNuGetPackages" Condition="'$(NuGetPackageVersion)' == ''">
+        <Message Importance="high" Text="NuGetPackageVersion not specified, getting from $(FrameworkVersionFile)" />
+        
+        <Version VersionFile="$(FrameworkVersionFile)" BuildType="None" RevisionType="None">
+            <Output TaskParameter="Major" PropertyName="MajorReleaseVersion" />
+            <Output TaskParameter="Minor" PropertyName="MinorReleaseVersion" />
+            <Output TaskParameter="Build" PropertyName="BuildVersion" />
+        </Version>
+
+        <CreateProperty Value="$(MajorReleaseVersion).$(MinorReleaseVersion).$(BuildVersion)">
+            <Output TaskParameter="Value" PropertyName="NuGetPackageVersion" />
+        </CreateProperty>
+
+        <Message Text="NuGetPackageVersion: $(NuGetPackageVersion)" />
+    </Target>
+
+    <Target Name="InitializeNuGetSpecFileList" AfterTargets="TransformNuGetSpecTemplates">
+        <ItemGroup>
+            <NuSpecFiles Include="@(CopiedNuSpecFiles->'%(FullPath)')" />
+        </ItemGroup>
+    </Target>
+    
+
+
+    <!--  FRAMEWORK  -->
+    <Target Name="Framework_Deploy">
+        <RemoveDir Directories="$(DeploymentDestination)\Framework" />
+
+        <MSBuild Projects="$(DowJonesTargetsFile)" Targets="CopyProjectOutput"
+                 Properties="ProjectName=DowJones.Utilities;RelativeDeploymentPath=Framework" />
+
+        <MSBuild Projects="$(DowJonesTargetsFile)" Targets="CopyProjectOutput"
+                 Properties="ProjectName=DowJones.Web.Mvc;RelativeDeploymentPath=Framework" />
+
+        <MSBuild Projects="$(DowJonesTargetsFile)" Targets="CopyProjectOutput"
+                 Properties="ProjectName=DowJones.Web.Mvc.Diagnostics;RelativeDeploymentPath=Framework" />
+
+        <MSBuild Projects="$(DowJonesTargetsFile)" Targets="CopyProjectOutput"
+                 Properties="ProjectName=DowJones.Web.Mvc.UI.Canvas;RelativeDeploymentPath=Framework" />
+
+        <MSBuild Projects="$(DowJonesTargetsFile)" Targets="CopyProjectOutput"
+                 Properties="ProjectName=DowJones.Web.Mvc.UI.Components;RelativeDeploymentPath=Framework" />
+
+    </Target>
+
+
+
+    <!--  SHOWCASE  -->
+    <Target Name="Showcase_Deploy">
+        <CreateItem Condition="'$(ShowcaseSourceFolder)' == ''" Include="$(DropLocation)\$(BuildNumber)\%(ConfigurationToBuild.FlavorToBuild)\_PublishedWebsites\Web\\.">
+            <Output TaskParameter="Include" ItemName="ShowcaseSourceFolder"/>
+        </CreateItem>
+
+        <Error 	Condition="'$(ShowcaseSourceFolder)' == '' Or '$(ShowcaseDeploymentFolder)' == ''"
+				Text="The ShowcaseSourceFolder and ShowcaseDeploymentFolder cannot be empty"
+		/>
+
+        <ConvertToAbsolutePath Paths="$(ShowcaseSourceFolder)">
+            <Output TaskParameter="AbsolutePaths" PropertyName="AbsoluteShowcaseSourceFolder"/>
+        </ConvertToAbsolutePath>
+
+        <ConvertToAbsolutePath Paths="$(ShowcaseDeploymentFolder)">
+            <Output TaskParameter="AbsolutePaths" PropertyName="AbsoluteShowcaseDeploymentFolder"/>
+        </ConvertToAbsolutePath>
+
+        <Message Text="Deploying Showcase site from $(AbsoluteShowcaseSourceFolder) to $(AbsoluteShowcaseDeploymentFolder)" />
+
+        <Exec Command="xcopy /Y /E &quot;$(AbsoluteShowcaseSourceFolder)\*.*&quot; &quot;$(AbsoluteShowcaseDeploymentFolder)\.&quot;" />
+        <Copy SourceFiles="$(AbsoluteShowcaseSourceFolder)\web.$(WebsiteEnvironment).config" DestinationFiles="$(AbsoluteShowcaseDeploymentFolder)\web.config" />
+    </Target>
+
+
+</Project>

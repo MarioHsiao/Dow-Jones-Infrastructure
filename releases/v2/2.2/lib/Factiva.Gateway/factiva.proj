@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="CreateNuGetPackages" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+
+    <PropertyGroup>
+        <MSBuildCommunityTasksPath>..\MSBuildCommunityTasks</MSBuildCommunityTasksPath>
+        <FactivaGatewayReleaseDir>\\172.25.15.86\tplib\Platform Integration\Releases\EMGGateway\factiva.gateway.messages</FactivaGatewayReleaseDir>
+        <FactivaTempDir>Source</FactivaTempDir>
+        <FactivaBuildDir>Build</FactivaBuildDir>
+        <FactivaGatewayMessagesSourceFile>$(FactivaGatewayReleaseDir)\factiva.gateway.messages REL $(FactivaVersion).zip</FactivaGatewayMessagesSourceFile>
+        <FactivaGatewayUncompressedSourcesDir>$(FactivaTempDir)\GatewayResources</FactivaGatewayUncompressedSourcesDir>
+        <FactivaGatewayAssembliesSourceDir>$(FactivaGatewayUncompressedSourcesDir)\bin</FactivaGatewayAssembliesSourceDir>
+        <FactivaGatewayAssembliesDir>$(FactivaTempDir)\bin</FactivaGatewayAssembliesDir>
+    </PropertyGroup>
+    
+    <Import Project="..\nuget\DowJones.NuGet.targets"/>
+    <Import Project="$(MSBuildCommunityTasksPath)\MSBuild.Community.Tasks.Targets"/>
+
+    <PropertyGroup>
+        <NuGetPackageVersion>$(FactivaVersion)</NuGetPackageVersion>
+        <NuSpecTemplateFilenames>*.nuspec-template</NuSpecTemplateFilenames>
+        <NuSpecDeploymentPath>$(FactivaTempDir)</NuSpecDeploymentPath>
+        <NuSpecFilenames>.\Build\**\*.nuspec</NuSpecFilenames>
+    </PropertyGroup>
+
+    <Target Name="CreateFactivaPackages"
+            BeforeTargets="CreateNuGetPackages"
+            DependsOnTargets="CleanTempDirs;PrepareFactivaPackageContents"
+    />
+
+    <Target Name="PrepareFactivaPackageContents" DependsOnTargets="TransformNuGetSpecTemplates">
+        <Error Condition="'$(FactivaVersion)' == ''"
+               Text="FactivaVersion cannot be empty" />
+
+        <MakeDir Directories="$(FactivaTempDir)" />
+        
+        <Unzip ZipFileName="$(FactivaGatewayMessagesSourceFile)" 
+               TargetDirectory="$(FactivaTempDir)\"/>
+
+        <MakeDir Directories="$(FactivaGatewayAssembliesDir)"/>
+        
+        <ItemGroup>
+            <FactivaAssemblies Include="$(FactivaGatewayAssembliesSourceDir)\**\*.*" />
+        </ItemGroup>
+
+        <Move SourceFiles="%(FactivaAssemblies.FullPath)" DestinationFolder="$(FactivaGatewayAssembliesDir)" />
+
+        <RemoveDir Directories="$(FactivaGatewayAssembliesSourceDir)" />
+
+        
+        <ItemGroup>
+            <FactivaGatewayMessageFiles Include="$(FactivaGatewayAssembliesDir)\factiva.gateway.messages.dll" />
+            <FactivaGatewayMessageFiles Include="$(FactivaGatewayAssembliesDir)\FactivaGateway.dll" />
+            <FactivaGatewayMessageFiles Include="$(FactivaGatewayAssembliesDir)\Interop.FCMLib.dll" />
+            <FactivaGatewayMessageFiles Include="$(FactivaTempDir)\Factiva.Gateway.nuspec" />
+        </ItemGroup>
+        <Attrib Files="@(FactivaGatewayMessageFiles)" ReadOnly="false" />
+        <Copy SourceFiles="@(FactivaGatewayMessageFiles)" 
+              DestinationFolder="$(FactivaBuildDir)\Factiva.Gateway\" />
+
+        <ItemGroup>
+            <FactivaGatewayResourceFiles Include="$(FactivaGatewayUncompressedSourcesDir)\**\*.*" />
+        </ItemGroup>
+        <Attrib Files="@(FactivaGatewayResourceFiles)" ReadOnly="false" />
+        <Copy SourceFiles="@(FactivaGatewayResourceFiles)" 
+              DestinationFolder="$(FactivaBuildDir)\Factiva.Gateway.Resources\content\GatewayResources\%(RecursiveDir)" />
+        <Copy SourceFiles="$(FactivaTempDir)\Factiva.Gateway.Resources.nuspec" 
+              DestinationFolder="$(FactivaBuildDir)\Factiva.Gateway.Resources" />
+
+
+        <ItemGroup>
+            <NuSpecFiles Include="$(NuSpecFilenames)" />
+        </ItemGroup>
+
+    </Target>
+    
+
+    <Target Name="CleanTempDirs" AfterTargets="CreateNuGetPackages">
+        <RemoveDir Directories="$(FactivaTempDir)" />
+        <RemoveDir Directories="$(FactivaBuildDir)" />
+    </Target>
+
+</Project>

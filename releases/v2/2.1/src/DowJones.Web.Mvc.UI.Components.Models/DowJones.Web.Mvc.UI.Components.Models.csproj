@@ -1,0 +1,181 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{32DA5CA1-0038-4110-BC24-938B39439CE7}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DowJones.Web.Mvc.UI.Components</RootNamespace>
+    <AssemblyName>DowJones.Web.Mvc.UI.Components.Models</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <NoWarn>1762</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="factiva.gateway.messages">
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.68\lib\factiva.gateway.messages.dll</HintPath>
+    </Reference>
+    <Reference Include="FactivaGateway">
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.68\lib\FactivaGateway.dll</HintPath>
+    </Reference>
+    <Reference Include="Interop.FCMLib">
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.68\lib\Interop.FCMLib.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.0.3.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.4.0.3\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\aspnetmvc\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AlertEditor\AlertEditorModel.cs" />
+    <Compile Include="ArticleTranslator\ArticleTranslatorModel.cs" />
+    <Compile Include="ArticleTranslator\ArticleTranslatorTokens.cs" />
+    <Compile Include="ArticleTranslator\TargetLanguage.cs" />
+    <Compile Include="Article\ArticleModel.cs" />
+    <Compile Include="Article\ElinkReferences.cs" />
+    <Compile Include="Article\Enum.cs" />
+    <Compile Include="Article\IRenderItem.cs" />
+    <Compile Include="Attributes\FlashPlayerMetaData.cs" />
+    <Compile Include="AuthorList\AuthorListModel.cs" />
+    <Compile Include="AuthorList\AuthorListTokens.cs" />
+    <Compile Include="AuthorList\AuthorModel.cs" />
+    <Compile Include="AuthorList\EnumDescription.cs" />
+    <Compile Include="CalloutPopup\CalloutPopupModel.cs" />
+    <Compile Include="CompositeAuthor\CompositeAuthorModel.cs" />
+    <Compile Include="CompositeOutlet\CompositeOutletModel.cs" />
+    <Compile Include="OutletList\OutletListModel.cs" />
+    <Compile Include="OutletList\OutletListTokens.cs" />
+    <Compile Include="OutletList\OutletModel.cs" />
+    <Compile Include="Search\CodeDesc.cs" />
+    <Compile Include="Common\SnippetDisplayType.cs" />
+    <Compile Include="Search\SourceGroupItem.cs" />
+    <Compile Include="Search\SourceGroupToSourceGroupItemMapper.cs" />
+    <Compile Include="Common\ThumbnailImage.cs" />
+    <Compile Include="CompanySparkline\CompaniesSparklinesComponentModel.cs" />
+    <Compile Include="CompanySparkline\CompanySparklineModel.cs" />
+    <Compile Include="CompositeHeadline\CompositeHeadlineModel.cs" />
+    <Compile Include="PersonalizationFilters\PersonalizationFiltersModel.cs" />
+    <Compile Include="PostProcessing\PostProcessing.cs" />
+    <Compile Include="RelatedConcepts\RelatedConceptsComponentModel.cs" />
+    <Compile Include="SearchNewsFilter\SearchNewsFilterModel.cs" />
+    <Compile Include="Discovery\DateHistogramModel.cs" />
+    <Compile Include="Search\SearchResponseToCompositeHeadlinesModelMapper.cs" />
+    <Compile Include="Search\HeadlinePostProcessing.cs" />
+    <Compile Include="Search\SearchResponseToCompanyProfilesMapper.cs" />
+    <Compile Include="SimpleAlert\SimpleAlertModel.cs" />
+    <Compile Include="TaxonomySearchBrowse\TaxonomySearchBrowse.cs" />
+    <Compile Include="TopicEditor\TopicEditorModel.cs" />
+    <Compile Include="SearchBuilder\SearchBuilderModel.cs" />
+    <Compile Include="Common\Author.cs" />
+    <Compile Include="HeadlineList\ListOption.cs" />
+    <Compile Include="LoginInfo\LoginInfoModel.cs" />
+    <Compile Include="Menu\MenuItem.cs" />
+    <Compile Include="NavBar\NavBarModel.cs" />
+    <Compile Include="NavBar\NavItem.cs" />
+    <Compile Include="Common\ArticleSource.cs" />
+    <Compile Include="Search\CompanyTile.cs" />
+    <Compile Include="Common\PriceTrend.cs" />
+    <Compile Include="SearchCategoriesLookUp\SearchCategoriesLookUpModel.cs" />
+    <Compile Include="Twitter\Tweet.cs" />
+    <Compile Include="Twitter\TweetLinesModel.cs" />
+    <Compile Include="Twitter\ModelMapper.cs" />
+    <Compile Include="Twitter\User.cs" />
+    <Compile Include="Twitter\ExpertsModel.cs" />
+    <Compile Include="Twitter\UserDetails.cs" />
+    <Compile Include="Twitter\ProfileModel.cs" />
+    <Compile Include="VideoPlayer\VideoPlayerModel.cs" />
+    <Compile Include="Quote\QuoteModel.cs" />
+    <Compile Include="Discovery\DiscoveryChartTypes.cs" />
+    <Compile Include="Discovery\DiscoveryItem.cs" />
+    <Compile Include="Discovery\DiscoveryList.cs" />
+    <Compile Include="Discovery\DiscoveryModel.cs" />
+    <Compile Include="NewChart\NewsChartModel.cs" />
+    <Compile Include="NewChart\NewsChartTokens.cs" />
+    <Compile Include="HeadlineCarousel\HeadlineCarouselModel.cs" />
+    <Compile Include="HeadlineCarousel\HeadlineCarouselTokens.cs" />
+    <Compile Include="HeadlineListCarousel\HeadlineListCarouselClientEventsBuilder.cs" />
+    <Compile Include="HeadlineListCarousel\HeadlineListCarouselModel.cs" />
+    <Compile Include="HeadlineList\HeadlineListModel.cs" />
+    <Compile Include="HeadlineList\HeadlineListTokens.cs" />
+    <Compile Include="HeadlineList\HeadlineModel.cs" />
+    <Compile Include="InlineMp3Player\InlineMp3PlayerModel.cs" />
+    <Compile Include="InlineMp3Player\Mp3PlayerType.cs" />
+    <Compile Include="PortalArticle\PortalArticleModel.cs" />
+    <Compile Include="NewsStandTicker\NewsStandTickerModel.cs" />
+    <Compile Include="NewsStandTicker\NewsStandTickerTokens.cs" />
+    <Compile Include="PortalHeadlineList\PortalHeadlineListModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Radar\RadarModel.cs" />
+    <Compile Include="Radar\RadarTokens.cs" />
+    <Compile Include="RealtimeHeadlineList\RealtimeHeadlineListModel.cs" />
+    <Compile Include="RealtimeHeadlineList\RealtimeHeadlineListTokens.cs" />
+    <Compile Include="RegionalMap\RegionalMapModel.cs" />
+    <Compile Include="RegionalMap\RegionalMapTokens.cs" />
+    <Compile Include="SocialButtons\SocialButtonsModel.cs" />
+    <Compile Include="TagCloud\TagCloudModel.cs" />
+    <Compile Include="TranslateArticle\TranslateArticleModel.cs" />
+    <Compile Include="TranslateArticle\TranslateArticleTokens.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DowJones.Infrastructure\DowJones.Infrastructure.csproj">
+      <Project>{095DE252-E183-4AE6-824A-B4504AE737C1}</Project>
+      <Name>DowJones.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DowJones.Web.Mvc\DowJones.Web.Mvc.csproj">
+      <Project>{3E440D53-ACA6-422A-8FC8-778D505AD1E9}</Project>
+      <Name>DowJones.Web.Mvc</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="DowJones.Web.Mvc.UI.Components.Models.nuspec-template" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

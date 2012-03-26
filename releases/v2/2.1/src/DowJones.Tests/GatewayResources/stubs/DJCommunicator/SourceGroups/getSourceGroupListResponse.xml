@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<getSourceGroupListResponse xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="urn:factiva:Communicator:SourceGroupsService:v1_0">
+  <totalCount>10</totalCount>
+  <sourceGroup>
+    <sourceGroupName>MyDowJonesNewsGroupName</sourceGroupName>
+    <sourceGroupID>1</sourceGroupID>
+    <sourceName>Dow Jones News</sourceName>
+    <contentType>Publications</contentType>
+    <status>1</status>
+  </sourceGroup>
+  <sourceGroup>
+    <sourceGroupName>MyNewYorkTimesNewsGroupName</sourceGroupName>
+    <sourceGroupID>2</sourceGroupID>
+    <sourceName>New York Times</sourceName>
+    <contentType>Publications</contentType>
+    <status>1</status>
+  </sourceGroup>
+  <sourceGroup>
+    <sourceGroupName>Pulse</sourceGroupName>
+    <sourceGroupID>3</sourceGroupID>
+    <sourceName>Pulse</sourceName>
+    <contentType>WebNews</contentType>
+    <status>1</status>
+  </sourceGroup>
+  <sourceGroup>
+    <sourceGroupName>The Daily</sourceGroupName>
+    <sourceGroupID>4</sourceGroupID>
+    <sourceName>the Daily</sourceName>
+    <contentType>WebNews</contentType>
+    <status>1</status>
+  </sourceGroup>
+  <sourceGroup>
+    <sourceGroupName>CNN</sourceGroupName>
+    <sourceGroupID>5</sourceGroupID>
+    <sourceName>CNN</sourceName>
+    <contentType>WebNews</contentType>
+    <status>1</status>
+  </sourceGroup>
+  <sourceGroup>
+    <sourceGroupName>Financial Times</sourceGroupName>
+    <sourceGroupID>6</sourceGroupID>
+    <sourceName>Financial Times</sourceName>
+    <contentType>WebNews</contentType>
+    <status>1</status>
+  </sourceGroup>
+  <sourceGroup>
+    <sourceGroupName>Financial Times</sourceGroupName>
+    <sourceGroupID>7</sourceGroupID>
+    <sourceName>Financial Times</sourceName>
+    <contentType>WebNews</contentType>
+    <status>1</status>
+  </sourceGroup>
+  <sourceGroup>
+    <sourceGroupName>forbes</sourceGroupName>
+    <sourceGroupID>8</sourceGroupID>
+    <sourceName>Forbes</sourceName>
+    <contentType>Publications</contentType>
+    <status>1</status>
+  </sourceGroup>
+  <sourceGroup>
+    <sourceGroupName>Pictures of the Week</sourceGroupName>
+    <sourceGroupID>9</sourceGroupID>
+    <sourceName>Google Images</sourceName>
+    <contentType>Pictures</contentType>
+    <status>1</status>
+  </sourceGroup>
+  <sourceGroup>
+    <sourceGroupName>Twitter</sourceGroupName>
+    <sourceGroupID>10</sourceGroupID>
+    <sourceName>Twitter</sourceName>
+    <contentType>Boards</contentType>
+    <status>1</status>
+  </sourceGroup>
+  <firstResult>5</firstResult>
+</getSourceGroupListResponse>

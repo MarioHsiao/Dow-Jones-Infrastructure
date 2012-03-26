@@ -1,0 +1,50 @@
+﻿<div class="filters">
+    <h5>
+        <%= Token("filters") %></h5>
+    <div class="filter-items">
+        <div class="wrap">
+            <ul class="dj_pill-list yellow clearfix">
+            </ul>
+            <ul class="dj_pill-list not-filter red clearfix" style="display:none;">
+                <li class="dj_pill not"><span><%= Token("notLabel") %></span> </li>
+            </ul>
+        </div>
+    </div>
+    <ul class="filter-scroll js_scroll-controls at-scroll-top hidden">
+        <li class="dj_icon scroll-down js_scroll-down"></li>
+        <li class="dj_icon scroll-up "></li>
+    </ul>
+</div>
+<ul class="modal-nav">
+    <li class="first active"><span>
+        <%= Token("lookUp") %></span></li>
+    <li style="display: none;"><span>
+        <%= Token("browse") %></span></li>
+    <li style="display: none;"><span>
+        <%= Token("sourceLists") %></span></li>
+</ul>
+<div class="tab-content">
+    <div class="dj_lookup-search clearfix">
+        <input type="text" class="dj_lookup-search-field" value="<%= self.lookUpDetails.autoCompleteText %>"/>
+        <input type="button" value="<%= Token("search") %>" class="dj_lookup-search-submit" />
+    </div>
+    <div class="lookup-results-container" style="display:none;">
+        <h6 class="results-title"></h6>
+        <span class="dj_paging hidden">
+		    <span tooltip="<%= Token("next") %>" class="dj_icon prev-page dj_icon-arrow-green-left"></span>
+		    <span></span>
+		    <span tooltip="<%= Token("previous") %>" class="dj_icon next-page dj_icon-arrow-green-right"></span>
+	    </span>
+        <ul class="lookup-results"></ul>
+        <h6><%= Token("extendedSourceResults") %></h6>
+        <ul class="lookup-results extended"></ul>
+    </div>
+</div>
+<div class="tab-content hidden">
+    <ul class="dj_browse-tree"></ul>
+</div>
+<div class="tab-content hidden">
+    <h6><%= Token("sourceLists") %></h6>
+    <p><%= Token("sourceListDesc") %></p>
+    <ul class="dj_browse-tree"></ul>
+</div>

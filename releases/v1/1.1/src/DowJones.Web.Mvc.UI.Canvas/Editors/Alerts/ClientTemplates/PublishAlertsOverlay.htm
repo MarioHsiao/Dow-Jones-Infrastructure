@@ -1,0 +1,20 @@
+﻿<div id="dj_modal-admin-publish-alerts">
+    <% if (obj && obj.PrivateAlerts && obj.PrivateAlerts.length > 0){ %>
+    <h4>
+        <%= Token("modulePrivateAlertsHeader")%></h4>
+    <p>
+        <%= Token("privateAlertsInstructions") %></p>
+    <div id="dj_modal-publish-alerts">
+        <ul>
+             <% for (var i = 0, len = obj.PrivateAlerts.length; i < len; i++) { 
+             var alert = obj.PrivateAlerts[i]; %>
+            <li>
+                <%= alert.name %>
+                <input type="hidden" name="fldrs" value="<%= alert.alertId %>" /></li>
+            <% } %>
+        </ul>
+    </div>
+    <h4>
+        <%= Token("modulePrivateAlertsFooter") %></h4>
+    <% } %>
+</div>

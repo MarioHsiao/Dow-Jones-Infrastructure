@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{55BE4602-F301-41E5-966E-4990BD1A9D0E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DowJones.Web.Mvc.UI.Canvas</RootNamespace>
+    <AssemblyName>DowJones.Web.Mvc.UI.Canvas.Models</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <GenerateSerializationAssemblies>On</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="factiva.gateway.messages, Version=7.5.0.29, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Factiva.Gateway.Messages.7.5.0.29\lib\factiva.gateway.messages.dll</HintPath>
+    </Reference>
+    <Reference Include="FactivaGateway, Version=1.5.0.5, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Factiva.Gateway.Messages.7.5.0.29\lib\FactivaGateway.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.4.0.1\lib\40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject">
+      <HintPath>..\packages\Ninject.2.2.0.0\lib\.NetFramework 4.0\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BaseComponents\AbstractEditorModel.cs" />
+    <Compile Include="Ajax\CanvasModules\AbstractAddModule.cs" />
+    <Compile Include="Ajax\CanvasModules\Basic\Charting\ChartingData.cs" />
+    <Compile Include="Ajax\CanvasModules\Basic\Syndication\SyndicationData.cs" />
+    <Compile Include="Ajax\Core\AddCanvasModule.cs" />
+    <Compile Include="Ajax\Core\BaseCanvasAjaxRequestDelegate.cs" />
+    <Compile Include="Ajax\Core\CloneCanvasModuleRequestDelegate.cs" />
+    <Compile Include="Ajax\Core\DeleteCanvasModule.cs" />
+    <Compile Include="Ajax\Core\UpdateCanvasModulesPositions.cs" />
+    <Compile Include="Ajax\Core\UpdateCanvasModulesProperties.cs" />
+    <Compile Include="Ajax\Core\UpdateCanvasModuleState.cs" />
+    <Compile Include="Ajax\Core\UpdateCanvasPosition.cs" />
+    <Compile Include="BaseComponents\PayloadFormat.cs" />
+    <Compile Include="Editors\CompanyOverviewModuleEditor.cs" />
+    <Compile Include="BaseComponents\Canvas.cs" />
+    <Compile Include="Editors\SwapModuleEditor.cs" />
+    <Compile Include="Mapping\FactivaModuleModelMapper.cs" />
+    <Compile Include="Mapping\FactivaModuleModelMapping.cs" />
+    <Compile Include="Mapping\FactivaModuleModelMappingNotFoundException.cs" />
+    <Compile Include="Mapping\FactivaModuleModelMappingRegistration.cs" />
+    <Compile Include="BaseComponents\Module.cs" />
+    <Compile Include="Editors\AlertsModuleEditor.cs" />
+    <Compile Include="Mapping\ModuleTypeIRTCodes.cs" />
+    <Compile Include="Modules\AlertsModule.cs" />
+    <Compile Include="Modules\CompanyOverviewModule.cs" />
+    <Compile Include="Modules\SummaryModule.cs" />
+    <Compile Include="Editors\TopNewsCanvasModuleEditor.cs" />
+    <Compile Include="Modules\TopNewsModule.cs" />
+    <Compile Include="Modules\CustomTopicsModule.cs" />
+    <Compile Include="Modules\NewsstandModule.cs" />
+    <Compile Include="Modules\RadarModule.cs" />
+    <Compile Include="Modules\RegionalMapModule.cs" />
+    <Compile Include="Modules\SourcesModule.cs" />
+    <Compile Include="Modules\SyndicationModule.cs" />
+    <Compile Include="Editors\SyndicationModuleEditor.cs" />
+    <Compile Include="Modules\TrendingNewsModule.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.cs">
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\SyndicationModuleSettings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>SyndicationModuleSettings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DowJones.Infrastructure\DowJones.Infrastructure.csproj">
+      <Project>{095DE252-E183-4AE6-824A-B4504AE737C1}</Project>
+      <Name>DowJones.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DowJones.Web.Mvc.UI.Components.Models\DowJones.Web.Mvc.UI.Components.Models.csproj">
+      <Project>{32DA5CA1-0038-4110-BC24-938B39439CE7}</Project>
+      <Name>DowJones.Web.Mvc.UI.Components.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DowJones.Web.Mvc\DowJones.Web.Mvc.csproj">
+      <Project>{3E440D53-ACA6-422A-8FC8-778D505AD1E9}</Project>
+      <Name>DowJones.Web.Mvc</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="DowJones.Web.Mvc.UI.Canvas.Models.nuspec-template" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>PublicSettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>DowJones.Web.Mvc.UI.Canvas</CustomToolNamespace>
+    </None>
+    <None Include="Properties\SyndicationModuleSettings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>SyndicationModuleSettings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

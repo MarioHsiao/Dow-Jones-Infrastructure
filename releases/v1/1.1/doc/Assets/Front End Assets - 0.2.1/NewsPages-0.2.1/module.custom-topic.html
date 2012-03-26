@@ -1,0 +1,332 @@
+<!doctype html>
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]>	   <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]>	   <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]>	   <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+	<title>Factiva Newspages</title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+ 
+	<script src="js/libs/modernizr-1.6.min.js"></script>
+
+	<link rel='stylesheet' href='css/reset.css' type='text/css' media='screen, print' />
+	<link rel='stylesheet' href='css/global.css' type='text/css' media='all' />
+	
+	<!-- Dow Jones Dashboard Frame Work styles -->
+	<link rel='stylesheet' href='css/grid.990.9-col.css' type='text/css' media='screen' />
+	<link rel='stylesheet' href='css/style.css' type='text/css' media='screen' />
+	<link rel='stylesheet' href='css/factiva.icons.css' type='text/css' media='screen' />
+	<link rel='stylesheet' href='css/dashboard.controls.css' type='text/css' media='screen' />
+	<link rel='stylesheet' href='css/dashboard.article-group.css' type='text/css' media='screen' />
+	
+	<!-- Project styles -->
+	<link rel='stylesheet' href='css/dashboard.css' type='text/css' media='screen' />
+	<link rel='stylesheet' href='css/dashboard.nav-tabs.css' type='text/css' media='screen' />
+	<link rel='stylesheet' href='css/module.css' type='text/css' media='screen' />
+	<link rel='stylesheet' href='css/module.style.css' type='text/css' media='screen' />
+	<link rel='stylesheet' href='css/module.buttons.css' type='text/css' media='screen' />
+	<link rel='stylesheet' href='css/module.edit-options.css' type='text/css' media='screen' />
+	<link rel='stylesheet' href='css/module.content.articles.css' type='text/css' media='screen' />
+	<link rel='stylesheet' href='css/module.col.headline.css' type='text/css' media='screen' />
+	<link rel='stylesheet' href='css/module.col.article.css' type='text/css' media='screen' />
+	
+</head>
+
+<body>
+
+<!-- 
+    begin: sample module data
+-->
+<div id="sample-data" class="hide">					
+    
+    <!-- 
+	    DEV-NOTE: below is sample article group markup for a custom topic module column
+	-->
+	<div class="article-group">
+	    
+		<h3 class="module-col-title article-group-title">
+			<a href="#">Section Title</a>
+		</h3>
+
+		<ul class="article-list">
+			<li>
+				<div class="article-wrap primary-article">
+
+					<div class="article-meta">
+						<span class="article-source">The New York Times</span>
+						-
+						<span class="pre-released">Pre-Released Article</span>
+					</div>
+
+					<h4 class="article-headline">
+						<a href="#">Dow Jones Builds Largest Solar Energy Field on the East Coast</a>								
+					</h4>
+
+					<p class="article-snip">
+					The Hatter was the first to break the silence. 'What day of the month is it?' he said, turning to Alice: he had taken his watch out of his pocket, and was looking at it uneasily, shaking...
+					</p>
+
+				</div>
+			</li>
+			<li>
+				<div class="article-wrap">
+
+					<div class="article-meta">
+						<span class="article-source">The New York Times</span>
+						-
+						<span class="date-stamp">December 15, 2010</span>
+					</div>
+
+					<h4 class="article-headline">
+						<a href="#">Dow Jones Builds Largest Solar Energy Field on the East Coast</a>
+						<span class="fi"></span>									
+					</h4>
+
+				</div>
+			</li>
+			<li>
+				<div class="article-wrap">
+
+					<div class="article-meta">
+						<span class="article-source">The New York Times</span>
+						-
+						<span class="date-stamp">December 15, 2010</span>
+					</div>
+
+					<h4 class="article-headline">
+						<a href="#">Dow Jones Builds Largest Solar Energy Field on the East Coast</a>
+						<span class="fi"></span>									
+					</h4>
+
+				</div>
+			</li>
+			<li>
+				<div class="article-wrap">
+
+					<div class="article-meta">
+						<span class="article-source">The New York Times</span>
+						-
+						<span class="date-stamp">December 15, 2010</span>
+					</div>
+
+					<h4 class="article-headline">
+						<a href="#">Dow Jones Builds Largest Solar Energy Field on the East Coast</a>
+						<span class="fi"></span>									
+					</h4>
+
+				</div>
+			</li>
+		</ul>
+
+		<ul class="dc_list">
+            <li class="dc_item">
+                <a href="#" class="dashboard-control dc_btn dc_btn-1">View All</a>
+            </li>
+        </ul>
+		
+	</div>
+</div>
+<!-- 
+    end: sample module data
+-->
+
+<div id="dashboard"><div id="dashboard-wrap" class="container_9 clearfix">
+
+	<div class="custom-topic-module module wrap-9">
+
+		<div class="module-header">
+
+			<h3 class="module-title">Custom Topic Module</h3>
+
+			<ul class="dc_list dc_list-fr">
+                <li class="dc_item">
+                    <a href="#" class="dashboard-control settings"><span class="fi fi_gear"></span></a>
+                </li>
+			</ul>
+			
+		</div><!-- end: .module-header -->
+        <form class="module-edit-options">
+            <div class="module-edit-options-header clearfix">
+   	        	<ul class="module-controls mc_actions">
+                    <li class="mc_item jq_has-dropdown mc_item-open drop-open-left">
+                    	<span class="control-wrap">
+                        	<span class="control-content png_bg">
+                            	<span class="control-text">Actions</span>
+                            	<span class="fi fi_d-arrow-g"></span>
+                            </span>
+                        </span>
+                        <ul class="mc_dropdown">
+                        	<li class="mc_dropdown-item">
+                            	<span class="mc_dropdown-content">Move Up</span>
+                                <span class="fi fi_u-arrow-g"></span>
+                            </li>
+                            <li class="mc_dropdown-item">
+                            	<span class="mc_dropdown-content">Move Down</span>
+                                <span class="fi fi_d-arrow-g"></span>
+                            </li>
+                            <li class="mc_dropdown-item">
+                            	<span class="mc_dropdown-content">Clone/Copy</span>
+                            </li>
+                            <li class="mc_dropdown-item">
+                            	<span class="mc_dropdown-content">Remove Module</span>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="module-edit-options-content">
+                <div class="module-row one-two-col clearfix">
+                    <div class="module-col one-third first-col">
+                        <div class="edit-module-name-wrap">
+                            <div class="edit-module-name-label">
+                                <label for="edit-module-name">Module Name</label>
+                            </div>
+                            <div class="edit-module-name-textbox">
+                                <input type="text" id="edit-module-name" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="module-edit-options-footer clearfix">
+                <ul class="dc_list">
+                    <li class="dc_item">
+                        <input type="submit" value="Save and Collapse" class="dashboard-control dc_btn dc_btn-2"/>
+                    </li>
+                    <li class="dc_item ">
+                        <input type="reset" value="Reset" class="dashboard-control dc_btn dc_btn-3"/>
+                    </li>
+                </ul>
+            </div>
+        </form>
+
+        <div class="module-core">
+            
+    		<div class="module-content">
+                    <ul class="module-content-pages">
+                    
+                        <li>
+                            <div class="module-content-page">
+        
+                                <div class="module-row clearfix">
+            
+                                    <div class="module-col one-third first-col"><div class="module-col-wrap standard-padding">
+                        
+                                    </div></div><!-- end: .module-col -->
+            
+                                    <div class="module-col one-third"><div class="module-col-wrap standard-padding">
+                        
+                                    </div></div><!-- end: .module-col -->
+                        
+                                    <div class="module-col one-third"><div class="module-col-wrap standard-padding">
+                        
+                                    </div></div><!-- end: .module-col -->
+            
+                                </div><!-- end: .module-row -->
+    
+                                <div class="module-row clearfix">
+            
+                                    <div class="module-col one-third first-col"><div class="module-col-wrap standard-padding">
+                        
+                                    </div></div><!-- end: .module-col -->
+            
+                                    <div class="module-col one-third"><div class="module-col-wrap standard-padding">
+                        
+                                    </div></div><!-- end: .module-col -->
+                        
+                                    <div class="module-col one-third"><div class="module-col-wrap standard-padding">
+                                    
+                                    </div></div><!-- end: .module-col -->
+            
+                                </div><!-- end: .module-row -->
+    
+                            </div><!-- end: .module-content-page -->
+    
+                        </li>
+                    
+                        <li>
+                            <div class="module-content-page">
+        
+                                <div class="module-row clearfix">
+            
+                                    <div class="module-col one-third first-col"><div class="module-col-wrap standard-padding">
+                        
+                                    </div></div><!-- end: .module-col -->
+            
+                                    <div class="module-col one-third"><div class="module-col-wrap standard-padding">
+                        
+                                    </div></div><!-- end: .module-col -->
+                        
+                                    <div class="module-col one-third"><div class="module-col-wrap standard-padding">
+                        
+                                    </div></div><!-- end: .module-col -->
+            
+                                </div><!-- end: .module-row -->
+    
+                                <div class="module-row clearfix">
+            
+                                    <div class="module-col one-third first-col"><div class="module-col-wrap standard-padding">
+                        
+                                    </div></div><!-- end: .module-col -->
+            
+                                    <div class="module-col one-third"><div class="module-col-wrap standard-padding">
+                        
+                                    </div></div><!-- end: .module-col -->
+                        
+                                    <div class="module-col one-third"><div class="module-col-wrap standard-padding">
+                        
+                                    </div></div><!-- end: .module-col -->
+            
+                                </div><!-- end: .module-row -->
+    
+                            </div><!-- end: .module-content-page -->
+    
+                        </li>
+                    
+                    </ul><!-- end: .module-content-pages -->
+                
+    		</div><!-- end: .module-content -->
+            
+    		<div class="module-footer">
+
+    		</div><!-- end: .module-footer -->
+    		
+        </div ><!-- end: .module-core -->
+	</div><!-- end: .custom-topic-module -->
+	
+</div></div><!-- end: #dashboard -->
+
+<!-- library scripts - 3rd party -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.js"></script>
+<!--<script>!window.jQuery && document.write(unescape('%3Cscript src="js/libs/jquery-1.4.3.min.js"%3E%3C/script%3E'))</script>-->
+<script type='text/javascript' src='js/libs/jquery-ui-1.8.6.custom.min.js'></script>
+<script type='text/javascript' src='js/libs/jquery.easing-1.3.min.js'></script>
+<script type='text/javascript' src='js/libs/jquery.cycle.all.min.js'></script>
+<script type='text/javascript' src='js/libs/jquery.blockui.min.js'></script>
+
+<script type='text/javascript' src='js/libs/highcharts.js'></script>
+
+<!-- global scripts -->
+<script type='text/javascript' src='js/global.js'></script>
+<script type='text/javascript' src='js/popup.js'></script>
+
+<!-- DEV-NOTE: helper.js is not intended for production use -->
+<script type='text/javascript' src='js/helper.js'></script>
+
+<!-- dashboard library scripts -->
+<script type='text/javascript' src='js/dashboard.js'></script>
+<script type='text/javascript' src='js/module.js'></script>
+<script type='text/javascript' src='js/module.edit-options.js'></script>
+<script type='text/javascript' src='js/module.custom-topic.js'></script>
+
+<!-- page script -->
+<script type='text/javascript' src='js/script.js'></script>
+
+
+</body>
+</html>

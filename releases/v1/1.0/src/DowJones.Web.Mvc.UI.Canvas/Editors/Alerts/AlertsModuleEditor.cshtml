@@ -1,0 +1,74 @@
+﻿@using DowJones.Web.Mvc.UI.Canvas
+@using DowJones.Web.Mvc.UI.Canvas.Properties
+@using DowJones.Web.Mvc.UI.Canvas.Editors.Alerts
+@inherits AbstractCanvasModuleEditor<AlertsModuleEditor>
+@ClientPlugin dj_AlertsModuleEditor
+@ClientTemplate RelativeResourceName=ClientTemplates.UserAlertsList.htm, TemplateId=DJ.UI.AlertsModuleEditor.prototype.templates.userAlertsList, PerformSubstitution=true
+@ClientTemplate RelativeResourceName=ClientTemplates.PublishAlertsOverlay.htm, TemplateId=DJ.UI.AlertsModuleEditor.prototype.templates.publishAlertsOverlay, PerformSubstitution=true
+@ScriptResource RelativeResourceName=AlertsModuleEditor.js
+@{  Html.DJ().ScriptRegistry().WithUnderscoreJS();
+    CssClass = "dj_Editor dj_AlertsModuleEditor"; 
+}
+<div class="edit-details dj_Edit_PageDescription">
+</div>
+<div class="dj_edit-content clearfix">
+    <div class="dj_edit-col">
+        <div class="dj_edit-input-wrap">
+            <label for="" class="dj_edit-label">
+                @Html.DJ().Token("moduleName")</label>
+            <div class="dj_text-element-wrapper">
+                <input type="text" id="txtModuleName" maxlength="25"></div>
+        </div>
+        <div class="dj_edit-input-wrap">
+            <label for="" class="dj_edit-label">
+                @Html.DJ().Token("description")</label>
+            <span class="dj_max-char-note">(@Html.DJ().Token("max250Chars"))</span>
+            <div class="dj_text-element-wrapper">
+                <textarea id="txtDescription"></textarea></div>
+        </div>
+    </div>
+    <div class="dj_edit-col two-thirds">
+        <label for="" class="dj_edit-label">
+            @Html.DJ().Token("alerts")</label>
+        <div class="dj_edit-lists-overflow">
+            <span class="dj_edit-list-empty-msg">@Html.DJ().Token("noAlertsInModule")</span>
+            <ul class="dj_edit-lists ui-sortable" id="dj_alert_principal_list" style="">
+            </ul>
+        </div>
+        <div class="dj_edit-lists-add-controls">
+            <div class="list-message hide">
+                @Html.DJ().Token("maxAlertsInModule")
+            </div>
+            <div class="add-new-list-item">
+                <label for="" class="dj_edit-label">
+                    @Html.DJ().Token("selectAlertForModule")
+                </label>
+                <select class="user-alerts-list" id="ddlAlerts">
+                    <option value="Select an alert" class="default-option">@Html.DJ().Token("selectAnAlert")</option>
+                </select>
+                <ul class="dc_list">
+                    <li class="dc_item"><a class="dashboard-control dc_btn dc_btn-2 dc_btn-add">@Html.DJ().Token("add")</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modalDialog dj_modal alertsOverlay ">
+    <div class="modalHeader">
+        <h3 class="modalTitle">@Html.DJ().Token("createUpdateModule")</h3>
+        <p class="modalClose">
+            <a href="javascript:void(0);"></a>
+        </p>
+    </div>
+    <div class="modalContent sm-indent">
+    </div>
+    <div class="dj_form-submit-buttons">
+        <ul class="dc_list" id="dj_modal-controls">
+            <li class="dc_item"><a href="javascript:void(0)" class="dj_modal-proceed dashboard-control dc_btn dc_btn-1">@Html.DJ().Token("proceed")</a> </li>
+            <li class="dc_item"><a href="javascript:void(0)" class="dj_modal-close dashboard-control dc_btn dc_btn-3">@Html.DJ().Token("cancel")</a> </li>
+        </ul>
+    </div>
+
+</div>
+

@@ -1,0 +1,6 @@
+﻿# TFSBuild.rsp:  Additional build parameters
+
+# The available verbosity levels are q[uiet], m[inimal], n[ormal], d[etailed], and diag[nostic]
+/verbosity:detailed
+
+/p:NuGetOutputPath="\\fsegdevw1.win.dowjones.net\WebSites\nuget\main\Packages"

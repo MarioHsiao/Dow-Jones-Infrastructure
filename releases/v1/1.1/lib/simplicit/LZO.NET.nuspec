@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>LZO.NET</id>
+        <version>1.0.0.0</version>
+        <title>LZO.NET</title>
+        <description>
+            The .Net-Technology features the very rich and useful FCL (Foundation Class Library) which covers almost every aspect of programming. Its quite surprising that there are no classes for easy and fast compression.
+            LZO.Net brings the power of Markus "FXJ" Oberhumer's great LZO compression library (V1.08) to .Net. It wraps the access to the native DLL with a small C# class maintaining the raw speed of the ANSI-C library.
+        </description>
+        <authors>Simplic.IT</authors>
+        <tags>DowJones</tags>
+        <language>en-US</language>
+        <projectUrl>http://lzo-net.sourceforge.net/</projectUrl>
+        <licenseUrl>http://lzo-net.sourceforge.net/</licenseUrl>
+    </metadata>
+    <files>
+        <file src="Simplicit.Net.Lzo.dll" target="lib"/>
+        <file src="lzo.dll" target="lib"/>
+    </files>
+</package>

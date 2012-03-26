@@ -1,0 +1,20 @@
+﻿@model dynamic
+@{
+    ViewBag.Title = "Portal Headline List";
+}
+
+<h3>Html.DJ().Render(Model)</h3><br/>
+<h4>@Model.PhilHaack.Title</h4>
+@Html.DJ().Render(Model.PhilHaack.HeadlineList, new { id = "haacked", data_type = "automatic" })
+
+<hr/>
+
+<h3>Html.DJ().RenderComponent("PortalHeadlineList", Model)</h3><br/>
+<h4>@Model.ScottGu.Title</h4>
+@Html.DJ().RenderComponent("PortalHeadlineListControl", Model.ScottGu.HeadlineList, new { id = "scottgu", data_type = "named" })
+
+<hr/>
+
+<h3>Html.DJ().RenderComponent&lt;PortalHeadlineList&gt;(Model)</h3><br/>
+<h4>@Model.Hanselman.Title</h4>
+@(Html.DJ().RenderComponent<DowJones.Web.Mvc.UI.Controls.PortalHeadlineList.PortalHeadlineListControl>(Model.Hanselman.HeadlineList, new { id = "hanselman", data_type = "typed" }))

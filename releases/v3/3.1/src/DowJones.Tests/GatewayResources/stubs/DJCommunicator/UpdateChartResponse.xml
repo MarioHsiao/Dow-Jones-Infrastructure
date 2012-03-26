@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UpdateChartResponse xmlns="urn:factiva:Communicator:MetricService:v1_0" xsi:schemaLocation="urn:factiva:Communicator:MetricService:v1_0 made_metrics.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cmn="urn:factiva:Communicator:Common:v1_0" />

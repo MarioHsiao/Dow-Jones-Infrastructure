@@ -1,0 +1,39 @@
+﻿@{
+    ViewBag.Title = "API";
+}
+
+<h2>Dashboard API Links</h2>
+
+<ul>
+
+    <li>
+        <form action="http://api.int.dowjones.com/api/1.0/Session/Login/xml" method="get">
+            <p>User ID: <input id="userid" name="userid" type="text" value="@Model.UserID" /></p>
+            <p>Password: <input id="password" name="password" type="text" value="@Request["Password"]" /></p>
+            <input type="hidden" id="namespace" name="namespace" value="@Model.ProductID" />
+
+            <button type="submit">Get Session</button>
+        </form>
+    </li>
+
+    <li>
+        <form action="http://api.int.dowjones.com/api/dashboard/pages/1.0/list/xml" method="get">
+            <p>Session ID: <input name="sessionid" type="text" value="@Model.SessionID" /></p>
+            <button type="submit">Get Page List</button>
+        </form>
+    </li>
+
+    <li>
+        <form action="http://api.int.dowjones.com/api/dashboard/pages/1.0/id/xml" method="get">
+            <p>Session ID: <input name="sessionid" type="text" value="@Model.SessionID" /></p>
+            <p>Session ID: <input name="pageId" type="text" value="13219" /></p>
+            <button type="submit">Get Page Definition</button>
+        </form>
+    </li>
+
+</ul>
+
+<div>
+    <label>Session ID:</label> 
+    <span>@Model.SessionID</span>
+</div>

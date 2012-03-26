@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>Factiva.Gateway.Messages</id>
+        <version>PACKAGE_VERSION</version>
+        <title>Factiva Gateway Message contracts</title>
+        <description>Factiva Gateway Message contracts</description>
+        <authors>Factiva Gateway Team</authors>
+        <tags>DowJones</tags>
+        <language>en-US</language>
+        <projectUrl>http://dowjones.com</projectUrl>
+        <licenseUrl>http://dowjones.com</licenseUrl>
+    </metadata>
+    <files>
+        <file src="factiva.gateway.messages.dll" target="lib"/>
+        
+        <!--  NOTE:  Get rid of this ASAP!
+              Temporarily include the FactivaGateway assembly
+              because it currently holds things such as ControlData
+              and SOAPMessage.  Once those dependencies are moved,
+              this reference can (and should!) be removed.
+        -->
+        <file src="FactivaGateway.dll" target="lib"/>
+    </files>
+</package>

@@ -1,0 +1,12 @@
+﻿@model DowJones.Web.Mvc.UI.Components.Models.SimpleSearch.SimpleSearchControlModel
+@ClientPlugin dj_SimpleSearchControl
+@ScriptResource RelativeResourceName=SimpleSearchControl.js
+@StylesheetResource RelativeResourceName=SimpleSearchControl.css
+@{ CssClass = "dj_SimpleSearchControl"; }
+
+<form class="page-search-form clearfix">
+    <div class="page-search-field-wrapper">
+    	<input class="page-search-field"  id="page-search-field" type="text" value="@Model.SearchTerm"/>
+    </div>
+	<input class="page-search-submit" type="submit" value="search"/>
+</form>

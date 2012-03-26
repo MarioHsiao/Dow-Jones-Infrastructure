@@ -1,0 +1,47 @@
+﻿#proof-wrap
+{
+    /*background: pink;*/
+    border: 1px solid black;    
+    }
+#proof
+{
+    border: 1px solid red;
+    width: 711px;
+    height: 454px;
+    
+    padding-left: 139px;
+    padding-top: 51px;
+    /*
+    background: transparent url('econCalDesignSample.jpg') no-repeat center center;
+    opacity: .5;
+	filter: alpha(opacity=50);
+	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";*/
+    /*border: 1px solid blue;*/
+    }
+.clientContainer                            { width: 570px; font-size: 12px; color: #000; border: 1px solid #ccc;}
+.clientHeader                               { height: 33px; background: transparent url('calendarHeader.jpg') no-repeat left top; }
+.clientFilter                               { position: relative; height: 37px; }
+.keyEventFilterOff, .keyEventFilterOn       { position: absolute; left: 5px; top: 4px; width: 140px; height: 33px; cursor: pointer; }    
+.keyEventFilterOff                          { background: transparent url('keyIndicatorsOff.jpg') no-repeat left top; }    
+.keyEventFilterOff:hover
+,.keyEventFilterOn                          { background: transparent url('keyIndicatorsOn.jpg') no-repeat left top; }
+.rangeRegionFilters                         { position: absolute; top: 4px; right: 0px; width: 82px; }
+.rangeFilter, .regionFilter                 { width: 32px; height: 32px; float: right; margin-left: 6px; cursor: pointer; }
+.rangeFilter                                { background: transparent url('timeRangeIconDefault.jpg') no-repeat center center; }
+.rangeFilter:hover                          { background-image: url('timeRangeIconHover.jpg'); }
+.regionFilter                               { background: transparent url('regionIconDefault.jpg') no-repeat center center; }
+.regionFilter:hover                         { background-image: url('regionIconHover.jpg'); }
+.clientWidgetWrapper                        { }
+.clientFooter                               { margin-top: 5px; border-top: 1px solid #CCC;}
+.clientFooterControls                       { position: relative; background-color: #fff; }
+.clientFooterControls .moreEventsOff
+,.clientFooterControls .moreEventsOn        { height: 32px; width: 72px; padding-left: 9px; padding-right: 35px; cursor: pointer; line-height: 24px; color: #3399CC; font-weight: bold; }
+.clientFooterControls .moreEventsOff        { background: transparent url('arrowDwn_MoreEvents.gif') no-repeat right -4px; }    
+.clientFooterControls .moreEventsOn         { background: transparent url('arrowUp_MoreEvents.gif') no-repeat right -4px; }
+.clientFooterControls .scrollControls       { position: absolute; height: 32px; width: 60px; right: 0px; top: 0px; }            
+.scrollControls .scrollUp
+,.scrollControls .scrollDown                { position: relative; cursor: pointer; height: 20px; width: 20px; background-repeat: no-repeat; background-position: center center; background-color: transparent;}
+.scrollControls .scrollUp                   { background-image: url('scrollUp.gif'); top: -20px; right: -30px; }
+.scrollControls .scrollUp:hover             { background-image: url('scrollUpHover.gif'); }
+.scrollControls .scrollDown                 { background-image: url('scrollDwn.gif'); }
+.scrollControls .scrollDown:hover           { background-image: url('scrollDwnHover.gif'); }

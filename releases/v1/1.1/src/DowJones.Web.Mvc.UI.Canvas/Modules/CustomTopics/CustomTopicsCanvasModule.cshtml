@@ -1,0 +1,54 @@
+﻿@using DowJones.Web.Mvc.Extensions
+@using DowJones.Extensions
+@using DowJones.Web.Mvc.UI.Components.PortalHeadlineList
+@using DowJones.Web.Mvc.UI.Canvas.Modules.CustomTopics
+@using DowJones.Web.Mvc.UI.Components.Models
+@using DowJones.Web.Mvc.UI.Canvas.Properties
+@using DowJones.Web.Mvc.UI.Components.Pager
+@inherits DowJones.Web.Mvc.UI.Canvas.AbstractCanvasModule<DowJones.Web.Mvc.UI.Canvas.Modules.CustomTopicsModule>
+@ClientPlugin dj_CustomTopicsCanvasModule
+@ScriptResource RelativeResourceName=CustomTopicsCanvasModule.js
+@StylesheetResource RelativeResourceName=CustomTopicsCanvasModule.css
+@{ 
+    CssClass = CssClass + " dj_CustomTopicsCanvasModule curated-module";
+    Html.DJ().Pager();
+    Html.DJ().ScriptRegistry().WithJQueryUIEffects();
+}
+@section ContentArea {
+    <div class="module-content-page">
+        <div class="module-row article-row clearfix">
+            @foreach (var phl in Model.PortalHeadlineLists)
+            {
+                <div class="module-col one-third">
+                    <div class="module-col-wrap standard-padding">
+                        <div class="article-group">
+                            <h3 class="module-col-title article-group-title">
+                            </h3>
+                            @(CreateChildControl<PortalHeadlineListControl>(phl))
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="module-row clearfix">
+            @foreach (var phl in Model.PortalHeadlineLists)
+            {
+                <div class="module-col one-third">
+                    <div class="module-col-wrap standard-padding">
+                        <ul class="dc_list view-all-btn">
+                            <li class="dc_item"><a href="javascript:void(0);" class="dashboard-control dc_btn dc_btn-1">@Html.DJ().Token("viewAll")</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+}
+@section EditArea {
+    @* Module Editor 
+      Override this if Editor is not being set in Model
+   *@
+    @(CreateChildControl(Model.Editor,
+        new Dictionary<string, object> { { "class", "dj_Editor" } }))
+}

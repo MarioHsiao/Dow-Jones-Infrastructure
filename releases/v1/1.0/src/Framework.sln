@@ -1,0 +1,189 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DowJones.Web.Mvc", "DowJones.Web.Mvc\DowJones.Web.Mvc.csproj", "{3E440D53-ACA6-422A-8FC8-778D505AD1E9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DowJones.Web.Mvc.UI.Components", "DowJones.Web.Mvc.UI.Controls\DowJones.Web.Mvc.UI.Components.csproj", "{8F187465-8B2C-4557-B3A2-02F7B4A6C0FE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DowJones.Web.Showcase", "DowJones.Web.Showcase\DowJones.Web.Showcase.csproj", "{B8596915-AD5E-45C2-987D-234AFF8AEAA3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DowJones.Web.Mvc.Diagnostics", "DowJones.Web.Mvc.Diagnostics\DowJones.Web.Mvc.Diagnostics.csproj", "{DC6F4246-50E5-4E2E-A90B-70E4BECA1EB6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DowJones.Web.Mvc.Tests", "DowJones.Web.Mvc.Tests\DowJones.Web.Mvc.Tests.csproj", "{1EF77970-5676-4B38-91D7-D4DC8B4A53FA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Solution Items", "_Solution Items", "{B83FFDA6-ED2C-41A1-9785-19FC03D9BACB}"
+	ProjectSection(SolutionItems) = preProject
+		default.proj = default.proj
+		LocalCodeCoverage.testsettings = LocalCodeCoverage.testsettings
+		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JavaScript Tests", "javascript tests\JavaScript Tests.csproj", "{5F9466C5-EBCA-464F-8EE4-4868BBF6D126}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DowJones.Web.Mvc.UI.Canvas", "DowJones.Web.Mvc.UI.Canvas\DowJones.Web.Mvc.UI.Canvas.csproj", "{C03F69D0-BD01-4861-BF39-BF2D52812797}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DowJones.Infrastructure", "DowJones.Infrastructure\DowJones.Infrastructure.csproj", "{095DE252-E183-4AE6-824A-B4504AE737C1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DowJones.Web.Mvc.UI.Canvas.DataAccess", "DowJones.Web.Mvc.UI.Canvas.DataAccess\DowJones.Web.Mvc.UI.Canvas.DataAccess.csproj", "{5CA248B3-9BCE-46D6-96B6-1E1CCB36E3DB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dashboard", "Dashboard", "{A5E7C6E4-52BF-45F2-B901-5D126C01DB82}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{1C44A232-3EE9-4890-B85B-9F921D004281}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mvc", "Mvc", "{B4E7C9BA-599E-4F01-931F-CCE836E62A18}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{2E68706B-4368-405E-980C-34F024BF9949}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DowJones.Web.Mvc.UI.Canvas.Models", "DowJones.Web.Mvc.UI.Canvas.Models\DowJones.Web.Mvc.UI.Canvas.Models.csproj", "{55BE4602-F301-41E5-966E-4990BD1A9D0E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DowJones.Web.Mvc.UI.Components.Models", "DowJones.Web.Mvc.UI.Components.Models\DowJones.Web.Mvc.UI.Components.Models.csproj", "{32DA5CA1-0038-4110-BC24-938B39439CE7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DowJones.Web.Mvc.UI.Canvas.DataAccess.Tests", "DowJones.Web.Mvc.UI.Canvas.DataAccess.Tests\DowJones.Web.Mvc.UI.Canvas.DataAccess.Tests.csproj", "{DA4AD24F-A129-46F8-AE73-55DD34F086B3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DowJones.Web.Mvc.UI.Components.Article", "DowJones.Web.Mvc.UI.Components.Article\DowJones.Web.Mvc.UI.Components.Article.csproj", "{2E92C9C0-E6A4-436D-A0AA-7EB71E2B60B7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DowJones.Web.EntitlementPrinciple", "DowJones.Web.EntitlementPrinciple\DowJones.Web.EntitlementPrinciple.csproj", "{CE1204B0-D9E3-4F99-A4FE-1F779D044641}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 15
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://sbknwstfs1:8080/tfs/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = DowJones.Web.Mvc\\DowJones.Web.Mvc.csproj
+		SccProjectTopLevelParentUniqueName1 = Framework.sln
+		SccProjectName1 = DowJones.Web.Mvc
+		SccLocalPath1 = DowJones.Web.Mvc
+		SccProjectUniqueName2 = DowJones.Web.Mvc.UI.Controls\\DowJones.Web.Mvc.UI.Components.csproj
+		SccProjectTopLevelParentUniqueName2 = Framework.sln
+		SccProjectName2 = DowJones.Web.Mvc.UI.Controls
+		SccLocalPath2 = DowJones.Web.Mvc.UI.Controls
+		SccProjectUniqueName3 = DowJones.Web.Showcase\\DowJones.Web.Showcase.csproj
+		SccProjectTopLevelParentUniqueName3 = Framework.sln
+		SccProjectName3 = DowJones.Web.Showcase
+		SccLocalPath3 = DowJones.Web.Showcase
+		SccProjectUniqueName4 = DowJones.Web.Mvc.Diagnostics\\DowJones.Web.Mvc.Diagnostics.csproj
+		SccProjectTopLevelParentUniqueName4 = Framework.sln
+		SccProjectName4 = DowJones.Web.Mvc.Diagnostics
+		SccLocalPath4 = DowJones.Web.Mvc.Diagnostics
+		SccProjectUniqueName5 = DowJones.Web.Mvc.Tests\\DowJones.Web.Mvc.Tests.csproj
+		SccProjectTopLevelParentUniqueName5 = Framework.sln
+		SccProjectName5 = DowJones.Web.Mvc.Tests
+		SccLocalPath5 = DowJones.Web.Mvc.Tests
+		SccProjectUniqueName6 = javascript\u0020tests\\JavaScript\u0020Tests.csproj
+		SccProjectTopLevelParentUniqueName6 = Framework.sln
+		SccProjectName6 = javascript\u0020tests
+		SccLocalPath6 = javascript\u0020tests
+		SccProjectUniqueName7 = DowJones.Web.Mvc.UI.Canvas\\DowJones.Web.Mvc.UI.Canvas.csproj
+		SccProjectTopLevelParentUniqueName7 = Framework.sln
+		SccProjectName7 = DowJones.Web.Mvc.UI.Canvas
+		SccLocalPath7 = DowJones.Web.Mvc.UI.Canvas
+		SccProjectUniqueName8 = DowJones.Infrastructure\\DowJones.Infrastructure.csproj
+		SccProjectTopLevelParentUniqueName8 = Framework.sln
+		SccProjectName8 = DowJones.Infrastructure
+		SccLocalPath8 = DowJones.Infrastructure
+		SccProjectUniqueName9 = DowJones.Web.Mvc.UI.Canvas.DataAccess\\DowJones.Web.Mvc.UI.Canvas.DataAccess.csproj
+		SccProjectTopLevelParentUniqueName9 = Framework.sln
+		SccProjectName9 = DowJones.Web.Mvc.UI.Canvas.DataAccess
+		SccLocalPath9 = DowJones.Web.Mvc.UI.Canvas.DataAccess
+		SccProjectUniqueName10 = DowJones.Web.Mvc.UI.Canvas.Models\\DowJones.Web.Mvc.UI.Canvas.Models.csproj
+		SccProjectTopLevelParentUniqueName10 = Framework.sln
+		SccProjectName10 = DowJones.Web.Mvc.UI.Canvas.Models
+		SccLocalPath10 = DowJones.Web.Mvc.UI.Canvas.Models
+		SccProjectUniqueName11 = DowJones.Web.Mvc.UI.Components.Models\\DowJones.Web.Mvc.UI.Components.Models.csproj
+		SccProjectTopLevelParentUniqueName11 = Framework.sln
+		SccProjectName11 = DowJones.Web.Mvc.UI.Components.Models
+		SccLocalPath11 = DowJones.Web.Mvc.UI.Components.Models
+		SccProjectUniqueName12 = DowJones.Web.Mvc.UI.Canvas.DataAccess.Tests\\DowJones.Web.Mvc.UI.Canvas.DataAccess.Tests.csproj
+		SccProjectTopLevelParentUniqueName12 = Framework.sln
+		SccProjectName12 = DowJones.Web.Mvc.UI.Canvas.DataAccess.Tests
+		SccLocalPath12 = DowJones.Web.Mvc.UI.Canvas.DataAccess.Tests
+		SccProjectUniqueName13 = DowJones.Web.Mvc.UI.Components.Article\\DowJones.Web.Mvc.UI.Components.Article.csproj
+		SccProjectTopLevelParentUniqueName13 = Framework.sln
+		SccProjectName13 = DowJones.Web.Mvc.UI.Components.Article
+		SccLocalPath13 = DowJones.Web.Mvc.UI.Components.Article
+		SccProjectUniqueName14 = DowJones.Web.EntitlementPrinciple\\DowJones.Web.EntitlementPrinciple.csproj
+		SccProjectTopLevelParentUniqueName14 = Framework.sln
+		SccProjectName14 = DowJones.Web.EntitlementPrinciple
+		SccLocalPath14 = DowJones.Web.EntitlementPrinciple
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3E440D53-ACA6-422A-8FC8-778D505AD1E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E440D53-ACA6-422A-8FC8-778D505AD1E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E440D53-ACA6-422A-8FC8-778D505AD1E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E440D53-ACA6-422A-8FC8-778D505AD1E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F187465-8B2C-4557-B3A2-02F7B4A6C0FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F187465-8B2C-4557-B3A2-02F7B4A6C0FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F187465-8B2C-4557-B3A2-02F7B4A6C0FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F187465-8B2C-4557-B3A2-02F7B4A6C0FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8596915-AD5E-45C2-987D-234AFF8AEAA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8596915-AD5E-45C2-987D-234AFF8AEAA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8596915-AD5E-45C2-987D-234AFF8AEAA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8596915-AD5E-45C2-987D-234AFF8AEAA3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC6F4246-50E5-4E2E-A90B-70E4BECA1EB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC6F4246-50E5-4E2E-A90B-70E4BECA1EB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC6F4246-50E5-4E2E-A90B-70E4BECA1EB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC6F4246-50E5-4E2E-A90B-70E4BECA1EB6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1EF77970-5676-4B38-91D7-D4DC8B4A53FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1EF77970-5676-4B38-91D7-D4DC8B4A53FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1EF77970-5676-4B38-91D7-D4DC8B4A53FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1EF77970-5676-4B38-91D7-D4DC8B4A53FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F9466C5-EBCA-464F-8EE4-4868BBF6D126}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F9466C5-EBCA-464F-8EE4-4868BBF6D126}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C03F69D0-BD01-4861-BF39-BF2D52812797}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C03F69D0-BD01-4861-BF39-BF2D52812797}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C03F69D0-BD01-4861-BF39-BF2D52812797}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C03F69D0-BD01-4861-BF39-BF2D52812797}.Release|Any CPU.Build.0 = Release|Any CPU
+		{095DE252-E183-4AE6-824A-B4504AE737C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{095DE252-E183-4AE6-824A-B4504AE737C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{095DE252-E183-4AE6-824A-B4504AE737C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{095DE252-E183-4AE6-824A-B4504AE737C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5CA248B3-9BCE-46D6-96B6-1E1CCB36E3DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5CA248B3-9BCE-46D6-96B6-1E1CCB36E3DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5CA248B3-9BCE-46D6-96B6-1E1CCB36E3DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5CA248B3-9BCE-46D6-96B6-1E1CCB36E3DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55BE4602-F301-41E5-966E-4990BD1A9D0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55BE4602-F301-41E5-966E-4990BD1A9D0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55BE4602-F301-41E5-966E-4990BD1A9D0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55BE4602-F301-41E5-966E-4990BD1A9D0E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{32DA5CA1-0038-4110-BC24-938B39439CE7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32DA5CA1-0038-4110-BC24-938B39439CE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32DA5CA1-0038-4110-BC24-938B39439CE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32DA5CA1-0038-4110-BC24-938B39439CE7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA4AD24F-A129-46F8-AE73-55DD34F086B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA4AD24F-A129-46F8-AE73-55DD34F086B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA4AD24F-A129-46F8-AE73-55DD34F086B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA4AD24F-A129-46F8-AE73-55DD34F086B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E92C9C0-E6A4-436D-A0AA-7EB71E2B60B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E92C9C0-E6A4-436D-A0AA-7EB71E2B60B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E92C9C0-E6A4-436D-A0AA-7EB71E2B60B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E92C9C0-E6A4-436D-A0AA-7EB71E2B60B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE1204B0-D9E3-4F99-A4FE-1F779D044641}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE1204B0-D9E3-4F99-A4FE-1F779D044641}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE1204B0-D9E3-4F99-A4FE-1F779D044641}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE1204B0-D9E3-4F99-A4FE-1F779D044641}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8F187465-8B2C-4557-B3A2-02F7B4A6C0FE} = {B4E7C9BA-599E-4F01-931F-CCE836E62A18}
+		{B8596915-AD5E-45C2-987D-234AFF8AEAA3} = {B4E7C9BA-599E-4F01-931F-CCE836E62A18}
+		{DC6F4246-50E5-4E2E-A90B-70E4BECA1EB6} = {B4E7C9BA-599E-4F01-931F-CCE836E62A18}
+		{3E440D53-ACA6-422A-8FC8-778D505AD1E9} = {B4E7C9BA-599E-4F01-931F-CCE836E62A18}
+		{32DA5CA1-0038-4110-BC24-938B39439CE7} = {B4E7C9BA-599E-4F01-931F-CCE836E62A18}
+		{2E92C9C0-E6A4-436D-A0AA-7EB71E2B60B7} = {B4E7C9BA-599E-4F01-931F-CCE836E62A18}
+		{5F9466C5-EBCA-464F-8EE4-4868BBF6D126} = {1C44A232-3EE9-4890-B85B-9F921D004281}
+		{1EF77970-5676-4B38-91D7-D4DC8B4A53FA} = {1C44A232-3EE9-4890-B85B-9F921D004281}
+		{DA4AD24F-A129-46F8-AE73-55DD34F086B3} = {1C44A232-3EE9-4890-B85B-9F921D004281}
+		{5CA248B3-9BCE-46D6-96B6-1E1CCB36E3DB} = {A5E7C6E4-52BF-45F2-B901-5D126C01DB82}
+		{C03F69D0-BD01-4861-BF39-BF2D52812797} = {A5E7C6E4-52BF-45F2-B901-5D126C01DB82}
+		{55BE4602-F301-41E5-966E-4990BD1A9D0E} = {A5E7C6E4-52BF-45F2-B901-5D126C01DB82}
+		{095DE252-E183-4AE6-824A-B4504AE737C1} = {2E68706B-4368-405E-980C-34F024BF9949}
+		{CE1204B0-D9E3-4F99-A4FE-1F779D044641} = {2E68706B-4368-405E-980C-34F024BF9949}
+	EndGlobalSection
+EndGlobal

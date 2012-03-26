@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GetTriggerTypesResponse xmlns="urn:dowjones:emg:tr:v2_0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<getTriggerTypesResponseContent serverIPAddress="String" apiVersion="String">
+		<status code="0">String</status>
+		<getTriggerTypesResults triggerTypeCount="0">
+			<triggerType displayName="String" code="String">
+				<description>String</description>
+				<property sortOrder="0" minimumRequired="0" allowReference="String" type="String" requiredToMerge="true" maximumAllowed="String" displayName="String" isValueTranslatable="true" code="String">
+					<value isMostRecent="true" content="String" code="String">
+						<reference>String</reference>
+						<feature name="String" content="String"/>
+						<triggerInstanceId>2147483647</triggerInstanceId>
+					</value>
+					<validValue displayName="String" code="String"/>
+					<description>String</description>
+					<feature name="String" content="String"/>
+				</property>
+			</triggerType>
+		</getTriggerTypesResults>
+		<getTriggerTypesRequest>
+			<triggerTypeCodes>String</triggerTypeCodes>
+			<interfaceLanguageCode>en</interfaceLanguageCode>
+		</getTriggerTypesRequest>
+	</getTriggerTypesResponseContent>
+</GetTriggerTypesResponse>

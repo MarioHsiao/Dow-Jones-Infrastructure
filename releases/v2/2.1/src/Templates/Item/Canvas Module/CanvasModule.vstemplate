@@ -1,0 +1,24 @@
+﻿<VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Item">
+    <TemplateData>
+        <DefaultName>Demo</DefaultName>
+        <Name>Dow Jones MVC Canvas Module</Name>
+        <Description>Creates Razor based Canvas Modules and related files (cshtml, js, css). Populates the generated files with boilerplate code to jumpstart development.</Description>
+        <ProjectType>CSharp</ProjectType>
+        <SortOrder>10</SortOrder>
+        <Icon>__TemplateIcon.png</Icon>
+        <PreviewImage>__PreviewImage.png</PreviewImage>
+    </TemplateData>
+    <TemplateContent>
+        <References />
+        <CustomParameters>
+            <CustomParameter Name="$ViewComponentName$"         Value="$fileinputname$CanvasModule" />
+            <CustomParameter Name="$ViewComponentModelName$"    Value="$fileinputname$Module" />
+        </CustomParameters>
+
+        <ProjectItem TargetFileName="$fileinputname$CanvasModule.cshtml"    ReplaceParameters="true" CustomTool="RazorViewComponentClassGenerator">CanvasModule.cshtml</ProjectItem>
+        <ProjectItem TargetFileName="$fileinputname$Module.cs"              ReplaceParameters="true">CanvasModuleModel.cs</ProjectItem>
+        <ProjectItem TargetFileName="$fileinputname$CanvasModule.js"        ReplaceParameters="true" ItemType="EmbeddedResource">CanvasModule.js</ProjectItem>
+        <ProjectItem TargetFileName="$fileinputname$CanvasModule.css"       ReplaceParameters="true" ItemType="EmbeddedResource">CanvasModule.css</ProjectItem>
+        
+    </TemplateContent>
+</VSTemplate>

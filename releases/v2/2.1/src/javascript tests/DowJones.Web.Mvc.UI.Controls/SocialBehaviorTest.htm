@@ -1,0 +1,40 @@
+﻿<script src="../template.js"></script> 
+<script>
+    setTargetScript('../../DowJones.Web.Mvc.UI.Components/SocialButtons/SocialBehavior.js');
+
+    $(document).ready(function () {
+        // add tests here
+
+        function getSampleMetaData() {
+            return $.extend({}, {
+                options: { "description": "Financial", "id": "socialButtonsTest", "keywords": "factiva, socials, bank, financials", "socialNetworks": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], "title": "Dowjones SocialControls", "url": "http://dowjones.com" }
+            });
+        }
+
+        test("has $.fn.dj_SocialButtons", function () {
+            ok($.fn.dj_SocialBehavior);
+            ok(createjQueryTestElement('socialButtonsTest').dj_SocialBehavior);
+        });
+
+        test("should create new Social Buttons control", function () {
+            var socialButtons = createjQueryTestElement('socialButtonsTest').dj_SocialButtons(getSampleMetaData());
+            //debugger;
+            ok(socialButtons);
+
+        });
+
+        test("Dispose should cleanup getters/setters", function () {
+            var socialButtons = createjQueryTestElement('socialButtonsTest').dj_SocialButtons(getSampleMetaData());
+
+            ok(socialButtons);
+
+            $("#socialButtonsTest", socialButtons).dispose();
+
+            equals($("#socialButtonsTest", socialButtons).get_target, undefined);
+        });
+
+
+        // end of tests
+
+    });           // end $(document).ready
+</script>

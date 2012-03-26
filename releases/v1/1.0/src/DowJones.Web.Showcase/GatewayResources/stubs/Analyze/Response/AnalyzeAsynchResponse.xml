@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <soap:Body>
+    <AnalyzeAsynchResponse xmlns="urn:dowjones:emg:analyze:v1_0">
+      <analyzeAsynchContentResponse serverIPAddress="172.26.99.132">
+        <analyzeAsynchContentResult firstResult="1">
+          <resultStatus>Success</resultStatus>
+          <resultMessage />
+        </analyzeAsynchContentResult>
+        <baseAnalyzeAsynchResponse>
+          <redirectURL />
+          <analyzeToken>694479f622a34eaf9ca48eea31ff8baa</analyzeToken>
+        </baseAnalyzeAsynchResponse>
+      </analyzeAsynchContentResponse>
+    </AnalyzeAsynchResponse>
+  </soap:Body>
+</soap:Envelope>

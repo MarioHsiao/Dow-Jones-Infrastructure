@@ -1,0 +1,11 @@
+﻿@{
+    Layout = "~/Views/Shared/_SignalR.cshtml";
+    ViewBag.Title = "Stock Kiosk";
+    Html.DJ().StylesheetRegistry()
+            .Include("~/styles/css/stockkiosk.css");
+}
+
+<div id="tempContent">
+    @Html.DJ().Render( Model, new { id = "djStockKiosk"} )
+</div>
+

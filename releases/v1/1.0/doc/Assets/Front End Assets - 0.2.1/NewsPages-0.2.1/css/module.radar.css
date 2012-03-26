@@ -1,0 +1,120 @@
+.radar-module {
+    position:relative;
+    font-size:93%;
+}
+.radar-module .radar-subjects {
+    position:absolute;
+    top:0;
+    left:0;
+    margin-left:14px;
+}
+.radar-module .radar-content {
+    margin:0 14px 0 194px;
+}
+.radar-content .module-content-pages li {
+	width: 780px;
+}
+.radar-module td {
+    vertical-align: middle;
+}
+.radar-module thead td {
+    padding:30px 0 0 0;
+    color:#2F90B3;
+}
+.radar-module tbody td {
+    border-top:1px solid #E6E6E6;
+}
+.radar-module tbody td.radar-change {
+}
+.radar-module .radar-content td {
+    width:16.6%;
+}
+.radar-module .radar-node {
+    height:36px;
+    line-height:18px;
+    overflow:hidden;
+}
+.radar-module .radar-subjects .radar-node,
+.radar-module .radar-change .radar-node {
+    color:#999999;
+}
+.radar-module .radar-subjects .radar-node {
+    width:160px;
+    padding:0 10px 0 10px;
+    line-height:36px;
+}
+.radar-module td.radar-total .radar-node {
+    height:60px;
+    line-height:60px;
+}
+.radar-module td.radar-change .radar-node {
+    height:50px;
+    line-height:50px;
+}
+.radar-module td.radar-total .radar-node {
+    font-weight:bold;
+    color:#666666;
+}
+.radar-module td.radar-company .radar-node-intrail,
+.radar-module td.radar-subject .radar-node-intrail,
+.radar-module td.radar-box .radar-node-intrail,
+.radar-module td.radar-total .radar-node {
+    background-color: #F0F0F0;
+    background-image:none;
+}
+.radar-module .radar-content td.radar-total .radar-node {
+    padding:0;
+}
+.radar-module .radar-node .count,
+.radar-module .radar-node .unit {
+    display:block;
+    margin-left:30px;
+    
+}
+.radar-module .radar-node .count {
+    font-weight:bold;
+}
+.radar-module .radar-node .unit {
+    text-transform:uppercase;
+    font-weight:normal;
+}
+.radar-module .radar-content td.radar-total .radar-node .count {
+    margin-top:15px;
+    font-size:167%;
+    line-height:100%;
+}
+.radar-module .radar-content td.radar-total .radar-node .unit {
+    font-size:85%;
+    line-height:85%;
+}
+.radar-module .radar-content td.radar-change .radar-node .count {
+    margin-top:13px;
+    font-size:108%;
+    line-height:108%;
+}
+.radar-module .radar-content td.radar-change .radar-node .unit {
+    font-size:85%;
+    line-height:85%;
+}
+.radar-module .radar-company .radar-node,
+.radar-module .radar-box .radar-node {
+    margin:0 2px 0 0;
+}
+/* if you want this to work in IE, add a class name server-side and change the selectors */
+.radar-module .radar-company:last-child .radar-node,
+.radar-module .radar-box:last-child .radar-node {
+    margin:0 0 0 0;
+}
+.radar-module .radar-company .radar-node {
+    padding-right:10px;
+}
+.radar-module .radar-box .radar-node {
+    background:transparent url(../images/bar-graph-diagonal.png) center left repeat-x;
+}
+.radar-module .radar-box .radar-node .radar-hbar {
+    position:relative;
+    top:25%;
+    width:100%;
+    height:50%;
+    background:transparent url(../images/solidBG.png) center left repeat-x;
+}

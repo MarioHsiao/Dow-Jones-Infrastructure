@@ -1,0 +1,8 @@
+﻿<h3 class="module-col-title"><%= data?data.code:"" %> <span class="dj_market_index-timestamp"><%= data?(data.dateDescriptor || data.dateDescripter):"" %></span></h3>
+<p class="dj_market_index-description"><%= data?data.name:"" %></p>
+
+<div class="dj_market_index-chart"></div>
+
+<p class="dj_market_index-disclaimer">
+    <span class="middot">&middot;</span><%= Token("delayedPerExchangeRules") %>
+</p>

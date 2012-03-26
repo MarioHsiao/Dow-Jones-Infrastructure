@@ -1,0 +1,21 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="DowJones.Web.Mvc.UI.Canvas.DataAccess.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="FaviconConverstionUrl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://arch.dev.us.factiva.com/Showcase/emgajaxtoolkittests2008/emg.utility.handler.syndication.favicon.ashx </Value>
+    </Setting>
+    <Setting Name="RAMUri" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://dataservices.ramp.com/data/factiva/media/?e=</Value>
+    </Setting>
+    <Setting Name="MarketWatchUri" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://www.marketwatch.com/mediarss/wsj/allmedia.asp?type=guid&amp;query=</Value>
+    </Setting>
+    <Setting Name="BaseSourceLogoRepositoryUrl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://logos.factiva.com/</Value>
+    </Setting>
+    <Setting Name="BaseSourceLogoRepositoryExtention" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">logo.gif</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

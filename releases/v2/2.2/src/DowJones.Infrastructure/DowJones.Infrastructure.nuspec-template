@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>DowJones.Infrastructure</id>
+        <version>PACKAGE_VERSION</version>
+        <title>Dow Jones Core Infrastructure</title>
+        <description>The Dow Jones Infrastructure library</description>
+        <authors>Dow Jones Platform Integration Team</authors>
+        <tags>DowJones</tags>
+        <language>en-US</language>
+        <projectUrl>http://dowjones.com</projectUrl>
+        <licenseUrl>http://dowjones.com</licenseUrl>
+        <dependencies>
+            <dependency id="Newtonsoft.Json" version="[4.0.3]" />
+            <dependency id="log4net" version="1.2.10" />
+            <dependency id="Factiva.Gateway" version="7.5.0.50" />
+            <dependency id="Ninject" version="2.2.0.0" />
+            <dependency id="Hammock" version="[1.2.6]" />
+        </dependencies>
+    </metadata>
+    <files>
+        <file src="DowJones.Infrastructure.dll" target="lib" />
+        <file src="DowJones.Infrastructure.pdb" target="lib" />
+    </files>
+</package>

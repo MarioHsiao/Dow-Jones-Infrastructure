@@ -1,0 +1,30 @@
+﻿<% 
+     var expertsCount = experts.length;
+    var isViewAll = options.viewAll;
+    var rowCount = !isViewAll && expertsCount > 1 ? Math.ceil(expertsCount/2):0;
+    var count = 0;
+%>
+
+<div class="expert-list-cnt clearfix">
+    <ul class="expert-list column_one">
+   <% _.each(experts, function(expert) { 
+        if(rowCount > 0 &&  count == rowCount){%>
+             </ul><ul class="expert-list column_two">
+     <% }%>
+     <li class="top_expert-data" data-user-id="<%= expert.id%>" data-screen-name="<%= expert.screenName%>">
+        <div class="avatar">
+            <img width="32" height="32" class="expert-profile-link" alt="<%= expert.Name%>" src="<%= expert.profileImageUrl %>"/>
+        </div> 
+        <div class="expert_info">
+            <span class="expert-full-name"><a title="<%= expert.Name%>" href="javascript:void(0)" class="expert-profile-link"><%= expert.fullName%></a></span>
+            <% if (expert.verified){%>
+                <span class="verified-icon" title="<%= Token("verified")%>"></span>
+            <%} %><br/>
+            <span class="expert-screen-name">@<%= expert.screenName%></span>
+        </div>
+     </li>
+   <% count++  });%>
+  </ul>
+</div>
+
+              

@@ -1,0 +1,78 @@
+﻿@using DowJones.Web.Mvc.Extensions
+@using DowJones.Extensions
+@using DowJones.Web.Mvc.UI.Components.PortalHeadlineList
+@using DowJones.Web.Mvc.UI.Components.HeadlineCarousel
+@using DowJones.Web.Mvc.UI.Canvas.Modules.Syndication
+@using DowJones.Utilities.Managers.Core
+@using DowJones.Web.Mvc.UI.Components.Models
+@inherits DowJones.Web.Mvc.UI.Canvas.AbstractCanvasModule<DowJones.Web.Mvc.UI.Canvas.Models.NewsstandModule>
+@ClientPlugin dj_NewsstandModule
+@ScriptResource RelativeResourceName=NewsstandCanvasModule.js
+@StylesheetResource RelativeResourceName=NewsstandCanvasModule.css
+@{ 
+    CssClass += " dj_NewsstandModule dj_newsstand_module curated-module";
+}
+@section ContentArea {
+    <div class="dj_newsstand_module-headline-carousel">
+        @(CreateChildControl<HeadlineCarouselControl>(new HeadlineCarouselModel() { Orientation = CarouselOrientation.Horizontal, Mode = CarouselMode.Ticker, PackageType = TickerPackageType.DiscoveredEntitiesPackage, Display = 1 }))
+    </div>
+    <!-- end: .dj_newsstand_module-source-carousel -->
+    <div class="newsStandHeadlineSections ">
+        <div class="module-content-page">
+            <div class="module-row article-row clearfix">
+                @foreach (var phl in Model.PortalHeadlineLists)
+                {
+                    <div class="module-col one-third">
+                        <div class="module-col-wrap standard-padding">
+                            <div class="module-col-source-logo-wrap">
+                                <h3 class="module-col-title module-col-source-logo">
+                                    <img class="module-col-source-img" alt="" src="" /><span class="module-col-title-source-icon-text"></span>
+                                </h3>
+                            </div>
+                            <span class="module-col-section-title"></span>
+                            <div class="article-group">
+                                @(CreateChildControl<PortalHeadlineListControl>(phl))
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="module-row clearfix">
+                @foreach (var phl in Model.PortalHeadlineLists)
+                {
+                    <div class="module-col one-third">
+                        <div class="module-col-wrap standard-padding">
+                            <ul class="dc_list view-all-btn">
+                                <li class="dc_item"><a href="javascript:void(0);" class="dashboard-control dc_btn dc_btn-1">@Html.DJ().Token("viewAll")</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="dj_newsstand_module-source-carousel">
+        @(CreateChildControl<HeadlineCarouselControl>(new HeadlineCarouselModel() { Orientation = CarouselOrientation.Horizontal, Mode = CarouselMode.Ticker, PackageType = TickerPackageType.HeadlineHitCountsPackage, Display = 1 }))
+    </div>
+    <!-- end: .dj_newsstand_module-source-carousel -->
+}
+@section EditArea {
+    @* Module Editor 
+      Override this if Editor is not being set in Model
+   *@
+    @(CreateChildControl(Model.Editor,
+        new Dictionary<string, object> { { "class", "dj_Editor" } }))
+}
+@section OptionsArea {
+    @* Module options *@
+}
+@section InfoArea {
+    @* Module Information *@
+}
+@section MessageArea {
+    @* Module Status and Error Messages *@
+}
+@section LoadingArea {
+    @* Section shown while module data is loading *@
+}

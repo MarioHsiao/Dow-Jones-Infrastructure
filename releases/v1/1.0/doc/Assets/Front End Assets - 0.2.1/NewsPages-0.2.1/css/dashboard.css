@@ -1,0 +1,35 @@
+/*
+
+	-- -- -- -- -- -- --
+	Description: Global dashboard specific layout and style rules
+	Version: 0.1
+	Last Update: 11/9/2010
+	Author: Ron Edgecomb II
+	Company: Dow Jones & Company Inc.
+	Copyright 2010 Dow Jones & Company Inc.
+	
+	Dependencies
+	 - css/reset.css
+	-- -- -- -- -- -- --
+	
+*/
+
+/* =Dashboard Layout >> General layout
+----------------------------------------------------------------------------------------------------*/
+#dashboard {
+	margin: 40px 0 20px;	
+}
+
+/* =Dashboard Logo >> Dow Jones Communicator Logo
+----------------------------------------------------------------------------------------------------*/
+#dj-logo {
+	position: absolute;
+	top: 0; left: 0;
+}
+
+/* =Client Logo >> Logo for client
+----------------------------------------------------------------------------------------------------*/
+#client-logo {
+	position: absolute;
+	top: 37px; left: 0;
+}

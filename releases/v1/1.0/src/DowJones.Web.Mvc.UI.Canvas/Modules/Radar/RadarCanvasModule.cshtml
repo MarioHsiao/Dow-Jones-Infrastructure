@@ -1,0 +1,45 @@
+﻿@inherits DowJones.Web.Mvc.UI.Canvas.AbstractCanvasModule<RadarModule>
+@ClientPlugin dj_RadarCanvasModule
+@ScriptResource RelativeResourceName=RadarCanvasModule.js
+@StylesheetResource RelativeResourceName=RadarCanvasModule.css
+
+@{ CssClass = CssClass + " radar-module curated-module dj_RadarCanvasModule"; }
+
+@section ContentArea {
+    @* Main module content *@
+    <div class="RadarEntities">	
+	@(CreateChildControl<DowJones.Web.Mvc.UI.Components.Radar.RadarComponent>(new DowJones.Web.Mvc.UI.Components.Radar.RadarModel()))									
+</div>
+}
+
+@section EditArea {
+   @* Module Editor 
+      Override this if Editor is not being set in Model
+   *@
+
+   @(CreateChildControl(Model.Editor, 
+        new Dictionary<string, object> { { "class", "dj_Editor" } }))
+}
+
+@section OptionsArea {
+    @* Module options *@
+}
+
+@section InfoArea {
+    @* Module Information *@
+}
+
+@section MessageArea {
+    @* Module Status and Error Messages *@
+}
+
+@section LoadingArea {
+    @* Section shown while module data is loading *@
+}
+
+@section HeaderArea{
+    <div class="scope radar-TimePeriod">
+        <span class="dj_btn" id="radarTP-0">@Html.DJ().Token("oneWeek")</span>
+        <span class="dj_btn" id="radarTP-1">@Html.DJ().Token("oneMonth")</span>
+    </div>
+}

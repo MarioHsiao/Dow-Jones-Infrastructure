@@ -1,0 +1,30 @@
+﻿<?xml version="1.0"?>
+<MEMBER_REGISTER_USER_RESP version="1.1" nvpvers="1.3">
+  <Control>
+  </Control>
+  <Status value="0">
+    Success
+  </Status>
+  <ResultSet count="1">
+    <Result>
+      <ERROR_CODE>0</ERROR_CODE>
+      <ERROR_GENERAL_MSG>Success</ERROR_GENERAL_MSG>
+      <GROUP>
+        <ADMIN_GROUP_NAME>Main Admin</ADMIN_GROUP_NAME>
+        <ADMIN_RIGHTS>Y</ADMIN_RIGHTS>
+        <GROUP_ITEM_LIST>
+          <ITEM_BLOB>
+            <MEMBERSHIP>
+              <TEST>testingupdate</TEST>
+            </MEMBERSHIP>
+          </ITEM_BLOB>
+          <ITEM_CLASS>11</ITEM_CLASS>
+          <ITEM_ID>272879</ITEM_ID>
+          <ITEM_INSTANCE_NAME>discauth</ITEM_INSTANCE_NAME>
+        </GROUP_ITEM_LIST>
+        <NAME>9TES003400</NAME>
+        <PARENT_GROUP_NAME>Accounts</PARENT_GROUP_NAME>
+      </GROUP>
+    </Result>
+  </ResultSet>
+</MEMBER_REGISTER_USER_RESP>

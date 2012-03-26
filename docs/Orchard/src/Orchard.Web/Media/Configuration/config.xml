@@ -1,0 +1,340 @@
+<?xml version="1.0"?>
+<!-- edited with XMLSpy v2008 rel. 2 sp1 (http://www.altova.com) by Naresh Patel (Dow Jones & Company) -->
+<configuration>
+  <products>
+    <product id="GL">
+      <name>snapshot.factiva.com</name>
+      <clienttype code="D"/>
+      <flavor code="F"/>
+      <cookies prefix="GL"/>
+      <accesspoint>
+        <service type="global" code="NP"/>
+        <service type="preferences" code="R"/>
+        <service type="clientbilling" code="L"/>
+      </accesspoint>
+      <networkpartnerid value=""/>
+      <rules>
+        <offset value="38" compare="00" operator="!="/>
+      </rules>
+      <encryptedtoken type="session" enabled="false"/>
+      <navbar version="2"/>
+      <compatibleproducts>
+        <cookies prefix="GL"/>
+        <cookies prefix="CP"/>
+      </compatibleproducts>
+      <languages>
+        <lang code="en" default="true"/>
+        <lang code="fr"/>
+        <lang code="de"/>
+        <lang code="es"/>
+        <lang code="it"/>
+        <lang code="ja"/>
+        <lang code="ru"/>
+        <lang code="zhcn"/>
+        <lang code="zhtw"/>
+        <!-- If you want to bypass language value from cookies or Browser then set your default laguage to templates... -->
+        <!-- lang code="templates"/ -->
+      </languages>
+      <seamlessacess>
+        <compatibleproduct prefix="IF">
+          <rules>
+            <bucket queryoprator="and" mainoperator="and">
+              <offset value="82" compare="00" operator="!="/>
+            </bucket>
+          </rules>
+        </compatibleproduct>
+        <compatibleproduct prefix="IN">
+          <rules>
+            <bucket queryoprator="and" mainoperator="and">
+              <offset value="86" compare="00" operator="!="/>
+              <offset value="104" compare="00" operator="!="/>
+            </bucket>
+          </rules>
+        </compatibleproduct>
+        <compatibleproduct prefix="FC">
+          <rules>
+            <bucket queryoprator="and" mainoperator="and">
+              <offset value="88" compare="00" operator="!="/>
+            </bucket>
+          </rules>
+        </compatibleproduct>
+        <compatibleproduct prefix="MR">
+          <rules>
+            <bucket queryoprator="and" mainoperator="and">
+              <offset value="106" compare="00" operator="!="/>
+            </bucket>
+          </rules>
+        </compatibleproduct>
+        <compatibleproduct prefix="WP">
+          <rules>
+            <offset value="100" compare="00" operator="!="/>
+            <bucket queryoprator="or" mainoperator="and">
+              <metrix service="FSINTERFACE" value="AC1" compare="WSJEF" operator="="/>
+              <metrix service="FSINTERFACE" value="AC1" compare="WSJEL" operator="="/>
+              <metrix service="FSINTERFACE" value="AC1" compare="ALL" operator="="/>
+            </bucket>
+          </rules>
+        </compatibleproduct>
+      </seamlessacess>
+      <!-- Landing Page After First Time Login To Product -->
+      <landingpage type="flogin" enabled="true">
+        <url lang="en">http://snapshot.factiva.com/pages/index?fcpil=en</url>
+        <url lang="fr">http://snapshot.factiva.com/pages/index?fcpil=fr</url>
+        <url lang="de">http://snapshot.factiva.com/pages/index?fcpil=de</url>
+        <url lang="es">http://snapshot.factiva.com/pages/index?fcpil=es</url>
+        <url lang="it">http://snapshot.factiva.com/pages/index?fcpil=it</url>
+        <url lang="ja">http://snapshot.factiva.com/pages/index?fcpil=ja</url>
+        <url lang="ru">http://snapshot.factiva.com/pages/index?fcpil=ru</url>
+        <url lang="zhcn">http://snapshot.factiva.com/pages/index?fcpil=zhcn</url>
+        <url lang="zhtw">http://snapshot.factiva.com/pages/index?fcpil=zhtw</url>
+        <url lang="templates">http://snapshot.factiva.com/pages/index?fcpil=templates</url>
+      </landingpage>
+      <!-- Landing Page After Successfull Login To Product ( Not first time and also a valid direct URL ) -->
+      <landingpage type="nlogin" enabled="true">
+        <url lang="en">http://snapshot.factiva.com/pages/index?fcpil=en</url>
+        <url lang="fr">http://snapshot.factiva.com/pages/index?fcpil=fr</url>
+        <url lang="de">http://snapshot.factiva.com/pages/index?fcpil=de</url>
+        <url lang="es">http://snapshot.factiva.com/pages/index?fcpil=es</url>
+        <url lang="it">http://snapshot.factiva.com/pages/index?fcpil=it</url>
+        <url lang="ja">http://snapshot.factiva.com/pages/index?fcpil=ja</url>
+        <url lang="ru">http://snapshot.factiva.com/pages/index?fcpil=ru</url>
+        <url lang="zhcn">http://snapshot.factiva.com/pages/index?fcpil=zhcn</url>
+        <url lang="zhtw">http://snapshot.factiva.com/pages/index?fcpil=zhtw</url>
+        <url lang="templates">http://snapshot.factiva.com/pages/index?fcpil=templates</url>
+      </landingpage>
+      <!-- Landing Page & Home page After Successfull Login To Product ( Not a valid direct URL ) -->
+      <landingpage type="homepage" enabled="true">
+        <url lang="en">http://snapshot.factiva.com/pages/index?fcpil=en</url>
+        <url lang="fr">http://snapshot.factiva.com/pages/index?fcpil=fr</url>
+        <url lang="de">http://snapshot.factiva.com/pages/index?fcpil=de</url>
+        <url lang="es">http://snapshot.factiva.com/pages/index?fcpil=es</url>
+        <url lang="it">http://snapshot.factiva.com/pages/index?fcpil=it</url>
+        <url lang="ja">http://snapshot.factiva.com/pages/index?fcpil=ja</url>
+        <url lang="ru">http://snapshot.factiva.com/pages/index?fcpil=ru</url>
+        <url lang="zhcn">http://snapshot.factiva.com/pages/index?fcpil=zhcn</url>
+        <url lang="zhtw">http://snapshot.factiva.com/pages/index?fcpil=zhtw</url>
+        <url lang="templates">http://snapshot.factiva.com/pages/index?fcpil=templates</url>
+      </landingpage>
+
+      <!-- After successful.. registration...... -->
+      <browsercaps>
+        <use var="HTTP_USER_AGENT"/>
+        <keys>
+          <key name="platform" value="Unknown"/>
+          <key name="win16" value="false"/>
+          <key name="win32" value="false"/>
+          <key name="browser" value="Unknown"/>
+          <key name="version" value="0.0"/>
+          <key name="majorversion" value="0"/>
+          <key name="minorversion" value="0"/>
+          <key name="beta" value="false"/>
+          <key name="supportedPlatform" value="false"/>
+          <key name="supportedBrowser" value="false"/>
+          <key name="letBrowserIn" value="false"/>
+          <key name="sunSettedBrowser" value="false"/>
+          <key name="actId" value=""/>
+        </keys>
+        <filter>
+          <case match="Windows 3.1|Win16">
+            <key name="platform" value="Win16"/>
+          </case>
+          <case match="Windows 95|Win95">
+            <key name="platform" value="Win95"/>
+          </case>
+          <case match="Windows 98|Win98">
+            <key name="platform" value="Win98"/>
+          </case>
+          <case match="Windows NT|WinNT">
+            <key name="platform" value="WinNT"/>
+          </case>
+          <case match="Windows 2000|Win2000">
+            <key name="platform" value="Win2000"/>
+          </case>
+          <case match="Windows CE|WinCE">
+            <key name="platform" value="WinCE"/>
+          </case>
+          <case match="Windows ME|WinME">
+            <key name="platform" value="WinME"/>
+          </case>
+          <case match="Mac_68000|Macintosh.*68K">
+            <key name="platform" value="Mac68K"/>
+          </case>
+          <case match="Mac_PowerPC|Macintosh.*PPC">
+            <key name="platform" value="MacPPC"/>
+          </case>
+          <case match="X11">
+            <key name="platform" value="Unix"/>
+          </case>
+          <case match="WebTV">
+            <key name="platform" value="WebTV"/>
+          </case>
+        </filter>
+        <filter>
+          <case match="16bit|Windows 3.1|Win16">
+            <key name="win16" value="true"/>
+          </case>
+          <case match="Windows 95|Win95|Windows 98|Win98|Windows NT|WinNT|Win32">
+            <key name="win32" value="true"/>
+          </case>
+        </filter>
+        <filter>
+          <case match="^Mozilla/5\.0\s*([^)]*\))\s*(Gecko\/\d+)\s*Firefox\/((\d+)(\.\d+)(\w*)).*">
+            <key name="browser" value="Firefox"/>
+            <key name="version" value="${3}"/>
+            <key name="majorversion" value="${4}"/>
+            <key name="minorversion" value="${5}"/>
+            <filter match="^b" with="${6}">
+              <key name="beta" value="true"/>
+            </filter>
+          </case>
+          <case match="AppleWebKit/((\d+)((\.(\d+))*)(\w*))">
+            <key name="browser" value="Safari"/>
+            <key name="version" value="${1}"/>
+            <key name="majorversion" value="${2}"/>
+          </case>
+          <case match="Opera[ /]((\d+)\.(\d+)(\w*))">
+            <key name="browser" value="Opera"/>
+            <key name="version" value="${1}"/>
+            <key name="majorversion" value="${2}"/>
+            <key name="minorversion" value="${3}"/>
+            <filter match="^b" with="${4}">
+              <key name="beta" value="true"/>
+            </filter>
+          </case>
+          <case match="^Mozilla[^(]*\(compatible; MSIE\s+((\d+)\.(\d+)(\w*))(.*)">
+            <key name="browser" value="IE"/>
+            <key name="version" value="${1}"/>
+            <key name="majorversion" value="${2}"/>
+            <key name="minorversion" value="${3}"/>
+            <case match="^[5-9]\." with="${1}">
+              <filter with="${4}" match="^b">
+                <key name="beta" value="true"/>
+              </filter>
+            </case>
+          </case>
+          <case match="^Mozilla/\d+\.\d+ \(.[^)]*\) Gecko/\d+ Netscape[^/]*/((\d+)\.((\.?\d+)*))(\w*)">
+            <key name="browser" value="Netscape"/>
+            <key name="version" value="${1}"/>
+            <key name="majorversion" value="${2}"/>
+            <key name="minorversion" value="${3}"/>
+            <filter match="^b" with="${5}">
+              <key name="beta" value="true"/>
+            </filter>
+          </case>
+          <case match="^Mozilla/((\d+)\.(\d+)(\w*)).*">
+            <key name="browser" value="Mozilla"/>
+            <key name="version" value="${1}"/>
+            <key name="majorversion" value="${2}"/>
+            <key name="minorversion" value="${3}"/>
+            <filter match="^b" with="${4}">
+              <key name="beta" value="true"/>
+            </filter>
+          </case>
+        </filter>
+        <filter with="%{platform}" match="Win16|Win95|Win98|WinNT|Win2000|WinCE|WinME|Mac68K|MacPPC">
+          <key name="supportedPlatform" value="true"/>
+        </filter>
+        <filter>
+          <case match="^IE\b" with="%{browser}">
+            <case match="false" with="%{beta}">
+              <case match="^[7-9]\b" with="%{majorversion}">
+                <case match="Mac68K|MacPPC" with="%{platform}">
+                  <key name="actId" value="[{_A}]"/>
+                  <case match="9PRO000200|9FAC000700" with="%{actId}">
+                    <key name="supportedBrowser" value="true"/>
+                  </case>
+                </case>
+                <case match="Win16|Win95|Win98|WinNT|Win2000|WinCE|WinME" with="%{platform}">
+                  <case match="^5\b" with="%{majorversion}">
+                    <case match="^(0)*[6-9](\d)*" with="%{minorversion}">
+                      <key name="supportedBrowser" value="true"/>
+                    </case>
+                  </case>
+                  <case match="(\d)*" with="%{minorversion}">
+                    <key name="supportedBrowser" value="true"/>
+                  </case>
+                </case>
+              </case>
+            </case>
+            <case match="true" with="%{beta}">
+              <case match="^[7-9]\b" with="%{majorversion}">
+                <case match="Win16|Win95|Win98|WinNT|Win2000|WinCE|WinME" with="%{platform}">
+                  <case match="^5\b" with="%{majorversion}">
+                    <case match="^(0)*[6-9](\d)*" with="%{minorversion}">
+                      <key name="supportedBrowser" value="true"/>
+                    </case>
+                  </case>
+                  <case match="(\d)*" with="%{minorversion}">
+                    <key name="letBrowserIn" value="true"/>
+                  </case>
+                </case>
+              </case>
+            </case>
+          </case>
+          <case match="^Netscape" with="%{browser}">
+            <case match="^[8-9]\b" with="%{majorversion}">
+              <key name="supportedBrowser" value="true"/>
+            </case>
+          </case>
+          <case match="^Firefox" with="%{browser}">
+            <case match="^[3-9]\b" with="%{majorversion}">
+              <key name="supportedBrowser" value="true" />
+            </case>
+          </case>
+          <case match="^Safari" with="%{browser}">
+            <!-- WebKit build > 400 -->
+            <case match="^(40[1-9]|4[1-9][0-9]|[5-9][0-9][0-9]|[0-9]{4,6})\b" with="%{majorversion}">
+              <key name="supportedBrowser" value="true"/>
+            </case>
+          </case>
+          <case match="^Mozilla" with="%{browser}">
+            <case match="^[5-9]\b" with="%{majorversion}">
+              <key name="supportedBrowser" value="true"/>
+            </case>
+          </case>
+        </filter>
+      </browsercaps>
+
+      <template type="welcome2" enabled="true">
+        <url lang="en">http://global.factiva.com/en/cfg/welcome2.asp?from=dotcom</url>
+        <url lang="fr">http://global.factiva.com/fr/cfg/welcome2.asp?from=dotcom</url>
+        <url lang="de">http://global.factiva.com/de/cfg/welcome2.asp?from=dotcom</url>
+        <url lang="es">http://global.factiva.com/es/cfg/welcome2.asp?from=dotcom</url>
+        <url lang="it">http://global.factiva.com/it/cfg/welcome2.asp?from=dotcom</url>
+        <url lang="ja">http://global.factiva.com/ja/cfg/welcome2.asp?from=dotcom</url>
+        <url lang="ru">http://global.factiva.com/ru/cfg/welcome2.asp?from=dotcom</url>
+        <url lang="zhcn">http://global.factiva.com/zhcn/cfg/welcome2.asp?from=dotcom</url>
+        <url lang="zhtw">http://global.factiva.com/zhtw/cfg/welcome2.asp?from=dotcom</url>
+        <url lang="templates">http://global.factiva.com/templates/cfg/welcome2.asp?from=dotcom</url>
+      </template>
+      <redirect type="notsupportedbrowser" enabled="true">
+        <url lang="en">http://global.factiva.com/en/cfg/notSupportedBrowser.asp</url>
+        <url lang="fr">http://global.factiva.com/fr/cfg/notSupportedBrowser.asp</url>
+        <url lang="de">http://global.factiva.com/de/cfg/notSupportedBrowser.asp</url>
+        <url lang="es">http://global.factiva.com/es/cfg/notSupportedBrowser.asp</url>
+        <url lang="it">http://global.factiva.com/it/cfg/notSupportedBrowser.asp</url>
+        <url lang="ja">http://global.factiva.com/ja/cfg/notSupportedBrowser.asp</url>
+        <url lang="ru">http://global.factiva.com/ru/cfg/notSupportedBrowser.asp</url>
+        <url lang="zhcn">http://global.factiva.com/zhcn/cfg/notSupportedBrowser.asp</url>
+        <url lang="zhtw">http://global.factiva.com/zhtw/cfg/notSupportedBrowser.asp</url>
+        <url lang="templates">http://global.factiva.com/templates/cfg/notSupportedBrowser.asp</url>
+      </redirect>
+      <redirect type="logout" enabled="true">
+        <url lang="en">http://global.factiva.com/en/sess/logout.asp</url>
+        <url lang="fr">http://global.factiva.com/fr/sess/logout.asp</url>
+        <url lang="de">http://global.factiva.com/de/sess/logout.asp</url>
+        <url lang="es">http://global.factiva.com/es/sess/logout.asp</url>
+        <url lang="it">http://global.factiva.com/it/sess/logout.asp</url>
+        <url lang="ja">http://global.factiva.com/ja/sess/logout.asp</url>
+        <url lang="ru">http://global.factiva.com/ru/sess/logout.asp</url>
+        <url lang="zhcn">http://global.factiva.com/zhcn/sess/logout.asp</url>
+        <url lang="zhtw">http://global.factiva.com/zhtw/sess/logout.asp</url>
+        <url lang="templates">http://global.factiva.com/templates/sess/logout.asp</url>
+      </redirect>
+      <screensettings>
+        <!-- Used on setup assistant screen to show Dow Jones Insider and it is case sensitive [E]nabled/[D]isabled -->
+        <add key="WELCOME1_DJINSIDER_DISPLAY" value="E"/>
+      </screensettings>
+    </product>
+  </products>
+</configuration>

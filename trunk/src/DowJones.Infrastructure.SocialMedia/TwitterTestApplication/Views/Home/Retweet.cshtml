@@ -1,0 +1,14 @@
+﻿@model TweetSharp.TwitterRateLimitStatus
+
+@{
+    ViewBag.Title = "Retweet";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <h2>Retweet</h2>
+
+    <div>
+        This user has the following remaining { @Model.RemainingHits } of { @Model.HourlyLimit}
+    </div>
+
+    <div>The next time the user will be able to access is @ViewBag.ResetTime</div>

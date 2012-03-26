@@ -1,0 +1,24 @@
+﻿@using DowJones.Extensions
+@model DowJones.Web.Mvc.UI.Components.Models.TagCloudModel
+@ClientPlugin dj_TagCloud
+
+@ScriptResource RelativeResourceName=TagCloud.js
+@StylesheetResource RelativeResourceName=TagCloud.css,PerformSubstitution=true
+
+@{ CssClass = "dj_TagCloud"; }
+
+    <ul class="dj_tag_cloud">
+        @{
+            if(Model != null && Model.Tags != null)
+            {
+                foreach (var tag in Model.Tags)
+                {
+                    <li class="@Model.TagCssClassPrefix@tag.DistributionIndex">
+                        <a href="@Model.GetNavigateUrl(tag.NavigateUrl)">
+                            <span>@tag.Text</span>
+                        </a>
+                    </li>
+                }
+            }
+        }
+    </ul>

@@ -1,0 +1,108 @@
+/*
+
+	-- -- -- -- -- -- --
+	Dependencies
+	 - css/reset.css
+	 - css/global.css
+	 - css/i/factiva-icons.png
+	
+	-- -- -- -- -- -- --
+	
+*/
+
+/* =Generic Factiva Icon Class .fi
+----------------------------------------------------------------------------------------------------*/
+.fi {
+	display:inline-block;
+	background: transparent url(i/factiva-icons.png) no-repeat 0 0;
+	cursor:pointer;
+}
+
+.ie6 .fi {
+	background: transparent url(i/ie6/factiva-icons.gif) no-repeat 0 0;
+}
+
+/* =Target specific Icons by Class Name .fi_[YOUR CLASS] >> 
+----------------------------------------------------------------------------------------------------*/
+
+.fi.fi_r-arrow { 
+	width:9px;
+	height:8px;
+	background-position: 0 0;
+}
+
+.fi.fi_close-w {
+	width:17px;
+	height:18px;
+	background-position: 0 -40px;
+}
+
+.fi.fi_close-g {
+	width:17px;
+	height:18px;
+	background-position: 0 -280px;
+}
+
+.fi.fi_circle-plus {
+	width:16px;
+	height:17px;
+	background-position: 0 -120px;
+}
+
+.fi.fi_d-double-arrow {
+	width:16px;
+	height:17px;
+	background-position: 0 -160px;
+}
+
+.fi.fi_gear {
+	width:16px;
+	height:16px;
+	background-position: 0 -80px;
+}
+
+.fi.fi_gear {
+	background-position: 0 -80px;
+}
+
+.fi.fi_expand {
+	width:16px;
+	height:16px;
+	background-position: 0 -240px;
+}
+
+.fi.fi_collapse {
+	width:16px;
+	height:16px;
+	background-position: 0 -200px;
+}
+
+.fi.fi_reload-white {
+	width:17px;
+	height:19px;
+	background-position: 0 -320px;
+}
+
+.fi.fi_d-arrow-g {
+	width:7px;
+	height:7px;
+	background-position: 0 -360px;
+}
+
+.fi.fi_u-arrow-g {
+	width:7px;
+	height:7px;
+	background-position: 0 -400px;
+}
+
+.fi.fi_external-link {
+	width:15px;
+	height:14px;
+	background-position: 0 -440px;
+}
+
+.fi.fi_video {
+	width:17px;
+	height:10px;
+	background-position: 0 -680px;
+}

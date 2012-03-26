@@ -1,0 +1,18 @@
+﻿@using DowJones.Web.Mvc.UI.Components.ArticleTranslator;
+
+@{
+    ViewBag.Title = "Article Translator";
+}
+
+<script type="text/javascript" language="javascript">
+    function OnLangClick(e, d) {
+        var dd = eval('(' + d.data + ')');
+        window.open('http://localhost:44355/TranslateArticle/index/id?accessionnumber='+ dd.accessionnumber + '&sourcelanguage=' + dd.sourcelanguage + '&targetlanguagecode=' + dd.targetlanguageCode +'&targetlanguage=' + dd.targetlanguage);
+        
+    }
+</script>
+
+<h2>This is a article translator viewed at @DateTime.Now</h2>
+
+
+@Html.DJ().Render(Model)

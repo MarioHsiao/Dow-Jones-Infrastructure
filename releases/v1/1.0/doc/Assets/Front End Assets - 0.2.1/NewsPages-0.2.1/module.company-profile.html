@@ -1,0 +1,652 @@
+<!doctype html>
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <title>Factiva Newspages</title>
+	<link rel="icon" type="image/png" href="images/favicon.png">
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ 
+    <script src="js/libs/modernizr-1.6.min.js"></script>
+
+    <link rel='stylesheet' href='css/reset.css' type='text/css' media='screen, print' />
+    <link rel='stylesheet' href='css/global.css' type='text/css' media='all' />
+	
+    <!-- Dow Jones Dashboard Frame Work styles -->
+    <link rel='stylesheet' href='css/grid.990.9-col.css' type='text/css' media='screen' />
+    <link rel='stylesheet' href='css/style.css' type='text/css' media='screen' />
+    <link rel='stylesheet' href='css/factiva.icons.css' type='text/css' media='screen' />
+    
+    <link rel='stylesheet' href='css/dashboard.controls.css' type='text/css' media='screen' />
+    <link rel='stylesheet' href='css/dashboard.article-group.css' type='text/css' media='screen' />
+    
+    <!-- Library styles -->
+    <link rel='stylesheet' href='css/libs/jquery.fancybox-1.3.4.css' type='text/css' media='screen' />
+	
+    <!-- Project styles -->
+    <link rel='stylesheet' href='css/dashboard.css' type='text/css' media='screen' />
+    <link rel='stylesheet' href='css/dashboard.nav-tabs.css' type='text/css' media='screen' />
+    <link rel='stylesheet' href='css/module.css' type='text/css' media='screen' />
+    <link rel='stylesheet' href='css/module.style.css' type='text/css' media='screen' />
+    <link rel='stylesheet' href='css/module.buttons.css' type='text/css' media='screen' />
+    <link rel='stylesheet' href='css/module.edit-options.css' type='text/css' media='screen' />
+    <link rel='stylesheet' href='css/module.content.articles.css' type='text/css' media='screen' />
+    <link rel='stylesheet' href='css/module.col.bar-chart.css' type='text/css' media='screen' />
+    <link rel='stylesheet' href='css/module.col.headline.css' type='text/css' media='screen' />
+    <link rel='stylesheet' href='css/module.col.article.css' type='text/css' media='screen' />
+	<link rel='stylesheet' href='css/popup.css' type='text/css' media='screen' />	
+    <link rel='stylesheet' href='css/module.company-profile.css' type='text/css' media='screen' />
+    
+</head>
+
+<body>
+<!-- 
+    begin: sample module data
+-->
+<div id="sample-company-data" class="hide">
+
+    <div id="public-company-chart">
+                        
+                        <!-- 
+                    	    DEV-NOTE: below is sample public company chart markup for the top company profile row
+                    	-->
+                        <h3 class="module-row-title">
+                            <span class="chart-control news-volume">News Volume</span>,
+                            <span class="chart-control stock-price">Stock Price</span> - 
+                            <span class="chart-date-range">December 2010</span>
+                        </h3>
+
+                        <div class="company-module-chart">
+
+                        </div><!-- end: .company-module-chart -->
+
+                        <ul class="company-chart-date-range monthly-range">
+                            <li title="January 1, 2010 - January 31, 2010">January</li>
+                            <li title="February 1, 2010 - February 28, 2010">February</li>
+                            <li title="March 1, 2010 - March 31, 2010">March</li>
+                            <li title="April 1, 2010 - April 30, 2010">April</li>
+                            <li title="May 1, 2010 - May 31, 2010">May</li>
+                            <li title="June 1, 2010 - June 30, 2010">June</li>
+                            <li title="July 1, 2010 - July 31, 2010">July</li>
+                            <li title="August 1, 2010 - August 31, 2010">August</li>
+                            <li title="September 1, 2010 - September 30, 2010">September</li>
+                            <li title="October 1, 2010 - October 31, 2010">October</li>
+                            <li title="November 1, 2010 - November 30, 2010">November</li>
+                            <li class="active" title="December 1, 2010 - December 31, 2010">December</li>
+                        </ul>
+                        <!--
+                        EXAMPLE OF QUARTERLY RANGE
+
+                        <ul class="company-chart-date-range quarterly-range">
+                            <li title="January 1, 2010 - March 31, 2010">January, February &amp; March</li>
+                            <li title="April 1, 2010 - June 30, 2010">April, May &amp; June</li>
+                            <li title="July 1, 2010 - September 30, 2010">July, August, &amp; September</li>
+                            <li class="active" title="October 1, 2010 - December 31, 2010">October, November &amp; December</li>
+                        </ul>
+                        -->                        
+                        <h3 class="module-row-title clearfix">Snapshot for <span class="snapshot-date-range">Dec. 1 to Dec. 30, 2010</span></h3>
+
+    </div><!-- end: #public-company-chart -->
+
+    <div id="private-company-chart">
+                        
+                        <!-- 
+                    	    DEV-NOTE: below is sample private company chart markup for the top company profile row
+                    	-->
+                        <h3 class="module-row-title">
+                            <span class="chart-control news-volume">News Volume</span>,
+                            <span class="chart-control stock-price">Stock Price</span> - 
+                            <span class="chart-date-range">December 2010</span>
+                        </h3>
+
+                        <div class="company-module-chart">
+
+                        </div><!-- end: .company-module-chart -->
+
+                        <ul class="company-chart-date-range monthly-range">
+                            <li title="January 1, 2010 - January 31, 2010">January</li>
+                            <li title="February 1, 2010 - February 28, 2010">February</li>
+                            <li title="March 1, 2010 - March 31, 2010">March</li>
+                            <li title="April 1, 2010 - April 30, 2010">April</li>
+                            <li title="May 1, 2010 - May 31, 2010">May</li>
+                            <li title="June 1, 2010 - June 30, 2010">June</li>
+                            <li title="July 1, 2010 - July 31, 2010">July</li>
+                            <li title="August 1, 2010 - August 31, 2010">August</li>
+                            <li title="September 1, 2010 - September 30, 2010">September</li>
+                            <li title="October 1, 2010 - October 31, 2010">October</li>
+                            <li title="November 1, 2010 - November 30, 2010">November</li>
+                            <li class="active" title="December 1, 2010 - December 31, 2010">December</li>
+                        </ul>
+                        <!--
+                        EXAMPLE OF QUARTERLY RANGE
+
+                        <ul class="company-chart-date-range quarterly-range">
+                            <li title="January 1, 2010 - March 31, 2010">January, February &amp; March</li>
+                            <li title="April 1, 2010 - June 30, 2010">April, May &amp; June</li>
+                            <li title="July 1, 2010 - September 30, 2010">July, August, &amp; September</li>
+                            <li class="active" title="October 1, 2010 - December 31, 2010">October, November &amp; December</li>
+                        </ul>
+                        -->                        
+                        <h3 class="module-row-title clearfix">Snapshot for <span class="snapshot-date-range">Dec. 1 to Dec. 30, 2010</span></h3>
+
+    </div><!-- end: #private-company-chart -->
+
+    <div id="public-company-snapshot">
+        
+                        <!-- 
+                    	    DEV-NOTE: below is sample public company snapshot markup for a company profile column in the lower row
+                    	-->
+                        <h4 class="module-col-title">
+                            <a href="#">Company Snapshot</a>
+                        </h4>
+        
+                        <div class="snapshot-tabs">
+                        	<a href="#current-price" class="tab">Current Price</a>
+                            <a href="#analysis-report" class="tab">Analysis Report</a>
+                        </div>
+        
+                        <div class="tab-content-wrap">
+            
+                            <div class="tab-content current-price">
+                
+                                <div class="stock-info-header">
+                                    <span class="ticker-info-label">Market Snapshot:</span>
+                                    <span class="ticker-symbol">appl</span>
+                                    <span class="ticker-symbol-type">nasdaq</span>
+                                </div>
+                
+                                <div class="current-dates-values">
+                                    <span class="current-value">319.79</span>
+                                    <span class="difference-value negative">-0.50</span>
+                                    <span class="difference-percentage negative">-0.16%</span>
+                                    <span class="currency-type">Currency in USD</span>
+                                </div>
+                
+                                <div class="value-breakdown-wrap">
+                    
+                                    <ul class="value-breakdown">
+                                        <li>
+                                            <span class="value-label">Open</span>
+                                            <span class="value">316.93</span>
+                                        </li>
+                                        <li>
+                                            <span class="value-label">High</span>
+                                            <span class="value">232.00</span>
+                                        </li>
+                                        <li>
+                                            <span class="value-label">Market Cap</span>
+                                            <span class="value">293.38b</span>
+                                        </li>
+                                    </ul>
+                    
+                                    <ul class="value-breakdown">
+                                        <li>
+                                            <span class="value-label">Bid/Ask</span>
+                                            <span class="value">317.09/317.15</span>
+                                        </li>
+                                        <li>
+                                            <span class="value-label">Low</span>
+                                            <span class="value">319.19</span>
+                                        </li>
+                                        <li>
+                                            <span class="value-label">Shares</span>
+                                            <span class="value">917.31m</span>
+                                        </li>
+                                    </ul>
+                    
+                                </div>
+                
+                            </div>
+            
+                            <div class="tab-content analysis-report">
+            	
+                                <ul class="ar-list">
+                                	<li>
+                                    	<span class="ar-type">Investext Select</span>
+                                    </li>
+                                    <li>
+                                    	<a href="#" class="ar-name">Investext Select, 10 November 2009</a>
+                                        <span class="ar-meta">Datamonitor Company Profiles</span>
+                                        <span>,</span>
+                                        <span class="ar-meta">12 March 2010</span>
+                                        <span>,</span>
+                                        <span class="ar-meta">(English)</span>
+                                    </li>
+                                    <li>
+                                    	<a href="#" class="ar-name">BLOOMBERG LP - COMPANY PR...</a>
+                                        <span class="ar-meta">Datamonitor Company Profiles</span>
+                                        <span>,</span>
+                                        <span class="ar-meta">12 March 2010</span>
+                                        <span>,</span>
+                                        <span class="ar-meta">(English)</span>
+                                    </li>
+                                </ul>
+                
+                                <ul class="ar-list">
+                                	<li>
+                                    	<span class="ar-type">Zacks Investment Research</span>
+                                    </li>
+                                    <li>
+                                    	<span>No results</span>
+                                    </li>
+                                </ul>
+                
+                                <ul class="ar-list">
+                                	<li>
+                                    	<span class="ar-type">Datamonitor Company Profiles</span>
+                                    </li>
+                                    <li>
+                                    	<a href="#" class="ar-name">Bloomberg L.P . - Major Products</a>
+                                        <span class="ar-meta">Datamonitor Company Profiles</span>
+                                        <span>,</span>
+                                        <span class="ar-meta">12 March 2010</span>
+                                        <span>,</span>
+                                        <span class="ar-meta">(English)</span>
+                                    </li>
+                                    <li>
+                                    	<a href="#" class="ar-name">Bloomberg L.P . - Top Competitors</a>
+                                        <span class="ar-meta">Datamonitor Company Profiles</span>
+                                        <span>,</span>
+                                        <span class="ar-meta">12 March 2010</span>
+                                        <span>,</span>
+                                        <span class="ar-meta">(English)</span>
+                                    </li>
+                                </ul>
+                
+                                <ul class="dc_list">
+                                    <li class="dc_item">
+                                        <a href="#" class="dashboard-control dc_btn dc_btn-1">View All</a>
+                                    </li>
+                                </ul>
+                
+                            </div>
+            
+                        </div>
+        
+    </div><!-- end: #public-company-snapshot -->
+
+    <div id="private-company-snapshot">
+        
+                        <!-- 
+                    	    DEV-NOTE: below is sample private company snapshot markup for a company profile column in the lower row
+                    	-->
+                        <h4 class="module-col-title">
+                            <a href="#">Company Snapshot</a>
+                        </h4>
+        
+                        <div class="snapshot-tabs">
+                            <a href="#analysis-report" class="tab">Analysis Report</a>
+                            <a href="#company-executives" class="tab">Company Executives</a>
+                        </div>
+        
+                        <div class="tab-content-wrap">
+            
+                            <div class="tab-content analysis-report">
+            	
+                                <ul class="ar-list">
+                                	<li>
+                                    	<span class="ar-type">Investext Select</span>
+                                    </li>
+                                    <li>
+                                    	<a href="#" class="ar-name">Investext Select, 10 November 2009</a>
+                                        <span class="ar-meta">Datamonitor Company Profiles</span>
+                                        <span>,</span>
+                                        <span class="ar-meta">12 March 2010</span>
+                                        <span>,</span>
+                                        <span class="ar-meta">(English)</span>
+                                    </li>
+                                    <li>
+                                    	<a href="#" class="ar-name">BLOOMBERG LP - COMPANY PR...</a>
+                                        <span class="ar-meta">Datamonitor Company Profiles</span>
+                                        <span>,</span>
+                                        <span class="ar-meta">12 March 2010</span>
+                                        <span>,</span>
+                                        <span class="ar-meta">(English)</span>
+                                    </li>
+                                </ul>
+                
+                                <ul class="ar-list">
+                                	<li>
+                                    	<span class="ar-type">Zacks Investment Research</span>
+                                    </li>
+                                    <li>
+                                    	<span>No results</span>
+                                    </li>
+                                </ul>
+                
+                                <ul class="ar-list">
+                                	<li>
+                                    	<span class="ar-type">Datamonitor Company Profiles</span>
+                                    </li>
+                                    <li>
+                                    	<a href="#" class="ar-name">Bloomberg L.P . - Major Products</a>
+                                        <span class="ar-meta">Datamonitor Company Profiles</span>
+                                        <span>,</span>
+                                        <span class="ar-meta">12 March 2010</span>
+                                        <span>,</span>
+                                        <span class="ar-meta">(English)</span>
+                                    </li>
+                                    <li>
+                                    	<a href="#" class="ar-name">Bloomberg L.P . - Top Competitors</a>
+                                        <span class="ar-meta">Datamonitor Company Profiles</span>
+                                        <span>,</span>
+                                        <span class="ar-meta">12 March 2010</span>
+                                        <span>,</span>
+                                        <span class="ar-meta">(English)</span>
+                                    </li>
+                                </ul>
+                
+                                <ul class="dc_list">
+                                    <li class="dc_item">
+                                        <a href="#" class="dashboard-control dc_btn dc_btn-1">View All</a>
+                                    </li>
+                                </ul>
+                
+                            </div>
+            
+                            <div class="tab-content company-executives">
+                            	<ul class="co-execs-list">
+                                	<li>
+                                    	<a href="#" class="exec-name">Bob W. Dudley</a>
+                                        <span class="position">Group Chief Executive Officer, CEO</span>
+                                    </li>
+                                    <li>
+                                    	<a href="#" class="exec-name">Bob W. Dudley</a>
+                                        <span class="position">Group Chief Executive Officer, CEO</span>
+                                    </li>
+                                    <li>
+                                    	<a href="#" class="exec-name">Bob W. Dudley</a>
+                                        <span class="position">Group Chief Executive Officer, CEO</span>
+                                    </li>
+                                    <li>
+                                    	<a href="#" class="exec-name">Bob W. Dudley</a>
+                                        <span class="position">Group Chief Executive Officer, CEO</span>
+                                    </li>
+                                    <li>
+                                    	<a href="#" class="exec-name">Bob W. Dudley</a>
+                                        <span class="position">Group Chief Executive Officer, CEO</span>
+                                    </li>
+                                </ul>
+                
+                                <ul class="dc_list">
+                                    <li class="dc_item">
+                                        <a href="#" class="dashboard-control dc_btn dc_btn-1">View All</a>
+                                    </li>
+                                </ul>
+                            </div>
+            
+                        </div>
+        
+    </div><!-- end: #private-company-snapshot -->
+
+    <div id="trending-chart-content">
+        
+                        <!-- 
+                    	    DEV-NOTE: below is sample trending chart markup for a company profile column in the lower row
+                    	-->
+                        <h4 class="module-col-title">
+                            <a href="#">Trending</a>
+                        </h4>
+        
+                        <div class="trending-chart">
+            
+                        </div><!-- end: .trending-chart -->
+        
+    </div><!-- end: #trending-chart-content -->
+    
+    <div id="article-group-content">
+        
+        <!-- 
+    	    DEV-NOTE: below is sample article group markup for a company profile column in the lower row
+    	-->
+        <div class="article-group">
+            <h4 class="module-col-title article-group-title">
+                <a href="#">Recent Articles</a>
+            </h4>
+         
+            <ul class="article-list">
+                <li>
+                    <div class="article-wrap primary-article">
+                
+                        <div class="article-meta">
+                            <span class="article-source">The New York Times</span>
+                            -
+                            <span class="date-stamp">December 15, 2010</span>
+                        </div>
+                    
+                        <h4 class="article-headline">
+                            <a href="#">Dow Jones Builds Largest Solar Energy Field on the East Coast</a>								
+                        </h4>
+                    
+                        <p class="article-snip">
+                        The Hatter was the first to break the silence. 'What day of the month is it?' he said, turning to Alice: he had taken his watch out of his pocket, and was looking at it uneasily, shaking...
+                        </p>
+                    
+                    </div>
+                </li>
+                <li>
+                    <div class="article-wrap">
+                
+                        <div class="article-meta">
+                            <span class="article-source">The New York Times</span>
+                            -
+                            <span class="date-stamp">December 15, 2010</span>
+                        </div>
+                    
+                        <h4 class="article-headline">
+                            <a href="#">Dow Jones Builds Largest Solar Energy Field on the East Coast</a>
+                            <span class="fi"></span>									
+                        </h4>
+                    
+                    </div>
+                </li>
+                <li>
+                    <div class="article-wrap">
+                
+                        <div class="article-meta">
+                            <span class="article-source">The New York Times</span>
+                            -
+                            <span class="date-stamp">December 15, 2010</span>
+                        </div>
+                    
+                        <h4 class="article-headline">
+                            <a href="#">Dow Jones Builds Largest Solar Energy Field on the East Coast</a>
+                            <span class="fi"></span>									
+                        </h4>
+                    
+                    </div>
+                </li>
+                <li>
+                    <div class="article-wrap">
+                
+                        <div class="article-meta">
+                            <span class="article-source">The New York Times</span>
+                            -
+                            <span class="date-stamp">December 15, 2010</span>
+                        </div>
+                    
+                        <h4 class="article-headline">
+                            <a href="#">Dow Jones Builds Largest Solar Energy Field on the East Coast</a>
+                            <span class="fi"></span>									
+                        </h4>
+                    
+                    </div>
+                </li>
+            </ul>
+        
+            <ul class="dc_list">
+                <li class="dc_item">
+                    <a href="#" class="dashboard-control dc_btn dc_btn-1">View All</a>
+                </li>
+            </ul>
+        
+        </div>
+        
+    </div><!-- end: #article-group-content -->
+    
+</div>
+<!-- 
+    end: sample module data
+-->
+
+<div id="dashboard"><div id="dashboard-wrap" class="container_9 clearfix">
+
+    <div class="company-profile-module module wrap-9">
+
+        <div class="module-header">
+
+            <h3 class="module-title">Company Profile</h3>
+            
+            <ul class="dc_list dc_list-fl">
+                <li class="dc_item">
+                    <a href="#" class="dashboard-control dc_btn dc_btn-1">1M</a>
+                </li>
+                <li class="dc_item">
+                    <a href="#" class="dashboard-control">3M</a>
+                </li>
+            </ul>
+			
+            <ul class="dc_list dc_list-fr">
+                <li class="dc_item">
+                    <a href="#" class="dashboard-control settings"><span class="fi fi_gear"></span></a>
+                </li>
+            </ul>
+            
+        </div><!-- end: .module-header -->
+
+        <form class="module-edit-options">
+            <div class="module-edit-options-header clearfix">
+   	        	<ul class="module-controls mc_actions">
+                    <li class="mc_item jq_has-dropdown mc_item-open drop-open-left">
+                    	<span class="control-wrap">
+                        	<span class="control-content png_bg">
+                            	<span class="control-text">Actions</span>
+                            	<span class="fi fi_d-arrow-g"></span>
+                            </span>
+                        </span>
+                        <ul class="mc_dropdown">
+                        	<li class="mc_dropdown-item">
+                            	<span class="mc_dropdown-content">Move Up</span>
+                                <span class="fi fi_u-arrow-g"></span>
+                            </li>
+                            <li class="mc_dropdown-item">
+                            	<span class="mc_dropdown-content">Move Down</span>
+                                <span class="fi fi_d-arrow-g"></span>
+                            </li>
+                            <li class="mc_dropdown-item">
+                            	<span class="mc_dropdown-content">Clone/Copy</span>
+                            </li>
+                            <li class="mc_dropdown-item">
+                            	<span class="mc_dropdown-content">Remove Module</span>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="module-edit-options-content">
+                <div class="module-row one-two-col clearfix">
+                    <div class="module-col one-third first-col">
+                        <div class="edit-module-name-wrap">
+                            <div class="edit-module-name-label">
+                                <label for="edit-module-name">Module Name</label>
+                            </div>
+                            <div class="edit-module-name-textbox">
+                                <input type="text" id="edit-module-name" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="module-edit-options-footer clearfix">
+                <ul class="dc_list">
+                    <li class="dc_item">
+                        <input type="submit" value="Save and Collapse" class="dashboard-control dc_btn dc_btn-2"/>
+                    </li>
+                    <li class="dc_item ">
+                        <input type="reset" value="Reset" class="dashboard-control dc_btn dc_btn-3"/>
+                    </li>
+                </ul>
+            </div>
+        </form>
+
+        <div class="module-core">
+            
+            <div class="module-content">
+                
+                <div class="company-chart-row module-row three-col no-bottom-padding clearfix">
+    
+                    <div class="module-col three-thirds"><div class="module-col-wrap standard-padding">
+                   
+                    </div></div><!-- end: .module-col -->
+
+                </div><!-- end: company-chart-row -->            			
+           
+                <div class="company-snapshot-row module-row no-top-padding clearfix">
+                
+                    <div class="company-snapshot-col module-col one-third first-col"><div class="module-col-wrap standard-padding">
+
+                    </div></div><!-- end: .company-snapshot-col -->
+    
+                    <div class="trending-chart-col module-col one-third"><div class="module-col-wrap standard-padding">
+                                                
+                    </div></div><!-- end: .trending-chart-col -->
+                
+                    <div class="article-group-col module-col one-third"><div class="module-col-wrap standard-padding">
+                    
+                    </div></div><!-- end: .article-group-col -->
+    
+                </div><!-- end: .company-snapshot-row -->                        
+                            
+            </div><!-- end: .module-content -->
+
+            <div class="module-footer">
+            
+            </div><!-- end: .module-footer -->
+            
+        </div><!-- end: module-core -->
+
+    </div><!-- end: .company-profile-module -->
+    
+</div></div><!-- end: #dashboard -->
+
+<!-- library scripts - 3rd party -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.js"></script>
+<!--<script>!window.jQuery && document.write(unescape('%3Cscript src="js/libs/jquery-1.4.3.min.js"%3E%3C/script%3E'))</script>-->
+<script type='text/javascript' src='js/libs/jquery-ui-1.8.6.custom.min.js'></script>
+<script type='text/javascript' src='js/libs/jquery.easing-1.3.min.js'></script>
+<script type='text/javascript' src='js/libs/jquery.cycle.all.min.js'></script>
+<script type='text/javascript' src='js/libs/jquery.blockui.min.js'></script>
+<script type='text/javascript' src='js/libs/highcharts.js'></script>
+<script type='text/javascript' src='js/jquery.bubblechart.js'></script> 
+
+<!-- global scripts -->
+<script type='text/javascript' src='js/global.js'></script>
+<script type='text/javascript' src='js/popup.js'></script>
+
+<!-- DEV-NOTE: helper.js is not intended for production use -->
+<script type='text/javascript' src='js/helper.js'></script>
+
+<!-- dashboard library scripts -->
+
+<script type='text/javascript' src='js/dashboard.js'></script>
+<script type='text/javascript' src='js/module.js'></script>
+<script type='text/javascript' src='js/module.edit-options.js'></script>
+<script type='text/javascript' src='js/module.company-profile.js'></script>
+
+<!-- page script -->
+<script type='text/javascript' src='js/script.js'></script>
+
+<div id="popup" class="dj-popup-window">
+	<div class="dj-popup-arrow"></div>
+	<div class="dj-popup-header"><div class="dj-popup-title"></div></div>
+	<div class="dj-popup-body"></div>
+</div>
+</body>
+</html>

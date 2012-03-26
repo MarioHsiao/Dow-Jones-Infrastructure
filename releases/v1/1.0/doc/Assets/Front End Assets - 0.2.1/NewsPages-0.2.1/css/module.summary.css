@@ -1,0 +1,237 @@
+/*
+
+	-- -- -- -- -- -- --
+	Description: Industry module style rules
+	Version: 0.1
+	Last Update: 11/17/2010
+	Authors: Ryan Schoch
+	Company: Dow Jones & Company Inc.
+	Copyright 2010 Dow Jones & Company Inc.
+	
+	Dependencies
+	 - css/reset.css
+	 - css/lib/modules.css
+	-- -- -- -- -- -- --
+	
+*/
+
+/* >> General module rules
+----------------------------------------------------------------------------------------------------*/
+/* Summary Collumn Widths */
+.summary-first-col {
+	width:440px;
+}
+.summary-second-col {
+	width:218px;
+}
+.summary-third-col {
+	width:330px;
+}
+
+.section-title {
+	color:#676767;
+	font-size:108%;
+	padding-bottom:10px;
+}
+
+/* >> Real Time News
+----------------------------------------------------------------------------------------------------*/
+.realtime-news {
+}
+
+.realtime-news li {
+	
+}
+
+.realtime-news li .headline {
+}
+	.realtime-news li .level-1 {
+		font-size:153.9%;
+	}
+	.realtime-news li .level-2 {
+		font-size:138.5%;
+	}
+	.realtime-news li .level-3 {
+		font-size:123.1%;
+	}
+	.realtime-news li .level-4 {
+		font-size:108%;
+	}
+	.realtime-news li .level-5 {
+		font-size:93%;
+	}
+
+.realtime-news li .headline a {
+	height:20px;
+	display: -moz-inline-stack; /* required for ff2 */
+	display: inline-block;
+	color: #666666;
+	line-height:20px;
+	padding:0 3px;
+}
+
+.realtime-news li .headline a span {
+	display: -moz-inline-stack; /* required for ff2 */
+	display: inline-block;
+	vertical-align:middle;
+}
+
+	.realtime-news li .headline a .time-stamp {
+		width:60px;
+	}
+	.realtime-news li .headline a .headline {
+		
+	}
+
+/* >> News Volume Graph
+----------------------------------------------------------------------------------------------------*/
+.summary-module h4 span.news-volume {
+	display: -moz-inline-stack; /* required for ff2 */
+	display: inline-block;
+	border-bottom: 3px solid #ff9300;
+}
+
+.summary-module h4 span.market-index {
+	display: -moz-inline-stack; /* required for ff2 */
+	display: inline-block;
+	border-bottom: 3px solid #41a4ce;
+}
+
+
+/* >> Video Carousel
+----------------------------------------------------------------------------------------------------*/
+.video-carousel {
+	position:relative;
+}
+
+.video-carousel .section-title {
+	padding-bottom:15px;
+}
+
+/*Prev/Next Btns*/
+.video-carousel .carousel-controls,
+.video-carousel .disabled-btn {
+	display:none;
+	width:24px;
+	height:24px;
+	position:absolute;
+	top:0;
+	background: url(i/factiva-icons.png) no-repeat;
+}
+	.ie6 .video-carousel .carousel-controls,
+	.ie6 .video-carousel .disabled-btn {
+		background-image: url(i/ie6/factiva-icons.gif);
+	}
+/*active btns*/
+.video-carousel .carousel-prev {
+	right:34px;
+	background-position:0 -520px;
+}
+.video-carousel .carousel-next {
+	right:0;
+	background-position:0 -560px;
+}
+/*disabled btns*/
+.video-carousel .disabled-btn-prev {
+	display: -moz-inline-stack; /* required for ff2 */
+	display: inline-block;
+	right:34px;
+	background-position:0 -600px;
+}
+.video-carousel .disabled-btn-next {
+	display: -moz-inline-stack; /* required for ff2 */
+	display: inline-block;
+	right:0;
+	background-position:0 -640px;
+}
+
+/*Carousel Content*/
+.video-carousel .carousel-content {
+	width:410px;
+	overflow:hidden;
+}
+
+.video-carousel .carousel-pages {
+	width:410px !important;
+}
+
+.video-carousel .carousel-pages .cp {
+	display:none;
+	width:436px;
+	float:left;
+}
+
+.video-carousel .cp .item {
+	width:192px;
+	float:left;
+	padding-right:26px;
+}
+
+/*video thumbnail*/
+.video-carousel .cp .item .media-thumb {
+	width:192px;
+	height:108px;
+	background-color:#ccc;
+	margin-bottom:5px;
+}
+
+.video-carousel .cp .item .media-thumb img {
+	display:none; /*temp*/
+}
+
+/*video headline*/
+.video-carousel .cp .item .media-headline {
+	font-size:93%;
+}
+
+	.video-carousel .cp .item .media-headline a {
+		color:#2680a0;
+	}
+
+/*video info*/
+.video-carousel .cp .item .media-meta {
+}
+
+	.video-carousel .cp .item .media-meta .fi_video {
+		margin-top:3px;
+	}
+	.video-carousel .cp .item .media-meta .media-length {
+		height:16px;
+		display: -moz-inline-stack; /* required for ff2 */
+		display: inline-block;
+		vertical-align:middle;
+		color:#999;
+		font-size:93%;
+		line-height:16px;
+	}
+
+
+/* >> Trending Lists
+----------------------------------------------------------------------------------------------------*/
+.trending-list {
+}
+
+.trending-list li {
+}
+
+.trending-list li .trending-item {
+	height:16px;
+	font-size:93%;
+	line-height:16px;
+}
+
+.trending-list li .trending-item a {
+	display: -moz-inline-stack; /* required for ff2 */
+	display: inline-block;
+	height:16px;
+	width:100%;
+	line-height:16px;
+	color:#2f90b3;
+}
+
+
+
+
+
+
+

@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="DowJones.Web.Mvc.UI.Canvas.DataAccess.Managers.TopNewsNewsPageModuleManager">
+    <Position X="0.75" Y="0.5" Width="8.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAoAAAAAAAEACAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Managers\NewsPages\TopNewsNewsPageModuleManager.cs</FileName>
+      <NewMemberFileName>Managers\NewsPages\RegionalMapNewsPageModuleManager.cs</NewMemberFileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DowJones.Web.Mvc.UI.Canvas.DataAccess.Responses.GetTopNewsNewsPageModuleHeadlinesDataResponse">
+    <Position X="4.5" Y="3" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Responses\GetTopNewsNewsPageModuleHeadlinesDataResponse.cs</FileName>
+      <NewMemberFileName>Responses\GetRegionalMapHeadlinesDataResponse.cs</NewMemberFileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DowJones.Web.Mvc.UI.Canvas.DataAccess.Responses.SectionHeadlineResult" BaseTypeListCollapsed="true">
+    <Position X="8.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAEIAAABAAAAgAgAAAQgAAAAIAAAgBAAAQAQAAA=</HashCode>
+      <FileName>Responses\GetNewsstandNewsPageModuleDataResponse.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Factiva.Gateway.Messages.Search.V2_0.NavigatorCollection">
+    <Position X="4.5" Y="4.5" Width="3.5" />
+    <TypeIdentifier />
+  </Class>
+  <Font Name="Tahoma" Size="8.25" />
+</ClassDiagram>

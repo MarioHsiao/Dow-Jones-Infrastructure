@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" GroupingSetting="Access" MembersFormat="FullSignature">
+  <Class Name="DowJones.Web.Mvc.UI.Canvas.DataAccess.Managers.NewsPages.SyndicationNewsPageModuleManager&lt;TServiceResult, TModuleRequest, TServicePartResult, TPackage&gt;">
+    <Position X="3.75" Y="11" Width="6.75" />
+    <Compartments>
+      <Compartment Name="Protected" Collapsed="true" />
+      <Compartment Name="ProtectedInternal" Collapsed="true" />
+      <Compartment Name="Private" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIEAgAEAAAAAAACAAAAQgAAAAAAEAABAAAAAI=</HashCode>
+      <FileName>Managers\NewsPages\SyndicationNewsPageModuleManager.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.19" />
+  </Class>
+  <Class Name="DowJones.Web.Mvc.UI.Canvas.DataAccess.ServicePartResult.SyndicationNewsPageModuleServicePartResult&lt;T&gt;" Collapsed="true">
+    <Position X="2.5" Y="15" Width="5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ServicePartResult\SyndicationNewsPageModuleServicePartResult.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DowJones.Web.Mvc.UI.Canvas.DataAccess.ServiceResult.SyndicationNewsPageModuleServiceResult&lt;TService, T&gt;" Collapsed="true">
+    <Position X="0.75" Y="14.25" Width="4" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ServiceResult\SyndicationNewsPageModuleServiceResult.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DowJones.Web.Mvc.UI.Canvas.DataAccess.ServiceResult.AbstractModuleServiceResult&lt;TService, T&gt;">
+    <Position X="0.5" Y="10.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAIAAQAA=</HashCode>
+      <FileName>ServiceResult\AbstractModuleServiceResult.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DowJones.Web.Mvc.UI.Canvas.DataAccess.Requests.NewsPageHeadlineModuleDataRequest">
+    <Position X="0.5" Y="18.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAKQAAAAAAAAAIAAAAAAAAAAAAAAAABAAAAAABAAAA=</HashCode>
+      <FileName>Requests\NewsPageHeadlineModuleDataRequest.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DowJones.Web.Mvc.UI.Canvas.DataAccess.PortalHeadlines.SyndicationPortalPackage">
+    <Position X="4" Y="15.75" Width="5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAA=</HashCode>
+      <FileName>PortalPackages\SyndicationPortalPackage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DowJones.Utilities.Managers.AbstractAggregationManager">
+    <Position X="4.5" Y="7.5" Width="2.25" />
+    <Compartments>
+      <Compartment Name="Protected" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier />
+  </Class>
+  <Interface Name="DowJones.Web.Mvc.UI.Canvas.DataAccess.Interfaces.IModuleRequest">
+    <Position X="3.5" Y="18.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IModuleRequest.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="DowJones.Web.Mvc.UI.Canvas.DataAccess.Interfaces.IServiceResult&lt;TServicePartResult, TPackage&gt;">
+    <Position X="4.25" Y="5.25" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAIAAQAA=</HashCode>
+      <FileName>Interfaces\IServiceResult.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Tahoma" Size="8.25" />
+</ClassDiagram>

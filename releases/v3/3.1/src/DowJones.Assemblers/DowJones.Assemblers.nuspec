@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>DowJones.Assemblers.v3</id>
+        <version>$version$</version>
+        <title>Dow Jones Assemblers</title>
+        <description>The Dow Jones Managers, Converters, Factories, and other assembler objects</description>
+        <authors>Dow Jones Platform Integration Team</authors>
+        <tags>DowJones</tags>
+        <language>en-US</language>
+        <projectUrl>http://dowjones.com</projectUrl>
+        <licenseUrl>http://dowjones.com</licenseUrl>
+        <dependencies>
+            <dependency id="DowJones.Infrastructure.v3" version="$version$" />
+            <dependency id="Argotic.Common" version="2008.0.2.0" />
+            <dependency id="Argotic.Extensions" version="2008.0.2.0" />
+            <dependency id="Argotic.Core" version="2008.0.2.0" />
+            <dependency id="Argotic.Web" version="2008.0.2.0" />
+            <dependency id="log4net" version="1.2.10" />
+            <dependency id="Factiva.Gateway" version="7.5.0.50" />
+        </dependencies>
+    </metadata>
+    <files>
+        <file src="DowJones.Assemblers.dll" target="lib" />
+        <file src="DowJones.Assemblers.pdb" target="lib" />
+    </files>
+</package>
