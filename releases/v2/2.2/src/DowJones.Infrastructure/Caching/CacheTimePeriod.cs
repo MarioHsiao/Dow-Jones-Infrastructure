@@ -1,6 +1,6 @@
 ﻿namespace DowJones.Caching
 {
-    public enum CacheTimePeriod
+    public enum InfrastructureCacheTimePeriod
     {
         Current,
         Previous,
