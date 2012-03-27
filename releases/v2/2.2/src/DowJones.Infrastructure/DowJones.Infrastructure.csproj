@@ -122,6 +122,11 @@
     <Compile Include="Attributes\AssignedString.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Caching\AbstractCacheKey.cs" />
+    <Compile Include="Caching\CacheKeyConstants.cs" />
+    <Compile Include="Caching\CacheTimePeriod.cs" />
+    <Compile Include="Caching\ICacheKey.cs" />
+    <Compile Include="Caching\Properties\Settings.cs" />
     <Compile Include="Converters\JsonEnumConverter.cs" />
     <Compile Include="Infrastructure\GenericEqualityComparer.cs" />
     <Compile Include="Infrastructure\EnumHelper.cs" />
@@ -170,6 +175,7 @@
     <Compile Include="Managers\SocialMedia\TweetRiver\TweetRiverProvider.cs" />
     <Compile Include="Managers\SocialMedia\Twitter\Enums\TwitterEnums.cs" />
     <Compile Include="Managers\SocialMedia\Twitter\Extensions\StringExtensions.cs" />
+    <Compile Include="Managers\Topics\Caching\SubscribableTopicsCacheKey.cs" />
     <Compile Include="Models\SocialMedia\TwitterEntities.cs" />
     <Compile Include="Managers\Topics\TopicsManager.cs" />
     <Compile Include="Models\Search\RelatedConcepts.cs" />

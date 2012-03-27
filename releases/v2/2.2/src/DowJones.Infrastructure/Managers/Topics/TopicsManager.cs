@@ -1,4 +1,7 @@
-﻿using DowJones.Managers.Abstract;
+﻿using DowJones.Caching;
+using DowJones.Infrastructure.Common;
+using DowJones.Managers.Abstract;
+using DowJones.Managers.Topics.Caching;
 using DowJones.Session;
 using Factiva.Gateway.Messages.Assets.Queries.V1_0;
 using Factiva.Gateway.Messages.Assets.Sharing.V2_0;
@@ -10,13 +13,13 @@ namespace DowJones.Managers.Topics
     {
         private static readonly ILog Logger = LogManager.GetLogger(typeof(TopicsManager));
         //private readonly IPreferences preferences;
-        //private readonly Product product;
+        private readonly Product product;
 
-        public TopicsManager(IControlData controlData)//, IPreferences preferences, Product product)
+        public TopicsManager(IControlData controlData, Product product)//, IPreferences preferences, Product product)
             : base(controlData)
         {
             //this.preferences = preferences;
-            //this.product = product;
+            this.product = product;
         }
 
         protected override ILog Log { get { return Logger; } }
@@ -31,14 +34,25 @@ namespace DowJones.Managers.Topics
             return GetUserTopics(new QueryTypeCollection{QueryType.CommunicatorTopicQuery});
         }
 
-        public QueryPropertiesItemCollection GetSubscribableTopics(QueryType queryType, ShareScopeCollection queriesShareScopeCollection)
+        public QueryPropertiesItemCollection GetSubscribableTopics(QueryType queryType, ShareScopeCollection queriesShareScopeCollection, bool forceCacheRefresh = false)
         {
+            var tempControlData = ControlData;
+
+            if (SubscribableTopicsCacheKey.CachingEnabled)
+            {
+                var cacheKey = new SubscribableTopicsCacheKey(product, queriesShareScopeCollection)
+                {
+                    CacheForceCacheRefresh = forceCacheRefresh
+                };
+                tempControlData = cacheKey.GetCacheControlData(ControlData, product);
+            }
+
             var getSubscribableQueriesRequest = new GetSubscribableQueriesRequest
             {
-                QueryType = QueryType.CommunicatorTopicQuery,
+                QueryType = queryType,
                 ShareScopeCollection = queriesShareScopeCollection
             };
-            var response = Invoke<GetSubscribableQueriesResponse>(getSubscribableQueriesRequest).ObjectResponse;
+            var response = Invoke<GetSubscribableQueriesResponse>(getSubscribableQueriesRequest, tempControlData).ObjectResponse;
             return response.QueryPropertiesItemCollection;
         }
 
