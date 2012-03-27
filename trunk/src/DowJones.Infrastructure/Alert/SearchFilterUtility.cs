@@ -8,7 +8,7 @@ using DowJones.Exceptions;
 using Factiva.Gateway.V1_0;
 using Factiva.Gateway.Messages.Symbology.V1_0;
 
-namespace DowJones.Infrastructure.Alert
+namespace DowJones.Infrastructure.Alert 
 {
     internal class SearchFilterUtility
     {

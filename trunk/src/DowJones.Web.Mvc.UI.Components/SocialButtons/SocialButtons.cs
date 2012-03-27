@@ -18,8 +18,8 @@ namespace DowJones.Web.Mvc.UI.Components.SocialButtons
 
         public SocialButtonsControl()
         {
-            //TagName = "ul";
-            //CssClass = "actions";
+            TagName = "ul";
+            CssClass = "actions";
         }
     }
 }

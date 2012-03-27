@@ -146,6 +146,24 @@
                         }
                         </div>
                     } 
+
+                     @if (!Model.ArticleDataSet.Credit.IsNullOrEmpty())
+                    {
+                        if (showIndexing)
+                        {
+                            <div class="dj_article_index">BY</div>
+                        }
+                        
+                        <div class="dj_article_by dj_article_section">                                                                          
+                            <span class="value author drop-down-button" data-dd-type="author">
+                                @foreach (RenderItem renderItem in Model.ArticleDataSet.Credit)
+                                {
+                                    @renderItem.ItemText
+                                }
+                            </span><span class="dj_article_comma">, </span>       
+                        </div>
+                    } 
+
                   
                     <div class="dj_meta_group">                 
                    
@@ -238,38 +256,34 @@
             </div>
 
                     @if (Model.ShowPostProcessing)
-                    {
-                        bool showPressClip = (Model.ShowPressClip
-                                        && !string.IsNullOrEmpty(Model.ArticleDataSet.SubType)
-                                        && Model.ArticleDataSet.SubType.ToLower() == "nlapressclip");
-                
-                        <ul class="dj_PostProcessing actions clearfix">
-                            <li class="save action first" data-ref="save"><span class="dj_icon dj_icon-save"></span><span data-workflow="save">@DJ.Token("save")</span></li>
-                            <li class="print action" data-ref="print"><span class="dj_icon dj_icon-print"></span><span data-workflow="print">@DJ.Token("cmPrint")</span></li>
-                            <li class="email action" data-ref="email"><span class="dj_icon dj_icon-mail"></span><span data-workflow="email">@DJ.Token("email")</span></li>
-                            @if (showPressClip)
-                            {
-                                <li class="press-clip action" data-ref="pressclip"><span class="dj_icon dj_icon-pressclips"></span><span data-workflow="pressclip">@DJ.Token("pressClipping")</span></li>
-                            }
-                        </ul>
+                    {                
+                        if (!Model.PostProcessingOptions.IsNullOrEmpty() )
+                        {
+                            <ul class="dj_PostProcessing actions clearfix">
+                                @foreach (var item in Model.PostProcessingOptions)
+                                {
+                                    <li class="@(item.ToString().ToLower())" data-ref="@(item.ToString().ToLower())"><i class="dj_icon icon-@(item.ToString().ToLower())"></i><span data-workflow="@(item.ToString().ToLower())">@(DJ.Token(item.ToString().ToLower()))</span></li>
+                                }
+                            </ul>
+                        }
                         
                         @*Build social buttons/ speakers/ translation*@
                       
-                        if (Model.HasSocialNetworks)
-                        {
-                            @(CreateChildControl<DowJones.Web.Mvc.UI.Components.SocialButtons.SocialButtonsControl>(Model.SocialButtons))
-                        }
-        
-                        if (Model.HasTranslator)
-                        {
-                            if (Model.ShowReadSpeaker)
+                            if (Model.HasSocialNetworks)
                             {
-                                <span class="emg_translator_pipe">&nbsp;|&nbsp;</span>
+                            @(CreateChildControl<DowJones.Web.Mvc.UI.Components.SocialButtons.SocialButtonsControl>(Model.SocialButtons))
                             }
+
+                            if (Model.HasTranslator)
+                            {
+                                if (Model.ShowReadSpeaker)
+                                {
+                                <span class="emg_translator_pipe">&nbsp;|&nbsp;</span>
+                                }
                             <div id="articleTranslateControlsContainer">
                                 @(CreateChildControl<DowJones.Web.Mvc.UI.Components.ArticleTranslator.ArticleTranslatorControl>(Model.Translator))
                             </div>
-                        }    
+                            }    
                         @*Ends Build social buttons and speakers/ translation*@
                     }          
                    

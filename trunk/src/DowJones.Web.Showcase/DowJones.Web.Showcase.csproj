@@ -186,6 +186,7 @@
     <Compile Include="Mocks\MockSearchManager.cs" />
     <Compile Include="Mocks\MockSearchQueryResourceManager.cs" />
     <Compile Include="Models\MultiviiewPortalHeadlinesListModel.cs" />
+    <Compile Include="Models\Newsletter\EditionModel.cs" />
     <Compile Include="Models\SocialMediaViewModel.cs" />
     <Compile Include="Models\TagCloudDemoViewModel.cs" />
     <Compile Include="MockRESTServices\MockRestServiceController.cs" />
@@ -258,6 +259,8 @@
     <Content Include="Content\bootstrap\css\bootstrap-responsive.min.css" />
     <Content Include="Content\bootstrap\css\bootstrap.css" />
     <Content Include="Content\bootstrap\css\bootstrap.min.css" />
+    <Content Include="Content\bootstrap\img\glyphicons-halflings-white.png" />
+    <Content Include="Content\bootstrap\img\glyphicons-halflings.png" />
     <Content Include="Content\bootstrap\js\bootstrap.js" />
     <Content Include="Content\bootstrap\js\bootstrap.min.js" />
     <Content Include="Content\bootstrap\js\google-code-prettify\prettify.css" />

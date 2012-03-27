@@ -1,16 +1,20 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Text;
 using System.Web.Mvc;
 using DowJones.Ajax.Article;
 using DowJones.Articles;
 using DowJones.Assemblers.Articles;
+using DowJones.Formatters.Globalization.DateTime;
 using DowJones.Infrastructure;
+using DowJones.Preferences;
 using DowJones.Url;
+using DowJones.Web.Handlers.DJInsider;
 using DowJones.Web.Mvc.Routing;
 using DowJones.Web.Mvc.UI.Components.Article;
 using DowJones.Web.Mvc.UI.Components.Models.Article;
 using DowJones.Web.Mvc.UI.Components.SocialButtons;
-using Factiva.Gateway.Messages.MarketData.V1_0;
+using DowJones.Web.Showcase.Models.Newsletter;
 using ControllerBase = DowJones.Web.Mvc.ControllerBase;
 
 namespace DowJones.Web.Showcase.Controllers
@@ -19,11 +23,15 @@ namespace DowJones.Web.Showcase.Controllers
     {
         private readonly IArticleService _articleService;
         private readonly ArticleConversionManager _articleConversionManger;
+        private readonly IPreferences _preferences;
+        private readonly DateTimeFormatter _dateTimeFormatter;
 
-        public NewsLetterController(IArticleService articleService, ArticleConversionManager articleConversionManger)
+        public NewsLetterController(IArticleService articleService, ArticleConversionManager articleConversionManger, IPreferences preferences)
         {
             _articleService = articleService;
             _articleConversionManger = articleConversionManger;
+            _preferences = preferences;
+            _dateTimeFormatter = new DateTimeFormatter(_preferences);
         }
 
         public ActionResult Index()
@@ -32,14 +40,30 @@ namespace DowJones.Web.Showcase.Controllers
         }
 
         [Route("newsletter/{accessionNumber}")]
-        public ActionResult Article(string accessionNumber, DisplayOptions option = DisplayOptions.Full, ImageType imageType = ImageType.Display, string callback = null, string canonicalSearchString = "T|microsoft T|phone O|+ T|en T|pt O|, T|es O|, N|la O|c O|+ T|article T|file O|, T|report O|, N|fmt O|c O|+ N|pd D|-0090 D| O|d O|+")
+        public ActionResult Article(string accessionNumber, DisplayOptions option = DisplayOptions.Full, ImageType imageType = ImageType.Display)
         {
-            new GetHistoricalDataByTimePeriodRequest
-            {
-                adjustForCapitalChanges = true
-            };
+            var model = new EditionModel
+                            {
+                                Meta = new Meta
+                                           {
+                                               NewsletterName = "Factiva Energy Monitor",
+                                               Timestamp = new DateTime(2012,3,22,8,1,1),
+                                           },
+                                ArticleModel = GetArticleModel(accessionNumber, option, imageType),
+                            };
 
-            var article = _articleService.GetArticle(accessionNumber, canonicalSearchString);
+            model.Meta.TimestampDescripter = _dateTimeFormatter.FormatLongDateTime(model.Meta.Timestamp);
+            return  View("Article", model);
+        }
+
+        private ArticleModel GetArticleModel(string accessionNum, DisplayOptions option = DisplayOptions.Full, ImageType imageType = ImageType.Display, string canonicalSearchString = "")
+        {
+            var article = _articleService.GetArticle(accessionNum, canonicalSearchString);
+
+            if (article.status != null && article.status.value != 0)
+            {
+                throw new DowJonesInsiderException(article.status.value);
+            }
 
             _articleConversionManger.ShowCompanyEntityReference = true;
             _articleConversionManger.ShowExecutiveEntityReference = true;
@@ -50,7 +74,7 @@ namespace DowJones.Web.Showcase.Controllers
             _articleConversionManger.ShowImagesAsFigures = true;
             _articleConversionManger.PictureSize = PictureSize.Small;
 
-            var urlBuilder = new UrlBuilder("~/newsletter/" + accessionNumber);
+            var urlBuilder = new UrlBuilder("~/newsletter/" + accessionNum);
             var articleDataSet = _articleConversionManger.Convert(article);
 
             var model = new ArticleModel
@@ -61,22 +85,20 @@ namespace DowJones.Web.Showcase.Controllers
                 ShowSourceLinks = true,
                 ShowSocialButtons = true,
                 SocialButtons = new SocialButtonsModel
-                                    {
-                                        Url = urlBuilder.ToString(),
-                                        Description = "",
-                                        Target = "_blank",
-                                        ImageSize = ImageSize.Small,
-                                        Title = ProcessHeadlineRenderItems(articleDataSet.Headline),
-                                        SocialNetworks = new[] { SocialNetworks.LinkedIn, SocialNetworks.Twitter, SocialNetworks.Facebook, },
-                                        Keywords = "",
-                                        ID = "socialButtons",
-                                        ShowCustomTooltip = false, 
-                                    },
+                {
+                    Url = urlBuilder.ToString(),
+                    Description = "",
+                    Target = "_blank",
+                    ImageSize = ImageSize.Small,
+                    Title = ProcessHeadlineRenderItems(articleDataSet.Headline),
+                    SocialNetworks = new[] { SocialNetworks.LinkedIn, SocialNetworks.Twitter, SocialNetworks.Facebook, },
+                    Keywords = "",
+                    ID = "socialButtons",
+                    ShowCustomTooltip = false,
+                },
             };
-
-            return Request.IsAjaxRequest() ? ViewComponent(model, callback) : View("Article", model);
+            return model;
         }
-
         private static string ProcessHeadlineRenderItems(IEnumerable<RenderItem>items)
         {
             var sb = new StringBuilder();

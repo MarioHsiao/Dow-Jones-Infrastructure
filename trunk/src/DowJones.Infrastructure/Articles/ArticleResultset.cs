@@ -37,6 +37,8 @@ namespace DowJones.Ajax.Article
 
         public List<RenderItem> Authors { get; set; }
 
+        public List<RenderItem> Credit { get; set; }
+
         public string PublicationDate { get; set; }
 
         public string PublicationTime { get; set; }
