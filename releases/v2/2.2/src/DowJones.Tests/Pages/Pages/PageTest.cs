@@ -11,7 +11,25 @@ namespace DowJones.Pages
     [TestClass]
     public class PageTest : AbstractUnitTest
     {
-        public PageAssetsManager pageAssetsManager = new PageAssetsManager(ControlDataManager.GetLightWeightUserControlData("snapshot5", "passwd", "16"), new Preferences.Preferences{InterfaceLanguage = "en", ContentLanguages = new ContentLanguageCollection()}, new Product("Np", "SNAPSHOT"));
+        public PageAssetsManager pageAssetsManager = new PageAssetsManager(ControlDataManager.GetLightWeightUserControlData("snapshot5", "passwd", "16"), new Preferences.Preferences { InterfaceLanguage = "en", ContentLanguages = new ContentLanguageCollection() }, new Product("Np", "SNAPSHOT"));
+
+        private Factiva.Gateway.Messages.Assets.Pages.V1_0.Page GetPageById(string pageId)
+        {
+            Factiva.Gateway.Messages.Assets.Pages.V1_0.Page page = pageAssetsManager.GetPage(pageId, false, true);
+
+            Console.WriteLine(page.Id + "|" + page.ShareProperties.AssignedScope.ToString());
+            Console.WriteLine("");
+            if (page.ModuleCollection != null && page.ModuleCollection.Count > 0)
+            {
+                Console.WriteLine("Module Collection");
+                foreach (Module module in page.ModuleCollection)
+                {
+                    Console.WriteLine("\t" + module.Title + "|" + ((ModuleEx)module).GetType());
+                }
+            }
+
+            return page;
+        }
 
         private Module GetModuleById(string moduleId)
         {
@@ -34,9 +52,11 @@ namespace DowJones.Pages
             Console.WriteLine("ModuleProperties");
             if (module.ModuleProperties != null && module.ModuleProperties.ModuleMetaData != null)
             {
-                if (module.ModuleProperties.ModuleMetaData.CategoryCollection != null){
+                if (module.ModuleProperties.ModuleMetaData.CategoryCollection != null)
+                {
                     Console.WriteLine("CategoryCollection: " + module.ModuleProperties.ModuleMetaData.CategoryCollection.Count());
-                    foreach (MetadataField metadataField in module.ModuleProperties.ModuleMetaData.CategoryCollection){
+                    foreach (MetadataField metadataField in module.ModuleProperties.ModuleMetaData.CategoryCollection)
+                    {
                         Console.WriteLine("\t" + metadataField.Text + "|" + metadataField.IsDefault);
                     }
                 }
@@ -56,13 +76,13 @@ namespace DowJones.Pages
                         Console.WriteLine("\t" + metadataField.Text + "|" + metadataField.IsDefault);
                     }
                 }
-                
-                
+
+
             }
             return module;
         }
 
-//        [TestMethod]
+        //        [TestMethod]
         public void UpdateModuleTest()
         {
             var moduleId = "24496";
@@ -89,6 +109,12 @@ namespace DowJones.Pages
             pageAssetsManager.UpdateModule(moduleEx);
 
             GetModuleById(moduleId);
+        }
+
+        //[TestMethod]
+        public void GetPageByIdTest()
+        {
+            GetPageById("12703");
         }
     }
 }
