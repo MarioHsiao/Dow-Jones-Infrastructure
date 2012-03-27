@@ -20,6 +20,9 @@ namespace DowJones.Pages
         [DataMember(Name = "accessScope")]
         public virtual AccessScope AccessScope { get; set; }
 
+		[DataMember(Name = "assignedScope")]
+		public virtual ShareScope AssignedScope { get; set; }
+
         [DataMember(Name = "pageCategoryInfo")]
         public virtual CategoryInfo CategoryInfo { get; set; }
 

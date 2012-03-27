@@ -76,6 +76,7 @@
     <Compile Include="Common\EntityType.cs" />
     <Compile Include="Common\QueryFilter.cs" />
     <Compile Include="Common\QueryFilters.cs" />
+    <Compile Include="Mappers\ShareScopeTypeMapper.cs" />
     <Compile Include="Mappers\GatewayModuleMapper.cs" />
     <Compile Include="Mappers\PageMapperBase.cs" />
     <Compile Include="Mappers\PageListInfoMapper.cs" />
@@ -157,6 +158,7 @@
     <Compile Include="Pages\IPageAssetsManagerFactory.cs" />
     <Compile Include="Common\Property.cs" />
     <Compile Include="Pages\QueryFilterCodesUtility.cs" />
+    <Compile Include="Pages\ShareScope.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Common\PublishStatusScope.cs" />
     <Compile Include="Common\Query.cs" />

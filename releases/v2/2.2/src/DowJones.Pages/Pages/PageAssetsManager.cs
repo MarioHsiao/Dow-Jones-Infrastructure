@@ -35,7 +35,7 @@ using Module = DowJones.Pages.Modules.Module;
 using ModuleState = Factiva.Gateway.Messages.Assets.Pages.V1_0.ModuleState;
 using ModuleType = DowJones.Pages.Modules.ModuleType;
 using ShareProperties = Factiva.Gateway.Messages.Assets.Pages.V1_0.ShareProperties;
-using ShareScope = Factiva.Gateway.Messages.Assets.V1_0.ShareScope;
+using GatewayShareScope = Factiva.Gateway.Messages.Assets.V1_0.ShareScope;
 using SortBy = Factiva.Gateway.Messages.Assets.Pages.V1_0.SortBy;
 using SortOrder = Factiva.Gateway.Messages.Assets.Common.V2_0.SortOrder;
 using GWModule = Factiva.Gateway.Messages.Assets.Pages.V1_0.Module;
@@ -826,10 +826,10 @@ namespace DowJones.Pages
                                                                                                             {
                                                                                                                 accessControlScope = ShareAccessScope.Everyone,
                                                                                                                 allowCopy = false,
-                                                                                                                assignedScope = ShareScope.Personal,
+																												assignedScope = GatewayShareScope.Personal,
                                                                                                                 externalAccess = ShareAccess.Allow,
-                                                                                                                listingScope = ShareScope.Personal,
-                                                                                                                sharePromotion = ShareScope.Personal
+																												listingScope = GatewayShareScope.Personal,
+																												sharePromotion = GatewayShareScope.Personal
                                                                                                             }
                                                                                       }).ToArray()
                               };
