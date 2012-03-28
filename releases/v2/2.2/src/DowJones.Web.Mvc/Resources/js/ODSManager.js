@@ -29,17 +29,17 @@ $dj.registerNamespace('DJ');
         },
 
         _success: function (data) {
-            $dj.debug("Call to the Operational Data Service successfull");
+            $dj.info("Call to the Operational Data Service successfull");
             return data;
         },
 
         _failure: function (jqXHR) {
             $dj.debug(jqXHR);
-            $dj.debug('Call to the Operational Data Service failed, Invalid response');
+            $dj.warn('Call to the Operational Data Service failed, Invalid response');
         },
 
         _complete: function (jqXHR, textStatus) {
-            $dj.debug('Call to the Operational Data Service completed. Results:', jqXHR, textStatus);
+            $dj.info('Call to the Operational Data Service completed. Results:', jqXHR, textStatus);
         }
     };
 
