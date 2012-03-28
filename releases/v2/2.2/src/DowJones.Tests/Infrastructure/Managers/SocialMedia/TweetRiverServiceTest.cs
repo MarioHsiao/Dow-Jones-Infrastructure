@@ -48,7 +48,7 @@ namespace DowJones.Infrastructure.SocialMedia.Tests
 		public void GetTweetsByChannelTest()
 		{
 			DJSession.IControlData _controlData = new DJSession.ControlData { UserID = "snap_proxy", UserPassword = "pa55w0rd", ProductID = "16" };
-			var target = new SocialMediaService(new TweetRiverProvider(), new SocialMediaIndustryPAMProvider(_controlData));
+			var target = new SocialMediaService(new TweetRiverProvider(), new PAMSocialMediaIndustryProvider(_controlData));
             const string channel = "accounting-consulting";
             var actual = target.GetTweetsByChannel(channel, new RequestOptions {Limit = 20});
             Assert.AreEqual(Status.Success, actual.Status);
@@ -63,7 +63,7 @@ namespace DowJones.Infrastructure.SocialMedia.Tests
 		public void GetTweetsByIndustryTest()
         {
 			DJSession.IControlData _controlData = new DJSession.ControlData { UserID = "snap_proxy", UserPassword = "pa55w0rd", ProductID = "16" };
-			var target = new SocialMediaService(new TweetRiverProvider(), new SocialMediaIndustryPAMProvider(_controlData));
+			var target = new SocialMediaService(new TweetRiverProvider(), new PAMSocialMediaIndustryProvider(_controlData));
             const string industryCode = "iacc";
             var actual = target.GetTweetsByIndustry(industryCode, new RequestOptions { Limit = 20 });
             Assert.AreEqual(Status.Success, actual.Status);
@@ -79,7 +79,7 @@ namespace DowJones.Infrastructure.SocialMedia.Tests
 		public void GetExpertsByIndustry()
         {
 			DJSession.IControlData _controlData = new DJSession.ControlData { UserID = "snap_proxy", UserPassword = "pa55w0rd", ProductID = "16" };
-			var target = new SocialMediaService(new TweetRiverProvider(), new SocialMediaIndustryPAMProvider(_controlData));
+			var target = new SocialMediaService(new TweetRiverProvider(), new PAMSocialMediaIndustryProvider(_controlData));
             const string industryCode = "iacc";
             var actual = target.GetExpertsByIndustry(industryCode);
             Assert.AreEqual(Status.Success, actual.Status);
@@ -94,7 +94,7 @@ namespace DowJones.Infrastructure.SocialMedia.Tests
 		public void ShouldFailOnGetTweetsByIndustry()
         {
 			DJSession.IControlData _controlData = new DJSession.ControlData { UserID = "snap_proxy", UserPassword = "pa55w0rd", ProductID = "16" };
-			var target = new SocialMediaService(new TweetRiverProvider(), new SocialMediaIndustryPAMProvider(_controlData));
+			var target = new SocialMediaService(new TweetRiverProvider(), new PAMSocialMediaIndustryProvider(_controlData));
             const string industryCode = "junk";
             try
             {
@@ -119,7 +119,7 @@ namespace DowJones.Infrastructure.SocialMedia.Tests
         {
             List<Ajax.SocialMedia.Tweet> ajaxTweets = new List<Ajax.SocialMedia.Tweet>();
 			DJSession.IControlData _controlData = new DJSession.ControlData { UserID = "snap_proxy", UserPassword = "pa55w0rd", ProductID = "16" };
-			var target = new SocialMediaService(new TweetRiverProvider(), new SocialMediaIndustryPAMProvider(_controlData));
+			var target = new SocialMediaService(new TweetRiverProvider(), new PAMSocialMediaIndustryProvider(_controlData));
             const string industryCode = "iacc";
             var actual = target.GetTweetsByIndustry(industryCode, new RequestOptions { Limit = 20 });
             Assert.AreEqual(Status.Success, actual.Status);
@@ -145,7 +145,7 @@ namespace DowJones.Infrastructure.SocialMedia.Tests
             List<Ajax.SocialMedia.User> ajaxUsers = new List<Ajax.SocialMedia.User>();
 
 			DJSession.IControlData _controlData = new DJSession.ControlData { UserID = "snap_proxy", UserPassword = "pa55w0rd", ProductID = "16" };
-			var target = new SocialMediaService(new TweetRiverProvider(), new SocialMediaIndustryPAMProvider(_controlData));
+			var target = new SocialMediaService(new TweetRiverProvider(), new PAMSocialMediaIndustryProvider(_controlData));
             const string industryCode = "iacc";
             var actual = target.GetExpertsByIndustry(industryCode);
             Assert.AreEqual(Status.Success, actual.Status);

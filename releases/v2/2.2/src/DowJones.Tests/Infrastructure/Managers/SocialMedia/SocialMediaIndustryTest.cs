@@ -20,7 +20,7 @@ namespace DowJones.Infrastructure.Managers.SocialMedia
         {
             using (var stream = File.Open("IndustryChannel.config", FileMode.Open))
             {
-                var p = new SocialMediaIndustryConfigProvider(stream);
+                var p = new ConfigSocialMediaIndustryProvider(stream);
                 Assert.AreEqual("accounting-consulting", p.GetChannelFromIndustryCode("iacc"));
             }
         }
@@ -29,7 +29,7 @@ namespace DowJones.Infrastructure.Managers.SocialMedia
         [TestCategory("Integration")]
         public void GetPAMConfigChannelFromIndustryCode()
         {
-            var p = new SocialMediaIndustryPAMProvider(new DJSession.ControlData { UserID = "snap_proxy", UserPassword = "pa55w0rd", ProductID = "16" });
+            var p = new PAMSocialMediaIndustryProvider(new DJSession.ControlData { UserID = "snap_proxy", UserPassword = "pa55w0rd", ProductID = "16" });
             Assert.AreEqual("accounting-consulting", p.GetChannelFromIndustryCode("iacc"));
         }
 
