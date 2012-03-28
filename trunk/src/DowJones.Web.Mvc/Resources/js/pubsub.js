@@ -1,6 +1,6 @@
 /*!  PubSub Manager */
 
-DJ.$dj.require(['jquery', '$dj'], function ($, $dj) {
+(function ($, $dj) {
 
     DJ.PubSubManager = function () {
         var _pubSubCache = {};
@@ -54,4 +54,4 @@ DJ.$dj.require(['jquery', '$dj'], function ($, $dj) {
         publish: $dj.publish,
         subscribe: $dj.subscribe
     });
-});
+})(DJ.jQuery, DJ.$dj);
