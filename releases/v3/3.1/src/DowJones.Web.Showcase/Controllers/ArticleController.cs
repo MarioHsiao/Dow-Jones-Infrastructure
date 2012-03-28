@@ -1,9 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Web.Mvc;
+using DowJones.Ajax.Article;
 using DowJones.Articles;
 using DowJones.Assemblers.Articles;
 using DowJones.Infrastructure;
+using DowJones.Url;
 using DowJones.Web.Mvc.Routing;
 using DowJones.Web.Mvc.Search.ViewModels;
 using DowJones.Web.Mvc.UI.Components.Article;
@@ -19,12 +22,12 @@ namespace DowJones.Web.Showcase.Controllers
     public class ArticleController : ControllerBase
     {
         private readonly IArticleService _articleService;
-        private readonly ArticleConversionManager _articleConversionManger;
+        private readonly ArticleConversionManager _articleConversionManager;
 
-        public ArticleController(IArticleService articleService, ArticleConversionManager articleConversionManger )
+        public ArticleController(IArticleService articleService, ArticleConversionManager articleConversionManager )
         {
             _articleService = articleService;
-            _articleConversionManger = articleConversionManger;
+            _articleConversionManager = articleConversionManager;
         }
 
         public ActionResult Index( string acn = "DATMON0020110429e74e001t8", DisplayOptions option = DisplayOptions.Full )
@@ -39,43 +42,79 @@ namespace DowJones.Web.Showcase.Controllers
                 {
                     adjustForCapitalChanges = true
                 };
+
             var article = _articleService.GetArticle(accessionNumber, canonicalSearchString);
 
-            _articleConversionManger.ShowCompanyEntityReference = true;
-            _articleConversionManger.ShowExecutiveEntityReference = true;
-            _articleConversionManger.EnableELinks = true;
-            _articleConversionManger.EmbedHtmlBasedArticles = true;
-            _articleConversionManger.EmbedHtmlBasedExternalLinks = true;
-            _articleConversionManger.EmbededImageType = imageType;
-            _articleConversionManger.ShowImagesAsFigures = true;
-            _articleConversionManger.PictureSize = PictureSize.Small;
+            _articleConversionManager.ShowCompanyEntityReference = true;
+            _articleConversionManager.ShowExecutiveEntityReference = true;
+            _articleConversionManager.EnableELinks = true;
+            _articleConversionManager.EmbedHtmlBasedArticles = true;
+            _articleConversionManager.EmbedHtmlBasedExternalLinks = true;
+            _articleConversionManager.EmbededImageType = imageType;
+            _articleConversionManager.ShowImagesAsFigures = true;
+            _articleConversionManager.PictureSize = PictureSize.Small;
+
+            var urlBuilder = new UrlBuilder("~/article/" + accessionNumber);
+            var articleDataSet = _articleConversionManager.Convert(article);
 
             var model = new ArticleModel
             {
-                ArticleDataSet = _articleConversionManger.Convert(article),
+                ArticleDataSet = _articleConversionManager.Convert(article),
+
                 ArticleDisplayOptions = option,
                 ShowPostProcessing = true,
                 ShowSourceLinks = true,
                 ShowSocialButtons = true,
+                SocialButtons = new SocialButtonsModel
+                {
+                    Url = urlBuilder.ToString(),
+                    Description = "",
+                    Target = "_blank",
+                    ImageSize = ImageSize.Small,
+                    Title = ProcessHeadlineRenderItems(articleDataSet.Headline),
+                    SocialNetworks = new[] { SocialNetworks.LinkedIn, SocialNetworks.Twitter, SocialNetworks.Facebook, },
+                    Keywords = "",
+                    ID = "socialButtons",
+                    ShowCustomTooltip = false,
+                },
                 PostProcessingOptions = new[]
                                             {
                                                 PostProcessingOptions.Print,
                                                 PostProcessingOptions.Save,
                                                 PostProcessingOptions.PressClips,
                                                 PostProcessingOptions.Email, 
+                                                PostProcessingOptions.Listen,
+                                                PostProcessingOptions.Translate,
+                                                PostProcessingOptions.Share,
                                             }.Distinct(),
             };
 
             return Request.IsAjaxRequest() ? ViewComponent(model, callback) : View("Index", model);
         }
 
+        private static string ProcessHeadlineRenderItems(IEnumerable<RenderItem> items)
+        {
+            var sb = new StringBuilder();
+
+            foreach (var item in items)
+            {
+                switch (item.ItemMarkUp)
+                {
+                    case MarkUpType.Plain:
+                    case MarkUpType.Anchor:
+                        sb.Append(item.ItemText);
+                        break;
+                }
+            }
+            return sb.ToString();
+        }
 
         public ActionResult Articles(string ans)
         {
             string[] ids = ans.Split(',');
 
             var articleResponse = _articleService.GetArticles(new GetArticleRequest {accessionNumbers = ids});
-            var articlesModel = new ArticlesModel( articleResponse, _articleConversionManger )
+            var articlesModel = new ArticlesModel( articleResponse, _articleConversionManager )
             {
                 ShowPostProcessing = false,
                 ShowReadSpeaker = false,

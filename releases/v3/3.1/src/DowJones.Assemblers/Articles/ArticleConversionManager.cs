@@ -68,12 +68,15 @@ namespace DowJones.Assemblers.Articles
             _refAccessionNumbers = new List<ElinkReferences>();
             _unProcessedRefAccessionNumbers = new List<ElinkReferences>();
             ShowCompanyEntityReference = true;
+            ShowSourceLogo = true;
             EmbededImageType = ImageType.Display;
         }
 
         public bool ShowCompanyEntityReference { get; set; }
 
         public bool ShowExecutiveEntityReference { get; set; }
+
+        public bool ShowSourceLogo { get; set; }
 
         public bool ShowImagesAsFigures { get; set; }
 
@@ -493,7 +496,7 @@ namespace DowJones.Assemblers.Articles
                 logo = !String.IsNullOrEmpty(article.sourceCode) ? String.Format("{0}Logo.gif", article.sourceCode) : null;
             }
 
-            if (!string.IsNullOrEmpty(logo))
+            if (!string.IsNullOrEmpty(logo) && ShowSourceLogo)
             {
                 if ((_postProcessing == PostProcessing.UnSpecified) ||
                     (_postProcessing != PostProcessing.RTF && _postProcessing != PostProcessing.Save))
@@ -528,7 +531,7 @@ namespace DowJones.Assemblers.Articles
                                  });
                     renderItems.Add(new RenderItem
                                  {
-                                     ItemMarkUp = MarkUpType.HeadImageSmall,
+                                     ItemMarkUp = MarkUpType.HeadImageXSmall,
                                      ItemValue = GetImageUrl(ImageType.Fingernail,
                                                              article.accessionNo,
                                                              article.contentParts.parts)

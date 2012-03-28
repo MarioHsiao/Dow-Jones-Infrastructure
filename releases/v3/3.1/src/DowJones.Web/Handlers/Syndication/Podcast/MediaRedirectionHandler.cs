@@ -26,7 +26,6 @@ namespace DowJones.Web.Handlers.Syndication.Podcast
             {
                 throw new HttpException("Unable to create handler", ex);
             }
-            if (handler != null)
             {
                 handler.ProcessRequest(Context);
             }

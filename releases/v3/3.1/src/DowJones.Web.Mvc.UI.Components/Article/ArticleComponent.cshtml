@@ -24,7 +24,7 @@
             @*Begin logo section*@
             <div class="dj_article_image article-logo" >
                 @{
-            var largeImgUrl = string.Empty;
+                    var largeImgUrl = string.Empty;
                 }
                 @foreach (var renderItem in Model.ArticleDataSet.Head)
                 {
@@ -262,7 +262,7 @@
                             <ul class="dj_PostProcessing actions clearfix">
                                 @foreach (var item in Model.PostProcessingOptions)
                                 {
-                                    <li class="@(item.ToString().ToLower())" data-ref="@(item.ToString().ToLower())"><i class="dj_icon icon-@(item.ToString().ToLower())"></i><span data-workflow="@(item.ToString().ToLower())">@(DJ.Token(item.ToString().ToLower()))</span></li>
+                                    <li class="@(item.ToString().ToLower())" data-ref="@(item.ToString().ToLower())"><i class="dj_icon dj_icon-@(item.ToString().ToLower())"></i><span data-workflow="@(item.ToString().ToLower())">@(DJ.Token(item.ToString().ToLower()))</span></li>
                                 }
                             </ul>
                         }
@@ -271,7 +271,7 @@
                       
                             if (Model.HasSocialNetworks)
                             {
-                            @(CreateChildControl<DowJones.Web.Mvc.UI.Components.SocialButtons.SocialButtonsControl>(Model.SocialButtons))
+                            @(CreateChildControl<DowJones.Web.Mvc.UI.Components.SocialButtons.SocialButtonsComponent>(Model.SocialButtons))
                             }
 
                             if (Model.HasTranslator)

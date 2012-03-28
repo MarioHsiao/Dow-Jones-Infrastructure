@@ -234,7 +234,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SimpleAlertControl.cshtml</DependentUpon>
     </Compile>
-    <Compile Include="SocialButtons\SocialButtons.cs" />
+    <Compile Include="SocialButtons\SocialButtonsComponent.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SocialButtonsComponent.cshtml</DependentUpon>
+    </Compile>
     <Compile Include="SocialButtons\WebResources.cs" />
     <Compile Include="StockKiosk\StockKiosk.cs">
       <AutoGen>True</AutoGen>
@@ -567,6 +571,10 @@
     <None Include="SimpleAlert\SimpleAlertControl.cshtml">
       <Generator>RazorViewComponentClassGenerator</Generator>
       <LastGenOutput>SimpleAlertControl.cs</LastGenOutput>
+    </None>
+    <None Include="SocialButtons\SocialButtonsComponent.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>SocialButtonsComponent1.cs</LastGenOutput>
     </None>
     <None Include="StockKiosk\StockKiosk.cshtml">
       <Generator>RazorViewComponentClassGenerator</Generator>

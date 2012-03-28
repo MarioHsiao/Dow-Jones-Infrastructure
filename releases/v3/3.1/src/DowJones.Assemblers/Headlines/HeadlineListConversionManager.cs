@@ -71,23 +71,42 @@ namespace DowJones.Assemblers.Headlines
             return (HeadlineListDataResult)converter.Process(generateExternalUrlForHeadlineInfo, generateSnippetThumbnailForHeadlineInfo);
         }
 
+        /// <summary>
+        /// Processes the specified response.
+        /// </summary>
         /// <param name="response">The response.</param>
+        /// <param name="includeInvalidHeadlines">if set to <c>true</c> [include invalid headlines].</param>
         /// <param name="generateExternalUrlForHeadlineInfo">The generate external URL.</param>
         /// <param name="generateSnippetThumbnailForHeadlineInfo">The update thumbnail.</param>
-        /// <returns>A HeadlineListDataResult object</returns>
-        public HeadlineListDataResult Process(AccessionNumberSearchResponse response, GenerateExternalUrlForHeadlineInfo generateExternalUrlForHeadlineInfo = null, GenerateSnippetThumbnailForHeadlineInfo generateSnippetThumbnailForHeadlineInfo = null)
+        /// <returns>
+        /// A HeadlineListDataResult object
+        /// </returns>
+        public HeadlineListDataResult Process(AccessionNumberSearchResponse response, bool includeInvalidHeadlines = false, GenerateExternalUrlForHeadlineInfo generateExternalUrlForHeadlineInfo = null, GenerateSnippetThumbnailForHeadlineInfo generateSnippetThumbnailForHeadlineInfo = null)
         {
-            var converter = new AccessionNumberSearchResponseConverter(response, datetimeFormatter);
+            var converter = new AccessionNumberSearchResponseConverter(response, datetimeFormatter)
+                                {
+                                    IncludeInvalidHeadlines = includeInvalidHeadlines,
+                                };
             return (HeadlineListDataResult)converter.Process(generateExternalUrlForHeadlineInfo, generateSnippetThumbnailForHeadlineInfo);
         }
 
+        /// <summary>
+        /// Processes the specified response.
+        /// </summary>
         /// <param name="response">The response.</param>
+        /// <param name="includeInvalidHeadlines">if set to <c>true</c> [include invalid headlines].</param>
         /// <param name="generateExternalUrlForHeadlineInfo">The generate external URL.</param>
         /// <param name="generateSnippetThumbnailForHeadlineInfo">The update thumbnail.</param>
-        /// <returns>A HeadlineListDataResult object</returns>
-        public HeadlineListDataResult Process(PCMGetCollectionHeadlinesByCodeResponse response, GenerateExternalUrlForHeadlineInfo generateExternalUrlForHeadlineInfo = null, GenerateSnippetThumbnailForHeadlineInfo generateSnippetThumbnailForHeadlineInfo = null)
+        /// <returns>
+        /// A HeadlineListDataResult object
+        /// </returns>
+        public HeadlineListDataResult Process(PCMGetCollectionHeadlinesByCodeResponse response, bool includeInvalidHeadlines = false, GenerateExternalUrlForHeadlineInfo generateExternalUrlForHeadlineInfo = null, GenerateSnippetThumbnailForHeadlineInfo generateSnippetThumbnailForHeadlineInfo = null)
         {
-            var converter = new PCMAccessionNumberSearchResponseConverter(response, datetimeFormatter);
+            var converter = new PCMAccessionNumberSearchResponseConverter(response, datetimeFormatter)
+                                {
+                                    IncludeInvalidHeadlines = includeInvalidHeadlines
+                                };
+
             return (HeadlineListDataResult)converter.Process(generateExternalUrlForHeadlineInfo, generateSnippetThumbnailForHeadlineInfo);
         }
 

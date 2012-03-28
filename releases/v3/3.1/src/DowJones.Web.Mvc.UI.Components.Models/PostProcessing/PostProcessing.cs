@@ -47,7 +47,13 @@ namespace DowJones.Web.Mvc.UI.Components.Models
         [AssignedToken("pressClips")]
         PressClips,
         [AssignedToken("export")]
-        Export
+        Export,
+        [AssignedToken("share")]
+        Share,
+        [AssignedToken("listen")]
+        Listen,
+        [AssignedToken("listen")]
+        Translate,
     }
 
     public enum HeadlineSaveOptions

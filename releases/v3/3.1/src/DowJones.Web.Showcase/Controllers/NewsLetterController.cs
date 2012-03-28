@@ -99,6 +99,7 @@ namespace DowJones.Web.Showcase.Controllers
             };
             return model;
         }
+
         private static string ProcessHeadlineRenderItems(IEnumerable<RenderItem>items)
         {
             var sb = new StringBuilder();

@@ -29,12 +29,12 @@ namespace DowJones.Assemblers.Headlines
         /// <summary>
         /// The _response.
         /// </summary>
-        private readonly AccessionNumberSearchResponse response;
+        private readonly AccessionNumberSearchResponse _response;
 
         /// <summary>
         /// The _result.
         /// </summary>
-        private readonly HeadlineListDataResult result = new HeadlineListDataResult();
+        private readonly HeadlineListDataResult _result = new HeadlineListDataResult();
 
 
         /// <summary>
@@ -50,7 +50,7 @@ namespace DowJones.Assemblers.Headlines
         public AccessionNumberSearchResponseConverter(AccessionNumberSearchResponse response, string interfaceLanguage)
             : base(interfaceLanguage)
         {
-            this.response = response;
+            _response = response;
         }
 
         /// <summary>
@@ -78,8 +78,12 @@ namespace DowJones.Assemblers.Headlines
         public AccessionNumberSearchResponseConverter(AccessionNumberSearchResponse response, DateTimeFormatter dateTimeFormatter)
             : base(dateTimeFormatter)
         {
-            this.response = response;
+            _response = response;
         }
+
+
+        public bool IncludeInvalidHeadlines { get; set; }
+
 
         #region IExtendedListDataResultConverter Members
 
@@ -122,33 +126,37 @@ namespace DowJones.Assemblers.Headlines
             GenerateExternalUrlForHeadlineInfo = generateExternalUrl;
             GenerateSnippetThumbnailForHeadlineInfo = generateSnippetThumbnail;
 
-            if (response == null || response.AccessionNumberBasedContentItemSet == null || response.AccessionNumberBasedContentItemSet.Count <= 0)
-                return result;
+            if (_response == null || _response.AccessionNumberBasedContentItemSet == null || _response.AccessionNumberBasedContentItemSet.Count <= 0)
+            {
+                return _result;
+            }
 
             // Add the HitCount to the result set
-            result.hitCount = new WholeNumber(response.AccessionNumberBasedContentItemSet.Count);
+            _result.hitCount = new WholeNumber(_response.AccessionNumberBasedContentItemSet.Count);
 
-// Format
-            NumberFormatter.Format(result.hitCount);
+            // Format
+            NumberFormatter.Format(_result.hitCount);
 
-            if (response.AccessionNumberBasedContentItemSet.AccessionNumberBasedContentItemCollection == null)
-                return result;
+            if (_response.AccessionNumberBasedContentItemSet.AccessionNumberBasedContentItemCollection == null)
+                return _result;
 
-            result.resultSet.first = new WholeNumber(0);
+            _result.resultSet.first = new WholeNumber(0);
 
-            if (response.AccessionNumberBasedContentItemSet.Count <= 0)
-                return result;
+            if (_response.AccessionNumberBasedContentItemSet.Count <= 0)
+            {
+                return _result;
+            }
 
-            result.resultSet.count = new WholeNumber(response.AccessionNumberBasedContentItemSet.Count);
-            result.resultSet.duplicateCount = result.resultSet.count;
-            ProcessContentHeadlines(response.AccessionNumberBasedContentItemSet);
+            _result.resultSet.count = new WholeNumber(_response.AccessionNumberBasedContentItemSet.Count);
+            _result.resultSet.duplicateCount = _result.resultSet.count;
+            ProcessContentHeadlines(_response.AccessionNumberBasedContentItemSet);
 
-            NumberFormatter.Format(result.resultSet.first);
-            NumberFormatter.Format(result.resultSet.count);
-            NumberFormatter.Format(result.resultSet.duplicateCount);
+            NumberFormatter.Format(_result.resultSet.first);
+            NumberFormatter.Format(_result.resultSet.count);
+            NumberFormatter.Format(_result.resultSet.duplicateCount);
 
-            result.isTimeInGMT = DateTimeFormatter.CurrentTimeZone == TimeZoneManager.GmtTimeZone;
-            return result;
+            _result.isTimeInGMT = DateTimeFormatter.CurrentTimeZone == TimeZoneManager.GmtTimeZone;
+            return _result;
         }
 
 
@@ -160,18 +168,18 @@ namespace DowJones.Assemblers.Headlines
         /// </param>
         private void ProcessContentHeadlines(AccessionNumberBasedContentItemSet contentHeadlineResultSet)
         {
-            int i = 0;
+            var i = 0;
             foreach (var headline in contentHeadlineResultSet.AccessionNumberBasedContentItemCollection)
             {
-                if (!headline.HasBeenFound)
+                if (!headline.HasBeenFound && IncludeInvalidHeadlines)
                 {
-                    result.resultSet.headlines.Add(new HeadlineInfo(headline.AccessionNumber, ++i));
+                    _result.resultSet.headlines.Add(new HeadlineInfo(headline.AccessionNumber, ++i));
                     continue;
                 }
 
                 var headlineInfo = new HeadlineInfo();
                 Convert(headlineInfo, headline.ContentHeadline, false, ++i);
-                result.resultSet.headlines.Add(headlineInfo);
+                _result.resultSet.headlines.Add(headlineInfo);
             }
         }
     }

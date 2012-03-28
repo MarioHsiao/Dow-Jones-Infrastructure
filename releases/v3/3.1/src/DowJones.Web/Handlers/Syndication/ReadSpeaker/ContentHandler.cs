@@ -7,7 +7,6 @@ using System.Web.UI;
 using System.Xml;
 using System.Xml.XPath;
 using System.Xml.Xsl;
-using DowJones.DependencyInjection;
 using DowJones.Exceptions;
 using DowJones.Generators;
 using DowJones.Globalization;

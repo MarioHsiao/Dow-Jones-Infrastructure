@@ -81,7 +81,7 @@ namespace DowJones.Assemblers.Headlines
             _response = response;
         }
 
-        public bool IncludeInValidHeadlines { get; set; }
+        public bool IncludeInvalidHeadlines { get; set; }
 
 
         #region IExtendedListDataResultConverter Members
@@ -175,7 +175,7 @@ namespace DowJones.Assemblers.Headlines
             var i = 0;
             foreach (var headline in contentHeadlineResultSet.AccessionNumberBasedContentItemCollection)
             {
-                if (!headline.HasBeenFound && IncludeInValidHeadlines)
+                if (!headline.HasBeenFound && IncludeInvalidHeadlines)
                 {
                     _result.resultSet.headlines.Add(new HeadlineInfo(headline.AccessionNumber, ++i));
                     continue;
