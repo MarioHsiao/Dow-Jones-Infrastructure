@@ -63,7 +63,8 @@ DJ.UI.TwitterExperts = DJ.UI.Component.extend({
             me._recordODSData({
                 action: action,
                 twitterHandle: $expertItem.data('screen-name'),
-                twitterName: $expertItem.data('full-name')
+                twitterName: $expertItem.data('full-name'),
+                twitterId: $expertItem.attr("data-user-id")
             });
         });
 
@@ -75,7 +76,8 @@ DJ.UI.TwitterExperts = DJ.UI.Component.extend({
             me._recordODSData({
                 action: "follow",
                 twitterHandle: $expertItem.data('screen-name'),
-                twitterName: $expertItem.data('full-name')
+                twitterName: $expertItem.data('full-name'),
+                twitterId: $expertItem.attr("data-user-id")
             });
         });
     },
@@ -98,7 +100,7 @@ DJ.UI.TwitterExperts = DJ.UI.Component.extend({
     },
 
     _bindOnSuccess: function (data) {
-        var expertsHtml;       
+        var expertsHtml;
 
         try {
             if (data && data.length && data.length > 0) {
@@ -160,10 +162,11 @@ DJ.UI.TwitterExperts = DJ.UI.Component.extend({
 
 
     _recordODSData: function (ODSdata) {
-        $dj.recordODSData([{ "Name": "FCS_OD_ModuleAction", "Value": ODSdata.action || '' },
+        $dj.recordODSData([{ "Name": "FCS_OD_ModuleAction", "Value": ODSdata.action},
                            { "Name": "FCS_OD_ModuleSection", "Value": "TopExperts" },
-                           { "Name": "FCS_OD_TwittererHandle", "Value": ODSdata.twitterHandle || '' },
-                           { "Name": "FCS_OD_TwitterName", "Value": ODSdata.twitterName || '' },
+                           { "Name": "FCS_OD_TwittererId", "Value": ODSdata.twitterId },
+                           { "Name": "FCS_OD_TwittererHandle", "Value": ODSdata.twitterHandle},
+                           { "Name": "FCS_OD_TwitterName", "Value": ODSdata.twitterName },
                            { "Name": "FCS_OD_ODSTranName", "Value": "SocialMediaUsage" }
                      ]);
     }
