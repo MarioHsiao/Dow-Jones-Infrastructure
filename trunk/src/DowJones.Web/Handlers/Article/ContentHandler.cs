@@ -7,18 +7,18 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Caching;
+using System.Web.UI;
 using DowJones.DTO.Web;
 using DowJones.DTO.Web.Request;
 using DowJones.Exceptions;
 using DowJones.Extensions;
-using DowJones.Globalization;
+using DowJones.Session;
+using Factiva.Gateway.Messages.Archive.V1_0;
+using Factiva.Gateway.Services.V1_0;
+using Factiva.Gateway.V1_0;
 using DowJones.Managers.Search;
 using DowJones.Managers.Search.Requests;
-using DowJones.Session;
-using EMG.Gateway.Services.V1_0;
-using Factiva.Gateway.Messages.Archive.V1_0;
 using Factiva.Gateway.Messages.Search.V2_0;
-using Factiva.Gateway.V1_0;
 using ControlData = Factiva.Gateway.Utils.V1_0.ControlData;
 using PerformContentSearchRequest = Factiva.Gateway.Messages.Search.FreeSearch.V1_0.PerformContentSearchRequest;
 using PerformContentSearchResponse = Factiva.Gateway.Messages.Search.FreeSearch.V1_0.PerformContentSearchResponse;
@@ -31,18 +31,60 @@ namespace DowJones.Web.Handlers.Article
         public string mimeType { get; set; }
     }
 
-    public class ContentHandler : BaseHttpHandler
+    /// <summary>
+    /// 
+    /// </summary>
+    public class ContentHandler : Page, IHttpAsyncHandler
     {
-        private readonly string contentMimeType;
+        protected override void OnInit(EventArgs e)
+        {
+            // Request Hosting permissions
+            new AspNetHostingPermission(AspNetHostingPermissionLevel.Minimal).Demand();
+
+            var handlerType = typeof(BaseContentHandler);
+            IHttpHandler handler;
+            try
+            {
+                // Create the handler by calling class abc or class xyz.
+                handler = (IHttpHandler)Activator.CreateInstance(handlerType, true);
+            }
+            catch (Exception ex)
+            {
+                throw new HttpException("Unable to create handler", ex);
+            }
+
+            handler.ProcessRequest(Context);
+            Context.ApplicationInstance.CompleteRequest();
+        }
+
+        public IAsyncResult BeginProcessRequest(HttpContext context, AsyncCallback cb, object extradata)
+        {
+            return AspCompatBeginProcessRequest(context, cb, extradata);
+        }
+
+        public void EndProcessRequest(IAsyncResult result)
+        {
+            AspCompatEndProcessRequest(result);
+        }
+
+    }
+
+    public class BaseContentHandler : BaseHttpHandler
+    {
+        private readonly string _contentMimeType;
         private const int ErrorImageWidth = 150;
         private const int ErrorImageHeight = 150;
-        private const string keyformat = "{0}::{1}";
-        private const int slidingCache = 12;
-        private ControlData controlData;
+        private const string Keyformat = "{0}::{1}";
+        private const int SlidingCache = 12;
+        private ControlData _controlData;
 
-        public ContentHandler(string contentMimeType)
+        public BaseContentHandler()
         {
-            this.contentMimeType = contentMimeType;
+        }
+
+        public BaseContentHandler(string contentMimeType)
+        {
+            _contentMimeType = contentMimeType;
         }
 
         public override void HandleRequest(HttpContext context)
@@ -65,14 +107,14 @@ namespace DowJones.Web.Handlers.Article
                 var sessionRequestDto = ( SessionRequestDTO ) formState.Accept( typeof( SessionRequestDTO ), false );
                 var retrieveBlobItem = isBlob.ToLowerInvariant() == "y";
 
-                controlData = (sessionRequestDto.SessionID.IsNullOrEmpty() && sessionRequestDto.EncryptedToken.IsNullOrEmpty())
+                _controlData = (sessionRequestDto.SessionID.IsNullOrEmpty() && sessionRequestDto.EncryptedToken.IsNullOrEmpty())
                                   ? Factiva.Gateway.Managers.ControlDataManager.GetLightWeightUserControlData( sessionRequestDto.UserID, sessionRequestDto.Password, sessionRequestDto.ProductID )
                                   : sessionRequestDto.GetControlData();
 
                 if( retrieveBlobItem )
                 {
                     // Check cache
-                    var cacheItem = ( ImageCacheItem ) context.Cache.Get( string.Format( keyformat, origAccessionNo, imageType.ToLowerInvariant() ) );
+                    var cacheItem = ( ImageCacheItem ) context.Cache.Get( string.Format( Keyformat, origAccessionNo, imageType.ToLowerInvariant() ) );
 
                     if (cacheItem != null)
                     {
@@ -81,7 +123,7 @@ namespace DowJones.Web.Handlers.Article
                         return;
                     }
 
-                    var infrsControlData = ControlDataManager.Convert(controlData);
+                    var infrsControlData = ControlDataManager.Convert(_controlData);
                     var sm = new SearchManager( infrsControlData, new Preferences.Preferences( "en" ) );
                     var dto = new AccessionNumberSearchRequestDTO
                     {
@@ -135,7 +177,7 @@ namespace DowJones.Web.Handlers.Article
                                         imageType = imageType
                                     };
 
-                ServiceResponse archiveResponse = ArchiveService.GetBinary(controlData, request);
+                ServiceResponse archiveResponse = ArchiveService.GetBinary(_controlData, request);
                 object objResponse;
                 archiveResponse.GetResponse(ServiceResponse.ResponseFormat.Object, out objResponse);
 
@@ -154,7 +196,7 @@ namespace DowJones.Web.Handlers.Article
                             if (retrieveBlobItem)
                             {
                                 context.Cache.Add(
-                                    string.Format(keyformat, origAccessionNo, imageType.ToLowerInvariant()),
+                                    string.Format(Keyformat, origAccessionNo, imageType.ToLowerInvariant()),
                                     new ImageCacheItem
                                         {
                                             bytes = binaryResponse.binaryData,
@@ -162,7 +204,7 @@ namespace DowJones.Web.Handlers.Article
                                         },
                                     null, 
                                     Cache.NoAbsoluteExpiration, 
-                                    TimeSpan.FromHours(slidingCache), 
+                                    TimeSpan.FromHours(SlidingCache), 
                                     CacheItemPriority.Normal, 
                                     null);
                             }
@@ -273,7 +315,7 @@ namespace DowJones.Web.Handlers.Article
 
         public override string ContentMimeType
         {
-            get { return contentMimeType;}
+            get { return _contentMimeType;}
         }
 
         private static string GetContentType(string mimeType)
