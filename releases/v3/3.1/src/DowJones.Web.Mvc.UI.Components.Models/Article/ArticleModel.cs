@@ -147,9 +147,16 @@ namespace DowJones.Web.Mvc.UI.Components.Models.Article
         public bool ShowPostProcessing { get; set; }
 
         /// <summary>
+        /// Gets or sets the post processing options.
+        /// </summary>
+        /// <value>
+        /// The post processing options.
+        /// </value>
+        public IEnumerable<PostProcessingOptions> PostProcessingOptions { get; set; }
+
+        /// <summary>
         /// Gets or sets a value indicating whether NLA press clip is enabled.
         /// </summary>
-        /// </value>
         [ClientProperty("showPressClip")]
         public bool ShowPressClip { get; set; }
 

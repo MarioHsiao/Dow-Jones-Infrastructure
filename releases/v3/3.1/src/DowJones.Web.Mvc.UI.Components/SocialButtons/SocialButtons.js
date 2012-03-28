@@ -84,7 +84,7 @@ DJ.UI.SocialButtons = DJ.UI.Component.extend({
                     url = url.replace("{URL}", this.urlencode(this.options.url));
                     url = url.replace("{KEYWORDS}", this.urlencode(this.options.keywords));
                     url = url.replace("{DESCRIPTION}", this.urlencode(this.options.description));
-                    sb[sb.length] = "<a " + target + " href=\"" + url + "\" class=\"" + cName + "\" title=\"" + name + "\">" + name + "</a>";
+                    sb[sb.length] = "<li><a " + target + " href=\"" + url + "\" class=\"" + cName + "\" title=\"" + name + "\">" + name + "</a></li>";
                 }
             }
         }

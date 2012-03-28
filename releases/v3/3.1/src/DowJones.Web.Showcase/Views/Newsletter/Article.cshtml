@@ -1,161 +1,172 @@
-﻿@{
+﻿@model DowJones.Web.Showcase.Models.Newsletter.EditionModel
+@{
     Layout = "~/Views/Shared/rainwater.cshtml";
     ViewBag.Title = "Article";
     Html.DJ().StylesheetRegistry()
             .Include("~/styles/css/newsletter.css");
 }
 
-
-<div class="row"><span class="span8">@Html.DJ().Render(Model)</span><span class="span4">
-<div class="dj_newsletter">
-    <h2 class="dj_title">My Newsletter</h2> 
-
-    <ul class="dj_body">
-        <!-- Section 1 Wall Street Journal-->
-        <li class="dj_section clearfix">
-            <div class="image_gutter"><div class="img_slug">&nbsp;</div></div>
-            <div class="section_content">
-                <h2 class="section_title nodisplay">The Wall Street Journal</h2>
-                <ul>
-                    <li class="dj_entry">
-                        <div class="article-wrap">
-                            <h3 class="article-headline">
-                                @(Html.ActionLink("The iPad: Million More Pixels Than HDTV", "Article", "Newsletter", new { accessionNumber = "J000000020120315e83f0001l" }, null))
-                            </h3>     
-                        </div>
-                    </li>
-                    <li class="dj_entry">
-                        <div class="article-wrap">
-                            <h3 class="article-headline">
-                            
-                                @(Html.ActionLink("U.S. News: Bloomberg Takes On Smoking Overseas", "Article", "Newsletter", new { accessionNumber = "J000000020120322e83m0002d" }, null))
-                            </h3>           
-                        </div>
-                    </li>
-                </ul>            
+<div class="row">
+    <span class="span8">
+        <div class="newsletter_meta">
+            <div class="page-header">
+                <h2 class="newsletter_name">@Model.Meta.NewsletterName</h2>
+                <div class="meta"><span class="edition_timestamp">@Model.Meta.TimestampDescripter</span></div>
             </div>
-        </li>
-        <li class="dj_section clearfix">
-            <div class="image_gutter"><div class="img_slug">&nbsp;</div></div>
-            <div class="section_content">
-                <h2 class="section_title">Technology: News</h2>
-                <ul>
-                    <li class="dj_entry">
-                        <div class="article-wrap">
-                            <h4 class="article-headline">
-                                <a href="javascript:void(0)" class="article-view-trigger">The Predator</a>
-                            </h4>                    
-                            <div class="article-meta">
-                                <span class="article-source source-clickable" rel="">Forbes</span>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="dj_entry">
-                        <div class="article-wrap">
-                            <h4 class="article-headline">
-                                <a href="javascript:void(0)" class="article-view-trigger">Rupert Murdoch To Meet Turkey PM as News Corp Bids For Turkish Assets</a>
-                            </h4>                    
-                            <div class="article-meta">
-                                <span class="article-source source-clickable" rel="">The Wall Street Journal</span>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="dj_entry">
-                        <div class="article-wrap">
-                            <h4 class="article-headline">
-                                <a href="javascript:void(0)" class="article-view-trigger">Google, Motorola Ordered to Give Android Data to Apple.</a>
-                            </h4>                    
-                            <div class="article-meta">
-                                <span class="article-source source-clickable" rel="">Bloomberg</span>
-                            </div>
-                        </div>
-                    </li>
-                </ul>            
-            </div>            
-        </li>
-        <li class="dj_section clearfix">
-            <div class="image_gutter"><div class="img_slug">&nbsp;</div></div>
-            <div class="section_content">
-                <h2 class="section_title">Companies</h2>
-                <h3 class="sub_section_title">Apple</h3>
-                <ul>
-                    <li class="dj_entry">
-                        <div class="article-wrap">
-                            <h4 class="article-headline">
-                                <a href="javascript:void(0)" class="article-view-trigger">Apple TV refresh may be on the agenda at this week's Apple event (Updated)</a>
-                            </h4>                    
-                            <div class="article-meta">
-                                <span class="article-source source-clickable" rel="">Ars Technica</span>
-                                <span class="article-datetime source-clickable" rel="">06 March 2012 10:28</span>
-                                <span class="article-author source-clickable" rel="">Jacqui Cheng</span>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="dj_entry">
-                        <div class="article-wrap">
-                            <h4 class="article-headline">
-                                <a href="javascript:void(0)" class="article-view-trigger">How Apple's earnings could triple by 2015</a>
-                            </h4>                    
-                            <div class="article-meta">
-                                <span class="article-source source-clickable" rel="">Postmedia</span>
-                                <span class="article-datetime source-clickable" rel="">06 March 2012</span>
+        </div> 
+        <div class="article_area">@Html.DJ().Render(Model.ArticleModel)</div>
+        <hr />
+    </span>
+    <span class="span4">
+        <div class="dj_newsletter">
+            <ul class="dj_body">
+                <!-- Section 1 Wall Street Journal-->
+                <li class="dj_section clearfix">
+                    <div class="image_gutter"><div class="img_slug">&nbsp;</div></div>
+                    <div class="section_content">
+                        <h2 class="section_title nodisplay">The Wall Street Journal</h2>
+                        <ul>
+                            <li class="dj_entry">
+                                <div class="article-wrap">
+                                    <h3 class="article-headline">
+                                        @(Html.ActionLink("The iPad: Million More Pixels Than HDTV", "Article", "Newsletter", new { accessionNumber = "J000000020120315e83f0001l" }, null))
+                                    </h3>     
+                                </div>
+                            </li>
+                            <li class="dj_entry">
+                                <div class="article-wrap">
+                                    <h3 class="article-headline">
+                            
+                                        @(Html.ActionLink("U.S. News: Bloomberg Takes On Smoking Overseas", "Article", "Newsletter", new { accessionNumber = "J000000020120322e83m0002d" }, null))
+                                    </h3>           
+                                </div>
+                            </li>
+                        </ul>            
+                    </div>
+                </li>
+                <li class="dj_section clearfix">
+                    <div class="image_gutter"><div class="img_slug">&nbsp;</div></div>
+                    <div class="section_content">
+                        <h2 class="section_title">Technology: News</h2>
+                        <ul>
+                            <li class="dj_entry">
+                                <div class="article-wrap">
+                                    <h4 class="article-headline">
+                                        <a href="javascript:void(0)" class="article-view-trigger">The Predator</a>
+                                    </h4>                    
+                                    <div class="article-meta">
+                                        <span class="article-source source-clickable" rel="">Forbes</span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="dj_entry">
+                                <div class="article-wrap">
+                                    <h4 class="article-headline">
+                                        <a href="javascript:void(0)" class="article-view-trigger">Rupert Murdoch To Meet Turkey PM as News Corp Bids For Turkish Assets</a>
+                                    </h4>                    
+                                    <div class="article-meta">
+                                        <span class="article-source source-clickable" rel="">The Wall Street Journal</span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="dj_entry">
+                                <div class="article-wrap">
+                                    <h4 class="article-headline">
+                                        <a href="javascript:void(0)" class="article-view-trigger">Google, Motorola Ordered to Give Android Data to Apple.</a>
+                                    </h4>                    
+                                    <div class="article-meta">
+                                        <span class="article-source source-clickable" rel="">Bloomberg</span>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>            
+                    </div>            
+                </li>
+                <li class="dj_section clearfix">
+                    <div class="image_gutter"><div class="img_slug">&nbsp;</div></div>
+                    <div class="section_content">
+                        <h2 class="section_title">Companies</h2>
+                        <h3 class="sub_section_title">Apple</h3>
+                        <ul>
+                            <li class="dj_entry">
+                                <div class="article-wrap">
+                                    <h4 class="article-headline">
+                                        <a href="javascript:void(0)" class="article-view-trigger">Apple TV refresh may be on the agenda at this week's Apple event (Updated)</a>
+                                    </h4>                    
+                                    <div class="article-meta">
+                                        <span class="article-source source-clickable" rel="">Ars Technica</span>
+                                        <span class="article-datetime source-clickable" rel="">06 March 2012 10:28</span>
+                                        <span class="article-author source-clickable" rel="">Jacqui Cheng</span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="dj_entry">
+                                <div class="article-wrap">
+                                    <h4 class="article-headline">
+                                        <a href="javascript:void(0)" class="article-view-trigger">How Apple's earnings could triple by 2015</a>
+                                    </h4>                    
+                                    <div class="article-meta">
+                                        <span class="article-source source-clickable" rel="">Postmedia</span>
+                                        <span class="article-datetime source-clickable" rel="">06 March 2012</span>
 
-                            </div>
-                        </div>
-                    </li>
-                    <li class="dj_entry">
-                        <div class="article-wrap">
-                            <h4 class="article-headline">
-                                <a href="javascript:void(0)" class="article-view-trigger">Apple Offered Licensing Deals to Patent Foes</a>
-                            </h4>                    
-                            <div class="article-meta">
-                                <span class="article-source source-clickable" rel="">Bloomberg</span>
-                                <span class="article-datetime source-clickable" rel="">06 March 2012 14:13</span>
-                            </div>
-                        </div>
-                    </li>
-                </ul>                   
-                <h3 class="sub_section_title">Microsoft</h3>
-                <ul>
-                    <li class="dj_entry">
-                        <div class="article-wrap">
-                            <h4 class="article-headline">
-                                <a href="javascript:void(0)" class="article-view-trigger">Xbox stands out in slumping game market; Microsoft console outperforms rivals despite its growing age.</a>
-                            </h4>                    
-                            <div class="article-meta">
-                                <span class="article-source source-clickable" rel="">Marketwatch</span>
-                                <span class="article-datetime source-clickable" rel="">06 March 2012 21:00</span>
-                                <span class="article-author source-clickable" rel="">Dan Gallagher</span>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="dj_entry">
-                        <div class="article-wrap">
-                            <h4 class="article-headline">
-                                <a href="javascript:void(0)" class="article-view-trigger">Microsoft offers to set up cloud computing centres</a>
-                            </h4>                    
-                            <div class="article-meta">
-                                <span class="article-source source-clickable" rel="">The Hindu</span>
-                                <span class="article-datetime source-clickable" rel="">07 March 2012</span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="dj_entry">
+                                <div class="article-wrap">
+                                    <h4 class="article-headline">
+                                        <a href="javascript:void(0)" class="article-view-trigger">Apple Offered Licensing Deals to Patent Foes</a>
+                                    </h4>                    
+                                    <div class="article-meta">
+                                        <span class="article-source source-clickable" rel="">Bloomberg</span>
+                                        <span class="article-datetime source-clickable" rel="">06 March 2012 14:13</span>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>                   
+                        <h3 class="sub_section_title">Microsoft</h3>
+                        <ul>
+                            <li class="dj_entry">
+                                <div class="article-wrap">
+                                    <h4 class="article-headline">
+                                        <a href="javascript:void(0)" class="article-view-trigger">Xbox stands out in slumping game market; Microsoft console outperforms rivals despite its growing age.</a>
+                                    </h4>                    
+                                    <div class="article-meta">
+                                        <span class="article-source source-clickable" rel="">Marketwatch</span>
+                                        <span class="article-datetime source-clickable" rel="">06 March 2012 21:00</span>
+                                        <span class="article-author source-clickable" rel="">Dan Gallagher</span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="dj_entry">
+                                <div class="article-wrap">
+                                    <h4 class="article-headline">
+                                        <a href="javascript:void(0)" class="article-view-trigger">Microsoft offers to set up cloud computing centres</a>
+                                    </h4>                    
+                                    <div class="article-meta">
+                                        <span class="article-source source-clickable" rel="">The Hindu</span>
+                                        <span class="article-datetime source-clickable" rel="">07 March 2012</span>
 
-                            </div>
-                        </div>
-                    </li>
-                    <li class="dj_entry">
-                        <div class="article-wrap">
-                            <h4 class="article-headline">
-                                <a href="javascript:void(0)" class="article-view-trigger">Students get a feel of Microsoft technologies</a>
-                            </h4>                    
-                            <div class="article-meta">
-                                <span class="article-source source-clickable" rel="">The Hindu</span>
-                                <span class="article-datetime source-clickable" rel="">07 March 2012</span>
-                            </div>
-                        </div>
-                    </li>
-                </ul>         
-            </div>            
-        </li>
-    </ul>
-</div></span></div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="dj_entry">
+                                <div class="article-wrap">
+                                    <h4 class="article-headline">
+                                        <a href="javascript:void(0)" class="article-view-trigger">Students get a feel of Microsoft technologies</a>
+                                    </h4>                    
+                                    <div class="article-meta">
+                                        <span class="article-source source-clickable" rel="">The Hindu</span>
+                                        <span class="article-datetime source-clickable" rel="">07 March 2012</span>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>         
+                    </div>            
+                </li>
+            </ul>
+        </div>
+    </span>
+</div>
 
 

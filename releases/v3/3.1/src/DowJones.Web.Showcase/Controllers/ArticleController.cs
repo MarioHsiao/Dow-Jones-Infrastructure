@@ -7,6 +7,7 @@ using DowJones.Infrastructure;
 using DowJones.Web.Mvc.Routing;
 using DowJones.Web.Mvc.Search.ViewModels;
 using DowJones.Web.Mvc.UI.Components.Article;
+using DowJones.Web.Mvc.UI.Components.Models;
 using DowJones.Web.Mvc.UI.Components.Models.Article;
 using DowJones.Web.Mvc.UI.Components.SocialButtons;
 using Factiva.Gateway.Messages.Archive.V2_0;
@@ -48,22 +49,24 @@ namespace DowJones.Web.Showcase.Controllers
             _articleConversionManger.EmbededImageType = imageType;
             _articleConversionManger.ShowImagesAsFigures = true;
             _articleConversionManger.PictureSize = PictureSize.Small;
-            
+
             var model = new ArticleModel
             {
-                ArticleDataSet =  _articleConversionManger.Convert( article ),
+                ArticleDataSet = _articleConversionManger.Convert(article),
                 ArticleDisplayOptions = option,
                 ShowPostProcessing = true,
                 ShowSourceLinks = true,
-                ShowSocialButtons = true
+                ShowSocialButtons = true,
+                PostProcessingOptions = new[]
+                                            {
+                                                PostProcessingOptions.Print,
+                                                PostProcessingOptions.Save,
+                                                PostProcessingOptions.PressClips,
+                                                PostProcessingOptions.Email, 
+                                            }.Distinct(),
             };
 
-            if (Request.IsAjaxRequest())
-            {
-                return ViewComponent(model, callback);
-            }
-
-            return View("Index", model);
+            return Request.IsAjaxRequest() ? ViewComponent(model, callback) : View("Index", model);
         }
 
 

@@ -176,6 +176,11 @@ namespace DowJones.Assemblers.Articles
                 articleResult.Contact = GetRenderItems(article.contact.Items, article.accessionNo);
             }
 
+            if (article.credit != null && article.credit.Items != null)
+            {
+                articleResult.Credit = GetRenderItems(article.credit.Items, article.accessionNo);
+            }
+
             if (article.notes != null && article.notes.Items != null)
             {
                 var dictionaryItem = new Dictionary<string, List<RenderItem>>

@@ -30,7 +30,7 @@ namespace DowJones.Web.Mvc.UI.Components.Article
     using System.Text.RegularExpressions;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 03/22/2012 04:12 PM
+    // Last Generated Timestamp: 03/23/2012 03:41 PM
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.Article.ArticleComponent.js", ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.Article.ArticleComponent))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.19368")]
     public class ArticleComponent : DowJones.Web.Mvc.UI.ViewComponentBase<DowJones.Web.Mvc.UI.Components.Models.Article.ArticleModel>
@@ -390,8 +390,42 @@ WriteLiteral("                        </div>\r\n");
 
                     } 
 
-WriteLiteral("                  \r\n                    <div class=\"dj_meta_group\">              " +
-"   \r\n                   \r\n");
+WriteLiteral("\r\n");
+
+
+                      if (!Model.ArticleDataSet.Credit.IsNullOrEmpty())
+                    {
+                        if (showIndexing)
+                        {
+
+WriteLiteral("                            <div class=\"dj_article_index\">BY</div>\r\n");
+
+
+                        }
+                        
+
+WriteLiteral("                        <div class=\"dj_article_by dj_article_section\">           " +
+"                                                               \r\n               " +
+"             <span class=\"value author drop-down-button\" data-dd-type=\"author\">\r" +
+"\n");
+
+
+                                 foreach (RenderItem renderItem in Model.ArticleDataSet.Credit)
+                                {
+                                    
+                               Write(renderItem.ItemText);
+
+                                                        
+                                }
+
+WriteLiteral("                            </span><span class=\"dj_article_comma\">, </span>      " +
+" \r\n                        </div>\r\n");
+
+
+                    } 
+
+WriteLiteral("\r\n                  \r\n                    <div class=\"dj_meta_group\">            " +
+"     \r\n                   \r\n");
 
 
                          if (showIndexing)
@@ -565,75 +599,73 @@ WriteLiteral("               \r\n            </div>\r\n\r\n");
 
 
                      if (Model.ShowPostProcessing)
-                    {
-                        bool showPressClip = (Model.ShowPressClip
-                                        && !string.IsNullOrEmpty(Model.ArticleDataSet.SubType)
-                                        && Model.ArticleDataSet.SubType.ToLower() == "nlapressclip");
-                
+                    {                
+                        if (!Model.PostProcessingOptions.IsNullOrEmpty() )
+                        {
 
-WriteLiteral("                        <ul class=\"dj_PostProcessing actions clearfix\">\r\n        " +
-"                    <li class=\"save action first\" data-ref=\"save\"><span class=\"d" +
-"j_icon dj_icon-save\"></span><span data-workflow=\"save\">");
+WriteLiteral("                            <ul class=\"dj_PostProcessing actions clearfix\">\r\n");
 
 
-                                                                                                                                          Write(DJ.Token("save"));
+                                 foreach (var item in Model.PostProcessingOptions)
+                                {
 
-WriteLiteral("</span></li>\r\n                            <li class=\"print action\" data-ref=\"prin" +
-"t\"><span class=\"dj_icon dj_icon-print\"></span><span data-workflow=\"print\">");
-
-
-                                                                                                                                        Write(DJ.Token("cmPrint"));
-
-WriteLiteral("</span></li>\r\n                            <li class=\"email action\" data-ref=\"emai" +
-"l\"><span class=\"dj_icon dj_icon-mail\"></span><span data-workflow=\"email\">");
+WriteLiteral("                                    <li class=\"");
 
 
-                                                                                                                                       Write(DJ.Token("email"));
+                                           Write(item.ToString().ToLower());
 
-WriteLiteral("</span></li>\r\n");
-
-
-                             if (showPressClip)
-                            {
-
-WriteLiteral("                                <li class=\"press-clip action\" data-ref=\"pressclip" +
-"\"><span class=\"dj_icon dj_icon-pressclips\"></span><span data-workflow=\"pressclip" +
-"\">");
+WriteLiteral("\" data-ref=\"");
 
 
-                                                                                                                                                              Write(DJ.Token("pressClipping"));
+                                                                                   Write(item.ToString().ToLower());
+
+WriteLiteral("\"><i class=\"dj_icon icon-");
+
+
+                                                                                                                                        Write(item.ToString().ToLower());
+
+WriteLiteral("\"></i><span data-workflow=\"");
+
+
+                                                                                                                                                                                               Write(item.ToString().ToLower());
+
+WriteLiteral("\">");
+
+
+                                                                                                                                                                                                                             Write(DJ.Token(item.ToString().ToLower()));
 
 WriteLiteral("</span></li>\r\n");
 
 
-                            }
+                                }
 
-WriteLiteral("                        </ul>\r\n");
+WriteLiteral("                            </ul>\r\n");
 
 
+                        }
                         
                         
 
                                                                        
                       
-                        if (Model.HasSocialNetworks)
-                        {
+                            if (Model.HasSocialNetworks)
+                            {
                             
                         Write(CreateChildControl<DowJones.Web.Mvc.UI.Components.SocialButtons.SocialButtonsControl>(Model.SocialButtons));
 
                                                                                                                                          
-                        }
-        
-                        if (Model.HasTranslator)
-                        {
-                            if (Model.ShowReadSpeaker)
+                            }
+
+                            if (Model.HasTranslator)
                             {
+                                if (Model.ShowReadSpeaker)
+                                {
 
 WriteLiteral("                                <span class=\"emg_translator_pipe\">&nbsp;|&nbsp;</" +
 "span>\r\n");
 
 
-                            }
+                                }
 
 WriteLiteral("                            <div id=\"articleTranslateControlsContainer\">\r\n       " +
 "                         ");
@@ -644,7 +676,7 @@ WriteLiteral("                            <div id=\"articleTranslateControlsCont
 WriteLiteral("\r\n                            </div>\r\n");
 
 
-                        }    
+                            }    
                         
 
                                                                                
