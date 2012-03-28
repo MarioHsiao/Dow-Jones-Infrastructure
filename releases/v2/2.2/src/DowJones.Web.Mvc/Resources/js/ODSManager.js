@@ -7,13 +7,13 @@ $dj.registerNamespace('DJ');
     DJ.ODSManager = DJ.ODSManager || {
 
         defaults: {
-            operationalserviceURL: '<%= AppSetting("OperationalDataSource", "http://fdevweb3/api/Private/2.0/OperationalData/json") %>'
+            operationalserviceURL: '<%= AppSetting("OperationalDataSource", "http://fdevweb3/api/dashboard/OperationalData/1.0/json") %>'
         },
 
         recordODSData: function (data) {
             var me = DJ.ODSManager,
             items = data || [],
-            jsonobj = { OperationData: { Items: items} };
+            jsonobj = { operationData: { items: items} };
 
             $.ajax({
                 url: me.defaults.operationalserviceURL,
