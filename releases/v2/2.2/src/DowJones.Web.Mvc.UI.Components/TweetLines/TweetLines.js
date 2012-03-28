@@ -104,7 +104,7 @@ DJ.UI.TweetLines = DJ.UI.Component.extend({
                 action: action,
                 twitterHandle: tweetItem.data('screen-name'),
                 twitterName: tweetItem.data('full-name'),
-                twitterId: id 
+                twitterId: tweetId 
             });
 
             //return false;
