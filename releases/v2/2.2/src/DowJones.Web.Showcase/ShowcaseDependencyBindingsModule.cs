@@ -39,7 +39,7 @@ namespace DowJones.Web.Showcase
             Bind<ISourceListService>().To<SourceListService>();
 
             Bind<IRelatedConceptService>().To<RelatedConceptService>();
-            Bind<ISocialMediaIndustryProvider>().To<SocialMediaIndustryPAMProvider>().InSingletonScope();         
+            Bind<ISocialMediaIndustryProvider>().To<PAMSocialMediaIndustryProvider>().InSingletonScope();         
         }
     }
 }
