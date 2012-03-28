@@ -15,8 +15,15 @@
     </SupportedProducts>
     <SupportedFrameworkRuntimeEdition MinVersion="4.0" MaxVersion="4.0" />
   </Identifier>
-  <References />
+  <References>
+    <Reference Id="NuPackToolsVsix.Microsoft.67e54e40-0ae3-42c5-a949-fddf5739e7a5" MinVersion="1.6.21215.9133">
+      <Name>NuGet Package Manager</Name>
+      <MoreInfoUrl>http://docs.nuget.org/</MoreInfoUrl>
+    </Reference>
+  </References>
   <Content>
+    <Assembly AssemblyName="|DowJones.VisualStudio.Nuget;AssemblyName|">|DowJones.VisualStudio.Nuget|</Assembly>
+    <MefComponent>|DowJones.VisualStudio.Nuget.Wizard|</MefComponent>
     <ProjectTemplate>ProjectTemplates</ProjectTemplate>
   </Content>
 </Vsix>

@@ -11,6 +11,7 @@
     <CreateNewFolder>true</CreateNewFolder>
     <DefaultName>DowJones.Web.MvcApplication</DefaultName>
     <ProvideDefaultName>true</ProvideDefaultName>
+    <PromptForSaveOnCreation>true</PromptForSaveOnCreation>
   </TemplateData>
   <TemplateContent>
     <Project File="ProjectTemplate.csproj" ReplaceParameters="true">
@@ -35,8 +36,8 @@
     </Project>
   </TemplateContent>
   <WizardExtension>
-    <Assembly>NuGet.VisualStudio.Interop, Version=1.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</Assembly>
-    <FullClassName>NuGet.VisualStudio.TemplateWizard</FullClassName>
+    <Assembly>DowJones.VisualStudio.Nuget, Version=1.0.0.0, Culture=neutral, PublicKeyToken=3aed3cad3369f11d</Assembly>
+    <FullClassName>DowJones.VisualStudio.Nuget.TemplateWizard</FullClassName>
   </WizardExtension>
   <WizardData>
     <packages repository="extension"

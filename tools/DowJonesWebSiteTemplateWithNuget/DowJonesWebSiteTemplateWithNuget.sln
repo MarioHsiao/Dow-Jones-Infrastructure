@@ -5,9 +5,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NugetInVSTemplates", "Nuget
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DowJones.MvcApplication", "DowJones.MvcApplication\DowJones.MvcApplication.csproj", "{7CDD599E-26B4-446D-BB3B-146281B29BDD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DowJones.VisualStudio.Nuget", "TrueNugetWizard\DowJones.VisualStudio.Nuget.csproj", "{A56E1A43-7A22-4A3D-B2F6-BB3701430EEA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DowJones.VisualStudio.Nuget.Wizard", "DowJones.VisualStudio.Nuget.Wizard\DowJones.VisualStudio.Nuget.Wizard.csproj", "{C6486BE4-A55C-4776-B7FF-820AE396D924}"
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 3
+		SccNumberOfProjects = 5
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = http://sbknwstfs1:8080/tfs/defaultcollection
 		SccLocalPath0 = .
@@ -17,6 +21,12 @@ Global
 		SccProjectUniqueName2 = NugetInVSTemplates\\NugetInVSTemplates.csproj
 		SccProjectName2 = NugetInVSTemplates
 		SccLocalPath2 = NugetInVSTemplates
+		SccProjectUniqueName3 = TrueNugetWizard\\DowJones.VisualStudio.Nuget.csproj
+		SccProjectName3 = TrueNugetWizard
+		SccLocalPath3 = TrueNugetWizard
+		SccProjectUniqueName4 = DowJones.VisualStudio.Nuget.Wizard\\DowJones.VisualStudio.Nuget.Wizard.csproj
+		SccProjectName4 = DowJones.VisualStudio.Nuget.Wizard
+		SccLocalPath4 = DowJones.VisualStudio.Nuget.Wizard
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +41,14 @@ Global
 		{7CDD599E-26B4-446D-BB3B-146281B29BDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7CDD599E-26B4-446D-BB3B-146281B29BDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7CDD599E-26B4-446D-BB3B-146281B29BDD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A56E1A43-7A22-4A3D-B2F6-BB3701430EEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A56E1A43-7A22-4A3D-B2F6-BB3701430EEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A56E1A43-7A22-4A3D-B2F6-BB3701430EEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A56E1A43-7A22-4A3D-B2F6-BB3701430EEA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C6486BE4-A55C-4776-B7FF-820AE396D924}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6486BE4-A55C-4776-B7FF-820AE396D924}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6486BE4-A55C-4776-B7FF-820AE396D924}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6486BE4-A55C-4776-B7FF-820AE396D924}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
