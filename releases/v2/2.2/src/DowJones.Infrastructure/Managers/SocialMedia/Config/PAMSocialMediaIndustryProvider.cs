@@ -14,10 +14,10 @@ using FactivaControlData = Factiva.Gateway.Utils.V1_0.ControlData; //DowJones.Se
 
 namespace DowJones.Managers.SocialMedia.Config
 {
-    public class SocialMediaIndustryPAMProvider : AbstractAggregationManager, ISocialMediaIndustryProvider
+    public class PAMSocialMediaIndustryProvider : AbstractAggregationManager, ISocialMediaIndustryProvider
     {
         IDictionary<string, string> _mappings;
-        public SocialMediaIndustryPAMProvider(IControlData controlData)
+        public PAMSocialMediaIndustryProvider(IControlData controlData)
             : base(controlData)
         {
             _mappings = LoadMappings();
@@ -25,9 +25,8 @@ namespace DowJones.Managers.SocialMedia.Config
 
         private IDictionary<string, string> LoadMappings()
         {
-            IDictionary<string, string> _mappings = new Dictionary<string, string>();
-
             GetListsDetailsListResponse socialmediaresponse = GetListsDetailsListResponse();
+            _mappings = new Dictionary<string, string>();
             if (socialmediaresponse != null){
                 foreach (var listdetailitem in socialmediaresponse.ListDetailsItems)
                 {

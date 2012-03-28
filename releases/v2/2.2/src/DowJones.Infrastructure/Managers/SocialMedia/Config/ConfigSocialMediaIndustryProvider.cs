@@ -10,18 +10,18 @@ using System.Web.Hosting;
 
 namespace DowJones.Managers.SocialMedia.Config
 {
-    public class SocialMediaIndustryConfigProvider: ISocialMediaIndustryProvider 
+    public class ConfigSocialMediaIndustryProvider: ISocialMediaIndustryProvider 
     {
         IDictionary<string, string> _mappings;
         private Stream _stream;
-        public SocialMediaIndustryConfigProvider(Stream stream){
+        public ConfigSocialMediaIndustryProvider(Stream stream){
             _stream = stream;
             _mappings = LoadMappings();
         }
 
         private IDictionary<string, string> LoadMappings()
         {
-            IDictionary<string, string> _mappings = new Dictionary<string, string>();
+            _mappings = new Dictionary<string, string>();            
             XElement _x = XElement.Load(_stream);
             var industries = (from industryitem in _x.Elements("IndustryChannelMapping")
                               select new { ItemCode = industryitem.Element("IndustryCode").Value, Channel = industryitem.Element("Channel").Value }

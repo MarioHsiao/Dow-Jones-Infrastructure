@@ -99,7 +99,7 @@ namespace DowJones
 
             Bind<ISearchPreferenceService>().To<SearchPreferenceService>().InRequestScope();
 
-            Bind<ISocialMediaIndustryProvider>().To<SocialMediaIndustryPAMProvider>().InSingletonScope();
+            Bind<ISocialMediaIndustryProvider>().To<PAMSocialMediaIndustryProvider>().InSingletonScope();
             //Bind<SocialMediaIndustryProvider>().ToSelf().InSingletonScope();
             
         }

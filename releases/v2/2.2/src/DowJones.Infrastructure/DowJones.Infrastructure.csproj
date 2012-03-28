@@ -154,11 +154,10 @@
     <Compile Include="Managers\RelatedConcept\RelatedConceptService.cs" />
     <Compile Include="Managers\Search\SearchService.cs" />
     <Compile Include="Managers\Search\SourceFilterTypeTypeMapper.cs" />
-    <Compile Include="Managers\SocialMedia\Config\SocialMediaIndustryConfigProvider.cs" />
-    <Compile Include="Managers\SocialMedia\Config\IndustryChannelMap.cs" />
+    <Compile Include="Managers\SocialMedia\Config\ConfigSocialMediaIndustryProvider.cs" />
     <Compile Include="Managers\SocialMedia\Config\IndustryChannelMapInMemory.cs" />
     <Compile Include="Managers\SocialMedia\Config\ISocialMediaIndustryProvider.cs" />
-    <Compile Include="Managers\SocialMedia\Config\SocialMediaIndustryPAMProvider.cs" />
+    <Compile Include="Managers\SocialMedia\Config\PAMSocialMediaIndustryProvider.cs" />
     <Compile Include="Managers\SocialMedia\ISocialMediaProvider.cs" />
     <Compile Include="Managers\SocialMedia\RequestOptions.cs" />
     <Compile Include="Managers\SocialMedia\Responses\AbstractSocialMediaResponse.cs" />
@@ -872,7 +871,6 @@
     <Compile Include="OperationalData\Asset\SnapshotOperationData.cs" />
     <EmbeddedResource Include="Mapping\AutomatedTranslation\TranslationSourceWhiteList.csv" />
     <Compile Include="Managers\Search\SearchManager.NewsPageQueryEntitySearch.cs" />
-    <None Include="Managers\SocialMedia\Config\IndustryChannel.config" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
