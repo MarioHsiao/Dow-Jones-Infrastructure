@@ -46,7 +46,8 @@
 				year: "about a year",
 				years: "%d years",
 				numbers: []
-			}
+			},
+			debug: false
 		},
 		inWords: function (distanceMillis) {
 			var $l = this.settings.strings;
@@ -118,30 +119,76 @@
 	};
 
 	function doRefresh(selector, ctx, refreshMillis) {
-		var elems = (selector ? $(selector, ctx) : ctx);
-
-		// if a selector was passed, check if the ctx has valid elems
-		// otherwise, check against the passed in objects
-		var filtered = _.filter((selector ? ctx : elems), function (el) {
-			if (el.id) { return document.getElementById(el.id) !== null; }
-			
-			// no option but to walk the tree
-			return elementIsInDOM(el);
+		/*var elems = [], filteredCtx;
+		// if a selector was passed, check if the ctx is in the dom
+		if (selector && elementIsInDOM(ctx)) {
+		elems = $(selector, ctx);
+		filteredCtx = ctx;
+		}
+		else {
+		elems = _.filter(ctx, function (el) {
+		return elementIsInDOM(el);
 		});
+		filteredCtx = elems;
+		}
+
+		// we got valid elems
+		if (elems.length !== 0) {
+		for (var i = 0, len = elems.length; i < len; i++) {
+		refresh.call(elems[i]);
+		}
+
+		if ($t.settings.debug) {
+		console.log(ctx[0].tagName, 'timeago - refreshed');
+		}
+
+		setTimeout(function () {
+		doRefresh(selector, filteredCtx, refreshMillis);
+		}, refreshMillis);
+		}
+		else {
+		if ($t.settings.debug) {
+		console.log('timeago - no valid elements, stopping refresh on:', selector, ctx);
+		}
+
+		}*/
+
+		//var elems = (selector && elementIsInDOM(ctx)) ? $(selector, ctx) : ctx;
+
+		var filtered,
+			newCtx = ctx;
+		// if a selector was passed, check if the ctx is in the dom
+		if (selector && elementIsInDOM(ctx)) {
+			filtered = $(selector, ctx);
+		}
+		else {
+			filtered = _.filter(ctx, function (el) {
+				return elementIsInDOM(el);
+			});
+
+			// if element got removed from DOM, update the array for subsequent calls
+			if (filtered.length !== ctx.length) {
+				newCtx = (ctx instanceof jQuery) ? $(filtered) : filtered;
+			}
+		}
 
 		// we got valid elems
 		if (filtered.length !== 0) {
 			for (var i = 0, len = filtered.length; i < len; i++) {
 				refresh.call(filtered[i]);
 			}
-			//console.log(ctx[0].tagName, 'timeago - refreshed');
+
+			if ($t.settings.debug) { console.log($(newCtx)[0].tagName, 'timeago - refreshed'); }
 
 			setTimeout(function () {
-				doRefresh(selector, filtered, refreshMillis);
+				doRefresh(selector, newCtx, refreshMillis);
 			}, refreshMillis);
 		}
+		else if ($t.settings.debug) {
+			console.log('timeago - no valid elements, stopping refresh on:', selector, ctx);
+		}
 
-	};
+	}
 
 	function refresh() {
 		var data = prepareData(this);
@@ -149,7 +196,7 @@
 			$(this).text(inWords(data.datetime));
 		}
 		return this;
-	};
+	}
 
 	$.fn.timeago.refresh = function () {
 		var self = this;
@@ -178,14 +225,22 @@
 
 
 	function elementIsInDOM(el) {
+		if (!el) { return false; }
+
+		var eld = el instanceof jQuery ? el[0] : el;
+
+		if (eld.id) {
+			return document.getElementById(eld.id) !== null;
+		}
+
 		/* as long as the element is not document, and there is a parent element */
-		while (el != document && el.parentNode) {
+		while (eld != document && eld.parentNode) {
 			/* jump to the parent element */
-			el = el.parentNode;
+			eld = eld.parentNode;
 		}
 		/* at this stage, the parent is found. If null, the uppermost parent element */
 		/* is not document, and therefore the element is not part of the document */
-		return el == document;
+		return eld == document;
 	}
 
 	// fix for IE6 suckage
