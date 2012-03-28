@@ -5,6 +5,8 @@ using DowJones.Managers.Topics.Caching;
 using DowJones.Session;
 using Factiva.Gateway.Messages.Assets.Queries.V1_0;
 using Factiva.Gateway.Messages.Assets.Sharing.V2_0;
+using Factiva.Gateway.Messages.Cache.SessionCache.V1_0;
+using GWCacheScope = Factiva.Gateway.Messages.Cache.SessionCache.V1_0.CacheScope;
 using log4net;
 
 namespace DowJones.Managers.Topics
@@ -79,6 +81,19 @@ namespace DowJones.Managers.Topics
 
             var response = Invoke<GetQueriesPropertiesListResponse>(request).ObjectResponse;
             return response.QueryPropertiesItems;
-        } 
+        }
+
+        public void DeleteItemFromSessionCache(ICacheKey cacheKey)
+        {
+            if (cacheKey == null)
+                return;
+
+            var request = new DeleteItemRequest
+            {
+                Key = cacheKey.Serialize(),
+                Scope = Mapper.Map<GWCacheScope>(cacheKey.CacheScope)
+            };
+            Process<DeleteItemResponse>(request);
+        }
     }
 }
