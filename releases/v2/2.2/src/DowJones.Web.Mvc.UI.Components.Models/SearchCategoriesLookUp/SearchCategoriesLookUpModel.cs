@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using DowJones.Ajax.HeadlineList;
 using DowJones.Managers.Search;
 using DowJones.Web.Mvc.UI.Components.Common;
 using Factiva.Gateway.Messages.Assets.Lists.V1_0;
@@ -46,6 +47,12 @@ namespace DowJones.Web.Mvc.UI.Components.Models
         /// </summary>
         [JsonProperty("sourceGroup")]
         public List<SourceGroupItem> SourceGroup { get; set; }
+
+		/// <summary>
+		/// Gets or Sets the Source Filters
+		/// </summary>
+		[JsonProperty("sourceFilters")]
+		public List<CodeDesc> SourceFilters { get; set; }
     }
 
     public class SearchCategoriesLookUpModel : ViewComponentModel

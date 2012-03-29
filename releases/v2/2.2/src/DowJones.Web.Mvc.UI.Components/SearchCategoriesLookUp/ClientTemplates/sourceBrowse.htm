@@ -13,21 +13,9 @@
             <li>
                 <div data-value=""><%= Token("selectFilter") %></div>
             </li>
-            <li>
-                <div data-value="industry"><%= Token("industry") %></div>
-            </li>
-            <li>
-                <div data-value="language"><%= Token("language") %></div>
-            </li>
-            <li>
-                <div data-value="regionOfOrigin"><%= Token("regionOfOrigin") %></div>
-            </li>
-            <li>
-                <div data-value="regionOfCoverage"><%= Token("regionOfCoverage") %></div>
-            </li>
-            <li>
-                <div data-value="title"><%= Token("titleLabel") %></div>
-            </li>
+			<% for (var i = 0, len < sourceFilters.length; i < len; i++) { %>
+                <li><div data-value="<%= sourceFilters[i].code %>"><%= sourceFilters[i].desc %></div></li>
+            <% } %>
         </ul>
 	</div>
     <div class="alphabet-list hidden">
