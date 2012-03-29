@@ -1,4 +1,5 @@
 ﻿using DowJones.Caching;
+using DowJones.Properties;
 using DowJones.Infrastructure.Common;
 using Factiva.Gateway.Messages.Assets.Queries.V1_0;
 using Newtonsoft.Json;
@@ -11,14 +12,15 @@ namespace DowJones.Managers.Topics.Caching
 
         private static readonly CacheExiprationPolicy DefaultCacheExiprationPolicy = InfrastructureCacheKeyConstants.DefaultCacheExiprationPolicy;
 
-        private const int DefaultCacheExpirationTime = 60;
-        private const int DefaultCacheRefreshInterval = 30;
+        private static int DefaultCacheExpirationTime = InfrastructureCacheKeyConstants.DefaultCacheExpirationTime;//60;
+        private static int DefaultCacheRefreshInterval = InfrastructureCacheKeyConstants.DefaultCacheRefreshInterval;//30;
         private const CacheScope DefaultCacheScope = CacheScope.Account;
         private const bool DefaultCacheForceCacheRefresh = false;
 
         private const string DefaultName = "SubscribableTopics";
 
-        public SubscribableTopicsCacheKey(Product product, ShareScopeCollection shareScopeCollection) : base(product)
+        //public SubscribableTopicsCacheKey(Product product, ShareScopeCollection shareScopeCollection) : base(product)
+        public SubscribableTopicsCacheKey(Product product) : base(product)
         {
             Name = DefaultName;
             CacheScope = DefaultCacheScope;
@@ -26,8 +28,7 @@ namespace DowJones.Managers.Topics.Caching
             CacheRefreshInterval = DefaultCacheRefreshInterval;
             CacheExiprationPolicy = DefaultCacheExiprationPolicy;
             CacheForceCacheRefresh = DefaultCacheForceCacheRefresh;
-
-            ShareScopeCollection = shareScopeCollection;
+            //ShareScopeCollection = shareScopeCollection;
         }
 
         [JsonProperty(PropertyName = InfrastructureCacheKeyConstants.ShareScopeCollection)]
