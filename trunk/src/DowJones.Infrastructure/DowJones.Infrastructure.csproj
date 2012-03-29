@@ -198,6 +198,7 @@
     <Compile Include="Managers\SocialMedia\Twitter\Model\TwitterEntities.cs" />
     <Compile Include="Managers\Topics\Caching\SubscribableTopicsCacheKey.cs" />
     <Compile Include="Managers\Topics\TopicsManager.cs" />
+    <Compile Include="Mapping\TypeMappingLocator.cs" />
     <Compile Include="Models\Charting\DataPointFrequency.cs" />
     <Compile Include="Models\Charting\HistoricalNewsData\HistoricalNewsDataResult.cs" />
     <Compile Include="Models\Charting\HistoricalNewsData\NewsDataPoint.cs" />

@@ -4,8 +4,11 @@ using System.Reflection;
 using System.Xml;
 using System.Xml.Serialization;
 using DowJones.DependencyInjection;
+using DowJones.Infrastructure;
+using DowJones.Mapping;
 using DowJones.Mocks;
 using DowJones.Token;
+using DowJones.Web;
 using log4net;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
@@ -56,9 +59,13 @@ namespace DowJones
         {
             MockServiceLocator = new Mock<IServiceLocator>();
             MockServiceLocator.Setup(x => x.Resolve<ITokenRegistry>()).Returns(new MockTokenRegistry());
+
+            var locator = new TypeMappingLocator(new AssemblyRegistry(typeof(ClientResourceDefinitionToClientResourceMapper).Assembly, GetType().Assembly));
+            var mapperDefinitions = locator.Locate(mapperType => (ITypeMapper)Activator.CreateInstance(mapperType));
+            Mapper.Instance = new Mapper(mapperDefinitions);
         }
 
-        // Use TestInitialize to run code after running each test 
+        // Use TestCleanup to run code after running each test 
         [TestCleanup]
         public virtual void TearDown()
         {

@@ -21,13 +21,8 @@ namespace DowJones.Web
                 resource = GetEmbeddedResource(definition, resource);
             }
 
-            //if (resource == null || string.IsNullOrEmpty(resource.Url))
-            //{
-            //    throw new InvalidClientResourceException(resource, "Empty resource Url")
-            //              {
-            //                  Name = definition.Name
-            //              };
-            //}
+            if (resource == null)
+                return resource;
 
             resource.DependencyLevel = GetDependencyLevel(definition);
             resource.DependsOn = definition.DependsOn ?? Enumerable.Empty<string>();
