@@ -2,6 +2,7 @@
 using DowJones.Infrastructure.Common;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using DowJones.Properties;
 
 namespace DowJones.Caching
 {

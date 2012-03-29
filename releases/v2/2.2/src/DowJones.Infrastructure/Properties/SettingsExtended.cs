@@ -8,6 +8,7 @@ using System.Configuration;
 using System.Diagnostics;
 using System.Web;
 using DowJones.Configuration;
+using DowJones.Caching;
 
 namespace DowJones.Properties
 {
@@ -238,5 +239,59 @@ namespace DowJones.Properties
             get { return (string)this["HeadlinesServicePath"]; }
             set { this["HeadlinesServicePath"] = value; }
         }
+
+
+
+
+        //Caching start
+        [ApplicationScopedSetting, SettingsSerializeAs(SettingsSerializeAs.String)]
+        [DefaultSettingValueAttribute("True")]
+        public bool IncludeCacheKeyGeneration
+        {
+            get { return (bool)this["IncludeCacheKeyGeneration"]; }
+        }
+
+        [ApplicationScopedSetting, SettingsSerializeAs(SettingsSerializeAs.String)]
+        [DefaultSettingValue("prod")]
+        public string Environment
+        {
+            get { return (string)this["Environment"]; }
+        }
+
+        [ApplicationScopedSetting, SettingsSerializeAs(SettingsSerializeAs.String)]
+        [DefaultSettingValue("1_0")]
+        public string Version
+        {
+            get { return (string)this["Version"]; }
+        }
+
+        [ApplicationScopedSetting, SettingsSerializeAs(SettingsSerializeAs.String)]
+        [DefaultSettingValue("60")]
+        public int DefaultCacheExpirationTime
+        {
+            get { return (int)this["DefaultCacheExpirationTime"]; }
+        }
+
+        [ApplicationScopedSetting, SettingsSerializeAs(SettingsSerializeAs.String)]
+        [DefaultSettingValue("15")]
+        public int DefaultCacheRefreshInterval
+        {
+            get { return (int)this["DefaultCacheRefreshInterval"]; }
+        }
+
+        [ApplicationScopedSetting, SettingsSerializeAs(SettingsSerializeAs.String)]
+        [DefaultSettingValue("Sliding")]
+        public CacheExiprationPolicy DefaultCacheExpirationPolicy
+        {
+            get { return (CacheExiprationPolicy)this["DefaultCacheExpirationPolicy"]; }
+        }
+
+        [ApplicationScopedSetting, SettingsSerializeAs(SettingsSerializeAs.String)]
+        [DefaultSettingValueAttribute("True")]
+        public bool CacheSubscribableTopics
+        {
+            get { return (bool)this["CacheSubscribableTopics"]; }
+        }
+        //Caching end
     }
 }

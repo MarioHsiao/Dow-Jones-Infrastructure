@@ -126,7 +126,6 @@
     <Compile Include="Caching\CacheKeyConstants.cs" />
     <Compile Include="Caching\CacheTimePeriod.cs" />
     <Compile Include="Caching\ICacheKey.cs" />
-    <Compile Include="Caching\Properties\Settings.cs" />
     <Compile Include="Converters\JsonEnumConverter.cs" />
     <Compile Include="Infrastructure\GenericEqualityComparer.cs" />
     <Compile Include="Infrastructure\EnumHelper.cs" />

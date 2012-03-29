@@ -1,4 +1,6 @@
-﻿namespace DowJones.Caching
+﻿using DowJones.Properties;
+
+namespace DowJones.Caching
 {
     public class InfrastructureCacheKeyConstants
     {
