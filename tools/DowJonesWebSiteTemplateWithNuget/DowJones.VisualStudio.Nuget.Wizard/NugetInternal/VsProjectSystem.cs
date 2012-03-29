@@ -10,6 +10,7 @@ using System.Reflection;
 using System.Runtime.Versioning;
 using EnvDTE;
 using Microsoft.VisualStudio.Shell;
+using NuGet;
 using VSLangProj;
 using MsBuildProject = Microsoft.Build.Evaluation.Project;
 using MsBuildProjectItem = Microsoft.Build.Evaluation.ProjectItem;

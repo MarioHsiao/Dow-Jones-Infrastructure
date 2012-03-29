@@ -12,6 +12,7 @@ using DowJones.VisualStudio.Nuget.Wizard.NugetInternal;
 using EnvDTE;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.TemplateWizard;
+using NuGet;
 
 
 namespace DowJones.VisualStudio.Nuget.Wizard
@@ -210,13 +211,13 @@ namespace DowJones.VisualStudio.Nuget.Wizard
                                                                            localRepository);
 
                         //projectManager.AddPackageReference(package.Id);
-                        var dw = new DependentsWalker(localRepository);
-                        var deps = dw.GetDependents(localRepository.FindPackage(package.Id, package.Version));
-                        foreach (var dep in deps)
-                        {
-                            _project.Object.References.Add(dep.)
-                        }
-                        //projectManager.UpdatePackageReference(package.Id);
+                        //var dw = new DependentsWalker(localRepository);
+                        //var deps = dw.GetDependents(localRepository.FindPackage(package.Id, package.Version));
+                        //foreach (var dep in deps)
+                        //{
+                        //    _project.Object.References.Add(dep.)
+                        //}
+                        projectManager.UpdatePackageReference(package.Id);
 
 
                     }
