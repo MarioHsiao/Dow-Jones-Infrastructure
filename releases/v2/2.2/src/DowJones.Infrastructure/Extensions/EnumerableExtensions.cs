@@ -361,6 +361,20 @@ namespace DowJones.Extensions
             }
         }
 
+        /// <summary>
+        /// Determines whether the specified collection instance is null or empty.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="instance">The instance to check.</param>
+        /// <returns>
+        /// <c>true</c> if the specified instance is null or empty; otherwise, <c>false</c>.
+        /// </returns>
+        [DebuggerStepThrough]
+        public static bool IsNullOrEmpty<T>(this IEnumerable<T> instance)
+        {
+            return (instance == null) || (instance.Count() == 0);
+        }
+
         [Obsolete]
         public static IEnumerable<TSource> Except<TSource>(this IEnumerable<TSource> first, IEnumerable<TSource> second, Func<TSource, TSource, bool> comparer)
         {

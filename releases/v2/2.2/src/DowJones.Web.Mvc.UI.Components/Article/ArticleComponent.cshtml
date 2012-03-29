@@ -216,82 +216,75 @@
                         }
                     </div>
 
-                                                                                @if( !Model.ArticleDataSet.Copyright.IsNullOrEmpty() )
+                @if (!Model.ArticleDataSet.Copyright.IsNullOrEmpty())
                 {
-                    if( showIndexing )
+                    if (showIndexing)
                     {
                         <div class="dj_article_index">CY</div>
                     }
                     <div class="copyright dj_article_cy dj_article_section">
-                        @foreach( IRenderItem renderItem in Model.ArticleDataSet.Copyright )
+                        @foreach (IRenderItem renderItem in Model.ArticleDataSet.Copyright)
                         {
-                            if( renderItem.ItemMarkUp == MarkUpType.Plain )
+                            if (renderItem.ItemMarkUp == MarkUpType.Plain)
                             {
                                     @renderItem.ItemText
                             }
                         }
                     </div>
                 }
+                
+            </div>
                     
-                    @*Build social buttons/ speakers/ translation*@
-                    <div class="dj_article_control" id="control">
-                        @if( Model.HasSocialNetworks )
+                    @if (Model.ShowPostProcessing)
+                    {                
+                        if (!Model.PostProcessingOptions.IsNullOrEmpty() )
                         {
-                            @(CreateChildControl<DowJones.Web.Mvc.UI.Components.SocialButtons.SocialButtonsControl>( Model.SocialButtons ))
+                            <ul class="dj_PostProcessing actions clearfix">
+                                @foreach (var item in Model.PostProcessingOptions)
+                                {
+                                    <li class="@(item.ToString().ToLower()) action" data-ref="@(item.ToString().ToLower())"><i class="dj_icon dj_icon-@(item.ToString().ToLower())"></i><span data-workflow="@(item.ToString().ToLower())">@(DJ.Token(item.ToString().ToLower()))</span></li>
+                                }
+                            </ul>
                         }
-        
-                        @if( Model.HasTranslator )
+                        
+                        @*Build social buttons/ speakers/ translation*@
+                        if (Model.HasSocialNetworks)
                         {
-                            if( Model.ShowReadSpeaker )
-                            {
-                                <span class="emg_translator_pipe">&nbsp;|&nbsp;</span>
-                            }
+                            @(CreateChildControl<DowJones.Web.Mvc.UI.Components.SocialButtons.SocialButtonsComponent>(Model.SocialButtons))
+                        }
+
+                        if (Model.HasTranslator)
+                        {
                             <div id="articleTranslateControlsContainer">
-                                @(CreateChildControl<DowJones.Web.Mvc.UI.Components.ArticleTranslator.ArticleTranslatorControl>( Model.Translator ))
+                                @(CreateChildControl<DowJones.Web.Mvc.UI.Components.ArticleTranslator.ArticleTranslatorControl>(Model.Translator))
                             </div>
                         }    
-                    </div>
-                    @*Ends Build social buttons and speakers/ translation*@
-                </div>    
-                @if( Model.ShowPostProcessing )
-                {
-                    bool showPressClip = (Model.ShowPressClip
-                                    && !string.IsNullOrEmpty(Model.ArticleDataSet.SubType)
-                                    && Model.ArticleDataSet.SubType.ToLower() == "nlapressclip");
-                
-                    <ul class="dj_PostProcessing actions clearfix">
-                        <li class="save action first" data-ref="save"><span class="dj_icon dj_icon-save"></span><span data-workflow="save">@DJ.Token( "save" )</span></li>
-                        <li class="print action" data-ref="print"><span class="dj_icon dj_icon-print"></span><span data-workflow="print">@DJ.Token( "cmPrint" )</span></li>
-                        <li class="email action" data-ref="email"><span class="dj_icon dj_icon-mail"></span><span data-workflow="email">@DJ.Token( "email" )</span></li>
-                        @if (showPressClip)
-                        {
-                            <li class="press-clip action" data-ref="pressclip"><span class="dj_icon dj_icon-pressclips"></span><span data-workflow="pressclip">@DJ.Token("pressClipping")</span></li>
-                        }
-                    </ul>
-                }
+                        @*Ends Build social buttons and speakers/ translation*@
+                    }         
+                   
             </div>
 
                       
             
             @*Start of embeded Html Section*@                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
-                    if( !Model.ArticleDataSet.Html.IsNullOrEmpty() )
-                    {
-                <div class="dj_rawContent"> 
-                @foreach( IRenderItem renderItem in Model.ArticleDataSet.Html )
+                if (!Model.ArticleDataSet.Html.IsNullOrEmpty())
                 {
-                    if( renderItem.ItemMarkUp == MarkUpType.Html )
+                <div class="dj_rawContent"> 
+                @foreach (IRenderItem renderItem in Model.ArticleDataSet.Html)
+                {
+                    if (renderItem.ItemMarkUp == MarkUpType.Html)
                     {
-                        @(Html.Raw( renderItem.ItemText ))
+                        @(Html.Raw(renderItem.ItemText))
                     }
                 }
                 </div>
-                    }  
+                }  
             @*End of embeded Html Section*@                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
 
                        
             @*Start body Section*@ 
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              <div class="dj_article_article_body">
-                @if( !Model.ArticleDataSet.Correction.IsNullOrEmpty() )
+                @if (!Model.ArticleDataSet.Correction.IsNullOrEmpty())
                 {
                     foreach (Dictionary<string, List<IRenderItem>> dci in Model.ArticleDataSet.Correction)
                     {
@@ -343,7 +336,7 @@
                         <div class="dj_article_index">TD</div>
                     }
                     <div class="dj_article_td dj_article_section">
-                        @foreach( Dictionary<string, List<IRenderItem>> dci in Model.ArticleDataSet.TailParagraphs )
+                        @foreach (Dictionary<string, List<IRenderItem>> dci in Model.ArticleDataSet.TailParagraphs)
                         {
                             foreach (KeyValuePair<string, List<IRenderItem>> kvc in dci)
                             {

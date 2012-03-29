@@ -122,12 +122,7 @@ namespace DowJones.Web.Mvc.UI.Components.Models.Article
     public class ArticleModel : ViewComponentModel
     {
         #region Client Properties
-        /// <summary>
-        /// Gets or sets a value indicating whether ShowReadSpeaker.
-        /// </summary>
-        [ClientProperty("showReadSpeaker")]
-        public bool ShowReadSpeaker { get; set; }
-
+        
         /// <summary>
         /// Gets or sets a value indicating whether ShowSocialButtons.
         /// </summary>
@@ -147,11 +142,12 @@ namespace DowJones.Web.Mvc.UI.Components.Models.Article
         public bool ShowPostProcessing { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether NLA press clip is enabled.
+        /// Gets or sets the post processing options.
         /// </summary>
+        /// <value>
+        /// The post processing options.
         /// </value>
-        [ClientProperty("showPressClip")]
-        public bool ShowPressClip { get; set; }
+        public IEnumerable<PostProcessingOptions> PostProcessingOptions { get; set; }
 
         #endregion
 

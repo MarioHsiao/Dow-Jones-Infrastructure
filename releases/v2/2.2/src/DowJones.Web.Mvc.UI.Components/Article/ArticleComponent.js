@@ -15,6 +15,7 @@
 
         events: {
             entityClick: 'entityClick.dj.Article',
+            accessionNumClick: 'accessionNumClick.dj.Article',
             sourceClick: 'sourceClick.dj.Article',
             authorClick: 'authorClick.dj.Article',
             anchorClick: 'anchorClick.dj.Article',
@@ -35,7 +36,8 @@
             eLinks: '.dj_article_elink',
             headline: 'h4.headline',
             headlineLink: '.dj_article_headline_link',
-            smallPictureImg: 'img.smallImage'
+            smallPictureImg: 'img.smallImage',
+            accessionNum: '.dj_article_accessionNum'
         },
 
         /*
@@ -73,6 +75,10 @@
             this.$element.delegate(this.selectors.anchorLinks, 'click', function (e) {
                 self.publish(self.events.anchorClick, { href: $(this).data("href") });
                 return false;
+            });
+
+            this.$element.delegate(this.selectors.accessionNum, 'click', function (e) {
+                self.publish(self.events.accessionNumClick, { event: e, entityType: 'accessionNum', entityCode: $(this).data("accessionNum") });
             });
 
             this.$element.delegate(this.selectors.sourceLinks, 'click', function (e) {

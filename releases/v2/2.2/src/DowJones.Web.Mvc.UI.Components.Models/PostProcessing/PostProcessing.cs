@@ -44,7 +44,15 @@ namespace DowJones.Web.Mvc.UI.Components.Models
         [AssignedToken("email")]
         Email,
         [AssignedToken("pressClips")]
-        PressClips
+        PressClips,
+        [AssignedToken("export")]
+        Export,
+        [AssignedToken("share")]
+        Share,
+        [AssignedToken("listen")]
+        Listen,
+        [AssignedToken("translate")]
+        Translate,
     }
 
     public enum HeadlineSaveOptions

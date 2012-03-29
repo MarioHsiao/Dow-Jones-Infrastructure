@@ -135,6 +135,21 @@ namespace DowJones.Web.Mvc.UI.Components.SocialButtons
     /// </summary>
     public class SocialButtonsModel: ViewComponentModel
     {
+        /// <summary>
+        /// Gets or sets the name of the class.
+        /// </summary>
+        /// <value>
+        /// The name of the class.
+        /// </value>
+        public string ClassName { get; set; }
+
+        /// <summary>
+        /// Gets or sets the name of the tag.
+        /// </summary>
+        /// <value>
+        /// The name of the tag.
+        /// </value>
+        public string TagName { get; set; }
 
         /// <summary>
         /// Gets or sets the size of the image.

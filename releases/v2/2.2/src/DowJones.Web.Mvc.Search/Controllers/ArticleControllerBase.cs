@@ -61,7 +61,6 @@ namespace DowJones.Web.Mvc.Search.Controllers
             var articlesModel = new ArticlesModel(response, _articleConversionManger)
                                     {
                                         ShowPostProcessing = true,
-                                        ShowReadSpeaker = false,
                                         ShowSocialButtons = false,
                                         ShowTranslator = false,
                                     };
