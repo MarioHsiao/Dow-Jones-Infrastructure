@@ -52,7 +52,7 @@ namespace DowJones.Web.Mvc.UI.Components.Models
         Share,
         [AssignedToken("listen")]
         Listen,
-        [AssignedToken("listen")]
+        [AssignedToken("translate")]
         Translate,
     }
 

@@ -117,7 +117,6 @@ namespace DowJones.Web.Showcase.Controllers
             var articlesModel = new ArticlesModel( articleResponse, _articleConversionManager )
             {
                 ShowPostProcessing = false,
-                ShowReadSpeaker = false,
                 ShowSocialButtons = false,
                 ShowTranslator = false,
                 ShowSourceLinks = true, 
