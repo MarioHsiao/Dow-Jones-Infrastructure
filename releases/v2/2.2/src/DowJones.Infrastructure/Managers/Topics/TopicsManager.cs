@@ -26,9 +26,9 @@ namespace DowJones.Managers.Topics
 
         protected override ILog Log { get { return Logger; } }
 
-        public QueryPropertiesItemCollection GetCommunicatorSubscribableTopics()
+        public QueryPropertiesItemCollection GetCommunicatorSubscribableTopics(bool forceCacheRefresh = false)
         {
-            return GetSubscribableTopics(QueryType.CommunicatorTopicQuery, new ShareScopeCollection{ShareScope.Account});
+            return GetSubscribableTopics(QueryType.CommunicatorTopicQuery, new ShareScopeCollection{ShareScope.Account}, forceCacheRefresh);
         }
 
         public QueryPropertiesItemCollection GetCommunicatorUserTopics()
