@@ -41,6 +41,7 @@ namespace DowJones.Web.Showcase.Controllers
             return View("Simple", model);
         }
 
+
         public ActionResult Composite(string q = "an:DJFVW00020120119e81jliwkq", ContentSearchMode? mode = null)
         {
             var showcaseHeadlineListModel = _headlineListManager.PerformContentSearch(q, new HeadlineUtility(ControlData, Preferences).GetThumbNail);

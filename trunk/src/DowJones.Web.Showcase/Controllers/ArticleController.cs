@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Web.Mvc;
@@ -6,6 +7,7 @@ using DowJones.Ajax.Article;
 using DowJones.Articles;
 using DowJones.Assemblers.Articles;
 using DowJones.Infrastructure;
+using DowJones.Exceptions;
 using DowJones.Url;
 using DowJones.Web.Mvc.Routing;
 using DowJones.Web.Mvc.Search.ViewModels;
@@ -44,6 +46,11 @@ namespace DowJones.Web.Showcase.Controllers
                 };
 
             var article = _articleService.GetArticle(accessionNumber, canonicalSearchString);
+
+            if (article == null || (article.status != null && article.status.value != 0))
+            {
+                throw new DowJonesUtilitiesException(DowJonesUtilitiesException.InvalidDataRequest);
+            }
 
             _articleConversionManager.ShowCompanyEntityReference = true;
             _articleConversionManager.ShowExecutiveEntityReference = true;

@@ -2,8 +2,11 @@
     ViewBag.Title = "Portal Viewer";
 }
 
-@Html.DJ().ScriptRegistry().OnDocumentReady("setHeadlineData();")
+<h2>Controls</h3>
+<div><button value="Set Data" onclick="setHeadlineData();">Swap Data [Client Side]</div>
 
+<h2>UI Control</h3>
+<hr/>
 @Html.DJ().RenderComponent("PortalHeadlineListControl", Model)
 
 <script language="javascript" type="text/javascript">
