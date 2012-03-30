@@ -1,6 +1,5 @@
 using System.Linq;
 using System.Web.UI;
-using DowJones.Web.UI;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace DowJones.Web.Mvc.UI
@@ -15,7 +14,7 @@ namespace DowJones.Web.Mvc.UI
         [TestMethod]
         public void ShouldDiscoverClientResourcesFromAllAnscestors()
         {
-            var component = new MyImplemenetation();
+            var component = new MyImplementation();
 
             var clientResources = component.ClientResources;
             var superClassScript = clientResources.FirstOrDefault(x => x.Url == SuperClassScriptUrl);
@@ -30,7 +29,7 @@ namespace DowJones.Web.Mvc.UI
         [TestMethod]
         public void ShouldDiscoverClientResourcesInOrderOfAncestry()
         {
-            var component = new MyImplemenetation();
+            var component = new MyImplementation();
 
             var clientResources = component.ClientResources.Select(x => x.Url);
 
@@ -56,7 +55,7 @@ namespace DowJones.Web.Mvc.UI
         }
 
         [ScriptResource("ViewComponentSubSubClass", Url = SubSubClassScriptUrl)]
-        internal class MyImplemenetation : AGenericSubType<object>
+        internal class MyImplementation : AGenericSubType<object>
         {
         }
     }

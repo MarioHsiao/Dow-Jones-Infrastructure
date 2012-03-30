@@ -177,6 +177,11 @@ namespace DowJones.Assemblers.Headlines
                     continue;
                 }
 
+                if (!headline.HasBeenFound)
+                {
+                    continue;
+                }
+
                 var headlineInfo = new HeadlineInfo();
                 Convert(headlineInfo, headline.ContentHeadline, false, ++i);
                 _result.resultSet.headlines.Add(headlineInfo);

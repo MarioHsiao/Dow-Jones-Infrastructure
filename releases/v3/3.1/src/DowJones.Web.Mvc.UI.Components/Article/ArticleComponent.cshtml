@@ -262,32 +262,27 @@
                             <ul class="dj_PostProcessing actions clearfix">
                                 @foreach (var item in Model.PostProcessingOptions)
                                 {
-                                    <li class="@(item.ToString().ToLower())" data-ref="@(item.ToString().ToLower())"><i class="dj_icon dj_icon-@(item.ToString().ToLower())"></i><span data-workflow="@(item.ToString().ToLower())">@(DJ.Token(item.ToString().ToLower()))</span></li>
+                                    <li class="@(item.ToString().ToLower()) action" data-ref="@(item.ToString().ToLower())"><i class="dj_icon dj_icon-@(item.ToString().ToLower())"></i><span data-workflow="@(item.ToString().ToLower())">@(DJ.Token(item.ToString().ToLower()))</span></li>
                                 }
                             </ul>
                         }
                         
                         @*Build social buttons/ speakers/ translation*@
-                      
-                            if (Model.HasSocialNetworks)
-                            {
+                        if (Model.HasSocialNetworks)
+                        {
                             @(CreateChildControl<DowJones.Web.Mvc.UI.Components.SocialButtons.SocialButtonsComponent>(Model.SocialButtons))
-                            }
+                        }
 
-                            if (Model.HasTranslator)
-                            {
-                                if (Model.ShowReadSpeaker)
-                                {
-                                <span class="emg_translator_pipe">&nbsp;|&nbsp;</span>
-                                }
+                        if (Model.HasTranslator)
+                        {
                             <div id="articleTranslateControlsContainer">
                                 @(CreateChildControl<DowJones.Web.Mvc.UI.Components.ArticleTranslator.ArticleTranslatorControl>(Model.Translator))
                             </div>
-                            }    
+                        }    
                         @*Ends Build social buttons and speakers/ translation*@
                     }          
                    
-             </div>        
+            </div>        
             
             @*Start of embeded Html Section*@                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
                     if (!Model.ArticleDataSet.Html.IsNullOrEmpty())

@@ -184,6 +184,7 @@ namespace DowJones.Managers.Search.Requests
         private StructuredSearch GetStructuredQuery(AccessionNumberSearchRequestDTO dto)
         {
             var structuredSearch = new StructuredSearch {Query = {SearchCollectionCollection = dto.SearchCollectionCollection}};
+            
             //structuredSearch.Query.SearchStringCollection.Add(SearchUtility.GetSearchStringByScopeType(SearchUtility.ScopeType.AnyAccessionNumber, dto.GetUniqueAccessionNumbers));
             structuredSearch.Query.AccessionNumberFilter.AccessionNumberCollection.AddRange( dto.accessionNumbersList );
             structuredSearch.Formatting.SortOrder = Map(dto.SortBy);

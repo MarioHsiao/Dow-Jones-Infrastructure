@@ -82,6 +82,12 @@ namespace DowJones.Web.Mvc.Search.Controllers
 
             if (articlesRequest.IsValid)
             {
+                var postProcessOptions = new List<PostProcessingOptions>();
+                postProcessOptions.AddRange(new [] {PostProcessingOptions.Save, PostProcessingOptions.Print, PostProcessingOptions.Email, });
+                if (UserContext.Principle.CoreServices.AlertsService.HasPressClipsEnabled)
+                {
+                    postProcessOptions.Add(PostProcessingOptions.PressClips);
+                }
                 var articlesComponent = new ArticlesModel( response, ArticleConversionManger )
                                             {
                                                 ID = RandomKeyGenerator.GetRandomKey(4, RandomKeyGenerator.CharacterSet.Numeric),
@@ -89,7 +95,7 @@ namespace DowJones.Web.Mvc.Search.Controllers
                                                 ShowPostProcessing = true,
                                                 ShowSourceLinks = true,
                                                 ShowAuthorLinks = true,
-                                                ShowPressClip = UserContext.Principle.CoreServices.AlertsService.HasPressClipsEnabled
+                                                PostProcessingOptions = postProcessOptions,
                                             };
                 return ViewComponent(articlesComponent);
             }

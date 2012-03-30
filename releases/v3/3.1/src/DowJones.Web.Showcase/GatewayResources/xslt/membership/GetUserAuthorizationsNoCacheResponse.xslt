@@ -601,9 +601,9 @@
   </xsl:template>
 
   <xsl:template match="DULINK">
-    <duLinkBuilder>
+    <duLink>
       <xsl:value-of select="."/>
-    </duLinkBuilder>
+    </duLink>
   </xsl:template>
 
   <xsl:template match="SubDomain">

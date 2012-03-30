@@ -30,7 +30,7 @@ namespace DowJones.Web.Mvc.UI.Components.Article
     using System.Text.RegularExpressions;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 03/28/2012 01:40 PM
+    // Last Generated Timestamp: 03/29/2012 03:48 PM
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.Article.ArticleComponent.js", ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.Article.ArticleComponent))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.19368")]
     public class ArticleComponent : DowJones.Web.Mvc.UI.ViewComponentBase<DowJones.Web.Mvc.UI.Components.Models.Article.ArticleModel>
@@ -614,25 +614,25 @@ WriteLiteral("                                    <li class=\"");
 
                                            Write(item.ToString().ToLower());
 
-WriteLiteral("\" data-ref=\"");
+WriteLiteral(" action\" data-ref=\"");
 
 
-                                                                                   Write(item.ToString().ToLower());
+                                                                                          Write(item.ToString().ToLower());
 
 WriteLiteral("\"><i class=\"dj_icon dj_icon-");
 
 
-                                                                                                                                           Write(item.ToString().ToLower());
+                                                                                                                                                  Write(item.ToString().ToLower());
 
 WriteLiteral("\"></i><span data-workflow=\"");
 
 
-                                                                                                                                                                                                  Write(item.ToString().ToLower());
+                                                                                                                                                                                                         Write(item.ToString().ToLower());
 
 WriteLiteral("\">");
 
 
-                                                                                                                                                                                                                                Write(DJ.Token(item.ToString().ToLower()));
+                                                                                                                                                                                                                                       Write(DJ.Token(item.ToString().ToLower()));
 
 WriteLiteral("</span></li>\r\n");
 
@@ -647,25 +647,16 @@ WriteLiteral("                            </ul>\r\n");
                         
 
                                                                        
-                      
-                            if (Model.HasSocialNetworks)
-                            {
+                        if (Model.HasSocialNetworks)
+                        {
                             
                         Write(CreateChildControl<DowJones.Web.Mvc.UI.Components.SocialButtons.SocialButtonsComponent>(Model.SocialButtons));
 
                                                                                                                                            
-                            }
+                        }
 
-                            if (Model.HasTranslator)
-                            {
-                                if (Model.ShowReadSpeaker)
-                                {
-
-WriteLiteral("                                <span class=\"emg_translator_pipe\">&nbsp;|&nbsp;</" +
-"span>\r\n");
-
-
-                                }
+                        if (Model.HasTranslator)
+                        {
 
 WriteLiteral("                            <div id=\"articleTranslateControlsContainer\">\r\n       " +
 "                         ");
@@ -676,13 +667,13 @@ WriteLiteral("                            <div id=\"articleTranslateControlsCont
 WriteLiteral("\r\n                            </div>\r\n");
 
 
-                            }    
+                        }    
                         
 
                                                                                
                     }          
 
-WriteLiteral("                   \r\n             </div>        \r\n");
+WriteLiteral("                   \r\n            </div>        \r\n");
 
 
             

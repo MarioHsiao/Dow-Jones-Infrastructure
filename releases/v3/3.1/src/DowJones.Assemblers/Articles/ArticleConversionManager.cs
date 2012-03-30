@@ -940,6 +940,7 @@ namespace DowJones.Assemblers.Articles
             requestDTO.MetaDataController.ReturnKeywordsSet = false;
             requestDTO.MetaDataController.TimeNavigatorMode = TimeNavigatorMode.None;      
             // add all the search collections to the search.
+            requestDTO.SearchCollectionCollection.Clear();
             requestDTO.SearchCollectionCollection.AddRange(Enum.GetValues(typeof(SearchCollection)).Cast<SearchCollection>()); 
             
             var response = _manager.PerformAccessionNumberSearch<PerformContentSearchRequest, PerformContentSearchResponse>(requestDTO);

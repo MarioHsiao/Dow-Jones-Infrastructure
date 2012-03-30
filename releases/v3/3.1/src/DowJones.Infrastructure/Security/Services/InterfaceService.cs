@@ -223,7 +223,7 @@ namespace DowJones.Security.Services
             IsDowJonesInsider = _matrixInterfaceService.insider != "OFF";
             IsMyDowJonesFactiva = _matrixInterfaceService.IsMyDJFactivaEnabled;
             IsAllowMobileCookieEmailLinkDA = _matrixInterfaceService.mcemail != "OFF";
-            //TODO: NO duLinkBuilder IN MATRIXINTERFACESERVICE
+            IsDULinkEnabled = _matrixInterfaceService.duLink != "OFF";
             IsTranslateArticleAllowed = _matrixInterfaceService.IsTranslateDAEnabled;
             //TODO: NO pageMonitor IN MATRIXINTERFACESERVICE
             //TODO: NO subDomianing IN MATRIXINTERFACESERVICE

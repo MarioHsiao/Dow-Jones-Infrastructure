@@ -184,6 +184,10 @@ namespace DowJones.Exceptions
         public const long SocialMediaBackendServerError = 585603;
         public const long SocialMediaBackendDeserializationError = 585604;
 
+        // General ERROR 585611 - 585650
+        public const long InvalidDataRequest = 585611;
+
+
         #endregion
 
         private static readonly ILog Log = LogManager.GetLogger(typeof(DowJonesUtilitiesException));

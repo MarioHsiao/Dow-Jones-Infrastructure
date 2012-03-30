@@ -4,7 +4,6 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-
 using System;
 using DowJones.Ajax;
 using DowJones.Ajax.HeadlineList;
@@ -178,6 +177,11 @@ namespace DowJones.Assemblers.Headlines
                 if (!headline.HasBeenFound && IncludeInvalidHeadlines)
                 {
                     _result.resultSet.headlines.Add(new HeadlineInfo(headline.AccessionNumber, ++i));
+                    continue;
+                }
+
+                if (!headline.HasBeenFound)
+                {
                     continue;
                 }
 

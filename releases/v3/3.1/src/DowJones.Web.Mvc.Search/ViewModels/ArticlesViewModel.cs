@@ -10,6 +10,7 @@ using System.Runtime.InteropServices;
 using DowJones.Assemblers.Articles;
 using DowJones.Web.Mvc.UI;
 using DowJones.Web.Mvc.UI.Components.Article;
+using DowJones.Web.Mvc.UI.Components.Models;
 using DowJones.Web.Mvc.UI.Components.Models.Article;
 using Factiva.Gateway.Messages.Archive.V2_0;
 
@@ -22,18 +23,12 @@ namespace DowJones.Web.Mvc.Search.ViewModels
     public class ArticlesModel : ViewComponentModel
     {
         private DisplayOptions _articleDisplayOptions = DisplayOptions.Full;
-        private bool showPostProcessing;
-
-        /// <summary>
-        /// Gets or sets a value indicating whether ShowSourceLinks.
-        /// </summary>
-        private bool showReadSpeaker;
-
-        private bool showSocialButtons;
-        private bool showTranslator;
-        private bool showSourceLinks;
-        private bool showAuthorLinks;
-        private bool showPressClip;
+        private bool _showPostProcessing;
+        private bool _showSocialButtons;
+        private bool _showTranslator;
+        private bool _showSourceLinks;
+        private bool _showAuthorLinks;
+        private IEnumerable<PostProcessingOptions> _postProcessingOptions;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ArticlesModel"/> class.
@@ -60,25 +55,9 @@ namespace DowJones.Web.Mvc.Search.ViewModels
 
         public IList<ArticleModel> ArticleModels { get; set; }
 
-        public bool ShowReadSpeaker
-        {
-            get { return showReadSpeaker; }
-            set
-            {
-                if (ArticleModels.Count > 0)
-                {
-                    foreach (var articleModel in ArticleModels)
-                    {
-                        articleModel.ShowReadSpeaker = value;
-                    }
-                }
-                showReadSpeaker = value;
-            }
-        }
-
         public bool ShowSourceLinks
         {
-            get { return showSourceLinks; }
+            get { return _showSourceLinks; }
             set
             {
                 if( ArticleModels.Count > 0 )
@@ -88,7 +67,7 @@ namespace DowJones.Web.Mvc.Search.ViewModels
                         articleModel.ShowSourceLinks = value;
                     }
                 }
-                showSourceLinks = value;
+                _showSourceLinks = value;
             }
         }
 
@@ -96,7 +75,7 @@ namespace DowJones.Web.Mvc.Search.ViewModels
         {
             get
             {
-                return showAuthorLinks;
+                return _showAuthorLinks;
             }
             set
             {
@@ -107,13 +86,13 @@ namespace DowJones.Web.Mvc.Search.ViewModels
                         articleModel.ShowAuthorLinks = value;
                     }
                 }
-                showAuthorLinks = value;
+                _showAuthorLinks = value;
             }
         }
 
         public bool ShowSocialButtons
         {
-            get { return showSocialButtons; }
+            get { return _showSocialButtons; }
             set
             {
                 if (ArticleModels.Count > 0)
@@ -123,13 +102,13 @@ namespace DowJones.Web.Mvc.Search.ViewModels
                         articleModel.ShowSocialButtons = value;
                     }
                 }
-                showSocialButtons = value;
+                _showSocialButtons = value;
             }
         }
 
         public bool ShowTranslator
         {
-            get { return showTranslator; }
+            get { return _showTranslator; }
             set
             {
                 if (ArticleModels.Count > 0)
@@ -139,13 +118,13 @@ namespace DowJones.Web.Mvc.Search.ViewModels
                         articleModel.ShowTranslator = value;
                     }
                 }
-                showTranslator = value;
+                _showTranslator = value;
             }
         }
 
         public bool ShowPostProcessing
         {
-            get { return showPostProcessing; }
+            get { return _showPostProcessing; }
             set
             {
                 if (ArticleModels.Count > 0)
@@ -155,23 +134,30 @@ namespace DowJones.Web.Mvc.Search.ViewModels
                         articleModel.ShowPostProcessing = value;
                     }
                 }
-                showPostProcessing = value;
+                _showPostProcessing = value;
             }
         }
 
-        public bool ShowPressClip
+
+        /// <summary>
+        /// Gets or sets the post processing options.
+        /// </summary>
+        /// <value>
+        /// The post processing options.
+        /// </value>
+        public IEnumerable<PostProcessingOptions> PostProcessingOptions
         {
-            get { return showPressClip; }
+            get { return _postProcessingOptions; }
             set
             {
                 if (ArticleModels.Count > 0)
                 {
                     foreach (var articleModel in ArticleModels)
                     {
-                        articleModel.ShowPressClip = value;
+                        articleModel.PostProcessingOptions = value;
                     }
                 }
-                showPressClip = value;
+                _postProcessingOptions = value;
             }
         }
 
