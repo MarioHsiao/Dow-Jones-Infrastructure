@@ -19,8 +19,8 @@ namespace DowJones.Managers.Topics.Caching
 
         private const string DefaultName = "SubscribableTopics";
 
-        //public SubscribableTopicsCacheKey(Product product, ShareScopeCollection shareScopeCollection) : base(product)
-        public SubscribableTopicsCacheKey(Product product) : base(product)
+        //public SubscribableTopicsCacheKey(Product product) : base(product)
+        public SubscribableTopicsCacheKey(Product product, ShareScopeCollection shareScopeCollection) : base(product)
         {
             Name = DefaultName;
             CacheScope = DefaultCacheScope;
@@ -28,7 +28,7 @@ namespace DowJones.Managers.Topics.Caching
             CacheRefreshInterval = DefaultCacheRefreshInterval;
             CacheExiprationPolicy = DefaultCacheExiprationPolicy;
             CacheForceCacheRefresh = DefaultCacheForceCacheRefresh;
-            //ShareScopeCollection = shareScopeCollection;
+            ShareScopeCollection = shareScopeCollection;
         }
 
         [JsonProperty(PropertyName = InfrastructureCacheKeyConstants.ShareScopeCollection)]

@@ -42,8 +42,8 @@ namespace DowJones.Managers.Topics
 
             if (SubscribableTopicsCacheKey.CachingEnabled)
             {
-                //var cacheKey = new SubscribableTopicsCacheKey(product, queriesShareScopeCollection)
-                var cacheKey = new SubscribableTopicsCacheKey(product)
+                //var cacheKey = new SubscribableTopicsCacheKey(product)
+                var cacheKey = new SubscribableTopicsCacheKey(product, queriesShareScopeCollection)
                 {
                     CacheForceCacheRefresh = forceCacheRefresh
                 };
