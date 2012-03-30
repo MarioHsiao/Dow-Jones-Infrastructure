@@ -245,7 +245,7 @@
 
                 if (this.options.enableBrowse) {
                     //Add the browse template inside the tabContent
-                	this.$tabContent.eq(1).prepend(this.templates.sourceBrowse({ sourceFilters: this.data.sourceFilters }));
+                	this.$tabContent.eq(1).prepend(this.templates.sourceBrowse({ additionalSourceFilters: this.data.additionalSourceFilters }));
 
                     var $selectBoxAlt = this.$tabContent.eq(1).children(this.selectors.selectMenuContainer);
                     var $selectMenus = $selectBoxAlt.children(this.selectors.selectMenu);

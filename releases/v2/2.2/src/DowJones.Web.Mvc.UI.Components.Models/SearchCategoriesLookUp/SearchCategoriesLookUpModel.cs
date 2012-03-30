@@ -51,8 +51,8 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 		/// <summary>
 		/// Gets or Sets the Source Filters
 		/// </summary>
-		[JsonProperty("sourceFilters")]
-		public List<CodeDesc> SourceFilters { get; set; }
+		[JsonProperty("additionalSourceFilters")]
+		public List<CodeDesc> AdditionalSourceFilters { get; set; }
     }
 
     public class SearchCategoriesLookUpModel : ViewComponentModel
