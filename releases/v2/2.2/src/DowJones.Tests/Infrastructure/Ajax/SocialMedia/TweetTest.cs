@@ -89,7 +89,7 @@ namespace DowJones
 												}
 				}
 			};
-			const string Expected = "RT @<a href=\"http://twitter.com/sethtecheditor\" data-id=\"235276899\" data-screen-name=\"sethtecheditor\" rel=\"nofollow\">sethtecheditor</a>: A New Era Begins at @<a href=\"http://twitter.com/AccountingToday\" data-id=\"21792426\" data-screen-name=\"AccountingToday\" rel=\"nofollow\">AccountingToday</a>, Please Welcome Our New Editor in Chief Daniel Hood";
+			const string Expected = "RT @<a href=\"http://twitter.com/sethtecheditor\" target=\"_blank\" data-id=\"235276899\" data-screen-name=\"sethtecheditor\" rel=\"nofollow\">sethtecheditor</a>: A New Era Begins at @<a href=\"http://twitter.com/AccountingToday\" target=\"_blank\" data-id=\"21792426\" data-screen-name=\"AccountingToday\" rel=\"nofollow\">AccountingToday</a>, Please Welcome Our New Editor in Chief Daniel Hood";
 
 			Assert.AreEqual(Expected, target.Html);
 		}
@@ -165,7 +165,7 @@ namespace DowJones
 					}
 				}
 			};
-			const string Expected = "New @<a href=\"http://twitter.com/BankThink\" data-id=\"37945091\" data-screen-name=\"BankThink\" rel=\"nofollow\">BankThink</a> <a href=\"http://twitter.com/search?q=%23Homeowners\" title=\"#Homeowners\" rel=\"nofollow\">#Homeowners</a> serviced by <a href=\"http://twitter.com/search?q=%23Litton\" title=\"#Litton\" rel=\"nofollow\">#Litton</a> were Goldman Sachs' other \"Muppets,\" writes Joel Sucher. $GS <a href=\"http://twitter.com/search?q=%23GregSmith\" title=\"#GregSmith\" rel=\"nofollow\">#GregSmith</a> <a href=\"http://t.co/AIO3DiiG\" target=\"_blank\" data-expanded-url=\"http://bit.ly/wBlc7j\" rel=\"nofollow\">bit.ly/wBlc7j</a>";
+			const string Expected = "New @<a href=\"http://twitter.com/BankThink\" target=\"_blank\" data-id=\"37945091\" data-screen-name=\"BankThink\" rel=\"nofollow\">BankThink</a> <a href=\"http://twitter.com/search?q=%23Homeowners\" target=\"_blank\" title=\"#Homeowners\" rel=\"nofollow\">#Homeowners</a> serviced by <a href=\"http://twitter.com/search?q=%23Litton\" target=\"_blank\" title=\"#Litton\" rel=\"nofollow\">#Litton</a> were Goldman Sachs' other \"Muppets,\" writes Joel Sucher. $GS <a href=\"http://twitter.com/search?q=%23GregSmith\" target=\"_blank\" title=\"#GregSmith\" rel=\"nofollow\">#GregSmith</a> <a href=\"http://t.co/AIO3DiiG\" target=\"_blank\" data-expanded-url=\"http://bit.ly/wBlc7j\" rel=\"nofollow\">bit.ly/wBlc7j</a>";
 
 			Assert.AreEqual(Expected, target.Html);
 		}

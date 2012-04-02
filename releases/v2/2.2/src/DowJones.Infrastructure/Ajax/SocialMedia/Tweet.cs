@@ -69,7 +69,7 @@ namespace DowJones.Ajax.SocialMedia
 				// account for case insensitity and @ sign
 				var value = text.Substring(mention.StartIndex+1, mention.EndIndex - ( mention.StartIndex + 1));
 				html = html.Replace("@" + value,
-					string.Format("@<a href=\"http://twitter.com/{0}\" data-id=\"{1}\" data-screen-name=\"{0}\" rel=\"nofollow\">{0}</a>",
+					string.Format("@<a href=\"http://twitter.com/{0}\" target=\"_blank\" data-id=\"{1}\" data-screen-name=\"{0}\" rel=\"nofollow\">{0}</a>",
 									value, mention.Id));
     		}
 
@@ -79,7 +79,7 @@ namespace DowJones.Ajax.SocialMedia
 				// account for case insensitity 
 				var value = text.Substring(hashtag.StartIndex, hashtag.EndIndex - hashtag.StartIndex);
 				html = html.Replace(value,
-					string.Format("<a href=\"http://twitter.com/search?q=%23{1}\" title=\"{0}\" rel=\"nofollow\">{0}</a>",
+					string.Format("<a href=\"http://twitter.com/search?q=%23{1}\" target=\"_blank\" title=\"{0}\" rel=\"nofollow\">{0}</a>",
 									value, hashtag.Text));
 			}
 
