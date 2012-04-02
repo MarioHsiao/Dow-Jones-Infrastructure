@@ -57,9 +57,9 @@
 			<option value="100"@s[5]>100 @Html.DJ().Token("perPage")</option>
 		</select>
 
-		<div class="paging-controls">
-			<span class="dj_selected-entities-count"></span>
-			<span class="dj_clear-all"></span>
+		<div class="dj_list-select-count hide">
+			<span class="count"></span> @Html.DJ().Token("cmalSelectionPlural")
+			<span class="dj_clear-all-btn">@Html.DJ().Token("cmalClearAll")</span>
 		</div>
 
 		<ul class="paging-controls">

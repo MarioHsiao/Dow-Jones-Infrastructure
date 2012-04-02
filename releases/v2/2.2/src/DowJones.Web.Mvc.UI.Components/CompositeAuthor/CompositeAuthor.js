@@ -15,15 +15,16 @@
 			gotoPage: ".entity-list-current-page",
 			pager: ".entity-list-pager",
 			pageSizeSelector: ".entity-list-select-page-size",
-			// 2012-01-24: checkbox ALL and gear menu are moved to the composite component.;
 			checkboxAll: "input:checkbox[name='dj_author-select-all']",
 			checkboxAuthors: "td input:checkbox",
 			gearMenu: "span.fi.fi_gear",
 			actionsMenu: ".actionsMenu",
-			selectedAuthorIds: "#selected_author_ids"
+			selectedAuthorIds: "#selected_author_ids",
+			unselectAllCheckboxes: ".dj_clear-all-btn",
+			unselectAllCheckboxesConfirmed: ".dj_btn.dj_btn-green.export.dj_confirm-unselect-checkboxes"
 		},
 
-		constants: { // 2012-01-24: checkbox ALL and gear menu are moved to the composite component.;
+		constants: {
 			addToContactListMenuItem: "div.label[data-action='contact-list']",
 			createAlertMenuItem: "div.label[data-action='create-alert']",
 			printMenuItem: "div.label[data-action='print']",
@@ -64,7 +65,6 @@
 			this.$currentSortOrder = ctx.find(this.selectors.currentSortOrder);
 			this.$selectedAuthorIds = ctx.find(this.selectors.selectedAuthorIds);
 			this.$gotoPage = ctx.find(this.selectors.gotoPage);
-			// 2012-01-24: checkbox ALL and gear menu are moved to the composite component.;
 			this.$checkboxAuthors = ctx.find(this.selectors.checkboxAuthors);
 			this.$gearMenu = ctx.find(this.selectors.gearMenu);
 			this.$actionsMenu = ctx.find(this.selectors.actionsMenu);
@@ -80,20 +80,43 @@
 					idarr = self.$selectedAuthorIds.val().split(",");
 				}
 
-				if (idarr.length == 0) {
-					$(".dj_selected-entities-count").html("");
-					$(".dj_clear-all").html("");
-				}
-				else if (idarr.length == 1) {
-					$(".dj_selected-entities-count").html("1 " + "<%=Token('cmalSelectionSingle')%>");
-					$(".dj_clear-all").html("<%=Token('cmalClearAll')%>");
+				if (idarr.length < 2) {
+					if ($(".dj_list-select-count").hasClass("hide") == false) {
+						$(".dj_list-select-count").addClass("hide");
+					}
+
+					$(".dj_list-select-count span.count").html("");
 				}
 				else {
-					$(".dj_selected-entities-count").html(idarr.length + " " + "<%=Token('cmalSelectionPlural')%>");
-					$(".dj_clear-all").html("<%=Token('cmalClearAll')%>");
+					if ($(".dj_list-select-count").hasClass("hide") == true) {
+						$(".dj_list-select-count").removeClass("hide");
+					}
+
+					$(".dj_list-select-count span.count").html(idarr.length);
 				}
 			});
 
+			// unselect all;
+			this.$element.delegate(this.selectors.unselectAllCheckboxes, "click", function () {
+				$.dj.modal({
+					title: $("#dj_clear_selection .dj_modal-title").clone(true),
+					content: $("#dj_clear_selection .dj_modal-content").clone(true),
+					minWidth: 460,
+					maxWidth: 460,
+					minHeight: 180,
+					maxHeight: 180,
+					modalClass: 'dj_modal-comm-field',
+					jscrollpaneEnabled: false
+				});
+				$(self.selectors.unselectAllCheckboxesConfirmed).click(function () {
+					self.$selectedAuthorIds.val("");
+					self.$checkboxAuthors.attr("checked", false);
+					$(self.selectors.checkboxAll).attr("checked", false);
+					$dj.publish("entityRowSelect.dj.AuthorList", {});
+					$.modal.close();
+					alert("<%= Token('cmalSelectionsHaveBeenCleared') %>.");
+				});
+			});
 
 			// first | prev || next | last page navigation;
 			this.$element.delegate(this.selectors.navigation, "click", function () {
@@ -199,7 +222,6 @@
 			});
 
 			// BEGIN CHECKBOX ALL & GEAR MENU //
-			// 2012-01-24: checkbox ALL and gear menu are moved to the composite component.;
 			// Check/uncheck all checkboxes;
 			this.$element.delegate(this.selectors.checkboxAll, "change", function () {
 				var $this = $(this);
@@ -239,12 +261,6 @@
 			this.$actionsMenu.delegate('.label', 'click', function () {
 				if ($(this).parent().hasClass("disabled")) return;
 				var actionValue = $(this).data("action");
-				if (actionValue == "unselect-all") {
-					self.$selectedAuthorIds.val("");
-					self.$checkboxAuthors.attr("checked", false);
-					$(self.selectors.checkboxAll).attr("checked", false);
-					return;
-				}
 
 				if (actionValue == "export-all") {
 					if (self.options.totalResultCount > self.constants.maxAuthorsForActionNoEmail) {
@@ -335,7 +351,6 @@
 					$dj.publish('action.dj.CompositeAuthor', { action: actionValue, selectedEntityIds: selectedIds });
 				}
 			}).appendTo(document.body);
-
 			// END CHECKBOX ALL & GEAR MENU //
 		},
 
@@ -385,7 +400,6 @@
 				this.$actionsMenu.find(self.constants.deleteMenuItem).parent().addClass("disabled");
 				this.$actionsMenu.find(self.constants.emailMenuItem).parent().addClass("disabled");
 				this.$actionsMenu.find(self.constants.emailAllMenuItem).parent().removeClass("disabled");
-				this.$actionsMenu.find(self.constants.unselectAllMenuItem).parent().addClass("disabled");
 			}
 			else {
 
@@ -398,7 +412,6 @@
 				this.$actionsMenu.find(self.constants.deleteMenuItem).parent().removeClass("disabled");
 				this.$actionsMenu.find(self.constants.emailMenuItem).parent().removeClass("disabled");
 				this.$actionsMenu.find(self.constants.emailAllMenuItem).parent().removeClass("disabled");
-				this.$actionsMenu.find(self.constants.unselectAllMenuItem).parent().removeClass("disabled");
 			}
 
 			$(document).unbind('mousedown.Actions').bind('mousedown.Actions').click($dj.delegate(this, function () {

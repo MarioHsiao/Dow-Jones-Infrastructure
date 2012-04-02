@@ -17,14 +17,16 @@ DJ.UI.AuthorList plugin
 			authorName: ".author-name-selector",
 			authorArticles: ".author-articles-selector",
 			authorOutlet: ".author-outlet-selector",
-			selectedAuthorIds: "#selected_author_ids"
+			selectedAuthorIds: "#selected_author_ids",
+			expandHiddenCellItems: ".dj_show-hide-cell-items"
 		},
 
 		constants: {
 			otherOutletRow: "outlet-other",
 			hideClass: "hide",
 			expandableClass: "dj_collapsable-icon",
-			expandedClass: "collapsed"
+			expandedClass: "collapsed",
+			expandableCellItems: "div.dj_hidden-cell-item"
 		},
 
 		events: {
@@ -51,6 +53,7 @@ DJ.UI.AuthorList plugin
 			this.$currentSortBy = ctx.find(this.selectors.currentSortBy);
 			this.$currentSortOrder = ctx.find(this.selectors.currentSortOrder);
 			this.$selectedAuthorIds = ctx.find(this.selectors.selectedAuthorIds);
+			this.$expandHiddenCellItems = ctx.find(this.selectors.expandHiddenCellItems);
 		},
 
 		_initializeEventHandlers: function () {
@@ -74,6 +77,24 @@ DJ.UI.AuthorList plugin
 
 				return false;
 			});
+
+			// Show/hide hidden cell items;
+			$container.delegate(self.selectors.expandHiddenCellItems, "click", function () {
+				var $this = $(this);
+				var td = $this.parentsUntil("tr");
+				td.find(self.constants.expandableCellItems).toggleClass("hide");
+
+				if ($this.attr("more") == "true") {
+					$this.attr("more", "false");
+					$this.html("<%= Token('cmalHideCellItems') %>");
+				}
+				else {
+					$this.attr("more", "true");
+					$this.html("<%= Token('cmalShowCellItems') %>");
+				}
+				return false;
+			});
+
 
 			// row checkbox on change; save author ids in a hidden input;
 			$container.delegate(self.selectors.checkboxAuthors, "change", function () {
