@@ -87,7 +87,7 @@
     <Compile Include="Caching\ICacheKey.cs" />
     <Compile Include="Common\AbstractTag.cs" />
     <Compile Include="Common\AccessQualifier.cs" />
-    <Compile Include="Common\AccessScope.cs" />
+    <Compile Include="Common\ShareType.cs" />
     <Compile Include="Common\CacheState.cs" />
     <Compile Include="Common\CategoryInfo.cs" />
     <Compile Include="Common\DataPointFrequency.cs" />
@@ -107,7 +107,7 @@
     <Compile Include="Common\NewsEntity.cs" />
     <Compile Include="Common\NewsEntityNewsVolumeVariation.cs" />
     <Compile Include="Mappers\AccessQualifierMapper.cs" />
-    <Compile Include="Mappers\AccessScopeShareTypeMapper.cs" />
+    <Compile Include="Mappers\ShareTypeMapper.cs" />
     <Compile Include="Pages\PageRef.cs" />
     <Compile Include="Pages\PageListCacheKey.cs" />
     <Compile Include="Pages\PageAssetsManager.cs" />

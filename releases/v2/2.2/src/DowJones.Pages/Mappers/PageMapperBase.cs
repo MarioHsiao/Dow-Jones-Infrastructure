@@ -36,7 +36,7 @@ namespace DowJones.Pages.Mappers
             {
                 AccessQualifier = Mapper.Map<AccessQualifier>(pageQualifier),
                 // TODO: Map AccessScope
-                AccessScope = hasShareProperties ? Mapper.Map<AccessScope>(pageSharePropertiesResponse.ShareType) : AccessScope.OwnedByUser,
+                ShareType = hasShareProperties ? Mapper.Map<ShareType>(pageSharePropertiesResponse.ShareType) : ShareType.OwnedByUser,
 				AssignedScope = hasShareProperties ? Mapper.Map<ShareScope>(pageSharePropertiesResponse.AssignedScope) : ShareScope.Personal,
                 CreatedDate = DateTimeFormatter.ConvertToUtc(pageProperties.CreatedDate),
                 Description = pageProperties.Description,

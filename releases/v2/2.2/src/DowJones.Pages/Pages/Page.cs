@@ -17,8 +17,8 @@ namespace DowJones.Pages
         [DataMember(Name = "accessQualifier")]
         public virtual AccessQualifier AccessQualifier { get; set; }
 
-        [DataMember(Name = "accessScope")]
-        public virtual AccessScope AccessScope { get; set; }
+        [DataMember(Name = "shareType")]
+        public virtual ShareType ShareType { get; set; }
 
 		[DataMember(Name = "assignedScope")]
 		public virtual ShareScope AssignedScope { get; set; }
@@ -59,9 +59,9 @@ namespace DowJones.Pages
                 if (_isAvailable != null)
                     return _isAvailable.Value;
                 else 
-                    return AccessScope == AccessScope.AssignedToUser
-                        || AccessScope == AccessScope.OwnedByUser 
-                        || AccessScope == AccessScope.SubscribedByUser;
+                    return ShareType == ShareType.AssignedToUser
+                        || ShareType == ShareType.OwnedByUser 
+                        || ShareType == ShareType.SubscribedByUser;
             }
             set { _isAvailable = value; }
         }
