@@ -39,10 +39,6 @@
 			</div>
 		</li>
  }
-	@if (!Model.Tweets.Any())
- {
-		<li class="dj_tweet-item dj_noResults" title="">@Html.DJ().Token("noResults")</li>
- }
 </ul>
 <div class="dj_more-tweets dj_old-tweets " style="z-index: 15;">
 	<span>@Html.DJ().Token("loadMoreTweets")</span></div>
