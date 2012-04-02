@@ -61,9 +61,11 @@
         <div class="check-filters">
 			<input type="checkbox" class="duplicates" @(Model.Data.Duplicates ? "checked" : "") />
 			<label>@Html.DJ().Token("duplicatesOn")</label>
-
-			<input type="checkbox" class="socialMedia" @(Model.Data.IncludeSocialMedia ? "checked" : "") />
-			<label>@Html.DJ().Token("includeSocialMedia")</label>
+            @* sm:033712 Part of Wave 1 we need to remove this check box and ALWAYS searchUncodedContent.
+            Backend Search will drop the industry region and subject from search for uncoded content (when adding rst=tbypass
+            *@
+			@*<input type="checkbox" class="socialMedia" @(Model.Data.IncludeSocialMedia ? "checked" : "") />
+			<label>@Html.DJ().Token("includeSocialMedia")</label>*@
 		</div>
     </div>
 </div>

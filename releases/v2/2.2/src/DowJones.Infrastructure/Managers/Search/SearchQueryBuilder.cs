@@ -303,6 +303,11 @@ namespace DowJones.Managers.Search
                 {
                     search.StructuredSearch.Query.Dates = query.Dates;
                 }
+
+                if (contextQuery.StructuredSearch.Linguistics != null)
+                {
+                    search.StructuredSearch.Linguistics = contextQuery.StructuredSearch.Linguistics;
+                }
                 search.StructuredSearch.Query.SearchUncodedContent = query.SearchUncodedContent;
             }
 
