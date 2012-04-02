@@ -1474,7 +1474,7 @@
             }
             else {
 
-                if ($.trim(this.$textBox.val().length) > 3) {
+                if ($.trim(this.$textBox.val().length) > 0) {
                     this._lookUpOffset = 0;
                     this.$lookUpList.data("loaded", false);
                     this.$lookUpListContainer.slideDown(100, this._delegates.OnResize);
