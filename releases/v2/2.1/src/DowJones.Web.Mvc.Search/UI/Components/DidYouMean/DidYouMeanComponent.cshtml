@@ -1,5 +1,6 @@
 ﻿@model DowJones.Web.Mvc.Search.UI.Components.DidYouMean.DidYouMean
 @using System.Web.Mvc.Html
+@using DowJones.Extensions;
 @ClientPlugin dj_DidYouMean
 @ScriptResource RelativeResourceName=DidYouMean.js
 @{ CssClass = "dj_DidYouMean dj_did-you-mean"; }
@@ -13,7 +14,7 @@
         <li class="recognized-entity-group" data-category="@group.Category">
             <span class="section-category">@group.Name:</span>
             <ul>
-            @foreach (var item in group)
+            @foreach (var item in group.Distinct(i=>i.Code))
             {
                 <li>
                     <input class="recognized-entity" type="checkbox" data-code="@item.Code" data-searchtext="@item.SearchTerm" data-name="@item.Name"/>
