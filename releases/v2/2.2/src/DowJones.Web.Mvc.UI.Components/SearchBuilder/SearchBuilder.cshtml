@@ -57,7 +57,7 @@
 			<label>@Html.DJ().Token("to")</label>
 			<input type="text" class="datepicker" maxlength="10" value="@Model.FormattedEndDate" />
 		</div>
-        <span class="dj_btn exclude dj_btn-rounded-square dj_btn-grey alt-text @(Model.Data.IncludeSocialMedia?"disabled-btn":"")">@Html.DJ().Token("exclude") (<span>@((!Model.Data.IncludeSocialMedia && Model.Data.ExclusionFilter != null) ? Model.Data.ExclusionFilter.Count().ToString() : "0")</span>)</span>
+        <span class="dj_btn exclude dj_btn-rounded-square dj_btn-grey alt-text">@Html.DJ().Token("exclude") (<span>@(Model.Data.ExclusionFilter != null ? Model.Data.ExclusionFilter.Count().ToString() : "0")</span>)</span>
         <div class="check-filters">
 			<input type="checkbox" class="duplicates" @(Model.Data.Duplicates ? "checked" : "") />
 			<label>@Html.DJ().Token("duplicatesOn")</label>

@@ -43,7 +43,6 @@
             cancelBtn: 'span.dj_btn-drk-gray',
             checkFilters: 'div.check-filters',
             duplicate: 'input.duplicates',
-            socialMedia: 'input.socialMedia',
             grayBtn: 'span.dj_btn-drk-grey',
             newsFilter: '.news-filter',
             filterList: '.filter-list',
@@ -132,7 +131,10 @@
             Or: "2"
         },
 
-        channelFilters: ["company", "author", "executive", "subject", "industry", "region", "source"],
+        //Please do not change the order of filters, it is required to be in this order as per biz
+        sortedChannelFilters: ['source', 'author', 'executive', 'company', 'subject', 'industry', 'region', 'language'],
+
+        channelFilters: ['company', 'author', 'executive', 'subject', 'industry', 'region', 'source', 'language'],
 
         init: function (element, meta) {
             var $meta = $.extend({ name: "SearchBuilder" }, meta);
@@ -154,7 +156,6 @@
             this._sbSearchBoxWMText = "<%= Token('searchBuilderAutoCompleteText') %>";
 
             this._dummyLookUpC = $(this.selectors.dummyLookUp, this.$element).children(this.selectors.searchCategoriesLookUp).findComponent(DJ.UI.SearchCategoriesLookUp);
-            //this._dummyLookUpC = $("#" + this.childComponents[(this.childComponents.length > 1)?1:0].id).findComponent(DJ.UI.SearchCategoriesLookUp);
         },
 
         _initializeDelegates: function () {
@@ -180,7 +181,6 @@
             var $checkFilters = searchCriteriaChildrens.filter(this.selectors.checkFilters);
 
             this.$duplicate = $checkFilters.children(this.selectors.duplicate);
-            this.$socialMedia = $checkFilters.children(this.selectors.socialMedia);
 
             this.$filtersList = elementChildrens.filter(this.selectors.filtersContainer).children(this.selectors.filtersList);
             this.$resetBtn = elementChildrens.filter(this.selectors.filtersContainer).prev().children(this.selectors.grayBtn);
@@ -257,11 +257,6 @@
 
             //Exclusions
             this.$excludeBtn.click($dj.delegate(this, this._showExclusions));
-
-            //Social Media
-            this.$socialMedia.click(function () {
-                me._disableSocialMediaCats(this.checked);
-            }).attr('id', elementId + '_socialMedia').next().attr('for', elementId + '_socialMedia');
 
             //Duplicate
             this.$duplicate.attr('id', elementId + '_duplicate').next().attr('for', elementId + '_duplicate');
@@ -374,36 +369,6 @@
             this._bindFilters({ include: [{ code: "alllang", desc: "<%= Token('allLanguages') %>"}] }, "Language");
         },
 
-        _disableSocialMediaCats: function (includeSocialMedia) {
-            var $filterItems = this.$filtersList.children();
-            if (includeSocialMedia) {
-                //Disable the categories
-                var dFT = ["Industry", "Region", "Subject"];
-                var $filterItems = this.$filtersList.children(), $filterItem;
-                for (var i = 0; i < dFT.length; i++) {
-                    $filterItem = $filterItems.filter("li[data-type='" + dFT[i] + "']").removeClass("expanded").addClass("disabled")
-                              .children(this.selectors.pillListWrap).children();
-                    $filterItem.eq(0).empty().append(this._addPill);
-                    $filterItem.eq(1).hide().children(":gt(0)").remove();
-                }
-
-                //Disable Exclude button
-                this.$excludeBtn.addClass("disabled-btn").data("excludedItems", []).find("span").html("0");
-
-                //Disable News Filter filters
-                if (this.$newsFilter.length > 0) {
-                    this._nFC.removeSocialMediaFilters();
-                }
-            }
-            else {
-                //Enable the categories
-                $filterItems.removeClass("disabled");
-
-                //Enable Exclude button
-                this.$excludeBtn.removeClass("disabled-btn");
-            }
-        },
-
         _showExclusions: function () {
 
             if (this.$excludeBtn.hasClass("disabled-btn")) {
@@ -411,21 +376,25 @@
             }
 
             if (!this.$exclusionsContainer) {
-                this.$exclusionsContainer = this._getModal("exclusionsContainer",
-                                                    $dj.delegate(this, this._onExclusionsDoneClick),
-                                                    $dj.delegate(this, this._closeModal, '$exclusionsContainer'),
-                                                    "<%= Token('exclusions') %>", "<%= Token('cancel') %>");
+                this.$exclusionsContainer = this._getModal({
+                    idSuffix: "exclusionsContainer",
+                    doneHandler: $dj.delegate(this, this._onExclusionsDoneClick),
+                    cancelHandler: $dj.delegate(this, this._closeModal, '$exclusionsContainer'),
+                    title: "<%= Token('exclusions') %>",
+                    cancelText: "<%= Token('cancel') %>",
+                    showFooter: true
+                });
 
                 //Create exclusion content
                 this.$exclusionsContainer.addClass('dj_exclude').children(":last").children().children(this.selectors.modalContent)
-            .prepend(this.templates.exclusions({ exclusions: this.data.exclusionsList, idPrefix: this.$element.attr('id') }));
+                .prepend(this.templates.exclusions({ exclusions: this.data.exclusionsList, idPrefix: this.$element.attr('id') }));
             }
             var excludedItems = this.$excludeBtn.data("excludedItems");
             if (excludedItems) {
                 this.$exclusionsContainer.children(":last").children().children(this.selectors.modalContent)
-            .find("input").attr("checked", function () {
-                return ($.inArray(($(this).val()), excludedItems) != -1);
-            });
+                .find("input").attr("checked", function () {
+                    return ($.inArray(($(this).val()), excludedItems) != -1);
+                });
             }
             this.$exclusionsContainer.overlay({ closeOnEsc: true });
         },
@@ -455,6 +424,7 @@
 
                 if (isSource) {
                     data.sourceGroup = this.data.sourceGroup;
+                    data.sourceFilters = this.data.additionalSourceFilters || [];
                 }
 
                 data.filters = this._getFilters(filterType);
@@ -469,73 +439,84 @@
                         productId: this.options.productId,
                         enableSaveList: true,
                         enableBrowse: true,
-                        enableSourceList: true
+                        enableSourceList: true,
+                        showFooter: true
                     }, data: data
                 });
 
-                //On Resize
-                $dj.subscribe(scLC.events.onResize, function () { $().overlay.rePosition(); });
+                if (!this.subscribedToLookUpEvents) {
+                    //On Resize
+                    $dj.subscribe(scLC.events.onResize, function () { $().overlay.rePosition(); });
+                    //On Done Click
+                    $dj.subscribe(scLC.events.onDoneClick, $dj.delegate(this, this._onLookUpDoneClick));
+
+                    this.subscribedToLookUpEvents = true;
+                }
+
             }
             else {
                 //Find the component and set the data
                 scLC = $("#" + lookUpId).findComponent(DJ.UI.SearchCategoriesLookUp);
                 //Bind the filters
                 scLC.bindFilters(this._getFilters(filterType));
-                //Set the LookUp tab as active
-                scLC.setActiveTab(0);
             }
 
-            //Hide all the search lookUps in the container
-            this.$lookUpsContainer.children(":last").children().children(this.selectors.modalContent)
-            .children(this.selectors.searchCategoriesLookUp).addClass('hidden');
+            //Set the LookUp tab as active
+            this._setLookUpActiveTab(filterType, scLC);
 
             //Set the title
             this.$lookUpsContainer.children(':first').children("h3").html(title);
 
-            //Show the current search lookup
-            $("#" + lookUpId).removeClass('hidden');
+            //Show the current search lookup and hide all other
+            $("#" + lookUpId).removeClass('hidden').siblings().addClass('hidden');
 
-            this.$lookUpsContainer.data("lookUpId", lookUpId).data("filterType", filterType)
-            .overlay({
+            this.$lookUpsContainer.overlay({
                 closeOnEsc: true,
                 onShow: $dj.delegate(this, function () { this._onLookUpShow(filterType, scLC, lookUpId); })
             });
         },
 
+        _setLookUpActiveTab: function (filterType, scLC) {
+            switch (filterType) {
+                case this.filterDetails[this.filterType.Language].name: break;
+                case this.filterDetails[this.filterType.Subject].name:
+                case this.filterDetails[this.filterType.Region].name:
+                    scLC.setActiveTab(1); //Browse tab
+                    break;
+                default:
+                    scLC.setActiveTab(0); //Lookup tab
+                    break;
+            }
+        },
+
         _onLookUpShow: function (filterType, scLC, lookUpId) {
 
-            //Hack - Only for IE7
+            //Hack - Only for IE7 to fix other lookup containers being visible even though they are hidden
             if ($.browser.msie && ($.browser.version == 7)) {
-                this.$lookUpsContainer.children(":last").children().children(this.selectors.modalContent)
-                .children(this.selectors.searchCategoriesLookUp).addClass('hidden');
-
-                //Show the current search lookup
-                $("#" + lookUpId).removeClass('hidden');
+                $("#" + lookUpId).removeClass('hidden').siblings().addClass('hidden');
             }
 
-            if (filterType != this.filterDetails[this.filterType.Language].name) {
-                scLC.focusOnTextBox();
+            switch (filterType) {
+                case this.filterDetails[this.filterType.Language].name:
+                case this.filterDetails[this.filterType.Subject].name:
+                case this.filterDetails[this.filterType.Region].name:
+                    break;
+                default:
+                    scLC.focusOnTextBox(); //Set focus on lookup textbox
+                    break;
             }
 
             scLC.updateFilterScroll();
         },
 
-        _onLookUpDoneClick: function () {
+        _onLookUpDoneClick: function (args) {
             this._closeModal('$lookUpsContainer');
-            var scLC = $("#" + this.$lookUpsContainer.data("lookUpId")).findComponent(DJ.UI.SearchCategoriesLookUp);
-            this._bindFilters(scLC.getFilters(), this.$lookUpsContainer.data("filterType"));
-        },
-
-        _onLookUpResetClick: function () {
-            var scLC = $("#" + this.$lookUpsContainer.data("lookUpId")).findComponent(DJ.UI.SearchCategoriesLookUp);
-            scLC.clearFilters();
+            this._bindFilters(args.filters, this.filterDetails[args.filterType].name);
         },
 
         _getLookUpView: function (lookUpId) {
             if (!this.$lookUpsContainer) {
-                this.$lookUpsContainer = this._getModal("lookUpsContainer",
-                                            $dj.delegate(this, this._onLookUpDoneClick),
-                                            $dj.delegate(this, this._onLookUpResetClick));
+                this.$lookUpsContainer = this._getModal({ idSuffix: "lookUpsContainer" });
                 this.$lookUpsContainer.addClass("dj_lookup");
             }
 
@@ -544,31 +525,40 @@
                    .prependTo(this.$lookUpsContainer.children(":last").children().children(this.selectors.modalContent));
         },
 
-        _getModal: function (idSuffix, doneHandler, cancelHandler, title, cancelText, doneText) {
-            var id = this.$element.attr("id") + "_" + idSuffix;
+        _getModal: function (options) {
+
+            var id = this.$element.attr("id") + "_" + options.idSuffix;
 
             $(this.templates.modalDialog()).attr("id", id)
             .appendTo(this.$element);
 
             var $modal = $("#" + id);
-            var $footer = $modal.children(":last").children().children(this.selectors.modalContent).children(this.selectors.footer);
-            var $doneBtn = $footer.children(this.selectors.doneBtn);
-            var $cancelBtn = $footer.children(this.selectors.cancelBtn);
-            //Done click
-            $doneBtn.click(doneHandler);
-            //Cancel click
-            $cancelBtn.click(cancelHandler);
 
-            if (title) {
-                $modal.children(':first').children("h3").html(title);
+            if (options.title) {
+                $modal.children(':first').children("h3").html(options.title);
             }
 
-            if (doneText) {
-                $doneBtn.html(doneText);
-            }
+            var $footer = $modal.children(":last").children().children(this.selectors.modalContent).children(this.selectors.footer).show();
+            if (options.showFooter) {
+                var $doneBtn = $footer.children(this.selectors.doneBtn);
+                var $cancelBtn = $footer.children(this.selectors.cancelBtn);
+                //Done click
+                $doneBtn.click(options.doneHandler);
+                //Cancel click
+                $cancelBtn.click(options.cancelHandler);
 
-            if (cancelText) {
-                $cancelBtn.html(cancelText);
+
+
+                if (options.doneText) {
+                    $doneBtn.html(options.doneText);
+                }
+
+                if (options.cancelText) {
+                    $cancelBtn.html(options.cancelText);
+                }
+            }
+            else {
+                $footer.remove();
             }
 
             return $modal;
@@ -585,9 +575,40 @@
             }
         },
 
+        _expandAndAppendFilterItem: function (filterItem) {
+            var expandedFilterItems = this.$filtersList.children(this.selectors.expanded),
+                filterSortPos = $.inArray(filterItem.data('type').toLowerCase(), this.sortedChannelFilters);
+
+            if (expandedFilterItems.length == 0 || filterSortPos == 0) {//First item
+                this.$filtersList.prepend(filterItem);
+            }
+            else if (filterSortPos == (this.sortedChannelFilters.length - 1)) {//Last item
+                expandedFilterItems.last().after(filterItem);
+            }
+            else {
+                //Append the filter in the sequence defined in sortedChannelFilters object
+                //Sequence is ['source', 'author', 'executive', 'company', 'subject', 'industry', 'region', 'language']
+                var me = this, filterItemAdded = false, isBefore = false, itemSortPos, $refElement, $this;
+                expandedFilterItems.each(function () {
+                    $this = $(this);
+                    itemSortPos = $.inArray($this.data('type').toLowerCase(), me.sortedChannelFilters);
+                    if (itemSortPos > filterSortPos) {
+                        if (!$refElement) {
+                            $this.before(filterItem);
+                        }
+                        return false;
+                    }
+                    $refElement = $this;
+                });
+                if ($refElement) {
+                    $refElement.after(filterItem);
+                }
+            }
+            filterItem.addClass('expanded');
+        },
+
         _bindFilters: function (filters, filterType, setQueryOperator) {
             var me = this;
-            var expandedFilterItems = this.$filtersList.children(this.selectors.expanded)
             var filterItem = this.$filtersList.children("li[data-type='" + filterType + "']");
 
             var filterItemPillList = filterItem.children(this.selectors.pillListWrap).children();
@@ -601,8 +622,7 @@
             if (filters && ((filters.include && filters.include.length > 0) || (filters.exclude && filters.exclude.length > 0) || filters.list)) {
 
                 if (!filterItem.hasClass("expanded")) {
-                    filterItem.addClass("expanded");
-                    (expandedFilterItems.length > 0) ? expandedFilterItems.last().after(filterItem) : this.$filtersList.prepend(filterItem);
+                    this._expandAndAppendFilterItem(filterItem);
                 }
 
                 if (filterType == this.filterDetails[this.filterType.Source].name) {
@@ -908,7 +928,6 @@
                 }
                 reqObj.exclusionFilter = this.$excludeBtn.data("excludedItems");
                 reqObj.duplicates = this.$duplicate.is(":checked");
-                reqObj.socialMedia = this.$socialMedia.is(":checked");
 
                 reqObj.contentLanguages = [];
 
@@ -1017,16 +1036,12 @@
                     //Duplicates
                     this.$duplicate.attr("checked", d.duplicates);
 
-                    //Social Media
-                    this.$socialMedia.attr("checked", d.socialMedia);
                 }
 
                 //Exclusions
                 if (d.exclusionFilter) {
                     this.$excludeBtn.data("excludedItems", d.exclusionFilter).find("span").text(d.exclusionFilter.length);
                 }
-
-                this._disableSocialMediaCats(d.socialMedia);
 
                 //Set the search query and focus on it
                 this.$searchTexBox.val(d.freeText || '').focus();

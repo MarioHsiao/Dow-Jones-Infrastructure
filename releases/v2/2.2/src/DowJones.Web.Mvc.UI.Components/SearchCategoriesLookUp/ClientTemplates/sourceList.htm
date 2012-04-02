@@ -5,7 +5,9 @@
 <li>
     <div>
         <span class="dj_icon dj_browse-tree-toggle sourceList"></span>
-        <div class="browse-item" data-type="LIST" data-code="<%= d.Id %>"><span><%= d.Name %></span> &nbsp;&nbsp;<a href="javascript:void(0);" class="edit-list">Edit</a></div>
+        <div class="browse-item" data-type="LIST" data-code="<%= d.Id %>">
+            <span><%= d.Name %></span> &nbsp;&nbsp;<a href="javascript:void(0);" class="edit-list"><%= Token('edit') %></a> &nbsp;&nbsp;<a href="javascript:void(0);" class="delete-list"><%= Token('delete') %></a>
+        </div>
     </div>
 </li>
 <% } %>

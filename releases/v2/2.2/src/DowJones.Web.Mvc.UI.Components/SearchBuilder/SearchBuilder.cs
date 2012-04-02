@@ -36,7 +36,7 @@ namespace DowJones.Web.Mvc.UI.Components.SearchBuilder
     using DowJones.Web.Mvc.UI.Components.SearchNewsFilter;
     using System.Web.Mvc;
     
-    // Last Generated Timestamp: 01/25/2012 08:48 AM
+    // Last Generated Timestamp: 04/02/2012 04:31 PM
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.SearchBuilder.ClientTemplates.categoryOptions.htm", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="categoryOptions", DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.SearchBuilder.SearchBuilder))]
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.SearchBuilder.ClientTemplates.filterOptions.htm", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="filterOptions", DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.SearchBuilder.SearchBuilder))]
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.SearchBuilder.ClientTemplates.modalDialog.htm", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="modalDialog", DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.SearchBuilder.SearchBuilder))]
@@ -45,7 +45,7 @@ namespace DowJones.Web.Mvc.UI.Components.SearchBuilder
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.SearchBuilder.ClientTemplates.sourceFilterPill.htm" +
         "", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="sourceFilterPill", DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.SearchBuilder.SearchBuilder))]
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.SearchBuilder.SearchBuilder.js", ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.SearchBuilder.SearchBuilder))]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "0.0.0.30158")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.22175")]
     public class SearchBuilder : DowJones.Web.Mvc.UI.ViewComponentBase<DowJones.Web.Mvc.UI.Components.Models.SearchBuilderModel>
     {
 #line hidden
@@ -210,20 +210,15 @@ WriteLiteral("</label>\r\n\t\t\t<input type=\"text\" class=\"datepicker\" maxlen
                                                           Write(Model.FormattedEndDate);
 
 WriteLiteral("\" />\r\n\t\t</div>\r\n        <span class=\"dj_btn exclude dj_btn-rounded-square dj_btn-" +
-"grey alt-text ");
+"grey alt-text\">");
 
 
-                                                                           Write(Model.Data.IncludeSocialMedia?"disabled-btn":"");
-
-WriteLiteral("\">");
-
-
-                                                                                                                              Write(Html.DJ().Token("exclude"));
+                                                                           Write(Html.DJ().Token("exclude"));
 
 WriteLiteral(" (<span>");
 
 
-                                                                                                                                                                  Write((!Model.Data.IncludeSocialMedia && Model.Data.ExclusionFilter != null) ? Model.Data.ExclusionFilter.Count().ToString() : "0");
+                                                                                                               Write(Model.Data.ExclusionFilter != null ? Model.Data.ExclusionFilter.Count().ToString() : "0");
 
 WriteLiteral("</span>)</span>\r\n        <div class=\"check-filters\">\r\n\t\t\t<input type=\"checkbox\" c" +
 "lass=\"duplicates\" ");
@@ -235,16 +230,6 @@ WriteLiteral(" />\r\n\t\t\t<label>");
 
 
      Write(Html.DJ().Token("duplicatesOn"));
-
-WriteLiteral("</label>\r\n\r\n\t\t\t<input type=\"checkbox\" class=\"socialMedia\" ");
-
-
-                                          Write(Model.Data.IncludeSocialMedia ? "checked" : "");
-
-WriteLiteral(" />\r\n\t\t\t<label>");
-
-
-     Write(Html.DJ().Token("includeSocialMedia"));
 
 WriteLiteral("</label>\r\n\t\t</div>\r\n    </div>\r\n</div>\r\n<div class=\"dj_search-builder_filters-hea" +
 "der clearfix\">\r\n\t<h3>");

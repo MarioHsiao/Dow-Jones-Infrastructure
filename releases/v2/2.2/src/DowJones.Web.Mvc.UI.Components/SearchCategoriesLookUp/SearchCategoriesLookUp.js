@@ -23,8 +23,9 @@
             lookUpListContainer: '.lookup-results-container',
             listItemOptions: '.icon-group span',
             resultsTitle: '.results-title',
-            doneBtn: 'span.dj_btn-blue',
-            cancelBtn: 'span.dj_btn-drk-gray',
+            doneBtn: 'span.doneBtn',
+            cancelBtn: 'span.cancelBtn',
+            clearBtn: 'span.clearBtn',
             menuItem: 'div.menuitem',
             menu: 'div.menu',
             modalNav: 'ul.modal-nav',
@@ -47,13 +48,16 @@
             filtersList: '.filterList',
             editList: '.edit-list',
             alphabetList: '.alphabet-list',
-            modalTitle: '.dj_modal-title'
+            modalTitle: '.dj_modal-title',
+            deleteList: '.delete-list'
         },
 
         events: {
             onSearchClick: 'onSearchClick.dj.SearchCategoriesLookUp',
             onResize: 'onResize.dj.SearchCategoriesLookUp',
-            onSrcLstDelete: 'onSrcLstDelete.dj.SearchCategoriesLookUp'
+            onSrcLstDelete: 'onSrcLstDelete.dj.SearchCategoriesLookUp',
+            onClearClick: 'onClearClick.dj.SearchCategoriesLookUp',
+            onDoneClick: 'onDoneClick.dj.SearchCategoriesLookUp'
         },
 
         lookUpDetails: [
@@ -98,7 +102,8 @@
                 autoCompleteField: 'NewsSubject',
                 //'ChildCodes|Aliases|Description|ThirdPartyCodes|DJCodes|ParentCodes|LocalNames|Status'
                 infoParts: 'Description|ParentCodes',
-                label: "<%= Token('subject') %>"
+                label: "<%= Token('subject') %>",
+                footerDisclaimer: "<%= Token('footerDisclaimer') %>"
             },
 
             {
@@ -109,7 +114,8 @@
                 notFilter: true,
                 restField: 'Industries',
                 infoParts: 'Description|ParentCodes',
-                label: "<%= Token('industry') %>"
+                label: "<%= Token('industry') %>",
+                footerDisclaimer: "<%= Token('footerDisclaimer') %>"
             },
 
             {
@@ -120,7 +126,8 @@
                 notFilter: true,
                 restField: 'Regions',
                 infoParts: 'Description|ParentCodes',
-                label: "<%= Token('regionLabel') %>"
+                label: "<%= Token('regionLabel') %>",
+                footerDisclaimer: "<%= Token('footerDisclaimer') %>"
             },
 
             {
@@ -203,13 +210,23 @@
             //Set the main template
             this.$element.append(this.templates.main({ lookUpDetails: this._lookUpDetails }));
 
+            this.$elementChildren = this.$element.children();
+
+            //Show the footer if enabled
+            if (this.options.showFooter) {
+                this.$footer = this.$elementChildren.filter(this.selectors.footer).show();
+                if (this._lookUpDetails.footerDisclaimer) {
+                    this.$footer.prepend('<span class="floatLeft">' + this._lookUpDetails.footerDisclaimer  + '</span>');
+                }
+            }
+
             //Append the filter options if NOT is supported
             if (this._lookUpDetails.notFilter) {
                 this.$filterOptions = $(this.templates.filterOptions());
                 this.$element.append(this.$filterOptions);
             }
 
-            this.$elementChildren = this.$element.children();
+
             this.$tabContent = this.$elementChildren.filter(this.selectors.tabContent);
 
             this.$searchBox = this.$tabContent.eq(0).children(this.selectors.searchBox);
@@ -229,7 +246,6 @@
                 this.$browseList = this.$tabContent.eq(1).children(this.selectors.browseTree);
             }
             this.$modalNav = this.$elementChildren.filter(this.selectors.modalNav);
-            this.$footer = this.$elementChildren.filter(this.selectors.footer);
 
             //Source is a special case, need to load other templates as well
             if (this.options.filterType == this.filterType.Source) {
@@ -245,7 +261,7 @@
 
                 if (this.options.enableBrowse) {
                     //Add the browse template inside the tabContent
-                	this.$tabContent.eq(1).prepend(this.templates.sourceBrowse({ additionalSourceFilters: this.data.additionalSourceFilters }));
+                    this.$tabContent.eq(1).prepend(this.templates.sourceBrowse({ additionalSourceFilters: this.data.additionalSourceFilters }));
 
                     var $selectBoxAlt = this.$tabContent.eq(1).children(this.selectors.selectMenuContainer);
                     var $selectMenus = $selectBoxAlt.children(this.selectors.selectMenu);
@@ -477,8 +493,18 @@
                         me._onSourceItemClick(this, e);
                     }).delegate(this.selectors.browseItem, 'mouseenter', function (e) {//List Item Hover
                         me._onSourceListItemHover(this, e);
-                    }).delegate(this.selectors.editList, 'click', function (e) {
+                    }).delegate(this.selectors.editList, 'click', function (e) {//Edit
                         me._editSourceList($(this).parent().data("code"));
+                        me._stopPropagation(e);
+                    }).delegate(this.selectors.deleteList, 'click', function (e) {//Delete
+                        var $this = $(this);
+                        $dj.confirmDialog({
+                            yesClickHandler: function () {
+                                me._deleteSourceList($this.parent().data("code"), $this.closest('li'));
+                            },
+                            title: "<%= Token('deleteSourceList') %>",
+                            msg: "<%= Token('deleteSourceListConfirmMsg') %>"
+                        });
                         me._stopPropagation(e);
                     }).delegate(this.selectors.browseToggle, 'click', function (e) {//Browse Icon click
                         var sourceListBrowse = $(this).hasClass('sourceList');
@@ -502,11 +528,24 @@
                     me._getLookUpPrevPage();
                 }
             });
+
             this.$lookUpNextPage.click(function () {
                 if (!$(this).hasClass("dj_icon-arrow-disabled-right")) {
                     me._getLookUpNextPage();
                 }
             });
+
+            //Footer
+            if (this.options.showFooter) {
+                this.$footer.find(this.selectors.clearBtn).click(function () {
+                    me.clearFilters();
+                    me.publish(me.events.onClearClick);
+                });
+                this.$footer.find(this.selectors.doneBtn).click(function () {
+                    me.publish(me.events.onDoneClick, { filters: me.getFilters(), filterType: me.options.filterType });
+                });
+            }
+
         },
 
         _onSourceGroupFilterChange: function () {
@@ -838,13 +877,7 @@
             });
         },
 
-        _deleteSourceList: function () {
-            var listId = this._sourceListId || this.$existingSLstDD.val();
-
-            if (!listId) {//
-                alert("<%= Token('selectTheSourceListToDelete') %>");
-                return;
-            }
+        _deleteSourceList: function (listId, $listItem) {
 
             $dj.progressIndicator.display(this._loadingText);
 
@@ -854,24 +887,19 @@
                 success: $dj.delegate(this, function (data) {
                     $dj.progressIndicator.hide();
 
-                    //Remove the source list from the drop down
-                    this.$existingSLstDD.find("option[value=" + listId + "]").remove();
-                    this.$existingSLstDD.change();
-                    if (this.$existingSLstDD.children().length == 1) {//No source list
-                        this._sourceList = {}; //empty object
-                    }
-                    //Remove the source list from the lsit
-                    if (this.$savedList) {
-                        if (this.$savedList.children('li').length > 0) {
-                            this.$savedList.find("> li > div > div[data-code=" + listId + "]:first").closest("li").remove();
-                        }
-                        if (this.$savedList.children('li').length == 0) {
-                            this.$savedList.html("<%= Token('noResults') %>");
+                    if (this.$existingSLstDD) {
+                        //Remove the source list from the drop down
+                        this.$existingSLstDD.find("option[value=" + listId + "]").remove();
+                        this.$existingSLstDD.change();
+                        if (this.$existingSLstDD.children().length == 1) {//No source list
+                            this._sourceList = {}; //empty object
                         }
                     }
 
-                    if (this._sourceListId) {//Deleting source list while editing
-                        $().overlay.hide("#" + this.$saveSLstModal.attr('id'));
+                    //Remove the source list from the lsit
+                    $listItem.remove();
+                    if ($listItem.siblings().length == 0) {
+                        this.$savedList.html("<%= Token('noResults') %>");
                     }
 
                     alert("<%= Token('sourceListDeletedSuccessfully') %>");
@@ -888,7 +916,7 @@
         },
 
         _onSourceListDelete: function (listId) {
-            if (this._sourceListAdded) {//Remove the source list if it is added in the list
+            if (this._sourceListAdded) {//Remove the source list if it is added in the filters list
                 this._onFilterClose(this.$filters.find("li[code='" + listId + "']").find(this.selectors.filterClose).get(0));
             }
         },
@@ -923,17 +951,6 @@
                 this.$newSLstName = this.$sLstFormFields.eq(1).find("input:text:first");
 
                 this.$existingSLstDD.selectbox();
-
-                //Delete Source List
-                $fieldSet.find(this.selectors.deleteLnk).click(function () {
-                    $dj.confirmDialog({
-                        yesClickHandler: function () {
-                            me._deleteSourceList();
-                        },
-                        title: "<%= Token('deleteSourceList') %>",
-                        msg: "<%= Token('deleteSourceListConfirmMsg') %>"
-                    });
-                });
 
                 //Filters
                 this.$sLstFiltersContainer = this.$saveSLstModal.find(this.selectors.filtersList).hide();
@@ -1448,7 +1465,7 @@
         _getAutoCompleteSearchOptions: function () {
             switch (this.options.filterType) {
                 case this.filterType.Company: return { maxResults: '10', dataSet: 'newsCodedAbt', filterADR: false };
-                case this.filterType.Source: return { maxResults: '10', types: '1|2|3|4', statuses: 'active|discont' };
+                case this.filterType.Source: return { maxResults: '10', types: '1|2|3|4|7', statuses: 'active|discont' };
                 case this.filterType.Author: return { maxResults: '10', includeCommunicatorRecords: false };
                 case this.filterType.Executive: return { maxResults: '10', filterNewsCoded: true };
                 case this.filterType.Subject:
@@ -1923,6 +1940,7 @@
                     if (!this.$lookUpList.data("loaded")) {
                         this.$lookUpListContainer.hide();
                     }
+                    this.focusOnTextBox();
                 }
             }
             else if (tabIndex == 1) {//Browse
@@ -1973,11 +1991,16 @@
         },
 
         focusOnTextBox: function () {
-            if (this.options.filterType != this.filterType.Language) {
-                if (!this.$lookUpList.data("loaded")) {
-                    this.$textBox.val('');
+            //Try catch is used because some browsers throw error while setting focus if the element is hidden
+            try {
+                if (this.options.filterType != this.filterType.Language) {
+                    if (!this.$lookUpList.data("loaded")) {
+                        this.$textBox.val('');
+                    }
+                    this.$textBox.focus();
                 }
-                this.$textBox.focus();
+            } catch (e) {
+
             }
         },
 
