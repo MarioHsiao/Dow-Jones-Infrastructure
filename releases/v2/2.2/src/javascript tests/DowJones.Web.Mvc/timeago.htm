@@ -25,24 +25,28 @@
 <script>
 	jQuery(document).ready(function () {
 		jQuery.timeago.settings.refreshMillis = 10000;
+		jQuery.timeago.settings.debug = true;
 		$('#timeagoList').timeago('span.timeago');
 
 		setTimeout(function () {
 			var li = $('<li><span>Item 5</span>&nbsp;</li>');
 			var spn = $('<span class="timeago" title="2012-03-20T17:46:17Z"></span>')
 			li.append(spn);
+			var li2 = $('<li><span>Item 6</span>&nbsp;<span class="timeago" title="2012-03-20T17:46:17Z"></span></li>');
+
 			$('#timeagoList').append(li);
+			$('#timeagoList').append(li2);
 			setTimeout(function () {
-				spn.timeago();
-				setTimeout(function () { li.remove(); }, 15000);
+				spn.add(li2.find('.timeago')).timeago();
+				setTimeout(function () { li.remove(); }, 25000);
 			}, 500);
-			
+
 		}, 4000);
 
-		setTimeout(function () {
-			$('#timeagoList').remove();
-			//delete $('#timeagoList')[0]; 
-		}, 35000);
+		//		setTimeout(function () {
+		//			$('#timeagoList').remove();
+		//			//delete $('#timeagoList')[0]; 
+		//		}, 45000);
 
 	});
 </script>
