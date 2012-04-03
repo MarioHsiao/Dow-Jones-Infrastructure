@@ -308,6 +308,12 @@ namespace DowJones.Managers.Search
                 {
                     search.StructuredSearch.Linguistics = contextQuery.StructuredSearch.Linguistics;
                 }
+
+                if (contextQuery.StructuredSearch.Linguistics != null)
+                {
+                    search.StructuredSearch.Linguistics = contextQuery.StructuredSearch.Linguistics;
+                }
+
                 search.StructuredSearch.Query.SearchUncodedContent = query.SearchUncodedContent;
             }
 
