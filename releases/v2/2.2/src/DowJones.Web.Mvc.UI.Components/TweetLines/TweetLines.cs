@@ -25,7 +25,7 @@ namespace DowJones.Web.Mvc.UI.Components.TweetLines
     using DowJones.Extensions;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 04/02/2012 09:51 AM
+    // Last Generated Timestamp: 04/03/2012 02:04 PM
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.TweetLines.TweetLines.js", ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.TweetLines.TweetLines))]
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.TweetLines.ClientTemplates.tweetlines.htm", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="tweetlines", DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.TweetLines.TweetLines))]
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.TweetLines.ClientTemplates.noData.htm", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="noData", DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.TweetLines.TweetLines))]
@@ -163,7 +163,7 @@ WriteLiteral("</span>\r\n\t\t\t\t\t<ul class=\"dj_post-processing\">\r\n\t\t\t\t
 WriteLiteral(" *</li>\r\n\t\t\t\t\t\t<li class=\"dj_reply\" data-action=\"reply\">");
 
 
-                                          Write(Html.DJ().Token("reply"));
+                                          Write(Html.DJ().Token("replyTweet"));
 
 WriteLiteral(" *</li>\r\n\t\t\t\t\t\t<li class=\"dj_retweet\" data-action=\"retweet\">");
 
