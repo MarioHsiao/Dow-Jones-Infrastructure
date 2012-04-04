@@ -1465,7 +1465,7 @@
         _getAutoCompleteSearchOptions: function () {
             switch (this.options.filterType) {
                 case this.filterType.Company: return { maxResults: '10', dataSet: 'newsCodedAbt', filterADR: false };
-                case this.filterType.Source: return { maxResults: '10', types: '1|2|3|4|7', statuses: 'active|discont' };
+                case this.filterType.Source: return { maxResults: '10', types: '1|2|3|4|5', statuses: 'active|discont' };
                 case this.filterType.Author: return { maxResults: '10', includeCommunicatorRecords: false };
                 case this.filterType.Executive: return { maxResults: '10', filterNewsCoded: true };
                 case this.filterType.Subject:
