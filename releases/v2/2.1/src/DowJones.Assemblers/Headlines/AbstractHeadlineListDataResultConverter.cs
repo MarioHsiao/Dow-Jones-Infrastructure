@@ -14,6 +14,7 @@ using DowJones.Formatters.Globalization.DateTime;
 using DowJones.Formatters.Numerical;
 using DowJones.Globalization;
 using Factiva.Gateway.Messages.Search.V2_0;
+using System;
 
 namespace DowJones.Assemblers.Headlines
 {
