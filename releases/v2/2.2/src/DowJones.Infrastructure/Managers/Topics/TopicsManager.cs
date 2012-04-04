@@ -17,7 +17,7 @@ namespace DowJones.Managers.Topics
         //private readonly IPreferences preferences;
         private readonly Product product;
 
-        public TopicsManager(IControlData controlData, Product product)//, IPreferences preferences, Product product)
+        public TopicsManager(IControlData controlData, Product product = null)//, IPreferences preferences, Product product)
             : base(controlData)
         {
             //this.preferences = preferences;
