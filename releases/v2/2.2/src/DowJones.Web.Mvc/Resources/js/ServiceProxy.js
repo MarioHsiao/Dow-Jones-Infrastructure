@@ -107,8 +107,9 @@ jQuery ajax extensions
                     onSuccess(result);
                 },
             error: function (xhr, status, serverMessage) {
-                    if(status === "abort") {
+                    if(status === "abort" || xhr.readyState !== 4) {
                         // Let the complete handler handle aborts
+						$dj.warn('DJ.Services.PlatformServiceProxy::error: Ajax call aborted');
                         return;
                     }
 
@@ -124,7 +125,8 @@ jQuery ajax extensions
                     }
                 },
             complete: function(xhr, status) {
-                    if(status === "abort") {
+                    if(status === "abort" || xhr.readyState !== 4) {
+						$dj.warn('DJ.Services.PlatformServiceProxy::complete: Ajax call aborted');
                         onAbort(xhr, status);
                     }
                     else {
