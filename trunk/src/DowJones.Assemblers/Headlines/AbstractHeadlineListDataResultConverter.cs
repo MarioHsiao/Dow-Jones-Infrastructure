@@ -492,19 +492,12 @@ namespace DowJones.Assemblers.Headlines
                 default:
                     if (language.Contains("-"))
                     {
-                        var index = language.IndexOf('-');
-                        if (index > 0)
-                        {
-                            if (Enum.GetNames(typeof (ContentLanguage)).Any(lang => language.Substring(0, index).ToLowerInvariant() == lang.ToLowerInvariant()))
-                            {
-                                return ValidateLanguageName(language.Substring(0, index));
-                            }
-                        }
+                        language = language.Substring(0, language.IndexOf('-'));
                     }
-                    return "unknown";
+                    return Enum.GetNames(typeof(ContentLanguage)).Any(lang => language.ToLowerInvariant() == lang.ToLowerInvariant())
+                        ? ValidateLanguageName(language)
+                        : "unknown";
             }
-
-            throw new DowJonesUtilitiesException(DowJonesUtilitiesException.RSSLanguageIsNotSupported);
         }
 
 
