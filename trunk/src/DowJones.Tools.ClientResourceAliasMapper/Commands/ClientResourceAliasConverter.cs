@@ -1,5 +1,5 @@
 ﻿using System.IO;
-using System.Reflection;
+using System.Linq;
 
 namespace DowJones.Tools.ClientResourceAliasMapper.Commands
 {
@@ -18,14 +18,10 @@ namespace DowJones.Tools.ClientResourceAliasMapper.Commands
         {
             int incrementer = 1;
 
-            foreach(var alias in configuration.Aliases.ToArray())
+            var aliasesToConvert = configuration.Aliases.Where(IsNotExcluded).ToArray();
+            
+            foreach(var alias in aliasesToConvert)
             {
-                // If the current alias is already an int,
-                // just skip it and continue on
-                int currentAliasId;
-                if (int.TryParse(alias.Alias, out currentAliasId))
-                    continue;
-
                 alias.OriginalAlias = alias.Alias;
                 alias.Alias = (incrementer++).ToString();
             }
@@ -33,7 +29,7 @@ namespace DowJones.Tools.ClientResourceAliasMapper.Commands
 
         public override void ShowHelp(TextWriter writer)
         {
-            writer.WriteLine("Usage:  {0} {1} [filename]", 
+            writer.WriteLine("Usage:  {0} {1} [filename] (-Exclude Alias|ResourceName)", 
                              ExecutableName, Command);
         }
     }
