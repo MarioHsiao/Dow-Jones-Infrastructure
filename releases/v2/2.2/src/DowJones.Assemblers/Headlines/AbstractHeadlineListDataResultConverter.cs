@@ -4,12 +4,12 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml;
 using DowJones.Ajax;
 using DowJones.Ajax.HeadlineList;
-using DowJones.Exceptions;
 using DowJones.Formatters.Globalization.DateTime;
 using DowJones.Formatters.Numerical;
 using DowJones.Globalization;
