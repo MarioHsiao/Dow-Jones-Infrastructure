@@ -536,6 +536,63 @@
             self.currentY = y;
         },
 
+        /**
+        *  Update the position of the current popbox element (please try to avoid using this and use rePosition method instead)
+        *
+        *  @param	posX	X coordinate of popup box
+        *  @param	posY	Y coordinate of popup box
+        */
+        updatePosition: function (posX, posY) {
+
+            var self = this,
+				el = self.element,
+				o = self.options,
+				$popbox = el.data("popbox");
+
+            o.positionX = posX;
+            o.positionY = posY;
+
+            //reset based on original preferences, the space may now be available to accommodate				
+            o.popupPosition = self.preferences.popupPosition;
+            o.popupAlign = self.preferences.popupAlign;
+
+            var coordinates = self._getCoordinates($popbox),
+				x = coordinates.x,
+				y = coordinates.y;
+
+            $popbox.attr({
+                'position': o.popupPosition,
+                'popupalign': o.popupAlign
+            });
+
+            if (o.animateMoveEnabled) {
+                $popbox.stop().animate({
+                    top: y,
+                    left: x
+                }, o.animationSpeed, function () {
+                    $(this).css({
+                        opacity: '',
+                        zoom: '',
+                        filter: ''
+                    });
+                    self.scrollDocument();
+                });
+            } else {
+                $popbox.css({
+                    top: y,
+                    left: x,
+                    opacity: '',
+                    zoom: '',
+                    filter: ''
+                });
+                self.scrollDocument();
+            }
+
+            self.currentX = x;
+            self.currentY = y;
+
+        },
+
         rePosition: function (callback) {
             var self = this,
 				o = self.options,
