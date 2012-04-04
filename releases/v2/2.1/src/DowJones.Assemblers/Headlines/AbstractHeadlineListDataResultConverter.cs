@@ -377,14 +377,6 @@ namespace DowJones.Assemblers.Headlines
 
             switch (language.ToLower())
             {
-                case "en":
-                case "fr":
-                case "de":
-                case "es":
-                case "it":
-                case "ja":
-                case "ru":
-                    return language.ToLower();
                 case "zh":
                 case "zh-cn":
                 case "zhcn":
@@ -395,17 +387,12 @@ namespace DowJones.Assemblers.Headlines
                 default:
                     if (language.Contains("-"))
                     {
-                        var index = language.IndexOf('-');
-                        if (index > 0)
-                        {
-                            return ValidateLanguageName(language.Substring(0, index));
-                        }
+                        language = language.Substring(0, language.IndexOf('-'));
                     }
-
-                    break;
+                    return Enum.GetNames(typeof(ContentLanguage)).Any(lang => language.ToLowerInvariant() == lang.ToLowerInvariant())
+                        ? ValidateLanguageName(language)
+                        : "unknown";
             }
-
-            throw new DowJonesUtilitiesException(DowJonesUtilitiesException.RSSLanguageIsNotSupported);
         }
 
 
