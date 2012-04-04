@@ -7,6 +7,8 @@ namespace DowJones.Managers.Charting.MarketData
     {
         public IEnumerable<string> Symbols;
 
+        public SymbolType SymbolType = SymbolType.FCode;
+
         public TimePeriod TimePeriod = TimePeriod.OneDay;
 
         public Frequency Frequency = Frequency.FifteenMinutes;

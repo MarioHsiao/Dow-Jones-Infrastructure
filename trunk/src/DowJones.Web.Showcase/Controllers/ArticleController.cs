@@ -38,7 +38,7 @@ namespace DowJones.Web.Showcase.Controllers
         }
 
         [Route("article/{accessionNumber}")]
-        public ActionResult Article(string accessionNumber, DisplayOptions option = DisplayOptions.Full, ImageType imageType = ImageType.Display, string callback = null, string canonicalSearchString ="T|microsoft T|phone O|+ T|en T|pt O|, T|es O|, N|la O|c O|+ T|article T|file O|, T|report O|, N|fmt O|c O|+ N|pd D|-0090 D| O|d O|+")
+        public ActionResult Article(string accessionNumber, DisplayOptions option = DisplayOptions.Full, ImageType imageType = ImageType.Display, PictureSize pictureSize = PictureSize.Large, string callback = null, string canonicalSearchString ="T|microsoft T|phone O|+ T|en T|pt O|, T|es O|, N|la O|c O|+ T|article T|file O|, T|report O|, N|fmt O|c O|+ N|pd D|-0090 D| O|d O|+")
         {
             new GetHistoricalDataByTimePeriodRequest
                 {
@@ -59,7 +59,7 @@ namespace DowJones.Web.Showcase.Controllers
             _articleConversionManager.EmbedHtmlBasedExternalLinks = true;
             _articleConversionManager.EmbededImageType = imageType;
             _articleConversionManager.ShowImagesAsFigures = true;
-            _articleConversionManager.PictureSize = PictureSize.Small;
+            _articleConversionManager.PictureSize = pictureSize;
 
             var urlBuilder = new UrlBuilder("~/article/" + accessionNumber);
             var articleDataSet = _articleConversionManager.Convert(article);

@@ -37,7 +37,7 @@
     else if (renderItem.ItemMarkUp == MarkUpType.ArticleElink)
     {<a class="dj_article_elink" href="javascript:void(0)" data-href="@renderItem.ItemValue.EscapeForHtml()">@(renderItem.ItemText)</a>}
     else if (renderItem.ItemMarkUp == MarkUpType.Plain)
-    {@(renderItem.ItemText)}
+    {<span class="dj_article_plain">@(renderItem.ItemText)</span>}
     else if (renderItem.ItemMarkUp == MarkUpType.EntityLink && renderItem.Highlight)
     {<a class="dj_article_entity dj_article_highlight @renderItem.ItemEntityData.Category" href="javascript:void(0);" data-entity="@renderItem.ItemEntityData.ToJson().EscapeForHtml()">@(renderItem.ItemText)</a>}
     else if (renderItem.ItemMarkUp == MarkUpType.EntityLink)

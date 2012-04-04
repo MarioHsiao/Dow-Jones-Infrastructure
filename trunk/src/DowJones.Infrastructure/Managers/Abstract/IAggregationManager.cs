@@ -8,6 +8,11 @@ namespace DowJones.Managers.Abstract
         string LastRawResponse { get; }
     }
 
+    public interface IExternalService : IService
+    {
+        
+    }
+
     public interface IService
     {
         

@@ -2,6 +2,16 @@
 
 namespace DowJones.Managers.Charting.MarketData
 {
+
+    public enum SymbolType
+    {
+        FCode,
+        Ticker,
+        Cusip,
+        Sedol,
+        Isin,
+    }
+
     public enum Frequency
     {
         [XmlEnum("1mi")]

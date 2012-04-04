@@ -6,34 +6,33 @@ using DowJones.Infrastructure.Models.SocialMedia;
 using DowJones.Managers.Abstract;
 using Newtonsoft.Json;
 
-
 namespace DowJones.Managers.SocialMedia
 {
 
     using Config;
-    using DowJones.Managers.SocialMedia.Responses;
+    using Responses;
     using Hammock;
-    using DowJones.Managers.SocialMedia.Serializers;
+    using Serializers;
 
     /// <summary>
     /// The Service for interacting with TweetRiver API
     /// </summary>
-    public class SocialMediaService : IService
+    public class SocialMediaService : IExternalService
     {
         
-        // <summary>
+        /// <summary>
         /// The settings.
         /// </summary>
-        private  readonly JsonSerializerSettings Settings;
+        private  readonly JsonSerializerSettings _settings;
 
 
-        private ISocialMediaProvider _socialMediaProvider;
+        private readonly ISocialMediaProvider _socialMediaProvider;
 
 
         /// <summary>
         /// Gets the default json serializer settings.
         /// </summary>
-        private  JsonSerializerSettings GetDefaultJsonSerializerSettings()
+        private static JsonSerializerSettings GetDefaultJsonSerializerSettings()
         {
             var settings = new JsonSerializerSettings
                            {
@@ -84,7 +83,7 @@ namespace DowJones.Managers.SocialMedia
                     // Not Modified: There was no new data to return
                     try
                     {
-                        result = JsonConvert.DeserializeObject<T>(response.Content, Settings);
+                        result = JsonConvert.DeserializeObject<T>(response.Content, _settings);
                     }
                     catch (JsonReaderException jre)
                     {
@@ -111,7 +110,7 @@ namespace DowJones.Managers.SocialMedia
                     try
                     {
                         result.Status = Status.UserError;
-                        result.Message = JsonConvert.DeserializeObject<string>(response.Content, Settings);
+                        result.Message = JsonConvert.DeserializeObject<string>(response.Content, _settings);
                     }
                     catch (JsonReaderException)
                     {
@@ -194,7 +193,7 @@ namespace DowJones.Managers.SocialMedia
         /// </summary>
         public SocialMediaService(ISocialMediaProvider socialMediaProvider)
         {
-            Settings = GetDefaultJsonSerializerSettings();
+            _settings = GetDefaultJsonSerializerSettings();
             IndustryChannelMap = new IndustryChannelMap();
             _socialMediaProvider = socialMediaProvider;
         }
@@ -204,7 +203,7 @@ namespace DowJones.Managers.SocialMedia
         /// Gets the tweets by channel.
         /// </summary>
         /// <param name="channel">The channel.</param>
-        /// <param name="count">The count.</param>
+        /// <param name="requestOptions">The request options</param>
         /// <returns></returns>
         public GetTweetsByChannelResponse GetTweetsByChannel(string channel, RequestOptions requestOptions = null)
         {

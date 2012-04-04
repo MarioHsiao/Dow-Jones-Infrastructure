@@ -27,7 +27,7 @@ namespace DowJones.Web.Mvc.UI.Components.Article
     using System.Text.RegularExpressions;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 03/23/2012 10:20 AM
+    // Last Generated Timestamp: 04/02/2012 12:06 PM
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.19368")]
     public class Paragraph : DowJones.Web.Mvc.UI.ViewComponentBase<DowJones.Web.Mvc.UI.Components.Models.Article.ParagraphModel>
     {
@@ -182,9 +182,15 @@ WriteLiteral("</a>");
                                                                                                                                        }
     else if (renderItem.ItemMarkUp == MarkUpType.Plain)
     {
- Write(renderItem.ItemText);
+WriteLiteral("<span class=\"dj_article_plain\">");
 
-                           }
+
+                                Write(renderItem.ItemText);
+
+WriteLiteral("</span>");
+
+
+                                                                 }
     else if (renderItem.ItemMarkUp == MarkUpType.EntityLink && renderItem.Highlight)
     {
 WriteLiteral("<a class=\"dj_article_entity dj_article_highlight ");

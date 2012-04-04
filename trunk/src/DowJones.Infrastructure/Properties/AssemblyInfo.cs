@@ -18,7 +18,8 @@ using System.Runtime.InteropServices;
 [assembly: Guid("ff679928-c0dc-4acf-9d32-d3cb79b4bc83")]
 
 [assembly: InternalsVisibleTo("DowJones.Web.Mvc.Tests")]
-[assembly: InternalsVisibleTo( "DowJones.Web.Mvc.UI.Canvas.DataAccess" )]
-[assembly: InternalsVisibleTo( "DowJones.Web" )]
+[assembly: InternalsVisibleTo("DowJones.Web.Mvc.UI.Canvas.DataAccess" )]
+[assembly: InternalsVisibleTo("DowJones.Web")]
+[assembly: InternalsVisibleTo("DowJones.Assemblers")]
 [assembly: log4net.Config.XmlConfigurator(ConfigFile = "log4net.config", Watch = true)]     
 [assembly: System.Security.SecurityRules( System.Security.SecurityRuleSet.Level1 )]

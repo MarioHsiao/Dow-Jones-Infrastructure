@@ -173,8 +173,9 @@ namespace DowJones.Exceptions
         public const long QM_RESPONSE_IS_NULL = 585423;
         public const long QM_QUERY_TYPE_NOT_SUPPORTED = 585424;
 
-         //TODO: Get range for Thunderball errors 585500 - 585525
+         //TODO: Get range for MarketWatch errors 585500 - 585525
         public const long ThunderballService_EmptyResponse = 585500;
+        public const long Dylan_EmptyMatchResponse = 585501;
 
         //Social Media backend error (585601 - 585610)
 

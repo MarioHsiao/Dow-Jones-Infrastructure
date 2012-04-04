@@ -229,10 +229,24 @@ namespace DowJones.Properties
         }
 
         [ApplicationScopedSetting, DebuggerNonUserCode, SettingsSerializeAs(SettingsSerializeAs.String)]
-        [DefaultSettingValue("http://sbkdchtwebq01.production.bigcharts.com/thunderball/ChartService.svc")]
+        [DefaultSettingValue("http://wsapi.marketwatch.com/thunderball/ChartService.svc")]
         public string ThunderBallEndpointAddress
         {
             get { return (string)this["ThunderBallEndpointAddress"]; }
+        }
+
+        [ApplicationScopedSetting, DebuggerNonUserCode, SettingsSerializeAs(SettingsSerializeAs.String)]
+        [DefaultSettingValue("http://10.241.32.225/dylan2011.webhost/Symbology.svc")]
+        public string DylanSymbologyEndpointAddress
+        {
+            get { return (string)this["DylanSymbologyEndpointAddress"]; }
+        }
+
+        [ApplicationScopedSetting, DebuggerNonUserCode, SettingsSerializeAs(SettingsSerializeAs.String)]
+        [DefaultSettingValue("http://10.241.32.225/dylan2011.webhost/Instrument.svc")]
+        public string DylanInstrumentEndpointAddress
+        {
+            get { return (string)this["DylanInstrumentEndpointAddress"]; }
         }
 
         [ApplicationScopedSetting, DebuggerNonUserCode, SettingsSerializeAs(SettingsSerializeAs.String)]

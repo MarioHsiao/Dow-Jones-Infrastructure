@@ -7,66 +7,95 @@ using System.Threading;
 using System.Threading.Tasks;
 using DowJones.Exceptions;
 using DowJones.Managers.Core;
+using DowJones.Managers.MarketWatch.Instrument;
+using DowJones.MarketWatch.Dylan.Core.Financialdata;
 using DowJones.Properties;
 
 namespace DowJones.Managers.Charting.MarketData
 {
     public class MarketChartDataServiceResult : AbstractServiceResult<MarketChartDataServicePartResult<MarketChartDataPackage>, MarketChartDataPackage>, IRequest
     {
+        private static readonly BasicHttpBinding BasicHttpBinding = new BasicHttpBinding(BasicHttpSecurityMode.None);
+        private static readonly EndpointAddress ThunderballEndpointAddress = new EndpointAddress(Settings.Default.ThunderBallEndpointAddress);
+
         /// <summary>
         /// Gets the chart.
         /// </summary>
         /// <param name="identifier">The identifier.</param>
         /// <param name="symbol">The symbol.</param>
+        /// <param name="symbolType">Type of the symbol.</param>
         /// <param name="timePeriod">The time period.</param>
         /// <param name="frequency">The frequency.</param>
         /// <returns>
         /// A dictionary of chart data responses
         /// </returns>
-        private MarketChartDataServicePartResult<MarketChartDataPackage> ProcessChart(string identifier, string symbol, TimePeriod timePeriod = TimePeriod.OneDay, Frequency frequency = Frequency.FifteenMinutes)
+        private MarketChartDataServicePartResult<MarketChartDataPackage> ProcessChart(string identifier, string symbol, SymbolType symbolType, TimePeriod timePeriod = TimePeriod.OneDay, Frequency frequency = Frequency.FifteenMinutes)
         {
             var partResult = new MarketChartDataServicePartResult<MarketChartDataPackage>
                                  {
                                      Identifier = identifier
                                  };
 
-            ProcessServicePartResult<MarketChartDataPackage>(
-                MethodBase.GetCurrentMethod(),
-                partResult,
-                () =>
-                    {
-                        var chartRequests = new[]
-                                                {
-                                                    new Thunderball.Library.GetChartRequest
-                                                        {
-                                                            Time = MarketDataManager.GetXmlEnumName<TimePeriod>(timePeriod.ToString()),
-                                                            Freq = MarketDataManager.GetXmlEnumName<Frequency>(frequency.ToString()),
-                                                            Symbol = new[] {symbol},
-                                                            EntitlementToken = Settings.Default.ThunderBallEntitlementToken,
-                                                        }
-                                                };
+            Match tempMatch = null;
+            var tempSymbol = symbol;
 
+            var instrumentManger = new InstrumentManager();
+            var instrumentResponse = instrumentManger.GetInstruments(new[] { symbol }, Mapper.Map<SymbolDialectType>(symbolType));
 
-                        var basicHttpBinding = new BasicHttpBinding(BasicHttpSecurityMode.None);
-                        var endpointAddress = new EndpointAddress(Settings.Default.ThunderBallEndpointAddress);
-                        var chartServiceClient = new ChartServiceClient(basicHttpBinding, endpointAddress);
-                        var response = chartServiceClient.GetChart(chartRequests);
-                        if (response.Count > 0)
+            if (instrumentResponse != null &&
+                instrumentResponse.Count >= 1 &&
+                instrumentResponse[0].Matches != null &&
+                instrumentResponse[0].Matches.Count() >= 1)
+            {
+                tempMatch = instrumentResponse[0].Matches[0];
+
+                // update the symbol.
+                tempSymbol = string.Concat(tempMatch.Instrument.Exchange.CountryCode.ToLowerInvariant(), ":", tempMatch.Instrument.Ticker);
+
+            }
+            else
+            {
+                partResult.ReturnCode = DowJonesUtilitiesException.Dylan_EmptyMatchResponse;
+                partResult.StatusMessage = Resources.GetErrorMessage(partResult.ReturnCode.ToString());
+            }
+
+            // Continue if Return code is still 0
+            if (partResult.ReturnCode == 0)
+            {
+                ProcessServicePartResult<MarketChartDataPackage>(
+                    MethodBase.GetCurrentMethod(),
+                    partResult,
+                    () =>
                         {
-                            var source = response.Values.FirstOrDefault();
-                            partResult.Package = (from kvp in source.Data let session = kvp.Value.Sessions[0] select GetPackage(kvp.Key, kvp.Value.Name, Convert.ToBoolean(kvp.Value.IsIndex), source.BarSize, session)).FirstOrDefault();
-                        }
-                        else
-                        {
-                            partResult.ReturnCode = DowJonesUtilitiesException.ThunderballService_EmptyResponse;
-                            partResult.StatusMessage = Resources.GetErrorMessage(partResult.ReturnCode.ToString());
+                            var chartRequests = new[]
+                                                    {
+                                                        new Thunderball.Library.GetChartRequest
+                                                            {
+                                                                Time = MarketDataChartingManager.GetXmlEnumName<TimePeriod>(timePeriod.ToString()),
+                                                                Freq = MarketDataChartingManager.GetXmlEnumName<Frequency>(frequency.ToString()),
+                                                                Symbol = new[] {tempSymbol},
+                                                                EntitlementToken = Settings.Default.ThunderBallEntitlementToken,
+                                                            }
+                                                    };
 
-                        }
-                    });
+                            var chartServiceClient = new ChartServiceClient(BasicHttpBinding, ThunderballEndpointAddress);
+                            var response = chartServiceClient.GetChart(chartRequests);
+                            if (response.Count > 0)
+                            {
+                                var source = response.Values.FirstOrDefault();
+                                partResult.Package = (from kvp in source.Data let session = kvp.Value.Sessions[0] select GetPackage(kvp.Key, kvp.Value.Name, Convert.ToBoolean(kvp.Value.IsIndex), source.BarSize, session, tempMatch)).FirstOrDefault();
+                            }
+                            else
+                            {
+                                partResult.ReturnCode = DowJonesUtilitiesException.ThunderballService_EmptyResponse;
+                                partResult.StatusMessage = Resources.GetErrorMessage(partResult.ReturnCode.ToString());
+                            }
+                        });
+            }
             return partResult;
         }
 
-        internal MarketChartDataPackage GetPackage(string symbol, string name, bool isIndex, int barSize, Thunderball.Library.Charting.Session session)
+        internal MarketChartDataPackage GetPackage(string symbol, string name, bool isIndex, int barSize, Thunderball.Library.Charting.Session session, Match match)
         {
             var package = new MarketChartDataPackage
                               {
@@ -74,7 +103,8 @@ namespace DowJones.Managers.Charting.MarketData
                                   Name = name, 
                                   IsIndex = isIndex,
                                   BarSize = barSize,
-                                  Session = session
+                                  Session = session,
+                                  Match = match,
                               };
             return package;
         }
@@ -98,21 +128,21 @@ namespace DowJones.Managers.Charting.MarketData
 
         private void GetData(MarketDataServiceRequest request)
         {
-            PartResults = GetParts(request.Symbols, request.TimePeriod, request.Frequency);
+            PartResults = GetParts(request.Symbols, request.SymbolType, request.TimePeriod, request.Frequency);
         }
 
-        private IEnumerable<MarketChartDataServicePartResult<MarketChartDataPackage>> GetParts(IEnumerable<string> symbols, TimePeriod timePeriod = TimePeriod.OneDay, Frequency frequency = Frequency.FifteenMinutes)
+        private IEnumerable<MarketChartDataServicePartResult<MarketChartDataPackage>> GetParts(IEnumerable<string> symbols, SymbolType symbolType, TimePeriod timePeriod = TimePeriod.OneDay, Frequency frequency = Frequency.FifteenMinutes)
         {
             var index = 0;
             if (symbols.Count() == 1)
             {
-                return new List<MarketChartDataServicePartResult<MarketChartDataPackage>> { ProcessChart(index.ToString() , symbols.First(), timePeriod, frequency) };
+                return new List<MarketChartDataServicePartResult<MarketChartDataPackage>> { ProcessChart(index.ToString() , symbols.First(), symbolType, timePeriod, frequency) };
             }
 
             var tasks = (from symbol in symbols
                          let identifier = Interlocked.Increment(ref index).ToString()
                          select TaskFactory.StartNew(
-                             () => ProcessChart(identifier, symbol, timePeriod, frequency), TaskCreationOptions.None)).ToList();
+                             () => ProcessChart(identifier, symbol, symbolType, timePeriod, frequency), TaskCreationOptions.None)).ToList();
 
             Task.WaitAll(tasks.ToArray());
             var orderedTasks = tasks.OrderBy(task => Int32.Parse(task.Result.Identifier));
