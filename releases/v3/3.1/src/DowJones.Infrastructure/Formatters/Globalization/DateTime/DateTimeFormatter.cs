@@ -45,34 +45,34 @@ namespace DowJones.Formatters.Globalization.DateTime
         /// <summary>
         /// The _clock type.
         /// </summary>
-        private ClockType clockType = ClockType.TwelveHours;
+        private ClockType _clockType = ClockType.TwelveHours;
 
         // private readonly UITimeZone m_GMT_UITimeZone = (UITimeZone) TimeZoneManager.GmtTimeZone;
 
         /// <summary>
         /// The _culture info.
         /// </summary>
-        private CultureInfo cultureInfo;
+        private CultureInfo _cultureInfo;
 
         /// <summary>
         /// The _internal interface language code.
         /// </summary>
-        private string internalInterfaceLanguageCode = "en";
+        private string _internalInterfaceLanguageCode = "en";
 
         /// <summary>
         /// The _preference.
         /// </summary>
-        private string preference = string.Empty;
+        private string _preference = string.Empty;
 
         /// <summary>
         /// The _regional culture.
         /// </summary>
-        private BaseRegionalCulture regionalCulture;
+        private BaseRegionalCulture _regionalCulture;
 
         /// <summary>
         /// The _time zone builder.
         /// </summary>
-        private TimeZoneBuilder timeZoneBuilder = new TimeZoneBuilder();
+        internal TimeZoneBuilder TimeZoneBuilder = new TimeZoneBuilder();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DateTimeFormatter"/> class.
@@ -96,7 +96,7 @@ namespace DowJones.Formatters.Globalization.DateTime
         /// </param>
         public DateTimeFormatter(string interfaceLanguage, System.TimeZone timeZone) : this(interfaceLanguage)
         {
-            timeZoneBuilder.TimeZone = timeZone;
+            TimeZoneBuilder.TimeZone = timeZone;
         }
 
         /// <summary>
@@ -136,7 +136,7 @@ namespace DowJones.Formatters.Globalization.DateTime
         public DateTimeFormatter(string interfaceLanguage, string preference, ClockType clock)
             : this(interfaceLanguage, preference)
         {
-            clockType = clock;
+            _clockType = clock;
         }
 
         /// <summary>
@@ -147,7 +147,7 @@ namespace DowJones.Formatters.Globalization.DateTime
         public DateTimeFormatter(IPreferences preferences)
             : this(preferences.InterfaceLanguage, preferences.TimeZone)
         {
-            clockType = preferences.ClockType;
+            _clockType = preferences.ClockType;
         }
 
         /// <summary>
@@ -156,7 +156,7 @@ namespace DowJones.Formatters.Globalization.DateTime
         /// <value>The time zone preference.</value>
         public UITimeZone CurrentTimeZone
         {
-            get { return timeZoneBuilder.UITimeZone; }
+            get { return TimeZoneBuilder.UITimeZone; }
         }
 
         /// <summary>
@@ -165,8 +165,8 @@ namespace DowJones.Formatters.Globalization.DateTime
         /// <value>The type of the clock.</value>
         public ClockType ClockType
         {
-            get { return clockType; }
-            set { clockType = value; }
+            get { return _clockType; }
+            set { _clockType = value; }
         }
 
         /// <summary>
@@ -175,7 +175,7 @@ namespace DowJones.Formatters.Globalization.DateTime
         /// <value>The original preference.</value>
         public string Preference
         {
-            get { return preference; }
+            get { return _preference; }
         }
 
         /// <summary>
@@ -185,7 +185,7 @@ namespace DowJones.Formatters.Globalization.DateTime
         {
             get
             {
-                return internalInterfaceLanguageCode;
+                return _internalInterfaceLanguageCode;
             }
 
             set
@@ -196,8 +196,8 @@ namespace DowJones.Formatters.Globalization.DateTime
                 }
 
                 SetRegionalCulture(value);
-                internalInterfaceLanguageCode = regionalCulture.InternalLanguageCode;
-                cultureInfo = regionalCulture.CreateCultureInfo();
+                _internalInterfaceLanguageCode = _regionalCulture.InternalLanguageCode;
+                _cultureInfo = _regionalCulture.CreateCultureInfo();
             }
         }
 
@@ -206,8 +206,8 @@ namespace DowJones.Formatters.Globalization.DateTime
         /// </summary>
         public BaseRegionalCulture RegionalCulture
         {
-            get { return regionalCulture; }
-            set { regionalCulture = value; }
+            get { return _regionalCulture; }
+            set { _regionalCulture = value; }
         }
 
         /// <summary>
@@ -215,8 +215,8 @@ namespace DowJones.Formatters.Globalization.DateTime
         /// </summary>
         public CultureInfo CultureInfo
         {
-            get { return cultureInfo; }
-            set { cultureInfo = value; }
+            get { return _cultureInfo; }
+            set { _cultureInfo = value; }
         }
 
         #region IFormatter<Date> Members
@@ -262,8 +262,8 @@ namespace DowJones.Formatters.Globalization.DateTime
         /// </param>
         public void ParseTimeZonePreference(string pref)
         {
-            preference = pref;
-            timeZoneBuilder = new TimeZoneBuilder(pref);
+            _preference = pref;
+            TimeZoneBuilder = new TimeZoneBuilder(pref);
         }
 
         /// <summary>
@@ -277,31 +277,31 @@ namespace DowJones.Formatters.Globalization.DateTime
             switch (language.ToLower())
             {
                 default:
-                    regionalCulture = new EnglishUnitedStatesRegionalCulture();
+                    _regionalCulture = new EnglishUnitedStatesRegionalCulture();
                     break;
                 case "fr":
-                    regionalCulture = new FrenchFranceRegionalCulture();
+                    _regionalCulture = new FrenchFranceRegionalCulture();
                     break;
                 case "de":
-                    regionalCulture = new GermanGermanyRegionalCulture();
+                    _regionalCulture = new GermanGermanyRegionalCulture();
                     break;
                 case "es":
-                    regionalCulture = new SpanishSpainRegionalCulture();
+                    _regionalCulture = new SpanishSpainRegionalCulture();
                     break;
                 case "it":
-                    regionalCulture = new ItalianItalyRegionalCulture();
+                    _regionalCulture = new ItalianItalyRegionalCulture();
                     break;
                 case "zhtw":
-                    regionalCulture = new ChineseTaiwainRegionalCulture();
+                    _regionalCulture = new ChineseTaiwainRegionalCulture();
                     break;
                 case "zhcn":
-                    regionalCulture = new ChineseChinaRegionalCulture();
+                    _regionalCulture = new ChineseChinaRegionalCulture();
                     break;
                 case "ja":
-                    regionalCulture = new JapaneesJapanRegionalCulture();
+                    _regionalCulture = new JapaneesJapanRegionalCulture();
                     break;
                 case "ru":
-                    regionalCulture = new RussianRussiaRegionalCulture();
+                    _regionalCulture = new RussianRussiaRegionalCulture();
                     break;
             }
         }
@@ -404,7 +404,7 @@ namespace DowJones.Formatters.Globalization.DateTime
                 ? timeZoneBuilder.UITimeZone.ToLocalTime( dt, timeZoneBuilder.AdjustToDaylightSavingsTime )
                 : dt;*/
 
-            return dt.ToString(regionalCulture.LongDatePattern, cultureInfo);
+            return dt.ToString(_regionalCulture.LongDatePattern, _cultureInfo);
         }
 
         /// <summary>
@@ -423,7 +423,7 @@ namespace DowJones.Formatters.Globalization.DateTime
                 ? timeZoneBuilder.UITimeZone.ToLocalTime(dt, timeZoneBuilder.AdjustToDaylightSavingsTime)
                 : dt;*/
 
-            return dt.ToString(regionalCulture.ShortDatePattern, cultureInfo);
+            return dt.ToString(_regionalCulture.ShortDatePattern, _cultureInfo);
         }
 
         /// <summary>
@@ -472,13 +472,13 @@ namespace DowJones.Formatters.Globalization.DateTime
         public string FormatStandardDate(System.DateTime dt, bool usePreference)
         {
             var temp = ConvertToUtc(dt);
-            if (timeZoneBuilder.ConvertToLocalTime && usePreference)
+            if (TimeZoneBuilder.ConvertToLocalTime && usePreference)
             {
-                temp = timeZoneBuilder.UITimeZone.ToLocalTime(temp, timeZoneBuilder.AdjustToDaylightSavingsTime);
-                return temp.ToString(regionalCulture.StandardDatePattern, cultureInfo);
+                temp = TimeZoneBuilder.UITimeZone.ToLocalTime(temp, TimeZoneBuilder.AdjustToDaylightSavingsTime);
+                return temp.ToString(_regionalCulture.StandardDatePattern, _cultureInfo);
             }
 
-            return temp.ToString(regionalCulture.StandardDatePattern, cultureInfo);
+            return temp.ToString(_regionalCulture.StandardDatePattern, _cultureInfo);
         }
 
         /// <summary>
@@ -584,13 +584,13 @@ namespace DowJones.Formatters.Globalization.DateTime
         private string CoreFormatTime(System.DateTime dt)
         {
             var temp = ConvertToUtc(dt);
-            if (!timeZoneBuilder.ConvertToLocalTime)
+            if (!TimeZoneBuilder.ConvertToLocalTime)
             {
-                return temp.ToString(MapToTimeGMTClockPattern(), cultureInfo);
+                return temp.ToString(MapToTimeGMTClockPattern(), _cultureInfo);
             }
 
-            temp = timeZoneBuilder.UITimeZone.ToLocalTime(temp, timeZoneBuilder.AdjustToDaylightSavingsTime);
-            return temp.ToString(MapToTimeClockPattern(), cultureInfo);
+            temp = TimeZoneBuilder.UITimeZone.ToLocalTime(temp, TimeZoneBuilder.AdjustToDaylightSavingsTime);
+            return temp.ToString(MapToTimeClockPattern(), _cultureInfo);
         }
 
         /// <summary>
@@ -771,12 +771,12 @@ namespace DowJones.Formatters.Globalization.DateTime
         {
             return string.Format(
                 "\nPreferenceValue:{0}\nTimeZone:{1}\nAdjustToDaylightSavingsTime:{2}\nConvertToLocalTime:{3}\nInterfaceLanguage:{4}\nClockType:{5}", 
-                preference, 
-                timeZoneBuilder.UITimeZone, 
-                timeZoneBuilder.AdjustToDaylightSavingsTime, 
-                timeZoneBuilder.ConvertToLocalTime, 
-                internalInterfaceLanguageCode, 
-                clockType);
+                _preference, 
+                TimeZoneBuilder.UITimeZone, 
+                TimeZoneBuilder.AdjustToDaylightSavingsTime, 
+                TimeZoneBuilder.ConvertToLocalTime, 
+                _internalInterfaceLanguageCode, 
+                _clockType);
         }
 
         #region << Clock Time/DateTime Mappers >>
@@ -789,12 +789,12 @@ namespace DowJones.Formatters.Globalization.DateTime
         /// </returns>
         private string MapToTimeClockPattern()
         {
-            switch (clockType)
+            switch (_clockType)
             {
                 case ClockType.TwentyFourHours:
-                    return regionalCulture.TimeTwentyFourHourClockPattern;
+                    return _regionalCulture.TimeTwentyFourHourClockPattern;
                 default:
-                    return regionalCulture.TimeTwelveHourClockPattern;
+                    return _regionalCulture.TimeTwelveHourClockPattern;
             }
         }
 
@@ -806,12 +806,12 @@ namespace DowJones.Formatters.Globalization.DateTime
         /// </returns>
         private string MapToTimeGMTClockPattern()
         {
-            switch (clockType)
+            switch (_clockType)
             {
                 case ClockType.TwentyFourHours:
-                    return regionalCulture.TimeTwentyFourHourGMTClockPattern;
+                    return _regionalCulture.TimeTwentyFourHourGMTClockPattern;
                 default:
-                    return regionalCulture.TimeTwelveHourGMTClockPattern;
+                    return _regionalCulture.TimeTwelveHourGMTClockPattern;
             }
         }
 
@@ -823,12 +823,12 @@ namespace DowJones.Formatters.Globalization.DateTime
         /// </returns>
         private string MapToStandardDateTimeClockPattern()
         {
-            switch (clockType)
+            switch (_clockType)
             {
                 case ClockType.TwentyFourHours:
-                    return regionalCulture.DateTimeTwentyFourHourStandardDateTimePattern;
+                    return _regionalCulture.DateTimeTwentyFourHourStandardDateTimePattern;
                 default:
-                    return regionalCulture.DateTimeTwelveFourHourStandardDateTimePattern;
+                    return _regionalCulture.DateTimeTwelveFourHourStandardDateTimePattern;
             }
         }
 
@@ -840,12 +840,12 @@ namespace DowJones.Formatters.Globalization.DateTime
         /// </returns>
         private string MapToStandardDateTimeGMTClockPattern()
         {
-            switch (clockType)
+            switch (_clockType)
             {
                 case ClockType.TwentyFourHours:
-                    return regionalCulture.DateTimeTwentyFourHourGMTStandardDateTimePattern;
+                    return _regionalCulture.DateTimeTwentyFourHourGMTStandardDateTimePattern;
                 default:
-                    return regionalCulture.DateTimeTwelveFourHourGMTStandardDateTimePattern;
+                    return _regionalCulture.DateTimeTwelveFourHourGMTStandardDateTimePattern;
             }
         }
 
@@ -857,12 +857,12 @@ namespace DowJones.Formatters.Globalization.DateTime
         /// </returns>
         private string MapToStandardHeadlineDateTimeClockPattern()
         {
-            switch (clockType)
+            switch (_clockType)
             {
                 case ClockType.TwentyFourHours:
-                    return regionalCulture.DateTimeTwentyFourHourStandardHeadlineDateTimePattern;
+                    return _regionalCulture.DateTimeTwentyFourHourStandardHeadlineDateTimePattern;
                 default:
-                    return regionalCulture.DateTimeTwelveFourHourStandardHeadlineDateTimePattern;
+                    return _regionalCulture.DateTimeTwelveFourHourStandardHeadlineDateTimePattern;
             }
         }
 
@@ -874,12 +874,12 @@ namespace DowJones.Formatters.Globalization.DateTime
         /// </returns>
         private string MapToStandardHeadlineDateTimeGMTClockPattern()
         {
-            switch (clockType)
+            switch (_clockType)
             {
                 case ClockType.TwentyFourHours:
-                    return regionalCulture.DateTimeTwentyFourHourGMTStandardHeadlineDateTimePattern;
+                    return _regionalCulture.DateTimeTwentyFourHourGMTStandardHeadlineDateTimePattern;
                 default:
-                    return regionalCulture.DateTimeTwelveFourHourGMTStandardHeadlineDateTimePattern;
+                    return _regionalCulture.DateTimeTwelveFourHourGMTStandardHeadlineDateTimePattern;
             }
         }
 
@@ -891,12 +891,12 @@ namespace DowJones.Formatters.Globalization.DateTime
         /// </returns>
         private string MapToLongDateTimeClockPattern()
         {
-            switch (clockType)
+            switch (_clockType)
             {
                 case ClockType.TwentyFourHours:
-                    return regionalCulture.DateTimeTwentyFourHourLongDateTimePattern;
+                    return _regionalCulture.DateTimeTwentyFourHourLongDateTimePattern;
                 default:
-                    return regionalCulture.DateTimeTwelveFourHourLongDateTimePattern;
+                    return _regionalCulture.DateTimeTwelveFourHourLongDateTimePattern;
             }
         }
 
@@ -908,12 +908,12 @@ namespace DowJones.Formatters.Globalization.DateTime
         /// </returns>
         private string MapToLongDateTimeGMTClockPattern()
         {
-            switch (clockType)
+            switch (_clockType)
             {
                 case ClockType.TwentyFourHours:
-                    return regionalCulture.DateTimeTwentyFourHourGMTLongDateTimePattern;
+                    return _regionalCulture.DateTimeTwentyFourHourGMTLongDateTimePattern;
                 default:
-                    return regionalCulture.DateTimeTwelveFourHourGMTLongDateTimePattern;
+                    return _regionalCulture.DateTimeTwelveFourHourGMTLongDateTimePattern;
             }
         }
 
@@ -925,12 +925,12 @@ namespace DowJones.Formatters.Globalization.DateTime
         /// </returns>
         private string MapToShortDateTimeClockPattern()
         {
-            switch (clockType)
+            switch (_clockType)
             {
                 case ClockType.TwentyFourHours:
-                    return regionalCulture.DateTimeTwentyFourHourShortDateTimePattern;
+                    return _regionalCulture.DateTimeTwentyFourHourShortDateTimePattern;
                 default:
-                    return regionalCulture.DateTimeTwelveFourHourShortDateTimePattern;
+                    return _regionalCulture.DateTimeTwelveFourHourShortDateTimePattern;
             }
         }
 
@@ -942,12 +942,12 @@ namespace DowJones.Formatters.Globalization.DateTime
         /// </returns>
         private string MapToShortDateTimeGMTClockPattern()
         {
-            switch (clockType)
+            switch (_clockType)
             {
                 case ClockType.TwentyFourHours:
-                    return regionalCulture.DateTimeTwentyFourHourGMTShortDateTimePattern;
+                    return _regionalCulture.DateTimeTwentyFourHourGMTShortDateTimePattern;
                 default:
-                    return regionalCulture.DateTimeTwelveFourHourGMTShortDateTimePattern;
+                    return _regionalCulture.DateTimeTwelveFourHourGMTShortDateTimePattern;
             }
         }
 
@@ -967,13 +967,13 @@ namespace DowJones.Formatters.Globalization.DateTime
         private string CoreFormatShortDateTime(System.DateTime dt)
         {
             var temp = ConvertToUtc(dt);
-            if (timeZoneBuilder.ConvertToLocalTime)
+            if (TimeZoneBuilder.ConvertToLocalTime)
             {
-                temp = timeZoneBuilder.UITimeZone.ToLocalTime(temp, timeZoneBuilder.AdjustToDaylightSavingsTime);
-                return temp.ToString(MapToShortDateTimeClockPattern(), cultureInfo);
+                temp = TimeZoneBuilder.UITimeZone.ToLocalTime(temp, TimeZoneBuilder.AdjustToDaylightSavingsTime);
+                return temp.ToString(MapToShortDateTimeClockPattern(), _cultureInfo);
             }
 
-            return temp.ToString(MapToShortDateTimeGMTClockPattern(), cultureInfo);
+            return temp.ToString(MapToShortDateTimeGMTClockPattern(), _cultureInfo);
         }
 
         /// <summary>
@@ -1039,13 +1039,13 @@ namespace DowJones.Formatters.Globalization.DateTime
         private string CoreFormatLongDateTime(System.DateTime dt)
         {
             var temp = ConvertToUtc(dt);
-            if (timeZoneBuilder.ConvertToLocalTime)
+            if (TimeZoneBuilder.ConvertToLocalTime)
             {
-                temp = timeZoneBuilder.UITimeZone.ToLocalTime(temp, timeZoneBuilder.AdjustToDaylightSavingsTime);
-                return temp.ToString(MapToLongDateTimeClockPattern(), cultureInfo);
+                temp = TimeZoneBuilder.UITimeZone.ToLocalTime(temp, TimeZoneBuilder.AdjustToDaylightSavingsTime);
+                return temp.ToString(MapToLongDateTimeClockPattern(), _cultureInfo);
             }
 
-            return temp.ToString(MapToLongDateTimeGMTClockPattern(), cultureInfo);
+            return temp.ToString(MapToLongDateTimeGMTClockPattern(), _cultureInfo);
         }
 
         /// <summary>
@@ -1231,13 +1231,13 @@ namespace DowJones.Formatters.Globalization.DateTime
         private string CoreFormatDateTime(System.DateTime dt)
         {
             var temp = ConvertToUtc(dt);
-            if (timeZoneBuilder.ConvertToLocalTime)
+            if (TimeZoneBuilder.ConvertToLocalTime)
             {
-                temp = timeZoneBuilder.UITimeZone.ToLocalTime(temp, timeZoneBuilder.AdjustToDaylightSavingsTime);
-                return temp.ToString(MapToStandardDateTimeClockPattern(), cultureInfo);
+                temp = TimeZoneBuilder.UITimeZone.ToLocalTime(temp, TimeZoneBuilder.AdjustToDaylightSavingsTime);
+                return temp.ToString(MapToStandardDateTimeClockPattern(), _cultureInfo);
             }
 
-            return temp.ToString(MapToStandardDateTimeGMTClockPattern(), cultureInfo);
+            return temp.ToString(MapToStandardDateTimeGMTClockPattern(), _cultureInfo);
         }
         
         /// <summary>
@@ -1252,13 +1252,13 @@ namespace DowJones.Formatters.Globalization.DateTime
         private string CoreStandardHeadlineFormatDateTime(System.DateTime dt)
         {
             var temp = ConvertToUtc(dt);
-            if (timeZoneBuilder.ConvertToLocalTime)
+            if (TimeZoneBuilder.ConvertToLocalTime)
             {
-                temp = timeZoneBuilder.UITimeZone.ToLocalTime(temp, timeZoneBuilder.AdjustToDaylightSavingsTime);
-                return temp.ToString(MapToStandardHeadlineDateTimeClockPattern(), cultureInfo);
+                temp = TimeZoneBuilder.UITimeZone.ToLocalTime(temp, TimeZoneBuilder.AdjustToDaylightSavingsTime);
+                return temp.ToString(MapToStandardHeadlineDateTimeClockPattern(), _cultureInfo);
             }
 
-            return temp.ToString(MapToStandardHeadlineDateTimeGMTClockPattern(), cultureInfo);
+            return temp.ToString(MapToStandardHeadlineDateTimeGMTClockPattern(), _cultureInfo);
         }
 
         /// <summary>

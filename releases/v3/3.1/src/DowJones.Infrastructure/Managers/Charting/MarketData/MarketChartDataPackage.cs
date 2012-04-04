@@ -1,4 +1,6 @@
 ﻿using DowJones.Managers.Core;
+using DowJones.MarketWatch.Dylan.Core.Financialdata;
+using ThunderSession = DowJones.Thunderball.Library.Charting.Session;
 
 namespace DowJones.Managers.Charting.MarketData
 {
@@ -11,7 +13,9 @@ namespace DowJones.Managers.Charting.MarketData
         public bool IsIndex { get; set; }
 
         public int BarSize { get; set; }
-        
-        public Thunderball.Library.Charting.Session Session { get; set; }
+
+        public ThunderSession Session { get; set; }
+
+        public Match Match { get; set; }
     }
 }

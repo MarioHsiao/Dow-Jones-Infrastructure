@@ -328,7 +328,7 @@ DJ.UI.StockKiosk = DJ.UI.Component.extend({
             // update the last updated timestamp
             var stock_last_updated = $(self.selectors.stock_last_updated,this.$element);
             if (stock_last_updated.length > 0 && requestedIntradaryMarketData.adjustedLastUpdatedDescripter) {
-                stock_last_updated.html($.trim(requestedIntradaryMarketData.adjustedLastUpdatedDescripter) + " EST");
+                stock_last_updated.html($.trim(requestedIntradaryMarketData.adjustedLastUpdatedDescripter));
             }
 
             if (requestedIntradaryMarketData.dataPoints) { 
@@ -372,7 +372,7 @@ DJ.UI.StockKiosk = DJ.UI.Component.extend({
             // update the last updated timestamp
             var stock_last_updated = $(self.selectors.stock_last_updated,this.$element);
             if (stock_last_updated.length > 0 && requestedIntradaryMarketData.adjustedLastUpdatedDescripter) {
-                stock_last_updated.html($.trim(requestedIntradaryMarketData.adjustedLastUpdatedDescripter) + " EST");
+                stock_last_updated.html($.trim(requestedIntradaryMarketData.adjustedLastUpdatedDescripter));
             }
 
             //push in series of DataPoints (x and y points) .

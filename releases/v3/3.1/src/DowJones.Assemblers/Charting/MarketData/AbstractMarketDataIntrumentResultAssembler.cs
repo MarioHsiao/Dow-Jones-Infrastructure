@@ -3,19 +3,23 @@ using System.Linq;
 using DowJones.Formatters;
 using DowJones.Formatters.Globalization.DateTime;
 using DowJones.Formatters.Globalization.TimeZone;
+using DowJones.MarketWatch.Dylan.Core.Financialdata;
 using DowJones.Models.Charting;
 using DowJones.Models.Charting.MarketData;
 using DowJones.Models.Company;
 using DowJones.Preferences;
 using DowJones.Properties;
+using TimeZoneInfo = System.TimeZoneInfo;
 
 namespace DowJones.Assemblers.Charting.MarketData
 {
     public class AbstractMarketDataIntrumentResultAssembler
     {
-        private const string EasternStandarTimePreferenceString = "on, -05:00|1, on";
+        private const string GreenwichMeanTimePreferenceString = "on, +00:00|1, on";
+        private const string EasternStandardTimeId = "Eastern Standard Time";
         protected readonly DateTimeFormatter PrefBasedDateTimeFormatter;
-        protected readonly DateTimeFormatter EstBasedDateTimeFormatter;
+        protected readonly DateTimeFormatter GreenwichMeanTimeBasedDateTimeFormatter;
+        protected readonly TimeZoneInfo EasternTimeZone;
         protected readonly DateTimeFormatter GmtBasedFormatter;
         protected readonly IPreferences Preferences;
 
@@ -23,30 +27,48 @@ namespace DowJones.Assemblers.Charting.MarketData
         {
             Preferences = preferences;
             PrefBasedDateTimeFormatter = new DateTimeFormatter(Preferences);
-            EstBasedDateTimeFormatter = new DateTimeFormatter(Preferences.InterfaceLanguage, EasternStandarTimePreferenceString); 
+            GreenwichMeanTimeBasedDateTimeFormatter = new DateTimeFormatter(Preferences.InterfaceLanguage, GreenwichMeanTimePreferenceString);
             GmtBasedFormatter = new DateTimeFormatter(Preferences.InterfaceLanguage, TimeZoneManager.GmtTimeZone);
+            EasternTimeZone = TimeZoneInfo.FindSystemTimeZoneById(EasternStandardTimeId);
         }
 
-        private static DateTime GetEasternTime(DateTime gmtTime)
+        private static DateTime ConvertToGmt(DateTime time, TimeZoneInfo timeZone)
         {
-            var easternZone = TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time");
-            var tempDate = DateTimeFormatter.ConvertToUtc(gmtTime);
-            return tempDate.Add(easternZone.GetUtcOffset(tempDate).Negate());
+            var tempDate = DateTimeFormatter.ConvertToUtc(time);
+            return tempDate.Add(timeZone.GetUtcOffset(tempDate).Negate());
         }
 
-        internal MarketDataInstrumentIntradayResult GetMarketDataInstrumentIntradayResult(string code, string name, bool isIndex, Thunderball.Library.Charting.Session session, int barSize = 15, long returnCode = 0, string statusMessage = null)
+        private static string ShortTimeZoneFormat(string timeZoneStandardName)
         {
-            var marketResult = new MarketDataInstrumentIntradayResult {ReturnCode = returnCode, StatusMessage = statusMessage};
+            var timeZoneElements = timeZoneStandardName.Split(' ');
+            return timeZoneElements.Aggregate(String.Empty, (current, element) => current + element[0]);
+        }
+
+        internal MarketDataInstrumentIntradayResult GetMarketDataInstrumentIntradayResult(string code, string name, bool isIndex, Thunderball.Library.Charting.Session session, Match match, int barSize = 15, long returnCode = 0, string statusMessage = null)
+        {
+            var marketResult = new MarketDataInstrumentIntradayResult { ReturnCode = returnCode, StatusMessage = statusMessage };
             if (returnCode != 0)
             {
                 return marketResult;
             }
 
+            var utcOffsetHours = 0;
+            var utcOffsetMinutes = EasternTimeZone.GetUtcOffset(DateTime.Now).TotalMinutes;
+            var timeZone = TimeZoneInfo.FindSystemTimeZoneById(EasternStandardTimeId);
+            var abbr = ShortTimeZoneFormat(EasternStandardTimeId);
+            if (match != null && match.TimeZoneInfo != null)
+            {
+                utcOffsetHours = match.TimeZoneInfo.UtcOffsetHours;
+                utcOffsetMinutes = match.TimeZoneInfo.UtcOffsetMinutes;
+                timeZone = TimeZoneInfo.FindSystemTimeZoneById(match.TimeZoneInfo.TimeZone);
+                abbr = ShortTimeZoneFormat(match.TimeZoneInfo.TimeZone);
+             }
+            
             var dataPoints = new BasicDataPointCollection();
             var currentDate = marketResult.Start = session.Start;
             marketResult.End = session.Stop;
 
-            marketResult.Stop = session.Stop; 
+            marketResult.Stop = session.Stop;
             double? lastValue = null;
             var firstValue = session.Trades.Where(trade => trade.HasValue).ToList().FirstOrDefault();
 
@@ -56,7 +78,7 @@ namespace DowJones.Assemblers.Charting.MarketData
             {
                 foreach (var trade in session.Trades)
                 {
-                    if (trade.HasValue) 
+                    if (trade.HasValue)
                     {
                         dataPoints.Add(new BasicDataPoint
                                      {
@@ -110,8 +132,11 @@ namespace DowJones.Assemblers.Charting.MarketData
                     marketResult.LastUpdatedDescripter = GmtBasedFormatter.FormatLongDateTime(marketResult.LastUpdated);
 
                     // update the gmt based one
-                    marketResult.AdjustedLastUpdated = GetEasternTime((DateTime)lastDataPoint.Date);
-                    marketResult.AdjustedLastUpdatedDescripter = EstBasedDateTimeFormatter.FormatLongDateTime(marketResult.AdjustedLastUpdated);
+                    marketResult.AdjustedLastUpdated = ConvertToGmt((DateTime)lastDataPoint.Date, timeZone);
+                    marketResult.AdjustedLastUpdatedDescripter = string.Concat(
+                        GreenwichMeanTimeBasedDateTimeFormatter.FormatLongDateTime(marketResult.AdjustedLastUpdated.AddHours(utcOffsetHours).AddMinutes(utcOffsetMinutes)),
+                        " ",
+                        abbr);
                 }
                 else
                 {
@@ -132,45 +157,86 @@ namespace DowJones.Assemblers.Charting.MarketData
                     currentDate = currentDate.AddMinutes(barSize);
                 }
 
-                marketResult.Symbol = code;
-                marketResult.Name = name;
+                if (lastValue.HasValue)
+                {
+                    marketResult.Last = new DoubleNumberStock(lastValue.Value);
+                    marketResult.PercentChange = new PercentStock((double)((lastValue - session.PreviousClose.Value) / session.PreviousClose.Value) * 100);
+                    if (match != null && match.Trading.ChangePercent.HasValue)
+                    {
+                        marketResult.PercentChange = new PercentStock(match.Trading.ChangePercent.GetValueOrDefault());
+                    }
+                }
+                else
+                {
+                    marketResult.Last = marketResult.PreviousClose;
+                }
+
+                if (match == null)
+                {
+                    marketResult.Symbol = code;
+                    marketResult.Name = name;
+                    marketResult.High = new DoubleNumberStock(session.High.Price);
+                    marketResult.Low = new DoubleNumberStock(session.Low.Price);
+
+                }
+                else
+                {
+                    marketResult.Symbol = match.Instrument.Ticker;
+                    marketResult.Name = string.Concat(match.Instrument.CommonName, " [", match.Instrument.Exchange.CommonName, "]");
+                    marketResult.High = new DoubleNumberStock(match.Trading.High.Value);
+                    marketResult.Low = new DoubleNumberStock(match.Trading.Low.Value);
+                    marketResult.Open = new DoubleNumberStock(match.Trading.Open.Value);
+
+                    if (match.Trading.Last != null && match.Trading.Last.Time.HasValue)
+                    {
+
+                        // get the last value from Dylan if available
+                        marketResult.Last = new DoubleNumberStock(match.Trading.Last.Price.Value);
+
+                        // update the gmt based one
+                        marketResult.LastUpdated = (DateTime)match.Trading.Last.Time;
+                        marketResult.LastUpdatedDescripter = GmtBasedFormatter.FormatLongDateTime(marketResult.LastUpdated);
+
+                        // update the gmt based one
+                        marketResult.AdjustedLastUpdated = ConvertToGmt((DateTime)match.Trading.Last.Time, timeZone);
+                        marketResult.AdjustedLastUpdatedDescripter = string.Concat(
+                           GreenwichMeanTimeBasedDateTimeFormatter.FormatLongDateTime(marketResult.AdjustedLastUpdated.AddHours(utcOffsetHours).AddMinutes(utcOffsetMinutes)),
+                           " ",
+                           abbr);
+                    }
+                }
+
                 marketResult.IsIndex = isIndex;
-                marketResult.High = new DoubleNumberStock(session.High.Price);
-                marketResult.Low = new DoubleNumberStock(session.Low.Price);
-                marketResult.PreviousClose = new DoubleNumberStock(double.Parse(session.PreviousClose.ToString()));
                 marketResult.DataPoints = dataPoints;
+                marketResult.PreviousClose = new DoubleNumberStock(double.Parse(session.PreviousClose.ToString()));
 
                 // update the start date
                 marketResult.Start = DateTimeFormatter.ConvertToUtc(marketResult.Start);
                 marketResult.StartDescripter = GmtBasedFormatter.FormatLongDateTime(marketResult.Start);
 
-                // update the adjusted start date
-                marketResult.AdjustedStart = GetEasternTime(DateTimeFormatter.ConvertToUtc(marketResult.Start));
-                marketResult.AdjustedStartDescripter = EstBasedDateTimeFormatter.FormatLongDateTime(marketResult.AdjustedStart);
-
                 // update the stop date
                 marketResult.Stop = DateTimeFormatter.ConvertToUtc(marketResult.Stop);
                 marketResult.StopDescripter = GmtBasedFormatter.FormatLongDateTime(marketResult.Stop);
 
+                // update the adjusted start date
+                marketResult.AdjustedStart = ConvertToGmt(DateTimeFormatter.ConvertToUtc(marketResult.Start), timeZone);
+                marketResult.AdjustedStartDescripter = string.Concat(
+                     GreenwichMeanTimeBasedDateTimeFormatter.FormatLongDateTime(marketResult.AdjustedStart.AddHours(utcOffsetHours).AddMinutes(utcOffsetMinutes)),
+                     " ",
+                     abbr);
+
                 // update the adjusted stop date
-                marketResult.AdjustedStop = GetEasternTime(DateTimeFormatter.ConvertToUtc(marketResult.Stop));
-                marketResult.AdjustedStopDescripter = EstBasedDateTimeFormatter.FormatLongDateTime(marketResult.AdjustedStop);
+                marketResult.AdjustedStop = ConvertToGmt(DateTimeFormatter.ConvertToUtc(marketResult.Stop), timeZone);
+                marketResult.AdjustedStopDescripter = string.Concat(
+                       GreenwichMeanTimeBasedDateTimeFormatter.FormatLongDateTime(marketResult.AdjustedStop.AddHours(utcOffsetHours).AddMinutes(utcOffsetMinutes)),
+                       " ",
+                       abbr);
 
                 marketResult.Provider = new Provider
                                             {
                                                 Name = Settings.Default.MarketDataProvider,
                                                 ExternalUrl = Settings.Default.MarketDataProviderUrl
                                             };
-
-                if (lastValue.HasValue)
-                {
-                    marketResult.Last = new DoubleNumberStock(lastValue.Value);
-                    marketResult.PercentChange = new PercentStock((double)((lastValue - session.PreviousClose.Value) / session.PreviousClose.Value) * 100);
-                }
-                else
-                {
-                    marketResult.Last = marketResult.PreviousClose;
-                }
             }
             return marketResult;
         }

@@ -41,6 +41,9 @@ namespace DowJones.Models.Charting.MarketData
         [DataMember(Name = "last")]
         public DoubleNumberStock Last { get; set; }
 
+        [DataMember(Name = "open")]
+        public DoubleNumberStock Open { get; set; }
+
         [DataMember(Name = "dataPoints")]
         public BasicDataPointCollection DataPoints { get; set; }
 
