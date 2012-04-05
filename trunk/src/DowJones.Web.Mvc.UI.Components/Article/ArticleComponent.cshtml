@@ -136,13 +136,11 @@
 
                         }
                         else
-                        {                            
-                            <span class="value author drop-down-button" data-dd-type="author">
-                                @foreach (RenderItem renderItem in Model.ArticleDataSet.ByLine)
-                                {
-                                    @renderItem.ItemText
-                                }
-                            </span><span class="dj_article_comma">, </span>                      
+                        {    
+                            foreach (RenderItem renderItem in Model.ArticleDataSet.ByLine)
+                            {
+                                <span class="value author drop-down-button" data-dd-type="author">@renderItem.ItemText.Trim()</span><span class="dj_article_comma">, </span>  
+                            }                                                
                         }
                         </div>
                     } 
@@ -151,20 +149,17 @@
                     {
                         if (showIndexing)
                         {
-                            <div class="dj_article_index">BY</div>
+                            <div class="dj_article_index">CR</div>
                         }
                         
-                        <div class="dj_article_by dj_article_section">                                                                          
-                            <span class="value author drop-down-button" data-dd-type="author">
-                                @foreach (RenderItem renderItem in Model.ArticleDataSet.Credit)
-                                {
-                                    @renderItem.ItemText
-                                }
-                            </span><span class="dj_article_comma">, </span>       
+                        <div class="dj_article_cr dj_article_section">                                                                          
+                            @foreach (RenderItem renderItem in Model.ArticleDataSet.Credit)
+                            {
+                                <span class="credit">@renderItem.ItemText</span><span class="dj_article_comma">, </span> 
+                            }                                  
                         </div>
                     } 
-
-                  
+                                      
                     <div class="dj_meta_group">                 
                    
                         @if (showIndexing)
@@ -256,8 +251,8 @@
             </div>
 
                     @if (Model.ShowPostProcessing)
-                    {                
-                        if (!Model.PostProcessingOptions.IsNullOrEmpty() )
+                    {
+                        if (!Model.PostProcessingOptions.IsNullOrEmpty())
                         {
                             <ul class="dj_PostProcessing actions clearfix">
                                 @foreach (var item in Model.PostProcessingOptions)
