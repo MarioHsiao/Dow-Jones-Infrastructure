@@ -26,7 +26,7 @@ namespace DowJones.Web.Mvc.UI.Components.CompositeOutlet
     using DowJones.Web.Mvc.UI.Components.OutletList;
     using DowJones.Web.Mvc.UI.Components.Models;
     
-    // Last Generated Timestamp: 02/15/2012 05:44 PM
+    // Last Generated Timestamp: 04/04/2012 06:13 PM
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.CompositeOutlet.CompositeOutlet.js", ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.CompositeOutlet.CompositeOutlet))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "0.0.0.30158")]
     public class CompositeOutlet : CompositeComponent<CompositeOutletModel>
@@ -180,7 +180,18 @@ WriteLiteral(">100 ");
 
                            Write(Html.DJ().Token("perPage"));
 
-WriteLiteral("</option>\r\n\t\t</select>\r\n\r\n\t\t<ul class=\"paging-controls\">\r\n\r\n\t\t\t<li><strong>");
+WriteLiteral("</option>\r\n\t\t</select>\r\n\r\n\t\t<div class=\"dj_list-select-count hide\">\n\t\t\t<span clas" +
+"s=\"count\"></span> ");
+
+
+                          Write(Html.DJ().Token("cmalSelectionPlural"));
+
+WriteLiteral("\n\t\t\t<span class=\"dj_clear-all-btn\">");
+
+
+                             Write(Html.DJ().Token("cmalClearAll"));
+
+WriteLiteral("</span>\n\t\t</div>\n\r\n\t\t<ul class=\"paging-controls\">\r\n\r\n\t\t\t<li><strong>");
 
 
           Write(Format(Model.FirstResultIndex + 1));

@@ -387,7 +387,7 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 						Text = this.Tokens.ViewArticles,
 						IsAncor = true,
 						AncorHref = "javascript:void(0);",
-						AncorClass = "Tokens.ViewArticles"
+						AncorClass = "author-articles-selector"
 					};
 				}
 				else
@@ -523,7 +523,7 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 					cols[columnOrder.OutletType] = new TdItem();
 					if (author.HasOutlets)
 					{
-						cols[columnOrder.OutletType].Text = firstOutlet.Type.Name;
+						cols[columnOrder.OutletType].Text = firstOutlet.Type;
 					}
 				}
 				// outlet circulation;
@@ -547,7 +547,7 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 					cols[columnOrder.OutletFrequency] = new TdItem();
 					if (author.HasOutlets)
 					{
-						cols[columnOrder.OutletFrequency].Text = firstOutlet.Frequency.Name;
+						cols[columnOrder.OutletFrequency].Text = firstOutlet.Frequency;
 					};
 				}
 				// outlet state;
@@ -650,7 +650,7 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 						if (this.DisplayedColumns.Contains(AuthorListColumns.OutletType))
 						{
 							outletRows[columnOrder.OutletType] = new TdItem();
-							outletRows[columnOrder.OutletType].Text = outlet.Type.Name;
+							outletRows[columnOrder.OutletType].Text = outlet.Type;
 						}
 						// outlet circulation;
 						if (this.DisplayedColumns.Contains(AuthorListColumns.OutletCirculation))
@@ -668,7 +668,7 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 						if (this.DisplayedColumns.Contains(AuthorListColumns.OutletFrequency))
 						{
 							outletRows[columnOrder.OutletFrequency] = new TdItem();
-							outletRows[columnOrder.OutletFrequency].Text = outlet.Frequency.Name;
+							outletRows[columnOrder.OutletFrequency].Text = outlet.Frequency;
 						}
 						// outlet state;
 						if (this.DisplayedColumns.Contains(AuthorListColumns.OutletState))

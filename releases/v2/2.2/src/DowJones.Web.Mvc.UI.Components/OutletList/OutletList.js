@@ -14,18 +14,29 @@
 			currentSortBy: "#outlet_list_sort_by",
 			currentSortOrder: "#outlet_list_sort_order",
 			outletName: ".outlet-selector",
-			selectedOutletIds: "#selected_outlet_ids"
+			selectedOutletIds: "#selected_outlet_ids",
+			expandHiddenCellItems: ".dj_show-hide-cell-items",
+			hasMediaContact: ".dj_icon.dj_list-icon.dj_list-icon-has-contacts",
+			noMediaContact: ".dj_list-icon-no-contacts"
 		},
 
 		constants: {
 			hideClass: "hide",
 			expandableClass: "expandable",
-			expandedClass: "expanded"
+			expandedClass: "expanded",
+			expandableCellItems: "div.dj_hidden-cell-item"
 		},
 
 		defaults: {
 			debug: false,
 			cssClass: 'OutletList'
+		},
+
+		events: {
+			onOutletNameClick: "outletNameClick.dj.OutletList",
+			onEntityRowSelect: "entityRowSelect.dj.OutletList",
+			onHasMediaContactClick: 'onHasMediaContactClick.dj.OutletList',
+			onNoMediaContactClick: 'onNoMediaContactClick.dj.OutletList'
 		},
 
 		sortDirections: { ascending: "asc", descending: "desc" },
@@ -44,6 +55,7 @@
 			this.$currentSortBy = ctx.find(this.selectors.currentSortBy);
 			this.$currentSortOrder = ctx.find(this.selectors.currentSortOrder);
 			this.$selectedOutletIds = ctx.find(this.selectors.selectedOutletIds);
+			this.$expandHiddenCellItems = ctx.find(this.selectors.expandHiddenCellItems);
 		},
 
 		_initializeEventHandlers: function () {
@@ -69,8 +81,25 @@
 				}
 
 				self.$selectedOutletIds.val(idarr.join(","));
+				$dj.publish(self.events.onEntityRowSelect, {});
 			});
 
+			// Show/hide hidden cell items;
+			$container.delegate(self.selectors.expandHiddenCellItems, "click", function () {
+				var $this = $(this);
+				var td = $this.parentsUntil("tr");
+				td.find(self.constants.expandableCellItems).toggleClass("hide");
+
+				if ($this.attr("more") == "true") {
+					$this.attr("more", "false");
+					$this.html("<%= Token('cmalHideCellItems') %>");
+				}
+				else {
+					$this.attr("more", "true");
+					$this.html("<%= Token('cmalShowCellItems') %>");
+				}
+				return false;
+			});
 
 			// THead sortable click;
 			this.$outletTable.delegate(self.selectors.theadSortable, 'click', function () {
@@ -100,13 +129,28 @@
 				var $this = $(this);
 				var chk = $this.parent().parent().find("input:checkbox");
 				var oid = chk.attr("outletlist-aid");
-				$dj.publish("outletNameClick.dj.OutletList", { outletId: oid });
+				$dj.publish(self.events.onOutletNameClick, { outletId: oid });
+			});
+
+			$container.delegate(self.selectors.hasMediaContact, "click", function () {
+				var $this = $(this);
+				var outletId = $this.parentsUntil("tbody").find("input:checkbox").attr("outletlist-aid");
+				if (outletId) {
+					$dj.publish(self.events.onHasMediaContactClick, { outletId: outletId });
+				}
+			});
+
+			$container.delegate(self.selectors.noMediaContact, "click", function () {
+				var $this = $(this);
+				var outletId = $this.parentsUntil("tbody").find("input:checkbox").attr("outletlist-aid");
+				if (outletId) {
+					$dj.publish(self.events.onNoMediaContactClick, { outletId: outletId });
+				}
 			});
 		}
 	});
 
 	// Declare this class as a jQuery plugin
 	$.plugin('dj_OutletList', DJ.UI.OutletList);
-
 
 })(jQuery);

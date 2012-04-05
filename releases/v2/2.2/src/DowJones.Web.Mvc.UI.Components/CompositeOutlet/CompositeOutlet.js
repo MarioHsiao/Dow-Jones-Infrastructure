@@ -21,7 +21,9 @@
 			checkboxAll: "input:checkbox[name='dj_outlet-select-all']",
 			checkboxOutlets: "td input:checkbox",
 			gearMenu: "span.fi.fi_gear",
-			actionsMenu: ".actionsMenu"
+			actionsMenu: ".actionsMenu",
+			unselectAllCheckboxes: ".dj_clear-all-btn",
+			unselectAllCheckboxesConfirmed: ".dj_btn.dj_btn-green.export.dj_confirm-unselect-checkboxes"
 		},
 
 		constants: {
@@ -32,7 +34,6 @@
 			deleteMenuItem: "div.label[data-action='delete']",
 			emailMenuItem: "div.label[data-action='email']",
 			emailAllMenuItem: "div.label[data-action='email-all']",
-			unselectAllMenuItem: "div.label[data-action='unselect-all']",
 			maxOutletsForActionNoEmail: 1000,
 			maxOutletsForEmail: 300
 		},
@@ -67,6 +68,51 @@
 
 		_initializeEventHandlers: function () {
 			var self = this;
+
+			$dj.subscribe('entityRowSelect.dj.OutletList', function () {
+				var idarr = [];
+				if (self.$selectedOutletIds.val() != "") {
+					idarr = self.$selectedOutletIds.val().split(",");
+				}
+
+				if (idarr.length < 2) {
+					if ($(".dj_list-select-count").hasClass("hide") == false) {
+						$(".dj_list-select-count").addClass("hide");
+					}
+
+					$(".dj_list-select-count span.count").html("");
+				}
+				else {
+					if ($(".dj_list-select-count").hasClass("hide") == true) {
+						$(".dj_list-select-count").removeClass("hide");
+					}
+
+					$(".dj_list-select-count span.count").html(idarr.length);
+				}
+			});
+
+			// unselect all;
+			this.$element.delegate(this.selectors.unselectAllCheckboxes, "click", function () {
+				$.dj.modal({
+					title: $("#dj_clear_selection .dj_modal-title").clone(true),
+					content: $("#dj_clear_selection .dj_modal-content").clone(true),
+					minWidth: 460,
+					maxWidth: 460,
+					minHeight: 180,
+					maxHeight: 180,
+					modalClass: 'dj_modal-comm-field',
+					jscrollpaneEnabled: false
+				});
+				$(self.selectors.unselectAllCheckboxesConfirmed).click(function () {
+					self.$selectedOutletIds.val("");
+					self.$checkboxOutlets.attr("checked", false);
+					$(self.selectors.checkboxAll).attr("checked", false);
+					$dj.publish("entityRowSelect.dj.OutletList", {});
+					$.modal.close();
+					alert("<%= Token('cmalSelectionsHaveBeenCleared') %>.");
+				});
+			});
+
 			// first | prev || next | last page navigation;
 			this.$element.delegate(this.selectors.navigation, "click", function () {
 				var sortBy = self.$currentSortBy.val();
@@ -147,7 +193,7 @@
 				return false;
 			});
 
-			// Page size change; pagerClick.dj.CompositeAuthor is enough; no new event is needed;
+			// Page size change; pagerClick.dj.CompositeOutlet is enough; no new event is needed;
 			this.$element.delegate(this.selectors.pageSizeSelector, "change", function () {
 				var newPageSize = $(this).val();
 				var sortBy = self.$currentSortBy.val();
@@ -176,7 +222,7 @@
 				var checked = $this.is(":checked")
 				self.$checkboxOutlets.attr("checked", checked);
 
-				// author ids persistency;
+				// outlet ids persistency;
 				var idarr = [];
 				if (self.$selectedOutletIds.val() != "") {
 					idarr = self.$selectedOutletIds.val().split(",");
@@ -196,6 +242,7 @@
 				});
 
 				self.$selectedOutletIds.val(idarr.join(","));
+				$dj.publish("entityRowSelect.dj.OutletList", {});
 			});
 
 			// Actions menu;
@@ -208,12 +255,6 @@
 			this.$actionsMenu.delegate('.label', 'click', function () {
 				if ($(this).parent().hasClass("disabled")) return;
 				var actionValue = $(this).data("action");
-				if (actionValue == "unselect-all") {
-					self.$selectedOutletIds.val("");
-					self.$checkboxOutlets.attr("checked", false);
-					$(self.selectors.checkboxAll).attr("checked", false);
-					return;
-				}
 
 				if (actionValue == "export-all") {
 					if (self.options.totalResultCount > self.constants.maxOutletsForActionNoEmail) {
@@ -294,7 +335,7 @@
 
 			// other menu items (except create alert);
 			// export all & email all are always active;
-			// other are active only if there is at least one author selected; 
+			// other are active only if there is at least one outlet selected; 
 			if (outletsSelected == 0) { // only export-all and email-all are active;
 				this.$actionsMenu.find(self.constants.addToContactListMenuItem).parent().addClass("disabled");
 				this.$actionsMenu.find(self.constants.printMenuItem).parent().addClass("disabled");
@@ -303,7 +344,6 @@
 				this.$actionsMenu.find(self.constants.deleteMenuItem).parent().addClass("disabled");
 				this.$actionsMenu.find(self.constants.emailMenuItem).parent().addClass("disabled");
 				this.$actionsMenu.find(self.constants.emailAllMenuItem).parent().removeClass("disabled");
-				this.$actionsMenu.find(self.constants.unselectAllMenuItem).parent().addClass("disabled");
 			}
 			else {
 				this.$actionsMenu.find(self.constants.addToContactListMenuItem).parent().removeClass("disabled");
@@ -313,7 +353,6 @@
 				this.$actionsMenu.find(self.constants.deleteMenuItem).parent().removeClass("disabled");
 				this.$actionsMenu.find(self.constants.emailMenuItem).parent().removeClass("disabled");
 				this.$actionsMenu.find(self.constants.emailAllMenuItem).parent().removeClass("disabled");
-				this.$actionsMenu.find(self.constants.unselectAllMenuItem).parent().removeClass("disabled");
 			}
 
 			$(document).unbind('mousedown.Actions').bind('mousedown.Actions').click($dj.delegate(this, function () {

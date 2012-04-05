@@ -33,7 +33,6 @@
 			deleteMenuItem: "div.label[data-action='delete']",
 			emailMenuItem: "div.label[data-action='email']",
 			emailAllMenuItem: "div.label[data-action='email-all']",
-			unselectAllMenuItem: "div.label[data-action='unselect-all']",
 			createActivityMenuItem: "div.label[data-action='create-activity']",
 			createBriefingBookMenuItem: "div.label[data-action='create-briefing-book']",
 			maxAuthorsForActionNoEmail: 1000,

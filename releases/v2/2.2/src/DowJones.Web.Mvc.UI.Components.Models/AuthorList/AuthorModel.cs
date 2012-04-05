@@ -171,9 +171,9 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 		public string Name { get; set; }
 		public string EmploymentType { get; set; }
 		public string JobTitle { get; set; }
-		public OutletType Type { get; set; }
+		public string Type { get; set; }
 		public int Circulation { get; set; }
-		public Frequency Frequency { get; set; }
+		public string Frequency { get; set; }
 		public string State { get; set; }
 		public string Country { get; set; }
 
@@ -186,9 +186,9 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 			string name,
 			string employmentType,
 			string jobTitle,
-			OutletType type,
+			string type,
 			int circulation,
-			Frequency frequency,
+			string frequency,
 			string state,
 			string country)
 		{

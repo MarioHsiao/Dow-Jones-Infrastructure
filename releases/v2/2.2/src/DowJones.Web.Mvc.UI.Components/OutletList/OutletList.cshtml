@@ -4,13 +4,9 @@
 @ClientPlugin dj_OutletList
 @ScriptResource RelativeResourceName=OutletList.js
 @{ CssClass = "dj_OutletList"; }
-@{
-	uint runningSum = @Model.FirstRecordIndex;
-	uint i = 0;
-
-}
 @if (Model != null)
 {
+	Model.InitializeDomDataCollections();
 	string sort = "<span class='dj_sortable-table-columnUp'></span>";
 	if (Model.SortOrder == OrderDirections.Descending)
 	{
@@ -32,6 +28,14 @@
 				}
 			});
 
+			if (idarr.length > 1) {
+				if ($(".dj_list-select-count").hasClass("hide") == true) {
+					$(".dj_list-select-count").removeClass("hide");
+				}
+
+				$(".dj_list-select-count span.count").html(idarr.length);
+			}
+
 		});
 	</script>
 	
@@ -39,270 +43,107 @@
 	<input type="hidden" id="outlet_list_sort_order" value="@(EnumDescription.StringValueOf(Model.SortOrder))" />
 	<input type="hidden" id="selected_outlet_ids" value="@Model.SelectedOutletIds" />
 	<table class="dj_data_table-sorter dj_data_table dj_author-list-table">
-		<colgroup>
-			<col class="dj_data_table-select-col" />
-			<col class="dj_data_table-col1" />
-			<col class="dj_data_table-col2" />
-			@foreach (AuthorListColumns col in Model.DisplayedColumns)
-			{
-				<col />
-			}
-		</colgroup>
 		<thead>
 			<tr>
-				<th scope="col"></th>
-				<th scope="col"></th>
+				<th colspan="2" class="dj_col-checkbox"></th>
 				<th scope="col" class="dj_sortable-table-header" data-sort="outlet">
 					@Model.Tokens.OutletName
 					@(Model.SortBy == OutletListSortColumns.OutletName ? sort : "")
 				</th>
-				@if (Model.DisplayedColumns.Contains(OutletListSortColumns.Circulation))
-				{ 
-					<th scope="col" class="dj_sortable-table-header" data-sort="circulation" style="text-align:right">
-						@Model.Tokens.Circulation
-						@(Model.SortBy == OutletListSortColumns.Circulation ? sort : "")
-					</th>
-				}
-				@if (Model.DisplayedColumns.Contains(OutletListSortColumns.OriginCountry))
-				{ 
-					<th scope="col" class="dj_sortable-table-column">
-						@Model.Tokens.OriginCountry
-					</th>
-				}
-				@if (Model.DisplayedColumns.Contains(OutletListSortColumns.Country))
-				{ 
-					<th scope="col" class="dj_sortable-table-header" data-sort="country">
-						@Model.Tokens.Country
-						@(Model.SortBy == OutletListSortColumns.Country ? sort : "")
-					</th>
-				}
-				@if (Model.DisplayedColumns.Contains(OutletListSortColumns.State))
-				{ 
-					<th scope="col" class="dj_sortable-table-header" data-sort="state">
-						@Model.Tokens.State
-						@(Model.SortBy == OutletListSortColumns.State ? sort : "")
-					</th>
-				}
-				@if (Model.DisplayedColumns.Contains(OutletListSortColumns.City))
-				{ 
-					<th scope="col" class="dj_sortable-table-header" data-sort="city">
-						@Model.Tokens.City
-						@(Model.SortBy == OutletListSortColumns.City ? sort : "")
-					</th>
-				}
-				@if (Model.DisplayedColumns.Contains(OutletListSortColumns.MediaFormat))
-				{ 
-					<th scope="col" class="dj_sortable-table-header" data-sort="mediaformat">
-						@Model.Tokens.MediaFormat
-						@(Model.SortBy == OutletListSortColumns.MediaFormat ? sort : "")
-					</th>
-				}
-				@if (Model.DisplayedColumns.Contains(OutletListSortColumns.OutletType))
-				{ 
-					<th scope="col" class="dj_sortable-table-header" data-sort="outlettype">
-						@Model.Tokens.OutletType
-						@(Model.SortBy == OutletListSortColumns.OutletType ? sort : "")
-					</th>
-				}
-				@*new columns*@
-				@if (Model.DisplayedColumns.Contains(OutletListSortColumns.Language))
-				{ 
-					<th scope="col" class="dj_sortable-table-column" data-sort="language">
-						@Model.Tokens.Language
-						@(Model.SortBy == OutletListSortColumns.Language ? sort : "")
-					</th>
-				}
-				@if (Model.DisplayedColumns.Contains(OutletListSortColumns.Frequency))
-				{ 
-					<th scope="col" class="dj_sortable-table-header" data-sort="frequency">
-						@Model.Tokens.Frequency
-						@(Model.SortBy == OutletListSortColumns.Frequency ? sort : "")
-					</th>
-				}
-				@if (Model.DisplayedColumns.Contains(OutletListSortColumns.Coverage))
-				{ 
-					<th scope="col" class="dj_sortable-table-header" data-sort="coverage">
-						@Model.Tokens.Coverage
-						@(Model.SortBy == OutletListSortColumns.Coverage ? sort : "")
-					</th>
-				}
-				@if (Model.DisplayedColumns.Contains(OutletListSortColumns.Industries))
-				{ 
-					<th scope="col" class="dj_sortable-table-column" data-sort="industries">
-						@Model.Tokens.Industries
-						@(Model.SortBy == OutletListSortColumns.Industries ? sort : "")
-					</th>
-				}
-				@if (Model.DisplayedColumns.Contains(OutletListSortColumns.Subjects))
-				{ 
-					<th scope="col" class="dj_sortable-table-column" data-sort="subjects">
-						@Model.Tokens.Subjects
-						@(Model.SortBy == OutletListSortColumns.Subjects ? sort : "")
-					</th>
-				}
-				@if (Model.DisplayedColumns.Contains(OutletListSortColumns.Regions))
-				{ 
-					<th scope="col" class="dj_sortable-table-column" data-sort="regions">
-						@Model.Tokens.Regions
-						@(Model.SortBy == OutletListSortColumns.Regions ? sort : "")
-					</th>
-				}
-				@if (Model.DisplayedColumns.Contains(OutletListSortColumns.Publisher))
-				{ 
-					<th scope="col" class="dj_sortable-table-header" data-sort="publisher">
-						@Model.Tokens.Publisher
-						@(Model.SortBy == OutletListSortColumns.Publisher ? sort : "")
-					</th>
-				}
-				@if (Model.DisplayedColumns.Contains(OutletListSortColumns.UserAddedInfo))
-				{ 
-					<th scope="col" class="dj_sortable-table-column" data-sort="useraddedinfo">
-						@Model.Tokens.UserAddedInfo
-						@(Model.SortBy == OutletListSortColumns.UserAddedInfo ? sort : "")
+				<th class="dj_sortable-table-column dj_table-column-center">@Model.Tokens.MediaContacts</th>
+				<th class="dj_col-string dj_sortable-table-column">
+					@Model.Tokens.Articles<br />(@Model.Tokens.Last90Days)
+				</th>
+
+				@foreach (ThOutletItem th in Model.ThCollection) 
+				{
+					string s = String.Empty;
+					if (th.Sortable)
+					{
+						s = String.Format(" data-sort='{0}'", th.SortableAttribut);
+					}
+					<th class="@th.ThClass"@s>
+						@if(th.IsTextSplitable)
+						{
+							new MvcHtmlString(th.Text);
+						}
+						else
+						{
+							@th.Text
+						}
+						@th.SortedSpan
 					</th>
 				}
 			</tr>
 		</thead>
 		<tbody class="dj_data_table-scroll">
-		@foreach (var outlet in Model.Outlets)
+		@foreach(TrItem row in Model.TrCollection)
 		{
-			string oddClass = ++i % 2 == 0 ? "" : " class='odd'";
-				<tr@(oddClass)>
-					<td class="dj_data_table-select-col">
-						<input name="dj_outlet-select" type="checkbox" outletlist-aid='@outlet.OutletId'/>
-					</td>
-					<td class="dj_num-col">@(runningSum++).</td>
-					<td class="dj_sortable-sorted"><a href="javascript:void(0);" class="outlet-selector">@outlet.OutletName</a></td>
-					@if (Model.DisplayedColumns.Contains(OutletListSortColumns.Circulation))
-					{ 
-									<td align="right">
-											@if (outlet.Circulation > 0)
+			<tr class="@row.TrClass">
+				@for (int c = 0; c < row.TdItems.Length; ++c)
+				{
+					TdItem td = row.TdItems[c];
+					<td class="@td.TdClass">
+						@if (td.IsAncor)
+						{ 
+							<a href="@td.AncorHref" class="@td.AncorClass" @td.AncorAttributes>
+								@if (td.IsHtmlText)
+								{
+									@(new MvcHtmlString(td.Text))
+								}
+								else
+								{
+									@td.Text
+								}
+							</a>
+						}
+						else
+						{
+							if (td.IsHtmlText)
 							{
-												@outlet.Circulation.ToString("0,0", System.Globalization.CultureInfo.InvariantCulture)
+								@(new MvcHtmlString(td.Text))
 							}
 							else
 							{
-												<span></span>
+								@td.Text
 							}
-									</td>
-					}
-					@if (Model.DisplayedColumns.Contains(OutletListSortColumns.OriginCountry))
-					{ 
-						<td>@outlet.OriginCountry</td>
-					}
-					@if (Model.DisplayedColumns.Contains(OutletListSortColumns.Country))
-					{ 
-						<td>@outlet.Country</td>
-					}
-					@if (Model.DisplayedColumns.Contains(OutletListSortColumns.State))
-					{ 
-						<td>@outlet.State</td>
-					}
-					@if (Model.DisplayedColumns.Contains(OutletListSortColumns.City))
-					{ 
-						<td>@outlet.City</td>
-					}
-					@if (Model.DisplayedColumns.Contains(OutletListSortColumns.MediaFormat))
-					{ 
-						<td>@outlet.MediaFormat.Name</td>
-					}
-					@if (Model.DisplayedColumns.Contains(OutletListSortColumns.OutletType))
-					{ 
-						<td>@outlet.OutletType.Name</td>
-					}
-					@if (Model.DisplayedColumns.Contains(OutletListSortColumns.Language))
-					{
-						if (outlet.Languages == null || outlet.Languages.Count == 0)
-						{
-							<td></td> 
 						}
-						else
-						{  
-							<td>@outlet.GetLanguagesText().Replace("|", "<br />")</td>
-						}
-					}
-					@if (Model.DisplayedColumns.Contains(OutletListSortColumns.Frequency))
-					{
-						if (outlet.Frequency == null)
-						{
-							<td></td>
-						}
-						else
-						{ 
-							<td>@outlet.Frequency.Name</td>
-						}
-					}
-					@if (Model.DisplayedColumns.Contains(OutletListSortColumns.Coverage))
-					{ 
-						<td>@outlet.Coverage</td>
-					}
-					@if (Model.DisplayedColumns.Contains(OutletListSortColumns.Industries))
-					{
-						if (outlet.IndustryEditorialFocus == null || outlet.IndustryEditorialFocus.Count == 0)
-						{
-							<td></td> 
-						}
-						else
-						{ 
-							<td>@outlet.GetIndustriesText().Replace("|", "<br />")</td>
-						}
-					}
-					@if (Model.DisplayedColumns.Contains(OutletListSortColumns.Subjects))
-					{
-						if (outlet.SubjectEditorialFocus == null || outlet.SubjectEditorialFocus.Count == 0)
-						{
-							<td></td> 
-						}
-						else
-						{ 
-							<td>@outlet.GetSubjectsText().Replace("|", "<br />")</td>
-						}
-					}
-					@if (Model.DisplayedColumns.Contains(OutletListSortColumns.Regions))
-					{
-						if (outlet.RegionEditorialFocus == null || outlet.RegionEditorialFocus.Count == 0)
-						{
-							<td></td> 
-						}
-						else
-						{ 
-							<td>@outlet.GetRegionsText().Replace("|", "<br />")</td>
-						}
-					}
-					@if (Model.DisplayedColumns.Contains(OutletListSortColumns.Publisher))
-					{ 
-						<td>@outlet.Publisher</td>
-					}
-					@if (Model.DisplayedColumns.Contains(OutletListSortColumns.UserAddedInfo))
-					{
-						if (outlet.UserAddedInformation == null)
-						{
-							<td></td> 
-						}
-						else
-						{ 
-							<td>@(new MvcHtmlString(outlet.GetUserAddedInfoText()))
-							</td>
-						}
-					}
-			 </tr>
-  }
+					</td>
+				}
+			</tr>
+		}
 		</tbody>
 	</table>
-		<!-- Save As Menu -->
+	<!-- Save As Menu -->
 	<div class="menu actionsMenu" style="display:none;">
 		<div class="menuitems">
 		@{
-  foreach (var menu in Model.Actions)
-  {
+			foreach (var menu in Model.Actions)
+			{
 				<div class="menuitem">
 					<div class="label" data-action="@menu.Value">@menu.Text</div>
 				</div>
-  }
+			}
 		}
 		</div>
 	</div>
 	<!-- Save As Menu -->
+	<!-- Modal Clear Selection -->
+	<div id="dj_clear_selection" style="display:none;">
+		<!-- Modal title tag: -->
+		<h3 class="dj_modal-title">@Model.Tokens.UnselectCheckboxesConfirmTitle</h3>
+		<!-- Modal content tag: -->
+		<div class="dj_modal-content">
+			<div class="dj_modal-content-wrap" style="padding-top: 20px; padding-left: 20px; padding-right: 20px;">
+				<h3 style="height:54px;">@Model.Tokens.UnselectCheckboxesConfirmMessage?</h3>
+					<div class="dj_modal-footer">
+					<input class="dj_btn dj_btn-green export dj_confirm-unselect-checkboxes" value="Yes" type="submit" />
+					<span class="dj_btn dj_btn-gray dj_modal-close" onclick="$().overlay.hide('#'+$(this).closest('.dj_modal').attr('id'));">Cancel</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Modal Clear Selection -->
 }
 else
 {

@@ -24,7 +24,7 @@ namespace DowJones.Web.Mvc.UI.Components.OutletList
     using DowJones.Web.Mvc.UI.Components.Models;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 02/16/2012 12:09 PM
+    // Last Generated Timestamp: 04/05/2012 09:21 AM
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.OutletList.OutletList.js", ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.OutletList.OutletList))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "0.0.0.30158")]
     public class OutletList : DowJones.Web.Mvc.UI.ViewComponentBase<DowJones.Web.Mvc.UI.Components.Models.OutletListModel>
@@ -52,15 +52,9 @@ namespace DowJones.Web.Mvc.UI.Components.OutletList
    CssClass = "dj_OutletList"; 
 
 
-  
-	uint runningSum = @Model.FirstRecordIndex;
-	uint i = 0;
-
-
-
-
  if (Model != null)
 {
+	Model.InitializeDomDataCollections();
 	string sort = "<span class='dj_sortable-table-columnUp'></span>";
 	if (Model.SortOrder == OrderDirections.Descending)
 	{
@@ -82,6 +76,14 @@ WriteLiteral(@"	<script type=""text/javascript"">
 					$this.attr(""checked"", true);
 				}
 			});
+
+			if (idarr.length > 1) {
+				if ($("".dj_list-select-count"").hasClass(""hide"") == true) {
+					$("".dj_list-select-count"").removeClass(""hide"");
+				}
+
+				$("".dj_list-select-count span.count"").html(idarr.length);
+			}
 
 		});
 	</script>
@@ -117,22 +119,9 @@ WriteLiteral("\" />\r\n");
 
 
 
-WriteLiteral("\t<table class=\"dj_data_table-sorter dj_data_table dj_author-list-table\">\r\n\t\t<colg" +
-"roup>\r\n\t\t\t<col class=\"dj_data_table-select-col\" />\r\n\t\t\t<col class=\"dj_data_table" +
-"-col1\" />\r\n\t\t\t<col class=\"dj_data_table-col2\" />\r\n");
-
-
- 			foreach (AuthorListColumns col in Model.DisplayedColumns)
-			{
-
-WriteLiteral("\t\t\t\t<col />\r\n");
-
-
-			}
-
-WriteLiteral("\t\t</colgroup>\r\n\t\t<thead>\r\n\t\t\t<tr>\r\n\t\t\t\t<th scope=\"col\"></th>\r\n\t\t\t\t<th scope=\"col\"" +
-"></th>\r\n\t\t\t\t<th scope=\"col\" class=\"dj_sortable-table-header\" data-sort=\"outlet\">" +
-"\r\n\t\t\t\t\t");
+WriteLiteral("\t<table class=\"dj_data_table-sorter dj_data_table dj_author-list-table\">\r\n\t\t<thea" +
+"d>\r\n\t\t\t<tr>\r\n\t\t\t\t<th colspan=\"2\" class=\"dj_col-checkbox\"></th>\r\n\t\t\t\t<th scope=\"c" +
+"ol\" class=\"dj_sortable-table-header\" data-sort=\"outlet\">\r\n\t\t\t\t\t");
 
 
 Write(Model.Tokens.OutletName);
@@ -142,297 +131,61 @@ WriteLiteral("\r\n\t\t\t\t\t");
 
  Write(Model.SortBy == OutletListSortColumns.OutletName ? sort : "");
 
-WriteLiteral("\r\n\t\t\t\t</th>\r\n");
+WriteLiteral("\r\n\t\t\t\t</th>\r\n\t\t\t\t<th class=\"dj_sortable-table-column dj_table-column-center\">");
 
 
- 				if (Model.DisplayedColumns.Contains(OutletListSortColumns.Circulation))
-				{ 
+                                                           Write(Model.Tokens.MediaContacts);
 
-WriteLiteral("\t\t\t\t\t<th scope=\"col\" class=\"dj_sortable-table-header\" data-sort=\"circulation\" sty" +
-"le=\"text-align:right\">\r\n\t\t\t\t\t\t");
+WriteLiteral("</th>\r\n\t\t\t\t<th class=\"dj_col-string dj_sortable-table-column\">\r\n\t\t\t\t\t");
 
 
- Write(Model.Tokens.Circulation);
+Write(Model.Tokens.Articles);
 
-WriteLiteral("\r\n\t\t\t\t\t\t");
+WriteLiteral("<br />(");
 
 
-  Write(Model.SortBy == OutletListSortColumns.Circulation ? sort : "");
+                             Write(Model.Tokens.Last90Days);
 
-WriteLiteral("\r\n\t\t\t\t\t</th>\r\n");
+WriteLiteral(")\r\n\t\t\t\t</th>\r\n\r\n");
 
 
-				}
+ 				foreach (ThOutletItem th in Model.ThCollection) 
+				{
+					string s = String.Empty;
+					if (th.Sortable)
+					{
+						s = String.Format(" data-sort='{0}'", th.SortableAttribut);
+					}
 
+WriteLiteral("\t\t\t\t\t<th class=\"");
 
- 				if (Model.DisplayedColumns.Contains(OutletListSortColumns.OriginCountry))
-				{ 
 
-WriteLiteral("\t\t\t\t\t<th scope=\"col\" class=\"dj_sortable-table-column\">\r\n\t\t\t\t\t\t");
+           Write(th.ThClass);
 
+WriteLiteral("\"");
 
- Write(Model.Tokens.OriginCountry);
 
-WriteLiteral("\r\n\t\t\t\t\t</th>\r\n");
+                       Write(s);
 
+WriteLiteral(">\r\n");
 
-				}
 
+ 						if(th.IsTextSplitable)
+						{
+							new MvcHtmlString(th.Text);
+						}
+						else
+						{
+							
+  Write(th.Text);
 
- 				if (Model.DisplayedColumns.Contains(OutletListSortColumns.Country))
-				{ 
+               
+						}
 
-WriteLiteral("\t\t\t\t\t<th scope=\"col\" class=\"dj_sortable-table-header\" data-sort=\"country\">\r\n\t\t\t\t\t" +
-"\t");
+WriteLiteral("\t\t\t\t\t\t");
 
 
- Write(Model.Tokens.Country);
-
-WriteLiteral("\r\n\t\t\t\t\t\t");
-
-
-  Write(Model.SortBy == OutletListSortColumns.Country ? sort : "");
-
-WriteLiteral("\r\n\t\t\t\t\t</th>\r\n");
-
-
-				}
-
-
- 				if (Model.DisplayedColumns.Contains(OutletListSortColumns.State))
-				{ 
-
-WriteLiteral("\t\t\t\t\t<th scope=\"col\" class=\"dj_sortable-table-header\" data-sort=\"state\">\r\n\t\t\t\t\t\t");
-
-
- Write(Model.Tokens.State);
-
-WriteLiteral("\r\n\t\t\t\t\t\t");
-
-
-  Write(Model.SortBy == OutletListSortColumns.State ? sort : "");
-
-WriteLiteral("\r\n\t\t\t\t\t</th>\r\n");
-
-
-				}
-
-
- 				if (Model.DisplayedColumns.Contains(OutletListSortColumns.City))
-				{ 
-
-WriteLiteral("\t\t\t\t\t<th scope=\"col\" class=\"dj_sortable-table-header\" data-sort=\"city\">\r\n\t\t\t\t\t\t");
-
-
- Write(Model.Tokens.City);
-
-WriteLiteral("\r\n\t\t\t\t\t\t");
-
-
-  Write(Model.SortBy == OutletListSortColumns.City ? sort : "");
-
-WriteLiteral("\r\n\t\t\t\t\t</th>\r\n");
-
-
-				}
-
-
- 				if (Model.DisplayedColumns.Contains(OutletListSortColumns.MediaFormat))
-				{ 
-
-WriteLiteral("\t\t\t\t\t<th scope=\"col\" class=\"dj_sortable-table-header\" data-sort=\"mediaformat\">\r\n\t" +
-"\t\t\t\t\t");
-
-
- Write(Model.Tokens.MediaFormat);
-
-WriteLiteral("\r\n\t\t\t\t\t\t");
-
-
-  Write(Model.SortBy == OutletListSortColumns.MediaFormat ? sort : "");
-
-WriteLiteral("\r\n\t\t\t\t\t</th>\r\n");
-
-
-				}
-
-
- 				if (Model.DisplayedColumns.Contains(OutletListSortColumns.OutletType))
-				{ 
-
-WriteLiteral("\t\t\t\t\t<th scope=\"col\" class=\"dj_sortable-table-header\" data-sort=\"outlettype\">\r\n\t\t" +
-"\t\t\t\t");
-
-
- Write(Model.Tokens.OutletType);
-
-WriteLiteral("\r\n\t\t\t\t\t\t");
-
-
-  Write(Model.SortBy == OutletListSortColumns.OutletType ? sort : "");
-
-WriteLiteral("\r\n\t\t\t\t\t</th>\r\n");
-
-
-				}
-				
-
-                   
-
-
- 				if (Model.DisplayedColumns.Contains(OutletListSortColumns.Language))
-				{ 
-
-WriteLiteral("\t\t\t\t\t<th scope=\"col\" class=\"dj_sortable-table-column\" data-sort=\"language\">\r\n\t\t\t\t" +
-"\t\t");
-
-
- Write(Model.Tokens.Language);
-
-WriteLiteral("\r\n\t\t\t\t\t\t");
-
-
-  Write(Model.SortBy == OutletListSortColumns.Language ? sort : "");
-
-WriteLiteral("\r\n\t\t\t\t\t</th>\r\n");
-
-
-				}
-
-
- 				if (Model.DisplayedColumns.Contains(OutletListSortColumns.Frequency))
-				{ 
-
-WriteLiteral("\t\t\t\t\t<th scope=\"col\" class=\"dj_sortable-table-header\" data-sort=\"frequency\">\r\n\t\t\t" +
-"\t\t\t");
-
-
- Write(Model.Tokens.Frequency);
-
-WriteLiteral("\r\n\t\t\t\t\t\t");
-
-
-  Write(Model.SortBy == OutletListSortColumns.Frequency ? sort : "");
-
-WriteLiteral("\r\n\t\t\t\t\t</th>\r\n");
-
-
-				}
-
-
- 				if (Model.DisplayedColumns.Contains(OutletListSortColumns.Coverage))
-				{ 
-
-WriteLiteral("\t\t\t\t\t<th scope=\"col\" class=\"dj_sortable-table-header\" data-sort=\"coverage\">\r\n\t\t\t\t" +
-"\t\t");
-
-
- Write(Model.Tokens.Coverage);
-
-WriteLiteral("\r\n\t\t\t\t\t\t");
-
-
-  Write(Model.SortBy == OutletListSortColumns.Coverage ? sort : "");
-
-WriteLiteral("\r\n\t\t\t\t\t</th>\r\n");
-
-
-				}
-
-
- 				if (Model.DisplayedColumns.Contains(OutletListSortColumns.Industries))
-				{ 
-
-WriteLiteral("\t\t\t\t\t<th scope=\"col\" class=\"dj_sortable-table-column\" data-sort=\"industries\">\r\n\t\t" +
-"\t\t\t\t");
-
-
- Write(Model.Tokens.Industries);
-
-WriteLiteral("\r\n\t\t\t\t\t\t");
-
-
-  Write(Model.SortBy == OutletListSortColumns.Industries ? sort : "");
-
-WriteLiteral("\r\n\t\t\t\t\t</th>\r\n");
-
-
-				}
-
-
- 				if (Model.DisplayedColumns.Contains(OutletListSortColumns.Subjects))
-				{ 
-
-WriteLiteral("\t\t\t\t\t<th scope=\"col\" class=\"dj_sortable-table-column\" data-sort=\"subjects\">\r\n\t\t\t\t" +
-"\t\t");
-
-
- Write(Model.Tokens.Subjects);
-
-WriteLiteral("\r\n\t\t\t\t\t\t");
-
-
-  Write(Model.SortBy == OutletListSortColumns.Subjects ? sort : "");
-
-WriteLiteral("\r\n\t\t\t\t\t</th>\r\n");
-
-
-				}
-
-
- 				if (Model.DisplayedColumns.Contains(OutletListSortColumns.Regions))
-				{ 
-
-WriteLiteral("\t\t\t\t\t<th scope=\"col\" class=\"dj_sortable-table-column\" data-sort=\"regions\">\r\n\t\t\t\t\t" +
-"\t");
-
-
- Write(Model.Tokens.Regions);
-
-WriteLiteral("\r\n\t\t\t\t\t\t");
-
-
-  Write(Model.SortBy == OutletListSortColumns.Regions ? sort : "");
-
-WriteLiteral("\r\n\t\t\t\t\t</th>\r\n");
-
-
-				}
-
-
- 				if (Model.DisplayedColumns.Contains(OutletListSortColumns.Publisher))
-				{ 
-
-WriteLiteral("\t\t\t\t\t<th scope=\"col\" class=\"dj_sortable-table-header\" data-sort=\"publisher\">\r\n\t\t\t" +
-"\t\t\t");
-
-
- Write(Model.Tokens.Publisher);
-
-WriteLiteral("\r\n\t\t\t\t\t\t");
-
-
-  Write(Model.SortBy == OutletListSortColumns.Publisher ? sort : "");
-
-WriteLiteral("\r\n\t\t\t\t\t</th>\r\n");
-
-
-				}
-
-
- 				if (Model.DisplayedColumns.Contains(OutletListSortColumns.UserAddedInfo))
-				{ 
-
-WriteLiteral("\t\t\t\t\t<th scope=\"col\" class=\"dj_sortable-table-column\" data-sort=\"useraddedinfo\">\r" +
-"\n\t\t\t\t\t\t");
-
-
- Write(Model.Tokens.UserAddedInfo);
-
-WriteLiteral("\r\n\t\t\t\t\t\t");
-
-
-  Write(Model.SortBy == OutletListSortColumns.UserAddedInfo ? sort : "");
+ Write(th.SortedSpan);
 
 WriteLiteral("\r\n\t\t\t\t\t</th>\r\n");
 
@@ -442,327 +195,102 @@ WriteLiteral("\r\n\t\t\t\t\t</th>\r\n");
 WriteLiteral("\t\t\t</tr>\r\n\t\t</thead>\r\n\t\t<tbody class=\"dj_data_table-scroll\">\r\n");
 
 
- 		foreach (var outlet in Model.Outlets)
+ 		foreach(TrItem row in Model.TrCollection)
 		{
-			string oddClass = ++i % 2 == 0 ? "" : " class='odd'";
 
-WriteLiteral("\t\t\t\t<tr");
-
-
-   Write(oddClass);
-
-WriteLiteral(">\r\n\t\t\t\t\t<td class=\"dj_data_table-select-col\">\r\n\t\t\t\t\t\t<input name=\"dj_outlet-selec" +
-"t\" type=\"checkbox\" outletlist-aid=\'");
+WriteLiteral("\t\t\t<tr class=\"");
 
 
-                                                                Write(outlet.OutletId);
+         Write(row.TrClass);
 
-WriteLiteral("\'/>\r\n\t\t\t\t\t</td>\r\n\t\t\t\t\t<td class=\"dj_num-col\">");
-
-
-                        Write(runningSum++);
-
-WriteLiteral(".</td>\r\n\t\t\t\t\t<td class=\"dj_sortable-sorted\"><a href=\"javascript:void(0);\" class=\"" +
-"outlet-selector\">");
+WriteLiteral("\">\r\n");
 
 
-                                                                                     Write(outlet.OutletName);
+ 				for (int c = 0; c < row.TdItems.Length; ++c)
+				{
+					TdItem td = row.TdItems[c];
 
-WriteLiteral("</a></td>\r\n");
-
-
- 					if (Model.DisplayedColumns.Contains(OutletListSortColumns.Circulation))
-					{ 
-
-WriteLiteral("\t\t\t\t\t\t\t\t\t<td align=\"right\">\r\n");
+WriteLiteral("\t\t\t\t\t<td class=\"");
 
 
- 											if (outlet.Circulation > 0)
+           Write(td.TdClass);
+
+WriteLiteral("\">\r\n");
+
+
+ 						if (td.IsAncor)
+						{ 
+
+WriteLiteral("\t\t\t\t\t\t\t<a href=\"");
+
+
+           Write(td.AncorHref);
+
+WriteLiteral("\" class=\"");
+
+
+                                 Write(td.AncorClass);
+
+WriteLiteral("\" ");
+
+
+                                                 Write(td.AncorAttributes);
+
+WriteLiteral(">\r\n");
+
+
+ 								if (td.IsHtmlText)
+								{
+									
+     Write(new MvcHtmlString(td.Text));
+
+                                      
+								}
+								else
+								{
+									
+    Write(td.Text);
+
+                 
+								}
+
+WriteLiteral("\t\t\t\t\t\t\t</a>\r\n");
+
+
+						}
+						else
+						{
+							if (td.IsHtmlText)
 							{
-												
-       Write(outlet.Circulation.ToString("0,0", System.Globalization.CultureInfo.InvariantCulture));
+								
+    Write(new MvcHtmlString(td.Text));
 
-                                                                                                  
+                                     
 							}
 							else
 							{
+								
+   Write(td.Text);
 
-WriteLiteral("\t\t\t\t\t\t\t\t\t\t\t\t<span></span>\r\n");
-
-
+                
 							}
-
-WriteLiteral("\t\t\t\t\t\t\t\t\t</td>\r\n");
-
-
-					}
-
-
- 					if (Model.DisplayedColumns.Contains(OutletListSortColumns.OriginCountry))
-					{ 
-
-WriteLiteral("\t\t\t\t\t\t<td>");
-
-
-     Write(outlet.OriginCountry);
-
-WriteLiteral("</td>\r\n");
-
-
-					}
-
-
- 					if (Model.DisplayedColumns.Contains(OutletListSortColumns.Country))
-					{ 
-
-WriteLiteral("\t\t\t\t\t\t<td>");
-
-
-     Write(outlet.Country);
-
-WriteLiteral("</td>\r\n");
-
-
-					}
-
-
- 					if (Model.DisplayedColumns.Contains(OutletListSortColumns.State))
-					{ 
-
-WriteLiteral("\t\t\t\t\t\t<td>");
-
-
-     Write(outlet.State);
-
-WriteLiteral("</td>\r\n");
-
-
-					}
-
-
- 					if (Model.DisplayedColumns.Contains(OutletListSortColumns.City))
-					{ 
-
-WriteLiteral("\t\t\t\t\t\t<td>");
-
-
-     Write(outlet.City);
-
-WriteLiteral("</td>\r\n");
-
-
-					}
-
-
- 					if (Model.DisplayedColumns.Contains(OutletListSortColumns.MediaFormat))
-					{ 
-
-WriteLiteral("\t\t\t\t\t\t<td>");
-
-
-     Write(outlet.MediaFormat.Name);
-
-WriteLiteral("</td>\r\n");
-
-
-					}
-
-
- 					if (Model.DisplayedColumns.Contains(OutletListSortColumns.OutletType))
-					{ 
-
-WriteLiteral("\t\t\t\t\t\t<td>");
-
-
-     Write(outlet.OutletType.Name);
-
-WriteLiteral("</td>\r\n");
-
-
-					}
-
-
- 					if (Model.DisplayedColumns.Contains(OutletListSortColumns.Language))
-					{
-						if (outlet.Languages == null || outlet.Languages.Count == 0)
-						{
-
-WriteLiteral("\t\t\t\t\t\t\t<td></td> \r\n");
-
-
 						}
-						else
-						{  
 
-WriteLiteral("\t\t\t\t\t\t\t<td>");
+WriteLiteral("\t\t\t\t\t</td>\r\n");
 
 
-      Write(outlet.GetLanguagesText().Replace("|", "<br />"));
+				}
 
-WriteLiteral("</td>\r\n");
+WriteLiteral("\t\t\t</tr>\r\n");
 
 
-						}
-					}
-
-
- 					if (Model.DisplayedColumns.Contains(OutletListSortColumns.Frequency))
-					{
-						if (outlet.Frequency == null)
-						{
-
-WriteLiteral("\t\t\t\t\t\t\t<td></td>\r\n");
-
-
-						}
-						else
-						{ 
-
-WriteLiteral("\t\t\t\t\t\t\t<td>");
-
-
-      Write(outlet.Frequency.Name);
-
-WriteLiteral("</td>\r\n");
-
-
-						}
-					}
-
-
- 					if (Model.DisplayedColumns.Contains(OutletListSortColumns.Coverage))
-					{ 
-
-WriteLiteral("\t\t\t\t\t\t<td>");
-
-
-     Write(outlet.Coverage);
-
-WriteLiteral("</td>\r\n");
-
-
-					}
-
-
- 					if (Model.DisplayedColumns.Contains(OutletListSortColumns.Industries))
-					{
-						if (outlet.IndustryEditorialFocus == null || outlet.IndustryEditorialFocus.Count == 0)
-						{
-
-WriteLiteral("\t\t\t\t\t\t\t<td></td> \r\n");
-
-
-						}
-						else
-						{ 
-
-WriteLiteral("\t\t\t\t\t\t\t<td>");
-
-
-      Write(outlet.GetIndustriesText().Replace("|", "<br />"));
-
-WriteLiteral("</td>\r\n");
-
-
-						}
-					}
-
-
- 					if (Model.DisplayedColumns.Contains(OutletListSortColumns.Subjects))
-					{
-						if (outlet.SubjectEditorialFocus == null || outlet.SubjectEditorialFocus.Count == 0)
-						{
-
-WriteLiteral("\t\t\t\t\t\t\t<td></td> \r\n");
-
-
-						}
-						else
-						{ 
-
-WriteLiteral("\t\t\t\t\t\t\t<td>");
-
-
-      Write(outlet.GetSubjectsText().Replace("|", "<br />"));
-
-WriteLiteral("</td>\r\n");
-
-
-						}
-					}
-
-
- 					if (Model.DisplayedColumns.Contains(OutletListSortColumns.Regions))
-					{
-						if (outlet.RegionEditorialFocus == null || outlet.RegionEditorialFocus.Count == 0)
-						{
-
-WriteLiteral("\t\t\t\t\t\t\t<td></td> \r\n");
-
-
-						}
-						else
-						{ 
-
-WriteLiteral("\t\t\t\t\t\t\t<td>");
-
-
-      Write(outlet.GetRegionsText().Replace("|", "<br />"));
-
-WriteLiteral("</td>\r\n");
-
-
-						}
-					}
-
-
- 					if (Model.DisplayedColumns.Contains(OutletListSortColumns.Publisher))
-					{ 
-
-WriteLiteral("\t\t\t\t\t\t<td>");
-
-
-     Write(outlet.Publisher);
-
-WriteLiteral("</td>\r\n");
-
-
-					}
-
-
- 					if (Model.DisplayedColumns.Contains(OutletListSortColumns.UserAddedInfo))
-					{
-						if (outlet.UserAddedInformation == null)
-						{
-
-WriteLiteral("\t\t\t\t\t\t\t<td></td> \r\n");
-
-
-						}
-						else
-						{ 
-
-WriteLiteral("\t\t\t\t\t\t\t<td>");
-
-
-       Write(new MvcHtmlString(outlet.GetUserAddedInfoText()));
-
-WriteLiteral("\r\n\t\t\t\t\t\t\t</td>\r\n");
-
-
-						}
-					}
-
-WriteLiteral("\t\t\t </tr>\r\n");
-
-
-  }
+		}
 
 WriteLiteral("\t\t</tbody>\r\n\t</table>\r\n");
 
 
 
-WriteLiteral("\t\t<!-- Save As Menu -->\r\n");
+WriteLiteral("\t<!-- Save As Menu -->\r\n");
 
 
 
@@ -771,8 +299,8 @@ WriteLiteral("\t<div class=\"menu actionsMenu\" style=\"display:none;\">\r\n\t\t
 
 
   		
-  foreach (var menu in Model.Actions)
-  {
+			foreach (var menu in Model.Actions)
+			{
 
 WriteLiteral("\t\t\t\t<div class=\"menuitem\">\r\n\t\t\t\t\t<div class=\"label\" data-action=\"");
 
@@ -787,7 +315,7 @@ WriteLiteral("\">");
 WriteLiteral("</div>\r\n\t\t\t\t</div>\r\n");
 
 
-  }
+			}
 		
 
 WriteLiteral("\t\t</div>\r\n\t</div>\r\n");
@@ -795,6 +323,39 @@ WriteLiteral("\t\t</div>\r\n\t</div>\r\n");
 
 
 WriteLiteral("\t<!-- Save As Menu -->\r\n");
+
+
+
+WriteLiteral("\t<!-- Modal Clear Selection -->\n");
+
+
+
+WriteLiteral("\t<div id=\"dj_clear_selection\" style=\"display:none;\">\n\t\t<!-- Modal title tag: -->\n" +
+"\t\t<h3 class=\"dj_modal-title\">");
+
+
+                        Write(Model.Tokens.UnselectCheckboxesConfirmTitle);
+
+WriteLiteral("</h3>\n\t\t<!-- Modal content tag: -->\n\t\t<div class=\"dj_modal-content\">\n\t\t\t<div clas" +
+"s=\"dj_modal-content-wrap\" style=\"padding-top: 20px; padding-left: 20px; padding-" +
+"right: 20px;\">\n\t\t\t\t<h3 style=\"height:54px;\">");
+
+
+                        Write(Model.Tokens.UnselectCheckboxesConfirmMessage);
+
+WriteLiteral(@"?</h3>
+					<div class=""dj_modal-footer"">
+					<input class=""dj_btn dj_btn-green export dj_confirm-unselect-checkboxes"" value=""Yes"" type=""submit"" />
+					<span class=""dj_btn dj_btn-gray dj_modal-close"" onclick=""$().overlay.hide('#'+$(this).closest('.dj_modal').attr('id'));"">Cancel</span>
+				</div>
+			</div>
+		</div>
+	</div>
+");
+
+
+
+WriteLiteral("\t<!-- Modal Clear Selection -->\r\n");
 
 
 }
