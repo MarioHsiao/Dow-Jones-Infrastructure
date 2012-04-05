@@ -495,7 +495,7 @@ namespace DowJones.Assemblers.Headlines
                         language = language.Substring(0, language.IndexOf('-'));
                     }
                     return Enum.GetNames(typeof(ContentLanguage)).Any(lang => language.ToLowerInvariant() == lang.ToLowerInvariant())
-                        ? ValidateLanguageName(language)
+                        ? language.ToLowerInvariant()
                         : "unknown";
             }
         }
