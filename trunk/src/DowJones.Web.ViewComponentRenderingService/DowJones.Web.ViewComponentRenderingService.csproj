@@ -47,20 +47,23 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DowJones.Infrastructure">
-      <HintPath>packages\DowJones.Infrastructure.v3.3.1.61\lib\DowJones.Infrastructure.dll</HintPath>
+    <Reference Include="DowJones.Infrastructure, Version=3.1.68.39869, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>packages\DowJones.Infrastructure.v3.3.1.68\lib\DowJones.Infrastructure.dll</HintPath>
     </Reference>
     <Reference Include="DowJones.Parallel">
       <HintPath>packages\DowJones.Parallel.1.0.0\lib\DowJones.Parallel.dll</HintPath>
     </Reference>
-    <Reference Include="DowJones.Web.Mvc">
-      <HintPath>packages\DowJones.Web.Mvc.v3.3.1.60\lib\DowJones.Web.Mvc.dll</HintPath>
+    <Reference Include="DowJones.Web.Mvc, Version=3.1.68.39869, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>packages\DowJones.Web.Mvc.v3.3.1.68\lib\DowJones.Web.Mvc.dll</HintPath>
     </Reference>
-    <Reference Include="DowJones.Web.Mvc.UI.Components">
-      <HintPath>packages\DowJones.Web.Mvc.UI.Components.v3.3.1.60\lib\DowJones.Web.Mvc.UI.Components.dll</HintPath>
+    <Reference Include="DowJones.Web.Mvc.UI.Components, Version=3.1.68.39869, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>packages\DowJones.Web.Mvc.UI.Components.v3.3.1.68\lib\DowJones.Web.Mvc.UI.Components.dll</HintPath>
     </Reference>
-    <Reference Include="DowJones.Web.Mvc.UI.Components.Models">
-      <HintPath>packages\DowJones.Web.Mvc.UI.Components.Models.v3.3.1.60\lib\DowJones.Web.Mvc.UI.Components.Models.dll</HintPath>
+    <Reference Include="DowJones.Web.Mvc.UI.Components.Models, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\DowJones.Web.Mvc.UI.Components.Models.v3.3.1.68\lib\DowJones.Web.Mvc.UI.Components.Models.dll</HintPath>
     </Reference>
     <Reference Include="factiva.gateway.messages">
       <HintPath>packages\Factiva.Gateway.7.5.0.78\lib\factiva.gateway.messages.dll</HintPath>
