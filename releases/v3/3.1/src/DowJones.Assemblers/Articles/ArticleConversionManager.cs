@@ -257,7 +257,7 @@ namespace DowJones.Assemblers.Articles
                                 sets.Add(set.codeCategory, codes);
                                 break;
                             case "tpc":
-                                foreach (var code in set.code)
+                                foreach (var code in set.code.Where(code => !code.cat.IsNullOrEmpty()))
                                 {
                                     switch (code.cat.ToLower())
                                     {

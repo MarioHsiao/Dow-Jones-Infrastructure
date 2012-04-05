@@ -26,6 +26,15 @@ namespace DowJones.Models.Charting.MarketData
         [DataMember(Name = "fCode")]
         public string FCode { get; set; }
 
+        [DataMember(Name = "isin")]
+        public string Isin { get; set; }
+
+        [DataMember(Name = "sedol")]
+        public string Sedol { get; set; }
+
+        [DataMember(Name = "cusip")]
+        public string Cusip { get; set; }
+
         [DataMember(Name = "name")]
         public string Name { get; set; }
 

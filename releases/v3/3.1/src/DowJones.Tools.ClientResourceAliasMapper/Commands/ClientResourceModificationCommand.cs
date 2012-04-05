@@ -1,17 +1,46 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using DowJones.Tools.ClientResourceAliasMapper.Mappings;
 
 namespace DowJones.Tools.ClientResourceAliasMapper.Commands
 {
     public abstract class ClientResourceModificationCommand : ClientResourceCommand
     {
+        protected IEnumerable<string> Args { get; private set; }
+
+        public IEnumerable<string> Exclusions
+        {
+            get { return _exclusions ?? ParseExclusionsFromArgs(); }
+            set { _exclusions = value; }
+        }
+        private IEnumerable<string> _exclusions;
+
+        private IEnumerable<string> ParseExclusionsFromArgs()
+        {
+            var enumerator = Args.GetEnumerator();
+            while (enumerator.MoveNext())
+            {
+                if (enumerator.Current.Equals("-Exclude", StringComparison.OrdinalIgnoreCase))
+                {
+                    enumerator.MoveNext();
+                    yield return enumerator.Current;
+                }
+            }
+        }
+
+
         protected ClientResourceModificationCommand(TextWriter writer) : base(writer)
         {
         }
         
+
         protected override void ExecuteInternal(IEnumerable<string> args)
         {
-            var configFilename = GetArg(args, 0, "ClientResources.xml");
+            Args = args;
+
+            var configFilename = GetArg(Args, 0, "ClientResources.xml");
 
             ClientResourceConfiguration configuration;
 
@@ -23,6 +52,8 @@ namespace DowJones.Tools.ClientResourceAliasMapper.Commands
             configuration.Save(configFilename);
 
             Writer.WriteLine("Converted aliases to incremental numbers");
+
+            Args = null;
         }
 
         protected bool TryLoadConfiguration(string configFilename, out ClientResourceConfiguration configuration)
@@ -44,6 +75,20 @@ namespace DowJones.Tools.ClientResourceAliasMapper.Commands
             }
 
             configuration = ClientResourceConfiguration.Load(configFilename);
+
+            return true;
+        }
+
+        protected bool IsNotExcluded(ClientResourceAliasMapping alias)
+        {
+            // If the current alias is already an int,
+            // just skip it and continue on
+            int currentAliasId;
+            if (int.TryParse(alias.Alias, out currentAliasId))
+                return false;
+
+            if (Exclusions.Contains(alias.ResourceName) || Exclusions.Contains(alias.Alias))
+                return false;
 
             return true;
         }

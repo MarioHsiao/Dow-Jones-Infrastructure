@@ -30,7 +30,7 @@ namespace DowJones.Web.Mvc.UI.Components.Article
     using System.Text.RegularExpressions;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 03/29/2012 03:48 PM
+    // Last Generated Timestamp: 04/05/2012 02:31 PM
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.Article.ArticleComponent.js", ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.Article.ArticleComponent))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.19368")]
     public class ArticleComponent : DowJones.Web.Mvc.UI.ViewComponentBase<DowJones.Web.Mvc.UI.Components.Models.Article.ArticleModel>
@@ -362,27 +362,24 @@ WriteLiteral("</span>\r\n                                </span>\r\n");
 
                         }
                         else
-                        {                            
+                        {    
+                            foreach (RenderItem renderItem in Model.ArticleDataSet.ByLine)
+                            {
 
-WriteLiteral("                            <span class=\"value author drop-down-button\" data-dd-t" +
-"ype=\"author\">\r\n");
+WriteLiteral("                                <span class=\"value author drop-down-button\" data-" +
+"dd-type=\"author\">");
 
 
-                                 foreach (RenderItem renderItem in Model.ArticleDataSet.ByLine)
-                                {
-                                    
-                               Write(renderItem.ItemText);
+                                                                                             Write(renderItem.ItemText.Trim());
 
-                                                        
-                                }
-
-WriteLiteral("                            </span>");
+WriteLiteral("</span>");
 
 
 
-WriteLiteral("<span class=\"dj_article_comma\">, </span>                      \r\n");
+WriteLiteral("<span class=\"dj_article_comma\">, </span>  \r\n");
 
 
+                            }                                                
                         }
 
 WriteLiteral("                        </div>\r\n");
@@ -398,34 +395,40 @@ WriteLiteral("\r\n");
                         if (showIndexing)
                         {
 
-WriteLiteral("                            <div class=\"dj_article_index\">BY</div>\r\n");
+WriteLiteral("                            <div class=\"dj_article_index\">CR</div>\r\n");
 
 
                         }
                         
 
-WriteLiteral("                        <div class=\"dj_article_by dj_article_section\">           " +
-"                                                               \r\n               " +
-"             <span class=\"value author drop-down-button\" data-dd-type=\"author\">\r" +
-"\n");
+WriteLiteral("                        <div class=\"dj_article_cr dj_article_section\">           " +
+"                                                               \r\n");
 
 
-                                 foreach (RenderItem renderItem in Model.ArticleDataSet.Credit)
-                                {
-                                    
-                               Write(renderItem.ItemText);
+                             foreach (RenderItem renderItem in Model.ArticleDataSet.Credit)
+                            {
 
-                                                        
-                                }
+WriteLiteral("                                <span class=\"credit\">");
 
-WriteLiteral("                            </span><span class=\"dj_article_comma\">, </span>      " +
-" \r\n                        </div>\r\n");
+
+                                                Write(renderItem.ItemText);
+
+WriteLiteral("</span>");
+
+
+
+WriteLiteral("<span class=\"dj_article_comma\">, </span> \r\n");
+
+
+                            }                                  
+
+WriteLiteral("                        </div>\r\n");
 
 
                     } 
 
-WriteLiteral("\r\n                  \r\n                    <div class=\"dj_meta_group\">            " +
-"     \r\n                   \r\n");
+WriteLiteral("                                      \r\n                    <div class=\"dj_meta_g" +
+"roup\">                 \r\n                   \r\n");
 
 
                          if (showIndexing)
@@ -599,8 +602,8 @@ WriteLiteral("               \r\n            </div>\r\n\r\n");
 
 
                      if (Model.ShowPostProcessing)
-                    {                
-                        if (!Model.PostProcessingOptions.IsNullOrEmpty() )
+                    {
+                        if (!Model.PostProcessingOptions.IsNullOrEmpty())
                         {
 
 WriteLiteral("                            <ul class=\"dj_PostProcessing actions clearfix\">\r\n");
