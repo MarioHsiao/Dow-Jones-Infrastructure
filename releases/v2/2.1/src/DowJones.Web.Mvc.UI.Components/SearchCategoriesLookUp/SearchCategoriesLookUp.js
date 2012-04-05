@@ -1149,8 +1149,8 @@
                 }
 
                 //Language
-                if (entityInfo.Language) {
-                    info.language = this._langDict[entityInfo.Language.toLowerCase()];
+                if (entityInfo.BaseLanguage) {
+                    info.language = this._langDict[entityInfo.BaseLanguage.toLowerCase()];
                 }
                 //Most Recent Issue
                 if (entityInfo.MostRecentIssue) {
