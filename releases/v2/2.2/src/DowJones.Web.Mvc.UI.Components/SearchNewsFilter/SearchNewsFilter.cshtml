@@ -64,7 +64,7 @@
                         @{
                             foreach (var filter in filters)
                             {
-                                <li class="dj_pill" data-code="@filter.Code">
+                                <li class="dj_pill" data-code="@filter.Code" data-codetype="@filter.CodeType">
                                     <span class="filter">@filter.Desc</span>
                                     <span class="remove" tooltip="@removeFilter"></span>
                                 </li>

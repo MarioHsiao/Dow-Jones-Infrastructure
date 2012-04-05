@@ -274,7 +274,7 @@
                     $.each($filterGroup.children(me.selectors.filterList).children(), function () {
                         $this = $(this);
                         desc = $.trim($this.text());
-                        f[category].push({ code: ($this.data("code") || desc), desc: desc });
+                        f[category].push({ code: ($this.data("code") || desc), desc: desc, codeType: ($this.data("codetype") || '') });
                     });
                 }
             });
