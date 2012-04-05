@@ -97,7 +97,7 @@
                                         len = f.length;
                                         $.each(f, function(j){
                                     %>
-                                        <li class="dj_pill" <%= newsFilterEditable?('data-code="' + this.code +'"'):'' %>>
+                                        <li class="dj_pill" <%= newsFilterEditable?('data-code="' + this.code +'" data-codetype="' + (this.codeType || '') + '"'):'' %>>
 					                        <span class="filter"><%= this.desc %></span>
                                             <% if(newsFilterEditable){ %>
                                                 <span class="remove" tooltip="<%= Token('removeFilter') %>"></span>
