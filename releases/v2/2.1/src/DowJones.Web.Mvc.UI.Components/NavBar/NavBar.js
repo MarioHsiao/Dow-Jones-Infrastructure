@@ -350,7 +350,7 @@
             // need the loop to calculate correct width for IE7. Every other browser returns correct width
             // with .outerWidth() only; i.e. this.$actionItemsContainer.outerWidth(true);
             //if ($.browser.version === "7.0") {
-            if ($.browser.msie) {
+            if ($.browser.msie && $.browser.version === "7.0") {
                 _.each(this.$actionItemContainers, function (actionItemContainer) {
                     actionItemsWidth += $(actionItemContainer).outerWidth(true);
                 });
