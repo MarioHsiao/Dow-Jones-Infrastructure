@@ -229,7 +229,7 @@ namespace DowJones.Properties
         }
 
         [ApplicationScopedSetting, DebuggerNonUserCode, SettingsSerializeAs(SettingsSerializeAs.String)]
-        [DefaultSettingValue("http://wsapi.marketwatch.com/thunderball/ChartService.svc")]
+        [DefaultSettingValue("http://10.241.32.211/thunderball/ChartService.svc")]
         public string ThunderBallEndpointAddress
         {
             get { return (string)this["ThunderBallEndpointAddress"]; }
