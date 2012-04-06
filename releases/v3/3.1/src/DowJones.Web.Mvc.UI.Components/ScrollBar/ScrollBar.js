@@ -51,7 +51,7 @@ DJ.UI.ScrollBar = DJ.UI.Component.extend({
 
     templates: {
         templateX: _.template('<div class="<%= scrollbar %>" style="width:<%= elemWidth %>px; margin-top:<%= elemHeight %>px; position:relative;"><div class="<%= scrollbartrack %>" style="width:<%= elemWidth %>px;"><div class="<%= scrollbarthumb %>"></div></div></div>'),
-        templateY: _.template('<div class="<%= scrollbar %>" style="height:<%= elemHeight %>px; margin-left:<%= elemWidth - 1 %>px; position:relative;"><div class="<%= scrollbartrack %>" style="height:<%= elemHeight %>px;"><div class="<%= scrollbarthumb %>"></div></div></div>')
+        templateY: _.template('<div class="<%= scrollbar %>" style="height:<%= elemHeight %>px; margin-left:<%= elemWidth %>px; position:relative;"><div class="<%= scrollbartrack %>" style="height:<%= elemHeight %>px;"><div class="<%= scrollbarthumb %>"></div></div></div>')
     },
 
     init: function (element, meta) {
@@ -207,7 +207,7 @@ DJ.UI.ScrollBar = DJ.UI.Component.extend({
             var scrollbarY = self.templates.templateY({
                 scrollbar: self.classNames.scrollbar,
                 elemHeight: self.elemHeight,
-                elemWidth: self.elemWidth,
+                elemWidth: self.options.paddingclip ? self.elemWidth : self.elemWidth - 1,
                 scrollbartrack: self.classNames.scrollbartrack,
                 scrollbarthumb: self.classNames.scrollbarthumb
             });
@@ -273,7 +273,7 @@ DJ.UI.ScrollBar = DJ.UI.Component.extend({
 
             $parentContainer.scroll(function () { if (!self.dragged) { self._updateThumbPosition('y') } });
             self._updateThumbSize('y');
-            //self._updateThumbPosition('y');
+            self._updateThumbPosition('y');
         }
     },
 
