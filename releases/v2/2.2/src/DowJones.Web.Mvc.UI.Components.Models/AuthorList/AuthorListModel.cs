@@ -402,7 +402,7 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 				{
 					cols[columnOrder.EmailAddress] = new TdItem
 					{
-						Text = String.Join("; ", author.EmailAddresses)
+						Text = SeparateStringListWithDiv(author.EmailAddresses)
 					};
 				}
 				// phone;
@@ -410,7 +410,7 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 				{
 					cols[columnOrder.Phone] = new TdItem
 					{
-						Text = String.Join("; ", author.Phones)
+						Text = SeparateStringListWithDiv(author.Phones)
 					};
 				}
 				// fax
@@ -418,7 +418,7 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 				{
 					cols[columnOrder.Fax] = new TdItem
 					{
-						Text = String.Join("; ", author.Fax)
+						Text = SeparateStringListWithDiv(author.Fax)
 					};
 				}
 				// address;
@@ -426,7 +426,7 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 				{
 					cols[columnOrder.Address] = new TdItem
 					{
-						Text = String.Join("; ", author.Address)
+						Text = author.Address
 					};
 				}
 				// city;
@@ -466,7 +466,7 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 				{
 					cols[columnOrder.Language] = new TdItem
 					{
-						Text = String.Join("; ", author.Language)
+						Text = SeparateStringListWithDiv(author.Language)
 					};
 				}
 				// ***********************************
@@ -710,6 +710,21 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 					"<div><a href='javascript:void(0);' class='dj_show-hide-cell-items' more='true'>{0}</a></div>",
 					this.Tokens.ShowCellItems);
 			}
+
+			return retval;
+		}
+
+		private string SeparateStringListWithDiv(List<string> collection)
+		{
+			string retval = String.Empty;
+
+			if (collection == null || collection.Any() == false)
+			{
+				return retval;
+			}
+
+			retval = String.Join("", from s in collection
+									 select String.Format("<div>{0}</div>", s));
 
 			return retval;
 		}

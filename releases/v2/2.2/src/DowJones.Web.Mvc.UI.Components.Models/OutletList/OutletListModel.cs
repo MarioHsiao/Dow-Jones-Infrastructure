@@ -306,10 +306,14 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 					AncorClass = "outlet-selector"
 				};
 				// media contacts
-				string withContacts = "<span class='dj_icon dj_list-icon dj_list-icon-has-contacts' title='View media contacts'></span>";
+				string withContacts = String.Format(
+					"<span class='dj_icon dj_list-icon dj_list-icon-has-contacts' title='{0}'></span>",
+					this.Tokens.ViewMediaContacts);
 				if (outlet.HasMediaContacts == false)
 				{
-					withContacts = "<span class='dj_icon dj_list-icon dj_list-icon-no-contacts' title='Send email to Media Lab'></span>";
+					withContacts = String.Format(
+						"<span class='dj_icon dj_list-icon dj_list-icon-no-contacts' title='{0}'></span>",
+						this.Tokens.SendMailToMediaLab);
 				}
 				cols[3] = new TdItem 
 				{
@@ -409,7 +413,7 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 				{
 					cols[columnOrder.Email] = new TdItem
 					{
-						Text = String.Join("<br />", outlet.Emails),
+						Text = SeparateStringListWithDiv(outlet.Emails),
 						IsHtmlText = true
 					};
 				}
@@ -418,7 +422,7 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 				{
 					cols[columnOrder.Phone] = new TdItem
 					{
-						Text = String.Join("<br />", outlet.Phones),
+						Text = SeparateStringListWithDiv(outlet.Phones),
 						IsHtmlText = true
 					};
 				}
@@ -427,7 +431,7 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 				{
 					cols[columnOrder.Fax] = new TdItem
 					{
-						Text = String.Join("<br />", outlet.Faxes),
+						Text = SeparateStringListWithDiv(outlet.Faxes),
 						IsHtmlText = true
 					};
 				}
@@ -463,7 +467,7 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 				{
 					cols[columnOrder.Language] = new TdItem
 					{
-						Text = String.Join("<br />", outlet.Languages)
+						Text = SeparateStringListWithDiv(outlet.Languages)
 					};
 				}
 				// frequence;
@@ -532,6 +536,21 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 					"<div><a href='javascript:void(0);' class='dj_show-hide-cell-items' more='true'>{0}</a></div>",
 					this.Tokens.ShowCellItems);
 			}
+
+			return retval;
+		}
+
+		private string SeparateStringListWithDiv(List<string> collection)
+		{
+			string retval = String.Empty;
+
+			if (collection == null || collection.Any() == false)
+			{
+				return retval;
+			}
+
+			retval = String.Join("", from s in collection
+									 select String.Format("<div>{0}</div>", s));
 
 			return retval;
 		}

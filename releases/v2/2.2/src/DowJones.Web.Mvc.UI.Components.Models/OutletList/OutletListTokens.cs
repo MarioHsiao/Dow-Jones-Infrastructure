@@ -70,6 +70,10 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 		public string UnselectCheckboxesConfirmMessage { get; set; }
 		public string UnselectCheckboxesPostMessage { get; set; }
 
+		// Media contacts hints;
+		public string ViewMediaContacts { get; set; }
+		public string SendMailToMediaLab { get; set; }
+
 		public string NoResults { get; set; }
 
 		public OutletListTokens()
@@ -132,6 +136,10 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 			this.UnselectCheckboxesConfirmTitle = GetTokenByName("cmalConfirm");
 			this.UnselectCheckboxesConfirmMessage = GetTokenByName("cmalConfirmMessage");
 			this.UnselectCheckboxesPostMessage = GetTokenByName("cmalSelectionsHaveBeenCleared ");
+
+			// media contacts hints;
+			this.ViewMediaContacts = GetTokenByName("cmolViewMediaContacts");
+			this.SendMailToMediaLab = GetTokenByName("cmolSendMailToMediaLab");
 
 			this.NoResults = GetTokenByName("noResults");
 		}
