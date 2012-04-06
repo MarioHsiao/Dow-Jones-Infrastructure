@@ -17,7 +17,8 @@
 			selectedOutletIds: "#selected_outlet_ids",
 			expandHiddenCellItems: ".dj_show-hide-cell-items",
 			hasMediaContact: ".dj_icon.dj_list-icon.dj_list-icon-has-contacts",
-			noMediaContact: ".dj_list-icon-no-contacts"
+			noMediaContact: ".dj_list-icon-no-contacts",
+			outletArticles: ".outlet-articles-selector"
 		},
 
 		constants: {
@@ -29,14 +30,15 @@
 
 		defaults: {
 			debug: false,
-			cssClass: 'OutletList'
+			cssClass: "OutletList"
 		},
 
 		events: {
 			onOutletNameClick: "outletNameClick.dj.OutletList",
 			onEntityRowSelect: "entityRowSelect.dj.OutletList",
-			onHasMediaContactClick: 'onHasMediaContactClick.dj.OutletList',
-			onNoMediaContactClick: 'onNoMediaContactClick.dj.OutletList'
+			onHasMediaContactClick: "onHasMediaContactClick.dj.OutletList",
+			onNoMediaContactClick: "onNoMediaContactClick.dj.OutletList",
+			onOutletArticlesClick: "onOutletArticlesClick.dj.OutletList"
 		},
 
 		sortDirections: { ascending: "asc", descending: "desc" },
@@ -127,9 +129,19 @@
 			// Outlet name click;
 			$container.delegate(self.selectors.outletName, "click", function () {
 				var $this = $(this);
-				var chk = $this.parent().parent().find("input:checkbox");
-				var oid = chk.attr("outletlist-aid");
-				$dj.publish(self.events.onOutletNameClick, { outletId: oid });
+				var outletId = $this.parentsUntil("tbody").find("input:checkbox").attr("outletlist-aid");
+				if (outletId) {
+					$dj.publish(self.events.onOutletNameClick, { outletId: outletId });
+				}
+			});
+
+			// Outlet articles click;
+			$container.delegate(self.selectors.outletArticles, "click", function () {
+				var $this = $(this);
+				var outletId = $this.parentsUntil("tbody").find("input:checkbox").attr("outletlist-aid");
+				if (outletId) {
+					$dj.publish(self.events.onOutletArticlesClick, { outletId: outletId });
+				}
 			});
 
 			$container.delegate(self.selectors.hasMediaContact, "click", function () {

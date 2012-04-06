@@ -321,23 +321,13 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 					IsHtmlText = true
 				};
 				// articles;
-				if (outlet.HasArticles)
+				cols[4] = new TdItem
 				{
-					cols[4] = new TdItem
-					{
-						Text = this.Tokens.ViewArticles,
-						IsAncor = true,
-						AncorHref = "javascript:void(0);",
-						AncorClass = "outlet-articles-selector"
-					};
-				}
-				else
-				{
-					cols[4] = new TdItem
-					{
-						Text = this.Tokens.NoArticles
-					};
-				}
+					Text = this.Tokens.ViewArticles,
+					IsAncor = true,
+					AncorHref = "javascript:void(0);",
+					AncorClass = "outlet-articles-selector"
+				};
 				// circulation;
 				if (this.DisplayedColumns.Contains(OutletListColumns.Circulation))
 				{

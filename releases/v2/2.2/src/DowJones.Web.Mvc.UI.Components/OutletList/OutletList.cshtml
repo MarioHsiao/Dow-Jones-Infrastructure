@@ -51,9 +51,7 @@
 					@(Model.SortBy == OutletListSortColumns.OutletName ? sort : "")
 				</th>
 				<th class="dj_sortable-table-column dj_table-column-center">@Model.Tokens.MediaContacts</th>
-				<th class="dj_col-string dj_sortable-table-column">
-					@Model.Tokens.Articles<br />(@Model.Tokens.Last90Days)
-				</th>
+				<th class="dj_col-string dj_sortable-table-column">@Model.Tokens.Articles</th>
 
 				@foreach (ThOutletItem th in Model.ThCollection) 
 				{

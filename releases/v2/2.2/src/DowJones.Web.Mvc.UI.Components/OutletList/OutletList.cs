@@ -24,7 +24,7 @@ namespace DowJones.Web.Mvc.UI.Components.OutletList
     using DowJones.Web.Mvc.UI.Components.Models;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 04/05/2012 09:21 AM
+    // Last Generated Timestamp: 04/06/2012 11:15 AM
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.OutletList.OutletList.js", ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.OutletList.OutletList))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "0.0.0.30158")]
     public class OutletList : DowJones.Web.Mvc.UI.ViewComponentBase<DowJones.Web.Mvc.UI.Components.Models.OutletListModel>
@@ -136,17 +136,12 @@ WriteLiteral("\r\n\t\t\t\t</th>\r\n\t\t\t\t<th class=\"dj_sortable-table-column 
 
                                                            Write(Model.Tokens.MediaContacts);
 
-WriteLiteral("</th>\r\n\t\t\t\t<th class=\"dj_col-string dj_sortable-table-column\">\r\n\t\t\t\t\t");
+WriteLiteral("</th>\r\n\t\t\t\t<th class=\"dj_col-string dj_sortable-table-column\">");
 
 
-Write(Model.Tokens.Articles);
+                                                  Write(Model.Tokens.Articles);
 
-WriteLiteral("<br />(");
-
-
-                             Write(Model.Tokens.Last90Days);
-
-WriteLiteral(")\r\n\t\t\t\t</th>\r\n\r\n");
+WriteLiteral("</th>\r\n\r\n");
 
 
  				foreach (ThOutletItem th in Model.ThCollection) 
