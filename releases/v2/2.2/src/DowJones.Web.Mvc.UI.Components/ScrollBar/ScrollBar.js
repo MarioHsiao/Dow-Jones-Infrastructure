@@ -1,10 +1,10 @@
 /*!
- * ScrollBar
- *
- * @dependency jquery.ui.core.js
- * @dependency jquery.ui.widget.js
- * @dependency jquery.validate.js
- */
+* ScrollBar
+*
+* @dependency jquery.ui.core.js
+* @dependency jquery.ui.widget.js
+* @dependency jquery.validate.js
+*/
 DJ.UI.ScrollBar = DJ.UI.Component.extend({
     // Default options
     defaults: {
@@ -29,7 +29,8 @@ DJ.UI.ScrollBar = DJ.UI.Component.extend({
     // Widget options
     options: {
         minThumbSize: 30, // Minimum size of the scrollbar handle
-        autoRefresh: false // Experimental feature based on the DOMSubtreeModified event. (Gegko and Wekbkit only) Setting this value to true will automatically recalculate the scrollbar size when the content is updated.
+        autoRefresh: false, // Experimental feature based on the DOMSubtreeModified event. (Gegko and Wekbkit only) Setting this value to true will automatically recalculate the scrollbar size when the content is updated.
+        paddingclip: true // if false, using clip to take the container width 
     },
 
     selectors: {
@@ -46,7 +47,7 @@ DJ.UI.ScrollBar = DJ.UI.Component.extend({
         scrollbarx: 'dj_scrollbar-x',
         scrollbarthumb: 'dj_scrollbar-thumb',
         scrollbartrack: 'dj_scrollbar-track'
-    }, 
+    },
 
     templates: {
         templateX: _.template('<div class="<%= scrollbar %>" style="width:<%= elemWidth %>px; margin-top:<%= elemHeight %>px; position:relative;"><div class="<%= scrollbartrack %>" style="width:<%= elemWidth %>px;"><div class="<%= scrollbarthumb %>"></div></div></div>'),
@@ -65,14 +66,21 @@ DJ.UI.ScrollBar = DJ.UI.Component.extend({
     _scrollable: function () {
         var self = this,
             $parentContainer = this.$element;
-		
-		if(this.options.direction && this.options.direction === 'horizontal') {
-			$parentContainer.addClass(self.classNames.scrollbarx);
-		}
-		else {
-			$parentContainer.addClass(self.classNames.scrollbary);
-		}
-			
+
+        //remove existing classes and existing css if it exist.
+        //clearing off any scrollbar element and its properties that got added, before adding new one.
+        $("div.dj_scrollbar", $parentContainer.parent()).show().remove();
+        $parentContainer.css({ "width": $parentContainer.parent().width() - 10, "padding-right": "10px" })
+                        .removeClass("dj_scrollbar-y dj_scrollbar-init")
+                        .parent().css("width", "");
+        //addclass
+        if (self.options.direction && self.options.direction === 'horizontal') {
+            $parentContainer.addClass(self.classNames.scrollbarx);
+        }
+        else {
+            $parentContainer.addClass(self.classNames.scrollbary);
+        }
+
         $parentContainer.addClass(self.classNames.scrollbarinit);
 
         // Browser Detection
@@ -116,12 +124,12 @@ DJ.UI.ScrollBar = DJ.UI.Component.extend({
             //var scrollbarX = $.validator.format('<div class="{0}" style="width:{1}px; margin-top:{2}px; position:relative;"><div class="{3}" style="width:{1}px;"><div class="{4}"></div></div></div>', self.selectors.scrollbar.replace(".", ""), self.elemWidth, self.elemHeight, self.selectors.scrollbartrack.replace(".", ""), self.selectors.scrollbarthumb.replace(".", ""));
             //self.selectors.scrollbar.replace(".", ""), self.elemWidth, self.elemHeight, self.selectors.scrollbartrack.replace(".", ""), self.selectors.scrollbarthumb.replace(".", "")
             var scrollbarX = self.templates.templateX({
-                                                        scrollbar: self.classNames.scrollbar,
-                                                        elemWidth: self.elemWidth, 
-                                                        elemHeight: self.elemHeight,
-                                                        scrollbartrack: self.classNames.scrollbartrack,
-                                                        scrollbarthumb: self.classNames.scrollbarthumb
-                                                      });
+                scrollbar: self.classNames.scrollbar,
+                elemWidth: self.elemWidth,
+                elemHeight: self.elemHeight,
+                scrollbartrack: self.classNames.scrollbartrack,
+                scrollbarthumb: self.classNames.scrollbarthumb
+            });
 
             $parentContainer.css('position', 'absolute')
                             .css('clip', 'rect(0px ' + self.elemWidth + 'px ' + (self.elemHeight + paddingBottom) + 'px 0px)')
@@ -192,16 +200,17 @@ DJ.UI.ScrollBar = DJ.UI.Component.extend({
             self.scrollY = true;
             var paddingRight = parseInt($parentContainer.css('padding-right').replace(/[^-\d\.]/g, ''));
 
+            if (!self.options.paddingclip) paddingRight = 0;
             $parentContainer.width(self.elemWidth + 5);
 
             //var scrollbarY = $.validator.format('<div class="{0}" style="height:{1}px; margin-left:{2}px; position:relative;"><div class="{3}" style="height:{1}px;"><div class="{4}"></div></div></div>', self.selectors.scrollbar.replace(".", ""), self.elemHeight, self.elemWidth, self.selectors.scrollbartrack.replace(".", ""), self.selectors.scrollbarthumb.replace(".", ""));
             var scrollbarY = self.templates.templateY({
-                                                        scrollbar: self.classNames.scrollbar,
-                                                        elemHeight: self.elemHeight,
-                                                        elemWidth: self.elemWidth,
-                                                        scrollbartrack: self.classNames.scrollbartrack,
-                                                        scrollbarthumb: self.classNames.scrollbarthumb
-                                                     });
+                scrollbar: self.classNames.scrollbar,
+                elemHeight: self.elemHeight,
+                elemWidth: self.options.paddingclip ? self.elemWidth : self.elemWidth - 1,
+                scrollbartrack: self.classNames.scrollbartrack,
+                scrollbarthumb: self.classNames.scrollbarthumb
+            });
 
             $parentContainer.css('position', 'absolute')
                             .css('clip', 'rect(0px ' + (self.elemWidth - paddingRight) + 'px ' + self.elemHeight + 'px 0px)')
@@ -302,14 +311,23 @@ DJ.UI.ScrollBar = DJ.UI.Component.extend({
 
         self.scrollTop = $(el).scrollTop();
         self.scrollLeft = $(el).scrollLeft();
-
         // X-axis
         if (axis == 'x') {
             $(self.scrollbarXThumb).css('left', ((self.scrollLeft * (self.elemWidth - self.thumbWidth)) / self.maxScrollLeft) + 'px');
         }
         // Y-axis
         if (axis == 'y') {
-            $(self.scrollbarYThumb).css('top', ((self.scrollTop * (self.elemHeight - self.thumbHeight)) / self.maxScrollTop) + 'px');
+            if (self.scrollTop === 0) {
+                $(self.scrollbarYThumb).css('top', 0);
+            }
+            else {
+                if (self.maxScrollTop >= self.scrollTop) {
+                    $(self.scrollbarYThumb).css('top', ((self.scrollTop * (self.elemHeight - self.thumbHeight)) / self.maxScrollTop) + 'px');
+                }
+                else {
+                    $(self.scrollbarYThumb).css('top', ((self.scrollTop * (self.elemHeight - self.thumbHeight)) / self.scrollTop) + 'px');
+                }
+            }
         }
     },
 
@@ -339,7 +357,7 @@ DJ.UI.ScrollBar = DJ.UI.Component.extend({
         // Y-axis
         if (axis == 'y') {
             if ((self.elemHeight / self.scrollHeight) < 1) {
-                $(el).parent().width(self.elemWidth - 5);
+                $(el).parent().width(self.elemWidth + 10);
                 self.scrollbarY.css('display', 'block');
                 self.thumbHeight = Math.round(self.elemHeight * (self.elemHeight / self.scrollHeight));
                 if (self.thumbHeight < o.minThumbSize) self.thumbHeight = o.minThumbSize;
@@ -347,6 +365,7 @@ DJ.UI.ScrollBar = DJ.UI.Component.extend({
             else {
                 $(el).parent().css('width', '');
                 self.scrollbarY.css('display', 'none');
+                if (!self.options.paddingclip) { self.$element.css('clip', 'rect(0px ' + (self.elemWidth + 10) + 'px ' + self.elemHeight + 'px 0px)') }
             }
             $(self.scrollbarYThumb).height(self.thumbHeight);
         }
