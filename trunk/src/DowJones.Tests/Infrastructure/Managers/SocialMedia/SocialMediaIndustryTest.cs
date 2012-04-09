@@ -14,16 +14,16 @@ namespace DowJones.Infrastructure.Managers.SocialMedia
     [TestClass]
     public class SocialMediaIndustryTest : IntegrationTestFixture
     {
-        [TestMethod]
-        [DeploymentItem(@"Infrastructure\Managers\SocialMedia\IndustryChannel.config")]
-        public void GetConfigChannelFromIndustryCode()
-        {
-            using (var stream = File.Open("IndustryChannel.config", FileMode.Open))
-            {
-                var p = new ConfigSocialMediaIndustryProvider(stream);
-                Assert.AreEqual("accounting-consulting", p.GetChannelFromIndustryCode("iacc"));
-            }
-        }
+		//[TestMethod]
+		//[DeploymentItem(@"Infrastructure\Managers\SocialMedia\IndustryChannel.config")]
+		//public void GetConfigChannelFromIndustryCode()
+		//{
+		//    using (var stream = File.Open("IndustryChannel.config", FileMode.Open))
+		//    {
+		//        var p = new ConfigSocialMediaIndustryProvider(stream);
+		//        Assert.AreEqual("accounting-consulting", p.GetChannelFromIndustryCode("iacc"));
+		//    }
+		//}
 
         [TestMethod]
         [TestCategory("Integration")]
