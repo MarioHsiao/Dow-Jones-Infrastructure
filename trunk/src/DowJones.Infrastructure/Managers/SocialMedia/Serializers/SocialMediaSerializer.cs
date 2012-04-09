@@ -139,5 +139,20 @@ namespace DowJones.Managers.SocialMedia.Serializers
         }
 
         #endregion
+
+        public T Deserialize<T>(RestResponseBase response)
+        {
+            throw new NotImplementedException();
+        }
+
+        public object Deserialize(RestResponseBase response, Type type)
+        {
+            throw new NotImplementedException();
+        }
+
+        public dynamic DeserializeDynamic(RestResponseBase response)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

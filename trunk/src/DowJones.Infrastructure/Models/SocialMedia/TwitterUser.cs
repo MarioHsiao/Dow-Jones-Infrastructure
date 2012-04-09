@@ -22,7 +22,6 @@ namespace DowJones.Infrastructure.Models.SocialMedia
     ///   <see cref="TwitterUser"/> returned in other calls for friends and followers.
     /// </summary>
     [Serializable]
-    [DataContract(Name = "TwitterUser", Namespace = "")]
     [DebuggerDisplay("{Name}")]
     [JsonObject(MemberSerialization.OptIn)]
     public class TwitterUser : IComparable<TwitterUser>, IEquatable<TwitterUser>, ITweeter
@@ -35,122 +34,116 @@ namespace DowJones.Infrastructure.Models.SocialMedia
         ///   Gets or sets CreatedDate.
         /// </summary>
         [JsonProperty("created_at")]
-        [DataMember(Name = "createdDate")]
-        public virtual DateTime CreatedDate { get; set; }
+        public virtual DateTime CreatedAt { get; set; }
 
         /// <summary>
         ///   Gets or sets Description.
         /// </summary>
-        [DataMember(Name = "description")]
+        [JsonProperty("description")]
         public virtual string Description { get; set; }
 
         /// <summary>
         ///   Gets or sets FavouritesCount.
         /// </summary>
-        [DataMember(Name = "favourites_count")]
+        [JsonProperty("favourites_count")]
         public virtual int FavouritesCount { get; set; }
 
         /// <summary>
         ///   Gets or sets the followers count.
         /// </summary>
         /// <value>The followers count.</value>
-        [DataMember(Name = "followers_count")]
+        [JsonProperty("followers_count")]
         public virtual int FollowersCount { get; set; }
 
         /// <summary>
         ///   Gets or sets FriendsCount.
         /// </summary>
-        [DataMember(Name = "friends_count")]
+        [JsonProperty("friends_count")]
         public virtual int FriendsCount { get; set; }
 
         /// <summary>
         ///   Gets or sets the ID.
         /// </summary>
         /// <value>The ID.</value>
-        [DataMember(Name = "id")]
+        [JsonProperty("id")]
         public virtual int Id { get; set; }
 
         /// <summary>
         ///   Gets or sets IsGeoEnabled.
         /// </summary>
         [JsonProperty("geo_enabled")]
-        [DataMember(Name = "isGeoEnabled")]
         public virtual bool? IsGeoEnabled { get; set; }
 
         /// <summary>
         ///   Gets or sets a value indicating whether IsProfileBackgroundTiled.
         /// </summary>
         [JsonProperty("profile_background_tile")]
-        [DataMember(Name = "isProfileBackgroundTiled")]
         public virtual bool IsProfileBackgroundTiled { get; set; }
 
         /// <summary>
         ///   Gets or sets IsProtected.
         /// </summary>
         [JsonProperty("protected")]
-        [DataMember(Name = "protected")]
         public virtual bool? IsProtected { get; set; }
 
         /// <summary>
         ///   Gets or sets IsVerified.
         /// </summary>
         [JsonProperty("verified")]
-        [DataMember(Name = "verified")]
         public virtual bool? IsVerified { get; set; }
 
         /// <summary>
         ///   Gets or sets Language.
         /// </summary>
         [JsonProperty("lang")]
-        [DataMember(Name = "lang")]
         public virtual string Language { get; set; }
 
         /// <summary>
         ///   Gets or sets Location.
         /// </summary>
-        [DataMember(Name = "location")]
+        [JsonProperty("location")]
         public virtual string Location { get; set; }
 
         /// <summary>
         ///   Gets or sets Name.
         /// </summary>
-        [DataMember(Name = "name")]
+        [JsonProperty("name")]
         public virtual string Name { get; set; }
 
         /// <summary>
         ///   Gets or sets ProfileBackgroundColor.
         /// </summary>
-        [DataMember(Name = "profile_background_color")]
+        [JsonProperty("profile_background_color")]
         public virtual string ProfileBackgroundColor { get; set; }
 
         /// <summary>
         ///   Gets or sets ProfileBackgroundImageUrl.
         /// </summary>
-        [DataMember(Name = "profile_background_image_url")]
+        [JsonProperty("profile_background_image_url")]
         public virtual string ProfileBackgroundImageUrl { get; set; }
 
         /// <summary>
         ///   Gets or sets ProfileLinkColor.
         /// </summary>
-        [DataMember(Name = "profile_link_color")]
+        [JsonProperty("profile_link_color")]
         public virtual string ProfileLinkColor { get; set; }
 
         /// <summary>
         ///   Gets or sets ProfileSidebarBorderColor.
         /// </summary>
-        [DataMember(Name = "profile_sidebar_border_color")]
+        [JsonProperty("profile_sidebar_border_color")]
         public virtual string ProfileSidebarBorderColor { get; set; }
 
         /// <summary>
         ///   Gets or sets ProfileSidebarFillColor.
         /// </summary>
-        [DataMember(Name = "profile_sidebar_fill_color")]
+        [JsonProperty("profile_sidebar_fill_color")]
         public virtual string ProfileSidebarFillColor { get; set; }
 
         /// <summary>
         ///   Gets or sets ProfileTextColor.
         /// </summary>
-        [DataMember(Name = "profile_text_color")]
+        [JsonProperty("profile_text_color")]
         public virtual string ProfileTextColor { get; set; }
 
         /*
@@ -164,37 +157,37 @@ namespace DowJones.Infrastructure.Models.SocialMedia
         /// <summary>
         ///   Gets or sets StatusesCount.
         /// </summary>
-        [DataMember(Name = "statuses_count")]
+        [JsonProperty("statuses_count")]
         public virtual int StatusesCount { get; set; }
 
         /// <summary>
         ///   Gets or sets TimeZone.
         /// </summary>
-        [DataMember(Name = "time_zone")]
+        [JsonProperty("time_zone")]
         public virtual string TimeZone { get; set; }
 
         /// <summary>
         ///   Gets or sets Url.
         /// </summary>
-        [DataMember(Name = "url")]
+        [JsonProperty("url")]
         public virtual string Url { get; set; }
 
         /// <summary>
         ///   Gets or sets UtcOffset.
         /// </summary>
-        [DataMember(Name = "utc_offset")]
+        [JsonProperty("utc_offset")]
         public virtual string UtcOffset { get; set; }
 
         /// <summary>
         ///   Gets or sets ProfileImageUrl.
         /// </summary>
-        [DataMember(Name = "profile_image_url")]
+        [JsonProperty("profile_image_url")]
         public virtual string ProfileImageUrl { get; set; }
 
         /// <summary>
         ///   Gets or sets ScreenName.
         /// </summary>
-        [DataMember(Name = "screen_name")]
+        [JsonProperty("screen_name")]
         public virtual string ScreenName { get; set; }
 
         #endregion
@@ -319,7 +312,7 @@ namespace DowJones.Infrastructure.Models.SocialMedia
 
         #endregion
 
-        public string ProfileHasUrl
+        public string ProfileHashUrl
         {
             get { return TwitterUrl + "#!/" + ScreenName; }
         }

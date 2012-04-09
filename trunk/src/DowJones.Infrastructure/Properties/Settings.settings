@@ -1,5 +1,5 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="" GeneratedClassName="Settings">
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="DowJones.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
     <Setting Name="ResourceManagerResourceName" Type="System.String" Scope="Application">
@@ -122,9 +122,6 @@
     <Setting Name="LoginServerUrl" Type="System.String" Scope="Application">
       <Value Profile="(Default)">http://global.factiva.com/factivalogin/login.asp</Value>
     </Setting>
-    <Setting Name="LoginConfigFile" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">~/LoginServer.config</Value>
-    </Setting>
     <Setting Name="LogoutServerUrl" Type="System.String" Scope="Application">
       <Value Profile="(Default)">http://global.factiva.com/factivalogin/logout.asp</Value>
     </Setting>
@@ -142,6 +139,9 @@
     </Setting>
     <Setting Name="LanguageRequestParameter" Type="System.String" Scope="Application">
       <Value Profile="(Default)">FCPIL</Value>
+    </Setting>
+    <Setting Name="LoginConfigFile" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">~/Config.xml</Value>
     </Setting>
   </Settings>
 </SettingsFile>
