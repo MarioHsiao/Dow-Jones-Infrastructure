@@ -1075,7 +1075,9 @@
     <None Include="GatewayResources\config\TrackService.config" />
     <None Include="GatewayResources\config\Triggers.config" />
     <None Include="GatewayResources\config\UserEventRecorderService.config" />
-    <None Include="Infrastructure\Managers\SocialMedia\IndustryChannel.config" />
+    <None Include="Infrastructure\Managers\SocialMedia\IndustryChannel.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
