@@ -2,19 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using DowJones.Web.Mvc.UI.Components.SocialMedia;
+using DowJones.Ajax.SocialMedia;
 
 namespace DowJones.Web.Mvc.UI.Components.SocialMedia
 {
-    public class ExpertsModel :ViewComponentModel
+    public class ExpertsModel : ViewComponentModel
     {
-        [ClientData("topExperts")]
+        [ClientData("experts")]
         public List<User> Experts { get; set; }
-
-        [ClientProperty("viewAll")]
-        public bool IsViewAll { get; set; }
     }
-
 
   
    

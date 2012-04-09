@@ -221,6 +221,13 @@ namespace DowJones.Web.Mvc.UI
             return this;
         }
 
+		public virtual ScriptRegistryBuilder WithODSManager(bool enabled = true)
+		{
+			WithServiceProxy();
+			RegisterFrameworkWebResource(EmbeddedResources.Js.ODSManager, ClientResourceDependencyLevel.MidLevel, enabled);
+			return this;
+		}
+
         [EditorBrowsable(EditorBrowsableState.Advanced)]
         internal ClientResource RegisterFrameworkWebResource(string resourceName, ClientResourceDependencyLevel? dependencyLevel, bool enabled)
         {

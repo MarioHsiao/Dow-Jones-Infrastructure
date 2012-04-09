@@ -1,37 +1,20 @@
-/*!
- * TweetLines
- *   e.g. , "this._imageSize" is generated automatically.
- *
- *   
- *  Getters and Setters are generated automatically for every Client Property during init;
- *   e.g. if you have a Client Property called "imageSize" on server side code
- *        get_imageSize() and set_imageSize() will be generated during init.
- *  
- *  These can be overriden by defining your own implementation in the script. 
- *  You'd normally override the base implementation if you have extra logic in your getter/setter 
- *  such as calling another function or validating some params.
- *
- */
+﻿// !
+// TweetLines
+//
 
 DJ.UI.TweetLines = DJ.UI.Component.extend({
 
     // Default options
     defaults: {
         webIntents: {
-            follow: 'https://twitter.com/intent/user?user_id=',
+            follow: "https://twitter.com/intent/user?user_id=",
             reply: "https://twitter.com/intent/tweet?in_reply_to=",
             retweet: "https://twitter.com/intent/retweet?tweet_id=",
-            favorite: "https://twitter.com/intent/favorite?tweet_id="
+            favorite: "https://twitter.com/intent/favorite?tweet_id=",
+            details: "https://twitter.com/#!/{screen-name}/status/"
         },
-        webIntentWindowOptions: {
-            scrollbars: 'yes',
-            resizable: 'yes',
-            toolbar: 'no',
-            location: 'yes',
-            width: 550,
-            height: 420
-        }
-
+        maxTweetsToShow: 100,
+        maxPagesInHistory: -1 // allow infinite history
     },
 
     events: {
@@ -40,17 +23,22 @@ DJ.UI.TweetLines = DJ.UI.Component.extend({
     },
 
     selectors: {
-        tweetItem: '.dj_tweet-item',
-        tweetActions: '.dj_post-processing',
+        tweetItem: 'li.dj_tweet-item',
+        tweetItemAnchor: '.dj_tweet-item a',
+        tweetActions: '.dj_post-processing li',
         newTweets: '.dj_new-tweets',
         oldTweets: '.dj_old-tweets',
-        recentItems: '.dj_twitter-recent-tweets'
+        recentItems: '.dj_twitter-recent-tweets',
+        toTop: '.dj_to-top-wrap',
+        tweetHrefs: '.dj_tweet a',
+        timeStamp: '.dj_time-stamp span:first-child'
     },
 
+    classNames: {
+        fullName: 'dj_full-name',
+        screenName: 'dj_screen-name'
+    },
 
-    /*
-    * Initialization (constructor)
-    */
     init: function (element, meta) {
         var $meta = $.extend({ name: "TweetLines" }, meta);
 
@@ -60,12 +48,21 @@ DJ.UI.TweetLines = DJ.UI.Component.extend({
 
         this.timeago();
 
+        // counter to track no. of time 'load old' is clicked
+        this.historyClicks = 0;
+
 
     },
 
 
+    dispose: function () {
+        this._super();
+        // will cause timeago to stop refresh on next interval
+        this.$element.remove();
+    },
+
+
     _initializeElements: function (ctx) {
-        this.$tweetActions = ctx.find(this.selectors.tweetActions);
 
         this.$newTweets = ctx.find(this.selectors.newTweets);
         this.$newTweetsSpan = this.$newTweets.find('span');
@@ -75,39 +72,105 @@ DJ.UI.TweetLines = DJ.UI.Component.extend({
 
         this.$recentItems = ctx.find(this.selectors.recentItems);
 
-    },
+        this.$toTop = ctx.find(this.selectors.toTop);
 
+    },
 
     _initializeEventHandlers: function () {
         this._super();
         var me = this;
 
-        this.$tweetActions.on("click", "li", function () {
-            var action = $(this).data("action");
-            var id;
+        this.$element.on("click", this.selectors.tweetActions, function () {
+            var $el = $(this),
+				action = $el.data("action");
+            var id,
+                tweetItem = $el.closest(me.selectors.tweetItem);
 
+            var tweetId = tweetItem.attr("data-tweet-id");
             // DO NOT use jQuery.data().
             // jQuery.data applies parseInt to it and the number gets rounded off
             // http://stackoverflow.com/questions/9297434/parseint-rounds-incorrectly/
-            if (action === "follow") {
-                id = $(this).closest(me.selectors.tweetItem).attr("data-user-id");
+            if (action === "follow") { id = tweetItem.attr("data-user-id"); }
+
+            // fix the screen name (although twitter will take any junk screen name for now)
+            if (action === "details") {
+                me.options.webIntents.details = me.defaults.webIntents.details.replace("{screen-name}", tweetItem.data("screen-name"));
             }
-            else {
-                id = $(this).closest(me.selectors.tweetItem).attr("data-tweet-id");
-            }
+
+            id = id || tweetId;
             me._openWebIntent(action, id);
+
+            me._recordODSData({
+                action: action,
+                twitterHandle: tweetItem.data('screen-name'),
+                twitterName: tweetItem.data('full-name'),
+                twitterId: tweetId 
+            });
+
+            //return false;
         });
 
         this.$oldTweetsSpan.click(function () {
-            me.publish(me.events.loadOldTweets);
+            // if its not inifinite history and load more has been clicked max times, 
+            // hide the button to disable paging in history
+            if (me.options.maxPagesInHistory > 0 && me.historyClicks >= me.options.maxPagesInHistory) {
+                $(this).hide();
+            }
+            else {
+                me.publish(me.events.loadOldTweets);
+                me.historyClicks++;
+                me._recordODSData({
+                    action: 'more'
+                });
+            }
             return false;
         });
 
         this.$newTweetsSpan.click(function () {
             me.publish(me.events.loadNewTweets);
+
+            me._recordODSData({
+                action: 'new'
+            });
+
             return false;
         });
 
+        this.$element.find('.dj_to-top').click(function () {
+            me.$element.animate({ scrollTop: 0 }, 600);
+        });
+
+
+        this.$element.on("click", this.selectors.tweetHrefs, function (e) {
+            var $this = $(this),
+                tweetItem = $this.closest(me.selectors.tweetItem),
+				txt = $this.text(),
+                startsWith = txt.charAt(0),
+                action, expandedUrl, tagValue;
+
+
+            if (startsWith === '#') {
+                action = 'hashTagClick';
+                tagValue = txt.substring(1);
+            }
+            else if ($this.data('screen-name')) {
+                action = 'userMentionClick';
+            }
+            else {
+                action = 'urlClick';
+                expandedUrl = $this.data('expanded-url');
+            }
+
+            me._recordODSData({
+                action: action,
+                twitterHandle: tweetItem.data('screen-name'),
+                twitterName: tweetItem.data('full-name'),
+                tagValue: tagValue,
+                expandedUrl: expandedUrl
+            });
+
+            e.stopPropagation();
+        });
     },
 
 
@@ -130,8 +193,9 @@ DJ.UI.TweetLines = DJ.UI.Component.extend({
             years: '%d <%= Token("years") %>',
             numbers: []
         };
-        this.$element.timeago('.dj_time-stamp abbr');
+        this.$element.timeago(this.selectors.timeStamp);
     },
+
 
     setData: function (data, template) {
         template = template || 'success';
@@ -142,73 +206,158 @@ DJ.UI.TweetLines = DJ.UI.Component.extend({
             default: this.bindOnNoData(); break;
         }
 
-        this.$newTweets.addClass("hide");
+
     },
+
 
     refreshData: function () {
 
     },
 
-    notifyNewTweets: function (count) {
+
+    notifyNewTweets: function (count, displayFinalMessage) {
         count = count || 0;
         if (count > 0) {
-            this.$newTweetsSpan.text(count + ' <%= Token("newTweets") %>');
-            this.$newTweets.removeClass("hide");
+            var msg = (displayFinalMessage ? '<%= Token("about") %> ' : '') + count + ' <%= Token("newTweets") %>';
+            this.$newTweetsSpan.text(msg);
+            this.$newTweets.removeClass("hide").show();
         }
         else {
-            this.$newTweets.addClass("hide");
+            this.$newTweets.hide();
         }
     },
+
+
+    // not browser history but navigating to historical tweets
+    toggleHistory: function (enable) {
+        if (enable === undefined) {
+            this.$oldTweets.toggle();
+            this.$toTop.toggle();
+        }
+        else if (enable === true) {
+            this.$oldTweets.show().removeClass('hide');
+            this.$toTop.hide();
+        }
+        else {
+            this.$oldTweets.hide();
+            this.$toTop.show().removeClass('hide');
+        }
+
+        if (this.scrollBar) {
+            this.scrollBar.refresh();
+        }
+    },
+
 
     bindOnSuccess: function (data) {
         var tweetLines;
 
         try {
-            if (data && data.tweets && data.tweets.length > 0) {
-                // call to bind and append html to the div section 
+            if (!data || !data.tweets || data.tweets.length === 0) {
+                this.bindOnNoData();
+                return;
+            }
 
-                tweetLines = this.templates.tweetlines({ tweets: data.tweets, options: this.options });
-                if (data.append === true) {
-                    this.$recentItems.append(tweetLines);
+            this.$newTweets.addClass("hide");
+
+            // call to bind and append html to the div section 
+            tweetLines = this.templates.tweetlines({ tweets: data.tweets, options: this.options });
+
+            if (data.append === true) {
+                this.$recentItems.append(tweetLines);
+            }
+            else {
+                this.$recentItems.prepend(tweetLines);
+            }
+
+            // update timestamp
+            this.$recentItems.find(this.selectors.timeStamp).timeago(null, true);
+
+
+            // initialize the fancy scroll bar only once 
+            // settimeout allows the DOM binding to happen before 
+            // so that the plugin can get physical dimesnions on attach.
+            var me = this;
+            window.setTimeout(function () {
+                if (!me.scrollBar) {
+                    me.scrollBar = me.$element.dj_ScrollBar();
                 }
                 else {
-                    this.$recentItems.prepend(tweetLines);
+                    me.scrollBar.refresh();
                 }
+            }, 0);
 
-                $.fn.timeago.refresh();
-            }
-        } catch (e) {
-            $dj.error('DJ.UI.TweetLines::bindOnSuccess: Error while data binding. Details: ', e);
+        }
+        catch (e) {
+            this.toggleHistory(false);
+            $dj.error(this.name, '::bindOnSuccess: Error while data binding. Details: ', e);
         }
 
+    },
+
+
+    bindOnNoData: function () {
+        this.$recentItems.html(this.templates.noData());
+        this.$newTweets.addClass("hide");
+        this.$oldTweets.hide();
+        this.$toTop.hide();
+    },
+
+
+    getSinceId: function () {
+        var latestTweetItem = this.$recentItems.find(this.selectors.tweetItem + ':first');
+        if (latestTweetItem) {
+            return latestTweetItem.attr("data-tweet-id");
+        }
+    },
+
+
+    getStartId: function () {
+        var oldestTweetItem = this.$recentItems.find(this.selectors.tweetItem + ':last');
+        if (oldestTweetItem) {
+            return oldestTweetItem.attr("data-tweet-id");
+        }
     },
 
 
     _getWebIntentUrl: function (action, id) {
         if (!this.options.webIntents[action]) {
-            $dj.error("DJ.UI.TweetLines::getWebIntentUrl: action '", action, "' is not recognized.");
+            $dj.error(this.name, "::getWebIntentUrl: action '", action, "' is not recognized.");
             return;
         }
 
         return this.options.webIntents[action] + id;
-
     },
 
-    _getWebIntentWindowOptions: function () {
-        var features,
-            options = this.options.webIntentWindowOptions,
-            opt;
-        for (opt in options) {
-            if (options.hasOwnProperty(opt)) {
-                features += opt + '=' + options[opt] + ',';
-            }
-        }
-
-        return features.replace(/,$/g, '');
-    },
 
     _openWebIntent: function (action, id) {
-        return window.open(this._getWebIntentUrl(action, id), 'intent', this._getWebIntentWindowOptions());
+        var options = 'scrollbars=yes, resizable=yes, toolbar=no, location=yes, width=550, height=420';
+        return window.open(this._getWebIntentUrl(action, id), 'intent', options);
+    },
+
+
+    _recordODSData: function (ODSdata) {
+        var fields = [
+            { name: "FCS_OD_ModuleAction", value: ODSdata.action },
+			{ name: "FCS_OD_ModuleSection", value: "RecentTweets" },
+            { name: "FCS_OD_ODSTranName", value: "SocialMediaUsage" }
+        ];
+
+        if (ODSdata.twitterId) {
+            fields.push({ name: "FCS_OD_TwitterName", value: ODSdata.twitterName });
+            fields.push({ name: "FCS_OD_TwittererHandle", value: ODSdata.twitterHandle });
+            fields.push({ name: "FCS_OD_TwittererId", value: ODSdata.twitterId });
+        }
+
+        if (ODSdata.expandedUrl) {
+            fields.push({ name: "FCS_OD_ExpandedURL", value: ODSdata.expandedUrl });
+        }
+
+        if (ODSdata.tagValue) {
+            fields.push({ name: "FCS_OD_TagValue", value: ODSdata.tagValue });
+        }
+
+        $dj.recordODSData(fields);
     }
 
 });
