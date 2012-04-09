@@ -43,6 +43,7 @@ namespace DowJones.Search.Core
         private const string PICTURE_FORMAT = "fmt=picture";
         private const string PUBLICATION_FORMAT = "fmt=(article or report or file)";
         private const string WEBPAGE_FORMAT = "fmt=webpage";
+        private const string FMT_OPERATOR = " or ";
         #endregion
 
         #region ScopeType enum
@@ -613,6 +614,45 @@ namespace DowJones.Search.Core
                 }
             }
             return included;
+        }
+
+        public static SearchStringCollection BuildSourceSearchStringCollection(SearchSourceGroupPreferenceItem ssgpItem)
+        {
+            var searchStringCollection = new SearchStringCollection();
+            if (ssgpItem != null && ssgpItem.Value != null && ssgpItem.Value.Count > 0)
+            {
+                var includedSources = new List<string>();
+                var excludedSources = new List<string>();
+                foreach (SourceList sourceList in ssgpItem.Value)
+                {
+                    includedSources.AddRange(sourceList.CodeIncluded);
+                    excludedSources.AddRange(sourceList.CodeExcluded);
+                }
+                excludedSources = excludedSources.Where(d => includedSources.IndexOf(d) == -1).ToList();
+                if (includedSources.Count > 0)
+                {
+                    searchStringCollection.Add(new SearchString
+                                                   {
+                                                       Scope = "rst",
+                                                       Id = "AnySources",
+                                                       Mode = SearchMode.Any,
+                                                       Value = String.Join(" ", includedSources),
+                                                       Filter = true
+                                                   });
+                }
+                if (excludedSources.Count > 0)
+                {
+                    searchStringCollection.Add(new SearchString
+                                                   {
+                                                       Scope = "rst",
+                                                       Id = "NotSources",
+                                                       Mode = SearchMode.None,
+                                                       Value = String.Join(" ", excludedSources),
+                                                       Filter = true
+                                                   });
+                }
+            }
+            return searchStringCollection;
         }
 
         public static SearchStringCollection BuildSearchStringCollection(

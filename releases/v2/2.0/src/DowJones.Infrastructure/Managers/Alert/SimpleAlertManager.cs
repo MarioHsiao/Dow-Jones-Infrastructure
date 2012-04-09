@@ -227,7 +227,7 @@ namespace DowJones.Managers.Alert
                 }
             }
 
-            if (ssgpItem != null)
+           /* if (ssgpItem != null)
             {
                 query.SearchStringCollection.AddRange(SearchUtility.BuildSearchStringCollection(ssgpItem));
 
@@ -256,7 +256,12 @@ namespace DowJones.Managers.Alert
             else
             {
                 query.SearchCollectionCollection = new SearchCollectionCollection { SearchCollection.Publications, SearchCollection.WebSites };
-            }
+            } */
+
+            //Source browser cleanup - Always create alert for all valid categories.
+            query.SearchStringCollection.AddRange(SearchUtility.BuildSourceSearchStringCollection(ssgpItem));
+            query.SearchCollectionCollection = new SearchCollectionCollection { SearchCollection.Publications, SearchCollection.WebSites };
+            //Source browser cleanup - Always create alert for all valid categories.
 
             if (preferences.ContentLanguages != null && preferences.ContentLanguages.Count > 0)
             {
