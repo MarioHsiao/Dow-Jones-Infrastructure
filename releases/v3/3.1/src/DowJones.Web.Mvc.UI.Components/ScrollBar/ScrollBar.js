@@ -70,8 +70,7 @@ DJ.UI.ScrollBar = DJ.UI.Component.extend({
         //remove existing classes and existing css if it exist.
         //clearing off any scrollbar element and its properties that got added, before adding new one.
         $("div.dj_scrollbar", $parentContainer.parent()).show().remove();
-        $parentContainer.css({ "width": $parentContainer.parent().width() - 10, "padding-right": "10px" })
-                        .removeClass("dj_scrollbar-y dj_scrollbar-init")
+        $parentContainer.removeClass("dj_scrollbar-y dj_scrollbar-init")
                         .parent().css("width", "");
         //addclass
         if (self.options.direction && self.options.direction === 'horizontal') {
@@ -85,6 +84,8 @@ DJ.UI.ScrollBar = DJ.UI.Component.extend({
 
         // Browser Detection
         if ($.browser.mozilla) {
+            //set the css correct. 
+            $parentContainer.css({ "width": $parentContainer.parent().width() - 10, "padding-right": "10px" });
             self._renderFireFoxScrollbar();
         }
 
@@ -317,10 +318,10 @@ DJ.UI.ScrollBar = DJ.UI.Component.extend({
         }
         // Y-axis
         if (axis == 'y') {
-            if(self.scrollTop===0){
-              $(self.scrollbarYThumb).css('top', 0);
+            if (self.scrollTop === 0) {
+                $(self.scrollbarYThumb).css('top', 0);
             }
-            else{
+            else {
                 if (self.maxScrollTop >= self.scrollTop) {
                     $(self.scrollbarYThumb).css('top', ((self.scrollTop * (self.elemHeight - self.thumbHeight)) / self.maxScrollTop) + 'px');
                 }
