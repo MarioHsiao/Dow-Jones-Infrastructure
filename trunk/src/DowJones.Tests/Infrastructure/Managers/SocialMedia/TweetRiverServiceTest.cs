@@ -1,8 +1,12 @@
 ﻿using System;
+using System.Linq;
 using DowJones.Infrastructure.Models.SocialMedia;
 using DowJones.Managers.SocialMedia;
+using DowJones.Managers.SocialMedia.Config;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using DowJones.Managers.SocialMedia.TweetRiver;
+using System.Collections.Generic;
+using DJSession = DowJones.Session;
 
 namespace DowJones.Infrastructure.SocialMedia.Tests
 {
@@ -35,47 +39,18 @@ namespace DowJones.Infrastructure.SocialMedia.Tests
             }
         }
 
-        #region Additional test attributes
-        // 
-        //You can use the following additional attributes as you write your tests:
-        //
-        //Use ClassInitialize to run code before running the first test in the class
-        //[ClassInitialize()]
-        //public static void MyClassInitialize(TestContext testContext)
-        //{
-        //}
-        //
-        //Use ClassCleanup to run code after all tests in a class have run
-        //[ClassCleanup()]
-        //public static void MyClassCleanup()
-        //{
-        //}
-        //
-        //Use TestInitialize to run code before running each test
-        //[TestInitialize()]
-        //public void MyTestInitialize()
-        //{
-        //}
-        //
-        //Use TestCleanup to run code after each test has run
-        //[TestCleanup()]
-        //public void MyTestCleanup()
-        //{
-        //}
-        //
-        #endregion
-
 
         /// <summary>
         ///A test for GetTweetsByChannel
         ///</summary>
         [TestMethod]
-        public void GetTweetsByChannelTest()
-        {
-            SocialMediaService target = new SocialMediaService(new TweetRiverProvider());
-            string channel = "green-energy"; 
-            GetTweetsByChannelResponse actual;
-            actual = target.GetTweetsByChannel(channel, new RequestOptions() {Limit = 20});
+		[TestCategory("Integration")]
+		public void GetTweetsByChannelTest()
+		{
+			DJSession.IControlData _controlData = new DJSession.ControlData { UserID = "snap_proxy", UserPassword = "pa55w0rd", ProductID = "16" };
+			var target = new SocialMediaService(new TweetRiverProvider(), new PAMSocialMediaIndustryProvider(_controlData));
+            const string channel = "accounting-consulting";
+            var actual = target.GetTweetsByChannel(channel, new RequestOptions {Limit = 20});
             Assert.AreEqual(Status.Success, actual.Status);
             Assert.IsTrue(actual.Capacity > 0);
         }
@@ -84,12 +59,29 @@ namespace DowJones.Infrastructure.SocialMedia.Tests
         ///A test for GetTweetsByIndustry
         ///</summary>
         [TestMethod]
-        public void GetTweetsByIndustryTest()
+		[TestCategory("Integration")]
+		public void GetTweetsByIndustryTest()
         {
-            SocialMediaService target = new SocialMediaService(new TweetRiverProvider());
-            string industryCode = "iacc";
-            GetTweetsByChannelResponse actual;
-            actual = target.GetTweetsByIndustry(industryCode, new RequestOptions() { Limit = 20 });
+			DJSession.IControlData _controlData = new DJSession.ControlData { UserID = "snap_proxy", UserPassword = "pa55w0rd", ProductID = "16" };
+			var target = new SocialMediaService(new TweetRiverProvider(), new PAMSocialMediaIndustryProvider(_controlData));
+            const string industryCode = "iacc";
+            var actual = target.GetTweetsByIndustry(industryCode, new RequestOptions { Limit = 20 });
+            Assert.AreEqual(Status.Success, actual.Status);
+            Assert.IsTrue(actual.Capacity > 0);
+        }
+
+
+        /// <summary>
+        ///A test for GetExpertsByIndustry
+        ///</summary>
+        [TestMethod]
+		[TestCategory("Integration")]
+		public void GetExpertsByIndustry()
+        {
+			DJSession.IControlData _controlData = new DJSession.ControlData { UserID = "snap_proxy", UserPassword = "pa55w0rd", ProductID = "16" };
+			var target = new SocialMediaService(new TweetRiverProvider(), new PAMSocialMediaIndustryProvider(_controlData));
+            const string industryCode = "iacc";
+            var actual = target.GetExpertsByIndustry(industryCode);
             Assert.AreEqual(Status.Success, actual.Status);
             Assert.IsTrue(actual.Capacity > 0);
         }
@@ -98,14 +90,15 @@ namespace DowJones.Infrastructure.SocialMedia.Tests
         ///A negative test for GetTweetsByIndustry by passing invalid code
         ///</summary>
         [TestMethod]
-        public void ShouldFailOnGetTweetsByIndustry()
+		[TestCategory("Integration")]
+		public void ShouldFailOnGetTweetsByIndustry()
         {
-            SocialMediaService target = new SocialMediaService(new TweetRiverProvider());
-            string industryCode = "junk";
-            GetTweetsByChannelResponse actual;
+			DJSession.IControlData _controlData = new DJSession.ControlData { UserID = "snap_proxy", UserPassword = "pa55w0rd", ProductID = "16" };
+			var target = new SocialMediaService(new TweetRiverProvider(), new PAMSocialMediaIndustryProvider(_controlData));
+            const string industryCode = "junk";
             try
             {
-                actual = target.GetTweetsByIndustry(industryCode, new RequestOptions() { Limit = 20 });
+                target.GetTweetsByIndustry(industryCode, new RequestOptions() { Limit = 20 });
                 Assert.Fail("Should have thrown exception");
             }
             catch (ArgumentOutOfRangeException ex)
@@ -115,5 +108,57 @@ namespace DowJones.Infrastructure.SocialMedia.Tests
             }
            
         }
+
+
+        /// <summary>
+        ///A test for GetTweetsByIndustry
+        ///</summary>
+        [TestMethod]
+		[TestCategory("Integration")]
+		public void GetTweetsByIndustryMapperTest()
+        {
+            List<Ajax.SocialMedia.Tweet> ajaxTweets = new List<Ajax.SocialMedia.Tweet>();
+			DJSession.IControlData _controlData = new DJSession.ControlData { UserID = "snap_proxy", UserPassword = "pa55w0rd", ProductID = "16" };
+			var target = new SocialMediaService(new TweetRiverProvider(), new PAMSocialMediaIndustryProvider(_controlData));
+            const string industryCode = "iacc";
+            var actual = target.GetTweetsByIndustry(industryCode, new RequestOptions { Limit = 20 });
+            Assert.AreEqual(Status.Success, actual.Status);
+            Assert.IsTrue(actual.Capacity > 0);
+
+            List<Tweet> tweets = new List<Tweet>(actual);
+            Ajax.SocialMedia.Mapper mapper = new Ajax.SocialMedia.Mapper();
+            foreach (Tweet tweet in tweets)
+            {
+                ajaxTweets.Add(mapper.Map(tweet));
+            }
+            Assert.IsTrue(ajaxTweets.Capacity > 0);
+        }
+
+
+        /// <summary>
+        ///A test for GetExpertsByIndustry
+        ///</summary>
+        [TestMethod]
+		[TestCategory("Integration")]
+		public void GetExpertsByIndustryMapperTest()
+        {
+            List<Ajax.SocialMedia.User> ajaxUsers = new List<Ajax.SocialMedia.User>();
+
+			DJSession.IControlData _controlData = new DJSession.ControlData { UserID = "snap_proxy", UserPassword = "pa55w0rd", ProductID = "16" };
+			var target = new SocialMediaService(new TweetRiverProvider(), new PAMSocialMediaIndustryProvider(_controlData));
+            const string industryCode = "iacc";
+            var actual = target.GetExpertsByIndustry(industryCode);
+            Assert.AreEqual(Status.Success, actual.Status);
+            Assert.IsTrue(actual.Capacity > 0);
+
+            List<TwitterUser> users = new List<TwitterUser>(actual);
+            Ajax.SocialMedia.Mapper mapper = new Ajax.SocialMedia.Mapper();
+            foreach (TwitterUser user in users)
+            {
+                ajaxUsers.Add(mapper.Map(user));
+            }
+            Assert.IsTrue(ajaxUsers.Capacity > 0);
+        }
     }
 }
+
