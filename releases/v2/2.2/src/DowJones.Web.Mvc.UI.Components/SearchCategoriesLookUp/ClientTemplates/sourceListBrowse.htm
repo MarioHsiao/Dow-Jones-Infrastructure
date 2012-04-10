@@ -11,7 +11,7 @@
             }
             else{
                 if(e.Source){
-                    cdesc = e.Source.Name || code;
+                    cdesc = e.Source.CommonName || code;
                     hC = e.Source.ChildrenTypes;
                 }
                 else{
@@ -41,7 +41,7 @@
                     code1 = escape(code1);
                 }
                 else{
-                    desc = (e.Source) ? (e.Source.Name || code1) : code1;
+                    desc = (e.Source) ? (e.Source.CommonName || code1) : code1;
                     code1 = code1.toLowerCase();
                     cdesc = cdesc + ": " + desc;
                     attribs += "data-desc1='" + escape(desc) + "' ";
