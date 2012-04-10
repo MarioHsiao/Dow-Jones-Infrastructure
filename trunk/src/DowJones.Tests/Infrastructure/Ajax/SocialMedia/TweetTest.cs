@@ -113,7 +113,7 @@ namespace DowJones
 												}
 				}
 			};
-			const string Expected = "Hazell: “What we’re trying to do is trying to install the key risk factors, which are part of the credit rating.” <a href=\"http://twitter.com/search?q=%23ERMSummit\" title=\"#ERMSummit\" rel=\"nofollow\">#ERMSummit</a>";
+			const string Expected = "Hazell: “What we’re trying to do is trying to install the key risk factors, which are part of the credit rating.” <a href=\"http://twitter.com/search?q=%23ERMSummit\" target=\"_blank\" title=\"#ERMSummit\" rel=\"nofollow\">#ERMSummit</a>";
 
 			Assert.AreEqual(Expected, target.Html);
 		}

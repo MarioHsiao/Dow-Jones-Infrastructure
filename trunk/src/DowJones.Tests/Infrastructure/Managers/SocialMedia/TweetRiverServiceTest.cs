@@ -43,7 +43,9 @@ namespace DowJones.Infrastructure.SocialMedia.Tests
         /// <summary>
         ///A test for GetTweetsByChannel
         ///</summary>
-        [TestMethod]
+		// once the build script is updated to not run integration tests, take out ignore attrib
+		[Ignore]
+		[TestMethod]
 		[TestCategory("Integration")]
 		public void GetTweetsByChannelTest()
 		{
@@ -58,7 +60,9 @@ namespace DowJones.Infrastructure.SocialMedia.Tests
         /// <summary>
         ///A test for GetTweetsByIndustry
         ///</summary>
-        [TestMethod]
+		// once the build script is updated to not run integration tests, take out ignore attrib
+		[Ignore]
+		[TestMethod]
 		[TestCategory("Integration")]
 		public void GetTweetsByIndustryTest()
         {
@@ -74,7 +78,9 @@ namespace DowJones.Infrastructure.SocialMedia.Tests
         /// <summary>
         ///A test for GetExpertsByIndustry
         ///</summary>
-        [TestMethod]
+		// once the build script is updated to not run integration tests, take out ignore attrib
+		[Ignore]
+		[TestMethod]
 		[TestCategory("Integration")]
 		public void GetExpertsByIndustry()
         {
@@ -89,7 +95,9 @@ namespace DowJones.Infrastructure.SocialMedia.Tests
         /// <summary>
         ///A negative test for GetTweetsByIndustry by passing invalid code
         ///</summary>
-        [TestMethod]
+		// once the build script is updated to not run integration tests, take out ignore attrib
+		[Ignore]
+		[TestMethod]
 		[TestCategory("Integration")]
 		public void ShouldFailOnGetTweetsByIndustry()
         {
@@ -113,7 +121,9 @@ namespace DowJones.Infrastructure.SocialMedia.Tests
         /// <summary>
         ///A test for GetTweetsByIndustry
         ///</summary>
-        [TestMethod]
+		// once the build script is updated to not run integration tests, take out ignore attrib
+		[Ignore]
+		[TestMethod]
 		[TestCategory("Integration")]
 		public void GetTweetsByIndustryMapperTest()
         {
@@ -138,7 +148,9 @@ namespace DowJones.Infrastructure.SocialMedia.Tests
         /// <summary>
         ///A test for GetExpertsByIndustry
         ///</summary>
-        [TestMethod]
+		// once the build script is updated to not run integration tests, take out ignore attrib
+		[Ignore]
+		[TestMethod]
 		[TestCategory("Integration")]
 		public void GetExpertsByIndustryMapperTest()
         {
