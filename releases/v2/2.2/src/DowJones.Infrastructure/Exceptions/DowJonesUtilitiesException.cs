@@ -179,6 +179,7 @@ namespace DowJones.Exceptions
         public const long SocialMediaBackendUserError = 585602;
         public const long SocialMediaBackendServerError = 585603;
         public const long SocialMediaBackendDeserializationError = 585604;
+        public const long SocialMediaNotEntitled = 585605;
 
 
         #endregion
