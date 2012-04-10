@@ -24,7 +24,7 @@ namespace DowJones.Web.Mvc.UI.Components.OutletList
     using DowJones.Web.Mvc.UI.Components.Models;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 04/06/2012 11:15 AM
+    // Last Generated Timestamp: 04/10/2012 11:01 AM
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.OutletList.OutletList.js", ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.OutletList.OutletList))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "0.0.0.30158")]
     public class OutletList : DowJones.Web.Mvc.UI.ViewComponentBase<DowJones.Web.Mvc.UI.Components.Models.OutletListModel>
@@ -119,9 +119,13 @@ WriteLiteral("\" />\r\n");
 
 
 
-WriteLiteral("\t<table class=\"dj_data_table-sorter dj_data_table dj_author-list-table\">\r\n\t\t<thea" +
-"d>\r\n\t\t\t<tr>\r\n\t\t\t\t<th colspan=\"2\" class=\"dj_col-checkbox\"></th>\r\n\t\t\t\t<th scope=\"c" +
-"ol\" class=\"dj_sortable-table-header\" data-sort=\"outlet\">\r\n\t\t\t\t\t");
+WriteLiteral(@"	<div class=""dj_data_table-container"">
+	<table class=""dj_data_table-sorter dj_data_table dj_author-list-table"">
+		<thead>
+			<tr>
+				<th colspan=""2"" class=""dj_col-checkbox""></th>
+				<th scope=""col"" class=""dj_sortable-table-header"" data-sort=""outlet"">
+					");
 
 
 Write(Model.Tokens.OutletName);
@@ -281,7 +285,7 @@ WriteLiteral("\t\t\t</tr>\r\n");
 
 		}
 
-WriteLiteral("\t\t</tbody>\r\n\t</table>\r\n");
+WriteLiteral("\t\t</tbody>\r\n\t</table>\r\n\t</div>\r\n");
 
 
 

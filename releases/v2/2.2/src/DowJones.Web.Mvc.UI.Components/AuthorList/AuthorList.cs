@@ -25,7 +25,7 @@ namespace DowJones.Web.Mvc.UI.Components.AuthorList
     using DowJones.Web.Mvc.UI.Components.Models;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 04/02/2012 03:53 PM
+    // Last Generated Timestamp: 04/09/2012 09:34 AM
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.AuthorList.AuthorList.js", ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.AuthorList.AuthorList))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "0.0.0.30158")]
     public class AuthorList : DowJones.Web.Mvc.UI.ViewComponentBase<AuthorListModel>
@@ -123,11 +123,14 @@ WriteLiteral("\t<input type=\"hidden\" id=\"selected_author_ids\" value=\"");
 WriteLiteral("\" />\r\n");
 
 
-	
 
-WriteLiteral("\t<table class=\"dj_data_table-sorter dj_data_table dj_author-list-table\">\r\n\t\t<thea" +
-"d>\r\n\t\t\t<tr>\r\n\t\t\t\t<th colspan=\"3\" class=\"dj_col-checkbox\"></th>\r\n\t\t\t\t<th class=\"d" +
-"j_col-string dj_sortable-table-header\" data-sort=\"name\">\r\n\t\t\t\t\t");
+WriteLiteral(@"	<div class=""dj_data_table-container"">
+	<table class=""dj_data_table-sorter dj_data_table dj_author-list-table"">
+		<thead>
+			<tr>
+				<th colspan=""3"" class=""dj_col-checkbox""></th>
+				<th class=""dj_col-string dj_sortable-table-header"" data-sort=""name"">
+					");
 
 
 Write(Model.Tokens.ContactName);
@@ -287,7 +290,7 @@ WriteLiteral("\t\t\t</tr>\r\n");
 
 		}
 
-WriteLiteral("\t\t</tbody>\r\n\t</table>\r\n");
+WriteLiteral("\t\t</tbody>\r\n\t</table>\r\n\t</div>\r\n");
 
 
 

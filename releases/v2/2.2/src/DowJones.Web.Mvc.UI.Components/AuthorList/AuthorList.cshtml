@@ -45,7 +45,7 @@
 	<input type="hidden" id="author_list_sort_by" value="@(EnumDescription.StringValueOf(Model.SortBy))" />
 	<input type="hidden" id="author_list_sort_order" value="@(EnumDescription.StringValueOf(Model.SortOrder))" />
 	<input type="hidden" id="selected_author_ids" value="@Model.SelectedAuthorIds" />
-	
+	<div class="dj_data_table-container">
 	<table class="dj_data_table-sorter dj_data_table dj_author-list-table">
 		<thead>
 			<tr>
@@ -117,6 +117,7 @@
 		}
 		</tbody>
 	</table>
+	</div>
 	<!-- Save As Menu -->
 	<div class="menu actionsMenu" style="display:none;">
 		<div class="menuitems">
