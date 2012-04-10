@@ -305,14 +305,14 @@
             if (this.$alertDeliveryMethod.find('input:checked').val() == "scheduled") {
                 this.$alertDelivery.show();
             }
-            else if (this.$alertDeliveryMethod.find('input:checked').val() == "continuous") {
-                this.$alertEmail.attr("disabled", false);
-                this.$alertFormatDD.attr("disabled", false);
-                //This is to remove disabled look to the span element with selectbox plugin wraps the select element
-                this.$alertFormatDD.parent().removeClass("disabled-select");
-
-            }
             else {
+                if (this.$alertDeliveryMethod.find('input:checked').val() == "continuous") {
+                    this.$alertEmail.attr("disabled", false);
+                    this.$alertFormatDD.attr("disabled", false);
+                    //This is to remove disabled look to the span element which selectbox plugin wraps the select element
+                    this.$alertFormatDD.parent().removeClass("disabled-select");
+
+                }
                 this.$alertDelivery.hide();
                 //Uncheck all the delivery times
                 this._setDeliveryTime([]);
