@@ -128,12 +128,8 @@
     <Compile Include="Search\CompanyTile.cs" />
     <Compile Include="Common\PriceTrend.cs" />
     <Compile Include="SearchCategoriesLookUp\SearchCategoriesLookUpModel.cs" />
-    <Compile Include="SocialMedia\Tweet.cs" />
     <Compile Include="SocialMedia\TweetLinesModel.cs" />
-    <Compile Include="SocialMedia\Mapper.cs" />
-    <Compile Include="SocialMedia\User.cs" />
     <Compile Include="SocialMedia\ExpertsModel.cs" />
-    <Compile Include="SocialMedia\UserDetails.cs" />
     <Compile Include="VideoPlayer\VideoPlayerModel.cs" />
     <Compile Include="Quote\QuoteModel.cs" />
     <Compile Include="Discovery\DiscoveryChartTypes.cs" />

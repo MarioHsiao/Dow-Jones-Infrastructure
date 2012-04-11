@@ -5,34 +5,37 @@ using DowJones.Infrastructure.Converters;
 using DowJones.Infrastructure.Models.SocialMedia;
 using DowJones.Managers.Abstract;
 using Newtonsoft.Json;
+using DowJones.Extensions;
+
 
 namespace DowJones.Managers.SocialMedia
 {
 
     using Config;
-    using Responses;
+    using DowJones.Managers.SocialMedia.Responses;
     using Hammock;
-    using Serializers;
+    using DowJones.Managers.SocialMedia.Serializers;
 
     /// <summary>
     /// The Service for interacting with TweetRiver API
     /// </summary>
-    public class SocialMediaService : IExternalService
+    public class SocialMediaService : IService
     {
         
-        /// <summary>
+        // <summary>
         /// The settings.
         /// </summary>
-        private  readonly JsonSerializerSettings _settings;
+        private  readonly JsonSerializerSettings Settings;
 
 
-        private readonly ISocialMediaProvider _socialMediaProvider;
+        private ISocialMediaProvider _socialMediaProvider;
+        private ISocialMediaIndustryProvider _industryProvider;
 
 
         /// <summary>
         /// Gets the default json serializer settings.
         /// </summary>
-        private static JsonSerializerSettings GetDefaultJsonSerializerSettings()
+        private  JsonSerializerSettings GetDefaultJsonSerializerSettings()
         {
             var settings = new JsonSerializerSettings
                            {
@@ -56,7 +59,7 @@ namespace DowJones.Managers.SocialMedia
         /// <summary>
         /// The mapping between industry code and channel name
         /// </summary>
-        private readonly IndustryChannelMap IndustryChannelMap;
+        //private readonly IndustryChannelMap IndustryChannelMap;
 
 
         /// <summary>
@@ -83,7 +86,7 @@ namespace DowJones.Managers.SocialMedia
                     // Not Modified: There was no new data to return
                     try
                     {
-                        result = JsonConvert.DeserializeObject<T>(response.Content, _settings);
+                        result = JsonConvert.DeserializeObject<T>(response.Content, Settings);
                     }
                     catch (JsonReaderException jre)
                     {
@@ -110,7 +113,7 @@ namespace DowJones.Managers.SocialMedia
                     try
                     {
                         result.Status = Status.UserError;
-                        result.Message = JsonConvert.DeserializeObject<string>(response.Content, _settings);
+                        result.Message = JsonConvert.DeserializeObject<string>(response.Content, Settings);
                     }
                     catch (JsonReaderException)
                     {
@@ -191,10 +194,11 @@ namespace DowJones.Managers.SocialMedia
         /// <summary>
         /// Initializes members of the <see cref="SocialMediaService"/> class.
         /// </summary>
-        public SocialMediaService(ISocialMediaProvider socialMediaProvider)
+        public SocialMediaService(ISocialMediaProvider socialMediaProvider, ISocialMediaIndustryProvider industryprovider)
         {
-            _settings = GetDefaultJsonSerializerSettings();
-            IndustryChannelMap = new IndustryChannelMap();
+            Settings = GetDefaultJsonSerializerSettings();
+            //IndustryChannelMap = new IndustryChannelMap();
+            _industryProvider = industryprovider;
             _socialMediaProvider = socialMediaProvider;
         }
 
@@ -203,7 +207,7 @@ namespace DowJones.Managers.SocialMedia
         /// Gets the tweets by channel.
         /// </summary>
         /// <param name="channel">The channel.</param>
-        /// <param name="requestOptions">The request options</param>
+        /// <param name="count">The count.</param>
         /// <returns></returns>
         public GetTweetsByChannelResponse GetTweetsByChannel(string channel, RequestOptions requestOptions = null)
         {
@@ -224,10 +228,10 @@ namespace DowJones.Managers.SocialMedia
 
             if (requestOptions == null)
                 requestOptions = new RequestOptions();
-
+            
             Guard.IsNotZeroOrNegative(requestOptions.Limit, "limit");
 
-            var channel = IndustryChannelMap.GetChannelFromIndustryCode(industry);
+            var channel = _industryProvider.GetChannelFromIndustryCode(industry); //IndustryChannelMap.GetChannelFromIndustryCode(industry);
             return GetTweetsByChannel(channel, requestOptions);
         }
 
@@ -241,13 +245,25 @@ namespace DowJones.Managers.SocialMedia
                                          QueryType = QueryType.Experts
                                      };
 
-            Guard.IsNotZeroOrNegative(requestOptions.Limit, "limit");
+            var metaResponse = GetMetaByIndustry(industry, requestOptions);
 
-            var channel = IndustryChannelMap.GetChannelFromIndustryCode(industry);
+            var expertsByIndustryResponse = new GetExpertsByIndustryResponse();
+            expertsByIndustryResponse.AddRange(metaResponse.Sources.Users);
+
+            return expertsByIndustryResponse;
+        }
+
+
+        public GetMetaByIndustryResponse GetMetaByIndustry(string industry, RequestOptions requestOptions)
+        {
+            Guard.IsNotNullOrEmpty(industry, "industry");
+
+            var channel = _industryProvider.GetChannelFromIndustryCode(industry);
             var request = _socialMediaProvider.GetSocialMediaRequest(channel, requestOptions);
-            var response = TryGetSocialMediaResponseImplementation<GetExpertsByIndustryResponse>(request);
+            var response = TryGetSocialMediaResponseImplementation<GetMetaByIndustryResponse>(request);
 
             return response;
+
         }
     }
 }

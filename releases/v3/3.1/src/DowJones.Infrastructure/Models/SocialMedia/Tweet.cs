@@ -9,19 +9,19 @@
 using System;     
 using System.Diagnostics;                
 using System.Runtime.Serialization;
+using DowJones.Managers.SocialMedia.Twitter;
 using Newtonsoft.Json;
-using DowJones.Managers.SocialMedia.Twitter.Extensions;
 
 namespace DowJones.Infrastructure.Models.SocialMedia
 {
     
-    
+
     /// <summary>
     /// </summary>
     [Serializable]
-    [DataContract(Name = "tweet", Namespace = "")]
     [DebuggerDisplay("{Id}")]
     [JsonObject(MemberSerialization.OptIn)]
+    [DataContract(Name = "tweet", Namespace = "")]
     public class Tweet : ITweet
     {
         #region Properties
@@ -32,7 +32,7 @@ namespace DowJones.Infrastructure.Models.SocialMedia
         /// <value>
         /// The created date.
         /// </value>
-        [DataMember(Name = "created_at")]
+        [JsonProperty("created_at")]
         public DateTime CreatedAt { get; set; }
 
         /// <summary>
@@ -59,16 +59,6 @@ namespace DowJones.Infrastructure.Models.SocialMedia
         [DataMember(Name = "text")]
         public string Text { get; set; }
 
-
-        /// <summary>
-        /// Gets or sets Text with hashtags, entities etc mapped as HTML links.
-        /// </summary>
-        [DataMember(Name = "html")]
-        public string Html
-        {
-            get { return string.IsNullOrEmpty(Text) ? string.Empty : Text.ParseTwitterageToHtml(); }
-        }
-
         /// <summary>
         /// Gets or sets a value indicating whether Truncated.
         /// </summary>
@@ -80,6 +70,14 @@ namespace DowJones.Infrastructure.Models.SocialMedia
         /// </summary>
         [DataMember(Name="user")]
         public TwitterUser User { get; set; }
+
+
+		/// <summary>
+		/// Gets or sets Twitter Entities.
+		/// </summary>
+		[DataMember(Name = "entities")]
+		public TwitterEntities Entities { get; set; }
+
 
         #endregion
     }

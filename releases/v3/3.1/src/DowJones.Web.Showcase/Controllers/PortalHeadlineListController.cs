@@ -38,7 +38,15 @@ namespace DowJones.Web.Showcase.Controllers
         {
             if (accessionNums.IsNullOrEmpty())
             {
-                accessionNums = new[] { "J000000020120330e83u0003i", "J000000020120330e83u0001v", "J000000020120330e83u0003x", "J000000020120330e83u0003o", "APPIC00020120330e83u003ec" };
+                accessionNums = new[] { 
+					//"J000000020120330e83u0003i", 
+					//"J000000020120330e83u0001v", 
+					//"J000000020120330e83u0003x", 
+					//"J000000020120330e83u0003o", 
+					//"APPIC00020120330e83u003ec", 
+					"DJFDBR0020120315e83f00001",
+					"DJFVW00020120406e846mueo8"
+				};
                 //BALO000020090710e57a00023 BALO000020090710e57a00022 
                 //EDIFIN0020031215dzbr000nd EDIFIN0020031215dzbr000x3 
                 //WC93409020090709e5780000j WC93409020090709e5780000g 

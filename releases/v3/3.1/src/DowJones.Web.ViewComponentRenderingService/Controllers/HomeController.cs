@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace DowJones.Web.Article.Website.Controllers
+namespace DowJones.Web.ViewComponentRenderingService.Controllers
 {
     public class HomeController : Controller
     {

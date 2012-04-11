@@ -15,8 +15,8 @@ namespace DowJones.Web.Mvc.UI.Components.Models
     public class PortalHeadlineListModel : ViewComponentModel
     {
         const int DefaultNumHeadlinesToShow = 5;
-        private bool sourceClickable;
-        private bool authorClickable;
+        private bool _sourceClickable;
+        private bool _authorClickable;
 
         #region ..:: Client Properties ::..
 
@@ -37,6 +37,15 @@ namespace DowJones.Web.Mvc.UI.Components.Models
             get;
             set;
         }
+
+        /// <summary>
+        /// Gets or sets the selected GUID.
+        /// </summary>
+        /// <value>
+        /// The selected GUID.
+        /// </value>
+        [ClientProperty("selectedGuid")]
+        public string SelectedGuid { get; set; }
 
         /// <summary>
         /// Gets or sets the display snippets.
@@ -61,8 +70,8 @@ namespace DowJones.Web.Mvc.UI.Components.Models
         [ClientProperty("sourceClickable")]
         public bool SourceClickable
         {
-            get { return  sourceClickable || !string.IsNullOrWhiteSpace(OnSourceClick); }
-            set { sourceClickable = value; }
+            get { return  _sourceClickable || !string.IsNullOrWhiteSpace(OnSourceClick); }
+            set { _sourceClickable = value; }
         }
 
         /// <summary>
@@ -72,8 +81,8 @@ namespace DowJones.Web.Mvc.UI.Components.Models
         [ClientProperty("authorClickable")]
         public bool AuthorClickable
         {
-            get { return authorClickable || !string.IsNullOrWhiteSpace(OnAuthorClick); }
-            set { authorClickable = value; }
+            get { return _authorClickable || !string.IsNullOrWhiteSpace(OnAuthorClick); }
+            set { _authorClickable = value; }
         }
 
         /// <summary>

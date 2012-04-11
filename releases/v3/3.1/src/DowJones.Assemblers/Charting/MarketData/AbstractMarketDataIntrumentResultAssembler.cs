@@ -55,17 +55,16 @@ namespace DowJones.Assemblers.Charting.MarketData
             var utcOffsetHours = 0;
             var utcOffsetMinutes = EasternTimeZone.GetUtcOffset(DateTime.Now).TotalMinutes;
             var timeZone = TimeZoneInfo.FindSystemTimeZoneById(EasternStandardTimeId);
-            var abbr = ShortTimeZoneFormat(EasternStandardTimeId);
             if (match != null && match.TimeZoneInfo != null)
             {
                 utcOffsetHours = match.TimeZoneInfo.UtcOffsetHours;
                 utcOffsetMinutes = match.TimeZoneInfo.UtcOffsetMinutes;
                 timeZone = TimeZoneInfo.FindSystemTimeZoneById(match.TimeZoneInfo.TimeZone);
-                abbr = ShortTimeZoneFormat(match.TimeZoneInfo.TimeZone);
-             }
+            }
             
             var dataPoints = new BasicDataPointCollection();
             var currentDate = marketResult.Start = session.Start;
+
             marketResult.End = session.Stop;
 
             marketResult.Stop = session.Stop;
@@ -125,6 +124,7 @@ namespace DowJones.Assemblers.Charting.MarketData
                 // set islast to the last datapoint
                 var lastDataPoint = dataPoints[lastIndex];
                 lastDataPoint.IsLast = true;
+                string abbr;
                 if (lastDataPoint.Date != null)
                 {
                     // update the gmt based one
@@ -133,6 +133,8 @@ namespace DowJones.Assemblers.Charting.MarketData
 
                     // update the gmt based one
                     marketResult.AdjustedLastUpdated = ConvertToGmt((DateTime)lastDataPoint.Date, timeZone);
+                    abbr = timeZone.IsDaylightSavingTime(marketResult.AdjustedLastUpdated) ? ShortTimeZoneFormat(timeZone.DaylightName) : ShortTimeZoneFormat(timeZone.StandardName);
+
                     marketResult.AdjustedLastUpdatedDescripter = string.Concat(
                         GreenwichMeanTimeBasedDateTimeFormatter.FormatLongDateTime(marketResult.AdjustedLastUpdated.AddHours(utcOffsetHours).AddMinutes(utcOffsetMinutes)),
                         " ",
@@ -143,9 +145,8 @@ namespace DowJones.Assemblers.Charting.MarketData
                     marketResult.LastUpdatedDescripter = marketResult.AdjustedLastUpdatedDescripter = string.Empty;
                 }
 
-
                 // pad out dates for drawing the charts correctly
-                var tempEndDate = marketResult.End.AddHours(-1);
+                var tempEndDate = marketResult.End.AddHours(3);
                 while (currentDate <= tempEndDate)
                 {
                     dataPoints.Add(new BasicDataPoint
@@ -185,7 +186,7 @@ namespace DowJones.Assemblers.Charting.MarketData
                     marketResult.Isin = match.Instrument.Isin;
                     marketResult.Sedol = match.Instrument.Sedol;
                     marketResult.Cusip = match.Instrument.Cusip;
-                    marketResult.Name = string.Concat(match.Instrument.CommonName, " [", match.Instrument.Exchange.CommonName, "]");
+                    marketResult.Name = string.Concat(match.Instrument.CommonName, " [", match.Instrument.Exchange.Ticker, "]");
                     marketResult.High = new DoubleNumberStock(match.Trading.High.Value);
                     marketResult.Low = new DoubleNumberStock(match.Trading.Low.Value);
                     marketResult.Open = new DoubleNumberStock(match.Trading.Open.Value);
@@ -202,6 +203,8 @@ namespace DowJones.Assemblers.Charting.MarketData
 
                         // update the gmt based one
                         marketResult.AdjustedLastUpdated = ConvertToGmt((DateTime)match.Trading.Last.Time, timeZone);
+                        abbr = timeZone.IsDaylightSavingTime(marketResult.AdjustedLastUpdated) ? ShortTimeZoneFormat(timeZone.DaylightName) : ShortTimeZoneFormat(timeZone.StandardName);
+                        
                         marketResult.AdjustedLastUpdatedDescripter = string.Concat(
                            GreenwichMeanTimeBasedDateTimeFormatter.FormatLongDateTime(marketResult.AdjustedLastUpdated.AddHours(utcOffsetHours).AddMinutes(utcOffsetMinutes)),
                            " ",
@@ -223,6 +226,8 @@ namespace DowJones.Assemblers.Charting.MarketData
 
                 // update the adjusted start date
                 marketResult.AdjustedStart = ConvertToGmt(DateTimeFormatter.ConvertToUtc(marketResult.Start), timeZone);
+                abbr = timeZone.IsDaylightSavingTime(marketResult.AdjustedStart) ? ShortTimeZoneFormat(timeZone.DaylightName) : ShortTimeZoneFormat(timeZone.StandardName);
+                
                 marketResult.AdjustedStartDescripter = string.Concat(
                      GreenwichMeanTimeBasedDateTimeFormatter.FormatLongDateTime(marketResult.AdjustedStart.AddHours(utcOffsetHours).AddMinutes(utcOffsetMinutes)),
                      " ",

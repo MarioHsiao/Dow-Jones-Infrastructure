@@ -3,7 +3,7 @@ using DowJones.Preferences;
 using DowJones.Security.Interfaces;
 using DowJones.Session;
 
-namespace DowJones.Web.Article.Website
+namespace DowJones.Web.ViewComponentRenderingService
 {
     public class Bindings : DependencyInjection.DependencyInjectionModule
     {

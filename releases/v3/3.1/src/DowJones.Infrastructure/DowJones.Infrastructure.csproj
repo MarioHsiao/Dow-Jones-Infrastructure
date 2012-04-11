@@ -84,6 +84,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Ajax\CompanySparkline\CompanySparklineDataResult.cs" />
+    <Compile Include="Ajax\SocialMedia\Mapper.cs" />
+    <Compile Include="Ajax\SocialMedia\Tweet.cs" />
+    <Compile Include="Ajax\SocialMedia\User.cs" />
+    <Compile Include="Ajax\SocialMedia\UserDetails.cs" />
     <Compile Include="Alert\AlertProperties.cs" />
     <Compile Include="Alert\AlertRequest.cs" />
     <Compile Include="Alert\SearchFilterUtility.cs" />
@@ -183,7 +187,11 @@
     <Compile Include="Managers\RelatedConcept\RelatedConceptService.cs" />
     <Compile Include="Managers\Search\SearchService.cs" />
     <Compile Include="Managers\Search\SourceFilterTypeTypeMapper.cs" />
+    <Compile Include="Managers\SocialMedia\Config\ConfigSocialMediaIndustryProvider.cs" />
     <Compile Include="Managers\SocialMedia\Config\IndustryChannelMapInMemory.cs" />
+    <Compile Include="Managers\SocialMedia\Config\ISocialMediaIndustryProvider.cs" />
+    <Compile Include="Managers\SocialMedia\Config\PAMSocialMediaIndustryProvider.cs" />
+    <Compile Include="Managers\SocialMedia\IIndustryChannelMapProvider.cs" />
     <Compile Include="Managers\SocialMedia\ISocialMediaProvider.cs" />
     <Compile Include="Managers\SocialMedia\Responses\AbstractSocialMediaResponse.cs" />
     <Compile Include="Managers\SocialMedia\Responses\BaseUsersResponse.cs" />
@@ -231,6 +239,11 @@
     <Compile Include="Models\Charting\HistoricalStockData\StockDataPointCollection.cs" />
     <Compile Include="Preferences\CachedPreferenceService.cs" />
     <Compile Include="Preferences\CachedPreferenceServiceFactory.cs" />
+    <Compile Include="Properties\SocialMedia.Designer.cs" >
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>SocialMedia.settings</DependentUpon>
+    </Compile>
     <Compile Include="Search\Core\Sources.cs" />
     <Compile Include="Search\Filters\DateRangeQueryFilter.cs" />
     <Compile Include="Security\Interfaces\ICommunicatorService.cs" />
@@ -934,6 +947,10 @@
     <None Include="Properties\Settings.settings">
       <Generator>PublicSettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Properties\SocialMedia.settings" >
+      <Generator>PublicSettingsSingleFileGenerator</Generator>
+      <LastGenOutput>SocialMedia.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>

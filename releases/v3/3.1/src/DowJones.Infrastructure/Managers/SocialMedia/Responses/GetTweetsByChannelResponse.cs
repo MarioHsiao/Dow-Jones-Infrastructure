@@ -8,6 +8,7 @@ namespace DowJones.Managers.SocialMedia
 {
     /// <summary>
     /// </summary>
+    /// 
     public class GetTweetsByChannelResponse : List<Tweet>, ISocialMediaResponse
     {
         #region Constructors

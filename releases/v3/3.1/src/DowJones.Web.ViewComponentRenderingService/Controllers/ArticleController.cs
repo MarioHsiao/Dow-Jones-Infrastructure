@@ -3,9 +3,8 @@ using DowJones.Ajax.Article;
 using DowJones.Web.Mvc.UI.Components.Models.Article;
 using Newtonsoft.Json;
 using System.IO;
-using DowJones.Web.Mvc.ModelBinders;
 
-namespace DowJones.Web.Article.Website.Controllers
+namespace DowJones.Web.ViewComponentRenderingService.Controllers
 {
     public class ArticleController : DowJones.Web.Mvc.ControllerBase
     {

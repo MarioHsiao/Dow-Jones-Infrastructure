@@ -133,8 +133,10 @@
   <ItemGroup>
     <Compile Include="AbstractUnitTest.cs" />
     <Compile Include="Assemblers\Session\CookieBasedUserSessionFactoryTests.cs" />
+    <Compile Include="Infrastructure\Ajax\SocialMedia\TweetTest.cs" />
     <Compile Include="Infrastructure\EnumHelperTests.cs" />
     <Compile Include="Infrastructure\Extensions\DateTimeExtensionsTests.cs" />
+    <Compile Include="Infrastructure\Managers\SocialMedia\SocialMediaIndustryTest.cs" />
     <Compile Include="Infrastructure\Managers\SocialMedia\TweetRiverServiceTest.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -1073,6 +1075,9 @@
     <None Include="GatewayResources\config\TrackService.config" />
     <None Include="GatewayResources\config\Triggers.config" />
     <None Include="GatewayResources\config\UserEventRecorderService.config" />
+    <None Include="Infrastructure\Managers\SocialMedia\IndustryChannel.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

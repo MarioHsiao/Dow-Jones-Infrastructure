@@ -60,6 +60,7 @@ namespace DowJones.Web.Mvc.Resources
         [ScriptResource(ResourceName = JQueryValidate, DependencyLevel = ClientResourceDependencyLevel.MidLevel, Name = "jquery-validate")]
         [ScriptResource(ResourceName = JQueryValidateUnobtrusive, DependencyLevel = ClientResourceDependencyLevel.MidLevel, Name = "jquery-validate-unobtrusive")]
         [ScriptResource(ResourceName = Json2, DependencyLevel = ClientResourceDependencyLevel.Core, Name = "JSON")]
+		[ScriptResource(ResourceName = ODSManager, DependencyLevel = ClientResourceDependencyLevel.MidLevel)]
         [ScriptResource(ResourceName = Overlay, DependencyLevel = ClientResourceDependencyLevel.MidLevel, Name = "overlay")]
         [ScriptResource(ResourceName = PubSubManager, DependencyLevel = ClientResourceDependencyLevel.Core, Name = "pubsub")]
         [ScriptResource(ResourceName = Require, DependencyLevel = ClientResourceDependencyLevel.Core, Name = "require")]
@@ -96,6 +97,7 @@ namespace DowJones.Web.Mvc.Resources
             public const string JQueryValidate = JsRoot + "jquery.validate.js";
             public const string JQueryValidateUnobtrusive = JsRoot + "jquery.validate.unobtrusive.js";
             public const string Json2 = JsRoot + "json2.js";
+			public const string ODSManager = JsRoot + "ODSManager.js";
             public const string Overlay = JsRoot + "overlay.js";
             public const string PubSubManager = JsRoot + "pubsub.js";
             public const string Require = JsRoot + "require.js";

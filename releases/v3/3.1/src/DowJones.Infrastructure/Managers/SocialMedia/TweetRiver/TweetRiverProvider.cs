@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using DowJones.Extensions;
 using Hammock;
 using Hammock.Web;
 using DowJones.Infrastructure;
@@ -14,7 +15,7 @@ namespace DowJones.Managers.SocialMedia.TweetRiver
 
         private const string DefaultServerToken = "643e1eae1f6405f2145fb1a0ca4bf838";
         private const string DefaultApiAuthority = "http://tweetriver.com/dowjonesmaster/";
-        
+
         #endregion
 
         #region Constructors
@@ -25,7 +26,12 @@ namespace DowJones.Managers.SocialMedia.TweetRiver
         public TweetRiverProvider(string serverToken = DefaultServerToken)
         {
             ServerToken = serverToken;
-            Client = new RestClient { Authority = DefaultApiAuthority };
+            var account = Properties.SocialMedia.Default.Account;
+            var endpoint = Properties.SocialMedia.Default.ApiAuthority ?? DefaultApiAuthority;
+            Client = new RestClient
+                         {
+                             Authority = "{0}/{1}".FormatWith(endpoint, account)
+                         };
         }
 
         #endregion
@@ -40,33 +46,41 @@ namespace DowJones.Managers.SocialMedia.TweetRiver
         {
             Guard.IsNotNullOrEmpty(channel, "channel");
             Guard.IsNotNull(requestOptions, "requestOptions");
+           
+
+            // for tweets, would look like http://massrelevance.com/mr_dowjones/accounting-consulting.json?<query params>
+            // for experts, would be http://massrelevance.com/mr_dowjones/accounting-consulting/meta.json?sources=1
+            var stream = requestOptions.QueryType == QueryType.Experts ? "{0}/meta".FormatWith(channel) : channel;
 
             var request = new RestRequest
             {
-                Path = string.Format("{0}.{1}", channel.TrimStart('/'), requestOptions.StreamFormat.ToString().ToLower()),
+                Path = "{0}.{1}".FormatWith(stream, requestOptions.StreamFormat.ToString().ToLower()),
                 Method = WebMethod.Get
             };
 
-            request.AddParameter("limit", requestOptions.Limit.ToString());
-
-            if (!string.IsNullOrEmpty(requestOptions.SinceId))
+            if (requestOptions.QueryType == QueryType.Tweets)
             {
-                request.AddParameter("since_id", requestOptions.SinceId);
+                request.AddParameter("limit", requestOptions.Limit.ToString());
+
+                if (!string.IsNullOrEmpty(requestOptions.SinceId))
+                {
+                    request.AddParameter("since_id", requestOptions.SinceId);
+                }
+
+                if (!string.IsNullOrEmpty(requestOptions.StartId))
+                {
+                    request.AddParameter("start", requestOptions.StartId);
+                }
+
+                if (requestOptions.PageIndex.HasValue)
+                {
+                    request.AddParameter("page", requestOptions.PageIndex.Value.ToString());
+                }
+
             }
-
-            if (!string.IsNullOrEmpty(requestOptions.StartId))
+            else if (requestOptions.QueryType == QueryType.Experts)
             {
-                request.AddParameter("start", requestOptions.StartId);
-            }
-
-            if (requestOptions.PageIndex.HasValue)
-            {
-                request.AddParameter("page", requestOptions.PageIndex.Value.ToString());
-            }
-
-            if (requestOptions.QueryType == QueryType.Experts)
-            {
-                request.AddParameter("source", "1");
+                request.AddParameter("sources", "1");
             }
 
             SetSocialMediaMeta(request);

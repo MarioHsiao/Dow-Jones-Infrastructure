@@ -370,6 +370,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Resources\js\json2.js" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\js\ODSManager.js" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>
