@@ -923,7 +923,7 @@ namespace DowJones.Assemblers.Articles
         /// <param name = "articleResult"></param>
         private void ProcessContent(IEnumerable<string> arrAccessionNumbers, ArticleResultset articleResult)
         {
-            var requestDTO = new AccessionNumberSearchRequestDTO
+            var requestDto = new AccessionNumberSearchRequestDTO
                                  {
                                      SortBy = SortBy.FIFO,
                                      MetaDataController =
@@ -936,14 +936,14 @@ namespace DowJones.Assemblers.Articles
                                              Language = "en"
                                          }, AccessionNumbers = arrAccessionNumbers.ToArray()
                                  };
-            requestDTO.MetaDataController.ReturnCollectionCounts = false;
-            requestDTO.MetaDataController.ReturnKeywordsSet = false;
-            requestDTO.MetaDataController.TimeNavigatorMode = TimeNavigatorMode.None;      
+            requestDto.MetaDataController.ReturnCollectionCounts = false;
+            requestDto.MetaDataController.ReturnKeywordsSet = false;
+            requestDto.MetaDataController.TimeNavigatorMode = TimeNavigatorMode.None;      
             // add all the search collections to the search.
-            requestDTO.SearchCollectionCollection.Clear();
-            requestDTO.SearchCollectionCollection.AddRange(Enum.GetValues(typeof(SearchCollection)).Cast<SearchCollection>()); 
+            requestDto.SearchCollectionCollection.Clear();
+            requestDto.SearchCollectionCollection.AddRange(Enum.GetValues(typeof(SearchCollection)).Cast<SearchCollection>()); 
             
-            var response = _manager.PerformAccessionNumberSearch<PerformContentSearchRequest, PerformContentSearchResponse>(requestDTO);
+            var response = _manager.PerformAccessionNumberSearch<PerformContentSearchRequest, PerformContentSearchResponse>(requestDto);
             foreach (var contentItem in  response.AccessionNumberBasedContentItemSet.AccessionNumberBasedContentItemCollection)
             {
                 if (contentItem != null && contentItem.HasBeenFound && contentItem.ContentHeadline != null)
