@@ -36,7 +36,7 @@ namespace DowJones.Web.Mvc.UI.Components.SearchBuilder
     using DowJones.Web.Mvc.UI.Components.SearchNewsFilter;
     using System.Web.Mvc;
     
-    // Last Generated Timestamp: 04/02/2012 04:31 PM
+    // Last Generated Timestamp: 04/11/2012 10:14 AM
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.SearchBuilder.ClientTemplates.categoryOptions.htm", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="categoryOptions", DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.SearchBuilder.SearchBuilder))]
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.SearchBuilder.ClientTemplates.filterOptions.htm", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="filterOptions", DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.SearchBuilder.SearchBuilder))]
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.SearchBuilder.ClientTemplates.modalDialog.htm", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="modalDialog", DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.SearchBuilder.SearchBuilder))]
@@ -82,23 +82,31 @@ namespace DowJones.Web.Mvc.UI.Components.SearchBuilder
 
    
     CssClass = "dj_SearchBuilder";
-    Html.DJ().ScriptRegistry().WithJQueryUIWidgets();
+    DJ.ScriptRegistry().WithJQueryUIWidgets();
 
 
-WriteLiteral("\r\n<div class=\"dj_search-builder_advanced-search\">\r\n    <div class=\"dj_advanced-se" +
-"arch clearfix\">       \r\n\t    <textarea type=\"text\" rows=\"1\" cols=\"160\" class=\"te" +
-"xt-field\">");
+WriteLiteral("\r\n<div class=\"dj_advanced-search-wrap\">\r\n    <div class=\"dj_advanced-search clear" +
+"fix\">       \r\n\t    <textarea type=\"text\" rows=\"1\" cols=\"160\" class=\"text-field\">" +
+"");
 
 
-                                                              Write(!string.IsNullOrEmpty(Model.Data.FreeText)? @Html.Raw(Model.Data.FreeText):Html.DJ().Token("searchBuilderAutoCompleteText"));
+                                                              Write(!string.IsNullOrEmpty(Model.Data.FreeText)? @Html.Raw(Model.Data.FreeText):DJ.Token("searchBuilderAutoCompleteText"));
 
-WriteLiteral("</textarea>\r\n\t    <span>");
+WriteLiteral("</textarea>\r\n\t    ");
 
 
-      Write(Html.DJ().Token("clear"));
 
-WriteLiteral("</span>\r\n\t</div>\r\n    <div class=\"dj_select-box-alt\">\r\n        <select class=\"sea" +
-"rchIn dj_selectbox dj_selectbox-small\">\r\n");
+WriteLiteral("\r\n\t</div>\r\n    <div class=\"dj_select-box-alt\">\r\n        <strong>");
+
+
+           Write(DJ.Token("options"));
+
+WriteLiteral("</strong>\r\n        <span>");
+
+
+         Write(DJ.Token("searchWithin"));
+
+WriteLiteral(":</span>\r\n        <select class=\"searchIn dj_selectbox dj_selectbox-small\">\r\n");
 
 
               
@@ -126,37 +134,12 @@ WriteLiteral("</option>    \r\n");
                 }
             
 
-WriteLiteral("        </select>\r\n        <select class=\"sortBy dj_selectbox dj_selectbox-small\"" +
-">\r\n");
+WriteLiteral("        </select>\r\n        <span>");
 
 
-              
-                foreach (var sortOrder in Model.SortBy)
-                {
+         Write(DJ.Token("dateRange"));
 
-WriteLiteral("                    <option value=\"");
-
-
-                              Write(sortOrder.Code);
-
-WriteLiteral("\" ");
-
-
-                                                Write(sortOrder.Code == ((int)Model.Data.SortBy).ToString() ? "selected" : "");
-
-WriteLiteral(">");
-
-
-                                                                                                                          Write(sortOrder.Desc);
-
-WriteLiteral("</option>    \r\n");
-
-
-                }
-            
-
-WriteLiteral("        </select>\r\n        <select class=\"date dj_selectbox dj_selectbox-small\">\r" +
-"\n");
+WriteLiteral(":</span>\r\n        <select class=\"date dj_selectbox dj_selectbox-small\">\r\n");
 
 
               
@@ -202,249 +185,304 @@ WriteLiteral("\" />\r\n\t\t</div>\r\n        <div class=\"date-wrap second\" sty
 WriteLiteral("\">\r\n\t\t\t<label>");
 
 
-     Write(Html.DJ().Token("to"));
+     Write(DJ.Token("to"));
 
 WriteLiteral("</label>\r\n\t\t\t<input type=\"text\" class=\"datepicker\" maxlength=\"10\" value=\"");
 
 
                                                           Write(Model.FormattedEndDate);
 
-WriteLiteral("\" />\r\n\t\t</div>\r\n        <span class=\"dj_btn exclude dj_btn-rounded-square dj_btn-" +
-"grey alt-text\">");
+WriteLiteral("\" />\r\n\t\t</div>\r\n        <span class=\"dj_btn exclude dj_btn-rounded-square\">");
 
 
-                                                                           Write(Html.DJ().Token("exclude"));
+                                                      Write(DJ.Token("exclude"));
 
 WriteLiteral(" (<span>");
 
 
-                                                                                                               Write(Model.Data.ExclusionFilter != null ? Model.Data.ExclusionFilter.Count().ToString() : "0");
+                                                                                   Write(Model.Data.ExclusionFilter != null ? Model.Data.ExclusionFilter.Count().ToString() : "0");
 
-WriteLiteral("</span>)</span>\r\n        <div class=\"check-filters\">\r\n\t\t\t<input type=\"checkbox\" c" +
-"lass=\"duplicates\" ");
-
-
-                                         Write(Model.Data.Duplicates ? "checked" : "");
-
-WriteLiteral(" />\r\n\t\t\t<label>");
+WriteLiteral("</span>)</span>\r\n");
 
 
-     Write(Html.DJ().Token("duplicatesOn"));
+         if(Model.ShowSortBy){
 
-WriteLiteral("</label>\r\n\t\t</div>\r\n    </div>\r\n</div>\r\n<div class=\"dj_search-builder_filters-hea" +
-"der clearfix\">\r\n\t<h3>");
-
-
-Write(Html.DJ().Token("filters"));
-
-WriteLiteral("</h3>\r\n\t<p>");
+WriteLiteral("            <span>");
 
 
-Write(Html.DJ().Token("searchBuilderFilterDesc"));
+             Write(DJ.Token("display"));
 
-WriteLiteral("</p>\r\n\t<span class=\"dj_btn dj_btn-drk-grey no-margin\">");
-
-
-                                           Write(Html.DJ().Token("clear"));
-
-WriteLiteral("</span>\r\n</div>\r\n<div class=\"dj_search-builder_filters\">\r\n    <ul class=\"dj_searc" +
-"h-builder_filters-list clearfix\">\r\n\t\t<li data-type=\"");
+WriteLiteral(":</span>\r\n");
 
 
-            Write(FilterType.Language.ToString());
+
+WriteLiteral("            <select class=\"sortBy dj_selectbox dj_selectbox-small\">\r\n");
+
+
+                  
+                    foreach (var sortOrder in Model.SortBy)
+                    {
+
+WriteLiteral("                        <option value=\"");
+
+
+                                  Write(sortOrder.Code);
+
+WriteLiteral("\" ");
+
+
+                                                    Write(sortOrder.Code == ((int)Model.Data.SortBy).ToString() ? "selected" : "");
+
+WriteLiteral(">");
+
+
+                                                                                                                              Write(sortOrder.Desc);
+
+WriteLiteral("</option>    \r\n");
+
+
+                    }
+                
+
+WriteLiteral("            </select>\r\n");
+
+
+        }
+
+
+         if (Model.ShowIdentifyDuplicates)
+        {
+
+WriteLiteral("            <div class=\"check-filters\">\r\n\t\t\t    <input type=\"checkbox\" class=\"dup" +
+"licates\" ");
+
+
+                                             Write(Model.Data.Duplicates ? "checked" : "");
+
+WriteLiteral(" />\r\n\t\t\t    <label>");
+
+
+         Write(DJ.Token("duplicatesOn"));
+
+WriteLiteral("</label>\r\n\t\t    </div>\r\n");
+
+
+        }
+
+WriteLiteral("    </div>\r\n</div>\r\n<div class=\"dj_filters-wrap\">\r\n    <div class=\"dj_search-buil" +
+"der_filters-header clearfix\">\r\n\t    <h3>");
+
+
+    Write(DJ.Token("filters"));
+
+WriteLiteral("</h3>\r\n\t    <p>");
+
+
+   Write(DJ.Token("searchBuilderFilterDesc"));
+
+WriteLiteral("</p>\r\n\t    <span class=\"dj_btn dj_btn-drk-grey no-margin\">");
+
+
+                                               Write(DJ.Token("clearAllFilters"));
+
+WriteLiteral("</span>\r\n    </div>\r\n    <div class=\"dj_search-builder_filters\">\r\n        <ul cla" +
+"ss=\"dj_search-builder_filters-list clearfix\">\r\n\t\t    <li data-type=\"");
+
+
+                Write(FilterType.Language.ToString());
 
 WriteLiteral("\" data-notdisabled=\"true\" class=\"dj_search-builder_filters-category clearfix\">\r\n\t" +
-"\t\t<h4>");
+"\t\t    <h4>");
 
 
-  Write(Html.DJ().Token("language"));
-
-WriteLiteral(@"</h4>
-            <div class=""dj_pill-list-wrap"">
-				<ul class=""dj_pill-list yellow clearfix"">
-                    <li class=""dj_pill add"">
-	                    <span>&nbsp;</span>
-	                </li>
-                </ul>
-            </div>
-		</li>
-        <li data-type=""");
-
-
-                  Write(FilterType.Company.ToString());
-
-WriteLiteral("\" class=\"dj_search-builder_filters-category clearfix\">\r\n\t\t\t<h4>");
-
-
-  Write(Html.DJ().Token("companyLabel"));
+      Write(DJ.Token("language"));
 
 WriteLiteral(@"</h4>
-            <div class=""dj_pill-list-wrap"">
-				<ul class=""dj_pill-list yellow clearfix"">
-	                <li class=""dj_pill add"">
-	                    <span>&nbsp;</span>
-	                </li>
-	            </ul>
-                <ul class=""dj_pill-list not-filter red clearfix""></ul>
-            </div>
-		</li>
-        <li data-type=""");
+                <div class=""dj_pill-list-wrap"">
+				    <ul class=""dj_pill-list yellow clearfix"">
+                        <li class=""dj_pill add"">
+	                        <span>&nbsp;</span>
+	                    </li>
+                    </ul>
+                </div>
+		    </li>
+            <li data-type=""");
 
 
-                  Write(FilterType.Author.ToString());
+                      Write(FilterType.Source.ToString());
+
+WriteLiteral("\" data-notdisabled=\"true\" class=\"dj_search-builder_filters-category clearfix\">\r\n\t" +
+"\t\t    <h4>");
+
+
+      Write(DJ.Token("sourcesLabel"));
+
+WriteLiteral(@"</h4>
+			    <div class=""dj_pill-list-wrap source"">
+                    <ul class=""dj_pill-list yellow clearfix"">
+	                    <li class=""dj_pill add"">
+	                        <span>&nbsp;</span>
+	                    </li>
+	                </ul>
+                </div>
+		    </li>
+            <li data-type=""");
+
+
+                      Write(FilterType.Author.ToString());
 
 WriteLiteral("\"  data-notdisabled=\"true\" class=\"dj_search-builder_filters-category clearfix\">\r\n" +
-"\t\t\t<h4>");
+"\t\t\t    <h4>");
 
 
-  Write(Html.DJ().Token("cmAuthor"));
-
-WriteLiteral(@"</h4>
-			<div class=""dj_pill-list-wrap"">
-                <ul class=""dj_pill-list yellow clearfix"">
-	                <li class=""dj_pill add"">
-	                    <span>&nbsp;</span>
-	                </li>
-	            </ul>
-                <ul class=""dj_pill-list not-filter red clearfix""></ul>
-            </div>
-		</li>
-        <li data-type=""");
-
-
-                  Write(FilterType.Executive.ToString());
-
-WriteLiteral("\" class=\"dj_search-builder_filters-category clearfix\">\r\n\t\t\t<h4>");
-
-
-  Write(Html.DJ().Token("executive"));
+      Write(DJ.Token("cmAuthor"));
 
 WriteLiteral(@"</h4>
-			<div class=""dj_pill-list-wrap"">
-                <ul class=""dj_pill-list yellow clearfix"">
-	                <li class=""dj_pill add"">
-	                    <span>&nbsp;</span>
-	                </li>
-	            </ul>
-                <ul class=""dj_pill-list not-filter red clearfix""></ul>
-            </div>
-		</li>
-        <li data-type=""");
+			    <div class=""dj_pill-list-wrap"">
+                    <ul class=""dj_pill-list yellow clearfix"">
+	                    <li class=""dj_pill add"">
+	                        <span>&nbsp;</span>
+	                    </li>
+	                </ul>
+                    <ul class=""dj_pill-list not-filter red clearfix""></ul>
+                </div>
+		    </li>
+            <li data-type=""");
 
 
-                  Write(FilterType.Subject.ToString());
+                      Write(FilterType.Executive.ToString());
 
-WriteLiteral("\" class=\"dj_search-builder_filters-category clearfix\">\r\n\t\t\t<h4>");
-
-
-  Write(Html.DJ().Token("subject"));
-
-WriteLiteral(@"</h4>
-			<div class=""dj_pill-list-wrap"">
-                <ul class=""dj_pill-list yellow clearfix"">
-	                <li class=""dj_pill add"">
-	                    <span>&nbsp;</span>
-	                </li>
-	            </ul>
-                <ul class=""dj_pill-list not-filter red clearfix""></ul>
-            </div>
-		</li>
-        <li data-type=""");
+WriteLiteral("\" class=\"dj_search-builder_filters-category clearfix\">\r\n\t\t\t    <h4>");
 
 
-                  Write(FilterType.Industry.ToString());
-
-WriteLiteral("\" class=\"dj_search-builder_filters-category clearfix\">\r\n\t\t\t<h4>");
-
-
-  Write(Html.DJ().Token("industry"));
+      Write(DJ.Token("executive"));
 
 WriteLiteral(@"</h4>
-			<div class=""dj_pill-list-wrap"">
-                <ul class=""dj_pill-list yellow clearfix"">
-	                <li class=""dj_pill add"">
-	                    <span>&nbsp;</span>
-	                </li>
-	            </ul>
-                <ul class=""dj_pill-list not-filter red clearfix""></ul>
-            </div>
-		</li>
-        <li data-type=""");
+			    <div class=""dj_pill-list-wrap"">
+                    <ul class=""dj_pill-list yellow clearfix"">
+	                    <li class=""dj_pill add"">
+	                        <span>&nbsp;</span>
+	                    </li>
+	                </ul>
+                    <ul class=""dj_pill-list not-filter red clearfix""></ul>
+                </div>
+		    </li>
+            <li data-type=""");
 
 
-                  Write(FilterType.Region.ToString());
+                      Write(FilterType.Company.ToString());
 
-WriteLiteral("\" class=\"dj_search-builder_filters-category clearfix\">\r\n\t\t\t<h4>");
-
-
-  Write(Html.DJ().Token("regionLabel"));
-
-WriteLiteral(@"</h4>
-			<div class=""dj_pill-list-wrap"">
-                <ul class=""dj_pill-list yellow clearfix"">
-	                <li class=""dj_pill add"">
-	                    <span>&nbsp;</span>
-	                </li>
-	            </ul>
-                <ul class=""dj_pill-list not-filter red clearfix""></ul>
-            </div>
-		</li>
-        <li data-type=""");
+WriteLiteral("\" class=\"dj_search-builder_filters-category clearfix\">\r\n\t\t\t    <h4>");
 
 
-                  Write(FilterType.Source.ToString());
-
-WriteLiteral("\" data-notdisabled=\"true\" class=\"dj_search-builder_filters-category clearfix\">\r\n\t" +
-"\t\t<h4>");
-
-
-  Write(Html.DJ().Token("sourcesLabel"));
+      Write(DJ.Token("companyLabel"));
 
 WriteLiteral(@"</h4>
-			<div class=""dj_pill-list-wrap source"">
-                <ul class=""dj_pill-list yellow clearfix"">
-	                <li class=""dj_pill add"">
-	                    <span>&nbsp;</span>
-	                </li>
-	            </ul>
-            </div>
-		</li>
-	</ul>
-</div>
+                <div class=""dj_pill-list-wrap"">
+				    <ul class=""dj_pill-list yellow clearfix"">
+	                    <li class=""dj_pill add"">
+	                        <span>&nbsp;</span>
+	                    </li>
+	                </ul>
+                    <ul class=""dj_pill-list not-filter red clearfix""></ul>
+                </div>
+		    </li>
+            <li data-type=""");
+
+
+                      Write(FilterType.Subject.ToString());
+
+WriteLiteral("\" class=\"dj_search-builder_filters-category clearfix\">\r\n\t\t\t    <h4>");
+
+
+      Write(DJ.Token("subject"));
+
+WriteLiteral(@"</h4>
+			    <div class=""dj_pill-list-wrap"">
+                    <ul class=""dj_pill-list yellow clearfix"">
+	                    <li class=""dj_pill add"">
+	                        <span>&nbsp;</span>
+	                    </li>
+	                </ul>
+                    <ul class=""dj_pill-list not-filter red clearfix""></ul>
+                </div>
+		    </li>
+            <li data-type=""");
+
+
+                      Write(FilterType.Industry.ToString());
+
+WriteLiteral("\" class=\"dj_search-builder_filters-category clearfix\">\r\n\t\t\t    <h4>");
+
+
+      Write(DJ.Token("industry"));
+
+WriteLiteral(@"</h4>
+			    <div class=""dj_pill-list-wrap"">
+                    <ul class=""dj_pill-list yellow clearfix"">
+	                    <li class=""dj_pill add"">
+	                        <span>&nbsp;</span>
+	                    </li>
+	                </ul>
+                    <ul class=""dj_pill-list not-filter red clearfix""></ul>
+                </div>
+		    </li>
+            <li data-type=""");
+
+
+                      Write(FilterType.Region.ToString());
+
+WriteLiteral("\" class=\"dj_search-builder_filters-category clearfix\">\r\n\t\t\t    <h4>");
+
+
+      Write(DJ.Token("regionLabel"));
+
+WriteLiteral(@"</h4>
+			    <div class=""dj_pill-list-wrap"">
+                    <ul class=""dj_pill-list yellow clearfix"">
+	                    <li class=""dj_pill add"">
+	                        <span>&nbsp;</span>
+	                    </li>
+	                </ul>
+                    <ul class=""dj_pill-list not-filter red clearfix""></ul>
+                </div>
+		    </li>
+	    </ul>
+    </div>
 ");
 
 
-  
-    if (Model.Data != null && Model.Data.NewsFilters != null)
-    {
+      
+        if (Model.Data != null && Model.Data.NewsFilters != null)
+        {
 
-WriteLiteral("        <div class=\"news-filter\">\r\n            <div class=\"dj_search-builder_filt" +
-"ers\">\r\n                <div class=\"dj_search-filters\">\r\n                    <div" +
-" class=\"wrap\">\r\n                        <h4>");
-
-
-                       Write(Html.DJ().Token("newsFilters"));
-
-WriteLiteral("</h4>\r\n\t\t                <div class=\"filters clearfix js_filters\">\r\n             " +
-"               ");
+WriteLiteral("            <div class=\"news-filter\">\r\n                <div class=\"dj_search-buil" +
+"der_filters\">\r\n                    <div class=\"dj_search-filters\">\r\n            " +
+"            <div class=\"wrap\">\r\n                            <h4>");
 
 
-                        Write(CreateChildControl<SearchNewsFilter>(new SearchNewsFilterModel { Filters = Model.Data.NewsFilters }));
+                           Write(DJ.Token("newsFilters"));
 
-WriteLiteral("\r\n                        </div>\r\n                    </div>\r\n                </d" +
-"iv>\r\n            </div>\r\n        </div>\r\n");
-
-
-    }   
+WriteLiteral("</h4>\r\n\t\t                    <div class=\"filters clearfix js_filters\">\r\n         " +
+"                       ");
 
 
-WriteLiteral("<div style=\"display: none;\" class=\"dummyLookUp\">\r\n    ");
+                            Write(CreateChildControl<SearchNewsFilter>(new SearchNewsFilterModel { Filters = Model.Data.NewsFilters }));
+
+WriteLiteral("\r\n                            </div>\r\n                        </div>\r\n           " +
+"         </div>\r\n                </div>\r\n            </div>\r\n");
+
+
+        }   
+    
+
+WriteLiteral("</div>\r\n<div style=\"display: none;\" class=\"dummyLookUp\">\r\n    ");
 
 
 Write(CreateChildControl<SearchCategoriesLookUp>(new SearchCategoriesLookUpModel { FilterType = FilterType.Language, ProductId = Model.ProductId, 
     TaxonomyServiceUrl=Model.TaxonomyServiceUrl, QueriesServiceUrl=Model.QueriesServiceUrl }));
 
-WriteLiteral("\r\n</div>");
+WriteLiteral("\r\n</div>\r\n");
 
 
         }

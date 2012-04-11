@@ -17,15 +17,17 @@
 @ScriptResource RelativeResourceName=SearchBuilder.js
 @{ 
     CssClass = "dj_SearchBuilder";
-    Html.DJ().ScriptRegistry().WithJQueryUIWidgets();
+    DJ.ScriptRegistry().WithJQueryUIWidgets();
 }
 
-<div class="dj_search-builder_advanced-search">
+<div class="dj_advanced-search-wrap">
     <div class="dj_advanced-search clearfix">       
-	    <textarea type="text" rows="1" cols="160" class="text-field">@(!string.IsNullOrEmpty(Model.Data.FreeText)? @Html.Raw(Model.Data.FreeText):Html.DJ().Token("searchBuilderAutoCompleteText"))</textarea>
-	    <span>@Html.DJ().Token("clear")</span>
+	    <textarea type="text" rows="1" cols="160" class="text-field">@(!string.IsNullOrEmpty(Model.Data.FreeText)? @Html.Raw(Model.Data.FreeText):DJ.Token("searchBuilderAutoCompleteText"))</textarea>
+	    @*<span>@DJ.Token("clear")</span>*@
 	</div>
     <div class="dj_select-box-alt">
+        <strong>@DJ.Token("options")</strong>
+        <span>@DJ.Token("searchWithin"):</span>
         <select class="searchIn dj_selectbox dj_selectbox-small">
             @{
                 foreach (var area in Model.SearchFreeTextArea)
@@ -34,14 +36,7 @@
                 }
             }
         </select>
-        <select class="sortBy dj_selectbox dj_selectbox-small">
-            @{
-                foreach (var sortOrder in Model.SortBy)
-                {
-                    <option value="@sortOrder.Code" @(sortOrder.Code == ((int)Model.Data.SortBy).ToString() ? "selected" : "")>@sortOrder.Desc</option>    
-                }
-            }
-        </select>
+        <span>@DJ.Token("dateRange"):</span>
         <select class="date dj_selectbox dj_selectbox-small">
             @{
                 foreach (var dateRange in Model.DateRange)
@@ -54,133 +49,144 @@
 			<input type="text" class="datepicker" maxlength="10" value="@Model.FormattedStartDate" />
 		</div>
         <div class="date-wrap second" style="@(Model.Data.DateRange == SearchDateRange.Custom ? "" : "display:none;")">
-			<label>@Html.DJ().Token("to")</label>
+			<label>@DJ.Token("to")</label>
 			<input type="text" class="datepicker" maxlength="10" value="@Model.FormattedEndDate" />
 		</div>
-        <span class="dj_btn exclude dj_btn-rounded-square dj_btn-grey alt-text">@Html.DJ().Token("exclude") (<span>@(Model.Data.ExclusionFilter != null ? Model.Data.ExclusionFilter.Count().ToString() : "0")</span>)</span>
-        <div class="check-filters">
-			<input type="checkbox" class="duplicates" @(Model.Data.Duplicates ? "checked" : "") />
-			<label>@Html.DJ().Token("duplicatesOn")</label>
-            @* sm:033712 Part of Wave 1 we need to remove this check box and ALWAYS searchUncodedContent.
-            Backend Search will drop the industry region and subject from search for uncoded content (when adding rst=tbypass
-            *@
-			@*<input type="checkbox" class="socialMedia" @(Model.Data.IncludeSocialMedia ? "checked" : "") />
-			<label>@Html.DJ().Token("includeSocialMedia")</label>*@
-		</div>
+        <span class="dj_btn exclude dj_btn-rounded-square">@DJ.Token("exclude") (<span>@(Model.Data.ExclusionFilter != null ? Model.Data.ExclusionFilter.Count().ToString() : "0")</span>)</span>
+        @if(Model.ShowSortBy){
+            <span>@DJ.Token("display"):</span>
+            <select class="sortBy dj_selectbox dj_selectbox-small">
+                @{
+                    foreach (var sortOrder in Model.SortBy)
+                    {
+                        <option value="@sortOrder.Code" @(sortOrder.Code == ((int)Model.Data.SortBy).ToString() ? "selected" : "")>@sortOrder.Desc</option>    
+                    }
+                }
+            </select>
+        }
+        @if (Model.ShowIdentifyDuplicates)
+        {
+            <div class="check-filters">
+			    <input type="checkbox" class="duplicates" @(Model.Data.Duplicates ? "checked" : "") />
+			    <label>@DJ.Token("duplicatesOn")</label>
+		    </div>
+        }
     </div>
 </div>
-<div class="dj_search-builder_filters-header clearfix">
-	<h3>@Html.DJ().Token("filters")</h3>
-	<p>@Html.DJ().Token("searchBuilderFilterDesc")</p>
-	<span class="dj_btn dj_btn-drk-grey no-margin">@Html.DJ().Token("clear")</span>
-</div>
-<div class="dj_search-builder_filters">
-    <ul class="dj_search-builder_filters-list clearfix">
-		<li data-type="@FilterType.Language.ToString()" data-notdisabled="true" class="dj_search-builder_filters-category clearfix">
-			<h4>@Html.DJ().Token("language")</h4>
-            <div class="dj_pill-list-wrap">
-				<ul class="dj_pill-list yellow clearfix">
-                    <li class="dj_pill add">
-	                    <span>&nbsp;</span>
-	                </li>
-                </ul>
-            </div>
-		</li>
-        <li data-type="@FilterType.Company.ToString()" class="dj_search-builder_filters-category clearfix">
-			<h4>@Html.DJ().Token("companyLabel")</h4>
-            <div class="dj_pill-list-wrap">
-				<ul class="dj_pill-list yellow clearfix">
-	                <li class="dj_pill add">
-	                    <span>&nbsp;</span>
-	                </li>
-	            </ul>
-                <ul class="dj_pill-list not-filter red clearfix"></ul>
-            </div>
-		</li>
-        <li data-type="@FilterType.Author.ToString()"  data-notdisabled="true" class="dj_search-builder_filters-category clearfix">
-			<h4>@Html.DJ().Token("cmAuthor")</h4>
-			<div class="dj_pill-list-wrap">
-                <ul class="dj_pill-list yellow clearfix">
-	                <li class="dj_pill add">
-	                    <span>&nbsp;</span>
-	                </li>
-	            </ul>
-                <ul class="dj_pill-list not-filter red clearfix"></ul>
-            </div>
-		</li>
-        <li data-type="@FilterType.Executive.ToString()" class="dj_search-builder_filters-category clearfix">
-			<h4>@Html.DJ().Token("executive")</h4>
-			<div class="dj_pill-list-wrap">
-                <ul class="dj_pill-list yellow clearfix">
-	                <li class="dj_pill add">
-	                    <span>&nbsp;</span>
-	                </li>
-	            </ul>
-                <ul class="dj_pill-list not-filter red clearfix"></ul>
-            </div>
-		</li>
-        <li data-type="@FilterType.Subject.ToString()" class="dj_search-builder_filters-category clearfix">
-			<h4>@Html.DJ().Token("subject")</h4>
-			<div class="dj_pill-list-wrap">
-                <ul class="dj_pill-list yellow clearfix">
-	                <li class="dj_pill add">
-	                    <span>&nbsp;</span>
-	                </li>
-	            </ul>
-                <ul class="dj_pill-list not-filter red clearfix"></ul>
-            </div>
-		</li>
-        <li data-type="@FilterType.Industry.ToString()" class="dj_search-builder_filters-category clearfix">
-			<h4>@Html.DJ().Token("industry")</h4>
-			<div class="dj_pill-list-wrap">
-                <ul class="dj_pill-list yellow clearfix">
-	                <li class="dj_pill add">
-	                    <span>&nbsp;</span>
-	                </li>
-	            </ul>
-                <ul class="dj_pill-list not-filter red clearfix"></ul>
-            </div>
-		</li>
-        <li data-type="@FilterType.Region.ToString()" class="dj_search-builder_filters-category clearfix">
-			<h4>@Html.DJ().Token("regionLabel")</h4>
-			<div class="dj_pill-list-wrap">
-                <ul class="dj_pill-list yellow clearfix">
-	                <li class="dj_pill add">
-	                    <span>&nbsp;</span>
-	                </li>
-	            </ul>
-                <ul class="dj_pill-list not-filter red clearfix"></ul>
-            </div>
-		</li>
-        <li data-type="@FilterType.Source.ToString()" data-notdisabled="true" class="dj_search-builder_filters-category clearfix">
-			<h4>@Html.DJ().Token("sourcesLabel")</h4>
-			<div class="dj_pill-list-wrap source">
-                <ul class="dj_pill-list yellow clearfix">
-	                <li class="dj_pill add">
-	                    <span>&nbsp;</span>
-	                </li>
-	            </ul>
-            </div>
-		</li>
-	</ul>
-</div>
-@{
-    if (Model.Data != null && Model.Data.NewsFilters != null)
-    {
-        <div class="news-filter">
-            <div class="dj_search-builder_filters">
-                <div class="dj_search-filters">
-                    <div class="wrap">
-                        <h4>@Html.DJ().Token("newsFilters")</h4>
-		                <div class="filters clearfix js_filters">
-                            @(CreateChildControl<SearchNewsFilter>(new SearchNewsFilterModel { Filters = Model.Data.NewsFilters }))
+<div class="dj_filters-wrap">
+    <div class="dj_search-builder_filters-header clearfix">
+	    <h3>@DJ.Token("filters")</h3>
+	    <p>@DJ.Token("searchBuilderFilterDesc")</p>
+	    <span class="dj_btn dj_btn-drk-grey no-margin">@DJ.Token("clearAllFilters")</span>
+    </div>
+    <div class="dj_search-builder_filters">
+        <ul class="dj_search-builder_filters-list clearfix">
+		    <li data-type="@FilterType.Language.ToString()" data-notdisabled="true" class="dj_search-builder_filters-category clearfix">
+			    <h4>@DJ.Token("language")</h4>
+                <div class="dj_pill-list-wrap">
+				    <ul class="dj_pill-list yellow clearfix">
+                        <li class="dj_pill add">
+	                        <span>&nbsp;</span>
+	                    </li>
+                    </ul>
+                </div>
+		    </li>
+            <li data-type="@FilterType.Source.ToString()" data-notdisabled="true" class="dj_search-builder_filters-category clearfix">
+			    <h4>@DJ.Token("sourcesLabel")</h4>
+			    <div class="dj_pill-list-wrap source">
+                    <ul class="dj_pill-list yellow clearfix">
+	                    <li class="dj_pill add">
+	                        <span>&nbsp;</span>
+	                    </li>
+	                </ul>
+                </div>
+		    </li>
+            <li data-type="@FilterType.Author.ToString()"  data-notdisabled="true" class="dj_search-builder_filters-category clearfix">
+			    <h4>@DJ.Token("cmAuthor")</h4>
+			    <div class="dj_pill-list-wrap">
+                    <ul class="dj_pill-list yellow clearfix">
+	                    <li class="dj_pill add">
+	                        <span>&nbsp;</span>
+	                    </li>
+	                </ul>
+                    <ul class="dj_pill-list not-filter red clearfix"></ul>
+                </div>
+		    </li>
+            <li data-type="@FilterType.Executive.ToString()" class="dj_search-builder_filters-category clearfix">
+			    <h4>@DJ.Token("executive")</h4>
+			    <div class="dj_pill-list-wrap">
+                    <ul class="dj_pill-list yellow clearfix">
+	                    <li class="dj_pill add">
+	                        <span>&nbsp;</span>
+	                    </li>
+	                </ul>
+                    <ul class="dj_pill-list not-filter red clearfix"></ul>
+                </div>
+		    </li>
+            <li data-type="@FilterType.Company.ToString()" class="dj_search-builder_filters-category clearfix">
+			    <h4>@DJ.Token("companyLabel")</h4>
+                <div class="dj_pill-list-wrap">
+				    <ul class="dj_pill-list yellow clearfix">
+	                    <li class="dj_pill add">
+	                        <span>&nbsp;</span>
+	                    </li>
+	                </ul>
+                    <ul class="dj_pill-list not-filter red clearfix"></ul>
+                </div>
+		    </li>
+            <li data-type="@FilterType.Subject.ToString()" class="dj_search-builder_filters-category clearfix">
+			    <h4>@DJ.Token("subject")</h4>
+			    <div class="dj_pill-list-wrap">
+                    <ul class="dj_pill-list yellow clearfix">
+	                    <li class="dj_pill add">
+	                        <span>&nbsp;</span>
+	                    </li>
+	                </ul>
+                    <ul class="dj_pill-list not-filter red clearfix"></ul>
+                </div>
+		    </li>
+            <li data-type="@FilterType.Industry.ToString()" class="dj_search-builder_filters-category clearfix">
+			    <h4>@DJ.Token("industry")</h4>
+			    <div class="dj_pill-list-wrap">
+                    <ul class="dj_pill-list yellow clearfix">
+	                    <li class="dj_pill add">
+	                        <span>&nbsp;</span>
+	                    </li>
+	                </ul>
+                    <ul class="dj_pill-list not-filter red clearfix"></ul>
+                </div>
+		    </li>
+            <li data-type="@FilterType.Region.ToString()" class="dj_search-builder_filters-category clearfix">
+			    <h4>@DJ.Token("regionLabel")</h4>
+			    <div class="dj_pill-list-wrap">
+                    <ul class="dj_pill-list yellow clearfix">
+	                    <li class="dj_pill add">
+	                        <span>&nbsp;</span>
+	                    </li>
+	                </ul>
+                    <ul class="dj_pill-list not-filter red clearfix"></ul>
+                </div>
+		    </li>
+	    </ul>
+    </div>
+    @{
+        if (Model.Data != null && Model.Data.NewsFilters != null)
+        {
+            <div class="news-filter">
+                <div class="dj_search-builder_filters">
+                    <div class="dj_search-filters">
+                        <div class="wrap">
+                            <h4>@DJ.Token("newsFilters")</h4>
+		                    <div class="filters clearfix js_filters">
+                                @(CreateChildControl<SearchNewsFilter>(new SearchNewsFilterModel { Filters = Model.Data.NewsFilters }))
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    }   
-}
+        }   
+    }
+</div>
 <div style="display: none;" class="dummyLookUp">
     @(CreateChildControl<SearchCategoriesLookUp>(new SearchCategoriesLookUpModel { FilterType = FilterType.Language, ProductId = Model.ProductId, 
     TaxonomyServiceUrl=Model.TaxonomyServiceUrl, QueriesServiceUrl=Model.QueriesServiceUrl }))

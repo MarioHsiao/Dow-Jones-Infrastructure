@@ -13,6 +13,7 @@
             notfilters: 'ul.red',
             filterClose: 'span.remove',
             filterPill: 'li.dj_pill',
+            filterBtns: 'div.dj_btns',
             notFilterPill: 'li.not',
             searchBox: 'div.dj_lookup-search',
             textBox: 'input.dj_lookup-search-field',
@@ -23,9 +24,12 @@
             lookUpListContainer: '.lookup-results-container',
             listItemOptions: '.icon-group span',
             resultsTitle: '.results-title',
-            doneBtn: 'span.doneBtn',
+            addToSearchBtn: 'span.addToSearchBtn',
             cancelBtn: 'span.cancelBtn',
             clearBtn: 'span.clearBtn',
+            saveBtn: '.saveBtn',
+            doneBtn: '.doneBtn',
+            saveToListBtn: 'span.saveToListBtn',
             menuItem: 'div.menuitem',
             menu: 'div.menu',
             modalNav: 'ul.modal-nav',
@@ -42,22 +46,23 @@
             pagging: '.dj_paging',
             prevPage: '.dj_icon-arrow-green-left',
             nextPage: '.dj_icon-arrow-green-right',
-            deleteLnk: 'span.delete-link',
             modalClose: 'p.dj_modal-close',
             formFields: '.dj_form-field',
             filtersList: '.filterList',
             editList: '.edit-list',
             alphabetList: '.alphabet-list',
             modalTitle: '.dj_modal-title',
-            deleteList: '.delete-list'
+            deleteList: '.dj_icon-exclude',
+            djNote: '.dj_note',
+            djControl: '.dj_control'
         },
 
         events: {
             onSearchClick: 'onSearchClick.dj.SearchCategoriesLookUp',
             onResize: 'onResize.dj.SearchCategoriesLookUp',
             onSrcLstDelete: 'onSrcLstDelete.dj.SearchCategoriesLookUp',
-            onClearClick: 'onClearClick.dj.SearchCategoriesLookUp',
-            onDoneClick: 'onDoneClick.dj.SearchCategoriesLookUp'
+            onCancelClick: 'onCancelClick.dj.SearchCategoriesLookUp',
+            onAddToSearchClick: 'onAddToSearchClick.dj.SearchCategoriesLookUp'
         },
 
         lookUpDetails: [
@@ -67,7 +72,6 @@
                 lookUpTitle: "<%= Token('companyResults') %>",
                 notFilter: true,
                 restField: 'Companies',
-                //'CompanyStatus|Instrument|SecondaryRegionCodes|Address|ICBCodes|IndexCodes|Notes|SecondaryIndustryCodes|ThirdPartyIndustryCodes|UltimateParentCodes|NewsSearch|ChildCodes|Aliases|DJCodes|DJNewsCodes|Status|OrganizationTypes|LocalNames|ParentCodes'
                 infoParts: 'SecondaryRegionCodes',
                 label: "<%= Token('companyLabel') %>"
             },
@@ -102,8 +106,7 @@
                 autoCompleteField: 'NewsSubject',
                 //'ChildCodes|Aliases|Description|ThirdPartyCodes|DJCodes|ParentCodes|LocalNames|Status'
                 infoParts: 'Description|ParentCodes',
-                label: "<%= Token('subject') %>",
-                footerDisclaimer: "<%= Token('footerDisclaimer') %>"
+                label: "<%= Token('subject') %>"
             },
 
             {
@@ -114,8 +117,7 @@
                 notFilter: true,
                 restField: 'Industries',
                 infoParts: 'Description|ParentCodes',
-                label: "<%= Token('industry') %>",
-                footerDisclaimer: "<%= Token('footerDisclaimer') %>"
+                label: "<%= Token('industry') %>"
             },
 
             {
@@ -126,8 +128,7 @@
                 notFilter: true,
                 restField: 'Regions',
                 infoParts: 'Description|ParentCodes',
-                label: "<%= Token('regionLabel') %>",
-                footerDisclaimer: "<%= Token('footerDisclaimer') %>"
+                label: "<%= Token('regionLabel') %>"
             },
 
             {
@@ -210,13 +211,13 @@
             //Set the main template
             this.$element.append(this.templates.main({ lookUpDetails: this._lookUpDetails }));
 
-            this.$elementChildren = this.$element.children();
+            var $elementChildren = this.$element.children();
 
             //Show the footer if enabled
             if (this.options.showFooter) {
-                this.$footer = this.$elementChildren.filter(this.selectors.footer).show();
-                if (this._lookUpDetails.footerDisclaimer) {
-                    this.$footer.prepend('<span class="floatLeft">' + this._lookUpDetails.footerDisclaimer  + '</span>');
+                this.$footer = $elementChildren.filter(this.selectors.footer).show();
+                if (this.data.additionalFooterNote) {
+                    this.$footer.find(this.selectors.djNote).append('<br />' + this.data.additionalFooterNote);
                 }
             }
 
@@ -227,25 +228,27 @@
             }
 
 
-            this.$tabContent = this.$elementChildren.filter(this.selectors.tabContent);
+            this.$tabContent = $elementChildren.filter(this.selectors.tabContent);
 
             this.$searchBox = this.$tabContent.eq(0).children(this.selectors.searchBox);
             if (this.options.filterType != this.filterType.Language) {
                 this.$textBox = $(this.selectors.textBox, this.$searchBox);
                 this.$searchBtn = $(this.selectors.searchBtn, this.$searchBox);
             }
-            this.$filtersContainer = this.$elementChildren.filter(this.selectors.filtersContainer);
-            var $filterItems = $(this.selectors.filterItems, this.$filtersContainer);
+            this.$filtersContainer = $elementChildren.filter(this.selectors.filtersContainer);
+            var $filterItems = $(this.selectors.filterItems, this.$filtersContainer),
+                $filterBtns = this.$filtersContainer.children(this.selectors.filterBtns);
             this.$filters = $(this.selectors.filters, $filterItems);
             this.$notfilters = $(this.selectors.notfilters, $filterItems);
             this.$filterScroll = this.$filtersContainer.children(this.selectors.filterScroll);
+            this.$clearBtn = $filterBtns.find(this.selectors.clearBtn);
 
             this.$lookUpListContainer = this.$tabContent.eq(0).children(this.selectors.lookUpListContainer);
             this.$lookUpList = this.$lookUpListContainer.children(this.selectors.lookUpList);
             if (this._lookUpDetails.browse && this.options.enableBrowse) {
                 this.$browseList = this.$tabContent.eq(1).children(this.selectors.browseTree);
             }
-            this.$modalNav = this.$elementChildren.filter(this.selectors.modalNav);
+            this.$modalNav = $elementChildren.filter(this.selectors.modalNav);
 
             //Source is a special case, need to load other templates as well
             if (this.options.filterType == this.filterType.Source) {
@@ -255,8 +258,8 @@
 
                 //Add Save as List button besides filter section
                 if (this.options.enableSaveList) {
-                    this.$saveListBtn = $('<span class="dj_btn dj_btn-drk-gray"><%= Token("saveList") %></span>').addClass("hidden");
-                    $filterItems.after(this.$saveListBtn);
+                    this.$saveListBtn = $('<span class="dj_btn dj_btn-drk-gray hidden"><%= Token("saveToList") %></span>');
+                    $filterBtns.prepend(this.$saveListBtn);
                 }
 
                 if (this.options.enableBrowse) {
@@ -264,7 +267,7 @@
                     this.$tabContent.eq(1).prepend(this.templates.sourceBrowse({ additionalSourceFilters: this.data.additionalSourceFilters }));
 
                     var $selectBoxAlt = this.$tabContent.eq(1).children(this.selectors.selectMenuContainer);
-                    var $selectMenus = $selectBoxAlt.children(this.selectors.selectMenu);
+                    var $selectMenus = $selectBoxAlt.children(this.selectors.djControl).find(this.selectors.selectMenu);
 
                     this.$sourceGroupDD = $selectMenus.eq(0);
                     this.$sourceSortByDD = $selectMenus.eq(1);
@@ -311,6 +314,7 @@
                 }
             }
             else {
+                //Removing Saved List tab
                 this.$lookUpListContainer.children(":gt(2)").remove();
             }
 
@@ -354,7 +358,7 @@
                     this.$sourceGroupDD.add(this.$sourceSortByDD).bind('click', function (e) {
 
                         var $this = $(this), $target = $(e.target);
-                        $this.children(me.selectors.multiLevelMenu).toggleClass('hidden');
+                        $this.children(me.selectors.multiLevelMenu).toggle();
                         if ($target.is("div") && !$target.attr('class')) {
                             var oldVal = $this.data("value"), newVal = $target.data("value");
                             if (oldVal != newVal) {
@@ -520,6 +524,10 @@
                 this.$modalNav.delegate('li', 'click', function () {
                     me.setActiveTab($(this).index());
                 });
+
+                if ($.isNumeric(this.options.activeTab) && this.options.activeTab < this.$element.children(this.selectors.tabContent).length) {
+                    this.setActiveTab(this.options.activeTab);
+                }
             }
 
             //LookUp Pagging
@@ -535,17 +543,22 @@
                 }
             });
 
+            //Clear fitlers
+            this.$clearBtn.click(function () {
+                me.clearFilters();
+            });
+
             //Footer
             if (this.options.showFooter) {
-                this.$footer.find(this.selectors.clearBtn).click(function () {
-                    me.clearFilters();
-                    me.publish(me.events.onClearClick);
+                this.$footer.find(this.selectors.cancelBtn).click(function () {
+                    me.publish(me.events.onCancelClick);
                 });
-                this.$footer.find(this.selectors.doneBtn).click(function () {
-                    me.publish(me.events.onDoneClick, { filters: me.getFilters(), filterType: me.options.filterType });
+                this.$addToSearchBtn = this.$footer.find(this.selectors.addToSearchBtn).click(function () {
+                    if (!$(this).hasClass('dj_disabled')) {
+                        me.publish(me.events.onAddToSearchClick, { filters: me.getFilters(), filterType: me.options.filterType });
+                    }
                 });
             }
-
         },
 
         _onSourceGroupFilterChange: function () {
@@ -606,8 +619,8 @@
                 this.$filterOptions.hide();
             }
             if (this.$sourceGroupDD) {
-                this.$sourceGroupDD.children(this.selectors.multiLevelMenu).addClass('hidden');
-                this.$sourceSortByDD.children(this.selectors.multiLevelMenu).addClass('hidden');
+                this.$sourceGroupDD.children(this.selectors.multiLevelMenu).hide();
+                this.$sourceSortByDD.children(this.selectors.multiLevelMenu).hide();
             }
         },
 
@@ -963,7 +976,7 @@
 
                 var $footer = this.$sLstFiltersContainer.next();
                 $footer.find(this.selectors.cancelBtn).click(function () { $().overlay.hide("#" + id); });
-                $footer.find(this.selectors.doneBtn).click(function () { me._saveSourceList(); });
+                $footer.find(this.selectors.saveBtn).click(function () { me._saveSourceList(); });
             }
 
             this._sourceListId = sLstId;
@@ -1311,7 +1324,6 @@
         },
 
         _showHideSaveListBtn: function (show) {
-            //If no filters then hide the saveListBtn
             if (this.$saveListBtn) {
                 if (show && !this._sourceListAdded) {
                     this.$saveListBtn.removeClass("hidden");
@@ -1327,6 +1339,17 @@
                         this.$saveListBtn.addClass("hidden");
                     }
                 }
+            }
+        },
+
+        _enableClearAndAddToSearchBtns: function () {
+            if (this.$filters.children().length > 0 || this.$notfilters.children(":gt(0)").length > 0) {
+                this.$clearBtn.removeClass('hidden');
+                this.$addToSearchBtn.removeClass('dj_disabled');
+            }
+            else {
+                this.$clearBtn.addClass('hidden');
+                this.$addToSearchBtn.addClass('dj_disabled');
             }
         },
 
@@ -1400,6 +1423,7 @@
 
                 this._showHideNotPillList();
                 this.updateFilterScroll();
+                this._enableClearAndAddToSearchBtns();
                 this._triggerResize();
                 this._showHideSaveListBtn(true);
                 if (this.options.filterType == this.filterType.Language) {
@@ -1590,6 +1614,7 @@
                 }
                 this._showHideNotPillList();
                 this.updateFilterScroll();
+                this._enableClearAndAddToSearchBtns();
                 this._showHideSaveListBtn(true);
                 this._triggerResize();
             }
@@ -1599,6 +1624,7 @@
             if (filter) {
                 this.$filters.append(this.templates.sourceFilterPill({ filter: filter }));
                 this.updateFilterScroll();
+                this._enableClearAndAddToSearchBtns();
                 this._showHideSaveListBtn(true);
                 this._triggerResize();
             }
@@ -1677,6 +1703,7 @@
             this.$filters.children().remove();
             this.$notfilters.hide().children(":gt(0)").remove();
             this._showHideSaveListBtn(false);
+            this._enableClearAndAddToSearchBtns();
             if (this.options.filterType == this.filterType.Language) {
                 this._addAllLanguages();
             }
@@ -1701,6 +1728,7 @@
                 }
                 this._sourceListAdded = false;
                 this.updateFilterScroll();
+                this._enableClearAndAddToSearchBtns();
                 this._showHideSaveListBtn();
                 this._triggerResize();
             }

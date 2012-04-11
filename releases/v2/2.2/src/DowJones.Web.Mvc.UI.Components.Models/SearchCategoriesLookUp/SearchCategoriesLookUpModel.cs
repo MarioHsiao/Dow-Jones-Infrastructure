@@ -53,6 +53,12 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 		/// </summary>
 		[JsonProperty("additionalSourceFilters")]
 		public List<CodeDesc> AdditionalSourceFilters { get; set; }
+
+        /// <summary>
+        /// Gets or Sets the Additional Footer Note
+        /// </summary>
+        [JsonProperty("additionalFooterNote")]
+        public List<CodeDesc> AdditionalFooterNote { get; set; }
     }
 
     public class SearchCategoriesLookUpModel : ViewComponentModel
@@ -136,6 +142,12 @@ namespace DowJones.Web.Mvc.UI.Components.Models
         /// </summary>
         [ClientProperty("productId")]
         public string ProductId { get; set; }
+
+        /// <summary>
+        /// Gets or Sets the Active Tab
+        /// </summary>
+        [JsonProperty("activeTab")]
+        public int ActiveTab { get; set; }
         #endregion
         
         #region ..:: Constructor ::..

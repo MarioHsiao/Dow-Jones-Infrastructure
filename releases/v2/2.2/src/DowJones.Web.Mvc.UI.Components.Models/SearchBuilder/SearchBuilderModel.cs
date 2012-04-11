@@ -81,6 +81,12 @@ namespace DowJones.Web.Mvc.UI.Components.Models
         /// </summary>
         [JsonProperty("sourceGroup")]
         public List<SourceGroupItem> SourceGroup { get; set; }
+
+        /// <summary>
+        /// Gets or Sets the LookUp Addition Footer Notes
+        /// </summary>
+        [JsonProperty("lookUpAdditionalFooterNotes")]
+        public Dictionary<DowJones.Utilities.Search.Core.FilterType, string> LookUpAdditionalFooterNotes { get; set; }
     }
 
     public class SearchBuilderModel : CompositeComponentModel
@@ -227,6 +233,18 @@ namespace DowJones.Web.Mvc.UI.Components.Models
         {
             get { return GetFormattedDate(Data.StartDate); }
         }
+
+        /// <summary>
+        /// Gets or Sets ShowSortBy
+        /// </summary>
+        [ClientProperty("showSortBy")]
+        public bool ShowSortBy { get; set; }
+
+        /// <summary>
+        /// Gets or Sets ShowIdentifyDuplicates
+        /// </summary>
+        [ClientProperty("showIdentifyDuplicates")]
+        public bool ShowIdentifyDuplicates { get; set; }
 
         /// <summary>
         /// Gets the formatted End Date

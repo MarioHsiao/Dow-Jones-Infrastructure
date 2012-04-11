@@ -1,4 +1,7 @@
 ﻿<div class="filters">
+    <div class="dj_btns">
+		<span class="dj_btn dj_btn-drk-gray hidden clearBtn"><%= Token("clear") %></span>
+    </div>
     <h5>
         <%= Token("filters") %></h5>
     <div class="filter-items">
@@ -26,7 +29,7 @@
 <div class="tab-content">
     <div class="dj_lookup-search clearfix">
         <input type="text" class="dj_lookup-search-field" value="<%= lookUpDetails.autoCompleteText %>"/>
-        <input type="button" value="<%= Token("search") %>" class="dj_lookup-search-submit" />
+        <input type="button" value="<%= Token("find") %>" class="dj_lookup-search-submit" />
     </div>
     <div class="lookup-results-container" style="display:none;">
         <h6 class="results-title"></h6>
@@ -49,6 +52,10 @@
     <ul class="dj_browse-tree"></ul>
 </div>
 <div class="footer" style="display: none;">
-    <span class="dj_btn dj_btn-drk-gray clearBtn"><%= Token("clear") %></span> 
-    <span class="dj_btn dj_btn-blue no-margin doneBtn"><%= Token("done") %></span>
+    <div class="dj_note"><%= Token("lookUpFooterNote1") %><br /><%= Token("lookUpFooterNote2") %><br /></div>
+    <div class="dj_btns">
+        <span class="dj_btn no-bg dj_modal-close cancelBtn"><%= Token("cancel") %></span>
+        <span class="dj_btn dj_btn-blue no-margin dj_disabled addToSearchBtn"><%= Token("addToSearch") %></span>
+    </div>
+    <div class="clear"></div>
 </div>

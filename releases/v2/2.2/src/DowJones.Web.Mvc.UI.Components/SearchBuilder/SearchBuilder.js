@@ -7,13 +7,14 @@
     DJ.UI.SearchBuilder = DJ.UI.Component.extend({
 
         selectors: {
-            sbTopContainer: 'div.dj_search-builder_advanced-search',
+            sbTopContainer: 'div.dj_advanced-search-wrap',
             searchTextBox: 'textarea.text-field',
             searchCriteria: 'div.dj_select-box-alt',
             selectBoxes: 'select.dj_selectbox',
             searchInDD: 'select.searchIn',
             dateDD: 'select.date',
             sortByDD: 'select.sortBy',
+            filtersWap: 'div.dj_filters-wrap',
             filtersContainer: 'div.dj_search-builder_filters',
             filtersList: 'ul.dj_search-builder_filters-list',
             filterClose: 'span.remove',
@@ -27,7 +28,7 @@
             searchCategoriesLookUp: 'div.dj_SearchCategoriesLookUp',
             modalContent: 'div.modal-content',
             modalClose: 'p.dj_modal-close',
-            resetSearchText: 'span',
+            //resetSearchText: 'span',
             expanded: 'li.expanded',
             saveList: 'span.saveList',
             filtersToolbar: '.dj_search-builder_filters-category_toolbar',
@@ -163,28 +164,32 @@
         },
 
         _initializeControls: function () {
-            var elementChildrens = this.$element.children(), searchCriteriaChildrens;
-            var sbTopContainer = elementChildrens.filter(this.selectors.sbTopContainer);
+            var $filtersWrap = this.$element.children(this.selectors.filtersWap), searchCriteriaChildrens;
+            var $sbTopContainer = this.$element.children(this.selectors.sbTopContainer);
 
-            this.$searchTexBox = sbTopContainer.children(":first").children(this.selectors.searchTextBox);
+            this.$searchTexBox = $sbTopContainer.children(":first").children(this.selectors.searchTextBox);
 
-            searchCriteriaChildrens = sbTopContainer.children(this.selectors.searchCriteria).children();
+            searchCriteriaChildrens = $sbTopContainer.children(this.selectors.searchCriteria).children();
 
             this.$dateWrap = searchCriteriaChildrens.filter(this.selectors.dateWrap);
             this.$datePickers = this.$dateWrap.children(this.selectors.datePicker);
             this.$startDate = this.$datePickers.eq(0);
             this.$endDate = this.$datePickers.eq(1);
             this.$searchInDD = searchCriteriaChildrens.filter(this.selectors.searchInDD);
-            this.$sortByDD = searchCriteriaChildrens.filter(this.selectors.sortByDD);
+            if (this.options.showSortBy) {
+                this.$sortByDD = searchCriteriaChildrens.filter(this.selectors.sortByDD);
+            }
             this.$dateDD = searchCriteriaChildrens.filter(this.selectors.dateDD);
             this.$excludeBtn = searchCriteriaChildrens.filter(this.selectors.excludeBtn);
             var $checkFilters = searchCriteriaChildrens.filter(this.selectors.checkFilters);
 
-            this.$duplicate = $checkFilters.children(this.selectors.duplicate);
+            if (this.options.showIdentifyDuplicates) {
+                this.$duplicate = $checkFilters.children(this.selectors.duplicate);
+            }
 
-            this.$filtersList = elementChildrens.filter(this.selectors.filtersContainer).children(this.selectors.filtersList);
-            this.$resetBtn = elementChildrens.filter(this.selectors.filtersContainer).prev().children(this.selectors.grayBtn);
-            this.$newsFilter = elementChildrens.filter(this.selectors.newsFilter);
+            this.$filtersList = $filtersWrap.children(this.selectors.filtersContainer).children(this.selectors.filtersList);
+            this.$resetBtn = $filtersWrap.children(this.selectors.filtersContainer).prev().children(this.selectors.grayBtn);
+            this.$newsFilter = $filtersWrap.children(this.selectors.newsFilter);
 
             //Append the category options and not pill
             var $this, type, me = this;
@@ -231,12 +236,15 @@
                 waterMarkText: this._sbSearchBoxWMText
             }).autoGrow();
 
-            this.$searchTexBox.next(this.selectors.resetSearchText).click($dj.delegate(this, function () {
-                this.$searchTexBox.val('').focus();
-            }));
+            //            this.$searchTexBox.next(this.selectors.resetSearchText).click($dj.delegate(this, function () {
+            //                this.$searchTexBox.val('').focus();
+            //            }));
 
             // Select Box
-            $().add(this.$searchInDD).add(this.$sortByDD).add(this.$dateDD).selectbox().change();
+            $().add(this.$searchInDD).add(this.$dateDD).selectbox().change();
+            if (this.options.showSortBy) {
+                this.$sortByDD.selectbox().change();
+            }
 
             //Custom date range
             this.$dateDD.change(function () {
@@ -259,7 +267,9 @@
             this.$excludeBtn.click($dj.delegate(this, this._showExclusions));
 
             //Duplicate
-            this.$duplicate.attr('id', elementId + '_duplicate').next().attr('for', elementId + '_duplicate');
+            if (this.options.showIdentifyDuplicates) {
+                this.$duplicate.attr('id', elementId + '_duplicate').next().attr('for', elementId + '_duplicate');
+            }
 
             //Filters Reset button
             this.$resetBtn.click($dj.delegate(this, this._resetFilters));
@@ -429,6 +439,10 @@
 
                 data.filters = this._getFilters(filterType);
 
+                if (this.data.lookUpAdditionalFooterNotes) {
+                    data.additionalFooterNote = this.data.lookUpAdditionalFooterNotes[filterType];
+                }
+
                 //Initialize the Search Categories Look Up component
                 scLC = $("#" + lookUpId).dj_SearchCategoriesLookUp({
                     options: { filterType: filterType,
@@ -447,12 +461,13 @@
                 if (!this.subscribedToLookUpEvents) {
                     //On Resize
                     $dj.subscribe(scLC.events.onResize, function () { $().overlay.rePosition(); });
-                    //On Done Click
-                    $dj.subscribe(scLC.events.onDoneClick, $dj.delegate(this, this._onLookUpDoneClick));
+                    //On AddToSearch Click
+                    $dj.subscribe(scLC.events.onAddToSearchClick, $dj.delegate(this, this._onLookUpAddToSearchClick));
+                    //On Cancel Click
+                    $dj.subscribe(scLC.events.onCancelClick, $dj.delegate(this, this._onLookUpCancelClick));
 
                     this.subscribedToLookUpEvents = true;
                 }
-
             }
             else {
                 //Find the component and set the data
@@ -461,7 +476,7 @@
                 scLC.bindFilters(this._getFilters(filterType));
             }
 
-            //Set the LookUp tab as active
+            //Set the LookUp active tab based on filter type
             this._setLookUpActiveTab(filterType, scLC);
 
             //Set the title
@@ -509,9 +524,13 @@
             scLC.updateFilterScroll();
         },
 
-        _onLookUpDoneClick: function (args) {
+        _onLookUpAddToSearchClick: function (args) {
             this._closeModal('$lookUpsContainer');
             this._bindFilters(args.filters, this.filterDetails[args.filterType].name);
+        },
+
+        _onLookUpCancelClick: function () {
+            this._closeModal('$lookUpsContainer');
         },
 
         _getLookUpView: function (lookUpId) {
@@ -588,21 +607,7 @@
             else {
                 //Append the filter in the sequence defined in sortedChannelFilters object
                 //Sequence is ['source', 'author', 'executive', 'company', 'subject', 'industry', 'region', 'language']
-                var me = this, filterItemAdded = false, isBefore = false, itemSortPos, $refElement, $this;
-                expandedFilterItems.each(function () {
-                    $this = $(this);
-                    itemSortPos = $.inArray($this.data('type').toLowerCase(), me.sortedChannelFilters);
-                    if (itemSortPos > filterSortPos) {
-                        if (!$refElement) {
-                            $this.before(filterItem);
-                        }
-                        return false;
-                    }
-                    $refElement = $this;
-                });
-                if ($refElement) {
-                    $refElement.after(filterItem);
-                }
+                this._sortAndAppendFilterItem(filterItem, true);
             }
             filterItem.addClass('expanded');
         },
@@ -862,8 +867,32 @@
             if (!hasPills && !hasNotPills) {
                 pillList.children(this.selectors.addPill).remove();
                 var $li = pillList.append(this._addPill).show().closest("li").removeClass("expanded");
-                //Move the empty channel filter after the last expanded channel filter
-                $li.parent().children(".expanded").last().after($li);
+                //                //Move the empty channel filter after the last expanded channel filter
+                //                $li.parent().children(".expanded").last().after($li);
+                //Move all the empty channel in the order after all expanded channel filter
+                this._sortAndAppendFilterItem($li, false);
+            }
+        },
+
+        _sortAndAppendFilterItem: function (filterItem, expanded) {
+            var me = this, itemSortPos, $refElement, $this,
+                filterItems = filterItem.siblings(expanded ? '.expanded' : ':not(.expanded)'),
+                filterSortPos = $.inArray(filterItem.data('type').toLowerCase(), this.sortedChannelFilters);
+
+            filterItems.each(function () {
+                $this = $(this);
+                itemSortPos = $.inArray($this.data('type').toLowerCase(), me.sortedChannelFilters);
+                if (itemSortPos > filterSortPos) {
+                    if (!$refElement) {
+                        $this.before(filterItem);
+                    }
+                    return false;
+                }
+                $refElement = $this;
+            });
+
+            if ($refElement) {
+                $refElement.after(filterItem);
             }
         },
 
@@ -920,14 +949,21 @@
 
                 reqObj.freeText = (this.$searchTexBox.val() != this._sbSearchBoxWMText) ? $.trim(this.$searchTexBox.val()) : "";
                 reqObj.searchIn = this.$searchInDD.val();
-                reqObj.sortBy = this.$sortByDD.val();
+
+                if (this.options.showSortBy) {
+                    reqObj.sortBy = this.$sortByDD.val();
+                }
+
                 reqObj.dateRange = this.$dateDD.val();
                 if (reqObj.dateRange == this.$dateDD.find("option:last").val()) {
                     reqObj.startDate = (new Date(validationResult.startDate)).format("yyyymmdd");
                     reqObj.endDate = (new Date(validationResult.endDate)).format("yyyymmdd");
                 }
                 reqObj.exclusionFilter = this.$excludeBtn.data("excludedItems");
-                reqObj.duplicates = this.$duplicate.is(":checked");
+
+                if (this.options.showIdentifyDuplicates) {
+                    reqObj.duplicates = this.$duplicate.is(":checked");
+                }
 
                 reqObj.contentLanguages = [];
 
@@ -1009,7 +1045,9 @@
                     this.$searchInDD.val(d.searchIn).change();
 
                     //Sorty By
-                    this.$sortByDD.val(d.sortBy).change();
+                    if (this.options.showSortBy) {
+                        this.$sortByDD.val(d.sortBy).change();
+                    }
 
                     //Date Range
                     if (!d.dateRange) {
@@ -1034,7 +1072,9 @@
                     }
 
                     //Duplicates
-                    this.$duplicate.attr("checked", d.duplicates);
+                    if (this.options.showIdentifyDuplicates) {
+                        this.$duplicate.attr("checked", d.duplicates);
+                    }
 
                 }
 
