@@ -127,7 +127,7 @@ namespace DowJones.Web.Mvc.UI.Components.HeadlineList
             if (paras == null || paras.Count() == 0) return "";
             var sb = new StringBuilder();
             paras.ForEach(p => p.items.ForEach(m => sb.Append(StripHtml(m.value + " "))));
-            return sb.ToString();
+            return sb.ToString().Trim();
 
         }
 
