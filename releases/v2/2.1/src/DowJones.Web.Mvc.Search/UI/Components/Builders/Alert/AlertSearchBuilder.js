@@ -89,6 +89,7 @@
 					 { items: jQuery.parseJSON(response.items),
 					     defaultText: jQuery.parseJSON(response.defaultText)
 					 },
+                     { maxHeight: '300px' },
 					 { menuType: 'dropdownMenu' },
 					 { menuClass: 'dj_alert-menu' },
 					 { itemClick: function (e, item) {
