@@ -282,10 +282,10 @@
                 if (!$category.hasClass("disabled")) {
                     me._lookUpSearchCategory($category.data("type"), $category.children("h4").html());
                 }
-                me._stopPropagation(e);
+                me._stopPropagation(e, true);
             }).delegate(this.selectors.filterClose, "click", function (e) {//Filter Close
                 me._onFilterClose(this);
-                me._stopPropagation(e);
+                me._stopPropagation(e, true);
             }).delegate(this.selectors.filterPill, "click", function (e) {//Filter Click
                 var notFilterEnabled = !$(this).closest("ul").closest("li").data("notdisabled");
                 if (notFilterEnabled) {
@@ -843,11 +843,11 @@
                 return;
             }
             this.$filterOptions.children("div").children().show().filter(":eq(" + ($(elem).closest("ul").hasClass("not-filter") ? "1" : "2") + ")").hide();
-            $li.append(this.$filterOptions.show());
-            $(document).unbind('mousedown.sbc').bind('mousedown.sbc').click($dj.delegate(this, function () {
+            $li.append(this.$filterOptions);
+            $(document).unbind('click.sbc').one('click.sbc', $dj.delegate(this, function () {
                 this.$filterOptions.hide();
-                $(document).unbind('mousedown.sbc');
             }));
+            this.$filterOptions.show();
         },
 
         _showHidePillList: function (filterItems) {
