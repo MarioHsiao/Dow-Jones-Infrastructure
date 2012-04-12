@@ -396,6 +396,7 @@ namespace DowJones.Assemblers.Articles
                 case "picture":
                 case "articlewithgraphics":
                 case "analyst":
+				case "html":
                     tempItem.Add(new RenderItem
                                      {
                                          ItemMarkUp = MarkUpType.Plain,

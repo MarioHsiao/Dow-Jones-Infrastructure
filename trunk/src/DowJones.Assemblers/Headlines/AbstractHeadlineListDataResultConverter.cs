@@ -253,7 +253,9 @@ namespace DowJones.Assemblers.Headlines
             sb.Replace("\u2028;", "")
                 .Replace("\u2029;", "")
                 .Replace("\u2019;", "'");*/
-            return string.IsNullOrEmpty(s) ? s : s.Trim();
+        	return s ?? string.Empty;
+        	//return string.IsNullOrEmpty(s) ? s : s.Trim();
+
         }
 
         /// <summary>
