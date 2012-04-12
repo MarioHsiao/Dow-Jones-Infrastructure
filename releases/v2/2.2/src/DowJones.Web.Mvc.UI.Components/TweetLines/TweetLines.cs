@@ -160,22 +160,22 @@ WriteLiteral("</span>\r\n\t\t\t\t\t<ul class=\"dj_post-processing\">\r\n\t\t\t\t
 
                                             Write(Html.DJ().Token("follow"));
 
-WriteLiteral(" *</li>\r\n\t\t\t\t\t\t<li class=\"dj_reply\" data-action=\"reply\">");
+WriteLiteral("</li>\r\n\t\t\t\t\t\t<li class=\"dj_reply\" data-action=\"reply\">");
 
 
                                           Write(Html.DJ().Token("replyTweet"));
 
-WriteLiteral(" *</li>\r\n\t\t\t\t\t\t<li class=\"dj_retweet\" data-action=\"retweet\">");
+WriteLiteral("</li>\r\n\t\t\t\t\t\t<li class=\"dj_retweet\" data-action=\"retweet\">");
 
 
                                               Write(Html.DJ().Token("reTweet"));
 
-WriteLiteral(" *</li>\r\n\t\t\t\t\t\t<li class=\"dj_favorite\" data-action=\"favorite\">");
+WriteLiteral("</li>\r\n\t\t\t\t\t\t<li class=\"dj_favorite\" data-action=\"favorite\">");
 
 
                                                 Write(Html.DJ().Token("favorite"));
 
-WriteLiteral(" *</li>\r\n\t\t\t\t\t\t<li class=\"dj_details\" data-action=\"details\">");
+WriteLiteral("</li>\r\n\t\t\t\t\t\t<li class=\"dj_details\" data-action=\"details\">");
 
 
                                               Write(Html.DJ().Token("details"));

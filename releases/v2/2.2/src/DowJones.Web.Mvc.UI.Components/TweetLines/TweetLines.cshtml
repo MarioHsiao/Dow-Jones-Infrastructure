@@ -26,10 +26,10 @@
 					</span>
 						@(string.IsNullOrEmpty(tweet.SourceText) ? "" : string.Format(" {0} {1}", @Html.DJ().Token("via"), tweet.SourceText))</span>
 					<ul class="dj_post-processing">
-						<li class="dj_follow" data-action="follow">@Html.DJ().Token("follow") *</li>
-						<li class="dj_reply" data-action="reply">@Html.DJ().Token("replyTweet") *</li>
-						<li class="dj_retweet" data-action="retweet">@Html.DJ().Token("reTweet") *</li>
-						<li class="dj_favorite" data-action="favorite">@Html.DJ().Token("favorite") *</li>
+						<li class="dj_follow" data-action="follow">@Html.DJ().Token("follow")</li>
+						<li class="dj_reply" data-action="reply">@Html.DJ().Token("replyTweet")</li>
+						<li class="dj_retweet" data-action="retweet">@Html.DJ().Token("reTweet")</li>
+						<li class="dj_favorite" data-action="favorite">@Html.DJ().Token("favorite")</li>
 						<li class="dj_details" data-action="details">@Html.DJ().Token("details")</li>
 					</ul>
 				</div>
