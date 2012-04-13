@@ -14,13 +14,13 @@
         profileHashUrl = t.user.profileHashUrl;
 %>
     <li data-tweet-id="<%= tweetId %>" data-user-id="<%= userId %>" data-full-name="<%= fullName %>" data-screen-name="<%= screenName %>" class="dj_tweet-item" title="">
-        <img data-user-id="<%= userId %>" alt="<%= fullName %>" src="<%= profileImageUrl %>">
+        <img alt="<%= fullName %>" src="<%= profileImageUrl %>">
         <div class="dj_tweet-content">
             <div class='dj_tweet-meta'>
-                <a title="<%= fullName %>" href="<%= profileUrl %>" data-user-id="<%= userId %>" class="dj_full-name" target="_blank">
+                <a title="<%= fullName %>" href="<%= profileUrl %>" class="dj_full-name" data-action="fullNameClick" target="_blank">
                     <%= fullName %>
                 </a>
-                <a href="<%= profileHashUrl %>" title="<%= fullName %>" class="dj_screen-name" target="_blank">
+                <a href="<%= profileHashUrl %>" title="<%= fullName %>" class="dj_screen-name" data-action="screenNameClick" target="_blank">
                     @<%= screenName %>
                 </a>
                 <span class="dj_time-stamp" data-time="<%= isoTimeStamp %>"><span title="<%= isoTimeStamp %>">

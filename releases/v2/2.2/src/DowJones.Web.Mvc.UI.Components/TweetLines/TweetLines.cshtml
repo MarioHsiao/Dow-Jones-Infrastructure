@@ -15,12 +15,12 @@
 	@foreach (var tweet in Model.Tweets)
  {
 		<li data-tweet-id="@tweet.Id" data-user-id="@tweet.User.Id" data-full-name="@tweet.User.FullName" data-screen-name="@tweet.User.ScreenName" class="dj_tweet-item">
-			<img data-user-id="@tweet.User.Id" alt="@tweet.User.FullName" src="@tweet.User.ProfileImageUrl">
+			<img alt="@tweet.User.FullName" src="@tweet.User.ProfileImageUrl">
 			<div class="dj_tweet-content">
 				<div class="dj_tweet-meta">
-					<a title="@tweet.User.FullName" href="@tweet.User.ProfileUrl" data-user-id="@tweet.User.Id" class="dj_full-name" target="_blank">
+					<a title="@tweet.User.FullName" href="@tweet.User.ProfileUrl" class="dj_full-name" data-action="fullNameClick" target="_blank">
 						@tweet.User.FullName
-					</a><a href="@tweet.User.ProfileHashUrl" title="@tweet.User.FullName" class="dj_screen-name" target="_blank">
+					</a><a href="@tweet.User.ProfileHashUrl" title="@tweet.User.FullName" class="dj_screen-name" data-action="screenNameClick" target="_blank">
 						@@@tweet.User.ScreenName
 					</a><span class="dj_time-stamp" data-time="@tweet.IsoTimeStamp"><span title="@tweet.IsoTimeStamp">
 					</span>
