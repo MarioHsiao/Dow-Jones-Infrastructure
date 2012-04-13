@@ -86,6 +86,8 @@ namespace DowJones.Assemblers.Articles
 
         public bool EmbedHtmlBasedArticles { get; set; }
 
+        public bool SuppressLinksInHeadlineTitle { get; set; }
+
         public ImageType EmbededImageType{ get; set; }
 
         public PictureSize PictureSize { get; set; }
@@ -386,30 +388,42 @@ namespace DowJones.Assemblers.Articles
             return listBody;
         }
 
-        private static List<RenderItem> ProcessHeadline(Article article, string contentType, string externalUri)
+        private List<RenderItem> ProcessHeadline(Article article, string contentType, string externalUri)
         {
             var tempItem = new List<RenderItem>();
             var headlineText = GetParagraphText(article.headline);
-            switch (contentType)
+            switch (contentType.ToLowerInvariant())
             {
                 case "article":
                 case "picture":
                 case "articlewithgraphics":
                 case "analyst":
-				case "html":
                     tempItem.Add(new RenderItem
                                      {
                                          ItemMarkUp = MarkUpType.Plain,
                                          ItemText = headlineText,
                                      });
                     break;
+                case "html":
                 default:
-                    tempItem.Add(new RenderItem
-                                     {
-                                         ItemMarkUp = MarkUpType.Anchor,
-                                         ItemValue = externalUri,
-                                         ItemText = headlineText,
-                                     });
+                    // SuppressLinksInHeadlineTitle is used to fix a PM issue on 4/13/12 --dacostad
+                    if (SuppressLinksInHeadlineTitle && contentType.ToLowerInvariant() == "html")
+                    {
+                        tempItem.Add(new RenderItem
+                        {
+                            ItemMarkUp = MarkUpType.Plain,
+                            ItemText = headlineText,
+                        });
+                    }
+                    else
+                    {
+                        tempItem.Add(new RenderItem
+                                         {
+                                             ItemMarkUp = MarkUpType.Anchor,
+                                             ItemValue = externalUri,
+                                             ItemText = headlineText,
+                                         });
+                    }
                     break;
             }
             return tempItem;
