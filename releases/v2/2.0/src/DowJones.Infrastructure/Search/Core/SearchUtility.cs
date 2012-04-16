@@ -629,6 +629,30 @@ namespace DowJones.Search.Core
                     excludedSources.AddRange(sourceList.CodeExcluded);
                 }
                 excludedSources = excludedSources.Where(d => includedSources.IndexOf(d) == -1).ToList();
+
+                bool allPub = GetAllSelected(ssgpItem, ALL_PUBLICATIONS_CODE);
+                bool allWeb = GetAllSelected(ssgpItem, ALL_WEBSITES_CODE);
+
+                if (allPub || allWeb)
+                {
+                    var fmtString = String.Empty;
+                    if (allPub)
+                    {
+                        fmtString = PUBLICATION_FORMAT;
+                    }
+                    if (allWeb)
+                    {
+                        if (fmtString.Length > 0)
+                        {
+                            fmtString += FMT_OPERATOR;
+                        }
+                        fmtString += WEBPAGE_FORMAT;
+                    }
+                    searchStringCollection.Add(
+                        new SearchString {Mode = SearchMode.Traditional, Id = "BSSSourceFmtPart", Value = fmtString}
+                    );
+                }
+
                 if (includedSources.Count > 0)
                 {
                     searchStringCollection.Add(new SearchString
