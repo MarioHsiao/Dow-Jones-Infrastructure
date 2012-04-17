@@ -27,7 +27,7 @@ namespace DowJones.Web.Mvc.Search.UI.Components.Builders.Simple
     using DowJones.Web.Mvc.Search.UI.Components.Builders;
     using DowJones.Extensions;
     
-    // Last Generated Timestamp: 04/16/2012 12:44 PM
+    // Last Generated Timestamp: 04/17/2012 04:02 PM
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Web.Mvc.Search.UI.Components.Builders.Simple.SimpleSearchBuilder.js", ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Web.Mvc.Search.UI.Components.Builders.Simple.SimpleSearchBuilderComponent))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.22175")]
     public class SimpleSearchBuilderComponent : QueryBuilderComponent<Simple.SimpleSearchBuilder>
@@ -79,8 +79,8 @@ WriteLiteral("\" />\r\n<input type=\"hidden\" name=\"endDate\" value=\"");
 
                                       Write(Model.EndDate);
 
-WriteLiteral("\" />\r\n<div class=\"dj_search-simple-search ui-component js_search-simple-search\">\r" +
-"\n\t<a href=\"#\" class=\"advanced-search\">");
+WriteLiteral("\" />\r\n<div class=\"dj_search-simple-search ui-component js_search-simple-search cl" +
+"earfix\">\r\n\t<a href=\"#\" class=\"advanced-search\">");
 
 
                                 Write(DJ.Token("advancedSearch"));
