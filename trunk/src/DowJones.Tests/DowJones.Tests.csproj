@@ -143,6 +143,7 @@
     <Compile Include="Infrastructure\MapperTests.cs" />
     <Compile Include="Infrastructure\Preferences\CachedPreferenceServiceTests.cs" />
     <Compile Include="Infrastructure\Search\SearchManagerTests.cs" />
+    <Compile Include="Infrastructure\Security\EntitlementsTests.cs" />
     <Compile Include="Infrastructure\Session\ControlDataManagerTests.cs" />
     <Compile Include="Infrastructure\Tokens\TokenRegistryTests.cs" />
     <Compile Include="Infrastructure\Web\Search\FIICodeInfoUtilityTest.cs" />
@@ -1030,7 +1031,9 @@
     <None Include="GatewayResources\config\EmailDeliverySettingsService.config" />
     <None Include="GatewayResources\config\EventCalendarService.config" />
     <None Include="GatewayResources\config\ExternalReaderService.config" />
-    <None Include="GatewayResources\config\FactivaGateway.config" />
+    <None Include="GatewayResources\config\FactivaGateway.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="GatewayResources\config\GovernmentService.config" />
     <None Include="GatewayResources\config\HeatMapService.config" />
     <None Include="GatewayResources\config\IndexService.config" />
