@@ -643,6 +643,11 @@ namespace DowJones.Extensions
         {
             return list.Any(item => item.IndexOf(find, comparison) != -1);
         }
+        
+        public static bool StartsWithAtAnyIndex(this IEnumerable<string> list, string find, StringComparison comparison = StringComparison.OrdinalIgnoreCase)
+        {
+            return list.Any(item => item.StartsWith(find, comparison));
+        }
 
         [DebuggerStepThrough]
         public static bool HasValue(this string value)
