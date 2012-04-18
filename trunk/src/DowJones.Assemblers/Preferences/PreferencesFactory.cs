@@ -1,4 +1,5 @@
-﻿using DowJones.Formatters.Globalization.DateTime;
+﻿using DowJones.Exceptions;
+using DowJones.Formatters.Globalization.DateTime;
 using DowJones.Infrastructure;
 using DowJones.Preferences;
 using DowJones.Session;
@@ -19,13 +20,27 @@ namespace DowJones.Assemblers.Preferences
 
         public override IPreferences Create()
         {
+            IPreferences preferences = new DowJones.Preferences.Preferences(_session.InterfaceLanguage.ToString());
+
+            if(!_session.IsValid())
+                return preferences;
+
             var preferencesResponse = _preferenceService.GetItemsByClassId(new[] {
                     PreferenceClassID.TimeZone, 
                     PreferenceClassID.TimeFormat, 
                     PreferenceClassID.SearchLanguage
                 });
 
-            var preferences = new DowJones.Preferences.Preferences(_session.InterfaceLanguage.ToString());
+            var responseCode = (preferencesResponse == null) ? -1 : preferencesResponse.rc;
+            if (responseCode != 0)
+            {
+                // If we think our session is valid, but the preferences server says it's not, 
+                // invalidate our local instance to avoid more invalid Gateway calls down the line
+                if (responseCode == DowJonesUtilitiesException.ErrorInvalidSessionLong)
+                    _session.Invalidate();
+
+                return preferences;
+            }
 
             // Clock type
             if (preferencesResponse.TimeFormat != null && preferencesResponse.TimeFormat.TimeFormat == PreferenceTimeFormat.HOURS12)

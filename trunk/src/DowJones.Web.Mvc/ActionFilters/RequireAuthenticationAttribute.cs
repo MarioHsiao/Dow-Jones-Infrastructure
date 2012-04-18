@@ -17,7 +17,7 @@ namespace DowJones.Web.Mvc.ActionFilters
         {
             Log.Debug("Check for valid session");
 
-            if (Session.Validate())
+            if (Session.IsValid())
             {
                 Log.Debug("Valid session");
                 return;

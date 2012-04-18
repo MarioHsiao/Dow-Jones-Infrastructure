@@ -67,7 +67,7 @@ namespace DowJones.Assemblers.Session
             if (string.IsNullOrWhiteSpace(session.UserId))
                 session.UserId = UserId;
             
-            if(session.Validate())
+            if(session.IsValid())
                 return session;
 
             // Otherwise, request a session directly
