@@ -130,6 +130,7 @@
     <Compile Include="Infrastructure\GenericEqualityComparer.cs" />
     <Compile Include="Infrastructure\EnumHelper.cs" />
     <Compile Include="Formatters\Globalization\TimeZone\TimeZoneBlobParser.cs" />
+    <Compile Include="Managers\Authorization\AuthorizationManager.cs" />
     <Compile Include="Managers\Mobile\MobileUtilitiesManager.cs" />
     <Compile Include="Managers\SearchContext\SearchContextManager.cs" />
     <Compile Include="Managers\Search\MetaDataSearch\FIICodeInfo.cs" />

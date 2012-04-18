@@ -4,8 +4,11 @@ using DowJones.Infrastructure;
 using DowJones.Infrastructure.Converters;
 using DowJones.Infrastructure.Models.SocialMedia;
 using DowJones.Managers.Abstract;
+using DowJones.Managers.Authorization;
 using Newtonsoft.Json;
+using DowJones.Exceptions;
 using DowJones.Extensions;
+using DowJones.Session;
 
 
 namespace DowJones.Managers.SocialMedia
@@ -21,15 +24,15 @@ namespace DowJones.Managers.SocialMedia
     /// </summary>
     public class SocialMediaService : IService
     {
-        
         // <summary>
         /// The settings.
         /// </summary>
-        private  readonly JsonSerializerSettings Settings;
+        private readonly JsonSerializerSettings Settings;
 
 
         private ISocialMediaProvider _socialMediaProvider;
         private ISocialMediaIndustryProvider _industryProvider;
+        private IControlData _controlData;
 
 
         /// <summary>
@@ -194,12 +197,13 @@ namespace DowJones.Managers.SocialMedia
         /// <summary>
         /// Initializes members of the <see cref="SocialMediaService"/> class.
         /// </summary>
-        public SocialMediaService(ISocialMediaProvider socialMediaProvider, ISocialMediaIndustryProvider industryprovider)
+        public SocialMediaService(ISocialMediaProvider socialMediaProvider, ISocialMediaIndustryProvider industryprovider, IControlData controlData)
         {
             Settings = GetDefaultJsonSerializerSettings();
             //IndustryChannelMap = new IndustryChannelMap();
             _industryProvider = industryprovider;
             _socialMediaProvider = socialMediaProvider;
+            _controlData = controlData;
         }
 
 
@@ -211,6 +215,12 @@ namespace DowJones.Managers.SocialMedia
         /// <returns></returns>
         public GetTweetsByChannelResponse GetTweetsByChannel(string channel, RequestOptions requestOptions = null)
         {
+            //Check Social Media Blocking
+            AuthorizationManager manager = new AuthorizationManager(_controlData);
+            if (manager.IsSocialMediaBlocked())
+            {
+                throw new DowJonesUtilitiesException(DowJonesUtilitiesException.SocialMediaNotEntitled);
+            }
             Guard.IsNotNullOrEmpty(channel, "channel");
             if (requestOptions == null)
                 requestOptions = new RequestOptions();
@@ -224,6 +234,12 @@ namespace DowJones.Managers.SocialMedia
 
         public GetTweetsByChannelResponse GetTweetsByIndustry(string industry, RequestOptions requestOptions = null)
         {
+            //Check Social Media Blocking
+            AuthorizationManager manager = new AuthorizationManager(_controlData);
+            if (manager.IsSocialMediaBlocked())
+            {
+                throw new DowJonesUtilitiesException(DowJonesUtilitiesException.SocialMediaNotEntitled);
+            }
             Guard.IsNotNullOrEmpty(industry, "industry");
 
             if (requestOptions == null)
@@ -237,6 +253,12 @@ namespace DowJones.Managers.SocialMedia
 
         public GetExpertsByIndustryResponse GetExpertsByIndustry(string industry, RequestOptions requestOptions = null)
         {
+            //Check Social Media Blocking
+            AuthorizationManager manager = new AuthorizationManager(_controlData);
+            if (manager.IsSocialMediaBlocked())
+            {
+                throw new DowJonesUtilitiesException(DowJonesUtilitiesException.SocialMediaNotEntitled);
+            }
             Guard.IsNotNullOrEmpty(industry, "industry");
 
             if (requestOptions == null)
@@ -256,6 +278,12 @@ namespace DowJones.Managers.SocialMedia
 
         public GetMetaByIndustryResponse GetMetaByIndustry(string industry, RequestOptions requestOptions)
         {
+            //Check Social Media Blocking
+            AuthorizationManager manager = new AuthorizationManager(_controlData);
+            if (manager.IsSocialMediaBlocked())
+            {
+                throw new DowJonesUtilitiesException(DowJonesUtilitiesException.SocialMediaNotEntitled);
+            }
             Guard.IsNotNullOrEmpty(industry, "industry");
 
             var channel = _industryProvider.GetChannelFromIndustryCode(industry);

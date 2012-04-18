@@ -31,7 +31,7 @@ namespace DowJones.Web.Showcase.Controllers
             //SystemIO.FileStream stream = SystemIO.File.Open(filePath, SystemIO.FileMode.Open);
             IControlData controlData = new ControlData { UserID = "snap_proxy", UserPassword = "pa55w0rd", ProductID = "16" };
 
-            var response = new SocialMediaService(new TweetRiverProvider(), new PAMSocialMediaIndustryProvider(controlData)).GetTweetsByIndustry(i);
+            var response = new SocialMediaService(new TweetRiverProvider(), new PAMSocialMediaIndustryProvider(controlData), controlData).GetTweetsByIndustry(i);
 
             var socialMediaViewModel = new SocialMediaViewModel
                                      {

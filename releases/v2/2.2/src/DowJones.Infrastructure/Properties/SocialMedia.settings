@@ -8,5 +8,8 @@
     <Setting Name="Account" Type="System.String" Scope="Application">
       <Value Profile="(Default)">dowjonesmaster</Value>
     </Setting>
+    <Setting Name="SocialMediaBlockingString" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">SMBlocking=T</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
