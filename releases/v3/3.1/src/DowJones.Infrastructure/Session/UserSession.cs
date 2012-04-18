@@ -8,6 +8,8 @@ namespace DowJones.Session
 {
     public class UserSession : IUserSession
     {
+        private bool _isInvalid;
+
         /// <summary>
         /// Gets the access point code.
         /// </summary>
@@ -82,6 +84,7 @@ namespace DowJones.Session
 
         public UserSession()
         {
+            _isInvalid = false;
             AccessPointCode = Settings.Default.DefaultAccessPointCode;
             ClientTypeCode = Settings.Default.DefaultClientCodeType;
             Entitlements = new Dictionary<string, object>();
@@ -101,9 +104,14 @@ namespace DowJones.Session
             ProxyNamespace = proxyNamespace;
         }
 
-        public virtual bool Validate()
+        public virtual bool IsValid()
         {
-            return IsProxySession || SessionId.HasValue();
+            return _isInvalid || IsProxySession || SessionId.HasValue();
+        }
+
+        public void Invalidate()
+        {
+            _isInvalid = true;
         }
     }
 }

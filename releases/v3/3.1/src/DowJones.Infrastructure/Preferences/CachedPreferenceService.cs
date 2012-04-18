@@ -36,7 +36,7 @@ namespace DowJones.Preferences
         {
             _source = source;
 
-            if (prime != null)
+            if (prime != null && prime.rc == 0)
                 CachedResponse = new CachedPreferenceResponse(prime);
         }
 

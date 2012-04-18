@@ -25,6 +25,8 @@ namespace DowJones.Session
         
         string UserId { get; }
         
-        bool Validate();
+        bool IsValid();
+
+        void Invalidate();
     }
 }

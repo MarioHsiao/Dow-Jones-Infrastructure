@@ -257,7 +257,7 @@
                             <ul class="dj_PostProcessing actions clearfix">
                                 @foreach (var item in Model.PostProcessingOptions)
                                 {
-                                    <li class="@(item.ToString().ToLower()) action" data-ref="@(item.ToString().ToLower())"><i class="dj_icon dj_icon-@(item.ToString().ToLower())"></i><span data-workflow="@(item.ToString().ToLower())">@(DJ.Token(item.ToString().ToLower()))</span></li>
+                                    <li class="@(item.ToString().ToLower()) action" data-ref="@(item.ToString().ToLower())"><i class="dj_icon dj_icon-@(item.ToString().ToLower())"></i><span data-workflow="@(item.ToString().ToLower())">@(DJ.Token(item.ToString().ToLower() + "Label"))</span></li>
                                 }
                             </ul>
                         }
