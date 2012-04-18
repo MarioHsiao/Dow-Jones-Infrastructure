@@ -170,7 +170,7 @@ namespace DowJones.Security.Services
         internal override sealed void Initialize()
         {
             //TODO: Verify these logic
-            if (_matrixInterfaceService == null || _matrixInterfaceService.ac10 == null || _matrixInterfaceService.ac10.Count <= 0)
+            if (_matrixInterfaceService == null)
             {
                 return;
             }
