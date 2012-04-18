@@ -194,6 +194,7 @@ namespace DowJones.Security.Services
             IsDJCESalesUser = _matrixInterfaceService.ac3.ContainsAtAnyIndex("7");
             IsEnhancedDJCEUser = _matrixInterfaceService.ac3.ContainsAtAnyIndex("8");
             string rcs = _matrixInterfaceService.ac4.FirstOrDefault(x => x.HasValue());
+            if (!string.IsNullOrEmpty(rcs))
             IsRecentCompanySearches = rcs.IndexOf("rcs") == -1;
             IsInterfaceAC5On = !_matrixInterfaceService.ac5.ContainsAtAnyIndex("OFF");
             IsWMSegmentationPrdCO = _matrixInterfaceService.ac6.ContainsAtAnyIndex("ADVISOR-CO");
