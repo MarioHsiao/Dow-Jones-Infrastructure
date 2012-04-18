@@ -201,7 +201,7 @@ DJ.UI.ScrollBar = DJ.UI.Component.extend({
             self.scrollY = true;
             var paddingRight = parseInt($parentContainer.css('padding-right').replace(/[^-\d\.]/g, ''));
 
-            if (!self.options.paddingclip) paddingRight = 0;
+            if (!self.options.paddingclip) paddingRight = 1;
             $parentContainer.width(self.elemWidth + 5);
 
             //var scrollbarY = $.validator.format('<div class="{0}" style="height:{1}px; margin-left:{2}px; position:relative;"><div class="{3}" style="height:{1}px;"><div class="{4}"></div></div></div>', self.selectors.scrollbar.replace(".", ""), self.elemHeight, self.elemWidth, self.selectors.scrollbartrack.replace(".", ""), self.selectors.scrollbarthumb.replace(".", ""));
