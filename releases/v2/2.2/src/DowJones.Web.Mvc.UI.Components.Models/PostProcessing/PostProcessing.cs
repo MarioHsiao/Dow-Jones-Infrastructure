@@ -39,7 +39,7 @@ namespace DowJones.Web.Mvc.UI.Components.Models
         Read,
         [AssignedToken("save")]
         Save,
-        [AssignedToken("print")]
+        [AssignedToken("printLabel")]
         Print,
         [AssignedToken("email")]
         Email,
