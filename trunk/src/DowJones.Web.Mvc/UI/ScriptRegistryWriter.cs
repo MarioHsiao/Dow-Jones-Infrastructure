@@ -62,7 +62,7 @@ namespace DowJones.Web.Mvc.UI
 
         protected IEnumerable<string> GenerateUrls(IEnumerable<ClientResource> resources)
         {
-            if (ClientResourceCombiner != null)
+            if (ClientResourceCombiner != null)  
                 return ClientResourceCombiner.GenerateCombinedResourceUrls(resources);
             else
                 return resources.Select(x => ClientResourceManager.GenerateUrl(x, Culture));
@@ -82,14 +82,13 @@ namespace DowJones.Web.Mvc.UI
         public virtual void RenderHead(IScriptRegistry scriptRegistry, TextWriter writer)
         {
             var htmlWriter = writer as HtmlTextWriter ?? new HtmlTextWriter(writer);
-
             htmlWriter.RenderScriptInclude(ClientResourceManager.GenerateUrl(JQueryRequireResources, Culture));
 
             htmlWriter.OpenScriptBlock();
             RenderRequireConfiguration(writer);
             _clientConfiguration.WriteTo(writer);
             htmlWriter.CloseScriptBlock();
-
+            
             htmlWriter.RenderScriptInclude(ClientResourceManager.GenerateUrl(CommonResources, Culture));
         }
 

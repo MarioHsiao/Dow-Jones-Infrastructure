@@ -16,6 +16,8 @@ namespace DowJones.Web.Mvc.ActionFilters
         public void OnAuthorization(AuthorizationContext filterContext)
         {
             Log.Debug("Check for valid session");
+            Log.DebugFormat("ProxySession: {0}", Session.IsProxySession);
+            Log.DebugFormat("SessionId: {0}", Session.SessionId);
 
             if (Session.IsValid())
             {
