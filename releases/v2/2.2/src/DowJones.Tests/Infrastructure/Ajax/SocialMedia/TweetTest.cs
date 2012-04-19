@@ -57,7 +57,7 @@ namespace DowJones
 												}
 											}
 							};
-			const string Expected = "Credit Unions Quietly Prowling for Bank Acquisitions <a href=\"http://t.co/Y4izB0bN\" target=\"_blank\" data-expanded-url=\"http://shar.es/pg8L0\" rel=\"nofollow\">shar.es/pg8L0</a>";
+			const string Expected = "Credit Unions Quietly Prowling for Bank Acquisitions <a href=\"http://t.co/Y4izB0bN\" target=\"_blank\" data-expanded-url=\"http://shar.es/pg8L0\" title=\"http://shar.es/pg8L0\" rel=\"nofollow\">shar.es/pg8L0</a>";
 
 			Assert.AreEqual(Expected, target.Html);
 		}
@@ -165,7 +165,7 @@ namespace DowJones
 					}
 				}
 			};
-			const string Expected = "New @<a href=\"http://twitter.com/BankThink\" target=\"_blank\" data-id=\"37945091\" data-screen-name=\"BankThink\" rel=\"nofollow\">BankThink</a> <a href=\"http://twitter.com/search?q=%23Homeowners\" target=\"_blank\" title=\"#Homeowners\" rel=\"nofollow\">#Homeowners</a> serviced by <a href=\"http://twitter.com/search?q=%23Litton\" target=\"_blank\" title=\"#Litton\" rel=\"nofollow\">#Litton</a> were Goldman Sachs' other \"Muppets,\" writes Joel Sucher. $GS <a href=\"http://twitter.com/search?q=%23GregSmith\" target=\"_blank\" title=\"#GregSmith\" rel=\"nofollow\">#GregSmith</a> <a href=\"http://t.co/AIO3DiiG\" target=\"_blank\" data-expanded-url=\"http://bit.ly/wBlc7j\" rel=\"nofollow\">bit.ly/wBlc7j</a>";
+			const string Expected = "New @<a href=\"http://twitter.com/BankThink\" target=\"_blank\" data-id=\"37945091\" data-screen-name=\"BankThink\" rel=\"nofollow\">BankThink</a> <a href=\"http://twitter.com/search?q=%23Homeowners\" target=\"_blank\" title=\"#Homeowners\" rel=\"nofollow\">#Homeowners</a> serviced by <a href=\"http://twitter.com/search?q=%23Litton\" target=\"_blank\" title=\"#Litton\" rel=\"nofollow\">#Litton</a> were Goldman Sachs' other \"Muppets,\" writes Joel Sucher. $GS <a href=\"http://twitter.com/search?q=%23GregSmith\" target=\"_blank\" title=\"#GregSmith\" rel=\"nofollow\">#GregSmith</a> <a href=\"http://t.co/AIO3DiiG\" target=\"_blank\" data-expanded-url=\"http://bit.ly/wBlc7j\" title=\"http://bit.ly/wBlc7j\" rel=\"nofollow\">bit.ly/wBlc7j</a>";
 
 			Assert.AreEqual(Expected, target.Html);
 		}

@@ -60,7 +60,7 @@ namespace DowJones.Ajax.SocialMedia
     		{
 				// account for case insensitity 
     			var value = text.Substring(url.StartIndex, url.EndIndex - url.StartIndex);
-				html = text.Replace(value, string.Format("<a href=\"{1}\" target=\"_blank\" data-expanded-url=\"{2}\" rel=\"nofollow\">{0}</a>", url.DisplayValue, url.Value, url.ExpandedValue));
+				html = text.Replace(value, string.Format("<a href=\"{1}\" target=\"_blank\" data-expanded-url=\"{2}\" title=\"{2}\" rel=\"nofollow\">{0}</a>", url.DisplayValue, url.Value, url.ExpandedValue));
     		}
 
 
