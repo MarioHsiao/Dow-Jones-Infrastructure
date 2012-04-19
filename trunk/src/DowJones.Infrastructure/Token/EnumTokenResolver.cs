@@ -59,9 +59,7 @@ namespace DowJones.Token
         {
             var attributes = member.GetCustomAttributes(typeof(AssignedToken),false);
             var assignedToken = attributes.OfType<AssignedToken>().FirstOrDefault();
-
             var hasAssignedToken = assignedToken != null && assignedToken.Token.HasValue();
-
             return hasAssignedToken ? assignedToken.Token : null;
         }
     }

@@ -186,6 +186,7 @@ namespace DowJones.Assemblers.Charting.MarketData
                     marketResult.Isin = match.Instrument.Isin;
                     marketResult.Sedol = match.Instrument.Sedol;
                     marketResult.Cusip = match.Instrument.Cusip;
+                    marketResult.Currency = match.Trading.Open.Iso;
                     marketResult.Name = string.Concat(match.Instrument.CommonName, " [", match.Instrument.Exchange.Ticker, "]");
                     marketResult.High = new DoubleNumberStock(match.Trading.High.Value);
                     marketResult.Low = new DoubleNumberStock(match.Trading.Low.Value);

@@ -26,6 +26,9 @@ namespace DowJones.Models.Charting.MarketData
         [DataMember(Name = "fCode")]
         public string FCode { get; set; }
 
+        [DataMember(Name = "currency")]
+        public string Currency { get; set; }
+
         [DataMember(Name = "isin")]
         public string Isin { get; set; }
 
