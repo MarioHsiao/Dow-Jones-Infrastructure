@@ -20,20 +20,26 @@ namespace DowJones.Infrastructure.Common
         /// Used for identifying application in session cache API
         /// </summary>
         string CacheApplication { get; }
+
+        bool IsSocialMediaBlockingOn { get; }
     }
 
     public class Product : IProduct, IEquatable<Product>, IComparable<Product>
     {
-        public Product(string productId, string cacheApplication) : this(productId, cacheApplication, null)
+        public Product(string productId, string cacheApplication)
+            : this(productId, cacheApplication, null)
         {
         }
 
-        public Product(string productId, string cacheApplication, string sourceGroupConfigurationId)
+        public Product(string productId, string cacheApplication, string sourceGroupConfigurationId, bool isSocialMediaBlockingOn = false)
         {
             CacheApplication = cacheApplication;
             Id = productId;
             SourceGroupConfigurationId = sourceGroupConfigurationId;
+            IsSocialMediaBlockingOn = isSocialMediaBlockingOn;
         }
+
+        public bool IsSocialMediaBlockingOn { get; private set; }
 
         /// <summary>
         /// Source configuration id is used to get source grouping list asset from PAM.
