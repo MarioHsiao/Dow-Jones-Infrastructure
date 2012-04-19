@@ -87,6 +87,12 @@ namespace DowJones.Web.Mvc.UI.Components.Models
         /// </summary>
         [JsonProperty("lookUpAdditionalFooterNotes")]
         public Dictionary<DowJones.Utilities.Search.Core.FilterType, string> LookUpAdditionalFooterNotes { get; set; }
+
+        /// <summary>
+        /// Gets or Sets the Source Filters
+        /// </summary>
+        [JsonProperty("additionalSourceFilters")]
+        public List<CodeDesc> AdditionalSourceFilters { get; set; }
     }
 
     public class SearchBuilderModel : CompositeComponentModel
@@ -235,16 +241,10 @@ namespace DowJones.Web.Mvc.UI.Components.Models
         }
 
         /// <summary>
-        /// Gets or Sets ShowSortBy
+        /// Gets or Sets ShowDisplayOptions
         /// </summary>
-        [ClientProperty("showSortBy")]
-        public bool ShowSortBy { get; set; }
-
-        /// <summary>
-        /// Gets or Sets ShowIdentifyDuplicates
-        /// </summary>
-        [ClientProperty("showIdentifyDuplicates")]
-        public bool ShowIdentifyDuplicates { get; set; }
+        [ClientProperty("showDisplayOptions")]
+        public bool ShowDisplayOptions { get; set; }
 
         /// <summary>
         /// Gets the formatted End Date
