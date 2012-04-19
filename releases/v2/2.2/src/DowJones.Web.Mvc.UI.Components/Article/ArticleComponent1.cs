@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Web.UI.WebResourceAttribute("DowJones.Web.Mvc.UI.Components.Article.ArticleComponent.js", "text/javascript")]
+using DowJones.Web.Mvc.UI.Components.Models;
 
 namespace DowJones.Web.Mvc.UI.Components.Article
 {
@@ -30,9 +30,9 @@ namespace DowJones.Web.Mvc.UI.Components.Article
     using System.Text.RegularExpressions;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 03/29/2012 03:46 PM
+    // Last Generated Timestamp: 04/19/2012 02:46 PM
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.Article.ArticleComponent.js", ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.Article.ArticleComponent))]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.19368")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "0.0.0.30158")]
     public class ArticleComponent : DowJones.Web.Mvc.UI.ViewComponentBase<DowJones.Web.Mvc.UI.Components.Models.Article.ArticleModel>
     {
 #line hidden
@@ -49,6 +49,7 @@ namespace DowJones.Web.Mvc.UI.Components.Article
         }
         public override void ExecuteTemplate()
         {
+
 
 
 
@@ -596,7 +597,7 @@ WriteLiteral("\"></i><span data-workflow=\"");
 WriteLiteral("\">");
 
 
-                                                                                                                                                                                                                                       Write(DJ.Token(item.ToString().ToLower()));
+                                                                                                                                                                                                                                       Write(DJ.Token(DJ.GetAssignedAttribute<PostProcessingOptions>(item.ToString())));
 
 WriteLiteral("</span></li>\r\n");
 

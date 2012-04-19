@@ -83,7 +83,7 @@ namespace DowJones.Web.Mvc.Search.Controllers
             if (articlesRequest.IsValid)
             {
                 var postProcessOptions = new List<PostProcessingOptions>();
-                postProcessOptions.AddRange(new [] {PostProcessingOptions.Save, PostProcessingOptions.PrintLabel, PostProcessingOptions.Email, });
+                postProcessOptions.AddRange(new [] {PostProcessingOptions.Save, PostProcessingOptions.Print, PostProcessingOptions.Email, });
                 if (UserContext.Principle.CoreServices.AlertsService.HasPressClipsEnabled)
                 {
                     postProcessOptions.Add(PostProcessingOptions.PressClips);

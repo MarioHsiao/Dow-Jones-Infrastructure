@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
+using DowJones.Attributes;
 using DowJones.DependencyInjection;
 using DowJones.Extensions;
 using DowJones.Infrastructure;
@@ -196,6 +197,17 @@ namespace DowJones.Web.Mvc.UI
         public IHtmlString Token(string name)
         {
             return new HtmlString(_tokenRegistry.Get(name));
+        }
+
+        /// <summary>
+        /// Retrieves Assignes Token Attribute
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="val"></param>
+        /// <returns></returns>
+        public string GetAssignedAttribute<T>(string val)
+        {
+            return ((AssignedToken)Attribute.GetCustomAttribute(typeof(T).GetField(val), typeof(AssignedToken))).Token;
         }
 
         /// <summary>
