@@ -213,13 +213,16 @@ namespace DowJones.Managers.SocialMedia
         /// <param name="channel">The channel.</param>
         /// <param name="count">The count.</param>
         /// <returns></returns>
-        public GetTweetsByChannelResponse GetTweetsByChannel(string channel, RequestOptions requestOptions = null)
+        public GetTweetsByChannelResponse GetTweetsByChannel(string channel, RequestOptions requestOptions = null, bool enableBlocking = false)
         {
             //Check Social Media Blocking
-            AuthorizationManager manager = new AuthorizationManager(_controlData);
-            if (manager.IsSocialMediaBlocked())
+            if (enableBlocking)
             {
-                throw new DowJonesUtilitiesException(DowJonesUtilitiesException.SocialMediaNotEntitled);
+                AuthorizationManager manager = new AuthorizationManager(_controlData);
+                if (manager.IsSocialMediaBlocked())
+                {
+                    throw new DowJonesUtilitiesException(DowJonesUtilitiesException.SocialMediaNotEntitled);
+                }
             }
             Guard.IsNotNullOrEmpty(channel, "channel");
             if (requestOptions == null)
@@ -232,13 +235,16 @@ namespace DowJones.Managers.SocialMedia
             return response;
         }
 
-        public GetTweetsByChannelResponse GetTweetsByIndustry(string industry, RequestOptions requestOptions = null)
+        public GetTweetsByChannelResponse GetTweetsByIndustry(string industry, RequestOptions requestOptions = null, bool enableBlocking = false)
         {
             //Check Social Media Blocking
-            AuthorizationManager manager = new AuthorizationManager(_controlData);
-            if (manager.IsSocialMediaBlocked())
+            if (enableBlocking)
             {
-                throw new DowJonesUtilitiesException(DowJonesUtilitiesException.SocialMediaNotEntitled);
+                AuthorizationManager manager = new AuthorizationManager(_controlData);
+                if (manager.IsSocialMediaBlocked())
+                {
+                    throw new DowJonesUtilitiesException(DowJonesUtilitiesException.SocialMediaNotEntitled);
+                }
             }
             Guard.IsNotNullOrEmpty(industry, "industry");
 
@@ -251,13 +257,16 @@ namespace DowJones.Managers.SocialMedia
             return GetTweetsByChannel(channel, requestOptions);
         }
 
-        public GetExpertsByIndustryResponse GetExpertsByIndustry(string industry, RequestOptions requestOptions = null)
+        public GetExpertsByIndustryResponse GetExpertsByIndustry(string industry, RequestOptions requestOptions = null,  bool enableBlocking = false)
         {
             //Check Social Media Blocking
-            AuthorizationManager manager = new AuthorizationManager(_controlData);
-            if (manager.IsSocialMediaBlocked())
+            if (enableBlocking)
             {
-                throw new DowJonesUtilitiesException(DowJonesUtilitiesException.SocialMediaNotEntitled);
+                AuthorizationManager manager = new AuthorizationManager(_controlData);
+                if (manager.IsSocialMediaBlocked())
+                {
+                    throw new DowJonesUtilitiesException(DowJonesUtilitiesException.SocialMediaNotEntitled);
+                }
             }
             Guard.IsNotNullOrEmpty(industry, "industry");
 
@@ -276,13 +285,16 @@ namespace DowJones.Managers.SocialMedia
         }
 
 
-        public GetMetaByIndustryResponse GetMetaByIndustry(string industry, RequestOptions requestOptions)
+        public GetMetaByIndustryResponse GetMetaByIndustry(string industry, RequestOptions requestOptions, bool enableBlocking = false)
         {
             //Check Social Media Blocking
-            AuthorizationManager manager = new AuthorizationManager(_controlData);
-            if (manager.IsSocialMediaBlocked())
+            if (enableBlocking)
             {
-                throw new DowJonesUtilitiesException(DowJonesUtilitiesException.SocialMediaNotEntitled);
+                AuthorizationManager manager = new AuthorizationManager(_controlData);
+                if (manager.IsSocialMediaBlocked())
+                {
+                    throw new DowJonesUtilitiesException(DowJonesUtilitiesException.SocialMediaNotEntitled);
+                }
             }
             Guard.IsNotNullOrEmpty(industry, "industry");
 

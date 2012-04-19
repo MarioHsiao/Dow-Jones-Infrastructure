@@ -65,7 +65,7 @@ namespace DowJones.Infrastructure.SocialMedia.Tests
 			DJSession.IControlData _controlData = new DJSession.ControlData { UserID = "snap_proxy", UserPassword = "pa55w0rd", ProductID = "16" };
             var target = new SocialMediaService(new TweetRiverProvider(), new PAMSocialMediaIndustryProvider(_controlData), _controlData);
             const string industryCode = "iacc";
-            var actual = target.GetTweetsByIndustry(industryCode, new RequestOptions { Limit = 20 });
+            var actual = target.GetTweetsByIndustry(industryCode, new RequestOptions { Limit = 20 }, true);
             Assert.AreEqual(Status.Success, actual.Status);
             Assert.IsTrue(actual.Capacity > 0);
         }
