@@ -41,7 +41,7 @@ namespace DowJones.Web.Mvc.UI.Components.Models
         [AssignedToken("save")]
         Save,
         [AssignedToken("printLabel")]
-        Print,
+        PrintLabel,
         [AssignedToken("email")]
         Email,
         [AssignedToken("pressClips")]
