@@ -9,7 +9,7 @@
  }
 @foreach (var expert in Model.Experts)
 {
-    <li data-user-id="@expert.Id" data-screen-name="@expert.ScreenName" data-full-name="@expert.FullName" class="dj_experts-item clear">
+    <li data-user-id="@expert.Id" data-screen-name="@expert.ScreenName" data-full-name="@expert.FullName" class="dj_experts-item clearfix">
         <img class="expert-profile-link" alt="@expert.FullName" src="@expert.ProfileImageUrl" />
         <div class="dj_author-meta">
             <a title="@expert.FullName" href="@expert.ProfileUrl" class="dj_full-name" target="_blank">

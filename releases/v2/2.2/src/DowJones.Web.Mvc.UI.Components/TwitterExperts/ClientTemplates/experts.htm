@@ -8,7 +8,7 @@
         fullName = expert.fullName;
         profileImageUrl = expert.profileImageUrl;
 %>
-<li data-user-id="<%= expert.id %>" data-full-name="<%= fullName %>" data-screen-name="<%= expert.screenName %>" class="dj_experts-item clear">
+<li data-user-id="<%= expert.id %>" data-full-name="<%= fullName %>" data-screen-name="<%= expert.screenName %>" class="dj_experts-item clearfix">
     <img class="expert-profile-link" alt="<%= fullName %>" src="<%= profileImageUrl %>" />
     <div class="dj_author-meta">
         <a title="<%= fullName %>" href="<%= profileUrl %>" class="dj_full-name" target="_blank">
