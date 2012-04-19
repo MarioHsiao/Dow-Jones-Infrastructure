@@ -10,6 +10,7 @@
             sbTopContainer: 'div.dj_advanced-search-wrap',
             searchTextBox: 'textarea.text-field',
             searchCriteria: 'div.dj_select-box-alt',
+            modifySearch: 'div.dj_modify-search',
             selectBoxes: 'select.dj_selectbox',
             searchInDD: 'select.searchIn',
             dateDD: 'select.date',
@@ -42,7 +43,6 @@
             footer: 'div.footer',
             doneBtn: 'span.dj_btn-blue',
             cancelBtn: 'span.dj_btn-drk-gray',
-            checkFilters: 'div.check-filters',
             duplicate: 'input.duplicates',
             grayBtn: 'span.dj_btn-drk-grey',
             newsFilter: '.news-filter',
@@ -164,27 +164,24 @@
         },
 
         _initializeControls: function () {
-            var $filtersWrap = this.$element.children(this.selectors.filtersWap), searchCriteriaChildrens;
-            var $sbTopContainer = this.$element.children(this.selectors.sbTopContainer);
+            var $filtersWrap = this.$element.children(this.selectors.filtersWap),
+                $sbTopContainer = this.$element.children(this.selectors.sbTopContainer);
 
             this.$searchTexBox = $sbTopContainer.children(":first").children(this.selectors.searchTextBox);
 
-            searchCriteriaChildrens = $sbTopContainer.children(this.selectors.searchCriteria).children();
+            var $searchOptions = $sbTopContainer.children(this.selectors.searchCriteria).children().eq(0).children(this.selectors.modifySearch),
+                $displayOptions = $searchOptions.parent().next().children(this.selectors.modifySearch);
 
-            this.$dateWrap = searchCriteriaChildrens.filter(this.selectors.dateWrap);
+            this.$dateWrap = $searchOptions.children(this.selectors.dateWrap);
             this.$datePickers = this.$dateWrap.children(this.selectors.datePicker);
             this.$startDate = this.$datePickers.eq(0);
             this.$endDate = this.$datePickers.eq(1);
-            this.$searchInDD = searchCriteriaChildrens.filter(this.selectors.searchInDD);
-            if (this.options.showSortBy) {
-                this.$sortByDD = searchCriteriaChildrens.filter(this.selectors.sortByDD);
-            }
-            this.$dateDD = searchCriteriaChildrens.filter(this.selectors.dateDD);
-            this.$excludeBtn = searchCriteriaChildrens.filter(this.selectors.excludeBtn);
-            var $checkFilters = searchCriteriaChildrens.filter(this.selectors.checkFilters);
-
-            if (this.options.showIdentifyDuplicates) {
-                this.$duplicate = $checkFilters.children(this.selectors.duplicate);
+            this.$searchInDD = $searchOptions.children(this.selectors.searchInDD);
+            this.$dateDD = $searchOptions.children(this.selectors.dateDD);
+            this.$excludeBtn = $searchOptions.children(this.selectors.excludeBtn);
+            if (this.options.showDisplayOptions) {
+                this.$sortByDD = $displayOptions.children(this.selectors.sortByDD);
+                this.$duplicate = $displayOptions.children(this.selectors.duplicate);
             }
 
             this.$filtersList = $filtersWrap.children(this.selectors.filtersContainer).children(this.selectors.filtersList);
@@ -242,10 +239,7 @@
 
             // Select Box
             $().add(this.$searchInDD).add(this.$dateDD).selectbox().change();
-            if (this.options.showSortBy) {
-                this.$sortByDD.selectbox().change();
-            }
-
+            
             //Custom date range
             this.$dateDD.change(function () {
                 me.$dateWrap.toggle(this.value == me.$dateDD.find("option:last").val());
@@ -266,8 +260,9 @@
             //Exclusions
             this.$excludeBtn.click($dj.delegate(this, this._showExclusions));
 
-            //Duplicate
-            if (this.options.showIdentifyDuplicates) {
+            //Sort By and Duplicates
+            if (this.options.showDisplayOptions) {
+                this.$sortByDD.selectbox().change();
                 this.$duplicate.attr('id', elementId + '_duplicate').next().attr('for', elementId + '_duplicate');
             }
 
@@ -435,6 +430,7 @@
                 if (isSource) {
                     data.sourceGroup = this.data.sourceGroup;
                     data.sourceFilters = this.data.additionalSourceFilters || [];
+                    data.additionalSourceFilters = this.data.additionalSourceFilters;
                 }
 
                 data.filters = this._getFilters(filterType);
@@ -612,8 +608,66 @@
             filterItem.addClass('expanded');
         },
 
+        _processSourceFilterFromDom: function (elem) {
+            var f = [], $item = $(elem), type, code, desc;
+            if ($item.data("code1")) {
+                type = $item.data("type");
+                code = (type == "SN") ? unescape($item.data("code")) : $item.data("code");
+                desc = (type == "SN") ? code : unescape($item.data("desc"));
+
+                f.push({ code: code, desc: desc, type: type });
+
+                type = $item.data("type1");
+                code = (type == "BY") ? unescape($item.data("code1")) : $item.data("code1");
+                desc = (type == "BY") ? code : unescape($item.data("desc1"));
+
+                f.push({ code: code, desc: desc, type: type });
+            }
+            else {
+                type = $item.data("type");
+                code = (type == "SN") ? unescape($item.attr("code")) : $item.attr("code");
+                desc = (type == "SN") ? code : $item.find('span:first').text();
+
+                f.push({ code: code, desc: desc, type: type });
+            }
+            return f;
+        },
+
+        _processSourceFilterFromObject: function (filter) {
+            var f, item, type, code, eCode;
+            item = filter[0];
+            type = item.type;
+            code = item.code;
+            eCode = (type == "SN") ? escape(code) : '';
+            f = [{
+                code: eCode || code.toLowerCase(),
+                desc: eCode || escape(item.desc),
+                type: type,
+                cdesc: item.desc
+            }];
+
+            if (filter.length > 1) {//If multiple filters
+                item = filter[1];
+                type = item.type;
+                code = item.code;
+                eCode = (type == "BY") ? escape(code) : '';
+                f.push({
+                    code: eCode || code.toLowerCase(),
+                    desc: eCode || escape(item.desc),
+                    type: type
+                });
+
+                if (type == "BY") {
+                    f[0].cdesc += " (" + item.desc + ")";
+                }
+                else {
+                    f[0].cdesc += ": " + item.desc;
+                }
+            }
+            return f;
+        },
+
         _bindFilters: function (filters, filterType, setQueryOperator) {
-            var me = this;
             var filterItem = this.$filtersList.children("li[data-type='" + filterType + "']");
 
             var filterItemPillList = filterItem.children(this.selectors.pillListWrap).children();
@@ -625,6 +679,8 @@
             notPillList.children(":gt(0)").remove();
 
             if (filters && ((filters.include && filters.include.length > 0) || (filters.exclude && filters.exclude.length > 0) || filters.list)) {
+                var hasIncludes = (filters.include && filters.include.length > 0),
+                    hasExcludes = (filters.exclude && filters.exclude.length > 0);
 
                 if (!filterItem.hasClass("expanded")) {
                     this._expandAndAppendFilterItem(filterItem);
@@ -633,46 +689,21 @@
                 if (filterType == this.filterDetails[this.filterType.Source].name) {
                     if (filters.list) {
                         filters.list.type = "LIST";
-                        pillList.append(me.templates.sourceFilterPill({ filter: filters.list }));
+                        pillList.append(this.templates.sourceFilterPill({ filter: filters.list }));
                         //Hide Save List
                         filterItem.children(this.selectors.filtersToolbar).children(this.selectors.saveList).addClass("hidden");
                     }
                     else {
-                        //Included filters
-                        if (filters.include && filters.include.length > 0) {
-                            var f, item, type, code, eCode;
-                            $.each(filters.include, function () {
-                                item = this[0];
-                                type = item.type;
-                                code = item.code;
-                                eCode = (type == "SN") ? escape(code) : '';
-                                f = [{
-                                    code: eCode || code.toLowerCase(),
-                                    desc: eCode || escape(item.desc),
-                                    type: type,
-                                    cdesc: item.desc
-                                }];
+                        if (hasIncludes) {
+                            for (var i = 0, l = filters.include.length; i < l; i++) {
+                                pillList.append(this.templates.sourceFilterPill({ filter: this._processSourceFilterFromObject(filters.include[i]) }));
+                            };
+                        }
 
-                                if (this.length > 1) {//If multiple filters
-                                    item = this[1];
-                                    type = item.type;
-                                    code = item.code;
-                                    eCode = (type == "BY") ? escape(code) : '';
-                                    f.push({
-                                        code: eCode || code.toLowerCase(),
-                                        desc: eCode || escape(item.desc),
-                                        type: type
-                                    });
-
-                                    if (type == "BY") {
-                                        f[0].cdesc += " (" + item.desc + ")";
-                                    }
-                                    else {
-                                        f[0].cdesc += ": " + item.desc;
-                                    }
-                                }
-                                pillList.append(me.templates.sourceFilterPill({ filter: f }));
-                            });
+                        if (hasExcludes) {
+                            for (var i = 0, l = filters.exclude.length; i < l; i++) {
+                                notPillList.append(this.templates.sourceFilterPill({ filter: this._processSourceFilterFromObject(filters.exclude[i]) }));
+                            };
                         }
 
                         //Show Save List
@@ -680,18 +711,16 @@
                     }
                 }
                 else {
-                    //Included filters
-                    if (filters.include && filters.include.length > 0) {
-                        $.each(filters.include, function () {
-                            pillList.append(me.templates.filterPill({ filter: this }));
-                        });
+                    if (hasIncludes) {
+                        for (var i = 0, l = filters.include.length; i < l; i++) {
+                            pillList.append(this.templates.filterPill({ filter: filters.include[i] }));
+                        };
                     }
 
-                    //Excluded filters
-                    if (filters.exclude && filters.exclude.length > 0) {
-                        $.each(filters.exclude, function () {
-                            notPillList.append(me.templates.filterPill({ filter: this }));
-                        });
+                    if (hasExcludes) {
+                        for (var i = 0, l = filters.exclude.length; i < l; i++) {
+                            notPillList.append(this.templates.filterPill({ filter: filters.exclude[i] }));
+                        };
                     }
 
                     if (setQueryOperator) {
@@ -726,59 +755,39 @@
                 type[filterType] = this.filterType[filterType];
             }
 
-            var noFilters = true, filterItem, $filterItems, $item, type, code, desc, filter;
+            var noFilters = true, filterItem, $filterItems;
             $.each(type, function (key, val) {
                 item = {};
 
                 filterItem = me.$filtersList.children("li[data-type='" + key + "']");
 
                 if (filterItem.hasClass("expanded")) {//Check if the item has filters
-                    //Operator
-                    operator = (filterItem.children(me.selectors.filtersToolbar)
-                                .children(me.selectors.toggleOperatorSwitch).children("span.switch").hasClass("on")) ? me.searchOperator.And : me.searchOperator.Or;
-
                     filterItem = filterItem.children(me.selectors.pillListWrap).children();
+                    item = { include: [], exclude: [] };
 
                     if (key == me.filterDetails[me.filterType.Source].name) {
-                        //Include filters
+
                         $filterItems = filterItem.eq(0).children("[code]");
                         if ($filterItems.length == 1 && $filterItems.eq(0).data("type") == "LIST") {
-                            item.list = { code: $filterItems.eq(0).attr("code"), desc: $.trim($filterItems.eq(0).text()) };
+                            item.list = { code: $filterItems.eq(0).attr("code"), desc: $.trim($filterItems.eq(0).find('span:first').text()) };
                         }
                         else {
-                            item.include = [];
-                            //Include filters
+                            item.operator = me.searchOperator.Or;
+
                             $.each($filterItems, function () {
-                                filter = [];
-                                $item = $(this);
-                                if ($item.data("code1")) {
+                                item.include.push(me._processSourceFilterFromDom(this));
+                            });
 
-                                    type = $item.data("type");
-                                    code = (type == "SN") ? unescape($item.data("code")) : $item.data("code");
-                                    desc = (type == "SN") ? code : unescape($item.data("desc"));
-
-                                    filter.push({ code: code, desc: desc, type: type });
-
-                                    type = $item.data("type1");
-                                    code = (type == "BY") ? unescape($item.data("code1")) : $item.data("code1");
-                                    desc = (type == "BY") ? code : unescape($item.data("desc1"));
-
-                                    filter.push({ code: code, desc: desc, type: type });
-                                }
-                                else {
-                                    type = $item.data("type");
-                                    code = (type == "SN") ? unescape($item.attr("code")) : $item.attr("code");
-                                    desc = (type == "SN") ? code : $item.text();
-
-                                    filter.push({ code: code, desc: desc, type: type });
-                                }
-                                item.include.push(filter);
+                            $.each(filterItem.eq(1).children("[code]"), function () {
+                                item.exclude.push(me._processSourceFilterFromDom(this));
                             });
                         }
 
                     }
                     else {
-                        item = { include: [], exclude: [], operator: operator };
+                        item.operator = (filterItem.children(me.selectors.filtersToolbar)
+                                .children(me.selectors.toggleOperatorSwitch).children("span.switch").hasClass("on")) ? me.searchOperator.And : me.searchOperator.Or;
+
                         //Include filters
                         $.each(filterItem.eq(0).children("[code]"), function () {
                             $this = $(this);
@@ -791,8 +800,6 @@
                             item.exclude.push({ code: $this.attr('code'), desc: $this.find('span:first').text() });
                         });
                     }
-
-
 
                     //While checking for NO filters ignore Language and Source filter
                     if ((key != me.filterDetails[me.filterType.Language].name) && (key != me.filterDetails[me.filterType.Source].name)) {
@@ -839,8 +846,8 @@
 
         _onFilterClick: function (elem) {
             var $li = $(elem).closest(this.selectors.filterPill);
-            if ($li.hasClass("add")) {
-                return;
+            if ($li.hasClass("add") || ($li.data('type') == "LIST")) {
+                return; //Do not show filter options for a list
             }
             this.$filterOptions.children("div").children().show().filter(":eq(" + ($(elem).closest("ul").hasClass("not-filter") ? "1" : "2") + ")").hide();
             $li.append(this.$filterOptions);
@@ -950,18 +957,16 @@
                 reqObj.freeText = (this.$searchTexBox.val() != this._sbSearchBoxWMText) ? $.trim(this.$searchTexBox.val()) : "";
                 reqObj.searchIn = this.$searchInDD.val();
 
-                if (this.options.showSortBy) {
-                    reqObj.sortBy = this.$sortByDD.val();
-                }
-
                 reqObj.dateRange = this.$dateDD.val();
                 if (reqObj.dateRange == this.$dateDD.find("option:last").val()) {
                     reqObj.startDate = (new Date(validationResult.startDate)).format("yyyymmdd");
                     reqObj.endDate = (new Date(validationResult.endDate)).format("yyyymmdd");
                 }
+
                 reqObj.exclusionFilter = this.$excludeBtn.data("excludedItems");
 
-                if (this.options.showIdentifyDuplicates) {
+                if (this.options.showDisplayOptions) {
+                    reqObj.sortBy = this.$sortByDD.val();
                     reqObj.duplicates = this.$duplicate.is(":checked");
                 }
 
@@ -1044,11 +1049,6 @@
                     //Search In
                     this.$searchInDD.val(d.searchIn).change();
 
-                    //Sorty By
-                    if (this.options.showSortBy) {
-                        this.$sortByDD.val(d.sortBy).change();
-                    }
-
                     //Date Range
                     if (!d.dateRange) {
                         this.$dateDD.val(d.dateRange).change();
@@ -1071,11 +1071,11 @@
                         }
                     }
 
-                    //Duplicates
-                    if (this.options.showIdentifyDuplicates) {
+                    //Sort By && Duplicates
+                    if (this.options.showDisplayOptions) {
+                        this.$sortByDD.val(d.sortBy).change();
                         this.$duplicate.attr("checked", d.duplicates);
                     }
-
                 }
 
                 //Exclusions

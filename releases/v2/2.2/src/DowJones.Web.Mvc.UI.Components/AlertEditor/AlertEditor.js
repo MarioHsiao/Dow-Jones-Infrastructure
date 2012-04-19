@@ -305,7 +305,7 @@
             if (this.$alertDeliveryMethod.find('input:checked').val() == "scheduled") {
                 this.$alertDelivery.show();
             }
-            else{ 
+            else {
                 if (this.$alertDeliveryMethod.find('input:checked').val() == "continuous") {
                     this.$alertEmail.attr("disabled", false);
                     this.$alertFormatDD.attr("disabled", false);
@@ -339,7 +339,7 @@
                         $.each($filterGroup.children(me.selectors.filterList).children(), function () {
                             $this = $(this);
                             desc = $.trim($this.text());
-                            f[category].push({ code: ($this.data("code") || desc), desc: desc, codeType:  ($this.data("codetype") || '')});
+                            f[category].push({ code: ($this.data("code") || desc), desc: desc, codeType: ($this.data("codetype") || '') });
                         });
                     }
                 });
@@ -373,10 +373,10 @@
                     }
                 });
             }
-            else if(dlvryMethod == "continuous"){
+            else if (dlvryMethod == "continuous") {
                 dlvryTimes.push(me.deliveryTimes.Continuous);
             }
-            else{
+            else {
                 dlvryTimes.push(me.deliveryTimes.None);
             }
             return dlvryTimes;
@@ -481,13 +481,17 @@
             this._bindSearchQuery(d.searchQuery);
 
             this.$alertName.val(alertProperties.alertName);
+
             if (alertProperties.emailAddress) {
                 this.$alertEmail.val(unescape(alertProperties.emailAddress).replace(/%2B/g, '+'));
             }
             else {
                 this.$alertEmail.val('');
             }
-            this.$alertFormatDD.val(alertProperties.documentFormat).change();
+
+            if (alertProperties.documentFormat) {
+                this.$alertFormatDD.val(alertProperties.documentFormat).change();
+            }
 
             //This will take care of settting deliery times as well
             this._setDeliveryMethod(alertProperties.newDeliveryTimes || [this.deliveryTimes.None]);

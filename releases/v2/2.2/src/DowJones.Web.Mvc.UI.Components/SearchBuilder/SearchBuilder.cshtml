@@ -26,50 +26,55 @@
 	    @*<span>@DJ.Token("clear")</span>*@
 	</div>
     <div class="dj_select-box-alt">
-        <strong>@DJ.Token("options")</strong>
-        <span>@DJ.Token("searchWithin"):</span>
-        <select class="searchIn dj_selectbox dj_selectbox-small">
-            @{
-                foreach (var area in Model.SearchFreeTextArea)
-                {
-                    <option value="@area.Code" @(area.Code == ((int)Model.Data.SearchIn).ToString()?"selected":"")>@area.Desc</option>    
-                }
-            }
-        </select>
-        <span>@DJ.Token("dateRange"):</span>
-        <select class="date dj_selectbox dj_selectbox-small">
-            @{
-                foreach (var dateRange in Model.DateRange)
-                {
-                    <option value="@dateRange.Code" @(dateRange.Code == ((int)Model.Data.DateRange).ToString() ? "selected" : "")>@dateRange.Desc</option>    
-                }
-            }
-        </select>
-        <div class="date-wrap" style="@(Model.Data.DateRange == SearchDateRange.Custom ? "" : "display:none;")">
-			<input type="text" class="datepicker" maxlength="10" value="@Model.FormattedStartDate" />
-		</div>
-        <div class="date-wrap second" style="@(Model.Data.DateRange == SearchDateRange.Custom ? "" : "display:none;")">
-			<label>@DJ.Token("to")</label>
-			<input type="text" class="datepicker" maxlength="10" value="@Model.FormattedEndDate" />
-		</div>
-        <span class="dj_btn exclude dj_btn-rounded-square">@DJ.Token("exclude") (<span>@(Model.Data.ExclusionFilter != null ? Model.Data.ExclusionFilter.Count().ToString() : "0")</span>)</span>
-        @if(Model.ShowSortBy){
-            <span>@DJ.Token("display"):</span>
-            <select class="sortBy dj_selectbox dj_selectbox-small">
-                @{
-                    foreach (var sortOrder in Model.SortBy)
-                    {
-                        <option value="@sortOrder.Code" @(sortOrder.Code == ((int)Model.Data.SortBy).ToString() ? "selected" : "")>@sortOrder.Desc</option>    
+        <div class="dj_search-display-options">
+            <span class="dj_options-label">@DJ.Token("searchOptions")</span>
+            <div class="dj_modify-search">
+                <span>@DJ.Token("searchWithin"):</span>
+                <select class="searchIn dj_selectbox dj_selectbox-small">
+                    @{
+                        foreach (var area in Model.SearchFreeTextArea)
+                        {
+                            <option value="@area.Code" @(area.Code == ((int)Model.Data.SearchIn).ToString()?"selected":"")>@area.Desc</option>    
+                        }
                     }
-                }
-            </select>
-        }
-        @if (Model.ShowIdentifyDuplicates)
+                </select>
+                <span>@DJ.Token("dateRange"):</span>
+                <select class="date dj_selectbox dj_selectbox-small">
+                    @{
+                        foreach (var dateRange in Model.DateRange)
+                        {
+                            <option value="@dateRange.Code" @(dateRange.Code == ((int)Model.Data.DateRange).ToString() ? "selected" : "")>@dateRange.Desc</option>    
+                        }
+                    }
+                </select>
+                <div class="date-wrap" style="@(Model.Data.DateRange == SearchDateRange.Custom ? "" : "display:none;")">
+			        <input type="text" class="datepicker" maxlength="10" value="@Model.FormattedStartDate" />
+		        </div>
+                <div class="date-wrap second" style="@(Model.Data.DateRange == SearchDateRange.Custom ? "" : "display:none;")">
+			        <label>@DJ.Token("to")</label>
+			        <input type="text" class="datepicker" maxlength="10" value="@Model.FormattedEndDate" />
+		        </div>
+                <span class="dj_btn exclude dj_btn-rounded-square">@DJ.Token("exclude") (<span>@(Model.Data.ExclusionFilter != null ? Model.Data.ExclusionFilter.Count().ToString() : "0")</span>)</span>
+            </div>
+        </div>
+        @if (Model.ShowDisplayOptions)
         {
-            <div class="check-filters">
-			    <input type="checkbox" class="duplicates" @(Model.Data.Duplicates ? "checked" : "") />
-			    <label>@DJ.Token("duplicatesOn")</label>
-		    </div>
+            <div class="dj_search-display-options">
+                <span class="dj_options-label">@DJ.Token("displayOptions")</span>
+                <div class="dj_modify-search">
+                    <span>@DJ.Token("sortOrder"):</span>
+                    <select class="sortBy dj_selectbox dj_selectbox-small">
+                        @{
+                            foreach (var sortOrder in Model.SortBy)
+                            {
+                                <option value="@sortOrder.Code" @(sortOrder.Code == ((int)Model.Data.SortBy).ToString() ? "selected" : "")>@sortOrder.Desc</option>    
+                            }
+                        }
+                    </select>
+			        <input type="checkbox" class="duplicates" @(Model.Data.Duplicates ? "checked" : "") />
+			        <label>@DJ.Token("duplicatesOn")</label>
+                </div>
+            </div>
         }
     </div>
 </div>
@@ -91,7 +96,7 @@
                     </ul>
                 </div>
 		    </li>
-            <li data-type="@FilterType.Source.ToString()" data-notdisabled="true" class="dj_search-builder_filters-category clearfix">
+            <li data-type="@FilterType.Source.ToString()" class="dj_search-builder_filters-category clearfix">
 			    <h4>@DJ.Token("sourcesLabel")</h4>
 			    <div class="dj_pill-list-wrap source">
                     <ul class="dj_pill-list yellow clearfix">
@@ -99,6 +104,7 @@
 	                        <span>&nbsp;</span>
 	                    </li>
 	                </ul>
+                    <ul class="dj_pill-list not-filter red clearfix"></ul>
                 </div>
 		    </li>
             <li data-type="@FilterType.Author.ToString()"  data-notdisabled="true" class="dj_search-builder_filters-category clearfix">

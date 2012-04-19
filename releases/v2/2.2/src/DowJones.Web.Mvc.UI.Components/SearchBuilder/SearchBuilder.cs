@@ -36,7 +36,7 @@ namespace DowJones.Web.Mvc.UI.Components.SearchBuilder
     using DowJones.Web.Mvc.UI.Components.SearchNewsFilter;
     using System.Web.Mvc;
     
-    // Last Generated Timestamp: 04/11/2012 10:14 AM
+    // Last Generated Timestamp: 04/19/2012 04:35 PM
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.SearchBuilder.ClientTemplates.categoryOptions.htm", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="categoryOptions", DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.SearchBuilder.SearchBuilder))]
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.SearchBuilder.ClientTemplates.filterOptions.htm", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="filterOptions", DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.SearchBuilder.SearchBuilder))]
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.SearchBuilder.ClientTemplates.modalDialog.htm", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="modalDialog", DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.SearchBuilder.SearchBuilder))]
@@ -96,175 +96,176 @@ WriteLiteral("</textarea>\r\n\t    ");
 
 
 
-WriteLiteral("\r\n\t</div>\r\n    <div class=\"dj_select-box-alt\">\r\n        <strong>");
+WriteLiteral("\r\n\t</div>\r\n    <div class=\"dj_select-box-alt\">\r\n        <div class=\"dj_search-dis" +
+"play-options\">\r\n            <span class=\"dj_options-label\">");
 
 
-           Write(DJ.Token("options"));
+                                      Write(DJ.Token("searchOptions"));
 
-WriteLiteral("</strong>\r\n        <span>");
-
-
-         Write(DJ.Token("searchWithin"));
-
-WriteLiteral(":</span>\r\n        <select class=\"searchIn dj_selectbox dj_selectbox-small\">\r\n");
+WriteLiteral("</span>\r\n            <div class=\"dj_modify-search\">\r\n                <span>");
 
 
-              
-                foreach (var area in Model.SearchFreeTextArea)
-                {
+                 Write(DJ.Token("searchWithin"));
 
-WriteLiteral("                    <option value=\"");
-
-
-                              Write(area.Code);
-
-WriteLiteral("\" ");
+WriteLiteral(":</span>\r\n                <select class=\"searchIn dj_selectbox dj_selectbox-small" +
+"\">\r\n");
 
 
-                                           Write(area.Code == ((int)Model.Data.SearchIn).ToString()?"selected":"");
+                      
+                        foreach (var area in Model.SearchFreeTextArea)
+                        {
 
-WriteLiteral(">");
-
-
-                                                                                                              Write(area.Desc);
-
-WriteLiteral("</option>    \r\n");
+WriteLiteral("                            <option value=\"");
 
 
-                }
-            
-
-WriteLiteral("        </select>\r\n        <span>");
-
-
-         Write(DJ.Token("dateRange"));
-
-WriteLiteral(":</span>\r\n        <select class=\"date dj_selectbox dj_selectbox-small\">\r\n");
-
-
-              
-                foreach (var dateRange in Model.DateRange)
-                {
-
-WriteLiteral("                    <option value=\"");
-
-
-                              Write(dateRange.Code);
+                                      Write(area.Code);
 
 WriteLiteral("\" ");
 
 
-                                                Write(dateRange.Code == ((int)Model.Data.DateRange).ToString() ? "selected" : "");
+                                                   Write(area.Code == ((int)Model.Data.SearchIn).ToString()?"selected":"");
 
 WriteLiteral(">");
 
 
-                                                                                                                             Write(dateRange.Desc);
+                                                                                                                      Write(area.Desc);
 
 WriteLiteral("</option>    \r\n");
 
 
-                }
-            
+                        }
+                    
 
-WriteLiteral("        </select>\r\n        <div class=\"date-wrap\" style=\"");
-
-
-                                  Write(Model.Data.DateRange == SearchDateRange.Custom ? "" : "display:none;");
-
-WriteLiteral("\">\r\n\t\t\t<input type=\"text\" class=\"datepicker\" maxlength=\"10\" value=\"");
+WriteLiteral("                </select>\r\n                <span>");
 
 
-                                                          Write(Model.FormattedStartDate);
+                 Write(DJ.Token("dateRange"));
 
-WriteLiteral("\" />\r\n\t\t</div>\r\n        <div class=\"date-wrap second\" style=\"");
-
-
-                                         Write(Model.Data.DateRange == SearchDateRange.Custom ? "" : "display:none;");
-
-WriteLiteral("\">\r\n\t\t\t<label>");
+WriteLiteral(":</span>\r\n                <select class=\"date dj_selectbox dj_selectbox-small\">\r\n" +
+"");
 
 
-     Write(DJ.Token("to"));
+                      
+                        foreach (var dateRange in Model.DateRange)
+                        {
 
-WriteLiteral("</label>\r\n\t\t\t<input type=\"text\" class=\"datepicker\" maxlength=\"10\" value=\"");
-
-
-                                                          Write(Model.FormattedEndDate);
-
-WriteLiteral("\" />\r\n\t\t</div>\r\n        <span class=\"dj_btn exclude dj_btn-rounded-square\">");
+WriteLiteral("                            <option value=\"");
 
 
-                                                      Write(DJ.Token("exclude"));
+                                      Write(dateRange.Code);
+
+WriteLiteral("\" ");
+
+
+                                                        Write(dateRange.Code == ((int)Model.Data.DateRange).ToString() ? "selected" : "");
+
+WriteLiteral(">");
+
+
+                                                                                                                                     Write(dateRange.Desc);
+
+WriteLiteral("</option>    \r\n");
+
+
+                        }
+                    
+
+WriteLiteral("                </select>\r\n                <div class=\"date-wrap\" style=\"");
+
+
+                                          Write(Model.Data.DateRange == SearchDateRange.Custom ? "" : "display:none;");
+
+WriteLiteral("\">\r\n\t\t\t        <input type=\"text\" class=\"datepicker\" maxlength=\"10\" value=\"");
+
+
+                                                                  Write(Model.FormattedStartDate);
+
+WriteLiteral("\" />\r\n\t\t        </div>\r\n                <div class=\"date-wrap second\" style=\"");
+
+
+                                                 Write(Model.Data.DateRange == SearchDateRange.Custom ? "" : "display:none;");
+
+WriteLiteral("\">\r\n\t\t\t        <label>");
+
+
+             Write(DJ.Token("to"));
+
+WriteLiteral("</label>\r\n\t\t\t        <input type=\"text\" class=\"datepicker\" maxlength=\"10\" value=\"" +
+"");
+
+
+                                                                  Write(Model.FormattedEndDate);
+
+WriteLiteral("\" />\r\n\t\t        </div>\r\n                <span class=\"dj_btn exclude dj_btn-rounde" +
+"d-square\">");
+
+
+                                                              Write(DJ.Token("exclude"));
 
 WriteLiteral(" (<span>");
 
 
-                                                                                   Write(Model.Data.ExclusionFilter != null ? Model.Data.ExclusionFilter.Count().ToString() : "0");
+                                                                                           Write(Model.Data.ExclusionFilter != null ? Model.Data.ExclusionFilter.Count().ToString() : "0");
 
-WriteLiteral("</span>)</span>\r\n");
-
-
-         if(Model.ShowSortBy){
-
-WriteLiteral("            <span>");
+WriteLiteral("</span>)</span>\r\n            </div>\r\n        </div>\r\n");
 
 
-             Write(DJ.Token("display"));
+         if (Model.ShowDisplayOptions)
+        {
 
-WriteLiteral(":</span>\r\n");
-
-
-
-WriteLiteral("            <select class=\"sortBy dj_selectbox dj_selectbox-small\">\r\n");
+WriteLiteral("            <div class=\"dj_search-display-options\">\r\n                <span class=" +
+"\"dj_options-label\">");
 
 
-                  
-                    foreach (var sortOrder in Model.SortBy)
-                    {
+                                          Write(DJ.Token("displayOptions"));
 
-WriteLiteral("                        <option value=\"");
+WriteLiteral("</span>\r\n                <div class=\"dj_modify-search\">\r\n                    <spa" +
+"n>");
 
 
-                                  Write(sortOrder.Code);
+                     Write(DJ.Token("sortOrder"));
+
+WriteLiteral(":</span>\r\n                    <select class=\"sortBy dj_selectbox dj_selectbox-sma" +
+"ll\">\r\n");
+
+
+                          
+                            foreach (var sortOrder in Model.SortBy)
+                            {
+
+WriteLiteral("                                <option value=\"");
+
+
+                                          Write(sortOrder.Code);
 
 WriteLiteral("\" ");
 
 
-                                                    Write(sortOrder.Code == ((int)Model.Data.SortBy).ToString() ? "selected" : "");
+                                                            Write(sortOrder.Code == ((int)Model.Data.SortBy).ToString() ? "selected" : "");
 
 WriteLiteral(">");
 
 
-                                                                                                                              Write(sortOrder.Desc);
+                                                                                                                                      Write(sortOrder.Desc);
 
 WriteLiteral("</option>    \r\n");
 
 
-                    }
-                
+                            }
+                        
 
-WriteLiteral("            </select>\r\n");
-
-
-        }
+WriteLiteral("                    </select>\r\n\t\t\t        <input type=\"checkbox\" class=\"duplicate" +
+"s\" ");
 
 
-         if (Model.ShowIdentifyDuplicates)
-        {
+                                                 Write(Model.Data.Duplicates ? "checked" : "");
 
-WriteLiteral("            <div class=\"check-filters\">\r\n\t\t\t    <input type=\"checkbox\" class=\"dup" +
-"licates\" ");
+WriteLiteral(" />\r\n\t\t\t        <label>");
 
 
-                                             Write(Model.Data.Duplicates ? "checked" : "");
+             Write(DJ.Token("duplicatesOn"));
 
-WriteLiteral(" />\r\n\t\t\t    <label>");
-
-
-         Write(DJ.Token("duplicatesOn"));
-
-WriteLiteral("</label>\r\n\t\t    </div>\r\n");
+WriteLiteral("</label>\r\n                </div>\r\n            </div>\r\n");
 
 
         }
@@ -311,8 +312,7 @@ WriteLiteral(@"</h4>
 
                       Write(FilterType.Source.ToString());
 
-WriteLiteral("\" data-notdisabled=\"true\" class=\"dj_search-builder_filters-category clearfix\">\r\n\t" +
-"\t\t    <h4>");
+WriteLiteral("\" class=\"dj_search-builder_filters-category clearfix\">\r\n\t\t\t    <h4>");
 
 
       Write(DJ.Token("sourcesLabel"));
@@ -324,6 +324,7 @@ WriteLiteral(@"</h4>
 	                        <span>&nbsp;</span>
 	                    </li>
 	                </ul>
+                    <ul class=""dj_pill-list not-filter red clearfix""></ul>
                 </div>
 		    </li>
             <li data-type=""");

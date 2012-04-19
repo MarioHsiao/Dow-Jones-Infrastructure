@@ -33,7 +33,7 @@
                 </li>
 			    <%  var additionalFilters = additionalSourceFilters || [];
 				    for (var i = 0, len = additionalFilters.length; i < len; i++) { %>
-                    <li><div data-value="<%= additionalFilters[i].code %>"><%= additionalFilters[i].desc %></div></li>
+                    <li><div data-value="<%= additionalFilters[i].code %>" data-af="1"><%= additionalFilters[i].desc %></div></li>
                 <% } %>
             </ul>
 	    </div>

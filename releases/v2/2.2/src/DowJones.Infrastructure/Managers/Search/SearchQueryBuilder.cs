@@ -178,7 +178,42 @@ namespace DowJones.Managers.Search
             searchCollection.AddRange(CreateSearchStrings(request.Region));
             searchCollection.AddRange(CreateSearchStrings(request.Subject));
             searchCollection.AddRange(CreateSearchStrings(request.Company));
-            searchCollection.AddRange(CreateSearchStrings(request.Source));
+            //searchCollection.AddRange(CreateSearchStrings(request.Source));
+
+            if (request.Source != null && (request.Source.Include != null || request.Source.Exclude != null))
+            {
+                bool hasInclude = (request.Source.Include == null || request.Source.Include.Count() > 0),
+                    hasExclude = (request.Source.Exclude == null || request.Source.Exclude.Count() > 0);
+                string includeSearchString = null, excludeSearchString = null;
+                SearchString sourceSearchString = null;
+                if(hasInclude){
+                    includeSearchString = Join(SearchOperator.Or, request.Source.Include.OfType<SourceQueryFilterEntities>().Select(GetSourceQueryFilter).Where(str => str != null));
+                }
+                if(hasExclude){
+                    excludeSearchString = Join(SearchOperator.Or, request.Source.Exclude.OfType<SourceQueryFilterEntities>().Select(GetSourceQueryFilter).Where(str => str != null));
+                }
+
+                if(hasInclude && hasExclude){
+                    sourceSearchString = new SearchString{ Mode = SearchMode.Traditional, Id = "BSSSource", Value = string.Format("({0}) NOT ({1})", 
+                                                includeSearchString, excludeSearchString) };
+                }
+                else if(hasInclude && !hasExclude){
+                    sourceSearchString = new SearchString{ Mode = SearchMode.Traditional, Id = "BSSSource", Value = string.Format("({0})", includeSearchString) };
+                }
+                else if(!hasInclude && hasExclude){
+                    var sourceTypes = Join(SearchOperator.Or, searchRequest.StructuredSearch.Query.SourceTypeCollection.Where(t => t != null));
+                    //Empty the collection since we are adding it in the search string
+                    searchRequest.StructuredSearch.Query.SourceTypeCollection = null;
+                    sourceSearchString = new SearchString{ Mode = SearchMode.Traditional, Id = "BSSSource", Value = string.Format("({0}) NOT ({1})",
+                                                sourceTypes, excludeSearchString)
+                    };
+                }
+
+                if (sourceSearchString != null)
+                {
+                    searchCollection.Add(sourceSearchString);
+                }
+            }
 
             var d = GetDate(request, _searchPreferenceService.DateFormat);
             if (d != null)
@@ -784,7 +819,13 @@ namespace DowJones.Managers.Search
                 var excString = CreateSearchString(key, entityFilters.SelectMany(d => d), SearchMode.None);
                 list.Add(excString);
             }
-            
+
+            sourceEntityFilters = excludedFilters.OfType<SourceQueryFilterEntities>().WhereNotNull();
+            if (sourceEntityFilters.Any())
+            {
+                list.Add(GetSourceQueryFilter(sourceEntityFilters));
+            }
+
             if (filter.ListType == CompoundQueryListType.Source)
             {
                 long sourceId;
@@ -801,12 +842,12 @@ namespace DowJones.Managers.Search
         }
 
 
-        private SearchString GetSourceQueryFilter(IEnumerable<SourceQueryFilterEntities> filters)
+        private SearchString GetSourceQueryFilter(IEnumerable<SourceQueryFilterEntities> filters, SearchOperator searchOperator = SearchOperator.Or)
         {
             var anyList = filters.Select(GetSourceQueryFilter).Where(str => str != null).ToList();
             if (anyList.Count > 0)
             {
-                return CreateSearchString(Join(SearchOperator.Or, anyList.ToArray()));
+                return CreateSearchString(Join(searchOperator, anyList.ToArray()));
             }
             return null;
         }
