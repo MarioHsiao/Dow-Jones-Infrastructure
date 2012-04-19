@@ -2,7 +2,7 @@
     <label><%= Token("filters") %></label>
     <ul class="dj_search-builder_filters-list add-margin clearfix">
     <% 
-        var fArr = ["company", "author", "executive", "subject", "industry", "region"], f, name, len;
+        var fArr = ["author", "executive", "company", "subject", "industry", "region"], f, name;
         $.each(fArr, function(i, item){
             f = data.filters[item];
             if(f && ((f.include && f.include.length > 0) || (f.exclude && f.exclude.length > 0) || f.list)){
@@ -14,7 +14,6 @@
                 <% if(f.include && f.include.length > 0){ %>
                     <ul class="dj_pill-list yellow clearfix">
                         <%  
-                            len = f.include.length;
                             $.each(f.include, function(j){
                         %>
                             <li class="dj_pill">
@@ -31,7 +30,6 @@
 			                <span><%= Token('notLabel') %>:</span>
 			            </li>
                         <%  
-                            len = f.exclude.length;
                             $.each(f.exclude, function(j){
                         %>
                             <li class="dj_pill">
@@ -67,7 +65,6 @@
 		                        <span class="section-category"><%= Token('keywords') %>:</span>
 		                        <ul class="filter-list">
                                     <%  
-                                        len = nf.keyword.length;
                                         $.each(nf.keyword, function(j){
                                     %>
                                         <li class="dj_pill">
@@ -94,7 +91,6 @@
 		                            <span class="section-category"><%= name %>:</span>
 		                            <ul class="filter-list">
                                     <%  
-                                        len = f.length;
                                         $.each(f, function(j){
                                     %>
                                         <li class="dj_pill" <%= newsFilterEditable?('data-code="' + this.code +'" data-codetype="' + (this.codeType || '') + '"'):'' %>>
