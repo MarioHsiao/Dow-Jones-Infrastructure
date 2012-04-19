@@ -39,7 +39,7 @@ namespace DowJones.Web.Mvc.UI.Components.Search.Mappers
            
             model.PostProcessing = new PostProcessing(new[] {
                                     PostProcessingOptions.Email,
-                                    PostProcessingOptions.Print,
+                                    PostProcessingOptions.PrintLabel,
                                     PostProcessingOptions.Read,
                                     PostProcessingOptions.Save,
                                 });

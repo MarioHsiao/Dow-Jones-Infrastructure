@@ -53,7 +53,7 @@ namespace DowJones.Web.Showcase.Controllers
                 PostProcessing = new PostProcessing(new[] { 
                     PostProcessingOptions.Read, 
                     PostProcessingOptions.Save, 
-                    PostProcessingOptions.Print, 
+                    PostProcessingOptions.PrintLabel, 
                     PostProcessingOptions.Email
                 })
             };
