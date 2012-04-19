@@ -20,19 +20,37 @@ namespace DowJones.Infrastructure.Common
         /// Used for identifying application in session cache API
         /// </summary>
         string CacheApplication { get; }
+
+		/// <summary>
+		/// Gets a value indicating whether Social Media blocking entitlement should be checked or not.
+		/// </summary>
+		/// <value>
+		/// 	<c>true</c> if this instance is social media blocking on; otherwise, <c>false</c>.
+		/// </value>
+		bool IsSocialMediaBlockingOn { get; }
     }
 
     public class Product : IProduct, IEquatable<Product>, IComparable<Product>
     {
+
+		/// <summary>
+		/// Gets a value indicating whether Social Media blocking entitlement should be checked or not.
+		/// </summary>
+		/// <value>
+		/// 	<c>true</c> if this instance is social media blocking on; otherwise, <c>false</c>.
+		/// </value>
+		public bool IsSocialMediaBlockingOn { get; private set; }
+
         public Product(string productId, string cacheApplication) : this(productId, cacheApplication, null)
         {
         }
 
-        public Product(string productId, string cacheApplication, string sourceGroupConfigurationId)
+		public Product(string productId, string cacheApplication, string sourceGroupConfigurationId, bool isSocialMediaBlockingOn = false)
         {
             CacheApplication = cacheApplication;
             Id = productId;
             SourceGroupConfigurationId = sourceGroupConfigurationId;
+			IsSocialMediaBlockingOn = isSocialMediaBlockingOn;
         }
 
         /// <summary>
