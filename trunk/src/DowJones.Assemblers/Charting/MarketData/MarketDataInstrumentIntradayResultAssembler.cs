@@ -21,7 +21,7 @@ namespace DowJones.Assemblers.Charting.MarketData
 
         public MarketDataInstrumentIntradayResult Convert(ChartDataResponse source, int incrementInMinutes = 15)
         {
-            return (from kvp in source.Data let session = kvp.Value.Sessions[0] select GetMarketDataInstrumentIntradayResult(kvp.Key, kvp.Value.Name, System.Convert.ToBoolean(kvp.Value.IsIndex), session, null, incrementInMinutes)).FirstOrDefault();
+            return (from kvp in source.Data let session = kvp.Value.Sessions[0] select GetMarketDataInstrumentIntradayResult(kvp.Key, kvp.Value.Name, System.Convert.ToBoolean(kvp.Value.IsIndex), session, null, null, incrementInMinutes)).FirstOrDefault();
         }
     }
 }

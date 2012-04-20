@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Web.Mvc;
 using DowJones.Assemblers.Charting.MarketData;
 using DowJones.Managers.Charting.MarketData;
@@ -24,6 +26,13 @@ namespace DowJones.Web.Showcase.Controllers
             //var list = new List<string>(new[] { "goog", "msft", "ibm", "cmw", "cac", "mi", "f", "cnw", "col", "cmm", "ci", "cgv", "m", "mcr", "mcd", "mdc", "mdu", "kcw", "kex", "kgc", "kmf", "kmi", "kmp", "kmm" });
             var list = new List<string>(syms ?? new[] { "msft" });
             var response = MarketDataChartingManager.GetMarketChartData(list.ToArray(), symbolType, TimePeriod.OneDay, frequency);
+
+            using (var ms = new MemoryStream())
+            {
+                var serializer = new DataContractSerializer(response.GetType());
+                serializer.WriteObject(ms,response);
+            }
+
             var kioskModel = new StockKioskModel();
 
             if (response.PartResults != null && response.PartResults.Count() > 0)

@@ -74,6 +74,7 @@ namespace DowJones.Managers.Core
         }
     }
 
+    [DataContract(Namespace = "")]
     public abstract class AbstractServiceResult : IServiceResult
     {
         private ILog _log;

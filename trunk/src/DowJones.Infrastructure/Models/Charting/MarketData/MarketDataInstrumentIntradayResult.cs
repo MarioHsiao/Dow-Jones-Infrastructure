@@ -20,6 +20,9 @@ namespace DowJones.Models.Charting.MarketData
         [DataMember(Name = "statusMessage")]
         public string StatusMessage { get; set; }
 
+        [DataMember(Name = "requestedId")]
+        public string RequestedId { get; set; }
+
         [DataMember(Name = "symbol")]
         public string Symbol { get; set; }
 

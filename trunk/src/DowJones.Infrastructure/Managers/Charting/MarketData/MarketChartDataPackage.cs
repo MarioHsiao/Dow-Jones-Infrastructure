@@ -11,6 +11,9 @@ namespace DowJones.Managers.Charting.MarketData
         [DataMember(Name = "symbol")]
         public string Symbol { get; set; }
 
+        [IgnoreDataMember]
+        public string RequestId { get; set; }
+
         [DataMember(Name = "name")]
         public string Name { get; set; }
 

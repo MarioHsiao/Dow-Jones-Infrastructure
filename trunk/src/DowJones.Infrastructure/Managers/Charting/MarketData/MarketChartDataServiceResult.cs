@@ -40,6 +40,7 @@ namespace DowJones.Managers.Charting.MarketData
 
             Match tempMatch = null;
             var tempSymbol = symbol;
+            var requestId = string.Empty;
 
             var instrumentManger = new InstrumentManager();
             var instrumentResponse = instrumentManger.GetInstruments(new[] { symbol }, Mapper.Map<SymbolDialectType>(symbolType));
@@ -49,11 +50,12 @@ namespace DowJones.Managers.Charting.MarketData
                 instrumentResponse[0].Matches != null &&
                 instrumentResponse[0].Matches.Count() >= 1)
             {
-                tempMatch = instrumentResponse[0].Matches[0];
+                var tempResponse = instrumentResponse[0];
+                tempMatch = tempResponse.Matches[0];
+                requestId = tempResponse.RequestId;
 
                 // update the symbol.
                 tempSymbol = string.Concat(tempMatch.Instrument.Exchange.CountryCode.ToLowerInvariant(), ":", tempMatch.Instrument.Ticker);
-
             }
             else
             {
@@ -85,7 +87,7 @@ namespace DowJones.Managers.Charting.MarketData
                             if (response.Count > 0)
                             {
                                 var source = response.Values.FirstOrDefault();
-                                partResult.Package = (from kvp in source.Data let session = kvp.Value.Sessions[0] select GetPackage(kvp.Key, kvp.Value.Name, Convert.ToBoolean(kvp.Value.IsIndex), source.BarSize, session, tempMatch)).FirstOrDefault();
+                                partResult.Package = (from kvp in source.Data let session = kvp.Value.Sessions[0] select GetPackage(kvp.Key, kvp.Value.Name, Convert.ToBoolean(kvp.Value.IsIndex), source.BarSize, session, requestId, tempMatch)).FirstOrDefault();
                             }
                             else
                             {
@@ -97,12 +99,13 @@ namespace DowJones.Managers.Charting.MarketData
             return partResult;
         }
 
-        internal MarketChartDataPackage GetPackage(string symbol, string name, bool isIndex, int barSize, Thunderball.Library.Charting.Session session, Match match)
+        internal MarketChartDataPackage GetPackage(string symbol, string name, bool isIndex, int barSize, Thunderball.Library.Charting.Session session, string requestId, Match match)
         {
             var package = new MarketChartDataPackage
                               {
                                   Symbol = symbol, 
                                   Name = name, 
+                                  RequestId = requestId,
                                   IsIndex = isIndex,
                                   BarSize = barSize,
                                   Session = session,

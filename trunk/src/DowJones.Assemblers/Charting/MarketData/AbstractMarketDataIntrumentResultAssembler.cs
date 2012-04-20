@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Linq;
+using DowJones.Extensions;
 using DowJones.Formatters;
 using DowJones.Formatters.Globalization.DateTime;
 using DowJones.Formatters.Globalization.TimeZone;
+using DowJones.Managers.MarketWatch.Instrument;
 using DowJones.MarketWatch.Dylan.Core.Financialdata;
 using DowJones.Models.Charting;
 using DowJones.Models.Charting.MarketData;
@@ -44,7 +46,7 @@ namespace DowJones.Assemblers.Charting.MarketData
             return timeZoneElements.Aggregate(String.Empty, (current, element) => current + element[0]);
         }
 
-        internal MarketDataInstrumentIntradayResult GetMarketDataInstrumentIntradayResult(string code, string name, bool isIndex, Thunderball.Library.Charting.Session session, Match match, int barSize = 15, long returnCode = 0, string statusMessage = null)
+        internal MarketDataInstrumentIntradayResult GetMarketDataInstrumentIntradayResult(string code, string name, bool isIndex, Thunderball.Library.Charting.Session session, Match match, string requestId = null, int barSize = 15, long returnCode = 0, string statusMessage = null)
         {
             var marketResult = new MarketDataInstrumentIntradayResult { ReturnCode = returnCode, StatusMessage = statusMessage };
             if (returnCode != 0)
@@ -182,11 +184,13 @@ namespace DowJones.Assemblers.Charting.MarketData
                 }
                 else
                 {
+                    marketResult.RequestedId = requestId;
                     marketResult.Symbol = match.Instrument.Ticker;
                     marketResult.Isin = match.Instrument.Isin;
                     marketResult.Sedol = match.Instrument.Sedol;
                     marketResult.Cusip = match.Instrument.Cusip;
                     marketResult.Currency = match.Trading.Open.Iso;
+                    marketResult.FCode = ( requestId != null && requestId.StartsWith(string.Concat(SymbolDialectType.Factiva.ToString(),":"))) ? requestId.Substring(requestId.IndexOf(":")+1): null;
                     marketResult.Name = string.Concat(match.Instrument.CommonName, " [", match.Instrument.Exchange.Ticker, "]");
                     marketResult.High = new DoubleNumberStock(match.Trading.High.Value);
                     marketResult.Low = new DoubleNumberStock(match.Trading.Low.Value);

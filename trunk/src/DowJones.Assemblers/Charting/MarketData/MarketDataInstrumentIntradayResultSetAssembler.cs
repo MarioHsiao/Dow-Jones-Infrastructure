@@ -35,7 +35,7 @@ namespace DowJones.Assemblers.Charting.MarketData
                 if (kvp.Key == null)
                     continue;
                 var tempKvp = kvp;
-                marketResultSet.AddRange(kvp.Value.Sessions.Select(session => GetMarketDataInstrumentIntradayResult(tempKvp.Key, tempKvp.Value.Name, System.Convert.ToBoolean(tempKvp.Value.IsIndex), session, match, incrementInMinutes)));
+                marketResultSet.AddRange(kvp.Value.Sessions.Select(session => GetMarketDataInstrumentIntradayResult(tempKvp.Key, tempKvp.Value.Name, System.Convert.ToBoolean(tempKvp.Value.IsIndex), session, match, null, incrementInMinutes)));
             }
             return marketResultSet;
         }
@@ -43,7 +43,7 @@ namespace DowJones.Assemblers.Charting.MarketData
         public MarketDataInstrumentIntradayResultSet Convert(IEnumerable<MarketChartDataServicePartResult<MarketChartDataPackage>> source)
         {
             var marketResultSet = new MarketDataInstrumentIntradayResultSet();
-            marketResultSet.AddRange(from part in source where part.ReturnCode == 0 select GetMarketDataInstrumentIntradayResult(part.Package.Symbol, part.Package.Name, part.Package.IsIndex, part.Package.Session, part.Package.Match, part.Package.BarSize, part.ReturnCode, part.StatusMessage));
+            marketResultSet.AddRange(from part in source where part.ReturnCode == 0 select GetMarketDataInstrumentIntradayResult(part.Package.Symbol, part.Package.Name, part.Package.IsIndex, part.Package.Session, part.Package.Match, part.Package.RequestId, part.Package.BarSize, part.ReturnCode, part.StatusMessage));
             return marketResultSet;
         }
     }
