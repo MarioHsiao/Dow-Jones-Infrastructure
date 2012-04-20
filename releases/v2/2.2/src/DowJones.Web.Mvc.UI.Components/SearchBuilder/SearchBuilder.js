@@ -70,56 +70,53 @@
             {
                 name: 'Company',
                 text: "<%= Token('companyLabel') %>",
-                pluralText: "<%= Token('companies') %>"
+                pluralText: "<%= Token('companies') %>",
+                notFilter: true
             },
-
             {
                 name: 'Author',
                 text: "<%= Token('author') %>",
                 pluralText: "<%= Token('authors') %>"
             },
-
             {
                 name: 'Executive',
                 text: "<%= Token('executive') %>",
-                pluralText: "<%= Token('executives') %>"
+                pluralText: "<%= Token('executives') %>",
+                notFilter: true
             },
-
             {
                 name: 'Subject',
                 text: "<%= Token('subject') %>",
-                pluralText: "<%= Token('subjects') %>"
+                pluralText: "<%= Token('subjects') %>",
+                notFilter: true
             },
-
             {
                 name: 'Industry',
                 text: "<%= Token('industry') %>",
-                pluralText: "<%= Token('industries') %>"
+                pluralText: "<%= Token('industries') %>",
+                notFilter: true
             },
-
             {
                 name: 'Region',
                 text: "<%= Token('regionLabel') %>",
-                pluralText: "<%= Token('regions') %>"
+                pluralText: "<%= Token('regions') %>",
+                notFilter: true
             },
-
             {
                 name: 'Source',
                 text: "<%= Token('sourcesLabel') %>",
-                pluralText: "<%= Token('sources') %>"
+                pluralText: "<%= Token('sources') %>",
+                notFilter: true
             },
-
             {
                 name: 'Language',
                 text: "<%= Token('language') %>",
                 pluralText: "<%= Token('language') %>"
             },
-
             {
                 name: 'Keyword',
                 text: "<%= Token('keywords') %>"
             },
-
             {
                 name: 'DateRange',
                 text: "<%= Token('date') %>"
@@ -282,8 +279,7 @@
                 me._onFilterClose(this);
                 me._stopPropagation(e, true);
             }).delegate(this.selectors.filterPill, "click", function (e) {//Filter Click
-                var notFilterEnabled = !$(this).closest("ul").closest("li").data("notdisabled");
-                if (notFilterEnabled) {
+                if (me.filterDetails[me.filterType[$(this).closest("ul").closest("li").data("type")]].notFilter) {
                     me._onFilterClick(this);
                     me._stopPropagation(e);
                 }

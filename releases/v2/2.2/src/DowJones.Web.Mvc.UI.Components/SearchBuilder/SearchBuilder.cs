@@ -36,7 +36,7 @@ namespace DowJones.Web.Mvc.UI.Components.SearchBuilder
     using DowJones.Web.Mvc.UI.Components.SearchNewsFilter;
     using System.Web.Mvc;
     
-    // Last Generated Timestamp: 04/19/2012 04:35 PM
+    // Last Generated Timestamp: 04/20/2012 02:00 PM
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.SearchBuilder.ClientTemplates.categoryOptions.htm", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="categoryOptions", DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.SearchBuilder.SearchBuilder))]
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.SearchBuilder.ClientTemplates.filterOptions.htm", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="filterOptions", DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.SearchBuilder.SearchBuilder))]
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.SearchBuilder.ClientTemplates.modalDialog.htm", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="modalDialog", DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.SearchBuilder.SearchBuilder))]
@@ -292,8 +292,7 @@ WriteLiteral("</span>\r\n    </div>\r\n    <div class=\"dj_search-builder_filter
 
                 Write(FilterType.Language.ToString());
 
-WriteLiteral("\" data-notdisabled=\"true\" class=\"dj_search-builder_filters-category clearfix\">\r\n\t" +
-"\t\t    <h4>");
+WriteLiteral("\" class=\"dj_search-builder_filters-category clearfix\">\r\n\t\t\t    <h4>");
 
 
       Write(DJ.Token("language"));
@@ -332,8 +331,7 @@ WriteLiteral(@"</h4>
 
                       Write(FilterType.Author.ToString());
 
-WriteLiteral("\"  data-notdisabled=\"true\" class=\"dj_search-builder_filters-category clearfix\">\r\n" +
-"\t\t\t    <h4>");
+WriteLiteral("\" class=\"dj_search-builder_filters-category clearfix\">\r\n\t\t\t    <h4>");
 
 
       Write(DJ.Token("cmAuthor"));
