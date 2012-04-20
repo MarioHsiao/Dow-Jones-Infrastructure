@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Threading;
 using System.Threading.Tasks;
@@ -13,6 +14,7 @@ using DowJones.Properties;
 
 namespace DowJones.Managers.Charting.MarketData
 {
+    [DataContract(Namespace = "")]
     public class MarketChartDataServiceResult : AbstractServiceResult<MarketChartDataServicePartResult<MarketChartDataPackage>, MarketChartDataPackage>, IRequest
     {
         private static readonly BasicHttpBinding BasicHttpBinding = new BasicHttpBinding(BasicHttpSecurityMode.None);
