@@ -755,25 +755,25 @@
                 type[filterType] = this.filterType[filterType];
             }
 
-            var noFilters = true, filterItem, $filterItems;
+            var noFilters = true, filterItem, $filterItems, operator, isSource;
             $.each(type, function (key, val) {
                 item = {};
 
                 filterItem = me.$filtersList.children("li[data-type='" + key + "']");
 
                 if (filterItem.hasClass("expanded")) {//Check if the item has filters
+                    isSource = (key == me.filterDetails[me.filterType.Source].name);
+                    operator = isSource ? me.searchOperator.Or : ((filterItem.children(me.selectors.filtersToolbar)
+                                .children(me.selectors.toggleOperatorSwitch).children("span.switch").hasClass("on")) ? me.searchOperator.And : me.searchOperator.Or);
                     filterItem = filterItem.children(me.selectors.pillListWrap).children();
-                    item = { include: [], exclude: [] };
+                    item = { include: [], exclude: [], operator: operator };
 
-                    if (key == me.filterDetails[me.filterType.Source].name) {
-
+                    if (isSource) {
                         $filterItems = filterItem.eq(0).children("[code]");
                         if ($filterItems.length == 1 && $filterItems.eq(0).data("type") == "LIST") {
                             item.list = { code: $filterItems.eq(0).attr("code"), desc: $.trim($filterItems.eq(0).find('span:first').text()) };
                         }
                         else {
-                            item.operator = me.searchOperator.Or;
-
                             $.each($filterItems, function () {
                                 item.include.push(me._processSourceFilterFromDom(this));
                             });
@@ -782,12 +782,8 @@
                                 item.exclude.push(me._processSourceFilterFromDom(this));
                             });
                         }
-
                     }
                     else {
-                        item.operator = (filterItem.children(me.selectors.filtersToolbar)
-                                .children(me.selectors.toggleOperatorSwitch).children("span.switch").hasClass("on")) ? me.searchOperator.And : me.searchOperator.Or;
-
                         //Include filters
                         $.each(filterItem.eq(0).children("[code]"), function () {
                             $this = $(this);
