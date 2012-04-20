@@ -873,6 +873,8 @@
                 success: $dj.delegate(this, function (data) {
                     $dj.progressIndicator.hide();
 
+                    alert("<%= Token('sourceListDeletedSuccessfully') %>");
+
                     if (this.$existingSLstDD) {
                         //Remove the source list from the drop down
                         this.$existingSLstDD.find("option[value=" + listId + "]").remove();
@@ -882,13 +884,11 @@
                         }
                     }
 
-                    //Remove the source list from the lsit
-                    $listItem.remove();
+                    //Remove the source list from the list
                     if ($listItem.siblings().length == 0) {
                         this.$savedList.html("<%= Token('noResults') %>");
                     }
-
-                    alert("<%= Token('sourceListDeletedSuccessfully') %>");
+                    $listItem.remove();
 
                     this._onSourceListDelete(listId);
                     this.publish(this.events.onSrcLstDelete, listId);
