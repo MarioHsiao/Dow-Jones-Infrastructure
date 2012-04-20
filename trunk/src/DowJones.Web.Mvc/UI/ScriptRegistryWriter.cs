@@ -89,18 +89,21 @@ namespace DowJones.Web.Mvc.UI
 
             htmlWriter.OpenScriptBlock();
             RenderRequireConfiguration(writer);
-            RenderGlobalJQueryAndUnderscoreRegistration(writer);
             _clientConfiguration.WriteTo(writer);
             htmlWriter.CloseScriptBlock();
             
             htmlWriter.RenderScriptInclude(ClientResourceManager.GenerateUrl(CommonResources, Culture));
+
+            if (RegisterGlobalReferences == false)
+                return;
+
+            htmlWriter.OpenScriptBlock();
+            RenderGlobalJQueryAndUnderscoreRegistration(writer);
+            htmlWriter.CloseScriptBlock();
         }
 
         private void RenderGlobalJQueryAndUnderscoreRegistration(TextWriter writer)
         {
-            if (RegisterGlobalReferences == false)
-                return;
-
             // Register global libraries if they didn't exist already
             writer.WriteLine("if (!window['jQuery']) { window['jQuery'] = DJ.jQuery; }");
             writer.WriteLine("if (!window['$']) { window['$'] = DJ.jQuery; }");
