@@ -68,7 +68,7 @@ namespace DowJones.Web.UI
 
             return 
                 string.Format(
-                    "$.extend({0}, {{ {1}: {2} }});\r\n", 
+                    "DJ.jQuery.extend({0}, {{ {1}: {2} }});\r\n", 
                         clientTemplate.ClientComponentTemplatesPath,
                         clientTemplate.TemplateId,
                         templateFunction
