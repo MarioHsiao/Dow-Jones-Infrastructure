@@ -86,7 +86,7 @@ namespace DowJones.Web.Showcase.Controllers
                 },
                 PostProcessingOptions = new[]
                                             {
-                                                PostProcessingOptions.PrintLabel,
+                                                PostProcessingOptions.Print,
                                                 PostProcessingOptions.Save,
                                                 PostProcessingOptions.PressClips,
                                                 PostProcessingOptions.Email, 
