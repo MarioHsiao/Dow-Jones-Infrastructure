@@ -37,13 +37,14 @@
 </div> <!-- end of dj_stock quotes -->
 
 <div class="dj_chart">
-<div class="dj_chartContainer"> </div>
-<div class="dj_chartLegend">
-    <div class="dj_currency"><%= Token("currency") %>: <span class="dj_value"></span></div>
-    <div class="dj_chartLastUpdated"></div>
-    <div><%= Token("source") %>: <%=data[0].provider.name %></div>
-    <div><%= Token("delayedQuotePerExchange") %></div>
-</div>
+    <div class="dj_chartLabel"><span class="chartSymbol"></span>: <span class="chartName"></span></div>
+    <div class="dj_chartContainer"> </div>
+    <div class="dj_chartLegend">
+        <div class="dj_currency"><%= Token("currency") %>: <span class="dj_value"></span></div>
+        <div class="dj_chartLastUpdated"></div>
+        <div><%= Token("source") %>: <%=data[0].provider.name %></div>
+        <div><%= Token("delayedQuotePerExchange") %></div>
+    </div>
 </div>
 
   

@@ -43,7 +43,9 @@ DJ.UI.StockKiosk = DJ.UI.Component.extend({
         stock_chart: '.dj_chartContainer',
         market_block: '.dj_marketBlock',
         stock_last_updated: '.dj_chartLastUpdated',
-        stock_currency: '.dj_currency'
+        stock_currency: '.dj_currency',
+        stock_label_symbol: '.dj_chartLabel .chartSymbol',
+        stock_label_name: '.dj_chartLabel .chartName'
     },
 
     events: {
@@ -169,10 +171,10 @@ DJ.UI.StockKiosk = DJ.UI.Component.extend({
                 type: 'datetime',
                 tickLength: 0,
                 minorTickLength: 0,
-                tickInterval: 2 * 60 * 60 * 1000, // 2 hours
+                tickInterval: 4 * 60 * 60 * 1000, // 4 hours
                 lineColor: '#ebebeb',  
 			    minorTickLength: 0,	
-			    minorTickInterval: 1 * 60 * 60 * 1000, // 1 hour			    		
+			    minorTickInterval: 2 * 60 * 60 * 1000, // 2 hour			    		
 			    minorGridLineWidth: 1,
 			    minorGridLineColor: '#cccccc',
 			    minorGridLineDashStyle: 'shortdot',
@@ -332,6 +334,8 @@ DJ.UI.StockKiosk = DJ.UI.Component.extend({
                 stock_last_updated.html($.trim(requestedIntradaryMarketData.adjustedLastUpdatedDescripter));
             }
             
+            var symbol = $(self.selectors.stock_label_symbol, this.$element).html(requestedIntradaryMarketData.symbol);
+            var name = $(self.selectors.stock_label_name, this.$element).html(requestedIntradaryMarketData.name);            
             var currency = $(self.selectors.stock_currency, this.$element);
             var currencyVal =  $(self.selectors.stock_currency + " .dj_value", this.$element);
             if (currency.length > 0 )
@@ -389,6 +393,8 @@ DJ.UI.StockKiosk = DJ.UI.Component.extend({
                 stock_last_updated.html($.trim(requestedIntradaryMarketData.adjustedLastUpdatedDescripter));
             }
 
+            var symbol = $(self.selectors.stock_label_symbol, this.$element).html(requestedIntradaryMarketData.symbol);
+            var name = $(self.selectors.stock_label_name, this.$element).html(requestedIntradaryMarketData.name);            
             var currency = $(self.selectors.stock_currency, this.$element);
             var currencyVal =  $(self.selectors.stock_currency + " .dj_value", this.$element);
             if (currency.length > 0 )
