@@ -20,13 +20,6 @@ dj_define('underscore', ['jquery'], function () { return dj_underscore; });
 dj_define('_', ['jquery'], function () { return dj_underscore; });
 
 
-// Register global libraries if they didn't exist already
-// (I know, we're so nice, right?)
-if (!window['jQuery']) { window['jQuery'] = dj_jQuery; }
-if (!window['$']) { window['$'] = dj_jQuery; }
-if (!window['_']) { window['_'] = dj_underscore; }
-
-
 // If we have JSON, define() it
 if (window['JSON']) {
     dj_define('JSON', function () { return window['JSON']; });
@@ -48,7 +41,7 @@ if (!window['DJ']) {
 
 var DJ = window['DJ'];
 
-$.extend(true, DJ, {
+dj_jQuery.extend(true, DJ, {
     jQuery: dj_jQuery,
     underscore: dj_underscore
 });
