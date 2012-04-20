@@ -61,6 +61,7 @@ DJ.UI.ScrollBar = DJ.UI.Component.extend({
         this._super(element, $meta);
 
         this._scrollable();
+
     },
 
     _scrollable: function () {
@@ -85,7 +86,11 @@ DJ.UI.ScrollBar = DJ.UI.Component.extend({
 
         // Browser Detection
         if ($.browser.mozilla) {
-            self._renderFireFoxScrollbar();
+        	self._renderScrollbar();
+
+        	window.setTimeout(function () {
+      			self.refresh();
+        	}, 500);
         }
 
         // Mobile
@@ -105,7 +110,7 @@ DJ.UI.ScrollBar = DJ.UI.Component.extend({
     /**
     * Render a custom scrollbar
     */
-    _renderFireFoxScrollbar: function () {
+    _renderScrollbar: function () {
         var self = this,
 			$parentContainer = self.$element,
 			o = self.options;
