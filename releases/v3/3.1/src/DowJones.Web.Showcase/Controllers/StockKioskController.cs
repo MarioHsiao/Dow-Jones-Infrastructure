@@ -23,8 +23,7 @@ namespace DowJones.Web.Showcase.Controllers
 
         public ActionResult Index([ModelBinder(typeof(StringSplitModelBinder))]string[] syms, SymbolType symbolType = SymbolType.FCode, Frequency frequency = Frequency.FifteenMinutes, int pageSize = 10)
         {
-            //var list = new List<string>(new[] { "goog", "msft", "ibm", "cmw", "cac", "mi", "f", "cnw", "col", "cmm", "ci", "cgv", "m", "mcr", "mcd", "mdc", "mdu", "kcw", "kex", "kgc", "kmf", "kmi", "kmp", "kmm" });
-            var list = new List<string>(syms ?? new[] { "msft" });
+            var list = new List<string>(syms ?? new[] { "ibm" });
             var response = MarketDataChartingManager.GetMarketChartData(list.ToArray(), symbolType, TimePeriod.OneDay, frequency);
 
             using (var ms = new MemoryStream())

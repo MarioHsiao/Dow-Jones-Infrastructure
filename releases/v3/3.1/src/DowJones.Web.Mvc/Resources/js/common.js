@@ -3,21 +3,33 @@
 //
 /// <reference path="jquery.js" />
 /// <reference path="require.js" />
+/// <reference path="underscore.js" />
+
+// Initialize global DJ object
+if (!window['DJ']) {
+    window['DJ'] = {
+        config: {
+            debug: false
+        }
+    };
+}
+
+var DJ = window['DJ'];
 
 // Get local instances of require() and define()
 var dj_define = define;
 var dj_require = require;
 
 // Define jQuery module with our jQuery
-var dj_jQuery = jQuery.noConflict(true);
-dj_define('jquery', [], function () { return dj_jQuery; });
-dj_define('$', [], function () { return dj_jQuery; });
+DJ.jQuery = jQuery.noConflict(true);
+dj_define('jquery', [], function () { return DJ.jQuery; });
+dj_define('$', [], function () { return DJ.jQuery; });
 
 
 // Define underscore
-var dj_underscore = _.noConflict();
-dj_define('underscore', ['jquery'], function () { return dj_underscore; });
-dj_define('_', ['jquery'], function () { return dj_underscore; });
+DJ.underscore = _.noConflict();
+dj_define('underscore', ['jquery'], function () { return DJ.underscore; });
+dj_define('_', ['jquery'], function () { return DJ.underscore; });
 
 
 // If we have JSON, define() it
@@ -28,23 +40,6 @@ if (window['JSON']) {
 else {
     dj_require(['JSON']);
 }
-
-
-// Initialize global DJ object
-if (!window['DJ']) {
-     window['DJ'] = {
-        config: {
-            debug: false
-        }
-    };
-}
-
-var DJ = window['DJ'];
-
-dj_jQuery.extend(true, DJ, {
-    jQuery: dj_jQuery,
-    underscore: dj_underscore
-});
 
 
 //

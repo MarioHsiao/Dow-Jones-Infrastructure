@@ -8,6 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using DowJones.Extensions;
@@ -147,11 +148,16 @@ namespace DowJones.Security.Services
         {
             IsTrackAdministrator = _matrixTrackService.ac1.ContainsAtAnyIndex("-1");
             //TODO: Decide which user-type takes precedence for multiple cross values
+            //IsDMMUser = _matrixTrackService.ac8.ContainsAtAnyIndex("m");
+            //IsSelectFullUser = _matrixTrackService.ac8.ContainsAtAnyIndex("t");
+            //IsSelectHeadlinesUser = _matrixTrackService.ac8.ContainsAtAnyIndex("h");
+            //IsAlertsUser = _matrixTrackService.ac8.ContainsAtAnyIndex("f");
+
             IsDMMUser = _matrixTrackService.ac8.StartsWithAtAnyIndex("m");
             IsSelectFullUser = _matrixTrackService.ac8.StartsWithAtAnyIndex("t");
             IsSelectHeadlinesUser = _matrixTrackService.ac8.StartsWithAtAnyIndex("h");
             IsAlertsUser = _matrixTrackService.ac8.StartsWithAtAnyIndex("f");
-
+            
             MaxFoldersForGlobal = GetNumberOfAlertFolders("G");
             MaxFoldersForSelectHeadline = GetNumberOfAlertFolders("H");
             MaxFoldersForSelectFullText = GetNumberOfAlertFolders("T");
