@@ -48,6 +48,8 @@ namespace DowJones.Web.Mvc.UI
             get { return _httpContext.Request.IsAjaxRequest(); }
         }
 
+        public bool RegisterGlobalReferences { get; set; }
+
 
         public ScriptRegistryWriter(IClientResourceManager clientResourceManager, CultureInfo culture, ClientResourceCombiner resourceCombiner, HttpContextBase httpContext, ClientConfiguration clientConfiguration)
         {
@@ -57,6 +59,7 @@ namespace DowJones.Web.Mvc.UI
             ClientResourceManager = clientResourceManager;
             Culture = culture;
             ClientResourceCombiner = resourceCombiner;
+            RegisterGlobalReferences = true;
         }
 
 
@@ -86,16 +89,28 @@ namespace DowJones.Web.Mvc.UI
 
             htmlWriter.OpenScriptBlock();
             RenderRequireConfiguration(writer);
+            RenderGlobalJQueryAndUnderscoreRegistration(writer);
             _clientConfiguration.WriteTo(writer);
             htmlWriter.CloseScriptBlock();
             
             htmlWriter.RenderScriptInclude(ClientResourceManager.GenerateUrl(CommonResources, Culture));
         }
 
+        private void RenderGlobalJQueryAndUnderscoreRegistration(TextWriter writer)
+        {
+            if (RegisterGlobalReferences == false)
+                return;
+
+            // Register global libraries if they didn't exist already
+            writer.WriteLine("if (!window['jQuery']) { window['jQuery'] = DJ.jQuery; }");
+            writer.WriteLine("if (!window['$']) { window['$'] = DJ.jQuery; }");
+            writer.WriteLine("if (!window['_']) { window['_'] = DJ.underscore; }");
+        }
+
         protected virtual void RenderRequireConfiguration(TextWriter writer)
         {
             var baseUrl = ClientResourceHandler.GenerateRequireJsBaseUrl(Culture);
-            var requireConfig = new RequireJsConfiguration { BaseUrl = baseUrl };
+            var requireConfig = new RequireJsConfiguration	() { BaseUrl = baseUrl };
             requireConfig.WriteTo(writer);
         }
 
@@ -193,7 +208,7 @@ namespace DowJones.Web.Mvc.UI
 
 
             // OPEN $(function() {
-            writer.Write("$(function() { ");
+            writer.Write("DJ.jQuery(function() { ");
 
             // OPEN require(function() {
             writer.Write("DJ.$dj.require([{0}], function($, $dj, _, JSON) {{ \r\n",
@@ -211,7 +226,7 @@ namespace DowJones.Web.Mvc.UI
 
         protected virtual void WriteOnWindowUnloadFunctionStart(TextWriter writer)
         {
-            writer.Write("$(window).unload(function(){");
+            writer.Write("DJ.jQuery(window).unload(function(){");
         }
 
         protected virtual void WriteOnWindowUnloadFunctionEnd(TextWriter writer)

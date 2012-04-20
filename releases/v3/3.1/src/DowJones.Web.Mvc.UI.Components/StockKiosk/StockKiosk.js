@@ -42,7 +42,8 @@ DJ.UI.StockKiosk = DJ.UI.Component.extend({
         quotes_symbol: '.dj_tickerRowSymbol',
         stock_chart: '.dj_chartContainer',
         market_block: '.dj_marketBlock',
-        stock_last_updated: '.dj_chartLastUpdated'
+        stock_last_updated: '.dj_chartLastUpdated',
+        stock_currency: '.dj_currency'
     },
 
     events: {
@@ -330,6 +331,19 @@ DJ.UI.StockKiosk = DJ.UI.Component.extend({
             if (stock_last_updated.length > 0 && requestedIntradaryMarketData.adjustedLastUpdatedDescripter) {
                 stock_last_updated.html($.trim(requestedIntradaryMarketData.adjustedLastUpdatedDescripter));
             }
+            
+            var currency = $(self.selectors.stock_currency, this.$element);
+            var currencyVal =  $(self.selectors.stock_currency + " .dj_value", this.$element);
+            if (currency.length > 0 )
+            {
+                if (requestedIntradaryMarketData.currency) {
+                    currency.show();
+                    currencyVal.html($.trim(requestedIntradaryMarketData.currency));
+                }
+                else {
+                    currency.hide();
+                }
+            }
 
             if (requestedIntradaryMarketData.dataPoints) { 
                 var graphDataModel = self.transformDataResult(requestedIntradaryMarketData.dataPoints, self.getMarketDirection(requestedIntradaryMarketData.percentChange.value || 0));
@@ -373,6 +387,19 @@ DJ.UI.StockKiosk = DJ.UI.Component.extend({
             var stock_last_updated = $(self.selectors.stock_last_updated,this.$element);
             if (stock_last_updated.length > 0 && requestedIntradaryMarketData.adjustedLastUpdatedDescripter) {
                 stock_last_updated.html($.trim(requestedIntradaryMarketData.adjustedLastUpdatedDescripter));
+            }
+
+            var currency = $(self.selectors.stock_currency, this.$element);
+            var currencyVal =  $(self.selectors.stock_currency + " .dj_value", this.$element);
+            if (currency.length > 0 )
+            {
+                if (requestedIntradaryMarketData.currency) {
+                    currency.show();
+                    currencyVal.html($.trim(requestedIntradaryMarketData.currency));
+                }
+                else {
+                    currency.hide();
+                }
             }
 
             //push in series of DataPoints (x and y points) .

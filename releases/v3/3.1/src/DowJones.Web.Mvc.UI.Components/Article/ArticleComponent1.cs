@@ -28,9 +28,10 @@ namespace DowJones.Web.Mvc.UI.Components.Article
     using DowJones.Web.Mvc.UI.Components.Article;
     using Factiva.Gateway.Messages.Archive.V2_0;
     using System.Text.RegularExpressions;
+    using DowJones.Web.Mvc.UI.Components.Models;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 04/16/2012 01:04 PM
+    // Last Generated Timestamp: 04/19/2012 02:03 PM
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.Article.ArticleComponent.js", ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.Article.ArticleComponent))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.19368")]
     public class ArticleComponent : DowJones.Web.Mvc.UI.ViewComponentBase<DowJones.Web.Mvc.UI.Components.Models.Article.ArticleModel>
@@ -49,6 +50,7 @@ namespace DowJones.Web.Mvc.UI.Components.Article
         }
         public override void ExecuteTemplate()
         {
+
 
 
 
@@ -635,11 +637,12 @@ WriteLiteral("\"></i><span data-workflow=\"");
 WriteLiteral("\">");
 
 
-                                                                                                                                                                                                                                       Write(DJ.Token(item.ToString().ToLower() + "Label"));
+                                                                                                                                                                                                                                       Write(DJ.Token(DJ.GetAssignedAttribute<PostProcessingOptions>(item.ToString())));
 
 WriteLiteral("</span></li>\r\n");
 
 
+                                    
                                 }
 
 WriteLiteral("                            </ul>\r\n");

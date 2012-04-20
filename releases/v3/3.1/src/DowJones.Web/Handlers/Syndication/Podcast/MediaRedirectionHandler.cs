@@ -52,7 +52,7 @@ namespace DowJones.Web.Handlers.Syndication.Podcast
         private const string CONTENT_READER_VOICE_FR = "bruno22k";
         private const string CONTENT_READER_VOICE_IT = "Silvia";
         private const string CONTENT_READER_VOICE_US = "Paul";
-        public const string TOKEN_NAME_VALUE_PAIR = AudioMediaUrlBuilder.TOKEN_NAME_VALUE_PAIR;
+        public const string TOKEN_NAME_VALUE_PAIR = AudioMediaUrlBuilder.TokenNameValuePair;
         private const string CONTENT_MIME_TYPE = "text/html";
         private const bool REQUIRES_AUTHENTICATION = false;
 

@@ -20,11 +20,17 @@ namespace DowJones.Models.Charting.MarketData
         [DataMember(Name = "statusMessage")]
         public string StatusMessage { get; set; }
 
+        [DataMember(Name = "requestedId")]
+        public string RequestedId { get; set; }
+
         [DataMember(Name = "symbol")]
         public string Symbol { get; set; }
 
         [DataMember(Name = "fCode")]
         public string FCode { get; set; }
+
+        [DataMember(Name = "currency")]
+        public string Currency { get; set; }
 
         [DataMember(Name = "isin")]
         public string Isin { get; set; }

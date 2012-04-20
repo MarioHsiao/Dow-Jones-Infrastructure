@@ -28,8 +28,8 @@ namespace DowJones.Web.Handlers.Syndication.Podcast
         // private const string m_EndSegment = "_EOT";
         // private const string DEFAULT_FOLDER_PATH = "~/{0}.mp3"; OLD STRING
 
-        public const string TOKEN_NAME_VALUE_PAIR = "tkn";
-        private const string DEFAULT_FOLDER_PATH = "~/{1}.mp3?" + TOKEN_NAME_VALUE_PAIR + "={0}";
+        public const string TokenNameValuePair = "tkn";
+        private const string DefaultFolderPath = "~/{1}.mp3?" + TokenNameValuePair + "= {0}";
         private readonly string _path;
         private readonly PodcastArticleToken _token = new PodcastArticleToken();
 
@@ -42,7 +42,7 @@ namespace DowJones.Web.Handlers.Syndication.Podcast
         /// <param name="integartaionType">Type of the integartaion.</param>
         public AudioMediaUrlBuilder(string folderPath, MediaRedirectionType mediaRedirectionType, IntegrationType integartaionType)
         {
-            _path = DEFAULT_FOLDER_PATH;
+            _path = DefaultFolderPath;
             MediaRedirectionType = mediaRedirectionType;
             IntegrationType = integartaionType;
             if (!string.IsNullOrEmpty(folderPath) && !string.IsNullOrEmpty(folderPath.Trim()))

@@ -42,7 +42,7 @@ namespace DowJones.Web
             dependencies = GlobalDependencies.Union(dependencies);
             
             resource.Content = string.Format(
-                "DJ.$dj.define('{0}', {1}, function($, $dj, _, JSON) {{\r\n {2} \r\n}});",
+                "DJ.$dj.define('{0}', {1}, function(jQuery, $dj, _, JSON) {{ var $ = jQuery; \r\n {2} \r\n}});",
                     new ClientResourceModuleName(resourceName), 
                     string.Format("['{0}']", string.Join("','", dependencies)), 
                     resource.Content

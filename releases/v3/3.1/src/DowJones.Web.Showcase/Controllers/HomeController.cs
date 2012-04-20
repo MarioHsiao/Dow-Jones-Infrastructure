@@ -5,6 +5,7 @@ using System.Web.Mvc;
 using System.Web.Script.Serialization;
 using DowJones.Ajax.PortalHeadlineList;
 using DowJones.Web.Mvc;
+using DowJones.Web.Mvc.ActionFilters;
 using DowJones.Web.Mvc.Routing;
 using DowJones.Web.Mvc.Threading;
 using DowJones.Web.Mvc.UI;
@@ -29,6 +30,7 @@ namespace DowJones.Web.Showcase.Controllers
         }
 
         [OutputCache(Duration = 10, VaryByParam = "none")]
+        [RequireAuthentication]
         public ActionResult Index()
         {
             return View("Index");

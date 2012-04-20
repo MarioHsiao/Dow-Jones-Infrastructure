@@ -1,21 +1,28 @@
-﻿using System.Xml.Serialization;
+﻿using System.Runtime.Serialization;
+using System.Xml.Serialization;
 
 namespace DowJones.Managers.Charting.MarketData
 {
+    [DataContract(Namespace = "")]
     public enum TimePeriod
     {
         [XmlEnum("1hr")]
+        [EnumMember]
         OneHour = 1,
         /// <summary>
         /// One day time period.
         /// </summary>
         [XmlEnum("1dy")]
+        [EnumMember]
         OneDay = 24,
         [XmlEnum("2dy")]
+        [EnumMember]
         TwoDays = 48,
         [XmlEnum("5dy")]
+        [EnumMember]
         FiveDays = 120,
         [XmlEnum("10dy")]
+        [EnumMember]
         TenDays = 240,
         /*  [XmlEnum("1mo")]
           OneMonth = 5,

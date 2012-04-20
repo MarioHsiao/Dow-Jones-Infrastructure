@@ -72,7 +72,7 @@ namespace DowJones.Managers.MarketWatch.Instrument
             var request = new GetInstrumentByDialectRequest
                               {
                                   Dialect = Mapper.Map<string>(symbolDialectType),
-                                  InstrumentRequests = Normalize(symbols).ToArray(),
+                                  InstrumentRequests = Normalize(symbols, symbolDialectType).ToArray(),
                                   MaxInstrumentMatches = maxInstrumentMatches,
                                   Needed = GetNeededQNames().ToArray(),
                               };
@@ -94,11 +94,12 @@ namespace DowJones.Managers.MarketWatch.Instrument
         }
 
 
-        private static List<InstrumentByDialectRequest> Normalize(IEnumerable<string> fCodes)
+        private static List<InstrumentByDialectRequest> Normalize(IEnumerable<string> symbols, SymbolDialectType symbolDialectType)
         {
-            return fCodes.Select(fcode => new InstrumentByDialectRequest
+            return symbols.Select(symbol => new InstrumentByDialectRequest
                                                   {
-                                                      Symbol = fcode, RequestId = fcode,
+                                                      Symbol = symbol, 
+                                                      RequestId = string.Concat(symbolDialectType.ToString(),":",symbol),
                                                   }).ToList();
         }
 

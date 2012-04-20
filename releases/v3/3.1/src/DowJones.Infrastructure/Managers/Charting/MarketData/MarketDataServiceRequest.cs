@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.Serialization;
 using DowJones.Managers.Core;
 
 namespace DowJones.Managers.Charting.MarketData
 {
+    [DataContract(Namespace = "")]
     public class MarketDataServiceRequest : IRequest
     {
         public IEnumerable<string> Symbols;
