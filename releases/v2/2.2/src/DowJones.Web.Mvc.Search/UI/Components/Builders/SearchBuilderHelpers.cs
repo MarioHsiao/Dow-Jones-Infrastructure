@@ -21,33 +21,29 @@ namespace DowJones.Web.Mvc.Search.UI.Components.Builders
 
         public static IHtmlString DisplayFilters(this ViewComponentFactory factory, SearchFilter searchFilter, string emptyValueToken)
         {
-            var filter = new StringBuilder();
-
+            string includesStr = null, excludesStr = null;
             if (searchFilter != null)
             {
-                filter.Append(CombineFilters(searchFilter.Include, searchFilter.Operator.GetValueOrDefault(SearchOperator.And)));
-                filter.Append(CombineFilters(searchFilter.Exclude, SearchOperator.Not));
+                includesStr = CombineFilters(searchFilter.Include, searchFilter.Operator.GetValueOrDefault(SearchOperator.And));
+                excludesStr = CombineFilters(searchFilter.Exclude, SearchOperator.Or);
             }
-
-            var filterString = filter.ToString().Trim();
+            var filterString = CombineFilters(includesStr, excludesStr);
             return ToHtmlString(filterString, emptyValueToken);
         }
 
         public static IHtmlString DisplayFilters(this ViewComponentFactory factory, SourceSearchFilter sourceSearchFilter, string emptyValueToken)
         {
-            var filter = new StringBuilder();
-
+            string includesStr = null, excludesStr = null, filterString = null;
             if (sourceSearchFilter != null)
             {
                 var includes = sourceSearchFilter.Include ?? new List<QueryFilters>();
                 var excludes = sourceSearchFilter.Exclude ?? new List<QueryFilters>();
-                filter.Append(CombineFilters(includes.SelectMany(x => x), SearchOperator.Or));
-                filter.Append(CombineFilters(excludes.SelectMany(x => x), SearchOperator.Not));
-                if (string.IsNullOrEmpty(filter.ToString()) && !string.IsNullOrEmpty(sourceSearchFilter.ListName))
-                    filter.Append(sourceSearchFilter.ListName);
+                includesStr = CombineFilters(includes.SelectMany(x => x), SearchOperator.Or);
+                excludesStr = CombineFilters(excludes.SelectMany(x => x), SearchOperator.Or);
+                filterString = CombineFilters(includesStr, excludesStr);
+                if (string.IsNullOrEmpty(filterString) && !string.IsNullOrEmpty(sourceSearchFilter.ListName))
+                    filterString = sourceSearchFilter.ListName;
             }
-
-            var filterString = filter.ToString().Trim();
             return ToHtmlString(filterString, "allSources");
         }
 
@@ -89,6 +85,24 @@ namespace DowJones.Web.Mvc.Search.UI.Components.Builders
             var combined = string.Join(separator, filters.Select(x => x.Name.Trim())).Trim();
 
             return combined;
+        }
+
+        private static string CombineFilters(string includesStr, string excludesStr)
+        {
+            var combinedStr = new StringBuilder();
+            if (!string.IsNullOrEmpty(includesStr) && !string.IsNullOrEmpty(excludesStr))
+            {
+                combinedStr.AppendFormat("({0}) <br /><span class='not'>{1}</span> ({2})", includesStr, TokenRegistryThunk().Get(SearchOperator.Not), excludesStr);
+            }
+            else if (!string.IsNullOrEmpty(includesStr) && string.IsNullOrEmpty(excludesStr))
+            {
+                combinedStr.AppendFormat("{0}", includesStr);
+            }
+            else if (string.IsNullOrEmpty(includesStr) && !string.IsNullOrEmpty(excludesStr))
+            {
+                combinedStr.AppendFormat("<span class='not'>{0}</span> ({1})", TokenRegistryThunk().Get(SearchOperator.Not), excludesStr);
+            }
+            return combinedStr.ToString();
         }
     }
 }
