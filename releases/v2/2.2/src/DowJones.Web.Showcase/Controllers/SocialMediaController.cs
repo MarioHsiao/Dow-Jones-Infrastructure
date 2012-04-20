@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using DowJones.Ajax.SocialMedia;
 using DowJones.Infrastructure;
+using DowJones.Infrastructure.Common;
 using DowJones.Managers.SocialMedia.TweetRiver;
 using DowJones.Web.Mvc.UI.Components.SocialMedia;
 using DowJones.Web.Showcase.Models;
@@ -30,8 +31,8 @@ namespace DowJones.Web.Showcase.Controllers
             //var filePath = @"C:\MVCProjects\Dow Jones Infrastructure\releases\v2\2.2\src\DowJones.Tests\bin\Release\Infrastructure\Managers\SocialMedia\IndustryChannel.config";
             //SystemIO.FileStream stream = SystemIO.File.Open(filePath, SystemIO.FileMode.Open);
             IControlData controlData = new ControlData { UserID = "snap_proxy", UserPassword = "pa55w0rd", ProductID = "16" };
-
-            var response = new SocialMediaService(new TweetRiverProvider(), new PAMSocialMediaIndustryProvider(controlData), controlData).GetTweetsByIndustry(i);
+            Product product = new Product("test", "test", null, true);
+            var response = new SocialMediaService(new TweetRiverProvider(), new PAMSocialMediaIndustryProvider(controlData), controlData, product).GetTweetsByIndustry(i);
 
             var socialMediaViewModel = new SocialMediaViewModel
                                      {

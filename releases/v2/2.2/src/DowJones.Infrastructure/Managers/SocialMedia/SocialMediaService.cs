@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using DowJones.Infrastructure;
+using DowJones.Infrastructure.Common;
 using DowJones.Infrastructure.Converters;
 using DowJones.Infrastructure.Models.SocialMedia;
 using DowJones.Managers.Abstract;
@@ -29,11 +30,10 @@ namespace DowJones.Managers.SocialMedia
         /// </summary>
         private readonly JsonSerializerSettings Settings;
 
-
         private ISocialMediaProvider _socialMediaProvider;
         private ISocialMediaIndustryProvider _industryProvider;
         private IControlData _controlData;
-
+        private readonly Product _product;
 
         /// <summary>
         /// Gets the default json serializer settings.
@@ -192,20 +192,18 @@ namespace DowJones.Managers.SocialMedia
             }
         }
 
-        
-
         /// <summary>
         /// Initializes members of the <see cref="SocialMediaService"/> class.
         /// </summary>
-        public SocialMediaService(ISocialMediaProvider socialMediaProvider, ISocialMediaIndustryProvider industryprovider, IControlData controlData)
+        public SocialMediaService(ISocialMediaProvider socialMediaProvider, ISocialMediaIndustryProvider industryprovider, IControlData controlData, Product product)
         {
             Settings = GetDefaultJsonSerializerSettings();
             //IndustryChannelMap = new IndustryChannelMap();
             _industryProvider = industryprovider;
             _socialMediaProvider = socialMediaProvider;
             _controlData = controlData;
+            _product = product;
         }
-
 
         /// <summary>
         /// Gets the tweets by channel.
@@ -213,10 +211,10 @@ namespace DowJones.Managers.SocialMedia
         /// <param name="channel">The channel.</param>
         /// <param name="count">The count.</param>
         /// <returns></returns>
-        public GetTweetsByChannelResponse GetTweetsByChannel(string channel, RequestOptions requestOptions = null, bool enableBlocking = false)
+        public GetTweetsByChannelResponse GetTweetsByChannel(string channel, RequestOptions requestOptions = null)
         {
             //Check Social Media Blocking
-            if (enableBlocking)
+            if (_product.IsSocialMediaBlockingOn)
             {
                 AuthorizationManager manager = new AuthorizationManager(_controlData);
                 if (manager.IsSocialMediaBlocked())
@@ -235,10 +233,10 @@ namespace DowJones.Managers.SocialMedia
             return response;
         }
 
-        public GetTweetsByChannelResponse GetTweetsByIndustry(string industry, RequestOptions requestOptions = null, bool enableBlocking = false)
+        public GetTweetsByChannelResponse GetTweetsByIndustry(string industry, RequestOptions requestOptions = null)
         {
             //Check Social Media Blocking
-            if (enableBlocking)
+            if (_product.IsSocialMediaBlockingOn)
             {
                 AuthorizationManager manager = new AuthorizationManager(_controlData);
                 if (manager.IsSocialMediaBlocked())
@@ -257,10 +255,10 @@ namespace DowJones.Managers.SocialMedia
             return GetTweetsByChannel(channel, requestOptions);
         }
 
-        public GetExpertsByIndustryResponse GetExpertsByIndustry(string industry, RequestOptions requestOptions = null,  bool enableBlocking = false)
+        public GetExpertsByIndustryResponse GetExpertsByIndustry(string industry, RequestOptions requestOptions = null)
         {
             //Check Social Media Blocking
-            if (enableBlocking)
+            if (_product.IsSocialMediaBlockingOn)
             {
                 AuthorizationManager manager = new AuthorizationManager(_controlData);
                 if (manager.IsSocialMediaBlocked())
@@ -285,10 +283,10 @@ namespace DowJones.Managers.SocialMedia
         }
 
 
-        public GetMetaByIndustryResponse GetMetaByIndustry(string industry, RequestOptions requestOptions, bool enableBlocking = false)
+        public GetMetaByIndustryResponse GetMetaByIndustry(string industry, RequestOptions requestOptions)
         {
             //Check Social Media Blocking
-            if (enableBlocking)
+            if (_product.IsSocialMediaBlockingOn)
             {
                 AuthorizationManager manager = new AuthorizationManager(_controlData);
                 if (manager.IsSocialMediaBlocked())
@@ -303,7 +301,6 @@ namespace DowJones.Managers.SocialMedia
             var response = TryGetSocialMediaResponseImplementation<GetMetaByIndustryResponse>(request);
 
             return response;
-
         }
     }
 }

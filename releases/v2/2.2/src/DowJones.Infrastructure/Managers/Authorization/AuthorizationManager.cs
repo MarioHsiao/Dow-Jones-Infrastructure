@@ -58,14 +58,14 @@ namespace DowJones.Managers.Authorization
             {
                 if (getUserAuthorizationsResponse == null 
                     || getUserAuthorizationsResponse.AuthorizationMatrix == null 
-                    || getUserAuthorizationsResponse.AuthorizationMatrix.FsInterfaceService == null
-                    || getUserAuthorizationsResponse.AuthorizationMatrix.FsInterfaceService.ac6 == null
-                    || getUserAuthorizationsResponse.AuthorizationMatrix.FsInterfaceService.ac6.Count <= 0)
+                    || getUserAuthorizationsResponse.AuthorizationMatrix.FinacialServiceInterface == null
+                    || getUserAuthorizationsResponse.AuthorizationMatrix.FinacialServiceInterface.ac6 == null
+                    || getUserAuthorizationsResponse.AuthorizationMatrix.FinacialServiceInterface.ac6.Count <= 0)
                 {
                     return false;
                 }
 
-                foreach (string ac6 in getUserAuthorizationsResponse.AuthorizationMatrix.FsInterfaceService.ac6)
+                foreach (string ac6 in getUserAuthorizationsResponse.AuthorizationMatrix.FinacialServiceInterface.ac6)
                 {
                     if(ac6.Trim()==SocialMediaBlockingString)
                     {

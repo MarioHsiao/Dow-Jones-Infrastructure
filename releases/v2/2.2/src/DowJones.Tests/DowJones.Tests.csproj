@@ -781,8 +781,12 @@
     <Content Include="GatewayResources\xslt\membership\GetProductAccessTokenWithUrlResponse.xslt" />
     <Content Include="GatewayResources\xslt\membership\GetSingleSignOnTokenResponse.xslt" />
     <Content Include="GatewayResources\xslt\membership\GetTokenDataResponse.xslt" />
-    <Content Include="GatewayResources\xslt\membership\GetUserAuthorizationsNoCacheResponse.xslt" />
-    <Content Include="GatewayResources\xslt\membership\GetUserAuthorizationsNoSessionResponse.xslt" />
+    <Content Include="GatewayResources\xslt\membership\GetUserAuthorizationsNoCacheResponse.xslt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="GatewayResources\xslt\membership\GetUserAuthorizationsNoSessionResponse.xslt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="GatewayResources\xslt\membership\GetUserProfileResponse.xslt" />
     <Content Include="GatewayResources\xslt\membership\GetWSJIETokenResponse.xslt" />
     <Content Include="GatewayResources\xslt\membership\LoginWithSingleSignOnTokenExResponse.xslt" />
