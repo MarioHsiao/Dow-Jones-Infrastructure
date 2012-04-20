@@ -673,13 +673,13 @@
 
                             if (filters && filters.length > 0) {
                                 for (var i = 0, len = filters.length; i < len; i++) {
-                                    this.$sLstFilters.append(this.templates.sourceFilterPill({ filter: this._processSourceEntitiesFilter(filters[0].SourceEntites) }));
+                                    this.$sLstFilters.append(this.templates.sourceFilterPill({ filter: this._processSourceEntitiesFilter(filters[i].SourceEntites) }));
                                 }
                             }
 
                             if (notFilters && notFilters.length > 0) {
                                 for (var i = 0, len = notFilters.length; i < len; i++) {
-                                    this.$sLstNotFilters.append(this.templates.sourceFilterPill({ filter: this._processSourceEntitiesFilter(notFilters[0].SourceEntites) }));
+                                    this.$sLstNotFilters.append(this.templates.sourceFilterPill({ filter: this._processSourceEntitiesFilter(notFilters[i].SourceEntites) }));
                                 }
                                 this.$sLstNotFilters.show();
                             }
