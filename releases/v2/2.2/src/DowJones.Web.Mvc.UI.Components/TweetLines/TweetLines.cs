@@ -189,7 +189,7 @@ WriteLiteral("</span></div>\r\n<div class=\"dj_to-top-wrap hide\">\r\n\t<span cl
 "span><span class=\"dj_to-top\">");
 
 
-                                                       Write(Html.DJ().Token("backToTop"));
+Write(Html.DJ().Token("backToTopTweet"));
 
 WriteLiteral("\r\n\t\t↑ </span>\r\n</div>\r\n");
 
