@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using DowJones.Web.Mvc.UI.Components.Models;
+[assembly: System.Web.UI.WebResourceAttribute("DowJones.Web.Mvc.UI.Components.Article.ArticleComponent.js", "text/javascript")]
 
 namespace DowJones.Web.Mvc.UI.Components.Article
 {
@@ -28,11 +28,12 @@ namespace DowJones.Web.Mvc.UI.Components.Article
     using DowJones.Web.Mvc.UI.Components.Article;
     using Factiva.Gateway.Messages.Archive.V2_0;
     using System.Text.RegularExpressions;
+    using DowJones.Web.Mvc.UI.Components.Models;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 04/19/2012 02:46 PM
+    // Last Generated Timestamp: 04/23/2012 09:18 AM
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.Article.ArticleComponent.js", ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.Article.ArticleComponent))]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "0.0.0.30158")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.19368")]
     public class ArticleComponent : DowJones.Web.Mvc.UI.ViewComponentBase<DowJones.Web.Mvc.UI.Components.Models.Article.ArticleModel>
     {
 #line hidden
@@ -841,18 +842,13 @@ WriteLiteral("                            <div class=\"dj_article_index\">CT</di
                         }
                 
 
-WriteLiteral("                        <div class=\"dj_article_art dj_article_section\">\r\n");
+WriteLiteral("                        <div class=\"dj_article_ct dj_article_section\">\r\n         " +
+"                   ");
 
 
-                             foreach (IRenderItem renderItem in Model.ArticleDataSet.Contact)
-                            {
-                                
-                            Write(CreateChildControl<Paragraph>(Model.GetParagraphModel(Model.ArticleDataSet.Contact, "p", "dj_article_paragraph")));
+                        Write(CreateChildControl<Paragraph>(Model.GetParagraphModel(Model.ArticleDataSet.Contact, "p", "dj_article_paragraph")));
 
-                                                                                                                                                    
-                            }
-
-WriteLiteral("                        </div>\r\n");
+WriteLiteral("\r\n                        </div>\r\n");
 
 
                     }
@@ -868,18 +864,13 @@ WriteLiteral("                            <div class=\"dj_article_index\">RF</di
                         }
                 
 
-WriteLiteral("                        <div class=\"dj_article_rf dj_article_section\">\r\n");
+WriteLiteral("                        <div class=\"dj_article_rf dj_article_section\">\r\n         " +
+"                   ");
 
 
-                             foreach (IRenderItem renderItem in Model.ArticleDataSet.Notes)
-                            {
-                                
-                            Write(CreateChildControl<Paragraph>(Model.GetParagraphModel(Model.ArticleDataSet.Notes, "p", "dj_article_paragraph")));
+                        Write(CreateChildControl<Paragraph>(Model.GetParagraphModel(Model.ArticleDataSet.Notes, "p", "dj_article_paragraph")));
 
-                                                                                                                                                  
-                            }
-
-WriteLiteral("                        </div>\r\n");
+WriteLiteral("\r\n                        </div>\r\n");
 
 
                     }

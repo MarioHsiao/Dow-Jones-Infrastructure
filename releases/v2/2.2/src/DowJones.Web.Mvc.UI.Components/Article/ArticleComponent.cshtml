@@ -7,7 +7,7 @@
 @using DowJones.Web.Mvc.UI.Components.Article;
 @using Factiva.Gateway.Messages.Archive.V2_0;
 @using System.Text.RegularExpressions;
-@model DowJones.Web.Mvc.UI.Components.Models;
+@using DowJones.Web.Mvc.UI.Components.Models;
 @model DowJones.Web.Mvc.UI.Components.Models.Article.ArticleModel
 @ClientPlugin dj_Article
 @ScriptResource RelativeResourceName=ArticleComponent.js
@@ -364,11 +364,8 @@
                             <div class="dj_article_index">CT</div>
                         }
                 
-                        <div class="dj_article_art dj_article_section">
-                            @foreach (IRenderItem renderItem in Model.ArticleDataSet.Contact)
-                            {
-                                @(CreateChildControl<Paragraph>(Model.GetParagraphModel(Model.ArticleDataSet.Contact, "p", "dj_article_paragraph")))
-                            }
+                        <div class="dj_article_ct dj_article_section">
+                            @(CreateChildControl<Paragraph>(Model.GetParagraphModel(Model.ArticleDataSet.Contact, "p", "dj_article_paragraph")))
                         </div>
                     }
 
@@ -380,10 +377,7 @@
                         }
                 
                         <div class="dj_article_rf dj_article_section">
-                            @foreach (IRenderItem renderItem in Model.ArticleDataSet.Notes)
-                            {
-                                @(CreateChildControl<Paragraph>(Model.GetParagraphModel(Model.ArticleDataSet.Notes, "p", "dj_article_paragraph")))
-                            }
+                            @(CreateChildControl<Paragraph>(Model.GetParagraphModel(Model.ArticleDataSet.Notes, "p", "dj_article_paragraph")))
                         </div>
                     }
 
