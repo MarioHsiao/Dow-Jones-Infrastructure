@@ -302,7 +302,7 @@ DJ.UI.TweetLines = DJ.UI.Component.extend({
 				else {
 					me.scrollBar.refresh();
 				}
-			}, 500);
+			}, 0);
 
 		}
 		catch (e) {
