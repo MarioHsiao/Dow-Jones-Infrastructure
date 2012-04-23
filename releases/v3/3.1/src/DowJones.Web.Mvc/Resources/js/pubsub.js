@@ -1,6 +1,6 @@
 /*!  PubSub Manager */
 
-(function ($, $dj) {
+(function ($, $dj, _) {
 
     DJ.PubSubManager = function () {
         var _pubSubCache = {};
@@ -54,4 +54,4 @@
         publish: $dj.publish,
         subscribe: $dj.subscribe
     });
-})(DJ.jQuery, DJ.$dj);
+})(DJ.jQuery, DJ.$dj, DJ.underscore);
