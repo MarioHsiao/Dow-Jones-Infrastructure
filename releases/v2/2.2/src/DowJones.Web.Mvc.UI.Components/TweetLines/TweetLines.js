@@ -6,13 +6,7 @@ DJ.UI.TweetLines = DJ.UI.Component.extend({
 
 	// Default options
 	defaults: {
-		webIntents: {
-			follow: "https://twitter.com/intent/user?user_id=",
-			reply: "https://twitter.com/intent/tweet?in_reply_to=",
-			retweet: "https://twitter.com/intent/retweet?tweet_id=",
-			favorite: "https://twitter.com/intent/favorite?tweet_id=",
-			details: "https://twitter.com/#!/{screen-name}/status/"
-		},
+
 		maxTweetsToShow: 100,
 		maxPagesInHistory: -1 // allow infinite history
 	},
@@ -53,6 +47,15 @@ DJ.UI.TweetLines = DJ.UI.Component.extend({
 		this.historyClicks = 0;
 
 
+		var lang = this._getInterfaceLanguage();
+
+		this.defaults.webIntents = {
+			follow: "https://twitter.com/intent/user?lang=" + lang + "&user_id=",
+			reply: "https://twitter.com/intent/tweet?lang=" + lang + "&in_reply_to=",
+			retweet: "https://twitter.com/intent/retweet?lang=" + lang + "&tweet_id=",
+			favorite: "https://twitter.com/intent/favorite?lang=" + lang + "&tweet_id=",
+			details: "https://twitter.com/#!/{screen-name}/status/"
+		};
 	},
 
 
@@ -222,8 +225,6 @@ DJ.UI.TweetLines = DJ.UI.Component.extend({
 			case 'error': this.bindOnError(data); break;
 			default: this.bindOnNoData(); break;
 		}
-
-
 	},
 
 
@@ -339,11 +340,24 @@ DJ.UI.TweetLines = DJ.UI.Component.extend({
 
 	_getWebIntentUrl: function (action, id) {
 		if (!this.options.webIntents[action]) {
-			$dj.error(this.name, "::getWebIntentUrl: action '", action, "' is not recognized.");
+			$dj.error(this.name, "::_getWebIntentUrl: action '", action, "' is not recognized.");
 			return;
 		}
 
 		return this.options.webIntents[action] + id;
+	},
+
+
+	_getInterfaceLanguage: function () {
+		var lang = 'en'; // default to english
+		try {
+			lang = $dj.globalHeaders.preferences.interfaceLanguage;
+		}
+		catch (ex) {
+			$dj.warn(this.name, "::_getInterfaceLanguage: Failed to get interface langauge. Defaulting to english.\nDetails:", ex);
+		}
+
+		return lang;
 	},
 
 
