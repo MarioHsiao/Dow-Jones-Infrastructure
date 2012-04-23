@@ -672,7 +672,7 @@ lines affected: 7172
         // of path animations.
         globalAdapter.init(pathAnim);
     }
-    if (!globalAdapter && win.jQuery) {
+    if (!globalAdapter && jQuery) {
         var jQ = jQuery;
 
         /**
