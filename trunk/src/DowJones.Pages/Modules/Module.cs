@@ -52,5 +52,9 @@ namespace DowJones.Pages.Modules
             return _knownTypes;
         }
         private static volatile Type[] _knownTypes;
+
+        public virtual void BeforeDeleteModuleFromPage()
+        {
+        }
     }
 }
