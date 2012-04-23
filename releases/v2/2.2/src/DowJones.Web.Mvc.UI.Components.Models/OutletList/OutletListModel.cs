@@ -16,24 +16,29 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 		[ClientProperty("pageSize")]
 		public int PageSize { get; set; }
 		public bool ShowDeleteAction { get; set; }
+		public bool ShowDistributeListAction { get; set; }
 		public List<OutletListColumns> DisplayedColumns { get; set; }
 
 		public IEnumerable<SelectListItem> Actions
 		{
 			get
 			{
-				IEnumerable<SelectListItem> all = GetActionMenuItems();
-				if (this.ShowDeleteAction)
+				IEnumerable<SelectListItem> retVal = GetActionMenuItems();
+				if (this.ShowDistributeListAction == false)
 				{
-					return all;
+					retVal = from a in retVal
+							 where a.Value.Equals("distribute-list") == false
+							 select a;
 				}
-				else
+
+				if (this.ShowDeleteAction == false)
 				{
-					var woDelete = from a in all
-								   where a.Value.Equals("delete") == false
-								   select a;
-					return woDelete;
+					retVal = from a in retVal
+							 where a.Value.Equals("delete") == false
+							 select a;
 				}
+
+				return retVal;
 			}
 		}
 
@@ -76,8 +81,7 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 						th = new ThOutletItem
 						{
 							Column = col,
-							Text = Tokens.Type,
-							SortableColumn = OutletListSortColumns.Type
+							Text = Tokens.Type
 						};
 						columnOrder.Type = ++i;
 						break;
@@ -347,7 +351,7 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 				{
 					cols[columnOrder.Type] = new TdItem
 					{
-						Text = outlet.Type
+						Text = SeparateStringListWithDiv(outlet.Type)
 					};
 				}
 				// website;
@@ -355,6 +359,9 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 				{
 					cols[columnOrder.Website] = new TdItem
 					{
+						IsAncor = true,
+						AncorHref = outlet.WebSite,
+						AncorAttributes = "target='_blank'",
 						Text = outlet.WebSite
 					};
 				}
@@ -565,6 +572,7 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 				new SelectListItem { Text = this.Tokens.Print, Value = "print" },
 				new SelectListItem { Text = this.Tokens.Export, Value = "export" },
 				new SelectListItem { Text = this.Tokens.ExportAll, Value = "export-all" },
+				new SelectListItem { Text = this.Tokens.DistributeList, Value = "distribute-list" },
 				new SelectListItem { Text = this.Tokens.Delete, Value = "delete" },
 				new SelectListItem { Text = this.Tokens.Email, Value = "email" }
 			};
@@ -642,8 +650,6 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 		OutletName,
 		[Description("circulation")]
 		Circulation,
-		[Description("type")]
-		Type,
 		[Description("city")]
 		City,
 		[Description("state")]

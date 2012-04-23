@@ -171,11 +171,14 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 		public string Name { get; set; }
 		public string EmploymentType { get; set; }
 		public string JobTitle { get; set; }
-		public string Type { get; set; }
+		public List<string> Type { get; set; }
 		public int Circulation { get; set; }
 		public string Frequency { get; set; }
 		public string State { get; set; }
 		public string Country { get; set; }
+		public List<string> EmailAddresses { get; set; }
+		public List<string> Phones { get; set; }
+		public List<string> Faxes { get; set; }
 
 		public OutletProperties()
 		{
@@ -186,11 +189,14 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 			string name,
 			string employmentType,
 			string jobTitle,
-			string type,
+			List<string> type,
 			int circulation,
 			string frequency,
 			string state,
-			string country)
+			string country,
+			List<string> emails,
+			List<string> phones,
+			List<string> faxes)
 		{
 			this.Id = id;
 			this.Name = name;
@@ -201,6 +207,9 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 			this.Frequency = frequency;
 			this.State = state;
 			this.Country = country;
+			this.EmailAddresses = emails;
+			this.Phones = phones;
+			this.Faxes = faxes;
 		}
 	}
 }

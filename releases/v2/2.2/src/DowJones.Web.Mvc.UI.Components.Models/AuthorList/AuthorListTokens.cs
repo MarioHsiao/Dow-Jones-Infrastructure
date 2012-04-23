@@ -31,7 +31,7 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 		public string Zip { get; set; }
 		public string Language { get; set; }
 		// ******************************************
-		// OUTLET INFO [8]
+		// OUTLET INFO [8+3]
 		// ******************************************
 		public string OutletName { get; set; }
 		public string OutletEmploymentType { get; set; }
@@ -41,6 +41,9 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 		public string OutletFrequency { get; set; }
 		public string OutletState { get; set; }
 		public string OutletCountry { get; set; }
+		public string OutletEmail { get; set; }
+		public string OutletPhone { get; set; }
+		public string OutletFax { get; set; }
 		// ******************************************
 		// BEATS [2]
 		// ******************************************
@@ -66,6 +69,7 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 		public string Delete { get; set; }
 		public string Email { get; set; }
 		public string ExportAll { get; set; }
+		public string DistributeList { get; set; }
 		public string CreateActivity { get; set; }
 		public string CreateBriefingBook { get; set; }
 
@@ -74,6 +78,7 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 		public string HideCellItems { get; set; }
 
 		public string NoResults { get; set; }
+		public string NoCurrentOutlet { get; set; }
 
 		// Unselect row checkboxes;
 		public string UnselectCheckboxesConfirmTitle { get; set; }
@@ -105,7 +110,7 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 			this.Zip = GetTokenByName("cmalContactZipPost");
 			this.Language = GetTokenByName("cmalContactLangs");
 			// ******************************************
-			// OUTLET INFO [8]
+			// OUTLET INFO [8+3]
 			// ******************************************
 			this.OutletName = GetTokenByName("outletName");
 			this.OutletEmploymentType = GetTokenByName("cmalEmploymentType");
@@ -115,6 +120,9 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 			this.OutletFrequency = GetTokenByName("cmalOutletFrequency");
 			this.OutletState = GetTokenByName("cmalOutletState");
 			this.OutletCountry = GetTokenByName("cmalOutletCountry");
+			this.OutletEmail = GetTokenByName("cmalEmploymentEmails");
+			this.OutletPhone = GetTokenByName("cmalEmploymentPhones");
+			this.OutletFax = GetTokenByName("cmalEmploymentFaxes");
 			// ******************************************
 			// BEATS [2]
 			// ******************************************
@@ -140,6 +148,7 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 			this.Delete = GetTokenByName("delete");
 			this.Email = GetTokenByName("cmalgmEmail");
 			this.ExportAll = GetTokenByName("cmalExportAll");
+			this.DistributeList = GetTokenByName("distributeList");
 			this.CreateActivity = GetTokenByName("cmCreateActivity");
 			this.CreateBriefingBook = GetTokenByName("cmalCreateBriefingBook");
 
@@ -148,6 +157,7 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 			this.HideCellItems = GetTokenByName("cmalHideCellItems");
 
 			this.NoResults = GetTokenByName("noAuthorResults");
+			this.NoCurrentOutlet = GetTokenByName("cmalNoCurrentOutlet");
 
 			// Unselect row checkboxes;
 			this.UnselectCheckboxesConfirmTitle = GetTokenByName("cmalConfirm");

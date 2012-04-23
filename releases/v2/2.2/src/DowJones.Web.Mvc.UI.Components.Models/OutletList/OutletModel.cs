@@ -16,7 +16,7 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 		public string OutletName { get; set; }
 		public bool HasMediaContacts { get; set; }
 		public int Circulation { get; set; }
-		public string Type { get; set; }
+		public List<string> Type { get; set; }
 		public string WebSite { get; set; }
 		// Contact information;
 		public string Address { get; set; }

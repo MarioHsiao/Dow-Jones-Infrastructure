@@ -41,6 +41,7 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 		public int TotalResultCount { get; set; }
 
 		public bool ShowDeleteAction { get; set; }
+		public bool ShowDistributeListAction { get; set; }
 
 		public List<AuthorListColumns> DisplayedColumns { get; set; }
 
@@ -48,18 +49,22 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 		{
 			get
 			{
-				IEnumerable<SelectListItem> all = GetActionMenuItems();
-				if (this.ShowDeleteAction)
+				IEnumerable<SelectListItem> retVal = GetActionMenuItems();
+				if (this.ShowDistributeListAction == false)
 				{
-					return all;
+					retVal = from a in retVal
+							 where a.Value.Equals("distribute-list") == false
+							 select a;
 				}
-				else
+
+				if (this.ShowDeleteAction == false)
 				{
-					var woDelete = from a in all
-								   where a.Value.Equals("delete") == false
-								   select a;
-					return woDelete;
+					retVal = from a in retVal
+							 where a.Value.Equals("delete") == false
+							 select a;
 				}
+
+				return retVal;
 			}
 		}
 
@@ -74,7 +79,10 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 					|| this.DisplayedColumns.Contains(AuthorListColumns.OutletCirculation)
 					|| this.DisplayedColumns.Contains(AuthorListColumns.OutletFrequency)
 					|| this.DisplayedColumns.Contains(AuthorListColumns.OutletState)
-					|| this.DisplayedColumns.Contains(AuthorListColumns.OutletCountry);
+					|| this.DisplayedColumns.Contains(AuthorListColumns.OutletCountry)
+					|| this.DisplayedColumns.Contains(AuthorListColumns.OutletEmailAddress)
+					|| this.DisplayedColumns.Contains(AuthorListColumns.OutletPhone)
+					|| this.DisplayedColumns.Contains(AuthorListColumns.OutletFax);
 
 				return retval;
 			}
@@ -91,6 +99,7 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 			this.Authors = Enumerable.Empty<AuthorModel>();
 			this.Tokens = new AuthorListTokens();
 			this.ShowDeleteAction = false;
+			this.ShowDistributeListAction = false;
 			this.SortBy = AuthorListSortColumns.ContactName;
 			this.SortOrder = OrderDirections.Ascending;
 			this.DisplayedColumns = new List<AuthorListColumns>();
@@ -200,7 +209,7 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 						};
 						columnOrder.Language = ++i;
 						break;
-					// outlet info [8];
+					// outlet info [8+3];
 					case AuthorListColumns.OutletName:
 						th = new ThItem
 						{
@@ -232,8 +241,7 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 						th = new ThItem
 						{
 							Column = col,
-							Text = Tokens.OutletType,
-							SortableColumn = AuthorListSortColumns.OutletType
+							Text = Tokens.OutletType
 						};
 						columnOrder.OutletType = ++i;
 						break;
@@ -273,6 +281,33 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 							SortableColumn = AuthorListSortColumns.OutletCountry
 						};
 						columnOrder.OutletCountry = ++i;
+						break;
+					case AuthorListColumns.OutletEmailAddress:
+						th = new ThItem
+						{
+							Column = col,
+							Text = Tokens.OutletEmail,
+							Sortable = false,
+						};
+						columnOrder.OutletEmail = ++i;
+						break;
+					case AuthorListColumns.OutletPhone:
+						th = new ThItem
+						{
+							Column = col,
+							Text = Tokens.OutletPhone,
+							Sortable = false,
+						};
+						columnOrder.OutletPhone = ++i;
+						break;
+					case AuthorListColumns.OutletFax:
+						th = new ThItem
+						{
+							Column = col,
+							Text = Tokens.OutletFax,
+							Sortable = false,
+						};
+						columnOrder.OutletFax = ++i;
 						break;
 					// beats [2]
 					case AuthorListColumns.BeatsSubjects:
@@ -413,7 +448,7 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 						Text = SeparateStringListWithDiv(author.Phones)
 					};
 				}
-				// fax
+				// fax;
 				if (this.DisplayedColumns.Contains(AuthorListColumns.Fax))
 				{
 					cols[columnOrder.Fax] = new TdItem
@@ -489,6 +524,11 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 						cols[columnOrder.OutletName].AncorHref = "javascript:void(0);";
 						cols[columnOrder.OutletName].AncorAttributes = String.Format("authorlist-outlet-id='{0}'", firstOutlet.Id);
 					}
+					else
+					{
+						// only under outlet name column, no one else!!!
+						cols[columnOrder.OutletName].Text = this.Tokens.NoCurrentOutlet;
+					}
 				}
 				// outlet employnment type;
 				if (this.DisplayedColumns.Contains(AuthorListColumns.OutletEmploymentType))
@@ -523,7 +563,7 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 					cols[columnOrder.OutletType] = new TdItem();
 					if (author.HasOutlets)
 					{
-						cols[columnOrder.OutletType].Text = firstOutlet.Type;
+						cols[columnOrder.OutletType].Text = SeparateStringListWithDiv(firstOutlet.Type);
 					}
 				}
 				// outlet circulation;
@@ -568,6 +608,34 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 						cols[columnOrder.OutletCountry].Text = firstOutlet.Country;
 					}
 				}
+				// outlet e-mail address;
+				if (this.DisplayedColumns.Contains(AuthorListColumns.OutletEmailAddress))
+				{
+					cols[columnOrder.OutletEmail] = new TdItem();
+					if (author.HasOutlets)
+					{
+						cols[columnOrder.OutletEmail].Text =
+							SeparateStringListWithDiv(firstOutlet.EmailAddresses);
+					};
+				}
+				// outlet phone;
+				if (this.DisplayedColumns.Contains(AuthorListColumns.OutletPhone))
+				{
+					cols[columnOrder.OutletPhone] = new TdItem();
+					if (author.HasOutlets)
+					{
+						cols[columnOrder.OutletPhone].Text = SeparateStringListWithDiv(firstOutlet.Phones);
+					};
+				}
+				// outlet fax;
+				if (this.DisplayedColumns.Contains(AuthorListColumns.OutletFax))
+				{
+					cols[columnOrder.OutletFax] = new TdItem();
+					if (author.HasOutlets)
+					{
+						cols[columnOrder.OutletFax].Text = SeparateStringListWithDiv(firstOutlet.Faxes);
+					};
+				}
 				// ***********************************
 				// BEATS;
 				// ***********************************
@@ -602,7 +670,6 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 
 				TrItem tr = new TrItem(cols, isOdd);
 				this.TrCollection.Add(tr);
-
 				// ************************************
 				// additional outlets info
 				// ************************************
@@ -650,7 +717,8 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 						if (this.DisplayedColumns.Contains(AuthorListColumns.OutletType))
 						{
 							outletRows[columnOrder.OutletType] = new TdItem();
-							outletRows[columnOrder.OutletType].Text = outlet.Type;
+							outletRows[columnOrder.OutletType].Text 
+								= SeparateStringListWithDiv(outlet.Type);
 						}
 						// outlet circulation;
 						if (this.DisplayedColumns.Contains(AuthorListColumns.OutletCirculation))
@@ -681,6 +749,27 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 						{
 							outletRows[columnOrder.OutletCountry] = new TdItem();
 							outletRows[columnOrder.OutletCountry].Text = outlet.Country;
+						}
+						// outlet e-mail address;
+						if (this.DisplayedColumns.Contains(AuthorListColumns.OutletEmailAddress))
+						{
+							outletRows[columnOrder.OutletEmail] = new TdItem();
+							outletRows[columnOrder.OutletEmail].Text =
+								SeparateStringListWithDiv(outlet.EmailAddresses);
+						}
+						// outlet phone;
+						if (this.DisplayedColumns.Contains(AuthorListColumns.OutletPhone))
+						{
+							outletRows[columnOrder.OutletPhone] = new TdItem();
+							outletRows[columnOrder.OutletPhone].Text =
+								SeparateStringListWithDiv(outlet.Phones);
+						}
+						// outlet fax;
+						if (this.DisplayedColumns.Contains(AuthorListColumns.OutletFax))
+						{
+							outletRows[columnOrder.OutletFax] = new TdItem();
+							outletRows[columnOrder.OutletFax].Text =
+								SeparateStringListWithDiv(outlet.Faxes);
 						}
 
 						tr = new TrItem(outletRows, isOdd, true);
@@ -740,6 +829,7 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 				new SelectListItem { Text = this.Tokens.Print, Value = "print" },
 				new SelectListItem { Text = this.Tokens.Export, Value = "export" },
 				new SelectListItem { Text = this.Tokens.ExportAll, Value = "export-all" },
+				new SelectListItem { Text = this.Tokens.DistributeList, Value = "distribute-list" },
 				new SelectListItem { Text = this.Tokens.Delete, Value = "delete" },
 				new SelectListItem { Text = this.Tokens.Email, Value = "email" }
 			};
@@ -770,14 +860,12 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 		OutletEmploymentType = 8,
 		[Description("outlet-job-title")]
 		OutletJobTitle = 9,
-		[Description("outlet-type")]
-		OutletType = 10,
 		[Description("outlet-circulation")]
-		OutletCirculation = 11,
+		OutletCirculation = 10,
 		[Description("outlet-state")]
-		OutletState = 12,
+		OutletState = 11,
 		[Description("outlet-country")]
-		OutletCountry = 13,
+		OutletCountry = 12,
 	}
 
 	public enum AuthorListColumns
@@ -793,7 +881,7 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 		Country,
 		Zip,
 		Language,
-		// outlet info [8];
+		// outlet info [8+3];
 		OutletName,
 		OutletEmploymentType,
 		OutletJobTitle,
@@ -802,6 +890,9 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 		OutletFrequency,
 		OutletState,
 		OutletCountry,
+		OutletEmailAddress,
+		OutletPhone,
+		OutletFax,
 		// beats [2];
 		BeatsSubjects,
 		BeatsIndustries,
@@ -841,7 +932,7 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 		public int Country;
 		public int Zip;
 		public int Language;
-		// outlet info [8];
+		// outlet info [8+3];
 		public int OutletName;
 		public int OutletEmploymentType;
 		public int OutletJobTitle;
@@ -850,6 +941,9 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 		public int OutletFrequency;
 		public int OutletState;
 		public int OutletCountry;
+		public int OutletEmail;
+		public int OutletPhone;
+		public int OutletFax;
 		// beats [2];
 		public int BeatsSubjects;
 		public int BeatsIndustries;

@@ -57,8 +57,8 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 		public string Export { get; set; }
 		public string Delete { get; set; }
 		public string Email { get; set; }
-		// 12-Jan-2012: New Action Menu Items;
 		public string ExportAll { get; set; }
+		public string DistributeList { get; set; }
 		public string EmailAll { get; set; }
 
 		// Show/hide cell items;
@@ -126,6 +126,7 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 			this.Delete = GetTokenByName("delete");
 			this.Email = GetTokenByName("email");
 			this.ExportAll = GetTokenByName("cmalExportAll");
+			this.DistributeList = GetTokenByName("distributeList");
 			this.EmailAll = GetTokenByName("cmalEmailAll");
 
 			// show/hide cell items;

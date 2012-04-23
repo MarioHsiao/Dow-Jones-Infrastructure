@@ -30,6 +30,7 @@
 			printMenuItem: "div.label[data-action='print']",
 			exportMenuItem: "div.label[data-action='export']",
 			exportAllMenuItem: "div.label[data-action='export-all']",
+			distributeListMenuItem: "div.label[data-action='distribute-list']",
 			deleteMenuItem: "div.label[data-action='delete']",
 			emailMenuItem: "div.label[data-action='email']",
 			emailAllMenuItem: "div.label[data-action='email-all']",
@@ -340,9 +341,11 @@
 							case "contact-list": msg = "<%= Token('cmalActionContactListMaxEntity') %>"; break;
 							case "print": msg = "<%= Token('cmalActionPrintMaxEntity') %>"; break;
 							case "export": msg = "<%= Token('cmalActionExportMaxEntity') %>"; break;
+							case "distribute-list": msg = "<%= Token('cmalActionDistributeListMaxEntity') %>"; break;
 							case "delete": msg = "<%= Token('cmalActionDeleteMaxEntity') %>"; break;
 							case "email": msg = "<%= Token('cmalActionEmailMaxEntity') %>"; break;
 						}
+
 						alert(msg);
 						return;
 					}
@@ -396,6 +399,7 @@
 				this.$actionsMenu.find(self.constants.printMenuItem).parent().addClass("disabled");
 				this.$actionsMenu.find(self.constants.exportMenuItem).parent().addClass("disabled");
 				this.$actionsMenu.find(self.constants.exportAllMenuItem).parent().removeClass("disabled");
+				this.$actionsMenu.find(self.constants.distributeListMenuItem).parent().addClass("disabled");
 				this.$actionsMenu.find(self.constants.deleteMenuItem).parent().addClass("disabled");
 				this.$actionsMenu.find(self.constants.emailMenuItem).parent().addClass("disabled");
 				this.$actionsMenu.find(self.constants.emailAllMenuItem).parent().removeClass("disabled");
@@ -408,6 +412,7 @@
 				this.$actionsMenu.find(self.constants.printMenuItem).parent().removeClass("disabled");
 				this.$actionsMenu.find(self.constants.exportMenuItem).parent().removeClass("disabled");
 				this.$actionsMenu.find(self.constants.exportAllMenuItem).parent().removeClass("disabled");
+				this.$actionsMenu.find(self.constants.distributeListMenuItem).parent().removeClass("disabled");
 				this.$actionsMenu.find(self.constants.deleteMenuItem).parent().removeClass("disabled");
 				this.$actionsMenu.find(self.constants.emailMenuItem).parent().removeClass("disabled");
 				this.$actionsMenu.find(self.constants.emailAllMenuItem).parent().removeClass("disabled");
