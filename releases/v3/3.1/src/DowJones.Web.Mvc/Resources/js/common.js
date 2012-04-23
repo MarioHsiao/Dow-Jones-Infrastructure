@@ -45,7 +45,7 @@ else {
 //
 // $dj:  Custom Global Functions
 //
-(function ($) {
+(function ($, _) {
 
 	var $dj = {
 
@@ -602,7 +602,7 @@ else {
 
 	DJ.$dj = $dj;
 
-})(DJ.jQuery);
+})(DJ.jQuery, DJ.underscore);
 
 DJ.$dj.define('$dj', ['jquery'], DJ.$dj);
 
