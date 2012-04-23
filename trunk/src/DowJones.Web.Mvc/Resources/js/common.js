@@ -964,7 +964,7 @@ DJ.$dj.define('$dj', ['jquery'], DJ.$dj);
 			}
 
 			// Convert a jQuery object to a DJ.UI.Component
-			if (value instanceof jQuery) {
+			if (value instanceof $) {
 				owner = value.findComponent(DJ.UI.Component);
 			}
 
