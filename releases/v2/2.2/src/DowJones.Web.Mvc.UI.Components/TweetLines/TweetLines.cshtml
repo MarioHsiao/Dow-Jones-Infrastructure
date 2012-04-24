@@ -14,7 +14,7 @@
 <ul class="dj_twitter-recent-tweets">
 	@foreach (var tweet in Model.Tweets)
  {
-		<li data-tweet-id="@tweet.Id" data-user-id="@tweet.User.Id" data-full-name="@tweet.User.FullName" data-screen-name="@tweet.User.ScreenName" class="dj_tweet-item">
+		<li data-tweet-id="@tweet.Id" data-user-id="@tweet.User.Id" data-full-name="@tweet.User.FullName" data-screen-name="@tweet.User.ScreenName" class="dj_tweet-item clearfix">
 			<img alt="@tweet.User.FullName" src="@tweet.User.ProfileImageUrl">
 			<div class="dj_tweet-content">
 				<div class="dj_tweet-meta">

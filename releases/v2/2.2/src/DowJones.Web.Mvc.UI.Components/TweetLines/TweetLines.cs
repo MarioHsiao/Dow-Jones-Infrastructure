@@ -25,7 +25,7 @@ namespace DowJones.Web.Mvc.UI.Components.TweetLines
     using DowJones.Extensions;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 04/13/2012 11:54 AM
+    // Last Generated Timestamp: 04/24/2012 02:37 PM
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.TweetLines.TweetLines.js", ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.TweetLines.TweetLines))]
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.TweetLines.ClientTemplates.tweetlines.htm", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="tweetlines", DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.TweetLines.TweetLines))]
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.TweetLines.ClientTemplates.noData.htm", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="noData", DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.TweetLines.TweetLines))]
@@ -85,7 +85,7 @@ WriteLiteral("\" data-screen-name=\"");
 
                                                                                                                  Write(tweet.User.ScreenName);
 
-WriteLiteral("\" class=\"dj_tweet-item\">\r\n\t\t\t<img alt=\"");
+WriteLiteral("\" class=\"dj_tweet-item clearfix\">\r\n\t\t\t<img alt=\"");
 
 
         Write(tweet.User.FullName);
@@ -189,7 +189,7 @@ WriteLiteral("</span></div>\r\n<div class=\"dj_to-top-wrap hide\">\r\n\t<span cl
 "span><span class=\"dj_to-top\">");
 
 
-Write(Html.DJ().Token("backToTopTweet"));
+                                                       Write(Html.DJ().Token("backToTopTweet"));
 
 WriteLiteral("\r\n\t\t↑ </span>\r\n</div>\r\n");
 
