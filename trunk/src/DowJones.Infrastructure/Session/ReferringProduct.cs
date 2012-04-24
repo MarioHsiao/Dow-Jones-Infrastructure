@@ -10,10 +10,7 @@ namespace DowJones.Session
 
         public static implicit operator Product(ReferringProduct product)
         {
-            if (product == null)
-                return null;
-
-            return new Product(product.ProductPrefix, null);
+            return product == null ? null : new Product(product.ProductPrefix, null);
         }
     }
 }

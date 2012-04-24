@@ -378,11 +378,8 @@
                             <div class="dj_article_index">CT</div>
                         }
                 
-                        <div class="dj_article_art dj_article_section">
-                            @foreach (RenderItem renderItem in Model.ArticleDataSet.Contact)
-                            {
-                                @(CreateChildControl<Paragraph>(Model.GetParagraphModel(Model.ArticleDataSet.Contact, "p", "dj_article_paragraph")))
-                            }
+                        <div class="dj_article_ct dj_article_section">
+                            @(CreateChildControl<Paragraph>(Model.GetParagraphModel(Model.ArticleDataSet.Contact, "p", "dj_article_paragraph")))
                         </div>
                     }
 

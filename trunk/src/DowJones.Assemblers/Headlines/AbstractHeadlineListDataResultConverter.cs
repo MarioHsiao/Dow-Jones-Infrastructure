@@ -368,7 +368,7 @@ namespace DowJones.Assemblers.Headlines
                     switch (info.contentSubCategory)
                     {
                         case ContentSubCategory.Graphic:
-                            foreach (ContentItem item in headline.ContentItems.ItemCollection.Where(item => (!string.IsNullOrEmpty(item.Type) && !string.IsNullOrEmpty(item.Type.Trim())) && item.Type.ToLower() == "tnail"))
+                            foreach (var item in headline.ContentItems.ItemCollection.Where(item => (!string.IsNullOrEmpty(item.Type) && !string.IsNullOrEmpty(item.Type.Trim())) && item.Type.ToLower() == "tnail"))
                             {
                                 info.reference.@ref = item.Ref;
                                 info.reference.mimetype = (item.Mimetype != null) ? item.Mimetype.ToLower() : "image/jpeg";
@@ -381,7 +381,7 @@ namespace DowJones.Assemblers.Headlines
                     switch (info.contentSubCategory)
                     {
                         case ContentSubCategory.HTML:
-                            foreach (ContentItem item in headline.ContentItems.ItemCollection.Where(item => (!string.IsNullOrEmpty(item.Type) && !string.IsNullOrEmpty(item.Type.Trim())) && item.Type.ToLower() == "html"))
+                            foreach (var item in headline.ContentItems.ItemCollection.Where(item => (!string.IsNullOrEmpty(item.Type) && !string.IsNullOrEmpty(item.Type.Trim())) && item.Type.ToLower() == "html"))
                             {
                                 info.reference.@ref = item.Ref;
                                 info.reference.mimetype = (item.Mimetype != null) ? item.Mimetype.ToLower() : "text/html";
@@ -390,7 +390,7 @@ namespace DowJones.Assemblers.Headlines
                             return;
 
                         case ContentSubCategory.PDF:
-                            foreach (ContentItem item in headline.ContentItems.ItemCollection.Where(item => (!string.IsNullOrEmpty(item.Type) && !string.IsNullOrEmpty(item.Type.Trim())) && item.Type.ToLower() == "pdf"))
+                            foreach (var item in headline.ContentItems.ItemCollection.Where(item => (!string.IsNullOrEmpty(item.Type) && !string.IsNullOrEmpty(item.Type.Trim())) && item.Type.ToLower() == "pdf"))
                             {
                                 info.reference.@ref = item.Ref;
                                 info.reference.mimetype = (item.Mimetype != null) ? item.Mimetype.ToLower() : "application/pdf";
@@ -400,7 +400,7 @@ namespace DowJones.Assemblers.Headlines
                     }
                     break;
                 case ContentCategory.Website:
-                    foreach (ContentItem item in headline.ContentItems.ItemCollection.Where(item => (!string.IsNullOrEmpty(item.Type) && !string.IsNullOrEmpty(item.Type.Trim()) && item.Type.ToLower() == "webpage"
+                    foreach (var item in headline.ContentItems.ItemCollection.Where(item => (!string.IsNullOrEmpty(item.Type) && !string.IsNullOrEmpty(item.Type.Trim()) && item.Type.ToLower() == "webpage"
                                                                                                      && !string.IsNullOrEmpty(item.Subtype) && !string.IsNullOrEmpty(item.Subtype.Trim()) && item.Subtype.ToLower() == "nlapressclip")))
                     {
                         info.reference.@ref = item.Ref;
