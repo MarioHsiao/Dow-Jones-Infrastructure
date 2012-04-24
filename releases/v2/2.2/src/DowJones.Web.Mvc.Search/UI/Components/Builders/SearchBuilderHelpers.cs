@@ -80,7 +80,7 @@ namespace DowJones.Web.Mvc.Search.UI.Components.Builders
         {
             if (filters == null) return string.Empty;
 
-            var separator = string.Format(" {0} ", TokenRegistryThunk().Get(@operator));
+            var separator = string.Format(" <span class='dj_search-modifier'>{0}</span> ", TokenRegistryThunk().Get(@operator));
 
             var combined = string.Join(separator, filters.Select(x => x.Name.Trim())).Trim();
 
@@ -92,7 +92,7 @@ namespace DowJones.Web.Mvc.Search.UI.Components.Builders
             var combinedStr = new StringBuilder();
             if (!string.IsNullOrEmpty(includesStr) && !string.IsNullOrEmpty(excludesStr))
             {
-                combinedStr.AppendFormat("({0}) <br /><span class='not'>{1}</span> ({2})", includesStr, TokenRegistryThunk().Get(SearchOperator.Not), excludesStr);
+                combinedStr.AppendFormat("({0}) <br /><span class='dj_search-modifier'>{1}</span> ({2})", includesStr, TokenRegistryThunk().Get(SearchOperator.Not), excludesStr);
             }
             else if (!string.IsNullOrEmpty(includesStr) && string.IsNullOrEmpty(excludesStr))
             {
@@ -100,7 +100,7 @@ namespace DowJones.Web.Mvc.Search.UI.Components.Builders
             }
             else if (string.IsNullOrEmpty(includesStr) && !string.IsNullOrEmpty(excludesStr))
             {
-                combinedStr.AppendFormat("<span class='not'>{0}</span> ({1})", TokenRegistryThunk().Get(SearchOperator.Not), excludesStr);
+                combinedStr.AppendFormat("<span class='dj_search-modifier'>{0}</span> ({1})", TokenRegistryThunk().Get(SearchOperator.Not), excludesStr);
             }
             return combinedStr.ToString();
         }
