@@ -178,11 +178,11 @@ DJ.UI.StockKiosk = DJ.UI.Component.extend({
 			    minorGridLineWidth: 1,
 			    minorGridLineColor: '#cccccc',
 			    minorGridLineDashStyle: 'shortdot',
-                minRange:  1 * 60 * 60 * 1000,
+                minRange:  2 * 60 * 60 * 1000,
 
                 labels: {
                     formatter: function () {
-                        return (new Date(this.value)).format("hTT", true);
+                        return (new Date(this.value)).format("hT", true);
                     },
                     style: {
                         color: '#999999',                        
@@ -207,6 +207,9 @@ DJ.UI.StockKiosk = DJ.UI.Component.extend({
                       step:2,
                       formatter: function () {    
                         if (!this.isLast) {
+                            if (this.value < 5) {
+                                return Highcharts.numberFormat(this.value, 3, '.'); 
+                            }
                             return Highcharts.numberFormat(this.value, 2, '.');
                         }
                       },

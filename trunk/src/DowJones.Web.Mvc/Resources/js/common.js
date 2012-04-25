@@ -213,7 +213,7 @@ else {
 	        }
 	
 	        mins = (mins < 10) ? "0"+mins : mins;
-	        return display_hours+":"+mins;
+	        return display_hours+"|"+mins;
         },
 
 		trim: function (str, doNotRemoveSpecialChars) {
