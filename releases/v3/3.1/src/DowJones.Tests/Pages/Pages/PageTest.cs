@@ -13,6 +13,24 @@ namespace DowJones.Pages
     {
         public PageAssetsManager pageAssetsManager = new PageAssetsManager(ControlDataManager.GetLightWeightUserControlData("snapshot5", "passwd", "16"), new Preferences.Preferences{InterfaceLanguage = "en", ContentLanguages = new ContentLanguageCollection()}, new Product("Np", "SNAPSHOT"));
 
+        private Factiva.Gateway.Messages.Assets.Pages.V1_0.Page GetPageById(string pageId)
+        {
+            Factiva.Gateway.Messages.Assets.Pages.V1_0.Page page = pageAssetsManager.GetPage(pageId,false,true);
+
+            Console.WriteLine(page.Id + "|" + page.ShareProperties.AssignedScope.ToString());
+            Console.WriteLine("");
+            if (page.ModuleCollection != null && page.ModuleCollection.Count > 0)
+            {
+                Console.WriteLine("Module Collection");
+                foreach (Module module in page.ModuleCollection)
+                {
+                    Console.WriteLine("\t" + module.Title + "|" + ((ModuleEx)module).GetType());
+                }
+            }
+
+            return page;
+        }
+
         private Module GetModuleById(string moduleId)
         {
             ModuleEx module = (ModuleEx)(pageAssetsManager.GetModuleById(moduleId));
@@ -89,6 +107,12 @@ namespace DowJones.Pages
             pageAssetsManager.UpdateModule(moduleEx);
 
             GetModuleById(moduleId);
+        }
+
+        //[TestMethod]
+        public void GetPageByIdTest()
+        {
+            GetPageById("12703");
         }
     }
 }

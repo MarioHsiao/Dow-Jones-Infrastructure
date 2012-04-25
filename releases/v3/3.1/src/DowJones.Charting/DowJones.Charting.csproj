@@ -51,12 +51,14 @@
       <HintPath>..\packages\Factiva.Gateway.7.5.0.76\lib\Interop.FCMLib.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
+    <Reference Include="itextsharp, Version=5.1.3.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL" />
     <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
       <HintPath>..\packages\log4net.1.2.99\lib\2.0\log4net.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.4.0.8\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="Svg, Version=0.5.2.17984, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -71,6 +73,9 @@
     <Compile Include="..\SolutionInfo.cs">
       <Link>Properties\SolutionInfo.cs</Link>
     </Compile>
+    <Compile Include="Highcharts\ExportChart.cs" />
+    <Compile Include="Highcharts\Exporter.cs" />
+    <Compile Include="Highcharts\HttpHandler.cs" />
     <Compile Include="Manager\ChartFormatType.cs" />
     <Compile Include="Manager\ChartingManager.cs" />
     <Compile Include="Manager\ChartTemplate.cs" />
@@ -162,6 +167,10 @@
       <Project>{095DE252-E183-4AE6-824A-B4504AE737C1}</Project>
       <Name>DowJones.Infrastructure</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ThirdParty\itextsharp.dll" />
+    <Content Include="ThirdParty\Svg.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

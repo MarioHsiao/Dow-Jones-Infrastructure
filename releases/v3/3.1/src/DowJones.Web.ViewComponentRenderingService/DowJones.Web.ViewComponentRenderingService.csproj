@@ -48,29 +48,30 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DowJones.Infrastructure, Version=3.1.68.39869, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="DowJones.Infrastructure, Version=3.1.90.46991, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>packages\DowJones.Infrastructure.v3.3.1.68\lib\DowJones.Infrastructure.dll</HintPath>
+      <HintPath>packages\DowJones.Infrastructure.v3.3.1.90\lib\DowJones.Infrastructure.dll</HintPath>
     </Reference>
     <Reference Include="DowJones.Parallel">
       <HintPath>packages\DowJones.Parallel.1.0.0\lib\DowJones.Parallel.dll</HintPath>
     </Reference>
-    <Reference Include="DowJones.Web.Mvc, Version=3.1.68.39869, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="DowJones.Web.Mvc, Version=3.1.90.46991, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>packages\DowJones.Web.Mvc.v3.3.1.68\lib\DowJones.Web.Mvc.dll</HintPath>
+      <HintPath>packages\DowJones.Web.Mvc.v3.3.1.90\lib\DowJones.Web.Mvc.dll</HintPath>
     </Reference>
-    <Reference Include="DowJones.Web.Mvc.UI.Components, Version=3.1.68.39869, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="DowJones.Web.Mvc.UI.Components, Version=3.1.90.46991, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>packages\DowJones.Web.Mvc.UI.Components.v3.3.1.68\lib\DowJones.Web.Mvc.UI.Components.dll</HintPath>
+      <HintPath>packages\DowJones.Web.Mvc.UI.Components.v3.3.1.90\lib\DowJones.Web.Mvc.UI.Components.dll</HintPath>
     </Reference>
     <Reference Include="DowJones.Web.Mvc.UI.Components.Models, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\DowJones.Web.Mvc.UI.Components.Models.v3.3.1.68\lib\DowJones.Web.Mvc.UI.Components.Models.dll</HintPath>
+      <HintPath>packages\DowJones.Web.Mvc.UI.Components.Models.v3.3.1.90\lib\DowJones.Web.Mvc.UI.Components.Models.dll</HintPath>
     </Reference>
-    <Reference Include="factiva.gateway.messages">
-      <HintPath>packages\Factiva.Gateway.7.5.0.78\lib\factiva.gateway.messages.dll</HintPath>
+    <Reference Include="factiva.gateway.messages, Version=7.5.0.79, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>packages\Factiva.Gateway.7.5.0.79\lib\factiva.gateway.messages.dll</HintPath>
     </Reference>
-    <Reference Include="FactivaGateway">
-      <HintPath>packages\Factiva.Gateway.7.5.0.78\lib\FactivaGateway.dll</HintPath>
+    <Reference Include="FactivaGateway, Version=1.5.0.7, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Factiva.Gateway.7.5.0.79\lib\FactivaGateway.dll</HintPath>
     </Reference>
     <Reference Include="Hammock">
       <HintPath>packages\Hammock.1.2.6\lib\net40\Hammock.dll</HintPath>
@@ -79,7 +80,7 @@
       <HintPath>packages\Hammock.1.2.6\lib\4.0\Hammock.ClientProfile.dll</HintPath>
     </Reference>
     <Reference Include="Interop.FCMLib">
-      <HintPath>packages\Factiva.Gateway.7.5.0.78\lib\Interop.FCMLib.dll</HintPath>
+      <HintPath>packages\Factiva.Gateway.7.5.0.79\lib\Interop.FCMLib.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="log4net">

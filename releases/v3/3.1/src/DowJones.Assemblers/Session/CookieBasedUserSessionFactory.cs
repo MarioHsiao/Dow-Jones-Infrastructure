@@ -187,8 +187,7 @@ namespace DowJones.Assemblers.Session
                 success = TryPopulateProxyInfoFromCredentialsXml(userSession, credentials);
 
             if (success.HasValue && !success.Value)
-                throw new ArgumentException(
-                    "Credentials header could not be parsed. Please ensure that it is valid JSON or XML");
+                throw new ArgumentException("Credentials header could not be parsed. Please ensure that it is valid JSON or XML");
         }
 
         protected internal bool? TryPopulateProxyInfoFromCredentialsJson(UserSession userSession, string credentials)
