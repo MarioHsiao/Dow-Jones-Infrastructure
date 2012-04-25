@@ -78,7 +78,7 @@
 
         el.empty();
         if (self.data && self.data.terms && self.data.terms.length && self.data.terms.length > 0) {
-            el.html(self.templates.success({ data: self.data.terms }));
+            el.html(self.templates.success({ data: self.data.terms.slice(0, 6) }));	// slice it reduce it to 2 rows
         }
         else {
             el.parents(".dj_related-concepts").hide();
