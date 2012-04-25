@@ -196,7 +196,7 @@ DJ.UI.TweetLines = DJ.UI.Component.extend({
 
 	timeago: function () {
 		jQuery.timeago.settings.strings = {
-			prefixAgo: '<%= Token("agoPre") %>',,
+			prefixAgo: '<%= Token("agoPre") %>',
 			prefixFromNow: '<%= Token("fromNowPre") %>',
 			suffixAgo: '<%= Token("agoPost") %>',
 			suffixFromNow: '<%= Token("fromNowPost") %>',
