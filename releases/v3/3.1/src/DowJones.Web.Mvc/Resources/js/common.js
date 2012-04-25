@@ -189,7 +189,7 @@ else {
 			        std_time_offset = daylight_time_offset;
 		        dst = "1"; // daylight savings time is observed
 	        }
-	        return this.convert(std_time_offset)+","+dst;
+	        return this.convertTimeZone(std_time_offset)+","+dst;
         },
 
         convertTimeZone: function(value) {
