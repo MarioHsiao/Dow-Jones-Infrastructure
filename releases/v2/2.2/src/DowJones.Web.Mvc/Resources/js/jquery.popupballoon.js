@@ -601,7 +601,7 @@
                 $arrow = $('.balloon-arrow', $callout),
                 popupOffset = $callout.offset(),
                 currArrowPos = $arrow.position(),
-                contentH = $content.outerHeight(),
+                contentH = $content.height(),
                 newContentH = 0,
                 sizeDiff = 0;
 
@@ -629,19 +629,20 @@
                     if (o.popupAlign != 'top' && o.popupAlign != 'bottom' && o.popupAlign != 'under-title') {
                         $callout.animate({
                             top: popupOffset.top - (sizeDiff / 2) + "px"
-                        }, 200);
+                        }, { duration: 200, queue: false });
                         $arrow.animate({
                             top: currArrowPos.top + (sizeDiff / 2) + "px"
-                        }, 200);
+                        }, { duration: 200, queue: false });
                     }
                     else if (o.popupAlign == 'bottom') {
                         $callout.animate({
                             top: popupOffset.top - (sizeDiff) + "px"
-                        }, 200);
+                        }, { duration: 200, queue: false });
                     }
+
                     $content.animate({
                         height: newContentH
-                    }, 200, function () {
+                    }, { duration: 200, queue: false } , function () {
                         // after the animation is complete reset the styles
                         $(this).css({
                             height: "",
