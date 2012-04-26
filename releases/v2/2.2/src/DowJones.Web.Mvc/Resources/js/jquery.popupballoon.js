@@ -642,13 +642,17 @@
 
                     $content.animate({
                         height: newContentH
-                    }, { duration: 200, queue: false } , function () {
-                        // after the animation is complete reset the styles
-                        $(this).css({
-                            height: "",
-                            overflow: "visible"
-                        });
-                        self.scrollDocument(callback);
+                    }, {
+                        duration: 200,
+                        queue: false, 
+                        complete: function () {
+                            // after the animation is complete reset the styles
+                            $(this).css({
+                                height: "",
+                                overflow: "visible"
+                            });
+                            self.scrollDocument(callback);
+                        }
                     });
                 }
                 else {
