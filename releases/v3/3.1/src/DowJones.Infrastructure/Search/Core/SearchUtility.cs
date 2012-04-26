@@ -35,6 +35,7 @@ namespace DowJones.Search.Core
         public const string MAJOR_NEWS_AND_BUSINESS_PUBLICATIONS = "TMNB";
         public const string PRESS_RELEASE_WIRES = "TPRW";
         public const string REUTERS_NEWSWIRES = "TRTW";
+        public const string WALL_STREET_JOURNAL_SOURCEFAMILY = "SFWSJ";
 
         private const string BLOG_FORMAT = "fmt=blog";
         private const string BOARD_FORMAT = "fmt=board";
