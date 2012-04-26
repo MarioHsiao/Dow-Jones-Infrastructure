@@ -49,7 +49,7 @@ DJ.UI.TweetLines = DJ.UI.Component.extend({
 
 		var lang = this._getInterfaceLanguage();
 
-		this.defaults.webIntents = {
+		this.options.webIntents = {
 			follow: "https://twitter.com/intent/user?lang=" + lang + "&user_id=",
 			reply: "https://twitter.com/intent/tweet?lang=" + lang + "&in_reply_to=",
 			retweet: "https://twitter.com/intent/retweet?lang=" + lang + "&tweet_id=",
