@@ -603,9 +603,11 @@
                 currArrowPos = $arrow.position(),
                 contentH = $content.height(),
                 newContentH = 0,
-                sizeDiff = 0;
+                sizeDiff = 0,
+                arrowOffset = $arrow.offset(),
+                elOffset = self.element.offset();
 
-            if ($arrow.offset().left < $(self.element).offset().left) {
+            if (arrowOffset && elOffset && (arrowOffset.left < elOffset.left)) {
                 var cords = self._getCoordinates($callout);
 
                 $($callout).animate({
