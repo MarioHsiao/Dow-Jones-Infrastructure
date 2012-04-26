@@ -261,7 +261,9 @@
                     var x = posX + $(self.element).offset().left;
                     var y = posY + $(self.element).offset().top;
                     var offset =- (circleRadius+o.circleStrokeWidth);
-                    el.triggerHandler(self.events.regionClick, { sender: self, searchContext: regionData.searchContextRef , element:this, title:name, regionCode:id,positionX:x,positionY:y,offset:offset});
+
+                    //In IE "this" poins to window in this handler so we have to find the shape element and pass it as element in the handler parameters
+                    el.triggerHandler(self.events.regionClick, { sender: self, searchContext: regionData.searchContextRef , element: ((this == window) ? $(e.target).closest('div').children('shape')[1] : this), title:name, regionCode:id,positionX:x,positionY:y,offset:offset});
                     
                     for (i in self.regionCircles){
                         $(self.regionCircles[i]).data('innerCircle').hide();

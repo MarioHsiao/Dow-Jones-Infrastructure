@@ -14,7 +14,9 @@ $.extend($dj, {
                 popupClass: (options.popupClass + ' dj-loading'),
                 onHide: options.close,
                 onShow: options.show,
-                jScrollPaneEnabled: false
+                jScrollPaneEnabled: false,
+                xOffsetInverted: 0,
+                yOffsetInverted: 0
             }, options)
         );
     },

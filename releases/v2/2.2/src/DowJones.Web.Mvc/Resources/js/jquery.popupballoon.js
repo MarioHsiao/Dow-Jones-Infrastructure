@@ -80,13 +80,14 @@
             if (o.xOffsetInverted == 'auto') {
 
                 o.xOffsetInverted = 0;
-
+                var width = $(self.element).width();
+                
                 if (o.popupPosition == 'right' && o.xAlign == 'right') {
-                    o.xOffsetInverted = parseInt($(el).width()) * -1;
+                    o.xOffsetInverted = width * -1;
                 }
 
                 if (o.popupPosition == 'left' && o.xAlign == 'left') {
-                    o.xOffsetInverted = parseInt($(el).width());
+                    o.xOffsetInverted = width;
                 }
 
             }
@@ -95,13 +96,14 @@
                 //this could use a little bit of reworking here...
 
                 o.yOffsetInverted = 0;
-
+                var height = $(self.element).height();
+                
                 if (o.popupPosition == 'top' && o.yAlign == 'top') {
-                    o.yOffsetInverted = parseInt($(el).height()) / 2;
+                    o.yOffsetInverted = height / 2;
                 }
 
                 if (o.popupPosition == 'bottom' && o.yAlign == 'bottom') {
-                    o.yOffsetInverted = (parseInt($(el).height()) / 2) * -1;
+                    o.yOffsetInverted = (height / 2) * -1;
                 }
 
             }
@@ -603,15 +605,17 @@
                 currArrowPos = $arrow.position(),
                 contentH = $content.height(),
                 newContentH = 0,
-                sizeDiff = 0,
-                arrowOffset = $arrow.offset(),
-                elOffset = self.element.offset();
+                sizeDiff = 0;
 
-            if (arrowOffset && elOffset && (arrowOffset.left < elOffset.left)) {
+            if (($arrow.offset().left + $arrow.width()) < $(self.element).offset().left) {
                 var cords = self._getCoordinates($callout);
+                var outerWidth = $(self.element).outerWidth(true);
+                if($(self.element).is("shape")){
+                    outerWidth = parseInt(outerWidth/3);
+                }
 
                 $($callout).animate({
-                    left: (cords.x - $(self.element).outerWidth(true)) + "px"
+                    left: (cords.x - outerWidth) + "px"
                 }, 200, callback);
             }
             else {
