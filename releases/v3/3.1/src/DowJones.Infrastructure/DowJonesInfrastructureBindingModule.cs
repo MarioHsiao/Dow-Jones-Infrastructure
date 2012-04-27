@@ -58,7 +58,7 @@ namespace DowJones
             BindToFactory<IClientResourceManager, ClientResourceManagerFactory>().InSingletonScope();
 
             Bind<IClientResourceProcessor>().To<ClientResourcePopulator>().InRequestScope();
-            Bind<IClientResourceProcessor>().To<ClientResourceRelativeUrlProcessor>().InRequestScope();
+            Bind<IClientResourceProcessor>().To<ClientResourceUrlProcessor>().InRequestScope();
             Bind<IClientResourceProcessor>().To<ClientResourceAppSettingProcessor>().InRequestScope();
             Bind<IClientResourceProcessor>().To<ClientResourceTokenProcessor>().InRequestScope();
             Bind<IClientResourceProcessor>().To<ClientResourceWebResourceProcessor>().InRequestScope();

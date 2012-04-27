@@ -1086,6 +1086,7 @@
   <ItemGroup>
     <Folder Include="AdManagement\" />
     <Folder Include="Charting\" />
+    <Folder Include="Infrastructure\Web\Extensions\" />
     <Folder Include="Test References\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
