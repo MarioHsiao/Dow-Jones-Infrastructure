@@ -133,7 +133,7 @@
     <Compile Include="Caching\ICacheKey.cs" />
     <Compile Include="Caching\Properties\Settings.cs" />
     <Compile Include="Converters\JsonEnumConverter.cs" />
-    <Compile Include="Extensions\Web\UrlExtensions.cs" />
+    <Compile Include="Web\Extensions\UrlExtensions.cs" />
     <Compile Include="Globalization\ResourceTextManagerFactory.cs" />
     <Compile Include="Infrastructure\GenericEqualityComparer.cs" />
     <Compile Include="Infrastructure\EnumHelper.cs" />
@@ -239,7 +239,7 @@
     <Compile Include="Models\Charting\HistoricalStockData\StockDataPointCollection.cs" />
     <Compile Include="Preferences\CachedPreferenceService.cs" />
     <Compile Include="Preferences\CachedPreferenceServiceFactory.cs" />
-    <Compile Include="Properties\SocialMedia.Designer.cs" >
+    <Compile Include="Properties\SocialMedia.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>SocialMedia.settings</DependentUpon>
@@ -469,8 +469,8 @@
     <Compile Include="DependencyInjection\InjectAttribute.cs" />
     <Compile Include="DependencyInjection\Ninject\NinjectServiceLocator.cs" />
     <Compile Include="DependencyInjection\ServiceLocator.cs" />
-    <Compile Include="Extensions\Web\HttpContextBaseExtensions.cs" />
-    <Compile Include="Extensions\Web\HttpRequestBaseExtensions.cs" />
+    <Compile Include="Web\Extensions\HttpContextBaseExtensions.cs" />
+    <Compile Include="Web\Extensions\HttpRequestBaseExtensions.cs" />
     <Compile Include="Infrastructure\BootstrapperTaskAutoBinder.cs" />
     <Compile Include="Infrastructure\AssemblyRegistry.cs" />
     <Compile Include="Infrastructure\CustomAttributeProvider.cs" />
@@ -676,7 +676,7 @@
     <Compile Include="Web\ClientResources\ClientResourceManagerFactory.cs" />
     <Compile Include="Web\ClientResources\ClientResourceModuleName.cs" />
     <Compile Include="Web\ClientResources\ClientResourcePopulator.cs" />
-    <Compile Include="Web\ClientResources\ClientResourceRelativeUrlProcessor.cs" />
+    <Compile Include="Web\ClientResources\ClientResourceUrlProcessor.cs" />
     <Compile Include="Web\ClientResources\DependentResourceProcessor.cs" />
     <Compile Include="Web\Configuration\ClientConfigurationFactory.cs" />
     <Compile Include="Web\Configuration\ClientCredentials.cs" />
@@ -833,10 +833,10 @@
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Extensions\TextReaderExtensions.cs" />
     <Compile Include="Extensions\TypeExtensions.cs" />
-    <Compile Include="Extensions\Web\ControlExtensions.cs" />
-    <Compile Include="Extensions\Web\HtmlTextWriterExtensions.cs" />
-    <Compile Include="Extensions\Web\HttpResponseExtensions.cs" />
-    <Compile Include="Extensions\Web\HttpSessionStateExtensions .cs" />
+    <Compile Include="Web\Extensions\ControlExtensions.cs" />
+    <Compile Include="Web\Extensions\HtmlTextWriterExtensions.cs" />
+    <Compile Include="Web\Extensions\HttpResponseExtensions.cs" />
+    <Compile Include="Web\Extensions\HttpSessionStateExtensions .cs" />
     <Compile Include="Extensions\XmlNodeExtensions.cs" />
     <Compile Include="Formatters\Algorithms\Text\BiDirectional\ArabicShapeJoiningType.cs" />
     <Compile Include="Formatters\Algorithms\Text\BiDirectional\BidiCharacterMirrorResolver.generated.cs" />
@@ -948,7 +948,7 @@
       <Generator>PublicSettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="Properties\SocialMedia.settings" >
+    <None Include="Properties\SocialMedia.settings">
       <Generator>PublicSettingsSingleFileGenerator</Generator>
       <LastGenOutput>SocialMedia.Designer.cs</LastGenOutput>
     </None>

@@ -1,4 +1,4 @@
-﻿using System;
+﻿using DowJones.Mocks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace DowJones.Web.UI
@@ -11,24 +11,24 @@ namespace DowJones.Web.UI
         [TestInitialize]
         public void TestInitialize()
         {
-
-            ClientResourceRelativeUrlProcessor.AbsoluteUrlThunk =
-                absoluteUrl => absoluteUrl.Replace("~/", VirtualPath + "/");
+            ClientResourceUrlProcessor.AbsoluteUrlThunk =
+                (url, request) => url.Replace("~/", VirtualPath + "/");
+            ClientResourceUrlProcessor.RelativeUrlThunk =
+                (url) => url.Replace("~/", "http://www.mysite.com" + VirtualPath + "/");
         }
 
         
         [TestMethod]
         public void ShouldReplaceAbsoluteUrlInContent()
         {
-            const string RelativeUrl = "~/styles/site.css";
-            const string Content = "Absolute URL: <%= AbsoluteUrl(\"" + RelativeUrl + "\") %>";
+            const string Url = "~/styles/site.css";
+            const string Content = "Absolute URL: <%= AbsoluteUrl(\"" + Url + "\") %>";
             var resource = new ProcessedClientResource(new ClientResource("~/test.html"), Content);
 
+            var request = new MockHttpRequest();
+            new ClientResourceUrlProcessor(request).Process(resource);
 
-            new ClientResourceRelativeUrlProcessor().Process(resource);
-
-
-            string expectedUrl = ClientResourceRelativeUrlProcessor.AbsoluteUrlThunk(RelativeUrl);
+            string expectedUrl = ClientResourceUrlProcessor.AbsoluteUrlThunk(Url, request);
 
             Assert.IsFalse(string.IsNullOrWhiteSpace(expectedUrl));
 
@@ -36,9 +36,25 @@ namespace DowJones.Web.UI
                     "Absolute URL: " + expectedUrl,
                     resource.Content
                 );
+        }
 
-            Console.Write(expectedUrl);
-            Console.Write(resource.Content);
+        [TestMethod]
+        public void ShouldReplaceRelativeUrlInContent()
+        {
+            const string url = "~/styles/site.css";
+            const string Content = "Absolute URL: <%= RelativeUrl(\"" + url + "\") %>";
+            var resource = new ProcessedClientResource(new ClientResource("~/test.html"), Content);
+
+            new ClientResourceUrlProcessor(null).Process(resource);
+
+            string expectedUrl = ClientResourceUrlProcessor.RelativeUrlThunk(url);
+
+            Assert.IsFalse(string.IsNullOrWhiteSpace(expectedUrl));
+
+            Assert.AreEqual(
+                    "Absolute URL: " + expectedUrl,
+                    resource.Content
+                );
         }
     }
 }

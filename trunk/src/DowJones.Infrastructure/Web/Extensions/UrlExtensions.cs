@@ -1,9 +1,12 @@
-﻿using System.Web;
+﻿using System;
+using System.Web;
 
 namespace DowJones.Extensions.Web
 {
     public static class UrlExtensions
     {
+        internal static Func<string, string> ApplicationUrlThunk = VirtualPathUtility.ToAbsolute;
+
         public static string ToAbsoluteUrl(this string url, HttpRequestBase request = null)
         {
             if (url.StartsWith("http"))
@@ -17,7 +20,7 @@ namespace DowJones.Extensions.Web
                          request.Url.Authority
                         );
 
-            return rootUrl + VirtualPathUtility.ToAbsolute(url);
+            return rootUrl + ApplicationUrlThunk(url);
         }
     }
 }
