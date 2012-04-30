@@ -497,7 +497,11 @@
                 if (this._lookUpDetails.savedList && this.options.enableSourceList) {
                     this.$modalNav.children(":eq(2)").show();
                     this.$savedList.delegate(this.selectors.browseItem, 'click', function (e) {
-                        me._onSourceItemClick(this, e, false);
+                        if (!$(this).data('notafilter')) {
+                            me._onSourceItemClick(this, e, false);
+                        }
+                    }).delegate(this.selectors.browseItem, 'mouseenter', function (e) {//List Item Hover
+                        me._onListItemHover(this, e);
                     }).delegate(this.selectors.editList, 'click', function (e) {//Edit
                         me._editSourceList($(this).parent().data("code"));
                         me._stopPropagation(e);
@@ -1049,7 +1053,8 @@
             }
             else {//Not option
                 if (this.options.filterType == this.filterType.Source) {
-                    if ($item.hasClass("browse-item")) {//Browse Item
+                    //If on Browse tab and it is a browse item
+                    if (this.options.activeTab == 1 && $item.hasClass("browse-item")) {
                         this._onSourceGroupItemClick($item[0], e, true);
                     }
                     else {
@@ -1247,7 +1252,7 @@
                         $div.html(this._loadingText).slideDown(100, this._delegates.OnResize);
                         this._getSourceListById(code, {
                             success: function (data) {
-                                me.bindList($div, data.SourceListQuery.SourceEntityFilters, { sourceListBrowse: true });
+                                me.bindSourceListChildren(data, $div);
                             },
                             error: function (error) {
                                 $div.html($dj.formatError(error.Error || error)).scrollTop(0);
@@ -2003,6 +2008,7 @@
         setActiveTab: function (tabIndex) {
             this.$modalNav.children().removeClass('active').eq(tabIndex).addClass("active");
             this.$tabContent.addClass('hidden').eq(tabIndex).removeClass('hidden');
+            this.options.activeTab = tabIndex;
             if (tabIndex == 0) {//LookUp
                 if (this.options.filterType != this.filterType.Language) {
                     if (!this.$lookUpList.data("loaded")) {
@@ -2112,6 +2118,25 @@
             }
             listContainer.scrollTop(0);
             this._triggerResize();
+        },
+
+        bindSourceListChildren: function (data, $container) {
+            var sources = [];
+            $container.html('');
+            if (data && data.SourceListQuery && (data.SourceListQuery.OrGroupSourceEntityFilters || data.SourceListQuery.NotGroupSourceEntityFilters)) {
+                var slQ = data.SourceListQuery;
+                if (slQ.OrGroupSourceEntityFilters && slQ.OrGroupSourceEntityFilters.length) {
+                    $container.append('<li class="expanded"><div><span class="dj_icon dj_browse-tree-toggle"></span><div class="browse-item included" data-notafilter="1"><%= Token("includedSources") %></div></div></li>');
+                    this.bindList($('<ul />').appendTo($container.children(':first')), slQ.OrGroupSourceEntityFilters, { sourceListBrowse: true });
+                }
+                if (slQ.NotGroupSourceEntityFilters && slQ.NotGroupSourceEntityFilters.length) {
+                    $container.append('<li class="expanded"><div><span class="dj_icon dj_browse-tree-toggle"></span><div class="browse-item excluded" data-notafilter="1"><%= Token("excludedSources") %></div></div></li>');
+                    this.bindList($('<ul />').appendTo($container.children(':last')), slQ.NotGroupSourceEntityFilters, { sourceListBrowse: true });
+                }
+                $container.data('loaded', true);
+                return;
+            }
+            $container.html("<%= Token('noResults') %>")
         }
     });
 

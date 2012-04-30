@@ -1,15 +1,20 @@
-﻿<%  var d, e, code, type, type1, code1, cdesc, attribs, hC;
+﻿<%  var d, e, code, type, type1, code1, cdesc, attribs, hC, infoHidden = '';
     for(var i = 0;i < data.length;i++){ 
         d = data[i];
         hC = false;
+        infoHidden = '';
         if(d.SourceEntites && d.SourceEntites[0]){
             e = d.SourceEntites[0];attribs = '';
             code = e.Value;
             type = e.SourceEntityType;
             if(type == "PDF"){
                 cdesc = sourceGroupItems[code];
+                infoHidden = 'infoHidden';
             }
             else{
+                if(type == "SN"){
+                    infoHidden = 'infoHidden';
+                }
                 if(e.Source){
                     cdesc = e.Source.CommonName || code;
                     hC = e.Source.ChildrenTypes;
@@ -27,6 +32,7 @@
 
                 if(type == "SN"){
                     code = escape(code);
+                    infoHidden = 'infoHidden';
                 }
                 else{
                     code = code.toLowerCase();
@@ -60,7 +66,7 @@
                     <% if(hC){ %>
                     <span class="dj_icon dj_browse-tree-toggle"></span>
                     <% } %>
-                    <div class="browse-item" <%= attribs %>><%= cdesc %></div>
+                    <div class="browse-item <%= infoHidden %>" <%= attribs %>><%= cdesc %></div>
                 </div>
             </li>
 <%
