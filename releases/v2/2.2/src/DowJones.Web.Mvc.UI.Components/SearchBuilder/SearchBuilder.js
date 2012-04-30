@@ -44,11 +44,11 @@
             doneBtn: 'span.dj_btn-blue',
             cancelBtn: 'span.dj_btn-drk-gray',
             duplicate: 'input.duplicates',
-            grayBtn: 'span.dj_btn-drk-grey',
             newsFilter: '.news-filter',
             filterList: '.filter-list',
             filterGroup: '.filter-group',
-            pillList: '.dj_pill-list'
+            pillList: '.dj_pill-list',
+            clearAllFiltersBtn: '.clearAllFiltersBtn'
         },
 
         events: {
@@ -182,7 +182,7 @@
             }
 
             this.$filtersList = $filtersWrap.children(this.selectors.filtersContainer).children(this.selectors.filtersList);
-            this.$resetBtn = $filtersWrap.children(this.selectors.filtersContainer).prev().children(this.selectors.grayBtn);
+            this.$clearAllFiltersBtn = $filtersWrap.children(this.selectors.filtersContainer).prev().children(this.selectors.clearAllFiltersBtn);
             this.$newsFilter = $filtersWrap.children(this.selectors.newsFilter);
 
             //Append the category options and not pill
@@ -264,7 +264,7 @@
             }
 
             //Filters Reset button
-            this.$resetBtn.click($dj.delegate(this, this._resetFilters));
+            this.$clearAllFiltersBtn.click($dj.delegate(this, this._clearAllFilters));
 
             this.$filtersList.delegate(this.selectors.toggleOperatorSwitch, 'click', function () {//Toggle Switch
                 var $this = $(this);
@@ -344,19 +344,23 @@
             return format;
         },
 
-        _resetFilters: function () {
+        _clearAllFilters: function () {
             var hasAllLang = (this.$filtersList.children("[data-type='Language']").children(this.selectors.pillListWrap)
                             .children().eq(0).children("[code=alllang]").length > 0);
             if ((hasAllLang && this.$filtersList.children(this.selectors.expanded).length > 1) || (!hasAllLang && this.$filtersList.children(this.selectors.expanded).length > 0)) {
                 $dj.confirmDialog({
                     yesClickHandler: $dj.delegate(this, function () {
-                        var filterItemPillList, pillList, notPillList, me = this;
-                        this.$filtersList.children(this.selectors.expanded).each(function () {
-                            filterItemPillList = $(this).children(me.selectors.pillListWrap).children();
-                            pillList = filterItemPillList.eq(0);
-                            notPillList = filterItemPillList.eq(1);
-                            pillList.children().remove().end().append(me._addPill).show().closest("li").removeClass("expanded");
-                            notPillList.children(":gt(0)").remove().end().hide();
+                        var filterItemPillList, pillList, notPillList, me = this, $li;
+                        this.$filtersList.children().each(function () {
+                            $li = $(this);
+                            if($li.hasClass('expanded')){
+                                filterItemPillList = $li.children(me.selectors.pillListWrap).children();
+                                pillList = filterItemPillList.eq(0);
+                                notPillList = filterItemPillList.eq(1);
+                                pillList.children().remove().end().append(me._addPill).show().closest("li").removeClass("expanded");
+                                notPillList.children(":gt(0)").remove().end().hide();
+                            }
+                            me._sortAndAppendFilterItem($li);
                         });
                         this._addAllLanguages();
                     }),
@@ -866,17 +870,20 @@
             if (!hasPills && !hasNotPills) {
                 pillList.children(this.selectors.addPill).remove();
                 var $li = pillList.append(this._addPill).show().closest("li").removeClass("expanded");
-                //                //Move the empty channel filter after the last expanded channel filter
-                //                $li.parent().children(".expanded").last().after($li);
                 //Move all the empty channel in the order after all expanded channel filter
                 this._sortAndAppendFilterItem($li, false);
             }
         },
 
         _sortAndAppendFilterItem: function (filterItem, expanded) {
-            var me = this, itemSortPos, $refElement, $this,
-                filterItems = filterItem.siblings(expanded ? '.expanded' : ':not(.expanded)'),
+            var me = this, itemSortPos, $refElement, $this, filterItems,
                 filterSortPos = $.inArray(filterItem.data('type').toLowerCase(), this.sortedChannelFilters);
+            if (expanded == null) {//if expanded is null then get all the siblings
+                filterItems = filterItem.siblings();
+            }
+            else {
+                filterItems = filterItem.siblings(expanded ? '.expanded' : ':not(.expanded)');
+            }
 
             filterItems.each(function () {
                 $this = $(this);

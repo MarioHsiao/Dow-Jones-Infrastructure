@@ -1335,11 +1335,13 @@
         _enableClearAndAddToSearchBtns: function () {
             if (this.$filters.children().length > 0 || (this._lookUpDetails.notFilter && this.$notFilters.children(":gt(0)").length > 0)) {
                 this.$clearBtn.removeClass('hidden');
-                this.$addToSearchBtn.removeClass('dj_disabled');
+                //As per review with Brain, he asked to remove this feature
+                //this.$addToSearchBtn.removeClass('dj_disabled');
             }
             else {
                 this.$clearBtn.addClass('hidden');
-                this.$addToSearchBtn.addClass('dj_disabled');
+                //As per review with Brain, he asked to remove this feature
+                //this.$addToSearchBtn.addClass('dj_disabled');
             }
         },
 

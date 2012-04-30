@@ -36,7 +36,7 @@ namespace DowJones.Web.Mvc.UI.Components.SearchBuilder
     using DowJones.Web.Mvc.UI.Components.SearchNewsFilter;
     using System.Web.Mvc;
     
-    // Last Generated Timestamp: 04/20/2012 02:00 PM
+    // Last Generated Timestamp: 04/27/2012 02:44 PM
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.SearchBuilder.ClientTemplates.categoryOptions.htm", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="categoryOptions", DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.SearchBuilder.SearchBuilder))]
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.SearchBuilder.ClientTemplates.filterOptions.htm", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="filterOptions", DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.SearchBuilder.SearchBuilder))]
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.SearchBuilder.ClientTemplates.modalDialog.htm", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="modalDialog", DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.SearchBuilder.SearchBuilder))]
@@ -281,10 +281,10 @@ WriteLiteral("</h3>\r\n\t    <p>");
 
    Write(DJ.Token("searchBuilderFilterDesc"));
 
-WriteLiteral("</p>\r\n\t    <span class=\"dj_btn dj_btn-drk-grey no-margin\">");
+WriteLiteral("</p>\r\n\t    <span class=\"dj_btn dj_btn-drk-grey no-margin clearAllFiltersBtn\">");
 
 
-                                               Write(DJ.Token("clearAllFilters"));
+                                                                  Write(DJ.Token("clearAllFilters"));
 
 WriteLiteral("</span>\r\n    </div>\r\n    <div class=\"dj_search-builder_filters\">\r\n        <ul cla" +
 "ss=\"dj_search-builder_filters-list clearfix\">\r\n\t\t    <li data-type=\"");
