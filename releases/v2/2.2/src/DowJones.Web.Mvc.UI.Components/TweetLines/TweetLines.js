@@ -284,9 +284,13 @@ DJ.UI.TweetLines = DJ.UI.Component.extend({
 			if (data.append === true) {
 				this.$recentItems.append(tweetLines);
 			}
+			else if (data.refresh) {
+				this.$recentItems.html(tweetLines);
+			}
 			else {
 				this.$recentItems.prepend(tweetLines);
 			}
+
 
 			// update timestamp
 			this.$recentItems.find(this.selectors.timeStamp).timeago(null, true);
