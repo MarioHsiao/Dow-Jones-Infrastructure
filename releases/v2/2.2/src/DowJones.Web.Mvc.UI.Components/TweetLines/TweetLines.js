@@ -281,11 +281,11 @@ DJ.UI.TweetLines = DJ.UI.Component.extend({
 			// call to bind and append html to the div section 
 			tweetLines = this.templates.tweetlines({ tweets: data.tweets, options: this.options });
 
-			if (data.append === true) {
-				this.$recentItems.append(tweetLines);
-			}
-			else if (data.refresh) {
+			if (data.refresh) {
 				this.$recentItems.html(tweetLines);
+			}
+			else if (data.append === true) {
+				this.$recentItems.append(tweetLines);
 			}
 			else {
 				this.$recentItems.prepend(tweetLines);
