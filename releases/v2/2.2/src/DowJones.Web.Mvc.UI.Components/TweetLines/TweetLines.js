@@ -271,8 +271,14 @@ DJ.UI.TweetLines = DJ.UI.Component.extend({
 		var tweetLines;
 
 		try {
-			if (!data || !data.tweets || data.tweets.length === 0) {
+			if (!data) {	// show no results
 				this.bindOnNoData();
+				return;
+			}
+			else if (data.tweets || data.tweets.length === 0) { /* no tweets */
+				if (data.refresh) {	/* initial load */
+					this.bindOnNoData();	/* initial load, but no tweets */
+				}
 				return;
 			}
 
