@@ -863,6 +863,9 @@ DJ.$dj.define('$dj', ['jquery'], DJ.$dj);
 
 			this._super($meta);
 
+			if ($meta["templates"])
+			    this.templates = $.extend({}, this.templates, $meta.templates);
+
 			$.extend(this.tokens, $meta.tokens);
 			this.eventHandlers = $.extend(true, {}, this.eventHandlers, $meta.eventHandlers);
 
