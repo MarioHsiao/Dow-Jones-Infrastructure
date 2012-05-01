@@ -81,8 +81,8 @@ namespace DowJones.Tools.ClientResourceAliasMapper.Commands
         {
             writer.WriteLine("Usage:  {0} {1} [directory] [output file]", Assembly.GetEntryAssembly().GetName().Name, Command);
             writer.WriteLine();
-            writer.WriteLine("   directory:     the directory containing assemblies to reflect");
-            writer.WriteLine("   output file:   full path to the file to write the alias mappings");
+            writer.WriteLine("   directory:     the root directory of the website to generate the resource mappings for");
+            writer.WriteLine("   output file:   full path to the file to write the alias mappings [default: ClientResources.xml]");
             writer.WriteLine();
         }
 
@@ -125,7 +125,11 @@ namespace DowJones.Tools.ClientResourceAliasMapper.Commands
                 var name = mapping.ResourceName;
                 var @alias = mapping.Alias;
 
-                var prefix = name.Substring(0, name.Length - @alias.Length - 1);
+                var substringLength = name.Length - @alias.Length - 1;
+                if(substringLength < 0)
+                    continue;
+
+                var prefix = name.Substring(0, substringLength);
                 var qualifier = prefix.Substring(prefix.LastIndexOf('.') + 1);
 
                 mapping.Alias = string.Format("{0}.{1}", qualifier, alias);
