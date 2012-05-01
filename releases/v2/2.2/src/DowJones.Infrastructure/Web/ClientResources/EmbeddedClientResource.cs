@@ -1,7 +1,5 @@
 ﻿using System.Reflection;
 using DowJones.Extensions;
-using DowJones.Infrastructure;
-using System;
 
 namespace DowJones.Web
 {
@@ -22,7 +20,7 @@ namespace DowJones.Web
         {
             get
             {
-                return _url; //= _url ?? TargetAssembly.GetWebResourceUrl(ResourceName);
+                return _url ?? TargetAssembly.GetWebResourceUrl(ResourceName);
             }
             set { _url = value; }
         }
@@ -33,7 +31,7 @@ namespace DowJones.Web
         {
         }
 
-        public EmbeddedClientResource(Assembly targetAssembly, string resourceName, Type declaringType = null)
+        public EmbeddedClientResource(Assembly targetAssembly, string resourceName)
         {
             TargetAssembly = targetAssembly;
             ResourceName = resourceName;
