@@ -25,7 +25,7 @@ namespace DowJones.Web.Mvc.UI.Components.TweetLines
     using DowJones.Extensions;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 04/24/2012 02:37 PM
+    // Last Generated Timestamp: 05/02/2012 11:41 AM
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.TweetLines.TweetLines.js", ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.TweetLines.TweetLines))]
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.TweetLines.ClientTemplates.tweetlines.htm", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="tweetlines", DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.TweetLines.TweetLines))]
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.TweetLines.ClientTemplates.noData.htm", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="noData", DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.TweetLines.TweetLines))]
@@ -180,13 +180,22 @@ WriteLiteral("\r\n\t\t\t\t</p>\r\n\t\t\t</div>\r\n\t\t</li>\r\n");
 
  }
 
-WriteLiteral("</ul>\r\n<div class=\"dj_more-tweets dj_old-tweets \" style=\"z-index: 15;\">\r\n\t<span>");
+WriteLiteral("</ul>\r\n<div class=\"dj_more-tweets dj_old-tweets ");
+
+
+                                     Write(Model.MaxPagesInHistory >= 0 ? "" : "hide");
+
+WriteLiteral(" \" style=\"z-index: 15;\">\r\n\t<span>");
 
 
   Write(Html.DJ().Token("loadMoreTweets"));
 
-WriteLiteral("</span></div>\r\n<div class=\"dj_to-top-wrap hide\">\r\n\t<span class=\"dj_bird-label\"></" +
-"span><span class=\"dj_to-top\">");
+WriteLiteral("</span></div>\r\n<div class=\"dj_to-top-wrap  ");
+
+
+                        Write(Model.MaxPagesInHistory >= 0 ? "hide" : "");
+
+WriteLiteral(" \">\r\n\t<span class=\"dj_bird-label\"></span><span class=\"dj_to-top\">");
 
 
                                                        Write(Html.DJ().Token("backToTopTweet"));

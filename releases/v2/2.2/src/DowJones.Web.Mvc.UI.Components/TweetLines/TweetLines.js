@@ -8,7 +8,7 @@ DJ.UI.TweetLines = DJ.UI.Component.extend({
 	defaults: {
 
 		maxTweetsToShow: 100,
-		maxPagesInHistory: -1 // allow infinite history
+		maxPagesInHistory: 0 // allow infinite history
 	},
 
 	events: {
@@ -114,7 +114,7 @@ DJ.UI.TweetLines = DJ.UI.Component.extend({
 
 			// fix the screen name (although twitter will take any junk screen name for now)
 			if (action === "details") {
-				me.options.webIntents.details = me.defaults.webIntents.details.replace("{screen-name}", tweetItem.data("screen-name"));
+				me.options.webIntents.details = me.options.webIntents.details.replace("{screen-name}", tweetItem.data("screen-name"));
 			}
 
 			id = id || tweetId;
@@ -131,18 +131,12 @@ DJ.UI.TweetLines = DJ.UI.Component.extend({
 		});
 
 		this.$oldTweetsSpan.click(function () {
-			// if its not inifinite history and load more has been clicked max times, 
-			// hide the button to disable paging in history
-			if (me.options.maxPagesInHistory > 0 && me.historyClicks >= me.options.maxPagesInHistory) {
-				$(this).hide();
-			}
-			else {
-				me.publish(me.events.loadOldTweets);
-				me.historyClicks++;
-				me._recordODSData({
-					action: 'more'
-				});
-			}
+			me.publish(me.events.loadOldTweets);
+			me.historyClicks++;
+			me._recordODSData({
+				action: 'more'
+			});
+
 			return false;
 		});
 
@@ -271,14 +265,8 @@ DJ.UI.TweetLines = DJ.UI.Component.extend({
 		var tweetLines;
 
 		try {
-			if (!data) {	// show no results
+			if (!data || !data.tweets || data.tweets.length === 0) {
 				this.bindOnNoData();
-				return;
-			}
-			else if (data.tweets || data.tweets.length === 0) { /* no tweets */
-				if (data.refresh) {	/* initial load */
-					this.bindOnNoData();	/* initial load, but no tweets */
-				}
 				return;
 			}
 
@@ -289,9 +277,19 @@ DJ.UI.TweetLines = DJ.UI.Component.extend({
 
 			if (data.refresh) {
 				this.$recentItems.html(tweetLines);
+				// reset history clicks
+				this.historyClicks = 0;
+				this.toggleHistory();
 			}
 			else if (data.append === true) {
 				this.$recentItems.append(tweetLines);
+
+				// if its not inifinite history and load more has been clicked max times, 
+				// hide the button to disable paging in history
+				if (this.options.maxPagesInHistory > 0 &&
+					this.historyClicks >= this.options.maxPagesInHistory) {
+					this.toggleHistory(false);
+				}
 			}
 			else {
 				this.$recentItems.prepend(tweetLines);

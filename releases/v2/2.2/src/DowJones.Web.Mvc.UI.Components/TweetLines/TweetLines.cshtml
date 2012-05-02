@@ -40,9 +40,9 @@
 		</li>
  }
 </ul>
-<div class="dj_more-tweets dj_old-tweets " style="z-index: 15;">
+<div class="dj_more-tweets dj_old-tweets @(Model.MaxPagesInHistory >= 0 ? "" : "hide") " style="z-index: 15;">
 	<span>@Html.DJ().Token("loadMoreTweets")</span></div>
-<div class="dj_to-top-wrap hide">
+<div class="dj_to-top-wrap  @(Model.MaxPagesInHistory >= 0 ? "hide" : "") ">
 	<span class="dj_bird-label"></span><span class="dj_to-top">@Html.DJ().Token("backToTopTweet")
 		↑ </span>
 </div>
