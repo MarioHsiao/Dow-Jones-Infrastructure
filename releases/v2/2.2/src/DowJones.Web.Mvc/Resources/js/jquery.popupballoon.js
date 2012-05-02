@@ -78,34 +78,33 @@
             };
 
             if (o.xOffsetInverted == 'auto') {
-
                 o.xOffsetInverted = 0;
-                var width = $(self.element).width();
-                
-                if (o.popupPosition == 'right' && o.xAlign == 'right') {
-                    o.xOffsetInverted = width * -1;
-                }
+                //Check for shape(in IE highcharts uses VML instead of canvas) and width is not calculated correctly
+                if (!$(self.element).is('shape')) {
+                    var width = $(self.element).width();
+                    if (o.popupPosition == 'right' && o.xAlign == 'right') {
+                        o.xOffsetInverted = width * -1;
+                    }
 
-                if (o.popupPosition == 'left' && o.xAlign == 'left') {
-                    o.xOffsetInverted = width;
+                    if (o.popupPosition == 'left' && o.xAlign == 'left') {
+                        o.xOffsetInverted = width;
+                    }
                 }
-
             }
 
             if (o.yOffsetInverted == 'auto') {
-                //this could use a little bit of reworking here...
-
                 o.yOffsetInverted = 0;
-                var height = $(self.element).height();
-                
-                if (o.popupPosition == 'top' && o.yAlign == 'top') {
-                    o.yOffsetInverted = height / 2;
-                }
+                //Check for shape(in IE highcharts uses VML instead of canvas) and width is not calculated correctly
+                if (!$(self.element).is('shape')) {
+                    var height = $(self.element).height();
+                    if (o.popupPosition == 'top' && o.yAlign == 'top') {
+                        o.yOffsetInverted = height / 2;
+                    }
 
-                if (o.popupPosition == 'bottom' && o.yAlign == 'bottom') {
-                    o.yOffsetInverted = (height / 2) * -1;
+                    if (o.popupPosition == 'bottom' && o.yAlign == 'bottom') {
+                        o.yOffsetInverted = (height / 2) * -1;
+                    }
                 }
-
             }
 
             $(document).mousemove(function (e) {
@@ -610,8 +609,8 @@
             if (($arrow.offset().left + $arrow.width()) < $(self.element).offset().left) {
                 var cords = self._getCoordinates($callout);
                 var outerWidth = $(self.element).outerWidth(true);
-                if($(self.element).is("shape")){
-                    outerWidth = parseInt(outerWidth/3);
+                if ($(self.element).is('shape')) {
+                    outerWidth = parseInt(outerWidth / 3);
                 }
 
                 $($callout).animate({
@@ -650,7 +649,7 @@
                         height: newContentH
                     }, {
                         duration: 200,
-                        queue: false, 
+                        queue: false,
                         complete: function () {
                             // after the animation is complete reset the styles
                             $(this).css({
