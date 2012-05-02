@@ -276,10 +276,15 @@ DJ.UI.TweetLines = DJ.UI.Component.extend({
 			tweetLines = this.templates.tweetlines({ tweets: data.tweets, options: this.options });
 
 			if (data.refresh) {
+				this.$element.animate({ scrollTop: 0 }, 0);
 				this.$recentItems.html(tweetLines);
 				// reset history clicks
 				this.historyClicks = 0;
-				this.toggleHistory();
+
+				if (this.options.maxPagesInHistory >= 0) {
+					this.$oldTweets.show().removeClass('hide');
+					this.$toTop.hide();
+				}
 			}
 			else if (data.append === true) {
 				this.$recentItems.append(tweetLines);
