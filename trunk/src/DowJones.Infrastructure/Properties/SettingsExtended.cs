@@ -276,5 +276,19 @@ namespace DowJones.Properties
         {
             get { return (string)this["LogosSiteUrl"]; } 
         }
+
+        [ApplicationScopedSetting, DebuggerNonUserCode, SettingsSerializeAs(SettingsSerializeAs.String)]
+        [DefaultSettingValue("http://global.factiva.com/FactivaLogos/")]
+        public string RampUri
+        {
+            get { return (string)this["RampUri"]; }
+        }
+
+        [ApplicationScopedSetting, DebuggerNonUserCode, SettingsSerializeAs(SettingsSerializeAs.String)]
+        [DefaultSettingValue("http://global.factiva.com/FactivaLogos/")]
+        public string MarketWatchUri
+        {
+            get { return (string)this["MarketWatchUri"]; }
+        }
     }
 }

@@ -82,6 +82,7 @@ namespace DowJones.Formatters.Globalization.TimeZone
                                 }
                                     
                                 zone.FactivaCode = item.Code;
+                                zone.AlternateName = item.AlternateName;
                                 supportedTimeZones.Add(zone);
                             }
                         }
@@ -109,6 +110,7 @@ namespace DowJones.Formatters.Globalization.TimeZone
                                 }
 
                                 zone.FactivaCode = item.Code;
+                                zone.AlternateName = item.AlternateName;
                                 supportedTimeZones.Add(zone);
                             }
                         }

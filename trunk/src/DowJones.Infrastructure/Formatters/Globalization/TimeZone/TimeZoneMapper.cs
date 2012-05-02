@@ -148,19 +148,37 @@ namespace DowJones.Formatters.Globalization.TimeZone
     }
 
     [Serializable]
+    public class TimeZoneInfo
+    {
+        [XmlAttribute("st")]
+        public string StandardTime { get; set; }
+
+        [XmlAttribute("dt")]
+        public string DaylightSavingsTime { get; set; }
+    }
+
+    [Serializable]
     public class TimeZoneItem
     {
         /// <summary>
         /// 
         /// </summary>
         [XmlAttribute("code")]
-        public string Code = string.Empty;
-
+        public string Code { get; set; }
         /// <summary>
         /// 
         /// </summary>
         [XmlElement("StandardName")]
-        public string StandardName = string.Empty;
+        public string StandardName { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [XmlElement("AltName")]
+        public string AlternateName { get; set; }
+
+        [XmlElement("TimeZoneInfo")]
+        public TimeZoneInfo TimeZoneInfo { get; set; }
 
         public override string ToString()
         {
