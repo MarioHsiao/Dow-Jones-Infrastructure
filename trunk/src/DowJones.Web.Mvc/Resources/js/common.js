@@ -806,7 +806,7 @@ DJ.$dj.define('$dj', ['jquery'], DJ.$dj);
         '-360,1,s' : new jstz.TimeZone('-06:00', 'Pacific/Easter', true, "+00:00|1"),           // GMT
         '-300,0'   : new jstz.TimeZone('-05:00', 'America/Bogota', false, "-04:00|3"),          // Mapping:     S.A. Pacific Standard Time
         '-300,1'   : new jstz.TimeZone('-05:00', 'America/New_York', true, "-05:00|1"),         // Mapping:     Eastern Standard Time
-        '-270,0'   : new jstz.TimeZone('-04:30', 'America/Caracas', false "-04:00|2"),          // No Mapping:  SA Western Standard Time
+        '-270,0'   : new jstz.TimeZone('-04:30', 'America/Caracas', false, "-04:00|2"),          // No Mapping:  SA Western Standard Time
         '-240,1'   : new jstz.TimeZone('-04:00', 'America/Halifax', true, "-04:00|1"),          // Mapping:     Atlantic Standard Time
         '-240,0'   : new jstz.TimeZone('-04:00', 'America/Santo_Domingo', false, "-04:00|1"),   // No Mapping:  Atlantic Standard Time
         '-240,1,s' : new jstz.TimeZone('-04:00', 'America/Asuncion', true, "-04:00|3"),         // Mapping:     Pacific S.A. Standard Time
@@ -841,12 +841,12 @@ DJ.$dj.define('$dj', ['jquery'], DJ.$dj);
         '420,1'    : new jstz.TimeZone('+07:00', 'Asia/Krasnoyarsk', true, "+07:00|2"),         // Mapping:     North Asia Standard Time
         '420,0'    : new jstz.TimeZone('+07:00', 'Asia/Jakarta', false, "+07:00|1"),            // Mapping:     SE Asia Standard Time
         '480,0'    : new jstz.TimeZone('+08:00', 'Asia/Shanghai', false, "+08:00|2"),           // Mapping:     China Standard Time
-        '480,1'    : new jstz.TimeZone('+08:00', 'Asia/Irkutsk', true), "+08:00|3"),            // No Mapping:  North Asia East Standard Time
+        '480,1'    : new jstz.TimeZone('+08:00', 'Asia/Irkutsk', true, "+08:00|3"),            // No Mapping:  North Asia East Standard Time
         '525,0'    : new jstz.TimeZone('+08:45', 'Australia/Eucla', true, "+08:00|4"),          // No Mapping:  W. Australia Standard Time
         '525,1,s'  : new jstz.TimeZone('+08:45', 'Australia/Eucla', true, "+08:00|4"),          // No Mapping:  W. Australia Standard Time
         '540,1'    : new jstz.TimeZone('+09:00', 'Asia/Yakutsk', true, "+09:00|3"),             // Mapping:     Yakutsk Standard Time
         '540,0'    : new jstz.TimeZone('+09:00', 'Asia/Tokyo', false, "+09:00|1"),              // Mapping:     Tokyo Standard Time
-        '570,0'    : new jstz.TimeZone('+09:30', 'Australia/Darwin', false. "+09:30|2"),        // Mapping:     AUS Central Standard Time
+        '570,0'    : new jstz.TimeZone('+09:30', 'Australia/Darwin', false, "+09:30|2"),        // Mapping:     AUS Central Standard Time
         '570,1,s'  : new jstz.TimeZone('+09:30', 'Australia/Adelaide', true, "+09:30|1"),       // Mapping:     Cen. Australia Standard Time
         '600,0'    : new jstz.TimeZone('+10:00', 'Australia/Brisbane', false, "+10:00|1"),      // Mapping:     E. Australia Standard Time
         '600,1'    : new jstz.TimeZone('+10:00', 'Asia/Vladivostok', true, "+10:00|5"),         // Mapping:     Vladivostok Standard Time
@@ -924,7 +924,7 @@ DJ.$dj.define('$dj', ['jquery'], DJ.$dj);
         'America/Halifax' : ['America/Goose_Bay', 'America/Halifax'],
         'America/Godthab' : ['America/Miquelon', 'America/Godthab']
     };
-    $.dj.timeZone = jstz;
+    $dj.timeZone = jstz;
 
 })(DJ.jQuery, DJ.$dj);
 //

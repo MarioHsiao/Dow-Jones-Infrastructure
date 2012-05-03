@@ -224,7 +224,7 @@
     <TimeZoneInfo st="CET" dt="CEST"/>
   </TimeZone>
   <TimeZone code="+01:00|1">
-    <StandardName>Central Europe Standard Time</StandardName>
+    <StandardName>Central European Standard Time</StandardName>
     <TimeZoneInfo st="CET" dt="CEST"/>
   </TimeZone>
   <TimeZone code="+00:00|1">
