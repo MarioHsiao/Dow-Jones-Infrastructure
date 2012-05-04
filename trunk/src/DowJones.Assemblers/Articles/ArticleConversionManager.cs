@@ -806,7 +806,7 @@ namespace DowJones.Assemblers.Articles
         private List<RenderElinkItem> GetElinkItems(ELink elink)
         {
             var elinkItems = new List<RenderElinkItem>();
-            if (elink.Items != null)
+            if (!elink.Items.IsNullOrEmpty())
             {
                 foreach (var eLinkItem in elink.Items)
                 {

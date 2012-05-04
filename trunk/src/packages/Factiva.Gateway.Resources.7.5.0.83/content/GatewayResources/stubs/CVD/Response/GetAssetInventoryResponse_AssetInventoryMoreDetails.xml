@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GetAssetInventoryResponse ver="1.0" xsi:schemaLocation="getAssetInventory GetAssetInventoryResponse.xsd" xmlns="" 
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<status value="0"></status>
+	<requestInfo>
+		<accountScope>AE12345S,N23DWD23,KF123SDSX</accountScope>
+		<beginDate>2009-01-01</beginDate>
+		<endDate>2009-05-31</endDate>
+		<groupBy>Overview</groupBy>
+		<summarizedBy>Month</summarizedBy>
+	</requestInfo>
+	<monthlyAssetMetadataSummaryList>
+		<monthlySummary month="Jan" year="2009">
+			<metadataSummaryList>
+				<metadataSummary count="0" name="Alerts">
+					<metadataSummaryList>
+						<metadataSummary name="TotalOwned" count="110"></metadataSummary>
+						<metadataSummary name="CreatedInMonth" count="6"></metadataSummary>
+						<metadataSummary name="AVCount" count="1980"></metadataSummary>
+					</metadataSummaryList>
+				</metadataSummary>
+				<metadataSummary count="0" name="Newsletters (Editions)">
+					<metadataSummaryList>
+						<metadataSummary name="TotalOwned" count="126" additionalCount="154"></metadataSummary>
+						<metadataSummary name="CreatedInMonth" count="26" additionalCount="54"></metadataSummary>
+						<metadataSummary name="AVCount" count="3312"></metadataSummary>
+					</metadataSummaryList>
+				</metadataSummary>
+				<metadataSummary count="0" name="Workspaces">
+					<metadataSummaryList>
+						<metadataSummary name="TotalOwned" count="223"></metadataSummary>
+						<metadataSummary name="CreatedInMonth" count="123"></metadataSummary>
+						<metadataSummary name="AVCount" count="1201"></metadataSummary>
+					</metadataSummaryList>
+				</metadataSummary>
+				<metadataSummary count="0" name="Personal Home Pages">
+					<metadataSummaryList>
+						<metadataSummary name="TotalOwned" count="12"></metadataSummary>
+						<metadataSummary name="CreatedInMonth" count="12"></metadataSummary>
+						<metadataSummary name="AVCount" count="8150"></metadataSummary>
+					</metadataSummaryList>
+				</metadataSummary>
+				<columnGrandTotalsList>
+					<columnGrandTotal count="14643" name="AVCount"></columnGrandTotal>
+				</columnGrandTotalsList>
+			</metadataSummaryList>
+		</monthlySummary>
+		<monthlySummary month="Feb" year="2009">
+			<metadataSummaryList>
+				<metadataSummary count="0" name="Alerts">
+					<metadataSummaryList>
+						<metadataSummary name="TotalOwned" count="114"></metadataSummary>
+						<metadataSummary name="CreatedInMonth" count="4"></metadataSummary>
+						<metadataSummary name="AVCount" count="1980"></metadataSummary>
+					</metadataSummaryList>
+				</metadataSummary>
+				<metadataSummary count="0" name="Newsletters (Editions)">
+					<metadataSummaryList>
+						<metadataSummary name="TotalOwned" count="147" additionalCount="209"></metadataSummary>
+						<metadataSummary name="CreatedInMonth" count="21" additionalCount="55"></metadataSummary>
+						<metadataSummary name="AVCount" count="3112"></metadataSummary>
+					</metadataSummaryList>
+				</metadataSummary>
+				<metadataSummary count="0" name="Workspaces">
+					<metadataSummaryList>
+						<metadataSummary name="TotalOwned" count="360"></metadataSummary>
+						<metadataSummary name="CreatedInMonth" count="137"></metadataSummary>
+						<metadataSummary name="AVCount" count="1143"></metadataSummary>
+					</metadataSummaryList>
+				</metadataSummary>
+				<metadataSummary count="0" name="Personal Home Pages">
+					<metadataSummaryList>
+						<metadataSummary name="TotalOwned" count="23"></metadataSummary>
+						<metadataSummary name="CreatedInMonth" count="11"></metadataSummary>
+						<metadataSummary name="AVCount" count="8142"></metadataSummary>
+					</metadataSummaryList>
+				</metadataSummary>
+				<columnGrandTotalsList>
+					<columnGrandTotal count="14377" name="AVCount"></columnGrandTotal>
+				</columnGrandTotalsList>
+			</metadataSummaryList>
+		</monthlySummary>
+		<monthlySummary month="Mar" year="2009">
+			<metadataSummaryList>
+				<metadataSummary count="0" name="Alerts">
+					<metadataSummaryList>
+						<metadataSummary name="TotalOwned" count="122"></metadataSummary>
+						<metadataSummary name="CreatedInMonth" count="8"></metadataSummary>
+						<metadataSummary name="AVCount" count="1980"></metadataSummary>
+					</metadataSummaryList>
+				</metadataSummary>
+				<metadataSummary count="0" name="Newsletters (Editions)">
+					<metadataSummaryList>
+						<metadataSummary name="TotalOwned" count="168" additionalCount="268"></metadataSummary>
+						<metadataSummary name="CreatedInMonth" count="21" additionalCount="59"></metadataSummary>
+						<metadataSummary name="AVCount" count="3642"></metadataSummary>
+					</metadataSummaryList>
+				</metadataSummary>
+				<metadataSummary count="0" name="Workspaces">
+					<metadataSummaryList>
+						<metadataSummary name="TotalOwned" count="549"></metadataSummary>
+						<metadataSummary name="CreatedInMonth" count="189"></metadataSummary>
+						<metadataSummary name="AVCount" count="1312"></metadataSummary>
+					</metadataSummaryList>
+				</metadataSummary>
+				<metadataSummary count="0" name="Personal Home Pages">
+					<metadataSummaryList>
+						<metadataSummary name="TotalOwned" count="32"></metadataSummary>
+						<metadataSummary name="CreatedInMonth" count="9"></metadataSummary>
+						<metadataSummary name="AVCount" count="8032"></metadataSummary>
+					</metadataSummaryList>
+				</metadataSummary>
+				<columnGrandTotalsList>
+					<columnGrandTotal count="14966" name="AVCount"></columnGrandTotal>
+				</columnGrandTotalsList>
+			</metadataSummaryList>
+		</monthlySummary>
+	</monthlyAssetMetadataSummaryList>
+	<accountsStatus>
+		<account status="0" accountID="AE12345S"/>
+		<account status="0" accountID="N23DWD23"/>
+		<account status="1" accountID="KF123SDSX"/>
+	</accountsStatus>
+</GetAssetInventoryResponse>

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soap-env:Envelope xmlns:soap-env="http://schemas.xmlsoap.org/soap/envelope/">
+  <soap-env:Body>
+    <PCMGetCollectionHeadlinesByCodeResponse xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <accessionNumberSearchResponse xmlns="http://types.factiva.com/search">
+        <accessionNumberBasedContentItemSet count="3">
+          <accessionNumberBasedContentItem>
+            <publicationDate>2011-12-13T00:00:00</publicationDate>
+            <accessionNumber>WSJO000020111212e7cd008hl</accessionNumber>
+            <hasBeenFound>true</hasBeenFound>
+            <contentHeadline>
+              <rank>360</rank>
+              <documentVector>[intel, 1][pc makers, 0.912871][rolfe winkler, 0.745356][chip maker, 0.745356][arm chips, 0.745356][chips, 0.666667][pc supply, 0.527046][drive manufacturing, 0.527046][hard drives, 0.527046][otellini appeared, 0.527046][ceo paul, 0.527046][weeks ago, 0.527046][intel ceo, 0.527046][paul otellini, 0.527046][main worry, 0.527046]</documentVector>
+              <accessionNo>WSJO000020111212e7cd008hl</accessionNo>
+              <ipDocumentID>B801E1F469B6EA36D09AA3AFCBF84492 SB10001424052970204336104577094681077790666</ipDocumentID>
+              <attributionCode>WSJO2</attributionCode>
+              <wordCount>348</wordCount>
+              <publicationDate>2011-12-13</publicationDate>
+              <modificationDate>2011-12-13</modificationDate>
+              <modificationTime>05:10:50.0000000-05:00</modificationTime>
+              <baseLanguage>en</baseLanguage>
+              <sourceCode>wsjo</sourceCode>
+              <sourceName>The Wall Street Journal Online</sourceName>
+              <sectionName>
+                <para>Markets</para>
+              </sectionName>
+              <columnName>
+                <para>Heard on the Street</para>
+              </columnName>
+              <headline>
+                <para la="en">Seeking Intel on Future of Chips</para>
+              </headline>
+              <snippet>
+                <para>If PC makers can't get hard drives, turns out they don't need as many chips. But that isn't the main worry for Intel. Investors already had concerns that flooding in Thailand, where hard-drive manufacturing is concentrated, would drag down ...</para>
+              </snippet>
+              <byline>
+                <para>By Rolfe Winkler</para>
+              </byline>
+              <copyright>
+                <para>Copyright 2011 Dow Jones &amp; Company, Inc. All Rights Reserved.</para>
+              </copyright>
+              <truncationRules/>
+              <contentItems>
+                <contentType>article</contentType>
+                <primaryRef>distdoc:archive/ArchiveDoc::Article/WSJO000020111212e7cd008hl</primaryRef>
+                <item type="arttext" ref="distdoc:archive/ArchiveDoc::Article/WSJO000020111212e7cd008hl" size="3339"/>
+                <item type="invtext" ref="distdoc:archive/InvertText/WSJO000020111212e7cd008hl" size="6315"/>
+                <item type="webpage" ref="http://online.wsj.com/article/SB10001424052970204336104577094681077790666.html" subtype="primary" size="0"/>
+              </contentItems>
+            </contentHeadline>
+          </accessionNumberBasedContentItem>
+          <accessionNumberBasedContentItem>
+            <accessionNumber>WSJO000020111212e7cd00000</accessionNumber>
+            <hasBeenFound>false</hasBeenFound>
+            <contentHeadline>
+              <contentItems/>
+            </contentHeadline>
+          </accessionNumberBasedContentItem>
+          <accessionNumberBasedContentItem>
+            <publicationDate>2011-12-12T21:34:00Z</publicationDate>
+            <accessionNumber>DJ00000020111212e7cc000u1</accessionNumber>
+            <hasBeenFound>true</hasBeenFound>
+            <contentHeadline>
+              <rank>360</rank>
+              <documentVector>[dn, 1][american express, 0.205847][elec power, 0.205847][american elec, 0.205847][delta air, 0.205847][robinson worldwide, 0.205847][averages closing, 0.205847][name pe, 0.205847][alaska air, 0.205847][dj averages, 0.205847][dominion resources, 0.205847][cisco systems, 0.205847][ch robinson, 0.205847][duke energy, 0.205847][consolidated edison, 0.205847]</documentVector>
+              <accessionNo>DJ00000020111212e7cc000u1</accessionNo>
+              <ipDocumentID>btco20111212007576</ipDocumentID>
+              <attributionCode>DJ2</attributionCode>
+              <wordCount>592</wordCount>
+              <publicationDate>2011-12-12</publicationDate>
+              <publicationTime>2011-12-28T21:34:00Z</publicationTime>
+              <modificationDate>2011-12-12</modificationDate>
+              <modificationTime>16:34:12.0000000-05:00</modificationTime>
+              <baseLanguage>en</baseLanguage>
+              <sourceCode>dj</sourceCode>
+              <sourceName>Dow Jones News Service</sourceName>
+              <headline>
+                <para la="en">DJ Averages Closing 65 Stocks</para>
+              </headline>
+              <snippet>
+                <para>Name                           PE      Last         Chg rn  3M                          13.55     80.59   DN   1.61 rn  AES                                   11.72   DN   0.14 rn  Alaska Air Grp              10.48     70.21   UP   0.44 rn  ...</para>
+              </snippet>
+              <copyright>
+                <para>(c) 2011 Dow Jones &amp; Company, Inc.</para>
+              </copyright>
+              <truncationRules/>
+              <contentItems>
+                <contentType>article</contentType>
+                <primaryRef>distdoc:archive/ArchiveDoc::Article/DJ00000020111212e7cc000u1</primaryRef>
+                <item type="arttext" ref="distdoc:archive/ArchiveDoc::Article/DJ00000020111212e7cc000u1" size="5695"/>
+                <item type="invtext" ref="distdoc:archive/InvertText/DJ00000020111212e7cc000u1" size="9452"/>
+              </contentItems>
+            </contentHeadline>
+          </accessionNumberBasedContentItem>
+        </accessionNumberBasedContentItemSet>
+        <collectionCountSet/>
+        <codeNavigatorSet count="0"/>
+        <timeNavigatorSet count="0"/>
+        <contextualNavigatorSet count="0"/>
+        <keywordSet/>
+        <clusterSet/>
+      </accessionNumberSearchResponse>
+    </PCMGetCollectionHeadlinesByCodeResponse>
+  </soap-env:Body>
+</soap-env:Envelope>
