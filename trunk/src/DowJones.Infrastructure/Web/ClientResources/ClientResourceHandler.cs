@@ -335,23 +335,19 @@ namespace DowJones.Web
         {
             var cachingToken = Settings.Default.ClientResourceCachingToken;
 
-            var httpContext = HttpContext.Current.ToHttpContextBase();
-
             // if no setting value was specified, try to grab it from a file
             if (string.IsNullOrWhiteSpace(cachingToken))
             {
+                var httpContext = HttpContext.Current.ToHttpContextBase();
                 string tokenFile = httpContext.Server.MapPath(ClientTokenFilename);
 
                 if (File.Exists(tokenFile))
                     cachingToken = File.ReadAllText(tokenFile).Trim();
-                else if (httpContext.DebugEnabled())
-                    cachingToken = "debug";
             }
 
             if (string.IsNullOrWhiteSpace(cachingToken))
             {
-                // If neither the settings value was set nor a file existed, throw an error
-                throw new DowJonesUtilitiesException("Please specify a value for the ClientResourceCachingToken setting (most likely in the DowJones.Properties settings section)");
+                cachingToken = _assemblyTimestamp.Value.Ticks.ToString().Trim('0');
             }
 
             return cachingToken;
