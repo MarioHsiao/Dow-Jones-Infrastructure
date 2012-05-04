@@ -64,12 +64,12 @@
     <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="factiva.gateway.messages, Version=7.5.0.82, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="factiva.gateway.messages, Version=7.5.0.83, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Factiva.Gateway.7.5.0.82\lib\factiva.gateway.messages.dll</HintPath>
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.83\lib\factiva.gateway.messages.dll</HintPath>
     </Reference>
     <Reference Include="FactivaGateway, Version=1.5.0.7, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.83\lib\FactivaGateway.dll</HintPath>
     </Reference>
     <Reference Include="Glimpse.Core">
       <HintPath>..\packages\Glimpse.0.86\lib\net40\Glimpse.Core.dll</HintPath>
@@ -83,7 +83,7 @@
     <Reference Include="Interop.FCMLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <EmbedInteropTypes>True</EmbedInteropTypes>
       <Private>True</Private>
-      <HintPath>..\packages\Factiva.Gateway.7.5.0.82\lib\Interop.FCMLib.dll</HintPath>
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.83\lib\Interop.FCMLib.dll</HintPath>
     </Reference>
     <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
       <HintPath>..\packages\log4net.1.2.99\lib\2.0\log4net.dll</HintPath>
@@ -792,6 +792,8 @@
     <Content Include="GatewayResources\stubs\ODE\Response\UpdateDistributionMailingListResponse.xml" />
     <Content Include="GatewayResources\stubs\PCM\RegionalMap\PCMRegionalMapRequest.xml" />
     <Content Include="GatewayResources\stubs\PCM\RegionalMap\PCMRegionalMapResponse.xml" />
+    <Content Include="GatewayResources\stubs\PCM\Search\PCMGetCollectionHeadlinesByCodeRequest.xml" />
+    <Content Include="GatewayResources\stubs\PCM\Search\PCMGetCollectionHeadlinesByCodeResponse.xml" />
     <Content Include="GatewayResources\stubs\PCM\SummaryRegionalMap\PCMSummaryRegionalMapRequest.xml" />
     <Content Include="GatewayResources\stubs\PCM\SummaryRegionalMap\PCMSummaryRegionalMapResponse.xml" />
     <Content Include="GatewayResources\stubs\RealTimeAlerts\Response\DeleteFolderByIDResponse.xml" />
