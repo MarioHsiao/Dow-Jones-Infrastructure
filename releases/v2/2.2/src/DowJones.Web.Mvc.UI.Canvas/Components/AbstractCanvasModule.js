@@ -137,6 +137,8 @@ DJ.UI.AbstractCanvasModule = DJ.UI.CompositeComponent.extend({
 			case 'move-up':
 			case 'move-down':
 				this.get_Canvas().moveModule(this, action.substring('move-'.length));
+				// give a chance to redraw components (specifically to fix highcharts issue on IE7)
+				this.fireOnModuleMove();
 				break;
 
 			case 'remove':
@@ -201,6 +203,12 @@ DJ.UI.AbstractCanvasModule = DJ.UI.CompositeComponent.extend({
 
 	fireOnSaveAndCloseEditArea: function () {
 		this.showModuleArea();
+	},
+
+	fireOnModuleMove: function () {
+		// do nothing in the base
+		// individual modules can override to redraw components
+		// specifically to address highcharts + IE7 issue
 	},
 
 	get_CanvasId: function () {
