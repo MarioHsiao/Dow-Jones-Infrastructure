@@ -35,6 +35,7 @@ namespace DowJones.Infrastructure
         HeadImageLarge,
         HeadImageSmall,
         ArticleHighlight,
+        ArticleElinkHighlight,
         ArticleElink,
         HeadImageXSmall,
         Html,

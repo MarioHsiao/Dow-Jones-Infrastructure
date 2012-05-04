@@ -1,4 +1,5 @@
-﻿using DowJones.Infrastructure;
+﻿using System.Collections.Generic;
+using DowJones.Infrastructure;
 
 namespace DowJones.Ajax.Article
 {
@@ -17,5 +18,7 @@ namespace DowJones.Ajax.Article
         EntityLinkData ItemEntityData { get; set; }
 
         PostProcessData ItemPostProcessData { get; set; }
+
+        List<RenderElinkItem> ElinkItems { get; set; }
     }
 }

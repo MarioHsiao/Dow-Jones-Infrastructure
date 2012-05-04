@@ -587,6 +587,8 @@ namespace DowJones.Assemblers.Articles
         /// <param name="accessionNumber"></param>
         private void RenderEntityLink(ELink elink, List<IRenderItem> renderItems, string accessionNumber)
         {
+            var elinkItems = GetElinkItems(elink);
+
             if (elink.type.Equals(ElinkType.pro.ToString(), StringComparison.InvariantCultureIgnoreCase))
             {
                 if (_postProcessing != PostProcessing.Save)
@@ -612,7 +614,7 @@ namespace DowJones.Assemblers.Articles
                         }
                         else
                         {
-                            renderItems.Add(new RenderItem { ItemMarkUp = MarkUpType.ArticleElink, ItemText = (elink.text != null) ? elink.text.Value : elink.reference, ItemValue = elink.reference });
+                            renderItems.Add(new RenderItem { ItemMarkUp = MarkUpType.ArticleElink, ItemText = elink.reference, ItemValue = elink.reference, ElinkItems = elinkItems });
                         }
 
                         break;
@@ -669,6 +671,33 @@ namespace DowJones.Assemblers.Articles
                     }
                 }
             }
+        }
+
+        /// <summary>
+        /// Get Elink Items
+        /// </summary>
+        /// <param name="elink"></param>
+        /// <returns></returns>
+        private List<RenderElinkItem> GetElinkItems(ELink elink)
+        {
+            var elinkItems = new List<RenderElinkItem>();
+            if (elink.Items != null)
+            {
+                foreach (var eLinkItem in elink.Items)
+                {
+                    if (eLinkItem is HighlightedText)
+                    {
+                        var heText = (HighlightedText)eLinkItem;
+                        if (heText.text != null) elinkItems.Add(new RenderElinkItem() { ItemMarkUp = MarkUpType.ArticleElinkHighlight, ItemText = heText.text.Value });
+                    }
+                    else
+                    {
+                        var eText = (Text)eLinkItem;
+                        if (eText.Value != null) elinkItems.Add(new RenderElinkItem() { ItemMarkUp = MarkUpType.Plain, ItemText = eText.Value });
+                    }
+                }
+            }
+            return elinkItems;
         }
 
         /// <summary>
