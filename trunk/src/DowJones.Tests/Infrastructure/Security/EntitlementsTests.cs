@@ -52,7 +52,9 @@ namespace DowJones.Infrastructure.Security
                 //return new UninitializedPrinciple();
             }
 
+            if (getUserAuthorizationsResponse == null || getUserAuthorizationsResponse.AuthorizationMatrix == null) return;
             var entitlementsPrinciple = new EntitlementsPrinciple(getUserAuthorizationsResponse);
+
             Console.WriteLine(@"IsSelectFullUser: " + entitlementsPrinciple.CoreServices.AlertsService.IsSelectFullUser);
             Console.WriteLine(@"IsSelectHeadlinesUser: " + entitlementsPrinciple.CoreServices.AlertsService.IsSelectHeadlinesUser);
             Console.WriteLine(@"IsDULinkEnabled: " + entitlementsPrinciple.CoreServices.InterfaceService.IsDULinkEnabled);
