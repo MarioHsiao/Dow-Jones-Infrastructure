@@ -27,8 +27,8 @@ namespace DowJones.Web.Mvc.UI.Components.Article
     using System.Text.RegularExpressions;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 04/02/2012 12:06 PM
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.19368")]
+    // Last Generated Timestamp: 04/30/2012 08:07 PM
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "0.0.0.30158")]
     public class Paragraph : DowJones.Web.Mvc.UI.ViewComponentBase<DowJones.Web.Mvc.UI.Components.Models.Article.ParagraphModel>
     {
 #line hidden
@@ -166,20 +166,29 @@ WriteLiteral("</div> ");
                                                                       }
     else if (renderItem.ItemMarkUp == MarkUpType.ArticleElink)
     {
-WriteLiteral("<a class=\"dj_article_elink\" href=\"javascript:void(0)\" data-href=\"");
+        var elinkItemText = "";
+        foreach (var elinkItem in renderItem.ElinkItems)
+        {
+            if (elinkItem.ItemMarkUp == MarkUpType.ArticleElinkHighlight)
+            {elinkItemText = elinkItemText + "<span class='dj_article_highlight'>" + elinkItem.ItemText + "</span>";}
+            else if (elinkItem.ItemMarkUp == MarkUpType.Plain)
+            {elinkItemText = elinkItemText + elinkItem.ItemText;}
+        }
+
+WriteLiteral("        <a class=\"dj_article_elink\" href=\"javascript:void(0)\" data-href=\"");
 
 
-                                                                 Write(renderItem.ItemValue.EscapeForHtml());
+                                                                    Write(renderItem.ItemValue.EscapeForHtml());
 
 WriteLiteral("\">");
 
 
-                                                                                                         Write(renderItem.ItemText);
+                                                                                                           Write(elinkItemText);
 
-WriteLiteral("</a>");
+WriteLiteral("</a>\r\n");
 
 
-                                                                                                                                       }
+    }                                                                                                                                                                                                                                                                
     else if (renderItem.ItemMarkUp == MarkUpType.Plain)
     {
 WriteLiteral("<span class=\"dj_article_plain\">");

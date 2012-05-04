@@ -343,7 +343,7 @@ namespace DowJones.Assemblers.Headlines
                 case ContentCategory.Board:
                 case ContentCategory.CustomerDoc:
                 case ContentCategory.Internal:
-                    foreach (ContentItem item in contentHeadline.ContentItems.ItemCollection.Where(item => item.Type.ToLower() == "webpage"))
+                    foreach (var item in contentHeadline.ContentItems.ItemCollection.Where(item => item.Type.ToLower() == "webpage"))
                     {
                         return item.Ref;
                     }

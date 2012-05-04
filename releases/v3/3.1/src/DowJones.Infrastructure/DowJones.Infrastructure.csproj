@@ -43,19 +43,18 @@
     <Reference Include="DowJones.Parallel">
       <HintPath>..\packages\DowJones.Parallel.1.0.0\lib\DowJones.Parallel.dll</HintPath>
     </Reference>
-    <Reference Include="factiva.gateway.messages, Version=7.5.0.76, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="factiva.gateway.messages, Version=7.5.0.82, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Factiva.Gateway.7.5.0.76\lib\factiva.gateway.messages.dll</HintPath>
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.82\lib\factiva.gateway.messages.dll</HintPath>
     </Reference>
     <Reference Include="FactivaGateway, Version=1.5.0.7, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Factiva.Gateway.7.5.0.76\lib\FactivaGateway.dll</HintPath>
     </Reference>
     <Reference Include="Hammock, Version=1.0.0.0, Culture=neutral, PublicKeyToken=c148cfba29ed1a4d, processorArchitecture=MSIL">
       <HintPath>..\packages\Hammock.1.2.6\lib\net40\Hammock.dll</HintPath>
     </Reference>
     <Reference Include="Interop.FCMLib">
-      <HintPath>..\packages\Factiva.Gateway.7.5.0.76\lib\Interop.FCMLib.dll</HintPath>
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.82\lib\Interop.FCMLib.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
@@ -133,6 +132,11 @@
     <Compile Include="Caching\ICacheKey.cs" />
     <Compile Include="Caching\Properties\Settings.cs" />
     <Compile Include="Converters\JsonEnumConverter.cs" />
+    <Compile Include="Managers\Multimedia\MediaContents.cs" />
+    <Compile Include="Managers\Multimedia\MultimediaManager.cs" />
+    <Compile Include="Managers\Multimedia\MultimediaPackage.cs" />
+    <Compile Include="Managers\Multimedia\MultiMediaRequest.cs" />
+    <Compile Include="Managers\Multimedia\MultiMediaResponse.cs" />
     <Compile Include="Web\Extensions\UrlExtensions.cs" />
     <Compile Include="Globalization\ResourceTextManagerFactory.cs" />
     <Compile Include="Infrastructure\GenericEqualityComparer.cs" />
@@ -737,7 +741,9 @@
     <Compile Include="Web\WebContentCache.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Formatters\Globalization\TimeZone\TimeZoneData.xml" />
+    <EmbeddedResource Include="Formatters\Globalization\TimeZone\TimeZoneData.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Managers\Search\CodedNewsQueries\Code\USStatesAbbreviations.xml" />

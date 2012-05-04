@@ -35,7 +35,17 @@
     else if (renderItem.ItemMarkUp == MarkUpType.Html)
     { <div class="embededHtml">@(Html.Raw(renderItem.ItemText))</div> }
     else if (renderItem.ItemMarkUp == MarkUpType.ArticleElink)
-    {<a class="dj_article_elink" href="javascript:void(0)" data-href="@renderItem.ItemValue.EscapeForHtml()">@(renderItem.ItemText)</a>}
+    {
+        var elinkItemText = "";
+        foreach (var elinkItem in renderItem.ElinkItems)
+        {
+            if (elinkItem.ItemMarkUp == MarkUpType.ArticleElinkHighlight)
+            {elinkItemText = elinkItemText + "<span class='dj_article_highlight'>" + elinkItem.ItemText + "</span>";}
+            else if (elinkItem.ItemMarkUp == MarkUpType.Plain)
+            {elinkItemText = elinkItemText + elinkItem.ItemText;}
+        }
+        <a class="dj_article_elink" href="javascript:void(0)" data-href="@renderItem.ItemValue.EscapeForHtml()">@elinkItemText</a>
+    }                                                                                                                                                                                                                                                                
     else if (renderItem.ItemMarkUp == MarkUpType.Plain)
     {<span class="dj_article_plain">@(renderItem.ItemText)</span>}
     else if (renderItem.ItemMarkUp == MarkUpType.EntityLink && renderItem.Highlight)

@@ -30,7 +30,7 @@ namespace DowJones.Formatters.Globalization.TimeZone
             nameMap = new Dictionary<string, System.TimeZone>();
             foreach (var name in subKeyNames)
             {
-                using (RegistryKey key = data.OpenSubKey(name))
+                using (var key = data.OpenSubKey(name))
                 {
                     var item = new UITimeZone(name, key);
                     Items.Add(item);

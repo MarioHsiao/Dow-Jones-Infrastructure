@@ -712,6 +712,8 @@ namespace DowJones.Assemblers.Articles
         /// <param name = "accessionNumber"></param>
         private void RenderEntityLink(ELink elink, List<RenderItem> renderItems, string accessionNumber)
         {
+            var elinkItems = GetElinkItems(elink);
+
             if (elink.type.Equals(ElinkType.pro.ToString(), StringComparison.InvariantCultureIgnoreCase))
             {
                 if (_postProcessing != PostProcessing.Save)
@@ -737,7 +739,7 @@ namespace DowJones.Assemblers.Articles
                         }
                         else
                         {
-                            renderItems.Add(new RenderItem {ItemMarkUp = MarkUpType.ArticleElink, ItemText = (elink.text != null) ? elink.text.Value : elink.reference, ItemValue = elink.reference});
+                            renderItems.Add(new RenderItem { ItemMarkUp = MarkUpType.ArticleElink, ItemText = elink.reference, ItemValue = elink.reference, ElinkItems = elinkItems });
                         }
 
                         break;
@@ -794,6 +796,30 @@ namespace DowJones.Assemblers.Articles
                     }
                 }
             }
+        }
+
+        /// <summary>
+        /// Get Elink Items
+        /// </summary>
+        /// <param name="elink"></param>
+        /// <returns></returns>
+        private List<RenderElinkItem> GetElinkItems(ELink elink)
+        {
+            var elinkItems = new List<RenderElinkItem>();
+            foreach (var eLinkItem in elink.Items)
+            {
+                if (eLinkItem is HighlightedText)
+                {
+                    var heText = (HighlightedText)eLinkItem;
+                    if (heText.text != null) elinkItems.Add(new RenderElinkItem() { ItemMarkUp = MarkUpType.ArticleElinkHighlight, ItemText = heText.text.Value });
+                }
+                else
+                {
+                    var eText = (Text)eLinkItem;
+                    if (eText.Value != null) elinkItems.Add(new RenderElinkItem() { ItemMarkUp = MarkUpType.Plain, ItemText = eText.Value });
+                }
+            }
+            return elinkItems;
         }
 
         /// <summary>
@@ -1599,7 +1625,7 @@ namespace DowJones.Assemblers.Articles
 
             return sb.ToString();
         }
-
+        
         /// <summary>
         ///   The get object text.
         /// </summary>
@@ -1627,10 +1653,28 @@ namespace DowJones.Assemblers.Articles
                 }
                 else if (item is ELink)
                 {
-                    var elink = (ELink) item;
-                    if (elink.text != null && elink.text.Value != null)
+                    var elink = (ELink)item;
+                    if (elink.Items != null)
                     {
-                        sb.Append(elink.text.Value);
+                        foreach (var elinkItem in elink.Items)
+                        {
+                            if (elinkItem is HighlightedText)
+                            {
+                                var highlight = (HighlightedText) elinkItem;
+                                if (highlight.text != null && highlight.text.Value != null)
+                                {
+                                    sb.Append(highlight.text.Value);
+                                }
+                            }
+                            else
+                            {
+                                var text = (Text) elinkItem;
+                                if (text.Value != null)
+                                {
+                                    sb.Append(text.Value);
+                                }
+                            }
+                        }
                     }
                 }
                 else if (item is EntityReference)

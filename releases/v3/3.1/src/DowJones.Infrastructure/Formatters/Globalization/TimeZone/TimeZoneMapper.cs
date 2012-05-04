@@ -9,12 +9,12 @@ namespace DowJones.Formatters.Globalization.TimeZone
 {
     internal class TimeZoneMapper
     {
-        private static readonly ILog _log = LogManager.GetLogger(typeof(TimeZoneMapper));
-        private const string RESOURCE_DATA_NAME = "TimeZoneData.xml";
-        private static readonly object _syncObject = new object();
+        private static readonly ILog Log = LogManager.GetLogger(typeof(TimeZoneMapper));
+        private const string ResourceDataName = "TimeZoneData.xml";
+        private static readonly object SyncObject = new object();
 
         private static readonly TimeZoneMapper m_Instance = new TimeZoneMapper();
-        private static string _resourceData = string.Empty;
+        private static string resourceData = string.Empty;
         private readonly Dictionary<string, TimeZoneItem> _timeZoneCodeDictionary;
         private readonly Dictionary<string, string> _timeZoneStandardNameDictionary;
         private readonly List<TimeZoneItem> _timeZoneItemList;
@@ -27,22 +27,24 @@ namespace DowJones.Formatters.Globalization.TimeZone
         {
             if (_timeZoneCodeDictionary != null)
                 return;
-            _resourceData = string.Empty;
-            var list = (TimeZoneList) Deserialize(GetEmbeddedXmlData(RESOURCE_DATA_NAME), typeof(TimeZoneList));
+            resourceData = string.Empty;
+            var list = (TimeZoneList) Deserialize(GetEmbeddedXmlData(ResourceDataName), typeof(TimeZoneList));
             if (list == null || list.TimeZones == null || list.TimeZones.Length <= 0)
                 return;
             _timeZoneCodeDictionary = new Dictionary<string, TimeZoneItem>(list.TimeZones.Length);
             _timeZoneStandardNameDictionary = new Dictionary<string, string>(list.TimeZones.Length);
             _timeZoneItemList = new List<TimeZoneItem>(list.TimeZones.Length);
             Array.Reverse(list.TimeZones);
-            foreach (TimeZoneItem zone in list.TimeZones)
+            foreach (var zone in list.TimeZones)
             {
-                if (_log.IsDebugEnabled)
+                if (Log.IsDebugEnabled)
                 {
-                    _log.Debug(zone);
+                    Log.Debug(zone);
                 }
-                if (_timeZoneCodeDictionary.ContainsKey(zone.Code))
+                if (_timeZoneCodeDictionary.ContainsKey(zone.Code) || _timeZoneStandardNameDictionary.ContainsKey(zone.StandardName))
                     continue;
+
+                Log.Info("Standard: " + zone.StandardName + ", Code:" + zone.Code);
                 _timeZoneCodeDictionary.Add(zone.Code, zone);
                 _timeZoneItemList.Add(zone);
                 _timeZoneStandardNameDictionary.Add(zone.StandardName, zone.Code);
@@ -116,11 +118,11 @@ namespace DowJones.Formatters.Globalization.TimeZone
         /// <returns></returns>
         private string GetEmbeddedXmlData(string resourceName)
         {
-            if (string.IsNullOrEmpty(_resourceData) || string.IsNullOrEmpty(_resourceData.Trim()))
+            if (string.IsNullOrEmpty(resourceData) || string.IsNullOrEmpty(resourceData.Trim()))
             {
-                lock (_syncObject)
+                lock (SyncObject)
                 {
-                    if (string.IsNullOrEmpty(_resourceData) || string.IsNullOrEmpty(_resourceData.Trim()))
+                    if (string.IsNullOrEmpty(resourceData) || string.IsNullOrEmpty(resourceData.Trim()))
                     {
                         using (Stream stream = GetType().Assembly.GetManifestResourceStream(GetType(), resourceName))
                         {
@@ -128,7 +130,7 @@ namespace DowJones.Formatters.Globalization.TimeZone
                             {
                                 using (var reader = new StreamReader(stream))
                                 {
-                                    _resourceData = reader.ReadToEnd();
+                                    resourceData = reader.ReadToEnd();
                                 }
                             }
                         }
@@ -136,7 +138,7 @@ namespace DowJones.Formatters.Globalization.TimeZone
                 }
             }
 
-            return _resourceData;
+            return resourceData;
         }
     }
 
@@ -148,19 +150,37 @@ namespace DowJones.Formatters.Globalization.TimeZone
     }
 
     [Serializable]
+    public class TimeZoneInfo
+    {
+        [XmlAttribute("st")]
+        public string StandardTime { get; set; }
+
+        [XmlAttribute("dt")]
+        public string DaylightSavingsTime { get; set; }
+    }
+
+    [Serializable]
     public class TimeZoneItem
     {
         /// <summary>
         /// 
         /// </summary>
         [XmlAttribute("code")]
-        public string Code = string.Empty;
-
+        public string Code { get; set; }
         /// <summary>
         /// 
         /// </summary>
         [XmlElement("StandardName")]
-        public string StandardName = string.Empty;
+        public string StandardName { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [XmlElement("AltName")]
+        public string AlternateName { get; set; }
+
+        [XmlElement("TimeZoneInfo")]
+        public TimeZoneInfo TimeZoneInfo { get; set; }
 
         public override string ToString()
         {

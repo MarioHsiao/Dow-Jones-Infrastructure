@@ -94,6 +94,8 @@ namespace DowJones.Assemblers.Session
                 _session.AccountId = _cookieManager.GetPermanentValue(ProductPrefix + "_A");
                 _session.ProductId = _cookieManager.GetPermanentValue(ProductPrefix + "_N");
                 _session.UserId = _cookieManager.GetPermanentValue(ProductPrefix + "_U");
+                _session.ProxyUserId = _cookieManager.GetPermanentValue(ProductPrefix + "_PU");
+                _session.ProxyNamespace = _cookieManager.GetPermanentValue(ProductPrefix + "_PN");
             }
 
             SetDebug();

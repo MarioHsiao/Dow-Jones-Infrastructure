@@ -32,7 +32,7 @@ namespace DowJones.Web.Showcase.Controllers
             _articleConversionManager = articleConversionManager;
         }
 
-        public ActionResult Index( string acn = "DATMON0020110429e74e001t8", DisplayOptions option = DisplayOptions.Full )
+        public ActionResult Index(string acn = "DJDN000020120216e82g0lkzf", DisplayOptions option = DisplayOptions.Full)
         {
             return Article(acn, option);
         }
@@ -45,6 +45,7 @@ namespace DowJones.Web.Showcase.Controllers
                     adjustForCapitalChanges = true
                 };
 
+            canonicalSearchString = "T|djdn000020120216e82g0lkzf N|an O|: T|and O|+ T|sipc O|+ T|and O|+ T|businesswire O|+ T|and O|+ T|schwab O|+ T|and O|+ T|aboutschwab O|+ T|en T|ru O|, T|de O|, N|la O|c O|+ T|nnam T|nrmf O|, T|nrgn O|, N|ns O|c O|- T|article T|file O|, T|report O|, T|webpage O|, T|blog O|, T|picture O|, T|multimedia O|, T|board O|, T|customerdoc O|, N|fmt O|c O|+";
             var article = _articleService.GetArticle(accessionNumber, canonicalSearchString);
 
             if (article == null || (article.status != null && article.status.value != 0))

@@ -158,6 +158,14 @@ namespace DowJones.Exceptions
         public const long UninitializedPrincipleException = 585326;
         public const long OperationAbortedException = 585327;
 
+        //Multimedia manager exceptions (585400 - 585410)
+        public const long MULTIMEDIA_HTML_URL_NOT_FOUND = 585401;
+        public const long INVALID_MULTIMEDIA_ARTICLE = 585402;
+        public const long MULTIMEDIA_RAMP_FAILED = 585403;
+        public const long MULTIMEDIA_MARKET_WATCH_FAILED = 585404;
+        public const long MULTIMEDIA_UNKNOWN_EXCEPTION = 585400;
+
+
         //TODO: Get range for Query Utility errors 585411 - 585499
         public const long QM_DATE_TYPE_NOT_SPECIFIED = 585411;
         public const long QM_ONE_OF_EACH_GROUP_ALLOWED = 585412;

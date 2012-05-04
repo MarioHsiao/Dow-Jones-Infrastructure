@@ -144,6 +144,9 @@ namespace DowJones.Formatters.Globalization.TimeZone
         [NonSerialized] private Dictionary<int, DaylightTime> _cachedDaylightChanges;
 
         private string _factivaCode;
+        private string _alternateName;
+        private string _standardTimeAbbr;
+        private string _daylightSavingsTimeAbbr;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="UITimeZone"/> class.
@@ -233,6 +236,24 @@ namespace DowJones.Formatters.Globalization.TimeZone
         {
             get { return _factivaCode; }
             set { if (string.IsNullOrEmpty(_factivaCode)) _factivaCode = value; }
+        }
+
+        public string AlternateName
+        {
+            get { return _alternateName; }
+            set { if (string.IsNullOrEmpty(_alternateName)) _alternateName = value; }
+        }
+
+        public string StandardTimeAbbr
+        {
+            get { return _standardTimeAbbr; }
+            set { if (string.IsNullOrEmpty(_standardTimeAbbr)) _standardTimeAbbr = value; }
+        }
+
+        public string DaylightSavingsTimeAbbr
+        {
+            get { return _daylightSavingsTimeAbbr; }
+            set { if (string.IsNullOrEmpty(_daylightSavingsTimeAbbr)) _daylightSavingsTimeAbbr = value; }
         }
 
         #region IComparable Members
