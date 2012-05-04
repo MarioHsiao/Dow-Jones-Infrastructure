@@ -44,6 +44,12 @@
                             <span class="value"><%= data.primarySource %></span>
                         </li>
                     <% } %>
+                    <% if(data.associatedCompany){ %>
+                        <li>
+                            <span class="label"><%= Token('associatedCompany') %>:</span> 
+                            <span class="value"><%= data.associatedCompany %></span>
+                        </li>
+                    <% } %>
                     <% if(data.parentCodes && data.parentCodes.length > 0){ %>
                         <li>
                             <span class="label"><%= Token('parents') %>:</span> 

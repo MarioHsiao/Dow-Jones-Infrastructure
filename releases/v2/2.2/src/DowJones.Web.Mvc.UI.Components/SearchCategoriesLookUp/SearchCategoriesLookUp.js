@@ -93,7 +93,7 @@
                 lookUpTitle: "<%= Token('executiveLookupResults') %>",
                 notFilter: true,
                 restField: 'Executives',
-                infoParts: 'LocalNames',
+                infoParts: 'LocalNames|AssociatedCompanies',
                 label: "<%= Token('executive') %>"
             },
 
@@ -105,7 +105,6 @@
                 notFilter: true,
                 restField: 'Subjects',
                 autoCompleteField: 'NewsSubject',
-                //'ChildCodes|Aliases|Description|ThirdPartyCodes|DJCodes|ParentCodes|LocalNames|Status'
                 infoParts: 'Description|ParentCodes',
                 label: "<%= Token('subject') %>"
             },
@@ -1153,9 +1152,15 @@
                     }
                 });
             }
+
             //Primary Source/Outlet
             if (entityInfo.PrimarySource) {
                 info.primarySource = entityInfo.PrimarySource.Description;
+            }
+
+            //AssociatedCompany Executive
+            if (entityInfo.AssoicatedCompanies && entityInfo.AssoicatedCompanies.length > 0) {
+                info.associatedCompany = entityInfo.AssoicatedCompanies[0].Name;
             }
 
             if (this.options.filterType == this.filterType.Source) {
@@ -1592,6 +1597,9 @@
                 return;
             }
 
+            //This is just to hide the autocomplete dropdown
+            this._hideAutoCompleteResults();
+
             if ($.trim(this.$textBox.val()) == "" || this.$textBox.val() == this._lookUpDetails.autoCompleteText) {
                 if (this.$lookUpListContainer.is(":visible")) {
                     this.$lookUpListContainer.slideUp(100, this._delegates.OnResize);
@@ -1912,6 +1920,11 @@
                 Records: this._maxLookUpRecords
             };
 
+            if (this.options.filterType == this.filterType.Executive) {
+                //Only for Executive we have to pass the parts parameter to get AssociatedCompanies
+                queryParams.parts = "AssociatedCompanies";
+            }
+
             $.ajax({
                 url: this.options.taxonomyServiceUrl + "/" + this._lookUpDetails.name + (extendedSearch ? "/Extendedsearch/json?" : "/json?"),
                 type: 'GET',
@@ -2108,7 +2121,10 @@
                         listContainer.html(this.templates.sourceGroupBrowse({ data: data }));
                     }
                     else {
-                        listContainer.html(this.templates.searchList({ data: data, isAuthor: (this.options.filterType == this.filterType.Author) }));
+                        listContainer.html(this.templates.searchList({ data: data,
+                            isAuthor: (this.options.filterType == this.filterType.Author),
+                            isExecutive: (this.options.filterType == this.filterType.Executive)
+                        }));
                     }
                     listContainer.data("loaded", true);
                 }
