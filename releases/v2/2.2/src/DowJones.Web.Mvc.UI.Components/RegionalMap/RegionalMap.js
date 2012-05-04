@@ -507,7 +507,11 @@
             this._super();
 
             //alert('TODO: implement RegionalMap._paint!');
-        }
+        },
+
+		redraw: function() {
+			this.renderMap();
+		}
     });
 
     // Declare this class as a jQuery plugin
