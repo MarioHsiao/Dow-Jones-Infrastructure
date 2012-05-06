@@ -1,0 +1,5 @@
+<GenerateODEResponse>
+  <Status>0</Status>
+  <DeliveryNumber>string that identifies this delivery </DeliveryNumber>
+  <ToEmail Name="Jack" Address="Jack.Smith@factiva.com"/>
+</GenerateODEResponse>

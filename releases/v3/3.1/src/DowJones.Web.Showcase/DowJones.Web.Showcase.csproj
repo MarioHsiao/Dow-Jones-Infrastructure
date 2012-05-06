@@ -792,6 +792,8 @@
     <Content Include="GatewayResources\stubs\ODE\Response\UpdateDistributionMailingListResponse.xml" />
     <Content Include="GatewayResources\stubs\PCM\RegionalMap\PCMRegionalMapRequest.xml" />
     <Content Include="GatewayResources\stubs\PCM\RegionalMap\PCMRegionalMapResponse.xml" />
+    <Content Include="GatewayResources\stubs\PCM\Search\PCMGetCollectionHeadlinesByCodeRequest.xml" />
+    <Content Include="GatewayResources\stubs\PCM\Search\PCMGetCollectionHeadlinesByCodeResponse.xml" />
     <Content Include="GatewayResources\stubs\PCM\SummaryRegionalMap\PCMSummaryRegionalMapRequest.xml" />
     <Content Include="GatewayResources\stubs\PCM\SummaryRegionalMap\PCMSummaryRegionalMapResponse.xml" />
     <Content Include="GatewayResources\stubs\RealTimeAlerts\Response\DeleteFolderByIDResponse.xml" />

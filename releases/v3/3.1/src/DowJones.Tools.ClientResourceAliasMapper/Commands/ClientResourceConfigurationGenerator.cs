@@ -31,7 +31,7 @@ namespace DowJones.Tools.ClientResourceAliasMapper.Commands
         protected override void ExecuteInternal(IEnumerable<string> args)
         {
             string directory = GetArg(args, 0, Environment.CurrentDirectory);
-            string outFile = GetArg(args, 1, Path.Combine(Environment.CurrentDirectory, ClientResourcesFilename));
+            string outFile = GetArg(args, 1, Path.Combine(directory, ClientResourcesFilename));
 
             var existingMappings = Enumerable.Empty<ClientResourceMapping>();
 
@@ -81,15 +81,15 @@ namespace DowJones.Tools.ClientResourceAliasMapper.Commands
         {
             writer.WriteLine("Usage:  {0} {1} [directory] [output file]", Assembly.GetEntryAssembly().GetName().Name, Command);
             writer.WriteLine();
-            writer.WriteLine("   directory:     the root directory of the website to generate the resource mappings for");
-            writer.WriteLine("   output file:   full path to the file to write the alias mappings [default: ClientResources.xml]");
+            writer.WriteLine("   directory:     the root directory of the target website");
+            writer.WriteLine("   output file:   full path to the file to write the alias mappings [default: {directory}\\ClientResources.xml");
             writer.WriteLine();
         }
 
         private static void RenderResourceFile(IEnumerable<ClientResourceMapping> resources, IEnumerable<string> resourceNames, string outFile)
         {
             var aliasMappings =
-                from name in resourceNames
+                from name in resourceNames.Where(x => !string.IsNullOrEmpty(x))
                 let alias = GenerateDebugResourceAlias(name)
                 orderby name
                 select new ClientResourceAliasMapping
@@ -125,11 +125,11 @@ namespace DowJones.Tools.ClientResourceAliasMapper.Commands
                 var name = mapping.ResourceName;
                 var @alias = mapping.Alias;
 
-                var substringLength = name.Length - @alias.Length - 1;
-                if(substringLength < 0)
+                var length = name.Length - @alias.Length - 1;
+                if(length < 0)
                     continue;
 
-                var prefix = name.Substring(0, substringLength);
+                var prefix = name.Substring(0, length);
                 var qualifier = prefix.Substring(prefix.LastIndexOf('.') + 1);
 
                 mapping.Alias = string.Format("{0}.{1}", qualifier, alias);

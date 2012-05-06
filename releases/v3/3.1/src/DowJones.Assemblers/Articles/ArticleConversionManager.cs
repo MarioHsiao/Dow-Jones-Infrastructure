@@ -806,17 +806,20 @@ namespace DowJones.Assemblers.Articles
         private List<RenderElinkItem> GetElinkItems(ELink elink)
         {
             var elinkItems = new List<RenderElinkItem>();
-            foreach (var eLinkItem in elink.Items)
+            if (!elink.Items.IsNullOrEmpty())
             {
-                if (eLinkItem is HighlightedText)
+                foreach (var eLinkItem in elink.Items)
                 {
-                    var heText = (HighlightedText)eLinkItem;
-                    if (heText.text != null) elinkItems.Add(new RenderElinkItem() { ItemMarkUp = MarkUpType.ArticleElinkHighlight, ItemText = heText.text.Value });
-                }
-                else
-                {
-                    var eText = (Text)eLinkItem;
-                    if (eText.Value != null) elinkItems.Add(new RenderElinkItem() { ItemMarkUp = MarkUpType.Plain, ItemText = eText.Value });
+                    if (eLinkItem is HighlightedText)
+                    {
+                        var heText = (HighlightedText) eLinkItem;
+                        if (heText.text != null) elinkItems.Add(new RenderElinkItem() {ItemMarkUp = MarkUpType.ArticleElinkHighlight, ItemText = heText.text.Value});
+                    }
+                    else
+                    {
+                        var eText = (Text) eLinkItem;
+                        if (eText.Value != null) elinkItems.Add(new RenderElinkItem() {ItemMarkUp = MarkUpType.Plain, ItemText = eText.Value});
+                    }
                 }
             }
             return elinkItems;
