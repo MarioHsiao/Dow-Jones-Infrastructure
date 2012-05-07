@@ -46,6 +46,7 @@ namespace DowJones.Search.Core
         private const string WEBPAGE_FORMAT = "fmt=webpage";
         private const string FMT_OPERATOR = " or ";
         public const string ALL_COMMON_FORMAT = "fmt=(article or report or file or webpage or blog or multimedia or picture)";
+        public const string ALL_COMMON_ALERT_FORMAT = "fmt=(article or report or file or webpage)";
 
         #endregion
 
@@ -619,7 +620,7 @@ namespace DowJones.Search.Core
             return included;
         }
 
-        public static SearchStringCollection BuildSourceSearchStringCollection(SearchSourceGroupPreferenceItem ssgpItem)
+        public static SearchStringCollection BuildSourceSearchStringCollection(SearchSourceGroupPreferenceItem ssgpItem, bool isAlertApi = false)
         {
             var searchStringCollection = new SearchStringCollection();
             if (ssgpItem != null && ssgpItem.Value != null && ssgpItem.Value.Count > 0)
@@ -636,7 +637,7 @@ namespace DowJones.Search.Core
                 var fmtParts = GetFmtParts(ssgpItem, false);
                 var excludedFmtParts = GetFmtParts(ssgpItem, true);
                 
-                var sb = new StringBuilder(ALL_COMMON_FORMAT);
+                var sb = new StringBuilder((isAlertApi) ? ALL_COMMON_ALERT_FORMAT: ALL_COMMON_FORMAT);
 
                 if (fmtParts.Count() > 0 || includedSources.Count() > 0)
                 {

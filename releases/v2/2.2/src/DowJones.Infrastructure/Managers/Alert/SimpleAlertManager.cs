@@ -259,7 +259,7 @@ namespace DowJones.Managers.Alert
             } */
 
             //Source browser cleanup - Always create alert for all valid categories.
-            query.SearchStringCollection.AddRange(SearchUtility.BuildSourceSearchStringCollection(ssgpItem));
+            query.SearchStringCollection.AddRange(SearchUtility.BuildSourceSearchStringCollection(ssgpItem, true));
             query.SearchCollectionCollection = new SearchCollectionCollection { SearchCollection.Publications, SearchCollection.WebSites };
             //Source browser cleanup - Always create alert for all valid categories.
 
