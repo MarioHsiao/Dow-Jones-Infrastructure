@@ -45,6 +45,8 @@ namespace DowJones.Search.Core
         private const string PUBLICATION_FORMAT = "fmt=(article or report or file)";
         private const string WEBPAGE_FORMAT = "fmt=webpage";
         private const string FMT_OPERATOR = " or ";
+        public const string ALL_COMMON_FORMAT = "fmt=(article or report or file or webpage or blog or multimedia or picture)";
+
         #endregion
 
         #region ScopeType enum
@@ -631,52 +633,82 @@ namespace DowJones.Search.Core
                 }
                 excludedSources = excludedSources.Where(d => includedSources.IndexOf(d) == -1).ToList();
 
-                bool allPub = GetAllSelected(ssgpItem, ALL_PUBLICATIONS_CODE);
-                bool allWeb = GetAllSelected(ssgpItem, ALL_WEBSITES_CODE);
+                var fmtParts = GetFmtParts(ssgpItem, false);
+                var excludedFmtParts = GetFmtParts(ssgpItem, true);
+                
+                var sb = new StringBuilder(ALL_COMMON_FORMAT);
 
-                if (allPub || allWeb)
+                if (fmtParts.Count() > 0 || includedSources.Count() > 0)
                 {
-                    var fmtString = String.Empty;
-                    if (allPub)
-                    {
-                        fmtString = PUBLICATION_FORMAT;
-                    }
-                    if (allWeb)
-                    {
-                        if (fmtString.Length > 0)
-                        {
-                            fmtString += FMT_OPERATOR;
-                        }
-                        fmtString += WEBPAGE_FORMAT;
-                    }
-                    searchStringCollection.Add(
-                        new SearchString { Mode = SearchMode.Traditional, Id = "BSSSourceFmtPart", Value = fmtString }
-                    );
+                    sb.Append(" AND ");
+                    sb.Append(GetFormatedSearchString(fmtParts, includedSources));
                 }
-                if (includedSources.Count > 0)
+
+                if (excludedFmtParts.Count() > 0 || excludedSources.Count() > 0)
                 {
-                    searchStringCollection.Add(new SearchString
-                    {
-                        Scope = "rst",
-                        Id = "AnySources",
-                        Mode = SearchMode.Any,
-                        Value = String.Join(" ", includedSources),
-                        Filter = true
-                    });
+                    sb.Append(" NOT ");
+                    sb.Append(GetFormatedSearchString(excludedFmtParts, excludedSources));
                 }
-                if (excludedSources.Count > 0)
-                {
-                    searchStringCollection.Add(new SearchString
-                    {
-                        Scope = "rst",
-                        Id = "NotSources",
-                        Mode = SearchMode.None,
-                        Value = String.Join(" ", excludedSources),
-                        Filter = true
-                    });
-                }
+                searchStringCollection.Add(CreateBSSSourceSearchString(sb.ToString()));
             }
             return searchStringCollection;
+        }
+
+        private static List<string> GetFmtParts(SearchSourceGroupPreferenceItem ssgpItem, bool excluded)
+        {
+            bool allPub = excluded ? GetAllExcluded(ssgpItem, ALL_PUBLICATIONS_CODE) : GetAllSelected(ssgpItem, ALL_PUBLICATIONS_CODE);
+            bool allWeb = excluded ? GetAllExcluded(ssgpItem, ALL_WEBSITES_CODE) : GetAllSelected(ssgpItem, ALL_WEBSITES_CODE);
+            bool allBlog = excluded ? GetAllExcluded(ssgpItem, ALL_BLOGS_CODE) : GetAllSelected(ssgpItem, ALL_BLOGS_CODE);
+            bool allPic = excluded ? GetAllExcluded(ssgpItem, ALL_PICTURES_CODE) : GetAllSelected(ssgpItem, ALL_PICTURES_CODE);
+            bool allMult = excluded ? GetAllExcluded(ssgpItem, ALL_MULTIMEDIAS_CODE) : GetAllSelected(ssgpItem, ALL_MULTIMEDIAS_CODE);
+
+            var fmtParts = new List<string>();
+            if (allPub)
+            {
+                fmtParts.Add(PUBLICATION_FORMAT.Substring(4));
+            }
+            if (allWeb)
+            {
+                fmtParts.Add(WEBPAGE_FORMAT.Substring(4));
+            }
+            if (allBlog)
+            {
+                fmtParts.Add(BLOG_FORMAT.Substring(4));
+            }
+            if (allMult)
+            {
+                fmtParts.Add(MULTIMEDIA_FORMAT.Substring(4));
+            }
+            if (allPic)
+            {
+                fmtParts.Add(PICTURE_FORMAT.Substring(4));
+            }
+            return fmtParts;
+        }
+
+        private static string GetFormatedSearchString(IEnumerable<string> fmtParts, IEnumerable<string> rstParts)
+        {
+            var sb = new StringBuilder();
+            if (fmtParts.Count() > 0 || rstParts.Count() > 0)
+            {
+                var appendOperator = false;
+                sb.Append("(");
+                if (fmtParts.Count() > 0)
+                {
+                    sb.Append("fmt=(").Append(String.Join(FMT_OPERATOR, fmtParts.ToArray())).Append(")");
+                    appendOperator = true;
+                }
+                if (rstParts.Count() > 0)
+                {
+                    if (appendOperator)
+                    {
+                        sb.Append(" OR ");
+                    }
+                    sb.Append("rst=(").Append(String.Join(FMT_OPERATOR, rstParts.ToArray())).Append(")");
+                }
+                sb.Append(")");
+            }
+            return sb.ToString();
         }
 
 
@@ -718,6 +750,16 @@ namespace DowJones.Search.Core
                 searchSourceGroupPreferenceItem.Value.Count > 0)
             {
                 return searchSourceGroupPreferenceItem.Value.Any(sourceList => sourceList.IsAllSourcesSelected && sourceList.Type == MapAllCode(allCode));
+            }
+            return false;
+        }
+
+        private static bool GetAllExcluded(SearchSourceGroupPreferenceItem searchSourceGroupPreferenceItem, string allCode)
+        {
+            if (searchSourceGroupPreferenceItem != null && searchSourceGroupPreferenceItem.Value != null &&
+                searchSourceGroupPreferenceItem.Value.Count > 0)
+            {
+                return searchSourceGroupPreferenceItem.Value.Any(sourceList => sourceList.IsAllSourcesExcluded && sourceList.Type == MapAllCode(allCode));
             }
             return false;
         }
