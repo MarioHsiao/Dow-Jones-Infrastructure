@@ -278,14 +278,14 @@ namespace DowJones.Properties
         }
 
         [ApplicationScopedSetting, DebuggerNonUserCode, SettingsSerializeAs(SettingsSerializeAs.String)]
-        [DefaultSettingValue("http://global.factiva.com/FactivaLogos/")]
+        [DefaultSettingValue("http://dataservices.ramp.com/data/factiva/media/?e=")]
         public string RampUri
         {
             get { return (string)this["RampUri"]; }
         }
 
         [ApplicationScopedSetting, DebuggerNonUserCode, SettingsSerializeAs(SettingsSerializeAs.String)]
-        [DefaultSettingValue("http://global.factiva.com/FactivaLogos/")]
+        [DefaultSettingValue("http://www.marketwatch.com/mediarss/wsj/allmedia.asp?type=guid&amp;query=")]
         public string MarketWatchUri
         {
             get { return (string)this["MarketWatchUri"]; }

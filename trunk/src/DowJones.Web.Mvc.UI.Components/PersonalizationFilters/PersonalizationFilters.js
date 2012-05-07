@@ -770,8 +770,8 @@
 
     });
 
-    DJ.UI.PersonalizationFilters.fiiDescriptorsCache = DJ.UI.PersonalizationFilters.fiiDescriptorsCache || {};
-    DJ.UI.PersonalizationFilters.companyDescriptorsCache = DJ.UI.PersonalizationFilters.companyDescriptorsCache || {};
+    DJ.UI.PersonalizationFilters.prototype.fiiDescriptorsCache = DJ.UI.PersonalizationFilters.prototype.fiiDescriptorsCache || {};
+    DJ.UI.PersonalizationFilters.prototype.companyDescriptorsCache = DJ.UI.PersonalizationFilters.prototype.companyDescriptorsCache || {};
 
     // Declare this class as a jQuery plugin
     $.plugin('dj_PersonalizationFilters', DJ.UI.PersonalizationFilters);
