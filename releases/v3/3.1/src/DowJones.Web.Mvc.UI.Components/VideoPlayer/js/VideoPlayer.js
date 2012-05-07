@@ -28,10 +28,11 @@
         },
 
         init: function (element, meta) {
+            
+            // start base constructor
             var $meta = $.extend({ name: "VideoPlayerControl" }, meta);
-
-            // Call the base constructor
             this._super(element, $meta);
+            // end base constructor
 
             this.playerId = this.$element.attr("id") + "_player";
 
@@ -77,7 +78,7 @@
                     }
                 };
 
-                if ($.iDevices.iPad) {
+                if (this.iDevices.iPad) {
                     var $element = this.$element;
                     var medium = this.hasAudio ? 'audio' : 'video';
                     this.playerConfig.onLoad = function () {
@@ -276,6 +277,10 @@
             return (this.options.width || this.defaults.width);
         }
     });
+
+    DJ.UI.VideoPlayerControl.prototype.iDevices = DJ.UI.VideoPlayerControl.prototype.iDevices || {
+        iPad: (navigator.userAgent.indexOf('iPad') !== -1)
+    };
 
     // Declare this class as a jQuery plugin
     $.plugin('dj_VideoPlayerControl', DJ.UI.VideoPlayerControl);
