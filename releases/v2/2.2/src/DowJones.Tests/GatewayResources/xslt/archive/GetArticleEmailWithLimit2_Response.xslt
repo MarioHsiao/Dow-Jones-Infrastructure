@@ -80,7 +80,7 @@
   <xsl:template match="//Result">
     <article>
       <status>
-        <xsl:attribute name="value">
+          <xsl:attribute name="value">
           <xsl:copy-of select="number(@status)"/>
         </xsl:attribute>
         <type/>
@@ -132,6 +132,7 @@
         <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='srcsecondarytype']"/>
         <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='srcrightstype']"/>
         <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='allowtranslation']"/>
+        <xsl:apply-templates select="./PropertySet[@group='docdata']/Property[@name='allowtranslation']"/>
         <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='circulation']"/>
         <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='webhits']"/>
         <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='firstdate']"/>
@@ -304,6 +305,7 @@
     <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='srcsecondarytype']"/>
     <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='srcrightstype']"/>
     <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='allowtranslation']"/>
+    <xsl:apply-templates select="./PropertySet[@group='docdata']/Property[@name='allowtranslation']"/>
     <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='circulation']"/>
     <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='webhits']"/>
     <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='firstdate']"/>
@@ -477,6 +479,7 @@
     <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='srcsecondarytype']"/>
     <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='srcrightstype']"/>
     <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='allowtranslation']"/>
+    <xsl:apply-templates select="./PropertySet[@group='docdata']/Property[@name='allowtranslation']"/>
     <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='circulation']"/>
     <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='webhits']"/>
     <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='firstdate']"/>
@@ -925,6 +928,7 @@
       </xsl:when>
     </xsl:choose>
     <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='allowtranslation']"/>
+    <xsl:apply-templates select="./PropertySet[@group='docdata']/Property[@name='allowtranslation']"/>
     <xsl:choose>
       <xsl:when test="./PropertySet[@group='pubdata']/Property[@name='circulation']">
         <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='circulation']"/>
@@ -1738,6 +1742,18 @@
     </xsl:if>
   </xsl:template>
   <xsl:template match="PropertySet[@group='pubdata']/Property[@name='allowtranslation']">
+    <isTranslationAllowedBySource>
+      <xsl:choose>
+        <xsl:when test="normalize-space(@value) = 'Y'">
+          true
+        </xsl:when>
+        <xsl:otherwise>
+          false
+        </xsl:otherwise>
+      </xsl:choose>
+    </isTranslationAllowedBySource>
+  </xsl:template>
+  <xsl:template match="PropertySet[@group='docdata']/Property[@name='allowtranslation']">
     <isTranslationAllowedBySource>
       <xsl:choose>
         <xsl:when test="normalize-space(@value) = 'Y'">

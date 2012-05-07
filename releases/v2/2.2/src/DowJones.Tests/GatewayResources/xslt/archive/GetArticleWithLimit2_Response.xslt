@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:msxsl="urn:schemas-microsoft-com:xslt"  xmlns:user="user" extension-element-prefixes="msxsl" exclude-result-prefixes="user">
-  <xsl:output method="xml" version="1.0" encoding="UTF-8" indent="no"/>
+  <xsl:output method="xml" version="1.0" encoding="UTF-8" indent="no" cdata-section-elements="text partText"/>
   <msxsl:script language="JScript" implements-prefix="user">
     <![CDATA[
 		
@@ -51,7 +51,7 @@
 		]]>
   </msxsl:script>
   <xsl:template match="/GetArchiveObjectResponse">
-    <GetArticleWithLimitResponse>
+    <GetArticleWithLimitResponse xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
       <xsl:apply-templates select="Status"/>
       <xsl:apply-templates select="ResultSet"/>
       <xsl:apply-templates select="ContinuationContext" />
@@ -132,6 +132,7 @@
         <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='srcsecondarytype']"/>
         <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='srcrightstype']"/>
         <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='allowtranslation']"/>
+        <xsl:apply-templates select="./PropertySet[@group='docdata']/Property[@name='allowtranslation']"/>
         <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='circulation']"/>
         <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='webhits']"/>
         <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='firstdate']"/>
@@ -304,6 +305,7 @@
     <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='srcsecondarytype']"/>
     <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='srcrightstype']"/>
     <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='allowtranslation']"/>
+    <xsl:apply-templates select="./PropertySet[@group='docdata']/Property[@name='allowtranslation']"/>
     <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='circulation']"/>
     <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='webhits']"/>
     <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='firstdate']"/>
@@ -477,6 +479,7 @@
     <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='srcsecondarytype']"/>
     <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='srcrightstype']"/>
     <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='allowtranslation']"/>
+    <xsl:apply-templates select="./PropertySet[@group='docdata']/Property[@name='allowtranslation']"/>
     <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='circulation']"/>
     <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='webhits']"/>
     <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='firstdate']"/>
@@ -925,6 +928,7 @@
       </xsl:when>
     </xsl:choose>
     <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='allowtranslation']"/>
+    <xsl:apply-templates select="./PropertySet[@group='docdata']/Property[@name='allowtranslation']"/>
     <xsl:choose>
       <xsl:when test="./PropertySet[@group='pubdata']/Property[@name='circulation']">
         <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='circulation']"/>
@@ -1749,6 +1753,18 @@
       </xsl:choose>
     </isTranslationAllowedBySource>
   </xsl:template>
+  <xsl:template match="PropertySet[@group='docdata']/Property[@name='allowtranslation']">
+    <isTranslationAllowedBySource>
+      <xsl:choose>
+        <xsl:when test="normalize-space(@value) = 'Y'">
+          true
+        </xsl:when>
+        <xsl:otherwise>
+          false
+        </xsl:otherwise>
+      </xsl:choose>
+    </isTranslationAllowedBySource>
+  </xsl:template>
   <xsl:template match="PropertySet[@group='pubdata']/Property[@name='circulation']">
     <xsl:if test="string-length(normalize-space(@value)) &gt; 0">
       <circulation>
@@ -2154,9 +2170,10 @@
               <xsl:attribute name="reference">
                 <xsl:value-of select="@ref"/>
               </xsl:attribute>
-              <text>
+              <text>  
                 <xsl:value-of select="."/>
               </text>
+              <xsl:call-template name="articleContentElink"></xsl:call-template>
             </eLink>
           </xsl:if>
           <xsl:if test="@type='company'">
@@ -2168,6 +2185,7 @@
                 <xsl:value-of select="@ref"/>
               </xsl:attribute>
               <xsl:call-template name="articleContent"/>
+              <xsl:call-template name="articleContentElink" />
             </eLink>
           </xsl:if>
           <xsl:if test="@type='pro'">
@@ -2195,6 +2213,7 @@
                 <xsl:value-of select="@ref"/>
               </xsl:attribute>
               <xsl:call-template name="articleContent"/>
+            <xsl:call-template name="articleContentElink" />
             </eLink>
           </xsl:if>
         </xsl:when>
@@ -2207,7 +2226,7 @@
                   <xsl:value-of select="."/>
                 </xsl:when>
                 <xsl:otherwise>
-                  <text>
+                  <text>  
                     <xsl:copy-of select="@*"/>
                     <xsl:value-of select="."/>
                   </text>
@@ -2251,6 +2270,24 @@
           <text>
             <xsl:value-of select="."/>
           </text>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:for-each>
+  </xsl:template>
+  <xsl:template name="articleContentElink">
+    <xsl:for-each select="child::node()">
+      <xsl:choose>
+        <xsl:when test="((local-name()='hlt1') or (local-name()='hlt'))">
+          <hlt>
+            <text>  
+              <xsl:value-of select="."/>
+            </text>
+          </hlt>
+        </xsl:when>
+        <xsl:otherwise>
+          <partText>  
+            <xsl:value-of select="."/>
+          </partText>
         </xsl:otherwise>
       </xsl:choose>
     </xsl:for-each>

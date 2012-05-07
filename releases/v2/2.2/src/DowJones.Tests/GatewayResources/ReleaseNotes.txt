@@ -1070,5 +1070,48 @@ Release Version 7.5.0.70
 Release Version 7.5.0.71
 =============================================================================================================================
 2/1/2012 Himmat: Updated GetFolder xslt to make pressClipSrcBlk optional.
-
-
+Release Version 7.5.0.72
+=============================================================================================================================
+2/6/2012 Pramod: Updated PAM List and Pages assets based on the latest schema.
+Release Version 7.5.0.73
+=============================================================================================================================
+2/16/2012 Pramod: Updated the Membership Transaction to support usageCount. UsageCount is added to the followng requests
+						EncryptCurrentUserCredentials
+						GetEncryptedCredentialsForCurrentSession
+						GetEncryptedCredentials
+						GetEncryptedCredentialsNoSession
+Release Version 7.5.0.74
+=============================================================================================================================						 
+2/23/2012 Pramod: Updated the List and Pages assets to reflect support the ChannelMap type.
+Release Version 7.5.0.75
+=============================================================================================================================		
+2/29/2012 Pramod: Updated the ProductType in ODE.V1_0 to support Made News, Made Author and Made new Author
+Release Version 7.5.0.76
+=============================================================================================================================		
+03/08/2012 Pramod: Updated the page asset to support QueryBoost in Query type.
+Release Version 7.5.0.77
+=============================================================================================================================		
+03/22/2012 Pramod: FCP asset changes in Compensation
+Release Version 7.5.0.78
+=============================================================================================================================
+03/26/2012 Pramod: Changes to the Editions, Workspaces Assets based on the latest schema.
+03/28/2012 Pramod: IsTranslationAllowed bug fix in Archive version 2.0
+Release Version 7.5.0.79
+=============================================================================================================================
+04/04/2012 Pramod: Added CollectionnamesList in PAM List asset.
+04/05/2012 Pramod: Added preference Items for Communicator ResultsPerPage,ExportEmail and BillingCode.
+Release Version 7.5.0.80
+=============================================================================================================================
+04/16/2012 Pramod: Updated Search 2.0 with Search 2.9 schema.
+04/17/2012 Pramod: Fix to round the size in Archive Multimedia URL.
+04/20/2012 pramod: Added WallStreetJournalSourceFamily to DefaultSSSourceGroup preference.
+Release Version 7.5.0.81
+=============================================================================================================================
+04/24/2012 Pramod: GetUserAuthorization Bug fix.
+Release Version 7.5.0.82
+=============================================================================================================================
+05/01/2012 Pramod: Support for highlight text in Elinks for GetArticle and GetArtcileWithLimit version 2.
+Release Version 7.5.0.84
+=============================================================================================================================
+05/07/2012 Pramod: Added support for ExcludeAllSuources in SearchSourceGroup Preference item.
+05/07/2012 Pramod: Added emailSentDate in DisseminatedAsset in PAM.

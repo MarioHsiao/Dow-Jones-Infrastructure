@@ -216,7 +216,7 @@
           </xsl:if>
           <xsl:if test="string-length(@size)!=0">
             <xsl:attribute name="size">
-              <xsl:value-of select="@size"/>
+              <xsl:value-of select="format-number(@size,'0')"/>
             </xsl:attribute>
           </xsl:if>
           <xsl:attribute name="reference">

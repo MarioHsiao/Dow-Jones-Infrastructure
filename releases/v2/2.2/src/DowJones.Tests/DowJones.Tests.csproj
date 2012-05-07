@@ -64,18 +64,18 @@
     <Reference Include="CommonServiceLocator.NinjectAdapter">
       <HintPath>..\packages\Ninject.2.2.0.0\lib\.NetFramework 4.0\extensions\CommonServiceLocator.NinjectAdapter.dll</HintPath>
     </Reference>
-    <Reference Include="factiva.gateway.messages, Version=7.5.0.83, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="factiva.gateway.messages, Version=7.5.0.84, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Factiva.Gateway.7.5.0.83\lib\factiva.gateway.messages.dll</HintPath>
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.84\lib\factiva.gateway.messages.dll</HintPath>
     </Reference>
     <Reference Include="FactivaGateway, Version=1.5.0.7, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Factiva.Gateway.7.5.0.83\lib\FactivaGateway.dll</HintPath>
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.84\lib\FactivaGateway.dll</HintPath>
     </Reference>
     <Reference Include="Hammock, Version=1.0.0.0, Culture=neutral, PublicKeyToken=c148cfba29ed1a4d, processorArchitecture=MSIL" />
     <Reference Include="Interop.FCMLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <EmbedInteropTypes>False</EmbedInteropTypes>
       <Private>True</Private>
-      <HintPath>..\packages\Factiva.Gateway.7.5.0.83\lib\Interop.FCMLib.dll</HintPath>
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.84\lib\Interop.FCMLib.dll</HintPath>
     </Reference>
     <Reference Include="log4net">
       <HintPath>..\packages\log4net.1.2.99\lib\2.0\log4net.dll</HintPath>
@@ -393,8 +393,6 @@
     <Content Include="GatewayResources\stubs\DJCommunicator\EntityList\GetEntityListResponse.xml" />
     <Content Include="GatewayResources\stubs\DJCommunicator\EntityList\RemoveItemsFromEntityListRequest.xml" />
     <Content Include="GatewayResources\stubs\DJCommunicator\EntityList\RemoveItemsFromEntityListResponse.xml" />
-    <Content Include="GatewayResources\stubs\DJCommunicator\EntityList\RemoveItemsToEntityListRequest.xml" />
-    <Content Include="GatewayResources\stubs\DJCommunicator\EntityList\RemoveItemsToEntityListResponse.xml" />
     <Content Include="GatewayResources\stubs\DJCommunicator\EntityList\UpdateEntityListRequest.xml" />
     <Content Include="GatewayResources\stubs\DJCommunicator\EntityList\UpdateEntityListResponse.xml" />
     <Content Include="GatewayResources\stubs\DJCommunicator\GetChartByIDResponse.xml" />
@@ -472,7 +470,6 @@
     <Content Include="GatewayResources\stubs\HeatMap\HeatMapResponse.xml" />
     <Content Include="GatewayResources\stubs\HeatMap\HeatMapResponse1.xml" />
     <Content Include="GatewayResources\stubs\HeatMap\HeatMapResponse2.xml" />
-    <Content Include="GatewayResources\stubs\HeatMap\HeatResponse.xml" />
     <Content Include="GatewayResources\stubs\HeatMap\InstrumentCodesRequest.xml" />
     <Content Include="GatewayResources\stubs\HeatMap\InstrumentCodesResponse.xml" />
     <Content Include="GatewayResources\stubs\HeatMap\V2_0\HeatMapRequest.xml" />
@@ -638,7 +635,6 @@
     <Content Include="GatewayResources\xslt\archive\ValidateAndBillingResponse.xslt" />
     <Content Include="GatewayResources\xslt\assets\AssetUtility.xslt" />
     <Content Include="GatewayResources\xslt\assets\BaseAssets.xslt" />
-    <Content Include="GatewayResources\xslt\assets\BaseAssetsNew.xslt" />
     <Content Include="GatewayResources\xslt\assets\BaseAssets_old.xslt" />
     <Content Include="GatewayResources\xslt\assets\companyList\AddCompanyListRequest.xslt" />
     <Content Include="GatewayResources\xslt\assets\companyList\AddCompanyListResponse.xslt" />
@@ -1138,9 +1134,6 @@
     <Content Include="GatewayResources\config\NewsstandService.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="GatewayResources\config\OnDemailEmailService_v2.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="GatewayResources\config\OnDemandEmailService.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -1226,9 +1219,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="GatewayResources\config\Symbology.TaxonomyService.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="GatewayResources\config\SyndicationService.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="GatewayResources\config\Tools.TinyURL.config">

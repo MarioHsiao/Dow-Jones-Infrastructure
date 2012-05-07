@@ -57,12 +57,12 @@
     <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="factiva.gateway.messages, Version=7.5.0.83, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="factiva.gateway.messages, Version=7.5.0.84, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Factiva.Gateway.7.5.0.83\lib\factiva.gateway.messages.dll</HintPath>
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.84\lib\factiva.gateway.messages.dll</HintPath>
     </Reference>
     <Reference Include="FactivaGateway, Version=1.5.0.7, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Factiva.Gateway.7.5.0.83\lib\FactivaGateway.dll</HintPath>
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.84\lib\FactivaGateway.dll</HintPath>
     </Reference>
     <Reference Include="Glimpse.Core">
       <HintPath>..\packages\Glimpse.0.86\lib\net40\Glimpse.Core.dll</HintPath>
@@ -74,7 +74,7 @@
       <HintPath>..\packages\Glimpse.Mvc3.0.86\lib\net40\Glimpse.Mvc3.dll</HintPath>
     </Reference>
     <Reference Include="Interop.FCMLib">
-      <HintPath>..\packages\Factiva.Gateway.7.5.0.83\lib\Interop.FCMLib.dll</HintPath>
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.84\lib\Interop.FCMLib.dll</HintPath>
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
     <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
@@ -383,7 +383,6 @@
     <Content Include="GatewayResources\config\TrackService.config" />
     <Content Include="GatewayResources\config\TopicCenterAndSMSManagementService.config" />
     <Content Include="GatewayResources\config\Tools.TinyURL.config" />
-    <Content Include="GatewayResources\config\SyndicationService.config" />
     <Content Include="GatewayResources\config\Symbology.TaxonomyService.config" />
     <Content Include="GatewayResources\config\Symbology.Person.config" />
     <Content Include="GatewayResources\config\Symbology.NameListService.config" />
@@ -413,7 +412,6 @@
     <Content Include="GatewayResources\config\OperationalDataService.config" />
     <Content Include="GatewayResources\config\OnDemandEmailService_v2.config" />
     <Content Include="GatewayResources\config\OnDemandEmailService.config" />
-    <Content Include="GatewayResources\config\OnDemailEmailService_v2.config" />
     <Content Include="GatewayResources\config\NewsstandService.config" />
     <Content Include="GatewayResources\config\MetricsService.config" />
     <Content Include="GatewayResources\config\MetaDataService.config" />
@@ -647,8 +645,6 @@
     <Content Include="GatewayResources\stubs\DJCommunicator\EntityList\GetEntityListResponse.xml" />
     <Content Include="GatewayResources\stubs\DJCommunicator\EntityList\RemoveItemsFromEntityListRequest.xml" />
     <Content Include="GatewayResources\stubs\DJCommunicator\EntityList\RemoveItemsFromEntityListResponse.xml" />
-    <Content Include="GatewayResources\stubs\DJCommunicator\EntityList\RemoveItemsToEntityListRequest.xml" />
-    <Content Include="GatewayResources\stubs\DJCommunicator\EntityList\RemoveItemsToEntityListResponse.xml" />
     <Content Include="GatewayResources\stubs\DJCommunicator\EntityList\UpdateEntityListRequest.xml" />
     <Content Include="GatewayResources\stubs\DJCommunicator\EntityList\UpdateEntityListResponse.xml" />
     <Content Include="GatewayResources\stubs\DJCommunicator\GetChartByIDResponse.xml" />
@@ -726,7 +722,6 @@
     <Content Include="GatewayResources\stubs\HeatMap\HeatMapResponse.xml" />
     <Content Include="GatewayResources\stubs\HeatMap\HeatMapResponse1.xml" />
     <Content Include="GatewayResources\stubs\HeatMap\HeatMapResponse2.xml" />
-    <Content Include="GatewayResources\stubs\HeatMap\HeatResponse.xml" />
     <Content Include="GatewayResources\stubs\HeatMap\InstrumentCodesRequest.xml" />
     <Content Include="GatewayResources\stubs\HeatMap\InstrumentCodesResponse.xml" />
     <Content Include="GatewayResources\stubs\HeatMap\V2_0\HeatMapRequest.xml" />
@@ -892,7 +887,6 @@
     <Content Include="GatewayResources\xslt\archive\ValidateAndBillingResponse.xslt" />
     <Content Include="GatewayResources\xslt\assets\AssetUtility.xslt" />
     <Content Include="GatewayResources\xslt\assets\BaseAssets.xslt" />
-    <Content Include="GatewayResources\xslt\assets\BaseAssetsNew.xslt" />
     <Content Include="GatewayResources\xslt\assets\BaseAssets_old.xslt" />
     <Content Include="GatewayResources\xslt\assets\companyList\AddCompanyListRequest.xslt" />
     <Content Include="GatewayResources\xslt\assets\companyList\AddCompanyListResponse.xslt" />

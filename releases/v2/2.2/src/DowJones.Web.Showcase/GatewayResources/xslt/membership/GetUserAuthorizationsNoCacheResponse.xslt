@@ -217,6 +217,9 @@
         <fsinterface>
           <xsl:apply-templates select="AUTH_MATRIX/FSINTERFACE/*" />
         </fsinterface>
+        <fsInterface>
+          <xsl:apply-templates select="AUTH_MATRIX/FSINTERFACE/*" />
+        </fsInterface>
       </xsl:if>
       <xsl:if test="boolean(AUTH_MATRIX/PMKTS)">
           <pmkts>
