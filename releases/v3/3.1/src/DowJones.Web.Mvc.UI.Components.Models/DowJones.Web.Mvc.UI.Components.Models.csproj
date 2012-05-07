@@ -129,6 +129,10 @@
     <Compile Include="SearchCategoriesLookUp\SearchCategoriesLookUpModel.cs" />
     <Compile Include="SocialMedia\TweetLinesModel.cs" />
     <Compile Include="SocialMedia\ExpertsModel.cs" />
+    <Compile Include="VideoPlayer\Clip.cs" />
+    <Compile Include="VideoPlayer\ClipCollection.cs" />
+    <Compile Include="VideoPlayer\MediaContentToClipMapper.cs" />
+    <Compile Include="VideoPlayer\Medium.cs" />
     <Compile Include="VideoPlayer\VideoPlayerModel.cs" />
     <Compile Include="Quote\QuoteModel.cs" />
     <Compile Include="Discovery\DiscoveryChartTypes.cs" />
