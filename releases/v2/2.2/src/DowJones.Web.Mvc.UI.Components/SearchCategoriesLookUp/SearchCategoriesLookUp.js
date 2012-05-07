@@ -1711,6 +1711,9 @@
             if (this.options.filterType == this.filterType.Author) {//For Author we have to pick nnId field from autocomplete response
                 return { code: item.nnId, desc: item.formalName };
             }
+            else if (this.options.filterType == this.filterType.Executive) {//For Executive we have to show the company name along with name
+                return { code: item.code, desc: item.completeName + (item.companyName ? (" (" + item.companyName.replace(/\"/g, '\\"') + ")") : "") };
+            }
             else {
                 return { code: item.code.toLowerCase(), desc: (item.value || item.descriptor || item.completeName || item.formalName || item.directoryName) };
             }
