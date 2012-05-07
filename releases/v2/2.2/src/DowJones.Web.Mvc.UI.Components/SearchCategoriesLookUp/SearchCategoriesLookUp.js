@@ -315,7 +315,7 @@
                 }
             }
             else {
-                //Removing Saved List tab
+                //Removing Exetended Media Sources title and container
                 this.$lookUpListContainer.children(":gt(2)").remove();
             }
 
@@ -352,6 +352,9 @@
 
             //If filter type is Source
             if (this.options.filterType == this.filterType.Source) {
+
+                //To hide the info icon on extended media source items hover
+                this.$lookUpList.eq(1).addClass('infoHidden');
 
                 this.$filtersContainer.children(this.selectors.filterItems).addClass("source");
 
@@ -431,25 +434,23 @@
                     me._onSourceItemClick(this, e, false);
                 });
             }
-            else if (me.options.filterType == me.filterType.Language) {
-                this.$lookUpList.eq(0).delegate(this.selectors.listItem, 'click', function (e) {//List Item Click
-                    me._onListItemClick(this, e);
-                    //Remove all allang if its added
+
+            this.$lookUpList.eq(0).delegate(this.selectors.listItem, 'click', function (e) {//List Item Click
+                me._onListItemClick(this, e);
+                if (me.options.filterType == me.filterType.Language) {
                     me.$filters.children("[code=alllang]").remove();
-                });
-            }
-            else {
-                this.$lookUpList.eq(0).delegate(this.selectors.listItem, 'click', function (e) {//List Item Click
-                    me._onListItemClick(this, e);
-                });
-            }
+                }
+            });
 
             //List Item Hover
             if (this._listItemHoverEnabled) {
-                this.$lookUpList.eq(0).delegate(this.selectors.listItem, 'mouseenter', function (e) {//List Item Hover
+                var $list = this.$lookUpList.eq(0);
+                if (this.options.filterType == this.filterType.Source) {
+                    $list = $list.add(this.$lookUpList.eq(1));
+                }
+                $list.delegate(this.selectors.listItem, 'mouseenter', function (e) {//List Item Hover
                     me._onListItemHover(this, e);
-                });
-                this.$lookUpList.eq(0).delegate(this.selectors.listItemOptions, 'click', function (e) {
+                }).delegate(this.selectors.listItemOptions, 'click', function (e) {
                     me._onListItemOptionsClick(this, e);
                 });
             }
