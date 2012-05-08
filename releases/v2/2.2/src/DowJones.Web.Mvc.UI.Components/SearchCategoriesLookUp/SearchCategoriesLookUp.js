@@ -2146,11 +2146,11 @@
             if (data && data.SourceListQuery && (data.SourceListQuery.OrGroupSourceEntityFilters || data.SourceListQuery.NotGroupSourceEntityFilters)) {
                 var slQ = data.SourceListQuery;
                 if (slQ.OrGroupSourceEntityFilters && slQ.OrGroupSourceEntityFilters.length) {
-                    $container.append('<li class="expanded"><div><span class="dj_icon dj_browse-tree-toggle"></span><div class="browse-item included" data-notafilter="1"><%= Token("includedSources") %></div></div></li>');
+                    $container.append('<li class="expanded"><div><span class="dj_icon dj_browse-tree-toggle"></span><div class="browse-item included" data-notafilter="1"><%= Token("includedSrcs") %></div></div></li>');
                     this.bindList($('<ul />').appendTo($container.children(':first')), slQ.OrGroupSourceEntityFilters, { sourceListBrowse: true });
                 }
                 if (slQ.NotGroupSourceEntityFilters && slQ.NotGroupSourceEntityFilters.length) {
-                    $container.append('<li class="expanded"><div><span class="dj_icon dj_browse-tree-toggle"></span><div class="browse-item excluded" data-notafilter="1"><%= Token("excludedSources") %></div></div></li>');
+                    $container.append('<li class="expanded"><div><span class="dj_icon dj_browse-tree-toggle"></span><div class="browse-item excluded" data-notafilter="1"><%= Token("excludedSrcs") %></div></div></li>');
                     this.bindList($('<ul />').appendTo($container.children(':last')), slQ.NotGroupSourceEntityFilters, { sourceListBrowse: true });
                 }
                 $container.data('loaded', true);
