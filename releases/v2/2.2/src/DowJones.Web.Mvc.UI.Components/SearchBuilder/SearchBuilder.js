@@ -491,7 +491,7 @@
             switch (filterType) {
                 case this.filterDetails[this.filterType.Language].name: break;
                 case this.filterDetails[this.filterType.Subject].name:
-                case this.filterDetails[this.filterType.Region].name:
+                case this.filterDetails[this.filterType.Industry].name:
                     scLC.setActiveTab(1); //Browse tab
                     break;
                 default:
