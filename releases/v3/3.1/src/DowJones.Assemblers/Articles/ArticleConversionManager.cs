@@ -155,10 +155,13 @@ namespace DowJones.Assemblers.Articles
             // Map a couple of descriptors
             articleResult.ContentCategoryDescriptor = articleResult.ContentCategory.ToString();
             articleResult.ContentSubCategoryDescriptor = articleResult.ContentSubCategory.ToString();
-            articleResult.ExternalUri = GetReferenceUrl(articleResult.ContentCategory, article);
             articleResult.Headline = ProcessHeadline(article, articleResult.OriginalContentCategory, articleResult.ExternalUri);
+            
             //To set the MimeType and Ref
             MapExtraReferenceInformation(articleResult, article);
+
+            // To generate a possible External Url
+            articleResult.ExternalUri = GetExternalUrl(articleResult, article);
 
             if (!CheckCodeSN(Codes.PD.ToString()))
             {
@@ -404,7 +407,6 @@ namespace DowJones.Assemblers.Articles
                                          ItemText = headlineText,
                                      });
                     break;
-                case "html":
                 default:
                     // SuppressLinksInHeadlineTitle is used to fix a PM issue on 4/13/12 --dacostad
                     if (SuppressLinksInHeadlineTitle && contentType.ToLowerInvariant() == "html")
@@ -803,7 +805,7 @@ namespace DowJones.Assemblers.Articles
         /// </summary>
         /// <param name="elink"></param>
         /// <returns></returns>
-        private List<RenderElinkItem> GetElinkItems(ELink elink)
+        private static List<RenderElinkItem> GetElinkItems(ELink elink)
         {
             var elinkItems = new List<RenderElinkItem>();
             if (!elink.Items.IsNullOrEmpty())
@@ -813,12 +815,26 @@ namespace DowJones.Assemblers.Articles
                     if (eLinkItem is HighlightedText)
                     {
                         var heText = (HighlightedText) eLinkItem;
-                        if (heText.text != null) elinkItems.Add(new RenderElinkItem() {ItemMarkUp = MarkUpType.ArticleElinkHighlight, ItemText = heText.text.Value});
+                        if (heText.text != null)
+                        {
+                            elinkItems.Add(new RenderElinkItem
+                                               {
+                                                   ItemMarkUp = MarkUpType.ArticleElinkHighlight,
+                                                   ItemText = heText.text.Value
+                                               });
+                        }
                     }
                     else
                     {
                         var eText = (Text) eLinkItem;
-                        if (eText.Value != null) elinkItems.Add(new RenderElinkItem() {ItemMarkUp = MarkUpType.Plain, ItemText = eText.Value});
+                        if (eText.Value != null)
+                        {
+                            elinkItems.Add(new RenderElinkItem
+                                               {
+                                                   ItemMarkUp = MarkUpType.Plain,
+                                                   ItemText = eText.Value
+                                               });
+                        }
                     }
                 }
             }
@@ -1411,6 +1427,68 @@ namespace DowJones.Assemblers.Articles
             return null;
         }
 
+        private string GetHandlerUrl(ImageType imageType, string accessionNo, Part part, bool isBlob = false)
+        {
+            var reference = part.reference;
+            var mimeType = part.mimeType;
+
+            if (FileHandlerUrl.HasValue())
+            {
+                var ub = new UrlBuilder(FileHandlerUrl);
+                ub.Append(UrlBuilder.GetParameterName(typeof(ArchiveFileRequestDTO), "AccessionNumber"), accessionNo);
+                ub.Append(UrlBuilder.GetParameterName(typeof(ArchiveFileRequestDTO), "Reference"), reference);
+                ub.Append(UrlBuilder.GetParameterName(typeof(ArchiveFileRequestDTO), "MimeType"), mimeType);
+                ub.Append(UrlBuilder.GetParameterName(typeof(ArchiveFileRequestDTO), "ImageType"), Map(imageType));
+                ub.Append(UrlBuilder.GetParameterName(typeof(ArchiveFileRequestDTO), "IsBlob"), (isBlob) ? "y" : "");
+
+                if (!string.IsNullOrEmpty(_controlData.AccessPointCode))
+                {
+                    ub.Append(UrlBuilder.GetParameterName(typeof(SessionRequestDTO), "AccessPointCode"), _controlData.AccessPointCode);
+                }
+
+                if (!string.IsNullOrEmpty(_preferences.InterfaceLanguage))
+                {
+                    ub.Append(UrlBuilder.GetParameterName(typeof(SessionRequestDTO), "InterfaceLanguage"), _preferences.InterfaceLanguage);
+                }
+
+                if (!string.IsNullOrEmpty(_controlData.ProductID))
+                {
+                    ub.Append(UrlBuilder.GetParameterName(typeof(SessionRequestDTO), "ProductID"), _controlData.ProductID);
+                }
+
+                if (!string.IsNullOrEmpty(_controlData.SessionID))
+                {
+                    ub.Append(UrlBuilder.GetParameterName(typeof(SessionRequestDTO), "SessionID"), _controlData.SessionID);
+                }
+                else if (!string.IsNullOrEmpty(_controlData.EncryptedToken)) // assume this is a lightweight user
+                {
+                    ub.Append(UrlBuilder.GetParameterName(typeof(SessionRequestDTO), "EncryptedToken"), _controlData.EncryptedToken);
+                }
+                else
+                {
+                    ub.Append(UrlBuilder.GetParameterName(typeof(SessionRequestDTO), "UserID"), _controlData.UserID);
+                    ub.Append(UrlBuilder.GetParameterName(typeof(SessionRequestDTO), "Password"), _controlData.UserPassword);
+                }
+
+                if (!string.IsNullOrEmpty(_controlData.AccessPointCodeUsage))
+                {
+                    ub.Append(UrlBuilder.GetParameterName(typeof(SessionRequestDTO), "AccessPointCodeUsage"), _controlData.AccessPointCodeUsage);
+                }
+
+                if (!string.IsNullOrEmpty(_controlData.CacheKey))
+                {
+                    ub.Append(UrlBuilder.GetParameterName(typeof(SessionRequestDTO), "CacheKey"), _controlData.CacheKey);
+                }
+
+                if (!string.IsNullOrEmpty(_controlData.ClientCode))
+                {
+                    ub.Append(UrlBuilder.GetParameterName(typeof(SessionRequestDTO), "ClientCodeType"), _controlData.ClientCode);
+                }
+
+                return ub.ToString();
+            }
+            return null;
+        }
 
         public static ContentSubCategory MapContentSubCategory(Article article)
         {
@@ -1534,7 +1612,7 @@ namespace DowJones.Assemblers.Articles
             return article.contentParts.contentType.ToLower();
         }
 
-        protected internal string GetReferenceUrl(ContentCategory contentCategory, Article article)
+        protected internal string GetExternalUrl(ArticleResultset articleResultset, Article article)
         {
             if (article == null || article.contentParts == null || article.contentParts.parts == null)
             {
@@ -1542,7 +1620,7 @@ namespace DowJones.Assemblers.Articles
             }
 
             // look through based on type and provide the correct Uri
-            switch (contentCategory)
+            switch (articleResultset.ContentCategory)
             {
                 case ContentCategory.Blog:
                 case ContentCategory.Board:
@@ -1558,6 +1636,21 @@ namespace DowJones.Assemblers.Articles
                         return article.contentParts.primaryReference;
                     }
 
+                    break;
+                case ContentCategory.Publication:
+                    switch(articleResultset.ContentSubCategory)
+                    {
+                        case ContentSubCategory.PDF:
+                        case ContentSubCategory.HTML:
+                            var tItems = article.contentParts.parts
+                                        .Where(tItem => !string.IsNullOrEmpty(tItem.mimeType)).ToList();
+
+                            foreach (var strHref in tItems.Select(item => GetHandlerUrl(EmbededImageType, articleResultset.AccessionNo, item)))
+                            {
+                                return strHref;
+                            }
+                            break;
+                    }
                     break;
             }
 
