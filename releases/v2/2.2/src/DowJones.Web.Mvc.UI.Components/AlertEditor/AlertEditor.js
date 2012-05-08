@@ -46,7 +46,7 @@
                 pluralText: "<%= Token('companies') %>"
             },
             author: {
-            	text: "<%= Token('cmAuthor') %>",
+                text: "<%= Token('cmAuthor') %>",
                 pluralText: "<%= Token('authors') %>"
             },
             executive: {
@@ -147,7 +147,7 @@
             // Bind Alert E-mail Formats
             this._bindAlertEmailFormats(this.options.emailFormats);
             this.$alertFormatDD.selectbox();
-
+            
             // Toggle Duplicates Switch(For Remove Duplicates and Press Clippings Only)
             this.$alertForm.delegate(this.selectors.toggleSwitch, 'click', function () {
                 var $this = $(this);
@@ -277,7 +277,8 @@
                 this.$alertDeliveryMethod.find('input:eq(1)').prop('checked', true); //Scheduled
                 this._setDeliveryTime(dlvryTimes);
             }
-            this._onDeliveryMethodChange();
+
+            this._onDeliveryMethodChange(dlvryTimes);
         },
 
         _toggleSwitch: function ($elem, ON) {
@@ -287,35 +288,34 @@
         },
 
         _onDeliveryTimeChange: function () {
+            this.data.properties.emailAddress = this.$alertEmail.val() || this.data.properties.emailAddress;
             if (this.$alertDelivery.find('span.checked').length == 0) {
-                this.$alertEmail.attr("disabled", true);
+                this.$alertEmail.attr("disabled", true).val('');
                 this.$alertFormatDD.attr("disabled", true);
                 //This is to apply disabled look to the span element with selectbox plugin wraps the select element
                 this.$alertFormatDD.parent().addClass("disabled-select");
             }
             else {
-                this.$alertEmail.attr("disabled", false);
+                this.$alertEmail.attr("disabled", false).val(this.data.properties.emailAddress || '');
                 this.$alertFormatDD.attr("disabled", false);
                 //This is to remove disabled look to the span element with selectbox plugin wraps the select element
                 this.$alertFormatDD.parent().removeClass("disabled-select");
             }
         },
 
-        _onDeliveryMethodChange: function () {
-            if (this.$alertDeliveryMethod.find('input:checked').val() == "scheduled") {
-                this.$alertDelivery.show();
+        _onDeliveryMethodChange: function (dlvryTimes) {
+            this.data.properties.emailAddress = this.$alertEmail.val() || this.data.properties.emailAddress;
+            if (this.$alertDeliveryMethod.find('input:checked').val() == "continuous") {
+                this.$alertEmail.attr("disabled", false).val(this.data.properties.emailAddress || '');
+                this.$alertFormatDD.attr("disabled", false);
+                //This is to remove disabled look to the span element which selectbox plugin wraps the select element
+                this.$alertFormatDD.parent().removeClass("disabled-select");
+                this.$alertDelivery.hide();
             }
             else {
-                if (this.$alertDeliveryMethod.find('input:checked').val() == "continuous") {
-                    this.$alertEmail.attr("disabled", false);
-                    this.$alertFormatDD.attr("disabled", false);
-                    //This is to remove disabled look to the span element which selectbox plugin wraps the select element
-                    this.$alertFormatDD.parent().removeClass("disabled-select");
-
-                }
-                this.$alertDelivery.hide();
+                this.$alertDelivery.toggle(this.$alertDeliveryMethod.find('input:checked').val() == "scheduled");
                 //Uncheck all the delivery times
-                this._setDeliveryTime([]);
+                this._setDeliveryTime(dlvryTimes || []);
             }
         },
 
