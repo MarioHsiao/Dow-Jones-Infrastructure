@@ -23,6 +23,8 @@ namespace DowJones.Ajax.Article
 
         string ItemText { get; set; }
 
+        string EnlargedImageUrl { get; set; }
+
         EntityLinkData ItemEntityData { get; set; }
 
         PostProcessData ItemPostProcessData { get; set; }

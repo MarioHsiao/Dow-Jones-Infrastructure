@@ -32,20 +32,20 @@ namespace DowJones.Web.Showcase.Controllers
             _articleConversionManager = articleConversionManager;
         }
 
-        public ActionResult Index(string acn = "DJDN000020120216e82g0lkzf", DisplayOptions option = DisplayOptions.Full)
+        public ActionResult Index(string acn = "DJFVW00020120326e83qkgx46", DisplayOptions option = DisplayOptions.Full)
         {
             return Article(acn, option);
         }
 
         [Route("article/{accessionNumber}")]
-        public ActionResult Article(string accessionNumber, DisplayOptions option = DisplayOptions.Full, ImageType imageType = ImageType.Display, PictureSize pictureSize = PictureSize.Large, string callback = null, string canonicalSearchString ="T|microsoft T|phone O|+ T|en T|pt O|, T|es O|, N|la O|c O|+ T|article T|file O|, T|report O|, N|fmt O|c O|+ N|pd D|-0090 D| O|d O|+")
+        public ActionResult Article(string accessionNumber, DisplayOptions option = DisplayOptions.Full, ImageType imageType = ImageType.Thumbnail, PictureSize pictureSize = PictureSize.Large, string callback = null, string canonicalSearchString ="T|microsoft T|phone O|+ T|en T|pt O|, T|es O|, N|la O|c O|+ T|article T|file O|, T|report O|, N|fmt O|c O|+ N|pd D|-0090 D| O|d O|+")
         {
             new GetHistoricalDataByTimePeriodRequest
                 {
                     adjustForCapitalChanges = true
                 };
 
-            canonicalSearchString = "T|djdn000020120216e82g0lkzf N|an O|: T|and O|+ T|sipc O|+ T|and O|+ T|businesswire O|+ T|and O|+ T|schwab O|+ T|and O|+ T|aboutschwab O|+ T|en T|ru O|, T|de O|, N|la O|c O|+ T|nnam T|nrmf O|, T|nrgn O|, N|ns O|c O|- T|article T|file O|, T|report O|, T|webpage O|, T|blog O|, T|picture O|, T|multimedia O|, T|board O|, T|customerdoc O|, N|fmt O|c O|+";
+            //canonicalSearchString = "T|djdn000020120216e82g0lkzf N|an O|: T|and O|+ T|sipc O|+ T|and O|+ T|businesswire O|+ T|and O|+ T|schwab O|+ T|and O|+ T|aboutschwab O|+ T|en T|ru O|, T|de O|, N|la O|c O|+ T|nnam T|nrmf O|, T|nrgn O|, N|ns O|c O|- T|article T|file O|, T|report O|, T|webpage O|, T|blog O|, T|picture O|, T|multimedia O|, T|board O|, T|customerdoc O|, N|fmt O|c O|+";
             var article = _articleService.GetArticle(accessionNumber, canonicalSearchString);
 
             if (article == null || (article.status != null && article.status.value != 0))
@@ -61,6 +61,7 @@ namespace DowJones.Web.Showcase.Controllers
             _articleConversionManager.EmbededImageType = imageType;
             _articleConversionManager.ShowImagesAsFigures = true;
             _articleConversionManager.PictureSize = pictureSize;
+            _articleConversionManager.EnableEnlargedImage = true;
 
             var urlBuilder = new UrlBuilder("~/article/" + accessionNumber);
             var articleDataSet = _articleConversionManager.Convert(article);

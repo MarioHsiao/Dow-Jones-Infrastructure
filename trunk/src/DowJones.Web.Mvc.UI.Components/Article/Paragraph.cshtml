@@ -21,8 +21,9 @@
         case MarkUpType.Image:
             <img alt="" src="@(renderItem.ItemValue)" />
             break;
-        case MarkUpType.ImageFigure:
-            <div class="figure"><img alt="@(renderItem.Title.EscapeForHtml())" src="@(renderItem.ItemValue)" title="@(renderItem.Title.EscapeForHtml())" /><div class="figCredit">@(renderItem.Credit)</div><div class="figSource">@(renderItem.Source)</div><div class="figCaption">@(renderItem.Caption)</div></div>
+        case MarkUpType.ImageFigure:           
+            <div class="figure"><img alt="@(renderItem.Title.EscapeForHtml())" src="@(renderItem.ItemValue)" data-enlargedImg-href="@(renderItem.EnlargedImageUrl)" title="@(renderItem.Title.EscapeForHtml())" /><div class="figCredit">@(renderItem.Credit)</div><div class="figSource">@(renderItem.Source)</div><div class="figCaption">@(renderItem.Caption)</div></div>
+            //dj_article_enlargeImg_link
             break;
         case MarkUpType.PostProcessing:
             switch (renderItem.ItemPostProcessData.Type)
