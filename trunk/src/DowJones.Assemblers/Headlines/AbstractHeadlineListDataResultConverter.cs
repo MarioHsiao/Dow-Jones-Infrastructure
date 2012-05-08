@@ -336,19 +336,21 @@ namespace DowJones.Assemblers.Headlines
                 return null;
             }
 
-            // look through based on type and provide the correct Uri
-            switch (contentCategory)
+            if (GenerateExternalUrlForHeadlineInfo == null)
             {
-                case ContentCategory.Blog:
-                case ContentCategory.Board:
-                case ContentCategory.CustomerDoc:
-                case ContentCategory.Internal:
-                    foreach (var item in contentHeadline.ContentItems.ItemCollection.Where(item => item.Type.ToLower() == "webpage"))
-                    {
-                        return item.Ref;
-                    }
-
-                    break;
+                // look through based on type and provide the correct Uri
+                switch (contentCategory)
+                {
+                    case ContentCategory.Blog:
+                    case ContentCategory.Board:
+                    case ContentCategory.CustomerDoc:
+                    case ContentCategory.Internal:
+                        foreach (var item in contentHeadline.ContentItems.ItemCollection.Where(item => item.Type.ToLower() == "webpage"))
+                        {
+                            return item.Ref;
+                        }
+                        break;
+                }
             }
 
             return GenerateExternalUrlForHeadlineInfo != null ? GenerateExternalUrlForHeadlineInfo(contentHeadline, isDuplicate) : null;
