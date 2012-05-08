@@ -46,7 +46,7 @@
                 pluralText: "<%= Token('companies') %>"
             },
             author: {
-                text: "<%= Token('author') %>",
+            	text: "<%= Token('cmAuthor') %>",
                 pluralText: "<%= Token('authors') %>"
             },
             executive: {
