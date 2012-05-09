@@ -230,12 +230,12 @@
       <DependentUpon>EmptyCanvasModule.cshtml</DependentUpon>
     </Compile>
     <Compile Include="Modules\Empty\EmptyModule.cs" />
-    <Compile Include="Modules\ShowcaseCanvas.cs" />
     <Compile Include="Modules\PortalHeadlineLists\PortalHeadlineLists.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>PortalHeadlineLists.cshtml</DependentUpon>
     </Compile>
+    <Compile Include="Modules\ShowcaseCanvas.cs" />
     <Compile Include="Ninject\NinjectDependencyResolver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Connections\RealTimeAlertsConnection.cs" />

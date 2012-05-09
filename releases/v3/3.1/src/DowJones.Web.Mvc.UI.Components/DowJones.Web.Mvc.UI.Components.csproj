@@ -185,6 +185,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DateHistogram.cshtml</DependentUpon>
     </Compile>
+    <Compile Include="Diagnostics\ValidateClientUI.cs" />
+    <Compile Include="Diagnostics\ValidateClientUIComponent.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ValidateClientUIComponent.cshtml</DependentUpon>
+    </Compile>
     <Compile Include="DiscoveryGraph\DiscoveryGraph.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -375,7 +381,6 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="HeadlineListCarousel\HeadlineListCarousel.js" />
-    <EmbeddedResource Include="HeadlineListCarousel\jquery.jcarousel.js" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="ArticleTranslator\ArticleTranslatorControl.js" />
@@ -385,6 +390,8 @@
     <Folder Include="CompanySparkline\js\" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="TwitterExperts\ClientTemplates\noData.htm" />
+    <EmbeddedResource Include="TweetLines\ClientTemplates\noData.htm" />
     <EmbeddedResource Include="ScrollBar\ScrollBar.js" />
     <EmbeddedResource Include="SearchBuilder\ClientTemplates\categoryOptions.htm" />
     <EmbeddedResource Include="SearchBuilder\ClientTemplates\filterOptions.htm" />
@@ -532,6 +539,10 @@
     <None Include="CompositeOutlet\CompositeOutlet.cshtml">
       <Generator>RazorViewComponentClassGenerator</Generator>
       <LastGenOutput>CompositeOutlet.cs</LastGenOutput>
+    </None>
+    <None Include="Diagnostics\ValidateClientUIComponent.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>ValidateClientUIComponent.cs</LastGenOutput>
     </None>
     <None Include="DiscoveryGraph\DiscoveryGraph.cshtml">
       <Generator>RazorViewComponentClassGenerator</Generator>

@@ -1,41 +1,10 @@
 ﻿@Html.Partial("_HomepageContent")
-@(DJ.ScriptRegistry()
-    .With<DowJones.Web.Mvc.UI.Components.PortalHeadlineList.PortalHeadlineListControl>()
-    .With<DowJones.Web.Mvc.UI.Components.AlertEditor.AlertEditor>()
-    .With<DowJones.Web.Mvc.UI.Components.Article.ArticleComponent>()
-    .With<DowJones.Web.Mvc.UI.Components.ArticleTranslator.ArticleTranslatorControl>()
-    .With<DowJones.Web.Mvc.UI.Components.AuthorList.AuthorList>()
-    .With<DowJones.Web.Mvc.UI.Components.CompositeAuthor.CompositeAuthor>()
-    .With<DowJones.Web.Mvc.UI.Components.CompositeHeadline.CompositeHeadline>()
-    .With<DowJones.Web.Mvc.UI.Components.CompositeOutlet.CompositeOutlet>()
-    .With<DowJones.Web.Mvc.UI.Components.DateHistogram.DateHistogram>()
-    .With<DowJones.Web.Mvc.UI.Components.Discovery.DiscoveryControl>()
-    .With<DowJones.Web.Mvc.UI.Components.DiscoveryGraph.DiscoveryGraph>()
-    .With<DowJones.Web.Mvc.UI.Components.EntityList.EntityListComponent>()
-    .With<DowJones.Web.Mvc.UI.Components.HeadlinePostProcessing.HeadlinePostProcessing>()
-    .With<DowJones.Web.Mvc.UI.Components.InlineMp3PlayerControl>()
-    .With<DowJones.Web.Mvc.UI.Components.NewsChart.NewsChartControl>()
-    .With<DowJones.Web.Mvc.UI.Components.OutletList.OutletList>()
-    .With<DowJones.Web.Mvc.UI.Components.PersonalizationFilters.PersonalizationFilters>()
-    .With<DowJones.Web.Mvc.UI.Components.PortalArticle.PortalArticleControl>()
-    .With<DowJones.Web.Mvc.UI.Components.Quote.QuoteControl>()
-    .With<DowJones.Web.Mvc.UI.Components.RealtimeHeadlineList.RealtimeHeadlineList>()
-    .With<DowJones.Web.Mvc.UI.Components.RegionalMap.RegionalMap>()
-    .With<DowJones.Web.Mvc.UI.Components.RelatedConcepts.RelatedConceptsComponent>()
-    .With<DowJones.Web.Mvc.UI.Components.SearchBuilder.SearchBuilder>()
-    .With<DowJones.Web.Mvc.UI.Components.SearchCategoriesLookUp.SearchCategoriesLookUp>()
-    .With<DowJones.Web.Mvc.UI.Components.SearchNewsFilter.SearchNewsFilter>()
-    .With<DowJones.Web.Mvc.UI.Components.SimpleAlert.SimpleAlertControl>()
-    .With<DowJones.Web.Mvc.UI.Components.SocialButtons.SocialButtonsComponent>()
-    .With<DowJones.Web.Mvc.UI.Components.StockKiosk.StockKiosk>()
-    .With<DowJones.Web.Mvc.UI.Components.TagCloud.TagCloud>()
-    .With<DowJones.Web.Mvc.UI.Components.TaxonomySearchBrowse.TaxonomySearchBrowse>()
-    .With<DowJones.Web.Mvc.UI.Components.TopicEditor.TopicEditor>()
-    .With<DowJones.Web.Mvc.UI.Components.TweetLines.TweetLines>()
-    .With<DowJones.Web.Mvc.UI.Components.TwitterExperts.Experts>()
-    .With<DowJones.Web.Mvc.UI.Components.VideoPlayer.VideoPlayerControl>()
-)
 
 <div class="browser-info">
-	You are browsing from a plain old browser.
+    You are browsing from a plain old browser.
 </div>
+
+<section class="client-ui-validation">
+    <h2>Validation</h2>
+    @DJ.Render(new DowJones.Web.Mvc.UI.Components.Diagnostics.ValidateClientUI())
+</section>
