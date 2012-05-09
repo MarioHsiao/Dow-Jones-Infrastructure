@@ -27,7 +27,7 @@ namespace DowJones.Web.Mvc.UI.Components.Article
     using System.Text.RegularExpressions;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 05/07/2012 09:56 AM
+    // Last Generated Timestamp: 05/08/2012 10:29 AM
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "0.0.0.30158")]
     public class Paragraph : DowJones.Web.Mvc.UI.ViewComponentBase<DowJones.Web.Mvc.UI.Components.Models.Article.ParagraphModel>
     {
@@ -88,7 +88,7 @@ WriteLiteral("\" />\r\n");
 
 
             break;
-        case MarkUpType.ImageFigure:
+        case MarkUpType.ImageFigure:           
 
 WriteLiteral("            <div class=\"figure\"><img alt=\"");
 
@@ -100,29 +100,35 @@ WriteLiteral("\" src=\"");
 
                                                                                 Write(renderItem.ItemValue);
 
+WriteLiteral("\" data-enlargedImg-href=\"");
+
+
+                                                                                                                                Write(renderItem.EnlargedImageUrl);
+
 WriteLiteral("\" title=\"");
 
 
-                                                                                                                Write(renderItem.Title.EscapeForHtml());
+                                                                                                                                                                       Write(renderItem.Title.EscapeForHtml());
 
 WriteLiteral("\" /><div class=\"figCredit\">");
 
 
-                                                                                                                                                                              Write(renderItem.Credit);
+                                                                                                                                                                                                                                     Write(renderItem.Credit);
 
 WriteLiteral("</div><div class=\"figSource\">");
 
 
-                                                                                                                                                                                                                               Write(renderItem.Source);
+                                                                                                                                                                                                                                                                                      Write(renderItem.Source);
 
 WriteLiteral("</div><div class=\"figCaption\">");
 
 
-                                                                                                                                                                                                                                                                                 Write(renderItem.Caption);
+                                                                                                                                                                                                                                                                                                                                        Write(renderItem.Caption);
 
 WriteLiteral("</div></div>\r\n");
 
 
+            //dj_article_enlargeImg_link
             break;
         case MarkUpType.PostProcessing:
             switch (renderItem.ItemPostProcessData.Type)

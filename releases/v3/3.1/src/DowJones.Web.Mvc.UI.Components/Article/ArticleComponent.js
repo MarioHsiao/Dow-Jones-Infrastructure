@@ -20,8 +20,8 @@ DJ.UI.ArticleControl = DJ.UI.Component.extend({
         postProcessingClick: 'postprocessing.dj.article',
         eLinkClick: 'eLinkClick.dj.Article',
         headlineLinkClick: 'headlineLinkClick.dj.article',
-        smallPictureClick: 'smallPictureClick.dj.article'
-
+        smallPictureClick: 'smallPictureClick.dj.article',
+        enlargeImageLinkClick: 'enlargeImageLinkClick.dj.article'
     },
 
     selectors: {
@@ -35,7 +35,8 @@ DJ.UI.ArticleControl = DJ.UI.Component.extend({
         headline: 'h4.headline',
         headlineLink: '.dj_article_headline_link',
         smallPictureImg: 'img.smallImage',
-        accessionNum: '.dj_article_accessionNum'
+        accessionNum: '.dj_article_accessionNum',
+        enlargeImageLink: '.dj_article_enlargeImg_link'
     },
 
     /*
@@ -112,6 +113,11 @@ DJ.UI.ArticleControl = DJ.UI.Component.extend({
 
         this.$element.delegate(this.selectors.smallPictureImg, "click", function (e) {
             self.publish(self.events.smallPictureClick, { largeImgSrc: $(this).data("ref") });
+            return false;
+        });
+
+        this.$element.delegate(this.selectors.enlargeImageLink, "click", function (e) {
+            self.publish(self.events.enlargeImageLinkClick, { LargeImgSrc: $(this).data("enlargedImg-href") });
             return false;
         });
     },

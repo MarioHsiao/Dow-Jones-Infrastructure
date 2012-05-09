@@ -147,6 +147,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AuthorList.cshtml</DependentUpon>
     </Compile>
+    <Compile Include="Autocomplete\AutoSuggestComponent.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AutoSuggestComponent.cshtml</DependentUpon>
+    </Compile>
     <Compile Include="AutoSuggest\AutoSuggestComponent.cs" />
     <Compile Include="CalloutPopup\CalloutPopup.cs">
       <AutoGen>True</AutoGen>
@@ -387,6 +392,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Archive\" />
+    <Folder Include="Autocomplete\images\" />
+    <Folder Include="Autocomplete\js\" />
     <Folder Include="CompanySparkline\js\" />
   </ItemGroup>
   <ItemGroup>
@@ -519,6 +526,10 @@
     <None Include="AuthorList\AuthorList.cshtml">
       <Generator>RazorViewComponentClassGenerator</Generator>
       <LastGenOutput>AuthorList.cs</LastGenOutput>
+    </None>
+    <None Include="Autocomplete\AutoSuggestComponent.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>AutoSuggestComponent.cs</LastGenOutput>
     </None>
     <None Include="CompanySparkline\CompaniesSparklinesComponent.cshtml">
       <Generator>RazorViewComponentClassGenerator</Generator>
@@ -656,6 +667,8 @@
     <EmbeddedResource Include="HeadlineList\ClientTemplates\Success.htm" />
     <EmbeddedResource Include="HeadlineList\HeadlineList.js" />
     <EmbeddedResource Include="Discovery\ClientTemplates\Success.htm" />
+    <EmbeddedResource Include="Autocomplete\AutoSuggestComponent.js" />
+    <EmbeddedResource Include="Autocomplete\AutoSuggestComponent.css" />
     <Content Include="InlineMp3Player\InlineMp3PlayerBehavior.Original.js" />
     <EmbeddedResource Include="Pager\Pager.js" />
     <EmbeddedResource Include="RegionalMap\images\world_map.gif" />

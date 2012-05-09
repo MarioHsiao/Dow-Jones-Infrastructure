@@ -85,6 +85,7 @@
     <Compile Include="AuthorList\AuthorListTokens.cs" />
     <Compile Include="AuthorList\AuthorModel.cs" />
     <Compile Include="AuthorList\EnumDescription.cs" />
+    <Compile Include="Autocomplete\AutoSuggestModel.cs" />
     <Compile Include="CalloutPopup\CalloutPopupModel.cs" />
     <Compile Include="CompositeAuthor\CompositeAuthorModel.cs" />
     <Compile Include="CompositeOutlet\CompositeOutletModel.cs" />

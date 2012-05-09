@@ -82,6 +82,8 @@ namespace DowJones.Assemblers.Articles
 
         public bool EnableELinks { get; set; }
 
+        public bool EnableEnlargedImage { get; set; }
+
         public bool EmbedHtmlBasedExternalLinks { get; set; }
 
         public bool EmbedHtmlBasedArticles { get; set; }
@@ -89,7 +91,7 @@ namespace DowJones.Assemblers.Articles
         public bool SuppressLinksInHeadlineTitle { get; set; }
 
         public ImageType EmbededImageType{ get; set; }
-
+        
         public PictureSize PictureSize { get; set; }
 
         /// <summary>
@@ -1011,16 +1013,24 @@ namespace DowJones.Assemblers.Articles
                     var text = GetText(contentItem);
                     var found = false;
                     var numberBasedContentItem = contentItem;
-                    var tItems = new List<ContentItem>(); 
+                    var tItems = new List<ContentItem>();
+                    var enlargedImgHandlerUrl = string.Empty;
                     switch(contentItem.ContentHeadline.ContentItems.ContentType)
                     {
                         case "picture":
                             tItems = contentItem.ContentHeadline.ContentItems.ItemCollection
-                                        .Where(tItem => !string.IsNullOrEmpty(tItem.Mimetype) && tItem.Type.ToLowerInvariant() == Map(EmbededImageType)).ToList();
+                                .Where(tItem => !string.IsNullOrEmpty(tItem.Mimetype) && tItem.Type.ToLowerInvariant() == Map(EmbededImageType)).ToList();
+                        
                             if (tItems.Count == 0)
                             {
                                 tItems = contentItem.ContentHeadline.ContentItems.ItemCollection
                                         .Where( tItem => !string.IsNullOrEmpty( tItem.Mimetype ) ).ToList();    
+                            }
+                            if (EnableEnlargedImage && EmbededImageType != ImageType.Display)
+                            {
+                                var enlargedImageContentItem = contentItem.ContentHeadline.ContentItems.ItemCollection
+                                    .Where(tItem => !string.IsNullOrEmpty(tItem.Mimetype) && tItem.Type.ToLowerInvariant() == Map(ImageType.Display)).FirstOrDefault();
+                                enlargedImgHandlerUrl = GetHandlerUrl(EmbededImageType, numberBasedContentItem.AccessionNumber, enlargedImageContentItem);
                             }
                             break; 
                         case "file":
@@ -1048,6 +1058,7 @@ namespace DowJones.Assemblers.Articles
                                 item.ItemMarkUp = Map(curContentItem.Mimetype);
                                 item.ItemText = text;
                                 item.ItemValue = strHref;
+                                item.EnlargedImageUrl = enlargedImgHandlerUrl;
                                 
                                 if (EmbedHtmlBasedExternalLinks && item.ItemMarkUp == MarkUpType.Html)
                                 {

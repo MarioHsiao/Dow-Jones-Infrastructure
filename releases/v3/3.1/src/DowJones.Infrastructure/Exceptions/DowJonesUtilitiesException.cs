@@ -193,8 +193,16 @@ namespace DowJones.Exceptions
         public const long SocialMediaBackendServerError = 585603;
         public const long SocialMediaBackendDeserializationError = 585604;
 
-        // General ERROR 585611 - 585650
+        // General ERROR 585611 - 585620
         public const long InvalidDataRequest = 585611;
+
+        // Error for Widget Framework 585621-58640
+        public const long WidgetFrameworkBasicCommunicationError = 585621;
+        public const long WidgetFrameworkServerCommunicationError = 585622;
+
+        // Error for NewsLetters Site 585641-58660
+        public const long NewsletterInvalidEditionId = 585641;
+        public const long NewsletterInvalidTemplateId = 585642;
 
 
         #endregion
