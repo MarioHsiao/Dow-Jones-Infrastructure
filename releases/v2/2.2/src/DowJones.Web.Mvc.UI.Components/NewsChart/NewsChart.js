@@ -370,13 +370,13 @@
 						//var s =  (new Date(this.x)).format("UTC:mmmm dd, yyyy") + '<br/>';//Highcharts.dateFormat('%B %e, %Y', this.x) + '<br/>';
 						var s = this.points[0].point.dateDisplay + '<br/>';
 
-						if (this.points.length > 1) s += this.points[0].series.name + ': <b>' + this.points[0].y + ' <%= Token("articlesLabel") %></b>';
+						if (this.points.length > 1) s += this.points[0].series.name + ': <b>' + this.points[0].y + " <%= Token('articlesLabel') %></b>";
 						else {
-							if (this.points[0].series.name == _optionBag.newsSeriesTitle) s += this.points[0].series.name + ': <b>' + this.points[0].y + ' <%= Token("articlesLabel") %></b>';
+							if (this.points[0].series.name == _optionBag.newsSeriesTitle) s += this.points[0].series.name + ': <b>' + this.points[0].y + " <%= Token('articlesLabel') %></b>";
 							else
 								s += 'Price: <b>' + Highcharts.numberFormat(this.points[0].y) + '</b>';
 						}
-						if (this.points[1]) s += '<br/><%= Token("priceLabel") %>: <b>' + Highcharts.numberFormat(this.points[1].y) + '</b>';
+						if (this.points[1]) s += "<br/><%= Token('priceLabel') %>: <b>" + Highcharts.numberFormat(this.points[1].y) + '</b>';
 						return s;
 					}
 				},
@@ -445,17 +445,17 @@
 				return [{
 					color: '#2f90b3',
 					pointInterval: 15 * 60 * 1000, // 15 minutes
-					name: this.options.stockSeriesTitle || '<%= Token("marketIndex") %>',
+					name: this.options.stockSeriesTitle || "<%= Token('marketIndex') %>",
 					data: graphDataModel.objStockSeries
 				}];
 			}
 
 			return [{
-				name: this.options.newsSeriesTitle || '<%= Token("newSeries") %>',
+				name: this.options.newsSeriesTitle || "<%= Token('newSeries') %>",
 				type: 'spline',
 				data: graphDataModel.objNewsSeries
 			}, {
-				name: this.options.stockSeriesTitle || '<%= Token("stockSeries") %>',
+				name: this.options.stockSeriesTitle || "<%= Token('stockSeries') %>",
 				yAxis: 1,
 				data: graphDataModel.objStockSeries
 			}];
@@ -480,7 +480,7 @@
 			var self = this,
                 el = $(self.element),
                 o = self.options,
-                sourcesLabel = '<%= Token("sourcesLabel") %>';
+                sourcesLabel = "<%= Token('sourcesLabel') %>";
 
 			if (self.data) {
 				var isFullSizeGraph = o.isFullChart;
@@ -495,7 +495,7 @@
 
 
 					if (graphDataModel.objStockSeries.length == 0) {
-						chartContainer.html('<span class="no-results"><%= Token("noResults") %></span>');
+						chartContainer.html("<span class='no-results'><%= Token('noResults') %></span>");
 						return;
 					}
 					else {
@@ -526,8 +526,8 @@
 
 					var NewsSeries = self.data.newsDataResult,
                         StockSeries = self.data.stockDataResult,
-                        NewsSeriesTitle = '<%= Token("newsVolume") %>',
-                        StockSeriesTitle = '<%= Token("stockPriceToken") %>',
+                        NewsSeriesTitle = "<%= Token('newsVolume') %>",
+                        StockSeriesTitle = "<%= Token('stockPriceToken') %>",
                         graphDataModel = self.trasformNewsDataResult(NewsSeries, StockSeries),
                         chartContainer = el.find('.dj_module-company-chart'),
                         chartOptions;
@@ -541,7 +541,7 @@
 						newsVolumeToggler.css("cursor", "default").after("<span>,&nbsp;</span>");
 						stockVolumeToggler.css("cursor", "default");
 						el.find('.dj_module-company-chart-disclaimer').css('visibility', 'hidden');
-						chartContainer.html('<span class="no-results"><%= Token("noResults") %></span><br /><br />');
+						chartContainer.html("<span class='no-results'><%= Token('noResults') %></span><br /><br />");
 						return;
 					}
 					else {
@@ -683,8 +683,8 @@
 
 					self.$element.html(this.templates.newsvolume());
 
-					var NewsSeriesTitle = '<%= Token("newsVolume") %>',
-                        StockSeriesTitle = '<%= Token("stockPriceToken") %>',
+					var NewsSeriesTitle = "<%= Token('newsVolume') %>",
+                        StockSeriesTitle = "<%= Token('stockPriceToken') %>",
                         chartContainer = el.find('.dj_module-company-chart');
 
 					var newsVolumeToggler = el.find(".news-volume"),
