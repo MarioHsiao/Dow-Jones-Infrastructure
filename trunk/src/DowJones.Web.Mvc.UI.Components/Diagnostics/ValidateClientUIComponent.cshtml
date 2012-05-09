@@ -14,11 +14,30 @@
     #failures li {
         padding: 5px;
     }
+    
+    #discovered-components {
+        height: 200px;
+        width: 400px;
+        overflow-y: scroll;
+    }
 </style>
 
 <div class="loading">Validating that everything was installed and configured properly...</div>
-<ol id="validation-steps"></ol>
 <ol id="failures" class="failed"></ol>
+<ol id="validation-steps"></ol>
+
+<h3>Discovered Components</h3>
+<ol id="discovered-components">
+    @{
+        var scriptRegistry = DJ.ScriptRegistry();
+    
+        foreach (var component in Model.ViewComponentTypes.OrderBy(x => x.Name))
+        {
+            scriptRegistry.With(component);
+            <li>@component.Name</li>
+        }
+    }
+</ol>
 
 <script type="text/javascript">
     if (DJ && DJ.config) { DJ.config.debug = true; }
@@ -159,16 +178,5 @@
                 callback($('<div>').dj_PortalHeadlineList({}));
             });
         });
-
-        @{
-            var scriptRegistry = DJ.ScriptRegistry();
-    
-            foreach (var component in Model.ViewComponentTypes.OrderBy(x => x.Name))
-            {
-                scriptRegistry.With(component);
-            }
-        }
-
-
     };
 </script>
