@@ -19,7 +19,7 @@ namespace DowJones.Search
         [AssignedString("HL")]
         Headline,
 
-        [AssignedToken("author")]
+        [AssignedToken("cmAuthor")]
         [AssignedString("BY")]
         Author,
     }

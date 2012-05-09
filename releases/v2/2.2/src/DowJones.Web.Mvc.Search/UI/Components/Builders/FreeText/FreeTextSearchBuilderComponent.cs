@@ -30,7 +30,7 @@ namespace DowJones.Web.Mvc.Search.UI.Components.Builders.FreeText
     using DowJones.Infrastructure;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 04/20/2012 10:39 AM
+    // Last Generated Timestamp: 05/09/2012 12:19 PM
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Web.Mvc.Search.UI.Components.Builders.FreeText.FreeTextSearchBuilder.js", ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Web.Mvc.Search.UI.Components.Builders.FreeText.FreeTextSearchBuilderComponent))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.22175")]
     public class FreeTextSearchBuilderComponent : DowJones.Web.Mvc.Search.UI.Components.Builders.QueryBuilderComponent<DowJones.Web.Mvc.Search.UI.Components.Builders.FreeText.FreeTextSearchBuilder>
@@ -257,7 +257,7 @@ Write(DJ.DisplayFilters(Model.Company, "allCompanies"));
 WriteLiteral("\r\n\t\t\t</td>\r\n\t\t</tr>\r\n\t\t<tr>\r\n\t\t\t<th scope=\"row\">\r\n\t\t\t\t");
 
 
-Write(DJ.Token("authorLabel"));
+Write(DJ.Token("cmAuthor"));
 
 WriteLiteral("\r\n\t\t\t</th>\r\n\t\t\t<td headers=\"itemcolumn col1\">\r\n\t\t\t\t");
 
