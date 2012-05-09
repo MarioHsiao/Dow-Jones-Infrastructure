@@ -208,7 +208,7 @@ namespace DowJones.Exceptions
         #endregion
 
         private static readonly ILog Log = LogManager.GetLogger(typeof(DowJonesUtilitiesException));
-        private long returnCode = -1;
+        private long _returnCode = -1;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DowJonesUtilitiesException"/> class.
@@ -224,7 +224,7 @@ namespace DowJones.Exceptions
         /// <param name="returnCodeFromFactivaService">The return code from factiva service.</param>
         public DowJonesUtilitiesException(long returnCodeFromFactivaService)
         {
-            returnCode = returnCodeFromFactivaService;
+            _returnCode = returnCodeFromFactivaService;
             LogException();
         }
 
@@ -235,7 +235,7 @@ namespace DowJones.Exceptions
         /// <param name="returnCodeFromFactivaService">The return code from factiva service.</param>
         public DowJonesUtilitiesException(string message, long returnCodeFromFactivaService) : base(message)
         {
-            returnCode = returnCodeFromFactivaService;
+            _returnCode = returnCodeFromFactivaService;
             LogException();
         }
 
@@ -268,7 +268,7 @@ namespace DowJones.Exceptions
         public DowJonesUtilitiesException(Exception innerException, long returnCodeFromFactivaService)
             : base("", innerException)
         {
-            returnCode = returnCodeFromFactivaService;
+            _returnCode = returnCodeFromFactivaService;
 
             LogException();
         }
@@ -282,12 +282,12 @@ namespace DowJones.Exceptions
 
         public virtual long ReturnCode
         {
-            get { return returnCode; }
+            get { return _returnCode; }
         }
 
         protected virtual long ReturnCodeProtected
         {
-            set { returnCode = value; }
+            set { _returnCode = value; }
         }
 
         public static DowJonesUtilitiesException ParseExceptionMessage(Exception ex)
@@ -301,17 +301,9 @@ namespace DowJones.Exceptions
         /// </summary>
         protected void LogException()
         {
-            if(ReturnCode == -1 || Logger.IsDebugEnabled)
-            {
-                // Always log -1 errors to ERROR log
-                //var sb = new StringBuilder();
-                //sb.AppendFormat("\nReturn code: {0} - Message: {1}", ReturnCode, Message);
-                //GetInnerExceptionLog(sb, InnerException);
-                //Logger.Error(sb.ToString());
-                var stackTrace = StackTrace ?? new StackTrace().ToString();
-                Logger.Error(string.Format("\nReturn code: {0} - Message: {1}\nStack Trace: {2}", ReturnCode, Message, stackTrace));
-            }
-            
+            if (ReturnCode != -1 && !Logger.IsDebugEnabled) return;
+            var stackTrace = StackTrace ?? new StackTrace().ToString();
+            Logger.Error(string.Format("\nReturn code: {0} - Message: {1}\nStack Trace: {2}", ReturnCode, Message, stackTrace));
         }
 
         static internal void GetInnerExceptionLog(StringBuilder sb, Exception innerException, int depth = 0)

@@ -11,7 +11,7 @@
             headlineUrl = (x.headlineUrl && $.trim(x.headlineUrl)) || "javascript:void(0)";
             multimediaMode = options.multimediaMode && (x.contentCategoryDescriptor && x.contentCategoryDescriptor === 'multimedia');
     %>
-    <li class="dj_entry<%=(selected) ? " selected": ""%>">
+    <li class="dj_entry<%=(selected) ? " selected": ""%>  <%=x.contentCategoryDescriptor%> <%=x.contentSubCategoryDescriptor%>">
         <div class="article-wrap">
             <h4 class="article-headline">
                 <a href="<%= headlineUrl %>" class="article-view-trigger">
