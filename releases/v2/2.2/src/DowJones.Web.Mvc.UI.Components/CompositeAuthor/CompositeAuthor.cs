@@ -26,7 +26,7 @@ namespace DowJones.Web.Mvc.UI.Components.CompositeAuthor
     using DowJones.Web.Mvc.UI.Components.AuthorList;
     using DowJones.Web.Mvc.UI.Components.Models;
     
-    // Last Generated Timestamp: 03/30/2012 05:50 PM
+    // Last Generated Timestamp: 05/09/2012 11:09 AM
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.CompositeAuthor.CompositeAuthor.js", ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.CompositeAuthor.CompositeAuthor))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "0.0.0.30158")]
     public class CompositeAuthor : CompositeComponent<CompositeAuthorModel>
@@ -407,7 +407,18 @@ WriteLiteral(">100 ");
 
                            Write(Html.DJ().Token("perPage"));
 
-WriteLiteral("</option>\r\n\t\t</select>\r\n\r\n\t\t<ul class=\"paging-controls\">\r\n\r\n\t\t\t<li><strong>");
+WriteLiteral("</option>\r\n\t\t</select>\r\n\r\n\t\t<div class=\"dj_list-select-count hide\">\n\t\t\t<span clas" +
+"s=\"count\"></span> ");
+
+
+                          Write(Html.DJ().Token("cmalSelectionPlural"));
+
+WriteLiteral("\n\t\t\t<span class=\"dj_clear-all-btn\">");
+
+
+                             Write(Html.DJ().Token("cmalClearAll"));
+
+WriteLiteral("</span>\n\t\t</div>\n\r\n\t\t<ul class=\"paging-controls\">\r\n\r\n\t\t\t<li><strong>");
 
 
           Write(Format(Model.FirstResultIndex + 1));
