@@ -4,7 +4,7 @@
 @using DowJones.Web.Mvc.UI.Canvas
 @inherits AbstractCanvasModule<DowJones.Web.Showcase.Models.PortalHeadlineLists>
 @ClientPlugin dj_PortalHeadlineLists
-@ScriptResource RelativeResourceName=PortalHeadlineLists.js
+@ScriptResource RelativeResourceName=PortalHeadlineLists.js, DependsOn=AbstractCanvasModule
 @section ContentArea {
     <div class="module-content-page">
         <div class="module-row article-row clearfix">

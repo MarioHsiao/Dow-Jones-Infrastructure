@@ -374,6 +374,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Resources\js\ODSManager.js" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\js\jquery.jcarousel.js" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>

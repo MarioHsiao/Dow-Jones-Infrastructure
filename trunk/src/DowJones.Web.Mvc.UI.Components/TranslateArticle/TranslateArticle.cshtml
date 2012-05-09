@@ -2,8 +2,8 @@
 
 @ClientPlugin dj_TranslateArticle
 @ScriptResource RelativeResourceName=TranslateArticle.js
-@ScriptResource RelativeResourceName=js.jquery.ui.stars.js
-@ScriptResource RelativeResourceName=js.jquery.uni-form.js
+@ScriptResource RelativeResourceName=js.jquery.ui.stars.js, DependsOn=jquery-ui-widgets
+@ScriptResource RelativeResourceName=js.jquery.uni-form.js, DependsOn=jquery-ui-widgets
 
 @{ CssClass = "dj_TranslateArticle"; }
 

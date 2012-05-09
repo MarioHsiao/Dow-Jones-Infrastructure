@@ -172,6 +172,12 @@ namespace DowJones.Web.Mvc.UI
             return this;
         }
 
+        public virtual ScriptRegistryBuilder WithJQueryCarousel(bool enabled = true)
+        {
+            RegisterFrameworkWebResource(EmbeddedResources.Js.JQueryCarousel, ClientResourceDependencyLevel.MidLevel, enabled);
+            return this;
+        }
+
         public virtual ScriptRegistryBuilder WithJQueryCycle(bool enabled = true)
         {
             RegisterFrameworkWebResource(EmbeddedResources.Js.JQueryCycle, ClientResourceDependencyLevel.MidLevel, enabled);

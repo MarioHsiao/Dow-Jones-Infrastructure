@@ -1,12 +1,12 @@
 ﻿@model DowJones.Web.Mvc.UI.Components.HeadlineCarousel.HeadlineCarouselModel
 @ClientPlugin dj_HeadlineCarousel
+@ScriptResource RelativeResourceName=HeadlineCarousel.js, DependsOn=jquery-ui-widgets
+@ScriptResource RelativeResourceName=jquery.ui.headline-carousel.js, DependsOn=jquery-ui-widgets
 @ClientTemplate RelativeResourceName=ClientTemplates.VideoX.htm, TemplateId=videoX
 @ClientTemplate RelativeResourceName=ClientTemplates.VideoY.htm, TemplateId=videoY
 @ClientTemplate RelativeResourceName=ClientTemplates.HeadlineHitCountsPackage.htm, TemplateId=headlineHitCountsPackage
 @ClientTemplate RelativeResourceName=ClientTemplates.DiscoveredEntitiesPackage.htm, TemplateId=discoveredEntitiesPackage
 @ClientTemplate RelativeResourceName=ClientTemplates.NoData.htm, TemplateId=noData
-@ScriptResource RelativeResourceName=HeadlineCarousel.js
-@ScriptResource RelativeResourceName=jquery.ui.headline-carousel.js
 @{
     CssClass = "dj_headlineListCarousel";
     DJ.ScriptRegistry()

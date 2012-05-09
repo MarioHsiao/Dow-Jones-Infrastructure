@@ -1,0 +1,174 @@
+﻿@model ValidateClientUI
+
+<style>
+    .testing { background-color: orange; font-style: italic; }
+    .passed { background-color: greenyellow; }
+    .timeout, .failed, .error {
+        background-color: red; 
+        font-weight: bold;
+        font-size: 120%;
+        color: #fff;
+    }
+    
+    #validation-steps li,
+    #failures li {
+        padding: 5px;
+    }
+</style>
+
+<div class="loading">Validating that everything was installed and configured properly...</div>
+<ol id="validation-steps"></ol>
+<ol id="failures" class="failed"></ol>
+
+<script type="text/javascript">
+    if (DJ && DJ.config) { DJ.config.debug = true; }
+
+    var TIMEOUT = 5000;
+    var container, tests, failures, loadedComponentNames = [];
+
+    function failure(message) {
+        var el = document.createElement("li");
+        el.innerText = message;
+        failures.appendChild(el);
+    }
+
+    function success(message) {
+        var el = document.createElement("li");
+        el.innerText = message;
+        el.className = 'passed';
+        container.appendChild(el);
+    }
+
+    function validate(description, test) {
+        var _result;
+
+        var statusEl = document.createElement("li");
+        statusEl.innerText = description;
+        container.appendChild(statusEl);
+
+        var setStatus = function (val, text) {
+            statusEl.className = val;
+
+            if (text)
+                console.log(description, ": ", text);
+        };
+
+        var evalResult = function (result) {
+            _result = result;
+
+            if (_result === 'timeout') {
+                setStatus("timeout");
+            } else if (_result) {
+                setStatus("passed");
+            } else {
+                setStatus("failed");
+            }
+        };
+
+        var timeout = function () {
+            if (_result) return;
+            evalResult('timeout');
+        };
+
+        setStatus("testing");
+
+        try {
+            setTimeout(timeout, TIMEOUT);
+            test(evalResult);
+        } catch (e) {
+            setStatus("error", e);
+        }
+    }
+
+    try {
+        container = document.getElementById("validation-steps");
+        failures = document.getElementById("failures");
+
+        var log = DJ.$dj._log;
+        DJ.$dj._log = function(message) {
+            if (( /Registered DJ.*/ ).test(message)) {
+                var component = ( /DJ.[^ ]*/ ).exec(message);
+                loadedComponentNames.push(component);
+                success('Loaded ' + component);
+            }
+
+            if (arguments[arguments.length - 1] == "error")
+                failure(arguments[0]);
+
+            log.apply(arguments);
+        };
+
+        (function (require) {
+            var onError = require.onError;
+            require.onError = function (err) {
+                var modules = err.requireModules.split(' ');
+                for (var i = 0; i < modules.length; i++) {
+                    if(modules[i] && modules[i].length > 0)
+                        failure('Failed to load ' + modules[i]);
+                }
+                onError(err);
+            };
+
+            var onScriptLoad = require.onScriptLoad;
+            require.onScriptLoad = function () {
+                try {
+                    onScriptLoad.apply(arguments);
+                } catch (err) {
+                    DJ.$dj.error(err);
+                }
+            };
+        })(DJ.$dj.require);
+
+    } catch (e) {
+        failure(e);
+    }
+
+    window.onload = function () {
+        container = document.getElementById("validation-steps");
+        failures = document.getElementById("failures");
+
+        validate("DJ exists", function (callback) {
+            callback(DJ !== undefined);
+        });
+
+
+        validate("DJ.config exists", function (callback) {
+            callback(DJ.config !== undefined);
+        });
+
+        validate("DJ.jQuery exists", function (callback) {
+            callback(DJ.jQuery !== undefined);
+        });
+
+        validate("DJ.UI.Component exists", function (callback) {
+            callback(DJ.UI.Component !== undefined);
+        });
+
+        validate("DJ.$dj.require exists", function (callback) {
+            callback(DJ.$dj.require !== undefined);
+        });
+
+        validate("require('JSON')", function (callback) {
+            DJ.$dj.require(['JSON'], function (JSON) {
+                callback(JSON !== undefined);
+            });
+        });
+
+        validate("Can create PortalHeadlineList", function (callback) {
+            DJ.$dj.require(['$', '$dj', 'DowJones.Web.Mvc.UI.Components.PortalHeadlineList.PortalHeadlineList'], function ($, $dj) {
+                callback($('<div>').dj_PortalHeadlineList({}));
+            });
+        });
+
+        @{
+            var scriptRegistry = DJ.ScriptRegistry();
+    
+            foreach (var component in Model.ViewComponentTypes.OrderBy(x => x.Name))
+            {
+                scriptRegistry.With(component);
+            }
+        }
+
+
+    };
+</script>

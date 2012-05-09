@@ -1,8 +1,11 @@
-﻿@model HeadlineListCarouselModel
+﻿@model DowJones.Web.Mvc.UI.Components.HeadlineListCarousel.HeadlineListCarouselModel
 @ClientPlugin dj_headlineListCarousel
 @ScriptResource RelativeResourceName=HeadlineListCarousel.js
-@ScriptResource RelativeResourceName=jquery.jcarousel.js
 @ClientTemplate RelativeResourceName=HeadlineListCarouselClientTemplate.htm, TemplateId=itemTemplate
+
+@{
+    DJ.ScriptRegistry().WithJQueryCarousel();
+}
 
 <div class='headline-snippet-container-vertical-hover'></div>
 
