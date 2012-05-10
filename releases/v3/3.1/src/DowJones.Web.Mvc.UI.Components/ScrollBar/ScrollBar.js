@@ -357,7 +357,7 @@ DJ.UI.ScrollBar = DJ.UI.Component.extend({
         }
         // Y-axis
         if (axis == 'y') {
-            if ((self.elemHeight / self.scrollHeight) < 1) {
+            if ((self.$element.prop("clientHeight") / self.scrollHeight) < 1) {//elemHeight
                 $(el).parent().width(self.elemWidth + 10);
                 self.scrollbarY.css('display', 'block');
                 self.thumbHeight = Math.round(self.elemHeight * (self.elemHeight / self.scrollHeight));
