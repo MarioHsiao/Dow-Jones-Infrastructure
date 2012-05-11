@@ -17,7 +17,7 @@
          <% if (i!=0 && i % pagesize == 0) {j=1; %> </div> <% }  %>
          <% if (i==0 || j==1) { %> <div> <% } %>
             <div class="dj_tickerRow<%=tickerrowselected%>">
-                <a class="dj_tickerRowSymbol" title="<%=quote.name %>" data-fcode="<%=quote.fCode%>" data-symbol="<%=quote.symbol%>"><%=quote.symbol%></a>					    								
+                <span class="dj_tickerRowSymbol" data-fcode="<%=quote.fCode%>" data-symbol="<%=quote.symbol%>"><%=quote.symbol%></span>					    								
 			    <span class="dj_price"><%=quote.last.displayText.value %></span>
 			    <span class="<% if (quote.percentChange.displayText.value[0] == '+') {%>dj_positive<%} else{%>dj_negative<%}%>"><%=quote.percentChange.displayText.value%></span>
 	            <div class="dj_clear"></div>
@@ -37,12 +37,14 @@
 </div> <!-- end of dj_stock quotes -->
 
 <div class="dj_chart">
-    <div class="dj_chartLabel"><span class="chartSymbol"></span>: <span class="chartName"></span></div>
     <div class="dj_chartContainer"> </div>
-    <div class="dj_chartLegend">
+    <div class="dj_chartLegend">        
+        <div class="dj_chartLabel"><span class="chartSymbol"></span>: <span class="chartName"></span></div>
+        <div class="dj_exchange"><%= Token("exchange") %>: <span class="dj_value"></span></div>
         <div class="dj_currency"><%= Token("currency") %>: <span class="dj_value"></span></div>
+        <div class="dj_source"><%= Token("source") %>: <%=data[0].provider.name %></div>
         <div class="dj_chartLastUpdated"></div>
-        <div><%= Token("source") %>: <%=data[0].provider.name %></div>
+        <div class="dj_timezone"></div>
         <div><%= Token("delayedQuotePerExchange") %></div>
     </div>
 </div>

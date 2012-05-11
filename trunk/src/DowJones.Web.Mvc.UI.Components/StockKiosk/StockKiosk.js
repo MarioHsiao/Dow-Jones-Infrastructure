@@ -43,9 +43,11 @@ DJ.UI.StockKiosk = DJ.UI.Component.extend({
         stock_chart: '.dj_chartContainer',
         market_block: '.dj_marketBlock',
         stock_last_updated: '.dj_chartLastUpdated',
-        stock_currency: '.dj_currency',
+        stock_currency: '.dj_currency ',
         stock_label_symbol: '.dj_chartLabel .chartSymbol',
-        stock_label_name: '.dj_chartLabel .chartName'
+        stock_label_name: '.dj_chartLabel .chartName',
+        exchange_name: '.dj_exchange .dj_value',
+        timezone_name: '.dj_timezone'
     },
 
     events: {
@@ -70,19 +72,20 @@ DJ.UI.StockKiosk = DJ.UI.Component.extend({
         var self = this;
 
         this.$element.on('mouseover', self.selectors.quotes_ticker, function (event) {          
-            var symbol = $("a", this).attr("data-symbol");   //using attr to alws use it as a string instead of data 
+            var symbol = $(self.selectors.quotes_symbol, this).attr("data-symbol");   //using attr to alws use it as a string instead of data 
             self.$element.find(self.selectors.quotes_ticker_selected)
                          .removeClass('selected');
             $(this).addClass("selected"); 
             self.addSeriestoChart(symbol);             
         });
         
+        /*
         this.$element.on('click', self.selectors.quotes_symbol , function(event) { 
             var symbol = $(this).attr("data-symbol");
             self.publish(self.events.tickersymbolClick, {tickersymbol: self.getStockticker(symbol) } ); 
             return false;
             //return(self.getStockticker(code));
-        });
+        });*/
     },
 
     setHeight: function(){
@@ -337,8 +340,10 @@ DJ.UI.StockKiosk = DJ.UI.Component.extend({
                 stock_last_updated.html($.trim(requestedIntradaryMarketData.adjustedLastUpdatedDescripter));
             }
             
-            var symbol = $(self.selectors.stock_label_symbol, this.$element).html(requestedIntradaryMarketData.symbol);
-            var name = $(self.selectors.stock_label_name, this.$element).html(requestedIntradaryMarketData.name);            
+            $(self.selectors.stock_label_symbol, this.$element).html(requestedIntradaryMarketData.symbol);
+            $(self.selectors.stock_label_name, this.$element).html(requestedIntradaryMarketData.name);       
+            $(self.selectors.timezone_name, this.$element).html(requestedIntradaryMarketData.exchange.timeZoneDescriptor);      
+            $(self.selectors.exchange_name, this.$element).html(requestedIntradaryMarketData.exchange.code);      
             var currency = $(self.selectors.stock_currency, this.$element);
             var currencyVal =  $(self.selectors.stock_currency + " .dj_value", this.$element);
             if (currency.length > 0 )
@@ -396,8 +401,10 @@ DJ.UI.StockKiosk = DJ.UI.Component.extend({
                 stock_last_updated.html($.trim(requestedIntradaryMarketData.adjustedLastUpdatedDescripter));
             }
 
-            var symbol = $(self.selectors.stock_label_symbol, this.$element).html(requestedIntradaryMarketData.symbol);
-            var name = $(self.selectors.stock_label_name, this.$element).html(requestedIntradaryMarketData.name);            
+            $(self.selectors.stock_label_symbol, this.$element).html(requestedIntradaryMarketData.symbol);
+            $(self.selectors.stock_label_name, this.$element).html(requestedIntradaryMarketData.name);      
+            $(self.selectors.timezone_name, this.$element).html(requestedIntradaryMarketData.exchange.timeZoneDescriptor);      
+            $(self.selectors.exchange_name, this.$element).html(requestedIntradaryMarketData.exchange.code);      
             var currency = $(self.selectors.stock_currency, this.$element);
             var currencyVal =  $(self.selectors.stock_currency + " .dj_value", this.$element);
             if (currency.length > 0 )

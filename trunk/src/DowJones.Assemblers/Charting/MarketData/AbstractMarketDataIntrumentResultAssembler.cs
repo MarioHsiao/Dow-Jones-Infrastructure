@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using DowJones.Extensions;
 using DowJones.Formatters;
 using DowJones.Formatters.Globalization.DateTime;
 using DowJones.Formatters.Globalization.TimeZone;
@@ -40,7 +39,18 @@ namespace DowJones.Assemblers.Charting.MarketData
             return tempDate.Add(timeZone.GetUtcOffset(tempDate).Negate());
         }
 
-        private static string ShortTimeZoneFormat(string timeZoneStandardName)
+        private static string NormalizeTimeZoneStandardName(string timezoneName)
+        {
+            switch (timezoneName)
+            {
+                case "Malay Peninsula Standard Time":
+                    return "Singapore Standard Time";
+                default:
+                    return timezoneName;
+            }
+        }
+
+        private static string GenerateAbbreviation(string timeZoneStandardName)
         {
             var timeZoneElements = timeZoneStandardName.Split(' ');
             return timeZoneElements.Aggregate(String.Empty, (current, element) => current + element[0]);
@@ -61,7 +71,7 @@ namespace DowJones.Assemblers.Charting.MarketData
             {
                 utcOffsetHours = match.TimeZoneInfo.UtcOffsetHours;
                 utcOffsetMinutes = match.TimeZoneInfo.UtcOffsetMinutes;
-                timeZone = TimeZoneInfo.FindSystemTimeZoneById(match.TimeZoneInfo.TimeZone);
+                timeZone = TimeZoneInfo.FindSystemTimeZoneById(NormalizeTimeZoneStandardName(match.TimeZoneInfo.TimeZone));
             }
             
             var dataPoints = new BasicDataPointCollection();
@@ -126,7 +136,6 @@ namespace DowJones.Assemblers.Charting.MarketData
                 // set islast to the last datapoint
                 var lastDataPoint = dataPoints[lastIndex];
                 lastDataPoint.IsLast = true;
-                string abbr;
                 if (lastDataPoint.Date != null)
                 {
                     // update the gmt based one
@@ -135,12 +144,10 @@ namespace DowJones.Assemblers.Charting.MarketData
 
                     // update the gmt based one
                     marketResult.AdjustedLastUpdated = ConvertToGmt((DateTime)lastDataPoint.Date, timeZone);
-                    abbr = timeZone.IsDaylightSavingTime(marketResult.AdjustedLastUpdated) ? ShortTimeZoneFormat(timeZone.DaylightName) : ShortTimeZoneFormat(timeZone.StandardName);
-
-                    marketResult.AdjustedLastUpdatedDescripter = string.Concat(
-                        GreenwichMeanTimeBasedDateTimeFormatter.FormatLongDateTime(marketResult.AdjustedLastUpdated.AddHours(utcOffsetHours).AddMinutes(utcOffsetMinutes)),
-                        " ",
-                        abbr);
+                    var temp = (DateTime) marketResult.AdjustedLastUpdated;
+                    marketResult.AdjustedLastUpdatedTimeZoneName = timeZone.IsDaylightSavingTime(temp) ? timeZone.DaylightName : timeZone.StandardName;
+                    marketResult.AdjustedLastUpdatedTimeZoneAbbr = timeZone.IsDaylightSavingTime(temp) ? GenerateAbbreviation(timeZone.DaylightName) : GenerateAbbreviation(timeZone.StandardName);
+                    marketResult.AdjustedLastUpdatedDescripter = GreenwichMeanTimeBasedDateTimeFormatter.FormatLongDateTime(temp.AddHours(utcOffsetHours).AddMinutes(utcOffsetMinutes));
                 }
                 else
                 {
@@ -191,7 +198,7 @@ namespace DowJones.Assemblers.Charting.MarketData
                     marketResult.Cusip = match.Instrument.Cusip;
                     marketResult.Currency = match.Trading.Open.Iso;
                     marketResult.FCode = ( requestId != null && requestId.StartsWith(string.Concat(SymbolDialectType.Factiva.ToString(),":"))) ? requestId.Substring(requestId.IndexOf(":")+1): null;
-                    marketResult.Name = string.Concat(match.Instrument.CommonName, " [", match.Instrument.Exchange.Ticker, "]");
+                    marketResult.Name = match.Instrument.CommonName;
                     marketResult.High = new DoubleNumberStock(match.Trading.High.Value);
                     marketResult.Low = new DoubleNumberStock(match.Trading.Low.Value);
                     marketResult.Open = new DoubleNumberStock(match.Trading.Open.Value);
@@ -208,12 +215,10 @@ namespace DowJones.Assemblers.Charting.MarketData
 
                         // update the gmt based one
                         marketResult.AdjustedLastUpdated = ConvertToGmt((DateTime)match.Trading.Last.Time, timeZone);
-                        abbr = timeZone.IsDaylightSavingTime(marketResult.AdjustedLastUpdated) ? ShortTimeZoneFormat(timeZone.DaylightName) : ShortTimeZoneFormat(timeZone.StandardName);
-                        
-                        marketResult.AdjustedLastUpdatedDescripter = string.Concat(
-                           GreenwichMeanTimeBasedDateTimeFormatter.FormatLongDateTime(marketResult.AdjustedLastUpdated.AddHours(utcOffsetHours).AddMinutes(utcOffsetMinutes)),
-                           " ",
-                           abbr);
+                        var temp = (DateTime) marketResult.AdjustedLastUpdated;
+                        marketResult.AdjustedLastUpdatedTimeZoneName = timeZone.IsDaylightSavingTime(temp) ? timeZone.DaylightName : timeZone.StandardName;
+                        marketResult.AdjustedLastUpdatedTimeZoneAbbr = timeZone.IsDaylightSavingTime(temp) ? GenerateAbbreviation(timeZone.DaylightName) : GenerateAbbreviation(timeZone.StandardName);
+                        marketResult.AdjustedLastUpdatedDescripter = GreenwichMeanTimeBasedDateTimeFormatter.FormatLongDateTime(temp.AddHours(utcOffsetHours).AddMinutes(utcOffsetMinutes));
                     }
                 }
 
@@ -231,25 +236,39 @@ namespace DowJones.Assemblers.Charting.MarketData
 
                 // update the adjusted start date
                 marketResult.AdjustedStart = ConvertToGmt(DateTimeFormatter.ConvertToUtc(marketResult.Start), timeZone);
-                abbr = timeZone.IsDaylightSavingTime(marketResult.AdjustedStart) ? ShortTimeZoneFormat(timeZone.DaylightName) : ShortTimeZoneFormat(timeZone.StandardName);
-                
-                marketResult.AdjustedStartDescripter = string.Concat(
-                     GreenwichMeanTimeBasedDateTimeFormatter.FormatLongDateTime(marketResult.AdjustedStart.AddHours(utcOffsetHours).AddMinutes(utcOffsetMinutes)),
-                     " ",
-                     abbr);
+                marketResult.AdjustedStartUpdatedTimeZoneName = timeZone.IsDaylightSavingTime(marketResult.AdjustedStart) ? timeZone.DaylightName : timeZone.StandardName;
+                marketResult.AdjustedStartUpdatedTimeZoneAbbr = timeZone.IsDaylightSavingTime(marketResult.AdjustedStart) ? GenerateAbbreviation(timeZone.DaylightName) : GenerateAbbreviation(timeZone.StandardName);
+                marketResult.AdjustedStartDescripter = GreenwichMeanTimeBasedDateTimeFormatter.FormatLongDateTime(marketResult.AdjustedStart.AddHours(utcOffsetHours).AddMinutes(utcOffsetMinutes));
 
                 // update the adjusted stop date
                 marketResult.AdjustedStop = ConvertToGmt(DateTimeFormatter.ConvertToUtc(marketResult.Stop), timeZone);
-                marketResult.AdjustedStopDescripter = string.Concat(
-                       GreenwichMeanTimeBasedDateTimeFormatter.FormatLongDateTime(marketResult.AdjustedStop.AddHours(utcOffsetHours).AddMinutes(utcOffsetMinutes)),
-                       " ",
-                       abbr);
+                marketResult.AdjustedStopDescripter = GreenwichMeanTimeBasedDateTimeFormatter.FormatLongDateTime(marketResult.AdjustedStop.AddHours(utcOffsetHours).AddMinutes(utcOffsetMinutes));
 
                 marketResult.Provider = new Provider
                                             {
                                                 Name = Settings.Default.MarketDataProvider,
                                                 ExternalUrl = Settings.Default.MarketDataProviderUrl
                                             };
+
+                if (match != null)
+                {
+                    marketResult.Exchange = new Exchange
+                                                {
+                                                    Code = match.Instrument.Exchange.Ticker,
+                                                    Descriptor = match.Instrument.Exchange.CommonName,
+                                                };
+                    
+                    if (marketResult.AdjustedLastUpdated.HasValue)
+                    {
+                        marketResult.Exchange.TimeZoneDescriptor = timeZone.IsDaylightSavingTime((DateTime)marketResult.AdjustedLastUpdated) ? timeZone.DaylightName : timeZone.StandardName;
+                        marketResult.Exchange.TimeZoneAbbreviation = timeZone.IsDaylightSavingTime((DateTime)marketResult.AdjustedLastUpdated) ? GenerateAbbreviation(timeZone.DaylightName) : GenerateAbbreviation(timeZone.StandardName);
+                    }
+                    else
+                    {
+                        marketResult.Exchange.TimeZoneDescriptor = timeZone.IsDaylightSavingTime(DateTime.Now) ? timeZone.DaylightName : timeZone.StandardName;
+                        marketResult.Exchange.TimeZoneAbbreviation = timeZone.IsDaylightSavingTime(DateTime.Now) ? GenerateAbbreviation(timeZone.DaylightName) : GenerateAbbreviation(timeZone.StandardName);
+                    }
+                }
             }
             return marketResult;
         }
