@@ -70,7 +70,7 @@ DJ.UI.StockKiosk = DJ.UI.Component.extend({
         var self = this;
 
         this.$element.on('mouseover', self.selectors.quotes_ticker, function (event) {          
-            var symbol = $("a", this).data("symbol");    
+            var symbol = $("a", this).attr("data-symbol");   //using attr to alws use it as a string instead of data 
             self.$element.find(self.selectors.quotes_ticker_selected)
                          .removeClass('selected');
             $(this).addClass("selected"); 
@@ -78,7 +78,7 @@ DJ.UI.StockKiosk = DJ.UI.Component.extend({
         });
         
         this.$element.on('click', self.selectors.quotes_symbol , function(event) { 
-            var symbol = $(this).data("symbol");
+            var symbol = $(this).attr("data-symbol");
             self.publish(self.events.tickersymbolClick, {tickersymbol: self.getStockticker(symbol) } ); 
             return false;
             //return(self.getStockticker(code));
