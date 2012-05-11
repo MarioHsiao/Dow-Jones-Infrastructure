@@ -21,7 +21,7 @@ DJ.UI.ArticleControl = DJ.UI.Component.extend({
         eLinkClick: 'eLinkClick.dj.Article',
         headlineLinkClick: 'headlineLinkClick.dj.article',
         smallPictureClick: 'smallPictureClick.dj.article',
-        enlargeImageLinkClick: 'enlargeImageLinkClick.dj.article'
+        enlargeImageLinkClick: 'enlargeImageLinkClick.dj.Article'
     },
 
     selectors: {
@@ -117,7 +117,7 @@ DJ.UI.ArticleControl = DJ.UI.Component.extend({
         });
 
         this.$element.delegate(this.selectors.enlargeImageLink, "click", function (e) {
-            self.publish(self.events.enlargeImageLinkClick, { LargeImgSrc: $(this).data("enlargedImg-href") });
+            self.publish(self.events.enlargeImageLinkClick, { LargeImgSrc: $(this).data("href") });
             return false;
         });
     },

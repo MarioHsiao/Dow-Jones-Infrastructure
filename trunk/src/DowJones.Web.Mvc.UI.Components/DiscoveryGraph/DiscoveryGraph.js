@@ -31,15 +31,6 @@ DJ.UI.DiscoveryGraph = DJ.UI.Component.extend({
         // name: value     // add more defaults here separated by comma
     },
 
-
-    //    selectors: {
-    // 
-    //    },
-
-    //    options: {
-    //     
-    //    },
-
     eventNames: {
         discoveryItemClicked: 'discoveryItemClick.dj.DiscoveryGraph'
     },

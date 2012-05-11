@@ -8,6 +8,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+[assembly: System.Web.UI.WebResourceAttribute("DowJones.Web.Mvc.UI.Components.Autocomplete.js/AutoSuggestComponent.js", "text/javascript")]
+[assembly: System.Web.UI.WebResourceAttribute("DowJones.Web.Mvc.UI.Components.Autocomplete.js/jquery.jsonp-2.1.4.min.js", "text/javascript")]
 [assembly: System.Web.UI.WebResourceAttribute("DowJones.Web.Mvc.UI.Components.Autocomplete.AutoSuggestComponent.js", "text/javascript")]
 [assembly: System.Web.UI.WebResourceAttribute("DowJones.Web.Mvc.UI.Components.Autocomplete.AutoSuggestComponent.css", "text/css")]
 
@@ -23,7 +25,9 @@ namespace DowJones.Web.Mvc.UI.Components.Autocomplete
     using System.Web.UI;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 05/08/2012 05:32 PM
+    // Last Generated Timestamp: 05/08/2012 05:54 PM
+    [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.Autocomplete.js/AutoSuggestComponent.js", ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.Autocomplete.AutoSuggestComponent))]
+    [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.Autocomplete.js/jquery.jsonp-2.1.4.min.js", ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.Autocomplete.AutoSuggestComponent))]
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.Autocomplete.AutoSuggestComponent.js", ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.Autocomplete.AutoSuggestComponent))]
     [DowJones.Web.StylesheetResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.Autocomplete.AutoSuggestComponent.css", ResourceKind=DowJones.Web.ClientResourceKind.Stylesheet, DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.Autocomplete.AutoSuggestComponent))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "0.0.0.30158")]
@@ -43,6 +47,8 @@ namespace DowJones.Web.Mvc.UI.Components.Autocomplete
         }
         public override void ExecuteTemplate()
         {
+
+
 
 
 

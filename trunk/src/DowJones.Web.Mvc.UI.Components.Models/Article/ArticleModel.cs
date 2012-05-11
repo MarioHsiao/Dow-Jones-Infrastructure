@@ -150,7 +150,7 @@ namespace DowJones.Web.Mvc.UI.Components.Models.Article
         public IEnumerable<PostProcessingOptions> PostProcessingOptions { get; set; }
 
         #endregion
-
+        
         /// <summary>
         /// Gets or sets ArticleDataSet.
         /// </summary>

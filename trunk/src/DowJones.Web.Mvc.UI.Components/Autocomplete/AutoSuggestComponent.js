@@ -13,8 +13,6 @@
  *
  */
 
-(function ($) {
-
     DJ.UI.AutoSuggestComponent = DJ.UI.Component.extend({
 
         /*
@@ -28,9 +26,51 @@
             // ,name: value     // add more defaults here separated by comma
         },
 
+        //Events
+        events: {
+            // jQuery events are namespaced as <event>.<namespace>
+            itemSelect: "itemSelect.dj.AutoSuggestComponent",
+            viewAllClick: "viewAllClick.dj.AutoSuggestComponent",
+            viewMorePrivateMarketsClick: "viewMorePrivateMarketsClick.dj.AutoSuggestComponent",
+            infoClick: "infoClick.dj.AutoSuggestComponent",
+            promoteClick: "promoteClick.dj.AutoSuggestComponent",
+            notClick: "notClick.dj.AutoSuggestComponent",
+            discontClick: "discontClick.dj.AutoSuggestComponent"
+        },
+
         // Localization/Templating tokens
         tokens: {
-        // name: value     // add more defaults here separated by comma
+            // name: value     // add more defaults here separated by comma
+            companyTkn: "<%= Token("companyTkn") %>",
+            executiveTkn: "<%= Token("executiveTkn") %>",
+            industryTkn: "<%= Token("industryTkn") %>",
+            sourceTkn: "<%= Token("sourceTkn") %>",
+            keywordTkn: "<%= Token("keywordTkn") %>",
+            privateMarketCompanyHeaderTkn: "<%= Token("privateMarketCompanyHeaderTkn") %>",
+            privateMarketIndustryHeaderTkn: "<%= Token("privateMarketIndustryHeaderTkn") %>",
+            privateMarketRegionHeaderTkn: "<%= Token("privateMarketRegionHeaderTkn") %>",
+            region_allTkn: "<%= Token("region_allTkn") %>",
+            region_countryTkn: "<%= Token("region_countryTkn") %>",
+            region_stateOrProvinceTkn: "<%= Token("region_stateOrProvinceTkn") %>",
+            region_metropolitanAreaTkn: "<%= Token("region_metropolitanAreaTkn") %>",
+            region_subNationalRegionTkn: "<%= Token("region_subNationalRegionTkn") %>",
+            region_supranationalRegionTkn: "<%= Token("region_supranationalRegionTkn") %>",
+            newsSubjectTkn: "<%= Token("newsSubjectTkn") %>",
+            infoTitleTknPre: "<%= Token("infoTitleTknPre") %>",
+            infoTitleTknPost: "<%= Token("infoTitleTknPost") %>",
+            promoteTitleTkn: "<%= Token("promoteTitleTkn") %>",
+            notTitleTkn: "<%= Token("notTitleTkn") %>",
+            sourcefamilyTkn: "<%= Token("sourcefamilyTkn") %>",
+            publicationTkn: "<%= Token("publicationTkn") %>",
+            webpageTkn: "<%= Token("webpageTkn") %>",
+            multimediaTkn: "<%= Token("multimediaTkn") %>",
+            pictureTkn: "<%= Token("pictureTkn") %>",
+            blogTkn: "<%= Token("blogTkn") %>",
+            disContTkn: "<%= Token("disContTkn") %>",
+            viewAllTkn: "<%= Token("viewAllTkn") %>",
+            privateMarketCompanyViewMoreTkn: "<%= Token("privateMarketCompanyViewMoreTkn") %>",
+            privateMarketIndustryViewMoreTkn: "<%= Token("privateMarketIndustryViewMoreTkn") %>",
+            privateMarketRegionViewMoreTkn: "<%= Token("privateMarketRegionViewMoreTkn") %>"
         },
 
 
@@ -75,6 +115,4 @@
 
     // Declare this class as a jQuery plugin
     $.plugin('dj_AutoSuggestComponent', DJ.UI.AutoSuggestComponent);
-
-
-})(jQuery);
+    $dj.debug('Registered DJ.UI.AutoSuggestComponent (extends DJ.UI.Component)');

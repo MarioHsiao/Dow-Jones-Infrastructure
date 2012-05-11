@@ -392,8 +392,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Archive\" />
-    <Folder Include="Autocomplete\images\" />
-    <Folder Include="Autocomplete\js\" />
     <Folder Include="CompanySparkline\js\" />
   </ItemGroup>
   <ItemGroup>
@@ -669,6 +667,18 @@
     <EmbeddedResource Include="Discovery\ClientTemplates\Success.htm" />
     <EmbeddedResource Include="Autocomplete\AutoSuggestComponent.js" />
     <EmbeddedResource Include="Autocomplete\AutoSuggestComponent.css" />
+    <Content Include="Autocomplete\images\acInfo.png" />
+    <Content Include="Autocomplete\images\acNot.png" />
+    <Content Include="Autocomplete\images\acPromote.png" />
+    <Content Include="Autocomplete\images\source_blog.png" />
+    <Content Include="Autocomplete\images\source_discont.png" />
+    <Content Include="Autocomplete\images\source_multimedia.png" />
+    <Content Include="Autocomplete\images\source_picture.png" />
+    <Content Include="Autocomplete\images\source_publication.png" />
+    <Content Include="Autocomplete\images\source_sourceFamily.png" />
+    <Content Include="Autocomplete\images\source_webpage.png" />
+    <Content Include="Autocomplete\js\jquery.autocomplete.js" />
+    <Content Include="Autocomplete\js\jquery.jsonp-2.1.4.min.js" />
     <Content Include="InlineMp3Player\InlineMp3PlayerBehavior.Original.js" />
     <EmbeddedResource Include="Pager\Pager.js" />
     <EmbeddedResource Include="RegionalMap\images\world_map.gif" />
