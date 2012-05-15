@@ -63,10 +63,10 @@ namespace DowJones.Models.Charting.MarketData
         public BasicDataPointCollection DataPoints { get; set; }
 
         [DataMember(Name = "end")]
-        public DateTime End { get; set; }
+        public DateTime? End { get; set; }
 
         [DataMember(Name = "start")]
-        public DateTime Start { get; set; }
+        public DateTime? Start { get; set; }
 
         [DataMember(Name = "startDescripter")]
         public string StartDescripter { get; set; }
