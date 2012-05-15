@@ -16,7 +16,7 @@
                     infoHidden = 'infoHidden';
                 }
                 if(e.Source){
-                    cdesc = e.Source.CommonName || code;
+                    cdesc = e.Source.CommonName || e.Source.Name || code;
                     hC = e.Source.ChildrenTypes;
                 }
                 else{
@@ -47,7 +47,7 @@
                     code1 = escape(code1);
                 }
                 else{
-                    desc = (e.Source) ? (e.Source.CommonName || code1) : code1;
+                    desc = (e.Source) ? (e.Source.CommonName || e.Source.Name || code1) : code1;
                     code1 = code1.toLowerCase();
                     cdesc = cdesc + ": " + desc;
                     attribs += "data-desc1='" + escape(desc) + "' ";
