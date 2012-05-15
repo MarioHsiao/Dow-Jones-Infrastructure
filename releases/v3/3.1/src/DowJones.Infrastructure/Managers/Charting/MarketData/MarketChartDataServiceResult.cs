@@ -31,7 +31,7 @@ namespace DowJones.Managers.Charting.MarketData
         /// <returns>
         /// A dictionary of chart data responses
         /// </returns>
-        private MarketChartDataServicePartResult<MarketChartDataPackage> ProcessChart(string identifier, string symbol, SymbolType symbolType, TimePeriod timePeriod = TimePeriod.OneDay, Frequency frequency = Frequency.FifteenMinutes)
+        private MarketChartDataServicePartResult<MarketChartDataPackage> ProcessSymbol(string identifier, string symbol, SymbolType symbolType, TimePeriod timePeriod = TimePeriod.OneDay, Frequency frequency = Frequency.FifteenMinutes)
         {
             var partResult = new MarketChartDataServicePartResult<MarketChartDataPackage>
                                  {
@@ -89,10 +89,16 @@ namespace DowJones.Managers.Charting.MarketData
                                 var source = response.Values.FirstOrDefault();
                                 partResult.Package = (from kvp in source.Data let session = kvp.Value.Sessions[0] select GetPackage(kvp.Key, kvp.Value.Name, Convert.ToBoolean(kvp.Value.IsIndex), source.BarSize, session, requestId, tempMatch)).FirstOrDefault();
                             }
-                            else
+                            else 
                             {
-                                partResult.ReturnCode = DowJonesUtilitiesException.ThunderballService_EmptyResponse;
-                                partResult.StatusMessage = Resources.GetErrorMessage(partResult.ReturnCode.ToString());
+                                if (tempMatch != null)
+                                {
+                                    partResult.Package = GetPackage(tempMatch.Instrument.Ticker, tempMatch.Instrument.CommonName, false, 0, null, requestId, tempMatch);
+                                }
+                                else {
+                                    partResult.ReturnCode = DowJonesUtilitiesException.ThunderballService_EmptyResponse;
+                                    partResult.StatusMessage = Resources.GetErrorMessage(partResult.ReturnCode.ToString());
+                                }
                             }
                         });
             }
@@ -141,13 +147,13 @@ namespace DowJones.Managers.Charting.MarketData
             var index = 0;
             if (symbols.Count() == 1)
             {
-                return new List<MarketChartDataServicePartResult<MarketChartDataPackage>> { ProcessChart(index.ToString() , symbols.First(), symbolType, timePeriod, frequency) };
+                return new List<MarketChartDataServicePartResult<MarketChartDataPackage>> { ProcessSymbol(index.ToString() , symbols.First(), symbolType, timePeriod, frequency) };
             }
 
             var tasks = (from symbol in symbols
                          let identifier = Interlocked.Increment(ref index).ToString()
                          select TaskFactory.StartNew(
-                             () => ProcessChart(identifier, symbol, symbolType, timePeriod, frequency), TaskCreationOptions.None)).ToList();
+                             () => ProcessSymbol(identifier, symbol, symbolType, timePeriod, frequency), TaskCreationOptions.None)).ToList();
 
             Task.WaitAll(tasks.ToArray());
             var orderedTasks = tasks.OrderBy(task => Int32.Parse(task.Result.Identifier));

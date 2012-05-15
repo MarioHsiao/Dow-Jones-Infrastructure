@@ -11,6 +11,12 @@ namespace DowJones.Models.Company
         [DataMember(Name = "descriptor")]
         public string Descriptor { get; set; }
 
+        [DataMember(Name = "timeZoneDescriptor")]
+        public string TimeZoneDescriptor { get; set; }
+
+        [DataMember(Name = "timeZoneAbbreviation")]
+        public string TimeZoneAbbreviation{ get; set; }
+
         [DataMember(Name = "isPrimary")]
         public bool IsPrimary { get; set; }
     }

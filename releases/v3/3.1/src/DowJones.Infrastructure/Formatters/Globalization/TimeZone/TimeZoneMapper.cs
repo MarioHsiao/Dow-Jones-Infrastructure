@@ -45,6 +45,7 @@ namespace DowJones.Formatters.Globalization.TimeZone
                     continue;
 
                 Log.Info("Standard: " + zone.StandardName + ", Code:" + zone.Code);
+
                 _timeZoneCodeDictionary.Add(zone.Code, zone);
                 _timeZoneItemList.Add(zone);
                 _timeZoneStandardNameDictionary.Add(zone.StandardName, zone.Code);
@@ -124,7 +125,7 @@ namespace DowJones.Formatters.Globalization.TimeZone
                 {
                     if (string.IsNullOrEmpty(resourceData) || string.IsNullOrEmpty(resourceData.Trim()))
                     {
-                        using (Stream stream = GetType().Assembly.GetManifestResourceStream(GetType(), resourceName))
+                        using (var stream = GetType().Assembly.GetManifestResourceStream(GetType(), resourceName))
                         {
                             if (stream != null)
                             {

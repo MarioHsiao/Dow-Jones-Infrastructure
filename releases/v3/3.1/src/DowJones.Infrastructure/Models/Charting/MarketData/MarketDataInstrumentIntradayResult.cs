@@ -63,10 +63,10 @@ namespace DowJones.Models.Charting.MarketData
         public BasicDataPointCollection DataPoints { get; set; }
 
         [DataMember(Name = "end")]
-        public DateTime End { get; set; }
+        public DateTime? End { get; set; }
 
         [DataMember(Name = "start")]
-        public DateTime Start { get; set; }
+        public DateTime? Start { get; set; }
 
         [DataMember(Name = "startDescripter")]
         public string StartDescripter { get; set; }
@@ -83,6 +83,12 @@ namespace DowJones.Models.Charting.MarketData
         [DataMember(Name = "adjustedStartDescripter")]
         public string AdjustedStartDescripter { get; set; }
 
+        [DataMember(Name = "adjustedStartUpdatedTimeZoneName")]
+        public string AdjustedStartUpdatedTimeZoneName { get; set; }
+
+        [DataMember(Name = "adjustedStartUpdatedTimeZoneAbbr")]
+        public string AdjustedStartUpdatedTimeZoneAbbr { get; set; }
+
         [DataMember(Name = "adjustedStop")]
         public DateTime AdjustedStop { get; set; }
 
@@ -96,7 +102,13 @@ namespace DowJones.Models.Charting.MarketData
         public string LastUpdatedDescripter { get; set; }
 
         [DataMember(Name = "adjustedLastUpdated")]
-        public DateTime AdjustedLastUpdated { get; set; }
+        public DateTime? AdjustedLastUpdated { get; set; }
+
+        [DataMember(Name = "adjustedLastUpdatedTimeZoneName")]
+        public string AdjustedLastUpdatedTimeZoneName { get; set; }
+
+        [DataMember(Name = "AdjustedLastUpdatedTimeZoneAbbr")]
+        public string AdjustedLastUpdatedTimeZoneAbbr { get; set; }
 
         [DataMember(Name = "adjustedLastUpdatedDescripter")]
         public string AdjustedLastUpdatedDescripter { get; set; }
@@ -109,6 +121,9 @@ namespace DowJones.Models.Charting.MarketData
 
         [DataMember(Name = "provider")]
         public Provider Provider { get; set; }
+
+        [DataMember(Name = "exchange")]
+        public Exchange Exchange { get; set; }
     }
 }
 

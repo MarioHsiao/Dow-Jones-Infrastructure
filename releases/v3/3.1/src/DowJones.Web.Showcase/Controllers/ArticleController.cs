@@ -95,7 +95,7 @@ namespace DowJones.Web.Showcase.Controllers
                                                 PostProcessingOptions.Listen,
                                                 PostProcessingOptions.Translate,
                                                 PostProcessingOptions.Share,
-                                            }.Distinct(),
+                                            }.Distinct()
             };
 
             return Request.IsAjaxRequest() ? ViewComponent(model, callback) : View("Index", model);
@@ -129,7 +129,7 @@ namespace DowJones.Web.Showcase.Controllers
                 ShowSocialButtons = false,
                 ShowTranslator = false,
                 ShowSourceLinks = true, 
-                ShowAuthorLinks = true,
+                ShowAuthorLinks = true
             };
 
             return ViewComponent( articlesModel );

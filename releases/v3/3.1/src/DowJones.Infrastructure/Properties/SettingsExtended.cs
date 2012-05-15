@@ -285,7 +285,7 @@ namespace DowJones.Properties
         }
 
         [ApplicationScopedSetting, DebuggerNonUserCode, SettingsSerializeAs(SettingsSerializeAs.String)]
-        [DefaultSettingValue("http://www.marketwatch.com/mediarss/wsj/allmedia.asp?type=guid&amp;query=")]
+        [DefaultSettingValue("http://www.marketwatch.com/mediarss/wsj/allmedia.asp?type=guid&query=")]
         public string MarketWatchUri
         {
             get { return (string)this["MarketWatchUri"]; }
