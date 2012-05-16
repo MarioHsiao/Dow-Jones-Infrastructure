@@ -54,7 +54,6 @@ DJ.UI.StockKiosk = DJ.UI.Component.extend({
             tickersymbolClick: "tickersymbolClick.dj.StockKiosk"   
         }, 
 
-    chart: null,
 
     /*
     * Initialization (constructor)
@@ -62,7 +61,7 @@ DJ.UI.StockKiosk = DJ.UI.Component.extend({
     init: function (element, meta) {
         var $meta = $.extend({ name: "StockKiosk" }, meta);
         this._super(element, $meta);
-
+        this.chart = null;
         this.setData(this.data);      
     },
 
