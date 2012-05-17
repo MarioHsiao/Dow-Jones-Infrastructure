@@ -492,6 +492,7 @@
                 case this.filterDetails[this.filterType.Language].name: break;
                 case this.filterDetails[this.filterType.Subject].name:
                 case this.filterDetails[this.filterType.Industry].name:
+                case this.filterDetails[this.filterType.Region].name:
                     scLC.setActiveTab(1); //Browse tab
                     break;
                 default:
