@@ -431,14 +431,9 @@ DJ.UI.StockKiosk = DJ.UI.Component.extend({
                 return;
             }
 
-            if (this.chart) {
-                this.chart.series[0].setData(graphDataModel.objStockSeries);
-            }
-            else {
-                var seriesOptions = self.getSeriesOptions(graphDataModel);
-                chartOptions = self.baseChartOptions(chartContainer[0], seriesOptions);
-                this.chart = new Highcharts.Chart(chartOptions);
-            }
+            var seriesOptions = self.getSeriesOptions(graphDataModel);
+            chartOptions = self.baseChartOptions(chartContainer[0], seriesOptions);
+            this.chart = new Highcharts.Chart(chartOptions);        
         }
         catch (e) {
             $dj.debug(e.message);
