@@ -18,6 +18,7 @@ namespace DowJones.Managers.Alert
 {
     public interface IAlertSearchService : ISearchService
     {
+        SearchResponse PerformSearch(AbstractBaseSearchQuery request, bool useSearchCollection);
     }
 
     /// <summary>
@@ -40,7 +41,7 @@ namespace DowJones.Managers.Alert
 
         #region IAlertSearchService Members
 
-        public SearchResponse PerformSearch(AbstractBaseSearchQuery request)
+        public SearchResponse PerformSearch(AbstractBaseSearchQuery request, bool useSearchCollection)
         {
             var alertSearchQuery = request as AlertSearchQuery;
 
@@ -53,7 +54,7 @@ namespace DowJones.Managers.Alert
             if (alertSearchQuery.IsValid())
             {
                 var baseSearchRequest = _queryBuilder.GetRequest<PerformContentSearchRequest>(request);
-                GetFolderHeadlines2Request alertHeadlineRequest = BuildAlertHeadlineRequest(baseSearchRequest, alertSearchQuery);
+                GetFolderHeadlines2Request alertHeadlineRequest = BuildAlertHeadlineRequest(baseSearchRequest, alertSearchQuery, useSearchCollection);
                 response = GetResponse(alertHeadlineRequest, alertSearchQuery);
             }
             return response;
@@ -61,7 +62,7 @@ namespace DowJones.Managers.Alert
 
         #endregion
 
-        private static GetFolderHeadlines2Request BuildAlertHeadlineRequest(PerformContentSearchRequest contentSearchRequest, AlertSearchQuery alertSearchQuery)
+        private static GetFolderHeadlines2Request BuildAlertHeadlineRequest(PerformContentSearchRequest contentSearchRequest, AlertSearchQuery alertSearchQuery, bool useSearchCollection)
         {
             var headlinesRequest = new GetFolderHeadlines2Request {
                 folderID = alertSearchQuery.AlertId, 
@@ -97,7 +98,11 @@ namespace DowJones.Managers.Alert
             }
 
             contentSearchRequest.NavigationControl.ReturnHeadlineCoding = true;
-            headlinesRequest.searchQuery.StructuredSearch.Query.SearchCollectionCollection.AddRange(Enum.GetValues(typeof(SearchCollection)).Cast<SearchCollection>()); 
+
+            if (useSearchCollection)
+            {
+                headlinesRequest.searchQuery.StructuredSearch.Query.SearchCollectionCollection.AddRange(Enum.GetValues(typeof(SearchCollection)).Cast<SearchCollection>());
+            }
 
             return headlinesRequest;
         }
@@ -190,5 +195,11 @@ namespace DowJones.Managers.Alert
                            
                        };
         }
+
+        public SearchResponse PerformSearch(AbstractBaseSearchQuery request)
+        {
+            return PerformSearch(request, true);
+        }
+
     }
 }
