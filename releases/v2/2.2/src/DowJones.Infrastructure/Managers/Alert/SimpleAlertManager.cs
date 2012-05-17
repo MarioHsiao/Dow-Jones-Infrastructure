@@ -260,7 +260,11 @@ namespace DowJones.Managers.Alert
 
             //Source browser cleanup - Always create alert for all valid categories.
             query.SearchStringCollection.AddRange(SearchUtility.BuildSourceSearchStringCollection(ssgpItem, true));
-            query.SearchCollectionCollection = new SearchCollectionCollection { SearchCollection.Publications, SearchCollection.WebSites };
+            query.SearchCollectionCollection = new SearchCollectionCollection { 
+                                                                                SearchCollection.Publications, 
+                                                                                SearchCollection.WebSites, 
+                                                                                SearchCollection.Blogs
+                                                                            };
             //Source browser cleanup - Always create alert for all valid categories.
 
             if (preferences.ContentLanguages != null && preferences.ContentLanguages.Count > 0)
