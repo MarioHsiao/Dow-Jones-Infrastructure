@@ -36,7 +36,7 @@ namespace DowJones.Web.Mvc.UI.Components.SearchBuilder
     using DowJones.Web.Mvc.UI.Components.SearchNewsFilter;
     using System.Web.Mvc;
     
-    // Last Generated Timestamp: 04/27/2012 02:44 PM
+    // Last Generated Timestamp: 05/18/2012 12:18 PM
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.SearchBuilder.ClientTemplates.categoryOptions.htm", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="categoryOptions", DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.SearchBuilder.SearchBuilder))]
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.SearchBuilder.ClientTemplates.filterOptions.htm", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="filterOptions", DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.SearchBuilder.SearchBuilder))]
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.SearchBuilder.ClientTemplates.modalDialog.htm", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="modalDialog", DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.SearchBuilder.SearchBuilder))]
@@ -271,7 +271,7 @@ WriteLiteral("</label>\r\n                </div>\r\n            </div>\r\n");
         }
 
 WriteLiteral("    </div>\r\n</div>\r\n<div class=\"dj_filters-wrap\">\r\n    <div class=\"dj_search-buil" +
-"der_filters-header clearfix\">\r\n\t    <h3>");
+"der_filters-header\">\r\n\t    <h3>");
 
 
     Write(DJ.Token("filters"));
