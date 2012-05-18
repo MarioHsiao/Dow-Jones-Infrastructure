@@ -1,0 +1,8 @@
+﻿@model DowJones.Web.Mvc.UI.Components.AutoSuggest.AutoSuggestModel
+@{
+    ViewBag.Title = "AutoSuggest";
+}
+
+<h2>
+    Keyword</h2>
+@Html.DJ().Render(Model, new { id = "djKeywordSuggest" })

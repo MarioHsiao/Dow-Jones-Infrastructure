@@ -95,6 +95,13 @@
 
             // TODO: Add custom initialization code like the following:
             // this._testButton = $('.testButton', element).get(0);
+            var testSettings = {
+                            url: this.options.suggestServiceUrl,
+                            controlId: element.id,
+                            autocompletionType: this.options.autocompletionType,                           
+                            useSessionId: DJ.config.credentials.sessionId
+                        }
+            this.initialize(testSettings);
         },
         
         /*
@@ -376,7 +383,6 @@
                 }
 
                 if (isUrlGenerated === true) {
-                    djV3.web.widgets.autocomplete.prototype.suggestContextObj.callInitiated = true;
                     //Call the transaction and get the authentication token
                     $.jsonp({
                         url: authenticationUrl,
@@ -388,15 +394,8 @@
                                 }
                             }
                             else {
-                                var settingsArrObj = self.prototypeObj.settingsArrObj;
-                                if (settingsArrObj.length > 0) {
-                                    $.each(settingsArrObj, function(idx, settings) {
-                                        //Get the Key and process the request
-                                        settings.suggestContext = URLDecode(data.key);
-                                        self.prototypeObj.suggestContextObj.authToken = data.key;
-                                        self._processRequest.call(djV3.web.widgets, settings);
-                                    });
-                                }
+                                 settings.suggestContext =self._URLDecode(data.key);
+                                 self._processRequest.call(self, settings);  
                             }
                         }
                     });
@@ -421,7 +420,7 @@
         _processCategories : function (data, settings, rows) {
             data = data.category;
             var getValueByAutoSuggestType = this._getValueByAutoSuggestType();
-            var getNameByAutoSuggestType = getNameByAutoSuggestType();
+            var getNameByAutoSuggestType = this._getNameByAutoSuggestType();
             for (var dtCat = 0; dtCat < data.length; dtCat++) {
                 var catArr = settings.options.categories.split("|");
                 var acName = getNameByAutoSuggestType[catArr[dtCat].toLowerCase()];
@@ -475,7 +474,7 @@
         //Function to get parsed rows
         _getParsedRows : function (autoCompletionType, data, rows, settings) {
             var getValueByAutoSuggestType = this._getValueByAutoSuggestType();
-            var getNameByAutoSuggestType = getNameByAutoSuggestType();
+            var getNameByAutoSuggestType = this._getNameByAutoSuggestType();
             switch (autoCompletionType.toLowerCase()) {
                 case "categories":
                     this._processCategories(data, settings, rows);
@@ -516,11 +515,11 @@
         _processRequest: function (settings) {
             var self = this;
             //Set Default CSS Classes
-            SetCssDefaults(settings);            
+           self._SetCssDefaults(settings);            
             $("#" + settings.controlId)._djAutocomplete(settings.url + "/" + settings.autocompletionType + "", {
                 dataType: 'jsonp',
                 parse: function(data) {
-                    this.globalSettingsObj = settings;
+                    self.globalSettingsObj = settings;
                     if (data.error != undefined) {
                         if ($.isFunction(settings.onError)) {
                             settings.onError(data.error);
@@ -536,7 +535,7 @@
                         return self._getFormattedItem(settings.autocompletionType, settings, row);
                     }
                 },
-                extraParams: SetExtraParams(settings),
+                extraParams: self._setExtraParams(settings),
                 resultsClass: settings.resultsClass,
                 resultsEvenClass: settings.resultsEvenClass,
                 resultsOddClass: settings.resultsOddClass,
@@ -554,7 +553,7 @@
             //OnItemSelect EventHandler
             if ($.isFunction(settings.onItemSelect)) {
                 $("#" + settings.controlId)._djResult(function(e) {
-                    this.globalSettingsObj.onItemSelect(arguments[1]);
+                    self.globalSettingsObj.onItemSelect(arguments[1]);
                     e.stopPropagation();
                     return false;
                 });
@@ -564,10 +563,10 @@
             if ($.isFunction(settings.onViewAllClick)) {
                 $("#" + settings.controlId)._djViewAll(function(e) {
                     if (arguments[1]) {
-                        arguments[1].autocompletionType = this.globalSettingsObj.autocompletionType;
-                        arguments[1].options = this.globalSettingsObj.options;
+                        arguments[1].autocompletionType = self.globalSettingsObj.autocompletionType;
+                        arguments[1].options = self.globalSettingsObj.options;
                     }
-                    this.globalSettingsObj.onViewAllClick(arguments[1]);
+                    self.globalSettingsObj.onViewAllClick(arguments[1]);
                     e.stopPropagation();
                     return false;
                 });
@@ -578,15 +577,15 @@
                 if (this.prototypeObj.events["viewMorePrivateMarketsEventRegistered "] === false) {
                     $('a.ac_viewMore').live('click', function(e) {
                         var parentTrTag = $(this).closest("tr").get(0);
-                        var parentContainerDiv = $(this).closest("div." + this.globalSettingsObj.resultsClass).get(0);
+                        var parentContainerDiv = $(this).closest("div." + self.globalSettingsObj.resultsClass).get(0);
                         var data = $(parentTrTag).data("ac_cat_data");
-                        $('#' + this.globalSettingsObj.controlId).focus();
-                        this.globalSettingsObj.onViewMorePrivateMarketsClick(data);
+                        $('#' + self.globalSettingsObj.controlId).focus();
+                        self.globalSettingsObj.onViewMorePrivateMarketsClick(data);
                         $(parentContainerDiv).show();
                         e.stopPropagation();
                         return false;
                     });
-                    this.prototypeObj.events["viewMorePrivateMarketsEventRegistered "] = true;
+                    self.prototypeObj.events["viewMorePrivateMarketsEventRegistered "] = true;
                 }
             }
 
@@ -595,15 +594,15 @@
                 if (this.prototypeObj.events["infoEventRegistered "] === false) {
                     $('a.ac_info').live('click', function(e) {
                         var parentTrTag = $(this).closest("tr").get(0);
-                        var parentContainerDiv = $(this).closest("div." + this.globalSettingsObj.resultsClass).get(0);
+                        var parentContainerDiv = $(this).closest("div." + self.globalSettingsObj.resultsClass).get(0);
                         var data = $(parentTrTag).data("ac_data").data;
-                        $('#' + this.globalSettingsObj.controlId).focus();
-                        this.globalSettingsObj.onInfoClick(data);
+                        $('#' + self.globalSettingsObj.controlId).focus();
+                        self.globalSettingsObj.onInfoClick(data);
                         $(parentContainerDiv).show();
                         e.stopPropagation();
                         return false;
                     });
-                    this.prototypeObj.events["infoEventRegistered "] = true;
+                    self.prototypeObj.events["infoEventRegistered "] = true;
                 }
             }
 
@@ -612,15 +611,15 @@
                 if (this.prototypeObj.events["promoteEventRegistered "] === false) {
                     $('a.ac_promote').live('click', function(e) {
                         var parentTrTag = $(this).closest("tr").get(0);
-                        var parentContainerDiv = $(this).closest("div." + this.globalSettingsObj.resultsClass).get(0);
+                        var parentContainerDiv = $(this).closest("div." + self.globalSettingsObj.resultsClass).get(0);
                         var data = $(parentTrTag).data("ac_data").data;
-                        $('#' + this.globalSettingsObj.controlId).focus();
-                        this.globalSettingsObj.onPromoteClick(data);
+                        $('#' + self.globalSettingsObj.controlId).focus();
+                        self.globalSettingsObj.onPromoteClick(data);
                         $(parentContainerDiv).show();
                         e.stopPropagation();
                         return false;
                     });
-                    this.prototypeObj.events["promoteEventRegistered "] = true;
+                    self.prototypeObj.events["promoteEventRegistered "] = true;
                 }
             }
 
@@ -629,15 +628,15 @@
                 if (this.prototypeObj.events["notEventRegistered "] === false) {
                     $('a.ac_not').live('click', function(e) {
                         var parentTrTag = $(this).closest("tr").get(0);
-                        var parentContainerDiv = $(this).closest("div." + this.globalSettingsObj.resultsClass).get(0);
+                        var parentContainerDiv = $(this).closest("div." + self.globalSettingsObj.resultsClass).get(0);
                         var data = $(parentTrTag).data("ac_data").data;
-                        $('#' + this.globalSettingsObj.controlId).focus();
-                        this.globalSettingsObj.onNotClick(data);
+                        $('#' + self.globalSettingsObj.controlId).focus();
+                        self.globalSettingsObj.onNotClick(data);
                         $(parentContainerDiv).show();
                         e.stopPropagation();
                         return false;
                     });
-                    this.prototypeObj.events["notEventRegistered "] = true;
+                    self.prototypeObj.events["notEventRegistered "] = true;
                 }
             }
 
@@ -646,15 +645,15 @@
                 if (this.prototypeObj.events["discontEventRegistered "] === false) {
                     $('a.ac_discont').live('click', function(e) {
                         var parentTrTag = $(this).closest("tr").get(0);
-                        var parentContainerDiv = $(this).closest("div." + this.globalSettingsObj.resultsClass).get(0);
+                        var parentContainerDiv = $(this).closest("div." + self.globalSettingsObj.resultsClass).get(0);
                         var data = $(parentTrTag).data("ac_data").data;
-                        $('#' + this.globalSettingsObj.controlId).focus();
-                        this.globalSettingsObj.onDiscontClick(data);
+                        $('#' + self.globalSettingsObj.controlId).focus();
+                        self.globalSettingsObj.onDiscontClick(data);
                         $(parentContainerDiv).show();
                         e.stopPropagation();
                         return false;
                     });
-                    this.prototypeObj.events["discontEventRegistered "] = true;
+                    self.prototypeObj.events["discontEventRegistered "] = true;
                 }
             }
         },
