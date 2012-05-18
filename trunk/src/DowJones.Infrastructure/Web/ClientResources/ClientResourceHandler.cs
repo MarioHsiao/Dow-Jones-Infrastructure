@@ -176,14 +176,14 @@ namespace DowJones.Web
             Guard.IsNotNull(context, "context");
             Guard.IsNotNull(cachedItems, "cachedItems");
 
-            ContentCacheItem cachedItem = cachedItems.First();
+            var cachedItem = cachedItems.First();
 
             context.Response.ContentType = cachedItem.ContentType;
             context.Response.ContentEncoding = contentEncoding;
 
             if (IsClientCachingEnabled(context))
             {
-                DateTime expirationDate = DateTime.Now.AddYears(1);
+                var expirationDate = DateTime.Now.AddYears(1);
                 context.Response.Cache.SetExpires(expirationDate);
                 context.Response.Cache.SetLastModified(AssemblyTimestamp);
                 context.Response.Cache.SetMaxAge(new TimeSpan(expirationDate.ToFileTimeUtc()));
