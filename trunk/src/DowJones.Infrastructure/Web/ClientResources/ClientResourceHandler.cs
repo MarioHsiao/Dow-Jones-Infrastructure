@@ -9,7 +9,6 @@ using System.Text;
 using System.Threading;
 using System.Web;
 using DowJones.DependencyInjection;
-using DowJones.Exceptions;
 using DowJones.Extensions;
 using DowJones.Extensions.Web;
 using DowJones.Globalization;
@@ -34,11 +33,10 @@ namespace DowJones.Web
         public static Func<HttpContextBase, bool> IsClientCachingEnabled =
             context => !context.DebugEnabled();
 
-        public static Func<string> CacheTokenFactory =
-            () => _cachingToken.Value;
+        public static Func<string> CacheTokenFactory = () => _cachingToken.Value;
 
-        private static Lazy<string> _cachingToken = new Lazy<string>(GetCachingToken);
-        private static Lazy<DateTime> _assemblyTimestamp = new Lazy<DateTime>(GetAssemblyTimestamp);
+        private static readonly Lazy<string> _cachingToken = new Lazy<string>(GetCachingToken);
+        private static readonly Lazy<DateTime> _assemblyTimestamp = new Lazy<DateTime>(GetAssemblyTimestamp);
 
         protected DateTime AssemblyTimestamp
         {
@@ -78,7 +76,7 @@ namespace DowJones.Web
             {
                 if (resourceId.StartsWith("http", true, culture))
                     return resourceId;
-                else if (resourceId.StartsWith("~/"))
+                if (resourceId.StartsWith("~/"))
                     return VirtualPathUtility.ToAbsolute(resourceId);
             }
 
@@ -121,22 +119,20 @@ namespace DowJones.Web
         {
             var culture = SetRequestLanguage(context.Request[LanguageKey]);
 
-            string resourceId = context.Request[ClientResourceIDKey];
+            var resourceId = context.Request[ClientResourceIDKey];
 
             if (string.IsNullOrWhiteSpace(resourceId))
             {
                 // Check for a require.js request in the form of: /[ResourceId].js
-                string requireResourceId = context.Request[RequireModuleKey];
+                var requireResourceId = context.Request[RequireModuleKey];
 
                 if (string.IsNullOrWhiteSpace(requireResourceId))
                 {
                     throw new HttpException(400, "Invalid Client Resource");
                 }
-                else
-                {
-                    // Chop off the beginning / and trailing .js
-                    resourceId = requireResourceId.Substring(1, requireResourceId.Length - 4);
-                }
+
+                // Chop off the beginning / and trailing .js
+                resourceId = requireResourceId.Substring(1, requireResourceId.Length - 4);
             }
 
             if (ResourceHasNotBeenModified(context))
@@ -191,7 +187,7 @@ namespace DowJones.Web
                 context.Response.Cache.SetExpires(expirationDate);
                 context.Response.Cache.SetLastModified(AssemblyTimestamp);
                 context.Response.Cache.SetMaxAge(new TimeSpan(expirationDate.ToFileTimeUtc()));
-                context.Response.Cache.SetCacheability(HttpCacheability.Public);
+                context.Response.Cache.SetCacheability(HttpCacheability.Private); // dacostad changed from public to not allow proxy servers to cache.
             }
 
             foreach (var cacheItem in cachedItems)
@@ -207,7 +203,7 @@ namespace DowJones.Web
             if (!IsClientCachingEnabled(context))
                 return false;
 
-            bool isModified = false;
+            var isModified = false;
             var ifModifiedSinceHeader = context.Request.Headers["If-Modified-Since"];
             DateTime ifModifiedSince;
             if (
@@ -317,7 +313,7 @@ namespace DowJones.Web
 
         protected virtual CultureInfo SetRequestLanguage(string language)
         {
-            CultureInfo culture = CultureManager.GetCultureInfoFromInterfaceLanguage(language);
+            var culture = CultureManager.GetCultureInfoFromInterfaceLanguage(language);
             Thread.CurrentThread.CurrentCulture = culture;
             Thread.CurrentThread.CurrentUICulture = culture;
             return culture;
@@ -325,10 +321,7 @@ namespace DowJones.Web
 
         private static DateTime GetAssemblyTimestamp()
         {
-            var writeTime = File.GetLastWriteTime(Assembly.GetCallingAssembly().Location);
-            var timestampTicks = writeTime.GetDay().Ticks;
-
-            return new DateTime(timestampTicks);
+            return File.GetLastWriteTimeUtc(Assembly.GetCallingAssembly().Location);
         }
 
         private static string GetCachingToken()
