@@ -18,7 +18,6 @@ namespace DowJones.Managers.Alert
 {
     public interface IAlertSearchService : ISearchService
     {
-        SearchResponse PerformSearch(AbstractBaseSearchQuery request, bool useSearchCollection);
     }
 
     /// <summary>
@@ -41,7 +40,7 @@ namespace DowJones.Managers.Alert
 
         #region IAlertSearchService Members
 
-        public SearchResponse PerformSearch(AbstractBaseSearchQuery request, bool useSearchCollection)
+        public SearchResponse PerformSearch(AbstractBaseSearchQuery request)
         {
             var alertSearchQuery = request as AlertSearchQuery;
 
@@ -54,7 +53,7 @@ namespace DowJones.Managers.Alert
             if (alertSearchQuery.IsValid())
             {
                 var baseSearchRequest = _queryBuilder.GetRequest<PerformContentSearchRequest>(request);
-                GetFolderHeadlines2Request alertHeadlineRequest = BuildAlertHeadlineRequest(baseSearchRequest, alertSearchQuery, useSearchCollection);
+                GetFolderHeadlines2Request alertHeadlineRequest = BuildAlertHeadlineRequest(baseSearchRequest, alertSearchQuery);
                 response = GetResponse(alertHeadlineRequest, alertSearchQuery);
             }
             return response;
@@ -62,15 +61,16 @@ namespace DowJones.Managers.Alert
 
         #endregion
 
-        private static GetFolderHeadlines2Request BuildAlertHeadlineRequest(PerformContentSearchRequest contentSearchRequest, AlertSearchQuery alertSearchQuery, bool useSearchCollection)
+        private static GetFolderHeadlines2Request BuildAlertHeadlineRequest(PerformContentSearchRequest contentSearchRequest, AlertSearchQuery alertSearchQuery)
         {
-            var headlinesRequest = new GetFolderHeadlines2Request {
-                folderID = alertSearchQuery.AlertId, 
-                responseFormat = FolderHeadlineResponseFormat.Search20, 
+            var headlinesRequest = new GetFolderHeadlines2Request
+            {
+                folderID = alertSearchQuery.AlertId,
+                responseFormat = FolderHeadlineResponseFormat.Search20,
                 viewType = MapViewType(alertSearchQuery.ViewType),
-                bookMark = alertSearchQuery.Bookmark, 
-                sessionMark = alertSearchQuery.Sessionmark, 
-                bResetSessionMark = alertSearchQuery.ResetSessionmark, 
+                bookMark = alertSearchQuery.Bookmark,
+                sessionMark = alertSearchQuery.Sessionmark,
+                bResetSessionMark = alertSearchQuery.ResetSessionmark,
                 searchQuery = contentSearchRequest
             };
 
@@ -93,16 +93,12 @@ namespace DowJones.Managers.Alert
             SearchString searchString;
             if (!String.IsNullOrEmpty(alertSearchQuery.Keywords))
             {
-                searchString = new SearchString {Id = "FreeText", Type = SearchType.Free, Value = alertSearchQuery.Keywords, Mode = SearchMode.Simple};
+                searchString = new SearchString { Id = "FreeText", Type = SearchType.Free, Value = alertSearchQuery.Keywords, Mode = SearchMode.Simple };
                 contentSearchRequest.StructuredSearch.Query.SearchStringCollection.Add(searchString);
             }
 
             contentSearchRequest.NavigationControl.ReturnHeadlineCoding = true;
-
-            if (useSearchCollection)
-            {
-                headlinesRequest.searchQuery.StructuredSearch.Query.SearchCollectionCollection.AddRange(Enum.GetValues(typeof(SearchCollection)).Cast<SearchCollection>());
-            }
+            //headlinesRequest.searchQuery.StructuredSearch.Query.SearchCollectionCollection.AddRange(Enum.GetValues(typeof(SearchCollection)).Cast<SearchCollection>());
 
             return headlinesRequest;
         }
@@ -150,7 +146,7 @@ namespace DowJones.Managers.Alert
                 return null;
             }
 
-            if (r.folderHeadlinesResponse.folderHeadlinesResult.folder[0].status !=  0)
+            if (r.folderHeadlinesResponse.folderHeadlinesResult.folder[0].status != 0)
             {
                 throw new DowJonesUtilitiesException(r.folderHeadlinesResponse.folderHeadlinesResult.folder[0].status);
             }
@@ -162,44 +158,38 @@ namespace DowJones.Managers.Alert
             {
                 d.ContentSearchResult.CanonicalQueryString = r.folderHeadlinesResponse.folderHeadlinesResult.folder[0].highlightString;
             }
-            
+
             var contentSearchResponse = new PerformContentSearchResponse
-                                            {
-                                                ContentSearchResult = d.ContentSearchResult
-                                            };
+            {
+                ContentSearchResult = d.ContentSearchResult
+            };
 
 
             var histogram = Mapper.Map<Histogram>(contentSearchResponse.ContentSearchResult);
 
             var results = Mapper.Map<HeadlineListDataResult>(contentSearchResponse);
-            var secondarySourceGroup = searchQuery.Filters.Source.Where(each=> each.SourceType == SourceFilterType.ProductDefineCode).FirstOrDefault();
+            var secondarySourceGroup = searchQuery.Filters.Source.Where(each => each.SourceType == SourceFilterType.ProductDefineCode).FirstOrDefault();
             if (secondarySourceGroup != null)
             {
                 searchQuery.SecondarySourceGroupId = secondarySourceGroup.SourceCode;
             }
             var navigators =
                 Mapper.Map<ResultNavigator>(new ProductContentSearchResult(searchQuery.ProductId,
-                                                                           searchQuery.PrimarySourceGroupId, searchQuery.SecondarySourceGroupId) {ContentSearchResult = contentSearchResponse.ContentSearchResult});
+                                                                           searchQuery.PrimarySourceGroupId, searchQuery.SecondarySourceGroupId) { ContentSearchResult = contentSearchResponse.ContentSearchResult });
 
             ContentSearchResult searchResult = contentSearchResponse.ContentSearchResult;
-          
+
             return new SearchResponse
-                       {
-                           ContextId = searchResult.SearchContext,
-                           Navigators = navigators,
-                           Response = contentSearchResponse,
-                           Results = results,
-                           Query =  searchQuery,
-                           AlertInfo = r.folderHeadlinesResponse.folderHeadlinesResult.folder[0],
-                           Histogram =  histogram
-                           
-                       };
-        }
+            {
+                ContextId = searchResult.SearchContext,
+                Navigators = navigators,
+                Response = contentSearchResponse,
+                Results = results,
+                Query = searchQuery,
+                AlertInfo = r.folderHeadlinesResponse.folderHeadlinesResult.folder[0],
+                Histogram = histogram
 
-        public SearchResponse PerformSearch(AbstractBaseSearchQuery request)
-        {
-            return PerformSearch(request, true);
+            };
         }
-
     }
 }
