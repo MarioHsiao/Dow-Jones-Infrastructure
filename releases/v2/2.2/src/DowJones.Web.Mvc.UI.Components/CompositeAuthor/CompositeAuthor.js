@@ -399,7 +399,7 @@
 				this.$actionsMenu.find(self.constants.printMenuItem).parent().addClass("disabled");
 				this.$actionsMenu.find(self.constants.exportMenuItem).parent().addClass("disabled");
 				this.$actionsMenu.find(self.constants.exportAllMenuItem).parent().removeClass("disabled");
-				this.$actionsMenu.find(self.constants.distributeListMenuItem).parent().addClass("disabled");
+				this.$actionsMenu.find(self.constants.distributeListMenuItem).parent().removeClass("disabled");
 				this.$actionsMenu.find(self.constants.deleteMenuItem).parent().addClass("disabled");
 				this.$actionsMenu.find(self.constants.emailMenuItem).parent().addClass("disabled");
 				this.$actionsMenu.find(self.constants.emailAllMenuItem).parent().removeClass("disabled");
