@@ -378,6 +378,7 @@
     <Content Include="Areas\Sandbox\Views\Web.config" />
     <Content Include="Areas\Sandbox\_viewstart.cshtml" />
     <Content Include="Areas\Sandbox\Views\Shared\_Layout.cshtml" />
+    <Content Include="GatewayResources\config\FactivaGateway.config" />
     <Content Include="GatewayResources\config\UserEventRecorderService.config" />
     <Content Include="GatewayResources\config\Triggers.config" />
     <Content Include="GatewayResources\config\TrackService.config" />
@@ -420,7 +421,6 @@
     <Content Include="GatewayResources\config\IndexService.config" />
     <Content Include="GatewayResources\config\HeatMapService.config" />
     <Content Include="GatewayResources\config\GovernmentService.config" />
-    <Content Include="GatewayResources\config\FactivaGateway.config" />
     <Content Include="GatewayResources\config\ExternalReaderService.config" />
     <Content Include="GatewayResources\config\EventCalendarService.config" />
     <Content Include="GatewayResources\config\EmailDeliverySettingsService.config" />

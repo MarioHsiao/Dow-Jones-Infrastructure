@@ -1,0 +1,17 @@
+<PCMGetCollectionHeadlinesByCode  xmlns:q1="http://types.factiva.com/search" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <collectionCode>PMTOPDSC</collectionCode>
+  <q1:requestDTO>
+    <q1:collection>Publications</q1:collection>
+    <q1:collection>WebSites</q1:collection>
+    <q1:metaDataController>
+      <q1:Mode>None</q1:Mode>
+      <q1:CountCustomContextualNavigatorIdsOncePerDocument>false</q1:CountCustomContextualNavigatorIdsOncePerDocument>
+      <q1:TimeNavigatorMode>None</q1:TimeNavigatorMode>
+      <q1:ReturnCollectionCounts>false</q1:ReturnCollectionCounts>
+      <q1:ReturnKeywordsSet>false</q1:ReturnKeywordsSet>
+    </q1:metaDataController>
+    <q1:sortBy>FIFO</q1:sortBy>
+  </q1:requestDTO>
+  <returnContentCatagorizationSet>false</returnContentCatagorizationSet>
+  <searchServiceType>Free</searchServiceType>
+</PCMGetCollectionHeadlinesByCode>

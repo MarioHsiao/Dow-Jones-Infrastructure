@@ -36,14 +36,20 @@ namespace DowJones.Web.Showcase.Controllers
         }
 
         [Route("article/{accessionNumber}")]
-        public ActionResult Article(string accessionNumber, DisplayOptions option = DisplayOptions.Full, ImageType imageType = ImageType.Display, string callback = null, string canonicalSearchString = "T|microsoft T|phone O|+ T|en T|pt O|, T|es O|, N|la O|c O|+ T|article T|file O|, T|report O|, N|fmt O|c O|+ N|pd D|-0090 D| O|d O|+")
+        public ActionResult Article(string accessionNumber, DisplayOptions option = DisplayOptions.Full, ImageType imageType = ImageType.Thumbnail, PictureSize pictureSize = PictureSize.Large, string callback = null, string canonicalSearchString = "T|microsoft T|en T|es O|, T|pt O|, N|la O|c O|+ T|article N|fmt O|c T|report N|fmt O|c O|, T|file N|fmt O|c O|, T|webpage N|fmt O|c O|, T|blog N|fmt O|c O|, T|multimedia N|fmt O|c O|, T|picture N|fmt O|c O|, T|tmnb N|rst O|c T|tmnb N|rst O|c O|, O|+ O|+ T|article T|file O|, T|report O|, N|fmt O|c O|+ N|pd D|-0008 D| O|d O|+")
         {
-            var article = _articleService.GetArticle(accessionNumber, canonicalSearchString);
+            new GetHistoricalDataByTimePeriodRequest
+            {
+                adjustForCapitalChanges = true
+            };
 
+            //canonicalSearchString = "T|djdn000020120216e82g0lkzf N|an O|: T|and O|+ T|sipc O|+ T|and O|+ T|businesswire O|+ T|and O|+ T|schwab O|+ T|and O|+ T|aboutschwab O|+ T|en T|ru O|, T|de O|, N|la O|c O|+ T|nnam T|nrmf O|, T|nrgn O|, N|ns O|c O|- T|article T|file O|, T|report O|, T|webpage O|, T|blog O|, T|picture O|, T|multimedia O|, T|board O|, T|customerdoc O|, N|fmt O|c O|+";
+            var article = _articleService.GetArticle(accessionNumber, canonicalSearchString);
+            
             _articleConversionManager.ShowCompanyEntityReference = true;
             _articleConversionManager.ShowExecutiveEntityReference = true;
             _articleConversionManager.EnableELinks = true;
-            _articleConversionManager.PictureSize = PictureSize.Small;
+            _articleConversionManager.PictureSize = pictureSize;
 
             var urlBuilder = new UrlBuilder("~/article/" + accessionNumber);
             var articleDataSet = _articleConversionManager.Convert(article);
@@ -55,18 +61,6 @@ namespace DowJones.Web.Showcase.Controllers
                 ArticleDisplayOptions = option,
                 ShowPostProcessing = true,
                 ShowSourceLinks = true,
-                ShowSocialButtons = true,
-                SocialButtons = new SocialButtonsModel
-                {
-                    Url = urlBuilder.ToString(),
-                    Description = "",
-                    Target = "_blank",
-                    ImageSize = ImageSize.Small,
-                    Title = ProcessHeadlineRenderItems(articleDataSet.Headline),
-                    SocialNetworks = new[] { SocialNetworks.LinkedIn, SocialNetworks.Twitter, SocialNetworks.Facebook, },
-                    Keywords = "",
-                    ID = "socialButtons",
-                },
                 PostProcessingOptions = new[]
                                             {
                                                 PostProcessingOptions.Print,
@@ -76,7 +70,7 @@ namespace DowJones.Web.Showcase.Controllers
                                                 PostProcessingOptions.Listen,
                                                 PostProcessingOptions.Translate,
                                                 PostProcessingOptions.Share,
-                                            }.Distinct(),
+                                            }.Distinct()
             };
 
             return Request.IsAjaxRequest() ? ViewComponent(model, callback) : View("Index", model);
