@@ -1058,8 +1058,7 @@ namespace DowJones.Assemblers.Articles
                                 item.ItemMarkUp = Map(curContentItem.Mimetype);
                                 item.ItemText = text;
                                 item.ItemValue = strHref;
-                                item.EnlargedImageUrl = enlargedImgHandlerUrl;
-                                
+
                                 if (EmbedHtmlBasedExternalLinks && item.ItemMarkUp == MarkUpType.Html)
                                 {
                                     UpdateItem(item, curContentItem, numberBasedContentItem.AccessionNumber);
@@ -1071,6 +1070,7 @@ namespace DowJones.Assemblers.Articles
                                 item.Credit = ParseMarkup(contentItem.ContentHeadline.Credit.Any);
                                 item.Caption = ParseMarkup(contentItem.ContentHeadline.Snippet.Any);
                                 item.Source = ParseMarkup(contentItem.ContentHeadline.Byline.Any);
+                                item.EnlargedImageUrl = enlargedImgHandlerUrl;
 
                                 found = true;
                             }
@@ -1089,7 +1089,7 @@ namespace DowJones.Assemblers.Articles
                                 item.ItemMarkUp = Map(curContentItem.Mimetype);
                                 item.ItemText = text;
                                 item.ItemValue = strHref;
-                                
+
                                 if (EmbedHtmlBasedExternalLinks && item.ItemMarkUp == MarkUpType.Html)
                                 {
                                     UpdateItem(item, curContentItem, numberBasedContentItem.AccessionNumber);
@@ -1102,6 +1102,7 @@ namespace DowJones.Assemblers.Articles
                                 item.Credit = ParseMarkup(contentItem.ContentHeadline.Credit.Any);
                                 item.Caption = ParseMarkup(contentItem.ContentHeadline.Snippet.Any);
                                 item.Source = ParseMarkup(contentItem.ContentHeadline.Byline.Any);
+                                item.EnlargedImageUrl = enlargedImgHandlerUrl;
                                 found = true;
                             }
                         }
@@ -1132,6 +1133,7 @@ namespace DowJones.Assemblers.Articles
                                 item.Credit = ParseMarkup(contentItem.ContentHeadline.Credit.Any);
                                 item.Caption = ParseMarkup(contentItem.ContentHeadline.Snippet.Any);
                                 item.Source = ParseMarkup(contentItem.ContentHeadline.Byline.Any);
+                                item.EnlargedImageUrl = enlargedImgHandlerUrl;
                                 found = true;
                             }
                         }
