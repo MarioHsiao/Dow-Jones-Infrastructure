@@ -255,11 +255,17 @@
                     {
                         if (!Model.PostProcessingOptions.IsNullOrEmpty())
                         {
+                            var tList = Model.PostProcessingOptions.ToList();
+                            if (Model.ArticleDataSet.SubType.IsNullOrEmpty() ||
+                                     Model.ArticleDataSet.SubType.ToLower() != "nlapressclip")
+                            {
+                                tList.RemoveAll(x => x == PostProcessingOptions.PressClips);
+                            }
+                            
                             <ul class="dj_PostProcessing actions clearfix">
-                                @foreach (var item in Model.PostProcessingOptions)
+                                @foreach (var item in tList)
                                 {
                                     <li class="@(item.ToString().ToLower()) action" data-ref="@(item.ToString().ToLower())"><i class="dj_icon dj_icon-@(item.ToString().ToLower())"></i><span data-workflow="@(item.ToString().ToLower())">@(DJ.Token(DJ.GetAssignedAttribute<PostProcessingOptions>(item.ToString())))</span></li>
-                                    
                                 }
                             </ul>
                         }
