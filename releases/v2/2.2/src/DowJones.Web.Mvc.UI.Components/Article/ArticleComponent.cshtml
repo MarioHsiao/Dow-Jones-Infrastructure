@@ -25,7 +25,7 @@
             @*Begin logo section*@
             <div class="dj_article_image article-logo" >
             @{
-                var largeImgUrl = string.Empty;
+            var largeImgUrl = string.Empty;
             }
             @foreach (IRenderItem renderItem in Model.ArticleDataSet.Head)
             {
@@ -62,21 +62,21 @@
             @*End logo section*@
     
             <div class="dj_article_meta">
-            @if( !Model.ArticleDataSet.Headline.IsNullOrEmpty() )
+            @if (!Model.ArticleDataSet.Headline.IsNullOrEmpty())
             {
-                if( showIndexing )
+                if (showIndexing)
                 {
                     <div class="dj_article_index">HD</div>
                 }
             
                 <h4 class="dj_article_hd dj_article_section headline" data-meta="@Model.ArticleDataSet.AccessionNo">
-                    @foreach( IRenderItem renderItem in Model.ArticleDataSet.Headline )
+                    @foreach (IRenderItem renderItem in Model.ArticleDataSet.Headline)
                     {
-                        if( renderItem.ItemMarkUp == MarkUpType.Plain )
+                        if (renderItem.ItemMarkUp == MarkUpType.Plain)
                         {
                             @renderItem.ItemText
                         }
-                        else if( renderItem.ItemMarkUp == MarkUpType.Anchor )
+                        else if (renderItem.ItemMarkUp == MarkUpType.Anchor)
                         {
                             <a class="dj_article_headline_link" href="javascript:void(0)">@renderItem.ItemText</a>
                         }
@@ -84,22 +84,22 @@
                 </h4>
             }                
                 <div class="meta">
-                    @if( showIndexing )
+                    @if (showIndexing)
                     {
                         <div class="dj_article_index">SN</div>
                     }
                         
                     <div class="dj_article_sn dj_article_section">
-                    @if( Model.ShowSourceLinks && Model.PostProcessing == DowJones.Infrastructure.PostProcessing.UnSpecified )
+                    @if (Model.ShowSourceLinks && Model.PostProcessing == DowJones.Infrastructure.PostProcessing.UnSpecified)
                     {
-                        foreach( IRenderItem renderItem in Model.ArticleDataSet.Source )
+                        foreach (IRenderItem renderItem in Model.ArticleDataSet.Source)
                         {
                             <span class="value source drop-down-button" data-dd-type="source">
-                                @if( renderItem.ItemMarkUp == MarkUpType.EntityLink )
+                                @if (renderItem.ItemMarkUp == MarkUpType.EntityLink)
                                 { 
                                     <span class="dj_article_source" data-entity="@renderItem.ItemEntityData.ToJson().EscapeForHtml()">@renderItem.ItemEntityData.Name</span>
                                 }
-                                else if( renderItem.ItemMarkUp == MarkUpType.Span )
+                                else if (renderItem.ItemMarkUp == MarkUpType.Span)
                                 {
                                     @renderItem.ItemText
                                 }
@@ -108,7 +108,7 @@
                     }
                     else
                     {
-                        if( !Model.ArticleDataSet.SourceName.IsNullOrEmpty() )
+                        if (!Model.ArticleDataSet.SourceName.IsNullOrEmpty())
                         {
                             <span class="value source drop-down-button" data-dd-type="source">
                                 @Model.ArticleDataSet.SourceName </span><span class="dj_article_comma">,</span>                        
@@ -116,19 +116,19 @@
                     }              
                     </div>
                     
-                    @if( !Model.ArticleDataSet.ByLine.IsNullOrEmpty() )
+                    @if (!Model.ArticleDataSet.ByLine.IsNullOrEmpty())
                     {
-                        if( showIndexing )
+                        if (showIndexing)
                         {
                             <div class="dj_article_index">BY</div>
                         }
                         
                         <div class="dj_article_by dj_article_section">                        
-                        @if( Model.ShowAuthorLinks &&
+                        @if (Model.ShowAuthorLinks &&
                             !Model.ArticleDataSet.Authors.IsNullOrEmpty() &&
-                            Model.PostProcessing == DowJones.Infrastructure.PostProcessing.UnSpecified )
+                            Model.PostProcessing == DowJones.Infrastructure.PostProcessing.UnSpecified)
                         {
-                            foreach( IRenderItem renderItem in Model.ArticleDataSet.Authors )
+                            foreach (IRenderItem renderItem in Model.ArticleDataSet.Authors)
                             {
                                 <span class="value author drop-down-button" data-dd-type="author">
                                     <span class="dj_article_author" data-entity="@renderItem.ItemEntityData.ToJson().EscapeForHtml()">@renderItem.ItemEntityData.Name</span>
@@ -139,7 +139,7 @@
                         else
                         {                            
                             <span class="value author drop-down-button" data-dd-type="author">
-                                @foreach( IRenderItem renderItem in Model.ArticleDataSet.ByLine )
+                                @foreach (IRenderItem renderItem in Model.ArticleDataSet.ByLine)
                                 {
                                     @renderItem.ItemText
                                 }
@@ -150,36 +150,36 @@
                   
                     <div class="dj_meta_group">                 
                    
-                        @if( showIndexing )
+                        @if (showIndexing)
                         {
                             <div class="dj_article_index">PD</div>
                         }
                     
                         <div class="date-stamp dj_article_pd dj_article_section">
-                            @if( !string.IsNullOrEmpty( Model.ArticleDataSet.PublicationTime ) )
+                            @if (!string.IsNullOrEmpty(Model.ArticleDataSet.PublicationTime))
                             {
-                                @string.Format( "{0},", Model.ArticleDataSet.PublicationTime )
+                                @string.Format("{0},", Model.ArticleDataSet.PublicationTime)
                             }
-                            @if( !string.IsNullOrEmpty( Model.ArticleDataSet.PublicationDate ) )
+                            @if (!string.IsNullOrEmpty(Model.ArticleDataSet.PublicationDate))
                             {
-                                @string.Format( "{0}", Model.ArticleDataSet.PublicationDate )
+                                @string.Format("{0}", Model.ArticleDataSet.PublicationDate)
                             }<span class="dj_article_comma">, </span>
                         </div>
                         
-                        @if( Model.ArticleDataSet.WordCount > 0 && Model.ArticleDataSet.Html.IsNullOrEmpty() )
+                        @if (Model.ArticleDataSet.WordCount > 0 && Model.ArticleDataSet.Html.IsNullOrEmpty())
                         {
-                            if( showIndexing )
+                            if (showIndexing)
                             {
                                 <div class="dj_article_index">WC</div>
                             }
                             <div class="dj_article_wc dj_article_section">
-                                @(string.Format( "{0} {1}", Model.ArticleDataSet.WordCount, DJ.Token( "words" ) ))<span class="dj_article_comma">, </span>
+                                @(string.Format("{0} {1}", Model.ArticleDataSet.WordCount, DJ.Token("words")))<span class="dj_article_comma">, </span>
                             </div>
                         }
 
-                        @if( !string.IsNullOrEmpty( Model.ArticleDataSet.Language ) )
+                        @if (!string.IsNullOrEmpty(Model.ArticleDataSet.Language))
                         {
-                            if( showIndexing )
+                            if (showIndexing)
                             {
                                 <div class="dj_article_index">LA</div>
                             }
@@ -188,28 +188,28 @@
                             </div>
                         }
                         
-                        @if( !Model.ArticleDataSet.Source.IsNullOrEmpty() )
+                        @if (!Model.ArticleDataSet.Source.IsNullOrEmpty())
                         {
-                            if( showIndexing )
+                            if (showIndexing)
                             {
                                 <div class="dj_article_index">SC</div>
                             }
                             <div class="dj_article_sc dj_article_section">
-                                @foreach( IRenderItem renderItem in Model.ArticleDataSet.Source )
+                                @foreach (IRenderItem renderItem in Model.ArticleDataSet.Source)
                                 {
                                     @renderItem.ItemEntityData.Code
                                 }<span class="dj_article_comma">, </span>
                             </div>
                         }
                         
-                        @if( !Model.ArticleDataSet.Pages.IsNullOrEmpty() )
+                        @if (!Model.ArticleDataSet.Pages.IsNullOrEmpty())
                         {
-                            if( showIndexing )
+                            if (showIndexing)
                             {
                                 <div class="dj_article_index">PG</div>
                             }
                             <div class="dj_article_pg dj_article_section">
-                            @foreach( string page in Model.ArticleDataSet.Pages )
+                            @foreach (string page in Model.ArticleDataSet.Pages)
                             {
                                 @page
                             }<span class="dj_article_comma">,</span>
@@ -237,11 +237,18 @@
             </div>
                     
                     @if (Model.ShowPostProcessing)
-                    {                
-                        if (!Model.PostProcessingOptions.IsNullOrEmpty() )
+                    {
+                        if (!Model.PostProcessingOptions.IsNullOrEmpty())
                         {
+                            var tList = Model.PostProcessingOptions.ToList();
+                            if (Model.ArticleDataSet.SubType.IsNullOrEmpty() ||
+                                     Model.ArticleDataSet.SubType.ToLower() != "nlapressclip")
+                            {
+                                tList.RemoveAll(x => x == PostProcessingOptions.PressClips);
+                            }
+                            
                             <ul class="dj_PostProcessing actions clearfix">
-                                @foreach (var item in Model.PostProcessingOptions)
+                                @foreach (var item in tList)
                                 {
                                     <li class="@(item.ToString().ToLower()) action" data-ref="@(item.ToString().ToLower())"><i class="dj_icon dj_icon-@(item.ToString().ToLower())"></i><span data-workflow="@(item.ToString().ToLower())">@(DJ.Token(DJ.GetAssignedAttribute<PostProcessingOptions>(item.ToString())))</span></li>
                                 }
@@ -268,8 +275,8 @@
                       
             
             @*Start of embeded Html Section*@                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
-                if (!Model.ArticleDataSet.Html.IsNullOrEmpty())
-                {
+                    if (!Model.ArticleDataSet.Html.IsNullOrEmpty())
+                    {
                 <div class="dj_rawContent"> 
                 @foreach (IRenderItem renderItem in Model.ArticleDataSet.Html)
                 {
@@ -279,7 +286,7 @@
                     }
                 }
                 </div>
-                }  
+                    }  
             @*End of embeded Html Section*@                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
 
                        
