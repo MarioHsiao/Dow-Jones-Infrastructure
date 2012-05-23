@@ -32,7 +32,7 @@ namespace DowJones.Web.Showcase.Controllers
             _articleConversionManager = articleConversionManager;
         }
 
-        public ActionResult Index(string acn = "DJFVW00020120326e83qkgx46", DisplayOptions option = DisplayOptions.Full)
+        public ActionResult Index(string acn = "DJFVW00020120518e85i642c0", DisplayOptions option = DisplayOptions.Full)
         {
             return Article(acn, option);
         }

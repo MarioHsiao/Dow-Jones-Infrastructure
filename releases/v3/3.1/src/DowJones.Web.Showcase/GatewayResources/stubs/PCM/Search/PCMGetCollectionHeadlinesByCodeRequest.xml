@@ -1,17 +1,31 @@
-<PCMGetCollectionHeadlinesByCode  xmlns:q1="http://types.factiva.com/search" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <collectionCode>PMTOPDSC</collectionCode>
-  <q1:requestDTO>
-    <q1:collection>Publications</q1:collection>
-    <q1:collection>WebSites</q1:collection>
-    <q1:metaDataController>
-      <q1:Mode>None</q1:Mode>
-      <q1:CountCustomContextualNavigatorIdsOncePerDocument>false</q1:CountCustomContextualNavigatorIdsOncePerDocument>
-      <q1:TimeNavigatorMode>None</q1:TimeNavigatorMode>
-      <q1:ReturnCollectionCounts>false</q1:ReturnCollectionCounts>
-      <q1:ReturnKeywordsSet>false</q1:ReturnKeywordsSet>
-    </q1:metaDataController>
-    <q1:sortBy>FIFO</q1:sortBy>
-  </q1:requestDTO>
-  <returnContentCatagorizationSet>false</returnContentCatagorizationSet>
-  <searchServiceType>Free</searchServiceType>
+<?xml version="1.0" encoding="UTF-8"?>
+<soap-env:Envelope xmlns:soap-env="http://schemas.xmlsoap.org/soap/envelope/">
+	<soap-env:Body>
+<PCMGetCollectionHeadlinesByCode xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<collectionCode>PMTOPDSC</collectionCode>
+	<requestDTO xmlns="http://types.factiva.com/search">
+		<clusterMode>Off</clusterMode>
+		<metaDataController>
+			<mode>None</mode>
+			<countCustomContextualNavigatorIdsOncePerDocument>false</countCustomContextualNavigatorIdsOncePerDocument>
+			<timeNavigatorMode>None</timeNavigatorMode>
+			<returnCollectionCounts>false</returnCollectionCounts>
+			<returnKeywordsSet>false</returnKeywordsSet>
+		</metaDataController>
+		<collection>WebSites</collection>
+		<collection>Publications</collection>
+		<collection>Multimedia</collection>
+		<collection>Newspapers</collection>
+		<collection>Wires</collection>
+		<collection>Pictures</collection>
+		<collection>WebSitesMisc</collection>
+		<collection>Summary</collection>
+		<collection>Video</collection>
+		<sortBy>FIFO</sortBy>
+	</requestDTO>
+	<returnContentCatagorizationSet>false</returnContentCatagorizationSet>
+	<searchServiceType>Free</searchServiceType>
 </PCMGetCollectionHeadlinesByCode>
+	</soap-env:Body>
+</soap-env:Envelope>
+
