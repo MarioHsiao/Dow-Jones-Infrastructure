@@ -1,0 +1,708 @@
+﻿<?xml version="1.0"?>
+<GetArchiveObjectResponse ver='01.0'>
+  <Control>
+    <Stamp type='ASRrx' date='20090203' time='18524097'/>
+    <Stamp type='ASRtx' date='20090203' time='18524133'/>
+  </Control>
+  <Status value='00000000'/>
+  <ResultSet count='023'>
+    <Result accessionno='APEN000020081202e51f0003b' pubdate='20090115' distdocver='06.3' wordcount='0000000321' status='00000000' objcount='001'>
+      <AdocTOC adoctype="article">
+        <Item type='arttext' size='2947' ref='distdoc:archive/ArchiveDoc::Article'></Item>
+        <Item type='invtext' size='5785' ref='distdoc:archive/InvertText'></Item>
+      </AdocTOC>
+    </Result>
+    <Result accessionno='MNCC000020090106e5160005l' status='00014002' objcount='000' auxcount='000'/>
+    <Result accessionno='ENVONL0020081211e51s00008' pubdate='20090128' distdocver='06.3' wordcount='0000000103' status='00000000' objcount='001' auxcount='001'>
+      <AdocTOC adoctype="article">
+        <Item type='arttext' size='1400' ref='distdoc:archive/ArchiveDoc::Article'></Item>
+        <Item type='invtext' size='2134' ref='distdoc:archive/InvertText'></Item>
+      </AdocTOC>
+    </Result>
+    <Result accessionno='ENVONL0020081211e51s00008' pubdate='20090128' distdocver='06.3' wordcount='0000000103' status='00000000' objcount='016' parent='ENVONL0020081211e51s00008' segment='IB' auxtype='s'>
+      <AccessionNo value="ENVONL0020081211e51s00008" fid="an"></AccessionNo>
+      <Headline fid='hd'>
+        <Para lang='fr'>Carrefour des Gestions Locales de l'Eau - Rennes</Para>
+      </Headline>
+      <Byline index='field' fid='by'></Byline>
+      <Credit index='field' fid='cr'></Credit>
+      <Num fid='wc' value='103'/>
+      <Date value="20090128" fid="pd"></Date>
+      <SrcName fid="sn">Environnement Online</SrcName>
+      <BaseLang value="fr" fid="la"></BaseLang>
+      <Copyright index='field' fid='cy'>(c) 2009 Victoires-Editions. All rights reserved.  </Copyright>
+      <LeadPara fid='lp'>
+        <Para>Organisé en parallèle de cette 10è édition en partenariat avec la CCI de Rennes, Le salon des éco-activités vous propose de découvrir 50 éco-entreprises et des centaines d’éco-produits pour vous accompagner dans la mise en œuvre de vos politiques</Para>
+        <Para>Du 28/01/2009 au 29/01/2009</Para>
+      </LeadPara>
+      <TailParas fid='td'>
+        <Para>Pour en savoir plus :Luc Renaudin</Para>
+        <Para>Ideal Connaissances</Para>
+        <Para>01 45 15 09 09</Para>
+        <Para>l.renaudin@idealconnaissances.com</Para>
+        <Para>
+          <ELink type='webpage' ref='http://www.carrefour-eau.com'>http://www.carrefour-eau.com</ELink>
+        </Para>
+        <Para>
+          <ELink type='webpage' ref='http://www.carrefour-eau.com'>www.carrefour-eau.com</ELink>
+        </Para>
+      </TailParas>
+      <Contact index='field' fid='ct'>Redaction Environnement Magazine / Environnement et strategie / La Lettre de l'Environnement (mailto:environnement@victoires-editions.fr)  </Contact>
+      <Notes index='field' fid='rf'></Notes>
+      <Art index='field' fid='art'></Art>
+      <CSet fid="ns">
+        <Code value="c315">
+          <CodeD lang="en">Conferences/Exhibitions</CodeD>
+          <CodeI action="add" org="categoriser">
+            <CodeA name="db" value="icat-ns-fr-00002038-20090107-150912"></CodeA>
+            <CodeA name="cl" value="8"></CodeA>
+          </CodeI>
+          <CodeI action="add" org="validation">
+            <CodeA name="db" value="iedv---00001813-20090106-093955"></CodeA>
+            <CodeA name="status" value="active"></CodeA>
+          </CodeI>
+        </Code>
+        <Code value="c31">
+          <CodeD lang="en">Marketing</CodeD>
+          <CodeI action="add" org="expansion">
+            <CodeA name="db" value="iedv---00001813-20090106-093955"></CodeA>
+            <CodeA name="root" value="ns:c315"></CodeA>
+          </CodeI>
+          <CodeI action="add" org="validation">
+            <CodeA name="db" value="iedv---00001813-20090106-093955"></CodeA>
+            <CodeA name="status" value="active"></CodeA>
+          </CodeI>
+        </Code>
+        <Code value="ccat">
+          <CodeD lang="en">Corporate/Industrial News</CodeD>
+          <CodeI action="add" org="expansion">
+            <CodeA name="db" value="iedv---00001813-20090106-093955"></CodeA>
+            <CodeA name="root" value="ns:c315"></CodeA>
+          </CodeI>
+          <CodeI action="add" org="validation">
+            <CodeA name="db" value="iedv---00001813-20090106-093955"></CodeA>
+            <CodeA name="status" value="active"></CodeA>
+          </CodeI>
+        </Code>
+        <Code value="ncat">
+          <CodeD lang="en">Content Types</CodeD>
+          <CodeI action="add" org="expansion">
+            <CodeA name="db" value="iedv---00001813-20090106-093955"></CodeA>
+            <CodeA name="root" value="ns:c315"></CodeA>
+          </CodeI>
+          <CodeI action="add" org="validation">
+            <CodeA name="db" value="iedv---00001813-20090106-093955"></CodeA>
+            <CodeA name="status" value="active"></CodeA>
+          </CodeI>
+        </Code>
+        <Code value="nfact">
+          <CodeD lang="en">Factiva Filters</CodeD>
+          <CodeI action="add" org="expansion">
+            <CodeA name="db" value="iedv---00001813-20090106-093955"></CodeA>
+            <CodeA name="root" value="ns:c315"></CodeA>
+          </CodeI>
+          <CodeI action="add" org="validation">
+            <CodeA name="db" value="iedv---00001813-20090106-093955"></CodeA>
+            <CodeA name="status" value="active"></CodeA>
+          </CodeI>
+        </Code>
+        <Code value="nfcpin">
+          <CodeD lang="en">FC&amp;E Industry News Filter</CodeD>
+          <CodeI action="add" org="expansion">
+            <CodeA name="db" value="iedv---00001813-20090106-093955"></CodeA>
+            <CodeA name="root" value="ns:c315"></CodeA>
+          </CodeI>
+          <CodeI action="add" org="validation">
+            <CodeA name="db" value="iedv---00001813-20090106-093955"></CodeA>
+            <CodeA name="status" value="active"></CodeA>
+          </CodeI>
+        </Code>
+      </CSet>
+      <CSet fid="re">
+        <Code value="fra">
+          <CodeD lang="en">France</CodeD>
+          <CodeI action="add" org="rbc">
+            <CodeA name="rule" value="466094"></CodeA>
+            <CodeA name="db" value="irbc---00005652-20090108-001021"></CodeA>
+          </CodeI>
+          <CodeI action="add" org="validation">
+            <CodeA name="db" value="iedv---00001813-20090106-093955"></CodeA>
+            <CodeA name="status" value="active"></CodeA>
+          </CodeI>
+        </Code>
+        <Code value="eecz">
+          <CodeD lang="en">European Union Countries</CodeD>
+          <CodeI action="add" org="expansion">
+            <CodeA name="db" value="iedv---00001813-20090106-093955"></CodeA>
+            <CodeA name="root" value="re:fra"></CodeA>
+          </CodeI>
+          <CodeI action="add" org="validation">
+            <CodeA name="db" value="iedv---00001813-20090106-093955"></CodeA>
+            <CodeA name="status" value="active"></CodeA>
+          </CodeI>
+        </Code>
+        <Code value="eurz">
+          <CodeD lang="en">European Countries/Regions</CodeD>
+          <CodeI action="add" org="expansion">
+            <CodeA name="db" value="iedv---00001813-20090106-093955"></CodeA>
+            <CodeA name="root" value="re:fra"></CodeA>
+          </CodeI>
+          <CodeI action="add" org="validation">
+            <CodeA name="db" value="iedv---00001813-20090106-093955"></CodeA>
+            <CodeA name="status" value="active"></CodeA>
+          </CodeI>
+        </Code>
+        <Code value="medz">
+          <CodeD lang="en">Mediterranean Countries/Regions</CodeD>
+          <CodeI action="add" org="expansion">
+            <CodeA name="db" value="iedv---00001813-20090106-093955"></CodeA>
+            <CodeA name="root" value="re:fra"></CodeA>
+          </CodeI>
+          <CodeI action="add" org="validation">
+            <CodeA name="db" value="iedv---00001813-20090106-093955"></CodeA>
+            <CodeA name="status" value="active"></CodeA>
+          </CodeI>
+        </Code>
+        <Code value="weurz">
+          <CodeD lang="en">Western European Countries/Regions</CodeD>
+          <CodeI action="add" org="expansion">
+            <CodeA name="db" value="iedv---00001813-20090106-093955"></CodeA>
+            <CodeA name="root" value="re:fra"></CodeA>
+          </CodeI>
+          <CodeI action="add" org="validation">
+            <CodeA name="db" value="iedv---00001813-20090106-093955"></CodeA>
+            <CodeA name="status" value="active"></CodeA>
+          </CodeI>
+        </Code>
+      </CSet>
+    </Result>
+    <Result accessionno='NRG0000020090106e51600027' pubdate='20090106' pubtime='190000' distdocver='06.3' wordcount='0000000425' status='00000000' objcount='001' auxcount='001'>
+      <AdocTOC adoctype="article">
+        <Item type='arttext' size='3115' ref='distdoc:archive/ArchiveDoc::Article'></Item>
+        <Item type='invtext' size='7283' ref='distdoc:archive/InvertText'></Item>
+      </AdocTOC>
+    </Result>
+    <Result accessionno='NRG0000020090106e51600027' pubdate='20090106' pubtime='190000' distdocver='06.3' wordcount='0000000425' status='00000000' objcount='016' parent='NRG0000020090106e51600027' segment='IB,WM' auxtype='r'>
+      <AccessionNo value="NRG0000020090106e51600027" fid="an"></AccessionNo>
+      <Headline fid='hd'>
+        <Para lang='en'>US Gasoline Demand -1.8% Vs Week Ago - SpendingPulse</Para>
+      </Headline>
+      <Byline index='field' fid='by'></Byline>
+      <Credit index='field' fid='cr'></Credit>
+      <Num fid='wc' value='425'/>
+      <Date value="20090106" fid="pd"></Date>
+      <Time value="190000" fid="et"></Time>
+      <SrcName fid="sn">Dow Jones Energy Service</SrcName>
+      <Logo img="nrgLogo.gif" src="http://logos.factiva.com"></Logo>
+      <BaseLang value="en" fid="la"></BaseLang>
+      <Copyright index='field' fid='cy'>(c) 2009 Dow Jones &amp; Company, Inc.   </Copyright>
+      <LeadPara fid='lp'>
+        <Para>
+          NEW YORK (Dow Jones)-U.S. gasoline demand, measured by purchases at the pump, fell 1.8% to 8.97 million barrels a day in the week ended Jan. 2, according to a report by MasterCard Advisors LLC, a division of <en cat='co' instRef='1' ref='intbmc'>MasterCard Inc</en> (MA).
+        </Para>
+        <Para>That's the lowest weekly gasoline demand since Nov. 7, the last time demand was below 9 million barrels a day.</Para>
+      </LeadPara>
+      <CSet fid="in">
+        <Code value="i1">
+          <CodeD lang="en">Energy</CodeD>
+          <CodeI action="add" org="rbc">
+            <CodeA name="rule" value="665687"></CodeA>
+            <CodeA name="db" value="irbc---00005648-20090106-121018"></CodeA>
+          </CodeI>
+          <CodeI action="add" org="expansion">
+            <CodeA name="db" value="iedv---00001813-20090106-093955"></CodeA>
+            <CodeA name="root" value="in:i13"></CodeA>
+          </CodeI>
+          <CodeI action="add" org="validation">
+            <CodeA name="db" value="iedv---00001813-20090106-093955"></CodeA>
+            <CodeA name="status" value="active"></CodeA>
+          </CodeI>
+        </Code>
+        <Code value="i13">
+          <CodeD lang="en">Crude Oil/Natural Gas</CodeD>
+          <CodeI action="add" org="rbc">
+            <CodeA name="rule" value="665289"></CodeA>
+            <CodeA name="db" value="irbc---00005648-20090106-121018"></CodeA>
+          </CodeI>
+          <CodeI action="add" org="validation">
+            <CodeA name="db" value="iedv---00001813-20090106-093955"></CodeA>
+            <CodeA name="status" value="active"></CodeA>
+          </CodeI>
+        </Code>
+      </CSet>
+      <CSet fid="ns">
+        <Code value="mmotfl">
+          <CodeD lang="en">Motor Fuel Markets</CodeD>
+          <CodeI action="add" org="categoriser">
+            <CodeA name="db" value="icat-ns-en-00002074-20090105-153455"></CodeA>
+            <CodeA name="cl" value="8"></CodeA>
+          </CodeI>
+          <CodeI action="add" org="validation">
+            <CodeA name="db" value="iedv---00001813-20090106-093955"></CodeA>
+            <CodeA name="status" value="active"></CodeA>
+          </CodeI>
+        </Code>
+        <Code value="gverg">
+          <CodeD lang="en">Energy Department</CodeD>
+          <CodeI action="add" org="rbc">
+            <CodeA name="rule" value="664926"></CodeA>
+            <CodeA name="db" value="irbc---00005648-20090106-121018"></CodeA>
+          </CodeI>
+          <CodeI action="add" org="validation">
+            <CodeA name="db" value="iedv---00001813-20090106-093955"></CodeA>
+            <CodeA name="status" value="active"></CodeA>
+          </CodeI>
+        </Code>
+        <Code value="m11">
+          <CodeD lang="en">Equity Markets</CodeD>
+          <CodeI action="add" org="rbc">
+            <CodeA name="rule" value="667365"></CodeA>
+            <CodeA name="db" value="irbc---00005648-20090106-121018"></CodeA>
+            <CodeA name="rule" value="667409"></CodeA>
+            <CodeA name="rule" value="667412"></CodeA>
+            <CodeA name="rule" value="667369"></CodeA>
+          </CodeI>
+          <CodeI action="add" org="validation">
+            <CodeA name="db" value="iedv---00001813-20090106-093955"></CodeA>
+            <CodeA name="status" value="active"></CodeA>
+          </CodeI>
+        </Code>
+        <Code value="ntop">
+          <CodeD lang="en">Dow Jones/Reuters Top Wire News</CodeD>
+          <CodeI action="add" org="rbc">
+            <CodeA name="rule" value="665783"></CodeA>
+            <CodeA name="db" value="irbc---00005648-20090106-121018"></CodeA>
+          </CodeI>
+          <CodeI action="add" org="validation">
+            <CodeA name="db" value="iedv---00001813-20090106-093955"></CodeA>
+            <CodeA name="status" value="active"></CodeA>
+          </CodeI>
+        </Code>
+        <Code value="gcat">
+          <CodeD lang="en">Political/General News</CodeD>
+          <CodeI action="add" org="expansion">
+            <CodeA name="db" value="iedv---00001813-20090106-093955"></CodeA>
+            <CodeA name="root" value="ns:gverg"></CodeA>
+          </CodeI>
+          <CodeI action="add" org="validation">
+            <CodeA name="db" value="iedv---00001813-20090106-093955"></CodeA>
+            <CodeA name="status" value="active"></CodeA>
+          </CodeI>
+        </Code>
+        <Code value="gpir">
+          <CodeD lang="en">Politics/International Relations</CodeD>
+          <CodeI action="add" org="expansion">
+            <CodeA name="db" value="iedv---00001813-20090106-093955"></CodeA>
+            <CodeA name="root" value="ns:gverg"></CodeA>
+          </CodeI>
+          <CodeI action="add" org="validation">
+            <CodeA name="db" value="iedv---00001813-20090106-093955"></CodeA>
+            <CodeA name="status" value="active"></CodeA>
+          </CodeI>
+        </Code>
+        <Code value="gpol">
+          <CodeD lang="en">Domestic Politics</CodeD>
+          <CodeI action="add" org="expansion">
+            <CodeA name="db" value="iedv---00001813-20090106-093955"></CodeA>
+            <CodeA name="root" value="ns:gverg"></CodeA>
+          </CodeI>
+          <CodeI action="add" org="validation">
+            <CodeA name="db" value="iedv---00001813-20090106-093955"></CodeA>
+            <CodeA name="status" value="active"></CodeA>
+          </CodeI>
+        </Code>
+        <Code value="gvbod">
+          <CodeD lang="en">Government Bodies</CodeD>
+          <CodeI action="add" org="expansion">
+            <CodeA name="db" value="iedv---00001813-20090106-093955"></CodeA>
+            <CodeA name="root" value="ns:gverg"></CodeA>
+          </CodeI>
+          <CodeI action="add" org="validation">
+            <CodeA name="db" value="iedv---00001813-20090106-093955"></CodeA>
+            <CodeA name="status" value="active"></CodeA>
+          </CodeI>
+        </Code>
+        <Code value="gvexe">
+          <CodeD lang="en">Executive Branch</CodeD>
+          <CodeI action="add" org="expansion">
+            <CodeA name="db" value="iedv---00001813-20090106-093955"></CodeA>
+            <CodeA name="root" value="ns:gverg"></CodeA>
+          </CodeI>
+          <CodeI action="add" org="validation">
+            <CodeA name="db" value="iedv---00001813-20090106-093955"></CodeA>
+            <CodeA name="status" value="active"></CodeA>
+          </CodeI>
+        </Code>
+        <Code value="m14">
+          <CodeD lang="en">Commodity Markets</CodeD>
+          <CodeI action="add" org="expansion">
+            <CodeA name="db" value="iedv---00001813-20090106-093955"></CodeA>
+            <CodeA name="root" value="ns:mmotfl"></CodeA>
+          </CodeI>
+          <CodeI action="add" org="validation">
+            <CodeA name="db" value="iedv---00001813-20090106-093955"></CodeA>
+            <CodeA name="status" value="active"></CodeA>
+          </CodeI>
+        </Code>
+        <Code value="m143">
+          <CodeD lang="en">Energy Markets</CodeD>
+          <CodeI action="add" org="expansion">
+            <CodeA name="db" value="iedv---00001813-20090106-093955"></CodeA>
+            <CodeA name="root" value="ns:mmotfl"></CodeA>
+          </CodeI>
+          <CodeI action="add" org="validation">
+            <CodeA name="db" value="iedv---00001813-20090106-093955"></CodeA>
+            <CodeA name="status" value="active"></CodeA>
+          </CodeI>
+        </Code>
+        <Code value="mcat">
+          <CodeD lang="en">Commodity/Financial Market News</CodeD>
+          <CodeI action="add" org="expansion">
+            <CodeA name="db" value="iedv---00001813-20090106-093955"></CodeA>
+            <CodeA name="root" value="ns:mmotfl"></CodeA>
+            <CodeA name="root" value="ns:m11"></CodeA>
+          </CodeI>
+          <CodeI action="add" org="validation">
+            <CodeA name="db" value="iedv---00001813-20090106-093955"></CodeA>
+            <CodeA name="status" value="active"></CodeA>
+          </CodeI>
+        </Code>
+        <Code value="mcrntg">
+          <CodeD lang="en">Crude Oil/Natural Gas Product Markets</CodeD>
+          <CodeI action="add" org="expansion">
+            <CodeA name="db" value="iedv---00001813-20090106-093955"></CodeA>
+            <CodeA name="root" value="ns:mmotfl"></CodeA>
+          </CodeI>
+          <CodeI action="add" org="validation">
+            <CodeA name="db" value="iedv---00001813-20090106-093955"></CodeA>
+            <CodeA name="status" value="active"></CodeA>
+          </CodeI>
+        </Code>
+        <Code value="ncat">
+          <CodeD lang="en">Content Types</CodeD>
+          <CodeI action="add" org="expansion">
+            <CodeA name="db" value="iedv---00001813-20090106-093955"></CodeA>
+            <CodeA name="root" value="ns:mmotfl"></CodeA>
+            <CodeA name="root" value="ns:m11"></CodeA>
+            <CodeA name="root" value="ns:ntop"></CodeA>
+          </CodeI>
+          <CodeI action="add" org="validation">
+            <CodeA name="db" value="iedv---00001813-20090106-093955"></CodeA>
+            <CodeA name="status" value="active"></CodeA>
+          </CodeI>
+        </Code>
+        <Code value="nfact">
+          <CodeD lang="en">Factiva Filters</CodeD>
+          <CodeI action="add" org="expansion">
+            <CodeA name="db" value="iedv---00001813-20090106-093955"></CodeA>
+            <CodeA name="root" value="ns:mmotfl"></CodeA>
+            <CodeA name="root" value="ns:m11"></CodeA>
+          </CodeI>
+          <CodeI action="add" org="validation">
+            <CodeA name="db" value="iedv---00001813-20090106-093955"></CodeA>
+            <CodeA name="status" value="active"></CodeA>
+          </CodeI>
+        </Code>
+        <Code value="nfce">
+          <CodeD lang="en">FC&amp;E Exclusion Filter</CodeD>
+          <CodeI action="add" org="expansion">
+            <CodeA name="db" value="iedv---00001813-20090106-093955"></CodeA>
+            <CodeA name="root" value="ns:mmotfl"></CodeA>
+            <CodeA name="root" value="ns:m11"></CodeA>
+          </CodeI>
+          <CodeI action="add" org="validation">
+            <CodeA name="db" value="iedv---00001813-20090106-093955"></CodeA>
+            <CodeA name="status" value="active"></CodeA>
+          </CodeI>
+        </Code>
+      </CSet>
+      <CSet fid="re">
+        <Code value="usa">
+          <CodeD lang="en">United States</CodeD>
+          <CodeI action="add" org="rbc">
+            <CodeA name="rule" value="664926"></CodeA>
+            <CodeA name="db" value="irbc---00005648-20090106-121018"></CodeA>
+            <CodeA name="rule" value="666113"></CodeA>
+          </CodeI>
+          <CodeI action="add" org="expansion">
+            <CodeA name="db" value="iedv---00001813-20090106-093955"></CodeA>
+            <CodeA name="root" value="re:use"></CodeA>
+            <CodeA name="root" value="re:usny"></CodeA>
+          </CodeI>
+          <CodeI action="add" org="validation">
+            <CodeA name="db" value="iedv---00001813-20090106-093955"></CodeA>
+            <CodeA name="status" value="active"></CodeA>
+          </CodeI>
+        </Code>
+        <Code value="use">
+          <CodeD lang="en">Northeast U.S.</CodeD>
+          <CodeI action="add" org="rbc">
+            <CodeA name="rule" value="666115"></CodeA>
+            <CodeA name="db" value="irbc---00005648-20090106-121018"></CodeA>
+          </CodeI>
+          <CodeI action="add" org="expansion">
+            <CodeA name="db" value="iedv---00001813-20090106-093955"></CodeA>
+            <CodeA name="root" value="re:usny"></CodeA>
+          </CodeI>
+          <CodeI action="add" org="validation">
+            <CodeA name="db" value="iedv---00001813-20090106-093955"></CodeA>
+            <CodeA name="status" value="active"></CodeA>
+          </CodeI>
+        </Code>
+        <Code value="usny">
+          <CodeD lang="en">United States - New York</CodeD>
+          <CodeI action="add" org="rbc">
+            <CodeA name="rule" value="666036"></CodeA>
+            <CodeA name="db" value="irbc---00005648-20090106-121018"></CodeA>
+          </CodeI>
+          <CodeI action="add" org="validation">
+            <CodeA name="db" value="iedv---00001813-20090106-093955"></CodeA>
+            <CodeA name="status" value="active"></CodeA>
+          </CodeI>
+        </Code>
+        <Code value="namz">
+          <CodeD lang="en">North American Countries/Regions</CodeD>
+          <CodeI action="add" org="expansion">
+            <CodeA name="db" value="iedv---00001813-20090106-093955"></CodeA>
+            <CodeA name="root" value="re:usa"></CodeA>
+            <CodeA name="root" value="re:use"></CodeA>
+            <CodeA name="root" value="re:usny"></CodeA>
+          </CodeI>
+          <CodeI action="add" org="validation">
+            <CodeA name="db" value="iedv---00001813-20090106-093955"></CodeA>
+            <CodeA name="status" value="active"></CodeA>
+          </CodeI>
+        </Code>
+      </CSet>
+    </Result>
+    <Result accessionno='METBNA0020090106e5160025u' pubdate='20090106' pubtime='174900' distdocver='06.3' wordcount='0000000197' status='00000000' objcount='001' auxcount='003'>
+      <AdocTOC adoctype="article">
+        <Item type='arttext' size='1764' ref='distdoc:archive/ArchiveDoc::Article'></Item>
+        <Item type='invtext' size='3526' ref='distdoc:archive/InvertText'></Item>
+      </AdocTOC>
+    </Result>
+    <Result accessionno='METBNA0020090106e5160025u' pubdate='20090106' pubtime='174900' distdocver='06.3' wordcount='0000000197' status='00000000' objcount='017' parent='METBNA0020090106e5160025u' segment='GEN' auxtype='s'>
+      <AccessionNo value="METBNA0020090106e5160025u" fid="an"></AccessionNo>
+      <Headline fid='hd'>
+        <Para lang='en'>Codelco to get $1 billion investment handout</Para>
+      </Headline>
+      <Byline index='field' fid='by'>Gideon Long   </Byline>
+      <Credit index='field' fid='cr'></Credit>
+      <Num fid='wc' value='197'/>
+      <Date value="20090106" fid="pd"></Date>
+      <Time value="174900" fid="et"></Time>
+      <SrcName fid="sn">Metal Bulletin News Alert Service</SrcName>
+      <SrcCode value="METBNA" fid="sc"></SrcCode>
+      <BaseLang value="en" fid="la"></BaseLang>
+      <Copyright index='field' fid='cy'>(c) 2009 Metal Bulletin plc   </Copyright>
+      <LeadPara fid='lp'>
+        <Para>The Chilean government has agreed a $1 billion capitalisation plan to ensure that state-owned copper miner Codelco can continue its ambitious investment plan for 2009 despite the global economic crisis and the sharp fall in the copper price. The funding will make up around half of Codelco's total investment this year, executive president Jose Pablo Arellano told a news conference on Tuesday. The rest will come from external financing, he said. The cash injection, which must be approved by parliament, will come from Codelco's 2008 profits, which totalled $4.86 billion at the end of September. "We want to maintain the investment programme that we've been developing and which has already seen us make record investments in 2007 and 2008… this capitalisation will contribute towards that financing," Arellano said. Codelco is investing heavily in all its mining divisions, which have suffered from falling ore grades in recent years.</Para>
+      </LeadPara>
+      <CSet fid="in">
+        <Code value="i2114">
+          <CodeD lang="en">Copper Ore/Nickel Ore Mining</CodeD>
+          <CodeI action="add" org="categoriser">
+            <CodeA name="db" value="icat-in-en-00002083-20090105-153452"></CodeA>
+            <CodeA name="cl" value="8"></CodeA>
+          </CodeI>
+          <CodeI action="add" org="validation">
+            <CodeA name="db" value="iedv---00001813-20090106-093955"></CodeA>
+            <CodeA name="status" value="active"></CodeA>
+          </CodeI>
+        </Code>
+        <Code value="i2246">
+          <CodeD lang="en">Copper/Copper Alloys</CodeD>
+          <CodeI action="add" org="categoriser">
+            <CodeA name="db" value="icat-in-en-00002083-20090105-153452"></CodeA>
+            <CodeA name="cl" value="8"></CodeA>
+          </CodeI>
+          <CodeI action="add" org="validation">
+            <CodeA name="db" value="iedv---00001813-20090106-093955"></CodeA>
+            <CodeA name="status" value="active"></CodeA>
+          </CodeI>
+        </Code>
+        <Code value="i211">
+          <CodeD lang="en">Metal Ore Mining</CodeD>
+          <CodeI action="add" org="expansion">
+            <CodeA name="db" value="iedv---00001813-20090106-093955"></CodeA>
+            <CodeA name="root" value="in:i2114"></CodeA>
+          </CodeI>
+          <CodeI action="add" org="validation">
+            <CodeA name="db" value="iedv---00001813-20090106-093955"></CodeA>
+            <CodeA name="status" value="active"></CodeA>
+          </CodeI>
+        </Code>
+        <Code value="i22">
+          <CodeD lang="en">Primary Metals</CodeD>
+          <CodeI action="add" org="expansion">
+            <CodeA name="db" value="iedv---00001813-20090106-093955"></CodeA>
+            <CodeA name="root" value="in:i2246"></CodeA>
+          </CodeI>
+          <CodeI action="add" org="validation">
+            <CodeA name="db" value="iedv---00001813-20090106-093955"></CodeA>
+            <CodeA name="status" value="active"></CodeA>
+          </CodeI>
+        </Code>
+        <Code value="i224">
+          <CodeD lang="en">Non-ferrous Metals</CodeD>
+          <CodeI action="add" org="expansion">
+            <CodeA name="db" value="iedv---00001813-20090106-093955"></CodeA>
+            <CodeA name="root" value="in:i2246"></CodeA>
+          </CodeI>
+          <CodeI action="add" org="validation">
+            <CodeA name="db" value="iedv---00001813-20090106-093955"></CodeA>
+            <CodeA name="status" value="active"></CodeA>
+          </CodeI>
+        </Code>
+        <Code value="imet">
+          <CodeD lang="en">Metals/Mining</CodeD>
+          <CodeI action="add" org="expansion">
+            <CodeA name="db" value="iedv---00001813-20090106-093955"></CodeA>
+            <CodeA name="root" value="in:i2114"></CodeA>
+            <CodeA name="root" value="in:i2246"></CodeA>
+          </CodeI>
+          <CodeI action="add" org="validation">
+            <CodeA name="db" value="iedv---00001813-20090106-093955"></CodeA>
+            <CodeA name="status" value="active"></CodeA>
+          </CodeI>
+        </Code>
+      </CSet>
+      <CSet fid="ns">
+        <Code value="ccat">
+          <CodeD lang="en">Corporate/Industrial News</CodeD>
+          <CodeI action="add" org="rbc">
+            <CodeA name="rule" value="667506"></CodeA>
+            <CodeA name="db" value="irbc---00005648-20090106-121018"></CodeA>
+          </CodeI>
+          <CodeI action="add" org="validation">
+            <CodeA name="db" value="iedv---00001813-20090106-093955"></CodeA>
+            <CodeA name="status" value="active"></CodeA>
+          </CodeI>
+        </Code>
+      </CSet>
+      <CSet fid="re">
+        <Code value="chil">
+          <CodeD lang="en">Chile</CodeD>
+          <CodeI action="add" org="categoriser">
+            <CodeA name="db" value="icat-re-en-00002099-20090105-151019"></CodeA>
+            <CodeA name="cl" value="8"></CodeA>
+          </CodeI>
+          <CodeI action="add" org="validation">
+            <CodeA name="db" value="iedv---00001813-20090106-093955"></CodeA>
+            <CodeA name="status" value="active"></CodeA>
+          </CodeI>
+        </Code>
+        <Code value="devgcoz">
+          <CodeD lang="en">Emerging Market Countries/Regions</CodeD>
+          <CodeI action="add" org="expansion">
+            <CodeA name="db" value="iedv---00001813-20090106-093955"></CodeA>
+            <CodeA name="root" value="re:chil"></CodeA>
+          </CodeI>
+          <CodeI action="add" org="validation">
+            <CodeA name="db" value="iedv---00001813-20090106-093955"></CodeA>
+            <CodeA name="status" value="active"></CodeA>
+          </CodeI>
+        </Code>
+        <Code value="dvpcoz">
+          <CodeD lang="en">Developing Economies</CodeD>
+          <CodeI action="add" org="expansion">
+            <CodeA name="db" value="iedv---00001813-20090106-093955"></CodeA>
+            <CodeA name="root" value="re:chil"></CodeA>
+          </CodeI>
+          <CodeI action="add" org="validation">
+            <CodeA name="db" value="iedv---00001813-20090106-093955"></CodeA>
+            <CodeA name="status" value="active"></CodeA>
+          </CodeI>
+        </Code>
+        <Code value="lamz">
+          <CodeD lang="en">Latin American Countries/Regions</CodeD>
+          <CodeI action="add" org="expansion">
+            <CodeA name="db" value="iedv---00001813-20090106-093955"></CodeA>
+            <CodeA name="root" value="re:chil"></CodeA>
+          </CodeI>
+          <CodeI action="add" org="validation">
+            <CodeA name="db" value="iedv---00001813-20090106-093955"></CodeA>
+            <CodeA name="status" value="active"></CodeA>
+          </CodeI>
+        </Code>
+        <Code value="samz">
+          <CodeD lang="en">South American Countries/Regions</CodeD>
+          <CodeI action="add" org="expansion">
+            <CodeA name="db" value="iedv---00001813-20090106-093955"></CodeA>
+            <CodeA name="root" value="re:chil"></CodeA>
+          </CodeI>
+          <CodeI action="add" org="validation">
+            <CodeA name="db" value="iedv---00001813-20090106-093955"></CodeA>
+            <CodeA name="status" value="active"></CodeA>
+          </CodeI>
+        </Code>
+      </CSet>
+      <DescField fid="ipd">
+        Non - Ferrous
+        Base Metals
+      </DescField>
+      <PublisherN fid="pub">Metal Bulletin PLC</PublisherN>
+    </Result>
+    <Result accessionno='ERRORMEDOCID' status='00013001' objcount='000' parent='METBNA0020090106e5160025u' segment='WM' auxtype='r'/>
+    <Result accessionno='WPCOM00020090106e51500004' pubdate='20090105' distdocver='06.3' wordcount='0000002734' status='00000000' objcount='001' auxcount='003'>
+      <AdocTOC adoctype="article">
+        <Item type='arttext' size='16068' ref='distdoc:archive/ArchiveDoc::Article'></Item>
+        <Item type='invtext' size='47010' ref='distdoc:archive/InvertText'></Item>
+      </AdocTOC>
+    </Result>
+    <Result accessionno='WPCOM00020090106e51500004' pubdate='20090105' distdocver='06.3' wordcount='0000002734' status='00000000' objcount='001' parent='WPCOM00020090106e51500004' segment='IB' auxtype='s'>
+      <AdocTOC adoctype="article">
+        <Item type='arttext' size='16068' ref='distdoc:archive/ArchiveDoc::Article'></Item>
+        <Item type='invtext' size='47010' ref='distdoc:archive/InvertText'></Item>
+      </AdocTOC>
+    </Result>
+    <Result accessionno='ERRORMEDOCID' status='00013001' objcount='000' parent='WPCOM00020090106e51500004' segment='WM' auxtype='r'/>
+    
+    <Result accessionno='WPCOM00020090106e51500005' pubdate='20090105' distdocver='06.3' wordcount='0000002571' status='00000000' objcount='001'>
+      <AdocTOC adoctype="article">
+        <Item type='arttext' size='16658' ref='distdoc:archive/ArchiveDoc::Article'></Item>
+        <Item type='invtext' size='45697' ref='distdoc:archive/InvertText'></Item>
+      </AdocTOC>
+    </Result>
+    <Result accessionno='WPCOM00020090106e51500006' pubdate='20090105' distdocver='06.3' wordcount='0000012377' status='00000000' objcount='001' auxcount='001'>
+      <AdocTOC adoctype="article">
+        <Item type='arttext' size='73649' ref='distdoc:archive/ArchiveDoc::Article'></Item>
+        <Item type='invtext' size='220281' ref='distdoc:archive/InvertText'></Item>
+      </AdocTOC>
+    </Result>
+    <Result accessionno='WPCOM00020090106e51500006' pubdate='20090105' distdocver='06.3' wordcount='0000012377' status='00013005' objcount='000' parent='WPCOM00020090106e51500006' segment='IB' auxtype='s'/>
+    <Result accessionno='WPCOM00020090106e51500007' pubdate='20090105' distdocver='06.3' wordcount='0000003009' status='00000000' objcount='001'>
+      <AdocTOC adoctype="article">
+        <Item type='arttext' size='19383' ref='distdoc:archive/ArchiveDoc::Article'></Item>
+        <Item type='invtext' size='54443' ref='distdoc:archive/InvertText'></Item>
+      </AdocTOC>
+    </Result>
+    <Result accessionno='WPCOM00020090106e51500004' pubdate='20090105' distdocver='06.3' wordcount='0000002734' status='00000000' objcount='001'>
+      <AdocTOC adoctype="article">
+        <Item type='arttext' size='16068' ref='distdoc:archive/ArchiveDoc::Article'></Item>
+        <Item type='invtext' size='47010' ref='distdoc:archive/InvertText'></Item>
+      </AdocTOC>
+    </Result>
+    <Result accessionno='WPCOM00020090106e51500009' pubdate='20090105' distdocver='06.3' wordcount='0000000724' status='00000000' objcount='001' auxcount='001'>
+      <AdocTOC adoctype="article">
+        <Item type='arttext' size='5283' ref='distdoc:archive/ArchiveDoc::Article'></Item>
+        <Item type='invtext' size='12651' ref='distdoc:archive/InvertText'></Item>
+      </AdocTOC>
+    </Result>
+    <Result accessionno='WPCOM00020090106e51500009' pubdate='20090105' distdocver='06.3' wordcount='0000000724' status='00013005' objcount='000' parent='WPCOM00020090106e51500009' segment='GEN' auxtype='s'/>
+    <Result accessionno='INVALIDDOCID1' status='00013001' objcount='000'/>
+    <Result accessionno='INVALIDDOCID2' status='00013001' objcount='000' auxcount='000'/>
+    <Result accessionno='ENVONL0020081209e51m00003' pubdate='20090122' distdocver='06.3' wordcount='0000000096' status='00000000' objcount='001' auxcount='000'>
+      <AdocTOC adoctype="article">
+        <Item type='arttext' size='1223' ref='distdoc:archive/ArchiveDoc::Article'></Item>
+        <Item type='invtext' size='2263' ref='distdoc:archive/InvertText'></Item>
+      </AdocTOC>
+    </Result>
+    <Result accessionno='APRS000020090106e516003nr' pubdate='20090106' pubtime='190814' distdocver='06.3' wordcount='0000000447' status='00000000' objcount='001' auxcount='003'>
+      <AdocTOC adoctype="article">
+        <Item type='arttext' size='3521' ref='distdoc:archive/ArchiveDoc::Article'></Item>
+        <Item type='invtext' size='7955' ref='distdoc:archive/InvertText'></Item>
+      </AdocTOC>
+    </Result>
+  </ResultSet>
+</GetArchiveObjectResponse>
