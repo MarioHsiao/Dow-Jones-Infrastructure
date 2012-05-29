@@ -167,13 +167,16 @@ namespace DowJones.Assemblers.Articles
 
             if (!CheckCodeSN(Codes.PD.ToString()))
             {
-                articleResult.PublicationDate = GetPublicationDate(article.publicationDate, article.publicationTime, article.publicationTimeSpecified);
+                articleResult.PublicationDate = GetDate(article.publicationDate, article.publicationTime, article.publicationTimeSpecified);
             }
 
             if (!CheckCodeSN(Codes.ET.ToString()))
             {
-                articleResult.PublicationTime = GetPublicationTime(article.publicationDate, article.publicationTime, article.publicationTimeSpecified);
+                articleResult.PublicationTime = GetTime(article.publicationDate, article.publicationTime);
             }
+
+            articleResult.ModificationDate = GetDate(article.modDate, article.modTime, true);
+            articleResult.ModificationTime = GetTime(article.modDate, article.modTime);
 
             if (!string.IsNullOrEmpty(article.baseLanguage))
             {
@@ -714,7 +717,7 @@ namespace DowJones.Assemblers.Articles
         /// <param name = "elink">The elink.</param>
         /// <param name = "renderItems"></param>
         /// <param name = "accessionNumber"></param>
-        private void RenderEntityLink(ELink elink, List<RenderItem> renderItems, string accessionNumber)
+        private void RenderEntityLink(ELink elink, ICollection<RenderItem> renderItems, string accessionNumber)
         {
             var elinkItems = GetElinkItems(elink);
 
@@ -880,7 +883,7 @@ namespace DowJones.Assemblers.Articles
                    Equals(PostProcessing.Print, StringComparison.InvariantCultureIgnoreCase);
         }
         
-        private string GetPublicationDate(DateTime publicationDate, DateTime publicationTime, bool publicationTimeSpecified)
+        private string GetDate(DateTime publicationDate, DateTime publicationTime, bool publicationTimeSpecified)
         {
             var tempararyPublicationDate = publicationDate;
             if (publicationTimeSpecified)
@@ -889,14 +892,9 @@ namespace DowJones.Assemblers.Articles
             return _dateTimeFormatter.FormatDate(tempararyPublicationDate);
         }
 
-        private string GetPublicationTime(DateTime publicationDate, DateTime publicationTime, bool publicationTimeSpecified)
+        private string GetTime(DateTime publicationDate, DateTime publicationTime)
         {
-            var publicationTm = string.Empty;
-            if (publicationTimeSpecified)
-            {
-                publicationTm = _dateTimeFormatter.FormatTime(DateTimeFormatter.Merge(publicationDate, publicationTime));
-            }
-            return publicationTm;
+            return _dateTimeFormatter.FormatTime(DateTimeFormatter.Merge(publicationDate, publicationTime));
         }
 
 
@@ -1058,7 +1056,7 @@ namespace DowJones.Assemblers.Articles
                                 item.ItemMarkUp = Map(curContentItem.Mimetype);
                                 item.ItemText = text;
                                 item.ItemValue = strHref;
-                                
+
                                 if (EmbedHtmlBasedExternalLinks && item.ItemMarkUp == MarkUpType.Html)
                                 {
                                     UpdateItem(item, curContentItem, numberBasedContentItem.AccessionNumber);
@@ -1071,6 +1069,7 @@ namespace DowJones.Assemblers.Articles
                                 item.Caption = ParseMarkup(contentItem.ContentHeadline.Snippet.Any);
                                 item.Source = ParseMarkup(contentItem.ContentHeadline.Byline.Any);
                                 item.EnlargedImageUrl = enlargedImgHandlerUrl;
+
                                 found = true;
                             }
                         }
@@ -1088,7 +1087,7 @@ namespace DowJones.Assemblers.Articles
                                 item.ItemMarkUp = Map(curContentItem.Mimetype);
                                 item.ItemText = text;
                                 item.ItemValue = strHref;
-                                
+
                                 if (EmbedHtmlBasedExternalLinks && item.ItemMarkUp == MarkUpType.Html)
                                 {
                                     UpdateItem(item, curContentItem, numberBasedContentItem.AccessionNumber);

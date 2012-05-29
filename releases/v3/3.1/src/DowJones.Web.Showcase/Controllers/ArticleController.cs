@@ -38,7 +38,7 @@ namespace DowJones.Web.Showcase.Controllers
         }
 
         [Route("article/{accessionNumber}")]
-        public ActionResult Article(string accessionNumber, DisplayOptions option = DisplayOptions.Full, ImageType imageType = ImageType.Thumbnail, PictureSize pictureSize = PictureSize.Large, string callback = null, string canonicalSearchString ="T|microsoft T|phone O|+ T|en T|pt O|, T|es O|, N|la O|c O|+ T|article T|file O|, T|report O|, N|fmt O|c O|+ N|pd D|-0090 D| O|d O|+")
+        public ActionResult Article(string accessionNumber, DisplayOptions option = DisplayOptions.Full, ImageType imageType = ImageType.Thumbnail, PictureSize pictureSize = PictureSize.Large, string callback = null, string canonicalSearchString = "T|microsoft T|en T|es O|, T|pt O|, N|la O|c O|+ T|article N|fmt O|c T|report N|fmt O|c O|, T|file N|fmt O|c O|, T|webpage N|fmt O|c O|, T|blog N|fmt O|c O|, T|multimedia N|fmt O|c O|, T|picture N|fmt O|c O|, T|tmnb N|rst O|c T|tmnb N|rst O|c O|, O|+ O|+ T|article T|file O|, T|report O|, N|fmt O|c O|+ N|pd D|-0008 D| O|d O|+")
         {
             new GetHistoricalDataByTimePeriodRequest
                 {

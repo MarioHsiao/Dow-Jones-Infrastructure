@@ -45,7 +45,6 @@ DJ.UI.StockKiosk = DJ.UI.Component.extend({
         stock_last_updated: '.dj_chartLastUpdated',
         stock_currency: '.dj_currency ',
         stock_label_name: '.dj_chartLabel',
-        exchange_name: '.dj_exchange .dj_value',
         timezone_name: '.dj_timezone'
     },
 
@@ -338,9 +337,8 @@ DJ.UI.StockKiosk = DJ.UI.Component.extend({
                 stock_last_updated.html($.trim(requestedIntradaryMarketData.adjustedLastUpdatedDescripter));
             }
             
-            $(self.selectors.stock_label_name, this.$element).html(requestedIntradaryMarketData.name);       
+            $(self.selectors.stock_label_name, this.$element).html(requestedIntradaryMarketData.name + " [" + requestedIntradaryMarketData.exchange.code + "]");       
             $(self.selectors.timezone_name, this.$element).html(requestedIntradaryMarketData.exchange.timeZoneDescriptor);      
-            $(self.selectors.exchange_name, this.$element).html(requestedIntradaryMarketData.exchange.code);      
             var currency = $(self.selectors.stock_currency, this.$element);
             var currencyVal =  $(self.selectors.stock_currency + " .dj_value", this.$element);
             if (currency.length > 0 )
@@ -393,9 +391,8 @@ DJ.UI.StockKiosk = DJ.UI.Component.extend({
                 stock_last_updated.html($.trim(requestedIntradaryMarketData.adjustedLastUpdatedDescripter));
             }
 
-            $(self.selectors.stock_label_name, this.$element).html(requestedIntradaryMarketData.name);      
-            $(self.selectors.timezone_name, this.$element).html(requestedIntradaryMarketData.exchange.timeZoneDescriptor);      
-            $(self.selectors.exchange_name, this.$element).html(requestedIntradaryMarketData.exchange.code);      
+            $(self.selectors.stock_label_name, this.$element).html(requestedIntradaryMarketData.name + " [" + requestedIntradaryMarketData.exchange.code + "]");      
+            $(self.selectors.timezone_name, this.$element).html(requestedIntradaryMarketData.exchange.timeZoneDescriptor);
             var currency = $(self.selectors.stock_currency, this.$element);
             var currencyVal =  $(self.selectors.stock_currency + " .dj_value", this.$element);
             if (currency.length > 0 )
