@@ -40,11 +40,10 @@
     <div class="dj_chartContainer"></div>
     <div class="dj_chartLegend">        
         <div class="dj_chartLabel"></div>
-        <div class="dj_exchange"><%= Token("exchange") %>: <span class="dj_value"></span></div>
         <div class="dj_currency"><%= Token("currencyColon") %>: <span class="dj_value"></span></div>
-        <div class="dj_source"><%= Token("sourcesLabel") %>: <%=data[0].provider.name %></div>
         <div class="dj_chartLastUpdated"></div>
         <div class="dj_timezone"></div>
-        <div><%= Token("delayedQuotePerExchange") %></div>
+        <div><%= Token("delayedQuotePerExchange") %></div>        
+        <div class="dj_source"><%= Token("sourcesLabel") %>: <%=data[0].provider.name %></div>
     </div>
 </div>

@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿    using System.Collections.Generic;
 using DowJones.Articles;
 
 namespace DowJones.Ajax.Article
@@ -42,6 +42,10 @@ namespace DowJones.Ajax.Article
         public string PublicationDate { get; set; }
 
         public string PublicationTime { get; set; }
+        
+        public string ModificationDate { get; set; }
+
+        public string ModificationTime { get; set; }
 
         public List<RenderItem> Headline { get; set; }
 

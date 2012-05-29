@@ -49,6 +49,12 @@ namespace DowJones.Web.Showcase.Controllers
         }
     }
 
+    public class StockKioskControllerModel
+    {
+        public StockKioskModel Top;
+        public StockKioskModel Bottom;
+    }
+
     public class StockKioskController : Controller
     {
         private readonly MarketDataInstrumentIntradayResultSetAssembler _assembler;
@@ -59,35 +65,16 @@ namespace DowJones.Web.Showcase.Controllers
 
         public ActionResult Index([ModelBinder(typeof(StringSplitModelBinder))]string[] syms, SymbolType symbolType = SymbolType.FCode, Frequency frequency = Frequency.FifteenMinutes, int pageSize = 10)
         {
-            var list = new List<string>(syms ?? new[] { "reggr", "carsvc", "cmdbnn", "rgrc", "stgtec", "precos", "comasc" });
-            var response = MarketDataChartingManager.GetMarketChartData(list.ToArray(), symbolType, TimePeriod.OneDay, frequency);
-            
-            using (var ms = new MemoryStream())
-            {
-                var serializer = new DataContractSerializer(response.GetType());
-                serializer.WriteObject(ms,response);
-/*
-                var dcs = new DataContractSerializer(response.GetType());
-                using (var xmlTextWriter = new ConformWriter(ms, Encoding.Default))
-                {
-                    xmlTextWriter.Formatting = Formatting.Indented;
-                    dcs.WriteObject(xmlTextWriter, response);
-                    xmlTextWriter.Flush();
-                    ms.Flush();
-                }*/
+            var leftSyms = new List<string>(syms ?? new[] { "reggr", "carsvc", "cmdbnn", "rgrc", "stgtec", "precos", "comasc" });
+            var rightSyms = new List<string>(new[] { "ibm", "mcrost", "goog", "reggr", "carsvc", "cmdbnn", "rgrc", "stgtec", "precos", "comasc" });
 
-            }
+            var model = new StockKioskControllerModel
+                            {
+                                Bottom = GetStockKioskModel(rightSyms, symbolType, frequency, pageSize),
+                                Top = GetStockKioskModel(leftSyms, symbolType, frequency, pageSize),
+                            };
 
-            var kioskModel = new StockKioskModel();
-
-            if (response.PartResults != null && response.PartResults.Count() > 0)
-            {
-                var data = _assembler.Convert(response.PartResults);
-                kioskModel.Data = data;
-                kioskModel.PageSize = pageSize;
-                if (kioskModel.PageSize > 8) kioskModel.PageSize = 8;     //min as per the design to fit in
-            }
-            return View( "Index", kioskModel);
+            return View( "Index", model);
         } 
 
         public ActionResult Dylan([ModelBinder(typeof(StringSplitModelBinder))]string[]fCodes)
@@ -97,6 +84,22 @@ namespace DowJones.Web.Showcase.Controllers
             manager.GetInstruments(new []{"reinmo"});
             return View("Index", null);
             
+        }
+
+        private StockKioskModel GetStockKioskModel(IEnumerable<string> syms, SymbolType symbolType = SymbolType.FCode, Frequency frequency = Frequency.FifteenMinutes, int pageSize = 10)
+        {
+            var kioskModel = new StockKioskModel();
+            var response = MarketDataChartingManager.GetMarketChartData(syms.ToArray(), symbolType, TimePeriod.OneDay, frequency);
+            if (response.PartResults == null || response.PartResults.Count() <= 0)
+            {
+                return null;
+            }
+            var data = _assembler.Convert(response.PartResults);
+            kioskModel.Data = data;
+            kioskModel.PageSize = pageSize;
+            if (kioskModel.PageSize > 8) kioskModel.PageSize = 8; //min as per the design to fit in
+
+            return kioskModel;
         }
     }
 }
