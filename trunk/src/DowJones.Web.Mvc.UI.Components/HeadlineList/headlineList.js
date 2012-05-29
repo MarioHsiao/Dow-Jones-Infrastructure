@@ -187,7 +187,7 @@ DJ.UI.HeadlineList plugin
             var titleStr = $headlineItem.children(this.selectors.title).text();
             //var data = $(elem).closest(this.selectors.headlineBox).data('headlineinfo');
             var data = $headlineItem.data('headlineinfo');
-            return $.extend({ title: titleStr }, data);
+            return $.extend({ title: titleStr, sender: elem }, data);
         },
 
         _renderSuccess: function () {
