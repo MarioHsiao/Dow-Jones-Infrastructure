@@ -1321,8 +1321,10 @@
     <Content Include="Styles\css\canvas.icons.css" />
     <Content Include="Styles\css\canvas.nav.css" />
     <Content Include="Styles\css\canvas.tag-cloud.css" />
+    <Content Include="Styles\css\normalizeExtensions.css" />
     <Content Include="Styles\css\dashboard.crud-form.css" />
     <Content Include="Styles\css\module.social-media.css" />
+    <Content Include="Styles\css\normalize.css" />
     <Content Include="Styles\css\socialMediaStyles.css" />
     <Content Include="Styles\css\stockkiosk.css" />
     <Content Include="Styles\css\dashboard.article-group.css" />
