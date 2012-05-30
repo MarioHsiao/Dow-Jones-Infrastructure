@@ -1,0 +1,43 @@
+﻿<% var eventIndex = 0; _.each(Dates, function(date){ %>
+<% if(date.Events && date.Events.length > 0) { %>
+<tbody class="dj_calendarDateBody <%= date.Selected ? 'dj_selected' : '' %>" data-group="<%= date.EventDateString %>">            
+    <tr class="dj_calendarDateHeader" data-group="<%= date.EventDateString %>">
+        <th colspan="8"><%= date.EventDateString %></th>
+    </tr>            
+    <% _.each(date.Events, function(event, i){ %>
+    <tr class="dj_event dj_<%= ((eventIndex % 2) === 0 ? 'odd' : 'even')%> <%= (event.IsTarget) ? 'dj_eventTarget' : '' %>" data-id="<%= event.Id %>" data-timestamp="<%= event.Timestamp %>" data-ticker="<%= event.Ticker %>">
+        <td class="dj_eventTime" rowspan="<%= event.Details.length + 1 %>"><%= event.EventTimeString %></td>
+        <td class="dj_eventPeriod" rowspan="<%= event.Details.length + 1 %>"><%= event.Period %></td>
+        <td class="dj_eventDescription"><%= event.Country %>/<%= event.EventDescription %></td>
+        <td class="dj_eventCode"><%= event.EventCode %></td>
+        <td>&nbsp;&nbsp;</td>
+        <td>&nbsp;&nbsp;</td>       
+        <td>&nbsp;&nbsp;</td>       
+        <td class="<%= (event.NewsQueryMode === 'None') ? 'dj_eventNoNews' : 'dj_eventNews' %>" data-id="<%= event.NewsStatisticsCodeQuery %>"><% if (event.NewsQueryMode !== 'None'){ %><img class="dj_eventNewsTrigger" data-mode="<%= event.NewsQueryMode %>" data-query="<%= event.NewsStatisticsCodeQuery %>" alt="News" height="16px" width="16px" src='<%= AbsoluteUrl("~/assets/img/calendarlive/DJ_thumbnail.png") %>'/><% } else { %>&nbsp;&nbsp;<% } %></td>
+    </tr>
+    <% _.each(event.Details, function(detail){ %>
+    <tr class="dj_eventDetail dj_<%= ((eventIndex % 2) === 0 ? 'odd' : 'even')%>" data-id="<%= detail.Id %>" data-eventid="<%=event.Id %>">
+        <td class="dj_detailDescription"><%= detail.Description %></td>
+        <td>&nbsp;&nbsp;</td>
+        <td class="dj_eventExpected"><%= detail.Expected ? detail.Expected.ValueString : '&nbsp;&nbsp;' %></td>
+        <td class="dj_eventActual" data-updated="<%= (detail.Actual) ? new Date(parseInt(detail.Actual.LastModifiedDateTime.substring(6))).getTime() : 0 %>"><%= detail.Actual ? detail.Actual.ValueString : '&nbsp;&nbsp;' %></td>
+        <td class="dj_eventPrevious"><%= detail.Previous ? detail.Previous.ValueString : '&nbsp;&nbsp;' %></td>
+        <td>&nbsp;&nbsp;</td>
+    </tr>
+    <%}); %>
+    <% eventIndex ++; }); %>                                           
+</tbody>
+<% } %>
+<% }); %>
+<tfoot class="dj_calendarTableFooter">
+    <tr>
+        <th>Time</th>
+        <th>Period</th>
+        <th class="dj_eventHeader">Event</th>
+        <th>Type</th>
+        <th>Forecast</th>
+        <th>Actual</th>
+        <th>Previous</th>
+        <th class="dj_newsHeader">News</th>
+    </tr>
+</tfoot>

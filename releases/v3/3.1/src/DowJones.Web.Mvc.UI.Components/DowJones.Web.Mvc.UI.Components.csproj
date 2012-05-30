@@ -153,6 +153,11 @@
       <DependentUpon>AutoSuggestComponent.cshtml</DependentUpon>
     </Compile>
     <Compile Include="AutoSuggest\AutoSuggestComponent.cs" />
+    <Compile Include="CalendarEventList\CalendarEventListControl.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CalendarEventListControl.cshtml</DependentUpon>
+    </Compile>
     <Compile Include="CalloutPopup\CalloutPopup.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -189,6 +194,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DateHistogram.cshtml</DependentUpon>
+    </Compile>
+    <Compile Include="DateSlider\DateSliderControl.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DateSliderControl.cshtml</DependentUpon>
     </Compile>
     <Compile Include="Diagnostics\ValidateClientUI.cs" />
     <Compile Include="Diagnostics\ValidateClientUIComponent.cs">
@@ -529,6 +539,10 @@
       <Generator>RazorViewComponentClassGenerator</Generator>
       <LastGenOutput>AutoSuggestComponent.cs</LastGenOutput>
     </None>
+    <None Include="CalendarEventList\CalendarEventListControl.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>CalendarEventListControl.cs</LastGenOutput>
+    </None>
     <None Include="CompanySparkline\CompaniesSparklinesComponent.cshtml">
       <Generator>RazorViewComponentClassGenerator</Generator>
       <LastGenOutput>CompaniesSparklinesComponent.cs</LastGenOutput>
@@ -548,6 +562,10 @@
     <None Include="CompositeOutlet\CompositeOutlet.cshtml">
       <Generator>RazorViewComponentClassGenerator</Generator>
       <LastGenOutput>CompositeOutlet.cs</LastGenOutput>
+    </None>
+    <None Include="DateSlider\DateSliderControl.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>DateSliderControl.cs</LastGenOutput>
     </None>
     <None Include="Diagnostics\ValidateClientUIComponent.cshtml">
       <Generator>RazorViewComponentClassGenerator</Generator>
@@ -679,6 +697,12 @@
     <Content Include="Autocomplete\images\source_webpage.png" />
     <EmbeddedResource Include="Autocomplete\scripts\jquery.autocomplete.js" />
     <EmbeddedResource Include="Autocomplete\scripts\jquery.jsonp-2.1.4.min.js" />
+    <EmbeddedResource Include="CalendarEventList\ClientTemplates\Container.htm" />
+    <EmbeddedResource Include="CalendarEventList\ClientTemplates\Success.htm" />
+    <EmbeddedResource Include="DateSlider\ClientTemplates\Container.htm" />
+    <EmbeddedResource Include="DateSlider\ClientTemplates\Success.htm" />
+    <EmbeddedResource Include="CalendarEventList\CalendarEventList.js" />
+    <EmbeddedResource Include="DateSlider\DateSlider.js" />
     <Content Include="InlineMp3Player\InlineMp3PlayerBehavior.Original.js" />
     <EmbeddedResource Include="Pager\Pager.js" />
     <EmbeddedResource Include="RegionalMap\images\world_map.gif" />

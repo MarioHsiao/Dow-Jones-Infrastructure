@@ -157,10 +157,12 @@
     <Compile Include="Connections\MyConnection.cs" />
     <Compile Include="Connections\StockMarketConnection.cs" />
     <Compile Include="Controllers\AlertEditorController.cs" />
+    <Compile Include="Controllers\CalendarEventListController.cs" />
     <Compile Include="Controllers\CanvasController.cs" />
     <Compile Include="Controllers\CanvasControllerBase.cs" />
     <Compile Include="Controllers\ClientUIController.cs" />
     <Compile Include="Controllers\DateHistogramController.cs" />
+    <Compile Include="Controllers\DateSliderController.cs" />
     <Compile Include="Controllers\DiscoveryGraphController.cs" />
     <Compile Include="Controllers\EntityListController.cs" />
     <Compile Include="Controllers\NewsFeedController.cs" />
@@ -1551,7 +1553,9 @@
     <Content Include="Views\NewsStandTicker\Index.cshtml" />
     <Content Include="Views\HeadlineCarousel\Index.cshtml" />
     <Content Include="Views\PortalArticle\Index.cshtml" />
-    <Content Include="packages.config" />
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="Styles\less\SyndicationModule.chirp.less" />
     <None Include="Styles\less\TopNewsCanvasModule.chirp.less" />
     <Content Include="Views\Home\AjaxDemo.cshtml" />
@@ -1590,6 +1594,8 @@
     <Content Include="Views\Newsletter\Article.cshtml" />
     <Content Include="Views\Newsletter\Index.cshtml" />
     <Content Include="Views\Shared\Rainwater.cshtml" />
+    <Content Include="Views\DateSlider\Index.cshtml" />
+    <Content Include="Views\CalendarEventList\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Browsers\Devices\" />
