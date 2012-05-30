@@ -25,8 +25,9 @@ namespace DowJones.Web.Showcase.Controllers
     {
         private readonly IArticleService _articleService;
         private readonly ArticleConversionManager _articleConversionManager;
+		private const string DefaultCanonicalSearchString = "T|microsoft T|en T|es O|, T|pt O|, N|la O|c O|+ T|article N|fmt O|c T|report N|fmt O|c O|, T|file N|fmt O|c O|, T|webpage N|fmt O|c O|, T|blog N|fmt O|c O|, T|multimedia N|fmt O|c O|, T|picture N|fmt O|c O|, T|tmnb N|rst O|c T|tmnb N|rst O|c O|, O|+ O|+ T|article T|file O|, T|report O|, N|fmt O|c O|+ N|pd D|-0008 D| O|d O|+";
 
-        public ArticleController(IArticleService articleService, ArticleConversionManager articleConversionManager )
+    	public ArticleController(IArticleService articleService, ArticleConversionManager articleConversionManager )
         {
             _articleService = articleService;
             _articleConversionManager = articleConversionManager;
@@ -37,71 +38,85 @@ namespace DowJones.Web.Showcase.Controllers
             return Article(acn, option);
         }
 
+		public ActionResult ComponentExplorerDemo(string acn = "DJFVW00020120326e83qkgx46", DisplayOptions option = DisplayOptions.Full)
+		{
+			var model = GetArticle(acn, DefaultCanonicalSearchString, ImageType.Thumbnail, PictureSize.Small, option);
+			return View("Index", "_Layout_ComponentExplorer", model);
+		}
+
         [Route("article/{accessionNumber}")]
-        public ActionResult Article(string accessionNumber, DisplayOptions option = DisplayOptions.Full, ImageType imageType = ImageType.Thumbnail, PictureSize pictureSize = PictureSize.Large, string callback = null, string canonicalSearchString = "T|microsoft T|en T|es O|, T|pt O|, N|la O|c O|+ T|article N|fmt O|c T|report N|fmt O|c O|, T|file N|fmt O|c O|, T|webpage N|fmt O|c O|, T|blog N|fmt O|c O|, T|multimedia N|fmt O|c O|, T|picture N|fmt O|c O|, T|tmnb N|rst O|c T|tmnb N|rst O|c O|, O|+ O|+ T|article T|file O|, T|report O|, N|fmt O|c O|+ N|pd D|-0008 D| O|d O|+")
+        public ActionResult Article(string accessionNumber, DisplayOptions option = DisplayOptions.Full, 
+			ImageType imageType = ImageType.Thumbnail, PictureSize pictureSize = PictureSize.Large, 
+			string callback = null, string canonicalSearchString = DefaultCanonicalSearchString)
         {
-            new GetHistoricalDataByTimePeriodRequest
-                {
-                    adjustForCapitalChanges = true
-                };
+        	var model = GetArticle(accessionNumber, canonicalSearchString, imageType, pictureSize, option);
 
-            //canonicalSearchString = "T|djdn000020120216e82g0lkzf N|an O|: T|and O|+ T|sipc O|+ T|and O|+ T|businesswire O|+ T|and O|+ T|schwab O|+ T|and O|+ T|aboutschwab O|+ T|en T|ru O|, T|de O|, N|la O|c O|+ T|nnam T|nrmf O|, T|nrgn O|, N|ns O|c O|- T|article T|file O|, T|report O|, T|webpage O|, T|blog O|, T|picture O|, T|multimedia O|, T|board O|, T|customerdoc O|, N|fmt O|c O|+";
-            var article = _articleService.GetArticle(accessionNumber, canonicalSearchString);
-
-            if (article == null || (article.status != null && article.status.value != 0))
-            {
-                throw new DowJonesUtilitiesException(DowJonesUtilitiesException.InvalidDataRequest);
-            }
-
-            _articleConversionManager.ShowCompanyEntityReference = true;
-            _articleConversionManager.ShowExecutiveEntityReference = true;
-            _articleConversionManager.EnableELinks = true;
-            _articleConversionManager.EmbedHtmlBasedArticles = true;
-            _articleConversionManager.EmbedHtmlBasedExternalLinks = true;
-            _articleConversionManager.EmbededImageType = imageType;
-            _articleConversionManager.ShowImagesAsFigures = true;
-            _articleConversionManager.PictureSize = pictureSize;
-            _articleConversionManager.EnableEnlargedImage = true;
-
-            var urlBuilder = new UrlBuilder("~/article/" + accessionNumber);
-            var articleDataSet = _articleConversionManager.Convert(article);
-
-            var model = new ArticleModel
-            {
-                ArticleDataSet = _articleConversionManager.Convert(article),
-
-                ArticleDisplayOptions = option,
-                ShowPostProcessing = true,
-                ShowSourceLinks = true,
-                ShowSocialButtons = true,
-                SocialButtons = new SocialButtonsModel
-                {
-                    Url = urlBuilder.ToString(),
-                    Description = "",
-                    Target = "_blank",
-                    ImageSize = ImageSize.Small,
-                    Title = ProcessHeadlineRenderItems(articleDataSet.Headline),
-                    SocialNetworks = new[] { SocialNetworks.LinkedIn, SocialNetworks.Twitter, SocialNetworks.Facebook, },
-                    Keywords = "",
-                    ID = "socialButtons",
-                    ShowCustomTooltip = false,
-                },
-                PostProcessingOptions = new[]
-                                            {
-                                                PostProcessingOptions.Print,
-                                                PostProcessingOptions.Save,
-                                                PostProcessingOptions.PressClips,
-                                                PostProcessingOptions.Email, 
-                                                PostProcessingOptions.Listen,
-                                                PostProcessingOptions.Translate,
-                                                PostProcessingOptions.Share,
-                                            }.Distinct()
-            };
-
-            return Request.IsAjaxRequest() ? ViewComponent(model, callback) : View("Index", model);
+        	return Request.IsAjaxRequest() ? ViewComponent(model, callback) : View("Index", model);
         }
 
-        private static string ProcessHeadlineRenderItems(IEnumerable<RenderItem> items)
+    	private ArticleModel GetArticle(string accessionNumber, string canonicalSearchString, ImageType imageType, PictureSize pictureSize, DisplayOptions option)
+    	{
+    		new GetHistoricalDataByTimePeriodRequest
+    			{
+    				adjustForCapitalChanges = true
+    			};
+
+    		//canonicalSearchString = "T|djdn000020120216e82g0lkzf N|an O|: T|and O|+ T|sipc O|+ T|and O|+ T|businesswire O|+ T|and O|+ T|schwab O|+ T|and O|+ T|aboutschwab O|+ T|en T|ru O|, T|de O|, N|la O|c O|+ T|nnam T|nrmf O|, T|nrgn O|, N|ns O|c O|- T|article T|file O|, T|report O|, T|webpage O|, T|blog O|, T|picture O|, T|multimedia O|, T|board O|, T|customerdoc O|, N|fmt O|c O|+";
+    		var article = _articleService.GetArticle(accessionNumber, canonicalSearchString);
+
+    		if (article == null || (article.status != null && article.status.value != 0))
+    		{
+    			throw new DowJonesUtilitiesException(DowJonesUtilitiesException.InvalidDataRequest);
+    		}
+
+    		_articleConversionManager.ShowCompanyEntityReference = true;
+    		_articleConversionManager.ShowExecutiveEntityReference = true;
+    		_articleConversionManager.EnableELinks = true;
+    		_articleConversionManager.EmbedHtmlBasedArticles = true;
+    		_articleConversionManager.EmbedHtmlBasedExternalLinks = true;
+    		_articleConversionManager.EmbededImageType = imageType;
+    		_articleConversionManager.ShowImagesAsFigures = true;
+    		_articleConversionManager.PictureSize = pictureSize;
+    		_articleConversionManager.EnableEnlargedImage = true;
+
+    		var urlBuilder = new UrlBuilder("~/article/" + accessionNumber);
+    		var articleDataSet = _articleConversionManager.Convert(article);
+
+    		return new ArticleModel
+    		       	{
+    		       		ArticleDataSet = _articleConversionManager.Convert(article),
+
+    		       		ArticleDisplayOptions = option,
+    		       		ShowPostProcessing = true,
+    		       		ShowSourceLinks = true,
+    		       		ShowSocialButtons = true,
+    		       		SocialButtons = new SocialButtonsModel
+    		       		                	{
+    		       		                		Url = urlBuilder.ToString(),
+    		       		                		Description = "",
+    		       		                		Target = "_blank",
+    		       		                		ImageSize = ImageSize.Small,
+    		       		                		Title = ProcessHeadlineRenderItems(articleDataSet.Headline),
+    		       		                		SocialNetworks = new[] { SocialNetworks.LinkedIn, SocialNetworks.Twitter, SocialNetworks.Facebook, },
+    		       		                		Keywords = "",
+    		       		                		ID = "socialButtons",
+    		       		                		ShowCustomTooltip = false,
+    		       		                	},
+    		       		PostProcessingOptions = new[]
+    		       		                        	{
+    		       		                        		PostProcessingOptions.Print,
+    		       		                        		PostProcessingOptions.Save,
+    		       		                        		PostProcessingOptions.PressClips,
+    		       		                        		PostProcessingOptions.Email, 
+    		       		                        		PostProcessingOptions.Listen,
+    		       		                        		PostProcessingOptions.Translate,
+    		       		                        		PostProcessingOptions.Share,
+    		       		                        	}.Distinct()
+    		       	};
+    	}
+
+
+    	private static string ProcessHeadlineRenderItems(IEnumerable<RenderItem> items)
         {
             var sb = new StringBuilder();
 

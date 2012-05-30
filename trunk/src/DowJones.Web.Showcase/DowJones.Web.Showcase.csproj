@@ -1598,6 +1598,7 @@
     <Content Include="Views\Shared\Rainwater.cshtml" />
     <Content Include="Views\DateSlider\Index.cshtml" />
     <Content Include="Views\CalendarEventList\Index.cshtml" />
+    <Content Include="Views\Shared\_Layout_ComponentExplorer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Browsers\Devices\" />
