@@ -23,12 +23,13 @@ namespace DowJones.Preferences
 
         public Preferences() : this(null)
         {
+            TimeZone = "+00:00|1";
         }
 
         public Preferences(string interfaceLanguage)
         {
             contentLanguages = new ContentLanguageCollection();
-            ClockType = ClockType.TwentyFourHours;
+            ClockType = ClockType.TwelveHours;
             InterfaceLanguage = interfaceLanguage;
         }
 
