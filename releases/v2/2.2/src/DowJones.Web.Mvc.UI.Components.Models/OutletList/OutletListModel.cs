@@ -305,6 +305,7 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 				cols[2] = new TdItem
 				{
 					Text = outlet.OutletName,
+					TdClass = "dj_col-string ellipsis",
 					TdAttributes = "nowrap='nowrap'",
 					IsAncor = true,
 					AncorHref = "javascript:void(0);",
@@ -353,6 +354,7 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 					cols[columnOrder.Type] = new TdItem
 					{
 						Text = SeparateStringListWithDiv(outlet.Type),
+						TdClass = "dj_col-string ellipsis",
 						TdAttributes = "nowrap='nowrap'"
 					};
 				}
@@ -497,6 +499,7 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 					cols[columnOrder.Audience] = new TdItem
 					{
 						Text = String.Join("<br />", outlet.Audiences),
+						TdClass = "dj_col-string ellipsis",
 						TdAttributes = "nowrap='nowrap'"
 					};
 				}

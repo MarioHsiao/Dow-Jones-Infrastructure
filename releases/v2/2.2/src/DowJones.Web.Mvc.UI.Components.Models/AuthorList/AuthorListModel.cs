@@ -410,6 +410,7 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 				cols[3] = new TdItem
 				{
 					Text = author.AuthorName,
+					TdClass = "dj_col-string ellipsis",
 					TdAttributes = "nowrap='nowrap'",
 					IsAncor = true,
 					AncorHref = "javascript:void(0);",
@@ -523,6 +524,7 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 					if (author.HasOutlets)
 					{
 						cols[columnOrder.OutletName].Text = firstOutlet.Name;
+						cols[columnOrder.OutletName].TdClass = "dj_col-string ellipsis";
 						cols[columnOrder.OutletName].TdAttributes = "nowrap='nowrap'";
 						cols[columnOrder.OutletName].IsAncor = true;
 						cols[columnOrder.OutletName].AncorClass = "author-outlet-selector";
@@ -699,6 +701,7 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 						{
 							outletRows[columnOrder.OutletName] = new TdItem();
 							outletRows[columnOrder.OutletName].Text = outlet.Name;
+							outletRows[columnOrder.OutletName].TdClass = "dj_col-string ellipsis";
 							outletRows[columnOrder.OutletName].TdAttributes = "nowrap='nowrap'";
 							outletRows[columnOrder.OutletName].IsAncor = true;
 							outletRows[columnOrder.OutletName].AncorClass = "author-outlet-selector";
