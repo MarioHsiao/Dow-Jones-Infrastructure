@@ -165,6 +165,7 @@
     <Compile Include="Controllers\DateSliderController.cs" />
     <Compile Include="Controllers\DiscoveryGraphController.cs" />
     <Compile Include="Controllers\EntityListController.cs" />
+    <Compile Include="Controllers\HeadlineListCarouselController.cs" />
     <Compile Include="Controllers\NewsFeedController.cs" />
     <Compile Include="Controllers\NewsLetterController.cs" />
     <Compile Include="Controllers\PersonalizationFiltersController.cs" />
@@ -211,7 +212,6 @@
     <Compile Include="BootstrapperTasks\GlobalFilterRegistrationTask.cs" />
     <Compile Include="BootstrapperTasks\MobileViewEngineBootstrapper.cs" />
     <Compile Include="BootstrapperTasks\RouteRegistrationTask.cs" />
-    <Compile Include="Controllers\HeadlineListCarouselController.cs" />
     <Compile Include="Controllers\TransactionController.cs" />
     <Compile Include="Models\ArticleModel.cs" />
     <Compile Include="Models\CompositeComponentDemoViewModel.cs" />
@@ -266,6 +266,7 @@
     <Content Include="Content\bootstrap\js\bootstrap.min.js" />
     <Content Include="Content\bootstrap\js\google-code-prettify\prettify.css" />
     <Content Include="Content\bootstrap\js\google-code-prettify\prettify.js" />
+    <Content Include="Content\js\HeadlineCarouel.js" />
     <Content Include="Content\js\ui.searchbuilder.js" />
     <Content Include="Content\js\ui.searchcommon.js" />
     <Content Include="Content\SearchResults.css" />
@@ -1521,7 +1522,9 @@
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Views\Web.config" />
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.montana.config">
       <SubType>Designer</SubType>
     </Content>
@@ -1530,7 +1533,6 @@
     </Content>
     <Content Include="Views\Filters\LoggedAction.cshtml" />
     <Content Include="Views\Filters\OutputCache.cshtml" />
-    <Content Include="Views\HeadlineListCarousel\Carousel.cshtml" />
     <Content Include="Views\Home\Android\Index.cshtml" />
     <Content Include="Views\Home\iPad\Index.cshtml" />
     <Content Include="Views\Home\iPhone\Index.cshtml" />
@@ -1599,6 +1601,7 @@
     <Content Include="Views\DateSlider\Index.cshtml" />
     <Content Include="Views\CalendarEventList\Index.cshtml" />
     <Content Include="Views\Shared\_Layout_ComponentExplorer.cshtml" />
+    <Content Include="Views\HeadlineListCarousel\Carousel.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Browsers\Devices\" />
