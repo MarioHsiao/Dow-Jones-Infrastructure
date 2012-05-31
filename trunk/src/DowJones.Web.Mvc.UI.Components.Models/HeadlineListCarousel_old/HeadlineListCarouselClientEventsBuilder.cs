@@ -1,16 +1,16 @@
 ﻿using DowJones.Infrastructure;
 
-namespace DowJones.Web.Mvc.UI.Components.HeadlineListCarousel
+namespace DowJones.Web.Mvc.UI.Components.HeadlineListCarousel_old
 {
     public class HeadlineListCarouselClientEventsBuilder : IAmFluent
     {
-        private readonly HeadlineListCarouselModel _clientEvents;
+        private readonly HeadlineListCarousel_oldModel _clientEvents;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="HeadlineListCarouselClientEventsBuilder"/> class.
         /// </summary>
         /// <param name="clientEvents">Client events of the calendar.</param>
-        public HeadlineListCarouselClientEventsBuilder(HeadlineListCarouselModel clientEvents)
+        public HeadlineListCarouselClientEventsBuilder(HeadlineListCarousel_oldModel clientEvents)
         {
             Guard.IsNotNull(clientEvents, "clientEvents");
 

@@ -5,7 +5,7 @@ using DowJones.Ajax.HeadlineList;
 using DowJones.Web.Mvc.UI.Components.HeadlineList;
 using DowJones.Web.Mvc.UI.Components.Common.Types;
 
-namespace DowJones.Web.Mvc.UI.Components.HeadlineListCarousel
+namespace DowJones.Web.Mvc.UI.Components.HeadlineListCarousel_old
 {
     public enum HeadlineListCarouselOrientation
     {
@@ -13,7 +13,7 @@ namespace DowJones.Web.Mvc.UI.Components.HeadlineListCarousel
         Horizontal
     }
 
-    public class HeadlineListCarouselModel : ViewComponentModel
+    public class HeadlineListCarousel_oldModel : ViewComponentModel
     {
         #region Event Handlers
 
@@ -88,7 +88,7 @@ namespace DowJones.Web.Mvc.UI.Components.HeadlineListCarousel
         }
 
 
-        public HeadlineListCarouselModel()
+        public HeadlineListCarousel_oldModel()
         {
             DisplaySnippets = SnippetDisplayType.None;
             DisplayTime = true;
