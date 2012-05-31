@@ -236,7 +236,7 @@
 
             // Select Box
             $().add(this.$searchInDD).add(this.$dateDD).selectbox().change();
-            
+
             //Custom date range
             this.$dateDD.change(function () {
                 me.$dateWrap.toggle(this.value == me.$dateDD.find("option:last").val());
@@ -347,13 +347,16 @@
         _clearAllFilters: function () {
             var hasAllLang = (this.$filtersList.children("[data-type='Language']").children(this.selectors.pillListWrap)
                             .children().eq(0).children("[code=alllang]").length > 0);
-            if ((hasAllLang && this.$filtersList.children(this.selectors.expanded).length > 1) || (!hasAllLang && this.$filtersList.children(this.selectors.expanded).length > 0)) {
+            if ((hasAllLang && this.$filtersList.children(this.selectors.expanded).length > 1)
+                    || (!hasAllLang && this.$filtersList.children(this.selectors.expanded).length > 0)
+                        || this.$newsFilter.is(":visible")) {
                 $dj.confirmDialog({
                     yesClickHandler: $dj.delegate(this, function () {
                         var filterItemPillList, pillList, notPillList, me = this, $li;
+                        //Remove Channel filters
                         this.$filtersList.children().each(function () {
                             $li = $(this);
-                            if($li.hasClass('expanded')){
+                            if ($li.hasClass('expanded')) {
                                 filterItemPillList = $li.children(me.selectors.pillListWrap).children();
                                 pillList = filterItemPillList.eq(0);
                                 notPillList = filterItemPillList.eq(1);
@@ -362,7 +365,12 @@
                             }
                             me._sortAndAppendFilterItem($li);
                         });
+                        //Add all langugages
                         this._addAllLanguages();
+                        //Remove News filters
+                        if (this._nFC) {
+                            this._nFC.removeAllFilters();
+                        }
                     }),
                     title: "<%= Token('filterResetTitle') %>",
                     msg: "<%= Token('filterResetMsg') %>"
@@ -843,8 +851,8 @@
 
         _onFilterClick: function (elem) {
             var $li = $(elem).closest(this.selectors.filterPill);
-            if ($li.hasClass("add") || ($li.data('type') == "LIST")) {
-                return; //Do not show filter options for a list
+            if ($li.hasClass("not") || $li.hasClass("add") || ($li.data('type') == "LIST")) {
+                return; //Do not show filter options for a not, add and list
             }
             this.$filterOptions.children("div").children().show().filter(":eq(" + ($(elem).closest("ul").hasClass("not-filter") ? "1" : "2") + ")").hide();
             $li.append(this.$filterOptions);

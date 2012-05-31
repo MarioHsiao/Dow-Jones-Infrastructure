@@ -96,6 +96,11 @@
             }
         },
 
+        removeAllFilters: function () {
+            this.$element.children().remove();
+            this.publish(this.events.onAllFiltersRemoved, { component: this });
+        },
+
         getFilters: function () {
             var f = {};
             var $filterGroups = this.$element.children().children(this.selectors.filterGroup);
