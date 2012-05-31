@@ -2,7 +2,7 @@
 * Headline List Carousel Control
 */
 
-    DJ.UI.HeadlineListCarousel = DJ.UI.Component.extend({
+DJ.UI.HeadlineListCarousel_old = DJ.UI.Component.extend({
 
         /*
         * Properties
@@ -381,4 +381,4 @@
         return this;
     };
 
-    $.plugin('dj_headlineListCarousel', DJ.UI.HeadlineListCarousel);
+    $.plugin('dj_headlineListCarousel_old', DJ.UI.HeadlineListCarousel);

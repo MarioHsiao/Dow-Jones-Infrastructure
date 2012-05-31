@@ -1,13 +1,13 @@
 ﻿using System;
 using DowJones.Infrastructure;
 
-namespace DowJones.Web.Mvc.UI.Components.HeadlineListCarousel
+namespace DowJones.Web.Mvc.UI.Components.HeadlineListCarousel_old
 {
-    public class HeadlineListCarouselControlBuilder : ViewComponentBuilderBase<HeadlineListCarouselControl, HeadlineListCarouselControlBuilder>
+    public class HeadlineListCarouselControlBuilder : ViewComponentBuilderBase<HeadlineListCarouselControl_old, HeadlineListCarouselControlBuilder>
     {
         protected HeadlineListCarouselClientEventsBuilder ClientEventsBuilder { get; private set; }
 
-        public HeadlineListCarouselControlBuilder(HeadlineListCarouselControl component)
+        public HeadlineListCarouselControlBuilder(HeadlineListCarouselControl_old component)
             : base(component)
         {
             ClientEventsBuilder = new HeadlineListCarouselClientEventsBuilder(component.Model);
@@ -42,16 +42,16 @@ namespace DowJones.Web.Mvc.UI.Components.HeadlineListCarousel
 
 namespace DowJones.Web.Mvc.UI.Extensions
 {
-    using Components.HeadlineListCarousel;
+    using Components.HeadlineListCarousel_old;
 
     public static class HeadlineListCarouselControlBuilderHtmlHelperExtensions
     {
         public static HeadlineListCarouselControlBuilder HeadlineListCarousel(this ViewComponentFactory viewComponentFactory)
         {
             var viewContext = viewComponentFactory.HtmlHelper.ViewContext;
-            var defaultData = viewContext.ViewData.Model as HeadlineListCarouselModel ?? new HeadlineListCarouselModel();
+            var defaultData = viewContext.ViewData.Model as HeadlineListCarousel_oldModel ?? new HeadlineListCarousel_oldModel();
 
-            var headlineListCarouselControl = viewComponentFactory.Create<HeadlineListCarouselControl>(defaultData);
+            var headlineListCarouselControl = viewComponentFactory.Create<HeadlineListCarouselControl_old>(defaultData);
 
             var builder = HeadlineListCarouselControlBuilder.Create(headlineListCarouselControl);
 
