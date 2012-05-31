@@ -410,6 +410,7 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 				cols[3] = new TdItem
 				{
 					Text = author.AuthorName,
+					TdAttributes = "nowrap='nowrap'",
 					IsAncor = true,
 					AncorHref = "javascript:void(0);",
 					AncorClass = "author-name-selector"
@@ -437,7 +438,8 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 				{
 					cols[columnOrder.EmailAddress] = new TdItem
 					{
-						Text = SeparateStringListWithDiv(author.EmailAddresses)
+						Text = SeparateStringListWithDiv(author.EmailAddresses),
+						TdAttributes = "nowrap='nowrap'"
 					};
 				}
 				// phone;
@@ -445,7 +447,8 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 				{
 					cols[columnOrder.Phone] = new TdItem
 					{
-						Text = SeparateStringListWithDiv(author.Phones)
+						Text = SeparateStringListWithDiv(author.Phones),
+						TdAttributes = "nowrap='nowrap'"
 					};
 				}
 				// fax;
@@ -453,7 +456,8 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 				{
 					cols[columnOrder.Fax] = new TdItem
 					{
-						Text = SeparateStringListWithDiv(author.Fax)
+						Text = SeparateStringListWithDiv(author.Fax),
+						TdAttributes = "nowrap='nowrap'"
 					};
 				}
 				// address;
@@ -519,6 +523,7 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 					if (author.HasOutlets)
 					{
 						cols[columnOrder.OutletName].Text = firstOutlet.Name;
+						cols[columnOrder.OutletName].TdAttributes = "nowrap='nowrap'";
 						cols[columnOrder.OutletName].IsAncor = true;
 						cols[columnOrder.OutletName].AncorClass = "author-outlet-selector";
 						cols[columnOrder.OutletName].AncorHref = "javascript:void(0);";
@@ -616,6 +621,7 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 					{
 						cols[columnOrder.OutletEmail].Text =
 							SeparateStringListWithDiv(firstOutlet.EmailAddresses);
+						cols[columnOrder.OutletEmail].TdAttributes = "nowrap='nowrap'";
 					};
 				}
 				// outlet phone;
@@ -625,6 +631,7 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 					if (author.HasOutlets)
 					{
 						cols[columnOrder.OutletPhone].Text = SeparateStringListWithDiv(firstOutlet.Phones);
+						cols[columnOrder.OutletPhone].TdAttributes = "nowrap='nowrap'";
 					};
 				}
 				// outlet fax;
@@ -634,6 +641,7 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 					if (author.HasOutlets)
 					{
 						cols[columnOrder.OutletFax].Text = SeparateStringListWithDiv(firstOutlet.Faxes);
+						cols[columnOrder.OutletFax].TdAttributes = "nowrap='nowrap'";
 					};
 				}
 				// ***********************************
@@ -645,7 +653,8 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 					cols[columnOrder.BeatsSubjects] = new TdItem
 					{
 						IsHtmlText = true,
-						Text = ParcelListOfStrings(author.BeatsSubjects)
+						Text = ParcelListOfStrings(author.BeatsSubjects),
+						TdAttributes = "nowrap='nowrap'"
 					};
 				}
 				// industries;
@@ -654,7 +663,8 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 					cols[columnOrder.BeatsIndustries] = new TdItem
 					{
 						IsHtmlText = true,
-						Text = ParcelListOfStrings(author.BeatsIndustries)
+						Text = ParcelListOfStrings(author.BeatsIndustries),
+						TdAttributes = "nowrap='nowrap'"
 					};
 				}
 				// ***********************************
@@ -689,6 +699,7 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 						{
 							outletRows[columnOrder.OutletName] = new TdItem();
 							outletRows[columnOrder.OutletName].Text = outlet.Name;
+							outletRows[columnOrder.OutletName].TdAttributes = "nowrap='nowrap'";
 							outletRows[columnOrder.OutletName].IsAncor = true;
 							outletRows[columnOrder.OutletName].AncorClass = "author-outlet-selector";
 							outletRows[columnOrder.OutletName].AncorHref = "javascript:void(0);";
@@ -756,6 +767,7 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 							outletRows[columnOrder.OutletEmail] = new TdItem();
 							outletRows[columnOrder.OutletEmail].Text =
 								SeparateStringListWithDiv(outlet.EmailAddresses);
+							outletRows[columnOrder.OutletEmail].TdAttributes = "nowrap='nowrap'";
 						}
 						// outlet phone;
 						if (this.DisplayedColumns.Contains(AuthorListColumns.OutletPhone))
@@ -763,6 +775,7 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 							outletRows[columnOrder.OutletPhone] = new TdItem();
 							outletRows[columnOrder.OutletPhone].Text =
 								SeparateStringListWithDiv(outlet.Phones);
+							outletRows[columnOrder.OutletPhone].TdAttributes = "nowrap='nowrap'";
 						}
 						// outlet fax;
 						if (this.DisplayedColumns.Contains(AuthorListColumns.OutletFax))
@@ -770,6 +783,7 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 							outletRows[columnOrder.OutletFax] = new TdItem();
 							outletRows[columnOrder.OutletFax].Text =
 								SeparateStringListWithDiv(outlet.Faxes);
+							outletRows[columnOrder.OutletFax].TdAttributes = "nowrap='nowrap'";
 						}
 
 						tr = new TrItem(outletRows, isOdd, true);
@@ -789,12 +803,12 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 			}
 
 			retval = String.Join("", from s in collection.Take(2)
-									 select String.Format("<div>{0}</div>", s));
+									 select String.Format("<div class='ellipsis' title='{0}'>{0}</div>", s));
 
 			if (collection.Count > 2)
 			{
 				retval += String.Join("", from s in collection.Skip(2)
-										  select String.Format("<div class='dj_hidden-cell-item hide'>{0}</div>", s));
+										  select String.Format("<div class='dj_hidden-cell-item ellipsis hide' title='{0}'>{0}</div>", s));
 				retval += String.Format(
 					"<div><a href='javascript:void(0);' class='dj_show-hide-cell-items' more='true'>{0}</a></div>",
 					this.Tokens.ShowCellItems);
@@ -813,7 +827,7 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 			}
 
 			retval = String.Join("", from s in collection
-									 select String.Format("<div>{0}</div>", s));
+									 select String.Format("<div class='ellipsis' title='{0}'>{0}</div>", s));
 
 			return retval;
 		}

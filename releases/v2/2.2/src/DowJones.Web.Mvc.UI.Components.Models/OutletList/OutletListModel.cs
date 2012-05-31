@@ -305,6 +305,7 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 				cols[2] = new TdItem
 				{
 					Text = outlet.OutletName,
+					TdAttributes = "nowrap='nowrap'",
 					IsAncor = true,
 					AncorHref = "javascript:void(0);",
 					AncorClass = "outlet-selector"
@@ -351,7 +352,8 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 				{
 					cols[columnOrder.Type] = new TdItem
 					{
-						Text = SeparateStringListWithDiv(outlet.Type)
+						Text = SeparateStringListWithDiv(outlet.Type),
+						TdAttributes = "nowrap='nowrap'"
 					};
 				}
 				// website;
@@ -411,6 +413,7 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 					cols[columnOrder.Email] = new TdItem
 					{
 						Text = SeparateStringListWithDiv(outlet.Emails),
+						TdAttributes = "nowrap='nowrap'",
 						IsHtmlText = true
 					};
 				}
@@ -420,6 +423,7 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 					cols[columnOrder.Phone] = new TdItem
 					{
 						Text = SeparateStringListWithDiv(outlet.Phones),
+						TdAttributes = "nowrap='nowrap'",
 						IsHtmlText = true
 					};
 				}
@@ -429,6 +433,7 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 					cols[columnOrder.Fax] = new TdItem
 					{
 						Text = SeparateStringListWithDiv(outlet.Faxes),
+						TdAttributes = "nowrap='nowrap'",
 						IsHtmlText = true
 					};
 				}
@@ -438,7 +443,8 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 					cols[columnOrder.Industries] = new TdItem
 					{
 						IsHtmlText = true,
-						Text = ParcelListOfStrings(outlet.Industries)
+						Text = ParcelListOfStrings(outlet.Industries),
+						TdAttributes = "nowrap='nowrap'"
 					};
 				}
 				// subjects;
@@ -447,7 +453,8 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 					cols[columnOrder.Subjects] = new TdItem
 					{
 						IsHtmlText = true,
-						Text = ParcelListOfStrings(outlet.Subjects)
+						Text = ParcelListOfStrings(outlet.Subjects),
+						TdAttributes = "nowrap='nowrap'"
 					};
 				}
 				// regions;
@@ -456,7 +463,8 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 					cols[columnOrder.Regions] = new TdItem
 					{
 						IsHtmlText = true,
-						Text = ParcelListOfStrings(outlet.Regions)
+						Text = ParcelListOfStrings(outlet.Regions),
+						TdAttributes = "nowrap='nowrap'"
 					};
 				}
 				// language;
@@ -488,7 +496,8 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 				{
 					cols[columnOrder.Audience] = new TdItem
 					{
-						Text = String.Join("<br />", outlet.Audiences)
+						Text = String.Join("<br />", outlet.Audiences),
+						TdAttributes = "nowrap='nowrap'"
 					};
 				}
 				// publisher;
@@ -523,12 +532,12 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 			}
 
 			retval = String.Join("", from s in collection.Take(2)
-									 select String.Format("<div>{0}</div>", s));
+									 select String.Format("<div class='ellipsis' title='{0}'>{0}</div>", s));
 
 			if (collection.Count > 2)
 			{
 				retval += String.Join("", from s in collection.Skip(2)
-										  select String.Format("<div class='dj_hidden-cell-item hide'>{0}</div>", s));
+										  select String.Format("<div class='dj_hidden-cell-item ellipsis hide' title='{0}'>{0}</div>", s));
 				retval += String.Format(
 					"<div><a href='javascript:void(0);' class='dj_show-hide-cell-items' more='true'>{0}</a></div>",
 					this.Tokens.ShowCellItems);
@@ -547,7 +556,7 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 			}
 
 			retval = String.Join("", from s in collection
-									 select String.Format("<div>{0}</div>", s));
+									 select String.Format("<div class='ellipsis' title='{0}'>{0}</div>", s));
 
 			return retval;
 		}
