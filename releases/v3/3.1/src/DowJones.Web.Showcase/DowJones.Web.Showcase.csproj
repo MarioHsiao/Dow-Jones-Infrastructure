@@ -1321,8 +1321,10 @@
     <Content Include="Styles\css\canvas.icons.css" />
     <Content Include="Styles\css\canvas.nav.css" />
     <Content Include="Styles\css\canvas.tag-cloud.css" />
+    <Content Include="Styles\css\normalizeExtensions.css" />
     <Content Include="Styles\css\dashboard.crud-form.css" />
     <Content Include="Styles\css\module.social-media.css" />
+    <Content Include="Styles\css\normalize.css" />
     <Content Include="Styles\css\socialMediaStyles.css" />
     <Content Include="Styles\css\stockkiosk.css" />
     <Content Include="Styles\css\dashboard.article-group.css" />
@@ -1596,6 +1598,7 @@
     <Content Include="Views\Shared\Rainwater.cshtml" />
     <Content Include="Views\DateSlider\Index.cshtml" />
     <Content Include="Views\CalendarEventList\Index.cshtml" />
+    <Content Include="Views\Shared\_Layout_ComponentExplorer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Browsers\Devices\" />

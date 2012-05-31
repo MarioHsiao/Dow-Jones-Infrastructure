@@ -80,5 +80,17 @@ namespace DowJones.Web.Showcase.Controllers
 
             return View("Composite", model);
         }
+
+		public ActionResult ComponentExplorerShowcase(string q = "rst:DJFVW OR rst:DJCOMMDJFVW se:\"People\" pd:>03/19/2010", ContentSearchMode? mode = null)
+		{
+			var showcaseHeadlineListModel = _headlineListManager.PerformSearch(q, ContentSearchMode.ContentServer);
+			var model = new HeadlineListModel(showcaseHeadlineListModel.Result)
+			{
+				ShowDuplicates = ShowDuplicates.On,
+				ShowCheckboxes = true
+			};
+
+			return View("Simple", "_Layout_ComponentExplorer", model);
+		}
     }
 }
