@@ -90,6 +90,7 @@
     <Compile Include="CompositeAuthor\CompositeAuthorModel.cs" />
     <Compile Include="CompositeOutlet\CompositeOutletModel.cs" />
     <Compile Include="DiscoveryGraph\DiscoveryGraphModel.cs" />
+    <Compile Include="HeadlineListCarousel\HeadlineListCarouselModel.cs" />
     <Compile Include="OutletList\OutletListModel.cs" />
     <Compile Include="OutletList\OutletListTokens.cs" />
     <Compile Include="OutletList\OutletModel.cs" />
@@ -144,8 +145,6 @@
     <Compile Include="NewChart\NewsChartTokens.cs" />
     <Compile Include="HeadlineCarousel\HeadlineCarouselModel.cs" />
     <Compile Include="HeadlineCarousel\HeadlineCarouselTokens.cs" />
-    <Compile Include="HeadlineListCarousel\HeadlineListCarouselClientEventsBuilder.cs" />
-    <Compile Include="HeadlineListCarousel\HeadlineListCarouselModel.cs" />
     <Compile Include="HeadlineList\HeadlineListModel.cs" />
     <Compile Include="HeadlineList\HeadlineListTokens.cs" />
     <Compile Include="HeadlineList\HeadlineModel.cs" />
