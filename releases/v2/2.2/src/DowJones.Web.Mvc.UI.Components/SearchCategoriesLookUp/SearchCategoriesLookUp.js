@@ -1627,8 +1627,8 @@
 
         _onFilterClick: function (elem) {
             var $elem = $(elem), $li = $elem.closest(this.selectors.filterPill), elemOffset = $elem.offset();
-            if ($li.data('type') == "LIST") {
-                return; //Do not show filter options for a list
+            if ($li.hasClass("not") || $li.data('type') == "LIST") {
+                return; //Do not show filter options for a not and list pill
             }
             this.$filterOptions.children("div").children().show().filter(":eq(" + ($elem.closest("ul").hasClass("not-filter") ? "1" : "2") + ")").hide();
             //$li.append(this.$filterOptions.show());
