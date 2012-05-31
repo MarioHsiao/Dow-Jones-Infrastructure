@@ -1,5 +1,5 @@
 ﻿<ul class="dj_dateList clearfix">
-    <% _.each(Dates, function(date){ %>
+    <% _.each(self.Dates, function(date){ %>
     <li class="dj_date <%= date.Selected ? 'dj_selected' : '' %> <%= date.Events.length===0 ? 'dj_disabled' : '' %>" data-group="<%= date.EventDateString %>">
         <label class="dj_dayName"><%= date.EventDate.format('ddd') %></label>
         <label class="dj_dayDate"><%= date.EventDate.format('mmm d') %></label>
