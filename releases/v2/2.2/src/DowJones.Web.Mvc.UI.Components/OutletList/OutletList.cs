@@ -24,7 +24,7 @@ namespace DowJones.Web.Mvc.UI.Components.OutletList
     using DowJones.Web.Mvc.UI.Components.Models;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 04/10/2012 11:01 AM
+    // Last Generated Timestamp: 05/29/2012 12:25 PM
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.OutletList.OutletList.js", ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.OutletList.OutletList))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "0.0.0.30158")]
     public class OutletList : DowJones.Web.Mvc.UI.ViewComponentBase<DowJones.Web.Mvc.UI.Components.Models.OutletListModel>
@@ -214,7 +214,12 @@ WriteLiteral("\t\t\t\t\t<td class=\"");
 
            Write(td.TdClass);
 
-WriteLiteral("\">\r\n");
+WriteLiteral("\"");
+
+
+                       Write(td.TdAttributes);
+
+WriteLiteral(">\r\n");
 
 
  						if (td.IsAncor)

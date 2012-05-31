@@ -82,7 +82,7 @@
 				@for (int c = 0; c < row.TdItems.Length; ++c)
 				{
 					TdItem td = row.TdItems[c];
-					<td class="@td.TdClass">
+					<td class="@td.TdClass"@td.TdAttributes>
 						@if (td.IsAncor)
 						{ 
 							<a href="@td.AncorHref" class="@td.AncorClass" @td.AncorAttributes>

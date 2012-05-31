@@ -1050,6 +1050,25 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 		const string COLUMN_INTEGER = "dj_col-integer";
 
 		public string TdClass { get; set; }
+
+		private string tdAttributes = String.Empty;
+		public string TdAttributes
+		{
+			get
+			{
+				string attr = String.Empty;
+				if (String.IsNullOrEmpty(this.tdAttributes.Trim()) == false)
+				{
+					if (this.tdAttributes.StartsWith(" ") == false)
+					{
+						attr = String.Format(" {0}", this.tdAttributes);
+					}
+				}
+
+				return attr;
+			}
+			set { this.tdAttributes = value; }
+		}
 		public string Text { get; set; }
 		public bool IsHtmlText { get; set; }
 		public bool IsAncor { get; set; }

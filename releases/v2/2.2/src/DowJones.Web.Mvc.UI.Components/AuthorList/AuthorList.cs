@@ -25,7 +25,7 @@ namespace DowJones.Web.Mvc.UI.Components.AuthorList
     using DowJones.Web.Mvc.UI.Components.Models;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 04/09/2012 09:34 AM
+    // Last Generated Timestamp: 05/29/2012 10:53 AM
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.AuthorList.AuthorList.js", ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.AuthorList.AuthorList))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "0.0.0.30158")]
     public class AuthorList : DowJones.Web.Mvc.UI.ViewComponentBase<AuthorListModel>
@@ -219,7 +219,12 @@ WriteLiteral("\t\t\t\t\t<td class=\"");
 
            Write(td.TdClass);
 
-WriteLiteral("\">\r\n");
+WriteLiteral("\"");
+
+
+                       Write(td.TdAttributes);
+
+WriteLiteral(">\r\n");
 
 
  						if (td.IsAncor)

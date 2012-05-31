@@ -95,7 +95,7 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 			this.City = GetTokenByName("cmolCity");
 			this.State = GetTokenByName("cmolState");
 			this.Zip = GetTokenByName("cmolZipPost");
-			this.Country = GetTokenByName("countryName");
+			this.Country = GetTokenByName("cmolCountry");
 			this.EmailAddress = GetTokenByName("cmolEmail");
 			this.Phone = GetTokenByName("cmolPhone");
 			this.Fax = GetTokenByName("cmolFax");
