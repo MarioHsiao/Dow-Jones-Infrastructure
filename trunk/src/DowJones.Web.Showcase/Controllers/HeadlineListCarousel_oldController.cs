@@ -2,7 +2,7 @@
 using DowJones.Ajax.HeadlineList;
 using DowJones.Assemblers.Headlines;
 using DowJones.Url;
-using DowJones.Web.Mvc.UI.Components.HeadlineListCarousel;
+using DowJones.Web.Mvc.UI.Components.HeadlineListCarousel_old;
 using DowJones.Web.Mvc;
 using Factiva.Gateway.Messages.Search.V2_0;
 using DowJones.Web.Showcase.Extensions;
@@ -10,7 +10,7 @@ using ControllerBase = DowJones.Web.Mvc.ControllerBase;
 
 namespace DowJones.Web.Showcase.Controllers
 {
-    public class HeadlineListCarouselController : ControllerBase
+    public class HeadlineListCarousel_oldController : ControllerBase
     {
         private readonly HeadlineListConversionManager _headlineListManager;
         
@@ -32,7 +32,7 @@ namespace DowJones.Web.Showcase.Controllers
             set { TempData["imageRequestCounter"] = value; }
         }
 
-        public HeadlineListCarouselController(HeadlineListConversionManager headlineListManager)
+        public HeadlineListCarousel_oldController(HeadlineListConversionManager headlineListManager)
         {
             _headlineListManager = headlineListManager;
         }
@@ -49,7 +49,7 @@ namespace DowJones.Web.Showcase.Controllers
             for (int i = 0; i < headlines.Count; i++)
                 GenerateExternalUrlForImageHandler(headlines[i].thumbnailImage);
 
-            var headlineListCarouselState = new HeadlineListCarouselModel 
+            var headlineListCarouselState = new HeadlineListCarousel_oldModel 
                 {
                     Result = dataResult
                 };
