@@ -217,6 +217,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>EntityListComponent.cshtml</DependentUpon>
     </Compile>
+    <Compile Include="HeadlineListCarousel\HeadlineListCarousel1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HeadlineListCarousel.cshtml</DependentUpon>
+    </Compile>
     <Compile Include="OutletList\OutletList.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -305,11 +310,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="HeadlineListCarousel\HeadlineListCarouselControl.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>HeadlineListCarouselControl.cshtml</DependentUpon>
-    </Compile>
     <Compile Include="NewsChart\NewsChartControl.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -320,7 +320,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DiscoveryControl.cshtml</DependentUpon>
     </Compile>
-    <Compile Include="HeadlineListCarousel\HeadlineListCarouselControlBuilder.cs" />
     <Compile Include="InlineMp3Player\InlineMp3Player.cs" />
     <Compile Include="NewsStandTicker\NewsStandTickerControl.cs">
       <AutoGen>True</AutoGen>
@@ -393,9 +392,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>VideoPlayerControl.cshtml</DependentUpon>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="HeadlineListCarousel\HeadlineListCarousel.js" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="ArticleTranslator\ArticleTranslatorControl.js" />
@@ -580,6 +576,10 @@
       <Generator>RazorViewComponentClassGenerator</Generator>
       <LastGenOutput>EntityListComponent.cs</LastGenOutput>
     </None>
+    <None Include="HeadlineListCarousel\HeadlineListCarousel.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>HeadlineListCarousel1.cs</LastGenOutput>
+    </None>
     <None Include="OutletList\OutletList.cshtml">
       <Generator>RazorViewComponentClassGenerator</Generator>
       <LastGenOutput>OutletList.cs</LastGenOutput>
@@ -653,10 +653,6 @@
       <Generator>RazorViewComponentClassGenerator</Generator>
       <LastGenOutput>HeadlineCarouselControl.cs</LastGenOutput>
     </None>
-    <None Include="HeadlineListCarousel\HeadlineListCarouselControl.cshtml">
-      <Generator>RazorViewComponentClassGenerator</Generator>
-      <LastGenOutput>HeadlineListCarouselControl.cs</LastGenOutput>
-    </None>
     <None Include="NewsStandTicker\NewsStandTickerControl.cshtml">
       <Generator>RazorViewComponentClassGenerator</Generator>
       <LastGenOutput>NewsStandTickerControl.cs</LastGenOutput>
@@ -672,7 +668,6 @@
     <EmbeddedResource Include="TranslateArticle\js\jquery.ui.stars.js" />
     <EmbeddedResource Include="TranslateArticle\js\jquery.uni-form.js" />
     <EmbeddedResource Include="NewsChart\NewsChart.js" />
-    <EmbeddedResource Include="HeadlineListCarousel\HeadlineListCarouselClientTemplate.htm" />
     <EmbeddedResource Include="CalloutPopup\js\popup.js" />
     <EmbeddedResource Include="HeadlineCarousel\ClientTemplates\DiscoveredEntitiesPackage.htm" />
     <EmbeddedResource Include="HeadlineCarousel\ClientTemplates\HeadlineHitCountsPackage.htm" />
@@ -703,6 +698,8 @@
     <EmbeddedResource Include="DateSlider\ClientTemplates\Success.htm" />
     <EmbeddedResource Include="CalendarEventList\CalendarEventList.js" />
     <EmbeddedResource Include="DateSlider\DateSlider.js" />
+    <Content Include="HeadlineListCarousel\HeadlineListCarousel.css" />
+    <Content Include="HeadlineListCarousel\HeadlineListCarousel.js" />
     <Content Include="InlineMp3Player\InlineMp3PlayerBehavior.Original.js" />
     <EmbeddedResource Include="Pager\Pager.js" />
     <EmbeddedResource Include="RegionalMap\images\world_map.gif" />

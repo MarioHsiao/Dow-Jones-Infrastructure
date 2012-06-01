@@ -1,76 +1,103 @@
-﻿using System.Web.Mvc;
+﻿using System.Net;
+using System.Web.Mvc;
 using DowJones.Ajax.HeadlineList;
 using DowJones.Assemblers.Headlines;
-using DowJones.Url;
-using DowJones.Web.Mvc.UI.Components.HeadlineListCarousel;
-using DowJones.Web.Mvc;
-using Factiva.Gateway.Messages.Search.V2_0;
+using DowJones.Search;
+using DowJones.Web.Mvc.UI;
+using DowJones.Web.Mvc.UI.Components.Common.Types;
+using DowJones.Web.Mvc.UI.Components.CompositeHeadline;
+using DowJones.Web.Mvc.UI.Components.HeadlineList;
+using DowJones.Web.Mvc.UI.Components.Models;
 using DowJones.Web.Showcase.Extensions;
+using DowJones.Web.Showcase.Models;
 using ControllerBase = DowJones.Web.Mvc.ControllerBase;
 
 namespace DowJones.Web.Showcase.Controllers
 {
+    [HandleError(ExceptionType = typeof (WebException), View = "RssError")]
     public class HeadlineListCarouselController : ControllerBase
     {
         private readonly HeadlineListConversionManager _headlineListManager;
-        
-        private readonly string[] _imageUrls = new[]
-                                             {
-                                                 "http://iconpacks.mozdev.org/images/thunderbird-icon.png",
-                                                 "http://i3.ytimg.com/vi/jhaAiZfG38Q/default.jpg"
-                                             };
-
-
-        private const string ImageHandlerUrl = "http://arch.dev.us.factiva.com/Showcase/EMG.Utility.Handlers.Video.ImageHandler.ashx";
-
-        protected int ImageRequestCounter
-        {
-            get
-            {
-                return (TempData["imageRequestCounter"] as int?).GetValueOrDefault();
-            }
-            set { TempData["imageRequestCounter"] = value; }
-        }
 
         public HeadlineListCarouselController(HeadlineListConversionManager headlineListManager)
         {
             _headlineListManager = headlineListManager;
         }
 
-        public ActionResult Index()
+        public ActionResult Index(string q = "dow jones", ContentSearchMode? mode = null)
         {
-            return RedirectToAction("Carousel");
+            return RedirectToAction("Simple", new {q});
         }
 
-        public ActionResult Carousel()
+        public ActionResult Simple(string q = "rst:DJFVW OR rst:DJCOMMDJFVW se:\"People\" pd:>03/19/2010", ContentSearchMode? mode = null)
         {
-            var dataResult = _headlineListManager.ProcessFeed("http://feeds.haacked.com/haacked").result;
-            var headlines = dataResult.resultSet.headlines;
-            for (int i = 0; i < headlines.Count; i++)
-                GenerateExternalUrlForImageHandler(headlines[i].thumbnailImage);
+            var showcaseHeadlineListModel = _headlineListManager.PerformSearch(q, ContentSearchMode.ContentServer);
+            var model = new HeadlineListModel(showcaseHeadlineListModel.Result)
+                            {
+                                ShowDuplicates = ShowDuplicates.On, 
+                                ShowCheckboxes = true
+                            };
 
-            var headlineListCarouselState = new HeadlineListCarouselModel 
+            return View("Simple", model);
+        }
+
+        public ActionResult Carousel(string  accession="",string q = "rst:ctgfpe OR rst:ctgfvc se:\"VC Fund News\" OR se:\"Fund News\" OR se:\"Fund-raising Roundup\" OR se:\"fund raising roundup\" pd:05/31/2010 OR pd:>05/31/2010 pd:05/31/2012 OR pd:<05/31/2012", ContentSearchMode? mode = null)
+        {
+            var showcaseHeadlineListModel = _headlineListManager.PerformSearch(q, ContentSearchMode.ContentServer);
+           // var model  
+            var carousel = new HeadlineListCarouselModel(){
+                SelectedAccessionNo = accession,
+                NumberOfHeadlinesToScrollBy = 3,
+                AutoScrollSpeed = "400",
+                HeadlineList = new HeadlineListModel(showcaseHeadlineListModel.Result)
                 {
-                    Result = dataResult
-                };
-
-            return View("Carousel", headlineListCarouselState);
+                    ShowDuplicates = ShowDuplicates.On,
+                    ShowCheckboxes = true,
+                    ShowThumbnail = ThumbnailDisplayType.Inline,
+                    DisplaySnippets = SnippetDisplayType.Inline
+                }                
+            };
+            return View("Carousel", carousel);
         }
 
 
-        private void GenerateExternalUrlForImageHandler(ThumbnailImage thumbnailImage)
+        public ActionResult Composite(string q = "an:DJFVW00020120119e81jliwkq", ContentSearchMode? mode = null)
         {
-            ImageRequestCounter = (ImageRequestCounter + 1) % 2;
+            var showcaseHeadlineListModel = _headlineListManager.PerformContentSearch(q, new HeadlineUtility(ControlData, Preferences).GetThumbNail);
+            var model = new CompositeHeadlineModel
+                            {
+                                FirstResultIndex = (int) showcaseHeadlineListModel.resultSet.first.Value,
+                                LastResultIndex = (int) showcaseHeadlineListModel.resultSet.count.Value,
+                                TotalResultCount = (int) showcaseHeadlineListModel.hitCount.Value,
+                                HeadlineList = new HeadlineListModel(showcaseHeadlineListModel)
+                                                   {
+                                                       ShowDuplicates = ShowDuplicates.On,
+                                                       ShowCheckboxes = true,
+                                                       ShowThumbnail = ThumbnailDisplayType.Hybrid,
+                                                       PostProcessingOptions = new[]
+                                                                                   {
+                                                                                       PostProcessingOptions.Save,
+                                                                                       PostProcessingOptions.Print,
+                                                                                       PostProcessingOptions.Email,
+                                                                                       PostProcessingOptions.PressClips
+                                                                                   }
+                                                   },
+                                PostProcessing = new PostProcessing(new[]
+                                                                        {
+                                                                            PostProcessingOptions.Read,
+                                                                            PostProcessingOptions.Save,
+                                                                            PostProcessingOptions.Print,
+                                                                            PostProcessingOptions.Email,
+                                                                            PostProcessingOptions.Export,
+                                                                            PostProcessingOptions.PressClips
+                                                                        })
+                                                     {
+                                                         EnableDuplicateOption = true,
+                                                     },
+                                HeadlineSortOptions = new EnumSelectListWithTranslatedText<SortOrder>(SortOrder.Relevance)
+                            };
 
-            var ub = new UrlBuilder(ImageHandlerUrl) { OutputType = UrlBuilder.UrlOutputType.Absolute };
-            ub.QueryString.Add("url", _imageUrls[ImageRequestCounter]);
-            ub.QueryString.Add("height", "77");
-            ub.QueryString.Add("ar", "locked");
-
-            thumbnailImage.SRC = ub.ToString();
-            thumbnailImage.URI = "http://www.youtube.com/watch?v=jhaAiZfG38Q";
+            return View("Composite", model);
         }
-
-
     }
 }
