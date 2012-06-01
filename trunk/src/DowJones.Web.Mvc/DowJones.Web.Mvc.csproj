@@ -132,7 +132,7 @@
     <Compile Include="ActionFilters\SetThreadCultureToInterfaceLanguageFilter.cs" />
     <Compile Include="ActionResults\NewtonSoftJsonResult.cs" />
     <Compile Include="ActionResults\RedirectToAuthenticationServerActionResult.cs" />
-    <Compile Include="Controllers\AuthenticationControllerBase.cs" />
+    <Compile Include="Properties\Controllers\AuthenticationControllerBase.cs" />
     <Compile Include="Extensions\HtmlExtensions.cs" />
     <Compile Include="Extensions\HtmlHelperExtensions.cs" />
     <Compile Include="Extensions\DropDownListHelpers.cs" />
@@ -153,6 +153,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Routing\NotEqualConstraint.cs" />
     <Compile Include="Routing\RouteGenerator.cs" />
     <Compile Include="Routing\IRouteGenerator.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
@@ -164,7 +165,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="Threading\AspCompatControllerBase.cs" />
-    <Compile Include="Controllers\ControllerBase.cs" />
+    <Compile Include="Properties\Controllers\ControllerBase.cs" />
     <Compile Include="Mobile\MobileDeviceInformationFilter.cs" />
     <Compile Include="Mobile\MobileDeviceInformationViewDataExtensions.cs" />
     <Compile Include="Resources\EmbeddedResources.cs" />

@@ -33,18 +33,17 @@ namespace DowJones.Web.Showcase.Controllers
             _articleConversionManager = articleConversionManager;
         }
 
-        public ActionResult Index(string acn = "DJFVW00020120326e83qkgx46", DisplayOptions option = DisplayOptions.Full)
+		public ActionResult Index(string accessionNumber = "DJFVW00020120326e83qkgx46", DisplayOptions option = DisplayOptions.Full)
         {
-            return Article(acn, option);
+			return Article(accessionNumber, option);
         }
 
-		public ActionResult ComponentExplorerDemo(string acn = "DJFVW00020120326e83qkgx46", DisplayOptions option = DisplayOptions.Full)
+		public ActionResult ComponentExplorerDemo(string accessionNumber = "DJFVW00020120326e83qkgx46", DisplayOptions option = DisplayOptions.Full)
 		{
-			var model = GetArticle(acn, DefaultCanonicalSearchString, ImageType.Thumbnail, PictureSize.Small, option);
+			var model = GetArticle(accessionNumber, DefaultCanonicalSearchString, ImageType.Thumbnail, PictureSize.Large, option);
 			return View("Index", "_Layout_ComponentExplorer", model);
 		}
 
-        [Route("article/{accessionNumber}")]
         public ActionResult Article(string accessionNumber, DisplayOptions option = DisplayOptions.Full, 
 			ImageType imageType = ImageType.Thumbnail, PictureSize pictureSize = PictureSize.Large, 
 			string callback = null, string canonicalSearchString = DefaultCanonicalSearchString)
