@@ -1,0 +1,23 @@
+section.collapsible > h3 {
+	cursor: pointer;
+	cursor: hand;
+	border-bottom: 1px inset #bbb;
+	line-height: normal;
+	margin-bottom: 2%;
+}
+
+section.collapsible > h3 > i {
+	width: 14px;
+	height: 16px;
+	line-height: 16px;
+	background-position: -288px -115px;
+	background-image: url('themes/spacelab/img/glyphicons-halflings.png');
+	background-repeat: no-repeat;
+	float: right;
+	vertical-align: text-top;
+	display: inline-block;
+}
+
+section.collapsible.collapsed > h3 > i {
+	background-position: -314px -115px;
+}

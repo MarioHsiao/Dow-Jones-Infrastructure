@@ -1,0 +1,74 @@
+﻿@model SiteNavigation
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container-fluid">
+
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </a>
+            @Html.ActionLink("Dow Jones Documentation Site", "Homepage", "Documentation", null, new Dictionary<string, object>{ {"class", "brand"}} )
+            <div class="btn-group pull-right">
+            <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                <i class="icon-user"></i>Anonymous<span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+                <li><a href="#">Profile</a></li>
+                <li class="divider"></li>
+                <li><a href="#">Sign Out</a></li>
+            </ul>
+        </div>
+        <div class="nav-collapse">
+            <ul class="nav">
+                @foreach (var category in Model.Categories)
+                {
+                    <li class="category @(category == Model.CurrentCategory ? "active" : "")" data-key="@category.Name">
+                        @Html.DocumentationCategoryLink(category.Name)
+                    </li>
+                }
+            </ul>
+        </div>
+
+        </div>
+    </div>
+</div>
+
+@if(!string.IsNullOrWhiteSpace(Model.CurrentCategoryKey))
+{
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="widgetGrid span12">
+            <div class="wideCol span8">
+                <h3>@Model.CurrentCategory.DisplayName</h3>
+                @foreach (var group in Model.CurrentCategory.Groups)
+                {
+                    <div>
+                        <ul class="nav nav-list">
+                            @foreach (var page in group)
+                            {
+                                <li class="@(page == Model.CurrentPage ? "active" : "")">
+                                    @Html.DocumentationPageLink(page)
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                }
+            </div>
+            <div class="narrowCol span4">
+                <h3>Related Topics</h3>
+                <div>
+                    <ul class="nav nav-list">
+                        <li><a href="#">Plugin Inheritance Model</a></li>
+                        <li><a href="#">Client Templates</a></li>
+                        <li><a href="#">Tokens</a></li>
+                        <li><a href="#">Error logging & tracing</a></li>
+                        <li><a href="#">Best Practices</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+}
+    

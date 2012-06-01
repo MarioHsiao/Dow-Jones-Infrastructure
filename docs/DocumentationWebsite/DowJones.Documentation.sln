@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 11
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Website", "Website\Website.csproj", "{AB380707-04A9-4098-9F57-D82F893A35D4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D667BE7B-4066-49A3-A67F-D0E983DA2751}"
+	ProjectSection(SolutionItems) = preProject
+		local.testsettings = local.testsettings
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Integration|Any CPU = Integration|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AB380707-04A9-4098-9F57-D82F893A35D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB380707-04A9-4098-9F57-D82F893A35D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB380707-04A9-4098-9F57-D82F893A35D4}.Integration|Any CPU.ActiveCfg = Integration|Any CPU
+		{AB380707-04A9-4098-9F57-D82F893A35D4}.Integration|Any CPU.Build.0 = Integration|Any CPU
+		{AB380707-04A9-4098-9F57-D82F893A35D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB380707-04A9-4098-9F57-D82F893A35D4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
