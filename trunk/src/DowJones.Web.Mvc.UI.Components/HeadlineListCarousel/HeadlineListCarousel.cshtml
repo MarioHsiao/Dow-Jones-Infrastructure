@@ -17,8 +17,10 @@
     int i = 0;
     int pagesize = Model.NumberOfHeadlinesToScrollBy;
     int j = 0;
-   <a class="prev browse"></a>   
-   <a class="next browse "></a>  
+  <div class="CarouselButtons">
+	<a class="prev browse"><span>Previous</span></a>
+</div>
+   
     <div class="scrollable" id = "scroller">
         <!-- root element for the items -->
          <div class="items" id="carouselItemListID" data-pageSize="@Model.NumberOfHeadlinesToScrollBy" data-scrollSpeed="@Model.AutoScrollSpeed">
@@ -26,20 +28,20 @@
             {
                 if (i == 0 || i % pagesize == 0)
                 {
-                    
+
                     if (i != 0)
                     {             
                 @("</div>")
                     }
                 @("<div>")
                 }
-                <div class="carouselItem@((Model.SelectedAccessionNo.Equals(headline.AccessionNumber,StringComparison.CurrentCultureIgnoreCase))?" Selected":"")" data-headlineInfo="@(headline.HeadlineInfo.ToJson().EscapeForHtml())" data-index="@i">
+                <div class="carouselItem@((Model.SelectedAccessionNo.Equals(headline.AccessionNumber, StringComparison.CurrentCultureIgnoreCase)) ? " Selected" : "")" data-headlineInfo="@(headline.HeadlineInfo.ToJson().EscapeForHtml())" data-index="@i">
                     @if (Model.HeadlineList.IsThumbnailVisible(i, headline))
-                        {
+                    {
                             <div class="articleImage">
                                 <img src="@headline.ThumbnailUrl" alt="@headline.TruncatedTitle" />
                             </div>
-                        }
+                    }
                     <a class="title" href="javascript:void(0)" rel="@headline.ExternalUrl" title="@Model.HeadlineList.GetHoverSnippet(headline.Snippet, i)">@headline.Title</a>
                     <div class="meta">                   
                         <span class="source @(headline.IsLocked ? "locked" : "unlocked")" data-source="@headline.SourceCode">@headline.Source</span>
@@ -56,7 +58,10 @@
              </div>
                 i++;
             }
+            @("</div>")
         </div>
     </div>
- 
+ <div class="CarouselButtons">
+	<a class="next browse"><span>Next</span></a>
+</div>
 }

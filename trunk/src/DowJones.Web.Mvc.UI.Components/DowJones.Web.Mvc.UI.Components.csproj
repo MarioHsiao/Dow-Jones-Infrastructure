@@ -698,8 +698,8 @@
     <EmbeddedResource Include="DateSlider\ClientTemplates\Success.htm" />
     <EmbeddedResource Include="CalendarEventList\CalendarEventList.js" />
     <EmbeddedResource Include="DateSlider\DateSlider.js" />
-    <Content Include="HeadlineListCarousel\HeadlineListCarousel.css" />
-    <Content Include="HeadlineListCarousel\HeadlineListCarousel.js" />
+    <EmbeddedResource Include="HeadlineListCarousel\HeadlineListCarousel.css" />
+    <EmbeddedResource Include="HeadlineListCarousel\HeadlineListCarousel.js" />
     <Content Include="InlineMp3Player\InlineMp3PlayerBehavior.Original.js" />
     <EmbeddedResource Include="Pager\Pager.js" />
     <EmbeddedResource Include="RegionalMap\images\world_map.gif" />
