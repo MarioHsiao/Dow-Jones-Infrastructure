@@ -27,7 +27,7 @@ namespace DowJones.Web.Mvc.UI.Components.HeadlineListCarousel
     using System.Collections.ObjectModel;
     using DowJones.Web.Mvc.UI.Components.Common.Types;
     
-    // Last Generated Timestamp: 05/31/2012 05:34 PM
+    // Last Generated Timestamp: 06/01/2012 07:50 PM
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.HeadlineListCarousel.HeadlineListCarousel.js", ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.HeadlineListCarousel.HeadlineListCarousel))]
     [DowJones.Web.StylesheetResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.HeadlineListCarousel.HeadlineListCarousel.css", ResourceKind=DowJones.Web.ClientResourceKind.Stylesheet, DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.HeadlineListCarousel.HeadlineListCarousel))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "0.0.0.30158")]
@@ -70,13 +70,11 @@ namespace DowJones.Web.Mvc.UI.Components.HeadlineListCarousel
     int pagesize = Model.NumberOfHeadlinesToScrollBy;
     int j = 0;
 
-WriteLiteral("   <a class=\"prev browse\"></a>   \r\n");
+WriteLiteral("  <div class=\"CarouselButtons\">\r\n\t<a class=\"prev browse\"><span>Previous</span></a" +
+">\r\n</div>\r\n");
 
 
-
-WriteLiteral("   <a class=\"next browse \"></a>  \r\n");
-
-
+   
 
 WriteLiteral("    <div class=\"scrollable\" id = \"scroller\">\r\n        <!-- root element for the i" +
 "tems -->\r\n         <div class=\"items\" id=\"carouselItemListID\" data-pageSize=\"");
@@ -96,7 +94,7 @@ WriteLiteral("\">\r\n");
             {
                 if (i == 0 || i % pagesize == 0)
                 {
-                    
+
                     if (i != 0)
                     {             
                 
@@ -113,23 +111,23 @@ WriteLiteral("\">\r\n");
 WriteLiteral("                <div class=\"carouselItem");
 
 
-                                    Write((Model.SelectedAccessionNo.Equals(headline.AccessionNumber,StringComparison.CurrentCultureIgnoreCase))?" Selected":"");
+                                    Write((Model.SelectedAccessionNo.Equals(headline.AccessionNumber, StringComparison.CurrentCultureIgnoreCase)) ? " Selected" : "");
 
 WriteLiteral("\" data-headlineInfo=\"");
 
 
-                                                                                                                                                                                 Write(headline.HeadlineInfo.ToJson().EscapeForHtml());
+                                                                                                                                                                                      Write(headline.HeadlineInfo.ToJson().EscapeForHtml());
 
 WriteLiteral("\" data-index=\"");
 
 
-                                                                                                                                                                                                                                               Write(i);
+                                                                                                                                                                                                                                                    Write(i);
 
 WriteLiteral("\">\r\n");
 
 
                      if (Model.HeadlineList.IsThumbnailVisible(i, headline))
-                        {
+                    {
 
 WriteLiteral("                            <div class=\"articleImage\">\r\n                         " +
 "       <img src=\"");
@@ -145,7 +143,7 @@ WriteLiteral("\" alt=\"");
 WriteLiteral("\" />\r\n                            </div>\r\n");
 
 
-                        }
+                    }
 
 WriteLiteral("                    <a class=\"title\" href=\"javascript:void(0)\" rel=\"");
 
@@ -206,10 +204,19 @@ WriteLiteral("             </div>\r\n");
                 i++;
             }
 
-WriteLiteral("        </div>\r\n    </div>\r\n");
+WriteLiteral("            ");
 
 
- 
+        Write("</div>");
+
+WriteLiteral("\r\n        </div>\r\n    </div>\r\n");
+
+
+
+WriteLiteral(" <div class=\"CarouselButtons\">\r\n\t<a class=\"next browse\"><span>Next</span></a>\r\n</" +
+"div>\r\n");
+
+
 }
 
 
