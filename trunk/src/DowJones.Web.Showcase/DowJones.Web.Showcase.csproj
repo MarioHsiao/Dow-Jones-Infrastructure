@@ -254,8 +254,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Styles\css\CompanyOverviewCanvasModule.css" />
-    <EmbeddedResource Include="Styles\css\AlertsCanvasModule.css" />
+    <Content Include="Styles\css\CompanyOverviewCanvasModule.css" />
+    <Content Include="Styles\css\AlertsCanvasModule.css" />
     <Content Include="Content\bootstrap\css\bootstrap-responsive.css" />
     <Content Include="Content\bootstrap\css\bootstrap-responsive.min.css" />
     <Content Include="Content\bootstrap\css\bootstrap.css" />
@@ -1370,7 +1370,7 @@
     <Content Include="Styles\css\module.search-results.css" />
     <Content Include="Styles\css\module.search.css" />
     <Content Include="Styles\css\module.style.css" />
-    <EmbeddedResource Include="Styles\css\NewsstandCanvasModule.css" />
+    <Content Include="Styles\css\NewsstandCanvasModule.css" />
     <Content Include="Styles\css\module.summary.css" />
     <Content Include="Styles\css\module.video-carousel.css" />
     <Content Include="Styles\css\newspage-welcome.css" />
@@ -1426,10 +1426,10 @@
     <Content Include="Styles\images\icon_print.png" />
     <Content Include="Styles\images\icon_trend-arrows.png" />
     <Content Include="Styles\images\icon_warning.png" />
-    <EmbeddedResource Include="Styles\images\libs\crystal-arrows.gif" />
-    <EmbeddedResource Include="Styles\images\libs\translateTitleLanguageCodeBackground.png" />
-    <EmbeddedResource Include="Styles\images\libs\crystal-stars.gif" />
-    <EmbeddedResource Include="Styles\images\libs\crystal-stars1.png" />
+    <Content Include="Styles\images\libs\crystal-arrows.gif" />
+    <Content Include="Styles\images\libs\translateTitleLanguageCodeBackground.png" />
+    <Content Include="Styles\images\libs\crystal-stars.gif" />
+    <Content Include="Styles\images\libs\crystal-stars1.png" />
     <Content Include="Styles\images\labeledscrollpane_bg.png" />
     <Content Include="Styles\images\menu_outer_arrow_left.png" />
     <Content Include="Styles\images\menu_outer_arrow_right.png" />
@@ -1475,15 +1475,15 @@
     <EmbeddedResource Include="Styles\less\SyndicationModule.css">
       <DependentUpon>SyndicationModule.chirp.less</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Styles\css\SummaryCanvasModule.css" />
+    <Content Include="Styles\css\SummaryCanvasModule.css" />
     <Content Include="Styles\less\SyndicationModule.min.css">
       <DependentUpon>SyndicationModule.chirp.less</DependentUpon>
     </Content>
     <Content Include="Styles\less\TopNewsCanvasModule.min.css">
       <DependentUpon>TopNewsCanvasModule.chirp.less</DependentUpon>
     </Content>
-    <EmbeddedResource Include="Styles\css\TrendingNewsCanvasModule.css" />
-    <EmbeddedResource Include="Styles\libs\crystal-stars.css" />
+    <Content Include="Styles\css\TrendingNewsCanvasModule.css" />
+    <Content Include="Styles\libs\crystal-stars.css" />
     <Content Include="Styles\libs\jquery.autocomplete.css" />
     <Content Include="Styles\libs\jquery.jscrollpane.css" />
     <None Include="MockRESTServices\modules\CompanyOverview\GET_data.json" />
@@ -1495,11 +1495,12 @@
       <Generator>RazorViewComponentClassGenerator</Generator>
       <LastGenOutput>PortalHeadlineLists.cs</LastGenOutput>
     </None>
+    <None Include="Properties\PublishProfiles\Montana.pubxml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="Styles\less\DemoCanvasModule.chirp.less" />
+    <Content Include="Styles\less\DemoCanvasModule.chirp.less" />
     <EmbeddedResource Include="Styles\less\DemoCanvasModule.css">
       <DependentUpon>DemoCanvasModule.chirp.less</DependentUpon>
     </EmbeddedResource>
@@ -1510,12 +1511,12 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\site.js" />
-    <EmbeddedResource Include="Styles\css\global.css" />
-    <EmbeddedResource Include="Styles\css\grid.990.9-col.css" />
-    <EmbeddedResource Include="Styles\css\reset.css" />
-    <EmbeddedResource Include="Styles\libs\uni-form.css" />
-    <EmbeddedResource Include="Styles\libs\uni-form-generic.css" />
-    <None Include="Styles\css\NavBar.css" />
+    <Content Include="Styles\css\global.css" />
+    <Content Include="Styles\css\grid.990.9-col.css" />
+    <Content Include="Styles\css\reset.css" />
+    <Content Include="Styles\libs\uni-form.css" />
+    <Content Include="Styles\libs\uni-form-generic.css" />
+    <Content Include="Styles\css\NavBar.css" />
     <Content Include="Views\Shared\ApartmentState.cshtml" />
     <Content Include="Views\Shared\RssError.cshtml" />
     <Content Include="Views\Shared\_SampleArticle.cshtml" />
@@ -1560,8 +1561,8 @@
     <Content Include="packages.config">
       <SubType>Designer</SubType>
     </Content>
-    <None Include="Styles\less\SyndicationModule.chirp.less" />
-    <None Include="Styles\less\TopNewsCanvasModule.chirp.less" />
+    <Content Include="Styles\less\SyndicationModule.chirp.less" />
+    <Content Include="Styles\less\TopNewsCanvasModule.chirp.less" />
     <Content Include="Views\Home\AjaxDemo.cshtml" />
     <Content Include="Views\CompositeComponent\Index.cshtml" />
     <Content Include="Views\Home\Tokens.cshtml" />
