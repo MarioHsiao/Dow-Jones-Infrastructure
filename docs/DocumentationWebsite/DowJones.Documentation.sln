@@ -12,6 +12,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Content", "Content\Content.csproj", "{38E4CD1B-1A81-4D29-84D9-D20D8C85FE05}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XmlViewEngine", "XmlViewEngine\XmlViewEngine.csproj", "{73BBDDB2-E1E6-4646-9DA5-F713F69E7142}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarkdownRazor", "MarkdownRazor\MarkdownRazor.csproj", "{839AEF53-E893-44DC-8A2F-507DA086BFF2}"
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
@@ -19,13 +23,19 @@ Global
 		SccLocalPath1 = Website
 		SccLocalPath2 = Core
 		SccLocalPath3 = Content
-		SccNumberOfProjects = 4
+		SccLocalPath4 = XmlViewEngine
+		SccLocalPath5 = MarkdownRazor
+		SccNumberOfProjects = 6
 		SccProjectName1 = Website
 		SccProjectName2 = Core
 		SccProjectName3 = Content
+		SccProjectName4 = XmlViewEngine
+		SccProjectName5 = MarkdownRazor
 		SccProjectUniqueName1 = Website\\Website.csproj
 		SccProjectUniqueName2 = Core\\Core.csproj
 		SccProjectUniqueName3 = Content\\Content.csproj
+		SccProjectUniqueName4 = XmlViewEngine\\XmlViewEngine.csproj
+		SccProjectUniqueName5 = MarkdownRazor\\MarkdownRazor.csproj
 		SccTeamFoundationServer = http://sbknwstfs1:8080/tfs/defaultcollection
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -43,6 +53,18 @@ Global
 		{5B53CF02-321D-4EF8-9B2C-4C4889FD8A03}.Integration|Any CPU.Build.0 = Release|Any CPU
 		{5B53CF02-321D-4EF8-9B2C-4C4889FD8A03}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5B53CF02-321D-4EF8-9B2C-4C4889FD8A03}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73BBDDB2-E1E6-4646-9DA5-F713F69E7142}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73BBDDB2-E1E6-4646-9DA5-F713F69E7142}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73BBDDB2-E1E6-4646-9DA5-F713F69E7142}.Integration|Any CPU.ActiveCfg = Release|Any CPU
+		{73BBDDB2-E1E6-4646-9DA5-F713F69E7142}.Integration|Any CPU.Build.0 = Release|Any CPU
+		{73BBDDB2-E1E6-4646-9DA5-F713F69E7142}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73BBDDB2-E1E6-4646-9DA5-F713F69E7142}.Release|Any CPU.Build.0 = Release|Any CPU
+		{839AEF53-E893-44DC-8A2F-507DA086BFF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{839AEF53-E893-44DC-8A2F-507DA086BFF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{839AEF53-E893-44DC-8A2F-507DA086BFF2}.Integration|Any CPU.ActiveCfg = Release|Any CPU
+		{839AEF53-E893-44DC-8A2F-507DA086BFF2}.Integration|Any CPU.Build.0 = Release|Any CPU
+		{839AEF53-E893-44DC-8A2F-507DA086BFF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{839AEF53-E893-44DC-8A2F-507DA086BFF2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AB380707-04A9-4098-9F57-D82F893A35D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AB380707-04A9-4098-9F57-D82F893A35D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AB380707-04A9-4098-9F57-D82F893A35D4}.Integration|Any CPU.ActiveCfg = Integration|Any CPU

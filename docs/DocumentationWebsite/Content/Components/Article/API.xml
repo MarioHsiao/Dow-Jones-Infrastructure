@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>VSDocViewEngine</name>
+    </assembly>
+    <members>
+        <member name="T:VSDocViewEngine.VSDocViewEngine">
+            <summary>
+            The VSDoc implementation of the <see cref="!:VSDocViewEngine.XmlViewEngine"/>
+            </summary>
+        </member>
+        <member name="T:VSDocViewEngine.XmlViewEngine">
+            <summary>
+            The XML View Engine
+            </summary>
+        </member>
+        <member name="M:VSDocViewEngine.VSDocViewEngine.#ctor(System.String)">
+            <summary>
+            Creates a new instance of the VSDocViewEngine
+            </summary>
+            <param name="vsdocDirectory">
+            The base path where all of the VSDoc .xml files reside
+            </param>
+        </member>
+    </members>
+</doc>

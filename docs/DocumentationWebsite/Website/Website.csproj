@@ -55,9 +55,6 @@
     <Reference Include="MarkdownDeep">
       <HintPath>..\packages\MarkdownDeep.NET.1.4\lib\.NetFramework 3.5\MarkdownDeep.dll</HintPath>
     </Reference>
-    <Reference Include="MarkdownRazor">
-      <HintPath>..\packages\MarkdownRazor.0.1.0\lib\net40\MarkdownRazor.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Web.Infrastructure">
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
@@ -144,7 +141,9 @@
     </Compile>
     <Compile Include="Models\SiteNavigation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Views\DocumentationViewEngine.cs" />
+    <Compile Include="ViewEngines\DocumentationViewEngineHelpers.cs" />
+    <Compile Include="ViewEngines\MarkdownViewEngine.cs" />
+    <Compile Include="ViewEngines\VSDocViewEngine.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Styles\bootstrap-responsive.css" />
@@ -195,6 +194,7 @@
     <Content Include="Scripts\modernizr-2.5.3.js" />
     <Content Include="Scripts\prettify\prettify.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Views\Shared\VSDoc.xsl" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -218,6 +218,14 @@
     <ProjectReference Include="..\Core\Core.csproj">
       <Project>{5B53CF02-321D-4EF8-9B2C-4C4889FD8A03}</Project>
       <Name>Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MarkdownRazor\MarkdownRazor.csproj">
+      <Project>{839aef53-e893-44dc-8a2f-507da086bff2}</Project>
+      <Name>MarkdownRazor</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\XmlViewEngine\XmlViewEngine.csproj">
+      <Project>{73bbddb2-e1e6-4646-9da5-f713f69e7142}</Project>
+      <Name>XmlViewEngine</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -266,7 +274,11 @@
   </ProjectExtensions>
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <PropertyGroup>
-    <PostBuildEvent>robocopy "$(SolutionDir)Content" "$(ProjectDir)Content" /S /xf *.csproj *.vspscc /xd obj</PostBuildEvent>
+    <PostBuildEvent>echo \obj\ &gt; exclude.txt
+echo .csproj &gt;&gt; exclude.txt
+echo .vspscc &gt;&gt; exclude.txt
+xcopy /S /Y /EXCLUDE:exclude.txt "$(SolutionDir)Content\*.*" "$(ProjectDir)Content"
+del exclude.txt</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -4,13 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{38E4CD1B-1A81-4D29-84D9-D20D8C85FE05}</ProjectGuid>
+    <ProjectGuid>{839AEF53-E893-44DC-8A2F-507DA086BFF2}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Content</RootNamespace>
-    <AssemblyName>Content</AssemblyName>
+    <RootNamespace>MarkdownRazor</RootNamespace>
+    <AssemblyName>MarkdownRazor</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
     <SccProjectName>SAK</SccProjectName>
     <SccLocalPath>SAK</SccLocalPath>
     <SccAuxPath>SAK</SccAuxPath>
@@ -34,25 +36,31 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Content Include="Components\Article\API.xml" />
-    <None Include="Components\Article\Configuration.md" />
-    <None Include="Components\Article\Events.md" />
-    <Content Include="Components\Article\LiveDemo.md" />
-    <None Include="Components\Article\Methods.md" />
-    <None Include="Components\Article\Overview.md" />
-    <None Include="Components\HeadlineList.md" />
-    <None Include="Components\NewsChart.md" />
-    <None Include="Components\PortalHeadlineList.md" />
-    <None Include="Components\Radar.md" />
-    <None Include="Components\SearchBuilder.md" />
-    <None Include="Components\TweetLines.md" />
-    <None Include="Framework\BestPractices.md" />
-    <None Include="Framework\Overview.md" />
+    <Reference Include="MarkdownDeep">
+      <HintPath>..\packages\MarkdownDeep.NET.1.4\lib\.NetFramework 3.5\MarkdownDeep.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.Razor, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.WebPages.Razor, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Properties\" />
+    <Compile Include="MarkdownMvcWebRazorHostFactory.cs" />
+    <Compile Include="MarkdownRazor.cs" />
+    <Compile Include="MarkdownRazorBuildProvider.cs" />
+    <Compile Include="MarkdownRazorHost.cs" />
+    <Compile Include="MarkdownRazorView.cs" />
+    <Compile Include="MarkdownRazorViewEngine.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

@@ -1,7 +1,6 @@
 using System.Web;
-using System.Web.Mvc;
 using DowJones.Documentation.Website.App_Start;
-using DowJones.Documentation.Website.Views;
+using DowJones.Documentation.Website.ViewEngines;
 
 [assembly: PreApplicationStartMethod(typeof(ViewEngineConfig), "InitializeBuildProviders")]
 
@@ -11,12 +10,14 @@ namespace DowJones.Documentation.Website.App_Start
     {
         public static void RegisterViewEngines(string docsDirectory)
         {
-            ViewEngines.Engines.Insert(0, new DocumentationViewEngine(docsDirectory));
+            System.Web.Mvc.ViewEngines.Engines.Insert(0, new VSDocViewEngine(docsDirectory));
+            System.Web.Mvc.ViewEngines.Engines.Insert(0, new MarkdownViewEngine(docsDirectory));
         }
 
         public static void InitializeBuildProviders()
         {
-            MarkdownRazor.MarkdownRazorBuildProvider.Register();
+            MarkdownRazor.MarkdownRazorBuildProvider.RegisterAsBuildProvider();
+            XmlViewEngine.XmlBuildProvider.RegisterAsBuildProvider();
         }
     }
 }

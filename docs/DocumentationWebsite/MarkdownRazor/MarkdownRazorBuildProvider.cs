@@ -2,7 +2,7 @@ using System.Web;
 using System.Web.WebPages.Razor;
 using MarkdownRazor;
 
-[assembly: PreApplicationStartMethod(typeof(MarkdownRazorBuildProvider), "RegisterOnApplicationStart")]
+[assembly: PreApplicationStartMethod(typeof(MarkdownRazorBuildProvider), "RegisterAsBuildProvider")]
 
 namespace MarkdownRazor
 {
@@ -16,7 +16,7 @@ namespace MarkdownRazor
             return base.CreateHost();
         }
 
-        public static void RegisterOnApplicationStart()
+        public static void RegisterAsBuildProvider()
         {
             var provider = typeof(MarkdownRazorBuildProvider);
 
