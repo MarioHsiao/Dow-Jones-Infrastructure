@@ -1,0 +1,29 @@
+﻿@mixin prefixer ($property, $value,
+                 $webkit: true,
+                    $moz: true,
+                     $ms: true,
+                      $o: false,
+                   $spec: true) {
+  @if $webkit { -webkit-#{$property}: $value; }
+  @if $moz    {    -moz-#{$property}: $value; }
+  @if $ms     {     -ms-#{$property}: $value; }
+  @if $o      {      -o-#{$property}: $value; }
+  @if $spec   {         #{$property}: $value; }
+}
+
+@mixin box-shadow ($shadow: none,
+  $offsetX: 0, $offsetY: 0,
+  $blur: 0, $color: #fff)
+  {
+      @include prefixer(box-shadow, ($shadow $offsetX $offsetY $blur $color));
+}
+
+@mixin border($width: 1px, $style: solid, $color: #eee, $colorWithAlpha: rgba(0, 0, 0, 0.05)) {
+	border: $width $style $color;
+	border: $width $style $colorWithAlpha;
+}
+
+@mixin transition($property, $duration, $timing-function, $delay) {
+	@include prefixer(transition, ($property $duration $timing-function $delay), $o: true);
+}
+

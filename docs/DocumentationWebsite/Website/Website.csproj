@@ -165,6 +165,7 @@
     <Content Include="Styles\themes\spacelab\bootstrap.css" />
     <Content Include="Styles\themes\spacelab\img\glyphicons-halflings-white.png" />
     <Content Include="Styles\themes\spacelab\img\glyphicons-halflings.png" />
+    <Content Include="Styles\_mixins.scss" />
     <None Include="Styles\themes\spacelab\site.scss" />
     <Content Include="Global.asax" />
     <Content Include="packages.config">
@@ -212,6 +213,7 @@
     <Content Include="Views\Documentation\DocumentationPage.cshtml" />
     <Content Include="Views\Documentation\Homepage.cshtml" />
     <Content Include="Styles\Site.scss" />
+    <Content Include="Styles\_prefixer.scss" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Core\Core.csproj">

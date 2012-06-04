@@ -4,8 +4,8 @@
 
     function setupScrollSpy(offset) {
         $('body')
-            .data('target', '.sidebar-nav')
-            .data('spy', 'scroll')
+            .attr('data-target', '.sidebar-nav')
+            .attr('data-spy', 'scroll')
             .scrollspy({ offset: offset });
     }
 
