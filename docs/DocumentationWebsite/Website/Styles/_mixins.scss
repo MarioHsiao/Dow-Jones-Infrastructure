@@ -11,12 +11,17 @@
   @if $spec   {         #{$property}: $value; }
 }
 
-@mixin box-shadow ($shadow: none,
+@mixin box-shadow ($shadow: "",
   $offsetX: 0, $offsetY: 0,
   $blur: 0, $color: #fff)
   {
-      @include prefixer(box-shadow, ($shadow $offsetX $offsetY $blur $color));
+      @include prefixer(box-shadow, (#{$shadow} $offsetX $offsetY $blur $color));
+
+	  $iecolor: '#' + red($color) + green($color) + blue($color);    
+	  filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=#{$offsetX}, OffY=#{$offsetY}, Color='#{$iecolor}');    
 }
+
+
 
 @mixin border($width: 1px, $style: solid, $color: #eee, $colorWithAlpha: rgba(0, 0, 0, 0.05)) {
 	border: $width $style $color;
@@ -25,5 +30,20 @@
 
 @mixin transition($property, $duration, $timing-function, $delay) {
 	@include prefixer(transition, ($property $duration $timing-function $delay), $o: true);
+}
+
+@mixin linear-gradient($pos, $stop1, $stop2, $stop3, $fallbackColor){
+// Usage:
+// @include linear-gradient(top, white 0%, #f8f8f8 50%, #eaeaea 100%);
+// @include linear-gradient(50deg, rgba(10, 10, 10, 0.5) 0%, #2989d8 50%, #7db9e8 100%);
+background: $fallbackColor;
+background: -webkit-gradient(linear, left top, left bottom, color-stop(nth($stop1, 2), nth($stop1, 1)), color-stop(nth($stop2, 2), nth($stop2, 1)), color-stop(nth($stop3, 2), nth($stop3, 1))); 
+background-image: -webkit-linear-gradient($pos, $stop1, $stop2, $stop3);  
+background-image: -moz-linear-gradient($pos, $stop1, $stop2, $stop3);  
+background-image: -ms-linear-gradient($pos, $stop1, $stop2, $stop3);  
+background-image: -o-linear-gradient($pos, $stop1, $stop2, $stop3);  
+background-image: linear-gradient($pos, $stop1, $stop2, $stop3);  
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{nth($stop1, 1)}', endColorstr='#{nth($stop3, 1)}');    
+
 }
 

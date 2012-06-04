@@ -1,4 +1,3 @@
-/* Variables */
 .active [class^="icon-"],
 .active [class*=" icon-"] {
   background-image: url("img/glyphicons-halflings-white.png"); }
@@ -7,42 +6,43 @@
 .widgetGrid {
   border-bottom: 1px solid #b2b2b2;
   background: #f6f6f6;
-  /* Old browsers */
-  background: -moz-linear-gradient(top, white 0%, #f8f8f8 50%, #eaeaea 100%);
-  /* FF3.6+ */
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(50%, #f8f8f8), color-stop(100%, #eaeaea));
-  /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(top, white 0%, #f8f8f8 50%, #eaeaea 100%);
-  /* Chrome10+,Safari5.1+ */
-  background: -o-linear-gradient(top, white 0%, #f8f8f8 50%, #eaeaea 100%);
-  /* Opera 11.10+ */
-  background: -ms-linear-gradient(top, white 0%, #f8f8f8 50%, #eaeaea 100%);
-  /* IE10+ */
-  background: linear-gradient(top, white 0%, #f8f8f8 50%, #eaeaea 100%);
-  /* W3C */
-  -moz-box-shadow: 0 1px 3px 0 #b2b2b2;
+  background-image: -webkit-linear-gradient(top, white 0%, #f8f8f8 50%, #eaeaea 100%);
+  background-image: -moz-linear-gradient(top, white 0%, #f8f8f8 50%, #eaeaea 100%);
+  background-image: -ms-linear-gradient(top, white 0%, #f8f8f8 50%, #eaeaea 100%);
+  background-image: -o-linear-gradient(top, white 0%, #f8f8f8 50%, #eaeaea 100%);
+  background-image: linear-gradient(top, white 0%, #f8f8f8 50%, #eaeaea 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='white', endColorstr='#eaeaea');
   -webkit-box-shadow: 0 1px 3px 0 #b2b2b2;
-  box-shadow: 0 1px 3px 0 #b2b2b2; }
-  .widgetGrid .wideCol, .widgetGrid .narrowCol {
-    float: left;
-    min-height: 158px; }
-    .widgetGrid .wideCol:first-child, .widgetGrid .narrowCol:first-child {
-      background: #EEE;
-      background: rgba(191, 191, 191, 0.2); }
-  .widgetGrid ul {
-    float: left;
-    margin: 2px 0 0 18px;
-    padding: 0 0 10px; }
+  -moz-box-shadow: 0 1px 3px 0 #b2b2b2;
+  -ms-box-shadow: 0 1px 3px 0 #b2b2b2;
+  box-shadow: 0 1px 3px 0 #b2b2b2;
+  filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=1px, OffY=3px, Color='#178178178'); }
+  .widgetGrid .wideCol:first-child, .widgetGrid .narrowCol:first-child {
+    background: #EEE;
+    background: rgba(191, 191, 191, 0.2); }
   .widgetGrid h3 {
-    border-bottom: 1px solid #DFDFDF;
-    margin: 0 18px;
-    padding-top: 14px;
-    font-size: 12px;
-    line-height: 1.6;
-    text-transform: uppercase; }
-  .widgetGrid .nav a {
-    font-size: 12px; }
+    border-bottom: 1px solid #DFDFDF; }
   .widgetGrid .nav > .active > a {
     color: white;
     background-color: #C0C0C0; }
+
+iframe.showcase, .contentWell, section.showcase {
+  border: 1px solid #eeeeee;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+  -ms-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+  filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=0, OffY=1px, Color='#000'); }
+
+.contentWell header {
+  background-color: #f5f5f5;
+  border-bottom: 1px solid #eee; }
+
+section.showcase > h4 {
+  color: #4183C4; }
+
+.navbar .nav .active > a {
+  color: #4183C4; }
 
