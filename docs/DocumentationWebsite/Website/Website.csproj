@@ -154,6 +154,9 @@
     <Content Include="Styles\prettify\prettify.css" />
     <Content Include="Styles\prettify\sons-of-obsidian.css" />
     <Content Include="Styles\prettify\spacelab.css" />
+    <Content Include="Styles\Site.css">
+      <DependentUpon>Site.scss</DependentUpon>
+    </Content>
     <Content Include="Styles\themes\default\bootstrap.css" />
     <Content Include="Styles\themes\default\bootstrap.min.css" />
     <Content Include="Styles\themes\default\images\glyphicons-halflings-white.png" />
@@ -162,9 +165,8 @@
     <Content Include="Styles\themes\spacelab\bootstrap.css" />
     <Content Include="Styles\themes\spacelab\img\glyphicons-halflings-white.png" />
     <Content Include="Styles\themes\spacelab\img\glyphicons-halflings.png" />
-    <Content Include="Styles\themes\spacelab\site.css" />
+    <None Include="Styles\themes\spacelab\site.scss" />
     <Content Include="Global.asax" />
-    <Content Include="Styles\Site.css" />
     <Content Include="packages.config">
       <SubType>Designer</SubType>
     </Content>
@@ -175,6 +177,9 @@
     <Content Include="Styles\themes\journal\variables.less" />
     <Content Include="Styles\themes\journal\bootswatch.less" />
     <Content Include="Styles\themes\spacelab\bootswatch.less" />
+    <Content Include="Styles\themes\spacelab\site.css">
+      <DependentUpon>site.scss</DependentUpon>
+    </Content>
     <Content Include="Styles\themes\spacelab\variables.less" />
     <Content Include="Scripts\collapsible-section.js" />
     <Content Include="Scripts\explorer.js" />
@@ -206,6 +211,7 @@
     <Content Include="Views\Shared\_Navigation.cshtml" />
     <Content Include="Views\Documentation\DocumentationPage.cshtml" />
     <Content Include="Views\Documentation\Homepage.cshtml" />
+    <Content Include="Styles\Site.scss" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Core\Core.csproj">
@@ -243,7 +249,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>47366</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
@@ -259,11 +265,7 @@
   </ProjectExtensions>
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <PropertyGroup>
-    <PostBuildEvent>echo \obj\ &gt; exclude.txt
-echo .csproj &gt;&gt; exclude.txt
-echo .vspscc &gt;&gt; exclude.txt
-xcopy /S /Y /EXCLUDE:exclude.txt "$(SolutionDir)Content\*.*" "$(ProjectDir)Content"
-rm exclude.txt</PostBuildEvent>
+    <PostBuildEvent>robocopy "$(SolutionDir)Content" "$(ProjectDir)Content" /S /xf *.csproj *.vspscc /xd obj</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -1,4 +1,4 @@
-﻿using System.Configuration;
+using System.Configuration;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
@@ -28,7 +28,7 @@ namespace DowJones.Documentation.Website
 	    private void LoadDocumentationPages(string docsDirectory)
         {
             var docsPath = HttpContext.Current.Server.MapPath(docsDirectory);
-            var locator = new DocumentationPageLocator(docsPath) { SectionOrder = new [] { "LiveDemo", "Overview" }};
+            var locator = new DocumentationPageLocator(docsPath) { SectionOrder = new [] { "Overview" }};
             DocumentationPages = locator.LocateDocumentationPages();
         }
     }

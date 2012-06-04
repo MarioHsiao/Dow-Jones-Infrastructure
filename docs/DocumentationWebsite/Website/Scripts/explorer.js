@@ -1,21 +1,25 @@
-﻿(function ($) {
+﻿/*jshint browser:true */
     
+(function ($) {
+
     function setupScrollSpy(offset) {
         $('body')
             .data('target', '.sidebar-nav')
             .data('spy', 'scroll')
             .scrollspy({ offset: offset });
-    };
+    }
 
     function setupNavScroll(nav) {
         // fix nav on scroll
-        var $win = $(window)
-          , $nav = $(nav)
-          , navTop = $(nav).length && $(nav).offset().top - 40
-          , isFixed = 0;
-        processScroll(); 
+        var $win = $(window),
+            $nav = $(nav),
+            navTop = $(nav).length && $(nav).offset().top - 40,
+            isFixed = 0;
+        processScroll();
         $nav.on('click', function () {
-            if (!isFixed) setTimeout(function () { $win.scrollTop($win.scrollTop() - 47); }, 10);
+            if (!isFixed) {
+                setTimeout(function () { $win.scrollTop($win.scrollTop() - 47); }, 10);
+            }
         });
 
         $win.on('scroll', processScroll);
@@ -42,7 +46,7 @@
             }
         });
 
-        window.prettyPrint && window.prettyPrint();
+        window.prettyPrint();
     }
 
     // target tables generated via markdown but ignore tables that already have style
@@ -68,7 +72,10 @@
 
         // highlight sections in sidebar nav as we scroll
         setupScrollSpy(50);
-        
+
+        // activate first nav item
+        $(".sidebar-nav > ul.nav > li").not(".nav-header").first().addClass("active");
+
     });
 
-}(window.jQuery))
+}(window.jQuery));

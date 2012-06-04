@@ -1,7 +1,7 @@
 @model DocumentationPage
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
-    ViewBag.Title = "Dow Jones Documentation Site :: " + Model.Category.DisplayName + " > " + Model.DisplayName;
+    ViewBag.Title = "Dow Jones Component Explorer :: " + Model.Category.DisplayName + " > " + Model.DisplayName;
 }
 @section styles {
     @Styles.Render("~/bundles/syntaxhighlighter-css")
@@ -47,38 +47,30 @@
                 </header>
             </div>
             <div class="content">
-                @{
-                    var liveDemoSection = Model.Section("LiveDemo");
-                    if (liveDemoSection != null)
-                    {
-                    <section class="row-fluid" id="@liveDemoSection.Name">
-                        <h3>@liveDemoSection.DisplayName</h3>
-                        @Html.DocumentationSection(@liveDemoSection.Name)
-                    </section>
-                    }
-                }
                 @if (!Model.HasSections)
                 {
                     @Html.DocumentationPage()
                 }
-                @foreach (var pageSection in Model.Sections.Where(x => !"LiveDemo".Equals(x.Name, StringComparison.OrdinalIgnoreCase)))
+                @foreach (var pageSection in Model.Sections)
                 {
-                    <section class="row-fluid collapsible" id="@pageSection.Name">
+                    <section class="row-fluid @(pageSection.Name != "livedemo" ? "collapsible" : "")" id="@pageSection.Name">
                         <h3>@pageSection.DisplayName</h3>
-                        @Html.DocumentationSection(@pageSection.Name)
+                        <div>
+                            @Html.DocumentationSection(@pageSection.Name)
+                        </div>
                     </section>
                 }
 
-				<section class="row-fluid collapsible" id="interactOptions">
-				</section>
-				<section class="row-fluid collapsible" id="interactEvents">
-				</section>
-				<section class="row-fluid collapsible" id="templates">
-				</section>
-				<section class="row-fluid collapsible" id="sampleCode">
-				</section>
-				<section class="row-fluid collapsible" id="help">
-				</section>
+                <section class="row-fluid collapsible" id="interactOptions">
+                </section>
+                <section class="row-fluid collapsible" id="interactEvents">
+                </section>
+                <section class="row-fluid collapsible" id="templates">
+                </section>
+                <section class="row-fluid collapsible" id="sampleCode">
+                </section>
+                <section class="row-fluid collapsible" id="help">
+                </section>
                 <section class="row-fluid collapsible" id="feedback">
                 </section>
             </div>
