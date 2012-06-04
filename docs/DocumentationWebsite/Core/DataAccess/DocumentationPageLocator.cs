@@ -6,11 +6,6 @@ using System.Linq;
 
 namespace DowJones.Documentation.Website.Models
 {
-    public interface IDocumentationPageLocator
-    {
-        DocumentationPages LocateDocumentationPages();
-    }
-
     public class DocumentationPageLocator : IDocumentationPageLocator
     {
         private readonly string _baseDirectory;

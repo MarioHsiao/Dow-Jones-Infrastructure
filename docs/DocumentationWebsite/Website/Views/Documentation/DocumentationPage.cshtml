@@ -16,7 +16,7 @@
                         @if (Model.HasSections)
                         {
                             <li class="nav-header">learn</li>
-                            foreach (var pageSection in Model.Sections)
+                            foreach (var pageSection in Model.Sections.Where(x => x.Name != "livedemo"))
                             {
                             <li><a href="#@pageSection.Name">@pageSection.DisplayName</a></li>
                             }
