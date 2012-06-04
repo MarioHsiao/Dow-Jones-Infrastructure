@@ -1,1 +1,1 @@
-﻿<iframe class="showcase" src="@(System.Configuration.ConfigurationManager.AppSettings["InfrastructureShowcase.BasePath"])/headlinelist/ComponentExplorerShowcase"></iframe>
+﻿<iframe class="showcase" src="@(System.Configuration.ConfigurationManager.AppSettings["InfrastructureShowcase.BasePath"])/article/ComponentExplorerDemo"></iframe>
