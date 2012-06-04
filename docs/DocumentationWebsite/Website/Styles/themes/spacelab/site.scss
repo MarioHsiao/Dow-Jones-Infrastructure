@@ -3,7 +3,7 @@ $sprite-url: url("img/glyphicons-halflings-white.png");
 
 .active [class^="icon-"],
 .active [class*=" icon-"] {
-	background-image: $sprite-url;
+	background-image: $sprite-url; 
 }
 
 /* Widget Grid */
