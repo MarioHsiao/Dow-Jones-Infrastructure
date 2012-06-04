@@ -213,7 +213,6 @@
     <Content Include="Views\Documentation\DocumentationPage.cshtml" />
     <Content Include="Views\Documentation\Homepage.cshtml" />
     <Content Include="Styles\Site.scss" />
-    <Content Include="Styles\_prefixer.scss" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Core\Core.csproj">
