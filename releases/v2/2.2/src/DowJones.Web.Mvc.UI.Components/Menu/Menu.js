@@ -182,10 +182,20 @@
 			var self = this;
 			// give the user some grace period if he clicks outside of menu
 			window.setTimeout(function () {
-				$('body').unbind('mousedown.dj_menu').bind('mousedown.dj_menu', function (e) {
+				$('body').unbind('click.dj_menu').bind('click.dj_menu', function (e) {
 					self.hide();
 					e.stopPropagation();
 				});
+
+				self.$menu.bind('mousedown', function (e) {
+					e.stopPropagation();
+				});
+
+				self.$menu.children('.menuitems').bind('click', function (e) {
+					self.hide();
+					e.stopPropagation();
+				});
+
 			}, 20);
 
 		},
