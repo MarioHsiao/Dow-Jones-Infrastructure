@@ -177,6 +177,9 @@
     <Content Include="Styles\themes\journal\variables.less" />
     <Content Include="Styles\themes\journal\bootswatch.less" />
     <Content Include="Styles\themes\spacelab\bootswatch.less" />
+    <Content Include="Styles\themes\spacelab\site.css">
+      <DependentUpon>site.scss</DependentUpon>
+    </Content>
     <Content Include="Styles\themes\spacelab\variables.less" />
     <Content Include="Scripts\collapsible-section.js" />
     <Content Include="Scripts\explorer.js" />

@@ -1,4 +1,48 @@
-﻿.active [class^="icon-"],
+/* Variables */
+.active [class^="icon-"],
 .active [class*=" icon-"] {
-	background-image: url("img/glyphicons-halflings-white.png");
-}
+  background-image: url("img/glyphicons-halflings-white.png"); }
+
+/* Widget Grid */
+.widgetGrid {
+  border-bottom: 1px solid #b2b2b2;
+  background: #f6f6f6;
+  /* Old browsers */
+  background: -moz-linear-gradient(top, white 0%, #f8f8f8 50%, #eaeaea 100%);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(50%, #f8f8f8), color-stop(100%, #eaeaea));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, white 0%, #f8f8f8 50%, #eaeaea 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, white 0%, #f8f8f8 50%, #eaeaea 100%);
+  /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, white 0%, #f8f8f8 50%, #eaeaea 100%);
+  /* IE10+ */
+  background: linear-gradient(top, white 0%, #f8f8f8 50%, #eaeaea 100%);
+  /* W3C */
+  -moz-box-shadow: 0 1px 3px 0 #b2b2b2;
+  -webkit-box-shadow: 0 1px 3px 0 #b2b2b2;
+  box-shadow: 0 1px 3px 0 #b2b2b2; }
+  .widgetGrid .wideCol, .widgetGrid .narrowCol {
+    float: left;
+    min-height: 158px; }
+    .widgetGrid .wideCol:first-child, .widgetGrid .narrowCol:first-child {
+      background: #EEE;
+      background: rgba(191, 191, 191, 0.2); }
+  .widgetGrid ul {
+    float: left;
+    margin: 2px 0 0 18px;
+    padding: 0 0 10px; }
+  .widgetGrid h3 {
+    border-bottom: 1px solid #DFDFDF;
+    margin: 0 18px;
+    padding-top: 14px;
+    font-size: 12px;
+    line-height: 1.6;
+    text-transform: uppercase; }
+  .widgetGrid .nav a {
+    font-size: 12px; }
+  .widgetGrid .nav > .active > a {
+    color: white;
+    background-color: #C0C0C0; }
+

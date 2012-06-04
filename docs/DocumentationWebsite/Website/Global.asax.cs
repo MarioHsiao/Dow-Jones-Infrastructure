@@ -28,7 +28,7 @@ namespace DowJones.Documentation.Website
 	    private void LoadDocumentationPages(string docsDirectory)
         {
             var docsPath = HttpContext.Current.Server.MapPath(docsDirectory);
-            var locator = new DocumentationPageLocator(docsPath) { SectionOrder = new [] { "Overview" }};
+            var locator = new DocumentationPageLocator(docsPath) { SectionOrder = new [] { "LiveDemo", "Overview", "Configuration", "Methods", "Events" }};
             DocumentationPages = locator.LocateDocumentationPages();
         }
     }
