@@ -46,21 +46,28 @@ namespace DowJones.Web.Mvc.Search.Requests.Common
 
         public SearchRequest ApplyDefaults(SearchRequest request)
         {
-            if (!request.ShowDuplicates.HasValue)
+            if (request is AlertSearchRequest)
             {
-                request.ShowDuplicates = Map(SearchPreferenceService.Duplicate);
+                request = ApplyDefaultsForAlertResult((AlertSearchRequest)request);
+                if (!request.ShowDuplicates.HasValue)
+                {
+                    request.ShowDuplicates = null;
+                }
             }
-            if (request is SimpleSearchRequest)
+            else
             {
-                request = ApplyDefaultsForSimpleSearch((SimpleSearchRequest) request);
-            }
-            else if (request is FreeTextSearchRequest)
-            {
-                request = ApplyDefaultsForFreetextSearch((FreeTextSearchRequest) request);
-            }
-            else if (request is AlertSearchRequest)
-            {
-                request = ApplyDefaultsForAlertResult((AlertSearchRequest) request);
+                if (!request.ShowDuplicates.HasValue)
+                {
+                    request.ShowDuplicates = Map(SearchPreferenceService.Duplicate);
+                }
+                if (request is SimpleSearchRequest)
+                {
+                    request = ApplyDefaultsForSimpleSearch((SimpleSearchRequest)request);
+                }
+                else if (request is FreeTextSearchRequest)
+                {
+                    request = ApplyDefaultsForFreetextSearch((FreeTextSearchRequest)request);
+                }
             }
 
             return request;

@@ -329,9 +329,11 @@ namespace DowJones.Web.Mvc.Search.Controllers
             if (IsAlertResult(request))
             {
                 excludeEnumItems = new SortOrder[0];
-                searchResults.ShowDuplicates = ShowDuplicates.Off;
 
-
+                if (!request.ShowDuplicates.HasValue)
+                {
+                    searchResults.ShowDuplicates = ShowDuplicates.Off;
+                }
 
                 if (searchResults.Headlines != null && searchResults.Headlines.HeadlineList != null)
                 {
@@ -347,9 +349,11 @@ namespace DowJones.Web.Mvc.Search.Controllers
                         }
                     }
                     searchResults.Headlines.HeadlineList.ShowPressClip = searchResults.Headlines.ShowPressClip;
-                    searchResults.Headlines.EnableDuplicateOption = false;
 
-
+                    if (!request.ShowDuplicates.HasValue)
+                    {
+                        searchResults.Headlines.EnableDuplicateOption = false;
+                    }
                 }
             }
             searchResults.Headlines.HeadlineSortOptions = new EnumSelectListWithTranslatedText<SortOrder>(searchResults.HeadlineSort, excludeEnumItems);

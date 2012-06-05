@@ -36,8 +36,12 @@ namespace DowJones.Web.Mvc.Search.Requests.Alert
 
             _baseMapper.Map(query, source);
 
-            //No duplication logic for alert result!
-            query.Duplicates = DeduplicationMode.Off;
+            //Commented it as a part of Alert Dedup enhancement
+            ////No duplication logic for alert result!
+            if (!source.ShowDuplicates.HasValue)
+            {
+                query.Duplicates = DeduplicationMode.Off;
+            }
 
             return query;
         }

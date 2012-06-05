@@ -30,62 +30,66 @@
 
         // Localization/Templating tokens
         tokens: {
-        // name: value     // add more defaults here separated by comma
-    },
+            // name: value     // add more defaults here separated by comma
+        },
 
 
-    /*
-    * Initialization (constructor)
-    */
-    init: function (element, meta) {
-        var self = this;
-        var $meta = $.extend({ name: "AlertSearchBuilder" }, meta);
+        /*
+        * Initialization (constructor)
+        */
+        init: function (element, meta) {
+            var self = this;
+            var $meta = $.extend({ name: "AlertSearchBuilder" }, meta);
 
-        // Call the base constructor
-        this._super(element, $meta);
+            // Call the base constructor
+            this._super(element, $meta);
 
-        $('input:radio[name=AlertHeadlineViewType]').click(function () {
-            var viewType = $('input:radio[name=AlertHeadlineViewType]:checked').val();
-            var selectedAlertId = $('.dj_alert-wrapper .dj_menu-wrapper').children(0).attr("selectedalertid"); // $("#ddlAlerts").val();
-            var postUrl = $('#hdnPostBackUrl').val() + "?kind=alert&alertId=" + selectedAlertId + "&viewType=" + viewType;
-            $(location).attr('href', postUrl);
-        });
+            $('input:radio[name=AlertHeadlineViewType]').click(function () {
+                var viewType = $('input:radio[name=AlertHeadlineViewType]:checked').val();
+                var selectedAlertId = $('.dj_alert-wrapper .dj_menu-wrapper').children(0).attr("selectedalertid"); // $("#ddlAlerts").val();
+                var postUrl = $('#hdnPostBackUrl').val() + "?kind=alert&alertId=" + selectedAlertId + "&viewType=" + viewType;
+                var searchRequest = self.getSearchRequest();
+                if (searchRequest.ShowDuplicates || searchRequest.ShowDuplicates == "0") {
+                    postUrl += "&ShowDuplicates=" + searchRequest.ShowDuplicates;
+                }
+                $(location).attr('href', postUrl);
+            });
 
-        $(".dj_menu-wrapper").click(function () {
-            self._getData();
-        });
-    },
-
-
-    /*
-    * Public methods
-    */
-
-    // TODO: Public Methods here
+            $(".dj_menu-wrapper").click(function () {
+                self._getData();
+            });
+        },
 
 
-    /*
-    * Private methods
-    */
+        /*
+        * Public methods
+        */
 
-    // DEMO: Overriding the base _paint method:
-    _paint: function () {
+        // TODO: Public Methods here
 
-        // "this._super()" is available in all overridden methods
-        // and refers to the base method.
-        this._super();
 
-        alert('TODO: implement AlertSearchBuilder._paint!');
-    },
+        /*
+        * Private methods
+        */
 
-    _getData: function () {
-        $('#selectboxLoading').show(),
+        // DEMO: Overriding the base _paint method:
+        _paint: function () {
+
+            // "this._super()" is available in all overridden methods
+            // and refers to the base method.
+            this._super();
+
+            alert('TODO: implement AlertSearchBuilder._paint!');
+        },
+
+        _getData: function () {
+            $('#selectboxLoading').show(),
          $.ajax({
-            url: $('#hdnServiceUrl').val(),
-            data: {},
-            success: function (response, status, jqXHR) {
-                $('#selectboxLoading').hide();
-                $('.dj_alert-wrapper .dj_menu-wrapper').menu(
+             url: $('#hdnServiceUrl').val(),
+             data: {},
+             success: function (response, status, jqXHR) {
+                 $('#selectboxLoading').hide();
+                 $('.dj_alert-wrapper .dj_menu-wrapper').menu(
 					 { items: jQuery.parseJSON(response.items),
 					     defaultText: jQuery.parseJSON(response.defaultText)
 					 },
@@ -99,14 +103,14 @@
 					     $(location).attr('href', postUrl);
 					 }
 					 });
-            },
-            failure: function (response) { alert(DJGlobal.getErrorMessage(response.Error)); }
-        });
-    }
-});
+             },
+             failure: function (response) { alert(DJGlobal.getErrorMessage(response.Error)); }
+         });
+        }
+    });
 
-// Declare this class as a jQuery plugin
-$.plugin('dj_AlertSearchBuilder', DJ.UI.AlertSearchBuilder);
+    // Declare this class as a jQuery plugin
+    $.plugin('dj_AlertSearchBuilder', DJ.UI.AlertSearchBuilder);
 
 
 })(jQuery);
