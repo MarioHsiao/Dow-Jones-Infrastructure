@@ -4,7 +4,7 @@ namespace DowJones.Web.Showcase.Components.SourcesFilter
 {
     [ScriptResource(
         "SourcesFilterComponent",
-        Url = "~/Components/SourcesFilter/SourcesFilter.js",
+        RelativeResourceName = "SourcesFilter.js",
         DependencyLevel = ClientResourceDependencyLevel.Component
     )]
     public class SourcesFilterComponent : CompositeComponent<SourcesFilterModel>
