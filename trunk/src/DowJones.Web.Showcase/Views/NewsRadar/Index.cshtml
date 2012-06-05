@@ -1,0 +1,13 @@
+﻿@using DowJones.Extensions
+@{
+    ViewBag.Title = "News Radar";
+}
+<div class="dj_NewsRadarControl">
+    @Html.DJ().Render(Model)
+</div>
+<div>
+    <h3>sample data</h3>
+    <textarea style="width: 972px; height: 500px;">
+    @Html.Raw(ObjectExtensions.ToJson	(Model));
+    </textarea>
+</div>

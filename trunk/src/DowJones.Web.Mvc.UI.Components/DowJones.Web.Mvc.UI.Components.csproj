@@ -222,6 +222,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>HeadlineListCarousel.cshtml</DependentUpon>
     </Compile>
+    <Compile Include="NewsRadar\NewsRadarControl.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NewsRadarControl.cshtml</DependentUpon>
+    </Compile>
     <Compile Include="OutletList\OutletList.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -401,6 +406,9 @@
     <Folder Include="CompanySparkline\js\" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="NewsRadar\ClientTemplates\Container.htm" />
+    <EmbeddedResource Include="NewsRadar\ClientTemplates\Error.htm" />
+    <EmbeddedResource Include="NewsRadar\NewsRadar.js" />
     <EmbeddedResource Include="TwitterExperts\ClientTemplates\noData.htm" />
     <EmbeddedResource Include="TweetLines\ClientTemplates\noData.htm" />
     <EmbeddedResource Include="ScrollBar\ScrollBar.js" />
@@ -579,6 +587,10 @@
     <None Include="HeadlineListCarousel\HeadlineListCarousel.cshtml">
       <Generator>RazorViewComponentClassGenerator</Generator>
       <LastGenOutput>HeadlineListCarousel1.cs</LastGenOutput>
+    </None>
+    <None Include="NewsRadar\NewsRadarControl.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>NewsRadarControl.cs</LastGenOutput>
     </None>
     <None Include="OutletList\OutletList.cshtml">
       <Generator>RazorViewComponentClassGenerator</Generator>

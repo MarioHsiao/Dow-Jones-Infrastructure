@@ -168,6 +168,7 @@
     <Compile Include="Controllers\HeadlineListCarouselController.cs" />
     <Compile Include="Controllers\NewsFeedController.cs" />
     <Compile Include="Controllers\NewsLetterController.cs" />
+    <Compile Include="Controllers\NewsRadarController.cs" />
     <Compile Include="Controllers\PersonalizationFiltersController.cs" />
     <Compile Include="Controllers\PreferencesController.cs" />
     <Compile Include="Controllers\SearchBuilderController.cs" />
@@ -1603,6 +1604,8 @@
     <Content Include="Views\CalendarEventList\Index.cshtml" />
     <Content Include="Views\Shared\_Layout_ComponentExplorer.cshtml" />
     <Content Include="Views\HeadlineListCarousel\Carousel.cshtml" />
+    <Content Include="Views\NewsRadar\Index.cshtml" />
+    <None Include="Views\NewsRadar\sample.json" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Browsers\Devices\" />

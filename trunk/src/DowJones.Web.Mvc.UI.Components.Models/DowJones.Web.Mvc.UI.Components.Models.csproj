@@ -91,6 +91,17 @@
     <Compile Include="CompositeOutlet\CompositeOutletModel.cs" />
     <Compile Include="DiscoveryGraph\DiscoveryGraphModel.cs" />
     <Compile Include="HeadlineListCarousel\HeadlineListCarouselModel.cs" />
+    <Compile Include="NewsRadar\EntityModel.cs" />
+    <Compile Include="NewsRadar\EntityType.cs" />
+    <Compile Include="NewsRadar\InstrumentReferenceModel.cs" />
+    <Compile Include="NewsRadar\NewsEntityModel.cs" />
+    <Compile Include="NewsRadar\NewsRadarModel.cs" />
+    <Compile Include="NewsRadar\NewsVolumeModel.cs" />
+    <Compile Include="NewsRadar\OwnershipType.cs" />
+    <Compile Include="NewsRadar\QueryType.cs" />
+    <Compile Include="NewsRadar\Scope.cs" />
+    <Compile Include="NewsRadar\SearchQueryModel.cs" />
+    <Compile Include="NewsRadar\TimeFrame.cs" />
     <Compile Include="OutletList\OutletListModel.cs" />
     <Compile Include="OutletList\OutletListTokens.cs" />
     <Compile Include="OutletList\OutletModel.cs" />
