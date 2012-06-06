@@ -36,6 +36,10 @@
 
 using System;
 using System.Web;
+using DowJones.Charting.Properties;
+using DowJones.Generators;
+using DowJones.Infrastructure;
+using DowJones.Session;
 
 namespace DowJones.Charting.Highcharts
 {
@@ -57,21 +61,22 @@ namespace DowJones.Charting.Highcharts
             return;
         }
 
-        var request = context.Request;
+        var request = context.Request.Form;
 
         // Get HTTP POST form variables, ensuring they are not null.
-        var filename = request.Form["filename"];
-        var type = request.Form["type"];
+        var filename = request["filename"];
+        var type = request["type"];
         int width;
-        var svg = request.Form["svg"];
+        var svg = request["svg"];
 
-        if (filename == null || type == null || !Int32.TryParse(request.Form["width"], out width) || svg == null)
-        {
-            return;
-        }
+        Int32.TryParse(request["width"], out width);
+        Guard.IsNotNullOrEmpty(type, "type");
+        Guard.IsNotNullOrEmpty(svg, "svg");
+        Guard.IsNotZeroOrNegative(width, "width");
+        Guard.IsNotNullOrEmpty(filename, "filename");
 
         // Create a new chart export object using form variables.
-        var export = new Exporter(filename, type, width, svg);
+        var export = new Exporter(type, width, svg, filename);
 
         // Write the exported chart to the HTTP Response object.
         export.WriteToHttpResponse(context.Response);
@@ -80,6 +85,72 @@ namespace DowJones.Charting.Highcharts
         // prevents other modules from adding/interfering with the output.
         HttpContext.Current.ApplicationInstance.CompleteRequest();
         context.Response.End();
+    }
+
+    internal static string SaveImageRequest(HttpContext context)
+    {
+        if (context == null || context.Request.HttpMethod != "POST")
+        {
+            if (context != null)
+            {
+                throw new ApplicationException(string.Format("Invalid HttpMethod specified: '{0}'.", context.Request.HttpMethod));
+            }
+            throw new ApplicationException("Bad Request");
+        }
+
+        var request = context.Request.Form;
+        var svg = request["svg"];
+        var type = request["type"];
+        int width;
+
+        Int32.TryParse(request["width"], out width);
+
+        Guard.IsNotNullOrEmpty(type, "type");
+        Guard.IsNotNullOrEmpty(svg, "svg"); 
+        Guard.IsNotZeroOrNegative(width, "width");
+
+        var cacheKey = RandomKeyGenerator.GetRandomKey(16, RandomKeyGenerator.CharacterSet.AlphaNumeric);
+
+        return string.Empty;
+    }
+
+    internal static void ProcessImageRequest(HttpContext context)
+    {
+        var request = context.Request.QueryString;
+        var type = request["type"];
+        int width;
+        var cacheKey = request["cachekey"];
+
+        Int32.TryParse(request["width"], out width);
+        Guard.IsNotNullOrEmpty(type, "type");
+        Guard.IsNotNullOrEmpty(cacheKey, "cacheKey");
+        Guard.IsNotZeroOrNegative(width, "width");
+
+        // Create a new chart export object using querystring parameters.
+        var export = new Exporter(type, width, cacheKey);
+
+        // Write the exported chart to the HTTP Response object.
+        export.WriteToHttpResponse(context.Response);
+
+        // Short-circuit this ASP.NET request and end. Short-circuiting
+        // prevents other modules from adding/interfering with the output.
+        HttpContext.Current.ApplicationInstance.CompleteRequest();
+        context.Response.End();
+    }
+
+    private static IControlData GetControlData(HttpContext context)
+    {
+        var request = context.Request;
+        var cd = new ControlData
+                     {
+                         EncryptedToken = Settings.Default.ExporterEncryptedToken,
+                         AccessPointCode = request["apc"] ?? "o",
+                         AccessPointCodeUsage = request["apc"],
+                         ClientCode = request["clientcode"] ?? DowJones.Properties.Settings.Default.DefaultClientCodeType,
+
+                     };
+
+        return cd;
     }
   }
 }

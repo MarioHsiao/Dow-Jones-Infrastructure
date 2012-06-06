@@ -34,6 +34,8 @@
 // 2011-07-17 KPR Created.
 // 
 
+using DowJones.Web.Handlers.Proxy.Core;
+
 namespace DowJones.Charting.Highcharts
 {
   using System;
@@ -42,7 +44,7 @@ namespace DowJones.Charting.Highcharts
   /// <summary>
   /// ASP.NET HttpHandler for exporting Highcharts JS JavaScript charts.
   /// </summary>
-  public class HttpHandler : IHttpHandler
+  public class ExporterHttpHandler : IHttpHandler
   {
     /// <summary>
     /// Gets a value indicating whether another request can use the 
@@ -61,8 +63,11 @@ namespace DowJones.Charting.Highcharts
     /// Session, and Server) used to service HTTP requests.</param>
     public void ProcessRequest(HttpContext context)
     {
-      // Process the request to export chart.
-      ExportChart.ProcessExportRequest(context);
+        using (new TimedLog("ExporterHttpHandler\tTotal read and write"))
+        {
+            // Process the request to export chart.
+            ExportChart.ProcessExportRequest(context);
+        }
     }
   }
 }

@@ -929,45 +929,7 @@ namespace DowJones.Assemblers.Articles
                 ub.Append(UrlBuilder.GetParameterName(typeof (ArchiveFileRequestDTO), "Reference"), reference);
                 ub.Append(UrlBuilder.GetParameterName(typeof (ArchiveFileRequestDTO), "MimeType"), mimeType);
                 ub.Append(UrlBuilder.GetParameterName(typeof (ArchiveFileRequestDTO), "ImageType"), (imageType == ImageType.Display) ? "dispix" : "tnail");
-
-                if (!string.IsNullOrEmpty(_controlData.AccessPointCode))
-                {
-                    ub.Append(UrlBuilder.GetParameterName(typeof (SessionRequestDTO), "AccessPointCode"), _controlData.AccessPointCode);
-                }
-
-                if (!string.IsNullOrEmpty(_preferences.InterfaceLanguage))
-                {
-                    ub.Append(UrlBuilder.GetParameterName(typeof (SessionRequestDTO), "InterfaceLanguage"), _preferences.InterfaceLanguage);
-                }
-
-                if (!string.IsNullOrEmpty(_controlData.ProductID))
-                {
-                    ub.Append(UrlBuilder.GetParameterName(typeof (SessionRequestDTO), "ProductID"), _controlData.ProductID);
-                }
-
-                if (!string.IsNullOrEmpty(_controlData.SessionID))
-                {
-                    ub.Append(UrlBuilder.GetParameterName(typeof (SessionRequestDTO), "SessionID"), _controlData.SessionID);
-                }
-                else if (!string.IsNullOrEmpty(_controlData.EncryptedToken)) // assume this is a lightweight user
-                {
-                    ub.Append(UrlBuilder.GetParameterName(typeof (SessionRequestDTO), "EncryptedToken"), _controlData.EncryptedToken);
-                }
-                else
-                {
-                    ub.Append(UrlBuilder.GetParameterName(typeof (SessionRequestDTO), "UserID"), _controlData.UserID);
-                    ub.Append(UrlBuilder.GetParameterName(typeof (SessionRequestDTO), "Password"), _controlData.UserPassword);
-                }
-
-                if (!string.IsNullOrEmpty(_controlData.AccessPointCodeUsage))
-                {
-                    ub.Append(UrlBuilder.GetParameterName(typeof (SessionRequestDTO), "AccessPointCodeUsage"), _controlData.AccessPointCodeUsage);
-                }
-
-                if (!string.IsNullOrEmpty(_controlData.ClientCode))
-                {
-                    ub.Append(UrlBuilder.GetParameterName(typeof (SessionRequestDTO), "ClientCodeType"), _controlData.ClientCode);
-                }
+                AddControlData(ub);
                 return ub.ToString();
             }
 
@@ -1388,51 +1350,7 @@ namespace DowJones.Assemblers.Articles
                 ub.Append( UrlBuilder.GetParameterName( typeof( ArchiveFileRequestDTO ), "MimeType" ), mimeType );
                 ub.Append( UrlBuilder.GetParameterName( typeof( ArchiveFileRequestDTO ), "ImageType" ), Map( imageType ) );
                 ub.Append( UrlBuilder.GetParameterName( typeof( ArchiveFileRequestDTO ), "IsBlob" ), ( isBlob ) ? "y" : "" );
-
-                if( !string.IsNullOrEmpty( _controlData.AccessPointCode ) )
-                {
-                    ub.Append( UrlBuilder.GetParameterName( typeof( SessionRequestDTO ), "AccessPointCode" ), _controlData.AccessPointCode );
-                }
-
-                if( !string.IsNullOrEmpty( _preferences.InterfaceLanguage ) )
-                {
-                    ub.Append( UrlBuilder.GetParameterName( typeof( SessionRequestDTO ), "InterfaceLanguage" ), _preferences.InterfaceLanguage );
-                }
-
-                if( !string.IsNullOrEmpty( _controlData.ProductID ) )
-                {
-                    ub.Append( UrlBuilder.GetParameterName( typeof( SessionRequestDTO ), "ProductID" ), _controlData.ProductID );
-                }
-
-                if( !string.IsNullOrEmpty( _controlData.SessionID ) )
-                {
-                    ub.Append( UrlBuilder.GetParameterName( typeof( SessionRequestDTO ), "SessionID" ), _controlData.SessionID );
-                }
-                else if( !string.IsNullOrEmpty( _controlData.EncryptedToken ) ) // assume this is a lightweight user
-                {
-                    ub.Append( UrlBuilder.GetParameterName( typeof( SessionRequestDTO ), "EncryptedToken" ), _controlData.EncryptedToken );
-                }
-                else
-                {
-                    ub.Append( UrlBuilder.GetParameterName( typeof( SessionRequestDTO ), "UserID" ), _controlData.UserID );
-                    ub.Append( UrlBuilder.GetParameterName( typeof( SessionRequestDTO ), "Password" ), _controlData.UserPassword );
-                }
-
-                if( !string.IsNullOrEmpty( _controlData.AccessPointCodeUsage ) )
-                {
-                    ub.Append( UrlBuilder.GetParameterName( typeof( SessionRequestDTO ), "AccessPointCodeUsage" ), _controlData.AccessPointCodeUsage );
-                }
-
-                if( !string.IsNullOrEmpty( _controlData.CacheKey ) )
-                {
-                    ub.Append( UrlBuilder.GetParameterName( typeof( SessionRequestDTO ), "CacheKey" ), _controlData.CacheKey );
-                }
-
-                if( !string.IsNullOrEmpty( _controlData.ClientCode ) )
-                {
-                    ub.Append( UrlBuilder.GetParameterName( typeof( SessionRequestDTO ), "ClientCodeType" ), _controlData.ClientCode );
-                }
-
+                AddControlData(ub);
                 return ub.ToString();
             }
             return null;
@@ -1451,51 +1369,7 @@ namespace DowJones.Assemblers.Articles
                 ub.Append(UrlBuilder.GetParameterName(typeof(ArchiveFileRequestDTO), "MimeType"), mimeType);
                 ub.Append(UrlBuilder.GetParameterName(typeof(ArchiveFileRequestDTO), "ImageType"), Map(imageType));
                 ub.Append(UrlBuilder.GetParameterName(typeof(ArchiveFileRequestDTO), "IsBlob"), (isBlob) ? "y" : "");
-
-                if (!string.IsNullOrEmpty(_controlData.AccessPointCode))
-                {
-                    ub.Append(UrlBuilder.GetParameterName(typeof(SessionRequestDTO), "AccessPointCode"), _controlData.AccessPointCode);
-                }
-
-                if (!string.IsNullOrEmpty(_preferences.InterfaceLanguage))
-                {
-                    ub.Append(UrlBuilder.GetParameterName(typeof(SessionRequestDTO), "InterfaceLanguage"), _preferences.InterfaceLanguage);
-                }
-
-                if (!string.IsNullOrEmpty(_controlData.ProductID))
-                {
-                    ub.Append(UrlBuilder.GetParameterName(typeof(SessionRequestDTO), "ProductID"), _controlData.ProductID);
-                }
-
-                if (!string.IsNullOrEmpty(_controlData.SessionID))
-                {
-                    ub.Append(UrlBuilder.GetParameterName(typeof(SessionRequestDTO), "SessionID"), _controlData.SessionID);
-                }
-                else if (!string.IsNullOrEmpty(_controlData.EncryptedToken)) // assume this is a lightweight user
-                {
-                    ub.Append(UrlBuilder.GetParameterName(typeof(SessionRequestDTO), "EncryptedToken"), _controlData.EncryptedToken);
-                }
-                else
-                {
-                    ub.Append(UrlBuilder.GetParameterName(typeof(SessionRequestDTO), "UserID"), _controlData.UserID);
-                    ub.Append(UrlBuilder.GetParameterName(typeof(SessionRequestDTO), "Password"), _controlData.UserPassword);
-                }
-
-                if (!string.IsNullOrEmpty(_controlData.AccessPointCodeUsage))
-                {
-                    ub.Append(UrlBuilder.GetParameterName(typeof(SessionRequestDTO), "AccessPointCodeUsage"), _controlData.AccessPointCodeUsage);
-                }
-
-                if (!string.IsNullOrEmpty(_controlData.CacheKey))
-                {
-                    ub.Append(UrlBuilder.GetParameterName(typeof(SessionRequestDTO), "CacheKey"), _controlData.CacheKey);
-                }
-
-                if (!string.IsNullOrEmpty(_controlData.ClientCode))
-                {
-                    ub.Append(UrlBuilder.GetParameterName(typeof(SessionRequestDTO), "ClientCodeType"), _controlData.ClientCode);
-                }
-
+                AddControlData(ub);
                 return ub.ToString();
             }
             return null;
@@ -1646,7 +1520,13 @@ namespace DowJones.Assemblers.Articles
                     {
                         return article.contentParts.primaryReference;
                     }
-
+                    break;
+                case ContentCategory.Website:
+                    switch (articleResultset.ContentSubCategory)
+                    {
+                        case ContentSubCategory.WebPage:
+                            return GenerateWebRedirectionUrl(articleResultset.AccessionNo);
+                    }
                     break;
                 case ContentCategory.Publication:
                     switch(articleResultset.ContentSubCategory)
@@ -1666,6 +1546,62 @@ namespace DowJones.Assemblers.Articles
             }
 
             return string.Empty;
+        }
+
+        public string GenerateWebRedirectionUrl (string accessionNo)
+        {
+            if (FileHandlerUrl.HasValue())
+            {
+                var ub = new UrlBuilder(FileHandlerUrl);
+                ub.Append(UrlBuilder.GetParameterName(typeof(ArchiveFileRequestDTO), "AccessionNumber"), accessionNo);
+                ub.Append("redirect", "y");
+                AddControlData(ub);
+                return ub.ToString();
+            }
+
+            return null;
+        }
+
+        public void AddControlData(UrlBuilder ub)
+        {
+             if (!string.IsNullOrEmpty(_controlData.AccessPointCode))
+            {
+                ub.Append(UrlBuilder.GetParameterName(typeof(SessionRequestDTO), "AccessPointCode"), _controlData.AccessPointCode);
+            }
+
+            if (!string.IsNullOrEmpty(_preferences.InterfaceLanguage))
+            {
+                ub.Append(UrlBuilder.GetParameterName(typeof(SessionRequestDTO), "InterfaceLanguage"), _preferences.InterfaceLanguage);
+            }
+
+            if (!string.IsNullOrEmpty(_controlData.ProductID))
+            {
+                ub.Append(UrlBuilder.GetParameterName(typeof(SessionRequestDTO), "ProductID"), _controlData.ProductID);
+            }
+
+            if (!string.IsNullOrEmpty(_controlData.SessionID))
+            {
+                ub.Append(UrlBuilder.GetParameterName(typeof(SessionRequestDTO), "SessionID"), _controlData.SessionID);
+            }
+            else if (!string.IsNullOrEmpty(_controlData.EncryptedToken)) // assume this is a lightweight user
+            {
+                ub.Append(UrlBuilder.GetParameterName(typeof(SessionRequestDTO), "EncryptedToken"), _controlData.EncryptedToken);
+            }
+            else
+            {
+                ub.Append(UrlBuilder.GetParameterName(typeof(SessionRequestDTO), "UserID"), _controlData.UserID);
+                ub.Append(UrlBuilder.GetParameterName(typeof(SessionRequestDTO), "Password"), _controlData.UserPassword);
+            }
+
+            if (!string.IsNullOrEmpty(_controlData.AccessPointCodeUsage))
+            {
+                ub.Append(UrlBuilder.GetParameterName(typeof(SessionRequestDTO), "AccessPointCodeUsage"), _controlData.AccessPointCodeUsage);
+            }
+
+            if (!string.IsNullOrEmpty(_controlData.ClientCode))
+            {
+                ub.Append(UrlBuilder.GetParameterName(typeof(SessionRequestDTO), "ClientCodeType"), _controlData.ClientCode);
+            }
         }
 
         /// <summary>

@@ -298,7 +298,7 @@
                 startIndex  = this.pagePreviousFormInput.val();
             else
                 startIndex = parseInt(page, 10) * count;
-
+            
 
             //this.startFormInput.val(Math.max(0, startIndex));
 

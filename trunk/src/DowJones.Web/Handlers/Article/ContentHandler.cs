@@ -2,24 +2,26 @@
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Caching;
 using System.Web.UI;
+using DowJones.Articles;
 using DowJones.DTO.Web;
 using DowJones.DTO.Web.Request;
 using DowJones.Exceptions;
 using DowJones.Extensions;
-using DowJones.Session;
-using Factiva.Gateway.Messages.Archive.V1_0;
-using Factiva.Gateway.Services.V1_0;
-using Factiva.Gateway.V1_0;
 using DowJones.Managers.Search;
 using DowJones.Managers.Search.Requests;
+using Factiva.Gateway.Messages.Archive.V1_0;
 using Factiva.Gateway.Messages.Search.V2_0;
+using Factiva.Gateway.Services.V1_0;
+using Factiva.Gateway.V1_0;
 using ControlData = Factiva.Gateway.Utils.V1_0.ControlData;
+using ControlDataManager = Factiva.Gateway.Managers.ControlDataManager;
 using PerformContentSearchRequest = Factiva.Gateway.Messages.Search.FreeSearch.V1_0.PerformContentSearchRequest;
 using PerformContentSearchResponse = Factiva.Gateway.Messages.Search.FreeSearch.V1_0.PerformContentSearchResponse;
 
@@ -27,7 +29,7 @@ namespace DowJones.Web.Handlers.Article
 {
     public class ImageCacheItem
     {
-        public byte[] bytes { get; set; }       
+        public byte[] bytes { get; set; }
         public string mimeType { get; set; }
     }
 
@@ -36,26 +38,7 @@ namespace DowJones.Web.Handlers.Article
     /// </summary>
     public class ContentHandler : Page, IHttpAsyncHandler
     {
-        protected override void OnInit(EventArgs e)
-        {
-            // Request Hosting permissions
-            new AspNetHostingPermission(AspNetHostingPermissionLevel.Minimal).Demand();
-
-            var handlerType = typeof(BaseContentHandler);
-            IHttpHandler handler;
-            try
-            {
-                // Create the handler by calling class abc or class xyz.
-                handler = (IHttpHandler)Activator.CreateInstance(handlerType, true);
-            }
-            catch (Exception ex)
-            {
-                throw new HttpException("Unable to create handler", ex);
-            }
-
-            handler.ProcessRequest(Context);
-            Context.ApplicationInstance.CompleteRequest();
-        }
+        #region IHttpAsyncHandler Members
 
         public IAsyncResult BeginProcessRequest(HttpContext context, AsyncCallback cb, object extradata)
         {
@@ -67,15 +50,37 @@ namespace DowJones.Web.Handlers.Article
             AspCompatEndProcessRequest(result);
         }
 
+        #endregion
+
+        protected override void OnInit(EventArgs e)
+        {
+            // Request Hosting permissions
+            new AspNetHostingPermission(AspNetHostingPermissionLevel.Minimal).Demand();
+
+            var handlerType = typeof (BaseContentHandler);
+            IHttpHandler handler;
+            try
+            {
+                // Create the handler by calling class abc or class xyz.
+                handler = (IHttpHandler) Activator.CreateInstance(handlerType, true);
+            }
+            catch (Exception ex)
+            {
+                throw new HttpException("Unable to create handler", ex);
+            }
+
+            handler.ProcessRequest(Context);
+            Context.ApplicationInstance.CompleteRequest();
+        }
     }
 
     public class BaseContentHandler : BaseHttpHandler
     {
-        private readonly string _contentMimeType;
         private const int ErrorImageWidth = 150;
         private const int ErrorImageHeight = 150;
         private const string Keyformat = "{0}::{1}";
         private const int SlidingCache = 12;
+        private readonly string _contentMimeType;
         private ControlData _controlData;
 
         public BaseContentHandler()
@@ -87,34 +92,59 @@ namespace DowJones.Web.Handlers.Article
             _contentMimeType = contentMimeType;
         }
 
+        public override bool RequiresAuthentication
+        {
+            get { return false; }
+        }
+
+        public override string ContentMimeType
+        {
+            get { return _contentMimeType; }
+        }
+
         public override void HandleRequest(HttpContext context)
         {
-           try
-           {
+            try
+            {
                 string origAccessionNo;
                 var accessionNo = origAccessionNo = context.Request["accessno"] ?? string.Empty;
                 if (string.IsNullOrEmpty(accessionNo))
                 {
-                    context.Response.StatusCode = ( int ) HttpStatusCode.BadRequest;
+                    context.Response.StatusCode = (int) HttpStatusCode.BadRequest;
                     return;
                 }
 
                 var isBlob = context.Request["isblob"] ?? string.Empty;
-                var reference = context.Request[ "reference" ] ?? string.Empty;     
-                var imageType = context.Request[ "imageType" ] ?? string.Empty;
-                var mimeType = context.Request[ "mimetype" ] ?? string.Empty;  
-                var formState = new FormState( string.Empty );
-                var sessionRequestDto = ( SessionRequestDTO ) formState.Accept( typeof( SessionRequestDTO ), false );
+                var reference = context.Request["reference"] ?? string.Empty;
+                var imageType = context.Request["imageType"] ?? string.Empty;
+                var mimeType = context.Request["mimetype"] ?? string.Empty;
+                var redirect = context.Request["redirect"] ?? string.Empty;
+                
+                var formState = new FormState(string.Empty);
+                var sessionRequestDto = (SessionRequestDTO) formState.Accept(typeof (SessionRequestDTO), false);
                 var retrieveBlobItem = isBlob.ToLowerInvariant() == "y";
+                var redirectToWebSiteUrl = redirect.ToLowerInvariant() == "y";
 
                 _controlData = (sessionRequestDto.SessionID.IsNullOrEmpty() && sessionRequestDto.EncryptedToken.IsNullOrEmpty())
-                                  ? Factiva.Gateway.Managers.ControlDataManager.GetLightWeightUserControlData( sessionRequestDto.UserID, sessionRequestDto.Password, sessionRequestDto.ProductID )
-                                  : sessionRequestDto.GetControlData();
+                                   ? ControlDataManager.GetLightWeightUserControlData(sessionRequestDto.UserID, sessionRequestDto.Password, sessionRequestDto.ProductID)
+                                   : sessionRequestDto.GetControlData();
 
-                if( retrieveBlobItem )
+                var infrsControlData = DowJones.Session.ControlDataManager.Convert(_controlData);
+                if (redirectToWebSiteUrl)
+                {
+                    var service = new ArticleService(infrsControlData, new Preferences.Preferences("en"));
+                    var webArticeUrl = service.GetWebArticleUrl(reference);
+                    context.Response.Redirect(webArticeUrl);
+                    context.Response.End();
+                    return;
+                }
+
+                #region RetrieveBlobItem
+
+                if (retrieveBlobItem)
                 {
                     // Check cache
-                    var cacheItem = ( ImageCacheItem ) context.Cache.Get( string.Format( Keyformat, origAccessionNo, imageType.ToLowerInvariant() ) );
+                    var cacheItem = (ImageCacheItem) context.Cache.Get(string.Format(Keyformat, origAccessionNo, imageType.ToLowerInvariant()));
 
                     if (cacheItem != null)
                     {
@@ -122,66 +152,66 @@ namespace DowJones.Web.Handlers.Article
                         context.Response.BinaryWrite(cacheItem.bytes);
                         return;
                     }
-
-                    var infrsControlData = ControlDataManager.Convert(_controlData);
-                    var sm = new SearchManager( infrsControlData, new Preferences.Preferences( "en" ) );
+                    
+                    var sm = new SearchManager(infrsControlData, new Preferences.Preferences("en"));
                     var dto = new AccessionNumberSearchRequestDTO
-                    {
-                        SortBy = SortBy.FIFO,
-                        MetaDataController =
-                        {
-                            Mode = CodeNavigatorMode.None
-                        },
-                        DescriptorControl =
-                        {
-                            Mode = DescriptorControlMode.None,
-                            Language = "en"
-                        },
-                        AccessionNumbers = new[] {reference},
-                    };
+                                  {
+                                      SortBy = SortBy.FIFO,
+                                      MetaDataController =
+                                          {
+                                              Mode = CodeNavigatorMode.None
+                                          },
+                                      DescriptorControl =
+                                          {
+                                              Mode = DescriptorControlMode.None,
+                                              Language = "en"
+                                          },
+                                      AccessionNumbers = new[] {reference},
+                                  };
                     dto.MetaDataController.ReturnCollectionCounts = false;
                     dto.MetaDataController.ReturnKeywordsSet = false;
                     dto.MetaDataController.TimeNavigatorMode = TimeNavigatorMode.None;
-                    dto.SearchCollectionCollection.AddRange( Enum.GetValues( typeof( SearchCollection ) ).Cast<SearchCollection>() );
+                    dto.SearchCollectionCollection.AddRange(Enum.GetValues(typeof (SearchCollection)).Cast<SearchCollection>());
 
-                    var sr = sm.GetPerformContentSearchResponse<PerformContentSearchRequest, PerformContentSearchResponse>( dto );
-                    if( sr != null &&
-                           sr.ContentSearchResult != null &&
-                           sr.ContentSearchResult.ContentHeadlineResultSet != null )
+                    var sr = sm.GetPerformContentSearchResponse<PerformContentSearchRequest, PerformContentSearchResponse>(dto);
+                    if (sr != null &&
+                        sr.ContentSearchResult != null &&
+                        sr.ContentSearchResult.ContentHeadlineResultSet != null)
                     {
                         var temp = sr.ContentSearchResult.ContentHeadlineResultSet.ContentHeadlineCollection;
-                        if(temp.Count > 0)
+                        if (temp.Count > 0)
                         {
                             var contentHeadline = temp.First();
-                            var item = GetThumbNailItem(contentHeadline, imageType );
+                            var item = GetThumbNailItem(contentHeadline, imageType);
                             if (item != null)
                             {
                                 accessionNo = reference;
                                 reference = item.Ref;
-                                mimeType = item.Mimetype; 
+                                mimeType = item.Mimetype;
                             }
                             else
                             {
                                 context.Response.StatusCode = (int) HttpStatusCode.BadRequest;
                             }
-                        }   
+                        }
                     }
-                } 
-                
+                }
+
+                #endregion
 
                 var request = new GetBinaryRequest
-                                    {
-                                        accessionNumber = accessionNo,
-                                        reference = reference,
-                                        mimeType = mimeType,
-                                        imageType = imageType
-                                    };
+                                  {
+                                      accessionNumber = accessionNo,
+                                      reference = reference,
+                                      mimeType = mimeType,
+                                      imageType = imageType
+                                  };
 
-                ServiceResponse archiveResponse = ArchiveService.GetBinary(_controlData, request);
+                var archiveResponse = ArchiveService.GetBinary(_controlData, request);
                 object objResponse;
                 archiveResponse.GetResponse(ServiceResponse.ResponseFormat.Object, out objResponse);
 
-                var binaryResponse = (GetBinaryResponse)objResponse;
+                var binaryResponse = (GetBinaryResponse) objResponse;
                 try
                 {
                     switch (mimeType)
@@ -202,10 +232,10 @@ namespace DowJones.Web.Handlers.Article
                                             bytes = binaryResponse.binaryData,
                                             mimeType = mimeType,
                                         },
-                                    null, 
-                                    Cache.NoAbsoluteExpiration, 
-                                    TimeSpan.FromHours(SlidingCache), 
-                                    CacheItemPriority.Normal, 
+                                    null,
+                                    Cache.NoAbsoluteExpiration,
+                                    TimeSpan.FromHours(SlidingCache),
+                                    CacheItemPriority.Normal,
                                     null);
                             }
                             break;
@@ -214,11 +244,10 @@ namespace DowJones.Web.Handlers.Article
                         case "application/mspowerpoint":
                         case "application/pdf":
                         case "text/html":
-                            HandleContent(context.Response, mimeType,binaryResponse.binaryData);
+                            HandleContent(context.Response, mimeType, binaryResponse.binaryData);
                             break;
                         default:
                             context.Response.StatusCode = (int) HttpStatusCode.InternalServerError;
-                                   
                             break;
                     }
                 }
@@ -233,7 +262,7 @@ namespace DowJones.Web.Handlers.Article
             }
             catch
             {
-                context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                context.Response.StatusCode = (int) HttpStatusCode.InternalServerError;
             }
             finally
             {
@@ -247,7 +276,7 @@ namespace DowJones.Web.Handlers.Article
             {
                 return null;
             }
-            return contentHeadline.ContentItems.ItemCollection.Where(item => (item.Mimetype.IsNotEmpty() && item.Ref.IsNotEmpty() && item.Type.ToLower() == imageType)).FirstOrDefault();
+            return contentHeadline.ContentItems.ItemCollection.FirstOrDefault(item => (item.Mimetype.IsNotEmpty() && item.Ref.IsNotEmpty() && item.Type.ToLower() == imageType));
         }
 
         private static void HandleErrorImage(HttpResponse response, long errorNum, string mimeType, ImageFormat imageFormat, int width, int height)
@@ -269,13 +298,13 @@ namespace DowJones.Web.Handlers.Article
                         g.DrawRectangle(Pens.Black, 0, 0, width, height);
                         g.FillRectangle(new SolidBrush(Color.FromArgb(0, 0, 0)), 3, 3, width - 6, 20);
                         g.DrawString(Resources.GetString("error"), new Font("Arial", 9, FontStyle.Bold), new SolidBrush(Color.FromArgb(255, 255, 255)), new PointF(5, 5));
-                        g.DrawString(Resources.GetErrorMessage(errorNum.ToString()), new Font("Arial", 8, FontStyle.Bold), new SolidBrush(Color.FromArgb(102, 97, 97)), errorMessageRect);
-                        g.DrawString(errorNum.ToString(), new Font("Arial", 8, FontStyle.Bold), new SolidBrush(Color.FromArgb(102, 97, 97)), errorCodeRect);
+                        g.DrawString(Resources.GetErrorMessage(errorNum.ToString(CultureInfo.InvariantCulture)), new Font("Arial", 8, FontStyle.Bold), new SolidBrush(Color.FromArgb(102, 97, 97)), errorMessageRect);
+                        g.DrawString(errorNum.ToString(CultureInfo.InvariantCulture), new Font("Arial", 8, FontStyle.Bold), new SolidBrush(Color.FromArgb(102, 97, 97)), errorCodeRect);
                     }
                 }
                 catch (Exception)
                 {
-                    response.StatusCode = ( int ) HttpStatusCode.InternalServerError;
+                    response.StatusCode = (int) HttpStatusCode.InternalServerError;
                 }
 
                 var memoryStream = new MemoryStream();
@@ -286,41 +315,33 @@ namespace DowJones.Web.Handlers.Article
                 memoryStream.Close();
             }
         }
+
         private static void HandleContent(HttpResponse response, string mimeType, byte[] binaryData)
         {
             response.ClearHeaders();
             response.ClearContent();
-            
-            
-            response.ContentType  = GetContentType(mimeType);
+
+
+            response.ContentType = GetContentType(mimeType);
             var contentDisposition = GetContentDisposition(mimeType);
             if (!String.IsNullOrEmpty(contentDisposition))
             {
                 response.AddHeader("Content-Disposition", contentDisposition);
-                response.AddHeader("Content-Length", binaryData.Length.ToString());
+                response.AddHeader("Content-Length", binaryData.Length.ToString(CultureInfo.InvariantCulture));
             }
-           
+
             response.BinaryWrite(binaryData);
             response.Flush();
         }
+
         public override bool ValidateParameters(HttpContext context)
         {
             return true;
         }
 
-        public override bool RequiresAuthentication
-        {
-            get { return false; }
-        }
-
-        public override string ContentMimeType
-        {
-            get { return _contentMimeType;}
-        }
-
         private static string GetContentType(string mimeType)
         {
-            if (!String.IsNullOrEmpty(mimeType))
+            if (!mimeType.IsNullOrEmpty())
             {
                 switch (mimeType)
                 {
@@ -335,26 +356,25 @@ namespace DowJones.Web.Handlers.Article
                     default:
                         return mimeType;
                 }
-
             }
 
             return null;
         }
+
         private static string GetContentDisposition(string mimeType)
         {
-            if (!String.IsNullOrEmpty(mimeType))
+            if (!mimeType.IsNullOrEmpty())
             {
                 switch (mimeType)
                 {
                     case "application/msexcel":
-                        return "attachment;filename=" +  GetRandomString() + ".xls";
+                        return "attachment;filename=" + GetRandomString() + ".xls";
                     case "application/msword":
                         return "attachment;filename=" + GetRandomString() + ".doc";
                     case "application/mspowerpoint":
                         return "attachment;filename=" + GetRandomString() + ".ppt";
                     case "application/pdf":
                         return "attachment;filename=" + GetRandomString() + ".pdf";
-
                 }
             }
             return null;
@@ -362,9 +382,7 @@ namespace DowJones.Web.Handlers.Article
 
         private static string GetRandomString()
         {
-           var random = new Random(100);
-           var rnd = random.Next();
-           return "Temp{" + rnd + DateTime.Now.ToString("MMddyyyyhhmmss") + "}";
+            return "Temp{" + new Random(100).Next() + DateTime.Now.ToString("MMddyyyyhhmmss") + "}";
         }
     }
 }

@@ -39,6 +39,7 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Text;
 using System.Web;
+using DowJones.Extensions;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 using Svg;
@@ -61,6 +62,32 @@ namespace DowJones.Charting.Highcharts
         /// </summary>
         private const string PdfMetaCreator = "DowJones Exporting Module for Highcharts JS";
 
+        internal Exporter(string type, int width, string cacheKey) 
+        {
+            ContentType = type.ToLower();
+            Width = width;
+
+            // Validate requested MIME type.
+            switch (ContentType)
+            {
+                case "image/jpeg":
+                    break;
+
+                case "image/png":
+                    break;
+                default:
+                    throw new ArgumentException(
+                        string.Format("Invalid type specified: '{0}'.", type));
+            }
+
+            Svg = GetSvg(cacheKey);
+        }
+
+        internal string GetSvg(string cacheKey)
+        {
+            return string.Empty;
+        }
+
         /// <summary>
         /// Initializes a new chart Export object using the specified file name, 
         /// output type, chart width and SVG text data.
@@ -71,11 +98,8 @@ namespace DowJones.Charting.Highcharts
         /// 'image/jpeg', 'image/png', 'application/pdf' or 'image/svg+xml'.</param>
         /// <param name="width">The pixel width of the exported chart image.</param>
         /// <param name="svg">An SVG chart document to export (XML text).</param>
-        internal Exporter(
-            string fileName,
-            string type,
-            int width,
-            string svg)
+        /// <param name="setContentDisposition">Whether to set the content disposition for this object</param>
+        internal Exporter(string type, int width, string svg, string fileName = "Chart", bool setContentDisposition = true)
         {
             string extension;
 
@@ -109,15 +133,17 @@ namespace DowJones.Charting.Highcharts
                         string.Format("Invalid type specified: '{0}'.", type));
             }
 
+            if (!setContentDisposition) return;
+
             // Determine output file name.
             FileName = string.Format(
                 "{0}.{1}",
-                string.IsNullOrEmpty(fileName) ? DefaultFileName : fileName,
+                fileName.IsNullOrEmpty() ? DefaultFileName : fileName,
                 extension);
 
+
             // Create HTTP Content-Disposition header.
-            ContentDisposition =
-                string.Format("attachment; filename={0}", FileName);
+            ContentDisposition = string.Format("attachment; filename={0}", FileName);
         }
 
         /// <summary>
@@ -170,7 +196,7 @@ namespace DowJones.Charting.Highcharts
 
             // Scale SVG document to requested width.
             svgDoc.Transforms = new SvgTransformCollection();
-            float scalar = Width/svgDoc.Width;
+            var scalar = Width/svgDoc.Width;
             svgDoc.Transforms.Add(new SvgScale(scalar, scalar));
             svgDoc.Width = new SvgUnit(svgDoc.Width.Type, svgDoc.Width*scalar);
             svgDoc.Height = new SvgUnit(svgDoc.Height.Type, svgDoc.Height*scalar);
@@ -189,7 +215,12 @@ namespace DowJones.Charting.Highcharts
             httpResponse.ClearContent();
             httpResponse.ClearHeaders();
             httpResponse.ContentType = ContentType;
-            httpResponse.AddHeader("Content-Disposition", ContentDisposition);
+            
+            if (!ContentDisposition.IsNullOrEmpty())
+            {
+                httpResponse.AddHeader("Content-Disposition", ContentDisposition);
+            }
+            
             WriteToStream(httpResponse.OutputStream);
         }
 
