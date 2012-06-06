@@ -1,35 +1,17 @@
 /*!
 * DiscoveryGraph
-*   e.g. , "this._imageSize" is generated automatically.
-*
-*   
-*  Getters and Setters are generated automatically for every Client Property during init;
-*   e.g. if you have a Client Property called "imageSize" on server side code
-*        get_imageSize() and set_imageSize() will be generated during init.
-*  
-*  These can be overriden by defining your own implementation in the script. 
-*  You'd normally override the base implementation if you have extra logic in your getter/setter 
-*  such as calling another function or validating some params.
-*
 */
 
 DJ.UI.DiscoveryGraph = DJ.UI.Component.extend({
 
-    /*
-    * Properties
-    */
-
-    // Default options
     defaults: {
         debug: false,
-        cssClass: 'dj_DiscoveryGraph'
-        // ,name: value     // add more defaults here separated by comma
+        cssClass: 'dj_DiscoveryGraph',
+        orientation: 'horizontal',
+        scrollable: true,
+        sortable: false
     },
 
-    // Localization/Templating tokens
-    tokens: {
-        // name: value     // add more defaults here separated by comma
-    },
 
     eventNames: {
         discoveryItemClicked: 'discoveryItemClick.dj.DiscoveryGraph'
@@ -60,6 +42,14 @@ DJ.UI.DiscoveryGraph = DJ.UI.Component.extend({
 
             // bind events and perform other wiring up
             this._initializeDiscoveryGraph(data.discovery);
+            
+            if (this.options.orientation === 'horizontal' && this.options.scrollable) {
+                this.scrollable();
+            }
+            
+            if (this.options.orientation === 'vertical' && this.options.sortable) {
+                this.sortable();
+            }
         }
     },
 
@@ -69,7 +59,62 @@ DJ.UI.DiscoveryGraph = DJ.UI.Component.extend({
         this.bindOnSuccess(discoveryData);
     },
 
-    /*
+    //Initialize Scrollable
+    scrollable: function () {
+        // sanity check
+        if (!this.options.orientation === 'horizontal' || !this.options.scrollable) {
+            $dj.info('scrollable: Orientation is not horizontal or Scroll is disabled. No action taken.');
+            return;
+        }
+        
+        var $scrollTarget = this.$element.find('.dj_discoveryGraph_page_wrap');
+
+
+        $scrollTarget
+            .before('<a class="prev browse left scrollableArtifact"></a>')     /* "previous page" action */
+            .after('<a class="next browse right scrollableArtifact"></a>')     /* "next page" action */
+            .addClass("items")                              /* root element for the items */
+            .wrap('<div class="scrollable scrollableArtifact"></div>');        /* root element for scrollable */
+
+        this.$element
+            .find('.scrollable')
+            .scrollable()                                   /* initialize scrollable */
+            .navigator('.navi');                            /* browser back handling */
+
+    },
+
+
+    sortable: function () {
+        // sanity check
+        if (!this.options.orientation === 'vertical' || !this.options.sortable) {
+            $dj.info('sortable: Orientation is not vertical or Sorting is disabled. No action taken.');
+            return;
+        }
+        
+        // TODO: Reconsider this. Maybe build a flat list and add pagin during scrollable as that's when its really needed
+        this.$element.find('.page-item').unwrap();
+        
+        var $sortableTarget = this.$element.find('.dj_discoveryGraph_page_wrap');
+        
+        $sortableTarget.sortable({ containment: 'parent', items: 'page-item' });
+        
+
+    },
+    
+    // resets styles and plugins attached
+    reset: function () {
+        var $scrollTarget = this.$element.find('.dj_discoveryGraph_page_wrap');
+
+        if ($scrollTarget.parent('.scrollable').length) {
+            $scrollTarget
+                .removeClass('items')
+                .unwrap()
+                .siblings('.scrollableArtifact')
+                .remove();
+        }
+    },
+
+        /*
     * Private methods
     */
     //Initialize Discovery Graph
@@ -100,8 +145,6 @@ DJ.UI.DiscoveryGraph = DJ.UI.Component.extend({
             $this._renderDiscoveryGraph(discoveryData, index);
             index++;
         });
-
-        this._initializeScrollable();
     },
 
     //Render DiscoveryGraph
@@ -307,12 +350,6 @@ DJ.UI.DiscoveryGraph = DJ.UI.Component.extend({
                 break;
         }
         return title;
-    },
-
-    //Initialize Scrollable
-    _initializeScrollable: function () {
-        //Fid the component element and initialize the scrollable
-        $(".scrollable", this.$element).scrollable().navigator();
     },
 
     //Initialize Delegates

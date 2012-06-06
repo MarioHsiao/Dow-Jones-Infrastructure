@@ -1,66 +1,30 @@
-﻿<% var discoveryEntityCount = self.entityLength; 
-   var displayMode = "Full";
+﻿<% 
+    var model = self, 
+        discoveryEntityCount = model.entityLength;
 %>
-<% if(displayMode == "Full") { %>
+
 <div class="dj_discoveryGraph_wrapper dj_widget_fullView">
     <div>
         <div class="dj_widget_heading">
             <span style="color: #666666">Most Mentioned for</span> <span style="color: #000000">
-                long term care</span> - <span style="color: #666666;">Past 48 Hours</span></div>
+                long term care</span> - <span style="color: #666666;">Past 48 Hours</span>
+        </div>
         <!-- wrapper for navigator elements -->
         <div class="navi" style="margin-left: 750px;">
         </div>
     </div>
-    <!-- "previous page" action -->
-    <a class="prev browse left"></a>
-    <!-- root element for scrollable -->
-    <div class="scrollable">
-        <!-- root element for the items -->
-        <div class="items dj_discoveryGraph_page_wrap">
-            <%var item =  0;
+    <div class="dj_discoveryGraph_page_wrap">
+        <%var item =  0;
             for(var i = 0; i < Math.ceil(discoveryEntityCount/3); i++){ %>
-            <div class="page">
-                <% for(var j = 0; j < Math.min(3,(discoveryEntityCount-(3*i))); j++){%>
-                <div class="dj_discoveryGraph-item-<%=item %> page-item" charts="1">
-                    <div class="dj_discovery-graph" items="5">
-                    </div>
+        <div class="page">
+            <% for(var j = 0; j < Math.min(3,(discoveryEntityCount-(3*i))); j++){%>
+            <div class="dj_discoveryGraph-item-<%=item %> page-item" charts="1">
+                <div class="dj_discovery-graph" items="5">
                 </div>
-                <% item++ ;
+            </div>
+            <% item++ ;
             }%>
-            </div>
-            <%} %>
         </div>
-    </div>
-    <!-- "next page" action -->
-    <a class="next browse right"></a>
-</div>
-<% } 
-else
-{ %>
-<div class="dj_discoveryGraph_wrapper dj_widget_slimView">
-    <div class="dj_widget_heading">
-        <span style="color: #666666">Most Mentioned for</span> <span style="color: #000000">long term care</span><br />
-        <span style="font-size: 10px;">Past 48 Hours</span></div>
-    <!-- "previous page" action -->
-    <a class="prev browse left"></a>
-    <!-- root element for scrollable -->
-    <div class="scrollable">
-        <!-- root element for the items -->
-        <div class="items dj_discoveryGraph_page_wrap">
-            <% for(var i = 0; i < discoveryEntityCount; i++){%>
-            <div class="page">
-                <div class="dj_discoveryGraph-item-<%=i %> page-item" charts="1">
-                    <div class="dj_discovery-graph" items="5">
-                    </div>
-                </div>
-            </div>
-            <%} %>
-        </div>
-    </div>
-    <!-- "next page" action -->
-    <a class="next browse right"></a>
-    <!-- wrapper for navigator elements -->
-    <div class="navi" style="margin-left: 100px; clear: both;">
+        <%} %>
     </div>
 </div>
-<% } %>

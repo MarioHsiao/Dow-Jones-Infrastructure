@@ -3,13 +3,38 @@
     Html.DJ().StylesheetRegistry()
         .Include("~/Content/css/Components/DiscoveryGraph/discoveryGraph.css");
 }
- 
-@Html.DJ().ScriptRegistry().OnDocumentReady("SetDiscoveryGraphData();")
+
+<fieldset>
+    <legend>Interact</legend>
+    <table border="0" cellspacing="2" style="border-collapse:collapse; border: 0; table-layout:fixed">
+        
+        <tr>
+            <td style="width: 100px; text-align:right"><b>Layout: </b></td>
+            <td>
+                <input type="radio" id="horz" name="layout" checked /><label for="horz">Horizontal</label>
+            </td>
+            <td>
+                <input type="radio" id="vert" name="layout" /><label for="scrollable">Vertical</label>
+            </td>
+        </tr>
+        <tr>
+            <td style="width: 100px; text-align:right"><b>Apply Behavior: </b></td>
+            <td>
+                <input type="checkbox" id="scrollable" checked /><label for="scrollable">Scrollable</label>
+            </td>
+            <td>
+                <input type="checkbox" id="sortable" disabled /><label for="scrollable">Sortable</label>
+            </td>
+        </tr>
+    </table>
+    <p><button id="apply" class="white">Apply</button></p>
+</fieldset>
+@Html.DJ().ScriptRegistry().OnDocumentReady("init();SetDiscoveryGraphData();")
 @Html.DJ().RenderComponent("DiscoveryGraph", Model)
 <script type="text/javascript">
     function SetDiscoveryGraphData() {
         var data = {
-            discovery: 
+            discovery:
             {
                 companyNewsEntities: [
                     {
@@ -211,7 +236,7 @@
                 type: 2,
                 typeDescriptor: "Person"
             }
-            ],
+                ],
                 regionNewsEntities: [
 {
     code: "usa",
@@ -278,7 +303,7 @@
     type: 6,
     typeDescriptor: "Region"
 }
-],
+                ],
                 subjectNewsEntities: [
 {
     code: "ccat",
@@ -345,9 +370,36 @@
     type: 5,
     typeDescriptor: "NewsSubject"
 }
-]
+                ]
             }
         }
-$("#DiscoveryGraph-0").findComponent(DJ.UI.DiscoveryGraph).setData(data);
+        $("#DiscoveryGraph-0").findComponent(DJ.UI.DiscoveryGraph).setData(data);
+    }
+
+    function init() {
+        $('#horz').click(function () {
+            $('#scrollable').attr("disabled", false);
+
+            $('#sortable').attr("disabled", true);
+            $('#sortable').attr("checked", false);
+
+        });
+        $('#vert').click(function () {
+            $('#sortable').attr("disabled", false);
+
+            $('#scrollable').attr("disabled", true);
+            $('#scrollable').attr("checked", false);
+
+
+        });
+        $('#apply').click(function () {
+            this.discoveryGraph = this.discoveryGraph || $("#DiscoveryGraph-0").findComponent(DJ.UI.DiscoveryGraph);
+            this.discoveryGraph.reset();
+
+            if ($('#scrollable')[0].checked)
+                this.discoveryGraph.scrollable();
+            else if ($('#sortable')[0].checked)
+                this.discoveryGraph.sortable();
+        });
     }
 </script>
