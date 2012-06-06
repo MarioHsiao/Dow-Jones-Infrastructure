@@ -1,13 +1,9 @@
-﻿@using System.Text;
-@using System.Collections.Generic;
-@using DowJones.Articles;
+﻿@using Articles;
 @using DowJones.Infrastructure;
 @using DowJones.Extensions;
-@using DowJones.Ajax.Article;
-@using DowJones.Web.Mvc.UI.Components.Article;
-@using Factiva.Gateway.Messages.Archive.V2_0;
-@using System.Text.RegularExpressions;
-@using DowJones.Web.Mvc.UI.Components.Models;
+@using Ajax.Article;
+@using Article;
+@using Models;
 @model DowJones.Web.Mvc.UI.Components.Models.Article.ArticleModel
 @ClientPlugin dj_Article
 @ScriptResource RelativeResourceName=ArticleComponent.js
@@ -70,15 +66,16 @@
                     }
             
                     <h4 class="dj_article_hd dj_article_section headline" data-meta="@Model.ArticleDataSet.AccessionNo">
-                        @foreach (RenderItem renderItem in Model.ArticleDataSet.Headline)
+                        @foreach (var renderItem in Model.ArticleDataSet.Headline)
                         {
-                            if (renderItem.ItemMarkUp == MarkUpType.Plain)
+                            switch (renderItem.ItemMarkUp)
                             {
-                                @renderItem.ItemText
-                            }
-                            else if (renderItem.ItemMarkUp == MarkUpType.Anchor)
-                            {
-                                <a class="dj_article_headline_link" href="javascript:void(0)">@renderItem.ItemText</a>
+                                case MarkUpType.Plain:
+                                    @renderItem.ItemText
+                                    break;
+                                case MarkUpType.Anchor:
+                                    <a class="dj_article_headline_link" href="javascript:void(0)">@renderItem.ItemText</a>
+                                    break;
                             }
                         }
                     </h4>
@@ -92,16 +89,17 @@
                     <div class="dj_article_sn dj_article_section">
                     @if (Model.ShowSourceLinks && Model.PostProcessing == DowJones.Infrastructure.PostProcessing.UnSpecified)
                     {
-                        foreach (RenderItem renderItem in Model.ArticleDataSet.Source)
+                        foreach (var renderItem in Model.ArticleDataSet.Source)
                         {
                             <span class="value source drop-down-button" data-dd-type="source">
-                                @if (renderItem.ItemMarkUp == MarkUpType.EntityLink)
-                                { 
-                                    <span class="dj_article_source" data-entity="@renderItem.ItemEntityData.ToJson().EscapeForHtml()">@renderItem.ItemEntityData.Name</span>
-                                }
-                                else if (renderItem.ItemMarkUp == MarkUpType.Span)
+                                @switch (renderItem.ItemMarkUp)
                                 {
-                                    @renderItem.ItemText
+                                    case MarkUpType.EntityLink:
+                                        <span class="dj_article_source" data-entity="@renderItem.ItemEntityData.ToJson().EscapeForHtml()">@renderItem.ItemEntityData.Name</span>
+                                        break;
+                                    case MarkUpType.Span:
+                                        @renderItem.ItemText
+                                        break;
                                 }
                             </span>
                         }
@@ -128,7 +126,7 @@
                             !Model.ArticleDataSet.Authors.IsNullOrEmpty() &&
                             Model.PostProcessing == DowJones.Infrastructure.PostProcessing.UnSpecified)
                         {
-                            foreach (RenderItem renderItem in Model.ArticleDataSet.Authors)
+                            foreach (var renderItem in Model.ArticleDataSet.Authors)
                             {
                                 <span class="value author drop-down-button" data-dd-type="author">
                                     <span class="dj_article_author" data-entity="@renderItem.ItemEntityData.ToJson().EscapeForHtml()">@renderItem.ItemEntityData.Name</span>
