@@ -9,11 +9,16 @@
 Based off of the Single File Generator for Razor View files (.cshtml files) located at: https://bitbucket.org/davidebbo/razorsinglefilegenerator</Description>
         <Locale>1033</Locale>
         <SupportedProducts>
-            <VisualStudio Version="10.0">
+            <VisualStudio Version="11.0">
                 <Edition>Ultimate</Edition>
                 <Edition>Premium</Edition>
                 <Edition>Pro</Edition>
             </VisualStudio>
+			<VisualStudio Version="10.0">
+				<Edition>Ultimate</Edition>
+				<Edition>Premium</Edition>
+				<Edition>Pro</Edition>
+			</VisualStudio>
         </SupportedProducts>
         <SupportedFrameworkRuntimeEdition MinVersion="4.0" MaxVersion="4.0" />
     </Identifier>
