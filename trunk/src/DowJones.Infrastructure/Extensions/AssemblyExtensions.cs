@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Web;
@@ -9,6 +10,11 @@ namespace DowJones.Extensions
 {
     public static class AssemblyExtensions
     {
+        public static DateTime GetAssemblyTimestamp(this Assembly assembly)
+        {
+            return File.GetLastWriteTimeUtc(assembly.Location);
+        }
+
         private static readonly Lazy<MethodInfo> GetWebResourceUrlMethod = new Lazy<MethodInfo>(() =>
         {
             var method =
