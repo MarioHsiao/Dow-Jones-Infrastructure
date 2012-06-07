@@ -25,32 +25,40 @@ DJ.UI.DiscoveryGraph = DJ.UI.Component.extend({
 
         // Call the base constructor
         this._super(element, $meta);
+
+        this.discoveryGraphConfig = this.getDiscoveryGraphConfig();
+    },
+    
+    _initializeElements: function (ctx) {      
+        this.$viewWrapper = ctx.find('.dj_view_wrapper');
+    
     },
 
-    /*
-    * Public methods
-    */
+
+    /* Public methods */
+
 
     // Bind the data to the component on Success
     bindOnSuccess: function (data) {
-        var discoveryGraphMarkup;
-        this.$element.html("");
-        if (data && data.discovery) {
-            var discoveryEntityCount = _.size(data.discovery);
-            discoveryGraphMarkup = this.templates.success({ discovery: data.discovery, entityLength: discoveryEntityCount });
-            this.$element.append(discoveryGraphMarkup);
-
-            // bind events and perform other wiring up
-            this._initializeDiscoveryGraph(data.discovery);
-            
-            if (this.options.orientation === 'horizontal' && this.options.scrollable) {
-                this.scrollable();
-            }
-            
-            if (this.options.orientation === 'vertical' && this.options.sortable) {
-                this.sortable();
-            }
+        if (!data || !data.discovery) {
+            $dj.warn("bindOnSuccess:: called with empty data object");
+            return;
         }
+
+        var discoveryGraphMarkup = this.templates.success({ discovery: data.discovery });
+        this.$element.html("").append(discoveryGraphMarkup);
+
+        // bind events and perform other wiring up
+        this._initializeDiscoveryGraph(data.discovery);
+
+        if (this.options.orientation === 'horizontal' && this.options.scrollable) {
+            this.scrollable();
+        }
+
+        if (this.options.orientation === 'vertical' && this.options.sortable) {
+            this.sortable();
+        }
+
     },
 
     //Function to Set Data
@@ -61,85 +69,91 @@ DJ.UI.DiscoveryGraph = DJ.UI.Component.extend({
 
     //Initialize Scrollable
     scrollable: function () {
+        this.options.orientation = 'horizontal';
+        this.$viewWrapper.removeClass('dj_widget_slimView').addClass('dj_widget_fullView');
         // sanity check
-        if (!this.options.orientation === 'horizontal' || !this.options.scrollable) {
-            $dj.info('scrollable: Orientation is not horizontal or Scroll is disabled. No action taken.');
+        if (!this.options.scrollable) {
+            $dj.info('scrollable:: Scrollable is disabled. No action taken.');
             return;
         }
-        
-        var $scrollTarget = this.$element.find('.dj_discoveryGraph_page_wrap');
 
+        var $scrollTarget = this.$element.find('.dj_discoveryGraph_item_wrap');
 
         $scrollTarget
-            .before('<a class="prev browse left scrollableArtifact"></a>')     /* "previous page" action */
-            .after('<a class="next browse right scrollableArtifact"></a>')     /* "next page" action */
-            .addClass("items")                              /* root element for the items */
-            .wrap('<div class="scrollable scrollableArtifact"></div>');        /* root element for scrollable */
+            .wrapInner('<div class="scrollable scrollableArtifact"><div class="items"></div></div>');        /* root element for scrollable */
 
         this.$element
             .find('.scrollable')
-            .scrollable()                                   /* initialize scrollable */
-            .navigator('.navi');                            /* browser back handling */
-
+            .before('<a class="prev browse left scrollableArtifact"></a>')     /* "previous page" action */
+            .after('<a class="next browse right scrollableArtifact"></a>')     /* "next page" action */
+            .scrollable();                            /* browser back handling */
     },
 
 
     sortable: function () {
+        this.options.orientation = 'vertical';
+        this.$viewWrapper.removeClass('dj_widget_fullView').addClass('dj_widget_slimView');
         // sanity check
-        if (!this.options.orientation === 'vertical' || !this.options.sortable) {
-            $dj.info('sortable: Orientation is not vertical or Sorting is disabled. No action taken.');
+        if (!this.options.sortable) {
+            $dj.info('sortable:: Sorting is disabled. No action taken.');
             return;
         }
-        
-        // TODO: Reconsider this. Maybe build a flat list and add pagin during scrollable as that's when its really needed
-        this.$element.find('.page-item').unwrap();
-        
-        var $sortableTarget = this.$element.find('.dj_discoveryGraph_page_wrap');
-        
-        $sortableTarget.sortable({ containment: 'parent', items: 'page-item' });
-        
+
+        var $sortableTarget = this.$element.find('.dj_discoveryGraph_item_wrap');
+
+        $sortableTarget.sortable({ containment: 'parent', items: '.page-item' });
+        this.$element.find('.page-item h3').click(function () {
+            $(this).next().toggle('slow');
+            return false;
+        }).next().hide();
+
 
     },
-    
+
     // resets styles and plugins attached
     reset: function () {
-        var $scrollTarget = this.$element.find('.dj_discoveryGraph_page_wrap');
 
-        if ($scrollTarget.parent('.scrollable').length) {
-            $scrollTarget
-                .removeClass('items')
-                .unwrap()
-                .siblings('.scrollableArtifact')
-                .remove();
+        if (this.options.orientation === 'horizontal') {
+            this.$element
+                .find('.page-item')
+                .unwrap()           /* break out of items div */
+                .unwrap()           /* break out of scrollable div */
+                .siblings('.scrollableArtifact').remove();      /* remove previous next links */
+        }
+        else {
+            this.$element.find('.dj_discoveryGraph_item_wrap')
+                .removeClass('ui-sortable')
+                .unbind()
+                .sortable = null;
+            this.$element.find('.page-item h3').unbind('click');
+            this.$element.find('.dj_discovery-graph').show();
         }
     },
 
-        /*
-    * Private methods
-    */
+    /* Private methods */
+
     //Initialize Discovery Graph
-    _initializeDiscoveryGraph: function (data) {
-        
-        var $this = this;
-        var index = 0;
-        var discoveryEntityObj = data;
-        var discoveryData = {};
+    _initializeDiscoveryGraph: function (discoveryEntityObj) {
+
+        var $this = this,
+            index = 0,
+            discoveryData = {};
 
         //Build the Discovery Entity Lists
-        $.each(discoveryEntityObj, function (key, val) {
-            var categoryArr = [];
-            var seriesDataArr = [];
-            discoveryEntityObjArr = val;
-        
+        _.each(discoveryEntityObj, function (entitiesObj) {
+            var categoryArr = [],
+                seriesDataArr = [],
+                discoveryEntityObjArr = entitiesObj.entities;
+
             //Construct the graph for the discovery entity objects
-            $.each(discoveryEntityObjArr, function (idx, val) {
+            _.each(discoveryEntityObjArr, function (entity) {
                 var dataObj = {};
-                dataObj.y = val.currentTimeFrameNewsVolume.value;
-                dataObj.jsonObj = val;
+                dataObj.y = entity.currentTimeFrameNewsVolume.value;
+                dataObj.jsonObj = entity;
                 seriesDataArr[seriesDataArr.length] = dataObj;
-                categoryArr[categoryArr.length] = val.descriptor;
+                categoryArr[categoryArr.length] = entity.descriptor;
             });
-            discoveryData.title = $this._processChartTitle(key);
+            //discoveryData.title = entitiesObj.title;
             discoveryData.categories = categoryArr;
             discoveryData.seriesData = seriesDataArr;
             $this._renderDiscoveryGraph(discoveryData, index);
@@ -147,17 +161,64 @@ DJ.UI.DiscoveryGraph = DJ.UI.Component.extend({
         });
     },
 
+
+    _extractSeriesData: function (seriesData) {
+        var returnData = [[], seriesData];
+        for (var i = 0; i < seriesData.length; i++) {
+            returnData[0][i] = returnData[1][0].y - returnData[1][i].y;
+        }
+        return returnData;
+    },
+
+
     //Render DiscoveryGraph
     _renderDiscoveryGraph: function (discoveryData, idx) {
-        var self = this;
-        var hasSVG = false;
-        var data = discoveryData;
+        var self = this,
+            $chartContainer = this.$element.find('.dj_discoveryGraph-item-' + idx).find('.dj_discovery-graph'),
+            itemCount = $chartContainer.data('items') || 5,
+            seriesData = this._extractSeriesData(discoveryData.seriesData),
+            chart;
 
+        chart = new Highcharts.Chart($.extend(true, {}, this.discoveryGraphConfig, {
+            chart: {
+                renderTo: $chartContainer[0],
+                height: 10 + (20 * itemCount) + 10
+            },
+            xAxis: {
+                categories: discoveryData.categories
+            },
+            series: [{
+                data: seriesData[0],
+            }, {
+                data: seriesData[1]
+            }]
+
+        }));
+    },
+
+
+    //Initialize Delegates
+    _initializeDelegates: function () {
+        $.extend(this._delegates, {
+            OndiscoveryItemClicked: $dj.delegate(this, this._onDiscoveryItemClicked)
+        });
+    },
+
+    //On Discovery Item Click Event Handler
+    _onDiscoveryItemClicked: function (evt) {
+        var self = this,
+                o = self.options,
+                el = $(self.element);
+        $dj.info(self.eventNames.discoveryItemClicked + " Event clicked");
+        self.publish(self.eventNames.discoveryItemClicked, { "data": evt.point.options.jsonObj });
+    },
+
+
+    getDiscoveryGraphConfig: function () {
         //BEGIN: Discovery Graph Configuration
-        var discoveryGraphConfig = {
+        return {
             chart: {
                 defaultSeriesType: 'bar',
-                marginTop: 18,
                 spacingRight: 20,
                 spacingBottom: 18,
                 spacingLeft: 120,
@@ -188,6 +249,24 @@ DJ.UI.DiscoveryGraph = DJ.UI.Component.extend({
                 title: {
                     text: null
                 },
+                labels: {
+                    y: 3,
+                    x: -120,
+                    align: "left",
+                    style: {
+                        color: '#666666',
+                        fontFamily: 'arial, helvetica, clean, sans-serif', // default font
+                        fontSize: '11px',
+                        width: '125px'
+                    },
+                    formatter: function () {
+                        var name = this.value;
+                        if (name.length > 20) {
+                            name = name.substring(0, 18) + '...';
+                        }
+                        return name;
+                    }
+                },
                 minorGridLineWidth: 0,
                 tickWidth: 0,
                 lineWidth: 0
@@ -215,157 +294,44 @@ DJ.UI.DiscoveryGraph = DJ.UI.Component.extend({
                 },
                 bar: {
                     pointPadding: 0,
+                    pointWidth: 12,
                     groupPadding: 0,
                     borderWidth: 0,
                     stacking: 'percent',
                     shadow: false,
                     marker: {
                         enabled: false
+                    },
+                    dataLabels: {
+                        enabled: true,
+                        align: 'right',
+                        color: '#ffffff',
+                        style: {
+                            fontFamily: 'arial, helvetica, clean, sans-serif', // default font
+                            fontSize: '10px',
+                            fontWeight: 'bold'
+                        },
+                        x: -3,
+                        y: 4
+                    },
+                    events: {
+                        click: this._delegates.OndiscoveryItemClicked
                     }
                 }
-            }
+            },
+
+            series: [
+                {
+                    name: 'faux',
+                    color: '#f0f0f0',
+                    dataLabels: {
+                        enabled: false
+                    }
+                }
+            ]
 
         };
         //END: Discovery Graph Configuration
-
-        //BEGIN: Discovery Graph Title
-        var discoveryGraphTitle = function (chart) { // on complete of chart loading
-            var title = discoveryData.title;
-            var chartTitle = chart.renderer.text(title, 0, 12);
-            chartTitle
-        .attr({
-            align: 'left'
-        })
-        .css({
-            color: '#3399CC',
-            fontSize: '11px',
-            fontWeight: 'bold',
-            fontFamily: 'arial, helvetica, clean, sans-serif' // default font
-        })
-        .add();
-        }
-        //END: Discovery Graph Title
-
-        //$(function () {
-        /* --->>> BEGIN: Discovery Graph Initialization <<<--- */
-    $('.dj_discoveryGraph-item-' + idx, '.dj_discoveryGraph_page_wrap').each(function () {
-            var $chartWrap = $(this);
-            $('.dj_discovery-graph', $chartWrap).each(function () {
-                var itemCount = $(this).attr('items') || 5,
-				seriesData = function () {
-				    var temp = discoveryData.seriesData;
-				    var returnData = [[], temp];
-				    for (var i = 0; i < temp.length; i++) {
-				        returnData[0][i] = returnData[1][0].y - returnData[1][i].y;
-				    }
-				    return returnData;
-				} (),
-				seriesConfig = [{
-				    name: 'faux',
-				    data: seriesData[0],
-				    color: '#f0f0f0',
-				    dataLabels: {
-				        enabled: false
-				    }
-				}, {
-				    data: seriesData[1]
-				}];
-
-                $(this).data('chart', new Highcharts.Chart($.extend(true, {}, discoveryGraphConfig, {
-                    chart: {
-                        renderTo: $(this)[0],
-                        height: 10 + (20 * itemCount) + 10
-                    },
-                    xAxis: {
-                        labels: {
-                            y: 3,
-                            x: -120,
-                            align: "left",
-                            style: {
-                                color: '#666666',
-                                fontFamily: 'arial, helvetica, clean, sans-serif', // default font
-                                fontSize: '11px',
-                                width: '125px'
-                            },
-                            formatter: function () {
-                                var name = this.value;
-                                if (name.length > 20) {
-                                    name = name.substring(0, 18) + '...';
-                                }
-                                return name;
-                            }
-                        },
-                        categories: discoveryData.categories
-                    },
-                    plotOptions: {
-                        bar: {
-                            pointWidth: 12,
-                            pointPadding: 0,
-                            dataLabels: {
-                                enabled: true,
-                                align: 'right',
-                                color: '#ffffff',
-                                style: {
-                                    fontFamily: 'arial, helvetica, clean, sans-serif', // default font
-                                    fontSize: '10px',
-                                    fontWeight: 'bold'
-                                },
-                                x: -3,
-                                y: (hasSVG) ? 4 : 4
-                            },
-                            events: {
-                                click: self._delegates.OndiscoveryItemClicked
-                            }
-                        }
-                    },
-                    series: seriesConfig
-
-                }), function (chart) {
-                    discoveryGraphTitle(chart);
-                })
-			);
-            });
-        });
-        /* --->>> END: Discovery Graph Initialization <<<--- */
-    },
-
-    //Process Chart Title
-    _processChartTitle: function (title) {
-        //Map title to the entity names
-        switch (title.toLowerCase()) {
-            case "companynewsentities":
-                title = "Companies";
-                break;
-            case "industrynewsentities":
-                title = "Industries";
-                break;
-            case "personnewsentities":
-                title = "Persons";
-                break;
-            case "regionnewsentities":
-                title = "Regions";
-                break;
-            case "subjectnewsentities":
-                title = "Subjects";
-                break;
-        }
-        return title;
-    },
-
-    //Initialize Delegates
-    _initializeDelegates: function () {
-        $.extend(this._delegates, {
-            OndiscoveryItemClicked: $dj.delegate(this, this._onDiscoveryItemClicked)
-        });
-    },
-
-    //On Discovery Item Click Event Handler
-    _onDiscoveryItemClicked: function (evt) {
-        var self = this,
-                o = self.options,
-                el = $(self.element);
-        $dj.debug(self.eventNames.discoveryItemClicked + " Event clicked");
-        self.publish(self.eventNames.discoveryItemClicked, { "data": evt.point.options.jsonObj });
     }
 
 });

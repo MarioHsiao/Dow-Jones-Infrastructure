@@ -53,7 +53,8 @@ namespace DowJones.Web.Mvc.UI.Components.DiscoveryGraph
     DJ.ScriptRegistry()
         .WithHighCharts()
         .WithServiceProxy()
-        .WithJQueryTools();  
+		.WithJQueryTools()
+	    .WithJQueryUIInteractions();   
 
 
         }

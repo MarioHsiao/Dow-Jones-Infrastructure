@@ -254,6 +254,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\css\components\DiscoveryGraph\discoveryGraph.css" />
+    <Content Include="Content\css\components\DiscoveryGraph\img\navigator.png" />
+    <Content Include="Content\css\components\DiscoveryGraph\img\sprite_carousel-buttons.png" />
     <Content Include="Content\reset.css" />
     <Content Include="Styles\css\CompanyOverviewCanvasModule.css" />
     <Content Include="Styles\css\AlertsCanvasModule.css" />
