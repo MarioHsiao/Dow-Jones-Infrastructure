@@ -110,6 +110,8 @@ DJ.UI.DiscoveryGraph = DJ.UI.Component.extend({
             return;
         }
         
+        this.reset();
+        
         this.changeOrientation('vertical');
         this.$viewWrapper.removeClass('dj_widget_fullView').addClass('dj_widget_slimView');
 
@@ -142,7 +144,8 @@ DJ.UI.DiscoveryGraph = DJ.UI.Component.extend({
 
         // resets styles and plugins attached
     reset: function () {
-        var hasScrollable = this.$element.data('hasScrollable');
+        var hasScrollable = this.$element.data('hasScrollable'),
+            hasSortable = this.$element.data('hasSortable');
 
         if (hasScrollable) {
             this.$element
@@ -152,7 +155,7 @@ DJ.UI.DiscoveryGraph = DJ.UI.Component.extend({
                 .unwrap()           /* break out of scrollable div */
                 .siblings('.scrollableArtifact').remove();      /* remove previous next links */
         }
-        else {
+        else if (hasSortable) {
             this.$scrollTarget
                 .removeData('hasSortable')
                 .removeClass("ui-sortable ui-sortable-disabled")

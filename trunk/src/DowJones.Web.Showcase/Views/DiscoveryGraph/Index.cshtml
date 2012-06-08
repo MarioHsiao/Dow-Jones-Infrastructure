@@ -53,8 +53,6 @@
             $('#sortable').attr("disabled", true);
             $('#sortable').attr("checked", false);
 
-            discoveryGraph.options.sortable = false;
-            discoveryGraph.options.scrollable = true;
             orientation = 'horizontal';
 
         });
@@ -63,8 +61,6 @@
 
             $('#scrollable').attr("checked", false);
 
-            discoveryGraph.options.sortable = true;
-            discoveryGraph.options.scrollable = true;
             orientation = 'vertical';
 
         });
@@ -80,7 +76,8 @@
         });
 
         discoveryGraph = $("#DiscoveryGraph-0").findComponent(DJ.UI.DiscoveryGraph);
-
+        discoveryGraph.options.sortable = true;
+        discoveryGraph.options.scrollable = true;
         discoveryGraph.setData(getStubData());
     }
 
