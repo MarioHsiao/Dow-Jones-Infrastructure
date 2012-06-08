@@ -254,7 +254,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\css\components\DiscoveryGraph\discoveryGraph.css" />
+    <None Include="Content\css\components\DiscoveryGraph\discoveryGraph.scss" />
+    <Content Include="Content\css\components\DiscoveryGraph\discoveryGraph.css">
+      <DependentUpon>discoveryGraph.scss</DependentUpon>
+    </Content>
     <Content Include="Content\css\components\DiscoveryGraph\img\navigator.png" />
     <Content Include="Content\css\components\DiscoveryGraph\img\sprite_carousel-buttons.png" />
     <Content Include="Content\reset.css" />

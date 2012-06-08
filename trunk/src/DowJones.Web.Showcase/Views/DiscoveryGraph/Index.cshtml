@@ -6,10 +6,10 @@
 
 <fieldset>
     <legend>Interact</legend>
-    <table border="0" cellspacing="2" style="border-collapse:collapse; border: 0; table-layout:fixed">
-        
+    <table border="0" cellspacing="2" style="border-collapse: collapse; border: 0; table-layout: fixed">
+
         <tr>
-            <td style="width: 100px; text-align:right"><b>Layout: </b></td>
+            <td style="width: 100px; text-align: right"><b>Layout: </b></td>
             <td>
                 <input type="radio" id="horz" name="layout" checked /><label for="horz">Horizontal</label>
             </td>
@@ -18,59 +18,72 @@
             </td>
         </tr>
         <tr>
-            <td style="width: 100px; text-align:right"><b>Apply Behavior: </b></td>
+            <td style="width: 100px; text-align: right"><b>Apply Behavior: </b></td>
             <td>
-                <input type="checkbox" id="scrollable" checked /><label for="scrollable">Scrollable</label>
+                <input type="radio" id="scrollable" name="behavior" checked /><label for="scrollable">Scrollable</label>
             </td>
             <td>
-                <input type="checkbox" id="sortable" disabled /><label for="scrollable">Sortable</label>
+                <input type="radio" id="sortable" name="behavior" disabled /><label for="scrollable">Sortable</label>
             </td>
         </tr>
     </table>
-    <p><button id="apply" class="white">Apply</button></p>
+    <p>
+        <button id="apply" class="white">Apply</button>
+    </p>
 </fieldset>
 @Html.DJ().ScriptRegistry().OnDocumentReady("init();")
-@Html.DJ().RenderComponent("DiscoveryGraph", Model)
+<section>
+    <header>
+        <h3 class="dj_widget_heading">
+            <span style="color: #666666">Most Mentioned for</span> <span style="color: #000000">
+                long term care</span> - <span style="color: #666666;">Past 48 Hours</span>
+        </h3>
+    </header>
+    <div>
+        @Html.DJ().RenderComponent("DiscoveryGraph", Model)
+    </div>
+</section>
 <script type="text/javascript">
 
-    var discoveryGraph;
+    var discoveryGraph, orientation = 'horizontal';
     function init() {
         $('#horz').click(function () {
             $('#scrollable').attr("disabled", false);
 
             $('#sortable').attr("disabled", true);
             $('#sortable').attr("checked", false);
-            
+
             discoveryGraph.options.sortable = false;
             discoveryGraph.options.scrollable = true;
-            
+            orientation = 'horizontal';
+
         });
         $('#vert').click(function () {
             $('#sortable').attr("disabled", false);
 
-            $('#scrollable').attr("disabled", true);
             $('#scrollable').attr("checked", false);
-            
+
             discoveryGraph.options.sortable = true;
-            discoveryGraph.options.scrollable = false;
+            discoveryGraph.options.scrollable = true;
+            orientation = 'vertical';
 
         });
         $('#apply').click(function () {
-            discoveryGraph.reset();
-
+            discoveryGraph.changeOrientation(orientation);
+            
             if ($('#scrollable')[0].checked) {
                 discoveryGraph.scrollable();
             } else if ($('#sortable')[0].checked) {
-                
+
                 discoveryGraph.sortable();
             }
         });
-        
+
         discoveryGraph = $("#DiscoveryGraph-0").findComponent(DJ.UI.DiscoveryGraph);
-        
+
         discoveryGraph.setData(getStubData());
     }
-    
+
     function getStubData() {
         var data = {
             "discovery": {

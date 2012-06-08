@@ -1,22 +1,12 @@
 ﻿<% 
 var model = self,
-    me = this,
     index = 0;
-%>
-<div class="dj_view_wrapper dj_widget_fullView">
-    <header>
-        <h3 class="dj_widget_heading">
-            <span style="color: #666666">Most Mentioned for</span> <span style="color: #000000">
-                long term care</span> - <span style="color: #666666;">Past 48 Hours</span>
-        </h3>
-    </header>
-    <div class="dj_discoveryGraph_item_wrap">
-        <% _.each(model.discovery, function(val, key) { %>
-        <div class="dj_discoveryGraph-item-<%=index++ %> page-item" charts="1">
-            <h3><%= val.title %></h3>
-            <div class="dj_discovery-graph" data-items="5">
-            </div>
-        </div>
-        <% }); %>
+
+_.each(model.discovery, function(val, key) { %>
+<div class="dj_discoveryGraph-item-<%= index++ %> page-item" charts="1">
+    <h3><%= val.title %></h3>
+    <div class="dj_discovery-graph" data-items="5">
     </div>
 </div>
+<% }); %>
+ 

@@ -31,6 +31,7 @@ DJ.UI.DiscoveryGraph = DJ.UI.Component.extend({
     
     _initializeElements: function (ctx) {      
         this.$viewWrapper = ctx.find('.dj_view_wrapper');
+        this.$scrollTarget = ctx.find('.dj_discoveryGraph_item_wrap');
     
     },
 
@@ -46,16 +47,15 @@ DJ.UI.DiscoveryGraph = DJ.UI.Component.extend({
         }
 
         var discoveryGraphMarkup = this.templates.success({ discovery: data.discovery });
-        this.$element.html("").append(discoveryGraphMarkup);
+        this.$scrollTarget.html(discoveryGraphMarkup);
 
         // bind events and perform other wiring up
         this._initializeDiscoveryGraph(data.discovery);
 
-        if (this.options.orientation === 'horizontal' && this.options.scrollable) {
+        // scrolling is supported in both horz/vert layouts
+        if (this.options.scrollable) {
             this.scrollable();
-        }
-
-        if (this.options.orientation === 'vertical' && this.options.sortable) {
+        } else if (this.options.orientation === 'vertical' && this.options.sortable) {
             this.sortable();
         }
 
@@ -69,62 +69,95 @@ DJ.UI.DiscoveryGraph = DJ.UI.Component.extend({
 
     //Initialize Scrollable
     scrollable: function () {
-        this.options.orientation = 'horizontal';
-        this.$viewWrapper.removeClass('dj_widget_slimView').addClass('dj_widget_fullView');
         // sanity check
         if (!this.options.scrollable) {
             $dj.info('scrollable:: Scrollable is disabled. No action taken.');
             return;
         }
 
-        var $scrollTarget = this.$element.find('.dj_discoveryGraph_item_wrap');
-
-        $scrollTarget
+        this.reset();
+        
+        var orientation = this.options.orientation,
+            beforeNav, afterNav;
+        if (orientation === 'horizontal') {
+            this.$viewWrapper.removeClass('dj_widget_slimView').addClass('dj_widget_fullView');
+            beforeNav = '<a class="prev browse left scrollableArtifact"></a>';
+            afterNav = '<a class="next browse right scrollableArtifact"></a>';
+        } else {
+            this.$viewWrapper.removeClass('dj_widget_fullView').addClass('dj_widget_slimView');
+            beforeNav = '<a class="prev browse up scrollableArtifact"></a>';
+            afterNav = '<a class="next browse down scrollableArtifact"></a>';
+        }
+        
+        this.$scrollTarget
             .wrapInner('<div class="scrollable scrollableArtifact"><div class="items"></div></div>');        /* root element for scrollable */
 
         this.$element
+            .removeData('hasSortable')
+            .data('hasScrollable', true)
             .find('.scrollable')
-            .before('<a class="prev browse left scrollableArtifact"></a>')     /* "previous page" action */
-            .after('<a class="next browse right scrollableArtifact"></a>')     /* "next page" action */
-            .scrollable();                            /* browser back handling */
+            .before(beforeNav)     /* "previous page" action */
+            .after(afterNav)     /* "next page" action */
+            .addClass(orientation)      /* needed for vertical scrolling*/
+            .scrollable({ vertical: orientation === 'vertical' });                            
     },
 
 
     sortable: function () {
-        this.options.orientation = 'vertical';
-        this.$viewWrapper.removeClass('dj_widget_fullView').addClass('dj_widget_slimView');
         // sanity check
         if (!this.options.sortable) {
             $dj.info('sortable:: Sorting is disabled. No action taken.');
             return;
         }
+        
+        this.changeOrientation('vertical');
+        this.$viewWrapper.removeClass('dj_widget_fullView').addClass('dj_widget_slimView');
 
-        var $sortableTarget = this.$element.find('.dj_discoveryGraph_item_wrap');
-
-        $sortableTarget.sortable({ containment: 'parent', items: '.page-item' });
-        this.$element.find('.page-item h3').click(function () {
+        this.$scrollTarget.sortable({ containment: 'parent', items: '.page-item' });
+        this.$element
+            .removeData('hasScrollable')
+            .data('hasSortable', true)
+            .find('.page-item h3').click(function () {
             $(this).next().toggle('slow');
             return false;
         }).next().hide();
 
-
+    },
+    
+    changeOrientation: function (orientation) {
+        orientation = orientation || 'horizontal';
+        var previousOrientation = this.$viewWrapper.hasClass('dj_widget_slimView') ? 'vertical' : 'horizontal';
+        
+        if (previousOrientation === orientation)
+            return;
+        
+        this.options.orientation = orientation;
+        var classToAdd = orientation === 'horizontal' ? 'dj_widget_fullView' : 'dj_widget_slimView';
+        
+        this.$viewWrapper.removeClass('dj_widget_slimView dj_widget_fullView').addClass(classToAdd);
+        
+        this.reset();
+        
     },
 
-    // resets styles and plugins attached
+        // resets styles and plugins attached
     reset: function () {
+        var hasScrollable = this.$element.data('hasScrollable');
 
-        if (this.options.orientation === 'horizontal') {
+        if (hasScrollable) {
             this.$element
+                .removeData('hasScrollable')
                 .find('.page-item')
                 .unwrap()           /* break out of items div */
                 .unwrap()           /* break out of scrollable div */
                 .siblings('.scrollableArtifact').remove();      /* remove previous next links */
         }
         else {
-            this.$element.find('.dj_discoveryGraph_item_wrap')
-                .removeClass('ui-sortable')
-                .unbind()
-                .sortable = null;
+            this.$scrollTarget
+                .removeData('hasSortable')
+                .removeClass("ui-sortable ui-sortable-disabled")
+                .removeData("sortable")
+                .unbind(".sortable");
             this.$element.find('.page-item h3').unbind('click');
             this.$element.find('.dj_discovery-graph').show();
         }
