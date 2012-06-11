@@ -1,26 +1,26 @@
-<?xml version="1.0" encoding="utf-8"?>
-<type fullName="Tests.TestData.TestClass" name="TestClass" namespace="Tests.TestData">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<type fullName="DowJones.Documentation.Tests.Tools.VSDocPreprocessor.TestData.TestClass" name="TestClass" namespace="DowJones.Documentation.Tests.Tools.VSDocPreprocessor.TestData">
   <summary>A test class that emits VSDoc documentation</summary>
   <constructors>
     <constructor name="TestClass()">
       <summary>The default constructor</summary>
       <parameters />
     </constructor>
-    <constructor name="TestClass(System.String param1)">
+    <constructor name="TestClass(string)">
       <summary>A constructor with one parameter</summary>
       <parameters>
-        <parameter name="param1" type="System.String">
+        <parameter name="param1" type="string">
           <remarks>The first parameter</remarks>
         </parameter>
       </parameters>
     </constructor>
-    <constructor name="TestClass(System.String param1, System.String param2)">
+    <constructor name="TestClass(string, string)">
       <summary>A constructor with two parameters</summary>
       <parameters>
-        <parameter name="param1" type="System.String">
+        <parameter name="param1" type="string">
           <remarks>The first parameter</remarks>
         </parameter>
-        <parameter name="param2" type="System.String">
+        <parameter name="param2" type="string">
           <remarks>The second parameter</remarks>
         </parameter>
       </parameters>
@@ -32,26 +32,26 @@
     </event>
   </events>
   <methods>
-    <method name="VoidMethod(System.Int32 param)">
+    <method name="VoidMethod(int)">
       <summary>A method that doesn't actually do or return anything</summary>
       <parameters>
-        <parameter name="param" type="System.Int32">
+        <parameter name="param" type="int">
           <remarks>The parameter for the method</remarks>
         </parameter>
       </parameters>
     </method>
-    <method name="ComplexMethod(System.Uri param)">
+    <method name="ComplexMethod(Uri)">
       <summary>A method that returns a complex type</summary>
       <parameters>
-        <parameter name="param" type="System.Uri">
+        <parameter name="param" type="Uri">
           <remarks>The parameter for the method</remarks>
         </parameter>
       </parameters>
     </method>
-    <method name="StaticVoidMethod(System.String param)">
+    <method name="StaticVoidMethod(string)">
       <summary>The static version of the VoidMethod</summary>
       <parameters>
-        <parameter name="param" type="System.String">
+        <parameter name="param" type="string">
           <remarks>The parameter for the method</remarks>
         </parameter>
       </parameters>
