@@ -35,14 +35,12 @@ namespace DowJones.Documentation.Website.App_Start
 				"~/Styles/themes/default/bootstrap.css",
 				"~/Styles/bootstrap-responsive.css",
 				"~/Styles/Site.css",
-				"~/Styles/API.css",
 				"~/Styles/collapsible-section.css"));
 
 			bundles.Add(new StyleBundle("~/Styles/theme-spacelab").Include(
 				"~/Styles/themes/spacelab/bootstrap.css",
 				"~/Styles/bootstrap-responsive.css",
 				"~/Styles/Site.css",
-                "~/Styles/API.css",
                 "~/Styles/themes/spacelab/site.css",
 				"~/Styles/collapsible-section.css"));
 			

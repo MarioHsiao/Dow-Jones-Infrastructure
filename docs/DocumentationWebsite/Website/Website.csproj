@@ -146,9 +146,6 @@
     <Compile Include="ViewEngines\VSDocViewEngine.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Styles\API.css">
-      <DependentUpon>API.scss</DependentUpon>
-    </Content>
     <Content Include="Styles\bootstrap-responsive.css" />
     <Content Include="Styles\bootstrap-responsive.min.css" />
     <Content Include="Styles\collapsible-section.css" />
@@ -168,12 +165,6 @@
     <Content Include="Styles\themes\spacelab\img\glyphicons-halflings-white.png" />
     <Content Include="Styles\themes\spacelab\img\glyphicons-halflings.png" />
     <Content Include="Styles\_mixins.scss" />
-    <Content Include="Styles\API.scss">
-      <Compile>True</Compile>
-      <Minify>True</Minify>
-      <CompileStyle>Nested</CompileStyle>
-      <DebugInfo>False</DebugInfo>
-    </Content>
     <None Include="Styles\themes\spacelab\site.scss" />
     <Content Include="Global.asax" />
     <Content Include="packages.config">

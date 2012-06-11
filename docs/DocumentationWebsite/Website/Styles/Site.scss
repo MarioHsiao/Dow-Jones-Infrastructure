@@ -88,3 +88,27 @@ section.showcase {
 		}
 	}
 }
+
+th.name
+{
+    width: 200px;
+}
+
+td.name
+{
+    width: 200px;
+	font-family: Consolas;
+}
+
+.parameterized-method
+{
+	.parameters {
+		.caption {
+			font-weight: bold;
+		}
+
+		clear: both;
+		margin-top: 5px;
+		border: 0;
+	}
+}

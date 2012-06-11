@@ -64,3 +64,17 @@ section.showcase {
 .widgetGrid .nav a {
   font-size: 12px; }
 
+th.name {
+  width: 200px; }
+
+td.name {
+  width: 200px;
+  font-family: Consolas; }
+
+.parameterized-method .parameters {
+  clear: both;
+  margin-top: 5px;
+  border: 0; }
+  .parameterized-method .parameters .caption {
+    font-weight: bold; }
+

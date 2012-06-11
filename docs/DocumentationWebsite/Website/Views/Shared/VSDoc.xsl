@@ -23,12 +23,7 @@
   <xsl:template match="constructors">
     <h3>Constructors</h3>
     <section class="constructors">
-        <xsl:apply-templates select="constructor"/>
-    </section>
-  </xsl:template>
-  <xsl:template match="constructor">
-    <section class="constructor parameterized-method">
-      <xsl:call-template name="parameterized-method" />
+      <xsl:call-template name="parameterized-methods" />
     </section>
   </xsl:template>
   
@@ -38,7 +33,7 @@
     <section class="properties">
       <table>
         <thead>
-          <th>Name</th>
+          <th class="name">Name</th>
           <th>Description</th>
         </thead>
         <tbody>
@@ -62,13 +57,8 @@
   <xsl:template match="methods">
     <h3>Methods</h3>
     <section class="methods">
-        <xsl:apply-templates select=".//method"/>
+      <xsl:call-template name="parameterized-methods" />
     </section>
-  </xsl:template>
-  <xsl:template match="method">
-    <div class="method parameterized-method">
-      <xsl:call-template name="parameterized-method" />
-    </div>
   </xsl:template>
 
   <!-- EVENT TEMPLATES -->
@@ -77,7 +67,7 @@
     <section class="events">
       <table>
         <thead>
-          <th>Name</th>
+          <th class="name">Name</th>
           <th>Description</th>
         </thead>
         <tbody>
@@ -99,39 +89,51 @@
 
 
   <!-- PARAMETERIZED METHOD TEMPLATE -->
-  <xsl:template name="parameterized-method">
-      <div class="name"><xsl:value-of select="@name"/></div>
-      <div class="description">
-        <xsl:value-of select="summary"/>
-        <xsl:value-of select="remarks"/>
-      </div>
-      <div class="parameters">
-        <table>
-          <thead>
-            <th>Name</th>
-            <th>Type</th>
-            <th>Description</th>
-          </thead>
-          <tbody>
-            <xsl:apply-templates select=".//parameter"/>
-          </tbody>
-        </table>
-      </div>
+  <xsl:template name="parameterized-methods">
+    <table>
+      <thead>
+        <th class="name">Name</th>
+        <th>Description</th>
+      </thead>
+      <tbody>
+        <xsl:for-each select="./*">
+          <tr class="parameterized-method">
+            <td class="name">
+              <xsl:value-of select="@name"/>
+            </td>
+            <td class="description">
+              <xsl:value-of select="summary"/>
+              <xsl:value-of select="remarks"/>
+
+              <!-- Parameters table -->
+              <xsl:if test="count(.//parameter)">
+                <table class="parameters">
+                  <caption>Parameters</caption>
+                  <thead>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </thead>
+                  <tbody>
+                    <xsl:for-each select=".//parameter">
+                      <tr class="parameter">
+                        <td class="name">
+                          <xsl:value-of select="@name"/>
+                        </td>
+                        <td class="description">
+                          <xsl:value-of select="remarks"/>
+                        </td>
+                      </tr>
+                    </xsl:for-each>
+                  </tbody>
+                </table>
+              </xsl:if>
+              <!-- End Parameters table -->
+              
+            </td>
+          </tr>
+        </xsl:for-each>
+      </tbody>
+    </table>
   </xsl:template>
   
-  <!-- PARAMETER TEMPLATE -->
-  <xsl:template match="parameter">
-    <tr class="parameter">
-      <td class="name">
-        <xsl:value-of select="@name"/>
-      </td>
-      <td class="type">
-        <xsl:value-of select="@type"/>
-      </td>
-      <td class="description">
-        <xsl:value-of select="remarks"/>
-      </td>
-    </tr>
-  </xsl:template>
-
 </xsl:stylesheet>
