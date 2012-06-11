@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text.RegularExpressions;
+using VSDocPreprocessor.Entities;
 
 namespace VSDocPreprocessor
 {
@@ -62,7 +63,16 @@ namespace VSDocPreprocessor
             if(!typesMatch.Success)
                 return;
 
-            var types = typesMatch.Groups["Types"].Value.Split(',').Select(x => x.Trim()).Where(x => !string.IsNullOrWhiteSpace(x)).ToArray();
+            var signature = typesMatch.Groups["Signature"].Value;
+
+            var types = 
+                (
+                    from type in typesMatch.Groups["Types"].Value.Split(',')
+                    where !string.IsNullOrWhiteSpace(type) 
+                    let typeName = new TypeName(type)
+                    select new TypeName(type)
+                ).ToArray();
+            
             var typeCount = types.Count();
 
             if (typeCount != parameters.Count())
@@ -77,11 +87,12 @@ namespace VSDocPreprocessor
             {
                 var type = types[i];
                 var parameter = parameters[i];
-                parameter.Type = type;
-                types[i] = string.Format("{0} {1}", type, parameter.Name);
+                parameter.Type = type.Name;
             }
 
-            base.Name = string.Format("{0}({1})", typesMatch.Groups["Signature"].Value, string.Join(", ", types));
+            base.Name = string.Format("{0}({1})", 
+                                      signature, 
+                                      string.Join(", ", types.Select(x => x.Name)));
         }
     }
 }

@@ -10,19 +10,6 @@ namespace VSDocPreprocessor
         private static readonly Regex NameRegex =
             new Regex(@"#ctor(?<ctor>.*)");
 
-        public override DocumentEntity Parent
-        {
-            get
-            {
-                return base.Parent;
-            }
-            protected set
-            {
-                base.Parent = value;
-
-            }
-        }
-
         public Constructor(IEnumerable<DocumentEntity> children = null)
             : base(children)
         {

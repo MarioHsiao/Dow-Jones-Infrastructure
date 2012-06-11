@@ -53,6 +53,7 @@
     <Compile Include="Entities\Parameter.cs" />
     <Compile Include="Entities\Property.cs" />
     <Compile Include="Entities\Type.cs" />
+    <Compile Include="Entities\TypeName.cs" />
     <Compile Include="Parser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Entities\DocumentEntity.cs" />

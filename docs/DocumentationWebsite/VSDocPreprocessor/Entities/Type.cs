@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
+using VSDocPreprocessor.Entities;
 
 namespace VSDocPreprocessor
 {
@@ -36,10 +37,10 @@ namespace VSDocPreprocessor
                     return;
                 }
 
-                FullName = value;
-                var lastDot = value.LastIndexOf('.');
-                Namespace = value.Substring(0, lastDot);
-                base.Name = value.Substring(lastDot+1);
+                var typeName = new TypeName(value);
+                FullName = typeName.FullName;
+                Namespace = typeName.Namespace;
+                base.Name = typeName.Name;
             }
         }
 
