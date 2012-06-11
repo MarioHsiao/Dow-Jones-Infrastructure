@@ -16,6 +16,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XmlViewEngine", "XmlViewEng
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarkdownRazor", "MarkdownRazor\MarkdownRazor.csproj", "{839AEF53-E893-44DC-8A2F-507DA086BFF2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VSDocPreprocessor", "VSDocPreprocessor\VSDocPreprocessor.csproj", "{324A66D1-2705-49F9-927F-3B69CAC838A4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "View Engines", "View Engines", "{AED7FA57-7B3C-4D38-8E47-ED2D38DC6C26}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{3D6A5A54-27AA-4E53-AEB4-512F15FEB981}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VSDocPreprocessor.Console", "VSDocPreprocessor.Console\VSDocPreprocessor.Console.csproj", "{D7F941A7-4DFB-4C2B-B366-D63BE5DDFAF2}"
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
@@ -25,17 +33,27 @@ Global
 		SccLocalPath3 = Content
 		SccLocalPath4 = XmlViewEngine
 		SccLocalPath5 = MarkdownRazor
-		SccNumberOfProjects = 6
+		SccLocalPath6 = VSDocPreprocessor
+		SccLocalPath7 = VSDocPreprocessor.Console
+		SccNumberOfProjects = 8
 		SccProjectName1 = Website
 		SccProjectName2 = Core
 		SccProjectName3 = Content
 		SccProjectName4 = XmlViewEngine
 		SccProjectName5 = MarkdownRazor
+		SccProjectName6 = VSDocPreprocessor
+		SccProjectName7 = VSDocPreprocessor.Console
+		SccProjectTopLevelParentUniqueName4 = DowJones.Documentation.sln
+		SccProjectTopLevelParentUniqueName5 = DowJones.Documentation.sln
+		SccProjectTopLevelParentUniqueName6 = DowJones.Documentation.sln
+		SccProjectTopLevelParentUniqueName7 = DowJones.Documentation.sln
 		SccProjectUniqueName1 = Website\\Website.csproj
 		SccProjectUniqueName2 = Core\\Core.csproj
 		SccProjectUniqueName3 = Content\\Content.csproj
 		SccProjectUniqueName4 = XmlViewEngine\\XmlViewEngine.csproj
 		SccProjectUniqueName5 = MarkdownRazor\\MarkdownRazor.csproj
+		SccProjectUniqueName6 = VSDocPreprocessor\\VSDocPreprocessor.csproj
+		SccProjectUniqueName7 = VSDocPreprocessor.Console\\VSDocPreprocessor.Console.csproj
 		SccTeamFoundationServer = http://sbknwstfs1:8080/tfs/defaultcollection
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -44,6 +62,11 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{324A66D1-2705-49F9-927F-3B69CAC838A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{324A66D1-2705-49F9-927F-3B69CAC838A4}.Integration|Any CPU.ActiveCfg = Release|Any CPU
+		{324A66D1-2705-49F9-927F-3B69CAC838A4}.Integration|Any CPU.Build.0 = Release|Any CPU
+		{324A66D1-2705-49F9-927F-3B69CAC838A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{324A66D1-2705-49F9-927F-3B69CAC838A4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{38E4CD1B-1A81-4D29-84D9-D20D8C85FE05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{38E4CD1B-1A81-4D29-84D9-D20D8C85FE05}.Integration|Any CPU.ActiveCfg = Release|Any CPU
 		{38E4CD1B-1A81-4D29-84D9-D20D8C85FE05}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -54,13 +77,11 @@ Global
 		{5B53CF02-321D-4EF8-9B2C-4C4889FD8A03}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5B53CF02-321D-4EF8-9B2C-4C4889FD8A03}.Release|Any CPU.Build.0 = Release|Any CPU
 		{73BBDDB2-E1E6-4646-9DA5-F713F69E7142}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{73BBDDB2-E1E6-4646-9DA5-F713F69E7142}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{73BBDDB2-E1E6-4646-9DA5-F713F69E7142}.Integration|Any CPU.ActiveCfg = Release|Any CPU
 		{73BBDDB2-E1E6-4646-9DA5-F713F69E7142}.Integration|Any CPU.Build.0 = Release|Any CPU
 		{73BBDDB2-E1E6-4646-9DA5-F713F69E7142}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{73BBDDB2-E1E6-4646-9DA5-F713F69E7142}.Release|Any CPU.Build.0 = Release|Any CPU
 		{839AEF53-E893-44DC-8A2F-507DA086BFF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{839AEF53-E893-44DC-8A2F-507DA086BFF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{839AEF53-E893-44DC-8A2F-507DA086BFF2}.Integration|Any CPU.ActiveCfg = Release|Any CPU
 		{839AEF53-E893-44DC-8A2F-507DA086BFF2}.Integration|Any CPU.Build.0 = Release|Any CPU
 		{839AEF53-E893-44DC-8A2F-507DA086BFF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -71,8 +92,19 @@ Global
 		{AB380707-04A9-4098-9F57-D82F893A35D4}.Integration|Any CPU.Build.0 = Integration|Any CPU
 		{AB380707-04A9-4098-9F57-D82F893A35D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AB380707-04A9-4098-9F57-D82F893A35D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7F941A7-4DFB-4C2B-B366-D63BE5DDFAF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7F941A7-4DFB-4C2B-B366-D63BE5DDFAF2}.Integration|Any CPU.ActiveCfg = Release|Any CPU
+		{D7F941A7-4DFB-4C2B-B366-D63BE5DDFAF2}.Integration|Any CPU.Build.0 = Release|Any CPU
+		{D7F941A7-4DFB-4C2B-B366-D63BE5DDFAF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7F941A7-4DFB-4C2B-B366-D63BE5DDFAF2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{324A66D1-2705-49F9-927F-3B69CAC838A4} = {3D6A5A54-27AA-4E53-AEB4-512F15FEB981}
+		{73BBDDB2-E1E6-4646-9DA5-F713F69E7142} = {AED7FA57-7B3C-4D38-8E47-ED2D38DC6C26}
+		{839AEF53-E893-44DC-8A2F-507DA086BFF2} = {AED7FA57-7B3C-4D38-8E47-ED2D38DC6C26}
+		{D7F941A7-4DFB-4C2B-B366-D63BE5DDFAF2} = {3D6A5A54-27AA-4E53-AEB4-512F15FEB981}
 	EndGlobalSection
 EndGlobal
