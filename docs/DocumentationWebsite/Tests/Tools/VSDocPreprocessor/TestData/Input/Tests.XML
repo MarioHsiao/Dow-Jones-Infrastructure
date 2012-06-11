@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<doc>
+    <assembly>
+        <name>DowJones.Documentation.Tests</name>
+    </assembly>
+    <members>
+        <member name="T:DowJones.Documentation.Tests.Tools.VSDocPreprocessor.TestData.TestEnum">
+            <summary>
+            A test enum
+            </summary>
+            <remarks>
+            This class is awesome.
+            </remarks>
+            <example>
+            To use this class, just instantiate it like this:
+            <code>var class = new TestClass("Awesome!");</code>
+            </example>
+        </member>
+        <member name="F:DowJones.Documentation.Tests.Tools.VSDocPreprocessor.TestData.TestEnum.Value1">
+            <summary>
+            The first value
+            </summary>
+        </member>
+        <member name="F:DowJones.Documentation.Tests.Tools.VSDocPreprocessor.TestData.TestEnum.Value2">
+            <summary>
+            The second value
+            </summary>
+        </member>
+        <member name="T:DowJones.Documentation.Tests.Tools.VSDocPreprocessor.TestData.TestClass">
+            <summary>
+            A test class that emits VSDoc documentation
+            </summary>
+        </member>
+        <member name="M:DowJones.Documentation.Tests.Tools.VSDocPreprocessor.TestData.TestClass.#ctor">
+            <summary>
+            The default constructor
+            </summary>
+        </member>
+        <member name="M:DowJones.Documentation.Tests.Tools.VSDocPreprocessor.TestData.TestClass.#ctor(System.String)">
+            <summary>
+            A constructor with one parameter
+            </summary>
+            <param name="param1">The first parameter</param>
+        </member>
+        <member name="M:DowJones.Documentation.Tests.Tools.VSDocPreprocessor.TestData.TestClass.#ctor(System.String,System.String)">
+            <summary>
+            A constructor with two parameters
+            </summary>
+            <param name="param1">The first parameter</param>
+            <param name="param2">The second parameter</param>
+        </member>
+        <member name="M:DowJones.Documentation.Tests.Tools.VSDocPreprocessor.TestData.TestClass.VoidMethod(System.Int32)">
+            <summary>
+            A method that doesn't actually do or return anything
+            </summary>
+            <param name="param">The parameter for the method</param>
+        </member>
+        <member name="M:DowJones.Documentation.Tests.Tools.VSDocPreprocessor.TestData.TestClass.ComplexMethod(System.Uri)">
+            <summary>
+            A method that returns a complex type
+            </summary>
+            <param name="param">The parameter for the method</param>
+        </member>
+        <member name="M:DowJones.Documentation.Tests.Tools.VSDocPreprocessor.TestData.TestClass.StaticVoidMethod(System.String)">
+            <summary>
+            The static version of the VoidMethod
+            </summary>
+            <param name="param">The parameter for the method</param>
+        </member>
+        <member name="P:DowJones.Documentation.Tests.Tools.VSDocPreprocessor.TestData.TestClass.StaticProperty">
+            <summary>
+            A read/write static property
+            </summary>
+        </member>
+        <member name="E:DowJones.Documentation.Tests.Tools.VSDocPreprocessor.TestData.TestClass.Event">
+            <summary>
+            Public event
+            </summary>
+        </member>
+        <member name="P:DowJones.Documentation.Tests.Tools.VSDocPreprocessor.TestData.TestClass.Property1">
+            <summary>
+            A primary type property
+            </summary>
+        </member>
+        <member name="P:DowJones.Documentation.Tests.Tools.VSDocPreprocessor.TestData.TestClass.Property2">
+            <summary>
+            This is a complex type property
+            </summary>
+        </member>
+        <member name="T:DowJones.Documentation.Tests.Tools.VSDocPreprocessor.TestData.TestClass.TestInnerEnum">
+            <summary>
+            A test enum declared as an inner class
+            </summary>
+        </member>
+        <member name="F:DowJones.Documentation.Tests.Tools.VSDocPreprocessor.TestData.TestClass.TestInnerEnum.Value1">
+            <summary>
+            The first value
+            </summary>
+        </member>
+        <member name="F:DowJones.Documentation.Tests.Tools.VSDocPreprocessor.TestData.TestClass.TestInnerEnum.Value2">
+            <summary>
+            The second value
+            </summary>
+        </member>
+    </members>
+</doc>
