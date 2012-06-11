@@ -42,6 +42,10 @@
     <None Include="Components\PortalHeadlineList.md" />
     <None Include="Components\Radar.md" />
     <None Include="Components\SearchBuilder.md" />
+    <None Include="Components\StockKiosk\Configuration.md" />
+    <None Include="Components\StockKiosk\Events.md" />
+    <None Include="Components\StockKiosk\Methods.md" />
+    <None Include="Components\StockKiosk\Overview.md" />
     <None Include="Components\TweetLines.md" />
     <None Include="Framework\BestPractices.md" />
     <None Include="Framework\Overview.md" />
