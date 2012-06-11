@@ -68,13 +68,16 @@ th.name {
   width: 200px; }
 
 td.name {
-  width: 200px;
   font-family: Consolas; }
 
 .parameterized-method .parameters {
   clear: both;
-  margin-top: 5px;
-  border: 0; }
-  .parameterized-method .parameters .caption {
+  margin-top: 15px;
+  border: 0;
+  padding: 0 10px; }
+  .parameterized-method .parameters caption {
+    font-weight: bold; }
+  .parameterized-method .parameters td.name {
+    width: 150px;
     font-weight: bold; }
 

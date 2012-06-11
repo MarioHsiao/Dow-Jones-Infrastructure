@@ -34,11 +34,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Content Include="Components\Article\API.xml" />
     <None Include="Components\Article\Configuration.md" />
-    <None Include="Components\Article\Events.md" />
     <None Include="Components\Article\LiveDemo.md" />
-    <None Include="Components\Article\Methods.md" />
     <None Include="Components\Article\Overview.md" />
     <None Include="Components\HeadlineList.md" />
     <None Include="Components\NewsChart.md" />
@@ -51,6 +48,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Components\Article\Constructors.xml" />
+    <Content Include="Components\Article\Events.xml" />
+    <Content Include="Components\Article\Methods.xml" />
+    <Content Include="Components\Article\Properties.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

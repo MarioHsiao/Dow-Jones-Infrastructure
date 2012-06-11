@@ -1,0 +1,26 @@
+  <methods>
+    <method name="VoidMethod(int)">
+      <summary>A method that doesn't actually do or return anything</summary>
+      <parameters>
+        <parameter name="param" type="int">
+          <remarks>The parameter for the method</remarks>
+        </parameter>
+      </parameters>
+    </method>
+    <method name="ComplexMethod(Uri)">
+      <summary>A method that returns a complex type</summary>
+      <parameters>
+        <parameter name="param" type="Uri">
+          <remarks>The parameter for the method</remarks>
+        </parameter>
+      </parameters>
+    </method>
+    <method name="StaticVoidMethod(string)">
+      <summary>The static version of the VoidMethod</summary>
+      <parameters>
+        <parameter name="param" type="string">
+          <remarks>The parameter for the method</remarks>
+        </parameter>
+      </parameters>
+    </method>
+  </methods>

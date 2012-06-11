@@ -1,27 +1,28 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
-
-  <!-- DOCUMENT TEMPLATE -->
-  <!-- Format the whole document as a valid HTML document -->
-  <xsl:template match="/">
-    <xsl:apply-templates select="//type"/>
-  </xsl:template>
-
   <!-- TYPE TEMPLATE -->
   <xsl:template match="type">
     <section class="type">
       <div class="name"><xsl:value-of select="@fullName"/></div>
       <div class="description"><xsl:value-of select="summary"/></div>
+      
+      <h3>Constructors</h3>
       <xsl:apply-templates select="constructors"/>
+
+      <h3>Properties</h3>
       <xsl:apply-templates select="properties"/>
+
+      <h3>Methods</h3>
       <xsl:apply-templates select="methods"/>
+
+      <h3>Events</h3>
       <xsl:apply-templates select="events"/>
+      
     </section>
   </xsl:template>
 
   <!-- CONSTRUCTORS TEMPLATE -->
   <xsl:template match="constructors">
-    <h3>Constructors</h3>
     <section class="constructors">
       <xsl:call-template name="parameterized-methods" />
     </section>
@@ -29,7 +30,6 @@
   
   <!-- PROPERTY TEMPLATES -->
   <xsl:template match="properties">
-    <h3>Properties</h3>
     <section class="properties">
       <table>
         <thead>
@@ -55,7 +55,6 @@
   
   <!-- METHOD TEMPLATES -->
   <xsl:template match="methods">
-    <h3>Methods</h3>
     <section class="methods">
       <xsl:call-template name="parameterized-methods" />
     </section>
@@ -63,7 +62,6 @@
 
   <!-- EVENT TEMPLATES -->
   <xsl:template match="events">
-    <h3>Events</h3>
     <section class="events">
       <table>
         <thead>
@@ -108,11 +106,6 @@
               <!-- Parameters table -->
               <xsl:if test="count(.//parameter)">
                 <table class="parameters">
-                  <caption>Parameters</caption>
-                  <thead>
-                    <th>Name</th>
-                    <th>Description</th>
-                  </thead>
                   <tbody>
                     <xsl:for-each select=".//parameter">
                       <tr class="parameter">

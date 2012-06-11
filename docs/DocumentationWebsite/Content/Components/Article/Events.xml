@@ -1,0 +1,5 @@
+  <events>
+    <event name="Event">
+      <summary>Public event</summary>
+    </event>
+  </events>
