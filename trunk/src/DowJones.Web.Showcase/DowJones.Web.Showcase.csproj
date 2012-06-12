@@ -261,6 +261,8 @@
     <Content Include="Content\css\components\DiscoveryGraph\img\navigator.png" />
     <Content Include="Content\css\components\DiscoveryGraph\img\sprite_carousel-buttons.png" />
     <Content Include="Content\reset.css" />
+    <Content Include="Scripts\loose2.js" />
+    <Content Include="Scripts\loose.js" />
     <Content Include="Styles\css\CompanyOverviewCanvasModule.css" />
     <Content Include="Styles\css\AlertsCanvasModule.css" />
     <Content Include="Content\bootstrap\css\bootstrap-responsive.css" />
@@ -1608,6 +1610,7 @@
     <Content Include="Views\Shared\_Layout_ComponentExplorer.cshtml" />
     <Content Include="Views\HeadlineListCarousel\Carousel.cshtml" />
     <Content Include="Views\NewsRadar\Index.cshtml" />
+    <Content Include="Views\Home\RequireJsLoadingDemo.cshtml" />
     <None Include="Views\NewsRadar\sample.json" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
