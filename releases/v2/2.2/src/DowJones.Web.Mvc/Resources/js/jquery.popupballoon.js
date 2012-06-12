@@ -688,7 +688,7 @@
             }
 
             if (scrollValue) {
-                $('html,body').stop().animate({ scrollTop: scrollValue }, 500, callback || $.noop());
+                $('body').stop().animate({ scrollTop: scrollValue }, 500, callback || $.noop());
             }
             else {
                 if ($.isFunction(callback)) {
