@@ -1,10 +1,17 @@
 ﻿
+using System;
+using System.Xml.Serialization;
+
 namespace DowJones.Managers.Multimedia
 {
+    [Serializable]
+    [XmlType(TypeName = "multimediaResponse", Namespace = "")]
     public class MultimediaResponse
     {
-        public long status { get; set; }
+        [XmlElement(ElementName = "status")]
+        public long Status { get; set; }
 
-        public MultimediaPackage multimediaResult { get; set; }
+        [XmlElement(ElementName = "multimediaResult")]
+        public MultimediaPackage MultimediaResult { get; set; }
     }
 }

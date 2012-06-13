@@ -93,8 +93,8 @@ namespace DowJones.Managers.Multimedia
 
                 if (mustPlay.Status)
                 {
-                    response.multimediaResult = new MultimediaPackage { MustPlayFromSource = mustPlay };
-                    response.status = 0;
+                    response.MultimediaResult = new MultimediaPackage { MustPlayFromSource = mustPlay };
+                    response.Status = 0;
                     return response;
                 }
                 var node = ProcessEpisodeID(episodeId);
@@ -125,7 +125,7 @@ namespace DowJones.Managers.Multimedia
                             var nodes = ProcessGUID(guid);
                             if (nodes.Count == 0)
                             {
-                                response.multimediaResult = new MultimediaPackage
+                                response.MultimediaResult = new MultimediaPackage
                                                                 {
                                                                     MustPlayFromSource =
                                                                         new MustPlayFromSource
@@ -168,7 +168,7 @@ namespace DowJones.Managers.Multimedia
                                                  new MustPlayFromSource { Status = mustPlay.Status, Url = mustPlay.Url}
                                          };
 
-                        response.multimediaResult = result;
+                        response.MultimediaResult = result;
                     }
                 }
                 else
@@ -178,13 +178,13 @@ namespace DowJones.Managers.Multimedia
             }
             catch (DowJonesUtilitiesException emgEx)
             {
-                response.status = emgEx.ReturnCode;
+                response.Status = emgEx.ReturnCode;
                 _log.Error(string.Format("Code {0} - {1}", emgEx.ReturnCode, emgEx.Message));
                 
             }
             catch(Exception ex)
             {
-                response.status = DowJonesUtilitiesException.MULTIMEDIA_UNKNOWN_EXCEPTION;
+                response.Status = DowJonesUtilitiesException.MULTIMEDIA_UNKNOWN_EXCEPTION;
                 _log.Error(ex.Message);
             }
 

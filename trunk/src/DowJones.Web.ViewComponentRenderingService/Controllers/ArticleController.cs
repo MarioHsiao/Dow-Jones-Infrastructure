@@ -17,7 +17,6 @@ namespace DowJones.Web.ViewComponentRenderingService.Controllers
         {
             var articleJson = new StreamReader(Request.InputStream).ReadToEnd();
             var article = JsonConvert.DeserializeObject<ArticleResultset>(articleJson);
-
             var model = new ArticleModel { ArticleDataSet = article };
 
             return ViewComponent(model);
