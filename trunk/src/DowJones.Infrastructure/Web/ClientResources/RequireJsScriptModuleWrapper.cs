@@ -33,7 +33,10 @@ namespace DowJones.Web
                 return;
 
             if (resource.ClientResource.DependencyLevel == ClientResourceDependencyLevel.Independent)
+            {
+                RenderIndependentScript(resource);
                 return;
+            }
 
             var resourceName = resource.ClientResource.Name;
 
@@ -47,6 +50,13 @@ namespace DowJones.Web
                     string.Format("['{0}']", string.Join("','", dependencies)), 
                     resource.Content
             );
+        }
+
+        private void RenderIndependentScript(ProcessedClientResource resource)
+        {
+            resource.Content = string.Format("DJ.$dj.define('{0}');\r\n{1}", 
+                                             new ClientResourceModuleName(resource.Name),
+                                             resource.Content);
         }
     }
 }
