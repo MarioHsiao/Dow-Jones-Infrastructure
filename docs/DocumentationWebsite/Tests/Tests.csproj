@@ -38,6 +38,16 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'ToolChain|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\ToolChain\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core">
@@ -60,6 +70,9 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tools\JsXmlDocParser\FunctionInfoTests.cs" />
+    <Compile Include="Tools\JsXmlDocParser\JsParserTests.cs" />
+    <Compile Include="Tools\JsXmlDocParser\TextReaderExtensionsTest.cs" />
     <Compile Include="Tools\VSDocPreprocessor\ParserTests.cs" />
     <Compile Include="Tools\VSDocPreprocessor\TestData\TestClass.cs" />
   </ItemGroup>
@@ -73,6 +86,10 @@
     <ProjectReference Include="..\Core\Core.csproj">
       <Project>{5b53cf02-321d-4ef8-9b2c-4c4889fd8a03}</Project>
       <Name>Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JsXmlDocParser\JsXmlDocParser.csproj">
+      <Project>{d0aed5a8-7f0a-442c-8569-dbe931dfb826}</Project>
+      <Name>JsXmlDocParser</Name>
     </ProjectReference>
     <ProjectReference Include="..\MarkdownRazor\MarkdownRazor.csproj">
       <Project>{839aef53-e893-44dc-8a2f-507da086bff2}</Project>
@@ -96,6 +113,14 @@
     <EmbeddedResource Include="Tools\VSDocPreprocessor\TestData\Expected\DowJones.Documentation.Tests.Tools.VSDocPreprocessor.TestData.TestClass.xml" />
     <EmbeddedResource Include="Tools\VSDocPreprocessor\TestData\Expected\DowJones.Documentation.Tests.Tools.VSDocPreprocessor.TestData.TestEnum.xml" />
     <EmbeddedResource Include="Tools\VSDocPreprocessor\TestData\Input\Tests.XML" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Tools\JsXmlDocParser\SampleTestFiles\jquery-1.6.2-vsdoc.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Tools\JsXmlDocParser\SampleTestFiles\jquery.validate-vsdoc.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

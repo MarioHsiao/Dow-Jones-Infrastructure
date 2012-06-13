@@ -51,7 +51,7 @@
 
     // target tables generated via markdown but ignore tables that already have style
     // (styled via explicit html table tags)
-    function prettifyMarkdownTables() {
+    function prettifyMarkdownTables() { 
         $(".content table").each(function () {
             if (!$(this).hasClass("table")) {
                 $(this).addClass("table table-striped table-bordered table-condensed");
