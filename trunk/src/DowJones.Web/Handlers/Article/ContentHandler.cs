@@ -133,8 +133,16 @@ namespace DowJones.Web.Handlers.Article
                 if (redirectToWebSiteUrl)
                 {
                     var service = new ArticleService(infrsControlData, new Preferences.Preferences("en"));
-                    var webArticeUrl = service.GetWebArticleUrl(reference);
-                    context.Response.Redirect(webArticeUrl);
+                    var webArticeUrl = service.GetWebArticleUrl(accessionNo);
+
+                    context.Response.Buffer = true;
+                    //context.Response.Status = "302 Object moved";
+                    context.Response.AddHeader("Location", webArticeUrl);
+                    context.Response.Write("<HTML><Head>");
+                    context.Response.Write("<META HTTP-EQUIV=Refresh CONTENT=\"0;URL=" + webArticeUrl + "\">");
+                    context.Response.Write("<Script>window.location='" + webArticeUrl + "';</Script>");
+                    context.Response.Write("</Head></HTML>");
+                    context.Response.Flush();
                     context.Response.End();
                     return;
                 }

@@ -1337,7 +1337,7 @@ namespace DowJones.Assemblers.Articles
         /// <returns>
         /// A string representing the Handerl Url
         /// </returns>
-        private string GetHandlerUrl( ImageType imageType, string accessionNo, ContentItem contentItem, bool isBlob = false )
+        public string GetHandlerUrl( ImageType imageType, string accessionNo, ContentItem contentItem, bool isBlob = false )
         {
             var reference = contentItem.Ref;
             var mimeType = contentItem.Mimetype;
