@@ -13,6 +13,7 @@
     @DJ.ScriptRegistry().RenderHead()
 </head>
     <body>
+    @* Expected output:
         <script  type="text/javascript">
             DJ.$dj.require.config({
                 paths: {
@@ -21,6 +22,7 @@
                 }
             });
         </script>
+        *@
         @DJ.ScriptRegistry().Render()
     </body>
 </html>
