@@ -1,6 +1,6 @@
 ﻿<% var eventIndex = 0; _.each(self.Dates, function(date){ %>
 <% if(date.Events && date.Events.length > 0) { %>
-<tbody class="dj_calendarDateBody <%= date.Selected ? 'dj_selected' : '' %>" data-group="<%= date.EventDateString %>">            
+<tbody class="dj_calendarDateBody <%= date.Selected ? 'dj_selected' : '' %> <% if(new Date(date.EventDate).format("dd/mm/yyyy") < new Date().format("dd/mm/yyyy") ) {%>prev24hrs<%}%>" data-group="<%= date.EventDateString %>">            
     <tr class="dj_calendarDateHeader" data-group="<%= date.EventDateString %>">
         <th colspan="8"><%= date.EventDate.format("dddd mmmm d, yyyy") %></th>
     </tr>            
