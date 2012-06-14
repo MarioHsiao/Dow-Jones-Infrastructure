@@ -11,6 +11,8 @@ namespace VSDocPreprocessor
     {
         private readonly DocumentEntityConverter _converter;
 
+        public bool AssemblyFolders { get; set; }
+
         public Encoding Encoding { get; set; }
 
         public string OutputDirectory { get; set; }
@@ -21,6 +23,7 @@ namespace VSDocPreprocessor
         public TypeWriter(DocumentEntityConverter converter = null)
         {
             _converter = converter ?? new DocumentEntityConverter();
+            AssemblyFolders = true;
             Encoding = Encoding.UTF8;
             OutputDirectory = Directory.GetCurrentDirectory();
             SingleFile = false;

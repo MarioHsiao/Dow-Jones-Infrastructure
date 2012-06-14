@@ -26,6 +26,27 @@ namespace DowJones.Documentation.Tests.Tools.VSDocPreprocessor.TestData
     }
 
     /// <summary>
+    /// A test class with a name that looks very similar to TestClass
+    /// </summary>
+    public class TestClassBuilder
+    {
+        /// <summary>
+        /// Creates a new TestClassBuilder
+        /// </summary>
+        public TestClassBuilder()
+        {
+        }
+
+        /// <summary>
+        /// Builds the TestClass
+        /// </summary>
+        /// <param name="class">The TestClass to build</param>
+        public void Build(TestClass @class)
+        {
+        }
+    }
+
+    /// <summary>
     /// A test class that emits VSDoc documentation
     /// </summary>
     public class TestClass
@@ -96,6 +117,13 @@ namespace DowJones.Documentation.Tests.Tools.VSDocPreprocessor.TestData
         /// </summary>
         /// <param name="param">The parameter for the method</param>
         public void VoidMethod(int param)
+        {
+        }
+
+        /// <summary>
+        /// A method that doesn't accept parameters
+        /// </summary>
+        public void MethodWithNoParameters()
         {
         }
 

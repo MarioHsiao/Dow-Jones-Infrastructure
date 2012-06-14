@@ -26,7 +26,7 @@ namespace DowJones.Documentation.Tests.Tools.VSDocPreprocessor
 
             foreach (var entity in types)
             {
-                var resourcename = string.Format("TestData.Expected.{0}.xml", entity.FullName);
+                var resourcename = string.Format("TestData.Expected.{0}.xml", entity.Name);
                 var expected = LoadFromResource(resourcename);
                 var actual = _converter.Convert(entity);
 

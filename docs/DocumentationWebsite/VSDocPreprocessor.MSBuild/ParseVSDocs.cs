@@ -12,6 +12,12 @@ namespace VSDocPreprocessor.MSBuild
         private readonly TypeWriter _typeWriter;
         private readonly Processor _processor;
 
+        public bool AssemblyFolders
+        {
+            get { return _typeWriter.AssemblyFolders; }
+            set { _typeWriter.AssemblyFolders = value; }
+        }
+
         [Required]
         public ITaskItem[] DocFiles { get; set; }
 
@@ -19,6 +25,12 @@ namespace VSDocPreprocessor.MSBuild
         {
             get { return new TaskItem(_typeWriter.OutputDirectory); }
             set { _typeWriter.OutputDirectory = value.ItemSpec; }
+        }
+
+        public bool SingleFile
+        {
+            get { return _typeWriter.SingleFile; }
+            set { _typeWriter.SingleFile = value; }
         }
 
 

@@ -27,7 +27,7 @@ namespace VSDocSplitter
             Contract.Requires(vsDoc.Root != null);
 
             var members = vsDoc.Root.Element("members").Elements();
-            var types = Parse(members.ToArray()).ToArray();
+            var types = Parse(members.OrderBy(x => x.Attribute("name").Value).ToArray()).ToArray();
 
             var assemblyElement = vsDoc.Root.Element("assembly");
             if(assemblyElement != null && !string.IsNullOrWhiteSpace(assemblyElement.Value))
@@ -72,7 +72,8 @@ namespace VSDocSplitter
                 var children = 
                     childrenElements.Select(x => x.element)
                         .Select(Parse)
-                        .Where(x => x != null).ToArray();
+                        .Where(x => x != null)
+                        .ToArray();
 
                 yield return Map(typeElement.element, new Type(children));
             }
