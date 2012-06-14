@@ -6,9 +6,9 @@ using System.Xml.Linq;
 
 namespace VSDocPreprocessor
 {
-    public class Serializer
+    public class DocumentEntityConverter
     {
-        public void Serialize<T>(T entity, TextWriter writer) where T : DocumentEntity
+        public XDocument Convert<T>(T entity) where T : DocumentEntity
         {
             using (var buffer = new MemoryStream())
             {
@@ -21,22 +21,21 @@ namespace VSDocPreprocessor
 
                 buffer.Seek(0, SeekOrigin.Begin);
 
-                var xmlTextWriter = new XmlTextWriter(writer) { Formatting = Formatting.Indented };
-                Cleanse(buffer, xmlTextWriter);
+                var doc = XDocument.Load(buffer, LoadOptions.None);
+                
+                Cleanse(doc);
+                
+                return doc;
             }
         }
 
-        private void Cleanse(Stream stream, XmlWriter writer)
+        private void Cleanse(XDocument doc)
         {
-            XDocument doc = XDocument.Load(stream, LoadOptions.None);
-
             doc.Root.RemoveAttributes();
             PromoteElementToAttribute(doc.Root, "fullName");
             PromoteElementToAttribute(doc.Root, "name");
             PromoteElementToAttribute(doc.Root, "namespace");
             PromoteElementToAttribute(doc.Root, "type");
-
-            doc.WriteTo(writer);
         }
 
         private static void PromoteElementToAttribute(XElement element, string xname)

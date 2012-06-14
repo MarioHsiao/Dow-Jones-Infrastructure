@@ -10,12 +10,12 @@ namespace DowJones.Documentation.Tests.Tools.VSDocPreprocessor
     public class ParserTests
     {
         private readonly Parser _parser;
-        private readonly Serializer _serializer;
+        private readonly DocumentEntityConverter _converter;
 
         public ParserTests()
         {
             _parser = new Parser();
-            _serializer = new Serializer();
+            _converter = new DocumentEntityConverter();
         }
 
         [TestMethod]
@@ -26,20 +26,14 @@ namespace DowJones.Documentation.Tests.Tools.VSDocPreprocessor
 
             foreach (var entity in types)
             {
-                using(var writer = new StringWriter())
-                {
-                    _serializer.Serialize(entity, writer);
-                    var actualSerialized = writer.ToString();
+                var resourcename = string.Format("TestData.Expected.{0}.xml", entity.FullName);
+                var expected = LoadFromResource(resourcename);
+                var actual = _converter.Convert(entity);
 
-                    var resourcename = string.Format("TestData.Expected.{0}.xml", entity.FullName);
-                    var expected = LoadFromResource(resourcename);
-                    var actual = XDocument.Parse(actualSerialized);
-
-                    Assert.AreEqual(
-                        expected.Document.ToString(),
-                        actual.Document.ToString(),
-                        entity.FullName + " not the same");
-                }
+                Assert.AreEqual(
+                    expected.Document.ToString(),
+                    actual.Document.ToString(),
+                    entity.FullName + " not the same");
             }
         }
 
