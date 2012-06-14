@@ -11,7 +11,7 @@ namespace VSDocPreprocessor
     {
         private readonly DocumentEntityConverter _converter;
 
-        public bool AssemblyFolders { get; set; }
+        public bool AssemblyDirectories { get; set; }
 
         public Encoding Encoding { get; set; }
 
@@ -23,7 +23,7 @@ namespace VSDocPreprocessor
         public TypeWriter(DocumentEntityConverter converter = null)
         {
             _converter = converter ?? new DocumentEntityConverter();
-            AssemblyFolders = true;
+            AssemblyDirectories = true;
             Encoding = Encoding.UTF8;
             OutputDirectory = Directory.GetCurrentDirectory();
             SingleFile = false;
@@ -41,18 +41,21 @@ namespace VSDocPreprocessor
             if (document == null || document.Root == null || !document.Root.HasElements)
                 return;
 
-            string assemblyDirectory = Path.Combine(OutputDirectory, type.Assembly);
+            string outputDirectory = OutputDirectory;
 
-            EnsureDirectoryExists(assemblyDirectory);
+            if (AssemblyDirectories)
+                outputDirectory = Path.Combine(OutputDirectory, type.Assembly);
+
+            EnsureDirectoryExists(outputDirectory);
 
             if(SingleFile)
             {
-                var filename = Path.Combine(assemblyDirectory, type.Name + ".xml");
+                var filename = Path.Combine(outputDirectory, type.Name + ".xml");
                 document.Save(filename);
             }
             else
             {
-                var typeDirectory = Path.Combine(assemblyDirectory, type.Name);
+                var typeDirectory = Path.Combine(outputDirectory, type.Name);
                 RenderChild(typeDirectory, "Constructors", document);
                 RenderChild(typeDirectory, "Events", document);
                 RenderChild(typeDirectory, "Methods", document);

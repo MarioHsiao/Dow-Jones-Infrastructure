@@ -12,8 +12,12 @@
     <ItemGroup>
       <VSDocFiles Include="$(VSDocFilenames)" />
     </ItemGroup>
-    
-    <ParseVSDocs DocFiles="@(VSDocFiles)" OutDir="$(OutDir)" />
+
+    <ParseVSDocs DocFiles="@(VSDocFiles)"
+                 AssemblyDirectories="$(AssemblyDirectories)"
+                 OutDir="$(OutDir)"
+                 SingleFile="$(SingleFile)"
+    />
   </Target>
 
 </Project>

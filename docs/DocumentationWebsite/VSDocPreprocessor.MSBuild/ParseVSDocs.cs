@@ -12,10 +12,10 @@ namespace VSDocPreprocessor.MSBuild
         private readonly TypeWriter _typeWriter;
         private readonly Processor _processor;
 
-        public bool AssemblyFolders
+        public bool AssemblyDirectories
         {
-            get { return _typeWriter.AssemblyFolders; }
-            set { _typeWriter.AssemblyFolders = value; }
+            get { return _typeWriter.AssemblyDirectories; }
+            set { _typeWriter.AssemblyDirectories = value; }
         }
 
         [Required]
