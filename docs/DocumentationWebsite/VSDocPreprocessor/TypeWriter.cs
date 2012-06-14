@@ -31,41 +31,36 @@ namespace VSDocPreprocessor
         {
             Contract.Requires(type != null);
 
+            Trace.TraceInformation("Writing {0} to disk...", type.FullName);
+
             XDocument document = ConvertToXDocument(type);
 
             if (document == null || document.Root == null || !document.Root.HasElements)
                 return;
 
-            var directory = InitializeDirectory(type);
+            string assemblyDirectory = Path.Combine(OutputDirectory, type.Assembly);
+
+            EnsureDirectoryExists(assemblyDirectory);
 
             if(SingleFile)
             {
-                var filename = Path.Combine(directory, type.Name + ".xml");
+                var filename = Path.Combine(assemblyDirectory, type.Name + ".xml");
                 document.Save(filename);
             }
             else
             {
-                RenderChild(directory, "Constructors", document);
-                RenderChild(directory, "Events", document);
-                RenderChild(directory, "Methods", document);
-                RenderChild(directory, "Properties", document);
+                var typeDirectory = Path.Combine(assemblyDirectory, type.Name);
+                RenderChild(typeDirectory, "Constructors", document);
+                RenderChild(typeDirectory, "Events", document);
+                RenderChild(typeDirectory, "Methods", document);
+                RenderChild(typeDirectory, "Properties", document);
             }
         }
 
-        protected virtual string InitializeDirectory(Type type)
+        private static void EnsureDirectoryExists(string directory)
         {
-            Contract.Requires(type != null);
-            Contract.Requires(!string.IsNullOrWhiteSpace(OutputDirectory));
-            Contract.Requires(!string.IsNullOrWhiteSpace(type.Assembly));
-            Contract.Requires(!string.IsNullOrWhiteSpace(type.Name));
-
-            string relativePath = Path.Combine(type.Assembly, type.Name);
-            string directory = Path.Combine(OutputDirectory, relativePath);
-            
-            if(!Directory.Exists(directory))
+            if (!Directory.Exists(directory))
                 Directory.CreateDirectory(directory);
-
-            return directory;
         }
 
         private XDocument ConvertToXDocument(Type type)
@@ -89,17 +84,19 @@ namespace VSDocPreprocessor
             Contract.Requires(document != null);
             Contract.Requires(document.Root != null);
 
-            var filename = Path.Combine(directory, name + ".xml");
-
             var elementName = name.ToLower();
             var element = document.Root.Element(elementName);
 
             if (element == null || element.HasElements == false)
             {
-                Trace.WriteLine("Element {0} is empty - skipping...", elementName);
+                Trace.WriteLine(string.Format("Element {0} is empty - skipping...", elementName));
                 return;
-            }   
-             
+            }
+
+            EnsureDirectoryExists(directory);
+
+            var filename = Path.Combine(directory, name + ".xml");
+
             try
             {
                 element.Save(filename);

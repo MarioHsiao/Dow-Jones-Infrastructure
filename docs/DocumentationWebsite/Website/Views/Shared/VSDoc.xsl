@@ -4,7 +4,10 @@
   <xsl:template match="type">
     <section class="type">
       <div class="name"><xsl:value-of select="@fullName"/></div>
-      <div class="description"><xsl:value-of select="summary"/></div>
+      <div class="description">
+        <p class="summary"><xsl:value-of select="summary"/></p>
+        <p class="remarks"><xsl:value-of select="remarks"/></p>
+      </div>
       
       <h3>Constructors</h3>
       <xsl:apply-templates select="constructors"/>
@@ -100,8 +103,8 @@
               <xsl:value-of select="@name"/>
             </td>
             <td class="description">
-              <xsl:value-of select="summary"/>
-              <xsl:value-of select="remarks"/>
+              <p class="summary"><xsl:value-of select="summary"/></p>
+              <p class="remarks"><xsl:value-of select="remarks"/></p>
 
               <!-- Parameters table -->
               <xsl:if test="count(.//parameter)">

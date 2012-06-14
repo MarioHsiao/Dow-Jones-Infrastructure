@@ -20,7 +20,7 @@ namespace VSDocPreprocessor
 
         public void TransformVSDocFiles(IEnumerable<string> filenames)
         {
-            var existingFiles = filenames.Where(File.Exists).ToArray();
+            var existingFiles = filenames.Distinct().Where(File.Exists).ToArray();
 
             Trace.TraceInformation("Found {0} VSDoc files", existingFiles.Count());
 
