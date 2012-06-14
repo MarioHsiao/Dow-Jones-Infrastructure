@@ -6,7 +6,7 @@
     </tr>            
     <% _.each(date.Events, function(event, i){ %>
     <tr class="dj_event dj_<%= ((eventIndex % 2) === 0 ? 'odd' : 'even')%> <%= (event.IsTarget) ? 'dj_eventTarget' : '' %>" data-id="<%= event.Id %>" data-timestamp="<%= event.Timestamp %>" data-ticker="<%= event.Ticker %>">
-        <td class="dj_eventTime" rowspan="<%= event.Details.length + 1 %>"><%= event.EventTimeString %></td>
+        <td class="dj_eventTime" rowspan="<%= event.Details.length + 1 %>"><% if(event.EventTimeString != "00:00") {%><%=event.EventTimeString%><%}%></td>
         <td class="dj_eventPeriod" rowspan="<%= event.Details.length + 1 %>"><%= event.Period ? event.Period : '' %></td>
         <td class="dj_eventDescription"><%= event.Country %>/<%= event.OrganizationName %> <%= event.EventDescription %></td>
         <td class="dj_eventCode"><%= event.EventCode === "ICC" ? "Corp" : "Econ" %></td>
