@@ -26,6 +26,16 @@
             The second value
             </summary>
         </member>
+        <member name="T:DowJones.Documentation.Tests.Tools.VSDocPreprocessor.TestData.TestClassBuilder">
+            <summary>
+            A test class with a name that looks a lot like another class's name
+            </summary>
+        </member>
+        <member name="M:DowJones.Documentation.Tests.Tools.VSDocPreprocessor.TestData.TestClassBuilder.#ctor">
+            <summary>
+            The default constructor
+            </summary>
+        </member>
         <member name="T:DowJones.Documentation.Tests.Tools.VSDocPreprocessor.TestData.TestClass">
             <summary>
             A test class that emits VSDoc documentation

@@ -122,6 +122,7 @@
     <Content Include="Tools\JsXmlDocParser\SampleTestFiles\jquery.validate-vsdoc.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="Tools\VSDocPreprocessor\TestData\Expected\DowJones.Documentation.Tests.Tools.VSDocPreprocessor.TestData.TestClassBuilder.xml" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

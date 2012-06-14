@@ -59,7 +59,7 @@ namespace VSDocSplitter
             {
                 var childrenElements =
                     namedElements.Except(typeElements)
-                        .Where(x => x.name.StartsWith(typeElement.name))
+                        .Where(x => x.name.StartsWith(typeElement.name+"."))
                         .ToArray();
 
                 var typeNameLength = typeElement.name.Length;
