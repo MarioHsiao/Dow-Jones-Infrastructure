@@ -32,6 +32,7 @@ namespace VSDocPreprocessor
         private void Cleanse(XDocument doc)
         {
             doc.Root.RemoveAttributes();
+            PromoteElementToAttribute(doc.Root, "assembly");
             PromoteElementToAttribute(doc.Root, "fullName");
             PromoteElementToAttribute(doc.Root, "name");
             PromoteElementToAttribute(doc.Root, "namespace");

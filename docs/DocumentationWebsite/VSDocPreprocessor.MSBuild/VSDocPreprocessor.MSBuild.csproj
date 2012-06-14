@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{5B53CF02-321D-4EF8-9B2C-4C4889FD8A03}</ProjectGuid>
+    <ProjectGuid>{DF9A70CF-E6CF-4258-84AA-951538BB0481}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DowJones.Documentation</RootNamespace>
-    <AssemblyName>DowJones.Documentation.Core</AssemblyName>
+    <RootNamespace>VSDocPreprocessor.MSBuild</RootNamespace>
+    <AssemblyName>VSDocPreprocessor.MSBuild</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>SAK</SccProjectName>
@@ -32,19 +32,10 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Release\DowJones.Documentation.Core.XML</DocumentationFile>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'ToolChain|AnyCPU'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\ToolChain\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <DebugType>full</DebugType>
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Build.Framework" />
+    <Reference Include="Microsoft.Build.Utilities.v4.0" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -54,16 +45,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataAccess\DocumentationPageLocator.cs" />
-    <Compile Include="DataAccess\IDocumentationPageLocator.cs" />
-    <Compile Include="Model\DocumentationCategory.cs" />
-    <Compile Include="Model\DocumentationPage.cs" />
-    <Compile Include="Model\DocumentationPages.cs" />
-    <Compile Include="Model\DocumentationPageSection.cs" />
-    <Compile Include="Model\Name.cs" />
+    <Compile Include="ParseVSDocs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\VSDocPreprocessor\VSDocPreprocessor.csproj">
+      <Project>{324A66D1-2705-49F9-927F-3B69CAC838A4}</Project>
+      <Name>VSDocPreprocessor</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

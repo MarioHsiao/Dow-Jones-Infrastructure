@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.IO;
 using System.Linq;
 using System.Xml.Linq;
@@ -22,8 +23,24 @@ namespace VSDocSplitter
 
         public IEnumerable<Type> Parse(XDocument vsDoc)
         {
+            Contract.Requires(vsDoc != null);
+            Contract.Requires(vsDoc.Root != null);
+
             var members = vsDoc.Root.Element("members").Elements();
-            return Parse(members.ToArray());
+            var types = Parse(members.ToArray()).ToArray();
+
+            var assemblyElement = vsDoc.Root.Element("assembly");
+            if(assemblyElement != null && !string.IsNullOrWhiteSpace(assemblyElement.Value))
+            {
+                var assemblyName = assemblyElement.Value;
+
+                foreach (var type in types)
+                {
+                    type.Assembly = assemblyName;
+                }
+            }
+
+            return types;
         }
 
         public IEnumerable<Type> Parse(IEnumerable<XElement> elements)

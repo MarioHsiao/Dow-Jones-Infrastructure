@@ -8,6 +8,9 @@ namespace VSDocPreprocessor
     [DataContract(Namespace="", Name = "type")]
     public class Type : DocumentEntity
     {
+        [DataMember(Name = "assembly")]
+        public string Assembly { get; set; }
+
         [DataMember(Name = "constructors")]
         public IEnumerable<Constructor> Constructors
         {
