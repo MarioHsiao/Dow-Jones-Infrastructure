@@ -16,17 +16,12 @@ namespace JsXmlDocParser
 		/// <returns>Parse Results as XML string</returns>
 		public static string Parse(TextReader reader, string assemblyName = null)
 		{
-			IEnumerable<string> functions;
-
-			using (reader)
-			{
-				functions = reader.ReadFunctionBlocks();
-			}
-
+			var functions = reader.ReadFunctionBlocks();
 			var sb = new StringBuilder();
+
 			using (var memberInfoWriter = new MemberInfoWriter(sb))
 			{
-				if(!string.IsNullOrWhiteSpace(assemblyName)) 
+				if (!string.IsNullOrWhiteSpace(assemblyName))
 					memberInfoWriter.WriteAssemblyName(assemblyName);
 
 				foreach (var functionInfo in functions.Select(function => new FunctionInfo(function)))

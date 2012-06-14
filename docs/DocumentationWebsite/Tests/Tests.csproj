@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -50,6 +50,12 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Build.Framework" />
+    <Reference Include="Microsoft.Build.Utilities.v4.0" />
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Moq">
+      <HintPath>..\packages\Moq.4.0.10827\lib\NET40\Moq.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -71,6 +77,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tools\BuildTasks\JsVsDocGeneratorTests.cs" />
     <Compile Include="Tools\JsXmlDocParser\FunctionInfoTests.cs" />
     <Compile Include="Tools\JsXmlDocParser\JsParserTests.cs" />
     <Compile Include="Tools\JsXmlDocParser\TextReaderExtensionsTest.cs" />
@@ -87,6 +94,10 @@
     <ProjectReference Include="..\Core\Core.csproj">
       <Project>{5b53cf02-321d-4ef8-9b2c-4c4889fd8a03}</Project>
       <Name>Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JsVsDocGeneratorTask\DowJones.Documentation.BuildTasks.csproj">
+      <Project>{1dd92eb3-584c-42d4-a2b8-2095462fdea8}</Project>
+      <Name>DowJones.Documentation.BuildTasks</Name>
     </ProjectReference>
     <ProjectReference Include="..\JsXmlDocParser\JsXmlDocParser.csproj">
       <Project>{d0aed5a8-7f0a-442c-8569-dbe931dfb826}</Project>
@@ -113,6 +124,12 @@
     <EmbeddedResource Include="Tools\VSDocPreprocessor\TestData\Input\Tests.XML" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Tools\BuildTasks\TestFolder\jquery-1.6.2-vsdoc.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Tools\BuildTasks\TestFolder\jquery.validate-vsdoc.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Tools\JsXmlDocParser\SampleTestFiles\jquery-1.6.2-vsdoc.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -123,6 +140,9 @@
     <EmbeddedResource Include="Tools\VSDocPreprocessor\TestData\Expected\TestClassBuilder.xml" />
     <EmbeddedResource Include="Tools\VSDocPreprocessor\TestData\Expected\TestEnum.xml" />
     <EmbeddedResource Include="Tools\VSDocPreprocessor\TestData\Expected\TestInnerEnum.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
