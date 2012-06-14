@@ -23,5 +23,6 @@
     <files>
         <file src="DowJones.Assemblers.dll" target="lib" />
         <file src="DowJones.Assemblers.pdb" target="lib" />
+        <file src="DowJones.Assemblers.xml" target="lib" />
     </files>
 </package>

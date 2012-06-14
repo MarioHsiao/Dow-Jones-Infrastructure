@@ -22,5 +22,6 @@
     <files>
         <file src="DowJones.Infrastructure.dll" target="lib" />
         <file src="DowJones.Infrastructure.pdb" target="lib" />
+        <file src="DowJones.Infrastructure.xml" target="lib" />
     </files>
 </package>
