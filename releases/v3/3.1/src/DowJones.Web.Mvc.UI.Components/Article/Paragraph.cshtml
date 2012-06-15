@@ -1,11 +1,6 @@
-﻿@using System.Text;
-@using System.Collections.Generic;
 @using DowJones.Infrastructure;
 @using DowJones.Extensions;
-@using DowJones.Ajax.Article;
-@using DowJones.Web.Mvc.UI.Components.Article;
-@using Factiva.Gateway.Messages.Archive.V2_0;
-@using System.Text.RegularExpressions;
+@using Ajax.Article;
 @model DowJones.Web.Mvc.UI.Components.Models.Article.ParagraphModel
 @{
     TagName = Model.TagName.IsNullOrEmpty() ? "p" : Model.TagName;
@@ -23,7 +18,7 @@
             break;
         case MarkUpType.ImageFigure:
             if (!string.IsNullOrEmpty(renderItem.EnlargedImageUrl)){ 
-                <div class="figure"><div class="figImages"><img alt="@(renderItem.Title.EscapeForHtml())" src="@(renderItem.ItemValue)" title="@(renderItem.Title.EscapeForHtml())" /><a class="dj_article_enlargeImg_link" href="javascript:void(0)" data-href="@(renderItem.EnlargedImageUrl)">Enlarge</a></div><div class="figCredit">@(renderItem.Credit)</div><div class="figSource">@(renderItem.Source)</div><div class="figCaption">@(renderItem.Caption)</div></div>
+                <div class="figure"><img alt="@(renderItem.Title.EscapeForHtml())" src="@(renderItem.ItemValue)" title="@(renderItem.Title.EscapeForHtml())" /><div class="dj_article_enlargeImg_wrap"><a class="dj_article_enlargeImg_link" href="javascript:void(0)" data-href="@(renderItem.EnlargedImageUrl)">Enlarge</a></div><div class="figCredit">@(renderItem.Credit)</div><div class="figSource">@(renderItem.Source)</div><div class="figCaption">@(renderItem.Caption)</div></div>
             }else{
                 <div class="figure"><img alt="@(renderItem.Title.EscapeForHtml())" src="@(renderItem.ItemValue)" title="@(renderItem.Title.EscapeForHtml())" /><div class="figCredit">@(renderItem.Credit)</div><div class="figSource">@(renderItem.Source)</div><div class="figCaption">@(renderItem.Caption)</div></div>
             }

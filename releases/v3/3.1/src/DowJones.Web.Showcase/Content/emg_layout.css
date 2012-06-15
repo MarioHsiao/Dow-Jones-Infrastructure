@@ -2406,14 +2406,14 @@ td.divtab2td2
 }
 
 
-divtab2.table tbody th, tbody td, divtab3.table tbody th, tbody td
+divtab2.table tbody th, divtab2.tabletbody td, divtab2.table tbody th, divtab2.table tbody td
 {
     background: none;
     border: solid 1px silver;
 }
 
 
-divtab3.table tbody th, tbody td
+divtab3.table tbody th, divtab3.table tbody td
 {
     background: none;
     border: solid 1px silver;

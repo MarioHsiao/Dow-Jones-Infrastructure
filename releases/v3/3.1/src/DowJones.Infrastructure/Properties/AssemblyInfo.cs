@@ -17,6 +17,7 @@ using System.Runtime.InteropServices;
 // The following GUID is for the ID of the typelib if this project is exposed to COM
 [assembly: Guid("ff679928-c0dc-4acf-9d32-d3cb79b4bc83")]
 
+[assembly: InternalsVisibleTo("DowJones.Web.Mvc")]
 [assembly: InternalsVisibleTo("DowJones.Web.Mvc.Tests")]
 [assembly: InternalsVisibleTo("DowJones.Web.Mvc.UI.Canvas.DataAccess" )]
 [assembly: InternalsVisibleTo("DowJones.Web")]

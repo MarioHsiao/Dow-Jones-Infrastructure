@@ -1,4 +1,6 @@
-﻿using System.Web;
+﻿using System;
+using System.Web;
+using DowJones.Extensions.Web;
 
 namespace DowJones.Web.ClientResources
 {
@@ -22,10 +24,7 @@ namespace DowJones.Web.ClientResources
 
             var module = resourceName;
 
-            if (module.StartsWith("~/"))
-                module = VirtualPathUtility.ToAbsolute(module);
-
-            else if (module.EndsWith(".js"))
+            if (module.EndsWith(".js"))
                 module = module.Substring(0, resourceName.Length - 3);
 
             return module;

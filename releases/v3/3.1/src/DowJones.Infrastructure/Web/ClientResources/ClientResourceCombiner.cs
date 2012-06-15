@@ -31,7 +31,7 @@ namespace DowJones.Web
             IList<ClientResource> resources = new List<ClientResource>(resourcesToCombine);
 
             var combinedResourcesUrls =
-                new[] { Level.Core, Level.Global, Level.MidLevel, Level.Component }
+                new[] { Level.Core, Level.Global, Level.MidLevel, Level.Component, Level.Independent }
                     .Select(level => CombineResourcesForDependencyLevel(resources, level))
                     .ToArray();
 

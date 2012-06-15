@@ -86,6 +86,11 @@ namespace DowJones.Web.Showcase.Controllers
             return ViewComponent(model);
         }
 
+        public ActionResult RequireJsLoadingDemo()
+        {
+            return View();
+        }
+
         public ActionResult Tokens( )
         {
             return View("Tokens");

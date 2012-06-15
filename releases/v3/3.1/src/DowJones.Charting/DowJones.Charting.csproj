@@ -34,6 +34,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\DowJones.Charting.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="CordaNetEmbedder">
@@ -72,9 +73,15 @@
     <Compile Include="..\SolutionInfo.cs">
       <Link>Properties\SolutionInfo.cs</Link>
     </Compile>
+    <Compile Include="Highcharts\SaveImageHttpHandler.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Highcharts\ImageHttpHandler.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Highcharts\ExportChart.cs" />
     <Compile Include="Highcharts\Exporter.cs" />
-    <Compile Include="Highcharts\HttpHandler.cs" />
+    <Compile Include="Highcharts\ExporterHttpHandler.cs" />
     <Compile Include="Manager\ChartFormatType.cs" />
     <Compile Include="Manager\ChartingManager.cs" />
     <Compile Include="Manager\ChartTemplate.cs" />
@@ -139,14 +146,21 @@
     <Compile Include="Fcp\ScreeningPieChartGenerator.cs" />
     <Compile Include="Fcp\TimeLineChartGenerator.cs" />
     <Compile Include="Fcp\TimeLineStockChartGenerator.cs" />
+    <Compile Include="Manager\PlatformCacheManager.cs" />
     <Compile Include="MarketData\ThumbnailStockChartDataSet.cs" />
     <Compile Include="MarketData\ThumbnailStockChartGenerator.cs" />
     <Compile Include="Manager\OutputChartType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Include="Segmentation\InvestmentBanker\ThumbnailStockChartDataSet.cs" />
     <Compile Include="Segmentation\InvestmentBanker\ThumbnailStockChartGenerator.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="DowJones.Charting.nuspec" />
     <None Include="ITXMLs\common\bubblemap_lg.itxml" />
     <None Include="ITXMLs\common\bubblemap_sm.itxml" />
@@ -157,6 +171,10 @@
     <None Include="ITXMLs\common\trend_lg.itxml" />
     <None Include="ITXMLs\common\trend_sm.itxml" />
     <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ITXMLs\segmentation\investmentbanker\" />

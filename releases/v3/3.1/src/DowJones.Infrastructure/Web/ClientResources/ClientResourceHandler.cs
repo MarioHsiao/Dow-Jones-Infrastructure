@@ -4,7 +4,6 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Web;
@@ -36,12 +35,25 @@ namespace DowJones.Web
         public static Func<string> CacheTokenFactory = () => _cachingToken.Value;
 
         private static readonly Lazy<string> _cachingToken = new Lazy<string>(GetCachingToken);
-        private static readonly Lazy<DateTime> _assemblyTimestamp = new Lazy<DateTime>(GetAssemblyTimestamp);
-
-        protected DateTime AssemblyTimestamp
+        
+        /// <summary>
+        /// Function used to determine the LastModifiedTimestamp of a request
+        /// </summary>
+        public static Func<HttpContextBase, DateTime> LastModifiedCalculator
         {
-            get { return _assemblyTimestamp.Value; }
+            get
+            {
+                if (_lastModifiedCalculator == null)
+                {
+                    var timestamp = typeof (ClientResourceHandler).Assembly.GetAssemblyTimestamp();
+                    return (context) => timestamp;
+                }
+
+                return _lastModifiedCalculator;
+            }
+            set { _lastModifiedCalculator = value; }
         }
+        private volatile static Func<HttpContextBase, DateTime> _lastModifiedCalculator;
 
         [Inject("Cannot use constructor injection on HttpHandlers")]
         protected ILog Log { get; set; }
@@ -185,7 +197,7 @@ namespace DowJones.Web
             {
                 var expirationDate = DateTime.Now.AddYears(1);
                 context.Response.Cache.SetExpires(expirationDate);
-                context.Response.Cache.SetLastModified(AssemblyTimestamp);
+                context.Response.Cache.SetLastModified(LastModifiedCalculator(context));
                 context.Response.Cache.SetMaxAge(new TimeSpan(expirationDate.ToFileTimeUtc()));
                 context.Response.Cache.SetCacheability(HttpCacheability.Private); // dacostad changed from public to not allow proxy servers to cache.
             }
@@ -210,7 +222,7 @@ namespace DowJones.Web
                 ifModifiedSinceHeader.HasValue() &&
                 DateTime.TryParse(ifModifiedSinceHeader, out ifModifiedSince))
             {
-                isModified = (ifModifiedSince.GetDay() <= AssemblyTimestamp);
+                isModified = (ifModifiedSince.GetDay() <= LastModifiedCalculator(context));
             }
             return isModified;
         }
@@ -319,20 +331,16 @@ namespace DowJones.Web
             return culture;
         }
 
-        private static DateTime GetAssemblyTimestamp()
-        {
-            return File.GetLastWriteTimeUtc(Assembly.GetCallingAssembly().Location);
-        }
-
         private static string GetCachingToken()
         {
             var cachingToken = Settings.Default.ClientResourceCachingToken;
 
+            var context = new Lazy<HttpContextBase>(HttpContext.Current.ToHttpContextBase);
+
             // if no setting value was specified, try to grab it from a file
             if (string.IsNullOrWhiteSpace(cachingToken))
             {
-                var httpContext = HttpContext.Current.ToHttpContextBase();
-                string tokenFile = httpContext.Server.MapPath(ClientTokenFilename);
+                string tokenFile = context.Value.Server.MapPath(ClientTokenFilename);
 
                 if (File.Exists(tokenFile))
                     cachingToken = File.ReadAllText(tokenFile).Trim();
@@ -340,7 +348,7 @@ namespace DowJones.Web
 
             if (string.IsNullOrWhiteSpace(cachingToken))
             {
-                cachingToken = _assemblyTimestamp.Value.Ticks.ToString().Trim('0');
+                cachingToken = LastModifiedCalculator(context.Value).Ticks.ToString().Trim('0');
             }
 
             return cachingToken;

@@ -1,0 +1,8 @@
+﻿<% var index = self.index, radar = self.radar; %>
+<a class="djRadarItemNode" data-index="<%= index %>" href="#" djEvent="click:itemClicked" djData>
+    <table><tbody><tr><td>
+        <div class="djRadarItemBox djRadarItemBox<%= radar.growthCode %>" data-p1d="<%= radar.oneDayCount %>" data-p3m="<%= radar.threeMonthCount %>" data-a3m="<%= radar.threeMonthAvg %>" data-grv="<%= radar.growthRate %>">
+			
+        </div>
+    </td></tr></tbody></table>
+</a>

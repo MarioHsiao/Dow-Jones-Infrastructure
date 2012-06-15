@@ -34,6 +34,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\DowJones.Pages.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="factiva.gateway.messages, Version=7.5.0.85, Culture=neutral, processorArchitecture=MSIL">

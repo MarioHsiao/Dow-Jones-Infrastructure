@@ -19,5 +19,6 @@
     <files>
         <file src="DowJones.Web.Mvc.UI.Components.dll" target="lib" />
         <file src="DowJones.Web.Mvc.UI.Components.pdb" target="lib" />
+        <file src="DowJones.Web.Mvc.UI.Components.xml" target="lib" />
     </files>
 </package>

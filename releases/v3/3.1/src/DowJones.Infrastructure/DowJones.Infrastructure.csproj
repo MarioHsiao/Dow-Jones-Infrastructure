@@ -38,6 +38,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <GenerateSerializationAssemblies>On</GenerateSerializationAssemblies>
+    <DocumentationFile>bin\Release\DowJones.Infrastructure.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DowJones.Parallel">
@@ -92,6 +93,7 @@
     <Compile Include="Alert\SearchFilterUtility.cs" />
     <Compile Include="Alert\SimpleAlertRequest.cs" />
     <Compile Include="Articles\ArticleDataResult.cs" />
+    <Compile Include="Articles\ArticleRendererRequest.cs" />
     <Compile Include="Articles\ArticleResultset.cs" />
     <Compile Include="Articles\ContentHeadlineToArticleMapper.cs" />
     <Compile Include="Articles\ElinkReferences.cs" />

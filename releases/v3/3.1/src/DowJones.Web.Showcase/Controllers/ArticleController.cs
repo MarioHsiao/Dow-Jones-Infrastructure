@@ -2,12 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Web;
 using System.Web.Mvc;
+using DowJones.Ajax;
 using DowJones.Ajax.Article;
+using DowJones.Extensions;
 using DowJones.Articles;
 using DowJones.Assemblers.Articles;
 using DowJones.Infrastructure;
 using DowJones.Exceptions;
+using DowJones.Managers.Multimedia;
 using DowJones.Url;
 using DowJones.Web.Mvc.Routing;
 using DowJones.Web.Mvc.Search.ViewModels;
@@ -16,7 +20,6 @@ using DowJones.Web.Mvc.UI.Components.Models;
 using DowJones.Web.Mvc.UI.Components.Models.Article;
 using DowJones.Web.Mvc.UI.Components.SocialButtons;
 using Factiva.Gateway.Messages.Archive.V2_0;
-using Factiva.Gateway.Messages.MarketData.V1_0;
 using ControllerBase = DowJones.Web.Mvc.ControllerBase;
 
 namespace DowJones.Web.Showcase.Controllers
@@ -25,22 +28,26 @@ namespace DowJones.Web.Showcase.Controllers
     {
         private readonly IArticleService _articleService;
         private readonly ArticleConversionManager _articleConversionManager;
+        private readonly MultimediaManager _multimediaManager;
+        private readonly HttpContextBase _httpContextBase;
 		private const string DefaultCanonicalSearchString = "T|microsoft T|en T|es O|, T|pt O|, N|la O|c O|+ T|article N|fmt O|c T|report N|fmt O|c O|, T|file N|fmt O|c O|, T|webpage N|fmt O|c O|, T|blog N|fmt O|c O|, T|multimedia N|fmt O|c O|, T|picture N|fmt O|c O|, T|tmnb N|rst O|c T|tmnb N|rst O|c O|, O|+ O|+ T|article T|file O|, T|report O|, N|fmt O|c O|+ N|pd D|-0008 D| O|d O|+";
 
-    	public ArticleController(IArticleService articleService, ArticleConversionManager articleConversionManager )
+    	public ArticleController(IArticleService articleService, ArticleConversionManager articleConversionManager, MultimediaManager multimediaManager, HttpContextBase httpContextBase)
         {
             _articleService = articleService;
             _articleConversionManager = articleConversionManager;
+    	    _multimediaManager = multimediaManager;
+    	    _httpContextBase = httpContextBase;
         }
 
-        public ActionResult Index(string acn = "DJFVW00020120518e85i642c0", DisplayOptions option = DisplayOptions.Full)
+		public ActionResult Index(string accessionNumber = "DJFVW00020120326e83qkgx46", DisplayOptions option = DisplayOptions.Full)
         {
-            return Article(acn, option);
+			return Article(accessionNumber, option);
         }
 
-		public ActionResult ComponentExplorerDemo(string acn = "DJFVW00020120326e83qkgx46", DisplayOptions option = DisplayOptions.Full)
+		public ActionResult ComponentExplorerDemo(string accessionNumber = "DJFVW00020120326e83qkgx46", DisplayOptions option = DisplayOptions.Full)
 		{
-			var model = GetArticle(acn, DefaultCanonicalSearchString, ImageType.Thumbnail, PictureSize.Small, option);
+			var model = GetArticle(accessionNumber, DefaultCanonicalSearchString, ImageType.Thumbnail, PictureSize.Large, option);
 			return View("Index", "_Layout_ComponentExplorer", model);
 		}
 
@@ -54,17 +61,217 @@ namespace DowJones.Web.Showcase.Controllers
         	return Request.IsAjaxRequest() ? ViewComponent(model, callback) : View("Index", model);
         }
 
+        [Route("article/video/{accessionNumber}")]
+        public ActionResult Video(string accessionNumber)
+        {
+            var model = GetArticle(accessionNumber, "video");
+
+            return Request.IsAjaxRequest() ? ViewComponent(model) : View("Index", model);
+        }
+
+        private MultiMediaItemModel GetMultimediaModel(string accessionnumber, ContentSubCategory contentSubCategory)
+        {
+            var response = _multimediaManager.GetMultiMediaResult(accessionnumber, false);
+            var multimediaItemModel = new MultiMediaItemModel();
+
+            if (response.Status > 0)
+            {
+                throw new DowJonesUtilitiesException(response.Status);
+            }
+
+            if (response.MultimediaResult != null)
+            {
+                if (response.MultimediaResult.MustPlayFromSource != null)
+                {
+                    multimediaItemModel.MustPlayFromSource = response.MultimediaResult.MustPlayFromSource.Status;
+                    if (multimediaItemModel.MustPlayFromSource)
+                    {
+                        multimediaItemModel.ExternalUrl = response.MultimediaResult.MustPlayFromSource.Url;
+                    }
+                }
+
+                if (response.MultimediaResult.MediaContents != null && response.MultimediaResult.MediaContents.Count > 0)
+                {
+                    var mediaContents = response.MultimediaResult.MediaContents;
+                    var mediaContent = mediaContents.First();
+                    if (mediaContents.Count > 1)
+                    {
+                        mediaContent = mediaContents[1];
+                    }
+
+                    var browsers = IdentifyBrowsers(_httpContextBase);
+
+                    switch (contentSubCategory)
+                    {
+                        case ContentSubCategory.Audio:
+                            {
+                                var videoPlayerModel = new VideoPlayerModel
+                                {
+                                    AutoPlay = true,
+                                    PlayList = new ClipCollection(new[] { Mapper.Map<Clip>(mediaContent) }),
+                                    Width = GetAudioWidth(browsers),
+                                    Height = GetAudioHeight(),
+                                    PlayerKey = "75a6c4404d9ffa80a63",
+                                };
+                                multimediaItemModel.MultiMediaPlayerModel = videoPlayerModel;
+                            }
+                            break;
+                        case ContentSubCategory.Video:
+                            {
+                                var aspectRatio = GetVideoAspectRatio(browsers);
+                                var width = (int.Parse(mediaContent.Width) / aspectRatio).ConvertTo<int>();
+                                var height = (int.Parse(mediaContent.Height) / aspectRatio).ConvertTo<int>();
+                                var videoPlayerModel = new VideoPlayerModel
+                                {
+                                    AutoPlay = true,
+                                    Width = width,
+                                    Height = height,
+                                    PlayList = new ClipCollection(new[] { Mapper.Map<Clip>(mediaContent) }),
+                                    PlayerKey = "75a6c4404d9ffa80a63",
+                                };
+
+                                //videoPlayerModel.PlayList.First().Title = JsonUtility.EncodeStringValue(portalHeadlineInfo.Title);
+                                multimediaItemModel.MultiMediaPlayerModel = videoPlayerModel;
+                            }
+                            break;
+                    }
+                }
+            }
+            return multimediaItemModel;
+        }
+
+        private static int GetAudioHeight()
+        {
+            return 30;
+        }
+
+        private static int GetAudioWidth(Browsers browsers)
+        {
+            if (browsers.IsMobileAndroid || browsers.IsMobileSafari)
+            {
+                return 300;
+            }
+
+            return 500;
+        }
+
+        private double GetVideoAspectRatio(Browsers browsers)
+        {
+            if (browsers.IsTabletSafari)
+            {
+                return 1.5;
+            }
+
+            if (browsers.IsMobileAndroid ||browsers.IsMobileSafari)
+            {
+                return 2.4;
+            }
+
+            return 1.1;
+        }
+
+        public Browsers IdentifyBrowsers(HttpContextBase context)
+        {
+            var browsers = new Browsers();
+            if (context != null)
+            {
+                var userAgent = context.Request.UserAgent;
+
+                if (!string.IsNullOrEmpty(userAgent))
+                {
+                    var ipodIndex = userAgent.IndexOf("iPod", StringComparison.Ordinal);
+                    var iphoneIndex = userAgent.IndexOf("iPhone", StringComparison.Ordinal);
+                    var ipadIndex = userAgent.IndexOf("iPad", StringComparison.Ordinal);
+                    var androidIndex = userAgent.IndexOf("Android", StringComparison.Ordinal);
+                    
+                    if (iphoneIndex + ipodIndex > -1) browsers.IsMobileSafari = true;
+                    if (ipadIndex > -1) browsers.IsTabletSafari = true;
+                    if (androidIndex > -1) browsers.IsMobileAndroid = true;
+                    return browsers;
+                }
+            }
+            return browsers;
+        }
+
+        private ArticleModel GetArticle(string accessionNumber, string contentType)
+        {
+            var articleReference = new ArticleReference
+                                       {
+                                           AccessionNumber = accessionNumber, 
+                                           ContentType = contentType
+                                       };
+
+            var request = new MixedContentArticleRequest
+                              {
+                                  ArticleReferences = new List<ArticleReference>(new[] {articleReference}), 
+                                  DisplayFormat = DisplayFormat.Article, 
+                                  ResponseDataSet = new ResponseDataSet
+                                                        {
+                                                            articleFormat = ArticleFormatType.FULR
+                                                        },
+
+                              };
+
+            var articleResponseSet = _articleService.GetArticles(request);
+
+            if (articleResponseSet.article.IsNullOrEmpty())
+            {
+                throw new DowJonesUtilitiesException(DowJonesUtilitiesException.InvalidDataRequest);
+            }
+
+            var article = articleResponseSet.article.First(); 
+            
+            _articleConversionManager.ShowCompanyEntityReference = true;
+            _articleConversionManager.ShowExecutiveEntityReference = true;
+            _articleConversionManager.EnableELinks = true;
+            _articleConversionManager.EmbedHtmlBasedArticles = true;
+            _articleConversionManager.EmbedHtmlBasedExternalLinks = true;
+            _articleConversionManager.ShowImagesAsFigures = true;
+            _articleConversionManager.EnableEnlargedImage = true;
+
+            var urlBuilder = new UrlBuilder("~/article/" + accessionNumber);
+            var articleDataSet = _articleConversionManager.Convert(article);
+
+            return new ArticleModel
+            {
+                ArticleDataSet = articleDataSet,
+                ShowPostProcessing = true,
+                ShowSourceLinks = true,
+                ShowSocialButtons = true,
+                VideoPlayerModel = GetMultimediaModel(articleDataSet.AccessionNo, articleDataSet.ContentSubCategory).MultiMediaPlayerModel,
+                SocialButtons = new SocialButtonsModel
+                {
+                    Url = urlBuilder.ToString(),
+                    Description = "",
+                    Target = "_blank",
+                    ImageSize = ImageSize.Small,
+                    Title = ProcessHeadlineRenderItems(articleDataSet.Headline),
+                    SocialNetworks = new[] { SocialNetworks.LinkedIn, SocialNetworks.Twitter, SocialNetworks.Facebook },
+                    Keywords = "",
+                    ID = "socialButtons",
+                    ShowCustomTooltip = false,
+                },
+                PostProcessingOptions = new[]
+    		       		                        	{
+    		       		                        		PostProcessingOptions.Print,
+    		       		                        		PostProcessingOptions.Save,
+    		       		                        		PostProcessingOptions.PressClips,
+    		       		                        		PostProcessingOptions.Email, 
+    		       		                        		PostProcessingOptions.Listen,
+    		       		                        		PostProcessingOptions.Translate,
+    		       		                        		PostProcessingOptions.Share
+    		       		                        	}.Distinct()
+            };
+        }
+
+
     	private ArticleModel GetArticle(string accessionNumber, string canonicalSearchString, ImageType imageType, PictureSize pictureSize, DisplayOptions option)
     	{
-    		new GetHistoricalDataByTimePeriodRequest
-    			{
-    				adjustForCapitalChanges = true
-    			};
-
+    		
     		//canonicalSearchString = "T|djdn000020120216e82g0lkzf N|an O|: T|and O|+ T|sipc O|+ T|and O|+ T|businesswire O|+ T|and O|+ T|schwab O|+ T|and O|+ T|aboutschwab O|+ T|en T|ru O|, T|de O|, N|la O|c O|+ T|nnam T|nrmf O|, T|nrgn O|, N|ns O|c O|- T|article T|file O|, T|report O|, T|webpage O|, T|blog O|, T|picture O|, T|multimedia O|, T|board O|, T|customerdoc O|, N|fmt O|c O|+";
     		var article = _articleService.GetArticle(accessionNumber, canonicalSearchString);
 
-    		if (article == null || (article.status != null && article.status.value != 0))
+            if (article == null || (article.status != null && article.status.value != 0))
     		{
     			throw new DowJonesUtilitiesException(DowJonesUtilitiesException.InvalidDataRequest);
     		}
@@ -85,7 +292,6 @@ namespace DowJones.Web.Showcase.Controllers
     		return new ArticleModel
     		       	{
     		       		ArticleDataSet = _articleConversionManager.Convert(article),
-
     		       		ArticleDisplayOptions = option,
     		       		ShowPostProcessing = true,
     		       		ShowSourceLinks = true,
@@ -97,7 +303,7 @@ namespace DowJones.Web.Showcase.Controllers
     		       		                		Target = "_blank",
     		       		                		ImageSize = ImageSize.Small,
     		       		                		Title = ProcessHeadlineRenderItems(articleDataSet.Headline),
-    		       		                		SocialNetworks = new[] { SocialNetworks.LinkedIn, SocialNetworks.Twitter, SocialNetworks.Facebook, },
+    		       		                		SocialNetworks = new[] { SocialNetworks.LinkedIn, SocialNetworks.Twitter, SocialNetworks.Facebook },
     		       		                		Keywords = "",
     		       		                		ID = "socialButtons",
     		       		                		ShowCustomTooltip = false,
@@ -110,7 +316,7 @@ namespace DowJones.Web.Showcase.Controllers
     		       		                        		PostProcessingOptions.Email, 
     		       		                        		PostProcessingOptions.Listen,
     		       		                        		PostProcessingOptions.Translate,
-    		       		                        		PostProcessingOptions.Share,
+    		       		                        		PostProcessingOptions.Share
     		       		                        	}.Distinct()
     		       	};
     	}
@@ -191,6 +397,20 @@ namespace DowJones.Web.Showcase.Controllers
                 list.Add(r);
             }
         }
+
+        public class Browsers
+        {
+            public bool IsTabletSafari { get; set; }
+            public bool IsMobileSafari { get; set; }
+            public bool IsMobileAndroid { get; set; }
+        }
+        public class MultiMediaItemModel
+        {
+            public bool MustPlayFromSource { get; set; }
+            public string ExternalUrl { get; set; }
+            public VideoPlayerModel MultiMediaPlayerModel { get; set; }
+        }
+
     }
 
    

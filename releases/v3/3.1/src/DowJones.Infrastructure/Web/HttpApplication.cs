@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Web;
+using DowJones.Extensions;
 using log4net;
 using log4net.Config;
 using DowJones.DependencyInjection;
@@ -14,6 +15,8 @@ namespace DowJones.Web
     {
         protected static ILog Log = LogManager.GetLogger(typeof(HttpApplication));
 
+        public static DateTime AssemblyTimestamp { get; private set; }
+
         protected HttpApplication()
         {
             EndRequest += HttpApplication_EndRequest;
@@ -24,6 +27,9 @@ namespace DowJones.Web
             lock (this)
             {
                 XmlConfigurator.Configure(new FileInfo(HttpContext.Current.Server.MapPath(Settings.Default.Log4NetConfigurationFile)));
+
+                AssemblyTimestamp = GetType().Assembly.GetAssemblyTimestamp();
+                ClientResourceHandler.LastModifiedCalculator = context => AssemblyTimestamp;
 
                 ServiceLocator.Initialize();
                 ServiceLocator.Current.Inject(this);

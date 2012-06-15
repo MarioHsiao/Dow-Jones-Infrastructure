@@ -65,7 +65,8 @@ DJ.UI.VideoPlayerControl = DJ.UI.Component.extend({
                     controls: {
                         autoHide: (this.hasAudio ? false : true),
                         height: (this.options.container ? 20 : 30),
-                        fullscreen: (this.hasAudio ? false : true)
+                        fullscreen: (this.hasAudio ? false : true),
+                        url: encodeURIComponent(this.options.controlBarPath)
                     }
                 },
                 playlist: this.playList,
@@ -80,13 +81,11 @@ DJ.UI.VideoPlayerControl = DJ.UI.Component.extend({
             };
 
             if (this.iDevices.iPad) {
-                var $element = this.$element;
-                var medium = this.hasAudio ? 'audio' : 'video';
-                this.playerConfig.onLoad = function () {
-                    if (this.getState() != 3) {//Not Playing
+                this.playerConfig.onLoad = function() {
+                    if (this.getState() != 3) { //Not Playing
                         this.play(0);
                     }
-                }
+                };
             }
 
             if (this.hasRTMP) {
@@ -199,6 +198,7 @@ DJ.UI.VideoPlayerControl = DJ.UI.Component.extend({
                     }
                     return false;
                 }
+                return false;
             });
         }
         else {
@@ -279,12 +279,12 @@ DJ.UI.VideoPlayerControl = DJ.UI.Component.extend({
     }
 });
 
-    DJ.UI.VideoPlayerControl.prototype.iDevices = DJ.UI.VideoPlayerControl.prototype.iDevices || {
-        iPad: (navigator.userAgent.indexOf('iPad') !== -1)
-    };
+DJ.UI.VideoPlayerControl.prototype.iDevices = DJ.UI.VideoPlayerControl.prototype.iDevices || {
+    iPad: (navigator.userAgent.indexOf('iPad') !== -1)
+};
 
-    // Declare this class as a jQuery plugin
-    $.plugin('dj_VideoPlayerControl', DJ.UI.VideoPlayerControl);
+// Declare this class as a jQuery plugin
+$.plugin('dj_VideoPlayerControl', DJ.UI.VideoPlayerControl);
 
 
-    $dj.debug('Registered DJ.UI.VideoPlayerControl (extends DJ.UI.Component)');
+$dj.debug('Registered DJ.UI.VideoPlayerControl (extends DJ.UI.Component)');

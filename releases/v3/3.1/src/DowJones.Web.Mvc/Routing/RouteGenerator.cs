@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization.Formatters;
 using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Script.Serialization;
@@ -7,6 +8,8 @@ using DowJones.DependencyInjection;
 using DowJones.Extensions;
 using DowJones.Web.Mvc.Infrastructure;
 using DowJones.Web.Mvc.Threading;
+using Newtonsoft.Json;
+using JsonConvert = Newtonsoft.Json.JsonConvert;
 
 namespace DowJones.Web.Mvc.Routing
 {
@@ -16,6 +19,7 @@ namespace DowJones.Web.Mvc.Routing
         private readonly RequestContext _requestContext;
         private readonly IEnumerable<ControllerActionAttributeInfo> _controllerActionAttributes;
         private readonly JavaScriptSerializer _javaScriptSerializer;
+    	private readonly JsonSerializer _jsonSerializer;
 
 
         [Inject("Disambiguation: this is the 'real' constructor; the other constructor is for testing")]
@@ -23,6 +27,7 @@ namespace DowJones.Web.Mvc.Routing
             : this(routes, requestContext, javaScriptSerializer, controllerRegistry.ControllerActionAttributes)
         {
             _javaScriptSerializer = javaScriptSerializer;
+			_jsonSerializer = new JsonSerializer() { TypeNameAssemblyFormat = FormatterAssemblyStyle.Simple };
         }
 
         public RouteGenerator(RouteCollection routes, RequestContext requestContext, JavaScriptSerializer javaScriptSerializer, IEnumerable<ControllerActionAttributeInfo> controllerActionAttributes)
@@ -64,6 +69,7 @@ namespace DowJones.Web.Mvc.Routing
 
         private RouteValueDictionary GetConstraints(RouteAttribute attribute)
         {
+			//var c1 = JsonConvert.DeserializeObject<IDictionary<string, object>>(attribute.Constraints ?? string.Empty);
             var constraints = _javaScriptSerializer.Deserialize<IDictionary<string, object>>(attribute.Constraints ?? string.Empty);
 
             return new RouteValueDictionary(constraints ?? new object());

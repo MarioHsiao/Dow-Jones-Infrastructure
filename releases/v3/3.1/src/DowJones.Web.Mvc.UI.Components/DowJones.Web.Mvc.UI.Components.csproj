@@ -42,6 +42,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\DowJones.Web.Mvc.UI.Components.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Control n Showcase|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
@@ -222,6 +223,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>HeadlineListCarousel.cshtml</DependentUpon>
     </Compile>
+    <Compile Include="NewsRadar\NewsRadarControl.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NewsRadarControl.cshtml</DependentUpon>
+    </Compile>
     <Compile Include="OutletList\OutletList.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -401,6 +407,14 @@
     <Folder Include="CompanySparkline\js\" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="NewsRadar\ClientTemplates\Category.htm" />
+    <EmbeddedResource Include="NewsRadar\ClientTemplates\Controls.htm" />
+    <EmbeddedResource Include="NewsRadar\ClientTemplates\Key.htm" />
+    <EmbeddedResource Include="NewsRadar\ClientTemplates\Radar.htm" />
+    <EmbeddedResource Include="NewsRadar\ClientTemplates\Success.htm" />
+    <EmbeddedResource Include="NewsRadar\ClientTemplates\Container.htm" />
+    <EmbeddedResource Include="NewsRadar\ClientTemplates\Error.htm" />
+    <EmbeddedResource Include="NewsRadar\NewsRadar.js" />
     <EmbeddedResource Include="TwitterExperts\ClientTemplates\noData.htm" />
     <EmbeddedResource Include="TweetLines\ClientTemplates\noData.htm" />
     <EmbeddedResource Include="ScrollBar\ScrollBar.js" />
@@ -579,6 +593,10 @@
     <None Include="HeadlineListCarousel\HeadlineListCarousel.cshtml">
       <Generator>RazorViewComponentClassGenerator</Generator>
       <LastGenOutput>HeadlineListCarousel1.cs</LastGenOutput>
+    </None>
+    <None Include="NewsRadar\NewsRadarControl.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>NewsRadarControl.cs</LastGenOutput>
     </None>
     <None Include="OutletList\OutletList.cshtml">
       <Generator>RazorViewComponentClassGenerator</Generator>

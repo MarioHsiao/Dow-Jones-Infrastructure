@@ -36,6 +36,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\DowJones.Web.Mvc.UI.Components.Models.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="factiva.gateway.messages, Version=7.5.0.85, Culture=neutral, processorArchitecture=MSIL">
@@ -91,6 +92,17 @@
     <Compile Include="CompositeOutlet\CompositeOutletModel.cs" />
     <Compile Include="DiscoveryGraph\DiscoveryGraphModel.cs" />
     <Compile Include="HeadlineListCarousel\HeadlineListCarouselModel.cs" />
+    <Compile Include="NewsRadar\EntityModel.cs" />
+    <Compile Include="NewsRadar\EntityType.cs" />
+    <Compile Include="NewsRadar\InstrumentReferenceModel.cs" />
+    <Compile Include="NewsRadar\NewsEntityModel.cs" />
+    <Compile Include="NewsRadar\NewsRadarModel.cs" />
+    <Compile Include="NewsRadar\NewsVolumeModel.cs" />
+    <Compile Include="NewsRadar\OwnershipType.cs" />
+    <Compile Include="NewsRadar\QueryType.cs" />
+    <Compile Include="NewsRadar\Scope.cs" />
+    <Compile Include="NewsRadar\RadarSearchQueryModel.cs" />
+    <Compile Include="NewsRadar\TimeFrame.cs" />
     <Compile Include="OutletList\OutletListModel.cs" />
     <Compile Include="OutletList\OutletListTokens.cs" />
     <Compile Include="OutletList\OutletModel.cs" />
@@ -180,7 +192,27 @@
     <None Include="DowJones.Web.Mvc.UI.Components.Models.nuspec" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="VideoPlayer\Resources\flowplayer.audio-3.2.2.swf" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="VideoPlayer\Resources\flowplayer.controls-3.2.5.swf" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="VideoPlayer\Resources\flowplayer.rtmp-3.2.3.swf" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="VideoPlayer\Resources\flowplayer.unlimited-3.2.7.swf" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="VideoPlayer\Resources\play_text_large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="VideoPlayer\Resources\playlistleft.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="VideoPlayer\Resources\playlistright.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

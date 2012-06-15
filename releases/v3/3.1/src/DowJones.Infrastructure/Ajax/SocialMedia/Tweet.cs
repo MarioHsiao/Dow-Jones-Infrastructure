@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
 using DowJones.Infrastructure.Models.SocialMedia;
 using DowJones.Managers.SocialMedia.Twitter.Extensions;
-using Newtonsoft.Json;
 using System.Runtime.Serialization;
 
 namespace DowJones.Ajax.SocialMedia
