@@ -18,7 +18,7 @@ namespace DowJones.Web.Mvc.UI.Components.NewsRadar
         [DataMember(Name = "subjectCode")]
         public string SubjectCode { get; set; }
 
-        [DataMember(Name = "searchQuery")]
-        public SearchQueryModel SearchQuery { get; set; }
+        [DataMember(Name = "radarSearchQuery")]
+        public RadarSearchQueryModel RadarSearchQuery { get; set; }
     }
 }

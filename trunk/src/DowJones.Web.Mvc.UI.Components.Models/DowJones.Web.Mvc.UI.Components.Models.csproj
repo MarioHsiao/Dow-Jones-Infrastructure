@@ -101,7 +101,7 @@
     <Compile Include="NewsRadar\OwnershipType.cs" />
     <Compile Include="NewsRadar\QueryType.cs" />
     <Compile Include="NewsRadar\Scope.cs" />
-    <Compile Include="NewsRadar\SearchQueryModel.cs" />
+    <Compile Include="NewsRadar\RadarSearchQueryModel.cs" />
     <Compile Include="NewsRadar\TimeFrame.cs" />
     <Compile Include="OutletList\OutletListModel.cs" />
     <Compile Include="OutletList\OutletListTokens.cs" />

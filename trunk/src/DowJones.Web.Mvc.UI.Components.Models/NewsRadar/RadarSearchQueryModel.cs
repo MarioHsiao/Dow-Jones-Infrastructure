@@ -4,8 +4,8 @@ using Newtonsoft.Json.Converters;
 
 namespace DowJones.Web.Mvc.UI.Components.NewsRadar
 {
-    [DataContract(Name = "searchQuery")]
-    public class SearchQueryModel
+    [DataContract(Name = "radarSearchQuery")]
+    public class RadarSearchQueryModel
     {
         [DataMember(Name = "name")]
         public string Name { get; set; }

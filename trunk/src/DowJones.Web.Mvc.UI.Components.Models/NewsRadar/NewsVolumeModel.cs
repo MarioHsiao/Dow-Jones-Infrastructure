@@ -7,7 +7,7 @@ namespace DowJones.Web.Mvc.UI.Components.NewsRadar
     [DataContract(Name="newsVolume")]
     public class NewsVolumeModel
     {
-        [DataMember(Name = "timeframe")]
+        [DataMember(Name = "timeFrame")]
         [JsonConverter(typeof(StringEnumConverter))]
         public TimeFrame TimeFrame { get; set; }
 

@@ -1331,6 +1331,7 @@
     <Content Include="Styles\css\canvas.icons.css" />
     <Content Include="Styles\css\canvas.nav.css" />
     <Content Include="Styles\css\canvas.tag-cloud.css" />
+    <Content Include="Styles\css\newsRadar.css" />
     <Content Include="Styles\css\normalizeExtensions.css" />
     <Content Include="Styles\css\dashboard.crud-form.css" />
     <Content Include="Styles\css\module.social-media.css" />
@@ -1443,6 +1444,7 @@
     <Content Include="Styles\images\menu_outer_arrow_left.png" />
     <Content Include="Styles\images\menu_outer_arrow_right.png" />
     <Content Include="Styles\images\nav_dots.png" />
+    <Content Include="Styles\images\newsradar_circles.png" />
     <Content Include="Styles\images\option_hover.png" />
     <Content Include="Styles\images\option_selected.png" />
     <Content Include="Styles\images\page_thumbnail.png" />
