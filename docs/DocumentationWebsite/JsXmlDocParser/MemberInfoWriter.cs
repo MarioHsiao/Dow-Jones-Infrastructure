@@ -1,102 +1,88 @@
 using System;
-using System.IO;
-using System.Text;
+using System.Diagnostics.Contracts;
 using System.Xml;
 
 namespace JsXmlDocParser
 {
 	public class MemberInfoWriter : IDisposable
 	{
-		readonly XmlWriter _writer;
-		private bool initializedDocument;
+		private readonly XmlWriter _writer;
+		private bool _documentStarted;
 
-		public MemberInfoWriter(Stream w, Encoding encoding)
+
+	    internal bool IsWriterAvailable
+	    {
+	        get { return _writer == null || _writer.WriteState != WriteState.Closed; }
+	    }
+
+
+	    public MemberInfoWriter(XmlWriter writer)
+	    {
+            Contract.Requires(writer != null);
+	        _writer = writer;
+	    }
+
+
+	    public void Close()
 		{
-			_writer = XmlWriter.Create(w, DefaultXmlWriterSettings(encoding));
-			InitializeDocument();
+            if (IsWriterAvailable)
+                return;
+
+	        _writer.Close();
 		}
 
-		public MemberInfoWriter(string filename, Encoding encoding)
-			: this(new FileStream(filename, FileMode.Create, FileAccess.Write, FileShare.Read), encoding)
-		{
-		}
-
-
-		public MemberInfoWriter(StringBuilder output)
-		{
-			_writer = XmlWriter.Create(output, DefaultXmlWriterSettings());
-			InitializeDocument();
-
-		}
-
-
-		public MemberInfoWriter(TextWriter w)
-		{
-			_writer = XmlWriter.Create(w, DefaultXmlWriterSettings(w.Encoding));
-			InitializeDocument();
-		}
-
-
-		internal XmlWriterSettings DefaultXmlWriterSettings(Encoding encoding = null)
-		{
-			return new XmlWriterSettings
-					{
-						Encoding = encoding ?? Encoding.UTF8,
-						Indent = true,
-						IndentChars = "\t",
-					};
-		}
-
-		private void InitializeDocument()
-		{
-			if (initializedDocument) return;
-
-			_writer.WriteStartDocument();
-			_writer.WriteStartElement("doc");
-			initializedDocument = true;
-		}
-
-
-		public void Write(FunctionInfo functionInfo)
-		{
-			_writer.WriteStartElement("member");
-			_writer.WriteAttributeString("name", string.Format("M:{0}", functionInfo.Signature));
-			if (!string.IsNullOrWhiteSpace(functionInfo.DocComments))
-			{
-				_writer.WriteString(Environment.NewLine);
-				_writer.WriteRaw(functionInfo.DocComments);
-				_writer.WriteString(Environment.NewLine);
-			}
-			_writer.WriteEndElement();
-		}
-
-		public void WriteAssemblyName(string name)
-		{
-			_writer.WriteStartElement("assembly");
-			_writer.WriteElementString("name", name);
-			_writer.WriteEndElement();
-		}
-
-		public void Flush()
-		{
-			_writer.Flush();
-		}
-
-		public void Close()
-		{
-			_writer.WriteEndElement();
-			_writer.WriteEndDocument();
-			_writer.Flush();
-			_writer.Close();
-		}
-
-		#region IDisposable Members
-
-		public void Dispose()
+	    public void Dispose()
 		{
 			Close();
 		}
 
-		#endregion
+	    public void Write(FunctionInfo functionInfo)
+	    {
+	        EnsureDocumentStarted();
+
+	        _writer.WriteStartElement("member");
+	        _writer.WriteAttributeString("name", string.Format("M:{0}", functionInfo.Signature));
+	        if (!string.IsNullOrWhiteSpace(functionInfo.DocComments))
+	        {
+	            _writer.WriteString(Environment.NewLine);
+	            _writer.WriteRaw(functionInfo.DocComments);
+	            _writer.WriteString(Environment.NewLine);
+	        }
+	        _writer.WriteEndElement();
+	    }
+
+	    public void WriteAssemblyName(string name)
+	    {
+	        EnsureDocumentStarted();
+
+	        _writer.WriteStartElement("assembly");
+	        _writer.WriteElementString("name", name);
+	        _writer.WriteEndElement();
+	    }
+
+	    public void WriteEndDocument()
+	    {
+            if (!_documentStarted)
+                return;
+
+	        _writer.WriteEndElement();
+	        _writer.WriteEndDocument();
+	    }
+
+	    public void WriteStartDocument()
+	    {
+	        if (_documentStarted) 
+	            return;
+
+	        _writer.WriteStartDocument();
+	        _writer.WriteStartElement("doc");
+
+	        _documentStarted = true;
+	    }
+
+	    internal void EnsureDocumentStarted()
+	    {
+	        WriteStartDocument();
+	    }
 	}
 }

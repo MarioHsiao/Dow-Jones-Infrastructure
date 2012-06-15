@@ -47,7 +47,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="JsVsDocGenerator.cs" />
+    <Compile Include="ConvertJsDocToVsDoc.cs" />
+    <Compile Include="GenerateDocumentation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -55,6 +56,15 @@
       <Project>{d0aed5a8-7f0a-442c-8569-dbe931dfb826}</Project>
       <Name>JsXmlDocParser</Name>
     </ProjectReference>
+    <ProjectReference Include="..\VSDocPreprocessor\VSDocPreprocessor.csproj">
+      <Project>{324A66D1-2705-49F9-927F-3B69CAC838A4}</Project>
+      <Name>VSDocPreprocessor</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DowJones.Documentation.BuildTasks.targets">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

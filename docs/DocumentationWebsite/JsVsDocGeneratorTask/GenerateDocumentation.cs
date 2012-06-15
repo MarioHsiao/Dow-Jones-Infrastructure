@@ -4,10 +4,11 @@ using System.IO;
 using System.Linq;
 using Microsoft.Build.Framework;
 using Microsoft.Build.Utilities;
+using VSDocPreprocessor;
 
-namespace VSDocPreprocessor.MSBuild
+namespace DowJones.Documentation.BuildTasks
 {
-    public class ParseVSDocs : Task
+    public class GenerateDocumentation : Task
     {
         private readonly TypeWriter _typeWriter;
         private readonly Processor _processor;
@@ -19,7 +20,7 @@ namespace VSDocPreprocessor.MSBuild
         }
 
         [Required]
-        public ITaskItem[] DocFiles { get; set; }
+        public ITaskItem[] VSDocFiles { get; set; }
 
         public ITaskItem OutDir
         {
@@ -34,7 +35,7 @@ namespace VSDocPreprocessor.MSBuild
         }
 
 
-        public ParseVSDocs()
+        public GenerateDocumentation()
         {
             _typeWriter = new TypeWriter();
             _processor = new Processor(typeWriter: _typeWriter);
@@ -80,7 +81,7 @@ namespace VSDocPreprocessor.MSBuild
 
         private IEnumerable<string> GetVSDocFilenames()
         {
-            var vsDocFiles = DocFiles.Select(x => x.ItemSpec).ToArray();
+            var vsDocFiles = VSDocFiles.Select(x => x.ItemSpec).ToArray();
 
             if (!vsDocFiles.Any())
             {

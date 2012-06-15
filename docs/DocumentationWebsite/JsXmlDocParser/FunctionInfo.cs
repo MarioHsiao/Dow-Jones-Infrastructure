@@ -1,22 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
 
 namespace JsXmlDocParser
 {
-	public class FunctionInfo : IMemberInfo
+	public class FunctionInfo
 	{
-		#region IMemberInfo Members
-
-		public MemberType MemberType { get; private set; }
-
 		public IEnumerable<string> Lines { get; set; }
 
 		public string Name { get; set; }
-
-		#endregion
 
 		public bool IsAnonymous
 		{
@@ -64,8 +57,6 @@ namespace JsXmlDocParser
 				throw new ArgumentException("Given line is not a function definition", "block");
 
 			Name = ExtractName(Lines.First());
-			MemberType = MemberType.Function;
-
 		}
 
 		private static string ExtractName(string line)

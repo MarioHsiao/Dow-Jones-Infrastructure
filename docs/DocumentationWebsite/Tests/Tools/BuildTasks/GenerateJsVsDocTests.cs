@@ -1,23 +1,20 @@
-﻿using System;
-using DowJones.Documentation.BuildTasks;
-using Microsoft.Build.Framework;
-using Moq;
+﻿using Microsoft.Build.Framework;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
+using DowJones.Documentation.BuildTasks;
 
 namespace DowJones.Documentation.Tests.Tools.BuildTasks
 {
 	[TestClass]
-	public class JsVsDocGeneratorTests
+    public class GenerateJsVsDocTests
 	{
-		[TestMethod]
+		[TestMethod, Ignore]
 		[DeploymentItem("Tools\\BuildTasks\\TestFolder", "TestFolder")]
 		public void ShouldProcessDirectory()
 		{
 			const string dir = "TestFolder";
-			var task = new JsVsDocGenerator
+            var task = new ConvertJsDocToVsDoc
 			{
-				ProjectDir = dir,
-				OutFile = "BuildTask.vsdoc.xml",
 				BuildEngine = new Mock<IBuildEngine>().Object
 			};
 			Assert.IsTrue(task.Execute());

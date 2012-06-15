@@ -33,7 +33,7 @@ namespace JsXmlDocParser.Tests
 											return new jQuery.fn.init(selector, context);
 										}";
 			var reader = new StringReader(block);
-			var results = reader.ReadFunctionBlocks();
+            var results = JsParser.ReadFunctionBlocks(reader);
 			// count all lines except empty lines
 			Assert.AreEqual(21, results[0].Split(Environment.NewLine.ToCharArray(), StringSplitOptions.RemoveEmptyEntries).Length);
 		}
@@ -69,7 +69,7 @@ namespace JsXmlDocParser.Tests
 
 										})();";
 			var reader = new StringReader(block);
-			var results = reader.ReadFunctionBlocks();
+            var results = JsParser.ReadFunctionBlocks(reader);
 			Assert.AreEqual(2, results.Count);
 		}
 
@@ -526,7 +526,7 @@ namespace JsXmlDocParser.Tests
 			#endregion
 
 			var reader = new StringReader(block);
-			var results = reader.ReadFunctionBlocks();
+            var results = JsParser.ReadFunctionBlocks(reader);
 			Assert.AreEqual(17, results.Count);
 		}
 

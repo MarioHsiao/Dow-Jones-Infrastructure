@@ -1,4 +1,3 @@
-
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Website", "Website\Website.csproj", "{AB380707-04A9-4098-9F57-D82F893A35D4}"
@@ -29,8 +28,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JsXmlDocParser", "JsXmlDocParser\JsXmlDocParser.csproj", "{D0AED5A8-7F0A-442C-8569-DBE931DFB826}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VSDocPreprocessor.MSBuild", "VSDocPreprocessor.MSBuild\VSDocPreprocessor.MSBuild.csproj", "{DF9A70CF-E6CF-4258-84AA-951538BB0481}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DowJones.Documentation.BuildTasks", "JsVsDocGeneratorTask\DowJones.Documentation.BuildTasks.csproj", "{1DD92EB3-584C-42D4-A2B8-2095462FDEA8}"
 EndProject
 Global
@@ -38,7 +35,6 @@ Global
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccLocalPath0 = .
 		SccLocalPath1 = Website
-		SccLocalPath11 = VSDocPreprocessor.MSBuild
 		SccLocalPath10 = JsVsDocGeneratorTask
 		SccLocalPath2 = Core
 		SccLocalPath3 = Content
@@ -50,7 +46,6 @@ Global
 		SccLocalPath9 = JsXmlDocParser
 		SccNumberOfProjects = 11
 		SccProjectName1 = Website
-		SccProjectName11 = VSDocPreprocessor.MSBuild
 		SccProjectName10 = JsVsDocGeneratorTask
 		SccProjectName2 = Core
 		SccProjectName3 = Content
@@ -67,7 +62,6 @@ Global
 		SccProjectTopLevelParentUniqueName7 = DowJones.Documentation.sln
 		SccProjectTopLevelParentUniqueName9 = DowJones.Documentation.sln
 		SccProjectUniqueName1 = Website\\Website.csproj
-		SccProjectUniqueName11 = VSDocPreprocessor.MSBuild\\VSDocPreprocessor.MSBuild.csproj
 		SccProjectUniqueName10 = JsVsDocGeneratorTask\\DowJones.Documentation.BuildTasks.csproj
 		SccProjectUniqueName2 = Core\\Core.csproj
 		SccProjectUniqueName3 = Content\\Content.csproj
