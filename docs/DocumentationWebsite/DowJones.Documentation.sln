@@ -28,14 +28,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JsXmlDocParser", "JsXmlDocParser\JsXmlDocParser.csproj", "{D0AED5A8-7F0A-442C-8569-DBE931DFB826}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DowJones.Documentation.BuildTasks", "JsVsDocGeneratorTask\DowJones.Documentation.BuildTasks.csproj", "{1DD92EB3-584C-42D4-A2B8-2095462FDEA8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuildTasks", "BuildTasks\BuildTasks.csproj", "{1DD92EB3-584C-42D4-A2B8-2095462FDEA8}"
 EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccLocalPath0 = .
 		SccLocalPath1 = Website
-		SccLocalPath10 = JsVsDocGeneratorTask
+		SccLocalPath10 = BuildTasks
 		SccLocalPath2 = Core
 		SccLocalPath3 = Content
 		SccLocalPath4 = XmlViewEngine
@@ -46,7 +46,7 @@ Global
 		SccLocalPath9 = JsXmlDocParser
 		SccNumberOfProjects = 11
 		SccProjectName1 = Website
-		SccProjectName10 = JsVsDocGeneratorTask
+		SccProjectName10 = BuildTasks
 		SccProjectName2 = Core
 		SccProjectName3 = Content
 		SccProjectName4 = XmlViewEngine
@@ -62,7 +62,7 @@ Global
 		SccProjectTopLevelParentUniqueName7 = DowJones.Documentation.sln
 		SccProjectTopLevelParentUniqueName9 = DowJones.Documentation.sln
 		SccProjectUniqueName1 = Website\\Website.csproj
-		SccProjectUniqueName10 = JsVsDocGeneratorTask\\DowJones.Documentation.BuildTasks.csproj
+		SccProjectUniqueName10 = BuildTasks\\BuildTasks.csproj
 		SccProjectUniqueName2 = Core\\Core.csproj
 		SccProjectUniqueName3 = Content\\Content.csproj
 		SccProjectUniqueName4 = XmlViewEngine\\XmlViewEngine.csproj

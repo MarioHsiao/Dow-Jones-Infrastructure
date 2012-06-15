@@ -70,6 +70,8 @@ namespace DowJones.Documentation.BuildTasks
         /// </summary>
         internal void ConvertAssembly(string assemblyFilename, XmlWriterSettings writerSettings)
         {
+            Log.LogMessage("Converting JsDocs in assembly {0}...", assemblyFilename);
+
             string vsDocFilename = Path.Combine(
                 Path.GetDirectoryName(assemblyFilename),
                 Path.GetFileNameWithoutExtension(assemblyFilename) + ".jsdoc.xml");
@@ -93,11 +95,15 @@ namespace DowJones.Documentation.BuildTasks
             Contract.Requires(!string.IsNullOrWhiteSpace(filename));
             Contract.Requires(jsDocFiles != null);
 
+            var filenames = jsDocFiles.ToArray();
+
+            Log.LogMessage("Converting JsDoc in {0}...", string.Join(", ", filenames));
+
             var assemblyName = Path.GetFileNameWithoutExtension(filename);
 
             using(var writer = XmlWriter.Create(filename, writerSettings))
             {
-                _converter.Convert(jsDocFiles, writer, assemblyName);
+                _converter.Convert(filenames, writer, assemblyName);
                 writer.Flush();
             }
 
@@ -106,6 +112,7 @@ namespace DowJones.Documentation.BuildTasks
 
         private void AddVsDocFile(string vsDocFile)
         {
+            Log.LogMessage("Generated VSDoc file {0}", vsDocFile);
             _vsDocFiles.Add(new TaskItem(vsDocFile));
         }
     }

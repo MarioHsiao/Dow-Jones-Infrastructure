@@ -46,7 +46,7 @@ namespace DowJones.Documentation.BuildTasks
         {
             try
             {
-                var vsDocFiles = GetVSDocFilenames();
+                var vsDocFiles = GetVSDocFilenames().ToArray();
 
                 if(vsDocFiles.Any())
                 {
