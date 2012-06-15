@@ -132,6 +132,8 @@
             return {
             author: "formalName",
             outlet: "formalName",
+            publishercity: "formalName",
+            publishermetadata: "name",
             executive: "completeName",
             company: "value",
             privatemarketcompany: "companyName",
@@ -159,6 +161,8 @@
         return{
             author: "author",
             outlet: "outlet",
+            publishercity: "publisherCity",
+            publishermetadata: "publisherData",
             executive: "executive",
             company: "company",
             region: "region",
@@ -543,7 +547,9 @@
                 viewAllClass: settings.viewAllClass,
                 showViewAll: settings.showViewAll,
                 viewAllText: settings.tokens.viewAllTkn,
-                highlight: settings.highlight,
+                highlight: settings.highlight,                
+                showHelp: settings.showHelp,
+                helpLabelText: settings.tokens.helpLabelTkn,
                 selectFirst: settings.selectFirst,
                 fillInputOnKeyUpDown: settings.fillInputOnKeyUpDown,
                 autoFill: ((settings.autocompletionType.toLowerCase() === 'keyword' || settings.autocompletionType.toLowerCase() === 'calendarkeyword') && settings.autoFill) ? true : false

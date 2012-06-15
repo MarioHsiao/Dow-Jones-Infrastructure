@@ -153,6 +153,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AutoSuggestComponent.cshtml</DependentUpon>
     </Compile>
+    <Compile Include="Autocomplete\WebResources.cs" />
     <Compile Include="AutoSuggest\AutoSuggestComponent.cs" />
     <Compile Include="CalendarEventList\CalendarEventListControl.cs">
       <AutoGen>True</AutoGen>
@@ -698,16 +699,16 @@
     <EmbeddedResource Include="Discovery\ClientTemplates\Success.htm" />
     <EmbeddedResource Include="Autocomplete\AutoSuggestComponent.js" />
     <EmbeddedResource Include="Autocomplete\AutoSuggestComponent.css" />
-    <Content Include="Autocomplete\images\acInfo.png" />
-    <Content Include="Autocomplete\images\acNot.png" />
-    <Content Include="Autocomplete\images\acPromote.png" />
-    <Content Include="Autocomplete\images\source_blog.png" />
-    <Content Include="Autocomplete\images\source_discont.png" />
-    <Content Include="Autocomplete\images\source_multimedia.png" />
-    <Content Include="Autocomplete\images\source_picture.png" />
-    <Content Include="Autocomplete\images\source_publication.png" />
-    <Content Include="Autocomplete\images\source_sourceFamily.png" />
-    <Content Include="Autocomplete\images\source_webpage.png" />
+    <EmbeddedResource Include="Autocomplete\images\acInfo.png" />
+    <EmbeddedResource Include="Autocomplete\images\acNot.png" />
+    <EmbeddedResource Include="Autocomplete\images\acPromote.png" />
+    <EmbeddedResource Include="Autocomplete\images\source_blog.png" />
+    <EmbeddedResource Include="Autocomplete\images\source_discont.png" />
+    <EmbeddedResource Include="Autocomplete\images\source_multimedia.png" />
+    <EmbeddedResource Include="Autocomplete\images\source_picture.png" />
+    <EmbeddedResource Include="Autocomplete\images\source_publication.png" />
+    <EmbeddedResource Include="Autocomplete\images\source_sourceFamily.png" />
+    <EmbeddedResource Include="Autocomplete\images\source_webpage.png" />
     <EmbeddedResource Include="Autocomplete\scripts\jquery.autocomplete.js" />
     <EmbeddedResource Include="Autocomplete\scripts\jquery.jsonp-2.1.4.min.js" />
     <EmbeddedResource Include="CalendarEventList\ClientTemplates\Container.htm" />
@@ -718,6 +719,7 @@
     <EmbeddedResource Include="DateSlider\DateSlider.js" />
     <EmbeddedResource Include="HeadlineListCarousel\HeadlineListCarousel.css" />
     <EmbeddedResource Include="HeadlineListCarousel\HeadlineListCarousel.js" />
+    <EmbeddedResource Include="Autocomplete\images\progress.gif" />
     <Content Include="InlineMp3Player\InlineMp3PlayerBehavior.Original.js" />
     <EmbeddedResource Include="Pager\Pager.js" />
     <EmbeddedResource Include="RegionalMap\images\world_map.gif" />

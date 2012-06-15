@@ -4,28 +4,24 @@
 .dj_emg_autosuggest_results { border: 1px solid #CCCCCC; padding: 0px; background-color: white; overflow: hidden; z-index: 99999; -moz-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); }
 .dj_emg_autosuggest_results table { width: 100%; padding: 0; margin: 0; border-collapse: collapse; }
 .dj_emg_autosuggest_results table td { padding: 5px; margin: 0; border-style: none !important; font: 11px "Lucida Grande" , "Verdana"; }
-.dj_emg_autosuggest_loading { background: white url(<%=WebResource("EMG.Tools.Web.Widgets.AutoSuggest.Resources.progress.gif")%>) right center no-repeat; }
+.dj_emg_autosuggest_loading { background: white url(<%=WebResource("DowJones.Web.Mvc.UI.Components.Autocomplete.images.progress.gif")%>) right center no-repeat; }
 .dj_emg_autosuggest_odd { background-color: #F2F2F2; cursor: pointer; }
 .dj_emg_autosuggest_over { background-color: #678FD7 !important; color: white; cursor: pointer; }
 .dj_emg_autosuggest_viewall { background-color: #D4D4D4; color: #000000; border-top: 1px solid black; font-weight: bold !important; }
 div.ac_descriptor { float: left; }
 a.ac_info, a.ac_promote, a.ac_not, a.ac_discont { width: 12px; height: 12px; display: block; float: left; margin-left: 5px; text-indent: -9999px; }
 span.acSource_sourcefamily, span.acSource_Publication, span.acSource_publication_discont, span.acSource_webpage, span.acSource_webpage_discont, span.acSource_multimedia, span.acSource_multimedia_discont, span.acSource_picture, span.acSource_picture_discont,span.acSource_blog { width: 20px; height: 16px; display: block; float: left; margin-left: 2px; margin-right: 3px; text-indent: -9999px; }
-span.acSource_sourcefamily { background: url(<%=WebResource("EMG.Tools.Web.Widgets.AutoSuggest.Resources.source_sourceFamily.png")%>) no-repeat; }
-span.acSource_Publication { background: url(<%=WebResource("EMG.Tools.Web.Widgets.AutoSuggest.Resources.source_publication.png")%>) no-repeat; }
-span.acSource_publication_discont { background: url(<%=WebResource("EMG.Tools.Web.Widgets.AutoSuggest.Resources.source_publication_discont.jpg")%>) no-repeat; }
-span.acSource_webpage { background: url(<%=WebResource("EMG.Tools.Web.Widgets.AutoSuggest.Resources.source_webpage.png")%>) no-repeat; }
-span.acSource_webpage_discont { background: url(<%=WebResource("EMG.Tools.Web.Widgets.AutoSuggest.Resources.source_webpage_discont.jpg")%>) no-repeat; }
-span.acSource_multimedia { background: url(<%=WebResource("EMG.Tools.Web.Widgets.AutoSuggest.Resources.source_multimedia.png")%>) no-repeat; }
-span.acSource_multimedia_discont { background: url(<%=WebResource("EMG.Tools.Web.Widgets.AutoSuggest.Resources.source_multimedia_discont.jpg")%>) no-repeat; }
-span.acSource_picture { background: url(<%=WebResource("EMG.Tools.Web.Widgets.AutoSuggest.Resources.source_picture.png")%>) no-repeat; }
-span.acSource_picture_discont { background: url(<%=WebResource("EMG.Tools.Web.Widgets.AutoSuggest.Resources.source_picture_discont.jpg")%>) no-repeat; }
-span.acSource_blog { background: url(<%=WebResource("EMG.Tools.Web.Widgets.AutoSuggest.Resources.source_blog.png")%>) no-repeat; }
-span.discontinued { background: url(<%=WebResource("EMG.Tools.Web.Widgets.AutoSuggest.Resources.source_discont.png")%>) no-repeat center center; }
-a.ac_info { background: url(<%=WebResource("EMG.Tools.Web.Widgets.AutoSuggest.Resources.acInfo.png")%>) no-repeat center center; }
-a.ac_promote { background: url(<%=WebResource("EMG.Tools.Web.Widgets.AutoSuggest.Resources.acPromote.png")%>) no-repeat center center; }
-a.ac_not { background: url(<%=WebResource("EMG.Tools.Web.Widgets.AutoSuggest.Resources.acNot.png")%>) no-repeat center center; }
-a.ac_discont { background: url(<%=WebResource("EMG.Tools.Web.Widgets.AutoSuggest.Resources.source_discont.png")%>) no-repeat center center; padding-top: 4px; }
+span.acSource_sourcefamily { background: url(<%=WebResource("DowJones.Web.Mvc.UI.Components.Autocomplete.images.source_sourceFamily.png")%>) no-repeat; }
+span.acSource_Publication { background: url(<%=WebResource("DowJones.Web.Mvc.UI.Components.Autocomplete.images.source_publication.png")%>) no-repeat; }
+span.acSource_webpage { background: url(<%=WebResource("DowJones.Web.Mvc.UI.Components.Autocomplete.images.source_webpage.png")%>) no-repeat; }
+span.acSource_multimedia { background: url(<%=WebResource("DowJones.Web.Mvc.UI.Components.Autocomplete.images.source_multimedia.png")%>) no-repeat; }
+span.acSource_picture { background: url(<%=WebResource("DowJones.Web.Mvc.UI.Components.Autocomplete.images.source_picture.png")%>) no-repeat; }
+span.acSource_blog { background: url(<%=WebResource("DowJones.Web.Mvc.UI.Components.Autocomplete.images.source_blog.png")%>) no-repeat; }
+span.discontinued { background: url(<%=WebResource("DowJones.Web.Mvc.UI.Components.Autocomplete.images.source_discont.png")%>) no-repeat center center; }
+a.ac_info { background: url(<%=WebResource("DowJones.Web.Mvc.UI.Components.Autocomplete.images.acInfo.png")%>) no-repeat center center; }
+a.ac_promote { background: url(<%=WebResource("DowJones.Web.Mvc.UI.Components.Autocomplete.images.acPromote.png")%>) no-repeat center center; }
+a.ac_not { background: url(<%=WebResource("DowJones.Web.Mvc.UI.Components.Autocomplete.images.acNot.png")%>) no-repeat center center; }
+a.ac_discont { background: url(<%=WebResource("DowJones.Web.Mvc.UI.Components.Autocomplete.images.source_discont.png")%>) no-repeat center center; padding-top: 4px; }
 .ac_cat_head { background-color: #E7E1CD; color: #000000 !important; }
 tr.ac_cat_head td, tr.ac_cat_foot td { font-weight: bold; }
 tr.ac_cat_foot td a.ac_cat_foot_link { color: #2F90B3; font-weight: bold; text-decoration: underline; }
