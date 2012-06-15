@@ -21,5 +21,10 @@ namespace DowJones.Web.ViewComponentRenderingService.Controllers
 
             return ViewComponent(model);
         }
+
+        public ActionResult RenderWithVideo()
+        {
+            
+        }
     }
 }

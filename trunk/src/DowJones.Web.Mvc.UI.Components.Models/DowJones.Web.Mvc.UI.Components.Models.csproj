@@ -192,7 +192,27 @@
     <None Include="DowJones.Web.Mvc.UI.Components.Models.nuspec" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="VideoPlayer\Resources\flowplayer.audio-3.2.2.swf" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="VideoPlayer\Resources\flowplayer.controls-3.2.5.swf" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="VideoPlayer\Resources\flowplayer.rtmp-3.2.3.swf" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="VideoPlayer\Resources\flowplayer.unlimited-3.2.7.swf" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="VideoPlayer\Resources\play_text_large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="VideoPlayer\Resources\playlistleft.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="VideoPlayer\Resources\playlistright.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

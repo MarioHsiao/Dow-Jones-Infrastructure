@@ -261,6 +261,13 @@
     <Content Include="Content\css\components\DiscoveryGraph\img\navigator.png" />
     <Content Include="Content\css\components\DiscoveryGraph\img\sprite_carousel-buttons.png" />
     <Content Include="Content\reset.css" />
+    <Content Include="Content\styles\images\playlistleft.png" />
+    <Content Include="Content\styles\images\playlistright.png" />
+    <Content Include="Content\styles\images\play_text_large.png" />
+    <Content Include="Content\swf\flowplayer.audio-3.2.2.swf" />
+    <Content Include="Content\swf\flowplayer.controls-3.2.5.swf" />
+    <Content Include="Content\swf\flowplayer.rtmp-3.2.3.swf" />
+    <Content Include="Content\swf\flowplayer.unlimited-3.2.7.swf" />
     <Content Include="Scripts\loose2.js" />
     <Content Include="Scripts\loose.js" />
     <Content Include="Styles\css\CompanyOverviewCanvasModule.css" />

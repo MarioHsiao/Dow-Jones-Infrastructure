@@ -161,6 +161,9 @@ namespace DowJones.Web.Mvc.UI.Components.Models.Article
         /// </summary>
         public SocialButtonsModel SocialButtons { get; set; }
 
+
+        public VideoPlayerModel VideoPlayerModel { get; set; }
+
         /// <summary>
         /// Gets a value indicating whether HasSocialNetworks.
         /// </summary>

@@ -147,7 +147,6 @@ namespace DowJones.Charting.Highcharts
                          AccessPointCode = request["apc"] ?? "o",
                          AccessPointCodeUsage = request["apc"],
                          ClientCode = request["clientcode"] ?? DowJones.Properties.Settings.Default.DefaultClientCodeType,
-
                      };
 
         return cd;
