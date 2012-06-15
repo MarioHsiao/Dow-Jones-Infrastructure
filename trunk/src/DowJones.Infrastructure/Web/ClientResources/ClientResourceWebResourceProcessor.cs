@@ -42,7 +42,7 @@ namespace DowJones.Web
                 );
         }
 
-        private string ReplaceWebResourceMatch(Match match, ProcessedClientResource resource)
+        private static string ReplaceWebResourceMatch(Match match, ProcessedClientResource resource)
         {
             var embeddedResource = resource.ClientResource as EmbeddedClientResource;
             
