@@ -31,7 +31,7 @@ namespace DowJones.Managers.Topics
             return GetSubscribableTopics(QueryType.CommunicatorTopicQuery, new ShareScopeCollection{ShareScope.Account}, forceCacheRefresh);
         }
 
-        public GetSubscribableQueriesResponse GetCommunicatorSubscribableTopics(
+        public GetSubscribableQueriesResponse GetCommunicatorSubscribableTopicsWithPaging(
             int firstResultToReturn = 1,
             int maxResultsToReturn = 100,
             QuerySortBy sortBy = QuerySortBy.Name,
@@ -51,7 +51,7 @@ namespace DowJones.Managers.Topics
             return GetUserTopics(new QueryTypeCollection{QueryType.CommunicatorTopicQuery});
         }
 
-        public GetQueriesPropertiesListResponse GetCommunicatorUserTopics(
+        public GetQueriesPropertiesListResponse GetCommunicatorUserTopicsWithPaging(
             int firstResultToReturn = 1,
             int maxResultsToReturn = 100,
             QuerySortBy sortBy = QuerySortBy.Name,
