@@ -1,12 +1,17 @@
-﻿using System.Web.Mvc;
+﻿using System.IO;
+using System.Linq;
+using System.Web.Mvc;
 using DowJones.Ajax.Article;
+using DowJones.Extensions;
+using DowJones.Articles;
+using DowJones.Web.Mvc.UI.Components.Models;
 using DowJones.Web.Mvc.UI.Components.Models.Article;
 using Newtonsoft.Json;
-using System.IO;
+using ControllerBase = DowJones.Web.Mvc.ControllerBase;
 
 namespace DowJones.Web.ViewComponentRenderingService.Controllers
 {
-    public class ArticleController : DowJones.Web.Mvc.ControllerBase
+    public class ArticleController : ControllerBase
     {
         public ActionResult Index()
         {
@@ -15,16 +20,73 @@ namespace DowJones.Web.ViewComponentRenderingService.Controllers
 
         public ActionResult Render()
         {
-            var articleJson = new StreamReader(Request.InputStream).ReadToEnd();
+            string articleJson = new StreamReader(Request.InputStream).ReadToEnd();
             var article = JsonConvert.DeserializeObject<ArticleResultset>(articleJson);
-            var model = new ArticleModel { ArticleDataSet = article };
+            var model = new ArticleModel {ArticleDataSet = article};
 
             return ViewComponent(model);
         }
 
         public ActionResult RenderWithVideo()
         {
-            
+            string articleJson = new StreamReader(Request.InputStream).ReadToEnd();
+            var request = JsonConvert.DeserializeObject<ArticleRendererRequest>(articleJson);
+            var model = new ArticleModel
+                            {
+                                ArticleDataSet = request.ArticleResultset,
+                                ShowPostProcessing = false,
+                                ShowSourceLinks = true,
+                                ShowSocialButtons = false,
+                            };
+            if (request.MultimediaPackage != null)
+            {
+                if (request.MultimediaPackage.MustPlayFromSource != null)
+                {
+                    if (request.MultimediaPackage.MustPlayFromSource.Status)
+                    {
+                        model.ArticleDataSet.ExternalUri = request.MultimediaPackage.MustPlayFromSource.Url;
+                    }
+                }
+
+                if (request.MultimediaPackage.MediaContents != null && request.MultimediaPackage.MediaContents.Count > 0)
+                {
+                    var mediaContents = request.MultimediaPackage.MediaContents;
+                    var mediaContent = mediaContents.First();
+                    if (mediaContents.Count > 1)
+                    {
+                        mediaContent = mediaContents[1];
+                    }
+
+                    model.VideoPlayerModel = new VideoPlayerModel
+                                                 {
+                                                     AutoPlay = request.MultimediaPlayerOptions.AutoPlay,
+                                                     PlayList = new ClipCollection(new[] {Mapper.Map<Clip>(mediaContent)}),
+                                                     Width = request.MultimediaPlayerOptions.Width,
+                                                     Height = request.MultimediaPlayerOptions.Height,
+                                                     PlayerKey = "75a6c4404d9ffa80a63",
+                                                 };
+                    if (!request.MultimediaPlayerOptions.ControlBarPath.IsNotEmpty())
+                    {
+                        model.VideoPlayerModel.ControlBarPath = request.MultimediaPlayerOptions.ControlBarPath;
+                    }
+
+                    if (!request.MultimediaPlayerOptions.PlayerPath.IsNotEmpty())
+                    {
+                        model.VideoPlayerModel.PlayerPath = request.MultimediaPlayerOptions.PlayerPath;
+                    }
+
+                    if (!request.MultimediaPlayerOptions.RTMPPluginPath.IsNotEmpty())
+                    {
+                        model.VideoPlayerModel.RTMPPluginPath = request.MultimediaPlayerOptions.RTMPPluginPath;
+                    }
+
+                    if (!request.MultimediaPlayerOptions.SplashImagePath.IsNotEmpty())
+                    {
+                        model.VideoPlayerModel.SplashImagePath = request.MultimediaPlayerOptions.SplashImagePath;
+                    }
+                }
+            }
+            return ViewComponent(model);
         }
     }
 }
