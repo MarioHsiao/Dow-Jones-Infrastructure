@@ -199,7 +199,7 @@ namespace DowJones.Web
                 context.Response.Cache.SetExpires(expirationDate);
                 context.Response.Cache.SetLastModified(LastModifiedCalculator(context));
                 context.Response.Cache.SetMaxAge(new TimeSpan(expirationDate.ToFileTimeUtc()));
-                context.Response.Cache.SetCacheability(HttpCacheability.Private); // dacostad changed from public to not allow proxy servers to cache.
+                context.Response.Cache.SetCacheability(HttpCacheability.ServerAndPrivate); // dacostad changed from public to not allow proxy servers to cache.
             }
 
             foreach (var cacheItem in cachedItems)

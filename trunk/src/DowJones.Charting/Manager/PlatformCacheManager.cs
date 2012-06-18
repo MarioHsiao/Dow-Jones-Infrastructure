@@ -25,7 +25,7 @@ namespace DowJones.Charting.Manager
             return true;
         }
 
-        public T GetItem<T>(GetItemInfoRequest request)
+        public T GetItem<T>(GetItemRequest request)
         {
             return Process<T>(request);
         }

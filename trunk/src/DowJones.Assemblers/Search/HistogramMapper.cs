@@ -87,14 +87,15 @@ namespace DowJones.Assemblers.Search
                         var currentDate = new DateTime(
                             Convert.ToInt32(bucket.Id.Substring(0, 4)), 
                             Convert.ToInt32(bucket.Id.Substring(4, 2)), 
-                            Convert.ToInt32(bucket.Id.Substring(6, 2)));
+                            Convert.ToInt32(bucket.Id.Substring(6, 2)),
+                            0,0,0, DateTimeKind.Utc);
 
                         max = (max < currentDate) ? currentDate : max;
                         min = (min > currentDate) ? currentDate : min;
                         histogramItems.Add(new HistogramItem
                                                {
                                                    HitCount = new WholeNumber(bucket.HitCount), 
-                                                   CurrentDate = currentDate,
+                                                   CurrentDate = currentDate.ToUniversalTime(),
                                                    CurrentDateText = _dateTimeFormatter.FormatStandardDate(currentDate),
                                                    IsoStartDate = currentDate.ToString("yyyyMMdd"),
                                                    IsoEndDate = currentDate.ToString("yyyyMMdd"),
@@ -141,7 +142,7 @@ namespace DowJones.Assemblers.Search
                     {
                         var year = Convert.ToInt32(bucket.Id.Substring(0, 4));
                         var month = Convert.ToInt32(bucket.Id.Substring(4));
-                        var startDate = new DateTime(year, month, 1);
+                        var startDate = new DateTime(year, month, 1, 0, 0, 0, DateTimeKind.Utc);
                         max = (max < startDate) ? startDate : max;
                         min = (min > startDate) ? startDate : min;
                         var endDate = startDate.AddDays(gregorianCalendar.GetDaysInMonth(startDate.Year, startDate.Month) - 1);
@@ -169,7 +170,7 @@ namespace DowJones.Assemblers.Search
                     foreach (var bucket in nav.BucketCollection)
                     {
                         var year = Convert.ToInt32(bucket.Id.Substring(0, 4));
-                        var startDate = new DateTime(year, 1, 1);
+                        var startDate = new DateTime(year, 1, 1, 0, 0, 0, DateTimeKind.Utc);
                         max = (max < startDate) ? startDate : max;
                         min = (min > startDate) ? startDate : min;
                         var endDate = startDate.AddDays(gregorianCalendar.GetDaysInYear(startDate.Year) - 1);

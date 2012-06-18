@@ -443,24 +443,24 @@ namespace DowJones.Search.Core.ISO8601
             var i = (yyyy - 1) % 100;
             var j = (yyyy - 1) - i;
             var k = i + i / 4;
-            var Jan1WeekDay = 1 + (((((j / 100) % 4) * 5) + k) % 7);
+            var jan1WeekDay = 1 + (((((j / 100) % 4) * 5) + k) % 7);
 
             //initialized to first of year
-            var FirsDayOfFirstWeek = new DateTime(yyyy, 1, 1);
+            var firsDayOfFirstWeek = new DateTime(yyyy, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
 
             // algorithm used to calculate 1 day based
-            if (Jan1WeekDay > 4)
+            if (jan1WeekDay > 4)
             {
-                var deltaDays = (8 - Jan1WeekDay) % 7;
-                FirsDayOfFirstWeek = FirsDayOfFirstWeek.AddDays(deltaDays);
+                var deltaDays = (8 - jan1WeekDay) % 7;
+                firsDayOfFirstWeek = firsDayOfFirstWeek.AddDays(deltaDays);
             }
             else
             {
-                var deltaDays = -((6 + Jan1WeekDay) % 7);
-                FirsDayOfFirstWeek = FirsDayOfFirstWeek.AddDays(deltaDays);
+                var deltaDays = -((6 + jan1WeekDay) % 7);
+                firsDayOfFirstWeek = firsDayOfFirstWeek.AddDays(deltaDays);
             }
 
-            return FirsDayOfFirstWeek.AddDays((ww - 1) * 7);
+            return firsDayOfFirstWeek.AddDays((ww - 1) * 7);
         }
 
         /// <summary>
@@ -504,42 +504,40 @@ namespace DowJones.Search.Core.ISO8601
             var dd = dt.Day;
 
             // Declare other required variables
-            int DayOfYearNumber;
-            int Jan1WeekDay;
-            int WeekNumber = 0, WeekDay;
+            int weekNumber = 0, WeekDay;
 
 
             int i, j, k, l;
-            int[] Mnth = new int[12] { 0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334 };
+            var mnth = new int[12] { 0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334 };
 
             int YearNumber;
 
 
             // Set DayofYear Number for yyyy mm dd
-            DayOfYearNumber = dd + Mnth[mm - 1];
+            int dayOfYearNumber = dd + mnth[mm - 1];
 
             // Increase of Dayof Year Number by 1, if year is leapyear and month is february
             if (IsLeapYear(yyyy) && mm > 1)
-                DayOfYearNumber += 1;
+                dayOfYearNumber += 1;
 
             // Find the Jan1WeekDay for year 
             i = (yyyy - 1) % 100;
             j = (yyyy - 1) - i;
             k = i + i / 4;
-            Jan1WeekDay = 1 + (((((j / 100) % 4) * 5) + k) % 7);
+            var jan1WeekDay = 1 + (((((j / 100) % 4) * 5) + k) % 7);
 
             // Calcuate the WeekDay for the given date
-            l = DayOfYearNumber + (Jan1WeekDay - 1);
+            l = dayOfYearNumber + (jan1WeekDay - 1);
             WeekDay = 1 + ((l - 1) % 7);
 
             // Find if the date falls in YearNumber set WeekNumber to 52 or 53
-            if ((DayOfYearNumber <= (8 - Jan1WeekDay)) && (Jan1WeekDay > 4))
+            if ((dayOfYearNumber <= (8 - jan1WeekDay)) && (jan1WeekDay > 4))
             {
                 YearNumber = yyyy - 1;
-                if ((Jan1WeekDay == 5) || ((Jan1WeekDay == 6) && (Jan1WeekDay > 4)))
-                    WeekNumber = 53;
+                if ((jan1WeekDay == 5) || ((jan1WeekDay == 6) && (jan1WeekDay > 4)))
+                    weekNumber = 53;
                 else
-                    WeekNumber = 52;
+                    weekNumber = 52;
             }
             else
                 YearNumber = yyyy;
@@ -551,22 +549,22 @@ namespace DowJones.Search.Core.ISO8601
                 int m = 365;
                 if (IsLeapYear(yyyy))
                     m = 366;
-                if ((m - DayOfYearNumber) < (4 - WeekDay))
+                if ((m - dayOfYearNumber) < (4 - WeekDay))
                 {
                     YearNumber = yyyy + 1;
-                    WeekNumber = 1;
+                    weekNumber = 1;
                 }
             }
 
             if (YearNumber == yyyy)
             {
-                int n = DayOfYearNumber + (7 - WeekDay) + (Jan1WeekDay - 1);
-                WeekNumber = n / 7;
-                if (Jan1WeekDay > 4)
-                    WeekNumber -= 1;
+                int n = dayOfYearNumber + (7 - WeekDay) + (jan1WeekDay - 1);
+                weekNumber = n / 7;
+                if (jan1WeekDay > 4)
+                    weekNumber -= 1;
             }
 
-            return new IsoWeek(YearNumber, WeekNumber);
+            return new IsoWeek(YearNumber, weekNumber);
         }
 
 

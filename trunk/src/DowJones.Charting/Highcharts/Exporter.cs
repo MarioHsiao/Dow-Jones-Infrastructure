@@ -39,7 +39,11 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Text;
 using System.Web;
+using DowJones.Charting.Manager;
+using DowJones.Charting.Properties;
 using DowJones.Extensions;
+using DowJones.Session;
+using Factiva.Gateway.Messages.Cache.PlatformCache.V1_0;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 using Svg;
@@ -57,12 +61,14 @@ namespace DowJones.Charting.Highcharts
         /// </summary>
         private const string DefaultFileName = "Chart";
 
+        private HttpContext _context = null;
+
         /// <summary>
         /// PDF metadata Creator string.
         /// </summary>
         private const string PdfMetaCreator = "DowJones Exporting Module for Highcharts JS";
 
-        internal Exporter(string type, int width, string cacheKey) 
+        internal Exporter(string type, int width, string cacheKey, HttpContext context) 
         {
             ContentType = type.ToLower();
             Width = width;
@@ -79,13 +85,20 @@ namespace DowJones.Charting.Highcharts
                     throw new ArgumentException(
                         string.Format("Invalid type specified: '{0}'.", type));
             }
-
-            Svg = GetSvg(cacheKey);
+            _context = context;
+            Svg = GetSvg(cacheKey, GetControlData(context));
         }
 
-        internal string GetSvg(string cacheKey)
+        internal string GetSvg(string cacheKey, IControlData controlData)
         {
-            return string.Empty;
+            var manager = new PlatformCacheManager(controlData);
+            var getItemRequest = new GetItemRequest
+                                     {
+                                         Key = cacheKey
+                                     };
+
+            var response = manager.GetItem<GetItemResponse>(getItemRequest);
+            return response.Item.StringData;
         }
 
         /// <summary>
@@ -99,6 +112,7 @@ namespace DowJones.Charting.Highcharts
         /// <param name="width">The pixel width of the exported chart image.</param>
         /// <param name="svg">An SVG chart document to export (XML text).</param>
         /// <param name="setContentDisposition">Whether to set the content disposition for this object</param>
+        /// <param name="context">Whether to set the httpcontext </param>
         internal Exporter(string type, int width, string svg, string fileName = "Chart", bool setContentDisposition = true)
         {
             string extension;
@@ -140,7 +154,6 @@ namespace DowJones.Charting.Highcharts
                 "{0}.{1}",
                 fileName.IsNullOrEmpty() ? DefaultFileName : fileName,
                 extension);
-
 
             // Create HTTP Content-Disposition header.
             ContentDisposition = string.Format("attachment; filename={0}", FileName);
@@ -318,6 +331,20 @@ namespace DowJones.Charting.Highcharts
             }
 
             outputStream.Flush();
+        }
+
+        internal static IControlData GetControlData(HttpContext context)
+        {
+            var request = context.Request;
+            var cd = new ControlData
+            {
+                EncryptedToken = Settings.Default.ExporterEncryptedToken,
+                AccessPointCode = request["apc"] ?? "o",
+                AccessPointCodeUsage = request["apc"],
+                ClientCode = request["clientcode"] ?? DowJones.Properties.Settings.Default.DefaultClientCodeType,
+            };
+
+            return cd;
         }
     }
 }

@@ -57,7 +57,6 @@
                 o = self.options,
                 el = $(self.element);
 
-            var hasSVG = Modernizr.svg;
             var histogramChartConfig = {
                 chart: {
                     defaultSeriesType: 'column',
@@ -284,21 +283,28 @@
 
         convertData: function (histogram) {
             var dataSeries = [];
+            var dt;
             if (histogram && histogram.items) {
                 $.each(histogram.items, function (i, objvalue) {
                     if (objvalue.currentDate) {
-                        dataSeries.push({
-                            x: objvalue.currentDate.getTime(),
-                            y: objvalue.hitCount.value,
-                            packet: $.extend(true, {}, objvalue, {distribution: histogram.distribution})
-                        });
+                        dt = JSON.parseDate(objvalue.currentDate);
+                        if (dt) {
+                            dataSeries.push({
+                                x: dt.getTime(),
+                                y: objvalue.hitCount.value,
+                                packet: $.extend(true, { }, objvalue, { distribution: histogram.distribution })
+                            });
+                        }
                     }
                     else {
-                        dataSeries.push({
-                            x: objvalue.startDate.getTime(),
-                            y: objvalue.hitCount.value,
-                            packet: $.extend(true, {}, objvalue, {distribution: histogram.distribution})
-                        });
+                        dt = JSON.parseDate(objvalue.startDate);
+                        if (dt) {
+                            dataSeries.push({
+                                x: dt.getTime(),
+                                y: objvalue.hitCount.value,
+                                packet: $.extend(true, { }, objvalue, { distribution: histogram.distribution })
+                            });
+                        }
                     }
                 });
             }
