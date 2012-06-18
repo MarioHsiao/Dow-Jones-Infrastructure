@@ -47,6 +47,7 @@
     <None Include="Components\Article\Configuration.md" />
     <None Include="Components\Article\LiveDemo.md" />
     <None Include="Components\Article\Overview.md" />
+    <None Include="Components\AutoSuggest\AutoSuggest.md" />
     <None Include="Components\DiscoveryGraph\Configuration.md" />
     <None Include="Components\DiscoveryGraph\Interact.md">
       <SubType>Designer</SubType>
