@@ -65,22 +65,22 @@ namespace DowJones.Web.ViewComponentRenderingService.Controllers
                                                      Height = request.MultimediaPlayerOptions.Height,
                                                      PlayerKey = "75a6c4404d9ffa80a63",
                                                  };
-                    if (!request.MultimediaPlayerOptions.ControlBarPath.IsNotEmpty())
+                    if (!request.MultimediaPlayerOptions.ControlBarPath.IsNullOrEmpty())
                     {
                         model.VideoPlayerModel.ControlBarPath = request.MultimediaPlayerOptions.ControlBarPath;
                     }
 
-                    if (!request.MultimediaPlayerOptions.PlayerPath.IsNotEmpty())
+                    if (!request.MultimediaPlayerOptions.PlayerPath.IsNullOrEmpty())
                     {
                         model.VideoPlayerModel.PlayerPath = request.MultimediaPlayerOptions.PlayerPath;
                     }
 
-                    if (!request.MultimediaPlayerOptions.RTMPPluginPath.IsNotEmpty())
+                    if (!request.MultimediaPlayerOptions.RTMPPluginPath.IsNullOrEmpty())
                     {
                         model.VideoPlayerModel.RTMPPluginPath = request.MultimediaPlayerOptions.RTMPPluginPath;
                     }
 
-                    if (!request.MultimediaPlayerOptions.SplashImagePath.IsNotEmpty())
+                    if (!request.MultimediaPlayerOptions.SplashImagePath.IsNullOrEmpty())
                     {
                         model.VideoPlayerModel.SplashImagePath = request.MultimediaPlayerOptions.SplashImagePath;
                     }
