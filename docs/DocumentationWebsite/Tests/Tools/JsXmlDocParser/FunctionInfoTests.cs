@@ -15,7 +15,7 @@ namespace JsXmlDocParser.Tests
 											return new jQuery.fn.init(selector, context);
 										}";
 
-			var result = new FunctionInfo(jsBlock);
+			var result = new MemberInfo(jsBlock);
 			Assert.AreEqual(result.Name, "jQuery");
 		}
 
@@ -27,7 +27,7 @@ namespace JsXmlDocParser.Tests
 											return new jQuery.fn.init(selector, context);
 										}";
 
-			var result = new FunctionInfo(jsBlock);
+			var result = new MemberInfo(jsBlock);
 			Assert.AreEqual(result.Name, "jQuery");
 		}
 
@@ -39,7 +39,7 @@ namespace JsXmlDocParser.Tests
 											return new jQuery.fn.init(selector, context);
 										}";
 
-			var result = new FunctionInfo(jsBlock);
+			var result = new MemberInfo(jsBlock);
 			Assert.AreEqual(result.Name, "jQuery");
 		}
 
@@ -51,7 +51,7 @@ namespace JsXmlDocParser.Tests
 											return new jQuery.fn.init(selector, context);
 										});";
 
-			var result = new FunctionInfo(jsBlock);
+			var result = new MemberInfo(jsBlock);
 			Assert.AreEqual(result.Name, "anonymous");
 		} 
 
@@ -67,7 +67,7 @@ namespace JsXmlDocParser.Tests
 											return new jQuery.fn.init(selector, context);
 										}";
 
-			var result = new FunctionInfo(jsBlock);
+			var result = new MemberInfo(jsBlock);
 			Assert.AreEqual(result.Signature, "jQuery(selector, context)");
 		}
 
@@ -79,7 +79,7 @@ namespace JsXmlDocParser.Tests
 											return new jQuery.fn.init(selector, context);
 										}";
 
-			var result = new FunctionInfo(jsBlock);
+			var result = new MemberInfo(jsBlock);
 			Assert.AreEqual(result.Signature, "jQuery(selector, context)");
 		}
 
@@ -91,7 +91,7 @@ namespace JsXmlDocParser.Tests
 											return new jQuery.fn.init(selector, context);
 										}";
 
-			var result = new FunctionInfo(jsBlock);
+			var result = new MemberInfo(jsBlock);
 			Assert.AreEqual(result.Signature, "jQuery(selector, context)");
 		}
 
@@ -103,7 +103,7 @@ namespace JsXmlDocParser.Tests
 											return new jQuery.fn.init(selector, context);
 										});";
 
-			var result = new FunctionInfo(jsBlock);
+			var result = new MemberInfo(jsBlock);
 			Assert.AreEqual(result.Signature, "anonymous(selector, context)");
 		}
 

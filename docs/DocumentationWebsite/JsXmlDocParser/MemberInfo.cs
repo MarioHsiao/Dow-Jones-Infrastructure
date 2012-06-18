@@ -5,7 +5,7 @@ using System.Text.RegularExpressions;
 
 namespace JsXmlDocParser
 {
-	public class FunctionInfo
+	public class MemberInfo
 	{
 		public IEnumerable<string> Lines { get; set; }
 
@@ -49,7 +49,7 @@ namespace JsXmlDocParser
 			return string.Join(Environment.NewLine, Lines.Skip(1).TakeWhile(l => l.Trim().StartsWith("///")).Select(l=>l.Substring(3)));
 		}
 
-		public FunctionInfo(string block)
+		public MemberInfo(string block)
 		{
 			Lines = block.Split(Environment.NewLine.ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
 

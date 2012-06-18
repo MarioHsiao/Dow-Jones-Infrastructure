@@ -8,6 +8,7 @@ namespace JsXmlDocParser
 	{
 		private readonly XmlWriter _writer;
 		private bool _documentStarted;
+        private bool _membersElementOpened;
 
 
 	    internal bool IsWriterAvailable
@@ -36,16 +37,18 @@ namespace JsXmlDocParser
 			Close();
 		}
 
-	    public void Write(FunctionInfo functionInfo)
+	    public void WriteMember(MemberInfo memberInfo)
 	    {
 	        EnsureDocumentStarted();
 
+	        EnsureMembersElementOpened();
+
 	        _writer.WriteStartElement("member");
-	        _writer.WriteAttributeString("name", string.Format("M:{0}", functionInfo.Signature));
-	        if (!string.IsNullOrWhiteSpace(functionInfo.DocComments))
+	        _writer.WriteAttributeString("name", string.Format("M:{0}", memberInfo.Signature));
+	        if (!string.IsNullOrWhiteSpace(memberInfo.DocComments))
 	        {
 	            _writer.WriteString(Environment.NewLine);
-	            _writer.WriteRaw(functionInfo.DocComments);
+	            _writer.WriteRaw(memberInfo.DocComments);
 	            _writer.WriteString(Environment.NewLine);
 	        }
 	        _writer.WriteEndElement();
@@ -65,7 +68,8 @@ namespace JsXmlDocParser
             if (!_documentStarted)
                 return;
 
-	        _writer.WriteEndElement();
+	        _writer.WriteEndElement();  //   </members>
+            _writer.WriteEndElement();  // </doc>
 	        _writer.WriteEndDocument();
 	    }
 
@@ -84,5 +88,15 @@ namespace JsXmlDocParser
 	    {
 	        WriteStartDocument();
 	    }
+
+        internal void EnsureMembersElementOpened()
+	    {
+            if (_membersElementOpened)
+                return;
+
+            _writer.WriteStartElement("members");
+
+            _membersElementOpened = true;
+        }
 	}
 }

@@ -8999,7 +8999,7 @@ delegate = function (event) {
             ///     &#10;the current computed pixel height of the first matched element.
             ///     &#10;Part of CSS
             ///	</summary>
-            ///	<returns type="jQuery" type="jQuery" />
+            ///	<returns type="jQuery" />
             ///	<param name="cssProperty" type="String">
             ///     &#10;Set the CSS property to the specified value. Omit to get the value of the first matched element.
             ///	</param>
@@ -9083,7 +9083,7 @@ delegate = function (event) {
             ///     &#10;the current computed pixel width of the first matched element.
             ///     &#10;Part of CSS
             ///	</summary>
-            ///	<returns type="jQuery" type="jQuery" />
+            ///	<returns type="jQuery" />
             ///	<param name="cssProperty" type="String">
             ///     &#10;Set the CSS property to the specified value. Omit to get the value of the first matched element.
             ///	</param>

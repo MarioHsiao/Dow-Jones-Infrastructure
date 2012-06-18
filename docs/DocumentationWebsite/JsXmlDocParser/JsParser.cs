@@ -9,7 +9,7 @@ namespace JsXmlDocParser
     public class JsParser
     {
         private static readonly Regex FunctionExpression = new Regex(@"function(\s+\w+\s*|\s*)\(");
-        private static readonly Regex CommentExpression = new Regex("$[ \t]*//");
+        private static readonly Regex CommentExpression = new Regex(@"^\s*//");
 
         /// <summary>
         /// Parse a JS block.
@@ -20,11 +20,11 @@ namespace JsXmlDocParser
         public void Parse(TextReader reader, MemberInfoWriter writer)
         {
             var functions = ReadFunctionBlocks(reader);
-            var functionInfos = functions.Select(function => new FunctionInfo(function));
+            var functionInfos = functions.Select(function => new MemberInfo(function));
 
             foreach (var functionInfo in functionInfos)
             {
-                writer.Write(functionInfo);
+                writer.WriteMember(functionInfo);
             }
         }
 

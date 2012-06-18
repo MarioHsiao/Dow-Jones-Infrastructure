@@ -54,7 +54,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FunctionInfo.cs" />
+    <Compile Include="MemberInfo.cs" />
     <Compile Include="JsDocToVsDocConverter.cs" />
     <Compile Include="JsParser.cs" />
     <Compile Include="MemberInfoWriter.cs" />
