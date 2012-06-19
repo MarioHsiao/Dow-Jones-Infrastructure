@@ -9,6 +9,7 @@ using DowJones.Web.Mvc.UI.Components.Common.Types;
 using DowJones.Web.Mvc.UI.Components.HeadlineList;
 using Factiva.Gateway.Messages.Preferences.V1_0;
 using SortOrder = DowJones.Search.SortOrder;
+using DowJones.Search;
 
 namespace DowJones.Web.Mvc.Search.Requests.Common
 {
@@ -132,6 +133,10 @@ namespace DowJones.Web.Mvc.Search.Requests.Common
             {
                 request.Source = SearchPreferenceService.DefaultSimpleSearchSources;
             }
+            if (!request.DateRange.HasValue)
+            {
+                request.DateRange = MapDateRange(SearchPreferenceService.DefaultSimpleSearchDateRange);
+            }
             return request;
         }
 
@@ -221,6 +226,31 @@ namespace DowJones.Web.Mvc.Search.Requests.Common
                     return DisplayOptions.Keywords;
                 default:
                     return DisplayOptions.Full;
+            }
+        }
+
+        private static SearchDateRange MapDateRange(DefaultSimpleSearchDateRange dateRange)
+        {
+            switch (dateRange)
+            {
+                case DefaultSimpleSearchDateRange.LastDay:
+                    return SearchDateRange.LastDay;
+                case DefaultSimpleSearchDateRange.LastWeek:
+                    return SearchDateRange.LastWeek;
+                case DefaultSimpleSearchDateRange.LastMonth:
+                    return SearchDateRange.LastMonth;
+                case DefaultSimpleSearchDateRange.Last6Months:
+                    return SearchDateRange.LastSixMonths;
+                case DefaultSimpleSearchDateRange.LastYear:
+                    return SearchDateRange.LastYear;
+                case DefaultSimpleSearchDateRange.Last2Years:
+                    return SearchDateRange.LastTwoYears;
+                case DefaultSimpleSearchDateRange.Last3Months:
+                    return SearchDateRange.LastThreeMonths;
+                case DefaultSimpleSearchDateRange.All:
+                    return SearchDateRange.All;
+                default:
+                    return SearchDateRange.LastWeek;
             }
         }
     }

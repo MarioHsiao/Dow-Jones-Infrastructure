@@ -76,7 +76,7 @@ namespace DowJones.Web.Mvc.Search.Controllers
         {
             sbData.FreeText = freeTextRequest.FreeText;
             sbData.SearchIn = freeTextRequest.FreeTextIn;
-            sbData.DateRange = freeTextRequest.DateRange;
+            sbData.DateRange = freeTextRequest.DateRange.HasValue ? freeTextRequest.DateRange.Value : SearchDateRange.LastWeek;
             if(!string.IsNullOrEmpty(freeTextRequest.Languages))
             {
                 sbData.ContentLanguages = freeTextRequest.Languages.Split(',');

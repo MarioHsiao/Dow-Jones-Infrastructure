@@ -31,7 +31,7 @@ namespace DowJones.Web.Mvc.Search.Requests
         public void Map(AbstractSearchQuery query, SearchRequest source)
         {
             Map(((AbstractBaseSearchQuery)query), source);
-            query.DateRange = source.DateRange;
+            query.DateRange = source.DateRange.HasValue ? source.DateRange.Value : SearchDateRange.LastWeek;
             if (!string.IsNullOrEmpty(source.Languages)){
                 query.ContentLanguages = source.Languages.Split(',');
             }

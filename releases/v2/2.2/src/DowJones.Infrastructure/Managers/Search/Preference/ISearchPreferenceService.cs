@@ -37,5 +37,7 @@ namespace DowJones.Managers.Search.Preference
         bool RemoveDuplicateFromEmail { get; }
 
         PictureSize PictureSize { get; }
+
+        DefaultSimpleSearchDateRange DefaultSimpleSearchDateRange { get; }
     }
 }

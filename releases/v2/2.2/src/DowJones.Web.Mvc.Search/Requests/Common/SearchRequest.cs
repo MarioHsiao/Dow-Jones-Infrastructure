@@ -20,7 +20,7 @@ namespace DowJones.Web.Mvc.Search.Requests
 
 		public string ContextId { get; set; }
 
-		public SearchDateRange DateRange { get; set; }
+		public SearchDateRange? DateRange { get; set; }
 
 		public string StartDate { get; set; }
 
