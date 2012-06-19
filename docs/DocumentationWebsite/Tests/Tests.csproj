@@ -82,7 +82,7 @@
     <Compile Include="Tools\BuildTasks\GenerateJsVsDocTests.cs" />
     <Compile Include="Tools\JsXmlDocParser\FunctionInfoTests.cs" />
     <Compile Include="Tools\JsXmlDocParser\JsParserTests.cs" />
-    <Compile Include="Tools\JsXmlDocParser\TextReaderExtensionsTest.cs" />
+    <Compile Include="Tools\JsXmlDocParser\JsDocToVsDocConverterTests.cs" />
     <Compile Include="Tools\VSDocPreprocessor\ParserTests.cs" />
     <Compile Include="Tools\VSDocPreprocessor\TestData\TestClass.cs" />
   </ItemGroup>
@@ -138,6 +138,9 @@
     <Content Include="Tools\JsXmlDocParser\SampleTestFiles\jquery.validate-vsdoc.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="Tools\JsXmlDocParser\SampleTestFiles\PortalHeadlineList.vsdoc.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="Tools\VSDocPreprocessor\TestData\Expected\TestClass.xml" />
     <EmbeddedResource Include="Tools\VSDocPreprocessor\TestData\Expected\TestClassBuilder.xml" />
     <EmbeddedResource Include="Tools\VSDocPreprocessor\TestData\Expected\TestEnum.xml" />
