@@ -46,6 +46,10 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PrecompileBeforePublish>true</PrecompileBeforePublish>
+    <EnableUpdateable>true</EnableUpdateable>
+    <DeployIisAppPath>Default Web Site/Documentation</DeployIisAppPath>
+    <DesktopBuildPackageLocation>obj\Release\Package\Documentation.zip</DesktopBuildPackageLocation>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Antlr3.Runtime">
