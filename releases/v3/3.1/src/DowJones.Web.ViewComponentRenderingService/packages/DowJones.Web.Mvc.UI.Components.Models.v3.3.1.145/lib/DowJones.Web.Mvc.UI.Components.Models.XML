@@ -1,0 +1,2846 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DowJones.Web.Mvc.UI.Components.Models</name>
+    </assembly>
+    <members>
+        <member name="T:DowJones.Web.Mvc.UI.Components.ArticleTranslator.ArticleTranslatorModel">
+            <summary>
+            The article translator model.
+            </summary>
+            <remarks></remarks>
+        </member>
+        <member name="M:DowJones.Web.Mvc.UI.Components.ArticleTranslator.ArticleTranslatorModel.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:DowJones.Web.Mvc.UI.Components.ArticleTranslator.ArticleTranslatorModel"/> class.
+            </summary>
+        </member>
+        <member name="M:DowJones.Web.Mvc.UI.Components.ArticleTranslator.ArticleTranslatorModel.GetSortedLanguages">
+            <summary>
+            Gets the sorted languages.
+            </summary>
+            <returns></returns>
+            <remarks></remarks>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.ArticleTranslator.ArticleTranslatorModel.Tokens">
+            <summary>
+            Gets or sets Tokens.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.ArticleTranslator.ArticleTranslatorModel.Languages">
+            <summary>
+            Gets or sets the languages.
+            </summary>
+            <value>The languages.</value>
+            <remarks></remarks>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.ArticleTranslator.ArticleTranslatorModel.SourceLanguage">
+            <summary>
+            Gets or sets the source language.
+            </summary>
+            <value>The source language.</value>
+            <remarks></remarks>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.ArticleTranslator.ArticleTranslatorModel.AccessionNo">
+            <summary>
+            Gets or sets Accession number.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.ArticleTranslator.ArticleTranslatorModel.OnLangClick">
+            <summary>
+            Gets or sets the on lang click.
+            </summary>
+            <value>The on lang click.</value>
+            <remarks>The OnLangClick event handler name.</remarks>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.ArticleTranslatorTokens.tokenPrefix">
+            <summary>
+            token prefix
+            </summary>
+        </member>
+        <member name="M:DowJones.Web.Mvc.UI.Components.ArticleTranslatorTokens.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="!:ArticleTokens"/> class.
+            </summary>
+        </member>
+        <member name="M:DowJones.Web.Mvc.UI.Components.ArticleTranslatorTokens.GetLangCodeToken(System.String)">
+            <summary>
+            Gets the lang code token.
+            </summary>
+            <param name="token">The token.</param>
+            <returns></returns>
+        </member>
+        <member name="M:DowJones.Web.Mvc.UI.Components.ArticleTranslatorTokens.SetLangTextToken(System.String,System.String)">
+            <summary>
+            Sets the lang code token. This can be used to override with the user provided value.
+            </summary>
+            <param name="token">The token.</param>
+            <param name="value">The value.</param>
+            <returns></returns>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.ArticleTranslatorTokens.Italian">
+            <summary>
+            Gets or sets the italian.
+            </summary>
+            <value>The italian.</value>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.ArticleTranslatorTokens.English">
+            <summary>
+            Gets or sets the english.
+            </summary>
+            <value>The english.</value>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.ArticleTranslatorTokens.German">
+            <summary>
+            Gets or sets the german.
+            </summary>
+            <value>The german.</value>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.ArticleTranslatorTokens.ChineseSimplified">
+            <summary>
+            Gets or sets Language.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.ArticleTranslatorTokens.ChineseTraditional">
+            <summary>
+            Gets or sets ChineseTraditional.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.ArticleTranslatorTokens.French">
+            <summary>
+            Gets or sets French.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.ArticleTranslatorTokens.Spanish">
+            <summary>
+            Gets or sets Spanish.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.ArticleTranslatorTokens.Russian">
+            <summary>
+            Gets or sets Russian.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.ArticleTranslatorTokens.Japanese">
+            <summary>
+            Gets or sets Japanese.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.ArticleTranslatorTokens.ArticleTranslatorTitle">
+            <summary>
+            Gets or sets ArticleTranslatorTitle.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.ArticleTranslator.TargetLanguage.contentLanguage">
+            <summary>
+            ContentLanguages available in EMG.Utility
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.ArticleTranslator.TargetLanguage.LangText">
+            <summary>
+            Lang text to override.
+            </summary>
+        </member>
+        <member name="T:DowJones.Web.Mvc.UI.Components.Models.Article.ArticleModel">
+            <summary>
+            The article model.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.Article.ArticleModel.ShowSocialButtons">
+            <summary>
+            Gets or sets a value indicating whether ShowSocialButtons.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.Article.ArticleModel.ShowTranslator">
+            <summary>
+            Gets or sets a value indicating whether ShowTranslator.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.Article.ArticleModel.ShowPostProcessing">
+            <summary>
+            Gets or sets a value indicating whether ShowPostProcessing.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.Article.ArticleModel.PostProcessingOptions">
+            <summary>
+            Gets or sets the post processing options.
+            </summary>
+            <value>
+            The post processing options.
+            </value>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.Article.ArticleModel.ArticleDataSet">
+            <summary>
+            Gets or sets ArticleDataSet.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.Article.ArticleModel.SocialButtons">
+            <summary>
+            Gets or sets SocialButtons.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.Article.ArticleModel.HasSocialNetworks">
+            <summary>
+            Gets a value indicating whether HasSocialNetworks.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.Article.ArticleModel.Translator">
+            <summary>
+            Gets or sets Translator.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.Article.ArticleModel.HasTranslator">
+            <summary>
+            Gets a value indicating whether HasTranslator.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.Article.ArticleModel.ArticleDisplayOptions">
+            <summary>
+            Gets or sets ArticleDisplayOptions.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.Article.ArticleModel.PostProcessing">
+            <summary>
+            Gets or sets PostProcessing.
+            </summary>
+        </member>
+        <member name="T:DowJones.Web.Mvc.UI.Components.Article.ElinkReferences">
+            <summary>
+            The elink references.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Article.ElinkReferences.Reference">
+            <summary>
+            Gets or sets Reference.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Article.ElinkReferences.Text">
+            <summary>
+            Gets or sets Text.
+            </summary>
+        </member>
+        <member name="T:DowJones.Web.Mvc.UI.Components.Article.Codes">
+            <summary>
+            The codes.
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.Article.Codes.AN">
+            <summary>
+            The an.
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.Article.Codes.CLM">
+            <summary>
+            The clm.
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.Article.Codes.SE">
+            <summary>
+            The se.
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.Article.Codes.BY">
+            <summary>
+            The by.
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.Article.Codes.CR">
+            <summary>
+            The cr.
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.Article.Codes.WC">
+            <summary>
+            The wc.
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.Article.Codes.PD">
+            <summary>
+            The pd.
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.Article.Codes.ET">
+            <summary>
+            The et.
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.Article.Codes.SN">
+            <summary>
+            The sn.
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.Article.Codes.SC">
+            <summary>
+            The sc.
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.Article.Codes.NGC">
+            <summary>
+            The ngc.
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.Article.Codes.GC">
+            <summary>
+            The gc.
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.Article.Codes.ED">
+            <summary>
+            The ed.
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.Article.Codes.PG">
+            <summary>
+            The pg.
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.Article.Codes.VOL">
+            <summary>
+            The vol.
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.Article.Codes.LA">
+            <summary>
+            The la.
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.Article.Codes.CY">
+            <summary>
+            The cy.
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.Article.Codes.CT">
+            <summary>
+            The ct.
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.Article.Codes.RF">
+            <summary>
+            The rf.
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.Article.Codes.ART">
+            <summary>
+            The art.
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.Article.Codes.co">
+            <summary>
+            The co.
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.Article.Codes.pe">
+            <summary>
+            The pe.
+            </summary>
+        </member>
+        <member name="T:DowJones.Web.Mvc.UI.Components.Article.ElinkType">
+            <summary>
+            The elink type.
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.Article.ElinkType.pro">
+            <summary>
+            The pro.
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.Article.ElinkType.webpage">
+            <summary>
+            The webpage.
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.Article.ElinkType.company">
+            <summary>
+            The company.
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.Article.ElinkType.doc">
+            <summary>
+            The doc.
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.Article.ElinkType.executive">
+            <summary>
+            The executive.
+            </summary>
+        </member>
+        <member name="T:DowJones.Web.Mvc.UI.Components.Article.ContentType">
+            <summary>
+            The content type.
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.Article.ContentType.article">
+            <summary>
+            The article.
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.Article.ContentType.picture">
+            <summary>
+            The picture.
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.Article.ContentType.articlewithgraphics">
+            <summary>
+            The articlewithgraphics.
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.Article.ContentType.webpage">
+            <summary>
+            The webpage.
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.Article.ContentType.analyst">
+            <summary>
+            The analyst.
+            </summary>
+        </member>
+        <member name="T:DowJones.Web.Mvc.UI.Components.Article.Category">
+            <summary>
+            The category.
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.Article.Category.company">
+            <summary>
+            The company.
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.Article.Category.executive">
+            <summary>
+            The executive.
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.Article.Category.source">
+            <summary>
+            The source.
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.Article.Category.companynews">
+            <summary>
+            The companynews.
+            </summary>
+        </member>
+        <member name="T:DowJones.Web.Mvc.UI.Components.Article.DisplayOptions">
+            <summary>
+            The Display options for the article
+            </summary>
+        </member>
+        <member name="M:DowJones.Web.Mvc.UI.Components.Models.AuthorListModel.#ctor">
+            <summary>
+            Create an instanse of AuthorListModel class.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.AuthorListModel.Authors">
+            <summary>
+            Gets and sets author list.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.AuthorListModel.FirstRecordIndex">
+            <summary>
+            Gets and sets first author index.
+            Used in table to show a serial number.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.AuthorListModel.Tokens">
+            <summary>
+            Gets and sets tokens to be used in AuthorList component.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.AuthorListModel.SortBy">
+            <summary>
+            Gets and sets column by which the author list will be sorted.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.AuthorListModel.SortOrder">
+            <summary>
+            Gets and sets order direction for sorting the author list.
+            </summary>
+        </member>
+        <member name="T:DowJones.Web.Mvc.UI.Components.Models.AuthorListSortColumns">
+            <summary>
+            Author's sortable columns enumerator.
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.Models.AuthorListSortColumns.ContactName">
+            <summary>
+            Sort by author name;
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.Models.AuthorListSortColumns.OutletName">
+            <summary>
+            Sort by outlet name;
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.Models.AuthorListSortColumns.OutletType">
+            <summary>
+            Sort by outlet type;
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.Models.AuthorListSortColumns.OutletFrequency">
+            <summary>
+            Sort by outlet frequency;
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.Models.AuthorListSortColumns.Circulation">
+            <summary>
+            Sort by circulation;
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.Models.AuthorListSortColumns.Country">
+            <summary>
+            Sort by author's country;
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.Models.AuthorListSortColumns.JobTitle">
+            <summary>
+            Sort by author's job title;
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.Models.AuthorListSortColumns.EmploymentType">
+            <summary>
+            Sort by author's employment type;
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.Models.AuthorListSortColumns.OutletCountry">
+            <summary>
+            Sort by outlet country;
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.Models.AuthorListSortColumns.OutletState">
+            <summary>
+            Sort by outlet state;
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.Models.AuthorListSortColumns.OutletCity">
+            <summary>
+            Sort by outlet city;
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.Models.AuthorListSortColumns.State">
+            <summary>
+            Sort by author's state;
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.Models.AuthorListSortColumns.City">
+            <summary>
+            Sort by author's city;
+            </summary>
+        </member>
+        <member name="T:DowJones.Web.Mvc.UI.Components.Models.OrderDirections">
+            <summary>
+            Sort order enumerator.
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.Models.OrderDirections.Ascending">
+            <summary>
+            Order ascending;
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.Models.OrderDirections.Descending">
+            <summary>
+            Order descending;
+            </summary>
+        </member>
+        <member name="T:DowJones.Web.Mvc.UI.Components.Models.AuthorModel">
+            <summary>
+            Class representing an model for author list.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.AuthorModel.AuthorId">
+            <summary>
+            Gets and sets author ID.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.AuthorModel.AuthorNNID">
+            <summary>
+            Gets and sets author NNID.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.AuthorModel.AuthorName">
+            <summary>
+            Gets and sets author name.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.AuthorModel.ContactMethod">
+            <summary>
+            Gets and sets author's prefered contact method.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.AuthorModel.Outlets">
+            <summary>
+            Gets and sets collection of outlets.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.AuthorModel.HasOutlets">
+            <summary>
+            Gets whether the author have at least one outlet.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.AuthorModel.ExpandableOutlet">
+            <summary>
+            Gets whether the author have more than one outlet.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.AuthorModel.HasArticles">
+            <summary>
+            Gets and sets whether an author has articles in last tree months.
+            </summary>
+        </member>
+        <member name="T:DowJones.Web.Mvc.UI.Components.Models.OutletProperties">
+            <summary>
+            Class represents an outlet.
+            Used in DowJones.Web.Mvc.UI.Components.AuthorList.AuthorModel class.
+            </summary>
+        </member>
+        <member name="M:DowJones.Web.Mvc.UI.Components.Models.OutletProperties.#ctor">
+            <summary>
+            Create an instanse of OutletProperties class.
+            </summary>
+        </member>
+        <member name="M:DowJones.Web.Mvc.UI.Components.Models.OutletProperties.#ctor(System.Int32,System.String,System.String,System.String,System.String,System.String,DowJones.Web.Mvc.UI.Components.Models.OutletType,DowJones.Web.Mvc.UI.Components.Models.Frequency,System.Int32,System.String)">
+            <summary>
+            Create an instanse of ContactMethodProperties class and populate properties.
+            </summary>
+            <param name="outletId">Outlet ID.</param>
+            <param name="outletName">Outlet name.</param>
+            <param name="circulation">Outlet circulation.</param>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.OutletProperties.OutletId">
+            <summary>
+            Gets and sets outlet ID.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.OutletProperties.OutletName">
+            <summary>
+            Gets and sets outlet name.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.OutletProperties.OutletOriginCountry">
+            <summary>
+            Gets and sets outlet origin country.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.OutletProperties.OutletCountry">
+            <summary>
+            Gets and sets outlet country.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.OutletProperties.OutletState">
+            <summary>
+            Gets and sets outlet state.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.OutletProperties.OutletCity">
+            <summary>
+            Gets and sets outlet city.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.OutletProperties.Type">
+            <summary>
+            Gets and sets outlet type.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.OutletProperties.Circulation">
+            <summary>
+            Gets and sets outlet circulation.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.OutletProperties.EmploymentType">
+            <summary>
+            Gets and sets employment type.
+            </summary>
+        </member>
+        <member name="T:DowJones.Web.Mvc.UI.Components.Models.ContactMethodProperties">
+            <summary>
+            Class represents author's contact method.
+            Used in DowJones.Web.Mvc.UI.Components.AuthorList.AuthorModel class.
+            </summary>
+        </member>
+        <member name="M:DowJones.Web.Mvc.UI.Components.Models.ContactMethodProperties.#ctor">
+            <summary>
+            Create an instanse of ContactMethodProperties class.
+            </summary>
+        </member>
+        <member name="M:DowJones.Web.Mvc.UI.Components.Models.ContactMethodProperties.#ctor(DowJones.Web.Mvc.UI.Components.Models.ContactMethodTypes,System.String)">
+            <summary>
+            Create an instanse of ContactMethodProperties class and populate properties.
+            </summary>
+            <param name="type">Contact method type.</param>
+            <param name="contact">Contact.</param>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.ContactMethodProperties.Type">
+            <summary>
+            Gets and sets contact method type (eg. via e-mail, telephone...).
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.ContactMethodProperties.Contact">
+            <summary>
+            Gets and sets contact (e.g. e-mail address, telephone number).
+            </summary>
+        </member>
+        <member name="T:DowJones.Web.Mvc.UI.Components.Models.ContactMethodTypes">
+            <summary>
+            Author's contact methods enumerator.
+            Used in DowJones.Web.Mvc.UI.Components.AuthorList.ContactMethodProperties class.
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.Models.ContactMethodTypes.None">
+            <summary>
+            No contact method
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.Models.ContactMethodTypes.Email">
+            <summary>
+            Email, Personal
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.Models.ContactMethodTypes.EmailWork">
+            <summary>
+            Email, Work
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.Models.ContactMethodTypes.EmailOutlet">
+            <summary>
+            Email, Company General
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.Models.ContactMethodTypes.Phone">
+            <summary>
+            Telephone, Home
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.Models.ContactMethodTypes.PhoneWork">
+            <summary>
+            Telephone, Work, Direct Dial
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.Models.ContactMethodTypes.PhoneOutlet">
+            <summary>
+            Telephone, Office, Department
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.Models.ContactMethodTypes.PhoneOutlet2">
+            <summary>
+            Telephone, Office, General
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.Models.ContactMethodTypes.Mobile">
+            <summary>
+            Telephone, Mobile, Personal
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.Models.ContactMethodTypes.MobileOutlet">
+            <summary>
+            Telephone, Mobile, Corporate
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.Models.ContactMethodTypes.Fax">
+            <summary>
+            Fax, Home
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.Models.ContactMethodTypes.FaxWork">
+            <summary>
+            Fax, Corporate, Direct
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.Models.ContactMethodTypes.FaxOutlet">
+            <summary>
+            Fax, Corporate, General
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.Models.ContactMethodTypes.IMAOL">
+            <summary>
+            IM - AOL
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.Models.ContactMethodTypes.IMMSN">
+            <summary>
+            IM - MSN
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.Models.ContactMethodTypes.IMReuters">
+            <summary>
+            IM - Reuters
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.Models.ContactMethodTypes.IMYahoo">
+            <summary>
+            IM - Yahoo
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.Models.ContactMethodTypes.IMVoipSkype">
+            <summary>
+            IM/VoIP - Skype
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.Models.ContactMethodTypes.IMVoipGoogleTalk">
+            <summary>
+            IM/VoIP - Google Talk
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.CompositeAuthorModel.FirstResultIndex">
+            <summary>
+            Gets or sets the first index of the result.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.CompositeAuthorModel.LastResultIndex">
+            <summary>
+            Gets or sets the last index of the result.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.CompositeAuthorModel.TotalResultCount">
+            <summary>
+            Gets or sets the total result count.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.CompositeAuthorModel.AuthorList">
+            <summary>
+            Gets or sets the author list.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.CompositeOutletModel.FirstResultIndex">
+            <summary>
+            Gets or sets the first index of the result.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.CompositeOutletModel.LastResultIndex">
+            <summary>
+            Gets or sets the last index of the result.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.CompositeOutletModel.TotalResultCount">
+            <summary>
+            Gets or sets the total result count.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.CompositeOutletModel.OutletList">
+            <summary>
+            Gets or sets the author list.
+            </summary>
+        </member>
+        <member name="M:DowJones.Web.Mvc.UI.Components.Models.OutletListModel.#ctor">
+            <summary>
+            Create an instanse of OutletListModel class.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.OutletListModel.Outlets">
+            <summary>
+            Gets and sets outlet list.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.OutletListModel.FirstRecordIndex">
+            <summary>
+            Gets and sets first author index.
+            Used in table to show a serial number.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.OutletListModel.Tokens">
+            <summary>
+            Gets and sets tokens to be used in OutletList component.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.OutletListModel.SortBy">
+            <summary>
+            Gets and sets column by which the author list will be sorted.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.OutletListModel.SortOrder">
+            <summary>
+            Gets and sets order direction for sorting the outlet list.
+            </summary>
+        </member>
+        <member name="T:DowJones.Web.Mvc.UI.Components.Models.OutletListSortColumns">
+            <summary>
+            Outlet's sortable columns enumerator.
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.Models.OutletListSortColumns.OutletName">
+            <summary>
+            Sort by outlet name;
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.Models.OutletListSortColumns.Circulation">
+            <summary>
+            Sort by circulation;
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.Models.OutletListSortColumns.Country">
+            <summary>
+            Sort by country;
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.Models.OutletListSortColumns.MediaFormat">
+            <summary>
+            Sort by media format;
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.Models.OutletListSortColumns.OutletType">
+            <summary>
+            Sort by outlet type;
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.Models.OutletListSortColumns.DateModified">
+            <summary>
+            Sort by last modified date;
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.Models.OutletListSortColumns.Language">
+            <summary>
+            Sort by language;
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.Models.OutletListSortColumns.Frequency">
+            <summary>
+            Sort by frequency;
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.Models.OutletListSortColumns.Coverage">
+            <summary>
+            Sort by coverage;
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.Models.OutletListSortColumns.Publisher">
+            <summary>
+            Sort by publisher;
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.Models.OutletListSortColumns.Regions">
+            <summary>
+            Sort by regions;
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.Models.OutletListSortColumns.Subjects">
+            <summary>
+            Sort by subjects;
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.Models.OutletListSortColumns.Industries">
+            <summary>
+            Sort by industries;
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.Models.OutletListSortColumns.UserAddedInfo">
+            <summary>
+            Sort by user added info;
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.Models.OutletListSortColumns.State">
+            <summary>
+            Sort by state;
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.Models.OutletListSortColumns.City">
+            <summary>
+            Sort by city;
+            </summary>
+        </member>
+        <member name="T:DowJones.Web.Mvc.UI.Components.Models.OutletModel">
+            <summary>
+            Class representing a model for outlet list.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.OutletModel.OutletId">
+            <summary>
+            Gets and sets outlet ID.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.OutletModel.OutletName">
+            <summary>
+            Gets and sets outlet name.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.OutletModel.Circulation">
+            <summary>
+            Gets and sets outlet circulation.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.OutletModel.OriginCountry">
+            <summary>
+            Gets and sets outlet country.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.OutletModel.Country">
+            <summary>
+            Gets and sets outlet country.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.OutletModel.State">
+            <summary>
+            Gets and sets outlet state.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.OutletModel.City">
+            <summary>
+            Gets and sets outlet city.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.OutletModel.DateModified">
+            <summary>
+            Gets and sets when last an outlet has been modified
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.OutletModel.OutletType">
+            <summary>
+            Gets and sets outlet type
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.OutletModel.MediaFormat">
+            <summary>
+            Gets and sets media format
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.OutletModel.Languages">
+            <summary>
+            Gets and sets languages
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.OutletModel.Frequency">
+            <summary>
+            Gets and sets Frequency
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.OutletModel.Coverage">
+            <summary>
+            Gets and sets Coverage
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.OutletModel.Publisher">
+            <summary>
+            Gets and sets Publisher
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.OutletModel.RegionEditorialFocus">
+            <summary>
+            Gets or sets the region editorial focus.
+            </summary>
+            <value>The region editorial focus.</value>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.OutletModel.IndustryEditorialFocus">
+            <summary>
+            Gets or sets the industry editorial focus.
+            </summary>
+            <value>The industry editorial focus.</value>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.OutletModel.SubjectEditorialFocus">
+            <summary>
+            Gets or sets the subject editorial focus.
+            </summary>
+            <value>The subject editorial focus.</value>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.OutletModel.UserAddedInformation">
+            <summary>
+            Gets or sets the user added info.
+            </summary>
+            <value>The subject editorial focus.</value>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.ProprietaryInfo.City">
+            <summary>
+            Gets or sets the city.
+            </summary>
+            <value>The city.</value>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.ProprietaryInfo.Country">
+            <summary>
+            Gets or sets the country.
+            </summary>
+            <value>The country.</value>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.ProprietaryInfo.Phone">
+            <summary>
+            Gets or sets the phone.
+            </summary>
+            <value>The phone.</value>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.ProprietaryInfo.Mobile">
+            <summary>
+            Gets or sets the mobile.
+            </summary>
+            <value>The mobile.</value>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.ProprietaryInfo.Fax">
+            <summary>
+            Gets or sets the fax.
+            </summary>
+            <value>The fax.</value>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.ProprietaryInfo.Email1">
+            <summary>
+            Gets or sets the email1.
+            </summary>
+            <value>The email1.</value>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.ProprietaryInfo.Email2">
+            <summary>
+            Gets or sets the email2.
+            </summary>
+            <value>The email2.</value>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.ProprietaryInfo.Email3">
+            <summary>
+            Gets or sets the email3.
+            </summary>
+            <value>The email3.</value>
+        </member>
+        <member name="T:DowJones.Web.Mvc.UI.Components.Models.Subject">
+            Holds subjects
+        </member>
+        <member name="T:DowJones.Web.Mvc.UI.Components.Models.Beat">
+            <summary>
+            Represents region, industry or subject
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.Beat.Id">
+            <summary>
+            Gets or sets the id.
+            </summary>
+            <value>The id.</value>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.Beat.Name">
+            <summary>
+            Gets or sets the name.
+            </summary>
+            <value>The name.</value>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.Beat.ParentId">
+            <summary>
+            Gets or sets the parent beat id.
+            </summary>
+            <value>The parent id.</value>
+        </member>
+        <member name="T:DowJones.Web.Mvc.UI.Components.Models.Industry">
+            Holds idustries
+        </member>
+        <member name="T:DowJones.Web.Mvc.UI.Components.Models.Region">
+            <summary>
+            Holds regions
+            </summary>
+        </member>
+        <member name="T:DowJones.Web.Mvc.UI.Components.Models.Frequency">
+            <summary>
+            Represents how often the outlet is published
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.Frequency.Id">
+            <summary>
+            Gets or sets the id.
+            </summary>
+            <value>The id.</value>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.Frequency.Name">
+            <summary>
+            Gets or sets the name.
+            </summary>
+            <value>The name.</value>
+        </member>
+        <member name="M:DowJones.Web.Mvc.UI.Components.Models.Language.#ctor">
+            <summary>
+            Create an instanse of OutletProperties class.
+            </summary>
+        </member>
+        <member name="M:DowJones.Web.Mvc.UI.Components.Models.Language.#ctor(System.Int32,System.String,System.String)">
+            <summary>
+            Create an instance of Language class and populate properties.
+            </summary>
+            <param name="outletId">Language ID.</param>
+            <param name="outletName">Language name.</param>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.Language.Id">
+            <summary>
+            Gets and sets language Id.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.Language.Name">
+            <summary>
+            Gets and sets language name.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.Language.Code">
+            <summary>
+            Gets or sets the code.
+            </summary>
+            <value>The code.</value>
+        </member>
+        <member name="T:DowJones.Web.Mvc.UI.Components.Models.OutletType">
+            <summary>
+            Class represents an Outlet type.
+            </summary>
+        </member>
+        <member name="M:DowJones.Web.Mvc.UI.Components.Models.OutletType.#ctor">
+            <summary>
+            Create an instanse of OutletProperties class.
+            </summary>
+        </member>
+        <member name="M:DowJones.Web.Mvc.UI.Components.Models.OutletType.#ctor(System.Int32,System.String)">
+            <summary>
+            Create an instance of Outlet type class and populate properties.
+            </summary>
+            <param name="outletId">Outlet type ID.</param>
+            <param name="outletName">Outlet type name.</param>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.OutletType.Id">
+            <summary>
+            Gets and sets outlet type ID.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.OutletType.Name">
+            <summary>
+            Gets and sets outlet type name.
+            </summary>
+        </member>
+        <member name="T:DowJones.Web.Mvc.UI.Components.Models.MediaFormat">
+            <summary>
+            Class represents a Media Format.
+            </summary>
+        </member>
+        <member name="M:DowJones.Web.Mvc.UI.Components.Models.MediaFormat.#ctor">
+            <summary>
+            Create an instanse of OutletProperties class.
+            </summary>
+        </member>
+        <member name="M:DowJones.Web.Mvc.UI.Components.Models.MediaFormat.#ctor(System.Int32,System.String)">
+            <summary>
+            Create an instance of Media Format class and populate properties.
+            </summary>
+            <param name="outletId">Media format ID.</param>
+            <param name="outletName">Media format name.</param>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.MediaFormat.Id">
+            <summary>
+            Gets and sets media format ID.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.MediaFormat.Name">
+            <summary>
+            Gets and sets media format name.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.SearchBuilderData.ExclusionsList">
+            <summary>
+            Gets or Sets the Exclusions list
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.SearchBuilderData.SourceGroup">
+            <summary>
+            Gets or Sets the SourceGroup
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.LookUpData.LanguageList">
+            <summary>
+            Gets the Language list.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.LookUpData.Filters">
+            <summary>
+            Gets or sets the Filters.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.LookUpData.SourceGroup">
+            <summary>
+            Gets or Sets the SourceGroup
+            </summary>
+        </member>
+        <member name="T:DowJones.Web.Mvc.UI.Components.Models.CompanySparkline.CompaniesSparklinesComponentModel">
+            <summary>
+            The companies sparklines model.
+            </summary>
+        </member>
+        <member name="M:DowJones.Web.Mvc.UI.Components.Models.CompanySparkline.CompaniesSparklinesComponentModel.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:DowJones.Web.Mvc.UI.Components.Models.CompanySparkline.CompaniesSparklinesComponentModel"/> class.
+            </summary>
+        </member>
+        <member name="M:DowJones.Web.Mvc.UI.Components.Models.CompanySparkline.CompaniesSparklinesComponentModel.#ctor(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Initializes a new instance of the <see cref="T:DowJones.Web.Mvc.UI.Components.Models.CompanySparkline.CompaniesSparklinesComponentModel"/> class. 
+            </summary>
+            <param name="companies">
+            The companies.
+            </param>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.CompanySparkline.CompaniesSparklinesComponentModel.BaselineSeriesColor">
+            <summary>
+              Gets or sets the color of the baseline series.
+            </summary>
+            <value>
+              The color of the baseline series.
+            </value>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.CompanySparkline.CompaniesSparklinesComponentModel.SeriesColorForIncrease">
+            <summary>
+              Gets or sets the color of a increase series.
+            </summary>
+            <value>
+              The color of the series.
+            </value>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.CompanySparkline.CompaniesSparklinesComponentModel.SeriesColorForDecrease">
+            <summary>
+              Gets or sets the color of a decrease series.
+            </summary>
+            <value>
+              The color of the series.
+            </value>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.CompanySparkline.CompaniesSparklinesComponentModel.Companies">
+            <summary>
+              Gets or sets companies.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.CompanySparkline.CompaniesSparklinesComponentModel.Data">
+            <summary>
+            Gets or sets the data.
+            </summary>
+        </member>
+        <member name="T:DowJones.Web.Mvc.UI.Components.Models.CompanySparkline.CompanySparklineModel">
+            <summary>
+            The company sparkline model.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.CompanySparkline.CompanySparklineModel.BaselineSeriesColor">
+            <summary>
+            Gets or sets the color of the baseline series.
+            </summary>
+            <value>
+            The color of the baseline series.
+            </value>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.CompanySparkline.CompanySparklineModel.SeriesColorForIncrease">
+            <summary>
+            Gets or sets the color of a increase series.
+            </summary>
+            <value>
+            The color of the series.
+            </value>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.CompanySparkline.CompanySparklineModel.SeriesColorForDecrease">
+            <summary>
+            Gets or sets the color of a decrease series.
+            </summary>
+            <value>
+            The color of the series.
+            </value>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.CompositeHeadline.CompositeHeadlineModel.TotalDuplicateCount">
+            <summary>
+            Total duplicate so far starting from 0 to current set of headlines
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.CompositeHeadline.CompositeHeadlineModel.DuplicateCount">
+            <summary>
+            Total duplicates in current headline set
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.CompositeHeadline.CompositeHeadlineModel.TotalResultCount">
+            <summary>
+            Gets or sets the total result count.
+            </summary>
+            <value>
+            The total result count.
+            </value>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.CompositeHeadline.CompositeHeadlineModel.LastResultIndex">
+            <summary>
+            Gets or sets the last index of the result.
+            </summary>
+            <value>
+            The last index of the result.
+            </value>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.CompositeHeadline.CompositeHeadlineModel.FirstResultIndex">
+            <summary>
+            Gets or sets the first index of the result.
+            </summary>
+            <value>
+            The first index of the result.
+            </value>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.CompositeHeadline.CompositeHeadlineModel.HeadlineList">
+            <summary>
+            Gets or sets the headline list.
+            </summary>
+            <value>
+            The headline list.
+            </value>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.CompositeHeadline.CompositeHeadlineModel.PostProcessing">
+            <summary>
+            Gets or sets the post processing.
+            </summary>
+            <value>
+            The post processing.
+            </value>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.CompositeHeadline.CompositeHeadlineModel.ShowHeadlineViewOptions">
+            <summary>
+            Gets or sets a value indicating whether to show headline view options button.
+            </summary>
+            <value>
+              <c>true</c> if [show headline view options]; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.CompositeHeadline.CompositeHeadlineModel.ShowPostProcessing">
+            <summary>
+            Gets or sets a value indicating whether to show post processing toolbar.
+            </summary>
+            <value>
+              <c>true</c> if [show post processing]; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <!-- Badly formed XML comment ignored for member "P:DowJones.Web.Mvc.UI.Components.CompositeHeadline.CompositeHeadlineModel.ShowPressClip" -->
+        <member name="P:DowJones.Web.Mvc.UI.Components.PersonalizationFilters.PersonalizationFiltersModel.SuggestServiceUrl">
+            <summary>
+            Gets or sets the SuggestServiceUrl.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.PersonalizationFilters.PersonalizationFiltersModel.FilterLevel">
+            <summary>
+            Gets or sets whether this is a page or module filter.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.PersonalizationFilters.PersonalizationFiltersModel.Disabled">
+            <summary>
+            Gets or sets whether this is a component is disabled.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.PersonalizationFilters.PersonalizationFiltersModel.LensType">
+            <summary>
+            Gets or sets the type of lens.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.PersonalizationFilters.PersonalizationFiltersModel.ParentCodes">
+            <summary>
+            Gets or sets the list of industry/region codes for the selected lens.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.PersonalizationFilters.PersonalizationFiltersModel.IndustryFilter">
+            <summary>
+            Gets or sets the industry filter.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.PersonalizationFilters.PersonalizationFiltersModel.RegionFilter">
+            <summary>
+            Gets or sets the region filter.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.PersonalizationFilters.PersonalizationFiltersModel.KeywordFilter">
+            <summary>
+            Gets or sets the keyword filter.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.PersonalizationFilters.PersonalizationFiltersModel.CompanyFilter">
+            <summary>
+            Gets or sets the company filter.
+            </summary>
+        </member>
+        <member name="T:DowJones.Web.Mvc.UI.Components.Models.Discovery.DateHistogramModel">
+            <summary>
+            The date histogram model.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.Discovery.DateHistogramModel.BarColor">
+            <summary>
+              Gets or sets BarColor.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.Discovery.DateHistogramModel.Height">
+            <summary>
+            Gets or sets the height.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.Discovery.DateHistogramModel.Histogram">
+            <summary>
+              Gets or sets Histogram.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.SimpleAlertData.SourceList">
+            <summary>
+            Gets or sets the Source List.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.SimpleAlertData.SelectedSource">
+            <summary>
+            Gets or sets the selected Source value.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.SimpleAlertData.SelectedSourceDesc">
+            <summary>
+            Gets or sets the selected Source Description.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.SimpleAlertData.SearchText">
+            <summary>
+            Gets or sets the SearchText.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.SimpleAlertData.EmailAddress">
+            <summary>
+            Gets or sets the Email Address.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.SimpleAlertData.EmailFormats">
+            <summary>
+            Gets or Sets the email formats
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.SimpleAlertData.SelectedEmailFormat">
+            <summary>
+            Gets or Sets the selected EmailFormat
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.SimpleAlertData.DeliveryTimes">
+            <summary>
+            Gets the Delivery Time
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.SimpleAlertData.SelectedDeliveryTime">
+            <summary>
+            Gets or Sets the selected DeliveryTime
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.SimpleAlertData.Duplicates">
+            <summary>
+            Gets the Delivery Time
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.SimpleAlertData.SelectedDuplicate">
+            <summary>
+            Gets or Sets the selected DeliveryTime
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.SimpleAlertData.NewsFilter">
+            <summary>
+            Gets or Sets the news filter
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.SimpleAlertData.AlertName">
+            <summary>
+            Gets or Sets the alert name
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.SimpleAlertModel.Title">
+            <summary>
+            Gets or sets the selected Source index.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.SimpleAlertModel.OnSave">
+            <summary>
+            Gets or sets the client side OnSave event handler.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.TaxonomySearchBrowse.TaxonomySearchBrowseModel.TaxonomyType">
+            <summary>
+            Gets or sets the TaxonomyType.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.TaxonomySearchBrowse.TaxonomySearchBrowseModel.TaxonomyServiceUrl">
+            <summary>
+            Gets or sets the TaxonomyServiceUrl.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.TaxonomySearchBrowse.TaxonomySearchBrowseModel.ParentCodes">
+            <summary>
+            Gets or sets the parent codes.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.TaxonomySearchBrowse.TaxonomySearchBrowseModel.LookupText">
+            <summary>
+            Gets or sets the text entered by user.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.TopicData.TopicCategories">
+            <summary>
+            Gets TopicCategories.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.TopicEditorModel.TopicData">
+            <summary>
+            Gets or Sets the Topic Data.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.SearchBuilderModel.SearchFreeTextArea">
+            <summary>
+            Gets or sets the sortBy dropdown list.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.SearchBuilderModel.SortBy">
+            <summary>
+            Gets or sets the sortBy dropdown list.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.SearchBuilderModel.DateRange">
+            <summary>
+            Gets or sets the date range dropdown list.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.SearchBuilderModel.Preferences">
+            <summary>
+            Gets or sets the SuggestServiceUrl.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.SearchBuilderModel.SuggestServiceUrl">
+            <summary>
+            Gets or sets the SuggestServiceUrl.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.SearchBuilderModel.TaxonomyServiceUrl">
+            <summary>
+            Gets or sets the TaxanomyServiceUrl.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.SearchBuilderModel.QueriesServiceUrl">
+            <summary>
+            Gets or sets the QueriesServiceUrl.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.SearchBuilderModel.DateFormat">
+            <summary>
+            Gets or sets the DateFormat.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.SearchBuilderModel.DateFormatDisplay">
+            <summary>
+            Gets or sets the DateFormatDisplay.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.SearchBuilderModel.Data">
+            <summary>
+            Gets or sets the Data.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.SearchBuilderModel.SearchQueryMaxLength">
+            <summary>
+            Gets or sets the SessionId.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.SearchBuilderModel.ProductId">
+            <summary>
+            Gets or sets the ProductId.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.SearchBuilderModel.FormattedStartDate">
+            <summary>
+            Gets the formatted Start Date
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.SearchBuilderModel.FormattedEndDate">
+            <summary>
+            Gets the formatted End Date
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Menu.MenuItem.MetaData">
+            <summary>
+            Gets or sets any addtional meta data that needs to be passed on tab click event on client side.
+            </summary>
+            <value>
+            The meta data object. Must be serailizable as JSON.
+            </value>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.NavBar.NavItem.Id">
+            <summary>
+            Gets or sets the custom DOM id of the tab.
+            </summary>
+            <value>
+            The id.
+            </value>
+            <remarks>
+            Must maintain the uniqueness of Ids yourself if you're providing custom id. 
+            For better maintainability, use different selectors other than ID based selectors.
+            </remarks>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.NavBar.NavItem.Label">
+            <summary>
+            Gets or sets the label on tab.
+            </summary>
+            <value>
+            The label.
+            </value>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.NavBar.NavItem.Position">
+            <summary>
+            Gets or sets the tab's logical position.
+            </summary>
+            <value>
+            The logical position. E.g, zeroth Nav Item can be shown at 3rd position
+            </value>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.NavBar.NavItem.MetaData">
+            <summary>
+            Gets or sets any addtional meta data that needs to be passed on tab click event on client side.
+            </summary>
+            <value>
+            The meta data object. Must be serailizable as JSON.
+            </value>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.NavBar.NavItem.Url">
+            <summary>
+            Gets or sets the tab URL.
+            </summary>
+            <value>
+            The URL string.
+            </value>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.NavBar.NavItem.IsSelected">
+            <summary>
+            True if tab is shown as selected
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.NavBar.NavItem.MenuItems">
+            <summary>
+            Gets or sets the context menu items that are shown on click of the gear icon.
+            </summary>
+            <value>
+            List of menu items.
+            </value>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.NavBar.NavItem.IsSelectable">
+            <summary>
+            Gets or sets the Tab is Selectable.
+            </summary>
+            <value>
+            True if selectable, false if not.
+            </value>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.NavBar.NavItem.IconClass">
+            <summary>
+            Gets or sets the CSS class for Action Item icon on the tab.
+            </summary>
+            <value>
+            Icon's CSS class. Default is the gear icon.
+            </value>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.NavBar.NavItem.Tooltip">
+            <summary>
+            Gets or sets the tooltip for the tabs.
+            </summary>
+            <value>
+            The tooltip.
+            </value>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.NavBar.NavItem.CssClass">
+            <summary>
+            Gets or sets the additional CSS classes to render custom styles.
+            </summary>
+            <value>
+            The CSS class(es).
+            </value>
+            <remarks>
+            Appends to existing style. 
+            To change default style, override the CssClass in your stylesheets.
+            </remarks>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.SearchCategoriesLookUpModel.FilterType">
+            <summary>
+            Gets or sets the FilterType.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.SearchCategoriesLookUpModel.SuggestServiceUrl">
+            <summary>
+            Gets or sets the SuggestServiceUrl.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.SearchCategoriesLookUpModel.EnableSaveList">
+            <summary>
+            Gets or sets the EnableSaveList.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.SearchCategoriesLookUpModel.EnableBrowse">
+            <summary>
+            Gets or sets the EnableBrowse.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.SearchCategoriesLookUpModel.EnableSourceList">
+            <summary>
+            Gets or sets the EnableSourceList.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.SearchCategoriesLookUpModel.LookUpData">
+            <summary>
+            Gets the Language list.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.SearchCategoriesLookUpModel.InterfaceLanguage">
+            <summary>
+            Gets or sets the InterfaceLanguage.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.SearchCategoriesLookUpModel.TaxonomyServiceUrl">
+            <summary>
+            Gets or sets the TaxanomyServiceUrl.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.SearchCategoriesLookUpModel.QueriesServiceUrl">
+            <summary>
+            Gets or sets the QueriesServiceUrl.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.SearchCategoriesLookUpModel.ProductId">
+            <summary>
+            Gets or sets the ProductId.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.SocialMedia.TweetLinesModel.MaxPagesInHistory">
+            <summary>
+            No. of times you can click 'load more' before it is disabled.
+            </summary>
+            <remarks>
+            -1 or less means infinite, 0 disables it and any positive integer allows that many times.
+            </remarks>
+        </member>
+        <member name="T:DowJones.Web.Mvc.UI.Components.Discovery.DiscoveryList">
+            <summary>
+            Contains discovery buckets, allow for transoforming buckets.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.HeadlineCarousel.HeadlineCarouselModel.DisplayNoResultsToken">
+            <summary>
+            Gets or sets a value indicating whether to display no results token.
+            </summary>
+            <value>
+            	<c>true</c> if display no results token; otherwise, <c>false</c> hide it.
+            </value>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.HeadlineCarousel.HeadlineCarouselModel.OnHeadlineClick">
+            <summary>
+            Gets or sets the client side OnHeadlineClick event handler.
+            </summary>
+            <value>The OnHeadlineClick event handler name.</value>
+        </member>
+        <member name="T:DowJones.Web.Mvc.UI.Components.HeadlineList.ShowDuplicates">
+            <summary>
+            Show Similar, Exact or No duplicates.
+            </summary>
+            <remarks>
+            There might be more values coming in later.
+            </remarks>
+        </member>
+        <member name="T:DowJones.Web.Mvc.UI.Components.HeadlineList.HeadlineListModel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:DowJones.Web.Mvc.UI.Components.HeadlineList.HeadlineListModel.GetHoverSnippet(System.String,System.Int32)">
+            <summary>
+            Gets the hover snippet.
+            </summary>
+            <param name="snippet">The snippet.</param>
+            <param name="headlineIndex">Index of the headline.</param>
+            <returns></returns>
+        </member>
+        <member name="M:DowJones.Web.Mvc.UI.Components.HeadlineList.HeadlineListModel.IsThumbnailVisible(System.Int32,DowJones.Web.Mvc.UI.Components.HeadlineList.HeadlineModel)">
+            <summary>
+            Determines whether thumbnail is visible for the specified headline index.
+            </summary>
+            <param name="headlineIndex">Index of the headline in headlines result set.</param>
+            <param name="headline">The headline.</param>
+            <returns>
+              <c>true</c> if thumbnail is visible for the specified headline index; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "P:DowJones.Web.Mvc.UI.Components.HeadlineList.HeadlineListModel.ShowPressClip" -->
+        <member name="P:DowJones.Web.Mvc.UI.Components.HeadlineList.HeadlineListModel.MaxSelect">
+            <summary>
+            Gets or sets the maximum number of headlines that can be selected.
+            </summary>
+            <value>
+            The max select.
+            </value>
+            <remarks>Default is 0 which allows unlimited selection</remarks>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.HeadlineList.HeadlineListModel.ShowPostProcessing">
+            <summary>
+            Gets or sets a value indicating whether post processing actions are shown or not.
+            </summary>
+            <value>
+              <c>true</c> if [show post processing]; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.HeadlineList.HeadlineListModel.PostProcessingOptions">
+            <summary>
+            Gets or sets the post processing options.
+            </summary>
+            <value>
+            The post processing options.
+            </value>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.InlineMp3Player.InlineMp3PlayerModel.ShowDownloadLink">
+            <summary>
+            Gets or sets a value indicating whether [show download link].
+            </summary>
+            <value><c>true</c> if [show download link]; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.InlineMp3Player.InlineMp3PlayerModel.Mp3PlayerType">
+            <summary>
+            Gets or sets the MP3 player type
+            </summary>
+            <value>The type of the MP3 player.</value>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.InlineMp3Player.InlineMp3PlayerModel.AutoStart">
+            <summary>
+            Gets or sets a value indicating whether [auto start].
+            </summary>
+            <value><c>true</c> if [auto start]; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.InlineMp3Player.InlineMp3PlayerModel.AutoReplay">
+            <summary>
+            Gets or sets a value indicating whether [auto replay].
+            </summary>
+            <value><c>true</c> if [auto replay]; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.InlineMp3Player.InlineMp3PlayerModel.Volume">
+            <summary>
+            Gets or sets the volume. Values are between 1-100;
+            </summary>
+            <value>The volume.</value>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.InlineMp3Player.InlineMp3PlayerModel.ShowTime">
+            <summary>
+            Gets or sets a value indicating whether [show time]. Display(mm:ss)
+            </summary>
+            <value><c>true</c> if [show time]; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.InlineMp3Player.InlineMp3PlayerModel.RandomPlay">
+            <summary>
+            Gets or sets a value indicating whether [random play].
+            </summary>
+            <value><c>true</c> if [random play]; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.InlineMp3Player.InlineMp3PlayerModel.NoPointer">
+            <summary>
+            Gets or sets a value indicating whether [no cursor/pointer].
+            </summary>
+            <value><c>true</c> if [no cursor/pointer]; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.InlineMp3Player.InlineMp3PlayerModel.EnableTransparency">
+            <summary>
+            Gets or sets a value indicating whether [enable transparency]. if transparency is true then background color will not be added
+            </summary>
+            <value><c>true</c> if [enable transparency]; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.InlineMp3Player.InlineMp3PlayerModel.BackgroundColor">
+            <summary>
+            Gets or sets the color of the background. (white = FFFFFF, without #)
+            </summary>
+            <value>The color of the background.</value>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.InlineMp3Player.InlineMp3PlayerModel.Mp3PlayerUrl">
+            <summary>
+            Gets the MP3 player URL.
+            </summary>
+            <value>The MP3 player URL.</value>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.InlineMp3Player.InlineMp3PlayerModel.FlashPlayerWidth">
+            <summary>
+            Gets the width of the flash player.
+            </summary>
+            <value>The width of the flash player.</value>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.InlineMp3Player.InlineMp3PlayerModel.FlashPlayerHeight">
+            <summary>
+            Gets the height of the flash player.
+            </summary>
+            <value>The height of the flash player.</value>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.InlineMp3Player.InlineMp3PlayerModel.FlashPlayerVersion">
+            <summary>
+            Gets the flash player version.
+            </summary>
+            <value>The flash player version.</value>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.InlineMp3Player.InlineMp3PlayerModel.DewplayerVersion">
+            <summary>
+            Gets the dewplayer version.
+            </summary>
+            <value>The dewplayer version.</value>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.InlineMp3Player.InlineMp3PlayerModel.Mp3FilesUrls">
+            <summary>
+            Gets or sets the URL of the MP3 file.
+            Separate URLs (absolute or relative path) with [sep] used to separate multiple Urls.
+            Example : /media/sons/test.mp3|/media/sons/test2.mp3
+            </summary>
+            <value>The URL of the MP3 file.</value>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.InlineMp3Player.InlineMp3PlayerModel.DownloadUrl">
+            <summary>
+            Gets or sets the download URL.
+            </summary>
+            <value>The download URL.</value>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.InlineMp3Player.InlineMp3PlayerModel.SpeakerImageUrl">
+            <summary>
+            Gets the speaker Image Url
+            </summary>
+        </member>
+        <member name="M:DowJones.Web.Mvc.UI.Components.PortalArticle.PortalArticleModel.RenderArticleTitle">
+            <summary>
+            Retrives Title from the article object
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DowJones.Web.Mvc.UI.Components.PortalArticle.PortalArticleModel.RenderArticleParagraph">
+            <summary>
+            Creates the paragraphs of the article
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DowJones.Web.Mvc.UI.Components.PortalArticle.PortalArticleModel.GetParagraphText(System.Collections.Generic.IEnumerable{Factiva.Gateway.Messages.Archive.V1_0.Paragraph})">
+            <summary>
+            Gets the paragraph text.
+            </summary>
+            <param name="paragraphs">The paragraphs.</param>
+            <returns></returns>
+        </member>
+        <member name="M:DowJones.Web.Mvc.UI.Components.PortalArticle.PortalArticleModel.GetObjectText(System.Object[])">
+            <summary>
+            Gets the object text.
+            </summary>
+            <param name="items">The items.</param>
+            <returns></returns>
+        </member>
+        <member name="M:DowJones.Web.Mvc.UI.Components.PortalArticle.PortalArticleModel.RenderParagraph(Factiva.Gateway.Messages.Archive.V1_0.Paragraph)">
+            <summary>
+            Renders the paragraph.
+            </summary>
+            <param name="paragraph">The paragraph.</param>
+            <returns></returns>
+        </member>
+        <member name="M:DowJones.Web.Mvc.UI.Components.PortalArticle.PortalArticleModel.RenderItems(System.Object[])">
+            <summary>
+            The render items.
+            </summary>
+            <param name="items">
+            The items.
+            </param>
+        </member>
+        <member name="M:DowJones.Web.Mvc.UI.Components.PortalArticle.PortalArticleModel.RenderELink(Factiva.Gateway.Messages.Archive.V1_0.ELink)">
+            <summary>
+            The render e link.
+            </summary>
+            <param name="elink">The elink.</param>
+        </member>
+        <member name="M:DowJones.Web.Mvc.UI.Components.PortalArticle.PortalArticleModel.GetEntityReferenceText(System.Object[])">
+            <summary>
+            Gets the entity reference text.
+            </summary>
+            <param name="items">The items.</param>
+            <returns></returns>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.PortalArticle.PortalArticleModel.ArticleObject">
+            <summary>
+            Get or Set Article object
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.PortalArticle.PortalArticleModel.SourceLanguage">
+            <summary>
+            Get or Set source language of the article
+            </summary>
+        </member>
+        <member name="T:DowJones.Web.Mvc.UI.Components.PortalArticle.PortalArticleModel.ContentType">
+            <summary>
+            The content type.
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.PortalArticle.PortalArticleModel.ContentType.article">
+            <summary>
+            The article.
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.PortalArticle.PortalArticleModel.ContentType.picture">
+            <summary>
+            The picture.
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.PortalArticle.PortalArticleModel.ContentType.articlewithgraphics">
+            <summary>
+            The articlewithgraphics.
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.PortalArticle.PortalArticleModel.ContentType.webpage">
+            <summary>
+            The webpage.
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.PortalArticle.PortalArticleModel.ContentType.analyst">
+            <summary>
+            The analyst.
+            </summary>
+        </member>
+        <member name="T:DowJones.Web.Mvc.UI.Components.PortalArticle.PortalArticleModel.ElinkType">
+            <summary>
+            The elink type.
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.PortalArticle.PortalArticleModel.ElinkType.pro">
+            <summary>
+            The pro.
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.PortalArticle.PortalArticleModel.ElinkType.webpage">
+            <summary>
+            The webpage.
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.PortalArticle.PortalArticleModel.ElinkType.company">
+            <summary>
+            The company.
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.PortalArticle.PortalArticleModel.ElinkType.doc">
+            <summary>
+            The doc.
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.PortalArticle.PortalArticleModel.ElinkType.executive">
+            <summary>
+            The executive.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.NewsStandTicker.NewsStandTickerModel.TickerSpeed">
+            <summary>
+            Gets or sets ticker speed - has an inverse effect on speed. therefore, a value of 10000 will 
+            scroll very slowly while a value of 50 will scroll very quickly.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.NewsStandTicker.NewsStandTickerModel.TickerDirection">
+            <summary>
+            Gets or sets direction in which ticker show will traverse
+            </summary>
+            <value>'next', 'prev'</value>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.NewsStandTicker.NewsStandTickerModel.OnSourceTitleClick">
+            <summary>
+            Gets or sets the client side OnHeadlineClick event handler.
+            </summary>
+            <value>The OnHeadlineClick event handler name.</value>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.PortalHeadlineListModel.MaxNumHeadlinesToShow">
+            <summary>
+            Gets or sets the maximum number of headlines to show.
+            </summary>
+            <value>The max num headlines to show.</value>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.PortalHeadlineListModel.Layout">
+            <summary>
+            Gets or sets the maximum number of headlines to show.
+            </summary>
+            <value>The max num headlines to show.</value>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.PortalHeadlineListModel.SelectedGuid">
+            <summary>
+            Gets or sets the selected GUID.
+            </summary>
+            <value>
+            The selected GUID.
+            </value>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.PortalHeadlineListModel.DisplaySnippets">
+            <summary>
+            Gets or sets the display snippets.
+            </summary>
+            <value>The display snippets.</value>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.PortalHeadlineListModel.DisplayNoResultsToken">
+            <summary>
+            Gets or sets a value indicating whether to display no results token.
+            </summary>
+            <value>
+            	<c>true</c> if display no results token; otherwise, <c>false</c> hide it.
+            </value>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.PortalHeadlineListModel.SourceClickable">
+            <summary>
+            Gets or sets a value indicating whether 'Source' should be rendered as a hyperlink.
+            </summary>
+            <value><c>true</c> if there is an event handler attached to OnSourceClick; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.PortalHeadlineListModel.AuthorClickable">
+            <summary>
+            Gets or sets a value indicating whether 'Author' should be rendered as a hyperlink.
+            </summary>
+            <value><c>true</c> if there is an event handler attached to OnAuthorClick; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.PortalHeadlineListModel.ShowAuthor">
+            <summary>
+            Gets or Sets a value indicating whether 'Author' should be rendered (as a span).
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.PortalHeadlineListModel.ShowSource">
+            <summary>
+            Gets or Sets a value indicating whether 'Source' should be rendered.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.PortalHeadlineListModel.ShowPublicationDateTime">
+            <summary>
+            Gets or Sets a value indicating whether 'Source' should be rendered.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.PortalHeadlineListModel.ShowTruncatedTitle">
+            <summary>
+            Gets or Sets a value indicating whether truncated title should be rendered.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.PortalHeadlineListModel.MultimediaMode">
+            <summary>
+            Gets or Sets a value indicating whether multimedia related icons/divs should be shown.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.PortalHeadlineListModel.OnHeadlineClick">
+            <summary>
+            Gets or sets the client side OnHeadlineClick event handler.
+            </summary>
+            <value>The OnHeadlineClick event handler name.</value>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.PortalHeadlineListModel.OnSourceClick">
+            <summary>
+            Gets or sets the client side OnSourceClick event handler.
+            </summary>
+            <value>The OnSourceClick event handler name.</value>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.PortalHeadlineListModel.OnAuthorClick">
+            <summary>
+            Gets or sets the client side OnAuthorClick event handler.
+            </summary>
+            <value>The OnAuthorClick event handler name.</value>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Radar.RadarModel.OnClick">
+            <summary>
+            Gets or sets the client side onclick event handler.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.RealtimeHeadlineList.RealtimeHeadlineListModel.ContainerWidth">
+            <summary>
+            Gets or sets container width
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.RealtimeHeadlineList.RealtimeHeadlineListModel.OnHeadlineClick">
+            <summary>
+            Gets or sets the client side Headline Click event Handler
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.RealtimeHeadlineList.RealtimeHeadlineListModel.RealtimeHeadlineListServiceUrl">
+            <summary>
+            The path to the web service
+            </summary>
+            <value>The service path.</value>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.RegionalMap.RegionalMapModel.OnRegionClick">
+            <summary>
+            Gets or sets the client side onRegionClick event handler.
+            </summary>
+            <value>The OnHeadlineClick event handler name.</value>
+        </member>
+        <member name="T:DowJones.Web.Mvc.UI.Components.SocialButtons.ImageSize">
+            <summary>
+            The image size.
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.SocialButtons.ImageSize.Small">
+            <summary>
+            Small social media image
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.SocialButtons.ImageSize.Large">
+            <summary>
+            Large social media image
+            </summary>
+        </member>
+        <member name="T:DowJones.Web.Mvc.UI.Components.SocialButtons.SocialNetworks">
+            <summary>
+            The social networks.
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.SocialButtons.SocialNetworks.Delicious">
+            <summary>
+            Delicious Social Web Site.
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.SocialButtons.SocialNetworks.Digg">
+            <summary>
+            Digg Social Web Site.
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.SocialButtons.SocialNetworks.Facebook">
+            <summary>
+            Facebook Social Web Site.
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.SocialButtons.SocialNetworks.Furl">
+            <summary>
+            Furl Social Web Site.
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.SocialButtons.SocialNetworks.Google">
+            <summary>
+            Google Social Web Site.
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.SocialButtons.SocialNetworks.LinkedIn">
+            <summary>
+            Linkedin Social Web Site.
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.SocialButtons.SocialNetworks.Newsvine">
+            <summary>
+            Newsvine Social Web Site.
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.SocialButtons.SocialNetworks.Reddit">
+            <summary>
+            Reddit Social Web Site.
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.SocialButtons.SocialNetworks.StumbleUpon">
+            <summary>
+            Stumbleupon Social Web Site.
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.SocialButtons.SocialNetworks.Technorati">
+            <summary>
+            Technorati Social Web Site.
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.SocialButtons.SocialNetworks.Twitter">
+            <summary>
+            Twitter Social Web Site.
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.SocialButtons.SocialNetworks.Yahoo">
+            <summary>
+            Yahoo Social Web Site.
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.SocialButtons.SocialNetworks.MySpace">
+            <summary>
+            MySpace Social Web Site.
+            </summary>
+        </member>
+        <member name="T:DowJones.Web.Mvc.UI.Components.SocialButtons.SocialButtonsModel">
+            <summary>
+            Social Extender Control that add buttons to the accepted target control
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.SocialButtons.SocialButtonsModel.ClassName">
+            <summary>
+            Gets or sets the name of the class.
+            </summary>
+            <value>
+            The name of the class.
+            </value>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.SocialButtons.SocialButtonsModel.TagName">
+            <summary>
+            Gets or sets the name of the tag.
+            </summary>
+            <value>
+            The name of the tag.
+            </value>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.SocialButtons.SocialButtonsModel.ImageSize">
+            <summary>
+            Gets or sets the size of the image.
+            </summary>
+            <value>The size of the image.</value>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.SocialButtons.SocialButtonsModel.SocialNetworks">
+            <summary>
+            Gets or sets the social network.
+            </summary>
+            <value>The social network.</value>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.SocialButtons.SocialButtonsModel.Url">
+            <summary>
+            Gets or sets the URL.
+            </summary>
+            <value>The URL of the posted content.</value>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.SocialButtons.SocialButtonsModel.Title">
+            <summary>
+            Gets or sets the title.
+            </summary>
+            <value>The title.</value>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.SocialButtons.SocialButtonsModel.Keywords">
+            <summary>
+            Gets or sets the keywords.
+            </summary>
+            <value>The keywords.</value>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.SocialButtons.SocialButtonsModel.Target">
+            <summary>
+            Gets or sets the target.
+            </summary>
+            <value>The target.</value>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.SocialButtons.SocialButtonsModel.ShowCustomTooltip">
+            <summary>
+            Gets or sets a value indicating whether [show custom tooltip].
+            </summary>
+            <value>
+              <c>true</c> if [show custom tooltip]; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.SocialButtons.SocialButtonsModel.Description">
+            <summary>
+            Gets or sets the description.
+            </summary>
+            <value>The description.</value>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.TagCloudModel.Tags">
+            <summary>
+            Gets or sets the Tag objects of the tag cloud.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.TagCloudModel.OnTagItemClientClick">
+            <summary>
+            Gets or sets the client side handler function 
+            for the tag's client click event.
+            </summary>
+        </member>
+        <member name="T:DowJones.Web.Mvc.UI.Components.TranslateArticle.TranslateArticleModel">
+            <summary>
+            translate article model
+            </summary>
+            <remarks></remarks>
+        </member>
+        <member name="M:DowJones.Web.Mvc.UI.Components.TranslateArticle.TranslateArticleModel.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:DowJones.Web.Mvc.UI.Components.TranslateArticle.TranslateArticleModel"/> class.
+            </summary>
+            <remarks></remarks>
+        </member>
+        <member name="M:DowJones.Web.Mvc.UI.Components.TranslateArticle.TranslateArticleModel.GetRegexObj">
+            <summary>
+            Gets the regex obj.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DowJones.Web.Mvc.UI.Components.TranslateArticle.TranslateArticleModel.GetParagraphText(System.Collections.Generic.IEnumerable{Factiva.Gateway.Messages.Archive.V1_0.Paragraph})">
+            <summary>
+            Gets the paragraph text.
+            </summary>
+            <param name="paragraphs">The paragraphs.</param>
+            <returns></returns>
+        </member>
+        <member name="M:DowJones.Web.Mvc.UI.Components.TranslateArticle.TranslateArticleModel.GetObjectText(System.Object[])">
+            <summary>
+            Gets the object text.
+            </summary>
+            <param name="items">The items.</param>
+            <returns></returns>
+        </member>
+        <member name="M:DowJones.Web.Mvc.UI.Components.TranslateArticle.TranslateArticleModel.RenderParagraph(Factiva.Gateway.Messages.Archive.V1_0.Paragraph)">
+            <summary>
+            Renders the paragraph.
+            </summary>
+            <param name="paragraph">The paragraph.</param>
+            <returns></returns>
+        </member>
+        <member name="M:DowJones.Web.Mvc.UI.Components.TranslateArticle.TranslateArticleModel.RenderItems(System.Object[])">
+            <summary>
+            The render items.
+            </summary>
+            <param name="items">
+            The items.
+            </param>
+        </member>
+        <member name="M:DowJones.Web.Mvc.UI.Components.TranslateArticle.TranslateArticleModel.RenderELink(Factiva.Gateway.Messages.Archive.V1_0.ELink)">
+            <summary>
+            The render e link.
+            </summary>
+            <param name="elink">The elink.</param>
+        </member>
+        <member name="M:DowJones.Web.Mvc.UI.Components.TranslateArticle.TranslateArticleModel.GetEntityReferenceText(System.Object[])">
+            <summary>
+            Gets the entity reference text.
+            </summary>
+            <param name="items">The items.</param>
+            <returns></returns>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.TranslateArticle.TranslateArticleModel.Tokens">
+            <summary>
+            Gets or sets Tokens.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.TranslateArticle.TranslateArticleModel.PostProcessing">
+            <summary>
+            Gets or sets PostProcessing.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.TranslateArticle.TranslateArticleModel.SessionId">
+            <summary>
+            Gets or sets SessionId.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.TranslateArticle.TranslateArticleModel.PageCacheKey">
+            <summary>
+            Gets or sets PageCacheKey.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.TranslateArticle.TranslateArticleModel.ArticleObject">
+            <summary>
+            Article object.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.TranslateArticle.TranslateArticleModel.ProductPrefix">
+            <summary>
+            Gets or sets the product prefix.
+            </summary>
+            <value>The product prefix.</value>
+            <remarks></remarks>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.TranslateArticle.TranslateArticleModel.AccessPointCode">
+            <summary>
+            Gets or sets the access point.
+            </summary>
+            <value>The access point.</value>
+            <remarks></remarks>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.TranslateArticle.TranslateArticleModel.InterfaceLanguage">
+            <summary>
+            Gets or sets the interface language.
+            </summary>
+            <value>The interface language.</value>
+            <remarks></remarks>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.TranslateArticle.TranslateArticleModel.TargetLanguage">
+            <summary>
+            TargetLangauage.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.TranslateArticle.TranslateArticleModel.SourceLanguage">
+            <summary>
+            SourceLangauage.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.TranslateArticle.TranslateArticleModel.TranslationServiceUrl">
+            <summary>
+            The path to the web service
+            </summary>
+            <value>The service path.</value>
+        </member>
+        <member name="T:DowJones.Web.Mvc.UI.Components.TranslateArticle.TranslateArticleModel.Category">
+            <summary>
+            The category.
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.TranslateArticle.TranslateArticleModel.Category.company">
+            <summary>
+            The company.
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.TranslateArticle.TranslateArticleModel.Category.executive">
+            <summary>
+            The executive.
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.TranslateArticle.TranslateArticleModel.Category.source">
+            <summary>
+            The source.
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.TranslateArticle.TranslateArticleModel.Category.companynews">
+            <summary>
+            The companynews.
+            </summary>
+        </member>
+        <member name="T:DowJones.Web.Mvc.UI.Components.TranslateArticle.TranslateArticleModel.Codes">
+            <summary>
+            The codes.
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.TranslateArticle.TranslateArticleModel.Codes.AN">
+            <summary>
+            The an.
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.TranslateArticle.TranslateArticleModel.Codes.CLM">
+            <summary>
+            The clm.
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.TranslateArticle.TranslateArticleModel.Codes.SE">
+            <summary>
+            The se.
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.TranslateArticle.TranslateArticleModel.Codes.BY">
+            <summary>
+            The by.
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.TranslateArticle.TranslateArticleModel.Codes.CR">
+            <summary>
+            The cr.
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.TranslateArticle.TranslateArticleModel.Codes.WC">
+            <summary>
+            The wc.
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.TranslateArticle.TranslateArticleModel.Codes.PD">
+            <summary>
+            The pd.
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.TranslateArticle.TranslateArticleModel.Codes.ET">
+            <summary>
+            The et.
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.TranslateArticle.TranslateArticleModel.Codes.SN">
+            <summary>
+            The sn.
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.TranslateArticle.TranslateArticleModel.Codes.SC">
+            <summary>
+            The sc.
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.TranslateArticle.TranslateArticleModel.Codes.NGC">
+            <summary>
+            The ngc.
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.TranslateArticle.TranslateArticleModel.Codes.GC">
+            <summary>
+            The gc.
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.TranslateArticle.TranslateArticleModel.Codes.ED">
+            <summary>
+            The ed.
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.TranslateArticle.TranslateArticleModel.Codes.PG">
+            <summary>
+            The pg.
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.TranslateArticle.TranslateArticleModel.Codes.VOL">
+            <summary>
+            The vol.
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.TranslateArticle.TranslateArticleModel.Codes.LA">
+            <summary>
+            The la.
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.TranslateArticle.TranslateArticleModel.Codes.CY">
+            <summary>
+            The cy.
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.TranslateArticle.TranslateArticleModel.Codes.CT">
+            <summary>
+            The ct.
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.TranslateArticle.TranslateArticleModel.Codes.RF">
+            <summary>
+            The rf.
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.TranslateArticle.TranslateArticleModel.Codes.ART">
+            <summary>
+            The art.
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.TranslateArticle.TranslateArticleModel.Codes.co">
+            <summary>
+            The co.
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.TranslateArticle.TranslateArticleModel.Codes.pe">
+            <summary>
+            The pe.
+            </summary>
+        </member>
+        <member name="T:DowJones.Web.Mvc.UI.Components.TranslateArticle.TranslateArticleModel.ContentType">
+            <summary>
+            The content type.
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.TranslateArticle.TranslateArticleModel.ContentType.article">
+            <summary>
+            The article.
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.TranslateArticle.TranslateArticleModel.ContentType.picture">
+            <summary>
+            The picture.
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.TranslateArticle.TranslateArticleModel.ContentType.articlewithgraphics">
+            <summary>
+            The articlewithgraphics.
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.TranslateArticle.TranslateArticleModel.ContentType.webpage">
+            <summary>
+            The webpage.
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.TranslateArticle.TranslateArticleModel.ContentType.analyst">
+            <summary>
+            The analyst.
+            </summary>
+        </member>
+        <member name="T:DowJones.Web.Mvc.UI.Components.TranslateArticle.TranslateArticleModel.ElinkType">
+            <summary>
+            The elink type.
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.TranslateArticle.TranslateArticleModel.ElinkType.pro">
+            <summary>
+            The pro.
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.TranslateArticle.TranslateArticleModel.ElinkType.webpage">
+            <summary>
+            The webpage.
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.TranslateArticle.TranslateArticleModel.ElinkType.company">
+            <summary>
+            The company.
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.TranslateArticle.TranslateArticleModel.ElinkType.doc">
+            <summary>
+            The doc.
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.TranslateArticle.TranslateArticleModel.ElinkType.executive">
+            <summary>
+            The executive.
+            </summary>
+        </member>
+        <member name="T:DowJones.Web.Mvc.UI.Components.TranslateArticle.TranslatorTokens">
+            <summary>
+            The TranslatorTokens.
+            </summary>
+        </member>
+        <member name="M:DowJones.Web.Mvc.UI.Components.TranslateArticle.TranslatorTokens.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:DowJones.Web.Mvc.UI.Components.TranslateArticle.TranslatorTokens"/> class.
+            </summary>
+        </member>
+        <member name="M:DowJones.Web.Mvc.UI.Components.TranslateArticle.TranslatorTokens.SetLangCodeToken(System.String)">
+            <summary>
+            SetLangCodeToken
+            <param name="token">Token
+            </param>
+            </summary>
+        </member>
+        <member name="M:DowJones.Web.Mvc.UI.Components.TranslateArticle.TranslatorTokens.SetLangTextToken(System.String)">
+            <summary>
+            SetLangTextToken
+            <param name="token">Token
+            </param>
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.TranslateArticle.TranslatorTokens.Langcode">
+            <summary>
+            Gets or sets Langcode.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.TranslateArticle.TranslatorTokens.LangText">
+            <summary>
+            Gets or sets LangText.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.TranslateArticle.TranslatorTokens.IncorrectDataModel">
+            <summary>
+            Gets or sets IncorrectDataModel.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.TranslateArticle.TranslatorTokens.ArticleTranslateDisclaimer">
+            <summary>
+            Gets or sets ArticleTranslateDisclaimer.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.TranslateArticle.TranslatorTokens.ClickForFullDisclaimer">
+            <summary>
+            Gets or sets ClickForFullDisclaimer.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.TranslateArticle.TranslatorTokens.ArticleTranslateDisclaimerFull">
+            <summary>
+            Gets or sets ArticleTranslateDisclaimerFull.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.TranslateArticle.TranslatorTokens.FCPBeta">
+            <summary>
+            Gets or sets FCPBeta.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.TranslateArticle.TranslatorTokens.TranslatedByPostPost">
+            <summary>
+            Gets or sets TranslatedByPostPost.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.TranslateArticle.TranslatorTokens.TranslatedByPost">
+            <summary>
+            Gets or sets _translatedByPost.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.TranslateArticle.TranslatorTokens.TranslatedByPre">
+            <summary>
+            Gets or sets _translatedByPre.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.TranslateArticle.TranslatorTokens.TranslateAll">
+            <summary>
+            Gets or sets TranslateAll.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.TranslateArticle.TranslatorTokens.TranslateMore">
+            <summary>
+            Gets or sets TranslateMore.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.TranslateArticle.TranslatorTokens.LargeArticleTranslationMsg">
+            <summary>
+            Gets or sets LargeArticleTranslationMsg.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.TranslateArticle.TranslatorTokens.TranslationInProgress">
+            <summary>
+            Gets or sets TranslationInProgress.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.TranslateArticle.TranslatorTokens.TranslationVeryDifficult">
+            <summary>
+            Gets or sets TranslationVeryDifficult.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.TranslateArticle.TranslatorTokens.TranslationSomewhatDifficult">
+            <summary>
+            Gets or sets TranslationSomewhatDifficult.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.TranslateArticle.TranslatorTokens.TranslationGeneralUnderstanding">
+            <summary>
+            Gets or sets TranslationGeneralUnderstandingt.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.TranslateArticle.TranslatorTokens.TranslationSomewhatEasy">
+            <summary>
+            Gets or sets TranslationSomewhatEasy.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.TranslateArticle.TranslatorTokens.TranslationVeryEasy">
+            <summary>
+            Gets or sets TranslationVeryEasy.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.TranslateArticle.TranslatorTokens.RateTranslationReadability">
+            <summary>
+            Gets or sets RateTranslationReadability.
+            </summary>
+        </member>
+    </members>
+</doc>
