@@ -32,6 +32,13 @@
         //$dj.debug('this data', this.data);
         if (this.data)
             this.bindOnSuccess(this.data, this.options);
+
+
+        //        var renderer = new Highcharts.Renderer(
+        //            $('#container')[0],
+        //            400,
+        //            300
+        //        );
     },
     _initializeElements: function () {
         this._renderContainer();
@@ -145,7 +152,7 @@
         this.publish(this.events.dataRequested, params);
     },
     bindOnSuccess: function (response, params) {
-        this.publish(this.events.dataReceived, response);
+        //this.publish(this.events.dataReceived, response);
 
         if (!this.validateResponse(response)) {
             return;
@@ -355,24 +362,14 @@
 
     },
     renderError: function (data) {
-        this.publish(this.events.error, publicInterface, data);
+        this.publish(this.events.error,data);
 
         if (showErrors == FALSE) {
             return;
         }
         this.$el.render(this.templates.error());
-        //main.hooks('content').filter('[djContent=errors]').empty();
-        //main.hooks('content').filter('[djContent=content]').empty();
-
-        //var content = tpls.errors({ Error: data }, ctx, publicInterface);
-        //main.hooks('content').filter('[djContent=errors]').append(content.html());
     },
     renderContent: function (data, globalIdx, localIdx) {
-        //main.hooks('content').filter('[djContent=errors]').empty();
-
-        //var args = { Item: data, GlobalIdx: globalIdx, LocalIdx: localIdx },
-        //    content = tpls.content(args, ctx, publicInterface);
-
 
         var $items = $('.djWidgetItems', this.$element);
 
@@ -385,21 +382,121 @@
 
         $items.html(html);
 
+        var radars = $('.djRadarItemBox', this.$element); //table and key
+
+        for (var r in radars) {
+            var radar = $(radars[r]);
+            if (radar && radar.length) {
+                var chipStyle = radar.data('grc');
+                if (chipStyle) {
+                    this.drawChip(radar[0], chipStyle);
+                }
+            }
+        }
         //return content.html();
+    }, drawChip: function (target, chipStyle) {
+        var chipRenderer = new Highcharts.Renderer(target, 19, 19);
+
+        switch (chipStyle) {
+            case 'less':
+            case 'djRadarItemBox1':
+            case 1:
+                chipRenderer.rect(5, 9, 9, 1).attr({
+                    fill: '#CD3535'
+                }).add();
+                break;
+            case 'same':
+            case 'djRadarItemBox2':
+            case 2:
+                chipRenderer.circle(9.5, 9.5, 2.5).attr({
+                    fill: '#777'
+                }).add();
+                break;
+            case '50':
+            case 'djRadarItemBox3':
+            case 3:
+                chipRenderer.circle(9.5, 9.5, 4).attr({
+                    fill: 'none',
+                    stroke: '#7FB39E',
+                    'stroke-width': 1
+                }).add();
+                break;
+            case '200':
+            case 'djRadarItemBox4':
+            case 4:
+                chipRenderer.circle(9.5, 9.5, 6).attr({
+                    fill: 'none',
+                    stroke: '#4D9678',
+                    'stroke-width': 1
+                }).add();
+                chipRenderer.circle(9.5, 9.5, 2.5).attr({
+                    fill: '#4D9678'
+                }).add();
+                break;
+            case '400':
+            case 'djRadarItemBox5':
+            case 5:
+                chipRenderer.circle(9.5, 9.5, 6.5).attr({
+                    fill: '#267E5B'
+                }).add();
+                break;
+            case '400plus':
+            case 'djRadarItemBox6':
+            case 6:
+                chipRenderer.circle(9.5, 9.5, 6.5).attr({
+                    fill: '#10693E'
+                }).add();
+                //horiz
+                chipRenderer.rect(6, 9, 7, 1).attr({
+                    fill: '#FFF'
+                }).add();
+                //vert
+                chipRenderer.rect(9, 6, 1, 7).attr({
+                    fill: '#FFF'
+                }).add();
+                break;
+            default:
+                break;
+        }
+        return target;
+
     },
     renderCategories: function (data) {
-        //var $categories = main.hooks('content').filter('[djcontent=categories]');
         var $categories = $('.djCategories', this.$element);
-        //var args = { Categories: data.RadarCategories },
-        //    content = tpls.categories(args, ctx, publicInterface);
 
         var self = this;
         var cats = [];
         for (var i in data.RadarCategories) {
-            cats.push(self.templates.category({ index: i, settings: self.options, category: data.RadarCategories[i] }));
+            var category = data.RadarCategories[i];
+            var catMarkup = self.templates.category({ index: i, settings: self.options, category: category });
+            var label = this.drawCategoryLabel($(catMarkup)[0], category.name || category.fcode);
+            var labelMarkup = $('<div/>').append(label).html();
+            cats.push(labelMarkup);
         }
         cats.reverse();
         $categories.html(cats.join(''));
+    },
+    drawCategoryLabel: function (target, text) {
+
+        var renderer = new Highcharts.Renderer(target, 19, 143);
+        var xPos = 12.5;
+        var yPos = 140;
+        renderer.rect(0, 0, 0, 143).css({
+            borderLeft: '1px solid silver'
+        });
+
+        var categoryLabel = '<span title="' + text + '">' + text + '</span>';
+        renderer.text(categoryLabel, xPos, yPos).attr({
+            rotation: 270,
+            tooltip: text
+        }).css({
+            fontSize: '8pt',
+            lineHeight: '19px',
+            fontFamily: 'Verdana',
+            fontWeight: 'normal',
+            color: '#999'
+        }).add();
+        return target;
     },
     renderHeader: function (canGoPrev, canGoNext) {
         var content = tpls.header({
