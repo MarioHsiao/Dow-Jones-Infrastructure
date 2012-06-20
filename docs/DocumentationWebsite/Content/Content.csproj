@@ -58,9 +58,14 @@
     <None Include="Components\DiscoveryGraph\LiveDemo.md" />
     <None Include="Components\DiscoveryGraph\Methods.md" />
     <None Include="Components\DiscoveryGraph\Overview.md" />
+    <None Include="Components\PortalHeadlineList\Configuration.md" />
+    <None Include="Components\PortalHeadlineList\Events.md" />
+    <None Include="Components\PortalHeadlineList\LiveDemo.md" />
+    <None Include="Components\PortalHeadlineList\Methods.md" />
+    <None Include="Components\PortalHeadlineList\Overview.md" />
+    <None Include="Components\Radar\Overview.md" />
     <None Include="Components\StockKiosk\Overview.md" />
-    <None Include="Framework\BestPractices.md" />
-    <None Include="Framework\Overview.md" />
+    <None Include="Components\VideoPlayer\Overview.md" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
