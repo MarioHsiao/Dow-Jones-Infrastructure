@@ -337,7 +337,7 @@ namespace DowJones.Charting.Highcharts
         {
             var request = context.Request;
             var cd = new ControlData
-            {
+            {    
                 EncryptedToken = Settings.Default.ExporterEncryptedToken,
                 AccessPointCode = request["apc"] ?? "o",
                 AccessPointCodeUsage = request["apc"],
