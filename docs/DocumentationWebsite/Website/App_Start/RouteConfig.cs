@@ -14,7 +14,9 @@ namespace DowJones.Documentation.Website.App_Start
             routes.MapRoute(
                 "DocumentationBrowser",
                 "{category}/{page}/{section}",
-                new { controller = "Documentation", action = "Page", page = UrlParameter.Optional, section = UrlParameter.Optional },
+                new { controller = "Documentation", action = "Page", 
+                      page = UrlParameter.Optional, section = UrlParameter.Optional
+                },
                 new DocumentationCategoryRouteConstraint(MvcApplication.DocumentationPages)
             );
 

@@ -1,5 +1,6 @@
 using System.Linq;
 using System.Web.Mvc;
+using DowJones.Documentation.Website.Extensions;
 using DowJones.Documentation.Website.Models;
 
 namespace DowJones.Documentation.Website.Controllers
@@ -41,7 +42,17 @@ namespace DowJones.Documentation.Website.Controllers
         {
             var documentationCategory = _pages.Category(category) ?? DocumentationCategory.Default;
 
-            var documentationPage = documentationCategory.Page(page) ?? documentationCategory.Pages.FirstOrDefault();
+            if(string.IsNullOrWhiteSpace(page))
+            {
+                var defaultPage = documentationCategory.DefaultPage;
+                if (defaultPage != null)
+                {
+                    var routeData = new {category = defaultPage.Category.Name, page = defaultPage.Name};
+                    return RedirectToAction("Page", routeData);
+                }
+            }
+
+            var documentationPage = documentationCategory.Page(page);
 
         	if (documentationPage == null)
                 return HttpNotFound();

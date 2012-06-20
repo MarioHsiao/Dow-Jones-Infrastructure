@@ -11,6 +11,10 @@ namespace DowJones.Documentation.Website.Models
     {
         public static readonly DocumentationCategory Default = new DocumentationCategory();
 
+        public DocumentationPage DefaultPage
+        {
+            get { return (Pages ?? Enumerable.Empty<DocumentationPage>()).FirstOrDefault(); }
+        }
 
         public string DisplayName { get; set; }
 

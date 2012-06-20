@@ -15,16 +15,12 @@
                     <ul class="nav nav-list">
                         @if (Model.HasSections)
                         {
-                            <li class="nav-header">learn</li>
+                            <li class="nav-header">Learn</li>
                             foreach (var pageSection in Model.Sections)
                             {
                             <li><a href="#@pageSection.Name">@pageSection.DisplayName</a></li>
                             }
                         }
-
-                        <li class="nav-header">act</li>
-                        <li><a href="#help">Get more help</a></li>
-                        <li><a href="#feedback">Send Feedback</a></li>
                     </ul>
                 </div>
                 <!--/.well -->
@@ -34,9 +30,8 @@
             <div class="row-fluid">
                 <header class="span12">
                     <h2 class="pull-left">@Model.DisplayName</h2>
-                    <div class="pull-right">
-                        <span class="">Show Code Examples in: </span>
-                        <a href="#">ASP.NET MVC</a> | <a>JavaScript</a>
+                    <div id="view-selector" class="pull-right">
+                        <a href="?view=server">ASP.NET MVC</a> | <a href="?view=client">JavaScript</a>
                     </div>
                 </header>
             </div>

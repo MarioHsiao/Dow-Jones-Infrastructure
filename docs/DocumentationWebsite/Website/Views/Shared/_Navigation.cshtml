@@ -8,17 +8,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </a>
-            @Html.ActionLink("Dow Jones Component Explorer", "Homepage", "Documentation", null, new Dictionary<string, object>{ {"class", "brand"}} )
-            <div class="btn-group pull-right">
-            <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-                <i class="icon-user"></i>Anonymous<span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu">
-                <li><a href="#">Profile</a></li>
-                <li class="divider"></li>
-                <li><a href="#">Sign Out</a></li>
-            </ul>
-        </div>
+        @Html.ActionLink("Dow Jones Component Explorer", "Homepage", "Documentation", null, new Dictionary<string, object>{ {"class", "brand"}} )
         <div class="nav-collapse">
             <ul class="nav">
                 @foreach (var category in Model.Categories)

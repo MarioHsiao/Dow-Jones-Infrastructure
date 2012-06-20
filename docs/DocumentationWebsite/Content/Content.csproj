@@ -44,32 +44,20 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <None Include="Components\Article\Configuration.md" />
-    <None Include="Components\Article\LiveDemo.md" />
     <None Include="Components\Article\Overview.md" />
-    <None Include="Components\AutoSuggest\AutoSuggest.md" />
+    <None Include="Components\AutoComplete\Overview.md" />
+    <None Include="Components\PortalHeadline\Overview.md" />
     <None Include="Components\DiscoveryGraph\Configuration.md" />
-    <None Include="Components\DiscoveryGraph\Client_Methods.md" />
-    <None Include="Components\DiscoveryGraph\Client_Events.md" />
     <None Include="Components\DiscoveryGraph\Events.md" />
     <None Include="Components\DiscoveryGraph\LiveDemo.md" />
     <None Include="Components\DiscoveryGraph\Methods.md" />
     <None Include="Components\DiscoveryGraph\Overview.md" />
-    <None Include="Components\StockKiosk\Configuration.md" />
-    <None Include="Components\StockKiosk\Events.md" />
-    <None Include="Components\StockKiosk\Methods.md" />
+    <None Include="Components\Radar\Overview.md" />
     <None Include="Components\StockKiosk\Overview.md" />
-    <None Include="General\BestPractices.md" />
-    <None Include="General\Overview.md" />
+    <None Include="Components\VideoPlayer\Overview.md" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Components\Article\Constructors.xml" />
-    <Content Include="Components\Article\Events.xml" />
-    <Content Include="Components\Article\Methods.xml" />
-    <Content Include="Components\Article\Properties.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
