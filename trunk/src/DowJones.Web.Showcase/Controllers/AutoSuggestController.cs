@@ -24,7 +24,7 @@ namespace DowJones.Web.Showcase.Controllers
                                               AutocompletionType = "Source",
                                               ServiceOptions = "{\"types\":\"blog\"}",
                                               Tokens = "{\"blogTkn\":\"Blog\"}",
-                                              ID = "djSourceAutoSuggest"
+                                              ControlId = "djSourceAutoSuggest"
                                           };
             autoSuggestModels.Add(sourceSuggestModel);
 
@@ -32,7 +32,9 @@ namespace DowJones.Web.Showcase.Controllers
             {
                 SuggestServiceUrl = "http://suggest.int.factiva.com/Search/1.0",
                 AutocompletionType = "Keyword",
-                ID = "djKeywordAutoSuggest"
+                ControlId = "djKeywordAutoSuggest",
+                FillInputOnKeyUpDown = true,
+                SelectFirst = true
             };
             autoSuggestModels.Add(keywordSuggestModel);
 
@@ -41,7 +43,7 @@ namespace DowJones.Web.Showcase.Controllers
                 SuggestServiceUrl = "http://suggest.int.factiva.com/Search/1.0",
                 AutocompletionType = "Company",
                 Columns = "value|code|ticker",
-                ID = "djCompanyAutoSuggest"
+                ControlId = "djCompanyAutoSuggest"
             };
             autoSuggestModels.Add(companySuggestModel);
 
@@ -49,7 +51,7 @@ namespace DowJones.Web.Showcase.Controllers
             {
                 SuggestServiceUrl = "http://suggest.int.factiva.com/Search/1.0",
                 AutocompletionType = "Executive",
-                ID = "djExecutiveAutoSuggest"
+                ControlId = "djExecutiveAutoSuggest"
             };
             autoSuggestModels.Add(executiveSuggestModel);
 
@@ -57,7 +59,7 @@ namespace DowJones.Web.Showcase.Controllers
             {
                 SuggestServiceUrl = "http://suggest.int.factiva.com/Search/1.0",
                 AutocompletionType = "Author",
-                ID = "djAuthorAutoSuggest"
+                ControlId = "djAuthorAutoSuggest"
             };
             autoSuggestModels.Add(authorSuggestModel);
 
@@ -65,7 +67,7 @@ namespace DowJones.Web.Showcase.Controllers
             {
                 SuggestServiceUrl = "http://suggest.int.factiva.com/Search/1.0",
                 AutocompletionType = "Outlet",
-                ID = "djOutletAutoSuggest"
+                ControlId = "djOutletAutoSuggest"
             };
             autoSuggestModels.Add(outletSuggestModel);
 
@@ -73,7 +75,7 @@ namespace DowJones.Web.Showcase.Controllers
             {
                 SuggestServiceUrl = "http://suggest.int.factiva.com/Search/1.0",
                 AutocompletionType = "publisherCity",
-                ID = "djPublisherCityAutoSuggest"
+                ControlId = "djPublisherCityAutoSuggest"
             };
             autoSuggestModels.Add(publisherCitySuggestModel);
 
@@ -81,7 +83,7 @@ namespace DowJones.Web.Showcase.Controllers
             {
                 SuggestServiceUrl = "http://suggest.int.factiva.com/Search/1.0",
                 AutocompletionType = "publisherMetaData",
-                ID = "djPublisherMetaDataAutoSuggest"
+                ControlId = "djPublisherMetaDataAutoSuggest"
             };
             autoSuggestModels.Add(publisherMetaDataSuggestModel);
 
