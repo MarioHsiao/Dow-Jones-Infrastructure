@@ -46,7 +46,9 @@
             infoClick: "infoClick.dj.AutoSuggestComponent",
             promoteClick: "promoteClick.dj.AutoSuggestComponent",
             notClick: "notClick.dj.AutoSuggestComponent",
-            discontClick: "discontClick.dj.AutoSuggestComponent"
+            discontClick: "discontClick.dj.AutoSuggestComponent",
+            viewAllClick: "viewAllClick.dj.AutoSuggestComponent",
+            viewMorePrivateMarketsClick: "viewMorePrivateMarketsClick.dj.AutoSuggestComponent"
         },
 
         // Localization/Templating tokens
@@ -79,6 +81,7 @@
             blogTkn: "<%= Token("blogTkn") %>",
             disContTkn: "<%= Token("disContTkn") %>",
             viewAllTkn: "<%= Token("viewAllTkn") %>",
+            helpLabelTkn: "<%= Token("helpLabelTkn") %>",
             privateMarketCompanyViewMoreTkn: "<%= Token("privateMarketCompanyViewMoreTkn") %>",
             privateMarketIndustryViewMoreTkn: "<%= Token("privateMarketIndustryViewMoreTkn") %>",
             privateMarketRegionViewMoreTkn: "<%= Token("privateMarketRegionViewMoreTkn") %>"
@@ -95,13 +98,20 @@
 
             // TODO: Add custom initialization code like the following:
             // this._testButton = $('.testButton', element).get(0);
-            var testSettings = {
+            var suggestSettings = {
                             url: this.options.suggestServiceUrl,
-                            controlId: element.id,
+                            controlId: this.options.controlId,
                             autocompletionType: this.options.autocompletionType,                           
-                            useSessionId: DJ.config.credentials.sessionId
+                            useSessionId: DJ.config.credentials.sessionId,
+                            options: $.parseJSON(this.options.serviceOptions),
+                            columns: this.options.columns,
+                            tokens: $.parseJSON(this.options.tokens),
+                            fillInputOnKeyUpDown: this.options.fillInputOnKeyUpDown,                            
+                            selectFirst: this.options.selectFirst,
+                            showViewAll: this.options.showViewAll,
+                            showHelp: this.options.showHelp
                         }
-            this.initialize(testSettings);
+            this.initialize(suggestSettings);
         },
         
         /*
