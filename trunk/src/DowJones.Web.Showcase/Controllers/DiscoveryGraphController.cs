@@ -8,11 +8,16 @@ namespace DowJones.Web.Showcase.Controllers
         //
         // GET: /DiscoveryGraph/
 
-        public ActionResult Index()
+        public ActionResult Index(string master = "_Layout")
         {
             var discoveryGraph = new DiscoveryGraphModel();
-            return View("Index", discoveryGraph);
+            return View("Index", master, discoveryGraph);
         }
 
+		public ActionResult ComponentExplorerDemo(bool interact = false)
+		{
+			ViewBag.IsInteractive = interact;
+			return Index("_Layout_ComponentExplorer");
+		}
     }
 }
