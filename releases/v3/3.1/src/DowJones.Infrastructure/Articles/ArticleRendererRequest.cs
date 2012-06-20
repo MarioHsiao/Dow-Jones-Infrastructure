@@ -5,8 +5,8 @@ namespace DowJones.Articles
 {
     public class MultimediaPlayerOptions
     {
-        public int Width { get; set; }
-        public int Height { get; set; }
+        public int AvailableWidth { get; set; }
+
         public bool AutoPlay { get; set; }
 
         public string ControlBarPath { get; set; }
