@@ -1,1 +1,0 @@
-﻿<iframe class="showcase" src="@(System.Configuration.ConfigurationManager.AppSettings["InfrastructureShowcase.BasePath"])/DiscoveryGraph/ComponentExplorerDemo?interact=true"></iframe>
