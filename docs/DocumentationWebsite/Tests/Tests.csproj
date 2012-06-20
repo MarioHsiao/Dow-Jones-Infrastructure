@@ -147,6 +147,7 @@
     <EmbeddedResource Include="Tools\VSDocPreprocessor\TestData\Expected\TestInnerEnum.xml" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <Choose>
