@@ -46,25 +46,21 @@
   <ItemGroup>
     <None Include="Components\Article\Overview.md" />
     <None Include="Components\AutoSuggest\Configuration.md" />
-    <None Include="Components\AutoSuggest\Events.md" />
-    <None Include="Components\AutoSuggest\LiveDemo.md" />
-    <None Include="Components\AutoSuggest\Methods.md" />
-    <None Include="Components\AutoSuggest\Options.md" />
-    <None Include="Components\AutoSuggest\Overview.md" />
     <None Include="Components\AutoSuggest\Tokens.md" />
+    <None Include="Components\AutoSuggest\Options.md" />
+    <None Include="Components\AutoSuggest\Events.md" />
+    <None Include="Components\AutoSuggest\LiveDemo.md">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Components\AutoSuggest\Overview.md" />
     <None Include="Components\DiscoveryGraph\Configuration.md" />
     <None Include="Components\DiscoveryGraph\Events.md" />
     <None Include="Components\DiscoveryGraph\LiveDemo.md" />
     <None Include="Components\DiscoveryGraph\Methods.md" />
     <None Include="Components\DiscoveryGraph\Overview.md" />
-    <None Include="Components\PortalHeadlineList\Methods.md" />
-    <None Include="Components\PortalHeadlineList\Overview.md" />
-    <None Include="Components\PortalHeadlineList\Configuration.md" />
-    <None Include="Components\PortalHeadlineList\Events.md" />
-    <None Include="Components\PortalHeadlineList\LiveDemo.md" />
-    <None Include="Components\Radar\Overview.md" />
     <None Include="Components\StockKiosk\Overview.md" />
-    <None Include="Components\VideoPlayer\Overview.md" />
+    <None Include="Framework\BestPractices.md" />
+    <None Include="Framework\Overview.md" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
