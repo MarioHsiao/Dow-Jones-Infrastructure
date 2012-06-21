@@ -169,6 +169,7 @@
     <Content Include="Styles\themes\spacelab\img\glyphicons-halflings-white.png" />
     <Content Include="Styles\themes\spacelab\img\glyphicons-halflings.png" />
     <Content Include="Styles\_mixins.scss" />
+    <None Include="Properties\PublishProfiles\Montana-WebDeploy.pubxml" />
     <None Include="Styles\themes\spacelab\site.scss" />
     <Content Include="Global.asax" />
     <Content Include="packages.config">
