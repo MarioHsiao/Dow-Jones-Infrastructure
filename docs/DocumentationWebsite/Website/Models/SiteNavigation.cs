@@ -1,88 +1,59 @@
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 
 namespace DowJones.Documentation.Website.Models
 {
     public class SiteNavigation
     {
-        private readonly DocumentationPages _pages;
+        public IEnumerable<CategoryViewModel> Categories { get; private set; }
 
-        public IEnumerable<SiteNavigationGroup> Categories { get; private set; }
-
-        public SiteNavigationGroup CurrentCategory
+        public CategoryViewModel CurrentCategory
         {
-            get
-            {
-                var category = Categories.FirstOrDefault(x => string.Equals(x.Name, CurrentCategoryKey, StringComparison.OrdinalIgnoreCase));
-                return category ?? new SiteNavigationGroup(DocumentationCategory.Default);
-            }
+            get { return _currentCategory.Value; }
         }
+        private readonly Lazy<CategoryViewModel> _currentCategory;
 
-        public string CurrentCategoryKey { get; set; }
 
-		public DocumentationPage CurrentPage
-		{
-			get
-			{
-				var page = _pages.FirstOrDefault(x => string.Equals(x.Name, CurrentPageName, StringComparison.OrdinalIgnoreCase));
-
-			    page = page ?? CurrentCategory.Groups.SelectMany(x => x).FirstOrDefault();
-                
-				return page ?? new DocumentationPage();
-			}
-		}
-
-		public string CurrentPageName { get; set; }
-
-        public SiteNavigation(DocumentationPages pages)
+        public PageViewModel CurrentPage
         {
-            _pages = pages;
-            Categories = pages.Categories.Select(x => new SiteNavigationGroup(x)).ToArray();
-//            CurrentCategoryKey = pages.Categories.Select(x => x.Name).FirstOrDefault();
+            get { return _currentPage.Value; }
+        }
+        private readonly Lazy<PageViewModel> _currentPage;
+
+
+
+        public SiteNavigation(IEnumerable<ContentSection> categories, string currentCategory = null, string currentPage = null)
+        {
+            Categories = (categories ?? Enumerable.Empty<ContentSection>()).Select(x => new CategoryViewModel(x, currentPage)).ToArray();
+            _currentPage = new Lazy<PageViewModel>(() => GetCurrentPage(currentPage));
+            _currentCategory = new Lazy<CategoryViewModel>(() => GetCurrentCategory(currentCategory));
         }
 
 
-        [DebuggerDisplay("{Name}")]
-        public class SiteNavigationGroup
+        private CategoryViewModel GetCurrentCategory(string key = null)
         {
-            private readonly DocumentationCategory _category;
+            var category =
+                Categories.FirstOrDefault(
+                    x => string.Equals(x.Key, key, StringComparison.OrdinalIgnoreCase));
 
-            public string Name
-            {
-                get { return _category.Name; }
-            }
+            if (category != null)
+                category.Selected = true;
+            
+            return category;
+        }
 
-            public string DisplayName
-            {
-                get { return _category.DisplayName; }
-            }
+        private PageViewModel GetCurrentPage(string key = null)
+        {
+            var categoryPages = CurrentCategory.Pages.ToArray();
 
-            public IEnumerable<IEnumerable<DocumentationPage>> Groups { get; private set; }
+            var page = categoryPages.FirstOrDefault(x => string.Equals(x.Key, key, StringComparison.OrdinalIgnoreCase));
+            page = page ?? categoryPages.FirstOrDefault();
 
+            if(page != null)
+                page.Selected = true;
 
-            public SiteNavigationGroup(DocumentationCategory category)
-            {
-                _category = category;
-                Groups = GetPageGroups(category).ToArray();
-            }
-
-            private IEnumerable<IEnumerable<DocumentationPage>> GetPageGroups(DocumentationCategory category, int groupSize = 5)
-            {
-                if(category.Pages == null)
-                    yield break;
-
-                IEnumerable<DocumentationPage> group;
-                int skip = 0;
-
-                do
-                {
-                    group = category.Pages.Skip(skip).Take(groupSize).ToArray();
-                    skip += groupSize;
-                    yield return group;
-                } while (group.Any());
-            }
+            return page;
         }
     }
 }

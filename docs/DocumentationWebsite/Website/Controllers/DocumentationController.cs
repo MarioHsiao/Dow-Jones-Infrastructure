@@ -1,5 +1,6 @@
 using System.Linq;
 using System.Web.Mvc;
+using DowJones.Documentation.DataAccess;
 using DowJones.Documentation.Website.Extensions;
 using DowJones.Documentation.Website.Models;
 
@@ -7,16 +8,16 @@ namespace DowJones.Documentation.Website.Controllers
 {
     public class DocumentationController : Controller
     {
-        private readonly DocumentationPages _pages;
+        private readonly IContentRepository _repository;
 
         public DocumentationController()
-            : this(MvcApplication.DocumentationPages)
+            : this(MvcApplication.ContentRepository)
         {
         }
 
-        public DocumentationController(DocumentationPages pages)
+        public DocumentationController(IContentRepository repository)
         {
-            _pages = pages;
+            _repository = repository;
         }
 
         public ActionResult Homepage()
@@ -27,12 +28,8 @@ namespace DowJones.Documentation.Website.Controllers
         [ChildActionOnly]
         public ActionResult Navigation(string category, string page)
         {
-            var siteNavigation = new SiteNavigation(_pages);
-
-            if (!string.IsNullOrWhiteSpace(category))
-                siteNavigation.CurrentCategoryKey = category;
-            if(!string.IsNullOrWhiteSpace(page))
-                siteNavigation.CurrentPageName = page;
+            var categories = _repository.GetCategories();
+            var siteNavigation = new SiteNavigation(categories, category, page);
 
             return PartialView("_Navigation", siteNavigation);
         }
@@ -40,19 +37,20 @@ namespace DowJones.Documentation.Website.Controllers
 
         public ActionResult Page(string category, string page)
         {
-            var documentationCategory = _pages.Category(category) ?? DocumentationCategory.Default;
+            var documentationCategory = _repository.GetCategory(category) ?? new ContentSection(new Name(string.Empty));
 
-            if(string.IsNullOrWhiteSpace(page))
+            if (string.IsNullOrWhiteSpace(page) && documentationCategory.Children.Any())
             {
-                var defaultPage = documentationCategory.DefaultPage;
-                if (defaultPage != null)
-                {
-                    var routeData = new {category = defaultPage.Category.Name, page = defaultPage.Name};
-                    return RedirectToAction("Page", routeData);
-                }
+                var routeData = new LinkExtensions.DocumentationBrowserRouteData
+                    {
+                        category = category,
+                        page = documentationCategory.Children.First().Name.Key,
+                    };
+
+                return RedirectToRoute("DocumentationBrowser", routeData);
             }
 
-            var documentationPage = documentationCategory.Page(page);
+            var documentationPage = documentationCategory.Find(page) ?? documentationCategory.Children.FirstOrDefault();
 
         	if (documentationPage == null)
                 return HttpNotFound();
@@ -60,13 +58,7 @@ namespace DowJones.Documentation.Website.Controllers
             ViewData["category"] = documentationCategory.Name;
             ViewData["page"] = documentationPage.Name;
 
-            return View("DocumentationPage", documentationPage);
-        }
-
-
-        protected override void OnActionExecuting(ActionExecutingContext filterContext)
-        {
-            ViewBag.DocumentationPages = _pages;
+            return View("DocumentationPage", new PageViewModel(documentationPage, new CategoryViewModel(documentationCategory, page)));
         }
     }
 }

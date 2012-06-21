@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -78,19 +78,19 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Core\DataAccess\FileBasedContentRepositoryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tools\BuildTasks\GenerateJsVsDocTests.cs" />
     <Compile Include="Tools\JsXmlDocParser\FunctionInfoTests.cs" />
-    <Compile Include="Tools\JsXmlDocParser\JsParserTests.cs" />
     <Compile Include="Tools\JsXmlDocParser\JsDocToVsDocConverterTests.cs" />
+    <Compile Include="Tools\JsXmlDocParser\JsParserTests.cs" />
+    <Compile Include="Tools\JsXmlDocParser\TextReaderExtensionsTest.cs" />
     <Compile Include="Tools\VSDocPreprocessor\ParserTests.cs" />
     <Compile Include="Tools\VSDocPreprocessor\TestData\TestClass.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Core\" />
     <Folder Include="ViewEngines\MarkdownRazor\" />
     <Folder Include="ViewEngines\XmlViewEngine\" />
-    <Folder Include="Website\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Core\Core.csproj">
@@ -138,9 +138,7 @@
     <Content Include="Tools\JsXmlDocParser\SampleTestFiles\jquery.validate-vsdoc.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <EmbeddedResource Include="Tools\JsXmlDocParser\SampleTestFiles\PortalHeadlineList.vsdoc.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
+    <Content Include="Tools\JsXmlDocParser\SampleTestFiles\PortalHeadlineList.vsdoc.js" />
     <EmbeddedResource Include="Tools\VSDocPreprocessor\TestData\Expected\TestClass.xml" />
     <EmbeddedResource Include="Tools\VSDocPreprocessor\TestData\Expected\TestClassBuilder.xml" />
     <EmbeddedResource Include="Tools\VSDocPreprocessor\TestData\Expected\TestEnum.xml" />
@@ -148,6 +146,14 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="Core\DataAccess\TestData\Components\DiscoveryGraph\Methods.cshtml" />
+    <None Include="Core\DataAccess\TestData\Components\DiscoveryGraph\Overview.cshtml" />
+    <None Include="Core\DataAccess\TestData\Components\DiscoveryGraph\Properties.cshtml" />
+    <None Include="Core\DataAccess\TestData\Components\Overview.cshtml" />
+    <None Include="Core\DataAccess\TestData\Dashboards\CanvasModule\Properties.cshtml" />
+    <None Include="Core\DataAccess\TestData\Dashboards\CanvasModule\Methods.cshtml" />
+    <None Include="Core\DataAccess\TestData\Dashboards\CanvasModule\Overview.cshtml" />
+    <None Include="Core\DataAccess\TestData\Dashboards\Overview.cshtml" />
     <None Include="packages.config" />
   </ItemGroup>
   <Choose>

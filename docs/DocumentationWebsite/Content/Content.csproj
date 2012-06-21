@@ -66,6 +66,7 @@
     <None Include="Components\Radar\Overview.md" />
     <None Include="Components\StockKiosk\Overview.md" />
     <None Include="Components\VideoPlayer\Overview.md" />
+    <None Include="deploy.proj" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />

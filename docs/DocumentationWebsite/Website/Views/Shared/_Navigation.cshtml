@@ -8,13 +8,28 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </a>
+            
         @Html.ActionLink("Dow Jones Component Explorer", "Homepage", "Documentation", null, new Dictionary<string, object>{ {"class", "brand"}} )
+            
+        @*    
+        <div class="btn-group pull-right">
+            <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                <i class="icon-user"></i>Anonymous<span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+                <li><a href="#">Profile</a></li>
+                <li class="divider"></li>
+                <li><a href="#">Sign Out</a></li>
+            </ul>
+        </div>
+        *@
+
         <div class="nav-collapse">
             <ul class="nav">
                 @foreach (var category in Model.Categories)
                 {
-                    <li class="category @(category == Model.CurrentCategory ? "active" : "")" data-key="@category.Name">
-                        @Html.DocumentationCategoryLink(category.Name)
+                    <li class="category @(category.Selected ? "active" : "")" data-key="@category.Key">
+                        @Html.DocumentationCategoryLink(category)
                     </li>
                 }
             </ul>
@@ -24,20 +39,20 @@
     </div>
 </div>
 
-@if(!string.IsNullOrWhiteSpace(Model.CurrentCategoryKey))
+@if (Model.CurrentCategory != null)
 {
 <div class="container-fluid">
     <div class="row-fluid">
         <div class="widgetGrid span12">
-            <div class="wideCol span8">
+            <div class="wideCol span12">
                 <h3>@Model.CurrentCategory.DisplayName</h3>
-                @foreach (var group in Model.CurrentCategory.Groups)
+                @foreach (var group in Model.CurrentCategory.GetPageGroups())
                 {
                     <div>
                         <ul class="nav nav-list">
                             @foreach (var page in group)
                             {
-                                <li class="@(page == Model.CurrentPage ? "active" : "")">
+                                <li class="@(page.Selected ? "active" : "")">
                                     @Html.DocumentationPageLink(page)
                                 </li>
                             }
@@ -45,6 +60,7 @@
                     </div>
                 }
             </div>
+            @*
             <div class="narrowCol span4">
                 <h3>Related Topics</h3>
                 <div>
@@ -57,6 +73,7 @@
                     </ul>
                 </div>
             </div>
+            *@
         </div>
     </div>
 </div>

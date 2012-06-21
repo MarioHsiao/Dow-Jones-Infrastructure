@@ -1,5 +1,4 @@
-﻿using System;
-using System.Text;
+﻿using System.Text;
 using System.Xml;
 using JsXmlDocParser;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -9,7 +8,7 @@ namespace DowJones.Documentation.Tests.Tools.JsXmlDocParser
 	[TestClass]
 	public class JsDocToVsDocConverterTests
 	{
-		[TestMethod]
+		[TestMethod, Ignore]
 		public void CanConvertEmbeddedJsResources()
 		{
 			var converter = new JsDocToVsDocConverter();

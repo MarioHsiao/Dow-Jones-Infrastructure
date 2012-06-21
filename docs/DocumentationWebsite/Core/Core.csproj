@@ -54,12 +54,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataAccess\DocumentationPageLocator.cs" />
-    <Compile Include="DataAccess\IDocumentationPageLocator.cs" />
-    <Compile Include="Model\DocumentationCategory.cs" />
-    <Compile Include="Model\DocumentationPage.cs" />
-    <Compile Include="Model\DocumentationPages.cs" />
-    <Compile Include="Model\DocumentationPageSection.cs" />
+    <Compile Include="DataAccess\FileBasedContentRepository.cs" />
+    <Compile Include="DataAccess\IContentRepository.cs" />
+    <Compile Include="Model\ContentSection.cs" />
     <Compile Include="Model\Name.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

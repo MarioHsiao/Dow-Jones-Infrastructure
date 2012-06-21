@@ -1,4 +1,4 @@
-@model DocumentationPage
+@model PageViewModel
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Dow Jones Component Explorer :: " + Model.Category.DisplayName + " > " + Model.DisplayName;
@@ -11,27 +11,27 @@
     <div class="row-fluid">
         <div id="explorerArea">
             <div class="span2">
+            @if (Model.HasSections)
+            {
                 <div class="well sidebar-nav">
                     <ul class="nav nav-list">
-                        @if (Model.HasSections)
+                        <li class="nav-header">learn</li>
+                        @foreach (var pageSection in Model.Sections)
                         {
-                            <li class="nav-header">Learn</li>
-                            foreach (var pageSection in Model.Sections)
-                            {
-                            <li><a href="#@pageSection.Name">@pageSection.DisplayName</a></li>
-                            }
+                        <li><a href="#@pageSection.Key">@pageSection.DisplayName</a></li>
                         }
                     </ul>
                 </div>
                 <!--/.well -->
+            }
             </div>
         </div>
         <div class="span10 contentWell">
             <div class="row-fluid">
                 <header class="span12">
                     <h2 class="pull-left">@Model.DisplayName</h2>
-                    <div id="view-selector" class="pull-right">
-                        <a href="?view=server">ASP.NET MVC</a> | <a href="?view=client">JavaScript</a>
+                    <div class="pull-right">
+                        <a href="#">ASP.NET MVC</a> | <a>JavaScript</a>
                     </div>
                 </header>
             </div>
@@ -42,10 +42,10 @@
                 }
                 @foreach (var pageSection in Model.Sections)
                 {
-                    <section class="row-fluid @(pageSection.Name != "livedemo" ? "collapsible" : "")" id="@pageSection.Name">
+                    <section class="row-fluid @(pageSection.Key != "livedemo" ? "collapsible" : "")" id="@pageSection.Key">
                         <h3>@pageSection.DisplayName</h3>
                         <div>
-                            @Html.DocumentationSection(@pageSection.Name)
+                            @Html.DocumentationSection(pageSection)
                         </div>
                     </section>
                 }
