@@ -1,6 +1,6 @@
 using System.ComponentModel;
 
-namespace DowJones.Web.Mvc.UI.Components.AutoSuggest
+namespace DowJones.Web.Mvc.UI.Components.Models
 {
     public enum AutoCompletionType
     {
