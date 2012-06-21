@@ -1,4 +1,4 @@
-﻿namespace DowJones.Web.Mvc.UI.Components.AutoSuggest
+﻿namespace DowJones.Web.Mvc.UI.Components.Models
 {
     public static class AutoSuggestComponentExtensions
     {

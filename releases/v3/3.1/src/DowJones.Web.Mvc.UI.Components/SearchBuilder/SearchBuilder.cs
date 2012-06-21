@@ -28,7 +28,7 @@ namespace DowJones.Web.Mvc.UI.Components.SearchBuilder
     using System.Web.Security;
     using System.Web.UI;
     using DowJones.Web.Mvc.Extensions;
-    using DowJones.Web.Mvc.UI.Components.AutoSuggest;
+    using DowJones.Web.Mvc.UI.Components.Models;
     using DowJones.Web.Mvc.UI.Components.Models;
     using DowJones.Utilities.Search.Core;
     using DowJones.Search;

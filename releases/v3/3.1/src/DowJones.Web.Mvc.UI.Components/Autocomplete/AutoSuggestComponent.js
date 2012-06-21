@@ -46,7 +46,9 @@
             infoClick: "infoClick.dj.AutoSuggestComponent",
             promoteClick: "promoteClick.dj.AutoSuggestComponent",
             notClick: "notClick.dj.AutoSuggestComponent",
-            discontClick: "discontClick.dj.AutoSuggestComponent"
+            discontClick: "discontClick.dj.AutoSuggestComponent",
+            viewAllClick: "viewAllClick.dj.AutoSuggestComponent",
+            viewMorePrivateMarketsClick: "viewMorePrivateMarketsClick.dj.AutoSuggestComponent"
         },
 
         // Localization/Templating tokens
@@ -79,6 +81,7 @@
             blogTkn: "<%= Token("blogTkn") %>",
             disContTkn: "<%= Token("disContTkn") %>",
             viewAllTkn: "<%= Token("viewAllTkn") %>",
+            helpLabelTkn: "<%= Token("helpLabelTkn") %>",
             privateMarketCompanyViewMoreTkn: "<%= Token("privateMarketCompanyViewMoreTkn") %>",
             privateMarketIndustryViewMoreTkn: "<%= Token("privateMarketIndustryViewMoreTkn") %>",
             privateMarketRegionViewMoreTkn: "<%= Token("privateMarketRegionViewMoreTkn") %>"
@@ -95,13 +98,20 @@
 
             // TODO: Add custom initialization code like the following:
             // this._testButton = $('.testButton', element).get(0);
-            var testSettings = {
+            var suggestSettings = {
                             url: this.options.suggestServiceUrl,
-                            controlId: element.id,
+                            controlId: this.options.controlId,
                             autocompletionType: this.options.autocompletionType,                           
-                            useSessionId: DJ.config.credentials.sessionId
+                            useSessionId: DJ.config.credentials.sessionId,
+                            options: $.parseJSON(this.options.serviceOptions),
+                            columns: this.options.columns,
+                            tokens: $.parseJSON(this.options.tokens),
+                            fillInputOnKeyUpDown: this.options.fillInputOnKeyUpDown,                            
+                            selectFirst: this.options.selectFirst,
+                            showViewAll: this.options.showViewAll,
+                            showHelp: this.options.showHelp
                         }
-            this.initialize(testSettings);
+            this.initialize(suggestSettings);
         },
         
         /*
@@ -132,6 +142,8 @@
             return {
             author: "formalName",
             outlet: "formalName",
+            publishercity: "formalName",
+            publishermetadata: "name",
             executive: "completeName",
             company: "value",
             privatemarketcompany: "companyName",
@@ -159,6 +171,8 @@
         return{
             author: "author",
             outlet: "outlet",
+            publishercity: "publisherCity",
+            publishermetadata: "publisherData",
             executive: "executive",
             company: "company",
             region: "region",
@@ -543,7 +557,9 @@
                 viewAllClass: settings.viewAllClass,
                 showViewAll: settings.showViewAll,
                 viewAllText: settings.tokens.viewAllTkn,
-                highlight: settings.highlight,
+                highlight: settings.highlight,                
+                showHelp: settings.showHelp,
+                helpLabelText: settings.tokens.helpLabelTkn,
                 selectFirst: settings.selectFirst,
                 fillInputOnKeyUpDown: settings.fillInputOnKeyUpDown,
                 autoFill: ((settings.autocompletionType.toLowerCase() === 'keyword' || settings.autocompletionType.toLowerCase() === 'calendarkeyword') && settings.autoFill) ? true : false

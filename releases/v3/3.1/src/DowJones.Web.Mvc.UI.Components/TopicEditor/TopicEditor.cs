@@ -23,7 +23,7 @@ namespace DowJones.Web.Mvc.UI.Components.TopicEditor
     using System.Web.Security;
     using System.Web.UI;
     using DowJones.Web.Mvc.Extensions;
-    using DowJones.Web.Mvc.UI.Components.AutoSuggest;
+    using DowJones.Web.Mvc.UI.Components.Models;
     
     // Last Generated Timestamp: 10/05/2011 12:11 PM
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.TopicEditor.ClientTemplates.main.htm", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="main", DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.TopicEditor.TopicEditor))]
