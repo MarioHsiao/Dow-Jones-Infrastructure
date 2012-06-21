@@ -18,7 +18,7 @@
       @include prefixer(box-shadow, (#{$shadow} $offsetX $offsetY $blur $color));
 
 	  $iecolor: '#' + red($color) + green($color) + blue($color);    
-
+	  filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=#{$offsetX}, OffY=#{$offsetY}, Color='#{$iecolor}');    
 }
 
 

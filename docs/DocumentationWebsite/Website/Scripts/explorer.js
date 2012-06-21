@@ -70,7 +70,7 @@
         // target tables generated via markdown
         prettifyMarkdownTables();
 
-        // highlight sections in sidebar nav as we scroll
+        // highlight Children in sidebar nav as we scroll
         setupScrollSpy(50);
 
         // activate first nav item

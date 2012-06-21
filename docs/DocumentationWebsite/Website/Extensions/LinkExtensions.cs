@@ -1,7 +1,5 @@
-﻿using System;
-using System.Web;
+﻿using System.Web;
 using System.Web.Mvc;
-using System.Web.Mvc.Html;
 using System.Web.Routing;
 using DowJones.Documentation.Website.Models;
 
@@ -38,37 +36,30 @@ namespace DowJones.Documentation.Website.Extensions
                 section = null;
             }
 
-            public DocumentationBrowserRouteData(DocumentationCategory category)
+            public DocumentationBrowserRouteData(CategoryViewModel category)
                 : this()
             {
                 if (category == null) return;
 
-                this.category = category.Name;
+                this.category = category.Key;
                 DisplayName = category.DisplayName;
             }
 
-            public DocumentationBrowserRouteData(DocumentationPage page)
+            public DocumentationBrowserRouteData(PageViewModel page)
                 : this(page.Category)
             {
-                if (page == null) return;
-
-                this.page = page.Name;
+                this.page = page.Key;
                 DisplayName = page.DisplayName;
             }
         }
 
-        public static IHtmlString DocumentationCategoryLink(this HtmlHelper helper, string categoryName)
-        {
-            var category = MvcApplication.DocumentationPages.Category(categoryName);
-            return DocumentationCategoryLink(helper, category);
-        }
 
-        public static IHtmlString DocumentationCategoryLink(this HtmlHelper helper, DocumentationCategory category)
+        public static IHtmlString DocumentationCategoryLink(this HtmlHelper helper, CategoryViewModel category)
         {
             return DocumentationPageLink(helper, new DocumentationBrowserRouteData(category));
         }
 
-        public static IHtmlString DocumentationPageLink(this HtmlHelper helper, DocumentationPage page)
+        public static IHtmlString DocumentationPageLink(this HtmlHelper helper, PageViewModel page)
         {
             return DocumentationPageLink(helper, new DocumentationBrowserRouteData(page));
         }

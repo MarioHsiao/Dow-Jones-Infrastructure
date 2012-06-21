@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
-using DowJones.Documentation.Website.Models;
+using DowJones.Documentation.DataAccess;
 
 namespace DowJones.Documentation.Website.App_Start
 {
@@ -14,10 +14,8 @@ namespace DowJones.Documentation.Website.App_Start
             routes.MapRoute(
                 "DocumentationBrowser",
                 "{category}/{page}/{section}",
-                new { controller = "Documentation", action = "Page", 
-                      page = UrlParameter.Optional, section = UrlParameter.Optional
-                },
-                new DocumentationCategoryRouteConstraint(MvcApplication.DocumentationPages)
+                new { controller = "Documentation", action = "Page", page = UrlParameter.Optional, section = UrlParameter.Optional },
+                new DocumentationCategoryRouteConstraint(MvcApplication.ContentRepository)
             );
 
             routes.MapRoute(
@@ -30,16 +28,17 @@ namespace DowJones.Documentation.Website.App_Start
 
         class DocumentationCategoryRouteConstraint : IRouteConstraint
         {
-            private readonly DocumentationPages _pages;
+            private readonly IContentRepository _repository;
 
-            public DocumentationCategoryRouteConstraint(DocumentationPages pages)
+            public DocumentationCategoryRouteConstraint(IContentRepository repository)
             {
-                _pages = pages;
+                _repository = repository;
             }
 
             public bool Match(HttpContextBase httpContext, Route route, string parameterName, RouteValueDictionary values, RouteDirection routeDirection)
             {
-                return values.ContainsKey("category") && _pages.Category(values["category"] as string) != null;
+                return values.ContainsKey("category") 
+                    && _repository.GetCategory(values["category"] as string) != null;
             }
         }
     }
