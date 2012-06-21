@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="DeployContent"
+         xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <Target Name="DeployContent">
+    <ItemGroup>
+      <ContentFiles Include="$(MSBuildProjectDirectory)\**"
+                    Exclude="$(MSBuildProjectDirectory)\*.*proj*;
+                             $(MSBuildProjectDirectory)\bin\**;
+                             $(MSBuildProjectDirectory)\obj\**" 
+      />
+    </ItemGroup>
+
+    <Error Condition="'$(DeploymentDir)' == ''" Text="DeploymentDir property is required" />
+    <Message Importance="High" Text="Copying website from $(MSBuildProjectName) to $(DeploymentDir)" />
+    
+    <Copy SourceFiles="@(ContentFiles)"
+          DestinationFiles="@(ContentFiles->'$(DeploymentDir)\%(RecursiveDir)%(Filename)%(Extension)')"
+    />
+  </Target>
+  
+</Project>
