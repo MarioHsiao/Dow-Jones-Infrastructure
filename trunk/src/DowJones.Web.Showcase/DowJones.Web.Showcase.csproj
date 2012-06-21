@@ -156,6 +156,7 @@
     <Compile Include="Connections\MyConnection.cs" />
     <Compile Include="Connections\StockMarketConnection.cs" />
     <Compile Include="Controllers\AlertEditorController.cs" />
+    <Compile Include="Controllers\AutoSuggestController.cs" />
     <Compile Include="Controllers\CalendarEventListController.cs" />
     <Compile Include="Controllers\CanvasController.cs" />
     <Compile Include="Controllers\CanvasControllerBase.cs" />
@@ -1620,6 +1621,9 @@
     <Content Include="Views\HeadlineListCarousel\Carousel.cshtml" />
     <Content Include="Views\NewsRadar\Index.cshtml" />
     <Content Include="Views\Home\RequireJsLoadingDemo.cshtml" />
+    <Content Include="Views\AutoSuggest\Index.cshtml">
+      <SubType>Code</SubType>
+    </Content>
     <None Include="Views\NewsRadar\sample.json" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
