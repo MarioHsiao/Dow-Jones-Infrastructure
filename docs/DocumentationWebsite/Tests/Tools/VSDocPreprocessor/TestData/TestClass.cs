@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 
 namespace DowJones.Documentation.Tests.Tools.VSDocPreprocessor.TestData
 {
@@ -28,6 +29,7 @@ namespace DowJones.Documentation.Tests.Tools.VSDocPreprocessor.TestData
     /// <summary>
     /// A test class with a name that looks very similar to TestClass
     /// </summary>
+    [DebuggerNonUserCode]
     public class TestClassBuilder
     {
         /// <summary>
@@ -49,6 +51,7 @@ namespace DowJones.Documentation.Tests.Tools.VSDocPreprocessor.TestData
     /// <summary>
     /// A test class that emits VSDoc documentation
     /// </summary>
+    [DebuggerNonUserCode]
     public class TestClass
     {
         /// <summary>

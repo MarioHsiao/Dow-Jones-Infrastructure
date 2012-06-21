@@ -5,6 +5,7 @@
     <DeploymentItem filename="Tests\Tools\BuildTasks\TestFolder\" />
   </Deployment>
   <Execution>
+    <Timeouts runTimeout="300000" />
     <TestTypeSpecific>
       <UnitTestRunConfig testTypeId="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b">
         <AssemblyResolution>
@@ -23,6 +24,22 @@
       </WebTestRunConfiguration>
     </TestTypeSpecific>
     <AgentRule name="LocalMachineDefaultRole">
+      <DataCollectors>
+        <DataCollector uri="datacollector://microsoft/CodeCoverage/1.0" assemblyQualifiedName="Microsoft.VisualStudio.TestTools.CodeCoverage.CoveragePlugIn, Microsoft.VisualStudio.QualityTools.Plugins.CodeCoverage, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" friendlyName="Code Coverage (Visual Studio 2010)">
+          <Configuration>
+            <CodeCoverage xmlns="">
+              <Regular>
+                <CodeCoverageItem binaryFile="BuildTasks\bin\Release\DowJones.Documentation.BuildTasks.dll" pdbFile="BuildTasks\bin\Release\DowJones.Documentation.BuildTasks.pdb" instrumentInPlace="true" />
+                <CodeCoverageItem binaryFile="Core\bin\Release\DowJones.Documentation.Core.dll" pdbFile="Core\bin\Release\DowJones.Documentation.Core.pdb" instrumentInPlace="true" />
+                <CodeCoverageItem binaryFile="JsXmlDocParser\bin\Release\JsXmlDocParser.dll" pdbFile="JsXmlDocParser\bin\Release\JsXmlDocParser.pdb" instrumentInPlace="true" />
+                <CodeCoverageItem binaryFile="MarkdownRazor\bin\Release\MarkdownRazor.dll" pdbFile="MarkdownRazor\bin\Release\MarkdownRazor.pdb" instrumentInPlace="true" />
+                <CodeCoverageItem binaryFile="VSDocPreprocessor\bin\Release\VSDocPreprocessor.dll" pdbFile="VSDocPreprocessor\bin\Release\VSDocPreprocessor.pdb" instrumentInPlace="true" />
+                <CodeCoverageItem binaryFile="XmlViewEngine\bin\Release\XmlViewEngine.dll" pdbFile="XmlViewEngine\bin\Release\XmlViewEngine.pdb" instrumentInPlace="true" />
+              </Regular>
+            </CodeCoverage>
+          </Configuration>
+        </DataCollector>
+      </DataCollectors>
     </AgentRule>
   </Execution>
 </TestSettings>

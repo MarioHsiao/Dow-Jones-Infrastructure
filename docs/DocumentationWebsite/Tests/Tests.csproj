@@ -40,7 +40,9 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Release\DowJones.Documentation.Tests.XML</DocumentationFile>
+    <DocumentationFile>
+    </DocumentationFile>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'ToolChain|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
@@ -80,6 +82,8 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Core\DataAccess\FileBasedContentRepositoryTests.cs" />
+    <Compile Include="Core\Model\ContentSectionTests.cs" />
+    <Compile Include="Core\Model\NameTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tools\BuildTasks\GenerateJsVsDocTests.cs" />
     <Compile Include="Tools\JsXmlDocParser\FunctionInfoTests.cs" />

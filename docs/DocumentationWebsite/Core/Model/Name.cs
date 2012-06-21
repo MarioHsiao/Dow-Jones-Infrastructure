@@ -1,9 +1,11 @@
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.Text.RegularExpressions;
 
 namespace DowJones.Documentation
 {
+    [DebuggerDisplay("{Value}")]
     public class Name : IEquatable<Name>
     {
         public string Value { get; private set; }
@@ -37,8 +39,8 @@ namespace DowJones.Documentation
 
             var withSpaces = Regex.Replace(value, "([a-z](?=[A-Z])|[A-Z](?=[A-Z][a-z]))", "$1 ");
             var lowerCasePrepositions =
-                Regex.Replace(withSpaces, " (And|Or|At|The|Of|To|From) ",
-                              m => string.Format(" {0} ", m.Value).ToLower());
+                Regex.Replace(withSpaces, " (A(nd|t)|From|Is|O(f|r)|T(he|o))",
+                              m => string.Format("{0}", m.Value.ToLower()));
             return lowerCasePrepositions;
         }
 
@@ -47,7 +49,7 @@ namespace DowJones.Documentation
         {
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
-            if (obj.GetType() != this.GetType()) return false;
+            if (obj.GetType() != GetType()) return false;
             return Equals((Name) obj);
         }
 
@@ -68,6 +70,11 @@ namespace DowJones.Documentation
             return !string.IsNullOrWhiteSpace(Value);
         }
 
+        [DebuggerNonUserCode]
+        public override string ToString()
+        {
+            return Value;
+        }
 
         public static bool operator ==(Name left, Name right)
         {
