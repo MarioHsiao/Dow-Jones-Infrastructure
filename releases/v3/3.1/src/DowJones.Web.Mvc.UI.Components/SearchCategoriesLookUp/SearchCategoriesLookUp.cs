@@ -50,7 +50,7 @@ namespace DowJones.Web.Mvc.UI.Components.SearchCategoriesLookUp
     using System.Web.Security;
     using System.Web.UI;
     using DowJones.Web.Mvc.Extensions;
-    using DowJones.Web.Mvc.UI.Components.Models;
+    using DowJones.Web.Mvc.UI.Components.AutoSuggest;
     
     // Last Generated Timestamp: 09/20/2011 11:49 AM
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.SearchCategoriesLookUp.ClientTemplates.main.htm", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="main", DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.SearchCategoriesLookUp.SearchCategoriesLookUp))]

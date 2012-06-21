@@ -28,7 +28,7 @@ namespace DowJones.Web.Mvc.UI.Components.PersonalizationFilters
     using DowJones.Web.Mvc.Extensions;
     using DowJones.Web.Mvc.UI.Components.Models;
     using DowJones.Web.Mvc.UI.Components.TaxonomySearchBrowse;
-    using DowJones.Web.Mvc.UI.Components.Models;
+    using DowJones.Web.Mvc.UI.Components.AutoSuggest;
     using DowJones.Web.Mvc.UI.Components.PersonalizationFilters;
     
     // Last Generated Timestamp: 10/12/2011 04:11 PM
