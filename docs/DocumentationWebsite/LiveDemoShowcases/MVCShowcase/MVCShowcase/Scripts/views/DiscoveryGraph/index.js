@@ -32,12 +32,12 @@ function makeInteractive() {
     });
 }
 
-$(function () {
+function init() {
     discoveryGraph = $("#DiscoveryGraph-0").findComponent(DJ.UI.DiscoveryGraph);
     discoveryGraph.options.sortable = true;
     discoveryGraph.options.scrollable = true;
     discoveryGraph.setData(getStubData());
-});
+};
 
 // wrapped in a function so that code folding can hide it!
 function getStubData() {

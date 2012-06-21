@@ -340,8 +340,8 @@ function getStubData() {
     };
 }
 
-$(function setHeadlineData() {
+function init() {
     var $container = $('.dj_headlineListContainer');
     $container.findComponent(DJ.UI.PortalHeadlineList).bindOnSuccess(getStubData());
-});
+};
 
