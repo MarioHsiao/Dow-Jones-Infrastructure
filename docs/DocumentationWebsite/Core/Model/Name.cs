@@ -8,28 +8,24 @@ namespace DowJones.Documentation
     [DebuggerDisplay("{Value}")]
     public class Name : IEquatable<Name>
     {
-        public string Value { get; private set; }
-        public string Prefix { get; private set; }
-        public string Key { get; private set; }
         public string DisplayName { get; private set; }
+        
+        public string Key { get; private set; }
+
+        public string Value { get; private set; }
+
 
         public Name(string value)
         {
             Value = Path.GetFileNameWithoutExtension(value ?? string.Empty);
             Key = Value.ToLower();
+            DisplayName = ToDisplayName(Value);
+        }
 
-            var split = Value.Split('_');
 
-            if(split.Length == 1)
-            {
-                Prefix = string.Empty;
-                DisplayName = ToDisplayName(split[0]);
-            }
-            else
-            {
-                Prefix = split[0];
-                DisplayName = ToDisplayName(split[1]);
-            }
+        public bool IsValid()
+        {
+            return !string.IsNullOrWhiteSpace(Value);
         }
 
         private static string ToDisplayName(string value)
@@ -44,6 +40,8 @@ namespace DowJones.Documentation
             return lowerCasePrepositions;
         }
 
+
+        #region Overrides and Operators
 
         public override bool Equals(object obj)
         {
@@ -65,11 +63,6 @@ namespace DowJones.Documentation
             return (Value != null ? Value.GetHashCode() : 0);
         }
 
-        public bool IsValid()
-        {
-            return !string.IsNullOrWhiteSpace(Value);
-        }
-
         [DebuggerNonUserCode]
         public override string ToString()
         {
@@ -86,10 +79,11 @@ namespace DowJones.Documentation
             return !Equals(left, right);
         }
 
-
         public static implicit operator Name(string name)
         {
             return new Name(name);
         }
+
+        #endregion
     }
 }

@@ -6,14 +6,6 @@ namespace DowJones.Documentation.Tests.Core.Model
     public class NameTests
     {
         [TestMethod]
-        public void ShouldParsePrefix()
-        {
-            Assert.AreEqual(
-                "Prefix", 
-                new Name("Prefix_Name").Prefix);
-        }
-
-        [TestMethod]
         public void ShouldInsertWhitespaceIntoDisplayName()
         {
             Assert.AreEqual(

@@ -10,41 +10,47 @@ namespace DowJones.Documentation.Website.Models
 
         public IEnumerable<PageViewModel> Pages
         {
-            get { return _pages.Value; }
+            get { return Children.OfType<PageViewModel>(); }
         }
-        private readonly Lazy<IEnumerable<PageViewModel>> _pages;
+
 
         public CategoryViewModel(ContentSection section, string currentPage = null)
             : base(section)
         {
             _currentPage = currentPage;
-            _pages = new Lazy<IEnumerable<PageViewModel>>(MapPages);
         }
+
 
         public IEnumerable<IEnumerable<PageViewModel>> GetPageGroups(int groupSize = 5)
         {
-            if (Pages == null)
-                yield break;
+            var pages = Pages.ToArray();
 
             IEnumerable<PageViewModel> group;
             int skip = 0;
 
             do
             {
-                @group = Pages.Skip(skip).Take(groupSize).ToArray();
+                @group = pages.Skip(skip).Take(groupSize).ToArray();
                 skip += groupSize;
                 yield return @group;
             } while (@group.Any());
         }
 
-        private IEnumerable<PageViewModel> MapPages()
+        protected override IEnumerable<ContentSectionViewModel> MapChildren()
         {
-            var pages =
-                from child in ContentSection.Children
-                let selected = string.Equals(child.Name.Key, _currentPage, StringComparison.OrdinalIgnoreCase)
-                select new PageViewModel(child, this) { Selected = selected };
+            var children = base.MapChildren().ToArray();
 
-            return pages;
+            var selectedPage =
+                children.FirstOrDefault(child => string.Equals(child.Key, _currentPage, StringComparison.OrdinalIgnoreCase));
+
+            if(selectedPage != null)
+                selectedPage.Selected = true;
+
+            return children;
         }
-    }
+
+        protected override ContentSectionViewModel MapChild(ContentSection child)
+        {
+            return new PageViewModel(child, this);
+        }    }
 }

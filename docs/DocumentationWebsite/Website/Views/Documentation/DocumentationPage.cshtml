@@ -11,12 +11,12 @@
     <div class="row-fluid">
         <div id="explorerArea">
             <div class="span2">
-            @if (Model.HasSections)
+            @if (Model.HasChildren)
             {
                 <div class="well sidebar-nav">
                     <ul class="nav nav-list">
                         <li class="nav-header">learn</li>
-                        @foreach (var pageSection in Model.Sections)
+                        @foreach (var pageSection in Model.Children)
                         {
                         <li><a href="#@pageSection.Key">@pageSection.DisplayName</a></li>
                         }
@@ -36,11 +36,11 @@
                 </header>
             </div>
             <div class="content">
-                @if (!Model.HasSections)
+                @if (!Model.HasChildren)
                 {
                     @Html.DocumentationPage()
                 }
-                @foreach (var pageSection in Model.Sections)
+                @foreach (var pageSection in Model.Children)
                 {
                     <section class="row-fluid @(pageSection.Key != "livedemo" ? "collapsible" : "")" id="@pageSection.Key">
                         <h3>@pageSection.DisplayName</h3>
