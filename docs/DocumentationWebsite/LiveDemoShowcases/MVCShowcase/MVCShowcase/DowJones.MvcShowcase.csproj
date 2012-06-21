@@ -173,6 +173,7 @@
   <ItemGroup>
     <Compile Include="BootstrapperTasks\GlobalFilterRegistrationTask.cs" />
     <Compile Include="BootstrapperTasks\RouteRegistrationTask.cs" />
+    <Compile Include="Controllers\DiscoveryGraphController.cs" />
     <Compile Include="Controllers\PortalHeadlineListController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Dependencies.cs" />
@@ -187,6 +188,7 @@
   <ItemGroup>
     <Content Include="ClientResources.xml" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\views\DiscoveryGraph\index.js" />
     <Content Include="Scripts\views\PortalHeadlineList\index.js" />
     <Content Include="Styles\normalize.css" />
     <Content Include="Styles\normalizeExtensions.css" />
@@ -196,6 +198,11 @@
     <Content Include="Styles\Site.css">
       <DependentUpon>Site.scss</DependentUpon>
     </Content>
+    <Content Include="Styles\views\DiscoveryGraph\discoveryGraph.css">
+      <DependentUpon>discoveryGraph.scss</DependentUpon>
+    </Content>
+    <Content Include="Styles\views\DiscoveryGraph\img\navigator.png" />
+    <Content Include="Styles\views\DiscoveryGraph\img\sprite_carousel-buttons.png" />
     <Content Include="Styles\views\PortalHeadlineList\portalHeadlineList.css">
       <DependentUpon>portalHeadlineList.scss</DependentUpon>
     </Content>
@@ -212,11 +219,12 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\PortalHeadlineList\Index.cshtml" />
     <Content Include="Styles\views\PortalHeadlineList\portalHeadlineList.scss" />
+    <Content Include="Views\DiscoveryGraph\Index.cshtml" />
+    <Content Include="Styles\views\DiscoveryGraph\discoveryGraph.scss" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="Styles\views\DiscoveryGraph\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

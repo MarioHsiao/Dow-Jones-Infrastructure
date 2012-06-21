@@ -1,0 +1,16 @@
+﻿@model DowJones.Web.Mvc.UI.Components.DiscoveryGraph.DiscoveryGraphModel
+
+
+@{
+    ViewBag.Title = "Discovery Graph";
+}
+
+
+@DJ.Render(Model)
+
+@section styles{
+	<link href="@Url.Content("~/styles/views/DiscoveryGraph/discoveryGraph.css")" rel="stylesheet" />
+}
+@section scripts{
+	<script type="text/javascript" src="@Url.Content("~/Scripts/views/DiscoveryGraph/index.js")"></script>
+}
