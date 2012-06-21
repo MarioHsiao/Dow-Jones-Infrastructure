@@ -53,6 +53,15 @@
     <WarningLevel>4</WarningLevel>
     <PrecompileBeforePublish>true</PrecompileBeforePublish>
     <DeployIisAppPath>Default Web Site/MvcShowcase</DeployIisAppPath>
+    <UseMerge>true</UseMerge>
+    <WDPMergeOption>MergeEachIndividualFolder</WDPMergeOption>
+    <EnableUpdateable>true</EnableUpdateable>
+    <ContentAssemblyName>
+    </ContentAssemblyName>
+    <SingleAssemblyName>
+    </SingleAssemblyName>
+    <DeleteAppCodeCompiledFiles>false</DeleteAppCodeCompiledFiles>
+    <AssemblyPrefixName>DowJones.MvcShowCase</AssemblyPrefixName>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Argotic.Common">
@@ -229,16 +238,17 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>False</AutoAssignPort>
-          <DevelopmentServerPort>12033</DevelopmentServerPort>
+          <DevelopmentServerPort>53437</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:12033/</IISUrl>
+          <IISUrl>
+          </IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
           </CustomServerUrl>
-          <SaveServerSettingsInUserFile>True</SaveServerSettingsInUserFile>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
     </VisualStudio>
