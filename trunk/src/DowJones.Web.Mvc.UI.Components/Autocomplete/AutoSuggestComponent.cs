@@ -31,7 +31,7 @@ namespace DowJones.Web.Mvc.UI.Components.Autocomplete
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.Autocomplete.AutoSuggestComponent.js", ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.Autocomplete.AutoSuggestComponent))]
     [DowJones.Web.StylesheetResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.Autocomplete.AutoSuggestComponent.css", ResourceKind=DowJones.Web.ClientResourceKind.Stylesheet, DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.Autocomplete.AutoSuggestComponent))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "0.0.0.30158")]
-    public class AutoSuggestComponent : DowJones.Web.Mvc.UI.ViewComponentBase<DowJones.Web.Mvc.UI.Components.AutoSuggest.AutoSuggestModel>
+    public class AutoSuggestComponent : DowJones.Web.Mvc.UI.ViewComponentBase<DowJones.Web.Mvc.UI.Components.Models.AutoSuggestModel>
     {
 #line hidden
 
