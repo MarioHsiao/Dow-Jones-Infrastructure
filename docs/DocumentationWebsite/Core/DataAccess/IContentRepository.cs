@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using DowJones.Documentation.Website.Models;
 
 namespace DowJones.Documentation.DataAccess
 {

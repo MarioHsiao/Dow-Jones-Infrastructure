@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.IO;
 using System.Linq;
-using DowJones.Documentation.DataAccess;
 
-namespace DowJones.Documentation.Website.Models
+namespace DowJones.Documentation.DataAccess
 {
     public class FileBasedContentRepository : IContentRepository
     {

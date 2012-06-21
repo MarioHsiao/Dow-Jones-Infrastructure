@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Diagnostics.Contracts;
 using System.Linq;
-using DowJones.Documentation.Website.Models;
 
 namespace DowJones.Documentation
 {
