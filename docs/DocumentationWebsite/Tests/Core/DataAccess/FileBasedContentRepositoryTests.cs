@@ -59,7 +59,7 @@ namespace DowJones.Documentation.Tests.Core.DataAccess
 
             var page = GetPage(categories, "Components", "DiscoveryGraph");
             var sectionNames = page.Children.Select(x => x.Name.Key);
-            CollectionAssert.AreEquivalent(new[] { "Methods", "Overview", "Properties" }, sectionNames.ToArray());
+            CollectionAssert.AreEquivalent(new[] { "methods", "overview", "properties" }, sectionNames.ToArray());
         }
 
 

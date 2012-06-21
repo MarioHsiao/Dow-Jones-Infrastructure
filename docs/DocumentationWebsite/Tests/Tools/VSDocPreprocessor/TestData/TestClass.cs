@@ -75,7 +75,9 @@ namespace DowJones.Documentation.Tests.Tools.VSDocPreprocessor.TestData
         /// <summary>
         /// Public event
         /// </summary>
+#pragma warning disable 67
         public event EventHandler Event;
+#pragma warning restore 67
 
         /// <summary>
         /// A primary type property

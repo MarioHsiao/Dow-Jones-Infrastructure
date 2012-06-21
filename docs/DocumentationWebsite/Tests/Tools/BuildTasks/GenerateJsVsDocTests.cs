@@ -12,7 +12,6 @@ namespace DowJones.Documentation.Tests.Tools.BuildTasks
 		[DeploymentItem("Tools\\BuildTasks\\TestFolder", "TestFolder")]
 		public void ShouldProcessDirectory()
 		{
-			const string dir = "TestFolder";
             var task = new ConvertJsDocToVsDoc
 			{
 				BuildEngine = new Mock<IBuildEngine>().Object
