@@ -101,5 +101,20 @@ namespace DowJones.Web.Showcase.Controllers
 
             return kioskModel;
         }
+
+        public ActionResult ComponentExplorerDemo([ModelBinder(typeof(StringSplitModelBinder))]string[] syms, SymbolType symbolType = SymbolType.FCode, Frequency frequency = Frequency.FifteenMinutes, int pageSize = 10)
+        {
+
+            var leftSyms = new List<string>(syms ?? new[] { "reggr", "carsvc", "cmdbnn", "rgrc", "stgtec", "precos", "comasc" });
+            var rightSyms = new List<string>(new[] { "ibm", "mcrost", "goog", "reggr", "carsvc", "cmdbnn", "rgrc", "stgtec", "precos", "comasc" });
+
+            var model = new StockKioskControllerModel
+            {
+                Bottom = GetStockKioskModel(rightSyms, symbolType, frequency, pageSize),
+                Top = GetStockKioskModel(leftSyms, symbolType, frequency, pageSize),
+            };
+
+            return View("Index", "_Layout_ComponentExplorer", model);
+        }
     }
 }

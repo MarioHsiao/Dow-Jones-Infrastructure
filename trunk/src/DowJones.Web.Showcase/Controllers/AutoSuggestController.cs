@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
-using DowJones.Web.Mvc.UI.Components.AutoSuggest;
+using DowJones.Web.Mvc.UI.Components.Models;
 
 namespace DowJones.Web.Showcase.Controllers
 {

@@ -26,7 +26,7 @@ namespace DowJones.Web.Showcase.Models
         {
             AccessPointCode = "P";
             UserID = "dacostad";
-            Password = "brian";
+            Password = "vader";
             ProductID = "16";
         }
 
