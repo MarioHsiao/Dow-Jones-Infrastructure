@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClientResourceRegistry>
+	<resources>
+		<resource name="~/Scripts/views/PortalHeadlineList/index.js" level="Global">
+			<dependsOn>DJ.UI.Component.PortalHeadlineList</dependsOn>
+		</resource>
+		<resource name="~/Styles/normalize.css" level="Global" />
+		<resource name="~/Styles/normalizeExtensions.css" level="Global" />
+		<resource name="~/Styles/site.css" level="Global" />
+	</resources>
+	<aliases>
+		<mapping alias="PortalHeadlineList.Index.js" name="~/Scripts/views/PortalHeadlineList/index.js" />
+		<mapping alias="PortalHeadlineList.Index.js" name="~/Scripts/views/PortalHeadlineList/index.js" />
+		<mapping alias="PortalHeadlineList.Index.js" name="~/Scripts/views/PortalHeadlineList/index.js" />
+		<mapping alias="PortalHeadlineList.Index.js" name="~/Scripts/views/PortalHeadlineList/index.js" />
+		
+	</aliases>
+</ClientResourceRegistry>

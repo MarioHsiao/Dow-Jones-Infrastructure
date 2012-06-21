@@ -1,0 +1,14 @@
+﻿@model DowJones.Web.Mvc.UI.Components.Models.PortalHeadlineListModel
+
+@{
+    ViewBag.Title = "Portal Headline List Demo";
+}
+
+@DJ.Render(Model)
+
+@section styles{
+	<link href="@Url.Content("~/styles/views/PortalHeadlineList/PortalHeadlineList.css")" rel="stylesheet" />
+}
+@section scripts{
+	<script type="text/javascript" src="@Url.Content("~/Scripts/views/PortalHeadlineList/index.js")"></script>
+}
