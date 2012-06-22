@@ -1,11 +1,10 @@
-﻿using System.Web;
-using System.Web.Optimization;
+﻿using System.Web.Optimization;
 
 namespace DowJones.Documentation.Website.App_Start
 {
 	public class BundleConfig
 	{
-		public static void RegisterBundles(BundleCollection bundles)
+		public void RegisterBundles(BundleCollection bundles)
 		{
 
 			bundles.Add(new ScriptBundle("~/bundles/head").Include(

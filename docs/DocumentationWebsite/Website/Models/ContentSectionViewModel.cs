@@ -39,6 +39,28 @@ namespace DowJones.Documentation.Website.Models
         }
         private readonly Lazy<IEnumerable<ContentSectionViewModel>> _children;
 
+        public virtual string Mode
+        {
+            get
+            {
+                if(_mode == null)
+                {
+                    if (HasChildren || ContentSection.Parent == null)
+                        return null;
+
+                    _mode = new Lazy<string>(() => ContentSection.Parent.Name.Key);
+                }
+
+                return _mode.Value;
+            }
+            protected set
+            {
+                _mode = new Lazy<string>(() => value);
+            }
+        }
+        private Lazy<string> _mode;
+
+
 
         public ContentSectionViewModel(ContentSection section)
         {

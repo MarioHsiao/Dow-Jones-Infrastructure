@@ -13,7 +13,7 @@ namespace DowJones.Documentation.Website.ViewEngines
 
             Layout = "~/Views/Shared/VSDoc.xsl";
             ViewLocationFormats = ViewLocationFormats.ReplacePageLocations(folder);
-            PartialViewLocationFormats = ViewLocationFormats.ReplacePageLocations(folder);
+            PartialViewLocationFormats = ViewLocationFormats;
         }
 
         protected override IView CreatePartialView(ControllerContext controllerContext, string partialPath)

@@ -3,6 +3,39 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Dow Jones Component Explorer :: " + Model.Category.DisplayName + " > " + Model.DisplayName;
 }
+@helper RenderMenuItems(ContentSectionViewModel contentSection) {
+    if (contentSection.HasChildren) {
+        <li class="nav-header">@contentSection.DisplayName</li>   
+    }
+    else if (contentSection.Key != "overview")
+    {
+        <li><a href="#@contentSection.Key">@contentSection.DisplayName</a></li>
+    }
+    foreach (var child in contentSection.Children) {
+        @RenderMenuItems(child)
+    }
+}
+@helper RenderSection(ContentSectionViewModel contentSection) {
+    <section class="row-fluid @(contentSection.Key != "livedemo" ? "collapsible" : "")" id="@contentSection.Key">
+        
+    @if(contentSection.HasChildren) {
+        <h2>@contentSection.DisplayName</h2>
+        
+        foreach(var child in contentSection.Children) {
+            @RenderSection(child)
+        }
+    }
+    else {
+        if(contentSection.Key != "overview") {
+            <h3>@contentSection.DisplayName</h3>
+        }
+            <div>
+            @Html.DocumentationSection(contentSection)
+        </div>
+    }
+        
+    </section>
+}
 @section styles {
     @Styles.Render("~/bundles/syntaxhighlighter-css")
 }
@@ -15,10 +48,9 @@
             {
                 <div class="well sidebar-nav">
                     <ul class="nav nav-list">
-                        <li class="nav-header">learn</li>
-                        @foreach (var pageSection in Model.Children)
+                        @foreach (var child in Model.Children)
                         {
-                        <li><a href="#@pageSection.Key">@pageSection.DisplayName</a></li>
+                            @RenderMenuItems(child)
                         }
                     </ul>
                 </div>
@@ -31,7 +63,7 @@
                 <header class="span12">
                     <h2 class="pull-left">@Model.DisplayName</h2>
                     <div class="pull-right">
-                        <a href="#">ASP.NET MVC</a> | <a>JavaScript</a>
+                        <a href="?mode=server">ASP.NET MVC</a> | <a href="?mode=client">JavaScript</a>
                     </div>
                 </header>
             </div>
@@ -40,14 +72,8 @@
                 {
                     @Html.DocumentationPage()
                 }
-                @foreach (var pageSection in Model.Children)
-                {
-                    <section class="row-fluid @(pageSection.Key != "livedemo" ? "collapsible" : "")" id="@pageSection.Key">
-                        <h3>@pageSection.DisplayName</h3>
-                        <div>
-                            @Html.DocumentationSection(pageSection)
-                        </div>
-                    </section>
+                @foreach(var child in Model.Children) {
+                    @RenderSection(child)
                 }
             </div>
         </div>

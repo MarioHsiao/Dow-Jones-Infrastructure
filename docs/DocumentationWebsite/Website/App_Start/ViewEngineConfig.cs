@@ -1,4 +1,6 @@
+using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 using DowJones.Documentation.Website.App_Start;
 using DowJones.Documentation.Website.ViewEngines;
 
@@ -8,10 +10,17 @@ namespace DowJones.Documentation.Website.App_Start
 {
     public class ViewEngineConfig
     {
-        public static void RegisterViewEngines(string docsDirectory)
+        public void RegisterViewEngines(string docsDirectory)
         {
-            System.Web.Mvc.ViewEngines.Engines.Insert(0, new VSDocViewEngine(docsDirectory));
-            System.Web.Mvc.ViewEngines.Engines.Insert(0, new MarkdownViewEngine(docsDirectory));
+            var viewEngines = System.Web.Mvc.ViewEngines.Engines;
+
+            var webFormsEngine = viewEngines.OfType<WebFormViewEngine>().FirstOrDefault();
+
+            if (webFormsEngine != null)
+                viewEngines.Remove(webFormsEngine);
+
+            viewEngines.Insert(0, new VSDocViewEngine(docsDirectory));
+            viewEngines.Insert(0, new MarkdownViewEngine(docsDirectory));
         }
 
         public static void InitializeBuildProviders()

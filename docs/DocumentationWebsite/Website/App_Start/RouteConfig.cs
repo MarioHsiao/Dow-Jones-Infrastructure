@@ -7,15 +7,26 @@ namespace DowJones.Documentation.Website.App_Start
 {
     public class RouteConfig
     {
-        public static void RegisterRoutes(RouteCollection routes)
+        private readonly DocumentationCategoryRouteConstraint _constraint;
+
+        public RouteConfig(IContentRepository repository)
+        {
+            _constraint = new DocumentationCategoryRouteConstraint(repository);
+        }
+
+        public void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
                 "DocumentationBrowser",
-                "{category}/{page}/{section}",
-                new { controller = "Documentation", action = "Page", page = UrlParameter.Optional, section = UrlParameter.Optional },
-                new DocumentationCategoryRouteConstraint(MvcApplication.ContentRepository)
+                "{category}/{page}/{section}/{mode}",
+                new {
+                        controller = "Documentation", action = "Page", 
+                        page = UrlParameter.Optional, section = UrlParameter.Optional,
+                        mode = "client"
+                    },
+                _constraint
             );
 
             routes.MapRoute(

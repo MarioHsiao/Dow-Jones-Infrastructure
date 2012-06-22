@@ -51,6 +51,7 @@ namespace DowJones.Documentation.Website.Models
 
         protected override ContentSectionViewModel MapChild(ContentSection child)
         {
-            return new PageViewModel(child, this);
-        }    }
+            return new PageViewModel(child, this, null);
+        }
+    }
 }

@@ -11,7 +11,7 @@ namespace DowJones.Documentation.Website.ViewEngines
             Contract.Requires(string.IsNullOrWhiteSpace(folder));
 
             ViewLocationFormats = ViewLocationFormats.ReplacePageLocations(folder);
-            PartialViewLocationFormats = ViewLocationFormats.ReplacePageLocations(folder);
+            PartialViewLocationFormats = ViewLocationFormats;
         }
 
         protected override IView CreatePartialView(ControllerContext controllerContext, string partialPath)

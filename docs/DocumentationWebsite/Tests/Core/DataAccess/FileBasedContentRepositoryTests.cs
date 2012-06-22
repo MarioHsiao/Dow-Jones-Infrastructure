@@ -62,6 +62,17 @@ namespace DowJones.Documentation.Tests.Core.DataAccess
             CollectionAssert.AreEquivalent(new[] { "methods", "overview", "properties" }, sectionNames.ToArray());
         }
 
+        [TestMethod]
+        public void ContentSectionComparerShouldOrderNames()
+        {
+            var order = new[] {"1", "2", "3"};
+            var names = new Name[] { "4", "3", "1", "5", "2" }.Select(x => new ContentSection(x));
+            var ordered = names.OrderBy(x => x, new FileBasedContentRepository.ContentSectionComparer(order)).Select(x => x.Name.Key);
+
+            CollectionAssert.AreEquivalent(
+                new[] { "1", "2", "3", "4", "5" },
+                ordered.ToArray());
+        }
 
         private static ContentSection GetCategory(IEnumerable<ContentSection> categories, string categoryName)
         {

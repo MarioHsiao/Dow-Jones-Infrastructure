@@ -5,7 +5,6 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using DowJones.Documentation.DataAccess;
 using DowJones.Documentation.Website.App_Start;
-using DowJones.Documentation.Website.Models;
 
 namespace DowJones.Documentation.Website
 {
@@ -20,24 +19,22 @@ namespace DowJones.Documentation.Website
             InitializeContentRepository(BasePagesDirectory);
 
 			AreaRegistration.RegisterAllAreas();
-			FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
-			RouteConfig.RegisterRoutes(RouteTable.Routes);
-			BundleConfig.RegisterBundles(BundleTable.Bundles);
-            ViewEngineConfig.RegisterViewEngines(BasePagesDirectory);
+			new FilterConfig().RegisterGlobalFilters(GlobalFilters.Filters);
+			new RouteConfig(ContentRepository).RegisterRoutes(RouteTable.Routes);
+			new BundleConfig().RegisterBundles(BundleTable.Bundles);
+            new ViewEngineConfig().RegisterViewEngines(BasePagesDirectory);
 		}
 
 	    private void InitializeContentRepository(string docsDirectory)
         {
             var docsPath = HttpContext.Current.Server.MapPath(docsDirectory);
-            ContentRepository = new FileBasedContentRepository(docsPath)
-                {
-                    SectionOrder = new[]
-                        {
-                            "LiveDemo", "Overview", "Configuration", 
-                            "Constructors", "Events", "Properties", 
-                            "Methods"
-                        }
-                };
+	        var sectionOrder = new[]
+	            {
+	                "Overview", "LiveDemo", "Configuration",
+	                "Constructors", "Events", "Properties",
+	                "Methods"
+	            };
+            ContentRepository = new FileBasedContentRepository(docsPath, sectionOrder);
         }
     }
 }

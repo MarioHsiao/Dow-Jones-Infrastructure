@@ -10,13 +10,16 @@ namespace DowJones.Documentation.Website.ViewEngines
         {
             string remappedPath = path;
 
-            string category, page;
+            string category, page, mode;
 
             if (TryGetRouteValue(controllerContext, "category", out category))
                 remappedPath = remappedPath.Replace("[category]", category);
 
             if (TryGetRouteValue(controllerContext, "page", out page))
                 remappedPath = remappedPath.Replace("[page]", page);
+
+            if (TryGetRouteValue(controllerContext, "mode", out mode))
+                remappedPath = remappedPath.Replace("[mode]", mode);
 
             return remappedPath;
         }
@@ -29,9 +32,13 @@ namespace DowJones.Documentation.Website.ViewEngines
             var pages = locations.Select(x => x.Replace("~/Views", folder).Replace("{1}", "[category]")).ToArray();
 
             // "{folder}/{category}/{0}.cshtml" -> "{folder}/{category}/{page}/{0}.cshtml"
-            var sections = pages.Select(x => x.Replace("{0}", "[page]/{0}")).ToArray();
+            var sections = pages.Where(x => x.IndexOf("/Shared/") == -1)
+                .Select(x => x.Replace("{0}", "[page]/{0}")).ToArray();
 
-            return pages.Union(sections).ToArray();
+            // "{folder}/{category}/{0}.cshtml" -> "{folder}/{category}/{page}/{mode}/{0}.cshtml"
+            var sectionViews = sections.Select(x => x.Replace("{0}", "[mode]/{0}")).ToArray();
+
+            return sectionViews.Union(sections).Union(pages).ToArray();
         }
 
 

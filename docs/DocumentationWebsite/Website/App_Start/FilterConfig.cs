@@ -4,7 +4,7 @@ namespace DowJones.Documentation.Website.App_Start
 {
 	public class FilterConfig
 	{
-		public static void RegisterGlobalFilters(GlobalFilterCollection filters)
+		public void RegisterGlobalFilters(GlobalFilterCollection filters)
 		{
 			filters.Add(new HandleErrorAttribute());
 		}

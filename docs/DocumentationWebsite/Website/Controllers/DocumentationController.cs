@@ -35,7 +35,7 @@ namespace DowJones.Documentation.Website.Controllers
         }
 
 
-        public ActionResult Page(string category, string page)
+        public ActionResult Page(string category, string page, string mode)
         {
             var documentationCategory = _repository.GetCategory(category) ?? new ContentSection(new Name(string.Empty));
 
@@ -58,7 +58,12 @@ namespace DowJones.Documentation.Website.Controllers
             ViewData["category"] = documentationCategory.Name;
             ViewData["page"] = documentationPage.Name;
 
-            return View("DocumentationPage", new PageViewModel(documentationPage, new CategoryViewModel(documentationCategory, page)));
+            var viewModel = new PageViewModel(
+                                    documentationPage, 
+                                    new CategoryViewModel(documentationCategory, page),
+                                    mode);
+
+            return View("DocumentationPage", viewModel);
         }
     }
 }
