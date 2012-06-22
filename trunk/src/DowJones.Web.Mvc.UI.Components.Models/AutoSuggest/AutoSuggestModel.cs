@@ -44,6 +44,19 @@ namespace DowJones.Web.Mvc.UI.Components.Models
         PrivateMarkets
     }
 
+    public enum AuthType
+    {
+        [DescriptionAttribute("SessionId")]
+        SessionId,
+
+        [DescriptionAttribute("EncryptedToken")]
+        EncryptedToken,
+
+        [DescriptionAttribute("SuggestContext")]
+        SuggestContext
+
+    }
+
     public class AutoSuggestModel : ViewComponentModel
     {
         #region ..:: Client Properties ::..
@@ -87,6 +100,18 @@ namespace DowJones.Web.Mvc.UI.Components.Models
         /// </summary>
         [ClientProperty("suggestContext")]
         public string SuggestContext { get; set; }
+
+        /// <summary>
+        /// Gets or Sets AutenticationType Value
+        /// </summary>
+        [ClientProperty("authTypeValue")]
+        public string AuthTypeValue { get; set; }
+
+        /// <summary>
+        /// Gets or Sets AutenticationType
+        /// </summary>
+        [ClientProperty("authType")]
+        public string AuthType { get; set; }
 
         /// <summary>
         /// Gets or Sets Encrypted Token

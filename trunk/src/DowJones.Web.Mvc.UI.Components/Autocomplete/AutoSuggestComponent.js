@@ -101,8 +101,9 @@
             var suggestSettings = {
                             url: this.options.suggestServiceUrl,
                             controlId: this.options.controlId,
-                            autocompletionType: this.options.autocompletionType,                           
-                            useSessionId: DJ.config.credentials.sessionId,
+                            autocompletionType: this.options.autocompletionType,
+                            authType: this.options.authType,
+                            authTypeValue: this.options.authTypeValue,
                             options: $.parseJSON(this.options.serviceOptions),
                             columns: this.options.columns,
                             tokens: $.parseJSON(this.options.tokens),
@@ -197,7 +198,7 @@
                 format: 'json',
                 maxResults: 10,
                 autocompletionType: settings.autocompletionType,
-                suggestContext: settings.suggestContext,
+                suggestContext: settings.authTypeValue,
                 searchText: function() {
                     return $("#" + settings.controlId).val();
                 },
@@ -387,13 +388,17 @@
             //No valid authentication token. So generate a token based on sessionid or encrypted key
             if (settings.url.indexOf("/Search/") > 0) {
                 var authenticationUrl = settings.url.replace("/Search/", "/Authenticate/");
-                if ($.trim(settings.useSessionId).length > 0) {
-                    authenticationUrl = authenticationUrl + "/" + "RegisterUsingSessionId?SID=" + settings.useSessionId;
+                switch(settings.authType.toLowerCase()){
+                case "sessionid":
+                  if ($.trim(settings.authTypeValue).length > 0) {
+                    authenticationUrl = authenticationUrl + "/" + "RegisterUsingSessionId?SID=" + settings.authTypeValue;
                     isUrlGenerated = true;
                 }
-                else if ($.trim(settings.useEncryptedKey).length > 0) {
-                    authenticationUrl = authenticationUrl + "/" + "RegisterUsingEncryptedKey?eid=" + settings.useEncryptedKey;
-                    isUrlGenerated = true;
+                case "encryptedtoken":
+                  if ($.trim(settings.authTypeValue).length > 0) {
+                        authenticationUrl = authenticationUrl + "/" + "RegisterUsingEncryptedKey?eid=" + settings.authTypeValue;
+                        isUrlGenerated = true;
+                    }
                 }
 
                 if (isUrlGenerated === true) {
@@ -408,7 +413,7 @@
                                 }
                             }
                             else {
-                                 settings.suggestContext =self._URLDecode(data.key);
+                                 settings.authTypeValue =self._URLDecode(data.key);
                                  self._processRequest.call(self, settings);  
                             }
                         }
@@ -689,18 +694,21 @@
             if (jSONobject) {
                 // We can use jQuery 1.4.2+ here
                 var autosuggestPrototype = this.prototypeObj;
-                var suggestContext = jSONobject.suggestContext;
+                var suggestContext;
+                if(jSONobject.authType.toLowerCase() === "suggestcontext"){
+                    suggestContext = jSONobject.authTypeValue;
+                }                
                 if (suggestContext === undefined || $.trim(suggestContext).length === 0) {
                     if (autosuggestPrototype.suggestContextObj.callInitiated != true) {
                        this._getSuggestContextAndProcessRequest(jSONobject);
                     }
                     else if (autosuggestPrototype.suggestContextObj.authToken != null) {
-                        jSONobject.suggestContext = this._URLDecode(autosuggestPrototype.suggestContextObj.authToken);
+                        jSONobject.authTypeValue = this._URLDecode(autosuggestPrototype.suggestContextObj.authToken);
                         this._processRequest.call(this, jSONobject);
                     }
                 }
                 else {
-                    jSONobject.suggestContext = this._URLDecode(suggestContext);
+                    jSONobject.authTypeValue = this._URLDecode(suggestContext);
                     this._processRequest.call(this, jSONobject);
                 }
             }
