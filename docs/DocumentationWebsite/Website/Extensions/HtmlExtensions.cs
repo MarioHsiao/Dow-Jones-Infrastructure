@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Mvc.Html;
+
 using System.Web.WebPages;
 
 namespace DowJones.Documentation.Website.Extensions
@@ -17,10 +19,16 @@ namespace DowJones.Documentation.Website.Extensions
 
         public static IHtmlString DemoFrame(this HtmlHelper helper, string url)
         {
-            var tag = new TagBuilder("iframe");
-            tag.AddCssClass("showcase");
-            tag.Attributes.Add("src", url);
-            return new HtmlString(tag.ToString());
+			// the loading div...
+			var builder = new TagBuilder("div");
+			builder.AddCssClass("showcase");
+			builder.SetInnerText("Please wait while the demo loads...");
+
+			// seed for iframe
+			var liveDemoUrl = helper.Hidden("liveDemoUrl", url);
+
+			return new HtmlString(builder.ToString() + liveDemoUrl.ToString());
         }
+
     }
 }

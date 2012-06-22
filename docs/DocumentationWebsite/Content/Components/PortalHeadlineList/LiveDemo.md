@@ -1,1 +1,2 @@
-﻿<iframe class="showcase" src="@(System.Configuration.ConfigurationManager.AppSettings["InfrastructureShowcase.BasePath"])/PortalHeadlineList"></iframe>
+﻿@using DowJones.Documentation.Website.Extensions;
+@Html.DemoFrame(System.Configuration.ConfigurationManager.AppSettings["InfrastructureShowcase.BasePath"]+"/PortalHeadlineList")

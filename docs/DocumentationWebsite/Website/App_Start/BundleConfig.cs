@@ -8,15 +8,16 @@ namespace DowJones.Documentation.Website.App_Start
 		{
 
 			bundles.Add(new ScriptBundle("~/bundles/head").Include(
-						"~/Scripts/modernizr-2.5.3.js",
-						"~/Scripts/jquery-1.7.2.js"
+						"~/Scripts/modernizr-2.5.3.js"
 						));
 
 			bundles.Add(new ScriptBundle("~/bundles/explorer").Include(
+						"~/Scripts/jquery.asyncIFrame.js",
 						"~/Scripts/explorer.js",
 						"~/Scripts/collapsible-section.js"));
 
 			bundles.Add(new ScriptBundle("~/bundles/core").Include(
+						"~/Scripts/jquery-1.7.2.js",
 						"~/Scripts/bootstrap.js"));
 
 			#region Syntax Highlighter

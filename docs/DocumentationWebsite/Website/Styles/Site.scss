@@ -37,7 +37,7 @@ body {
 	}
 }
 
-div.showcase, iframe.showcase {
+iframe.showcase {
 	width: 100%; /* var: same as span12 width */
 	height: 300px;
 }
@@ -117,4 +117,8 @@ td.name
 		border: 0;
 		padding: 0 10px;
 	}
+}
+
+.hide {
+	display: none;
 }

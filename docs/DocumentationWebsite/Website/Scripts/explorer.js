@@ -1,6 +1,25 @@
 ﻿/*jshint browser:true */
-    
+
 (function ($) {
+    function setupDemoFrame() {
+        var liveDemo = $('#livedemo'),
+            demoLoaderDiv = $('div.showcase', liveDemo),
+            demoUrl = $('#liveDemoUrl').val();
+
+        if (demoUrl) {
+            liveDemo.asyncIFrame({
+                url: demoUrl,
+                cssClass: 'showcase hide',
+                onLoad: function () {
+                    demoLoaderDiv.hide('fast', 'linear', function () {
+                        var iframe = $('iframe.showcase', liveDemo),
+                            actualHeight = iframe[0].contentDocument.height;
+                        iframe.height(actualHeight + 'px').removeClass('hide').show('slow', 'linear');
+                    });
+                }
+            });
+        }
+    }
 
     function setupScrollSpy(offset) {
         $('body')
@@ -51,7 +70,7 @@
 
     // target tables generated via markdown but ignore tables that already have style
     // (styled via explicit html table tags)
-    function prettifyMarkdownTables() { 
+    function prettifyMarkdownTables() {
         $(".content table").each(function () {
             if (!$(this).hasClass("table")) {
                 $(this).addClass("table table-striped table-bordered table-condensed");
@@ -75,6 +94,8 @@
 
         // activate first nav item
         $(".sidebar-nav > ul.nav > li").not(".nav-header").first().addClass("active");
+
+        setupDemoFrame();
 
     });
 

@@ -155,6 +155,7 @@
     <Compile Include="ViewEngines\VSDocViewEngine.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Scripts\jquery.asyncIFrame.js" />
     <Content Include="Styles\bootstrap-responsive.css" />
     <Content Include="Styles\bootstrap-responsive.min.css" />
     <Content Include="Styles\collapsible-section.css" />

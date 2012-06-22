@@ -29,7 +29,7 @@ body {
     .contentWell .content .row-fluid {
       margin-bottom: 10px; }
 
-div.showcase, iframe.showcase {
+iframe.showcase {
   width: 100%;
   /* var: same as span12 width */
   height: 300px; }
@@ -80,4 +80,7 @@ td.name {
   .parameterized-method .parameters td.name {
     width: 150px;
     font-weight: bold; }
+
+.hide {
+  display: none; }
 

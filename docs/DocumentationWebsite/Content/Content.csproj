@@ -76,6 +76,7 @@
     <None Include="Components\StockKiosk\Overview.md" />
     <None Include="Components\VideoPlayer\Overview.md" />
     <None Include="deploy.proj" />
+    <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
