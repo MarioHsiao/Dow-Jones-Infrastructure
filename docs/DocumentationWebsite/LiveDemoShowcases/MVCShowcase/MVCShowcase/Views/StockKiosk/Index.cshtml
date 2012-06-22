@@ -1,0 +1,13 @@
+﻿@model DowJones.Web.Mvc.UI.Components.StockKiosk.StockKioskModel
+@{
+    ViewBag.Title = "Stock Kiosk";
+}
+
+@section styles{
+	<link href="@Url.Content("~/styles/views/StockKiosk/StockKiosk.css")" rel="stylesheet" />
+}
+
+<div id="tempContent">
+    @Html.DJ().Render( Model, new { id = "djStockKioskBottom"} )
+</div>
+

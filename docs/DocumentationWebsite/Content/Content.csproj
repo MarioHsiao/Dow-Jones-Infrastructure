@@ -64,6 +64,10 @@
     <None Include="Components\PortalHeadlineList\Methods.md" />
     <None Include="Components\PortalHeadlineList\Overview.md" />
     <None Include="Components\Radar\Overview.md" />
+    <None Include="Components\StockKiosk\Configuration.md" />
+    <None Include="Components\StockKiosk\LiveDemo.md">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Components\StockKiosk\Overview.md" />
     <None Include="Components\VideoPlayer\Overview.md" />
     <None Include="deploy.proj" />

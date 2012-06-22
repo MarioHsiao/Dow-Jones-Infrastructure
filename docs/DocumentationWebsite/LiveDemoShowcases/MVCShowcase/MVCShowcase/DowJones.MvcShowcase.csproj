@@ -15,7 +15,7 @@
     <AssemblyName>DowJones.MvcShowcase</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <MvcBuildViews>true</MvcBuildViews>
-    <UseIISExpress>true</UseIISExpress>
+    <UseIISExpress>false</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -79,25 +79,25 @@
       <HintPath>..\packages\Argotic.Web.2008.0.2.0\lib\Net35\Argotic.Web.dll</HintPath>
     </Reference>
     <Reference Include="DowJones.Assemblers">
-      <HintPath>..\packages\DowJones.Assemblers.v3.3.1.147\lib\DowJones.Assemblers.dll</HintPath>
+      <HintPath>..\..\..\packages\DowJones.Assemblers.v3.3.1.149\lib\DowJones.Assemblers.dll</HintPath>
     </Reference>
     <Reference Include="DowJones.Infrastructure">
-      <HintPath>..\packages\DowJones.Infrastructure.v3.3.1.147\lib\DowJones.Infrastructure.dll</HintPath>
+      <HintPath>..\..\..\packages\DowJones.Infrastructure.v3.3.1.149\lib\DowJones.Infrastructure.dll</HintPath>
     </Reference>
     <Reference Include="DowJones.Parallel">
       <HintPath>..\packages\DowJones.Parallel.1.0.0\lib\DowJones.Parallel.dll</HintPath>
     </Reference>
     <Reference Include="DowJones.Web.Mvc">
-      <HintPath>..\packages\DowJones.Web.Mvc.v3.3.1.147\lib\DowJones.Web.Mvc.dll</HintPath>
+      <HintPath>..\..\..\packages\DowJones.Web.Mvc.v3.3.1.149\lib\DowJones.Web.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="DowJones.Web.Mvc.Diagnostics">
-      <HintPath>..\packages\DowJones.Web.Mvc.Diagnostics.v3.3.1.147\lib\DowJones.Web.Mvc.Diagnostics.dll</HintPath>
+      <HintPath>..\..\..\packages\DowJones.Web.Mvc.Diagnostics.v3.3.1.149\lib\DowJones.Web.Mvc.Diagnostics.dll</HintPath>
     </Reference>
     <Reference Include="DowJones.Web.Mvc.UI.Components">
-      <HintPath>..\packages\DowJones.Web.Mvc.UI.Components.v3.3.1.147\lib\DowJones.Web.Mvc.UI.Components.dll</HintPath>
+      <HintPath>..\..\..\packages\DowJones.Web.Mvc.UI.Components.v3.3.1.149\lib\DowJones.Web.Mvc.UI.Components.dll</HintPath>
     </Reference>
     <Reference Include="DowJones.Web.Mvc.UI.Components.Models">
-      <HintPath>..\packages\DowJones.Web.Mvc.UI.Components.Models.v3.3.1.147\lib\DowJones.Web.Mvc.UI.Components.Models.dll</HintPath>
+      <HintPath>..\..\..\packages\DowJones.Web.Mvc.UI.Components.Models.v3.3.1.149\lib\DowJones.Web.Mvc.UI.Components.Models.dll</HintPath>
     </Reference>
     <Reference Include="factiva.gateway.messages">
       <HintPath>..\packages\Factiva.Gateway.7.5.0.88\lib\factiva.gateway.messages.dll</HintPath>
@@ -130,6 +130,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -175,9 +176,11 @@
   <ItemGroup>
     <Compile Include="BootstrapperTasks\GlobalFilterRegistrationTask.cs" />
     <Compile Include="BootstrapperTasks\RouteRegistrationTask.cs" />
+    <Compile Include="Controllers\AutoSuggestController.cs" />
     <Compile Include="Controllers\DiscoveryGraphController.cs" />
     <Compile Include="Controllers\PortalHeadlineListController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\StockKioskController.cs" />
     <Compile Include="Dependencies.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -208,6 +211,7 @@
     <Content Include="Styles\views\PortalHeadlineList\portalHeadlineList.css">
       <DependentUpon>portalHeadlineList.scss</DependentUpon>
     </Content>
+    <Content Include="Styles\views\StockKiosk\StockKiosk.css" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -223,10 +227,13 @@
     <Content Include="Styles\views\PortalHeadlineList\portalHeadlineList.scss" />
     <Content Include="Views\DiscoveryGraph\Index.cshtml" />
     <Content Include="Styles\views\DiscoveryGraph\discoveryGraph.scss" />
+    <Content Include="Views\AutoSuggest\Index.cshtml" />
+    <Content Include="Views\StockKiosk\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="Styles\views\AutoSuggest\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -248,12 +255,11 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>False</UseIIS>
+          <UseIIS>True</UseIIS>
           <AutoAssignPort>False</AutoAssignPort>
           <DevelopmentServerPort>53437</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>
-          </IISUrl>
+          <IISUrl>http://localhost/MvcShowcase</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
