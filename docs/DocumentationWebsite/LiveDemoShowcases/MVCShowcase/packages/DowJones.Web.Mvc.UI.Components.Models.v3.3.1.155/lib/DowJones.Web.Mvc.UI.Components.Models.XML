@@ -778,6 +778,116 @@
             IM/VoIP - Google Talk
             </summary>
         </member>
+        <member name="M:DowJones.Web.Mvc.UI.Components.Models.AutoSuggestModel.#ctor">
+            <summary>
+            Default Constructor
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.AutoSuggestModel.AutocompletionType">
+            <summary>
+            Gets or Sets Autocompletion type
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.AutoSuggestModel.ControlId">
+            <summary>
+            Gets or Sets Autocompletion type
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.AutoSuggestModel.ServiceOptions">
+            <summary>
+            Gets or Sets Auto Suggest Rest Service Options
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.AutoSuggestModel.Tokens">
+            <summary>
+            Gets or Sets Auto Suggest Tokens
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.AutoSuggestModel.Columns">
+            <summary>
+            Gets or Sets Auto Suggest Tokens
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.AutoSuggestModel.AuthTypeValue">
+            <summary>
+            Gets or Sets AutenticationType Value
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.AutoSuggestModel.AuthType">
+            <summary>
+            Gets or Sets AutenticationType
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.AutoSuggestModel.SelectFirst">
+            <summary>
+            Gets or Sets Select First. If true, selects the first row from the suggest list.
+            </summary>
+            [DefaultValue(false)]
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.AutoSuggestModel.FillInputOnKeyUpDown">
+            <summary>
+            Gets or Sets FillInputOnKeyUpDown. If true , automatically fills the input on KEY UP or KEY DOWN.
+            </summary>
+            [DefaultValue(false)]
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.AutoSuggestModel.ShowHelp">
+            <summary>
+            Gets or Sets ShowHelp. If true, shows the help row at the top of the suggest list.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.AutoSuggestModel.ShowViewAll">
+            <summary>
+            Gets or Sets ShowViewAll. If true, shows the viewAll link at the bottom of the suggest list.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.AutoSuggestModel.OnItemClick">
+            <summary>
+            Gets or sets the client side OnItemClick event handler.
+            </summary>
+            <value>The OnItemClick event handler name.</value>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.AutoSuggestModel.OnInfoClick">
+            <summary>
+            Gets or sets the client side OnInfoClick event handler.
+            </summary>
+            <value>The OnInfoClick event handler name.</value>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.AutoSuggestModel.OnPromoteClick">
+            <summary>
+            Gets or sets the client side OnPromoteClick event handler.
+            </summary>
+            <value>The OnPromoteClick event handler name.</value>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.AutoSuggestModel.OnNotClick">
+            <summary>
+            Gets or sets the client side OnNotClick event handler.
+            </summary>
+            <value>The OnNotClick event handler name.</value>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.AutoSuggestModel.OnHelpRowClick">
+            <summary>
+            Gets or sets the client side OnHelpRowClick event handler.
+            </summary>
+            <value>The OnHelpRowClick event handler name.</value>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.AutoSuggestModel.OnViewAllClick">
+            <summary>
+            Gets or sets the client side OnViewAllClick event handler.
+            </summary>
+            <value>The OnViewAllClick event handler name.</value>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.AutoSuggestModel.OnViewMorePrivateMarketsClick">
+            <summary>
+            Gets or sets the client side OnViewMorePrivateMarketsClick event handler.
+            </summary>
+            <value>The OnViewMorePrivateMarketsClick event handler name.</value>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.AutoSuggestModel.OnError">
+            <summary>
+            Gets or sets the client side OnError event handler.
+            </summary>
+            <value>The OnError event handler name.</value>
+        </member>
         <member name="P:DowJones.Web.Mvc.UI.Components.Models.CompositeAuthorModel.FirstResultIndex">
             <summary>
             Gets or sets the first index of the result.
