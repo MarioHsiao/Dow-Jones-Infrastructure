@@ -153,6 +153,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AutoSuggestComponent.cshtml</DependentUpon>
     </Compile>
+    <Compile Include="Autocomplete\WebResources.cs" />
     <Compile Include="AutoSuggest\AutoSuggestComponent.cs" />
     <Compile Include="CalendarEventList\CalendarEventListControl.cs">
       <AutoGen>True</AutoGen>
