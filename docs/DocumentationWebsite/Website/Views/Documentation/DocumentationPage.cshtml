@@ -16,7 +16,7 @@
     }
 }
 @helper RenderSection(ContentSectionViewModel contentSection) {
-    <section class="row-fluid @(contentSection.Key != "livedemo" ? "collapsible" : "")" id="@contentSection.Key">
+    <section class="content row-fluid @(contentSection.Key != "livedemo" ? "collapsible" : "")" id="@contentSection.Key">
         
     @if(contentSection.HasChildren) {
         <h2>@contentSection.DisplayName</h2>

@@ -20,11 +20,10 @@ namespace DowJones.Documentation.Website.App_Start
 
             routes.MapRoute(
                 "DocumentationBrowser",
-                "{category}/{page}/{section}/{mode}",
+                "{category}/{page}/{section}",
                 new {
                         controller = "Documentation", action = "Page", 
-                        page = UrlParameter.Optional, section = UrlParameter.Optional,
-                        mode = "client"
+                        page = UrlParameter.Optional, section = UrlParameter.Optional
                     },
                 _constraint
             );

@@ -48,7 +48,15 @@ namespace DowJones.Documentation.Website.ViewEngines
 
             if (!controllerContext.RouteData.Values.TryGetValue(key, out objValue))
             {
-                controllerContext.Controller.ViewData.TryGetValue(key, out objValue);
+                ViewDataDictionary viewData;
+
+                var viewContext = controllerContext as ViewContext;
+                if (viewContext != null)
+                    viewData = viewContext.ViewData;
+                else
+                    viewData = controllerContext.Controller.ViewData;
+
+                viewData.TryGetValue(key, out objValue);
             }
 
             value = objValue as string;
