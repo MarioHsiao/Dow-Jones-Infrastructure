@@ -1,4 +1,4 @@
-﻿<% var eventIndex = 0; _.each(self.Dates, function(date){ %>
+﻿<% var eventIndex = 0; var news = self.Dates[0].News; _.each(self.Dates, function(date){ %>
 <% if(date.Events && date.Events.length > 0) { %>
 <tbody class="dj_calendarDateBody <%= date.Selected ? 'dj_selected' : '' %> <% if(new Date(date.EventDate).format("dd/mm/yyyy") < new Date().format("dd/mm/yyyy") ) {%>prev24hrs<%}%>" data-group="<%= date.EventDateString %>">            
     <tr class="dj_calendarDateHeader" data-group="<%= date.EventDateString %>">
@@ -13,7 +13,7 @@
         <td>&nbsp;&nbsp;</td>
         <td>&nbsp;&nbsp;</td>       
         <td>&nbsp;&nbsp;</td>       
-        <td class="<%= (event.NewsQueryMode === 'None') ? 'dj_eventNoNews' : 'dj_eventNews' %>" data-id="<%= event.NewsStatisticsCodeQuery %>"><% if (event.NewsQueryMode !== 'None'){ %><img class="dj_eventNewsTrigger" data-mode="<%= event.NewsQueryMode %>" data-query="<%= event.NewsStatisticsCodeQuery %>" alt="News" height="16px" width="16px" src='<%= AbsoluteUrl("~/assets/img/calendarlive/DJ_thumbnail.png") %>'/><% } else { %>&nbsp;&nbsp;<% } %></td>
+        <td class="<%= (event.NewsQueryMode === 'None') ? 'dj_eventNoNews' : 'dj_eventNews' %>" data-id="<%= event.NewsStatisticsCodeQuery %>"><% if (event.NewsQueryMode !== 'None' && news){ %><img class="dj_eventNewsTrigger" data-mode="<%= event.NewsQueryMode %>" data-query="<%= event.NewsStatisticsCodeQuery %>" alt="News" height="16px" width="16px" src='<%= AbsoluteUrl("~/assets/img/calendarlive/DJ_thumbnail.png") %>'/><% } else { %>&nbsp;&nbsp;<% } %></td>
     </tr>
     <% _.each(event.Details, function(detail){ %>
     <tr class="dj_eventDetail dj_<%= ((eventIndex % 2) === 0 ? 'odd' : 'even')%>" data-id="<%= detail.Id %>" data-eventid="<%=event.Id %>">
@@ -38,6 +38,6 @@
         <th>Forecast</th>
         <th>Actual</th>
         <th>Previous</th>
-        <th class="dj_newsHeader">News</th>
+        <th class="dj_newsHeader"><% if(news) { %>News <%} %></th>
     </tr>
 </tfoot>
