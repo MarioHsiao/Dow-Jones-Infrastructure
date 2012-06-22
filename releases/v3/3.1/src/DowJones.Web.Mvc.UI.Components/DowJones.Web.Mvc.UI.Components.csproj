@@ -719,6 +719,7 @@
     <EmbeddedResource Include="DateSlider\DateSlider.js" />
     <EmbeddedResource Include="HeadlineListCarousel\HeadlineListCarousel.css" />
     <EmbeddedResource Include="HeadlineListCarousel\HeadlineListCarousel.js" />
+    <EmbeddedResource Include="Autocomplete\images\progress.gif" />
     <Content Include="InlineMp3Player\InlineMp3PlayerBehavior.Original.js" />
     <EmbeddedResource Include="Pager\Pager.js" />
     <EmbeddedResource Include="RegionalMap\images\world_map.gif" />
