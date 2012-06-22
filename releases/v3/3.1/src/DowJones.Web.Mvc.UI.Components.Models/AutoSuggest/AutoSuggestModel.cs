@@ -44,6 +44,19 @@ namespace DowJones.Web.Mvc.UI.Components.Models
         PrivateMarkets
     }
 
+    public enum AuthType
+    {
+        [DescriptionAttribute("SessionId")]
+        SessionId,
+
+        [DescriptionAttribute("EncryptedToken")]
+        EncryptedToken,
+
+        [DescriptionAttribute("SuggestContext")]
+        SuggestContext
+
+    }
+
     public class AutoSuggestModel : ViewComponentModel
     {
         #region ..:: Client Properties ::..
@@ -83,22 +96,16 @@ namespace DowJones.Web.Mvc.UI.Components.Models
         public string Columns { get; set; }
 
         /// <summary>
-        /// Gets or Sets SuggestContext
+        /// Gets or Sets AutenticationType Value
         /// </summary>
-        [ClientProperty("suggestContext")]
-        public string SuggestContext { get; set; }
+        [ClientProperty("authTypeValue")]
+        public string AuthTypeValue { get; set; }
 
         /// <summary>
-        /// Gets or Sets Encrypted Token
+        /// Gets or Sets AutenticationType
         /// </summary>
-        [ClientProperty("useEncryptedKey")]
-        public string UseEncryptedKey { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Session ID
-        /// </summary>
-        [ClientProperty("useSessionId")]
-        public string UseSessionId { get; set; }
+        [ClientProperty("authType")]
+        public string AuthType { get; set; }
 
         /// <summary>
         /// Gets or Sets Select First. If true, selects the first row from the suggest list.
