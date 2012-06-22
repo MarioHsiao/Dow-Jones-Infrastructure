@@ -29,7 +29,7 @@ body {
     .contentWell .content .row-fluid {
       margin-bottom: 10px; }
 
-iframe.showcase {
+div.showcase, iframe.showcase {
   width: 100%;
   /* var: same as span12 width */
   height: 300px; }
