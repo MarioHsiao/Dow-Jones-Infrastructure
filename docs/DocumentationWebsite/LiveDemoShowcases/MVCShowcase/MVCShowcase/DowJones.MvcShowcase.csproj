@@ -183,6 +183,7 @@
     <Compile Include="BootstrapperTasks\RouteRegistrationTask.cs" />
     <Compile Include="Controllers\AutoSuggestController.cs" />
     <Compile Include="Controllers\DiscoveryGraphController.cs" />
+    <Compile Include="Controllers\NewsRadarController.cs" />
     <Compile Include="Controllers\PortalHeadlineListController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\StockKioskController.cs" />
@@ -213,6 +214,7 @@
     </Content>
     <Content Include="Styles\views\DiscoveryGraph\img\navigator.png" />
     <Content Include="Styles\views\DiscoveryGraph\img\sprite_carousel-buttons.png" />
+    <Content Include="Styles\views\NewsRadar\newsRadar.css" />
     <Content Include="Styles\views\PortalHeadlineList\portalHeadlineList.css">
       <DependentUpon>portalHeadlineList.scss</DependentUpon>
     </Content>
@@ -234,6 +236,8 @@
     <Content Include="Styles\views\DiscoveryGraph\discoveryGraph.scss" />
     <Content Include="Views\AutoSuggest\Index.cshtml" />
     <Content Include="Views\StockKiosk\Index.cshtml" />
+    <Content Include="Views\NewsRadar\Index.cshtml" />
+    <None Include="Views\NewsRadar\sample.json" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
