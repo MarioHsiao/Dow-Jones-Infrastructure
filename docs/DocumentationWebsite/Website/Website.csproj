@@ -284,7 +284,6 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
-  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <PropertyGroup>
     <PostBuildEvent>echo \obj\ &gt; exclude.txt
 echo .csproj &gt;&gt; exclude.txt
