@@ -64,12 +64,12 @@
     <None Include="Components\NewsRadar\LiveDemo.md" />
     <None Include="Components\NewsRadar\Methods.md" />
     <None Include="Components\NewsRadar\Overview.md" />
-    <None Include="Components\PortalHeadlineList\Configuration.md" />
+    <None Include="Components\PortalHeadlineList\Configuration\ASP.NET_MVC.md" />
+    <None Include="Components\PortalHeadlineList\Configuration\Javascript.md" />
     <None Include="Components\PortalHeadlineList\Events.md" />
     <None Include="Components\PortalHeadlineList\LiveDemo.md" />
     <None Include="Components\PortalHeadlineList\Methods.md" />
     <None Include="Components\PortalHeadlineList\Overview.md" />
-    <None Include="Components\Radar\Overview.md" />
     <None Include="Components\StockKiosk\Configuration.md" />
     <None Include="Components\StockKiosk\LiveDemo.md">
       <SubType>Designer</SubType>
