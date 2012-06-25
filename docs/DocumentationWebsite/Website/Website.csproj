@@ -252,9 +252,7 @@
       <Name>XmlViewEngine</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Content\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
@@ -301,7 +299,8 @@
     <PostBuildEvent>echo \obj\ &gt; exclude.txt
 echo .csproj &gt;&gt; exclude.txt
 echo .vspscc &gt;&gt; exclude.txt
-xcopy /S /Y /EXCLUDE:exclude.txt "$(SolutionDir)Content\*.*" "$(ProjectDir)Content"
+rd /s /q  "$(ProjectDir)Content"
+xcopy /S /Y /EXCLUDE:exclude.txt "$(SolutionDir)Content\*.*" "$(ProjectDir)Content\"
 del exclude.txt</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
