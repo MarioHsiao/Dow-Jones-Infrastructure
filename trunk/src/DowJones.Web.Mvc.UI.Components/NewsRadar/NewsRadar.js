@@ -5,7 +5,7 @@
 
     options: {
         displayTicker: false,
-        hitcolor: "666666",
+        hitcolor: "999",
         hitfont: "Verdana",
         hitsize: "8",
         bgcolor: "",
@@ -427,11 +427,11 @@
             rotation: 270,
             tooltip: text
         }).css({
-            fontSize: '8pt',
+            fontSize: this.options.hitsize + 'pt',
             lineHeight: '19px',
-            fontFamily: 'Verdana',
+            fontFamily: this.options.hitfont,
             fontWeight: 'normal',
-            color: '#999'
+            color: '#' + this.options.hitcolor
         }).add();
         return target;
     },
