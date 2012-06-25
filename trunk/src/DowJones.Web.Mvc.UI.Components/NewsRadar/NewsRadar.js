@@ -4,7 +4,7 @@
     },
 
     options: {
-        displayTicker: true,
+        displayTicker: false,
         hitcolor: "999",
         hitfont: "Verdana",
         hitsize: "8",
