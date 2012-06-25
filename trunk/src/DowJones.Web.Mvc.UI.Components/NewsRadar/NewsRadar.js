@@ -4,7 +4,7 @@
     },
 
     options: {
-        displayTicker: false,
+        displayTicker: true,
         hitcolor: "999",
         hitfont: "Verdana",
         hitsize: "8",
@@ -48,11 +48,16 @@
             OnNextClicked: $dj.delegate(this, this._onNextClicked),
             OnTopClicked: $dj.delegate(this, this._onTopClicked),
             OnSeek: $dj.delegate(this, this._onSeek),
-            HandleSort: $dj.delegate(this, this._handleSort)
+            HandleSort: $dj.delegate(this, this._handleSort),
+            OnRadarItemBoxClicked: $dj.delegate(this, this._onRadarItemBoxClicked)
         });
     },
     _renderContainer: function () {
         this.$element.html(this.templates.container());
+    },
+    _onRadarItemBoxClicked: function (ev) {
+        var $target = $(ev.currentTarget);
+        this.publish(this.events.radarItemClicked, $target.data());
     },
     _setScrollable: function () {
         $(this.selectors.scrollable, this.$element).scrollable({
@@ -179,6 +184,7 @@
 
 
         $('.djRadarCategory', this.$element).on('click', this._delegates.HandleSort);
+        $('.djRadarItemBox', this.$element).on('click', this._delegates.OnRadarItemBoxClicked);
 
     },
     _handleSort: function (ev) {
@@ -315,7 +321,7 @@
         var self = this;
         var radarTemplate = self.templates.radar;
         for (var i in data) {
-            html += this.templates.success({ settings: this.options, item: data[i], templates: { radar: radarTemplate} });
+            html += this.templates.success({ settings: this.options, item: data[i], templates: { radar: radarTemplate}, f: { getTicker: this.getTicker} });
         }
 
         $items.html(html);
@@ -324,12 +330,12 @@
 
         for (var r = 0; r < radars.length; r++) {
             var radar = $(radars[r]);
-                        if (radar && radar.length) {
-                            var chipStyle = radar.data('grc');
-                            if (chipStyle) {
-                                this.drawChip(radar[0], chipStyle);
-                            }
-                        }
+            if (radar && radar.length) {
+                var chipStyle = radar.data('grc');
+                if (chipStyle) {
+                    this.drawChip(radar[0], chipStyle);
+                }
+            }
         }
     }, drawChip: function (target, chipStyle) {
         var chipRenderer = new Highcharts.Renderer(target, 19, 19);
@@ -435,11 +441,11 @@
         }).add();
         return target;
     },
-    getTicker: function (Item) {
-        if (Item.InstrumentReference.Ticker) {
-            return Item.instrumentReference.ticker;
+    getTicker: function (item) {
+        if (item.instrumentReference.ticker) {
+            return item.instrumentReference.ticker;
         } else {
-            return Item.companyName;
+            return item.companyName;
         }
     },
     // misc methods
