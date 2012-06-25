@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Web.UI;
+using DowJones.DependencyInjection;
+using DowJones.Globalization;
 using DowJones.Web.Handlers.Proxy.Core;
 
 namespace DowJones.Charting.Highcharts
@@ -70,7 +72,8 @@ namespace DowJones.Charting.Highcharts
         using (new TimedLog("BaseImageHttpHandler\tTotal read and write"))
         {
             // Process the request to export chart.
-            ExportChart.ProcessImageRequest(context);
+            var exportChart = new ExportChart(ServiceLocator.Current.Resolve<IResourceTextManager>());
+            exportChart.ProcessImageRequest(context);
         }
     }
   }

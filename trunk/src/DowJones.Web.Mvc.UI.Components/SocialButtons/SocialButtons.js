@@ -24,7 +24,7 @@ DJ.UI.SocialButtons = DJ.UI.Component.extend({
         ],
 
     options: {
-        socialNetworks: null,
+        socialNetworks: null,  
         imageSize: 0,
         url: null,
         title: null,

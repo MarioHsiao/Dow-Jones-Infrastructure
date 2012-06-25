@@ -35,14 +35,15 @@
 // 
 
 using System;
-using System.Text;
+using System.Globalization;
+using System.Net;
 using System.Web;
 using DowJones.Charting.Manager;
-using DowJones.Charting.Properties;
 using DowJones.Extensions;
+using DowJones.Exceptions;
 using DowJones.Generators;
+using DowJones.Globalization;
 using DowJones.Infrastructure;
-using DowJones.Session;
 using Factiva.Gateway.Messages.Cache.PlatformCache.V1_0;
 
 namespace DowJones.Charting.Highcharts
@@ -50,15 +51,22 @@ namespace DowJones.Charting.Highcharts
     /// <summary>
   /// Processes web requests to export Highcharts JS JavaScript charts.
   /// </summary>
-  internal static class ExportChart
-  {
+  internal class ExportChart
+    {
+
+        private readonly IResourceTextManager _resourceTextManager;
+
+    public ExportChart(IResourceTextManager resourceTextManager)
+    {
+        _resourceTextManager = resourceTextManager;
+    }
     /// <summary>
     /// Processes HTTP Web requests to export SVG.
     /// </summary>
     /// <param name="context">An HttpContext object that provides references 
     /// to the intrinsic server objects (for example, Request, Response, 
     /// Session, and Server) used to service HTTP requests.</param>
-    internal static void ProcessExportRequest(HttpContext context)
+    internal void ProcessExportRequest(HttpContext context)
     {
         if (context == null || context.Request.HttpMethod != "POST")
         {
@@ -91,7 +99,7 @@ namespace DowJones.Charting.Highcharts
         context.Response.End();
     }
 
-    internal static string SaveImageRequest(HttpContext context)
+    internal string SaveImageRequest(HttpContext context)
     {
         if (context == null || context.Request.HttpMethod != "POST")
         {
@@ -126,23 +134,45 @@ namespace DowJones.Charting.Highcharts
                                                  StringData = svg,
                                              }
                               };
-        
-        platformCacheManager.StoreItem<StoreItemResponse>(itemRequest);
 
+        try
+        {
+            platformCacheManager.StoreItem<StoreItemResponse>(itemRequest);
 
-        // serialize and send..
-        var freshness = new TimeSpan(0, 0, 0, 5);
-        context.Response.Clear();
-        context.Response.ContentType = "application/json; charset=utf-8";
-        context.Response.Cache.SetExpires(DateTime.Now.Add(freshness));
-        context.Response.Cache.SetMaxAge(freshness);
-        context.Response.Cache.SetCacheability(HttpCacheability.Public);
-        context.Response.Cache.SetValidUntilExpires(true);
-        context.Response.Cache.SetCacheability(HttpCacheability.ServerAndPrivate); // dacostad changed from public to not allow proxy servers to cache.
-        context.Response.Cache.VaryByParams["*"] = true;
-        
-        context.Response.Write(new SaveImageDataResponse{ Key = cacheKey}.ToJson());
+            // serialize and send..
+            var freshness = new TimeSpan(0, 0, 0, 5);
+            context.Response.Clear();
+            
+            context.Response.Cache.SetExpires(DateTime.Now.Add(freshness));
+            context.Response.Cache.SetMaxAge(freshness);
+            context.Response.Cache.SetCacheability(HttpCacheability.Public);
+            context.Response.Cache.SetValidUntilExpires(true);
+            context.Response.Cache.SetCacheability(HttpCacheability.ServerAndPrivate); // dacostad changed from public to not allow proxy servers to cache.
+            context.Response.Cache.VaryByParams["*"] = true;
 
+            context.Response.Write(new SaveImageDataResponse {Key = cacheKey}.ToJson());
+        }
+
+        catch(DowJonesUtilitiesException dex)
+        {
+            context.Response.Clear();
+            context.Response.Cache.SetCacheability(HttpCacheability.NoCache);
+             context.Response.Write(new SaveImageDataResponse
+                                       {
+                                           ReturnCode = dex.ReturnCode,
+                                           Message = _resourceTextManager.GetErrorMessage(dex.ReturnCode.ToString(CultureInfo.InvariantCulture))
+                                       }.ToJson());
+        }
+        catch(Exception)
+        {
+            context.Response.Clear();
+            context.Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            context.Response.Write(new SaveImageDataResponse
+                                       {
+                                           ReturnCode = -1, 
+                                           Message = _resourceTextManager.GetErrorMessage("-1")
+                                       }.ToJson());
+        }
         // encrypted token
 
         return string.Empty;
@@ -150,10 +180,16 @@ namespace DowJones.Charting.Highcharts
 
     private class SaveImageDataResponse
     {
+        public SaveImageDataResponse()
+        {
+            ReturnCode = 0;
+        }
+        public long ReturnCode { get; set; }
+        public string Message { get; set; }
         public string Key { get; set; }
     }
 
-    internal static void ProcessImageRequest(HttpContext context)
+    internal void ProcessImageRequest(HttpContext context)
     {
         var request = context.Request.QueryString;
         var type = request["type"];
@@ -165,16 +201,27 @@ namespace DowJones.Charting.Highcharts
         Guard.IsNotNullOrEmpty(cacheKey, "cacheKey");
         Guard.IsNotZeroOrNegative(width, "width");
 
-        // Create a new chart export object using querystring parameters.
-        var export = new Exporter(type, width, cacheKey, context);
+        try
+        {
+            // Create a new chart export object using querystring parameters.
+            var export = new Exporter(type, width, cacheKey, context);
 
-        // Write the exported chart to the HTTP Response object.
-        export.WriteToHttpResponse(context.Response);
+            // Write the exported chart to the HTTP Response object.
+            export.WriteToHttpResponse(context.Response);
 
-        // Short-circuit this ASP.NET request and end. Short-circuiting
-        // prevents other modules from adding/interfering with the output.
-        HttpContext.Current.ApplicationInstance.CompleteRequest();
-        context.Response.End();
+            // Short-circuit this ASP.NET request and end. Short-circuiting
+            // prevents other modules from adding/interfering with the output.
+            HttpContext.Current.ApplicationInstance.CompleteRequest();
+            context.Response.End();
+        }
+        catch (DowJonesUtilitiesException dex)
+        {
+            throw new HttpException(((int)HttpStatusCode.InternalServerError), string.Concat("Unable to access image data. [", dex.ReturnCode, "]"));
+        }
+        catch (Exception)
+        {
+            throw new HttpException(((int)HttpStatusCode.InternalServerError), "General Error Processing Image");
+        }
     }
   }
 }
