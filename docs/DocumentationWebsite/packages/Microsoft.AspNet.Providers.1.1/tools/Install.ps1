@@ -3,9 +3,8 @@ try {
     # Set up variables
     $timestamp = (Get-Date).ToString('yyyyMMddHHmmss')
     $projectName = [IO.Path]::GetFileName($project.ProjectName.Trim([IO.PATH]::DirectorySeparatorChar, [IO.PATH]::AltDirectorySeparatorChar))
-    $catalogName = "aspnet-$projectName-$timestamp"
-    $connectionString ="Data Source=(LocalDb)\v11.0;Initial Catalog=$catalogName;Integrated Security=SSPI;AttachDBFilename=|DataDirectory|\$catalogName.mdf"
-    $connectionStringToken = 'Data Source=(LocalDb)\v11.0;'
+    $connectionString ="Data Source=.\SQLEXPRESS;Initial Catalog=aspnet-$projectName-$timestamp;Integrated Security=SSPI"
+    $connectionStringToken = "Data Source=.\SQLEXPRESS;Initial Catalog=aspnet-$projectName"
     $config = $project.ProjectItems | Where-Object { $_.Name -eq "Web.config" }    
     $fileName = $config.Properties | Where-Object { $_.Name -eq "FullPath" }
     
@@ -23,7 +22,7 @@ try {
         $parent.InsertBefore($commentNode, $node)
         $parent.RemoveChild($node)
     }
-    
+
     # Comment out older providers
     $node = $xml.SelectSingleNode("/configuration/system.web/membership/providers/add[@type='System.Web.Security.SqlMembershipProvider']")
     $oldConnectionNode = $xml.SelectSingleNode("/configuration/connectionStrings/add[@name='$($node.connectionStringName)']")
@@ -41,7 +40,7 @@ try {
     CommentNode $node
     CommentNode $oldConnectionNode
     
-    # Verify that the connectionStrings node exists
+    # Change the Connection string
     $connectionStrings = $xml.SelectSingleNode("/configuration/connectionStrings")
     if (!$connectionStrings) {
         $connectionStrings = $xml.CreateElement("connectionStrings")
@@ -50,8 +49,9 @@ try {
     
     if (!($connectionStrings.SelectNodes("add[@name='DefaultConnection']") | Where { $_.connectionString.StartsWith($connectionStringToken, 'OrdinalIgnoreCase') })) {
         # If there aren't any connection strings that look like ours, proceed to add one
+        
         $newConnectionNode = $xml.CreateElement("add")
-        $newConnectionNode.SetAttribute("name", 'DefaultConnection')
+        $newConnectionNode.SetAttribute("name", "DefaultConnection")
         $newConnectionNode.SetAttribute("providerName", "System.Data.SqlClient")
         $newConnectionNode.SetAttribute("connectionString", $connectionString)
         
@@ -68,8 +68,8 @@ try {
 # SIG # Begin signature block
 # MIIaRAYJKoZIhvcNAQcCoIIaNTCCGjECAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUgf9e3xFZJUxs40YJd4rwwoO+
-# HOigghUtMIIEoDCCA4igAwIBAgIKYRnMkwABAAAAZjANBgkqhkiG9w0BAQUFADB5
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUgjpeSFpU1WwOxIALdGDN5c0K
+# S72gghUtMIIEoDCCA4igAwIBAgIKYRnMkwABAAAAZjANBgkqhkiG9w0BAQUFADB5
 # MQswCQYDVQQGEwJVUzETMBEGA1UECBMKV2FzaGluZ3RvbjEQMA4GA1UEBxMHUmVk
 # bW9uZDEeMBwGA1UEChMVTWljcm9zb2Z0IENvcnBvcmF0aW9uMSMwIQYDVQQDExpN
 # aWNyb3NvZnQgQ29kZSBTaWduaW5nIFBDQTAeFw0xMTEwMTAyMDMyMjVaFw0xMzAx
@@ -187,24 +187,24 @@ try {
 # b3JhdGlvbjEjMCEGA1UEAxMaTWljcm9zb2Z0IENvZGUgU2lnbmluZyBQQ0ECCmEZ
 # zJMAAQAAAGYwCQYFKw4DAhoFAKCBrjAZBgkqhkiG9w0BCQMxDAYKKwYBBAGCNwIB
 # BDAcBgorBgEEAYI3AgELMQ4wDAYKKwYBBAGCNwIBFTAjBgkqhkiG9w0BCQQxFgQU
-# 4YYXugrPBTWDAQpBvdGd0vIfejwwTgYKKwYBBAGCNwIBDDFAMD6gJIAiAE0AaQBj
+# r4zZvfuHi8WihewdYsb0LRaLDQIwTgYKKwYBBAGCNwIBDDFAMD6gJIAiAE0AaQBj
 # AHIAbwBzAG8AZgB0ACAAQQBTAFAALgBOAEUAVKEWgBRodHRwOi8vd3d3LmFzcC5u
-# ZXQvIDANBgkqhkiG9w0BAQEFAASCAQARGTaw8bW+F/fOnj7i22pdXsJmn3yT7m3l
-# PYq03q4w4Aj3t+tSLCv9kYaAjafqiQn6Iz6pYRPaoMuoye2yAl6alh3UQjfpseHZ
-# fDEaxLeUv/WlbMFT1FiqADJJHKcAFNzx+eZyMChH8lkmKy3Lo+Q2hx6OFAxpLfTR
-# 0/rwnfUVrq8Amnfn0JikPQA6Nzp7gQnrTBjbCoYLzuDa+coX1MUa/I6U/5Yl5hLZ
-# Y6qe0ZZFF2Ueoajkw++swT7djUAV2KOQ7AxspQ/8/Dl7OakVn7j6FNqKX1Dj9Ly4
-# uc5i95WtOBVFjWl3/kXPDec21b7Z8V0dmT9onZgP4sQla0hpOTRVoYICHTCCAhkG
+# ZXQvIDANBgkqhkiG9w0BAQEFAASCAQCukm++YG5XbQFdd2rvCwhL/6j6VdMGpMo0
+# 7dj2SW02Eb1roVPoZjyhRkVfFxjQlCOeoRXi0xQv2AmZmfe9DaiPWzjHFnethEUb
+# ZiSmy/9pTcOa0R1DFNgch5SzBm9AI2/+dtcK75MeH1rhD2F2lyjvZ59LZg9St1dD
+# iu1lHe/CdAc0Cba32en+4KlufqaGGnPGzNwxd0yOGeq6/NEEkdnfk7azDJYCOk9Q
+# c0z1iWYJeyTBIU7Ptmn4lmFwFc0BR1DGMJQV+HlG8JixYSK/X8SStbKCdf9VRXU4
+# tPDG/QoFBjqENLIgKqXAUF3FpM6E7woCenyzUUTK4x/VQYJe5f5XoYICHTCCAhkG
 # CSqGSIb3DQEJBjGCAgowggIGAgEBMIGFMHcxCzAJBgNVBAYTAlVTMRMwEQYDVQQI
 # EwpXYXNoaW5ndG9uMRAwDgYDVQQHEwdSZWRtb25kMR4wHAYDVQQKExVNaWNyb3Nv
 # ZnQgQ29ycG9yYXRpb24xITAfBgNVBAMTGE1pY3Jvc29mdCBUaW1lLVN0YW1wIFBD
 # QQIKYQUTNgAAAAAAGjAHBgUrDgMCGqBdMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0B
-# BwEwHAYJKoZIhvcNAQkFMQ8XDTEyMDQxMjIzMTAwMVowIwYJKoZIhvcNAQkEMRYE
-# FITBruHvuVB9K6o3uVZM6nxO+eQvMA0GCSqGSIb3DQEBBQUABIIBAFQ5S5RYeI9I
-# HlJz7lMB2uOg6AGmGTOcmH38GQ08t0Y94bzhQ7YkAVIKcwIAmr0hjkDwOtlHoVh3
-# lyhrq1KudBByqnAYSSPJD4sTcBNzAU2hX4eLp3t09bL0314s7sItDwrnI+LOb1HP
-# 5PvZ1ZN8uLsds0XaQeTbFFxZ05than+YX9FI34GIy330n3+jfhSitRQJw7FK+Tng
-# aQLnBzY+D94zKmCQGlUVyRxVcCiZrtOevFNGlnXD0CySQGdbpaz7+c6V3d+ZYaim
-# YL42YdDT8g2Gs6Q9QmeRtYBp94alIxejcMde1XmkxKmPy06+OgPsCbTFLWHeGidi
-# Ccfaqu4af48=
+# BwEwHAYJKoZIhvcNAQkFMQ8XDTEyMDQxMjE4Mjc0MFowIwYJKoZIhvcNAQkEMRYE
+# FDK8/AX7y0E52iyG44KRP7H1+MHxMA0GCSqGSIb3DQEBBQUABIIBABY6P8mF4fs3
+# aY/uPAKLEsTEZeRitFPiAqEugVRQfdW9d6nxQ6V57o0odibvCcGyn1MvPH35BYyp
+# EkhWcoHo9vLhDwHOJ9LFcUudUUMf0g5n9+QvQWbmD9+EO5HUOmzslr6ltEQRvGEA
+# 8U8JL5E7Zex/bDcK5YzOG0sloOc/jkVoJZvCx+dj28kPvRGwamnDIAVuNXSdjE2U
+# 4KDZMvkoBkBHYuM305v+BYDhWFjnQ/dgljYgzvAOqMJFm6yHCcrnYZsr0JsH9T3n
+# UZ6Nc8r7z9NFHIytYJBSgpqD8LK5fp40Fskx+IoRl+Hc6nRnUFRlEbE3Qlz1F/Bb
+# DtN7NT/WoBA=
 # SIG # End signature block
