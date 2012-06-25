@@ -28,6 +28,12 @@ namespace DowJones.Documentation.Website.App_Start
                 _constraint
             );
 
+			routes.MapRoute(
+				"Elmah", 
+				"elmah/{type}",
+				new { action = "Index", controller = "Elmah", type = UrlParameter.Optional }
+			);
+
             routes.MapRoute(
                 "Default",
                 "{controller}/{action}/{id}",
