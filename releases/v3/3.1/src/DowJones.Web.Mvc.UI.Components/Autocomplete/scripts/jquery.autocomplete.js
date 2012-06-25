@@ -47,8 +47,11 @@
         _djUnautocomplete: function() {
             return this.trigger("unautocomplete");
         },
+        _djHelpRowClick: function(handler) {
+            return this.unbind("helpRowClick").bind("helpRowClick", handler);
+        },
         _djViewAll: function(handler) {
-            return this.bind("viewall", handler);
+            return this.unbind("viewall").bind("viewall", handler);
         }
     });
 
@@ -143,7 +146,7 @@
                     }
                     break;
 
-                // matches also semicolon                                                                                                  
+                // matches also semicolon                                                                                                                        
                 case options.multiple && $.trim(options.multipleSeparator) == "," && KEY.COMMA:
                 case KEY.TAB:
                 case KEY.RETURN:
@@ -223,6 +226,13 @@
                     text: $input.val()
                 });
                 $input.val("");
+                hideResultsNow();
+                return true;
+            } else
+                if (selected.isHelpRowEnabled) {
+                $input.trigger("helpRowClick", {
+                    text: $input.val()
+                });
                 hideResultsNow();
                 return true;
             }
@@ -454,6 +464,8 @@
         resultsOverClass: "dj_emg_autosuggest_over",
         viewAllClass: "dj_emg_autosuggest_viewall",
         viewAllText: "View All",
+        showHelp: false,
+        helpLabelText: "press enter to search full-text",
         minChars: 1,
         delay: 100,
         matchCase: false,
@@ -738,6 +750,7 @@
                     if (formatted === false)
                         continue;
                     var tr = $("<tr/>").html(options.highlight(formatted, term, data[i].data.controlType)).addClass(i % 2 == 0 ? options.resultsEvenClass : options.resultsOddClass).appendTo(list)[0];
+
                     if (data[i].data.isCategory === true) {
                         //Append the header
                         if ($("tbody", element).find('tr.ac_cat_head_' + data[i].data.controlType.toLowerCase()).get(0) === undefined) {
@@ -765,16 +778,24 @@
                 }
             }
 
-            if (options.showViewAll && acType != 'privatemarkets') {
+            //Show help row based on the settings
+            if (options.showHelp) {
+                var inputVal = $(input).val();
+                var tr = $("<tr/>").addClass("ac_helpRow")
+							                   .addClass(i % 2 == 0 ? options.resultsEvenClass : options.resultsOddClass)
+							                   .append($("<td>").html("<span class='ac_helpResult'>" + inputVal + "</span><span class='ac_helpText'>" + options.helpLabelText + "</span>"))
+                                               .prependTo(list)[0];
+                $.data(tr, "ac_data", { value: inputVal, isHelpRowEnabled: true });
+            }
+
+            //Show viewAll row based on the settings
+            if (options.showViewAll) {
                 var tr = $("<tr/>")
 							.addClass(options.viewAllClass)
 							.addClass(i % 2 == 0 ? options.resultsEvenClass : options.resultsOddClass)
 							.append($("<td>").html(options.viewAllText))
-							.appendTo(list)[0]
-                $.data(tr, "ac_data", {
-                    //data: data,
-                    isViewAll: true
-                });
+							.appendTo(list)[0];
+                $.data(tr, "ac_data", { isViewAll: true });
             }
 
             listItems = list.find("tr");
@@ -856,7 +877,9 @@
             },
             selected: function() {
                 var selected = listItems && listItems.filter("." + CLASSES.ACTIVE).removeClass(CLASSES.ACTIVE);
-                return selected && selected.length && $.data(selected[0], "ac_data");
+                if (selected && selected.length) {
+                    return ($.data(selected[0], "ac_data")) ? (selected && selected.length && $.data(selected[0], "ac_data")) : (selected && selected.length && "");
+                }
             },
             reset: function() {
                 listItems.slice(active, active + 1).addClass(CLASSES.ACTIVE);

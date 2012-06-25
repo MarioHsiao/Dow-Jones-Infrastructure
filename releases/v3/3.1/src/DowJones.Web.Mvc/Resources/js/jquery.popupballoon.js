@@ -78,32 +78,33 @@
             };
 
             if (o.xOffsetInverted == 'auto') {
-
                 o.xOffsetInverted = 0;
+                //Check for shape(in IE highcharts uses VML instead of canvas) and width is not calculated correctly
+                if (!$(self.element).is('shape')) {
+                    var width = $(self.element).width();
+                    if (o.popupPosition == 'right' && o.xAlign == 'right') {
+                        o.xOffsetInverted = width * -1;
+                    }
 
-                if (o.popupPosition == 'right' && o.xAlign == 'right') {
-                    o.xOffsetInverted = parseInt($(el).width()) * -1;
+                    if (o.popupPosition == 'left' && o.xAlign == 'left') {
+                        o.xOffsetInverted = width;
+                    }
                 }
-
-                if (o.popupPosition == 'left' && o.xAlign == 'left') {
-                    o.xOffsetInverted = parseInt($(el).width());
-                }
-
             }
 
             if (o.yOffsetInverted == 'auto') {
-                //this could use a little bit of reworking here...
-
                 o.yOffsetInverted = 0;
+                //Check for shape(in IE highcharts uses VML instead of canvas) and width is not calculated correctly
+                if (!$(self.element).is('shape')) {
+                    var height = $(self.element).height();
+                    if (o.popupPosition == 'top' && o.yAlign == 'top') {
+                        o.yOffsetInverted = height / 2;
+                    }
 
-                if (o.popupPosition == 'top' && o.yAlign == 'top') {
-                    o.yOffsetInverted = parseInt($(el).height()) / 2;
+                    if (o.popupPosition == 'bottom' && o.yAlign == 'bottom') {
+                        o.yOffsetInverted = (height / 2) * -1;
+                    }
                 }
-
-                if (o.popupPosition == 'bottom' && o.yAlign == 'bottom') {
-                    o.yOffsetInverted = (parseInt($(el).height()) / 2) * -1;
-                }
-
             }
 
             $(document).mousemove(function (e) {
@@ -536,6 +537,63 @@
             self.currentY = y;
         },
 
+        /**
+        *  Update the position of the current popbox element (please try to avoid using this and use rePosition method instead)
+        *
+        *  @param	posX	X coordinate of popup box
+        *  @param	posY	Y coordinate of popup box
+        */
+        updatePosition: function (posX, posY) {
+
+            var self = this,
+				el = self.element,
+				o = self.options,
+				$popbox = el.data("popbox");
+
+            o.positionX = posX;
+            o.positionY = posY;
+
+            //reset based on original preferences, the space may now be available to accommodate				
+            o.popupPosition = self.preferences.popupPosition;
+            o.popupAlign = self.preferences.popupAlign;
+
+            var coordinates = self._getCoordinates($popbox),
+				x = coordinates.x,
+				y = coordinates.y;
+
+            $popbox.attr({
+                'position': o.popupPosition,
+                'popupalign': o.popupAlign
+            });
+
+            if (o.animateMoveEnabled) {
+                $popbox.stop().animate({
+                    top: y,
+                    left: x
+                }, o.animationSpeed, function () {
+                    $(this).css({
+                        opacity: '',
+                        zoom: '',
+                        filter: ''
+                    });
+                    self.scrollDocument();
+                });
+            } else {
+                $popbox.css({
+                    top: y,
+                    left: x,
+                    opacity: '',
+                    zoom: '',
+                    filter: ''
+                });
+                self.scrollDocument();
+            }
+
+            self.currentX = x;
+            self.currentY = y;
+
+        },
+
         rePosition: function (callback) {
             var self = this,
 				o = self.options,
@@ -544,15 +602,19 @@
                 $arrow = $('.balloon-arrow', $callout),
                 popupOffset = $callout.offset(),
                 currArrowPos = $arrow.position(),
-                contentH = $content.outerHeight(),
+                contentH = $content.height(),
                 newContentH = 0,
                 sizeDiff = 0;
 
-            if ($arrow.offset().left < $(self.element).offset().left) {
+            if (($arrow.offset().left + $arrow.width()) < $(self.element).offset().left) {
                 var cords = self._getCoordinates($callout);
+                var outerWidth = $(self.element).outerWidth(true);
+                if ($(self.element).is('shape')) {
+                    outerWidth = parseInt(outerWidth / 3);
+                }
 
                 $($callout).animate({
-                    left: (cords.x - $(self.element).outerWidth(true)) + "px"
+                    left: (cords.x - outerWidth) + "px"
                 }, 200, callback);
             }
             else {
@@ -572,25 +634,30 @@
                     if (o.popupAlign != 'top' && o.popupAlign != 'bottom' && o.popupAlign != 'under-title') {
                         $callout.animate({
                             top: popupOffset.top - (sizeDiff / 2) + "px"
-                        }, 200);
+                        }, { duration: 200, queue: false });
                         $arrow.animate({
                             top: currArrowPos.top + (sizeDiff / 2) + "px"
-                        }, 200);
+                        }, { duration: 200, queue: false });
                     }
                     else if (o.popupAlign == 'bottom') {
                         $callout.animate({
                             top: popupOffset.top - (sizeDiff) + "px"
-                        }, 200);
+                        }, { duration: 200, queue: false });
                     }
+
                     $content.animate({
                         height: newContentH
-                    }, 200, function () {
-                        // after the animation is complete reset the styles
-                        $(this).css({
-                            height: "",
-                            overflow: "visible"
-                        });
-                        self.scrollDocument(callback);
+                    }, {
+                        duration: 200,
+                        queue: false,
+                        complete: function () {
+                            // after the animation is complete reset the styles
+                            $(this).css({
+                                height: "",
+                                overflow: "visible"
+                            });
+                            self.scrollDocument(callback);
+                        }
                     });
                 }
                 else {
@@ -621,7 +688,7 @@
             }
 
             if (scrollValue) {
-                $('html,body').stop().animate({ scrollTop: scrollValue }, 500, callback || $.noop());
+                $('body').stop().animate({ scrollTop: scrollValue }, 500, callback || $.noop());
             }
             else {
                 if ($.isFunction(callback)) {

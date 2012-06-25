@@ -29,7 +29,6 @@
         this._super(element, $meta);
 
         // call databind if we got data from server
-        //$dj.debug('this data', this.data);
         if (this.data)
             this.bindOnSuccess(this.data, this.options);
     },
@@ -106,46 +105,8 @@
         }
         return false;
     },
-    clear: function () {
-        showErrors = TRUE;
-        provider = NULL;
-        radar = {};
-        maxItemNews = 0;
-        maxCompanyNews = 0;
-
-        DJ.Notify(handleSort).on('widgetSort').forWidget(id).detach();
-
-        $el.empty();
-    },
-    dispose: function () {
-        clear();
-
-        $el.remove();
-    },
-    requestData: function () {
-        var params = {};
-        DJ.Util.extend(params, settings);
-        params.callback = feedCallback;
-
-
-        // request the data from the model
-        if (params.entityid && (params.subjectid || (params.customquery && params.customqueryname))) {
-            if (self.provider) {
-                provider = self.provider;
-            } else if (!provider) {
-                provider = DJ.Data.getProvider("RadarEx");
-            }
-
-            provider.getData(feedCallback, params);
-        } else {
-            this.publish(this.events.log, ['Nothing to request %o', params]);
-            return;
-        }
-
-        this.publish(this.events.dataRequested, params);
-    },
     bindOnSuccess: function (response, params) {
-        this.publish(this.events.dataReceived, response);
+        //this.publish(this.events.dataReceived, response);
 
         if (!this.validateResponse(response)) {
             return;
@@ -186,13 +147,8 @@
         this.publish(this.events.dataTransformed, FinalResults);
 
         this.renderCategories(FinalResults);
-        //carousel.addItems(0, FinalResults.RadarItems);
-
-        //carousel.setEof(true);
 
         this.showErrors = false;
-
-        //this.publish(this.events.viewRendered, $el[0]);
 
         this.renderContent(FinalResults.RadarItems);
         this._setScrollable();
@@ -245,8 +201,6 @@
 
         this.renderContent(this.radar.RadarItems);
         this._onTopClicked(0);
-        //carousel.reset();
-        //carousel.addItems(0, radar.RadarItems);
     },
     // Loop through each news category of a given company and pull out needed data for the widget
     setNewsData: function (company) {
@@ -345,34 +299,15 @@
         //}
         return true;
     },
-    // render methods
-    setupRender: function () {
-        // create main view
-        //main = tpls.main({}, ctx, publicInterface);
-        //$el.html(main.html());
-        //renderHeader(canGoPrev, canGoNext);
-        //renderFooter(canGoPrev, canGoNext);
-
-    },
     renderError: function (data) {
-        this.publish(this.events.error, publicInterface, data);
+        this.publish(this.events.error, data);
 
         if (showErrors == FALSE) {
             return;
         }
         this.$el.render(this.templates.error());
-        //main.hooks('content').filter('[djContent=errors]').empty();
-        //main.hooks('content').filter('[djContent=content]').empty();
-
-        //var content = tpls.errors({ Error: data }, ctx, publicInterface);
-        //main.hooks('content').filter('[djContent=errors]').append(content.html());
     },
     renderContent: function (data, globalIdx, localIdx) {
-        //main.hooks('content').filter('[djContent=errors]').empty();
-
-        //var args = { Item: data, GlobalIdx: globalIdx, LocalIdx: localIdx },
-        //    content = tpls.content(args, ctx, publicInterface);
-
 
         var $items = $('.djWidgetItems', this.$element);
 
@@ -385,41 +320,120 @@
 
         $items.html(html);
 
-        //return content.html();
+        var radars = $('.djRadarItemBox', this.$element); //table and key
+
+        for (var r = 0; r < radars.length; r++) {
+            var radar = $(radars[r]);
+                        if (radar && radar.length) {
+                            var chipStyle = radar.data('grc');
+                            if (chipStyle) {
+                                this.drawChip(radar[0], chipStyle);
+                            }
+                        }
+        }
+    }, drawChip: function (target, chipStyle) {
+        var chipRenderer = new Highcharts.Renderer(target, 19, 19);
+
+        switch (chipStyle) {
+            case 'less':
+            case 'djRadarItemBox1':
+            case 1:
+                chipRenderer.rect(5, 9, 9, 1).attr({
+                    fill: '#CD3535'
+                }).add();
+                break;
+            case 'same':
+            case 'djRadarItemBox2':
+            case 2:
+                chipRenderer.circle(9.5, 9.5, 2.5).attr({
+                    fill: '#777'
+                }).add();
+                break;
+            case '50':
+            case 'djRadarItemBox3':
+            case 3:
+                chipRenderer.circle(9.5, 9.5, 4).attr({
+                    fill: 'none',
+                    stroke: '#7FB39E',
+                    'stroke-width': 1
+                }).add();
+                break;
+            case '200':
+            case 'djRadarItemBox4':
+            case 4:
+                chipRenderer.circle(9.5, 9.5, 6).attr({
+                    fill: 'none',
+                    stroke: '#4D9678',
+                    'stroke-width': 1
+                }).add();
+                chipRenderer.circle(9.5, 9.5, 2.5).attr({
+                    fill: '#4D9678'
+                }).add();
+                break;
+            case '400':
+            case 'djRadarItemBox5':
+            case 5:
+                chipRenderer.circle(9.5, 9.5, 6.5).attr({
+                    fill: '#267E5B'
+                }).add();
+                break;
+            case '400plus':
+            case 'djRadarItemBox6':
+            case 6:
+                chipRenderer.circle(9.5, 9.5, 6.5).attr({
+                    fill: '#10693E'
+                }).add();
+                //horiz
+                chipRenderer.rect(6, 9, 7, 1).attr({
+                    fill: '#FFF'
+                }).add();
+                //vert
+                chipRenderer.rect(9, 6, 1, 7).attr({
+                    fill: '#FFF'
+                }).add();
+                break;
+            default:
+                break;
+        }
+        return target;
+
     },
     renderCategories: function (data) {
-        //var $categories = main.hooks('content').filter('[djcontent=categories]');
         var $categories = $('.djCategories', this.$element);
-        //var args = { Categories: data.RadarCategories },
-        //    content = tpls.categories(args, ctx, publicInterface);
 
         var self = this;
         var cats = [];
         for (var i in data.RadarCategories) {
-            cats.push(self.templates.category({ index: i, settings: self.options, category: data.RadarCategories[i] }));
+            var category = data.RadarCategories[i];
+            var catMarkup = self.templates.category({ index: i, settings: self.options, category: category });
+            var label = this.drawCategoryLabel($(catMarkup)[0], category.name || category.fcode);
+            var labelMarkup = $('<div/>').append(label).html();
+            cats.push(labelMarkup);
         }
         cats.reverse();
         $categories.html(cats.join(''));
     },
-    renderHeader: function (canGoPrev, canGoNext) {
-        var content = tpls.header({
-            canGoPrev: canGoPrev,
-            canGoNext: canGoNext
-        }, ctx, publicInterface);
+    drawCategoryLabel: function (target, text) {
 
-        main.hooks('content').filter('[djContent=header]').html(content.html());
-    },
-    renderFooter: function (canGoPrev, canGoNext) {
-        var content = tpls.footer({
-            canGoPrev: canGoPrev,
-            canGoNext: canGoNext
-        }, ctx, publicInterface);
+        var renderer = new Highcharts.Renderer(target, 19, 143);
+        var xPos = 12.5;
+        var yPos = 140;
+        renderer.rect(0, 0, 0, 143).css({
+            borderLeft: '1px solid silver'
+        });
 
-        main.hooks('content').filter('[djContent=footer]').html(content.html());
-    },
-    renderHeaderAndFooter: function (canGoPrev, canGoNext) {
-        renderHeader(canGoPrev, canGoNext);
-        renderFooter(canGoPrev, canGoNext);
+        var categoryLabel = '<span title="' + text + '">' + text + '</span>';
+        renderer.text(categoryLabel, xPos, yPos).attr({
+            rotation: 270,
+            tooltip: text
+        }).css({
+            fontSize: '8pt',
+            lineHeight: '19px',
+            fontFamily: 'Verdana',
+            fontWeight: 'normal',
+            color: '#999'
+        }).add();
+        return target;
     },
     getTicker: function (Item) {
         if (Item.InstrumentReference.Ticker) {
@@ -427,29 +441,6 @@
         } else {
             return Item.companyName;
         }
-    },
-    // custom event handlers
-    handleSort: function (ev, args) {
-        var fcode = args.data.fcode;
-
-        if (!fcode) {
-            return;
-        }
-        var self = this;
-        radar.RadarItems.sort(function (a, b) {
-            var rateA = self.extractGrowthRate(a.newsEntities, fcode);
-            var rateB = self.extractGrowthRate(b.newsEntities, fcode);
-
-            // if growth code is the same, sort by growth rate
-            if (rateB.growthCode == rateA.growthCode) {
-                return rateB.growthRate - rateA.growthRate;
-            } else {
-                return rateB.growthCode - rateA.growthCode;
-            }
-        });
-
-        carousel.reset();
-        carousel.addItems(0, radar.RadarItems);
     },
     // misc methods
     extractGrowthRate: function (categories, v) {

@@ -1,8 +1,21 @@
-﻿@model DowJones.Web.Mvc.UI.Components.AutoSuggest.AutoSuggestModel
+﻿@model IEnumerable<DowJones.Web.Mvc.UI.Components.Models.AutoSuggestModel>
 @{
     ViewBag.Title = "AutoSuggest";
 }
-
-<h2>
-    Keyword</h2>
-@Html.DJ().Render(Model, new { id = "djKeywordSuggest" })
+<style type="text/css">
+    body { font: 12px/18px "Lucida Grande" , "Lucida Sans Unicode" , Helvetica, Arial, Verdana, sans-serif; }
+    .suggest-table { margin: 10px; }
+    .suggest-table tr td { height: 30px; line-height: 30px; }
+	.AutoSuggestComponent{margin-left:10px; width: 300px;}
+</style>
+<table class="suggest-table">
+    @foreach (var mdl in Model)
+    { 
+        <tr>
+            <td>@mdl.AutocompletionType
+            </td>
+            <td>@Html.DJ().Render(mdl, new { id = mdl.ControlId })
+            </td>
+        </tr>
+    }
+</table>

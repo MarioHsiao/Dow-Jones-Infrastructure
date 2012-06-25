@@ -201,9 +201,9 @@
   padding: 0;
 }
 .djWidgetRadar90 .djRadarItemBox {
-  background-image: url('../images/newsradar_circles.png');
+  /*background-image: url('../images/newsradar_circles.png');
   background-repeat: no-repeat;
-  background-position: center center;
+  background-position: center center;*/
   display: block;
   margin: 0 auto;
   font-size: 0px;

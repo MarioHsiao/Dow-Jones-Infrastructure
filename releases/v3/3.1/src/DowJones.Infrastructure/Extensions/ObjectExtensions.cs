@@ -70,21 +70,15 @@ namespace DowJones.Extensions
                 var targetType = typeof(T);
 
                 var converter = TypeDescriptor.GetConverter(value);
-                if (converter != null)
+                if (converter.CanConvertTo(targetType))
                 {
-                    if (converter.CanConvertTo(targetType))
-                    {
-                        return (T)converter.ConvertTo(value, targetType);
-                    }
+                    return (T)converter.ConvertTo(value, targetType);
                 }
 
                 converter = TypeDescriptor.GetConverter(targetType);
-                if (converter != null)
+                if (converter.CanConvertFrom(value.GetType()))
                 {
-                    if (converter.CanConvertFrom(value.GetType()))
-                    {
-                        return (T)converter.ConvertFrom(value);
-                    }
+                    return (T)converter.ConvertFrom(value);
                 }
             }
 
@@ -140,12 +134,9 @@ namespace DowJones.Extensions
                 }
 
                 converter = TypeDescriptor.GetConverter(targetType);
-                if (converter != null)
+                if (converter.CanConvertFrom(value.GetType()))
                 {
-                    if (converter.CanConvertFrom(value.GetType()))
-                    {
-                        return true;
-                    }
+                    return true;
                 }
             }
 
@@ -512,7 +503,7 @@ namespace DowJones.Extensions
 
             if (type.IsArray)
             {
-                new NotSupportedException("Type IsArray and is not supported currently");
+                return new NotSupportedException("Type IsArray and is not supported currently");
             }
 
             if (type == typeof(DateTime))
@@ -523,7 +514,7 @@ namespace DowJones.Extensions
             return null;
         }
 
-        private static JsonSerializerSettings jsonSerializerSettings = new JsonSerializerSettings
+        private static readonly JsonSerializerSettings jsonSerializerSettings = new JsonSerializerSettings
         {
             NullValueHandling = NullValueHandling.Ignore,
             TypeNameHandling = TypeNameHandling.None,
@@ -537,7 +528,7 @@ namespace DowJones.Extensions
         /// <returns></returns>
         public static string ToJson<T>(this T obj)
         {
-            string r = String.Empty;
+            string r;
             r = JsonConvert.SerializeObject(obj, Newtonsoft.Json.Formatting.None, jsonSerializerSettings);
             if (r == "[]" || r == "{}")
             {

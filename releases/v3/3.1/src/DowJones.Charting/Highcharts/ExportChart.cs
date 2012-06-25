@@ -35,11 +35,15 @@
 // 
 
 using System;
+using System.Text;
 using System.Web;
+using DowJones.Charting.Manager;
 using DowJones.Charting.Properties;
+using DowJones.Extensions;
 using DowJones.Generators;
 using DowJones.Infrastructure;
 using DowJones.Session;
+using Factiva.Gateway.Messages.Cache.PlatformCache.V1_0;
 
 namespace DowJones.Charting.Highcharts
 {
@@ -110,8 +114,43 @@ namespace DowJones.Charting.Highcharts
         Guard.IsNotZeroOrNegative(width, "width");
 
         var cacheKey = RandomKeyGenerator.GetRandomKey(16, RandomKeyGenerator.CharacterSet.AlphaNumeric);
+        var platformCacheManager = new PlatformCacheManager(Exporter.GetControlData(context));
+        var itemRequest = new StoreItemRequest
+                              {
+                                  Item = new CacheItem
+                                             {
+                                                 ExpirationPolicy = ExpirationPolicy.Absolute,
+                                                 ExpiryInterval = 5,
+                                                 Namespace = "highcharts",
+                                                 Key = cacheKey,
+                                                 StringData = svg,
+                                             }
+                              };
+        
+        platformCacheManager.StoreItem<StoreItemResponse>(itemRequest);
+
+
+        // serialize and send..
+        var freshness = new TimeSpan(0, 0, 0, 5);
+        context.Response.Clear();
+        context.Response.ContentType = "application/json; charset=utf-8";
+        context.Response.Cache.SetExpires(DateTime.Now.Add(freshness));
+        context.Response.Cache.SetMaxAge(freshness);
+        context.Response.Cache.SetCacheability(HttpCacheability.Public);
+        context.Response.Cache.SetValidUntilExpires(true);
+        context.Response.Cache.SetCacheability(HttpCacheability.ServerAndPrivate); // dacostad changed from public to not allow proxy servers to cache.
+        context.Response.Cache.VaryByParams["*"] = true;
+        
+        context.Response.Write(new SaveImageDataResponse{ Key = cacheKey}.ToJson());
+
+        // encrypted token
 
         return string.Empty;
+    }
+
+    private class SaveImageDataResponse
+    {
+        public string Key { get; set; }
     }
 
     internal static void ProcessImageRequest(HttpContext context)
@@ -127,7 +166,7 @@ namespace DowJones.Charting.Highcharts
         Guard.IsNotZeroOrNegative(width, "width");
 
         // Create a new chart export object using querystring parameters.
-        var export = new Exporter(type, width, cacheKey);
+        var export = new Exporter(type, width, cacheKey, context);
 
         // Write the exported chart to the HTTP Response object.
         export.WriteToHttpResponse(context.Response);
@@ -136,20 +175,6 @@ namespace DowJones.Charting.Highcharts
         // prevents other modules from adding/interfering with the output.
         HttpContext.Current.ApplicationInstance.CompleteRequest();
         context.Response.End();
-    }
-
-    private static IControlData GetControlData(HttpContext context)
-    {
-        var request = context.Request;
-        var cd = new ControlData
-                     {
-                         EncryptedToken = Settings.Default.ExporterEncryptedToken,
-                         AccessPointCode = request["apc"] ?? "o",
-                         AccessPointCodeUsage = request["apc"],
-                         ClientCode = request["clientcode"] ?? DowJones.Properties.Settings.Default.DefaultClientCodeType,
-                     };
-
-        return cd;
     }
   }
 }

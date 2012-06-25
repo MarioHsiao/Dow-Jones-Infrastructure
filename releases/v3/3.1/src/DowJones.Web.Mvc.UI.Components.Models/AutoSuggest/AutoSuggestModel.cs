@@ -64,13 +64,13 @@ namespace DowJones.Web.Mvc.UI.Components.Models
         //Gets or sets Suggest Service Options
         [ClientProperty("suggestServiceUrl")]
         public string SuggestServiceUrl { get; set; }
-
+        
         /// <summary>
         /// Gets or Sets Autocompletion type
         /// </summary>
         [ClientProperty("autocompletionType")]
         public string AutocompletionType { get; set; }
-
+        
         /// <summary>
         /// Gets or Sets Autocompletion type
         /// </summary>
@@ -96,6 +96,12 @@ namespace DowJones.Web.Mvc.UI.Components.Models
         public string Columns { get; set; }
 
         /// <summary>
+        /// Gets or Sets SuggestContext
+        /// </summary>
+        [ClientProperty("suggestContext")]
+        public string SuggestContext { get; set; }
+
+        /// <summary>
         /// Gets or Sets AutenticationType Value
         /// </summary>
         [ClientProperty("authTypeValue")]
@@ -106,6 +112,18 @@ namespace DowJones.Web.Mvc.UI.Components.Models
         /// </summary>
         [ClientProperty("authType")]
         public string AuthType { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Encrypted Token
+        /// </summary>
+        [ClientProperty("useEncryptedKey")]
+        public string UseEncryptedKey { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Session ID
+        /// </summary>
+        [ClientProperty("useSessionId")]
+        public string UseSessionId { get; set; }
 
         /// <summary>
         /// Gets or Sets Select First. If true, selects the first row from the suggest list.
@@ -134,7 +152,7 @@ namespace DowJones.Web.Mvc.UI.Components.Models
         [DefaultValue(false)]
         [ClientProperty("showViewAll")]
         public bool ShowViewAll { get; set; }
-
+        
         #endregion
 
         #region ..:: Client Event Handlers ::..

@@ -29,7 +29,7 @@ namespace DowJones.Web.Mvc.UI.Components.NewsRadar
     using System.Web.UI;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 06/14/2012 09:30 AM
+    // Last Generated Timestamp: 06/15/2012 10:10 AM
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.NewsRadar.ClientTemplates.Category.htm", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="category", DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.NewsRadar.NewsRadarControl))]
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.NewsRadar.ClientTemplates.Container.htm", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="container", DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.NewsRadar.NewsRadarControl))]
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.NewsRadar.ClientTemplates.Controls.htm", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="controls", DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.NewsRadar.NewsRadarControl))]
@@ -67,8 +67,9 @@ namespace DowJones.Web.Mvc.UI.Components.NewsRadar
 
 
    
-    CssClass = "dj_newsRadar"; 
+    CssClass = "dj_newsRadar";
     DJ.ScriptRegistry()
+        .WithHighCharts()
         .WithJQueryTools(); 
 
 
