@@ -14,9 +14,13 @@
     <Error Condition="'$(DeploymentDir)' == ''" Text="DeploymentDir property is required" />
     <Message Importance="High" Text="Copying website from $(MSBuildProjectName) to $(DeploymentDir)" />
     
+    <Exec Command="attrib -R @(ContentFiles->'%(FullPath)')" />
+      
     <Copy SourceFiles="@(ContentFiles)"
           DestinationFiles="@(ContentFiles->'$(DeploymentDir)\%(RecursiveDir)%(Filename)%(Extension)')"
     />
-  </Target>
+
+    <Exec Command="attrib +R @(ContentFiles->'%(FullPath)')" />
+</Target>
   
 </Project>
