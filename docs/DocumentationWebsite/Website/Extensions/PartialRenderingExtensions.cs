@@ -19,20 +19,20 @@ namespace DowJones.Documentation.Website.Extensions
 
         public static IHtmlString DocumentationSection(this HtmlHelper<PageViewModel> helper, ContentSectionViewModel section)
         {
-            return DocumentationSection(helper, section.Key, section.Mode);
+            return DocumentationSection(helper, section.Key, section.View);
         }
         public static IHtmlString DocumentationSection(this HtmlHelper<PageViewModel> helper, Name name)
         {
             return DocumentationSection(helper, name.Key);
         }
-        public static IHtmlString DocumentationSection(this HtmlHelper<PageViewModel> helper, string section, string mode = null)
+        public static IHtmlString DocumentationSection(this HtmlHelper<PageViewModel> helper, string view, string section = null)
         {
             var page = helper.ViewData.Model;
 
             if(page == null)
                 return new HtmlString(string.Empty);
 
-            return helper.Partial(section, page, new ViewDataDictionary(helper.ViewData) { { "mode", mode } });
+            return helper.Partial(view, page, new ViewDataDictionary(helper.ViewData) { { "section", section } });
         }
     }
 }

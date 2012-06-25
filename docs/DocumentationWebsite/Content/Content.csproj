@@ -53,8 +53,8 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Components\AutoSuggest\Overview.md" />
-    <None Include="Components\DiscoveryGraph\Client\Configuration.md" />
-    <None Include="Components\DiscoveryGraph\Server\Configuration.md" />
+    <None Include="Components\DiscoveryGraph\Configuration\Javascript.md" />
+    <None Include="Components\DiscoveryGraph\Configuration\ASP.NET_MVC.md" />
     <None Include="Components\DiscoveryGraph\Events.md" />
     <None Include="Components\DiscoveryGraph\LiveDemo.md" />
     <None Include="Components\DiscoveryGraph\Methods.md" />
@@ -80,6 +80,7 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Components\DiscoveryGraph\Server\" />
     <Folder Include="Properties\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

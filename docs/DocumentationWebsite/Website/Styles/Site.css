@@ -84,3 +84,16 @@ td.name {
 .hide {
   display: none; }
 
+.child-links {
+  padding: 10px 20px;
+  margin-bottom: 5px; }
+  .child-links .child-link {
+    padding-right: 20px; }
+
+.level-0 .level-1 {
+  display: none; }
+  .level-0 .level-1 h3 {
+    display: none; }
+.level-0 .level-1.selected {
+  display: block; }
+

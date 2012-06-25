@@ -11,6 +11,22 @@ namespace DowJones.Documentation.Website.Models
     {
         protected ContentSection ContentSection { get; private set; }
 
+        public string AnchorId
+        {
+            get
+            {
+                if (IsView)
+                    return string.Format("{0}_{1}", View, ContentSection.Name.Key).Replace(".", "");
+                else
+                    return ContentSection.Name.Key;
+            }
+        }
+
+        public bool Collapsible
+        {
+            get { return Key != "livedemo"; }
+        }
+
         public string DisplayName
         {
             get { return ContentSection.Name.DisplayName; }
@@ -19,6 +35,11 @@ namespace DowJones.Documentation.Website.Models
         public bool HasChildren
         {
             get { return Children != null && Children.Any(); }
+        }
+
+        public bool IsView
+        {
+            get { return !string.IsNullOrWhiteSpace(View); }
         }
 
         public string Key
@@ -32,6 +53,13 @@ namespace DowJones.Documentation.Website.Models
         }
 
         public bool Selected { get; set; }
+        
+        public bool ShowHeader
+        {
+            get { return _showHeader.GetValueOrDefault(Key != "overview"); }
+            set { _showHeader = value; }
+        }   
+        private bool? _showHeader;
 
         public IEnumerable<ContentSectionViewModel> Children
         {
@@ -39,26 +67,28 @@ namespace DowJones.Documentation.Website.Models
         }
         private readonly Lazy<IEnumerable<ContentSectionViewModel>> _children;
 
-        public virtual string Mode
+        public virtual string View
         {
             get
             {
-                if(_mode == null)
+                if(_view == null)
                 {
-                    if (HasChildren || ContentSection.Parent == null)
-                        return null;
+                    string view = null;
 
-                    _mode = new Lazy<string>(() => ContentSection.Parent.Name.Key);
+                    if (!HasChildren && ContentSection.Parent != null)
+                        view = ContentSection.Parent.Name.Key;
+
+                    _view = new Lazy<string>(() => view);
                 }
 
-                return _mode.Value;
+                return _view.Value;
             }
             protected set
             {
-                _mode = new Lazy<string>(() => value);
+                _view = new Lazy<string>(() => value);
             }
         }
-        private Lazy<string> _mode;
+        private Lazy<string> _view;
 
 
 
@@ -80,9 +110,16 @@ namespace DowJones.Documentation.Website.Models
         protected virtual IEnumerable<ContentSectionViewModel> MapChildren()
         {
             var children =
-                from child in ContentSection.Children ?? Enumerable.Empty<ContentSection>()
-                where child != null && child.Name != null
-                select MapChild(child);
+                (
+                    from child in ContentSection.Children ?? Enumerable.Empty<ContentSection>()
+                    where child != null && child.Name != null
+                    select MapChild(child)
+                ).ToArray();
+
+            var hasSelected = children.Any(x => x.Selected);
+
+            if (!hasSelected && children.Any())
+                children.FirstOrDefault().Selected = true;
 
             return children;
         }

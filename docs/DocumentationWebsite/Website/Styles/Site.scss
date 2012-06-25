@@ -122,3 +122,24 @@ td.name
 .hide {
 	display: none;
 }
+
+
+.child-links {
+	padding: 10px 20px;
+	margin-bottom: 5px;
+
+	.child-link {
+		padding-right: 20px;
+	}
+}
+
+.level-0 {
+
+	.level-1 { 
+		h3 { display: none; }
+		display: none;
+	}
+
+	.level-1.selected { display: block; }
+
+}

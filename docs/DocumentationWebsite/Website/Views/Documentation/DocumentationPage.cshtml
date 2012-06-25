@@ -3,36 +3,34 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Dow Jones Component Explorer :: " + Model.Category.DisplayName + " > " + Model.DisplayName;
 }
-@helper RenderMenuItems(ContentSectionViewModel contentSection) {
-    if (contentSection.HasChildren) {
-        <li class="nav-header">@contentSection.DisplayName</li>   
-    }
-    else if (contentSection.Key != "overview")
-    {
-        <li><a href="#@contentSection.Key">@contentSection.DisplayName</a></li>
-    }
-    foreach (var child in contentSection.Children) {
-        @RenderMenuItems(child)
-    }
+@helper RenderMenuItems(ContentSectionViewModel contentSection, int level = 0) {
+     <li class="@(level > 0 ? "child":"")"><a href="#@contentSection.AnchorId">@contentSection.DisplayName</a></li>
 }
-@helper RenderSection(ContentSectionViewModel contentSection) {
-    <section class="content row-fluid @(contentSection.Key != "livedemo" ? "collapsible" : "")" id="@contentSection.Key">
+@helper RenderSection(ContentSectionViewModel contentSection, int level = 0) {
+    <section id="@contentSection.AnchorId" class="span11 level-@level @(contentSection.Collapsible ? "collapsible" : "") @(contentSection.Selected ? "selected" : "")">
         
+    @if(contentSection.ShowHeader)
+    {
+        <h3>@contentSection.DisplayName</h3>
+    }
+
+    <div>
     @if(contentSection.HasChildren) {
-        <h2>@contentSection.DisplayName</h2>
+        <div class="child-links well">
+            @foreach(var child in contentSection.Children)
+            {
+                <a class="child-link @(contentSection.Selected ? "selected" : "")" href="#@child.AnchorId">@child.DisplayName</a>
+            }
+        </div>
         
         foreach(var child in contentSection.Children) {
-            @RenderSection(child)
+            @RenderSection(child, level+1)
         }
     }
     else {
-        if(contentSection.Key != "overview") {
-            <h3>@contentSection.DisplayName</h3>
-        }
-            <div>
-            @Html.DocumentationSection(contentSection)
-        </div>
+        @Html.DocumentationSection(contentSection)
     }
+    </div>
         
     </section>
 }
@@ -58,24 +56,19 @@
             }
             </div>
         </div>
-        <div class="span10 contentWell">
+        <div class="span10 contentWell content">
             <div class="row-fluid">
                 <header class="span12">
                     <h2 class="pull-left">@Model.DisplayName</h2>
-                    <div class="pull-right">
-                        <a href="?mode=server">ASP.NET MVC</a> | <a href="?mode=client">JavaScript</a>
-                    </div>
                 </header>
             </div>
-            <div class="content">
-                @if (!Model.HasChildren)
-                {
-                    @Html.DocumentationPage()
-                }
-                @foreach(var child in Model.Children) {
-                    @RenderSection(child)
-                }
-            </div>
+            @if (!Model.HasChildren)
+            {
+                @Html.DocumentationPage()
+            }
+            @foreach(var child in Model.Children) {
+                @RenderSection(child)
+            }
         </div>
     </div>
 </div>
@@ -83,4 +76,34 @@
 @section scripts {
     @Scripts.Render("~/bundles/syntaxhighlighter-js")
     @Scripts.Render("~/bundles/explorer")
+    <script type="text/javascript">
+        $(function() {
+            $(document).ready(function () {
+                var childLinks = $(".contentWell .child-link");
+
+                //  When user clicks on tab, this code will be executed
+                $(childLinks).click(function () {
+                    var childTabs = $(this).parents(".level-0").find(".level-1");
+
+                    //  First remove class "active" from currently active tab
+                    $(childLinks).removeClass('active');
+
+                    //  Now add class "active" to the selected/clicked tab
+                    $(this).addClass("active");
+
+                    //  Hide all tab content
+                    $(childTabs).hide();
+
+                    //  Here we get the href value of the selected tab
+                    var selected_tab = $(this).attr("href");
+
+                    //  Show the selected tab content
+                    $(selected_tab).fadeIn();
+
+                    //  At the end, we add return false so that the click on the link is not executed
+                    return false;
+                });
+            });
+        });
+    </script>
 }
