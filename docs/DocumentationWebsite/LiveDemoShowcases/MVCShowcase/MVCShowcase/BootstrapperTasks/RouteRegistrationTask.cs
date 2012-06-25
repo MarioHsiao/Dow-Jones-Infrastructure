@@ -2,7 +2,7 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using DowJones.Infrastructure;
 
-namespace MVCShowcase.BootstrapperTasks
+namespace DowJones.MvcShowcase.BootstrapperTasks
 {
     public class RouteRegistrationTask : IBootstrapperTask
     {
