@@ -1,4 +1,6 @@
-﻿using System.Web.Mvc;
+﻿
+
+using System.Web.Mvc;
 
 namespace DowJones.Documentation.Website.App_Start
 {
@@ -6,7 +8,8 @@ namespace DowJones.Documentation.Website.App_Start
 	{
 		public void RegisterGlobalFilters(GlobalFilterCollection filters)
 		{
-			filters.Add(new HandleErrorAttribute());
+			// elmah adds this one for us, so we don't need to use the default one
+			//filters.Add(new HandleErrorAttribute());
 		}
 	}
 }
