@@ -31,17 +31,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JsXmlDocParser", "JsXmlDocP
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuildTasks", "BuildTasks\BuildTasks.csproj", "{1DD92EB3-584C-42D4-A2B8-2095462FDEA8}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ShowCases", "ShowCases", "{FCC8B2C5-F8F3-4F43-BC84-3065FBEEBB9C}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DowJones.MvcShowcase", "LiveDemoShowcases\MVCShowcase\MVCShowcase\DowJones.MvcShowcase.csproj", "{4F77E1DE-77E9-425C-B140-5F24680A0113}"
-EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccLocalPath0 = .
 		SccLocalPath1 = Website
 		SccLocalPath10 = BuildTasks
-		SccLocalPath11 = LiveDemoShowcases\\MVCShowcase\\MVCShowcase
 		SccLocalPath2 = Core
 		SccLocalPath3 = Content
 		SccLocalPath4 = XmlViewEngine
@@ -50,10 +45,9 @@ Global
 		SccLocalPath7 = VSDocPreprocessor.Console
 		SccLocalPath8 = Tests
 		SccLocalPath9 = JsXmlDocParser
-		SccNumberOfProjects = 12
+		SccNumberOfProjects = 11
 		SccProjectName1 = Website
 		SccProjectName10 = BuildTasks
-		SccProjectName11 = LiveDemoShowcases/MVCShowcase/MVCShowcase
 		SccProjectName2 = Core
 		SccProjectName3 = Content
 		SccProjectName4 = XmlViewEngine
@@ -63,7 +57,6 @@ Global
 		SccProjectName8 = Tests
 		SccProjectName9 = JsXmlDocParser
 		SccProjectTopLevelParentUniqueName10 = DowJones.Documentation.sln
-		SccProjectTopLevelParentUniqueName11 = DowJones.Documentation.sln
 		SccProjectTopLevelParentUniqueName4 = DowJones.Documentation.sln
 		SccProjectTopLevelParentUniqueName5 = DowJones.Documentation.sln
 		SccProjectTopLevelParentUniqueName6 = DowJones.Documentation.sln
@@ -71,7 +64,6 @@ Global
 		SccProjectTopLevelParentUniqueName9 = DowJones.Documentation.sln
 		SccProjectUniqueName1 = Website\\Website.csproj
 		SccProjectUniqueName10 = BuildTasks\\BuildTasks.csproj
-		SccProjectUniqueName11 = LiveDemoShowcases\\MVCShowcase\\MVCShowcase\\DowJones.MvcShowcase.csproj
 		SccProjectUniqueName2 = Core\\Core.csproj
 		SccProjectUniqueName3 = Content\\Content.csproj
 		SccProjectUniqueName4 = XmlViewEngine\\XmlViewEngine.csproj
@@ -121,14 +113,6 @@ Global
 		{38E4CD1B-1A81-4D29-84D9-D20D8C85FE05}.Integration|Any CPU.ActiveCfg = Release|Any CPU
 		{38E4CD1B-1A81-4D29-84D9-D20D8C85FE05}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{38E4CD1B-1A81-4D29-84D9-D20D8C85FE05}.ToolChain|Any CPU.ActiveCfg = Debug|Any CPU
-		{4F77E1DE-77E9-425C-B140-5F24680A0113}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4F77E1DE-77E9-425C-B140-5F24680A0113}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4F77E1DE-77E9-425C-B140-5F24680A0113}.Integration|Any CPU.ActiveCfg = Release|Any CPU
-		{4F77E1DE-77E9-425C-B140-5F24680A0113}.Integration|Any CPU.Build.0 = Release|Any CPU
-		{4F77E1DE-77E9-425C-B140-5F24680A0113}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4F77E1DE-77E9-425C-B140-5F24680A0113}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4F77E1DE-77E9-425C-B140-5F24680A0113}.ToolChain|Any CPU.ActiveCfg = Release|Any CPU
-		{4F77E1DE-77E9-425C-B140-5F24680A0113}.ToolChain|Any CPU.Build.0 = Release|Any CPU
 		{5B53CF02-321D-4EF8-9B2C-4C4889FD8A03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5B53CF02-321D-4EF8-9B2C-4C4889FD8A03}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5B53CF02-321D-4EF8-9B2C-4C4889FD8A03}.Integration|Any CPU.ActiveCfg = Release|Any CPU
@@ -184,7 +168,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{1DD92EB3-584C-42D4-A2B8-2095462FDEA8} = {3D6A5A54-27AA-4E53-AEB4-512F15FEB981}
 		{324A66D1-2705-49F9-927F-3B69CAC838A4} = {3D6A5A54-27AA-4E53-AEB4-512F15FEB981}
-		{4F77E1DE-77E9-425C-B140-5F24680A0113} = {FCC8B2C5-F8F3-4F43-BC84-3065FBEEBB9C}
 		{73BBDDB2-E1E6-4646-9DA5-F713F69E7142} = {AED7FA57-7B3C-4D38-8E47-ED2D38DC6C26}
 		{839AEF53-E893-44DC-8A2F-507DA086BFF2} = {AED7FA57-7B3C-4D38-8E47-ED2D38DC6C26}
 		{D0AED5A8-7F0A-442C-8569-DBE931DFB826} = {3D6A5A54-27AA-4E53-AEB4-512F15FEB981}
