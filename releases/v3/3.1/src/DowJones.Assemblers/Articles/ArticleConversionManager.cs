@@ -988,9 +988,11 @@ namespace DowJones.Assemblers.Articles
                             }
                             if (EnableEnlargedImage && EmbededImageType != ImageType.Display)
                             {
-                                var enlargedImageContentItem = contentItem.ContentHeadline.ContentItems.ItemCollection
-                                    .Where(tItem => !string.IsNullOrEmpty(tItem.Mimetype) && tItem.Type.ToLowerInvariant() == Map(ImageType.Display)).FirstOrDefault();
-                                enlargedImgHandlerUrl = GetHandlerUrl(EmbededImageType, numberBasedContentItem.AccessionNumber, enlargedImageContentItem);
+                                var enlargedImageContentItem = contentItem.ContentHeadline.ContentItems.ItemCollection.FirstOrDefault(tItem => !string.IsNullOrEmpty(tItem.Mimetype) && tItem.Type.ToLowerInvariant() == Map(ImageType.Display));
+                                if (enlargedImageContentItem != null)
+                                {
+                                    enlargedImgHandlerUrl = GetHandlerUrl(EmbededImageType, numberBasedContentItem.AccessionNumber, enlargedImageContentItem);
+                                }
                             }
                             break; 
                         case "file":

@@ -34,6 +34,8 @@
 // 2011-07-17 KPR Created.
 // 
 
+using DowJones.DependencyInjection;
+using DowJones.Globalization;
 using DowJones.Web.Handlers.Proxy.Core;
 
 namespace DowJones.Charting.Highcharts
@@ -66,7 +68,8 @@ namespace DowJones.Charting.Highcharts
         using (new TimedLog("ExporterHttpHandler\tTotal read and write"))
         {
             // Process the request to export chart.
-            ExportChart.ProcessExportRequest(context);
+            var exportChart = new ExportChart(ServiceLocator.Current.Resolve<IResourceTextManager>());
+            exportChart.ProcessExportRequest(context);
         }
     }
   }
