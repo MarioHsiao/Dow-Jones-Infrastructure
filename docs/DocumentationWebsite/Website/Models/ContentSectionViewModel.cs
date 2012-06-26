@@ -15,10 +15,7 @@ namespace DowJones.Documentation.Website.Models
         {
             get
             {
-                if (IsView)
-                    return string.Format("{0}_{1}", View, ContentSection.Name.Key).Replace(".", "");
-                else
-                    return ContentSection.Name.Key;
+                return ContentSection.Name.Key.Replace(".", "");
             }
         }
 
