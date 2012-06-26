@@ -408,13 +408,13 @@
     <Folder Include="CompanySparkline\js\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="NewsRadar\ClientTemplates\Category.htm" />
-    <None Include="NewsRadar\ClientTemplates\Controls.htm" />
-    <None Include="NewsRadar\ClientTemplates\Key.htm" />
-    <None Include="NewsRadar\ClientTemplates\Radar.htm" />
-    <None Include="NewsRadar\ClientTemplates\Success.htm" />
-    <None Include="NewsRadar\ClientTemplates\Container.htm" />
-    <None Include="NewsRadar\ClientTemplates\Error.htm" />
+    <EmbeddedResource Include="NewsRadar\ClientTemplates\Category.htm" />
+    <EmbeddedResource Include="NewsRadar\ClientTemplates\Controls.htm" />
+    <EmbeddedResource Include="NewsRadar\ClientTemplates\Key.htm" />
+    <EmbeddedResource Include="NewsRadar\ClientTemplates\Radar.htm" />
+    <EmbeddedResource Include="NewsRadar\ClientTemplates\Success.htm" />
+    <EmbeddedResource Include="NewsRadar\ClientTemplates\Container.htm" />
+    <EmbeddedResource Include="NewsRadar\ClientTemplates\Error.htm" />
     <EmbeddedResource Include="NewsRadar\NewsRadar.js" />
     <EmbeddedResource Include="TwitterExperts\ClientTemplates\noData.htm" />
     <EmbeddedResource Include="TweetLines\ClientTemplates\noData.htm" />
