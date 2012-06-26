@@ -16,10 +16,10 @@
 
     <div>
     @if(contentSection.HasChildren) {
-        <div class="child-links well">
+        <div class="child-links">
             @foreach(var child in contentSection.Children)
             {
-                <a class="child-link @(contentSection.Selected ? "selected" : "")" href="#@child.AnchorId">@child.DisplayName</a>
+                <a class="child-link btn @(contentSection.Selected ? "active" : "")" href="#@child.AnchorId">@child.DisplayName</a>
             }
         </div>
         
@@ -76,34 +76,4 @@
 @section scripts {
     @Scripts.Render("~/bundles/syntaxhighlighter-js")
     @Scripts.Render("~/bundles/explorer")
-    <script type="text/javascript">
-        $(function() {
-            $(document).ready(function () {
-                var childLinks = $(".contentWell .child-link");
-
-                //  When user clicks on tab, this code will be executed
-                $(childLinks).click(function () {
-                    var childTabs = $(this).parents(".level-0").find(".level-1");
-
-                    //  First remove class "active" from currently active tab
-                    $(childLinks).removeClass('active');
-
-                    //  Now add class "active" to the selected/clicked tab
-                    $(this).addClass("active");
-
-                    //  Hide all tab content
-                    $(childTabs).hide();
-
-                    //  Here we get the href value of the selected tab
-                    var selected_tab = $(this).attr("href");
-
-                    //  Show the selected tab content
-                    $(selected_tab).fadeIn();
-
-                    //  At the end, we add return false so that the click on the link is not executed
-                    return false;
-                });
-            });
-        });
-    </script>
 }

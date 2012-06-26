@@ -78,6 +78,29 @@
         });
     }
 
+    function switchView() {
+        var childLinks = $(".contentWell .child-link");
+        var childTabs = $(this).parents(".level-0").find(".level-1");
+
+        //  First remove class "active" from currently active tab
+        $(childLinks).removeClass('active');
+
+        //  Now add class "active" to the selected/clicked tab
+        $(this).addClass("active");
+
+        //  Hide all tab content
+        $(childTabs).hide();
+
+        //  Here we get the href value of the selected tab
+        var selected_tab = $(this).attr("href");
+
+        //  Show the selected tab content
+        $(selected_tab).fadeIn();
+
+        //  At the end, we add return false so that the click on the link is not executed
+        return false;
+    }
+
     $(function () {
 
         // scroll subnav upto a certain point and then fix it to top
@@ -92,11 +115,10 @@
         // highlight Children in sidebar nav as we scroll
         setupScrollSpy(50);
 
-        // activate first nav item
-        $(".sidebar-nav > ul.nav > li").not(".nav-header").first().addClass("active");
-
         setupDemoFrame();
 
+        //  When user clicks on view switcher button
+        $(".contentWell .child-link").click(switchView);
     });
 
 }(window.jQuery));

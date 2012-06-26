@@ -116,12 +116,17 @@ namespace DowJones.Documentation.Website.Models
                     select MapChild(child)
                 ).ToArray();
 
+            SetDefaultSelection(children);
+
+            return children;
+        }
+
+        private static void SetDefaultSelection(IEnumerable<ContentSectionViewModel> children)
+        {
             var hasSelected = children.Any(x => x.Selected);
 
             if (!hasSelected && children.Any())
                 children.FirstOrDefault().Selected = true;
-
-            return children;
         }
 
         protected virtual ContentSectionViewModel MapChild(ContentSection child)

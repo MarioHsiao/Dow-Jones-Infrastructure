@@ -85,10 +85,7 @@ td.name {
   display: none; }
 
 .child-links {
-  padding: 10px 20px;
-  margin-bottom: 5px; }
-  .child-links .child-link {
-    padding-right: 20px; }
+  margin: 0 0 10px 10px; }
 
 .level-0 .level-1 {
   display: none; }
