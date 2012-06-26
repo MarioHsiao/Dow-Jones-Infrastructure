@@ -75,6 +75,8 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Components\StockKiosk\Overview.md" />
+    <None Include="Components\VideoPlayer\Configuration.md" />
+    <None Include="Components\VideoPlayer\LiveDemo.md" />
     <None Include="Components\VideoPlayer\Overview.md" />
     <None Include="deploy.proj" />
     <Content Include="Web.config" />
