@@ -202,6 +202,7 @@
     <Compile Include="Controllers\PortalHeadlineListController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\StockKioskController.cs" />
+    <Compile Include="Controllers\VideoPlayerController.cs" />
     <Compile Include="Dependencies.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -234,6 +235,11 @@
       <DependentUpon>portalHeadlineList.scss</DependentUpon>
     </Content>
     <Content Include="Styles\views\StockKiosk\StockKiosk.css" />
+    <Content Include="Styles\views\VideoPlayer\img\flowplayer.audio-3.2.2.swf" />
+    <Content Include="Styles\views\VideoPlayer\img\flowplayer.controls-3.2.5.swf" />
+    <Content Include="Styles\views\VideoPlayer\img\flowplayer.rtmp-3.2.3.swf" />
+    <Content Include="Styles\views\VideoPlayer\img\flowplayer.unlimited-3.2.7.swf" />
+    <Content Include="Styles\views\VideoPlayer\img\play_text_large.png" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -253,6 +259,7 @@
     <Content Include="Views\StockKiosk\Index.cshtml" />
     <Content Include="Views\NewsRadar\Index.cshtml" />
     <None Include="App_Data\newsradar.sample.json" />
+    <Content Include="Views\VideoPlayer\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
