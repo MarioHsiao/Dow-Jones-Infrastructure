@@ -61,6 +61,8 @@ namespace DowJones.Charting.Highcharts
         /// </summary>
         private const string DefaultFileName = "Chart";
 
+        internal const string DefaultNamespace = "TEST";
+
         private HttpContext _context = null;
 
         /// <summary>
@@ -94,7 +96,8 @@ namespace DowJones.Charting.Highcharts
             var manager = new PlatformCacheManager(controlData);
             var getItemRequest = new GetItemRequest
                                      {
-                                         Key = cacheKey
+                                         Key = cacheKey,
+                                         Namespace = DefaultNamespace,
                                      };
 
             var response = manager.GetItem<GetItemResponse>(getItemRequest);
