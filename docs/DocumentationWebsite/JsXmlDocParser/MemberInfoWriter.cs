@@ -9,9 +9,10 @@ namespace JsXmlDocParser
 		private readonly XmlWriter _writer;
 		private bool _documentStarted;
         private bool _membersElementOpened;
+		private bool _membersElementClosed;
 
 
-	    internal bool IsWriterAvailable
+		internal bool IsWriterAvailable
 	    {
 	        get { return _writer == null || _writer.WriteState != WriteState.Closed; }
 	    }
@@ -26,7 +27,7 @@ namespace JsXmlDocParser
 
 	    public void Close()
 		{
-            if (IsWriterAvailable)
+            if (!IsWriterAvailable)
                 return;
 
 	        _writer.Close();
@@ -54,7 +55,18 @@ namespace JsXmlDocParser
 	        _writer.WriteEndElement();
 	    }
 
-	    public void WriteAssemblyName(string name)
+		public void WriteMemberRaw(string memberInfo)
+		{
+			EnsureDocumentStarted();
+
+			EnsureMembersElementOpened();
+
+			_writer.WriteString(Environment.NewLine);
+			_writer.WriteRaw(memberInfo);
+			_writer.WriteString(Environment.NewLine);
+		}
+
+		public void WriteAssemblyName(string name)
 	    {
 	        EnsureDocumentStarted();
 
@@ -98,5 +110,6 @@ namespace JsXmlDocParser
 
             _membersElementOpened = true;
         }
+
 	}
 }

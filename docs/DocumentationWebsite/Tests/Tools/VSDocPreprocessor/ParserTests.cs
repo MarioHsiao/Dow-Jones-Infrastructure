@@ -1,13 +1,11 @@
-﻿using System.IO;
-using System.Xml.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using VSDocPreprocessor;
 using VSDocSplitter;
 
 namespace DowJones.Documentation.Tests.Tools.VSDocPreprocessor
 {
     [TestClass]
-    public class ParserTests
+    public class ParserTests : TestClassWithEmbeddedResources
     {
         private readonly Parser _parser;
         private readonly DocumentEntityConverter _converter;
@@ -21,13 +19,13 @@ namespace DowJones.Documentation.Tests.Tools.VSDocPreprocessor
         [TestMethod]
         public void ShouldParseVSDoc()
         {
-            var vsDoc = LoadFromResource("TestData.Input.Tests.XML");
+            var vsDoc = LoadResourceXDocument("TestData.Input.Tests.XML");
             var types = _parser.Parse(vsDoc);
 
             foreach (var entity in types)
             {
                 var resourcename = string.Format("TestData.Expected.{0}.xml", entity.Name);
-                var expected = LoadFromResource(resourcename);
+                var expected = LoadResourceXDocument(resourcename);
                 var actual = _converter.Convert(entity);
 
                 Assert.AreEqual(
@@ -35,14 +33,6 @@ namespace DowJones.Documentation.Tests.Tools.VSDocPreprocessor
                     actual.Document.ToString(),
                     entity.FullName + " not the same");
             }
-        }
-
-        private XDocument LoadFromResource(string resourcename)
-        {
-            var type = GetType();
-            var stream = type.Assembly.GetManifestResourceStream(type, resourcename);
-            var xml = new StreamReader(stream).ReadToEnd();
-            return XDocument.Parse(xml);
         }
     }
 }

@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" ?>
+<doc>
+  <assembly>
+    <name>DowJones.Web.Mvc.UI.Components</name>
+  </assembly>
+  <members>
+    <member name="T:DJ.UI.PortalHeadlineList">
+      <summary>
+        Portal Headline List Component
+      </summary>
+      <remarks>
+        This class is awesome.
+      </remarks>
+      <example>
+        To use this class, just instantiate it like this:
+        <code>var class = new TestClass("Awesome!");</code>
+      </example>
+    </member>
+    <member name="F:DJ.UI.PortalHeadlineList.selectors">
+      <summary>
+        jQuery selectors that are used to lookup various elements within the component. 
+        Defining them here also makes easy to manage changes to the actual selector names 
+        (think of why you define constants in C#).
+      </summary>
+    </member>
+    <member name="F:DJ.UI.PortalHeadlineList.options">
+        <value name="selectors" type="object" mayBeNull="true" locid="selectors">
+        jQuery selectors that are used to lookup various elements within the component. 
+        Defining them here also makes easy to manage changes to the actual selector names (think of why you define constants in C#).
+        </value>
+        <example>
+        selectors {
+            source: 'span.source-clickable',
+            author: 'span.article-clickable',
+        }
+        </example>
+    </member>
+    <member name="F:DJ.UI.PortalHeadlineList.events">
+        <value name="events" type="object" mayBeNull="true" locid="events">List of events that the component exposes</value>
+        <example>headlineClick: "headlineClick.dj.PortalHeadlineList"</example>
+        <remarks>Follows jQuery style namespacing - [eventName].[namespace]</remarks>
+    </member>
+    <member name="M:DJ.UI.PortalHeadlineList.init(element,meta)">
+        <summary>
+        Initializes the component. This is similar to a constructor call.
+        </summary>
+        <param name="element">The DOM element container for the component.</param>
+        <param name="meta">Dictionary of any associated metadata for the component as set from server side code. 
+        This includes client side Options and Data.
+        </param>
+    </member>
+    <member name="M:DJ.UI.PortalHeadlineList.bindOnSuccess(data)">
+        <summary>
+        Binds the on success template with the given data.
+        </summary>
+        <param name="data">The headline data.</param>
+    </member>
+    <member name="M:DJ.UI.PortalHeadlineList.bindOnError(data)">
+        <summary>
+        Binds the on error template with the given data.
+        </summary>
+        <param name="data">Error data.</param>
+    </member>
+    <member name="M:DJ.UI.PortalHeadlineList.showEditSection(show)">
+        <summary>
+        Shows the Add new content section 
+        </summary>
+        <param name="show">if set to <c>true</c> [show], otherwsie removes the section.</param>
+    </member>
+    <member name="M:DJ.UI.PortalHeadlineList.getNoDataTemplate">
+        <summary>
+        Returns the "No Data" template 
+        </summary>
+        <remarks>
+        Uses the default template if none specified
+        </remarks>
+    </member>
+    <member name="M:DJ.UI.PortalHeadlineList.setNoDataTemplate(markup)">
+        <summary>
+        Sets the "No Data" template 
+        </summary>
+        <param name="markup">Markup for the alternate template.</param>
+        <remarks>
+        Uses the default template if none specified
+        </remarks>
+    </member>
+    <member name="M:DJ.UI.PortalHeadlineList.getErrorTemplate">
+        <summary>
+        Returns the error template 
+        </summary>
+        <remarks>
+        Uses the default template if none specified
+        </remarks>
+    </member>
+    <member name="M:DJ.UI.PortalHeadlineList.setErrorTemplate(markup)">
+        <summary>
+        Sets the error template 
+        </summary>
+        <param name="markup">Markup for the alternate template.</param>
+        <remarks>
+        Uses the default template if none specified
+        </remarks>
+    </member>
+  </members>
+</doc>
