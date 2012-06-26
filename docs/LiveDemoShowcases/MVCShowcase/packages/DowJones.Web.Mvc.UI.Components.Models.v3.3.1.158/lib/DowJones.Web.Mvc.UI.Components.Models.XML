@@ -808,6 +808,11 @@
             Gets or Sets Auto Suggest Tokens
             </summary>
         </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.AutoSuggestModel.SuggestContext">
+            <summary>
+            Gets or Sets SuggestContext
+            </summary>
+        </member>
         <member name="P:DowJones.Web.Mvc.UI.Components.Models.AutoSuggestModel.AuthTypeValue">
             <summary>
             Gets or Sets AutenticationType Value
@@ -816,6 +821,16 @@
         <member name="P:DowJones.Web.Mvc.UI.Components.Models.AutoSuggestModel.AuthType">
             <summary>
             Gets or Sets AutenticationType
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.AutoSuggestModel.UseEncryptedKey">
+            <summary>
+            Gets or Sets Encrypted Token
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.Models.AutoSuggestModel.UseSessionId">
+            <summary>
+            Gets or Sets Session ID
             </summary>
         </member>
         <member name="P:DowJones.Web.Mvc.UI.Components.Models.AutoSuggestModel.SelectFirst">
