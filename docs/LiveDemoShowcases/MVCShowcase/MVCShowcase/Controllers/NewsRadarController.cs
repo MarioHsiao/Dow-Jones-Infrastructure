@@ -19,7 +19,7 @@ namespace DowJones.MvcShowcase.Controllers
             NewsRadarModel m;
             var serializer = new JavaScriptSerializer();
 
-            using (var sr = new StreamReader(Server.MapPath(Url.Content("~/Views/NewsRadar/sample.json"))))
+            using (var sr = new StreamReader(Server.MapPath(Url.Content("~/App_Data/newsradar.sample.json"))))
             {
                 m = serializer.Deserialize<NewsRadarModel>(sr.ReadToEnd());
             }

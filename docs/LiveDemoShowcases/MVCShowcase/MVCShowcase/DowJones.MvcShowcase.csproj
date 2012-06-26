@@ -252,7 +252,7 @@
     <Content Include="Views\AutoSuggest\Index.cshtml" />
     <Content Include="Views\StockKiosk\Index.cshtml" />
     <Content Include="Views\NewsRadar\Index.cshtml" />
-    <None Include="Views\NewsRadar\sample.json" />
+    <None Include="App_Data\newsradar.sample.json" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
