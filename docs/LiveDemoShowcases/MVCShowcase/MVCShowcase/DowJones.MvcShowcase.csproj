@@ -40,11 +40,13 @@
     <PrecompileBeforePublish>true</PrecompileBeforePublish>
     <PublishDatabases>true</PublishDatabases>
     <IncludeIisSettings>false</IncludeIisSettings>
-    <UseMerge>true</UseMerge>
-    <WDPMergeOption>MergeAllPagesAndControlToASingleAssembly</WDPMergeOption>
+    <UseMerge>false</UseMerge>
+    <WDPMergeOption>CreateSeparateAssembly</WDPMergeOption>
     <EnableUpdateable>true</EnableUpdateable>
-    <DeleteAppCodeCompiledFiles>true</DeleteAppCodeCompiledFiles>
-    <ContentAssemblyName>DowJones.MvcShowCase.Views</ContentAssemblyName>
+    <DeleteAppCodeCompiledFiles>false</DeleteAppCodeCompiledFiles>
+    <ContentAssemblyName>
+    </ContentAssemblyName>
+    <UseFixedNames>true</UseFixedNames>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
