@@ -258,7 +258,7 @@
     <Content Include="Views\AutoSuggest\Index.cshtml" />
     <Content Include="Views\StockKiosk\Index.cshtml" />
     <Content Include="Views\NewsRadar\Index.cshtml" />
-    <None Include="App_Data\newsradar.sample.json" />
+    <Content Include="App_Data\newsradar.sample.json" />
     <Content Include="Views\VideoPlayer\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
