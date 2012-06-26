@@ -78,32 +78,31 @@
     <Reference Include="Argotic.Web">
       <HintPath>..\packages\Argotic.Web.2008.0.2.0\lib\Net35\Argotic.Web.dll</HintPath>
     </Reference>
-    <Reference Include="DowJones.Assemblers, Version=3.1.158.46952, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="DowJones.Assemblers, Version=3.1.160.44343, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\DowJones.Assemblers.v3.3.1.158\lib\DowJones.Assemblers.dll</HintPath>
+      <HintPath>..\packages\DowJones.Assemblers.v3.3.1.160\lib\DowJones.Assemblers.dll</HintPath>
     </Reference>
-    <Reference Include="DowJones.Infrastructure, Version=3.1.158.46952, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="DowJones.Infrastructure, Version=3.1.160.44343, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\DowJones.Infrastructure.v3.3.1.158\lib\DowJones.Infrastructure.dll</HintPath>
+      <HintPath>..\packages\DowJones.Infrastructure.v3.3.1.160\lib\DowJones.Infrastructure.dll</HintPath>
     </Reference>
     <Reference Include="DowJones.Parallel">
       <HintPath>..\packages\DowJones.Parallel.1.0.0\lib\DowJones.Parallel.dll</HintPath>
     </Reference>
-    <Reference Include="DowJones.Web.Mvc, Version=3.1.158.46952, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="DowJones.Web.Mvc, Version=3.1.160.44343, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\DowJones.Web.Mvc.v3.3.1.158\lib\DowJones.Web.Mvc.dll</HintPath>
+      <HintPath>..\packages\DowJones.Web.Mvc.v3.3.1.160\lib\DowJones.Web.Mvc.dll</HintPath>
     </Reference>
-    <Reference Include="DowJones.Web.Mvc.Diagnostics, Version=3.1.158.46952, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="DowJones.Web.Mvc.Diagnostics, Version=3.1.160.44343, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\DowJones.Web.Mvc.Diagnostics.v3.3.1.158\lib\DowJones.Web.Mvc.Diagnostics.dll</HintPath>
+      <HintPath>..\packages\DowJones.Web.Mvc.Diagnostics.v3.3.1.160\lib\DowJones.Web.Mvc.Diagnostics.dll</HintPath>
     </Reference>
-    <Reference Include="DowJones.Web.Mvc.UI.Components, Version=3.1.158.46952, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="DowJones.Web.Mvc.UI.Components, Version=3.1.160.44343, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\DowJones.Web.Mvc.UI.Components.v3.3.1.158\lib\DowJones.Web.Mvc.UI.Components.dll</HintPath>
+      <HintPath>..\packages\DowJones.Web.Mvc.UI.Components.v3.3.1.160\lib\DowJones.Web.Mvc.UI.Components.dll</HintPath>
     </Reference>
     <Reference Include="DowJones.Web.Mvc.UI.Components.Models, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\DowJones.Web.Mvc.UI.Components.Models.v3.3.1.158\lib\DowJones.Web.Mvc.UI.Components.Models.dll</HintPath>
+      <HintPath>..\packages\DowJones.Web.Mvc.UI.Components.Models.v3.3.1.160\lib\DowJones.Web.Mvc.UI.Components.Models.dll</HintPath>
     </Reference>
     <Reference Include="Elmah, Version=1.2.14706.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
