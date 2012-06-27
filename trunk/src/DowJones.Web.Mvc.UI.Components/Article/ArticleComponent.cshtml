@@ -24,10 +24,25 @@
                 <div class="player">
                     @(CreateChildControl<VideoPlayerControl>(Model.VideoPlayerModel))
                 </div>   
-            </div>      
+            </div>
+            if (Model.ArticleDataSet != null)
+            {
+                <ul class="article-list">
+                    <li class="dj_entry">
+                        <div class="article-wrap">
+                            <h4 class="article-headline">
+                                <span class="article-view-trigger">@(Model.ArticleDataSet.MediaTitle)</span>
+                            </h4>                                       
+                            <div class="article-meta">
+                                <span class="media-icon @(Model.ArticleDataSet.ContentSubCategoryDescriptor.ToLower())-player"></span>
+                                <span class="media-length">[@(Model.ArticleDataSet.MediaLength)]</span>
+                            </div>  
+                        </div>
+                    </li>
+                </ul>
+            }
         }
-          
-        @if (Model != null && Model.ArticleDataSet != null)   
+        else if (Model != null && Model.ArticleDataSet != null)
         {
             
 @*Begin logo section*@
@@ -43,31 +58,33 @@
                             <img onerror="this.style.visibility='hidden'; this.style.display='none'; this.style.height=0;"
                                  onabort="this.style.visibility='hidden'; this.style.display='none'; this.style.height=0;" 
                                  src="@renderItem.ItemValue" alt="@renderItem.ItemText"/>
-                            break;
+                                                             break;
                         case MarkUpType.HeadImageLarge:
-                            largeImgUrl = renderItem.ItemValue;
-                            if (Model.ArticleDataSet.PictureSize == PictureSize.Large)
-                            {
+                                                             largeImgUrl = renderItem.ItemValue;
+                                                             if (Model.ArticleDataSet.PictureSize == PictureSize.Large)
+                                                             {
                                 <p class="dj_article_paragraph">
                                     <img class="largeImage" src="@renderItem.ItemValue" alt=""/>
                                 </p>
-                            }
-                            break;
+                                                             }
+                                                             break;
                         default:
-                            if (renderItem.ItemMarkUp == MarkUpType.HeadImageSmall && Model.ArticleDataSet.PictureSize == PictureSize.Small)
-                            {
+                                                             if (renderItem.ItemMarkUp == MarkUpType.HeadImageSmall && Model.ArticleDataSet.PictureSize == PictureSize.Small)
+                                                             {
                                 <p class="dj_article_paragraph">
                                     <img class="smallImage" src="@renderItem.ItemValue" data-ref="@largeImgUrl" alt=""/>
                                 </p>
-                            }
-                            else {if (renderItem.ItemMarkUp == MarkUpType.HeadImageXSmall && Model.ArticleDataSet.PictureSize == PictureSize.XSmall)
-                            {
+                                                             }
+                                                             else
+                                                             {
+                                                                 if (renderItem.ItemMarkUp == MarkUpType.HeadImageXSmall && Model.ArticleDataSet.PictureSize == PictureSize.XSmall)
+                                                                 {
                                 <p class="dj_article_paragraph">
                                     <img class="xsmallImage" src="@renderItem.ItemValue" data-ref="@largeImgUrl" alt=""/>
                                 </p>
-                            }
-                            }
-                            break;
+                                                                 }
+                                                             }
+                                                             break;
                     }
                 }
             </div>
@@ -88,10 +105,10 @@
                             {
                                 case MarkUpType.Plain:
                                     @renderItem.ItemText
-                                    break;
+                               break;
                                 case MarkUpType.Anchor:
                                     <a class="dj_article_headline_link" href="javascript:void(0)">@renderItem.ItemText</a>
-                                    break;
+                                                                                             break;
                             }
                         }
                     </h4>
@@ -112,10 +129,10 @@
                                 {
                                     case MarkUpType.EntityLink:
                                     <span class="dj_article_source" data-entity="@renderItem.ItemEntityData.ToJson().EscapeForHtml()">@renderItem.ItemEntityData.Name</span>
-                                        break;
+                                                                                                                                 break;
                                     case MarkUpType.Span:
                                     @renderItem.ItemText
-                                        break;
+                               break;
                                 }
                             </span>
                             }
@@ -308,7 +325,7 @@
                 {
                     foreach (KeyValuePair<string, List<RenderItem>> kvc in Model.ArticleDataSet.Correction.SelectMany(dci => dci))
                     {
-                        @(kvc.Key.Equals("pre") ? CreateChildControl<Paragraph>(Model.GetParagraphModel(kvc.Value, "pre", "dj_article_paragraph")) 
+                        @(kvc.Key.Equals("pre") ? CreateChildControl<Paragraph>(Model.GetParagraphModel(kvc.Value, "pre", "dj_article_paragraph"))
                                                 : CreateChildControl<Paragraph>(Model.GetParagraphModel(kvc.Value, "p", "dj_article_paragraph")))
                     }
                 }
@@ -323,7 +340,7 @@
                         {
                             foreach (var kvc in Model.ArticleDataSet.LeadParagraph.SelectMany(dci => dci))
                             {
-                                @(kvc.Key.Equals("pre") ? CreateChildControl<Paragraph>(Model.GetParagraphModel(kvc.Value, "pre", "dj_article_paragraph")) 
+                                @(kvc.Key.Equals("pre") ? CreateChildControl<Paragraph>(Model.GetParagraphModel(kvc.Value, "pre", "dj_article_paragraph"))
                                            : CreateChildControl<Paragraph>(Model.GetParagraphModel(kvc.Value, "p", "dj_article_paragraph")))
                             }
                         }
@@ -338,7 +355,7 @@
                     <div class="dj_article_td dj_article_section">
                         @foreach (var kvc in Model.ArticleDataSet.TailParagraphs.SelectMany(dci => dci))
                         {
-                            @(kvc.Key.Equals("pre") ? CreateChildControl<Paragraph>(Model.GetParagraphModel(kvc.Value, "pre", "dj_article_paragraph")) 
+                            @(kvc.Key.Equals("pre") ? CreateChildControl<Paragraph>(Model.GetParagraphModel(kvc.Value, "pre", "dj_article_paragraph"))
                                        : CreateChildControl<Paragraph>(Model.GetParagraphModel(kvc.Value, "p", "dj_article_paragraph")))
                         }
                     </div>
@@ -369,7 +386,7 @@
                     <div class="dj_article_rf dj_article_section">
                         @foreach (var kvc in Model.ArticleDataSet.Notes.SelectMany(dci => dci))
                         {
-                            @(kvc.Key.Equals("pre") ? CreateChildControl<Paragraph>(Model.GetParagraphModel(kvc.Value, "pre", "dj_article_paragraph")) 
+                            @(kvc.Key.Equals("pre") ? CreateChildControl<Paragraph>(Model.GetParagraphModel(kvc.Value, "pre", "dj_article_paragraph"))
                                                     : CreateChildControl<Paragraph>(Model.GetParagraphModel(kvc.Value, "p", "dj_article_paragraph")))
                         }
                     </div>

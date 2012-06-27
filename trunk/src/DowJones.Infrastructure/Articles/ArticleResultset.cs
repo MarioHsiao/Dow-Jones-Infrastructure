@@ -86,5 +86,8 @@ namespace DowJones.Ajax.Article
         public string Ref;
 
         public string SubType;
+
+        public string MediaLength { get; set; }
+        public string MediaTitle { get; set; }
     }
 }
