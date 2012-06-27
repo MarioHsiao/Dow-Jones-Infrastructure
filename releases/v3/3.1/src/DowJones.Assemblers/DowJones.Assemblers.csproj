@@ -93,6 +93,7 @@
     </Compile>
     <Compile Include="Articles\ArchiveFileRequestDTO.cs" />
     <Compile Include="Articles\ArticleConversionManager.cs" />
+    <Compile Include="Articles\DocumentToArticleMapper.cs" />
     <Compile Include="Assets\AddressContactConversionManager.cs" />
     <Compile Include="Assets\AddressContactCoverter.cs" />
     <Compile Include="Assets\AudienceManager.cs" />

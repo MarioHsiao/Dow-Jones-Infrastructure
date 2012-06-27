@@ -69,6 +69,49 @@ namespace DowJones.Web.Showcase.Controllers
             return Request.IsAjaxRequest() ? ViewComponent(model) : View("Index", model);
         }
 
+        [Route("article/document/{accessionNumber}")]
+        public ActionResult Document(string accessionNumber, DisplayOptions option = DisplayOptions.Full)
+        {
+            var model = GetDocument(accessionNumber, option);
+            return Request.IsAjaxRequest() ? ViewComponent(model) : View("Index", model);
+        }
+
+        private ArticleModel GetDocument(string accessionNumber, DisplayOptions option = DisplayOptions.Full)
+         {
+            var article = _articleService.GetDocument(accessionNumber);
+             
+            if (article == null || (article.status != null && article.status.value != 0))
+            {
+                throw new DowJonesUtilitiesException(DowJonesUtilitiesException.InvalidDataRequest);
+            }
+
+            _articleConversionManager.ShowCompanyEntityReference = true;
+            _articleConversionManager.ShowExecutiveEntityReference = true;
+            _articleConversionManager.EnableELinks = true;
+            _articleConversionManager.EmbedHtmlBasedArticles = true;
+            _articleConversionManager.EmbedHtmlBasedExternalLinks = true;
+            _articleConversionManager.ShowImagesAsFigures = true;
+            _articleConversionManager.EnableEnlargedImage = true;
+
+            return new ArticleModel
+            {
+                ArticleDataSet = _articleConversionManager.Convert(article),
+                ArticleDisplayOptions = option,
+                ShowPostProcessing = true,
+                ShowSourceLinks = true,
+                PostProcessingOptions = new[]
+    		       		                        	{
+    		       		                        		PostProcessingOptions.Print,
+    		       		                        		PostProcessingOptions.Save,
+    		       		                        		PostProcessingOptions.PressClips,
+    		       		                        		PostProcessingOptions.Email, 
+    		       		                        		PostProcessingOptions.Listen,
+    		       		                        		PostProcessingOptions.Translate,
+    		       		                        		PostProcessingOptions.Share
+    		       		                        	}.Distinct()
+            };
+         }
+
         private MultiMediaItemModel GetMultimediaModel(string accessionnumber, ContentSubCategory contentSubCategory)
         {
             var response = _multimediaManager.GetMultiMediaResult(accessionnumber, false);

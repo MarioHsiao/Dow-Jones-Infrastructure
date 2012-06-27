@@ -6,6 +6,8 @@ namespace DowJones.Articles
     {
         Article GetArticle(string accessionNumber, string canonicalSearchString = null);
 
+        Article GetDocument(string accessionNumber);
+
         string GetWebArticleUrl(string accessionNumber);
 
         string GetMultiMediaArticleUrl(string accessionNumber);
