@@ -1648,6 +1648,114 @@ namespace DowJones.Assemblers.Articles
             }
         }
 
+        public static Factiva.Gateway.Messages.Archive.V2_0.Article DocumentArticleMapper(Factiva.Gateway.Messages.Search.V2_0.Document document)
+        {
+            Factiva.Gateway.Messages.Archive.V2_0.Article article = new Factiva.Gateway.Messages.Archive.V2_0.Article();
+            if (document != null)
+            {
+                article.accessionNo = document.AccessionNo;
+
+                article.status = new Factiva.Gateway.Messages.Common.Status();
+                article.status.value = document.Status.Value;
+                article.status.message = document.Status.Message;
+                article.status.type = document.Status.Type;
+
+                int index = 0;
+                if (document.ArtWork.Any != null)
+                {
+                    article.artWork = new Factiva.Gateway.Messages.Archive.V2_0.ArticleContent();
+                    article.artWork.Items = new object[] { document.ArtWork.Any.Length };
+                    foreach (XmlElement element in document.ArtWork.Any)
+                    {
+                        Factiva.Gateway.Messages.Archive.V2_0.Text text = new Factiva.Gateway.Messages.Archive.V2_0.Text() { Value = element.InnerXml };
+                        article.artWork.Items[index] = text;
+                        index++;
+                    }
+                }
+                article.contentParts = new Factiva.Gateway.Messages.Archive.V2_0.ContentParts();
+                article.contentParts.contentType = "article";
+                article.sourceCode = document.SourceCode;
+                article.sourceName = document.SourceName;
+
+                article.sourceLogo = new Factiva.Gateway.Messages.Archive.V2_0.SourceLogo();
+                article.sourceLogo.image = document.Logo.Image;
+
+                if (document.Byline.Any != null)
+                {
+                    article.byline = new Factiva.Gateway.Messages.Archive.V2_0.ArticleContent();
+                    article.byline.Items = new object[document.Byline.Any.Length];
+                    index = 0;
+                    foreach (XmlElement element in document.Byline.Any)
+                    {
+                        Factiva.Gateway.Messages.Archive.V2_0.Text text = new Factiva.Gateway.Messages.Archive.V2_0.Text() { Value = element.InnerXml };
+                        article.byline.Items[index] = text;
+                        index++;
+                    }
+                }
+
+                if (document.Corrections.Any != null)
+                {
+                    article.corrections = new Factiva.Gateway.Messages.Archive.V2_0.Paragraph[1];
+                    article.corrections[0] = new Factiva.Gateway.Messages.Archive.V2_0.Paragraph();
+                    article.corrections[0].Items = new object[document.Corrections.Any.Length];
+                    index = 0;
+                    foreach (XmlElement element in document.Corrections.Any)
+                    {
+                        Factiva.Gateway.Messages.Archive.V2_0.Text text = new Factiva.Gateway.Messages.Archive.V2_0.Text() { Value = element.InnerXml };
+                        article.corrections[0].Items[index] = text;
+                        index++;
+                    }
+                }
+
+                if (document.LeadParagraph.Any != null)
+                {
+                    article.leadParagraph = new Factiva.Gateway.Messages.Archive.V2_0.Paragraph[1];
+                    article.leadParagraph[0] = new Factiva.Gateway.Messages.Archive.V2_0.Paragraph();
+                    article.leadParagraph[0].Items = new object[document.LeadParagraph.Any.Length];
+                    index = 0;
+                    foreach (XmlElement element in document.LeadParagraph.Any)
+                    {
+                        Factiva.Gateway.Messages.Archive.V2_0.Text text = new Factiva.Gateway.Messages.Archive.V2_0.Text() { Value = element.InnerXml };
+                        article.leadParagraph[0].Items[index] = text;
+                        index++;
+                    }
+                }
+
+                if (document.TailParagraphs.Any != null)
+                {
+                    article.tailParagraphs = new Factiva.Gateway.Messages.Archive.V2_0.Paragraph[1];
+                    article.tailParagraphs[0] = new Factiva.Gateway.Messages.Archive.V2_0.Paragraph();
+                    article.tailParagraphs[0].Items = new object[document.TailParagraphs.Any.Length];
+                    index = 0;
+                    foreach (XmlElement element in document.TailParagraphs.Any)
+                    {
+                        Factiva.Gateway.Messages.Archive.V2_0.Text text = new Factiva.Gateway.Messages.Archive.V2_0.Text() { Value = element.InnerXml };
+                        article.tailParagraphs[0].Items[index] = text;
+                        index++;
+                    }
+                }
+
+                article.wordCount = document.WordCount;
+                article.publisherName = document.PublisherName;
+                article.publisherGroupCode = document.PublisherGroupCode;
+                article.publisherGroupName = document.PublisherGroupName;
+
+                if (document.Copyright.Any != null)
+                {
+                    article.copyright = new Factiva.Gateway.Messages.Archive.V2_0.ArticleContent();
+                    article.copyright.Items = new Factiva.Gateway.Messages.Archive.V2_0.Text[document.Copyright.Any.Length];
+                    index = 0;
+                    foreach (XmlElement element in document.Copyright.Any)
+                    {
+                        Factiva.Gateway.Messages.Archive.V2_0.Text text = new Factiva.Gateway.Messages.Archive.V2_0.Text() { Value = element.InnerXml };
+                        article.copyright.Items[index] = text;
+                        index++;
+                    }
+                }
+            }
+            return article;
+        }
+
         #region public helper method
 
         /// <summary>
@@ -1799,5 +1907,7 @@ namespace DowJones.Assemblers.Articles
                     return "tnail";
             }
         }
+
+      
     }
 }
