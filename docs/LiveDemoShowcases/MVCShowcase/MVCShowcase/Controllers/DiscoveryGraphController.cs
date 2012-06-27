@@ -1,7 +1,5 @@
 using System.Web.Mvc;
-using DowJones.Web.Mvc.UI.Components.Common.Types;
 using DowJones.Web.Mvc.UI.Components.DiscoveryGraph;
-using DowJones.Web.Mvc.UI.Components.Models;
 
 namespace DowJones.MvcShowcase.Controllers
 {
