@@ -63,6 +63,21 @@ namespace DowJones.Articles
             return null;
         }
 
+        public Article GetDocument(string accessionNumber)
+        {
+            var request = new Factiva.Gateway.Messages.Search.OpenAccessSearch.V1_0.GetDocumentsRequest();
+
+            var objreferenceCollection = new ReferenceCollection
+                                             {
+                                                 "distdoc:archive/ArchiveDoc::Article/" + accessionNumber
+                                             };
+            request.ReferenceCollection = objreferenceCollection;
+
+
+            var response = Process<Factiva.Gateway.Messages.Search.OpenAccessSearch.V1_0.GetDocumentsResponse>(request);
+            return Mapper.Map<Article>(response.DocumentResultSet.DocumentCollection.First());
+        }
+
         public ArticleResponseSet GetArticles(GetArticleRequest request)
         {
             return GetArticlesWithLimit(request);

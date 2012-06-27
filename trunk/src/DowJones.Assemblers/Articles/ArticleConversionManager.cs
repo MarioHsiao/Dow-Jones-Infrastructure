@@ -1656,7 +1656,7 @@ namespace DowJones.Assemblers.Articles
             }
         }
 
-        public static Factiva.Gateway.Messages.Archive.V2_0.Article DocumentArticleMapper(Factiva.Gateway.Messages.Search.V2_0.Document document)
+        public static Article DocumentArticleMapper(Document document)
         {
             Factiva.Gateway.Messages.Archive.V2_0.Article article = new Factiva.Gateway.Messages.Archive.V2_0.Article();
             if (document != null)
@@ -1737,7 +1737,7 @@ namespace DowJones.Assemblers.Articles
                     index = 0;
                     foreach (XmlElement element in document.TailParagraphs.Any)
                     {
-                        Factiva.Gateway.Messages.Archive.V2_0.Text text = new Factiva.Gateway.Messages.Archive.V2_0.Text() { Value = element.InnerXml };
+                        var text = new Text {Value = element.InnerXml};
                         article.tailParagraphs[0].Items[index] = text;
                         index++;
                     }
@@ -1750,12 +1750,13 @@ namespace DowJones.Assemblers.Articles
 
                 if (document.Copyright.Any != null)
                 {
-                    article.copyright = new Factiva.Gateway.Messages.Archive.V2_0.ArticleContent();
-                    article.copyright.Items = new Factiva.Gateway.Messages.Archive.V2_0.Text[document.Copyright.Any.Length];
+                    article.copyright = new ArticleContent
+                                            {
+                                                Items = new Text[document.Copyright.Any.Length]
+                                            };
                     index = 0;
-                    foreach (XmlElement element in document.Copyright.Any)
+                    foreach (var text in document.Copyright.Any.Select(element => new Text {Value = element.InnerXml}))
                     {
-                        Factiva.Gateway.Messages.Archive.V2_0.Text text = new Factiva.Gateway.Messages.Archive.V2_0.Text() { Value = element.InnerXml };
                         article.copyright.Items[index] = text;
                         index++;
                     }
@@ -1900,8 +1901,6 @@ namespace DowJones.Assemblers.Articles
         }
 
         #endregion
-
-
 
         private static string Map( ImageType imageType )
         {
