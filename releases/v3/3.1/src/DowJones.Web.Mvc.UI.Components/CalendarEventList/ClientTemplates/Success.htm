@@ -1,4 +1,4 @@
-﻿<% var eventIndex = 0; var news ; if(self.Dates) { news = self.Dates[0].News;}  _.each(self.Dates, function(date){ %>
+﻿<% var eventIndex = 0; var news ; if(self.Dates) { news = self.Dates[0].News; console.log(news); console.log(typeof(news));}  _.each(self.Dates, function(date){ %>
 <% if(date.Events && date.Events.length > 0) { 
 var today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate() ); 
 var eventdate = new Date(new Date(date.EventDate).getFullYear(), new Date(date.EventDate).getMonth(), new Date(date.EventDate).getDate() )   ;
@@ -41,6 +41,10 @@ var eventdate = new Date(new Date(date.EventDate).getFullYear(), new Date(date.E
         <th>Forecast</th>
         <th>Actual</th>
         <th>Previous</th>
-        <th class="dj_newsHeader"><% if(news) { %>News <%} %></th>
+        <% if (news) {%>
+        <th class="dj_newsHeader">News</th>
+        <% } else { %>
+        <th class="dj_nonewsHeader">.</th>
+        <% }  %>
     </tr>
 </tfoot>
