@@ -1169,11 +1169,16 @@
       <DefaultExclude Include="**\Release\**" />
       <DefaultExclude Include="**\Debug\**" />
       <DefaultExclude Include="**\Dependencies\**" />
+      <DefaultExclude Include="**\Packages\**" />
       <DefaultExclude Include="**\*.csproj" />
       <DefaultExclude Include="**\*.user" />
       <DefaultExclude Include="**\*.suo" />
       <DefaultExclude Include="**\*.zip" />
-      <DefaultExclude Include="**\*.cs" />
+      <DefaultExclude Include="**\*.cs" />      
+      <DefaultExclude Include="**\*.Publish.xml" />
+      <DefaultExclude Include="**\*.csproj.vspscc" />
+      <DefaultExclude Include="**\*.sln" />
+      <DefaultExclude Include="**\*.vssscc" />      
       <DefaultExclude Include="*.config" />
     </ItemGroup>
     <ItemGroup>
