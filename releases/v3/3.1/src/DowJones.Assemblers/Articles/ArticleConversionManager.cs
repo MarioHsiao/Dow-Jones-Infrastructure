@@ -1478,6 +1478,14 @@ namespace DowJones.Assemblers.Articles
                         articleResultset.SubType = item.subType;
                     }
                     break;
+                case ContentCategory.Multimedia:
+                    foreach (var part in article.contentParts.parts.Where(part => part.type == "audio" || part.type == "video"))
+                    {
+                        articleResultset.MediaLength = new TimeSpan(0, 0, part.size).ToString("mm':'ss");
+                        break;
+                    }
+                    articleResultset.MediaTitle = GetParagraphText(article.headline);
+                    break;
             }
 
             articleResultset.MimeType = "text/xml";
