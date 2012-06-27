@@ -74,6 +74,7 @@
     <None Include="Components\StockKiosk\LiveDemo.md">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Components\StockKiosk\Properties.md" />
     <None Include="Components\StockKiosk\Overview.md" />
     <None Include="Components\VideoPlayer\Configuration\ASP.NET_MVC.md" />
     <None Include="Components\VideoPlayer\Configuration\Javascript.md" />
