@@ -3,5 +3,14 @@
     ViewBag.Title = "Video Player";
 }
 
+<style type="text/css">
+    .dj_video-player-content{
+        height: 190px;
+        margin: 5px;
+    }
+</style>
+
 <!-- Render the component -->
-@Html.DJ().RenderComponent("VideoPlayerControl", Model)
+<div class="dj_video-player-content">
+    @Html.DJ().RenderComponent("VideoPlayerControl", Model)
+</div>
