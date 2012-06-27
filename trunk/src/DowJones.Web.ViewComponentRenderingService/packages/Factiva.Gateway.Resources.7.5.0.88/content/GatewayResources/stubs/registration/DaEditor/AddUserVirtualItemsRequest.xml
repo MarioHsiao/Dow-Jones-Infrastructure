@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<AddUserVirtualItemsRequest>
+  <USER_LIST fcstype="list">
+    <USER_ID>user1</USER_ID>
+    <ITEM_BLOB>&lt;MEMBERSHIP&gt;&lt;DA1&gt;PASSWORD&lt;/DA1&gt;&lt;DA2&gt;DBID&lt;/DA2&gt;&lt;DA3&gt;LW&lt;/DA3&gt;&lt;/MEMBERSHIP&gt;</ITEM_BLOB>
+    <USER_ID>user2</USER_ID>
+    <ITEM_BLOB>&lt;MEMBERSHIP&gt;&lt;DA1&gt;PASSWORD&lt;/DA1&gt;&lt;DA2&gt;DBID&lt;/DA2&gt;&lt;DA3&gt;LW&lt;/DA3&gt;&lt;/MEMBERSHIP&gt;</ITEM_BLOB>
+  </USER_LIST>
+  <ITEM_INSTANCE_NAME>Personal Auths</ITEM_INSTANCE_NAME>
+  <ITEM_CLASS>11</ITEM_CLASS>
+  <ACCOUNT_ID>9ZZZ000500</ACCOUNT_ID>
+</AddUserVirtualItemsRequest>
