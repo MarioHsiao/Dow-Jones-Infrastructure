@@ -70,7 +70,8 @@
     <None Include="Components\PortalHeadlineList\LiveDemo.md" />
     <None Include="Components\PortalHeadlineList\Methods.md" />
     <None Include="Components\PortalHeadlineList\Overview.md" />
-    <None Include="Components\StockKiosk\Configuration.md" />
+    <None Include="Components\StockKiosk\Configuration\ASP.NET_MVC.md" />
+    <None Include="Components\StockKiosk\Configuration\Javascript.md" />
     <None Include="Components\StockKiosk\LiveDemo.md">
       <SubType>Designer</SubType>
     </None>
