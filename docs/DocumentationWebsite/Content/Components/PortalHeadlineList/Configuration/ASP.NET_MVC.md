@@ -18,7 +18,7 @@ Populate the Portal Headline List model (either in your controller or model):
 		Layout = PortalHeadlineListLayout.HeadlineLayout,
 	};
 	
-@Html.DataViewer(ConfigurationManager.AppSettings["InfrastructureShowcase.BasePath"]+"/PortalHeadlineList/data?mode=cs")
+@Html.DataViewer(ConfigurationManager.AppSettings["InfrastructureShowcase.BasePath"]+"/PortalHeadlineList/data/cs")
 
 Render the model in your view which will render the component in the browser:
 
