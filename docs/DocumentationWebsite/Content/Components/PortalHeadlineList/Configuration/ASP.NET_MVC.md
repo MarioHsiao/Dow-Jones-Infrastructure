@@ -1,4 +1,7 @@
-﻿#### Rendering the component from a Razor View
+﻿@using DowJones.Documentation.Website.Extensions;
+@using System.Configuration;
+
+#### Rendering the component from a Razor View
 
 Populate the Portal Headline List model (either in your controller or model):
 
@@ -14,6 +17,8 @@ Populate the Portal Headline List model (either in your controller or model):
 		DisplaySnippets = SnippetDisplayType.Hover,
 		Layout = PortalHeadlineListLayout.HeadlineLayout,
 	};
+	
+@Html.DataViewer(ConfigurationManager.AppSettings["InfrastructureShowcase.BasePath"]+"/PortalHeadlineList/data?mode=cs")
 
 Render the model in your view which will render the component in the browser:
 

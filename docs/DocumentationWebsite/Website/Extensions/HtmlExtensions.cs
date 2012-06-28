@@ -2,7 +2,6 @@
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Html;
-
 using System.Web.WebPages;
 
 namespace DowJones.Documentation.Website.Extensions
@@ -29,6 +28,14 @@ namespace DowJones.Documentation.Website.Extensions
 
 			return new HtmlString(builder.ToString() + liveDemoUrl.ToString());
         }
+
+		public static IHtmlString DataViewer(this HtmlHelper helper, string url)
+		{
+			return new HtmlString(
+				string.Format("<p><button class=\"dataViewer btn btn-mini btn-info\" data-url='{0}'>View Sample Data</button></p>"
+							  , url)
+			);
+		}
 
     }
 }

@@ -1,6 +1,43 @@
 ﻿/*jshint browser:true */
 
 (function ($) {
+    function setupDataViewer() {
+        $('.dataViewer')
+            .click(function () {
+                var $this = $(this),
+                    useCache = $this.data('cached') || false;
+                               
+                if(useCache) {
+                    $this.next('.cache-container').modal();
+                }
+                else {
+                    $this.button('loading');
+                    $.get($this.data('url'), null, function (data) {
+                        // modal body with prettified code
+                        var modalBody = $('<div>').addClass('modal-body').append(prettyPrintOne(data));
+
+                        // create the container and append it to the element
+                        $('<div>')
+                            .addClass("cache-container modal hide")
+                            .append('<div class="modal-header"><button type="button" class="close" data-dismiss="modal">×</button><h3>Sample Data</h3></div>')
+                            .append(modalBody)
+                            .insertAfter($this)
+                            .modal();
+                        
+                        $this.data('cached', true);
+                        
+                        $this.button('reset');
+                    });
+                }
+
+                return false;
+            })
+            .each(function (i, el) {
+                var p = $(el).parent();
+                p.prev('pre').append(p.detach().css({ float: "right" }));
+            });
+    }
+    
     function setupDemoFrame() {
         var liveDemo = $('#livedemo'),
             demoLoaderDiv = $('div.showcase', liveDemo),
@@ -55,22 +92,28 @@
         }
     }
 
-    // Find all </code><pre><code> 
-    // elements on the page and add the "prettyprint" style. If at least one 
-    // prettyprint element was found, call the Google Prettify prettyPrint() API.
     function setupPrettyPrint() {
+        /// <summary>
+        /// Find all "pre code"
+        /// elements on the page and add the "prettyprint" style. If at least one 
+        /// prettyprint element was found, call the Google Prettify prettyPrint() API.
+        /// </summary>
+        var found = false;
         $("pre code").parent().each(function () {
             if (!$(this).hasClass("prettyprint")) {
                 $(this).addClass("prettyprint");
+                found = true;
             }
         });
 
-        window.prettyPrint();
+        if(found) window.prettyPrint();
     }
 
-    // target tables generated via markdown but ignore tables that already have style
-    // (styled via explicit html table tags)
     function prettifyMarkdownTables() {
+        /// <summary>
+        /// target tables generated via markdown but ignore tables that already have style
+        /// (styled via explicit html table tags)
+        /// </summary>
         $(".content table").each(function () {
             if (!$(this).hasClass("table")) {
                 $(this).addClass("table table-striped table-bordered table-condensed");
@@ -119,6 +162,8 @@
 
         //  When user clicks on view switcher button
         $(".contentWell .child-link").click(switchView);
+        
+        setupDataViewer();
     });
 
 }(window.jQuery));

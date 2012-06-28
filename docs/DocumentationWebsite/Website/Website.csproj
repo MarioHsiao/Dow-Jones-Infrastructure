@@ -169,6 +169,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\jquery.asyncIFrame.js" />
+    <Content Include="Scripts\jquery.simplemodal.1.4.2.min.js" />
     <Content Include="Styles\bootstrap-responsive.css" />
     <Content Include="Styles\bootstrap-responsive.min.css" />
     <Content Include="Styles\collapsible-section.css" />
@@ -183,10 +184,12 @@
     <Content Include="Styles\themes\default\bootstrap.min.css" />
     <Content Include="Styles\themes\default\images\glyphicons-halflings-white.png" />
     <Content Include="Styles\themes\default\images\glyphicons-halflings.png" />
+    <Content Include="Styles\themes\default\images\x.png" />
     <Content Include="Styles\themes\journal\bootstrap.css" />
     <Content Include="Styles\themes\spacelab\bootstrap.css" />
     <Content Include="Styles\themes\spacelab\img\glyphicons-halflings-white.png" />
     <Content Include="Styles\themes\spacelab\img\glyphicons-halflings.png" />
+    <Content Include="Styles\themes\spacelab\img\x.png" />
     <Content Include="Styles\_mixins.scss" />
     <None Include="Properties\PublishProfiles\Montana-WebDeploy.pubxml" />
     <None Include="Styles\themes\spacelab\site.scss" />
