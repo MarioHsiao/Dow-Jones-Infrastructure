@@ -2,6 +2,6 @@
 
    Event				|  Description											
 ------------------------|----------------------------------------------------------------------------------------------
-viewRendered	| Raised when the component has finished rendering it's view to the page.
+dataTransformed.dj.NewsRadar  | Raised when the component has finished transforming the data result to radar format.
 radarItemClicked.dj.NewsRadar | Raised when a vertical column header is clicked.
 
