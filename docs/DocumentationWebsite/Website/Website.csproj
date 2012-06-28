@@ -169,6 +169,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\jquery.asyncIFrame.js" />
+    <Content Include="Scripts\jquery.blockUI.js" />
     <Content Include="Scripts\jquery.simplemodal.1.4.2.min.js" />
     <Content Include="Styles\bootstrap-responsive.css" />
     <Content Include="Styles\bootstrap-responsive.min.css" />
@@ -189,6 +190,7 @@
     <Content Include="Styles\themes\spacelab\bootstrap.css" />
     <Content Include="Styles\themes\spacelab\img\glyphicons-halflings-white.png" />
     <Content Include="Styles\themes\spacelab\img\glyphicons-halflings.png" />
+    <Content Include="Styles\themes\spacelab\img\loader.gif" />
     <Content Include="Styles\themes\spacelab\img\x.png" />
     <Content Include="Styles\_mixins.scss" />
     <None Include="Properties\PublishProfiles\Montana-WebDeploy.pubxml" />
@@ -240,6 +242,7 @@
     <Content Include="Views\Documentation\DocumentationPage.cshtml" />
     <Content Include="Views\Documentation\Homepage.cshtml" />
     <Content Include="Styles\Site.scss" />
+    <Content Include="Views\Shared\_DemoFrame.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Core\Core.csproj">

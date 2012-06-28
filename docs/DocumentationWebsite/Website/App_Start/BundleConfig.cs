@@ -14,7 +14,8 @@ namespace DowJones.Documentation.Website.App_Start
 			bundles.Add(new ScriptBundle("~/bundles/explorer").Include(
 						"~/Scripts/jquery.asyncIFrame.js",
 						"~/Scripts/explorer.js",
-						"~/Scripts/collapsible-section.js"));
+						"~/Scripts/collapsible-section.js",
+						"~/Scripts/jquery.blockUI.js"));
 
 			bundles.Add(new ScriptBundle("~/bundles/core").Include(
 						"~/Scripts/jquery-1.7.2.js",

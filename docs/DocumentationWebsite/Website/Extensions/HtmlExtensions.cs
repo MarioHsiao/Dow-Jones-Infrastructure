@@ -18,15 +18,7 @@ namespace DowJones.Documentation.Website.Extensions
 
         public static IHtmlString DemoFrame(this HtmlHelper helper, string url)
         {
-			// the loading div...
-			var builder = new TagBuilder("div");
-			builder.AddCssClass("showcase");
-			builder.SetInnerText("Please wait while the demo loads...");
-
-			// seed for iframe
-			var liveDemoUrl = helper.Hidden("liveDemoUrl", url);
-
-			return new HtmlString(builder.ToString() + liveDemoUrl.ToString());
+			return helper.Partial("_demoFrame", new ViewDataDictionary{{ "Url", url }});
         }
 
 		public static IHtmlString DataViewer(this HtmlHelper helper, string url)

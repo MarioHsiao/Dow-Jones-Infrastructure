@@ -40,21 +40,28 @@
     
     function setupDemoFrame() {
         var liveDemo = $('#livedemo'),
-            demoLoaderDiv = $('div.showcase', liveDemo),
-            demoUrl = $('#liveDemoUrl').val();
-
+            blocker = $('div.blocker', liveDemo),
+            iframe = blocker.find('iframe'),
+            demoUrl = iframe.data('url');
+        
         if (demoUrl) {
-            liveDemo.asyncIFrame({
-                url: demoUrl,
-                cssClass: 'showcase hide',
-                onLoad: function () {
-                    demoLoaderDiv.hide('fast', 'linear', function () {
-                        var iframe = $('iframe.showcase', liveDemo),
-                            actualHeight = iframe[0].contentDocument.height;
-                        iframe.height(actualHeight + 'px').removeClass('hide').show('slow', 'linear');
-                    });
-                }
-            });
+            blocker.block({
+                message: $('#loader'),
+                css: {
+                border: 'none', 
+                padding: '15px', 
+                backgroundColor: '#000', 
+                '-webkit-border-radius': '10px', 
+                '-moz-border-radius': '10px', 
+                opacity: .5, 
+                color: '#fff' 
+            } });
+        
+            iframe.load(function () {
+                var actualHeight = iframe[0].contentDocument.height;
+                iframe.height(actualHeight + 'px');
+                blocker.unblock();
+            }).attr('src', demoUrl);
         }
     }
 
