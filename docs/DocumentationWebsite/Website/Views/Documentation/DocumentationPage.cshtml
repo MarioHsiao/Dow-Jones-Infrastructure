@@ -3,35 +3,40 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Dow Jones Component Explorer :: " + Model.Category.DisplayName + " > " + Model.DisplayName;
 }
-@helper RenderMenuItems(ContentSectionViewModel contentSection, int level = 0) {
-     <li class="@(level > 0 ? "child":"")"><a href="#@contentSection.AnchorId">@contentSection.DisplayName</a></li>
+@helper RenderMenuItems(ContentSectionViewModel contentSection, int level = 0)
+{
+    <li class="@(level > 0 ? "child" : "")"><a href="#@contentSection.AnchorId">@contentSection.DisplayName</a>
+    </li>
 }
-@helper RenderSection(ContentSectionViewModel contentSection, int level = 0) {
-    <section id="@contentSection.AnchorId" class="span11 level-@level @(contentSection.Collapsible ? "collapsible" : "") @(contentSection.Selected ? "selected" : "")">
-        
-    @if(contentSection.ShowHeader)
-    {
-        <h3>@contentSection.DisplayName</h3>
-    }
+@helper RenderSection(ContentSectionViewModel contentSection, int level = 0)
+{
+    <section id="@contentSection.AnchorId" class="row-fluid level-@level @(contentSection.Collapsible ? "collapsible" : "") @(contentSection.Selected ? "selected" : "")">
+        @if (contentSection.ShowHeader)
+        {
+            <h3>@contentSection.DisplayName</h3>
+        }
 
-    <div>
-    @if(contentSection.HasChildren) {
-        <div class="child-links">
-            @foreach(var child in contentSection.Children)
+        <div>
+            @if (contentSection.HasChildren)
             {
-                <a class="child-link btn @(contentSection.Selected ? "active" : "")" href="#@child.AnchorId">@child.DisplayName</a>
+                <div class="child-links">
+                    @foreach (var child in contentSection.Children)
+                    {
+                        <a class="child-link btn @(contentSection.Selected ? "active" : "")" href="#@child.AnchorId">@child.DisplayName</a>
+                    }
+                </div>
+        
+                    foreach (var child in contentSection.Children)
+                    {
+                @RenderSection(child, level + 1)
+                    }
+            }
+            else
+            {
+                @Html.DocumentationSection(contentSection)
             }
         </div>
-        
-        foreach(var child in contentSection.Children) {
-            @RenderSection(child, level+1)
-        }
-    }
-    else {
-        @Html.DocumentationSection(contentSection)
-    }
-    </div>
-        
+
     </section>
 }
 @section styles {
@@ -42,33 +47,36 @@
     <div class="row-fluid">
         <div id="explorerArea">
             <div class="span2">
-            @if (Model.HasChildren)
-            {
-                <div class="well sidebar-nav">
-                    <ul class="nav nav-list">
-                        @foreach (var child in Model.Children)
-                        {
-                            @RenderMenuItems(child)
-                        }
-                    </ul>
-                </div>
-                <!--/.well -->
-            }
+                @if (Model.HasChildren)
+                {
+                    <div class="well sidebar-nav">
+                        <ul class="nav nav-list">
+                            @foreach (var child in Model.Children)
+                            {
+                                @RenderMenuItems(child)
+                            }
+                        </ul>
+                    </div>
+                    <!--/.well -->
+                }
             </div>
         </div>
-        <div class="span10 contentWell content">
+        <div class="span10 contentWell">
             <div class="row-fluid">
                 <header class="span12">
                     <h2 class="pull-left">@Model.DisplayName</h2>
                 </header>
             </div>
-            @if (!Model.HasChildren)
-            {
-                @Html.DocumentationPage()
-            }
-            @foreach(var child in Model.Children) {
-                @RenderSection(child)
-            }
+            <div class="content">
+                @if (!Model.HasChildren)
+                {
+                    @Html.DocumentationPage()
+                }
+                @foreach (var child in Model.Children)
+                {
+                    @RenderSection(child)
+                }
+            </div>
         </div>
     </div>
 </div>
