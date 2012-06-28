@@ -1,4 +1,4 @@
-﻿The following table describes the events available for the Discovery Graph component. 
+﻿Portal Headline List component raises the following events: 
 
    Event									|  Description											
 --------------------------------------------|----------------------------------------------------------------------------------------------
