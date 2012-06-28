@@ -76,6 +76,7 @@
     <None Include="Components\PortalHeadlineList\Overview.md" />
     <None Include="Components\StockKiosk\Configuration\ASP.NET_MVC.md" />
     <None Include="Components\StockKiosk\Configuration\Javascript.md" />
+    <None Include="Components\StockKiosk\Options.md" />
     <None Include="Components\StockKiosk\LiveDemo.md">
       <SubType>Designer</SubType>
     </None>
@@ -83,6 +84,7 @@
     <None Include="Components\StockKiosk\Overview.md" />
     <None Include="Components\VideoPlayer\Configuration\ASP.NET_MVC.md" />
     <None Include="Components\VideoPlayer\Configuration\Javascript.md" />
+    <None Include="Components\VideoPlayer\Properties.md" />
     <None Include="Components\VideoPlayer\LiveDemo.md" />
     <None Include="Components\VideoPlayer\Options.md" />
     <None Include="Components\VideoPlayer\Overview.md" />
