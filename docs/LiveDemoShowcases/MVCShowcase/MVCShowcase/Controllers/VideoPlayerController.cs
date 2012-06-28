@@ -20,14 +20,14 @@ namespace DowJones.MvcShowcase.Controllers
                 Type =  "video/mp4",
                 BitRate = "1500",
                 FrameRate = "29.97",
-                Width = "450",
-                Height = "200"
+                Width = "670",
+                Height = "300"
             };
             var videoPlayerModel = new VideoPlayerModel
             {
                 AutoPlay = false,
-                Width = 430,
-                Height = 188,
+                Width = 650,
+                Height = 288,
                 PlayList = new ClipCollection(new[] { mediaContent }),
                 ControlBarPath = appPath + "/styles/views/videoplayer/img/flowplayer.controls-3.2.5.swf",
                 PlayerPath = appPath + "/styles/views/videoplayer/img/flowplayer.unlimited-3.2.7.swf",

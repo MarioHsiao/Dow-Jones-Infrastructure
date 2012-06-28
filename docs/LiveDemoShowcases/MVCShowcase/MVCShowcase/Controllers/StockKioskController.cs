@@ -63,9 +63,9 @@ namespace DowJones.MvcShowcase.Controllers
             _assembler = assembler;
         }
 
-        public ActionResult Index([ModelBinder(typeof(StringSplitModelBinder))]string[] syms, SymbolType symbolType = SymbolType.FCode, Frequency frequency = Frequency.FifteenMinutes, int pageSize = 10)
+        public ActionResult Index([ModelBinder(typeof(StringSplitModelBinder))]string[] syms, SymbolType symbolType = SymbolType.Ticker, Frequency frequency = Frequency.FifteenMinutes, int pageSize = 10)
         {
-            var symsList = new List<string>(new[] { "ibm", "mcrost", "goog", "reggr", "carsvc", "cmdbnn", "rgrc", "stgtec", "precos", "comasc" });
+            var symsList = new List<string>(new[] { "ibm", "msft", "goog", "aapl", "znga", "fb", "amzn", "ma" });
             var model = GetStockKioskModel(symsList, symbolType, frequency, pageSize);
             return View("Index", model);
         }
