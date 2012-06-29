@@ -28,7 +28,6 @@
             BuildUri="$(BuildUri)"
             Id="$(StepId)"
             Status="Succeeded" />
-		<OnError ExecuteTargets="MarkBuildStepAsFailed" />
 
 		<BuildStep
 			TeamFoundationServerUrl="$(TeamFoundationServerUrl)"
@@ -44,7 +43,6 @@
             BuildUri="$(BuildUri)"
             Id="$(StepId)"
             Status="Succeeded" />
-		<OnError ExecuteTargets="MarkBuildStepAsFailed" />
 
 		<BuildStep
 			 TeamFoundationServerUrl="$(TeamFoundationServerUrl)"
