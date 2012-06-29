@@ -4,12 +4,12 @@ Populate the StockKiosk model (either in your controller or model):
 
 	public ActionResult Index([ModelBinder(typeof(StringSplitModelBinder))]string[] syms, SymbolType symbolType = SymbolType.FCode, Frequency frequency = Frequency.FifteenMinutes, int pageSize = 10)
     {
-        var symsList = new List<string>(new[] { "ibm", "mcrost", "goog", "reggr", "carsvc", "cmdbnn", "rgrc", "stgtec", "precos", "comasc" });
-        var model = GetStockKioskModel(symsList, symbolType, frequency, pageSize);
-        return View("Index", model);
+         var symsList = new List<string>(new[] { "ibm", "msft", "goog", "aapl", "znga", "fb", "amzn", "ma" });
+         var model = GetStockKioskModel(symsList, symbolType, frequency, pageSize);
+         return View("Index", model);
     }
 
-	private StockKioskModel GetStockKioskModel(IEnumerable<string> syms, SymbolType symbolType = SymbolType.FCode, Frequency frequency = Frequency.FifteenMinutes, int pageSize = 10)
+	private StockKioskModel GetStockKioskModel(IEnumerable<string> syms, SymbolType symbolType = SymbolType.Ticker, Frequency frequency = Frequency.FifteenMinutes, int pageSize = 10)
     {
         var kioskModel = new StockKioskModel();
         var response = MarketDataChartingManager.GetMarketChartData(syms.ToArray(), symbolType, TimePeriod.OneDay, frequency);

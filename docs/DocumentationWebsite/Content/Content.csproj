@@ -49,7 +49,8 @@
     <None Include="Components\Article\LiveDemo.md" />
     <None Include="Components\Article\Properties.md" />
     <None Include="Components\Article\Overview.md" />
-    <None Include="Components\AutoSuggest\Configuration.md" />
+    <None Include="Components\AutoSuggest\Configuration\ASP.NET_MVC.md" />
+    <None Include="Components\AutoSuggest\Configuration\Javascript.md" />
     <None Include="Components\AutoSuggest\Tokens.md" />
     <None Include="Components\AutoSuggest\Options.md" />
     <None Include="Components\AutoSuggest\Events.md" />
