@@ -18,6 +18,7 @@
       
     <Copy SourceFiles="@(ContentFiles)"
           DestinationFiles="@(ContentFiles->'$(DeploymentDir)\%(RecursiveDir)%(Filename)%(Extension)')"
+		  OverwriteReadOnlyFiles="true"
     />
 
     <Exec Command="attrib +R @(ContentFiles->'%(FullPath)')" />
