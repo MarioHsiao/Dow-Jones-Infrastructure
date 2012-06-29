@@ -1,7 +1,14 @@
-﻿#### Rendering the component from a Razor View
+﻿@using DowJones.Documentation.Website.Extensions;
+@using System.Configuration;
 
-Add the following lines to render the Discovery Graph component from a Razor View:
-		
+Populate the Discovery Graph model (either in your controller or model):
+
+	var discoveryGraphModel = new DiscoveryGraphModel();
+	
+@Html.DataViewer(ConfigurationManager.AppSettings["InfrastructureShowcase.BasePath"]+"/DiscoveryGraph/data/cs")
+
+Render the model in your view which will render the component in the browser:
+
 	<!-- Use the default stylesheet or supply your own -->
 	@@{
 		Html.DJ().StylesheetRegistry()
@@ -13,4 +20,4 @@ Add the following lines to render the Discovery Graph component from a Razor Vie
 	@@Html.DJ().StylesheetRegistry().Render()
 
 	<!-- Render the component -->
-	@@Html.DJ().RenderComponent("DiscoveryGraph", new DiscoveryGraphModel())
+	@@Html.DJ().Render(discoveryGraphModel)	

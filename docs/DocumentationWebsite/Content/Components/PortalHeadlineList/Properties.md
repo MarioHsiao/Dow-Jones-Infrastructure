@@ -4,7 +4,7 @@
 ----------------------------|----------------------------------------------------------------------------------------------
 MaxNumHeadlinesToShow		| Limits the number of headlines displayed. <span class="label">Default: 5</span>
 Layout						| Specifies the headlines layout - `Default`, `Author`, `Timeline`
-DisplaySnippets				| Specifes how "Snippets" are displayed - `None`, `Inline, `Hybrid`, `Hover`, `HybridHover`.
+DisplaySnippets				| Specifes how "Snippets" are displayed - `None`, `Inline`, `Hybrid`, `Hover`, `HybridHover`.
 DisplayNoResultsToken		| Show/hide "No Results" token when headline dataset is empty.
 SourceClickable				| Specifies whether the "Source" span raises event when clicked.
 AuthorClickable				| Specifies whether the "Author" span raises event when clicked.

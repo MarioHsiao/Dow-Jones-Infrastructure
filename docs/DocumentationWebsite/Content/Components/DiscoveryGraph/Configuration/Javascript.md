@@ -1,19 +1,47 @@
-﻿#### Rendering the component via JavaScript
+﻿@using DowJones.Documentation.Website.Extensions;
+@using System.Configuration;
 
-Add the following lines to render the Discovery Graph component via JavaScript:
+Add a reference to `common.js` with a valid `sessionId` anywhere in the `<head>` section of you page.
 
-	<div id="MyDiscovery" />
-	
-	<script type="text/javascript" src="[DJ Component Site]/common.js" />
+	<script type="text/javascript" 
+	        src="http://<tbd>/common.js?sessionId=27137ZzZKJAUQT2CAAAGUAIAAAAANFOUAAAAAABSGAYTEMBWGI2TCNBQGYZTKNZS"></script>
 
-Then, instantiate with a script tag:
+Add a container `<div>` to your page where you would like to display the component.
 
-	<script type="text/javascript" src="[DJ Component Site]/DiscoveryGraph.js?target=MyDiscovery" />
+	<div id="discoveryContainer"></div>
 
-... or with the `DJ.add()` method:
+Finally, add the component to the page:
 
 	<script type="text/javascript">
-	DJ.add("DiscoveryGraph", {
-		target: "MyDiscovery"
-	});
+		DJ.add(DJ.UI.DiscoveryGraph, {
+			container : "discoveryContainer",
+			onLoad: init			/* function to wire up data on load */
+		}); 
+	</script>	  
+
+`init` can be any function that calls a service to get data and bind it to the component. Here is a sample implementation:
+
+	<script type="text/javascript">
+		// bootstrapper function to bind data to the component
+		function init() {
+			var $container = $('#discoveryContainer'),
+			component = $container.findComponent(DJ.UI.DiscoveryGraph);
+
+			if(component) {
+				// get data via a service call (stub service shown here for reference purposes only)
+				$.ajax({
+					url: 'http://someService/DiscoveryGraph/GetJsonData',
+					success: function(data) {
+								// on receiving data, call the bind success method of the component
+								component.setData(data);
+							},
+					error:  function(jqXHR, textStatus, errorThrown) {
+								// on error, call the bind error method of the component
+								component.setData();
+							}
+				});
+			}
+		}
 	</script>
+	
+@Html.DataViewer(ConfigurationManager.AppSettings["InfrastructureShowcase.BasePath"]+"/DiscoveryGraph/data/js")
