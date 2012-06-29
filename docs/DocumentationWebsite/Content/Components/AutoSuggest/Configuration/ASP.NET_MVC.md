@@ -16,4 +16,4 @@ Populate the AutoSuggest model (either in your controller or model):
 Render the model in your view which will render the component in the browser:
 
 	<!-- Render the component -->
-	@@Html.DJ().Render(mdl, new { id = mdl.ControlId })
+	@@Html.DJ().Render(keywordSuggestModel, new { id = keywordSuggestModel.ControlId })
