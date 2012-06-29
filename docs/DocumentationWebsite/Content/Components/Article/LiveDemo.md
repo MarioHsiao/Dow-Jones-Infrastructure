@@ -1,2 +1,2 @@
 ﻿@using DowJones.Documentation.Website.Extensions;
-@Html.DemoFrame(System.Configuration.ConfigurationManager.AppSettings["InfrastructureShowcase.BasePath"]+"/VideoPlayer")
+@Html.DemoFrame(System.Configuration.ConfigurationManager.AppSettings["InfrastructureShowcase.BasePath"]+"/Article")
