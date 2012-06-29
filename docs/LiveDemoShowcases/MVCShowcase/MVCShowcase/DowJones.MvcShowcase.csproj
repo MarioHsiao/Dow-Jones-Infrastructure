@@ -292,6 +292,8 @@
     <Content Include="Views\Article\_cSharpData.cshtml" />
     <Content Include="Views\PortalHeadlineList\_jsData.cshtml" />
     <Content Include="Views\PortalHeadlineList\_cSharpData.cshtml" />
+    <Content Include="Views\StockKiosk\_cSharpData.cshtml" />
+    <Content Include="Views\StockKiosk\_jsData.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />

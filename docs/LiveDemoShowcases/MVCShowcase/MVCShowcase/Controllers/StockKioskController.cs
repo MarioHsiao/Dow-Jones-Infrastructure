@@ -9,6 +9,7 @@ using DowJones.Assemblers.Charting.MarketData;
 using DowJones.Managers.Charting.MarketData;
 using DowJones.Managers.MarketWatch.Instrument;
 using DowJones.Web.Mvc.ModelBinders;
+using DowJones.Web.Mvc.Routing;
 using DowJones.Web.Mvc.UI.Components.StockKiosk;
 
 namespace DowJones.MvcShowcase.Controllers
