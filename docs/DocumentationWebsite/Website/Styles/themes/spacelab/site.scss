@@ -47,17 +47,40 @@ iframe.showcase, .contentWell, section.showcase  {
 }
 
 .contentWell {
-	header {
+	> header {
 		background-color: #f5f5f5;
 		border-bottom: 1px solid #eee;
 	}
 }
 
-section.showcase {
-	> h4 {
-		color:#4183C4;
-	}
-}
+
+section {
+  &.showcase h4 {
+    color: #4183C4; }
+
+  > header {
+	
+    border-bottom: 1px inset #bbb;
+    line-height: normal;
+    margin-bottom: 2%; }
+
+  &.collapsible {
+    > header {
+		cursor: pointer;
+		cursor: hand;
+      h3 i {
+        width: 14px;
+        height: 16px;
+        line-height: 16px;
+        background-position: -288px -115px;
+        background-image: url("img/glyphicons-halflings.png");
+        background-repeat: no-repeat;
+        float: right;
+        vertical-align: text-top;
+        display: inline-block; } } 
+    &.collapsed i {
+      background-position: -314px -115px; } } }
+
 
 .navbar {
 	.nav {

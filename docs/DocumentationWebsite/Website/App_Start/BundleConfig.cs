@@ -36,15 +36,13 @@ namespace DowJones.Documentation.Website.App_Start
 			bundles.Add(new StyleBundle("~/Styles/theme-default").Include(
 				"~/Styles/themes/default/bootstrap.css",
 				"~/Styles/bootstrap-responsive.css",
-				"~/Styles/Site.css",
-				"~/Styles/collapsible-section.css"));
+				"~/Styles/Site.css"));
 
 			bundles.Add(new StyleBundle("~/Styles/theme-spacelab").Include(
 				"~/Styles/themes/spacelab/bootstrap.css",
 				"~/Styles/bootstrap-responsive.css",
 				"~/Styles/Site.css",
-                "~/Styles/themes/spacelab/site.css",
-				"~/Styles/collapsible-section.css"));
+                "~/Styles/themes/spacelab/site.css"));
 			
 			#endregion
 		}

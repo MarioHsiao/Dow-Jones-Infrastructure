@@ -129,26 +129,21 @@
     }
 
     function switchView() {
-        var childLinks = $(".contentWell .child-link");
-        var childTabs = $(this).parents(".level-0").find(".level-1");
+        var $this = $(this);
 
         //  First remove class "active" from currently active tab
-        $(childLinks).removeClass('active');
+        $(".contentWell .child-link").removeClass('active');
 
-        //  Now add class "active" to the selected/clicked tab
-        $(this).addClass("active");
-
-        //  Hide all tab content
-        $(childTabs).hide();
+        /* Now make current tab "active" */
+        $this.addClass("active")            
+             .parents(".level-0").find(".level-1").hide();   /*  Hide all tab content */
 
         //  Here we get the href value of the selected tab
-        var selected_tab = $(this).attr("href");
+        var selectedTab = $(this).data("ref");
 
         //  Show the selected tab content
-        $(selected_tab).fadeIn();
+        $(selectedTab).fadeIn();
 
-        //  At the end, we add return false so that the click on the link is not executed
-        return false;
     }
 
     $(function () {

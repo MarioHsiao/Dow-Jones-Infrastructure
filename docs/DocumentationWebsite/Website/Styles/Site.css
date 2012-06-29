@@ -19,7 +19,7 @@ body {
 
 .contentWell {
   border-radius: 4px; }
-  .contentWell header {
+  .contentWell > header {
     padding: 0 10px;
     line-height: 36px;
     /* var: same as h2 height */

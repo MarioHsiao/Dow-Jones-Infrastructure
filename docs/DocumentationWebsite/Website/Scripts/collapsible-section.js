@@ -1,10 +1,10 @@
 $(function () {
-    $('section.collapsible > h3').append('<i/>');
-    $('section.collapsible > h3').click(function () {
-        var $blocks = $(this).siblings(),
+    $('section.collapsible > header h3').append('<i/>');
+    $('section.collapsible > header h3').click(function () {
+        var $blocks = $(this).parent().siblings(),
             $self = $(this);
 
-        $blocks.toggle(800, 'linear', function () {
+        $blocks.fadeToggle('fast', 'linear', function () {
             $self.closest('section').toggleClass('collapsed');
         });
         

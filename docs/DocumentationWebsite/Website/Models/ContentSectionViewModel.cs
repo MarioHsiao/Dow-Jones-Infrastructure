@@ -21,7 +21,7 @@ namespace DowJones.Documentation.Website.Models
 
         public bool Collapsible
         {
-            get { return Key != "livedemo"; }
+            get { return Key != "livedemo" && Key != "configuration"; }
         }
 
         public string DisplayName
@@ -120,10 +120,11 @@ namespace DowJones.Documentation.Website.Models
 
         private static void SetDefaultSelection(IEnumerable<ContentSectionViewModel> children)
         {
-            var hasSelected = children.Any(x => x.Selected);
+			var childrenList = children.ToList();		// avoid multiple enumerations
+			var hasSelected = childrenList.Any(x => x.Selected);
 
-            if (!hasSelected && children.Any())
-                children.FirstOrDefault().Selected = true;
+			if (!hasSelected && childrenList.Any())
+				childrenList.First().Selected = true;
         }
 
         protected virtual ContentSectionViewModel MapChild(ContentSection child)

@@ -10,33 +10,41 @@
 }
 @helper RenderSection(ContentSectionViewModel contentSection, int level = 0)
 {
-    <section id="@contentSection.AnchorId" class="row-fluid level-@level @(contentSection.Collapsible ? "collapsible" : "") @(contentSection.Selected ? "selected" : "")">
-        @if (contentSection.ShowHeader)
+    <section id="@contentSection.AnchorId" class="row-fluid level-@level @(contentSection.Collapsible && level == 0 ? "collapsible" : "") @(contentSection.Selected ? "selected" : "")">
+        @if (contentSection.HasChildren)
         {
-            <h3>@contentSection.DisplayName</h3>
-        }
-
-        <div>
-            @if (contentSection.HasChildren)
-            {
-                <div class="child-links">
-                    @foreach (var child in contentSection.Children)
+            <header class="span12 clearfix">
+                <div class="pull-left">
+                    @if (contentSection.ShowHeader && level == 0)
                     {
-                        <a class="child-link btn @(contentSection.Selected ? "active" : "")" href="#@child.AnchorId">@child.DisplayName</a>
+                        <h3>@contentSection.DisplayName</h3>
                     }
                 </div>
-        
+                <div class="pull-right child-links">
+                    @foreach (var child in contentSection.Children)
+                    {
+                        <span class="child-link btn btn-mini btn-inverse @(child.Selected ? "active" : "")" data-ref="#@child.AnchorId">@child.DisplayName</span>
+                    }
+                </div>
+            </header>
+            
                     foreach (var child in contentSection.Children)
                     {
-                @RenderSection(child, level + 1)
+            @RenderSection(child, level + 1)
                     }
-            }
-            else
+        }
+        else
+        {
+            if (contentSection.ShowHeader && level == 0)
             {
-                @Html.DocumentationSection(contentSection)
+            <header>
+                <h3>@contentSection.DisplayName</h3>
+            </header>
             }
-        </div>
-
+            <div>
+                @Html.DocumentationSection(contentSection)
+            </div>
+        }
     </section>
 }
 @section styles {
@@ -62,11 +70,10 @@
             </div>
         </div>
         <div class="span10 contentWell">
-            <div class="row-fluid">
-                <header class="span12">
-                    <h2 class="pull-left">@Model.DisplayName</h2>
-                </header>
-            </div>
+            <header class="span12">
+                <h2 class="pull-left">@Model.DisplayName</h2>
+            </header>
+
             <div class="content">
                 @if (!Model.HasChildren)
                 {
