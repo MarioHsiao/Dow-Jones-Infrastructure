@@ -1,4 +1,6 @@
-﻿#### Rendering the component via JavaScript
+﻿@using DowJones.Documentation.Website.Extensions;
+@using System.Configuration;
+#### Rendering the component via JavaScript
 
 Add a reference to `common.js` with a valid `sessionId` anywhere in the `<head>` section of you page.
 
@@ -20,3 +22,5 @@ Finally, add the component to the page:
 			data:{Your Data Object}
 		}); 
 	</script>	  
+
+@Html.DataViewer(ConfigurationManager.AppSettings["InfrastructureShowcase.BasePath"]+"/StockKiosk/data/js")
