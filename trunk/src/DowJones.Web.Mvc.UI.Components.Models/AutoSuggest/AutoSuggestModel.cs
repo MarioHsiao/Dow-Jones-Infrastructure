@@ -96,12 +96,6 @@ namespace DowJones.Web.Mvc.UI.Components.Models
         public string Columns { get; set; }
 
         /// <summary>
-        /// Gets or Sets SuggestContext
-        /// </summary>
-        [ClientProperty("suggestContext")]
-        public string SuggestContext { get; set; }
-
-        /// <summary>
         /// Gets or Sets AutenticationType Value
         /// </summary>
         [ClientProperty("authTypeValue")]
@@ -112,18 +106,6 @@ namespace DowJones.Web.Mvc.UI.Components.Models
         /// </summary>
         [ClientProperty("authType")]
         public string AuthType { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Encrypted Token
-        /// </summary>
-        [ClientProperty("useEncryptedKey")]
-        public string UseEncryptedKey { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Session ID
-        /// </summary>
-        [ClientProperty("useSessionId")]
-        public string UseSessionId { get; set; }
 
         /// <summary>
         /// Gets or Sets Select First. If true, selects the first row from the suggest list.

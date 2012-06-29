@@ -710,7 +710,6 @@
     <EmbeddedResource Include="Autocomplete\images\source_sourceFamily.png" />
     <EmbeddedResource Include="Autocomplete\images\source_webpage.png" />
     <EmbeddedResource Include="Autocomplete\scripts\jquery.autocomplete.js" />
-    <EmbeddedResource Include="Autocomplete\scripts\jquery.jsonp-2.1.4.min.js" />
     <EmbeddedResource Include="CalendarEventList\ClientTemplates\Container.htm" />
     <EmbeddedResource Include="CalendarEventList\ClientTemplates\Success.htm" />
     <EmbeddedResource Include="DateSlider\ClientTemplates\Container.htm" />
@@ -720,6 +719,7 @@
     <EmbeddedResource Include="HeadlineListCarousel\HeadlineListCarousel.css" />
     <EmbeddedResource Include="HeadlineListCarousel\HeadlineListCarousel.js" />
     <EmbeddedResource Include="Autocomplete\images\progress.gif" />
+    <EmbeddedResource Include="Autocomplete\scripts\jquery.jsonp-2.3.1.min.js" />
     <Content Include="InlineMp3Player\InlineMp3PlayerBehavior.Original.js" />
     <EmbeddedResource Include="Pager\Pager.js" />
     <EmbeddedResource Include="RegionalMap\images\world_map.gif" />

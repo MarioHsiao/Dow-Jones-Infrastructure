@@ -11,10 +11,10 @@
 * Date: May 03 2012
 * Last Modified By Dilip Gavara
 */
-; (function($) {
+;(function($) {
     $.fn.extend({
         _djAutocomplete: function(urlOrData, options) {
-            var isUrl = typeof urlOrData == "string";
+            var isUrl = typeof urlOrData === "string";
             options = $.extend({}, $.DJAutocompleter.defaults, {
                 url: isUrl ? urlOrData : null,
                 data: isUrl ? null : urlOrData,
@@ -291,7 +291,7 @@
                 stopLoading();
                 select.hide();
             }
-        };
+        }
 
         function trimWords(value) {
             if (!value)
@@ -311,7 +311,7 @@
                 return words[0];
             var cursorAt = $(input).selection().start;
             if (cursorAt == value.length) {
-                words = trimWords(value)
+                words = trimWords(value);
             } else {
                 words = trimWords(value.replace(value.substring(cursorAt), ""));
             }
@@ -330,12 +330,12 @@
                 // select the portion of the value not typed by the user (so the next character will erase)
                 $(input).selection(previousValue.length, previousValue.length + sValue.length);
             }
-        };
+        }
 
         function hideResults() {
             clearTimeout(timeout);
             timeout = setTimeout(hideResultsNow, 200);
-        };
+        }
 
         function hideResultsNow() {
             var wasVisible = select.visible();
@@ -360,7 +360,7 @@
 				}
 			);
             }
-        };
+        }
 
         function receiveData(q, data) {
             // even if data is null, but options.showViewAll is true, we show the drop down
@@ -374,7 +374,7 @@
             } else {
                 hideResultsNow();
             }
-        };
+        }
 
         function request(term, success, failure) {
             if (!options.matchCase)
@@ -408,7 +408,7 @@
                     //                    }, extraParams),
                     data: extraParams,
                     success: function(data) {
-                        if (data.error != undefined) {
+                        if (data.error !== undefined) {
                             //Stop loading
                             stopLoading();
                         }
@@ -427,7 +427,7 @@
                 select.emptyList();
                 failure(term);
             }
-        };
+        }
 
         function parse(data) {
             if (!data.error) {
@@ -447,11 +447,11 @@
                 return parsed;
             }
             return data;
-        };
+        }
 
         function stopLoading() {
             $input.removeClass(options.loadingClass);
-        };
+        }
 
     };
 
@@ -512,8 +512,8 @@
                 i = s.toLowerCase().search("\\b" + sub.toLowerCase());
             }
             if (i == -1) return false;
-            return i == 0 || options.matchContains;
-        };
+            return i === 0 || options.matchContains;
+        }
 
         function add(q, value) {
             if (length > options.cacheLength) {
@@ -566,7 +566,7 @@
                 if (nullData++ < options.max) {
                     stMatchSets[""].push(row);
                 }
-            };
+            }
 
             // add the data items to the cache
             $.each(stMatchSets, function(i, value) {
@@ -718,7 +718,7 @@
                     list.scrollTop(offset);
                 }
             }
-        };
+        }
 
         function movePosition(step) {
             active += step;
@@ -730,9 +730,7 @@
         }
 
         function limitNumberOfItems(available) {
-            return options.max && options.max < available
-			? options.max
-			: available;
+            return options.max && options.max < available? options.max: available;
         }
 
         function fillList() {
@@ -749,7 +747,7 @@
                     var formatted = options.formatItem(data[i].data, i + 1, max, data[i].value, term);
                     if (formatted === false)
                         continue;
-                    var tr = $("<tr/>").html(options.highlight(formatted, term, data[i].data.controlType)).addClass(i % 2 == 0 ? options.resultsEvenClass : options.resultsOddClass).appendTo(list)[0];
+                    var tr = $("<tr/>").html(options.highlight(formatted, term, data[i].data.controlType)).addClass(i % 2 === 0 ? options.resultsEvenClass : options.resultsOddClass).appendTo(list)[0];
 
                     if (data[i].data.isCategory === true) {
                         //Append the header
@@ -764,7 +762,7 @@
                             var footerTR = $('tr.ac_cat_foot_' + data[i].data.controlType.toLowerCase(), element);
                             var dataObj = {
                                 type: data[i].data.controlType
-                            }
+                            };
                             $(footerTR).data("ac_cat_data", dataObj);
                         }
                     }
@@ -782,7 +780,7 @@
             if (options.showHelp) {
                 var inputVal = $(input).val();
                 var tr = $("<tr/>").addClass("ac_helpRow")
-							                   .addClass(i % 2 == 0 ? options.resultsEvenClass : options.resultsOddClass)
+							                   .addClass(i % 2 === 0 ? options.resultsEvenClass : options.resultsOddClass)
 							                   .append($("<td>").html("<span class='ac_helpResult'>" + inputVal + "</span><span class='ac_helpText'>" + options.helpLabelText + "</span>"))
                                                .prependTo(list)[0];
                 $.data(tr, "ac_data", { value: inputVal, isHelpRowEnabled: true });
@@ -792,7 +790,7 @@
             if (options.showViewAll) {
                 var tr = $("<tr/>")
 							.addClass(options.viewAllClass)
-							.addClass(i % 2 == 0 ? options.resultsEvenClass : options.resultsOddClass)
+							.addClass(i % 2 === 0 ? options.resultsEvenClass : options.resultsOddClass)
 							.append($("<td>").html(options.viewAllText))
 							.appendTo(list)[0];
                 $.data(tr, "ac_data", { isViewAll: true });
@@ -822,7 +820,7 @@
                 moveSelect(-1);
             },
             pageUp: function() {
-                if (active != 0 && active - 8 < 0) {
+                if (active !== 0 && active - 8 < 0) {
                     moveSelect(-active);
                 } else {
                     moveSelect(-8);
@@ -928,12 +926,12 @@
             return {
                 start: caretAt,
                 end: caretAt + textLength
-            }
+            };
         } else if (field.selectionStart !== undefined) {
             return {
                 start: field.selectionStart,
                 end: field.selectionEnd
-            }
+            };
         }
     };
 
