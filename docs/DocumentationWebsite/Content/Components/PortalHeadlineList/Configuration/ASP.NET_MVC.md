@@ -1,8 +1,6 @@
 ﻿@using DowJones.Documentation.Website.Extensions;
 @using System.Configuration;
 
-#### Rendering the component from a Razor View
-
 Populate the Portal Headline List model (either in your controller or model):
 
 	var portalHeadlineListModel = new PortalHeadlineListModel
@@ -16,6 +14,7 @@ Populate the Portal Headline List model (either in your controller or model):
 		SourceClickable = true,
 		DisplaySnippets = SnippetDisplayType.Hover,
 		Layout = PortalHeadlineListLayout.HeadlineLayout,
+		Result = GetPortalHeadlineListResult(),   // Something that returns an instance of PortalHeadlineListDataResult
 	};
 	
 @Html.DataViewer(ConfigurationManager.AppSettings["InfrastructureShowcase.BasePath"]+"/PortalHeadlineList/data/cs")

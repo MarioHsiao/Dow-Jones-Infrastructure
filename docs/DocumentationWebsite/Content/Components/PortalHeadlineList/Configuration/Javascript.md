@@ -1,8 +1,6 @@
 ﻿@using DowJones.Documentation.Website.Extensions;
 @using System.Configuration;
 
-#### Rendering the component via JavaScript
-
 Add a reference to `common.js` with a valid `sessionId` anywhere in the `<head>` section of you page.
 
 	<script type="text/javascript" 
@@ -36,7 +34,7 @@ Finally, add the component to the page:
 			if(component) {
 				// get data via a service call (stub service shown here for reference purposes only)
 				$.ajax({
-					url: 'http://montana.dev.us.factiva.com/MvcShowcase/PortalHeadlineList/GetStubJsonData',
+					url: 'http://someService/PortalHeadlineList/GetJsonData',
 					success: function(data) {
 								// on receiving data, call the bind success method of the component
 								component.bindOnSuccess(data);
