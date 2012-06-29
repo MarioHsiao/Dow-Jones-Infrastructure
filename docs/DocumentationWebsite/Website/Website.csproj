@@ -199,9 +199,6 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js">
-      <DependentUpon>bootstrap.js</DependentUpon>
-    </Content>
     <Content Include="Styles\themes\journal\variables.less" />
     <Content Include="Styles\themes\journal\bootswatch.less" />
     <Content Include="Styles\themes\spacelab\bootswatch.less" />

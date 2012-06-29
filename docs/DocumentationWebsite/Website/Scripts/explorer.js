@@ -13,14 +13,10 @@
                 else {
                     $this.button('loading');
                     $.get($this.data('url'), null, function (data) {
-                        // modal body with prettified code
-                        var modalBody = $('<div>').addClass('modal-body').append(prettyPrintOne(data));
-
                         // create the container and append it to the element
                         $('<div>')
-                            .addClass("cache-container modal hide")
-                            .append('<div class="modal-header"><button type="button" class="close" data-dismiss="modal">×</button><h3>Sample Data</h3></div>')
-                            .append(modalBody)
+                            .addClass("cache-container hide")
+                            .append(prettyPrintOne(data))
                             .insertAfter($this)
                             .modal();
                         
