@@ -1,18 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Web.Mvc;
-using DowJones.Ajax.HeadlineList;
 using DowJones.Articles;
 using DowJones.Search;
 using DowJones.Web.Mvc.Search.Results;
 using DowJones.Web.Mvc.UI;
 using DowJones.Web.Mvc.UI.Components.Article;
 using DowJones.Web.Mvc.UI.Components.CompositeHeadline;
+using DowJones.Web.Mvc.UI.Components.DateHistogram;
+using DowJones.Web.Mvc.UI.Components.Discovery;
 using DowJones.Web.Mvc.UI.Components.HeadlineList;
-using DowJones.Web.Mvc.UI.Components.Models.Discovery;
-using DowJones.Web.Mvc.UI.Components.Models.RelatedConcepts;
-using DowJones.Extensions;
-using System.Linq;
+using DowJones.Web.Mvc.UI.Components.RelatedConcepts;
 
 namespace DowJones.Web.Mvc.Search.UI.Components.Results.Headlines
 {
@@ -27,7 +24,7 @@ namespace DowJones.Web.Mvc.Search.UI.Components.Results.Headlines
             ArticleUrl = "articles";
         }
 
-        public HeadlineSearchResults(CompositeHeadlineModel headlineModel)
+        public HeadlineSearchResults(CompositeHeadlineModel headline)
         {
             Headlines = new CompositeHeadlineModel();
             ArticleUrl = "articles";
@@ -96,7 +93,7 @@ namespace DowJones.Web.Mvc.Search.UI.Components.Results.Headlines
             set { _headlines = value; }
         }
 
-        public RelatedConceptsComponentModel RelatedConcepts { get; set; }
+        public RelatedConceptsModel RelatedConcepts { get; set; }
 
         public ShowDuplicates ShowDuplicates
         {

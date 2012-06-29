@@ -1,11 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using DowJones.Ajax.CompanySparkline;
 using DowJones.Managers.Sparkline;
 using DowJones.Web.Mvc.Search.Controllers;
-using DowJones.Web.Mvc.UI.Components.Models.CompanySparkline;
+using DowJones.Web.Mvc.UI.Components.CompanySparkline;
 
 namespace DowJones.Web.Showcase.Controllers
 {
@@ -14,8 +13,8 @@ namespace DowJones.Web.Showcase.Controllers
 
         public ActionResult Index()
         {
-            CompaniesSparklinesComponentModel basicModel = GetBasicModel();
-            basicModel.DataServiceUrl = VirtualPathUtility.ToAbsolute("~/sparklines");
+            CompaniesSparklinesModel basicModel = GetBasicModel();
+            basicModel.DataServiceUrl = Url.Action("Sparklines");
             return View("Index", basicModel);
         }
                                                        
@@ -32,12 +31,12 @@ namespace DowJones.Web.Showcase.Controllers
             return base.Sparklines(request);
         }
 
-        private CompaniesSparklinesComponentModel GetBasicModel()
+        private CompaniesSparklinesModel GetBasicModel()
         {
             IEnumerable<SparklineDataSet> response = SparklineService.GetData(new SparklineServiceRequest {CompanyCodes = new[] {"GOOG", "MCROST", "IBM", "APPL"}});
             var mapped = response.Select(Mapper.Map<CompanySparklineDataResult>).ToList();
 
-            var temp = new CompaniesSparklinesComponentModel
+            var temp = new CompaniesSparklinesModel
                            {
                                SeriesColorForIncrease = "#009933",
                                SeriesColorForDecrease = "#FF0000",

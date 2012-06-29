@@ -1,28 +1,5 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="SocialButtonsExtender.cs" company="Dow Jones">
-//   © 2010 Dow Jones, Inc. All rights reserved.
-// </copyright>
-// <author>
-//   ..:: name ::..
-// </author>
-// <lastModified>
-//  <entry type="original"><date>5/12/2010</date><user>dhirv</user></entry>
-//  <entry type="update">
-//    <date>5/17/2010</date><user>dhirv</user>
-//    <reason>Added MySpace as a new social media target.</reason>
-//    <date>6/09/2010</date><user>dhirv</user>
-//    <reason>Added new property for Target.</reason>
-//  </entry>
-// </lastModified>
-// --------------------------------------------------------------------------------------------------------------------
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Web.UI;
-using DowJones.Web;
-using DowJones.Web.Mvc;
-using DowJones.Web.UI;
-using DowJones.Web.Mvc.UI.Components.SocialButtons;
-
-
 
 namespace DowJones.Web.Mvc.UI.Components.SocialButtons
 {
@@ -213,18 +190,18 @@ namespace DowJones.Web.Mvc.UI.Components.SocialButtons
         public SocialButtonsModel()
         {
             SocialNetworks = new [] {
-                    SocialButtons.SocialNetworks.Delicious,
-                    SocialButtons.SocialNetworks.Digg,
-                    SocialButtons.SocialNetworks.Facebook,
-                    SocialButtons.SocialNetworks.Furl,
-                    SocialButtons.SocialNetworks.Google,
-                    SocialButtons.SocialNetworks.LinkedIn,
-                    SocialButtons.SocialNetworks.Newsvine,
-                    SocialButtons.SocialNetworks.Reddit,
-                    SocialButtons.SocialNetworks.StumbleUpon,
-                    SocialButtons.SocialNetworks.Technorati,
-                    SocialButtons.SocialNetworks.Twitter,
-                    SocialButtons.SocialNetworks.Yahoo
+                    Components.SocialButtons.SocialNetworks.Delicious,
+                    Components.SocialButtons.SocialNetworks.Digg,
+                    Components.SocialButtons.SocialNetworks.Facebook,
+                    Components.SocialButtons.SocialNetworks.Furl,
+                    Components.SocialButtons.SocialNetworks.Google,
+                    Components.SocialButtons.SocialNetworks.LinkedIn,
+                    Components.SocialButtons.SocialNetworks.Newsvine,
+                    Components.SocialButtons.SocialNetworks.Reddit,
+                    Components.SocialButtons.SocialNetworks.StumbleUpon,
+                    Components.SocialButtons.SocialNetworks.Technorati,
+                    Components.SocialButtons.SocialNetworks.Twitter,
+                    Components.SocialButtons.SocialNetworks.Yahoo
                 };
         }
     }

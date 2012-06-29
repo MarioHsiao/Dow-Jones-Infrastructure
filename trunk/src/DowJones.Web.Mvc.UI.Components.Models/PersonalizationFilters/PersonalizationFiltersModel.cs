@@ -2,6 +2,7 @@
 using System.Linq;
 using DowJones.Properties;
 using DowJones.Web.Mvc.UI.Components.Common;
+using DowJones.Web.Mvc.UI.Components.Search;
 using DowJones.Web.Mvc.UI.Components.TaxonomySearchBrowse;
 
 namespace DowJones.Web.Mvc.UI.Components.PersonalizationFilters
@@ -103,13 +104,13 @@ namespace DowJones.Web.Mvc.UI.Components.PersonalizationFilters
 
         #endregion
 
-        internal TaxonomySearchBrowseModel TaxonomySearch { get; set; }
+        internal TaxonomySearchBrowse.TaxonomySearchBrowseModel TaxonomySearch { get; set; }
 
 
         public PersonalizationFiltersModel()
         {
             SuggestServiceUrl = Settings.Default.SuggestServiceURL;
-            TaxonomySearch = new TaxonomySearchBrowseModel();
+            TaxonomySearch = new TaxonomySearchBrowse.TaxonomySearchBrowseModel();
         }
     }
 }

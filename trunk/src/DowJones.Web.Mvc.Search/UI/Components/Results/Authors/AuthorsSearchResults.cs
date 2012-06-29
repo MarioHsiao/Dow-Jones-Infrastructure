@@ -1,6 +1,6 @@
 ﻿using DowJones.Web.Mvc.UI;
-using DowJones.Web.Mvc.UI.Components.Models;
-using DowJones.Web.Mvc.UI.Components.Models.RelatedConcepts;
+using DowJones.Web.Mvc.UI.Components.CompositeAuthor;
+using DowJones.Web.Mvc.UI.Components.RelatedConcepts;
 
 namespace DowJones.Web.Mvc.Search.UI.Components.Results.Authors
 {
@@ -9,7 +9,7 @@ namespace DowJones.Web.Mvc.Search.UI.Components.Results.Authors
 		const int PAGE_SIZE_DEFAULT_VALUE = 20;
 
 		public CompositeAuthorModel Authors { get; set; }
-		public RelatedConceptsComponentModel RelatedConcepts { get; set; }
+		public RelatedConceptsModel RelatedConcepts { get; set; }
 		public bool HideRelatedConcepts { get; set; }
 
 		private int pageSize = 0;

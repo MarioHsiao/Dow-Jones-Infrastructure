@@ -1,7 +1,9 @@
-﻿namespace DowJones.Web.Showcase.Models
+﻿using DowJones.Web.Mvc.UI.Components.Article;
+
+namespace DowJones.Web.Showcase.Models
 {
     public class ArticleModel
     {
-        public Mvc.UI.Components.Models.Article.ArticleModel Article { get; set; }        
+        public Mvc.UI.Components.Article.ArticleModel Article { get; set; }        
     }
 }

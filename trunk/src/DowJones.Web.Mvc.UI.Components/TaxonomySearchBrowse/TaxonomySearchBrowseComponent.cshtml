@@ -1,0 +1,12 @@
+﻿@using DowJones.Web.Mvc.Extensions;
+@model TaxonomySearchBrowseModel
+@ClientPlugin dj_TaxonomySearchBrowse
+@ClientTemplate RelativeResourceName=ClientTemplates.main.htm, TemplateId=main
+@ClientTemplate RelativeResourceName=ClientTemplates.searchList.htm, TemplateId=searchList
+@ClientTemplate RelativeResourceName=ClientTemplates.listItemOptions.htm, TemplateId=listItemOptions
+@ClientTemplate RelativeResourceName=ClientTemplates.browseList.htm, TemplateId=browseList
+@ClientTemplate RelativeResourceName=ClientTemplates.djIICode.htm, TemplateId=djIICode
+@ScriptResource RelativeResourceName=TaxonomySearchBrowse.js
+@{ 
+    CssClass = "dj_TaxonomySearchBrowse";
+}

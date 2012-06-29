@@ -1,7 +1,6 @@
-﻿@using DowJones.Web.Mvc.UI.Components.Models.CompanySparkline
-@inherits CompositeComponent<CompaniesSparklinesComponentModel>
-@ClientPlugin dj_CompaniesSparklinesComponent
-@ScriptResource RelativeResourceName=CompaniesSparklinesComponent.js, DependsOn=DowJones.Web.Mvc.UI.Components.CompanySparkline.CompanySparkline
+﻿@inherits CompositeComponent<CompaniesSparklinesModel>
+@ClientPlugin dj_CompaniesSparklines
+@ScriptResource RelativeResourceName=CompaniesSparklines.js, DependsOn=DowJones.Web.Mvc.UI.Components.CompanySparkline.CompanySparkline
 @{ 
     CssClass = "dj_CompaniesSparklines dj_company-sparklines";
     Html.DJ().ScriptRegistry().WithHighCharts();

@@ -227,17 +227,9 @@
     <Compile Include="Models\HeadlineListViewModel.cs" />
     <Compile Include="Models\PortalHeadlineLists.cs" />
     <Compile Include="Models\ShowcaseControlData.cs" />
-    <Compile Include="Modules\Empty\EmptyCanvasModule.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>EmptyCanvasModule.cshtml</DependentUpon>
-    </Compile>
+    <Compile Include="Modules\Empty\EmptyCanvasModule.cs" />
     <Compile Include="Modules\Empty\EmptyModule.cs" />
-    <Compile Include="Modules\PortalHeadlineLists\PortalHeadlineLists.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>PortalHeadlineLists.cshtml</DependentUpon>
-    </Compile>
+    <Compile Include="Modules\PortalHeadlineLists\PortalHeadlineLists.cs" />
     <Compile Include="Modules\ShowcaseCanvas.cs" />
     <Compile Include="Ninject\NinjectDependencyResolver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -269,6 +261,7 @@
     <Content Include="Content\swf\flowplayer.controls-3.2.5.swf" />
     <Content Include="Content\swf\flowplayer.rtmp-3.2.3.swf" />
     <Content Include="Content\swf\flowplayer.unlimited-3.2.7.swf" />
+    <Content Include="Modules\Empty\EmptyCanvasModule.js" />
     <Content Include="Scripts\loose2.js" />
     <Content Include="Scripts\loose.js" />
     <Content Include="Styles\css\CompanyOverviewCanvasModule.css" />
@@ -539,7 +532,6 @@
     <None Include="MockRESTServices\modules\TopNews\GET_data.json" />
     <None Include="MockRESTServices\modules\Trending\GET_data.json" />
     <None Include="MockRESTServices\modules\Radar\GET_data.json" />
-    <EmbeddedResource Include="Modules\Empty\EmptyCanvasModule.js" />
     <EmbeddedResource Include="Modules\ShowcaseCanvas.js" />
     <EmbeddedResource Include="Modules\PortalHeadlineLists\PortalHeadlineLists.js" />
     <Content Include="GatewayResources\ReleaseNotes.txt" />
@@ -1506,14 +1498,6 @@
     <Content Include="Styles\libs\jquery.autocomplete.css" />
     <Content Include="Styles\libs\jquery.jscrollpane.css" />
     <None Include="MockRESTServices\modules\CompanyOverview\GET_data.json" />
-    <None Include="Modules\Empty\EmptyCanvasModule.cshtml">
-      <Generator>RazorViewComponentClassGenerator</Generator>
-      <LastGenOutput>EmptyCanvasModule.cs</LastGenOutput>
-    </None>
-    <None Include="Modules\PortalHeadlineLists\PortalHeadlineLists.cshtml">
-      <Generator>RazorViewComponentClassGenerator</Generator>
-      <LastGenOutput>PortalHeadlineLists.cs</LastGenOutput>
-    </None>
     <None Include="Properties\PublishProfiles\Montana.pubxml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

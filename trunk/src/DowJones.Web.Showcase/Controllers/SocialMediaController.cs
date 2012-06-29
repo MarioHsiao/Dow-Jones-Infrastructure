@@ -6,7 +6,8 @@ using System.Web.Mvc;
 using DowJones.Ajax.SocialMedia;
 using DowJones.Infrastructure;
 using DowJones.Managers.SocialMedia.TweetRiver;
-using DowJones.Web.Mvc.UI.Components.SocialMedia;
+using DowJones.Web.Mvc.UI.Components.TweetLines;
+using DowJones.Web.Mvc.UI.Components.TwitterExperts;
 using DowJones.Web.Showcase.Models;
 using DowJones.Managers.SocialMedia;
 using SocialMediaMapper = DowJones.Ajax.SocialMedia.Mapper;
@@ -40,7 +41,7 @@ namespace DowJones.Web.Showcase.Controllers
 					MaxTweetsToShow = 50,
 					Tweets = response.Select(mapper.Map).ToList()
 				},
-				ExpertsModel = new ExpertsModel()
+				TwitterExpertsModel = new TwitterExpertsModel()
 				{
 					Experts = GetMockExperts()
 

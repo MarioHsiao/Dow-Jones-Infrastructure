@@ -3,7 +3,6 @@ using System.Web.Mvc;
 using DowJones.AlertEditor;
 using DowJones.Managers.Alert;
 using DowJones.Search;
-using DowJones.Web.Mvc.UI.Components.Models;
 using Factiva.Gateway.Messages.Track.V1_0;
 using ControllerBase = DowJones.Web.Mvc.ControllerBase;
 
@@ -23,7 +22,7 @@ namespace DowJones.Web.Showcase.Controllers
 
         public ActionResult Index()
         {
-            var model = new AlertEditorModel
+            var model = new Mvc.UI.Components.AlertEditor.AlertEditorModel
                             {
                                 ID = "1234"
                             };

@@ -1,5 +1,5 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="CompanySparklineModel.cs" company="Dow Jones & Company">
+// <copyright file="CompanySparkline.cs" company="Dow Jones & Company">
 //   
 // </copyright>
 // <summary>
@@ -8,10 +8,8 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using DowJones.Ajax.CompanySparkline;
-using DowJones.Extensions;
-using DowJones.Formatters;
 
-namespace DowJones.Web.Mvc.UI.Components.Models.CompanySparkline
+namespace DowJones.Web.Mvc.UI.Components.CompanySparkline
 {
     /// <summary>
     /// The company sparkline model.

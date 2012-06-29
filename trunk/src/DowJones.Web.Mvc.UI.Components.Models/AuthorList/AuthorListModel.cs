@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Web.Mvc;
 
-namespace DowJones.Web.Mvc.UI.Components.Models
+namespace DowJones.Web.Mvc.UI.Components.AuthorList
 {
 	public class AuthorListModel : ViewComponentModel
 	{
@@ -32,11 +32,11 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 		/// Gets and sets order direction for sorting the author list.
 		/// </summary>
 		public OrderDirections SortOrder { get; set; }
-		// by rss @ 20120119 begin
-		[ClientProperty("pageSize")]
+		
+        [ClientProperty("pageSize")]
 		public int PageSize { get; set; }
-		// by rss @ 20120119 end
-		[ClientProperty("totalResultCount")]
+		
+        [ClientProperty("totalResultCount")]
 		public int TotalResultCount { get; set; }
 
 		public bool ShowDeleteAction { get; set; }
@@ -80,7 +80,7 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 		public string SelectedAuthorIds { get; set; }
 
 		/// <summary>
-		/// Create an instanse of AuthorListModel class.
+		/// Create an instanse of AuthorList class.
 		/// </summary>
 		public AuthorListModel()
 		{
@@ -105,7 +105,6 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 				new SelectListItem { Text = this.Tokens.ExportAll, Value = "export-all" },
 				new SelectListItem { Text = this.Tokens.Delete, Value = "delete" },
 				new SelectListItem { Text = this.Tokens.Email, Value = "email" },
-				//new SelectListItem { Text = this.Tokens.EmailAll, Value = "email-all" },
 				new SelectListItem { Text = this.Tokens.UnselectAll, Value = "unselect-all" }
 			};
 		}
@@ -195,12 +194,6 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 		/// </summary>
 		[Description("city")]
 		City = 13,
-
-		///// <summary>
-		///// Sort by outlet origin country;
-		///// </summary>
-		//[Description("outlet-origin-country")]
-		//OutletOriginCountry = 14
 	}
 
 	public enum AuthorListColumns

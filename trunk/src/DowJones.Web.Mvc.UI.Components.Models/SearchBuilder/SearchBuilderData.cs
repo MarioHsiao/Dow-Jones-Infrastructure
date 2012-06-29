@@ -3,9 +3,10 @@ using DowJones.Globalization;
 using DowJones.Search;
 using DowJones.Utilities.Search.Core;
 using DowJones.Web.Mvc.UI.Components.Common;
+using DowJones.Web.Mvc.UI.Components.Search;
 using Newtonsoft.Json;
 
-namespace DowJones.Web.Mvc.UI.Components.Models
+namespace DowJones.Web.Mvc.UI.Components.SearchBuilder
 {
     [JsonObject(MemberSerialization = MemberSerialization.OptIn)]
     public class SearchBuilderData

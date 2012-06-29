@@ -3,14 +3,14 @@ using System.Reflection;
 using System.Web.UI;
 using DowJones.Extensions;
 using DowJones.Web;
-using DowJones.Web.Mvc.UI.Components.Models;
+using DowJones.Web.Mvc.UI.Components.VideoPlayer;
 
 [assembly: WebResource(VideoPlayerModel.Player, KnownMimeTypes.ShockwaveFlash)]
 [assembly: WebResource(VideoPlayerModel.FlowplayerRtmp, KnownMimeTypes.ShockwaveFlash)]
 [assembly: WebResource(VideoPlayerModel.ControlBar, KnownMimeTypes.ShockwaveFlash)]
 [assembly: WebResource(VideoPlayerModel.SplashImage, KnownMimeTypes.PngImage)]
 
-namespace DowJones.Web.Mvc.UI.Components.Models  
+namespace DowJones.Web.Mvc.UI.Components.VideoPlayer  
 {
     
     public class VideoPlayerModel : ViewComponentModel

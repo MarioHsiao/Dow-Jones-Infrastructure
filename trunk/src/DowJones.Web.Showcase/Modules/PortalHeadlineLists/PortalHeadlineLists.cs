@@ -24,10 +24,10 @@ namespace DowJones.Web.Showcase.Modules.PortalHeadlineLists
     using DowJones.Extensions;
     using DowJones.Web.Mvc.UI.Components.PortalHeadlineList;
     using DowJones.Web.Mvc.UI.Canvas;
-    
+
     // Last Generated Timestamp: 05/09/2012 11:58 AM
-    [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Web.Showcase.Modules.PortalHeadlineLists.PortalHeadlineLists.js", DependsOn=new string[] {
-            "AbstractCanvasModule"}, ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Web.Showcase.Modules.PortalHeadlineLists.PortalHeadlineLists))]
+    [DowJones.Web.ScriptResourceAttribute(null, ResourceName = "DowJones.Web.Showcase.Modules.PortalHeadlineLists.PortalHeadlineLists.js", DependsOn = new string[] {
+            "AbstractCanvasModule"}, ResourceKind = DowJones.Web.ClientResourceKind.Script, DeclaringType = typeof(DowJones.Web.Showcase.Modules.PortalHeadlineLists.PortalHeadlineLists))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.22175")]
     public class PortalHeadlineLists : AbstractCanvasModule<DowJones.Web.Showcase.Models.PortalHeadlineLists>
     {
@@ -53,24 +53,25 @@ namespace DowJones.Web.Showcase.Modules.PortalHeadlineLists
 
 
 
-DefineSection("ContentArea", () => {
-
-WriteLiteral("\r\n    <div class=\"module-content-page\">\r\n        <div class=\"module-row article-r" +
-"ow clearfix\">\r\n");
-
-
-             foreach (var phl in Model.PortalHeadlines)
+            DefineSection("ContentArea", () =>
             {
-            
 
-WriteLiteral("                <div class=\"module-col one-third\">\r\n                    <div clas" +
-"s=\"module-col-wrap standard-padding\">\r\n                        <div class=\"dj_vi" +
-"ewAllErr\">");
+                WriteLiteral("\r\n    <div class=\"module-content-page\">\r\n        <div class=\"module-row article-r" +
+                "ow clearfix\">\r\n");
 
 
-                                              Write(Html.DJ().Token("viewAllErrMessage"));
+                foreach (var phl in Model.PortalHeadlines)
+                {
 
-WriteLiteral(@"</div>
+
+                    WriteLiteral("                <div class=\"module-col one-third\">\r\n                    <div clas" +
+                    "s=\"module-col-wrap standard-padding\">\r\n                        <div class=\"dj_vi" +
+                    "ewAllErr\">");
+
+
+                    Write(Html.DJ().Token("viewAllErrMessage"));
+
+                    WriteLiteral(@"</div>
                         <h3 class=""module-col-title module-col-title-source-icon"">
                             <img class=""module-col-title-source-img"" alt="""">
                             <span class=""module-col-title-source-icon-text""></span>
@@ -78,38 +79,39 @@ WriteLiteral(@"</div>
                         ");
 
 
-                    Write(CreateChildControl<PortalHeadlineListControl>(phl));
+                    Write(CreateChildControl(phl));
 
-WriteLiteral("\r\n                        <ul class=\"dc_list view-all-btn\">\r\n                    " +
-"        <li class=\"dc_item\"><a href=\"javascript:void(0);\" class=\"dashboard-contr" +
-"ol dc_btn dc_btn-1\">");
-
-
-                                                                                                                   Write(Html.DJ().Token("viewAll"));
-
-WriteLiteral("</a>\r\n                            </li>\r\n                        </ul>\r\n         " +
-"           </div>\r\n                </div>\r\n");
+                    WriteLiteral("\r\n                        <ul class=\"dc_list view-all-btn\">\r\n                    " +
+                    "        <li class=\"dc_item\"><a href=\"javascript:void(0);\" class=\"dashboard-contr" +
+                    "ol dc_btn dc_btn-1\">");
 
 
-           
-            }
+                    Write(Html.DJ().Token("viewAll"));
 
-WriteLiteral("        </div>\r\n    </div>\r\n");
-
-
-});
-
-WriteLiteral("\r\n");
+                    WriteLiteral("</a>\r\n                            </li>\r\n                        </ul>\r\n         " +
+                    "           </div>\r\n                </div>\r\n");
 
 
-DefineSection("EditArea", () => {
 
-WriteLiteral("\r\n");
+                }
+
+                WriteLiteral("        </div>\r\n    </div>\r\n");
 
 
-});
+            });
 
-WriteLiteral("\r\n");
+            WriteLiteral("\r\n");
+
+
+            DefineSection("EditArea", () =>
+            {
+
+                WriteLiteral("\r\n");
+
+
+            });
+
+            WriteLiteral("\r\n");
 
 
         }

@@ -134,7 +134,19 @@ namespace DowJones.Web
         /// </summary>
         /// <value>The display name of the assembly.</value>
         [JsonProperty("assembly")]
-        public string DeclaringAssembly { get; set; }
+        public string DeclaringAssembly
+        {
+            get
+            {
+                if(_declaringAssembly == null && HasDeclaringType)
+                {
+                    return DeclaringType.Assembly.GetName().Name;
+                }
+                return _declaringAssembly;
+            }
+            set { _declaringAssembly = value; }
+        }
+        private string _declaringAssembly;
 
         [JsonProperty("templateId")]
         public string TemplateId { get; set; }

@@ -87,7 +87,7 @@ namespace DowJones.Web.Mvc.Resources
             public const string ErrorManager = JsRoot + "error-manager.js";
             public const string Highcharts = JsRoot + "highcharts.js";
             public const string JQuery = JsRoot + "jquery.js";
-            public const string JQueryCarousel = JsRoot + "jquery.carousel.js";
+            public const string JQueryCarousel = JsRoot + "jquery.jcarousel.js";
             public const string JQueryCycle = JsRoot + "jquery.cycle.all.js";
             public const string JQueryJScrollPane = JsRoot + "jquery.jscrollpane.js";
             public const string JQueryJson = JsRoot + "jquery-json.js";

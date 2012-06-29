@@ -6,7 +6,7 @@ using DowJones.Web.Mvc.Search.UI.Components.Results.Headlines;
 using DowJones.Web.Mvc.UI;
 using DowJones.Web.Mvc.UI.Components.Article;
 using DowJones.Web.Mvc.UI.Components.HeadlineList;
-using DowJones.Web.Mvc.UI.Components.Models.CompanySparkline;
+using DowJones.Web.Mvc.UI.Components.CompanySparkline;
 using Factiva.Gateway.Messages.Preferences.V1_0;
 using Newtonsoft.Json;
 using SortOrder = DowJones.Search.SortOrder;
@@ -35,7 +35,7 @@ namespace DowJones.Web.Mvc.Search.Results
         
         public ShowDuplicates? ShowDuplicates { get; set; }
 
-        public CompaniesSparklinesComponentModel CompanyProfiles { get; set; }
+        public CompaniesSparklinesModel CompanyProfiles { get; set; }
 
         public SearchNavigator Navigator { get; set; }
 
@@ -59,7 +59,7 @@ namespace DowJones.Web.Mvc.Search.Results
 
         public SearchResultsViewModel()
         {
-            CompanyProfiles = new CompaniesSparklinesComponentModel();
+            CompanyProfiles = new CompaniesSparklinesModel();
             Navigator = new SearchNavigator();   
             RelatedConceptsServiceUrl = "/search/related";
             SearchResultsServiceUrl = "/search/results";

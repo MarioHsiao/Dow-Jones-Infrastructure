@@ -4,7 +4,7 @@ using System.Text;
 using System.Globalization;
 using DowJones.Ajax.TagCloud;
 
-namespace DowJones.Web.Mvc.UI.Components.Models
+namespace DowJones.Web.Mvc.UI.Components.TagCloud
 {
     public class TagCloudModel :ViewComponentModel
     {

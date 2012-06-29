@@ -5,7 +5,7 @@ using DowJones.Managers.Search.Preference;
 using DowJones.Web.Mvc.Search.Requests.Alert;
 using DowJones.Web.Mvc.Search.Results;
 using DowJones.Web.Mvc.UI.Components.Article;
-using DowJones.Web.Mvc.UI.Components.Common.Types;
+using DowJones.Web.Mvc.UI.Components.Common;
 using DowJones.Web.Mvc.UI.Components.HeadlineList;
 using Factiva.Gateway.Messages.Preferences.V1_0;
 using SortOrder = DowJones.Search.SortOrder;

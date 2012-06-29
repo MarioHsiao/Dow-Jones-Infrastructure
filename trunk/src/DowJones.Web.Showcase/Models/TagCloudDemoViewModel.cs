@@ -1,4 +1,4 @@
-﻿using DowJones.Web.Mvc.UI.Components.Models;
+﻿using DowJones.Web.Mvc.UI.Components.TagCloud;
 
 namespace DowJones.Web.Showcase.Models
 {

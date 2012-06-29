@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using DowJones.Ajax.HeadlineList;
+using DowJones.Web.Mvc.UI.Components.Common;
+using ThumbnailImage = DowJones.Ajax.HeadlineList.ThumbnailImage;
 
 namespace DowJones.Web.Mvc.UI.Components.HeadlineList
 {

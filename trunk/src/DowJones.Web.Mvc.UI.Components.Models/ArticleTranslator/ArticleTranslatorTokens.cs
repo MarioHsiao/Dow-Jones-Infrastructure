@@ -9,10 +9,9 @@
 
 
 using System.Text;
-using DowJones.Globalization;
 using DowJones.Token;
 
-namespace DowJones.Web.Mvc.UI.Components
+namespace DowJones.Web.Mvc.UI.Components.ArticleTranslator
 {
     public class ArticleTranslatorTokens : AbstractTokenBase
     {

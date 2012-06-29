@@ -9,7 +9,7 @@ namespace DowJones.Web.Showcase.Controllers
         public ActionResult Index()
         {
             var model = 
-                new EntityList {
+                new EntityListModel {
                     Groups = new [] {
                         new EntityGroup {
                             Category = NewsFilterCategory.Company.ToString(),

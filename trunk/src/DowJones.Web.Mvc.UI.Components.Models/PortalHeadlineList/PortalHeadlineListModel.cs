@@ -1,9 +1,9 @@
 ﻿using System;
 using DowJones.Ajax.PortalHeadlineList;
-using DowJones.Web.Mvc.UI.Components.Common.Types;
+using DowJones.Web.Mvc.UI.Components.Common;
 using DowJones.Web.Mvc.UI.Components.HeadlineList;
 
-namespace DowJones.Web.Mvc.UI.Components.Models
+namespace DowJones.Web.Mvc.UI.Components.PortalHeadlineList
 {
     public enum PortalHeadlineListLayout
     {

@@ -1,16 +1,5 @@
 /*!
 * HeadlineCarousel
-*   e.g. , "this._imageSize" is generated automatically.
-*
-*   
-*  Getters and Setters are generated automatically for every Client Property during init;
-*   e.g. if you have a Client Property called "imageSize" on server side code
-*        get_imageSize() and set_imageSize() will be generated during init.
-*  
-*  These can be overriden by defining your own implementation in the script. 
-*  You'd normally override the base implementation if you have extra logic in your getter/setter 
-*  such as calling another function or validating some params.
-*
 */
 
     DJ.UI.HeadlineCarousel = DJ.UI.Component.extend({
@@ -32,8 +21,8 @@
 
         // Localization/Templating tokens
         tokens: {
-            noResultsTkn: "<%= Token("noResults")%>",
-            articlesLabelTkn: "<%= Token("articlesLabel")%>"
+            noResultsTkn: "<%= Token('noResults')%>",
+            articlesLabelTkn: "<%= Token('articlesLabel')%>"
         },
 
         events: {

@@ -1,5 +1,4 @@
-﻿@using DowJones.Web.Mvc.UI.Components.HeadlinePostProcessing
-@using DowJones.Web.Mvc.UI.Components.Models
+﻿@using DowJones.Web.Mvc.UI.Components.TopicEditor
 @model DowJones.Web.Mvc.Search.Results.SearchResultsViewModel
 @{
     Layout = "_Layout.cshtml";
@@ -84,7 +83,7 @@
     <div class="dj_modal-content">
         <div class="dj_modal-content-wrap">
             <div class="modal-content">
-                @(Html.DJ().RenderComponent<DowJones.Web.Mvc.UI.Components.TopicEditor.TopicEditor>(new TopicEditorModel { }))
+                @DJ.Render(new TopicEditorModel())
             </div>
         </div>
     </div>

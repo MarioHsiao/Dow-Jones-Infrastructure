@@ -5,14 +5,15 @@ using DowJones.Managers.Search;
 using DowJones.Models.Search;
 using DowJones.Search;
 using DowJones.Search.Attributes;
-using DowJones.Web.Mvc.UI.Components.Models.Discovery;
+using DowJones.Web.Mvc.UI.Components.DateHistogram;
+using DowJones.Web.Mvc.UI.Components.Discovery;
 using Factiva.Gateway.Messages.Search.V2_0;
 using ControllerBase = DowJones.Web.Mvc.ControllerBase;
 using DeduplicationMode = Factiva.Gateway.Messages.Search.V2_0.DeduplicationMode;   
 
 namespace DowJones.Web.Showcase.Controllers
 {
-    public class DateHistogramController : ControllerBase
+    public class DateHistogramler : ControllerBase
     {
         public ActionResult Index()
         {

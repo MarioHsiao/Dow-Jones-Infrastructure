@@ -1,6 +1,7 @@
 ﻿using DowJones.AlertEditor;
 using DowJones.Topic;
-using DowJones.Web.Mvc.UI.Components.Models;
+using DowJones.Web.Mvc.UI.Components.SearchBuilder;
+using DowJones.Web.Mvc.UI.Components.TopicEditor;
 using Newtonsoft.Json;
 
 namespace DowJones.Web.Mvc.Search.ViewModels
@@ -9,7 +10,7 @@ namespace DowJones.Web.Mvc.Search.ViewModels
     {
         public string AlertId { get; set; }
 
-        public AlertEditorModel AlertEditor { get; set; }
+        public Mvc.UI.Components.AlertEditor.AlertEditorModel AlertEditor { get; set; }
 
         public AlertProperties AlertProperties { get; set; }
 
@@ -46,7 +47,7 @@ namespace DowJones.Web.Mvc.Search.ViewModels
 
         public SearchBuilderViewModel()
         {
-            AlertEditor = new AlertEditorModel();
+            AlertEditor = new Mvc.UI.Components.AlertEditor.AlertEditorModel();
             AlertProperties = new AlertProperties();
 
             TopicEditor = new TopicEditorModel();

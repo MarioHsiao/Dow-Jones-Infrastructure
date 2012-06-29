@@ -2,8 +2,8 @@
 using System.Linq;
 using System.Web.Mvc;
 using DowJones.Ajax.PortalHeadlineList;
-using DowJones.Web.Mvc.UI.Components.Common.Types;
-using DowJones.Web.Mvc.UI.Components.Models;
+using DowJones.Web.Mvc.UI.Components.Common;
+using DowJones.Web.Mvc.UI.Components.PortalHeadlineList;
 using DowJones.Web.Showcase.Components.CompanyHeadlines;
 using DowJones.Web.Showcase.Components.SourcesFilter;
 using DowJones.Web.Showcase.Models;

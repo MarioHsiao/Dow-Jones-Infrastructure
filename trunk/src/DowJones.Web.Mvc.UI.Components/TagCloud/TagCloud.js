@@ -1,33 +1,28 @@
 ﻿
-    DJ.UI.TagCloud = DJ.UI.Component.extend({
+DJ.UI.TagCloud = DJ.UI.Component.extend({
 
-        templates: {
-            success: _.template([
-                '<ul class="dj_tag_cloud">',
-                    '<% for (var index = 0, len = data.result.length; index < len; index++) {',
-                        'h = data.result[index]; %>',
-                        '<li class="<%=options.tagCloudCssPrefix %><%=h.distributionIndex%>">',
-                            '<a href="javascript:void())">',
-                                '<span rel="<%=index %>"><%=h.text %></span>',
-                            '</a>',
-                        '</li>',
-                     '<% } %>',
-                 '</ul>', ].join('')),
-            error: _.template('<span class="dj_error"><%= code %>: <%= message %></span>'),
-            noData: _.template("<span class='dj_noResults'><%= Token("noResults") %></span>")
-        },
-        defaults: {
-            debug: false,
-            cssClass: 'TagCloud'
-        },
-
-        // Localization/Templating tokens
-        tokens: {
-        //name: value add more defaults here separated by comma
+    templates: {
+        success: _.template([
+            '<ul class="dj_tag_cloud">',
+                '<% for (var index = 0, len = data.result.length; index < len; index++) {',
+                    'h = data.result[index]; %>',
+                    '<li class="<%=options.tagCloudCssPrefix %><%=h.distributionIndex%>">',
+                        '<a href="javascript:void())">',
+                            '<span rel="<%=index %>"><%=h.text %></span>',
+                        '</a>',
+                    '</li>',
+                    '<% } %>',
+                '</ul>', ].join('')),
+        error: _.template('<span class="dj_error"><%= code %>: <%= message %></span>'),
+        noData: _.template("<span class='dj_noResults'><%= Token("noResults") %></span>")
+    },
+    defaults: {
+        debug: false,
+        cssClass: 'TagCloud'
     },
 
+
     events: {
-        // jQuery events are namespaced as <event>.<namespace>
         tagItemClick: "tagItemClick.dj.TagCloud"
     },
 

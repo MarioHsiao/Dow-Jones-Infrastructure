@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace DowJones.Web.Mvc.UI.Components.Models
+namespace DowJones.Web.Mvc.UI.Components.SimpleAlert
 {
     public class Option
     {

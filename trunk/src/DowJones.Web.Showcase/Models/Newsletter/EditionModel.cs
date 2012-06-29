@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using Article= DowJones.Web.Mvc.UI.Components.Models.Article.ArticleModel;
+using DowJones.Web.Mvc.UI.Components.Article;
 
 namespace DowJones.Web.Showcase.Models.Newsletter
 {
@@ -10,7 +10,7 @@ namespace DowJones.Web.Showcase.Models.Newsletter
     {
         public Meta Meta { get; set; }
 
-        public Article ArticleModel { get; set; }
+        public Mvc.UI.Components.Article.ArticleModel Article { get; set; }
     }
 
     public class Meta

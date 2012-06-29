@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using DowJones.Infrastructure;
 using Factiva.Gateway.Messages.Archive.V1_0;
 using MessagesArticle = Factiva.Gateway.Messages.Archive.V1_0.Article;
 
@@ -94,7 +93,7 @@ namespace DowJones.Web.Mvc.UI.Components.PortalArticle
         /// </summary>
         public string SourceLanguage { get; set; }
 
-        public PostProcessing PostProcessing { get; set; }
+        public DowJones.Infrastructure.PostProcessing PostProcessing { get; set; }
 
         /// <summary>
         /// Retrives Title from the article object
@@ -114,9 +113,6 @@ namespace DowJones.Web.Mvc.UI.Components.PortalArticle
                 {
                     case "webpage":
                         href = ArticleObject.contentParts.primaryReference;
-                        break;
-                    default:
-                        //href = BaseHeadlines.GetAlternateMediaHref(ContentHeadline);
                         break;
                 }
             }
@@ -310,19 +306,19 @@ namespace DowJones.Web.Mvc.UI.Components.PortalArticle
             {
                 switch (PostProcessing)
                 {
-                    case PostProcessing.Print:
+                    case DowJones.Infrastructure.PostProcessing.Print:
                         _htmlBuilder.AppendLine(
                             string.Format(
                                 @"<span class='dj_article_colorLinks'>{0} [{1}]</span>",
                                 (elink.text != null) ? elink.text.Value : elink.reference,
                                 elink.reference));
                         break;
-                    case PostProcessing.Save:
+                    case DowJones.Infrastructure.PostProcessing.Save:
                         _htmlBuilder.AppendLine((elink.text != null) ? elink.text.Value : elink.reference);
                         _htmlBuilder.AppendLine("[" + elink.reference + "]");
                         break;
                     default:
-                        if (PostProcessing != PostProcessing.UnSpecified)
+                        if (PostProcessing != DowJones.Infrastructure.PostProcessing.UnSpecified)
                         {
                             _htmlBuilder.AppendLine((elink.text != null) ? elink.text.Value : elink.reference);
                         }
@@ -338,7 +334,7 @@ namespace DowJones.Web.Mvc.UI.Components.PortalArticle
             }
             else if (!elink.type.Equals(ElinkType.pro.ToString(), StringComparison.InvariantCultureIgnoreCase))
             {
-                if (PostProcessing != PostProcessing.UnSpecified)
+                if (PostProcessing != DowJones.Infrastructure.PostProcessing.UnSpecified)
                 {
                     _htmlBuilder.AppendLine(elink.text.Value);
                 }

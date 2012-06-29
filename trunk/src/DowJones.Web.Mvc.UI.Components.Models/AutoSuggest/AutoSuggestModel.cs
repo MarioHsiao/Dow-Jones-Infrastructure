@@ -1,58 +1,58 @@
 using System.ComponentModel;
 
-namespace DowJones.Web.Mvc.UI.Components.Models
+namespace DowJones.Web.Mvc.UI.Components.AutoSuggest
 {
     public enum AutoCompletionType
     {
-        [DescriptionAttribute("Company")]
+        [Description("Company")]
         Company,
 
-        [DescriptionAttribute("Executive")]
+        [Description("Executive")]
         Executive,
 
-        [DescriptionAttribute("Source")]
+        [Description("Source")]
         Source,
 
-        [DescriptionAttribute("Region")]
+        [Description("Region")]
         Region,
 
-        [DescriptionAttribute("NewsSubject")]
+        [Description("NewsSubject")]
         NewsSubject,
 
-        [DescriptionAttribute("Industry")]
+        [Description("Industry")]
         Industry,
 
-        [DescriptionAttribute("Keyword")]
+        [Description("Keyword")]
         Keyword,
 
-        [DescriptionAttribute("Outlet")]
+        [Description("Outlet")]
         Outlet,
 
-        [DescriptionAttribute("Author")]
+        [Description("Author")]
         Author,
 
-        [DescriptionAttribute("Categories")]
+        [Description("Categories")]
         Categories,
 
-        [DescriptionAttribute("CalendarCompany")]
+        [Description("CalendarCompany")]
         CalendarCompany,
 
-        [DescriptionAttribute("CalendarKeyword")]
+        [Description("CalendarKeyword")]
         CalendarKeyword,
 
-        [DescriptionAttribute("PrivateMarkets")]
+        [Description("PrivateMarkets")]
         PrivateMarkets
     }
 
     public enum AuthType
     {
-        [DescriptionAttribute("SessionId")]
+        [Description("SessionId")]
         SessionId,
 
-        [DescriptionAttribute("EncryptedToken")]
+        [Description("EncryptedToken")]
         EncryptedToken,
 
-        [DescriptionAttribute("SuggestContext")]
+        [Description("SuggestContext")]
         SuggestContext
 
     }
@@ -96,6 +96,12 @@ namespace DowJones.Web.Mvc.UI.Components.Models
         public string Columns { get; set; }
 
         /// <summary>
+        /// Gets or Sets SuggestContext
+        /// </summary>
+        [ClientProperty("suggestContext")]
+        public string SuggestContext { get; set; }
+
+        /// <summary>
         /// Gets or Sets AutenticationType Value
         /// </summary>
         [ClientProperty("authTypeValue")]
@@ -106,6 +112,18 @@ namespace DowJones.Web.Mvc.UI.Components.Models
         /// </summary>
         [ClientProperty("authType")]
         public string AuthType { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Encrypted Token
+        /// </summary>
+        [ClientProperty("useEncryptedKey")]
+        public string UseEncryptedKey { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Session ID
+        /// </summary>
+        [ClientProperty("useSessionId")]
+        public string UseSessionId { get; set; }
 
         /// <summary>
         /// Gets or Sets Select First. If true, selects the first row from the suggest list.
@@ -143,7 +161,7 @@ namespace DowJones.Web.Mvc.UI.Components.Models
         /// Gets or sets the client side OnItemClick event handler.
         /// </summary>
         /// <value>The OnItemClick event handler name.</value>
-        [ClientEventHandler("dj.AutoSuggestComponent.headlineClick")]
+        [ClientEventHandler("dj.AutoSuggest.headlineClick")]
         public string OnItemClick { get; set; }
 
         /// <summary>
@@ -157,28 +175,28 @@ namespace DowJones.Web.Mvc.UI.Components.Models
         /// Gets or sets the client side OnPromoteClick event handler.
         /// </summary>
         /// <value>The OnPromoteClick event handler name.</value>
-        [ClientEventHandler("dj.AutoSuggestComponent.authorClick")]
+        [ClientEventHandler("dj.AutoSuggest.authorClick")]
         public string OnPromoteClick { get; set; }
 
         /// <summary>
         /// Gets or sets the client side OnNotClick event handler.
         /// </summary>
         /// <value>The OnNotClick event handler name.</value>
-        [ClientEventHandler("dj.AutoSuggestComponent.headlineClick")]
+        [ClientEventHandler("dj.AutoSuggest.headlineClick")]
         public string OnNotClick { get; set; }
 
         /// <summary>
         /// Gets or sets the client side OnHelpRowClick event handler.
         /// </summary>
         /// <value>The OnHelpRowClick event handler name.</value>
-        [ClientEventHandler("dj.AutoSuggestComponent.sourceClick")]
+        [ClientEventHandler("dj.AutoSuggest.sourceClick")]
         public string OnHelpRowClick { get; set; }
 
         /// <summary>
         /// Gets or sets the client side OnViewAllClick event handler.
         /// </summary>
         /// <value>The OnViewAllClick event handler name.</value>
-        [ClientEventHandler("dj.AutoSuggestComponent.viewAllClick")]
+        [ClientEventHandler("dj.AutoSuggest.viewAllClick")]
         public string OnViewAllClick { get; set; }
 
 
@@ -186,14 +204,14 @@ namespace DowJones.Web.Mvc.UI.Components.Models
         /// Gets or sets the client side OnViewMorePrivateMarketsClick event handler.
         /// </summary>
         /// <value>The OnViewMorePrivateMarketsClick event handler name.</value>
-        [ClientEventHandler("dj.AutoSuggestComponent.viewMorePrivateMarketsClick")]
+        [ClientEventHandler("dj.AutoSuggest.viewMorePrivateMarketsClick")]
         public string OnViewMorePrivateMarketsClick { get; set; }
 
         /// <summary>
         /// Gets or sets the client side OnError event handler.
         /// </summary>
         /// <value>The OnError event handler name.</value>
-        [ClientEventHandler("dj.AutoSuggestComponent.authorClick")]
+        [ClientEventHandler("dj.AutoSuggest.authorClick")]
         public string OnError { get; set; }
 
         #endregion

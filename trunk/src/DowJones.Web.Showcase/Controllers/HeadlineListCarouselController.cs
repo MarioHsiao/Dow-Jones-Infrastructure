@@ -4,10 +4,11 @@ using DowJones.Ajax.HeadlineList;
 using DowJones.Assemblers.Headlines;
 using DowJones.Search;
 using DowJones.Web.Mvc.UI;
-using DowJones.Web.Mvc.UI.Components.Common.Types;
+using DowJones.Web.Mvc.UI.Components.Common;
 using DowJones.Web.Mvc.UI.Components.CompositeHeadline;
 using DowJones.Web.Mvc.UI.Components.HeadlineList;
-using DowJones.Web.Mvc.UI.Components.Models;
+using DowJones.Web.Mvc.UI.Components.HeadlineListCarousel;
+using DowJones.Web.Mvc.UI.Components.PostProcessing;
 using DowJones.Web.Showcase.Extensions;
 using DowJones.Web.Showcase.Models;
 using ControllerBase = DowJones.Web.Mvc.ControllerBase;
@@ -82,7 +83,7 @@ namespace DowJones.Web.Showcase.Controllers
                                                                                        PostProcessingOptions.PressClips
                                                                                    }
                                                    },
-                                PostProcessing = new PostProcessing(new[]
+                                PostProcessing = new PostProcessingModel(new[]
                                                                         {
                                                                             PostProcessingOptions.Read,
                                                                             PostProcessingOptions.Save,

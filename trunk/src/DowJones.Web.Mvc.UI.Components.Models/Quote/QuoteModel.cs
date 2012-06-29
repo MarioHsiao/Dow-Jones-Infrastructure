@@ -1,9 +1,4 @@
-﻿using System;
-using DowJones.Web.Mvc.UI.Components.Common.Types;
-using DowJones.Web.Mvc.UI.Components.HeadlineList;
-using System.Collections.Generic;
-
-namespace DowJones.Web.Mvc.UI.Components.Models
+﻿namespace DowJones.Web.Mvc.UI.Components.Quote
 {
     public class QuoteModel : ViewComponentModel
     {

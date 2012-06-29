@@ -1,7 +1,7 @@
 ﻿using DowJones.Managers.Multimedia;
 using DowJones.Mapping;
 
-namespace DowJones.Web.Mvc.UI.Components.Models
+namespace DowJones.Web.Mvc.UI.Components.VideoPlayer
 {
     public class MediaContentToClipMapper : TypeMapper<MediaContent, Clip>
     {

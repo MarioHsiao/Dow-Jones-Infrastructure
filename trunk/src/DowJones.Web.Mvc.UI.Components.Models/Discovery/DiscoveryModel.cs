@@ -4,7 +4,6 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using DowJones.Ajax.Navigator;
 using DowJones.Ajax.TagCloud;
-using Factiva.Gateway.Messages.Search;
 
 namespace DowJones.Web.Mvc.UI.Components.Discovery
 {
@@ -17,15 +16,7 @@ namespace DowJones.Web.Mvc.UI.Components.Discovery
         {
             DiscoveryCollection = new Collection<DiscoveryList>();
         }
-        public DiscoveryModel(IPerformContentSearchResponse response) : this()
-        {
-            
 
-
-
-
-
-        }
         public DiscoveryList AddDiscoveryList(string title, DiscoveryChartTypes chartType, IEnumerable<Tag> tags)
         {
             var list = new DiscoveryList(title, chartType);
@@ -46,10 +37,12 @@ namespace DowJones.Web.Mvc.UI.Components.Discovery
             return list;
 
         }
+
         public DiscoveryList AddDiscoveryList(string title, DiscoveryChartTypes chartType, Navigator navigator)
         {
             return AddDiscoveryList(title, chartType, navigator, string.Empty);
         }
+
         public DiscoveryList AddDiscoveryList(string title, DiscoveryChartTypes chartType, Navigator navigator, string dataCode)
         {
             var list = new DiscoveryList(title, chartType) { DataTypeCode = dataCode };
@@ -62,9 +55,8 @@ namespace DowJones.Web.Mvc.UI.Components.Discovery
             DiscoveryCollection.Add(list);
 
             return list;
-
-
         }
+
         static void Process(DiscoveryList list, IEnumerable<Bucket> bucketlist)
         {
             foreach (var b in bucketlist)

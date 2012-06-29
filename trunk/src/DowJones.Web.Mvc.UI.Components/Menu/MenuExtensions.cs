@@ -1,15 +1,22 @@
 ﻿using System.Reflection;
+using System.Web.UI;
+using DowJones.Web;
+
+[assembly: WebResource(DowJones.Web.Mvc.UI.Components.Menu.MenuExtensions.MenuScriptResourceName, KnownMimeTypes.JavaScript)]
+[assembly: WebResource(DowJones.Web.Mvc.UI.Components.Menu.MenuExtensions.MenuTemplateResourceName, KnownMimeTypes.Html)]
 
 namespace DowJones.Web.Mvc.UI.Components.Menu
 {
-    [ScriptResourceAttribute("Menu", ResourceName = "DowJones.Web.Mvc.UI.Components.Menu.Menu.js", ResourceKind = ClientResourceKind.Script)]
-    [ClientTemplateResourceAttribute(ResourceName = "DowJones.Web.Mvc.UI.Components.Menu.ClientTemplates.SimpleMenu.htm", ResourceKind = ClientResourceKind.ClientTemplate, TemplateId = "simpleMenu")]
+    [ScriptResourceAttribute("Menu", ResourceName = MenuScriptResourceName, ResourceKind = ClientResourceKind.Script)]
+    [ClientTemplateResourceAttribute(ResourceName = MenuTemplateResourceName, ResourceKind = ClientResourceKind.ClientTemplate, TemplateId = "simpleMenu")]
     public static class MenuExtensions
     {
-        internal const string MenuScriptResourceName = "DowJones.Web.Mvc.UI.Components.Menu.Menu.js";
+        internal const string BaseResourceName = "DowJones.Web.Mvc.UI.Components.Menu.";
+        internal const string MenuScriptResourceName = BaseResourceName + "Menu.js";
+        internal const string MenuTemplateResourceName = BaseResourceName + "ClientTemplates.SimpleMenu.htm";
+
         private static readonly Assembly TargetAssembly = typeof(MenuExtensions).Assembly;
 
-        
         public static ViewComponentFactory Menu(this ViewComponentFactory factory)
         {
             factory.ScriptRegistry().IncludeResource(

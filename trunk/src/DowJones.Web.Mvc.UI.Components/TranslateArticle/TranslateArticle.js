@@ -1,18 +1,13 @@
 /*!
 * TranslateArticleControl
 */
-    DJ.UI.TranslateArticle = DJ.UI.Component.extend({
-        // Default options
-        defaults: {
-            debug: false,
-            cssClass: 'TranslateArticle'
-            // ,name: value     // add more defaults here separated by comma
-        },
-
-        // Localization/Templating tokens
-        tokens: {
-        //name: value add more defaults here separated by comma
+DJ.UI.TranslateArticle = DJ.UI.Component.extend({
+    // Default options
+    defaults: {
+        debug: false,
+        cssClass: 'TranslateArticle'
     },
+
 
 
     /*
@@ -210,7 +205,6 @@
             error: function (msg) {
                 var translatedContentDiv = $("#translatedContent")[0];
                 translatedContentDiv.innerHTML += "Unable to process:-" + msg.d.StatusMessage;
-                var originalContentDiv = $("#originalContent")[0];
                 $("#translateButtons").show();
                 if ($("#originalContent").children().length == 0)
                     $("#translateButtons").hide();

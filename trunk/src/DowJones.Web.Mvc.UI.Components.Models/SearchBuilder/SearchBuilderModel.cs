@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Linq;
 using DowJones.Managers.QueryUtility;
-using DowJones.Web.Mvc.UI.Components.Common;
 using System.Collections.Generic;
 using DowJones.Globalization;
 using DowJones.Preferences;
 using DowJones.Search;
 using DowJones.Attributes;
-using SortOrder = DowJones.Search.SortOrder;
+using DowJones.Web.Mvc.UI.Components.Search;
 
-namespace DowJones.Web.Mvc.UI.Components.Models
+namespace DowJones.Web.Mvc.UI.Components.SearchBuilder
 {
     public class SearchBuilderModel : CompositeComponentModel
     {

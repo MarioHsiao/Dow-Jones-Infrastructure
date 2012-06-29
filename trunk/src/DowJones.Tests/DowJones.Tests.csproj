@@ -171,6 +171,7 @@
     <Compile Include="Mocks\MockHttpContext.cs" />
     <Compile Include="Infrastructure\Web\UI\ClientResourceTokenProcessorTests.cs" />
     <Compile Include="Infrastructure\Web\UI\ClientResourceWebResourceProcessorTests.cs" />
+    <Compile Include="EmbeddedResourcesTests.cs" />
     <Compile Include="Web.Mvc\ControllerRegistryTests.cs" />
     <Compile Include="Infrastructure\Converters\ChangePercentageConverterTests.cs" />
     <Compile Include="Infrastructure\Converters\PercentageConverterTests.cs" />
@@ -206,6 +207,18 @@
     <ProjectReference Include="..\DowJones.Pages\DowJones.Pages.csproj">
       <Project>{60BFCFAB-61ED-4AB5-9803-D8AAAF1184E4}</Project>
       <Name>DowJones.Pages</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DowJones.Web.Mvc.Search\DowJones.Web.Mvc.Search.csproj">
+      <Project>{1E5B6A24-ED92-4ABE-AD3B-9889E16CB01F}</Project>
+      <Name>DowJones.Web.Mvc.Search</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DowJones.Web.Mvc.UI.Components.Models\DowJones.Web.Mvc.UI.Components.Models.csproj">
+      <Project>{32DA5CA1-0038-4110-BC24-938B39439CE7}</Project>
+      <Name>DowJones.Web.Mvc.UI.Components.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DowJones.Web.Mvc.UI.Components\DowJones.Web.Mvc.UI.Components.csproj">
+      <Project>{8F187465-8B2C-4557-B3A2-02F7B4A6C0FE}</Project>
+      <Name>DowJones.Web.Mvc.UI.Components</Name>
     </ProjectReference>
     <ProjectReference Include="..\DowJones.Web.Mvc\DowJones.Web.Mvc.csproj">
       <Project>{3E440D53-ACA6-422A-8FC8-778D505AD1E9}</Project>

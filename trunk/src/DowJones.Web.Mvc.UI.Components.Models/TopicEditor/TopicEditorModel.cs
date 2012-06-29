@@ -1,15 +1,12 @@
-﻿using System;
-using DowJones.Attributes;
-using DowJones.Topic;
+﻿using DowJones.Topic;
 using DowJones.Utilities.Search.Core;
 using DowJones.Web.Mvc.UI.Components.Common;
+using DowJones.Web.Mvc.UI.Components.Search;
 using Factiva.Gateway.Messages.Assets.Queries.V1_0;
 using Newtonsoft.Json;
 using System.Collections.Generic;
-using Track = Factiva.Gateway.Messages.Track.V1_0;
-using DowJones.Globalization;
 
-namespace DowJones.Web.Mvc.UI.Components.Models
+namespace DowJones.Web.Mvc.UI.Components.TopicEditor
 {
     [JsonObject(MemberSerialization = MemberSerialization.OptIn)]
     public class TopicData

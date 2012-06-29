@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ArticleModel.cs" company="Dow Jones & Company">
+// <copyright file="Article.cs" company="Dow Jones & Company">
 //   © 2011 Dow Jones Factiva
 // </copyright>
 // <summary>
@@ -13,12 +13,11 @@ using System.Runtime.Serialization;
 using DowJones.Ajax;
 using DowJones.Ajax.Article;
 using DowJones.Articles;
-using DowJones.Web.Mvc.UI.Components.Article;
-using DowJones.Web.Mvc.UI.Components.ArticleTranslator;
-using DowJones.Web.Mvc.UI.Components.SocialButtons;
+using DowJones.Web.Mvc.UI.Components.PostProcessing;
+using DowJones.Web.Mvc.UI.Components.VideoPlayer;
 using Newtonsoft.Json;
 
-namespace DowJones.Web.Mvc.UI.Components.Models.Article
+namespace DowJones.Web.Mvc.UI.Components.Article
 {
     public class ParagraphModel : ViewComponentModel
     {
@@ -159,10 +158,10 @@ namespace DowJones.Web.Mvc.UI.Components.Models.Article
         /// <summary>
         /// Gets or sets SocialButtons.
         /// </summary>
-        public SocialButtonsModel SocialButtons { get; set; }
+        public SocialButtons.SocialButtonsModel SocialButtons { get; set; }
 
 
-        public VideoPlayerModel VideoPlayerModel { get; set; }
+        public VideoPlayerModel VideoPlayer { get; set; }
 
         /// <summary>
         /// Gets a value indicating whether HasSocialNetworks.
@@ -178,7 +177,7 @@ namespace DowJones.Web.Mvc.UI.Components.Models.Article
         /// <summary>
         /// Gets or sets Translator.
         /// </summary>
-        public ArticleTranslatorModel Translator { get; set; }
+        public ArticleTranslator.ArticleTranslatorModel Translator { get; set; }
 
         /// <summary>
         /// Gets a value indicating whether HasTranslator.

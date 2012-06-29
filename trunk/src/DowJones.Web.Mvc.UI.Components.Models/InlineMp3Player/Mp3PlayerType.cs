@@ -1,7 +1,7 @@
 using System.Xml.Serialization;
 using DowJones.Web.Mvc.UI.Components.Attributes;
 
-namespace DowJones.Web.Mvc.UI.Components
+namespace DowJones.Web.Mvc.UI.Components.InlineMp3Player
 {
     public enum MP3PlayerType
     {

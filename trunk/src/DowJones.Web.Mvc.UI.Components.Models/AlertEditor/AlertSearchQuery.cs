@@ -4,7 +4,7 @@ using DowJones.Utilities.Search.Core;
 using Newtonsoft.Json;
 using SortOrder = Factiva.Gateway.Messages.Track.V1_0.SortOrder;
 
-namespace DowJones.Web.Mvc.UI.Components.Models
+namespace DowJones.Web.Mvc.UI.Components.AlertEditor
 {
     public class AlertSearchQuery
     {

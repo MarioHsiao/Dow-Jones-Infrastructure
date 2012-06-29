@@ -14,8 +14,9 @@ using DowJones.Web.Mvc.Search.Requests.Freetext;
 using DowJones.Web.Mvc.Search.ViewModels;
 using DowJones.Web.Mvc.UI.Components.Common;
 using DowJones.Web.Mvc.UI.Components.HeadlineList;
-using DowJones.Web.Mvc.UI.Components.Models;
 using System.Web.Configuration;
+using DowJones.Web.Mvc.UI.Components.Search;
+using DowJones.Web.Mvc.UI.Components.SearchBuilder;
 using Factiva.Gateway.Messages.Assets.Queries.V1_0;
 
 namespace DowJones.Web.Mvc.Search.Controllers

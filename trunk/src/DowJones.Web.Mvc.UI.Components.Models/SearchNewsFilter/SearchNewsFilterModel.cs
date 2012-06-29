@@ -1,16 +1,13 @@
 ﻿using System.Collections.Generic;
-using Track = Factiva.Gateway.Messages.Track.V1_0;
 using DowJones.Utilities.Search.Core;
 using DowJones.Search;
+using FilterItem = DowJones.Utilities.Search.Core.FilterItem;
 
-namespace DowJones.Web.Mvc.UI.Components.Models
+namespace DowJones.Web.Mvc.UI.Components.SearchNewsFilter
 {
-    
     public class SearchNewsFilterModel : ViewComponentModel
     {
-        #region ..:: Public Properties ::..
         public SearchNewsFilters Filters { get; set; }
-        #endregion
 
         public string GetToken(NewsFilterCategory category, int filterCount)
         {
@@ -62,13 +59,5 @@ namespace DowJones.Web.Mvc.UI.Components.Models
             }
             return null;
         }
-
-        #region ..:: Constructor ::..
-
-        public SearchNewsFilterModel()
-        {
-        }
-
-        #endregion
     }
 }

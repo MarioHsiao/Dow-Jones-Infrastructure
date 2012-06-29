@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace DowJones.Web.Mvc.UI.Components.NavBar
 {
@@ -45,7 +43,7 @@ namespace DowJones.Web.Mvc.UI.Components.NavBar
 
         #region ..:: Action Items ::..
 
-        private List<NavItem> _actionItems = null;
+        private List<NavItem> _actionItems;
         
 
         private List<NavItem> GetDefaultActionItems()

@@ -12,13 +12,11 @@
         // Default options
         defaults: {
             debug: false,
-            cssClass: 'DateHistogramControl'
-            // ,name: value     // add more defaults here separated by comma
+            cssClass: 'DateHistogram'
         },
 
         // Localization/Templating tokens
         tokens: {
-            // name: value     // add more defaults here separated by comma
         },
 
         eventNames: {
