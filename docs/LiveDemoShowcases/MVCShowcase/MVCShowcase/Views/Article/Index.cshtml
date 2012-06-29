@@ -4,4 +4,12 @@
     ViewBag.Title = "Article Demo";
 }
 
-@Html.DJ().Render(Model)
+@section styles{
+	<link href="@Url.Content("~/styles/views/Article/Article.css")" rel="stylesheet" />
+}
+
+<section id="main">
+    <div class="article-view">
+        @Html.DJ().Render(Model)
+    </div>
+</section>

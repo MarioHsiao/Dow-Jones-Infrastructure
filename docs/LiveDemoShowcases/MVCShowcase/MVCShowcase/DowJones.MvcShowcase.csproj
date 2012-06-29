@@ -242,6 +242,7 @@
     <Content Include="Styles\Site.css">
       <DependentUpon>Site.scss</DependentUpon>
     </Content>
+    <Content Include="Styles\views\Article\Article.css" />
     <Content Include="Styles\views\DiscoveryGraph\discoveryGraph.css">
       <DependentUpon>discoveryGraph.scss</DependentUpon>
     </Content>
