@@ -45,6 +45,7 @@
   </PropertyGroup>
   <ItemGroup>
     <None Include="Components\Article\Configuration.md" />
+    <None Include="Components\Article\Events.md" />
     <None Include="Components\Article\LiveDemo.md" />
     <None Include="Components\Article\Properties.md" />
     <None Include="Components\Article\Overview.md" />
