@@ -2,26 +2,73 @@
 <Project ToolsVersion="4.0" DefaultTargets="DeployContent"
          xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
-  <Target Name="DeployContent">
-    <ItemGroup>
-      <ContentFiles Include="$(MSBuildProjectDirectory)\**"
-                    Exclude="$(MSBuildProjectDirectory)\*.*proj*;
+	<Target Name="DeployContent">
+		<ItemGroup>
+			<ContentFiles Include="$(MSBuildProjectDirectory)\**"
+						  Exclude="$(MSBuildProjectDirectory)\*.*proj*;
                              $(MSBuildProjectDirectory)\bin\**;
-                             $(MSBuildProjectDirectory)\obj\**" 
+                             $(MSBuildProjectDirectory)\obj\**"
       />
-    </ItemGroup>
+		</ItemGroup>
 
-    <Error Condition="'$(DeploymentDir)' == ''" Text="DeploymentDir property is required" />
-    <Message Importance="High" Text="Copying website from $(MSBuildProjectName) to $(DeploymentDir)" />
-    
-    <Exec Command="attrib -R @(ContentFiles->'%(FullPath)')" />
-      
-    <Copy SourceFiles="@(ContentFiles)"
-          DestinationFiles="@(ContentFiles->'$(DeploymentDir)\%(RecursiveDir)%(Filename)%(Extension)')"
-		  OverwriteReadOnlyFiles="true"
-    />
+		<Error Condition="'$(DeploymentDir)' == ''" Text="DeploymentDir property is required" />
+		<Message Importance="High" Text="Copying website from $(MSBuildProjectName) to $(DeploymentDir)" />
 
-    <Exec Command="attrib +R @(ContentFiles->'%(FullPath)')" />
-</Target>
-  
+		<BuildStep
+			 TeamFoundationServerUrl="$(TeamFoundationServerUrl)"
+			 BuildUri="$(BuildUri)"
+			 Message="Removing Readonly Attribute...">
+			<Output TaskParameter="Id" PropertyName="StepId" />
+		</BuildStep>
+
+		<Exec Command="attrib -R @(ContentFiles->'%(FullPath)')" />
+
+		<BuildStep
+            TeamFoundationServerUrl="$(TeamFoundationServerUrl)"
+            BuildUri="$(BuildUri)"
+            Id="$(StepId)"
+            Status="Succeeded" />
+		<OnError ExecuteTargets="MarkBuildStepAsFailed" />
+
+		<BuildStep
+			TeamFoundationServerUrl="$(TeamFoundationServerUrl)"
+			BuildUri="$(BuildUri)"
+			Message="Copying Content Files...">
+			<Output TaskParameter="Id" PropertyName="StepId" />
+		</BuildStep>
+		<Copy SourceFiles="@(ContentFiles)"
+			  DestinationFiles="@(ContentFiles->'$(DeploymentDir)\%(RecursiveDir)%(Filename)%(Extension)')"
+			  OverwriteReadOnlyFiles="true" />
+		<BuildStep
+            TeamFoundationServerUrl="$(TeamFoundationServerUrl)"
+            BuildUri="$(BuildUri)"
+            Id="$(StepId)"
+            Status="Succeeded" />
+		<OnError ExecuteTargets="MarkBuildStepAsFailed" />
+
+		<BuildStep
+			 TeamFoundationServerUrl="$(TeamFoundationServerUrl)"
+			 BuildUri="$(BuildUri)"
+			 Message="Adding Readonly Attribute...">
+			<Output TaskParameter="Id" PropertyName="StepId" />
+		</BuildStep>
+		<Exec Command="attrib +R @(ContentFiles->'%(FullPath)')" />
+		<BuildStep
+            TeamFoundationServerUrl="$(TeamFoundationServerUrl)"
+            BuildUri="$(BuildUri)"
+            Id="$(StepId)"
+            Status="Succeeded" />
+		<OnError ExecuteTargets="MarkBuildStepAsFailed" />
+
+	</Target>
+
+	<Target Name="MarkBuildStepAsFailed">
+		<BuildStep
+            TeamFoundationServerUrl="$(TeamFoundationServerUrl)"
+            BuildUri="$(BuildUri)"
+            Id="$(StepId)"
+            Status="Failed" />
+	</Target>
+
+
 </Project>
