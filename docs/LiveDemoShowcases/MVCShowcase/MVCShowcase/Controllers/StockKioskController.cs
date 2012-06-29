@@ -56,7 +56,7 @@ namespace DowJones.MvcShowcase.Controllers
         public StockKioskModel Bottom;
     }
 
-    public class StockKioskController : Controller
+    public class StockKioskController : BaseController
     {
         private readonly MarketDataInstrumentIntradayResultSetAssembler _assembler;
         public StockKioskController(MarketDataInstrumentIntradayResultSetAssembler assembler)
