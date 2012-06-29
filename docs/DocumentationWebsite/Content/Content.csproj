@@ -46,7 +46,7 @@
   <ItemGroup>
     <None Include="Components\Article\Configuration\ASP.NET_MVC.md" />
     <None Include="Components\Article\LiveDemo.md" />
-    <None Include="Components\Article\Options.md" />
+    <None Include="Components\Article\Properties.md" />
     <None Include="Components\Article\Overview.md" />
     <None Include="Components\AutoSuggest\Configuration.md" />
     <None Include="Components\AutoSuggest\Tokens.md" />

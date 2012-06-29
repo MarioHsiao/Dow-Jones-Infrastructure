@@ -20,23 +20,7 @@ Populate the Article model (either in your controller or model):
     		PostProcessingOptions.Share
     	},
         ShowSocialButtons = true,
-        SocialButtons = new SocialButtonsModel
-        {
-            Url = "some url",
-            Description = "",
-            Target = "_blank",
-            ImageSize = ImageSize.Small,
-            Title = ProcessHeadlineRenderItems(articleDataSet.Headline),
-            SocialNetworks = new[]
-            {
-                SocialNetworks.LinkedIn,
-                SocialNetworks.Twitter,
-                SocialNetworks.Facebook
-            },
-            Keywords = "",
-            ID = "socialButtons",
-            ShowCustomTooltip = false,
-        },
+        SocialButtons = socialButtonsModel,
         ShowSourceLinks = true
     };
 	

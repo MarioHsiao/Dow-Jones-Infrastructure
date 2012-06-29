@@ -266,6 +266,23 @@ namespace DowJones.MvcShowcase.Controllers
                 MimeType = "text/xml"
             };
 
+            var socialButtonsModel = new SocialButtonsModel
+            {
+                Url = "http://www.factiva.com",
+                Description = "",
+                Target = "_blank",
+                ImageSize = ImageSize.Small,
+                Title = "Heard & Scene: Actor at Home on High",
+                SocialNetworks = new[]
+                {
+                    SocialNetworks.LinkedIn,
+                    SocialNetworks.Twitter,
+                    SocialNetworks.Facebook
+                },
+                Keywords = "",
+                ID = "socialButtons",
+                ShowCustomTooltip = false,
+            };
 
             var articleModel = new ArticleModel
             {
@@ -282,23 +299,7 @@ namespace DowJones.MvcShowcase.Controllers
     		       	PostProcessingOptions.Share
     		    },
                 ShowSocialButtons = true,
-                SocialButtons = new SocialButtonsModel
-                {
-                    Url = "some url",
-                    Description = "",
-                    Target = "_blank",
-                    ImageSize = ImageSize.Small,
-                    Title = ProcessHeadlineRenderItems(articleDataSet.Headline),
-                    SocialNetworks = new[]
-                    {
-                        SocialNetworks.LinkedIn,
-                        SocialNetworks.Twitter,
-                        SocialNetworks.Facebook
-                    },
-                    Keywords = "",
-                    ID = "socialButtons",
-                    ShowCustomTooltip = false,
-                },
+                SocialButtons = socialButtonsModel,
                 ShowSourceLinks = true
             };
             return View(articleModel);
