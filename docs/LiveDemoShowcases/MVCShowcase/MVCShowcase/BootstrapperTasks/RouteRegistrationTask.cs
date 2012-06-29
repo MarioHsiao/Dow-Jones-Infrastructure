@@ -22,6 +22,12 @@ namespace DowJones.MvcShowcase.BootstrapperTasks
 
             /*** IMPORTANT:  Avoid adding generic routes here - prefer RouteAttribute instead!  ****/
 
+			_routes.MapRoute(
+				"Data", // Route name
+				"{controller}/data/{mode}", // URL with parameters
+				new { controller = "Home", action="Data", mode = UrlParameter.Optional } // Parameter defaults
+			);
+
             _routes.MapRoute(
                 "Default", // Route name
                 "{controller}/{action}/{id}", // URL with parameters
