@@ -5,6 +5,10 @@
 
 Populate the Article model (either in your controller or model):
 
+	var articleDataSet = new ArticleResultSet
+	{
+		// Click on "View Sample Data" to see sample data
+	}
     var articleModel = new ArticleModel
     {
         ArticleDataSet = articleDataSet,
