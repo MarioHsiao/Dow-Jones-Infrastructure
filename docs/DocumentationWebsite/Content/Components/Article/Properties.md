@@ -6,6 +6,4 @@ ArticleDataSet					| Dataset for the article. Takes a `ArticleResultSet`. Click 
 ArticleDisplayOptions			| How the article should be displayed. Posible values: `Full`, `Indexing`, `Keywords`, `Headline`
 ShowPostProcessing				| Show or hide post processing buttons. Works in tandem with **PostProcessingOptions**
 PostProcessingOptions			| List of post processing buttons to be shown. Possible values: `Read`, `Save`, `Print`, `Email`, `PressClips`, `Export`, `Share`, `Listen`, `Translate`
-ShowSocialButtons				| Show or hide social buttons. Works in tandem with **SocialButtons**
-SocialButtons					| Model for SocialButtons component. Takes a `SocialButtonsModel`. Click the <span class="btn btn-mini btn-info">View Sample Data</span> button to see examples.
 ShowSourceLinks					| Show article source as links or plain text.

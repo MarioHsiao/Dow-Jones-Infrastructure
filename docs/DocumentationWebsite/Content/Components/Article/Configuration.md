@@ -19,8 +19,6 @@ Populate the Article model (either in your controller or model):
     		PostProcessingOptions.Translate,
     		PostProcessingOptions.Share
     	},
-        ShowSocialButtons = true,
-        SocialButtons = socialButtonsModel,
         ShowSourceLinks = true
     };
 	

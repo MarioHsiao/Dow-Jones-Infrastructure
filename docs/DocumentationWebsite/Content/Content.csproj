@@ -44,7 +44,7 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <None Include="Components\Article\Configuration\ASP.NET_MVC.md" />
+    <None Include="Components\Article\Configuration.md" />
     <None Include="Components\Article\LiveDemo.md" />
     <None Include="Components\Article\Properties.md" />
     <None Include="Components\Article\Overview.md" />

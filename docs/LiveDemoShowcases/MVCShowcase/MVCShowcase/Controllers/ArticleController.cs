@@ -298,8 +298,6 @@ namespace DowJones.MvcShowcase.Controllers
     		       	PostProcessingOptions.Translate,
     		       	PostProcessingOptions.Share
     		    },
-                ShowSocialButtons = true,
-                SocialButtons = socialButtonsModel,
                 ShowSourceLinks = true
             };
             return View(articleModel);
