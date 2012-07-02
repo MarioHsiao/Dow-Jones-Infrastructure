@@ -56,7 +56,7 @@
   <ItemGroup>
     <Compile Include="AbstractBlock.cs" />
     <Compile Include="BlockWriter.cs" />
-    <Compile Include="JavaScriptReader.cs" />
+    <Compile Include="BufferedTextReader.cs" />
     <Compile Include="MemberInfo.cs" />
     <Compile Include="BlockFactory.cs" />
     <Compile Include="ClassBlock.cs" />
