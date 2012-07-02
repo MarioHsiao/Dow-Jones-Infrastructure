@@ -36,14 +36,18 @@
             <div class="embededHtml">@(Html.Raw(renderItem.ItemText))</div>
             break;
         case MarkUpType.ArticleElink:
-            var elinkItemText = "";
-            foreach (var elinkItem in renderItem.ElinkItems)
+                 var elinkItemText = "";
+            if (renderItem.ElinkItems.Count > 0)
             {
-                if (elinkItem.ItemMarkUp == MarkUpType.ArticleElinkHighlight)
-                {elinkItemText = elinkItemText + "<span class='dj_article_highlight'>" + elinkItem.ItemText + "</span>";}
-                else if (elinkItem.ItemMarkUp == MarkUpType.Plain)
-                {elinkItemText = elinkItemText + elinkItem.ItemText;}
+                foreach (var elinkItem in renderItem.ElinkItems)
+                {
+                    if (elinkItem.ItemMarkUp == MarkUpType.ArticleElinkHighlight)
+                    { elinkItemText = elinkItemText + "<span class='dj_article_highlight'>" + elinkItem.ItemText + "</span>"; }
+                    else if (elinkItem.ItemMarkUp == MarkUpType.Plain)
+                    { elinkItemText = elinkItemText + elinkItem.ItemText; }
+                }
             }
+            else { elinkItemText = renderItem.ItemText; }
             <a class="dj_article_elink" href="javascript:void(0)" data-href="@renderItem.ItemValue.EscapeForHtml()">@elinkItemText</a>
             break;
         case MarkUpType.Plain:

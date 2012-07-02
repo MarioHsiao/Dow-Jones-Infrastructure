@@ -18,16 +18,12 @@ namespace DowJones.Web.Mvc.UI.Components.Article
     using System.Web;
     using System.Web.Security;
     using System.Web.UI;
-    using System.Text;
     using DowJones.Infrastructure;
     using DowJones.Extensions;
-    using DowJones.Ajax.Article;
-    using DowJones.Web.Mvc.UI.Components.Article;
-    using Factiva.Gateway.Messages.Archive.V2_0;
-    using System.Text.RegularExpressions;
+    using Ajax.Article;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 06/06/2012 03:54 PM
+    // Last Generated Timestamp: 07/02/2012 04:00 PM
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "0.0.0.30158")]
     public class Paragraph : DowJones.Web.Mvc.UI.ViewComponentBase<DowJones.Web.Mvc.UI.Components.Models.Article.ParagraphModel>
     {
@@ -45,11 +41,6 @@ namespace DowJones.Web.Mvc.UI.Components.Article
         }
         public override void ExecuteTemplate()
         {
-
-
-
-
-
 
 
 
@@ -91,40 +82,41 @@ WriteLiteral("\" />\r\n");
         case MarkUpType.ImageFigure:
             if (!string.IsNullOrEmpty(renderItem.EnlargedImageUrl)){ 
 
-WriteLiteral("                <div class=\"figure\"><div class=\"figImages\"><img alt=\"");
+WriteLiteral("                <div class=\"figure\"><img alt=\"");
 
 
-                                                                 Write(renderItem.Title.EscapeForHtml());
+                                          Write(renderItem.Title.EscapeForHtml());
 
 WriteLiteral("\" src=\"");
 
 
-                                                                                                           Write(renderItem.ItemValue);
+                                                                                    Write(renderItem.ItemValue);
 
 WriteLiteral("\" title=\"");
 
 
-                                                                                                                                           Write(renderItem.Title.EscapeForHtml());
+                                                                                                                    Write(renderItem.Title.EscapeForHtml());
 
-WriteLiteral("\" /><a class=\"dj_article_enlargeImg_link\" href=\"javascript:void(0)\" data-href=\"");
+WriteLiteral("\" /><div class=\"dj_article_enlargeImg_wrap\"><a class=\"dj_article_enlargeImg_link\"" +
+" href=\"javascript:void(0)\" data-href=\"");
 
 
-                                                                                                                                                                                                                                                             Write(renderItem.EnlargedImageUrl);
+                                                                                                                                                                                                                                                                              Write(renderItem.EnlargedImageUrl);
 
 WriteLiteral("\">Enlarge</a></div><div class=\"figCredit\">");
 
 
-                                                                                                                                                                                                                                                                                                                                     Write(renderItem.Credit);
+                                                                                                                                                                                                                                                                                                                                                      Write(renderItem.Credit);
 
 WriteLiteral("</div><div class=\"figSource\">");
 
 
-                                                                                                                                                                                                                                                                                                                                                                                      Write(renderItem.Source);
+                                                                                                                                                                                                                                                                                                                                                                                                       Write(renderItem.Source);
 
 WriteLiteral("</div><div class=\"figCaption\">");
 
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                        Write(renderItem.Caption);
+                                                                                                                                                                                                                                                                                                                                                                                                                                                         Write(renderItem.Caption);
 
 WriteLiteral("</div></div>\r\n");
 
@@ -206,14 +198,18 @@ WriteLiteral("</div>\r\n");
 
             break;
         case MarkUpType.ArticleElink:
-            var elinkItemText = "";
-            foreach (var elinkItem in renderItem.ElinkItems)
+                 var elinkItemText = "";
+            if (renderItem.ElinkItems.Count > 0)
             {
-                if (elinkItem.ItemMarkUp == MarkUpType.ArticleElinkHighlight)
-                {elinkItemText = elinkItemText + "<span class='dj_article_highlight'>" + elinkItem.ItemText + "</span>";}
-                else if (elinkItem.ItemMarkUp == MarkUpType.Plain)
-                {elinkItemText = elinkItemText + elinkItem.ItemText;}
+                foreach (var elinkItem in renderItem.ElinkItems)
+                {
+                    if (elinkItem.ItemMarkUp == MarkUpType.ArticleElinkHighlight)
+                    { elinkItemText = elinkItemText + "<span class='dj_article_highlight'>" + elinkItem.ItemText + "</span>"; }
+                    else if (elinkItem.ItemMarkUp == MarkUpType.Plain)
+                    { elinkItemText = elinkItemText + elinkItem.ItemText; }
+                }
             }
+            else { elinkItemText = renderItem.ItemText; }
 
 WriteLiteral("            <a class=\"dj_article_elink\" href=\"javascript:void(0)\" data-href=\"");
 
