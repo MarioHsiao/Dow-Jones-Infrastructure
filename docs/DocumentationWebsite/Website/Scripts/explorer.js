@@ -72,8 +72,10 @@
         // fix nav on scroll
         var $win = $(window),
             $nav = $(nav),
-            navTop = $(nav).length && $(nav).offset().top - 40,
+            navTop = $(nav).length && $(nav).offset().top - 230,
             isFixed = 0;
+        
+        //console.log('nav offset top:', $(nav).offset().top);
         processScroll();
         $nav.on('click', function () {
             if (!isFixed) {
@@ -84,10 +86,13 @@
         $win.on('scroll', processScroll);
 
         function processScroll() {
+            //console.log('navtop:', navTop);
             var scrollTop = $win.scrollTop();
+            //console.log('scrollTop:', scrollTop);
             if (scrollTop >= navTop && !isFixed) {
                 isFixed = 1;
-                $nav.addClass('subnav-fixed');
+                var width = $nav.width();
+                $nav.addClass('subnav-fixed').width(width+'px');
             } else if (scrollTop <= navTop && isFixed) {
                 isFixed = 0;
                 $nav.removeClass('subnav-fixed');
@@ -154,7 +159,7 @@
         prettifyMarkdownTables();
 
         // highlight Children in sidebar nav as we scroll
-        setupScrollSpy(50);
+        setupScrollSpy(230);
 
         setupDemoFrame();
 

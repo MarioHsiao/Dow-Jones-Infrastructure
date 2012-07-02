@@ -14,6 +14,7 @@ namespace DowJones.Documentation.Website.App_Start
 			bundles.Add(new ScriptBundle("~/bundles/explorer").Include(
 						"~/Scripts/jquery.asyncIFrame.js",
 						"~/Scripts/explorer.js",
+						"~/Scripts/collapsible-section.js",
 						"~/Scripts/jquery.simplemodal.1.4.2.min.js",
 						"~/Scripts/jquery.blockUI.js"));
 
@@ -38,11 +39,15 @@ namespace DowJones.Documentation.Website.App_Start
 				"~/Styles/bootstrap-responsive.css",
 				"~/Styles/Site.css"));
 
+			bundles.Add(
+				new StyleBundle("~/Styles").Include(
+					"~/Styles/bootstrap-responsive.css",
+					"~/Styles/Site.css")
+			);
+
 			bundles.Add(new StyleBundle("~/Styles/theme-spacelab").Include(
 				"~/Styles/themes/spacelab/bootstrap.css",
-				"~/Styles/bootstrap-responsive.css",
-				"~/Styles/Site.css",
-				"~/Styles/themes/spacelab/bootstrap-custom.css"));
+				"~/Styles/themes/spacelab/site.css"));
 			
 			#endregion
 		}

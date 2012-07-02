@@ -186,17 +186,17 @@
     <Content Include="Styles\themes\default\images\glyphicons-halflings.png" />
     <Content Include="Styles\themes\default\images\x.png" />
     <Content Include="Styles\themes\journal\bootstrap.css" />
-    <Content Include="Styles\themes\spacelab\bootstrap-custom.css">
-      <DependentUpon>bootstrap-custom.scss</DependentUpon>
-    </Content>
     <Content Include="Styles\themes\spacelab\bootstrap.css" />
     <Content Include="Styles\themes\spacelab\img\glyphicons-halflings-white.png" />
     <Content Include="Styles\themes\spacelab\img\glyphicons-halflings.png" />
     <Content Include="Styles\themes\spacelab\img\loader.gif" />
     <Content Include="Styles\themes\spacelab\img\x.png" />
+    <Content Include="Styles\themes\spacelab\site.css">
+      <DependentUpon>site.scss</DependentUpon>
+    </Content>
     <Content Include="Styles\_mixins.scss" />
     <None Include="Properties\PublishProfiles\Montana-WebDeploy.pubxml" />
-    <None Include="Styles\themes\spacelab\bootstrap-custom.scss" />
+    <None Include="Styles\themes\spacelab\site.scss" />
     <Content Include="Global.asax" />
     <Content Include="packages.config">
       <SubType>Designer</SubType>

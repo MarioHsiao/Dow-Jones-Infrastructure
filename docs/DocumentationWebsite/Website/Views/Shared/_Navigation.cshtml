@@ -3,37 +3,24 @@
     <div class="navbar-inner">
         <div class="container-fluid">
 
-        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-        </a>
-            
-        @Html.ActionLink("Dow Jones Component Explorer", "Homepage", "Documentation", null, new Dictionary<string, object>{ {"class", "brand"}} )
-            
-        @*    
-        <div class="btn-group pull-right">
-            <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-                <i class="icon-user"></i>Anonymous<span class="caret"></span>
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
             </a>
-            <ul class="dropdown-menu">
-                <li><a href="#">Profile</a></li>
-                <li class="divider"></li>
-                <li><a href="#">Sign Out</a></li>
-            </ul>
-        </div>
-        *@
 
-        <div class="nav-collapse">
-            <ul class="nav">
-                @foreach (var category in Model.Categories)
-                {
-                    <li class="category @(category.Selected ? "active" : "")" data-key="@category.Key">
-                        @Html.DocumentationCategoryLink(category)
-                    </li>
-                }
-            </ul>
-        </div>
+            @Html.ActionLink("Dow Jones Component Explorer", "Homepage", "Documentation", null, new Dictionary<string, object> { { "class", "brand" } })
+
+            <div class="nav-collapse">
+                <ul class="nav">
+                    @foreach (var category in Model.Categories)
+                    {
+                        <li class="category @(category.Selected ? "active" : "")" data-key="@category.Key">
+                            @Html.DocumentationCategoryLink(category)
+                        </li>
+                    }
+                </ul>
+            </div>
 
         </div>
     </div>
@@ -41,41 +28,27 @@
 
 @if (Model.CurrentCategory != null)
 {
-<div class="container-fluid">
-    <div class="row-fluid">
-        <div class="widgetGrid span12">
-            <div class="wideCol span12">
-                <h3>@Model.CurrentCategory.DisplayName</h3>
-                @foreach (var group in Model.CurrentCategory.GetPageGroups())
-                {
-                    <div>
-                        <ul class="nav nav-list">
-                            @foreach (var page in group)
-                            {
-                                <li class="@(page.Selected ? "active" : "")">
-                                    @Html.DocumentationPageLink(page)
-                                </li>
-                            }
-                        </ul>
-                    </div>
-                }
-            </div>
-            @*
-            <div class="narrowCol span4">
-                <h3>Related Topics</h3>
-                <div>
-                    <ul class="nav nav-list">
-                        <li><a href="#">Plugin Inheritance Model</a></li>
-                        <li><a href="#">Client Templates</a></li>
-                        <li><a href="#">Tokens</a></li>
-                        <li><a href="#">Error logging & tracing</a></li>
-                        <li><a href="#">Best Practices</a></li>
-                    </ul>
+    <div class="navbar-fixed">
+        <div class="container-fluid">
+            <div class="widgetGrid">
+                <div class="wideCol">
+                    <h3>@Model.CurrentCategory.DisplayName</h3>
+                    @foreach (var group in Model.CurrentCategory.GetPageGroups())
+                    {
+                        <div>
+                            <ul class="nav nav-list">
+                                @foreach (var page in group)
+                                {
+                                    <li class="@(page.Selected ? "active" : "")">
+                                        @Html.DocumentationPageLink(page)
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    }
                 </div>
             </div>
-            *@
         </div>
     </div>
-</div>
+
 }
-    

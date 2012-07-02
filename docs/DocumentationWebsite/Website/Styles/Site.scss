@@ -1,12 +1,20 @@
 ﻿@import "mixins";
 
 body {
-	padding-top: 50px;
-	padding-bottom: 40px;
+	padding-top: 200px;
+	padding-bottom: 10px;
 }
 
 .sidebar-nav {
 	padding: 9px 0;
+}
+
+.navbar-fixed {
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: 40px;
+	z-index: 1001;
 }
 
 #explorerArea {
@@ -30,10 +38,7 @@ body {
 	}
 
 	.content {
-		padding: 10px;
-		.row-fluid {
-			margin-bottom: 10px;
-		}
+		padding: 10px 10px 0 10px;
 	}
 }
 
@@ -42,13 +47,15 @@ iframe.showcase {
 	height: 300px;
 }
 
-section.showcase {
-	width: 98%; /* var: same as span12 width */
-	padding: 10px;
-	> h4 {
-		margin-bottom: 6px;
-	}
-}
+section {
+  &.row-fluid + section.row-fluid {
+    margin-top: 10px; }
+  &.showcase {
+    width: 98%;
+    /* var: same as span12 width */
+    padding: 10px;
+    > h4 {
+      margin-bottom: 6px; } } }
 
 	
 
@@ -57,14 +64,13 @@ section.showcase {
 	.subnav-fixed {
 		position: fixed;
 		width: inherit;
-		top: 50px;
+		top: 210px;
 	}
 }
 
 /* Widget Grid */
 .widgetGrid {
 	.wideCol, .narrowCol {
-		float: left;
 		min-height: 158px;
 	}
 
