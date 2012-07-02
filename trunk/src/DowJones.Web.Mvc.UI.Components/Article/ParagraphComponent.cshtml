@@ -1,7 +1,7 @@
 ﻿@using DowJones.Infrastructure;
 @using DowJones.Extensions;
 @using Ajax.Article;
-@model ParagraphModel
+@model Article.ParagraphModel
 @{
     TagName = Model.TagName.IsNullOrEmpty() ? "p" : Model.TagName;
     CssClass = Model.ClassName;

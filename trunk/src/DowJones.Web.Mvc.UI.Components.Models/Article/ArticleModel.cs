@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Article.cs" company="Dow Jones & Company">
+// <copyright file="ArticleModel.cs" company="Dow Jones & Company">
 //   © 2011 Dow Jones Factiva
 // </copyright>
 // <summary>
@@ -13,7 +13,9 @@ using System.Runtime.Serialization;
 using DowJones.Ajax;
 using DowJones.Ajax.Article;
 using DowJones.Articles;
+using DowJones.Web.Mvc.UI.Components.ArticleTranslator;
 using DowJones.Web.Mvc.UI.Components.PostProcessing;
+using DowJones.Web.Mvc.UI.Components.SocialButtons;
 using DowJones.Web.Mvc.UI.Components.VideoPlayer;
 using Newtonsoft.Json;
 
@@ -149,7 +151,7 @@ namespace DowJones.Web.Mvc.UI.Components.Article
         public IEnumerable<PostProcessingOptions> PostProcessingOptions { get; set; }
 
         #endregion
-        
+
         /// <summary>
         /// Gets or sets ArticleDataSet.
         /// </summary>
@@ -158,7 +160,7 @@ namespace DowJones.Web.Mvc.UI.Components.Article
         /// <summary>
         /// Gets or sets SocialButtons.
         /// </summary>
-        public SocialButtons.SocialButtonsModel SocialButtons { get; set; }
+        public SocialButtonsModel SocialButtons { get; set; }
 
 
         public VideoPlayerModel VideoPlayer { get; set; }
@@ -177,7 +179,7 @@ namespace DowJones.Web.Mvc.UI.Components.Article
         /// <summary>
         /// Gets or sets Translator.
         /// </summary>
-        public ArticleTranslator.ArticleTranslatorModel Translator { get; set; }
+        public ArticleTranslatorModel Translator { get; set; }
 
         /// <summary>
         /// Gets a value indicating whether HasTranslator.
@@ -194,7 +196,7 @@ namespace DowJones.Web.Mvc.UI.Components.Article
         public bool ShowAuthorLinks { get; set; }
 
         public ArticleReference ArticleReference { get; set; }
-                                                                   
+
         /// <summary>
         /// Gets or sets ArticleDisplayOptions.
         /// </summary>
