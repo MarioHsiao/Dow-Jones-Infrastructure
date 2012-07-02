@@ -40,12 +40,12 @@ namespace DowJones.Documentation.Website.App_Start
 				"~/Styles/Site.css"));
 
 			bundles.Add(
-				new StyleBundle("~/Styles").Include(
+				new StyleBundle("~/Styles/core").Include(
 					"~/Styles/bootstrap-responsive.css",
 					"~/Styles/Site.css")
 			);
 
-			bundles.Add(new StyleBundle("~/Styles/theme-spacelab").Include(
+			bundles.Add(new StyleBundle("~/Styles/themes/spacelab/theme-spacelab").Include(
 				"~/Styles/themes/spacelab/bootstrap.css",
 				"~/Styles/themes/spacelab/site.css"));
 			
