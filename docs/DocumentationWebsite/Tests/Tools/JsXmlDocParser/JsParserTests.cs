@@ -67,6 +67,70 @@ namespace DowJones.Documentation.Tests.Tools.JsXmlDocParser
 
 
 	    [TestMethod]
+		public void CanParseABunchOfFunctions()
+	    {
+	        const string source = @"
+                DJ.UI.PortalHeadlineList = DJ.UI.PortalHeadlineList.extend({
+                    /// <summary>
+                    /// Portal Headline List Component.
+                    /// </summary>
+
+                    _initializeElements: function (ctx) {
+                        /// <summary>
+                        /// Initializes the jQuery element handles.
+                        /// </summary>
+                        /// <param name='ctx' mayBeNull='false' type='DOM element or jQuery selector context'>DOM Element or jQuery <a href='http://api.jquery.com/jquery/#selector-context'>selector context</a>.</param>
+                        /// <code>
+                        ///     this.$selectAll = ctx.find(this.selectors.selectAll);
+                        ///     this.$options = ctx.find(this.selectors.headlineSelectOptions);
+                        /// </code>
+                        /// <remarks>
+                        /// By doing the jQuery lookup once and memoizing the result, the script performance
+                        /// is improved greatly.
+                        /// 
+                        /// If you're leveraging the framework, ctx is passed automatically during initialization of the component.
+                        ///
+                        /// This function is called automatically during initialization by the base class.
+                        /// </remarks>
+                    },
+
+                    _initializeEventHandlers: function () {
+                        /// <summary>
+                        /// Initializes the event handlers for events like headline click.
+                        /// </summary>
+                        /// <remarks>
+                        /// This function is called automatically during initialization by the base class.
+                        /// </remarks>
+                    },
+
+                    _renderSnippets: function (headline, tLi) {
+                        /// <summary>
+                        /// Renders the Snippet for each headline and initializes the tooltip plugin to display snippets as a tooltip.
+                        /// </summary>
+                        /// <param name='headline'>The headline data.</param>
+                        /// <param name='tLi'>DOM handle for the &lt;li&gt; item of the headline. </param>
+                    },
+
+                    bindOnSuccess: function (data) {
+                        /// <summary>
+                        /// Binds the on success template with the given data.
+                        /// </summary>
+                        /// <param name='data'>The headline data.</param>
+                    }
+                });
+                ";
+
+            var result = _parser.Parse(new StringReader(source)).First() as ClassBlock;
+
+            // Assert functions
+	        var functions = result.Children.OfType<FunctionBlock>();
+            Debug.WriteLine(string.Format("Functions: {0}", string.Join(", ", functions.Select(x => x.Name))));
+            CollectionAssert.AreEquivalent(
+                new[] { "_initializeElements", "_initializeEventHandlers", "_renderSnippets", "bindOnSuccess" }, 
+                functions.Select(x => x.Name).ToArray());
+		}
+
+	    [TestMethod]
 		public void CanParsePortalHeadlineJsDoc()
 		{
             ClassBlock result;
@@ -88,16 +152,15 @@ namespace DowJones.Documentation.Tests.Tools.JsXmlDocParser
             // Assert functions
 	        var functions = result.Children.OfType<FunctionBlock>();
             Debug.WriteLine(string.Format("Functions: {0}", string.Join(", ", functions.Select(x => x.Name))));
-/*
             CollectionAssert.AreEquivalent(
                 new[] {
                     "init", "_initializeHeadlineList", "_initializeElements",
-                    "_renderSnippets", "bindOnError", "showEditSection",
+                    "_initializeEventHandlers", "_renderSnippets", 
+                    "bindOnSuccess", "bindOnError", "showEditSection",
                     "getNoDataTemplate", "setNoDataTemplate",
                     "getErrorTemplate", "setErrorTemplate"
 	            }, 
                 functions.Select(x => x.Name).ToArray());
-*/
 		}
 	}
 }

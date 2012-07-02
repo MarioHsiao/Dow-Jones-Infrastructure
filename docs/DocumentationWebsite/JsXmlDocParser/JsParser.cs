@@ -1,8 +1,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text.RegularExpressions;
-
 
 namespace JsXmlDocParser
 {
@@ -12,10 +10,10 @@ namespace JsXmlDocParser
 
         public IEnumerable<IBlock> Parse(TextReader reader)
         {
-            return Parse(new JavaScriptReaderAdapter(reader));
+            return Parse(new BufferedTextReader(reader));
         }
 
-        internal IEnumerable<IBlock> Parse(JavaScriptReaderAdapter reader)
+        internal IEnumerable<IBlock> Parse(BufferedTextReader reader)
 		{
 			CurrentState = new ParseState();
 			var blocks = ReadBlocks(reader).ToList();
@@ -27,17 +25,21 @@ namespace JsXmlDocParser
             return knownBlocks;
 		}
 
-		internal IEnumerable<IBlock> ReadBlocks(JavaScriptReaderAdapter reader)
+		internal IEnumerable<IBlock> ReadBlocks(BufferedTextReader reader)
 		{
 			string line;
 			while ((line = reader.ReadLine()) != null)
 			{
-				PatternType type;
+                if (string.IsNullOrWhiteSpace(line))
+                    continue;
+                
+                PatternType type;
 
 				if (IsBlockStarter(line, out type))
 				{
 					CurrentState.BeginBlock(BlockFactory.CreateBlock(type, line));
-					CurrentState.AddComments(ReadComments(reader));
+				    var comments = ReadComments(reader).ToArray();
+				    CurrentState.AddComments(comments);
 				}
 				else if (ShouldCloseBlock(line))
 				{
@@ -46,50 +48,41 @@ namespace JsXmlDocParser
 			}
 
 			return CurrentState.Blocks;
-
 		}
 
-		private IEnumerable<string> ReadComments(JavaScriptReaderAdapter reader)
+		private IEnumerable<string> ReadComments(BufferedTextReader reader)
 		{
-			var comments = new List<string>();
-			while (true)
-			{
-				var line = reader.PeekLine();
-				if (IsNonEmptyLine(line))
-				{
-					if (IsXmlComment(line))
-						comments.Add(reader.ReadLine().TrimStart(" /".ToCharArray()));
-					else
-						break;
-				}
-				else
-					reader.ReadLine();	// empty line, just advance to next
-			}
-
-			return comments;
+            string line;
+            bool keepReading;
+            do
+		    {
+		        line = reader.PeekLine();
+		        if (keepReading = (IsEmptyLine(line) || IsXmlComment(line)))
+		            yield return reader.ReadLine();
+		    } while (keepReading);
 		}
 
-		private bool IsNonEmptyLine(string line)
+        private bool IsEmptyLine(string line)
 		{
-			return !string.IsNullOrWhiteSpace(line);
+			return string.IsNullOrWhiteSpace(line);
 		}
 
-		private bool IsXmlComment(string line)
+	    private bool IsComment(string line)
+	    {
+            return line.TrimStart().StartsWith(@"//");
+	    }
+
+	    private bool IsXmlComment(string line)
 		{
-			return Regex.IsMatch(line, @"\s*///");
+			return line.TrimStart().StartsWith(@"///");
 		}
 
-		private bool ShouldCloseBlock(string line)
+	    private bool ShouldCloseBlock(string line)
 		{
-			return IsNotComment(line) && line.Contains("}");
+			return !IsComment(line) && line.Contains("}");
 		}
 
-		private bool IsNotComment(string line)
-		{
-            return !Regex.IsMatch(line, @"\s*//");
-		}
-
-		private bool IsBlockStarter(string line, out PatternType type)
+	    private bool IsBlockStarter(string line, out PatternType type)
 		{
 			var starters = new IBlockStarter[] {
 				new ClassBlock.Starter(), 
@@ -105,11 +98,17 @@ namespace JsXmlDocParser
 				return true;
 			}
 
+            if (IsComment(line))
+            {
+                type = PatternType.Comment;
+                return false;
+            }
+
 			// not a known pattern
 			type = PatternType.Unknown;
 
 			// see if it starts an unrecognized block as we need to balance the braces
-			return IsNotComment(line) && line.Contains("{");
+			return line.Contains("{");
 		}
 	}
 }

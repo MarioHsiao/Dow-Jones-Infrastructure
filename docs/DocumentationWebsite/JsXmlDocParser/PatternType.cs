@@ -6,5 +6,6 @@ namespace JsXmlDocParser
 		Function,
 		Class,
 		Field,
+	    Comment
 	}
 }

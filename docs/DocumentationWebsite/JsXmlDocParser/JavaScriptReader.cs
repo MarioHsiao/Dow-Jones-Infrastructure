@@ -1,69 +1,29 @@
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
 
 namespace JsXmlDocParser
 {
-	internal class JavaScriptReaderAdapter
-	{
-		private TextReader Underlying;
-		private Queue<string> BufferedLines;
+    internal class BufferedTextReader
+    {
+        private readonly TextReader _reader;
+        private readonly Queue<string> _buffer;
 
-        public JavaScriptReaderAdapter(TextReader underlying)
-		{
-			Underlying = underlying;
-			BufferedLines = new Queue<string>();
-		}
+        public BufferedTextReader(TextReader reader)
+        {
+            _reader = reader;
+            _buffer = new Queue<string>();
+        }
 
-		public string PeekLine()
-		{
-			var line = ReadLine();
-			if (line == null)
-				return null;
-			BufferedLines.Enqueue(line);
-			return line;
-		}
+        public string PeekLine()
+        {
+            var line = ReadLine();
+            _buffer.Enqueue(line);
+            return line;
+        }
 
-		public string ReadLine()
-		{
-			return BufferedLines.Count > 0 ? BufferedLines.Dequeue() : ReadCodeLine();
-		}
-
-		private string ReadCodeLine()
-		{
-			var line = Underlying.ReadLine();
-			if (line != null && line.Contains("function"))
-				if (line.Contains("{"))
-					return line;
-				else
-				{
-					var buffer = new StringBuilder(line);
-					while (true)
-					{
-						var character = Underlying.Read();
-						if (character == -1)
-							break;
-
-						buffer.Append((char)character);
-
-						if ((char)character == '{')
-							break;
-					}
-
-					return buffer.ToString();
-				}
-
-			return line;
-		}
-
-		public IEnumerable<string> ReadAllLines()
-		{
-			string line;
-			var lines = new List<string>();
-			while ((line = ReadCodeLine()) != null)
-				lines.Add(line);
-
-			return lines;
-		}
-	}
+        public string ReadLine()
+        {
+            return _buffer.Count > 0 ? _buffer.Dequeue() : _reader.ReadLine();
+        }
+    }
 }
