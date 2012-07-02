@@ -1,8 +1,5 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Xml;
-using System.Xml.Linq;
+using System.Text.RegularExpressions;
 
 namespace JsXmlDocParser
 {
@@ -10,23 +7,28 @@ namespace JsXmlDocParser
 	{
 		public UnknownBlock(string line)
 		{
-			BlockStarter = new UnknownBlockStarter();
+			BlockStarter = new Starter();
 			Children = new List<IBlock>();
 			Comments = new List<string>();
 		}
-
 		
 		public IBlockStarter BlockStarter { get; private set; }
-		public List<IBlock> Children { get; private set; }
+	    public string Name { get; private set; }
+	    public List<IBlock> Children { get; private set; }
 		public List<string> Comments { get; private set; }
-		public string ToVsDocXml()
-		{
-			throw new NotSupportedException("This method should not be called.");
-		}
 
-		public void ToVsDocXml(XmlWriter writer)
-		{
-			throw new NotSupportedException("This method should not be called.");
-		}
+        internal class Starter : IBlockStarter
+        {
+            private const string PatternRegex = @"{";
+
+            public string Pattern { get { return PatternRegex; } }
+            
+            public PatternType PatternType { get { return PatternType.Unknown; } }
+
+            public bool IsMatch(string line)
+            {
+                return Regex.IsMatch(line.Trim(), PatternRegex);
+            }
+        }
 	}
 }

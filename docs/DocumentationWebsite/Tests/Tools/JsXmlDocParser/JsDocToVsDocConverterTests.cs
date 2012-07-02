@@ -8,7 +8,7 @@ namespace DowJones.Documentation.Tests.Tools.JsXmlDocParser
 	[TestClass]
 	public class JsDocToVsDocConverterTests
 	{
-		[TestMethod, Ignore]
+		[TestMethod]
 		public void CanConvertEmbeddedJsResources()
 		{
 			var converter = new JsDocToVsDocConverter();

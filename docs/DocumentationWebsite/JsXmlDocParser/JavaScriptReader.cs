@@ -4,12 +4,12 @@ using System.Text;
 
 namespace JsXmlDocParser
 {
-	public class JavaScriptReaderAdapter
+	internal class JavaScriptReaderAdapter
 	{
-		private StreamReader Underlying;
+		private TextReader Underlying;
 		private Queue<string> BufferedLines;
 
-		public JavaScriptReaderAdapter(StreamReader underlying)
+        public JavaScriptReaderAdapter(TextReader underlying)
 		{
 			Underlying = underlying;
 			BufferedLines = new Queue<string>();

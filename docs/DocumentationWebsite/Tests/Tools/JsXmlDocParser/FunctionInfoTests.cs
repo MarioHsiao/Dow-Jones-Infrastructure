@@ -5,9 +5,7 @@ namespace JsXmlDocParser.Tests
 	[TestClass]
 	public class FunctionInfoTests
 	{
-		#region Parsing Function Name Tests
-
-		[TestMethod]
+	    [TestMethod]
 		public void ShouldParseNamedFunction()
 		{
 			const string jsBlock = @"function jQuery(selector, context) {
@@ -52,14 +50,10 @@ namespace JsXmlDocParser.Tests
 										});";
 
 			var result = new MemberInfo(jsBlock);
-			Assert.AreEqual(result.Name, "anonymous");
-		} 
+            Assert.AreEqual(result.Name, MemberInfo.Anonymous);
+		}
 
-		#endregion
-
-		#region Parsing Function Signature Tests
-
-		[TestMethod]
+	    [TestMethod]
 		public void ShouldExtractSignatureForNamedFunction()
 		{
 			const string jsBlock = @"function jQuery (selector, context) {
@@ -104,9 +98,7 @@ namespace JsXmlDocParser.Tests
 										});";
 
 			var result = new MemberInfo(jsBlock);
-			Assert.AreEqual(result.Signature, "anonymous(selector, context)");
+			Assert.AreEqual(result.Signature, MemberInfo.Anonymous+"(selector, context)");
 		}
-
-		#endregion
 	}
 }

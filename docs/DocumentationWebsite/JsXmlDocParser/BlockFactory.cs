@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-
 namespace JsXmlDocParser
 {
 	public class BlockFactory
@@ -9,14 +6,12 @@ namespace JsXmlDocParser
 		{
 			switch (type)
 			{
-				case PatternType.Function:
+                case PatternType.Class:
+                    return new ClassBlock(line);
+                case PatternType.Function:
 					return new FunctionBlock(line);
-				case PatternType.Class:
-					return new ClassBlock(line);
-				case PatternType.Events:
-					return new EventsBlock(line);
-				case PatternType.Options:
-					return new OptionsBlock(line);
+				case PatternType.Field:
+					return new FieldBlock(line);
 				default:
 					return new UnknownBlock(line);
 			}

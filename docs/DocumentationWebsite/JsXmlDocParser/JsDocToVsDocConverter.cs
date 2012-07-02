@@ -47,6 +47,7 @@ namespace JsXmlDocParser
 
 		public void Convert(IEnumerable<Stream> jsDocSources, XmlWriter output, string assemblyName = null, bool closeStream = true)
 		{
+            BlockWriter blockWriter = new BlockWriter();
 			var writer = new MemberInfoWriter(output);
 
 			writer.WriteStartDocument();
@@ -58,15 +59,15 @@ namespace JsXmlDocParser
 			{
 				try
 				{
-					_parser.Parse(reader);
+					var results = _parser.Parse(reader);
 					writer.EnsureMembersElementOpened();
-					foreach (var result in _parser.ParseResults)
+                    foreach (var result in results)
 					{
-						result.ToVsDocXml(output);
+                        blockWriter.ToVsDocXml(output, result);
 						foreach (var child in result.Children)
 						{
 							output.WriteString(Environment.NewLine);
-							child.ToVsDocXml(output);
+                            blockWriter.ToVsDocXml(output, child);
 							output.WriteString(Environment.NewLine);
 						}
 					}

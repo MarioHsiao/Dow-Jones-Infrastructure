@@ -90,8 +90,7 @@ DJ.UI.PortalHeadlineList = DJ.UI.PortalHeadlineList.extend({
             /// Renders the Snippet for each headline and initializes the tooltip plugin to display snippets as a tooltip.
             /// </summary>
             /// <param name="headline">The headline data.</param>
-            /// <param name="tLi">DOM handle for the &lt;li&gt; item of the headline.
-            /// </param>
+            /// <param name="tLi">DOM handle for the &lt;li&gt; item of the headline. </param>
         },
 
 

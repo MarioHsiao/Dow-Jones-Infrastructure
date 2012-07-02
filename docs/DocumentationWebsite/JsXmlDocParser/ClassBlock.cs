@@ -1,44 +1,34 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Linq;
-using System.Xml;
-using System.Xml.Linq;
 
 namespace JsXmlDocParser
 {
 	public class ClassBlock : AbstractBlock
 	{
-		private string _vsDocNameFormat;
-		protected override string VsDocNameFormat
-		{
-			get { return _vsDocNameFormat; }
-			set { _vsDocNameFormat = value; }
-		}
-
 		public ClassBlock(string line) : base(line)
 		{
-			_vsDocNameFormat = "T:{0}";
-			BlockStarter = new ClassBlockStarter();
+			BlockStarter = new Starter();
 			ParseLine(line);
 		}
 
 		private void ParseLine(string line)
 		{
 			var match = Regex.Match(line, BlockStarter.Pattern);
-			Name = "AClass";
-			NameSpace = "DJ.UI";
+            Name = match.Groups["Name"].Value;
+            Namespace = match.Groups["Namespace"].Value;
 		}
+		
+        internal class Starter : IBlockStarter
+        {
+            const string PatternRegex = @"(\s*)?((?<Namespace>.*)\.)?(?<Name>[^\s]*)(\s*)?=(\s*)?([\w.]+).extend(\s*)?\((\s*)?{";
 
-		public override string ToString()
-		{
-			return string.Format("{0}.{1}", NameSpace, Name);
-		}
-		
-		public string NameSpace { get; private set; }
-		public string Name { get; private set; }
-		
+            public string Pattern { get { return PatternRegex; } }
+
+            public PatternType PatternType { get { return PatternType.Class; } }
+
+            public bool IsMatch(string line)
+            {
+                return Regex.IsMatch(line.Trim(), PatternRegex);
+            }
+        }
 	}
 }

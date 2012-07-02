@@ -55,19 +55,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbstractBlock.cs" />
+    <Compile Include="BlockWriter.cs" />
     <Compile Include="JavaScriptReader.cs" />
     <Compile Include="MemberInfo.cs" />
     <Compile Include="BlockFactory.cs" />
     <Compile Include="ClassBlock.cs" />
     <Compile Include="BlockStarters.cs" />
-    <Compile Include="EventsBlock.cs" />
     <Compile Include="FunctionBlock.cs" />
     <Compile Include="IBlock.cs" />
     <Compile Include="IBlockStarter.cs" />
     <Compile Include="JsDocToVsDocConverter.cs" />
     <Compile Include="JsParser.cs" />
     <Compile Include="MemberInfoWriter.cs" />
-    <Compile Include="OptionsBlock.cs" />
+    <Compile Include="FieldBlock.cs" />
     <Compile Include="ParseState.cs" />
     <Compile Include="PatternType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

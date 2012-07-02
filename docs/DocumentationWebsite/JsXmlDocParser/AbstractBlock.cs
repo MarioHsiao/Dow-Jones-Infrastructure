@@ -1,18 +1,38 @@
-using System;
 using System.Collections.Generic;
-using System.IO;
+using System.Diagnostics;
 using System.Linq;
-using System.Text;
-using System.Xml;
 
 namespace JsXmlDocParser
 {
+    [DebuggerDisplay("{FullName}")]
 	public abstract class AbstractBlock : IBlock
 	{
-		protected abstract string VsDocNameFormat { get; set; }
-		public IBlockStarter BlockStarter { get; protected set; }
-		public List<IBlock> Children { get; protected set; }
-		public List<string> Comments { get; protected set; }
+        public IBlockStarter BlockStarter { get; protected set; }
+		
+        public List<IBlock> Children { get; protected set; }
+		
+        public List<string> Comments { get; protected set; }
+        
+        public virtual string FullName
+        {
+            get
+            {
+                if (string.IsNullOrWhiteSpace(_fullName))
+                {
+                    if (string.IsNullOrWhiteSpace(Namespace))
+                        return Name;
+                    return string.Format("{0}.{1}", Namespace, Name);
+                }
+                return _fullName;
+            }
+            protected set { _fullName = value; }
+        }
+        private string _fullName;
+
+        public string Name { get; protected set; }
+
+        public string Namespace { get; protected set; }
+
 
 		protected AbstractBlock(string line)
 		{
@@ -20,28 +40,15 @@ namespace JsXmlDocParser
 			Comments = new List<string>();
 		}
 
-		public virtual string ToVsDocXml()
-		{
-			var sb = new StringBuilder();
-			using (var writer = XmlWriter.Create(sb))
-				ToVsDocXml(writer);
+        public IBlock Child(string name)
+        {
+            return Children.FirstOrDefault(x => x.Name == name);
+        }
 
-			return sb.ToString();
-		}
-
-		public virtual void ToVsDocXml(XmlWriter writer)
-		{
-			writer.WriteStartElement("member");
-			writer.WriteAttributeString("name", string.Format(VsDocNameFormat, ToString()));
-			if (Comments.Any())
-				writer.WriteNode(
-					XmlReader.Create(new StringReader(String.Join(Environment.NewLine, Comments)), 
-					                 new XmlReaderSettings{ConformanceLevel = ConformanceLevel.Fragment})
-					, false);
-				
-			writer.WriteEndElement();
-		}
-
-		
+        public T Child<T>(string name)
+            where T : IBlock
+        {
+            return Children.OfType<T>().FirstOrDefault(x => x.Name == name);
+        }
 	}
 }

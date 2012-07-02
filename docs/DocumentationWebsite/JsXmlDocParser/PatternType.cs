@@ -5,8 +5,6 @@ namespace JsXmlDocParser
 		Unknown,
 		Function,
 		Class,
-		Property,
-		Events,
-		Options
+		Field,
 	}
 }

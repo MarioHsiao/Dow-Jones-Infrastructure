@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
 
 
@@ -9,21 +8,26 @@ namespace JsXmlDocParser
 {
 	public class JsParser
 	{
-
-		public IEnumerable<IBlock> ParseResults { get; private set; }
-
 		protected ParseState CurrentState { get; private set; }
 
-		public void Parse(JavaScriptReaderAdapter reader)
+        public IEnumerable<IBlock> Parse(TextReader reader)
+        {
+            return Parse(new JavaScriptReaderAdapter(reader));
+        }
+
+        internal IEnumerable<IBlock> Parse(JavaScriptReaderAdapter reader)
 		{
 			CurrentState = new ParseState();
 			var blocks = ReadBlocks(reader).ToList();
-			// filter unwanted blocks
+			
+            // filter unwanted blocks
 			blocks.ForEach(block => block.Children.RemoveAll(b => b.BlockStarter.PatternType == PatternType.Unknown));
-			ParseResults = blocks.Where(b => b.BlockStarter.PatternType != PatternType.Unknown);
+			
+            var knownBlocks = blocks.Where(b => b.BlockStarter.PatternType != PatternType.Unknown);
+            return knownBlocks;
 		}
 
-		protected IEnumerable<IBlock> ReadBlocks(JavaScriptReaderAdapter reader)
+		internal IEnumerable<IBlock> ReadBlocks(JavaScriptReaderAdapter reader)
 		{
 			string line;
 			while ((line = reader.ReadLine()) != null)
@@ -72,7 +76,7 @@ namespace JsXmlDocParser
 
 		private bool IsXmlComment(string line)
 		{
-			return !string.IsNullOrWhiteSpace(line) && line.Trim().StartsWith("///");
+			return Regex.IsMatch(line, @"\s*///");
 		}
 
 		private bool ShouldCloseBlock(string line)
@@ -82,16 +86,15 @@ namespace JsXmlDocParser
 
 		private bool IsNotComment(string line)
 		{
-			return !line.Trim().StartsWith("//");
+            return !Regex.IsMatch(line, @"\s*//");
 		}
 
 		private bool IsBlockStarter(string line, out PatternType type)
 		{
 			var starters = new IBlockStarter[] {
-				new ClassBlockStarter(), 
-				new FunctionBlockStarter(), 
-				new OptionsBlockStarter(),
-				new EventsBlockStarter(), 
+				new ClassBlock.Starter(), 
+				new FunctionBlock.Starter(), 
+				new FieldBlock.Starter(),
 			};
 
 			var blockStarter = starters.FirstOrDefault(b => b.IsMatch(line));
@@ -106,13 +109,7 @@ namespace JsXmlDocParser
 			type = PatternType.Unknown;
 
 			// see if it starts an unrecognized block as we need to balance the braces
-			return IsNotComment(line) && line.Trim().Contains("{");
-
-		}
-
-		public void Parse(StreamReader reader)
-		{
-			Parse(new JavaScriptReaderAdapter(reader));
+			return IsNotComment(line) && line.Contains("{");
 		}
 	}
 }

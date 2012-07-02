@@ -7,13 +7,15 @@ namespace JsXmlDocParser
 {
 	public class MemberInfo
 	{
-		public IEnumerable<string> Lines { get; set; }
+	    protected internal const string Anonymous = "anonymous";
+
+	    public IEnumerable<string> Lines { get; set; }
 
 		public string Name { get; set; }
 
 		public bool IsAnonymous
 		{
-			get { return Name.Equals("anonymous"); }
+			get { return Name.Equals(Anonymous); }
 		}
 
 		IEnumerable<string> _params;
@@ -72,7 +74,7 @@ namespace JsXmlDocParser
 					return m.Groups[1].Value;
 				}
 			}
-			return "anonymous";
+			return Anonymous;
 		}
 
 		private static IEnumerable<string> ExtractParams(IEnumerable<string> lines)
