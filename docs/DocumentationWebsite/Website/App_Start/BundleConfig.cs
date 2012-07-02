@@ -42,7 +42,7 @@ namespace DowJones.Documentation.Website.App_Start
 				"~/Styles/themes/spacelab/bootstrap.css",
 				"~/Styles/bootstrap-responsive.css",
 				"~/Styles/Site.css",
-                "~/Styles/themes/spacelab/site.css"));
+				"~/Styles/themes/spacelab/bootstrap-custom.css"));
 			
 			#endregion
 		}
