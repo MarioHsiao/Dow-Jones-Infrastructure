@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.IO;
 using JsXmlDocParser;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -55,7 +54,7 @@ namespace DowJones.Documentation.Tests.Tools.JsXmlDocParser
             Assert.AreEqual(3, result.Children.Count(),
                             "Wrong number of children");
 
-            Assert.AreEqual("selectors", result.Children.OfType<FieldBlock>().Single());
+            Assert.AreEqual("selectors", result.Children.OfType<FieldBlock>().Single().Name);
 
             Assert.AreEqual(2, result.Children.OfType<FunctionBlock>().Count(),
                             "Wrong number of functions");
