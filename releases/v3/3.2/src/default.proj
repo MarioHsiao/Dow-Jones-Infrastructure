@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="DeployNuGetPackages" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+<Project DefaultTargets="CreateNuGetPackages" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
     <PropertyGroup>
-        <OutDir Condition="'$(OutDir)' == ''">..\..\Build</OutDir>
+        <DefaultBuildDir>..\..\Build</DefaultBuildDir>
         <Configuration>Debug</Configuration>
         <DowJonesTargetsFile>..\lib\dowjones\DowJones.targets</DowJonesTargetsFile>
-        <DeploymentDestination>$(OutDir)\$(Configuration)</DeploymentDestination>
+        <DeploymentDestination>$(DefaultBuildDir)\$(Configuration)</DeploymentDestination>
         <ILMergeExe>..\lib\Ilmerge\Ilmerge.exe</ILMergeExe>
         <NuGetExe>..\lib\NuGet\nuget.exe</NuGetExe>
         <NuGetOutputPath>$(DeploymentDestination)\nuget</NuGetOutputPath>
@@ -12,42 +12,12 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <BuildDir Include="$(OutDir)" Condition="'@(BuildDir)' == ''"  />
+        <BuildDir Include="$(DefaultBuildDir)" Condition="'@(BuildDir)' == ''"  />
     </ItemGroup>
 
 
     <Import Project="$(DowJonesTargetsFile)"/>
     <Import Project="..\lib\NuGet\DowJones.NuGet.targets"/>
-
-  
-    <!-- Label sources with Framework version number on TFS build -->
-    <Target Name="GenerateVersionInfo" BeforeTargets="BeforeLabel" DependsOnTargets="UpdateSolutionInfo">
-      <CallTarget Targets="GetDowJonesFrameworkVersion">
-        <Output TaskParameter="TargetOutputs" PropertyName="DowJonesFrameworkVersion" />
-      </CallTarget>
-
-      <Error Condition="'$(DowJonesFrameworkVersion)' == ''"
-             Text="The DowJonesFrameworkVersion property cannot be empty" />
-
-      <CreateProperty Value ="Release build $(LabelName)">
-        <Output PropertyName ="LabelComment" TaskParameter="Value"/>
-      </CreateProperty>
-
-      <CreateProperty Value ="$(DowJonesFrameworkVersion)">
-        <Output TaskParameter="Value" PropertyName ="LabelName" />
-      </CreateProperty>
-    </Target>
-
-
-    <Target Name="DeployNuGetPackages" Condition="'$(DeployNuGetPackages)' == 'true'" 
-            AfterTargets="AfterCompile" DependsOnTargets="CreateNuGetPackages">
-      <Message Text="Deployed NuGet packages to $(NuGetOutputDir)" />
-    </Target>
-
-    <Target Name="CleanArchivedNuGetPackages" AfterTargets="DeployNuGetPackages"  Condition="'$(ArchivePackages)' == 'true'">
-      <Exec WorkingDirectory="$(NuGetOutputPath)" Command="$(NuGetOutputPath)\__RUN_ME_TO_ARCHIVE_PACKAGES__.exe" />
-    </Target>
-
 
     <Target Name="ILMergeAssemblies" BeforeTargets="CreateNuGetPackages">
         <PropertyGroup>
