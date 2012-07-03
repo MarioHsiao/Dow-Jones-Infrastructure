@@ -1,0 +1,8 @@
+﻿@model DowJones.Web.Mvc.UI.Components.SocialButtons.SocialButtonsModel
+@{
+    ViewBag.Title = "Social Buttons";
+}
+@section styles{
+	<link href="@Url.Content("~/styles/views/SocialButtons/SocialButtons.css")" rel="stylesheet" />
+}
+@Html.DJ().Render(Model, new { id = "djSocialButtons"})

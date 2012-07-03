@@ -218,6 +218,7 @@
     <Compile Include="Controllers\NewsRadar90DayAvgController.cs" />
     <Compile Include="Controllers\PortalHeadlineListController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\SocialButtonsController.cs" />
     <Compile Include="Controllers\StockKioskController.cs" />
     <Compile Include="Controllers\VideoPlayerController.cs" />
     <Compile Include="Dependencies.cs" />
@@ -254,6 +255,33 @@
     <Content Include="Styles\views\PortalHeadlineList\portalHeadlineList.css">
       <DependentUpon>portalHeadlineList.scss</DependentUpon>
     </Content>
+    <Content Include="Styles\views\SocialButtons\img\large\delicious.png" />
+    <Content Include="Styles\views\SocialButtons\img\large\digg.png" />
+    <Content Include="Styles\views\SocialButtons\img\large\facebook.png" />
+    <Content Include="Styles\views\SocialButtons\img\large\furl.png" />
+    <Content Include="Styles\views\SocialButtons\img\large\google.png" />
+    <Content Include="Styles\views\SocialButtons\img\large\linkedin.png" />
+    <Content Include="Styles\views\SocialButtons\img\large\myspace.png" />
+    <Content Include="Styles\views\SocialButtons\img\large\newsvine.png" />
+    <Content Include="Styles\views\SocialButtons\img\large\reddit.png" />
+    <Content Include="Styles\views\SocialButtons\img\large\stumbleupon.png" />
+    <Content Include="Styles\views\SocialButtons\img\large\technorati.png" />
+    <Content Include="Styles\views\SocialButtons\img\large\twitter.png" />
+    <Content Include="Styles\views\SocialButtons\img\large\yahoo.png" />
+    <Content Include="Styles\views\SocialButtons\img\small\delicious.png" />
+    <Content Include="Styles\views\SocialButtons\img\small\digg.png" />
+    <Content Include="Styles\views\SocialButtons\img\small\facebook.png" />
+    <Content Include="Styles\views\SocialButtons\img\small\furl.png" />
+    <Content Include="Styles\views\SocialButtons\img\small\google.png" />
+    <Content Include="Styles\views\SocialButtons\img\small\linkedin.png" />
+    <Content Include="Styles\views\SocialButtons\img\small\myspace.png" />
+    <Content Include="Styles\views\SocialButtons\img\small\newsvine.png" />
+    <Content Include="Styles\views\SocialButtons\img\small\reddit.png" />
+    <Content Include="Styles\views\SocialButtons\img\small\stumbleupon.png" />
+    <Content Include="Styles\views\SocialButtons\img\small\technorati.png" />
+    <Content Include="Styles\views\SocialButtons\img\small\twitter.png" />
+    <Content Include="Styles\views\SocialButtons\img\small\yahoo.png" />
+    <Content Include="Styles\views\SocialButtons\SocialButtons.css" />
     <Content Include="Styles\views\StockKiosk\StockKiosk.css" />
     <Content Include="Styles\views\VideoPlayer\img\flowplayer.audio-3.2.2.swf" />
     <Content Include="Styles\views\VideoPlayer\img\flowplayer.controls-3.2.5.swf" />
@@ -294,6 +322,7 @@
     <Content Include="Views\PortalHeadlineList\_cSharpData.cshtml" />
     <Content Include="Views\StockKiosk\_cSharpData.cshtml" />
     <Content Include="Views\StockKiosk\_jsData.cshtml" />
+    <Content Include="Views\SocialButtons\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />

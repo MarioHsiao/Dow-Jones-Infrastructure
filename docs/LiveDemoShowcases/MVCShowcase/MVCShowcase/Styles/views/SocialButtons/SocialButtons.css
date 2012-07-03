@@ -1,0 +1,60 @@
+﻿/* Start Social Buttons Styles */
+/* Applies to the small social links */
+.social_sm { padding-right: 10px; display: inline-block; width: 15px; height: 20px; text-indent: -9999em; }
+
+/* Applies to the large social links */
+.social_lg { padding-right: 15px; display: inline-block; width: 50px; height: 60px; text-indent: -9999em; }
+
+.social_sm_delicious { background: url('img/small/delicious.png') no-repeat; }
+
+.social_sm_digg { background: url('img/small/digg.png') no-repeat; }
+
+.social_sm_facebook { background: url('img/small/facebook.png') no-repeat; }
+
+.social_sm_furl { background: url('img/small/furl.png') no-repeat; }
+
+.social_sm_google { background: url('img/small/google.png') no-repeat; }
+
+.social_sm_linkedin { background: url('img/small/linkedin.png') no-repeat; }
+
+.social_sm_myspace { background: url('img/small/myspace.png') no-repeat; }
+
+.social_sm_newsvine { background: url('img/small/newsvine.png') no-repeat; }
+
+.social_sm_reddit { background: url('img/small/reddit.png') no-repeat; }
+
+.social_sm_stumbleupon { background: url('img/small/stumbleupon.png') no-repeat; }
+
+.social_sm_technorati { background: url('img/small/technorati.png') no-repeat; }
+
+.social_sm_twitter { background: url('img/small/twitter.png') no-repeat; }
+
+.social_sm_yahoo { background: url('img/small/yahoo.png') no-repeat; }
+
+.social_lg_delicious { background: url('img/large/delicious.png') no-repeat; }
+
+.social_lg_digg { background: url('img/large/digg.png') no-repeat; }
+
+.social_lg_facebook { background: url('img/large/facebook.png') no-repeat; }
+
+.social_lg_furl { background: url('img/large/furl.png') no-repeat; }
+
+.social_lg_google { background: url('img/large/google.png') no-repeat; }
+
+.social_lg_linkedin { background: url('img/large/linkedin.png') no-repeat; }
+
+.social_lg_myspace { background: url('img/large/myspace.png') no-repeat; }
+
+.social_lg_newsvine { background: url('img/large/newsvine.png') no-repeat; }
+
+.social_lg_reddit { background: url('img/large/reddit.png') no-repeat; }
+
+.social_lg_stumbleupon { background: url('img/large/stumbleupon.png') no-repeat; }
+
+.social_lg_technorati { background: url('img/large/technorati.png') no-repeat; }
+
+.social_lg_twitter { background: url('img/large/twitter.png') no-repeat; }
+
+.social_lg_yahoo { background: url('img/large/yahoo.png') no-repeat; }
+
+/* End Social Buttons Styles */
