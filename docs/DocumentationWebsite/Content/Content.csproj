@@ -64,12 +64,13 @@
     <None Include="Components\DiscoveryGraph\LiveDemo.md" />
     <None Include="Components\DiscoveryGraph\Methods.md" />
     <None Include="Components\DiscoveryGraph\Overview.md" />
-    <None Include="Components\NewsRadar\Configuration.md" />
-    <None Include="Components\NewsRadar\Events.md" />
-    <None Include="Components\NewsRadar\LiveDemo.md" />
-    <None Include="Components\NewsRadar\Methods.md" />
-    <None Include="Components\NewsRadar\Overview.md" />
-    <None Include="Components\NewsRadar\Properties.md" />
+    <None Include="Components\NewsRadar90DayAvg\Configuration\ASP.NET_MVC.md" />
+    <None Include="Components\NewsRadar90DayAvg\Configuration\Javascript.md" />
+    <None Include="Components\NewsRadar90DayAvg\Events.md" />
+    <None Include="Components\NewsRadar90DayAvg\LiveDemo.md" />
+    <None Include="Components\NewsRadar90DayAvg\Methods.md" />
+    <None Include="Components\NewsRadar90DayAvg\Overview.md" />
+    <None Include="Components\NewsRadar90DayAvg\Properties.md" />
     <None Include="Components\PortalHeadlineList\Configuration\ASP.NET_MVC.md" />
     <None Include="Components\PortalHeadlineList\Configuration\Javascript.md" />
     <None Include="Components\PortalHeadlineList\Properties.md" />
@@ -97,7 +98,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Components\DiscoveryGraph\Server\" />
-    <Folder Include="Components\NewsRadar\Configuration\" />
     <Folder Include="Properties\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

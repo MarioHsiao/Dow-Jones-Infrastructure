@@ -5,7 +5,7 @@ using DowJones.Web.Mvc.UI.Components.NewsRadar;
 
 namespace DowJones.MvcShowcase.Controllers
 {
-    public class NewsRadarController : Controller
+    public class NewsRadar90DayAvgController : Controller
     {
         //
         // GET: /NewsRadar/
@@ -15,7 +15,7 @@ namespace DowJones.MvcShowcase.Controllers
             NewsRadarModel m;
             var serializer = new JavaScriptSerializer();
 
-            using (var sr = new StreamReader(Server.MapPath(Url.Content("~/App_Data/newsradar.sample.json"))))
+            using (var sr = new StreamReader(Server.MapPath(Url.Content("~/App_Data/NewsRadar90DayAvg.sample.json"))))
             {
                 m = serializer.Deserialize<NewsRadarModel>(sr.ReadToEnd());
             }
