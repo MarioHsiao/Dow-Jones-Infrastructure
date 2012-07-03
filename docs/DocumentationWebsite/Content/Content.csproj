@@ -79,6 +79,12 @@
     <None Include="Components\PortalHeadlineList\LiveDemo.md" />
     <None Include="Components\PortalHeadlineList\Methods.md" />
     <None Include="Components\PortalHeadlineList\Overview.md" />
+    <None Include="Components\SocialButtons\Configuration\ASP.NET_MVC.md" />
+    <None Include="Components\SocialButtons\Configuration\Javascript.md" />
+    <None Include="Components\SocialButtons\LiveDemo.md" />
+    <None Include="Components\SocialButtons\Options.md" />
+    <None Include="Components\SocialButtons\Overview.md" />
+    <None Include="Components\SocialButtons\Properties.md" />
     <None Include="Components\StockKiosk\Configuration\ASP.NET_MVC.md" />
     <None Include="Components\StockKiosk\Configuration\Javascript.md" />
     <None Include="Components\StockKiosk\Options.md" />
