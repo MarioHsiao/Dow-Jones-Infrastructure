@@ -101,6 +101,10 @@
     <None Include="Components\VideoPlayer\Overview.md" />
     <None Include="deploy.proj" />
     <Content Include="Web.config" />
+    <None Include="General\Developer\DevelopmentEnvironment.md" />
+    <None Include="General\Developer\VerifyingSetup.md" />
+    <None Include="General\Developer\NuGetRepository.md" />
+    <None Include="General\Developer\Overview.md" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Components\DiscoveryGraph\Server\" />
