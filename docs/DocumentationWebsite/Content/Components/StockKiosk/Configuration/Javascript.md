@@ -16,10 +16,12 @@ Finally, add the component to the page:
 	<script type="text/javascript">
 		DJ.add(DJ.UI.StockKiosk, {
 			container	: "stockKioskContainer",
-			pagesize	: 8,
-			timePeriod	: 24,
-			frequency   : 15, 
-			data:{Your Data Object}
+	        options		: {
+							pagesize	: 8,
+							timePeriod	: 24,
+							frequency   : 15 
+						  }, 
+			data		:{Your Data Object}
 		}); 
 	</script>	  
 
