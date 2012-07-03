@@ -1,16 +1,25 @@
-﻿#### Rendering the component from a Razor View
+﻿@using DowJones.Documentation.Website.Extensions;
+@using System.Configuration;
 
-Add the following lines to render the News Radar component from a Razor View:
-		
-	<!-- Use the default stylesheet or supply your own -->
-	@@{
-		Html.DJ().StylesheetRegistry()
-			.Include("~/Content/css/Components/NewsRadar/newsRadar.css");
+#### Rendering the component from a Razor View
+
+Populate the model with options and data:
+
+	// Instantiate and fill data
+	var data = new Collection<EntityModel>
+	{
+		// Click on "View Sample Data" to see sample data
 	}
-	
-	<!-- Render framework core files -->
-	@@Html.DJ().ScriptRegistry().Render()
-	@@Html.DJ().StylesheetRegistry().Render()
 
-	<!-- Render the component -->
-	@@Html.DJ().RenderComponent("NewsRadar", new NewsRadarModel())
+    var model = new NewsRadarModel
+    {
+		// Set data
+		ParentNewsEntities = data
+    };
+	
+@Html.DataViewer(ConfigurationManager.AppSettings["InfrastructureShowcase.BasePath"]+"/NewsRadar90DayAvg/data/cs")
+
+Render the model in your view which will render the component in the browser:
+
+	<!-- Render the component using the model -->
+	@@Html.DJ().Render(model)

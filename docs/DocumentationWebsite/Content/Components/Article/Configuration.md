@@ -3,18 +3,20 @@
 
 #### Rendering the component from a Razor View
 
-Populate the Article model (either in your controller or model):
+Populate the model with options and data:
 
-	var articleDataSet = new ArticleResultSet
+	// Instantiate and fill data
+	var data = new ArticleResultSet
 	{
 		// Click on "View Sample Data" to see sample data
 	}
-    var articleModel = new ArticleModel
-    {
-        ArticleDataSet = articleDataSet,
-        ShowPostProcessing = true,
-        PostProcessingOptions = new[]
-    	{
+
+	var model = new ArticleModel
+	{
+		// Set options
+		ShowPostProcessing = true,
+		PostProcessingOptions = new[]
+		{
     		PostProcessingOptions.Print,
     		PostProcessingOptions.Save,
     		PostProcessingOptions.PressClips,
@@ -22,13 +24,17 @@ Populate the Article model (either in your controller or model):
     		PostProcessingOptions.Listen,
     		PostProcessingOptions.Translate,
     		PostProcessingOptions.Share
-    	},
-        ShowSourceLinks = true
-    };
+		},
+		ShowSourceLinks = true,
+
+		// Set data
+		ArticleDataSet = data
+	};
 	
 @Html.DataViewer(ConfigurationManager.AppSettings["InfrastructureShowcase.BasePath"]+"/Article/data/cs")
 
 Render the model in your view which will render the component in the browser:
 
-	<!-- Render the component -->
-	@@Html.DJ().Render(articleModel)
+	<!-- Render the component using the model -->
+	@@Html.DJ().Render(model)
+	
