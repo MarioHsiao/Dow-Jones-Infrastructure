@@ -1,11 +1,12 @@
 ﻿@model DowJones.Web.Mvc.UI.Components.NewsRadar.NewsRadarModel
 @{
-    ViewBag.Title = "News Radar";
+    ViewBag.Title = "News Radar 90 Day Avg";
 }
-<div class="dj_NewsRadarControl">
-    @Html.DJ().Render(Model)
-</div>
 
 @section styles{
 	<link href="@Url.Content("~/styles/views/NewsRadar/newsRadar.css")" rel="stylesheet" />
 }
+
+<div class="dj_NewsRadarControl">
+    @Html.DJ().Render(Model)
+</div>

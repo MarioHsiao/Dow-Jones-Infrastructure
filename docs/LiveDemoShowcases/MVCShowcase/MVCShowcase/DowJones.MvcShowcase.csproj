@@ -307,7 +307,6 @@
     <Content Include="Views\AutoSuggest\Index.cshtml" />
     <Content Include="Views\StockKiosk\Index.cshtml" />
     <Content Include="Views\NewsRadar90DayAvg\Index.cshtml" />
-    <Content Include="App_Data\NewsRadar90DayAvg.sample.json" />
     <Content Include="Views\DiscoveryGraph\_cSharpData.cshtml" />
     <Content Include="Views\DiscoveryGraph\_jsData.cshtml" />
     <Content Include="Views\VideoPlayer\Index.cshtml" />
@@ -323,8 +322,11 @@
     <Content Include="Views\StockKiosk\_cSharpData.cshtml" />
     <Content Include="Views\StockKiosk\_jsData.cshtml" />
     <Content Include="Views\SocialButtons\Index.cshtml" />
+    <Content Include="Views\NewsRadar90DayAvg\_cSharpData.cshtml" />
+    <Content Include="Views\NewsRadar90DayAvg\_jsData.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Data\" />
     <Folder Include="Models\" />
     <Folder Include="Styles\views\AutoSuggest\" />
   </ItemGroup>
