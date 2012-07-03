@@ -48,7 +48,12 @@ namespace DowJones.Documentation.Website.App_Start
 			bundles.Add(new StyleBundle("~/Styles/themes/spacelab/theme-spacelab").Include(
 				"~/Styles/themes/spacelab/bootstrap.css",
 				"~/Styles/themes/spacelab/site.css"));
-			
+
+			bundles.Add(
+				new StyleBundle("~/Styles/explorer").Include(
+					"~/Styles/explorer.css",
+					"~/Styles/prettify/spacelab.css")
+			);
 			#endregion
 		}
 	}

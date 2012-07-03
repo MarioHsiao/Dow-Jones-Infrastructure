@@ -1,0 +1,99 @@
+body {
+  padding-top: 200px;
+  padding-bottom: 10px; }
+
+.sidebar-nav {
+  padding: 9px 0; }
+
+.navbar-fixed {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 40px;
+  z-index: 1001; }
+
+#explorerArea {
+  padding-top: 10px; }
+  #explorerArea .nav-list {
+    text-align: right; }
+
+.nav > li, .nav > li > a, .widgetGrid a {
+  -webkit-transition: all 0.2s ease 0s;
+  -moz-transition: all 0.2s ease 0s;
+  -ms-transition: all 0.2s ease 0s;
+  -o-transition: all 0.2s ease 0s;
+  transition: all 0.2s ease 0s; }
+
+.contentWell {
+  border-radius: 4px; }
+  .contentWell > header {
+    padding: 0 10px;
+    line-height: 36px;
+    /* var: same as h2 height */
+    border-radius: 3px 3px 0 0; }
+  .contentWell .content {
+    padding: 10px 10px 0 10px; }
+
+iframe.showcase {
+  width: 100%;
+  /* var: same as span12 width */
+  height: 300px; }
+
+section.row-fluid + section.row-fluid {
+  margin-top: 10px; }
+section.showcase {
+  width: 98%;
+  /* var: same as span12 width */
+  padding: 10px; }
+  section.showcase > h4 {
+    margin-bottom: 6px; }
+
+/* Fixed subnav on scroll, but only for 980px and up (sorry IE!) */
+@media (min-width: 980px) {
+  .subnav-fixed {
+    position: fixed;
+    width: inherit;
+    top: 210px; } }
+/* Widget Grid */
+.widgetGrid .wideCol, .widgetGrid .narrowCol {
+  min-height: 158px; }
+.widgetGrid ul {
+  float: left;
+  margin: 2px 0 0 18px;
+  padding: 0 0 10px; }
+.widgetGrid h3 {
+  margin: 0 18px;
+  padding-top: 14px;
+  font-size: 12px;
+  line-height: 1.6;
+  text-transform: uppercase; }
+.widgetGrid .nav a {
+  font-size: 12px; }
+
+th.name {
+  width: 200px; }
+
+td.name {
+  font-family: Consolas; }
+
+.parameterized-method .parameters {
+  clear: both;
+  margin-top: 15px;
+  border: 0;
+  padding: 0 10px; }
+  .parameterized-method .parameters caption {
+    font-weight: bold; }
+  .parameterized-method .parameters td.name {
+    width: 150px;
+    font-weight: bold; }
+
+.child-links {
+  margin: 0 0 10px 10px; }
+
+.level-0 .level-1 {
+  display: none; }
+  .level-0 .level-1 h3 {
+    display: none; }
+.level-0 .level-1.selected {
+  display: block; }
+

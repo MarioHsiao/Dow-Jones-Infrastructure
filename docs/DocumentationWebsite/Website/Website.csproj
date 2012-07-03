@@ -173,6 +173,9 @@
     <Content Include="Scripts\jquery.simplemodal.1.4.2.min.js" />
     <Content Include="Styles\bootstrap-responsive.css" />
     <Content Include="Styles\bootstrap-responsive.min.css" />
+    <Content Include="Styles\Explorer.css">
+      <DependentUpon>Explorer.scss</DependentUpon>
+    </Content>
     <Content Include="Styles\prettify\oblivion.css" />
     <Content Include="Styles\prettify\prettify.css" />
     <Content Include="Styles\prettify\sons-of-obsidian.css" />
@@ -196,6 +199,7 @@
     </Content>
     <Content Include="Styles\_mixins.scss" />
     <None Include="Properties\PublishProfiles\Montana-WebDeploy.pubxml" />
+    <Content Include="Styles\Explorer.scss" />
     <None Include="Styles\themes\spacelab\site.scss" />
     <Content Include="Global.asax" />
     <Content Include="packages.config">
