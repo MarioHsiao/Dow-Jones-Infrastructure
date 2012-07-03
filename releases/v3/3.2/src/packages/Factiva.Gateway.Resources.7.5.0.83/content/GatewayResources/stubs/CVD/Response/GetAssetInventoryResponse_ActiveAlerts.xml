@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GetAssetInventoryResponse ver="1.0" xsi:schemaLocation="getAssetInventory GetAssetInventoryResponse.xsd"  xmlns:common="common" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<status value="0"/>
+	<requestInfo>
+		<accountScope>AE12345S,N23DWD23,KF123SDSX</accountScope>
+		<beginDate>2009-01-01</beginDate>
+		<endDate>2009-05-31</endDate>
+		<type>AlertType</type>
+	</requestInfo>
+	<assetMetadataSummaryList columnGrouping="Counts" rowGrouping="Active Alert Type">
+		<metadataSummary count="0" name="Created/Owned (by Users)">
+			<metadataSummaryList>
+				<metadataSummary count="0" name="Personal Alerts (#Shared)">
+					<metadataSummaryList>
+						<metadataSummary name="Factiva Alerts" count="0">
+							<metadataSummaryList>
+								<metadataSummary name="CurrentTotal" count="25" additionalCount="18"/>
+								<metadataSummary name="SetUpForEmailDelivery" count="18"/>
+							</metadataSummaryList>
+						</metadataSummary>
+						<metadataSummary name="DJCE WatchList Alerts" count="0">
+							<metadataSummaryList>
+								<metadataSummary name="CurrentTotal" count="10" additionalCount="2"/>
+								<metadataSummary name="SetUpForEmailDelivery" count="3"/>
+							</metadataSummaryList>
+						</metadataSummary>
+					</metadataSummaryList>
+				</metadataSummary>
+				<metadataSummary count="0" name="Group Alerts">
+					<metadataSummaryList>
+						<metadataSummary name="Subscribable" count="0">
+							<metadataSummaryList>
+								<metadataSummary name="CurrentTotal" count="12"/>
+								<metadataSummary name="SetUpForEmailDelivery" count="0"/>
+							</metadataSummaryList>
+						</metadataSummary>
+						<metadataSummary name="Assigned" count="0">
+							<metadataSummaryList>
+								<metadataSummary name="CurrentTotal" count="2"/>
+								<metadataSummary name="SetUpForEmailDelivery" count="0"/>
+							</metadataSummaryList>
+						</metadataSummary>
+						<metadataSummary name="Unpublished" count="0">
+							<metadataSummaryList>
+								<metadataSummary name="CurrentTotal" count="1"/>
+								<metadataSummary name="SetUpForEmailDelivery" count="0"/>
+							</metadataSummaryList>
+						</metadataSummary>
+					</metadataSummaryList>
+				</metadataSummary>
+			</metadataSummaryList>
+		</metadataSummary>
+		<metadataSummary count="0" name="Alert Subscriptions">
+			<metadataSummaryList>
+				<metadataSummary name="Personal Alert (Shared) Subscriptions" count="0">
+					<metadataSummaryList>
+						<metadataSummary name="CurrentTotal" count="117"/>
+						<metadataSummary name="SetUpForEmailDelivery" count="112"/>
+					</metadataSummaryList>
+				</metadataSummary>
+				<metadataSummary name="Group Alert Subscriptions" count="0">
+					<metadataSummaryList>
+						<metadataSummary name="CurrentTotal" count="53"/>
+						<metadataSummary name="SetUpForEmailDelivery" count="43"/>
+					</metadataSummaryList>
+				</metadataSummary>
+			</metadataSummaryList>
+		</metadataSummary>
+	</assetMetadataSummaryList>
+	<accountsStatus>
+		<account status="0" accountID="AE12345S"/>
+		<account status="0" accountID="N23DWD23"/>
+		<account status="1" accountID="KF123SDSX"/>
+	</accountsStatus>
+</GetAssetInventoryResponse>

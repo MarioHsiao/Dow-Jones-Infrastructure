@@ -1,0 +1,14 @@
+﻿<% var item = self.item, settings= self.settings, templates = self.templates, f = self.f;  %>
+<div class="djWidgetItem djContentItemFixed">
+	<a class="djContentLink" title="<%= item.CompanyName %>" href="#" djEvent="click:itemClicked" djData>
+		<% if (settings.displayTicker === true || settings.displayTicker == "true") { %>
+			<%= f.getTicker(item) %>
+		<% } else { %>
+			<%= item.companyName %>
+		<% } %>
+	</a>
+	<% for (var i = item.newsEntities.length-1; i >= 0; i--) { %>
+			<%= templates.radar({item:item, radar:item.newsEntities[i], index: i}) %>
+	<% } %>
+	<div class="mask-fade"></div>
+</div>

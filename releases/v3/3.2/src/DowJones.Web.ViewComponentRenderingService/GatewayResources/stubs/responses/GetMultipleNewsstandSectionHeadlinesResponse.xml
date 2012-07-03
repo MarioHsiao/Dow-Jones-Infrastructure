@@ -1,0 +1,757 @@
+<?xml version="1.0"?>
+<NSRHeadlineResponse ver='1.0' >
+  <Control>
+    <Stamp date='20110202' time='150343.5254' type='TrackNSR' />
+  </Control>
+  <ResultSetList count='1' >
+    <ResultSet>
+      <Folders bookmark='7+fitrksrch1qry' count='2' status='0' >
+        <FolderInfo folderid='2' >
+          <SectionCode>
+            FRT
+          </SectionCode>
+          <SectionName>
+            Front Page|Front Page
+          </SectionName>
+          <SourceCode>
+            J
+          </SourceCode>
+          <SourceName>
+            #Wall Street Journal|The Wall Street Journal
+          </SourceName>
+        </FolderInfo>
+        <FolderInfo folderid='3' >
+          <SectionCode>
+            FRT
+          </SectionCode>
+          <SectionName>
+            Front Page|Front Page
+          </SectionName>
+          <SourceCode>
+            J
+          </SourceCode>
+          <SourceName>
+            #Wall Street Journal|The Wall Street Journal
+          </SourceName>
+        </FolderInfo>
+      </Folders>
+      <PerformContentSearchResponse xmlns='http://types.factiva.com/search'>
+        <contentSearchResult hitCount="7">
+          <searchContext>fitrksrch1qry</searchContext>
+          <combinedSearchString></combinedSearchString>
+          <canonicalQueryString>T|2 N|fln O|c N|pd D|20110131 O|@ O|+ T|article T|file O|, T|report O|, N|fmt O|c O|+ N|pd D|-0366 D| O|d O|+</canonicalQueryString>
+          <highlightString>||true||T|2 N|fln O|c N|pd D|20110131 O|@ O|+ T|article T|file O|, T|report O|, N|fmt O|c O|+ N|pd D|-0366 D| O|d O|+</highlightString>
+          <queryTransformSet count="0"></queryTransformSet>
+          <collectionCountSet count="10">
+            <collectionCount collection="Publications" hitCount="7"></collectionCount>
+            <collectionCount collection="WebSites" hitCount="0"></collectionCount>
+            <collectionCount collection="NewsSites" hitCount="0"></collectionCount>
+            <collectionCount collection="AlistBlogs" hitCount="0"></collectionCount>
+            <collectionCount collection="Pictures" hitCount="0"></collectionCount>
+            <collectionCount collection="Multimedia" hitCount="0"></collectionCount>
+            <collectionCount collection="Audio" hitCount="0"></collectionCount>
+            <collectionCount collection="Video" hitCount="0"></collectionCount>
+            <collectionCount collection="Internal" hitCount="0"></collectionCount>
+            <collectionCount collection="Summary" hitCount="0"></collectionCount>
+          </collectionCountSet>
+          <codeNavigatorSet count="10">
+            <navigator count="2" id="co">
+              <bucket hitCount="1" id="fiat">Fiat SpA</bucket>
+              <bucket hitCount="1" id="frdmo">Ford Motor Co</bucket>
+            </navigator>
+            <navigator count="10" id="ns">
+              <bucket hitCount="7" id="npag">Page-One Story</bucket>
+              <bucket hitCount="2" id="ccat">Corporate/Industrial News</bucket>
+              <bucket hitCount="2" id="gpol">Domestic Politics</bucket>
+              <bucket hitCount="2" id="nsum">News Digest</bucket>
+              <bucket hitCount="1" id="c1513">Sales Figures</bucket>
+              <bucket hitCount="1" id="c315">Conferences/Exhibitions</bucket>
+              <bucket hitCount="1" id="c41">Management Issues</bucket>
+              <bucket hitCount="1" id="ctrshw">Trade Shows</bucket>
+              <bucket hitCount="1" id="e1123">Car Registrations/Vehicle Sales</bucket>
+              <bucket hitCount="1" id="gfas">Fashion</bucket>
+            </navigator>
+            <navigator count="1" id="Newsstand Folder">
+              <bucket hitCount="7" id="2"></bucket>
+            </navigator>
+            <navigator count="1" id="cl">
+              <bucket hitCount="7" id="tnwp"></bucket>
+            </navigator>
+            <navigator count="1" id="la">
+              <bucket hitCount="7" id="en"></bucket>
+            </navigator>
+            <navigator count="1" id="sc">
+              <bucket hitCount="7" id="j">The Wall Street Journal</bucket>
+            </navigator>
+            <navigator count="10" id="co:occur">
+              <bucket hitCount="1" id="audat">Automatic Data Processing Inc</bucket>
+              <bucket hitCount="1" id="cerbgp">Cerberus Partners LP</bucket>
+              <bucket hitCount="1" id="ecbnk">European Central Bank</bucket>
+              <bucket hitCount="1" id="fiat">Fiat SpA</bucket>
+              <bucket hitCount="1" id="frdmo">Ford Motor Co</bucket>
+              <bucket hitCount="1" id="gnmoc">General Motors Corp</bucket>
+              <bucket hitCount="1" id="hond">Honda Motor Co Ltd</bucket>
+              <bucket hitCount="1" id="nisan">Nissan Motor Co Ltd</bucket>
+              <bucket hitCount="1" id="pepsco">PepsiCo Inc</bucket>
+              <bucket hitCount="1" id="repres">AutoNation Inc</bucket>
+            </navigator>
+            <navigator count="8" id="re">
+              <bucket hitCount="7" id="usa">United States</bucket>
+              <bucket hitCount="2" id="egypt">Egypt</bucket>
+              <bucket hitCount="1" id="eurz">European Countries/Regions</bucket>
+              <bucket hitCount="1" id="italy">Italy</bucket>
+              <bucket hitCount="1" id="syria">Syria</bucket>
+              <bucket hitCount="1" id="tunis">Tunisia</bucket>
+              <bucket hitCount="1" id="usmi">United States - Michigan</bucket>
+              <bucket hitCount="1" id="yemar">Yemen</bucket>
+            </navigator>
+            <navigator count="3" id="in">
+              <bucket hitCount="1" id="i35101">Passenger Cars</bucket>
+              <bucket hitCount="1" id="i43">Textiles</bucket>
+              <bucket hitCount="1" id="iclt">Clothing/Textiles</bucket>
+            </navigator>
+            <navigator count="7" id="au">
+              <bucket hitCount="1" id="22278">Katy McLaughlin</bucket>
+              <bucket hitCount="1" id="3376036">Bill Spindle</bucket>
+              <bucket hitCount="1" id="43533">Margaret Coker</bucket>
+              <bucket hitCount="1" id="4889">Jay Solomon</bucket>
+              <bucket hitCount="1" id="5662">Jeff Bennett</bucket>
+              <bucket hitCount="1" id="7098">Charles Levinson</bucket>
+              <bucket hitCount="1" id="71342">Neal E. Boudette</bucket>
+            </navigator>
+          </codeNavigatorSet>
+          <timeNavigatorSet count="1">
+            <navigator count="1" id="pd">
+              <bucket hitCount="7" id="20110131"></bucket>
+            </navigator>
+          </timeNavigatorSet>
+          <contextualNavigatorSet count="0"></contextualNavigatorSet>
+          <keywordSet count="0"></keywordSet>
+          <clusterSet count="0"></clusterSet>
+          <contentHeadlineResultSet count="7" first="0">
+            <contentHeadline>
+              <rank>0</rank>
+              <documentVector>[stock markets, 1][metropolitan areas, 1][major metropolitan, 1][prices declined, 1][market conditions, 1][quarterly survey, 1][latest quarterly, 1][street journal, 1][wall street, 1][year earlier, 1][accelerating rate, 1][areas tracked, 1][fourth quarter, 1][battering stock, 1][global economy, 1]</documentVector>
+              <accessionNo>J000000020110131e71v0002v</accessionNo>
+              <ipDocumentID>wjco20110131000116</ipDocumentID>
+              <attributionCode>J</attributionCode>
+              <wordCount>279</wordCount>
+              <publicationDate>2011-01-31</publicationDate>
+              <baseLanguage>en</baseLanguage>
+              <sourceCode>j</sourceCode>
+              <sourceName>The Wall Street Journal</sourceName>
+              <sectionName>
+                <para>What's News</para>
+              </sectionName>
+              <columnName>
+                <para>Business and Finance</para>
+              </columnName>
+              <headline>
+                <para la="en">Business and Finance</para>
+              </headline>
+              <snippet>
+                <para>Home values are falling at an accelerating rate in many cities across the U.S. The Wall Street Journal's latest quarterly survey of market conditions found that prices declined in all of the 28 major metropolitan areas tracked during the ...</para>
+              </snippet>
+              <copyright>
+                <para>(Copyright (c) 2011, Dow Jones &amp; Company, Inc.)</para>
+              </copyright>
+              <truncationRules></truncationRules>
+              <contentItems>
+                <contentType>article</contentType>
+                <primaryRef>distdoc:archive/ArchiveDoc::Article/J000000020110131e71v0002v</primaryRef>
+                <item type="arttext" size="2753" ref="distdoc:archive/ArchiveDoc::Article/J000000020110131e71v0002v"></item>
+                <item type="invtext" size="5504" ref="distdoc:archive/InvertText/J000000020110131e71v0002v"></item>
+              </contentItems>
+            </contentHeadline>
+            <contentHeadline>
+              <rank>0</rank>
+              <documentVector>[egypt, 1][military increased, 0.912871][assad acknowledged, 0.912871][opposition united, 0.912871][political change, 0.912871][tunisians cheered, 0.912871][arab rulers, 0.912871][dominated syria, 0.912871][islamic party, 0.912871][real democracy, 0.912871][oust mubarak, 0.912871][clinton called, 0.912871][protests continue, 0.912871][withdrawing support, 0.912871][peaceful transition, 0.912871]</documentVector>
+              <accessionNo>J000000020110131e71v0002r</accessionNo>
+              <ipDocumentID>wjco20110131000112</ipDocumentID>
+              <attributionCode>J</attributionCode>
+              <wordCount>301</wordCount>
+              <publicationDate>2011-01-31</publicationDate>
+              <baseLanguage>en</baseLanguage>
+              <sourceCode>j</sourceCode>
+              <sourceName>The Wall Street Journal</sourceName>
+              <sectionName>
+                <para>What's News</para>
+              </sectionName>
+              <columnName>
+                <para>World-Wide</para>
+              </columnName>
+              <headline>
+                <para la="en">World-Wide</para>
+              </headline>
+              <snippet>
+                <para>Syria's president said he will push for political change. Assad acknowledged that Arab rulers would need to do more to accommodate their people's aspirations in the face of unrest in Egypt, Tunisia and Yemen. Assad and his father have ...</para>
+              </snippet>
+              <copyright>
+                <para>(Copyright (c) 2011, Dow Jones &amp; Company, Inc.)</para>
+              </copyright>
+              <truncationRules></truncationRules>
+              <contentItems>
+                <contentType>article</contentType>
+                <primaryRef>distdoc:archive/ArchiveDoc::Article/J000000020110131e71v0002r</primaryRef>
+                <item type="arttext" size="2826" ref="distdoc:archive/ArchiveDoc::Article/J000000020110131e71v0002r"></item>
+                <item type="invtext" size="5846" ref="distdoc:archive/InvertText/J000000020110131e71v0002r"></item>
+              </contentItems>
+            </contentHeadline>
+            <contentHeadline>
+              <rank>0</rank>
+              <documentVector>[assad, 1][political reforms, 0.707107][syria, 0.68313][government, 0.632456][middle east, 0.57735][egyptian unrest, 0.57735][tunisia, 0.57735][political system, 0.57735][new era, 0.57735][syrian leader, 0.57735][palestinian territories, 0.57735][prime minister, 0.57735][damascus, 0.57735][egypt, 0.516398][washington, 0.447214]</documentVector>
+              <accessionNo>J000000020110131e71v0001y</accessionNo>
+              <ipDocumentID>wjco20110131000082</ipDocumentID>
+              <attributionCode>J</attributionCode>
+              <wordCount>1095</wordCount>
+              <publicationDate>2011-01-31</publicationDate>
+              <baseLanguage>en</baseLanguage>
+              <sourceCode>j</sourceCode>
+              <sourceName>The Wall Street Journal</sourceName>
+              <headline>
+                <para la="en">Syria Strongman: Time for 'Reform'</para>
+              </headline>
+              <snippet>
+                <para>DAMASCUS -- Syrian President Bashar al-Assad, who inherited a regime that has held power for four decades, said he will push for more political reforms in his country, in a sign of how Egypt's violent revolt is forcing leaders across the ...</para>
+              </snippet>
+              <byline>
+                <para>By Jay Solomon and Bill Spindle</para>
+              </byline>
+              <copyright>
+                <para>(Copyright (c) 2011, Dow Jones &amp; Company, Inc.)</para>
+              </copyright>
+              <truncationRules></truncationRules>
+              <contentItems>
+                <contentType>article</contentType>
+                <primaryRef>distdoc:archive/ArchiveDoc::Article/J000000020110131e71v0001y</primaryRef>
+                <item type="arttext" size="7531" ref="distdoc:archive/ArchiveDoc::Article/J000000020110131e71v0001y"></item>
+                <item type="invtext" size="19255" ref="distdoc:archive/InvertText/J000000020110131e71v0001y"></item>
+              </contentItems>
+            </contentHeadline>
+            <contentHeadline>
+              <rank>0</rank>
+              <documentVector>[january, 1][jerry brown, 0.707107][california gov, 0.707107][construction spending, 0.707107][manufacturing activity, 0.707107][supply management, 0.707107][coming week, 0.707107][personal income, 0.707107][brown delivers, 0.707107][spending data, 0.707107][auto makers, 0.707107][management issues, 0.707107][state address, 0.707107][vehicle sales, 0.707107][makers report, 0.707107]</documentVector>
+              <accessionNo>J000000020110131e71v0001d</accessionNo>
+              <ipDocumentID>wjco20110131000061</ipDocumentID>
+              <attributionCode>J</attributionCode>
+              <wordCount>158</wordCount>
+              <publicationDate>2011-01-31</publicationDate>
+              <baseLanguage>en</baseLanguage>
+              <sourceCode>j</sourceCode>
+              <sourceName>The Wall Street Journal</sourceName>
+              <headline>
+                <para la="en">What's Ahead -- People &amp; Events to Watch in the Coming Week</para>
+              </headline>
+              <snippet>
+                <para>MONDAY, JAN. 31 Data on U.S. personal income and spending for December are set for release. --- California Gov. Jerry Brown delivers his State of the State address.</para>
+              </snippet>
+              <copyright>
+                <para>(Copyright (c) 2011, Dow Jones &amp; Company, Inc.)</para>
+              </copyright>
+              <truncationRules>
+                <extraSmall>30</extraSmall>
+              </truncationRules>
+              <contentItems>
+                <contentType>article</contentType>
+                <primaryRef>distdoc:archive/ArchiveDoc::Article/J000000020110131e71v0001d</primaryRef>
+                <item type="arttext" size="1932" ref="distdoc:archive/ArchiveDoc::Article/J000000020110131e71v0001d"></item>
+                <item type="invtext" size="3133" ref="distdoc:archive/InvertText/J000000020110131e71v0001d"></item>
+              </contentItems>
+            </contentHeadline>
+            <contentHeadline>
+              <rank>0</rank>
+              <documentVector>[military, 1][opposition groups, 0.790569][muslim brotherhood, 0.645497][armed forces, 0.645497][top army, 0.645497][state television, 0.645497][mubarak, 0.645497][egypt, 0.645497][internal security, 0.645497][elbaradei, 0.645497][central tahrir, 0.645497][police force, 0.645497][security forces, 0.645497][mubarak regime, 0.645497][tahrir square, 0.645497]</documentVector>
+              <accessionNo>J000000020110131e71v00028</accessionNo>
+              <ipDocumentID>wjco20110131000093</ipDocumentID>
+              <attributionCode>J</attributionCode>
+              <wordCount>1096</wordCount>
+              <publicationDate>2011-01-31</publicationDate>
+              <baseLanguage>en</baseLanguage>
+              <sourceCode>j</sourceCode>
+              <sourceName>The Wall Street Journal</sourceName>
+              <headline>
+                <para la="en">Opposition Unites in Egypt --- Islamists, Secularists Back Moderate ElBaradei as Army Lets Protests Rage</para>
+              </headline>
+              <snippet>
+                <para>CAIRO -- Egypt's opposition groups lined up behind a moderate leader comfortable on the world stage as their best chance to oust President Hosni Mubarak Sunday, while the nation's military closed ranks with the government leadership but ...</para>
+              </snippet>
+              <byline>
+                <para>By Charles Levinson, Margaret Coker and Summer Said</para>
+              </byline>
+              <copyright>
+                <para>(Copyright (c) 2011, Dow Jones &amp; Company, Inc.)</para>
+              </copyright>
+              <truncationRules>
+                <extraSmall>26</extraSmall>
+                <small>58</small>
+                <medium>80</medium>
+              </truncationRules>
+              <contentItems>
+                <contentType>article</contentType>
+                <primaryRef>distdoc:archive/ArchiveDoc::Article/J000000020110131e71v00028</primaryRef>
+                <item type="arttext" size="7759" ref="distdoc:archive/ArchiveDoc::Article/J000000020110131e71v00028"></item>
+                <item type="invtext" size="19479" ref="distdoc:archive/InvertText/J000000020110131e71v00028"></item>
+              </contentItems>
+            </contentHeadline>
+            <contentHeadline>
+              <rank>0</rank>
+              <documentVector>[photo shoot, 1][new york, 1][los angeles, 1][food, 0.966092][costume designer, 0.816497][lady gaga, 0.816497][barneys new, 0.816497][trade show, 0.816497][angeles costume, 0.816497][salon du, 0.816497][du chocolat, 0.816497][le salon, 0.816497][takes place, 0.816497][chocolate, 0.816497][dress, 0.816497]</documentVector>
+              <accessionNo>J000000020110131e71v00026</accessionNo>
+              <ipDocumentID>wjco20110131000090</ipDocumentID>
+              <attributionCode>J</attributionCode>
+              <wordCount>1091</wordCount>
+              <publicationDate>2011-01-31</publicationDate>
+              <baseLanguage>en</baseLanguage>
+              <sourceCode>j</sourceCode>
+              <sourceName>The Wall Street Journal</sourceName>
+              <headline>
+                <para la="en">Tasteful Attire: Designers Whip Up A Buffet of Fashion Out of Food --- Hungry for Notice, Some Try Waffle Pants, Octopus Hats and Cabbage Dresses</para>
+              </headline>
+              <snippet>
+                <para>When designing a dress out of chocolate, there are certain things to keep in mind, says Joelle Mahoney, who created a ruffled dark- and white-chocolate mini-dress worn by a model strutting down the runway at a fall trade show in New York.</para>
+              </snippet>
+              <byline>
+                <para>By Katy McLaughlin</para>
+              </byline>
+              <copyright>
+                <para>(Copyright (c) 2011, Dow Jones &amp; Company, Inc.)</para>
+              </copyright>
+              <truncationRules>
+                <extraSmall>26</extraSmall>
+                <small>58</small>
+                <medium>77</medium>
+                <large>137</large>
+              </truncationRules>
+              <contentItems>
+                <contentType>article</contentType>
+                <primaryRef>distdoc:archive/ArchiveDoc::Article/J000000020110131e71v00026</primaryRef>
+                <item type="arttext" size="7247" ref="distdoc:archive/ArchiveDoc::Article/J000000020110131e71v00026"></item>
+                <item type="invtext" size="19178" ref="distdoc:archive/InvertText/J000000020110131e71v00026"></item>
+              </contentItems>
+            </contentHeadline>
+            <contentHeadline>
+              <rank>0</rank>
+              <documentVector>[chrysler, 1][marchionne, 0.912871][years ago, 0.645497][fiat, 0.57735][dodge charger, 0.559017][grand cherokee, 0.559017][sales chief, 0.559017][year, 0.540062][cars, 0.5][company, 0.5][door handle, 0.456435][chrysler vehicles, 0.456435][new boss, 0.456435][auburn hills, 0.456435][ceo, 0.456435]</documentVector>
+              <accessionNo>J000000020110131e71v00027</accessionNo>
+              <ipDocumentID>wjco20110131000091</ipDocumentID>
+              <attributionCode>J</attributionCode>
+              <wordCount>2098</wordCount>
+              <publicationDate>2011-01-31</publicationDate>
+              <baseLanguage>en</baseLanguage>
+              <sourceCode>j</sourceCode>
+              <sourceName>The Wall Street Journal</sourceName>
+              <headline>
+                <para la="en">Boss Sweats Details of Chrysler Revival</para>
+              </headline>
+              <snippet>
+                <para>AUBURN HILLS, Mich. -- As chief executive of Chrysler Group LLC, Sergio Marchionne has no shortage of big issues to deal with, from labor relations to a tarnished corporate reputation.</para>
+              </snippet>
+              <byline>
+                <para>By Jeff Bennett and Neal E. Boudette</para>
+              </byline>
+              <copyright>
+                <para>(Copyright (c) 2011, Dow Jones &amp; Company, Inc.)</para>
+              </copyright>
+              <truncationRules>
+                <extraSmall>22</extraSmall>
+              </truncationRules>
+              <contentItems>
+                <contentType>article</contentType>
+                <primaryRef>distdoc:archive/ArchiveDoc::Article/J000000020110131e71v00027</primaryRef>
+                <item type="dispix" size="17416" mimetype="image/gif" ref="probj:archive/PPPORH2011013100601/88/17416" subtype="primary"></item>
+                <item type="tnail" size="8683" mimetype="image/gif" ref="probj:archive/PPPORH2011013100601/17504/8683" subtype="primary"></item>
+                <item type="fnail" size="3460" mimetype="image/gif" ref="probj:archive/PPPORH2011013100601/26187/3460" subtype="primary"></item>
+                <item type="arttext" size="13453" ref="distdoc:archive/ArchiveDoc::Article/J000000020110131e71v00027"></item>
+                <item type="invtext" size="37198" ref="distdoc:archive/InvertText/J000000020110131e71v00027"></item>
+              </contentItems>
+            </contentHeadline>
+          </contentHeadlineResultSet>
+        </contentSearchResult>
+      </PerformContentSearchResponse>
+    </ResultSet>
+    <ResultSet>
+      <Folders bookmark='7+fitrksrch4qry' count='3' status='0' >
+        <FolderInfo folderid='3' >
+          <SectionCode>
+            FRT
+          </SectionCode>
+          <SectionName>
+            Front Page|Front Page
+          </SectionName>
+          <SourceCode>
+            J
+          </SourceCode>
+          <SourceName>
+            #Wall Street Journal|The Wall Street Journal
+          </SourceName>
+        </FolderInfo>
+        <FolderInfo folderid='3' >
+          <SectionCode>
+            FRT
+          </SectionCode>
+          <SectionName>
+            Front Page|Front Page
+          </SectionName>
+          <SourceCode>
+            J
+          </SourceCode>
+          <SourceName>
+            #Wall Street Journal|The Wall Street Journal
+          </SourceName>
+        </FolderInfo>
+        <FolderInfo folderid='3' >
+          <SectionCode>
+            FRT
+          </SectionCode>
+          <SectionName>
+            Front Page|Front Page
+          </SectionName>
+          <SourceCode>
+            J
+          </SourceCode>
+          <SourceName>
+            #Wall Street Journal|The Wall Street Journal
+          </SourceName>
+        </FolderInfo>
+      </Folders>
+      <PerformContentSearchResponse xmlns='http://types.factiva.com/search'>
+        <contentSearchResult hitCount="9">
+          <searchContext>fitrksrch4qry</searchContext>
+          <combinedSearchString></combinedSearchString>
+          <canonicalQueryString>T|2 N|fln O|c N|pd D|20110131 O|@ O|+ T|article T|file O|, T|report O|, N|fmt O|c O|+ N|pd D|-0366 D| O|d O|+</canonicalQueryString>
+          <highlightString>||true||T|2 N|fln O|c N|pd D|20110131 O|@ O|+ T|article T|file O|, T|report O|, N|fmt O|c O|+ N|pd D|-0366 D| O|d O|+</highlightString>
+          <queryTransformSet count="0"></queryTransformSet>
+          <collectionCountSet count="10">
+            <collectionCount collection="Publications" hitCount="7"></collectionCount>
+            <collectionCount collection="WebSites" hitCount="0"></collectionCount>
+            <collectionCount collection="NewsSites" hitCount="0"></collectionCount>
+            <collectionCount collection="AlistBlogs" hitCount="0"></collectionCount>
+            <collectionCount collection="Pictures" hitCount="0"></collectionCount>
+            <collectionCount collection="Multimedia" hitCount="0"></collectionCount>
+            <collectionCount collection="Audio" hitCount="0"></collectionCount>
+            <collectionCount collection="Video" hitCount="0"></collectionCount>
+            <collectionCount collection="Internal" hitCount="0"></collectionCount>
+            <collectionCount collection="Summary" hitCount="0"></collectionCount>
+          </collectionCountSet>
+          <codeNavigatorSet count="10">
+            <navigator count="2" id="co">
+              <bucket hitCount="1" id="fiat">Fiat SpA</bucket>
+              <bucket hitCount="1" id="frdmo">Ford Motor Co</bucket>
+            </navigator>
+            <navigator count="10" id="ns">
+              <bucket hitCount="7" id="npag">Page-One Story</bucket>
+              <bucket hitCount="2" id="ccat">Corporate/Industrial News</bucket>
+              <bucket hitCount="2" id="gpol">Domestic Politics</bucket>
+              <bucket hitCount="2" id="nsum">News Digest</bucket>
+              <bucket hitCount="1" id="c1513">Sales Figures</bucket>
+              <bucket hitCount="1" id="c315">Conferences/Exhibitions</bucket>
+              <bucket hitCount="1" id="c41">Management Issues</bucket>
+              <bucket hitCount="1" id="ctrshw">Trade Shows</bucket>
+              <bucket hitCount="1" id="e1123">Car Registrations/Vehicle Sales</bucket>
+              <bucket hitCount="1" id="gfas">Fashion</bucket>
+            </navigator>
+            <navigator count="1" id="Newsstand Folder">
+              <bucket hitCount="7" id="2"></bucket>
+            </navigator>
+            <navigator count="1" id="cl">
+              <bucket hitCount="7" id="tnwp"></bucket>
+            </navigator>
+            <navigator count="1" id="la">
+              <bucket hitCount="7" id="en"></bucket>
+            </navigator>
+            <navigator count="1" id="sc">
+              <bucket hitCount="7" id="j">The Wall Street Journal</bucket>
+            </navigator>
+            <navigator count="10" id="co:occur">
+              <bucket hitCount="1" id="audat">Automatic Data Processing Inc</bucket>
+              <bucket hitCount="1" id="cerbgp">Cerberus Partners LP</bucket>
+              <bucket hitCount="1" id="ecbnk">European Central Bank</bucket>
+              <bucket hitCount="1" id="fiat">Fiat SpA</bucket>
+              <bucket hitCount="1" id="frdmo">Ford Motor Co</bucket>
+              <bucket hitCount="1" id="gnmoc">General Motors Corp</bucket>
+              <bucket hitCount="1" id="hond">Honda Motor Co Ltd</bucket>
+              <bucket hitCount="1" id="nisan">Nissan Motor Co Ltd</bucket>
+              <bucket hitCount="1" id="pepsco">PepsiCo Inc</bucket>
+              <bucket hitCount="1" id="repres">AutoNation Inc</bucket>
+            </navigator>
+            <navigator count="8" id="re">
+              <bucket hitCount="7" id="usa">United States</bucket>
+              <bucket hitCount="2" id="egypt">Egypt</bucket>
+              <bucket hitCount="1" id="eurz">European Countries/Regions</bucket>
+              <bucket hitCount="1" id="italy">Italy</bucket>
+              <bucket hitCount="1" id="syria">Syria</bucket>
+              <bucket hitCount="1" id="tunis">Tunisia</bucket>
+              <bucket hitCount="1" id="usmi">United States - Michigan</bucket>
+              <bucket hitCount="1" id="yemar">Yemen</bucket>
+            </navigator>
+            <navigator count="3" id="in">
+              <bucket hitCount="1" id="i35101">Passenger Cars</bucket>
+              <bucket hitCount="1" id="i43">Textiles</bucket>
+              <bucket hitCount="1" id="iclt">Clothing/Textiles</bucket>
+            </navigator>
+            <navigator count="7" id="au">
+              <bucket hitCount="1" id="22278">Katy McLaughlin</bucket>
+              <bucket hitCount="1" id="3376036">Bill Spindle</bucket>
+              <bucket hitCount="1" id="43533">Margaret Coker</bucket>
+              <bucket hitCount="1" id="4889">Jay Solomon</bucket>
+              <bucket hitCount="1" id="5662">Jeff Bennett</bucket>
+              <bucket hitCount="1" id="7098">Charles Levinson</bucket>
+              <bucket hitCount="1" id="71342">Neal E. Boudette</bucket>
+            </navigator>
+          </codeNavigatorSet>
+          <timeNavigatorSet count="1">
+            <navigator count="1" id="pd">
+              <bucket hitCount="7" id="20110131"></bucket>
+            </navigator>
+          </timeNavigatorSet>
+          <contextualNavigatorSet count="0"></contextualNavigatorSet>
+          <keywordSet count="0"></keywordSet>
+          <clusterSet count="0"></clusterSet>
+          <contentHeadlineResultSet count="7" first="0">
+            <contentHeadline>
+              <rank>0</rank>
+              <documentVector>[stock markets, 1][metropolitan areas, 1][major metropolitan, 1][prices declined, 1][market conditions, 1][quarterly survey, 1][latest quarterly, 1][street journal, 1][wall street, 1][year earlier, 1][accelerating rate, 1][areas tracked, 1][fourth quarter, 1][battering stock, 1][global economy, 1]</documentVector>
+              <accessionNo>J000000020110131e71v0002v</accessionNo>
+              <ipDocumentID>wjco20110131000116</ipDocumentID>
+              <attributionCode>J</attributionCode>
+              <wordCount>279</wordCount>
+              <publicationDate>2011-01-31</publicationDate>
+              <baseLanguage>en</baseLanguage>
+              <sourceCode>j</sourceCode>
+              <sourceName>The Wall Street Journal</sourceName>
+              <sectionName>
+                <para>What's News</para>
+              </sectionName>
+              <columnName>
+                <para>Business and Finance</para>
+              </columnName>
+              <headline>
+                <para la="en">Business and Finance</para>
+              </headline>
+              <snippet>
+                <para>Home values are falling at an accelerating rate in many cities across the U.S. The Wall Street Journal's latest quarterly survey of market conditions found that prices declined in all of the 28 major metropolitan areas tracked during the ...</para>
+              </snippet>
+              <copyright>
+                <para>(Copyright (c) 2011, Dow Jones &amp; Company, Inc.)</para>
+              </copyright>
+              <truncationRules></truncationRules>
+              <contentItems>
+                <contentType>article</contentType>
+                <primaryRef>distdoc:archive/ArchiveDoc::Article/J000000020110131e71v0002v</primaryRef>
+                <item type="arttext" size="2753" ref="distdoc:archive/ArchiveDoc::Article/J000000020110131e71v0002v"></item>
+                <item type="invtext" size="5504" ref="distdoc:archive/InvertText/J000000020110131e71v0002v"></item>
+              </contentItems>
+            </contentHeadline>
+            <contentHeadline>
+              <rank>0</rank>
+              <documentVector>[egypt, 1][military increased, 0.912871][assad acknowledged, 0.912871][opposition united, 0.912871][political change, 0.912871][tunisians cheered, 0.912871][arab rulers, 0.912871][dominated syria, 0.912871][islamic party, 0.912871][real democracy, 0.912871][oust mubarak, 0.912871][clinton called, 0.912871][protests continue, 0.912871][withdrawing support, 0.912871][peaceful transition, 0.912871]</documentVector>
+              <accessionNo>J000000020110131e71v0002r</accessionNo>
+              <ipDocumentID>wjco20110131000112</ipDocumentID>
+              <attributionCode>J</attributionCode>
+              <wordCount>301</wordCount>
+              <publicationDate>2011-01-31</publicationDate>
+              <baseLanguage>en</baseLanguage>
+              <sourceCode>j</sourceCode>
+              <sourceName>The Wall Street Journal</sourceName>
+              <sectionName>
+                <para>What's News</para>
+              </sectionName>
+              <columnName>
+                <para>World-Wide</para>
+              </columnName>
+              <headline>
+                <para la="en">World-Wide</para>
+              </headline>
+              <snippet>
+                <para>Syria's president said he will push for political change. Assad acknowledged that Arab rulers would need to do more to accommodate their people's aspirations in the face of unrest in Egypt, Tunisia and Yemen. Assad and his father have ...</para>
+              </snippet>
+              <copyright>
+                <para>(Copyright (c) 2011, Dow Jones &amp; Company, Inc.)</para>
+              </copyright>
+              <truncationRules></truncationRules>
+              <contentItems>
+                <contentType>article</contentType>
+                <primaryRef>distdoc:archive/ArchiveDoc::Article/J000000020110131e71v0002r</primaryRef>
+                <item type="arttext" size="2826" ref="distdoc:archive/ArchiveDoc::Article/J000000020110131e71v0002r"></item>
+                <item type="invtext" size="5846" ref="distdoc:archive/InvertText/J000000020110131e71v0002r"></item>
+              </contentItems>
+            </contentHeadline>
+            <contentHeadline>
+              <rank>0</rank>
+              <documentVector>[assad, 1][political reforms, 0.707107][syria, 0.68313][government, 0.632456][middle east, 0.57735][egyptian unrest, 0.57735][tunisia, 0.57735][political system, 0.57735][new era, 0.57735][syrian leader, 0.57735][palestinian territories, 0.57735][prime minister, 0.57735][damascus, 0.57735][egypt, 0.516398][washington, 0.447214]</documentVector>
+              <accessionNo>J000000020110131e71v0001y</accessionNo>
+              <ipDocumentID>wjco20110131000082</ipDocumentID>
+              <attributionCode>J</attributionCode>
+              <wordCount>1095</wordCount>
+              <publicationDate>2011-01-31</publicationDate>
+              <baseLanguage>en</baseLanguage>
+              <sourceCode>j</sourceCode>
+              <sourceName>The Wall Street Journal</sourceName>
+              <headline>
+                <para la="en">Syria Strongman: Time for 'Reform'</para>
+              </headline>
+              <snippet>
+                <para>DAMASCUS -- Syrian President Bashar al-Assad, who inherited a regime that has held power for four decades, said he will push for more political reforms in his country, in a sign of how Egypt's violent revolt is forcing leaders across the ...</para>
+              </snippet>
+              <byline>
+                <para>By Jay Solomon and Bill Spindle</para>
+              </byline>
+              <copyright>
+                <para>(Copyright (c) 2011, Dow Jones &amp; Company, Inc.)</para>
+              </copyright>
+              <truncationRules></truncationRules>
+              <contentItems>
+                <contentType>article</contentType>
+                <primaryRef>distdoc:archive/ArchiveDoc::Article/J000000020110131e71v0001y</primaryRef>
+                <item type="arttext" size="7531" ref="distdoc:archive/ArchiveDoc::Article/J000000020110131e71v0001y"></item>
+                <item type="invtext" size="19255" ref="distdoc:archive/InvertText/J000000020110131e71v0001y"></item>
+              </contentItems>
+            </contentHeadline>
+            <contentHeadline>
+              <rank>0</rank>
+              <documentVector>[january, 1][jerry brown, 0.707107][california gov, 0.707107][construction spending, 0.707107][manufacturing activity, 0.707107][supply management, 0.707107][coming week, 0.707107][personal income, 0.707107][brown delivers, 0.707107][spending data, 0.707107][auto makers, 0.707107][management issues, 0.707107][state address, 0.707107][vehicle sales, 0.707107][makers report, 0.707107]</documentVector>
+              <accessionNo>J000000020110131e71v0001d</accessionNo>
+              <ipDocumentID>wjco20110131000061</ipDocumentID>
+              <attributionCode>J</attributionCode>
+              <wordCount>158</wordCount>
+              <publicationDate>2011-01-31</publicationDate>
+              <baseLanguage>en</baseLanguage>
+              <sourceCode>j</sourceCode>
+              <sourceName>The Wall Street Journal</sourceName>
+              <headline>
+                <para la="en">What's Ahead -- People &amp; Events to Watch in the Coming Week</para>
+              </headline>
+              <snippet>
+                <para>MONDAY, JAN. 31 Data on U.S. personal income and spending for December are set for release. --- California Gov. Jerry Brown delivers his State of the State address.</para>
+              </snippet>
+              <copyright>
+                <para>(Copyright (c) 2011, Dow Jones &amp; Company, Inc.)</para>
+              </copyright>
+              <truncationRules>
+                <extraSmall>30</extraSmall>
+              </truncationRules>
+              <contentItems>
+                <contentType>article</contentType>
+                <primaryRef>distdoc:archive/ArchiveDoc::Article/J000000020110131e71v0001d</primaryRef>
+                <item type="arttext" size="1932" ref="distdoc:archive/ArchiveDoc::Article/J000000020110131e71v0001d"></item>
+                <item type="invtext" size="3133" ref="distdoc:archive/InvertText/J000000020110131e71v0001d"></item>
+              </contentItems>
+            </contentHeadline>
+            <contentHeadline>
+              <rank>0</rank>
+              <documentVector>[military, 1][opposition groups, 0.790569][muslim brotherhood, 0.645497][armed forces, 0.645497][top army, 0.645497][state television, 0.645497][mubarak, 0.645497][egypt, 0.645497][internal security, 0.645497][elbaradei, 0.645497][central tahrir, 0.645497][police force, 0.645497][security forces, 0.645497][mubarak regime, 0.645497][tahrir square, 0.645497]</documentVector>
+              <accessionNo>J000000020110131e71v00028</accessionNo>
+              <ipDocumentID>wjco20110131000093</ipDocumentID>
+              <attributionCode>J</attributionCode>
+              <wordCount>1096</wordCount>
+              <publicationDate>2011-01-31</publicationDate>
+              <baseLanguage>en</baseLanguage>
+              <sourceCode>j</sourceCode>
+              <sourceName>The Wall Street Journal</sourceName>
+              <headline>
+                <para la="en">Opposition Unites in Egypt --- Islamists, Secularists Back Moderate ElBaradei as Army Lets Protests Rage</para>
+              </headline>
+              <snippet>
+                <para>CAIRO -- Egypt's opposition groups lined up behind a moderate leader comfortable on the world stage as their best chance to oust President Hosni Mubarak Sunday, while the nation's military closed ranks with the government leadership but ...</para>
+              </snippet>
+              <byline>
+                <para>By Charles Levinson, Margaret Coker and Summer Said</para>
+              </byline>
+              <copyright>
+                <para>(Copyright (c) 2011, Dow Jones &amp; Company, Inc.)</para>
+              </copyright>
+              <truncationRules>
+                <extraSmall>26</extraSmall>
+                <small>58</small>
+                <medium>80</medium>
+              </truncationRules>
+              <contentItems>
+                <contentType>article</contentType>
+                <primaryRef>distdoc:archive/ArchiveDoc::Article/J000000020110131e71v00028</primaryRef>
+                <item type="arttext" size="7759" ref="distdoc:archive/ArchiveDoc::Article/J000000020110131e71v00028"></item>
+                <item type="invtext" size="19479" ref="distdoc:archive/InvertText/J000000020110131e71v00028"></item>
+              </contentItems>
+            </contentHeadline>
+            <contentHeadline>
+              <rank>0</rank>
+              <documentVector>[photo shoot, 1][new york, 1][los angeles, 1][food, 0.966092][costume designer, 0.816497][lady gaga, 0.816497][barneys new, 0.816497][trade show, 0.816497][angeles costume, 0.816497][salon du, 0.816497][du chocolat, 0.816497][le salon, 0.816497][takes place, 0.816497][chocolate, 0.816497][dress, 0.816497]</documentVector>
+              <accessionNo>J000000020110131e71v00026</accessionNo>
+              <ipDocumentID>wjco20110131000090</ipDocumentID>
+              <attributionCode>J</attributionCode>
+              <wordCount>1091</wordCount>
+              <publicationDate>2011-01-31</publicationDate>
+              <baseLanguage>en</baseLanguage>
+              <sourceCode>j</sourceCode>
+              <sourceName>The Wall Street Journal</sourceName>
+              <headline>
+                <para la="en">Tasteful Attire: Designers Whip Up A Buffet of Fashion Out of Food --- Hungry for Notice, Some Try Waffle Pants, Octopus Hats and Cabbage Dresses</para>
+              </headline>
+              <snippet>
+                <para>When designing a dress out of chocolate, there are certain things to keep in mind, says Joelle Mahoney, who created a ruffled dark- and white-chocolate mini-dress worn by a model strutting down the runway at a fall trade show in New York.</para>
+              </snippet>
+              <byline>
+                <para>By Katy McLaughlin</para>
+              </byline>
+              <copyright>
+                <para>(Copyright (c) 2011, Dow Jones &amp; Company, Inc.)</para>
+              </copyright>
+              <truncationRules>
+                <extraSmall>26</extraSmall>
+                <small>58</small>
+                <medium>77</medium>
+                <large>137</large>
+              </truncationRules>
+              <contentItems>
+                <contentType>article</contentType>
+                <primaryRef>distdoc:archive/ArchiveDoc::Article/J000000020110131e71v00026</primaryRef>
+                <item type="arttext" size="7247" ref="distdoc:archive/ArchiveDoc::Article/J000000020110131e71v00026"></item>
+                <item type="invtext" size="19178" ref="distdoc:archive/InvertText/J000000020110131e71v00026"></item>
+              </contentItems>
+            </contentHeadline>
+            <contentHeadline>
+              <rank>0</rank>
+              <documentVector>[chrysler, 1][marchionne, 0.912871][years ago, 0.645497][fiat, 0.57735][dodge charger, 0.559017][grand cherokee, 0.559017][sales chief, 0.559017][year, 0.540062][cars, 0.5][company, 0.5][door handle, 0.456435][chrysler vehicles, 0.456435][new boss, 0.456435][auburn hills, 0.456435][ceo, 0.456435]</documentVector>
+              <accessionNo>J000000020110131e71v00027</accessionNo>
+              <ipDocumentID>wjco20110131000091</ipDocumentID>
+              <attributionCode>J</attributionCode>
+              <wordCount>2098</wordCount>
+              <publicationDate>2011-01-31</publicationDate>
+              <baseLanguage>en</baseLanguage>
+              <sourceCode>j</sourceCode>
+              <sourceName>The Wall Street Journal</sourceName>
+              <headline>
+                <para la="en">Boss Sweats Details of Chrysler Revival</para>
+              </headline>
+              <snippet>
+                <para>AUBURN HILLS, Mich. -- As chief executive of Chrysler Group LLC, Sergio Marchionne has no shortage of big issues to deal with, from labor relations to a tarnished corporate reputation.</para>
+              </snippet>
+              <byline>
+                <para>By Jeff Bennett and Neal E. Boudette</para>
+              </byline>
+              <copyright>
+                <para>(Copyright (c) 2011, Dow Jones &amp; Company, Inc.)</para>
+              </copyright>
+              <truncationRules>
+                <extraSmall>22</extraSmall>
+              </truncationRules>
+              <contentItems>
+                <contentType>article</contentType>
+                <primaryRef>distdoc:archive/ArchiveDoc::Article/J000000020110131e71v00027</primaryRef>
+                <item type="dispix" size="17416" mimetype="image/gif" ref="probj:archive/PPPORH2011013100601/88/17416" subtype="primary"></item>
+                <item type="tnail" size="8683" mimetype="image/gif" ref="probj:archive/PPPORH2011013100601/17504/8683" subtype="primary"></item>
+                <item type="fnail" size="3460" mimetype="image/gif" ref="probj:archive/PPPORH2011013100601/26187/3460" subtype="primary"></item>
+                <item type="arttext" size="13453" ref="distdoc:archive/ArchiveDoc::Article/J000000020110131e71v00027"></item>
+                <item type="invtext" size="37198" ref="distdoc:archive/InvertText/J000000020110131e71v00027"></item>
+              </contentItems>
+            </contentHeadline>
+          </contentHeadlineResultSet>
+        </contentSearchResult>
+      </PerformContentSearchResponse>
+    </ResultSet>
+  </ResultSetList>
+  <Status value='0' >
+    <SyntaxStatus>
+      Success
+    </SyntaxStatus>
+  </Status>
+</NSRHeadlineResponse>

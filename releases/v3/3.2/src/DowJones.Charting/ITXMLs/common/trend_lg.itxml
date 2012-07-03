@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<cit:image-template version="1.3" creator="Corda Builder 7.2.5" xmlns:cit="http://www.corda.com/image/namespace" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.corda.com/image/namespace http://www.corda.com/image/namespace/cordatools.xsd">
+	<cit:canvas show-border="false"/>
+	<cit:image-template-layout width="600" height="400" auto-resize="false" fit-in-bounds="true" collision-protection="true"/>
+	<cit:number-format>
+		<cit:general-value-format maximum-decimal-places="3"/>
+		<cit:currency-value-format always-show-maximum-decimal-places="true" negative-display-type="parenthesis"/>
+		<cit:percent-value-format maximum-decimal-places="0"/>
+	</cit:number-format>
+	<cit:line-graph name="graph" common="top:45;left:10;width:580;height:345">
+		<cit:graph-settings>
+			<cit:color-palette color-1="#5E0B68" color-2="#99CC00"/>
+			<cit:hover-text font="name:Arial Unicode MS"/>
+			<cit:note-settings font="name:Arial Unicode MS"/>
+		</cit:graph-settings>
+		<cit:line-settings clip-to-outer-grids="false"/>
+		<cit:data-label show="always" position="above" show-border="false" font="name:Arial Unicode MS">
+			<cit:data-label-layout drilldown-highlight-color="blue"/>
+			<cit:format-settings abbreviation="show-abbreviation-label:true"/>
+		</cit:data-label>
+		<cit:grid>
+			<cit:outer-lines max-line="color:#8C8C8C" min-line="color:#8C8C8C" low-outer-line="color:#8C8C8C" high-outer-line="color:#8C8C8C"/>
+			<cit:inner-lines>
+				<cit:vertical-lines major-grid-line="show-line:false;color:#8C8C8C"/>
+				<cit:horizontal-lines zero-line="show-line:false;color:#8C8C8C" major-grid-line="color:lightgray" minor-grid-line="show-line:false;color:#D0D0D0"/>
+			</cit:inner-lines>
+			<cit:ticks>
+				<cit:vertical-ticks major-tick="color:#8C8C8C;length:4"/>
+				<cit:horizontal-ticks major-tick="color:#8C8C8C;length:4" minor-tick="visible:false;color:#D0D0D0;length:3"/>
+			</cit:ticks>
+			<cit:background show-background="false"/>
+		</cit:grid>
+		<cit:value-scale position="left">
+			<cit:value-scale-labels rotate-labels="false" abbreviation="abbreviation-method:automatic;show-abbreviation-label:true" font="name:Arial Unicode MS;size:12"/>
+			<cit:value-scale-title font="name:Arial Unicode MS;size:10"/>
+		</cit:value-scale>
+		<cit:category-scale position="below" font="name:Arial Unicode MS">
+			<cit:adjust-labels rotate-labels="true" rotation="90" skip-labels="false" show-one-label-for-every="2"/>
+		</cit:category-scale>
+		<cit:component-number-format percent-format="number-format:percentage"/>
+		<cit:line-series show="both" name="Series 1" number="1" override-line-width="true" line-width="3" symbol-settings="type:round;color:#5E0B68;width:6;height:6;border-width:0"/>
+		<cit:line-series show="both" name="Series 2" number="2" override-line-width="true" line-width="3" symbol-settings="type:round;color:#99CC00;width:6;height:6;border-width:0"/>
+		<cit:data series-data-in-columns="true">
+			<cit:column name="Series 1"/>
+			<cit:column name="Series 2"/>
+			<cit:row name="Nov 2008">
+				<cit:data-item value="90479"/>
+				<cit:data-item value="6311"/>
+			</cit:row>
+			<cit:row name="Dec 2008">
+				<cit:data-item value="87591"/>
+				<cit:data-item value="5069"/>
+			</cit:row>
+			<cit:row name="Jan 2009">
+				<cit:data-item value="93087"/>
+				<cit:data-item value="6022"/>
+			</cit:row>
+		</cit:data>
+		<cit:graph-legend common="top:10;left:375;width:215;height:24;anchor:top-right">
+			<cit:legend-settings show-border="false" drilldown-highlight-color="blue">
+				<cit:legend-settings-layout layout-items="horizontal" grow-vertically="false" grow-horizontally="false"/>
+				<cit:legend-settings-label text="%_SERIES_NAME" font="name:Arial Unicode MS"/>
+			</cit:legend-settings>
+		</cit:graph-legend>
+	</cit:line-graph>
+	<cit:textbox name="textbox" positioned-in-builder="true" common="top:10;left:10;width:318;height:24">
+		<cit:text content="Sum of ActivityCount"/>
+		<cit:textbox-settings horiz-justification="left" show-border="false" fill-enabled="false" font="name:Arial Unicode MS">
+			<cit:textbox-settings-layout left-margin="0"/>
+		</cit:textbox-settings>
+	</cit:textbox>
+</cit:image-template>

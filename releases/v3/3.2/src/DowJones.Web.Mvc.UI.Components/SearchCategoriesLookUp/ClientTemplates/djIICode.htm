@@ -1,0 +1,151 @@
+﻿<% var data = self.data, title = self.title, isSource = self.isSource; %>
+<div class="dj_modal dj_djii" style="display: block;">
+    <div class="dj_modal-header">
+        <h3 class="dj_modal-title"><%= title %> <%= Token("information") %></h3>
+        <p class="dj_modal-close">
+            <a href="javascript:void(0);"></a>
+        </p>
+    </div>
+    <div class="dj_modal-content">
+        <div class="dj_modal-content-wrap">
+            <div class="modal-content">
+                <% if(data.sourceLogo){ %>
+                    <div><img src="<%= data.sourceLogo %>" title="<%= (data.name || "") %>" /><br /><br /></div>
+                <% }else{ %>
+                    <h4><%= data.name %></h4>
+                <% } %>
+                <ul>
+                    <% if(data.code){ %>
+                        <li>
+                            <span class="label"><%= Token('code') %>:</span> 
+                            <span class="value"><%= data.code.toUpperCase() %></span> 
+                        </li>
+                    <% } %>
+                    <% if(data.description){ %>
+                        <li>
+                            <span class="label"><%= Token('description') %>:</span> 
+                            <span class="value"><%= data.description %></span>
+                        </li>
+                    <% } %>
+                    <% if(data.location){ %>
+                        <li>
+                            <span class="label"><%= Token('location') %>:</span> 
+                            <span class="value"><%= data.location %></span>
+                        </li>
+                    <% } %>
+                    <% if(data.primaryIndustry){ %>
+                        <li>
+                            <span class="label"><%= Token('primaryIndustry') %>:</span> 
+                            <span class="value"><%= data.primaryIndustry %></span>
+                        </li>
+                    <% } %>
+                    <% if(data.primarySource){ %>
+                        <li>
+                            <span class="label"><%= Token('primarySource') %>:</span> 
+                            <span class="value"><%= data.primarySource %></span>
+                        </li>
+                    <% } %>
+                    <% if(data.parentCodes && data.parentCodes.length > 0){ %>
+                        <li>
+                            <span class="label"><%= Token('parents') %>:</span> 
+                            <span class="value">
+                                <% $.each(data.parentCodes, function(i, name){ %>
+                                    <%= name %><br />
+                                <% }); %>
+                            </span>
+                        </li>
+                    <% } %>
+                    <% if(isSource){ %>
+                        <% if(data.language){ %>
+                            <li>
+                                <span class="label"><%= Token('language') %>:</span> 
+                                <span class="value"><%= data.language %></span>
+                            </li>
+                        <% } %>
+                        <% if(data.mostRecentIssue){ %>
+                            <li>
+                                <span class="label"><%= Token('mostRecentIssue') %>:</span> 
+                                <span class="value"><%= data.mostRecentIssue %></span>
+                            </li>
+                        <% } %>
+                        <% if(data.firstIssue){ %>
+                            <li>
+                                <span class="label"><%= Token('firstIssue') %>:</span> 
+                                <span class="value"><%= data.firstIssue %></span>
+                            </li>
+                        <% } %>
+                        <% if(data.frequency){ %>
+                            <li>
+                                <span class="label"><%= Token('frequency') %>:</span> 
+                                <span class="value"><%= data.frequency %></span>
+                            </li>
+                        <% } %>
+                        <% if(data.updateSchedule){ %>
+                            <li>
+                                <span class="label"><%= Token('updateSchedule') %>:</span> 
+                                <span class="value"><%= data.updateSchedule %></span>
+                            </li>
+                        <% } %>
+                        <% if(data.onlineAvailability){ %>
+                            <li>
+                                <span class="label"><%= Token('onlineAvailability') %>:</span> 
+                                <span class="value"><%= data.onlineAvailability %></span>
+                            </li>
+                        <% } %>
+                        <% if(data.sourceCoverage){ %>
+                            <li>
+                                <span class="label"><%= Token('sourceCoverage') %>:</span> 
+                                <span class="value"><%= data.sourceCoverage %></span>
+                            </li>
+                        <% } %>
+                        <% if(data.articleCoverage){ %>
+                            <li>
+                                <span class="label"><%= Token('articleCoverage') %>:</span> 
+                                <span class="value"><%= data.articleCoverage %></span>
+                            </li>
+                        <% } %>
+                        <% if(data.format){ %>
+                            <li>
+                                <span class="label"><%= Token('format') %>:</span> 
+                                <span class="value"><%= data.format %></span>
+                            </li>
+                        <% } %>
+                        <% if(data.publisher){ %>
+                            <li>
+                                <span class="label"><%= Token('publisher') %>:</span> 
+                                <span class="value"><%= data.publisher %></span>
+                            </li>
+                        <% } %>
+                        <% if(data.circulation){ %>
+                            <li>
+                                <span class="label"><%= Token('circulation') %>:</span> 
+                                <span class="value"><%= data.circulation %></span>
+                            </li>
+                        <% } %>
+                        <% if(data.publisherWebAddress){ %>
+                            <li>
+                                <span class="label"><%= Token('publisherWebUrl') %>:</span> 
+                                <span class="value"><%= data.publisherWebAddress %></span>
+                            </li>
+                        <% } %>
+                        <% if(data.webAddress){ %>
+                            <li>
+                                <span class="label"><%= Token('webAddress') %>:</span> 
+                                <span class="value"><%= data.webAddress %></span>
+                            </li>
+                        <% } %>
+                        <% if(data.notes){ %>
+                            <li>
+                                <span class="label"><%= Token('editorsNotes') %>:</span> 
+                                <span class="value"><%= data.notes %></span>
+                            </li>
+                        <% } %>
+                    <% } %>
+                </ul>
+                <div class="footer">
+                    <span class="dj_btn dj_btn-blue dj_modal-close no-margin"><%= Token("done") %></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

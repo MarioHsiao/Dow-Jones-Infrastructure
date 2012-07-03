@@ -1,0 +1,12 @@
+﻿@model NewsChartModel
+@using DowJones.Web.Mvc.Extensions
+@ClientPlugin dj_NewsChart
+@ClientTemplate RelativeResourceName=ClientTemplates.MarketIndex.htm, TemplateId=marketindex
+@ClientTemplate RelativeResourceName=ClientTemplates.NewsVolume.htm, TemplateId=newsvolume
+@ScriptResource RelativeResourceName=NewsChart.js
+@{ 
+    CssClass = "dj_NewsChart"; 
+    DJ.ScriptRegistry().WithHighCharts();
+    DJ.ScriptRegistry().WithServiceProxy();
+  
+}

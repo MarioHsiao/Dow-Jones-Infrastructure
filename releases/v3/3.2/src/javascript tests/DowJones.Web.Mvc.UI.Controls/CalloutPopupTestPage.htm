@@ -1,0 +1,760 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+    <title>Callout Popup Mock Test Page</title>
+    <link href="../../DowJones.Web.Mvc/Resources/css/base.css" rel="stylesheet" />
+    <link href="../../DowJones.Web.Mvc/Resources/css/reset.css" rel="stylesheet" />
+    <link href="../../DowJones.Web.Mvc/Resources/css/960.css" rel="stylesheet" />
+    <link href="../../DowJones.Web.Showcase/content/emg_default.css" type="text/css" rel="stylesheet" />
+
+    <link href="../../DowJones.Web.Showcase/content/emg_grid.css" type="text/css" rel="stylesheet" />
+    <link href="../../DowJones.Web.Showcase/content/emg_layout.css" type="text/css" rel="stylesheet" />
+    <link href="../../DowJones.Web.Showcase/content/emg_text.css" type="text/css" rel="stylesheet" />
+    <link href="../../DowJones.Web.Showcase/content/showcasestyle.css" type="text/css" rel="stylesheet" />
+    <link href="../../DowJones.Web.Mvc.UI.Components/CalloutPopup/css/popup.css" type="text/css" rel="stylesheet" />
+    <link href="../../DowJones.Web.Mvc.UI.Components/CalloutPopup/css/popup.content.css" type="text/css" rel="stylesheet" />
+    <link href="../../DowJones.Web.Mvc.UI.Components/CalloutPopup/css/module.css" type="text/css" rel="stylesheet" />                
+
+        <style type="text/css">
+.popup-example-title {
+	font-size: 130%;
+	margin-bottom: 10px;
+}
+
+.popup-example-list li {
+	margin-bottom: 10px;
+}
+.popup-example-list li a {
+	color: #2F90B3;
+	font-size: 116%;
+}
+</style>
+</head>
+<body>
+    <div class="dj_CalloutPopup CalloutPopup" id="CalloutPopup">
+<div id="djshowcase_content_wrapper">
+    <h1 class="popup-example-title">Popup Examples (Left) 1</h1>
+    <ul class="popup-example-list">
+        <li><a class="popup-trigger" href="#trend-down-example"><span>Trend Down</span> Popup</a></li>
+        <li><a class="popup-trigger" href="#company-example"><span>Company</span> Popup</a></li>
+        <li><a class="popup-trigger" href="#source-example"><span>Source</span> Popup</a></li>
+        <li><a class="popup-trigger" href="#person-example"><span>Person</span> Popup</a></li>
+        <li><a class="popup-trigger" href="#subject-example"><span>Subject</span> Popup</a></li>
+        <li><a class="popup-trigger" href="#keyword-example"><span>Keyword</span> Popup</a></li>
+        <li><a class="popup-trigger" href="#author-example"><span>Author</span> Popup</a></li>
+    </ul>
+ 
+        <div id="popup" class="dj-popup-window">
+            <div class="dj-popup-arrow"></div>
+            <div class="dj-popup-header"><div class="dj-popup-title ellipsis"></div></div>
+            <div class="dj-popup-body"></div>
+        </div>
+    
+</div>
+</div>
+
+
+
+<div id="popup-wrap">
+
+    <div id="trend-down-example">
+        
+        <!-- 
+    	    DEV-NOTE: Below is the html content for the trend down popup
+    	-->
+        <div class="popup-header-wrap">
+            <div class="popup-trend-icon popup-trend-icon-down"></div>
+            <h1 class="popup-trend-content-title">Telephone &amp; Data Systems, LLC</h1>
+            <span class="popup-trend-status">Trending Down</span>
+        </div>
+            
+        <div class="popup-news-event-wrap">
+            <span class="popup-news-event-heading">Most Common News Event</span>
+            <ul class="popup-news-event">
+                <li><a href="#">Acquisition, IPO, Aenean</a></li>
+                <li><a href="#">Lacinia, Bibendum</a></li>
+            </ul>
+        </div>
+        
+        <div class="article-group">
+
+            <ul class="article-list popup-article-list">
+                <li>
+                    <div class="article-wrap primary-article">
+                
+                        <div class="article-meta">
+                            <span class="article-source popup-article-source">The New York Times</span>
+                            -
+                            <span class="popup-article-meta">Pre Published/Released Article</span>
+                        </div>
+                    
+                        <h4 class="article-headline">
+                            <a href="#">Dow Jones Builds Largest Solar Energy Field on the East Coast</a>								
+                        </h4>
+                    </div>
+                </li>
+                <li>
+                    <div class="article-wrap">
+                        <div class="article-meta">
+                            <span class="article-source popup-article-source">The New York Times</span>
+                            -
+                            <span class="popup-article-meta">Pre Published/Released Article</span>
+                        </div>
+                    
+                        <h4 class="article-headline">
+                            <a href="#">Dow Jones Builds Largest Solar Energy Field on the East Coast</a>
+                            <span class="fi"></span>									
+                        </h4>
+                    </div>
+                </li>
+                <li>
+                    <div class="article-wrap">
+                        <div class="article-meta">
+                            <span class="article-source popup-article-source">The New York Times</span>
+                            -
+                            <span class="popup-article-meta">Pre Published/Released Article</span>
+                        </div>
+                    
+                        <h4 class="article-headline">
+                            <a href="#">Dow Jones Builds Largest Solar Energy Field on the East Coast</a>
+                            <span class="fi"></span>									
+                        </h4>
+                    </div>
+                </li>
+                <li>
+                    <div class="article-wrap">
+                        <div class="article-meta">
+                            <span class="article-source popup-article-source">The New York Times</span>
+                            -
+                            <span class="popup-article-meta">Pre Published/Released Article</span>
+                        </div>
+                    
+                        <h4 class="article-headline">
+                            <a href="#">Dow Jones Builds Largest Solar Energy Field on the East Coast</a>
+                            <span class="fi"></span>									
+                        </h4>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        
+        <ul class="dc_list">
+          <li class="dc_item">
+              <a class="dashboard-control dc_btn dc_btn-1" href="#">View All Articles</a>
+          </li>
+          
+          <li class="dc_item">
+              <a class="dashboard-control dc_btn dc_btn-3" href="#">Close</a>
+          </li>
+      </ul>
+      
+    </div><!-- end #trend-down-example -->
+
+	<div id="company-example">
+	    
+	    <!-- 
+    	    DEV-NOTE: Below is the html content for the company popup
+    	-->    	
+        <div class="popup-news-event-wrap">
+            <span class="popup-news-event-heading">Most Common News Event</span>
+            <ul class="popup-news-event">
+                <li><a href="#">Acquisition, IPO, Aenean</a></li>
+                <li><a href="#">Lacinia, Bibendum</a></li>
+            </ul>
+        </div>
+            
+        <div class="article-group">
+
+            <ul class="article-list popup-article-list">
+                <li>
+                    <div class="article-wrap primary-article">
+                
+                        <div class="article-meta">
+                            <span class="article-source popup-article-source">The New York Times</span>
+                            -
+                            <span class="popup-article-meta">Pre Published/Released Article</span>
+                        </div>
+                    
+                        <h4 class="article-headline">
+                            <a href="#">Dow Jones Builds Largest Solar Energy Field on the East Coast</a>								
+                        </h4>
+                    </div>
+                </li>
+                <li>
+                    <div class="article-wrap">
+                        <div class="article-meta">
+                            <span class="article-source popup-article-source">The New York Times</span>
+                            -
+                            <span class="popup-article-meta">Pre Published/Released Article</span>
+                        </div>
+                    
+                        <h4 class="article-headline">
+                            <a href="#">Dow Jones Builds Largest Solar Energy Field on the East Coast</a>
+                            <span class="fi"></span>									
+                        </h4>
+                    </div>
+                </li>
+                <li>
+                    <div class="article-wrap">
+                        <div class="article-meta">
+                            <span class="article-source popup-article-source">The New York Times</span>
+                            -
+                            <span class="popup-article-meta">Pre Published/Released Article</span>
+                        </div>
+                    
+                        <h4 class="article-headline">
+                            <a href="#">Dow Jones Builds Largest Solar Energy Field on the East Coast</a>
+                            <span class="fi"></span>									
+                        </h4>
+                    </div>
+                </li>
+                <li>
+                    <div class="article-wrap">
+                        <div class="article-meta">
+                            <span class="article-source popup-article-source">The New York Times</span>
+                            -
+                            <span class="popup-article-meta">Pre Published/Released Article</span>
+                        </div>
+                    
+                        <h4 class="article-headline">
+                            <a href="#">Dow Jones Builds Largest Solar Energy Field on the East Coast</a>
+                            <span class="fi"></span>									
+                        </h4>
+                    </div>
+                </li>
+            </ul>
+       </div>
+       
+        <ul class="dc_list">
+            <li class="dc_item">
+            <a class="dashboard-control dc_btn dc_btn-1" href="#">View All Articles</a>
+            </li>
+            
+            <li class="dc_item">
+            <a class="dashboard-control dc_btn dc_btn-3" href="#">Close</a>
+            </li>
+        </ul>
+            
+	</div><!-- end #company-example -->
+    
+<div id="source-example">
+	    
+	    <!-- 
+    	    DEV-NOTE: Below is the html content for the source popup
+    	-->    	
+        <div class="popup-news-event-wrap">
+            <span class="popup-news-event-heading">Most Common News Event</span>
+            <ul class="popup-news-event">
+                <li><a href="#">Acquisition, IPO, Aenean</a></li>
+                <li><a href="#">Lacinia, Bibendum</a></li>
+            </ul>
+        </div>
+            
+        <div class="article-group">
+
+            <ul class="article-list popup-article-list">
+                <li>
+                    <div class="article-wrap primary-article">
+                
+                        <div class="article-meta">
+                            <span class="article-source popup-article-source">The New York Times</span>
+                            -
+                            <span class="popup-article-meta">Pre Published/Released Article</span>
+                        </div>
+                    
+                        <h4 class="article-headline">
+                            <a href="#">Dow Jones Builds Largest Solar Energy Field on the East Coast</a>								
+                        </h4>
+                    </div>
+                </li>
+                <li>
+                    <div class="article-wrap">
+                        <div class="article-meta">
+                            <span class="article-source popup-article-source">The New York Times</span>
+                            -
+                            <span class="popup-article-meta">Pre Published/Released Article</span>
+                        </div>
+                    
+                        <h4 class="article-headline">
+                            <a href="#">Dow Jones Builds Largest Solar Energy Field on the East Coast</a>
+                            <span class="fi"></span>									
+                        </h4>
+                    </div>
+                </li>
+                <li>
+                    <div class="article-wrap">
+                        <div class="article-meta">
+                            <span class="article-source popup-article-source">The New York Times</span>
+                            -
+                            <span class="popup-article-meta">Pre Published/Released Article</span>
+                        </div>
+                    
+                        <h4 class="article-headline">
+                            <a href="#">Dow Jones Builds Largest Solar Energy Field on the East Coast</a>
+                            <span class="fi"></span>									
+                        </h4>
+                    </div>
+                </li>
+                <li>
+                    <div class="article-wrap">
+                        <div class="article-meta">
+                            <span class="article-source popup-article-source">The New York Times</span>
+                            -
+                            <span class="popup-article-meta">Pre Published/Released Article</span>
+                        </div>
+                    
+                        <h4 class="article-headline">
+                            <a href="#">Dow Jones Builds Largest Solar Energy Field on the East Coast</a>
+                            <span class="fi"></span>									
+                        </h4>
+                    </div>
+                </li>
+            </ul>
+       </div>
+       
+        <ul class="dc_list">
+            <li class="dc_item">
+            <a class="dashboard-control dc_btn dc_btn-1" href="#">View All Articles</a>
+            </li>
+            
+            <li class="dc_item">
+            <a class="dashboard-control dc_btn dc_btn-3" href="#">Close</a>
+            </li>
+        </ul>
+            
+	</div><!-- end #source-example -->
+	
+	<div id="person-example">
+	    
+	    <!-- 
+    	    DEV-NOTE: Below is the html content for the person popup
+    	-->
+		<div class="popup-header-wrap clearfix">
+    	<div class="popup-profile-img"><img height="44" width="44" alt="Susan Doe Ph.D." src="images/dumby-author-headshot.jpg"></div>
+    
+        <div class="popup-person-details-box">
+            <span class="popup-person-job-title">Chairman of the Board, Chief Executive Officer</span>
+            <h1 class="popup-person-company-name">
+            <a href="#">Google Inc.</a>
+            </h1>
+            <p class="popup-person-address">1600 Ampitheatre Parkway<br>
+            Mountain View, CA 94043<br>
+            United States</p>
+            </div>
+        </div>
+
+        <div class="popup-news-event-wrap">   
+            <span class="popup-news-event-heading">Most Common News Event</span>
+            <ul class="popup-news-event">
+                <li><a href="#">Acquisition, IPO, Aenean</a></li>
+                <li><a href="#">Lacinia, Bibendum</a></li>
+            </ul>
+        </div> 
+        
+		<div class="article-group">
+            <ul class="article-list popup-article-list">
+                <li>
+                    <div class="article-wrap primary-article">
+                        <div class="article-meta">
+                            <span class="article-source popup-article-source">The New York Times</span>
+                            -
+                            <span class="popup-article-meta">Pre Published/Released Article</span>
+                        </div>
+                        <h4 class="article-headline">
+                            <a href="#">Dow Jones Builds Largest Solar Energy Field on the East Coast</a>								
+                        </h4>
+                    </div>
+                </li>
+                <li>
+                    <div class="article-wrap">
+                        <div class="article-meta">
+                            <span class="article-source popup-article-source">The New York Times</span>
+                            -
+                            <span class="popup-article-meta">Pre Published/Released Article</span>
+                        </div>
+                    
+                        <h4 class="article-headline">
+                            <a href="#">Dow Jones Builds Largest Solar Energy Field on the East Coast</a>
+                            <span class="fi"></span>									
+                        </h4>
+                    </div>
+                </li>
+                <li>
+                    <div class="article-wrap">
+                        <div class="article-meta">
+                            <span class="article-source popup-article-source">The New York Times</span>
+                            -
+                            <span class="popup-article-meta">Pre Published/Released Article</span>
+                        </div>
+                    
+                        <h4 class="article-headline">
+                            <a href="#">Dow Jones Builds Largest Solar Energy Field on the East Coast</a>
+                            <span class="fi"></span>									
+                        </h4>
+                    </div>
+                </li>
+                <li>
+                    <div class="article-wrap">
+                        <div class="article-meta">
+                            <span class="article-source popup-article-source">The New York Times</span>
+                            -
+                            <span class="popup-article-meta">Pre Published/Released Article</span>
+                        </div>
+                    
+                        <h4 class="article-headline">
+                            <a href="#">Dow Jones Builds Largest Solar Energy Field on the East Coast</a>
+                            <span class="fi"></span>									
+                        </h4>
+                    </div>
+                </li>
+            </ul>
+		</div>
+       
+        <ul class="dc_list">
+            <li class="dc_item">
+                <a class="dashboard-control dc_btn dc_btn-1" href="#">View All Articles</a>
+            </li>
+            <li class="dc_item">
+                <a class="dashboard-control dc_btn dc_btn-3" href="#">Close</a>
+            </li>
+        </ul>
+    	
+    </div><!-- end #person-example -->
+    
+    <div id="subject-example">
+	    
+	    <!-- 
+    	    DEV-NOTE: Below is the html content for the subject popup
+    	-->
+        <div class="popup-news-event-wrap">
+            <span class="popup-news-event-heading">Companies Related to News Event</span>
+            <ul class="popup-subject-related-companies">
+                <li><a href="#">Amazon.com Inc.</a></li>
+                <li><a href="#">Apple Inc.</a></li>
+                <li><a href="#">Google Inc.</a></li>
+                <li><a href="#">Microsoft Corporation</a></li>
+                <li><a href="#">Dell Inc.</a></li>
+            </ul>
+        </div>
+
+        <div class="article-group">
+            <ul class="article-list popup-article-list">
+                <li>
+                    <div class="article-wrap primary-article">
+                        <div class="article-meta">
+                            <span class="article-source popup-article-source">The New York Times</span>
+                            -
+                            <span class="popup-article-meta">Pre Published/Released Article</span>
+                        </div>
+                        <h4 class="article-headline">
+                            <a href="#">Dow Jones Builds Largest Solar Energy Field on the East Coast</a>								
+                        </h4>
+                    </div>
+                </li>
+                <li>
+                    <div class="article-wrap">
+                        <div class="article-meta">
+                            <span class="article-source popup-article-source">The New York Times</span>
+                            -
+                            <span class="popup-article-meta">Pre Published/Released Article</span>
+                        </div>
+                    
+                        <h4 class="article-headline">
+                            <a href="#">Dow Jones Builds Largest Solar Energy Field on the East Coast</a>
+                            <span class="fi"></span>									
+                        </h4>
+                    </div>
+                </li>
+                <li>
+                    <div class="article-wrap">
+                        <div class="article-meta">
+                            <span class="article-source popup-article-source">The New York Times</span>
+                            -
+                            <span class="popup-article-meta">Pre Published/Released Article</span>
+                        </div>
+                    
+                        <h4 class="article-headline">
+                            <a href="#">Dow Jones Builds Largest Solar Energy Field on the East Coast</a>
+                            <span class="fi"></span>									
+                        </h4>
+                    </div>
+                </li>
+                <li>
+                    <div class="article-wrap">
+                        <div class="article-meta">
+                            <span class="article-source popup-article-source">The New York Times</span>
+                            -
+                            <span class="popup-article-meta">Pre Published/Released Article</span>
+                        </div>
+                    
+                        <h4 class="article-headline">
+                            <a href="#">Dow Jones Builds Largest Solar Energy Field on the East Coast</a>
+                            <span class="fi"></span>									
+                        </h4>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    
+        <ul class="dc_list">
+            <li class="dc_item">
+                <a class="dashboard-control dc_btn dc_btn-1" href="#">View All Articles</a>
+            </li>
+            <li class="dc_item">
+                <a class="dashboard-control dc_btn dc_btn-3" href="#">Close</a>
+            </li>
+        </ul>
+    	
+    </div><!-- end #subject-example -->
+    
+    <div id="keyword-example">
+	    
+	    <!-- 
+    	    DEV-NOTE: Below is the html content for the keyword popup
+    	-->
+		<div class="popup-header-wrap clearfix">
+        	<h1 class="popup-keyword-heading">31 Articles Today</h1>
+        	<span class="popup-news-event-heading">Week Over Week</span>
+            
+            <div class="popup-keyword-indicator-data-box">
+                <span class="popup-keyword-indicator-data">657 Articles This Week</span>
+                <span class="popup-keyword-indicator-data popup-keyword-indicator-data-btm">41 Articles This Week</span>
+            </div>
+            
+            <div class="popup-keyword-indicator-bar-box">
+                <div class="popup-keyword-indicator-bar-solid"></div>
+                <div class="popup-keyword-indicator-bar-crosshatch"></div>
+            </div>
+		</div>
+
+        <div class="article-group">
+         
+            <ul class="article-list popup-article-list">
+                <li>
+                    <div class="article-wrap primary-article">
+                
+                        <div class="article-meta">
+                            <span class="article-source popup-article-source">The New York Times</span>
+                            -
+                            <span class="popup-article-meta">Pre Published/Released Article</span>
+                        </div>
+                    
+                        <h4 class="article-headline">
+                            <a href="#">Dow Jones Builds Largest Solar Energy Field on the East Coast</a>								
+                        </h4>
+                    </div>
+                </li>
+                <li>
+                    <div class="article-wrap">
+                        <div class="article-meta">
+                            <span class="article-source popup-article-source">The New York Times</span>
+                            -
+                            <span class="popup-article-meta">Pre Published/Released Article</span>
+                        </div>
+                    
+                        <h4 class="article-headline">
+                            <a href="#">Dow Jones Builds Largest Solar Energy Field on the East Coast</a>
+                            <span class="fi"></span>									
+                        </h4>
+                    </div>
+                </li>
+                <li>
+                    <div class="article-wrap">
+                        <div class="article-meta">
+                            <span class="article-source popup-article-source">The New York Times</span>
+                            -
+                            <span class="popup-article-meta">Pre Published/Released Article</span>
+                        </div>
+                    
+                        <h4 class="article-headline">
+                            <a href="#">Dow Jones Builds Largest Solar Energy Field on the East Coast</a>
+                            <span class="fi"></span>									
+                        </h4>
+                    </div>
+                </li>
+                <li>
+                    <div class="article-wrap">
+                        <div class="article-meta">
+                            <span class="article-source popup-article-source">The New York Times</span>
+                            -
+                            <span class="popup-article-meta">Pre Published/Released Article</span>
+                        </div>
+                    
+                        <h4 class="article-headline">
+                            <a href="#">Dow Jones Builds Largest Solar Energy Field on the East Coast</a>
+                            <span class="fi"></span>									
+                        </h4>
+                    </div>
+                </li>
+            </ul>
+        </div>
+       
+        <ul class="dc_list">
+            <li class="dc_item">
+                <a class="dashboard-control dc_btn dc_btn-1" href="#">View All Articles</a>
+            </li>
+            <li class="dc_item">
+                <a class="dashboard-control dc_btn dc_btn-3" href="#">Close</a>
+            </li>
+        </ul>
+    	
+    </div><!-- end #keyword-example -->
+    
+    <div id="author-example">
+	    
+	    <!-- 
+    	    DEV-NOTE: Below is the html content for the author popup
+    	-->
+		<div class="popup-header-wrap clearfix"> 
+            <div class="popup-profile-img">
+                <img height="44" width="44" alt="Sally Mclane" src="images/dumby-author-headshot.jpg">
+            </div>
+            
+            <div class="popup-person-details-box">
+                <span class="popup-author-contact-details">Author Contact/Email</span>
+                <ul class="popup-author-publication-list">
+                    <li><a href="#">Dow Jones Business News</a></li>
+                    <li><a href="#">Dow Jones Chinese Financial Wire</a></li>
+                    <li><a href="#">The Wall Street Journal</a></li>
+                </ul>
+            </div>
+        </div>
+            
+		<div class="popup-news-event-wrap">   
+            <span class="popup-news-event-heading">Companies Related to News Event</span>
+            <ul class="popup-news-event">
+    			<li><a href="#">Acquisition, IPO, Aenean</a></li>
+                <li><a href="#">Lacinia, Bibendum</a></li>
+    		</ul>
+        </div> 
+        
+        <div class="article-group">
+
+            <ul class="article-list popup-article-list">
+                <li>
+                    <div class="article-wrap primary-article">
+                
+                        <div class="article-meta">
+                            <span class="article-source popup-article-source">The New York Times</span>
+                            -
+                            <span class="popup-article-meta">Pre Published/Released Article</span>
+                        </div>
+                    
+                        <h4 class="article-headline">
+                            <a href="#">Dow Jones Builds Largest Solar Energy Field on the East Coast</a>								
+                        </h4>
+                    </div>
+                </li>
+                <li>
+                    <div class="article-wrap">
+                        <div class="article-meta">
+                            <span class="article-source popup-article-source">The New York Times</span>
+                            -
+                            <span class="popup-article-meta">Pre Published/Released Article</span>
+                        </div>
+                    
+                        <h4 class="article-headline">
+                            <a href="#">Dow Jones Builds Largest Solar Energy Field on the East Coast</a>
+                            <span class="fi"></span>									
+                        </h4>
+                    </div>
+                </li>
+                <li>
+                    <div class="article-wrap">
+                        <div class="article-meta">
+                            <span class="article-source popup-article-source">The New York Times</span>
+                            -
+                            <span class="popup-article-meta">Pre Published/Released Article</span>
+                        </div>
+                    
+                        <h4 class="article-headline">
+                            <a href="#">Dow Jones Builds Largest Solar Energy Field on the East Coast</a>
+                            <span class="fi"></span>									
+                        </h4>
+                    </div>
+                </li>
+                <li>
+                    <div class="article-wrap">
+                        <div class="article-meta">
+                            <span class="article-source popup-article-source">The New York Times</span>
+                            -
+                            <span class="popup-article-meta">Pre Published/Released Article</span>
+                        </div>
+                    
+                        <h4 class="article-headline">
+                            <a href="#">Dow Jones Builds Largest Solar Energy Field on the East Coast</a>
+                            <span class="fi"></span>									
+                        </h4>
+                    </div>
+                </li>
+            </ul>
+		</div>
+       
+        <ul class="dc_list">
+            <li class="dc_item">
+                <a class="dashboard-control dc_btn dc_btn-1" href="#">View All Articles</a>
+            </li>
+            <li class="dc_item">
+                <a class="dashboard-control dc_btn dc_btn-3" href="#">Close</a>
+            </li>
+        </ul>
+    	
+    </div><!-- end #author-example -->
+
+</div><!-- end #popup-wrap -->
+
+    <script src="../../DowJones.Web.Mvc/Resources/js/jquery.js"></script>
+    <script src="../../DowJones.Web.Mvc/Resources/js/common.js"></script>
+    <script src="../../DowJones.Web.Mvc.UI.Components/CalloutPopup/js/popup.js"></script>
+    <script src="../../DowJones.Web.Mvc.UI.Components/CalloutPopup/js/jquery.blockui.min.js"></script>
+    <script src="../../DowJones.Web.Mvc.UI.Components/CalloutPopup/js/jquery.easing-1.3.min.js"></script>
+    <script type="text/javascript">
+
+        jQuery(function ($) {
+            $(document).delegate('.popup-trigger', 'click', function () {
+                //debugger;
+                //DEV-NOTE: proof of concept code for popups
+                $popupLink = $(this);
+
+                $popupLink.popup({
+                    title: '',
+                    body: '',
+                    open: function (panel) {
+
+                        panel.update({ state: 'dj-loading' });
+
+                        var popupId = $popupLink.attr('href').split('#');
+
+                        popupId = popupId[1];
+
+                        setTimeout(function () {
+                            panel.update({
+                                body: $("#" + popupId).html(),
+                                title: $('span', $popupLink).text(),
+                                state: 'dj-loaded'
+                            });
+                        }, 1000);
+
+                    },
+                    close: function () { },
+                    width: 350,
+                    height: 0
+                });
+
+                return false;
+
+            });
+
+        });
+
+</script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            jQuery('#CalloutPopup').dj_CalloutPopup({ options: { debug: false }, tokens: {}, data: null });
+        });
+    </script>
+
+
+</body>
+</html>

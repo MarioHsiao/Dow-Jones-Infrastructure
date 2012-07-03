@@ -1,0 +1,28 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+    <title>NewsStandTicker Mock Test Page</title>
+
+          <link href="../../DowJones.Web.Mvc.UI.Components/NewsStandTicker/NewsStandTicker.css" type="text/css"
+        rel="stylesheet"/>
+    <script id="headlineTemplate" type="text/javascript">
+    </script>
+</head>
+<body>
+    <div id="NesStandTickerControl-0" class="dj_headlineListContainer dj_headlineList">
+    </div>
+    <script type="text/javascript" src="../../DowJones.Web.Mvc/Resources/js/jquery-1.4.4.js"></script>
+    <script type="text/javascript" src="../../DowJones.Web.Mvc/Resources/js/common.js"></script>
+    <script type="text/javascript" src="../../DowJones.Web.Mvc/Resources/js/underscore.js"></script>
+    <script type="text/javascript" src="../../DowJones.Web.Showcase/Scripts/jquery.tmpl.js"></script>
+    <script type="text/javascript" src="../../DowJones.Web.Mvc.UI.Components/NewsStandTicker/NewsStandTicker.js"></script>
+    <script type="text/javascript" src="../../DowJones.Web.Mvc/Resources/js/jquery-ui-1.8.7.widgets.js"></script>
+    <script type="text/javascript" src="../../DowJones.Web.Mvc.UI.Components/NewsStandTicker/jquery.SmoothScrollDiv.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.dj_headlineList').dj_NewsStandTicker({options: { tickerSpeed: 15, tickerDirection: "Left", debug: false }, tokens: { noResultsTkn: "${noResults}", articlesTkn: "${articles}" }, data:null, eventHandlers:{"dj.NewsStandTicker.sourceTitleClick":"SourceTitleClick"}});
+        });
+    </script>
+</body>
+</html>

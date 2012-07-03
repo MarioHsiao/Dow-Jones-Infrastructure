@@ -1,0 +1,11 @@
+﻿<%  var d, data = self.data;
+    for(var i = 0;i < data.length;i++){ 
+        d = data[i];
+%>
+<li>
+    <div>
+        <span class="dj_icon dj_browse-tree-toggle sourceList"></span>
+        <div class="browse-item" data-type="LIST" data-code="<%= d.Id %>"><span><%= d.Name %></span> &nbsp;&nbsp;<a href="javascript:void(0);" class="edit-list">Edit</a></div>
+    </div>
+</li>
+<% } %>

@@ -1,0 +1,111 @@
+﻿<script src="../template.js"></script>
+<script>
+    setTargetScript('../../DowJones.Web.Mvc.UI.Canvas/AbstractCanvas.js');
+    include('../../DowJones.Web.Mvc.UI.Canvas/AbstractCanvasModule.js');
+
+    $dj.registerNamespace('DJ.Services');
+    DJ.Services.CanvasRenderingManagerDataService = function (path) {
+        return {
+            path: path,
+            UpdateCanvasModulesPositions: function (params) { }
+        };
+    };
+
+    function createMockModule(canvas, position, moduleEl) {
+        var moduleEl = moduleEl || $('<div />');
+
+        var module = new DJ.UI.AbstractCanvasModule(moduleEl, {
+            options: { Position: position || 0 }
+        });
+
+        moduleEl.addClass('dj_module')
+        moduleEl.data('AbstractCanvasModule', module);
+        moduleEl.appendTo(canvas);
+
+        return module;
+    };
+
+    $(document).ready(function () {
+
+        test('has DJ.UI.AbstractCanvas', function () {
+            ok(DJ.UI.AbstractCanvas);
+        });
+
+        test('should be able to create a new Canvas', function () {
+            var canvas = new DJ.UI.AbstractCanvas(createjQueryTestElement(), {});
+            ok(canvas);
+        });
+
+        test('should set owner on child modules', function () {
+            var canvasElement = createjQueryTestElement();
+
+            var module = createMockModule(canvasElement);
+
+            var canvas = new DJ.UI.AbstractCanvas(canvasElement, {});
+
+            equals(module.get_Canvas(), canvas);
+        });
+
+        test('should create zones', function () {
+            var canvas = new DJ.UI.AbstractCanvas(createjQueryTestElement(), {});
+            var zones = canvas.getZones();
+
+            equals(zones.get().length, canvas.options.NumberOfGroups);
+        });
+
+        test('should organize modules into zones', function () {
+            var canvasElement = createjQueryTestElement();
+
+            var module1 = createMockModule(canvasElement, 0, $('<div>Module 1</div>'));
+            var module2 = createMockModule(canvasElement, 1, $('<div>Module 2</div>'));
+
+            var canvas = new DJ.UI.AbstractCanvas(canvasElement, { NumberOfGroups: 2 });
+            var zones = canvas.getZones();
+
+            equals($(canvas._moduleSelector, zones.get(0)).get(0), module1._module.get(0));
+            equals($(canvas._moduleSelector, zones.get(1)).get(0), module2._module.get(0));
+        });
+
+        test('should be able to move module down', function () {
+            var canvasElement = createjQueryTestElement();
+
+            var module1 = createMockModule(canvasElement, 0, $('<div>Module 1</div>'));
+            var module2 = createMockModule(canvasElement, 1, $('<div>Module 2</div>'));
+
+            var canvas = new DJ.UI.AbstractCanvas(canvasElement, { NumberOfGroups: 2 });
+            canvas.moveModule(module1, 'down');
+
+            equals($(canvas._moduleSelector).index(module1._module), 1);
+        });
+
+        test('should be able to move module up', function () {
+            var canvasElement = createjQueryTestElement();
+
+            var module1 = createMockModule(canvasElement, 0, $('<div>Module 1</div>'));
+            var module2 = createMockModule(canvasElement, 1, $('<div>Module 2</div>'));
+
+            var canvas = new DJ.UI.AbstractCanvas(canvasElement, { NumberOfGroups: 2 });
+            canvas.moveModule(module2, 'up');
+
+            equals($(canvas._moduleSelector).index(module2._module), 0);
+        });
+
+        test('should be able to set the web service path via options', function () {
+            var expectedPath = '/TESTSERVICE.asmx';
+
+            var canvas = new DJ.UI.AbstractCanvas(createjQueryTestElement(), {
+                options: { WebServicePath: expectedPath }
+            });
+
+            equals(canvas.$base$web$service.path, expectedPath);
+        });
+
+
+
+    });
+
+</script>
+
+<script id="module-template" type="text/html">
+
+</script>

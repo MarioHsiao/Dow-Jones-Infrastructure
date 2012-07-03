@@ -1,0 +1,34 @@
+﻿@model DowJones.Web.Mvc.Search.UI.Components.Filters.SearchNavigatorNode
+@{
+    TagName = "ul";
+    CssClass += " filters ";
+}
+
+@foreach (var filter in Model) {
+    <li class="item branch @(filter.IsSelected ? "expanded" : string.Empty)"
+        data-group="@filter.GroupCode" data-code="@filter.Ref"
+        @(filter.IsSecondaryGroup ? "data-secondary-group=true" : string.Empty)
+    >
+
+        @if (filter.HasChildren) {
+            <span class="trigger dj_icon dj_browse-tree-toggle">@(filter.IsSelected ? "-" : "+")</span>
+        }
+        
+        @if (filter.IsSelectable) {
+            <a href="#" class="child branch browse-item  name">@filter.DisplayName</a>
+        }
+        else {
+            <span class="child branch browse-item name">@filter.DisplayName</span>
+        }
+            
+        @if (filter.HasCount) {
+            <span class="count">(@Format(filter.ResultCount))</span>
+        }
+         
+        @if (filter.HasChildren) {
+            
+            @(ComponentFactory.RenderComponent<SearchNavigatorTree>(filter))
+            
+        }
+    </li>
+}
