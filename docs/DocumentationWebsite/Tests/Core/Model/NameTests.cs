@@ -14,6 +14,14 @@ namespace DowJones.Documentation.Tests.Core.Model
         }
 
         [TestMethod]
+        public void ShouldInsertWhitespaceIntoDisplayNameWithNumbers()
+        {
+            Assert.AreEqual(
+                "News Radar 90 Day Avg",
+                new Name("NewsRadar90DayAvg").DisplayName);
+        }
+
+        [TestMethod]
         public void ShouldLowercasePrepositions()
         {
             Assert.AreEqual(

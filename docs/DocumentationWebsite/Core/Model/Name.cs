@@ -33,7 +33,7 @@ namespace DowJones.Documentation
             if(string.IsNullOrWhiteSpace(value))
                 return value ?? string.Empty;
 
-            var withSpaces = Regex.Replace(value, "([a-z](?=[A-Z])|[A-Z](?=[A-Z][a-z]))", "$1 ").Replace("_", " ");
+            var withSpaces = Regex.Replace(value, "([a-z](?=[A-Z0-9])|[A-Z0-9](?=[A-Z0-9][a-z]))", "$1 ").Replace("_", " ");
             var lowerCasePrepositions =
                 Regex.Replace(withSpaces, " (A(nd|t)|From|Is|O(f|r)|T(he|o))",
                               m => string.Format("{0}", m.Value.ToLower()));
