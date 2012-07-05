@@ -267,7 +267,7 @@
             if (params.data.endDateText && (params.data.endDateText != params.data.startDateText)) {
                 name += " - " + params.data.endDateText;
             }
-            var filter = { category: 'DateRange', code: dateRange, name: name };
+            var filter = { category: 'DateRange', code: dateRange, name: (name || params.data.currentDateText) };
 
             $dj.publish('addFilters.dj.SearchFilters', [filter]);
 

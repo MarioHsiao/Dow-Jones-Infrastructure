@@ -29,7 +29,7 @@
                             foreach (var keyword in Model.Filters.Keyword)
                             {
                                 <li class="dj_pill">
-                                    <span class="filter">@keyword</span>
+                                    <span class="filter ellipsis">@keyword</span>
                                     <span class="remove" tooltip="@removeFilter"></span>
                                 </li>
                             }
@@ -46,7 +46,7 @@
                         <span class="section-category">@Html.DJ().Token(Model.GetToken(NewsFilterCategory.DateRange, 0)):</span>
                         <ul class="filter-list">
                             <li class="dj_pill" data-code="@(Model.Filters.DateRange.Code)">
-                                <span class="filter">@Model.Filters.DateRange.Desc</span>
+                                <span class="filter ellipsis">@Model.Filters.DateRange.Desc</span>
                                 <span class="remove" tooltip="@removeFilter"></span>
                             </li>
                         </ul>
@@ -65,7 +65,7 @@
                             foreach (var filter in filters)
                             {
                                 <li class="dj_pill" data-code="@filter.Code" data-codetype="@filter.CodeType">
-                                    <span class="filter">@filter.Desc</span>
+                                    <span class="filter ellipsis">@filter.Desc</span>
                                     <span class="remove" tooltip="@removeFilter"></span>
                                 </li>
                             }

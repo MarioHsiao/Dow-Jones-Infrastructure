@@ -25,7 +25,7 @@ namespace DowJones.Web.Mvc.UI.Components.SearchNewsFilter
     using DowJones.Globalization;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 04/05/2012 09:57 AM
+    // Last Generated Timestamp: 07/05/2012 10:35 AM
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.SearchNewsFilter.SearchNewsFilter.js", ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.SearchNewsFilter.SearchNewsFilter))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.22175")]
     public class SearchNewsFilter : DowJones.Web.Mvc.UI.ViewComponentBase<DowJones.Web.Mvc.UI.Components.Models.SearchNewsFilterModel>
@@ -91,10 +91,10 @@ WriteLiteral(":</span>\n                        <ul class=\"filter-list\">\n");
                             {
 
 WriteLiteral("                                <li class=\"dj_pill\">\n                            " +
-"        <span class=\"filter\">");
+"        <span class=\"filter ellipsis\">");
 
 
-                                                    Write(keyword);
+                                                             Write(keyword);
 
 WriteLiteral("</span>\n                                    <span class=\"remove\" tooltip=\"");
 
@@ -133,10 +133,10 @@ WriteLiteral(":</span>\n                        <ul class=\"filter-list\">\n    
 
                                                        Write(Model.Filters.DateRange.Code);
 
-WriteLiteral("\">\n                                <span class=\"filter\">");
+WriteLiteral("\">\n                                <span class=\"filter ellipsis\">");
 
 
-                                                Write(Model.Filters.DateRange.Desc);
+                                                         Write(Model.Filters.DateRange.Desc);
 
 WriteLiteral("</span>\n                                <span class=\"remove\" tooltip=\"");
 
@@ -182,10 +182,10 @@ WriteLiteral("\" data-codetype=\"");
 
                                                                                        Write(filter.CodeType);
 
-WriteLiteral("\">\n                                    <span class=\"filter\">");
+WriteLiteral("\">\n                                    <span class=\"filter ellipsis\">");
 
 
-                                                    Write(filter.Desc);
+                                                             Write(filter.Desc);
 
 WriteLiteral("</span>\n                                    <span class=\"remove\" tooltip=\"");
 
