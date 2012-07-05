@@ -10,6 +10,7 @@ using DowJones.Web.Mvc.Resources;
 [assembly: WebResource(EmbeddedResources.Js.Ellipsis, KnownMimeTypes.JavaScript)]
 [assembly: WebResource(EmbeddedResources.Js.ErrorManager, KnownMimeTypes.JavaScript)]
 [assembly: WebResource(EmbeddedResources.Js.Highcharts, KnownMimeTypes.JavaScript)]
+[assembly: WebResource(EmbeddedResources.Js.HighchartsMore, KnownMimeTypes.JavaScript)]
 [assembly: WebResource(EmbeddedResources.Js.JQuery, KnownMimeTypes.JavaScript)]
 [assembly: WebResource(EmbeddedResources.Js.JQueryCarousel, KnownMimeTypes.JavaScript)]
 [assembly: WebResource(EmbeddedResources.Js.JQueryCycle, KnownMimeTypes.JavaScript)]
@@ -48,6 +49,7 @@ namespace DowJones.Web.Mvc.Resources
         [ScriptResource(ResourceName = Ellipsis, DependencyLevel = ClientResourceDependencyLevel.MidLevel, Name = "ellipsis")]
         [ScriptResource(ResourceName = ErrorManager, DependencyLevel = ClientResourceDependencyLevel.Global, Name = "error-manager")]
         [ScriptResource(ResourceName = Highcharts, DependencyLevel = ClientResourceDependencyLevel.MidLevel, Name = "highcharts")]
+        [ScriptResource(ResourceName = HighchartsMore, DependencyLevel = ClientResourceDependencyLevel.MidLevel, Name = "highcharts-more")]
         [ScriptResource(ResourceName = JQuery, DependencyLevel = ClientResourceDependencyLevel.Core, Name = "jquery")]
         [ScriptResource(ResourceName = JQueryCarousel, DependencyLevel = ClientResourceDependencyLevel.MidLevel, Name = "jquery-carousel")]
         [ScriptResource(ResourceName = JQueryCycle, DependencyLevel = ClientResourceDependencyLevel.MidLevel, Name = "jquery-cycle")]
@@ -86,6 +88,7 @@ namespace DowJones.Web.Mvc.Resources
             public const string Ellipsis = JsRoot + "ellipsis.js";
             public const string ErrorManager = JsRoot + "error-manager.js";
             public const string Highcharts = JsRoot + "highcharts.js";
+            public const string HighchartsMore = JsRoot + "highcharts-more.js";
             public const string JQuery = JsRoot + "jquery.js";
             public const string JQueryCarousel = JsRoot + "jquery.jcarousel.js";
             public const string JQueryCycle = JsRoot + "jquery.cycle.all.js";

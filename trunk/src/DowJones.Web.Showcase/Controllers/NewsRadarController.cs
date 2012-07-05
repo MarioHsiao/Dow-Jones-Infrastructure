@@ -1,4 +1,4 @@
-﻿using System.Collections.ObjectModel;
+using System.Collections.ObjectModel;
 using System.Web.Mvc;
 using DowJones.Web.Mvc.UI.Components.NewsRadar;
 using DowJones.Web.Mvc.Routing;
@@ -6374,9 +6374,9 @@ namespace DowJones.Web.Showcase.Controllers
             #endregion
 
             var model = new NewsRadarModel
-            {
-                Data = data
-            };
+                {
+                    Data = data
+                };
 
             return View(model);
         }
