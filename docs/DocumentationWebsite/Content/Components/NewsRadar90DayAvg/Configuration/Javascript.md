@@ -17,7 +17,15 @@ If data is already available, you can pass it in as an argument to DJ.add functi
 
 	<script type="text/javascript">
 		DJ.add(DJ.UI.NewsRadar, {
-			container : "newsRadarContainer",
+			// Set DOM element id which will hold the component. Required.
+			container : "newsRadarContainer", 
+			
+			// Set data, if already available at this point. Optional.
+            data: {
+				// Click on "View Sample Data" to see sample data
+			},
+
+			// Set component specific options. Optional.
 			options: {
 				displayTicker: false,
 				hitcolor: "999",
@@ -26,8 +34,13 @@ If data is already available, you can pass it in as an argument to DJ.add functi
 				windowSize: 6,
 				scrollSize: 5
             },
-            data: {
-				// Click on "View Sample Data" to see sample data
+			
+			// Set custom client templates. Optional.
+			templates: {
+			},
+
+			// Set event handlers ("onLoad", "onDataBind", etc.). Optional
+			callBacks: {
 			}
 		}); 
 	</script>
