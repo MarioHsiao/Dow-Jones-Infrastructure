@@ -23,7 +23,7 @@ namespace DowJones.Web.Mvc.UI.Components.Article
     using Ajax.Article;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 07/02/2012 04:00 PM
+    // Last Generated Timestamp: 07/04/2012 09:00 PM
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "0.0.0.30158")]
     public class Paragraph : DowJones.Web.Mvc.UI.ViewComponentBase<DowJones.Web.Mvc.UI.Components.Models.Article.ParagraphModel>
     {
@@ -80,48 +80,48 @@ WriteLiteral("\" />\r\n");
 
             break;
         case MarkUpType.ImageFigure:
-            if (!string.IsNullOrEmpty(renderItem.EnlargedImageUrl)){ 
+                if (!string.IsNullOrEmpty(renderItem.EnlargedImageUrl)){ 
 
-WriteLiteral("                <div class=\"figure\"><img alt=\"");
+WriteLiteral("                <div class=\"figure\"><div class=\"figImages\"><img alt=\"");
 
 
-                                          Write(renderItem.Title.EscapeForHtml());
+                                                                 Write(renderItem.Title.EscapeForHtml());
 
 WriteLiteral("\" src=\"");
 
 
-                                                                                    Write(renderItem.ItemValue);
+                                                                                                           Write(renderItem.ItemValue);
 
 WriteLiteral("\" title=\"");
 
 
-                                                                                                                    Write(renderItem.Title.EscapeForHtml());
+                                                                                                                                           Write(renderItem.Title.EscapeForHtml());
 
-WriteLiteral("\" /><div class=\"dj_article_enlargeImg_wrap\"><a class=\"dj_article_enlargeImg_link\"" +
-" href=\"javascript:void(0)\" data-href=\"");
+WriteLiteral("\" /><a class=\"dj_article_enlargeImg_link\" href=\"javascript:void(0)\" data-href=\"");
 
 
-                                                                                                                                                                                                                                                                              Write(renderItem.EnlargedImageUrl);
+                                                                                                                                                                                                                                                             Write(renderItem.EnlargedImageUrl);
 
 WriteLiteral("\">Enlarge</a></div><div class=\"figCredit\">");
 
 
-                                                                                                                                                                                                                                                                                                                                                      Write(renderItem.Credit);
+                                                                                                                                                                                                                                                                                                                                     Write(renderItem.Credit);
 
 WriteLiteral("</div><div class=\"figSource\">");
 
 
-                                                                                                                                                                                                                                                                                                                                                                                                       Write(renderItem.Source);
+                                                                                                                                                                                                                                                                                                                                                                                      Write(renderItem.Source);
 
 WriteLiteral("</div><div class=\"figCaption\">");
 
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                         Write(renderItem.Caption);
+                                                                                                                                                                                                                                                                                                                                                                                                                                        Write(renderItem.Caption);
 
 WriteLiteral("</div></div>\r\n");
 
 
-            }else{
+                }
+                else{
 
 WriteLiteral("                <div class=\"figure\"><img alt=\"");
 
@@ -156,8 +156,8 @@ WriteLiteral("</div><div class=\"figCaption\">");
 WriteLiteral("</div></div>\r\n");
 
 
-            }
-            break;
+                }
+                break;
         case MarkUpType.PostProcessing:
             switch (renderItem.ItemPostProcessData.Type)
             {

@@ -17,12 +17,13 @@
             <img alt="" src="@(renderItem.ItemValue)" />
             break;
         case MarkUpType.ImageFigure:
-            if (!string.IsNullOrEmpty(renderItem.EnlargedImageUrl)){ 
-                <div class="figure"><img alt="@(renderItem.Title.EscapeForHtml())" src="@(renderItem.ItemValue)" title="@(renderItem.Title.EscapeForHtml())" /><div class="dj_article_enlargeImg_wrap"><a class="dj_article_enlargeImg_link" href="javascript:void(0)" data-href="@(renderItem.EnlargedImageUrl)">Enlarge</a></div><div class="figCredit">@(renderItem.Credit)</div><div class="figSource">@(renderItem.Source)</div><div class="figCaption">@(renderItem.Caption)</div></div>
-            }else{
+                if (!string.IsNullOrEmpty(renderItem.EnlargedImageUrl)){ 
+                <div class="figure"><div class="figImages"><img alt="@(renderItem.Title.EscapeForHtml())" src="@(renderItem.ItemValue)" title="@(renderItem.Title.EscapeForHtml())" /><a class="dj_article_enlargeImg_link" href="javascript:void(0)" data-href="@(renderItem.EnlargedImageUrl)">Enlarge</a></div><div class="figCredit">@(renderItem.Credit)</div><div class="figSource">@(renderItem.Source)</div><div class="figCaption">@(renderItem.Caption)</div></div>
+                }
+                else{
                 <div class="figure"><img alt="@(renderItem.Title.EscapeForHtml())" src="@(renderItem.ItemValue)" title="@(renderItem.Title.EscapeForHtml())" /><div class="figCredit">@(renderItem.Credit)</div><div class="figSource">@(renderItem.Source)</div><div class="figCaption">@(renderItem.Caption)</div></div>
-            }
-            break;
+                }
+                break;
         case MarkUpType.PostProcessing:
             switch (renderItem.ItemPostProcessData.Type)
             {
