@@ -91,7 +91,7 @@ namespace DowJones.Web.Mvc.UI.Components.VideoPlayer
         #region ..:: Client Data ::..
 
         [ClientData]
-        public ClipCollection PlayList { get; set; }
+        public ClipCollection Data { get; set; }
 
         #endregion
 
