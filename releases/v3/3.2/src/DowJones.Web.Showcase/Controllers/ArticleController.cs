@@ -62,7 +62,8 @@ namespace DowJones.Web.Showcase.Controllers
         }
 
         [Route("article/video/{accessionNumber}")]
-        public ActionResult Video(string accessionNumber)
+        [Route("article/multimedia/{accessionNumber}")]
+        public ActionResult Multimedia(string accessionNumber)
         {
             var model = GetArticle(accessionNumber, "video");
 

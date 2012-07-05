@@ -155,6 +155,12 @@ namespace DowJones.Web.Mvc.UI
             return this;
         }
 
+        public virtual ScriptRegistryBuilder WithHighChartsMore(bool enabled = true)
+        {
+            RegisterFrameworkWebResource(EmbeddedResources.Js.HighchartsMore, ClientResourceDependencyLevel.MidLevel, enabled);
+            return this;
+        }
+
         public virtual ScriptRegistryBuilder WithServiceProxy(bool enabled = true)
         {
             if (enabled)

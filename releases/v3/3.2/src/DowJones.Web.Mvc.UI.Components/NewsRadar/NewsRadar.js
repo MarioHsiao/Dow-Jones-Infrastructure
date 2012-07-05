@@ -3,18 +3,18 @@
         scrollable: '.scrollable'
     },
 
-    options: {
-        displayTicker: false,
-        hitcolor: "999",
-        hitfont: "Verdana",
-        hitsize: "8",
-        bgcolor: "",
-        windowSize: 6,
-        scrollSize: 5
-    },
     defaults: {
-
+        displayTicker: false,
+        hitColor: "#999999",
+        hitFont: "Verdana",
+        hitSize: "8",
+        noMovementColor: "#DCDCDC",
+        negativeMovementColor: "#FF0000",
+        positiveMovementColor: "#666666",
+        scrollSize: 5,
+        colors: { WHITE: "#FFFFFF", BLACK: "#000000" }
     },
+    
     events: {
         radarItemClicked: 'radarItemClicked.dj.NewsRadar',
         dataTransformed: 'dataTransformed.dj.NewsRadar',
@@ -32,15 +32,17 @@
         if (this.data)
             this.bindOnSuccess(this.data, this.options);
     },
+
     _initializeElements: function () {
         this._renderContainer();
     },
+
     _initializeEventHandlers: function () {
         $('.djPrev', this.$element).on('click', this._delegates.OnPrevClicked);
         $('.djNext', this.$element).on('click', this._delegates.OnNextClicked);
         $('.djTop', this.$element).on('click', this._delegates.OnTopClicked);
-
     },
+
     _initializeDelegates: function () {
         this._super();
         $.extend(this._delegates, {
@@ -49,16 +51,20 @@
             OnTopClicked: $dj.delegate(this, this._onTopClicked),
             OnSeek: $dj.delegate(this, this._onSeek),
             HandleSort: $dj.delegate(this, this._handleSort),
-            OnRadarItemBoxClicked: $dj.delegate(this, this._onRadarItemBoxClicked)
+            OnRadarItemBoxClicked: $dj.delegate(this, this._onRadarItemBoxClicked),
+            DrawChip: $dj.delegate(this, this.drawChip)
         });
     },
+
     _renderContainer: function () {
         this.$element.html(this.templates.container());
     },
+
     _onRadarItemBoxClicked: function (ev) {
         var $target = $(ev.currentTarget);
         this.publish(this.events.radarItemClicked, $target.data());
     },
+
     _setScrollable: function () {
         $(this.selectors.scrollable, this.$element).scrollable({
             vertical: true,
@@ -67,6 +73,7 @@
             onSeek: this._delegates.OnSeek
         });
     },
+
     _onSeek: function () {
         var scrollApi = $(this.selectors.scrollable, this.$element).eq(0).data('scrollable');
         var scrollIndex = scrollApi.getIndex();
@@ -84,6 +91,7 @@
             $('.djNext', this.$element).removeClass('djEnabled');
         }
     },
+
     _onPrevClicked: function () {
         if ($('.djPrev', this.$element).hasClass('djEnabled')) {
             var scrollApi = $(this.selectors.scrollable, this.$element).eq(0).data('scrollable');
@@ -92,17 +100,19 @@
         return false;
 
     },
+
     _onNextClicked: function () {
         if ($('.djNext', this.$element).hasClass('djEnabled')) {
-
+            var scrollSize = this.options.scrollSize || this.defaults.scrollSize;
             var scrollApi = $(this.selectors.scrollable, this.$element).eq(0).data('scrollable');
             var scrollIndex = scrollApi.getIndex();
             var scrollCount = scrollApi.getItems().length;
-            var scrollMax = Math.min(this.options.scrollSize, scrollCount - scrollIndex - this.options.scrollSize - 1);
+            var scrollMax = Math.min(scrollSize, scrollCount - scrollIndex - scrollSize - 1);
             scrollApi.move(scrollMax);
         }
         return false;
     },
+
     _onTopClicked: function (duration) {
         if ($('.djTop', this.$element).hasClass('djEnabled')) {
             var scrollApi = $(this.selectors.scrollable, this.$element).eq(0).data('scrollable');
@@ -110,6 +120,7 @@
         }
         return false;
     },
+
     bindOnSuccess: function (response, params) {
         //this.publish(this.events.dataReceived, response);
 
@@ -129,14 +140,15 @@
         //var local = DJ.Widgets.localize();
         var local = {};
         var localSubjects = local.radar && local.radar.subjects ? local.radar.subjects : false;
+        var categoryName;
         for (var k in items) {
             var code = items[k].radarSearchQuery.searchString && items[k].radarSearchQuery.searchString;
-            var categoryName = localSubjects && localSubjects[code] ? localSubjects[code] : items[k].radarSearchQuery.name;
+            categoryName = localSubjects && localSubjects[code] ? localSubjects[code] : items[k].radarSearchQuery.name;
             FinalResults.RadarCategories.push({ fcode: code, name: categoryName });
         }
 
         // Add the 'All News' category to the list
-        var categoryName = localSubjects && localSubjects['ALLNEWS'] ? localSubjects['ALLNEWS'] : 'All News';
+        categoryName = localSubjects && localSubjects['ALLNEWS'] ? localSubjects['ALLNEWS'] : 'All News';
         FinalResults.RadarCategories.push({ fcode: 'ALLNEWS', name: categoryName });
 
         // Loop through each company and add the needed companies info into the FinalResults object 
@@ -155,7 +167,7 @@
 
         this.showErrors = false;
 
-        this.renderContent(FinalResults.RadarItems);
+        this.renderContent(this.radar.RadarItems);
         this._setScrollable();
 
         // When hovering over an individual item
@@ -181,12 +193,11 @@
             $(this).removeClass("highlight highlightCurrent");
             $(this).closest(".djWidgetRadar90").find("[data-index=" + index + "]").removeClass("highlight");
         });
-
-
+        
         $('.djRadarCategory', this.$element).on('click', this._delegates.HandleSort);
         $('.djRadarItemBox', this.$element).on('click', this._delegates.OnRadarItemBoxClicked);
-
     },
+
     _handleSort: function (ev) {
         var fcode = $(ev.currentTarget).data('fcode');
         if (!fcode) {
@@ -207,7 +218,9 @@
 
         this.renderContent(this.radar.RadarItems);
         this._onTopClicked(0);
+        $('.djRadarItemBox', this.$element).on('click', this._delegates.OnRadarItemBoxClicked);
     },
+
     // Loop through each news category of a given company and pull out needed data for the widget
     setNewsData: function (company) {
         var categories = [],
@@ -240,6 +253,7 @@
         categories.push(allNews);
         return categories;
     },
+
     // Getting the count of certain category of a certain timeframe
     extractCount: function (timeFrame, newsVolumes) {
         for (var i = 0; i < newsVolumes.length; i++) {
@@ -247,7 +261,9 @@
                 return newsVolumes[i].hitCount;
             }
         }
+        return null;
     },
+
     // Get the average news items of a category (used to calculate threeMonthAvg)
     getAverage: function (count, days) {
         if (days === 0) {
@@ -263,6 +279,7 @@
             return 1;
         }
     },
+
     // Get the growth rate of a category
     getGrowthRate: function (dayCount, avg) {
         if (avg === 0) {
@@ -271,6 +288,7 @@
             return ((dayCount - avg) / avg);
         }
     },
+
     // Get a integer code (0-6) to represent the size of growth of a category (used to display icon in widget).
     getGrowthCode: function (category) {
         if (category.oneDayCount === 0) {
@@ -291,20 +309,22 @@
             return 6;
         }
     },
+
     validateResponse: function (response) {
         if (!response) {
             this.renderError({ Message: 'Invalid response.' });
-            return;
+            return false;
         }
         if (response.Error) {
             this.renderError(response.Error[0]);
-            return;
+            return false;
         }
         //if (!response.ParentNewsEntities) {
         //    return;
         //}
         return true;
     },
+
     renderError: function (data) {
         this.publish(this.events.error, data);
 
@@ -312,16 +332,17 @@
             return;
         }
         this.$el.render(this.templates.error());
+    
     },
-    renderContent: function (data, globalIdx, localIdx) {
+
+    renderContent: function (data) {
 
         var $items = $('.djWidgetItems', this.$element);
-
         var html = '';
         var self = this;
         var radarTemplate = self.templates.radar;
         for (var i in data) {
-            html += this.templates.success({ settings: this.options, item: data[i], templates: { radar: radarTemplate}, f: { getTicker: this.getTicker} });
+            html += this.templates.success({ settings: self.options, item: data[i], templates: { radar: radarTemplate}, f: { getTicker: self.getTicker} });
         }
 
         $items.html(html);
@@ -333,69 +354,85 @@
             if (radar && radar.length) {
                 var chipStyle = radar.data('grc');
                 if (chipStyle) {
-                    this.drawChip(radar[0], chipStyle);
+                    self._delegates.DrawChip(radar[0], chipStyle);
                 }
             }
         }
-    }, drawChip: function (target, chipStyle) {
-        var chipRenderer = new Highcharts.Renderer(target, 19, 19);
+    },
 
+    drawChip: function (target, chipStyle) {
+        var self = this,
+            options = self.options,
+            defaults = self.defaults;
+        
+        var chipRenderer = new Highcharts.Renderer(target, 19, 19),
+            neutralColor = options.noMovementColor || defaults.noMovementColor,
+            negativeColor = options.negativeMovementColor ||  defaults.negativeMovementColor,
+            positiveColor = options.positiveMovementColor ||  defaults.positiveMovementColor,
+            baseColor;
+        
         switch (chipStyle) {
             case 'less':
             case 'djRadarItemBox1':
             case 1:
+                baseColor = this.colorLuminance(negativeColor, 0);
                 chipRenderer.rect(5, 9, 9, 1).attr({
-                    fill: '#CD3535'
+                    fill: baseColor
                 }).add();
                 break;
             case 'same':
             case 'djRadarItemBox2':
             case 2:
+                baseColor = this.colorLuminance(neutralColor, 0);
                 chipRenderer.circle(9.5, 9.5, 2.5).attr({
-                    fill: '#777'
+                    fill: baseColor
                 }).add();
                 break;
             case '50':
             case 'djRadarItemBox3':
             case 3:
+                baseColor = this.colorLuminance(positiveColor, .6);
                 chipRenderer.circle(9.5, 9.5, 4).attr({
                     fill: 'none',
-                    stroke: '#7FB39E',
+                    stroke: baseColor,
                     'stroke-width': 1
                 }).add();
                 break;
             case '200':
             case 'djRadarItemBox4':
             case 4:
+                baseColor = this.colorLuminance(options.positiveMovementColor, .4);
                 chipRenderer.circle(9.5, 9.5, 6).attr({
                     fill: 'none',
-                    stroke: '#4D9678',
+                    stroke: baseColor,
                     'stroke-width': 1
                 }).add();
                 chipRenderer.circle(9.5, 9.5, 2.5).attr({
-                    fill: '#4D9678'
+                    fill: baseColor
                 }).add();
                 break;
             case '400':
             case 'djRadarItemBox5':
             case 5:
+                baseColor = this.colorLuminance(positiveColor, .2);
                 chipRenderer.circle(9.5, 9.5, 6.5).attr({
-                    fill: '#267E5B'
+                    fill: baseColor
                 }).add();
                 break;
             case '400plus':
             case 'djRadarItemBox6':
             case 6:
+                baseColor = this.colorLuminance(positiveColor, 0);
                 chipRenderer.circle(9.5, 9.5, 6.5).attr({
-                    fill: '#10693E'
+                    fill: baseColor
                 }).add();
                 //horiz
                 chipRenderer.rect(6, 9, 7, 1).attr({
-                    fill: '#FFF'
+                    fill: defaults.colors.WHITE
                 }).add();
                 //vert
                 chipRenderer.rect(9, 6, 1, 7).attr({
-                    fill: '#FFF'
+                    fill: defaults.colors.WHITE
                 }).add();
                 break;
             default:
@@ -404,6 +441,9 @@
         return target;
 
     },
+    
+
+
     renderCategories: function (data) {
         var $categories = $('.djCategories', this.$element);
 
@@ -419,6 +459,24 @@
         cats.reverse();
         $categories.html(cats.join(''));
     },
+
+    colorLuminance: function (hex, lum) {  
+        // validate hex string  
+        hex = String(hex).replace(/[^0-9a-f]/gi, '');  
+        if (hex.length < 6) {  
+            hex = hex[0]+hex[0]+hex[1]+hex[1]+hex[2]+hex[2];  
+        }  
+        lum = lum || 0;  
+        // convert to decimal and change luminosity  
+        var rgb = "#", c, i;  
+        for (i = 0; i < 3; i++) {  
+            c = parseInt(hex.substr(i*2,2), 16);  
+            c = Math.round(Math.min(Math.max(0, c + (c * lum)), 255)).toString(16);  
+            rgb += ("00"+c).substr(c.length);  
+        }  
+        return rgb;  
+    },
+        
     drawCategoryLabel: function (target, text) {
 
         var renderer = new Highcharts.Renderer(target, 19, 143);
@@ -429,18 +487,20 @@
         });
 
         var categoryLabel = '<span title="' + text + '">' + text + '</span>';
+        var fontSize = this.options.hitSize || this.defaults.hitSize;
+        var fontFamily = this.options.hitFont || this.defaults.hitFont;
         renderer.text(categoryLabel, xPos, yPos).attr({
             rotation: 270,
-            tooltip: text
         }).css({
-            fontSize: this.options.hitsize + 'pt',
+            fontSize: fontSize + 'pt',
             lineHeight: '19px',
-            fontFamily: this.options.hitfont,
+            fontFamily: fontFamily,
             fontWeight: 'normal',
-            color: '#' + this.options.hitcolor
+            color: this.colorLuminance(this.options.hitColor|| this.default.hitColor, 0)
         }).add();
         return target;
     },
+
     getTicker: function (item) {
         if (item.instrumentReference.ticker) {
             return item.instrumentReference.ticker;
@@ -448,6 +508,7 @@
             return item.companyName;
         }
     },
+
     // misc methods
     extractGrowthRate: function (categories, v) {
         for (var i = 0; i < categories.length; i++) {
@@ -456,7 +517,7 @@
                 return {
                     growthCode: category.growthCode,
                     growthRate: category.growthRate
-                }
+                };
             }
         }
 

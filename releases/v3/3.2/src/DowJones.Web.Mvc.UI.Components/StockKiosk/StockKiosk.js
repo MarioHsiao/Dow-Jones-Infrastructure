@@ -130,7 +130,7 @@ DJ.UI.StockKiosk = DJ.UI.Component.extend({
                 height: 110,
                 width: this.options.graphWidth || 160,
                 spacingTop: 0,
-                spacingRight: 1,
+                spacingRight: 5,
                 spacingBottom: 5,
                 spacingLeft: 1,
                 plotBorderColor: '#ebebeb',

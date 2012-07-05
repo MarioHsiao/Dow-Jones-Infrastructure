@@ -107,8 +107,7 @@ namespace DowJones.Articles
                 return null;
             }
             var p = new Paragraph();
-            IList<Text> t =
-                (from XmlNode node in xmlElement.ChildNodes select new Text {Value = node.InnerText}).ToList();
+            IList<Text> t = (from XmlNode node in xmlElement.ChildNodes select new Text {Value = node.InnerText}).ToList();
             p.Items = t.ToArray();
             return p;
         }

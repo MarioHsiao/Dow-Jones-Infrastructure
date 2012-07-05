@@ -381,6 +381,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Resources\js\jquery.jcarousel.js" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\js\highcharts-more.js" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>

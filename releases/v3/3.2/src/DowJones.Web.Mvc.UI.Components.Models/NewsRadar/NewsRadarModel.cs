@@ -6,8 +6,8 @@ namespace DowJones.Web.Mvc.UI.Components.NewsRadar
     [DataContract(Name = "newRadar")]
     public class NewsRadarModel : ViewComponentModel
     {
-        [ClientData(Name = "parentNewsEntities")]
+        [ClientData]
         [DataMember(Name="parentNewsEntities")]
-        public Collection<EntityModel> ParentNewsEntities { get; set; }
+        public Collection<EntityModel> Data { get; set; }
     }
 }

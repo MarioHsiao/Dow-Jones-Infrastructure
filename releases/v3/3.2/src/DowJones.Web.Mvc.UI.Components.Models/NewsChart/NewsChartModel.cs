@@ -31,6 +31,7 @@ namespace DowJones.Web.Mvc.UI.Components.NewsChart
        
         [ClientProperty("newsSeriesColor")]
         public string NewsSeriesColor { get; set; }
+
         [ClientProperty("stockSeriesColor")]
         public string StockSeriesColor { get; set; }
 
