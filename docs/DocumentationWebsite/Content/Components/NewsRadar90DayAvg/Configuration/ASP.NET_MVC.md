@@ -14,7 +14,7 @@ Populate the model with options and data:
     var model = new NewsRadarModel
     {
 		// Set data
-		ParentNewsEntities = data
+		Data = data
     };
 	
 @Html.DataViewer(ConfigurationManager.AppSettings["InfrastructureShowcase.BasePath"]+"/NewsRadar90DayAvg/data/cs")
