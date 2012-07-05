@@ -101,6 +101,13 @@
     <None Include="Components\VideoPlayer\Overview.md" />
     <None Include="deploy.proj" />
     <Content Include="Web.config" />
+    <None Include="General\CreatingNewComponent\1DataModel.md" />
+    <None Include="General\CreatingNewComponent\2ComponentModel.md" />
+    <None Include="General\CreatingNewComponent\3JavascriptCode.md" />
+    <None Include="General\CreatingNewComponent\4ClientTemplates.md" />
+    <None Include="General\CreatingNewComponent\5ViewComponent.md" />
+    <None Include="General\CreatingNewComponent\6TestTheComponent.md" />
+    <None Include="General\CreatingNewComponent\Overview.md" />
     <None Include="General\Developer\DevelopmentEnvironment.md" />
     <None Include="General\Developer\VerifyingSetup.md" />
     <None Include="General\Developer\NuGetRepository.md" />
