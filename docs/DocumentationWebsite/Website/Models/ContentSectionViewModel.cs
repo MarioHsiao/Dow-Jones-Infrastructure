@@ -142,8 +142,8 @@ namespace DowJones.Documentation.Website.Models
 			var childrenList = children.ToList();		// avoid multiple enumerations
 			var hasSelected = childrenList.Any(x => x.Selected);
 
-			if (!hasSelected && childrenList.Any())
-				childrenList.First().Selected = true;
+			//if (!hasSelected && childrenList.Any())
+			//	childrenList.First().Selected = true;
         }
 
         protected virtual ContentSectionViewModel MapChild(ContentSection child)

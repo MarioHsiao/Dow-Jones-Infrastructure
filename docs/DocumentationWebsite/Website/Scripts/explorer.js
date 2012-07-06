@@ -65,7 +65,7 @@
         $('body')
             .attr('data-target', '.sidebar-nav')
             .attr('data-spy', 'scroll')
-            .scrollspy({ offset: offset });
+            .scrollspy({ offset: offset, target: '.sidebar-nav' });
     }
 
     function setupNavScroll(nav) {
@@ -148,7 +148,9 @@
     }
 
     $(function () {
-
+        // activate first nav item
+        $(".sidebar-nav > ul.nav > li").not(".nav-header").first().addClass("active");
+        
         // scroll subnav upto a certain point and then fix it to top
         setupNavScroll('.sidebar-nav');
 
@@ -167,6 +169,7 @@
         $(".contentWell .child-link").click(switchView);
         
         setupDataViewer();
+        
     });
 
 }(window.jQuery));
