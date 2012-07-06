@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using DowJones.Documentation.Website.Extensions;
 
 namespace DowJones.Documentation.Website.Models
 {
@@ -13,13 +14,17 @@ namespace DowJones.Documentation.Website.Models
             get { return Children.OfType<PageViewModel>(); }
         }
 
+    	public bool HasRelatedTopics
+    	{
+			get { return RelatedTopics.Any(); }
+    	}
 
-        public CategoryViewModel(ContentSection section, string currentPage = null)
+
+    	public CategoryViewModel(ContentSection section, string currentPage = null)
             : base(section)
         {
             _currentPage = currentPage;
         }
-
 
         public IEnumerable<IEnumerable<PageViewModel>> GetPageGroups(int groupSize = 5)
         {
@@ -35,6 +40,21 @@ namespace DowJones.Documentation.Website.Models
                 yield return @group;
             } while (@group.Any());
         }
+
+		public IEnumerable<IEnumerable<RelatedTopicViewModel>> GetRelatedTopicGroups(int groupSize = 5)
+		{
+			var pages = RelatedTopics.ToList();
+
+			IEnumerable<RelatedTopicViewModel> group;
+			int skip = 0;
+
+			do
+			{
+				@group = pages.Skip(skip).Take(groupSize).ToArray();
+				skip += groupSize;
+				yield return @group;
+			} while (@group.Any());
+		}
 
         protected override IEnumerable<ContentSectionViewModel> MapChildren()
         {

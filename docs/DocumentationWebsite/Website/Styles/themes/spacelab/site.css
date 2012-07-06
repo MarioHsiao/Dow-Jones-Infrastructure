@@ -63,29 +63,12 @@ section.collapsible.collapsed i {
 .navbar .nav .active > a {
   color: #4183C4; }
 
-#basic-modal-content {
-  display: none; }
-
-/* Overlay */
-#simplemodal-overlay {
-  background-color: #000;
-  cursor: wait; }
-
 /* Container */
 #simplemodal-container {
-  height: 360px;
-  width: 600px;
   color: #bbb;
-  background-color: #333;
-  border: 4px solid #444;
-  padding: 6px; }
-  #simplemodal-container pre {
-    padding: 0; }
+  background-color: #333; }
   #simplemodal-container code {
-    color: #bbb;
-    display: block;
-    font-size: 12px;
-    padding: 4px 6px 6px; }
+    color: #bbb; }
   #simplemodal-container a {
     color: #ddd; }
     #simplemodal-container a.modalCloseImg {

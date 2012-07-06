@@ -21,18 +21,21 @@ namespace DowJones.Documentation
         }
         private readonly IList<ContentSection> _children;
 
+		public IEnumerable<RelatedTopic> RelatedTopics { get; private set; }
 
-        public ContentSection(Name name = null, ContentSection parent = null, IEnumerable<ContentSection> children = null, int? ordinal = null)
+		public ContentSection(Name name = null, ContentSection parent = null, IEnumerable<ContentSection> children = null, IEnumerable<RelatedTopic> relatedTopics = null, int? ordinal = null)
         {
             Name = name;
             Ordinal = ordinal;
             Parent = parent;
-            _children = new List<ContentSection>(children ?? Enumerable.Empty<ContentSection>());
-
+			_children = (children ?? Enumerable.Empty<ContentSection>()).ToList();
+			
             foreach (var child in _children)
             {
                 child.Parent = this;
             }
+
+			RelatedTopics = (relatedTopics ?? Enumerable.Empty<RelatedTopic>());
         }
 
 

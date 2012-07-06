@@ -73,6 +73,7 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -161,6 +162,7 @@
     <Compile Include="Models\CategoryViewModel.cs" />
     <Compile Include="Models\ContentSectionViewModel.cs" />
     <Compile Include="Models\PageViewModel.cs" />
+    <Compile Include="Models\RelatedTopicViewModel.cs" />
     <Compile Include="Models\SiteNavigation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewEngines\DocumentationViewEngineHelpers.cs" />

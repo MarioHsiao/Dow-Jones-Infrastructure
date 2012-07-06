@@ -58,11 +58,17 @@ namespace DowJones.Documentation.Website.Models
         }   
         private bool? _showHeader;
 
-        public IEnumerable<ContentSectionViewModel> Children
-        {
-            get { return _children.Value; }
-        }
+		public IEnumerable<ContentSectionViewModel> Children
+		{
+			get { return _children.Value; }
+		}
         private readonly Lazy<IEnumerable<ContentSectionViewModel>> _children;
+
+		private readonly Lazy<IEnumerable<RelatedTopicViewModel>> _relatedTopics;
+		public IEnumerable<RelatedTopicViewModel> RelatedTopics
+        {
+			get { return _relatedTopics.Value; }
+        }
 
         public virtual string View
         {
@@ -88,13 +94,26 @@ namespace DowJones.Documentation.Website.Models
         private Lazy<string> _view;
 
 
-
         public ContentSectionViewModel(ContentSection section)
         {
             Contract.Requires(section != null);
             ContentSection = section;
             _children = new Lazy<IEnumerable<ContentSectionViewModel>>(MapChildren);
+			_relatedTopics = new Lazy<IEnumerable<RelatedTopicViewModel>>(MapRelatedTopics);
         }
+
+		private IEnumerable<RelatedTopicViewModel> MapRelatedTopics()
+		{
+			var children =
+			   (
+				   from child in ContentSection.RelatedTopics ?? Enumerable.Empty<RelatedTopic>()
+				   where child != null && child.Name != null
+				   select new RelatedTopicViewModel(child)
+			   ).ToArray();
+
+			return children;
+
+		}
 
         public bool HasChild(Name name)
         {
@@ -109,7 +128,7 @@ namespace DowJones.Documentation.Website.Models
             var children =
                 (
                     from child in ContentSection.Children ?? Enumerable.Empty<ContentSection>()
-                    where child != null && child.Name != null
+					where child != null && child.Name != null
                     select MapChild(child)
                 ).ToArray();
 

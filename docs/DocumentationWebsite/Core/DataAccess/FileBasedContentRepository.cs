@@ -3,103 +3,119 @@ using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.IO;
 using System.Linq;
+using System.Web.Script.Serialization;
 
 namespace DowJones.Documentation.DataAccess
 {
-    public class FileBasedContentRepository : IContentRepository
-    {
-        private readonly DirectoryInfo _baseDirectory;
-        private readonly ContentSectionComparer _nameComparer;
+	public class FileBasedContentRepository : IContentRepository
+	{
+		private readonly DirectoryInfo _baseDirectory;
+		private readonly ContentSectionComparer _nameComparer;
 
-        internal IEnumerable<DirectoryInfo> CategoryDirectories
-        {
-            get
-            {
-                 return (!_baseDirectory.Exists)
-                           ? Enumerable.Empty<DirectoryInfo>()
-                           : _baseDirectory.GetDirectories();
-            }
-        }
+		internal IEnumerable<DirectoryInfo> CategoryDirectories
+		{
+			get
+			{
+				return (!_baseDirectory.Exists)
+						  ? Enumerable.Empty<DirectoryInfo>()
+						  : _baseDirectory.GetDirectories();
+			}
+		}
 
-        public IEnumerable<string> SectionOrder { get; set; }
-
-
-        public FileBasedContentRepository(string baseDirectory, IEnumerable<string> orderedSections = null)
-        {
-            Contract.Requires(!string.IsNullOrWhiteSpace(baseDirectory));
-            _baseDirectory = new DirectoryInfo(baseDirectory);
-            _nameComparer = new ContentSectionComparer(orderedSections ?? Enumerable.Empty<string>());
-        }
+		public IEnumerable<string> SectionOrder { get; set; }
 
 
-        public IEnumerable<ContentSection> GetCategories()
-        {
-            var categories = CategoryDirectories.Select(GetContentSection);
-            return categories;
-        }
-
-        public ContentSection GetCategory(Name name)
-        {
-            var categoryDirectory = 
-                CategoryDirectories
-                    .FirstOrDefault(x => x.Name.Equals(name.Key, StringComparison.OrdinalIgnoreCase));
-
-            return GetContentSection(categoryDirectory);
-        }
+		public FileBasedContentRepository(string baseDirectory, IEnumerable<string> orderedSections = null)
+		{
+			Contract.Requires(!string.IsNullOrWhiteSpace(baseDirectory));
+			_baseDirectory = new DirectoryInfo(baseDirectory);
+			_nameComparer = new ContentSectionComparer(orderedSections ?? Enumerable.Empty<string>());
+		}
 
 
-        private ContentSection GetContentSection(DirectoryInfo contentDirectory)
-        {
-            if (contentDirectory == null)
-                return null;
+		public IEnumerable<ContentSection> GetCategories()
+		{
+			var categories = CategoryDirectories.Select(GetContentSection);
+			return categories;
+		}
 
-            var contentFiles = contentDirectory.GetFiles().Select(x => new ContentSection(x.Name));
-            var contentDirectories = contentDirectory.GetDirectories().Select(GetContentSection);
-            
-            var children = 
-                contentFiles
-                    .Union(contentDirectories)
-                    .Where(x => x != null)
-                    .OrderBy(x => x, _nameComparer);
+		public ContentSection GetCategory(Name name)
+		{
+			var categoryDirectory =
+				CategoryDirectories
+					.FirstOrDefault(x => x.Name.Equals(name.Key, StringComparison.OrdinalIgnoreCase));
 
-            return new ContentSection(contentDirectory.Name, children: children);
-        }
+			return GetContentSection(categoryDirectory);
+		}
 
 
-        internal class ContentSectionComparer : IComparer<ContentSection>
-        {
-            private readonly string[] _orderedNames;
+		private ContentSection GetContentSection(DirectoryInfo contentDirectory)
+		{
+			if (contentDirectory == null)
+				return null;
 
-            public ContentSectionComparer(IEnumerable<string> orderedNames)
-            {
-                _orderedNames = (orderedNames ?? Enumerable.Empty<string>()).ToArray();
-            }
+			var contentFiles = contentDirectory.GetFiles("*.md").Select(x => new ContentSection(x.Name));
+			var contentDirectories = contentDirectory.GetDirectories().Select(GetContentSection);
+			var relatedTopics = GetRelatedTopics(contentDirectory);
 
-            public int Compare(ContentSection x, ContentSection y)
-            {
-                string xKey = x.Name.Key, yKey = y.Name.Key;
-                int xIndex = -1, yIndex = -1;
+			var children =
+				contentFiles
+					.Union(contentDirectories)
+					.Where(x => x != null)
+					.OrderBy(x => x, _nameComparer);
 
-                for (int i = 0; i < _orderedNames.Length; i++)
-                {
-                    if (string.Equals(_orderedNames[i], xKey, StringComparison.OrdinalIgnoreCase))
-                        xIndex = i;
-                    if (string.Equals(_orderedNames[i], yKey, StringComparison.OrdinalIgnoreCase))
-                        yIndex = i;
-                }
+			return new ContentSection(contentDirectory.Name, children: children, relatedTopics: relatedTopics);
+		}
 
-                // If neither matched, just do the basic compare
-                if (xIndex == -1 && yIndex == -1)
-                    return String.Compare(xKey, yKey);
+		private IEnumerable<RelatedTopic> GetRelatedTopics(DirectoryInfo contentDirectory)
+		{
+			var relatedTopicsFile = contentDirectory.GetFiles("RelatedTopics.json").SingleOrDefault();
 
-                if (xIndex >= 0 && yIndex >= 0)
-                    return xIndex.CompareTo(yIndex);
+			if (relatedTopicsFile == null)
+				return Enumerable.Empty<RelatedTopic>();
 
-                if (xIndex >= 0)
-                    return -1;
+			var json = File.ReadAllText(relatedTopicsFile.FullName);
+			var relatedTopics = new JavaScriptSerializer().Deserialize<RelatedTopic[]>(json);
 
-                return 1;
-            }
-        }
-    }
+			return relatedTopics;
+			
+		}
+
+
+		internal class ContentSectionComparer : IComparer<ContentSection>
+		{
+			private readonly string[] _orderedNames;
+
+			public ContentSectionComparer(IEnumerable<string> orderedNames)
+			{
+				_orderedNames = (orderedNames ?? Enumerable.Empty<string>()).ToArray();
+			}
+
+			public int Compare(ContentSection x, ContentSection y)
+			{
+				string xKey = x.Name.Key, yKey = y.Name.Key;
+				int xIndex = -1, yIndex = -1;
+
+				for (int i = 0; i < _orderedNames.Length; i++)
+				{
+					if (string.Equals(_orderedNames[i], xKey, StringComparison.OrdinalIgnoreCase))
+						xIndex = i;
+					if (string.Equals(_orderedNames[i], yKey, StringComparison.OrdinalIgnoreCase))
+						yIndex = i;
+				}
+
+				// If neither matched, just do the basic compare
+				if (xIndex == -1 && yIndex == -1)
+					return String.Compare(xKey, yKey);
+
+				if (xIndex >= 0 && yIndex >= 0)
+					return xIndex.CompareTo(yIndex);
+
+				if (xIndex >= 0)
+					return -1;
+
+				return 1;
+			}
+		}
+	}
 }
