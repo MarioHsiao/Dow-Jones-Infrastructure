@@ -4,20 +4,20 @@
 
 * Under `SampleComponent`, add class `SampleComponentData`:
 
-	using System.Runtime.Serialization;
-	using Newtonsoft.Json;
-
-	namespace DowJones.Web.Mvc.UI.Components.SampleComponent
-	{
-		[DataContract(Name = "sampleComponentdata", Namespace = "")]
-		public class SampleComponentData
+		using System.Runtime.Serialization;
+		using Newtonsoft.Json;
+	
+		namespace DowJones.Web.Mvc.UI.Components.SampleComponent
 		{
-			[DataMember(Name = "textOne")]
-			[JsonProperty("textOne")]
-			public string TextOne;
-
-			[DataMember(Name = "textTwo")]
-			[JsonProperty("textTwo")]
-			public string TextTwo;
+			[DataContract(Name = "sampleComponentdata", Namespace = "")]
+			public class SampleComponentData
+			{
+				[DataMember(Name = "textOne")]
+				[JsonProperty("textOne")]
+				public string TextOne;
+	
+				[DataMember(Name = "textTwo")]
+				[JsonProperty("textTwo")]
+				public string TextTwo;
+			}
 		}
-	}
