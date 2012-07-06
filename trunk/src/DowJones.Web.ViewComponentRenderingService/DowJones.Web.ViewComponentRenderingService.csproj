@@ -49,9 +49,9 @@
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DowJones.Infrastructure, Version=3.1.162.36645, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="DowJones.Infrastructure, Version=3.2.2.41872, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>packages\DowJones.Infrastructure.v3.3.1.162\lib\DowJones.Infrastructure.dll</HintPath>
+      <HintPath>packages\DowJones.Infrastructure.3.2.2\lib\DowJones.Infrastructure.dll</HintPath>
     </Reference>
     <Reference Include="DowJones.Parallel">
       <HintPath>packages\DowJones.Parallel.1.0.0\lib\DowJones.Parallel.dll</HintPath>
@@ -1174,11 +1174,11 @@
       <DefaultExclude Include="**\*.user" />
       <DefaultExclude Include="**\*.suo" />
       <DefaultExclude Include="**\*.zip" />
-      <DefaultExclude Include="**\*.cs" />      
+      <DefaultExclude Include="**\*.cs" />
       <DefaultExclude Include="**\*.Publish.xml" />
       <DefaultExclude Include="**\*.csproj.vspscc" />
       <DefaultExclude Include="**\*.sln" />
-      <DefaultExclude Include="**\*.vssscc" />      
+      <DefaultExclude Include="**\*.vssscc" />
       <DefaultExclude Include="*.config" />
     </ItemGroup>
     <ItemGroup>
