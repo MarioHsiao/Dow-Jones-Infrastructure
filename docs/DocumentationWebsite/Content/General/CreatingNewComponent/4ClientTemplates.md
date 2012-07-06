@@ -4,31 +4,29 @@
 
 * Under newly created folder - `ClientTemplates` - create the following 2 files:
 
-`Success.htm`
-<pre><code>
-&lt;% var data = self.data, options = self.options;  %&gt;
-&lt;div class="dj_SampleComponentContent" style="border: 1px solid black;"&gt;
-    Text One:
-    &lt;div class="textOne" style="color: &lt;%= options.textColor %&gt;; font-size: &lt;%= options.textSize %&gt;;"&gt;
-        &lt;%= data.textOne %&gt;
-    &lt;/div&gt;
-    &lt;br/&gt;&lt;br/&gt;
-    Text Two:
-    &lt;div class="textTwo" style="color: &lt;%= options.textColor %&gt;; font-size: &lt;%= options.textSize %&gt;;"&gt;
-        &lt;%= data.textTwo %&gt;
-    &lt;/div&gt;
-&lt;/div&gt;
-</code></pre>
+#### Success.html
 
-`Error.html`
-<pre><code>
-&lt;% if (self.Error.Message) { %&gt;
-	&lt;div class="djError"&gt;
-		&lt;p&gt;
-			Error: 
-			&lt;span class="djErrorMessage"&gt;&lt;%= self.Error.Message %&gt;&lt;/span&gt; 
-			&lt;span class="djErrorCode"&gt;(&lt;%= self.Error.Code %&gt;)&lt;/span&gt;
-		&lt;/p&gt;
-	&lt;/div&gt;
-&lt;% } %&gt;
-</code></pre>
+	<% var data = self.data, options = self.options;  %>
+	<div class="dj_SampleComponentContent" style="border: 1px solid black;">
+		Text One:
+		<div class="textOne" style="color: <%= options.textColor %>; font-size: <%= options.textSize %>;">
+			<%= data.textOne %>
+		</div>
+		<br/><br/>
+		Text Two:
+		<div class="textTwo" style="color: <%= options.textColor %>; font-size: <%= options.textSize %>;">
+			<%= data.textTwo %>
+		</div>
+	</div>
+
+#### Error.html
+
+	<% if (self.Error.Message) { %>
+		<div class="djError">
+			<p>
+				Error: 
+				<span class="djErrorMessage"><%= self.Error.Message %></span> 
+				<span class="djErrorCode">(<%= self.Error.Code %>)</span>
+			</p>
+		</div>
+	<% } %>
