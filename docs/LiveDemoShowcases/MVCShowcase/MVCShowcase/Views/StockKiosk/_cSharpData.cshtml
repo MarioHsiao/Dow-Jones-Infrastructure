@@ -1,57 +1,381 @@
 ﻿<pre>
-var data = new PortalHeadlineListResultSet
-{
-  Headlines2 = new List&lt;PortalHeadlineInfo&gt; 
-  { 
-    new PortalHeadlineInfo()
-    {
-      Authors = new AuthorCollection(new []{ "By Carolyn Cui" }),
-      BaseLanguage = "en",
-      BaseLanguageDescriptor = "English",
-      CodedAuthors = new List&lt;Para&gt;
-      {
-        new Para
-        {
-          items = new List&lt;MarkupItem&gt;
-          {
-            new MarkupItem
+var data = new MarketDataInstrumentIntradayResultSet
             {
-              EntityType  = EntityType.Textual,
-              value = "By Carolyn Cui"
-            }
-          }
-        }
-      },
-      ContentCategoryDescriptor = "publication",
-      ContentSubCategoryDescriptor = "article",
-      HasPublicationTime = false,
-      ModificationDateDescriptor = "21 June 2012",
-      ModificationDateTime = new DateTime(1340280969000),
-      ModificationDateTimeDescriptor = "21 June 2012 12:16 GMT",
-      ModificationTimeDescriptor = "12:16 GMT",
-      PublicationDateDescriptor = null,
-      PublicationDateTime = new DateTime(1340236800000),
-      PublicationDateTimeDescriptor = "21 June 2012",
-      PublicationTimeDescriptor = null,
-      Reference = new Reference
-      {
-        contentCategory = ContentCategory.Publication,
-        contentCategoryDescriptor = "publication",
-        contentSubCategory = ContentSubCategory.Article,
-        contentSubCategoryDescriptor = "article",
-        guid = "J000000020120621e86l0003f",
-        mimetype = "text/xml",
-        type = "accessionNo"
-      },
-      Snippets = new SnippetCollection(new [] {"Europe and Syria took center stage at the Group of 20 meeting in Los Cabos, Mexico, this week. But in the oil industry, all eyes were on a report that signaled regulators are backing away from efforts to ratchet up scrutiny of the $2 ..."}),
-      SourceCode = "j",
-      SourceDescriptor = "The Wall Street Journal",
-      ThumbnailImage = new ThumbnailImage(),
-      Title = "Regulators Back Off Tougher Curbs on Oil ",
-      TruncatedTitle = "Regulators Back Off Tougher Curbs on Oil",
-      WordCount = new WholeNumber(962),
-      WordCountDescriptor = "962 words"
-    }
-  }
-};
+                new MarketDataInstrumentIntradayResult {
+                  ReturnCode = 0,
+                  StatusMessage = null,
+                  RequestedId = "Factiva:ibm",
+                  Symbol = "IBM",
+                  FCode = "ibm",
+                  Currency = "USD",
+                  Isin = "US4592001014",
+                  Sedol ="2005973",
+                  Cusip ="459200101",
+                  Name ="International Business Machines Corp.",
+                  Low = new DoubleNumberStock{
+                     Text ={
+                        Value ="188.05"
+                     },
+                     Value =188.05
+                  },
+                  High = new DoubleNumberStock{
+                     Text ={
+                        Value ="191.00"
+                     },
+                     Value =190.9991
+                  },
+                  PreviousClose = new DoubleNumberStock{
+                     Text ={
+                        Value ="191.41"
+                     },
+                     Value =191.41
+                  },
+                  Last = new DoubleNumberStock{
+                     Text ={
+                        Value ="189.30"
+                     },
+                     Value =189.3
+                  },
+                  Open = new DoubleNumberStock{
+                     Text ={
+                        Value ="190.76"
+                     },
+                     Value =190.76
+                  },
+                  DataPoints = new DowJones.Models.Charting.BasicDataPointCollection {
+                  new BasicDataPoint {
+                        Date = new DateTime(1341826200000),
+                        DateDisplay ="9 July 2012 9:30 AM GMT",
+                        DataPoint ={
+                           Text ={
+                              Value ="190.76"
+                           },
+                           Value =190.76
+                        },
+                        IsLast =false
+                     },
+                  new BasicDataPoint {
+                        Date =new DateTime(1341827100000),
+                        DateDisplay ="9 July 2012 9:45 AM GMT",
+                        DataPoint ={
+                           Text ={
+                              Value ="189.42"
+                           },
+                           Value =189.42
+                        },
+                        IsLast =false
+                     },
+                  new BasicDataPoint {
+                        Date =new DateTime(1341828000000),
+                        DateDisplay ="9 July 2012 10:00 AM GMT",
+                        DataPoint ={
+                           Text ={
+                              Value ="189.13"
+                           },
+                           Value =189.13
+                        },
+                        IsLast =false
+                     },
+                  new BasicDataPoint {
+                        Date =new DateTime(1341828900000),
+                        DateDisplay ="9 July 2012 10:15 AM GMT",
+                        DataPoint ={
+                           Text ={
+                              Value ="189.03"
+                           },
+                           Value =189.03
+                        },
+                        IsLast =false
+                     },
+                  new BasicDataPoint {
+                        Date =new DateTime(1341829800000),
+                        DateDisplay ="9 July 2012 10:30 AM GMT",
+                        DataPoint ={
+                           Text ={
+                              Value ="188.44"
+                           },
+                           Value =188.44
+                        },
+                        IsLast =false
+                     },
+                  new BasicDataPoint {
+                        Date =new DateTime(1341830700000),
+                        DateDisplay ="9 July 2012 10:45 AM GMT",
+                        DataPoint ={
+                           Text ={
+                              Value ="189.02"
+                           },
+                           Value =189.02
+                        },
+                        IsLast =false
+                     },
+                  new BasicDataPoint {
+                        Date =new DateTime(1341831600000),
+                        DateDisplay ="9 July 2012 11:00 AM GMT",
+                        DataPoint ={
+                           Text ={
+                              Value ="189.47"
+                           },
+                           Value =189.4701
+                        },
+                        IsLast =false
+                     },
+                  new BasicDataPoint {
+                        Date =new DateTime(1341832500000),
+                        DateDisplay ="9 July 2012 11:15 AM GMT",
+                        DataPoint ={
+                           Text ={
+                              Value ="189.16"
+                           },
+                           Value =189.16
+                        },
+                        IsLast =false
+                     },
+                  new BasicDataPoint {
+                        Date =new DateTime(1341833400000),
+                        DateDisplay ="9 July 2012 11:30 AM GMT",
+                        DataPoint ={
+                           Text ={
+                              Value ="189.33"
+                           },
+                           Value =189.33
+                        },
+                        IsLast =true
+                     },
+                  new BasicDataPoint {
+                        Date =new DateTime(1341834300000),
+                        DateDisplay ="9 July 2012 11:45 AM GMT",
+                        DataPoint =null,
+                        IsLast =false
+                     },
+                  new BasicDataPoint {
+                        Date =new DateTime(1341835200000),
+                        DateDisplay ="9 July 2012 12:00 PM GMT",
+                        DataPoint =null,
+                        IsLast =false
+                     },
+                  new BasicDataPoint {
+                        Date =new DateTime(1341836100000),
+                        DateDisplay ="9 July 2012 12:15 PM GMT",
+                        DataPoint =null,
+                        IsLast =false
+                     },
+                  new BasicDataPoint {
+                        Date =new DateTime(1341837000000),
+                        DateDisplay ="9 July 2012 12:30 PM GMT",
+                        DataPoint =null,
+                        IsLast =false
+                     },
+                  new BasicDataPoint {
+                        Date =new DateTime(1341837900000),
+                        DateDisplay ="9 July 2012 12:45 PM GMT",
+                        DataPoint =null,
+                        IsLast =false
+                     },
+                  new BasicDataPoint {
+                        Date =new DateTime(1341838800000),
+                        DateDisplay ="9 July 2012 1:00 PM GMT",
+                        DataPoint =null,
+                        IsLast =false
+                     },
+                  new BasicDataPoint {
+                        Date =new DateTime(1341839700000),
+                        DateDisplay ="9 July 2012 1:15 PM GMT",
+                        DataPoint =null,
+                        IsLast =false
+                     },
+                  new BasicDataPoint {
+                        Date =new DateTime(1341840600000),
+                        DateDisplay ="9 July 2012 1:30 PM GMT",
+                        DataPoint =null,
+                        IsLast =false
+                     },
+                  new BasicDataPoint {
+                        Date =new DateTime(1341841500000),
+                        DateDisplay ="9 July 2012 1:45 PM GMT",
+                        DataPoint =null,
+                        IsLast =false
+                     },
+                  new BasicDataPoint {
+                        Date =new DateTime(1341842400000),
+                        DateDisplay ="9 July 2012 2:00 PM GMT",
+                        DataPoint =null,
+                        IsLast =false
+                     },
+                  new BasicDataPoint {
+                        Date =new DateTime(1341843300000),
+                        DateDisplay ="9 July 2012 2:15 PM GMT",
+                        DataPoint =null,
+                        IsLast =false
+                     },
+                  new BasicDataPoint {
+                        Date =new DateTime(1341844200000),
+                        DateDisplay ="9 July 2012 2:30 PM GMT",
+                        DataPoint =null,
+                        IsLast =false
+                     },
+                  new BasicDataPoint {
+                        Date =new DateTime(1341845100000),
+                        DateDisplay ="9 July 2012 2:45 PM GMT",
+                        DataPoint =null,
+                        IsLast =false
+                     },
+                  new BasicDataPoint {
+                        Date =new DateTime(1341846000000),
+                        DateDisplay ="9 July 2012 3:00 PM GMT",
+                        DataPoint =null,
+                        IsLast =false
+                     },
+                  new BasicDataPoint {
+                        Date =new DateTime(1341846900000),
+                        DateDisplay ="9 July 2012 3:15 PM GMT",
+                        DataPoint =null,
+                        IsLast =false
+                     },
+                  new BasicDataPoint {
+                        Date =new DateTime(1341847800000),
+                        DateDisplay ="9 July 2012 3:30 PM GMT",
+                        DataPoint =null,
+                        IsLast =false
+                     },
+                  new BasicDataPoint {
+                        Date =new DateTime(1341848700000),
+                        DateDisplay ="9 July 2012 3:45 PM GMT",
+                        DataPoint =null,
+                        IsLast =false
+                     },
+                  new BasicDataPoint {
+                        Date =new DateTime(1341849600000),
+                        DateDisplay ="9 July 2012 4:00 PM GMT",
+                        DataPoint =null,
+                        IsLast =false
+                     },
+                  new BasicDataPoint {
+                        Date =new DateTime(1341850500000),
+                        DateDisplay ="9 July 2012 4:15 PM GMT",
+                        DataPoint =null,
+                        IsLast =false
+                     },
+                  new BasicDataPoint {
+                        Date =new DateTime(1341851400000),
+                        DateDisplay ="9 July 2012 4:30 PM GMT",
+                        DataPoint =null,
+                        IsLast =false
+                     },
+                  new BasicDataPoint {
+                        Date =new DateTime(1341852300000),
+                        DateDisplay ="9 July 2012 4:45 PM GMT",
+                        DataPoint =null,
+                        IsLast =false
+                     },
+                  new BasicDataPoint {
+                        Date =new DateTime(1341853200000),
+                        DateDisplay ="9 July 2012 5:00 PM GMT",
+                        DataPoint =null,
+                        IsLast =false
+                     },
+                  new BasicDataPoint {
+                        Date =new DateTime(1341854100000),
+                        DateDisplay ="9 July 2012 5:15 PM GMT",
+                        DataPoint =null,
+                        IsLast =false
+                     },
+                  new BasicDataPoint {
+                        Date =new DateTime(1341855000000),
+                        DateDisplay ="9 July 2012 5:30 PM GMT",
+                        DataPoint =null,
+                        IsLast =false
+                     },
+                  new BasicDataPoint {
+                        Date =new DateTime(1341855900000),
+                        DateDisplay ="9 July 2012 5:45 PM GMT",
+                        DataPoint =null,
+                        IsLast =false
+                     },
+                  new BasicDataPoint {
+                        Date =new DateTime(1341856800000),
+                        DateDisplay ="9 July 2012 6:00 PM GMT",
+                        DataPoint =null,
+                        IsLast =false
+                     },
+                  new BasicDataPoint {
+                        Date =new DateTime(1341857700000),
+                        DateDisplay ="9 July 2012 6:15 PM GMT",
+                        DataPoint =null,
+                        IsLast =false
+                     },
+                  new BasicDataPoint {
+                        Date =new DateTime(1341858600000),
+                        DateDisplay ="9 July 2012 6:30 PM GMT",
+                        DataPoint =null,
+                        IsLast =false
+                     },
+                  new BasicDataPoint {
+                        Date =new DateTime(1341859500000),
+                        DateDisplay ="9 July 2012 6:45 PM GMT",
+                        DataPoint =null,
+                        IsLast =false
+                     },
+                  new BasicDataPoint {
+                        Date =new DateTime(1341860400000),
+                        DateDisplay ="9 July 2012 7:00 PM GMT",
+                        DataPoint =null,
+                        IsLast =false
+                     },
+                  new BasicDataPoint {
+                        Date =new DateTime(1341861300000),
+                        DateDisplay ="9 July 2012 7:15 PM GMT",
+                        DataPoint =null,
+                        IsLast =false
+                     },
+                  new BasicDataPoint {
+                        Date =new DateTime(1341862200000),
+                        DateDisplay ="9 July 2012 7:30 PM GMT",
+                        DataPoint =null,
+                        IsLast =false
+                     },
+                  new BasicDataPoint {
+                        Date =new DateTime(1341863100000),
+                        DateDisplay ="9 July 2012 7:45 PM GMT",
+                        DataPoint =null,
+                        IsLast =false
+                     }
+                  },
+                  End =new DateTime(1341863940000-0400),
+                  Start =new DateTime(1341826200000),
+                  StartDescripter ="09 July 2012 9:30 AM GMT",
+                  Stop =new DateTime(1341849540000),
+                  StopDescripter ="09 July 2012 3:59 PM GMT",
+                  AdjustedStart =new DateTime(1341840600000),
+                  AdjustedStartDescripter ="09 July 2012 9:30 AM",
+                  AdjustedStartUpdatedTimeZoneName ="Eastern Daylight Time",
+                  AdjustedStartUpdatedTimeZoneAbbr ="EDT",
+                  AdjustedStop =new DateTime(1341863940000),
+                  AdjustedStopDescripter ="09 July 2012 3:59 PM",
+                  LastUpdated =new DateTime(1341847081419-0400),
+                  LastUpdatedDescripter ="09 July 2012 11:18 AM GMT",
+                  AdjustedLastUpdated =new DateTime(1341847081419),
+                  AdjustedLastUpdatedTimeZoneName ="Eastern Daylight Time",
+                  AdjustedLastUpdatedTimeZoneAbbr ="EDT",
+                  AdjustedLastUpdatedDescripter ="09 July 2012 11:18 AM",
+                  PercentChange = new PercentStock{
+                     Text ={
+                        Value ="-1.10%"
+                     },
+                     Value =-1.1023457499608171
+                  },
+                  IsIndex =false,
+                  Provider=new Provider{
+                     Name ="SIX-Telekurs",
+                     ExternalUrl="http://www.SIX-Telekurs.com"
+                  },
+                  Exchange = new Exchange{
+                     Code = "NYSE",
+                     Descriptor ="U.S.: NYSE",
+                     TimeZoneDescriptor="Eastern Daylight Time",
+                     TimeZoneAbbreviation="EDT",
+                     IsPrimary=false
+                  }
+               }
+            };
 </pre>

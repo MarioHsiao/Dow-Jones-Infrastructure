@@ -4,7 +4,7 @@ using DowJones.Web.Mvc.UI.Components.Models;
 
 namespace DowJones.MvcShowcase.Controllers
 {
-    public class VideoPlayerController : Controller
+    public class VideoPlayerController : BaseController
     {
         //
         // GET: /VideoPlayer/
