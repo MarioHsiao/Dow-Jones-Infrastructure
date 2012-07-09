@@ -184,7 +184,6 @@
 			window.setTimeout(function () {
 				$('body').unbind('click.dj_menu').bind('click.dj_menu', function (e) {
 					self.hide();
-					e.stopPropagation();
 				});
 
 				self.$menu.bind('mousedown', function (e) {
