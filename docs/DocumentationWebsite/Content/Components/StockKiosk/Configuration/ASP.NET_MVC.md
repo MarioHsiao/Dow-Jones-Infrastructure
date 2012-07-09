@@ -4,7 +4,7 @@
 
 Populate the StockKiosk model (either in your controller or model):
 	
-	   var kioskModel = new StockKioskModel
+	   var stockKioskModel = new StockKioskModel
                                  {
                                      PageSize = 8,
 									 

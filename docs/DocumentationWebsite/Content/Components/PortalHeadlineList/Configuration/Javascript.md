@@ -21,7 +21,8 @@ Finally, add the component to the page:
 			displaySnippets: 1,
 			onLoad: init			/* function to wire up data on load */
 		}); 
-	</script>	  
+	</script>
+		  
 
 `init` can be any function that calls a service to get data and bind it to the component. Here is a sample implementation:
 
