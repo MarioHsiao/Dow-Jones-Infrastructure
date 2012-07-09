@@ -23,9 +23,9 @@ namespace DowJones.MvcShowcase.Controllers
 
 		private MarketDataInstrumentIntradayResultSet GetData()
 		{
-			// arbitrary list of symbols
-			var symbols = new[] { "ibm", "mcrost", "goog", "reggr", "carsvc", "cmdbnn", "rgrc", "stgtec", "precos", "comasc" };
-			var response = MarketDataChartingManager.GetMarketChartData(symbols);
+			// arbitrary list of FCodes
+			var fCodes = new[] { "ibm", "mcrost", "goog", "reggr", "carsvc", "cmdbnn", "rgrc", "stgtec", "precos", "comasc" };
+			var response = MarketDataChartingManager.GetMarketChartData(fCodes);
 
 			// if we do not have a reponse, do not process further.
 			if (response.PartResults == null || !response.PartResults.Any())
