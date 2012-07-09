@@ -19,7 +19,7 @@ Render the model in your view which will render the component in the browser:
 	}
 
 	<!-- Render the component -->
-	@@Html.DJ().Render(stockKioskModel)
+	@@Html.DJ().Render(Model) 
 
 	
 `GetData()` can be any method or service call that returns a valid `MarketDataInstrumentIntradayResultSet`.

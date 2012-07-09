@@ -20,4 +20,4 @@
     };
 
 	<!-- Render the component using the model-->
-	@@Html.DJ().Render(model)
+	@@Html.DJ().Render(Model)
