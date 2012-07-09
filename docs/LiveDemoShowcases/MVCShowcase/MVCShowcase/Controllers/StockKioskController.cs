@@ -1,94 +1,40 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 using System.Web.Mvc;
-using System.Xml;
 using DowJones.Assemblers.Charting.MarketData;
 using DowJones.Managers.Charting.MarketData;
-using DowJones.Managers.MarketWatch.Instrument;
-using DowJones.Web.Mvc.ModelBinders;
-using DowJones.Web.Mvc.Routing;
+using DowJones.Models.Charting.MarketData;
 using DowJones.Web.Mvc.UI.Components.StockKiosk;
 
 namespace DowJones.MvcShowcase.Controllers
 {
-    public class ConformWriter : XmlTextWriter
-    {
-        internal void CheckUnicodeString(String value)
-        {
-            foreach (var t in value)
-            {
-                if (t > 0xFFFD)
-                {
-                    throw new Exception("Invalid Unicode");
-                }
-                if (t < 0x20 && t != '\t' & t != '\n' & t != '\r')
-                {
-                    throw new Exception("Invalid Xml Characters");
-                }
-            }
-        }
+	public class StockKioskController : BaseController
+	{
+		public ActionResult Index()
+		{
+			var model = new StockKioskModel
+			{
+				PageSize = 8,		//min as per the design to fit in
+				Data = GetData()
+			};
 
-        public ConformWriter(String fileName, Encoding encoding) : base(fileName, encoding) { }
+			return View("Index", model);
+		}
 
-        public ConformWriter(Stream stream, Encoding encoding)
-            : base(stream, encoding)
-        {
-        }
 
-        public override void WriteString(String value)
-        {
-            CheckUnicodeString(value);
-            base.WriteString(value);
-        }
+		private MarketDataInstrumentIntradayResultSet GetData()
+		{
+			// arbitrary list of symbols
+			var symbols = new[] { "ibm", "mcrost", "goog", "reggr", "carsvc", "cmdbnn", "rgrc", "stgtec", "precos", "comasc" };
+			var response = MarketDataChartingManager.GetMarketChartData(symbols);
 
-        public override void WriteStartElement(string prefix, string localName, string ns)
-        {
-            base.WriteStartElement(prefix, XmlConvert.EncodeLocalName(localName), ns);
-        }
-    }
+			// if we do not have a reponse, do not process further.
+			if (response.PartResults == null || !response.PartResults.Any())
+				return null;
 
-    public class StockKioskController : BaseController
-    {
-        private readonly MarketDataInstrumentIntradayResultSetAssembler _assembler;
-        public StockKioskController(MarketDataInstrumentIntradayResultSetAssembler assembler)
-        {
-            _assembler = assembler;
-        }
-
-        public ActionResult Index([ModelBinder(typeof(StringSplitModelBinder))]string[] syms, SymbolType symbolType = SymbolType.Ticker, Frequency frequency = Frequency.FifteenMinutes, int pageSize = 10)
-        {
-            var symsList = new List<string>(new[] { "ibm", "msft", "goog", "aapl", "znga", "fb", "amzn", "ma" });
-            var model = GetStockKioskModel(symsList, symbolType, frequency, pageSize);
-            return View("Index", model);
-        }
-
-        public ActionResult Dylan([ModelBinder(typeof(StringSplitModelBinder))]string[] fCodes)
-        {
-            var manager = new InstrumentManager();
-            manager.GetInstruments(new[] { "reinmo" });
-            return View("Index", null);
-
-        }
-
-        private StockKioskModel GetStockKioskModel(IEnumerable<string> syms, SymbolType symbolType = SymbolType.FCode, Frequency frequency = Frequency.FifteenMinutes, int pageSize = 10)
-        {
-            var response = MarketDataChartingManager.GetMarketChartData(syms.ToArray(), symbolType, TimePeriod.OneDay, frequency);
-            if (response.PartResults == null || response.PartResults.Count() <= 0)
-            {
-                return null;
-            }
-            var data = _assembler.Convert(response.PartResults);
-            var kioskModel = new StockKioskModel
-                                 {
-                                     PageSize = pageSize,
-                                     Data = data
-                                 };
-            if (kioskModel.PageSize > 8) kioskModel.PageSize = 8; //min as per the design to fit in
-
-            return kioskModel;
-        }
-    }
+			// map response to DTO
+			var assembler = new MarketDataInstrumentIntradayResultSetAssembler(new Preferences.Preferences("en"));
+			var data = assembler.Convert(response.PartResults);
+			return data;
+		}
+	}
 }
