@@ -124,7 +124,6 @@
     <None Include="General\GettingStarted\Overview.md" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Components\DiscoveryGraph\Server\" />
     <Folder Include="Properties\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

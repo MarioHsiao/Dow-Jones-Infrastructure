@@ -14,9 +14,7 @@ Populate the `StockKiosk` model:
 Render the model in your view which will render the component in the browser:
 
 	<!-- include default styles or supply your own  -->
-	@@section styles{
-		<link href="@Url.Content("~/styles/views/StockKiosk/StockKiosk.css")" rel="stylesheet" />
-	}
+	<link href="Content/css/StockKiosk.css" rel="stylesheet" />
 
 	<!-- Render the component -->
 	@@Html.DJ().Render(Model) 
