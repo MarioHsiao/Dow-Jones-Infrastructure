@@ -1,5 +1,4 @@
 using System.Web.Mvc;
-using DowJones.Web.Mvc.Routing;
 using DowJones.Web.Mvc.UI.Components.DiscoveryGraph;
 
 namespace DowJones.MvcShowcase.Controllers
