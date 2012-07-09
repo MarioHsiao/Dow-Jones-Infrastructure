@@ -8,7 +8,7 @@ Populate the `StockKiosk` model:
 	var stockKioskModel = new StockKioskModel
 		{
 			PageSize = 8,		//min as per the design to fit in
-			Data = GetData()
+			Data = GetData()	// Something that returns an instance of MarketDataInstrumentIntradayResultSet
 		};
 
 Render the model in your view which will render the component in the browser:
@@ -22,7 +22,7 @@ Render the model in your view which will render the component in the browser:
 	
 `GetData()` can be any method or service call that returns a valid `MarketDataInstrumentIntradayResultSet`.
 A sample implementation of `GetData()` using Factiva Gateway is shown below:
-
+	
 	using System.Linq;
 	using DowJones.Assemblers.Charting.MarketData;
 	using DowJones.Managers.Charting.MarketData;
