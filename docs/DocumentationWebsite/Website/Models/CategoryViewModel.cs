@@ -63,10 +63,13 @@ namespace DowJones.Documentation.Website.Models
             var selectedPage =
                 children.FirstOrDefault(child => string.Equals(child.Key, _currentPage, StringComparison.OrdinalIgnoreCase));
 
-            if(selectedPage != null)
-                selectedPage.Selected = true;
+			if (selectedPage != null)
+			{
+				children.First().Selected = false;	// remove default selection
+				selectedPage.Selected = true;
+			}
 
-            return children;
+	        return children;
         }
 
         protected override ContentSectionViewModel MapChild(ContentSection child)
