@@ -7,7 +7,7 @@
         displayTicker: false,
         hitColor: "#999999",
         hitFont: "Verdana",
-        hitSize: "8",
+        hitSize: "10",
         noMovementColor: "#DCDCDC",
         negativeMovementColor: "#FF0000",
         positiveMovementColor: "#666666",
@@ -62,7 +62,12 @@
 
     _onRadarItemBoxClicked: function (ev) {
         var $target = $(ev.currentTarget);
-        this.publish(this.events.radarItemClicked, $target.data());
+        var propname = $target.data("propname");
+        var index = $target.data("index");
+        var rItem = this.radar.RadarItems[propname];
+        var rNewsEntity = rItem.newsEntities[index];
+        var data = { companyName: rItem.companyName, ownershipType: rItem.ownershipType, isNewsCoded: rItem.isNewsCoded,  instrumentReference: rItem.instrumentReference, newsEntity: rNewsEntity };
+        this.publish(this.events.radarItemClicked, data);
     },
 
     _setScrollable: function () {
@@ -128,7 +133,7 @@
             return;
         }
 
-        // After parsing out the necessary data, this is the object we will use to render the widget.
+        // After parsing out the necessary data, this is the object we will use to render the widget..remove("highlightCurrent")
         var FinalResults = {
             RadarCategories: [],
             RadarItems: []
@@ -173,29 +178,38 @@
         // When hovering over an individual item
         $(".djWidgetRadar90 .djRadarItemNode").hover(function () {
             var index = $(this).attr("data-index");
-            $(this).addClass("highlight highlightCurrent");
-            $(this).closest(".djWidgetItem").find(".djRadarItemNode").addClass("highlight");
-            $(this).closest(".djWidgetRadar90").find("[data-index=" + index + "]").addClass("highlight");
+            $(this).css({ backgroundColor: "#F0F0F0" });
+            $(this).closest(".djWidgetItem").find(".djRadarItemNode").css({ backgroundColor: "#F0F0F0" });
+            $(this).closest(".djWidgetRadar90").find("[data-index=" + index + "]").css({ backgroundColor: "#F0F0F0" });
         }, function () {
             var index = $(this).attr("data-index");
-            $(this).removeClass("highlight highlightCurrent");
-            $(this).closest(".djWidgetItem").find(".djRadarItemNode").removeClass("highlight");
-            $(this).closest(".djWidgetRadar90").find("[data-index=" + index + "]").removeClass("highlight");
+            $(this).css({ backgroundColor: '#FFF' });
+            $(this).closest(".djWidgetItem").find(".djRadarItemNode").css({ backgroundColor: '#FFF' });
+            $(this).closest(".djWidgetRadar90").find("[data-index=" + index + "]").css({ backgroundColor: '#FFF' });
+        });
+        
+        // When hovering over an company item
+        $(".djWidgetRadar90 .djWidgetItem").hover(function () {
+            $(this).css({ backgroundColor: "#F0F0F0" });
+            $(this).children().css({ backgroundColor: "#F0F0F0" });
+        }, function () {
+            $(this).css({ backgroundColor: '#FFF' });
+            $(this).children().css({ backgroundColor: "#FFF" });
         });
 
         // When hovering over a category
         $(".djWidgetRadar90 li.djRadarCategory").hover(function () {
             var index = $(this).attr("data-index");
-            $(this).addClass("highlight highlightCurrent");
-            $(this).closest(".djWidgetRadar90").find("[data-index=" + index + "]").addClass("highlight");
+            $(this).css({ backgroundColor: "#f0f0f0" });
+            $(this).closest(".djWidgetRadar90").find("[data-index=" + index + "]").css({ backgroundColor: "#f0f0f0" });
         }, function () {
             var index = $(this).attr("data-index");
-            $(this).removeClass("highlight highlightCurrent");
-            $(this).closest(".djWidgetRadar90").find("[data-index=" + index + "]").removeClass("highlight");
+            $(this).css({ backgroundColor: '#FFF' });
+            $(this).closest(".djWidgetRadar90").find("[data-index=" + index + "]").css({ backgroundColor: '#FFF' });
         });
         
         $('.djRadarCategory', this.$element).on('click', this._delegates.HandleSort);
-        $('.djRadarItemBox', this.$element).on('click', this._delegates.OnRadarItemBoxClicked);
+        $('.djRadarItemNode', this.$element).on('click', this._delegates.OnRadarItemBoxClicked);
     },
 
     _handleSort: function (ev) {
@@ -218,7 +232,7 @@
 
         this.renderContent(this.radar.RadarItems);
         this._onTopClicked(0);
-        $('.djRadarItemBox', this.$element).on('click', this._delegates.OnRadarItemBoxClicked);
+        $('.djRadarItemNode', this.$element).on('click', this._delegates.OnRadarItemBoxClicked);
     },
 
     // Loop through each news category of a given company and pull out needed data for the widget
@@ -342,7 +356,7 @@
         var self = this;
         var radarTemplate = self.templates.radar;
         for (var i in data) {
-            html += this.templates.success({ settings: self.options, item: data[i], templates: { radar: radarTemplate}, f: { getTicker: self.getTicker} });
+            html += this.templates.success({ settings: self.options, propName: i, item: data[i], templates: { radar: radarTemplate}, f: { getTicker: self.getTicker} });
         }
 
         $items.html(html);
@@ -449,6 +463,8 @@
 
         var self = this;
         var cats = [];
+        
+        // need to rework this for 1e8 and under.
         for (var i in data.RadarCategories) {
             var category = data.RadarCategories[i];
             var catMarkup = self.templates.category({ index: i, settings: self.options, category: category });
@@ -459,6 +475,8 @@
         cats.reverse();
         $categories.html(cats.join(''));
     },
+    
+    
 
     colorLuminance: function (hex, lum) {  
         // validate hex string  
@@ -476,28 +494,57 @@
         }  
         return rgb;  
     },
+    
+    drawItemLabel: function () {
+
+    },
         
     drawCategoryLabel: function (target, text) {
-
-        var renderer = new Highcharts.Renderer(target, 19, 143);
-        var xPos = 12.5;
-        var yPos = 140;
-        renderer.rect(0, 0, 0, 143).css({
-            borderLeft: '1px solid silver'
-        });
-
-        var categoryLabel = '<span title="' + text + '">' + text + '</span>';
+        var categoryLabel = '<div title="' + text + '">' + text + '</div>';
         var fontSize = this.options.hitSize || this.defaults.hitSize;
         var fontFamily = this.options.hitFont || this.defaults.hitFont;
-        renderer.text(categoryLabel, xPos, yPos).attr({
-            rotation: 270,
-        }).css({
-            fontSize: fontSize + 'pt',
-            lineHeight: '19px',
-            fontFamily: fontFamily,
-            fontWeight: 'normal',
-            color: this.colorLuminance(this.options.hitColor|| this.default.hitColor, 0)
-        }).add();
+        var tColor = this.colorLuminance(this.options.hitColor || this.defaults.hitColor, 0);
+
+        if (Highcharts.VMLRenderer) {
+            $(target).css({
+                position: "relative",
+                top: '0',
+                left: '0',
+                zoom: '1',
+                filter: 'progid:DXImageTransform.Microsoft.BasicImage(rotation=2)'
+            });
+            var $categoryLabel = $(categoryLabel);
+            $categoryLabel.css({
+                position: 'absolute',
+                writingMode: 'tb-rl',
+                top: '3px',
+                height: '143px',
+                width: '19px',
+                textAlign: 'left',
+                lineHeight: '19px',
+                clip: 'rect(0px,19px,143px,0px)'
+            }).addClass("verticalLabel");
+
+            $(target).css({ backgroundColor: '#FFF' });
+            $(target).html($categoryLabel);
+            return target;
+        }
+
+        else {
+            var renderer = new Highcharts.Renderer(target, 19, 143);
+            var xPos = 12.5;
+            var yPos = 140;
+            
+            renderer.text(text, xPos, yPos).attr({
+                rotation: 270
+            }).css({
+                fontSize: fontSize + 'px',
+                lineHeight: '19px',
+                fontFamily: fontFamily,
+                fontWeight: 'normal',
+                color: tColor
+            }).add();
+        }
         return target;
     },
 

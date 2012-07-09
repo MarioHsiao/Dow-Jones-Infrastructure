@@ -6375,7 +6375,9 @@ namespace DowJones.Web.Showcase.Controllers
 
             var model = new NewsRadarModel
                 {
-                    Data = data
+                    Data = data,
+                    ScrollSize = 5,
+                    PositiveMovementColor = "#FFCC00"
                 };
 
             return View(model);
