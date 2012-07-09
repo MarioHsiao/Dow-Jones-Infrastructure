@@ -20,8 +20,9 @@ Finally, add the component to the page:
 							pagesize	: 8,
 							timePeriod	: 24,
 							frequency   : 15 
-						  }, 
-			data		:{Your Data Object}
+						  },
+			//Set data 
+			data		:data
 		}); 
 	</script>	  
 

@@ -1,4 +1,6 @@
-﻿#### Rendering the component via JavaScript
+﻿@using DowJones.Documentation.Website.Extensions;
+@using System.Configuration;
+#### Rendering the component via JavaScript
 
 Add a reference to `common.js` with a valid `sessionId` anywhere in the `<head>` section of you page.
 
@@ -24,15 +26,9 @@ Finally, add the component to the page:
                 splashImagePath: "[Your Asserts Folder Location]/play_text_large.png",
                 playerKey: "75a6c4404d9ffa80a63"
             },
-            data: [{
-                url: "[Your Media File Location]/demo.mp4",
-                medium: "video",
-                duration: "188",
-                type: "video/mp4",
-                bitRate: "1500",
-                frameRate: "29.97",
-                width: "640",
-                height: "360"
-            }]
+			//Set data
+            data: data
 		}); 
 	</script>	  
+
+@Html.DataViewer(ConfigurationManager.AppSettings["InfrastructureShowcase.BasePath"]+"/VideoPlayer/data/js")
