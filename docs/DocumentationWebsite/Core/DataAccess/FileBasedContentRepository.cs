@@ -41,9 +41,19 @@ namespace DowJones.Documentation.DataAccess
 
 		public ContentSection GetCategory(Name name)
 		{
-			var categoryDirectory =
-				CategoryDirectories
-					.FirstOrDefault(x => x.Name.WithoutOrdinal().Equals(name.Value, StringComparison.OrdinalIgnoreCase));
+			return GetCategory(name, false);
+		}
+
+		public ContentSection GetCategory(Name name, bool ignoreOrdinal)
+		{
+
+			DirectoryInfo categoryDirectory;
+			if (ignoreOrdinal)
+				categoryDirectory = CategoryDirectories
+									.FirstOrDefault(x => x.Name.WithoutOrdinal().Equals(name.Key, StringComparison.OrdinalIgnoreCase));
+			else
+				categoryDirectory = CategoryDirectories
+									.FirstOrDefault(x => x.Name.Equals(name.Key, StringComparison.OrdinalIgnoreCase));
 
 			return GetContentSection(categoryDirectory);
 		}
@@ -78,7 +88,7 @@ namespace DowJones.Documentation.DataAccess
 			var relatedTopics = new JavaScriptSerializer().Deserialize<RelatedTopic[]>(json);
 
 			return relatedTopics;
-			
+
 		}
 
 

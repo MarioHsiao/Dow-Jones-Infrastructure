@@ -308,12 +308,15 @@
     </VisualStudio>
   </ProjectExtensions>
   <PropertyGroup>
-    <PostBuildEvent>echo \obj\ &gt; exclude.txt
+    <PostBuildEvent>echo \bin\ &gt; exclude.txt
+echo \obj\ &gt; exclude.txt
+echo .proj &gt;&gt; exclude.txt
 echo .csproj &gt;&gt; exclude.txt
 echo .vspscc &gt;&gt; exclude.txt
 rd /s /q  "$(ProjectDir)Content"
 xcopy /S /Y /EXCLUDE:exclude.txt "$(SolutionDir)..\Content\*.*" "$(ProjectDir)Content\"
-del exclude.txt</PostBuildEvent>
+del exclude.txt
+rd /s /q  "$(ProjectDir)Content\bin"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

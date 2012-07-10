@@ -15,7 +15,7 @@ namespace DowJones.Documentation.Website.Models
         {
             get
             {
-                return ContentSection.Name.Key.Replace(".", "");
+                return ContentSection.Name.Key.WithoutOrdinal().Replace(".", "");
             }
         }
 
@@ -43,11 +43,6 @@ namespace DowJones.Documentation.Website.Models
         {
             get { return ContentSection.Name.Key; }
         }
-
-		public string Value
-		{
-			get { return ContentSection.Name.Value; }
-		}
 
         public int Ordinal
         {
