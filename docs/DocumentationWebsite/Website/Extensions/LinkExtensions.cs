@@ -41,14 +41,14 @@ namespace DowJones.Documentation.Website.Extensions
             {
                 if (category == null) return;
 
-                this.category = category.Key;
+				this.category = category.Value;
                 DisplayName = category.DisplayName;
             }
 
             public DocumentationBrowserRouteData(PageViewModel page)
                 : this(page.Category)
             {
-                this.page = page.Key;
+				this.page = page.Value;
                 DisplayName = page.DisplayName;
             }
         }
@@ -69,7 +69,7 @@ namespace DowJones.Documentation.Website.Extensions
             // HACK: Need to build this manually because apparently using RouteLink works locally 
             //       but not when deployed to Montana.
 
-            var relativeUrl = string.Format("~/{0}/{1}", routeData.category, routeData.page);
+			var relativeUrl = string.Format("~/{0}/{1}", routeData.category, routeData.page);
 
             var link = new TagBuilder("a");
             link.Attributes["href"] = VirtualPathUtility.ToAbsolute(relativeUrl);

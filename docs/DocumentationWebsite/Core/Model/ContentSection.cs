@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Diagnostics.Contracts;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace DowJones.Documentation
 {
@@ -26,7 +27,7 @@ namespace DowJones.Documentation
 		public ContentSection(Name name = null, ContentSection parent = null, IEnumerable<ContentSection> children = null, IEnumerable<RelatedTopic> relatedTopics = null, int? ordinal = null)
         {
             Name = name;
-            Ordinal = ordinal;
+            Ordinal = ordinal.HasValue ? ordinal : GetOrdinalFromName(name);
             Parent = parent;
 			_children = (children ?? Enumerable.Empty<ContentSection>()).ToList();
 			
@@ -38,8 +39,17 @@ namespace DowJones.Documentation
 			RelatedTopics = (relatedTopics ?? Enumerable.Empty<RelatedTopic>());
         }
 
+	    private int? GetOrdinalFromName(Name name)
+	    {
+			var match = Regex.Match(name.Value, "^(?<Ordinal>\\d+)[^\\d]");
 
-        public void Add(ContentSection child)
+		    if (match.Success)
+			    return int.Parse(match.Groups["Ordinal"].Captures[0].Value);
+
+			return null;
+	    }
+
+	    public void Add(ContentSection child)
         {
             Contract.Requires(child != null);
             child.Parent = this;

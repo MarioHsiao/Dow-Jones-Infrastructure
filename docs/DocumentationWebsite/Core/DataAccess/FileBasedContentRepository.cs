@@ -43,7 +43,7 @@ namespace DowJones.Documentation.DataAccess
 		{
 			var categoryDirectory =
 				CategoryDirectories
-					.FirstOrDefault(x => x.Name.Equals(name.Key, StringComparison.OrdinalIgnoreCase));
+					.FirstOrDefault(x => x.Name.WithoutOrdinal().Equals(name.Value, StringComparison.OrdinalIgnoreCase));
 
 			return GetContentSection(categoryDirectory);
 		}

@@ -17,8 +17,9 @@ namespace DowJones.Documentation
 
         public Name(string value)
         {
-            Value = Path.GetFileNameWithoutExtension(value ?? string.Empty);
-            Key = Value.ToLower();
+			var fileName = Path.GetFileNameWithoutExtension(value ?? string.Empty);
+            Key = fileName.ToLower();
+			Value = fileName.WithoutOrdinal();
             DisplayName = ToDisplayName(Value);
         }
 
@@ -33,9 +34,7 @@ namespace DowJones.Documentation
             if(string.IsNullOrWhiteSpace(value))
                 return value ?? string.Empty;
 
-
-			var withoutOrdinal = value.TrimStart("0123456789".ToCharArray());
-			var withSpaces = Regex.Replace(withoutOrdinal, "([a-z](?=[A-Z0-9])|[A-Z0-9](?=[A-Z0-9][a-z]))", "$1 ").Replace("_", " ");
+			var withSpaces = Regex.Replace(value, "([a-z](?=[A-Z0-9])|[A-Z0-9](?=[A-Z0-9][a-z]))", "$1 ").Replace("_", " ");
             var lowerCasePrepositions =
                 Regex.Replace(withSpaces, " (A(nd|t)|From|Is|O(f|r)|T(he|o))",
                               m => string.Format("{0}", m.Value.ToLower()));
@@ -88,4 +87,12 @@ namespace DowJones.Documentation
 
         #endregion
     }
+
+	public static class StringExtensions
+	{
+		public static string WithoutOrdinal(this string source)
+		{
+			return string.IsNullOrEmpty(source) ? source : source.TrimStart("0123456789".ToCharArray());
+		}
+	}
 }

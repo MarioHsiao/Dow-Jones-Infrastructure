@@ -110,18 +110,18 @@
     <None Include="Components\VideoPlayer\Setup.md" />
     <None Include="deploy.proj" />
     <Content Include="Web.config" />
-    <None Include="General\CreatingNewComponent\1DataModel.md" />
-    <None Include="General\CreatingNewComponent\2ComponentModel.md" />
-    <None Include="General\CreatingNewComponent\3JavascriptCode.md" />
-    <None Include="General\CreatingNewComponent\4ClientTemplates.md" />
-    <None Include="General\CreatingNewComponent\5ViewComponent.md" />
-    <None Include="General\CreatingNewComponent\6TestTheComponent.md" />
-    <None Include="General\CreatingNewComponent\Overview.md" />
-    <None Include="General\Developer\DevelopmentEnvironment.md" />
-    <None Include="General\Developer\VerifyingSetup.md" />
-    <None Include="General\Developer\NuGetRepository.md" />
-    <None Include="General\Developer\Overview.md" />
-    <None Include="General\GettingStarted\Overview.md" />
+    <None Include="1GettingStarted\CreatingNewComponent\1DataModel.md" />
+    <None Include="1GettingStarted\CreatingNewComponent\2ComponentModel.md" />
+    <None Include="1GettingStarted\CreatingNewComponent\3JavascriptCode.md" />
+    <None Include="1GettingStarted\CreatingNewComponent\4ClientTemplates.md" />
+    <None Include="1GettingStarted\CreatingNewComponent\5ViewComponent.md" />
+    <None Include="1GettingStarted\CreatingNewComponent\6TestTheComponent.md" />
+    <None Include="1GettingStarted\CreatingNewComponent\Overview.md" />
+    <None Include="1GettingStarted\Developer\DevelopmentEnvironment.md" />
+    <None Include="1GettingStarted\Developer\VerifyingSetup.md" />
+    <None Include="1GettingStarted\Developer\NuGetRepository.md" />
+    <None Include="1GettingStarted\Developer\Overview.md" />
+    <None Include="1GettingStarted\GettingStarted\Overview.md" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
