@@ -20,33 +20,9 @@ Populate the Portal Headline List model:
 		Data = GetData(),   // Something that returns an instance of PortalHeadlineListDataResult
 	};
 
+@Html.DataViewer(ConfigurationManager.AppSettings["InfrastructureShowcase.BasePath"]+"/PortalHeadlineList/data/cs")
+
 Render the model in your view which will render the component in the browser:
 
 	<!-- Render the component -->
 	@@Html.DJ().Render(portalHeadlineListModel)
-
-`GetData()` can be any method or service call that returns a valid `PortalHeadlineListDataResult`.
-A sample implementation of `GetData()` using Factiva Gateway is shown below:
-
-	using DowJones.Ajax.PortalHeadlineList;
-	using DowJones.Assemblers.Headlines;
-	using DowJones.Formatters.Globalization.DateTime;
-
-	private PortalHeadlineListDataResult GetData()
-	{
-		// random feed url
-		const string url = "http://feeds.haacked.com/haacked";
-
-		var headlineListManager = new HeadlineListConversionManager(new DateTimeFormatter("en"));
-
-		// process the feed a get a HeadlineListDataResult
-		var feed = headlineListManager.ProcessFeed(url);
-
-		// map relevant fields from response to portalHeadlineListDataResult
-		var portalHeadlineListDataResult = PortalHeadlineConversionManager.Convert(feed.result);
-
-		// return data
-		return portalHeadlineListDataResult;
-	}
-
-@Html.DataViewer(ConfigurationManager.AppSettings["InfrastructureShowcase.BasePath"]+"/PortalHeadlineList/data/cs")
