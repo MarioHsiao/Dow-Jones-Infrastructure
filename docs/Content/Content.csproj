@@ -44,6 +44,8 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <None Include="1GettingStarted\1UsingComponents\NuGetRepository.md" />
+    <None Include="1GettingStarted\1UsingComponents\Overview.md" />
     <None Include="Components\Article\Configuration.md" />
     <None Include="Components\Article\Events.md" />
     <None Include="Components\Article\LiveDemo.md" />
@@ -77,7 +79,6 @@
     <None Include="Components\NewsRadar90DayAvg\Setup.md" />
     <None Include="Components\PortalHeadlineList\Configuration\ASP.NET_MVC.md" />
     <None Include="Components\PortalHeadlineList\Configuration\Javascript.md" />
-    <None Include="Components\PortalHeadlineList\Setup.md" />
     <None Include="Components\PortalHeadlineList\Properties.md" />
     <None Include="Components\PortalHeadlineList\Options.md" />
     <None Include="Components\PortalHeadlineList\Events.md" />
@@ -121,7 +122,6 @@
     <None Include="1GettingStarted\2DevelopmentSetup\VerifyingSetup.md" />
     <None Include="1GettingStarted\2DevelopmentSetup\NuGetRepository.md" />
     <None Include="1GettingStarted\2DevelopmentSetup\Overview.md" />
-    <None Include="1GettingStarted\1UsingComponents\Overview.md" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
