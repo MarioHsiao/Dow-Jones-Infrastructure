@@ -51,13 +51,6 @@ namespace DowJones.Documentation.Website.Models
 
         public bool Selected { get; set; }
         
-        public bool ShowHeader
-        {
-            get { return _showHeader.GetValueOrDefault(Key != "overview"); }
-            set { _showHeader = value; }
-        }   
-        private bool? _showHeader;
-
 		public IEnumerable<ContentSectionViewModel> Children
 		{
 			get { return _children.Value; }
