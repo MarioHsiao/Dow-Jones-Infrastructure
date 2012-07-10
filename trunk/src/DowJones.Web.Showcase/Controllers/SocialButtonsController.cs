@@ -23,7 +23,7 @@ namespace DowJones.Web.Showcase.Controllers
                                 Keywords = "Social",
                                 Description = "Test Description"
                             };
-            return View(model);
+            return View(model); 
         }
 
     }
