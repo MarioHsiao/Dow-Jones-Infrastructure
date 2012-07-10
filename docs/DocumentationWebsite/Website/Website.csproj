@@ -312,7 +312,7 @@
 echo .csproj &gt;&gt; exclude.txt
 echo .vspscc &gt;&gt; exclude.txt
 rd /s /q  "$(ProjectDir)Content"
-xcopy /S /Y /EXCLUDE:exclude.txt "$(SolutionDir)Content\*.*" "$(ProjectDir)Content\"
+xcopy /S /Y /EXCLUDE:exclude.txt "$(SolutionDir)..\Content\*.*" "$(ProjectDir)Content\"
 del exclude.txt</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
