@@ -4,7 +4,7 @@
 
 	<PropertyGroup>
 		<!-- Folder to clean - Trailing slash required -->
-		<DeleteRoot>$(MSBuildProjectDirectory)\</DeleteRoot>
+		<DeleteRoot>$(DeploymentDir)\</DeleteRoot>
 	</PropertyGroup>
 	<Target Name="DeployContent">
 		<ItemGroup>
