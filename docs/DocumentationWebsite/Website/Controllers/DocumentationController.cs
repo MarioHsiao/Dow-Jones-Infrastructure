@@ -43,8 +43,8 @@ namespace DowJones.Documentation.Website.Controllers
             {
                 var routeData = new LinkExtensions.DocumentationBrowserRouteData
                     {
-                        category = category,
-                        page = documentationCategory.Children.First().Name.Key,
+						category = documentationCategory.Name.ToString(),
+                        page = documentationCategory.Children.First().Name.ToString(),
                     };
 
                 return RedirectToRoute("DocumentationBrowser", routeData);
