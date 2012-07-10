@@ -2,10 +2,6 @@
 <Project ToolsVersion="4.0" DefaultTargets="DeployContent"
          xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
-	<PropertyGroup>
-		<!-- Folder to clean - Trailing slash required -->
-		<DeleteRoot>$(DeploymentDir)\</DeleteRoot>
-	</PropertyGroup>
 	<Target Name="DeployContent">
 		<ItemGroup>
 			<ContentFiles Include="$(MSBuildProjectDirectory)\**"
@@ -16,23 +12,19 @@
 		</ItemGroup>
 
 		<ItemGroup>
-			<FilesToDelete Include="$(DeleteRoot)\**\*.*" />
-			<FoldersToDelete Include="%(FilesToDelete.RootDir)%(FilesToDelete.Directory)" Exclude="$(DeleteRoot)"/>
+			<FoldersToDelete Include="$([System.IO.Directory]::GetDirectories($(DeploymentDir)))" />
 		</ItemGroup>
 
-		<Message Text=" # @(FilesToDelete)" Importance="normal" />
-		<Message Text=" # @(FoldersToDelete)" Importance="normal" />
-
-		<!-- Delete the files -->
-		<Delete Files="@(FilesToDelete)" Condition=" $(DeleteRoot)!=''" ContinueOnError="true" />
-		<!-- Remove the folders -->
-		<RemoveDir Directories="@(FoldersToDelete)" Condition="$(DeleteRoot)!=''" ContinueOnError="true" />
-
+		<Message Text="FoldersToDelete: @(FoldersToDelete)" />
+		
 		<Error Condition="'$(DeploymentDir)' == ''" Text="DeploymentDir property is required" />
 		
 		<Message Importance="High" Text="Copying website from $(MSBuildProjectName) to $(DeploymentDir)" />
 
-		<Exec Command="attrib -R @(ContentFiles->'%(FullPath)')" />
+		<Exec Command="attrib -R /S /D &quot;%(FoldersToDelete.Identity)*.*&quot;" />
+
+		<!-- Remove the folders -->
+		<RemoveDir Directories="@(FoldersToDelete)" ContinueOnError="true" /> 
 
 		<Copy SourceFiles="@(ContentFiles)"
 			  DestinationFiles="@(ContentFiles->'$(DeploymentDir)\%(RecursiveDir)%(Filename)%(Extension)')"
