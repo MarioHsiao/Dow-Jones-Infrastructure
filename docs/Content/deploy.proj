@@ -15,13 +15,13 @@
 			<FoldersToDelete Include="$([System.IO.Directory]::GetDirectories($(DeploymentDir)))" />
 		</ItemGroup>
 
-		<Message Text="FoldersToDelete: @(FoldersToDelete)" />
+		<!--<Message Text="FoldersToDelete: @(FoldersToDelete)" />-->
 		
 		<Error Condition="'$(DeploymentDir)' == ''" Text="DeploymentDir property is required" />
 		
 		<Message Importance="High" Text="Copying website from $(MSBuildProjectName) to $(DeploymentDir)" />
 
-		<Exec Command="attrib -R /S /D &quot;%(FoldersToDelete.Identity)*.*&quot;" />
+		<!--<Exec Command="attrib -R /S /D &quot;%(FoldersToDelete.Identity)*.*&quot;" />-->
 
 		<!-- Remove the folders -->
 		<RemoveDir Directories="@(FoldersToDelete)" ContinueOnError="true" /> 
