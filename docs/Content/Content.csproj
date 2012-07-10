@@ -44,17 +44,15 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <None Include="1GettingStarted\1UsingComponents\NuGetRepository.md" />
+    <None Include="1GettingStarted\1UsingComponents\ConfiguringNuget.md" />
     <None Include="1GettingStarted\1UsingComponents\Overview.md" />
     <None Include="Components\Article\Configuration.md" />
     <None Include="Components\Article\Events.md" />
     <None Include="Components\Article\LiveDemo.md" />
     <None Include="Components\Article\Properties.md" />
     <None Include="Components\Article\Overview.md" />
-    <None Include="Components\Article\Setup.md" />
     <None Include="Components\AutoSuggest\Configuration\ASP.NET_MVC.md" />
     <None Include="Components\AutoSuggest\Configuration\Javascript.md" />
-    <None Include="Components\AutoSuggest\Setup.md" />
     <None Include="Components\AutoSuggest\Tokens.md" />
     <None Include="Components\AutoSuggest\Options.md" />
     <None Include="Components\AutoSuggest\Events.md" />
@@ -68,7 +66,6 @@
     <None Include="Components\DiscoveryGraph\LiveDemo.md" />
     <None Include="Components\DiscoveryGraph\Methods.md" />
     <None Include="Components\DiscoveryGraph\Overview.md" />
-    <None Include="Components\DiscoveryGraph\Setup.md" />
     <None Include="Components\NewsRadar90DayAvg\Configuration\ASP.NET_MVC.md" />
     <None Include="Components\NewsRadar90DayAvg\Configuration\Javascript.md" />
     <None Include="Components\NewsRadar90DayAvg\Events.md" />
@@ -76,7 +73,6 @@
     <None Include="Components\NewsRadar90DayAvg\Methods.md" />
     <None Include="Components\NewsRadar90DayAvg\Overview.md" />
     <None Include="Components\NewsRadar90DayAvg\Properties.md" />
-    <None Include="Components\NewsRadar90DayAvg\Setup.md" />
     <None Include="Components\PortalHeadlineList\Configuration\ASP.NET_MVC.md" />
     <None Include="Components\PortalHeadlineList\Configuration\Javascript.md" />
     <None Include="Components\PortalHeadlineList\Properties.md" />
@@ -92,7 +88,6 @@
     <None Include="Components\SocialButtons\Options.md" />
     <None Include="Components\SocialButtons\Overview.md" />
     <None Include="Components\SocialButtons\Properties.md" />
-    <None Include="Components\SocialButtons\Setup.md" />
     <None Include="Components\StockKiosk\Configuration\ASP.NET_MVC.md" />
     <None Include="Components\StockKiosk\Configuration\Javascript.md" />
     <None Include="Components\StockKiosk\Options.md" />
@@ -101,14 +96,12 @@
     </None>
     <None Include="Components\StockKiosk\Properties.md" />
     <None Include="Components\StockKiosk\Overview.md" />
-    <None Include="Components\StockKiosk\Setup.md" />
     <None Include="Components\VideoPlayer\Configuration\ASP.NET_MVC.md" />
     <None Include="Components\VideoPlayer\Configuration\Javascript.md" />
     <None Include="Components\VideoPlayer\Properties.md" />
     <None Include="Components\VideoPlayer\LiveDemo.md" />
     <None Include="Components\VideoPlayer\Options.md" />
     <None Include="Components\VideoPlayer\Overview.md" />
-    <None Include="Components\VideoPlayer\Setup.md" />
     <None Include="deploy.proj" />
     <Content Include="Web.config" />
     <None Include="1GettingStarted\3CreatingNewComponent\1DataModel.md" />
