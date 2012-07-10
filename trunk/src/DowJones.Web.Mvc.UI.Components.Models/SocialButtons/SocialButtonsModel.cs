@@ -1,27 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Web.UI;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace DowJones.Web.Mvc.UI.Components.SocialButtons
 {
     /// <summary>
-    /// The image size.
-    /// </summary>
-    public enum ImageSize
-    {
-        /// <summary>
-        /// Small social media image
-        /// </summary>
-        Small,
-
-        /// <summary>
-        /// Large social media image
-        /// </summary>
-        Large,
-    }
-
-    /// <summary>
     /// The social networks.
     /// </summary>
+    [JsonConverter(typeof(StringEnumConverter))]
     public enum SocialNetworks
     {
         /// <summary>
@@ -129,13 +116,6 @@ namespace DowJones.Web.Mvc.UI.Components.SocialButtons
         public string TagName { get; set; }
 
         /// <summary>
-        /// Gets or sets the size of the image.
-        /// </summary>
-        /// <value>The size of the image.</value>
-        [ClientProperty(Name="imageSize")]
-        public ImageSize ImageSize { get; set; }
-
-        /// <summary>
         /// Gets or sets the social network.
         /// </summary>
         /// <value>The social network.</value>
@@ -190,18 +170,18 @@ namespace DowJones.Web.Mvc.UI.Components.SocialButtons
         public SocialButtonsModel()
         {
             SocialNetworks = new [] {
-                    Components.SocialButtons.SocialNetworks.Delicious,
-                    Components.SocialButtons.SocialNetworks.Digg,
-                    Components.SocialButtons.SocialNetworks.Facebook,
-                    Components.SocialButtons.SocialNetworks.Furl,
-                    Components.SocialButtons.SocialNetworks.Google,
-                    Components.SocialButtons.SocialNetworks.LinkedIn,
-                    Components.SocialButtons.SocialNetworks.Newsvine,
-                    Components.SocialButtons.SocialNetworks.Reddit,
-                    Components.SocialButtons.SocialNetworks.StumbleUpon,
-                    Components.SocialButtons.SocialNetworks.Technorati,
-                    Components.SocialButtons.SocialNetworks.Twitter,
-                    Components.SocialButtons.SocialNetworks.Yahoo
+                    SocialButtons.SocialNetworks.Delicious,
+                    SocialButtons.SocialNetworks.Digg,
+                    SocialButtons.SocialNetworks.Facebook,
+                    SocialButtons.SocialNetworks.Furl,
+                    SocialButtons.SocialNetworks.Google,
+                    SocialButtons.SocialNetworks.LinkedIn,
+                    SocialButtons.SocialNetworks.Newsvine,
+                    SocialButtons.SocialNetworks.Reddit,
+                    SocialButtons.SocialNetworks.StumbleUpon,
+                    SocialButtons.SocialNetworks.Technorati,
+                    SocialButtons.SocialNetworks.Twitter,
+                    SocialButtons.SocialNetworks.Yahoo
                 };
         }
     }

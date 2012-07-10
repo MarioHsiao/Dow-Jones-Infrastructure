@@ -152,7 +152,7 @@ namespace DowJones.Web.Showcase.Controllers
                                 var videoPlayerModel = new VideoPlayerModel
                                 {
                                     AutoPlay = true,
-                                    PlayList = new ClipCollection(new[] { Mapper.Map<Clip>(mediaContent) }),
+                                    Data = new ClipCollection(new[] { Mapper.Map<Clip>(mediaContent) }),
                                     Width = GetAudioWidth(browsers),
                                     Height = GetAudioHeight(),
                                     PlayerKey = "75a6c4404d9ffa80a63",
@@ -170,7 +170,7 @@ namespace DowJones.Web.Showcase.Controllers
                                     AutoPlay = true,
                                     Width = width,
                                     Height = height,
-                                    PlayList = new ClipCollection(new[] { Mapper.Map<Clip>(mediaContent) }),
+                                    Data = new ClipCollection(new[] { Mapper.Map<Clip>(mediaContent) }),
                                     PlayerKey = "75a6c4404d9ffa80a63",
                                 };
 
@@ -288,7 +288,6 @@ namespace DowJones.Web.Showcase.Controllers
                     Url = urlBuilder.ToString(),
                     Description = "",
                     Target = "_blank",
-                    ImageSize = ImageSize.Small,
                     Title = ProcessHeadlineRenderItems(articleDataSet.Headline),
                     SocialNetworks = new[] { SocialNetworks.LinkedIn, SocialNetworks.Twitter, SocialNetworks.Facebook },
                     Keywords = "",
@@ -345,7 +344,6 @@ namespace DowJones.Web.Showcase.Controllers
                     Url = urlBuilder.ToString(),
                     Description = "",
                     Target = "_blank",
-                    ImageSize = ImageSize.Small,
                     Title = ProcessHeadlineRenderItems(articleDataSet.Headline),
                     SocialNetworks = new[] { SocialNetworks.LinkedIn, SocialNetworks.Twitter, SocialNetworks.Facebook },
                     Keywords = "",

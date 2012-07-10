@@ -1,4 +1,5 @@
-﻿DJ.UI.NewsRadar = DJ.UI.Component.extend({
+﻿
+DJ.UI.NewsRadar = DJ.UI.Component.extend({
     selectors: {
         scrollable: '.scrollable'
     },
@@ -6,12 +7,15 @@
     defaults: {
         displayTicker: false,
         hitColor: "#999999",
-        hitFont: "Verdana",
-        hitSize: "10",
+        hitFont: "\"Lucida Grande\", \"Lucida Sans Unicode\", Arial, Helvetica, sans-serif",
+        hitSize: "11",
         noMovementColor: "#DCDCDC",
         negativeMovementColor: "#FF0000",
         positiveMovementColor: "#666666",
-        scrollSize: 5,
+        highlightColor: "#ffffb7",
+        backgroundColor: "#FFFFFF",
+        windowSize: 5,
+        chipHeight: 19,
         colors: { WHITE: "#FFFFFF", BLACK: "#000000" }
     },
     
@@ -28,9 +32,13 @@
         // Call the base constructor
         this._super(element, $meta);
 
+        // set up some variables
+        this.scrollSize = (this.options.windowSize || this.defaults.windowSize) - 1;
+
         // call databind if we got data from server
-        if (this.data)
+        if (this.data) {
             this.bindOnSuccess(this.data, this.options);
+        }
     },
 
     _initializeElements: function () {
@@ -83,7 +91,9 @@
         var scrollApi = $(this.selectors.scrollable, this.$element).eq(0).data('scrollable');
         var scrollIndex = scrollApi.getIndex();
         var scrollCount = scrollApi.getItems().length;
-        var scrollMax = Math.min(this.options.scrollSize, scrollCount - scrollIndex - this.options.scrollSize - 1);
+        var scrollSize = this.scrollSize;
+
+        var scrollMax = Math.min(scrollSize, scrollCount - scrollIndex - scrollSize - 1);
         if (scrollIndex > 0) {
             $('.djPrev, .djTop', this.$element).addClass('djEnabled');
 
@@ -99,8 +109,14 @@
 
     _onPrevClicked: function () {
         if ($('.djPrev', this.$element).hasClass('djEnabled')) {
+            var scrollSize = this.scrollSize;
             var scrollApi = $(this.selectors.scrollable, this.$element).eq(0).data('scrollable');
-            scrollApi.move(-1 * this.options.scrollSize);
+            var scrollIndex = scrollApi.getIndex();
+            if (scrollIndex < scrollSize) {
+                scrollApi.seekTo(0);
+            } else {
+               scrollApi.move(-1 * scrollSize);      
+            }        
         }
         return false;
 
@@ -108,7 +124,7 @@
 
     _onNextClicked: function () {
         if ($('.djNext', this.$element).hasClass('djEnabled')) {
-            var scrollSize = this.options.scrollSize || this.defaults.scrollSize;
+            var scrollSize = this.scrollSize;
             var scrollApi = $(this.selectors.scrollable, this.$element).eq(0).data('scrollable');
             var scrollIndex = scrollApi.getIndex();
             var scrollCount = scrollApi.getItems().length;
@@ -122,13 +138,16 @@
         if ($('.djTop', this.$element).hasClass('djEnabled')) {
             var scrollApi = $(this.selectors.scrollable, this.$element).eq(0).data('scrollable');
             scrollApi.seekTo(0, duration);
+            $('.djPrev, .djTop', this.$element).removeClass('djEnabled');
+            $('.djNext', this.$element).addClass('djEnabled');
         }
         return false;
     },
 
     bindOnSuccess: function (response, params) {
         //this.publish(this.events.dataReceived, response);
-
+        var self = this;
+        
         if (!this.validateResponse(response)) {
             return;
         }
@@ -163,49 +182,60 @@
 
             FinalResults.RadarItems.push(company);
         }
-
+        
         this.radar = FinalResults;
-
         this.publish(this.events.dataTransformed, FinalResults);
-
         this.renderCategories(FinalResults);
-
         this.showErrors = false;
-
         this.renderContent(this.radar.RadarItems);
+        
+        // update the window viewport (windowsize * 15) + (windowsize -1)
         this._setScrollable();
-
+        var scrollSize = this.scrollSize;
+        var windowSize = this.options.windowSize || this.defaults.windowSize;
+        
+        if (scrollSize > 0 && windowSize < FinalResults.RadarItems.length) {
+            $(".djWidgetContentList", this.$element).height((windowSize * this.defaults.chipHeight) + (windowSize - 1));
+        }
+        else {
+            $(".djWidgetContentList", this.$element).height(((FinalResults.RadarItems.length) * this.defaults.chipHeight) + (FinalResults.RadarItems.length - 1));
+            $(".djActions", this.$element).hide();
+        }
+        
+        var bgColor = self.options.backgroundColor || self.defaults.backgroundColor;
+        var hlColor = self.options.highlightColor || self.defaults.highlightColor;
+        
         // When hovering over an individual item
-        $(".djWidgetRadar90 .djRadarItemNode").hover(function () {
+        $(".djWidgetRadar90 .djRadarItemNode").hover(function() {
             var index = $(this).attr("data-index");
-            $(this).css({ backgroundColor: "#F0F0F0" });
-            $(this).closest(".djWidgetItem").find(".djRadarItemNode").css({ backgroundColor: "#F0F0F0" });
-            $(this).closest(".djWidgetRadar90").find("[data-index=" + index + "]").css({ backgroundColor: "#F0F0F0" });
-        }, function () {
+            $(this).css({ backgroundColor: hlColor});
+            $(this).closest(".djWidgetItem").find(".djRadarItemNode").css({ backgroundColor: hlColor});
+            $(this).closest(".djWidgetRadar90").find("[data-index=" + index + "]").css({ backgroundColor: hlColor});
+        }, function() {
             var index = $(this).attr("data-index");
-            $(this).css({ backgroundColor: '#FFF' });
-            $(this).closest(".djWidgetItem").find(".djRadarItemNode").css({ backgroundColor: '#FFF' });
-            $(this).closest(".djWidgetRadar90").find("[data-index=" + index + "]").css({ backgroundColor: '#FFF' });
+            $(this).css({ backgroundColor: bgColor });
+            $(this).closest(".djWidgetItem").find(".djRadarItemNode").css({ backgroundColor: bgColor });
+            $(this).closest(".djWidgetRadar90").find("[data-index=" + index + "]").css({ backgroundColor: bgColor });
         });
         
         // When hovering over an company item
         $(".djWidgetRadar90 .djWidgetItem").hover(function () {
-            $(this).css({ backgroundColor: "#F0F0F0" });
-            $(this).children().css({ backgroundColor: "#F0F0F0" });
+            $(this).css({ backgroundColor: hlColor});
+            $(this).children().css({ backgroundColor: hlColor});
         }, function () {
-            $(this).css({ backgroundColor: '#FFF' });
-            $(this).children().css({ backgroundColor: "#FFF" });
+            $(this).css({ backgroundColor: bgColor });
+            $(this).children().css({ backgroundColor: bgColor });
         });
 
         // When hovering over a category
         $(".djWidgetRadar90 li.djRadarCategory").hover(function () {
             var index = $(this).attr("data-index");
-            $(this).css({ backgroundColor: "#f0f0f0" });
-            $(this).closest(".djWidgetRadar90").find("[data-index=" + index + "]").css({ backgroundColor: "#f0f0f0" });
+            $(this).css({ backgroundColor: hlColor});
+            $(this).closest(".djWidgetRadar90").find("[data-index=" + index + "]").css({ backgroundColor: hlColor});
         }, function () {
             var index = $(this).attr("data-index");
-            $(this).css({ backgroundColor: '#FFF' });
-            $(this).closest(".djWidgetRadar90").find("[data-index=" + index + "]").css({ backgroundColor: '#FFF' });
+            $(this).css({ backgroundColor: bgColor });
+            $(this).closest(".djWidgetRadar90").find("[data-index=" + index + "]").css({ backgroundColor: bgColor });
         });
         
         $('.djRadarCategory', this.$element).on('click', this._delegates.HandleSort);
@@ -352,14 +382,15 @@
     renderContent: function (data) {
 
         var $items = $('.djWidgetItems', this.$element);
-        var html = '';
         var self = this;
         var radarTemplate = self.templates.radar;
+        var html = [];
         for (var i in data) {
-            html += this.templates.success({ settings: self.options, propName: i, item: data[i], templates: { radar: radarTemplate}, f: { getTicker: self.getTicker} });
+            html[html.length] = this.templates.success({ settings: self.options, propName: i, item: data[i], templates: { radar: radarTemplate}, f: { getTicker: self.getTicker} });
         }
 
-        $items.html(html);
+
+        $items.html(html.join(""));
 
         var radars = $('.djRadarItemBox', this.$element); //table and key
 
@@ -495,10 +526,6 @@
         return rgb;  
     },
     
-    drawItemLabel: function () {
-
-    },
-        
     drawCategoryLabel: function (target, text) {
         var categoryLabel = '<div title="' + text + '">' + text + '</div>';
         var fontSize = this.options.hitSize || this.defaults.hitSize;
@@ -578,6 +605,7 @@
         }
     }
 });
+
 
 // Declare this class as a jQuery plugin
 $.plugin('dj_NewsRadar', DJ.UI.NewsRadar);

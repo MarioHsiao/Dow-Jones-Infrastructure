@@ -88,7 +88,6 @@ namespace DowJones.Web.Showcase.Controllers
                     Url = urlBuilder.ToString(),
                     Description = "",
                     Target = "_blank",
-                    ImageSize = ImageSize.Small,
                     Title = ProcessHeadlineRenderItems(articleDataSet.Headline),
                     SocialNetworks = new[] { SocialNetworks.LinkedIn, SocialNetworks.Twitter, SocialNetworks.Facebook, },
                     Keywords = "",
