@@ -17,7 +17,6 @@ namespace DowJones.Web.Showcase.Controllers
             var model = new SocialButtonsModel
                             {
                                 SocialNetworks = socialNetworks,
-                                ImageSize = ImageSize.Small,
                                 Title = "TestTitle",
                                 Url = "http://www.dowjones.com",
                                 Keywords = "Social",
