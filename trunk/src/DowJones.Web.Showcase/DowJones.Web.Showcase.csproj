@@ -187,7 +187,6 @@
     <Compile Include="Controllers\SocialMediaController.cs" />
     <Compile Include="Controllers\StockKioskController.cs" />
     <Compile Include="Controllers\TopicController.cs" />
-    <Compile Include="Controllers\VideoPlayerController.cs" />
     <Compile Include="Hub\NewsFeed.cs" />
     <Compile Include="JsonSerializers\JsonConvertAdapter.cs" />
     <Compile Include="Mocks\MockSearchManager.cs" />

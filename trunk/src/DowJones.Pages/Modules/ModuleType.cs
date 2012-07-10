@@ -54,7 +54,7 @@ namespace DowJones.Pages.Modules
 
         [EnumMember]
         [IRTCode("msoc")]
-        SocialMediaModule,
+        SocialMediaNewspageModule,
 
         [EnumMember]
         CommunicatorAuthorSummaryModule,
