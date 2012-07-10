@@ -1,5 +1,5 @@
 body {
-  padding-top: 200px;
+  padding-top: 205px;
   padding-bottom: 10px; }
 
 .sidebar-nav {
@@ -53,7 +53,7 @@ section.showcase {
   .subnav-fixed {
     position: fixed;
     width: inherit;
-    top: 210px; } }
+    top: 215px; } }
 /* Widget Grid */
 .widgetGrid .wideCol, .widgetGrid .narrowCol {
   min-height: 158px; }
