@@ -45,6 +45,7 @@
   </PropertyGroup>
   <ItemGroup>
     <None Include="1GettingStarted\2DevelopmentSetup\2ConnectingToTFS.md" />
+    <None Include="1GettingStarted\3CreatingNewComponent\1OpenSolution.md" />
     <None Include="1GettingStarted\PackageManagement\2ConfiguringPackageSources.md" />
     <None Include="1GettingStarted\PackageManagement\1DowJonesNugetRepos.md" />
     <None Include="1GettingStarted\1UsingComponents\Client-sideUsage.md" />
@@ -118,12 +119,12 @@
     <Content Include="images\NuGet_PackageSources.png" />
     <Content Include="images\Nuget_UpgradePackages.png" />
     <Content Include="Web.config" />
-    <None Include="1GettingStarted\3CreatingNewComponent\1DataModel.md" />
-    <None Include="1GettingStarted\3CreatingNewComponent\2ComponentModel.md" />
-    <None Include="1GettingStarted\3CreatingNewComponent\3JavascriptCode.md" />
-    <None Include="1GettingStarted\3CreatingNewComponent\4ClientTemplates.md" />
-    <None Include="1GettingStarted\3CreatingNewComponent\5ViewComponent.md" />
-    <None Include="1GettingStarted\3CreatingNewComponent\6TestTheComponent.md" />
+    <None Include="1GettingStarted\3CreatingNewComponent\2CreateDataObject.md" />
+    <None Include="1GettingStarted\3CreatingNewComponent\3CreateModel.md" />
+    <None Include="1GettingStarted\3CreatingNewComponent\4CreateJavascriptFiles.md" />
+    <None Include="1GettingStarted\3CreatingNewComponent\5CreateClientTemplates.md" />
+    <None Include="1GettingStarted\3CreatingNewComponent\6CreateRazorView.md" />
+    <None Include="1GettingStarted\3CreatingNewComponent\7AddToShowcase.md" />
     <None Include="1GettingStarted\3CreatingNewComponent\Overview.md" />
     <None Include="1GettingStarted\2DevelopmentSetup\1DevelopmentEnvironment.md" />
     <None Include="1GettingStarted\2DevelopmentSetup\VerifyingSetup.md" />
