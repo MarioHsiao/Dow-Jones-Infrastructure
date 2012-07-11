@@ -6,8 +6,8 @@
             .click(function () {
                 var $this = $(this),
                     useCache = $this.data('cached') || false;
-                               
-                if(useCache) {
+
+                if (useCache) {
                     $this.next('.cache-container').modal();
                 }
                 else {
@@ -19,9 +19,9 @@
                             .append(prettyPrintOne(data))
                             .insertAfter($this)
                             .modal();
-                        
+
                         $this.data('cached', true);
-                        
+
                         $this.button('reset');
                     });
                 }
@@ -33,26 +33,27 @@
                 p.prev('pre').append(p.detach().css({ float: "right" }));
             });
     }
-    
+
     function setupDemoFrame() {
         var liveDemo = $('#livedemo'),
             blocker = $('div.blocker', liveDemo),
             iframe = blocker.find('iframe'),
             demoUrl = iframe.data('url');
-        
+
         if (demoUrl) {
             blocker.block({
                 message: $('#loader'),
                 css: {
-                border: 'none', 
-                padding: '15px', 
-                backgroundColor: '#000', 
-                '-webkit-border-radius': '10px', 
-                '-moz-border-radius': '10px', 
-                opacity: .5, 
-                color: '#fff' 
-            } });
-        
+                    border: 'none',
+                    padding: '15px',
+                    backgroundColor: '#000',
+                    '-webkit-border-radius': '10px',
+                    '-moz-border-radius': '10px',
+                    opacity: .5,
+                    color: '#fff'
+                }
+            });
+
             iframe.load(function () {
                 var actualHeight = iframe[0].contentDocument.height;
                 iframe.height(actualHeight + 'px');
@@ -61,7 +62,8 @@
         }
     }
 
-    function setupScrollSpy(offset) {
+    function setupScrollSpy() {
+        var offset = $('.sidebar-nav').offset().top;
         $('body')
             .attr('data-target', '.sidebar-nav')
             .attr('data-spy', 'scroll')
@@ -69,35 +71,23 @@
     }
 
     function setupNavScroll(nav) {
-        // fix nav on scroll
         var $win = $(window),
             $nav = $(nav),
-            navTop = $(nav).length && $(nav).offset().top - 230,
-            isFixed = 0;
-        
-        //console.log('nav offset top:', $(nav).offset().top);
-        processScroll();
-        $nav.on('click', function () {
-            if (!isFixed) {
-                setTimeout(function () { $win.scrollTop($win.scrollTop() - 47); }, 10);
-            }
+            paddingToOffset = parseInt($('body').css("padding-top"), 10);
+
+        $nav.on('click', 'li > a', function () {
+            var el = $(this),
+                target = $(el.attr('href'));
+            
+            $nav.find('li').removeClass('active');
+            el.parent('li').addClass('active');
+            setTimeout(function () { $win.scrollTop(target.offset().top - paddingToOffset); }, 10);
+            return false;
         });
 
-        $win.on('scroll', processScroll);
+        var width = $nav.width();
+        $nav.addClass('subnav-fixed').width(width + 'px');
 
-        function processScroll() {
-            //console.log('navtop:', navTop);
-            var scrollTop = $win.scrollTop();
-            //console.log('scrollTop:', scrollTop);
-            if (scrollTop >= navTop && !isFixed) {
-                isFixed = 1;
-                var width = $nav.width();
-                $nav.addClass('subnav-fixed').width(width+'px');
-            } else if (scrollTop <= navTop && isFixed) {
-                isFixed = 0;
-                $nav.removeClass('subnav-fixed');
-            }
-        }
     }
 
     function setupPrettyPrint() {
@@ -114,7 +104,7 @@
             }
         });
 
-        if(found) window.prettyPrint();
+        if (found) window.prettyPrint();
     }
 
     function prettifyMarkdownTables() {
@@ -136,7 +126,7 @@
         $(".contentWell .child-link").removeClass('active');
 
         /* Now make current tab "active" */
-        $this.addClass("active")            
+        $this.addClass("active")
              .parents(".level-0").find(".level-1").hide();   /*  Hide all tab content */
 
         //  Here we get the href value of the selected tab
@@ -149,8 +139,8 @@
 
     $(function () {
         // activate first nav item
-        $(".sidebar-nav > ul.nav > li").not(".nav-header").first().addClass("active");
-        
+        $(".sidebar-nav > ul.nav > li:first").addClass("active");
+
         // scroll subnav upto a certain point and then fix it to top
         setupNavScroll('.sidebar-nav');
 
@@ -161,15 +151,15 @@
         prettifyMarkdownTables();
 
         // highlight Children in sidebar nav as we scroll
-        setupScrollSpy(230);
+        //setupScrollSpy();
 
         setupDemoFrame();
 
         //  When user clicks on view switcher button
         $(".contentWell .child-link").click(switchView);
-        
+
         setupDataViewer();
-        
+
     });
 
 }(window.jQuery));
