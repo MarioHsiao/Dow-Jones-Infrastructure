@@ -7,7 +7,7 @@ namespace DowJones.Web.Showcase.Controllers
 {
     public class NewsRadarController : Controller
     {
-        public ActionResult Index()
+        public ActionResult Index(uint windowSize = 5)
         {
             #region Data
             var data = new Collection<EntityModel>
@@ -6375,7 +6375,9 @@ namespace DowJones.Web.Showcase.Controllers
 
             var model = new NewsRadarModel
                 {
-                    Data = data
+                    Data = data,
+                    WindowSize = windowSize,
+                    PositiveMovementColor = "#111111"
                 };
 
             return View(model);

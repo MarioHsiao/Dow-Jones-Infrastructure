@@ -13,7 +13,8 @@ namespace DowJones.Managers.Search.MetaDataSearch
     }
 
     public enum FIICodeType
-    { 
+    {
+        Company,
         Industry,
         Region,
         Subject

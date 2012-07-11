@@ -1,4 +1,5 @@
-﻿DJ.UI.NewsRadar = DJ.UI.Component.extend({
+﻿
+DJ.UI.NewsRadar = DJ.UI.Component.extend({
     selectors: {
         scrollable: '.scrollable'
     },
@@ -6,12 +7,15 @@
     defaults: {
         displayTicker: false,
         hitColor: "#999999",
-        hitFont: "Verdana",
-        hitSize: "8",
+        hitFont: "\"Lucida Grande\", \"Lucida Sans Unicode\", Arial, Helvetica, sans-serif",
+        hitSize: "11",
         noMovementColor: "#DCDCDC",
         negativeMovementColor: "#FF0000",
         positiveMovementColor: "#666666",
-        scrollSize: 5,
+        highlightColor: "#ffffb7",
+        backgroundColor: "#FFFFFF",
+        windowSize: 5,
+        chipHeight: 19,
         colors: { WHITE: "#FFFFFF", BLACK: "#000000" }
     },
     
@@ -28,9 +32,13 @@
         // Call the base constructor
         this._super(element, $meta);
 
+        // set up some variables
+        this.scrollSize = (this.options.windowSize || this.defaults.windowSize) - 1;
+
         // call databind if we got data from server
-        if (this.data)
+        if (this.data) {
             this.bindOnSuccess(this.data, this.options);
+        }
     },
 
     _initializeElements: function () {
@@ -62,7 +70,12 @@
 
     _onRadarItemBoxClicked: function (ev) {
         var $target = $(ev.currentTarget);
-        this.publish(this.events.radarItemClicked, $target.data());
+        var propname = $target.data("propname");
+        var index = $target.data("index");
+        var rItem = this.radar.RadarItems[propname];
+        var rNewsEntity = rItem.newsEntities[index];
+        var data = { companyName: rItem.companyName, ownershipType: rItem.ownershipType, isNewsCoded: rItem.isNewsCoded,  instrumentReference: rItem.instrumentReference, newsEntity: rNewsEntity };
+        this.publish(this.events.radarItemClicked, data);
     },
 
     _setScrollable: function () {
@@ -78,7 +91,9 @@
         var scrollApi = $(this.selectors.scrollable, this.$element).eq(0).data('scrollable');
         var scrollIndex = scrollApi.getIndex();
         var scrollCount = scrollApi.getItems().length;
-        var scrollMax = Math.min(this.options.scrollSize, scrollCount - scrollIndex - this.options.scrollSize - 1);
+        var scrollSize = this.scrollSize;
+
+        var scrollMax = Math.min(scrollSize, scrollCount - scrollIndex - scrollSize - 1);
         if (scrollIndex > 0) {
             $('.djPrev, .djTop', this.$element).addClass('djEnabled');
 
@@ -94,8 +109,14 @@
 
     _onPrevClicked: function () {
         if ($('.djPrev', this.$element).hasClass('djEnabled')) {
+            var scrollSize = this.scrollSize;
             var scrollApi = $(this.selectors.scrollable, this.$element).eq(0).data('scrollable');
-            scrollApi.move(-1 * this.options.scrollSize);
+            var scrollIndex = scrollApi.getIndex();
+            if (scrollIndex < scrollSize) {
+                scrollApi.seekTo(0);
+            } else {
+               scrollApi.move(-1 * scrollSize);      
+            }        
         }
         return false;
 
@@ -103,7 +124,7 @@
 
     _onNextClicked: function () {
         if ($('.djNext', this.$element).hasClass('djEnabled')) {
-            var scrollSize = this.options.scrollSize || this.defaults.scrollSize;
+            var scrollSize = this.scrollSize;
             var scrollApi = $(this.selectors.scrollable, this.$element).eq(0).data('scrollable');
             var scrollIndex = scrollApi.getIndex();
             var scrollCount = scrollApi.getItems().length;
@@ -117,18 +138,21 @@
         if ($('.djTop', this.$element).hasClass('djEnabled')) {
             var scrollApi = $(this.selectors.scrollable, this.$element).eq(0).data('scrollable');
             scrollApi.seekTo(0, duration);
+            $('.djPrev, .djTop', this.$element).removeClass('djEnabled');
+            $('.djNext', this.$element).addClass('djEnabled');
         }
         return false;
     },
 
     bindOnSuccess: function (response, params) {
         //this.publish(this.events.dataReceived, response);
-
+        var self = this;
+        
         if (!this.validateResponse(response)) {
             return;
         }
 
-        // After parsing out the necessary data, this is the object we will use to render the widget.
+        // After parsing out the necessary data, this is the object we will use to render the widget..remove("highlightCurrent")
         var FinalResults = {
             RadarCategories: [],
             RadarItems: []
@@ -158,44 +182,64 @@
 
             FinalResults.RadarItems.push(company);
         }
-
+        
         this.radar = FinalResults;
-
         this.publish(this.events.dataTransformed, FinalResults);
-
         this.renderCategories(FinalResults);
-
         this.showErrors = false;
-
         this.renderContent(this.radar.RadarItems);
+        
+        // update the window viewport (windowsize * 15) + (windowsize -1)
         this._setScrollable();
-
+        var scrollSize = this.scrollSize;
+        var windowSize = this.options.windowSize || this.defaults.windowSize;
+        
+        if (scrollSize > 0 && windowSize < FinalResults.RadarItems.length) {
+            $(".djWidgetContentList", this.$element).height((windowSize * this.defaults.chipHeight) + (windowSize - 1));
+        }
+        else {
+            $(".djWidgetContentList", this.$element).height(((FinalResults.RadarItems.length) * this.defaults.chipHeight) + (FinalResults.RadarItems.length - 1));
+            $(".djActions", this.$element).hide();
+        }
+        
+        var bgColor = self.options.backgroundColor || self.defaults.backgroundColor;
+        var hlColor = self.options.highlightColor || self.defaults.highlightColor;
+        
         // When hovering over an individual item
-        $(".djWidgetRadar90 .djRadarItemNode").hover(function () {
+        $(".djWidgetRadar90 .djRadarItemNode").hover(function() {
             var index = $(this).attr("data-index");
-            $(this).addClass("highlight highlightCurrent");
-            $(this).closest(".djWidgetItem").find(".djRadarItemNode").addClass("highlight");
-            $(this).closest(".djWidgetRadar90").find("[data-index=" + index + "]").addClass("highlight");
+            $(this).css({ backgroundColor: hlColor});
+            $(this).closest(".djWidgetItem").find(".djRadarItemNode").css({ backgroundColor: hlColor});
+            $(this).closest(".djWidgetRadar90").find("[data-index=" + index + "]").css({ backgroundColor: hlColor});
+        }, function() {
+            var index = $(this).attr("data-index");
+            $(this).css({ backgroundColor: bgColor });
+            $(this).closest(".djWidgetItem").find(".djRadarItemNode").css({ backgroundColor: bgColor });
+            $(this).closest(".djWidgetRadar90").find("[data-index=" + index + "]").css({ backgroundColor: bgColor });
+        });
+        
+        // When hovering over an company item
+        $(".djWidgetRadar90 .djWidgetItem").hover(function () {
+            $(this).css({ backgroundColor: hlColor});
+            $(this).children().css({ backgroundColor: hlColor});
         }, function () {
-            var index = $(this).attr("data-index");
-            $(this).removeClass("highlight highlightCurrent");
-            $(this).closest(".djWidgetItem").find(".djRadarItemNode").removeClass("highlight");
-            $(this).closest(".djWidgetRadar90").find("[data-index=" + index + "]").removeClass("highlight");
+            $(this).css({ backgroundColor: bgColor });
+            $(this).children().css({ backgroundColor: bgColor });
         });
 
         // When hovering over a category
         $(".djWidgetRadar90 li.djRadarCategory").hover(function () {
             var index = $(this).attr("data-index");
-            $(this).addClass("highlight highlightCurrent");
-            $(this).closest(".djWidgetRadar90").find("[data-index=" + index + "]").addClass("highlight");
+            $(this).css({ backgroundColor: hlColor});
+            $(this).closest(".djWidgetRadar90").find("[data-index=" + index + "]").css({ backgroundColor: hlColor});
         }, function () {
             var index = $(this).attr("data-index");
-            $(this).removeClass("highlight highlightCurrent");
-            $(this).closest(".djWidgetRadar90").find("[data-index=" + index + "]").removeClass("highlight");
+            $(this).css({ backgroundColor: bgColor });
+            $(this).closest(".djWidgetRadar90").find("[data-index=" + index + "]").css({ backgroundColor: bgColor });
         });
         
         $('.djRadarCategory', this.$element).on('click', this._delegates.HandleSort);
-        $('.djRadarItemBox', this.$element).on('click', this._delegates.OnRadarItemBoxClicked);
+        $('.djRadarItemNode', this.$element).on('click', this._delegates.OnRadarItemBoxClicked);
     },
 
     _handleSort: function (ev) {
@@ -218,7 +262,7 @@
 
         this.renderContent(this.radar.RadarItems);
         this._onTopClicked(0);
-        $('.djRadarItemBox', this.$element).on('click', this._delegates.OnRadarItemBoxClicked);
+        $('.djRadarItemNode', this.$element).on('click', this._delegates.OnRadarItemBoxClicked);
     },
 
     // Loop through each news category of a given company and pull out needed data for the widget
@@ -338,14 +382,15 @@
     renderContent: function (data) {
 
         var $items = $('.djWidgetItems', this.$element);
-        var html = '';
         var self = this;
         var radarTemplate = self.templates.radar;
+        var html = [];
         for (var i in data) {
-            html += this.templates.success({ settings: self.options, item: data[i], templates: { radar: radarTemplate}, f: { getTicker: self.getTicker} });
+            html[html.length] = this.templates.success({ settings: self.options, propName: i, item: data[i], templates: { radar: radarTemplate}, f: { getTicker: self.getTicker} });
         }
 
-        $items.html(html);
+
+        $items.html(html.join(""));
 
         var radars = $('.djRadarItemBox', this.$element); //table and key
 
@@ -449,6 +494,8 @@
 
         var self = this;
         var cats = [];
+        
+        // need to rework this for 1e8 and under.
         for (var i in data.RadarCategories) {
             var category = data.RadarCategories[i];
             var catMarkup = self.templates.category({ index: i, settings: self.options, category: category });
@@ -459,6 +506,8 @@
         cats.reverse();
         $categories.html(cats.join(''));
     },
+    
+    
 
     colorLuminance: function (hex, lum) {  
         // validate hex string  
@@ -476,28 +525,53 @@
         }  
         return rgb;  
     },
-        
+    
     drawCategoryLabel: function (target, text) {
-
-        var renderer = new Highcharts.Renderer(target, 19, 143);
-        var xPos = 12.5;
-        var yPos = 140;
-        renderer.rect(0, 0, 0, 143).css({
-            borderLeft: '1px solid silver'
-        });
-
-        var categoryLabel = '<span title="' + text + '">' + text + '</span>';
+        var categoryLabel = '<div title="' + text + '">' + text + '</div>';
         var fontSize = this.options.hitSize || this.defaults.hitSize;
         var fontFamily = this.options.hitFont || this.defaults.hitFont;
-        renderer.text(categoryLabel, xPos, yPos).attr({
-            rotation: 270,
-        }).css({
-            fontSize: fontSize + 'pt',
-            lineHeight: '19px',
-            fontFamily: fontFamily,
-            fontWeight: 'normal',
-            color: this.colorLuminance(this.options.hitColor|| this.default.hitColor, 0)
-        }).add();
+        var tColor = this.colorLuminance(this.options.hitColor || this.defaults.hitColor, 0);
+
+        if (Highcharts.VMLRenderer) {
+            $(target).css({
+                position: "relative",
+                top: '0',
+                left: '0',
+                zoom: '1',
+                filter: 'progid:DXImageTransform.Microsoft.BasicImage(rotation=2)'
+            });
+            var $categoryLabel = $(categoryLabel);
+            $categoryLabel.css({
+                position: 'absolute',
+                writingMode: 'tb-rl',
+                top: '3px',
+                height: '143px',
+                width: '19px',
+                textAlign: 'left',
+                lineHeight: '19px',
+                clip: 'rect(0px,19px,143px,0px)'
+            }).addClass("verticalLabel");
+
+            $(target).css({ backgroundColor: '#FFF' });
+            $(target).html($categoryLabel);
+            return target;
+        }
+
+        else {
+            var renderer = new Highcharts.Renderer(target, 19, 143);
+            var xPos = 12.5;
+            var yPos = 140;
+            
+            renderer.text(text, xPos, yPos).attr({
+                rotation: 270
+            }).css({
+                fontSize: fontSize + 'px',
+                lineHeight: '19px',
+                fontFamily: fontFamily,
+                fontWeight: 'normal',
+                color: tColor
+            }).add();
+        }
         return target;
     },
 
@@ -531,6 +605,7 @@
         }
     }
 });
+
 
 // Declare this class as a jQuery plugin
 $.plugin('dj_NewsRadar', DJ.UI.NewsRadar);
