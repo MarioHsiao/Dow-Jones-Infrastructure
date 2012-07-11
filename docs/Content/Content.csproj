@@ -44,8 +44,15 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <None Include="1GettingStarted\1UsingComponents\ConfiguringNuget.md" />
+    <None Include="1GettingStarted\PackageManagement\2ConfiguringPackageSources.md" />
+    <None Include="1GettingStarted\PackageManagement\1DowJonesNugetRepos.md" />
+    <None Include="1GettingStarted\1UsingComponents\Client-sideUsage.md" />
+    <None Include="1GettingStarted\1UsingComponents\1Server-sideUsage.md" />
     <None Include="1GettingStarted\1UsingComponents\Overview.md" />
+    <None Include="1GettingStarted\PackageManagement\3AddingPackage.md" />
+    <None Include="1GettingStarted\PackageManagement\4UpgradingPackages.md" />
+    <None Include="1GettingStarted\PackageManagement\5BestPractices.md" />
+    <None Include="1GettingStarted\PackageManagement\Overview.md" />
     <None Include="Components\Article\Configuration.md" />
     <None Include="Components\Article\Events.md" />
     <None Include="Components\Article\LiveDemo.md" />
@@ -104,6 +111,11 @@
     <None Include="Components\VideoPlayer\Options.md" />
     <None Include="Components\VideoPlayer\Overview.md" />
     <None Include="deploy.proj" />
+    <Content Include="images\NuGet_AddedSource.png" />
+    <Content Include="images\NuGet_AddPackageReference.png" />
+    <Content Include="images\NuGet_Navigation.png" />
+    <Content Include="images\NuGet_PackageSources.png" />
+    <Content Include="images\Nuget_UpgradePackages.png" />
     <Content Include="Web.config" />
     <None Include="1GettingStarted\3CreatingNewComponent\1DataModel.md" />
     <None Include="1GettingStarted\3CreatingNewComponent\2ComponentModel.md" />
@@ -114,8 +126,8 @@
     <None Include="1GettingStarted\3CreatingNewComponent\Overview.md" />
     <None Include="1GettingStarted\2DevelopmentSetup\DevelopmentEnvironment.md" />
     <None Include="1GettingStarted\2DevelopmentSetup\VerifyingSetup.md" />
-    <None Include="1GettingStarted\2DevelopmentSetup\NuGetRepository.md" />
     <None Include="1GettingStarted\2DevelopmentSetup\Overview.md" />
+    <None Include="images\Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />

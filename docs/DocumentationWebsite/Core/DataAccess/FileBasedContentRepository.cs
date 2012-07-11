@@ -12,15 +12,7 @@ namespace DowJones.Documentation.DataAccess
 		private readonly DirectoryInfo _baseDirectory;
 		private readonly ContentSectionComparer _nameComparer;
 
-		internal IEnumerable<DirectoryInfo> CategoryDirectories
-		{
-			get
-			{
-				return (!_baseDirectory.Exists)
-						  ? Enumerable.Empty<DirectoryInfo>()
-						  : _baseDirectory.GetDirectories();
-			}
-		}
+		internal IEnumerable<DirectoryInfo> CategoryDirectories { get; private set; }
 
 		public IEnumerable<string> SectionOrder { get; set; }
 
@@ -30,6 +22,14 @@ namespace DowJones.Documentation.DataAccess
 			Contract.Requires(!string.IsNullOrWhiteSpace(baseDirectory));
 			_baseDirectory = new DirectoryInfo(baseDirectory);
 			_nameComparer = new ContentSectionComparer(orderedSections ?? Enumerable.Empty<string>());
+
+
+			if (!_baseDirectory.Exists) 
+				CategoryDirectories = Enumerable.Empty<DirectoryInfo>();
+			else
+				CategoryDirectories = _baseDirectory
+					.GetDirectories()
+					.Where(n => !n.Name.Equals("images", StringComparison.OrdinalIgnoreCase));
 		}
 
 
@@ -65,7 +65,11 @@ namespace DowJones.Documentation.DataAccess
 				return null;
 
 			var contentFiles = contentDirectory.GetFiles("*.md").Select(x => new ContentSection(x.Name));
-			var contentDirectories = contentDirectory.GetDirectories().Select(GetContentSection);
+
+			// take all directories except images
+			var contentDirectories = contentDirectory
+										.GetDirectories()
+										.Select(GetContentSection);
 			var relatedTopics = GetRelatedTopics(contentDirectory);
 
 			var children =
