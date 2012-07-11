@@ -32,7 +32,7 @@ namespace DowJones.Documentation.Website.Extensions
 		public static IHtmlString Note(this HtmlHelper helper, string text)
 		{
 			return new HtmlString(
-				string.Format("<p class=\"note\"><img src=\"{1}\" /><span>{0}</span></p>"
+				string.Format("<div class=\"note\"><img src=\"{1}\" alt=\"note\" /><span>{0}</span></div>"
 							  , text, VirtualPathUtility.ToAbsolute("~/Styles/themes/spacelab/img/note.png"))
 			);
 		}

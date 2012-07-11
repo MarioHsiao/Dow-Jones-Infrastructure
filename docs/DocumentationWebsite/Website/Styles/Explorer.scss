@@ -150,14 +150,19 @@ td.name
 	background-color: #f7f7f9;
 	border: 1px solid #e1e1e8;
 	@include box-shadow-light-inset();
+	display: table;
 
 	img {
 		height: 48px;
 		width: 48px;
-		border-right: 3px solid #DDD;
-	}	
+		display: table-cell;
+	}
 
 	span {
+		border-left: 3px solid #DDD;
 		padding-left: 0.5em;
+		display: table-cell;
+		vertical-align: middle;
 	}
+	
 }
