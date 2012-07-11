@@ -53,8 +53,9 @@
     <None Include="Components\Article\Overview.md" />
     <None Include="Components\AutoSuggest\Configuration\ASP.NET_MVC.md" />
     <None Include="Components\AutoSuggest\Configuration\Javascript.md" />
-    <None Include="Components\AutoSuggest\Tokens.md" />
     <None Include="Components\AutoSuggest\Options.md" />
+    <None Include="Components\AutoSuggest\Tokens.md" />
+    <None Include="Components\AutoSuggest\Properties.md" />
     <None Include="Components\AutoSuggest\Events.md" />
     <None Include="Components\AutoSuggest\LiveDemo.md">
       <SubType>Designer</SubType>

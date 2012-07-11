@@ -1,7 +1,7 @@
-﻿#### Rendering the component from a Razor View
+﻿
+Populate the `SocialButtons` model:
 
-	<!-- Instantiate and fill model-->
-	var model = new SocialButtonsModel
+	var socialButtonsModel = new SocialButtonsModel
     {
         SocialNetworks = new List<SocialNetworks>
 						{
@@ -19,5 +19,10 @@
         Description = "Share Content"
     };
 
-	<!-- Render the component using the model-->
-	@@Html.DJ().Render(Model)
+	
+ Render the model in your view which will render the component in the browser:
+
+ <!-- Render the component -->
+	@@model socialButtonsModel
+
+	@@Html.DJ().Render(socialButtonsModel)

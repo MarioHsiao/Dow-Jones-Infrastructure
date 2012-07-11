@@ -1,7 +1,7 @@
 ﻿@using DowJones.Documentation.Website.Extensions;
 @using System.Configuration;
 
-Populate the Discovery Graph model (either in your controller or model):
+Populate the `DiscoveryGraph` model:
 
 	using DowJones.Web.Mvc.UI.Components.DiscoveryGraph;
 
@@ -15,4 +15,6 @@ Render the model in your view which will render the component in the browser:
 	<link href="Content/css/discoveryGraph.css" rel="stylesheet" />
 	
 	<!-- Render the component -->
+	@@model discoveryGraphModel
+
 	@@Html.DJ().Render(discoveryGraphModel)	

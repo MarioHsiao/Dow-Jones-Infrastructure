@@ -1,9 +1,7 @@
 ﻿@using DowJones.Documentation.Website.Extensions;
 @using System.Configuration;
 
-#### Rendering the component from a Razor View
-
-Populate the model with options and data:
+Populate the `NewsRadar` model:
 
 	// Instantiate and fill data
 	var data = new Collection<EntityModel>
@@ -11,7 +9,7 @@ Populate the model with options and data:
 		// Click on "View Sample Data" to see sample data
 	}
 
-    var model = new NewsRadarModel
+    var newsRadarModel = new NewsRadarModel
     {
 		// Set data
 		Data = data
@@ -22,4 +20,6 @@ Populate the model with options and data:
 Render the model in your view which will render the component in the browser:
 
 	<!-- Render the component using the model -->
-	@@Html.DJ().Render(model)
+	@@model newsRadarModel
+
+	@@Html.DJ().Render(newsRadarModel)

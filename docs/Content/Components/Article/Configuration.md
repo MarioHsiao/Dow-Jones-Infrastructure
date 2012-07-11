@@ -1,9 +1,7 @@
 ﻿@using DowJones.Documentation.Website.Extensions;
 @using System.Configuration;
 
-#### Rendering the component from a Razor View
-
-Populate the model with options and data:
+Populate the `Article` model:
 
 	// Instantiate and fill data
 	var data = new ArticleResultSet
@@ -11,7 +9,7 @@ Populate the model with options and data:
 		// Click on "View Sample Data" to see sample data
 	}
 
-	var model = new ArticleModel
+	var articleModel = new ArticleModel
 	{
 		// Set options
 		ShowPostProcessing = true,
@@ -28,7 +26,7 @@ Populate the model with options and data:
 		ShowSourceLinks = true,
 
 		// Set data
-		ArticleDataSet = data
+		ArticleDataSet = GetData() //Something that returns ArticleResultSet
 	};
 	
 @Html.DataViewer(ConfigurationManager.AppSettings["InfrastructureShowcase.BasePath"]+"/Article/data/cs")
@@ -36,5 +34,7 @@ Populate the model with options and data:
 Render the model in your view which will render the component in the browser:
 
 	<!-- Render the component using the model -->
-	@@Html.DJ().Render(model)
+	@@model articleModel
+
+	@@Html.DJ().Render(articleModel)
 	

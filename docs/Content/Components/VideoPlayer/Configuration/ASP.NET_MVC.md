@@ -1,10 +1,9 @@
 ﻿@using DowJones.Documentation.Website.Extensions;
 @using System.Configuration;
-#### Rendering the component from a Razor View
 
-Populate the VideoPlayer model (either in your controller or model):
+Populate the `VideoPlayer` model:
 
-	var model = new VideoPlayerModel
+	var videoPlayerModel = new VideoPlayerModel
             {
                 AutoPlay = false,
                 Width = 430,
@@ -22,6 +21,8 @@ Populate the VideoPlayer model (either in your controller or model):
 Render the model in your view which will render the component in the browser:
 
 	<!-- Render the component -->
-	@@Html.DJ().Render(Model)
+	@@model videoPlayerModel
+
+	@@Html.DJ().Render(videoPlayerModel) 
 
 @Html.DataViewer(ConfigurationManager.AppSettings["InfrastructureShowcase.BasePath"]+"/VideoPlayer/data/cs")

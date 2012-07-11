@@ -1,7 +1,7 @@
 ﻿@using DowJones.Documentation.Website.Extensions;
 @using System.Configuration;
 
-Populate the Portal Headline List model:
+Populate the `PortalHeadlineList` model:
 
 	using DowJones.Web.Mvc.UI.Components.Common.Types;
 	using DowJones.Web.Mvc.UI.Components.Models;
@@ -25,4 +25,6 @@ Populate the Portal Headline List model:
 Render the model in your view which will render the component in the browser:
 
 	<!-- Render the component -->
-	@@Html.DJ().Render(portalHeadlineListModel)
+	@@model portalHeadlineListModel
+
+	@@Html.DJ().Render(portalHeadlineListModel) 
