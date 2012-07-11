@@ -44,6 +44,7 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <None Include="1GettingStarted\2DevelopmentSetup\2ConnectingToTFS.md" />
     <None Include="1GettingStarted\PackageManagement\2ConfiguringPackageSources.md" />
     <None Include="1GettingStarted\PackageManagement\1DowJonesNugetRepos.md" />
     <None Include="1GettingStarted\1UsingComponents\Client-sideUsage.md" />
@@ -124,7 +125,7 @@
     <None Include="1GettingStarted\3CreatingNewComponent\5ViewComponent.md" />
     <None Include="1GettingStarted\3CreatingNewComponent\6TestTheComponent.md" />
     <None Include="1GettingStarted\3CreatingNewComponent\Overview.md" />
-    <None Include="1GettingStarted\2DevelopmentSetup\DevelopmentEnvironment.md" />
+    <None Include="1GettingStarted\2DevelopmentSetup\1DevelopmentEnvironment.md" />
     <None Include="1GettingStarted\2DevelopmentSetup\VerifyingSetup.md" />
     <None Include="1GettingStarted\2DevelopmentSetup\Overview.md" />
     <None Include="images\Web.config" />
