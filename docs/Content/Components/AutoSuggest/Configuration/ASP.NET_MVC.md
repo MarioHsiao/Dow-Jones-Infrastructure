@@ -4,8 +4,8 @@ Populate the `AutoSuggest` model:
 	var model = new AutoSuggestModel
             {
                 SuggestServiceUrl = [suggestServiceURl],
-                AutocompletionType = "Keyword",
-                AuthType = "SuggestContext",
+                AutocompletionType = AutoCompletionType.Keyword,
+                AuthType = AuthType.SuggestContext,
                 AuthTypeValue = [authTypeToken],
                 ControlId = "djKeywordAutoSuggest",
                 FillInputOnKeyUpDown = true,

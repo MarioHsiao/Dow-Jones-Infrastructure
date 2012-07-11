@@ -20,7 +20,7 @@ Finally, add the component to the page:
 					url = "http://www.dowjones.com",
 					keywords = "Social",
 					description = "Share Content",
-					socialNetworks: [0,5,10,9,11,8]
+					socialNetworks: ["Delicious","LinkedIn","Twitter","Technorati","Yahoo","StumbleUpon"]
             }
 		}); 
 	</script>	  
