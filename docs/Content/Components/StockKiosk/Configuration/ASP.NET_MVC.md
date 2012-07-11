@@ -3,11 +3,17 @@
 
 Populate the `StockKiosk` model:
 	
+	// Instantiate and fill data
+	var data = new MarketDataInstrumentIntradayResultSet
+	{
+		// Click on "View Sample Data" to see sample data
+	}
+
 	var model = new StockKioskModel
-		{
-			PageSize = 8,		//min as per the design to fit in
-			Data = GetData()	// Something that returns an instance of MarketDataInstrumentIntradayResultSet
-		};
+	{
+		PageSize = 8,		//min as per the design to fit in
+		Data = data	
+	};
 
 @Html.DataViewer(ConfigurationManager.AppSettings["InfrastructureShowcase.BasePath"]+"/StockKiosk/data/cs")
 

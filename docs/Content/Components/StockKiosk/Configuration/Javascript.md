@@ -35,9 +35,20 @@ Finally, add the component to the page:
 			component = $container.findComponent(DJ.UI.StockKiosk);
 
 			if(component) {
-				component.bindOnSuccess(data);	// data is a JSON representation of MarketDataInstrumentIntradayResultSet
+				// get data via a service call (stub service shown here for reference purposes only)
+				$.ajax({
+					url: 'http://someService/StockKiosk/GetJsonData',
+					success: function(data) {
+								// on receiving data, call the bind success method of the component
+								component.setData(data);
+							},
+					error:  function(jqXHR, textStatus, errorThrown) {
+								// on error, call the bind error method of the component
+								component.setData();
+							}
+				});
 			}
 		}
-	</script>  
+	</script> 
 
 @Html.DataViewer(ConfigurationManager.AppSettings["InfrastructureShowcase.BasePath"]+"/StockKiosk/data/js")

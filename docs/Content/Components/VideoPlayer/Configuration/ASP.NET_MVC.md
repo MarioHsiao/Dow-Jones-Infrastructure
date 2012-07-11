@@ -3,6 +3,15 @@
 
 Populate the `VideoPlayer` model:
 
+	// Instantiate and fill data
+	var data = new ClipCollection(new[]
+							{
+								new Clip
+									{
+										// Click on "View Sample Data" to see sample data
+									}
+							});
+
 	var model = new VideoPlayerModel
             {
                 AutoPlay = false,
@@ -15,7 +24,7 @@ Populate the `VideoPlayer` model:
                 PlayerKey = "75a6c4404d9ffa80a63",
 				
 				//Set data
-				PlayList = data
+				Data = data
             };
 
 Render the model in your view which will render the component in the browser:

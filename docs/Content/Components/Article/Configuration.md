@@ -26,7 +26,7 @@ Populate the `Article` model:
 		ShowSourceLinks = true,
 
 		// Set data
-		ArticleDataSet = GetData() //Something that returns ArticleResultSet
+		ArticleDataSet = data
 	};
 	
 @Html.DataViewer(ConfigurationManager.AppSettings["InfrastructureShowcase.BasePath"]+"/Article/data/cs")

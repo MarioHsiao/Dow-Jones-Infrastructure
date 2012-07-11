@@ -6,6 +6,12 @@ Populate the `PortalHeadlineList` model:
 	using DowJones.Web.Mvc.UI.Components.Common.Types;
 	using DowJones.Web.Mvc.UI.Components.Models;
 
+	// Instantiate and fill data
+	var data = new PortalHeadlineListDataResult
+	{
+		// Click on "View Sample Data" to see sample data
+	}
+
 	var model = new PortalHeadlineListModel
 	{
 		MaxNumHeadlinesToShow = 5,
@@ -17,7 +23,7 @@ Populate the `PortalHeadlineList` model:
 		SourceClickable = true,
 		DisplaySnippets = SnippetDisplayType.Hover,
 		Layout = PortalHeadlineListLayout.HeadlineLayout,
-		Data = GetData(),   // Something that returns an instance of PortalHeadlineListDataResult
+		Data = data
 	};
 
 @Html.DataViewer(ConfigurationManager.AppSettings["InfrastructureShowcase.BasePath"]+"/PortalHeadlineList/data/cs")
