@@ -1,7 +1,7 @@
 ﻿
 Populate the `AutoSuggest` model:
 
-	var keywordSuggestModel = new AutoSuggestModel
+	var model = new AutoSuggestModel
             {
                 SuggestServiceUrl = [suggestServiceURl],
                 AutocompletionType = "Keyword",
@@ -15,6 +15,6 @@ Populate the `AutoSuggest` model:
 Render the model in your view which will render the component in the browser:
 
 	<!-- Render the component -->
-	@@model keywordSuggestModel
+	@@model DowJones.Web.Mvc.UI.Components.Models.AutoSuggestModel
 
-	@@Html.DJ().Render(keywordSuggestModel, new { id = keywordSuggestModel.ControlId })
+	@@Html.DJ().Render(Model, new { id = Model.ControlId })

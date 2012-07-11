@@ -1,7 +1,7 @@
 ﻿
 Populate the `SocialButtons` model:
 
-	var socialButtonsModel = new SocialButtonsModel
+	var model = new SocialButtonsModel
     {
         SocialNetworks = new List<SocialNetworks>
 						{
@@ -23,6 +23,6 @@ Populate the `SocialButtons` model:
  Render the model in your view which will render the component in the browser:
 
  <!-- Render the component -->
-	@@model socialButtonsModel
+	@@model DowJones.Web.Mvc.UI.Components.SocialButtons.SocialButtonsModel
 
-	@@Html.DJ().Render(socialButtonsModel)
+	@@Html.DJ().Render(Model)

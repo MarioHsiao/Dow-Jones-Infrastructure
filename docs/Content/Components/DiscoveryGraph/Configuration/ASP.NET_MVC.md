@@ -5,7 +5,7 @@ Populate the `DiscoveryGraph` model:
 
 	using DowJones.Web.Mvc.UI.Components.DiscoveryGraph;
 
-	var discoveryGraphModel = new DiscoveryGraphModel();
+	var model = new DiscoveryGraphModel();
 	
 @Html.DataViewer(ConfigurationManager.AppSettings["InfrastructureShowcase.BasePath"]+"/DiscoveryGraph/data/cs")
 
@@ -15,6 +15,6 @@ Render the model in your view which will render the component in the browser:
 	<link href="Content/css/discoveryGraph.css" rel="stylesheet" />
 	
 	<!-- Render the component -->
-	@@model discoveryGraphModel
+	@@model DowJones.Web.Mvc.UI.Components.DiscoveryGraph.DiscoveryGraphModel
 
-	@@Html.DJ().Render(discoveryGraphModel)	
+	@@Html.DJ().Render(Model)	

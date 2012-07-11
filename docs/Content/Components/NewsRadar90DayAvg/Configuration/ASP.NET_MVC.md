@@ -9,7 +9,7 @@ Populate the `NewsRadar` model:
 		// Click on "View Sample Data" to see sample data
 	}
 
-    var newsRadarModel = new NewsRadarModel
+    var model = new NewsRadarModel
     {
 		// Set data
 		Data = data
@@ -20,6 +20,6 @@ Populate the `NewsRadar` model:
 Render the model in your view which will render the component in the browser:
 
 	<!-- Render the component using the model -->
-	@@model newsRadarModel
+	@@model DowJones.Web.Mvc.UI.Components.NewsRadar.NewsRadarModel
 
-	@@Html.DJ().Render(newsRadarModel)
+	@@Html.DJ().Render(Model)

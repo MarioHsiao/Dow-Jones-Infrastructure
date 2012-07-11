@@ -6,7 +6,7 @@ Populate the `PortalHeadlineList` model:
 	using DowJones.Web.Mvc.UI.Components.Common.Types;
 	using DowJones.Web.Mvc.UI.Components.Models;
 
-	var portalHeadlineListModel = new PortalHeadlineListModel
+	var model = new PortalHeadlineListModel
 	{
 		MaxNumHeadlinesToShow = 5,
 		ShowAuthor = true,
@@ -25,6 +25,6 @@ Populate the `PortalHeadlineList` model:
 Render the model in your view which will render the component in the browser:
 
 	<!-- Render the component -->
-	@@model portalHeadlineListModel
+	@@model DowJones.Web.Mvc.UI.Components.Models.PortalHeadlineListModel
 
-	@@Html.DJ().Render(portalHeadlineListModel) 
+	@@Html.DJ().Render(Model) 

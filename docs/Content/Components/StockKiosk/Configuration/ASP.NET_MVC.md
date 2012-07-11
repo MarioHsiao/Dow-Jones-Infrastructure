@@ -3,7 +3,7 @@
 
 Populate the `StockKiosk` model:
 	
-	var stockKioskModel = new StockKioskModel
+	var model = new StockKioskModel
 		{
 			PageSize = 8,		//min as per the design to fit in
 			Data = GetData()	// Something that returns an instance of MarketDataInstrumentIntradayResultSet
@@ -14,6 +14,6 @@ Populate the `StockKiosk` model:
 Render the model in your view which will render the component in the browser:
 
 	<!-- Render the component -->
-	@@model stockKioskModel
+	@@model DowJones.Web.Mvc.UI.Components.StockKiosk.StockKioskModel
 
-	@@Html.DJ().Render(stockKioskModel) 
+	@@Html.DJ().Render(Model) 

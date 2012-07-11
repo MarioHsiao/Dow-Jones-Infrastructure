@@ -9,7 +9,7 @@ Populate the `Article` model:
 		// Click on "View Sample Data" to see sample data
 	}
 
-	var articleModel = new ArticleModel
+	var model = new ArticleModel
 	{
 		// Set options
 		ShowPostProcessing = true,
@@ -34,7 +34,7 @@ Populate the `Article` model:
 Render the model in your view which will render the component in the browser:
 
 	<!-- Render the component using the model -->
-	@@model articleModel
+	@@model DowJones.Web.Mvc.UI.Components.Models.Article.ArticleModel
 
-	@@Html.DJ().Render(articleModel)
+	@@Html.DJ().Render(Model)
 	

@@ -3,7 +3,7 @@
 
 Populate the `VideoPlayer` model:
 
-	var videoPlayerModel = new VideoPlayerModel
+	var model = new VideoPlayerModel
             {
                 AutoPlay = false,
                 Width = 430,
@@ -21,8 +21,8 @@ Populate the `VideoPlayer` model:
 Render the model in your view which will render the component in the browser:
 
 	<!-- Render the component -->
-	@@model videoPlayerModel
+	@@model DowJones.Web.Mvc.UI.Components.VideoPlayer.VideoPlayerModel
 
-	@@Html.DJ().Render(videoPlayerModel) 
+	@@Html.DJ().Render(Model)  
 
 @Html.DataViewer(ConfigurationManager.AppSettings["InfrastructureShowcase.BasePath"]+"/VideoPlayer/data/cs")
