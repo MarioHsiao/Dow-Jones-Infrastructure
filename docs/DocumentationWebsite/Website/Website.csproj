@@ -194,6 +194,7 @@
     <Content Include="Styles\themes\spacelab\img\glyphicons-halflings-white.png" />
     <Content Include="Styles\themes\spacelab\img\glyphicons-halflings.png" />
     <Content Include="Styles\themes\spacelab\img\loader.gif" />
+    <Content Include="Styles\themes\spacelab\img\note.png" />
     <Content Include="Styles\themes\spacelab\img\x.png" />
     <Content Include="Styles\themes\spacelab\site.css">
       <DependentUpon>site.scss</DependentUpon>

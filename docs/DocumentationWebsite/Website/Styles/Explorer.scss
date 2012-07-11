@@ -141,3 +141,23 @@ td.name
 	.level-1.selected { display: block; }
 
 }
+
+
+.note {
+	margin: 8px;
+	padding: 8px;
+	border-radius: 4px;
+	background-color: #f7f7f9;
+	border: 1px solid #e1e1e8;
+	@include box-shadow-light-inset();
+
+	img {
+		height: 48px;
+		width: 48px;
+		border-right: 3px solid #DDD;
+	}	
+
+	span {
+		padding-left: 0.5em;
+	}
+}

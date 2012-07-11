@@ -81,7 +81,7 @@
             
             $nav.find('li').removeClass('active');
             el.parent('li').addClass('active');
-            setTimeout(function () { $win.scrollTop(target.offset().top - paddingToOffset); }, 10);
+            setTimeout(function () { $win.scrollTop(target.offset().top - paddingToOffset - 10); }, 10);
             return false;
         });
 
