@@ -30,7 +30,6 @@ DJ.UI.SocialButtons = DJ.UI.Component.extend({
 
     options: {
         socialNetworks: null,
-        imageSize: 0,
         url: null,
         title: null,
         keywords: null,
@@ -50,15 +49,12 @@ DJ.UI.SocialButtons = DJ.UI.Component.extend({
         this.applySocial();
     },
 
-
-
     applySocial: function () {
         var undefined;
         var socLink;
         var index;
         var name;
         var url;
-        var imgSize = this.get_imageSize();
         var element = this.element;
         var arrNetworks = this.get_socialNetworks();
 
@@ -73,17 +69,8 @@ DJ.UI.SocialButtons = DJ.UI.Component.extend({
         for (var i = 0, len = arrNetworks.length; i < len; i++) {
             name = arrNetworks[i];
             id = name.toLowerCase();
-            url = this.__socialNetworkTypes[id].url;
-            //var tObj = this.__socialNetworkTypes[index];
-            //id = tObj.key;
-            //url = tObj.url;
-            //name = tObj.name;
-
-            if (imgSize === 0) {
-                cName = "social_button social_sm social_sm_" + id;
-            } else {
-                cName = "social_button social_lg social_lg_" + id;
-            }
+            url = this.__socialNetworkTypes[id].url;          
+            cName = "social_button social_button_" + id;
 
             if (url !== undefined) {
                 if (url !== undefined) {
