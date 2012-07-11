@@ -1,58 +1,50 @@
 using System.ComponentModel;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace DowJones.Web.Mvc.UI.Components.AutoSuggest
 {
+    [JsonConverter(typeof(StringEnumConverter))]
     public enum AutoCompletionType
     {
-        [Description("Company")]
         Company,
 
-        [Description("Executive")]
         Executive,
 
-        [Description("Source")]
         Source,
 
-        [Description("Region")]
         Region,
 
-        [Description("NewsSubject")]
         NewsSubject,
 
-        [Description("Industry")]
         Industry,
 
-        [Description("Keyword")]
         Keyword,
 
-        [Description("Outlet")]
         Outlet,
 
-        [Description("Author")]
         Author,
 
-        [Description("Categories")]
+        PublisherMetaData,
+
+        PublisherCity,
+
         Categories,
 
-        [Description("CalendarCompany")]
         CalendarCompany,
 
-        [Description("CalendarKeyword")]
         CalendarKeyword,
 
-        [Description("PrivateMarkets")]
         PrivateMarkets
     }
 
+    [JsonConverter(typeof(StringEnumConverter))]
     public enum AuthType
     {
-        [Description("SessionId")]
         SessionId,
 
-        [Description("EncryptedToken")]
         EncryptedToken,
 
-        [Description("SuggestContext")]
         SuggestContext
 
     }
@@ -69,7 +61,8 @@ namespace DowJones.Web.Mvc.UI.Components.AutoSuggest
         /// Gets or Sets Autocompletion type
         /// </summary>
         [ClientProperty("autocompletionType")]
-        public string AutocompletionType { get; set; }
+        
+        public AutoCompletionType AutocompletionType { get; set; }
         
         /// <summary>
         /// Gets or Sets Autocompletion type
@@ -111,7 +104,7 @@ namespace DowJones.Web.Mvc.UI.Components.AutoSuggest
         /// Gets or Sets AutenticationType
         /// </summary>
         [ClientProperty("authType")]
-        public string AuthType { get; set; }
+        public AuthType AuthType { get; set; }
 
         /// <summary>
         /// Gets or Sets Encrypted Token

@@ -11,7 +11,7 @@
         // Default options
         defaults: {
             debug: false,
-            cssClass: 'AutoSuggest'
+            cssClass: 'AutoSuggestComponent'
         },
 
            //Global variables
@@ -704,6 +704,7 @@
         }
     });
 
+    //DJ.UI.AutoSuggest.prototype.autoSuggestContext = DJ.UI.AutoSuggest.prototype.autoSuggestContext || { retrieving:false };
     // Declare this class as a jQuery plugin
-    $.plugin('dj_AutoSuggest', DJ.UI.AutoSuggest);
+    $.plugin('dj_AutoSuggestComponent', DJ.UI.AutoSuggest);
     $dj.debug('Registered DJ.UI.AutoSuggest (extends DJ.UI.Component)');

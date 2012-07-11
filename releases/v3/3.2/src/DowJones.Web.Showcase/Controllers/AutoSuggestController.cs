@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Configuration;
 using System.Web.Mvc;
 using DowJones.Web.Mvc.UI.Components.AutoSuggest;
 
@@ -17,11 +18,16 @@ namespace DowJones.Web.Showcase.Controllers
 
         public List<AutoSuggestModel> GetAutoSuggestModels()
         {
+            var authTypeToken = ConfigurationManager.AppSettings["SuggestAuthTypeToken"];
+            var suggestServiceURl = ConfigurationManager.AppSettings["SuggestServiceUrl"];
+
             var autoSuggestModels = new List<AutoSuggestModel>();
             var sourceSuggestModel = new AutoSuggestModel
                                           {
-                                              SuggestServiceUrl = "http://suggest.int.factiva.com/Search/1.0",
-                                              AutocompletionType = "Source",
+                                              SuggestServiceUrl = suggestServiceURl,
+                                              AutocompletionType = AutoCompletionType.Source,
+                                              AuthType = AuthType.SuggestContext,
+                                              AuthTypeValue = authTypeToken,
                                               ServiceOptions = "{\"types\":\"blog\"}",
                                               Tokens = "{\"blogTkn\":\"Blog\"}",
                                               ControlId = "djSourceAutoSuggest"
@@ -30,8 +36,10 @@ namespace DowJones.Web.Showcase.Controllers
 
             var keywordSuggestModel = new AutoSuggestModel
             {
-                SuggestServiceUrl = "http://suggest.int.factiva.com/Search/1.0",
-                AutocompletionType = "Keyword",
+                SuggestServiceUrl = suggestServiceURl,
+                AutocompletionType = AutoCompletionType.Keyword,
+                AuthType = AuthType.SuggestContext,
+                AuthTypeValue = authTypeToken,
                 ControlId = "djKeywordAutoSuggest",
                 FillInputOnKeyUpDown = true,
                 SelectFirst = true
@@ -40,8 +48,10 @@ namespace DowJones.Web.Showcase.Controllers
 
             var companySuggestModel = new AutoSuggestModel
             {
-                SuggestServiceUrl = "http://suggest.int.factiva.com/Search/1.0",
-                AutocompletionType = "Company",
+                SuggestServiceUrl = suggestServiceURl,
+                AutocompletionType = AutoCompletionType.Company,
+                AuthType = AuthType.SuggestContext,
+                AuthTypeValue = authTypeToken,
                 Columns = "value|code|ticker",
                 ControlId = "djCompanyAutoSuggest"
             };
@@ -49,40 +59,50 @@ namespace DowJones.Web.Showcase.Controllers
 
             var executiveSuggestModel = new AutoSuggestModel
             {
-                SuggestServiceUrl = "http://suggest.int.factiva.com/Search/1.0",
-                AutocompletionType = "Executive",
+                SuggestServiceUrl = suggestServiceURl,
+                AutocompletionType = AutoCompletionType.Executive,
+                AuthType = AuthType.SuggestContext,
+                AuthTypeValue = authTypeToken,
                 ControlId = "djExecutiveAutoSuggest"
             };
             autoSuggestModels.Add(executiveSuggestModel);
 
             var authorSuggestModel = new AutoSuggestModel
             {
-                SuggestServiceUrl = "http://suggest.int.factiva.com/Search/1.0",
-                AutocompletionType = "Author",
+                SuggestServiceUrl = suggestServiceURl,
+                AutocompletionType = AutoCompletionType.Author,
+                AuthType = AuthType.SuggestContext,
+                AuthTypeValue = authTypeToken,
                 ControlId = "djAuthorAutoSuggest"
             };
             autoSuggestModels.Add(authorSuggestModel);
 
             var outletSuggestModel = new AutoSuggestModel
             {
-                SuggestServiceUrl = "http://suggest.int.factiva.com/Search/1.0",
-                AutocompletionType = "Outlet",
+                SuggestServiceUrl = suggestServiceURl,
+                AutocompletionType = AutoCompletionType.Outlet,
+                AuthType = AuthType.SuggestContext,
+                AuthTypeValue = authTypeToken,
                 ControlId = "djOutletAutoSuggest"
             };
             autoSuggestModels.Add(outletSuggestModel);
 
             var publisherCitySuggestModel = new AutoSuggestModel
             {
-                SuggestServiceUrl = "http://suggest.int.factiva.com/Search/1.0",
-                AutocompletionType = "publisherCity",
+                SuggestServiceUrl = suggestServiceURl,
+                AutocompletionType = AutoCompletionType.PublisherCity,
+                AuthType = AuthType.SuggestContext,
+                AuthTypeValue = authTypeToken,
                 ControlId = "djPublisherCityAutoSuggest"
             };
             autoSuggestModels.Add(publisherCitySuggestModel);
 
             var publisherMetaDataSuggestModel = new AutoSuggestModel
             {
-                SuggestServiceUrl = "http://suggest.int.factiva.com/Search/1.0",
-                AutocompletionType = "publisherMetaData",
+                SuggestServiceUrl = suggestServiceURl,
+                AutocompletionType = AutoCompletionType.PublisherMetaData,
+                AuthType = AuthType.SuggestContext,
+                AuthTypeValue = authTypeToken,
                 ControlId = "djPublisherMetaDataAutoSuggest"
             };
             autoSuggestModels.Add(publisherMetaDataSuggestModel);

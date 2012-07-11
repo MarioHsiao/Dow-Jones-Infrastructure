@@ -2,7 +2,7 @@
 
 namespace DowJones.Pages
 {
-    public enum AccessScope
+    public enum ShareType
     {
         [EnumMember] OwnedByUser,
         [EnumMember] AssignedToUser,

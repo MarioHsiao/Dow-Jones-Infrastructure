@@ -183,6 +183,7 @@
     <Compile Include="Controllers\CompanySparklineController.cs" />
     <Compile Include="Controllers\CompositeComponentController.cs" />
     <Compile Include="Controllers\NavBarController.cs" />
+    <Compile Include="Controllers\SocialButtonsController.cs" />
     <Compile Include="Controllers\SocialMediaController.cs" />
     <Compile Include="Controllers\StockKioskController.cs" />
     <Compile Include="Controllers\TopicController.cs" />
@@ -1617,6 +1618,8 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
+    <Content Include="Views\VideoPlayer\Index.cshtml" />
+    <Content Include="Views\SocialButtons\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Browsers\Devices\" />
