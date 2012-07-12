@@ -48,8 +48,8 @@
     <None Include="1GettingStarted\3CreatingNewComponent\1OpenSolution.md" />
     <None Include="1GettingStarted\PackageManagement\2ConfiguringPackageSources.md" />
     <None Include="1GettingStarted\PackageManagement\1DowJonesNugetRepos.md" />
-    <None Include="1GettingStarted\2UsingComponents\Client-sideUsage.md" />
-    <None Include="1GettingStarted\2UsingComponents\1Server-sideUsage.md" />
+    <None Include="1GettingStarted\2UsingComponents\JavascriptUsage.md" />
+    <None Include="1GettingStarted\2UsingComponents\Asp.NetMvcUsage.md" />
     <None Include="1GettingStarted\2UsingComponents\Overview.md" />
     <None Include="1GettingStarted\PackageManagement\3AddingPackage.md" />
     <None Include="1GettingStarted\PackageManagement\4UpgradingPackages.md" />
