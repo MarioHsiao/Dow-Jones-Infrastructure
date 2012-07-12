@@ -44,14 +44,13 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <None Include="1GettingStarted\1DevelopmentSetup\2ConnectingToTFS.md" />
-    <None Include="1GettingStarted\1DevelopmentSetup\4DowJonesTemplates.md" />
-    <None Include="1GettingStarted\3CreatingNewComponent\1OpenSolution.md" />
-    <None Include="1GettingStarted\PackageManagement\2ConfiguringPackageSources.md" />
-    <None Include="1GettingStarted\PackageManagement\1DowJonesNugetRepos.md" />
-    <None Include="1GettingStarted\2UsingComponents\JavascriptUsage.md" />
-    <None Include="1GettingStarted\2UsingComponents\Asp.NetMvcUsage.md" />
-    <None Include="1GettingStarted\2UsingComponents\Overview.md" />
+    <None Include="1GettingStarted\1SetupDevelopmentEnvironment\2ConnectingToTFS.md" />
+    <None Include="1GettingStarted\1SetupDevelopmentEnvironment\5DowJonesTemplates.md" />
+    <None Include="1GettingStarted\3Create a Component\1OpenSolution.md" />
+    <None Include="1GettingStarted\1SetupDevelopmentEnvironment\4ConfigureNugetSources.md" />
+    <None Include="1GettingStarted\2Use a Component\JavascriptUsage.md" />
+    <None Include="1GettingStarted\2Use a Component\Asp.NetMvcUsage.md" />
+    <None Include="1GettingStarted\2Use a Component\Overview.md" />
     <None Include="1GettingStarted\PackageManagement\3AddingPackage.md" />
     <None Include="1GettingStarted\PackageManagement\4UpgradingPackages.md" />
     <None Include="1GettingStarted\PackageManagement\5BestPractices.md" />
@@ -122,16 +121,16 @@
     <Content Include="images\NuGet_PackageSources.png" />
     <Content Include="images\Nuget_UpgradePackages.png" />
     <Content Include="Web.config" />
-    <None Include="1GettingStarted\3CreatingNewComponent\2CreateDataObject.md" />
-    <None Include="1GettingStarted\3CreatingNewComponent\3CreateModel.md" />
-    <None Include="1GettingStarted\3CreatingNewComponent\4CreateJavascriptFiles.md" />
-    <None Include="1GettingStarted\3CreatingNewComponent\5CreateClientTemplates.md" />
-    <None Include="1GettingStarted\3CreatingNewComponent\6CreateRazorView.md" />
-    <None Include="1GettingStarted\3CreatingNewComponent\7AddToShowcase.md" />
-    <None Include="1GettingStarted\3CreatingNewComponent\Overview.md" />
-    <None Include="1GettingStarted\1DevelopmentSetup\1DevelopmentEnvironment.md" />
-    <None Include="1GettingStarted\1DevelopmentSetup\3VerifyingSetup.md" />
-    <None Include="1GettingStarted\1DevelopmentSetup\Overview.md" />
+    <None Include="1GettingStarted\3Create a Component\2CreateDataObject.md" />
+    <None Include="1GettingStarted\3Create a Component\3CreateModel.md" />
+    <None Include="1GettingStarted\3Create a Component\4CreateJavascriptFiles.md" />
+    <None Include="1GettingStarted\3Create a Component\5CreateClientTemplates.md" />
+    <None Include="1GettingStarted\3Create a Component\6CreateRazorView.md" />
+    <None Include="1GettingStarted\3Create a Component\7AddToShowcase.md" />
+    <None Include="1GettingStarted\3Create a Component\Overview.md" />
+    <None Include="1GettingStarted\1SetupDevelopmentEnvironment\1DevelopmentEnvironment.md" />
+    <None Include="1GettingStarted\1SetupDevelopmentEnvironment\3DowJonesPackages.md" />
+    <None Include="1GettingStarted\1SetupDevelopmentEnvironment\Overview.md" />
     <None Include="images\Web.config" />
   </ItemGroup>
   <ItemGroup>
