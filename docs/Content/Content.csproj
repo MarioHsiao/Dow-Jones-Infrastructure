@@ -51,10 +51,6 @@
     <None Include="1GettingStarted\2Use a Component\JavascriptUsage.md" />
     <None Include="1GettingStarted\2Use a Component\Asp.NetMvcUsage.md" />
     <None Include="1GettingStarted\2Use a Component\Overview.md" />
-    <None Include="1GettingStarted\PackageManagement\3AddingPackage.md" />
-    <None Include="1GettingStarted\PackageManagement\4UpgradingPackages.md" />
-    <None Include="1GettingStarted\PackageManagement\5BestPractices.md" />
-    <None Include="1GettingStarted\PackageManagement\Overview.md" />
     <None Include="Components\Article\Configuration.md" />
     <None Include="Components\Article\Events.md" />
     <None Include="Components\Article\LiveDemo.md" />
