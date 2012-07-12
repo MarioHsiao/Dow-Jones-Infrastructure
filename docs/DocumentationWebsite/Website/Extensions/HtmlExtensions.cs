@@ -47,7 +47,7 @@ namespace DowJones.Documentation.Website.Extensions
 		private static IHtmlString Callout(HtmlHelper helper, string text, CalloutType callout)
 		{
 			return new HtmlString(
-				string.Format("<div class=\"callout {1}\"><i class=\"{1}\" alt=\"{1}\"></i><span>{0}</span></div>"
+				string.Format("<div class=\"callout\"><i class=\"{1}\" alt=\"{1}\"></i><span>{0}</span></div>"
 							  , text, callout.ToString().ToLower())
 			);
 		}
