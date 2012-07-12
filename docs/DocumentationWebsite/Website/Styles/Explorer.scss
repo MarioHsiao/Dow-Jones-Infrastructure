@@ -139,11 +139,11 @@ td.name
 	}
 
 	.level-1.selected { display: block; }
-
+	 
 }
 
 
-.note {
+.callout {
 	margin: 8px;
 	padding: 8px;
 	border-radius: 4px;
@@ -152,10 +152,11 @@ td.name
 	@include box-shadow-light-inset();
 	display: table;
 
-	img {
+	i {
 		height: 48px;
 		width: 48px;
 		display: table-cell;
+		background-repeat: no-repeat;
 	}
 
 	span {
@@ -164,5 +165,17 @@ td.name
 		display: table-cell;
 		vertical-align: middle;
 	}
-	
+
+	.note {
+		background-image:url(themes/default/images/note.png);
+	}
+
+	.caution {
+		background-image:url(themes/default/images/caution.png);
+	}
+
+	.important {
+		background-image:url(themes/default/images/important.png);
+	}
 }
+

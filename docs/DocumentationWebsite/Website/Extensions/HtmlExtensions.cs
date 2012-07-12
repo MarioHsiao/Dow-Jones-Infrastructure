@@ -31,11 +31,35 @@ namespace DowJones.Documentation.Website.Extensions
 
 		public static IHtmlString Note(this HtmlHelper helper, string text)
 		{
+			return Callout(helper, text, CalloutType.Note);
+		}
+
+		public static IHtmlString Caution(this HtmlHelper helper, string text)
+		{
+			return Callout(helper, text, CalloutType.Caution);
+		}
+
+		public static IHtmlString Important(this HtmlHelper helper, string text)
+		{
+			return Callout(helper, text, CalloutType.Important);
+		}
+
+		private static IHtmlString Callout(HtmlHelper helper, string text, CalloutType callout)
+		{
 			return new HtmlString(
-				string.Format("<div class=\"note\"><img src=\"{1}\" alt=\"note\" /><span>{0}</span></div>"
-							  , text, VirtualPathUtility.ToAbsolute("~/Styles/themes/spacelab/img/note.png"))
+				string.Format("<div class=\"callout {1}\"><i class=\"{1}\" alt=\"{1}\"></i><span>{0}</span></div>"
+							  , text, callout.ToString().ToLower())
 			);
 		}
 
+		internal enum CalloutType
+		{
+			Note,
+			Caution,
+			Important,
+		}
+
     }
+
+	
 }

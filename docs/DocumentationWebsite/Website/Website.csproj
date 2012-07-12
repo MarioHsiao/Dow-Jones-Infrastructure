@@ -191,10 +191,12 @@
     <Content Include="Styles\themes\default\images\x.png" />
     <Content Include="Styles\themes\journal\bootstrap.css" />
     <Content Include="Styles\themes\spacelab\bootstrap.css" />
+    <Content Include="Styles\themes\default\images\caution.png" />
     <Content Include="Styles\themes\spacelab\img\glyphicons-halflings-white.png" />
     <Content Include="Styles\themes\spacelab\img\glyphicons-halflings.png" />
+    <Content Include="Styles\themes\default\images\important.png" />
     <Content Include="Styles\themes\spacelab\img\loader.gif" />
-    <Content Include="Styles\themes\spacelab\img\note.png" />
+    <Content Include="Styles\themes\default\images\note.png" />
     <Content Include="Styles\themes\spacelab\img\x.png" />
     <Content Include="Styles\themes\spacelab\site.css">
       <DependentUpon>site.scss</DependentUpon>
