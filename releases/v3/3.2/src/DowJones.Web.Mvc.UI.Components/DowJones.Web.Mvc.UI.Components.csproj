@@ -143,10 +143,10 @@
       <DependentUpon>ParagraphComponent.cshtml</DependentUpon>
     </Compile>
     <Compile Include="Article\ReadSpeaker.cs" />
-    <Compile Include="AuthorList\AuthorList.cs">
+    <Compile Include="AuthorList\AuthorListComponent.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>AuthorList.cshtml</DependentUpon>
+      <DependentUpon>AuthorListComponent.cshtml</DependentUpon>
     </Compile>
     <Compile Include="AutoSuggest\AutoSuggestComponent.cs">
       <AutoGen>True</AutoGen>
@@ -177,20 +177,20 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CompanySparklineComponent.cshtml</DependentUpon>
     </Compile>
-    <Compile Include="CompositeAuthor\CompositeAuthor.cs">
+    <Compile Include="CompositeAuthor\CompositeAuthorComponent.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>CompositeAuthor.cshtml</DependentUpon>
+      <DependentUpon>CompositeAuthorComponent.cshtml</DependentUpon>
     </Compile>
     <Compile Include="CompositeHeadline\CompositeHeadlineComponent.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CompositeHeadlineComponent.cshtml</DependentUpon>
     </Compile>
-    <Compile Include="CompositeOutlet\CompositeOutlet.cs">
+    <Compile Include="CompositeOutlet\CompositeOutletComponent.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>CompositeOutlet.cshtml</DependentUpon>
+      <DependentUpon>CompositeOutletComponent.cshtml</DependentUpon>
     </Compile>
     <Compile Include="DateHistogram\DateHistogramComponent.cs">
       <AutoGen>True</AutoGen>
@@ -233,10 +233,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>NewsRadarComponent.cshtml</DependentUpon>
     </Compile>
-    <Compile Include="OutletList\OutletList.cs">
+    <Compile Include="OutletList\OutletListComponent.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>OutletList.cshtml</DependentUpon>
+      <DependentUpon>OutletListComponent.cshtml</DependentUpon>
     </Compile>
     <Compile Include="PersonalizationFilters\PersonalizationFiltersComponent.cs">
       <AutoGen>True</AutoGen>
@@ -534,9 +534,9 @@
       <Generator>RazorViewComponentClassGenerator</Generator>
       <LastGenOutput>ParagraphComponent.cs</LastGenOutput>
     </None>
-    <None Include="AuthorList\AuthorList.cshtml">
+    <None Include="AuthorList\AuthorListComponent.cshtml">
       <Generator>RazorViewComponentClassGenerator</Generator>
-      <LastGenOutput>AuthorList.cs</LastGenOutput>
+      <LastGenOutput>AuthorListComponent.cs</LastGenOutput>
     </None>
     <None Include="AutoSuggest\AutoSuggestComponent.cshtml">
       <Generator>RazorViewComponentClassGenerator</Generator>
@@ -554,17 +554,17 @@
       <Generator>RazorViewComponentClassGenerator</Generator>
       <LastGenOutput>CompanySparklineComponent.cs</LastGenOutput>
     </None>
-    <None Include="CompositeAuthor\CompositeAuthor.cshtml">
+    <None Include="CompositeAuthor\CompositeAuthorComponent.cshtml">
       <Generator>RazorViewComponentClassGenerator</Generator>
-      <LastGenOutput>CompositeAuthor.cs</LastGenOutput>
+      <LastGenOutput>CompositeAuthorComponent.cs</LastGenOutput>
     </None>
     <None Include="CompositeHeadline\CompositeHeadlineComponent.cshtml">
       <Generator>RazorViewComponentClassGenerator</Generator>
       <LastGenOutput>CompositeHeadlineComponent.cs</LastGenOutput>
     </None>
-    <None Include="CompositeOutlet\CompositeOutlet.cshtml">
+    <None Include="CompositeOutlet\CompositeOutletComponent.cshtml">
       <Generator>RazorViewComponentClassGenerator</Generator>
-      <LastGenOutput>CompositeOutlet.cs</LastGenOutput>
+      <LastGenOutput>CompositeOutletComponent.cs</LastGenOutput>
     </None>
     <None Include="DateSlider\DateSliderComponent.cshtml">
       <Generator>RazorViewComponentClassGenerator</Generator>
@@ -595,9 +595,9 @@
       <Generator>RazorViewComponentClassGenerator</Generator>
       <LastGenOutput>NewsRadarComponent.cs</LastGenOutput>
     </None>
-    <None Include="OutletList\OutletList.cshtml">
+    <None Include="OutletList\OutletListComponent.cshtml">
       <Generator>RazorViewComponentClassGenerator</Generator>
-      <LastGenOutput>OutletList.cs</LastGenOutput>
+      <LastGenOutput>OutletListComponent.cs</LastGenOutput>
     </None>
     <None Include="PersonalizationFilters\PersonalizationFiltersComponent.cshtml">
       <Generator>RazorViewComponentClassGenerator</Generator>

@@ -8,9 +8,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Web.UI.WebResourceAttribute("DowJones.Web.Mvc.UI.Components.CompositeAuthor.CompositeAuthor.js", "text/javascript")]
+[assembly: System.Web.UI.WebResourceAttribute("DowJones.Web.Mvc.UI.Components.CompositeOutlet.CompositeOutlet.js", "text/javascript")]
 
-namespace DowJones.Web.Mvc.UI.Components.CompositeAuthor
+namespace DowJones.Web.Mvc.UI.Components.CompositeOutlet
 {
     using System;
     using System.Collections.Generic;
@@ -23,23 +23,21 @@ namespace DowJones.Web.Mvc.UI.Components.CompositeAuthor
     using System.Web.Mvc;
     using DowJones.Web.Mvc.Extensions;
     using DowJones.Web.Mvc.UI;
-    using DowJones.Web.Mvc.UI.Components.AuthorList;
-    using DowJones.Web.Mvc.UI.Components.Models;
     
-    [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.CompositeAuthor.CompositeAuthor.js", ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.CompositeAuthor.CompositeAuthor))]
+    [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.CompositeOutlet.CompositeOutlet.js", ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.CompositeOutlet.CompositeOutletComponent))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "0.0.0.20608")]
-    public class CompositeAuthor : CompositeComponent<CompositeAuthorModel>
+    public class CompositeOutletComponent : CompositeComponent<CompositeOutletModel>
     {
 #line hidden
 
-        public CompositeAuthor()
+        public CompositeOutletComponent()
         {
         }
         public override string ClientPluginName
         {
             get
             {
-                return "dj_CompositeAuthor";
+                return "dj_CompositeOutlet";
             }
         }
         public override void ExecuteTemplate()
@@ -47,8 +45,6 @@ namespace DowJones.Web.Mvc.UI.Components.CompositeAuthor
 
 
 
-
-
 WriteLiteral("\r\n");
 
 
@@ -57,41 +53,41 @@ WriteLiteral("\r\n");
 
 
 
-   CssClass = "dj_CompositeAuthor"; 
+   CssClass = "dj_CompositeOutlet"; 
 
 
   
-    bool hasAuthors = Model.AuthorList != null
-        && Model.AuthorList.Authors != null
-        && Model.AuthorList.Authors.Any();
+	bool hasOutlets = Model.OutletList != null 
+		&& Model.OutletList.Outlets != null
+		&& Model.OutletList.Outlets.Any();
 
     string[] s = { "", "", "", "", "", "", "" };
-    switch (Model.PageSize)
-    {
-        case 10: s[0] = " selected"; break;
-        case 20: s[1] = " selected"; break;
-        case 30: s[2] = " selected"; break;
-        case 40: s[3] = " selected"; break;
-        case 50: s[4] = " selected"; break;
-        case 100: s[5] = " selected"; break;
-        default: s[1] = " selected"; break;
-    }
+	switch (Model.PageSize)
+	{
+		case 10: s[0] = " selected"; break;
+		case 20: s[1] = " selected"; break;
+		case 30: s[2] = " selected"; break;
+		case 40: s[3] = " selected"; break;
+		case 50: s[4] = " selected"; break;
+		case 100: s[5] = " selected"; break;
+		default: s[1] = " selected"; break;
+	}
 
-    int maxlen = Model.TotalPages.ToString().Length;
-    bool noFirst = Model.CurrentPage == 1;
-    bool noLast = Model.CurrentPage == Model.TotalPages;
-    bool hasEllipsis = Model.TotalPages > Model.GOOGLE_PAGER_SIZE;
+	int maxlen = Model.TotalPages.ToString().Length;
+	bool noFirst = Model.CurrentPage == 1;
+	bool noLast = Model.CurrentPage == Model.TotalPages;
+	bool hasEllipsis = Model.TotalPages > Model.GOOGLE_PAGER_SIZE;
 
 
 
- if (hasAuthors)
+ if (hasOutlets)
 {
 
 WriteLiteral("<section class=\"dj_page dj_author-lookup wrap-9 clearfix\">\r\n");
 
 
  	if (String.IsNullOrEmpty(Model.Title) == false)
- { 
+	{ 
 
 WriteLiteral("\t<h3>");
 
@@ -101,7 +97,7 @@ Write(Model.Title);
 WriteLiteral("</h3>\r\n");
 
 
- }
+	}
 
 WriteLiteral("\t<p class=\"dj_author-list-name_preferences-link\">\r\n\t\t<a href=\"javascript:void(0);" +
 "\" >");
@@ -114,7 +110,7 @@ WriteLiteral(@"</a>
 	<div class=""dj_paging"">
 
 		<div class=""dj_select-has-menu-wrapper"">
-			<input type=""checkbox"" name=""dj_author-select-all"">
+			<input type=""checkbox"" name=""dj_outlet-select-all"">
 			<span class=""fi fi_gear""></span>
 		</div>
 
@@ -179,18 +175,7 @@ WriteLiteral(">100 ");
 
                            Write(Html.DJ().Token("perPage"));
 
-WriteLiteral("</option>\r\n\t\t</select>\r\n\r\n\t\t<div class=\"dj_list-select-count hide\">\n\t\t\t<span clas" +
-"s=\"count\"></span> ");
-
-
-                          Write(Html.DJ().Token("cmalSelectionPlural"));
-
-WriteLiteral("\n\t\t\t<span class=\"dj_clear-all-btn\">");
-
-
-                             Write(Html.DJ().Token("cmalClearAll"));
-
-WriteLiteral("</span>\n\t\t</div>\n\r\n\t\t<ul class=\"paging-controls\">\r\n\r\n\t\t\t<li><strong>");
+WriteLiteral("</option>\r\n\t\t</select>\r\n\r\n\t\t<ul class=\"paging-controls\">\r\n\r\n\t\t\t<li><strong>");
 
 
           Write(Format(Model.FirstResultIndex + 1));
@@ -214,7 +199,7 @@ WriteLiteral("</li>\r\n");
 
 
  			if (noFirst == true)
-   {
+			{
 
 WriteLiteral("\t\t\t\t<li class=\'disabled\'>\r\n\t\t\t\t\t<span class=\"fi fi_btn-prev-inactive\" tooltip=\'");
 
@@ -234,9 +219,9 @@ WriteLiteral("\t\t\t\t<li class=\"first-page-link disabled\">");
 WriteLiteral("</li>\r\n");
 
 
-   }
-   else
-   {
+			}
+			else
+			{
 
 WriteLiteral("\t\t\t\t<li>\r\n\t\t\t\t\t<a class=\'entity-list-nav\' direction=\'prev\' href=\"javascript:void(" +
 "0)\">\r\n\t\t\t\t\t\t<span class=\"fi fi_btn-prev-active\" tooltip=\'");
@@ -258,14 +243,14 @@ WriteLiteral("\t\t\t\t<li class=\"first-page-link\">\r\n\t\t\t\t\t<a class=\"ent
 WriteLiteral("</a>\r\n\t\t\t\t</li>\r\n");
 
 
-       if (hasEllipsis)
-       {
+				if (hasEllipsis)
+				{
 
 WriteLiteral("\t\t\t\t<li>&hellip;</li>\r\n");
 
 
-       }
-   }
+				}
+			}
 
 WriteLiteral("\t\t\t\r\n\t\t\t");
 
@@ -276,7 +261,7 @@ WriteLiteral("        \r\n\t\t\t\r\n");
 
 
  			if (noLast == true)
-   {
+			{
 
 WriteLiteral("\t\t\t\t<li class=\"last-page-link disabled\">");
 
@@ -296,16 +281,16 @@ WriteLiteral("\t\t\t\t<li class=\'disabled\'>\r\n\t\t\t\t\t<span class=\"fi fi_b
 WriteLiteral("\'></span>\r\n\t\t\t\t</li>\r\n");
 
 
-   }
-   else
-   {
-       if (hasEllipsis)
-       {
+			}
+			else
+			{
+				if (hasEllipsis)
+				{
 
 WriteLiteral("\t\t\t\t<li>&hellip;</li>\r\n");
 
 
-       }
+				}
 				
 
 WriteLiteral("\t\t\t\t<li class=\"last-page-link\">\r\n\t\t\t\t\t<a class=\"entity-list-nav\" direction=\"last\"" +
@@ -327,13 +312,13 @@ WriteLiteral("\t\t\t\t<li>\r\n\t\t\t\t\t<a class=\'entity-list-nav\' direction=\
 WriteLiteral("\'></span>\r\n\t\t\t\t\t</a>\r\n\t\t\t\t</li>\r\n");
 
 
-   }
+			}
 
 WriteLiteral("\t\t\t\r\n\t\t</ul>         \r\n\t\t\t\r\n\t</div><!-- end: .dj_paging -->\r\n\r\n\t<div class=\'table" +
-"-wrap\'>\r\n\t\t");
+"-wrap\'>\r\n\t");
 
 
-Write(Html.DJ().RenderComponent<AuthorList>(Model.AuthorList));
+Write(DJ.Render(Model.OutletList));
 
 WriteLiteral(@"
 	</div>
@@ -341,7 +326,7 @@ WriteLiteral(@"
 	<div class=""dj_paging"">
 
 		<div class=""dj_select-has-menu-wrapper"">
-			<input type=""checkbox"" name=""dj_author-select-all"">
+			<input type=""checkbox"" name=""dj_outlet-select-all"">
 			<span class=""fi fi_gear""></span>
 		</div>
 
@@ -406,18 +391,7 @@ WriteLiteral(">100 ");
 
                            Write(Html.DJ().Token("perPage"));
 
-WriteLiteral("</option>\r\n\t\t</select>\r\n\r\n\t\t<div class=\"dj_list-select-count hide\">\n\t\t\t<span clas" +
-"s=\"count\"></span> ");
-
-
-                          Write(Html.DJ().Token("cmalSelectionPlural"));
-
-WriteLiteral("\n\t\t\t<span class=\"dj_clear-all-btn\">");
-
-
-                             Write(Html.DJ().Token("cmalClearAll"));
-
-WriteLiteral("</span>\n\t\t</div>\n\r\n\t\t<ul class=\"paging-controls\">\r\n\r\n\t\t\t<li><strong>");
+WriteLiteral("</option>\r\n\t\t</select>\r\n\r\n\t\t<ul class=\"paging-controls\">\r\n\r\n\t\t\t<li><strong>");
 
 
           Write(Format(Model.FirstResultIndex + 1));
@@ -441,7 +415,7 @@ WriteLiteral("</li>\r\n");
 
 
  			if (noFirst == true)
-   {
+			{
 
 WriteLiteral("\t\t\t\t<li class=\'disabled\'>\r\n\t\t\t\t\t<span class=\"fi fi_btn-prev-inactive\" tooltip=\'");
 
@@ -461,9 +435,9 @@ WriteLiteral("\t\t\t\t<li class=\"first-page-link disabled\">");
 WriteLiteral("</li>\r\n");
 
 
-   }
-   else
-   {
+			}
+			else
+			{
 
 WriteLiteral("\t\t\t\t<li>\r\n\t\t\t\t\t<a class=\'entity-list-nav\' direction=\'prev\' href=\"javascript:void(" +
 "0)\">\r\n\t\t\t\t\t\t<span class=\"fi fi_btn-prev-active\" tooltip=\'");
@@ -485,14 +459,14 @@ WriteLiteral("\t\t\t\t<li class=\"first-page-link\">\r\n\t\t\t\t\t<a class=\"ent
 WriteLiteral("</a>\r\n\t\t\t\t</li>\r\n");
 
 
-       if (hasEllipsis)
-       {
+				if (hasEllipsis)
+				{
 
 WriteLiteral("\t\t\t\t<li>&hellip;</li>\r\n");
 
 
-       }
-   }
+				}
+			}
 
 WriteLiteral("\t\t\t\r\n\t\t\t");
 
@@ -503,7 +477,7 @@ WriteLiteral("        \r\n\t\t\t\r\n");
 
 
  			if (noLast == true)
-   {
+			{
 
 WriteLiteral("\t\t\t\t<li class=\"last-page-link disabled\">");
 
@@ -523,16 +497,16 @@ WriteLiteral("\t\t\t\t<li class=\'disabled\'>\r\n\t\t\t\t\t<span class=\"fi fi_b
 WriteLiteral("\'></span>\r\n\t\t\t\t</li>\r\n");
 
 
-   }
-   else
-   {
-       if (hasEllipsis)
-       {
+			}
+			else
+			{
+				if (hasEllipsis)
+				{
 
 WriteLiteral("\t\t\t\t<li>&hellip;</li>\r\n");
 
 
-       }
+				}
 				
 
 WriteLiteral("\t\t\t\t<li class=\"last-page-link\">\r\n\t\t\t\t\t<a class=\"entity-list-nav\" direction=\"last\"" +
@@ -554,12 +528,13 @@ WriteLiteral("\t\t\t\t<li>\r\n\t\t\t\t\t<a class=\'entity-list-nav\' direction=\
 WriteLiteral("\'></span>\r\n\t\t\t\t\t</a>\r\n\t\t\t\t</li>\r\n");
 
 
-   }
+			}
 
 WriteLiteral("\t\t\t\r\n\t\t</ul>         \r\n\t\t\t\r\n\t</div><!-- end: .dj_paging -->\r\n\r\n</section>\r\n");
 
 
 }
+
 
         }
     }

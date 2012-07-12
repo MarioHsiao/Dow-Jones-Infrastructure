@@ -1,8 +1,6 @@
 ﻿@using System.Web.Mvc
 @using DowJones.Web.Mvc.Extensions
 @using DowJones.Web.Mvc.UI
-@using DowJones.Web.Mvc.UI.Components.AuthorList
-@using DowJones.Web.Mvc.UI.Components.Models
 
 @inherits CompositeComponent<CompositeAuthorModel>
 
@@ -56,11 +54,6 @@
 			<option value="50"@s[4]>50 @Html.DJ().Token("perPage")</option>
 			<option value="100"@s[5]>100 @Html.DJ().Token("perPage")</option>
 		</select>
-
-		<div class="dj_list-select-count hide">
-			<span class="count"></span> @Html.DJ().Token("cmalSelectionPlural")
-			<span class="dj_clear-all-btn">@Html.DJ().Token("cmalClearAll")</span>
-		</div>
 
 		<ul class="paging-controls">
 
@@ -122,7 +115,7 @@
 	</div><!-- end: .dj_paging -->
 
 	<div class='table-wrap'>
-		@(Html.DJ().RenderComponent<AuthorList>(Model.AuthorList))
+		@DJ.Render(Model.AuthorList)
 	</div>
 
 	<div class="dj_paging">
@@ -140,11 +133,6 @@
 			<option value="50"@s[4]>50 @Html.DJ().Token("perPage")</option>
 			<option value="100"@s[5]>100 @Html.DJ().Token("perPage")</option>
 		</select>
-
-		<div class="dj_list-select-count hide">
-			<span class="count"></span> @Html.DJ().Token("cmalSelectionPlural")
-			<span class="dj_clear-all-btn">@Html.DJ().Token("cmalClearAll")</span>
-		</div>
 
 		<ul class="paging-controls">
 
