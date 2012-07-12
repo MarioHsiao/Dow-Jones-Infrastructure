@@ -31,7 +31,7 @@ namespace DowJones.Documentation.Website.App_Start
 					section = UrlParameter.Optional
 				},
 				_constraint
-			); //.RouteHandler = new OrdinalAwareRouteHandler(_repository);
+			).RouteHandler = new OrdinalAwareRouteHandler(_repository);
 
 			routes.MapRoute(
 				"Default",

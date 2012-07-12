@@ -94,7 +94,7 @@ namespace DowJones.Documentation.Website.App_Start
 			var page = routeData.Values["page"] as string;
 			if (page == null) return;		// return if page is null
 
-			var mappedPage = mappedCategory.Children.FirstOrDefault(n => n.Name.Equals(page));
+			var mappedPage = mappedCategory.Children.FirstOrDefault(n => n.Name.DisplayKey.Equals(page));
 			if (mappedPage != null)		// if page found, map route value to its key
 				routeData.Values["page"] = mappedPage.Name.Key;
 		}

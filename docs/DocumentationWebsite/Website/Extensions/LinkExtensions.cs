@@ -41,14 +41,14 @@ namespace DowJones.Documentation.Website.Extensions
             {
                 if (category == null) return;
 
-				this.category = category.Key;
+				this.category = category.DisplayKey;
                 DisplayName = category.DisplayName;
             }
 
             public DocumentationBrowserRouteData(PageViewModel page)
                 : this(page.Category)
             {
-				this.page = page.Key;
+				this.page = page.DisplayKey;
                 DisplayName = page.DisplayName;
             }
         }

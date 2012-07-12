@@ -44,6 +44,11 @@ namespace DowJones.Documentation.Website.Models
             get { return ContentSection.Name.Key; }
         }
 
+		public string DisplayKey
+		{
+			get { return ContentSection.Name.DisplayKey; }
+		}
+
         public int Ordinal
         {
             get { return ContentSection.Ordinal.GetValueOrDefault(); }

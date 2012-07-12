@@ -39,14 +39,8 @@ namespace DowJones.Documentation.DataAccess
 			return categories;
 		}
 
-		public ContentSection GetCategory(Name name)
+		public ContentSection GetCategory(Name name, bool ignoreOrdinal = false)
 		{
-			return GetCategory(name, false);
-		}
-
-		public ContentSection GetCategory(Name name, bool ignoreOrdinal)
-		{
-
 			DirectoryInfo categoryDirectory;
 			if (ignoreOrdinal)
 				categoryDirectory = CategoryDirectories

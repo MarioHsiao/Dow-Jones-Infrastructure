@@ -44,9 +44,9 @@ namespace DowJones.Documentation.Website.ViewEngines
 
         internal static bool TryGetRouteValue(this ControllerContext controllerContext, string key, out string value)
         {
-            object objValue;
+            object objValue = controllerContext.RouteData.Values[key];
 
-            if (!controllerContext.RouteData.Values.TryGetValue(key, out objValue))
+            if (objValue == null || string.IsNullOrEmpty(objValue.ToString()))
             {
                 ViewDataDictionary viewData;
 
