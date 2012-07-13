@@ -2,8 +2,10 @@
 
 * Under folder `SampleComponent`, create a new file `SampleComponent.cshtml`
 
-* Go to properties of newly created file, set Custom Tool field to: `RazorViewComponentClassGenerator`. This should create the following file:
-	* SampleComponent.cs '(if you do not see this file, you have not properly installed the Razor View Component Class Generator plugin)'
+* Go to properties of newly created file, set Custom Tool field to: `RazorViewComponentClassGenerator`.
+
+	This should create the following file:	SampleComponent.cs (if you do not see this file, you have not properly installed the Razor View Component Class Generator plugin)
+
 
 * Replace the contents of `TestComponent.cshtml` with the following:
 

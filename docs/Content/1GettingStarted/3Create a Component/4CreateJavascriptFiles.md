@@ -2,7 +2,7 @@
 
 * Create a new folder - `SampleComponent`
 
-* Under folder `SampleComponent`, create file `SampleComponent.js`:
+* Under folder `SampleComponent`, create file `SampleComponent.js` as `Embedded resource`:
 
 		DJ.UI.SampleComponent = DJ.UI.Component.extend({
 			// Set selectors to be used within the component

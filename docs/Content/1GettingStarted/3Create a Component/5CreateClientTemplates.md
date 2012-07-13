@@ -2,7 +2,7 @@
 
 * Under folder `SampleComponent`, create a new folder - `ClientTemplates`
 
-* Under newly created folder - `ClientTemplates` - create the following 2 files:
+* Under newly created folder - `ClientTemplates` - create the following 2 files as `Embedded resources`:
 
 #### Success.html
 

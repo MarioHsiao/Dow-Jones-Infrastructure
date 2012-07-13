@@ -1,5 +1,6 @@
-﻿To test the newly created component. In project `DowJones.Web.Showcase`, create the following 2 files (Create folder if needed)
+﻿To test the newly created component. In project `DowJones.Web.Showcase`, create the following 2 files.
 
+Under `Controllers` folder, create file:
 #### SampleComponentController.cs
 
 	using System.Web.Mvc;
@@ -27,7 +28,9 @@
 		}
 	}
 
-#### Views\SampleComponent\Index.cshtml
+Under `Views` folder, create new folder `SampleComponent`.
+Under newly created folder - `SampleComponent` - create file:
+#### Index.cshtml
 
 	@@using DowJones.Extensions
 	@@{
