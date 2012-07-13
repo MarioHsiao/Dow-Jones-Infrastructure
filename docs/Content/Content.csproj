@@ -56,7 +56,7 @@
     <None Include="1GettingStarted\4Events\4Examples.md" />
     <None Include="1GettingStarted\4Events\3Members.md" />
     <None Include="1GettingStarted\4Events\1Overview.md" />
-    <None Include="1GettingStarted\5ErrorHandling\Javascript.md" />
+    <None Include="1GettingStarted\5ErrorHandling\Overview.md" />
     <None Include="Components\Article\Configuration.md" />
     <None Include="Components\Article\Events.md" />
     <None Include="Components\Article\LiveDemo.md" />
