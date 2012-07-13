@@ -1,3 +1,5 @@
 [
-	{ "category": "GettingStarted", "page": "UsingComponents"}
+	{ "category": "GettingStarted", "page": "UsingComponents"},
+	{ "category": "1GettingStarted", "page": "4Events"},
+	{ "category": "1GettingStarted", "page": "5ErrorHandling"}
 ] 

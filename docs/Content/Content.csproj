@@ -51,6 +51,9 @@
     <None Include="1GettingStarted\2Use a Component\JavascriptUsage.md" />
     <None Include="1GettingStarted\2Use a Component\Asp.NetMvcUsage.md" />
     <None Include="1GettingStarted\2Use a Component\Overview.md" />
+    <None Include="1GettingStarted\4Events\1ASPNETMVC.md" />
+    <None Include="1GettingStarted\4Events\2Javascript.md" />
+    <None Include="1GettingStarted\5ErrorHandling\Javascript.md" />
     <None Include="Components\Article\Configuration.md" />
     <None Include="Components\Article\Events.md" />
     <None Include="Components\Article\LiveDemo.md" />
