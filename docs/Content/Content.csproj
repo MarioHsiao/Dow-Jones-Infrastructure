@@ -87,8 +87,7 @@
     <None Include="Components\NewsRadar90DayAvg\Properties.md" />
     <None Include="Components\PortalHeadlineList\Configuration\ASP.NET_MVC.md" />
     <None Include="Components\PortalHeadlineList\Configuration\Javascript.md" />
-    <None Include="Components\PortalHeadlineList\Properties.md" />
-    <None Include="Components\PortalHeadlineList\Options.md" />
+    <None Include="Components\PortalHeadlineList\ConfigurableOptions.md" />
     <None Include="Components\PortalHeadlineList\Events.md" />
     <None Include="Components\PortalHeadlineList\LiveDemo.md" />
     <None Include="Components\PortalHeadlineList\Methods.md" />
