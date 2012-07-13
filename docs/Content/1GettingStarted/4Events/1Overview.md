@@ -1,0 +1,1 @@
+﻿Events are actions that can be detected by JavaScript.
