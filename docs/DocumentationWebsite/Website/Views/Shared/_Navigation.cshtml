@@ -59,8 +59,7 @@
 									@foreach (var topic in group)
 									{
 										<li>
-											@Html.RouteLink(topic.Name.DisplayName,
-										                      "DocumentationBrowser", topic.GetRouteValues())
+											@Html.DocumentationPageLink(topic)
 										</li>
 									}
 								</ul>

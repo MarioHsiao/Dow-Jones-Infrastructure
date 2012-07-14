@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="DowJones.Documentation.Website.App_Start.BundleConfig" Collapsed="true">
+    <Position X="5.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>App_Start\BundleConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DowJones.Documentation.Website.App_Start.ElmahConfig" Collapsed="true">
+    <Position X="10.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>App_Start\ElmahConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DowJones.Documentation.Website.App_Start.FilterConfig" Collapsed="true">
+    <Position X="12.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>App_Start\FilterConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DowJones.Documentation.Website.App_Start.OrdinalAwareRouteHandler" Collapsed="true">
+    <Position X="12.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAA=</HashCode>
+      <FileName>App_Start\OrdinalAwareRouteHandler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DowJones.Documentation.Website.App_Start.OrdinalUrlHandler" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="5.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAIAABAAAAAAAAAAAAAAAAAAAAAABAAAAEAAAA=</HashCode>
+      <FileName>App_Start\OrdinalAwareRouteHandler.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="DowJones.Documentation.Website.App_Start.RouteConfig" Collapsed="true">
+    <Position X="10.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAABAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>App_Start\RouteConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DowJones.Documentation.Website.App_Start.ViewEngineConfig" Collapsed="true">
+    <Position X="5.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAIAAAIAAAAAAAAAAAAA=</HashCode>
+      <FileName>App_Start\ViewEngineConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DowJones.Documentation.Website.Controllers.DocumentationController" Collapsed="true">
+    <Position X="7" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABQAAAAAABAAAAAAAAAAAAAAAAAAAAAQAA=</HashCode>
+      <FileName>Controllers\DocumentationController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DowJones.Documentation.Website.Extensions.HtmlExtensions" Collapsed="true">
+    <Position X="5.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAhAAAAAAQBAAAECAAAAAEAAAA=</HashCode>
+      <FileName>Extensions\HtmlExtensions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DowJones.Documentation.Website.Extensions.LinkExtensions" Collapsed="true">
+    <Position X="7" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAgAAAAAA=</HashCode>
+      <FileName>Extensions\LinkExtensions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DowJones.Documentation.Website.Extensions.PartialRenderingExtensions" Collapsed="true">
+    <Position X="7" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAABAAAA=</HashCode>
+      <FileName>Extensions\PartialRenderingExtensions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DowJones.Documentation.Website.MvcApplication" Collapsed="true">
+    <Position X="10.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAABAAAAAAAAAAEAAAAIAAAAAAACAAA=</HashCode>
+      <FileName>Global.asax.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DowJones.Documentation.Website.Models.CategoryViewModel">
+    <Position X="0.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAgAAgAQAQEAAAAEAAAAAAAARAIAAAAAA=</HashCode>
+      <FileName>Models\CategoryViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DowJones.Documentation.Website.Models.ContentSectionViewModel">
+    <Position X="1.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQEAAAABgAgAQAARAEAAAAAAEBAAAAACUAACAAAAI=</HashCode>
+      <FileName>Models\ContentSectionViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DowJones.Documentation.Website.Models.PageViewModel">
+    <Position X="3.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>Models\PageViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DowJones.Documentation.Website.Models.RelatedTopicViewModel" Collapsed="true">
+    <Position X="8.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAAAAAAAAAQAAAAAAAAAAAAAAAAAiAA=</HashCode>
+      <FileName>Models\RelatedTopicViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DowJones.Documentation.Website.Models.SiteNavigation" Collapsed="true">
+    <Position X="12.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAAAACAAAAAAAAAAABEAEAAABAAAAAAAI=</HashCode>
+      <FileName>Models\SiteNavigation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DowJones.Documentation.Website.ViewEngines.DocumentationViewEngineHelpers" Collapsed="true">
+    <Position X="8.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>ViewEngines\DocumentationViewEngineHelpers.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DowJones.Documentation.Website.ViewEngines.MarkdownViewEngine" Collapsed="true">
+    <Position X="8.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAABAEAAAAAAAAAAAAAAAAAEAAAAAA=</HashCode>
+      <FileName>ViewEngines\MarkdownViewEngine.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DowJones.Documentation.Website.ViewEngines.VSDocViewEngine" Collapsed="true">
+    <Position X="7" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAABAEAAAAAAAAAAAAIAAAAEAAAAAA=</HashCode>
+      <FileName>ViewEngines\VSDocViewEngine.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

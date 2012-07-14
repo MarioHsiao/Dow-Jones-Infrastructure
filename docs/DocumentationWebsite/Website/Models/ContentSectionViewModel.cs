@@ -6,147 +6,149 @@ using System.Linq;
 
 namespace DowJones.Documentation.Website.Models
 {
-    [DebuggerDisplay("{DisplayName}")]
-    public class ContentSectionViewModel
-    {
-        protected ContentSection ContentSection { get; private set; }
+	[DebuggerDisplay("{DisplayName}")]
+	public class ContentSectionViewModel
+	{
+		protected ContentSection ContentSection { get; private set; }
 
-        public string AnchorId
-        {
-            get
-            {
-                return ContentSection.Name.Key.WithoutOrdinal().Replace(".", "");
-            }
-        }
+		public string AnchorId
+		{
+			get
+			{
+				return ContentSection.Name.Key.WithoutOrdinal().Replace(".", "");
+			}
+		}
 
-        public bool Collapsible
-        {
-            get { return Key != "livedemo" && Key != "configuration"; }
-        }
+		public bool Collapsible
+		{
+			get { return Key != "livedemo" && Key != "configuration"; }
+		}
 
-        public string DisplayName
-        {
-            get { return ContentSection.Name.DisplayName; }
-        }
+		public string DisplayName
+		{
+			get { return ContentSection.Name.DisplayName; }
+		}
 
-        public bool HasChildren
-        {
-            get { return Children != null && Children.Any(); }
-        }
+		public bool HasChildren
+		{
+			get { return Children != null && Children.Any(); }
+		}
 
-        public bool IsView
-        {
-            get { return !string.IsNullOrWhiteSpace(View); }
-        }
+		public bool IsView
+		{
+			get { return !string.IsNullOrWhiteSpace(View); }
+		}
 
-        public string Key
-        {
-            get { return ContentSection.Name.Key; }
-        }
+		public string Key
+		{
+			get { return ContentSection.Name.Key; }
+		}
 
 		public string DisplayKey
 		{
 			get { return ContentSection.Name.DisplayKey; }
 		}
 
-        public int Ordinal
-        {
-            get { return ContentSection.Ordinal.GetValueOrDefault(); }
-        }
+		public int Ordinal
+		{
+			get { return ContentSection.Ordinal.GetValueOrDefault(); }
+		}
 
-        public bool Selected { get; set; }
-        
+		public bool Selected { get; set; }
+
 		public IEnumerable<ContentSectionViewModel> Children
 		{
 			get { return _children.Value; }
 		}
-        private readonly Lazy<IEnumerable<ContentSectionViewModel>> _children;
+		private readonly Lazy<IEnumerable<ContentSectionViewModel>> _children;
 
-		private readonly Lazy<IEnumerable<RelatedTopicViewModel>> _relatedTopics;
-		public IEnumerable<RelatedTopicViewModel> RelatedTopics
-        {
-			get { return _relatedTopics.Value; }
-        }
-
-        public virtual string View
-        {
-            get
-            {
-                if(_view == null)
-                {
-                    string view = null;
-
-                    if (!HasChildren && ContentSection.Parent != null)
-                        view = ContentSection.Parent.Name.Key;
-
-                    _view = new Lazy<string>(() => view);
-                }
-
-                return _view.Value;
-            }
-            protected set
-            {
-                _view = new Lazy<string>(() => value);
-            }
-        }
-        private Lazy<string> _view;
-
-
-        public ContentSectionViewModel(ContentSection section)
-        {
-            Contract.Requires(section != null);
-            ContentSection = section;
-            _children = new Lazy<IEnumerable<ContentSectionViewModel>>(MapChildren);
-			_relatedTopics = new Lazy<IEnumerable<RelatedTopicViewModel>>(MapRelatedTopics);
-        }
-
-		private IEnumerable<RelatedTopicViewModel> MapRelatedTopics()
+		public IEnumerable<ContentSectionViewModel> RelatedTopics
 		{
-			var children =
-			   (
-				   from child in ContentSection.RelatedTopics ?? Enumerable.Empty<RelatedTopic>()
-				   where child != null && child.Name != null
-				   select new RelatedTopicViewModel(child)
-			   ).ToArray();
+			get { return _relatedTopics.Value; }
+		}
+		private readonly Lazy<IEnumerable<ContentSectionViewModel>> _relatedTopics;
 
-			return children;
+
+		public virtual string View
+		{
+			get
+			{
+				if (_view == null)
+				{
+					string view = null;
+
+					if (!HasChildren && ContentSection.Parent != null)
+						view = ContentSection.Parent.Name.Key;
+
+					_view = new Lazy<string>(() => view);
+				}
+
+				return _view.Value;
+			}
+			protected set
+			{
+				_view = new Lazy<string>(() => value);
+			}
+		}
+		private Lazy<string> _view;
+
+
+		public ContentSectionViewModel(ContentSection section)
+		{
+			Contract.Requires(section != null);
+			ContentSection = section;
+			_children = new Lazy<IEnumerable<ContentSectionViewModel>>(MapChildren, true);
+			_relatedTopics = new Lazy<IEnumerable<ContentSectionViewModel>>(MapRelatedTopics, true);
+
 
 		}
 
-        public bool HasChild(Name name)
-        {
-            if (name == null || !name.IsValid())
-                return false;
+		public bool HasChild(Name name)
+		{
+			if (name == null || !name.IsValid())
+				return false;
 
-            return HasChildren && Children.Any();
-        }
+			return HasChildren && Children.Any();
+		}
 
-        protected virtual IEnumerable<ContentSectionViewModel> MapChildren()
-        {
-            var children =
-                (
-                    from child in ContentSection.Children ?? Enumerable.Empty<ContentSection>()
+		protected virtual IEnumerable<ContentSectionViewModel> MapChildren()
+		{
+			var children =
+				(
+					from child in ContentSection.Children ?? Enumerable.Empty<ContentSection>()
 					where child != null && child.Name != null
-                    select MapChild(child)
-                ).ToArray();
+					select MapChild(child)
+				).ToArray();
 
-            SetDefaultSelection(children);
+			SetDefaultSelection(children);
 
-            return children;
-        }
+			return children;
+		}
 
-        private static void SetDefaultSelection(IEnumerable<ContentSectionViewModel> children)
-        {
+		protected virtual IEnumerable<ContentSectionViewModel> MapRelatedTopics()
+		{
+			var children =
+				(
+					from child in ContentSection.RelatedTopics ?? Enumerable.Empty<ContentSection>()
+					where child != null && child.Name != null
+					select MapChild(child)
+				).ToArray();
+
+			return children;
+		}
+
+		protected virtual void SetDefaultSelection(IEnumerable<ContentSectionViewModel> children)
+		{
 			var childrenList = children.ToList();		// avoid multiple enumerations
 			var hasSelected = childrenList.Any(x => x.Selected);
 
 			if (!hasSelected && childrenList.Any())
 				childrenList.First().Selected = true;
-        }
+		}
 
-        protected virtual ContentSectionViewModel MapChild(ContentSection child)
-        {
-            return new ContentSectionViewModel(child);
-        }
-    }
+		protected virtual ContentSectionViewModel MapChild(ContentSection child)
+		{
+			return new ContentSectionViewModel(child);
+		}
+	}
 }

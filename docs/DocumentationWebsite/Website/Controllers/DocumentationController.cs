@@ -50,7 +50,7 @@ namespace DowJones.Documentation.Website.Controllers
                 return RedirectToRoute("DocumentationBrowser", routeData);
             }
 
-            var documentationPage = documentationCategory.Find(page) ?? documentationCategory.Children.FirstOrDefault();
+			var documentationPage = documentationCategory.Find(page) ?? documentationCategory.Children.FirstOrDefault();
 
         	if (documentationPage == null)
                 return HttpNotFound();

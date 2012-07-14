@@ -202,6 +202,7 @@
       <DependentUpon>site.scss</DependentUpon>
     </Content>
     <Content Include="Styles\_mixins.scss" />
+    <Content Include="ClassDiagram1.cd" />
     <None Include="Properties\PublishProfiles\Montana-WebDeploy.pubxml" />
     <Content Include="Styles\Explorer.scss" />
     <None Include="Styles\themes\spacelab\site.scss" />
@@ -315,7 +316,7 @@ echo .proj &gt;&gt; exclude.txt
 echo .csproj &gt;&gt; exclude.txt
 echo .vspscc &gt;&gt; exclude.txt
 rd /s /q  "$(ProjectDir)Content"
-xcopy /S /Y /EXCLUDE:exclude.txt "$(SolutionDir)..\Content\*.*" "$(ProjectDir)Content\"
+xcopy /S /I /Y /EXCLUDE:exclude.txt "$(SolutionDir)..\Content\*" "$(ProjectDir)Content"
 del exclude.txt
 rd /s /q  "$(ProjectDir)Content\bin"</PostBuildEvent>
   </PropertyGroup>

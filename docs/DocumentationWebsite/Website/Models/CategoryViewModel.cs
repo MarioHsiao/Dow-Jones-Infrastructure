@@ -5,47 +5,38 @@ using DowJones.Documentation.Website.Extensions;
 
 namespace DowJones.Documentation.Website.Models
 {
-    public class CategoryViewModel : ContentSectionViewModel
-    {
-        private readonly string _currentPage;
+	public class CategoryViewModel : ContentSectionViewModel
+	{
+		private readonly string _currentPage;
 
-        public IEnumerable<PageViewModel> Pages
-        {
-            get { return Children.OfType<PageViewModel>(); }
-        }
-
-    	public bool HasRelatedTopics
-    	{
-			get { return RelatedTopics.Any(); }
-    	}
-
-
-    	public CategoryViewModel(ContentSection section, string currentPage = null)
-            : base(section)
-        {
-            _currentPage = currentPage;
-        }
-
-        public IEnumerable<IEnumerable<PageViewModel>> GetPageGroups(int groupSize = 5)
-        {
-            var pages = Pages.ToArray();
-
-            IEnumerable<PageViewModel> group;
-            int skip = 0;
-
-            do
-            {
-                @group = pages.Skip(skip).Take(groupSize).ToArray();
-                skip += groupSize;
-                yield return @group;
-            } while (@group.Any());
-        }
-
-		public IEnumerable<IEnumerable<RelatedTopicViewModel>> GetRelatedTopicGroups(int groupSize = 5)
+		public IEnumerable<PageViewModel> Pages
 		{
-			var pages = RelatedTopics.ToList();
+			get { return Children.OfType<PageViewModel>(); }
+		}
 
-			IEnumerable<RelatedTopicViewModel> group;
+		public IEnumerable<PageViewModel> RelatedTopicsPages
+		{
+			get { return RelatedTopics.OfType<PageViewModel>(); }
+		}
+
+
+		public bool HasRelatedTopics
+		{
+			get { return RelatedTopics.Any(); }
+		}
+
+
+		public CategoryViewModel(ContentSection section, string currentPage = null)
+			: base(section)
+		{
+			_currentPage = currentPage;
+		}
+
+		public IEnumerable<IEnumerable<PageViewModel>> GetPageGroups(int groupSize = 5)
+		{
+			var pages = Pages.ToArray();
+
+			IEnumerable<PageViewModel> group;
 			int skip = 0;
 
 			do
@@ -56,25 +47,59 @@ namespace DowJones.Documentation.Website.Models
 			} while (@group.Any());
 		}
 
-        protected override IEnumerable<ContentSectionViewModel> MapChildren()
-        {
-            var children = base.MapChildren().ToArray();
+		public IEnumerable<IEnumerable<PageViewModel>> GetRelatedTopicGroups(int groupSize = 5)
+		{
+			var pages = RelatedTopicsPages.ToList();
 
-            var selectedPage =
-                children.FirstOrDefault(child => string.Equals(child.Key, _currentPage, StringComparison.OrdinalIgnoreCase));
+			IEnumerable<PageViewModel> group;
+			int skip = 0;
 
-			if (selectedPage != null)
+			do
 			{
-				children.First().Selected = false;	// remove default selection
-				selectedPage.Selected = true;
-			}
+				@group = pages.Skip(skip).Take(groupSize).ToArray();
+				skip += groupSize;
+				yield return @group;
+			} while (@group.Any());
+		}
 
-	        return children;
-        }
+		protected override void SetDefaultSelection(IEnumerable<ContentSectionViewModel> contentSectionViewModels)
+		{
+			var children = contentSectionViewModels.ToArray();
+			var selectedPage =
+				children.FirstOrDefault(child => child.Key.Equals(_currentPage, StringComparison.OrdinalIgnoreCase))
+					?? RelatedTopics.FirstOrDefault(x => x.Key == _currentPage)
+					?? children.First();
 
-        protected override ContentSectionViewModel MapChild(ContentSection child)
-        {
-            return new PageViewModel(child, this);
-        }
-    }
+			selectedPage.Selected = true;
+		}
+
+		protected override IEnumerable<ContentSectionViewModel> MapRelatedTopics()
+		{
+			if (ContentSection.RelatedTopics == null || !ContentSection.RelatedTopics.Any())
+				return Enumerable.Empty<ContentSectionViewModel>();
+
+			var children = ContentSection
+							.RelatedTopics
+							.Where(c=> c!=null && c.Name != null)
+							.Select(MapRelatedTopicChild);
+				
+			return children;
+		}
+
+		protected  ContentSectionViewModel MapRelatedTopicChild(ContentSection child)
+		{
+			var category = this;
+
+			if (child.Parent != null && child.Parent.Name != ContentSection.Name)
+				category = new CategoryViewModel(child.Parent);
+
+			return new PageViewModel(child, category);
+		}
+
+		protected override ContentSectionViewModel MapChild(ContentSection child)
+		{
+			return new PageViewModel(child, this);
+		}
+
+	}
 }
