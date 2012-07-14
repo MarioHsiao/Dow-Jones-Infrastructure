@@ -22,9 +22,9 @@ namespace DowJones.Documentation
         }
         private readonly IList<ContentSection> _children;
 
-		public IEnumerable<RelatedTopic> RelatedTopics { get; private set; }
+		public IEnumerable<ContentSection> RelatedTopics { get; private set; }
 
-		public ContentSection(Name name = null, ContentSection parent = null, IEnumerable<ContentSection> children = null, IEnumerable<RelatedTopic> relatedTopics = null, int? ordinal = null)
+		public ContentSection(Name name = null, ContentSection parent = null, IEnumerable<ContentSection> children = null, IEnumerable<ContentSection> relatedTopics = null, int? ordinal = null)
         {
             Name = name;
             Ordinal = ordinal.HasValue ? ordinal : GetOrdinalFromName(name);
@@ -36,7 +36,7 @@ namespace DowJones.Documentation
                 child.Parent = this;
             }
 
-			RelatedTopics = (relatedTopics ?? Enumerable.Empty<RelatedTopic>());
+			RelatedTopics = (relatedTopics ?? Enumerable.Empty<ContentSection>());
         }
 
 	    private int? GetOrdinalFromName(Name name)
@@ -61,7 +61,12 @@ namespace DowJones.Documentation
             if (name == null || name.Value == null || Children == null)
                 return null;
 
-            return Children.FirstOrDefault(s => name.Value.Equals(s.Name.Value, StringComparison.OrdinalIgnoreCase));
+			return Children.FirstOrDefault(s => name.Key.Equals(s.Name.Key, StringComparison.OrdinalIgnoreCase))
+					?? RelatedTopics.FirstOrDefault(s => name.Key.Equals(s.Name.Key, StringComparison.OrdinalIgnoreCase))
+					?? Children.FirstOrDefault(s => name.DisplayKey.Equals(s.Name.DisplayKey, StringComparison.OrdinalIgnoreCase))
+					?? RelatedTopics.FirstOrDefault(s => name.DisplayKey.Equals(s.Name.DisplayKey, StringComparison.OrdinalIgnoreCase))
+					?? Children.FirstOrDefault(s => name.Value.Equals(s.Name.Value, StringComparison.OrdinalIgnoreCase))
+					?? RelatedTopics.FirstOrDefault(s => name.Value.Equals(s.Name.Value, StringComparison.OrdinalIgnoreCase));
         }
     }
 }

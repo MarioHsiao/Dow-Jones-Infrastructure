@@ -24,12 +24,16 @@ namespace DowJones.Documentation.DataAccess
 			_nameComparer = new ContentSectionComparer(orderedSections ?? Enumerable.Empty<string>());
 
 
-			if (!_baseDirectory.Exists) 
+			if (!_baseDirectory.Exists)
 				CategoryDirectories = Enumerable.Empty<DirectoryInfo>();
 			else
-				CategoryDirectories = _baseDirectory
+			{
+				var directories = _baseDirectory
 					.GetDirectories()
-					.Where(n => !n.Name.Equals("images", StringComparison.OrdinalIgnoreCase));
+					.Where(n => !n.Name.Equals("images", StringComparison.OrdinalIgnoreCase)).ToList();
+
+				CategoryDirectories = directories.Where(dir => dir.Name.ToLower() != "relatedtopics");
+			}
 		}
 
 
@@ -60,35 +64,61 @@ namespace DowJones.Documentation.DataAccess
 
 			var contentFiles = contentDirectory.GetFiles("*.md").Select(x => new ContentSection(x.Name));
 
-			// take all directories except images
+
+
+			//IEnumerable<DirectoryInfo> relatedTopicDirectories;
+			//ContentSection[] relatedTopics;
+
+			// check meta file to see which folders are related topic folders
+			var relatedTopics = GetRelatedTopics(contentDirectory);
+
+			// all directories
 			var contentDirectories = contentDirectory
 										.GetDirectories()
 										.Select(GetContentSection);
-			var relatedTopics = GetRelatedTopics(contentDirectory);
 
+			// now get the actual "content" directories
 			var children =
 				contentFiles
-					.Union(contentDirectories)
+					.Union(contentDirectories.Except(relatedTopics, new ContentSectionEqualityComparer()))
 					.Where(x => x != null)
 					.OrderBy(x => x, _nameComparer);
 
+			// roll it all up in a nice package!
 			return new ContentSection(contentDirectory.Name, children: children, relatedTopics: relatedTopics);
+
 		}
 
-		private IEnumerable<RelatedTopic> GetRelatedTopics(DirectoryInfo contentDirectory)
+		private IEnumerable<ContentSection> GetRelatedTopics(DirectoryInfo directory)
 		{
-			var relatedTopicsFile = contentDirectory.GetFiles("RelatedTopics.json").SingleOrDefault();
+			var relatedTopicsMetaFilePath = Path.Combine(directory.FullName, "RelatedTopics.json");
 
-			if (relatedTopicsFile == null)
-				return Enumerable.Empty<RelatedTopic>();
+			if (!File.Exists(relatedTopicsMetaFilePath)) return Enumerable.Empty<ContentSection>();
 
-			var json = File.ReadAllText(relatedTopicsFile.FullName);
-			var relatedTopics = new JavaScriptSerializer().Deserialize<RelatedTopic[]>(json);
+			try
+			{
+				var json = File.ReadAllText(relatedTopicsMetaFilePath);
+				var relatedTopicMeta = new JavaScriptSerializer().Deserialize<RelatedTopic[]>(json);
+				
+				var localTopics = relatedTopicMeta
+									.Where(x => x.Category == directory.Name)
+									.Select(x => new DirectoryInfo(Path.Combine(directory.FullName, x.Page)))
+									.Where(d => d.Exists)
+									.Select(GetContentSection);
 
-			return relatedTopics;
+				var externalTopics =  relatedTopicMeta
+										.Where(x => x.Category != directory.Name)
+										.Select(x => new ContentSection(x.Page, new ContentSection(x.Category)));
+				
+				return localTopics.Union(externalTopics);
+				
+			}
+			catch (Exception)
+			{
+				return Enumerable.Empty<ContentSection>();
+			}
 
 		}
-
 
 		internal class ContentSectionComparer : IComparer<ContentSection>
 		{
@@ -124,6 +154,47 @@ namespace DowJones.Documentation.DataAccess
 
 				return 1;
 			}
+		}
+
+		internal class ContentSectionEqualityComparer : IEqualityComparer<ContentSection>
+		{
+
+			#region Implementation of IEqualityComparer<in ContentSection>
+
+			/// <summary>
+			/// Determines whether the specified objects are equal.
+			/// </summary>
+			/// <returns>
+			/// true if the specified objects are equal; otherwise, false.
+			/// </returns>
+			/// <param name="x">The first object of type <paramref name="T"/> to compare.</param><param name="y">The second object of type <paramref name="T"/> to compare.</param>
+			public bool Equals(ContentSection x, ContentSection y)
+			{
+				if (x == null || y == null)
+					return false;
+
+				// see if ref equal
+				if (x.Equals(y))
+					return true;
+
+				// see if name matches
+				return x.Name.Equals(y.Name)
+						|| x.Name.DisplayKey.Equals(y.Name.DisplayKey); // weak: see if display key matches
+			}
+
+			/// <summary>
+			/// Returns a hash code for the specified object.
+			/// </summary>
+			/// <returns>
+			/// A hash code for the specified object.
+			/// </returns>
+			/// <param name="obj">The <see cref="T:System.Object"/> for which a hash code is to be returned.</param><exception cref="T:System.ArgumentNullException">The type of <paramref name="obj"/> is a reference type and <paramref name="obj"/> is null.</exception>
+			public int GetHashCode(ContentSection obj)
+			{
+				return obj.Name.DisplayKey.GetHashCode();
+			}
+
+			#endregion
 		}
 	}
 }
