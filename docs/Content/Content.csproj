@@ -46,17 +46,17 @@
   <ItemGroup>
     <None Include="1GettingStarted\1SetupDevelopmentEnvironment\2ConnectingToTFS.md" />
     <None Include="1GettingStarted\1SetupDevelopmentEnvironment\5DowJonesTemplates.md" />
+    <None Include="1GettingStarted\2UseAComponent\Asp.NetMvcUsage.md" />
+    <None Include="1GettingStarted\2UseAComponent\JavascriptUsage.md" />
+    <None Include="1GettingStarted\2UseAComponent\Overview.md" />
     <None Include="1GettingStarted\3Create a Component\1OpenSolution.md" />
     <None Include="1GettingStarted\1SetupDevelopmentEnvironment\4ConfigureNugetSources.md" />
-    <None Include="1GettingStarted\2Use a Component\JavascriptUsage.md" />
-    <None Include="1GettingStarted\2Use a Component\Asp.NetMvcUsage.md" />
-    <None Include="1GettingStarted\2Use a Component\Overview.md" />
-    <None Include="1GettingStarted\4Events\2PublishSubscribePattern.md" />
-    <None Include="1GettingStarted\4Events\5Handler Function.md" />
-    <None Include="1GettingStarted\4Events\4Examples.md" />
-    <None Include="1GettingStarted\4Events\3Members.md" />
-    <None Include="1GettingStarted\4Events\1Overview.md" />
-    <None Include="1GettingStarted\5ErrorHandling\Overview.md" />
+    <None Include="Components\3WorkingWithEvents\2PublishSubscribePattern.md" />
+    <None Include="Components\3WorkingWithEvents\5Handler Function.md" />
+    <None Include="Components\3WorkingWithEvents\4Examples.md" />
+    <None Include="Components\3WorkingWithEvents\3Members.md" />
+    <None Include="Components\3WorkingWithEvents\1Overview.md" />
+    <None Include="Components\4HandlingDataErrors\Overview.md" />
     <None Include="Components\Article\Configuration.md" />
     <None Include="Components\Article\Events.md" />
     <None Include="Components\Article\LiveDemo.md" />
