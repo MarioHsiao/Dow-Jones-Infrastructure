@@ -9,6 +9,12 @@ namespace DowJones.Documentation.DataAccess
 {
 	public class FileBasedContentRepository : IContentRepository
 	{
+	    private const string ImageFolderName = "images";
+	    private const string RelatedTopicsFolderName = "RelatedTopics";
+	    private const string RelatedTopicsMetaFileName = "RelatedTopics.json";
+        private static readonly IEnumerable<string> SpecialFiles =
+            new[] { ImageFolderName, RelatedTopicsFolderName, RelatedTopicsMetaFileName };
+
 		private readonly DirectoryInfo _baseDirectory;
 		private readonly ContentSectionComparer _nameComparer;
 
@@ -30,9 +36,9 @@ namespace DowJones.Documentation.DataAccess
 			{
 				var directories = _baseDirectory
 					.GetDirectories()
-					.Where(n => !n.Name.Equals("images", StringComparison.OrdinalIgnoreCase)).ToList();
+                    .Where(n => !n.Name.Equals(ImageFolderName, StringComparison.OrdinalIgnoreCase)).ToList();
 
-				CategoryDirectories = directories.Where(dir => dir.Name.ToLower() != "relatedtopics");
+                CategoryDirectories = directories.Where(dir => dir.Name.ToLower() != RelatedTopicsFolderName);
 			}
 		}
 
@@ -68,7 +74,10 @@ namespace DowJones.Documentation.DataAccess
 			if (contentDirectory == null)
 				return null;
 
-			var contentFiles = contentDirectory.GetFiles("*.md").Select(x => new ContentSection(x.Name));
+			var contentFiles = 
+                contentDirectory.GetFiles()
+                    .Where(x => !SpecialFiles.Contains(x.Name))
+                    .Select(x => new ContentSection(x.Name));
 
 			// check meta file to see which folders are related topic folders
 			var relatedTopics = GetRelatedTopics(contentDirectory).ToArray();
