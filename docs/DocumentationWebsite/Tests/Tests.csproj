@@ -150,14 +150,30 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <Content Include="Core\DataAccess\TestData\Components\DiscoveryGraph\Methods.cshtml" />
-    <Content Include="Core\DataAccess\TestData\Components\DiscoveryGraph\Overview.cshtml" />
-    <Content Include="Core\DataAccess\TestData\Components\DiscoveryGraph\Properties.cshtml" />
-    <Content Include="Core\DataAccess\TestData\Components\Overview.cshtml" />
-    <Content Include="Core\DataAccess\TestData\Dashboards\CanvasModule\Properties.cshtml" />
-    <Content Include="Core\DataAccess\TestData\Dashboards\CanvasModule\Methods.cshtml" />
-    <Content Include="Core\DataAccess\TestData\Dashboards\CanvasModule\Overview.cshtml" />
-    <Content Include="Core\DataAccess\TestData\Dashboards\Overview.cshtml" />
+    <Content Include="Core\DataAccess\TestData\Components\DiscoveryGraph\Methods.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Core\DataAccess\TestData\Components\DiscoveryGraph\Overview.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Core\DataAccess\TestData\Components\DiscoveryGraph\Properties.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Core\DataAccess\TestData\Components\Overview.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Core\DataAccess\TestData\Dashboards\CanvasModule\Properties.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Core\DataAccess\TestData\Dashboards\CanvasModule\Methods.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Core\DataAccess\TestData\Dashboards\CanvasModule\Overview.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Core\DataAccess\TestData\Dashboards\Overview.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="packages.config" />
   </ItemGroup>
   <Choose>

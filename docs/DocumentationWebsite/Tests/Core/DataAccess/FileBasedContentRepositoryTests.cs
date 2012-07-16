@@ -2,7 +2,6 @@
 using System.IO;
 using System.Linq;
 using DowJones.Documentation.DataAccess;
-using DowJones.Documentation.Website.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace DowJones.Documentation.Tests.Core.DataAccess
