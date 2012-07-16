@@ -61,6 +61,9 @@ namespace DowJones.Documentation
 
         private int? GetOrdinalFromName(Name name)
         {
+            if(name == null)
+                return null;
+
             var match = Regex.Match(name.Value, "^(?<Ordinal>\\d+)[^\\d]");
 
             if (match.Success)
