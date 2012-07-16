@@ -34,7 +34,10 @@ namespace DowJones.Documentation.Website
 	                "Constructors", "Events", "Properties",
 	                "Methods"
 	            };
-            ContentRepository = new FileBasedContentRepository(docsPath, sectionOrder);
+
+            IContentRepository repository = new FileBasedContentRepository(docsPath, sectionOrder);
+
+            ContentRepository = repository;
         }
     }
 }

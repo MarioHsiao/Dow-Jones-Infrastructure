@@ -82,6 +82,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Core\DataAccess\FileBasedContentRepositoryTests.cs" />
+    <Compile Include="Core\DataAccess\CachingContentRepositoryTests.cs" />
     <Compile Include="Core\Model\ContentSectionTests.cs" />
     <Compile Include="Core\Model\NameTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -20,6 +20,7 @@ namespace DowJones.Documentation.Website.Controllers
             _repository = repository;
         }
 
+        [OutputCache(Duration = 3600)]
         public ActionResult Homepage()
         {
             return View();
@@ -35,6 +36,7 @@ namespace DowJones.Documentation.Website.Controllers
         }
 
 
+        [OutputCache(Duration = 3600, VaryByParam = "category;page")]
         public ActionResult Page(string category, string page)
         {
             var documentationPage = _repository.GetPage(page ?? string.Empty, category);

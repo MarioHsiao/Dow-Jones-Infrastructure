@@ -57,7 +57,10 @@ namespace DowJones.Documentation
         {
             if (ReferenceEquals(null, other)) return false;
             if (ReferenceEquals(this, other)) return true;
-            return string.Equals(Value, other.Value);
+            return string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase)
+                || string.Equals(DisplayKey, other.DisplayKey, StringComparison.OrdinalIgnoreCase)
+                || string.Equals(Value, other.DisplayKey, StringComparison.OrdinalIgnoreCase)
+                || string.Equals(DisplayKey, other.Value, StringComparison.OrdinalIgnoreCase);
         }
 
         public override int GetHashCode()

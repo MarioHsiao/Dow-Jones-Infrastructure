@@ -154,6 +154,7 @@
     <Compile Include="Controllers\DocumentationController.cs" />
     <Compile Include="Extensions\HtmlExtensions.cs" />
     <Compile Include="Extensions\LinkExtensions.cs" />
+    <Compile Include="Extensions\OutputCacheAttribute.cs" />
     <Compile Include="Extensions\PartialRenderingExtensions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -202,7 +203,6 @@
       <DependentUpon>site.scss</DependentUpon>
     </Content>
     <Content Include="Styles\_mixins.scss" />
-    <Content Include="ClassDiagram1.cd" />
     <None Include="Properties\PublishProfiles\Montana-WebDeploy.pubxml" />
     <Content Include="Styles\Explorer.scss" />
     <None Include="Styles\themes\spacelab\site.scss" />
