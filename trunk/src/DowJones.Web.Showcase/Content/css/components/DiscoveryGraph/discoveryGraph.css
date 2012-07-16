@@ -47,7 +47,7 @@
   position: relative;
   overflow: hidden;
   width: 732px;
-  height: 118px; }
+  height: 200px; }
   .dj_DiscoveryGraph .scrollable.horizontal .items {
     /* this cannot be too large */
     width: 20000em;

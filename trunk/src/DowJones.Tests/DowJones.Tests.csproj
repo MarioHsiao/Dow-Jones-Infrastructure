@@ -191,6 +191,7 @@
     <Compile Include="Web.Mvc\DowJonesControllerBaseTests.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Web.Mvc\Infrastructure\CoreJsHandlerTests.cs" />
     <Compile Include="Web.Mvc\UI\ViewComponentBaseTests.cs">
       <SubType>Code</SubType>
     </Compile>

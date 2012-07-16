@@ -34,6 +34,22 @@ namespace DowJones.Web.Showcase.Controllers
             return View("Index", model);          
         }
 
+		public ActionResult ComponentExplorerDemo(string query = "obama and sc=j", int count = 10)
+		{
+			return View("Index", "_Layout_ComponentExplorer", new PortalHeadlineListModel
+			{
+				MaxNumHeadlinesToShow = 5,
+				ShowAuthor = true,
+				ShowSource = true,
+				ShowPublicationDateTime = true,
+				ShowTruncatedTitle = false,
+				AuthorClickable = true,
+				SourceClickable = true,
+				DisplaySnippets = SnippetDisplayType.Hover,
+				Layout = PortalHeadlineListLayout.HeadlineLayout,
+			});
+		}
+
         public ActionResult AccessionNumSearch([ModelBinder(typeof(StringSplitModelBinder))]string[] accessionNums)
         {
             if (accessionNums.IsNullOrEmpty())

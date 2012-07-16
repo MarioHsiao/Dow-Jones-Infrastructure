@@ -1357,7 +1357,7 @@ DJ.$dj.define('$dj', ['jquery'], DJ.$dj);
         /* mothership! contains options, data, callbacks */ config) {
 
         var validateConfig = function (configuration) {
-            if (document.getElementById(configuration.target) === null) {
+            if (document.getElementById(configuration.container) === null) {
                 $dj.error('Invalid Configuration:', 'Target not found. Make sure you pass a valid element "id"');
                 return false;
             }
@@ -1375,7 +1375,7 @@ DJ.$dj.define('$dj', ['jquery'], DJ.$dj);
         };
 
         var createInstance = function (type, config) {
-            return new type(document.getElementById(config.target), config);
+            return new type(document.getElementById(config.container), config);
         };
 
         if (!validateConfig(config)) {

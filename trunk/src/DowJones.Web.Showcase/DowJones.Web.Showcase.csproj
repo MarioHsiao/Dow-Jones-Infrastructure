@@ -37,6 +37,8 @@
     <WarningLevel>4</WarningLevel>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <NoWarn>1762</NoWarn>
+    <PrecompileBeforePublish>true</PrecompileBeforePublish>
+    <DeployIisAppPath>Default Web Site/MVCShowcase</DeployIisAppPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -265,6 +267,7 @@
     <Content Include="Content\swf\flowplayer.rtmp-3.2.3.swf" />
     <Content Include="Content\swf\flowplayer.unlimited-3.2.7.swf" />
     <Content Include="Modules\Empty\EmptyCanvasModule.js" />
+    <Content Include="ScriptAdd.html" />
     <Content Include="Scripts\loose2.js" />
     <Content Include="Scripts\loose.js" />
     <Content Include="Styles\css\CompanyOverviewCanvasModule.css" />
@@ -1611,6 +1614,7 @@
     <Content Include="Views\AutoSuggest\Index.cshtml">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="Views\CoreJs.cshtml" />
     <None Include="Views\NewsRadar\sample.json" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

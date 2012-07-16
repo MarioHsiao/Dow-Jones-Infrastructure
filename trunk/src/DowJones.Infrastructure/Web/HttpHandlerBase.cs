@@ -16,6 +16,6 @@ namespace DowJones.Web
             OnProcessRequest(new HttpContextWrapper(context));
         }
 
-        protected abstract void OnProcessRequest(HttpContextBase context);
+        public abstract void OnProcessRequest(HttpContextBase context);
     }
 }
