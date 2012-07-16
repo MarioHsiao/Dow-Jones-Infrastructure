@@ -56,21 +56,22 @@ namespace DowJones.Documentation.DataAccess
 			return GetContentSection(categoryDirectory);
 		}
 
+	    public ContentSection GetPage(Name name, Name categoryName)
+	    {
+            var category = GetCategory(categoryName) ?? new ContentSection(string.Empty);
+	        return category.Find(name);
+	    }
 
-		private ContentSection GetContentSection(DirectoryInfo contentDirectory)
+
+	    private ContentSection GetContentSection(DirectoryInfo contentDirectory)
 		{
 			if (contentDirectory == null)
 				return null;
 
 			var contentFiles = contentDirectory.GetFiles("*.md").Select(x => new ContentSection(x.Name));
 
-
-
-			//IEnumerable<DirectoryInfo> relatedTopicDirectories;
-			//ContentSection[] relatedTopics;
-
 			// check meta file to see which folders are related topic folders
-			var relatedTopics = GetRelatedTopics(contentDirectory);
+			var relatedTopics = GetRelatedTopics(contentDirectory).ToArray();
 
 			// all directories
 			var contentDirectories = contentDirectory
@@ -99,26 +100,23 @@ namespace DowJones.Documentation.DataAccess
 			{
 				var json = File.ReadAllText(relatedTopicsMetaFilePath);
 				var relatedTopicMeta = new JavaScriptSerializer().Deserialize<RelatedTopic[]>(json);
-				
-				var localTopics = relatedTopicMeta
-									.Where(x => x.Category == directory.Name)
-									.Select(x => new DirectoryInfo(Path.Combine(directory.FullName, x.Page)))
-									.Where(d => d.Exists)
-									.Select(GetContentSection);
 
-				var externalTopics =  relatedTopicMeta
-										.Where(x => x.Category != directory.Name)
-										.Select(x => new ContentSection(x.Page, new ContentSection(x.Category)));
-				
-				return localTopics.Union(externalTopics);
+                var relatedTopics =
+                    from meta in relatedTopicMeta
+                    let isLocal = (meta.Category == directory.Name)
+                    select
+                        isLocal ? GetContentSection(directory.GetDirectories().FirstOrDefault(x => x.Name == meta.Page))
+                                : new ContentSection(meta.Page, new ContentSection(meta.Category));
+
+                return relatedTopics;
 				
 			}
 			catch (Exception)
 			{
 				return Enumerable.Empty<ContentSection>();
 			}
-
 		}
+
 
 		internal class ContentSectionComparer : IComparer<ContentSection>
 		{
@@ -167,7 +165,7 @@ namespace DowJones.Documentation.DataAccess
 			/// <returns>
 			/// true if the specified objects are equal; otherwise, false.
 			/// </returns>
-			/// <param name="x">The first object of type <paramref name="T"/> to compare.</param><param name="y">The second object of type <paramref name="T"/> to compare.</param>
+			/// <param name="x">The first object of type T to compare.</param><param name="y">The second object of type T to compare.</param>
 			public bool Equals(ContentSection x, ContentSection y)
 			{
 				if (x == null || y == null)

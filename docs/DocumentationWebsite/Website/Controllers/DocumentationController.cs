@@ -37,23 +37,14 @@ namespace DowJones.Documentation.Website.Controllers
 
         public ActionResult Page(string category, string page)
         {
-            var documentationCategory = _repository.GetCategory(category) ?? new ContentSection(new Name(string.Empty));
+            var documentationPage = _repository.GetPage(page ?? string.Empty, category);
 
-            if (string.IsNullOrWhiteSpace(page) && documentationCategory.Children.Any())
-            {
-                var routeData = new LinkExtensions.DocumentationBrowserRouteData
-                    {
-						category = documentationCategory.Name.DisplayKey,
-                        page = documentationCategory.Children.First().Name.DisplayKey,
-                    };
+            if (documentationPage == null)
+                return RedirectToDefaultCategoryPage(category);
 
-                return RedirectToRoute("DocumentationBrowser", routeData);
-            }
-
-			var documentationPage = documentationCategory.Find(page) ?? documentationCategory.Children.FirstOrDefault();
-
-        	if (documentationPage == null)
-                return HttpNotFound();
+            var documentationCategory = documentationPage.Parent 
+                                            ?? _repository.GetCategory(category) 
+                                            ?? new ContentSection(category);
 
             ViewData["category"] = documentationCategory.Name;
             ViewData["page"] = documentationPage.Name;
@@ -62,6 +53,25 @@ namespace DowJones.Documentation.Website.Controllers
             var viewModel = new PageViewModel(documentationPage, categoryViewModel);
 
             return View("DocumentationPage", viewModel);
+        }
+
+
+        private ActionResult RedirectToDefaultCategoryPage(string category)
+        {
+            var documentationCategory = _repository.GetCategory(category) ?? new ContentSection(new Name(string.Empty));
+
+            if (documentationCategory.Children.Any())
+            {
+                var routeData = new LinkExtensions.DocumentationBrowserRouteData
+                {
+                    category = documentationCategory.Name.DisplayKey,
+                    page = documentationCategory.Children.First().Name.DisplayKey,
+                };
+
+                return RedirectToRoute("DocumentationBrowser", routeData);
+            }
+
+            return HttpNotFound();
         }
     }
 }

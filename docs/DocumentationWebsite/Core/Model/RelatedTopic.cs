@@ -9,6 +9,5 @@ namespace DowJones.Documentation
 
 		[DataMember(Name = "page")]
 		public string Page { get; set; }
-
 	}
 }

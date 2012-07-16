@@ -14,15 +14,15 @@ namespace DowJones.Documentation
 
         public int? Ordinal { get; private set; }
 
-        public ContentSection Parent { get; private set; }
+        public virtual ContentSection Parent { get; private set; }
 
-        public IEnumerable<ContentSection> Children
+        public virtual IEnumerable<ContentSection> Children
         {
             get { return _children; }
         }
         private readonly IList<ContentSection> _children;
 
-		public IEnumerable<ContentSection> RelatedTopics { get; private set; }
+        public virtual IEnumerable<ContentSection> RelatedTopics { get; private set; }
 
 		public ContentSection(Name name = null, ContentSection parent = null, IEnumerable<ContentSection> children = null, IEnumerable<ContentSection> relatedTopics = null, int? ordinal = null)
         {
@@ -39,24 +39,14 @@ namespace DowJones.Documentation
 			RelatedTopics = (relatedTopics ?? Enumerable.Empty<ContentSection>());
         }
 
-	    private int? GetOrdinalFromName(Name name)
-	    {
-			var match = Regex.Match(name.Value, "^(?<Ordinal>\\d+)[^\\d]");
-
-		    if (match.Success)
-			    return int.Parse(match.Groups["Ordinal"].Captures[0].Value);
-
-			return null;
-	    }
-
-	    public void Add(ContentSection child)
+        public virtual void Add(ContentSection child)
         {
             Contract.Requires(child != null);
             child.Parent = this;
             _children.Add(child);
         }
 
-        public ContentSection Find(Name name)
+        public virtual ContentSection Find(Name name)
         {
             if (name == null || name.Value == null || Children == null)
                 return null;
@@ -67,6 +57,16 @@ namespace DowJones.Documentation
 					?? RelatedTopics.FirstOrDefault(s => name.DisplayKey.Equals(s.Name.DisplayKey, StringComparison.OrdinalIgnoreCase))
 					?? Children.FirstOrDefault(s => name.Value.Equals(s.Name.Value, StringComparison.OrdinalIgnoreCase))
 					?? RelatedTopics.FirstOrDefault(s => name.Value.Equals(s.Name.Value, StringComparison.OrdinalIgnoreCase));
+        }
+
+        private int? GetOrdinalFromName(Name name)
+        {
+            var match = Regex.Match(name.Value, "^(?<Ordinal>\\d+)[^\\d]");
+
+            if (match.Success)
+                return int.Parse(match.Groups["Ordinal"].Captures[0].Value);
+
+            return null;
         }
     }
 }
