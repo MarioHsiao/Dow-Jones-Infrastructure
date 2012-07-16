@@ -17,10 +17,28 @@ namespace DowJones.Documentation.DataAccess
 
 		private readonly DirectoryInfo _baseDirectory;
 		private readonly ContentSectionComparer _nameComparer;
+	    private IEnumerable<DirectoryInfo> _categoryDirectories;
 
-		internal IEnumerable<DirectoryInfo> CategoryDirectories { get; private set; }
+	    internal IEnumerable<DirectoryInfo> CategoryDirectories
+	    {
+	        get
+	        {
+                if(_categoryDirectories == null)
+                {
+                    _categoryDirectories = 
+                        (
+                            from directory in _baseDirectory.GetDirectories()
+                            where IsNotSpecialFile(directory.Name)
+                            select directory
+                        ).ToArray();
+                }
 
-		public IEnumerable<string> SectionOrder { get; set; }
+	            return _categoryDirectories;
+	        }
+	        private set { _categoryDirectories = value; }
+	    }
+
+	    public IEnumerable<string> SectionOrder { get; set; }
 
 
 		public FileBasedContentRepository(string baseDirectory, IEnumerable<string> orderedSections = null)
@@ -29,17 +47,8 @@ namespace DowJones.Documentation.DataAccess
 			_baseDirectory = new DirectoryInfo(baseDirectory);
 			_nameComparer = new ContentSectionComparer(orderedSections ?? Enumerable.Empty<string>());
 
-
 			if (!_baseDirectory.Exists)
 				CategoryDirectories = Enumerable.Empty<DirectoryInfo>();
-			else
-			{
-				var directories = _baseDirectory
-					.GetDirectories()
-                    .Where(n => !n.Name.Equals(ImageFolderName, StringComparison.OrdinalIgnoreCase)).ToList();
-
-                CategoryDirectories = directories.Where(dir => dir.Name.ToLower() != RelatedTopicsFolderName);
-			}
 		}
 
 
@@ -68,7 +77,6 @@ namespace DowJones.Documentation.DataAccess
 	        return category.Find(name);
 	    }
 
-
 	    private ContentSection GetContentSection(DirectoryInfo contentDirectory)
 		{
 			if (contentDirectory == null)
@@ -76,8 +84,9 @@ namespace DowJones.Documentation.DataAccess
 
 			var contentFiles = 
                 contentDirectory.GetFiles()
-                    .Where(x => !SpecialFiles.Contains(x.Name))
-                    .Select(x => new ContentSection(x.Name));
+                    .Select(file => file.Name)
+                    .Where(IsNotSpecialFile)
+                    .Select(name => new ContentSection(name));
 
 			// check meta file to see which folders are related topic folders
 			var relatedTopics = GetRelatedTopics(contentDirectory).ToArray();
@@ -99,35 +108,40 @@ namespace DowJones.Documentation.DataAccess
 
 		}
 
-		private IEnumerable<ContentSection> GetRelatedTopics(DirectoryInfo directory)
-		{
-			var relatedTopicsMetaFilePath = Path.Combine(directory.FullName, "RelatedTopics.json");
+	    private IEnumerable<ContentSection> GetRelatedTopics(DirectoryInfo directory)
+	    {
+	        var relatedTopicsMetaFilePath = Path.Combine(directory.FullName, "RelatedTopics.json");
 
-			if (!File.Exists(relatedTopicsMetaFilePath)) return Enumerable.Empty<ContentSection>();
+	        if (!File.Exists(relatedTopicsMetaFilePath)) return Enumerable.Empty<ContentSection>();
 
-			try
-			{
-				var json = File.ReadAllText(relatedTopicsMetaFilePath);
-				var relatedTopicMeta = new JavaScriptSerializer().Deserialize<RelatedTopic[]>(json);
+	        try
+	        {
+	            var json = File.ReadAllText(relatedTopicsMetaFilePath);
+	            var relatedTopicMeta = new JavaScriptSerializer().Deserialize<RelatedTopic[]>(json);
 
-                var relatedTopics =
-                    from meta in relatedTopicMeta
-                    let isLocal = (meta.Category == directory.Name)
-                    select
-                        isLocal ? GetContentSection(directory.GetDirectories().FirstOrDefault(x => x.Name == meta.Page))
-                                : new ContentSection(meta.Page, new ContentSection(meta.Category));
+	            var relatedTopics =
+	                from meta in relatedTopicMeta
+	                let isLocal = (meta.Category == directory.Name)
+	                select
+	                    isLocal ? GetContentSection(directory.GetDirectories().FirstOrDefault(x => x.Name == meta.Page))
+	                        : new ContentSection(meta.Page, new ContentSection(meta.Category));
 
-                return relatedTopics;
+	            return relatedTopics;
 				
-			}
-			catch (Exception)
-			{
-				return Enumerable.Empty<ContentSection>();
-			}
-		}
+	        }
+	        catch (Exception)
+	        {
+	            return Enumerable.Empty<ContentSection>();
+	        }
+	    }
+
+	    private static bool IsNotSpecialFile(string filename)
+	    {
+	        return !SpecialFiles.Contains(filename, StringComparer.OrdinalIgnoreCase);
+	    }
 
 
-		internal class ContentSectionComparer : IComparer<ContentSection>
+	    internal class ContentSectionComparer : IComparer<ContentSection>
 		{
 			private readonly string[] _orderedNames;
 
@@ -163,7 +177,7 @@ namespace DowJones.Documentation.DataAccess
 			}
 		}
 
-		internal class ContentSectionEqualityComparer : IEqualityComparer<ContentSection>
+	    internal class ContentSectionEqualityComparer : IEqualityComparer<ContentSection>
 		{
 
 			#region Implementation of IEqualityComparer<in ContentSection>
