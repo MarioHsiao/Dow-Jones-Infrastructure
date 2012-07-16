@@ -1374,8 +1374,22 @@ DJ.$dj.define('$dj', ['jquery'], DJ.$dj);
             return (buf.length === 1) ? stack[buf[0]] : getTypeHandle(buf.slice(1).join('.'), stack[buf[0]]);
         };
 
+        var wireUpCallbacks = function (instance, callbacks) {
+            if (!instance || !instance.on || ! typeof (instance.on) === "function") {
+                $dj.warn('Cannot wire up callbacks - either instance is null, or not of type DJ.UI.Component or ".on()" is not a function.');
+                return;
+            }
+            
+            for(var event in callbacks) {
+                var handler = callbacks[event];
+                instance.on(event, handler);
+            }
+        };
+        
         var createInstance = function (type, config) {
-            return new type(document.getElementById(config.container), config);
+            var instance = new type(document.getElementById(config.container), config);
+            wireUpCallbacks(instance, config.callbacks);
+            return instance;
         };
 
         if (!validateConfig(config)) {

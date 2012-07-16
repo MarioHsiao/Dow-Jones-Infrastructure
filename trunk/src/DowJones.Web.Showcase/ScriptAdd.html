@@ -16,6 +16,9 @@
                 authorClickable: true,
                 displaySnippets: 1
             },
+            callbacks: {
+                "headlineClick.dj.PortalHeadlineList": headlineClickHandler
+            },
             data: getSampleHeadlines()
         });
 
@@ -104,6 +107,10 @@
             };
             
             return data;
+        }
+        
+        function headlineClickHandler(data) {
+            alert("Headline clicked: " + data.headline.title);
         }
     </script>
 </body>
