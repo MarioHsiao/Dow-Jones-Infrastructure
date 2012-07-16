@@ -150,14 +150,14 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="Core\DataAccess\TestData\Components\DiscoveryGraph\Methods.cshtml" />
-    <None Include="Core\DataAccess\TestData\Components\DiscoveryGraph\Overview.cshtml" />
-    <None Include="Core\DataAccess\TestData\Components\DiscoveryGraph\Properties.cshtml" />
-    <None Include="Core\DataAccess\TestData\Components\Overview.cshtml" />
-    <None Include="Core\DataAccess\TestData\Dashboards\CanvasModule\Properties.cshtml" />
-    <None Include="Core\DataAccess\TestData\Dashboards\CanvasModule\Methods.cshtml" />
-    <None Include="Core\DataAccess\TestData\Dashboards\CanvasModule\Overview.cshtml" />
-    <None Include="Core\DataAccess\TestData\Dashboards\Overview.cshtml" />
+    <Content Include="Core\DataAccess\TestData\Components\DiscoveryGraph\Methods.cshtml" />
+    <Content Include="Core\DataAccess\TestData\Components\DiscoveryGraph\Overview.cshtml" />
+    <Content Include="Core\DataAccess\TestData\Components\DiscoveryGraph\Properties.cshtml" />
+    <Content Include="Core\DataAccess\TestData\Components\Overview.cshtml" />
+    <Content Include="Core\DataAccess\TestData\Dashboards\CanvasModule\Properties.cshtml" />
+    <Content Include="Core\DataAccess\TestData\Dashboards\CanvasModule\Methods.cshtml" />
+    <Content Include="Core\DataAccess\TestData\Dashboards\CanvasModule\Overview.cshtml" />
+    <Content Include="Core\DataAccess\TestData\Dashboards\Overview.cshtml" />
     <None Include="packages.config" />
   </ItemGroup>
   <Choose>
