@@ -43,15 +43,15 @@ namespace DowJones.Documentation.DataAccess
 			return categories;
 		}
 
-		public ContentSection GetCategory(Name name, bool ignoreOrdinal = false)
+		public ContentSection GetCategory(Name name)
 		{
-			DirectoryInfo categoryDirectory;
-			if (ignoreOrdinal)
+			var categoryDirectory = CategoryDirectories
+									.FirstOrDefault(x => x.Name.Equals(name.Key, StringComparison.OrdinalIgnoreCase));
+
+            // If the exact name wasn't found, try it without the ordinal
+            if (categoryDirectory == null)
 				categoryDirectory = CategoryDirectories
 									.FirstOrDefault(x => x.Name.WithoutOrdinal().Equals(name.Key, StringComparison.OrdinalIgnoreCase));
-			else
-				categoryDirectory = CategoryDirectories
-									.FirstOrDefault(x => x.Name.Equals(name.Key, StringComparison.OrdinalIgnoreCase));
 
 			return GetContentSection(categoryDirectory);
 		}

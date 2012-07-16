@@ -85,7 +85,7 @@ namespace DowJones.Documentation.Website.App_Start
 			var category = routeData.Values["category"] as string;
 			if (category == null) return;	// return if category is null
 
-			var mappedCategory = _repository.GetCategory(category, true);
+			var mappedCategory = _repository.GetCategory(category);
 			if (mappedCategory == null) return;		// return if category is not found
 
 			// map route value to its key
