@@ -46,7 +46,7 @@
   <ItemGroup>
     <None Include="1GettingStarted\1SetupDevelopmentEnvironment\2ConnectingToTFS.md" />
     <None Include="1GettingStarted\1SetupDevelopmentEnvironment\5DowJonesTemplates.md" />
-    <None Include="1GettingStarted\2UseAComponent\Asp.NetMvcUsage.md" />
+    <None Include="1GettingStarted\2UseAComponent\ASP.NET_MVCUsage.md" />
     <None Include="1GettingStarted\2UseAComponent\JavascriptUsage.md" />
     <None Include="1GettingStarted\2UseAComponent\Overview.md" />
     <None Include="1GettingStarted\3Create a Component\1OpenSolution.md" />
