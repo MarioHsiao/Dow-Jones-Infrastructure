@@ -9,7 +9,6 @@ namespace JsXmlDocParser
 		private readonly XmlWriter _writer;
 		private bool _documentStarted;
         private bool _membersElementOpened;
-		private bool _membersElementClosed;
 
 
 		internal bool IsWriterAvailable
