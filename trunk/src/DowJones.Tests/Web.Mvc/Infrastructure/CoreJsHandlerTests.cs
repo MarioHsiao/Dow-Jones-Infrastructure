@@ -59,7 +59,7 @@ namespace DowJones.Web.Mvc.Infrastructure
 
 			//Assert.AreEqual(expected, actual);
 
-			Assert.Inconclusive("Come back and finish this after caching in ClientResources has been refactored");
+			//Assert.Inconclusive("Come back and finish this after caching in ClientResources has been refactored");
 		}
 	}
 }
