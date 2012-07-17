@@ -1,0 +1,19 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<title>@ViewBag.Title</title>
+	<link href="@Url.Content("~/styles/normalize.css")" rel="stylesheet" />
+	<link href="@Url.Content("~/styles/normalizeExtensions.css")" rel="stylesheet" />
+	<link href="@Url.Content("~/styles/site.css")" rel="stylesheet" />
+
+    @RenderSection("styles", false)
+    
+    <script src="http://mybox.dev.us.factiva.com/OldShowCase/core.js.ashx" type="text/javascript"></script>
+</head>
+<body>
+
+    @RenderBody()
+    
+    @RenderSection("scripts", false)
+</body>
+</html>
