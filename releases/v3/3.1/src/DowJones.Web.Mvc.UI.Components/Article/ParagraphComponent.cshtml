@@ -1,0 +1,75 @@
+@using DowJones.Infrastructure;
+@using DowJones.Extensions;
+@using Ajax.Article;
+@model DowJones.Web.Mvc.UI.Components.Article.ParagraphModel
+@{
+    TagName = Model.TagName.IsNullOrEmpty() ? "p" : Model.TagName;
+    CssClass = Model.ClassName;
+}
+
+@foreach(IRenderItem renderItem in Model.Items)
+{ 
+    switch(renderItem.ItemMarkUp){
+        case MarkUpType.ArticleHighlight:
+            <span class="dj_article_highlight">@(renderItem.ItemText)</span>
+            break;
+        case MarkUpType.Image:
+            <img alt="" src="@(renderItem.ItemValue)" />
+            break;
+        case MarkUpType.ImageFigure:
+                if (!string.IsNullOrEmpty(renderItem.EnlargedImageUrl)){ 
+                <div class="figure"><div class="figImages"><img alt="@(renderItem.Title.EscapeForHtml())" src="@(renderItem.ItemValue)" title="@(renderItem.Title.EscapeForHtml())" /><a class="dj_article_enlargeImg_link" href="javascript:void(0)" data-href="@(renderItem.EnlargedImageUrl)">Enlarge</a></div><div class="figCredit">@(renderItem.Credit)</div><div class="figSource">@(renderItem.Source)</div><div class="figCaption">@(renderItem.Caption)</div></div>
+                }
+                else{
+                <div class="figure"><img alt="@(renderItem.Title.EscapeForHtml())" src="@(renderItem.ItemValue)" title="@(renderItem.Title.EscapeForHtml())" /><div class="figCredit">@(renderItem.Credit)</div><div class="figSource">@(renderItem.Source)</div><div class="figCaption">@(renderItem.Caption)</div></div>
+                }
+                break;
+        case MarkUpType.PostProcessing:
+            switch (renderItem.ItemPostProcessData.Type)
+            {
+                case PostProcessing.Print:<span class='dj_article_colorLinks'>@(renderItem.ItemPostProcessData.ElinkValue) [@(renderItem.ItemPostProcessData.ElinkText)]</span>
+                     break;
+                case PostProcessing.Save:@(renderItem.ItemPostProcessData.ElinkValue) @(renderItem.ItemPostProcessData.ElinkText)
+                     break;
+            }
+            break;
+        case MarkUpType.Html:
+            <div class="embededHtml">@(Html.Raw(renderItem.ItemText))</div>
+            break;
+        case MarkUpType.ArticleElink:
+                 var elinkItemText = "";
+            if (renderItem.ElinkItems.Count > 0)
+            {
+                foreach (var elinkItem in renderItem.ElinkItems)
+                {
+                    if (elinkItem.ItemMarkUp == MarkUpType.ArticleElinkHighlight)
+                    { elinkItemText = elinkItemText + "<span class='dj_article_highlight'>" + elinkItem.ItemText + "</span>"; }
+                    else if (elinkItem.ItemMarkUp == MarkUpType.Plain)
+                    { elinkItemText = elinkItemText + elinkItem.ItemText; }
+                }
+            }
+            else { elinkItemText = renderItem.ItemText; }
+            <a class="dj_article_elink" href="javascript:void(0)" data-href="@renderItem.ItemValue.EscapeForHtml()">@elinkItemText</a>
+            break;
+        case MarkUpType.Plain:
+            <span class="dj_article_plain">@(renderItem.ItemText)</span>
+            break;
+        case MarkUpType.EntityLink:
+            if (renderItem.Highlight){
+                <a class="dj_article_entity dj_article_highlight @renderItem.ItemEntityData.Category" href="javascript:void(0);" data-entity="@renderItem.ItemEntityData.ToJson().EscapeForHtml()">@(renderItem.ItemText)</a>
+            }
+            else { 
+                <a class="dj_article_entity @renderItem.ItemEntityData.Category" href="javascript:void(0);" data-entity="@renderItem.ItemEntityData.ToJson().EscapeForHtml()">@(renderItem.ItemText)</a>
+            }
+            break;
+        case MarkUpType.SpanAnchor:
+            <span><a class="dj_article_entity" href="javascript:void(0);" data-entity="@(renderItem.ItemEntityData.ToJson().EscapeForHtml())">@(renderItem.ItemEntityData.Name)</a></span>
+            break;                                                                                                                              break;
+        case MarkUpType.Anchor:
+            <span><a class="dj_article_anchor" href="javascript:void(0);" data-href="@(renderItem.ItemValue.EscapeForHtml())">@(renderItem.ItemText)</a></span>
+            break;                                                                                                              break;
+        case MarkUpType.Unknown:
+            <span><a class="dj_article_accessionNum" href="javascript:void(0);" data-accessionNum="@(renderItem.ItemValue.EscapeForHtml())">@(renderItem.ItemText)</a></span>
+            break;
+     }
+}     

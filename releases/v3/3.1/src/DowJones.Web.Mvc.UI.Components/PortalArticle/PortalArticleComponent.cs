@@ -20,9 +20,9 @@ namespace DowJones.Web.Mvc.UI.Components.PortalArticle
     using System.Web.UI;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 06/29/2012 01:17 PM
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.22175")]
-    public class PortalArticleComponent : DowJones.Web.Mvc.UI.ViewComponentBase<PortalArticleModel>
+    // Last Generated Timestamp: 07/17/2012 04:13 PM
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.27108")]
+    public class PortalArticleComponent : DowJones.Web.Mvc.UI.ViewComponentBase<PortalArticle.PortalArticleModel>
     {
 #line hidden
 
