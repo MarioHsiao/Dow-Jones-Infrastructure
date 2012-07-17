@@ -13,15 +13,16 @@
         },
         
         options: {
-            maxNumHeadlinesToShow: 5,
             displayHeadlineTooltip: false,
-            truncationType: 0,
+            displayNoResultsToken: true,
+            displaySnippets: 3,
             extension: "",
-            layout: 0
+            layout: 0,
+            maxNumHeadlinesToShow: 5,
+            truncationType: 0
         },
 
         events: {
-            // jQuery events are namespaced as <event>.<namespace>
             headlineClick: "headlineClick.dj.PortalHeadlineList",
             sourceClick: "sourceClick.dj.PortalHeadlineList",
             authorClick: "authorClick.dj.PortalHeadlineList"
@@ -34,9 +35,8 @@
             // Call the base constructor
             this._super(element, $meta);
 
-            // call databind if we got data from server
-            if (this.data && this.data.resultSet)
-                this.bindOnSuccess(this.data.resultSet);
+            // Initialize component if we got data from server
+            this._setData(this.data);
         },
 
 
@@ -47,13 +47,14 @@
                 var tLi = items.get(i);
                 // Set the data to the li
                 $(tLi).data("headline", headline);
-                //Set the tooltip (snippets)
-                //displaySnippetType = Hover
+
+                // Set the tooltip (snippets)
+                // SnippetDisplayType = Hover
                 if ((me.options.displaySnippets === 3) && headline.snippets && headline.snippets.length > 0) {
                     me._renderSnippets(headline, tLi);
                 }
 
-                else //displaySnippetType = Hybrid- Hover
+                else // SnippetDisplayType = HybridHover
                     if ((me.options.displaySnippets === 4) && headline.snippets && headline.snippets.length > 0) {
                         if (i != 0) {
                             me._renderSnippets(headline, tLi);
@@ -91,9 +92,6 @@
                 , me = this;
 
             this.$element.delegate(this.selectors.headline, 'click', function () {
-                /*$parentContainer.triggerHandler(me.events.headlineClick,
-                { headline: $(this).closest('li').data("headline")});
-                */
                 me.publish(me.events.headlineClick, { headline: $(this).closest('li').data("headline") });
                 // prevent browser from handling the click
                 return false;
@@ -101,7 +99,6 @@
 
             if (this.options.sourceClickable) {
                 this.$element.delegate(this.selectors.source, 'click', function () {
-                    //$parentContainer.triggerHandler(me.events.sourceClick, { sourceCode: $(this).attr("rel") });
                     me.publish(me.events.sourceClick, { sourceCode: $(this).attr("rel") });
                     return false;
                 });
@@ -116,6 +113,12 @@
 
         },
 
+        _setData: function (data) {
+            if (data && data.resultSet)
+                this.bindOnSuccess(data.resultSet);
+            else
+                this.bindOnSuccess({});
+        },
 
         bindOnSuccess: function (data) {
             var headlineMarkup;

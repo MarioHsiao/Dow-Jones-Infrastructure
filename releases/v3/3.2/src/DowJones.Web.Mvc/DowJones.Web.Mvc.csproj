@@ -184,6 +184,7 @@
     <Compile Include="UI\Components\JsonpResult.cs" />
     <Compile Include="UI\Components\JsonpViewComponentResult.cs" />
     <Compile Include="UI\Components\CompositeComponentModel.cs" />
+    <Compile Include="Infrastructure\CoreJsHandler.cs" />
     <Compile Include="UI\RequireJsConfiguration.cs" />
     <Compile Include="UI\Exceptions\AmbiguousComponentTypeException.cs" />
     <Compile Include="UI\ClientState\ClientDataAttribute.cs" />

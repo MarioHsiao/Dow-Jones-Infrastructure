@@ -7,25 +7,29 @@
 
 DJ.UI.SocialButtons = DJ.UI.Component.extend({
 
-    __socialNetworkTypes: [
-            { key: "delicious", name: "Delicious", url: "http://del.icio.us/post?url={URL}&title={TITLE}" },
-            { key: "digg", name: "Digg", url: "http://digg.com/submit?phase=2&url={URL}&title={TITLE}" },
-            { key: "facebook", name: "Facebook", url: "http://www.facebook.com/share.php?u={URL}" },
-            { key: "furl", name: "Furl", url: "http://furl.net/storeIt.jsp?u={URL}&t={TITLE}" },
-            { key: "google", name: "Google", url: "http://www.google.com/bookmarks/mark?op=edit&bkmk={URL}&title={TITLE}" },
-            { key: "linkedin", name: "Linkedin", url: "http://www.linkedin.com/shareArticle?mini=true&url={URL}&title={TITLE}&summary={DESCRIPTION}&source=" },
-            { key: "newsvine", name: "Newsvine", url: "http://www.newsvine.com/_wine/save?u={URL}&h={TITLE}" },
-            { key: "reddit", name: "Reddit", url: "http://reddit.com/submit?url={URL}&title={TITLE}" },
-            { key: "stumbleupon", name: "StumbleUpon", url: "http://www.stumbleupon.com/submit?url={URL}&title={TITLE}" },
-            { key: "technorati", name: "Technorati", url: "http://www.technorati.com/faves?add={URL}" },
-            { key: "twitter", name: "Twitter", url: "http://twitter.com/?status={TITLE}%20-%20{URL}" },
-            { key: "yahoo", name: "Yahoo", url: "http://myweb2.search.yahoo.com/myresults/bookmarklet?u={URL}&t={TITLE}" },
-            { key: "myspace", name: "MySpace", url: "http://www.myspace.com/Modules/PostTo/Pages/?u={URL}&t={TITLE}&c={DESCRIPTION}&l=3" }
-        ],
+    defaults: {
+        debug: false,
+        cssClass: 'dj_SocialButtons'
+    },
+
+    __socialNetworkTypes: {
+        "delicious": { url: "http://del.icio.us/post?url={URL}&title={TITLE}" },
+        "digg": { url: "http://digg.com/submit?phase=2&url={URL}&title={TITLE}" },
+        "facebook": { url: "http://www.facebook.com/share.php?u={URL}" },
+        "furl": { url: "http://furl.net/storeIt.jsp?u={URL}&t={TITLE}" },
+        "google": { url: "http://www.google.com/bookmarks/mark?op=edit&bkmk={URL}&title={TITLE}" },
+        "linkedin": { url: "http://www.linkedin.com/shareArticle?mini=true&url={URL}&title={TITLE}&summary={DESCRIPTION}&source=" },
+        "newsvine": { url: "http://www.newsvine.com/_wine/save?u={URL}&h={TITLE}" },
+        "reddit": { url: "http://reddit.com/submit?url={URL}&title={TITLE}" },
+        "stumbleupon": { url: "http://www.stumbleupon.com/submit?url={URL}&title={TITLE}" },
+        "technorati": { url: "http://www.technorati.com/faves?add={URL}" },
+        "twitter": { url: "http://twitter.com/?status={TITLE}%20-%20{URL}" },
+        "yahoo": { url: "http://myweb2.search.yahoo.com/myresults/bookmarklet?u={URL}&t={TITLE}" },
+        "myspace": { url: "http://www.myspace.com/Modules/PostTo/Pages/?u={URL}&t={TITLE}&c={DESCRIPTION}&l=3" }
+    },
 
     options: {
-        socialNetworks: null,  
-        imageSize: 0,
+        socialNetworks: null,
         url: null,
         title: null,
         keywords: null,
@@ -45,15 +49,12 @@ DJ.UI.SocialButtons = DJ.UI.Component.extend({
         this.applySocial();
     },
 
-
-
     applySocial: function () {
         var undefined;
         var socLink;
         var index;
         var name;
         var url;
-        var imgSize = this.get_imageSize();
         var element = this.element;
         var arrNetworks = this.get_socialNetworks();
 
@@ -66,17 +67,10 @@ DJ.UI.SocialButtons = DJ.UI.Component.extend({
         var sb = [];
 
         for (var i = 0, len = arrNetworks.length; i < len; i++) {
-            index = arrNetworks[i];
-            var tObj = this.__socialNetworkTypes[index];
-            id = tObj.key;
-            url = tObj.url;
-            name = tObj.name;
-
-            if (imgSize === 0) {
-                cName = "social_button social_sm social_sm_" + id;
-            } else {
-                cName = "social_button social_lg social_lg_" + id;
-            }
+            name = arrNetworks[i];
+            id = name.toLowerCase();
+            url = this.__socialNetworkTypes[id].url;          
+            cName = "social_button social_button_" + id;
 
             if (url !== undefined) {
                 if (url !== undefined) {

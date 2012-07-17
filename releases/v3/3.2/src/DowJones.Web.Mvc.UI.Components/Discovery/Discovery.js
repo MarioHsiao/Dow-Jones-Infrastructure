@@ -1,20 +1,20 @@
 
-    DJ.UI.Discovery = DJ.UI.Component.extend({
-        selectors: {
-            noResultSpan: 'span.dj_noResults',
-            discoveryItem: '.item'
-        },
-        options: {
+DJ.UI.Discovery = DJ.UI.Component.extend({
+    selectors: {
+        noResultSpan: 'span.dj_noResults',
+        discoveryItem: '.item'
+    },
+    options: {
     },
     events: {
         itemClick: 'itemClick.dj.Discovery'
     }
-        , init: function (element, m) {
-            var meta = $.extend({ name: 'Discovery' }, m);
+    , init: function (element, m) {
+        var meta = $.extend({ name: 'Discovery' }, m);
 
-            // Call the base constructor
-            this._super(element, meta);
-        },
+        // Call the base constructor
+        this._super(element, meta);
+    },
     // gets called during base.init()
     _initializeEventHandlers: function () {
         this._super();

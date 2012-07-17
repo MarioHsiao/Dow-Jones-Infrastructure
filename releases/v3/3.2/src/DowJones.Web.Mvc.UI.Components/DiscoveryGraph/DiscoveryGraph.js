@@ -13,7 +13,7 @@ DJ.UI.DiscoveryGraph = DJ.UI.Component.extend({
     },
 
 
-    eventNames: {
+    events: {
         discoveryItemClicked: 'discoveryItemClick.dj.DiscoveryGraph'
     },
 
@@ -245,8 +245,8 @@ DJ.UI.DiscoveryGraph = DJ.UI.Component.extend({
         var self = this,
                 o = self.options,
                 el = $(self.element);
-        $dj.info(self.eventNames.discoveryItemClicked + " Event clicked");
-        self.publish(self.eventNames.discoveryItemClicked, { "data": evt.point.options.jsonObj });
+        $dj.info(self.events.discoveryItemClicked + " Event clicked");
+        self.publish(self.events.discoveryItemClicked, { "data": evt.point.options.jsonObj });
     },
 
 

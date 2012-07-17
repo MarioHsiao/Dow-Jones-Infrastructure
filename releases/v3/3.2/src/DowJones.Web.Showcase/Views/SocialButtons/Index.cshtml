@@ -2,5 +2,9 @@
 @{
     ViewBag.Title = "Social Buttons";
 }
+<link href="@Url.Content("~/Content/css/base.css")" rel="stylesheet" />
+<style type="text/css">
+   ul.dj_SocialButtons li { display: inline; padding-right: 5px; }
+</style>
 
-@Html.DJ().Render(Model, new { id = "djSocialButtons"})
+@Html.DJ().Render(Model)

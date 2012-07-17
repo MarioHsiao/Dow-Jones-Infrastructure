@@ -32,7 +32,7 @@ namespace DowJones.Web.Mvc.UI.Components.PortalHeadlineList
     using System.Web.UI;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 06/29/2012 01:19 PM
+    // Last Generated Timestamp: 07/02/2012 03:47 PM
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.PortalHeadlineList.ClientTemplates.Error.htm", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="error", DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.PortalHeadlineList.PortalHeadlineListComponent))]
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.PortalHeadlineList.ClientTemplates.SuccessHeadline" +
         ".htm", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="successHeadline", DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.PortalHeadlineList.PortalHeadlineListComponent))]
@@ -44,7 +44,7 @@ namespace DowJones.Web.Mvc.UI.Components.PortalHeadlineList
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.PortalHeadlineList.ClientTemplates.AddNewContent.h" +
         "tm", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="addNewContent", DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.PortalHeadlineList.PortalHeadlineListComponent))]
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.PortalHeadlineList.PortalHeadlineList.js", ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.PortalHeadlineList.PortalHeadlineListComponent))]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.22175")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.27108")]
     public class PortalHeadlineListComponent : DowJones.Web.Mvc.UI.ViewComponentBase<PortalHeadlineListModel>
     {
 #line hidden

@@ -1869,7 +1869,7 @@ padding-left: 10px;
 } 
 
  /* Start Social Buttons Extender */
- .social_sm /* Applies to the small social links */
+ .social_button /* Applies to the small social links */
 {	
 	padding-right: 10px; display: inline-block;	width:15px; height:20px; text-indent:-9999em;
 }
@@ -1879,67 +1879,67 @@ padding-left: 10px;
 	padding-right: 15px; display: inline-block;	width:35px; height:50px; text-indent:-9999em;
 }
 	
-.social_sm_delicious
+.social_button_delicious
 {
 	background:url('../images/small/delicious.png') no-repeat;
 }
 
-.social_sm_digg
+.social_button_digg
 {
 	background:url('../images/small/digg.png') no-repeat;
 }
 
-.social_sm_facebook
+.social_button_facebook
 {
 	background:url('../images/small/facebook.png') no-repeat;
 }
 
-.social_sm_furl
+.social_button_furl
 {
 	background:url('../images/small/furl.png') no-repeat;
 }
 
-.social_sm_google
+.social_button_google
 {
 	background:url('../images/small/google.png') no-repeat;
 }
 
-.social_sm_linkedin
+.social_button_linkedin
 {
 	background:url('../images/small/linkedin.png') no-repeat;
 }
 
-.social_sm_myspace
+.social_button_myspace
 {
 	background:url('../images/small/myspace.png') no-repeat;
 }
 
-.social_sm_newsvine
+.social_button_newsvine
 {
 	background:url('../images/small/newsvine.png') no-repeat;
 }
 
-.social_sm_reddit
+.social_button_reddit
 {
 	background:url('../images/small/reddit.png') no-repeat;
 }
 
-.social_sm_stumbleupon
+.social_button_stumbleupon
 {
 	background:url('../images/small/stumbleupon.png') no-repeat;
 }
 
-.social_sm_technorati
+.social_button_technorati
 {
 	background:url('../images/small/technorati.png') no-repeat;
 }
 
-.social_sm_twitter
+.social_button_twitter
 {
 	background:url('../images/small/twitter.png') no-repeat;
 }
 
-.social_sm_yahoo
+.social_button_yahoo
 {
 	background:url('../images/small/yahoo.png') no-repeat;
 }

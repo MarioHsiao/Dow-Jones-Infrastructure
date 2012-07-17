@@ -4,33 +4,38 @@
         .Include("~/Content/css/Components/DiscoveryGraph/discoveryGraph.css");
 }
 
-<fieldset>
-    <legend>Interact</legend>
-    <table border="0" cellspacing="2" style="border-collapse: collapse; border: 0; table-layout: fixed">
+@if(ViewBag.IsInteractive)
+{
+	<fieldset>
+		<legend>Interact</legend>
+		<table border="0" cellspacing="2" style="border-collapse: collapse; border: 0; table-layout: fixed">
 
-        <tr>
-            <td style="width: 100px; text-align: right"><b>Layout: </b></td>
-            <td>
-                <input type="radio" id="horz" name="layout" checked /><label for="horz">Horizontal</label>
-            </td>
-            <td>
-                <input type="radio" id="vert" name="layout" /><label for="scrollable">Vertical</label>
-            </td>
-        </tr>
-        <tr>
-            <td style="width: 100px; text-align: right"><b>Apply Behavior: </b></td>
-            <td>
-                <input type="radio" id="scrollable" name="behavior" checked /><label for="scrollable">Scrollable</label>
-            </td>
-            <td>
-                <input type="radio" id="sortable" name="behavior" disabled /><label for="scrollable">Sortable</label>
-            </td>
-        </tr>
-    </table>
-    <p>
-        <button id="apply" class="white">Apply</button>
-    </p>
-</fieldset>
+			<tr>
+				<td style="width: 100px; text-align: right"><b>Layout: </b></td>
+				<td>
+					<input type="radio" id="horz" name="layout" checked /><label for="horz">Horizontal</label>
+				</td>
+				<td>
+					<input type="radio" id="vert" name="layout" /><label for="scrollable">Vertical</label>
+				</td>
+			</tr>
+			<tr>
+				<td style="width: 100px; text-align: right"><b>Apply Behavior: </b></td>
+				<td>
+					<input type="radio" id="scrollable" name="behavior" checked /><label for="scrollable">Scrollable</label>
+				</td>
+				<td>
+					<input type="radio" id="sortable" name="behavior" disabled /><label for="scrollable">Sortable</label>
+				</td>
+			</tr>
+		</table>
+		<p>
+			<button id="apply" class="white">Apply</button>
+		</p>
+	</fieldset>
+    @Html.DJ().ScriptRegistry().OnDocumentReady("makeInteractive();")
+}
+
 @Html.DJ().ScriptRegistry().OnDocumentReady("init();")
 <section>
     <header>
@@ -46,7 +51,8 @@
 <script type="text/javascript">
 
     var discoveryGraph, orientation = 'horizontal';
-    function init() {
+    
+    function makeInteractive() {
         $('#horz').click(function () {
             $('#scrollable').attr("disabled", false);
 
@@ -66,7 +72,7 @@
         });
         $('#apply').click(function () {
             discoveryGraph.changeOrientation(orientation);
-            
+
             if ($('#scrollable')[0].checked) {
                 discoveryGraph.scrollable();
             } else if ($('#sortable')[0].checked) {
@@ -74,6 +80,9 @@
                 discoveryGraph.sortable();
             }
         });
+    }
+
+    function init() {
 
         discoveryGraph = $("#DiscoveryGraph-0").findComponent(DJ.UI.DiscoveryGraph);
         discoveryGraph.options.sortable = true;

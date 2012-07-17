@@ -1357,7 +1357,7 @@ DJ.$dj.define('$dj', ['jquery'], DJ.$dj);
         /* mothership! contains options, data, callbacks */ config) {
 
         var validateConfig = function (configuration) {
-            if (document.getElementById(configuration.target) === null) {
+            if (document.getElementById(configuration.container) === null) {
                 $dj.error('Invalid Configuration:', 'Target not found. Make sure you pass a valid element "id"');
                 return false;
             }
@@ -1374,8 +1374,22 @@ DJ.$dj.define('$dj', ['jquery'], DJ.$dj);
             return (buf.length === 1) ? stack[buf[0]] : getTypeHandle(buf.slice(1).join('.'), stack[buf[0]]);
         };
 
-        var createInstance = function (type, config) {
-            return new type(document.getElementById(config.target), config);
+        var wireUpEventHandlers = function (instance, eventHandlers) {
+            if (!instance || !instance.on || ! typeof (instance.on) === "function") {
+                $dj.warn('Cannot wire up eventHandlers - either instance is null, or not of type DJ.UI.Component or ".on()" is not a function.');
+                return;
+            }
+            
+            for (var event in eventHandlers) {
+                var handler = eventHandlers[event];
+                instance.on(event, handler);
+            }
+        };
+        
+        var createInstance = function (type, configuration) {
+            var instance = new type(document.getElementById(configuration.container), configuration);
+            wireUpEventHandlers(instance, configuration.eventHandlers);
+            return instance;
         };
 
         if (!validateConfig(config)) {
@@ -1386,10 +1400,11 @@ DJ.$dj.define('$dj', ['jquery'], DJ.$dj);
             name = "DJ.UI." + name;     /* add default namespace */
         }
         
-        $dj.require(['$', '$dj', '_', 'JSON', name],
+        $dj.require(['$', '$dj', '_', 'JSON', name], 
             function ($, $dj, _, JSON) {
                 createInstance(getTypeHandle(name), config);
-            });
+            }
+        );
     };
 
 }(DJ.jQuery, DJ.$dj));
