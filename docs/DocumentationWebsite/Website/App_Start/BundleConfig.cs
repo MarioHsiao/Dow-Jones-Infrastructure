@@ -34,19 +34,10 @@ namespace DowJones.Documentation.Website.App_Start
 
 			#region Themes
 
-			bundles.Add(new StyleBundle("~/Styles/theme-default").Include(
-				"~/Styles/themes/default/bootstrap.css",
-				"~/Styles/bootstrap-responsive.css",
-				"~/Styles/Site.css"));
-
-			bundles.Add(
-				new StyleBundle("~/Styles/core").Include(
-					"~/Styles/bootstrap-responsive.css",
-					"~/Styles/Site.css")
-			);
-
 			bundles.Add(new StyleBundle("~/Styles/themes/spacelab/theme-spacelab").Include(
 				"~/Styles/themes/spacelab/bootstrap.css",
+				"~/Styles/bootstrap-responsive.css",
+				"~/Styles/Site.css",
 				"~/Styles/themes/spacelab/site.css"));
 
 			bundles.Add(

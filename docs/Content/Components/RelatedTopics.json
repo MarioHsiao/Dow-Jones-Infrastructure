@@ -1,5 +1,5 @@
 [
-	{ "category": "GettingStarted", "page": "2UseAComponent"}, 
-	{ "category": "Components", "page": "3WorkingWithEvents"},
-	{ "category": "Components", "page": "4HandlingDataErrors"} 
+	{ "category": "GettingStarted", "page": "UseAComponent"}, 
+	{ "category": "Components", "page": "WorkingWithEvents"},
+	{ "category": "Components", "page": "HandlingDataErrors"} 
 ] 
