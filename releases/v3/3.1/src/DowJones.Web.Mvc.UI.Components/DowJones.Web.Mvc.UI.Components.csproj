@@ -136,6 +136,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ArticleComponent.cshtml</DependentUpon>
     </Compile>
+    <Compile Include="Article\ParagraphComponent.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ParagraphComponent.cshtml</DependentUpon>
+    </Compile>
     <Compile Include="Article\ReadSpeaker.cs" />
     <Compile Include="AuthorList\AuthorListComponent.cs">
       <AutoGen>True</AutoGen>
@@ -523,6 +528,10 @@
     <None Include="Article\ArticleComponent.cshtml">
       <Generator>RazorViewComponentClassGenerator</Generator>
       <LastGenOutput>ArticleComponent.cs</LastGenOutput>
+    </None>
+    <None Include="Article\ParagraphComponent.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>ParagraphComponent.cs</LastGenOutput>
     </None>
     <None Include="AuthorList\AuthorListComponent.cshtml">
       <Generator>RazorViewComponentClassGenerator</Generator>
