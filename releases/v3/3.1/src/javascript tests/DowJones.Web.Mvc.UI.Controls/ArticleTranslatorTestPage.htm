@@ -28,7 +28,7 @@
 </head>
 <body>
 
-    <div class="dj_ArticleTranslatorControl ArticleTranslatorControl" id="ArticleTranslatorControl">
+    <div class="dj_ArticleTranslator ArticleTranslatorControl" id="ArticleTranslatorControl">
         <div class="dj_article_translator_icon">
             <div class="dj_article_translator_translatemainlink" id="translateArticleDiv">
                 <a id="TranslatelinkId" href="javascript:void(0)" tabindex="0"><span class="dj_article_translator_button_span">
@@ -75,7 +75,7 @@
 
 
         $(document).ready(function () {
-            jQuery('#ArticleTranslatorControl').dj_ArticleTranslatorControl({ options: { debug: false }, tokens: {}, data: null, eventHandlers: { "dj.ArticleTranslatorControl.langClick": "OnLangClick"} });
+            jQuery('#ArticleTranslatorControl').dj_ArticleTranslator({ options: { debug: false }, tokens: {}, data: null, eventHandlers: { "dj.ArticleTranslatorControl.langClick": "OnLangClick"} });
         });
     </script>
 </body>

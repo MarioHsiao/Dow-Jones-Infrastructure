@@ -1,12 +1,12 @@
 using System.Web;
 
-namespace DowJones.Web.Mvc.UI.Components.Models.RelatedConcepts
+namespace DowJones.Web.Mvc.UI.Components.RelatedConcepts
 {
-    public class RelatedConceptsComponentModel : CompositeComponentModel
+    public class RelatedConceptsModel : CompositeComponentModel
     {
         private int maxNumberToReturn = 10;
  
-        public RelatedConceptsComponentModel()
+        public RelatedConceptsModel()
         {
             this.DataServiceUrl = VirtualPathUtility.ToAbsolute("~/search/related");
         }

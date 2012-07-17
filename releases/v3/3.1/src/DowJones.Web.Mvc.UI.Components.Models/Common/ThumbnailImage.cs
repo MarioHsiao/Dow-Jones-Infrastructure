@@ -1,5 +1,5 @@
 ﻿//TODO: Should either use this or DowJones.Tools.Ajax.HeadlineList.ThumbnailImage
-namespace DowJones.Web.Mvc.UI.Components.Common.Types
+namespace DowJones.Web.Mvc.UI.Components.Common
 {
     public class ThumbnailImage
     {

@@ -9,7 +9,7 @@ using DowJones.Web.Mvc.ActionFilters;
 using DowJones.Web.Mvc.Routing;
 using DowJones.Web.Mvc.Threading;
 using DowJones.Web.Mvc.UI;
-using DowJones.Web.Mvc.UI.Components.Models;
+using DowJones.Web.Mvc.UI.Components.PortalHeadlineList;
 using ControllerBase = DowJones.Web.Mvc.ControllerBase;
 
 namespace DowJones.Web.Showcase.Controllers

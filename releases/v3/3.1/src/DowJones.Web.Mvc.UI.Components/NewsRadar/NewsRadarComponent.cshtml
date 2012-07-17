@@ -1,0 +1,16 @@
+﻿@model NewsRadarModel
+@ClientPlugin dj_NewsRadar
+@ClientTemplate RelativeResourceName=ClientTemplates.Category.htm, TemplateId=category
+@ClientTemplate RelativeResourceName=ClientTemplates.Container.htm, TemplateId=container
+@ClientTemplate RelativeResourceName=ClientTemplates.Controls.htm, TemplateId=controls
+@ClientTemplate RelativeResourceName=ClientTemplates.Error.htm, TemplateId=error
+@ClientTemplate RelativeResourceName=ClientTemplates.Key.htm, TemplateId=key
+@ClientTemplate RelativeResourceName=ClientTemplates.Radar.htm, TemplateId=radar
+@ClientTemplate RelativeResourceName=ClientTemplates.Success.htm, TemplateId=success
+@ScriptResource RelativeResourceName=NewsRadar.js
+@{ 
+    CssClass = "dj_newsRadar";
+    DJ.ScriptRegistry()
+        .WithHighCharts()
+        .WithJQueryTools(); 
+}

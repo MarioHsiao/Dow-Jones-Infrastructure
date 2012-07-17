@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Xml;
 using DowJones.Extensions;
 using DowJones.Mapping;
 using Factiva.Gateway.Messages.Archive.V2_0;
@@ -93,7 +95,7 @@ namespace DowJones.Assemblers.Articles
 
         private static Paragraph[] GetParagraphs(Markup markup)
         {
-            return markup.Any.Select(element => new Paragraph
+           return markup.Any.Select(element => new Paragraph
                                                     {
                                                         Items = new object[]
                                                                     {
@@ -101,7 +103,9 @@ namespace DowJones.Assemblers.Articles
                                                                             {
                                                                                 Value = element.InnerXml
                                                                             }
-                                                                    }
+                                                                    },
+
+                                                        display = (element.GetAttribute("display") == "asis") ? ParagraphDisplay.Fixed : ParagraphDisplay.Proportional,
                                                     }).ToArray();
         }
     }

@@ -1,5 +1,5 @@
 ﻿using DowJones.Web.Mvc.Search.Controllers;
-using DowJones.Web.Mvc.UI.Components.Models;
+using DowJones.Web.Mvc.UI.Components.SearchBuilder;
 using Factiva.Gateway.Messages.Assets.Queries.V1_0;
 
 namespace DowJones.Web.Showcase.Controllers

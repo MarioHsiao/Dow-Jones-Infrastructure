@@ -1,14 +1,12 @@
-﻿<% var item = self.item, settings= self.settings, templates = self.templates, f = self.f;  %>
+﻿<%  var item = self.item, pName= self.propName, settings= self.settings, defaults = self.defaults, templates = self.templates, f = self.f; %>
+<%  
+    var text = (settings.displayTicker) ? f.getTicker(item) : item.companyName;
+%>
+
 <div class="djWidgetItem djContentItemFixed">
-	<a class="djContentLink" title="<%= item.CompanyName %>" href="#" djEvent="click:itemClicked" djData>
-		<% if (settings.displayTicker === true || settings.displayTicker == "true") { %>
-			<%= f.getTicker(item) %>
-		<% } else { %>
-			<%= item.companyName %>
-		<% } %>
-	</a>
+	<span class="djContentLink" title="<%= item.companyName %>"><%= text %></span>
 	<% for (var i = item.newsEntities.length-1; i >= 0; i--) { %>
-			<%= templates.radar({item:item, radar:item.newsEntities[i], index: i}) %>
+			<%= templates.radar({item:item, radar:item.newsEntities[i], index: i, propName: pName}) %>
 	<% } %>
 	<div class="mask-fade"></div>
 </div>

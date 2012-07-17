@@ -1,6 +1,4 @@
-﻿using DowJones.Web.Mvc.UI.Components.Common.Types;
-using DowJones.Web.Mvc.UI.Components.HeadlineList;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 
 namespace DowJones.Web.Mvc.UI.Components.NewsStandTicker
 {

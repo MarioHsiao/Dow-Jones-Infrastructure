@@ -1,6 +1,7 @@
-﻿@{
+﻿@using DowJones.Web.Mvc.UI.Components.CalendarEventList
+@{
     ViewBag.Title = "Index";
 }
 
 <h2>Index</h2>
-@Html.DJ().RenderComponent("CalendarEventListControl", null)
+@DJ.Render(new CalendarEventListModel())

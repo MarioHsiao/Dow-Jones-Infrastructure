@@ -129,7 +129,7 @@ namespace DowJones.Charting.Highcharts
                                              {
                                                  ExpirationPolicy = ExpirationPolicy.Absolute,
                                                  ExpiryInterval = 5,
-                                                 Namespace = "highcharts",
+                                                 Namespace = Exporter.DefaultNamespace,
                                                  Key = cacheKey,
                                                  StringData = svg,
                                              }
@@ -184,6 +184,7 @@ namespace DowJones.Charting.Highcharts
         {
             ReturnCode = 0;
         }
+
         public long ReturnCode { get; set; }
         public string Message { get; set; }
         public string Key { get; set; }

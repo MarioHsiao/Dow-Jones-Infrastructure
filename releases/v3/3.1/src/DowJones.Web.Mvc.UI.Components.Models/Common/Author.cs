@@ -1,4 +1,4 @@
-﻿namespace DowJones.Web.Mvc.UI.Components.HeadlineList
+﻿namespace DowJones.Web.Mvc.UI.Components.Common
 {
     public class Author
     {

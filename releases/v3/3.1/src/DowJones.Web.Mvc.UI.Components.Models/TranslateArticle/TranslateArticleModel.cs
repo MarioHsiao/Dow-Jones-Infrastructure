@@ -4,7 +4,6 @@ using System.Text;
 using System.Web.UI;
 using System.ComponentModel;
 using DowJones.Converters;
-using DowJones.Infrastructure;
 using Factiva.Gateway.Messages.Archive.V1_0;
 using MessagesArticle = Factiva.Gateway.Messages.Archive.V1_0.Article;
 using System.Text.RegularExpressions;
@@ -266,7 +265,7 @@ namespace DowJones.Web.Mvc.UI.Components.TranslateArticle
         /// <summary>
         /// Gets or sets PostProcessing.
         /// </summary>
-        public PostProcessing PostProcessing { get; set; }
+        public DowJones.Infrastructure.PostProcessing PostProcessing { get; set; }
 
         /// <summary>
         /// Gets or sets SessionId.
@@ -585,19 +584,19 @@ namespace DowJones.Web.Mvc.UI.Components.TranslateArticle
             {
                 switch (PostProcessing)
                 {
-                    case PostProcessing.Print:
+                    case DowJones.Infrastructure.PostProcessing.Print:
                         _htmlBuilder.AppendLine(
                             string.Format(
                                 @"<span class='dj_article_colorLinks'>{0} [{1}]</span>",
                                 (elink.text != null) ? elink.text.Value : elink.reference,
                                 elink.reference));
                         break;
-                    case PostProcessing.Save:
+                    case DowJones.Infrastructure.PostProcessing.Save:
                         _htmlBuilder.AppendLine((elink.text != null) ? elink.text.Value : elink.reference);
                         _htmlBuilder.AppendLine("[" + elink.reference + "]");
                         break;
                     default:
-                        if (PostProcessing != PostProcessing.UnSpecified)
+                        if (PostProcessing != DowJones.Infrastructure.PostProcessing.UnSpecified)
                         {
                             _htmlBuilder.AppendLine((elink.text != null) ? elink.text.Value : elink.reference);
                         }
@@ -613,7 +612,7 @@ namespace DowJones.Web.Mvc.UI.Components.TranslateArticle
             }
             else if (!elink.type.Equals(ElinkType.pro.ToString(), StringComparison.InvariantCultureIgnoreCase))
             {
-                if (PostProcessing != PostProcessing.UnSpecified)
+                if (PostProcessing != DowJones.Infrastructure.PostProcessing.UnSpecified)
                 {
                     _htmlBuilder.AppendLine(elink.text.Value);
                 }

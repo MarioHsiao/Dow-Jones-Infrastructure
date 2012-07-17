@@ -12,7 +12,6 @@ using DowJones.Url;
 using DowJones.Web.Handlers.DJInsider;
 using DowJones.Web.Mvc.Routing;
 using DowJones.Web.Mvc.UI.Components.Article;
-using DowJones.Web.Mvc.UI.Components.Models.Article;
 using DowJones.Web.Mvc.UI.Components.SocialButtons;
 using DowJones.Web.Showcase.Models.Newsletter;
 using ControllerBase = DowJones.Web.Mvc.ControllerBase;
@@ -49,7 +48,7 @@ namespace DowJones.Web.Showcase.Controllers
                                                NewsletterName = "Factiva Energy Monitor",
                                                Timestamp = new DateTime(2012,3,22,8,1,1),
                                            },
-                                ArticleModel = GetArticleModel(accessionNumber, option, imageType),
+                                Article = GetArticleModel(accessionNumber, option, imageType),
                             };
 
             model.Meta.TimestampDescripter = _dateTimeFormatter.FormatLongDateTime(model.Meta.Timestamp);
@@ -89,7 +88,6 @@ namespace DowJones.Web.Showcase.Controllers
                     Url = urlBuilder.ToString(),
                     Description = "",
                     Target = "_blank",
-                    ImageSize = ImageSize.Small,
                     Title = ProcessHeadlineRenderItems(articleDataSet.Headline),
                     SocialNetworks = new[] { SocialNetworks.LinkedIn, SocialNetworks.Twitter, SocialNetworks.Facebook, },
                     Keywords = "",

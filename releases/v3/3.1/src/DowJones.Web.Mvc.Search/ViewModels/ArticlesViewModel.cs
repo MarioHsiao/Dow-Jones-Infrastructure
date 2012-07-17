@@ -10,8 +10,7 @@ using System.Runtime.InteropServices;
 using DowJones.Assemblers.Articles;
 using DowJones.Web.Mvc.UI;
 using DowJones.Web.Mvc.UI.Components.Article;
-using DowJones.Web.Mvc.UI.Components.Models;
-using DowJones.Web.Mvc.UI.Components.Models.Article;
+using DowJones.Web.Mvc.UI.Components.PostProcessing;
 using Factiva.Gateway.Messages.Archive.V2_0;
 
 namespace DowJones.Web.Mvc.Search.ViewModels

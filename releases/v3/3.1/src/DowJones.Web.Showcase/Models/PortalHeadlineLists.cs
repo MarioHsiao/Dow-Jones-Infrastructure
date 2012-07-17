@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using DowJones.Web.Mvc.UI.Components.Models;
+using DowJones.Web.Mvc.UI.Components.PortalHeadlineList;
 
 namespace DowJones.Web.Showcase.Models
 {

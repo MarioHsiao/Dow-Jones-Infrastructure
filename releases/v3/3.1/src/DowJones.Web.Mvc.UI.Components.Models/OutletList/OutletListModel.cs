@@ -2,8 +2,9 @@
 using System.ComponentModel;
 using System.Linq;
 using System.Web.Mvc;
+using DowJones.Web.Mvc.UI.Components.AuthorList;
 
-namespace DowJones.Web.Mvc.UI.Components.Models
+namespace DowJones.Web.Mvc.UI.Components.OutletList
 {
 	public class OutletListModel : ViewComponentModel
 	{
@@ -46,7 +47,7 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 			get
 			{
 				IEnumerable<SelectListItem> all = GetActionMenuItems();
-				if (this.ShowDeleteAction)
+				if (ShowDeleteAction)
 				{
 					return all;
 				}
@@ -64,28 +65,28 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 		public string SelectedOutletIds { get; set; }
 
 		/// <summary>
-		/// Create an instanse of OutletListModel class.
+		/// Create an instanse of OutletList class.
 		/// </summary>
 		public OutletListModel()
 		{
-			this.Outlets = Enumerable.Empty<OutletModel>();
-			this.Tokens = new OutletListTokens();
-			this.ShowDeleteAction = false;
-			this.SortBy = OutletListSortColumns.OutletName;
-			this.SortOrder = OrderDirections.Ascending;
-			this.DisplayedColumns = new List<OutletListSortColumns>();
+			Outlets = Enumerable.Empty<OutletModel>();
+			Tokens = new OutletListTokens();
+			ShowDeleteAction = false;
+			SortBy = OutletListSortColumns.OutletName;
+			SortOrder = OrderDirections.Ascending;
+			DisplayedColumns = new List<OutletListSortColumns>();
 		}
 
 		private IEnumerable<SelectListItem> GetActionMenuItems()
 		{
 			return new[] {
-				new SelectListItem { Text = this.Tokens.AddToContactList, Value = "contact-list" },
-				new SelectListItem { Text = this.Tokens.Print, Value = "print" },
-				new SelectListItem { Text = this.Tokens.Export, Value = "export" },
-				new SelectListItem { Text = this.Tokens.ExportAll, Value = "export-all" },
-				new SelectListItem { Text = this.Tokens.Delete, Value = "delete" },
-				new SelectListItem { Text = this.Tokens.Email, Value = "email" },
-				new SelectListItem { Text = this.Tokens.UnselectAll, Value = "unselect-all" }
+				new SelectListItem { Text = Tokens.AddToContactList, Value = "contact-list" },
+				new SelectListItem { Text = Tokens.Print, Value = "print" },
+				new SelectListItem { Text = Tokens.Export, Value = "export" },
+				new SelectListItem { Text = Tokens.ExportAll, Value = "export-all" },
+				new SelectListItem { Text = Tokens.Delete, Value = "delete" },
+				new SelectListItem { Text = Tokens.Email, Value = "email" },
+				new SelectListItem { Text = Tokens.UnselectAll, Value = "unselect-all" }
 			};
 		}
 	}

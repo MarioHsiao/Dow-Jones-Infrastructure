@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Runtime.Serialization;
-using Newtonsoft.Json;
 
-namespace DowJones.Web.Mvc.UI.Components.Models
+namespace DowJones.Web.Mvc.UI.Components.VideoPlayer
 {
     [DataContract(Name = "clipCollection", Namespace = "")]
     public class ClipCollection : List<Clip>

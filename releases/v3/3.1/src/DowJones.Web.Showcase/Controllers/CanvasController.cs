@@ -5,7 +5,7 @@ using System.Web.Mvc;
 using DowJones.Ajax.PortalHeadlineList;
 using DowJones.Web.Mvc.UI;
 using DowJones.Web.Mvc.UI.Components;
-using DowJones.Web.Mvc.UI.Components.Models;
+using DowJones.Web.Mvc.UI.Components.PortalHeadlineList;
 using DowJones.Web.Showcase.Models;
 using DowJones.Web.Showcase.Modules.Empty;
 

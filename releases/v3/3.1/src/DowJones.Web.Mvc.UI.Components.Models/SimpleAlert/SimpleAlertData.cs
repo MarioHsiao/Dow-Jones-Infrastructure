@@ -6,7 +6,7 @@ using DowJones.Utilities.Search.Core;
 using Factiva.Gateway.Messages.Track.V1_0;
 using Newtonsoft.Json;
 
-namespace DowJones.Web.Mvc.UI.Components.Models
+namespace DowJones.Web.Mvc.UI.Components.SimpleAlert
 {
     public class SimpleAlertData
     {

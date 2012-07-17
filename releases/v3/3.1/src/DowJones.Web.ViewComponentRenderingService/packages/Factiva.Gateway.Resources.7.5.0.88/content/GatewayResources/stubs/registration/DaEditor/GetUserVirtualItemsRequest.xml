@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<GetUserVirtualItemsRequest>
+  <USER_LIST fcstype="list">
+    <USER_ID>user1</USER_ID>
+    <USER_ID>user2</USER_ID>
+  </USER_LIST>
+  <ITEM_CLASS_LIST fcstype="list">
+    <ITEM_CLASS>11</ITEM_CLASS>
+    <LOAD_BLOB>Y</LOAD_BLOB>
+  </ITEM_CLASS_LIST>
+  <ACCOUNT_ID>9ZZZ000500</ACCOUNT_ID>
+</GetUserVirtualItemsRequest>

@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using DowJones.Utilities.Search.Core;
-using DowJones.Web.Mvc.UI.Components.Common;
+using DowJones.Web.Mvc.UI.Components.Search;
 using Newtonsoft.Json;
 
-namespace DowJones.Web.Mvc.UI.Components.Models
+namespace DowJones.Web.Mvc.UI.Components.SearchCategoriesLookUp
 {
     [JsonObject(MemberSerialization = MemberSerialization.OptIn)]
     public class LookUpData

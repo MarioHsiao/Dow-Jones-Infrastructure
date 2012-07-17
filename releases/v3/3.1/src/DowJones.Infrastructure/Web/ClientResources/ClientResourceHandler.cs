@@ -56,16 +56,16 @@ namespace DowJones.Web
         private volatile static Func<HttpContextBase, DateTime> _lastModifiedCalculator;
 
         [Inject("Cannot use constructor injection on HttpHandlers")]
-        protected ILog Log { get; set; }
+        protected internal ILog Log { get; set; }
 
         [Inject("Cannot use constructor injection on HttpHandlers")]
-        protected IContentCache ContentCache { get; set; }
+        protected internal IContentCache ContentCache { get; set; }
 
         [Inject("Cannot use constructor injection on HttpHandlers")]
-        protected IClientResourceManager ClientResourceManager { get; set; }
+        protected internal IClientResourceManager ClientResourceManager { get; set; }
 
         [Inject("Cannot use constructor injection on HttpHandlers")]
-        protected IEnumerable<IClientResourceProcessor> ClientResourceProcessors { get; set; }
+        protected internal IEnumerable<IClientResourceProcessor> ClientResourceProcessors { get; set; }
 
 
         public static string GenerateUrl(string resourceId, InterfaceLanguage language, HttpContextBase context = null, bool? debug = null)
@@ -127,7 +127,7 @@ namespace DowJones.Web
         }
 
 
-        protected override void OnProcessRequest(HttpContextBase context)
+        public override void OnProcessRequest(HttpContextBase context)
         {
             var culture = SetRequestLanguage(context.Request[LanguageKey]);
 
@@ -167,7 +167,7 @@ namespace DowJones.Web
 
         public void RenderClientResources(HttpContextBase context, IEnumerable<string> resourceNames, CultureInfo culture = null)
         {
-            var clientResources = GetClientResources(resourceNames, culture);
+            var clientResources = GetClientResources(context, resourceNames, culture);
 
             if (!clientResources.Any())
                 throw new HttpException(404, "Client Resource Not Found");
@@ -251,7 +251,7 @@ namespace DowJones.Web
             return processedResource;
         }
 
-        private IEnumerable<ContentCacheItem> GetCachedClientResources(IEnumerable<string> resourceNames, CultureInfo culture, HttpContextWrapper context = null)
+        private IEnumerable<ContentCacheItem> GetCachedClientResources(HttpContextBase context, IEnumerable<string> resourceNames, CultureInfo culture)
         {
             context = context ?? new HttpContextWrapper(HttpContext.Current);
 
@@ -272,12 +272,12 @@ namespace DowJones.Web
             return cachedItems.ToArray();
         }
 
-        private IEnumerable<ContentCacheItem> GetClientResources(IEnumerable<string> resourceNames, CultureInfo culture)
+        private IEnumerable<ContentCacheItem> GetClientResources(HttpContextBase context, IEnumerable<string> resourceNames, CultureInfo culture)
         {
             if (resourceNames == null || resourceNames.IsEmpty())
                 return Enumerable.Empty<ContentCacheItem>();
 
-            var cachedResources = GetCachedClientResources(resourceNames, culture).ToArray();
+			var cachedResources = GetCachedClientResources(context, resourceNames, culture).ToArray();
 
             var cachedResourceNames = cachedResources.Select(y => y.Key.Id).ToArray();
 

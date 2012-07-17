@@ -1,10 +1,11 @@
 ﻿using System.Linq;
 using DowJones.Web.Mvc.UI.Components.Common;
+using DowJones.Web.Mvc.UI.Components.Search;
 using Newtonsoft.Json;
 using DowJones.Globalization;
 using DowJones.Utilities.Search.Core;
 
-namespace DowJones.Web.Mvc.UI.Components.Models
+namespace DowJones.Web.Mvc.UI.Components.SearchCategoriesLookUp
 {
     public class SearchCategoriesLookUpModel : ViewComponentModel
     {

@@ -1,50 +1,14 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="SocialButtonsExtender.cs" company="Dow Jones">
-//   © 2010 Dow Jones, Inc. All rights reserved.
-// </copyright>
-// <author>
-//   ..:: name ::..
-// </author>
-// <lastModified>
-//  <entry type="original"><date>5/12/2010</date><user>dhirv</user></entry>
-//  <entry type="update">
-//    <date>5/17/2010</date><user>dhirv</user>
-//    <reason>Added MySpace as a new social media target.</reason>
-//    <date>6/09/2010</date><user>dhirv</user>
-//    <reason>Added new property for Target.</reason>
-//  </entry>
-// </lastModified>
-// --------------------------------------------------------------------------------------------------------------------
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Web.UI;
-using DowJones.Web;
-using DowJones.Web.Mvc;
-using DowJones.Web.UI;
-using DowJones.Web.Mvc.UI.Components.SocialButtons;
-
-
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace DowJones.Web.Mvc.UI.Components.SocialButtons
 {
     /// <summary>
-    /// The image size.
-    /// </summary>
-    public enum ImageSize
-    {
-        /// <summary>
-        /// Small social media image
-        /// </summary>
-        Small,
-
-        /// <summary>
-        /// Large social media image
-        /// </summary>
-        Large,
-    }
-
-    /// <summary>
     /// The social networks.
     /// </summary>
+    [JsonConverter(typeof(StringEnumConverter))]
     public enum SocialNetworks
     {
         /// <summary>
@@ -150,13 +114,6 @@ namespace DowJones.Web.Mvc.UI.Components.SocialButtons
         /// The name of the tag.
         /// </value>
         public string TagName { get; set; }
-
-        /// <summary>
-        /// Gets or sets the size of the image.
-        /// </summary>
-        /// <value>The size of the image.</value>
-        [ClientProperty(Name="imageSize")]
-        public ImageSize ImageSize { get; set; }
 
         /// <summary>
         /// Gets or sets the social network.

@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Linq;
 using System.Web.Mvc;
 using DowJones.Ajax.Article;
@@ -38,80 +39,71 @@ namespace DowJones.Web.ViewComponentRenderingService.Controllers
                                 ShowSourceLinks = true,
                                 ShowSocialButtons = false,
                             };
-            if (request.MultimediaPackage != null)
+            if (request.MultimediaPackage != null &&
+                request.MultimediaPackage.MediaContents != null &&
+                request.MultimediaPackage.MediaContents.Count > 0)
             {
-                if (request.MultimediaPackage.MustPlayFromSource != null)
+                var mediaContents = request.MultimediaPackage.MediaContents;
+                var mediaContent = mediaContents.First();
+                if (mediaContents.Count > 1)
                 {
-                    if (request.MultimediaPackage.MustPlayFromSource.Status)
-                    {
-                        model.ArticleDataSet.ExternalUri = request.MultimediaPackage.MustPlayFromSource.Url;
-                    }
+                    mediaContent = mediaContents[1];
                 }
 
-                if (request.MultimediaPackage.MediaContents != null && request.MultimediaPackage.MediaContents.Count > 0)
+                model.VideoPlayerModel = new VideoPlayerModel
                 {
-                    var mediaContents = request.MultimediaPackage.MediaContents;
-                    var mediaContent = mediaContents.First();
-                    if (mediaContents.Count > 1)
+                    AutoPlay = request.MultimediaPlayerOptions.AutoPlay,
+                    PlayList = new ClipCollection(new[] { Mapper.Map<Clip>(mediaContent) }),
+                    PlayerKey = "75a6c4404d9ffa80a63",
+                };
+
+                if (request.MultimediaPlayerOptions != null)
+                {
+                    if (mediaContent.Medium == "audio")
                     {
-                        mediaContent = mediaContents[1];
+                        model.VideoPlayerModel.Width = request.MultimediaPlayerOptions.AvailableWidth > 0 ? request.MultimediaPlayerOptions.AvailableWidth : 300;
+                        model.VideoPlayerModel.Height = 30;
                     }
-
-                    model.VideoPlayerModel = new VideoPlayerModel
+                    else
                     {
-                        AutoPlay = request.MultimediaPlayerOptions.AutoPlay,
-                        PlayList = new ClipCollection(new[] { Mapper.Map<Clip>(mediaContent) }),
-                        PlayerKey = "75a6c4404d9ffa80a63",
-                    };
+                        int mediaContentWidth, mediaContentHeight;
 
-                    if (request.MultimediaPlayerOptions != null)
-                    {
-                        if (mediaContent.Medium == "audio")
+                        if (request.MultimediaPlayerOptions.AvailableWidth > 0 &&
+                            int.TryParse(mediaContent.Width, out mediaContentWidth) &&
+                            int.TryParse(mediaContent.Height, out mediaContentHeight))
                         {
-                            model.VideoPlayerModel.Width = request.MultimediaPlayerOptions.AvailableWidth > 0 ? request.MultimediaPlayerOptions.AvailableWidth : 300;
-                            model.VideoPlayerModel.Height = 30;
-                        }
-                        else
-                        {
-                            int mediaContentWidth, mediaContentHeight;
-
-                            if (request.MultimediaPlayerOptions.AvailableWidth > 0 &&
-                                int.TryParse(mediaContent.Width, out mediaContentWidth) &&
-                                int.TryParse(mediaContent.Height, out mediaContentHeight))
+                            if (mediaContentWidth > request.MultimediaPlayerOptions.AvailableWidth)
                             {
-                                if (mediaContentWidth > request.MultimediaPlayerOptions.AvailableWidth)
-                                {
-                                    // media dimensions are bigger than available space, resize keeping ratio
-                                    model.VideoPlayerModel.Width = request.MultimediaPlayerOptions.AvailableWidth;
-                                    model.VideoPlayerModel.Height = (request.MultimediaPlayerOptions.AvailableWidth * mediaContentHeight) / mediaContentWidth;
-                                }
-                                else
-                                {
-                                    model.VideoPlayerModel.Width = mediaContentWidth;
-                                    model.VideoPlayerModel.Height = mediaContentHeight;
-                                }
+                                // media dimensions are bigger than available space, resize keeping ratio
+                                model.VideoPlayerModel.Width = request.MultimediaPlayerOptions.AvailableWidth;
+                                model.VideoPlayerModel.Height = (request.MultimediaPlayerOptions.AvailableWidth * mediaContentHeight) / mediaContentWidth;
+                            }
+                            else
+                            {
+                                model.VideoPlayerModel.Width = mediaContentWidth;
+                                model.VideoPlayerModel.Height = mediaContentHeight;
                             }
                         }
+                    }
 
-                        if (!request.MultimediaPlayerOptions.ControlBarPath.IsNullOrEmpty())
-                        {
-                            model.VideoPlayerModel.ControlBarPath = request.MultimediaPlayerOptions.ControlBarPath;
-                        }
+                    if (!request.MultimediaPlayerOptions.ControlBarPath.IsNullOrEmpty())
+                    {
+                        model.VideoPlayerModel.ControlBarPath = request.MultimediaPlayerOptions.ControlBarPath;
+                    }
 
-                        if (!request.MultimediaPlayerOptions.PlayerPath.IsNullOrEmpty())
-                        {
-                            model.VideoPlayerModel.PlayerPath = request.MultimediaPlayerOptions.PlayerPath;
-                        }
+                    if (!request.MultimediaPlayerOptions.PlayerPath.IsNullOrEmpty())
+                    {
+                        model.VideoPlayerModel.PlayerPath = request.MultimediaPlayerOptions.PlayerPath;
+                    }
 
-                        if (!request.MultimediaPlayerOptions.RTMPPluginPath.IsNullOrEmpty())
-                        {
-                            model.VideoPlayerModel.RTMPPluginPath = request.MultimediaPlayerOptions.RTMPPluginPath;
-                        }
+                    if (!request.MultimediaPlayerOptions.RTMPPluginPath.IsNullOrEmpty())
+                    {
+                        model.VideoPlayerModel.RTMPPluginPath = request.MultimediaPlayerOptions.RTMPPluginPath;
+                    }
 
-                        if (!request.MultimediaPlayerOptions.SplashImagePath.IsNullOrEmpty())
-                        {
-                            model.VideoPlayerModel.SplashImagePath = request.MultimediaPlayerOptions.SplashImagePath;
-                        }
+                    if (!request.MultimediaPlayerOptions.SplashImagePath.IsNullOrEmpty())
+                    {
+                        model.VideoPlayerModel.SplashImagePath = request.MultimediaPlayerOptions.SplashImagePath;
                     }
                 }
             }

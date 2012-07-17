@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
-using DowJones.Web.Mvc.UI.Components.Common.Types;
-using DowJones.Web.Mvc.UI.Components.Models;
+using DowJones.Web.Mvc.UI.Components.Common;
+using DowJones.Web.Mvc.UI.Components.PortalHeadlineList;
 using ControllerBase = DowJones.Web.Mvc.ControllerBase;
 
 namespace DowJones.Web.Showcase.Controllers

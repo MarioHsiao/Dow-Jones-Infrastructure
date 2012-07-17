@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<GetMadeUserListRequest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="urn:factiva:Communicator:MadeUserService:v1_0">
+  <searchFilter xmlns:q1="urn:factiva:Communicator:Common:v1_0" xsi:type="q1:TopicIdSearchFilter">
+    <q1:topicId>1</q1:topicId>
+    <q1:topicId>2</q1:topicId>
+    <q1:topicId>3</q1:topicId>
+  </searchFilter>
+  <searchFilter xmlns:q2="urn:factiva:Communicator:Common:v1_0" xsi:type="q2:TopicIdSearchFilter">
+    <q2:topicId>41</q2:topicId>
+    <q2:topicId>5</q2:topicId>
+    <q2:topicId>6</q2:topicId>
+  </searchFilter>
+  <searchFilter xmlns:q3="urn:factiva:Communicator:Common:v1_0" xsi:type="q3:TopicIdSearchFilter">
+    <q3:topicId>7</q3:topicId>
+    <q3:topicId>8</q3:topicId>
+    <q3:topicId>9</q3:topicId>
+  </searchFilter>
+  <searchFilter xmlns:q4="urn:factiva:Communicator:Common:v1_0" xsi:type="q4:AccountIdFilter">
+    <q4:accountId>String</q4:accountId>
+  </searchFilter>
+  <paging>
+    <firstResultToReturn xmlns="urn:factiva:Communicator:Common:v1_0">0</firstResultToReturn>
+    <maxResultsToReturn xmlns="urn:factiva:Communicator:Common:v1_0">100</maxResultsToReturn>
+  </paging>
+  <sortOrder>Ascending</sortOrder>
+  <sortBy>Name</sortBy>
+</GetMadeUserListRequest>

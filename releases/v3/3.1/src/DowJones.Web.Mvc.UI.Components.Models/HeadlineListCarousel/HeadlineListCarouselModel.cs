@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using DowJones.Web.Mvc.UI.Components.HeadlineList;
-using Newtonsoft.Json;
-using DowJones.Converters;
-using DowJones.Web.Mvc.UI.Components.Common.Types;
-using DowJones.Extensions;
-namespace DowJones.Web.Mvc.UI.Components.Models
+﻿using DowJones.Web.Mvc.UI.Components.HeadlineList;
+
+namespace DowJones.Web.Mvc.UI.Components.HeadlineListCarousel
 {
     public class HeadlineListCarouselModel : ViewComponentModel
     {

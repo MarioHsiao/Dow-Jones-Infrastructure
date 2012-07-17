@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using DowJones.Web.Mvc.UI;
-using DowJones.Web.Mvc.UI.Components.Models;
+using DowJones.Web.Mvc.UI.Components.PortalHeadlineList;
 
 namespace DowJones.Web.Showcase.Components.CompanyHeadlines
 {

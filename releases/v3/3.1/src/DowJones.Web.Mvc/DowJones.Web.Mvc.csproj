@@ -183,6 +183,7 @@
     <Compile Include="UI\Components\JsonpResult.cs" />
     <Compile Include="UI\Components\JsonpViewComponentResult.cs" />
     <Compile Include="UI\Components\CompositeComponentModel.cs" />
+    <Compile Include="Infrastructure\CoreJsHandler.cs" />
     <Compile Include="UI\RequireJsConfiguration.cs" />
     <Compile Include="UI\Exceptions\AmbiguousComponentTypeException.cs" />
     <Compile Include="UI\ClientState\ClientDataAttribute.cs" />
@@ -379,6 +380,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\js\jquery.jcarousel.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\js\highcharts-more.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

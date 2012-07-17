@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ArticleTranslatorModel.cs" company="Dow Jones">
+// <copyright file="ArticleTranslator.cs" company="Dow Jones">
 //    © 2010 Dow Jones, Inc. All rights reserved. 	
 // </copyright>
 // <summary>

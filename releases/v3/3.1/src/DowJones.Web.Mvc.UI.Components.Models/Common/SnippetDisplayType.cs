@@ -1,4 +1,4 @@
-﻿namespace DowJones.Web.Mvc.UI.Components.Common.Types
+﻿namespace DowJones.Web.Mvc.UI.Components.Common
 {
     public enum SnippetDisplayType
     {

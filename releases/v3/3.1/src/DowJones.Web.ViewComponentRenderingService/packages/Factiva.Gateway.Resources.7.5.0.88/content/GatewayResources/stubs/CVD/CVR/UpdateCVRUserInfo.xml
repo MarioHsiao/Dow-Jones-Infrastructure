@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<UpdateCVRUserInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <userDetails userId="joyful" userNamespace="16" userRoleCode="EXT">
+    <accountInfo>
+      <accountNum>ABC1234</accountNum>
+      <emailAlertStatus>true</emailAlertStatus>
+    </accountInfo>
+    <accountInfo>
+      <accountNum>FGRRG12</accountNum>
+      <emailAlertStatus>false</emailAlertStatus>
+    </accountInfo>
+  </userDetails>
+  <userDetails userId="ASCEW12" userNamespace="22" userRoleCode="IPLUS">
+    <accountInfo>
+      <accountNum>GREF123</accountNum>
+      <emailAlertStatus>true</emailAlertStatus>
+    </accountInfo>
+    <accountInfo>
+      <accountNum>TOER432</accountNum>
+      <emailAlertStatus>true</emailAlertStatus>
+    </accountInfo>
+  </userDetails>
+</UpdateCVRUserInfo>

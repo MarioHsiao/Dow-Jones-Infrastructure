@@ -11,30 +11,33 @@ namespace DowJones.Managers.Search.MetaDataSearch
     {
         private const string DefaultLanguage = "en";
 
-        public List<FIICodeInfo> GetFIICodesInfo(ControlData controlData,List<string> regionCodes, List<string> industryCodes, List<string> subjectCodes)
+        public List<FIICodeInfo> GetFIICodesInfo(ControlData controlData, List<string> companyCodes, List<string> regionCodes, List<string> industryCodes, List<string> subjectCodes)
         {
-            return GetFIICodesInfo(controlData,regionCodes, industryCodes, subjectCodes, DefaultLanguage);
+            return GetFIICodesInfo(controlData, companyCodes, regionCodes, industryCodes, subjectCodes, DefaultLanguage);
         }
 
-        public List<FIICodeInfo> GetFIICodesInfo(ControlData controlData,List<string> regionCodes, List<string> industryCodes, List<string> subjectCodes,string language)
-        {            
-            
+        public List<FIICodeInfo> GetFIICodesInfo(ControlData controlData, List<string> companyCodes, List<string> regionCodes, List<string> industryCodes, List<string> subjectCodes, string language)
+        {
+
             #region Separate Backend calls
-            PerformMetadataSearchResponse RegionResponse =null,IndustryResponse=null,SubjectResponse=null;
-            if (regionCodes != null && regionCodes.Count >0)
-                RegionResponse = PerformMetadataSearch(controlData, regionCodes, new List<MetadataCollection>{ MetadataCollection.Region}, language);
-            if (industryCodes !=null && industryCodes.Count > 0)
-                IndustryResponse = PerformMetadataSearch(controlData, industryCodes,new List<MetadataCollection>{ MetadataCollection.Industry}, language);
-            if (subjectCodes !=null && subjectCodes.Count > 0)
-                SubjectResponse = PerformMetadataSearch(controlData, subjectCodes, new List<MetadataCollection>{MetadataCollection.NewsSubject}, language);
+            PerformMetadataSearchResponse CompanyResponse = null, RegionResponse = null, IndustryResponse = null, SubjectResponse = null;
+            if (companyCodes != null && companyCodes.Count > 0)
+                CompanyResponse = PerformMetadataSearch(controlData, companyCodes, new List<MetadataCollection> { MetadataCollection.Company }, language);
+            if (regionCodes != null && regionCodes.Count > 0)
+                RegionResponse = PerformMetadataSearch(controlData, regionCodes, new List<MetadataCollection> { MetadataCollection.Region }, language);
+            if (industryCodes != null && industryCodes.Count > 0)
+                IndustryResponse = PerformMetadataSearch(controlData, industryCodes, new List<MetadataCollection> { MetadataCollection.Industry }, language);
+            if (subjectCodes != null && subjectCodes.Count > 0)
+                SubjectResponse = PerformMetadataSearch(controlData, subjectCodes, new List<MetadataCollection> { MetadataCollection.NewsSubject }, language);
 
-            List<FIICodeInfo> RegionList = MapMetadataSearchResponse(RegionResponse, regionCodes,FIICodeType.Region);
-            List<FIICodeInfo> IndustryList = MapMetadataSearchResponse(IndustryResponse, industryCodes,FIICodeType.Industry);
-            List<FIICodeInfo> SubjectList = MapMetadataSearchResponse(SubjectResponse, subjectCodes,FIICodeType.Subject);
+            List<FIICodeInfo> CompanyList = MapMetadataSearchResponse(CompanyResponse, companyCodes, FIICodeType.Company);
+            List<FIICodeInfo> RegionList = MapMetadataSearchResponse(RegionResponse, regionCodes, FIICodeType.Region);
+            List<FIICodeInfo> IndustryList = MapMetadataSearchResponse(IndustryResponse, industryCodes, FIICodeType.Industry);
+            List<FIICodeInfo> SubjectList = MapMetadataSearchResponse(SubjectResponse, subjectCodes, FIICodeType.Subject);
 
-            return RegionList.Concat(IndustryList).Concat(SubjectList).ToList();
+            return RegionList.Concat(IndustryList).Concat(SubjectList).Concat(CompanyList).ToList();
             #endregion
-            
+
             //#region Combined Backend call
             //List<string> codes = (regionCodes == null ? new List<string>() : regionCodes).Concat(industryCodes == null ? new List<string>() : industryCodes).Concat(subjectCodes == null ? new List<string>() : subjectCodes).ToList();
             //PerformMetadataSearchResponse response = PerformMetadataSearch(controlData, codes, new List<MetadataCollection>{ MetadataCollection.Region,MetadataCollection.Industry,MetadataCollection.NewsSubject}, language);
@@ -47,32 +50,34 @@ namespace DowJones.Managers.Search.MetaDataSearch
             PerformMetadataSearchRequest request = new PerformMetadataSearchRequest
             {
                 FirstResult = 0,
-                MaxResults = codes.Count                
+                MaxResults = codes.Count
             };
-            foreach(var type in types)
+            request.StructuredSearch.Query.QueryLanguage = language;
+            request.StructuredSearch.Query.ResultLanguage = language;
+            foreach (var type in types)
                 request.StructuredSearch.Query.MetadataCollectionCollection.Add(type);
             request.StructuredSearch.Version = "2.7";
             request.StructuredSearch.Query.SearchStringCollection.Add(new MetadataSearchString
             {
-                Id = "SearchValue",
+                //Id = "SearchValue",
                 Mode = MetadataSearchMode.Any,
                 Type = SearchType.Free,
                 Scope = "fcode",
                 Value = string.Join(" ", codes.ToArray())
             });
 
-            request.StructuredSearch.Query.SearchStringCollection.Add(new MetadataSearchString
-            {
-                Id = "SearchLanguage",
-                Mode = MetadataSearchMode.Any,
-                Type = SearchType.Free,
-                Scope = "la",
-                Value = language
-            });
+            //request.StructuredSearch.Query.SearchStringCollection.Add(new MetadataSearchString
+            //{
+            //    Id = "SearchLanguage",
+            //    Mode = MetadataSearchMode.Any,
+            //    Type = SearchType.Free,
+            //    Scope = "la",
+            //    Value = language
+            //});
 
             request.StructuredSearch.Formatting.ResponseType.Private = false;
-            request.StructuredSearch.Formatting.ResponseType.Value =  ResponseDataSet.Small;
-            request.StructuredSearch.Formatting.SortOrder =  MetadataResultSortOrder.Name;
+            request.StructuredSearch.Formatting.ResponseType.Value = ResponseDataSet.Small;
+            request.StructuredSearch.Formatting.SortOrder = MetadataResultSortOrder.Name;
 
             return request;
         }
@@ -95,11 +100,11 @@ namespace DowJones.Managers.Search.MetaDataSearch
             }
         }
 
-        private List<FIICodeInfo> MapMetadataSearchResponse(PerformMetadataSearchResponse objPerformMetadataSearchResponse,List<string> inputCodes, FIICodeType type)
+        private List<FIICodeInfo> MapMetadataSearchResponse(PerformMetadataSearchResponse objPerformMetadataSearchResponse, List<string> inputCodes, FIICodeType type)
         {
             List<FIICodeInfo> codes = new List<FIICodeInfo>();
 
-            if (objPerformMetadataSearchResponse !=null && objPerformMetadataSearchResponse.MetadataSearchResult != null && objPerformMetadataSearchResponse.MetadataSearchResult.MetadataResultSet != null && objPerformMetadataSearchResponse.MetadataSearchResult.MetadataResultSet.MetadataInfoCollection.Count > 0)
+            if (objPerformMetadataSearchResponse != null && objPerformMetadataSearchResponse.MetadataSearchResult != null && objPerformMetadataSearchResponse.MetadataSearchResult.MetadataResultSet != null && objPerformMetadataSearchResponse.MetadataSearchResult.MetadataResultSet.MetadataInfoCollection.Count > 0)
             {
                 foreach (var metadatainfo in objPerformMetadataSearchResponse.MetadataSearchResult.MetadataResultSet.MetadataInfoCollection)
                 {
@@ -129,7 +134,7 @@ namespace DowJones.Managers.Search.MetaDataSearch
             return codes;
         }
 
-        private void FillFIICodeType(List<FIICodeInfo> codes, List<string> inputCodes,FIICodeType type)
+        private void FillFIICodeType(List<FIICodeInfo> codes, List<string> inputCodes, FIICodeType type)
         {
             if (inputCodes != null)
             {
@@ -149,16 +154,16 @@ namespace DowJones.Managers.Search.MetaDataSearch
                 }
             }
         }
-        private PerformMetadataSearchResponse PerformMetadataSearch(ControlData controlData,List<string> codes, List<MetadataCollection> types, string language)
+        private PerformMetadataSearchResponse PerformMetadataSearch(ControlData controlData, List<string> codes, List<MetadataCollection> types, string language)
         {
             ServiceResponse serviceResponse = Factiva.Gateway.Services.V2_0.SearchService.PerformMetadataSearch(controlData.Clone(), CreateRequest(codes, language, types));
             object responseObj;
-            
+
             CheckServiceResponse(serviceResponse, out responseObj);
 
             PerformMetadataSearchResponse objPerformMetadataSearchResponse = (PerformMetadataSearchResponse)responseObj;
             return objPerformMetadataSearchResponse;
         }
-            
+
     }
 }

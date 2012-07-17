@@ -2,25 +2,24 @@
 using System.Linq;
 using DowJones.Managers.Search;
 using DowJones.Mapping;
-using DowJones.Web.Mvc.UI.Components.CompositeHeadline;
 using DowJones.Web.Mvc.UI.Components.HeadlineList;
-using DowJones.Web.Mvc.UI.Components.Models;
+using DowJones.Web.Mvc.UI.Components.PostProcessing;
 
-namespace DowJones.Web.Mvc.UI.Components.Search.Mappers
+namespace DowJones.Web.Mvc.UI.Components.Search
 {
-    public class SearchResponseToCompositeHeadlineModelMapper : TypeMapper<SearchResponse, CompositeHeadlineModel>
+    public class SearchResponseToCompositeHeadlineModelMapper : TypeMapper<SearchResponse, CompositeHeadline.CompositeHeadlineModel>
     {
-        public override CompositeHeadlineModel Map(SearchResponse source)
+        public override CompositeHeadline.CompositeHeadlineModel Map(SearchResponse source)
         {
             if (source == null || source.Results == null || source.Results.resultSet.count.Value == 0)
-                return new CompositeHeadlineModel();
+                return new CompositeHeadline.CompositeHeadlineModel();
 
             return MapHeadlinesToModel(source);
         }
 
-        private static CompositeHeadlineModel MapHeadlinesToModel(SearchResponse source)
+        private static CompositeHeadline.CompositeHeadlineModel MapHeadlinesToModel(SearchResponse source)
         {
-            var model = new CompositeHeadlineModel()
+            var model = new CompositeHeadline.CompositeHeadlineModel()
                             {
                                 FirstResultIndex = Convert.ToInt32(source.Results.resultSet.first.Value),
                                 LastResultIndex = Convert.ToInt32(source.Results.resultSet.count.Value + source.Results.resultSet.first.Value),
@@ -37,7 +36,7 @@ namespace DowJones.Web.Mvc.UI.Components.Search.Mappers
             model.ShowHeadlineViewOptions = true;
             model.ShowPostProcessing = true;
            
-            model.PostProcessing = new PostProcessing(new[] {
+            model.PostProcessing = new PostProcessing.PostProcessingModel(new[] {
                                     PostProcessingOptions.Email,
                                     PostProcessingOptions.Print,
                                     PostProcessingOptions.Read,

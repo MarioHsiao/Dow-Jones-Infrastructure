@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
@@ -8,7 +7,6 @@ using DowJones.Articles;
 using DowJones.Assemblers.Articles;
 using DowJones.DependencyInjection;
 using DowJones.Exceptions;
-using DowJones.Extensions;
 using DowJones.Generators;
 using DowJones.Managers.RelatedConcept;
 using DowJones.Managers.Search;
@@ -32,11 +30,13 @@ using DowJones.Web.Mvc.Search.ViewModels;
 using DowJones.Web.Mvc.UI;
 using DowJones.Web.Mvc.UI.Components.Article;
 using DowJones.Web.Mvc.UI.Components.CompositeHeadline;
+using DowJones.Web.Mvc.UI.Components.DateHistogram;
+using DowJones.Web.Mvc.UI.Components.Discovery;
 using DowJones.Web.Mvc.UI.Components.HeadlineList;
-using DowJones.Web.Mvc.UI.Components.Models;
-using DowJones.Web.Mvc.UI.Components.Models.CompanySparkline;
-using DowJones.Web.Mvc.UI.Components.Models.Discovery;
-using DowJones.Web.Mvc.UI.Components.Models.RelatedConcepts;
+using DowJones.Web.Mvc.UI.Components.CompanySparkline;
+using DowJones.Web.Mvc.UI.Components.PostProcessing;
+using DowJones.Web.Mvc.UI.Components.RelatedConcepts;
+using SearchBuilder = DowJones.Web.Mvc.Search.UI.Components.Builders.SearchBuilder;
 
 namespace DowJones.Web.Mvc.Search.Controllers
 {
@@ -233,13 +233,13 @@ namespace DowJones.Web.Mvc.Search.Controllers
             return sourcesFilter;
         }
 
-        protected virtual CompaniesSparklinesComponentModel GetCompaniesSparklinesComponentModel(
+        protected virtual CompaniesSparklinesModel GetCompaniesSparklinesComponentModel(
             AbstractBaseSearchQuery query)
         {
-            var companyProfiles = new CompaniesSparklinesComponentModel();
+            var companyProfiles = new CompaniesSparklinesModel();
             if (query.Filters != null && query.Filters.Company != null)
             {
-                companyProfiles = new CompaniesSparklinesComponentModel(query.Filters.Company);
+                companyProfiles = new CompaniesSparklinesModel(query.Filters.Company);
             }
             return companyProfiles;
         }
@@ -316,7 +316,7 @@ namespace DowJones.Web.Mvc.Search.Controllers
             //Specific request processing
             if ((request is SimpleSearchRequest) && !string.IsNullOrWhiteSpace(request.FreeText))
             {
-                searchResults.RelatedConcepts = new RelatedConceptsComponentModel
+                searchResults.RelatedConcepts = new RelatedConceptsModel
                                                     {
                                                         Keywords = request.FreeText,
                                                         MaxNumberOfTerms = 10,

@@ -1,8 +1,12 @@
 ﻿using System.Reflection;
+using System.Web.UI;
+using DowJones.Web;
+
+[assembly: WebResource(DowJones.Web.Mvc.UI.Components.ScrollBar.ScrollBarExtensions.ScrollBarScriptResourceName, KnownMimeTypes.JavaScript)]
 
 namespace DowJones.Web.Mvc.UI.Components.ScrollBar
 {
-    [ScriptResourceAttribute(null, ResourceName = "DowJones.Web.Mvc.UI.Components.ScrollBar.ScrollBar.js", ResourceKind = ClientResourceKind.Script)]
+    [ScriptResourceAttribute(null, ResourceName = ScrollBarScriptResourceName, ResourceKind = ClientResourceKind.Script)]
     public static class ScrollBarExtensions
     {
         internal const string ScrollBarScriptResourceName = "DowJones.Web.Mvc.UI.Components.ScrollBar.ScrollBar.js";

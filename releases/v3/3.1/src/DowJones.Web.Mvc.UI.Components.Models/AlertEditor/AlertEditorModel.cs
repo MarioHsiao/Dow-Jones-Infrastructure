@@ -1,10 +1,11 @@
 using System.Collections.Generic;
 using DowJones.Web.Mvc.UI.Components.Common;
+using DowJones.Web.Mvc.UI.Components.Search;
 using Factiva.Gateway.Messages.Track.V1_0;
 using Newtonsoft.Json;
 using DowJones.Globalization;
 
-namespace DowJones.Web.Mvc.UI.Components.Models
+namespace DowJones.Web.Mvc.UI.Components.AlertEditor
 {
 	public class AlertEditorModel : ViewComponentModel
 	{

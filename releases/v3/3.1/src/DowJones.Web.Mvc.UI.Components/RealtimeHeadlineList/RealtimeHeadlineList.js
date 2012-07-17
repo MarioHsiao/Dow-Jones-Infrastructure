@@ -1,16 +1,5 @@
 /*!
  * RealtimeHeadlineList
- *   e.g. , "this._imageSize" is generated automatically.
- *
- *   
- *  Getters and Setters are generated automatically for every Client Property during init;
- *   e.g. if you have a Client Property called "imageSize" on server side code
- *        get_imageSize() and set_imageSize() will be generated during init.
- *  
- *  These can be overriden by defining your own implementation in the script. 
- *  You'd normally override the base implementation if you have extra logic in your getter/setter 
- *  such as calling another function or validating some params.
- *
  */
 
 /// <reference name="MicrosoftAjaxTimer.debug.js" />
@@ -27,7 +16,6 @@
         defaults: {
             debug: false,
             cssClass: 'RealtimeHeadlineList'
-            // ,name: value     // add more defaults here separated by comma
         },
 
         // Localization/Templating tokens
@@ -47,8 +35,6 @@
             // Call the base constructor
             this._super(element, $meta);
 
-            // TODO: Add custom initialization code like the following:
-            // this._testButton = $('.testButton', element).get(0);
             //properties
             this._settings = {};
             this._result = {};

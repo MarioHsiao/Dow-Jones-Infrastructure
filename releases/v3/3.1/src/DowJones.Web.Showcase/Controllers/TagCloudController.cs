@@ -1,5 +1,5 @@
 ﻿using System.Web.Mvc;
-using DowJones.Web.Mvc.UI.Components.Models;
+using DowJones.Web.Mvc.UI.Components.TagCloud;
 using DowJones.Web.Showcase.Models;
 using ControllerBase = DowJones.Web.Mvc.ControllerBase;
 

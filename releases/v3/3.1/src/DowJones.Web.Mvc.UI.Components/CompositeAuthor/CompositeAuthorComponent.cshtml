@@ -1,0 +1,197 @@
+﻿@using System.Web.Mvc
+@using DowJones.Web.Mvc.Extensions
+@using DowJones.Web.Mvc.UI
+
+@inherits CompositeComponent<CompositeAuthorModel>
+
+@ClientPlugin dj_CompositeAuthor
+@ScriptResource RelativeResourceName=CompositeAuthor.js
+@{ CssClass = "dj_CompositeAuthor"; }
+@{
+	bool hasAuthors = Model.AuthorList != null 
+		&& Model.AuthorList.Authors != null 
+		&& Model.AuthorList.Authors.Any();
+
+	string[] s = { "", "", "", "", "", "", "" };
+	switch (Model.PageSize)
+	{
+		case 10: s[0] = " selected"; break;
+		case 20: s[1] = " selected"; break;
+		case 30: s[2] = " selected"; break;
+		case 40: s[3] = " selected"; break;
+		case 50: s[4] = " selected"; break;
+		case 100: s[5] = " selected"; break;
+		default: s[1] = " selected"; break;
+	}
+
+	int maxlen = Model.TotalPages.ToString().Length;
+	bool noFirst = Model.CurrentPage == 1;
+	bool noLast = Model.CurrentPage == Model.TotalPages;
+	bool hasEllipsis = Model.TotalPages > Model.GOOGLE_PAGER_SIZE;
+}
+@if (hasAuthors)
+{
+<section class="dj_page dj_author-lookup wrap-9 clearfix">
+	@if (String.IsNullOrEmpty(Model.Title) == false)
+	{ 
+	<h3>@Model.Title</h3>
+	}
+	<p class="dj_author-list-name_preferences-link">
+		<a href="javascript:void(0);" >@Html.DJ().Token("cmmColumnSelectPreferences")</a>
+	</p>
+	<div class="dj_paging">
+
+		<div class="dj_select-has-menu-wrapper">
+			<input type="checkbox" name="dj_author-select-all">
+			<span class="fi fi_gear"></span>
+		</div>
+
+		<select class="entity-list-select-page-size">
+			<option value="10"@s[0]>10 @Html.DJ().Token("perPage")</option>
+			<option value="20"@s[1]>20 @Html.DJ().Token("perPage")</option>
+			<option value="30"@s[2]>30 @Html.DJ().Token("perPage")</option>
+			<option value="40"@s[3]>40 @Html.DJ().Token("perPage")</option>
+			<option value="50"@s[4]>50 @Html.DJ().Token("perPage")</option>
+			<option value="100"@s[5]>100 @Html.DJ().Token("perPage")</option>
+		</select>
+
+		<ul class="paging-controls">
+
+			<li><strong>@Format(Model.FirstResultIndex + 1) - @Format(Model.LastResultIndex)</strong> @Html.DJ().Token("of") @Format(Model.TotalResultCount)</li>
+			@if (noFirst == true)
+			{
+				<li class='disabled'>
+					<span class="fi fi_btn-prev-inactive" tooltip='@Html.DJ().Token("cmalPrev")'></span>
+				</li>
+				
+				<li class="first-page-link disabled">@Html.DJ().Token("cmalFirst")</li>
+			}
+			else
+			{
+				<li>
+					<a class='entity-list-nav' direction='prev' href="javascript:void(0)">
+						<span class="fi fi_btn-prev-active" tooltip='@Html.DJ().Token("cmalPrev")'></span>
+					</a>
+				</li>
+				
+				<li class="first-page-link">
+					<a class="entity-list-nav" direction="first" href="javascript:void(0)">@Html.DJ().Token("cmalFirst")</a>
+				</li>
+				if (hasEllipsis)
+				{
+				<li>&hellip;</li>
+				}
+			}
+			
+			@(new MvcHtmlString(Model.PagerLikeGoogle()))        
+			
+			@if (noLast == true)
+			{
+				<li class="last-page-link disabled">@Html.DJ().Token("cmalLast")</li>
+				
+				<li class='disabled'>
+					<span class="fi fi_btn-next-inactive" tooltip='@Html.DJ().Token("cmalNext")'></span>
+				</li>
+			}
+			else
+			{
+				if (hasEllipsis)
+				{
+				<li>&hellip;</li>
+				}
+				
+				<li class="last-page-link">
+					<a class="entity-list-nav" direction="last" href="javascript:void(0)">@Html.DJ().Token("cmalLast")</a>
+				</li>
+				<li>
+					<a class='entity-list-nav' direction='next' href="javascript:void(0)">
+						<span class="fi fi_btn-next-active" tooltip='@Html.DJ().Token("cmalNext")'></span>
+					</a>
+				</li>
+			}
+			
+		</ul>         
+			
+	</div><!-- end: .dj_paging -->
+
+	<div class='table-wrap'>
+		@DJ.Render(Model.AuthorList)
+	</div>
+
+	<div class="dj_paging">
+
+		<div class="dj_select-has-menu-wrapper">
+			<input type="checkbox" name="dj_author-select-all">
+			<span class="fi fi_gear"></span>
+		</div>
+
+		<select class="entity-list-select-page-size">
+			<option value="10"@s[0]>10 @Html.DJ().Token("perPage")</option>
+			<option value="20"@s[1]>20 @Html.DJ().Token("perPage")</option>
+			<option value="30"@s[2]>30 @Html.DJ().Token("perPage")</option>
+			<option value="40"@s[3]>40 @Html.DJ().Token("perPage")</option>
+			<option value="50"@s[4]>50 @Html.DJ().Token("perPage")</option>
+			<option value="100"@s[5]>100 @Html.DJ().Token("perPage")</option>
+		</select>
+
+		<ul class="paging-controls">
+
+			<li><strong>@Format(Model.FirstResultIndex + 1) - @Format(Model.LastResultIndex)</strong> @Html.DJ().Token("of") @Format(Model.TotalResultCount)</li>
+			@if (noFirst == true)
+			{
+				<li class='disabled'>
+					<span class="fi fi_btn-prev-inactive" tooltip='@Html.DJ().Token("cmalPrev")'></span>
+				</li>
+				
+				<li class="first-page-link disabled">@Html.DJ().Token("cmalFirst")</li>
+			}
+			else
+			{
+				<li>
+					<a class='entity-list-nav' direction='prev' href="javascript:void(0)">
+						<span class="fi fi_btn-prev-active" tooltip='@Html.DJ().Token("cmalPrev")'></span>
+					</a>
+				</li>
+				
+				<li class="first-page-link">
+					<a class="entity-list-nav" direction="first" href="javascript:void(0)">@Html.DJ().Token("cmalFirst")</a>
+				</li>
+				if (hasEllipsis)
+				{
+				<li>&hellip;</li>
+				}
+			}
+			
+			@(new MvcHtmlString(Model.PagerLikeGoogle()))        
+			
+			@if (noLast == true)
+			{
+				<li class="last-page-link disabled">@Html.DJ().Token("cmalLast")</li>
+				
+				<li class='disabled'>
+					<span class="fi fi_btn-next-inactive" tooltip='@Html.DJ().Token("cmalNext")'></span>
+				</li>
+			}
+			else
+			{
+				if (hasEllipsis)
+				{
+				<li>&hellip;</li>
+				}
+				
+				<li class="last-page-link">
+					<a class="entity-list-nav" direction="last" href="javascript:void(0)">@Html.DJ().Token("cmalLast")</a>
+				</li>
+				<li>
+					<a class='entity-list-nav' direction='next' href="javascript:void(0)">
+						<span class="fi fi_btn-next-active" tooltip='@Html.DJ().Token("cmalNext")'></span>
+					</a>
+				</li>
+			}
+			
+		</ul>         
+			
+	</div><!-- end: .dj_paging -->
+
+</section>
+}

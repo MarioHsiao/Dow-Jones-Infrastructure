@@ -1,5 +1,6 @@
 using System;
-namespace DowJones.Web.Mvc.UI.Components.Models
+
+namespace DowJones.Web.Mvc.UI.Components.CompositeAuthor
 {
 	public class CompositeAuthorModel : CompositeComponentModel
 	{
@@ -116,12 +117,12 @@ namespace DowJones.Web.Mvc.UI.Components.Models
 		/// <summary>
 		/// Gets or sets the author list.
 		/// </summary>
-		public AuthorListModel AuthorList { get; set; }
+		public AuthorList.AuthorListModel AuthorList { get; set; }
 
 		public CompositeAuthorModel()
 		{
 			this.PageSize = 25;
-			this.AuthorList = new AuthorListModel();
+			this.AuthorList = new AuthorList.AuthorListModel();
 		}
 	}
 

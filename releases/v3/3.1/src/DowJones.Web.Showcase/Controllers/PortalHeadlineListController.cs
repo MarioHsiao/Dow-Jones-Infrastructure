@@ -7,8 +7,8 @@ using DowJones.Extensions;
 using DowJones.Managers.Search;
 using DowJones.Managers.Search.Requests;
 using DowJones.Web.Mvc.ModelBinders;
-using DowJones.Web.Mvc.UI.Components.Common.Types;
-using DowJones.Web.Mvc.UI.Components.Models;
+using DowJones.Web.Mvc.UI.Components.Common;
+using DowJones.Web.Mvc.UI.Components.PortalHeadlineList;
 using DowJones.Web.Showcase.Models;
 using Factiva.Gateway.Messages.Search.V2_0;
 using ControllerBase = DowJones.Web.Mvc.ControllerBase;
@@ -33,6 +33,22 @@ namespace DowJones.Web.Showcase.Controllers
             var model = GetPortalHeadlineListSection(query, count);
             return View("Index", model);          
         }
+
+		public ActionResult ComponentExplorerDemo(string query = "obama and sc=j", int count = 10)
+		{
+			return View("Index", "_Layout_ComponentExplorer", new PortalHeadlineListModel
+			{
+				MaxNumHeadlinesToShow = 5,
+				ShowAuthor = true,
+				ShowSource = true,
+				ShowPublicationDateTime = true,
+				ShowTruncatedTitle = false,
+				AuthorClickable = true,
+				SourceClickable = true,
+				DisplaySnippets = SnippetDisplayType.Hover,
+				Layout = PortalHeadlineListLayout.HeadlineLayout,
+			});
+		}
 
         public ActionResult AccessionNumSearch([ModelBinder(typeof(StringSplitModelBinder))]string[] accessionNums)
         {

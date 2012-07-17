@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace DowJones.Web.Mvc.UI.Components.Common
+namespace DowJones.Web.Mvc.UI.Components.Search
 {
     public class SourceGroupItem : CodeDesc
     {

@@ -13,12 +13,13 @@ using System.Runtime.Serialization;
 using DowJones.Ajax;
 using DowJones.Ajax.Article;
 using DowJones.Articles;
-using DowJones.Web.Mvc.UI.Components.Article;
 using DowJones.Web.Mvc.UI.Components.ArticleTranslator;
+using DowJones.Web.Mvc.UI.Components.PostProcessing;
 using DowJones.Web.Mvc.UI.Components.SocialButtons;
+using DowJones.Web.Mvc.UI.Components.VideoPlayer;
 using Newtonsoft.Json;
 
-namespace DowJones.Web.Mvc.UI.Components.Models.Article
+namespace DowJones.Web.Mvc.UI.Components.Article
 {
     public class ParagraphModel : ViewComponentModel
     {
@@ -150,7 +151,7 @@ namespace DowJones.Web.Mvc.UI.Components.Models.Article
         public IEnumerable<PostProcessingOptions> PostProcessingOptions { get; set; }
 
         #endregion
-        
+
         /// <summary>
         /// Gets or sets ArticleDataSet.
         /// </summary>
@@ -162,7 +163,7 @@ namespace DowJones.Web.Mvc.UI.Components.Models.Article
         public SocialButtonsModel SocialButtons { get; set; }
 
 
-        public VideoPlayerModel VideoPlayerModel { get; set; }
+        public VideoPlayerModel VideoPlayer { get; set; }
 
         /// <summary>
         /// Gets a value indicating whether HasSocialNetworks.
@@ -195,7 +196,7 @@ namespace DowJones.Web.Mvc.UI.Components.Models.Article
         public bool ShowAuthorLinks { get; set; }
 
         public ArticleReference ArticleReference { get; set; }
-                                                                   
+
         /// <summary>
         /// Gets or sets ArticleDisplayOptions.
         /// </summary>

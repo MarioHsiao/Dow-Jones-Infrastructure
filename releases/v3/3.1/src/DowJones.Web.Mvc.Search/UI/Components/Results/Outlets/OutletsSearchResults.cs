@@ -1,8 +1,6 @@
-﻿using System.Collections.Generic;
-using DowJones.Search.Navigation;
-using DowJones.Web.Mvc.UI.Components.Models;
-using DowJones.Web.Mvc.UI.Components.Models.RelatedConcepts;
+﻿using DowJones.Web.Mvc.UI.Components.CompositeOutlet;
 using DowJones.Web.Mvc.UI;
+using DowJones.Web.Mvc.UI.Components.RelatedConcepts;
 
 namespace DowJones.Web.Mvc.Search.UI.Components.Results.Outlets
 {
@@ -11,7 +9,7 @@ namespace DowJones.Web.Mvc.Search.UI.Components.Results.Outlets
 		const int PAGE_SIZE_DEFAULT_VALUE = 20;
 
 		public CompositeOutletModel Outlets { get; set; }
-		public RelatedConceptsComponentModel RelatedConcepts { get; set; }
+		public RelatedConceptsModel RelatedConcepts { get; set; }
 		public bool HideRelatedConcepts { get; set; }
 
 		private int pageSize = 0;

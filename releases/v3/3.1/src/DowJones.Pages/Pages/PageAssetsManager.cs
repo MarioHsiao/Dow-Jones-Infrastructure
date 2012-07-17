@@ -828,10 +828,10 @@ namespace DowJones.Pages
                                                                                                             {
                                                                                                                 accessControlScope = ShareAccessScope.Everyone,
                                                                                                                 allowCopy = false,
-                                                                                                                assignedScope = ShareScope.Personal,
+                                                                                                                assignedScope = Factiva.Gateway.Messages.Assets.V1_0.ShareScope.Personal,
                                                                                                                 externalAccess = ShareAccess.Allow,
-                                                                                                                listingScope = ShareScope.Personal,
-                                                                                                                sharePromotion = ShareScope.Personal
+                                                                                                                listingScope = Factiva.Gateway.Messages.Assets.V1_0.ShareScope.Personal,
+                                                                                                                sharePromotion = Factiva.Gateway.Messages.Assets.V1_0.ShareScope.Personal
                                                                                                             }
                                                                                       }).ToArray()
                               };

@@ -14,6 +14,7 @@ using DowJones.Globalization;
 using DowJones.Managers.Search;
 using DowJones.Session;
 using DowJones.Web.Mvc.UI.Components.Common;
+using DowJones.Web.Mvc.UI.Components.Search;
 using Factiva.Gateway.Messages.Assets.Queries.V1_0;
 using Factiva.Gateway.Services.V1_0;
 

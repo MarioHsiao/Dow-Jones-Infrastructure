@@ -1,6 +1,7 @@
-﻿@{
+﻿@using DowJones.Web.Mvc.UI.Components.DateSlider
+@{
     ViewBag.Title = "Index";
 }
 
 <h2>Index</h2>
-@Html.DJ().RenderComponent("DateSliderControl", null)
+@DJ.Render(new DateSliderModel())

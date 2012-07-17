@@ -15,7 +15,9 @@ namespace DowJones.Pages.Common
         [EnumMember]
         Keyword,
         [EnumMember]
-        Topic
+        Topic,
+        [EnumMember]
+        Company,
     }
 
     public class FilterTypeToGWMapper : TypeMapper<FilterType, Factiva.Gateway.Messages.Assets.Pages.V1_0.FilterType>
@@ -24,6 +26,8 @@ namespace DowJones.Pages.Common
         {
             switch (source)
             {
+                case FilterType.Company:
+                    return Factiva.Gateway.Messages.Assets.Pages.V1_0.FilterType.Company;
                 case FilterType.Industry:
                     return Factiva.Gateway.Messages.Assets.Pages.V1_0.FilterType.Industry;
                 case FilterType.Keyword:
@@ -44,6 +48,8 @@ namespace DowJones.Pages.Common
         {
             switch (source)
             {
+                case Factiva.Gateway.Messages.Assets.Pages.V1_0.FilterType.Company:
+                    return FilterType.Company;
                 case Factiva.Gateway.Messages.Assets.Pages.V1_0.FilterType.Industry:
                     return FilterType.Industry;
                 case Factiva.Gateway.Messages.Assets.Pages.V1_0.FilterType.Keyword:

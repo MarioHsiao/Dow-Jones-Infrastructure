@@ -6,6 +6,7 @@ using DowJones.Preferences;
 using DowJones.Session;
 using DowJones.Web.Mvc.UI.Components.Common;
 using DowJones.Web.Mvc.UI.Components.PersonalizationFilters;
+using DowJones.Web.Mvc.UI.Components.Search;
 using Factiva.Gateway.Messages.Assets.Pages.V1_0;
 using AccessQualifier = DowJones.Pages.AccessQualifier;
 using TagCollection = Factiva.Gateway.Messages.Assets.Pages.V1_0.TagCollection;

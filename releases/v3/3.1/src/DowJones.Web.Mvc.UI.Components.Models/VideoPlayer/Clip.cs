@@ -2,7 +2,7 @@
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
 
-namespace DowJones.Web.Mvc.UI.Components.Models
+namespace DowJones.Web.Mvc.UI.Components.VideoPlayer
 {
     [DataContract(Name = "clip", Namespace = "")]
     [JsonObject(MemberSerialization.OptIn, Id = "clip")]

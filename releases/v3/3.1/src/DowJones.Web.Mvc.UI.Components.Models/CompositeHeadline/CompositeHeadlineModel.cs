@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
 using DowJones.Web.Mvc.UI.Components.HeadlineList;
-using DowJones.Web.Mvc.UI.Components.Models;
 
 namespace DowJones.Web.Mvc.UI.Components.CompositeHeadline
 {
@@ -65,7 +64,7 @@ namespace DowJones.Web.Mvc.UI.Components.CompositeHeadline
         /// <value>
         /// The post processing.
         /// </value>
-        public PostProcessing PostProcessing { get; set; }
+        public PostProcessing.PostProcessingModel PostProcessing { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to show headline view options button.
@@ -97,7 +96,6 @@ namespace DowJones.Web.Mvc.UI.Components.CompositeHeadline
         /// <summary>
         /// Gets or sets a value indicating whether NLA press clips are enabled.
         /// </summary>
-        /// </value>
         public bool ShowPressClip { get; set; }
 
         public CompositeHeadlineModel()

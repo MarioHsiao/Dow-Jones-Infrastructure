@@ -3,10 +3,10 @@ using DowJones.Ajax.HeadlineList;
 using System.Collections.Generic;
 using System.Linq;
 using DowJones.Converters;
-using DowJones.Web.Mvc.UI.Components.Common.Types;
+using DowJones.Web.Mvc.UI.Components.Common;
+using DowJones.Web.Mvc.UI.Components.PostProcessing;
 using Newtonsoft.Json;
 using DowJones.Extensions;
-using DowJones.Web.Mvc.UI.Components.Models;
 
 namespace DowJones.Web.Mvc.UI.Components.HeadlineList
 {

@@ -10,6 +10,7 @@
   border-top: 1px solid #E9E9E9;
   background-color: #F5F5F5;
   line-height: 16px;   
+  line-height: 16px;   
 }
 .djActions a.djAction {
   padding: 0 2px;
@@ -45,9 +46,8 @@
 
 
 .djWidgetRadar90 {
-  border: 1px solid gray;
-  border-top: 1px solid #4c4c4c;
-  color: #666;
+  border-right: 1px solid #f0f0f0;
+  color: #4c4c4c;
   -moz-box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.5);
   -webkit-box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.5);
   box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.5);
@@ -121,6 +121,7 @@
   height: 143px;
   margin: 0;
   border-bottom: solid 1px #efefef;
+  background-color: #FFF;
   overflow: hidden;
 }
 .djWidgetRadar90 .djRadarCategory {
@@ -134,10 +135,14 @@
   margin: 0;
   list-style: none;
   cursor: pointer;
-  border-bottom: 1px solid #ECECEC;
+  border-top: 1px solid #ECECEC;
   border-left: 1px solid #ECECEC;
+  border-bottom: 1px solid #ECECEC;
+    *border-right: 1px solid #ECECEC;
+    *border-left: none;
   color: #54595B;
 }
+
 .djWidgetRadar90 .djRadarCategory img {
   position: absolute;
   bottom: 2px;
@@ -159,8 +164,8 @@
 }
 .djWidgetRadar90 .djContentItemFixed {
   border-bottom-style: solid;
-    border-bottom-color: rgba(0, 0, 0, 0.0976563);
-    border-bottom-width: 1px;
+  border-bottom-color: #f0f0f0;
+  border-bottom-width: 1px;
   height: 19px;
   line-height: 19px;
   padding: 0px 0px 0px 10px;
@@ -249,10 +254,10 @@
   -ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=1, startColorstr=#00ffffff, endColorstr=#ffffffff)";
 }
 .djWidgetRadar90 .djContentItemFixed:hover .mask-fade {
-  background-image: -webkit-gradient(linear, left top, 80% top, from(rgba(255, 255, 255, 0)), to(#ffffe5));
-  background-image: -moz-linear-gradient(left center, rgba(255, 255, 255, 0) 0%, #ffffe5 85%);
-  filter: expression('progid:DXImageTransform.Microsoft.Gradient(GradientType=1,StartColorStr=#00ffffe5, EndColorStr=#ffffffe5)');
-  -ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr=#00ffffe5, endColorstr=#ffffffe5)";
+  background-image: -webkit-gradient(linear, left top, 80% top, from(rgba(255, 255, 255, 0)), to(#ffffFF));
+  background-image: -moz-linear-gradient(left center, rgba(255, 255, 255, 0) 0%, #ffffff 85%);
+  filter: expression('progid:DXImageTransform.Microsoft.Gradient(GradientType=1,StartColorStr=#00ffffe5, EndColorStr=#ffffffff)');
+  -ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr=#00ffffe5, endColorstr=#ffffffff)";
 }
 .djWidgetRadar90 .djWidgetRadarFooter {
   font-size: 10px;
@@ -267,7 +272,8 @@
 .djWidgetRadar90 .djWidgetRadarFooter .widgetKey .legend {
   font-style: italic;
   padding: 5px;
-  background-color: #f2f2f2;
+  background-color: #9c9c9c;
+    *background-color: #9c9c9c;
   background-image: -moz-linear-gradient(top, #f2f2f2, #dcdcdc);
   background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #f2f2f2), color-stop(1, #dcdcdc));
 }
@@ -314,7 +320,7 @@
   top: 0px;
 }
 .djWidgetRadar90 .djWidgetRadarFooter .widgetKey .djRadarItemBox6 div {
-  padding-left: 0 0 0 0;
+  padding-left: 0;
 }
 .djWidgetRadar90 .djWidgetRadarFooter .djWidgetControlls .top {
   padding: 1px 2px;

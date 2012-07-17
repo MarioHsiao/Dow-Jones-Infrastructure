@@ -4,11 +4,11 @@
 @using Ajax.Article;
 @using Article;
 @using Extensions
-@using Models;
 @using VideoPlayer
-@model DowJones.Web.Mvc.UI.Components.Models.Article.ArticleModel
+@using PostProcessingOptions = PostProcessing.PostProcessingOptions
+@model ArticleModel
 @ClientPlugin dj_Article
-@ScriptResource RelativeResourceName=ArticleComponent.js
+@ScriptResource RelativeResourceName=Article.js
 @{ CssClass = "dj_Article"; }
 @if (Model.ArticleDataSet != null)
 {
@@ -18,11 +18,11 @@
     {
     <div class="dj_article-container dj_article_display_@(Model.ArticleDisplayOptions.ToString()) dj_article_lang_@(Model.ArticleDataSet.LanguageCode.ToLower())" data-ref="@Model.ArticleRef.ToJson().EscapeForHtml()">
         
-        @if(Model != null && Model.VideoPlayerModel != null) 
+        @if(Model != null && Model.VideoPlayer != null) 
         {
              <div class="multimediaPlayer">
                 <div class="player">
-                    @(CreateChildControl<VideoPlayerControl>(Model.VideoPlayerModel))
+                    @(CreateChildControl<VideoPlayerComponent>(Model.VideoPlayer))
                 </div>   
             </div>
             if (Model.ArticleDataSet != null)
@@ -299,7 +299,7 @@
                     if (Model.HasTranslator)
                     {
                     <div id="articleTranslateControlsContainer">
-                        @(CreateChildControl<ArticleTranslator.ArticleTranslatorControl>(Model.Translator))
+                        @(CreateChildControl<ArticleTranslator.ArticleTranslatorComponent>(Model.Translator))
                     </div>
                     }    
 @*Ends Build social buttons and speakers/ translation*@
@@ -325,8 +325,8 @@
                 {
                     foreach (KeyValuePair<string, List<RenderItem>> kvc in Model.ArticleDataSet.Correction.SelectMany(dci => dci))
                     {
-                        @(kvc.Key.Equals("pre") ? CreateChildControl<Paragraph>(Model.GetParagraphModel(kvc.Value, "pre", "dj_article_paragraph"))
-                                                : CreateChildControl<Paragraph>(Model.GetParagraphModel(kvc.Value, "p", "dj_article_paragraph")))
+                        @(kvc.Key.Equals("pre") ? CreateChildControl<ParagraphComponent>(Model.GetParagraphModel(kvc.Value, "pre", "dj_article_paragraph"))
+                                                    : CreateChildControl<ParagraphComponent>(Model.GetParagraphModel(kvc.Value, "p", "dj_article_paragraph")))
                     }
                 }
                 @if (!Model.ArticleDataSet.LeadParagraph.IsNullOrEmpty())
@@ -340,8 +340,8 @@
                         {
                             foreach (var kvc in Model.ArticleDataSet.LeadParagraph.SelectMany(dci => dci))
                             {
-                                @(kvc.Key.Equals("pre") ? CreateChildControl<Paragraph>(Model.GetParagraphModel(kvc.Value, "pre", "dj_article_paragraph"))
-                                           : CreateChildControl<Paragraph>(Model.GetParagraphModel(kvc.Value, "p", "dj_article_paragraph")))
+                                @(kvc.Key.Equals("pre") ? CreateChildControl<ParagraphComponent>(Model.GetParagraphModel(kvc.Value, "pre", "dj_article_paragraph"))
+                                               : CreateChildControl<ParagraphComponent>(Model.GetParagraphModel(kvc.Value, "p", "dj_article_paragraph")))
                             }
                         }
                     </div>
@@ -355,8 +355,8 @@
                     <div class="dj_article_td dj_article_section">
                         @foreach (var kvc in Model.ArticleDataSet.TailParagraphs.SelectMany(dci => dci))
                         {
-                            @(kvc.Key.Equals("pre") ? CreateChildControl<Paragraph>(Model.GetParagraphModel(kvc.Value, "pre", "dj_article_paragraph"))
-                                       : CreateChildControl<Paragraph>(Model.GetParagraphModel(kvc.Value, "p", "dj_article_paragraph")))
+                            @(kvc.Key.Equals("pre") ? CreateChildControl<ParagraphComponent>(Model.GetParagraphModel(kvc.Value, "pre", "dj_article_paragraph"))
+                                           : CreateChildControl<ParagraphComponent>(Model.GetParagraphModel(kvc.Value, "p", "dj_article_paragraph")))
                         }
                     </div>
                 }
@@ -372,7 +372,7 @@
                         }
                 
                     <div class="dj_article_ct dj_article_section">
-                        @(CreateChildControl<Paragraph>(Model.GetParagraphModel(Model.ArticleDataSet.Contact, "p", "dj_article_paragraph")))
+                        @(CreateChildControl<ParagraphComponent>(Model.GetParagraphModel(Model.ArticleDataSet.Contact, "p", "dj_article_paragraph")))
                     </div>
                     }
 
@@ -386,8 +386,8 @@
                     <div class="dj_article_rf dj_article_section">
                         @foreach (var kvc in Model.ArticleDataSet.Notes.SelectMany(dci => dci))
                         {
-                            @(kvc.Key.Equals("pre") ? CreateChildControl<Paragraph>(Model.GetParagraphModel(kvc.Value, "pre", "dj_article_paragraph"))
-                                                    : CreateChildControl<Paragraph>(Model.GetParagraphModel(kvc.Value, "p", "dj_article_paragraph")))
+                            @(kvc.Key.Equals("pre") ? CreateChildControl<ParagraphComponent>(Model.GetParagraphModel(kvc.Value, "pre", "dj_article_paragraph"))
+                                                        : CreateChildControl<ParagraphComponent>(Model.GetParagraphModel(kvc.Value, "p", "dj_article_paragraph")))
                         }
                     </div>
                     }
@@ -399,7 +399,7 @@
                     <div class="dj_article_index">ART</div>
                         }
                     <div class="dj_article_art dj_article_section">
-                        @(CreateChildControl<Paragraph>(Model.GetParagraphModel(Model.ArticleDataSet.ArtWorks, "p", "dj_article_paragraph")))
+                        @(CreateChildControl<ParagraphComponent>(Model.GetParagraphModel(Model.ArticleDataSet.ArtWorks, "p", "dj_article_paragraph")))
                     </div>
                     }
                 }

@@ -1,6 +1,4 @@
-﻿using DowJones.Infrastructure;
-
-namespace DowJones.Web.Mvc.UI.Components.Article
+﻿namespace DowJones.Web.Mvc.UI.Components.Article
 {
     public class EntityLinkData
     {
@@ -13,7 +11,7 @@ namespace DowJones.Web.Mvc.UI.Components.Article
 
     public class PostProcessData
     {
-        public PostProcessing Type {get;set;}
+        public DowJones.Infrastructure.PostProcessing Type { get; set; }
         public string ElinkValue {get;set;}
         public string ElinkText{get;set;}
     }

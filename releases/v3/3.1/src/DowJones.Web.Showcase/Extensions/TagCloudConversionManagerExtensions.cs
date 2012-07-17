@@ -5,11 +5,11 @@ using DowJones.Ajax.TagCloud;
 using DowJones.Assemblers.Assets;
 using DowJones.DependencyInjection;
 using DowJones.Managers.Search;
+using DowJones.Web.Mvc.UI.Components.TagCloud;
 using Factiva.Gateway.Messages.Search;
 using Factiva.Gateway.Messages.Search.V2_0;
 using PerformContentSearchRequest = Factiva.Gateway.Messages.Search.FreeSearch.V1_0.PerformContentSearchRequest;
 using PerformContentSearchResponse = Factiva.Gateway.Messages.Search.FreeSearch.V1_0.PerformContentSearchResponse;
-using DowJones.Web.Mvc.UI.Components.Models;
 
 namespace DowJones.Web.Showcase.Extensions
 {
