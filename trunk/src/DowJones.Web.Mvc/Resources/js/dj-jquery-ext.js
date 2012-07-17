@@ -1,4 +1,4 @@
-﻿(function($) {
+﻿(function(DJ, $, $dj) {
     //  The "inheritance plugin" model
     //  http://alexsexton.com/?p=51
     // Modified by Framework team
@@ -324,4 +324,4 @@
             });
         }
     });
-})(DJ.jQuery);
+})(DJ, DJ.jQuery, DJ.$dj);
