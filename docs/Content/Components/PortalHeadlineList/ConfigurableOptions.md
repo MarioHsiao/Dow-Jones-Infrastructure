@@ -1,6 +1,6 @@
-﻿You can configure many aspects of Portal Headline List component. The following table lists out the configurable options (Properties in ASP.NET MVC and Options in Javascript): 
+﻿The following table lists out the configurable options (Properties in ASP.NET MVC and Options in Javascript):
 
- Properties 				|  Options					  |  Description											
+Properties 				    | Options					  | Description											
 ----------------------------|-----------------------------|----------------------------------------------------------------------------------------------
 MaxNumHeadlinesToShow		| maxNumHeadlinesToShow		  | Limits the number of headlines displayed. <span class="label">Default: 5</span>
 Layout						| layout					  | Specifies the headlines layout - `Default`, `Author`, `Timeline`

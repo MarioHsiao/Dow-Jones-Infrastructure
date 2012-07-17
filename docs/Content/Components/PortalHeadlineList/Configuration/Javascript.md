@@ -21,9 +21,7 @@ Finally, add the component to the page:
 	            displaySnippets: 1,
             },
             data: {...},
-            callbacks: {
-	            "headlineClick.dj.PortalHeadlineList": headlineClickHandler
-	            }
+            eventHandlers: {...}
         }); 
 	</script>
 
@@ -31,12 +29,3 @@ Finally, add the component to the page:
 		  
 `data` can be specified inline as a JSON reprenstation of `PortalHeadlineListDataResult` (the model for the component), or via a callback that returns a JSON reprenstation of `PortalHeadlineListDataResult`. 
 Click "View Sample Data" to see example of `PortalHeadlineListDataResult` JSON.
-
-You can specify one or more event handlers via `callbacks`. 
-Here is a sample Headline Click handler:
-
-	<script type="text/javascript">
-		function headlineClickHandler(data) {
-            alert("Headline clicked: " + data.headline.title);
-        }
-	</script>	
