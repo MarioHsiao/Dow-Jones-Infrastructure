@@ -3,6 +3,11 @@
 * Under folder `SampleComponent`, create a new folder - `ClientTemplates`
 
 * Under newly created folder - `ClientTemplates` - create the following 2 files as `Embedded resources`:
+	
+	* Success.html
+	* Error.html
+		
+	Right click on the newly created files -> Properties, set `Build Action` as `Embedded resource`.
 
 #### Success.html
 

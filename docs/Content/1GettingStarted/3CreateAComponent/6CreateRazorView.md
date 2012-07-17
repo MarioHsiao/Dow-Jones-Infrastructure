@@ -7,7 +7,7 @@
 	This should create the following file:	SampleComponent.cs (if you do not see this file, you have not properly installed the Razor View Component Class Generator plugin)
 
 
-* Replace the contents of `TestComponent.cshtml` with the following:
+* Replace the contents of `SampleComponent.cshtml` with the following:
 
 		@@* /*
 		Component model, defined in step 2

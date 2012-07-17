@@ -4,6 +4,8 @@
 
 * Under `SampleComponent`, add class `SampleComponentData`:
 
+* Make sure that the class is made `public`
+
 		using System.Runtime.Serialization;
 		using Newtonsoft.Json;
 	

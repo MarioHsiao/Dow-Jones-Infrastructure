@@ -2,6 +2,8 @@
 
 * Under folder `SampleComponent`, add class `SampleComponentModel`:
 
+* Make sure that the class is made `public`
+
 		namespace DowJones.Web.Mvc.UI.Components.SampleComponent
 		{
 			public class SampleComponentModel : ViewComponentModel
