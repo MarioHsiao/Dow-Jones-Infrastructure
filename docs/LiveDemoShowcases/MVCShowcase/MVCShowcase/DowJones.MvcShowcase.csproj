@@ -326,6 +326,7 @@
     <Content Include="Views\NewsRadar90DayAvg\_jsData.cshtml" />
     <Content Include="Views\VideoPlayer\_cSharpData.cshtml" />
     <Content Include="Views\VideoPlayer\_jsData.cshtml" />
+    <Content Include="Views\Shared\_LayoutClientSide.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
