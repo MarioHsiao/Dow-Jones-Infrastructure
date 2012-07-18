@@ -5,6 +5,11 @@
 /// <reference path="require.js" />
 /// <reference path="underscore.js" />
 
+// Get local instances of require() and define()
+var dj_define = define;
+var dj_require = require;
+
+
 // Initialize global DJ object
 if (!window['DJ']) {
     window['DJ'] = {
@@ -14,11 +19,10 @@ if (!window['DJ']) {
     };
 }
 
+// Define DJ
 var DJ = window['DJ'];
+dj_define('DJ', [], function () { return DJ; });
 
-// Get local instances of require() and define()
-var dj_define = define;
-var dj_require = require;
 
 // Define jQuery module with our jQuery
 DJ.jQuery = jQuery.noConflict(true);
@@ -927,6 +931,7 @@ DJ.$dj.define('$dj', ['jquery'], DJ.$dj);
     $dj.timeZone = jstz;
 
 })(DJ.jQuery, DJ.$dj);
+
 //
 // The core "DJ Components":  DJ.Component, DJ.UI.Component
 //
@@ -1349,20 +1354,27 @@ DJ.$dj.define('$dj', ['jquery'], DJ.$dj);
 
 })(DJ.jQuery, DJ.$dj);
 
-//
-// The shiny new DJ.Add
-//
 (function ($, $dj) {
-    DJ.add = function (/* fully qualified component (e.g. DJ.UI.xxx) */ name,
-        /* mothership! contains options, data, callbacks */ config) {
+    var add = function (name, config) {
 
         var validateConfig = function (configuration) {
-            if (document.getElementById(configuration.container) === null) {
-                $dj.error('Invalid Configuration:', 'Target not found. Make sure you pass a valid element "id"');
-                return false;
+            var errors = [];
+            
+            if (configuration === undefined) {
+                errors.push('configuration not defined');
+                return errors;
+            }
+            
+            // container can either be a DOM element or an id string
+            // if it's a string, resolve it to a DOM element
+            if (configuration.container && !$.isPlainObject(configuration.container))
+                configuration.container = document.getElementById(configuration.container);
+
+            if (configuration.container === null) {
+                errors.push('container not found');
             }
 
-            return true;
+            return errors;
         };
 
         var getTypeHandle = function (handlerName, stack) {
@@ -1386,27 +1398,51 @@ DJ.$dj.define('$dj', ['jquery'], DJ.$dj);
             }
         };
         
-        var createInstance = function (type, configuration) {
-            var instance = new type(document.getElementById(configuration.container), configuration);
-            wireUpEventHandlers(instance, configuration.eventHandlers);
-            return instance;
+        // Assume the 'DJ.UI' namespace if not specified
+        if(name.indexOf('.') < 0) {
+            name = "DJ.UI." + name;
+        }
+
+
+        var promise = $.Deferred();
+
+        var notify = function(state) {
+            promise.notify({ state: state, name: name, config: config });
         };
 
-        if (!validateConfig(config)) {
-            return;
+        notify('Validating');
+        var validationErrors = validateConfig(config);
+        if (validationErrors && validationErrors.length > 0) {
+            $dj.error('Error validating DJ.Add configuration ', validationErrors);
+            promise.reject(validationErrors);
+        } else {
+            notify('Validated');
+
+            var createInstance = function () {
+                var type = getTypeHandle(name);
+                var instance = new type(config.container, config);
+                wireUpEventHandlers(instance, config.eventHandlers);
+
+                notify('Loaded');
+                promise.resolve(instance);
+
+                return instance;
+            };
+
+            var onError = function (err) {
+                notify('Failed');
+                promise.reject(err);
+            };
+
+            // Retrieve and create an instance of the module
+            notify('Loading');
+            $dj.require(['DJ', '$', '$dj', '_', 'JSON', name], createInstance, onError);
         }
 
-        if(name.indexOf('.') < 0) {
-            name = "DJ.UI." + name;     /* add default namespace */
-        }
-        
-        $dj.require(['$', '$dj', '_', 'JSON', name], 
-            function ($, $dj, _, JSON) {
-                createInstance(getTypeHandle(name), config);
-            }
-        );
+        return promise;
     };
 
+    DJ.add = add;
 }(DJ.jQuery, DJ.$dj));
 
 
