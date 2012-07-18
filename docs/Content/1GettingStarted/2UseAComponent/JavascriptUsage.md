@@ -1,31 +1,31 @@
-﻿If you are not using ASP.NET MVC as your server side framework, you can still consume the Dow Jones Components by rendering them client side, using standard HTML and JavaScript.
+﻿Dow Jones Components may also be rendered using standard HTML and JavaScript directly in the browser.
 
-There are 3 basic steps to get this going:
+There are 2 steps to add a component to your web page via the client-side API:
 
-* **Obtaining credentials:** You need to authenticate the user to obtain valid credentials. 
-You then pass the valid credentials (session id or encrypted token) to `common.js` in order to start using the components as shown in the next step.
-* **Referencing "common.js":** "common.js" brings down a set of core JavaScipt libraries that are essential for all Dow Jones Components. 
+* **Reference "common.js":** "common.js" brings down a set of core JavaScipt libraries that are essential for all Dow Jones Components. 
  To reference `common.js`, simply add a `<script>` tag in your HTML as shown below:
 
 ~~~~
-	<script type="text/javascript" 
-        src="http://<tbd>/common.js?sessionId=27137ZzZKJAUQT2CAAAGUAIAAAAANFOUAAAAAABSGAYTEMBWGI2TCNBQGYZTKNZS"></script>
+	<script type="text/javascript" src="http://<tbd>/common.js"></script>
 ~~~~
 
-passing either a valid `sessionId` or `encryptedToken` as a query string parameter to authenticate the request.
-
-* **Adding a component to the page:** You can add any component to your page and position it anywhere you like by defining a container element (such as `<div>`) and calling `DJ.add` as shown below:
+* **Add the component:** You can add a component to your page and position it anywhere you like by defining a container element (such as `<div>`) and calling `DJ.add` as shown below:
 		
 ~~~~
 	<script type="text/javascript">
-		DJ.add(<name_Of_Component>, {
-			container : <DOM id of the container>,
-			options: { ... },
-			callbacks: { ... },
-			data: <JSON data>
+		DJ.add( [Component Name] , {
+			container : [DOM ID or element],
+			options: { [...] },
+			callbacks: { [...] },
+			data: [component data]
 		}); 
 	</script>
 ~~~~
 
-While container can be any DOM element of your liking, each component has specific set of pre-defined options, callbacks and data structure. 
+While `container` can refer to any DOM element, each component has specific set of pre-defined options, callbacks and data structure. 
 You can find the specific details of any component by navigating to [Components](components) and exploring individual components.
+
+
+#### Client API Demo
+
+@Html.DemoFrame(System.Configuration.ConfigurationManager.AppSettings["InfrastructureShowcase.BasePath"]+"/Home/ClientDemo")
