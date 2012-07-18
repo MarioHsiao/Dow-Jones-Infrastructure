@@ -35,8 +35,7 @@
     }
 
     function setupDemoFrame() {
-        var liveDemo = $('#livedemo'),
-            blocker = $('div.blocker', liveDemo),
+        var blocker = $('div.blocker'),
             iframe = blocker.find('iframe'),
             demoUrl = iframe.data('url');
 
@@ -60,14 +59,6 @@
                 blocker.unblock();
             }).attr('src', demoUrl);
         }
-    }
-
-    function setupScrollSpy() {
-        var offset = $('.sidebar-nav').offset().top;
-        $('body')
-            .attr('data-target', '.sidebar-nav')
-            .attr('data-spy', 'scroll')
-            .scrollspy({ offset: offset, target: '.sidebar-nav' });
     }
 
     function setupNavScroll(nav) {
@@ -149,9 +140,6 @@
 
         // target tables generated via markdown
         prettifyMarkdownTables();
-
-        // highlight Children in sidebar nav as we scroll
-        //setupScrollSpy();
 
         setupDemoFrame();
 
