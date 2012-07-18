@@ -1,4 +1,5 @@
-﻿Dow Jones Components may also be rendered using standard HTML and JavaScript directly in the browser.
+﻿@using DowJones.Documentation.Website.Extensions
+Dow Jones Components may also be rendered using standard HTML and JavaScript directly in the browser.
 
 There are 2 steps to add a component to your web page via the client-side API:
 
