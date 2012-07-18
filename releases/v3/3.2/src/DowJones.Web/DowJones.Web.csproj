@@ -94,12 +94,12 @@
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Handlers\Combiner\HttpCombiner.cs" />
-    <Compile Include="Handlers\DJInsider\DJInsiderData.cs" />
-    <Compile Include="Handlers\DJInsider\DJInsiderHandler.cs" />
-    <Compile Include="Handlers\DJInsider\DJInsiderHandlerException.cs" />
-    <Compile Include="Handlers\DJInsider\DJInsiderResponseDelegate.cs" />
-    <Compile Include="Handlers\DJInsider\DJInsiderResponseUtility.cs" />
-    <Compile Include="Handlers\DJInsider\DJInsiderStructures.cs" />
+    <Compile Include="Handlers\Syndication\Podcast\DJInsider\DJInsiderData.cs" />
+    <Compile Include="Handlers\Syndication\Podcast\DJInsider\DJInsiderHandler.cs" />
+    <Compile Include="Handlers\Syndication\Podcast\DJInsider\DJInsiderHandlerException.cs" />
+    <Compile Include="Handlers\Syndication\Podcast\DJInsider\DJInsiderResponseDelegate.cs" />
+    <Compile Include="Handlers\Syndication\Podcast\DJInsider\DJInsiderResponseUtility.cs" />
+    <Compile Include="Handlers\Syndication\Podcast\DJInsider\DJInsiderStructures.cs" />
     <Compile Include="Handlers\IAjaxResponseDelegate.cs" />
     <Compile Include="Handlers\Items\FileManager.cs" />
     <Compile Include="Handlers\Items\ItemHandler.cs" />
