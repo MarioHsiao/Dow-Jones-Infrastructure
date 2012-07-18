@@ -1,1 +1,0 @@
-<soap-env:Envelope xmlns:soap-env="http://schemas.xmlsoap.org/soap/envelope/"><soap-env:Body><GetAllWSPList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="urn:factiva:assets:topiccenterandsmsmanagement:v1_0" /></soap-env:Body></soap-env:Envelope>

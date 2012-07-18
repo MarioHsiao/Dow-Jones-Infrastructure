@@ -1,0 +1,16 @@
+<soap-env:Envelope xmlns:soap-env="http://schemas.xmlsoap.org/soap/envelope/">
+  <soap-env:Body>
+    <GetSyndicationHeadlines xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <syndicationId>1111</syndicationId>
+      <syndicationId>2222</syndicationId>
+      <syndicationId>3333</syndicationId>
+      <syndicationId>4444</syndicationId>
+      <maxResultsToReturn>10</maxResultsToReturn>
+      <sortBy>publicationDate</sortBy>
+      <sortOrder>DESC</sortOrder>
+      <bookmark>Somestring</bookmark>
+      <firstResultToReturn>0</firstResultToReturn>
+      <feedFormat>FactivaHeadlines</feedFormat>
+    </GetSyndicationHeadlines>
+  </soap-env:Body>
+</soap-env:Envelope>

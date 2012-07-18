@@ -1132,3 +1132,12 @@ Release Version 7.5.0.88
 =============================================================================================================================
 06/13/2012 Himmat: Added "Contains" enum in FilterSearchOperator of Query asset.
 06/19/2012 Pramod: Added boolean value wihoutEntitlement to TriggerSearch 2.3
+
+Release Version 7.5.0.89
+
+=============================================================================================================================
+06/29/2012 Himmat: Fixed issue with async in FreeSearch service.
+Release Version 7.5.0.90
+
+=============================================================================================================================
+07/10/2012 pramod: Fixed the issue in Track for Relevance HeadlinesSortByType
