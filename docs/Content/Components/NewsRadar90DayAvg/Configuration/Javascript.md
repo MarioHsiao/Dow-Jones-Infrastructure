@@ -29,15 +29,6 @@ If data is already available, you can pass it in as an argument to DJ.add functi
 				windowSize: 6,
 				scrollSize: 5
             },
-			
-			// Set custom client templates. Optional.
-			templates: {
-			},
-
-			// Set event handlers ("onLoad", "onDataBind", etc.). Optional
-			callBacks: {
-			},
-
 			onLoad: init			/* function to wire up data on load */
 		}); 
 	</script>
