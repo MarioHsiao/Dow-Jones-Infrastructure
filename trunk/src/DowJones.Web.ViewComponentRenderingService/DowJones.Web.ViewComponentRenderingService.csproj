@@ -90,6 +90,9 @@
       <HintPath>packages\Factiva.Gateway.7.5.0.90\lib\Interop.FCMLib.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
+    <Reference Include="itextsharp">
+      <HintPath>packages\iTextSharp.5.2.0\lib\itextsharp.dll</HintPath>
+    </Reference>
     <Reference Include="log4net">
       <HintPath>packages\log4net.1.2.99\lib\2.0\log4net.dll</HintPath>
     </Reference>
@@ -101,6 +104,9 @@
     </Reference>
     <Reference Include="Ninject">
       <HintPath>packages\Ninject.2.2.1.4\lib\net40-Full\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="Svg">
+      <HintPath>packages\Svg.0.5.2.17984\lib\Svg.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
