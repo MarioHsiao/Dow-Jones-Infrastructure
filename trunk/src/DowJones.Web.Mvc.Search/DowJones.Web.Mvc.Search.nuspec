@@ -20,6 +20,5 @@
     <files>
         <file src="DowJones.Web.Mvc.Search.dll" target="lib" />
         <file src="DowJones.Web.Mvc.Search.pdb" target="lib" />
-        <file src="DowJones.Web.Mvc.Search.xml" target="lib" />
     </files>
 </package>
