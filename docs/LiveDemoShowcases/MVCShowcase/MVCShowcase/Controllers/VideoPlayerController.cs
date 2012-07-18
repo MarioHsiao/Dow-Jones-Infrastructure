@@ -1,37 +1,32 @@
 ﻿using System.Configuration;
 using System.Web.Mvc;
-using DowJones.Web.Mvc.UI.Components.Models;
+using DowJones.Web.Mvc.UI.Components.VideoPlayer;
 
 namespace DowJones.MvcShowcase.Controllers
 {
     public class VideoPlayerController : BaseController
     {
-        //
-        // GET: /VideoPlayer/
-
         public ActionResult Index()
         {
             var appPath = ConfigurationManager.AppSettings["InfrastructureShowcase.BasePath"];
-            var data = new ClipCollection(new[]
-                                              {
-                                                  new Clip
-                                                      {
-                                                          Url = appPath + "/styles/views/videoplayer/media/demo.mp4",
-                                                          Medium = Medium.Video,
-                                                          Duration = "188",
-                                                          Type = "video/mp4",
-                                                          BitRate = "1500",
-                                                          FrameRate = "29.97",
-                                                          Width = "670",
-                                                          Height = "300"
-                                                      }
-                                              });
             var videoPlayerModel = new VideoPlayerModel
             {
                 AutoPlay = false,
                 Width = 650,
                 Height = 288,
-                PlayList = data,
+                Data = new ClipCollection(new[] {
+                        new Clip
+                            {
+                                Url = appPath + "/styles/views/videoplayer/media/demo.mp4",
+                                Medium = Medium.Video,
+                                Duration = "188",
+                                Type = "video/mp4",
+                                BitRate = "1500",
+                                FrameRate = "29.97",
+                                Width = "670",
+                                Height = "300"
+                            }
+                    }),
                 ControlBarPath = appPath + "/styles/views/videoplayer/img/flowplayer.controls-3.2.5.swf",
                 PlayerPath = appPath + "/styles/views/videoplayer/img/flowplayer.unlimited-3.2.7.swf",
                 RTMPPluginPath = appPath + "/styles/views/videoplayer/img/flowplayer.rtmp-3.2.3.swf",

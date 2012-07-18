@@ -6,9 +6,6 @@ namespace DowJones.MvcShowcase.Controllers
 {
     public class SocialButtonsController : BaseController
     {
-        //
-        // GET: /SocialButtons/
-
         public ActionResult Index()
         {
             var model = new SocialButtonsModel
@@ -21,14 +18,13 @@ namespace DowJones.MvcShowcase.Controllers
                                          SocialNetworks.Yahoo,
                                          SocialNetworks.StumbleUpon
                                      },
-                ImageSize = ImageSize.Large,
                 Title = "Share",
                 Url = "http://www.dowjones.com",
                 Keywords = "Social",
                 Description = "Share Content"
             };
+
             return View(model);
         }
-
     }
 }

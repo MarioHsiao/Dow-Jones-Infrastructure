@@ -1,4 +1,4 @@
-﻿@model DowJones.Web.Mvc.UI.Components.Models.AutoSuggestModel
+﻿@model DowJones.Web.Mvc.UI.Components.AutoSuggest.AutoSuggestModel
 @{
     ViewBag.Title = "AutoSuggest Demo";
 }
@@ -14,7 +14,7 @@
     <tr>
         <td>@Model.AutocompletionType
         </td>
-        <td>@Html.DJ().Render(Model, new { id = Model.ControlId })
+        <td>@DJ.Render(Model, new { id = Model.ControlId })
         </td>
     </tr>
 </table>

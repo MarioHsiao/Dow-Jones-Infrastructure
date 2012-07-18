@@ -1,14 +1,11 @@
 ﻿using System.Configuration;
 using System.Web.Mvc;
-using DowJones.Web.Mvc.UI.Components.Models;
+using DowJones.Web.Mvc.UI.Components.AutoSuggest;
 
 namespace DowJones.MvcShowcase.Controllers
 {
     public class AutoSuggestController : BaseController
     {
-        //
-        // GET: /AutoSuggest/
-
         public ActionResult Index()
         {
             var authTypeToken = ConfigurationManager.AppSettings["SuggestAuthTypeToken"];
@@ -16,8 +13,8 @@ namespace DowJones.MvcShowcase.Controllers
             var model = new AutoSuggestModel
             {
                 SuggestServiceUrl = suggestServiceURl,
-                AutocompletionType = "Keyword",
-                AuthType = "SuggestContext",
+                AutocompletionType = AutoCompletionType.Keyword,
+                AuthType = AuthType.SuggestContext,
                 AuthTypeValue = authTypeToken,
                 ControlId = "djKeywordAutoSuggest",
                 FillInputOnKeyUpDown = true,

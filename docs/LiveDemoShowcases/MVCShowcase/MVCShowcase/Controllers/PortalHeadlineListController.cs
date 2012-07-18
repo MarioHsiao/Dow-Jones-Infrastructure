@@ -2,8 +2,8 @@ using System.Web.Mvc;
 using DowJones.Ajax.PortalHeadlineList;
 using DowJones.Assemblers.Headlines;
 using DowJones.Formatters.Globalization.DateTime;
-using DowJones.Web.Mvc.UI.Components.Common.Types;
-using DowJones.Web.Mvc.UI.Components.Models;
+using DowJones.Web.Mvc.UI.Components.Common;
+using DowJones.Web.Mvc.UI.Components.PortalHeadlineList;
 
 namespace DowJones.MvcShowcase.Controllers
 {
@@ -26,7 +26,6 @@ namespace DowJones.MvcShowcase.Controllers
 			};
             return View(model);
         }
-
 
 		private PortalHeadlineListDataResult GetData()
 		{

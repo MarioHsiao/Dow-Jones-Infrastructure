@@ -6373,10 +6373,7 @@ namespace DowJones.MvcShowcase.Controllers
                        };
             #endregion
             
-            var model = new NewsRadarModel
-                        {
-                            ParentNewsEntities = data
-                        };
+            var model = new NewsRadarModel { Data = data };
 
             return View(model);
         }

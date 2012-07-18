@@ -1,4 +1,4 @@
-﻿@model DowJones.Web.Mvc.UI.Components.Models.VideoPlayerModel
+﻿@model DowJones.Web.Mvc.UI.Components.VideoPlayer.VideoPlayerModel
 @{
     ViewBag.Title = "Video Player";
 }
@@ -12,5 +12,5 @@
 
 <!-- Render the component -->
 <div class="dj_video-player-content">
-    @Html.DJ().RenderComponent("VideoPlayerControl", Model)
+    @DJ.Render(Model)
 </div>

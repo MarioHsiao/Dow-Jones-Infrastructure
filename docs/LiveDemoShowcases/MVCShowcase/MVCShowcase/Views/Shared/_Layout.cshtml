@@ -1,14 +1,13 @@
-﻿<!DOCTYPE html>
+﻿@{
+    DJ.StylesheetRegistry()
+        .Include("~/content/site.css", ClientResourceDependencyLevel.Global);
+}
+<!DOCTYPE html>
 <html>
 <head>
-	<title>@ViewBag.Title</title>
-	<link href="@Url.Content("~/styles/normalize.css")" rel="stylesheet" />
-	<link href="@Url.Content("~/styles/normalizeExtensions.css")" rel="stylesheet" />
-	<link href="@Url.Content("~/styles/site.css")" rel="stylesheet" />
+    <title>@ViewBag.Title</title>
 
-    @RenderSection("styles", false)
-
-	<script type="text/javascript">
+    <script type="text/javascript">
     var DJ = { config: { debug: true } };
     </script>
     
@@ -21,7 +20,5 @@
     
     @DJ.StylesheetRegistry().Render() 
     @DJ.ScriptRegistry().Render()
-    
-    @RenderSection("scripts", false)
 </body>
 </html>

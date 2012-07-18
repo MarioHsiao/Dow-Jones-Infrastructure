@@ -1,4 +1,4 @@
-﻿@model DowJones.Web.Mvc.UI.Components.Models.Article.ArticleModel
+﻿@model DowJones.Web.Mvc.UI.Components.Article.ArticleModel
 
 @{
     ViewBag.Title = "Article Demo";
@@ -10,6 +10,6 @@
 
 <section id="main" class="article-page">
     <div class="article">
-        @Html.DJ().Render(Model)
+        @DJ.Render(Model)
     </div>
 </section>
