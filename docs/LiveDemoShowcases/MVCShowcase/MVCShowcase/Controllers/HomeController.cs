@@ -10,5 +10,10 @@ namespace DowJones.MvcShowcase.Controllers
             return View();
         }
 
+        public ActionResult ClientDemo()
+        {
+            return View();
+        }
+
     }
 }

@@ -19,6 +19,7 @@ namespace DowJones.MvcShowcase.BootstrapperTasks
             _routes.IgnoreRoute("{resource}.asmx/{*pathInfo}");
             _routes.IgnoreRoute("{resource}.svc/{*pathInfo}");
             _routes.IgnoreRoute("{resource}.ashx/{*pathInfo}");
+            _routes.IgnoreRoute("common.js");
 
             /*** IMPORTANT:  Avoid adding generic routes here - prefer RouteAttribute instead!  ****/
 

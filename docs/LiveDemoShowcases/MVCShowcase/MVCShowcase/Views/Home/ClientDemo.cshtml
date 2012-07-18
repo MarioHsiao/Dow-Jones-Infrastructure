@@ -1,0 +1,46 @@
+﻿@{ Layout = null; }
+
+<div id="container"/>
+
+<script type="text/javascript" src="@Url.Content("~/common.js")"></script>
+
+<script type="text/javascript">
+var $ = DJ.jQuery, _ = DJ.underscore;
+
+DJ.$dj.loadStylesheet('@Url.Content("~/styles/views/PortalHeadlineList/PortalHeadlineList.css")');
+DJ.$dj.loadStylesheet('@Url.Content("~/styles/normalizeExtensions.css")');
+DJ.$dj.loadStylesheet('@Url.Content("~/styles/site.css")');
+
+$.ajax('@Url.Content("~/platformproxy.asmx")?url=http://online.wsj.com/xml/rss/3_7011.xml')
+    .success(function(rss) {
+        var items = $('item', rss);
+
+        var model = { 
+            resultSet: {
+                count: { value: items.length },
+                headlines: _.map(items, function(item) {
+                    return {
+                        "title": $('title', item).text(),
+                        "reference": { "guid": $('link', item).text() },
+                        "snippets": [ $('description', item).text() ]
+                    };
+                })
+            }
+        };
+
+        DJ.add('PortalHeadlineList', { 
+            container: 'container',
+            data: model,
+            options: {
+                maxNumHeadlinesToShow : items.length,
+                displaySnippets: 3,
+            },
+            callbacks: {
+                "headlineClick.dj.PortalHeadlineList": function (evt) {
+                    window['last'] = evt.headline;
+                    //'$(evt.headline.snippets[0]).dj_simpleTooltip();
+                }
+            }
+        });
+    });
+</script>
