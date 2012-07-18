@@ -4,7 +4,7 @@ If you haven't configured Dow Jones NuGet repo in Visual Studio, checkout [Packa
 
 There are 3 basic steps to get this going:
 
-* **Referencing "Using" statements:** Add the necessary `using` statements to the c# code. 
+* **Adding References:** Add the necessary `using` statements to the c# code. 
 
 ~~~~
 	using DowJones.Web.Mvc.UI.Components.Common.Types;

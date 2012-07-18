@@ -1,6 +1,6 @@
 ﻿The following table lists out the configurable options (Properties in ASP.NET MVC and Options in Javascript):
 
-Properties 				    | Options					  | Description											
+Property 				    | Option					  | Description											
 ----------------------------|-----------------------------|----------------------------------------------------------------------------------------------
 MaxNumHeadlinesToShow		| maxNumHeadlinesToShow		  | Limits the number of headlines displayed. <span class="label">Default: 5</span>
 Layout						| layout					  | Specifies the headlines layout - `Default`, `Author`, `Timeline`

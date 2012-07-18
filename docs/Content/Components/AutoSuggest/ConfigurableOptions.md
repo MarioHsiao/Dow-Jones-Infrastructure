@@ -1,6 +1,6 @@
 ﻿The following table lists out the configurable options (Properties in ASP.NET MVC and Options in Javascript):
 
-Properties			 |   Options 			 |  Description																								
+Property			 |   Option 			 |  Description																								
 ---------------------|-----------------------|--------------------------------------------------------------------------------------
 SuggestServiceUrl*	 | suggestServiceUrl*	 | The service url to fetch the data.													
 ControlId*			 | controlId*			 | The Control to which the autosuggest functionality to be attached.					

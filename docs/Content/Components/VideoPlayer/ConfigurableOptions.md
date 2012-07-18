@@ -1,6 +1,6 @@
 ﻿The following table lists out the configurable options (Properties in ASP.NET MVC and Options in Javascript):
 
-Property (VideoPlayer) | Option (VideoPlayer) | Description											
+Property			   | Option				  | Description											
 -----------------------|----------------------|----------------------------------------------------
 Width				   | width				  | Width of the Video Player.														
 Height				   | height				  | Height of the Video Player.						
@@ -12,9 +12,9 @@ SplashImagePath		   | splashImagePath      | Path of the Splash Image.
 PlayerKey			   | playerKey			  | Unique Indentifier.						
 PlayList			   | playList			  | Collection of Media Clips.					
 
-The following table describes the options available for the Clip.
+The following table describes the options available for the **Clip** object.
 
-Property (Clip)	| Option (Clip) |  Description																											
+Property		| Option		|  Description																											
 ----------------|---------------|-------------------------------------------------------------------
 Url		        | url		    | Url of the Media Clip.														
 Medium			| medium		| Type of the medium (Audio/Video).						

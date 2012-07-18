@@ -54,7 +54,6 @@
     <None Include="Components\WorkingWithData\Overview.md" />
     <None Include="Components\WorkingWithData\Assemblers.md" />
     <None Include="Components\WorkingWithData\Examples.md" />
-    <None Include="Components\HandlingDataErrors\Overview.md" />
     <None Include="Components\Article\Configuration.md" />
     <None Include="Components\Article\Events.md" />
     <None Include="Components\Article\LiveDemo.md" />
