@@ -13,6 +13,7 @@
     
     @DJ.ScriptRegistry().RenderHead()
     @DJ.StylesheetRegistry().RenderHead()
+    @RenderSection("styles", false)
 </head>
 <body>
 
@@ -20,5 +21,6 @@
     
     @DJ.StylesheetRegistry().Render() 
     @DJ.ScriptRegistry().Render()
+    @RenderSection("scripts", false)
 </body>
 </html>
