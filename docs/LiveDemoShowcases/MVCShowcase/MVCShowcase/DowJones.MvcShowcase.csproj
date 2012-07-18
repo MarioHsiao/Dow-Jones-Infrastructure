@@ -292,6 +292,7 @@
     <Content Include="Styles\views\VideoPlayer\img\flowplayer.unlimited-3.2.7.swf" />
     <Content Include="Styles\views\VideoPlayer\img\play_text_large.png" />
     <Content Include="Styles\views\VideoPlayer\media\test.png" />
+    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -330,7 +331,6 @@
     <Content Include="Views\VideoPlayer\_cSharpData.cshtml" />
     <Content Include="Views\VideoPlayer\_jsData.cshtml" />
     <Content Include="Views\Shared\_LayoutClientSide.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
