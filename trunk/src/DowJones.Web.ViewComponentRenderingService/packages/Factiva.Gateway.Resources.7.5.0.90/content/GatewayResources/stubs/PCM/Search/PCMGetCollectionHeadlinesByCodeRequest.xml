@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soap-env:Envelope xmlns:soap-env="http://schemas.xmlsoap.org/soap/envelope/">
+	<soap-env:Body>
+<PCMGetCollectionHeadlinesByCode xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<collectionCode>PMTOPDSC</collectionCode>
+	<requestDTO xmlns="http://types.factiva.com/search">
+		<clusterMode>Off</clusterMode>
+		<metaDataController>
+			<mode>None</mode>
+			<countCustomContextualNavigatorIdsOncePerDocument>false</countCustomContextualNavigatorIdsOncePerDocument>
+			<timeNavigatorMode>None</timeNavigatorMode>
+			<returnCollectionCounts>false</returnCollectionCounts>
+			<returnKeywordsSet>false</returnKeywordsSet>
+		</metaDataController>
+		<collection>WebSites</collection>
+		<collection>Publications</collection>
+		<collection>Multimedia</collection>
+		<collection>Newspapers</collection>
+		<collection>Wires</collection>
+		<collection>Pictures</collection>
+		<collection>WebSitesMisc</collection>
+		<collection>Summary</collection>
+		<collection>Video</collection>
+		<sortBy>FIFO</sortBy>
+	</requestDTO>
+	<returnContentCatagorizationSet>false</returnContentCatagorizationSet>
+	<searchServiceType>Free</searchServiceType>
+</PCMGetCollectionHeadlinesByCode>
+	</soap-env:Body>
+</soap-env:Envelope>
+

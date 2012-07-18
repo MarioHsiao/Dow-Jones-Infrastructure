@@ -49,30 +49,36 @@
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DowJones.Infrastructure, Version=3.2.2.41872, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="CordaNetEmbedder">
+      <HintPath>packages\Corda.Embedder.7.0.0\lib\CordaNetEmbedder.dll</HintPath>
+    </Reference>
+    <Reference Include="DowJones.Charting, Version=3.2.13.42526, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>packages\DowJones.Infrastructure.3.2.2\lib\DowJones.Infrastructure.dll</HintPath>
+      <HintPath>packages\DowJones.Charting.3.2.13\lib\DowJones.Charting.dll</HintPath>
+    </Reference>
+    <Reference Include="DowJones.Infrastructure, Version=3.2.13.42526, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>packages\DowJones.Infrastructure.3.2.13\lib\DowJones.Infrastructure.dll</HintPath>
     </Reference>
     <Reference Include="DowJones.Parallel">
       <HintPath>packages\DowJones.Parallel.1.0.0\lib\DowJones.Parallel.dll</HintPath>
     </Reference>
-    <Reference Include="DowJones.Web.Mvc, Version=3.1.162.36645, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="DowJones.Web.Mvc, Version=3.2.13.42526, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>packages\DowJones.Web.Mvc.v3.3.1.162\lib\DowJones.Web.Mvc.dll</HintPath>
+      <HintPath>packages\DowJones.Web.Mvc.3.2.13\lib\DowJones.Web.Mvc.dll</HintPath>
     </Reference>
-    <Reference Include="DowJones.Web.Mvc.UI.Components, Version=3.1.162.36645, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="DowJones.Web.Mvc.UI.Components, Version=3.2.13.42526, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>packages\DowJones.Web.Mvc.UI.Components.v3.3.1.162\lib\DowJones.Web.Mvc.UI.Components.dll</HintPath>
+      <HintPath>packages\DowJones.Web.Mvc.UI.Components.3.2.13\lib\DowJones.Web.Mvc.UI.Components.dll</HintPath>
     </Reference>
     <Reference Include="DowJones.Web.Mvc.UI.Components.Models, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\DowJones.Web.Mvc.UI.Components.Models.v3.3.1.162\lib\DowJones.Web.Mvc.UI.Components.Models.dll</HintPath>
+      <HintPath>packages\DowJones.Web.Mvc.UI.Components.Models.3.2.13\lib\DowJones.Web.Mvc.UI.Components.Models.dll</HintPath>
     </Reference>
-    <Reference Include="factiva.gateway.messages, Version=7.5.0.88, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>packages\Factiva.Gateway.7.5.0.88\lib\factiva.gateway.messages.dll</HintPath>
+    <Reference Include="factiva.gateway.messages">
+      <HintPath>packages\Factiva.Gateway.7.5.0.90\lib\factiva.gateway.messages.dll</HintPath>
     </Reference>
-    <Reference Include="FactivaGateway, Version=1.5.0.7, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Factiva.Gateway.7.5.0.88\lib\FactivaGateway.dll</HintPath>
+    <Reference Include="FactivaGateway">
+      <HintPath>packages\Factiva.Gateway.7.5.0.90\lib\FactivaGateway.dll</HintPath>
     </Reference>
     <Reference Include="Hammock">
       <HintPath>packages\Hammock.1.2.6\lib\net40\Hammock.dll</HintPath>
@@ -81,8 +87,8 @@
       <HintPath>packages\Hammock.1.2.6\lib\4.0\Hammock.ClientProfile.dll</HintPath>
     </Reference>
     <Reference Include="Interop.FCMLib">
-      <HintPath>packages\Factiva.Gateway.7.5.0.88\lib\Interop.FCMLib.dll</HintPath>
-      <EmbedInteropTypes>False</EmbedInteropTypes>
+      <HintPath>packages\Factiva.Gateway.7.5.0.90\lib\Interop.FCMLib.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="log4net">
       <HintPath>packages\log4net.1.2.99\lib\2.0\log4net.dll</HintPath>
@@ -911,6 +917,7 @@
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="GatewayResources\config\UserEventRecorderService.config" />
   </ItemGroup>

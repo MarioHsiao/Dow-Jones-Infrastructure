@@ -1,4 +1,0 @@
-<?xml version="1.0"?>
-<DeleteProprietaryInfoRequest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="urn:factiva:Communicator:ProprietaryInfoService:v1_0">
-  <proprietaryInfoId>1</proprietaryInfoId>
-</DeleteProprietaryInfoRequest>

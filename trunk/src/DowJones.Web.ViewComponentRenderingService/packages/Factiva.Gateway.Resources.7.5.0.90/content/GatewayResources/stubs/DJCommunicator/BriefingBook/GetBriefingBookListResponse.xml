@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GetBriefingBookListResponse xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="urn:factiva:Communicator:BriefingBookService:v1_0">
+  <control>
+    <stamp type="BriefingBooks-GET-1" time="14:20:00.0000000-04:00" date="2011-01-21" />
+  </control>
+  <resultSet>
+    <briefingBook id="101">
+      <name>Walther briefing book</name>
+      <comment>This is about Sue Walther</comment>
+      <format>WORD</format>
+      <creator>
+        <name>Phil Metacliff</name>
+        <id>23</id>
+      </creator>
+      <access>Shared</access>
+      <createdDate>2002-10-11T13:00:00-04:00</createdDate>
+      <modifiedDate>2002-10-12T13:00:00-04:00</modifiedDate>
+      <isShared>true</isShared>
+    </briefingBook>
+    <briefingBook id="102">
+      <name>Trident briefing book</name>
+      <comment>This is trident books</comment>
+      <format>PDF</format>
+      <creator>
+        <name>Abdul Bhukhari</name>
+        <id>27</id>
+      </creator>
+      <access>Personal</access>
+      <createdDate>2002-10-10T13:00:00-04:00</createdDate>
+      <modifiedDate>2002-10-10T13:00:00-04:00</modifiedDate>
+      <isShared>false</isShared>
+    </briefingBook>
+    <briefingBook id="103">
+      <name>Bob herbert PSC</name>
+      <comment>tips for investors</comment>
+      <format>RTF</format>
+      <creator>
+        <name>Cathy Jones </name>
+        <id>33</id>
+      </creator>
+      <access>Personal</access>
+      <createdDate>2002-08-10T13:00:00-04:00</createdDate>
+      <modifiedDate>2002-09-10T13:00:00-04:00</modifiedDate>
+      <isShared>false</isShared>
+    </briefingBook>
+  </resultSet>
+  <totalRecords>3</totalRecords>
+  <firstResult>1</firstResult>
+</GetBriefingBookListResponse>
