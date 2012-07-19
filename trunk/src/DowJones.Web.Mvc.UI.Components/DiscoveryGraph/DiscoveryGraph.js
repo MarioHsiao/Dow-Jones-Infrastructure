@@ -27,6 +27,9 @@ DJ.UI.DiscoveryGraph = DJ.UI.Component.extend({
         this._super(element, $meta);
 
         this.discoveryGraphConfig = this.getDiscoveryGraphConfig();
+        
+        if (this.data && this.data.discovery)
+            this.bindOnSuccess(this.data);
     },
     
     _initializeElements: function (ctx) {      
