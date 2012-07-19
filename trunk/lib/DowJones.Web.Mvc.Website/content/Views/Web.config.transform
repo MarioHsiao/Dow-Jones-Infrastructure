@@ -8,7 +8,6 @@
         <add namespace="DowJones.Web.Mvc.Extensions" />
         <add namespace="DowJones.Web.Mvc.Mobile.Extensions" />
         <add namespace="DowJones.Web.Mvc.UI" />
-        <add namespace="DowJones.Web.Mvc.UI.Extensions" />
       </namespaces>
     </pages>
   </system.web.webPages.razor>
