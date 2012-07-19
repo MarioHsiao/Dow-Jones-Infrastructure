@@ -16,7 +16,6 @@
             <dependency id="DowJones.Web.Mvc" version="$version$" />          
             <dependency id="DowJones.Web.Mvc.UI.Components" version="$version$" />
             <dependency id="DowJones.Web.Mvc.UI.Components.Models" version="$version$" />          
-            <dependency id="Factiva.Gateway" version="7.5.0.50" />
         </dependencies>
     </metadata>
     <files>
