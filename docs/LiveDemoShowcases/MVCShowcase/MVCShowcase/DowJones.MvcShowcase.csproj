@@ -303,7 +303,6 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\PortalHeadlineList\Index.cshtml" />
     <Content Include="Styles\views\PortalHeadlineList\portalHeadlineList.scss" />
     <Content Include="Views\DiscoveryGraph\Index.cshtml" />
@@ -330,8 +329,8 @@
     <Content Include="Views\NewsRadar90DayAvg\_jsData.cshtml" />
     <Content Include="Views\VideoPlayer\_cSharpData.cshtml" />
     <Content Include="Views\VideoPlayer\_jsData.cshtml" />
-    <Content Include="Views\Shared\_LayoutClientSide.cshtml" />
     <Content Include="Views\Home\ClientDemo.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
