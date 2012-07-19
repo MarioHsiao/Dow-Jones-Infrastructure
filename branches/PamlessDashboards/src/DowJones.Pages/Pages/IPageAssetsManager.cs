@@ -9,15 +9,16 @@ using System.Collections.Generic;
 using DowJones.Managers.Abstract;
 using DowJones.Pages.Caching;
 using DowJones.Pages.Modules;
-using Factiva.Gateway.Messages.Assets.Common.V2_0;
 using Factiva.Gateway.Messages.Assets.Pages.V1_0;
 using GWModule = Factiva.Gateway.Messages.Assets.Pages.V1_0.Module;
-using ModuleState = Factiva.Gateway.Messages.Assets.Pages.V1_0.ModuleState;
-using SortBy = Factiva.Gateway.Messages.Assets.Pages.V1_0.SortBy;
 using GWPage = Factiva.Gateway.Messages.Assets.Pages.V1_0.Page;
+using GWSortOrder = Factiva.Gateway.Messages.Assets.Common.V2_0.SortOrder;
+using GWSortBy = Factiva.Gateway.Messages.Assets.Pages.V1_0.SortBy;
+using ModuleState = Factiva.Gateway.Messages.Assets.Pages.V1_0.ModuleState;
 
 namespace DowJones.Pages
 {
+
     public interface IPageAssetsManager : IAggregationManager
     {
         void AddModuleIdsToPage(string pageRef, IEnumerable<string> moduleIds);
@@ -44,8 +45,8 @@ namespace DowJones.Pages
         IEnumerable<ModuleIdByMetadata> GetModulesByModuleType(Modules.ModuleType moduleType, MetaDataType metaDataType, List<MetaData> metaDataCollection = null);
         AccessControlScope GetRootAccessControlScope(int pageId, ShareProperties properties, Factiva.Gateway.Messages.Assets.Pages.V1_0.AccessQualifier accessQualifier);
         PageListInfoExCollection GetSubscribablePages(PageType pageType, IEnumerable<Factiva.Gateway.Messages.Assets.Pages.V1_0.AccessQualifier> accessQualifiers, MetadataFilter metadataFilter);
-        IEnumerable<PageListInfo> GetUserPageList(IEnumerable<PageType> pageTypes, SortOrder sortOrder, SortBy sortBy, bool forceCacheRefresh = false);
-        GetPagesListWithPageResponse GetUserPageListWithDefaultPage(IEnumerable<PageType> pageTypes, SortOrder sortOrder, SortBy sortBy, int pageId, PageDefaultBy pageDefaultedBy = PageDefaultBy.Position, int pagePosition = 1);
+        IEnumerable<PageListInfo> GetUserPageList(IEnumerable<PageType> pageTypes, GWSortOrder sortOrder, GWSortBy sortBy, bool forceCacheRefresh = false);
+        GetPagesListWithPageResponse GetUserPageListWithDefaultPage(IEnumerable<PageType> pageTypes, GWSortOrder sortOrder, GWSortBy sortBy, int pageId, PageDefaultBy pageDefaultedBy = PageDefaultBy.Position, int pagePosition = 1);
         List<KeyValuePair<string, string>> GetAdminPageOwner(int pageId);
         GWModule GetModuleById(string moduleId);
         GWModule GetModuleById(string pageId, string moduleId);
@@ -53,7 +54,7 @@ namespace DowJones.Pages
         IEnumerable<MetaData> GetModulesNameAndDescriptions(IEnumerable<string> codes);
         GWPage GetPage(string pageId, bool cachePage, bool forceCacheRefresh);
         string GetPageName(string pageId);
-        PageListInfoCollection GetPageListInfoCollection(IEnumerable<PageType> pageTypes, SortOrder sortOrder, SortBy sortBy);
+        PageListInfoCollection GetPageListInfoCollection(IEnumerable<PageType> pageTypes, GWSortOrder sortOrder, GWSortBy sortBy);
         void SetPageShareProperties(string pageRef, ShareProperties shareProperties);
         void MakePageModulesPublic(IEnumerable<GWModule> moduleCollection);
         void MakePageModulesPrivate(IEnumerable<GWModule> moduleCollection);

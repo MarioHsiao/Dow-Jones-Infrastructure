@@ -98,6 +98,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActionFilters\PageListPopulationFilter.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Mapping\FactivaModuleModelMapper.cs" />
     <Compile Include="Models\ModuleState.cs" />
     <Compile Include="ViewResults\PageNotFoundViewResult.cs" />

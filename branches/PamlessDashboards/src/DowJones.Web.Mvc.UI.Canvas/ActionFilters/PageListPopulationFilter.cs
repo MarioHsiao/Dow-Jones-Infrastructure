@@ -1,26 +1,14 @@
-﻿using System.Linq;
-using System.Web.Mvc;
-using DowJones.DependencyInjection;
+﻿using System.Web.Mvc;
 using DowJones.Pages;
 using DowJones.Security;
-using Page = DowJones.Pages.Page;
-using SortOrder = Factiva.Gateway.Messages.Assets.Common.V2_0.SortOrder;
-using GatewayNewsPage = Factiva.Gateway.Messages.Assets.Pages.V1_0.NewsPage;
-using PageCollection = DowJones.Pages.PageCollection;
-using PageType = Factiva.Gateway.Messages.Assets.Pages.V1_0.PageType;
-using SortBy = Factiva.Gateway.Messages.Assets.Pages.V1_0.SortBy;
+
 
 namespace DowJones.Web.Mvc.UI.Canvas.ActionFilters
 {
     public class PageListPopulationFilterAttribute : ActionFilterAttribute
     {
-        private readonly PageType _pageType;
-
-        [Inject("Can't use constructor injection in Attributes")]
-        public IPageAssetsManager PageAssetsManager { get; set; }
-
-        [Inject("Can't use constructor injection in Attributes")]
-        public IUserContext User { get; set; }
+        private readonly IPageManager _pageManager;
+        private readonly IUserContext _user;
 
         public SortOrder SortOrder
         {
@@ -36,21 +24,18 @@ namespace DowJones.Web.Mvc.UI.Canvas.ActionFilters
         }
         private SortBy? _sortBy;
 
-        public PageListPopulationFilterAttribute(PageType pageType)
+        public PageListPopulationFilterAttribute(IPageManager pageManager = null, IUserContext user = null)
         {
-            _pageType = pageType;
+            _pageManager = pageManager;
+            _user = user;
         }
 
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            if (!User.IsAuthenticated())
+            if (!_user.IsAuthenticated())
                 return;
 
-            var pageInfoCollection =
-                PageAssetsManager.GetPageListInfoCollection(new[] { _pageType }, SortOrder, SortBy);
-
-            var pages = pageInfoCollection.Select(Mapper.Map<Page>);
-
+            var pages = _pageManager.GetPages(SortBy, SortOrder);
             filterContext.Controller.ViewData["PageCollection"] = new PageCollection(pages);
         }
     }

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using DowJones.Pages.Modules;
 
 namespace DowJones.Pages
@@ -20,6 +21,9 @@ namespace DowJones.Pages
 
         Page GetPage(string pageRef);
         Page GetPage(string pageRef, bool cachePage, bool forceCacheRefresh);
+
+        IEnumerable<Page> GetPages();
+        IEnumerable<Page> GetPages(SortBy sort, SortOrder order);
 
         void UpdateModule(Module module);
 

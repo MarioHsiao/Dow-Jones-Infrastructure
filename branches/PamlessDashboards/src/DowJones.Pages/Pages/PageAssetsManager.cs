@@ -37,9 +37,8 @@ using Module = DowJones.Pages.Modules.Module;
 using ModuleState = Factiva.Gateway.Messages.Assets.Pages.V1_0.ModuleState;
 using ModuleType = DowJones.Pages.Modules.ModuleType;
 using ShareProperties = Factiva.Gateway.Messages.Assets.Pages.V1_0.ShareProperties;
-using ShareScope = Factiva.Gateway.Messages.Assets.V1_0.ShareScope;
-using SortBy = Factiva.Gateway.Messages.Assets.Pages.V1_0.SortBy;
-using SortOrder = Factiva.Gateway.Messages.Assets.Common.V2_0.SortOrder;
+using GWSortBy = Factiva.Gateway.Messages.Assets.Pages.V1_0.SortBy;
+using GWSortOrder = Factiva.Gateway.Messages.Assets.Common.V2_0.SortOrder;
 using GWModule = Factiva.Gateway.Messages.Assets.Pages.V1_0.Module;
 
 namespace DowJones.Pages
@@ -527,8 +526,8 @@ namespace DowJones.Pages
 
             var pageListInfoCollection = GetPageListInfoCollection(
                 pageTypes,
-                SortOrder.Descending,
-                SortBy.LastModifiedDate);
+                GWSortOrder.Descending,
+                GWSortBy.LastModifiedDate);
 
             foreach (var page in pageListInfoCollection)
             {
@@ -557,8 +556,8 @@ namespace DowJones.Pages
                             PageType.PNP, 
                             PageType.Prototype
                         },
-                    SortOrder.Descending,
-                    SortBy.LastModifiedDate);
+                    GWSortOrder.Descending,
+                    GWSortBy.LastModifiedDate);
             }
 
             foreach (var page in pageListInfoCollection)
@@ -673,8 +672,8 @@ namespace DowJones.Pages
                                   ModuleQualifierCollection = new ModuleQualifierCollection { Factiva.Gateway.Messages.Assets.Pages.V1_0.AccessQualifier.Factiva },
                                   ReturnType = ReturnType.Summary,
                                   TypeCollection = new ModuleTypeCollection { Mapper.Map<FactivaModuleType>(moduleType) },
-                                  SortBy = SortBy.Name,
-                                  SortOrder = SortOrder.Ascending,
+                                  SortBy = GWSortBy.Name,
+                                  SortOrder = GWSortOrder.Ascending,
                               };
 
             var getModuleListResponse = Process<GetModulesListResponse>(request);
@@ -703,8 +702,8 @@ namespace DowJones.Pages
                                                        {
                                                            Mapper.Map<FactivaModuleType>(moduleType)
                                                        },
-                                  SortBy = SortBy.Name,
-                                  SortOrder = SortOrder.Ascending,
+                                  SortBy = GWSortBy.Name,
+                                  SortOrder = GWSortOrder.Ascending,
                                   SearchFilter = AssembleModuleMetaDataType(metaDataType, metaDataCollection)
                               };
 
@@ -799,7 +798,7 @@ namespace DowJones.Pages
         /// <returns>
         /// A collection of Page Information
         /// </returns>
-        public PageListInfoCollection GetPageListInfoCollection(IEnumerable<PageType> pageTypes, SortOrder sortOrder, SortBy sortBy)
+        public PageListInfoCollection GetPageListInfoCollection(IEnumerable<PageType> pageTypes, GWSortOrder sortOrder, GWSortBy sortBy)
         {
             var request = new GetPagesListRequest();
             request.TypeCollection.AddRange(pageTypes);
@@ -1311,7 +1310,7 @@ namespace DowJones.Pages
             return Process<GetSubscribablePagesResponse>(request).PageListInfoExCollection;
         }
 
-        public IEnumerable<PageListInfo> GetUserPageList(IEnumerable<PageType> pageTypes, SortOrder sortOrder, SortBy sortBy, bool forceCacheRefresh = false)
+        public IEnumerable<PageListInfo> GetUserPageList(IEnumerable<PageType> pageTypes, GWSortOrder sortOrder, GWSortBy sortBy, bool forceCacheRefresh = false)
         {
             var request = new GetPagesListRequest
             {
@@ -1360,7 +1359,7 @@ namespace DowJones.Pages
         /// <returns>
         /// A collection of Page Information
         /// </returns>
-        public GetPagesListWithPageResponse GetUserPageListWithDefaultPage(IEnumerable<PageType> pageTypes, SortOrder sortOrder, SortBy sortBy, int pageId, PageDefaultBy pageDefaultedBy = PageDefaultBy.Position, int pagePosition = 1)
+        public GetPagesListWithPageResponse GetUserPageListWithDefaultPage(IEnumerable<PageType> pageTypes, GWSortOrder sortOrder, GWSortBy sortBy, int pageId, PageDefaultBy pageDefaultedBy = PageDefaultBy.Position, int pagePosition = 1)
         {
             var request = new GetPagesListWithPageRequest();
             request.TypeCollection.AddRange(pageTypes);
