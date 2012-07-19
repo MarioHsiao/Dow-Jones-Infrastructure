@@ -12,7 +12,7 @@ namespace DowJones.Charting.Manager
         /// <returns>an adjusted colour</returns> 
         public static Color SetBrightness(Color c, double brightness)
         {
-            HSL hsl = RGB_to_HSL(c);
+            var hsl = RGB_to_HSL(c);
             hsl.L = brightness;
             return HSL_to_RGB(hsl);
         }
@@ -40,12 +40,12 @@ namespace DowJones.Charting.Manager
         /// </summary> 
         /// <remarks>Accepted values 0-1</remarks> 
         /// <param name="c">An original colour</param> 
-        /// <param name="Saturation">The saturation value to impose</param> 
+        /// <param name="saturation">The saturation value to impose</param> 
         /// <returns>An adjusted colour</returns> 
-        public static Color SetSaturation(Color c, double Saturation)
+        public static Color SetSaturation(Color c, double saturation)
         {
-            HSL hsl = RGB_to_HSL(c);
-            hsl.S = Saturation;
+            var hsl = RGB_to_HSL(c);
+            hsl.S = saturation;
             return HSL_to_RGB(hsl);
         }
 
@@ -57,12 +57,12 @@ namespace DowJones.Charting.Manager
         /// To reduce Saturation use a number smaller than 1. To increase Saturation use a number larger than 1 
         /// </remarks> 
         /// <param name="c">The original colour</param> 
-        /// <param name="Saturation">The saturation delta</param> 
+        /// <param name="saturation">The saturation delta</param> 
         /// <returns>An adjusted colour</returns> 
-        public static Color ModifySaturation(Color c, double Saturation)
+        public static Color ModifySaturation(Color c, double saturation)
         {
-            HSL hsl = RGB_to_HSL(c);
-            hsl.S *= Saturation;
+            var hsl = RGB_to_HSL(c);
+            hsl.S *= saturation;
             return HSL_to_RGB(hsl);
         }
 
@@ -72,12 +72,12 @@ namespace DowJones.Charting.Manager
         /// </summary> 
         /// <remarks>Accepted values 0-1</remarks> 
         /// <param name="c">An original colour</param> 
-        /// <param name="Hue">The Hue value to impose</param> 
+        /// <param name="hue">The Hue value to impose</param> 
         /// <returns>An adjusted colour</returns> 
-        public static Color SetHue(Color c, double Hue)
+        public static Color SetHue(Color c, double hue)
         {
-            HSL hsl = RGB_to_HSL(c);
-            hsl.H = Hue;
+            var hsl = RGB_to_HSL(c);
+            hsl.H = hue;
             return HSL_to_RGB(hsl);
         }
 
@@ -124,8 +124,8 @@ namespace DowJones.Charting.Manager
                     double temp2 = ((hsl.L <= 0.5) ? hsl.L*(1.0 + hsl.S) : hsl.L + hsl.S - (hsl.L*hsl.S));
                     double temp1 = 2.0*hsl.L - temp2;
 
-                    double[] t3 = new double[] {hsl.H + 1.0/3.0, hsl.H, hsl.H - 1.0/3.0};
-                    double[] clr = new double[] {0, 0, 0};
+                    var t3 = new double[] {hsl.H + 1.0/3.0, hsl.H, hsl.H - 1.0/3.0};
+                    var clr = new double[] {0, 0, 0};
 
                     for (int i = 0; i < 3; i++)
                     {
@@ -166,11 +166,10 @@ namespace DowJones.Charting.Manager
         /// <returns>An HSL value</returns> 
         public static HSL RGB_to_HSL(Color c)
         {
-            HSL hsl = new HSL();
-
-            hsl.H = c.GetHue()/360.0; // we store hue as 0-1 as opposed to 0-360 
-            hsl.L = c.GetBrightness();
-            hsl.S = c.GetSaturation();
+            var hsl = new HSL
+                {
+                    H = c.GetHue()/360.0, L = c.GetBrightness(), S = c.GetSaturation()
+                };
 
             return hsl;
         }

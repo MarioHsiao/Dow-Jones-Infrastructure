@@ -12,10 +12,7 @@ namespace DowJones.Extensions
 
             var attribute = node.Attribute(attributeName);
 
-            if(attribute == null)
-                return null;
-
-            return attribute.Value;
+            return attribute == null ? null : attribute.Value;
         }
 
         public static string GetElementValue(this XElement node, string elementName, string defaultValue = null)
@@ -25,10 +22,7 @@ namespace DowJones.Extensions
 
             var element = node.Element(elementName);
 
-            if(element == null)
-                return null;
-
-            return element.Value;
+            return element == null ? null : element.Value;
         }
 
     }

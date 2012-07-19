@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using DowJones.Extensions;
 
 namespace DowJones.OperationalData
 {
@@ -11,24 +12,19 @@ namespace DowJones.OperationalData
     public abstract class AbstractOperationalData : IBaseOperationalData
     {
         private IBaseOperationalData _component;
-        protected const char MULTIPLE_ART_VALUE_SPILTER = '~';
+        protected const char MultipleArtValueSpilter = '~';
 
-        protected IDictionary<string, string> List
-        {
-            get { return _list; }
-        }
-
-        private IDictionary<string, string> _list;
+        protected IDictionary<string, string> List { get; private set; }
 
 
         protected AbstractOperationalData()
         {
-            _list = new Dictionary<string, string>(StringComparer.InvariantCultureIgnoreCase);
+            List = new Dictionary<string, string>(StringComparer.InvariantCultureIgnoreCase);
         }
 
         protected AbstractOperationalData(IDictionary<string, string> list)
         {
-            _list = list;
+            List = list;
         }
 
         #region Decorator method
@@ -47,14 +43,13 @@ namespace DowJones.OperationalData
         /// Returns operational data state as a encrypted string that can be pass to SetMemento method
         /// <value>
         /// </value>
-        /// </summary>
         public string GetMemento
         {
             get
             {
-                IParser parser = GetParser;
+                var parser = GetParser;
                 IParser decorator = new ParserDecorator(parser);
-                return decorator.Encrypt(_list);
+                return decorator.Encrypt(List);
             }
         }
 
@@ -64,13 +59,13 @@ namespace DowJones.OperationalData
         /// <param name="state"></param>
         public void SetMemento(string state)
         {
-            if(string.IsNullOrEmpty(state))
+            if(state.IsNullOrEmpty())
             {
                 return;
             }
-            IParser parser = ParserFactory.GetParser(state.Substring(0, 2));
-            ParserDecorator decorator = new ParserDecorator(parser);
-            _list = decorator.Decrypt(state);
+            var parser = ParserFactory.GetParser(state.Substring(0, 2));
+            var decorator = new ParserDecorator(parser);
+            List = decorator.Decrypt(state);
         }
 
         
@@ -90,14 +85,14 @@ namespace DowJones.OperationalData
             get
             {
                 IDictionary<string, string> nvp = new Dictionary<string, string>();
-                IEnumerator<KeyValuePair<string, string>> enumerator = _list.GetEnumerator();
+                var enumerator = List.GetEnumerator();
                 while (enumerator.MoveNext())
                 {
                     nvp.Add(ODSConstants.ODS_PREFIX_FOR_KEY + enumerator.Current.Key, enumerator.Current.Value);
                 }
                 if (_component != null)
                 {
-                    IEnumerator<KeyValuePair<string, string>> childEnum = _component.GetKeyValues.GetEnumerator();
+                    var childEnum = _component.GetKeyValues.GetEnumerator();
                     while (childEnum.MoveNext())
                     {
                         if (!nvp.ContainsKey(childEnum.Current.Key))
@@ -119,7 +114,7 @@ namespace DowJones.OperationalData
         /// <param name="value"></param>
         protected internal void Add(string key, string value)
         {
-            _list[key] = value;
+            List[key] = value;
         }
 
         /// <summary>
@@ -129,7 +124,7 @@ namespace DowJones.OperationalData
         /// <returns></returns>
         protected internal string Get(string key)
         {
-            return _list.ContainsKey(key) ? _list[key] : null;
+            return List.ContainsKey(key) ? List[key] : null;
         }
     }
 }

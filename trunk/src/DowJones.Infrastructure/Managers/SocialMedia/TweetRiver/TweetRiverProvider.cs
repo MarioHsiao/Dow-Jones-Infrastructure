@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Globalization;
 using DowJones.Extensions;
 using Hammock;
 using Hammock.Web;
@@ -48,7 +45,7 @@ namespace DowJones.Managers.SocialMedia.TweetRiver
             Guard.IsNotNull(requestOptions, "requestOptions");
            
 
-            // for tweets, would look like http://massrelevance.com/mr_dowjones/accounting-consulting.json?<query params>
+            // for tweets, would look like http://massrelevance.com/mr_dowjones/accounting-consulting.json?<<query_params>>
             // for experts, would be http://massrelevance.com/mr_dowjones/accounting-consulting/meta.json?sources=1
             var stream = requestOptions.QueryType == QueryType.Experts ? "{0}/meta".FormatWith(channel) : channel;
 
@@ -58,29 +55,26 @@ namespace DowJones.Managers.SocialMedia.TweetRiver
                 Method = WebMethod.Get
             };
 
-            if (requestOptions.QueryType == QueryType.Tweets)
+            switch (requestOptions.QueryType)
             {
-                request.AddParameter("limit", requestOptions.Limit.ToString());
-
-                if (!string.IsNullOrEmpty(requestOptions.SinceId))
-                {
-                    request.AddParameter("since_id", requestOptions.SinceId);
-                }
-
-                if (!string.IsNullOrEmpty(requestOptions.StartId))
-                {
-                    request.AddParameter("start", requestOptions.StartId);
-                }
-
-                if (requestOptions.PageIndex.HasValue)
-                {
-                    request.AddParameter("page", requestOptions.PageIndex.Value.ToString());
-                }
-
-            }
-            else if (requestOptions.QueryType == QueryType.Experts)
-            {
-                request.AddParameter("sources", "1");
+                case QueryType.Tweets:
+                    request.AddParameter("limit", requestOptions.Limit.ToString(CultureInfo.InvariantCulture));
+                    if (!string.IsNullOrEmpty(requestOptions.SinceId))
+                    {
+                        request.AddParameter("since_id", requestOptions.SinceId);
+                    }
+                    if (!string.IsNullOrEmpty(requestOptions.StartId))
+                    {
+                        request.AddParameter("start", requestOptions.StartId);
+                    }
+                    if (requestOptions.PageIndex.HasValue)
+                    {
+                        request.AddParameter("page", requestOptions.PageIndex.Value.ToString(CultureInfo.InvariantCulture));
+                    }
+                    break;
+                case QueryType.Experts:
+                    request.AddParameter("sources", "1");
+                    break;
             }
 
             SetSocialMediaMeta(request);
