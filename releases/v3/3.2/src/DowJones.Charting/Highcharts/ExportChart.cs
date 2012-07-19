@@ -142,7 +142,8 @@ namespace DowJones.Charting.Highcharts
             // serialize and send..
             var freshness = new TimeSpan(0, 0, 0, 5);
             context.Response.Clear();
-            
+
+            context.Response.ContentType = "application/json; charset=utf-8";
             context.Response.Cache.SetExpires(DateTime.Now.Add(freshness));
             context.Response.Cache.SetMaxAge(freshness);
             context.Response.Cache.SetCacheability(HttpCacheability.Public);
@@ -150,7 +151,7 @@ namespace DowJones.Charting.Highcharts
             context.Response.Cache.SetCacheability(HttpCacheability.ServerAndPrivate); // dacostad changed from public to not allow proxy servers to cache.
             context.Response.Cache.VaryByParams["*"] = true;
 
-            context.Response.Write(new SaveImageDataResponse {Key = cacheKey}.ToJson());
+            context.Response.Write(new SaveImageDataResponse { Key = cacheKey }.ToJson());
         }
 
         catch(DowJonesUtilitiesException dex)
