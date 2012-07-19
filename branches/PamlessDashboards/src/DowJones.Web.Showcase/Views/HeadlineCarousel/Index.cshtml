@@ -1,0 +1,15 @@
+﻿@using DowJones.Web.Mvc.UI.Components.HeadlineCarousel;
+
+@{
+    ViewBag.Title = "Headline Carousel";
+}
+
+<script type="text/javascript">
+    function HeadlineClick(sender, data) {
+        alert(data.sourceTitle + " Clicked");
+    }
+</script>
+
+
+@Html.DJ().Render(Model)
+@Html.DJ().ScriptRegistry().Include("~/Scripts/HeadlineCarousel.js")

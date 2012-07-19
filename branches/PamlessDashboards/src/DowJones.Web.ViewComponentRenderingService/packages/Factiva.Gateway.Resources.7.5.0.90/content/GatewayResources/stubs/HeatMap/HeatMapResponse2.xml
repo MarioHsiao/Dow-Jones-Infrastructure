@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<HeatMapResponse xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <message>
+    <type>Error</type>
+    <code>123</code>
+    <description>Notice to readers: Updates are delayed by technical problems.</description>
+  </message>
+  <message>
+    <type>Warning</type>
+    <code>134</code>
+    <description>delayed data</description>
+  </message>
+  <heatmaps>
+    <header>
+      <Version>1.0</Version>
+      <TimeStamp>2010-10-14T17:31:56.2585516-04:00</TimeStamp>
+    </header>
+    <instrument>
+      <standardDeviations timeSeries="TwentyMinutes" movingAverage="ThirtyDays">
+        <volume>0.77</volume>
+        <volatility xsi:nil="true" />
+        <priceMovement>0.0201828</priceMovement>
+      </standardDeviations>
+      <type>Metal</type>
+      <name>XPT/USD</name>
+      <code>EBSXPT</code>
+      <ask>
+        <price>114.47</price>
+      </ask>
+      <bid>
+        <price>114.51</price>
+      </bid>
+      <trade>
+        <price>114.5</price>
+      </trade>
+      <major>true</major>
+      <metadata>
+        <searchquery>searchquerystring</searchquery>
+      </metadata>
+    </instrument>
+    <instrument>
+      <standardDeviations timeSeries="SixtyMinutes" movingAverage="FiveDays">
+        <volume>0.77</volume>
+        <volatility>0.97</volatility>
+        <priceMovement xsi:nil="true" />
+      </standardDeviations>
+      <type>Currency</type>
+      <name>GBP/USD</name>
+      <code>CEGBPUSD</code>
+      <ask>
+        <price xsi:nil="true" />
+      </ask>
+      <bid>
+        <price>116.51</price>
+      </bid>
+      <trade>
+        <price>114.5</price>
+      </trade>
+      <major>false</major>
+      <metadata>
+        <searchquery>searchquerystring</searchquery>
+      </metadata>
+    </instrument>
+  </heatmaps>
+</HeatMapResponse>

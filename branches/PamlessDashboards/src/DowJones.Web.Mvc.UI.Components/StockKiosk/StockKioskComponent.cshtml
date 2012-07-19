@@ -1,0 +1,14 @@
+﻿@model StockKioskModel
+@ClientPlugin dj_StockKiosk
+@ClientTemplate RelativeResourceName=ClientTemplates.stockkiosk.htm, TemplateId=stockkiosk
+@ScriptResource RelativeResourceName=StockKiosk.js
+@DependsOn JSON
+@{ 
+    CssClass = "dj_StockKiosk";
+
+    DJ.ScriptRegistry()
+        .WithHighCharts()
+        .WithServiceProxy()
+        .WithJQueryTools(); 
+}
+

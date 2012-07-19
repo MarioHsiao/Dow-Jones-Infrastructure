@@ -1,0 +1,10 @@
+﻿@model AutoSuggestModel
+@ClientPlugin dj_AutoSuggestComponent
+@ScriptResource RelativeResourceName=scripts.jquery.autocomplete.js
+@ScriptResource RelativeResourceName=scripts.jquery.jsonp-2.3.1.min.js
+@ScriptResource RelativeResourceName=AutoSuggest.js
+@StylesheetResource RelativeResourceName=AutoSuggest.css
+@{ CssClass = "dj_AutoSuggest"; }
+@{
+    TagName = "input";      
+}

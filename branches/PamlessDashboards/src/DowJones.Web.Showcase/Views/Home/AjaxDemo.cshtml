@@ -1,0 +1,40 @@
+﻿@{
+    ViewBag.Title = "AjaxDemo";
+    
+    Html.DJ().ScriptRegistry().OnDocumentReady("initializeButton();");
+    
+    Html.DJ().StylesheetRegistry()
+        .Add(".buttons", "width: 100%; clear: both; margin: 20px;")
+        .Add("button", "padding: 7px;")
+        .Add("#ViewComponentContainer", "width: 400px;")
+        .Add("pre", "width: 500px; overflow: auto; padding: 10px;")
+        .Add("fieldset", "float: left; margin: 0 10px; min-height: 300px;");
+}
+<script type="text/javascript">
+    function initializeButton() {
+        $('#LoadViewComponent').click(function () {
+            $('#ViewComponentContainer')
+                .html('Loading content...')
+                .load('@Url.Action("ViewComponent")', function (response) {
+                    $('#DebugDiv').html($('<pre/>').text(response).html());
+                });
+        });
+    }
+</script>
+
+<div class="buttons">
+    <button id="LoadViewComponent">Load View Component</button>
+</div>
+
+<fieldset>
+    <legend>Rendered Component</legend>
+
+    <div id="ViewComponentContainer">
+    </div>
+</fieldset>
+
+<fieldset>
+    <legend>Raw Response</legend>
+    <pre id="DebugDiv">
+    </pre>
+</fieldset>

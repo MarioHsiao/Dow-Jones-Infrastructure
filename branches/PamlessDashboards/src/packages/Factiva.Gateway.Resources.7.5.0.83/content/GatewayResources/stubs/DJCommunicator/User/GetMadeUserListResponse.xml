@@ -1,0 +1,6 @@
+<GetMadeUserListResponse xmlns="urn:factiva:Communicator:MadeUserService:v1_0">
+  <madeUser firstName="firstName1" lastName="lastName1" email="email1" roleCode="roleCode1" packageID="packageID1" />
+  <madeUser firstName="firstName2" lastName="lastName2" email="email2" roleCode="roleCode2" packageID="packageID2" />
+  <madeUser firstName="firstName3" lastName="lastName3" email="email3" roleCode="roleCode3" packageID="packageID3" />
+  <totalRecords>1</totalRecords>
+</GetMadeUserListResponse>

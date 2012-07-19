@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GetAccountNamesResponse xsi:noNamespaceSchemaLocation="GetAccountNamesResponse.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <status value="0"></status>
+  <accountList count="1">
+    <account accountID="9EFS234G">
+      <accountName>Dow Jones Internal Account</accountName>
+    </account>
+  </accountList>
+</GetAccountNamesResponse>

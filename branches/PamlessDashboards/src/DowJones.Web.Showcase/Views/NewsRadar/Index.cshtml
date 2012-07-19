@@ -1,0 +1,23 @@
+﻿@using DowJones.Extensions
+@{
+    Layout = "~/Views/Shared/_SignalR.cshtml";
+    ViewBag.Title = "News Radar";
+    
+}
+<link rel="stylesheet" href="@Url.Content("~/Styles/css/newsradar.css")"/>
+<style>
+    .djWidgetRadar90 .djRadarCategory {
+        position: relative;
+        
+    }
+</style>
+<div class="dj_NewsRadarControl">
+    @Html.DJ().Render(Model)
+</div>
+
+<div style="display: none;">
+    <h3>sample data</h3>
+    <textarea style="width: 972px; height: 500px;">
+    @Html.Raw(ObjectExtensions.ToJson(Model));
+    </textarea>
+</div>

@@ -1,0 +1,18 @@
+﻿@model PortalArticleModel
+@ClientPlugin dj_PortalArticle
+
+<div class="articleContainer" style="width:560px; height:642px;">
+    <div class="jspPane" style="padding:0px; top:0px; width:539px" >
+        <div id="dj_modal-article-content-wrap">
+            <div id="dj_modal-article-meta">
+                <span class="article-meta-source">@Model.ArticleObject.sourceName</span> - <span class="article-meta-date">@Model.ArticleObject.publicationDate.ToLongDateString()</span>
+            </div>
+            <h4 id="dj_modal-article-title">
+                <a href="#">@Model.RenderArticleTitle()</a>
+            </h4>
+            <div id="dj_modal-article-body">
+                @Model.RenderArticleParagraph()
+            </div>
+        </div>
+    </div>
+</div>

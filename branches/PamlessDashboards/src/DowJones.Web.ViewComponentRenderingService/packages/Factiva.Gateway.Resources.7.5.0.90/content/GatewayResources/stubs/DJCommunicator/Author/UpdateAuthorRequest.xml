@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<UpdateAuthorRequest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="urn:factiva:Communicator:AuthorService:v1_0">
+  <author d2p1:id="1001" d2p1:firstName="John" d2p1:lastName="Smith" d2p1:pitchNotes="new pitch notes" d2p1:webSite="www.dowjones.com" xmlns:d2p1="urn:factiva:Communicator:AuthorService:v1_0">
+    <d2p1:outletId>1001</d2p1:outletId>
+    <d2p1:subjectBeat>
+      <id xmlns="urn:factiva:Communicator:Common:v1_0">1001</id>
+      <name xmlns="urn:factiva:Communicator:Common:v1_0">Mathematics</name>
+      <parentBeatId xmlns="urn:factiva:Communicator:Common:v1_0">1001</parentBeatId>
+    </d2p1:subjectBeat>
+    <d2p1:industryBeat>
+      <id xmlns="urn:factiva:Communicator:Common:v1_0">1001</id>
+      <name xmlns="urn:factiva:Communicator:Common:v1_0">Steel</name>
+      <parentBeatId xmlns="urn:factiva:Communicator:Common:v1_0">1001</parentBeatId>
+    </d2p1:industryBeat>
+    <d2p1:regionBeat d3p1:code="NJ" xmlns:d3p1="urn:factiva:Communicator:Common:v1_0">
+      <d3p1:id>1001</d3p1:id>
+      <d3p1:name>New Jersy</d3p1:name>
+      <d3p1:parentBeatId>1001</d3p1:parentBeatId>
+    </d2p1:regionBeat>
+    <d2p1:workingLanguage d3p1:Name="English" d3p1:Code="en" xmlns:d3p1="urn:factiva:Communicator:Common:v1_0" />
+    <d2p1:employment d2p1:id="1001" d2p1:jobTitle="Manager" d2p1:dateCreated="2011-05-10T00:00:00-04:00" d2p1:isPrimaryContact="true" d2p1:typeName="Delivery" d2p1:bureau="FBI" d2p1:isPrimaryEmployer="true">
+      <d2p1:role d2p1:id="1001" d2p1:name="Manager" />
+      <d2p1:outletId>1001</d2p1:outletId>
+      <d2p1:yearStart>4</d2p1:yearStart>
+      <d2p1:yearEnd>3</d2p1:yearEnd>
+      <d2p1:contactInfo d4p1:value="John.Smith@dowjone.com" d4p1:isPreferred="false" d4p1:templateUrl="www.dowjones.com" d4p1:isIM="false" d4p1:typeName="Email" xmlns:d4p1="urn:factiva:Communicator:Common:v1_0">
+        <d4p1:type>Email</d4p1:type>
+      </d2p1:contactInfo>
+    </d2p1:employment>
+  </author>
+</UpdateAuthorRequest>

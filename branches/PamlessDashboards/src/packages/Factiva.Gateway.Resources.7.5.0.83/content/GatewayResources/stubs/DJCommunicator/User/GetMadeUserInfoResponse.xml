@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GetMadeUserInfoResponse xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:cmn="urn:factiva:Communicator:Common:v1_0" xmlns="urn:factiva:Communicator:UserService:v1_0">
+  <madeUser>
+    <firstName>Thomas</firstName>
+    <lastName>Hardy</lastName>
+    <email>thomas.hardy@hotmail.com</email>
+    <roleCode>U</roleCode>
+    <packageID>2</packageID>
+  </madeUser>
+</GetMadeUserInfoResponse>

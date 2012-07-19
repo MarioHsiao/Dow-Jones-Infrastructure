@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<GenerateODE xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Ticket>
+    <Recepient>
+      <ToEmailAddress Name="pramod" Address="pramodsankar.lakshmanan@dowjones.com" />
+      <CCEmailAddress Name="pramod" Address="pramodsankar.lakshmanan@dowjones.com" />
+      <BCCEmailAddress Name="pramod" Address="pramodsankar.lakshmanan@dowjones.com" />
+      <FromEmailAddress Name="pramod" Address="pramodsankar.lakshmanan@dowjones.com" />
+    </Recepient>
+    <FreeText>this is a free trextr</FreeText>
+    <ProductType>This is new product</ProductType>
+    <EmailContentType>FullText</EmailContentType>
+    <EmailDisplayLanguage>en</EmailDisplayLanguage>
+    <ContentAsAttachment>true</ContentAsAttachment>
+    <Content xsi:type="ContentByID" Source="P" ImageType="1" ContentType="AN">
+      <ContentData>This is test conternt data</ContentData>
+      <EmailDisplayLanguage>en</EmailDisplayLanguage>
+    </Content>
+    <Content xsi:type="ContentByData" ContentType="HTML">
+      <ContentData>This is test conternt data2</ContentData>
+    </Content>
+  </Ticket>
+</GenerateODE>

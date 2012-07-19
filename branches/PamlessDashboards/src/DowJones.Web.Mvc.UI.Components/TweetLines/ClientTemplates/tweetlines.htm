@@ -1,0 +1,45 @@
+﻿<%  var tweetId, userId, screenName, reTweetId, fullName, profileUrl, profileHashUrl, profileImageUrl, tweetText, tweetTimeStamp, tweetTimeStampRaw;
+
+    for (var i = 0, len = Math.min(tweets.length, options.maxTweetsToShow); i < len; i++) { 
+        t = tweets[i]; 
+        tweetId = t.id; 
+        tweetHtml = t.html; 
+        sourceText = t.sourceText;
+        isoTimeStamp = t.isoTimeStamp;
+        userId = t.user.id; 
+        screenName = t.user.screenName; 
+        fullName = t.user.fullName; 
+        profileImageUrl = t.user.profileImageUrl;
+        profileUrl = t.user.profileUrl; 
+        profileHashUrl = t.user.profileHashUrl;
+%>
+    <li data-tweet-id="<%= tweetId %>" data-user-id="<%= userId %>" data-full-name="<%= fullName %>" data-screen-name="<%= screenName %>" class="dj_tweet-item" title="">
+        <img data-user-id="<%= userId %>" alt="<%= fullName %>" src="<%= profileImageUrl %>">
+        <div class="dj_tweet-content">
+            <div class='dj_tweet-meta'>
+                <a title="<%= fullName %>" href="<%= profileUrl %>" data-user-id="<%= userId %>" class="dj_full-name" target="_blank">
+                    <%= fullName %>
+                </a>
+                <a href="<%= profileHashUrl %>" title="<%= fullName %>" class="dj_screen-name" target="_blank">
+                    @<%= screenName %>
+                </a>
+                <span class="dj_time-stamp" data-time="<%= isoTimeStamp %>"><span title="<%= isoTimeStamp %>">
+                        </span> 
+                        <% if(sourceText) { %>
+                            <%= Token("via") %> <%= sourceText %>
+                        <% } %>
+                        </span>
+                <ul class="dj_post-processing">
+                    <li class="dj_follow" data-action="follow"><%= Token("follow") %> *</li>
+                    <li class="dj_reply" data-action="reply"><%= Token("replyTweet") %> *</li>
+                    <li class="dj_retweet" data-action="retweet"><%= Token("reTweet") %> *</li>
+                    <li class="dj_favorite" data-action="favorite"><%= Token("favorite") %> *</li>
+                    <li class="dj_details" data-action="details"><%= Token("details") %></li>
+                </ul>
+            </div>
+            <p class="dj_tweet">
+                <%= tweetHtml %>
+            </p>
+        </div>
+    </li>
+<% } %>

@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<CreateNewAccountAccess xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <accountNum>ABC1234</accountNum>
+  <userInfo>
+    <userData>
+      <userID>joyful</userID>
+      <namespace>16</namespace>
+      <userEmailId>abc@xyz.com</userEmailId>
+      <userRole>External</userRole>
+      <userAcctNum>ABC1234</userAcctNum>
+    </userData>
+    <userData>
+      <userID>E1234PR</userID>
+      <namespace>22</namespace>
+      <userEmailId>rew@qwer.com</userEmailId>
+      <userRole>InternalPlus</userRole>
+      <userAcctNum>GDE2WSD</userAcctNum>
+    </userData>
+  </userInfo>
+  <annualRevenue>10000.23</annualRevenue>
+  <renewalDate>2011-12-22</renewalDate>
+  <reason>Reason for adding the account</reason>
+</CreateNewAccountAccess>

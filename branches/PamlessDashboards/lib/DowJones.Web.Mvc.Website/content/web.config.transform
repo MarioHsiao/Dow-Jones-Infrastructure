@@ -1,0 +1,12 @@
+﻿<configuration>
+    <system.web>
+        <httpHandlers>
+            <add verb="GET" path="ClientResource.axd" type="DowJones.Web.ClientResourceHandler" />
+        </httpHandlers>
+    </system.web>
+    <system.webServer>
+        <handlers>
+            <add name="ClientResourceHandler" verb="GET" path="ClientResource.axd" type="DowJones.Web.ClientResourceHandler, DowJones.Infrastructure" />
+        </handlers>
+    </system.webServer>
+</configuration>

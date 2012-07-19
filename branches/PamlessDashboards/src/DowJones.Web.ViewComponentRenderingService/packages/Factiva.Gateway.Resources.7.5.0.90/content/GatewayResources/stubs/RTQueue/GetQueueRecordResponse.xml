@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<soap:Header>
+		<controlData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="urn:factiva:fcs:v1_0">
+			<token name="userID">joyful</token>
+			<token name="userPassword">joyful</token>
+			<token name="productID">16</token>
+			<token name="ipAddress">127.0.0.1</token>
+			<token name="contentServerAddress">5000</token>
+		</controlData>
+	</soap:Header>
+	<soap:Body>
+		<GetQueueRecordResponse xmlns="urn:emg:RTQReqMgr:v1_0">
+			<searchString>Topic1</searchString>
+		</GetQueueRecordResponse>
+	</soap:Body>
+</soap:Envelope>

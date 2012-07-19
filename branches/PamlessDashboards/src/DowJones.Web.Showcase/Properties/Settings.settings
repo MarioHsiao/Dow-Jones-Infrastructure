@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="DowJones.Web.Showcase.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="ThunderBallEntitlementToken" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">e73a8e8ffcaa4646b8e6d12ffac23199</Value>
+    </Setting>
+    <Setting Name="ThunderBallEndpointAddress" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://wsapi.marketwatch.com/ThunderBall/ChartService.svc</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

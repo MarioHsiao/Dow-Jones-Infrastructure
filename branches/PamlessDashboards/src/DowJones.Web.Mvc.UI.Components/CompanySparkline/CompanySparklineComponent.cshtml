@@ -1,0 +1,10 @@
+﻿@using DowJones.Web.Mvc.Extensions
+@model CompanySparkline
+@ClientPlugin dj_CompanySparkline
+@ScriptResource RelativeResourceName=CompanySparkline.js
+@ClientTemplate RelativeResourceName=ClientTemplates.PillContents.htm, TemplateId=pillcontents 
+@{ 
+    
+    CssClass = "dj_CompanySparkline dj_sparkline";
+    Html.DJ().ScriptRegistry().WithHighCharts();    
+ }

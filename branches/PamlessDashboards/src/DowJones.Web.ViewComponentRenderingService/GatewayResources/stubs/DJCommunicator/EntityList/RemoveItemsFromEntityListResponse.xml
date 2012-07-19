@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RemoveItemsFromEntityListResponse xmlns="urn:factiva:Communicator:EntityListService:v1_0">
+    <failedEntityIds>1</failedEntityIds>
+  <failedEntityIds>-2147483647</failedEntityIds>
+  <failedEntityIds>2147483647</failedEntityIds>
+</RemoveItemsFromEntityListResponse>

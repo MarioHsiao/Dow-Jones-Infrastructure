@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GetAccountReportsOverviewResponse xsi:noNamespaceSchemaLocation="GetAccountReportsOverviewResponse.xsd" xmlns:common="common" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<status value="0"></status>
+	<accountInfo accountNum="ABC1234">
+		<accountName>Dow Jones</accountName>
+		<activeDate>2010-11-12</activeDate>
+	</accountInfo>
+	<current>
+		<reportDetails>
+			<reportName>UserDetails</reportName>
+			<reportCode>USRDTL</reportCode>
+			<reportStatus>RELEASED_INTERNAL</reportStatus>
+			<reportDate>2010-11-30</reportDate>
+		</reportDetails>
+		<reportDetails>
+			<reportName>AVDesktop</reportName>
+			<reportCode>AVWDTP</reportCode>
+			<reportStatus>PENDING</reportStatus>
+			<reportDate>2010-11-30</reportDate>
+		</reportDetails>
+	</current>
+	<past>
+		<reportDetails>
+			<reportName>UserDetails</reportName>
+			<reportCode>USRDTL</reportCode>
+			<reportStatus>NOT_RELEASED</reportStatus>
+			<reportDate>2010-10-31</reportDate>
+		</reportDetails>
+		<reportDetails>
+			<reportName>AVDesktop</reportName>
+			<reportCode>AVWDTP</reportCode>
+			<reportStatus>RELEASED_EXTERNAL</reportStatus>
+			<reportDate>2010-10-31</reportDate>
+		</reportDetails>
+	</past>
+</GetAccountReportsOverviewResponse>

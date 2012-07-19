@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<publishData>
+  <publishProfile publishUrl="\\fdevweb3\E$\inetpub\wwwroot\Integration\ComponentRendering" deleteExistingFiles="True" ftpAnonymousLogin="False" ftpPassiveMode="True" msdeploySite="" msdeploySiteID="" msdeployRemoteSitePhysicalPath="" msdeployAllowUntrustedCertificate="False" msdeploySkipExtraFilesOnServer="True" msdeployMarkAsApp="False" profileName="Profile1" publishMethod="FileSystem" replaceMatchingFiles="False" userName="" savePWD="False" userPWD="" SelectedForPublish="True">
+    <file relUrl="bin/DowJones.Web.Mvc.dll" publishTime="03/12/2012 13:47:22" />
+    <file relUrl="bin/DowJones.Web.Mvc.UI.Components.dll" publishTime="03/12/2012 13:47:22" />
+    <file relUrl="bin/DowJones.Web.Article.Website.pdb" publishTime="03/12/2012 17:05:57" />
+    <file relUrl="bin/log4net.xml" publishTime="03/12/2012 13:47:30" />
+    <file relUrl="bin/DowJones.Infrastructure.pdb" publishTime="03/12/2012 13:47:21" />
+    <file relUrl="Global.asax" publishTime="03/12/2012 13:47:21" />
+    <file relUrl="bin/Newtonsoft.Json.xml" publishTime="03/12/2012 13:47:28" />
+    <file relUrl="bin/log4net.dll" publishTime="03/12/2012 13:47:30" />
+    <file relUrl="bin/Hammock.ClientProfile.dll" publishTime="03/12/2012 13:47:23" />
+    <file relUrl="bin/Newtonsoft.Json.pdb" publishTime="03/12/2012 13:47:28" />
+    <file relUrl="bin/Hammock.dll" publishTime="03/12/2012 13:47:24" />
+    <file relUrl="bin/DowJones.Web.Mvc.pdb" publishTime="03/12/2012 13:47:22" />
+    <file relUrl="bin/DowJones.Web.Mvc.UI.Components.pdb" publishTime="03/12/2012 13:47:22" />
+    <file relUrl="bin/FactivaGateway.dll" publishTime="03/12/2012 13:47:22" />
+    <file relUrl="packages.config" publishTime="03/12/2012 13:47:21" />
+    <file relUrl="bin/System.Web.Mvc.xml" publishTime="02/09/2011 10:26:24" />
+    <file relUrl="bin/Ninject.pdb" publishTime="03/12/2012 13:47:29" />
+    <file relUrl="bin/DowJones.Parallel.dll" publishTime="03/12/2012 13:47:21" />
+    <file relUrl="bin/System.Web.Mvc.dll" publishTime="01/05/2011 16:42:16" />
+    <file relUrl="bin/Newtonsoft.Json.dll" publishTime="03/12/2012 13:47:28" />
+    <file relUrl="bin/DowJones.Parallel.pdb" publishTime="03/12/2012 13:47:21" />
+    <file relUrl="bin/Hammock.pdb" publishTime="03/12/2012 13:47:24" />
+    <file relUrl="bin/DowJones.Infrastructure.dll" publishTime="03/12/2012 13:47:21" />
+    <file relUrl="bin/Ninject.xml" publishTime="03/12/2012 13:47:29" />
+    <file relUrl="bin/DowJones.Web.Mvc.UI.Components.Models.pdb" publishTime="03/12/2012 13:47:21" />
+    <file relUrl="Web.config" publishTime="03/12/2012 17:08:40" />
+    <file relUrl="bin/Hammock.ClientProfile.pdb" publishTime="03/12/2012 13:47:23" />
+    <file relUrl="bin/DowJones.Web.Mvc.UI.Components.Models.dll" publishTime="03/12/2012 13:47:21" />
+    <file relUrl="bin/Ninject.dll" publishTime="03/12/2012 13:47:29" />
+    <file relUrl="bin/factiva.gateway.messages.dll" publishTime="03/12/2012 13:47:22" />
+    <file relUrl="bin/DowJones.Web.Article.Website.dll" publishTime="03/12/2012 17:05:58" />
+  </publishProfile>
+</publishData>

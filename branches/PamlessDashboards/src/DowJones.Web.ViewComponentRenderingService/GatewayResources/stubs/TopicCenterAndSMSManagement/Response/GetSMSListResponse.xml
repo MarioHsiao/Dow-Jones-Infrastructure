@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<soap-env:Envelope xmlns:soap-env="http://schemas.xmlsoap.org/soap/envelope/">
+	<soap-env:Body>
+		<GetSMSListResponse xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="urn:factiva:assets:topiccenterandsmsmanagement:v1_0">
+			<smsSubscriberList>
+				<cellPhoneNumber/>
+				<cellPhoneOperator/>
+				<countryCode>0</countryCode>
+				<productType>InvestmentBanker</productType>
+			</smsSubscriberList>
+			<smsSubscriberList>
+				<cellPhoneNumber>56445546</cellPhoneNumber>
+				<cellPhoneOperator>ATT</cellPhoneOperator>
+				<countryCode>10</countryCode>
+				<productType>InvestmentBanker</productType>
+			</smsSubscriberList>
+		</GetSMSListResponse>
+	</soap-env:Body>
+</soap-env:Envelope>

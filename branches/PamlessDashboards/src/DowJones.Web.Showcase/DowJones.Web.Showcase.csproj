@@ -1,0 +1,1697 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B8596915-AD5E-45C2-987D-234AFF8AEAA3}</ProjectGuid>
+    <ProjectTypeGuids>{E53F8FEA-EAE0-44A6-8774-FFD645390401};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DowJones.Web.Showcase</RootNamespace>
+    <AssemblyName>DowJones.Web.Showcase</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <UseIISExpress>true</UseIISExpress>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>4.0</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\src\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <NoWarn>1762</NoWarn>
+    <PrecompileBeforePublish>true</PrecompileBeforePublish>
+    <DeployIisAppPath>Default Web Site/MVCShowcase</DeployIisAppPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'TestsOnly|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisLogFile>bin\DowJones.Web.Showcase.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;C:\Program Files\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="factiva.gateway.messages, Version=7.5.0.88, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.88\lib\factiva.gateway.messages.dll</HintPath>
+    </Reference>
+    <Reference Include="FactivaGateway, Version=1.5.0.7, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.88\lib\FactivaGateway.dll</HintPath>
+    </Reference>
+    <Reference Include="Glimpse.Core">
+      <HintPath>..\packages\Glimpse.0.86\lib\net40\Glimpse.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Glimpse.Log4Net">
+      <HintPath>..\packages\Glimpse.Log4Net.0.1.0\lib\Glimpse.Log4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="Glimpse.Mvc3">
+      <HintPath>..\packages\Glimpse.Mvc3.0.86\lib\net40\Glimpse.Mvc3.dll</HintPath>
+    </Reference>
+    <Reference Include="Interop.FCMLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.88\lib\Interop.FCMLib.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.1.2.99\lib\2.0\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.0.8.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.4.0.8\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject, Version=2.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.2.2.1.4\lib\net40-Full\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Extensions.Glimpse">
+      <HintPath>..\packages\GlimpseIntoNinjectPlugin.0.6\lib\Ninject.Extensions.Glimpse.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Web.Mvc">
+      <HintPath>..\packages\Ninject.MVC3.2.2.2.0\lib\net40-Full\Ninject.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="SignalR, Version=0.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SignalR.Server.0.4.0.0\lib\net40\SignalR.dll</HintPath>
+    </Reference>
+    <Reference Include="SignalR.Hosting.AspNet, Version=0.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SignalR.Hosting.AspNet.0.4.0.0\lib\net40\SignalR.Hosting.AspNet.dll</HintPath>
+    </Reference>
+    <Reference Include="SignalR.Ninject">
+      <HintPath>..\packages\SignalR.Ninject.0.4\lib\net40\SignalR.Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.Helpers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\webpages\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\lib\aspnetmvc\System.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.WebPages, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\webpages\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\webpages\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ActionFilters\CurrentApartmentStateFilter.cs" />
+    <Compile Include="ActionFilters\LogActivityAttribute.cs" />
+    <Compile Include="ActionFilters\TrackExecutionTimeAttribute.cs" />
+    <Compile Include="Connections\MyConnection.cs" />
+    <Compile Include="Connections\StockMarketConnection.cs" />
+    <Compile Include="Controllers\AlertEditorController.cs" />
+    <Compile Include="Controllers\AutoSuggestController.cs" />
+    <Compile Include="Controllers\CalendarEventListController.cs" />
+    <Compile Include="Controllers\CanvasController.cs" />
+    <Compile Include="Controllers\CanvasControllerBase.cs" />
+    <Compile Include="Controllers\ClientUIController.cs" />
+    <Compile Include="Controllers\DateHistogramController.cs" />
+    <Compile Include="Controllers\DateSliderController.cs" />
+    <Compile Include="Controllers\DiscoveryGraphController.cs" />
+    <Compile Include="Controllers\EntityListController.cs" />
+    <Compile Include="Controllers\HeadlineListCarouselController.cs" />
+    <Compile Include="Controllers\NewsFeedController.cs" />
+    <Compile Include="Controllers\NewsLetterController.cs" />
+    <Compile Include="Controllers\NewsRadarController.cs" />
+    <Compile Include="Controllers\PersonalizationFiltersController.cs" />
+    <Compile Include="Controllers\PreferencesController.cs" />
+    <Compile Include="Controllers\SearchBuilderController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
+    <Compile Include="Areas\Sandbox\SandboxAreaRegistration.cs" />
+    <Compile Include="Components\SourcesFilter\SourcesFilterComponent.cs" />
+    <Compile Include="Components\SourcesFilter\SourcesFilterModel.cs" />
+    <Compile Include="Components\CompanyHeadlines\CompanyHeadlinesComponent.cs" />
+    <Compile Include="Components\CompanyHeadlines\CompanyHeadlinesModel.cs" />
+    <Compile Include="Controllers\CompanySparklineController.cs" />
+    <Compile Include="Controllers\CompositeComponentController.cs" />
+    <Compile Include="Controllers\NavBarController.cs" />
+    <Compile Include="Controllers\SocialButtonsController.cs" />
+    <Compile Include="Controllers\SocialMediaController.cs" />
+    <Compile Include="Controllers\StockKioskController.cs" />
+    <Compile Include="Controllers\TopicController.cs" />
+    <Compile Include="Hub\NewsFeed.cs" />
+    <Compile Include="JsonSerializers\JsonConvertAdapter.cs" />
+    <Compile Include="Mocks\MockSearchManager.cs" />
+    <Compile Include="Mocks\MockSearchQueryResourceManager.cs" />
+    <Compile Include="Models\MultiviiewPortalHeadlinesListModel.cs" />
+    <Compile Include="Models\Newsletter\EditionModel.cs" />
+    <Compile Include="Models\SocialMediaViewModel.cs" />
+    <Compile Include="Models\TagCloudDemoViewModel.cs" />
+    <Compile Include="MockRESTServices\MockRestServiceController.cs" />
+    <Compile Include="Controllers\ArticleController.cs" />
+    <Compile Include="Controllers\ArticleTranslatorController.cs" />
+    <Compile Include="Controllers\HeadlineCarouselController.cs" />
+    <Compile Include="Controllers\NewsStandTickerController.cs" />
+    <Compile Include="Controllers\CalloutPopupController.cs" />
+    <Compile Include="Controllers\PortalArticleController.cs" />
+    <Compile Include="Controllers\RadarController.cs" />
+    <Compile Include="Controllers\RealtimeHeadlineListController.cs" />
+    <Compile Include="Controllers\TagCloudController.cs" />
+    <Compile Include="Controllers\TranslateArticleController.cs" />
+    <Compile Include="Controllers\CompanyProfileGraphController.cs" />
+    <Compile Include="Controllers\PortalHeadlineListController.cs" />
+    <Compile Include="Controllers\RegionalMapController.cs" />
+    <Compile Include="Extensions\HeadlineListConversionManagerExtensions.cs" />
+    <Compile Include="Extensions\TagCloudConversionManagerExtensions.cs" />
+    <Compile Include="Mocks\MockPageAssetsManager.cs" />
+    <Compile Include="Mocks\ShowcaseMenuDataSource.cs" />
+    <Compile Include="BootstrapperTasks\GlobalFilterRegistrationTask.cs" />
+    <Compile Include="BootstrapperTasks\MobileViewEngineBootstrapper.cs" />
+    <Compile Include="BootstrapperTasks\RouteRegistrationTask.cs" />
+    <Compile Include="Controllers\TransactionController.cs" />
+    <Compile Include="Models\ArticleModel.cs" />
+    <Compile Include="Models\CompositeComponentDemoViewModel.cs" />
+    <Compile Include="Models\ContentSearchMode.cs" />
+    <Compile Include="Controllers\FiltersController.cs" />
+    <Compile Include="Controllers\HeadlineListController.cs" />
+    <Compile Include="Controllers\StaDemoController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Extensions\HtmlHelperExtensions.cs" />
+    <Compile Include="Extensions\WholeNumberExtensions.cs" />
+    <Compile Include="Models\ShowcaseCanvasModel.cs" />
+    <Compile Include="Models\HeadlineListViewModel.cs" />
+    <Compile Include="Models\PortalHeadlineLists.cs" />
+    <Compile Include="Models\ShowcaseControlData.cs" />
+    <Compile Include="Modules\Empty\EmptyCanvasModule.cs" />
+    <Compile Include="Modules\Empty\EmptyModule.cs" />
+    <Compile Include="Modules\PortalHeadlineLists\PortalHeadlineLists.cs" />
+    <Compile Include="Modules\ShowcaseCanvas.cs" />
+    <Compile Include="Ninject\NinjectDependencyResolver.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Connections\RealTimeAlertsConnection.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Services\Charting\ChartService.cs" />
+    <Compile Include="Services\Charting\StockDataService.cs" />
+    <Compile Include="Settings.cs" />
+    <Compile Include="ShowcaseDependencyBindingsModule.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Content\css\components\DiscoveryGraph\discoveryGraph.scss" />
+    <Content Include="Content\css\components\DiscoveryGraph\discoveryGraph.css">
+      <DependentUpon>discoveryGraph.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\css\components\DiscoveryGraph\img\navigator.png" />
+    <Content Include="Content\css\components\DiscoveryGraph\img\sprite_carousel-buttons.png" />
+    <Content Include="Content\reset.css" />
+    <Content Include="Content\styles\images\playlistleft.png" />
+    <Content Include="Content\styles\images\playlistright.png" />
+    <Content Include="Content\styles\images\play_text_large.png" />
+    <Content Include="Content\swf\flowplayer.audio-3.2.2.swf" />
+    <Content Include="Content\swf\flowplayer.controls-3.2.5.swf" />
+    <Content Include="Content\swf\flowplayer.rtmp-3.2.3.swf" />
+    <Content Include="Content\swf\flowplayer.unlimited-3.2.7.swf" />
+    <Content Include="Modules\Empty\EmptyCanvasModule.js" />
+    <Content Include="ScriptAdd.html" />
+    <Content Include="Scripts\loose2.js" />
+    <Content Include="Scripts\loose.js" />
+    <Content Include="Styles\css\CompanyOverviewCanvasModule.css" />
+    <Content Include="Styles\css\AlertsCanvasModule.css" />
+    <Content Include="Content\bootstrap\css\bootstrap-responsive.css" />
+    <Content Include="Content\bootstrap\css\bootstrap-responsive.min.css" />
+    <Content Include="Content\bootstrap\css\bootstrap.css" />
+    <Content Include="Content\bootstrap\css\bootstrap.min.css" />
+    <Content Include="Content\bootstrap\img\glyphicons-halflings-white.png" />
+    <Content Include="Content\bootstrap\img\glyphicons-halflings.png" />
+    <Content Include="Content\bootstrap\js\bootstrap.js" />
+    <Content Include="Content\bootstrap\js\bootstrap.min.js" />
+    <Content Include="Content\bootstrap\js\google-code-prettify\prettify.css" />
+    <Content Include="Content\bootstrap\js\google-code-prettify\prettify.js" />
+    <Content Include="Content\js\HeadlineCarouel.js" />
+    <Content Include="Content\js\ui.searchbuilder.js" />
+    <Content Include="Content\js\ui.searchcommon.js" />
+    <Content Include="Content\SearchResults.css" />
+    <Content Include="ClientResources.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <EmbeddedResource Include="Components\CompanyHeadlines\CompanyHeadlines.js" />
+    <EmbeddedResource Include="Components\SourcesFilter\SourcesFilter.js" />
+    <EmbeddedResource Include="Scripts\ClientTemplates\Test.htm" />
+    <Content Include="Content\boilerplate\css\handheld.css" />
+    <Content Include="Content\boilerplate\css\style.css" />
+    <Content Include="Content\boilerplate\js\dd_belatedpng.js" />
+    <Content Include="Content\boilerplate\js\jquery-1.4.2.min.js" />
+    <Content Include="Content\boilerplate\js\modernizr-1.5.min.js" />
+    <Content Include="Content\boilerplate\js\plugins.js" />
+    <Content Include="Content\boilerplate\js\profiling\charts.swf" />
+    <Content Include="Content\boilerplate\js\profiling\config.js" />
+    <Content Include="Content\boilerplate\js\profiling\yahoo-profiling.css" />
+    <Content Include="Content\boilerplate\js\profiling\yahoo-profiling.min.js" />
+    <Content Include="Content\boilerplate\js\script.js" />
+    <Content Include="Content\composite\Search\page.css" />
+    <Content Include="Content\composite\SimpleSearchResults\active-full.gif" />
+    <Content Include="Content\composite\SimpleSearchResults\active-split.gif" />
+    <Content Include="Content\composite\SimpleSearchResults\arrow_right_grey.png" />
+    <Content Include="Content\composite\SimpleSearchResults\ArticleControl.css" />
+    <Content Include="Content\composite\SimpleSearchResults\bg_header-wrap.png" />
+    <Content Include="Content\composite\SimpleSearchResults\bg_header.png" />
+    <Content Include="Content\composite\SimpleSearchResults\bread_crumb_arrow.png" />
+    <Content Include="Content\composite\SimpleSearchResults\composite.css" />
+    <Content Include="Content\composite\SimpleSearchResults\ddbut.css" />
+    <Content Include="Content\composite\SimpleSearchResults\DiscoveryControl.css" />
+    <Content Include="Content\composite\SimpleSearchResults\discovery_toggle.png" />
+    <Content Include="Content\composite\SimpleSearchResults\HeadlineListControl.css" />
+    <Content Include="Content\composite\SimpleSearchResults\icon_email.png" />
+    <Content Include="Content\composite\SimpleSearchResults\icon_pdf.png" />
+    <Content Include="Content\composite\SimpleSearchResults\icon_print.png" />
+    <Content Include="Content\composite\SimpleSearchResults\inactive-full.gif" />
+    <Content Include="Content\composite\SimpleSearchResults\inactive-split.gif" />
+    <Content Include="Content\composite\SimpleSearchResults\logo_factiva.png" />
+    <Content Include="Content\composite\SimpleSearchResults\menu_outer_arrow_left.png" />
+    <Content Include="Content\composite\SimpleSearchResults\menu_outer_arrow_right.png" />
+    <Content Include="Content\composite\SimpleSearchResults\page.css" />
+    <Content Include="Content\composite\SimpleSearchResults\scrollbar_arrow_down.png" />
+    <Content Include="Content\composite\SimpleSearchResults\scrollbar_arrow_up.png" />
+    <Content Include="Content\composite\SimpleSearchResults\SimpleSearchControl.css" />
+    <Content Include="Content\composite\SimpleSearchResults\window_header_bg.png" />
+    <Content Include="Content\css\ArticleControl.css" />
+    <Content Include="Content\css\ArticleTranslator.css" />
+    <Content Include="Content\css\base.css" />
+    <Content Include="Content\css\jquery.jscrollpane.css" />
+    <Content Include="Content\css\jquery.popupballoon.css" />
+    <Content Include="Content\css\popup.content.css" />
+    <Content Include="Content\css\popup.css" />
+    <Content Include="Content\css\TranslateArticle.css" />
+    <Content Include="Content\emg_default.css" />
+    <Content Include="Content\emg_grid.css" />
+    <Content Include="Content\emg_layout.css" />
+    <Content Include="Content\emg_text.css" />
+    <Content Include="Content\images\ajax-loader.gif" />
+    <Content Include="Content\images\arrowDwn.gif" />
+    <Content Include="Content\images\arrows-ffffff.png" />
+    <Content Include="Content\images\asc.gif" />
+    <Content Include="Content\images\bg_theme1-a.jpg" />
+    <Content Include="Content\images\bg_theme1-c.jpg" />
+    <Content Include="Content\images\bg_theme2-c.jpg" />
+    <Content Include="Content\images\bg_wood.jpg" />
+    <Content Include="Content\images\blue-tile.png" />
+    <Content Include="Content\images\bullet-orange.gif" />
+    <Content Include="Content\images\buttons.gif" />
+    <Content Include="Content\images\closeButton.gif" />
+    <Content Include="Content\images\crystal-arrows.gif" />
+    <Content Include="Content\images\crystal-stars.gif" />
+    <Content Include="Content\images\crystal-stars1.png" />
+    <Content Include="Content\images\djcBrand.gif" />
+    <Content Include="Content\images\djc_banner.jpg" />
+    <Content Include="Content\images\djc_lens_dot.gif" />
+    <Content Include="Content\images\DJ_Logo_white_81x20.gif" />
+    <Content Include="Content\images\dj_nc.jpg" />
+    <Content Include="Content\images\DowJonesLogo.gif" />
+    <Content Include="Content\images\DowJonesLogo_black.gif" />
+    <Content Include="Content\images\down.gif" />
+    <Content Include="Content\images\dropdown_img.gif" />
+    <Content Include="Content\images\edit.png" />
+    <Content Include="Content\images\EmgBottomBorder_Bg.gif" />
+    <Content Include="Content\images\EmgFooter_Bg.jpg" />
+    <Content Include="Content\images\EmgLeftBorder_Bg.gif" />
+    <Content Include="Content\images\EmgRightBorder_Bg.gif" />
+    <Content Include="Content\images\error.png" />
+    <Content Include="Content\images\favicon.ico" />
+    <Content Include="Content\images\footerBg.gif" />
+    <Content Include="Content\images\globe.gif" />
+    <Content Include="Content\images\icon_module.col.loading.gif" />
+    <Content Include="Content\images\large\delicious.png" />
+    <Content Include="Content\images\large\digg.png" />
+    <Content Include="Content\images\large\facebook.png" />
+    <Content Include="Content\images\large\furl.png" />
+    <Content Include="Content\images\large\google.png" />
+    <Content Include="Content\images\large\linkedin.png" />
+    <Content Include="Content\images\large\myspace.png" />
+    <Content Include="Content\images\large\newsvine.png" />
+    <Content Include="Content\images\large\reddit.png" />
+    <Content Include="Content\images\large\stumbleupon.png" />
+    <Content Include="Content\images\large\technorati.png" />
+    <Content Include="Content\images\large\twitter.png" />
+    <Content Include="Content\images\large\yahoo.png" />
+    <Content Include="Content\images\left-col-bg.jpg" />
+    <Content Include="Content\images\login_header_bg.jpg" />
+    <Content Include="Content\images\ltGrid.jpg" />
+    <Content Include="Content\images\menu_hover_bg.jpg" />
+    <Content Include="Content\images\menu_outer_arrow_left.png" />
+    <Content Include="Content\images\menu_outer_arrow_right.png" />
+    <Content Include="Content\images\modal_header.gif" />
+    <Content Include="Content\images\nav-menu-bg.jpg" />
+    <Content Include="Content\images\regTabBg.GIF" />
+    <Content Include="Content\images\reset.png" />
+    <Content Include="Content\images\right.gif" />
+    <Content Include="Content\images\shadow.png" />
+    <Content Include="Content\images\showcase_control_heading_bg.jpg" />
+    <Content Include="Content\images\showcase_demoheader.png" />
+    <Content Include="Content\images\showcase_footer_bg.jpg" />
+    <Content Include="Content\images\showcase_header_bg.jpg" />
+    <Content Include="Content\images\showcase_left_column_bg.jpg" />
+    <Content Include="Content\images\showcase_menu.jpg" />
+    <Content Include="Content\images\showcase_menu_bg.gif" />
+    <Content Include="Content\images\showcase_menu_bg.jpg" />
+    <Content Include="Content\images\showcase_menu_subitem-bg.png" />
+    <Content Include="Content\images\small\delicious.png" />
+    <Content Include="Content\images\small\digg.png" />
+    <Content Include="Content\images\small\facebook.png" />
+    <Content Include="Content\images\small\furl.png" />
+    <Content Include="Content\images\small\google.png" />
+    <Content Include="Content\images\small\linkedin.png" />
+    <Content Include="Content\images\small\myspace.png" />
+    <Content Include="Content\images\small\newsvine.png" />
+    <Content Include="Content\images\small\reddit.png" />
+    <Content Include="Content\images\small\stumbleupon.png" />
+    <Content Include="Content\images\small\technorati.png" />
+    <Content Include="Content\images\small\twitter.png" />
+    <Content Include="Content\images\small\yahoo.png" />
+    <Content Include="Content\images\themes_list_bg.jpg" />
+    <Content Include="Content\images\themes_text_bg.jpg" />
+    <Content Include="Content\images\translateTitleLanguageCodeBackground.png" />
+    <Content Include="Content\images\widget_bg-on.gif" />
+    <Content Include="Content\images\widget_bg-over.gif" />
+    <Content Include="Content\images\widget_bg.gif" />
+    <Content Include="Content\images\widget_header.png" />
+    <Content Include="Content\images\widget_header_bg.png" />
+    <Content Include="Content\images\window_header_bg.png" />
+    <Content Include="Content\iPhone.css" />
+    <Content Include="Content\made\images\loading.gif" />
+    <Content Include="Content\made\js\content.js" />
+    <Content Include="Content\made\js\libs\modernizr-1.6.min.js" />
+    <Content Include="Content\module.css" />
+    <Content Include="Content\showcasestyle.css" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Content\superfish\superfish-navbar.css" />
+    <Content Include="Content\superfish\superfish.css" />
+    <Content Include="Content\superfish\superfish.js" />
+    <Content Include="Content\superfish\supersubs.js" />
+    <Content Include="Content\syntaxhighlighter\sh.js" />
+    <Content Include="Content\syntaxhighlighter\shCore.css" />
+    <Content Include="Content\syntaxhighlighter\shThemeDefault.css" />
+    <Content Include="Areas\Sandbox\Views\Web.config" />
+    <Content Include="GatewayResources\config\FactivaGateway.config" />
+    <Content Include="Areas\Sandbox\_viewstart.cshtml" />
+    <Content Include="Areas\Sandbox\Views\Shared\_Layout.cshtml" />
+    <Content Include="GatewayResources\config\UserEventRecorderService.config" />
+    <Content Include="GatewayResources\config\Triggers.config" />
+    <Content Include="GatewayResources\config\TrackService.config" />
+    <Content Include="GatewayResources\config\TopicCenterAndSMSManagementService.config" />
+    <Content Include="GatewayResources\config\Tools.TinyURL.config" />
+    <Content Include="GatewayResources\config\SyndicationService.config" />
+    <Content Include="GatewayResources\config\Symbology.TaxonomyService.config" />
+    <Content Include="GatewayResources\config\Symbology.Person.config" />
+    <Content Include="GatewayResources\config\Symbology.NameListService.config" />
+    <Content Include="GatewayResources\config\Symbology.ListService.config" />
+    <Content Include="GatewayResources\config\Symbology.InstrumentService.config" />
+    <Content Include="GatewayResources\config\Symbology.ExchangeService.config" />
+    <Content Include="GatewayResources\config\Symbology.CompanyService.config" />
+    <Content Include="GatewayResources\config\SuggestService.config" />
+    <Content Include="GatewayResources\config\SourcesService.config" />
+    <Content Include="GatewayResources\config\SessionCacheService.config" />
+    <Content Include="GatewayResources\config\SemanticService.config" />
+    <Content Include="GatewayResources\config\SegmentationService.config" />
+    <Content Include="GatewayResources\config\SearchService.config" />
+    <Content Include="GatewayResources\config\ScreeningService.config" />
+    <Content Include="GatewayResources\config\RTQueueService.config" />
+    <Content Include="GatewayResources\config\RoleBasedPlatform.TrackCodingService.config" />
+    <Content Include="GatewayResources\config\RelationshipMapping.config" />
+    <Content Include="GatewayResources\config\RegistrationService.config" />
+    <Content Include="GatewayResources\config\PreferenceService.config" />
+    <Content Include="GatewayResources\config\PMDealsService.config" />
+    <Content Include="GatewayResources\config\PlatformCacheService.config" />
+    <Content Include="GatewayResources\config\PIMService.config" />
+    <Content Include="GatewayResources\config\PCM.SyndicationService.config" />
+    <Content Include="GatewayResources\config\PCM.SummaryRegionalMapService.config" />
+    <Content Include="GatewayResources\config\PCM.RegionalMapService.config" />
+    <Content Include="GatewayResources\config\OperationalDataService.config" />
+    <Content Include="GatewayResources\config\OnDemandEmailService.config" />
+    <Content Include="GatewayResources\config\NewsstandService.config" />
+    <Content Include="GatewayResources\config\MetricsService.config" />
+    <Content Include="GatewayResources\config\MetaDataService.config" />
+    <Content Include="GatewayResources\config\MembershipService.config" />
+    <Content Include="GatewayResources\config\MarketDataService.config" />
+    <Content Include="GatewayResources\config\IndexService.config" />
+    <Content Include="GatewayResources\config\HeatMapService.config" />
+    <Content Include="GatewayResources\config\GovernmentService.config" />
+    <Content Include="GatewayResources\config\ExternalReaderService.config" />
+    <Content Include="GatewayResources\config\EventCalendarService.config" />
+    <Content Include="GatewayResources\config\EmailDeliverySettingsService.config" />
+    <Content Include="GatewayResources\config\DnbService.config" />
+    <Content Include="GatewayResources\config\DJInsightService.config" />
+    <Content Include="GatewayResources\config\DJComm.User.config" />
+    <Content Include="GatewayResources\config\DJComm.SourceGroups.config" />
+    <Content Include="GatewayResources\config\DJComm.ProprietaryInfo.config" />
+    <Content Include="GatewayResources\config\DJComm.Outlet.config" />
+    <Content Include="GatewayResources\config\DJComm.Metrics.config" />
+    <Content Include="GatewayResources\config\DJComm.EntityList.config" />
+    <Content Include="GatewayResources\config\DJComm.BriefingBook.config" />
+    <Content Include="GatewayResources\config\DJComm.Author.config" />
+    <Content Include="GatewayResources\config\DJComm.Activity.config" />
+    <Content Include="GatewayResources\config\CVDService.config" />
+    <Content Include="GatewayResources\config\Brokers.Query.config" />
+    <Content Include="GatewayResources\config\Brokers.Job.config" />
+    <Content Include="GatewayResources\config\Brokers.CompliantWorkspace.config" />
+    <Content Include="GatewayResources\config\BillingAndAuthorizationService.config" />
+    <Content Include="GatewayResources\config\Asset.Workspaces.config" />
+    <Content Include="GatewayResources\config\Asset.Workflow.config" />
+    <Content Include="GatewayResources\config\Asset.WebService.config" />
+    <Content Include="GatewayResources\config\Asset.SourceList.config" />
+    <Content Include="GatewayResources\config\Asset.SaveSearch.config" />
+    <Content Include="GatewayResources\config\Asset.Queries.config" />
+    <Content Include="GatewayResources\config\Asset.Pages.config" />
+    <Content Include="GatewayResources\config\Asset.NewsPageService.config" />
+    <Content Include="GatewayResources\config\Asset.NewsletterTemplateService.config" />
+    <Content Include="GatewayResources\config\Asset.NewsletterContentService.config" />
+    <Content Include="GatewayResources\config\Asset.Lists.config" />
+    <Content Include="GatewayResources\config\Asset.Items.config" />
+    <Content Include="GatewayResources\config\Asset.FCPService.config" />
+    <Content Include="GatewayResources\config\Asset.Edition.config" />
+    <Content Include="GatewayResources\config\Asset.CompanyList.config" />
+    <Content Include="GatewayResources\config\ArchiveService.config" />
+    <Content Include="GatewayResources\config\Analyze.config" />
+    <Content Include="GatewayResources\config\OnDemandEmailService_v2.config" />
+    <Content Include="GatewayResources\config\OnDemailEmailService_v2.config" />
+    <Content Include="GatewayResources\config\PCM.SearchService.config" />
+    <None Include="MockRESTServices\modules\CustomTopics\GET_data.json" />
+    <None Include="MockRESTServices\modules\NewsStand\GET_data.json" />
+    <None Include="MockRESTServices\modules\RegionalMap\GET_data.json" />
+    <None Include="MockRESTServices\modules\Sources\GET_data.json" />
+    <None Include="MockRESTServices\modules\Summary\GET_data.json" />
+    <None Include="MockRESTServices\modules\Syndication\GET_data.json" />
+    <None Include="MockRESTServices\modules\TopNews\GET_data.json" />
+    <None Include="MockRESTServices\modules\Trending\GET_data.json" />
+    <None Include="MockRESTServices\modules\Radar\GET_data.json" />
+    <EmbeddedResource Include="Modules\ShowcaseCanvas.js" />
+    <EmbeddedResource Include="Modules\PortalHeadlineLists\PortalHeadlineLists.js" />
+    <Content Include="GatewayResources\ReleaseNotes.txt" />
+    <Content Include="GatewayResources\stubs\Analyze\Response\AnalyzeAsynchResponse.xml" />
+    <Content Include="GatewayResources\stubs\Analyze\Response\AnalyzeSynchResponse.xml" />
+    <Content Include="GatewayResources\stubs\Analyze\Response\AnalyzeSynchWithTagsResponse.xml" />
+    <Content Include="GatewayResources\stubs\Analyze\Response\FetchAsynchResponse.xml" />
+    <Content Include="GatewayResources\stubs\Analyze\Response\RegisterResponse.xml" />
+    <Content Include="GatewayResources\stubs\Analyze\Response\UnregisterResponse.xml" />
+    <Content Include="GatewayResources\stubs\Archive\Response\GetArticleWithSummaryResponse.xml" />
+    <Content Include="GatewayResources\stubs\Archive\Response\GetValidateAndBillingDataResponse.xml" />
+    <Content Include="GatewayResources\stubs\Archive\Response\ValidateAndBillingResponse.xml" />
+    <Content Include="GatewayResources\stubs\Assets\Pages\DeletePageTitleDescriptionsRequest.xml" />
+    <Content Include="GatewayResources\stubs\Assets\Pages\DeletePageTitleDescriptionsResponse.xml" />
+    <Content Include="GatewayResources\stubs\Assets\Pages\EnableDisableAssignedPageRequest.xml" />
+    <Content Include="GatewayResources\stubs\Assets\Pages\EnableDisableAssignedPageResponse.xml" />
+    <Content Include="GatewayResources\stubs\Assets\Pages\GetModuleByIDRequest.xml" />
+    <Content Include="GatewayResources\stubs\Assets\Pages\GetModuleByIDResponse.xml" />
+    <Content Include="GatewayResources\stubs\Assets\Pages\GetModulesListRequest.xml" />
+    <Content Include="GatewayResources\stubs\Assets\Pages\GetModulesListResponse.xml" />
+    <Content Include="GatewayResources\stubs\Assets\Pages\GetOwnerByAssetIDRequest.xml" />
+    <Content Include="GatewayResources\stubs\Assets\Pages\GetOwnerByAssetIDResponse.xml" />
+    <Content Include="GatewayResources\stubs\Assets\Pages\GetPageTitleDescriptionsRequest.xml" />
+    <Content Include="GatewayResources\stubs\Assets\Pages\GetPageTitleDescriptionsResponse.xml" />
+    <Content Include="GatewayResources\stubs\Assets\Pages\GetSubscribablePagesRequest.xml" />
+    <Content Include="GatewayResources\stubs\Assets\Pages\GetSubscribablePagesResponse.xml" />
+    <Content Include="GatewayResources\stubs\Assets\Pages\ReplaceModuleOnPage.xml" />
+    <Content Include="GatewayResources\stubs\Assets\Pages\ReplaceModuleOnPageResponse.xml" />
+    <Content Include="GatewayResources\stubs\Assets\Pages\SetModuleSharePropertiesRequest.xml" />
+    <Content Include="GatewayResources\stubs\Assets\Pages\SetModuleSharePropertiesResponse.xml" />
+    <Content Include="GatewayResources\stubs\Assets\Pages\SetPageSharePropertiesRequest.xml" />
+    <Content Include="GatewayResources\stubs\Assets\Pages\SetPageSharePropertiesResponse.xml" />
+    <Content Include="GatewayResources\stubs\Assets\Pages\SetRootAsset.xml" />
+    <Content Include="GatewayResources\stubs\Assets\Pages\SetRootAssetResponse.xml" />
+    <Content Include="GatewayResources\stubs\Assets\Pages\SubscribePageRequest.xml" />
+    <Content Include="GatewayResources\stubs\Assets\Pages\SubscribePageResponse.xml" />
+    <Content Include="GatewayResources\stubs\Assets\Pages\UnSubscribePageRequest.xml" />
+    <Content Include="GatewayResources\stubs\Assets\Pages\UnSubscribePageResponse.xml" />
+    <Content Include="GatewayResources\stubs\Assets\Pages\UpdateModulePropertiesRequest.xml" />
+    <Content Include="GatewayResources\stubs\Assets\Pages\UpdateModulePropertiesResponse.xml" />
+    <Content Include="GatewayResources\stubs\Assets\Pages\UpdateModuleRequest.xml" />
+    <Content Include="GatewayResources\stubs\Assets\Pages\UpdateModuleResponse.xml" />
+    <Content Include="GatewayResources\stubs\Assets\Pages\UpdatePageTitleDescriptionsRequest.xml" />
+    <Content Include="GatewayResources\stubs\Assets\Pages\UpdatePageTitleDescriptionsResponse.xml" />
+    <Content Include="GatewayResources\stubs\CustomerService\BaseEmptyResponse.xml" />
+    <Content Include="GatewayResources\stubs\CustomerService\ConvertUpgradedUsersToOfficial.xml" />
+    <Content Include="GatewayResources\stubs\CustomerService\DisableFlexLicensedAccount.xml" />
+    <Content Include="GatewayResources\stubs\CustomerService\DowngradeUsers.xml" />
+    <Content Include="GatewayResources\stubs\CustomerService\GetUpgradedUsers.xml" />
+    <Content Include="GatewayResources\stubs\CustomerService\ListFlexLicensedAccountsResponse.xml" />
+    <Content Include="GatewayResources\stubs\CVD\CVR\AddAccountCVRUsers.xml" />
+    <Content Include="GatewayResources\stubs\CVD\CVR\AddAccountCVRUsersResponse.xml" />
+    <Content Include="GatewayResources\stubs\CVD\CVR\AddInternalCVRUsers.xml" />
+    <Content Include="GatewayResources\stubs\CVD\CVR\AddInternalCVRUsersResponse.xml" />
+    <Content Include="GatewayResources\stubs\CVD\CVR\CreateNewAccountAccess.xml" />
+    <Content Include="GatewayResources\stubs\CVD\CVR\CreateNewAccountAccessResponse.xml" />
+    <Content Include="GatewayResources\stubs\CVD\CVR\DeleteAccount.xml" />
+    <Content Include="GatewayResources\stubs\CVD\CVR\DeleteAccountResponse.xml" />
+    <Content Include="GatewayResources\stubs\CVD\CVR\DeleteUser.xml" />
+    <Content Include="GatewayResources\stubs\CVD\CVR\DeleteUserResponse.xml" />
+    <Content Include="GatewayResources\stubs\CVD\CVR\GetAccountCVRUsers.xml" />
+    <Content Include="GatewayResources\stubs\CVD\CVR\GetAccountCVRUsersResponse.xml" />
+    <Content Include="GatewayResources\stubs\CVD\CVR\GetAccountReportsOverview.xml" />
+    <Content Include="GatewayResources\stubs\CVD\CVR\GetAccountReportsOverviewResponse.xml" />
+    <Content Include="GatewayResources\stubs\CVD\CVR\GetAccountRequestDetails.xml" />
+    <Content Include="GatewayResources\stubs\CVD\CVR\GetAccountRequestDetailsResponse.xml" />
+    <Content Include="GatewayResources\stubs\CVD\CVR\GetAllAccountsOverview.xml" />
+    <Content Include="GatewayResources\stubs\CVD\CVR\GetAllAccountsOverviewResponse.xml" />
+    <Content Include="GatewayResources\stubs\CVD\CVR\GetAllCVRReportsList.xml" />
+    <Content Include="GatewayResources\stubs\CVD\CVR\GetAllCVRReportsListResponse.xml" />
+    <Content Include="GatewayResources\stubs\CVD\CVR\GetAllCVRUsers.xml" />
+    <Content Include="GatewayResources\stubs\CVD\CVR\GetAllCVRUsersResponse.xml" />
+    <Content Include="GatewayResources\stubs\CVD\CVR\GetAllInternalCVRUsers.xml" />
+    <Content Include="GatewayResources\stubs\CVD\CVR\GetAllInternalCVRUsersResponse.xml" />
+    <Content Include="GatewayResources\stubs\CVD\CVR\GetAuditTrail.xml" />
+    <Content Include="GatewayResources\stubs\CVD\CVR\GetAuditTrailInfoResponse%28ReportAudit%29.xml" />
+    <Content Include="GatewayResources\stubs\CVD\CVR\GetAuditTrailResponse%28AccountAudit%29.xml" />
+    <Content Include="GatewayResources\stubs\CVD\CVR\GetAvailableReportsList.xml" />
+    <Content Include="GatewayResources\stubs\CVD\CVR\GetAvailableReportsListResponse.xml" />
+    <Content Include="GatewayResources\stubs\CVD\CVR\GetCVRActiveAccounts.xml" />
+    <Content Include="GatewayResources\stubs\CVD\CVR\GetCVRActiveAccountsResponse.xml" />
+    <Content Include="GatewayResources\stubs\CVD\CVR\GetOpenAccountRequests.xml" />
+    <Content Include="GatewayResources\stubs\CVD\CVR\GetOpenAccountRequestsResponse.xml" />
+    <Content Include="GatewayResources\stubs\CVD\CVR\GetPermissionedAccountsList.xml" />
+    <Content Include="GatewayResources\stubs\CVD\CVR\GetPermissionedAccountsListResponse.xml" />
+    <Content Include="GatewayResources\stubs\CVD\CVR\GetReportSummary.xml" />
+    <Content Include="GatewayResources\stubs\CVD\CVR\GetReportSummaryResponse.xml" />
+    <Content Include="GatewayResources\stubs\CVD\CVR\GetUserSettings.xml" />
+    <Content Include="GatewayResources\stubs\CVD\CVR\GetUserSettingsResponse.xml" />
+    <Content Include="GatewayResources\stubs\CVD\CVR\UpdateAccountRequestStatus.xml" />
+    <Content Include="GatewayResources\stubs\CVD\CVR\UpdateAccountRequestStatusResponse.xml" />
+    <Content Include="GatewayResources\stubs\CVD\CVR\UpdateCVRUserInfo.xml" />
+    <Content Include="GatewayResources\stubs\CVD\CVR\UpdateCVRUserInfoResponse.xml" />
+    <Content Include="GatewayResources\stubs\CVD\CVR\UpdateReportStatus.xml" />
+    <Content Include="GatewayResources\stubs\CVD\CVR\UpdateReportStatusResponse.xml" />
+    <Content Include="GatewayResources\stubs\CVD\CVR\UpdateUserSettings.xml" />
+    <Content Include="GatewayResources\stubs\CVD\CVR\UpdateUserSettingsResponse.xml" />
+    <Content Include="GatewayResources\stubs\CVD\Request\getTopActiveAccountsRequest.xml" />
+    <Content Include="GatewayResources\stubs\CVD\Request\GetTrendingDetails.xml" />
+    <Content Include="GatewayResources\stubs\CVD\Response\GetAccountNamesResponse.xml" />
+    <Content Include="GatewayResources\stubs\CVD\Response\GetActiveUserFrequencyResponse.xml" />
+    <Content Include="GatewayResources\stubs\CVD\Response\GetActiveUserFrequencyResponse_MoreDetails.xml" />
+    <Content Include="GatewayResources\stubs\CVD\Response\GetActiveUserSummaryResponse_Location.xml" />
+    <Content Include="GatewayResources\stubs\CVD\Response\GetActiveUserSummaryResponse_Month.xml" />
+    <Content Include="GatewayResources\stubs\CVD\Response\GetActivitySummaryResponse_Location.xml" />
+    <Content Include="GatewayResources\stubs\CVD\Response\GetActivitySummaryResponse_Month.xml" />
+    <Content Include="GatewayResources\stubs\CVD\Response\GetArticleViewCountByAssetResponse_Alert.xml" />
+    <Content Include="GatewayResources\stubs\CVD\Response\GetArticleViewCountByAssetResponse_Newsletter.xml" />
+    <Content Include="GatewayResources\stubs\CVD\Response\GetAssetInventoryResponse_ActiveAlerts.xml" />
+    <Content Include="GatewayResources\stubs\CVD\Response\GetAssetInventoryResponse_AssetInventory.xml" />
+    <Content Include="GatewayResources\stubs\CVD\Response\GetAssetInventoryResponse_AssetInventoryMoreDetails.xml" />
+    <Content Include="GatewayResources\stubs\CVD\Response\GetAssetInventoryResponse_EditionsPublished.xml" />
+    <Content Include="GatewayResources\stubs\CVD\Response\GetAssetInventoryResponse_NewslettersPublished.xml" />
+    <Content Include="GatewayResources\stubs\CVD\Response\GetTopActiveAccountsResponse.xml" />
+    <Content Include="GatewayResources\stubs\CVD\Response\GetTopActiveUsersResponse.xml" />
+    <Content Include="GatewayResources\stubs\CVD\Response\GetTopEntryPointAssetsByAssetTypeResponse.xml" />
+    <Content Include="GatewayResources\stubs\CVD\Response\GetTopEntryPointAssetsByDeliveryMethodResponse.xml" />
+    <Content Include="GatewayResources\stubs\CVD\Response\GetTopEntryPointsResponse.xml" />
+    <Content Include="GatewayResources\stubs\CVD\Response\GetTopEntryPointUsersByAssetTypeResponse.xml" />
+    <Content Include="GatewayResources\stubs\CVD\Response\GetTopEntryPointUsersByDeliveryMethodResponse.xml" />
+    <Content Include="GatewayResources\stubs\CVD\Response\GetTrendingDetailsResponse.xml" />
+    <Content Include="GatewayResources\stubs\DJCommunicator\Activity\CreateActivityRequest.xml" />
+    <Content Include="GatewayResources\stubs\DJCommunicator\Activity\CreateActivityResponse.xml" />
+    <Content Include="GatewayResources\stubs\DJCommunicator\Activity\DeleteActivityRequest.xml" />
+    <Content Include="GatewayResources\stubs\DJCommunicator\Activity\DeleteActivityResponse.xml" />
+    <Content Include="GatewayResources\stubs\DJCommunicator\Activity\GetActivityByIdRequest.xml" />
+    <Content Include="GatewayResources\stubs\DJCommunicator\Activity\GetActivityByIdResponse.xml" />
+    <Content Include="GatewayResources\stubs\DJCommunicator\Activity\GetActivityListRequest.xml" />
+    <Content Include="GatewayResources\stubs\DJCommunicator\Activity\GetActivityListResponse.xml" />
+    <Content Include="GatewayResources\stubs\DJCommunicator\Activity\UpdateActivityRequest.xml" />
+    <Content Include="GatewayResources\stubs\DJCommunicator\Activity\UpdateActivityResponse.xml" />
+    <Content Include="GatewayResources\stubs\DJCommunicator\Author\CreateAuthorRequest.xml" />
+    <Content Include="GatewayResources\stubs\DJCommunicator\Author\CreateAuthorResponse.xml" />
+    <Content Include="GatewayResources\stubs\DJCommunicator\Author\DeleteAuthorRequest.xml" />
+    <Content Include="GatewayResources\stubs\DJCommunicator\Author\DeleteAuthorResponse.xml" />
+    <Content Include="GatewayResources\stubs\DJCommunicator\Author\GetAuthorByIDRequest.xml" />
+    <Content Include="GatewayResources\stubs\DJCommunicator\Author\GetAuthorByIdResponse.xml" />
+    <Content Include="GatewayResources\stubs\DJCommunicator\Author\GetAuthorListDetailRequest.xml" />
+    <Content Include="GatewayResources\stubs\DJCommunicator\Author\GetAuthorListDetailResponse.xml" />
+    <Content Include="GatewayResources\stubs\DJCommunicator\Author\GetAuthorListRequest.xml" />
+    <Content Include="GatewayResources\stubs\DJCommunicator\Author\GetAuthorListResponse.xml" />
+    <Content Include="GatewayResources\stubs\DJCommunicator\Author\UpdateAuthorRequest.xml" />
+    <Content Include="GatewayResources\stubs\DJCommunicator\Author\UpdateAuthorResponse.xml" />
+    <Content Include="GatewayResources\stubs\DJCommunicator\BriefingBook\CloneBriefingBookRequest.xml" />
+    <Content Include="GatewayResources\stubs\DJCommunicator\BriefingBook\CloneBriefingBookResponse.xml" />
+    <Content Include="GatewayResources\stubs\DJCommunicator\BriefingBook\CreateBriefingBookRequest.xml" />
+    <Content Include="GatewayResources\stubs\DJCommunicator\BriefingBook\CreateBriefingBookResponse.xml" />
+    <Content Include="GatewayResources\stubs\DJCommunicator\BriefingBook\DeleteBriefingBookRequest.xml" />
+    <Content Include="GatewayResources\stubs\DJCommunicator\BriefingBook\DeleteBriefingBookResponse.xml" />
+    <Content Include="GatewayResources\stubs\DJCommunicator\BriefingBook\ExportBriefingBookRequest.xml" />
+    <Content Include="GatewayResources\stubs\DJCommunicator\BriefingBook\ExportBriefingBookResponse.xml" />
+    <Content Include="GatewayResources\stubs\DJCommunicator\BriefingBook\GetBriefingBookByIDRequest.xml" />
+    <Content Include="GatewayResources\stubs\DJCommunicator\BriefingBook\GetBriefingBookByIDResponse.xml" />
+    <Content Include="GatewayResources\stubs\DJCommunicator\BriefingBook\GetBriefingBookCategoryAndSectionsRequest.xml" />
+    <Content Include="GatewayResources\stubs\DJCommunicator\BriefingBook\GetBriefingBookCategoryAndSectionsResponse.xml" />
+    <Content Include="GatewayResources\stubs\DJCommunicator\BriefingBook\GetBriefingBookListRequest.xml" />
+    <Content Include="GatewayResources\stubs\DJCommunicator\BriefingBook\GetBriefingBookListResponse.xml" />
+    <Content Include="GatewayResources\stubs\DJCommunicator\BriefingBook\ShareBriefingBookRequest.xml" />
+    <Content Include="GatewayResources\stubs\DJCommunicator\BriefingBook\ShareBriefingBookResponse.xml" />
+    <Content Include="GatewayResources\stubs\DJCommunicator\BriefingBook\UpdateBriefingBookCategoryAndSectionsRequest.xml" />
+    <Content Include="GatewayResources\stubs\DJCommunicator\BriefingBook\UpdateBriefingBookCategoryAndSectionsResponse.xml" />
+    <Content Include="GatewayResources\stubs\DJCommunicator\BriefingBook\UpdateBriefingBookRequest.xml" />
+    <Content Include="GatewayResources\stubs\DJCommunicator\BriefingBook\UpdateBriefingBookResponse.xml" />
+    <Content Include="GatewayResources\stubs\DJCommunicator\CloneChartResponse.xml" />
+    <Content Include="GatewayResources\stubs\DJCommunicator\CreateChartResponse.xml" />
+    <Content Include="GatewayResources\stubs\DJCommunicator\DeleteChartResponse.xml" />
+    <Content Include="GatewayResources\stubs\DJCommunicator\EntityList\AddItemsToEntityListRequest.xml" />
+    <Content Include="GatewayResources\stubs\DJCommunicator\EntityList\AddItemsToEntityListResponse.xml" />
+    <Content Include="GatewayResources\stubs\DJCommunicator\EntityList\CreateEntityListRequest.xml" />
+    <Content Include="GatewayResources\stubs\DJCommunicator\EntityList\CreateEntityListResponse.xml" />
+    <Content Include="GatewayResources\stubs\DJCommunicator\EntityList\DeleteEntityListRequest.xml" />
+    <Content Include="GatewayResources\stubs\DJCommunicator\EntityList\DeleteEntityListResponse.xml" />
+    <Content Include="GatewayResources\stubs\DJCommunicator\EntityList\GetEntityListByIdRequest.xml" />
+    <Content Include="GatewayResources\stubs\DJCommunicator\EntityList\GetEntityListByIdResponse.xml" />
+    <Content Include="GatewayResources\stubs\DJCommunicator\EntityList\GetEntityListRequest.xml" />
+    <Content Include="GatewayResources\stubs\DJCommunicator\EntityList\GetEntityListResponse.xml" />
+    <Content Include="GatewayResources\stubs\DJCommunicator\EntityList\RemoveItemsFromEntityListRequest.xml" />
+    <Content Include="GatewayResources\stubs\DJCommunicator\EntityList\RemoveItemsFromEntityListResponse.xml" />
+    <Content Include="GatewayResources\stubs\DJCommunicator\EntityList\RemoveItemsToEntityListRequest.xml" />
+    <Content Include="GatewayResources\stubs\DJCommunicator\EntityList\RemoveItemsToEntityListResponse.xml" />
+    <Content Include="GatewayResources\stubs\DJCommunicator\EntityList\UpdateEntityListRequest.xml" />
+    <Content Include="GatewayResources\stubs\DJCommunicator\EntityList\UpdateEntityListResponse.xml" />
+    <Content Include="GatewayResources\stubs\DJCommunicator\GetChartByIDResponse.xml" />
+    <Content Include="GatewayResources\stubs\DJCommunicator\GetChartListResponse.xml" />
+    <Content Include="GatewayResources\stubs\DJCommunicator\Outlet\CreateOutletResponse.xml" />
+    <Content Include="GatewayResources\stubs\DJCommunicator\Outlet\DeleteOutletResponse.xml" />
+    <Content Include="GatewayResources\stubs\DJCommunicator\Outlet\GetOutletByIdResponse.xml" />
+    <Content Include="GatewayResources\stubs\DJCommunicator\Outlet\GetOutletListDetailResponse.xml" />
+    <Content Include="GatewayResources\stubs\DJCommunicator\Outlet\GetOutletListResponse.xml" />
+    <Content Include="GatewayResources\stubs\DJCommunicator\Outlet\UpdateOutletResponse.xml" />
+    <Content Include="GatewayResources\stubs\DJCommunicator\PreviewChartResponse.xml" />
+    <Content Include="GatewayResources\stubs\DJCommunicator\ProprietaryInfo\CreateProprietaryInfoRequest.xml" />
+    <Content Include="GatewayResources\stubs\DJCommunicator\ProprietaryInfo\CreateProprietaryInfoResponse.xml" />
+    <Content Include="GatewayResources\stubs\DJCommunicator\ProprietaryInfo\DeleteProprietaryInfoRequest.xml" />
+    <Content Include="GatewayResources\stubs\DJCommunicator\ProprietaryInfo\DeleteProprietaryInfoResponse.xml" />
+    <Content Include="GatewayResources\stubs\DJCommunicator\ProprietaryInfo\GetProprietaryInfoByIdRequest.xml" />
+    <Content Include="GatewayResources\stubs\DJCommunicator\ProprietaryInfo\GetProprietaryInfoByIdResponse.xml" />
+    <Content Include="GatewayResources\stubs\DJCommunicator\ProprietaryInfo\UpdateProprietaryInfoRequest.xml" />
+    <Content Include="GatewayResources\stubs\DJCommunicator\ProprietaryInfo\UpdateProprietaryInfoResponse.xml" />
+    <Content Include="GatewayResources\stubs\DJCommunicator\SourceGroups\createSourceGroupRequest.xml" />
+    <Content Include="GatewayResources\stubs\DJCommunicator\SourceGroups\createSourceGroupResponse.xml" />
+    <Content Include="GatewayResources\stubs\DJCommunicator\SourceGroups\deleteSourceGroupRequest.xml" />
+    <Content Include="GatewayResources\stubs\DJCommunicator\SourceGroups\getSourceGroupBySourceGroupIDRequest.xml" />
+    <Content Include="GatewayResources\stubs\DJCommunicator\SourceGroups\getSourceGroupBySourceGroupIDResponse.xml" />
+    <Content Include="GatewayResources\stubs\DJCommunicator\SourceGroups\getSourceGroupBySourceGroupNameRequest.xml" />
+    <Content Include="GatewayResources\stubs\DJCommunicator\SourceGroups\getSourceGroupBySourceGroupNameResponse.xml" />
+    <Content Include="GatewayResources\stubs\DJCommunicator\SourceGroups\getSourceGroupListRequest.xml" />
+    <Content Include="GatewayResources\stubs\DJCommunicator\SourceGroups\getSourceGroupListResponse.xml" />
+    <Content Include="GatewayResources\stubs\DJCommunicator\SourceGroups\updateSourceGroupRequest.xml" />
+    <Content Include="GatewayResources\stubs\DJCommunicator\UpdateChartResponse.xml" />
+    <Content Include="GatewayResources\stubs\DJCommunicator\User\CreateMadeUserRequest.xml" />
+    <Content Include="GatewayResources\stubs\DJCommunicator\User\CreateMadeUserResponse.xml" />
+    <Content Include="GatewayResources\stubs\DJCommunicator\User\GetMadeUserInfoRequest.xml" />
+    <Content Include="GatewayResources\stubs\DJCommunicator\User\GetMadeUserInfoResponse.xml" />
+    <Content Include="GatewayResources\stubs\DJCommunicator\User\GetMadeUserListRequest.xml" />
+    <Content Include="GatewayResources\stubs\DJCommunicator\User\GetMadeUserListResponse.xml" />
+    <Content Include="GatewayResources\stubs\DJCommunicator\User\UpdateMadeUserRequest.xml" />
+    <Content Include="GatewayResources\stubs\DJCommunicator\User\UpdateMadeUserResponse.xml" />
+    <Content Include="GatewayResources\stubs\DJInsightService\GetDatasetFeedDocumentsResponse.xml" />
+    <Content Include="GatewayResources\stubs\DJInsightService\GetDatasetInfoResponse.xml" />
+    <Content Include="GatewayResources\stubs\Edition\Response\CreateEditionResponse.xml" />
+    <Content Include="GatewayResources\stubs\Edition\Response\DeleteEditionResponse.xml" />
+    <Content Include="GatewayResources\stubs\Edition\Response\GetEditionByIdResponse.xml" />
+    <Content Include="GatewayResources\stubs\Edition\Response\GetEditionsByWorkspaceIdResponse.xml" />
+    <Content Include="GatewayResources\stubs\Edition\Response\UpdateEditionPropertiesResponse.xml" />
+    <Content Include="GatewayResources\stubs\Edition\Response\UpdateEditionResponse.xml" />
+    <Content Include="GatewayResources\stubs\EDS\Request\CreateDeliverySettings.xml" />
+    <Content Include="GatewayResources\stubs\EDS\Request\DeleteDeliverySettings.xml" />
+    <Content Include="GatewayResources\stubs\EDS\Request\EnableDeliverySettings.xml" />
+    <Content Include="GatewayResources\stubs\EDS\Request\GetDeliverySettings.xml" />
+    <Content Include="GatewayResources\stubs\EDS\Request\UpdateDeliverySettings.xml" />
+    <Content Include="GatewayResources\stubs\EDS\Response\CreateDeliverySettingsResponse.xml" />
+    <Content Include="GatewayResources\stubs\EDS\Response\CreateDeliverySettingsResponse_Error.xml" />
+    <Content Include="GatewayResources\stubs\EDS\Response\CreateDeliverySettingsResponse_warning.xml" />
+    <Content Include="GatewayResources\stubs\EDS\Response\DeleteDeliverySettingsResponse.xml" />
+    <Content Include="GatewayResources\stubs\EDS\Response\DeleteDeliverySettingsResponse_Error.xml" />
+    <Content Include="GatewayResources\stubs\EDS\Response\EnableDeliverySettingsResponse.xml" />
+    <Content Include="GatewayResources\stubs\EDS\Response\EnableDeliverySettingsResponse_Error.xml" />
+    <Content Include="GatewayResources\stubs\EDS\Response\GetDeliverySettingsResponse.xml" />
+    <Content Include="GatewayResources\stubs\EDS\Response\GetDeliverySettingsResponse_Summary.xml" />
+    <Content Include="GatewayResources\stubs\EDS\Response\UpdateDeliverySettingsResponse.xml" />
+    <Content Include="GatewayResources\stubs\EDS\Response\UpdateDeliverySettingsResponse_Error.xml" />
+    <Content Include="GatewayResources\stubs\EDS\Response\UpdateDeliverySettingsResponse_Warning.xml" />
+    <Content Include="GatewayResources\stubs\EventCalendar\EventSearchResponse.xml" />
+    <Content Include="GatewayResources\stubs\EventCalendar\EventSearchResponse1.xml" />
+    <Content Include="GatewayResources\stubs\EventCalendar\EventSearchResponse2.xml" />
+    <Content Include="GatewayResources\stubs\EventCalendar\EventSearchResponse3.xml" />
+    <Content Include="GatewayResources\stubs\EventCalendar\GetEventFilterResponse.xml" />
+    <Content Include="GatewayResources\stubs\EventCalendar\GetEventUpdatesResponse.xml" />
+    <Content Include="GatewayResources\stubs\EventCalendar\GetUpdatedEventResponse.xml" />
+    <Content Include="GatewayResources\stubs\EventCalendar\SearchEventsResponse.xml" />
+    <Content Include="GatewayResources\stubs\HeatMap\GetHeatMapExRequest.xml" />
+    <Content Include="GatewayResources\stubs\HeatMap\GetHeatMapExResponse.xml" />
+    <Content Include="GatewayResources\stubs\HeatMap\HeatMapRequest.xml" />
+    <Content Include="GatewayResources\stubs\HeatMap\HeatMapResponse.xml" />
+    <Content Include="GatewayResources\stubs\HeatMap\HeatMapResponse1.xml" />
+    <Content Include="GatewayResources\stubs\HeatMap\HeatMapResponse2.xml" />
+    <Content Include="GatewayResources\stubs\HeatMap\HeatResponse.xml" />
+    <Content Include="GatewayResources\stubs\HeatMap\InstrumentCodesRequest.xml" />
+    <Content Include="GatewayResources\stubs\HeatMap\InstrumentCodesResponse.xml" />
+    <Content Include="GatewayResources\stubs\HeatMap\V2_0\HeatMapRequest.xml" />
+    <Content Include="GatewayResources\stubs\HeatMap\V2_0\HeatMapResponse.xml" />
+    <Content Include="GatewayResources\stubs\ODE\Request\GenerateODE.xml" />
+    <Content Include="GatewayResources\stubs\ODE\Response\AddDistributionMailingListResponse.xml" />
+    <Content Include="GatewayResources\stubs\ODE\Response\CheckEmailAddressesAgainstDistributionMailingListsResponse.xml" />
+    <Content Include="GatewayResources\stubs\ODE\Response\DeleteDistributionMailingListResponse.xml" />
+    <Content Include="GatewayResources\stubs\ODE\Response\GenerateODEResponse.xml" />
+    <Content Include="GatewayResources\stubs\ODE\Response\GetEmailAddressesByDistributionMailingListIdResponse.xml" />
+    <Content Include="GatewayResources\stubs\ODE\Response\GetPublicDistributionMailingListsResponse.xml" />
+    <Content Include="GatewayResources\stubs\ODE\Response\UpdateDistributionMailingListResponse.xml" />
+    <Content Include="GatewayResources\stubs\PCM\RegionalMap\PCMRegionalMapRequest.xml" />
+    <Content Include="GatewayResources\stubs\PCM\RegionalMap\PCMRegionalMapResponse.xml" />
+    <Content Include="GatewayResources\stubs\PCM\Search\PCMGetCollectionHeadlinesByCodeRequest.xml" />
+    <Content Include="GatewayResources\stubs\PCM\Search\PCMGetCollectionHeadlinesByCodeResponse.xml" />
+    <Content Include="GatewayResources\stubs\PCM\SummaryRegionalMap\PCMSummaryRegionalMapRequest.xml" />
+    <Content Include="GatewayResources\stubs\PCM\SummaryRegionalMap\PCMSummaryRegionalMapResponse.xml" />
+    <Content Include="GatewayResources\stubs\RealTimeAlerts\Response\DeleteFolderByIDResponse.xml" />
+    <Content Include="GatewayResources\stubs\RealTimeAlerts\Response\DeleteFolderByNameResponse.xml" />
+    <Content Include="GatewayResources\stubs\RealTimeAlerts\Response\GetFolderByIDResponse.xml" />
+    <Content Include="GatewayResources\stubs\RealTimeAlerts\Response\GetFolderByNameResponse.xml" />
+    <Content Include="GatewayResources\stubs\RealTimeAlerts\Response\GetFolderListResponse.xml" />
+    <Content Include="GatewayResources\stubs\RealTimeAlerts\Response\ReviseFolderByIDResponse.xml" />
+    <Content Include="GatewayResources\stubs\RealTimeAlerts\Response\ReviseFolderByNameResponse.xml" />
+    <Content Include="GatewayResources\stubs\registration\DaEditor\AddAccountVirtualItemRequest.xml" />
+    <Content Include="GatewayResources\stubs\registration\DaEditor\AddAccountVirtualItemsRequest.xml" />
+    <Content Include="GatewayResources\stubs\registration\DaEditor\AddAccountVirtualItemsResponse.xml" />
+    <Content Include="GatewayResources\stubs\registration\DaEditor\AddUserVirtualItemsRequest.xml" />
+    <Content Include="GatewayResources\stubs\registration\DaEditor\AddUserVirtualItemsResponse.xml" />
+    <Content Include="GatewayResources\stubs\registration\DaEditor\DeleteAccountVirtualItemRequest.xml" />
+    <Content Include="GatewayResources\stubs\registration\DaEditor\DeleteAccountVirtualItemResponse.xml" />
+    <Content Include="GatewayResources\stubs\registration\DaEditor\DeleteUserVirtualItemsRequest.xml" />
+    <Content Include="GatewayResources\stubs\registration\DaEditor\DeleteUserVirtualItemsResponse.xml" />
+    <Content Include="GatewayResources\stubs\registration\DaEditor\GetAccountVirtualItemsRequest.xml" />
+    <Content Include="GatewayResources\stubs\registration\DaEditor\GetAccountVirtualItemsResponse.xml" />
+    <Content Include="GatewayResources\stubs\registration\DaEditor\GetUserVirtualItemsRequest.xml" />
+    <Content Include="GatewayResources\stubs\registration\DaEditor\GetUserVirtualItemsResponse.xml" />
+    <Content Include="GatewayResources\stubs\registration\DaEditor\SearchByAccountRequest.xml" />
+    <Content Include="GatewayResources\stubs\registration\DaEditor\SearchByAccountResponse.xml" />
+    <Content Include="GatewayResources\stubs\registration\DaEditor\SearchByUserRequest.xml" />
+    <Content Include="GatewayResources\stubs\registration\DaEditor\SearchByUserResponse.xml" />
+    <Content Include="GatewayResources\stubs\registration\flex\IsAccountEnabledForUpgrade.xml" />
+    <Content Include="GatewayResources\stubs\registration\flex\UpgradeUser.xml" />
+    <Content Include="GatewayResources\stubs\registration\GetUserInfo\GetUserInfoRequest.xml" />
+    <Content Include="GatewayResources\stubs\registration\GetUserInfo\GetUserInfoResponse.xml" />
+    <Content Include="GatewayResources\stubs\RelationshipMapping\Response\AddAffiliationResponse.xml" />
+    <Content Include="GatewayResources\stubs\RelationshipMapping\Response\AddBiographyToAffiliationResponse.xml" />
+    <Content Include="GatewayResources\stubs\RelationshipMapping\Response\DeleteAffiliationByTypeIdentifierResponse.xml" />
+    <Content Include="GatewayResources\stubs\RelationshipMapping\Response\DeleteAffiliationResponse.xml" />
+    <Content Include="GatewayResources\stubs\RelationshipMapping\Response\DeleteAllAffiliationsResponse.xml" />
+    <Content Include="GatewayResources\stubs\RelationshipMapping\Response\DeleteBiographyFromAffiliationResponse.xml" />
+    <Content Include="GatewayResources\stubs\RelationshipMapping\Response\DeleteBiographyResponse.xml" />
+    <Content Include="GatewayResources\stubs\RelationshipMapping\Response\GetAffiliationByIdResponse.xml" />
+    <Content Include="GatewayResources\stubs\RelationshipMapping\Response\GetAffiliationListIndexResponse.xml" />
+    <Content Include="GatewayResources\stubs\RelationshipMapping\Response\GetAffiliationListResponse.xml" />
+    <Content Include="GatewayResources\stubs\RelationshipMapping\Response\GetBiographyResponse.xml" />
+    <Content Include="GatewayResources\stubs\RelationshipMapping\Response\MatchOrganizationResponse.xml" />
+    <Content Include="GatewayResources\stubs\RelationshipMapping\Response\PerformAffiliationMatchResponse.xml" />
+    <Content Include="GatewayResources\stubs\RelationshipMapping\Response\PerformAffiliationSearchResponse.xml" />
+    <Content Include="GatewayResources\stubs\RelationshipMapping\Response\PerformRelationshipMappingResponse.xml" />
+    <Content Include="GatewayResources\stubs\RelationshipMapping\Response\UpdateAffiliationResponse.xml" />
+    <Content Include="GatewayResources\stubs\RelationshipMapping\Response\UpdateBiographyResponse.xml" />
+    <Content Include="GatewayResources\stubs\responses\GetMultipleNewsstandSectionHeadlinesResponse.xml" />
+    <Content Include="GatewayResources\stubs\RTQueue\CreateQueue.xml" />
+    <Content Include="GatewayResources\stubs\RTQueue\CreateQueueResponse.xml" />
+    <Content Include="GatewayResources\stubs\RTQueue\GetQueueContent.xml" />
+    <Content Include="GatewayResources\stubs\RTQueue\GetQueueContentResponse.xml" />
+    <Content Include="GatewayResources\stubs\RTQueue\GetQueueRecordResponse.xml" />
+    <Content Include="GatewayResources\stubs\RTQueue\GetSharedQueueContent.xml" />
+    <Content Include="GatewayResources\stubs\RTQueue\GetSharedQueueContentResponse.xml" />
+    <Content Include="GatewayResources\stubs\RTQueue\GetSharedTopicList.xml" />
+    <Content Include="GatewayResources\stubs\RTQueue\GetSharedTopicListResponse.xml" />
+    <Content Include="GatewayResources\stubs\RTQueue\SubscribeToQueueFeed.xml" />
+    <Content Include="GatewayResources\stubs\RTQueue\SubscribeToQueueFeedResponse.xml" />
+    <Content Include="GatewayResources\stubs\RTQueue\UnsubscribeFromQueueFeed.xml" />
+    <Content Include="GatewayResources\stubs\RTQueue\UnsubscribeFromQueueFeedResponse.xml" />
+    <Content Include="GatewayResources\stubs\SaveSearch\Response\AddSaveSearchToGroupResponse.xml" />
+    <Content Include="GatewayResources\stubs\SaveSearch\Response\DeleteSaveSearchResponse.xml" />
+    <Content Include="GatewayResources\stubs\SaveSearch\Response\RemoveSaveSearchFromGroupResponse.xml" />
+    <Content Include="GatewayResources\stubs\Screening\Response\GetCompanyIndustryComparisonResponse.xml" />
+    <Content Include="GatewayResources\stubs\Screening\Response\getCompanyPeerComparisonExResponse.xml" />
+    <Content Include="GatewayResources\stubs\Screening\Response\GetIndustryAveragesResponse.xml" />
+    <Content Include="GatewayResources\stubs\Screening\Response\GetIndustrySalesByTierResponse.xml" />
+    <Content Include="GatewayResources\stubs\Screening\Response\GetMultipleReportListResponse.xml" />
+    <Content Include="GatewayResources\stubs\Syndication\DeleteSyndicationFeedRequest.xml" />
+    <Content Include="GatewayResources\stubs\Syndication\DeleteSyndicationFeedResponse.xml" />
+    <Content Include="GatewayResources\stubs\Syndication\GetSyndicationHeadlinesRequest.xml" />
+    <Content Include="GatewayResources\stubs\Syndication\GetSyndicationHeadlinesResponse.xml" />
+    <Content Include="GatewayResources\stubs\Syndication\ValidateSyndicationFeedRequest.xml" />
+    <Content Include="GatewayResources\stubs\Syndication\ValidateSyndicationFeedResponse.xml" />
+    <Content Include="GatewayResources\stubs\TopicCenterAndSMSManagement\Request\GetAllTopicCentersRequest.xml" />
+    <Content Include="GatewayResources\stubs\TopicCenterAndSMSManagement\Request\GetAllWSPListRequest.xml" />
+    <Content Include="GatewayResources\stubs\TopicCenterAndSMSManagement\Request\GetSMSListRequest.xml" />
+    <Content Include="GatewayResources\stubs\TopicCenterAndSMSManagement\Request\GetTopicCenterListRequest.xml" />
+    <Content Include="GatewayResources\stubs\TopicCenterAndSMSManagement\Request\SaveSMSRequest.xml" />
+    <Content Include="GatewayResources\stubs\TopicCenterAndSMSManagement\Request\SubscribeToSMSRequest.xml" />
+    <Content Include="GatewayResources\stubs\TopicCenterAndSMSManagement\Request\SubscribeToTopicCenterRequest.xml" />
+    <Content Include="GatewayResources\stubs\TopicCenterAndSMSManagement\Request\UnSubscribeToSMSRequest.xml" />
+    <Content Include="GatewayResources\stubs\TopicCenterAndSMSManagement\Request\UnSubscribeToTopicCenterRequest.xml" />
+    <Content Include="GatewayResources\stubs\TopicCenterAndSMSManagement\Response\GetAllTopicCentersResponse.xml" />
+    <Content Include="GatewayResources\stubs\TopicCenterAndSMSManagement\Response\GetAllWSPListResponse.xml" />
+    <Content Include="GatewayResources\stubs\TopicCenterAndSMSManagement\Response\GetSMSListResponse.xml" />
+    <Content Include="GatewayResources\stubs\TopicCenterAndSMSManagement\Response\GetTopicCenterListResponse.xml" />
+    <Content Include="GatewayResources\stubs\TopicCenterAndSMSManagement\Response\SaveSMSResponse.xml" />
+    <Content Include="GatewayResources\stubs\TopicCenterAndSMSManagement\Response\SubscribeToSMSResponse.xml" />
+    <Content Include="GatewayResources\stubs\TopicCenterAndSMSManagement\Response\SubscribeToTopicCenterResponse.xml" />
+    <Content Include="GatewayResources\stubs\TopicCenterAndSMSManagement\Response\UnSubscribeToSMSResponse.xml" />
+    <Content Include="GatewayResources\stubs\TopicCenterAndSMSManagement\Response\UnSubscribeToTopicCenterResponse.xml" />
+    <Content Include="GatewayResources\stubs\track\Request\CheckFolderNameExistRequest.xml" />
+    <Content Include="GatewayResources\stubs\track\Request\CheckFolderNameExistsRequest.xml" />
+    <Content Include="GatewayResources\stubs\track\Response\CheckFolderNameExistsResponse.xml" />
+    <Content Include="GatewayResources\stubs\track\Response\DeletedFoldersResponse.xml" />
+    <Content Include="GatewayResources\stubs\track\Response\GetFolderHeadlinesResponse.xml" />
+    <Content Include="GatewayResources\stubs\Trigger\2_0\Response\CountTriggersResponse.xml" />
+    <Content Include="GatewayResources\stubs\Trigger\2_0\Response\GetTriggerDetailsResponse.xml" />
+    <Content Include="GatewayResources\stubs\Trigger\2_0\Response\GetTriggerTypesResponse.xml" />
+    <Content Include="GatewayResources\stubs\Trigger\2_0\Response\SearchTriggersResponse.xml" />
+    <Content Include="GatewayResources\stubs\Trigger\Response\GetDetailResponsev1_1.xml" />
+    <Content Include="GatewayResources\stubs\Trigger\Response\GetTriggerTypeResponsev1_1.xml" />
+    <Content Include="GatewayResources\stubs\Trigger\Response\PerformTriggerSearchResponsev1_1.xml" />
+    <Content Include="GatewayResources\xslt\archive\CreateBillingRecord_Response.xslt" />
+    <Content Include="GatewayResources\xslt\archive\GetArchiveEmailWithLimit_V2_0_Response.xslt" />
+    <Content Include="GatewayResources\xslt\archive\GetArchiveWithLimit_V2_0_Response.xslt" />
+    <Content Include="GatewayResources\xslt\archive\GetArticle2_Response.xslt" />
+    <Content Include="GatewayResources\xslt\archive\GetArticleEmailWithLimit2_Response.xslt" />
+    <Content Include="GatewayResources\xslt\archive\GetArticleResponse.xslt" />
+    <Content Include="GatewayResources\xslt\archive\GetArticleUrl.xslt" />
+    <Content Include="GatewayResources\xslt\archive\GetArticleUrlResponse.xslt" />
+    <Content Include="GatewayResources\xslt\archive\GetArticleWithDelayedBilling_Response.xslt" />
+    <Content Include="GatewayResources\xslt\archive\GetArticleWithLimit2_Response.xslt" />
+    <Content Include="GatewayResources\xslt\archive\GetArticle_V2_0_Response.xslt" />
+    <Content Include="GatewayResources\xslt\archive\GetAutoCodeXmlMessageResponse.xslt" />
+    <Content Include="GatewayResources\xslt\archive\GetPrivateArticle2_Response.xslt" />
+    <Content Include="GatewayResources\xslt\archive\GetRawArticleResponse.xslt" />
+    <Content Include="GatewayResources\xslt\archive\GetValidateAndBillingDataResponse.xslt" />
+    <Content Include="GatewayResources\xslt\archive\GetWebArticleUrl.xslt" />
+    <Content Include="GatewayResources\xslt\archive\GetWebArticleUrlResponse.xslt" />
+    <Content Include="GatewayResources\xslt\archive\New\GetArchiveEmailWithLimit_V2_0_Response.xslt" />
+    <Content Include="GatewayResources\xslt\archive\New\GetArchiveWithLimit_V2_0_Response.xslt" />
+    <Content Include="GatewayResources\xslt\archive\New\GetArticleResponse.xslt" />
+    <Content Include="GatewayResources\xslt\archive\New\GetArticleUrl.xslt" />
+    <Content Include="GatewayResources\xslt\archive\New\GetArticleUrlResponse.xslt" />
+    <Content Include="GatewayResources\xslt\archive\New\GetArticle_V2_0_Response.xslt" />
+    <Content Include="GatewayResources\xslt\archive\New\GetAutoCodeXmlMessageResponse.xslt" />
+    <Content Include="GatewayResources\xslt\archive\New\GetRawArticleResponse.xslt" />
+    <Content Include="GatewayResources\xslt\archive\New\GetValidateAndBillingDataResponse.xslt" />
+    <Content Include="GatewayResources\xslt\archive\New\GetWebArticleUrl.xslt" />
+    <Content Include="GatewayResources\xslt\archive\New\GetWebArticleUrlResponse.xslt" />
+    <Content Include="GatewayResources\xslt\archive\New\ValidateAndBillingResponse.xslt" />
+    <Content Include="GatewayResources\xslt\archive\old\GetArchiveEmailWithLimit_V2_0_Response.xslt" />
+    <Content Include="GatewayResources\xslt\archive\old\GetArchiveWithLimit_V2_0_Response.xslt" />
+    <Content Include="GatewayResources\xslt\archive\old\GetArticleResponse.xslt" />
+    <Content Include="GatewayResources\xslt\archive\old\GetArticleUrl.xslt" />
+    <Content Include="GatewayResources\xslt\archive\old\GetArticleUrlResponse.xslt" />
+    <Content Include="GatewayResources\xslt\archive\old\GetArticle_V2_0_Response.xslt" />
+    <Content Include="GatewayResources\xslt\archive\old\GetAutoCodeXmlMessageResponse.xslt" />
+    <Content Include="GatewayResources\xslt\archive\old\GetRawArticleResponse.xslt" />
+    <Content Include="GatewayResources\xslt\archive\old\GetValidateAndBillingDataResponse.xslt" />
+    <Content Include="GatewayResources\xslt\archive\old\GetWebArticleUrl.xslt" />
+    <Content Include="GatewayResources\xslt\archive\old\GetWebArticleUrlResponse.xslt" />
+    <Content Include="GatewayResources\xslt\archive\old\ValidateAndBillingResponse.xslt" />
+    <Content Include="GatewayResources\xslt\archive\ValidateAndBillingResponse.xslt" />
+    <Content Include="GatewayResources\xslt\assets\AssetUtility.xslt" />
+    <Content Include="GatewayResources\xslt\assets\BaseAssets.xslt" />
+    <Content Include="GatewayResources\xslt\assets\BaseAssetsNew.xslt" />
+    <Content Include="GatewayResources\xslt\assets\BaseAssets_old.xslt" />
+    <Content Include="GatewayResources\xslt\assets\companyList\AddCompanyListRequest.xslt" />
+    <Content Include="GatewayResources\xslt\assets\companyList\AddCompanyListResponse.xslt" />
+    <Content Include="GatewayResources\xslt\assets\companyList\AddCompanyListToGroupRequest.xslt" />
+    <Content Include="GatewayResources\xslt\assets\companyList\AddCompanyListToGroupResponse.xslt" />
+    <Content Include="GatewayResources\xslt\assets\companyList\DeleteCompanyListsRequest.xslt" />
+    <Content Include="GatewayResources\xslt\assets\companyList\DeleteCompanyListsResponse.xslt" />
+    <Content Include="GatewayResources\xslt\assets\companyList\GetCompanyListsAccountRequest.xslt" />
+    <Content Include="GatewayResources\xslt\assets\companyList\GetCompanyListsAccountResponse.xslt" />
+    <Content Include="GatewayResources\xslt\assets\companyList\GetCompanyListsByGroupRequest.xslt" />
+    <Content Include="GatewayResources\xslt\assets\companyList\GetCompanyListsByGroupResponse.xslt" />
+    <Content Include="GatewayResources\xslt\assets\companyList\GetCompanyListsByIDRequest.xslt" />
+    <Content Include="GatewayResources\xslt\assets\companyList\GetCompanyListsByIDResponse.xslt" />
+    <Content Include="GatewayResources\xslt\assets\companyList\GetCompanyListsUserRequest.xslt" />
+    <Content Include="GatewayResources\xslt\assets\companyList\GetCompanyListsUserResponse.xslt" />
+    <Content Include="GatewayResources\xslt\assets\companyList\RemoveCompanyListFromGroupRequest.xslt" />
+    <Content Include="GatewayResources\xslt\assets\companyList\RemoveCompanyListFromGroupResponse.xslt" />
+    <Content Include="GatewayResources\xslt\assets\companyList\UpdateCompanyListRequest.xslt" />
+    <Content Include="GatewayResources\xslt\assets\companyList\UpdateCompanyListResponse.xslt" />
+    <Content Include="GatewayResources\xslt\assets\companyList\V2_0\AddListToGroupRequest.xslt" />
+    <Content Include="GatewayResources\xslt\assets\companyList\V2_0\AddListToGroupResponse.xslt" />
+    <Content Include="GatewayResources\xslt\assets\companyList\V2_0\CreateListRequest.xslt" />
+    <Content Include="GatewayResources\xslt\assets\companyList\V2_0\CreateListResponse.xslt" />
+    <Content Include="GatewayResources\xslt\assets\companyList\V2_0\DeleteListRequest.xslt" />
+    <Content Include="GatewayResources\xslt\assets\companyList\V2_0\DeleteListResponse.xslt" />
+    <Content Include="GatewayResources\xslt\assets\companyList\V2_0\GetListByIDRequest.xslt" />
+    <Content Include="GatewayResources\xslt\assets\companyList\V2_0\GetListByIDResponse.xslt" />
+    <Content Include="GatewayResources\xslt\assets\companyList\V2_0\RemoveListFromGroupRequest.xslt" />
+    <Content Include="GatewayResources\xslt\assets\companyList\V2_0\RemoveListFromGroupResponse.xslt" />
+    <Content Include="GatewayResources\xslt\assets\companyList\V2_0\UpdateListRequest.xslt" />
+    <Content Include="GatewayResources\xslt\assets\companyList\V2_0\UpdateListResponse.xslt" />
+    <Content Include="GatewayResources\xslt\assets\GenericReports.xslt" />
+    <Content Include="GatewayResources\xslt\assets\GetAssetResponseFilter.xslt" />
+    <Content Include="GatewayResources\xslt\assets\Pages\GetPagesListResponseFilter.xslt" />
+    <Content Include="GatewayResources\xslt\assets\saveSearch\AddSaveSearchToGroupRequest.xslt" />
+    <Content Include="GatewayResources\xslt\assets\saveSearch\AddSaveSearchToGroupResponse.xslt" />
+    <Content Include="GatewayResources\xslt\assets\saveSearch\DeleteSaveSearchRequest.xslt" />
+    <Content Include="GatewayResources\xslt\assets\saveSearch\DeleteSaveSearchResponse.xslt" />
+    <Content Include="GatewayResources\xslt\assets\saveSearch\GetSaveSearchByIDRequest.xslt" />
+    <Content Include="GatewayResources\xslt\assets\saveSearch\GetSaveSearchByIDResponse.xslt" />
+    <Content Include="GatewayResources\xslt\assets\saveSearch\GetSaveSearchsAccountRequest.xslt" />
+    <Content Include="GatewayResources\xslt\assets\saveSearch\GetSaveSearchsAccountResponse.xslt" />
+    <Content Include="GatewayResources\xslt\assets\saveSearch\GetSaveSearchsGroupRequest.xslt" />
+    <Content Include="GatewayResources\xslt\assets\saveSearch\GetSaveSearchsGroupResponse.xslt" />
+    <Content Include="GatewayResources\xslt\assets\saveSearch\GetSaveSearchsUserRequest.xslt" />
+    <Content Include="GatewayResources\xslt\assets\saveSearch\GetSaveSearchsUserResponse.xslt" />
+    <Content Include="GatewayResources\xslt\assets\saveSearch\RemoveSaveSearchFromGroupRequest.xslt" />
+    <Content Include="GatewayResources\xslt\assets\saveSearch\RemoveSaveSearchFromGroupResponse.xslt" />
+    <Content Include="GatewayResources\xslt\assets\SourceList\AddSourceListRequest.xslt" />
+    <Content Include="GatewayResources\xslt\assets\SourceList\AddSourceListResponse.xslt" />
+    <Content Include="GatewayResources\xslt\assets\SourceList\AddSourceListToGroupRequest.xslt" />
+    <Content Include="GatewayResources\xslt\assets\SourceList\AddSourceListToGroupResponse.xslt" />
+    <Content Include="GatewayResources\xslt\assets\SourceList\DeleteSourceListsRequest.xslt" />
+    <Content Include="GatewayResources\xslt\assets\SourceList\DeleteSourceListsResponse.xslt" />
+    <Content Include="GatewayResources\xslt\assets\SourceList\GetSourceListsAccountRequest.xslt" />
+    <Content Include="GatewayResources\xslt\assets\SourceList\GetSourceListsAccountResponse.xslt" />
+    <Content Include="GatewayResources\xslt\assets\SourceList\GetSourceListsByGroupRequest.xslt" />
+    <Content Include="GatewayResources\xslt\assets\SourceList\GetSourceListsByGroupResponse.xslt" />
+    <Content Include="GatewayResources\xslt\assets\SourceList\GetSourceListsByIDRequest.xslt" />
+    <Content Include="GatewayResources\xslt\assets\SourceList\GetSourceListsByIDResponse.xslt" />
+    <Content Include="GatewayResources\xslt\assets\SourceList\GetSourceListsUserRequest.xslt" />
+    <Content Include="GatewayResources\xslt\assets\SourceList\GetSourceListsUserResponse.xslt" />
+    <Content Include="GatewayResources\xslt\assets\SourceList\RemoveSourceListFromGroupRequest.xslt" />
+    <Content Include="GatewayResources\xslt\assets\SourceList\RemoveSourceListFromGroupResponse.xslt" />
+    <Content Include="GatewayResources\xslt\assets\SourceList\UpdateSourceListRequest.xslt" />
+    <Content Include="GatewayResources\xslt\assets\SourceList\UpdateSourceListResponse.xslt" />
+    <Content Include="GatewayResources\xslt\billing\GenerateBillingRecord.xslt" />
+    <Content Include="GatewayResources\xslt\billing\GenerateBillingRecordResponse.xslt" />
+    <Content Include="GatewayResources\xslt\common\AddNamespace.xslt" />
+    <Content Include="GatewayResources\xslt\common\AddNamespaceWithExceptions.xslt" />
+    <Content Include="GatewayResources\xslt\common\AddRediHeader.xslt" />
+    <Content Include="GatewayResources\xslt\common\commonDistDocElements.xslt" />
+    <Content Include="GatewayResources\xslt\common\commonElements.xslt" />
+    <Content Include="GatewayResources\xslt\common\email_auth_common_elements.xslt" />
+    <Content Include="GatewayResources\xslt\common\FolderSharing.xslt" />
+    <Content Include="GatewayResources\xslt\common\RemoveNamespace.xslt" />
+    <Content Include="GatewayResources\xslt\common\RemoveNamespaceWithExceptions.xslt" />
+    <Content Include="GatewayResources\xslt\common\RemoveSoapEnv.xslt" />
+    <Content Include="GatewayResources\xslt\common\RemoveSoapEnvAndNamespace.xslt" />
+    <Content Include="GatewayResources\xslt\common\ReplyItem.xslt" />
+    <Content Include="GatewayResources\xslt\common\utility.xslt" />
+    <Content Include="GatewayResources\xslt\creditcard\AddCustomerResponse.xslt" />
+    <Content Include="GatewayResources\xslt\creditcard\GetACPTokenReponse.xslt" />
+    <Content Include="GatewayResources\xslt\creditcard\GetACPTokenResponse.xslt" />
+    <Content Include="GatewayResources\xslt\creditcard\GetCardInfoResponse.xslt" />
+    <Content Include="GatewayResources\xslt\customersrv\BaseFlexLicensedAccountsResponse.xslt" />
+    <Content Include="GatewayResources\xslt\customersrv\BaseFlexLicensingEmptyResponse.xslt" />
+    <Content Include="GatewayResources\xslt\customersrv\ConvertUpgradedUsersToOfficialResponse.xslt" />
+    <Content Include="GatewayResources\xslt\customersrv\DeleteRedirectAttributeByKeyResponse.xslt" />
+    <Content Include="GatewayResources\xslt\customersrv\DowngradeUsersResponse.xslt" />
+    <Content Include="GatewayResources\xslt\customersrv\GetExternalReaderAccountsResponse.xslt" />
+    <Content Include="GatewayResources\xslt\customersrv\GetRedirectAttributeByKeyResponse.xslt" />
+    <Content Include="GatewayResources\xslt\customersrv\GetUpgradedUsersResponse.xslt" />
+    <Content Include="GatewayResources\xslt\customersrv\SetRedirectAttributeByKeyResponse.xslt" />
+    <Content Include="GatewayResources\xslt\customersrv\UpdateExternalReaderAccountResponse.xslt" />
+    <Content Include="GatewayResources\xslt\CVD\RemoveRoot.xslt" />
+    <Content Include="GatewayResources\xslt\emaildeliverysettings\AddWhatsNewSettingsResponse.xslt" />
+    <Content Include="GatewayResources\xslt\emaildeliverysettings\DeleteWhatsNewSettingsResponse.xslt" />
+    <Content Include="GatewayResources\xslt\emaildeliverysettings\GetWhatsNewSettingsResponse.xslt" />
+    <Content Include="GatewayResources\xslt\externalreader\AddClientProfileResponse.xslt" />
+    <Content Include="GatewayResources\xslt\externalreader\DeleteClientProfileResponse.xslt" />
+    <Content Include="GatewayResources\xslt\externalreader\DeleteUserResponse.xslt" />
+    <Content Include="GatewayResources\xslt\externalreader\GetClientProfileByIdResponse.xslt" />
+    <Content Include="GatewayResources\xslt\externalreader\GetClientProfilesResponse.xslt" />
+    <Content Include="GatewayResources\xslt\externalreader\GetProfile.xslt" />
+    <Content Include="GatewayResources\xslt\externalreader\GetUsersResponse.xslt" />
+    <Content Include="GatewayResources\xslt\externalreader\SendEmailToUserResponse.xslt" />
+    <Content Include="GatewayResources\xslt\externalreader\UpdateClientProfilePropertiesResponse.xslt" />
+    <Content Include="GatewayResources\xslt\externalreader\ValidateTokenResponse.xslt" />
+    <Content Include="GatewayResources\xslt\externalreader\ValidateUserResponse.xslt" />
+    <Content Include="GatewayResources\xslt\index\ContentSearchResponse.xslt" />
+    <Content Include="GatewayResources\xslt\index\ContinueIndexSearchResponse.xslt" />
+    <Content Include="GatewayResources\xslt\index\PerformIndexSearchResponse.xslt" />
+    <Content Include="GatewayResources\xslt\mds\CleanXML.xslt" />
+    <Content Include="GatewayResources\xslt\mds\GetHistoricalDataByDataPointsExResponse.xslt" />
+    <Content Include="GatewayResources\xslt\mds\GetHistoricalDataByDataPointsResponse.xslt" />
+    <Content Include="GatewayResources\xslt\mds\GetHistoricalDataByDateRangeExResponse.xslt" />
+    <Content Include="GatewayResources\xslt\mds\GetHistoricalDataByDateRangeResponse.xslt" />
+    <Content Include="GatewayResources\xslt\mds\GetHistoricalDataByTimePeriodExResponse.xslt" />
+    <Content Include="GatewayResources\xslt\mds\GetHistoricalDataByTimePeriodResponse.xslt" />
+    <Content Include="GatewayResources\xslt\mds\GetHistoricalDataExResponse.xslt" />
+    <Content Include="GatewayResources\xslt\mds\GetHistoricalDataResponse.xslt" />
+    <Content Include="GatewayResources\xslt\mds\GetQuoteExResponse.xslt" />
+    <Content Include="GatewayResources\xslt\mds\GetQuoteResponse.xslt" />
+    <Content Include="GatewayResources\xslt\mds\GetQuoteWithFundamentals.xslt" />
+    <Content Include="GatewayResources\xslt\membership\AuthorizeUserResponse.xslt" />
+    <Content Include="GatewayResources\xslt\membership\AuthorizeUserWithSameSessionResponse.xslt" />
+    <Content Include="GatewayResources\xslt\membership\CheckRedirectsResponse.xslt" />
+    <Content Include="GatewayResources\xslt\membership\CommonAuth.xslt" />
+    <Content Include="GatewayResources\xslt\membership\CommonInfo.xslt" />
+    <Content Include="GatewayResources\xslt\membership\CreateTokenResponse.xslt" />
+    <Content Include="GatewayResources\xslt\membership\DeleteTokenResponse.xslt" />
+    <Content Include="GatewayResources\xslt\membership\EncryptCurrentUserCredentialsResponse.xslt" />
+    <Content Include="GatewayResources\xslt\membership\GetAccountUsersResponse.xslt" />
+    <Content Include="GatewayResources\xslt\membership\GetClientCodeResponse.xslt" />
+    <Content Include="GatewayResources\xslt\membership\GetEncryptedCredentialsForCurrentSessionResponse.xslt" />
+    <Content Include="GatewayResources\xslt\membership\GetEncryptedCredentialsNoSessionResponse.xslt" />
+    <Content Include="GatewayResources\xslt\membership\GetEncryptedCredentialsResponse.xslt" />
+    <Content Include="GatewayResources\xslt\membership\GetItemResponse.xslt" />
+    <Content Include="GatewayResources\xslt\membership\GetNextAccountUsersResponse.xslt" />
+    <Content Include="GatewayResources\xslt\membership\GetProductAccessTokenWithUrlResponse.xslt" />
+    <Content Include="GatewayResources\xslt\membership\GetSingleSignOnTokenResponse.xslt" />
+    <Content Include="GatewayResources\xslt\membership\GetTokenDataResponse.xslt" />
+    <Content Include="GatewayResources\xslt\membership\GetUserAuthorizationsNoCacheResponse.xslt" />
+    <Content Include="GatewayResources\xslt\membership\GetUserAuthorizationsNoSessionResponse.xslt" />
+    <Content Include="GatewayResources\xslt\membership\GetUserProfileResponse.xslt" />
+    <Content Include="GatewayResources\xslt\membership\GetWSJIETokenResponse.xslt" />
+    <Content Include="GatewayResources\xslt\membership\LoginWithSingleSignOnTokenExResponse.xslt" />
+    <Content Include="GatewayResources\xslt\membership\LoginWithSingleSignOnTokenResponse.xslt" />
+    <Content Include="GatewayResources\xslt\membership\SetSessionTimeoutResponse.xslt" />
+    <Content Include="GatewayResources\xslt\membership\SetSingleSignOnTokenResponse.xslt" />
+    <Content Include="GatewayResources\xslt\membership\UpdateTokenDataResponse.xslt" />
+    <Content Include="GatewayResources\xslt\membership\ValidateClientCodeResponse.xslt" />
+    <Content Include="GatewayResources\xslt\membership\ValidateTokenResponse.xslt" />
+    <Content Include="GatewayResources\xslt\metadata\Request.xslt" />
+    <Content Include="GatewayResources\xslt\metadata\Response.xslt" />
+    <Content Include="GatewayResources\xslt\metrics\MetricsDataResponse.xslt" />
+    <Content Include="GatewayResources\xslt\newsstand\GetMultipleNewsstandSectionHeadlinesResponse.xslt" />
+    <Content Include="GatewayResources\xslt\newsstand\GetNewsstandHeadlines.xslt" />
+    <Content Include="GatewayResources\xslt\newsstand\GetNewsstandHeadlinesResponse.xslt" />
+    <Content Include="GatewayResources\xslt\newsstand\GetNewsstandSections.xslt" />
+    <Content Include="GatewayResources\xslt\newsstand\GetNewsstandSectionsResponse.xslt" />
+    <Content Include="GatewayResources\xslt\newsstand\GetNewsstandSourcesResponse.xslt" />
+    <Content Include="GatewayResources\xslt\ode\DistributionListAddResponse.xslt" />
+    <Content Include="GatewayResources\xslt\ode\DistributionListCheckListResponse.xslt" />
+    <Content Include="GatewayResources\xslt\ode\DistributionListDeleteResponse.xslt" />
+    <Content Include="GatewayResources\xslt\ode\DistributionListGetListResponse.xslt" />
+    <Content Include="GatewayResources\xslt\ode\DistributionListGetResponse.xslt" />
+    <Content Include="GatewayResources\xslt\ode\DistributionListUpdateResponse.xslt" />
+    <Content Include="GatewayResources\xslt\ode\EmailNewsletterResponse.xslt" />
+    <Content Include="GatewayResources\xslt\ode\OnDemandEmail.xslt" />
+    <Content Include="GatewayResources\xslt\ode\OnDemandEmailNoAuth.xslt" />
+    <Content Include="GatewayResources\xslt\ode\OnDemandEmailResponse.xslt" />
+    <Content Include="GatewayResources\xslt\PlatformCache\DeleteItem.xslt" />
+    <Content Include="GatewayResources\xslt\PlatformCache\DeleteItemResponse.xslt" />
+    <Content Include="GatewayResources\xslt\PlatformCache\GetItem.xslt" />
+    <Content Include="GatewayResources\xslt\PlatformCache\GetItemInfo.xslt" />
+    <Content Include="GatewayResources\xslt\PlatformCache\GetItemInfoResponse.xslt" />
+    <Content Include="GatewayResources\xslt\PlatformCache\GetItemResponse.xslt" />
+    <Content Include="GatewayResources\xslt\PlatformCache\GetItems.xslt" />
+    <Content Include="GatewayResources\xslt\PlatformCache\GetItemsInfo.xslt" />
+    <Content Include="GatewayResources\xslt\PlatformCache\GetItemsInfoResponse.xslt" />
+    <Content Include="GatewayResources\xslt\PlatformCache\GetItemsResponse.xslt" />
+    <Content Include="GatewayResources\xslt\PlatformCache\StoreItem.xslt" />
+    <Content Include="GatewayResources\xslt\PlatformCache\StoreItemResponse.xslt" />
+    <Content Include="GatewayResources\xslt\pnp\Widget.xslt" />
+    <Content Include="GatewayResources\xslt\pnp\WidgetResponse.xslt" />
+    <Content Include="GatewayResources\xslt\preference\AddCategoryResponse.xslt" />
+    <Content Include="GatewayResources\xslt\preference\AddGroupsResponse.xslt" />
+    <Content Include="GatewayResources\xslt\preference\AddItemResponse.xslt" />
+    <Content Include="GatewayResources\xslt\preference\AddItemsToCategoryRequest.xslt" />
+    <Content Include="GatewayResources\xslt\preference\AddItemsToCategoryResponse.xslt" />
+    <Content Include="GatewayResources\xslt\preference\AddMapResponse.xslt" />
+    <Content Include="GatewayResources\xslt\preference\AddUsersToGroupsResponse.xslt" />
+    <Content Include="GatewayResources\xslt\preference\DeleteCategoryResponse.xslt" />
+    <Content Include="GatewayResources\xslt\preference\DeleteGroupFolderAccountResponse.xslt" />
+    <Content Include="GatewayResources\xslt\preference\DeleteGroupsResponse.xslt" />
+    <Content Include="GatewayResources\xslt\preference\DeleteItemsFromCategoryRequest.xslt" />
+    <Content Include="GatewayResources\xslt\preference\DeleteItemsFromCategoryResponse.xslt" />
+    <Content Include="GatewayResources\xslt\preference\DeleteMapResponse.xslt" />
+    <Content Include="GatewayResources\xslt\preference\DeleteUserPreferencesAndGroupFoldersResponse.xslt" />
+    <Content Include="GatewayResources\xslt\preference\DeleteUsersFromGroupsResponse.xslt" />
+    <Content Include="GatewayResources\xslt\preference\FactivaAddItemResponse.xslt" />
+    <Content Include="GatewayResources\xslt\preference\FactivaDeleteItemResponse.xslt" />
+    <Content Include="GatewayResources\xslt\preference\FactivaUpdateItemResponse.xslt" />
+    <Content Include="GatewayResources\xslt\preference\GetAccountGroupItemsRequest.xslt" />
+    <Content Include="GatewayResources\xslt\preference\GetAccountGroupItemsResponse.xslt" />
+    <Content Include="GatewayResources\xslt\preference\GetAdminsGroupsResponse.xslt" />
+    <Content Include="GatewayResources\xslt\preference\GetCategoryInfoRequest.xslt" />
+    <Content Include="GatewayResources\xslt\preference\GetCategoryInfoResponse.xslt" />
+    <Content Include="GatewayResources\xslt\preference\GetGroupInfoResponse.xslt" />
+    <Content Include="GatewayResources\xslt\preference\GetItemResponse.xslt" />
+    <Content Include="GatewayResources\xslt\preference\GetItemsByClassIDResponse.xslt" />
+    <Content Include="GatewayResources\xslt\preference\GetItemsByIDResponse.xslt" />
+    <Content Include="GatewayResources\xslt\preference\GetMapListResponse.xslt" />
+    <Content Include="GatewayResources\xslt\preference\GetMapResponse.xslt" />
+    <Content Include="GatewayResources\xslt\preference\GetNestedGroupInfoResponse.xslt" />
+    <Content Include="GatewayResources\xslt\preference\GetNewSubscribableItemsRequest.xslt" />
+    <Content Include="GatewayResources\xslt\preference\GetNewSubscribableItemsResponse.xslt" />
+    <Content Include="GatewayResources\xslt\preference\GetUserOwnedGroupItemsRequest.xslt" />
+    <Content Include="GatewayResources\xslt\preference\GetUserOwnedGroupItemsResponse.xslt" />
+    <Content Include="GatewayResources\xslt\preference\ListCategoriesRequest.xslt" />
+    <Content Include="GatewayResources\xslt\preference\ListCategoriesResponse.xslt" />
+    <Content Include="GatewayResources\xslt\preference\ListSubscribableItemsRequest.xslt" />
+    <Content Include="GatewayResources\xslt\preference\ListSubscribableItemsResponse.xslt" />
+    <Content Include="GatewayResources\xslt\preference\MarkItemSubscribableResponse.xslt" />
+    <Content Include="GatewayResources\xslt\preference\MarkItemUnsubscribableResponse.xslt" />
+    <Content Include="GatewayResources\xslt\preference\ModifyGroupResponse.xslt" />
+    <Content Include="GatewayResources\xslt\preference\ModifyUserGroupMembershipResponse.xslt" />
+    <Content Include="GatewayResources\xslt\preference\SetCategoryAccessTimeResponse.xslt" />
+    <Content Include="GatewayResources\xslt\preference\SetupGroupFolderAccountResponse.xslt" />
+    <Content Include="GatewayResources\xslt\preference\SubscribeItemsToUserResponse.xslt" />
+    <Content Include="GatewayResources\xslt\preference\UnsubscribeItemsFromUserResponse.xslt" />
+    <Content Include="GatewayResources\xslt\preference\UpdateMapResponse.xslt" />
+    <Content Include="GatewayResources\xslt\preference\ValidateMapResponse.xslt" />
+    <Content Include="GatewayResources\xslt\preference\VirtualAddItemResponse.xslt" />
+    <Content Include="GatewayResources\xslt\preference\VirtualDeleteItemResponse.xslt" />
+    <Content Include="GatewayResources\xslt\preference\VirtualGetItemResponse.xslt" />
+    <Content Include="GatewayResources\xslt\redi\RediHeader.xslt" />
+    <Content Include="GatewayResources\xslt\registration\AddAccountLWRegistrationDetailsResponse.xslt" />
+    <Content Include="GatewayResources\xslt\registration\AddAccountVirtualItemsResponse.xslt" />
+    <Content Include="GatewayResources\xslt\registration\AddUserVirtualItemsResponse.xslt" />
+    <Content Include="GatewayResources\xslt\registration\CheckUserSecurityInfoResponse.xslt" />
+    <Content Include="GatewayResources\xslt\registration\CustomerPortalGetUserDataResponse.xslt" />
+    <Content Include="GatewayResources\xslt\registration\CustomerPortalUpdateUserDataResponse.xslt" />
+    <Content Include="GatewayResources\xslt\registration\CustomerServiceRegisterUserResponse.xslt" />
+    <Content Include="GatewayResources\xslt\registration\CustomerServiceSetupUserForEmailAddressLoginResponse.xslt" />
+    <Content Include="GatewayResources\xslt\registration\CustomerServiceUpdateEnabledUserDataResponse.xslt" />
+    <Content Include="GatewayResources\xslt\registration\CustomerServiceUpdateUserDataResponse.xslt" />
+    <Content Include="GatewayResources\xslt\registration\DeleteAccountLWRegistrationDetailsResponse.xslt" />
+    <Content Include="GatewayResources\xslt\registration\DeleteAccountVirtualItemsResponse.xslt" />
+    <Content Include="GatewayResources\xslt\registration\DeleteUserVirtualItemsResponse.xslt" />
+    <Content Include="GatewayResources\xslt\registration\DisableEmailAddressLoginForUserResponse.xslt" />
+    <Content Include="GatewayResources\xslt\registration\GetAccountVirtualItemsResponse.xslt" />
+    <Content Include="GatewayResources\xslt\registration\GetLWRAccountsResponse.xslt" />
+    <Content Include="GatewayResources\xslt\registration\GetLWRPermissionByAccountIDResponse.xslt" />
+    <Content Include="GatewayResources\xslt\registration\GetLWRPermissionByEmailAddressResponse.xslt" />
+    <Content Include="GatewayResources\xslt\registration\GetUserDataCommonResponse.xslt" />
+    <Content Include="GatewayResources\xslt\registration\GetUserDataResponse.xslt" />
+    <Content Include="GatewayResources\xslt\registration\GetUserEmailSessionlessResponse.xslt" />
+    <Content Include="GatewayResources\xslt\registration\GetUserInfoResponse.xslt" />
+    <Content Include="GatewayResources\xslt\registration\GetUserVirtualItemsResponse.xslt" />
+    <Content Include="GatewayResources\xslt\registration\IsAccountEnabledForUpgradeResponse.xslt" />
+    <Content Include="GatewayResources\xslt\registration\ListUsersWithGivenEmailResponse.xslt" />
+    <Content Include="GatewayResources\xslt\registration\LoginAccessHelperResponse.xslt" />
+    <Content Include="GatewayResources\xslt\registration\PerformEmailRegistrationResponse.xslt" />
+    <Content Include="GatewayResources\xslt\registration\PerformSimplifiedRegistrationResponse.xslt" />
+    <Content Include="GatewayResources\xslt\registration\PerformSingleSignOnTokenRegistrationResponse.xslt" />
+    <Content Include="GatewayResources\xslt\registration\PerformTwoPhasePAYGUserRegistrationResponse.xslt" />
+    <Content Include="GatewayResources\xslt\registration\PerformUserRegistrationCommonResponse.xslt" />
+    <Content Include="GatewayResources\xslt\registration\PerformUserRegistrationResponse.xslt" />
+    <Content Include="GatewayResources\xslt\registration\ResetPasswordWithTokenResponse.xslt" />
+    <Content Include="GatewayResources\xslt\registration\SearchByAccountResponse.xslt" />
+    <Content Include="GatewayResources\xslt\registration\SearchByUserResponse.xslt" />
+    <Content Include="GatewayResources\xslt\registration\SetupUserForEmailAddressLoginResponse.xslt" />
+    <Content Include="GatewayResources\xslt\registration\SetupUserForEmailAddressLoginWithSessionResponse.xslt" />
+    <Content Include="GatewayResources\xslt\registration\UpdateAccountLWRegistrationDetailsResponse.xslt" />
+    <Content Include="GatewayResources\xslt\registration\UpdateEmailAddressResponse.xslt" />
+    <Content Include="GatewayResources\xslt\registration\UpdateEmailLoginStateResponse.xslt" />
+    <Content Include="GatewayResources\xslt\registration\UpdateSingleSignOnTokenUserResponse.xslt" />
+    <Content Include="GatewayResources\xslt\registration\UpdateUserDataResponse.xslt" />
+    <Content Include="GatewayResources\xslt\registration\UpdateUserPasswordResponse.xslt" />
+    <Content Include="GatewayResources\xslt\registration\UpdateUserRenewalResponse.xslt" />
+    <Content Include="GatewayResources\xslt\registration\UpgradeUserResponse.xslt" />
+    <Content Include="GatewayResources\xslt\relationshipMapping\AddAffiliationResponse.xslt" />
+    <Content Include="GatewayResources\xslt\relationshipMapping\GetAffiliationByIdResponse.xslt" />
+    <Content Include="GatewayResources\xslt\relationshipMapping\GetAffiliationListResponse.xslt" />
+    <Content Include="GatewayResources\xslt\relationshipMapping\GetBiographyResponse.xslt" />
+    <Content Include="GatewayResources\xslt\relationshipMapping\MatchOrganizationResponse.xslt" />
+    <Content Include="GatewayResources\xslt\relationshipMapping\PerformAffiliationSearchResponse.xslt" />
+    <Content Include="GatewayResources\xslt\relationshipMapping\PerformRelationshipMappingResponse.xslt" />
+    <Content Include="GatewayResources\xslt\relationshipMapping\UpdateAffiliationResponse.xslt" />
+    <Content Include="GatewayResources\xslt\screening\GetCompanyScreeningListExXML.xslt" />
+    <Content Include="GatewayResources\xslt\screening\GetReportListExResponse.xslt" />
+    <Content Include="GatewayResources\xslt\segmentation\NVPGetSumResponse.xslt" />
+    <Content Include="GatewayResources\xslt\semantic\PerformConceptExplorerRequest.xslt" />
+    <Content Include="GatewayResources\xslt\semantic\PerformConceptExplorerResponse.xslt" />
+    <Content Include="GatewayResources\xslt\semantic\PerformConceptSearchRequest.xslt" />
+    <Content Include="GatewayResources\xslt\semantic\PerformConceptSearchResponse.xslt" />
+    <Content Include="GatewayResources\xslt\semantic\PerformDocClusterSearchRequest.xslt" />
+    <Content Include="GatewayResources\xslt\semantic\PerformDocClusterSearchResponse.xslt" />
+    <Content Include="GatewayResources\xslt\semantic\PerformSemanticSearchRequest.xslt" />
+    <Content Include="GatewayResources\xslt\semantic\PerformSemanticSearchResponse.xslt" />
+    <Content Include="GatewayResources\xslt\SessionCache\DeleteItem.xslt" />
+    <Content Include="GatewayResources\xslt\SessionCache\DeleteItemResponse.xslt" />
+    <Content Include="GatewayResources\xslt\SessionCache\GetItem.xslt" />
+    <Content Include="GatewayResources\xslt\SessionCache\GetItemInfo.xslt" />
+    <Content Include="GatewayResources\xslt\SessionCache\GetItemInfoResponse.xslt" />
+    <Content Include="GatewayResources\xslt\SessionCache\GetItemResponse.xslt" />
+    <Content Include="GatewayResources\xslt\SessionCache\StoreItem.xslt" />
+    <Content Include="GatewayResources\xslt\SessionCache\StoreItemResponse.xslt" />
+    <Content Include="GatewayResources\xslt\sources\CDBSearchResponse.xslt" />
+    <Content Include="GatewayResources\xslt\sources\ContinueSourceSearchPrivateResponse.xslt" />
+    <Content Include="GatewayResources\xslt\sources\ContinueSourceSearchResponse.xslt" />
+    <Content Include="GatewayResources\xslt\sources\GetSourcesByCodeResponse.xslt" />
+    <Content Include="GatewayResources\xslt\sources\PerformSourceSearchPrivateResponse.xslt" />
+    <Content Include="GatewayResources\xslt\sources\PerformSourceSearchResponse.xslt" />
+    <Content Include="GatewayResources\xslt\sources\SourceSearchResponse.xslt" />
+    <Content Include="GatewayResources\xslt\sources\TitleSearchResponse.xslt" />
+    <Content Include="GatewayResources\xslt\symbology\GetTaxonomyCodeChildResponse.xslt" />
+    <Content Include="GatewayResources\xslt\symbology\GetTaxonomyCodesResponse.xslt" />
+    <Content Include="GatewayResources\xslt\symbology\GetTaxonomyListInfoResponse.xslt" />
+    <Content Include="GatewayResources\xslt\symbology\GetTaxonomyListResponse.xslt" />
+    <Content Include="GatewayResources\xslt\symbology\PerformFTTaxCodeSrchResponse.xslt" />
+    <Content Include="GatewayResources\xslt\symbology\PerformTaxCodeSrchResponse.xslt" />
+    <Content Include="GatewayResources\xslt\Tools\HashTinyString.xslt" />
+    <Content Include="GatewayResources\xslt\Tools\TinyURL.xslt" />
+    <Content Include="GatewayResources\xslt\Tools\UnHashTinyString.xslt" />
+    <Content Include="GatewayResources\xslt\track\ChangeFolderAccessLevelRequest.xslt" />
+    <Content Include="GatewayResources\xslt\track\ChangeFolderAccessLevelResponse.xslt" />
+    <Content Include="GatewayResources\xslt\track\CheckFolderNameExistsResponse.xslt" />
+    <Content Include="GatewayResources\xslt\track\ClipCTPFolder.xslt" />
+    <Content Include="GatewayResources\xslt\track\common.xslt" />
+    <Content Include="GatewayResources\xslt\track\CreateFolderResponse.xslt" />
+    <Content Include="GatewayResources\xslt\track\DeletedFoldersResponse.xslt" />
+    <Content Include="GatewayResources\xslt\track\DeleteFolderResponse.xslt" />
+    <Content Include="GatewayResources\xslt\track\FolderHeadlines.xslt" />
+    <Content Include="GatewayResources\xslt\track\FolderList.xslt" />
+    <Content Include="GatewayResources\xslt\track\GetFolder.xslt" />
+    <Content Include="GatewayResources\xslt\track\GetFolderHeadlinesResponse.xslt" />
+    <Content Include="GatewayResources\xslt\track\GetFolderList.xslt" />
+    <Content Include="GatewayResources\xslt\track\GetFolderListNoBillingResponse.xslt" />
+    <Content Include="GatewayResources\xslt\track\GetFolderListResponse.xslt" />
+    <Content Include="GatewayResources\xslt\track\GetFolderResponse.xslt" />
+    <Content Include="GatewayResources\xslt\track\RealTimeAlerts_GetFolderListResponse.xslt" />
+    <Content Include="GatewayResources\xslt\track\RealTimeAlerts_GetFolderResponse.xslt" />
+    <Content Include="GatewayResources\xslt\track\ReviseFolderResponse.xslt" />
+    <Content Include="GatewayResources\xslt\track\SubscriptionRequest.xslt" />
+    <Content Include="GatewayResources\xslt\track\SubscriptionResponse.xslt" />
+    <Content Include="GatewayResources\xslt\track\TransferFolderResponse.xslt" />
+    <Content Include="GatewayResources\xslt\triggers\GetDetailResponse.xsl" />
+    <Content Include="GatewayResources\xslt\triggers\PerformTriggerSearchResponse.xsl" />
+    <Content Include="GatewayResources\xslt\utility\PerformContentSearchResponse.xslt" />
+    <Content Include="Content\bootstrap\js\bootstrap-alert.js" />
+    <Content Include="Content\bootstrap\js\bootstrap-button.js" />
+    <Content Include="Content\bootstrap\js\bootstrap-carousel.js" />
+    <Content Include="Content\bootstrap\js\bootstrap-collapse.js" />
+    <Content Include="Content\bootstrap\js\bootstrap-dropdown.js" />
+    <Content Include="Content\bootstrap\js\bootstrap-modal.js" />
+    <Content Include="Content\bootstrap\js\bootstrap-popover.js" />
+    <Content Include="Content\bootstrap\js\bootstrap-scrollspy.js" />
+    <Content Include="Content\bootstrap\js\bootstrap-tab.js" />
+    <Content Include="Content\bootstrap\js\bootstrap-tooltip.js" />
+    <Content Include="Content\bootstrap\js\bootstrap-transition.js" />
+    <Content Include="Content\bootstrap\js\bootstrap-typeahead.js" />
+    <Content Include="Scripts\jquery-1.6.4-vsdoc.js" />
+    <Content Include="Scripts\jquery-1.6.4.js" />
+    <Content Include="Scripts\jquery-1.6.4.min.js" />
+    <Content Include="Scripts\jquery.signalR.js" />
+    <Content Include="Scripts\jquery.signalR.min.js" />
+    <Content Include="Scripts\NavBarDemo.js" />
+    <Content Include="Styles\css\canvas.buttons.css" />
+    <Content Include="Styles\css\canvas.icons.css" />
+    <Content Include="Styles\css\canvas.nav.css" />
+    <Content Include="Styles\css\canvas.tag-cloud.css" />
+    <Content Include="Styles\css\newsRadar.css" />
+    <Content Include="Styles\css\normalizeExtensions.css" />
+    <Content Include="Styles\css\dashboard.crud-form.css" />
+    <Content Include="Styles\css\module.social-media.css" />
+    <Content Include="Styles\css\normalize.css" />
+    <Content Include="Styles\css\socialMediaStyles.css" />
+    <Content Include="Styles\css\stockkiosk.css" />
+    <Content Include="Styles\css\dashboard.article-group.css" />
+    <Content Include="Styles\css\dashboard.content.css" />
+    <Content Include="Styles\css\dashboard.components.css" />
+    <Content Include="Styles\css\dashboard.controls.css" />
+    <Content Include="Styles\css\dashboard.css" />
+    <Content Include="Styles\css\dashboard.edit.css" />
+    <Content Include="Styles\css\dashboard.forms.css" />
+    <Content Include="Styles\css\dashboard.modal.article.css" />
+    <Content Include="Styles\css\dashboard.modal.css" />
+    <Content Include="Styles\css\dashboard.nav-tabs.css" />
+    <Content Include="Styles\css\dashboard.notice.css" />
+    <Content Include="Styles\css\ellipsis.xml" />
+    <Content Include="Styles\css\factiva.icons.css" />
+    <Content Include="Styles\css\footer.css" />
+    <Content Include="Styles\css\GlobalLayout.min.css" />
+    <Content Include="Styles\css\header.css" />
+    <Content Include="Styles\css\header.message.css" />
+    <Content Include="Styles\css\jquery.jscrollpane.css" />
+    <Content Include="Styles\css\jquery.labeledscrollpane.css" />
+    <Content Include="Styles\css\jquery.menu.css" />
+    <Content Include="Styles\css\jquery.popupballoon.css" />
+    <Content Include="Styles\css\jquery.regional-map.css" />
+    <Content Include="Styles\css\jquery.scrollabletabbar.css" />
+    <Content Include="Styles\css\jquey.menu.css" />
+    <Content Include="Styles\css\module.buttons.css" />
+    <Content Include="Styles\css\module.col.article.css" />
+    <Content Include="Styles\css\module.col.headline.css" />
+    <Content Include="Styles\css\module.company-profile.css" />
+    <Content Include="Styles\css\module.content.articles.css" />
+    <Content Include="Styles\css\module.css" />
+    <Content Include="Styles\css\module.edit-options.css" />
+    <Content Include="Styles\css\module.error-notice.css" />
+    <Content Include="Styles\css\module.garden.css" />
+    <Content Include="Styles\css\module.headline-carousel.css" />
+    <Content Include="Styles\css\module.industry.css" />
+    <Content Include="Styles\css\module.newsstand.css" />
+    <Content Include="Styles\css\module.page-garden.css" />
+    <Content Include="Styles\css\module.radar.css" />
+    <Content Include="Styles\css\module.regional-map.css" />
+    <Content Include="Styles\css\module.search-results.css" />
+    <Content Include="Styles\css\module.search.css" />
+    <Content Include="Styles\css\module.style.css" />
+    <Content Include="Styles\css\NewsstandCanvasModule.css" />
+    <Content Include="Styles\css\module.summary.css" />
+    <Content Include="Styles\css\module.video-carousel.css" />
+    <Content Include="Styles\css\newspage-welcome.css" />
+    <Content Include="Styles\css\popup.css" />
+    <Content Include="Styles\css\search.headline-list.css" />
+    <Content Include="Styles\css\search.headline-options.css" />
+    <Content Include="Styles\css\search.headline-post-processing.css" />
+    <Content Include="Styles\css\style.css" />
+    <Content Include="Styles\css\toggle-switch.css" />
+    <Content Include="Styles\images\addCompany.gif" />
+    <Content Include="Styles\images\ajax-loader.gif" />
+    <Content Include="Styles\images\ajax-loader_garden.gif" />
+    <Content Include="Styles\images\ajax_loader.gif" />
+    <Content Include="Styles\images\arrowdown.png" />
+    <Content Include="Styles\images\arrowup.png" />
+    <Content Include="Styles\images\article.gif" />
+    <Content Include="Styles\images\asc.gif" />
+    <Content Include="Styles\images\bg.gif" />
+    <Content Include="Styles\images\bg_bar-indicator-crosshatch.png" />
+    <Content Include="Styles\images\bg_error-notice-border.png" />
+    <Content Include="Styles\images\bg_error-notice-face.png" />
+    <Content Include="Styles\images\bg_footer.png" />
+    <Content Include="Styles\images\bg_global-message.png" />
+    <Content Include="Styles\images\bg_header-toggle.png" />
+    <Content Include="Styles\images\bg_header-top.png" />
+    <Content Include="Styles\images\bg_header-wrap.png" />
+    <Content Include="Styles\images\bg_header.png" />
+    <Content Include="Styles\images\bg_html.png" />
+    <Content Include="Styles\images\bg_ipad-coming-soon.png" />
+    <Content Include="Styles\images\bg_module_footer.png" />
+    <Content Include="Styles\images\bg_module_header.png" />
+    <Content Include="Styles\images\bg_r-arrow-blue.png" />
+    <Content Include="Styles\images\bg_search-btn.png" />
+    <Content Include="Styles\images\bg_search.png" />
+    <Content Include="Styles\images\bread_crumb_arrow.png" />
+    <Content Include="Styles\images\cancel.png" />
+    <Content Include="Styles\images\desc.gif" />
+    <Content Include="Styles\images\discovery_toggle.png" />
+    <Content Include="Styles\images\email.gif" />
+    <Content Include="Styles\images\factiva-icons-comm.png" />
+    <Content Include="Styles\images\factiva-icons.png" />
+    <Content Include="Styles\images\factiva.logos.png" />
+    <Content Include="Styles\images\filter_arrow.png" />
+    <Content Include="Styles\images\icon-sprite.png" />
+    <Content Include="Styles\images\icon_close_small.png" />
+    <Content Include="Styles\images\icon_edit_module.png" />
+    <Content Include="Styles\images\icon_email.png" />
+    <Content Include="Styles\images\icon_filter_close.png" />
+    <Content Include="Styles\images\icon_loading.dark.gif" />
+    <Content Include="Styles\images\icon_loading.light.gif" />
+    <Content Include="Styles\images\icon_module.col.loading.gif" />
+    <Content Include="Styles\images\icon_pdf.png" />
+    <Content Include="Styles\images\icon_print.png" />
+    <Content Include="Styles\images\icon_trend-arrows.png" />
+    <Content Include="Styles\images\icon_warning.png" />
+    <Content Include="Styles\images\libs\crystal-arrows.gif" />
+    <Content Include="Styles\images\libs\translateTitleLanguageCodeBackground.png" />
+    <Content Include="Styles\images\libs\crystal-stars.gif" />
+    <Content Include="Styles\images\libs\crystal-stars1.png" />
+    <Content Include="Styles\images\labeledscrollpane_bg.png" />
+    <Content Include="Styles\images\menu_outer_arrow_left.png" />
+    <Content Include="Styles\images\menu_outer_arrow_right.png" />
+    <Content Include="Styles\images\nav_dots.png" />
+    <Content Include="Styles\images\newsradar_circles.png" />
+    <Content Include="Styles\images\option_hover.png" />
+    <Content Include="Styles\images\option_selected.png" />
+    <Content Include="Styles\images\page_thumbnail.png" />
+    <Content Include="Styles\images\page_thumbnail_disable.png" />
+    <Content Include="Styles\images\page_thumbnail_new.png" />
+    <Content Include="Styles\images\pdf.gif" />
+    <Content Include="Styles\images\pillsCancel.png" />
+    <Content Include="Styles\images\playlistleft.png" />
+    <Content Include="Styles\images\playlistright.png" />
+    <Content Include="Styles\images\play_text_large.png" />
+    <Content Include="Styles\images\print.gif" />
+    <Content Include="Styles\images\reorder_icon.png" />
+    <Content Include="Styles\images\scrollbar_arrow_down.png" />
+    <Content Include="Styles\images\scrollbar_arrow_up.png" />
+    <Content Include="Styles\images\sidebar_toggle_arrow.png" />
+    <Content Include="Styles\images\sortBoth.gif" />
+    <Content Include="Styles\images\sortDown.gif" />
+    <Content Include="Styles\images\sortUp.gif" />
+    <Content Include="Styles\images\sprite_btns_module-news-stand_news-source-carousel.png" />
+    <Content Include="Styles\images\sprite_buttons.png" />
+    <Content Include="Styles\images\sprite_headline-carousel.png" />
+    <Content Include="Styles\images\sprite_tabs.png" />
+    <Content Include="Styles\images\tabbar_bg.png" />
+    <Content Include="Styles\images\tabbar_fade_left.png" />
+    <Content Include="Styles\images\tabbar_fade_right.png" />
+    <Content Include="Styles\images\tab_published.png" />
+    <Content Include="Styles\images\tab_subscribed.png" />
+    <Content Include="Styles\images\vp_next.png" />
+    <Content Include="Styles\images\vp_pause.png" />
+    <Content Include="Styles\images\vp_play.png" />
+    <Content Include="Styles\images\vp_prev.png" />
+    <Content Include="Styles\images\wait.gif" />
+    <Content Include="Styles\images\welcome-arrow.png" />
+    <Content Include="Styles\images\welcome-screen.png" />
+    <Content Include="Styles\images\window_header_bg.png" />
+    <EmbeddedResource Include="Styles\less\TopNewsCanvasModule.css">
+      <DependentUpon>TopNewsCanvasModule.chirp.less</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Styles\less\SyndicationModule.css">
+      <DependentUpon>SyndicationModule.chirp.less</DependentUpon>
+    </EmbeddedResource>
+    <Content Include="Styles\css\SummaryCanvasModule.css" />
+    <Content Include="Styles\less\SyndicationModule.min.css">
+      <DependentUpon>SyndicationModule.chirp.less</DependentUpon>
+    </Content>
+    <Content Include="Styles\less\TopNewsCanvasModule.min.css">
+      <DependentUpon>TopNewsCanvasModule.chirp.less</DependentUpon>
+    </Content>
+    <Content Include="Styles\css\TrendingNewsCanvasModule.css" />
+    <Content Include="Styles\libs\crystal-stars.css" />
+    <Content Include="Styles\libs\jquery.autocomplete.css" />
+    <Content Include="Styles\libs\jquery.jscrollpane.css" />
+    <None Include="MockRESTServices\modules\CompanyOverview\GET_data.json" />
+    <None Include="Properties\PublishProfiles\Montana.pubxml" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Styles\less\DemoCanvasModule.chirp.less" />
+    <EmbeddedResource Include="Styles\less\DemoCanvasModule.css">
+      <DependentUpon>DemoCanvasModule.chirp.less</DependentUpon>
+    </EmbeddedResource>
+    <Content Include="Styles\less\DemoCanvasModule.min.css">
+      <DependentUpon>DemoCanvasModule.chirp.less</DependentUpon>
+    </Content>
+    <Content Include="Default.aspx" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="Scripts\site.js" />
+    <Content Include="Styles\css\global.css" />
+    <Content Include="Styles\css\grid.990.9-col.css" />
+    <Content Include="Styles\css\reset.css" />
+    <Content Include="Styles\libs\uni-form.css" />
+    <Content Include="Styles\libs\uni-form-generic.css" />
+    <Content Include="Styles\css\NavBar.css" />
+    <Content Include="Views\Shared\ApartmentState.cshtml" />
+    <Content Include="Views\Shared\RssError.cshtml" />
+    <Content Include="Views\Shared\_SampleArticle.cshtml" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Log4Net.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\Filters\LoggedAction.cshtml" />
+    <Content Include="Views\Filters\OutputCache.cshtml" />
+    <Content Include="Views\Home\Android\Index.cshtml" />
+    <Content Include="Views\Home\iPad\Index.cshtml" />
+    <Content Include="Views\Home\iPhone\Index.cshtml" />
+    <Content Include="Views\Home\Mobile\Index.cshtml" />
+    <Content Include="Views\Home\_HomepageContent.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\iPhone\_Layout.cshtml" />
+    <Content Include="Views\Shared\_Navigation.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Transaction\Index.cshtml" />
+    <Content Include="Views\_viewstart.cshtml" />
+    <Content Include="Views\CompanySparkline\Index.cshtml" />
+    <Content Include="Views\PortalHeadlineList\SectionSample.cshtml" />
+    <Content Include="Views\RegionalMap\Index.cshtml" />
+    <Content Include="Views\TranslateArticle\Index.cshtml" />
+    <Content Include="Views\CompanyProfileGraph\Index.cshtml" />
+    <Content Include="Views\CalloutPopup\Index.cshtml" />
+    <Content Include="Views\RealtimeHeadlineList\Index.cshtml" />
+    <Content Include="Views\Radar\Index.cshtml" />
+    <Content Include="Views\TagCloud\Index.cshtml" />
+    <Content Include="Views\NewsStandTicker\Index.cshtml" />
+    <Content Include="Views\HeadlineCarousel\Index.cshtml" />
+    <Content Include="Views\PortalArticle\Index.cshtml" />
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Styles\less\SyndicationModule.chirp.less" />
+    <Content Include="Styles\less\TopNewsCanvasModule.chirp.less" />
+    <Content Include="Views\Home\AjaxDemo.cshtml" />
+    <Content Include="Views\CompositeComponent\Index.cshtml" />
+    <Content Include="Views\Home\Tokens.cshtml" />
+    <Content Include="Views\Search\Results.cshtml" />
+    <Content Include="Views\RegionalMap\ArticleTranslator\Index.cshtml" />
+    <Content Include="Views\PortalHeadlineList\Index.cshtml" />
+    <Content Include="Views\Search\_Layout.cshtml" />
+    <Content Include="Views\DateHistogram\Index.cshtml" />
+    <Content Include="Views\HeadlineList\Composite.cshtml" />
+    <Content Include="Views\HeadlineList\Simple.cshtml" />
+    <Content Include="Views\Search\Test.cshtml" />
+    <Content Include="Views\PersonalizationFilters\Index.cshtml" />
+    <Content Include="Views\AlertEditor\Index.cshtml" />
+    <Content Include="Views\SearchBuilder\Index.cshtml" />
+    <Content Include="Views\AlertEditor\Create.cshtml" />
+    <Content Include="Views\Article\Index.cshtml" />
+    <Content Include="Views\EntityList\Index.cshtml" />
+    <Content Include="Views\ClientUI\ShowLoading.cshtml" />
+    <Content Include="Views\Shared\_CanvasLayout.cshtml" />
+    <Content Include="Views\Shared\Canvas.cshtml" />
+    <Content Include="Views\Canvas\Canvas.cshtml" />
+    <Content Include="Views\PortalHeadlineList\Multi.cshtml" />
+    <Content Include="Views\Preferences\Index.cshtml" />
+    <Content Include="Views\NewsFeed\Index.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Views\NewsFeed\POC.cshtml" />
+    <Content Include="Views\StockKiosk\Index.cshtml" />
+    <Content Include="Views\SocialMedia\Index.cshtml" />
+    <Content Include="Views\DiscoveryGraph\Index.cshtml" />
+    <Content Include="Views\SocialMedia\_UXWrapper.cshtml" />
+    <Content Include="Views\Shared\_SignalR.cshtml" />
+    <Content Include="Views\Shared\_Layout_Boostrap.cshtml" />
+    <Content Include="Views\Newsletter\Article.cshtml" />
+    <Content Include="Views\Newsletter\Index.cshtml" />
+    <Content Include="Views\Shared\Rainwater.cshtml" />
+    <Content Include="Views\DateSlider\Index.cshtml" />
+    <Content Include="Views\CalendarEventList\Index.cshtml" />
+    <Content Include="Views\Shared\_Layout_ComponentExplorer.cshtml" />
+    <Content Include="Views\HeadlineListCarousel\Carousel.cshtml" />
+    <Content Include="Views\NewsRadar\Index.cshtml" />
+    <Content Include="Views\Home\RequireJsLoadingDemo.cshtml" />
+    <Content Include="Views\AutoSuggest\Index.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Views\CoreJs.cshtml" />
+    <None Include="Views\NewsRadar\sample.json" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\VideoPlayer\Index.cshtml" />
+    <Content Include="Views\SocialButtons\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Browsers\Devices\" />
+    <Folder Include="Areas\Sandbox\Content\" />
+    <Folder Include="Areas\Sandbox\Controllers\" />
+    <Folder Include="Areas\Sandbox\Models\" />
+    <Folder Include="Areas\Sandbox\Scripts\" />
+    <Folder Include="Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DowJones.Assemblers\DowJones.Assemblers.csproj">
+      <Project>{2E7ABB0C-DFDE-451E-AFD4-41D2894399BF}</Project>
+      <Name>DowJones.Assemblers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DowJones.Infrastructure\DowJones.Infrastructure.csproj">
+      <Project>{095DE252-E183-4AE6-824A-B4504AE737C1}</Project>
+      <Name>DowJones.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DowJones.Pages\DowJones.Pages.csproj">
+      <Project>{60BFCFAB-61ED-4AB5-9803-D8AAAF1184E4}</Project>
+      <Name>DowJones.Pages</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DowJones.Web.Mvc.Diagnostics\DowJones.Web.Mvc.Diagnostics.csproj">
+      <Project>{DC6F4246-50E5-4E2E-A90B-70E4BECA1EB6}</Project>
+      <Name>DowJones.Web.Mvc.Diagnostics</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DowJones.Web.Mvc.Search\DowJones.Web.Mvc.Search.csproj">
+      <Project>{1E5B6A24-ED92-4ABE-AD3B-9889E16CB01F}</Project>
+      <Name>DowJones.Web.Mvc.Search</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DowJones.Web.Mvc.UI.Canvas\DowJones.Web.Mvc.UI.Canvas.csproj">
+      <Project>{C03F69D0-BD01-4861-BF39-BF2D52812797}</Project>
+      <Name>DowJones.Web.Mvc.UI.Canvas</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DowJones.Web.Mvc.UI.Components.Models\DowJones.Web.Mvc.UI.Components.Models.csproj">
+      <Project>{32DA5CA1-0038-4110-BC24-938B39439CE7}</Project>
+      <Name>DowJones.Web.Mvc.UI.Components.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DowJones.Web.Mvc.UI.Components\DowJones.Web.Mvc.UI.Components.csproj">
+      <Project>{8F187465-8B2C-4557-B3A2-02F7B4A6C0FE}</Project>
+      <Name>DowJones.Web.Mvc.UI.Components</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DowJones.Web.Mvc\DowJones.Web.Mvc.csproj">
+      <Project>{3E440D53-ACA6-422A-8FC8-778D505AD1E9}</Project>
+      <Name>DowJones.Web.Mvc</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DowJones.Web\DowJones.Web.csproj">
+      <Project>{C6E3AF69-F20D-44B4-8BDE-2F51D0E17EF8}</Project>
+      <Name>DowJones.Web</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <SaveServerSettingsInUserFile>True</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

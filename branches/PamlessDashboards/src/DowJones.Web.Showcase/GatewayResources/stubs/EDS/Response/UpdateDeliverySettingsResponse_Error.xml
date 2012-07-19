@@ -1,0 +1,10 @@
+<UpdateDeliverySettingsResponse>
+  <Status value="2"/>
+  <userid></userid>
+  <productid></productid>
+  <Resultset count="1">
+    <Result DeliveryID="">
+      <ErrorCode>2</ErrorCode>
+    </Result>
+  </Resultset>
+</UpdateDeliverySettingsResponse>
