@@ -3,8 +3,8 @@
 
 Populate the `PortalHeadlineList` model:
 
-	using DowJones.Web.Mvc.UI.Components.Common.Types;
-	using DowJones.Web.Mvc.UI.Components.Models;
+	using DowJones.Web.Mvc.UI.Components.Common;
+	using DowJones.Web.Mvc.UI.Components.PortalHeadlineList;
 
 	// Instantiate and fill data
 	var data = new PortalHeadlineListDataResult
