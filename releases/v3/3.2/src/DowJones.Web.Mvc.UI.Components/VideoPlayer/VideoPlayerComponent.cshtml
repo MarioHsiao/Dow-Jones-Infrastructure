@@ -4,27 +4,8 @@
 @ScriptResource RelativeResourceName=js.scrollable.js
 @ScriptResource RelativeResourceName=js.VideoPlayer.js
 @ScriptResource RelativeResourceName=js.flowplayer-combined.js
+@ClientTemplate RelativeResourceName=ClientTemplates.Success.htm, TemplateId=success
 @{ 
     CssClass = "dj_VideoPlayer";
 }
 
-<div class="video-player"></div>
-<div class="playlist-container" style="display:none;">
-    <div class="playlist-wrap" style="display:none;"> 
-	    <a class="prev"></a> 
-	    <div class="playlist-items"> 
-		    <div class="entries"></div> 
-	    </div> 
-	    <a class="next"></a> 
-        <br clear="all" />  
-    </div> 
-    <div class="clearFix playlist-nav">
-        <table cellpadding="0" cellspacing="0" width="100%">
-            <tr>
-                <td><a class="prev-btn" href="javascript:void(0);">&laquo; @Html.DJ().Token("prev")</a></td>
-                <td align="center"><a class="playlist-btn" href="javascript:void(0);">@Html.DJ().Token("playlist")</a></td>
-                <td align="right"><a class="next-btn" href="javascript:void(0);">@Html.DJ().Token("next") &raquo;</a></td>
-            </tr>
-        </table>
-    </div>
-</div>

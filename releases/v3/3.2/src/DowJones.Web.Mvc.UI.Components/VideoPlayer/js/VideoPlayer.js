@@ -35,7 +35,9 @@ DJ.UI.VideoPlayer = DJ.UI.Component.extend({
         // end base constructor
 
         this.playerId = this.$element.attr("id") + "_player";
-
+        
+        $(this.$element).html(this.templates.success);
+        
         this.player = $(this.selectors.videoPlayer, this.$element).attr('id', this.playerId);
 
         this.options.width = (this.options.width || this.defaults.width);

@@ -11,6 +11,7 @@
 [assembly: System.Web.UI.WebResourceAttribute("DowJones.Web.Mvc.UI.Components.VideoPlayer.js.scrollable.js", "text/javascript")]
 [assembly: System.Web.UI.WebResourceAttribute("DowJones.Web.Mvc.UI.Components.VideoPlayer.js.VideoPlayer.js", "text/javascript")]
 [assembly: System.Web.UI.WebResourceAttribute("DowJones.Web.Mvc.UI.Components.VideoPlayer.js.flowplayer-combined.js", "text/javascript")]
+[assembly: System.Web.UI.WebResourceAttribute("DowJones.Web.Mvc.UI.Components.VideoPlayer.ClientTemplates.Success.htm", "text/html")]
 
 namespace DowJones.Web.Mvc.UI.Components.VideoPlayer
 {
@@ -24,10 +25,11 @@ namespace DowJones.Web.Mvc.UI.Components.VideoPlayer
     using System.Web.UI;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 07/19/2012 04:25 PM
+    // Last Generated Timestamp: 07/19/2012 04:58 PM
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.VideoPlayer.js.scrollable.js", ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.VideoPlayer.VideoPlayerComponent))]
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.VideoPlayer.js.VideoPlayer.js", ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.VideoPlayer.VideoPlayerComponent))]
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.VideoPlayer.js.flowplayer-combined.js", ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.VideoPlayer.VideoPlayerComponent))]
+    [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.VideoPlayer.ClientTemplates.Success.htm", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="success", DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.VideoPlayer.VideoPlayerComponent))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "0.0.0.30158")]
     public class VideoPlayerComponent : DowJones.Web.Mvc.UI.ViewComponentBase<VideoPlayerModel>
     {
@@ -52,42 +54,12 @@ namespace DowJones.Web.Mvc.UI.Components.VideoPlayer
 
 
 
+
    
     CssClass = "dj_VideoPlayer";
 
 
-WriteLiteral(@"
-<div class=""video-player""></div>
-<div class=""playlist-container"" style=""display:none;"">
-    <div class=""playlist-wrap"" style=""display:none;""> 
-	    <a class=""prev""></a> 
-	    <div class=""playlist-items""> 
-		    <div class=""entries""></div> 
-	    </div> 
-	    <a class=""next""></a> 
-        <br clear=""all"" />  
-    </div> 
-    <div class=""clearFix playlist-nav"">
-        <table cellpadding=""0"" cellspacing=""0"" width=""100%"">
-            <tr>
-                <td><a class=""prev-btn"" href=""javascript:void(0);"">&laquo; ");
-
-
-                                                                      Write(Html.DJ().Token("prev"));
-
-WriteLiteral("</a></td>\r\n                <td align=\"center\"><a class=\"playlist-btn\" href=\"javas" +
-"cript:void(0);\">");
-
-
-                                                                                 Write(Html.DJ().Token("playlist"));
-
-WriteLiteral("</a></td>\r\n                <td align=\"right\"><a class=\"next-btn\" href=\"javascript" +
-":void(0);\">");
-
-
-                                                                            Write(Html.DJ().Token("next"));
-
-WriteLiteral(" &raquo;</a></td>\r\n            </tr>\r\n        </table>\r\n    </div>\r\n</div>\r\n");
+WriteLiteral("\r\n");
 
 
         }
