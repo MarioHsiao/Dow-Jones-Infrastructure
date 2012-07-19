@@ -88,7 +88,7 @@ namespace DowJones.Charting.Highcharts
         Guard.IsNotNullOrEmpty(filename, "filename");
 
         // Create a new chart export object using form variables.
-        var export = new Exporter(type, width, svg, filename, true);
+        var export = new Exporter(type, width, svg, filename);
 
         // Write the exported chart to the HTTP Response object.
         export.WriteToHttpResponse(context.Response);
