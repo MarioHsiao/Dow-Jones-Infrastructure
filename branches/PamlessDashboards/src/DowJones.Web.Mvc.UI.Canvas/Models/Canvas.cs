@@ -10,6 +10,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using DowJones.Infrastructure;
+using DowJones.Pages;
 using DowJones.Preferences;
 using DowJones.Session;
 using DowJones.Web.Mvc.UI.Components.PersonalizationFilters;
@@ -68,7 +69,6 @@ namespace DowJones.Web.Mvc.UI.Canvas
 
         [ClientProperty]
         public int NumberOfGroups { get; set; }
-
 
         [ClientProperty("regionFilter")]
         public CodeDesc RegionFilter { get; set; }

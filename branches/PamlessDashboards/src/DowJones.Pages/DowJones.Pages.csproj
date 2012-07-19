@@ -56,7 +56,7 @@
       <HintPath>..\packages\Newtonsoft.Json.4.0.8\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Ninject">
-      <HintPath>..\packages\Ninject.2.2.0.0\lib\.NetFramework 4.0\Ninject.dll</HintPath>
+      <HintPath>..\packages\Ninject.2.2.1.4\lib\net40-Full\Ninject.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -78,6 +78,7 @@
     <Compile Include="Common\EntityType.cs" />
     <Compile Include="Common\QueryFilter.cs" />
     <Compile Include="Common\QueryFilters.cs" />
+    <Compile Include="PagesBindingModule.cs" />
     <Compile Include="Mappers\GatewayModuleMapper.cs" />
     <Compile Include="Mappers\PageMapperBase.cs" />
     <Compile Include="Mappers\PageListInfoMapper.cs" />
@@ -100,8 +101,12 @@
     <Compile Include="Mappers\AccessQualifierMapper.cs" />
     <Compile Include="Caching\PageRef.cs" />
     <Compile Include="Caching\PageListCacheKey.cs" />
+    <Compile Include="Pages\IPageManager.cs" />
+    <Compile Include="Pages\IPageSubscriptionManager.cs" />
+    <Compile Include="Pages\Adapters\PageAssetManagerPageSubscriptionManagerAdapter.cs" />
     <Compile Include="Pages\PageAssetsManager.cs" />
     <Compile Include="Pages\PageAssetsManagerFactory.cs" />
+    <Compile Include="Pages\Adapters\PageAssetsManagerPageManagerAdapter.cs" />
     <Compile Include="Pages\PageDefaultBy.cs" />
     <Compile Include="Pages\PageCollection.cs" />
     <Compile Include="Charting\AxisLabel.cs" />
@@ -168,9 +173,7 @@
       <CustomToolNamespace>DowJones.Pages</CustomToolNamespace>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Pages\Caching\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
