@@ -7,16 +7,13 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using DowJones.Infrastructure;
 using DowJones.Preferences;
 using DowJones.Session;
-using DowJones.Web.Mvc.UI.Components.Common;
 using DowJones.Web.Mvc.UI.Components.PersonalizationFilters;
 using DowJones.Web.Mvc.UI.Components.Search;
-using Factiva.Gateway.Messages.Assets.Pages.V1_0;
 
 namespace DowJones.Web.Mvc.UI.Canvas
 {
@@ -73,7 +70,6 @@ namespace DowJones.Web.Mvc.UI.Canvas
         public int NumberOfGroups { get; set; }
 
 
-        #region Personalization stuff
         [ClientProperty("regionFilter")]
         public CodeDesc RegionFilter { get; set; }
 
@@ -94,10 +90,6 @@ namespace DowJones.Web.Mvc.UI.Canvas
 
         [ClientProperty("parentCodes")]
         public IEnumerable<string> ParentCodes { get; set; }
-        #endregion
-
-        [Obsolete]
-        public Page Page { get; set; }
 
         /// <summary>
         /// Gets or sets the preference

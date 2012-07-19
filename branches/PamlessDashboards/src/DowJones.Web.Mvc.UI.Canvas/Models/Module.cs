@@ -1,15 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using DowJones.Pages;
 using DowJones.Pages.Common;
 using DowJones.Preferences;
 using DowJones.Session;
-using DowJones.Web.Mvc.UI.Components.Common;
-using DowJones.Web.Mvc.UI.Components.PersonalizationFilters;
 using DowJones.Web.Mvc.UI.Components.Search;
-using Factiva.Gateway.Messages.Assets.Pages.V1_0;
 using AccessQualifier = DowJones.Pages.AccessQualifier;
-using TagCollection = Factiva.Gateway.Messages.Assets.Pages.V1_0.TagCollection;
 
 namespace DowJones.Web.Mvc.UI.Canvas
 {
@@ -18,14 +13,10 @@ namespace DowJones.Web.Mvc.UI.Canvas
         [ClientProperty("canEdit")]
         public bool CanEdit
         {
-            get
-            {
-                return canEdit
-                    ?? (Canvas != null && Canvas.CanEdit);
-            }
-            set { canEdit = value; }
+            get { return _canEdit.GetValueOrDefault(Canvas != null && Canvas.CanEdit); }
+            set { _canEdit = value; }
         }
-        private bool? canEdit;
+        private bool? _canEdit;
 
         public bool CanRefresh { get; set; }
 
@@ -98,7 +89,7 @@ namespace DowJones.Web.Mvc.UI.Canvas
         }
         private IPreferences _preferences;
 
-        public TagCollection TagCollection { get; set; }
+        public IList<string> TagCollection { get; set; }
 
         [ClientProperty("title")]
         public string Title { get; set; }
@@ -108,7 +99,6 @@ namespace DowJones.Web.Mvc.UI.Canvas
             NeedsClientData = true;
         }
 
-        #region Personalization stuff
         [ClientProperty("inheritPageFilters")]
         public bool InheritPageFilters { get; set; }
 
@@ -120,7 +110,7 @@ namespace DowJones.Web.Mvc.UI.Canvas
 
         [ClientProperty("keywordFilter")]
         public string KeywordFilter { get; set; }
-        #endregion
+
 
         public void UpdatePersonalizationValues(QueryFilterSet queryFilterSet, AccessQualifier accessQualifier)
         {
@@ -135,17 +125,17 @@ namespace DowJones.Web.Mvc.UI.Canvas
                 InheritPageFilters = queryFilterSet.Inherit;
                 if (queryFilterSet.QueryFilters != null)
                 {
-                    var industryQueryFilter = queryFilterSet.QueryFilters.Where(queryFilter => queryFilter.Type == Pages.Common.FilterType.Industry).FirstOrDefault();
+                    var industryQueryFilter = queryFilterSet.QueryFilters.FirstOrDefault(queryFilter => queryFilter.Type == FilterType.Industry);
                     if (industryQueryFilter != null)
                     {
                         IndustryFilter = new CodeDesc(industryQueryFilter.Text.ToLower(), null);
                     }
-                    var regionQueryFilter = queryFilterSet.QueryFilters.Where(queryFilter => queryFilter.Type == Pages.Common.FilterType.Region).FirstOrDefault();
+                    var regionQueryFilter = queryFilterSet.QueryFilters.FirstOrDefault(queryFilter => queryFilter.Type == FilterType.Region);
                     if (regionQueryFilter != null)
                     {
                         RegionFilter = new CodeDesc(regionQueryFilter.Text.ToLower(), null);
                     }
-                    var keywordQueryFilter = queryFilterSet.QueryFilters.Where(queryFilter => queryFilter.Type == Pages.Common.FilterType.Keyword).FirstOrDefault();
+                    var keywordQueryFilter = queryFilterSet.QueryFilters.FirstOrDefault(queryFilter => queryFilter.Type == FilterType.Keyword);
                     if (keywordQueryFilter != null)
                     {
                         KeywordFilter = keywordQueryFilter.Text;

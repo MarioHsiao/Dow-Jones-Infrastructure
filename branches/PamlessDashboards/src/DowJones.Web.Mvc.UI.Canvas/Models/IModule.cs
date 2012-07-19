@@ -1,4 +1,4 @@
-﻿using Factiva.Gateway.Messages.Assets.Pages.V1_0;
+﻿using System.Collections.Generic;
 
 namespace DowJones.Web.Mvc.UI.Canvas
 {
@@ -14,7 +14,7 @@ namespace DowJones.Web.Mvc.UI.Canvas
         ModuleState ModuleState { get; set; }
         string ModuleType { get; }
         int Position { get; set; }
-        TagCollection TagCollection { get; set; }
+        IList<string> TagCollection { get; set; }
         string Title { get; set; }
     }
 }

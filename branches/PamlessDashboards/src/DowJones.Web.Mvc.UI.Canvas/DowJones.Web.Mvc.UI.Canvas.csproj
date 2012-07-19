@@ -114,6 +114,7 @@
   <ItemGroup>
     <Compile Include="ActionFilters\PageListPopulationFilter.cs" />
     <Compile Include="Mapping\FactivaModuleModelMapper.cs" />
+    <Compile Include="Models\ModuleState.cs" />
     <Compile Include="ViewResults\PageNotFoundViewResult.cs" />
     <Compile Include="Models\AbstractEditorModel.cs" />
     <Compile Include="Models\Canvas.cs" />
