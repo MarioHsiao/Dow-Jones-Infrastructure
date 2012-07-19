@@ -36,7 +36,7 @@ namespace DowJones.Web.ViewComponentRenderingService.Controllers
                                 ArticleDataSet = request.ArticleResultset,
                                 ShowPostProcessing = false,
                                 ShowSourceLinks = true,
-                                ShowSocialButtons = false,
+                                ShowSocialButtons = false
                             };
             if (request.MultimediaPackage != null &&
                 request.MultimediaPackage.MediaContents != null &&

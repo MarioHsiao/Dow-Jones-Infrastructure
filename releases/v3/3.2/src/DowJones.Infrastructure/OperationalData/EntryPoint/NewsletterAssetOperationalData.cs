@@ -7,7 +7,7 @@ namespace DowJones.OperationalData.EntryPoint
         private EdtionOperationalData _baseEditionOperationalData;
 
 
-        public NewsletterAssetOperationalData() : this(OperationalData.EntryPoint.DisseminationMethod.UnSpecified)
+        public NewsletterAssetOperationalData() : this(EntryPoint.DisseminationMethod.UnSpecified)
         {
            
         }
@@ -17,21 +17,19 @@ namespace DowJones.OperationalData.EntryPoint
             AssetType = "NL";
             switch(disseminationMethod)
             {
-                case OperationalData.EntryPoint.DisseminationMethod.PodCast:
+                case EntryPoint.DisseminationMethod.PodCast:
                     DisseminationMethod = "PODCAST";
                     RssOperationalData.RssType = "Private";
                     break;
-                case OperationalData.EntryPoint.DisseminationMethod.Rss:
+                case EntryPoint.DisseminationMethod.Rss:
                     DisseminationMethod = "RSS";
                     RssOperationalData.RssType = "Private";
                     break;
-                case OperationalData.EntryPoint.DisseminationMethod.Widget:
+                case EntryPoint.DisseminationMethod.Widget:
                     DisseminationMethod = "WID";
                     break;
-                case OperationalData.EntryPoint.DisseminationMethod.Edition:
+                case EntryPoint.DisseminationMethod.Edition:
                     DisseminationMethod = "ED";
-                    break;
-                default:
                     break;
             }
         }
@@ -39,38 +37,17 @@ namespace DowJones.OperationalData.EntryPoint
 
         public BaseWidgetOperationalData WidgetOperationalData
         {
-            get
-            {
-                if (_baseWidgetOperationalData == null)
-                {
-                    _baseWidgetOperationalData = new BaseWidgetOperationalData(List);
-                }
-                return _baseWidgetOperationalData;
-            }
+            get { return _baseWidgetOperationalData ?? (_baseWidgetOperationalData = new BaseWidgetOperationalData(List)); }
         }
 
         public BaseRssOperationalData RssOperationalData
         {
-            get
-            {
-                if (_baseRssOperationalData == null)
-                {
-                    _baseRssOperationalData = new BaseRssOperationalData(List);
-                }
-                return _baseRssOperationalData;
-            }
+            get { return _baseRssOperationalData ?? (_baseRssOperationalData = new BaseRssOperationalData(List)); }
         }
 
         public EdtionOperationalData EdtionOperationalData
         {
-            get
-            {
-                if (_baseEditionOperationalData == null)
-                {
-                    _baseEditionOperationalData = new EdtionOperationalData(List);
-                }
-                return _baseEditionOperationalData;
-            }
+            get { return _baseEditionOperationalData ?? (_baseEditionOperationalData = new EdtionOperationalData(List)); }
         }
 
     }

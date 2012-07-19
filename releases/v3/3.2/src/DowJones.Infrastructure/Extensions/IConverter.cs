@@ -4,7 +4,7 @@
     /// Generic converter interface used to allow extension methods to be applied.
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public interface IConverter<T>
+    public interface IConverter<out T>
     {
         /// <summary>
         /// Gets the internal value to be converted.

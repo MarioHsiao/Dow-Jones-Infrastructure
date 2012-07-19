@@ -363,7 +363,6 @@ namespace DowJones.Assemblers.Articles
 
                 if (sb.Length <= 0)
                 {
-                    continue;
                 }
             }
 

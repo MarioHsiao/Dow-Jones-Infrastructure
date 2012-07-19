@@ -7,27 +7,39 @@ using System.Xml;
 using DowJones.Exceptions;
 using DowJones.Extensions;
 using DowJones.Managers.Abstract;
+using DowJones.Properties;
 using DowJones.Session;
 using Factiva.Gateway.Messages.Archive.V2_0;
+using Factiva.Gateway.Messages.Search.V2_0;
 using Factiva.Gateway.Messages.Sources.V1_0;
 using log4net;
+using PerformMetadataSearchRequest = Factiva.Gateway.Messages.Search.FreeSearch.V1_0.PerformMetadataSearchRequest;
+using PerformMetadataSearchResponse = Factiva.Gateway.Messages.Search.FreeSearch.V1_0.PerformMetadataSearchResponse;
 
 namespace DowJones.Managers.Multimedia
 {
+    /// <summary>
+    /// MultiMedia Manager class for getting 
+    /// </summary>
     public class MultimediaManager : AbstractAggregationManager
     {
         #region Private variables
 
-        private readonly ILog _log = LogManager.GetLogger(typeof(MultimediaManager));
         private const string DefaultRampRedirect = "http://factiva.ramp.com/redirect/?e=";
+        private const string RampXmlNodePath = "/EveryzingPlayerDoc/Content/FeaturedEpisode/ResultSet/Results/CompleteResult/EpisodeMetaData";
+        private readonly ILog _log = LogManager.GetLogger(typeof (MultimediaManager));
 
-        private readonly string _rampUri = Properties.Settings.Default.RampUri;
-        private readonly string _marketWatchUri = Properties.Settings.Default.MarketWatchUri;
+        private readonly string _marketWatchUri = Settings.Default.MarketWatchUri;
+        private readonly string _rampUri = Settings.Default.RampUri;
 
         #endregion
 
         #region Constructors
 
+        /// <summary>
+        /// Constructor for 
+        /// </summary>
+        /// <param name="controlData"></param>
         public MultimediaManager(IControlData controlData)
             : base(controlData)
         {
@@ -38,9 +50,9 @@ namespace DowJones.Managers.Multimedia
         #region Abstractclass overrides
 
         /// <summary>
-        /// Gets the log.
+        ///   Gets the log.
         /// </summary>
-        /// <value>The log.</value>
+        /// <value> The log. </value>
         protected override ILog Log
         {
             get { return _log; }
@@ -53,7 +65,6 @@ namespace DowJones.Managers.Multimedia
         public MultimediaResponse GetMultiMediaResult(MultimediaRequest objRequest)
         {
             return GetMultiMediaResult(objRequest.AccessionNumber, false, null);
-
         }
 
 
@@ -76,10 +87,10 @@ namespace DowJones.Managers.Multimedia
         public MultimediaResponse GetMultiMediaResult(string episodeId, string sourceCode, bool flashOnly, List<string> mustPlayFromSourceList)
         {
             MediaContents mediaContents = null;
-            var mustPlay = new MustPlayFromSource { Status = false, Url = DefaultRampRedirect + episodeId };
+            var mustPlay = new MustPlayFromSource {Status = false, Url = DefaultRampRedirect + episodeId};
             var sourceList = mustPlayFromSourceList;
             var response = new MultimediaResponse();
-            
+
             try
             {
                 if (sourceList == null)
@@ -93,12 +104,12 @@ namespace DowJones.Managers.Multimedia
 
                 if (mustPlay.Status)
                 {
-                    response.MultimediaResult = new MultimediaPackage { MustPlayFromSource = mustPlay };
+                    response.MultimediaResult = new MultimediaPackage {MustPlayFromSource = mustPlay};
                     response.Status = 0;
                     return response;
                 }
-                var node = ProcessEpisodeID(episodeId);
 
+                var node = ProcessEpisodeID(episodeId);
                 if (node.Attributes != null && node.Attributes["html-url"] != null)
                 {
                     mustPlay.Url = node.GetAttribute("html-url");
@@ -108,32 +119,34 @@ namespace DowJones.Managers.Multimedia
                         var guid = node.GetAttribute("guid");
                         var mediaType = node.GetAttribute("media-type");
 
-                        MediaContent mediaContent;
+                        MediaContent mediaContent = null;
                         if (mediaType.Equals("audio"))
                         {
-                            mediaContent = new MediaContent
-                                               {
-                                                   Medium = "audio",
-                                                   Duration = node.GetAttribute("duration"),
-                                                   Url = node.GetAttribute("media-url"), Type = string.Format("audio/x-{0}", Path.GetExtension(node.GetAttribute("media-url")).Replace(".", ""))
-                                               };
+                            var extension = Path.GetExtension(node.GetAttribute("media-url"));
+                            if (extension != null)
+                                mediaContent = new MediaContent
+                                    {
+                                        Medium = "audio",
+                                        Duration = node.GetAttribute("duration"),
+                                        Url = node.GetAttribute("media-url"), Type = string.Format("audio/x-{0}", extension.Replace(".", ""))
+                                    };
 
                             mediaContents = new MediaContents {mediaContent};
                         }
-                        else if(!flashOnly)
+                        else if (!flashOnly)
                         {
                             var nodes = ProcessGUID(guid);
                             if (nodes.Count == 0)
                             {
                                 response.MultimediaResult = new MultimediaPackage
-                                                                {
-                                                                    MustPlayFromSource =
-                                                                        new MustPlayFromSource
-                                                                            {
-                                                                                Status = false,
-                                                                                Url = node.GetAttribute("media-url")
-                                                                            }
-                                                                };
+                                    {
+                                        MustPlayFromSource =
+                                            new MustPlayFromSource
+                                                {
+                                                    Status = false,
+                                                    Url = node.GetAttribute("media-url")
+                                                }
+                                    };
 
                                 return response;
                             }
@@ -142,16 +155,16 @@ namespace DowJones.Managers.Multimedia
                             foreach (XmlNode mnode in nodes)
                             {
                                 mediaContent = new MediaContent
-                                                   {
-                                                       BitRate = mnode.GetAttribute("bitrate"),
-                                                       FrameRate = mnode.GetAttribute("framerate"),
-                                                       Medium = mnode.GetAttribute("medium"),
-                                                       Duration = mnode.GetAttribute("duration"),
-                                                       Type = mnode.GetAttribute("type"),
-                                                       Width = mnode.GetAttribute("width"),
-                                                       Height = mnode.GetAttribute("height"),
-                                                       Url = mnode.GetAttribute("url"),
-                                                   };
+                                    {
+                                        BitRate = mnode.GetAttribute("bitrate"),
+                                        FrameRate = mnode.GetAttribute("framerate"),
+                                        Medium = mnode.GetAttribute("medium"),
+                                        Duration = mnode.GetAttribute("duration"),
+                                        Type = mnode.GetAttribute("type"),
+                                        Width = mnode.GetAttribute("width"),
+                                        Height = mnode.GetAttribute("height"),
+                                        Url = mnode.GetAttribute("url"),
+                                    };
                                 if (mnode.GetAttribute("type") == "video/x-flv")
                                 {
                                     PopulateStreamerFile(mediaContent);
@@ -161,12 +174,12 @@ namespace DowJones.Managers.Multimedia
                         }
 
                         var result = new MultimediaPackage
-                                         {
-                                             Guid = guid,
-                                             MediaContents = mediaContents,
-                                             MustPlayFromSource =
-                                                 new MustPlayFromSource { Status = mustPlay.Status, Url = mustPlay.Url}
-                                         };
+                            {
+                                Guid = guid,
+                                MediaContents = mediaContents,
+                                MustPlayFromSource =
+                                    new MustPlayFromSource {Status = mustPlay.Status, Url = mustPlay.Url}
+                            };
 
                         response.MultimediaResult = result;
                     }
@@ -180,20 +193,15 @@ namespace DowJones.Managers.Multimedia
             {
                 response.Status = emgEx.ReturnCode;
                 _log.Error(string.Format("Code {0} - {1}", emgEx.ReturnCode, emgEx.Message));
-                
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 response.Status = DowJonesUtilitiesException.MULTIMEDIA_UNKNOWN_EXCEPTION;
                 _log.Error(ex.Message);
             }
 
             return response;
-                        
-           
-                
         }
-
 
         #endregion
 
@@ -201,53 +209,47 @@ namespace DowJones.Managers.Multimedia
 
         internal List<string> GetOptInSourceList()
         {
-            var lstSources = new List<string>();
+            var searchRequest = new PerformMetadataSearchRequest
+                {
+                    FirstResult = 0,
+                    MaxResults = 1000,
+                };
 
-            var performSourceSearchRequest = new PerformSourceSearchRequest
-                                                 {
-                                                     searchString = "rst=toptin and ila=en", 
-                                                     resultType = ResultType.Sources, 
-                                                     responseType = ResponseType.Brief
-                                                 };
-
-
-            var performSourceSearchResponse = Process<PerformSourceSearchResponse>(performSourceSearchRequest);
-            if (performSourceSearchResponse.sourceSearchResponse != null && performSourceSearchResponse.sourceSearchResponse.sourceSearchResult != null)
-            foreach (Document document in performSourceSearchResponse.sourceSearchResponse.sourceSearchResult.sourcesResultSet)
-            {
-                lstSources.Add(((SourceDoc)document).sourceCode.ToUpper());
-
-            }
-
-
-            return lstSources;
+            searchRequest.StructuredSearch.Query.MetadataCollectionCollection.Add(MetadataCollection.Source);
+            searchRequest.StructuredSearch.Query.SearchStringCollection.Add(new MetadataSearchString
+                {
+                    Mode = MetadataSearchMode.Traditional,
+                    Type = SearchType.Free,
+                    Value = "rst=toptin and ila=en",
+                });
+            var searchResponse = Process<PerformMetadataSearchResponse>(searchRequest);
+            return searchResponse.MetadataSearchResult.MetadataResultSet.MetadataInfoCollection.Select(info => info.Id).ToList();
         }
 
         /// <summary>
-        /// Gets the source code of teh given article id
+        ///   Gets the source code of teh given article id
         /// </summary>
-        /// <param name="accessionNumber"></param>
-        /// <returns></returns>
+        /// <param name="accessionNumber"> </param>
+        /// <returns> </returns>
         internal string GetSourceCodeForArticleId(string accessionNumber)
         {
             var partOfId = accessionNumber.Substring(0, 8);
 
             if (partOfId.EndsWith("0"))
-                accessionNumber = partOfId.TrimEnd(new[] { '0' });
+                accessionNumber = partOfId.TrimEnd(new[] {'0'});
 
             return accessionNumber.ToUpper();
         }
 
         internal string GetEpisodeId(string accessionNo)
         {
-
             string episodeID;
             var multimediaArticleUrlRequest = new GetMultimediaArticleUrlRequest
-                                                  {
-                                                      accessionNumbers = new[] {accessionNo}
-                                                  };
-            
-           
+                {
+                    accessionNumbers = new[] {accessionNo}
+                };
+
+
             var response = Process<GetMultimediaArticleUrlResponse>(multimediaArticleUrlRequest);
             var multimediaArticle = response.multimediaArticleResultSet.multimediaArticle[0];
             if (multimediaArticle.status == 0)
@@ -259,7 +261,6 @@ namespace DowJones.Managers.Multimedia
             }
             else
             {
-
                 throw new DowJonesUtilitiesException(multimediaArticle.status);
             }
 
@@ -293,26 +294,26 @@ namespace DowJones.Managers.Multimedia
             var stream = rampResponse.GetResponseStream();
             var doc = new XmlDocument();
             if (stream != null) doc.Load(stream);
-            var rampNode = doc.SelectSingleNode("/EveryzingPlayerDoc/Content/FeaturedEpisode/ResultSet/Results/CompleteResult/EpisodeMetaData");
+            var rampNode = doc.SelectSingleNode(RampXmlNodePath);
             return rampNode;
         }
 
         internal HttpWebResponse GetHttpWebResponse(Uri uri, long errorCode)
         {
             HttpWebResponse response;
-           
+
             try
             {
-                var request = (HttpWebRequest)WebRequest.Create(uri);
+                var request = (HttpWebRequest) WebRequest.Create(uri);
                 request.Method = "GET";
-                response = (HttpWebResponse)request.GetResponse();
+                response = (HttpWebResponse) request.GetResponse();
             }
             catch
             {
                 throw new DowJonesUtilitiesException(errorCode);
             }
 
-                                   
+
             return response;
         }
 
@@ -331,7 +332,7 @@ namespace DowJones.Managers.Multimedia
 
         internal static void PopulateStreamerFile(MediaContent mediacontent)
         {
-            var index = mediacontent.Url.IndexOf("/video");
+            var index = mediacontent.Url.IndexOf("/video", StringComparison.Ordinal);
             mediacontent.Streamer = mediacontent.Url.Substring(0, index);
             mediacontent.File = mediacontent.Url.Substring(index + 1);
         }

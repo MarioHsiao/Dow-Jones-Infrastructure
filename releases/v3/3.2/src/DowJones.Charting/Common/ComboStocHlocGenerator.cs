@@ -10,9 +10,9 @@
  * -----------------------------------------------------------------------------
  */
 
+using System.Collections;
 using System.Drawing;
 using System.Text;
-using System.Collections;
 using DowJones.Charting.Core;
 using DowJones.Charting.Core.Data;
 using DowJones.Charting.Core.Response;
@@ -26,40 +26,31 @@ namespace DowJones.Charting.Common
     {
         private const string BASE_APPERANCE_FILE = "common/chart_hloc.itxml";
         private const string BASE_APPERANCE_FILE_HVOLUME = "common/chart_hloc_hvolume.itxml";
-        private Color COLOR_OUTERLINES = Color.Black;
         private const int HEIGHT = 400;
         private const int WIDTH = 500;
         private readonly TextBox m_Attribution = new TextBox("CopyRight");
-        private StockChartDataSet m_DataSet;
-        private BarChartDataSet mb_DataSet;
-        private OutputChartType m_OutputChartType = OutputChartType.FLASH;
-        private BaseLine m_BaseLine;
+        private Color COLOR_OUTERLINES = Color.Black;
+        private string combo_xml = string.Empty;
         private Color m_BackgroundColor = Color.White;
+        private BaseLine m_BaseLine;
+        private StockChartDataSet m_DataSet;
         private Color m_GridColor = ColorTranslator.FromHtml("#CCCCCC");
-        private Color m_ScaleColor = ColorTranslator.FromHtml("#999999");
+        private OutputChartType m_OutputChartType = OutputChartType.FLASH;
 
         private Line m_PlotLine;
+        private Color m_ScaleColor = ColorTranslator.FromHtml("#999999");
         private bool m_UseCache = true;
-        private double minValue = 0; //minimum value on the y-axis scale
-        private double maxValue = 0; //maximum value on the y-axis scale 
-        private string combo_xml = string.Empty;
-        private string timeline_xml = string.Empty;
-        private bool showVolume = false;
         private string m_copyright = string.Empty;
         private string m_priceLabel = string.Empty;
         private string m_volumeLabel = string.Empty;
-
-
-        private ArrayList arr_textbox = null;
-
-
+        private double maxValue; //maximum value on the y-axis scale 
+        private double minValue; //minimum value on the y-axis scale
+        private string timeline_xml = string.Empty;
 
         #region Constructors
 
         public ComboStockHlocGenerator()
         {
-
-
         }
 
         public ComboStockHlocGenerator(StockChartDataSet DataSet)
@@ -71,19 +62,12 @@ namespace DowJones.Charting.Common
 
         #region Properties
 
-
-
         public TextBox Attribution
         {
             get { return m_Attribution; }
         }
 
-        public ArrayList Arr_TextBox
-        {
-            get { return arr_textbox; }
-            set { arr_textbox = value; }
-
-        }
+        public ArrayList Arr_TextBox { get; set; }
 
         protected bool UseCache
         {
@@ -91,12 +75,8 @@ namespace DowJones.Charting.Common
             set { m_UseCache = value; }
         }
 
-        public bool ShowVolume
-        {
-            get { return showVolume; }
-            set { showVolume = value; }
+        public bool ShowVolume { get; set; }
 
-        }
         public StockChartDataSet DataSet
         {
             get
@@ -109,13 +89,7 @@ namespace DowJones.Charting.Common
         }
 
 
-
-        public BarChartDataSet BarChartDataSet
-        {
-            get { return mb_DataSet; }
-            set { mb_DataSet = value; }
-
-        }
+        public BarChartDataSet BarChartDataSet { get; set; }
 
         public OutputChartType OutputChartType
         {
@@ -164,9 +138,6 @@ namespace DowJones.Charting.Common
         }
 
 
-
-
-
         public double MinValue
         {
             get { return minValue; }
@@ -184,14 +155,12 @@ namespace DowJones.Charting.Common
         {
             get { return m_copyright; }
             set { m_copyright = value; }
-
         }
 
         public string PriceLabel
         {
             get { return m_priceLabel; }
             set { m_priceLabel = value; }
-
         }
 
         public string VolumeLabel
@@ -199,11 +168,6 @@ namespace DowJones.Charting.Common
             get { return m_volumeLabel; }
             set { m_volumeLabel = value; }
         }
-
-
-
-
-
 
         #endregion
 
@@ -214,7 +178,7 @@ namespace DowJones.Charting.Common
             ChartTemplate template = GetChartTemplate();
             byte[] bytes = ChartingManager.GetChartBytes(itxml, string.Empty, GetChartTemplate(), m_UseCache);
 
-            ChartBytesResponse response = new ChartBytesResponse(template.Height, template.Width, bytes, template.OutputChartType);
+            var response = new ChartBytesResponse(template.Height, template.Width, bytes, template.OutputChartType);
             return response;
         }
 
@@ -243,7 +207,7 @@ namespace DowJones.Charting.Common
             m_OutputChartType = original;
             string tUri = ChartingManager.ExtractSourceAttributeFromEmbededHTML(ChartingManager.GetChartEmbededHtmlByITXML(itxml, "", template, m_UseCache));
 
-            ChartUriResponse response = new ChartUriResponse(template.Height, template.Width, tUri, original);
+            var response = new ChartUriResponse(template.Height, template.Width, tUri, original);
             return response;
         }
 
@@ -253,16 +217,14 @@ namespace DowJones.Charting.Common
         /// <returns></returns>
         public override IEmbeddedHTMLResponse GetHTML()
         {
-            string itxml = string.Empty;
-
-            itxml = (ShowVolume) ? this.ToITXMLComboTimeLine() + this.ToITXMLBarGraphTimeLine() : this.ToITXMLComboTimeLine();
+            var itxml = (ShowVolume) ? ToITXMLComboTimeLine() + ToITXMLBarGraphTimeLine() : ToITXMLComboTimeLine();
             //itxml = this.ToITXMLBarGraphTimeLine();
-            string pcscript = GetPCScript();
-            ChartTemplate template = GetChartTemplate();
+            var pcscript = GetPCScript();
+            var template = GetChartTemplate();
             //string tEmbededHTML = ChartingManager.GetChartEmbededHtmlByITXML(itxml, string.Empty, GetChartTemplate(), m_UseCache);
-            string tEmbededHTML = ChartingManager.GetChartEmbededHtmlByITXML(itxml, pcscript, GetChartTemplate(), m_UseCache);
+            var tEmbededHTML = ChartingManager.GetChartEmbededHtmlByITXML(itxml, pcscript, GetChartTemplate(), m_UseCache);
 
-            ChartEmbeddedHTMLResponse response = new ChartEmbeddedHTMLResponse(template.Height, template.Width, tEmbededHTML, template.OutputChartType);
+            var response = new ChartEmbeddedHTMLResponse(template.Height, template.Width, tEmbededHTML, template.OutputChartType);
             return response;
         }
 
@@ -272,7 +234,7 @@ namespace DowJones.Charting.Common
         /// <returns></returns>
         public string ToITXMLBarGraphTimeLine()
         {
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
 
 
             sb.Append("<cit:bar-graph name=\"BarGraph\" method=\"replace\">");
@@ -287,7 +249,6 @@ namespace DowJones.Charting.Common
 
             sb.Append(ProcessComboAttribution());
             return sb.ToString();
-
         }
 
 
@@ -295,8 +256,8 @@ namespace DowJones.Charting.Common
         {
             // Get the Bar-Series nodes
             //<cit:bar-series name="Series 1" number="1" />
-            StringBuilder mainSB = new StringBuilder();
-            StringBuilder outerSB = new StringBuilder();
+            var mainSB = new StringBuilder();
+            var outerSB = new StringBuilder();
 
             if (BarChartDataSet.Series != null)
             {
@@ -323,14 +284,13 @@ namespace DowJones.Charting.Common
                 mainSB.Append("</cit:data>");
 
                 return mainSB.ToString();
-
             }
             return "<cit:data />";
         }
 
         internal override ChartTemplate GetChartTemplate()
         {
-            ChartTemplate template = new ChartTemplate();
+            var template = new ChartTemplate();
             template.Width = WIDTH;
             template.Height = HEIGHT;
             template.OutputChartType = m_OutputChartType;
@@ -344,7 +304,7 @@ namespace DowJones.Charting.Common
         /// <returns></returns>
         internal override string ToITXML()
         {
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
             //Include any formatiing changes to ITXML here.
 
             //Set Scale
@@ -359,12 +319,11 @@ namespace DowJones.Charting.Common
             sb.Append(ProcessAttribution());
 
             return sb.ToString();
-
         }
 
         public string ToITXMLComboTimeLine()
         {
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
             //Include any formatiing changes to ITXML here.
 
             //Set Scale
@@ -380,12 +339,10 @@ namespace DowJones.Charting.Common
             //For No Volume 
             if (!ShowVolume)
             {
-                sb.Append(this.ProcessComboAttributionWV());
+                sb.Append(ProcessComboAttributionWV());
             }
 
             return sb.ToString();
-
-
         }
 
 
@@ -395,7 +352,7 @@ namespace DowJones.Charting.Common
         /// <returns></returns>
         private string SetScales()
         {
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
             sb.Append("<cit:value-scale position=\"left\">");
             sb.AppendFormat("<cit:value-scale-labels rotate-labels=\"false\" value-format=\"override-maximum-decimal-places:true;override-always-show-maximum-decimal-places:true\" font=\"name:Arial Unicode MS;color:{0}\"/>", ColorTranslator.ToHtml(ScaleColor));
             if (minValue == 0 && maxValue == 0)
@@ -415,16 +372,13 @@ namespace DowJones.Charting.Common
         }
 
 
-
-
-
         /// <summary>
         /// PCScript used for timeseries. Corda dll from vendor has a bug with itxml.
         /// </summary>
         /// <returns></returns> 
         private string GetPCScript()
         {
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
             string series;
             foreach (StockSeries stockSeries in DataSet.StockSeries)
             {
@@ -436,35 +390,21 @@ namespace DowJones.Charting.Common
 
                     foreach (StockItem item in stockSeries.StockItems)
                     {
-
                         sb.Append(
-
                             string.Concat(
-
                                 //item.Date.ToString("MM'/'dd'/'yyyy"),
                                 //item.Date.ToString("dd'-'MMM'-'yyyy"),
                                 item.Target,
-
                                 ",",
-
                                 item.High,
-
                                 ",",
-
                                 item.Low,
-
                                 ",",
-
                                 item.Open,
-
                                 ",",
-
                                 item.Close,
-
                                 ";"
-
                                 )
-
                             );
                     }
                     sb.Append(")");
@@ -481,8 +421,8 @@ namespace DowJones.Charting.Common
                     foreach (StockItem item in stockSeries.StockItems)
                     {
                         sb.Append(
-                           string.Concat(dataItemPosition, ",", seriesIndex, ",", item.Hover, ";")
-                           );
+                            string.Concat(dataItemPosition, ",", seriesIndex, ",", item.Hover, ";")
+                            );
                         dataItemPosition++;
                     }
                     sb.Append(")");
@@ -503,14 +443,14 @@ namespace DowJones.Charting.Common
                         if (item.Drilldown != "")
                         {
                             sb.Append(
-                               string.Concat(dataItemPosition, "|", seriesIndex, "|", item.Drilldown)
-                               );
+                                string.Concat(dataItemPosition, "|", seriesIndex, "|", item.Drilldown)
+                                );
                         }
                         else
                         {
                             sb.Append(
-                            string.Concat(dataItemPosition, "|", seriesIndex, "|", ";")
-                            );
+                                string.Concat(dataItemPosition, "|", seriesIndex, "|", ";")
+                                );
                         }
                         dataItemPosition++;
                     }
@@ -528,7 +468,7 @@ namespace DowJones.Charting.Common
         /// <returns></returns>
         private string ProcessData()
         {
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
             if (DataSet.StockSeries != null)
             {
                 //sb.Append(
@@ -547,10 +487,8 @@ namespace DowJones.Charting.Common
                              dataItemCount < DataSet.StockSeries[stockSeriesCount].StockItems.Count;
                              ++dataItemCount)
                         {
-
                             //item.Date = DataSet.StockSeries[stockSeriesCount].StockItems[dataItemCount].Date;
                             sb.Append(DataSet.StockSeries[stockSeriesCount].StockItems[dataItemCount].ToITXML());
-
                         }
                     }
                     //sb.Append("</cit:time>");
@@ -568,7 +506,7 @@ namespace DowJones.Charting.Common
         /// 
         private string ProcessComboAttribution()
         {
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
 
             sb.Append("<cit:textbox name=\"StockEx\" positioned-in-builder=\"true\">");
             sb.AppendFormat("<cit:text content=\"{0}\"/>", StringUtilitiesManager.XmlEncode(Arr_TextBox[1].ToString()));
@@ -595,14 +533,12 @@ namespace DowJones.Charting.Common
 
             sb.Append("</cit:textbox>");
             return sb.ToString();
-
         }
-
 
 
         private string ProcessComboAttributionWV()
         {
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
 
             sb.Append("<cit:textbox name=\"StockEx\" positioned-in-builder=\"true\">");
             sb.AppendFormat("<cit:text content=\"{0}\"/>", StringUtilitiesManager.XmlEncode(Arr_TextBox[1].ToString()));
@@ -624,7 +560,6 @@ namespace DowJones.Charting.Common
 
             sb.Append("</cit:textbox>");
             return sb.ToString();
-
         }
 
 

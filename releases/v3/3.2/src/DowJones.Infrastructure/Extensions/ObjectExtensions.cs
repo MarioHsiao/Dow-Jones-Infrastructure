@@ -10,6 +10,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Reflection;
 using System.Xml;
 using Newtonsoft.Json;
@@ -125,12 +126,9 @@ namespace DowJones.Extensions
                 var targetType = typeof(T);
 
                 var converter = TypeDescriptor.GetConverter(value);
-                if (converter != null)
+                if (converter.CanConvertTo(targetType))
                 {
-                    if (converter.CanConvertTo(targetType))
-                    {
-                        return true;
-                    }
+                    return true;
                 }
 
                 converter = TypeDescriptor.GetConverter(targetType);
@@ -349,7 +347,7 @@ namespace DowJones.Extensions
         /// <returns>The found attributes</returns>
         public static IEnumerable<T> GetAttributes<T>(this object obj) where T : Attribute
         {
-            return GetAttributes<T>(obj);
+            return GetAttributes<T>(obj, true);
         }
 
         /// <summary>
@@ -362,13 +360,7 @@ namespace DowJones.Extensions
         public static IEnumerable<T> GetAttributes<T>(this object obj, bool includeInherited) where T : Attribute
         {
             var type = obj as Type ?? obj.GetType();
-            foreach (var attribute in type.GetCustomAttributes(typeof(T), includeInherited))
-            {
-                if (attribute is T)
-                {
-                    yield return (T)attribute;
-                }
-            }
+            return type.GetCustomAttributes(typeof(T), includeInherited).OfType<T>();
         }
 
         /// <summary>
@@ -528,8 +520,7 @@ namespace DowJones.Extensions
         /// <returns></returns>
         public static string ToJson<T>(this T obj)
         {
-            string r;
-            r = JsonConvert.SerializeObject(obj, Newtonsoft.Json.Formatting.None, jsonSerializerSettings);
+            var r = JsonConvert.SerializeObject(obj, Newtonsoft.Json.Formatting.None, jsonSerializerSettings);
             if (r == "[]" || r == "{}")
             {
                 return String.Empty;

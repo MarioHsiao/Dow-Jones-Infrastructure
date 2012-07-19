@@ -1,9 +1,9 @@
 ﻿/*
- *  Social Behavior
- *  
- *  12/13/2010: hrusi: refactored Ajax Toolkit based script to jQuery + DJ MVC pattern
- *
- */
+*  Social Behavior
+*  
+*  12/13/2010: hrusi: refactored Ajax Toolkit based script to jQuery + DJ MVC pattern
+*
+*/
 
 DJ.UI.SocialButtons = DJ.UI.Component.extend({
 
@@ -13,19 +13,19 @@ DJ.UI.SocialButtons = DJ.UI.Component.extend({
     },
 
     __socialNetworkTypes: {
-        "delicious": { url: "http://del.icio.us/post?url={URL}&title={TITLE}" },
-        "digg": { url: "http://digg.com/submit?phase=2&url={URL}&title={TITLE}" },
-        "facebook": { url: "http://www.facebook.com/share.php?u={URL}" },
-        "furl": { url: "http://furl.net/storeIt.jsp?u={URL}&t={TITLE}" },
-        "google": { url: "http://www.google.com/bookmarks/mark?op=edit&bkmk={URL}&title={TITLE}" },
-        "linkedin": { url: "http://www.linkedin.com/shareArticle?mini=true&url={URL}&title={TITLE}&summary={DESCRIPTION}&source=" },
-        "newsvine": { url: "http://www.newsvine.com/_wine/save?u={URL}&h={TITLE}" },
-        "reddit": { url: "http://reddit.com/submit?url={URL}&title={TITLE}" },
-        "stumbleupon": { url: "http://www.stumbleupon.com/submit?url={URL}&title={TITLE}" },
-        "technorati": { url: "http://www.technorati.com/faves?add={URL}" },
-        "twitter": { url: "http://twitter.com/?status={TITLE}%20-%20{URL}" },
-        "yahoo": { url: "http://myweb2.search.yahoo.com/myresults/bookmarklet?u={URL}&t={TITLE}" },
-        "myspace": { url: "http://www.myspace.com/Modules/PostTo/Pages/?u={URL}&t={TITLE}&c={DESCRIPTION}&l=3" }
+        "delicious": "http://del.icio.us/post?url={URL}&title={TITLE}",
+        "digg": "http://digg.com/submit?phase=2&url={URL}&title={TITLE}",
+        "facebook": "http://www.facebook.com/share.php?u={URL}",
+        "furl": "http://furl.net/storeIt.jsp?u={URL}&t={TITLE}",
+        "google": "http://www.google.com/bookmarks/mark?op=edit&bkmk={URL}&title={TITLE}",
+        "linkedin": "http://www.linkedin.com/shareArticle?mini=true&url={URL}&title={TITLE}&summary={DESCRIPTION}&source=",
+        "newsvine": "http://www.newsvine.com/_wine/save?u={URL}&h={TITLE}",
+        "reddit": "http://reddit.com/submit?url={URL}&title={TITLE}",
+        "stumbleupon": "http://www.stumbleupon.com/submit?url={URL}&title={TITLE}",
+        "technorati": "http://www.technorati.com/faves?add={URL}",
+        "twitter": "http://twitter.com/?status={TITLE}%20-%20{URL}",
+        "yahoo": "http://myweb2.search.yahoo.com/myresults/bookmarklet?u={URL}&t={TITLE}",
+        "myspace": "http://www.myspace.com/Modules/PostTo/Pages/?u={URL}&t={TITLE}&c={DESCRIPTION}&l=3"
     },
 
     options: {
@@ -69,7 +69,7 @@ DJ.UI.SocialButtons = DJ.UI.Component.extend({
         for (var i = 0, len = arrNetworks.length; i < len; i++) {
             name = arrNetworks[i];
             id = name.toLowerCase();
-            url = this.__socialNetworkTypes[id].url;          
+            url = this.__socialNetworkTypes[id];
             cName = "social_button social_button_" + id;
 
             if (url !== undefined) {
@@ -171,5 +171,5 @@ DJ.UI.SocialButtons = DJ.UI.Component.extend({
     }
 });
 
-    // Declare this class as a jQuery plugin
-    $.plugin('dj_SocialButtons', DJ.UI.SocialButtons);
+// Declare this class as a jQuery plugin
+$.plugin('dj_SocialButtons', DJ.UI.SocialButtons);

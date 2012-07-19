@@ -4,17 +4,14 @@ using DowJones.Infrastructure;
 using DowJones.Infrastructure.Converters;
 using DowJones.Infrastructure.Models.SocialMedia;
 using DowJones.Managers.Abstract;
+using DowJones.Managers.SocialMedia.Config;
+using DowJones.Managers.SocialMedia.Responses;
+using DowJones.Managers.SocialMedia.Serializers;
+using Hammock;
 using Newtonsoft.Json;
-using DowJones.Extensions;
-
 
 namespace DowJones.Managers.SocialMedia
 {
-
-    using Config;
-    using DowJones.Managers.SocialMedia.Responses;
-    using Hammock;
-    using DowJones.Managers.SocialMedia.Serializers;
 
     /// <summary>
     /// The Service for interacting with TweetRiver API
@@ -22,15 +19,12 @@ namespace DowJones.Managers.SocialMedia
     public class SocialMediaService : IService
     {
         
-        // <summary>
+        /// <summary>
         /// The settings.
         /// </summary>
         private  readonly JsonSerializerSettings Settings;
-
-
-        private ISocialMediaProvider _socialMediaProvider;
-        private ISocialMediaIndustryProvider _industryProvider;
-
+        private readonly ISocialMediaProvider _socialMediaProvider;
+        private readonly ISocialMediaIndustryProvider _industryProvider;
 
         /// <summary>
         /// Gets the default json serializer settings.
@@ -207,7 +201,7 @@ namespace DowJones.Managers.SocialMedia
         /// Gets the tweets by channel.
         /// </summary>
         /// <param name="channel">The channel.</param>
-        /// <param name="count">The count.</param>
+        /// <param name="requestOptions">The request options.</param>
         /// <returns></returns>
         public GetTweetsByChannelResponse GetTweetsByChannel(string channel, RequestOptions requestOptions = null)
         {

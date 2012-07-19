@@ -118,7 +118,7 @@ namespace DowJones.OperationalData.Article
             get
             {
                 string v = Get(ODSConstants.KEY_SOURCE_CODE);
-                return v != null ? v.Split(new char[] { MULTIPLE_ART_VALUE_SPILTER }) : null;
+                return v != null ? v.Split(new char[] { MultipleArtValueSpilter }) : null;
             }
             set
             {
@@ -127,7 +127,7 @@ namespace DowJones.OperationalData.Article
                     StringBuilder sb = new StringBuilder();
                     foreach (string v in value)
                     {
-                        sb.Append(v).Append(MULTIPLE_ART_VALUE_SPILTER);
+                        sb.Append(v).Append(MultipleArtValueSpilter);
                     }
                     if (sb.Length > 0)
                     {
@@ -152,7 +152,7 @@ namespace DowJones.OperationalData.Article
                 if (v == null)
                     return null;
 
-                string[] savedValue = v.Split(new char[] { MULTIPLE_ART_VALUE_SPILTER });
+                string[] savedValue = v.Split(new char[] { MultipleArtValueSpilter });
                 if (savedValue.Length > 0)
                 {
                     foreach(string str in savedValue)
@@ -178,7 +178,7 @@ namespace DowJones.OperationalData.Article
                         {
                             saveValue = "S";
                         }
-                        sb.Append(saveValue).Append(MULTIPLE_ART_VALUE_SPILTER);
+                        sb.Append(saveValue).Append(MultipleArtValueSpilter);
                     }
                     if (sb.Length > 0)
                     {
@@ -199,7 +199,7 @@ namespace DowJones.OperationalData.Article
             get
             {
                 string v = Get(ODSConstants.KEY_ERROR_CODE);
-                return v != null ? v.Split(new char[] { MULTIPLE_ART_VALUE_SPILTER }) : null;
+                return v != null ? v.Split(new char[] { MultipleArtValueSpilter }) : null;
             }
             set
             {
@@ -208,7 +208,7 @@ namespace DowJones.OperationalData.Article
                     StringBuilder sb = new StringBuilder();
                     foreach (string v in value)
                     {
-                        sb.Append(v).Append(MULTIPLE_ART_VALUE_SPILTER);
+                        sb.Append(v).Append(MultipleArtValueSpilter);
                     }
                     if (sb.Length > 0)
                     {
