@@ -6,7 +6,7 @@ Add a reference to `common.js` with a valid `sessionId` anywhere in the `<head>`
 	<script type="text/javascript" 
 	        src="http://<tbd>/common.js?sessionId=27137ZzZKJAUQT2CAAAGUAIAAAAANFOUAAAAAABSGAYTEMBWGI2TCNBQGYZTKNZS"></script>
 
-Add a container `<div>` to your page where you would like to display the component.
+Add a container to your page where you would like to display the component.
 
 	<div id="discoveryContainer"></div>
 

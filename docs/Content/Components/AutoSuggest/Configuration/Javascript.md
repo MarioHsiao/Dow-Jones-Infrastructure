@@ -4,10 +4,9 @@
 
 Add a reference to `common.js` with a valid `sessionId` anywhere in the `<head>` section of you page.
 
-	<script type="text/javascript" 
-	    src="http://<tbd>/common.js?sessionId=27137ZzZKJAUQT2CAAAGUAIAAAAANFOUAAAAAABSGAYTEMBWGI2TCNBQGYZTKNZS"></script>
+	<script type="text/javascript" src="http://<tbd>/common.js"></script>
 
-Add a container `<div>` to your page where you would like to display the component.
+Add a container to your page where you would like to display the component.
 
 	<div id="autoSuggestContainer"></div>
 
