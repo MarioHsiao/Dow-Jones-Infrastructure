@@ -125,3 +125,7 @@ td.name {
   .callout .important {
     background-image: url(themes/default/images/important.png); }
 
+.comment {
+  color: #999;
+  font-size: 12px; }
+
