@@ -1,5 +1,7 @@
-[assembly: WebActivator.PreApplicationStartMethod(typeof(DowJones.MvcShowcase.App_Start.ElmahMvc), "Start")]
-namespace DowJones.MvcShowcase.App_Start
+using DowJones.MvcShowcase.App_start;
+
+[assembly: WebActivator.PreApplicationStartMethod(typeof(ElmahMvc), "Start")]
+namespace DowJones.MvcShowcase.App_start
 {
     public class ElmahMvc
     {
