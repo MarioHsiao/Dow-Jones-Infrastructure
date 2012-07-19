@@ -1,32 +1,32 @@
 ﻿/* Start Social Buttons Styles */
 
-.social_button { padding-right: 10px; display: inline-block; width: 15px; height: 20px; text-indent: -9999em; }
+.social_button {padding-right: 15px; display: inline-block;	width:42px; height:60px; text-indent:-9999em;}
 
-.social_button_delicious { background: url('img/small/delicious.png') no-repeat; }
+.social_button_delicious { background: url('img/large/delicious.png') no-repeat; }
 
-.social_button_digg { background: url('img/small/digg.png') no-repeat; }
+.social_button_digg { background: url('img/large/digg.png') no-repeat; }
 
-.social_button_facebook { background: url('img/small/facebook.png') no-repeat; }
+.social_button_facebook { background: url('img/large/facebook.png') no-repeat; }
 
-.social_button_furl { background: url('img/small/furl.png') no-repeat; }
+.social_button_furl { background: url('img/large/furl.png') no-repeat; }
 
-.social_button_google { background: url('img/small/google.png') no-repeat; }
+.social_button_google { background: url('img/large/google.png') no-repeat; }
 
-.social_button_linkedin { background: url('img/small/linkedin.png') no-repeat; }
+.social_button_linkedin { background: url('img/large/linkedin.png') no-repeat; }
 
-.social_button_myspace { background: url('img/small/myspace.png') no-repeat; }
+.social_button_myspace { background: url('img/large/myspace.png') no-repeat; }
 
-.social_button_newsvine { background: url('img/small/newsvine.png') no-repeat; }
+.social_button_newsvine { background: url('img/large/newsvine.png') no-repeat; }
 
-.social_button_reddit { background: url('img/small/reddit.png') no-repeat; }
+.social_button_reddit { background: url('img/large/reddit.png') no-repeat; }
 
-.social_button_stumbleupon { background: url('img/small/stumbleupon.png') no-repeat; }
+.social_button_stumbleupon { background: url('img/large/stumbleupon.png') no-repeat; }
 
-.social_button_technorati { background: url('img/small/technorati.png') no-repeat; }
+.social_button_technorati { background: url('img/large/technorati.png') no-repeat; }
 
-.social_button_twitter { background: url('img/small/twitter.png') no-repeat; }
+.social_button_twitter { background: url('img/large/twitter.png') no-repeat; }
 
-.social_button_yahoo { background: url('img/small/yahoo.png') no-repeat; }
+.social_button_yahoo { background: url('img/large/yahoo.png') no-repeat; }
 
-ul.dj_SocialButtons li { display: inline; padding-right: 5px; }
+.dj_SocialButtons li { display: inline; padding-right: 5px; }
 /* End Social Buttons Styles */
