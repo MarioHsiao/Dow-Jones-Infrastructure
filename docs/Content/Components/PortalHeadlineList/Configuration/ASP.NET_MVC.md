@@ -31,6 +31,6 @@ Populate the `PortalHeadlineList` model:
 Render the model in your view which will render the component in the browser:
 
 	<!-- Render the component -->
-	@@model DowJones.Web.Mvc.UI.Components.Models.PortalHeadlineListModel
+	@@model DowJones.Web.Mvc.UI.Components.PortalHeadlineList.PortalHeadlineListModel
 
 	@@Html.DJ().Render(Model) 
