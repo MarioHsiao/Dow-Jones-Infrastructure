@@ -115,9 +115,12 @@ namespace DowJones.Charting.Highcharts
         /// <param name="width">The pixel width of the exported chart image.</param>
         /// <param name="svg">An SVG chart document to export (XML text).</param>
         /// <param name="setContentDisposition">Whether to set the content disposition for this object</param>
-        /// <param name="context">Whether to set the httpcontext </param>
-        internal Exporter(string type, int width, string svg, string fileName = "Chart", bool setContentDisposition = true)
+        internal Exporter(string type, int width, string svg, string fileName, bool setContentDisposition)
         {
+            if (fileName.IsNullOrEmpty())
+            {
+                fileName = "Chart";
+            }
             string extension;
 
             ContentType = type.ToLower();
