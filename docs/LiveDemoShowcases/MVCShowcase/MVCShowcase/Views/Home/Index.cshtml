@@ -92,16 +92,16 @@
                 });
             });
 
+            validate("Can create PortalHeadlineList natively", function (callback) {
+                DJ.$dj.require(['$', '$dj', 'DJ.UI.PortalHeadlineList'], function ($, $dj) {
+                    callback(new DJ.UI.PortalHeadlineList($('<div>'), {}));
+                });
+            });
+
             validate("Can create PortalHeadlineList via DJ.add()", function (callback) {
                 $('<div id="phlContainer" />').hide().appendTo($('body'));
                 DJ.add('PortalHeadlineList', { container: 'phlContainer' })
                   .then(callback);
-            });
-
-            validate("Can create PortalHeadlineList via plugin", function (callback) {
-                DJ.$dj.require(['$', '$dj', 'DJ.UI.PortalHeadlineList'], function ($, $dj) {
-                    callback($('<div>').dj_PortalHeadlineList({}));
-                });
             });
         };
     </script>
