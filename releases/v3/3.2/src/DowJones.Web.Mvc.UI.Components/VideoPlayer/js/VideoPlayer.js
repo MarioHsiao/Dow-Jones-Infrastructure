@@ -1,5 +1,5 @@
 ﻿
-DJ.UI.VideoPlayerControl = DJ.UI.Component.extend({
+DJ.UI.VideoPlayer = DJ.UI.Component.extend({
 
     defaults: {
         width: 500,
@@ -18,7 +18,7 @@ DJ.UI.VideoPlayerControl = DJ.UI.Component.extend({
     selectors: {
         videoPlayer: 'div.video-player',
         playListContainer: 'div.playlist-container',
-        playListWrap: 'div.playlist-wrap',
+        playListWrap: 'div.playlist-wrap', 
         playListItems: 'div.playlist-items',
         playListEntries: 'div.entries',
         playListNav: 'div.playlist-nav',
@@ -30,7 +30,7 @@ DJ.UI.VideoPlayerControl = DJ.UI.Component.extend({
     init: function (element, meta) {
 
         // start base constructor
-        var $meta = $.extend({ name: "VideoPlayerControl" }, meta);
+        var $meta = $.extend({ name: "VideoPlayer" }, meta);
         this._super(element, $meta);
         // end base constructor
 
@@ -279,12 +279,12 @@ DJ.UI.VideoPlayerControl = DJ.UI.Component.extend({
     }
 });
 
-DJ.UI.VideoPlayerControl.prototype.iDevices = DJ.UI.VideoPlayerControl.prototype.iDevices || {
+DJ.UI.VideoPlayer.prototype.iDevices = DJ.UI.VideoPlayer.prototype.iDevices || {
     iPad: (navigator.userAgent.indexOf('iPad') !== -1)
 };
 
 // Declare this class as a jQuery plugin
-$.plugin('dj_VideoPlayerControl', DJ.UI.VideoPlayerControl);
+$.plugin('dj_VideoPlayerControl', DJ.UI.VideoPlayer);
 
 
-$dj.debug('Registered DJ.UI.VideoPlayerControl (extends DJ.UI.Component)');
+$dj.debug('Registered DJ.UI.VideoPlayer (extends DJ.UI.Component)');
