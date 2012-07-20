@@ -2,7 +2,7 @@
 @model VideoPlayerModel
 @ClientPlugin dj_VideoPlayer
 @ScriptResource RelativeResourceName=js.scrollable.js
-@ScriptResource RelativeResourceName=js.VideoPlayer.js
+@ScriptResource RelativeResourceName=js.VideoPlayer.js, DependsOn=scrollable;flow-player-combined
 @ScriptResource RelativeResourceName=js.flowplayer-combined.js
 @ClientTemplate RelativeResourceName=ClientTemplates.Success.htm, TemplateId=success
 @{ 
