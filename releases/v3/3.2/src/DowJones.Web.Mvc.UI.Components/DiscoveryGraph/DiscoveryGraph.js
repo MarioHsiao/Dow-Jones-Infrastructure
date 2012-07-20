@@ -34,7 +34,6 @@ DJ.UI.DiscoveryGraph = DJ.UI.Component.extend({
     
     _initializeElements: function (ctx) {             
         //Bind the layout template
-       // $(this.$element).html("<div class='dj_view_wrapper dj_widget_fullView'><div class='dj_discoveryGraph_item_wrap'></div></div>");
      $(this.$element).html(this.templates.layout);
         this.$viewWrapper = ctx.find('.dj_view_wrapper');
         this.$scrollTarget = ctx.find('.dj_discoveryGraph_item_wrap');    

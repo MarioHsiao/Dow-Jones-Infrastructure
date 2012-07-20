@@ -24,7 +24,7 @@ namespace DowJones.Web.Mvc.UI.Components.DiscoveryGraph
     using System.Web.UI;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 07/20/2012 05:19 PM
+    // Last Generated Timestamp: 07/20/2012 06:22 PM
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.DiscoveryGraph.DiscoveryGraph.js", DependsOn=new string[] {
             "highcharts",
             "service-proxy",
@@ -57,10 +57,6 @@ namespace DowJones.Web.Mvc.UI.Components.DiscoveryGraph
 
    
     CssClass = "dj_DiscoveryGraph";
-
-
-WriteLiteral("\r\n");
-
 
 
 WriteLiteral("\r\n");
