@@ -103,27 +103,27 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\DowJones.Assemblers.3.2.12\lib\DowJones.Assemblers.dll</HintPath>
     </Reference>
-    <Reference Include="DowJones.Infrastructure, Version=3.2.21.30800, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="DowJones.Infrastructure, Version=3.2.23.41011, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\DowJones.Infrastructure.3.2.21\lib\DowJones.Infrastructure.dll</HintPath>
+      <HintPath>..\packages\DowJones.Infrastructure.3.2.23\lib\DowJones.Infrastructure.dll</HintPath>
     </Reference>
     <Reference Include="DowJones.Parallel">
       <HintPath>..\packages\DowJones.Parallel.1.0.0\lib\DowJones.Parallel.dll</HintPath>
     </Reference>
-    <Reference Include="DowJones.Web.Mvc, Version=3.2.21.30800, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="DowJones.Web.Mvc, Version=3.2.23.41011, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\DowJones.Web.Mvc.3.2.21\lib\DowJones.Web.Mvc.dll</HintPath>
+      <HintPath>..\packages\DowJones.Web.Mvc.3.2.23\lib\DowJones.Web.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="DowJones.Web.Mvc.Diagnostics, Version=3.2.12.35239, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\DowJones.Web.Mvc.Diagnostics.3.2.12\lib\DowJones.Web.Mvc.Diagnostics.dll</HintPath>
     </Reference>
-    <Reference Include="DowJones.Web.Mvc.UI.Components, Version=3.2.21.30800, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="DowJones.Web.Mvc.UI.Components, Version=3.2.23.41011, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\DowJones.Web.Mvc.UI.Components.3.2.21\lib\DowJones.Web.Mvc.UI.Components.dll</HintPath>
+      <HintPath>..\packages\DowJones.Web.Mvc.UI.Components.3.2.23\lib\DowJones.Web.Mvc.UI.Components.dll</HintPath>
     </Reference>
     <Reference Include="DowJones.Web.Mvc.UI.Components.Models, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DowJones.Web.Mvc.UI.Components.Models.3.2.21\lib\DowJones.Web.Mvc.UI.Components.Models.dll</HintPath>
+      <HintPath>..\packages\DowJones.Web.Mvc.UI.Components.Models.3.2.23\lib\DowJones.Web.Mvc.UI.Components.Models.dll</HintPath>
     </Reference>
     <Reference Include="Elmah, Version=1.2.14706.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -258,6 +258,18 @@
     <Content Include="Styles\views\Article\Article.css" />
     <Content Include="Styles\views\Article\img\post-processing-icons.png" />
     <Content Include="Styles\views\Article\Snapshot.css" />
+    <Content Include="Styles\views\AutoSuggest\AutoSuggest.css" />
+    <Content Include="Styles\views\AutoSuggest\images\acInfo.png" />
+    <Content Include="Styles\views\AutoSuggest\images\acNot.png" />
+    <Content Include="Styles\views\AutoSuggest\images\acPromote.png" />
+    <Content Include="Styles\views\AutoSuggest\images\progress.gif" />
+    <Content Include="Styles\views\AutoSuggest\images\source_blog.png" />
+    <Content Include="Styles\views\AutoSuggest\images\source_discont.png" />
+    <Content Include="Styles\views\AutoSuggest\images\source_multimedia.png" />
+    <Content Include="Styles\views\AutoSuggest\images\source_picture.png" />
+    <Content Include="Styles\views\AutoSuggest\images\source_publication.png" />
+    <Content Include="Styles\views\AutoSuggest\images\source_sourceFamily.png" />
+    <Content Include="Styles\views\AutoSuggest\images\source_webpage.png" />
     <Content Include="Styles\views\DiscoveryGraph\discoveryGraph.css">
       <DependentUpon>discoveryGraph.scss</DependentUpon>
     </Content>
@@ -344,7 +356,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="Styles\views\AutoSuggest\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
