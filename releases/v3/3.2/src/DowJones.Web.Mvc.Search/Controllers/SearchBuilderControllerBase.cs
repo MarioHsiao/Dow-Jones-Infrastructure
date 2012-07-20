@@ -15,9 +15,9 @@ using DowJones.Web.Mvc.Search.ViewModels;
 using DowJones.Web.Mvc.UI.Components.Common;
 using DowJones.Web.Mvc.UI.Components.HeadlineList;
 using System.Web.Configuration;
-using DowJones.Web.Mvc.UI.Components.Search;
-using DowJones.Web.Mvc.UI.Components.SearchBuilder;
 using Factiva.Gateway.Messages.Assets.Queries.V1_0;
+using DowJones.Web.Mvc.UI.Components.SearchBuilder;
+using DowJones.Web.Mvc.UI.Components.Search;
 
 namespace DowJones.Web.Mvc.Search.Controllers
 {
@@ -25,6 +25,7 @@ namespace DowJones.Web.Mvc.Search.Controllers
     {
         [Inject("Injecting abstract base class properties")]
         protected internal ProductSourceGroupConfigurationManager ProductSourceGroupConfigurationManager { get; set; }
+
 
         public virtual ActionResult Index(FreeTextSearchRequest freeTextRequest, string alertId, string topicId)
         {
@@ -76,7 +77,7 @@ namespace DowJones.Web.Mvc.Search.Controllers
         {
             sbData.FreeText = freeTextRequest.FreeText;
             sbData.SearchIn = freeTextRequest.FreeTextIn;
-            sbData.DateRange = freeTextRequest.DateRange;
+            sbData.DateRange = freeTextRequest.DateRange.HasValue ? freeTextRequest.DateRange.Value : SearchDateRange.LastWeek;
             if(!string.IsNullOrEmpty(freeTextRequest.Languages))
             {
                 sbData.ContentLanguages = freeTextRequest.Languages.Split(',');

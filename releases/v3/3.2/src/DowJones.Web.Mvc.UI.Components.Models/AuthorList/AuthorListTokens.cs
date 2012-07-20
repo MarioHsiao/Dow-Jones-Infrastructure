@@ -9,54 +9,46 @@ namespace DowJones.Web.Mvc.UI.Components.AuthorList
 
         // Column names;
         // ******************************************
-        // 1. Contact Name;
+        // NAMES & ARTICLES [3];
+        // ******************************************
         public string ContactName { get; set; }
-        // 2. Articles<br />(last 90 days);
-        public string Articles { get; set; }
+        public string Articles { get; set; } // Articles<br />(last 90 days);
         public string Last90Days { get; set; }
-        // 3. Outlet Name;
-        public string OutletName { get; set; }
-        // 4. Outlet Country of Origin;
-        public string OutletOriginCountry { get; set; }
-        // 5. Outlet Country;
-        public string OutletCountry { get; set; }
-        // 6. Outlet State;
-        public string OutletState { get; set; }
-        // 7. Outlet City;
-        public string OutletCity { get; set; }
-        // 8. Outlet Type;
-        public string OutletType { get; set; }
-        // 9. Outlet Frequency;
-        public string OutletFrequency { get; set; }
-        // 10. Circulation;
-        public string Circulation { get; set; }
-        // 11. Country;
-        public string Country { get; set; }
-        // 12. State
-        public string State { get; set; }
-        // 13. City
+        // ******************************************
+        // CONTACT INFO [9];
+        // ******************************************
+        public string EmailAddress { get; set; }
+        public string Phone { get; set; }
+        public string Fax { get; set; }
+        public string Address { get; set; }
         public string City { get; set; }
-        // 14. E-mail addresses;
-        public string EmailAddresses { get; set; }
-        // 15. User Added Contact Information;
-        public string UserAddedContactInfo { get; set; }
-        // 16. Phones;
-        public string Phones { get; set; }
-        // 17. Job Title;
-        public string JobTitle { get; set; }
-        // 18. Beats: Industries;
-        public string BeatsIndustries { get; set; }
-        // 19. Beats: Subjects;
+        public string State { get; set; }
+        public string Country { get; set; }
+        public string Zip { get; set; }
+        public string Language { get; set; }
+        // ******************************************
+        // OUTLET INFO [8+3]
+        // ******************************************
+        public string OutletName { get; set; }
+        public string OutletEmploymentType { get; set; }
+        public string OutletJobTitle { get; set; }
+        public string OutletType { get; set; }
+        public string OutletCirculation { get; set; }
+        public string OutletFrequency { get; set; }
+        public string OutletState { get; set; }
+        public string OutletCountry { get; set; }
+        public string OutletEmail { get; set; }
+        public string OutletPhone { get; set; }
+        public string OutletFax { get; set; }
+        // ******************************************
+        // BEATS [2]
+        // ******************************************
         public string BeatsSubjects { get; set; }
-        // 20. Beats: Regions;
-        public string BeatsRegions { get; set; }
-        // 21. Employment Type;
-        public string EmploymentType { get; set; }
-        // 22. Prefered Contact Method;
-        public string PreferedContact { get; set; }
-        public string Method { get; set; }
-        // 23. Related Media Contacts;
-        public string RelatedMediaContacts { get; set; }
+        public string BeatsIndustries { get; set; }
+        // ******************************************
+        // USER INFO [1]
+        // ******************************************
+        public string UserAddedContactInfo { get; set; }
 
         // User Added Information Tokens;
         public string UACity { get; set; }
@@ -72,16 +64,22 @@ namespace DowJones.Web.Mvc.UI.Components.AuthorList
         public string Export { get; set; }
         public string Delete { get; set; }
         public string Email { get; set; }
-        // 11-Jan-2012: New Action Menu Items;
         public string ExportAll { get; set; }
-        public string EmailAll { get; set; }
-        public string UnselectAll { get; set; }
-        // 25-Jan-2012 New Action Menu Item;
+        public string DistributeList { get; set; }
         public string CreateActivity { get; set; }
-        // 14-Feb-2012 New Action Menu Item;
         public string CreateBriefingBook { get; set; }
 
+        // Show/hide cell items;
+        public string ShowCellItems { get; set; }
+        public string HideCellItems { get; set; }
+
         public string NoResults { get; set; }
+        public string NoCurrentOutlet { get; set; }
+
+        // Unselect row checkboxes;
+        public string UnselectCheckboxesConfirmTitle { get; set; }
+        public string UnselectCheckboxesConfirmMessage { get; set; }
+        public string UnselectCheckboxesPostMessage { get; set; }
 
         public AuthorListTokens()
         {
@@ -89,35 +87,47 @@ namespace DowJones.Web.Mvc.UI.Components.AuthorList
             this.NoArticles = GetTokenByName("noArticles");
 
             // Column names;
+            // ******************************************
+            // NAMES & ARTICLES [3];
+            // ******************************************
             this.ContactName = GetTokenByName("contactName");
             this.Articles = GetTokenByName("articles");
             this.Last90Days = GetTokenByName("last90Days");
-            this.OutletName = GetTokenByName("outletName");
-            // 14-Feb-2012 new columns;
-            this.OutletOriginCountry = GetTokenByName("cmalOutletOriginCountry");
-            this.OutletCountry = GetTokenByName("cmalOutletCountry");
-            this.OutletState = GetTokenByName("cmalOutletState");
-            this.OutletCity = GetTokenByName("cmalOutletCity");
-
-            this.OutletType = GetTokenByName("cmalOutletType");
-            this.OutletFrequency = GetTokenByName("cmalOutletFrequency");
-            this.Circulation = GetTokenByName("circulation");
-            this.Country = GetTokenByName("cmalCountry");
-            // 14-Feb-2012 new columns;
-            this.State = GetTokenByName("cmalState");
+            // ******************************************
+            // CONTACT INFO [9];
+            // ******************************************
+            this.EmailAddress = GetTokenByName("cmalEmailAddresses");
+            this.Phone = GetTokenByName("cmalPhones");
+            this.Fax = GetTokenByName("cmalFaxes");
+            this.Address = GetTokenByName("cmalContactAddress");
             this.City = GetTokenByName("cmalCity");
-
-            this.EmailAddresses = GetTokenByName("cmalEmailAddresses");
-            this.UserAddedContactInfo = GetTokenByName("cmalUserAddedContactInfo");
-            this.Phones = GetTokenByName("cmalPhones");
-            this.JobTitle = GetTokenByName("cmalJobTitle");
-            this.BeatsIndustries = GetTokenByName("cmalBeatsIndustries");
+            this.State = GetTokenByName("cmalState");
+            this.Country = GetTokenByName("cmalCountry");
+            this.Zip = GetTokenByName("cmalContactZipPost");
+            this.Language = GetTokenByName("cmalContactLangs");
+            // ******************************************
+            // OUTLET INFO [8+3]
+            // ******************************************
+            this.OutletName = GetTokenByName("outletName");
+            this.OutletEmploymentType = GetTokenByName("cmalEmploymentType");
+            this.OutletJobTitle = GetTokenByName("cmalJobTitle");
+            this.OutletType = GetTokenByName("cmalOutletType");
+            this.OutletCirculation = GetTokenByName("circulation");
+            this.OutletFrequency = GetTokenByName("cmalOutletFrequency");
+            this.OutletState = GetTokenByName("cmalOutletState");
+            this.OutletCountry = GetTokenByName("cmalOutletCountry");
+            this.OutletEmail = GetTokenByName("cmalEmploymentEmails");
+            this.OutletPhone = GetTokenByName("cmalEmploymentPhones");
+            this.OutletFax = GetTokenByName("cmalEmploymentFaxes");
+            // ******************************************
+            // BEATS [2]
+            // ******************************************
             this.BeatsSubjects = GetTokenByName("cmalBeatsSubjects");
-            this.BeatsRegions = GetTokenByName("cmalBeatsRegions");
-            this.EmploymentType = GetTokenByName("cmalEmploymentType");
-            this.PreferedContact = GetTokenByName("preferedContact");
-            this.Method = GetTokenByName("method");
-            this.RelatedMediaContacts = GetTokenByName("cmalRelatedMediaContacts");
+            this.BeatsIndustries = GetTokenByName("cmalBeatsIndustries");
+            // ******************************************
+            // USER INFO [1]
+            // ******************************************
+            this.UserAddedContactInfo = GetTokenByName("cmalUserAddedContactInfo");
 
             // User Added info;
             this.UACity = GetTokenByName("cmmUsrAddCity");
@@ -133,16 +143,23 @@ namespace DowJones.Web.Mvc.UI.Components.AuthorList
             this.Export = GetTokenByName("export");
             this.Delete = GetTokenByName("delete");
             this.Email = GetTokenByName("cmalgmEmail");
-            // 11-Jan-2012: New Action Menu Items;
             this.ExportAll = GetTokenByName("cmalExportAll");
-            this.EmailAll = GetTokenByName("cmalEmailAll");
-            this.UnselectAll = GetTokenByName("cmalUnselectAll");
-            // 25-Jan-2012: New Action Menu Item;
+            this.DistributeList = GetTokenByName("distributeList");
             this.CreateActivity = GetTokenByName("cmCreateActivity");
-            // 14-Feb-2012 New Action Menu Item;
             this.CreateBriefingBook = GetTokenByName("cmalCreateBriefingBook");
 
+            // Show/hide cell items;
+            this.ShowCellItems = GetTokenByName("cmalShowCellItems");
+            this.HideCellItems = GetTokenByName("cmalHideCellItems");
+
             this.NoResults = GetTokenByName("noAuthorResults");
+            this.NoCurrentOutlet = GetTokenByName("cmalNoCurrentOutlet");
+
+            // Unselect row checkboxes;
+            this.UnselectCheckboxesConfirmTitle = GetTokenByName("cmalConfirm");
+            this.UnselectCheckboxesConfirmMessage = GetTokenByName("cmalConfirmMessage");
+            this.UnselectCheckboxesPostMessage = GetTokenByName("cmalSelectionsHaveBeenCleared ");
+
         }
     }
 }

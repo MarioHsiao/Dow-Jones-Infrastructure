@@ -1,4 +1,6 @@
-﻿    DJ.UI.SearchResultsPage = DJ.UI.Component.extend({
+﻿(function ($) {
+
+    DJ.UI.SearchResultsPage = DJ.UI.Component.extend({
 
         _searchBuilderForm: null,
 
@@ -92,21 +94,21 @@
             this._submitting = true;
 
             var action = (this._searchResultsForm.attr('action') || location.href).split('?')[0];
-            //Only for Chrome browser it is required to update the form action 
+            //Only for Chrome browser it is required to update the form action with some random value to avoid caching 
             if ($.browser.webkit && !!window.chrome) {
-                //                var action = this._searchResultsForm.attr('action') || location.href;
-                //                if (action.indexOf("?") != -1) {
-                //                    var randomParamIndex = action.lastIndexOf('rand=');
-                //                    if (randomParamIndex > 0) {
-                //                        action = action.substring(0, randomParamIndex - 1);
-                //                        action = action + (action.match(/\?$/) ? "rand=" : "&rand=") + (Math.random() * 1000);
-                //                    }
-                //                    else {
-                //                        action += "&rand=" + (Math.random() * 1000);
-                //                    }
-                //                }
-                //                else {
-                //                    action += "?rand=" + (Math.random() * 1000);
+//                var action = this._searchResultsForm.attr('action') || location.href;
+//                if (action.indexOf("?") != -1) {
+//                    var randomParamIndex = action.lastIndexOf('rand=');
+//                    if (randomParamIndex > 0) {
+//                        action = action.substring(0, randomParamIndex - 1);
+//                        action = action + (action.match(/\?$/) ? "rand=" : "&rand=") + (Math.random() * 1000);
+//                    }
+//                    else {
+//                        action += "&rand=" + (Math.random() * 1000);
+//                    }
+//                }
+//                else {
+//                    action += "?rand=" + (Math.random() * 1000);
                 //                }
                 action += "?rand=" + (Math.random() * 1000);
             }
@@ -265,7 +267,7 @@
             if (params.data.endDateText && (params.data.endDateText != params.data.startDateText)) {
                 name += " - " + params.data.endDateText;
             }
-            var filter = { category: 'DateRange', code: dateRange, name: name };
+            var filter = { category: 'DateRange', code: dateRange, name: (name || params.data.currentDateText) };
 
             $dj.publish('addFilters.dj.SearchFilters', [filter]);
 
@@ -377,3 +379,5 @@
     });
 
     $.plugin('dj_SearchResultsPage', DJ.UI.SearchResultsPage);
+
+})(jQuery);

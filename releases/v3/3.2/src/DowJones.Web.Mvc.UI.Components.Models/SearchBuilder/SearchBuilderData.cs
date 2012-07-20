@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using DowJones.Globalization;
 using DowJones.Search;
 using DowJones.Utilities.Search.Core;
-using DowJones.Web.Mvc.UI.Components.Common;
 using DowJones.Web.Mvc.UI.Components.Search;
 using Newtonsoft.Json;
 
@@ -66,7 +65,18 @@ namespace DowJones.Web.Mvc.UI.Components.SearchBuilder
         [JsonProperty("sourceGroup")]
         public List<SourceGroupItem> SourceGroup { get; set; }
 
+        /// <summary>
+        /// Gets or Sets the LookUp Addition Footer Notes
+        /// </summary>
+        [JsonProperty("lookUpAdditionalFooterNotes")]
+        public Dictionary<DowJones.Utilities.Search.Core.FilterType, string> LookUpAdditionalFooterNotes { get; set; }
 
+        /// <summary>
+        /// Gets or Sets the Source Filters
+        /// </summary>
+        [JsonProperty("additionalSourceFilters")]
+        public List<CodeDesc> AdditionalSourceFilters { get; set; }
+    
         public SearchBuilderData(IResourceTextManager resources = null)
         {
             resources = resources ?? DowJones.DependencyInjection.ServiceLocator.Resolve<IResourceTextManager>();

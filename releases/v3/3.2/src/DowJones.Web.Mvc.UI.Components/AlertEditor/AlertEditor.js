@@ -44,7 +44,7 @@
                 pluralText: "<%= Token('companies') %>"
             },
             author: {
-                text: "<%= Token('author') %>",
+                text: "<%= Token('cmAuthor') %>",
                 pluralText: "<%= Token('authors') %>"
             },
             executive: {
@@ -275,7 +275,8 @@
                 this.$alertDeliveryMethod.find('input:eq(1)').prop('checked', true); //Scheduled
                 this._setDeliveryTime(dlvryTimes);
             }
-            this._onDeliveryMethodChange();
+
+            this._onDeliveryMethodChange(dlvryTimes);
         },
 
         _toggleSwitch: function ($elem, ON) {
@@ -285,35 +286,36 @@
         },
 
         _onDeliveryTimeChange: function () {
+            this.data.properties.emailAddress = this.$alertEmail.val() || this.data.properties.emailAddress;
             if (this.$alertDelivery.find('span.checked').length == 0) {
-                this.$alertEmail.attr("disabled", true);
+                this.$alertEmail.attr("disabled", true).val('');
                 this.$alertFormatDD.attr("disabled", true);
                 //This is to apply disabled look to the span element with selectbox plugin wraps the select element
                 this.$alertFormatDD.parent().addClass("disabled-select");
             }
             else {
-                this.$alertEmail.attr("disabled", false);
+                this.$alertEmail.attr("disabled", false).val(this.data.properties.emailAddress || '');
                 this.$alertFormatDD.attr("disabled", false);
                 //This is to remove disabled look to the span element with selectbox plugin wraps the select element
                 this.$alertFormatDD.parent().removeClass("disabled-select");
             }
         },
 
-        _onDeliveryMethodChange: function () {
-            if (this.$alertDeliveryMethod.find('input:checked').val() == "scheduled") {
-                this.$alertDelivery.show();
-            }
-            else if (this.$alertDeliveryMethod.find('input:checked').val() == "continuous") {
-                this.$alertEmail.attr("disabled", false);
-                this.$alertFormatDD.attr("disabled", false);
-                //This is to remove disabled look to the span element with selectbox plugin wraps the select element
-                this.$alertFormatDD.parent().removeClass("disabled-select");
+        _onDeliveryMethodChange: function (dlvryTimes) {
+            this.data.properties.emailAddress = this.$alertEmail.val() || this.data.properties.emailAddress;
+            if (this.$alertDeliveryMethod.find('input:checked').val() == "continuous") {
+                this.$alertEmail.attr("disabled", false).val(this.data.properties.emailAddress || '');
 
+
+                this.$alertFormatDD.attr("disabled", false);
+                //This is to remove disabled look to the span element which selectbox plugin wraps the select element
+                this.$alertFormatDD.parent().removeClass("disabled-select");
+                this.$alertDelivery.hide();
             }
             else {
-                this.$alertDelivery.hide();
+                this.$alertDelivery.toggle(this.$alertDeliveryMethod.find('input:checked').val() == "scheduled");
                 //Uncheck all the delivery times
-                this._setDeliveryTime([]);
+                this._setDeliveryTime(dlvryTimes || []);
             }
         },
 
@@ -337,7 +339,7 @@
                         $.each($filterGroup.children(me.selectors.filterList).children(), function () {
                             $this = $(this);
                             desc = $.trim($this.text());
-                            f[category].push({ code: ($this.data("code") || desc), desc: desc });
+                            f[category].push({ code: ($this.data("code") || desc), desc: desc, codeType: ($this.data("codetype") || '') });
                         });
                     }
                 });
@@ -479,13 +481,17 @@
             this._bindSearchQuery(d.searchQuery);
 
             this.$alertName.val(alertProperties.alertName);
+
             if (alertProperties.emailAddress) {
                 this.$alertEmail.val(unescape(alertProperties.emailAddress).replace(/%2B/g, '+'));
             }
             else {
                 this.$alertEmail.val('');
             }
-            this.$alertFormatDD.val(alertProperties.documentFormat).change();
+
+            if (alertProperties.documentFormat) {
+                this.$alertFormatDD.val(alertProperties.documentFormat).change();
+            }
 
             //This will take care of settting deliery times as well
             this._setDeliveryMethod(alertProperties.newDeliveryTimes || [this.deliveryTimes.None]);
@@ -508,3 +514,4 @@
     $.plugin('dj_AlertEditor', DJ.UI.AlertEditor);
 
     $dj.debug('Registered DJ.UI.AlertEditor (extends DJ.UI.Component)');
+

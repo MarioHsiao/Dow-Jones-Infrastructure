@@ -1,4 +1,4 @@
-$.extend($dj, {
+$.extend(DJ.$dj, {
 
     selector: {
         ele: ''
@@ -50,5 +50,14 @@ $.extend($dj, {
 
     setCalloutWidth: function (width) {
         $(this.selector.ele).popupBalloon("option", "width", width);
+    },
+
+    isCalloutAssociatedTo: function (domElement) {
+        try {
+            return ($(this.selector.ele).popupBalloon("isVisible") == true)
+               && ($(this.selector.ele).popupBalloon("getpopbox").data("controller")[0] == domElement);
+        }
+        catch (e) { }
+        return false;
     }
 });

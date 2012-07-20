@@ -1,3 +1,12 @@
-﻿<% _.each(self.items, function(item) { %>
-    <option value="<%= item.id %>"><%= item.name %></option>
-<% }); %>
+﻿<% $.each(items, function(i, item) { 
+        if(item.optGroup){
+%>
+            <optgroup label="--------------"></optgroup>
+<%
+        }
+        else{
+%>
+            <option value="<%= item.id %>"><%= item.name %></option>
+<%
+        }
+ }); %>

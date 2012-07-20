@@ -185,18 +185,41 @@ namespace DowJones.Assemblers.Search
             {
                 if (searchQuery.Source.Include != null)
                 {
-                    var sf = new SourceEntityFilter();
+                    var sf = new SourceEntityFilter
+                    {
+                        Operator = Operator.Or//Since Sources are always OR'ed
+                    };
                     var includedEntities = new SourceEntitiesCollection();
                     foreach (SourceQueryFilterEntities queryFilter in searchQuery.Source.Include)
                     {
                         var eachPill = new SourceEntityCollection();
-                        foreach (var eachSubItem in queryFilter.Select(entity => new SourceEntity {Type = Map(entity.SourceType), Value = entity.SourceCode}))
+                        foreach (var eachSubItem in queryFilter.Select(entity => new SourceEntity { Type = Map(entity.SourceType), Value = entity.SourceCode }))
                         {
-                            eachPill.Add( eachSubItem);
+                            eachPill.Add(eachSubItem);
                         }
-                        includedEntities.Add(new SourceEntities() {SourceEntityCollection = eachPill});
+                        includedEntities.Add(new SourceEntities() { SourceEntityCollection = eachPill });
                     }
                     sf.SourceEntitiesCollection = includedEntities;
+                    andFilterGroup.Filters.Add(sf);
+                }
+                if (searchQuery.Source.Exclude != null)
+                {
+                    var sf = new SourceEntityFilter
+                    {
+                        Operator = Operator.Not
+                    };
+
+                    var excludedEntities = new SourceEntitiesCollection();
+                    foreach (SourceQueryFilterEntities queryFilter in searchQuery.Source.Exclude)
+                    {
+                        var eachPill = new SourceEntityCollection();
+                        foreach (var eachSubItem in queryFilter.Select(entity => new SourceEntity { Type = Map(entity.SourceType), Value = entity.SourceCode }))
+                        {
+                            eachPill.Add(eachSubItem);
+                        }
+                        excludedEntities.Add(new SourceEntities() { SourceEntityCollection = eachPill });
+                    }
+                    sf.SourceEntitiesCollection = excludedEntities;
                     andFilterGroup.Filters.Add(sf);
                 }
                 if (!String.IsNullOrEmpty(searchQuery.Source.ListId)) // Assume ID means source list!

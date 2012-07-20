@@ -1,16 +1,13 @@
-﻿/*
-*  Search Categories Lookup Control
-*/
-
-    DJ.UI.SearchCategoriesLookUp = DJ.UI.Component.extend({
+﻿    DJ.UI.SearchCategoriesLookUp = DJ.UI.Component.extend({
 
         selectors: {
             filtersContainer: 'div.filters',
             filterItems: 'div.filter-items',
             filters: 'ul.yellow',
-            notfilters: 'ul.red',
+            notFilters: 'ul.red',
             filterClose: 'span.remove',
             filterPill: 'li.dj_pill',
+            filterBtns: 'div.dj_btns',
             notFilterPill: 'li.not',
             searchBox: 'div.dj_lookup-search',
             textBox: 'input.dj_lookup-search-field',
@@ -21,8 +18,12 @@
             lookUpListContainer: '.lookup-results-container',
             listItemOptions: '.icon-group span',
             resultsTitle: '.results-title',
-            doneBtn: 'span.dj_btn-blue',
-            cancelBtn: 'span.dj_btn-drk-gray',
+            addToSearchBtn: 'span.addToSearchBtn',
+            cancelBtn: 'span.cancelBtn',
+            clearBtn: 'span.clearBtn',
+            saveBtn: '.saveBtn',
+            doneBtn: '.doneBtn',
+            saveToListBtn: 'span.saveToListBtn',
             menuItem: 'div.menuitem',
             menu: 'div.menu',
             modalNav: 'ul.modal-nav',
@@ -39,20 +40,24 @@
             pagging: '.dj_paging',
             prevPage: '.dj_icon-arrow-green-left',
             nextPage: '.dj_icon-arrow-green-right',
-            deleteLnk: 'span.delete-link',
             modalClose: 'p.dj_modal-close',
             formFields: '.dj_form-field',
             filtersList: '.filterList',
             editList: '.edit-list',
             alphabetList: '.alphabet-list',
             modalTitle: '.dj_modal-title',
-            modalContent: 'div.dj_modal-content'
+            deleteList: '.dj_icon-exclude',
+            djNote: '.dj_note',
+            djControl: '.dj_control',
+            wrap: '.wrap'
         },
 
         events: {
             onSearchClick: 'onSearchClick.dj.SearchCategoriesLookUp',
             onResize: 'onResize.dj.SearchCategoriesLookUp',
-            onSrcLstDelete: 'onSrcLstDelete.dj.SearchCategoriesLookUp'
+            onSrcLstDelete: 'onSrcLstDelete.dj.SearchCategoriesLookUp',
+            onCancelClick: 'onCancelClick.dj.SearchCategoriesLookUp',
+            onAddToSearchClick: 'onAddToSearchClick.dj.SearchCategoriesLookUp'
         },
 
         lookUpDetails: [
@@ -62,7 +67,6 @@
                 lookUpTitle: "<%= Token('companyResults') %>",
                 notFilter: true,
                 restField: 'Companies',
-                //'CompanyStatus|Instrument|SecondaryRegionCodes|Address|ICBCodes|IndexCodes|Notes|SecondaryIndustryCodes|ThirdPartyIndustryCodes|UltimateParentCodes|NewsSearch|ChildCodes|Aliases|DJCodes|DJNewsCodes|Status|OrganizationTypes|LocalNames|ParentCodes'
                 infoParts: 'SecondaryRegionCodes',
                 label: "<%= Token('companyLabel') %>"
             },
@@ -83,7 +87,7 @@
                 lookUpTitle: "<%= Token('executiveLookupResults') %>",
                 notFilter: true,
                 restField: 'Executives',
-                infoParts: 'LocalNames',
+                infoParts: 'LocalNames|AssociatedCompanies',
                 label: "<%= Token('executive') %>"
             },
 
@@ -95,7 +99,6 @@
                 notFilter: true,
                 restField: 'Subjects',
                 autoCompleteField: 'NewsSubject',
-                //'ChildCodes|Aliases|Description|ThirdPartyCodes|DJCodes|ParentCodes|LocalNames|Status'
                 infoParts: 'Description|ParentCodes',
                 label: "<%= Token('subject') %>"
             },
@@ -126,6 +129,7 @@
                 name: 'Source',
                 autoCompleteText: "<%= Token('sourceAutoCompleteText') %>",
                 lookUpTitle: "<%= Token('sourceLookupResults') %>",
+                notFilter: true,
                 browse: true,
                 savedList: true,
                 restField: 'Sources',
@@ -162,10 +166,10 @@
             this._super();
             $.extend(this._delegates, {
                 OnSearchClick: $dj.delegate(this, this._onSearchClick),
-                OnAutoSuggestItemSelect: $dj.delegate(this, this._onAutoSuggestItemSelect),
+                OnAutoSuggestItemSelect: $dj.delegate(this, function (item) { this._onAutoSuggestItemSelect(item, false); }),
                 OnResize: $dj.delegate(this, this._triggerResize),
                 OnAutoSuggestInfoClick: $dj.delegate(this, this._onAutoSuggestInfoClick),
-                OnAutoSuggestNotClick: $dj.delegate(this, this._onAutoSuggestNotClick)
+                OnAutoSuggestNotClick: $dj.delegate(this, function (item) { this._onAutoSuggestItemSelect(item, true); })
             });
         },
 
@@ -202,33 +206,44 @@
             //Set the main template
             this.$element.append(this.templates.main({ lookUpDetails: this._lookUpDetails }));
 
+            var $elementChildren = this.$element.children();
+
+            //Show the footer if enabled
+            if (this.options.showFooter) {
+                this.$footer = $elementChildren.filter(this.selectors.footer).show();
+                if (this.data.additionalFooterNote) {
+                    this.$footer.find(this.selectors.djNote).append('<br />' + this.data.additionalFooterNote);
+                }
+            }
+
             //Append the filter options if NOT is supported
             if (this._lookUpDetails.notFilter) {
                 this.$filterOptions = $(this.templates.filterOptions());
                 this.$element.append(this.$filterOptions);
             }
 
-            this.$elementChildren = this.$element.children();
-            this.$tabContent = this.$elementChildren.filter(this.selectors.tabContent);
+
+            this.$tabContent = $elementChildren.filter(this.selectors.tabContent);
 
             this.$searchBox = this.$tabContent.eq(0).children(this.selectors.searchBox);
             if (this.options.filterType != this.filterType.Language) {
                 this.$textBox = $(this.selectors.textBox, this.$searchBox);
                 this.$searchBtn = $(this.selectors.searchBtn, this.$searchBox);
             }
-            this.$filtersContainer = this.$elementChildren.filter(this.selectors.filtersContainer);
-            var $filterItems = $(this.selectors.filterItems, this.$filtersContainer);
+            this.$filtersContainer = $elementChildren.filter(this.selectors.filtersContainer);
+            var $filterItems = $(this.selectors.filterItems, this.$filtersContainer),
+                $filterBtns = this.$filtersContainer.children(this.selectors.filterBtns);
             this.$filters = $(this.selectors.filters, $filterItems);
-            this.$notfilters = $(this.selectors.notfilters, $filterItems);
+            this.$notFilters = $(this.selectors.notFilters, $filterItems);
             this.$filterScroll = this.$filtersContainer.children(this.selectors.filterScroll);
+            this.$clearBtn = $filterBtns.find(this.selectors.clearBtn);
 
             this.$lookUpListContainer = this.$tabContent.eq(0).children(this.selectors.lookUpListContainer);
             this.$lookUpList = this.$lookUpListContainer.children(this.selectors.lookUpList);
             if (this._lookUpDetails.browse && this.options.enableBrowse) {
                 this.$browseList = this.$tabContent.eq(1).children(this.selectors.browseTree);
             }
-            this.$modalNav = this.$elementChildren.filter(this.selectors.modalNav);
-            this.$footer = this.$elementChildren.filter(this.selectors.footer);
+            this.$modalNav = $elementChildren.filter(this.selectors.modalNav);
 
             //Source is a special case, need to load other templates as well
             if (this.options.filterType == this.filterType.Source) {
@@ -238,16 +253,16 @@
 
                 //Add Save as List button besides filter section
                 if (this.options.enableSaveList) {
-                    this.$saveListBtn = $('<span class="dj_btn dj_btn-drk-gray"><%= Token("saveList") %></span>').addClass("hidden");
-                    $filterItems.after(this.$saveListBtn);
+                    this.$saveListBtn = $('<span class="dj_btn dj_btn-drk-gray hidden"><%= Token("saveToList") %></span>');
+                    $filterBtns.prepend(this.$saveListBtn);
                 }
 
                 if (this.options.enableBrowse) {
                     //Add the browse template inside the tabContent
-                    this.$tabContent.eq(1).prepend(this.templates.sourceBrowse({ sourceGroup: this.data.sourceGroup }));
+                    this.$tabContent.eq(1).prepend(this.templates.sourceBrowse({ additionalSourceFilters: this.data.additionalSourceFilters }));
 
                     var $selectBoxAlt = this.$tabContent.eq(1).children(this.selectors.selectMenuContainer);
-                    var $selectMenus = $selectBoxAlt.children(this.selectors.selectMenu);
+                    var $selectMenus = $selectBoxAlt.children(this.selectors.djControl).find(this.selectors.selectMenu);
 
                     this.$sourceGroupDD = $selectMenus.eq(0);
                     this.$sourceSortByDD = $selectMenus.eq(1);
@@ -294,6 +309,7 @@
                 }
             }
             else {
+                //Removing Exetended Media Sources title and container
                 this.$lookUpListContainer.children(":gt(2)").remove();
             }
 
@@ -331,17 +347,21 @@
             //If filter type is Source
             if (this.options.filterType == this.filterType.Source) {
 
+                //To hide the info icon on extended media source items hover
+                this.$lookUpList.eq(1).addClass('infoHidden');
+
                 this.$filtersContainer.children(this.selectors.filterItems).addClass("source");
 
                 if (this.options.enableBrowse) {
                     this.$sourceGroupDD.add(this.$sourceSortByDD).bind('click', function (e) {
 
                         var $this = $(this), $target = $(e.target);
-                        $this.children(me.selectors.multiLevelMenu).toggleClass('hidden');
+                        $this.children(me.selectors.multiLevelMenu).toggle();
                         if ($target.is("div") && !$target.attr('class')) {
                             var oldVal = $this.data("value"), newVal = $target.data("value");
                             if (oldVal != newVal) {
                                 $this.data("value", newVal).children("span:first").html($target.html());
+                                $this.data("af", $target.data("af"));
                                 $this.trigger('change'); //Trigger the change event
                             }
                         }
@@ -386,7 +406,7 @@
                         $li.children(":last").trigger('click');
                     }
                     else {
-                        me._addFilter($li, action == "not");
+                        me._addFilter($li, action == "not", me.options.filterType == me.filterType.Source);
                     }
 
                     me._stopPropagation(e);
@@ -405,28 +425,26 @@
             if (this.options.filterType == this.filterType.Source) {
                 //Extended Sources List Item Click
                 this.$lookUpList.delegate(this.selectors.listItem, 'click', function (e) {//List Item Click
-                    me._onSourceItemClick(this, e);
-                });
-            }
-            else if (me.options.filterType == me.filterType.Language) {
-                this.$lookUpList.eq(0).delegate(this.selectors.listItem, 'click', function (e) {//List Item Click
-                    me._onListItemClick(this, e);
-                    //Remove all allang if its added
-                    me.$filters.children("[code=alllang]").remove();
-                });
-            }
-            else {
-                this.$lookUpList.eq(0).delegate(this.selectors.listItem, 'click', function (e) {//List Item Click
-                    me._onListItemClick(this, e);
+                    me._onSourceItemClick(this, e, false);
                 });
             }
 
+            this.$lookUpList.eq(0).delegate(this.selectors.listItem, 'click', function (e) {//List Item Click
+                me._onListItemClick(this, e);
+                if (me.options.filterType == me.filterType.Language) {
+                    me.$filters.children("[code=alllang]").remove();
+                }
+            });
+
             //List Item Hover
             if (this._listItemHoverEnabled) {
-                this.$lookUpList.eq(0).delegate(this.selectors.listItem, 'mouseenter', function (e) {//List Item Hover
+                var $list = this.$lookUpList.eq(0);
+                if (this.options.filterType == this.filterType.Source) {
+                    $list = $list.add(this.$lookUpList.eq(1));
+                }
+                $list.delegate(this.selectors.listItem, 'mouseenter', function (e) {//List Item Hover
                     me._onListItemHover(this, e);
-                });
-                this.$lookUpList.eq(0).delegate(this.selectors.listItemOptions, 'click', function (e) {
+                }).delegate(this.selectors.listItemOptions, 'click', function (e) {
                     me._onListItemOptionsClick(this, e);
                 });
             }
@@ -446,11 +464,11 @@
 
                     if (this.options.filterType == this.filterType.Source) {
                         this.$browseList.delegate(this.selectors.browseItem, 'mouseenter', function (e) {//List Item Hover
-                            if (me.$sourceSortByDD.data("value")) {//If source category is selected
-                                me._onListItemHover(this, e);
-                            }
+                            //if (me.$sourceSortByDD.data("value")) {//If source category is selected
+                            me._onListItemHover(this, e);
+                            //}
                         }).delegate(this.selectors.browseItem, 'click', function (e) {
-                            me._onSourceGroupItemClick(this, e);
+                            me._onSourceGroupItemClick(this, e, false);
                         }).delegate(this.selectors.browseToggle, 'click', function (e) {//Browse Icon click
                             me._onBrowseMoreClick(this, e, { sourceGroupBrowse: true });
                         });
@@ -473,11 +491,23 @@
                 if (this._lookUpDetails.savedList && this.options.enableSourceList) {
                     this.$modalNav.children(":eq(2)").show();
                     this.$savedList.delegate(this.selectors.browseItem, 'click', function (e) {
-                        me._onSourceItemClick(this, e);
+                        if (!$(this).data('notafilter')) {
+                            me._onSourceItemClick(this, e, false);
+                        }
                     }).delegate(this.selectors.browseItem, 'mouseenter', function (e) {//List Item Hover
-                        me._onSourceListItemHover(this, e);
-                    }).delegate(this.selectors.editList, 'click', function (e) {
+                        me._onListItemHover(this, e);
+                    }).delegate(this.selectors.editList, 'click', function (e) {//Edit
                         me._editSourceList($(this).parent().data("code"));
+                        me._stopPropagation(e);
+                    }).delegate(this.selectors.deleteList, 'click', function (e) {//Delete
+                        var $this = $(this);
+                        $dj.confirmDialog({
+                            yesClickHandler: function () {
+                                me._deleteSourceList($this.parent().data("code"), $this.closest('li'));
+                            },
+                            title: "<%= Token('deleteSourceList') %>",
+                            msg: "<%= Token('deleteSourceListConfirmMsg') %>"
+                        });
                         me._stopPropagation(e);
                     }).delegate(this.selectors.browseToggle, 'click', function (e) {//Browse Icon click
                         var sourceListBrowse = $(this).hasClass('sourceList');
@@ -493,6 +523,10 @@
                 this.$modalNav.delegate('li', 'click', function () {
                     me.setActiveTab($(this).index());
                 });
+
+                if ($.isNumeric(this.options.activeTab) && this.options.activeTab < this.$element.children(this.selectors.tabContent).length) {
+                    this.setActiveTab(this.options.activeTab);
+                }
             }
 
             //LookUp Pagging
@@ -501,16 +535,37 @@
                     me._getLookUpPrevPage();
                 }
             });
+
             this.$lookUpNextPage.click(function () {
                 if (!$(this).hasClass("dj_icon-arrow-disabled-right")) {
                     me._getLookUpNextPage();
                 }
             });
+
+            //Clear fitlers
+            this.$clearBtn.click(function () {
+                me.clearFilters();
+            });
+
+            //Footer
+            if (this.options.showFooter) {
+                this.$footer.find(this.selectors.cancelBtn).click(function () {
+                    me.publish(me.events.onCancelClick);
+                });
+                this.$addToSearchBtn = this.$footer.find(this.selectors.addToSearchBtn).click(function () {
+                    if (!$(this).hasClass('dj_disabled')) {
+                        me.publish(me.events.onAddToSearchClick, { filters: me.getFilters(), filterType: me.options.filterType });
+                    }
+                });
+            }
         },
 
         _onSourceGroupFilterChange: function () {
 
             var sourceCategory = this.$sourceSortByDD.data("value")
+
+            //Remove infoHidden clas
+            this.$browseList.removeClass("infoHidden");
 
             if (sourceCategory == "title") {
                 //Show the albhabet list
@@ -536,19 +591,26 @@
                     else {
                         var data = [{ Code: groupCode, Name: this._sourceGroupItems[groupCode]}];
                         this.bindList(this.$browseList, data, { sourceGroupBrowse: true });
+                        //Set infoHidden clas to hide the info icon
+                        this.$browseList.addClass("infoHidden");
                     }
                     //Hide the expand description
                     this.$browseList.prev().show().css("visibility", "hidden");
                 }
                 else {
                     this.$browseList.prev().show().css("visibility", "visible");
-
-                    this._getSourceByGroupCode({
+                    var data = {
                         groupCode: groupCode,
                         sourceCategory: sourceCategory,
                         childrenType: "group",
                         container: this.$browseList
-                    });
+                    };
+
+                    if (this.$sourceSortByDD.data("af")) {//If Additional filter
+                        data.sourceCategory = "restrictor";
+                        data.code = this.$sourceSortByDD.data("value");
+                    }
+                    this._getSourceByGroupCode(data);
                 }
             }
         },
@@ -566,8 +628,8 @@
                 this.$filterOptions.hide();
             }
             if (this.$sourceGroupDD) {
-                this.$sourceGroupDD.children(this.selectors.multiLevelMenu).addClass('hidden');
-                this.$sourceSortByDD.children(this.selectors.multiLevelMenu).addClass('hidden');
+                this.$sourceGroupDD.children(this.selectors.multiLevelMenu).hide();
+                this.$sourceSortByDD.children(this.selectors.multiLevelMenu).hide();
             }
         },
 
@@ -602,53 +664,28 @@
                         this._initializeSourceListModal(slQ.Id);
 
                         //Bind the filters
-                        if (data.SourceListQuery.SourceEntityFilters) {
-                            this.$sLstFilters.html('');
-                            var filters = data.SourceListQuery.SourceEntityFilters, f, d, e, code, type, desc, cdesc;
-                            for (var i = 0; i < filters.length; i++) {
-                                d = filters[i];
-                                if (d.SourceEntites && d.SourceEntites[0]) {
-                                    e = d.SourceEntites[0];
-                                    code = e.Value;
-                                    type = e.SourceEntityType;
-                                    if (type == "PDF") {
-                                        cdesc = this._sourceGroupItems[code]; //If PDF then get the description from source group items list
-                                    }
-                                    else {
-                                        cdesc = e.Source ? (e.Source.Name || code) : code;
-                                    }
+                        if (slQ.OrGroupSourceEntityFilters || slQ.NotGroupSourceEntityFilters) {
+                            this.$sLstFilters.children().remove();
+                            this.$sLstNotFilters.hide().children(':gt(0)').remove();
+                            var filters = slQ.OrGroupSourceEntityFilters, notFilters = slQ.NotGroupSourceEntityFilters;
 
-                                    if (d.SourceEntites.length > 1) {
-                                        f = (type == "SN") ? [{ code: escape(code), desc: null, type: type}]
-                                                         : [{ code: code.toLowerCase(), desc: escape(cdesc), type: type}];
-                                        e = d.SourceEntites[1];
-                                        code = e.Value;
-                                        type = e.SourceEntityType;
-                                        if (type === "BY") {
-                                            cdesc = cdesc + " (" + code + ")";
-                                            f.push({ code: escape(code), desc: null, type: type });
-                                        }
-                                        else {
-                                            desc = (e.Source) ? (e.Source.Name || code) : code;
-                                            cdesc = cdesc + ": " + desc;
-                                            f.push({ code: code.toLowerCase(), desc: escape(desc), type: type });
-                                        }
-                                        f[0].cdesc = cdesc;
-                                    }
-                                    else {
-                                        code = (type == "SN") ? escape(code) : code.toLowerCase();
-                                        f = [{ code: code, desc: cdesc, type: type}];
-                                    }
-
-                                    this.$sLstFilters.append(this.templates.sourceFilterPill({ filter: f }));
+                            if (filters && filters.length > 0) {
+                                for (var i = 0, len = filters.length; i < len; i++) {
+                                    this.$sLstFilters.append(this.templates.sourceFilterPill({ filter: this._processSourceEntitiesFilter(filters[i].SourceEntites) }));
                                 }
+                            }
+
+                            if (notFilters && notFilters.length > 0) {
+                                for (var i = 0, len = notFilters.length; i < len; i++) {
+                                    this.$sLstNotFilters.append(this.templates.sourceFilterPill({ filter: this._processSourceEntitiesFilter(notFilters[i].SourceEntites) }));
+                                }
+                                this.$sLstNotFilters.show();
                             }
                             this.$sLstFiltersContainer.show();
                         }
                         else {
                             this.$sLstFiltersContainer.hide();
                         }
-
 
                         //Set the list name
                         this.$existingSLstName.val(slQ.Name);
@@ -719,9 +756,7 @@
             });
         },
 
-        _saveSourceList: function (filtersToSave) {
-
-            //ToDO: Validation
+        _saveSourceList: function () {
             var listId, isEditing = this._sourceListId, addToExistingList = false;
             if (isEditing) {//Editing the source list
                 if (!this.$existingSLstName.val()) {
@@ -747,39 +782,19 @@
                 }
             }
 
-            var me = this, filters = [], modalId = this.$saveSLstModal.attr('id');
+            var me = this, filters = [], notFilters = [], modalId = this.$saveSLstModal.attr('id');
             if (isEditing) {//Editing the filters
-                var f, $item;
+                var me = this;
                 //Get the filters from filtersList
                 this.$sLstFilters.children().each(function () {
-                    f = [];
-                    $item = $(this);
-                    if ($item.data("code1")) {
-
-                        type = $item.data("type");
-                        code = (type == "SN") ? unescape($item.data("code")) : $item.data("code");
-                        //desc = (type == "SN") ? code : unescape($item.data("desc"));
-
-                        f.push({ Value: code, SourceEntityType: type });
-
-                        type = $item.data("type1");
-                        code = (type == "BY") ? unescape($item.data("code1")) : $item.data("code1");
-                        //desc = (type == "BY") ?  code: unescape($item.data("desc1"));
-
-                        f.push({ Value: code, SourceEntityType: type });
-                    }
-                    else {
-                        type = $item.data("type");
-                        code = (type == "SN") ? unescape($item.attr("code")) : $item.attr("code");
-                        //desc = (type == "SN") ? code : $item.text();
-
-                        f.push({ Value: code, SourceEntityType: type });
-                    }
-                    filters.push({ SourceEntites: f });
+                    filters.push({ SourceEntites: me._processSourceEntitiesFilterFromDom($(this)) });
+                });
+                this.$sLstNotFilters.children(':gt(0)').each(function () {
+                    notFilters.push({ SourceEntites: me._processSourceEntitiesFilterFromDom($(this)) });
                 });
             }
             else {
-                if (this._sLstfilters && this._sLstfilters.include) {
+                if (this._sLstfilters && (this._sLstfilters.include || this._sLstfilters.exclude)) {
                     var filtersArr, item;
                     $.each(this._sLstfilters.include, function () {
                         item = []; filtersArr = this; //This is an array
@@ -787,6 +802,13 @@
                             item.push({ SourceEntityType: (this.type || "SC"), Value: this.code });
                         });
                         filters.push({ SourceEntites: item });
+                    });
+                    $.each(this._sLstfilters.exclude, function () {
+                        item = []; filtersArr = this; //This is an array
+                        $.each(filtersArr, function () {
+                            item.push({ SourceEntityType: (this.type || "SC"), Value: this.code });
+                        });
+                        notFilters.push({ SourceEntites: item });
                     });
                 }
             }
@@ -796,7 +818,8 @@
             if (addToExistingList) {
                 queryParams = {
                     Id: listId,
-                    SourceEntityFilters: filters
+                    OrGroupSourceEntityFilters: filters,
+                    NotGroupSourceEntityFilters: notFilters
                 }
             }
             else {
@@ -804,7 +827,8 @@
                     SourceListQuery: {
                         AccessControlScope: "Account",
                         Name: (isEditing ? this.$existingSLstName.val() : this.$newSLstName.val()),
-                        SourceEntityFilters: filters
+                        OrGroupSourceEntityFilters: filters,
+                        NotGroupSourceEntityFilters: notFilters
                     }
                 }
                 if (isEditing) {
@@ -837,13 +861,7 @@
             });
         },
 
-        _deleteSourceList: function () {
-            var listId = this._sourceListId || this.$existingSLstDD.val();
-
-            if (!listId) {//
-                alert("<%= Token('selectTheSourceListToDelete') %>");
-                return;
-            }
+        _deleteSourceList: function (listId, $listItem) {
 
             $dj.progressIndicator.display(this._loadingText);
 
@@ -853,27 +871,22 @@
                 success: $dj.delegate(this, function (data) {
                     $dj.progressIndicator.hide();
 
-                    //Remove the source list from the drop down
-                    this.$existingSLstDD.find("option[value=" + listId + "]").remove();
-                    this.$existingSLstDD.change();
-                    if (this.$existingSLstDD.children().length == 1) {//No source list
-                        this._sourceList = {}; //empty object
-                    }
-                    //Remove the source list from the lsit
-                    if (this.$savedList) {
-                        if (this.$savedList.children('li').length > 0) {
-                            this.$savedList.find("> li > div > div[data-code=" + listId + "]:first").closest("li").remove();
-                        }
-                        if (this.$savedList.children('li').length == 0) {
-                            this.$savedList.html("<%= Token('noResults') %>");
-                        }
-                    }
-
-                    if (this._sourceListId) {//Deleting source list while editing
-                        $().overlay.hide("#" + this.$saveSLstModal.attr('id'));
-                    }
-
                     alert("<%= Token('sourceListDeletedSuccessfully') %>");
+
+                    if (this.$existingSLstDD) {
+                        //Remove the source list from the drop down
+                        this.$existingSLstDD.find("option[value=" + listId + "]").remove();
+                        this.$existingSLstDD.change();
+                        if (this.$existingSLstDD.children().length == 1) {//No source list
+                            this._sourceList = {}; //empty object
+                        }
+                    }
+
+                    //Remove the source list from the list
+                    if ($listItem.siblings().length == 0) {
+                        this.$savedList.html("<%= Token('noResults') %>");
+                    }
+                    $listItem.remove();
 
                     this._onSourceListDelete(listId);
                     this.publish(this.events.onSrcLstDelete, listId);
@@ -887,7 +900,7 @@
         },
 
         _onSourceListDelete: function (listId) {
-            if (this._sourceListAdded) {//Remove the source list if it is added in the list
+            if (this._sourceListAdded) {//Remove the source list if it is added in the filters list
                 this._onFilterClose(this.$filters.find("li[code='" + listId + "']").find(this.selectors.filterClose).get(0));
             }
         },
@@ -923,29 +936,24 @@
 
                 this.$existingSLstDD.selectbox();
 
-                //Delete Source List
-                $fieldSet.find(this.selectors.deleteLnk).click(function () {
-                    $dj.confirmDialog({
-                        yesClickHandler: function () {
-                            me._deleteSourceList();
-                        },
-                        title: "<%= Token('deleteSourceList') %>",
-                        msg: "<%= Token('deleteSourceListConfirmMsg') %>"
-                    });
-                });
-
                 //Filters
                 this.$sLstFiltersContainer = this.$saveSLstModal.find(this.selectors.filtersList).hide();
                 this.$sLstFilters = this.$sLstFiltersContainer.find(this.selectors.filters);
+                this.$sLstNotFilters = this.$sLstFiltersContainer.find(this.selectors.notFilters);
 
-                this.$sLstFilters.delegate(this.selectors.filterClose, 'click', function () {
+                this.$sLstFiltersContainer.delegate(this.selectors.filterClose, 'click', function () {
+                    var $ul = $(this).closest('ul');
                     $(this).parent().remove();
+                    if ($ul.hasClass('red') && $ul.children().length == 1) {
+                        $ul.hide(); //Hide the Not pill if all the pills are removed
+                    }
                     me._triggerResize();
                 });
 
-                var $footer = this.$sLstFiltersContainer.next();
-                $footer.find(this.selectors.cancelBtn).click(function () { $().overlay.hide("#" + id); });
-                $footer.find(this.selectors.doneBtn).click(function () { me._saveSourceList(); });
+                this.$sLstFiltersContainer.next()
+                .find(this.selectors.cancelBtn).click(function () { $().overlay.hide("#" + id); })
+                .end()
+                .find(this.selectors.saveBtn).click(function () { me._saveSourceList(); });
             }
 
             this._sourceListId = sLstId;
@@ -978,7 +986,7 @@
             this._stopPropagation(e, true);
         },
 
-        _onSourceItemClick: function (elem, e) {
+        _onSourceItemClick: function (elem, e, not) {
             var $item = $(elem), code = $item.data("code"), code1;
             code1 = $item.data("code1") || '';
             if (!this._isFilterPresent(code + code1)) {
@@ -991,19 +999,19 @@
                 if (type == "LIST") {//If Source list is added then clear all other filters
                     this.clearFilters();
                     this._sourceListAdded = true;
-                    this._addSourceFilter(filter);
+                    this._addFilter(filter, not, true);
                 }
                 else {
                     if (this._sourceListAdded) {
                         this.clearFilters();
                     }
-                    this._addSourceFilter(filter);
+                    this._addFilter(filter, not, true);
                 }
             }
             this._stopPropagation(e, true);
         },
 
-        _onSourceGroupItemClick: function (elem, e) {
+        _onSourceGroupItemClick: function (elem, e, not) {
             var $item = $(elem), code = $item.data("code"), code1 = this.$sourceGroupDD.data("value"), sourceCat = this.$sourceSortByDD.data("value");
             code1 = (sourceCat && code1) ? code1 : ''; //If source category is selected then consider it
             if (!this._isFilterPresent(code1 + code)) {
@@ -1019,7 +1027,7 @@
                 if (this._sourceListAdded) {
                     this.clearFilters();
                 }
-                this._addSourceFilter(filter);
+                this._addFilter(filter, not, true);
             }
             this._stopPropagation(e, true);
         },
@@ -1032,18 +1040,26 @@
             this._stopPropagation(e, true);
         },
 
-        _onSourceListItemHover: function (elem, e) {
-            var $elem = $(elem), type = $elem.data("type");
-            if (type != "LIST" && type != "SN" && type != "PDF") {
-                $elem.append(this.$listItemOptions.show());
-            }
-            this._stopPropagation(e, true);
-        },
-
         _onListItemOptionsClick: function (elem, e) {
             var $option = $(elem), $item = $option.parent().parent(), code = $item.data("code"), gType = ($item.data("gtype") || null);
-            ($option.index() == 0) ? this._showEntityInfo(code, gType) :
-                                    ((!this._isFilterPresent(code)) ? this._addFilter({ code: code, desc: $.trim($item.text()) }, true) : null);
+            if ($option.index() == 0) {//Entity Info
+                this._showEntityInfo(code, gType);
+            }
+            else {//Not option
+                if (this.options.filterType == this.filterType.Source) {
+                    //If on Browse tab and it is a browse item
+                    if (this.options.activeTab == 1 && $item.hasClass("browse-item")) {
+                        this._onSourceGroupItemClick($item[0], e, true);
+                    }
+                    else {
+                        this._onSourceItemClick($item[0], e, true);
+                    }
+                }
+                else {
+                    ((!this._isFilterPresent(code)) ? this._addFilter({ code: code, desc: $.trim($item.text()) }, true) : null);
+                }
+            }
+
             this._stopPropagation(e, true);
         },
 
@@ -1075,8 +1091,7 @@
                             title: this._lookUpDetails.label,
                             isSource: (this.options.filterType == this.filterType.Source)
                         }))
-                        .overlay({ closeOnEsc: true })
-                        .find(this.selectors.modalContent).scrollTop(0);//Reset the scroll position
+                        .overlay({ closeOnEsc: true });
 
                         this._hideAutoCompleteResults();
                     }
@@ -1132,9 +1147,15 @@
                     }
                 });
             }
+
             //Primary Source/Outlet
             if (entityInfo.PrimarySource) {
                 info.primarySource = entityInfo.PrimarySource.Description;
+            }
+
+            //AssociatedCompany Executive
+            if (entityInfo.AssoicatedCompanies && entityInfo.AssoicatedCompanies.length > 0) {
+                info.associatedCompany = entityInfo.AssoicatedCompanies[0].Name;
             }
 
             if (this.options.filterType == this.filterType.Source) {
@@ -1149,8 +1170,8 @@
                 }
 
                 //Language
-                if (entityInfo.Language) {
-                    info.language = this._langDict[entityInfo.Language.toLowerCase()];
+                if (entityInfo.BaseLanguage) {
+                    info.language = this._langDict[entityInfo.BaseLanguage.toLowerCase()];
                 }
                 //Most Recent Issue
                 if (entityInfo.MostRecentIssue) {
@@ -1231,7 +1252,7 @@
                         $div.html(this._loadingText).slideDown(100, this._delegates.OnResize);
                         this._getSourceListById(code, {
                             success: function (data) {
-                                me.bindList($div, data.SourceListQuery.SourceEntityFilters, { sourceListBrowse: true });
+                                me.bindSourceListChildren(data, $div);
                             },
                             error: function (error) {
                                 $div.html($dj.formatError(error.Error || error)).scrollTop(0);
@@ -1239,13 +1260,17 @@
                         });
                     }
                     else if (options.sourceGroupBrowse) {
-                        this._getSourceByGroupCode({
+                        var data = {
                             childrenType: $itemNext.data("ctype"),
                             container: $div,
                             code: code,
                             sourceCategory: this.$sourceSortByDD.data("value"),
                             groupCode: this.$sourceGroupDD.data("value")
-                        });
+                        };
+                        if (this.$sourceSortByDD.data("af")) {//If Additional filter
+                            data.sourceCategory = "restrictor";
+                        }
+                        this._getSourceByGroupCode(data);
                     }
                     else {
                         this._getBrowseList(code, $div, true);
@@ -1257,7 +1282,7 @@
         },
 
         _onFilterScroll: function (scrollUp) {
-            if (this.$filters.children().length > 0 || this.$notfilters.children(":gt(0)").length > 0) {
+            if (this.$filters.children().length > 0 || (this._lookUpDetails.notFilter && this.$notFilters.children(":gt(0)").length > 0)) {
                 var $wrap = this.$filters.parent(), wrapTop = parseInt($wrap.css('top'), 10);
                 if (!this._pillHeight) {
                     this._pillHeight = $wrap.find("li:first").outerHeight(true);
@@ -1294,7 +1319,6 @@
         },
 
         _showHideSaveListBtn: function (show) {
-            //If no filters then hide the saveListBtn
             if (this.$saveListBtn) {
                 if (show && !this._sourceListAdded) {
                     this.$saveListBtn.removeClass("hidden");
@@ -1313,13 +1337,138 @@
             }
         },
 
+        _enableClearAndAddToSearchBtns: function () {
+            if (this.$filters.children().length > 0 || (this._lookUpDetails.notFilter && this.$notFilters.children(":gt(0)").length > 0)) {
+                this.$clearBtn.removeClass('hidden');
+                //As per review with Brain, he asked to remove this feature
+                //this.$addToSearchBtn.removeClass('dj_disabled');
+            }
+            else {
+                this.$clearBtn.addClass('hidden');
+                //As per review with Brain, he asked to remove this feature
+                //this.$addToSearchBtn.addClass('dj_disabled');
+            }
+        },
+
+        _processSourceEntitiesFilter: function (sourceEntites) {
+            var d, f = [], code, type, desc, cdesc;
+            if (sourceEntites && sourceEntites[0]) {
+                d = sourceEntites[0];
+                code = d.Value;
+                type = d.SourceEntityType;
+                if (type == "PDF") {
+                    cdesc = this._sourceGroupItems[code]; //If PDF then get the description from source group items list
+                }
+                else {
+                    cdesc = d.Source ? (d.Source.Name || code) : code;
+                }
+
+                if (sourceEntites.length > 1) {
+                    f = (type == "SN") ? [{ code: escape(code), desc: null, type: type}]
+                                        : [{ code: code.toLowerCase(), desc: escape(cdesc), type: type}];
+                    d = sourceEntites[1];
+                    code = d.Value;
+                    type = d.SourceEntityType;
+                    if (type == "BY") {
+                        cdesc = cdesc + " (" + code + ")";
+                        f.push({ code: escape(code), desc: null, type: type });
+                    }
+                    else {
+                        desc = (d.Source) ? (d.Source.Name || code) : code;
+                        cdesc = cdesc + ": " + desc;
+                        f.push({ code: code.toLowerCase(), desc: escape(desc), type: type });
+                    }
+                    f[0].cdesc = cdesc;
+                }
+                else {
+                    code = (type == "SN") ? escape(code) : code.toLowerCase();
+                    f = [{ code: code, desc: cdesc, type: type}];
+                }
+            }
+            return f;
+        },
+
+        _processSourceEntitiesFilterFromDom: function (elem) {
+            var f = [], $item = $(elem);
+            if ($item.data("code1")) {
+                return [{ Value: ($item.data("type") == "SN") ? unescape($item.data("code")) : $item.data("code"), SourceEntityType: $item.data("type") },
+                    { Value: ($item.data("type1") == "BY") ? unescape($item.data("code1")) : $item.data("code1"), SourceEntityType: $item.data("type1")}];
+            }
+            else {
+                return [{ Value: ($item.data("type") == "SN") ? unescape($item.attr("code")) : $item.attr("code"), SourceEntityType: $item.data("type")}];
+            }
+            return f;
+        },
+
+        _processSourceFilterFromObject: function (filter) {
+            var f, item, type, code, eCode;
+            item = filter[0];
+            type = item.type;
+            code = item.code;
+            eCode = (type == "SN") ? escape(code) : '';
+            f = [{
+                code: eCode || code.toLowerCase(),
+                desc: eCode || escape(item.desc),
+                type: type,
+                cdesc: item.desc
+            }];
+
+            if (filter.length > 1) {//If multiple filters
+                item = filter[1];
+                type = item.type;
+                code = item.code;
+                eCode = (type == "BY") ? escape(code) : '';
+                f.push({
+                    code: eCode || code.toLowerCase(),
+                    desc: eCode || escape(item.desc),
+                    type: type
+                });
+
+                if (type == "BY") {
+                    f[0].cdesc += " (" + item.desc + ")";
+                }
+                else {
+                    f[0].cdesc += ": " + item.desc;
+                }
+            }
+            return f;
+        },
+
+        _processSourceFilterFromDom: function (elem) {
+            var f = [], $item = $(elem), type, code, desc;
+            if ($item.data("code1")) {
+                type = $item.data("type");
+                code = (type == "SN") ? unescape($item.data("code")) : $item.data("code");
+                desc = (type == "SN") ? code : unescape($item.data("desc"));
+
+                f.push({ code: code, desc: desc, type: type });
+
+                type = $item.data("type1");
+                code = (type == "BY") ? unescape($item.data("code1")) : $item.data("code1");
+                desc = (type == "BY") ? code : unescape($item.data("desc1"));
+
+                f.push({ code: code, desc: desc, type: type });
+            }
+            else {
+                type = $item.data("type");
+                code = (type == "SN") ? unescape($item.attr("code")) : $item.attr("code");
+                desc = (type == "SN") ? code : $item.find('span:first').text();
+
+                f.push({ code: code, desc: desc, type: type });
+            }
+            return f;
+        },
+
         bindFilters: function (filters) {
             //Clean the existing list
             this.$filters.children().remove();
-            this.$notfilters.hide().children(":gt(0)").remove();
+            if (this._lookUpDetails.notFilter) {
+                this.$notFilters.hide().children(":gt(0)").remove();
+            }
             this._sourceListAdded = false;
             if (filters && ((filters.include && filters.include.length > 0) || (filters.exclude && filters.exclude.length > 0) || filters.list)) {
-                var me = this;
+                var hasIncludes = (filters.include && filters.include.length > 0),
+                    hasExcludes = (filters.exclude && filters.exclude.length > 0);
 
                 if (this.options.filterType == this.filterType.Source) {
                     if (filters.list) {
@@ -1328,63 +1477,38 @@
                         this.$filters.append(this.templates.sourceFilterPill({ filter: filters.list }));
                     }
                     else {
-                        var f, item, type, code, eCode;
-                        $.each(filters.include, function () {
-                            item = this[0];
-                            type = item.type;
-                            code = item.code;
-                            eCode = (type == "SN") ? escape(code) : '';
-                            f = [{
-                                code: eCode || code.toLowerCase(),
-                                desc: eCode || escape(item.desc),
-                                type: type,
-                                cdesc: item.desc
-                            }];
-
-                            if (this.length > 1) {//If multiple filters
-                                item = this[1];
-                                type = item.type;
-                                code = item.code;
-                                eCode = (type == "BY") ? escape(code) : '';
-                                f.push({
-                                    code: eCode || code.toLowerCase(),
-                                    desc: eCode || escape(item.desc),
-                                    type: type
-                                });
-
-                                if (type == "BY") {
-                                    f[0].cdesc += " (" + item.desc + ")";
-                                }
-                                else {
-                                    f[0].cdesc += ": " + item.desc;
-                                }
+                        if (hasIncludes) {
+                            for (var i = 0, l = filters.include.length; i < l; i++) {
+                                this.$filters.append(this.templates.sourceFilterPill({ filter: this._processSourceFilterFromObject(filters.include[i]) }));
                             }
-
-                            me.$filters.append(me.templates.sourceFilterPill({ filter: f }));
-                        });
+                        }
+                        if (hasExcludes) {
+                            for (var i = 0, l = filters.exclude.length; i < l; i++) {
+                                this.$notFilters.append(this.templates.sourceFilterPill({ filter: this._processSourceFilterFromObject(filters.exclude[i]) }));
+                            }
+                        }
                     }
                 }
                 else {
-
-                    if (filters.include && filters.include.length > 0) {
-                        $.each(filters.include, function () {
-                            this.code = this.code.toLowerCase();
-                            me.$filters.append(me.templates.filterPill({ filter: this }));
-                        });
+                    if (hasIncludes) {
+                        for (var i = 0, l = filters.include.length; i < l; i++) {
+                            filters.include[i].code = filters.include[i].code.toLowerCase();
+                            this.$filters.append(this.templates.filterPill({ filter: filters.include[i] }));
+                        }
                     }
 
-                    if (filters.exclude && filters.exclude.length > 0) {
-                        $.each(filters.exclude, function () {
-                            this.code = this.code.toLowerCase();
-                            me.$notfilters.append(me.templates.filterPill({ filter: this }));
-                        });
+                    if (hasExcludes) {
+                        for (var i = 0, l = filters.exclude.length; i < l; i++) {
+                            filters.exclude[i].code = filters.exclude[i].code.toLowerCase();
+                            this.$notFilters.append(this.templates.filterPill({ filter: filters.exclude[i] }));
+                        }
                     }
                 }
 
                 this._showHideNotPillList();
                 this.updateFilterScroll();
                 this._triggerResize();
-                this._showHideSaveListBtn(true);
+
                 if (this.options.filterType == this.filterType.Language) {
                     if ((filters.include.length == 1) && (filters.include[0].code == "alllang")) {//All languages
                         //Remove filter close span from all languages
@@ -1392,6 +1516,8 @@
                     }
                 }
             }
+
+            this._enableClearAndAddToSearchBtns();
 
             if (this.options.filterType == this.filterType.Source) {
                 this._showHideSaveListBtn();
@@ -1415,7 +1541,7 @@
                         autocompletionType: this.getFilterType(),
                         selectFirst: false,
                         options: this._getAutoCompleteSearchOptions(),
-                        useSessionId: DJ.config.credentials.sessionId,
+                        useSessionId: $dj.globalHeaders.credentials.token,
                         onItemSelect: this._delegates.OnAutoSuggestItemSelect,
                         tokens: {
                             infoTitleTkn: "<%= Token('infoTitleTknPre') %>|true|<%= Token('infoTitleTknPost') %>",
@@ -1448,7 +1574,7 @@
         _getAutoCompleteSearchOptions: function () {
             switch (this.options.filterType) {
                 case this.filterType.Company: return { maxResults: '10', dataSet: 'newsCodedAbt', filterADR: false };
-                case this.filterType.Source: return { maxResults: '10', types: '1|2|3|4', statuses: 'active|discont' };
+                case this.filterType.Source: return { maxResults: '10', types: '1|2|3|4|5', statuses: 'active|discont' };
                 case this.filterType.Author: return { maxResults: '10', includeCommunicatorRecords: false };
                 case this.filterType.Executive: return { maxResults: '10', filterNewsCoded: true };
                 case this.filterType.Subject:
@@ -1466,6 +1592,9 @@
                 return;
             }
 
+            //This is just to hide the autocomplete dropdown
+            this._hideAutoCompleteResults();
+
             if ($.trim(this.$textBox.val()) == "" || this.$textBox.val() == this._lookUpDetails.autoCompleteText) {
                 if (this.$lookUpListContainer.is(":visible")) {
                     this.$lookUpListContainer.slideUp(100, this._delegates.OnResize);
@@ -1474,7 +1603,7 @@
             }
             else {
 
-                if ($.trim(this.$textBox.val().length) > 3) {
+                if ($.trim(this.$textBox.val().length) > 0) {
                     this._lookUpOffset = 0;
                     this.$lookUpList.data("loaded", false);
                     this.$lookUpListContainer.slideDown(100, this._delegates.OnResize);
@@ -1492,6 +1621,9 @@
 
         _onFilterClick: function (elem) {
             var $elem = $(elem), $li = $elem.closest(this.selectors.filterPill), elemOffset = $elem.offset();
+            if ($li.hasClass("not") || $li.data('type') == "LIST") {
+                return; //Do not show filter options for a not and list pill
+            }
             this.$filterOptions.children("div").children().show().filter(":eq(" + ($elem.closest("ul").hasClass("not-filter") ? "1" : "2") + ")").hide();
             //$li.append(this.$filterOptions.show());
             this.$filterOptions.css({
@@ -1505,44 +1637,39 @@
             }));
         },
 
-        _onAutoSuggestItemSelect: function (item) {
-            this.itemSelect = true;
+        _onAutoSuggestItemSelect: function (item, not) {
+            if (!not) {
+                this.itemSelect = true;
+            }
             if (item) {
                 item = this._createFilterObject(item);
                 if (this.options.filterType == this.filterType.Source) {
                     item.type = "RST";
                     if (this._sourceListAdded) {
                         this.clearFilters();
-                        this._addSourceFilter(item);
+                        this._addFilter(item, not, true);
                     }
                     else {
                         if (!this._isFilterPresent(item.code)) {
-                            this._addSourceFilter(item);
+                            this._addFilter(item, not, true);
                         }
                     }
                 }
                 else {
                     if (!this._isFilterPresent(item.code)) {
-                        this._addFilter(item);
+                        this._addFilter(item, not);
                     }
                 }
             }
-            setTimeout($dj.delegate(this, function () { this.itemSelect = false; }), 200); //Reset itemSelect to false
-            this.$textBox.val("");
+            if (!not) {
+                setTimeout($dj.delegate(this, function () { this.itemSelect = false; }), 200); //Reset itemSelect to false
+                this.$textBox.val("");
+            }
         },
 
         _onAutoSuggestInfoClick: function (item) {
             if (item) {
                 this._showEntityInfo((this.options.filterType == this.filterType.Author) ? item.nnId : item.code);
-            }
-        },
-
-        _onAutoSuggestNotClick: function (item) {
-            if (item) {
-                item = this._createFilterObject(item);
-                if (!this._isFilterPresent(item.code)) {
-                    this._addFilter(item, true);
-                }
             }
         },
 
@@ -1554,34 +1681,22 @@
         },
 
         _isFilterPresent: function (itemCode) {
-            return ((this.$notfilters.children("li[code='" + itemCode + "']").length > 0)
+            return ((this._lookUpDetails.notFilter && (this.$notFilters.children("li[code='" + itemCode + "']").length > 0))
                     || (this.$filters.children("li[code='" + itemCode + "']").length > 0));
         },
 
-        _addFilter: function (filter, not) {
+        _addFilter: function (filter, not, source) {
             if (filter) {
+                var template = source ? this.templates.sourceFilterPill : this.templates.filterPill;
                 if (not) {
-                    this.$notfilters.append(filter.jquery ? filter : this.templates.filterPill({ filter: filter }));
+                    this.$notFilters.append(filter.jquery ? filter : template({ filter: filter }));
                 }
                 else {
-                    if (this.options.filterType == this.filterType.Source) {
-                        this.$filters.append(filter.jquery ? filter : this.templates.sourceFilterPill({ filter: filter }));
-                    }
-                    else {
-                        this.$filters.append(filter.jquery ? filter : this.templates.filterPill({ filter: filter }));
-                    }
+                    this.$filters.append(filter.jquery ? filter : template({ filter: filter }));
                 }
                 this._showHideNotPillList();
                 this.updateFilterScroll();
-                this._showHideSaveListBtn(true);
-                this._triggerResize();
-            }
-        },
-
-        _addSourceFilter: function (filter) {
-            if (filter) {
-                this.$filters.append(this.templates.sourceFilterPill({ filter: filter }));
-                this.updateFilterScroll();
+                this._enableClearAndAddToSearchBtns();
                 this._showHideSaveListBtn(true);
                 this._triggerResize();
             }
@@ -1589,7 +1704,10 @@
 
         _createFilterObject: function (item) {
             if (this.options.filterType == this.filterType.Author) {//For Author we have to pick nnId field from autocomplete response
-                return { code: item.nnId, desc: item.formalName };
+                return { code: item.nnId, desc: item.formalName + (item.outletName ? (" (" + item.outletName.replace(/\"/g, '\\"') + ")") : "") };
+            }
+            else if (this.options.filterType == this.filterType.Executive) {//For Executive we have to show the company name along with name
+                return { code: item.code, desc: item.completeName + (item.companyName ? (" (" + item.companyName.replace(/\"/g, '\\"') + ")") : "") };
             }
             else {
                 return { code: item.code.toLowerCase(), desc: (item.value || item.descriptor || item.completeName || item.formalName || item.directoryName) };
@@ -1597,58 +1715,33 @@
         },
 
         getFilters: function () {
-            var f = {}, $item, filter;
+            var me = this, f = { include: [], exclude: [] }, $item;
 
             if (this.options.filterType == this.filterType.Source) {
                 if (this._sourceListAdded) {
                     $item = this.$filters.children().eq(0);
-                    f.list = { code: $item.attr("code"), desc: $.trim($item.text()) };
+                    f.list = { code: $item.attr("code"), desc: $.trim($item.find('span:first').text()) };
                 }
                 else {
-                    f.include = [];
-                    var type, code, desc;
-                    //Include filters
                     $.each(this.$filters.children(), function () {
-                        filter = [];
-                        $item = $(this);
-                        if ($item.data("code1")) {
+                        f.include.push(me._processSourceFilterFromDom(this));
+                    });
 
-                            type = $item.data("type");
-                            code = (type == "SN") ? unescape($item.data("code")) : $item.data("code");
-                            desc = (type == "SN") ? code : unescape($item.data("desc"));
-
-                            filter.push({ code: code, desc: desc, type: type });
-
-                            type = $item.data("type1");
-                            code = (type == "BY") ? unescape($item.data("code1")) : $item.data("code1");
-                            desc = (type == "BY") ? code : unescape($item.data("desc1"));
-
-                            filter.push({ code: code, desc: desc, type: type });
-                        }
-                        else {
-                            type = $item.data("type");
-                            code = (type == "SN") ? unescape($item.attr("code")) : $item.attr("code");
-                            desc = (type == "SN") ? code : $item.text();
-
-                            filter.push({ code: code, desc: desc, type: type });
-                        }
-                        f.include.push(filter);
+                    $.each(this.$notFilters.children(":gt(0)"), function () {
+                        f.exclude.push(me._processSourceFilterFromDom(this));
                     });
                 }
             }
             else {
-                f = { include: [], exclude: [] };
-                //Include filters
                 $.each(this.$filters.children(), function () {
                     $this = $(this);
                     f.include.push({ code: $this.attr('code'), desc: $this.find('span:first').text() });
                 });
 
-                //Exclude filters
                 if (this._lookUpDetails.notFilter) {
-                    $.each(this.$notfilters.children(":gt(0)"), function () {
+                    $.each(this.$notFilters.children(":gt(0)"), function () {
                         $this = $(this);
-                        f.exclude.push({ code: $this.attr('code'), desc: $this.find('span:first').text(), operator: 1 });
+                        f.exclude.push({ code: $this.attr('code'), desc: $this.find('span:first').text() });
                     });
                 }
             }
@@ -1658,8 +1751,9 @@
 
         clearFilters: function () {
             this.$filters.children().remove();
-            this.$notfilters.hide().children(":gt(0)").remove();
+            this.$notFilters.hide().children(":gt(0)").remove();
             this._showHideSaveListBtn(false);
+            this._enableClearAndAddToSearchBtns();
             if (this.options.filterType == this.filterType.Language) {
                 this._addAllLanguages();
             }
@@ -1684,6 +1778,7 @@
                 }
                 this._sourceListAdded = false;
                 this.updateFilterScroll();
+                this._enableClearAndAddToSearchBtns();
                 this._showHideSaveListBtn();
                 this._triggerResize();
             }
@@ -1694,11 +1789,11 @@
         },
 
         _showHideNotPillList: function () {
-            if (this.$notfilters.children(":gt(0)").length > 0) {
-                this.$notfilters.show();
+            if (this.$notFilters.children(":gt(0)").length > 0) {
+                this.$notFilters.show();
             }
             else {
-                this.$notfilters.hide();
+                this.$notFilters.hide();
             }
         },
 
@@ -1727,6 +1822,7 @@
                 childrenType: (params.childrenType || "source"),
                 sourceCategory: params.sourceCategory
             };
+
             if (params.groupCode) {
                 data.customSourceGroupCode = params.groupCode;
             }
@@ -1821,6 +1917,11 @@
                 Offset: (offset || 0),
                 Records: this._maxLookUpRecords
             };
+
+            if (this.options.filterType == this.filterType.Executive) {
+                //Only for Executive we have to pass the parts parameter to get AssociatedCompanies
+                queryParams.parts = "AssociatedCompanies";
+            }
 
             $.ajax({
                 url: this.options.taxonomyServiceUrl + "/" + this._lookUpDetails.name + (extendedSearch ? "/Extendedsearch/json?" : "/json?"),
@@ -1918,11 +2019,13 @@
         setActiveTab: function (tabIndex) {
             this.$modalNav.children().removeClass('active').eq(tabIndex).addClass("active");
             this.$tabContent.addClass('hidden').eq(tabIndex).removeClass('hidden');
+            this.options.activeTab = tabIndex;
             if (tabIndex == 0) {//LookUp
                 if (this.options.filterType != this.filterType.Language) {
                     if (!this.$lookUpList.data("loaded")) {
                         this.$lookUpListContainer.hide();
                     }
+                    this.focusOnTextBox();
                 }
             }
             else if (tabIndex == 1) {//Browse
@@ -1973,11 +2076,16 @@
         },
 
         focusOnTextBox: function () {
-            if (this.options.filterType != this.filterType.Language) {
-                if (!this.$lookUpList.data("loaded")) {
-                    this.$textBox.val('');
+            //Try catch is used because some browsers throw error while setting focus if the element is hidden
+            try {
+                if (this.options.filterType != this.filterType.Language) {
+                    if (!this.$lookUpList.data("loaded")) {
+                        this.$textBox.val('');
+                    }
+                    this.$textBox.focus();
                 }
-                this.$textBox.focus();
+            } catch (e) {
+
             }
         },
 
@@ -2011,7 +2119,10 @@
                         listContainer.html(this.templates.sourceGroupBrowse({ data: data }));
                     }
                     else {
-                        listContainer.html(this.templates.searchList({ data: data, isAuthor: (this.options.filterType == this.filterType.Author) }));
+                        listContainer.html(this.templates.searchList({ data: data,
+                            isAuthor: (this.options.filterType == this.filterType.Author),
+                            isExecutive: (this.options.filterType == this.filterType.Executive)
+                        }));
                     }
                     listContainer.data("loaded", true);
                 }
@@ -2021,6 +2132,25 @@
             }
             listContainer.scrollTop(0);
             this._triggerResize();
+        },
+
+        bindSourceListChildren: function (data, $container) {
+            var sources = [];
+            $container.html('');
+            if (data && data.SourceListQuery && (data.SourceListQuery.OrGroupSourceEntityFilters || data.SourceListQuery.NotGroupSourceEntityFilters)) {
+                var slQ = data.SourceListQuery;
+                if (slQ.OrGroupSourceEntityFilters && slQ.OrGroupSourceEntityFilters.length) {
+                    $container.append('<li class="expanded"><div><span class="dj_icon dj_browse-tree-toggle"></span><div class="browse-item included" data-notafilter="1"><%= Token("includedSrcs") %></div></div></li>');
+                    this.bindList($('<ul />').appendTo($container.children(':first')), slQ.OrGroupSourceEntityFilters, { sourceListBrowse: true });
+                }
+                if (slQ.NotGroupSourceEntityFilters && slQ.NotGroupSourceEntityFilters.length) {
+                    $container.append('<li class="expanded"><div><span class="dj_icon dj_browse-tree-toggle"></span><div class="browse-item excluded" data-notafilter="1"><%= Token("excludedSrcs") %></div></div></li>');
+                    this.bindList($('<ul />').appendTo($container.children(':last')), slQ.NotGroupSourceEntityFilters, { sourceListBrowse: true });
+                }
+                $container.data('loaded', true);
+                return;
+            }
+            $container.html("<%= Token('noResults') %>")
         }
     });
 

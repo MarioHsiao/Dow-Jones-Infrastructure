@@ -142,7 +142,7 @@ namespace DowJones.Web.Mvc.Search.Requests.Freetext
         {
             if (sourceFilter != null)
             {
-                if(sourceFilter.Include != null && sourceFilter.Include.Count() > 0)
+                if((sourceFilter.Include != null && sourceFilter.Include.Count() > 0) || (sourceFilter.Exclude != null && sourceFilter.Exclude.Count() > 0))
                 {
                     #region ---- Get Source Group Name ----
 
@@ -151,30 +151,63 @@ namespace DowJones.Web.Mvc.Search.Requests.Freetext
                     #endregion
 
                     string type;
-                    int listId = 0;
-                    foreach (var source in sourceFilter.Include)
+                    if (sourceFilter.Include != null)
                     {
-                        foreach (var item in source)
+                        foreach (var source in sourceFilter.Include)
                         {
-                            type = item.Type.ToUpper();
-                            if (type != "PDF" && type != "SN" && type != "BY")
+                            foreach (var item in source)
                             {
-                                if (!codesDict.ContainsKey(NewsFilterCategory.Source))
+                                type = item.Type.ToUpper();
+                                if (type != "PDF" && type != "SN" && type != "BY")
                                 {
-                                    codesDict[NewsFilterCategory.Source] = new List<string>();
+                                    if (!codesDict.ContainsKey(NewsFilterCategory.Source))
+                                    {
+                                        codesDict[NewsFilterCategory.Source] = new List<string>();
+                                    }
+                                    codesDict[NewsFilterCategory.Source].Add(item.Code);
                                 }
-                                codesDict[NewsFilterCategory.Source].Add(item.Code);
-                            }
-                            else
-                            {
-                                switch (type)
+                                else
                                 {
-                                    case "PDF":
-                                        item.Name = dictSourceGroupNames[item.Code.ToLower()];
-                                        break;
-                                    default:
-                                        item.Name = item.Code;
-                                        break;
+                                    switch (type)
+                                    {
+                                        case "PDF":
+                                            item.Name = dictSourceGroupNames[item.Code.ToLower()];
+                                            break;
+                                        default:
+                                            item.Name = item.Code;
+                                            break;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    if (sourceFilter.Exclude != null)
+                    {
+                        foreach (var source in sourceFilter.Exclude)
+                        {
+                            foreach (var item in source)
+                            {
+                                type = item.Type.ToUpper();
+                                if (type != "PDF" && type != "SN" && type != "BY")
+                                {
+                                    if (!codesDict.ContainsKey(NewsFilterCategory.Source))
+                                    {
+                                        codesDict[NewsFilterCategory.Source] = new List<string>();
+                                    }
+                                    codesDict[NewsFilterCategory.Source].Add(item.Code);
+                                }
+                                else
+                                {
+                                    switch (type)
+                                    {
+                                        case "PDF":
+                                            item.Name = dictSourceGroupNames[item.Code.ToLower()];
+                                            break;
+                                        default:
+                                            item.Name = item.Code;
+                                            break;
+                                    }
                                 }
                             }
                         }
@@ -245,6 +278,22 @@ namespace DowJones.Web.Mvc.Search.Requests.Freetext
             {
                 string type;
                 foreach (var source in sourceFilter.Include)
+                {
+                    foreach (var item in source)
+                    {
+                        type = item.Type.ToUpper();
+                        if (type != "PDF" && type != "SN" && type != "BY")
+                        {
+                            item.Name = codeDescDict[NewsFilterCategory.Source][item.Code.ToLower()];
+                        }
+                    }
+                }
+            }
+
+            if (sourceFilter.Exclude != null)
+            {
+                string type;
+                foreach (var source in sourceFilter.Exclude)
                 {
                     foreach (var item in source)
                     {

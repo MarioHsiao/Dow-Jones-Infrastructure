@@ -13,6 +13,7 @@
  *
  */
 
+
     DJ.UI.FreeTextSearchBuilder = DJ.UI.QueryBuilder.extend({
 
         /*
@@ -112,3 +113,5 @@
 
     // Declare this class as a jQuery plugin
     $.plugin('dj_FreeTextSearchBuilder', DJ.UI.FreeTextSearchBuilder);
+
+

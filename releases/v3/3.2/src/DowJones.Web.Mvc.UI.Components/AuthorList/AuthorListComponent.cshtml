@@ -1,19 +1,17 @@
-﻿@using System.Web.Mvc
+﻿@model DowJones.Web.Mvc.UI.Components.AuthorList.AuthorListModel
+           
+@using DowJones.Web.Mvc.UI.Components.AuthorList
+@using System.Web.Mvc
 @using System.Linq
 @using System.Collections
 @using System.Collections.Generic
 
-@model AuthorListModel
 @ClientPlugin dj_AuthorList
 @ScriptResource RelativeResourceName=AuthorList.js
 @{ CssClass = "dj_AuthorList"; }
-@{
-	uint runningSum = @Model.FirstRecordIndex;
-	uint i = 0;
-	uint numberOfColumnsAfterOutletRelatedColumns = 0;
-}
 @if (Model != null && Model.Authors.Any())
 {
+	Model.InitializeDomDataCollections();
 	string sort = "<span class='dj_sortable-table-columnUp'></span>";
 	if (Model.SortOrder == OrderDirections.Descending)
 	{
@@ -35,450 +33,92 @@
 	            }
 	        });
 
+	        if (idarr.length > 1) {
+	            if ($(".dj_list-select-count").hasClass("hide") == true) {
+	                $(".dj_list-select-count").removeClass("hide");
+	            }
+
+	            $(".dj_list-select-count span.count").html(idarr.length);
+	        }
+
 	    });
 	</script>
 	<input type="hidden" id="author_list_sort_by" value="@(EnumDescription.StringValueOf(Model.SortBy))" />
 	<input type="hidden" id="author_list_sort_order" value="@(EnumDescription.StringValueOf(Model.SortOrder))" />
 	<input type="hidden" id="selected_author_ids" value="@Model.SelectedAuthorIds" />
+	<div class="dj_data_table-container">
 	<table class="dj_data_table-sorter dj_data_table dj_author-list-table">
-		<colgroup>
-			<col class="dj_data_table-select-col" />
-			<col class="dj_data_table-col1" />
-			<col class="dj_data_table-col2" />
-			<col class="dj_data_table-col3" />
-			@foreach (AuthorListColumns col in Model.DisplayedColumns)
-			{
-				<col />
-			}
-		</colgroup>
 		<thead>
 			<tr>
-				<th scope="col"></th>
-				<th scope="col"></th>
-				<th scope="col" class="dj_sortable-table-header" data-sort="contact">
+				<th colspan="3" class="dj_col-checkbox"></th>
+				<th class="dj_col-string dj_sortable-table-header" data-sort="name">
 					@Model.Tokens.ContactName
 					@(Model.SortBy == AuthorListSortColumns.ContactName ? sort : "")
 				</th>
-				<th scope="col" class="dj_sortable-table-column">
+				<th class="dj_col-string dj_sortable-table-column">
 					@Model.Tokens.Articles<br />(@Model.Tokens.Last90Days)
 				</th>
-				@if (Model.DisplayedColumns.Contains(AuthorListColumns.OutletName))
-				{ 
-				<th scope="col" class="dj_sortable-table-header" data-sort="outlet">
-					@Model.Tokens.OutletName
-					@(Model.SortBy == AuthorListSortColumns.OutletName ? sort : "")
-				</th>
-				}
-				@if (Model.DisplayedColumns.Contains(AuthorListColumns.OutletOriginCountry))
-				{ 
-				<th scope="col" class="dj_sortable-table-column">
-					@Model.Tokens.OutletOriginCountry
-				</th>
-				}
-				@if (Model.DisplayedColumns.Contains(AuthorListColumns.OutletCountry))
-				{ 
-				<th scope="col" class="dj_sortable-table-header" data-sort="outlet-country">
-					@Model.Tokens.OutletCountry
-					@(Model.SortBy == AuthorListSortColumns.OutletCountry ? sort : "")
-				</th>
-				}
-				@if (Model.DisplayedColumns.Contains(AuthorListColumns.OutletState))
-				{ 
-				<th scope="col" class="dj_sortable-table-header" data-sort="outlet-state">
-					@Model.Tokens.OutletState
-					@(Model.SortBy == AuthorListSortColumns.OutletState ? sort : "")
-				</th>
-				}
-				@if (Model.DisplayedColumns.Contains(AuthorListColumns.OutletCity))
-				{ 
-				<th scope="col" class="dj_sortable-table-header" data-sort="outlet-city">
-					@Model.Tokens.OutletCity
-					@(Model.SortBy == AuthorListSortColumns.OutletCity ? sort : "")
-				</th>
-				}
-				@if (Model.DisplayedColumns.Contains(AuthorListColumns.OutletType))
-				{ 
-				<th scope="col" class="dj_sortable-table-header" data-sort="outlet-type">
-					@Model.Tokens.OutletType
-					@(Model.SortBy == AuthorListSortColumns.OutletType ? sort : "")
-				</th>
-				}
-				@if (Model.DisplayedColumns.Contains(AuthorListColumns.OutletFrequency))
-				{ 
-				<th scope="col" class="dj_sortable-table-header" data-sort="outlet-frequency">
-					@Model.Tokens.OutletFrequency
-					@(Model.SortBy == AuthorListSortColumns.OutletFrequency ? sort : "")
-				</th>
-				}
-				@if (Model.DisplayedColumns.Contains(AuthorListColumns.OutletCirculation))
+
+				@foreach (ThItem th in Model.ThCollection) 
 				{
-				<th scope="col" class="dj_sortable-table-header" data-sort="circulation" style="text-align:right">
-					@Model.Tokens.Circulation
-					@(Model.SortBy == AuthorListSortColumns.Circulation ? sort : "")
-				</th>
-				}
-				@if (Model.DisplayedColumns.Contains(AuthorListColumns.EmploymentType))
-				{
-				<th scope="col" class="dj_sortable-table-header" data-sort="employment-type">
-					@Model.Tokens.EmploymentType
-					@(Model.SortBy == AuthorListSortColumns.EmploymentType ? sort : "")
-				</th>
-				}
-				@if (Model.DisplayedColumns.Contains(AuthorListColumns.Country))
-				{
-					numberOfColumnsAfterOutletRelatedColumns++;
-				<th scope="col" class="dj_sortable-table-header" data-sort="country">
-					@Model.Tokens.Country
-					@(Model.SortBy == AuthorListSortColumns.Country ? sort : "")
-				</th>
-				}
-				@if (Model.DisplayedColumns.Contains(AuthorListColumns.State))
-				{
-					numberOfColumnsAfterOutletRelatedColumns++;
-				<th scope="col" class="dj_sortable-table-header" data-sort="state">
-					@Model.Tokens.State
-					@(Model.SortBy == AuthorListSortColumns.State ? sort : "")
-				</th>
-				}
-				@if (Model.DisplayedColumns.Contains(AuthorListColumns.City))
-				{
-					numberOfColumnsAfterOutletRelatedColumns++;
-				<th scope="col" class="dj_sortable-table-header" data-sort="city">
-					@Model.Tokens.City
-					@(Model.SortBy == AuthorListSortColumns.City ? sort : "")
-				</th>
-				}
-				@if (Model.DisplayedColumns.Contains(AuthorListColumns.EmailAddresses))
-				{
-					numberOfColumnsAfterOutletRelatedColumns++;
-				<th scope="col" class="dj_sortable-table-column">
-					@Model.Tokens.EmailAddresses
-				</th>
-				}
-				@if (Model.DisplayedColumns.Contains(AuthorListColumns.UserInfo))
-				{
-					numberOfColumnsAfterOutletRelatedColumns++;
-				<th scope="col" class="dj_sortable-table-column">
-					@Model.Tokens.UserAddedContactInfo
-				</th>
-				}
-				@if (Model.DisplayedColumns.Contains(AuthorListColumns.Phones))
-				{
-					numberOfColumnsAfterOutletRelatedColumns++;
-				<th scope="col" class="dj_sortable-table-column">
-					@Model.Tokens.Phones
-				</th>
-				}
-				@if (Model.DisplayedColumns.Contains(AuthorListColumns.JobTitle))
-				{
-					numberOfColumnsAfterOutletRelatedColumns++;
-				<th scope="col" class="dj_sortable-table-header" data-sort="job-title">
-					@Model.Tokens.JobTitle
-					@(Model.SortBy == AuthorListSortColumns.JobTitle ? sort : "")
-				</th>
-				}
-				@if (Model.DisplayedColumns.Contains(AuthorListColumns.BeatsIndustries))
-				{
-					numberOfColumnsAfterOutletRelatedColumns++;
-				<th scope="col" class="dj_sortable-table-column">
-					@Model.Tokens.BeatsIndustries
-				</th>
-				}
-				@if (Model.DisplayedColumns.Contains(AuthorListColumns.BeatsSubjects))
-				{
-					numberOfColumnsAfterOutletRelatedColumns++;
-				<th scope="col" class="dj_sortable-table-column">
-					@Model.Tokens.BeatsSubjects
-				</th>
-				}
-				@if (Model.DisplayedColumns.Contains(AuthorListColumns.BeatsRegions))
-				{
-					numberOfColumnsAfterOutletRelatedColumns++;
-				<th scope="col" class="dj_sortable-table-column">
-					@Model.Tokens.BeatsRegions
-				</th>
-				}
-				@if (Model.DisplayedColumns.Contains(AuthorListColumns.PreferedContactMethod))
-				{
-					numberOfColumnsAfterOutletRelatedColumns++;
-				<th scope="col" class="dj_sortable-table-column">
-					@Model.Tokens.PreferedContact<br />@Model.Tokens.Method
-				</th>
-				}
-				@if (Model.DisplayedColumns.Contains(AuthorListColumns.RelatedMediaContacts))
-				{
-					numberOfColumnsAfterOutletRelatedColumns++;
-				<th scope="col" class="dj_sortable-table-column">
-					@Model.Tokens.RelatedMediaContacts
-				</th>
+					string s = String.Empty;
+					if (th.Sortable)
+					{
+						s = String.Format(" data-sort='{0}'", th.SortableAttribut);
+					}
+					<th class="@th.ThClass"@s>
+						@if(th.IsTextSplitable)
+						{
+							new MvcHtmlString(th.Text);
+						}
+						else
+						{
+							@th.Text
+						}
+						@th.SortedSpan
+					</th>
 				}
 			</tr>
 		</thead>
 		<tbody class="dj_data_table-scroll">
-		@foreach (var author in Model.Authors)
+		@foreach(TrItem row in Model.TrCollection)
 		{
-			OutletProperties firstOutlet = null;
-			if (author.HasOutlets)
-			{
-				firstOutlet = author.Outlets.FirstOrDefault();
-			}
-
-			string oddClass = ++i % 2 == 0 ? "" : " class='odd'";
-			<tr@(oddClass)>
-				<td class="dj_data_table-select-col">
-					<input name="dj_author-select" type="checkbox" authorlist-aid='@author.AuthorId' authorlist-nnid='@author.AuthorNNID' />
-				</td>
-				<td class="dj_num-col">@(runningSum++).</td>
-				<td class="dj_contact-name-column">
-					@(Model.AnyOutletRelatedColumn && author.ExpandableOutlet ? "<div class='dj_collapsable-icon collapsed'></div>" : "")
-					<a href="javascript:void(0);" class="author-name-selector">@author.AuthorName</a>
-				</td>
-				<td>
-					@if (author.HasArticles)
-					{
-						<a href="javascript:void(0);" class="author-articles-selector">@Model.Tokens.ViewArticles</a>
-					}
-					else
-					{
-						@Model.Tokens.NoArticles
-					}
-				</td>
-				@if (Model.DisplayedColumns.Contains(AuthorListColumns.OutletName))
+			<tr class="@row.TrClass">
+				@for (int c = 0; c < row.TdItems.Length; ++c)
 				{
-				<td>
-					@if (author.HasOutlets)
-					{
-						<a href="javascript:void(0);" authorlist-outlet-id="@firstOutlet.OutletId" class="author-outlet-selector">@firstOutlet.OutletName</a>
-					}
-					else
-					{
-						<span></span>
-					}
-				</td>
-				}
-				@if (Model.DisplayedColumns.Contains(AuthorListColumns.OutletOriginCountry))
-				{
-				<td>
-					@if (author.HasOutlets)
-					{
-						@firstOutlet.OutletOriginCountry
-					}
-					else
-					{
-						<span></span>
-					}
-				</td>
-				}
-				@if (Model.DisplayedColumns.Contains(AuthorListColumns.OutletCountry))
-				{
-				<td>
-					@if (author.HasOutlets)
-					{
-						@firstOutlet.OutletCountry
-					}
-					else
-					{
-						<span></span>
-					}
-				</td>
-				}
-				@if (Model.DisplayedColumns.Contains(AuthorListColumns.OutletState))
-				{
-				<td>
-					@if (author.HasOutlets)
-					{
-						@firstOutlet.OutletState
-					}
-					else
-					{
-						<span></span>
-					}
-				</td>
-				}
-				@if (Model.DisplayedColumns.Contains(AuthorListColumns.OutletCity))
-				{
-				<td>
-					@if (author.HasOutlets)
-					{
-						@firstOutlet.OutletCity
-					}
-					else
-					{
-						<span></span>
-					}
-				</td>
-				}
-				@if (Model.DisplayedColumns.Contains(AuthorListColumns.OutletType))
-				{
-				<td>
-					@if (author.HasOutlets)
-					{
-						@firstOutlet.Type.Name
-					}
-					else
-					{
-						<span></span>
-					}
-				</td>
-				}
-				@if (Model.DisplayedColumns.Contains(AuthorListColumns.OutletFrequency))
-				{
-				<td>
-					@if (author.HasOutlets)
-					{
-						@firstOutlet.Frequency.Name
-					}
-					else
-					{
-						<span></span>
-					}
-				</td>
-				}
-				@if (Model.DisplayedColumns.Contains(AuthorListColumns.OutletCirculation))
-				{
-				<td align="right">
-					@if (author.HasOutlets && firstOutlet.Circulation > 0)
-					{
-						@firstOutlet.Circulation.ToString("0,0", System.Globalization.CultureInfo.InvariantCulture)
-					}
-					else
-					{
-						<span></span>
-					}
-				</td>
-				}
-				@if (Model.DisplayedColumns.Contains(AuthorListColumns.EmploymentType))
-				{
-				<td>
-					@if (author.HasOutlets)
-					{ 
-						@firstOutlet.EmploymentType
-					}
-					else
-					{
-						<span></span>
-					}
-				</td>
-				}
-				@if (Model.DisplayedColumns.Contains(AuthorListColumns.Country))
-				{
-				<td>@author.Country</td>
-				}
-				@if (Model.DisplayedColumns.Contains(AuthorListColumns.State))
-				{
-				<td>@author.State</td>
-				}
-				@if (Model.DisplayedColumns.Contains(AuthorListColumns.City))
-				{
-				<td>@author.City</td>
-				}
-				@if (Model.DisplayedColumns.Contains(AuthorListColumns.EmailAddresses))
-				{
-				<td>@author.EmailAddresses</td>
-				}
-				@if (Model.DisplayedColumns.Contains(AuthorListColumns.UserInfo))
-				{
-				<td>@(new MvcHtmlString(author.CreateTextFromUserAddedContactInfo()))</td>
-				}
-				@if (Model.DisplayedColumns.Contains(AuthorListColumns.Phones))
-				{
-				<td>@author.Phones</td>
-				}
-				@if (Model.DisplayedColumns.Contains(AuthorListColumns.JobTitle))
-				{
-				<td>@author.JobTitle</td>
-				}
-				@if (Model.DisplayedColumns.Contains(AuthorListColumns.BeatsIndustries))
-				{
-				<td>@author.BeatsIndustries</td>
-				}
-				@if (Model.DisplayedColumns.Contains(AuthorListColumns.BeatsSubjects))
-				{
-				<td>@author.BeatsSubjects</td>
-				}
-				@if (Model.DisplayedColumns.Contains(AuthorListColumns.BeatsRegions))
-				{
-				<td>@author.BeatsRegions</td>
-				}
-				@if (Model.DisplayedColumns.Contains(AuthorListColumns.PreferedContactMethod))
-				{
-				<td>
-					@if (author.ContactMethod == null || author.ContactMethod.Type == ContactMethodTypes.None)
-					{ 
-						<span></span>
-					}
-					else
-					{ 
-						<b>@(EnumDescription.StringValueOf(author.ContactMethod.Type) + ":")</b>
-						<br />
-						@author.ContactMethod.Contact
-					}
-				</td>
-				}
-				@if (Model.DisplayedColumns.Contains(AuthorListColumns.RelatedMediaContacts))
-				{
-				<td>@author.RelatedMediaContacts</td>
+					TdItem td = row.TdItems[c];
+					<td class="@td.TdClass"@td.TdAttributes>
+						@if (td.IsAncor)
+						{ 
+							<a href="@td.AncorHref" class="@td.AncorClass" @td.AncorAttributes>
+								@if (td.IsHtmlText)
+								{
+									@(new MvcHtmlString(td.Text))
+								}
+								else
+								{
+									@td.Text
+								}
+							</a>
+						}
+						else
+						{
+							if (td.IsHtmlText)
+							{
+								@(new MvcHtmlString(td.Text))
+							}
+							else
+							{
+								@td.Text
+							}
+						}
+					</td>
 				}
 			</tr>
-				if (Model.AnyOutletRelatedColumn && author.ExpandableOutlet)
-				{
-					oddClass = i % 2 == 0 ? "" : " odd";
-					foreach (var outlet in author.Outlets.Skip(1))
-					{
-						<tr class="outlet-other@(oddClass) hide">
-							<td colspan="4"></td>
-							@if (Model.DisplayedColumns.Contains(AuthorListColumns.OutletName))
-							{
-							<td>
-								<a href="javascript:void(0);" authorlist-outlet-id="@outlet.OutletId" class="author-outlet-selector">
-									@outlet.OutletName
-								</a>
-							</td>
-							}
-							@if (Model.DisplayedColumns.Contains(AuthorListColumns.OutletOriginCountry))
-							{
-							<td>@outlet.OutletOriginCountry</td>
-							}
-							@if (Model.DisplayedColumns.Contains(AuthorListColumns.OutletCountry))
-							{
-							<td>@outlet.OutletCountry</td>
-							}
-							@if (Model.DisplayedColumns.Contains(AuthorListColumns.OutletState))
-							{
-							<td>@outlet.OutletState</td>
-							}
-							@if (Model.DisplayedColumns.Contains(AuthorListColumns.OutletCity))
-							{
-							<td>@outlet.OutletCity</td>
-							}
-							@if (Model.DisplayedColumns.Contains(AuthorListColumns.OutletType))
-							{
-							<td>@outlet.Type.Name</td>
-							}
-							@if (Model.DisplayedColumns.Contains(AuthorListColumns.OutletFrequency))
-							{
-							<td>@outlet.Frequency.Name</td>
-							}
-							@if (Model.DisplayedColumns.Contains(AuthorListColumns.OutletCirculation))
-							{
-							<td align="right">
-								@(@outlet.Circulation == 0 ? "" : outlet.Circulation.ToString("0,0", System.Globalization.CultureInfo.InvariantCulture))
-							</td>
-							}
-							@if (Model.DisplayedColumns.Contains(AuthorListColumns.EmploymentType))
-							{
-							<td>@outlet.EmploymentType</td>
-							}
-							@if (numberOfColumnsAfterOutletRelatedColumns > 0)
-							{ 
-							<td colspan="@numberOfColumnsAfterOutletRelatedColumns"></td>
-							}
-						</tr>
-					}
-				}
-			}
+		}
 		</tbody>
 	</table>
+	</div>
 	<!-- Save As Menu -->
 	<div class="menu actionsMenu" style="display:none;">
 		<div class="menuitems">
@@ -493,6 +133,23 @@
 		</div>
 	</div>
 	<!-- Save As Menu -->
+	
+	<!-- Modal Clear Selection -->
+	<div id="dj_clear_selection" style="display:none;">
+		<!-- Modal title tag: -->
+		<h3 class="dj_modal-title">@Model.Tokens.UnselectCheckboxesConfirmTitle</h3>
+		<!-- Modal content tag: -->
+		<div class="dj_modal-content">
+			<div class="dj_modal-content-wrap" style="padding-top: 20px; padding-left: 20px; padding-right: 20px;">
+				<h3 style="height:54px;">@Model.Tokens.UnselectCheckboxesConfirmMessage?</h3>
+					<div class="dj_modal-footer">
+					<input class="dj_btn dj_btn-green export dj_confirm-unselect-checkboxes" value="Yes" type="submit" />
+					<span class="dj_btn dj_btn-gray dj_modal-close" onclick="$().overlay.hide('#'+$(this).closest('.dj_modal').attr('id'));">Cancel</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Modal Clear Selection -->
 }
 else
 {

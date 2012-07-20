@@ -5,15 +5,15 @@ using DowJones.Search;
 using DowJones.Web.Mvc.Search.Results;
 using DowJones.Web.Mvc.UI;
 using DowJones.Web.Mvc.UI.Components.Article;
-using DowJones.Web.Mvc.UI.Components.CompositeHeadline;
 using DowJones.Web.Mvc.UI.Components.DateHistogram;
-using DowJones.Web.Mvc.UI.Components.Discovery;
+using DowJones.Web.Mvc.UI.Components.CompositeHeadline;
 using DowJones.Web.Mvc.UI.Components.HeadlineList;
+using DowJones.Web.Mvc.UI.Components.Discovery;
 using DowJones.Web.Mvc.UI.Components.RelatedConcepts;
 
 namespace DowJones.Web.Mvc.Search.UI.Components.Results.Headlines
 {
-    
+
     public class HeadlineSearchResults : SearchResults
     {
         private ShowDuplicates showDuplicates = ShowDuplicates.On;
@@ -24,7 +24,7 @@ namespace DowJones.Web.Mvc.Search.UI.Components.Results.Headlines
             ArticleUrl = "articles";
         }
 
-        public HeadlineSearchResults(CompositeHeadlineModel headline)
+        public HeadlineSearchResults(CompositeHeadlineModel headlineModel)
         {
             Headlines = new CompositeHeadlineModel();
             ArticleUrl = "articles";
@@ -33,7 +33,7 @@ namespace DowJones.Web.Mvc.Search.UI.Components.Results.Headlines
         public string CanonicalQueryString { get; set; }
 
         public uint Server { get; set; }
-        
+
         public string ContextId { get; set; }
 
         public int PageSize { get; set; }
@@ -41,15 +41,15 @@ namespace DowJones.Web.Mvc.Search.UI.Components.Results.Headlines
         public int PageIndex { get; set; }
 
         public int TotalResultCount { get; set; }
-       
+
         public int FirstResultIndex { get; set; }
 
-        public int[] FirstResultIndexReference{ get; set; }
+        public int[] FirstResultIndexReference { get; set; }
 
         public int DuplicateCount { get; set; }
 
-        public int NextResultIndex 
-        { 
+        public int NextResultIndex
+        {
             get
             {
                 return FirstResultIndex + PageSize + DuplicateCount;
@@ -68,7 +68,7 @@ namespace DowJones.Web.Mvc.Search.UI.Components.Results.Headlines
                 return indexReference[indexReference.Length - 2];
             }
         }
-        
+
         public DateHistogramModel NewsVolume { get; set; }
 
         private CompositeHeadlineModel _headlines = null;
@@ -77,7 +77,7 @@ namespace DowJones.Web.Mvc.Search.UI.Components.Results.Headlines
         {
             get
             {
-                var index = (PageIndex*PageSize);
+                var index = (PageIndex * PageSize);
                 var totalDupSofar = (FirstResultIndex - index) + DuplicateCount;
                 var delta = TotalResultCount - (index + totalDupSofar);
                 var lastIndex = index + (delta < PageSize ? delta : PageSize);
@@ -88,12 +88,12 @@ namespace DowJones.Web.Mvc.Search.UI.Components.Results.Headlines
                 _headlines.TotalDuplicateCount = totalDupSofar;
                 _headlines.LastResultIndex = lastIndex;
 
-                return _headlines; 
-            } 
+                return _headlines;
+            }
             set { _headlines = value; }
         }
 
-        public RelatedConceptsModel RelatedConcepts { get; set; }
+        public RelatedConceptsComponentModel RelatedConcepts { get; set; }
 
         public ShowDuplicates ShowDuplicates
         {
