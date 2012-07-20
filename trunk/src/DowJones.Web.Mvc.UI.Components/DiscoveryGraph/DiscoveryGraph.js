@@ -25,19 +25,19 @@ DJ.UI.DiscoveryGraph = DJ.UI.Component.extend({
 
         // Call the base constructor
         this._super(element, $meta);
-
+        
         this.discoveryGraphConfig = this.getDiscoveryGraphConfig();
         
         if (this.data && this.data.discovery)
             this.bindOnSuccess(this.data);
     },
     
-    _initializeElements: function (ctx) {      
+    _initializeElements: function (ctx) {             
+        //Bind the layout template
+        $(this.$element).html(this.templates.layout);
         this.$viewWrapper = ctx.find('.dj_view_wrapper');
-        this.$scrollTarget = ctx.find('.dj_discoveryGraph_item_wrap');
-    
+        this.$scrollTarget = ctx.find('.dj_discoveryGraph_item_wrap');    
     },
-
 
     /* Public methods */
 

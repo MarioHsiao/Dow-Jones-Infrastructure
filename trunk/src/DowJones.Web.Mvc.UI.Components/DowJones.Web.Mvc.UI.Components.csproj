@@ -800,5 +800,8 @@
   <ItemGroup>
     <EmbeddedResource Include="VideoPlayer\ClientTemplates\Success.htm" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="DiscoveryGraph\ClientTemplates\Layout.htm" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
