@@ -794,6 +794,7 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="AutoSuggest\ClientTemplates\Success.htm" />
+    <EmbeddedResource Include="DiscoveryGraph\ClientTemplates\Layout.htm" />
     <Content Include="RelatedConcepts\RelatedConceptsComponent.js" />
   </ItemGroup>
   <ItemGroup />
