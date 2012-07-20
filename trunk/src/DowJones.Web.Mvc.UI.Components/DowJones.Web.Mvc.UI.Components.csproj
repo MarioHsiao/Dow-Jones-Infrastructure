@@ -153,7 +153,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AutoSuggestComponent.cshtml</DependentUpon>
     </Compile>
-    <Compile Include="AutoSuggest\WebResources.cs" />
+    <Compile Include="AutoSuggest\EmbeddedResources.cs" />
     <Compile Include="AutoSuggest\AutoSuggestComponentExtensions.cs" />
     <Compile Include="CalendarEventList\CalendarEventListComponent.cs">
       <AutoGen>True</AutoGen>
@@ -691,17 +691,6 @@
     <EmbeddedResource Include="HeadlineList\HeadlineList.js" />
     <EmbeddedResource Include="Discovery\ClientTemplates\Success.htm" />
     <EmbeddedResource Include="AutoSuggest\AutoSuggest.js" />
-    <EmbeddedResource Include="AutoSuggest\AutoSuggest.css" />
-    <EmbeddedResource Include="AutoSuggest\images\acInfo.png" />
-    <EmbeddedResource Include="AutoSuggest\images\acNot.png" />
-    <EmbeddedResource Include="AutoSuggest\images\acPromote.png" />
-    <EmbeddedResource Include="AutoSuggest\images\source_blog.png" />
-    <EmbeddedResource Include="AutoSuggest\images\source_discont.png" />
-    <EmbeddedResource Include="AutoSuggest\images\source_multimedia.png" />
-    <EmbeddedResource Include="AutoSuggest\images\source_picture.png" />
-    <EmbeddedResource Include="AutoSuggest\images\source_publication.png" />
-    <EmbeddedResource Include="AutoSuggest\images\source_sourceFamily.png" />
-    <EmbeddedResource Include="AutoSuggest\images\source_webpage.png" />
     <EmbeddedResource Include="AutoSuggest\scripts\jquery.autocomplete.js" />
     <EmbeddedResource Include="CalendarEventList\ClientTemplates\Container.htm" />
     <EmbeddedResource Include="CalendarEventList\ClientTemplates\Success.htm" />
@@ -711,7 +700,6 @@
     <EmbeddedResource Include="DateSlider\DateSlider.js" />
     <EmbeddedResource Include="HeadlineListCarousel\HeadlineListCarousel.css" />
     <EmbeddedResource Include="HeadlineListCarousel\HeadlineListCarousel.js" />
-    <EmbeddedResource Include="AutoSuggest\images\progress.gif" />
     <EmbeddedResource Include="Pager\Pager.js" />
     <EmbeddedResource Include="RegionalMap\images\world_map.gif" />
     <EmbeddedResource Include="RegionalMap\RegionalMap.js" />
@@ -806,7 +794,9 @@
   <ItemGroup>
     <EmbeddedResource Include="AutoSuggest\scripts\jquery.jsonp-2.3.1.min.js" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="AutoSuggest\ClientTemplates\Success.htm" />
+  </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="VideoPlayer\ClientTemplates\Success.htm" />
   </ItemGroup>
