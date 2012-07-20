@@ -33,12 +33,11 @@ $.ajax('@Url.Content("~/platformproxy.asmx")?url=http://online.wsj.com/xml/rss/3
             data: model,
             options: {
                 maxNumHeadlinesToShow : items.length,
-                displaySnippets: 3,
+                displaySnippets: 1,
             },
-            callbacks: {
-                "headlineClick.dj.PortalHeadlineList": function (evt) {
-                    window['last'] = evt.headline;
-                    //'$(evt.headline.snippets[0]).dj_simpleTooltip();
+            eventHandlers: {
+                "headlineClick.dj.PortalHeadlineList": function (data) {
+                    console.log('Headline clicked!', data.headline);
                 }
             }
         });
