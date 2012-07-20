@@ -1,4 +1,6 @@
-﻿Dow Jones projects leverage NuGet packages to manage external dependencies. 
+﻿@using DowJones.Documentation.Website.Extensions
+
+Dow Jones projects leverage NuGet packages to manage external dependencies. 
 In addition to the public NuGet package repository, the Dow Jones Platform Integration Team hosts several custom NuGet repositories which you need to add to your NuGet configuration in Visual Studio:
 
 #### Adding the Dow Jones NuGet Package Source

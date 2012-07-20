@@ -17,7 +17,7 @@ There are 2 steps to add a component to your web page via the client-side API:
 	DJ.add( "[ComponentName]" , {
 		container : [DOM ID or element],
 		options: { ... },
-		eventHandlers: { "eventName": handler[, ...] },
+		eventHandlers: { "[eventName]": handler[, ...] },
 		data: [component data]
 	}); 
 </script>
