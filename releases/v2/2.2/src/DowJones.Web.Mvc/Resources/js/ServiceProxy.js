@@ -22,6 +22,13 @@ jQuery ajax extensions
                 window.location.reload();
         };
     }
+    if(!DJ.Services.PlatformServiceProxy.ForcedSessionExpireHandler || 
+        typeof DJ.Services.PlatformServiceProxy.ForcedSessionExpireHandler !== 'function') {
+        DJ.Services.PlatformServiceProxy.ForcedSessionExpireHandler = function () {
+                // Set the default timeout handler to simply refresh the page
+                window.location.reload();
+        };
+    }
 
     var defaultHandlers = {
         success: function (res) {
@@ -40,7 +47,8 @@ jQuery ajax extensions
         abort: function (jqXHR, textStatus) {
             $dj.debug('***** SERVICE CALL ABORT ******');
         },
-        sessionTimeout: DJ.Services.PlatformServiceProxy.SessionTimeoutHandler
+        sessionTimeout: DJ.Services.PlatformServiceProxy.SessionTimeoutHandler,
+        forcedSessionExpire: DJ.Services.PlatformServiceProxy.ForcedSessionExpireHandler
     };
 
 
@@ -71,6 +79,7 @@ jQuery ajax extensions
         var data = originalOptions.data;
 
         var onSessionTimeout = $.isFunction(originalOptions.sessionTimeout) ? originalOptions.sessionTimeout : $dj.delegate(this, defaultHandlers.sessionTimeout);
+        var onForcedSessionExpire = $.isFunction(originalOptions.forcedSessionExpire) ? originalOptions.forcedSessionExpire : $dj.delegate(this, defaultHandlers.forcedSessionExpire);
         var onSuccess = $.isFunction(originalOptions.success) ? originalOptions.success : $dj.delegate(this, defaultHandlers.success);
         var onComplete = $.isFunction(originalOptions.complete) ? originalOptions.complete : $dj.delegate(this, defaultHandlers.complete);
         var onError = $.isFunction(originalOptions.error) ? originalOptions.error : $dj.delegate(this, defaultHandlers.error);
@@ -116,9 +125,13 @@ jQuery ajax extensions
                     var err = $dj.getError(xhr) || { code: -1, message: status + " " + serverMessage };
 
                     var isSessionTimeout = (err.code === -2147176633);
+                    var isForcedSessionExpire = (err.code === -2147176629);
 
                     if (isSessionTimeout) {
                         onSessionTimeout(err);
+                    }
+                    else if(isForcedSessionExpire){
+                        onForcedSessionExpire(err);
                     }
                     else {
                         onError(err, xhr, serverMessage);
