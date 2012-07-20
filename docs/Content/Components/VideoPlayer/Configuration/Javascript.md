@@ -13,7 +13,7 @@ Add a container to your page where you would like to display the component.
 Finally, add the component to the page:
 
 	<script type="text/javascript">
-		DJ.add(DJ.UI.VideoPlayerControl, {
+		DJ.add("VideoPlayer", {
 			container : "videoPlayerContainer",
 			options: {
                 width: 620,

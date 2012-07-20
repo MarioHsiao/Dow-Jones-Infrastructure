@@ -13,7 +13,7 @@ Add a container to your page where you would like to display the component.
 Finally, add the component to the page:
 
 	<script type="text/javascript">
-		DJ.add(DJ.UI.StockKiosk, {
+		DJ.add("StockKiosk", {
 			container	: "stockKioskContainer",
 	        options		: {
 							pagesize	: 8,
