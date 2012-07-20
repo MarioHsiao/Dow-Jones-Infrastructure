@@ -7,26 +7,18 @@
 	<link href="@Url.Content("~/styles/views/NewsRadar/newsRadar.css")" rel="stylesheet" />
 }
 
-@*
-<div class="dj_NewsRadarControl">
-    @DJ.Render(Model)
-</div>
-*@
-
 @section scripts{    
     <script type="text/javascript">
-        $(function () {
-            DJ.add("NewsRadar", {
-                container: "newsRadarContainer",
-                options: {
-                    displayTicker: false,
-                    windowSize: 5
-                },
-                eventHandlers: {},
-                data: getSampleData()
-            });
+        DJ.add("NewsRadar", {
+            container: "newsRadarContainer",
+            options: {
+                displayTicker: false,
+                windowSize: 5
+            },
+            eventHandlers: {},
+            data: getSampleData()
         });
-
+            
         function getSampleData() {
             return [
                 {
