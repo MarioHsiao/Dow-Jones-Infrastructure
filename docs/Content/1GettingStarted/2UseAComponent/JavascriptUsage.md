@@ -33,24 +33,23 @@ options				 | An object with a list of options for the component. See the compon
 eventHandlers		 | An object with a list of event names and corresponding handler function. See the component page for specific examples.<br/><span class="label">Note: </span> <span class="comment"> Handlers attached this way, are tied to the **specific instance** of the component. For a loosely coupled way of subscribing to events, use **DJ.subscribe** instead. See [Working With Events](Components/WorkingWithEvents) for details.</span>
 data				 | JSON representation of the component's model. See the component page for specific examples.
 
-#### Client API Demo
+#### Executing Logic When a Component Has Loaded
+`DJ.add` returns a [promise object](http://wiki.commonjs.org/wiki/Promises/A) that allows you to execute functions when the component has been successfully created, or when the `DJ.add` function fails.
 
-@Html.DemoFrame(System.Configuration.ConfigurationManager.AppSettings["InfrastructureShowcase.BasePath"]+"/Home/ClientDemo")
-
-#### Promise API
-Often times, it is desirable to be notified when the component is actually loaded, after calling `DJ.add`, or in case of any failures so that you can take necessary remedial actions.
-`DJ.add` returns a [jQuery promise](http://api.jquery.com/promise/) object that can be used to get notifications about various stages of `DJ.add`.
-
-The following snippet shows an example of wiring up a component load success handler and failure handler:
+The following snippet shows how to register a handler that executes when the component is loaded (`.done()`) and a handler that executes when the component fails to load  (`.fail()`).
 
 ~~~~
 <script type="text/javascript">
-	DJ.add( "[Component Name]" , { ... })
-	  .done(function(instance){
-		  alert('Component loaded: ' + instance.name);	// "instance" refers to the component's instance
+	DJ.add( "[Component Name]" , [parameters])
+	  .done(function(instance){								// 'instance' is the newly-created component instance
+		  alert('Component loaded: ' + instance.name);
 	  })
 	  .fail(function(err){
-		  alert('Error occurred while loading component'); // err is a object containing errors
+		  alert('Error occurred while loading component'); // err contains an array of errors
 	  }); 
 </script>
 ~~~~
+
+#### Client Usage Sample
+
+@Html.DemoFrame(System.Configuration.ConfigurationManager.AppSettings["InfrastructureShowcase.BasePath"]+"/Home/ClientDemo")
