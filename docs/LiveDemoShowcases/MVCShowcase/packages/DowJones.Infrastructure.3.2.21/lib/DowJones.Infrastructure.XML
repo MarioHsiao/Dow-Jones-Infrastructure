@@ -489,18 +489,29 @@
             </summary>
             <value>The RST code.</value>
         </member>
+        <member name="T:DowJones.Managers.Multimedia.MultimediaManager">
+            <summary>
+            MultiMedia Manager class for getting 
+            </summary>
+        </member>
+        <member name="M:DowJones.Managers.Multimedia.MultimediaManager.#ctor(DowJones.Session.IControlData)">
+            <summary>
+            Constructor for 
+            </summary>
+            <param name="controlData"></param>
+        </member>
         <member name="M:DowJones.Managers.Multimedia.MultimediaManager.GetSourceCodeForArticleId(System.String)">
             <summary>
-            Gets the source code of teh given article id
+              Gets the source code of teh given article id
             </summary>
-            <param name="accessionNumber"></param>
-            <returns></returns>
+            <param name="accessionNumber"> </param>
+            <returns> </returns>
         </member>
         <member name="P:DowJones.Managers.Multimedia.MultimediaManager.Log">
             <summary>
-            Gets the log.
+              Gets the log.
             </summary>
-            <value>The log.</value>
+            <value> The log. </value>
         </member>
         <member name="T:DowJones.Managers.Charting.MarketData.SymbolTypeDialectMapper">
             <summary>
@@ -1245,7 +1256,11 @@
             The Service for interacting with TweetRiver API
             </summary>
         </member>
-        <!-- Badly formed XML comment ignored for member "F:DowJones.Managers.SocialMedia.SocialMediaService.Settings" -->
+        <member name="F:DowJones.Managers.SocialMedia.SocialMediaService.Settings">
+            <summary>
+            The settings.
+            </summary>
+        </member>
         <member name="M:DowJones.Managers.SocialMedia.SocialMediaService.GetDefaultJsonSerializerSettings">
             <summary>
             Gets the default json serializer settings.
@@ -1288,7 +1303,7 @@
             Gets the tweets by channel.
             </summary>
             <param name="channel">The channel.</param>
-            <param name="count">The count.</param>
+            <param name="requestOptions">The request options.</param>
             <returns></returns>
         </member>
         <member name="M:DowJones.Managers.SocialMedia.TweetRiver.TweetRiverProvider.#ctor(System.String)">
@@ -6574,7 +6589,11 @@
             <param name="key"></param>
             <returns></returns>
         </member>
-        <!-- Badly formed XML comment ignored for member "P:DowJones.OperationalData.AbstractOperationalData.GetMemento" -->
+        <member name="P:DowJones.OperationalData.AbstractOperationalData.GetMemento">
+            Returns operational data state as a encrypted string that can be pass to SetMemento method
+            <value>
+            </value>
+        </member>
         <member name="T:DowJones.Security.ISubPrincipal">
             <summary>
             </summary>
