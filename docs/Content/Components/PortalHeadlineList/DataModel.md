@@ -18,16 +18,16 @@ publicationDateDescriptor		| Lorem ipsum dolor sit amet, consectetur adipiscing 
 publicationDateTime				| Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a rutrum mauris.
 publicationDateTimeDescriptor	| Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a rutrum mauris.
 publicationTimeDescriptor		| Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a rutrum mauris.
-reference{}						| Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a rutrum mauris.
+reference{}						| Object that represnts the metadata associated with a headline..
 snippets[]						| Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a rutrum mauris.
 sourceCode						| String representing the code of the source for the headline. Ex. "j"
 sourceDescriptor				| String representing the full qualified name of the source for the headline. Ex. "The Wall Street Journal"
-thumbnailImage[]				| Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a rutrum mauris.
-title							| Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a rutrum mauris.
-toolTip							| Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a rutrum mauris.
-truncatedTitle					| Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a rutrum mauris.
-wordCount[]						| Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a rutrum mauris.
-wordCountDescriptor				| Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a rutrum mauris.
+thumbnailImage[]				| String array of urls to thumbnails associated with the headline.
+title							| String that represents the title of the headline.
+toolTip							| String that represents a tooltip that is associated with the title.
+truncatedTitle					| String that represents a trucated version of the title. 
+wordCount{}						| Object that represents the number of words attached to the article view of the headline.
+wordCountDescriptor				| String used to display the word count to the client. Ex. "1000 words"
 
 The following table describes the options available for the **codedAuthors** collection.
 
