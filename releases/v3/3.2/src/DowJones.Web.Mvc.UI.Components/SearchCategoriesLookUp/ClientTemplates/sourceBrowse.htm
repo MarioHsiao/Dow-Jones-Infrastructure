@@ -31,7 +31,7 @@
                 <li>
                     <div data-value="title"><%= Token("titleLabel") %></div>
                 </li>
-			    <%  var additionalFilters = self.data.additionalSourceFilters || [];
+			    <%  var additionalFilters = self.additionalSourceFilters || [];
 				    for (var i = 0, len = additionalFilters.length; i < len; i++) { %>
                     <li><div data-value="<%= additionalFilters[i].code %>" data-af="1"><%= additionalFilters[i].desc %></div></li>
                 <% } %>
