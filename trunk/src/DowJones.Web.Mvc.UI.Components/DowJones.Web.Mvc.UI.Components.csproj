@@ -805,5 +805,9 @@
   <ItemGroup>
     <EmbeddedResource Include="AutoSuggest\scripts\jquery.jsonp-2.3.1.min.js" />
   </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="VideoPlayer\ClientTemplates\Success.htm" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
