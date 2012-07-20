@@ -2,27 +2,26 @@
 
 Property 						| Description											
 --------------------------------|----------------------------------------------------------------------------------------------
-authors[]						| Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a rutrum mauris.
-baseLanguage					| Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a rutrum mauris.
-baseLanguageDescriptor			| Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a rutrum mauris.
-codedAuthors[]					| Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a rutrum mauris.
-contentCategoryDescriptor		| Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a rutrum mauris.
-contentSubCategoryDescriptor	| Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a rutrum mauris.
-hasPublicationTime				| Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a rutrum mauris.
-headlineUrl						| Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a rutrum mauris.
-mediaLength						| Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a rutrum mauris.
-modificationDateDescriptor		| Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a rutrum mauris.
-modificationDateTime			| Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a rutrum mauris.
-modificationDateTimeDescriptor	| Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a rutrum mauris.
-modificationTimeDescriptor"		| Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a rutrum mauris.
+authors[]						| String array representing the authors of the current headline.
+baseLanguage					| String representing the base language code of the headline. Ex. "en" or "fr".
+baseLanguageDescriptor			| String representing the full qualified name of the language. Ex. "English" or "French".
+contentCategoryDescriptor		| String representing the full qualified name for the category of content that the headline falls into.
+contentSubCategoryDescriptor	| String representing the full qualified name for the sub-category of content that the headline falls into.
+hasPublicationTime				| Boolean, repesenting whether or not the headline has a publication time associated with it.
+headlineUrl						| String representing a url associated with the headline for click-throughs.
+mediaLength						| String representing the time span of a Multimedia based headline.
+modificationDateDescriptor		| String representing the Date portion of when a headline was last modified.
+modificationDateTime			| ISO formated string represeting the Date and Time of when a headline was last modified.
+modificationDateTimeDescriptor	| String representing the Date and Time of the headline.  It will include time if applicable.
+modificationTimeDescriptor		| String representig the Time portion of when a headline was last modified.
 publicationDateDescriptor		| Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a rutrum mauris.
 publicationDateTime				| Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a rutrum mauris.
 publicationDateTimeDescriptor	| Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a rutrum mauris.
 publicationTimeDescriptor		| Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a rutrum mauris.
 reference{}						| Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a rutrum mauris.
 snippets[]						| Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a rutrum mauris.
-sourceCode						| Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a rutrum mauris.
-sourceDescriptor				| Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a rutrum mauris.
+sourceCode						| String representing the code of the source for the headline. Ex. "j"
+sourceDescriptor				| String representing the full qualified name of the source for the headline. Ex. "The Wall Street Journal"
 thumbnailImage[]				| Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a rutrum mauris.
 title							| Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a rutrum mauris.
 toolTip							| Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a rutrum mauris.
