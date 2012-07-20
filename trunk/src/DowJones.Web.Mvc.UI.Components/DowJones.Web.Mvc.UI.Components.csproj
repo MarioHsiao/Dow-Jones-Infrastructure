@@ -392,6 +392,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>TwitterExpertsComponent.cshtml</DependentUpon>
     </Compile>
+    <Compile Include="VideoPlayer\EmbeddedResources.cs" />
     <Compile Include="VideoPlayer\VideoPlayerComponent.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
