@@ -1,3 +1,6 @@
+using DowJones.Models.Common;
+using Newtonsoft.Json;
+
 namespace DowJones.Web.Mvc.UI.Components.DiscoveryGraph
 {
     /// <summary>
@@ -25,8 +28,8 @@ namespace DowJones.Web.Mvc.UI.Components.DiscoveryGraph
 		/// </summary>
 		[ClientProperty]
 		public Orientation Orientation { get; set; }
-        
-        [ClientData]
-        public DiscoveryGraphData Data { get; set; }
+
+		[ClientData]
+		public Entities Data { get; set; }
     }
 }
