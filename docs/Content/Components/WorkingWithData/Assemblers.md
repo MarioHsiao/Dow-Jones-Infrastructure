@@ -34,3 +34,12 @@ PortalHeadlineConversionManager						| HeadlineListDataResult [Infrastructure cl
 Name												| Initial DataSource									| Target Data Model											
 ----------------------------------------------------|-------------------------------------------------------|----------------------------------------------
 ArticleConversionManager							| Factiva Platform (Archive)							| ArticleResultset 		
+
+
+**Component: `Radar`**
+
+**Namespace: `DowJones.Assemblers.NewsEntities`**
+
+Name												| Initial DataSource									| Target Data Model											
+----------------------------------------------------|-------------------------------------------------------|----------------------------------------------
+NewsEntitiesConversionManager						| Factiva Platform (Archive)							| ArticleResultset 		
