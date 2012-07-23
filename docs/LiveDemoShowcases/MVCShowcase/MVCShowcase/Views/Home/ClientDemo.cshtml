@@ -37,7 +37,7 @@ $.ajax('@Url.Content("~/platformproxy.asmx")?url=http://online.wsj.com/xml/rss/3
             },
             eventHandlers: {
                 "headlineClick.dj.PortalHeadlineList": function (data) {
-                    console.log('Headline clicked!', data.headline);
+                    window.open(data.headline.reference.guid);
                 }
             }
         });
