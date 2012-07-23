@@ -10,7 +10,7 @@ Add a container to your page where you would like to display the component.
 
 	<div id="autoSuggestContainer"></div>
 
-Finally, add the component to the page:
+Finally, add the component to the page.
 
 	<script type="text/javascript">
 		DJ.add("AutoSuggest", {

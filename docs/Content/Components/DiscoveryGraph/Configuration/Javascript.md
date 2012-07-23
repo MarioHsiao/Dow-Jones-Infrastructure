@@ -9,7 +9,8 @@ Add a container to your page where you would like to display the component.
 
 	<div id="discoveryContainer"></div>
 
-Finally, add the component to the page:
+Finally, add the component to the page.
+If data is already available, you can pass it in as an argument to `DJ.add` function.
 
 	<script type="text/javascript">
 		DJ.add("DiscoveryGraph", {
@@ -21,5 +22,5 @@ Finally, add the component to the page:
 
 @Html.DataViewer(ConfigurationManager.AppSettings["InfrastructureShowcase.BasePath"]+"/DiscoveryGraph/data/js")
 
-`data` can be specified inline as a JSON reprenstation of `TBD` (the model for the component), or via a callback that returns a JSON reprenstation of `TBD`. 
+`data` can be specified inline as a JSON reprenstation of `TBD`, or via a callback that returns a JSON reprenstation of `TBD`. 
 Click "View Sample Data" to see example of `TBD` JSON.

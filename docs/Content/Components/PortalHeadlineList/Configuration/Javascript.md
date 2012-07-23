@@ -9,7 +9,8 @@ Add a container to your page where you would like to display the component.
 
 	<div id="portalHeadlinesContainer"></div>
 
-Finally, add the component to the page:
+Finally, add the component to the page.
+If data is already available, you can pass it in as an argument to `DJ.add` function.
 
 	<script type="text/javascript">
         DJ.add("PortalHeadlineList", {
@@ -27,5 +28,5 @@ Finally, add the component to the page:
 
 @Html.DataViewer(ConfigurationManager.AppSettings["InfrastructureShowcase.BasePath"]+"/PortalHeadlineList/data/js")
 
-`data` can be specified inline as a JSON reprenstation of `PortalHeadlineListDataResult` (the model for the component), or via a callback that returns a JSON reprenstation of `PortalHeadlineListDataResult`. 
+`data` can be specified inline as a JSON reprenstation of `PortalHeadlineListDataResult`, or via a callback that returns a JSON reprenstation of `PortalHeadlineListDataResult`. 
 Click "View Sample Data" to see example of `PortalHeadlineListDataResult` JSON.
