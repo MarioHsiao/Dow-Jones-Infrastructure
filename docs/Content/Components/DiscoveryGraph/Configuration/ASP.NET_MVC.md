@@ -3,9 +3,22 @@
 
 Populate the `DiscoveryGraph` model:
 
+	using DowJones.Web.Mvc.UI.Components.Common;
 	using DowJones.Web.Mvc.UI.Components.DiscoveryGraph;
 
-	var model = new DiscoveryGraphModel();
+	// Instantiate and fill data
+	var data = new Entities
+	{
+		// Click on "View Sample Data" to see sample data
+	}
+
+	var model = new DiscoveryGraphModel
+	{
+		Sortable = true,
+		Scrollable = true,
+		Orientation = Orientation.Horizontal,
+		Data = data
+	};
 	
 @Html.DataViewer(ConfigurationManager.AppSettings["InfrastructureShowcase.BasePath"]+"/DiscoveryGraph/data/cs")
 

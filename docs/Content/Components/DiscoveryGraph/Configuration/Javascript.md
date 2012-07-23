@@ -22,5 +22,5 @@ If data is already available, you can pass it in as an argument to `DJ.add` func
 
 @Html.DataViewer(ConfigurationManager.AppSettings["InfrastructureShowcase.BasePath"]+"/DiscoveryGraph/data/js")
 
-`data` can be specified inline as a JSON reprenstation of `TBD`, or via a callback that returns a JSON reprenstation of `TBD`. 
-Click "View Sample Data" to see example of `TBD` JSON.
+`data` can be specified inline as a JSON reprenstation of `DowJones.Web.Mvc.UI.Components.DiscoveryGraph.Entities`, or via a callback that returns a JSON reprenstation of `DowJones.Web.Mvc.UI.Components.DiscoveryGraph.Entities`. 
+Click "View Sample Data" to see example of `DowJones.Web.Mvc.UI.Components.DiscoveryGraph.Entities` JSON.
