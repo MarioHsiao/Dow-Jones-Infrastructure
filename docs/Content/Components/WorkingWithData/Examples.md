@@ -2,31 +2,33 @@
 
 **Passing data to model which uses Assemblers**
 
-In this example, StockKiosk Component uses GetData() method to pass the data to the StockKioskModel.
+In this example, `StockKiosk` Component uses `GetData()` method to pass the data to the `StockKioskModel`.
 
-<pre>
-private MarketDataInstrumentIntradayResultSet GetData()
+	private MarketDataInstrumentIntradayResultSet GetData()
 	{
-		// arbitrary list of FCodes
-		var fCodes = new[] { "ibm", "mcrost", "goog", "reggr", "carsvc", "cmdbnn", "rgrc", "stgtec", "precos", "comasc" };
-		var response = MarketDataChartingManager.GetMarketChartData(fCodes);
+	  // arbitrary list of FCodes
+	  var fCodes = new[] { "ibm", "mcrost", "goog", "reggr", 
+							"carsvc", "cmdbnn", "rgrc", "stgtec", 
+							"precos", "comasc" };
+	  var response = MarketDataChartingManager.GetMarketChartData(fCodes);
+	  
+	  // if we do not have a reponse, do not process further.
+	  if (response.PartResults == null || !response.PartResults.Any())
+		return null;
+	  
+	  // map response to DTO
+	  var assembler = new MarketDataInstrumentIntradayResultSetAssembler(new Preferences.Preferences("en"));
+	  var data = assembler.Convert(response.PartResults);
 
-		// if we do not have a reponse, do not process further.
-		if (response.PartResults == null || !response.PartResults.Any())
-			return null;
-
-		// map response to DTO
-		var assembler = new MarketDataInstrumentIntradayResultSetAssembler(new Preferences.Preferences("en"));
-		var data = assembler.Convert(response.PartResults);
-		return data;
+	  return data;
 	}
-</pre>
+
 
 **Passing data to model which does not use Assemblers**
 
-In this example, VideoPlayer Component gets data as shown below and uses it in the VideoPlayerModel.
+In this example, VideoPlayer Component gets data as shown below and uses it in the `VideoPlayerModel`.
 
-<pre>
+
 var data = new ClipCollection(new[]
 	{
 		new Clip
@@ -41,7 +43,7 @@ var data = new ClipCollection(new[]
 				Height = "300"
 			}
 	});
-</pre>
+
 
 **Javascript**
 
