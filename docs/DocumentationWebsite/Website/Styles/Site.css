@@ -1,6 +1,5 @@
 body {
-  padding-top: 50px;
-  padding-bottom: 10px; }
+  padding-top: 50px; }
 
 .hide {
   display: none; }
@@ -26,4 +25,12 @@ body {
 
 h4 {
   margin: 10px 0; }
+
+footer {
+  color: #A0A1A2;
+  padding: 6px;
+  font-size: 11px;
+  text-align: center;
+  margin-top: 10px;
+  background-color: #EAEAEA; }
 
