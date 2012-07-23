@@ -36,7 +36,7 @@ You can find a component instance by capturing the return value from `DJ.add`:
 
 or by finding it in the DOM:
 
-    var componentInstance = $('#componentContainer').find(DJ.UI.Component);
+    var componentInstance = $('#componentContainer').findComponent(DJ.UI.Component);
     
     if(componentInstance) {
         // do stuff
