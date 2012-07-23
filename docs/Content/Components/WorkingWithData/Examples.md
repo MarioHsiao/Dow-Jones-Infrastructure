@@ -87,12 +87,12 @@ Once the components were succesfully added on the page you can find the N compon
 	<script type="text/javascript">
 		var $ = DJ.jQuery;	
 		//Find the components;
-		var component1Instance = $('#component1Container').findComponent(DJ.UI.[`Component1Name`]);
-		var component2Instance = $('#component2Container').findComponent(DJ.UI.[`Component2Name`]);
-		var component3Instance = $('#component3Container').findComponent(DJ.UI.[`Component3Name`]);
+		var component1Instance = $('#component1Container').findComponent(DJ.UI.Component1Name);
+		var component2Instance = $('#component2Container').findComponent(DJ.UI.Component2Name);
+		var component3Instance = $('#component3Container').findComponent(DJ.UI.Component3Name);
 		:
 		:
-		var componentNInstance = $('#componentNContainer').findComponent(DJ.UI.[`ComponentNName`]);
+		var componentNInstance = $('#componentNContainer').findComponent(DJ.UI.ComponentNName);
 
 		//Bind the data
 		$(component1Instance).data(dataObj1);
