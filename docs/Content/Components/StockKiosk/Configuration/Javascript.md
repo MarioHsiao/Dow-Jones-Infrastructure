@@ -2,7 +2,7 @@
 @using System.Configuration;
 #### Rendering the component via JavaScript
 
-Add a reference to `common.js` with a valid `sessionId` anywhere in the `<head>` section of you page.
+Add a reference to `common.js` in the `<head>` section of you page.
 
 	<script type="text/javascript" src="http://<tbd>/common.js"></script>
 

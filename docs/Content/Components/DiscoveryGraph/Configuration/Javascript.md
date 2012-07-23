@@ -1,10 +1,9 @@
 ﻿@using DowJones.Documentation.Website.Extensions;
 @using System.Configuration;
 
-Add a reference to `common.js` with a valid `sessionId` anywhere in the `<head>` section of you page.
+Add a reference to `common.js` in the `<head>` section of you page.
 
-	<script type="text/javascript" 
-	        src="http://<tbd>/common.js?sessionId=27137ZzZKJAUQT2CAAAGUAIAAAAANFOUAAAAAABSGAYTEMBWGI2TCNBQGYZTKNZS"></script>
+	<script type="text/javascript" src="http://<tbd>/common.js"></script>
 
 Add a container to your page where you would like to display the component.
 
@@ -13,35 +12,14 @@ Add a container to your page where you would like to display the component.
 Finally, add the component to the page:
 
 	<script type="text/javascript">
-		DJ.add(DJ.UI.DiscoveryGraph, {
+		DJ.add("DiscoveryGraph", {
 			container : "discoveryContainer",
-			onLoad: init			/* function to wire up data on load */
+			eventHandlers: {},
+			data: {...}			
 		}); 
 	</script>	  
 
-`init` can be any function that calls a service to get data and bind it to the component. Here is a sample implementation:
-
-	<script type="text/javascript">
-		// bootstrapper function to bind data to the component
-		function init() {
-			var $container = $('#discoveryContainer'),
-			component = $container.findComponent(DJ.UI.DiscoveryGraph);
-
-			if(component) {
-				// get data via a service call (stub service shown here for reference purposes only)
-				$.ajax({
-					url: 'http://someService/DiscoveryGraph/GetJsonData',
-					success: function(data) {
-								// on receiving data, call the bind success method of the component
-								component.setData(data);
-							},
-					error:  function(jqXHR, textStatus, errorThrown) {
-								// on error, call the bind error method of the component
-								component.setData();
-							}
-				});
-			}
-		}
-	</script>
-	
 @Html.DataViewer(ConfigurationManager.AppSettings["InfrastructureShowcase.BasePath"]+"/DiscoveryGraph/data/js")
+
+`data` can be specified inline as a JSON reprenstation of `TBD` (the model for the component), or via a callback that returns a JSON reprenstation of `TBD`. 
+Click "View Sample Data" to see example of `TBD` JSON.

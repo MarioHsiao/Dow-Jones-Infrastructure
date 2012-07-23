@@ -1,9 +1,9 @@
 ﻿@using DowJones.Documentation.Website.Extensions;
 @using System.Configuration;
 
-Add a reference to `core.js` in the `<head>` section of you page.
+Add a reference to `common.js` in the `<head>` section of you page.
 
-	<script type="text/javascript" src="http://<tbd>/core.js"></script>
+	<script type="text/javascript" src="http://<tbd>/common.js"></script>
 
 Add a container to your page where you would like to display the component.
 
