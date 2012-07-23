@@ -3,7 +3,9 @@
 @{
     ViewBag.Title = "Article Demo";
 }
-
+@DJ.ScriptRegistry().RenderHead()
+@DJ.StylesheetRegistry().RenderHead()
+    
 @section styles{
 	<link href="@Url.Content("~/styles/views/Article/Snapshot.css")" rel="stylesheet" />
 }
@@ -13,3 +15,5 @@
         @DJ.Render(Model)
     </div>
 </section>
+@DJ.StylesheetRegistry().Render() 
+@DJ.ScriptRegistry().Render()
