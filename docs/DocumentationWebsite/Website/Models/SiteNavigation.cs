@@ -8,13 +8,8 @@ namespace DowJones.Documentation.Website.Models
     {
         public IEnumerable<CategoryViewModel> Categories { get; private set; }
 
-        public CategoryViewModel CurrentCategory
-        {
-            get { return _currentCategory.Value; }
-        }
-        private readonly Lazy<CategoryViewModel> _currentCategory;
-
-
+		public CategoryViewModel CurrentCategory { get; private set; }
+		
         public PageViewModel CurrentPage
         {
             get { return _currentPage.Value; }
@@ -27,7 +22,7 @@ namespace DowJones.Documentation.Website.Models
         {
             Categories = (categories ?? Enumerable.Empty<ContentSection>()).Select(x => new CategoryViewModel(x, currentPage)).ToArray();
             _currentPage = new Lazy<PageViewModel>(() => GetCurrentPage(currentPage));
-            _currentCategory = new Lazy<CategoryViewModel>(() => GetCurrentCategory(currentCategory));
+			CurrentCategory = GetCurrentCategory(currentCategory);
         }
 
 
