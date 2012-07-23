@@ -31,6 +31,7 @@ wordCount{}						| Object that represents the number of words attached to the ar
 wordCountDescriptor				| String used to display the word count to the client. Ex. "1000 words"
 
 The following table describes the options available for the **Para** item.
+
 Property 						| Description											
 --------------------------------|----------------------------------------------------------------------------------------------
 items[]							| This array represents a list of items of type **MarkupItem**. **Para** object is used to render the list of coded authors.
