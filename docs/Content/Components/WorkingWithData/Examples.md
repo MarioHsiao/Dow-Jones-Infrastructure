@@ -1,6 +1,6 @@
 ﻿**ASP.NET MVC**
 
-**Passing data to model which require Assemblers**
+**Passing data to model which uses Assemblers**
 
 In this example, StockKiosk Component uses GetData() method to pass the data to the StockKioskModel.
 
@@ -22,7 +22,7 @@ private MarketDataInstrumentIntradayResultSet GetData()
 	}
 </pre>
 
-**Passing data to model which does not require Assemblers**
+**Passing data to model which does not use Assemblers**
 
 In this example, VideoPlayer Component gets data as shown below and uses it in the VideoPlayerModel.
 
@@ -45,4 +45,21 @@ var data = new ClipCollection(new[]
 
 **Javascript**
 
+**Passing data using DJ.Add()**
+
+In this example, data can be passed to the Discovery Component using DJ.Add as follows:
+
+<pre>
+DJ.add("DiscoveryGraph", {
+            container: "discoveryGraphContainer",
+            options: {
+                sortable: true,
+                scrollable: true
+            },
+            data: getData(),
+            eventHandlers: {}
+        });
+
+//Here getData() can be any function which returns json data in the format the component is expecting.
+</pre>
 

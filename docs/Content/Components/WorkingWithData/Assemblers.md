@@ -1,5 +1,4 @@
-﻿Assemblers (converter classes) provides an interface that allows data from a Factiva (Gateway) response to be mapped to components model. Some of the infrastructure components require assemblers to convert and map gateway response into the format the the model is expecting.
-
+﻿Assemblers are pre defined converter classes provided by the infrastructure framework. The main purpose of Assemblers is to provide an interface that allows data from a Factiva (Gateway) response to be mapped to components model. Some of the infrastructure components use assemblers to convert and map `gateway` response into the format the the model is expecting. The developers who consume the infrastructure components has complete freedom to write their own mapper functions instead of using default Assemblers.
 
 
 
