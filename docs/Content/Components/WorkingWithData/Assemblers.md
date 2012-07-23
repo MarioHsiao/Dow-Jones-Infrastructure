@@ -5,7 +5,7 @@ The developers who consume the infrastructure components has complete freedom to
 
 The following table list the assemblers used by the infrastructure components. 
 
-**Components: `PortalHeadlineList`**
+**Component: `PortalHeadlineList`**
 
 **Namespace: `DowJones.Assemblers.Headlines`**
 
@@ -23,5 +23,14 @@ RealtimeHeadlinelistConversionManager				| Factiva Platform: *Realtime Alerts su
 RealtimeHeadlineListManager							| Factiva Platform: 									| HeadlineListDataResult
 RssAtomSyndicationManager							| Factiva Platform:										| HeadlineListDataResult
 RssFeedConverter									| RSS based Data Source [File, URI]						| HeadlineListDataResult
-SyndicationHeadlineResponseConverter				| Factiva Platform										| HeadlineListDataResult													 
+SyndicationHeadlineResponseConverter				| Factiva Platform:										| HeadlineListDataResult													 
 PortalHeadlineConversionManager						| HeadlineListDataResult [Infrastructure class]			| PortalHeadlineListDataResult
+
+
+**Component: `Article`**
+
+**Namespace: `DowJones.Assemblers.Articles`**
+
+Name												| Initial DataSource									| Target Data Model											
+----------------------------------------------------|-------------------------------------------------------|----------------------------------------------
+ArticleConversionManager							| Factiva Platform (Archive)							| ArticleResultset 		
