@@ -12,4 +12,4 @@ To use this package, simply use the NuGet Package manager to install the `DowJon
 
 This package will retrieve all of the dependencies that the Dow Jones ASP.NET MVC Framework requires as well as update your website files (such as `Global.asax` and `web.config`), configuring them to the Framework's needs.
 
-@Html.Note("<strong>WARNING:</strong> This package <em>will</em> overwrite files in your project so it is best to apply this package to a brand new ASP.NET MVC website.")
+@Html.Caution("This package <em>will</em> overwrite files in your project so it is best to apply this package to a brand new ASP.NET MVC website.")

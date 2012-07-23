@@ -46,7 +46,8 @@
   <ItemGroup>
     <None Include="1GettingStarted\1SetupDevelopmentEnvironment\2ConnectingToTFS.md" />
     <None Include="1GettingStarted\1SetupDevelopmentEnvironment\3WorkingWithNuGet.md" />
-    <None Include="1GettingStarted\1SetupDevelopmentEnvironment\4DowJonesTemplates.md" />
+    <None Include="1GettingStarted\1SetupDevelopmentEnvironment\4DowJonesProjectAndItemTemplates.md" />
+    <None Include="1GettingStarted\1SetupDevelopmentEnvironment\5DowJonesWebsiteTemplate.md" />
     <None Include="1GettingStarted\2UseAComponent\ASP.NET_MVCUsage.md" />
     <None Include="1GettingStarted\2UseAComponent\JavascriptUsage.md" />
     <None Include="1GettingStarted\2UseAComponent\Overview.md" />
