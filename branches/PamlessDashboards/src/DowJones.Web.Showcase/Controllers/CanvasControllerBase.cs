@@ -3,7 +3,7 @@ using DowJones.Web.Showcase.Models;
 
 namespace DowJones.Web.Showcase.Controllers
 {
-    public abstract class CanvasControllerBase : DowJones.Web.Mvc.UI.Canvas.Controllers.CanvasControllerBase
+    public abstract class CanvasControllerBase : DowJones.Web.Mvc.UI.Canvas.Controllers.PageControllerBase
     {
         protected CanvasViewResult Canvas(params IModule[] modules)
         {

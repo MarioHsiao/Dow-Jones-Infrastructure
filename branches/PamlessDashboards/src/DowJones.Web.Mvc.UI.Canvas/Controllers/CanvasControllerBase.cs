@@ -10,12 +10,16 @@ using DowJones.Web.Mvc.Extensions;
 
 namespace DowJones.Web.Mvc.UI.Canvas.Controllers
 {
-    public class CanvasControllerBase : ControllerBase
+    [Obsolete("Use PageControllerBase instead")]
+    public class CanvasControllerBase : PageControllerBase
     {
-        [Obsolete("Use PageManager instead")]
+        [Obsolete]
         [Inject("Injected to avoid a base constructor call in derived classes")]
         protected IPageAssetsManager PageAssetsManager { get; set; }
+    }
 
+    public class PageControllerBase : ControllerBase
+    {
         [Inject("Injected to avoid a base constructor call in derived classes")]
         protected IPageManager PageManager { get; set; }
 
