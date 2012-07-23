@@ -3,7 +3,7 @@
 Property 						| Description											
 --------------------------------|----------------------------------------------------------------------------------------------
 authors[]						| String array representing the authors of the current headline.
-codedArthors[]					| Colletion or array of **Para** objects that represent authors that are associated with a code for database lookup.
+codedArthors[]					| Collection or array of **Para** objects that represent authors that are associated with a code for database lookup.
 baseLanguage					| String representing the base language code of the headline. Ex. `en` or `fr`.
 baseLanguageDescriptor			| String representing the full qualified name of the language. Ex. `English` or `French`.
 contentCategoryDescriptor		| String representing the full qualified name for the category of content that the headline falls into.
