@@ -7,7 +7,6 @@
       <NuGetExe Condition="'$(NuGetExe)' == ''">nuget.exe</NuGetExe>
       <NuSpecFilenames Condition="'$(NuSpecFilenames)' == ''">**\*.nuspec</NuSpecFilenames>
       <NuGetBasePath Condition="'$(NuGetBasePath)' == ''">$(DeploymentDestination)\</NuGetBasePath>
-      <PreReleaseDesignator Condition="'$(PreRelease)' == 'true'">beta</PreReleaseDesignator>
     </PropertyGroup>
 
     <ItemGroup>
@@ -25,7 +24,7 @@
     <Message Text="Creating NuGet packages in directory: $(NuGetOutputPath)" />
     <Message Importance="low" Text="NuSpec files: @(NuSpecFiles->'%(FullPath)', ',')" />
 
-    <Exec Command="&quot;$(NuGetExe)&quot; pack -BasePath &quot;$(NuGetBasePath)&quot; -OutputDirectory &quot;$(NuGetOutputPath)&quot; -Version $(NuGetPackageVersion)$(PreReleaseDesignator) &quot;%(NuSpecFiles.FullPath)&quot;"  />
+    <Exec Command="&quot;$(NuGetExe)&quot; pack -BasePath &quot;$(NuGetBasePath)&quot; -OutputDirectory &quot;$(NuGetOutputPath)&quot; -Version &quot;$(NuGetPackageVersion)&quot; &quot;%(NuSpecFiles.FullPath)&quot;"  />
   </Target>
 
 </Project>
