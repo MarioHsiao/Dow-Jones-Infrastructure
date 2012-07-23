@@ -248,6 +248,7 @@
     <Content Include="Views\Documentation\Homepage.cshtml" />
     <Content Include="Styles\Site.scss" />
     <Content Include="Views\Shared\_DemoFrame.cshtml" />
+    <Content Include="Views\Shared\GoogleAnalyticsTracker.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Core\Core.csproj">

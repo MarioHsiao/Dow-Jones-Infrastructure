@@ -4,10 +4,13 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <meta name="timestamp" content="@DateTime.Now" />
-	<title>@ViewBag.Title</title>
+    <title>@ViewBag.Title</title>
     @Styles.Render("~/Styles/themes/spacelab/theme-spacelab")
     @Scripts.Render("~/bundles/head")
-    @RenderSection("styles", false)
+
+	@RenderSection("styles", false)
+
+	@Html.Partial("GoogleAnalyticsTracker")
 </head>
 <body>
     @Html.Action("Navigation", "Documentation")
