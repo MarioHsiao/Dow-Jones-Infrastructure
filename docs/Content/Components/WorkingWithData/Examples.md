@@ -43,7 +43,7 @@ In this example, `VideoPlayer` Component gets data as shown below and uses it in
 
 **Javascript**
 
-**Passing data using DJ.Add()**
+**Setting data using `DJ.Add()`**
 
 In this example, data can be set to the Sample Component using `DJ.Add()` in the following ways:
 
