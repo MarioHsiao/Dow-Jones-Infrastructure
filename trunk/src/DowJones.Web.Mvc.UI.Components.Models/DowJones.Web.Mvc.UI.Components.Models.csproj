@@ -92,7 +92,9 @@
     <Compile Include="CompositeAuthor\CompositeAuthorModel.cs" />
     <Compile Include="CompositeOutlet\CompositeOutletModel.cs" />
     <Compile Include="DateSlider\DateSliderModel.cs" />
+    <Compile Include="DiscoveryGraph\DiscoveryGraphData.cs" />
     <Compile Include="DiscoveryGraph\DiscoveryGraphModel.cs" />
+    <Compile Include="DiscoveryGraph\DiscoveryGraphParentNewsEntities.cs" />
     <Compile Include="DiscoveryGraph\Orientation.cs" />
     <Compile Include="EntityList\EntityListModel.cs" />
     <Compile Include="HeadlineListCarousel\HeadlineListCarouselModel.cs" />
