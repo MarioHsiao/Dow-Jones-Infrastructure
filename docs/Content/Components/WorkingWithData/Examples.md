@@ -95,12 +95,12 @@ Once the components were succesfully added on the page you can find the N compon
 		var componentNInstance = $('#componentNContainer').findComponent(DJ.UI.ComponentNName);
 
 		//Bind the data
-		$(component1Instance).data(dataObj1);
-		$(component2Instance).data(dataObj2);
-		$(component3Instance).data(dataObj3);
+		$(component1Instance).bindOnSuccess(dataObj1);
+		$(component2Instance).bindOnSuccess(dataObj2);
+		$(component3Instance).bindOnSuccess(dataObj3);
 		:
 		:
-		$(componentNInstance).data(dataObjN);
+		$(componentNInstance).bindOnSuccess(dataObjN);
 	</script>
 
 
