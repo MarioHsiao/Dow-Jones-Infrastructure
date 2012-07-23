@@ -5,27 +5,23 @@ The developers who consume the infrastructure components has complete freedom to
 
 The following table list the assemblers used by the infrastructure components. 
 
-**Components: `PortalHeadlineList`, `HeadlineList`, `RealtimeHeadlineList`, `HeadlineCarousel`**
+**Components: `PortalHeadlineList`**
 
 **Namespace: `DowJones.Assemblers.Headlines`**
 
-Name												| Initial DataSource			| Target Data Model											
-----------------------------------------------------|-------------------------------|----------------------------------------------
-AbstractHeadlineListDataResultSetConverter			| 								|
-AccessionNumberSearchResponseConverter				|  								|
-AtomFeedConverter									|  								|
-CreateSharedAlertResponseConverter					|  								|
-GatewayAccessionNumberSearchResponseConverter		|  								| 								
-GetSharedAlertContentResponseConverter				|  								|
-GetTriggerDetailsResultConverter					|  								|
-HeadlineListConversionManager 						|  								|
-HeadlineUtility										| 								|
-IExtendedListDataResultConverter					| 								|
-PCMAccessionNumberSearchResponseConverter			| 								|
-PerformContentSearchResponseConverter				| 								|
-PortalHeadlineConversionManager						| 								|
-RealtimeHeadlinelistConversionManager				| 								|
-RealtimeHeadlineListManager							| 								|
-RssAtomSyndicationManager							| 								|
-RssFeedConverter									| 								|
-SyndicationHeadlineResponseConverter				| 								|
+Name												| Initial DataSource									| Target Data Model											
+----------------------------------------------------|-------------------------------------------------------|----------------------------------------------
+HeadlineListConversionManager						|														|  		
+AtomFeedConverter									| Atom based Data Source [File, URI]					| HeadlineListDataResult
+CreateSharedAlertResponseConverter					|  														| HeadlineListDataResult
+GatewayAccessionNumberSearchResponseConverter		|  														| HeadlineListDataResult						
+GetSharedAlertContentResponseConverter				| Factiva Platform: *Realtime Alerts initial call*		| HeadlineListDataResult
+GetTriggerDetailsResultConverter					| Factiva Platform: *Signals or Triggers*				| HeadlineListDataResult
+PCMAccessionNumberSearchResponseConverter			| 														| HeadlineListDataResult
+PerformContentSearchResponseConverter				| Factiva Platform: *Search*							| HeadlineListDataResult
+RealtimeHeadlinelistConversionManager				| Factiva Platform: *Realtime Alerts subsequent calls*	| HeadlineListDataResult
+RealtimeHeadlineListManager							| Factiva Platform: 									| HeadlineListDataResult
+RssAtomSyndicationManager							| Factiva Platform:										| HeadlineListDataResult
+RssFeedConverter									| RSS based Data Source [File, URI]						| HeadlineListDataResult
+SyndicationHeadlineResponseConverter				| Factiva Platform										| HeadlineListDataResult													 
+PortalHeadlineConversionManager						| HeadlineListDataResult [Infrastructure class]			| PortalHeadlineListDataResult
