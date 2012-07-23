@@ -5,22 +5,22 @@ namespace DowJones.Pages
 {
     public interface IPageManager
     {
-        string AddModuleToPage(string pageRef, Module module);
-        void AddModuleToPage(string pageRef, params string[] moduleIds);
+        string AddModuleToPage(PageReference pageRef, Module module);
+        void AddModuleToPage(PageReference pageRef, params string[] moduleIds);
 
-        string CreatePage(Page page);
-        
-        void DeleteModules(string pageRef, params string[] moduleIds);
-        
-        void DeletePage(string pageRef);
+        PageReference CreatePage(Page page);
+
+        void DeleteModules(PageReference pageRef, params string[] moduleIds);
+
+        void DeletePage(PageReference pageRef);
 
         MetaData GetModuleMetaData(Module module);
 
         Module GetModuleById(string moduleId);
-        Module GetModuleById(string pageRef, string moduleId);
+        Module GetModuleById(PageReference pageRef, string moduleId);
 
-        Page GetPage(string pageRef);
-        Page GetPage(string pageRef, bool cachePage, bool forceCacheRefresh);
+        Page GetPage(PageReference pageRef);
+        Page GetPage(PageReference pageRef, bool cachePage, bool forceCacheRefresh);
 
         IEnumerable<Page> GetPages();
         IEnumerable<Page> GetPages(SortBy sort, SortOrder order);

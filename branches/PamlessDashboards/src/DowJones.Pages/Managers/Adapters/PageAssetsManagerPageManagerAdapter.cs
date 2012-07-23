@@ -18,30 +18,30 @@ namespace DowJones.Pages
             PageType = pageType;
         }
 
-        public string AddModuleToPage(string pageId, Module module)
+        public string AddModuleToPage(PageReference pageRef, Module module)
         {
             var gwModule = Mapper.Map<Gateway.Module>(module);
-            return PageAssetsManager.AddModuleToPage(pageId, 1, gwModule, null);
+            return PageAssetsManager.AddModuleToPage(pageRef, 1, gwModule, null);
         }
 
-        public void AddModuleToPage(string pageId, params string[] moduleIds)
+        public void AddModuleToPage(PageReference pageRef, params string[] moduleIds)
         {
-            PageAssetsManager.AddModuleIdsToEndOfPage(pageId, moduleIds);
+            PageAssetsManager.AddModuleIdsToEndOfPage(pageRef, moduleIds);
         }
 
-        public string CreatePage(Page page)
+        public PageReference CreatePage(Page page)
         {
             return PageAssetsManager.CreatePage(Mapper.Map<Gateway.Page>(page));
         }
 
-        public void DeleteModules(string pageId, params string[] moduleIds)
+        public void DeleteModules(PageReference pageRef, params string[] moduleIds)
         {
-            PageAssetsManager.DeleteModules(pageId, moduleIds);
+            PageAssetsManager.DeleteModules(pageRef, moduleIds);
         }
 
-        public void DeletePage(string pageId)
+        public void DeletePage(PageReference pageRef)
         {
-            PageAssetsManager.DeletePage(pageId);
+            PageAssetsManager.DeletePage(pageRef);
         }
 
         public MetaData GetModuleMetaData(Module module)
@@ -55,21 +55,21 @@ namespace DowJones.Pages
             return Mapper.Map<Module>(module);
         }
 
-        public Module GetModuleById(string pageId, string moduleId)
+        public Module GetModuleById(PageReference pageRef, string moduleId)
         {
-            var module = PageAssetsManager.GetModuleById(pageId, moduleId);
+            var module = PageAssetsManager.GetModuleById(pageRef, moduleId);
             return Mapper.Map<Module>(module);
         }
 
-        public Page GetPage(string pageId)
+        public Page GetPage(PageReference pageRef)
         {
-            var page = PageAssetsManager.GetPage(pageId);
+            var page = PageAssetsManager.GetPage(pageRef);
             return Mapper.Map<Page>(page);
         }
 
-        public Page GetPage(string pageId, bool cachePage, bool forceCacheRefresh)
+        public Page GetPage(PageReference pageRef, bool cachePage, bool forceCacheRefresh)
         {
-            var page = PageAssetsManager.GetPage(pageId, cachePage, forceCacheRefresh);
+            var page = PageAssetsManager.GetPage(pageRef, cachePage, forceCacheRefresh);
             return Mapper.Map<Page>(page);
         }
 

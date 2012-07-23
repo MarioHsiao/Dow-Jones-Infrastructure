@@ -78,6 +78,7 @@
     <Compile Include="Common\EntityType.cs" />
     <Compile Include="Common\QueryFilter.cs" />
     <Compile Include="Common\QueryFilters.cs" />
+    <Compile Include="Managers\PageReference.cs" />
     <Compile Include="Mappers\GatewayModuleMapper.cs" />
     <Compile Include="Mappers\PageMapperBase.cs" />
     <Compile Include="Mappers\PageListInfoMapper.cs" />

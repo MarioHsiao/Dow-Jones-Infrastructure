@@ -9,15 +9,15 @@ namespace DowJones.Pages
 
         void PublicizeModules(IEnumerable<Module> modules);
 
-        void EnablePage(string pageRef, bool enabled = true);
+        void EnablePage(PageReference pageRef, bool enabled = true);
 
-        void PublishPage(string pageRef, params int[] personalAlertIds);
+        void PublishPage(PageReference pageRef, params int[] personalAlertIds);
 
-        string SubscribeToPage(string pageId);
-        string SubscribeToPage(string pageId, int position);
+        string SubscribeToPage(PageReference pageRef);
+        string SubscribeToPage(PageReference pageRef, int position);
 
-        void UnpublishPage(string pageRef);
+        void UnpublishPage(PageReference pageRef);
 
-        void UnsubscribeToPage(string pageId);
+        void UnsubscribeToPage(PageReference pageRef);
     }
 }

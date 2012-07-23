@@ -26,35 +26,35 @@ namespace DowJones.Pages
             PageAssetsManager.MakePageModulesPublic(gwModules);
         }
 
-        public void EnablePage(string pageRef, bool enabled = true)
+        public void EnablePage(PageReference pageRef, bool enabled = true)
         {
             Gateway.EnableDisable action = enabled ? Gateway.EnableDisable.Enable : Gateway.EnableDisable.Disable;
             PageAssetsManager.EnableDisablePage(pageRef, action);
         }
 
-        public void PublishPage(string pageRef, params int[] personalAlertIds)
+        public void PublishPage(PageReference pageRef, params int[] personalAlertIds)
         {
             PageAssetsManager.PublishPage(pageRef, personalAlertIds);
         }
 
-        public string SubscribeToPage(string pageId)
+        public string SubscribeToPage(PageReference pageRef)
         {
-            return PageAssetsManager.SubscribeToPage(pageId);
+            return PageAssetsManager.SubscribeToPage(pageRef);
         }
 
-        public string SubscribeToPage(string pageId, int position)
+        public string SubscribeToPage(PageReference pageRef, int position)
         {
-            return PageAssetsManager.SubscribeToPage(pageId, position);
+            return PageAssetsManager.SubscribeToPage(pageRef, position);
         }
 
-        public void UnpublishPage(string pageRef)
+        public void UnpublishPage(PageReference pageRef)
         {
             PageAssetsManager.UnpublishPage(pageRef);
         }
 
-        public void UnsubscribeToPage(string pageId)
+        public void UnsubscribeToPage(PageReference pageRef)
         {
-            PageAssetsManager.UnsubscribeToPage(pageId);
+            PageAssetsManager.UnsubscribeToPage(pageRef);
         }
     }
 }
