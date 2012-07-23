@@ -64,15 +64,4 @@ Each of the composite component or its derived classes contain an instance of +P
 
 @using DowJones.Documentation.Website.Extensions
 
-@(Html.Note("
-<p>
-It is worth noting that two or more composite components can talk to each other, again via PubSub model. 
-</p>
-<p>
-Also, a composite component can have another composite component as its child.
-</p>
-<p>
-`SearchResults` component is a classic example of this. 
-It is composite component which houses 3 other composite components as well as some UI components.
-</p>
-"))
+@Html.Note("<p>It is worth noting that two or more composite components can talk to each other, again via PubSub model. </p><p>Also, a composite component can have another composite component as its child.</p><p>`SearchResults` component is a classic example of this. It is composite component which houses 3 other composite components as well as some UI components.</p>")

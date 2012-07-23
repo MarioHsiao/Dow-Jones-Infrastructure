@@ -10,7 +10,7 @@ This library extends the core ASP.Net MVC framework and provides the following s
 - Route Generator
 - Threading and COM+ compatibility attributes
 - ClientState handling
-- +ViewComponent+ and +ViewComponent+ base classes
+- `ViewComponent` base class
 - Fluent Interfaces for component builders
 - Global JavaScript resources such as:
 	* jQuery
