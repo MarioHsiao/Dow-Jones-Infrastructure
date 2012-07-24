@@ -123,6 +123,8 @@
     <None Include="Components\WorkingWithEvents\5HandlerFunction.md" />
     <None Include="deploy.proj" />
     <Content Include="images\AddingDowJonesTFSServer.png" />
+    <Content Include="images\CI_BuildNotificationOptions.png" />
+    <Content Include="images\CI_BuildNotificationsSystemTray.png" />
     <Content Include="images\ConnectingToTFS.png" />
     <Content Include="images\Download.png" />
     <Content Include="images\DowJonesItemTemplates.png" />
@@ -142,6 +144,14 @@
     <None Include="1GettingStarted\3CreateAComponent\Overview.md" />
     <None Include="1GettingStarted\1SetupDevelopmentEnvironment\1DevelopmentEnvironment.md" />
     <None Include="1GettingStarted\1SetupDevelopmentEnvironment\Overview.md" />
+    <None Include="Guidance\3ContinousIntegration\1AutomatedBuilds.md" />
+    <None Include="Guidance\3ContinousIntegration\2BestPractices.md" />
+    <None Include="Guidance\3ContinousIntegration\3WhatToDoIf.md" />
+    <None Include="Guidance\BestPractices\1General.md" />
+    <None Include="Guidance\BestPractices\2VersionControl.md" />
+    <None Include="Guidance\BestPractices\3ContinousIntegration.md" />
+    <None Include="Guidance\BestPractices\4PackageManagement.md" />
+    <None Include="Guidance\BestPractices\5ASP.netMVC.md" />
     <None Include="Guidance\BestPractices\Overview.md" />
     <None Include="Guidance\1CodingStandards\Overview.md" />
     <None Include="Guidance\3ContinousIntegration\Overview.md" />
