@@ -49,7 +49,7 @@
     <None Include="1GettingStarted\1SetupDevelopmentEnvironment\4DowJonesProjectAndItemTemplates.md" />
     <None Include="1GettingStarted\1SetupDevelopmentEnvironment\5DowJonesWebsiteTemplate.md" />
     <None Include="1GettingStarted\2UseAComponent\ASP.NET_MVCUsage.md" />
-    <None Include="1GettingStarted\2UseAComponent\JavascriptUsage.md" />
+    <None Include="1GettingStarted\2UseAComponent\JavaScriptUsage.md" />
     <None Include="1GettingStarted\2UseAComponent\Overview.md" />
     <None Include="1GettingStarted\3CreateAComponent\1OpenSolution.md" />
     <Content Include="Assets\Autosuggest\autosuggest.zip">
@@ -138,7 +138,7 @@
     <Content Include="Web.config" />
     <None Include="1GettingStarted\3CreateAComponent\2CreateDataObject.md" />
     <None Include="1GettingStarted\3CreateAComponent\3CreateModel.md" />
-    <None Include="1GettingStarted\3CreateAComponent\4CreateJavascriptFiles.md" />
+    <None Include="1GettingStarted\3CreateAComponent\4CreateJavaScriptFiles.md" />
     <None Include="1GettingStarted\3CreateAComponent\5CreateClientTemplates.md" />
     <None Include="1GettingStarted\3CreateAComponent\6CreateRazorView.md" />
     <None Include="1GettingStarted\3CreateAComponent\7AddToShowcase.md" />
