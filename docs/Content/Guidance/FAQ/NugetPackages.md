@@ -17,6 +17,6 @@ In rare cases they might take a minute or two to show up, but it should never be
 If a Release build succeeds that is supposed to generate a new version of a package in our custom feeds but you do not see a new version, something probably went wrong.
 
 Unfortunately, there is not much you can do about this, as it is probably a backend/server issue that needs to be addressed by an admin. 
-You can, however, attempt to try the build again. To do this, select the `Queue New Build...` option in the build’s context menu to trigger  a new build.
+You can, however, attempt to try the build again. To do this, select the `Queue New Build...` option in the build's context menu to trigger  a new build.
 
 If this does not fix the issue, contact a build administrator.
