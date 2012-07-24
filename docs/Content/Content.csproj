@@ -48,6 +48,10 @@
     <None Include="1GettingStarted\1SetupDevelopmentEnvironment\3WorkingWithNuGet.md" />
     <None Include="1GettingStarted\1SetupDevelopmentEnvironment\4DowJonesProjectAndItemTemplates.md" />
     <None Include="1GettingStarted\1SetupDevelopmentEnvironment\5DowJonesWebsiteTemplate.md" />
+    <None Include="1GettingStarted\2FrameworkOverview\1DowJonesCoreFramework.md" />
+    <None Include="1GettingStarted\2FrameworkOverview\2DowJonesASP.NET_MVCFramework.md" />
+    <None Include="1GettingStarted\2FrameworkOverview\3DowJonesUIComponents.md" />
+    <None Include="1GettingStarted\2FrameworkOverview\Overview.md" />
     <None Include="1GettingStarted\2UseAComponent\ASP.NET_MVCUsage.md" />
     <None Include="1GettingStarted\2UseAComponent\JavaScriptUsage.md" />
     <None Include="1GettingStarted\2UseAComponent\Overview.md" />
@@ -168,7 +172,6 @@
     <None Include="images\Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="1GettingStarted\2FrameworkOverview\" />
     <Folder Include="Properties\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
