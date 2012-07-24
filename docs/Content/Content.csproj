@@ -52,6 +52,7 @@
     <None Include="1GettingStarted\2UseAComponent\JavascriptUsage.md" />
     <None Include="1GettingStarted\2UseAComponent\Overview.md" />
     <None Include="1GettingStarted\3CreateAComponent\1OpenSolution.md" />
+    <None Include="Components\AutoSuggest\Assets.md" />
     <None Include="Components\Customization\Examples.md" />
     <None Include="Components\Customization\Overview.md" />
     <None Include="Components\PortalHeadlineList\DataModel.md" />
@@ -118,6 +119,7 @@
     <None Include="deploy.proj" />
     <Content Include="images\AddingDowJonesTFSServer.png" />
     <Content Include="images\ConnectingToTFS.png" />
+    <Content Include="images\Download.png" />
     <Content Include="images\NuGet_AddedSource.png" />
     <Content Include="images\NuGet_AddPackageReference.png" />
     <Content Include="images\NuGet_Navigation.png" />
@@ -141,6 +143,7 @@
     <None Include="images\Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Assets\Autosuggest\" />
     <Folder Include="Properties\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

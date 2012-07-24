@@ -19,8 +19,9 @@ ShowHelp			 | showHelp				 | Displays Help row on the top of the suggest list ba
 HelpLabelText		 | helpLabelText		 | The text to be displayed when help row is enabled. 				
 ShowViewAll			 | showViewAll			 | Displays View All row at the bottom of the suggest list based on the value. <span class="label">Default: false</span>				
 ViewAllText			 | viewAllText			 | The text to be displayed when help row is enabled.									 
-ServiceOptions		 | serviceOptions		 | Object consisting of options specific to the control type (E.g: Source, Executive etc). 
+ServiceOptions		 | serviceOptions		 | Object consisting of options specific to the control type (E.g: Source, Executive etc). Follow the guide for <a href="http://www.factiva.com/cp_developer/Producthelp/Suggest/suggest.htm" target="_blank">REST Service</a> options. 
 Tokens				 | tokens				 | Tokens used to translate the text based on the language.								 
 Columns				 | columns				 | Columns to display in the suggest results.		 									 
 
 <span class="atn">* : Required property/option</span>
+
