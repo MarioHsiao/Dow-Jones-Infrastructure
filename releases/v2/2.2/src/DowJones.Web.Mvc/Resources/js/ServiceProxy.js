@@ -46,9 +46,9 @@ jQuery ajax extensions
         },
         abort: function (jqXHR, textStatus) {
             $dj.debug('***** SERVICE CALL ABORT ******');
-        },
-        sessionTimeout: DJ.Services.PlatformServiceProxy.SessionTimeoutHandler,
-        forcedSessionExpire: DJ.Services.PlatformServiceProxy.ForcedSessionExpireHandler
+        }
+        //sessionTimeout: DJ.Services.PlatformServiceProxy.SessionTimeoutHandler,
+        //forcedSessionExpire: DJ.Services.PlatformServiceProxy.ForcedSessionExpireHandler
     };
 
 
@@ -78,8 +78,8 @@ jQuery ajax extensions
 
         var data = originalOptions.data;
 
-        var onSessionTimeout = $.isFunction(originalOptions.sessionTimeout) ? originalOptions.sessionTimeout : $dj.delegate(this, defaultHandlers.sessionTimeout);
-        var onForcedSessionExpire = $.isFunction(originalOptions.forcedSessionExpire) ? originalOptions.forcedSessionExpire : $dj.delegate(this, defaultHandlers.forcedSessionExpire);
+        var onSessionTimeout = $.isFunction(originalOptions.sessionTimeout) ? originalOptions.sessionTimeout : DJ.Services.PlatformServiceProxy.SessionTimeoutHandler;
+        var onForcedSessionExpire = $.isFunction(originalOptions.forcedSessionExpire) ? originalOptions.forcedSessionExpire : DJ.Services.PlatformServiceProxy.ForcedSessionExpireHandler;
         var onSuccess = $.isFunction(originalOptions.success) ? originalOptions.success : $dj.delegate(this, defaultHandlers.success);
         var onComplete = $.isFunction(originalOptions.complete) ? originalOptions.complete : $dj.delegate(this, defaultHandlers.complete);
         var onError = $.isFunction(originalOptions.error) ? originalOptions.error : $dj.delegate(this, defaultHandlers.error);
