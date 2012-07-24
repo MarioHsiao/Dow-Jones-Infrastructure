@@ -10,10 +10,11 @@ To connect to the Dow Jones Team Foundation Server within Visual Studio:
 2. Click `Servers...` button, then the `Add...` button
 3. Enter the following information to the **Add Team Foundation Server** dialog:
 
-	a.	       Name: sbknwstfs1.win.dowjones.net
-	b.	       Path: tfs  							*[default]*
-	c.	Port Number: 8080   						*[default]*
-	d.	   Protocol: HTTP							*[default]* 
+	           Name: sbknwstfs1.win.dowjones.net
+	           Path: tfs  	[default]
+        Port Number: 8080   [default]
+	       Protocol: HTTP	[default]
+
 4.	Click "Ok" to add the server, then "Close" to close the Servers dialog
 
 Once you've added a connection to the Dow Jones Team Foundation Server, Visual Studio will retrieve a list of Team Projects that you have access to.
