@@ -12,12 +12,12 @@ SplashImagePath		   | splashImagePath      | Path of the Splash Image.
 PlayerKey			   | playerKey			  | Unique Indentifier.						
 PlayList			   | playList			  | Collection of Media Clips.					
 
-The following table describes the options available for the **Clip** object.
+The following table describes the options available for the `Clip` object.
 
 Property		| Option		|  Description																											
 ----------------|---------------|-------------------------------------------------------------------
 Url		        | url		    | Url of the Media Clip.														
-Medium			| medium		| Type of the medium (Audio/Video).						
+Medium			| medium		| Type of the medium. Possible values: `0:Audio`, `1:Video`.						
 Duration		| duration		| Clip Duration.															
 ThumbNail		| thumbNail	    | Width of the Control Bar.			
 Title			| title		    | Title of the clip.						
