@@ -144,7 +144,7 @@
     <None Include="Guidance\BestPractices\Overview.md" />
     <None Include="Guidance\1CodingStandards\Overview.md" />
     <None Include="Guidance\3ContinousIntegration\Overview.md" />
-    <None Include="Guidance\FAQs\Overview.md" />
+    <None Include="Guidance\FAQs\NugetPackages.md" />
     <None Include="Guidance\2VersionControl\2ConfigurationAndSetup.md" />
     <None Include="Guidance\2VersionControl\4BranchingAndMergingStrategies.md" />
     <None Include="Guidance\2VersionControl\5AutomatedBuilds.md" />
