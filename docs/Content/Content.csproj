@@ -133,6 +133,11 @@
     <None Include="1GettingStarted\3CreateAComponent\Overview.md" />
     <None Include="1GettingStarted\1SetupDevelopmentEnvironment\1DevelopmentEnvironment.md" />
     <None Include="1GettingStarted\1SetupDevelopmentEnvironment\Overview.md" />
+    <None Include="Guidance\BestPractices\Overview.md" />
+    <None Include="Guidance\CodingStandards\Overview.md" />
+    <None Include="Guidance\ContinousIntegration\Overview.md" />
+    <None Include="Guidance\FAQs\Overview.md" />
+    <None Include="Guidance\VersionControl\Overview.md" />
     <None Include="images\Web.config" />
   </ItemGroup>
   <ItemGroup>
