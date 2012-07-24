@@ -52,6 +52,9 @@
     <None Include="1GettingStarted\2UseAComponent\JavascriptUsage.md" />
     <None Include="1GettingStarted\2UseAComponent\Overview.md" />
     <None Include="1GettingStarted\3CreateAComponent\1OpenSolution.md" />
+    <Content Include="Assets\Autosuggest\autosuggest.zip">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Components\AutoSuggest\Assets.md" />
     <None Include="Components\Customization\Examples.md" />
     <None Include="Components\Customization\Overview.md" />
@@ -144,7 +147,6 @@
     <None Include="images\Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Assets\Autosuggest\" />
     <Folder Include="Properties\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
