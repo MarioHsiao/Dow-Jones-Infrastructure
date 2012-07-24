@@ -24,11 +24,13 @@ radarSearchQuery				| Object of type `RadarSearchQueryModel` that represents the
 
 ###NewsVolumeModel
 Property						| Description
+--------------------------------|----------------------------------------------------------------------------------------------
 timeFrame						| Time frame the current news volume applies to. Possible values: `0:Day`, `1:Week`, `2:TwoWeek`, `3:Month`, `4:TwoMonth`, `5:ThreeMonth`
 hitCount						| Number of hitcounts for the specified time frame.
 
 ###RadarSearchQueryModel
 Property						| Description
+--------------------------------|----------------------------------------------------------------------------------------------
 name							| Name of the search query
 queryType						| Type of the query. The only possible value: `0:NewsSubject`
 searchString					| Search string behind the query.
