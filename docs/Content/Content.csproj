@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -124,11 +124,13 @@
     <Content Include="images\AddingDowJonesTFSServer.png" />
     <Content Include="images\ConnectingToTFS.png" />
     <Content Include="images\Download.png" />
+    <Content Include="images\DowJonesItemTemplates.png" />
     <Content Include="images\NuGet_AddedSource.png" />
     <Content Include="images\NuGet_AddPackageReference.png" />
     <Content Include="images\NuGet_Navigation.png" />
     <Content Include="images\NuGet_PackageSources.png" />
     <Content Include="images\Nuget_UpgradePackages.png" />
+    <Content Include="images\VSVersions.png" />
     <Content Include="Web.config" />
     <None Include="1GettingStarted\3CreateAComponent\2CreateDataObject.md" />
     <None Include="1GettingStarted\3CreateAComponent\3CreateModel.md" />
@@ -143,7 +145,12 @@
     <None Include="Guidance\CodingStandards\Overview.md" />
     <None Include="Guidance\ContinousIntegration\Overview.md" />
     <None Include="Guidance\FAQs\Overview.md" />
+    <None Include="Guidance\VersionControl\2ConfigurationAndSetup.md" />
+    <None Include="Guidance\VersionControl\4BranchingAndMergingStrategies.md" />
+    <None Include="Guidance\VersionControl\5AutomatedBuilds.md" />
+    <None Include="Guidance\VersionControl\6TypesOfAutomatedBuilds.md" />
     <None Include="Guidance\VersionControl\Overview.md" />
+    <None Include="Guidance\VersionControl\3Solution-RepositoryStructure.md" />
     <None Include="images\Web.config" />
   </ItemGroup>
   <ItemGroup>
