@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -142,15 +142,15 @@
     <None Include="1GettingStarted\1SetupDevelopmentEnvironment\1DevelopmentEnvironment.md" />
     <None Include="1GettingStarted\1SetupDevelopmentEnvironment\Overview.md" />
     <None Include="Guidance\BestPractices\Overview.md" />
-    <None Include="Guidance\CodingStandards\Overview.md" />
-    <None Include="Guidance\ContinousIntegration\Overview.md" />
+    <None Include="Guidance\1CodingStandards\Overview.md" />
+    <None Include="Guidance\3ContinousIntegration\Overview.md" />
     <None Include="Guidance\FAQs\Overview.md" />
-    <None Include="Guidance\VersionControl\2ConfigurationAndSetup.md" />
-    <None Include="Guidance\VersionControl\4BranchingAndMergingStrategies.md" />
-    <None Include="Guidance\VersionControl\5AutomatedBuilds.md" />
-    <None Include="Guidance\VersionControl\6TypesOfAutomatedBuilds.md" />
-    <None Include="Guidance\VersionControl\Overview.md" />
-    <None Include="Guidance\VersionControl\3Solution-RepositoryStructure.md" />
+    <None Include="Guidance\2VersionControl\2ConfigurationAndSetup.md" />
+    <None Include="Guidance\2VersionControl\4BranchingAndMergingStrategies.md" />
+    <None Include="Guidance\2VersionControl\5AutomatedBuilds.md" />
+    <None Include="Guidance\2VersionControl\6TypesOfAutomatedBuilds.md" />
+    <None Include="Guidance\2VersionControl\Overview.md" />
+    <None Include="Guidance\2VersionControl\3Solution-RepositoryStructure.md" />
     <None Include="images\Web.config" />
   </ItemGroup>
   <ItemGroup>
