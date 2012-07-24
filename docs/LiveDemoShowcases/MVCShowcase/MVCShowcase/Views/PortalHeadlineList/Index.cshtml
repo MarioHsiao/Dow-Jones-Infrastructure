@@ -8,7 +8,30 @@
 
 
 @section styles{
-    <link href="@ConfigurationManager.AppSettings["InfrastructureShowcase.BasePath"]/styles/views/PortalHeadlineList/PortalHeadlineList.css" rel="stylesheet" />
+    <!-- default style for the component -->
+ <style>
+    .article-group .article-wrap {
+      margin-bottom: 5px; }
+
+    .article-headline {
+      font-size: 93%;
+      line-height: 16px; }
+      .article-headline a {
+        color: #2F90B3; }
+
+    .article-meta {
+      color: #999; }
+      .article-meta .date-stamp {
+        text-transform: none; }
+      .article-meta .article-source, .article-meta .time-stamp, .article-meta .date-stamp, .article-meta .media-length, .article-meta .fi, .article-meta .author, .article-meta .byline, .article-meta .author {
+        display: -moz-inline-stack;
+        display: inline-block;
+        vertical-align: top;
+        color: #999;
+        font-size: 85%;
+        line-height: normal;
+        text-transform: uppercase; }
+</style>
 }
 @section scripts{
     <script type="text/javascript">

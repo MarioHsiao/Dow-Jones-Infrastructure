@@ -10,7 +10,7 @@ namespace DowJones.MvcShowcase.App_start
 		 {
 			 var bundles = BundleTable.Bundles;
 
-			 bundles.Add(new StyleBundle("~/bundles/styles/core")
+			 bundles.Add(new StyleBundle("~/styles/core")
 					.Include("~/styles/normalize.css",
 							 "~/styles/normalizeExtensions.css",
 							 "~/styles/site.css"));

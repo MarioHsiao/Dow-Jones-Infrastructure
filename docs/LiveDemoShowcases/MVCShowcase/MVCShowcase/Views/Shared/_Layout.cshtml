@@ -4,11 +4,11 @@
 <html>
 <head>
 	<title>@ViewBag.Title</title>
-	@Styles.Render(ConfigurationManager.AppSettings["InfrastructureShowcase.BasePath"] + "/bundles/styles/core")
+	@Styles.Render("~/styles/core")
     @RenderSection("styles", false)
     
     <!-- required file! DJ.add won't work without "common.js" being available -->
-    <script src="@ConfigurationManager.AppSettings["CommonJspath"]" type="text/javascript"></script>
+    <script src="@ConfigurationManager.AppSettings["CommonJSPath"]" type="text/javascript"></script>
 </head>
 <body>
     @RenderBody()
