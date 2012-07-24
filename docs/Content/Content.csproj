@@ -58,6 +58,7 @@
     <None Include="Components\AutoSuggest\Assets.md" />
     <None Include="Components\Customization\Examples.md" />
     <None Include="Components\Customization\Overview.md" />
+    <None Include="Components\DiscoveryGraph\DataModel.md" />
     <None Include="Components\NewsRadar90DayAvg\DataModel.md" />
     <None Include="Components\PortalHeadlineList\DataModel.md" />
     <None Include="Components\WorkingWithData\Examples\Javascript.md" />
