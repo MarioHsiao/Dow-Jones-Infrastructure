@@ -2,7 +2,7 @@
 
 Each `EntityModel` represents a company.
 
-###EntityModel
+####EntityModel
 Property 						| Description											
 --------------------------------|----------------------------------------------------------------------------------------------
 companyName						| Name of the company
@@ -14,7 +14,7 @@ instrumentReference				| Object of type `InstrumentReferenceModel`
 isNewsCoded						| Specifies if the company is news coded or not.
 newsSearch						| Search string for the current company.
 
-###NewsEntityModel
+####NewsEntityModel
 Property 						| Description											
 --------------------------------|----------------------------------------------------------------------------------------------
 entityType						| Entity type. The only expected value here is `0:NewsSubject`
@@ -22,13 +22,13 @@ newsVolumes						| Collection of `NewsVolumeModel` objects, each representing hi
 subjectCode						| Code of the news subject
 radarSearchQuery				| Object of type `RadarSearchQueryModel` that represents the search string behind the current news entity.
 
-###NewsVolumeModel
+####NewsVolumeModel
 Property						| Description
 --------------------------------|----------------------------------------------------------------------------------------------
 timeFrame						| Time frame the current news volume applies to. Possible values: `0:Day`, `1:Week`, `2:TwoWeek`, `3:Month`, `4:TwoMonth`, `5:ThreeMonth`
 hitCount						| Number of hitcounts for the specified time frame.
 
-###RadarSearchQueryModel
+####RadarSearchQueryModel
 Property						| Description
 --------------------------------|----------------------------------------------------------------------------------------------
 name							| Name of the search query
@@ -37,7 +37,7 @@ searchString					| Search string behind the query.
 scope							| Scope of the query. The only possible value: `0:ns`
 searchMode						| Query's search mode.
 
-###InstrumentReferenceModel
+####InstrumentReferenceModel
 Property 						| Description											
 --------------------------------|----------------------------------------------------------------------------------------------
 dunsNumber						| 

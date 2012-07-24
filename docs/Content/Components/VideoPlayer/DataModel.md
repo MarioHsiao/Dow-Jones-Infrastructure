@@ -1,6 +1,6 @@
 ﻿The data model for this component is a `ClipCollection` object which inturn is a collection os `Clips`.
 
-###Clip
+####Clip
  Option		|  Description																											
 ------------|-------------------------------------------------------------------
 url		    | Url of the Media Clip.														

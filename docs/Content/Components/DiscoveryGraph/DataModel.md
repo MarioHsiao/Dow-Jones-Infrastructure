@@ -1,11 +1,11 @@
 ﻿The data model for this component is an object of type `DiscoveryGraphData`.
 
-###DiscoveryGraphData
+####DiscoveryGraphData
 Property 						| Description											
 --------------------------------|----------------------------------------------------------------------------------------------
 discovery						| Object of type `DiscoveryGraphParentNewsEntities`
 
-###DiscoveryGraphParentNewsEntities
+####DiscoveryGraphParentNewsEntities
 Property 						| Description									
 --------------------------------|----------------------------------------------------------------------------------------------
 companyNewsEntities				| Object of type `ParentNewsEntity` that contains a collection of company related `NewsEntity` objects.
@@ -14,13 +14,13 @@ personNewsEntities				| Object of type `ParentNewsEntity` that contains a collec
 regionNewsEntities				| Object of type `ParentNewsEntity` that contains a collection of region related `NewsEntity` objects.
 subjectNewsEntities				| Object of type `ParentNewsEntity` that contains a collection of subject related `NewsEntity` objects.
 
-###ParentNewsEntity
+####ParentNewsEntity
 Property						| Description
 --------------------------------|----------------------------------------------------------------------------------------------
 title							| Title of this entity group.
 newsEntities					| Collection of `NewsEntity` objects, each containing number of hitcounts for a news entity
 
-###NewsEntity
+####NewsEntity
 Property						| Description
 --------------------------------|----------------------------------------------------------------------------------------------
 code							| News entity's code.
