@@ -6,3 +6,7 @@ The Team Foundation Server organizational structure consists of one to many "Col
 
 The Source Control Explorer hierarchy directly reflects this organizational structure; each Team Project has its own folder.
 The file and folder structure within each of these folders is up to the team that owns it; however, it is highly recommended that all active development should be done in a mainline "trunk" folder from which one or more of the following branching strategies can be applied.
+
+
+*[TFS]: Team Foundation Server 
+*[QA]:  Quality Assurance

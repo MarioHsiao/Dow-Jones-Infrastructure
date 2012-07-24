@@ -91,3 +91,7 @@ Finally, you can mark the checkbox to choose to undo your local changes after th
 Though not technically a branching strategy, you can think of shelvesets as a "pseudo-branching"ù tactic that allows you to take advantage of source control while avoiding introducing any breaking changes to the mainline branch.
 
 @Html.Important(@"Shelveset management is completely ""manual""ù ñ shelvesets are not automatically removed just because you've unshelved them. So, be sure to delete shelvesets when you are done with them.")
+
+
+*[TFS]: Team Foundation Server 
+*[QA]:  Quality Assurance

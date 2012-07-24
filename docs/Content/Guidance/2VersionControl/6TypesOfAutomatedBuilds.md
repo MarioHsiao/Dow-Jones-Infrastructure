@@ -37,3 +37,7 @@ For instance, you might consider implementing three different builds for the sam
 1. a continuous build to validate the quality of every check-in
 2. a rolling build that occurs no more than every hour and executes more detailed automated tests but takes a while to do so
 3. a nightly build that publishes the day's changes to a test website so that users or a QA team can track progress and report bugs as early as possible.
+
+
+*[TFS]: Team Foundation Server 
+*[QA]:  Quality Assurance

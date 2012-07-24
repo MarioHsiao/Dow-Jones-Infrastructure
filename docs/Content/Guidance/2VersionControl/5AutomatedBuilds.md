@@ -4,3 +4,7 @@ These types of scripts may be executed manually on a developer's local machine, 
 Team Foundation Server includes a build server component that is able to execute automated builds in a variety of ways.
 TFS build scripts are sometimes written using the [MSBuild specification](http://msdn.microsoft.com/en-us/library/0k6kkbsd.aspx) to perform more advanced tasks, however the typical scenario involves pointing TFS to a Visual Studio solution to have it compile all of the projects within.
 This makes it quite easy to add a centralized automated build to any solution.
+
+
+*[TFS]: Team Foundation Server 
+*[QA]:  Quality Assurance
