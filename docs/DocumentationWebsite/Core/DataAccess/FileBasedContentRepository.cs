@@ -10,10 +10,11 @@ namespace DowJones.Documentation.DataAccess
 	public class FileBasedContentRepository : IContentRepository
 	{
 	    private const string ImageFolderName = "images";
+        private const string AssetsFolderName = "Assets";
 	    private const string RelatedTopicsFolderName = "RelatedTopics";
 	    private const string RelatedTopicsMetaFileName = "RelatedTopics.json";
         private static readonly IEnumerable<string> SpecialFiles =
-            new[] { ImageFolderName, RelatedTopicsFolderName, RelatedTopicsMetaFileName };
+            new[] { ImageFolderName, AssetsFolderName, RelatedTopicsFolderName, RelatedTopicsMetaFileName };
 
 		private readonly DirectoryInfo _baseDirectory;
 		private readonly ContentSectionComparer _nameComparer;
