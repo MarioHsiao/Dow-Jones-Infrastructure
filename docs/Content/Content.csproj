@@ -162,7 +162,7 @@
     <None Include="Guidance\2VersionControl\5AutomatedBuilds.md" />
     <None Include="Guidance\2VersionControl\6TypesOfAutomatedBuilds.md" />
     <None Include="Guidance\2VersionControl\Overview.md" />
-    <None Include="Guidance\2VersionControl\3Solution-RepositoryStructure.md" />
+    <None Include="Guidance\2VersionControl\3RepositoryStructure.md" />
     <None Include="images\Web.config" />
   </ItemGroup>
   <ItemGroup>
