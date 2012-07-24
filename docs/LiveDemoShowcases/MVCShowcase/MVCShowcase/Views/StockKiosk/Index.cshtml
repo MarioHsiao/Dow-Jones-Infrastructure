@@ -1,9 +1,10 @@
-﻿@model DowJones.Web.Mvc.UI.Components.StockKiosk.StockKioskModel
+﻿@using System.Configuration
+@model DowJones.Web.Mvc.UI.Components.StockKiosk.StockKioskModel
 @{
     ViewBag.Title = "Stock Kiosk";
 }
 @section styles{
-    <link href="@Url.Content("~/styles/views/StockKiosk/StockKiosk.css")" rel="stylesheet" />
+    <link href="@ConfigurationManager.AppSettings["InfrastructureShowcase.BasePath"]/styles/views/StockKiosk/StockKiosk.css" rel="stylesheet" />
 }
 
 @section scripts{    

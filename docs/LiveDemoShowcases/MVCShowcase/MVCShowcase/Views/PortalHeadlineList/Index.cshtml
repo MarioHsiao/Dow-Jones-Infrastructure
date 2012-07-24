@@ -1,4 +1,5 @@
-﻿@model DowJones.Web.Mvc.UI.Components.PortalHeadlineList.PortalHeadlineListModel
+﻿@using System.Configuration
+@model DowJones.Web.Mvc.UI.Components.PortalHeadlineList.PortalHeadlineListModel
 @{
     ViewBag.Title = "Portal Headline List Demo";
 }
@@ -7,7 +8,7 @@
 
 
 @section styles{
-    <link href="@Url.Content("~/styles/views/PortalHeadlineList/PortalHeadlineList.css")" rel="stylesheet" />
+    <link href="@ConfigurationManager.AppSettings["InfrastructureShowcase.BasePath"]/styles/views/PortalHeadlineList/PortalHeadlineList.css" rel="stylesheet" />
 }
 @section scripts{
     <script type="text/javascript">

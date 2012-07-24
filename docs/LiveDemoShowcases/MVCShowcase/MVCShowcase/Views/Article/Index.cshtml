@@ -1,4 +1,5 @@
-﻿@model DowJones.Web.Mvc.UI.Components.Article.ArticleModel
+﻿@using System.Configuration
+@model DowJones.Web.Mvc.UI.Components.Article.ArticleModel
 
 @{
     ViewBag.Title = "Article Demo";
@@ -8,6 +9,7 @@
     
 @section styles{
 	<link href="@Url.Content("~/styles/views/Article/Snapshot.css")" rel="stylesheet" />
+    <link href="@ConfigurationManager.AppSettings["InfrastructureShowcase.BasePath"]/styles/views/Article/Snapshot.css" rel="stylesheet" />  
 }
 
 <section id="main" class="article-page">

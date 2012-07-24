@@ -1,4 +1,5 @@
-﻿@model DowJones.Web.Mvc.UI.Components.DiscoveryGraph.DiscoveryGraphModel
+﻿@using System.Configuration
+@model DowJones.Web.Mvc.UI.Components.DiscoveryGraph.DiscoveryGraphModel
 @{
     ViewBag.Title = "Discovery Graph";
 }
@@ -6,7 +7,7 @@
 <div id="discoveryGraphContainer"></div>
 
 @section styles{
-    <link href="@Url.Content("~/styles/views/DiscoveryGraph/discoveryGraph.css")" rel="stylesheet" />
+  <link href="@ConfigurationManager.AppSettings["InfrastructureShowcase.BasePath"]/styles/views/DiscoveryGraph/discoveryGraph.css" rel="stylesheet" />  
 }
 @section scripts{
     <script type="text/javascript">

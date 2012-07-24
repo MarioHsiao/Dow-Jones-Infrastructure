@@ -1,10 +1,11 @@
-﻿@model DowJones.Web.Mvc.UI.Components.NewsRadar.NewsRadarModel
+﻿@using System.Configuration
+@model DowJones.Web.Mvc.UI.Components.NewsRadar.NewsRadarModel
 @{
     ViewBag.Title = "News Radar 90 Day Avg";
 }
 
 @section styles{
-	<link href="@Url.Content("~/styles/views/NewsRadar/newsRadar.css")" rel="stylesheet" />
+	<link href="@ConfigurationManager.AppSettings["InfrastructureShowcase.BasePath"]/styles/views/NewsRadar/newsRadar.css" rel="stylesheet" />
 }
 
 @section scripts{    
