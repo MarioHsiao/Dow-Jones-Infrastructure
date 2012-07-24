@@ -25,8 +25,8 @@ namespace DowJones.Documentation.Tests.Core.Model
         public void ShouldLowercasePrepositions()
         {
             Assert.AreEqual(
-                "The Fox and the Hound Go to and from the Store",
-                new Name("TheFoxAndTheHoundGoToAndFromTheStore").DisplayName);
+                "The Fox and a Hound Go to and from the Store",
+                new Name("TheFoxAndAHoundGoToAndFromTheStore").DisplayName);
         }
 
         [TestMethod]
@@ -54,5 +54,13 @@ namespace DowJones.Documentation.Tests.Core.Model
         {
             Assert.IsFalse(new Name("  ").IsValid());
         }
+
+		[TestMethod]
+		public void ShouldNotSplitKnownKeywords()
+		{
+			// known keywords: NuGet, JavaScript
+			Assert.AreEqual("JavaScript Topic", new Name("JavaScriptTopic").DisplayName);
+			Assert.AreEqual("NuGet Topic", new Name("NuGetTopic").DisplayName);
+		}
     }
 }

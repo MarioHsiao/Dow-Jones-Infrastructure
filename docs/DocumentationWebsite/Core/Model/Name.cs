@@ -1,6 +1,7 @@
 using System;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace DowJones.Documentation
@@ -35,9 +36,9 @@ namespace DowJones.Documentation
             if(string.IsNullOrWhiteSpace(value))
                 return value ?? string.Empty;
 
-			var withSpaces = Regex.Replace(value, "([a-z](?=[A-Z0-9])|[A-Z0-9](?=[A-Z0-9][a-z]))", "$1 ").Replace("_", " ");
+			var sentence = value.SpacePascalCase();
             var lowerCasePrepositions =
-                Regex.Replace(withSpaces, " (A(nd|t)|From|Is|O(f|r)|T(he|o))",
+				Regex.Replace(sentence, " (A|A(nd|t)|From|Is|O(f|r)|T(he|o)|With) ",
                               m => string.Format("{0}", m.Value.ToLower()));
             return lowerCasePrepositions;
         }
@@ -97,6 +98,25 @@ namespace DowJones.Documentation
 		public static string WithoutOrdinal(this string source)
 		{
 			return string.IsNullOrEmpty(source) ? source : source.TrimStart("0123456789".ToCharArray());
+		}
+
+		/// <summary>
+		/// Splits a Pascal Case string to words, keeping abbreviations and known keywords together
+		/// </summary>
+		/// <param name="pascalCaseInput">Pascal Cased String</param>
+		/// <returns>Spaced string</returns>
+		/// <example>
+		/// Input: PascalCasedString => Pascal Cased String
+		/// Input: NuGet => NuGet
+		/// Input: ASP.NET => ASP.NET
+		/// </example>
+		public static string SpacePascalCase(this string pascalCaseInput)
+		{
+			var words = Regex.Replace(pascalCaseInput, "([a-z](?=[A-Z0-9])|[A-Z0-9](?=[A-Z0-9][a-z]))", "$1 ").Replace("_", " ");
+			var knownKeyWords = new [] { "Java Script", "Nu Get" };
+
+			return knownKeyWords.Aggregate(words, (current, keyWord) => current.Replace(keyWord, keyWord.Replace(" ", "")));
+
 		}
 	}
 }
