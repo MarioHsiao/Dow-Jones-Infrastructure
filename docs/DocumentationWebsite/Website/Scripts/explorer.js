@@ -1,6 +1,13 @@
 ﻿/*jshint browser:true */
 
 (function ($) {
+    function setupScrollSpy(sel) {
+        var offset = parseInt($(sel).offset().top, 10) + 5;
+        $('body')
+            .attr('data-spy', 'scroll')
+            .scrollspy({ offset: offset, context: sel });
+    };
+
     function setupDataViewer() {
         $('.dataViewer')
             .click(function () {
@@ -147,7 +154,8 @@
         $(".contentWell .child-link").click(switchView);
 
         setupDataViewer();
-
+        
+        setupScrollSpy('.sidebar-nav');
     });
 
 }(window.jQuery));

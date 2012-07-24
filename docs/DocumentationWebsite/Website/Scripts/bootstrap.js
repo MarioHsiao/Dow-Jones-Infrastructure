@@ -1073,6 +1073,7 @@
     this.selector = (this.options.target
       || ((href = $(element).attr('href')) && href.replace(/.*(?=#[^\s]+$)/, '')) //strip for ie7
       || '') + ' .nav li > a'
+    this.context = $(this.options.context || document)
     this.$body = $('body')
     this.refresh()
     this.process()
@@ -1090,7 +1091,7 @@
         this.targets = $([])
 
         $targets = this.$body
-          .find(this.selector)
+          .find(this.selector, this.context)
           .map(function () {
             var $el = $(this)
               , href = $el.data('target') || $el.attr('href')
@@ -1134,7 +1135,7 @@
 
         this.activeTarget = target
 
-        $(this.selector)
+        $(this.selector, this.context)
           .parent('.active')
           .removeClass('active')
 
@@ -1142,7 +1143,7 @@
           + '[data-target="' + target + '"],'
           + this.selector + '[href="' + target + '"]'
 
-        active = $(selector)
+        active = $(selector, this.context)
           .parent('li')
           .addClass('active')
 
