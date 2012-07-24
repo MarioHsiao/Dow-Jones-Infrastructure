@@ -3,31 +3,23 @@
 @{
     ViewBag.Title = "AutoSuggest Demo";
 }
-@*@section styles{
-    <style type="text/css">
-        body { font: 12px/18px "Lucida Grande" , "Lucida Sans Unicode" , Helvetica, Arial, Verdana, sans-serif; }
-        .suggest-table { margin: 10px; }
-        .suggest-table tr td { height: 30px; line-height: 30px; }
-        .AutoSuggestComponent { margin-left: 10px; width: 300px; }
-    </style>
-}
-<table class="suggest-table">
-    <tr>
-        <td>@Model.AutocompletionType
-        </td>
-        <td>@DJ.Render(Model, new { id = Model.ControlId })
-        </td>
-    </tr>
-</table>*@
 
 @section styles{
     <link href="@Url.Content("~/styles/views/AutoSuggest/AutoSuggest.css")" rel="stylesheet" />
 }
-
-<div id="autoSuggestContainer"></div>
-
+<table>
+    <tr>
+        <td>
+            Keyword:
+        </td>
+        <td>
+            <div id="autoSuggestContainer">
+            </div>
+        </td>
+    </tr>
+</table>
 @section scripts{
-<script type="text/javascript">
+    <script type="text/javascript">
     var authTypeToken = "@ConfigurationManager.AppSettings["SuggestAuthTypeToken"]";
     var suggestServiceURl = "@ConfigurationManager.AppSettings["SuggestServiceUrl"]";
 
@@ -45,5 +37,5 @@
             showViewAll: false
         }
     }); 
-</script>
-}  
+    </script>
+}
