@@ -62,8 +62,6 @@ namespace DowJones.Charting.Highcharts
         private const string DefaultFileName = "Chart";
         internal const string DefaultNamespace = "REST_API";
 
-        private HttpContext _context = null;
-
         /// <summary>
         /// PDF metadata Creator string.
         /// </summary>
@@ -86,7 +84,6 @@ namespace DowJones.Charting.Highcharts
                     throw new ArgumentException(
                         string.Format("Invalid type specified: '{0}'.", type));
             }
-            _context = context;
             Svg = GetSvg(cacheKey, GetControlData(context));
         }
 
@@ -114,7 +111,6 @@ namespace DowJones.Charting.Highcharts
         /// <param name="width">The pixel width of the exported chart image.</param>
         /// <param name="svg">An SVG chart document to export (XML text).</param>
         /// <param name="setContentDisposition">Whether to set the content disposition for this object</param>
-        /// <param name="context">Whether to set the httpcontext </param>
         internal Exporter(string type, int width, string svg, string fileName = "Chart", bool setContentDisposition = true)
         {
             string extension;
