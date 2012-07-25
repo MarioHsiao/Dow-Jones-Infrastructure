@@ -11,7 +11,7 @@
 
 There are also several other tools that are very helpful and recommended, but optional:
 
-* Dow Jones FCS and RTS components
+* [Dow Jones Platform Infrastructure](PlatformConnectivity)
 * [Dow Jones Visual Studio Item and Project templates](file://sbkntsfap05.dowjones.net/client_share/DJ%20Infrastructure/Tools)
 * [Visual Studio Productivity Power Tools](http://visualstudiogallery.msdn.microsoft.com/d0d33361-18e2-46c0-8ff2-4adea1e34fef/) 
 * [jetBrains ReSharper](http://www.jetbrains.com/resharper/), an invaluable developer productivity tool 

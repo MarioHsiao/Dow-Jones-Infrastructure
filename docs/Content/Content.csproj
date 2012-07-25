@@ -44,22 +44,27 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <None Include="1GettingStarted\1SetupDevelopmentEnvironment\2ConnectingToTFS.md" />
-    <None Include="1GettingStarted\1SetupDevelopmentEnvironment\3WorkingWithNuGet.md" />
-    <None Include="1GettingStarted\1SetupDevelopmentEnvironment\4DowJonesProjectAndItemTemplates.md" />
-    <None Include="1GettingStarted\1SetupDevelopmentEnvironment\5DowJonesWebsiteTemplate.md" />
-    <None Include="1GettingStarted\2FrameworkOverview\1DowJonesCoreFramework.md" />
-    <None Include="1GettingStarted\2FrameworkOverview\2DowJonesASP.NET_MVCFramework.md" />
-    <None Include="1GettingStarted\2FrameworkOverview\3DowJonesUIComponents.md" />
-    <None Include="1GettingStarted\2FrameworkOverview\Overview.md" />
-    <None Include="1GettingStarted\2UseAComponent\ASP.NET_MVCUsage.md" />
-    <None Include="1GettingStarted\2UseAComponent\JavaScriptUsageSample.md" />
-    <None Include="1GettingStarted\2UseAComponent\JavaScriptUsage.md" />
-    <None Include="1GettingStarted\2UseAComponent\Overview.md" />
-    <None Include="1GettingStarted\3CreateAComponent\1OpenSolution.md" />
+    <None Include="1GettingStarted\1Introduction\1DJ_CoreFramework.md" />
+    <None Include="1GettingStarted\1Introduction\2DJ_ASP.NET_MVC_Framework.md" />
+    <None Include="1GettingStarted\1Introduction\3DJ_UIComponents.md" />
+    <None Include="1GettingStarted\1Introduction\Overview.md" />
+    <None Include="1GettingStarted\2InstallDevelopmentEnvironment\1RequiredComponents.md" />
+    <None Include="1GettingStarted\2InstallDevelopmentEnvironment\2Verification.md" />
+    <None Include="1GettingStarted\3ConfigureDevelopmentEnvironment\1ConnectingToTFS.md" />
+    <None Include="1GettingStarted\3ConfigureDevelopmentEnvironment\2WorkingWithNuGet.md" />
+    <None Include="1GettingStarted\3ConfigureDevelopmentEnvironment\3DowJonesProjectAndItemTemplates.md" />
+    <None Include="1GettingStarted\3ConfigureDevelopmentEnvironment\4DowJonesWebsiteTemplate.md" />
+    <None Include="1GettingStarted\4UseAComponent\ASP.NET_MVCUsage.md" />
+    <None Include="1GettingStarted\4UseAComponent\JavaScriptUsageSample.md" />
+    <None Include="1GettingStarted\4UseAComponent\JavaScriptUsage.md" />
+    <None Include="1GettingStarted\4UseAComponent\Overview.md" />
+    <None Include="1GettingStarted\5CreateAComponent\1OpenSolution.md" />
     <Content Include="Assets\Autosuggest\autosuggest.zip">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="1GettingStarted\6PlatformConnectivity\1Installation.md" />
+    <None Include="1GettingStarted\6PlatformConnectivity\2GatewayConfiguration.md" />
+    <None Include="1GettingStarted\6PlatformConnectivity\Overview.md" />
     <None Include="Components\AutoSuggest\Assets.md" />
     <None Include="Components\Customization\Examples.md" />
     <None Include="Components\Customization\Overview.md" />
@@ -143,15 +148,14 @@
     <Content Include="images\Nuget_UpgradePackages.png" />
     <Content Include="images\VSVersions.png" />
     <Content Include="Web.config" />
-    <None Include="1GettingStarted\3CreateAComponent\2CreateDataObject.md" />
-    <None Include="1GettingStarted\3CreateAComponent\3CreateModel.md" />
-    <None Include="1GettingStarted\3CreateAComponent\4CreateJavaScriptFiles.md" />
-    <None Include="1GettingStarted\3CreateAComponent\5CreateClientTemplates.md" />
-    <None Include="1GettingStarted\3CreateAComponent\6CreateRazorView.md" />
-    <None Include="1GettingStarted\3CreateAComponent\7AddToShowcase.md" />
-    <None Include="1GettingStarted\3CreateAComponent\Overview.md" />
-    <None Include="1GettingStarted\1SetupDevelopmentEnvironment\1DevelopmentEnvironment.md" />
-    <None Include="1GettingStarted\1SetupDevelopmentEnvironment\Overview.md" />
+    <None Include="1GettingStarted\5CreateAComponent\2CreateDataObject.md" />
+    <None Include="1GettingStarted\5CreateAComponent\3CreateModel.md" />
+    <None Include="1GettingStarted\5CreateAComponent\4CreateJavaScriptFiles.md" />
+    <None Include="1GettingStarted\5CreateAComponent\5CreateClientTemplates.md" />
+    <None Include="1GettingStarted\5CreateAComponent\6CreateRazorView.md" />
+    <None Include="1GettingStarted\5CreateAComponent\7AddToShowcase.md" />
+    <None Include="1GettingStarted\5CreateAComponent\Overview.md" />
+    <None Include="1GettingStarted\2InstallDevelopmentEnvironment\Overview.md" />
     <None Include="Guidance\3ContinousIntegration\1AutomatedBuilds.md" />
     <None Include="Guidance\3ContinousIntegration\2BestPractices.md" />
     <None Include="Guidance\3ContinousIntegration\3WhatToDoIf.md" />
