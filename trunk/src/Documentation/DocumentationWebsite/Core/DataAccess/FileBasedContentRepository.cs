@@ -14,7 +14,7 @@ namespace DowJones.Documentation.DataAccess
 	    private const string RelatedTopicsFolderName = "RelatedTopics";
 	    private const string RelatedTopicsMetaFileName = "RelatedTopics.json";
         private static readonly IEnumerable<string> SpecialFiles =
-            new[] { ImageFolderName, AssetsFolderName, RelatedTopicsFolderName, RelatedTopicsMetaFileName };
+            new[] { ImageFolderName, AssetsFolderName, RelatedTopicsFolderName, RelatedTopicsMetaFileName, "bin", "obj", "Properties" };
 
 		private readonly DirectoryInfo _baseDirectory;
 		private readonly ContentSectionComparer _nameComparer;
