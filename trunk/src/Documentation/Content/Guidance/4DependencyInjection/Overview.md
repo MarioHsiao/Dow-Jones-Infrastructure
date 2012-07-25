@@ -1,0 +1,15 @@
+One of the widely-used and accepted principles of good software architecture is the concept of "loose coupling" wherein various parts of the larger system are not directly dependent upon each other and highly-cohesive components focus on fulfilling one need very well.
+The concept of [Inversion of Control](http://en.wikipedia.org/wiki/Inversion_of_control) (IoC) is one way to achieve this loose coupling while avoiding centralized points of knowledge and execution (e.g. a procedural scripting language, implicitly executing one line after the next) and preferring instead a more modular approach in which components - and their correspondinglogic - are better encapsulated. 
+This leads to an ecosystem of decoupled and focused components, any or all of which may be interchanged without affecting the system as a whole. 
+Since the vast majority of effort that is invested in software happens after the initial release this decoupling makes your software much easier to change and a small up-front time investment pays huge dividends as the project grows and matures.
+
+The Dependency Inversion Principle, otherwise known as Dependency Injection (DI), is one of the most popular implementations of the IoC concept in an object-oriented architecture. 
+Under this pattern components act against abstractions instead of concrete implementations and there is a definitive up-down approach and logical separation in which high-level components leverage lower-level components, yet lower-level components are not aware of higher-level components. 
+For example, a web site may request a file stream from the lower-level File API, and the lower-level File API satisfies the request without any knowledge of the higher-level web site API.
+
+Proper usage of Dependency Injection often has one very indicative sign: the absence of explicit service component creation. 
+In the DI pattern, components are generally not responsible for creating their dependencies, instead placing this responsibility on other components in the system. 
+In this way, individual components can remain ignorant of the creation and implementation details of the services they depend upon, focusing instead on leveraging functionality defined by the abstraction. 
+For example, if the `StockQuoteAnalysisService` requires access to data access provided by the `StockQuoteDataService`, instead of creating an instance of the `StockQuoteDataService` itself, the `StockQuoteAnalysisService` would simply state this dependency somewhere in its contract (e.g. a constructor parameter or property). 
+In this way, the logic within `StockQuoteAnalysisService` remains focused on the task of analyzing stock quotes, leaving the creation and management of the `StockQuoteDataService` to higher-level consumers. 
+See <a href="#inaction">Dependency Injection in Action</a> for an example of this interaction using C\#.

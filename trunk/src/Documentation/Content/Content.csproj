@@ -163,6 +163,14 @@
     <None Include="Guidance\3ContinousIntegration\1AutomatedBuilds.md" />
     <None Include="Guidance\3ContinousIntegration\2BestPractices.md" />
     <None Include="Guidance\3ContinousIntegration\3WhatToDoIf.md" />
+    <None Include="Guidance\4DependencyInjection\5DependencyInjectionAndASP.NETMVC.md" />
+    <None Include="Guidance\4DependencyInjection\2DependencyInjectionAndUnitTesting.md" />
+    <None Include="Guidance\4DependencyInjection\6DependencyInjectionAndWindowsCommunicationFoundation.md" />
+    <None Include="Guidance\4DependencyInjection\3DependencyInjectionFrameworks.md" />
+    <None Include="Guidance\4DependencyInjection\7DependencyInjectionInAction.md" />
+    <None Include="Guidance\4DependencyInjection\1DependencyInjectionTechniques.md" />
+    <None Include="Guidance\4DependencyInjection\4ObjectScopeAndLifetimeManagement.md" />
+    <None Include="Guidance\4DependencyInjection\Overview.md" />
     <None Include="Guidance\BestPractices\1General.md" />
     <None Include="Guidance\BestPractices\2VersionControl.md" />
     <None Include="Guidance\BestPractices\3ContinousIntegration.md" />
