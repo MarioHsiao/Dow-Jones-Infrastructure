@@ -55,9 +55,9 @@
     <None Include="1GettingStarted\3ConfigureDevelopmentEnvironment\2WorkingWithNuGet.md" />
     <None Include="1GettingStarted\3ConfigureDevelopmentEnvironment\3DowJonesProjectAndItemTemplates.md" />
     <None Include="1GettingStarted\3ConfigureDevelopmentEnvironment\4DowJonesWebsiteTemplate.md" />
-    <None Include="1GettingStarted\4UseAComponent\ASP.NET_MVCUsage.md" />
-    <None Include="1GettingStarted\4UseAComponent\JavaScriptUsageSample.md" />
-    <None Include="1GettingStarted\4UseAComponent\JavaScriptUsage.md" />
+    <None Include="1GettingStarted\4UseAComponent\1Usage\ASP.NET_MVC.md" />
+    <None Include="1GettingStarted\4UseAComponent\2Example\JavaScript.md" />
+    <None Include="1GettingStarted\4UseAComponent\1Usage\JavaScript.md" />
     <None Include="1GettingStarted\4UseAComponent\Overview.md" />
     <None Include="1GettingStarted\5CreateAComponent\1OpenSolution.md" />
     <Content Include="Assets\Autosuggest\autosuggest.zip">
