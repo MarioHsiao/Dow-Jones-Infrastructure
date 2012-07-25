@@ -1,12 +1,12 @@
-﻿The Example below is based on templating engines provided by `DoT.js`. 
-
-(A (web) templating engine is a software that is designed to process `web templates` and content information to produce output `web documents`.)
-We can use any style templating engine like mustache, jquery-tmpl, handlebars, closure templates to generate the template function.
-(We will see shortly what is the template function)
+﻿@using DowJones.Documentation.Website.Extensions;
+A (web) templating engine is a software that is designed to process `web templates` and content information to produce output `web documents`.
+We can use any style templating engine like `mustache`, `jquery-tmpl`, `handlebars`, `dust`, `closure` templates to generate the template function.
 
 **Steps to create the HTML template for the component**
 
 **1. Create the template that describes the overall structure of the component to be rendered.**
+
+@Html.Note("The Example below is based on templating engines provided by `DoT.js`.")
 
 In this example, We will use the Portal Headline List Component to demonstrate the example. 
 
@@ -30,7 +30,7 @@ In this example, We will use the Portal Headline List Component to demonstrate t
 		<% } %> 
 	</ul>
 	</script>
-The example creates the templates inside the closing and opening `<script>` tag. The script tag is given the template id, 'successTemplate'.
+This example creates the template inside the closing and opening `<script>` tag. The script tag is given the template id, 'successTemplate'.
 The Template functions can interpolate variables, using delimiters <%= … %>, as well as execute arbitrary JavaScript code, with delimiters <% … %>. 
 If you wish to interpolate a value, and have it be HTML-escaped, use <%= … %> or any demiliter.
 
