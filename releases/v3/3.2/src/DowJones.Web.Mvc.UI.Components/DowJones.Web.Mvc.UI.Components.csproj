@@ -152,8 +152,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AutoSuggestComponent.cshtml</DependentUpon>
     </Compile>
-    <Compile Include="AutoSuggest\AutoSuggestComponentExtensions.cs" />
     <Compile Include="AutoSuggest\EmbeddedResources.cs" />
+    <Compile Include="AutoSuggest\AutoSuggestComponentExtensions.cs" />
     <Compile Include="CalendarEventList\CalendarEventListComponent.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -794,12 +794,16 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="AutoSuggest\ClientTemplates\Success.htm" />
-    <EmbeddedResource Include="DiscoveryGraph\ClientTemplates\Layout.htm" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="RelatedConcepts\RelatedConceptsComponent.js" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="VideoPlayer\ClientTemplates\Success.htm" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DiscoveryGraph\ClientTemplates\Layout.htm" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -28,13 +28,13 @@ DJ.UI.DiscoveryGraph = DJ.UI.Component.extend({
         
         this.discoveryGraphConfig = this.getDiscoveryGraphConfig();
         
-        if (this.data && this.data.discovery)
+        if (this.data)
             this.bindOnSuccess(this.data);
     },
     
     _initializeElements: function (ctx) {             
         //Bind the layout template
-     $(this.$element).html(this.templates.layout);
+        $(this.$element).html(this.templates.layout);
         this.$viewWrapper = ctx.find('.dj_view_wrapper');
         this.$scrollTarget = ctx.find('.dj_discoveryGraph_item_wrap');    
     },
@@ -44,16 +44,16 @@ DJ.UI.DiscoveryGraph = DJ.UI.Component.extend({
 
     // Bind the data to the component on Success
     bindOnSuccess: function (data) {
-        if (!data || !data.discovery) {
+        if (!data) {
             $dj.warn("bindOnSuccess:: called with empty data object");
             return;
         }
 
-        var discoveryGraphMarkup = this.templates.success({ discovery: data.discovery });
+        var discoveryGraphMarkup = this.templates.success(data);
         this.$scrollTarget.html(discoveryGraphMarkup);
 
         // bind events and perform other wiring up
-        this._initializeDiscoveryGraph(data.discovery);
+        this._initializeDiscoveryGraph(data);
 
         // scrolling is supported in both horz/vert layouts
         if (this.options.scrollable) {

@@ -21,7 +21,12 @@
     <ol id="validation-steps"></ol>
 
     <script type="text/javascript">
-        if (DJ && DJ.config) { DJ.config.debug = true; }
+        var DJ = window['DJ'];
+        if (!(DJ && DJ.config)) {
+            DJ = {};
+        }
+
+        DJ.config.debug = true;
 
         var TIMEOUT = 5000;
         var container, tests;
@@ -92,8 +97,14 @@
                 });
             });
 
-            validate("Can create PortalHeadlineList", function (callback) {
-                DJ.$dj.require(['$', '$dj', 'DowJones.Web.Mvc.UI.Components.PortalHeadlineList.PortalHeadlineList'], function ($, $dj) {
+            validate("Can create PortalHeadlineList via DJ.add()", function (callback) {
+                $('<div id="phlContainer" />').hide().appendTo($('body'));
+                DJ.add('PortalHeadlineList', { container: 'phlContainer' })
+                  .then(callback);
+            });
+
+            validate("Can create PortalHeadlineList via plugin", function (callback) {
+                DJ.$dj.require(['$', '$dj', 'DJ.UI.PortalHeadlineList'], function ($, $dj) {
                     callback($('<div>').dj_PortalHeadlineList({}));
                 });
             });

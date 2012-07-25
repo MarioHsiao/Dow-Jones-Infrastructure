@@ -52,27 +52,27 @@
     <Reference Include="CordaNetEmbedder">
       <HintPath>packages\Corda.Embedder.7.0.0\lib\CordaNetEmbedder.dll</HintPath>
     </Reference>
-    <Reference Include="DowJones.Charting, Version=3.2.16.36678, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="DowJones.Charting, Version=3.2.13.42526, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>packages\DowJones.Charting.3.2.16\lib\DowJones.Charting.dll</HintPath>
+      <HintPath>packages\DowJones.Charting.3.2.13\lib\DowJones.Charting.dll</HintPath>
     </Reference>
-    <Reference Include="DowJones.Infrastructure, Version=3.2.16.36678, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="DowJones.Infrastructure, Version=3.2.13.42526, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>packages\DowJones.Infrastructure.3.2.16\lib\DowJones.Infrastructure.dll</HintPath>
+      <HintPath>packages\DowJones.Infrastructure.3.2.13\lib\DowJones.Infrastructure.dll</HintPath>
     </Reference>
     <Reference Include="DowJones.Parallel">
       <HintPath>packages\DowJones.Parallel.1.0.0\lib\DowJones.Parallel.dll</HintPath>
     </Reference>
-    <Reference Include="DowJones.Web.Mvc, Version=3.2.16.36678, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="DowJones.Web.Mvc, Version=3.2.13.42526, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>packages\DowJones.Web.Mvc.3.2.16\lib\DowJones.Web.Mvc.dll</HintPath>
+      <HintPath>packages\DowJones.Web.Mvc.3.2.13\lib\DowJones.Web.Mvc.dll</HintPath>
     </Reference>
-    <Reference Include="DowJones.Web.Mvc.UI.Components, Version=3.2.16.36678, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="DowJones.Web.Mvc.UI.Components, Version=3.2.13.42526, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>packages\DowJones.Web.Mvc.UI.Components.3.2.16\lib\DowJones.Web.Mvc.UI.Components.dll</HintPath>
+      <HintPath>packages\DowJones.Web.Mvc.UI.Components.3.2.13\lib\DowJones.Web.Mvc.UI.Components.dll</HintPath>
     </Reference>
     <Reference Include="DowJones.Web.Mvc.UI.Components.Models, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\DowJones.Web.Mvc.UI.Components.Models.3.2.16\lib\DowJones.Web.Mvc.UI.Components.Models.dll</HintPath>
+      <HintPath>packages\DowJones.Web.Mvc.UI.Components.Models.3.2.13\lib\DowJones.Web.Mvc.UI.Components.Models.dll</HintPath>
     </Reference>
     <Reference Include="factiva.gateway.messages">
       <HintPath>packages\Factiva.Gateway.7.5.0.90\lib\factiva.gateway.messages.dll</HintPath>
@@ -88,7 +88,7 @@
     </Reference>
     <Reference Include="Interop.FCMLib">
       <HintPath>packages\Factiva.Gateway.7.5.0.90\lib\Interop.FCMLib.dll</HintPath>
-      <EmbedInteropTypes>False</EmbedInteropTypes>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="itextsharp">
       <HintPath>packages\iTextSharp.5.2.0\lib\itextsharp.dll</HintPath>
@@ -923,6 +923,7 @@
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="GatewayResources\config\UserEventRecorderService.config" />
   </ItemGroup>

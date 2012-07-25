@@ -5,7 +5,10 @@
 
         public static ViewComponentFactory AutoSuggest(this ViewComponentFactory factory)
         {
-            factory.ScriptRegistry().Include(ComponentSettings.Default.AutoSuggestHandlerServiceUrl);
+            factory.ScriptRegistry().Include(
+                ComponentSettings.Default.AutoSuggestHandlerServiceUrl, 
+                ClientResourceDependencyLevel.Component);
+
             return factory;
         }
 

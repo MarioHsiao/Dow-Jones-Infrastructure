@@ -2,7 +2,7 @@
 var model = self,
     index = 0;
 
-_.each(model.discovery, function(val, key) { %>
+_.each(model, function(val, key) { %>
 <div class="dj_discoveryGraph-item-<%= index++ %> page-item" charts="1">
     <h3><%= val.title %></h3>
     <div class="dj_discovery-graph" data-items="5">

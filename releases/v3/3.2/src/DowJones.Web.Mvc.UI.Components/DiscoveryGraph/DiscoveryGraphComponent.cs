@@ -24,7 +24,7 @@ namespace DowJones.Web.Mvc.UI.Components.DiscoveryGraph
     using System.Web.UI;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 07/20/2012 06:22 PM
+    // Last Generated Timestamp: 07/20/2012 06:39 PM
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.DiscoveryGraph.DiscoveryGraph.js", DependsOn=new string[] {
             "highcharts",
             "service-proxy",

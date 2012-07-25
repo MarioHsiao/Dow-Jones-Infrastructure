@@ -8,6 +8,7 @@ namespace DowJones.Web.Article.Website
     {
         public void Execute()
         {
+            RouteTable.Routes.IgnoreRoute("common.js");
             RouteTable.Routes.MapRoute(
                 "Default",
                 "{controller}/{action}/{id}",

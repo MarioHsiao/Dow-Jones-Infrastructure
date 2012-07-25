@@ -23,7 +23,7 @@ namespace DowJones.Web.Mvc.UI.Components.AutoSuggest
     using System.Web.UI;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 07/20/2012 02:58 PM
+    // Last Generated Timestamp: 07/20/2012 02:42 PM
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.AutoSuggest.AutoSuggest.js", DependsOn=new string[] {
             "autocomplete-plugin",
             "jquery-jsonp-plugin"}, ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.AutoSuggest.AutoSuggestComponent))]

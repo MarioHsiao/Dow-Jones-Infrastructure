@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Newtonsoft.Json;
 
 namespace DowJones.Web.Mvc.UI.Components.EntityList
@@ -7,6 +8,11 @@ namespace DowJones.Web.Mvc.UI.Components.EntityList
     {
         [JsonProperty("groups")]
         public IEnumerable<EntityGroup> Groups { get; set; }
+
+        public EntityListModel()
+        {
+            Groups = Enumerable.Empty<EntityGroup>();
+        }
     }
 
     public class EntityGroup
@@ -16,6 +22,11 @@ namespace DowJones.Web.Mvc.UI.Components.EntityList
 
         [JsonProperty("entities")]
         public IEnumerable<Entity> Entities { get; set; }
+
+        public EntityGroup()
+        {
+            Entities = Enumerable.Empty<Entity>();
+        }
     }
 
     public class Entity
