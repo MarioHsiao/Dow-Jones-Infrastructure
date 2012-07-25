@@ -88,7 +88,7 @@
     </Reference>
     <Reference Include="Interop.FCMLib">
       <HintPath>packages\Factiva.Gateway.7.5.0.90\lib\Interop.FCMLib.dll</HintPath>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
     <Reference Include="itextsharp">
       <HintPath>packages\iTextSharp.5.2.0\lib\itextsharp.dll</HintPath>
