@@ -426,7 +426,7 @@
         </member>
         <member name="M:DowJones.Web.Mvc.UI.Components.AuthorList.AuthorListModel.#ctor">
             <summary>
-            Create an instanse of AuthorList class.
+            Create an instanse of AuthorListModel class.
             </summary>
         </member>
         <member name="P:DowJones.Web.Mvc.UI.Components.AuthorList.AuthorListModel.Authors">
@@ -460,71 +460,6 @@
             Author's sortable columns enumerator.
             </summary>
         </member>
-        <member name="F:DowJones.Web.Mvc.UI.Components.AuthorList.AuthorListSortColumns.ContactName">
-            <summary>
-            Sort by author name;
-            </summary>
-        </member>
-        <member name="F:DowJones.Web.Mvc.UI.Components.AuthorList.AuthorListSortColumns.OutletName">
-            <summary>
-            Sort by outlet name;
-            </summary>
-        </member>
-        <member name="F:DowJones.Web.Mvc.UI.Components.AuthorList.AuthorListSortColumns.OutletType">
-            <summary>
-            Sort by outlet type;
-            </summary>
-        </member>
-        <member name="F:DowJones.Web.Mvc.UI.Components.AuthorList.AuthorListSortColumns.OutletFrequency">
-            <summary>
-            Sort by outlet frequency;
-            </summary>
-        </member>
-        <member name="F:DowJones.Web.Mvc.UI.Components.AuthorList.AuthorListSortColumns.Circulation">
-            <summary>
-            Sort by circulation;
-            </summary>
-        </member>
-        <member name="F:DowJones.Web.Mvc.UI.Components.AuthorList.AuthorListSortColumns.Country">
-            <summary>
-            Sort by author's country;
-            </summary>
-        </member>
-        <member name="F:DowJones.Web.Mvc.UI.Components.AuthorList.AuthorListSortColumns.JobTitle">
-            <summary>
-            Sort by author's job title;
-            </summary>
-        </member>
-        <member name="F:DowJones.Web.Mvc.UI.Components.AuthorList.AuthorListSortColumns.EmploymentType">
-            <summary>
-            Sort by author's employment type;
-            </summary>
-        </member>
-        <member name="F:DowJones.Web.Mvc.UI.Components.AuthorList.AuthorListSortColumns.OutletCountry">
-            <summary>
-            Sort by outlet country;
-            </summary>
-        </member>
-        <member name="F:DowJones.Web.Mvc.UI.Components.AuthorList.AuthorListSortColumns.OutletState">
-            <summary>
-            Sort by outlet state;
-            </summary>
-        </member>
-        <member name="F:DowJones.Web.Mvc.UI.Components.AuthorList.AuthorListSortColumns.OutletCity">
-            <summary>
-            Sort by outlet city;
-            </summary>
-        </member>
-        <member name="F:DowJones.Web.Mvc.UI.Components.AuthorList.AuthorListSortColumns.State">
-            <summary>
-            Sort by author's state;
-            </summary>
-        </member>
-        <member name="F:DowJones.Web.Mvc.UI.Components.AuthorList.AuthorListSortColumns.City">
-            <summary>
-            Sort by author's city;
-            </summary>
-        </member>
         <member name="T:DowJones.Web.Mvc.UI.Components.AuthorList.OrderDirections">
             <summary>
             Sort order enumerator.
@@ -543,31 +478,6 @@
         <member name="T:DowJones.Web.Mvc.UI.Components.AuthorList.AuthorModel">
             <summary>
             Class representing an model for author list.
-            </summary>
-        </member>
-        <member name="P:DowJones.Web.Mvc.UI.Components.AuthorList.AuthorModel.AuthorId">
-            <summary>
-            Gets and sets author ID.
-            </summary>
-        </member>
-        <member name="P:DowJones.Web.Mvc.UI.Components.AuthorList.AuthorModel.AuthorNNID">
-            <summary>
-            Gets and sets author NNID.
-            </summary>
-        </member>
-        <member name="P:DowJones.Web.Mvc.UI.Components.AuthorList.AuthorModel.AuthorName">
-            <summary>
-            Gets and sets author name.
-            </summary>
-        </member>
-        <member name="P:DowJones.Web.Mvc.UI.Components.AuthorList.AuthorModel.ContactMethod">
-            <summary>
-            Gets and sets author's prefered contact method.
-            </summary>
-        </member>
-        <member name="P:DowJones.Web.Mvc.UI.Components.AuthorList.AuthorModel.Outlets">
-            <summary>
-            Gets and sets collection of outlets.
             </summary>
         </member>
         <member name="P:DowJones.Web.Mvc.UI.Components.AuthorList.AuthorModel.HasOutlets">
@@ -589,193 +499,6 @@
             <summary>
             Class represents an outlet.
             Used in DowJones.Web.Mvc.UI.Components.AuthorList.AuthorModel class.
-            </summary>
-        </member>
-        <member name="M:DowJones.Web.Mvc.UI.Components.AuthorList.OutletProperties.#ctor">
-            <summary>
-            Create an instanse of OutletProperties class.
-            </summary>
-        </member>
-        <member name="M:DowJones.Web.Mvc.UI.Components.AuthorList.OutletProperties.#ctor(System.Int32,System.String,System.String,System.String,System.String,System.String,DowJones.Web.Mvc.UI.Components.OutletList.OutletType,DowJones.Web.Mvc.UI.Components.OutletList.Frequency,System.Int32,System.String)">
-            <summary>
-            Create an instanse of ContactMethodProperties class and populate properties.
-            </summary>
-            <param name="outletId">Outlet ID.</param>
-            <param name="outletName">Outlet name.</param>
-            <param name="circulation">Outlet circulation.</param>
-        </member>
-        <member name="P:DowJones.Web.Mvc.UI.Components.AuthorList.OutletProperties.OutletId">
-            <summary>
-            Gets and sets outlet ID.
-            </summary>
-        </member>
-        <member name="P:DowJones.Web.Mvc.UI.Components.AuthorList.OutletProperties.OutletName">
-            <summary>
-            Gets and sets outlet name.
-            </summary>
-        </member>
-        <member name="P:DowJones.Web.Mvc.UI.Components.AuthorList.OutletProperties.OutletOriginCountry">
-            <summary>
-            Gets and sets outlet origin country.
-            </summary>
-        </member>
-        <member name="P:DowJones.Web.Mvc.UI.Components.AuthorList.OutletProperties.OutletCountry">
-            <summary>
-            Gets and sets outlet country.
-            </summary>
-        </member>
-        <member name="P:DowJones.Web.Mvc.UI.Components.AuthorList.OutletProperties.OutletState">
-            <summary>
-            Gets and sets outlet state.
-            </summary>
-        </member>
-        <member name="P:DowJones.Web.Mvc.UI.Components.AuthorList.OutletProperties.OutletCity">
-            <summary>
-            Gets and sets outlet city.
-            </summary>
-        </member>
-        <member name="P:DowJones.Web.Mvc.UI.Components.AuthorList.OutletProperties.Type">
-            <summary>
-            Gets and sets outlet type.
-            </summary>
-        </member>
-        <member name="P:DowJones.Web.Mvc.UI.Components.AuthorList.OutletProperties.Circulation">
-            <summary>
-            Gets and sets outlet circulation.
-            </summary>
-        </member>
-        <member name="P:DowJones.Web.Mvc.UI.Components.AuthorList.OutletProperties.EmploymentType">
-            <summary>
-            Gets and sets employment type.
-            </summary>
-        </member>
-        <member name="T:DowJones.Web.Mvc.UI.Components.AuthorList.ContactMethodProperties">
-            <summary>
-            Class represents author's contact method.
-            Used in DowJones.Web.Mvc.UI.Components.AuthorList.AuthorModel class.
-            </summary>
-        </member>
-        <member name="M:DowJones.Web.Mvc.UI.Components.AuthorList.ContactMethodProperties.#ctor">
-            <summary>
-            Create an instanse of ContactMethodProperties class.
-            </summary>
-        </member>
-        <member name="M:DowJones.Web.Mvc.UI.Components.AuthorList.ContactMethodProperties.#ctor(DowJones.Web.Mvc.UI.Components.AuthorList.ContactMethodTypes,System.String)">
-            <summary>
-            Create an instanse of ContactMethodProperties class and populate properties.
-            </summary>
-            <param name="type">Contact method type.</param>
-            <param name="contact">Contact.</param>
-        </member>
-        <member name="P:DowJones.Web.Mvc.UI.Components.AuthorList.ContactMethodProperties.Type">
-            <summary>
-            Gets and sets contact method type (eg. via e-mail, telephone...).
-            </summary>
-        </member>
-        <member name="P:DowJones.Web.Mvc.UI.Components.AuthorList.ContactMethodProperties.Contact">
-            <summary>
-            Gets and sets contact (e.g. e-mail address, telephone number).
-            </summary>
-        </member>
-        <member name="T:DowJones.Web.Mvc.UI.Components.AuthorList.ContactMethodTypes">
-            <summary>
-            Author's contact methods enumerator.
-            Used in DowJones.Web.Mvc.UI.Components.AuthorList.ContactMethodProperties class.
-            </summary>
-        </member>
-        <member name="F:DowJones.Web.Mvc.UI.Components.AuthorList.ContactMethodTypes.None">
-            <summary>
-            No contact method
-            </summary>
-        </member>
-        <member name="F:DowJones.Web.Mvc.UI.Components.AuthorList.ContactMethodTypes.Email">
-            <summary>
-            Email, Personal
-            </summary>
-        </member>
-        <member name="F:DowJones.Web.Mvc.UI.Components.AuthorList.ContactMethodTypes.EmailWork">
-            <summary>
-            Email, Work
-            </summary>
-        </member>
-        <member name="F:DowJones.Web.Mvc.UI.Components.AuthorList.ContactMethodTypes.EmailOutlet">
-            <summary>
-            Email, Company General
-            </summary>
-        </member>
-        <member name="F:DowJones.Web.Mvc.UI.Components.AuthorList.ContactMethodTypes.Phone">
-            <summary>
-            Telephone, Home
-            </summary>
-        </member>
-        <member name="F:DowJones.Web.Mvc.UI.Components.AuthorList.ContactMethodTypes.PhoneWork">
-            <summary>
-            Telephone, Work, Direct Dial
-            </summary>
-        </member>
-        <member name="F:DowJones.Web.Mvc.UI.Components.AuthorList.ContactMethodTypes.PhoneOutlet">
-            <summary>
-            Telephone, Office, Department
-            </summary>
-        </member>
-        <member name="F:DowJones.Web.Mvc.UI.Components.AuthorList.ContactMethodTypes.PhoneOutlet2">
-            <summary>
-            Telephone, Office, General
-            </summary>
-        </member>
-        <member name="F:DowJones.Web.Mvc.UI.Components.AuthorList.ContactMethodTypes.Mobile">
-            <summary>
-            Telephone, Mobile, Personal
-            </summary>
-        </member>
-        <member name="F:DowJones.Web.Mvc.UI.Components.AuthorList.ContactMethodTypes.MobileOutlet">
-            <summary>
-            Telephone, Mobile, Corporate
-            </summary>
-        </member>
-        <member name="F:DowJones.Web.Mvc.UI.Components.AuthorList.ContactMethodTypes.Fax">
-            <summary>
-            Fax, Home
-            </summary>
-        </member>
-        <member name="F:DowJones.Web.Mvc.UI.Components.AuthorList.ContactMethodTypes.FaxWork">
-            <summary>
-            Fax, Corporate, Direct
-            </summary>
-        </member>
-        <member name="F:DowJones.Web.Mvc.UI.Components.AuthorList.ContactMethodTypes.FaxOutlet">
-            <summary>
-            Fax, Corporate, General
-            </summary>
-        </member>
-        <member name="F:DowJones.Web.Mvc.UI.Components.AuthorList.ContactMethodTypes.IMAOL">
-            <summary>
-            IM - AOL
-            </summary>
-        </member>
-        <member name="F:DowJones.Web.Mvc.UI.Components.AuthorList.ContactMethodTypes.IMMSN">
-            <summary>
-            IM - MSN
-            </summary>
-        </member>
-        <member name="F:DowJones.Web.Mvc.UI.Components.AuthorList.ContactMethodTypes.IMReuters">
-            <summary>
-            IM - Reuters
-            </summary>
-        </member>
-        <member name="F:DowJones.Web.Mvc.UI.Components.AuthorList.ContactMethodTypes.IMYahoo">
-            <summary>
-            IM - Yahoo
-            </summary>
-        </member>
-        <member name="F:DowJones.Web.Mvc.UI.Components.AuthorList.ContactMethodTypes.IMVoipSkype">
-            <summary>
-            IM/VoIP - Skype
-            </summary>
-        </member>
-        <member name="F:DowJones.Web.Mvc.UI.Components.AuthorList.ContactMethodTypes.IMVoipGoogleTalk">
-            <summary>
-            IM/VoIP - Google Talk
             </summary>
         </member>
         <member name="M:DowJones.Web.Mvc.UI.Components.AutoSuggest.AutoSuggestModel.#ctor">
@@ -943,35 +666,67 @@
             Gets or sets the author list.
             </summary>
         </member>
+        <member name="T:DowJones.Web.Mvc.UI.Components.DateHistogram.DateHistogramModel">
+            <summary>
+            The date histogram model.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.DateHistogram.DateHistogramModel.BarColor">
+            <summary>
+              Gets or sets BarColor.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.DateHistogram.DateHistogramModel.Height">
+            <summary>
+            Gets or sets the height.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.DateHistogram.DateHistogramModel.Histogram">
+            <summary>
+              Gets or sets Histogram.
+            </summary>
+        </member>
+        <member name="T:DowJones.Web.Mvc.UI.Components.DiscoveryGraph.DiscoveryGraphModel">
+            <summary>
+            Model for DiscoveryGraph Component
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.DiscoveryGraph.DiscoveryGraphModel.Sortable">
+            <summary>
+            Whether the items can be dragged and re-arranged. 
+            </summary>
+            <remarks>
+            Applicable only for vertical orientation.
+            </remarks>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.DiscoveryGraph.DiscoveryGraphModel.Scrollable">
+            <summary>
+            Specifies whether the component can be scrolled or not
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.DiscoveryGraph.DiscoveryGraphModel.Orientation">
+            <summary>
+            Orientation of the graph: horizontal (default) or vertical
+            </summary>
+        </member>
+        <member name="T:DowJones.Web.Mvc.UI.Components.DiscoveryGraph.Orientation">
+            <summary>
+            Specifies layout orientation
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.DiscoveryGraph.Orientation.Horizontal">
+            <summary>
+            Horizontal layout
+            </summary>
+        </member>
+        <member name="F:DowJones.Web.Mvc.UI.Components.DiscoveryGraph.Orientation.Vertical">
+            <summary>
+            Vertical layout
+            </summary>
+        </member>
         <member name="M:DowJones.Web.Mvc.UI.Components.OutletList.OutletListModel.#ctor">
             <summary>
-            Create an instanse of OutletList class.
-            </summary>
-        </member>
-        <member name="P:DowJones.Web.Mvc.UI.Components.OutletList.OutletListModel.Outlets">
-            <summary>
-            Gets and sets outlet list.
-            </summary>
-        </member>
-        <member name="P:DowJones.Web.Mvc.UI.Components.OutletList.OutletListModel.FirstRecordIndex">
-            <summary>
-            Gets and sets first author index.
-            Used in table to show a serial number.
-            </summary>
-        </member>
-        <member name="P:DowJones.Web.Mvc.UI.Components.OutletList.OutletListModel.Tokens">
-            <summary>
-            Gets and sets tokens to be used in OutletList component.
-            </summary>
-        </member>
-        <member name="P:DowJones.Web.Mvc.UI.Components.OutletList.OutletListModel.SortBy">
-            <summary>
-            Gets and sets column by which the author list will be sorted.
-            </summary>
-        </member>
-        <member name="P:DowJones.Web.Mvc.UI.Components.OutletList.OutletListModel.SortOrder">
-            <summary>
-            Gets and sets order direction for sorting the outlet list.
+            Create an instanse of OutletListModel class.
             </summary>
         </member>
         <member name="T:DowJones.Web.Mvc.UI.Components.OutletList.OutletListSortColumns">
@@ -979,364 +734,9 @@
             Outlet's sortable columns enumerator.
             </summary>
         </member>
-        <member name="F:DowJones.Web.Mvc.UI.Components.OutletList.OutletListSortColumns.OutletName">
-            <summary>
-            Sort by outlet name;
-            </summary>
-        </member>
-        <member name="F:DowJones.Web.Mvc.UI.Components.OutletList.OutletListSortColumns.Circulation">
-            <summary>
-            Sort by circulation;
-            </summary>
-        </member>
-        <member name="F:DowJones.Web.Mvc.UI.Components.OutletList.OutletListSortColumns.Country">
-            <summary>
-            Sort by country;
-            </summary>
-        </member>
-        <member name="F:DowJones.Web.Mvc.UI.Components.OutletList.OutletListSortColumns.MediaFormat">
-            <summary>
-            Sort by media format;
-            </summary>
-        </member>
-        <member name="F:DowJones.Web.Mvc.UI.Components.OutletList.OutletListSortColumns.OutletType">
-            <summary>
-            Sort by outlet type;
-            </summary>
-        </member>
-        <member name="F:DowJones.Web.Mvc.UI.Components.OutletList.OutletListSortColumns.DateModified">
-            <summary>
-            Sort by last modified date;
-            </summary>
-        </member>
-        <member name="F:DowJones.Web.Mvc.UI.Components.OutletList.OutletListSortColumns.Language">
-            <summary>
-            Sort by language;
-            </summary>
-        </member>
-        <member name="F:DowJones.Web.Mvc.UI.Components.OutletList.OutletListSortColumns.Frequency">
-            <summary>
-            Sort by frequency;
-            </summary>
-        </member>
-        <member name="F:DowJones.Web.Mvc.UI.Components.OutletList.OutletListSortColumns.Coverage">
-            <summary>
-            Sort by coverage;
-            </summary>
-        </member>
-        <member name="F:DowJones.Web.Mvc.UI.Components.OutletList.OutletListSortColumns.Publisher">
-            <summary>
-            Sort by publisher;
-            </summary>
-        </member>
-        <member name="F:DowJones.Web.Mvc.UI.Components.OutletList.OutletListSortColumns.Regions">
-            <summary>
-            Sort by regions;
-            </summary>
-        </member>
-        <member name="F:DowJones.Web.Mvc.UI.Components.OutletList.OutletListSortColumns.Subjects">
-            <summary>
-            Sort by subjects;
-            </summary>
-        </member>
-        <member name="F:DowJones.Web.Mvc.UI.Components.OutletList.OutletListSortColumns.Industries">
-            <summary>
-            Sort by industries;
-            </summary>
-        </member>
-        <member name="F:DowJones.Web.Mvc.UI.Components.OutletList.OutletListSortColumns.UserAddedInfo">
-            <summary>
-            Sort by user added info;
-            </summary>
-        </member>
-        <member name="F:DowJones.Web.Mvc.UI.Components.OutletList.OutletListSortColumns.State">
-            <summary>
-            Sort by state;
-            </summary>
-        </member>
-        <member name="F:DowJones.Web.Mvc.UI.Components.OutletList.OutletListSortColumns.City">
-            <summary>
-            Sort by city;
-            </summary>
-        </member>
         <member name="T:DowJones.Web.Mvc.UI.Components.OutletList.OutletModel">
             <summary>
             Class representing a model for outlet list.
-            </summary>
-        </member>
-        <member name="P:DowJones.Web.Mvc.UI.Components.OutletList.OutletModel.OutletId">
-            <summary>
-            Gets and sets outlet ID.
-            </summary>
-        </member>
-        <member name="P:DowJones.Web.Mvc.UI.Components.OutletList.OutletModel.OutletName">
-            <summary>
-            Gets and sets outlet name.
-            </summary>
-        </member>
-        <member name="P:DowJones.Web.Mvc.UI.Components.OutletList.OutletModel.Circulation">
-            <summary>
-            Gets and sets outlet circulation.
-            </summary>
-        </member>
-        <member name="P:DowJones.Web.Mvc.UI.Components.OutletList.OutletModel.OriginCountry">
-            <summary>
-            Gets and sets outlet country.
-            </summary>
-        </member>
-        <member name="P:DowJones.Web.Mvc.UI.Components.OutletList.OutletModel.Country">
-            <summary>
-            Gets and sets outlet country.
-            </summary>
-        </member>
-        <member name="P:DowJones.Web.Mvc.UI.Components.OutletList.OutletModel.State">
-            <summary>
-            Gets and sets outlet state.
-            </summary>
-        </member>
-        <member name="P:DowJones.Web.Mvc.UI.Components.OutletList.OutletModel.City">
-            <summary>
-            Gets and sets outlet city.
-            </summary>
-        </member>
-        <member name="P:DowJones.Web.Mvc.UI.Components.OutletList.OutletModel.DateModified">
-            <summary>
-            Gets and sets when last an outlet has been modified
-            </summary>
-        </member>
-        <member name="P:DowJones.Web.Mvc.UI.Components.OutletList.OutletModel.OutletType">
-            <summary>
-            Gets and sets outlet type
-            </summary>
-        </member>
-        <member name="P:DowJones.Web.Mvc.UI.Components.OutletList.OutletModel.MediaFormat">
-            <summary>
-            Gets and sets media format
-            </summary>
-        </member>
-        <member name="P:DowJones.Web.Mvc.UI.Components.OutletList.OutletModel.Languages">
-            <summary>
-            Gets and sets languages
-            </summary>
-        </member>
-        <member name="P:DowJones.Web.Mvc.UI.Components.OutletList.OutletModel.Frequency">
-            <summary>
-            Gets and sets Frequency
-            </summary>
-        </member>
-        <member name="P:DowJones.Web.Mvc.UI.Components.OutletList.OutletModel.Coverage">
-            <summary>
-            Gets and sets Coverage
-            </summary>
-        </member>
-        <member name="P:DowJones.Web.Mvc.UI.Components.OutletList.OutletModel.Publisher">
-            <summary>
-            Gets and sets Publisher
-            </summary>
-        </member>
-        <member name="P:DowJones.Web.Mvc.UI.Components.OutletList.OutletModel.RegionEditorialFocus">
-            <summary>
-            Gets or sets the region editorial focus.
-            </summary>
-            <value>The region editorial focus.</value>
-        </member>
-        <member name="P:DowJones.Web.Mvc.UI.Components.OutletList.OutletModel.IndustryEditorialFocus">
-            <summary>
-            Gets or sets the industry editorial focus.
-            </summary>
-            <value>The industry editorial focus.</value>
-        </member>
-        <member name="P:DowJones.Web.Mvc.UI.Components.OutletList.OutletModel.SubjectEditorialFocus">
-            <summary>
-            Gets or sets the subject editorial focus.
-            </summary>
-            <value>The subject editorial focus.</value>
-        </member>
-        <member name="P:DowJones.Web.Mvc.UI.Components.OutletList.OutletModel.UserAddedInformation">
-            <summary>
-            Gets or sets the user added info.
-            </summary>
-            <value>The subject editorial focus.</value>
-        </member>
-        <member name="P:DowJones.Web.Mvc.UI.Components.OutletList.ProprietaryInfo.City">
-            <summary>
-            Gets or sets the city.
-            </summary>
-            <value>The city.</value>
-        </member>
-        <member name="P:DowJones.Web.Mvc.UI.Components.OutletList.ProprietaryInfo.Country">
-            <summary>
-            Gets or sets the country.
-            </summary>
-            <value>The country.</value>
-        </member>
-        <member name="P:DowJones.Web.Mvc.UI.Components.OutletList.ProprietaryInfo.Phone">
-            <summary>
-            Gets or sets the phone.
-            </summary>
-            <value>The phone.</value>
-        </member>
-        <member name="P:DowJones.Web.Mvc.UI.Components.OutletList.ProprietaryInfo.Mobile">
-            <summary>
-            Gets or sets the mobile.
-            </summary>
-            <value>The mobile.</value>
-        </member>
-        <member name="P:DowJones.Web.Mvc.UI.Components.OutletList.ProprietaryInfo.Fax">
-            <summary>
-            Gets or sets the fax.
-            </summary>
-            <value>The fax.</value>
-        </member>
-        <member name="P:DowJones.Web.Mvc.UI.Components.OutletList.ProprietaryInfo.Email1">
-            <summary>
-            Gets or sets the email1.
-            </summary>
-            <value>The email1.</value>
-        </member>
-        <member name="P:DowJones.Web.Mvc.UI.Components.OutletList.ProprietaryInfo.Email2">
-            <summary>
-            Gets or sets the email2.
-            </summary>
-            <value>The email2.</value>
-        </member>
-        <member name="P:DowJones.Web.Mvc.UI.Components.OutletList.ProprietaryInfo.Email3">
-            <summary>
-            Gets or sets the email3.
-            </summary>
-            <value>The email3.</value>
-        </member>
-        <member name="T:DowJones.Web.Mvc.UI.Components.OutletList.Subject">
-            Holds subjects
-        </member>
-        <member name="T:DowJones.Web.Mvc.UI.Components.OutletList.Beat">
-            <summary>
-            Represents region, industry or subject
-            </summary>
-        </member>
-        <member name="P:DowJones.Web.Mvc.UI.Components.OutletList.Beat.Id">
-            <summary>
-            Gets or sets the id.
-            </summary>
-            <value>The id.</value>
-        </member>
-        <member name="P:DowJones.Web.Mvc.UI.Components.OutletList.Beat.Name">
-            <summary>
-            Gets or sets the name.
-            </summary>
-            <value>The name.</value>
-        </member>
-        <member name="P:DowJones.Web.Mvc.UI.Components.OutletList.Beat.ParentId">
-            <summary>
-            Gets or sets the parent beat id.
-            </summary>
-            <value>The parent id.</value>
-        </member>
-        <member name="T:DowJones.Web.Mvc.UI.Components.OutletList.Industry">
-            Holds idustries
-        </member>
-        <member name="T:DowJones.Web.Mvc.UI.Components.OutletList.Region">
-            <summary>
-            Holds regions
-            </summary>
-        </member>
-        <member name="T:DowJones.Web.Mvc.UI.Components.OutletList.Frequency">
-            <summary>
-            Represents how often the outlet is published
-            </summary>
-        </member>
-        <member name="P:DowJones.Web.Mvc.UI.Components.OutletList.Frequency.Id">
-            <summary>
-            Gets or sets the id.
-            </summary>
-            <value>The id.</value>
-        </member>
-        <member name="P:DowJones.Web.Mvc.UI.Components.OutletList.Frequency.Name">
-            <summary>
-            Gets or sets the name.
-            </summary>
-            <value>The name.</value>
-        </member>
-        <member name="M:DowJones.Web.Mvc.UI.Components.OutletList.Language.#ctor">
-            <summary>
-            Create an instanse of OutletProperties class.
-            </summary>
-        </member>
-        <member name="M:DowJones.Web.Mvc.UI.Components.OutletList.Language.#ctor(System.Int32,System.String,System.String)">
-            <summary>
-            Create an instance of Language class and populate properties.
-            </summary>
-            <param name="outletId">Language ID.</param>
-            <param name="outletName">Language name.</param>
-        </member>
-        <member name="P:DowJones.Web.Mvc.UI.Components.OutletList.Language.Id">
-            <summary>
-            Gets and sets language Id.
-            </summary>
-        </member>
-        <member name="P:DowJones.Web.Mvc.UI.Components.OutletList.Language.Name">
-            <summary>
-            Gets and sets language name.
-            </summary>
-        </member>
-        <member name="P:DowJones.Web.Mvc.UI.Components.OutletList.Language.Code">
-            <summary>
-            Gets or sets the code.
-            </summary>
-            <value>The code.</value>
-        </member>
-        <member name="T:DowJones.Web.Mvc.UI.Components.OutletList.OutletType">
-            <summary>
-            Class represents an Outlet type.
-            </summary>
-        </member>
-        <member name="M:DowJones.Web.Mvc.UI.Components.OutletList.OutletType.#ctor">
-            <summary>
-            Create an instanse of OutletProperties class.
-            </summary>
-        </member>
-        <member name="M:DowJones.Web.Mvc.UI.Components.OutletList.OutletType.#ctor(System.Int32,System.String)">
-            <summary>
-            Create an instance of Outlet type class and populate properties.
-            </summary>
-            <param name="outletId">Outlet type ID.</param>
-            <param name="outletName">Outlet type name.</param>
-        </member>
-        <member name="P:DowJones.Web.Mvc.UI.Components.OutletList.OutletType.Id">
-            <summary>
-            Gets and sets outlet type ID.
-            </summary>
-        </member>
-        <member name="P:DowJones.Web.Mvc.UI.Components.OutletList.OutletType.Name">
-            <summary>
-            Gets and sets outlet type name.
-            </summary>
-        </member>
-        <member name="T:DowJones.Web.Mvc.UI.Components.OutletList.MediaFormat">
-            <summary>
-            Class represents a Media Format.
-            </summary>
-        </member>
-        <member name="M:DowJones.Web.Mvc.UI.Components.OutletList.MediaFormat.#ctor">
-            <summary>
-            Create an instanse of OutletProperties class.
-            </summary>
-        </member>
-        <member name="M:DowJones.Web.Mvc.UI.Components.OutletList.MediaFormat.#ctor(System.Int32,System.String)">
-            <summary>
-            Create an instance of Media Format class and populate properties.
-            </summary>
-            <param name="outletId">Media format ID.</param>
-            <param name="outletName">Media format name.</param>
-        </member>
-        <member name="P:DowJones.Web.Mvc.UI.Components.OutletList.MediaFormat.Id">
-            <summary>
-            Gets and sets media format ID.
-            </summary>
-        </member>
-        <member name="P:DowJones.Web.Mvc.UI.Components.OutletList.MediaFormat.Name">
-            <summary>
-            Gets and sets media format name.
             </summary>
         </member>
         <member name="P:DowJones.Web.Mvc.UI.Components.SearchBuilder.SearchBuilderData.ExclusionsList">
@@ -1347,6 +747,16 @@
         <member name="P:DowJones.Web.Mvc.UI.Components.SearchBuilder.SearchBuilderData.SourceGroup">
             <summary>
             Gets or Sets the SourceGroup
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.SearchBuilder.SearchBuilderData.LookUpAdditionalFooterNotes">
+            <summary>
+            Gets or Sets the LookUp Addition Footer Notes
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.SearchBuilder.SearchBuilderData.AdditionalSourceFilters">
+            <summary>
+            Gets or Sets the Source Filters
             </summary>
         </member>
         <member name="P:DowJones.Web.Mvc.UI.Components.SearchCategoriesLookUp.LookUpData.LanguageList">
@@ -1362,6 +772,16 @@
         <member name="P:DowJones.Web.Mvc.UI.Components.SearchCategoriesLookUp.LookUpData.SourceGroup">
             <summary>
             Gets or Sets the SourceGroup
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.SearchCategoriesLookUp.LookUpData.AdditionalSourceFilters">
+            <summary>
+            Gets or Sets the Source Filters
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.SearchCategoriesLookUp.LookUpData.AdditionalFooterNote">
+            <summary>
+            Gets or Sets the Additional Footer Note
             </summary>
         </member>
         <member name="T:DowJones.Web.Mvc.UI.Components.CompanySparkline.CompaniesSparklinesModel">
@@ -1561,26 +981,6 @@
             Gets or sets the company filter.
             </summary>
         </member>
-        <member name="T:DowJones.Web.Mvc.UI.Components.DateHistogram.DateHistogramModel">
-            <summary>
-            The date histogram model.
-            </summary>
-        </member>
-        <member name="P:DowJones.Web.Mvc.UI.Components.DateHistogram.DateHistogramModel.BarColor">
-            <summary>
-              Gets or sets BarColor.
-            </summary>
-        </member>
-        <member name="P:DowJones.Web.Mvc.UI.Components.DateHistogram.DateHistogramModel.Height">
-            <summary>
-            Gets or sets the height.
-            </summary>
-        </member>
-        <member name="P:DowJones.Web.Mvc.UI.Components.DateHistogram.DateHistogramModel.Histogram">
-            <summary>
-              Gets or sets Histogram.
-            </summary>
-        </member>
         <member name="P:DowJones.Web.Mvc.UI.Components.SimpleAlert.SimpleAlertData.SourceList">
             <summary>
             Gets or sets the Source List.
@@ -1754,6 +1154,11 @@
         <member name="P:DowJones.Web.Mvc.UI.Components.SearchBuilder.SearchBuilderModel.FormattedEndDate">
             <summary>
             Gets the formatted End Date
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.SearchBuilder.SearchBuilderModel.ShowDisplayOptions">
+            <summary>
+            Gets or Sets ShowDisplayOptions
             </summary>
         </member>
         <member name="P:DowJones.Web.Mvc.UI.Components.Menu.MenuItem.MetaData">
