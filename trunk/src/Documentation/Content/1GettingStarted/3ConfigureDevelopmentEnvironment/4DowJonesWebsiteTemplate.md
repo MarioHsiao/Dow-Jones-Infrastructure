@@ -4,13 +4,13 @@ In addition to the Visual Studio Project and Item Templates, the Dow Jones Frame
 
 To use this package, simply use the NuGet Package manager to install the `DowJones.Web.Mvc.Website` package:
 
-@Html.Note("Be sure to select the <em>'All'</em> package source")
-
 <div class="nuget-badge">
     <p>
         <code>PM&gt; Install-Package DowJones.Web.Mvc.Website</code>
 	</p>
 </div>
+
+@Html.Note("Be sure to select the <em>'All'</em> package source")
 
 <img src="~/Content/images/InstallingWebsiteTemplate.png" />
 
