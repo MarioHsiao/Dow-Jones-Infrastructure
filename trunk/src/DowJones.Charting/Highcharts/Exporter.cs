@@ -60,8 +60,7 @@ namespace DowJones.Charting.Highcharts
         /// Default file name to use for chart exports if not otherwise specified.
         /// </summary>
         private const string DefaultFileName = "Chart";
-
-        internal const string DefaultNamespace = "TEST";
+        internal const string DefaultNamespace = "REST_API";
 
         private HttpContext _context = null;
 
