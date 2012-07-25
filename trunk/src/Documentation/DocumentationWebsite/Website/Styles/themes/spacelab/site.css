@@ -105,6 +105,7 @@ section.collapsible.collapsed i {
   background-position: 0px -102px; }
 
 .news > p {
-  background: url("img/icon_bubble.png") no-repeat;
-  padding-left: 32px; }
+  background: url("img/site.png") no-repeat;
+  padding-left: 34px;
+  background-position: 0px -136px; }
 
