@@ -15,6 +15,7 @@ The steps taken to render the portal headline list below are:
 * Create the component
 	* Use DJ.add to create a portal headline list component on the page
 		* Pass converted data from above
-		* Pass compiled template function from above
+		* Pass the compiled template function from above
 
+####Portal Headline List
 @Html.DemoFrame(System.Configuration.ConfigurationManager.AppSettings["InfrastructureShowcase.BasePath"]+"/Home/ClientDemo")
