@@ -1,6 +1,5 @@
 @model PageViewModel
 @{
-    Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Dow Jones Component Explorer :: " + Model.Category.DisplayName + " > " + Model.DisplayName;
 }
 @helper RenderMenuItems(ContentSectionViewModel contentSection, int level = 0)
