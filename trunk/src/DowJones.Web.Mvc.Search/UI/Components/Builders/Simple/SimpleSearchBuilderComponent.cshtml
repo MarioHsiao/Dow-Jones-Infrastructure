@@ -5,117 +5,96 @@
 @using DowJones.Web.Mvc.Search.UI.Components.Builders
 @using DowJones.Extensions;
 @inherits QueryBuilderComponent<Simple.SimpleSearchBuilder>
-
 @ClientPlugin dj_SimpleSearchBuilder
 @ScriptResource RelativeResourceName=SimpleSearchBuilder.js
-
 @{ 
-    CssClass += "dj_SimpleSearchBuilder";
-    Html.DJ().AutoSuggest();
+	CssClass += "dj_SimpleSearchBuilder";
+	Html.DJ().AutoSuggest();
 }
-    @Html.Hidden("kind", "simple")
-    @Html.HiddenFor("inclusions", Model.Inclusions)
+@Html.Hidden("kind", "simple")
+@Html.HiddenFor("inclusions", Model.Inclusions)
+<input type="hidden" name="startDate" value="@Model.StartDate" />
+<input type="hidden" name="endDate" value="@Model.EndDate" />
+<div class="dj_search-simple-search ui-component js_search-simple-search clearfix">
+	<a href="#" class="advanced-search">@DJ.Token("advancedSearch")</a>
+	<div class="search-options">
+		<div class="source-range-options">
+			<select id="source" name="source" class="dj_selectbox dj_selectbox-small">
+				<option value="">@DJ.Token("allSources")</option>
+				@{
+					if (Model.SourceCollection != null)
+					{
 
-    <input type="hidden" name="startDate" value="@Model.StartDate" />
-    <input type="hidden" name="endDate" value="@Model.EndDate" />
-        
-    <div class="dj_search-simple-search ui-component js_search-simple-search">
+						if (Model.SourceCollection.TopLevelSourceGrouping != null && Model.SourceCollection.TopLevelSourceGrouping.Count > 0)
+						{
+							foreach (var source in Model.SourceCollection.TopLevelSourceGrouping)
+							{
+					<option value="@source.Key" @(source.Key == Model.Source ? "selected" : "")>@source.Value</option>    
+							}
+						}
 
-            <div class="search-bar clearfix">
-            
-                @Html.TextBox("freeText", Model.FreeText, new { @class = "search-field" })
-            
-                <div class="search-buttons">
-    				<input type="reset" class="search-clear" value="@DJ.Token("clear")" />
-    				<input type="submit" class="search-submit" value="@DJ.Token("search")" />
-    			</div>
-            </div>
-            
-            <div class="search-options clearfix">
-                <div class="source-range-options">
-                    <select id="source" name="source" class="dj_selectbox dj_selectbox-small">
-                        <option value="">@DJ.Token("allSources")</option>
-                        @{
-                            if (Model.SourceCollection != null)
-                            {
-                                
-                                if (Model.SourceCollection.TopLevelSourceGrouping != null && Model.SourceCollection.TopLevelSourceGrouping.Count > 0)
-                                {
-                                    foreach (var source in Model.SourceCollection.TopLevelSourceGrouping)
-                                    {
-                                        <option value="@source.Key" @(source.Key == Model.Source ? "selected" : "")>@source.Value</option>    
-                                    }
-                                }
-
-                                if (Model.SourceCollection.SourceList != null && Model.SourceCollection.SourceList.Count > 0)
-                                {
-                                    <optgroup label="@DJ.Token("savedLists")">
-                                    @{
-                                        foreach (var source in Model.SourceCollection.SourceList)
-                                        {
-                                            <option value="@source.Key" @(source.Key == Model.Source ? "selected" : "")>@source.Value</option>    
-                                        }
-                                    }
-                                    </optgroup>
-                                }
-                            }
-                        }
-                    </select>
-                    <select id="dateRange" name="dateRange" class="dj_selectbox dj_selectbox-small">
-                        @{
-                            foreach (var dateRange in Model.DateRangeSelections)
-                            {
-                                <option value="@dateRange.Value" @(dateRange.Selected ? "selected" : "")>@dateRange.Text</option>    
-                            }
-                        }
-                    </select>
-                </div>
-
-                <div class="save-options">
-                
-                    <span class="dj_btn dj_btn-lrg dj_btn-gray dj_btn-rounded-square save-as_btn">
-		                @DJ.Token("saveAs")
-		                <span class="dj_btn-down-arrow"></span>
-	                </span>
-
-                    <a href="#" class="advanced-search">@DJ.Token("advancedSearch")</a>
-                    
-                </div>
-                
-            </div>
-        
-    </div>
-
-    <div class="suggestions">
-    @if (Model.SpellCorrection != null)
-    {
-        <div class="dj_keyword-spellcheck ui-component">
-	        <span class="title">@DJ.Token("keywordSpellcheck")</span>
-            <span class="replacement-text">@Model.SpellCorrection</span>
-	        <span class="dj_close-section dj_icon dj_icon-close-dark-gray"></span>
-        </div>
-    }
-    
-    @if (Model.HasRecognizedEntities)
-    {
-        @ComponentFactory.Render(Model.DidYouMean)
-        @Html.Hidden("hideDYM", Model.DidYouMean.HideEntities.ToString().ToLower())
-    }
-    </div>
-
-<!-- Save As Menu -->
-<div class="menu saveAsMenu" style="display:none;">
-    <div class="menuitems">
-        @{
-            foreach (SelectListItem menu in Model.SaveOptions)
-            {
-                <div class="menuitem">
-                    <div class="label" data-saveas="@menu.Value">@menu.Text</div>
-                </div>
-            }
-        }
-    </div>
+						if (Model.SourceCollection.SourceList != null && Model.SourceCollection.SourceList.Count > 0)
+						{
+					<optgroup label="@DJ.Token("savedLists")">
+						@{
+							foreach (var source in Model.SourceCollection.SourceList)
+							{
+							<option value="@source.Key" @(source.Key == Model.Source ? "selected" : "")>@source.Value</option>    
+							}
+						}
+					</optgroup>
+						}
+					}
+				}
+			</select>
+			<select id="dateRange" name="dateRange" class="dj_selectbox dj_selectbox-small">
+				@{
+					foreach (var dateRange in Model.DateRangeSelections)
+					{
+					<option value="@dateRange.Value" @(dateRange.Selected ? "selected" : "")>@dateRange.Text</option>    
+					}
+				}
+			</select>
+		</div>
+		<div class="search-bar">
+			@Html.TextBox("freeText", Model.FreeText, new { @class = "search-field" })
+			<div class="search-buttons">
+				<input type="reset" class="search-clear" value="@DJ.Token("clear")" />
+				<input type="submit" class="search-submit" value="@DJ.Token("search")" />
+			</div>
+		</div>
+		<div class="save-options">
+			<span class="dj_btn dj_btn-lrg dj_btn-gray dj_btn-rounded-square save-as_btn">
+				@DJ.Token("saveAs")
+				<span class="dj_btn-down-arrow"></span></span>
+		</div>
+	</div>
+</div>
+<div class="suggestions">
+	@if (Model.SpellCorrection != null)
+ {
+		<div class="dj_keyword-spellcheck ui-component">
+			<span class="title">@DJ.Token("keywordSpellcheck")</span> <span class="replacement-text">@Model.SpellCorrection</span>
+			<span class="dj_close-section dj_icon dj_icon-close-dark-gray"></span>
+		</div>
+ }
+	@if (Model.HasRecognizedEntities)
+ {
+		@ComponentFactory.Render(Model.DidYouMean)
+		@Html.Hidden("hideDYM", Model.DidYouMean.HideEntities.ToString().ToLower())
+ }
 </div>
 <!-- Save As Menu -->
-
-        
+<div class="menu saveAsMenu" style="display: none;">
+	<div class="menuitems">
+		@{
+			foreach (SelectListItem menu in Model.SaveOptions)
+			{
+			<div class="menuitem">
+				<div class="label" data-saveas="@menu.Value">@menu.Text</div>
+			</div>
+			}
+		}
+	</div>
+</div>
+<!-- Save As Menu -->

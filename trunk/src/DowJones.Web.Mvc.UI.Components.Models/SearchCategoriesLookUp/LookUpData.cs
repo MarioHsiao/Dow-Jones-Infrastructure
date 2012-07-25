@@ -9,7 +9,7 @@ namespace DowJones.Web.Mvc.UI.Components.SearchCategoriesLookUp
     public class LookUpData
     {
         private List<CodeDesc> _languageList;
-        
+
         /// <summary>
         /// Gets the Language list.
         /// </summary>
@@ -34,5 +34,17 @@ namespace DowJones.Web.Mvc.UI.Components.SearchCategoriesLookUp
         /// </summary>
         [JsonProperty("sourceGroup")]
         public List<SourceGroupItem> SourceGroup { get; set; }
+
+        /// <summary>
+        /// Gets or Sets the Source Filters
+        /// </summary>
+        [JsonProperty("additionalSourceFilters")]
+        public List<CodeDesc> AdditionalSourceFilters { get; set; }
+
+        /// <summary>
+        /// Gets or Sets the Additional Footer Note
+        /// </summary>
+        [JsonProperty("additionalFooterNote")]
+        public List<CodeDesc> AdditionalFooterNote { get; set; }
     }
 }

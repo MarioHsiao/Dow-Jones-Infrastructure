@@ -173,10 +173,10 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="factiva.gateway.messages">
-      <HintPath>..\packages\Factiva.Gateway.7.5.0.83\lib\factiva.gateway.messages.dll</HintPath>
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.90\lib\factiva.gateway.messages.dll</HintPath>
     </Reference>
     <Reference Include="FactivaGateway">
-      <HintPath>..\packages\Factiva.Gateway.7.5.0.83\lib\FactivaGateway.dll</HintPath>
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.90\lib\FactivaGateway.dll</HintPath>
     </Reference>
     <Reference Include="Interop.FCMLib">
       <HintPath>..\packages\Factiva.Gateway.7.5.0.83\lib\Interop.FCMLib.dll</HintPath>

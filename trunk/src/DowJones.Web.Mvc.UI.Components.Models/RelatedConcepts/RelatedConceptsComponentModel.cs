@@ -2,11 +2,11 @@ using System.Web;
 
 namespace DowJones.Web.Mvc.UI.Components.RelatedConcepts
 {
-    public class RelatedConceptsModel : CompositeComponentModel
+    public class RelatedConceptsComponentModel : CompositeComponentModel
     {
         private int maxNumberToReturn = 10;
- 
-        public RelatedConceptsModel()
+
+        public RelatedConceptsComponentModel()
         {
             this.DataServiceUrl = VirtualPathUtility.ToAbsolute("~/search/related");
         }
@@ -14,7 +14,8 @@ namespace DowJones.Web.Mvc.UI.Components.RelatedConcepts
         [ClientProperty("keywords")]
         public string Keywords
         {
-            get; set;
+            get;
+            set;
         }
 
         [ClientProperty("maxNumberOfTerms")]
@@ -22,7 +23,7 @@ namespace DowJones.Web.Mvc.UI.Components.RelatedConcepts
         {
             get
             {
-                return this.maxNumberToReturn;  
+                return this.maxNumberToReturn;
             }
 
             set
@@ -34,6 +35,6 @@ namespace DowJones.Web.Mvc.UI.Components.RelatedConcepts
 
                 this.maxNumberToReturn = value;
             }
-        }  
+        }
     }
 }

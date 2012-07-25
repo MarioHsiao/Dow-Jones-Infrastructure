@@ -5,7 +5,7 @@
         for(var i = 0;i < exclusions.length;i++){ 
             code = exclusions[i].code;
             desc = exclusions[i].desc;
-            id = idPrefix + "_" + code;
+            id = self.idPrefix + "_" + code;
     %>
             <li>
                 <input type="checkbox" id="<%= id %>" value="<%= code %>" />

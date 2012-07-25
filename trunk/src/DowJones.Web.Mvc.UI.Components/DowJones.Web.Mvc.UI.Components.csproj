@@ -82,12 +82,11 @@
     <Reference Include="CommonServiceLocator.NinjectAdapter">
       <HintPath>..\packages\Ninject.2.2.0.0\lib\.NetFramework 4.0\extensions\CommonServiceLocator.NinjectAdapter.dll</HintPath>
     </Reference>
-    <Reference Include="factiva.gateway.messages, Version=7.5.0.83, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Factiva.Gateway.7.5.0.83\lib\factiva.gateway.messages.dll</HintPath>
+    <Reference Include="factiva.gateway.messages">
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.90\lib\factiva.gateway.messages.dll</HintPath>
     </Reference>
-    <Reference Include="FactivaGateway, Version=1.5.0.7, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Factiva.Gateway.7.5.0.83\lib\FactivaGateway.dll</HintPath>
+    <Reference Include="FactivaGateway">
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.90\lib\FactivaGateway.dll</HintPath>
     </Reference>
     <Reference Include="Interop.FCMLib">
       <HintPath>..\packages\Factiva.Gateway.7.5.0.83\lib\Interop.FCMLib.dll</HintPath>
@@ -192,7 +191,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CompositeOutletComponent.cshtml</DependentUpon>
     </Compile>
-    <Compile Include="DateHistogram\DateHistogramComponent.cs">
+    <Compile Include="DateHistogram\DateHistogramComponent1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DateHistogramComponent.cshtml</DependentUpon>
@@ -465,7 +464,6 @@
     <EmbeddedResource Include="AlertEditor\AlertEditor.js" />
     <EmbeddedResource Include="AlertEditor\ClientTemplates\filters.htm" />
     <EmbeddedResource Include="AlertEditor\ClientTemplates\main.htm" />
-    <EmbeddedResource Include="RelatedConcepts\RelatedConcepts.js" />
     <EmbeddedResource Include="RelatedConcepts\ClientTemplates\Success.htm" />
     <EmbeddedResource Include="PersonalizationFilters\ClientTemplates\filterPill.htm" />
     <EmbeddedResource Include="AuthorList\AuthorList.js" />
@@ -567,6 +565,10 @@
       <Generator>RazorViewComponentClassGenerator</Generator>
       <LastGenOutput>CompositeOutletComponent.cs</LastGenOutput>
     </None>
+    <None Include="DateHistogram\DateHistogramComponent.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>DateHistogramComponent1.cs</LastGenOutput>
+    </None>
     <None Include="DateSlider\DateSliderComponent.cshtml">
       <Generator>RazorViewComponentClassGenerator</Generator>
       <LastGenOutput>DateSliderComponent.cs</LastGenOutput>
@@ -615,10 +617,6 @@
     <None Include="SearchNewsFilter\SearchNewsFilterComponent.cshtml">
       <Generator>RazorViewComponentClassGenerator</Generator>
       <LastGenOutput>SearchNewsFilterComponent.cs</LastGenOutput>
-    </None>
-    <None Include="DateHistogram\DateHistogramComponent.cshtml">
-      <Generator>RazorViewComponentClassGenerator</Generator>
-      <LastGenOutput>DateHistogramComponent.cs</LastGenOutput>
     </None>
     <None Include="SimpleAlert\SimpleAlertComponent.cshtml">
       <Generator>RazorViewComponentClassGenerator</Generator>
@@ -797,6 +795,10 @@
   <ItemGroup>
     <EmbeddedResource Include="AutoSuggest\ClientTemplates\Success.htm" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="RelatedConcepts\RelatedConceptsComponent.js" />
+  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="VideoPlayer\ClientTemplates\Success.htm" />
   </ItemGroup>

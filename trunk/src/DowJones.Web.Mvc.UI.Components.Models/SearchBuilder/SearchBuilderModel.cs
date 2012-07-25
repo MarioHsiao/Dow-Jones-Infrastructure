@@ -6,12 +6,14 @@ using DowJones.Globalization;
 using DowJones.Preferences;
 using DowJones.Search;
 using DowJones.Attributes;
+using SortOrder = DowJones.Search.SortOrder;
 using DowJones.Web.Mvc.UI.Components.Search;
 
 namespace DowJones.Web.Mvc.UI.Components.SearchBuilder
 {
     public class SearchBuilderModel : CompositeComponentModel
     {
+        #region ..:: Private Members ::..
         private readonly IResourceTextManager _resources;
         private SearchBuilderData _data;
         private readonly List<CodeDesc> _searchFreeTextArea;
@@ -21,13 +23,15 @@ namespace DowJones.Web.Mvc.UI.Components.SearchBuilder
         private static List<CodeDesc> GetSortBy(IResourceTextManager resources)
         {
             var lstCodeDesc = new List<CodeDesc>();
+            string token;
             var sortEnums = new[] {SortOrder.PublicationDateMostRecentFirst, SortOrder.PublicationDateOldestFirst, SortOrder.Relevance};
             foreach (SortOrder sortOrder in sortEnums)
             {
-                string token = ((AssignedToken)Attribute.GetCustomAttribute(typeof(SortOrder).GetField(sortOrder.ToString()), typeof(AssignedToken))).Token;
+                token = ((AssignedToken)Attribute.GetCustomAttribute(typeof(SortOrder).GetField(sortOrder.ToString()), typeof(AssignedToken))).Token;
                 lstCodeDesc.Add(new CodeDesc { Code = ((int)Enum.Parse(typeof(SortOrder), sortOrder.ToString())).ToString(), Desc = resources.GetString(token) });
             }
             return lstCodeDesc;
+
         }
 
         private string GetFormattedDate(string dateInYMD)
@@ -53,13 +57,16 @@ namespace DowJones.Web.Mvc.UI.Components.SearchBuilder
             }
             return null;
         }
+        #endregion
 
+        #region ..:: Public Members ::..
         /// <summary>
         /// Gets or sets the sortBy dropdown list.
         /// </summary>
         public List<CodeDesc> SearchFreeTextArea
         {
             get { return _searchFreeTextArea; }
+            //set { _sortBy = value; }
         }
 
         /// <summary>
@@ -68,6 +75,7 @@ namespace DowJones.Web.Mvc.UI.Components.SearchBuilder
         public List<CodeDesc> SortBy
         {
             get { return _sortBy; }
+            //set { _sortBy = value; }
         }
 
         /// <summary>
@@ -76,6 +84,7 @@ namespace DowJones.Web.Mvc.UI.Components.SearchBuilder
         public List<CodeDesc> DateRange
         {
             get { return _dateRange; }
+            //set { _dateRange = value; }
         }
 
         /// <summary>
@@ -123,7 +132,7 @@ namespace DowJones.Web.Mvc.UI.Components.SearchBuilder
         [ClientData]
         public SearchBuilderData Data
         {
-            get { return _data ?? (_data = new SearchBuilderData(_resources)); }
+            get { return _data ?? (_data = new SearchBuilderData()); }
             set { _data = value; }
         }
 
@@ -131,7 +140,7 @@ namespace DowJones.Web.Mvc.UI.Components.SearchBuilder
         /// Gets or sets the SessionId.
         /// </summary>
         [ClientProperty("searchQueryMaxLength")]
-        public int SearchQueryMaxLength { get; set; }
+        public int SearchQueryMaxLength { get;set; } 
 
         /// <summary>
         /// Gets or sets the ProductId.
@@ -155,16 +164,26 @@ namespace DowJones.Web.Mvc.UI.Components.SearchBuilder
             get { return GetFormattedDate(Data.EndDate); }
         }
 
-        public static List<CodeDesc> GetCodeValueFromEnum<T>(IResourceTextManager resources)
+        /// <summary>
+        /// Gets or Sets ShowDisplayOptions
+        /// </summary>
+        [ClientProperty("showDisplayOptions")]
+        public bool ShowDisplayOptions { get; set; }
+
+        public static List<CodeDesc> GetCodeValueFromEnum<T>(IResourceTextManager resource)
         {
             var lstCodeDesc = new List<CodeDesc>();
+            string token;
             foreach (T exclusion in Enum.GetValues(typeof(T)))
             {
-                string token = ((AssignedToken)Attribute.GetCustomAttribute(typeof(T).GetField(exclusion.ToString()), typeof(AssignedToken))).Token;
-                lstCodeDesc.Add(new CodeDesc { Code = ((int)Enum.Parse(typeof(T), exclusion.ToString())).ToString(), Desc = resources.GetString(token) });
+                token = ((AssignedToken)Attribute.GetCustomAttribute(typeof(T).GetField(exclusion.ToString()), typeof(AssignedToken))).Token;
+                lstCodeDesc.Add(new CodeDesc { Code = ((int)Enum.Parse(typeof(T), exclusion.ToString())).ToString(), Desc = resource.GetString(token) });
             }
             return lstCodeDesc;
         }
+        #endregion
+
+        #region ..:: Constructor ::..
 
         public SearchBuilderModel(IResourceTextManager resources = null)
         {
@@ -174,5 +193,7 @@ namespace DowJones.Web.Mvc.UI.Components.SearchBuilder
             _sortBy = GetSortBy(_resources);
             _dateRange = DateRangeHelper.GetDateRange(true, true).Select(d => new CodeDesc { Code = d.Key, Desc = d.Value }).ToList();
         }
+
+        #endregion
     }
 }

@@ -26,6 +26,9 @@ namespace DowJones.Utilities.Search.Core
         [JsonProperty("code")]
         public string Code { get; set; }
 
+        [JsonProperty("codeType")]
+        public string CodeType { get; set; }
+
         [JsonProperty("desc")]
         public string Desc { get; set; }
 

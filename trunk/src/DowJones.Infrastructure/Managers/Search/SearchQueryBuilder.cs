@@ -163,7 +163,7 @@ namespace DowJones.Managers.Search
         private T GetAdvancedBaseRequest<T>(AdvancedSearchQuery request) where T : IPerformContentSearchRequest, new()
         {
             var searchRequest = GetBaseRequest<T>(request);
-            
+
             //Apply exclusion filters
             var searchString = GetExcludedSubjects(request.Exclusions);
             if (searchString != null)
@@ -178,7 +178,56 @@ namespace DowJones.Managers.Search
             searchCollection.AddRange(CreateSearchStrings(request.Region));
             searchCollection.AddRange(CreateSearchStrings(request.Subject));
             searchCollection.AddRange(CreateSearchStrings(request.Company));
-            searchCollection.AddRange(CreateSearchStrings(request.Source));
+            //searchCollection.AddRange(CreateSearchStrings(request.Source));
+
+            if (request.Source != null && (request.Source.Include != null || request.Source.Exclude != null))
+            {
+                bool hasInclude = (request.Source.Include == null || request.Source.Include.Count() > 0),
+                    hasExclude = (request.Source.Exclude == null || request.Source.Exclude.Count() > 0);
+                string includeSearchString = null, excludeSearchString = null;
+                SearchString sourceSearchString = null;
+                if (hasInclude)
+                {
+                    includeSearchString = Join(SearchOperator.Or, request.Source.Include.OfType<SourceQueryFilterEntities>().Select(GetSourceQueryFilter).Where(str => str != null));
+                }
+                if (hasExclude)
+                {
+                    excludeSearchString = Join(SearchOperator.Or, request.Source.Exclude.OfType<SourceQueryFilterEntities>().Select(GetSourceQueryFilter).Where(str => str != null));
+                }
+
+                if (hasInclude && hasExclude)
+                {
+                    sourceSearchString = new SearchString
+                    {
+                        Mode = SearchMode.Traditional,
+                        Id = "BSSSource",
+                        Value = string.Format("({0}) NOT ({1})",
+                            includeSearchString, excludeSearchString)
+                    };
+                }
+                else if (hasInclude && !hasExclude)
+                {
+                    sourceSearchString = new SearchString { Mode = SearchMode.Traditional, Id = "BSSSource", Value = string.Format("({0})", includeSearchString) };
+                }
+                else if (!hasInclude && hasExclude)
+                {
+                    var sourceTypes = Join(SearchOperator.Or, searchRequest.StructuredSearch.Query.SourceTypeCollection.Where(t => t != null));
+                    //Empty the collection since we are adding it in the search string
+                    searchRequest.StructuredSearch.Query.SourceTypeCollection = null;
+                    sourceSearchString = new SearchString
+                    {
+                        Mode = SearchMode.Traditional,
+                        Id = "BSSSource",
+                        Value = string.Format("({0}) NOT ({1})",
+                            sourceTypes, excludeSearchString)
+                    };
+                }
+
+                if (sourceSearchString != null)
+                {
+                    searchCollection.Add(sourceSearchString);
+                }
+            }
 
             var d = GetDate(request, _searchPreferenceService.DateFormat);
             if (d != null)
@@ -186,9 +235,9 @@ namespace DowJones.Managers.Search
                 searchRequest.StructuredSearch.Query.Dates = d;
             }
             searchRequest.StructuredSearch.Linguistics = new Linguistics
-                                                             {
-                                                                 LemmatizationOn = false
-                                                             };
+            {
+                LemmatizationOn = false
+            };
 
             return searchRequest;
         }
@@ -196,7 +245,7 @@ namespace DowJones.Managers.Search
         private static Dates GetDate(AdvancedSearchQuery request, PreferenceDateFormat dateFormat)
         {
             DateRange dateRange = null;
-            if (request.Filters !=  null)
+            if (request.Filters != null)
             {
                 dateRange = request.Filters.OfType<DateRangeQueryFilter>().Select(x => x.DateRange).FirstOrDefault();
             }
@@ -215,7 +264,7 @@ namespace DowJones.Managers.Search
             }
             return GetDate(dateRange, dateFormat);
         }
-        private static Dates GetDate(DateRange dateRange , PreferenceDateFormat dateFormat)
+        private static Dates GetDate(DateRange dateRange, PreferenceDateFormat dateFormat)
         {
             if (dateRange == null || dateRange.Start == null || dateRange.End == null)
             {
@@ -223,7 +272,7 @@ namespace DowJones.Managers.Search
             }
             return DateRangeToSearchDatesMapper.Map(dateRange, dateFormat);
         }
-        
+
         private SearchMode Map(SearchOperator @operator)
         {
             switch (@operator)
@@ -272,7 +321,7 @@ namespace DowJones.Managers.Search
         private T GetBaseRequest<T>(ModuleSearchQuery request) where T : IPerformContentSearchRequest, new()
         {
             var moduleAbstractSearchQuery = request as AbstractSearchQuery;
-            
+
             /*Remove default setting since we are overriding language and inclusion flag from search context */
             moduleAbstractSearchQuery.ContentLanguages = null;
             moduleAbstractSearchQuery.Inclusions = null;
@@ -290,7 +339,7 @@ namespace DowJones.Managers.Search
             IPerformContentSearchRequest contextQuery =
                 _searchContextManager.CreateSearchRequest<PerformContentSearchRequest>(request.SearchContext, start,
                                                                                        count);
-            if (contextQuery != null && 
+            if (contextQuery != null &&
                 contextQuery.StructuredSearch != null &&
                 contextQuery.StructuredSearch.Query != null)
             {
@@ -327,7 +376,7 @@ namespace DowJones.Managers.Search
             search.SearchContext = request.ContextId;
 
             var query = search.StructuredSearch.Query;
-            
+
             //Date range
             query.Dates = ProcessDates(request.DateRange);
 
@@ -376,7 +425,7 @@ namespace DowJones.Managers.Search
             search.DescriptorControl = new DescriptorControl { Mode = DescriptorControlMode.All, Language = _preferences.InterfaceLanguage };
 
             var cs = request.CustomNavigation;
-            if (cs != null )
+            if (cs != null)
             {
                 var nav = search.NavigationControl;
                 if (cs.CustomNavigationId != null && cs.CustomNavigationId.Any())
@@ -451,12 +500,12 @@ namespace DowJones.Managers.Search
 
         private IEnumerable<SearchString> ProcessFilters(SearchQueryFilters searchQueryFilters)
         {
-           if (searchQueryFilters == null)
-           {
-               return Enumerable.Empty<SearchString>();
-           }
+            if (searchQueryFilters == null)
+            {
+                return Enumerable.Empty<SearchString>();
+            }
             var list = new List<SearchString>();
-            
+
             list.AddRange(CreateSearchStrings(searchQueryFilters.Keyword, SearchMode.All));
             list.AddRange(CreateSearchStrings(searchQueryFilters.Company, SearchMode.All));
             list.AddRange(CreateSearchStrings(searchQueryFilters.Executive, SearchMode.All));
@@ -515,16 +564,16 @@ namespace DowJones.Managers.Search
         private ResultFormatting ProcessResultFormating(AbstractBaseSearchQuery request)
         {
             var formatting = new ResultFormatting
-                                 {
-                                     DeduplicationMode = Mapper.Map<DeduplicationMode>(request.Duplicates),
-                                     MarkupType = MarkupType.Highlight,
-                                     SnippetType =
-                                         (_searchPreferenceService.LeadSentenceStyle == LeadSentenceStyleType.Contextual)
-                                             ? SnippetType.Contextual
-                                             : SnippetType.Fixed,
-                                     ClusterMode = ClusterMode.Off,
-                                     ExtendedFields = true
-                                 };
+            {
+                DeduplicationMode = Mapper.Map<DeduplicationMode>(request.Duplicates),
+                MarkupType = MarkupType.Highlight,
+                SnippetType =
+                    (_searchPreferenceService.LeadSentenceStyle == LeadSentenceStyleType.Contextual)
+                        ? SnippetType.Contextual
+                        : SnippetType.Fixed,
+                ClusterMode = ClusterMode.Off,
+                ExtendedFields = true
+            };
 
             switch (formatting.SortOrder)
             {
@@ -732,7 +781,7 @@ namespace DowJones.Managers.Search
             if (sourceQueryFilter != null)
             {
                 string sourceBss = GetSourceQueryFilter(sourceQueryFilter, SearchOperator.Or);
-                return new[] {CreateSearchString(sourceBss)};
+                return new[] { CreateSearchString(sourceBss) };
             }
 
             var keywordFilter = filter as KeywordQueryFilter;
@@ -779,7 +828,13 @@ namespace DowJones.Managers.Search
                 var excString = CreateSearchString(key, entityFilters.SelectMany(d => d), SearchMode.None);
                 list.Add(excString);
             }
-            
+
+            sourceEntityFilters = excludedFilters.OfType<SourceQueryFilterEntities>().WhereNotNull();
+            if (sourceEntityFilters.Any())
+            {
+                list.Add(GetSourceQueryFilter(sourceEntityFilters));
+            }
+
             if (filter.ListType == CompoundQueryListType.Source)
             {
                 long sourceId;
@@ -796,12 +851,12 @@ namespace DowJones.Managers.Search
         }
 
 
-        private SearchString GetSourceQueryFilter(IEnumerable<SourceQueryFilterEntities> filters)
+        private SearchString GetSourceQueryFilter(IEnumerable<SourceQueryFilterEntities> filters, SearchOperator searchOperator = SearchOperator.Or)
         {
             var anyList = filters.Select(GetSourceQueryFilter).Where(str => str != null).ToList();
             if (anyList.Count > 0)
             {
-                return CreateSearchString(Join(SearchOperator.Or, anyList.ToArray()));
+                return CreateSearchString(Join(searchOperator, anyList.ToArray()));
             }
             return null;
         }
@@ -865,3 +920,4 @@ namespace DowJones.Managers.Search
         }
     }
 }
+

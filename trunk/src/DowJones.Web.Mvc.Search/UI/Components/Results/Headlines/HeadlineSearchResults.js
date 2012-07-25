@@ -2,6 +2,7 @@
 * Search Results
 */
 
+
     DJ.UI.HeadlineSearchResults = DJ.UI.Component.extend({
 
         name: 'SearchResults',
@@ -298,7 +299,7 @@
                 startIndex  = this.pagePreviousFormInput.val();
             else
                 startIndex = parseInt(page, 10) * count;
-            
+
 
             //this.startFormInput.val(Math.max(0, startIndex));
 
@@ -446,3 +447,5 @@
     $.plugin('dj_HeadlineSearchResults', DJ.UI.HeadlineSearchResults);
 
     $dj.debug('Registered DJ.UI.HeadlineSearchResults (extends DJ.UI.Component)');
+
+

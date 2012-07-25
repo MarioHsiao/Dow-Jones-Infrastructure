@@ -9,6 +9,7 @@ using DowJones.Web.Mvc.UI.Components.Common;
 using DowJones.Web.Mvc.UI.Components.HeadlineList;
 using Factiva.Gateway.Messages.Preferences.V1_0;
 using SortOrder = DowJones.Search.SortOrder;
+using DowJones.Search;
 
 namespace DowJones.Web.Mvc.Search.Requests.Common
 {
@@ -46,21 +47,28 @@ namespace DowJones.Web.Mvc.Search.Requests.Common
 
         public SearchRequest ApplyDefaults(SearchRequest request)
         {
-            if (!request.ShowDuplicates.HasValue)
+            if (request is AlertSearchRequest)
             {
-                request.ShowDuplicates = Map(SearchPreferenceService.Duplicate);
+                request = ApplyDefaultsForAlertResult((AlertSearchRequest)request);
+                if (!request.ShowDuplicates.HasValue)
+                {
+                    request.ShowDuplicates = null;
+                }
             }
-            if (request is SimpleSearchRequest)
+            else
             {
-                request = ApplyDefaultsForSimpleSearch((SimpleSearchRequest) request);
-            }
-            else if (request is FreeTextSearchRequest)
-            {
-                request = ApplyDefaultsForFreetextSearch((FreeTextSearchRequest) request);
-            }
-            else if (request is AlertSearchRequest)
-            {
-                request = ApplyDefaultsForAlertResult((AlertSearchRequest) request);
+                if (!request.ShowDuplicates.HasValue)
+                {
+                    request.ShowDuplicates = Map(SearchPreferenceService.Duplicate);
+                }
+                if (request is SimpleSearchRequest)
+                {
+                    request = ApplyDefaultsForSimpleSearch((SimpleSearchRequest)request);
+                }
+                else if (request is FreeTextSearchRequest)
+                {
+                    request = ApplyDefaultsForFreetextSearch((FreeTextSearchRequest)request);
+                }
             }
 
             return request;
@@ -124,6 +132,10 @@ namespace DowJones.Web.Mvc.Search.Requests.Common
             if (request.Source == null)
             {
                 request.Source = SearchPreferenceService.DefaultSimpleSearchSources;
+            }
+            if (!request.DateRange.HasValue)
+            {
+                request.DateRange = MapDateRange(SearchPreferenceService.DefaultSimpleSearchDateRange);
             }
             return request;
         }
@@ -214,6 +226,31 @@ namespace DowJones.Web.Mvc.Search.Requests.Common
                     return DisplayOptions.Keywords;
                 default:
                     return DisplayOptions.Full;
+            }
+        }
+
+        private static SearchDateRange MapDateRange(DefaultSimpleSearchDateRange dateRange)
+        {
+            switch (dateRange)
+            {
+                case DefaultSimpleSearchDateRange.LastDay:
+                    return SearchDateRange.LastDay;
+                case DefaultSimpleSearchDateRange.LastWeek:
+                    return SearchDateRange.LastWeek;
+                case DefaultSimpleSearchDateRange.LastMonth:
+                    return SearchDateRange.LastMonth;
+                case DefaultSimpleSearchDateRange.Last6Months:
+                    return SearchDateRange.LastSixMonths;
+                case DefaultSimpleSearchDateRange.LastYear:
+                    return SearchDateRange.LastYear;
+                case DefaultSimpleSearchDateRange.Last2Years:
+                    return SearchDateRange.LastTwoYears;
+                case DefaultSimpleSearchDateRange.Last3Months:
+                    return SearchDateRange.LastThreeMonths;
+                case DefaultSimpleSearchDateRange.All:
+                    return SearchDateRange.All;
+                default:
+                    return SearchDateRange.LastWeek;
             }
         }
     }

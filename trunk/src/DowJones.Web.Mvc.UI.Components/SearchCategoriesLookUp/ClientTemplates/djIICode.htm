@@ -45,6 +45,12 @@
                             <span class="value"><%= data.primarySource %></span>
                         </li>
                     <% } %>
+                    <% if(data.associatedCompany){ %>
+                        <li>
+                            <span class="label"><%= Token('associatedCompany') %>:</span> 
+                            <span class="value"><%= data.associatedCompany %></span>
+                        </li>
+                    <% } %>
                     <% if(data.parentCodes && data.parentCodes.length > 0){ %>
                         <li>
                             <span class="label"><%= Token('parents') %>:</span> 
@@ -143,7 +149,7 @@
                     <% } %>
                 </ul>
                 <div class="footer">
-                    <span class="dj_btn dj_btn-blue dj_modal-close no-margin"><%= Token("done") %></span>
+                    <span class="dj_btn dj_btn-blue no-margin doneBtn"><%= Token("done") %></span>
                 </div>
             </div>
         </div>

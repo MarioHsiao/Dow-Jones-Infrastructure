@@ -25,3 +25,4 @@
     });
 
     $.plugin('dj_QueryBuilder', DJ.UI.QueryBuilder);
+

@@ -1,18 +1,22 @@
 using System.Collections.Generic;
-using DowJones.Web.Mvc.UI.Components.Common;
-using DowJones.Web.Mvc.UI.Components.Search;
+using DowJones.AlertEditor;
+using DowJones.Search;
+using DowJones.Utilities.Search.Core;
 using Factiva.Gateway.Messages.Track.V1_0;
 using Newtonsoft.Json;
 using DowJones.Globalization;
+using SortOrder = Factiva.Gateway.Messages.Track.V1_0.SortOrder;
+using DowJones.Web.Mvc.UI.Components.Search;
 
 namespace DowJones.Web.Mvc.UI.Components.AlertEditor
 {
 	public class AlertEditorModel : ViewComponentModel
 	{
-	    private readonly IResourceTextManager _resources;
-	    private Dictionary<string, string> _languageList;
+        private Dictionary<string, string> _languageList;
 
+        private readonly IResourceTextManager _resources;
         private List<CodeDesc> _emailFormats;
+        //private List<CodeDesc> _deliveryTimes;
         private AlertData _alertData = new AlertData();
 
         [ClientProperty("searchCriteriaEditable")]
@@ -50,6 +54,28 @@ namespace DowJones.Web.Mvc.UI.Components.AlertEditor
             }
         }
 
+        //[ClientProperty("deliveryTimes")]
+        //public List<CodeDesc> DeliveryTimes
+        //{
+        //    get
+        //    {
+        //        if (_deliveryTimes == null)
+        //        {
+        //            _deliveryTimes = new List<CodeDesc>();
+        //            foreach (DeliveryTimes delivery in Enum.GetValues(typeof(DeliveryTimes)))
+        //            {
+        //                _deliveryTimes.Add(new CodeDesc
+        //                {
+        //                    Code = ((int)delivery).ToString(),
+        //                    Desc = GetDeliveryTimeString(delivery)
+        //                });
+        //            }
+
+        //        }
+
+        //        return _deliveryTimes;
+        //    }
+        //}
 
 	    [ClientProperty("languageList")]
 	    public Dictionary<string, string> LanguageList
@@ -76,9 +102,28 @@ namespace DowJones.Web.Mvc.UI.Components.AlertEditor
 			set { _alertData = value; }
 		}
 
-		public AlertEditorModel(IResourceTextManager resources = null)
-		{
-		    _resources = resources ?? DowJones.DependencyInjection.ServiceLocator.Resolve<IResourceTextManager>();
-		}
+        private string GetDeliveryTimeString(DeliveryTimes deliveryTimes)
+        {
+            switch (deliveryTimes)
+            {
+                case Factiva.Gateway.Messages.Track.V1_0.DeliveryTimes.Morning:
+                    return _resources.GetString("morning");
+                case Factiva.Gateway.Messages.Track.V1_0.DeliveryTimes.Afternoon:
+                    return _resources.GetString("afternoon");
+                case Factiva.Gateway.Messages.Track.V1_0.DeliveryTimes.Both:
+                    return _resources.GetString("both");
+                case Factiva.Gateway.Messages.Track.V1_0.DeliveryTimes.Continuous:
+                    return _resources.GetString("continuous");
+                case Factiva.Gateway.Messages.Track.V1_0.DeliveryTimes.None:
+                    return _resources.GetString("none");
+                default:
+                    return deliveryTimes.ToString();
+            }
+        }
+
+        public AlertEditorModel(IResourceTextManager resources = null)
+        {
+            _resources = resources ?? DowJones.DependencyInjection.ServiceLocator.Resolve<IResourceTextManager>();
+        }
 	}
 }

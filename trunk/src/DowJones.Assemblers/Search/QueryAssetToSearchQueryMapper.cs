@@ -252,6 +252,12 @@ namespace DowJones.Assemblers.Search
                    q.Operator = SearchOperator.Or;
                }
 
+               codeFilter = GetExcludedFilter(sourceEntityFilters);
+               if (codeFilter != null)
+               {
+                   q.Exclude = GetSourceEntityFilters(codeFilter.SourceEntitiesCollection);
+               }
+
                searchQuery.Source = q;
             }
 

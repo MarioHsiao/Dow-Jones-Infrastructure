@@ -40,12 +40,11 @@
     <Reference Include="CordaNetEmbedder">
       <HintPath>..\packages\Corda.Embedder.7.0.0\lib\CordaNetEmbedder.dll</HintPath>
     </Reference>
-    <Reference Include="factiva.gateway.messages, Version=7.5.0.83, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Factiva.Gateway.7.5.0.83\lib\factiva.gateway.messages.dll</HintPath>
+    <Reference Include="factiva.gateway.messages">
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.90\lib\factiva.gateway.messages.dll</HintPath>
     </Reference>
-    <Reference Include="FactivaGateway, Version=1.5.0.7, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Factiva.Gateway.7.5.0.83\lib\FactivaGateway.dll</HintPath>
+    <Reference Include="FactivaGateway">
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.90\lib\FactivaGateway.dll</HintPath>
     </Reference>
     <Reference Include="Interop.FCMLib">
       <HintPath>..\packages\Factiva.Gateway.7.5.0.83\lib\Interop.FCMLib.dll</HintPath>
@@ -193,6 +192,10 @@
       <Project>{095DE252-E183-4AE6-824A-B4504AE737C1}</Project>
       <Name>DowJones.Infrastructure</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ThirdParty\itextsharp.dll" />
+    <Content Include="ThirdParty\Svg.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
