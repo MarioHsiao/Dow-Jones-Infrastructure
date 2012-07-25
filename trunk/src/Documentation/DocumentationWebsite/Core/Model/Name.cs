@@ -113,7 +113,7 @@ namespace DowJones.Documentation
 		public static string SpacePascalCase(this string pascalCaseInput)
 		{
 			var words = Regex.Replace(pascalCaseInput, "([a-z](?=[A-Z0-9])|[A-Z0-9](?=[A-Z0-9][a-z]))", "$1 ").Replace("_", " ");
-			var knownKeyWords = new [] { "Java Script", "Nu Get" };
+			var knownKeyWords = new [] { "Java Script", "Nu Get", "j Query", "Require JS" };
 
 			return knownKeyWords.Aggregate(words, (current, keyWord) => current.Replace(keyWord, keyWord.Replace(" ", "")));
 
