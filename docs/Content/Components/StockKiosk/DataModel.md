@@ -39,7 +39,7 @@ exchange						| Object of type Exchange.
 ####BasicDataPoint
 Property 						| Description									
 --------------------------------|----------------------------------------------------------------------------------------------
-date							| Date of the date point.
+date							| Date of the data point.
 dateDisplay						| String representation of the date value.
 dataPoint						| Object of type `Number` that contains numeric value of the data point.
 isLast							| Specifies if this data point is the last in the list.

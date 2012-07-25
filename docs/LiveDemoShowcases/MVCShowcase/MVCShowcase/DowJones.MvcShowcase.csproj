@@ -246,6 +246,7 @@
   <ItemGroup>
     <Content Include="ClientResources.xml" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\doT.min.js" />
     <Content Include="Scripts\views\DiscoveryGraph\index.js" />
     <Content Include="Scripts\views\PortalHeadlineList\index.js" />
     <Content Include="Styles\normalize.css" />

@@ -53,6 +53,7 @@
     <None Include="1GettingStarted\2FrameworkOverview\3DowJonesUIComponents.md" />
     <None Include="1GettingStarted\2FrameworkOverview\Overview.md" />
     <None Include="1GettingStarted\2UseAComponent\ASP.NET_MVCUsage.md" />
+    <None Include="1GettingStarted\2UseAComponent\JavaScriptUsageSample.md" />
     <None Include="1GettingStarted\2UseAComponent\JavaScriptUsage.md" />
     <None Include="1GettingStarted\2UseAComponent\Overview.md" />
     <None Include="1GettingStarted\3CreateAComponent\1OpenSolution.md" />

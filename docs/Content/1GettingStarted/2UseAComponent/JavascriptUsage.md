@@ -49,7 +49,3 @@ The following snippet shows how to register a handler that executes when the com
 	  }); 
 </script>
 ~~~~
-
-#### Client Usage Sample
-
-@Html.DemoFrame(System.Configuration.ConfigurationManager.AppSettings["InfrastructureShowcase.BasePath"]+"/Home/ClientDemo")
