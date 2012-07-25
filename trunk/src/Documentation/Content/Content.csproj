@@ -156,6 +156,9 @@
     <None Include="1GettingStarted\5CreateAComponent\7AddToShowcase.md" />
     <None Include="1GettingStarted\5CreateAComponent\Overview.md" />
     <None Include="1GettingStarted\2InstallDevelopmentEnvironment\Overview.md" />
+    <None Include="Guidance\1CodingStandards\1CSharp.md" />
+    <None Include="Guidance\1CodingStandards\2Javascript.md" />
+    <None Include="Guidance\1CodingStandards\3ASP.NetMVC.md" />
     <None Include="Guidance\3ContinousIntegration\1AutomatedBuilds.md" />
     <None Include="Guidance\3ContinousIntegration\2BestPractices.md" />
     <None Include="Guidance\3ContinousIntegration\3WhatToDoIf.md" />
