@@ -1,0 +1,456 @@
+﻿@using System.Configuration
+@model DowJones.Web.Mvc.UI.Components.StockKiosk.StockKioskModel
+@{
+    ViewBag.Title = "Stock Kiosk";
+}
+@section styles{
+    <link href="@ConfigurationManager.AppSettings["InfrastructureShowcase.BasePath"]/styles/views/StockKiosk/StockKiosk.css" rel="stylesheet" />
+}
+
+@section scripts{    
+    <script type="text/javascript">
+        DJ.add("StockKiosk", {
+            container: "stockKioskContainer",
+            options: {
+                pagesize: 8,
+                timePeriod: 24,
+                frequency: 15
+            },
+            eventHandlers: {},
+            data: getSampleData()
+        });
+
+        function getSampleData() {
+            return [{
+                "rc": 0,
+                "requestedId": "Factiva:ibm",
+                "symbol": "IBM",
+                "fCode": "ibm",
+                "currency": "USD",
+                "isin": "US4592001014",
+                "sedol": "2005973",
+                "cusip": "459200101",
+                "name": "International Business Machines Corp.",
+                "low": {
+                    "displayText": {
+                        "value": "0.00"
+                    },
+                    "value": 0.0
+                },
+                "high": {
+                    "displayText": {
+                        "value": "0.00"
+                    },
+                    "value": 0.0
+                },
+                "last": {
+                    "displayText": {
+                        "value": "195.34"
+                    },
+                    "value": 195.34
+                },
+                "open": {
+                    "displayText": {
+                        "value": "0.00"
+                    },
+                    "value": 0.0
+                },
+                "stop": "0001-01-01T00:00:00",
+                "adjustedStart": "0001-01-01T00:00:00",
+                "adjustedStop": "0001-01-01T00:00:00",
+                "lastUpdated": "2012-07-19T16:01:39.092",
+                "lastUpdatedDescripter": "19 July 2012 4:01 PM GMT",
+                "adjustedLastUpdated": "2012-07-19T20:01:39.092Z",
+                "adjustedLastUpdatedTimeZoneName": "Eastern Daylight Time",
+                "AdjustedLastUpdatedTimeZoneAbbr": "EDT",
+                "adjustedLastUpdatedDescripter": "19 July 2012 4:01 PM",
+                "percentChange": {
+                    "displayText": {
+                        "value": "0.00%"
+                    },
+                    "value": 0.0
+                },
+                "isIndex": false,
+                "provider": {
+                    "name": "SIX-Telekurs",
+                    "externalUrl": "http://www.SIX-Telekurs.com"
+                },
+                "exchange": {
+                    "code": "NYSE",
+                    "descriptor": "U.S.: NYSE",
+                    "timeZoneDescriptor": "Eastern Daylight Time",
+                    "timeZoneAbbreviation": "EDT",
+                    "isPrimary": false
+                }
+            }, {
+                "rc": 0,
+                "requestedId": "Factiva:mcrost",
+                "symbol": "MSFT",
+                "fCode": "mcrost",
+                "currency": "USD",
+                "isin": "US5949181045",
+                "sedol": "2588173",
+                "cusip": "594918104",
+                "name": "Microsoft Corp.",
+                "low": {
+                    "displayText": {
+                        "value": "0.00"
+                    },
+                    "value": 0.0
+                },
+                "high": {
+                    "displayText": {
+                        "value": "0.00"
+                    },
+                    "value": 0.0
+                },
+                "last": {
+                    "displayText": {
+                        "value": "30.67"
+                    },
+                    "value": 30.665
+                },
+                "open": {
+                    "displayText": {
+                        "value": "0.00"
+                    },
+                    "value": 0.0
+                },
+                "stop": "0001-01-01T00:00:00",
+                "adjustedStart": "0001-01-01T00:00:00",
+                "adjustedStop": "0001-01-01T00:00:00",
+                "lastUpdated": "2012-07-19T16:00:03.309",
+                "lastUpdatedDescripter": "19 July 2012 4:00 PM GMT",
+                "adjustedLastUpdated": "2012-07-19T20:00:03.309Z",
+                "adjustedLastUpdatedTimeZoneName": "Eastern Daylight Time",
+                "AdjustedLastUpdatedTimeZoneAbbr": "EDT",
+                "adjustedLastUpdatedDescripter": "19 July 2012 4:00 PM",
+                "percentChange": {
+                    "displayText": {
+                        "value": "0.00%"
+                    },
+                    "value": 0.0
+                },
+                "isIndex": false,
+                "provider": {
+                    "name": "SIX-Telekurs",
+                    "externalUrl": "http://www.SIX-Telekurs.com"
+                },
+                "exchange": {
+                    "code": "NASDAQ",
+                    "descriptor": "U.S.: Nasdaq",
+                    "timeZoneDescriptor": "Eastern Daylight Time",
+                    "timeZoneAbbreviation": "EDT",
+                    "isPrimary": false
+                }
+            }, {
+                "rc": 0,
+                "requestedId": "Factiva:goog",
+                "symbol": "GOOG",
+                "fCode": "goog",
+                "currency": "USD",
+                "isin": "US38259P5089",
+                "sedol": "B020QX2",
+                "cusip": "38259P508",
+                "name": "Google Inc. Cl A",
+                "low": {
+                    "displayText": {
+                        "value": "0.00"
+                    },
+                    "value": 0.0
+                },
+                "high": {
+                    "displayText": {
+                        "value": "0.00"
+                    },
+                    "value": 0.0
+                },
+                "last": {
+                    "displayText": {
+                        "value": "593.06"
+                    },
+                    "value": 593.06
+                },
+                "open": {
+                    "displayText": {
+                        "value": "0.00"
+                    },
+                    "value": 0.0
+                },
+                "stop": "0001-01-01T00:00:00",
+                "adjustedStart": "0001-01-01T00:00:00",
+                "adjustedStop": "0001-01-01T00:00:00",
+                "lastUpdated": "2012-07-19T16:00:04.312",
+                "lastUpdatedDescripter": "19 July 2012 4:00 PM GMT",
+                "adjustedLastUpdated": "2012-07-19T20:00:04.312Z",
+                "adjustedLastUpdatedTimeZoneName": "Eastern Daylight Time",
+                "AdjustedLastUpdatedTimeZoneAbbr": "EDT",
+                "adjustedLastUpdatedDescripter": "19 July 2012 4:00 PM",
+                "percentChange": {
+                    "displayText": {
+                        "value": "0.00%"
+                    },
+                    "value": 0.0
+                },
+                "isIndex": false,
+                "provider": {
+                    "name": "SIX-Telekurs",
+                    "externalUrl": "http://www.SIX-Telekurs.com"
+                },
+                "exchange": {
+                    "code": "NASDAQ",
+                    "descriptor": "U.S.: Nasdaq",
+                    "timeZoneDescriptor": "Eastern Daylight Time",
+                    "timeZoneAbbreviation": "EDT",
+                    "isPrimary": false
+                }
+            }, {
+                "rc": 0,
+                "requestedId": "Factiva:carsvc",
+                "symbol": "CSV",
+                "fCode": "carsvc",
+                "currency": "USD",
+                "isin": "US1439051079",
+                "sedol": "2177786",
+                "cusip": "143905107",
+                "name": "Carriage Services Inc. ",
+                "low": {
+                    "displayText": {
+                        "value": "0.00"
+                    },
+                    "value": 0.0
+                },
+                "high": {
+                    "displayText": {
+                        "value": "0.00"
+                    },
+                    "value": 0.0
+                },
+                "last": {
+                    "displayText": {
+                        "value": "8.72"
+                    },
+                    "value": 8.72
+                },
+                "open": {
+                    "displayText": {
+                        "value": "0.00"
+                    },
+                    "value": 0.0
+                },
+                "stop": "0001-01-01T00:00:00",
+                "adjustedStart": "0001-01-01T00:00:00",
+                "adjustedStop": "0001-01-01T00:00:00",
+                "lastUpdated": "2012-07-19T16:02:27.581",
+                "lastUpdatedDescripter": "19 July 2012 4:02 PM GMT",
+                "adjustedLastUpdated": "2012-07-19T20:02:27.581Z",
+                "adjustedLastUpdatedTimeZoneName": "Eastern Daylight Time",
+                "AdjustedLastUpdatedTimeZoneAbbr": "EDT",
+                "adjustedLastUpdatedDescripter": "19 July 2012 4:02 PM",
+                "percentChange": {
+                    "displayText": {
+                        "value": "0.00%"
+                    },
+                    "value": 0.0
+                },
+                "isIndex": false,
+                "provider": {
+                    "name": "SIX-Telekurs",
+                    "externalUrl": "http://www.SIX-Telekurs.com"
+                },
+                "exchange": {
+                    "code": "NYSE",
+                    "descriptor": "U.S.: NYSE",
+                    "timeZoneDescriptor": "Eastern Daylight Time",
+                    "timeZoneAbbreviation": "EDT",
+                    "isPrimary": false
+                }
+            }, {
+                "rc": 0,
+                "requestedId": "Factiva:cmdbnn",
+                "symbol": "CAC",
+                "fCode": "cmdbnn",
+                "currency": "USD",
+                "isin": "US1330341082",
+                "sedol": "2116659",
+                "cusip": "133034108",
+                "name": "Camden National Corp.",
+                "low": {
+                    "displayText": {
+                        "value": "0.00"
+                    },
+                    "value": 0.0
+                },
+                "high": {
+                    "displayText": {
+                        "value": "0.00"
+                    },
+                    "value": 0.0
+                },
+                "last": {
+                    "displayText": {
+                        "value": "38.25"
+                    },
+                    "value": 38.25
+                },
+                "open": {
+                    "displayText": {
+                        "value": "0.00"
+                    },
+                    "value": 0.0
+                },
+                "stop": "0001-01-01T00:00:00",
+                "adjustedStart": "0001-01-01T00:00:00",
+                "adjustedStop": "0001-01-01T00:00:00",
+                "lastUpdated": "2012-07-19T16:00:00.595",
+                "lastUpdatedDescripter": "19 July 2012 4:00 PM GMT",
+                "adjustedLastUpdated": "2012-07-19T20:00:00.595Z",
+                "adjustedLastUpdatedTimeZoneName": "Eastern Daylight Time",
+                "AdjustedLastUpdatedTimeZoneAbbr": "EDT",
+                "adjustedLastUpdatedDescripter": "19 July 2012 4:00 PM",
+                "percentChange": {
+                    "displayText": {
+                        "value": "0.00%"
+                    },
+                    "value": 0.0
+                },
+                "isIndex": false,
+                "provider": {
+                    "name": "SIX-Telekurs",
+                    "externalUrl": "http://www.SIX-Telekurs.com"
+                },
+                "exchange": {
+                    "code": "NASDAQ",
+                    "descriptor": "U.S.: Nasdaq",
+                    "timeZoneDescriptor": "Eastern Daylight Time",
+                    "timeZoneAbbreviation": "EDT",
+                    "isPrimary": false
+                }
+            }, {
+                "rc": 0,
+                "requestedId": "Factiva:rgrc",
+                "symbol": "REG",
+                "fCode": "rgrc",
+                "currency": "USD",
+                "isin": "US7588491032",
+                "sedol": "2726177",
+                "cusip": "758849103",
+                "name": "Regency Centers Corp.",
+                "low": {
+                    "displayText": {
+                        "value": "0.00"
+                    },
+                    "value": 0.0
+                },
+                "high": {
+                    "displayText": {
+                        "value": "0.00"
+                    },
+                    "value": 0.0
+                },
+                "last": {
+                    "displayText": {
+                        "value": "47.67"
+                    },
+                    "value": 47.67
+                },
+                "open": {
+                    "displayText": {
+                        "value": "0.00"
+                    },
+                    "value": 0.0
+                },
+                "stop": "0001-01-01T00:00:00",
+                "adjustedStart": "0001-01-01T00:00:00",
+                "adjustedStop": "0001-01-01T00:00:00",
+                "lastUpdated": "2012-07-19T16:01:39.703",
+                "lastUpdatedDescripter": "19 July 2012 4:01 PM GMT",
+                "adjustedLastUpdated": "2012-07-19T20:01:39.703Z",
+                "adjustedLastUpdatedTimeZoneName": "Eastern Daylight Time",
+                "AdjustedLastUpdatedTimeZoneAbbr": "EDT",
+                "adjustedLastUpdatedDescripter": "19 July 2012 4:01 PM",
+                "percentChange": {
+                    "displayText": {
+                        "value": "0.00%"
+                    },
+                    "value": 0.0
+                },
+                "isIndex": false,
+                "provider": {
+                    "name": "SIX-Telekurs",
+                    "externalUrl": "http://www.SIX-Telekurs.com"
+                },
+                "exchange": {
+                    "code": "NYSE",
+                    "descriptor": "U.S.: NYSE",
+                    "timeZoneDescriptor": "Eastern Daylight Time",
+                    "timeZoneAbbreviation": "EDT",
+                    "isPrimary": false
+                }
+            }, {
+                "rc": 0,
+                "requestedId": "Factiva:comasc",
+                "symbol": "CA",
+                "fCode": "comasc",
+                "currency": "USD",
+                "isin": "US12673P1057",
+                "sedol": "2214832",
+                "cusip": "12673P105",
+                "name": "CA Inc.",
+                "low": {
+                    "displayText": {
+                        "value": "0.00"
+                    },
+                    "value": 0.0
+                },
+                "high": {
+                    "displayText": {
+                        "value": "0.00"
+                    },
+                    "value": 0.0
+                },
+                "last": {
+                    "displayText": {
+                        "value": "26.51"
+                    },
+                    "value": 26.51
+                },
+                "open": {
+                    "displayText": {
+                        "value": "0.00"
+                    },
+                    "value": 0.0
+                },
+                "stop": "0001-01-01T00:00:00",
+                "adjustedStart": "0001-01-01T00:00:00",
+                "adjustedStop": "0001-01-01T00:00:00",
+                "lastUpdated": "2012-07-19T16:00:07.948",
+                "lastUpdatedDescripter": "19 July 2012 4:00 PM GMT",
+                "adjustedLastUpdated": "2012-07-19T20:00:07.948Z",
+                "adjustedLastUpdatedTimeZoneName": "Eastern Daylight Time",
+                "AdjustedLastUpdatedTimeZoneAbbr": "EDT",
+                "adjustedLastUpdatedDescripter": "19 July 2012 4:00 PM",
+                "percentChange": {
+                    "displayText": {
+                        "value": "0.00%"
+                    },
+                    "value": 0.0
+                },
+                "isIndex": false,
+                "provider": {
+                    "name": "SIX-Telekurs",
+                    "externalUrl": "http://www.SIX-Telekurs.com"
+                },
+                "exchange": {
+                    "code": "NASDAQ",
+                    "descriptor": "U.S.: Nasdaq",
+                    "timeZoneDescriptor": "Eastern Daylight Time",
+                    "timeZoneAbbreviation": "EDT",
+                    "isPrimary": false
+                }
+            }];
+        }
+    </script>
+}
+
+<div id="stockKioskContainer"></div>

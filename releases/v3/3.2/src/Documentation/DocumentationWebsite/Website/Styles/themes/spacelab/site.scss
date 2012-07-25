@@ -1,0 +1,112 @@
+﻿@import "../../mixins";
+
+@mixin border-light() {
+	@include border(1px, solid, #eee, rgba(0, 0, 0, 0.05));
+}
+
+
+$sprite-url: url("img/glyphicons-halflings-white.png");
+
+.active [class^="icon-"],
+.active [class*=" icon-"] {
+	background-image: $sprite-url;  
+}
+
+/* Widget Grid */
+.widgetGrid {
+	border-bottom: 1px solid #b2b2b2;
+
+	@include linear-gradient(top, white 0%, #f8f8f8 50%, #eaeaea 100%, #f6f6f6);
+	@include box-shadow(0, 1px, 3px, 0, #b2b2b2);
+
+	.wideCol, .narrowCol {
+		&:first-child {
+			background: #EEE;
+			background: rgba(191, 191, 191, 0.2);
+		}
+	}
+
+	h3 {
+		border-bottom: 1px solid #DFDFDF;
+	}
+
+	.nav {
+		> .active > a {
+			color: white;
+			background-color: #C0C0C0;
+		}
+	}
+}
+
+iframe.showcase, .contentWell, section.showcase  {
+	@include border-light();
+	@include box-shadow-light-inset();
+}
+
+.contentWell {
+	> header {
+		background-color: #f5f5f5;
+		border-bottom: 1px solid #eee;
+	}
+}
+
+
+section {
+  &.showcase h4 {
+    color: #4183C4; }
+
+  > header {
+	
+    border-bottom: 1px inset #bbb;
+    line-height: normal;
+    margin-bottom: 2%; }
+
+  &.collapsible {
+    > header {
+		cursor: pointer;
+		cursor: hand;
+      h3 i {
+        width: 14px;
+        height: 16px;
+        line-height: 16px;
+        background-position: -288px -115px;
+        background-image: url("img/glyphicons-halflings.png");
+        background-repeat: no-repeat;
+        float: right;
+        vertical-align: text-top;
+        display: inline-block; } } 
+    &.collapsed i {
+      background-position: -314px -115px; } } }
+
+
+.navbar {
+	.nav {
+		.active {
+			> a {
+				color: #4183C4;
+			}
+		}
+	}
+}
+
+
+/* Container */
+#simplemodal-container {
+  color: #bbb;
+  background-color: #333;
+  code {
+    color: #bbb; }
+  a {
+    color: #ddd;
+    &.modalCloseImg {
+      background: url("img/x.png") no-repeat;
+      width: 25px;
+      height: 29px;
+      display: inline;
+      z-index: 3200;
+      position: absolute;
+      top: -15px;
+      right: -16px;
+      cursor: pointer; } }
+  h3 {
+    color: #84b8d9; } }

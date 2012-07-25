@@ -1,0 +1,51 @@
+﻿@using System.Configuration
+@model DowJones.Web.Mvc.UI.Components.VideoPlayer.VideoPlayerModel
+@{
+    ViewBag.Title = "Video Player";
+}
+
+@section styles{
+<style type="text/css">
+    .dj_video-player-content{
+        height: 190px;
+        margin: 5px;
+    }
+</style>
+}
+
+<div id="videoPlayerContainer"></div>
+
+@section scripts{
+    <script type="text/javascript">
+        var appPath = "@ConfigurationManager.AppSettings["InfrastructureShowcase.BasePath"]";
+
+        DJ.add("VideoPlayer", {
+            container: "videoPlayerContainer",
+            options: {
+                width: 650,
+                height: 288,
+                autoPlay: false,
+                controlBarPath: appPath + "/styles/views/videoplayer/img/flowplayer.controls-3.2.5.swf",
+                playerPath: appPath + "/styles/views/videoplayer/img/flowplayer.unlimited-3.2.7.swf",
+                rtmpPluginPath: appPath + "/styles/views/videoplayer/img/flowplayer.rtmp-3.2.3.swf",
+                splashImagePath: appPath + "/styles/views/videoplayer/img/FlowPlayer/play_text_large.png",
+                playerKey: "75a6c4404d9ffa80a63"
+            },
+            data: GetSampleData()
+        });
+
+        function GetSampleData() {
+            var data = [{
+                url: appPath + "/styles/views/videoplayer/media/demo.mp4",
+                medium: "video",
+                duration: "188",
+                type: "video/mp4",
+                bitRate: "1500",
+                frameRate: "29.97",
+                width: "670",
+                height: "300"
+            }]
+            return data;
+        }
+    </script>
+}

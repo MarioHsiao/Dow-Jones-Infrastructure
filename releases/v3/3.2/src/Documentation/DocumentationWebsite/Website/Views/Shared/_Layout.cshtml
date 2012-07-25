@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="timestamp" content="@DateTime.Now" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Styles/themes/spacelab/theme-spacelab")
+    @Scripts.Render("~/bundles/head")
+    @RenderSection("styles", false)
+    @Html.Partial("GoogleAnalyticsTracker")
+</head>
+<body>
+    @Html.Action("Navigation", "Documentation")
+    @RenderBody()
+    <div class="container">
+        <footer>
+            <hr />
+            <p>
+                © @DateTime.Now.Year <a href="http://www.dowjones.com">Dow Jones &amp; Company Inc.</a>
+                All Rights Reserved
+            </p>
+        </footer>
+    </div>
+    @Scripts.Render("~/bundles/core")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

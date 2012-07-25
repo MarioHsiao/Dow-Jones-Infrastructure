@@ -1,0 +1,1 @@
+﻿StockKiosk is a component that displays stock information (quotes & charts) about selected companies.

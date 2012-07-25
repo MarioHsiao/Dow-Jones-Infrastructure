@@ -1,0 +1,27 @@
+﻿@using System.Configuration
+@model DowJones.Web.Mvc.UI.Components.SocialButtons.SocialButtonsModel
+           
+@{
+    ViewBag.Title = "Social Buttons";
+}
+@section styles{
+    <link href="@ConfigurationManager.AppSettings["InfrastructureShowcase.BasePath"]/styles/views/SocialButtons/SocialButtons.css" rel="stylesheet" />
+}
+
+<div id="socialButtonsContainer"></div>
+
+@section scripts{
+    <script type="text/javascript">
+        DJ.add("SocialButtons", {
+            container: "socialButtonsContainer",
+            options: {
+                imageSize: 1,
+                title: "Share",
+                url: "http://www.dowjones.com",
+                keywords: "Social",
+                description: "Share Content",
+                socialNetworks: ["Delicious", "LinkedIn", "Twitter", "Technorati", "Yahoo", "StumbleUpon"]
+            }
+        });
+    </script>
+}

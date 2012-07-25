@@ -1,0 +1,199 @@
+﻿@import "mixins";
+
+$bodyPaddingTop: 205px;
+
+body {
+	padding-top: $bodyPaddingTop;
+}
+
+.sidebar-nav {
+	padding: 9px 0;
+}
+
+.navbar-fixed {
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: 40px;
+	z-index: 1001;
+}
+
+#explorerArea {
+	padding-top: 10px;
+	.nav-list {
+		text-align: right;
+	}
+}
+
+.nav > li, .nav > li > a, .widgetGrid a {
+	@include transition(all, 0.2s, ease, 0s);
+}
+
+.contentWell {
+	border-radius: 4px;
+
+	> header {
+		padding: 0 10px;
+		line-height: 36px; /* var: same as h2 height */
+		border-radius: 3px 3px 0 0;
+	}
+
+	.content {
+		padding: 10px 10px 0 10px;
+	}
+}
+
+iframe.showcase {
+	width: 100%; /* var: same as span12 width */
+	height: 300px;
+}
+
+section {
+  &.row-fluid + section.row-fluid {
+    margin-top: 10px; }
+  &.showcase {
+    width: 98%;
+    /* var: same as span12 width */
+    padding: 10px;
+    > h4 {
+      margin-bottom: 6px; } } }
+
+	
+
+/* Fixed subnav on scroll, but only for 980px and up (sorry IE!) */
+@media (min-width: 980px) {
+	.subnav-fixed {
+		position: fixed;
+		width: inherit;
+		top: $bodyPaddingTop + 10px;
+	}
+}
+
+/* Widget Grid */
+.widgetGrid {
+	.wideCol, .narrowCol {
+		min-height: 158px;
+	}
+
+	ul {
+		float: left;
+		margin: 2px 0 0 18px;
+		padding: 0 0 10px;
+	}
+
+	h3 {
+		margin: 0 18px;
+		padding-top: 14px;
+		font-size: 12px;
+		line-height: 1.6;
+		text-transform: uppercase;
+	}
+
+	.nav {
+		a {
+			font-size: 12px;
+		}
+	}
+}
+
+th.name
+{
+    width: 200px;
+}
+
+td.name
+{
+	font-family: Consolas;
+}
+
+.parameterized-method
+{
+	.parameters {
+		caption {
+			font-weight: bold;
+		}
+
+		td.name
+		{
+			width: 150px;
+			font-weight: bold;
+		}
+
+		clear: both;
+		margin-top: 15px;
+		border: 0;
+		padding: 0 10px;
+	}
+}
+
+.child-links {
+	margin: 0 0 10px 10px;
+}
+
+.level-0 {
+
+	.level-1 { 
+		h3 { display: none; }
+		display: none;
+	}
+
+	.level-1.selected { display: block; }
+	 
+}
+
+
+.callout {
+	margin: 8px;
+	padding: 8px;
+	border-radius: 4px;
+	background-color: #f7f7f9;
+	border: 1px solid #e1e1e8;
+	@include box-shadow-light-inset();
+	display: table;
+
+	i {
+		height: 48px;
+		width: 48px;
+		display: table-cell;
+		background-repeat: no-repeat;
+	}
+
+	span {
+		border-left: 3px solid #DDD;
+		padding-left: 0.5em;
+		display: table-cell;
+		vertical-align: middle;
+	}
+
+	.note {
+		background-image:url(themes/default/images/note.png);
+	}
+
+	.caution {
+		background-image:url(themes/default/images/caution.png);
+	}
+
+	.important {
+		background-image:url(themes/default/images/important.png);
+	}
+}
+
+.comment {
+	color: #999;
+	font-size: 12px;
+}
+
+ .nuget-badge code {
+	background-color: #202020;
+	border: 4px solid silver;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	box-shadow: 2px 2px 3px #6E6E6E;
+	color: #E2E2E2;
+	display: block;
+	font: 1.5em 'andale mono', 'lucida console', monospace;
+	line-height: 1.5em;
+	overflow: auto;
+	padding: 15px;
+}

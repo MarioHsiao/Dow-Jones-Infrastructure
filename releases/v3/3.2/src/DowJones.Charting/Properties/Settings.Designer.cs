@@ -32,5 +32,14 @@ namespace DowJones.Charting.Properties {
                 return ((string)(this["ExporterEncryptedToken"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("REST_API")]
+        public string CacheKeyNamespace {
+            get {
+                return ((string)(this["CacheKeyNamespace"]));
+            }
+        }
     }
 }

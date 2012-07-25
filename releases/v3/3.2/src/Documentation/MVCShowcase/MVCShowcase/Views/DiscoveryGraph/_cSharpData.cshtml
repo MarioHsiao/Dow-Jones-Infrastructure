@@ -1,0 +1,241 @@
+﻿<pre>
+var data = new Entities
+  {
+    CompanyNewsEntities = new ParentNewsEntity
+    {
+      Title = "Companies",
+      NewsEntities = new NewsEntities
+      {
+        new NewsEntity
+        {
+          Code = "mcrost",
+          CurrentTimeFrameNewsVolume = new WholeNumber(3319),
+          Descriptor = "Microsoft Corp",
+          Type = EntityType.Company,
+          TypeDescriptor = "Company"
+        },
+        new NewsEntity
+        {
+          Code = "goog",
+          CurrentTimeFrameNewsVolume = new WholeNumber(3232),
+          Descriptor = "Google Inc",
+          Type = EntityType.Company,
+          TypeDescriptor = "Company"
+        },
+        new NewsEntity
+        {
+          Code = "whoz",
+          CurrentTimeFrameNewsVolume = new WholeNumber(2301),
+          Descriptor = "World Health Organization",
+          Type = EntityType.Company,
+          TypeDescriptor = "Company"
+        },
+        new NewsEntity
+        {
+          Code = "usfda",
+          CurrentTimeFrameNewsVolume = new WholeNumber(2186),
+          Descriptor = "Food and Drug Administration",
+          Type = EntityType.Company,
+          TypeDescriptor = "Company"
+        },
+        new NewsEntity
+        {
+          Code = "ibm",
+          CurrentTimeFrameNewsVolume = new WholeNumber(2085),
+          Descriptor = "International Business Machines Corp",
+          Type = EntityType.Company,
+          TypeDescriptor = "Company"
+        }
+      }
+    },
+    IndustryNewsEntities = new ParentNewsEntity
+    {
+      Title = "Industries",
+      NewsEntities = new NewsEntities
+      {
+        new NewsEntity
+        {
+          Code = "iinv",
+          CurrentTimeFrameNewsVolume = new WholeNumber(1296),
+          Descriptor = "Investing/Securities",
+          Type = EntityType.Industry,
+          TypeDescriptor = "Industry"
+        },
+        new NewsEntity
+        {
+          Code = "i3302",
+          CurrentTimeFrameNewsVolume = new WholeNumber(809),
+          Descriptor = "Computers/Electronics",
+          Type = EntityType.Industry,
+          TypeDescriptor = "Industry"
+        },
+        new NewsEntity
+        {
+          Code = "i330202",
+          CurrentTimeFrameNewsVolume = new WholeNumber(800),
+          Descriptor = "Software",
+          Type = EntityType.Industry,
+          TypeDescriptor = "Industry"
+        },
+        new NewsEntity
+        {
+          Code = "iconssv",
+          CurrentTimeFrameNewsVolume = new WholeNumber(799),
+          Descriptor = "Consumer Services",
+          Type = EntityType.Industry,
+          TypeDescriptor = "Industry"
+        },
+        new NewsEntity
+        {
+          Code = "i3303",
+          CurrentTimeFrameNewsVolume = new WholeNumber(650),
+          Descriptor = "Networking",
+          Type = EntityType.Industry,
+          TypeDescriptor = "Industry"
+        }
+      }
+    },
+    PersonNewsEntities = new ParentNewsEntity
+    {
+      Title = "Persons",
+      NewsEntities = new NewsEntities
+      {
+        new NewsEntity
+        {
+          Code = "12302325",
+          CurrentTimeFrameNewsVolume = new WholeNumber(38),
+          Descriptor = "Carol A Bartz",
+          Type = EntityType.Person,
+          TypeDescriptor = "Person"
+        },
+        new NewsEntity
+        {
+          Code = "12399685",
+          CurrentTimeFrameNewsVolume = new WholeNumber(34),
+          Descriptor = "Scott Thompson",
+          Type = EntityType.Person,
+          TypeDescriptor = "Person"
+        },
+        new NewsEntity
+        {
+          Code = "12403950",
+          CurrentTimeFrameNewsVolume = new WholeNumber(26),
+          Descriptor = "Mike Lazaridis",
+          Type = EntityType.Person,
+          TypeDescriptor = "Person"
+        },
+        new NewsEntity
+        {
+          Code = "48199442",
+          CurrentTimeFrameNewsVolume = new WholeNumber(26),
+          Descriptor = "Bill A Ackman",
+          Type = EntityType.Person,
+          TypeDescriptor = "Person"
+        },
+        new NewsEntity
+        {
+          Code = "47859360",
+          CurrentTimeFrameNewsVolume = new WholeNumber(24),
+          Descriptor = "Thorsten Heins",
+          Type = EntityType.Person,
+          TypeDescriptor = "Person"
+        }
+      }
+    },
+    RegionNewsEntities = new ParentNewsEntity
+    {
+      Title = "Regions",
+      NewsEntities = new NewsEntities
+      {
+        new NewsEntity
+        {
+          Code = "usa",
+          CurrentTimeFrameNewsVolume = new WholeNumber(6440),
+          Descriptor = "United States",
+          Type = EntityType.Region,
+          TypeDescriptor = "Region"
+        },
+        new NewsEntity
+        {
+          Code = "usca",
+          CurrentTimeFrameNewsVolume = new WholeNumber(2127),
+          Descriptor = "California",
+          Type = EntityType.Region,
+          TypeDescriptor = "Region"
+        },
+        new NewsEntity
+        {
+          Code = "usw",
+          CurrentTimeFrameNewsVolume = new WholeNumber(2107),
+          Descriptor = "Western U.S.",
+          Type = EntityType.Region,
+          TypeDescriptor = "Region"
+        },
+        new NewsEntity
+        {
+          Code = "use",
+          CurrentTimeFrameNewsVolume = new WholeNumber(854),
+          Descriptor = "Northeast U.S.",
+          Type = EntityType.Region,
+          TypeDescriptor = "Region"
+        },
+        new NewsEntity
+        {
+          Code = "usny",
+          CurrentTimeFrameNewsVolume = new WholeNumber(707),
+          Descriptor = "New York",
+          Type = EntityType.Region,
+          TypeDescriptor = "Region"
+        }
+      }
+    },
+    SubjectNewsEntities = new ParentNewsEntity
+    {
+      Title = "Subjects",
+      NewsEntities = new NewsEntities
+      {
+        new NewsEntity
+        {
+          Code = "ccat",
+          CurrentTimeFrameNewsVolume = new WholeNumber(4500),
+          Descriptor = "Corporate/Industrial News",
+          Type = EntityType.NewsSubject,
+          TypeDescriptor = "NewsSubject"
+        },
+        new NewsEntity
+        {
+          Code = "m11",
+          CurrentTimeFrameNewsVolume = new WholeNumber(2805),
+          Descriptor = "Equity Markets",
+          Type = EntityType.NewsSubject,
+          TypeDescriptor = "NewsSubject"
+        },
+        new NewsEntity
+        {
+          Code = "gcat",
+          CurrentTimeFrameNewsVolume = new WholeNumber(2570),
+          Descriptor = "Political/General News",
+          Type = EntityType.NewsSubject,
+          TypeDescriptor = "NewsSubject"
+        },
+        new NewsEntity
+        {
+          Code = "nrmf",
+          CurrentTimeFrameNewsVolume = new WholeNumber(1902),
+          Descriptor = "Routine Market/Financial News",
+          Type = EntityType.NewsSubject,
+          TypeDescriptor = "NewsSubject"
+        },
+        new NewsEntity
+        {
+          Code = "c1522",
+          CurrentTimeFrameNewsVolume = new WholeNumber(1495),
+          Descriptor = "Share Price Movement/Disruptions",
+          Type = EntityType.NewsSubject,
+          TypeDescriptor = "NewsSubject"
+        }
+      }
+    }
+  }
+};
+</pre>

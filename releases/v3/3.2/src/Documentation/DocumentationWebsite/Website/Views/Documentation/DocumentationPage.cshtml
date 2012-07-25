@@ -1,0 +1,93 @@
+@model PageViewModel
+@{
+    ViewBag.Title = "Dow Jones Component Explorer :: " + Model.Category.DisplayName + " > " + Model.DisplayName;
+}
+@helper RenderMenuItems(ContentSectionViewModel contentSection, int level = 0)
+{
+    <li class="@(level > 0 ? "child" : "")"><a href="#@contentSection.AnchorId">@contentSection.DisplayName</a>
+    </li>
+}
+@helper RenderSection(ContentSectionViewModel contentSection, int level = 0)
+{
+    <section id="@contentSection.AnchorId" class="row-fluid level-@level @(contentSection.Collapsible && level == 0 ? "collapsible" : "") @(contentSection.Selected ? "selected" : "")">
+        @if (contentSection.HasChildren)
+        {
+            <header class="span12 clearfix">
+                <div class="pull-left">
+                    @if (level == 0)
+                    {
+                        <h3>@contentSection.DisplayName</h3>
+                    }
+                </div>
+                <div class="pull-right child-links">
+                    @foreach (var child in contentSection.Children)
+                    {
+                        <span class="child-link btn btn-mini btn-inverse @(child.Selected ? "active" : "")" data-ref="#@child.AnchorId">@child.DisplayName</span>
+                    }
+                </div>
+            </header>
+            
+                    foreach (var child in contentSection.Children)
+                    {
+            @RenderSection(child, level + 1)
+                    }
+        }
+        else
+        {
+            if (level == 0)
+            {
+            <header>
+                <h3>@contentSection.DisplayName</h3>
+            </header>
+            }
+            <div>
+                @Html.DocumentationSection(contentSection)
+            </div>
+        }
+    </section>
+}
+@section styles {
+    @Styles.Render("~/Styles/explorer")
+}
+
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div id="explorerArea">
+            <div class="span2">
+                @if (Model.HasChildren)
+                {
+                    <div class="well sidebar-nav">
+                        <ul class="nav nav-list">
+                            @foreach (var child in Model.Children)
+                            {
+                                @RenderMenuItems(child)
+                            }
+                        </ul>
+                    </div>
+                    <!--/.well -->
+                }
+            </div>
+        </div>
+        <div class="span10 contentWell">
+            <header class="span12">
+                <h2 class="pull-left">@Model.DisplayName</h2>
+            </header>
+
+            <div class="content">
+                @if (!Model.HasChildren)
+                {
+                    @Html.DocumentationPage()
+                }
+                @foreach (var child in Model.Children)
+                {
+                    @RenderSection(child)
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    @Scripts.Render("~/bundles/syntaxhighlighter-js")
+    @Scripts.Render("~/bundles/explorer")
+}

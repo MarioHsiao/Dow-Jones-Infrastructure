@@ -1,0 +1,2 @@
+Team Foundation Server (commonly abbreviated to TFS) is a Microsoft product offering source control, build services, data collection, reporting, and project tracking. 
+Interaction with Team Foundation Server consists of calls to web services, generally from the Team Explorer tab within the Visual Studio IDE or through its web interface.

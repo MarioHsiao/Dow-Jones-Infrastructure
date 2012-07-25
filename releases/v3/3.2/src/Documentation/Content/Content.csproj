@@ -1,0 +1,194 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{38E4CD1B-1A81-4D29-84D9-D20D8C85FE05}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Content</RootNamespace>
+    <AssemblyName>Content</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'ToolChain|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\ToolChain\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="1GettingStarted\1Introduction\1DJCoreFramework.md" />
+    <None Include="1GettingStarted\1Introduction\2DJ_ASP.NET_MVC_Framework.md" />
+    <None Include="1GettingStarted\1Introduction\3DJ_UIComponents.md" />
+    <None Include="1GettingStarted\1Introduction\4DJCompositeComponents.md" />
+    <None Include="1GettingStarted\1Introduction\Overview.md" />
+    <None Include="1GettingStarted\2InstallDevelopmentEnvironment\1RequiredComponents.md" />
+    <None Include="1GettingStarted\2InstallDevelopmentEnvironment\2Verification.md" />
+    <None Include="1GettingStarted\3ConfigureDevelopmentEnvironment\1ConnectingToTFS.md" />
+    <None Include="1GettingStarted\3ConfigureDevelopmentEnvironment\2WorkingWithNuGet.md" />
+    <None Include="1GettingStarted\3ConfigureDevelopmentEnvironment\3DowJonesProjectAndItemTemplates.md" />
+    <None Include="1GettingStarted\3ConfigureDevelopmentEnvironment\4DowJonesWebsiteTemplate.md" />
+    <None Include="1GettingStarted\4UseAComponent\ASP.NET_MVCUsage.md" />
+    <None Include="1GettingStarted\4UseAComponent\JavaScriptUsageSample.md" />
+    <None Include="1GettingStarted\4UseAComponent\JavaScriptUsage.md" />
+    <None Include="1GettingStarted\4UseAComponent\Overview.md" />
+    <None Include="1GettingStarted\5CreateAComponent\1OpenSolution.md" />
+    <Content Include="Assets\Autosuggest\autosuggest.zip">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="1GettingStarted\6PlatformConnectivity\1Installation.md" />
+    <None Include="1GettingStarted\6PlatformConnectivity\2GatewayConfiguration.md" />
+    <None Include="1GettingStarted\6PlatformConnectivity\Overview.md" />
+    <None Include="Components\AutoSuggest\Assets.md" />
+    <None Include="Components\Customization\Examples.md" />
+    <None Include="Components\Customization\Overview.md" />
+    <None Include="Components\DiscoveryGraph\DataModel.md" />
+    <None Include="Components\NewsRadar90DayAvg\DataModel.md" />
+    <None Include="Components\PortalHeadlineList\DataModel.md" />
+    <None Include="Components\StockKiosk\DataModel.md" />
+    <None Include="Components\VideoPlayer\DataModel.md" />
+    <None Include="Components\WorkingWithData\Examples\Javascript.md" />
+    <None Include="Components\WorkingWithData\Overview.md" />
+    <None Include="Components\WorkingWithData\Assemblers.md" />
+    <None Include="Components\WorkingWithData\Examples\ASP.NET_MVC.md" />
+    <None Include="Components\Article\Configuration.md" />
+    <None Include="Components\Article\Events.md" />
+    <None Include="Components\Article\LiveDemo.md" />
+    <None Include="Components\Article\ConfigurableOptions.md" />
+    <None Include="Components\Article\Overview.md" />
+    <None Include="Components\AutoSuggest\Configuration\ASP.NET_MVC.md" />
+    <None Include="Components\AutoSuggest\Configuration\Javascript.md" />
+    <None Include="Components\AutoSuggest\ConfigurableOptions.md" />
+    <None Include="Components\AutoSuggest\Tokens.md" />
+    <None Include="Components\AutoSuggest\Events.md" />
+    <None Include="Components\AutoSuggest\LiveDemo.md">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Components\AutoSuggest\Overview.md" />
+    <None Include="Components\DiscoveryGraph\Configuration\Javascript.md" />
+    <None Include="Components\DiscoveryGraph\Configuration\ASP.NET_MVC.md" />
+    <None Include="Components\DiscoveryGraph\Events.md" />
+    <None Include="Components\DiscoveryGraph\LiveDemo.md" />
+    <None Include="Components\DiscoveryGraph\Methods.md" />
+    <None Include="Components\DiscoveryGraph\Overview.md" />
+    <None Include="Components\NewsRadar90DayAvg\Configuration\ASP.NET_MVC.md" />
+    <None Include="Components\NewsRadar90DayAvg\Configuration\Javascript.md" />
+    <None Include="Components\NewsRadar90DayAvg\Events.md" />
+    <None Include="Components\NewsRadar90DayAvg\LiveDemo.md" />
+    <None Include="Components\NewsRadar90DayAvg\Methods.md" />
+    <None Include="Components\NewsRadar90DayAvg\Overview.md" />
+    <None Include="Components\NewsRadar90DayAvg\ConfigurableOptions.md" />
+    <None Include="Components\PortalHeadlineList\Configuration\ASP.NET_MVC.md" />
+    <None Include="Components\PortalHeadlineList\Configuration\Javascript.md" />
+    <None Include="Components\PortalHeadlineList\ConfigurableOptions.md" />
+    <None Include="Components\PortalHeadlineList\Events.md" />
+    <None Include="Components\PortalHeadlineList\LiveDemo.md" />
+    <None Include="Components\PortalHeadlineList\Methods.md" />
+    <None Include="Components\PortalHeadlineList\Overview.md" />
+    <None Include="Components\RelatedTopics.json" />
+    <None Include="Components\SocialButtons\Configuration\ASP.NET_MVC.md" />
+    <None Include="Components\SocialButtons\Configuration\Javascript.md" />
+    <None Include="Components\SocialButtons\LiveDemo.md" />
+    <None Include="Components\SocialButtons\ConfigurableOptions.md" />
+    <None Include="Components\SocialButtons\Overview.md" />
+    <None Include="Components\StockKiosk\Configuration\ASP.NET_MVC.md" />
+    <None Include="Components\StockKiosk\Configuration\Javascript.md" />
+    <None Include="Components\StockKiosk\ConfigurableOptions.md" />
+    <None Include="Components\StockKiosk\LiveDemo.md">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Components\StockKiosk\Overview.md" />
+    <None Include="Components\VideoPlayer\Configuration\ASP.NET_MVC.md" />
+    <None Include="Components\VideoPlayer\Configuration\Javascript.md" />
+    <None Include="Components\VideoPlayer\LiveDemo.md" />
+    <None Include="Components\VideoPlayer\ConfigurableOptions.md" />
+    <None Include="Components\VideoPlayer\Overview.md" />
+    <None Include="Components\WorkingWithEvents\Overview.md" />
+    <None Include="Components\WorkingWithEvents\2PubSubPattern.md" />
+    <None Include="Components\WorkingWithEvents\3Members.md" />
+    <None Include="Components\WorkingWithEvents\4Examples.md" />
+    <None Include="Components\WorkingWithEvents\5HandlerFunction.md" />
+    <None Include="deploy.proj" />
+    <Content Include="images\AddingDowJonesTFSServer.png" />
+    <Content Include="images\CI_BuildNotificationOptions.png" />
+    <Content Include="images\CI_BuildNotificationsSystemTray.png" />
+    <Content Include="images\ConnectingToTFS.png" />
+    <Content Include="images\Download.png" />
+    <Content Include="images\DowJonesItemTemplates.png" />
+    <Content Include="images\NuGet_AddedSource.png" />
+    <Content Include="images\NuGet_AddPackageReference.png" />
+    <Content Include="images\NuGet_Navigation.png" />
+    <Content Include="images\NuGet_PackageSources.png" />
+    <Content Include="images\Nuget_UpgradePackages.png" />
+    <Content Include="images\VSVersions.png" />
+    <Content Include="Web.config" />
+    <None Include="1GettingStarted\5CreateAComponent\2CreateDataObject.md" />
+    <None Include="1GettingStarted\5CreateAComponent\3CreateModel.md" />
+    <None Include="1GettingStarted\5CreateAComponent\4CreateJavaScriptFiles.md" />
+    <None Include="1GettingStarted\5CreateAComponent\5CreateClientTemplates.md" />
+    <None Include="1GettingStarted\5CreateAComponent\6CreateRazorView.md" />
+    <None Include="1GettingStarted\5CreateAComponent\7AddToShowcase.md" />
+    <None Include="1GettingStarted\5CreateAComponent\Overview.md" />
+    <None Include="1GettingStarted\2InstallDevelopmentEnvironment\Overview.md" />
+    <None Include="Guidance\1CodingStandards\1CSharp.md" />
+    <None Include="Guidance\1CodingStandards\2Javascript.md" />
+    <None Include="Guidance\1CodingStandards\3ASP.NetMVC.md" />
+    <None Include="Guidance\3ContinousIntegration\1AutomatedBuilds.md" />
+    <None Include="Guidance\3ContinousIntegration\2BestPractices.md" />
+    <None Include="Guidance\3ContinousIntegration\3WhatToDoIf.md" />
+    <None Include="Guidance\BestPractices\1General.md" />
+    <None Include="Guidance\BestPractices\2VersionControl.md" />
+    <None Include="Guidance\BestPractices\3ContinousIntegration.md" />
+    <None Include="Guidance\BestPractices\4PackageManagement.md" />
+    <None Include="Guidance\BestPractices\5ASP.netMVC.md" />
+    <None Include="Guidance\BestPractices\Overview.md" />
+    <None Include="Guidance\1CodingStandards\Overview.md" />
+    <None Include="Guidance\3ContinousIntegration\Overview.md" />
+    <None Include="Guidance\FAQ\NugetPackages.md" />
+    <None Include="Guidance\2VersionControl\2ConfigurationAndSetup.md" />
+    <None Include="Guidance\2VersionControl\4BranchingAndMergingStrategies.md" />
+    <None Include="Guidance\2VersionControl\5AutomatedBuilds.md" />
+    <None Include="Guidance\2VersionControl\6TypesOfAutomatedBuilds.md" />
+    <None Include="Guidance\2VersionControl\Overview.md" />
+    <None Include="Guidance\2VersionControl\3RepositoryStructure.md" />
+    <None Include="images\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

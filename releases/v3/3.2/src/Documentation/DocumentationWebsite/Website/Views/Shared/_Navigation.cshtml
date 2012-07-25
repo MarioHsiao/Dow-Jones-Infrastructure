@@ -1,0 +1,75 @@
+﻿@using LinkExtensions = DowJones.Documentation.Website.Extensions.LinkExtensions
+@model SiteNavigation
+<div class="navbar navbar-fixed-top topnav">
+    <div class="navbar-inner">
+        <div class="container-fluid">
+
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+
+            @Html.ActionLink("Dow Jones UI Showcase", "Homepage", "Documentation", null, new Dictionary<string, object> { { "class", "brand" } })
+
+            <div class="nav-collapse">
+                <ul class="nav">
+                    @foreach (var category in Model.Categories)
+                    {
+                        <li class="category @(category.Selected ? "active" : "")" data-key="@category.Key">
+                            @Html.DocumentationCategoryLink(category)
+                        </li>
+                    }
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@if (Model.CurrentCategory != null)
+{
+    <div class="navbar-fixed">
+        <div class="container-fluid">
+            <div class="row-fluid widgetGrid">
+				<div class="@(Model.CurrentCategory.HasRelatedTopics ? "span8" : "span12") wideCol">
+					<h3>@Model.CurrentCategory.DisplayName</h3>
+					@foreach (var group in Model.CurrentCategory.GetPageGroups())
+					{
+						<div>
+							<ul class="nav nav-list">
+								@foreach (var page in group)
+								{
+									<li class="@(page.Selected ? "active" : "")">
+										@Html.DocumentationPageLink(page)
+									</li>
+								}
+							</ul>
+						</div>
+					}
+				</div>
+                @if(Model.CurrentCategory.HasRelatedTopics)
+				{
+					<div class="span4 narrowCol">
+						<h3>Related Topics</h3>
+						@foreach (var group in Model.CurrentCategory.GetRelatedTopicGroups())
+						{
+							<div>
+								<ul class="nav nav-list">
+									@foreach (var topic in group)
+									{
+										<li>
+											@Html.DocumentationPageLink(topic)
+										</li>
+									}
+								</ul>
+							</div>
+						}
+					</div>
+				}
+            </div>
+        </div>
+    </div>
+
+}
+
