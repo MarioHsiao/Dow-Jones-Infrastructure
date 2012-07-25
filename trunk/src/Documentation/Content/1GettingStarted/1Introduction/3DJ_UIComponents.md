@@ -5,7 +5,7 @@ The Dow Jones UI Component Library consists of the following assemblies:
 - `DowJones.Web.Mvc.UI.Components`
 - `DowJones.Web.Mvc.UI.Components.Models`
 
-The Framework offers two primary types of components: "normal" UI Components, and Composite Components.
+The Framework offers two primary types of components: "normal" UI Components, and [Composite Components](#djcompositecomponents).
 
 #### Normal UI Components
 Dow Jones UI Components interact with the DOM directly. 
@@ -54,14 +54,3 @@ Some of the notable components are:
 - UI components do not fetch their own data; rather, it is provided data from an outside source (such as its parent Composite Component).
 - UI components do not include any CSS styling -- they must be styled and branded as per each application's requirements.
 - "Normal" UI components do not contain other UI components; components that do so are considered *Composite Components*
-
-
-#### Composite Components
-Composite Components are "normal" UI components that are made up of two or more UI Components.
-
-They act as a scope container for the events fired by individual components.
-Each of the composite component or its derived classes contain an instance of +PubSubManager+ which acts as a component event sink and an outlet.
-
-@using DowJones.Documentation.Website.Extensions
-
-@Html.Note("<p>It is worth noting that two or more composite components can talk to each other, again via PubSub model. </p><p>Also, a composite component can have another composite component as its child.</p><p>`SearchResults` component is a classic example of this. It is composite component which houses 3 other composite components as well as some UI components.</p>")

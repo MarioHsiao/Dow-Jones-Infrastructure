@@ -44,9 +44,10 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <None Include="1GettingStarted\1Introduction\1DJ_CoreFramework.md" />
+    <None Include="1GettingStarted\1Introduction\1DJCoreFramework.md" />
     <None Include="1GettingStarted\1Introduction\2DJ_ASP.NET_MVC_Framework.md" />
     <None Include="1GettingStarted\1Introduction\3DJ_UIComponents.md" />
+    <None Include="1GettingStarted\1Introduction\4DJCompositeComponents.md" />
     <None Include="1GettingStarted\1Introduction\Overview.md" />
     <None Include="1GettingStarted\2InstallDevelopmentEnvironment\1RequiredComponents.md" />
     <None Include="1GettingStarted\2InstallDevelopmentEnvironment\2Verification.md" />
