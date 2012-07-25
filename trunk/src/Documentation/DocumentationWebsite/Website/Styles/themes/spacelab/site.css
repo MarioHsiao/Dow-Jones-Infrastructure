@@ -89,13 +89,22 @@ section.collapsible.collapsed i {
 /* homepage */
 .unit {
   background: url("img/site.png") no-repeat;
-  background-size: 24px;
-  padding-left: 24px;
+  padding-left: 34px;
   line-height: 34px; }
 
-.integrate {
+.configure {
   background-position: 0px 0px; }
 
-.configure {
-  background-position: 0px -58px; }
+.integrate {
+  background-position: 0px -34px; }
+
+.latest {
+  background-position: 0px -68px; }
+
+.engage {
+  background-position: 0px -102px; }
+
+.news > p {
+  background: url("img/icon_bubble.png") no-repeat;
+  padding-left: 32px; }
 

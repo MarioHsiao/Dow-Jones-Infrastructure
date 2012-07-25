@@ -250,6 +250,7 @@
     <Content Include="Styles\Site.scss" />
     <Content Include="Views\Shared\_DemoFrame.cshtml" />
     <Content Include="Views\Shared\GoogleAnalyticsTracker.cshtml" />
+    <Content Include="Views\Documentation\Forum.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Core\Core.csproj">

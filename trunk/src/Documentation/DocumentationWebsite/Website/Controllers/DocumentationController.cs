@@ -26,6 +26,12 @@ namespace DowJones.Documentation.Website.Controllers
             return View();
         }
 
+		[OutputCache(Duration = 3600)]
+		public ActionResult Forum()
+		{
+			return View();
+		}
+
         [ChildActionOnly]
         public ActionResult Navigation(string category, string page)
         {
