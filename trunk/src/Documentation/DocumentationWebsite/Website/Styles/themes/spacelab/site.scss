@@ -59,7 +59,11 @@ section {
 	
     border-bottom: 1px inset #bbb;
     line-height: normal;
-    margin-bottom: 2%; }
+    margin-bottom: 2%;
+
+	&.parent {
+		margin-bottom: 0;
+	} }
 
   &.collapsible {
     > header {
@@ -110,3 +114,22 @@ section {
       cursor: pointer; } }
   h3 {
     color: #84b8d9; } }
+
+/* homepage */
+
+$site-sprite-url: url("img/site.png");
+
+.unit {
+	background: $site-sprite-url no-repeat;
+	background-size: 24px;
+	padding-left: 24px;
+	line-height: 34px;
+}
+
+.integrate {
+	background-position: 0px 0px;
+}
+
+.configure {
+	background-position: 0px -58px;
+}

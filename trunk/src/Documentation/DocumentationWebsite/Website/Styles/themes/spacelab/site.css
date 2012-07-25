@@ -44,6 +44,8 @@ section > header {
   border-bottom: 1px inset #bbb;
   line-height: normal;
   margin-bottom: 2%; }
+  section > header.parent {
+    margin-bottom: 0; }
 section.collapsible > header {
   cursor: pointer;
   cursor: hand; }
@@ -83,4 +85,17 @@ section.collapsible.collapsed i {
       cursor: pointer; }
   #simplemodal-container h3 {
     color: #84b8d9; }
+
+/* homepage */
+.unit {
+  background: url("img/site.png") no-repeat;
+  background-size: 24px;
+  padding-left: 24px;
+  line-height: 34px; }
+
+.integrate {
+  background-position: 0px 0px; }
+
+.configure {
+  background-position: 0px -58px; }
 

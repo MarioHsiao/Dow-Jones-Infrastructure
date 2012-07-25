@@ -198,6 +198,7 @@
     <Content Include="Styles\themes\default\images\important.png" />
     <Content Include="Styles\themes\spacelab\img\loader.gif" />
     <Content Include="Styles\themes\default\images\note.png" />
+    <Content Include="Styles\themes\spacelab\img\site.png" />
     <Content Include="Styles\themes\spacelab\img\x.png" />
     <Content Include="Styles\themes\spacelab\site.css">
       <DependentUpon>site.scss</DependentUpon>
