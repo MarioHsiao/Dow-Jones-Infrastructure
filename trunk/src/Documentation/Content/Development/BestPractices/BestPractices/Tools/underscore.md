@@ -1,5 +1,0 @@
-﻿##### underscrore.js
-
-###### Overview
-
-###### Featues

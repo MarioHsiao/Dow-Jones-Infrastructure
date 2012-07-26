@@ -1,5 +1,0 @@
-﻿##### jQuery UI
-
-###### Overview
-
-###### Featues
