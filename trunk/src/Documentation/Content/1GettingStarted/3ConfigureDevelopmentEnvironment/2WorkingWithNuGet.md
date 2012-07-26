@@ -13,7 +13,7 @@ First, open the NuGet settings dialog within Visual Studio by selecting the `Too
 Then, populate the dialog with the following values:
 
 * *Name*: Dow Jones package source
-* *Source*: \\fsegdevw1.win.dowjones.net\WebSites\nuget\main\Packages
+* *Source*: [&#x5c;&#x5c;fsegdevw1.win.dowjones.net\WebSites\nuget\main\Packages](file:///fsegdevw1.win.dowjones.net\WebSites\nuget\main\Packages)
 
 @Html.Note("If you are unable to connect to the package source above or it performs poorly, replace it with <em>http://montana.dev.us.factiva.com/nuget/main/repository</em>")
 
