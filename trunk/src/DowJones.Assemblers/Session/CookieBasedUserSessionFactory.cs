@@ -27,6 +27,7 @@ namespace DowJones.Assemblers.Session
         protected internal const string LoginCookieDebugLevelKey = "dg";
         protected internal const string RequestDebugLevelKey = "debugLevel";
         protected internal const string LanguageKey = "fcpil";
+        protected internal const string AccessPointCodeKey = "napc";
 
         private readonly HttpCookieManager _cookieManager;
         private readonly ReferringProduct _referringProduct;
@@ -53,7 +54,8 @@ namespace DowJones.Assemblers.Session
         {
             get
             {
-                return _referringProduct.ClientTypeCode 
+                return _httpContext.Request[AccessPointCodeKey] 
+                    ??_referringProduct.ClientTypeCode 
                     ?? Settings.Default.DefaultClientCodeType;
             }
         }
