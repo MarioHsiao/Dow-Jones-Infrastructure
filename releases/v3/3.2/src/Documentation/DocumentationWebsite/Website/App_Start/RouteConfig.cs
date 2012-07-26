@@ -21,6 +21,12 @@ namespace DowJones.Documentation.Website.App_Start
 			routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
 			routes.MapRoute(
+				"Forum",
+				"forum/{action}/{id}",
+				new { controller = "Documentation", action = "Forum", id = UrlParameter.Optional }
+			);
+
+			routes.MapRoute(
 				"DocumentationBrowser",
 				"{category}/{page}/{section}",
 				new

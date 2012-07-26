@@ -59,7 +59,11 @@ section {
 	
     border-bottom: 1px inset #bbb;
     line-height: normal;
-    margin-bottom: 2%; }
+    margin-bottom: 2%;
+
+	&.parent {
+		margin-bottom: 0;
+	} }
 
   &.collapsible {
     > header {
@@ -110,3 +114,38 @@ section {
       cursor: pointer; } }
   h3 {
     color: #84b8d9; } }
+
+/* homepage */
+
+$site-sprite-url: url("img/site.png");
+$site-sprite-indent: 34px;
+
+.unit {
+	background: $site-sprite-url no-repeat;
+	padding-left: $site-sprite-indent;
+	line-height: $site-sprite-indent;
+}
+
+.configure {
+	background-position: 0px 0px;
+}
+
+.integrate {
+	background-position: 0px -34px;
+}
+
+.latest {
+	background-position: 0px -68px;
+}
+
+.engage {
+	background-position: 0px -102px;
+}
+
+.news {
+	> p {
+		background: $site-sprite-url no-repeat;
+		padding-left: $site-sprite-indent;
+		background-position: 0px -136px;
+	}
+}

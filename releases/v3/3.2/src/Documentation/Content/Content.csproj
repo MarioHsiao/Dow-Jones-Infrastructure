@@ -55,9 +55,9 @@
     <None Include="1GettingStarted\3ConfigureDevelopmentEnvironment\2WorkingWithNuGet.md" />
     <None Include="1GettingStarted\3ConfigureDevelopmentEnvironment\3DowJonesProjectAndItemTemplates.md" />
     <None Include="1GettingStarted\3ConfigureDevelopmentEnvironment\4DowJonesWebsiteTemplate.md" />
-    <None Include="1GettingStarted\4UseAComponent\ASP.NET_MVCUsage.md" />
-    <None Include="1GettingStarted\4UseAComponent\JavaScriptUsageSample.md" />
-    <None Include="1GettingStarted\4UseAComponent\JavaScriptUsage.md" />
+    <None Include="1GettingStarted\4UseAComponent\1Usage\ASP.NET_MVC.md" />
+    <None Include="1GettingStarted\4UseAComponent\2Example\JavaScript.md" />
+    <None Include="1GettingStarted\4UseAComponent\1Usage\JavaScript.md" />
     <None Include="1GettingStarted\4UseAComponent\Overview.md" />
     <None Include="1GettingStarted\5CreateAComponent\1OpenSolution.md" />
     <Content Include="Assets\Autosuggest\autosuggest.zip">
@@ -67,8 +67,11 @@
     <None Include="1GettingStarted\6PlatformConnectivity\2GatewayConfiguration.md" />
     <None Include="1GettingStarted\6PlatformConnectivity\Overview.md" />
     <None Include="Components\AutoSuggest\Assets.md" />
-    <None Include="Components\Customization\Examples.md" />
+    <None Include="Components\Customization\1Examples.md" />
     <None Include="Components\Customization\Overview.md" />
+    <None Include="Components\Customization\4TemplateConfiguration.md" />
+    <None Include="Components\Customization\2TemplateCreation.md" />
+    <None Include="Components\Customization\3TemplateCompilation.md" />
     <None Include="Components\DiscoveryGraph\DataModel.md" />
     <None Include="Components\NewsRadar90DayAvg\DataModel.md" />
     <None Include="Components\PortalHeadlineList\DataModel.md" />
@@ -163,6 +166,14 @@
     <None Include="Guidance\3ContinousIntegration\1AutomatedBuilds.md" />
     <None Include="Guidance\3ContinousIntegration\2BestPractices.md" />
     <None Include="Guidance\3ContinousIntegration\3WhatToDoIf.md" />
+    <None Include="Guidance\4DependencyInjection\5DependencyInjectionAndASP.NETMVC.md" />
+    <None Include="Guidance\4DependencyInjection\2DependencyInjectionAndUnitTesting.md" />
+    <None Include="Guidance\4DependencyInjection\6DependencyInjectionAndWindowsCommunicationFoundation.md" />
+    <None Include="Guidance\4DependencyInjection\3DependencyInjectionFrameworks.md" />
+    <None Include="Guidance\4DependencyInjection\7DependencyInjectionInAction.md" />
+    <None Include="Guidance\4DependencyInjection\1DependencyInjectionTechniques.md" />
+    <None Include="Guidance\4DependencyInjection\4ObjectScopeAndLifetimeManagement.md" />
+    <None Include="Guidance\4DependencyInjection\Overview.md" />
     <None Include="Guidance\BestPractices\1General.md" />
     <None Include="Guidance\BestPractices\2VersionControl.md" />
     <None Include="Guidance\BestPractices\3ContinousIntegration.md" />
@@ -171,6 +182,9 @@
     <None Include="Guidance\BestPractices\Overview.md" />
     <None Include="Guidance\1CodingStandards\Overview.md" />
     <None Include="Guidance\3ContinousIntegration\Overview.md" />
+    <None Include="Guidance\BestPractices\Tools\ClientSideTemplates.md" />
+    <None Include="Guidance\BestPractices\Tools\jQuery.md" />
+    <None Include="Guidance\BestPractices\Tools\RequireJS.md" />
     <None Include="Guidance\FAQ\NugetPackages.md" />
     <None Include="Guidance\2VersionControl\2ConfigurationAndSetup.md" />
     <None Include="Guidance\2VersionControl\4BranchingAndMergingStrategies.md" />
@@ -182,6 +196,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

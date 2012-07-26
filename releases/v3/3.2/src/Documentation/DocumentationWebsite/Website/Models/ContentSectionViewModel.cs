@@ -21,7 +21,7 @@ namespace DowJones.Documentation.Website.Models
 
 		public bool Collapsible
 		{
-			get { return Key != "livedemo" && Key != "configuration"; }
+			get { return Key != "livedemo"; }
 		}
 
 		public string DisplayName

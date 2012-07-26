@@ -21,434 +21,2698 @@
         });
 
         function getSampleData() {
-            return [{
-                "rc": 0,
-                "requestedId": "Factiva:ibm",
-                "symbol": "IBM",
-                "fCode": "ibm",
-                "currency": "USD",
-                "isin": "US4592001014",
-                "sedol": "2005973",
-                "cusip": "459200101",
-                "name": "International Business Machines Corp.",
-                "low": {
-                    "displayText": {
-                        "value": "0.00"
-                    },
-                    "value": 0.0
-                },
-                "high": {
-                    "displayText": {
-                        "value": "0.00"
-                    },
-                    "value": 0.0
-                },
-                "last": {
-                    "displayText": {
-                        "value": "195.34"
-                    },
-                    "value": 195.34
-                },
-                "open": {
-                    "displayText": {
-                        "value": "0.00"
-                    },
-                    "value": 0.0
-                },
-                "stop": "0001-01-01T00:00:00",
-                "adjustedStart": "0001-01-01T00:00:00",
-                "adjustedStop": "0001-01-01T00:00:00",
-                "lastUpdated": "2012-07-19T16:01:39.092",
-                "lastUpdatedDescripter": "19 July 2012 4:01 PM GMT",
-                "adjustedLastUpdated": "2012-07-19T20:01:39.092Z",
-                "adjustedLastUpdatedTimeZoneName": "Eastern Daylight Time",
-                "AdjustedLastUpdatedTimeZoneAbbr": "EDT",
-                "adjustedLastUpdatedDescripter": "19 July 2012 4:01 PM",
-                "percentChange": {
-                    "displayText": {
-                        "value": "0.00%"
-                    },
-                    "value": 0.0
-                },
-                "isIndex": false,
-                "provider": {
-                    "name": "SIX-Telekurs",
-                    "externalUrl": "http://www.SIX-Telekurs.com"
-                },
-                "exchange": {
-                    "code": "NYSE",
-                    "descriptor": "U.S.: NYSE",
-                    "timeZoneDescriptor": "Eastern Daylight Time",
-                    "timeZoneAbbreviation": "EDT",
-                    "isPrimary": false
-                }
-            }, {
-                "rc": 0,
-                "requestedId": "Factiva:mcrost",
-                "symbol": "MSFT",
-                "fCode": "mcrost",
-                "currency": "USD",
-                "isin": "US5949181045",
-                "sedol": "2588173",
-                "cusip": "594918104",
-                "name": "Microsoft Corp.",
-                "low": {
-                    "displayText": {
-                        "value": "0.00"
-                    },
-                    "value": 0.0
-                },
-                "high": {
-                    "displayText": {
-                        "value": "0.00"
-                    },
-                    "value": 0.0
-                },
-                "last": {
-                    "displayText": {
-                        "value": "30.67"
-                    },
-                    "value": 30.665
-                },
-                "open": {
-                    "displayText": {
-                        "value": "0.00"
-                    },
-                    "value": 0.0
-                },
-                "stop": "0001-01-01T00:00:00",
-                "adjustedStart": "0001-01-01T00:00:00",
-                "adjustedStop": "0001-01-01T00:00:00",
-                "lastUpdated": "2012-07-19T16:00:03.309",
-                "lastUpdatedDescripter": "19 July 2012 4:00 PM GMT",
-                "adjustedLastUpdated": "2012-07-19T20:00:03.309Z",
-                "adjustedLastUpdatedTimeZoneName": "Eastern Daylight Time",
-                "AdjustedLastUpdatedTimeZoneAbbr": "EDT",
-                "adjustedLastUpdatedDescripter": "19 July 2012 4:00 PM",
-                "percentChange": {
-                    "displayText": {
-                        "value": "0.00%"
-                    },
-                    "value": 0.0
-                },
-                "isIndex": false,
-                "provider": {
-                    "name": "SIX-Telekurs",
-                    "externalUrl": "http://www.SIX-Telekurs.com"
-                },
-                "exchange": {
-                    "code": "NASDAQ",
-                    "descriptor": "U.S.: Nasdaq",
-                    "timeZoneDescriptor": "Eastern Daylight Time",
-                    "timeZoneAbbreviation": "EDT",
-                    "isPrimary": false
-                }
-            }, {
-                "rc": 0,
-                "requestedId": "Factiva:goog",
-                "symbol": "GOOG",
-                "fCode": "goog",
-                "currency": "USD",
-                "isin": "US38259P5089",
-                "sedol": "B020QX2",
-                "cusip": "38259P508",
-                "name": "Google Inc. Cl A",
-                "low": {
-                    "displayText": {
-                        "value": "0.00"
-                    },
-                    "value": 0.0
-                },
-                "high": {
-                    "displayText": {
-                        "value": "0.00"
-                    },
-                    "value": 0.0
-                },
-                "last": {
-                    "displayText": {
-                        "value": "593.06"
-                    },
-                    "value": 593.06
-                },
-                "open": {
-                    "displayText": {
-                        "value": "0.00"
-                    },
-                    "value": 0.0
-                },
-                "stop": "0001-01-01T00:00:00",
-                "adjustedStart": "0001-01-01T00:00:00",
-                "adjustedStop": "0001-01-01T00:00:00",
-                "lastUpdated": "2012-07-19T16:00:04.312",
-                "lastUpdatedDescripter": "19 July 2012 4:00 PM GMT",
-                "adjustedLastUpdated": "2012-07-19T20:00:04.312Z",
-                "adjustedLastUpdatedTimeZoneName": "Eastern Daylight Time",
-                "AdjustedLastUpdatedTimeZoneAbbr": "EDT",
-                "adjustedLastUpdatedDescripter": "19 July 2012 4:00 PM",
-                "percentChange": {
-                    "displayText": {
-                        "value": "0.00%"
-                    },
-                    "value": 0.0
-                },
-                "isIndex": false,
-                "provider": {
-                    "name": "SIX-Telekurs",
-                    "externalUrl": "http://www.SIX-Telekurs.com"
-                },
-                "exchange": {
-                    "code": "NASDAQ",
-                    "descriptor": "U.S.: Nasdaq",
-                    "timeZoneDescriptor": "Eastern Daylight Time",
-                    "timeZoneAbbreviation": "EDT",
-                    "isPrimary": false
-                }
-            }, {
-                "rc": 0,
-                "requestedId": "Factiva:carsvc",
-                "symbol": "CSV",
-                "fCode": "carsvc",
-                "currency": "USD",
-                "isin": "US1439051079",
-                "sedol": "2177786",
-                "cusip": "143905107",
-                "name": "Carriage Services Inc. ",
-                "low": {
-                    "displayText": {
-                        "value": "0.00"
-                    },
-                    "value": 0.0
-                },
-                "high": {
-                    "displayText": {
-                        "value": "0.00"
-                    },
-                    "value": 0.0
-                },
-                "last": {
-                    "displayText": {
-                        "value": "8.72"
-                    },
-                    "value": 8.72
-                },
-                "open": {
-                    "displayText": {
-                        "value": "0.00"
-                    },
-                    "value": 0.0
-                },
-                "stop": "0001-01-01T00:00:00",
-                "adjustedStart": "0001-01-01T00:00:00",
-                "adjustedStop": "0001-01-01T00:00:00",
-                "lastUpdated": "2012-07-19T16:02:27.581",
-                "lastUpdatedDescripter": "19 July 2012 4:02 PM GMT",
-                "adjustedLastUpdated": "2012-07-19T20:02:27.581Z",
-                "adjustedLastUpdatedTimeZoneName": "Eastern Daylight Time",
-                "AdjustedLastUpdatedTimeZoneAbbr": "EDT",
-                "adjustedLastUpdatedDescripter": "19 July 2012 4:02 PM",
-                "percentChange": {
-                    "displayText": {
-                        "value": "0.00%"
-                    },
-                    "value": 0.0
-                },
-                "isIndex": false,
-                "provider": {
-                    "name": "SIX-Telekurs",
-                    "externalUrl": "http://www.SIX-Telekurs.com"
-                },
-                "exchange": {
-                    "code": "NYSE",
-                    "descriptor": "U.S.: NYSE",
-                    "timeZoneDescriptor": "Eastern Daylight Time",
-                    "timeZoneAbbreviation": "EDT",
-                    "isPrimary": false
-                }
-            }, {
-                "rc": 0,
-                "requestedId": "Factiva:cmdbnn",
-                "symbol": "CAC",
-                "fCode": "cmdbnn",
-                "currency": "USD",
-                "isin": "US1330341082",
-                "sedol": "2116659",
-                "cusip": "133034108",
-                "name": "Camden National Corp.",
-                "low": {
-                    "displayText": {
-                        "value": "0.00"
-                    },
-                    "value": 0.0
-                },
-                "high": {
-                    "displayText": {
-                        "value": "0.00"
-                    },
-                    "value": 0.0
-                },
-                "last": {
-                    "displayText": {
-                        "value": "38.25"
-                    },
-                    "value": 38.25
-                },
-                "open": {
-                    "displayText": {
-                        "value": "0.00"
-                    },
-                    "value": 0.0
-                },
-                "stop": "0001-01-01T00:00:00",
-                "adjustedStart": "0001-01-01T00:00:00",
-                "adjustedStop": "0001-01-01T00:00:00",
-                "lastUpdated": "2012-07-19T16:00:00.595",
-                "lastUpdatedDescripter": "19 July 2012 4:00 PM GMT",
-                "adjustedLastUpdated": "2012-07-19T20:00:00.595Z",
-                "adjustedLastUpdatedTimeZoneName": "Eastern Daylight Time",
-                "AdjustedLastUpdatedTimeZoneAbbr": "EDT",
-                "adjustedLastUpdatedDescripter": "19 July 2012 4:00 PM",
-                "percentChange": {
-                    "displayText": {
-                        "value": "0.00%"
-                    },
-                    "value": 0.0
-                },
-                "isIndex": false,
-                "provider": {
-                    "name": "SIX-Telekurs",
-                    "externalUrl": "http://www.SIX-Telekurs.com"
-                },
-                "exchange": {
-                    "code": "NASDAQ",
-                    "descriptor": "U.S.: Nasdaq",
-                    "timeZoneDescriptor": "Eastern Daylight Time",
-                    "timeZoneAbbreviation": "EDT",
-                    "isPrimary": false
-                }
-            }, {
-                "rc": 0,
-                "requestedId": "Factiva:rgrc",
-                "symbol": "REG",
-                "fCode": "rgrc",
-                "currency": "USD",
-                "isin": "US7588491032",
-                "sedol": "2726177",
-                "cusip": "758849103",
-                "name": "Regency Centers Corp.",
-                "low": {
-                    "displayText": {
-                        "value": "0.00"
-                    },
-                    "value": 0.0
-                },
-                "high": {
-                    "displayText": {
-                        "value": "0.00"
-                    },
-                    "value": 0.0
-                },
-                "last": {
-                    "displayText": {
-                        "value": "47.67"
-                    },
-                    "value": 47.67
-                },
-                "open": {
-                    "displayText": {
-                        "value": "0.00"
-                    },
-                    "value": 0.0
-                },
-                "stop": "0001-01-01T00:00:00",
-                "adjustedStart": "0001-01-01T00:00:00",
-                "adjustedStop": "0001-01-01T00:00:00",
-                "lastUpdated": "2012-07-19T16:01:39.703",
-                "lastUpdatedDescripter": "19 July 2012 4:01 PM GMT",
-                "adjustedLastUpdated": "2012-07-19T20:01:39.703Z",
-                "adjustedLastUpdatedTimeZoneName": "Eastern Daylight Time",
-                "AdjustedLastUpdatedTimeZoneAbbr": "EDT",
-                "adjustedLastUpdatedDescripter": "19 July 2012 4:01 PM",
-                "percentChange": {
-                    "displayText": {
-                        "value": "0.00%"
-                    },
-                    "value": 0.0
-                },
-                "isIndex": false,
-                "provider": {
-                    "name": "SIX-Telekurs",
-                    "externalUrl": "http://www.SIX-Telekurs.com"
-                },
-                "exchange": {
-                    "code": "NYSE",
-                    "descriptor": "U.S.: NYSE",
-                    "timeZoneDescriptor": "Eastern Daylight Time",
-                    "timeZoneAbbreviation": "EDT",
-                    "isPrimary": false
-                }
-            }, {
-                "rc": 0,
-                "requestedId": "Factiva:comasc",
-                "symbol": "CA",
-                "fCode": "comasc",
-                "currency": "USD",
-                "isin": "US12673P1057",
-                "sedol": "2214832",
-                "cusip": "12673P105",
-                "name": "CA Inc.",
-                "low": {
-                    "displayText": {
-                        "value": "0.00"
-                    },
-                    "value": 0.0
-                },
-                "high": {
-                    "displayText": {
-                        "value": "0.00"
-                    },
-                    "value": 0.0
-                },
-                "last": {
-                    "displayText": {
-                        "value": "26.51"
-                    },
-                    "value": 26.51
-                },
-                "open": {
-                    "displayText": {
-                        "value": "0.00"
-                    },
-                    "value": 0.0
-                },
-                "stop": "0001-01-01T00:00:00",
-                "adjustedStart": "0001-01-01T00:00:00",
-                "adjustedStop": "0001-01-01T00:00:00",
-                "lastUpdated": "2012-07-19T16:00:07.948",
-                "lastUpdatedDescripter": "19 July 2012 4:00 PM GMT",
-                "adjustedLastUpdated": "2012-07-19T20:00:07.948Z",
-                "adjustedLastUpdatedTimeZoneName": "Eastern Daylight Time",
-                "AdjustedLastUpdatedTimeZoneAbbr": "EDT",
-                "adjustedLastUpdatedDescripter": "19 July 2012 4:00 PM",
-                "percentChange": {
-                    "displayText": {
-                        "value": "0.00%"
-                    },
-                    "value": 0.0
-                },
-                "isIndex": false,
-                "provider": {
-                    "name": "SIX-Telekurs",
-                    "externalUrl": "http://www.SIX-Telekurs.com"
-                },
-                "exchange": {
-                    "code": "NASDAQ",
-                    "descriptor": "U.S.: Nasdaq",
-                    "timeZoneDescriptor": "Eastern Daylight Time",
-                    "timeZoneAbbreviation": "EDT",
-                    "isPrimary": false
-                }
-            }];
+            return [
+                        {
+                            "rc": 0,
+                            "requestedId": "Factiva:ibm",
+                            "symbol": "IBM",
+                            "fCode": "ibm",
+                            "currency": "USD",
+                            "isin": "US4592001014",
+                            "sedol": "2005973",
+                            "cusip": "459200101",
+                            "name": "International Business Machines Corp.",
+                            "low": {
+                                "displayText": {
+                                    "value": "192.57"
+                                },
+                                "value": 192.57
+                            },
+                            "high": {
+                                "displayText": {
+                                    "value": "194.95"
+                                },
+                                "value": 194.95
+                            },
+                            "previousClose": {
+                                "displayText": {
+                                    "value": "191.08"
+                                },
+                                "value": 191.08
+                            },
+                            "last": {
+                                "displayText": {
+                                    "value": "193.24"
+                                },
+                                "value": 193.24
+                            },
+                            "open": {
+                                "displayText": {
+                                    "value": "193.49"
+                                },
+                                "value": 193.49
+                            },
+                            "dataPoints": [
+                            {
+                                "date": "2012-07-26T09:30:00Z",
+                                "dateDisplay": "26 July 2012 9:30 AM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "193.49"
+                                    },
+                                    "value": 193.49
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T09:45:00Z",
+                                "dateDisplay": "26 July 2012 9:45 AM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "194.10"
+                                    },
+                                    "value": 194.1
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T10:00:00Z",
+                                "dateDisplay": "26 July 2012 10:00 AM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "194.04"
+                                    },
+                                    "value": 194.04
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T10:15:00Z",
+                                "dateDisplay": "26 July 2012 10:15 AM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "194.35"
+                                    },
+                                    "value": 194.3503
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T10:30:00Z",
+                                "dateDisplay": "26 July 2012 10:30 AM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "193.28"
+                                    },
+                                    "value": 193.28
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T10:45:00Z",
+                                "dateDisplay": "26 July 2012 10:45 AM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "193.60"
+                                    },
+                                    "value": 193.6
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T11:00:00Z",
+                                "dateDisplay": "26 July 2012 11:00 AM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "193.04"
+                                    },
+                                    "value": 193.04
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T11:15:00Z",
+                                "dateDisplay": "26 July 2012 11:15 AM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "193.24"
+                                    },
+                                    "value": 193.24
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T11:30:00Z",
+                                "dateDisplay": "26 July 2012 11:30 AM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "192.76"
+                                    },
+                                    "value": 192.76
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T11:45:00Z",
+                                "dateDisplay": "26 July 2012 11:45 AM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "192.93"
+                                    },
+                                    "value": 192.925
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T12:00:00Z",
+                                "dateDisplay": "26 July 2012 12:00 PM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "193.25"
+                                    },
+                                    "value": 193.254
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T12:15:00Z",
+                                "dateDisplay": "26 July 2012 12:15 PM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "193.35"
+                                    },
+                                    "value": 193.352
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T12:30:00Z",
+                                "dateDisplay": "26 July 2012 12:30 PM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "193.13"
+                                    },
+                                    "value": 193.13
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T12:45:00Z",
+                                "dateDisplay": "26 July 2012 12:45 PM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "193.19"
+                                    },
+                                    "value": 193.19
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T13:00:00Z",
+                                "dateDisplay": "26 July 2012 1:00 PM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "193.28"
+                                    },
+                                    "value": 193.28
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T13:15:00Z",
+                                "dateDisplay": "26 July 2012 1:15 PM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "193.24"
+                                    },
+                                    "value": 193.24
+                                },
+                                "isLast": true
+                            },
+                            {
+                                "date": "2012-07-26T13:30:00Z",
+                                "dateDisplay": "26 July 2012 1:30 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T13:45:00Z",
+                                "dateDisplay": "26 July 2012 1:45 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T14:00:00Z",
+                                "dateDisplay": "26 July 2012 2:00 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T14:15:00Z",
+                                "dateDisplay": "26 July 2012 2:15 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T14:30:00Z",
+                                "dateDisplay": "26 July 2012 2:30 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T14:45:00Z",
+                                "dateDisplay": "26 July 2012 2:45 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T15:00:00Z",
+                                "dateDisplay": "26 July 2012 3:00 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T15:15:00Z",
+                                "dateDisplay": "26 July 2012 3:15 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T15:30:00Z",
+                                "dateDisplay": "26 July 2012 3:30 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T15:45:00Z",
+                                "dateDisplay": "26 July 2012 3:45 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T16:00:00Z",
+                                "dateDisplay": "26 July 2012 4:00 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T16:15:00Z",
+                                "dateDisplay": "26 July 2012 4:15 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T16:30:00Z",
+                                "dateDisplay": "26 July 2012 4:30 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T16:45:00Z",
+                                "dateDisplay": "26 July 2012 4:45 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T17:00:00Z",
+                                "dateDisplay": "26 July 2012 5:00 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T17:15:00Z",
+                                "dateDisplay": "26 July 2012 5:15 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T17:30:00Z",
+                                "dateDisplay": "26 July 2012 5:30 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T17:45:00Z",
+                                "dateDisplay": "26 July 2012 5:45 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T18:00:00Z",
+                                "dateDisplay": "26 July 2012 6:00 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T18:15:00Z",
+                                "dateDisplay": "26 July 2012 6:15 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T18:30:00Z",
+                                "dateDisplay": "26 July 2012 6:30 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T18:45:00Z",
+                                "dateDisplay": "26 July 2012 6:45 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T19:00:00Z",
+                                "dateDisplay": "26 July 2012 7:00 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T19:15:00Z",
+                                "dateDisplay": "26 July 2012 7:15 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T19:30:00Z",
+                                "dateDisplay": "26 July 2012 7:30 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T19:45:00Z",
+                                "dateDisplay": "26 July 2012 7:45 PM GMT",
+                                "isLast": false
+                            }
+                        ],
+                            "end": "2012-07-26T15:59:00",
+                            "start": "2012-07-26T09:30:00Z",
+                            "startDescripter": "26 July 2012 9:30 AM GMT",
+                            "stop": "2012-07-26T15:59:00Z",
+                            "stopDescripter": "26 July 2012 3:59 PM GMT",
+                            "adjustedStart": "2012-07-26T13:30:00Z",
+                            "adjustedStartDescripter": "26 July 2012 9:30 AM",
+                            "adjustedStartUpdatedTimeZoneName": "Eastern Daylight Time",
+                            "adjustedStartUpdatedTimeZoneAbbr": "EDT",
+                            "adjustedStop": "2012-07-26T19:59:00Z",
+                            "adjustedStopDescripter": "26 July 2012 3:59 PM",
+                            "lastUpdated": "2012-07-26T13:21:20.931",
+                            "lastUpdatedDescripter": "26 July 2012 1:21 PM GMT",
+                            "adjustedLastUpdated": "2012-07-26T17:21:20.931Z",
+                            "adjustedLastUpdatedTimeZoneName": "Eastern Daylight Time",
+                            "AdjustedLastUpdatedTimeZoneAbbr": "EDT",
+                            "adjustedLastUpdatedDescripter": "26 July 2012 1:21 PM",
+                            "percentChange": {
+                                "displayText": {
+                                    "value": "+1.13%"
+                                },
+                                "value": 1.1304165794431653
+                            },
+                            "isIndex": false,
+                            "provider": {
+                                "name": "SIX-Telekurs",
+                                "externalUrl": "http://www.SIX-Telekurs.com"
+                            },
+                            "exchange": {
+                                "code": "NYSE",
+                                "descriptor": "U.S.: NYSE",
+                                "timeZoneDescriptor": "Eastern Daylight Time",
+                                "timeZoneAbbreviation": "EDT",
+                                "isPrimary": false
+                            }
+                        },
+                        {
+                            "rc": 0,
+                            "requestedId": "Factiva:mcrost",
+                            "symbol": "MSFT",
+                            "fCode": "mcrost",
+                            "currency": "USD",
+                            "isin": "US5949181045",
+                            "sedol": "2588173",
+                            "cusip": "594918104",
+                            "name": "Microsoft Corp.",
+                            "low": {
+                                "displayText": {
+                                    "value": "29.09"
+                                },
+                                "value": 29.09
+                            },
+                            "high": {
+                                "displayText": {
+                                    "value": "29.50"
+                                },
+                                "value": 29.5
+                            },
+                            "previousClose": {
+                                "displayText": {
+                                    "value": "28.83"
+                                },
+                                "value": 28.83
+                            },
+                            "last": {
+                                "displayText": {
+                                    "value": "29.22"
+                                },
+                                "value": 29.22
+                            },
+                            "open": {
+                                "displayText": {
+                                    "value": "29.23"
+                                },
+                                "value": 29.23
+                            },
+                            "dataPoints": [
+                            {
+                                "date": "2012-07-26T09:30:00Z",
+                                "dateDisplay": "26 July 2012 9:30 AM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "29.23"
+                                    },
+                                    "value": 29.23
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T09:45:00Z",
+                                "dateDisplay": "26 July 2012 9:45 AM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "29.17"
+                                    },
+                                    "value": 29.17
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T10:00:00Z",
+                                "dateDisplay": "26 July 2012 10:00 AM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "29.27"
+                                    },
+                                    "value": 29.27
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T10:15:00Z",
+                                "dateDisplay": "26 July 2012 10:15 AM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "29.32"
+                                    },
+                                    "value": 29.3214
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T10:30:00Z",
+                                "dateDisplay": "26 July 2012 10:30 AM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "29.24"
+                                    },
+                                    "value": 29.24
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T10:45:00Z",
+                                "dateDisplay": "26 July 2012 10:45 AM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "29.19"
+                                    },
+                                    "value": 29.19
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T11:00:00Z",
+                                "dateDisplay": "26 July 2012 11:00 AM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "29.18"
+                                    },
+                                    "value": 29.18
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T11:15:00Z",
+                                "dateDisplay": "26 July 2012 11:15 AM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "29.14"
+                                    },
+                                    "value": 29.14
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T11:30:00Z",
+                                "dateDisplay": "26 July 2012 11:30 AM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "29.12"
+                                    },
+                                    "value": 29.12
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T11:45:00Z",
+                                "dateDisplay": "26 July 2012 11:45 AM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "29.16"
+                                    },
+                                    "value": 29.16
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T12:00:00Z",
+                                "dateDisplay": "26 July 2012 12:00 PM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "29.19"
+                                    },
+                                    "value": 29.188
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T12:15:00Z",
+                                "dateDisplay": "26 July 2012 12:15 PM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "29.18"
+                                    },
+                                    "value": 29.18
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T12:30:00Z",
+                                "dateDisplay": "26 July 2012 12:30 PM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "29.13"
+                                    },
+                                    "value": 29.13
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T12:45:00Z",
+                                "dateDisplay": "26 July 2012 12:45 PM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "29.22"
+                                    },
+                                    "value": 29.22
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T13:00:00Z",
+                                "dateDisplay": "26 July 2012 1:00 PM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "29.24"
+                                    },
+                                    "value": 29.2375
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T13:15:00Z",
+                                "dateDisplay": "26 July 2012 1:15 PM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "29.22"
+                                    },
+                                    "value": 29.22
+                                },
+                                "isLast": true
+                            },
+                            {
+                                "date": "2012-07-26T13:30:00Z",
+                                "dateDisplay": "26 July 2012 1:30 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T13:45:00Z",
+                                "dateDisplay": "26 July 2012 1:45 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T14:00:00Z",
+                                "dateDisplay": "26 July 2012 2:00 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T14:15:00Z",
+                                "dateDisplay": "26 July 2012 2:15 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T14:30:00Z",
+                                "dateDisplay": "26 July 2012 2:30 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T14:45:00Z",
+                                "dateDisplay": "26 July 2012 2:45 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T15:00:00Z",
+                                "dateDisplay": "26 July 2012 3:00 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T15:15:00Z",
+                                "dateDisplay": "26 July 2012 3:15 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T15:30:00Z",
+                                "dateDisplay": "26 July 2012 3:30 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T15:45:00Z",
+                                "dateDisplay": "26 July 2012 3:45 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T16:00:00Z",
+                                "dateDisplay": "26 July 2012 4:00 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T16:15:00Z",
+                                "dateDisplay": "26 July 2012 4:15 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T16:30:00Z",
+                                "dateDisplay": "26 July 2012 4:30 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T16:45:00Z",
+                                "dateDisplay": "26 July 2012 4:45 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T17:00:00Z",
+                                "dateDisplay": "26 July 2012 5:00 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T17:15:00Z",
+                                "dateDisplay": "26 July 2012 5:15 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T17:30:00Z",
+                                "dateDisplay": "26 July 2012 5:30 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T17:45:00Z",
+                                "dateDisplay": "26 July 2012 5:45 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T18:00:00Z",
+                                "dateDisplay": "26 July 2012 6:00 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T18:15:00Z",
+                                "dateDisplay": "26 July 2012 6:15 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T18:30:00Z",
+                                "dateDisplay": "26 July 2012 6:30 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T18:45:00Z",
+                                "dateDisplay": "26 July 2012 6:45 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T19:00:00Z",
+                                "dateDisplay": "26 July 2012 7:00 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T19:15:00Z",
+                                "dateDisplay": "26 July 2012 7:15 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T19:30:00Z",
+                                "dateDisplay": "26 July 2012 7:30 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T19:45:00Z",
+                                "dateDisplay": "26 July 2012 7:45 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T20:00:00Z",
+                                "dateDisplay": "26 July 2012 8:00 PM GMT",
+                                "isLast": false
+                            }
+                        ],
+                            "end": "2012-07-26T16:00:00",
+                            "start": "2012-07-26T09:30:00Z",
+                            "startDescripter": "26 July 2012 9:30 AM GMT",
+                            "stop": "2012-07-26T16:00:00Z",
+                            "stopDescripter": "26 July 2012 4:00 PM GMT",
+                            "adjustedStart": "2012-07-26T13:30:00Z",
+                            "adjustedStartDescripter": "26 July 2012 9:30 AM",
+                            "adjustedStartUpdatedTimeZoneName": "Eastern Daylight Time",
+                            "adjustedStartUpdatedTimeZoneAbbr": "EDT",
+                            "adjustedStop": "2012-07-26T20:00:00Z",
+                            "adjustedStopDescripter": "26 July 2012 4:00 PM",
+                            "lastUpdated": "2012-07-26T13:21:28.403",
+                            "lastUpdatedDescripter": "26 July 2012 1:21 PM GMT",
+                            "adjustedLastUpdated": "2012-07-26T17:21:28.403Z",
+                            "adjustedLastUpdatedTimeZoneName": "Eastern Daylight Time",
+                            "AdjustedLastUpdatedTimeZoneAbbr": "EDT",
+                            "adjustedLastUpdatedDescripter": "26 July 2012 1:21 PM",
+                            "percentChange": {
+                                "displayText": {
+                                    "value": "+1.35%"
+                                },
+                                "value": 1.3527575442247659
+                            },
+                            "isIndex": false,
+                            "provider": {
+                                "name": "SIX-Telekurs",
+                                "externalUrl": "http://www.SIX-Telekurs.com"
+                            },
+                            "exchange": {
+                                "code": "NASDAQ",
+                                "descriptor": "U.S.: Nasdaq",
+                                "timeZoneDescriptor": "Eastern Daylight Time",
+                                "timeZoneAbbreviation": "EDT",
+                                "isPrimary": false
+                            }
+                        },
+                        {
+                            "rc": 0,
+                            "requestedId": "Factiva:goog",
+                            "symbol": "GOOG",
+                            "fCode": "goog",
+                            "currency": "USD",
+                            "isin": "US38259P5089",
+                            "sedol": "B020QX2",
+                            "cusip": "38259P508",
+                            "name": "Google Inc. Cl A",
+                            "low": {
+                                "displayText": {
+                                    "value": "610.03"
+                                },
+                                "value": 610.03
+                            },
+                            "high": {
+                                "displayText": {
+                                    "value": "616.87"
+                                },
+                                "value": 616.87
+                            },
+                            "previousClose": {
+                                "displayText": {
+                                    "value": "607.99"
+                                },
+                                "value": 607.99
+                            },
+                            "last": {
+                                "displayText": {
+                                    "value": "613.92"
+                                },
+                                "value": 613.92
+                            },
+                            "open": {
+                                "displayText": {
+                                    "value": "615.00"
+                                },
+                                "value": 615.0
+                            },
+                            "dataPoints": [
+                            {
+                                "date": "2012-07-26T09:30:00Z",
+                                "dateDisplay": "26 July 2012 9:30 AM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "614.92"
+                                    },
+                                    "value": 614.92
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T09:45:00Z",
+                                "dateDisplay": "26 July 2012 9:45 AM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "613.92"
+                                    },
+                                    "value": 613.92
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T10:00:00Z",
+                                "dateDisplay": "26 July 2012 10:00 AM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "615.82"
+                                    },
+                                    "value": 615.82
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T10:15:00Z",
+                                "dateDisplay": "26 July 2012 10:15 AM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "615.19"
+                                    },
+                                    "value": 615.19
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T10:30:00Z",
+                                "dateDisplay": "26 July 2012 10:30 AM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "614.15"
+                                    },
+                                    "value": 614.154
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T10:45:00Z",
+                                "dateDisplay": "26 July 2012 10:45 AM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "613.58"
+                                    },
+                                    "value": 613.578
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T11:00:00Z",
+                                "dateDisplay": "26 July 2012 11:00 AM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "613.50"
+                                    },
+                                    "value": 613.5
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T11:15:00Z",
+                                "dateDisplay": "26 July 2012 11:15 AM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "613.50"
+                                    },
+                                    "value": 613.5
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T11:30:00Z",
+                                "dateDisplay": "26 July 2012 11:30 AM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "611.09"
+                                    },
+                                    "value": 611.09
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T11:45:00Z",
+                                "dateDisplay": "26 July 2012 11:45 AM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "611.81"
+                                    },
+                                    "value": 611.81
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T12:00:00Z",
+                                "dateDisplay": "26 July 2012 12:00 PM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "612.99"
+                                    },
+                                    "value": 612.99
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T12:15:00Z",
+                                "dateDisplay": "26 July 2012 12:15 PM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "613.75"
+                                    },
+                                    "value": 613.75
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T12:30:00Z",
+                                "dateDisplay": "26 July 2012 12:30 PM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "614.10"
+                                    },
+                                    "value": 614.1
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T12:45:00Z",
+                                "dateDisplay": "26 July 2012 12:45 PM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "614.49"
+                                    },
+                                    "value": 614.49
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T13:00:00Z",
+                                "dateDisplay": "26 July 2012 1:00 PM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "613.96"
+                                    },
+                                    "value": 613.96
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T13:15:00Z",
+                                "dateDisplay": "26 July 2012 1:15 PM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "613.92"
+                                    },
+                                    "value": 613.92
+                                },
+                                "isLast": true
+                            },
+                            {
+                                "date": "2012-07-26T13:30:00Z",
+                                "dateDisplay": "26 July 2012 1:30 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T13:45:00Z",
+                                "dateDisplay": "26 July 2012 1:45 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T14:00:00Z",
+                                "dateDisplay": "26 July 2012 2:00 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T14:15:00Z",
+                                "dateDisplay": "26 July 2012 2:15 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T14:30:00Z",
+                                "dateDisplay": "26 July 2012 2:30 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T14:45:00Z",
+                                "dateDisplay": "26 July 2012 2:45 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T15:00:00Z",
+                                "dateDisplay": "26 July 2012 3:00 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T15:15:00Z",
+                                "dateDisplay": "26 July 2012 3:15 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T15:30:00Z",
+                                "dateDisplay": "26 July 2012 3:30 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T15:45:00Z",
+                                "dateDisplay": "26 July 2012 3:45 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T16:00:00Z",
+                                "dateDisplay": "26 July 2012 4:00 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T16:15:00Z",
+                                "dateDisplay": "26 July 2012 4:15 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T16:30:00Z",
+                                "dateDisplay": "26 July 2012 4:30 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T16:45:00Z",
+                                "dateDisplay": "26 July 2012 4:45 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T17:00:00Z",
+                                "dateDisplay": "26 July 2012 5:00 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T17:15:00Z",
+                                "dateDisplay": "26 July 2012 5:15 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T17:30:00Z",
+                                "dateDisplay": "26 July 2012 5:30 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T17:45:00Z",
+                                "dateDisplay": "26 July 2012 5:45 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T18:00:00Z",
+                                "dateDisplay": "26 July 2012 6:00 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T18:15:00Z",
+                                "dateDisplay": "26 July 2012 6:15 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T18:30:00Z",
+                                "dateDisplay": "26 July 2012 6:30 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T18:45:00Z",
+                                "dateDisplay": "26 July 2012 6:45 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T19:00:00Z",
+                                "dateDisplay": "26 July 2012 7:00 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T19:15:00Z",
+                                "dateDisplay": "26 July 2012 7:15 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T19:30:00Z",
+                                "dateDisplay": "26 July 2012 7:30 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T19:45:00Z",
+                                "dateDisplay": "26 July 2012 7:45 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T20:00:00Z",
+                                "dateDisplay": "26 July 2012 8:00 PM GMT",
+                                "isLast": false
+                            }
+                        ],
+                            "end": "2012-07-26T16:00:00",
+                            "start": "2012-07-26T09:30:00Z",
+                            "startDescripter": "26 July 2012 9:30 AM GMT",
+                            "stop": "2012-07-26T16:00:00Z",
+                            "stopDescripter": "26 July 2012 4:00 PM GMT",
+                            "adjustedStart": "2012-07-26T13:30:00Z",
+                            "adjustedStartDescripter": "26 July 2012 9:30 AM",
+                            "adjustedStartUpdatedTimeZoneName": "Eastern Daylight Time",
+                            "adjustedStartUpdatedTimeZoneAbbr": "EDT",
+                            "adjustedStop": "2012-07-26T20:00:00Z",
+                            "adjustedStopDescripter": "26 July 2012 4:00 PM",
+                            "lastUpdated": "2012-07-26T13:21:21.665",
+                            "lastUpdatedDescripter": "26 July 2012 1:21 PM GMT",
+                            "adjustedLastUpdated": "2012-07-26T17:21:21.665Z",
+                            "adjustedLastUpdatedTimeZoneName": "Eastern Daylight Time",
+                            "AdjustedLastUpdatedTimeZoneAbbr": "EDT",
+                            "adjustedLastUpdatedDescripter": "26 July 2012 1:21 PM",
+                            "percentChange": {
+                                "displayText": {
+                                    "value": "+0.98%"
+                                },
+                                "value": 0.97534498922679658
+                            },
+                            "isIndex": false,
+                            "provider": {
+                                "name": "SIX-Telekurs",
+                                "externalUrl": "http://www.SIX-Telekurs.com"
+                            },
+                            "exchange": {
+                                "code": "NASDAQ",
+                                "descriptor": "U.S.: Nasdaq",
+                                "timeZoneDescriptor": "Eastern Daylight Time",
+                                "timeZoneAbbreviation": "EDT",
+                                "isPrimary": false
+                            }
+                        },
+                        {
+                            "rc": 0,
+                            "requestedId": "Factiva:carsvc",
+                            "symbol": "CSV",
+                            "fCode": "carsvc",
+                            "currency": "USD",
+                            "isin": "US1439051079",
+                            "sedol": "2177786",
+                            "cusip": "143905107",
+                            "name": "Carriage Services Inc. ",
+                            "low": {
+                                "displayText": {
+                                    "value": "7.79"
+                                },
+                                "value": 7.79
+                            },
+                            "high": {
+                                "displayText": {
+                                    "value": "7.91"
+                                },
+                                "value": 7.91
+                            },
+                            "previousClose": {
+                                "displayText": {
+                                    "value": "7.79"
+                                },
+                                "value": 7.79
+                            },
+                            "last": {
+                                "displayText": {
+                                    "value": "7.82"
+                                },
+                                "value": 7.82
+                            },
+                            "open": {
+                                "displayText": {
+                                    "value": "7.87"
+                                },
+                                "value": 7.87
+                            },
+                            "dataPoints": [
+                            {
+                                "date": "2012-07-26T09:30:00Z",
+                                "dateDisplay": "26 July 2012 9:30 AM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "7.87"
+                                    },
+                                    "value": 7.87
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T09:45:00Z",
+                                "dateDisplay": "26 July 2012 9:45 AM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "7.83"
+                                    },
+                                    "value": 7.8274
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T10:00:00Z",
+                                "dateDisplay": "26 July 2012 10:00 AM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "7.80"
+                                    },
+                                    "value": 7.804
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T10:15:00Z",
+                                "dateDisplay": "26 July 2012 10:15 AM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "7.85"
+                                    },
+                                    "value": 7.85
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T10:30:00Z",
+                                "dateDisplay": "26 July 2012 10:30 AM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "7.80"
+                                    },
+                                    "value": 7.8
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T10:45:00Z",
+                                "dateDisplay": "26 July 2012 10:45 AM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "7.80"
+                                    },
+                                    "value": 7.8
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T11:00:00Z",
+                                "dateDisplay": "26 July 2012 11:00 AM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "7.84"
+                                    },
+                                    "value": 7.84
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T11:15:00Z",
+                                "dateDisplay": "26 July 2012 11:15 AM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "7.87"
+                                    },
+                                    "value": 7.87
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T11:30:00Z",
+                                "dateDisplay": "26 July 2012 11:30 AM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "7.86"
+                                    },
+                                    "value": 7.86
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T11:45:00Z",
+                                "dateDisplay": "26 July 2012 11:45 AM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "7.87"
+                                    },
+                                    "value": 7.87
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T12:00:00Z",
+                                "dateDisplay": "26 July 2012 12:00 PM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "7.87"
+                                    },
+                                    "value": 7.87
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T12:15:00Z",
+                                "dateDisplay": "26 July 2012 12:15 PM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "7.85"
+                                    },
+                                    "value": 7.85
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T12:30:00Z",
+                                "dateDisplay": "26 July 2012 12:30 PM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "7.85"
+                                    },
+                                    "value": 7.85
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T12:45:00Z",
+                                "dateDisplay": "26 July 2012 12:45 PM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "7.85"
+                                    },
+                                    "value": 7.85
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T13:00:00Z",
+                                "dateDisplay": "26 July 2012 1:00 PM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "7.82"
+                                    },
+                                    "value": 7.82
+                                },
+                                "isLast": true
+                            },
+                            {
+                                "date": "2012-07-26T13:15:00Z",
+                                "dateDisplay": "26 July 2012 1:15 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T13:30:00Z",
+                                "dateDisplay": "26 July 2012 1:30 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T13:45:00Z",
+                                "dateDisplay": "26 July 2012 1:45 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T14:00:00Z",
+                                "dateDisplay": "26 July 2012 2:00 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T14:15:00Z",
+                                "dateDisplay": "26 July 2012 2:15 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T14:30:00Z",
+                                "dateDisplay": "26 July 2012 2:30 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T14:45:00Z",
+                                "dateDisplay": "26 July 2012 2:45 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T15:00:00Z",
+                                "dateDisplay": "26 July 2012 3:00 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T15:15:00Z",
+                                "dateDisplay": "26 July 2012 3:15 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T15:30:00Z",
+                                "dateDisplay": "26 July 2012 3:30 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T15:45:00Z",
+                                "dateDisplay": "26 July 2012 3:45 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T16:00:00Z",
+                                "dateDisplay": "26 July 2012 4:00 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T16:15:00Z",
+                                "dateDisplay": "26 July 2012 4:15 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T16:30:00Z",
+                                "dateDisplay": "26 July 2012 4:30 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T16:45:00Z",
+                                "dateDisplay": "26 July 2012 4:45 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T17:00:00Z",
+                                "dateDisplay": "26 July 2012 5:00 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T17:15:00Z",
+                                "dateDisplay": "26 July 2012 5:15 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T17:30:00Z",
+                                "dateDisplay": "26 July 2012 5:30 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T17:45:00Z",
+                                "dateDisplay": "26 July 2012 5:45 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T18:00:00Z",
+                                "dateDisplay": "26 July 2012 6:00 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T18:15:00Z",
+                                "dateDisplay": "26 July 2012 6:15 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T18:30:00Z",
+                                "dateDisplay": "26 July 2012 6:30 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T18:45:00Z",
+                                "dateDisplay": "26 July 2012 6:45 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T19:00:00Z",
+                                "dateDisplay": "26 July 2012 7:00 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T19:15:00Z",
+                                "dateDisplay": "26 July 2012 7:15 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T19:30:00Z",
+                                "dateDisplay": "26 July 2012 7:30 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T19:45:00Z",
+                                "dateDisplay": "26 July 2012 7:45 PM GMT",
+                                "isLast": false
+                            }
+                        ],
+                            "end": "2012-07-26T15:59:00",
+                            "start": "2012-07-26T09:30:00Z",
+                            "startDescripter": "26 July 2012 9:30 AM GMT",
+                            "stop": "2012-07-26T15:59:00Z",
+                            "stopDescripter": "26 July 2012 3:59 PM GMT",
+                            "adjustedStart": "2012-07-26T13:30:00Z",
+                            "adjustedStartDescripter": "26 July 2012 9:30 AM",
+                            "adjustedStartUpdatedTimeZoneName": "Eastern Daylight Time",
+                            "adjustedStartUpdatedTimeZoneAbbr": "EDT",
+                            "adjustedStop": "2012-07-26T19:59:00Z",
+                            "adjustedStopDescripter": "26 July 2012 3:59 PM",
+                            "lastUpdated": "2012-07-26T13:08:01.206",
+                            "lastUpdatedDescripter": "26 July 2012 1:08 PM GMT",
+                            "adjustedLastUpdated": "2012-07-26T17:08:01.206Z",
+                            "adjustedLastUpdatedTimeZoneName": "Eastern Daylight Time",
+                            "AdjustedLastUpdatedTimeZoneAbbr": "EDT",
+                            "adjustedLastUpdatedDescripter": "26 July 2012 1:08 PM",
+                            "percentChange": {
+                                "displayText": {
+                                    "value": "+0.39%"
+                                },
+                                "value": 0.38510911424903721
+                            },
+                            "isIndex": false,
+                            "provider": {
+                                "name": "SIX-Telekurs",
+                                "externalUrl": "http://www.SIX-Telekurs.com"
+                            },
+                            "exchange": {
+                                "code": "NYSE",
+                                "descriptor": "U.S.: NYSE",
+                                "timeZoneDescriptor": "Eastern Daylight Time",
+                                "timeZoneAbbreviation": "EDT",
+                                "isPrimary": false
+                            }
+                        },
+                        {
+                            "rc": 0,
+                            "requestedId": "Factiva:cmdbnn",
+                            "symbol": "CAC",
+                            "fCode": "cmdbnn",
+                            "currency": "USD",
+                            "isin": "US1330341082",
+                            "sedol": "2116659",
+                            "cusip": "133034108",
+                            "name": "Camden National Corp.",
+                            "low": {
+                                "displayText": {
+                                    "value": "34.87"
+                                },
+                                "value": 34.865
+                            },
+                            "high": {
+                                "displayText": {
+                                    "value": "36.01"
+                                },
+                                "value": 36.0102
+                            },
+                            "previousClose": {
+                                "displayText": {
+                                    "value": "34.83"
+                                },
+                                "value": 34.83
+                            },
+                            "last": {
+                                "displayText": {
+                                    "value": "35.20"
+                                },
+                                "value": 35.2
+                            },
+                            "open": {
+                                "displayText": {
+                                    "value": "35.77"
+                                },
+                                "value": 35.77
+                            },
+                            "dataPoints": [
+                            {
+                                "date": "2012-07-26T09:30:00Z",
+                                "dateDisplay": "26 July 2012 9:30 AM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "35.77"
+                                    },
+                                    "value": 35.77
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T09:45:00Z",
+                                "dateDisplay": "26 July 2012 9:45 AM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "36.01"
+                                    },
+                                    "value": 36.0102
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T10:00:00Z",
+                                "dateDisplay": "26 July 2012 10:00 AM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "36.01"
+                                    },
+                                    "value": 36.0102
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T10:15:00Z",
+                                "dateDisplay": "26 July 2012 10:15 AM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "35.58"
+                                    },
+                                    "value": 35.58
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T10:30:00Z",
+                                "dateDisplay": "26 July 2012 10:30 AM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "35.58"
+                                    },
+                                    "value": 35.58
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T10:45:00Z",
+                                "dateDisplay": "26 July 2012 10:45 AM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "34.87"
+                                    },
+                                    "value": 34.865
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T11:00:00Z",
+                                "dateDisplay": "26 July 2012 11:00 AM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "34.87"
+                                    },
+                                    "value": 34.865
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T11:15:00Z",
+                                "dateDisplay": "26 July 2012 11:15 AM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "34.87"
+                                    },
+                                    "value": 34.865
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T11:30:00Z",
+                                "dateDisplay": "26 July 2012 11:30 AM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "34.87"
+                                    },
+                                    "value": 34.865
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T11:45:00Z",
+                                "dateDisplay": "26 July 2012 11:45 AM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "34.87"
+                                    },
+                                    "value": 34.865
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T12:00:00Z",
+                                "dateDisplay": "26 July 2012 12:00 PM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "34.87"
+                                    },
+                                    "value": 34.865
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T12:15:00Z",
+                                "dateDisplay": "26 July 2012 12:15 PM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "34.87"
+                                    },
+                                    "value": 34.865
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T12:30:00Z",
+                                "dateDisplay": "26 July 2012 12:30 PM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "34.87"
+                                    },
+                                    "value": 34.865
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T12:45:00Z",
+                                "dateDisplay": "26 July 2012 12:45 PM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "35.20"
+                                    },
+                                    "value": 35.2
+                                },
+                                "isLast": true
+                            },
+                            {
+                                "date": "2012-07-26T13:00:00Z",
+                                "dateDisplay": "26 July 2012 1:00 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T13:15:00Z",
+                                "dateDisplay": "26 July 2012 1:15 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T13:30:00Z",
+                                "dateDisplay": "26 July 2012 1:30 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T13:45:00Z",
+                                "dateDisplay": "26 July 2012 1:45 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T14:00:00Z",
+                                "dateDisplay": "26 July 2012 2:00 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T14:15:00Z",
+                                "dateDisplay": "26 July 2012 2:15 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T14:30:00Z",
+                                "dateDisplay": "26 July 2012 2:30 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T14:45:00Z",
+                                "dateDisplay": "26 July 2012 2:45 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T15:00:00Z",
+                                "dateDisplay": "26 July 2012 3:00 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T15:15:00Z",
+                                "dateDisplay": "26 July 2012 3:15 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T15:30:00Z",
+                                "dateDisplay": "26 July 2012 3:30 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T15:45:00Z",
+                                "dateDisplay": "26 July 2012 3:45 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T16:00:00Z",
+                                "dateDisplay": "26 July 2012 4:00 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T16:15:00Z",
+                                "dateDisplay": "26 July 2012 4:15 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T16:30:00Z",
+                                "dateDisplay": "26 July 2012 4:30 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T16:45:00Z",
+                                "dateDisplay": "26 July 2012 4:45 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T17:00:00Z",
+                                "dateDisplay": "26 July 2012 5:00 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T17:15:00Z",
+                                "dateDisplay": "26 July 2012 5:15 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T17:30:00Z",
+                                "dateDisplay": "26 July 2012 5:30 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T17:45:00Z",
+                                "dateDisplay": "26 July 2012 5:45 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T18:00:00Z",
+                                "dateDisplay": "26 July 2012 6:00 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T18:15:00Z",
+                                "dateDisplay": "26 July 2012 6:15 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T18:30:00Z",
+                                "dateDisplay": "26 July 2012 6:30 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T18:45:00Z",
+                                "dateDisplay": "26 July 2012 6:45 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T19:00:00Z",
+                                "dateDisplay": "26 July 2012 7:00 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T19:15:00Z",
+                                "dateDisplay": "26 July 2012 7:15 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T19:30:00Z",
+                                "dateDisplay": "26 July 2012 7:30 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T19:45:00Z",
+                                "dateDisplay": "26 July 2012 7:45 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T20:00:00Z",
+                                "dateDisplay": "26 July 2012 8:00 PM GMT",
+                                "isLast": false
+                            }
+                        ],
+                            "end": "2012-07-26T16:00:00",
+                            "start": "2012-07-26T09:30:00Z",
+                            "startDescripter": "26 July 2012 9:30 AM GMT",
+                            "stop": "2012-07-26T16:00:00Z",
+                            "stopDescripter": "26 July 2012 4:00 PM GMT",
+                            "adjustedStart": "2012-07-26T13:30:00Z",
+                            "adjustedStartDescripter": "26 July 2012 9:30 AM",
+                            "adjustedStartUpdatedTimeZoneName": "Eastern Daylight Time",
+                            "adjustedStartUpdatedTimeZoneAbbr": "EDT",
+                            "adjustedStop": "2012-07-26T20:00:00Z",
+                            "adjustedStopDescripter": "26 July 2012 4:00 PM",
+                            "lastUpdated": "2012-07-26T12:59:44.354",
+                            "lastUpdatedDescripter": "26 July 2012 12:59 PM GMT",
+                            "adjustedLastUpdated": "2012-07-26T16:59:44.354Z",
+                            "adjustedLastUpdatedTimeZoneName": "Eastern Daylight Time",
+                            "AdjustedLastUpdatedTimeZoneAbbr": "EDT",
+                            "adjustedLastUpdatedDescripter": "26 July 2012 12:59 PM",
+                            "percentChange": {
+                                "displayText": {
+                                    "value": "+1.06%"
+                                },
+                                "value": 1.0623026126902095
+                            },
+                            "isIndex": false,
+                            "provider": {
+                                "name": "SIX-Telekurs",
+                                "externalUrl": "http://www.SIX-Telekurs.com"
+                            },
+                            "exchange": {
+                                "code": "NASDAQ",
+                                "descriptor": "U.S.: Nasdaq",
+                                "timeZoneDescriptor": "Eastern Daylight Time",
+                                "timeZoneAbbreviation": "EDT",
+                                "isPrimary": false
+                            }
+                        },
+                        {
+                            "rc": 0,
+                            "requestedId": "Factiva:rgrc",
+                            "symbol": "REG",
+                            "fCode": "rgrc",
+                            "currency": "USD",
+                            "isin": "US7588491032",
+                            "sedol": "2726177",
+                            "cusip": "758849103",
+                            "name": "Regency Centers Corp.",
+                            "low": {
+                                "displayText": {
+                                    "value": "46.18"
+                                },
+                                "value": 46.18
+                            },
+                            "high": {
+                                "displayText": {
+                                    "value": "47.07"
+                                },
+                                "value": 47.07
+                            },
+                            "previousClose": {
+                                "displayText": {
+                                    "value": "46.19"
+                                },
+                                "value": 46.19
+                            },
+                            "last": {
+                                "displayText": {
+                                    "value": "46.35"
+                                },
+                                "value": 46.35
+                            },
+                            "open": {
+                                "displayText": {
+                                    "value": "46.72"
+                                },
+                                "value": 46.72
+                            },
+                            "dataPoints": [
+                            {
+                                "date": "2012-07-26T09:30:00Z",
+                                "dateDisplay": "26 July 2012 9:30 AM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "46.72"
+                                    },
+                                    "value": 46.72
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T09:45:00Z",
+                                "dateDisplay": "26 July 2012 9:45 AM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "46.77"
+                                    },
+                                    "value": 46.77
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T10:00:00Z",
+                                "dateDisplay": "26 July 2012 10:00 AM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "46.59"
+                                    },
+                                    "value": 46.59
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T10:15:00Z",
+                                "dateDisplay": "26 July 2012 10:15 AM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "46.74"
+                                    },
+                                    "value": 46.74
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T10:30:00Z",
+                                "dateDisplay": "26 July 2012 10:30 AM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "46.51"
+                                    },
+                                    "value": 46.51
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T10:45:00Z",
+                                "dateDisplay": "26 July 2012 10:45 AM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "46.43"
+                                    },
+                                    "value": 46.43
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T11:00:00Z",
+                                "dateDisplay": "26 July 2012 11:00 AM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "46.44"
+                                    },
+                                    "value": 46.4397
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T11:15:00Z",
+                                "dateDisplay": "26 July 2012 11:15 AM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "46.48"
+                                    },
+                                    "value": 46.48
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T11:30:00Z",
+                                "dateDisplay": "26 July 2012 11:30 AM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "46.44"
+                                    },
+                                    "value": 46.44
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T11:45:00Z",
+                                "dateDisplay": "26 July 2012 11:45 AM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "46.34"
+                                    },
+                                    "value": 46.34
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T12:00:00Z",
+                                "dateDisplay": "26 July 2012 12:00 PM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "46.25"
+                                    },
+                                    "value": 46.25
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T12:15:00Z",
+                                "dateDisplay": "26 July 2012 12:15 PM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "46.26"
+                                    },
+                                    "value": 46.26
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T12:30:00Z",
+                                "dateDisplay": "26 July 2012 12:30 PM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "46.23"
+                                    },
+                                    "value": 46.23
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T12:45:00Z",
+                                "dateDisplay": "26 July 2012 12:45 PM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "46.31"
+                                    },
+                                    "value": 46.31
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T13:00:00Z",
+                                "dateDisplay": "26 July 2012 1:00 PM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "46.36"
+                                    },
+                                    "value": 46.36
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T13:15:00Z",
+                                "dateDisplay": "26 July 2012 1:15 PM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "46.35"
+                                    },
+                                    "value": 46.35
+                                },
+                                "isLast": true
+                            },
+                            {
+                                "date": "2012-07-26T13:30:00Z",
+                                "dateDisplay": "26 July 2012 1:30 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T13:45:00Z",
+                                "dateDisplay": "26 July 2012 1:45 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T14:00:00Z",
+                                "dateDisplay": "26 July 2012 2:00 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T14:15:00Z",
+                                "dateDisplay": "26 July 2012 2:15 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T14:30:00Z",
+                                "dateDisplay": "26 July 2012 2:30 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T14:45:00Z",
+                                "dateDisplay": "26 July 2012 2:45 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T15:00:00Z",
+                                "dateDisplay": "26 July 2012 3:00 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T15:15:00Z",
+                                "dateDisplay": "26 July 2012 3:15 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T15:30:00Z",
+                                "dateDisplay": "26 July 2012 3:30 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T15:45:00Z",
+                                "dateDisplay": "26 July 2012 3:45 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T16:00:00Z",
+                                "dateDisplay": "26 July 2012 4:00 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T16:15:00Z",
+                                "dateDisplay": "26 July 2012 4:15 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T16:30:00Z",
+                                "dateDisplay": "26 July 2012 4:30 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T16:45:00Z",
+                                "dateDisplay": "26 July 2012 4:45 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T17:00:00Z",
+                                "dateDisplay": "26 July 2012 5:00 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T17:15:00Z",
+                                "dateDisplay": "26 July 2012 5:15 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T17:30:00Z",
+                                "dateDisplay": "26 July 2012 5:30 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T17:45:00Z",
+                                "dateDisplay": "26 July 2012 5:45 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T18:00:00Z",
+                                "dateDisplay": "26 July 2012 6:00 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T18:15:00Z",
+                                "dateDisplay": "26 July 2012 6:15 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T18:30:00Z",
+                                "dateDisplay": "26 July 2012 6:30 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T18:45:00Z",
+                                "dateDisplay": "26 July 2012 6:45 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T19:00:00Z",
+                                "dateDisplay": "26 July 2012 7:00 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T19:15:00Z",
+                                "dateDisplay": "26 July 2012 7:15 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T19:30:00Z",
+                                "dateDisplay": "26 July 2012 7:30 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T19:45:00Z",
+                                "dateDisplay": "26 July 2012 7:45 PM GMT",
+                                "isLast": false
+                            }
+                        ],
+                            "end": "2012-07-26T15:59:00",
+                            "start": "2012-07-26T09:30:00Z",
+                            "startDescripter": "26 July 2012 9:30 AM GMT",
+                            "stop": "2012-07-26T15:59:00Z",
+                            "stopDescripter": "26 July 2012 3:59 PM GMT",
+                            "adjustedStart": "2012-07-26T13:30:00Z",
+                            "adjustedStartDescripter": "26 July 2012 9:30 AM",
+                            "adjustedStartUpdatedTimeZoneName": "Eastern Daylight Time",
+                            "adjustedStartUpdatedTimeZoneAbbr": "EDT",
+                            "adjustedStop": "2012-07-26T19:59:00Z",
+                            "adjustedStopDescripter": "26 July 2012 3:59 PM",
+                            "lastUpdated": "2012-07-26T13:21:25.809",
+                            "lastUpdatedDescripter": "26 July 2012 1:21 PM GMT",
+                            "adjustedLastUpdated": "2012-07-26T17:21:25.809Z",
+                            "adjustedLastUpdatedTimeZoneName": "Eastern Daylight Time",
+                            "AdjustedLastUpdatedTimeZoneAbbr": "EDT",
+                            "adjustedLastUpdatedDescripter": "26 July 2012 1:21 PM",
+                            "percentChange": {
+                                "displayText": {
+                                    "value": "+0.35%"
+                                },
+                                "value": 0.34639532366313053
+                            },
+                            "isIndex": false,
+                            "provider": {
+                                "name": "SIX-Telekurs",
+                                "externalUrl": "http://www.SIX-Telekurs.com"
+                            },
+                            "exchange": {
+                                "code": "NYSE",
+                                "descriptor": "U.S.: NYSE",
+                                "timeZoneDescriptor": "Eastern Daylight Time",
+                                "timeZoneAbbreviation": "EDT",
+                                "isPrimary": false
+                            }
+                        },
+                        {
+                            "rc": 0,
+                            "requestedId": "Factiva:comasc",
+                            "symbol": "CA",
+                            "fCode": "comasc",
+                            "currency": "USD",
+                            "isin": "US12673P1057",
+                            "sedol": "2214832",
+                            "cusip": "12673P105",
+                            "name": "CA Inc.",
+                            "low": {
+                                "displayText": {
+                                    "value": "25.79"
+                                },
+                                "value": 25.79
+                            },
+                            "high": {
+                                "displayText": {
+                                    "value": "26.29"
+                                },
+                                "value": 26.29
+                            },
+                            "previousClose": {
+                                "displayText": {
+                                    "value": "25.67"
+                                },
+                                "value": 25.67
+                            },
+                            "last": {
+                                "displayText": {
+                                    "value": "26.17"
+                                },
+                                "value": 26.165
+                            },
+                            "open": {
+                                "displayText": {
+                                    "value": "25.93"
+                                },
+                                "value": 25.93
+                            },
+                            "dataPoints": [
+                            {
+                                "date": "2012-07-26T09:30:00Z",
+                                "dateDisplay": "26 July 2012 9:30 AM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "25.95"
+                                    },
+                                    "value": 25.95
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T09:45:00Z",
+                                "dateDisplay": "26 July 2012 9:45 AM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "26.20"
+                                    },
+                                    "value": 26.2
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T10:00:00Z",
+                                "dateDisplay": "26 July 2012 10:00 AM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "26.11"
+                                    },
+                                    "value": 26.11
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T10:15:00Z",
+                                "dateDisplay": "26 July 2012 10:15 AM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "26.21"
+                                    },
+                                    "value": 26.21
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T10:30:00Z",
+                                "dateDisplay": "26 July 2012 10:30 AM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "26.21"
+                                    },
+                                    "value": 26.21
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T10:45:00Z",
+                                "dateDisplay": "26 July 2012 10:45 AM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "26.24"
+                                    },
+                                    "value": 26.24
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T11:00:00Z",
+                                "dateDisplay": "26 July 2012 11:00 AM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "26.21"
+                                    },
+                                    "value": 26.21
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T11:15:00Z",
+                                "dateDisplay": "26 July 2012 11:15 AM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "26.20"
+                                    },
+                                    "value": 26.2
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T11:30:00Z",
+                                "dateDisplay": "26 July 2012 11:30 AM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "26.15"
+                                    },
+                                    "value": 26.15
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T11:45:00Z",
+                                "dateDisplay": "26 July 2012 11:45 AM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "26.15"
+                                    },
+                                    "value": 26.15
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T12:00:00Z",
+                                "dateDisplay": "26 July 2012 12:00 PM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "26.09"
+                                    },
+                                    "value": 26.09
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T12:15:00Z",
+                                "dateDisplay": "26 July 2012 12:15 PM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "26.10"
+                                    },
+                                    "value": 26.1
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T12:30:00Z",
+                                "dateDisplay": "26 July 2012 12:30 PM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "26.09"
+                                    },
+                                    "value": 26.085
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T12:45:00Z",
+                                "dateDisplay": "26 July 2012 12:45 PM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "26.10"
+                                    },
+                                    "value": 26.1
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T13:00:00Z",
+                                "dateDisplay": "26 July 2012 1:00 PM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "26.12"
+                                    },
+                                    "value": 26.12
+                                },
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T13:15:00Z",
+                                "dateDisplay": "26 July 2012 1:15 PM GMT",
+                                "dataPoint": {
+                                    "displayText": {
+                                        "value": "26.17"
+                                    },
+                                    "value": 26.165
+                                },
+                                "isLast": true
+                            },
+                            {
+                                "date": "2012-07-26T13:30:00Z",
+                                "dateDisplay": "26 July 2012 1:30 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T13:45:00Z",
+                                "dateDisplay": "26 July 2012 1:45 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T14:00:00Z",
+                                "dateDisplay": "26 July 2012 2:00 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T14:15:00Z",
+                                "dateDisplay": "26 July 2012 2:15 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T14:30:00Z",
+                                "dateDisplay": "26 July 2012 2:30 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T14:45:00Z",
+                                "dateDisplay": "26 July 2012 2:45 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T15:00:00Z",
+                                "dateDisplay": "26 July 2012 3:00 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T15:15:00Z",
+                                "dateDisplay": "26 July 2012 3:15 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T15:30:00Z",
+                                "dateDisplay": "26 July 2012 3:30 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T15:45:00Z",
+                                "dateDisplay": "26 July 2012 3:45 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T16:00:00Z",
+                                "dateDisplay": "26 July 2012 4:00 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T16:15:00Z",
+                                "dateDisplay": "26 July 2012 4:15 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T16:30:00Z",
+                                "dateDisplay": "26 July 2012 4:30 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T16:45:00Z",
+                                "dateDisplay": "26 July 2012 4:45 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T17:00:00Z",
+                                "dateDisplay": "26 July 2012 5:00 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T17:15:00Z",
+                                "dateDisplay": "26 July 2012 5:15 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T17:30:00Z",
+                                "dateDisplay": "26 July 2012 5:30 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T17:45:00Z",
+                                "dateDisplay": "26 July 2012 5:45 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T18:00:00Z",
+                                "dateDisplay": "26 July 2012 6:00 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T18:15:00Z",
+                                "dateDisplay": "26 July 2012 6:15 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T18:30:00Z",
+                                "dateDisplay": "26 July 2012 6:30 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T18:45:00Z",
+                                "dateDisplay": "26 July 2012 6:45 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T19:00:00Z",
+                                "dateDisplay": "26 July 2012 7:00 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T19:15:00Z",
+                                "dateDisplay": "26 July 2012 7:15 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T19:30:00Z",
+                                "dateDisplay": "26 July 2012 7:30 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T19:45:00Z",
+                                "dateDisplay": "26 July 2012 7:45 PM GMT",
+                                "isLast": false
+                            },
+                            {
+                                "date": "2012-07-26T20:00:00Z",
+                                "dateDisplay": "26 July 2012 8:00 PM GMT",
+                                "isLast": false
+                            }
+                        ],
+                            "end": "2012-07-26T16:00:00",
+                            "start": "2012-07-26T09:30:00Z",
+                            "startDescripter": "26 July 2012 9:30 AM GMT",
+                            "stop": "2012-07-26T16:00:00Z",
+                            "stopDescripter": "26 July 2012 4:00 PM GMT",
+                            "adjustedStart": "2012-07-26T13:30:00Z",
+                            "adjustedStartDescripter": "26 July 2012 9:30 AM",
+                            "adjustedStartUpdatedTimeZoneName": "Eastern Daylight Time",
+                            "adjustedStartUpdatedTimeZoneAbbr": "EDT",
+                            "adjustedStop": "2012-07-26T20:00:00Z",
+                            "adjustedStopDescripter": "26 July 2012 4:00 PM",
+                            "lastUpdated": "2012-07-26T13:20:48.026",
+                            "lastUpdatedDescripter": "26 July 2012 1:20 PM GMT",
+                            "adjustedLastUpdated": "2012-07-26T17:20:48.026Z",
+                            "adjustedLastUpdatedTimeZoneName": "Eastern Daylight Time",
+                            "AdjustedLastUpdatedTimeZoneAbbr": "EDT",
+                            "adjustedLastUpdatedDescripter": "26 July 2012 1:20 PM",
+                            "percentChange": {
+                                "displayText": {
+                                    "value": "+1.93%"
+                                },
+                                "value": 1.9283209972730815
+                            },
+                            "isIndex": false,
+                            "provider": {
+                                "name": "SIX-Telekurs",
+                                "externalUrl": "http://www.SIX-Telekurs.com"
+                            },
+                            "exchange": {
+                                "code": "NASDAQ",
+                                "descriptor": "U.S.: Nasdaq",
+                                "timeZoneDescriptor": "Eastern Daylight Time",
+                                "timeZoneAbbreviation": "EDT",
+                                "isPrimary": false
+                            }
+                        }
+                    ];
         }
     </script>
 }
