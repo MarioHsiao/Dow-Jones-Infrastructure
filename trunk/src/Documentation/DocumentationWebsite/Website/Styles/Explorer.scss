@@ -49,8 +49,8 @@ iframe.showcase {
 }
 
 section {
-  &.row-fluid + section.row-fluid {
-    margin-top: 10px; }
+  &.row-fluid {
+    margin: 10px 0; }
   &.showcase {
     width: 98%;
     /* var: same as span12 width */

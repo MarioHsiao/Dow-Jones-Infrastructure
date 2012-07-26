@@ -38,8 +38,8 @@ iframe.showcase {
   /* var: same as span12 width */
   height: 300px; }
 
-section.row-fluid + section.row-fluid {
-  margin-top: 10px; }
+section.row-fluid {
+  margin: 10px 0; }
 section.showcase {
   width: 98%;
   /* var: same as span12 width */
