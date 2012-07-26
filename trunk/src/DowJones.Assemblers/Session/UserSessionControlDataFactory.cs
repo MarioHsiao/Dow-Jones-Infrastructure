@@ -31,7 +31,7 @@ namespace DowJones.Assemblers.Session
                     AccessPointCode = _session.AccessPointCode,
                     AccessPointCodeUsage = _session.AccessPointCode,
                     Debug = _session.IsDebug,
-                    ClientCode = _session.ClientTypeCode,
+                    ClientType = _session.ClientTypeCode,
                     IpAddress = (_request == null) ? null : _request.ServerVariables["REMOTE_ADDR"],
                     UserID = _session.UserId,
                     SessionID = _session.SessionId,
