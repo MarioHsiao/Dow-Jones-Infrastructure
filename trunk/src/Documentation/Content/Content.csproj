@@ -67,8 +67,11 @@
     <None Include="1GettingStarted\6PlatformConnectivity\2GatewayConfiguration.md" />
     <None Include="1GettingStarted\6PlatformConnectivity\Overview.md" />
     <None Include="Components\AutoSuggest\Assets.md" />
-    <None Include="Components\Customization\Examples.md" />
+    <None Include="Components\Customization\1Examples.md" />
     <None Include="Components\Customization\Overview.md" />
+    <None Include="Components\Customization\4TemplateConfiguration.md" />
+    <None Include="Components\Customization\2TemplateCreation.md" />
+    <None Include="Components\Customization\3TemplateCompilation.md" />
     <None Include="Components\DiscoveryGraph\DataModel.md" />
     <None Include="Components\NewsRadar90DayAvg\DataModel.md" />
     <None Include="Components\PortalHeadlineList\DataModel.md" />
