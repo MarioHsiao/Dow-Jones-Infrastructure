@@ -8,6 +8,11 @@ namespace DowJones.Web.Configuration
     /// </summary>
     public class ClientCredentials
     {
+        /// <summary>The access point code.</summary>
+        [JsonProperty("clientType",
+                      NullValueHandling = NullValueHandling.Ignore,
+                      DefaultValueHandling = DefaultValueHandling.Ignore)]
+        public string ClientType { get; set; }
 
         /// <summary>The access point code.</summary>
         [JsonProperty("accessPointCode",

@@ -36,7 +36,7 @@ namespace DowJones.Web.Configuration
                 return config;
 
 
-            ClientCredentialTokenType credentialType = ClientCredentialTokenType.SessionId;
+            var credentialType = ClientCredentialTokenType.SessionId;
 
             if(_controlData.EncryptedToken.HasValue())
                 credentialType = ClientCredentialTokenType.EncryptedToken;
@@ -48,6 +48,7 @@ namespace DowJones.Web.Configuration
 #pragma warning disable 618
                 CredentialType = credentialType,
 #pragma warning restore 618
+                ClientType = _controlData.ClientType,
                 ProxyUserId = _controlData.ProxyUserId,
                 ProxyUserNamespace = _controlData.ProxyProductId,
                 RemoteAddress = _controlData.IpAddress,

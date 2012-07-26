@@ -19,6 +19,11 @@ namespace DowJones.Assemblers.Session
         protected readonly HttpRequestBase Request;
         protected readonly IUserSession Session;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ControlDataFactory" /> class.
+        /// </summary>
+        /// <param name="session">The session.</param>
+        /// <param name="request">The request.</param>
         public ControlDataFactory(IUserSession session, HttpRequestBase request = null)
         {
             Request = request;
