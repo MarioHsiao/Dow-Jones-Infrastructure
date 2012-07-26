@@ -91,11 +91,11 @@ namespace DowJones.Assemblers.Headlines
         /// The process.
         /// </summary>
         /// <param name="generateExternalUrl">The generate external url.</param>
-        /// <param name="generateSnippetThumbnailForHeadlineInfo">The generate snippet thumbnail for headline info.</param>
+        /// <param name="generateSnippetThumbnailForHeadlineInfoDelegate">The generate snippet thumbnail for headline info.</param>
         /// <returns></returns>
-        public IListDataResult Process(Delegate generateExternalUrl, GenerateSnippetThumbnailForHeadlineInfo generateSnippetThumbnailForHeadlineInfo)
+        public IListDataResult Process(Delegate generateExternalUrl, GenerateSnippetThumbnailForHeadlineInfo generateSnippetThumbnailForHeadlineInfoDelegate)
         {
-            return Process((GenerateExternalUrlForHeadlineInfo)generateExternalUrl, generateSnippetThumbnailForHeadlineInfo);
+            return Process((GenerateExternalUrlForHeadlineInfo)generateExternalUrl, generateSnippetThumbnailForHeadlineInfoDelegate);
         }
 
         #endregion

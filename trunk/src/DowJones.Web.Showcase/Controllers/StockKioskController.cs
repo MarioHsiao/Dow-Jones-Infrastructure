@@ -90,7 +90,7 @@ namespace DowJones.Web.Showcase.Controllers
         {
             var kioskModel = new StockKioskModel();
             var response = MarketDataChartingManager.GetMarketChartData(syms.ToArray(), symbolType, TimePeriod.OneDay, frequency);
-            if (response.PartResults == null || response.PartResults.Count() <= 0)
+            if (response.PartResults == null || !response.PartResults.Any())
             {
                 return null;
             }
