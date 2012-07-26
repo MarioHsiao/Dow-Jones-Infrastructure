@@ -14,7 +14,6 @@ using DowJones.Properties;
 using DowJones.Session;
 using DowJones.Url;
 using Factiva.Gateway.Messages.Assets.Common.V2_0;
-using Factiva.Gateway.Utils.V1_0;
 using FactivaEncryption;
 using log4net;
 
@@ -32,11 +31,10 @@ namespace DowJones.Assemblers.Assets
         /// <summary>
         /// Initializes a new instance of the <see cref="AudienceManager"/> class.
         /// </summary>
-        /// <param name="sessionID">The session ID.</param>
+        /// <param name="sessionId">The session ID.</param>
         /// <param name="clientTypeCode">The client type code.</param>
         /// <param name="accessPointCode">The access point code.</param>
-        /// <param name="interfaceLangugage">The interface langugage.</param>
-        public AudienceManager(string sessionID, string clientTypeCode, string accessPointCode, string interfaceLangugage) : base(sessionID, clientTypeCode, accessPointCode)
+        public AudienceManager(string sessionId, string clientTypeCode, string accessPointCode) : base(sessionId, clientTypeCode, accessPointCode)
         {
         }
 

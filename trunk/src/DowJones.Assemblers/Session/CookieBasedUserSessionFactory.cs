@@ -11,15 +11,27 @@ using DowJones.Web;
 
 namespace DowJones.Assemblers.Session
 {
+    /// <summary>
+    /// 
+    /// </summary>
     [Obsolete("Use UserSessionFactory instead (class renamed)")]
     public class CookieBasedUserSessionFactory : UserSessionFactory
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CookieBasedUserSessionFactory" /> class.
+        /// </summary>
+        /// <param name="httpContext">The HTTP context.</param>
+        /// <param name="cookieManager">The cookie manager.</param>
+        /// <param name="referringProduct">The referring product.</param>
         public CookieBasedUserSessionFactory(HttpContextBase httpContext, HttpCookieManager cookieManager, ReferringProduct referringProduct) 
             : base(httpContext, cookieManager, referringProduct)
         {
         }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public class UserSessionFactory : Factory<IUserSession>
     {
         protected internal const string DefaultProductId = "16";
@@ -34,6 +46,12 @@ namespace DowJones.Assemblers.Session
         protected readonly HttpContextBase HttpContext;
         protected UserSession Session;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UserSessionFactory" /> class.
+        /// </summary>
+        /// <param name="httpContext">The HTTP context.</param>
+        /// <param name="cookieManager">The cookie manager.</param>
+        /// <param name="referringProduct">The referring product.</param>
         public UserSessionFactory(HttpContextBase httpContext, HttpCookieManager cookieManager, ReferringProduct referringProduct)
         {
             HttpContext = httpContext;
@@ -41,6 +59,12 @@ namespace DowJones.Assemblers.Session
             ReferringProduct = referringProduct;
         }
 
+        /// <summary>
+        /// Gets the product prefix.
+        /// </summary>
+        /// <value>
+        /// The product prefix.
+        /// </value>
         public string ProductPrefix
         {
             get
@@ -50,16 +74,27 @@ namespace DowJones.Assemblers.Session
             }
         }
 
+        /// <summary>
+        /// Gets the client type code.
+        /// </summary>
+        /// <value>
+        /// The client type code.
+        /// </value>
         public string ClientTypeCode
         {
             get
             {
-                return HttpContext.Request[AccessPointCodeKey] 
-                    ??ReferringProduct.ClientTypeCode 
+                return ReferringProduct.ClientTypeCode 
                     ?? Settings.Default.DefaultClientCodeType;
             }
         }
 
+        /// <summary>
+        /// Gets the access point code.
+        /// </summary>
+        /// <value>
+        /// The access point code.
+        /// </value>
         public string AccessPointCode
         {
             get
@@ -69,11 +104,30 @@ namespace DowJones.Assemblers.Session
             }
         }
 
+        /// <summary>
+        /// Gets the access point code usage.
+        /// </summary>
+        /// <value>
+        /// The access point code usage.
+        /// </value>
+        public string AccessPointCodeUsage
+        {
+            get 
+            { 
+                return HttpContext.Request[AccessPointCodeKey];
+            }
+        }
+
+        /// <summary>
+        /// Creates this instance.
+        /// </summary>
+        /// <returns></returns>
         public override IUserSession Create()
         {
             Session = new UserSession
                            {
                                AccessPointCode = AccessPointCode,
+                               AccessPointCodeUsage = AccessPointCodeUsage,
                                AccountId = CookieManager.GetSessionValue(ProductPrefix + "_A"),
                                ClientTypeCode = ClientTypeCode,
                                ProductId = CookieManager.GetSessionValue(ProductPrefix + "_N"),
