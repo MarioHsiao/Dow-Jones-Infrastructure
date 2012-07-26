@@ -397,7 +397,7 @@
 
                 if (isUrlGenerated === true) {
                     //Call the transaction and get the authentication token
-                    $.jsonp({
+                    $.crossDomain({
                         url: authenticationUrl,
                         callbackParameter: "callback",
                         success: function(data, textStatus) {

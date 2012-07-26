@@ -393,7 +393,7 @@
                     extraParams[key] = typeof param == "function" ? param() : param;
                 });
 
-                $.jsonp({
+                DJ.crossDomain({
                     // try to leverage ajaxQueue plugin to abort previous requests
                     mode: "abort",
                     cache: false,

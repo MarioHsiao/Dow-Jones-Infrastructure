@@ -14,7 +14,7 @@ namespace DowJones.Properties
     /// <summary>
     /// The settings.
     /// </summary>
-    public sealed partial class Settings
+    public sealed partial class Settings 
     {
         /// <summary>
         /// Gets DefaultAccessPointCode.
@@ -289,6 +289,13 @@ namespace DowJones.Properties
         public string MarketWatchUri
         {
             get { return (string)this["MarketWatchUri"]; }
+        }
+
+        [ApplicationScopedSetting, DebuggerNonUserCode, SettingsSerializeAs(SettingsSerializeAs.String)]
+        [DefaultSettingValue("CORS")]
+        public string CrossDomainTransport
+        {
+            get { return (string)this["CrossDomainTransport"]; }
         }
     }
 }
