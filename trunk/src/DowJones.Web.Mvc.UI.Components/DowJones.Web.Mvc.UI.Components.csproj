@@ -502,7 +502,6 @@
     <EmbeddedResource Include="Radar\images\bar-graph-ltBlue.png" />
     <EmbeddedResource Include="VideoPlayer\js\flowplayer-combined.js" />
     <EmbeddedResource Include="TagCloud\TagCloud.js" />
-    <EmbeddedResource Include="Radar\jquery.ba-dotimeout.min.js" />
     <EmbeddedResource Include="HeadlineCarousel\HeadlineCarousel.js" />
     <EmbeddedResource Include="NewsStandTicker\jquery.SmoothScrollDiv.js" />
     <EmbeddedResource Include="NewsStandTicker\NewsStandTicker.js" />

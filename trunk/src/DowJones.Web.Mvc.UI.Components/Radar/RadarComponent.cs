@@ -9,7 +9,6 @@
 //------------------------------------------------------------------------------
 
 [assembly: System.Web.UI.WebResourceAttribute("DowJones.Web.Mvc.UI.Components.Radar.Radar.js", "text/javascript")]
-[assembly: System.Web.UI.WebResourceAttribute("DowJones.Web.Mvc.UI.Components.Radar.jquery.ba-dotimeout.min.js", "text/javascript")]
 [assembly: System.Web.UI.WebResourceAttribute("DowJones.Web.Mvc.UI.Components.Radar.ClientTemplates.Success.htm", "text/html")]
 
 namespace DowJones.Web.Mvc.UI.Components.Radar
@@ -27,7 +26,6 @@ namespace DowJones.Web.Mvc.UI.Components.Radar
     
     // Last Generated Timestamp: 06/29/2012 01:22 PM
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.Radar.Radar.js", ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.Radar.RadarComponent))]
-    [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.Radar.jquery.ba-dotimeout.min.js", ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.Radar.RadarComponent))]
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.Radar.ClientTemplates.Success.htm", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="success", DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.Radar.RadarComponent))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.22175")]
     public class RadarComponent : DowJones.Web.Mvc.UI.ViewComponentBase<RadarModel>
