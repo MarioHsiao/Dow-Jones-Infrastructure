@@ -77,7 +77,7 @@
     <None Include="Components\PortalHeadlineList\DataModel.md" />
     <None Include="Components\StockKiosk\DataModel.md" />
     <None Include="Components\VideoPlayer\DataModel.md" />
-    <None Include="Components\WorkingWithData\Examples\Javascript.md" />
+    <None Include="Components\WorkingWithData\Examples\JavaScript.md" />
     <None Include="Components\WorkingWithData\Overview.md" />
     <None Include="Components\WorkingWithData\Assemblers.md" />
     <None Include="Components\WorkingWithData\Examples\ASP.NET_MVC.md" />
@@ -161,8 +161,8 @@
     <None Include="2Development\2CreateAComponent\Overview.md" />
     <None Include="1GettingStarted\2InstallDevelopmentTools\Overview.md" />
     <None Include="2Development\4CodingStandards\1CSharp.md" />
-    <None Include="2Development\4CodingStandards\2Javascript.md" />
-    <None Include="2Development\4CodingStandards\3ASP.NetMVC.md" />
+    <None Include="2Development\4CodingStandards\2JavaScript.md" />
+    <None Include="2Development\4CodingStandards\3ASP.NET_MVC.md" />
     <None Include="Reference\ContinousIntegration\1AutomatedBuilds.md" />
     <None Include="Reference\ContinousIntegration\2BestPractices.md" />
     <None Include="Reference\ContinousIntegration\3WhatToDoIf.md" />
@@ -178,7 +178,7 @@
     <None Include="2Development\BestPractices\2VersionControl.md" />
     <None Include="2Development\BestPractices\3ContinousIntegration.md" />
     <None Include="2Development\BestPractices\4PackageManagement.md" />
-    <None Include="2Development\BestPractices\5ASP.netMVC.md" />
+    <None Include="2Development\BestPractices\5ASP.NET_MVC.md" />
     <None Include="2Development\BestPractices\Overview.md" />
     <None Include="2Development\4CodingStandards\Overview.md" />
     <None Include="Reference\ContinousIntegration\Overview.md" />

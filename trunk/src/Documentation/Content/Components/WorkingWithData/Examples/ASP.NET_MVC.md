@@ -1,6 +1,4 @@
-﻿**ASP.NET MVC**
-
-**Passing data to model which uses Assemblers**
+﻿**Passing data to model which uses Assemblers**
 
 In this example, `StockKiosk` Component uses GetData() method to pass the data to the `StockKioskModel`.
 
