@@ -683,7 +683,6 @@
     <EmbeddedResource Include="HeadlineCarousel\ClientTemplates\HeadlineHitCountsPackage.htm" />
     <EmbeddedResource Include="HeadlineCarousel\ClientTemplates\VideoX.htm" />
     <EmbeddedResource Include="HeadlineCarousel\ClientTemplates\VideoY.htm" />
-    <EmbeddedResource Include="HeadlineCarousel\jquery.ui.headline-carousel.js" />
     <EmbeddedResource Include="HeadlineCarousel\ClientTemplates\NoData.htm" />
     <EmbeddedResource Include="HeadlineList\ClientTemplates\Success.htm" />
     <EmbeddedResource Include="HeadlineList\HeadlineList.js" />
