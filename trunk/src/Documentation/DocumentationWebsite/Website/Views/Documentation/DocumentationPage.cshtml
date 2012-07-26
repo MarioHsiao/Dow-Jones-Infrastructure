@@ -12,18 +12,20 @@
     <section id="@contentSection.AnchorId" class="row-fluid level-@level @(contentSection.Collapsible && level == 0 ? "collapsible" : "") @(contentSection.Selected ? "selected" : "")">
         @if (level == 0)
         {
-            <header class="@(contentSection.HasChildren ? "parent": "")">
+            <header class="@(contentSection.HasChildren ? "parent" : "")">
                 <h3>@contentSection.DisplayName</h3>
             </header>
         }
         @if (contentSection.HasChildren)
         {
             <div>
-                <div class="child-links">
-                    @foreach (var child in contentSection.Children)
-                    {
-                        <span class="child-link btn btn-mini btn-inverse @(child.Selected ? "active" : "")" data-ref="#@child.AnchorId">@child.DisplayName</span>
-                    }
+                <div class="child-link-nav child-links">
+                    <ul class="nav nav-pills">
+                        @foreach (var child in contentSection.Children)
+                        {
+                            <li class="child-link @(child.Selected ? "active" : "")" data-ref="#@child.AnchorId"><a href="javascript:void(0);">@child.DisplayName</a></li>
+                        }
+                    </ul>
                 </div>
 
                 @foreach (var child in contentSection.Children)

@@ -30,7 +30,7 @@
 	border: $width $style $colorWithAlpha;
 }
 
-@mixin transition($property, $duration, $timing-function, $delay) {
+@mixin transition($property, $duration: 0, $timing-function: ease-in, $delay: 0) {
 	@include prefixer(transition, ($property $duration $timing-function $delay), $o: true);
 }
 

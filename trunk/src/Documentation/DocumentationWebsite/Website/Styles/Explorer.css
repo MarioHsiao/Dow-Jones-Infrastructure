@@ -86,12 +86,6 @@ td.name {
     width: 150px;
     font-weight: bold; }
 
-.child-links {
-  margin: 0 0 10px 0px;
-  background-color: #F0F0F0;
-  padding: 4px;
-  text-align: right; }
-
 .level-0 .level-1 {
   display: none; }
   .level-0 .level-1 h3 {
