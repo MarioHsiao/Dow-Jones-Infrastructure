@@ -1,7 +1,4 @@
-﻿##### jQuery
-
-##### Overview
-jQuery is a cross-browser JavaScript library designed to simplify the client-side scripting of HTML and working with various browsrs DOM implementations. 
+﻿jQuery is a cross-browser JavaScript library designed to simplify the client-side scripting of HTML and working with various browsrs DOM implementations. 
 It was released in January 2006 at BarCamp NYC by John Resig. 
 
 jQuery is one of the most popular JavaScript libraries in use today. 
@@ -15,7 +12,7 @@ The modular approach to the jQuery library allows the creation of powerful dynam
 
 Microsoft and Nokia have announced plans to bundle jQuery on their platforms, Microsoft is adopting it initially within Visual Studio for use within Microsoft's ASP.NET AJAX framework and ASP.NET MVC Framework while Nokia has integrated it into their Web Run-Time widget development platform.
 
-##### Featues
+#### Featues
 * DOM element selections using the cross-browser open source selector engine Sizzle, a spin-off out of the jQuery project 
 * DOM traversal and modification (including support for CSS 1-3)
 * DOM manipulation based on CSS selectors that uses node elements name and node elements attributes (id and class) as criteria to build selectors

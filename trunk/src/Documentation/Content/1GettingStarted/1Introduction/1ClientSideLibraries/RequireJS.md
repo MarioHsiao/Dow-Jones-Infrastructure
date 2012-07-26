@@ -1,17 +1,14 @@
-﻿#### RequireJs
-
-##### Overview
-When a project reaches a certain size, managing the script files for a project starts to get tricky. 
+﻿When a project reaches a certain size, managing the script files for a project starts to get tricky. 
 You need to be sure to sequence the scripts in the right order, and you need to start seriously thinking about combining scripts together into a bundle for deployment, so that only one or a very small number of requests are made to load the scripts.
 
-##### Problem
+#### Problem
 * Web sites are turning into Web apps
 * Code complexity grows as the site gets bigger
 * Assembly gets harder
 * Developer wants discrete JS files/modules
 * Deployment wants optimized code in just one or a few HTTP calls
 
-##### Solution
+#### Solution
 RequireJS can help you manage the script modules, load them in the right order, and make it easy to combine the scripts later via the RequireJS optimizer or other process without needing to change your markup. 
 It also gives you an easy way to load scripts after the page has loaded, allowing you to spread out the download size over time.
 
