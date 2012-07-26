@@ -125,14 +125,17 @@
 
         /* Now make current tab "active" */
         $this.addClass("active")
-             .parents(".level-0").find(".level-1").hide();   /*  Hide all tab content */
+             .parents(".level-0")
+             .find(".level-1:visible")
+             .fadeTo(200, 0, function () {
+                 //  Here we get the href value of the selected tab
+                 var selectedTab = $this.data("ref");
+                 //  Show the selected tab content
+                 $(selectedTab).fadeTo(200, 1);
+                 $(this).hide();
+             });
 
-        //  Here we get the href value of the selected tab
-        var selectedTab = $(this).data("ref");
-
-        //  Show the selected tab content
-        $(selectedTab).fadeIn();
-
+        return false;
     }
 
     $(function () {
