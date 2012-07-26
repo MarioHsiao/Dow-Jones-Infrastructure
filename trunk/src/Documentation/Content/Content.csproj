@@ -182,9 +182,9 @@
     <None Include="2Development\BestPractices\Overview.md" />
     <None Include="2Development\4CodingStandards\Overview.md" />
     <None Include="Reference\ContinousIntegration\Overview.md" />
-    <None Include="2Development\BestPractices\Tools\ClientSideTemplates.md" />
-    <None Include="2Development\BestPractices\Tools\jQuery.md" />
-    <None Include="2Development\BestPractices\Tools\RequireJS.md" />
+    <None Include="1GettingStarted\1Introduction\1ClientSideLibraries\ClientSideTemplates.md" />
+    <None Include="1GettingStarted\1Introduction\1ClientSideLibraries\jQuery.md" />
+    <None Include="1GettingStarted\1Introduction\1ClientSideLibraries\RequireJS.md" />
     <None Include="Reference\FAQ\NugetPackages.md" />
     <None Include="Reference\1VersionControl\2ConfigurationAndSetup.md" />
     <None Include="Reference\1VersionControl\4BranchingAndMergingStrategies.md" />
