@@ -160,9 +160,9 @@
     <None Include="2Development\2CreateAComponent\7AddToShowcase.md" />
     <None Include="2Development\2CreateAComponent\Overview.md" />
     <None Include="1GettingStarted\2InstallDevelopmentTools\Overview.md" />
-    <None Include="2Development\4CodingStandards\1CSharp.md" />
-    <None Include="2Development\4CodingStandards\2JavaScript.md" />
-    <None Include="2Development\4CodingStandards\3ASP.NET_MVC.md" />
+    <None Include="2Development\4CodingStandards\Standards\1CSharp.md" />
+    <None Include="2Development\4CodingStandards\Standards\2JavaScript.md" />
+    <None Include="2Development\4CodingStandards\Standards\3ASP.NET_MVC.md" />
     <None Include="Reference\ContinousIntegration\1AutomatedBuilds.md" />
     <None Include="Reference\ContinousIntegration\2BestPractices.md" />
     <None Include="Reference\ContinousIntegration\3WhatToDoIf.md" />
