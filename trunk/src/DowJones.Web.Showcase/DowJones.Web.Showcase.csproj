@@ -264,7 +264,7 @@
     <Content Include="Content\swf\flowplayer.controls-3.2.5.swf" />
     <Content Include="Content\swf\flowplayer.rtmp-3.2.3.swf" />
     <Content Include="Content\swf\flowplayer.unlimited-3.2.7.swf" />
-    <Content Include="Modules\Empty\EmptyCanvasModule.js" />
+    <EmbeddedResource Include="Modules\Empty\EmptyCanvasModule.js" />
     <Content Include="ScriptAdd.html" />
     <Content Include="Scripts\loose2.js" />
     <Content Include="Scripts\loose.js" />

@@ -23,6 +23,8 @@ namespace DowJones.Web.Mvc.Diagnostics.ClientResources
         }
         private IEnumerable<ClientResourceInfo> clientResources;
 
+        public IEnumerable<string> InvalidClientResources { get; set; }
+
         public bool HasAlias
         {
             get
@@ -31,6 +33,14 @@ namespace DowJones.Web.Mvc.Diagnostics.ClientResources
             }
         }
 
+        public bool HasInvalidClientResources
+        {
+            get
+            {
+                return InvalidClientResources != null && InvalidClientResources.Any();
+            }
+        }
+        
         public bool HasResourceName
         {
             get
@@ -43,6 +53,11 @@ namespace DowJones.Web.Mvc.Diagnostics.ClientResources
 
         public string SearchQuery { get; set; }
 
+
+        public ClientResourcesInfo()
+        {
+            InvalidClientResources = Enumerable.Empty<string>();
+        }
     }
 
     public class ClientResourceAliasInfo
