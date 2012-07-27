@@ -3,25 +3,21 @@ This core framework provides key classes and interfaces that you'll normally wou
 
 The Dow Jones Core Framework provides following key capabilities:
 
-- Dependency Injection
-- Session Management 
-- Security Management
-- Various registries such as:
-	* AssemblyRegistry
-	* ClientResourceRegistry
-- Token management
-- Serialization
-- Proxy Handlers
-- Client Resource Handling
-- Runtime combining and minifying of client resources
-- Base, Base classes 
-- Loggers
-- Core Extensions
-- Charting
-- Ad Management
-- Assembler, Managers, Formatters
-- Web Handlers such as 
-	* Syndication
-	* Video
-	* Article
-	* ...and more!
+
+Feature																| Description
+--------------------------------------------------------------------|---------------------------------------------------------------------------------------------
+Dependency Injection												|
+Session Management													|
+Security Management													|
+Localization Management												|
+Serialization														|
+Client Resource Management											|
+Runtime Optimization of Client Resources							|
+Core Extensions														|
+Charting															|
+Assemblers															|
+Managers															|
+Formatters															|	
+Web Handlers														|	
+Proxy Handlers														|
+UI Component Framework												|
