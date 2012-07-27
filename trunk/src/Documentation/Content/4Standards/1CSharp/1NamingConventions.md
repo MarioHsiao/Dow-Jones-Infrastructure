@@ -13,7 +13,19 @@
 2.	Use camel casing for local variable names and method arguments.
 	
 	a.	Acronyms should be all lowercase.  
-	b.	Combination words such as ILot should be all lowercase.  
+
+		private void MyMethod(int itemID)
+		{
+			string usa;
+		}
+
+	b.	Combination words such as `casenumber` should be all lowercase.  
+		
+		private void MyMethod(int itemID)
+		{
+			int casenumber;
+		}
+
 	c.	The abbreviation `ID` should only be used as an identifier suffix and must appear uppercase at all times.  
 
 		private void MyMethod(int itemID)

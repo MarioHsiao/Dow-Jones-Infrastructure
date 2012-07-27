@@ -142,7 +142,8 @@
     <None Include="3Components\WorkingWithEvents\5HandlerFunction.md" />
     <None Include="4Standards\1CSharp\1NamingConventions.md" />
     <None Include="4Standards\1CSharp\2CodeLayout.md" />
-    <None Include="4Standards\1CSharp\3Exceptions.md" />
+    <None Include="4Standards\1CSharp\3CodeStyle.md" />
+    <None Include="4Standards\1CSharp\4Exceptions.md" />
     <None Include="4Standards\1CSharp\Overview.md" />
     <None Include="4Standards\2JavaScript\General.md" />
     <None Include="4Standards\3ASPNetMVC\General.md" />
