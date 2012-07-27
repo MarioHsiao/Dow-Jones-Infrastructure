@@ -1,5 +1,5 @@
 /*!
-* RelatedConceptsComponent
+* RelatedConcepts
 */
 
 (function ($) {
@@ -9,7 +9,7 @@
         // Default options
         defaults: {
             debug: false,
-            cssClass: 'RelatedConceptsComponent'
+            cssClass: 'RelatedConcepts'
         },
 
         tokens: {
@@ -20,7 +20,7 @@
         },
 
         init: function (element, meta) {
-            var $meta = $.extend({ name: "RelatedConceptsComponent" }, meta);
+            var $meta = $.extend({ name: "RelatedConcepts" }, meta);
             this._super(element, $meta);
             this.getData();
         },
@@ -104,7 +104,7 @@
     });
 
     // Declare this class as a jQuery plugin
-    $.plugin('dj_RelatedConceptsComponent', DJ.UI.RelatedConcepts);
+    $.plugin('dj_RelatedConcepts', DJ.UI.RelatedConcepts);
 
 
 })(jQuery);
