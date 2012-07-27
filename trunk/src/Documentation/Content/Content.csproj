@@ -141,6 +141,7 @@
     <None Include="Components\WorkingWithEvents\5HandlerFunction.md" />
     <None Include="deploy.proj" />
     <Content Include="images\AddingDowJonesTFSServer.png" />
+    <Content Include="images\BuildingBlocks.png" />
     <Content Include="images\CI_BuildNotificationOptions.png" />
     <Content Include="images\CI_BuildNotificationsSystemTray.png" />
     <Content Include="images\ConnectingToTFS.png" />
@@ -151,6 +152,12 @@
     <Content Include="images\NuGet_Navigation.png" />
     <Content Include="images\NuGet_PackageSources.png" />
     <Content Include="images\Nuget_UpgradePackages.png" />
+    <Content Include="images\VerifyASPNETMVC3.png" />
+    <Content Include="images\VerifyDotNetFrameWork.png" />
+    <Content Include="images\VerifyNuGet.png" />
+    <Content Include="images\VerifyRazorViewComponentGenerator.png" />
+    <Content Include="images\VerifyTFPT.png" />
+    <Content Include="images\VerifyVSSP1.png" />
     <Content Include="images\VSVersions.png" />
     <Content Include="Web.config" />
     <None Include="2Development\2CreateAComponent\2CreateDataObject.md" />
