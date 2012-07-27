@@ -42,6 +42,8 @@ DJ.UI.StockKiosk = DJ.UI.Component.extend({
             tickersymbolClick: "tickersymbolClick.dj.StockKiosk"   
         }, 
 
+    currentSymbolHovered: undefined,
+    currentSymbolUpdated: undefined,
 
     /*
     * Initialization (constructor)
@@ -55,25 +57,44 @@ DJ.UI.StockKiosk = DJ.UI.Component.extend({
 
     // gets called in base.init()
     _initializeEventHandlers: function () {
-        var self = this;
-
-        this.$element.on('mouseover', self.selectors.quotes_ticker, function (event) {          
-            var symbol = $(self.selectors.quotes_symbol, this).attr("data-symbol");   //using attr to alws use it as a string instead of data 
-            self.$element.find(self.selectors.quotes_ticker_selected)
-                         .removeClass('selected');
-            $(this).addClass("selected"); 
-            self.addSeriestoChart(symbol);             
-        });
-        
-        /*
-        this.$element.on('click', self.selectors.quotes_symbol , function(event) { 
-            var symbol = $(this).attr("data-symbol");
-            self.publish(self.events.tickersymbolClick, {tickersymbol: self.getStockticker(symbol) } ); 
-            return false;
-            //return(self.getStockticker(code));
-        });*/
+        this.$element.on('mouseover', this.selectors.quotes_ticker, this._delegates.OnQuotesTickerMouseOver);
+        this.$element.on('click', this.selectors.quotes_symbol , this._delegates.OnQuotesTickerClick);     
     },
 
+    _initializeDelegates: function () {
+        this._super();
+
+        $.extend(this._delegates, { 
+                    OnQuotesTickerMouseOver: $dj.delegate(this, this._quotesTickerMouseOver),
+                    OnQuotesTickerClick: $dj.delegate(this, this._quotesTickerClick)
+                });
+    }, 
+
+    _quotesTickerMouseOver: function(event){
+        var self = this;
+        var symbol = $(self.selectors.quotes_symbol, event.currentTarget).attr("data-symbol");   //using attr to alws use it as a string instead of data 
+        
+        if (this.currentSymbolHovered != symbol) {
+            this.currentSymbolHovered = symbol;    
+            this.currentSymbolUpdated = true;  
+        } 
+        else {
+            this.currentSymbolUpdated = false;
+        } 
+
+        self.$element.find(self.selectors.quotes_ticker_selected)
+                     .removeClass('selected');
+        $(event.currentTarget).addClass("selected"); 
+        this.addSeriestoChart(symbol);    
+    },
+
+    _quotesTickerClick: function(event){
+        var symbol = $(this).attr("data-symbol");
+        self.publish(self.events.tickersymbolClick, {tickersymbol: self.getStockticker(symbol) } ); 
+        return false;
+        //return(self.getStockticker(code));
+    },
+    
     setHeight: function(){
         var tickerrowheight = $(this.selectors.quotes_ticker,this.$element).height() + 4; //padding of 4        
         var marketblocksize = Math.min(this.options.pagesize, this.data.length);     
@@ -369,6 +390,8 @@ DJ.UI.StockKiosk = DJ.UI.Component.extend({
             
             if (symbolcode == 0) {
                 requestedIntradaryMarketData = self.data[0];  //render first chart // 0th will change
+                this.currentSymbolHovered = self.data[0].symbol; // on first time load.
+                this.currentSymbolUpdated = true;
             }
             else {              
                 requestedIntradaryMarketData = self.getStockticker(symbolcode);
@@ -417,9 +440,11 @@ DJ.UI.StockKiosk = DJ.UI.Component.extend({
                 return;
             }
 
-            var seriesOptions = self.getSeriesOptions(graphDataModel);
-            chartOptions = self.baseChartOptions(chartContainer[0], seriesOptions);
-            this.chart = new Highcharts.Chart(chartOptions);        
+            if (this.currentSymbolUpdated) {                
+                var seriesOptions = self.getSeriesOptions(graphDataModel);
+                chartOptions = self.baseChartOptions(chartContainer[0], seriesOptions);
+                this.chart = new Highcharts.Chart(chartOptions);        
+            } 
         }
         catch (e) {
             $dj.debug(e.message);
