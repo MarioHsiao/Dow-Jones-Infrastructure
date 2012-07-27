@@ -60,6 +60,7 @@
     <None Include="2Development\1UseAComponent\1Usage\JavaScript.md" />
     <None Include="2Development\1UseAComponent\Overview.md" />
     <None Include="2Development\2CreateAComponent\1OpenSolution.md" />
+    <None Include="1GettingStarted\1Introduction\1ClientSideLibraries\Underscore.md" />
     <Content Include="Assets\Autosuggest\autosuggest.zip">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -199,6 +200,16 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="1GettingStarted\1Introduction\1ClientSideLibraries\jQueryUI.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="1GettingStarted\1Introduction\1ClientSideLibraries\Highcharts.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="1GettingStarted\1Introduction\1ClientSideLibraries\Flowplayer.md" />
+    <None Include="1GettingStarted\1Introduction\1ClientSideLibraries\jQueryTools.md" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
