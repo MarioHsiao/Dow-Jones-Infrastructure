@@ -144,8 +144,8 @@
     <None Include="4Standards\1CSharp\2CodeLayout.md" />
     <None Include="4Standards\1CSharp\3Exceptions.md" />
     <None Include="4Standards\1CSharp\Overview.md" />
-    <None Include="4Standards\2JavaScript\JavaScript.md" />
-    <None Include="4Standards\3ASPNetMVC\AspNetMvc.md" />
+    <None Include="4Standards\2JavaScript\General.md" />
+    <None Include="4Standards\3ASPNetMVC\General.md" />
     <None Include="deploy.proj" />
     <Content Include="images\AddingDowJonesTFSServer.png" />
     <Content Include="images\BuildingBlocks.png" />
