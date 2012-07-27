@@ -9,12 +9,6 @@ namespace DowJones.Web.Configuration
     public class ClientCredentials
     {
         /// <summary>The access point code.</summary>
-        [JsonProperty("clientType",
-                      NullValueHandling = NullValueHandling.Ignore,
-                      DefaultValueHandling = DefaultValueHandling.Ignore)]
-        public string ClientType { get; set; }
-
-        /// <summary>The access point code.</summary>
         [JsonProperty("accessPointCode",
                       NullValueHandling = NullValueHandling.Ignore,
                       DefaultValueHandling = DefaultValueHandling.Ignore)]
@@ -26,12 +20,17 @@ namespace DowJones.Web.Configuration
                       DefaultValueHandling = DefaultValueHandling.Ignore)]
         public string AccessPointCodeUsage { get; set; }
 
-        /// <summary>The type of the token.</summary>
-        [Obsolete("Use sessionId and/or encryptedToken instead")]
-        [JsonProperty("credentialType", 
-                      NullValueHandling = NullValueHandling.Ignore, 
+        /// <summary>The client type code.</summary>
+        [JsonProperty("clientCode",
+                      NullValueHandling = NullValueHandling.Ignore,
                       DefaultValueHandling = DefaultValueHandling.Ignore)]
-        public ClientCredentialTokenType CredentialType { get; set; }
+        public string ClientCode { get; set; }
+
+        /// <summary>The client code.</summary>
+        [JsonProperty("clientType",
+                      NullValueHandling = NullValueHandling.Ignore,
+                      DefaultValueHandling = DefaultValueHandling.Ignore)]
+        public string ClientType { get; set; }
 
         /// <summary>The Proxy User ID</summary>
         [JsonProperty("proxyUserId",
