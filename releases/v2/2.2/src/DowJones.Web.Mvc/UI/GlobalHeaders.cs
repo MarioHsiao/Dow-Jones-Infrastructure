@@ -27,6 +27,7 @@ namespace DowJones.Web.Mvc.UI
                               { 
                                   AccessPointCode = controlData.AccessPointCode,
                                   AccessPointCodeUsage = controlData.AccessPointCodeUsage,
+                                  ClientCode = controlData.ClientCode,
                                   CredentialType = controlData.EncryptedToken.IsNullOrEmpty() ? ClientCredentialTokenType.SessionId : ClientCredentialTokenType.EncryptedToken,
                                   SeamlessAccessFrom = session.ProductPrefix,
                                   ProxyUserId = controlData.ProxyUserId,
@@ -83,6 +84,11 @@ namespace DowJones.Web.Mvc.UI
         /// <value>The access point code usage.</value>
         [JsonProperty("accessPointCodeUsage")]
         public string AccessPointCodeUsage { get; set; }
+
+        /// <summary>Gets or sets the type of the token.</summary>
+        /// <value>The type of the token.</value>
+        [JsonProperty("clientCode")]
+        public string ClientCode { get; set; }
 
         /// <summary>Gets or sets the type of the token.</summary>
         /// <value>The type of the token.</value>
