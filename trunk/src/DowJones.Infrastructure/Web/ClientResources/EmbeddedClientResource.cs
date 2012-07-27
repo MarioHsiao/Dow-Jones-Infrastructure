@@ -55,10 +55,11 @@ namespace DowJones.Web
             if (declaringType == null || ResourceKind != ClientResourceKind.Script)
                 return Enumerable.Empty<ClientResource>();
 
-            var clientResourceAttributes = declaringType.GetClientResourceAttributes(false).ToArray();
+            var clientResourceAttributes = 
+                (declaringType.GetClientResourceAttributes(false) ?? Enumerable.Empty<ClientResourceAttribute>()).ToArray();
 
-            var firstScript = clientResourceAttributes.OfType<ScriptResourceAttribute>().First();
-            var isFirstScript = (ResourceName == firstScript.ResourceName || ResourceName.EndsWith(firstScript.RelativeResourceName));
+            var firstScript = clientResourceAttributes.OfType<ScriptResourceAttribute>().FirstOrDefault();
+            var isFirstScript = firstScript != null && (ResourceName == firstScript.ResourceName || (ResourceName ?? string.Empty).EndsWith(firstScript.RelativeResourceName ?? string.Empty));
 
             if (!isFirstScript)
                 return Enumerable.Empty<ClientResource>();
