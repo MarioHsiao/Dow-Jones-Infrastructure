@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Text.RegularExpressions;
 using System.Web.UI;
 using DowJones.Web;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -12,11 +14,24 @@ namespace DowJones
     [TestClass]
     public class EmbeddedResourcesTests
     {
+#pragma warning disable 169
+        // HACK: Refer to the Components assembly so it's included!
+        private static readonly Type ArbitraryComponentTypeReference = typeof (DowJones.Web.Mvc.UI.Components.Menu.MenuExtensions);
+#pragma warning restore 169
+
+
         [TestMethod]
         public void AllEmbeddedClientResourcesShouldBeAvailableAsAssemblyResources()
         {
+            var assemblyNames = Directory.GetFiles(Path.GetDirectoryName(GetType().Assembly.Location), "DowJones.*.dll");
+            var ignoredAssemblyNames = assemblyNames.Where(name => Regex.IsMatch(Path.GetFileName(name), @"\.Test", RegexOptions.IgnoreCase)).ToArray();
+
+            Debug.WriteLine("Found assemblies: " + string.Join("; ", assemblyNames));
+            Debug.WriteLine("Ignoring assemblies: " + string.Join("; ", ignoredAssemblyNames));
+
             var assemblies = 
-                Directory.GetFiles(Path.GetDirectoryName(GetType().Assembly.Location), "DowJones.*.dll")
+                assemblyNames
+                    .Except(ignoredAssemblyNames)
                     .Select(Assembly.LoadFile)
                     .ToArray();
 
@@ -31,12 +46,14 @@ namespace DowJones
                     let definitions = 
                         from type in assembly.GetTypes()
                         from attribute in type.GetClientResourceAttributes()
-                        select attribute.ToClientResourceDefinition()
+                        select attribute
                     select new { assembly, definitions }
                 ).ToArray();
 
             Assert.AreNotEqual(0, clientResourceAssemblies.Count(),
                                "No Client Resources found");
+
+            IList<string> failures = new List<string>();
 
             foreach(var resourceAssembly in clientResourceAssemblies)
             {
@@ -49,16 +66,19 @@ namespace DowJones
 
                 foreach (var resource in embeddedClientResources)
                 {
-                    ValidateEmbeddedClientResource(resource, resourceAssembly.assembly);
+                    ValidateEmbeddedClientResource(resource, resourceAssembly.assembly, failures);
                 }
             }
+
+            if(failures.Any())
+                Assert.Fail("\r\n" + string.Join("\r\n", failures));
 
             Debug.WriteLine("Validated {0} embedded client resources across {1} assemblies",
                             clientResourceAssemblies.SelectMany(x => x.definitions).Count(), 
                             clientResourceAssemblies.Count());
         }
 
-        private static void ValidateEmbeddedClientResource(ClientResourceDefinition resource, Assembly assembly)
+        private static void ValidateEmbeddedClientResource(ClientResourceAttribute resource, Assembly assembly, IList<string> failures)
         {
             var resourceName = resource.ResourceName;
             var assemblyName = resource.DeclaringAssembly;
@@ -69,12 +89,12 @@ namespace DowJones
 
             Debug.WriteLine("Validating existence of {0} in {1}", resourceName, clientResourceAssembly.FullName);
 
-            Assert.IsNotNull(clientResourceAssembly.GetManifestResourceStream(resourceName),
-                             "Could not find Embedded Resource {0} in {1}", resourceName, clientResourceAssembly.FullName);
+            if(clientResourceAssembly.GetManifestResourceStream(resourceName) == null)
+                failures.Add(string.Format("Could not find Embedded Resource {0} in {1}", resourceName, clientResourceAssembly.FullName));
 
             var webResources = GetWebResourceAttributes(assembly);
-            Assert.IsTrue(webResources.Any(x => x.WebResource == resourceName),
-                             "Could not find WebResource Attribute for {0} in {1}", resourceName, clientResourceAssembly.FullName);
+            if(webResources.Any(x => x.WebResource == resourceName) == false)
+                failures.Add(string.Format("Could not find WebResource Attribute for {0} in {1}", resourceName, clientResourceAssembly.FullName));
         }
 
         
