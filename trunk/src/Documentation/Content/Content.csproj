@@ -175,6 +175,11 @@
     <None Include="2Development\2CreateAComponent\7AddToShowcase.md" />
     <None Include="2Development\2CreateAComponent\Overview.md" />
     <None Include="1GettingStarted\2InstallDevelopmentTools\Overview.md" />
+    <None Include="Forum\Overview.md" />
+    <None Include="Forum\Discussions.md" />
+    <None Include="Forum\Feedback.md" />
+    <None Include="Forum\Suggestions.md" />
+    <None Include="Forum\Questions.md" />
     <None Include="Reference\2ContinousIntegration\1AutomatedBuilds.md" />
     <None Include="Reference\2ContinousIntegration\2BestPractices.md" />
     <None Include="Reference\2ContinousIntegration\3WhatToDoIf.md" />
