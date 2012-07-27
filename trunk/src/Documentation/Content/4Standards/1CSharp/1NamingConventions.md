@@ -1,6 +1,6 @@
 1. Use Pascal casing for types, properties, method names and constants.
 
-	a. The abbreviation ID should only be used as an identifier suffix and must appear uppercase at all times.
+	a. The abbreviation `ID` should only be used as an identifier suffix and must appear uppercase at all times.
 
 		public class SomeClass
 		{
@@ -14,7 +14,7 @@
 	
 	a.	Acronyms should be all lowercase.  
 	b.	Combination words such as ILot should be all lowercase.  
-	c.	The abbreviation ID should only be used as an identifier suffix and must appear uppercase at all times.  
+	c.	The abbreviation `ID` should only be used as an identifier suffix and must appear uppercase at all times.  
 
 		private void MyMethod(int itemID)
 		{
