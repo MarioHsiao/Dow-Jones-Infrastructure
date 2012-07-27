@@ -1,5 +1,4 @@
 ﻿using System.Reflection;
-using DowJones.Extensions;
 using System.Collections.Generic;
 using System.Linq;
 using System;
@@ -34,14 +33,9 @@ namespace DowJones.Web
 
         public override string Url
         {
-            get
-            {
-                //return _url = _url ?? TargetAssembly.GetWebResourceUrl(ResourceName);
-                return string.Empty;
-            }
-            set { _url = value; }
+            get { return string.Empty; }
+            set {  }
         }
-        private string _url;
 
 
         public EmbeddedClientResource()
@@ -53,24 +47,34 @@ namespace DowJones.Web
             TargetAssembly = targetAssembly;
             ResourceName = resourceName;
             ResourceKind = DetermineResourceKind(resourceName);
-            if (ResourceKind == ClientResourceKind.Script && declaringType != null)
-                ClientTemplates = DiscoverDependentResources(declaringType);
+            ClientTemplates = DiscoverDependentResources(declaringType);
         }
          
         public IEnumerable<ClientResource> DiscoverDependentResources(Type declaringType)
         {
+            if (declaringType == null || ResourceKind != ClientResourceKind.Script)
+                return Enumerable.Empty<ClientResource>();
+
+            var clientResourceAttributes = declaringType.GetClientResourceAttributes(false).ToArray();
+
+            var firstScript = clientResourceAttributes.OfType<ScriptResourceAttribute>().First();
+            var isFirstScript = (ResourceName == firstScript.ResourceName || ResourceName.EndsWith(firstScript.RelativeResourceName));
+
+            if (!isFirstScript)
+                return Enumerable.Empty<ClientResource>();
+
             if (ClientResourcesCache.ContainsKey(declaringType))
                 return ClientResourcesCache[declaringType];
 
-            var clientResourceAttributes = declaringType.GetClientResourceAttributes();
+            var resources = 
+                clientResourceAttributes
+                    .Where(r => r.ResourceKind == ClientResourceKind.ClientTemplate)
+                    .Reverse() // Reverse the order so the anscestors are first
+                    .Select(x => x.ToClientResource(declaringType));
 
-            // Reverse the order so the anscestors are first
-            clientResourceAttributes = clientResourceAttributes.Reverse();
+            ClientResourcesCache.Add(declaringType, resources);
 
-            var resources = clientResourceAttributes.Select(x => x.ToClientResource(declaringType));
-            var dependentResources = resources.Where(r => r.ResourceKind == ClientResourceKind.ClientTemplate);
-            ClientResourcesCache.Add(declaringType, dependentResources);
-            return dependentResources;
+            return resources;
         }
 
 

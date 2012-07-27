@@ -175,6 +175,12 @@ namespace DowJones.Web
             return resources;
         }
 
+        public static IEnumerable<ClientResourceAttribute> GetClientResourceAttributes(this ICustomAttributeProvider member, bool inherit)
+        {
+            var resources = member.GetAttributesOf<ClientResourceAttribute>(inherit);
+            return resources;
+        }
+
         public static IEnumerable<ClientResourceAttribute> GetClientResourceAttributes(this IEnumerable<ICustomAttributeProvider> members)
         {
             var resources = members.SelectMany(GetClientResourceAttributes);
