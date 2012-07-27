@@ -1,4 +1,4 @@
-Follow the steps below to install the Platform Infrastructure locally on a machine:
+Follow the steps below to install the infrastructure locally on a machine:
 
 1. **Request a static IP**
 
@@ -15,10 +15,15 @@ Follow the steps below to install the Platform Infrastructure locally on a machi
 	You must install the following MSI installations and follow any steps in the release notes. The installations must be completed in the order they are in. 
 	You must wait until the above address.dat change is made before step x as you will need the source numbers from this entry during installation. You must wait until the address.dat file with your machine has been unloaded to the Session servers before you can verify the installations
 
-	- XIPC
-	- RTS
-	- FCS
-
 	You can find the installs at the following location:
 
-		\\xxxxxxx
+		\\fdhpnas1\FCM\incoming
+		
+	Component	| Directory			| Latest Versions						
+	------------|-------------------|-------------------------------------------------
+	XIPC		| xipc_windows		| 3.40aa.4
+				| xipc_windows_2008	| 3.40aa
+	RTS			| rts_bin_win		| 2.6.0, 2.6.1 and 2.6.2
+	FCS			| FCS_Framework_Sys	| 5.14.0.0, 5.14.0.1, 5.14.0.2, 5.14.1 and 5.14.2
+
+

@@ -64,7 +64,7 @@
     <Content Include="Assets\Autosuggest\autosuggest.zip">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="2Development\3PlatformConnectivity\1Installation.md" />
+    <None Include="2Development\3PlatformConnectivity\1InstallingThePlatformInfrastructure.md" />
     <None Include="2Development\3PlatformConnectivity\2GatewayConfiguration.md" />
     <None Include="2Development\3PlatformConnectivity\Overview.md" />
     <None Include="2Development\BestPractices\6CSharp.md" />
