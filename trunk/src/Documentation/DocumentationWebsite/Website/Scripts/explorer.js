@@ -76,7 +76,7 @@
         $nav.on('click', 'li > a', function () {
             var el = $(this),
                 target = $(el.attr('href'));
-            
+
             $nav.find('li').removeClass('active');
             el.parent('li').addClass('active');
             setTimeout(function () { $win.scrollTop(target.offset().top - paddingToOffset - 10); }, 10);
@@ -157,8 +157,14 @@
         $(".contentWell .child-link").click(switchView);
 
         setupDataViewer();
-        
+
         setupScrollSpy('.sidebar-nav');
+
+        // need this first time adjustment since browser is going to align the named 
+        // section flush to browser top without respecting fixed elements
+        if (location.hash && $(location.hash).length) {
+            $('.sidebar-nav li a[href=' + location.hash + ']').click();
+        }
     });
 
 }(window.jQuery));
