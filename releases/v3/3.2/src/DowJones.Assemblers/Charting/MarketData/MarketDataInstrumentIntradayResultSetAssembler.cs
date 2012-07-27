@@ -8,11 +8,18 @@ using DowJones.Thunderball.Library.Charting;
 
 namespace DowJones.Assemblers.Charting.MarketData
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class MarketDataInstrumentIntradayResultSetAssembler
         : AbstractMarketDataIntrumentResultAssembler,
           IAssembler<MarketDataInstrumentIntradayResultSet, ChartDataResponse>,
           IAssembler<MarketDataInstrumentIntradayResultSet, IEnumerable<MarketChartDataServicePartResult<MarketChartDataPackage>>>
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MarketDataInstrumentIntradayResultSetAssembler" /> class.
+        /// </summary>
+        /// <param name="preferences">The preferences.</param>
         public MarketDataInstrumentIntradayResultSetAssembler(IPreferences preferences)
             : base(preferences)
         {
@@ -20,6 +27,11 @@ namespace DowJones.Assemblers.Charting.MarketData
 
         #region IAssembler<MarketDataInstrumentIntradayResultSet,ChartDataResponse> Members
 
+        /// <summary>
+        /// Converts the specified source.
+        /// </summary>
+        /// <param name="source">The source.</param>
+        /// <returns></returns>
         public MarketDataInstrumentIntradayResultSet Convert(ChartDataResponse source)
         {
             return Convert(source, null);
@@ -27,6 +39,13 @@ namespace DowJones.Assemblers.Charting.MarketData
 
         #endregion
 
+        /// <summary>
+        /// Converts the specified source.
+        /// </summary>
+        /// <param name="source">The source.</param>
+        /// <param name="match">The match.</param>
+        /// <param name="incrementInMinutes">The increment in minutes.</param>
+        /// <returns></returns>
         public MarketDataInstrumentIntradayResultSet Convert(ChartDataResponse source, Match match = null, int incrementInMinutes = 15)
         {
             var marketResultSet = new MarketDataInstrumentIntradayResultSet();
@@ -40,6 +59,11 @@ namespace DowJones.Assemblers.Charting.MarketData
             return marketResultSet;
         }
 
+        /// <summary>
+        /// Converts the specified source.
+        /// </summary>
+        /// <param name="source">The source.</param>
+        /// <returns></returns>
         public MarketDataInstrumentIntradayResultSet Convert(IEnumerable<MarketChartDataServicePartResult<MarketChartDataPackage>> source)
         {
             var marketResultSet = new MarketDataInstrumentIntradayResultSet();

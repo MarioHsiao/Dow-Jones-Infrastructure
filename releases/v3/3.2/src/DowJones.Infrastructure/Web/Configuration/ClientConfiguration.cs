@@ -5,6 +5,8 @@ namespace DowJones.Web.Configuration
 {
     public class ClientConfiguration
     {
+        private string _crossDomainTransport;
+
         [JsonProperty("credentials")]
         public ClientCredentials Credentials { get; set; }
 
@@ -17,7 +19,13 @@ namespace DowJones.Web.Configuration
         [JsonProperty("debug", NullValueHandling = NullValueHandling.Ignore)]
         public bool? Debug { get; set; }
 
+        [JsonProperty("crossDomainTransport", NullValueHandling = NullValueHandling.Ignore)]
+        public string CrossDomainTransport
+        {
+            get { return _crossDomainTransport ?? Properties.Settings.Default.CrossDomainTransport; }
 
+            set { _crossDomainTransport = value; }
+        }
 
         // Convenience pass-through to Credentials.SetProxyCredentials
         public void SetProxyCredentials(string userId, string @namespace)

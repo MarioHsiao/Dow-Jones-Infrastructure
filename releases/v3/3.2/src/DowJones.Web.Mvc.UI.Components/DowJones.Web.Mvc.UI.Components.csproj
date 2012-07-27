@@ -502,7 +502,6 @@
     <EmbeddedResource Include="Radar\images\bar-graph-ltBlue.png" />
     <EmbeddedResource Include="VideoPlayer\js\flowplayer-combined.js" />
     <EmbeddedResource Include="TagCloud\TagCloud.js" />
-    <EmbeddedResource Include="Radar\jquery.ba-dotimeout.min.js" />
     <EmbeddedResource Include="HeadlineCarousel\HeadlineCarousel.js" />
     <EmbeddedResource Include="NewsStandTicker\jquery.SmoothScrollDiv.js" />
     <EmbeddedResource Include="NewsStandTicker\NewsStandTicker.js" />
@@ -683,7 +682,6 @@
     <EmbeddedResource Include="HeadlineCarousel\ClientTemplates\HeadlineHitCountsPackage.htm" />
     <EmbeddedResource Include="HeadlineCarousel\ClientTemplates\VideoX.htm" />
     <EmbeddedResource Include="HeadlineCarousel\ClientTemplates\VideoY.htm" />
-    <EmbeddedResource Include="HeadlineCarousel\jquery.ui.headline-carousel.js" />
     <EmbeddedResource Include="HeadlineCarousel\ClientTemplates\NoData.htm" />
     <EmbeddedResource Include="HeadlineList\ClientTemplates\Success.htm" />
     <EmbeddedResource Include="HeadlineList\HeadlineList.js" />
@@ -796,14 +794,14 @@
     <EmbeddedResource Include="AutoSuggest\ClientTemplates\Success.htm" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="RelatedConcepts\RelatedConceptsComponent.js" />
+    <EmbeddedResource Include="RelatedConcepts\RelatedConcepts.js" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="VideoPlayer\ClientTemplates\Success.htm" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DiscoveryGraph\ClientTemplates\Layout.htm" />
+    <EmbeddedResource Include="DiscoveryGraph\ClientTemplates\Layout.htm" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

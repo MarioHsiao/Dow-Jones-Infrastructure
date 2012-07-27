@@ -11,15 +11,27 @@ using DowJones.Web;
 
 namespace DowJones.Assemblers.Session
 {
+    /// <summary>
+    /// 
+    /// </summary>
     [Obsolete("Use UserSessionFactory instead (class renamed)")]
     public class CookieBasedUserSessionFactory : UserSessionFactory
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CookieBasedUserSessionFactory" /> class.
+        /// </summary>
+        /// <param name="httpContext">The HTTP context.</param>
+        /// <param name="cookieManager">The cookie manager.</param>
+        /// <param name="referringProduct">The referring product.</param>
         public CookieBasedUserSessionFactory(HttpContextBase httpContext, HttpCookieManager cookieManager, ReferringProduct referringProduct) 
             : base(httpContext, cookieManager, referringProduct)
         {
         }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public class UserSessionFactory : Factory<IUserSession>
     {
         protected internal const string DefaultProductId = "16";
@@ -27,94 +39,138 @@ namespace DowJones.Assemblers.Session
         protected internal const string LoginCookieDebugLevelKey = "dg";
         protected internal const string RequestDebugLevelKey = "debugLevel";
         protected internal const string LanguageKey = "fcpil";
+        protected internal const string AccessPointCodeKey = "napc";
 
-        private readonly HttpCookieManager _cookieManager;
-        private readonly ReferringProduct _referringProduct;
-        private readonly HttpContextBase _httpContext;
-        private UserSession _session;
+        protected readonly HttpCookieManager CookieManager;
+        protected readonly ReferringProduct ReferringProduct;
+        protected readonly HttpContextBase HttpContext;
+        protected UserSession Session;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UserSessionFactory" /> class.
+        /// </summary>
+        /// <param name="httpContext">The HTTP context.</param>
+        /// <param name="cookieManager">The cookie manager.</param>
+        /// <param name="referringProduct">The referring product.</param>
         public UserSessionFactory(HttpContextBase httpContext, HttpCookieManager cookieManager, ReferringProduct referringProduct)
         {
-            _httpContext = httpContext;
-            _cookieManager = cookieManager;
-            _referringProduct = referringProduct;
+            HttpContext = httpContext;
+            CookieManager = cookieManager;
+            ReferringProduct = referringProduct;
         }
 
+        /// <summary>
+        /// Gets the product prefix.
+        /// </summary>
+        /// <value>
+        /// The product prefix.
+        /// </value>
         public string ProductPrefix
         {
             get
             {
-                return _referringProduct.ProductPrefix 
+                return ReferringProduct.ProductPrefix 
                     ?? Settings.Default.DefaultProductPrefix;
             }
         }
 
+        /// <summary>
+        /// Gets the client type code.
+        /// </summary>
+        /// <value>
+        /// The client type code.
+        /// </value>
         public string ClientTypeCode
         {
             get
             {
-                return _referringProduct.ClientTypeCode 
+                return ReferringProduct.ClientTypeCode 
                     ?? Settings.Default.DefaultClientCodeType;
             }
         }
 
+        /// <summary>
+        /// Gets the access point code.
+        /// </summary>
+        /// <value>
+        /// The access point code.
+        /// </value>
         public string AccessPointCode
         {
             get
             {
-                return _referringProduct.AccessPointCode 
+                return ReferringProduct.AccessPointCode 
                     ?? Settings.Default.DefaultAccessPointCode;
             }
         }
 
+        /// <summary>
+        /// Gets the access point code usage.
+        /// </summary>
+        /// <value>
+        /// The access point code usage.
+        /// </value>
+        public string AccessPointCodeUsage
+        {
+            get 
+            { 
+                return HttpContext.Request[AccessPointCodeKey];
+            }
+        }
+
+        /// <summary>
+        /// Creates this instance.
+        /// </summary>
+        /// <returns></returns>
         public override IUserSession Create()
         {
-            _session = new UserSession
+            Session = new UserSession
                            {
                                AccessPointCode = AccessPointCode,
-                               AccountId = _cookieManager.GetSessionValue(ProductPrefix + "_A"),
+                               AccessPointCodeUsage = AccessPointCodeUsage,
+                               AccountId = CookieManager.GetSessionValue(ProductPrefix + "_A"),
                                ClientTypeCode = ClientTypeCode,
-                               ProductId = _cookieManager.GetSessionValue(ProductPrefix + "_N"),
+                               ProductId = CookieManager.GetSessionValue(ProductPrefix + "_N"),
                                ProductPrefix = ProductPrefix,
-                               SessionId = DecodeSessionId(_cookieManager.GetSessionValue(ProductPrefix + "_S")),
-                               UserId = DecodeUserId(_cookieManager.GetSessionValue(ProductPrefix + "_U")),
+                               SessionId = DecodeSessionId(CookieManager.GetSessionValue(ProductPrefix + "_S")),
+                               UserId = DecodeUserId(CookieManager.GetSessionValue(ProductPrefix + "_U")),
                            };
 
-            var language = _httpContext.Request[LanguageKey];
+            var language = HttpContext.Request[LanguageKey];
 
             if (string.IsNullOrEmpty(language))
-                language = _cookieManager.GetLocalPermanentValue("lang");
+                language = CookieManager.GetLocalPermanentValue("lang");
 
             if (!string.IsNullOrEmpty(language))
-                _session.SetInterfaceLanguage(language);
+                Session.SetInterfaceLanguage(language);
 
-            var hasSessionCookie = _cookieManager.HasGlobalSessionCookie;
+            var hasSessionCookie = CookieManager.HasGlobalSessionCookie;
             if (!hasSessionCookie)
             {
-                _session.AccountId = _cookieManager.GetPermanentValue(ProductPrefix + "_A");
-                _session.ProductId = _cookieManager.GetPermanentValue(ProductPrefix + "_N");
-                _session.UserId = _cookieManager.GetPermanentValue(ProductPrefix + "_U");
-                _session.ProxyUserId = _cookieManager.GetPermanentValue(ProductPrefix + "_PU");
-                _session.ProxyNamespace = _cookieManager.GetPermanentValue(ProductPrefix + "_PN");
+                Session.AccountId = CookieManager.GetPermanentValue(ProductPrefix + "_A");
+                Session.ProductId = CookieManager.GetPermanentValue(ProductPrefix + "_N");
+                Session.UserId = CookieManager.GetPermanentValue(ProductPrefix + "_U");
+                Session.ProxyUserId = CookieManager.GetPermanentValue(ProductPrefix + "_PU");
+                Session.ProxyNamespace = CookieManager.GetPermanentValue(ProductPrefix + "_PN");
             }
 
             SetDebug();
 
-            PopulateProxyInfo(_session);
+            PopulateProxyInfo(Session);
 
-            if (string.IsNullOrEmpty(_session.ProductId))
-                _session.ProductId = DefaultProductId;
+            if (string.IsNullOrEmpty(Session.ProductId))
+                Session.ProductId = DefaultProductId;
 
-            return _session;
+            return Session;
         }
 
         private void SetDebug()
         {
             int debugLevel;
-            if (!int.TryParse(_cookieManager.GetCookieValue(LoginCookieName, LoginCookieDebugLevelKey), out debugLevel))
-                int.TryParse(_httpContext.Request[RequestDebugLevelKey], out debugLevel);
+            if (!int.TryParse(CookieManager.GetCookieValue(LoginCookieName, LoginCookieDebugLevelKey), out debugLevel))
+                int.TryParse(HttpContext.Request[RequestDebugLevelKey], out debugLevel);
 
-            _session.IsDebug = debugLevel > 0;
+            Session.IsDebug = debugLevel > 0;
         }
 
         private static string DecodeUserId(string userId)
@@ -139,11 +195,11 @@ namespace DowJones.Assemblers.Session
         {
             if (userSession.SessionId == null)
             {
-                userSession.ProxyUserId = _cookieManager.GetSessionValue(ProductPrefix + "_PU");
-                userSession.ProxyNamespace = _cookieManager.GetSessionValue(ProductPrefix + "_PN");
+                userSession.ProxyUserId = CookieManager.GetSessionValue(ProductPrefix + "_PU");
+                userSession.ProxyNamespace = CookieManager.GetSessionValue(ProductPrefix + "_PN");
             }
 
-            PopulateProxyInfoFromCredentials(userSession, _httpContext.Request.Headers["credentials"]);
+            PopulateProxyInfoFromCredentials(userSession, HttpContext.Request.Headers["credentials"]);
         }
 
         /// <summary>

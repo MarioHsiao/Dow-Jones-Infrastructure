@@ -85,7 +85,7 @@ namespace DowJones.Web
 			if (!string.IsNullOrWhiteSpace(definition.Name))
 				return definition.Name;
 
-			var name = definition.ResourceName; //?? definition.Url;
+			var name = definition.ResourceName;
 
 			if (string.IsNullOrWhiteSpace(name))
 				return null;

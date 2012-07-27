@@ -1,4 +1,4 @@
-﻿@model ClientResourcesInfo
+﻿@model DowJones.Web.Mvc.Diagnostics.ClientResources.ClientResourcesInfo
 @using System.Web.Mvc.Html
 @using System.Collections.Generic
 @{ var Title = "Client Resource Debugger"; }
@@ -27,11 +27,13 @@
             vertical-align: top;
         }
         .hilight { background-color: Yellow; }
-        tr:hover { background-color: #CCC; }
+        tr:hover { background-color: #CCC !important; }
         tbody tr.selected {
             color: #FFF;
             background-color: #666; 
         }
+
+        #InvalidClientResources tr { background-color: lightcoral; }
     </style>
     <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.5.2.min.js"></script>
     <script type="text/javascript">
@@ -86,6 +88,23 @@
             <input value='Reset' type="reset" onclick="window.location.href=window.location.href;" />
         </form>
     </div>
+    
+
+@if (Model.HasInvalidClientResources)
+{
+    <table id="InvalidClientResources">
+        <caption>Invalid Client Resources</caption>
+        
+    @foreach (var resource in Model.InvalidClientResources)
+    {
+        <tr>
+            <td>@resource</td>
+        </tr>            
+    }
+
+    </table>
+}
+
 
 @if (Model.Aliases.Any()) {
 

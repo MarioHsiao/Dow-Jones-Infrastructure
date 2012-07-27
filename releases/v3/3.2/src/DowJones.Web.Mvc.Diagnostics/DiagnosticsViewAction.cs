@@ -4,15 +4,23 @@ using DowJones.Web.Mvc.UI;
 
 namespace DowJones.Web.Mvc.Diagnostics
 {
-    public class DiagnosticsViewAction<TView> : ContentResult 
-        where TView : ViewComponentBase, new()
+    public abstract class DiagnosticsViewAction : ContentResult
     {
         public object Model { get; set; }
 
-        public DiagnosticsViewAction(object model = null)
+        protected DiagnosticsViewAction(object model = null)
         {
             Model = model;
             ContentType = "text/html";
+        }
+    }
+
+    public class DiagnosticsViewAction<TView> : DiagnosticsViewAction 
+        where TView : ViewComponentBase, new()
+    {
+        public DiagnosticsViewAction(object model = null)
+            : base(model)
+        {
         }
 
         public override void ExecuteResult(ControllerContext context)

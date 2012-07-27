@@ -32,22 +32,16 @@ Each UI Component consists of the following parts:
 - One or more Client Templates (optional, but recommended)
 
 ##### Notable Components
-Some of the notable components are:
 
-- HeadlineList
-- PortalHeadlineList
 - Article
-- HeadlineCarousel
-- HeadlinePostProcessing
-- RegionalMap
-- Radar
-- NewsChart
-- NavBar
-- Menu
-- CalloutPopup
-- SearchBuilder
-- ... and many more!
-
+- Auto Suggest
+- Discovery Graph
+- News Radar 90 Day Avg
+- Portal Headline List
+- Social Buttons
+- Stock Kiosk
+- Video Player
+- ... and many more to come!
 
 
 ##### Restrictions

@@ -442,10 +442,9 @@ namespace DowJones.Assemblers.Articles
             {
                 foreach (var item in article.byline.Items)
                 {
-                    Text text;
                     try
                     {
-                        text = (Text) item;
+                        var text = (Text) item;
                         tempItem.Add(new RenderItem
                                          {
                                              ItemMarkUp = MarkUpType.Plain,
@@ -611,7 +610,7 @@ namespace DowJones.Assemblers.Articles
         ///   The items.
         /// </param>
         /// <param name = "accessionNumber"></param>
-        private List<RenderItem> GetRenderItems(object[] items, string accessionNumber)
+        private List<RenderItem> GetRenderItems(IEnumerable<object> items, string accessionNumber)
         {
             var renderItems = new List<RenderItem>();
             foreach (var item in items)
@@ -1201,7 +1200,7 @@ namespace DowJones.Assemblers.Articles
 
             var item = new RenderItem();
 
-            var part = parts.Where( tPart => tPart.type.ToLower() == "html" ).FirstOrDefault();
+            var part = parts.FirstOrDefault(tPart => tPart.type.ToLower() == "html");
 
             if (part != null)
             {
@@ -1376,6 +1375,11 @@ namespace DowJones.Assemblers.Articles
             return null;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="article"></param>
+        /// <returns></returns>
         public static ContentSubCategory MapContentSubCategory(Article article)
         {
             if (article == null || article.contentParts == null || article.contentParts.contentType == null)
@@ -1557,6 +1561,11 @@ namespace DowJones.Assemblers.Articles
             return string.Empty;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="accessionNo"></param>
+        /// <returns></returns>
         public string GenerateWebRedirectionUrl (string accessionNo)
         {
             if (FileHandlerUrl.HasValue())
@@ -1571,6 +1580,10 @@ namespace DowJones.Assemblers.Articles
             return null;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="ub"></param>
         public void AddControlData(UrlBuilder ub)
         {
              if (!string.IsNullOrEmpty(_controlData.AccessPointCode))
@@ -1655,115 +1668,7 @@ namespace DowJones.Assemblers.Articles
             }
         }
 
-        public static Article DocumentArticleMapper(Document document)
-        {
-            Factiva.Gateway.Messages.Archive.V2_0.Article article = new Factiva.Gateway.Messages.Archive.V2_0.Article();
-            if (document != null)
-            {
-                article.accessionNo = document.AccessionNo;
-
-                article.status = new Factiva.Gateway.Messages.Common.Status();
-                article.status.value = document.Status.Value;
-                article.status.message = document.Status.Message;
-                article.status.type = document.Status.Type;
-
-                int index = 0;
-                if (document.ArtWork.Any != null)
-                {
-                    article.artWork = new Factiva.Gateway.Messages.Archive.V2_0.ArticleContent();
-                    article.artWork.Items = new object[] { document.ArtWork.Any.Length };
-                    foreach (XmlElement element in document.ArtWork.Any)
-                    {
-                        Factiva.Gateway.Messages.Archive.V2_0.Text text = new Factiva.Gateway.Messages.Archive.V2_0.Text() { Value = element.InnerXml };
-                        article.artWork.Items[index] = text;
-                        index++;
-                    }
-                }
-                article.contentParts = new Factiva.Gateway.Messages.Archive.V2_0.ContentParts();
-                article.contentParts.contentType = "article";
-                article.sourceCode = document.SourceCode;
-                article.sourceName = document.SourceName;
-
-                article.sourceLogo = new Factiva.Gateway.Messages.Archive.V2_0.SourceLogo();
-                article.sourceLogo.image = document.Logo.Image;
-
-                if (document.Byline.Any != null)
-                {
-                    article.byline = new Factiva.Gateway.Messages.Archive.V2_0.ArticleContent();
-                    article.byline.Items = new object[document.Byline.Any.Length];
-                    index = 0;
-                    foreach (XmlElement element in document.Byline.Any)
-                    {
-                        Factiva.Gateway.Messages.Archive.V2_0.Text text = new Factiva.Gateway.Messages.Archive.V2_0.Text() { Value = element.InnerXml };
-                        article.byline.Items[index] = text;
-                        index++;
-                    }
-                }
-
-                if (document.Corrections.Any != null)
-                {
-                    article.corrections = new Factiva.Gateway.Messages.Archive.V2_0.Paragraph[1];
-                    article.corrections[0] = new Factiva.Gateway.Messages.Archive.V2_0.Paragraph();
-                    article.corrections[0].Items = new object[document.Corrections.Any.Length];
-                    index = 0;
-                    foreach (XmlElement element in document.Corrections.Any)
-                    {
-                        Factiva.Gateway.Messages.Archive.V2_0.Text text = new Factiva.Gateway.Messages.Archive.V2_0.Text() { Value = element.InnerXml };
-                        article.corrections[0].Items[index] = text;
-                        index++;
-                    }
-                }
-
-                if (document.LeadParagraph.Any != null)
-                {
-                    article.leadParagraph = new Factiva.Gateway.Messages.Archive.V2_0.Paragraph[1];
-                    article.leadParagraph[0] = new Factiva.Gateway.Messages.Archive.V2_0.Paragraph();
-                    article.leadParagraph[0].Items = new object[document.LeadParagraph.Any.Length];
-                    index = 0;
-                    foreach (XmlElement element in document.LeadParagraph.Any)
-                    {
-                        Factiva.Gateway.Messages.Archive.V2_0.Text text = new Factiva.Gateway.Messages.Archive.V2_0.Text() { Value = element.InnerXml };
-                        article.leadParagraph[0].Items[index] = text;
-                        index++;
-                    }
-                }
-
-                if (document.TailParagraphs.Any != null)
-                {
-                    article.tailParagraphs = new Factiva.Gateway.Messages.Archive.V2_0.Paragraph[1];
-                    article.tailParagraphs[0] = new Factiva.Gateway.Messages.Archive.V2_0.Paragraph();
-                    article.tailParagraphs[0].Items = new object[document.TailParagraphs.Any.Length];
-                    index = 0;
-                    foreach (XmlElement element in document.TailParagraphs.Any)
-                    {
-                        var text = new Text {Value = element.InnerXml};
-                        article.tailParagraphs[0].Items[index] = text;
-                        index++;
-                    }
-                }
-
-                article.wordCount = document.WordCount;
-                article.publisherName = document.PublisherName;
-                article.publisherGroupCode = document.PublisherGroupCode;
-                article.publisherGroupName = document.PublisherGroupName;
-
-                if (document.Copyright.Any != null)
-                {
-                    article.copyright = new ArticleContent
-                                            {
-                                                Items = new Text[document.Copyright.Any.Length]
-                                            };
-                    index = 0;
-                    foreach (var text in document.Copyright.Any.Select(element => new Text {Value = element.InnerXml}))
-                    {
-                        article.copyright.Items[index] = text;
-                        index++;
-                    }
-                }
-            }
-            return article;
-        }
-
+     
         #region public helper method
 
         /// <summary>
@@ -1841,8 +1746,7 @@ namespace DowJones.Assemblers.Articles
                 else if (item is EntityReference)
                 {
                     var entityReference = (EntityReference) item;
-
-                    sb.Append(GetEntityReferenceText(entityReference.Items));
+                    sb.Append(entityReference.Items.Join(string.Empty));
                 }
                 else
                 {
@@ -1857,6 +1761,7 @@ namespace DowJones.Assemblers.Articles
             return sb.ToString();
         }
 
+       
         /// <summary>
         ///   The get entity reference text.
         /// </summary>
@@ -1889,10 +1794,6 @@ namespace DowJones.Assemblers.Articles
                     {
                         sb.Append(erefText.Value);
                     }
-                }
-                else if (item is string)
-                {
-                    sb.Append(item.ToString());
                 }
             }
 

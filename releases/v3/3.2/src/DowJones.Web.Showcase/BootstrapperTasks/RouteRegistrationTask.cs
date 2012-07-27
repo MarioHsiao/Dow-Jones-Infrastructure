@@ -17,7 +17,7 @@ namespace DowJones.Web.Showcase.BootstrapperTasks
         public void Execute()
         {
             /*** IMPORTANT:  Avoid adding routes here - prefer RouteAttribute instead!  ****/
-
+            _routes.IgnoreRoute("common.js");
 			_routes.MapRoute("article",
 				"article/{accessionNumber}",
 				new { controller = "Article", action = "Article" },

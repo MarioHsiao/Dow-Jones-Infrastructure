@@ -76,7 +76,7 @@
         $nav.on('click', 'li > a', function () {
             var el = $(this),
                 target = $(el.attr('href'));
-            
+
             $nav.find('li').removeClass('active');
             el.parent('li').addClass('active');
             setTimeout(function () { $win.scrollTop(target.offset().top - paddingToOffset - 10); }, 10);
@@ -125,14 +125,17 @@
 
         /* Now make current tab "active" */
         $this.addClass("active")
-             .parents(".level-0").find(".level-1").hide();   /*  Hide all tab content */
+             .parents(".level-0")
+             .find(".level-1:visible")
+             .fadeTo(200, 0, function () {
+                 //  Here we get the href value of the selected tab
+                 var selectedTab = $this.data("ref");
+                 //  Show the selected tab content
+                 $(selectedTab).fadeTo(200, 1);
+                 $(this).hide();
+             });
 
-        //  Here we get the href value of the selected tab
-        var selectedTab = $(this).data("ref");
-
-        //  Show the selected tab content
-        $(selectedTab).fadeIn();
-
+        return false;
     }
 
     $(function () {
@@ -154,8 +157,14 @@
         $(".contentWell .child-link").click(switchView);
 
         setupDataViewer();
-        
+
         setupScrollSpy('.sidebar-nav');
+
+        // need this first time adjustment since browser is going to align the named 
+        // section flush to browser top without respecting fixed elements
+        if (location.hash && $(location.hash).length) {
+            $('.sidebar-nav li a[href=' + location.hash + ']').click();
+        }
     });
 
 }(window.jQuery));

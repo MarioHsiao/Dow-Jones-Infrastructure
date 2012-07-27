@@ -143,6 +143,7 @@
     <Compile Include="Infrastructure\Security\EntitlementsTests.cs" />
     <Compile Include="Infrastructure\Session\ControlDataManagerTests.cs" />
     <Compile Include="Infrastructure\Tokens\TokenRegistryTests.cs" />
+    <Compile Include="Infrastructure\Web\ClientResources\EmbeddedClientResourceTests.cs" />
     <Compile Include="Infrastructure\Web\Search\FIICodeInfoUtilityTest.cs" />
     <Compile Include="Infrastructure\Web\Search\PerformContentSearchServiceTest.cs" />
     <Compile Include="Infrastructure\Web\Search\QueryUtilityTest.cs" />
@@ -212,12 +213,16 @@
       <Project>{1E5B6A24-ED92-4ABE-AD3B-9889E16CB01F}</Project>
       <Name>DowJones.Web.Mvc.Search</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DowJones.Web.Mvc.UI.Canvas\DowJones.Web.Mvc.UI.Canvas.csproj">
+      <Project>{c03f69d0-bd01-4861-bf39-bf2d52812797}</Project>
+      <Name>DowJones.Web.Mvc.UI.Canvas</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DowJones.Web.Mvc.UI.Components.Models\DowJones.Web.Mvc.UI.Components.Models.csproj">
-      <Project>{32DA5CA1-0038-4110-BC24-938B39439CE7}</Project>
+      <Project>{32da5ca1-0038-4110-bc24-938b39439ce7}</Project>
       <Name>DowJones.Web.Mvc.UI.Components.Models</Name>
     </ProjectReference>
     <ProjectReference Include="..\DowJones.Web.Mvc.UI.Components\DowJones.Web.Mvc.UI.Components.csproj">
-      <Project>{8F187465-8B2C-4557-B3A2-02F7B4A6C0FE}</Project>
+      <Project>{8f187465-8b2c-4557-b3a2-02f7b4a6c0fe}</Project>
       <Name>DowJones.Web.Mvc.UI.Components</Name>
     </ProjectReference>
     <ProjectReference Include="..\DowJones.Web.Mvc\DowJones.Web.Mvc.csproj">

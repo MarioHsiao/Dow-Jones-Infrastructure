@@ -68,9 +68,9 @@ namespace DowJones.Assemblers.Headlines
             return Process( null, null );
         }
 
-        public IListDataResult Process( Delegate generateExternalUrl, GenerateSnippetThumbnailForHeadlineInfo genSnippetThumbnailForHeadlineInfo )
+        public IListDataResult Process( Delegate generateExternalUrl, GenerateSnippetThumbnailForHeadlineInfo generateSnippetThumbnailForHeadlineInfoDelegate )
         {
-            return Process( ( GenerateExternalUrlForHeadlineInfo ) generateExternalUrl, genSnippetThumbnailForHeadlineInfo );
+            return Process( ( GenerateExternalUrlForHeadlineInfo ) generateExternalUrl, generateSnippetThumbnailForHeadlineInfoDelegate );
         }
 
         /// <summary>

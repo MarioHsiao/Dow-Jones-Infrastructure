@@ -12,7 +12,6 @@ using DowJones.Ajax.HeadlineList;
 using DowJones.Formatters;
 using DowJones.Formatters.Globalization.DateTime;
 using DowJones.Formatters.Globalization.TimeZone;
-//using DowJones.Managers.Search.Responses;
 using Factiva.Gateway.Messages.Search.V2_0;
 using Factiva.Gateway.Messages.PCM.Search.V1_0;
 using log4net;
@@ -38,11 +37,6 @@ namespace DowJones.Assemblers.Headlines
         /// The _result.
         /// </summary>
         private readonly HeadlineListDataResult result = new HeadlineListDataResult();
-
-        /// <summary>
-        /// The _generate external Uri for headline info.
-        /// </summary>
-        private GenerateExternalUrlForHeadlineInfo generateExternalUrlForHeadlineInfo;
 
         /// <summary>
         /// The _generate snippet thumbnail for headline info.
@@ -102,14 +96,14 @@ namespace DowJones.Assemblers.Headlines
         /// <param name="generateExternalUrl">
         /// The generate external url.
         /// </param>
-        /// <param name="generateSnippetThumbnailForHeadlineInfo">
+        /// <param name="generateSnippetThumbnailForHeadlineInfoDelegate">
         /// The generate snippet thumbnail for headline info.
         /// </param>
         /// <returns>
         /// </returns>
-        public IListDataResult Process(Delegate generateExternalUrl, GenerateSnippetThumbnailForHeadlineInfo generateSnippetThumbnailForHeadlineInfo)
+        public IListDataResult Process(Delegate generateExternalUrl, GenerateSnippetThumbnailForHeadlineInfo generateSnippetThumbnailForHeadlineInfoDelegate)
         {
-            return Process((GenerateExternalUrlForHeadlineInfo)generateExternalUrl, generateSnippetThumbnailForHeadlineInfo);
+            return Process((GenerateExternalUrlForHeadlineInfo)generateExternalUrl, generateSnippetThumbnailForHeadlineInfoDelegate);
         }
 
         #endregion
@@ -137,7 +131,6 @@ namespace DowJones.Assemblers.Headlines
         /// </returns>
         public IListDataResult Process(GenerateExternalUrlForHeadlineInfo generateExternalUrl, GenerateSnippetThumbnailForHeadlineInfo generateSnippetThumbnail)
         {
-            generateExternalUrlForHeadlineInfo = generateExternalUrl;
             generateSnippetThumbnailForHeadlineInfo = generateSnippetThumbnail;
 
             if (response == null || response.AccessionNumberBasedContentItemSet == null || response.AccessionNumberBasedContentItemSet.Count <= 0)
@@ -200,7 +193,7 @@ namespace DowJones.Assemblers.Headlines
         /// </param>
         /// <returns>
         /// </returns>
-        private ThumbnailImage GetThumbnailImage(ContentHeadline contentHeadline)
+        protected override ThumbnailImage GetThumbnailImage(ContentHeadline contentHeadline)
         {
             if (contentHeadline == null || contentHeadline.ContentItems == null)
             {
@@ -236,7 +229,7 @@ namespace DowJones.Assemblers.Headlines
         /// <returns>
         /// The get time in seconds.
         /// </returns>
-        private static string GetTimeInSeconds(ContentHeadline contentHeadline)
+        protected override string GetTimeInSeconds(ContentHeadline contentHeadline)
         {
             if (contentHeadline == null || contentHeadline.ContentItems == null)
             {

@@ -1,12 +1,20 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using DowJones.Extensions;
+using DowJones.Web.ClientResources;
+using DowJones.Web.Mvc.Diagnostics.Resources.ClientResources;
 
 namespace DowJones.Web.Mvc.Diagnostics.ClientResources
 {
     public class ClientResourcesController : DiagnosticsController
     {
+        private static readonly Lazy<IEnumerable<string>> InvalidClientResources =
+            new Lazy<IEnumerable<string>>(() => 
+                new EmbeddedClientResourceValidator().ValidateClientResources(CurrentAssemblies.ToArray())
+            );
+
         private readonly IClientResourceManager _resourceManager;
 
         public ClientResourcesController(IClientResourceManager resourceManager)
@@ -73,6 +81,25 @@ namespace DowJones.Web.Mvc.Diagnostics.ClientResources
             };
 
             return View<ClientResourceDebuggerView>(resourceInfo);
+        }
+
+        [HttpPost]
+        protected override void OnActionExecuted(ActionExecutedContext filterContext)
+        {
+            if (!filterContext.HttpContext.Request.GetHttpMethodOverride().Equals("GET", StringComparison.OrdinalIgnoreCase))
+                return;
+
+            var result = filterContext.Result as DiagnosticsViewAction;
+
+            if (result == null)
+                return;
+
+            var viewModel = result.Model as ClientResourcesInfo;
+
+            if (viewModel == null)
+                return;
+
+            viewModel.InvalidClientResources = InvalidClientResources.Value;
         }
     }
 }
