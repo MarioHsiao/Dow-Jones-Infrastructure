@@ -1,4 +1,5 @@
-﻿
+﻿(function ($) {
+
     DJ.UI.OutletsSearchResults = DJ.UI.Component.extend({
         selectors: {
             pageSize: "#outlet-list-pageSize",
@@ -64,4 +65,4 @@
 
     $dj.debug('Registered DJ.UI.OutletsSearchResults (extends DJ.UI.Component)');
 
-
+})(jQuery);

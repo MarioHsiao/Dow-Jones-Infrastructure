@@ -1,6 +1,10 @@
-﻿using DowJones.Token;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using DowJones.Token;
 
-namespace DowJones.Web.Mvc.UI.Components.AuthorList
+namespace DowJones.Web.Mvc.UI.Components.Models
 {
     public class AuthorListTokens : AbstractTokenBase
     {

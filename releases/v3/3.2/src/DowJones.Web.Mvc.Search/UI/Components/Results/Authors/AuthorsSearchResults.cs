@@ -1,5 +1,5 @@
 ﻿using DowJones.Web.Mvc.UI;
-using DowJones.Web.Mvc.UI.Components.CompositeAuthor;
+using DowJones.Web.Mvc.UI.Components.Models;
 using DowJones.Web.Mvc.UI.Components.RelatedConcepts;
 
 namespace DowJones.Web.Mvc.Search.UI.Components.Results.Authors

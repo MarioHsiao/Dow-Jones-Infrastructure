@@ -1,6 +1,8 @@
 ﻿@using System.Web.Mvc
 @using DowJones.Web.Mvc.Extensions
 @using DowJones.Web.Mvc.UI
+@using DowJones.Web.Mvc.UI.Components.OutletList
+@using DowJones.Web.Mvc.UI.Components.Models
 
 @inherits CompositeComponent<CompositeOutletModel>
 
@@ -12,7 +14,7 @@
 		&& Model.OutletList.Outlets != null
 		&& Model.OutletList.Outlets.Any();
 
-    string[] s = { "", "", "", "", "", "", "" };
+	string[] s = { "", "", "", "", "", "", "" };
 	switch (Model.PageSize)
 	{
 		case 10: s[0] = " selected"; break;
@@ -55,7 +57,7 @@
 			<option value="100"@s[5]>100 @Html.DJ().Token("perPage")</option>
 		</select>
 
-        <div class="dj_list-select-count hide">
+		<div class="dj_list-select-count hide">
 			<span class="count"></span> @Html.DJ().Token("cmalSelectionPlural")
 			<span class="dj_clear-all-btn">@Html.DJ().Token("cmalClearAll")</span>
 		</div>
@@ -120,7 +122,7 @@
 	</div><!-- end: .dj_paging -->
 
 	<div class='table-wrap'>
-	@DJ.Render(Model.OutletList)
+	@(Html.DJ().RenderComponent<OutletList>(Model.OutletList))
 	</div>
 
 	<div class="dj_paging">
@@ -139,7 +141,7 @@
 			<option value="100"@s[5]>100 @Html.DJ().Token("perPage")</option>
 		</select>
 
-        <div class="dj_list-select-count hide">
+		<div class="dj_list-select-count hide">
 			<span class="count"></span> @Html.DJ().Token("cmalSelectionPlural")
 			<span class="dj_clear-all-btn">@Html.DJ().Token("cmalClearAll")</span>
 		</div>

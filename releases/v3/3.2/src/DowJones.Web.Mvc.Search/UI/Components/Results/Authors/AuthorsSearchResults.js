@@ -1,4 +1,5 @@
-﻿
+﻿(function ($) {
+
     DJ.UI.AuthorsSearchResults = DJ.UI.Component.extend({
         selectors: {
             pageSize: "#author-list-pageSize",
@@ -62,3 +63,4 @@
 
     $dj.debug('Registered DJ.UI.AuthorsSearchResults (extends DJ.UI.Component)');
 
+})(jQuery);

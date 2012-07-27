@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.ComponentModel;
 
-namespace DowJones.Web.Mvc.UI.Components.OutletList
+namespace DowJones.Web.Mvc.UI.Components.Models
 {
     /// <summary>
     /// Class representing a model for outlet list.

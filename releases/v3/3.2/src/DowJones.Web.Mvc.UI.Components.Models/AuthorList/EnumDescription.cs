@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Reflection;
 
-namespace DowJones.Web.Mvc.UI.Components.AuthorList
+namespace DowJones.Web.Mvc.UI.Components.Models
 {
     public static class EnumDescription
     {

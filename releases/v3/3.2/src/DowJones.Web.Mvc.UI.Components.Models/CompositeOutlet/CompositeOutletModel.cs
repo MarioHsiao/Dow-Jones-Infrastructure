@@ -1,6 +1,5 @@
 ﻿using System;
-
-namespace DowJones.Web.Mvc.UI.Components.CompositeOutlet
+namespace DowJones.Web.Mvc.UI.Components.Models
 {
     public class CompositeOutletModel : CompositeComponentModel
     {
@@ -117,12 +116,12 @@ namespace DowJones.Web.Mvc.UI.Components.CompositeOutlet
         /// <summary>
         /// Gets or sets the author list.
         /// </summary>
-        public OutletList.OutletListModel OutletList { get; set; }
+        public OutletListModel OutletList { get; set; }
 
         public CompositeOutletModel()
         {
             this.PageSize = 25;
-            this.OutletList = new OutletList.OutletListModel();
+            this.OutletList = new OutletListModel();
         }
     }
 

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using DowJones.Token;
 
-namespace DowJones.Web.Mvc.UI.Components.OutletList
+namespace DowJones.Web.Mvc.UI.Components.Models
 {
     public class OutletListTokens : AbstractTokenBase
     {

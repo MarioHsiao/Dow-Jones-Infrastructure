@@ -1,11 +1,10 @@
-﻿@model DowJones.Web.Mvc.UI.Components.AuthorList.AuthorListModel
-           
-@using DowJones.Web.Mvc.UI.Components.AuthorList
-@using System.Web.Mvc
+﻿@using System.Web.Mvc
 @using System.Linq
 @using System.Collections
 @using System.Collections.Generic
+@using DowJones.Web.Mvc.UI.Components.Models
 
+@model AuthorListModel
 @ClientPlugin dj_AuthorList
 @ScriptResource RelativeResourceName=AuthorList.js
 @{ CssClass = "dj_AuthorList"; }

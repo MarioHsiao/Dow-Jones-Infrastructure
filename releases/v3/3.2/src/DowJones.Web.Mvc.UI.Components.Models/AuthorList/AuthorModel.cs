@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using DowJones.Web.Mvc.UI.Components.OutletList;
+using System.ComponentModel;
 
-namespace DowJones.Web.Mvc.UI.Components.AuthorList
+namespace DowJones.Web.Mvc.UI.Components.Models
 {
     /// <summary>
     /// Class representing an model for author list.
