@@ -1,3 +1,0 @@
-A primary benefit of loosely-coupled architecture is the ability to easily interchange components - an ability that greatly eases automated unit testing efforts. 
-When implementing automated unit tests, one of the most important goals is to sufficiently isolate the system you are testing, effectively controlling its environment to produce reliable and reproducible inputs and outputs. 
-When systems are hard-coded against concrete implementations, this is often difficult or impossible to do, but when dependency injection is applied properly, unit tests are free to exchange components with mocks or stubs, allowing complete control over the environment surrounding the target component.

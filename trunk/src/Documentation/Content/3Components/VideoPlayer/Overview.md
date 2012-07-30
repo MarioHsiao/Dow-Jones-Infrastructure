@@ -1,1 +1,0 @@
-﻿VideoPlayer Component is a streaming multimedia player which can be embedded within webpages. It has lots of features and very flexible and powerful configuration options.

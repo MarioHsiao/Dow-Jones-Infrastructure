@@ -1,2 +1,0 @@
-﻿We rely on development tools and processes to make our day-to-day development lives go smoothly. 
-This section will provide an overview of what every developer needs to have and know in order to work on any of the Dow Jones .NET solutions.

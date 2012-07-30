@@ -1,1 +1,0 @@
-The following are the consolidated best practices for each development area covered in this documentation.

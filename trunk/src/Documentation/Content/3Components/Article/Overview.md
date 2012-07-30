@@ -1,1 +1,0 @@
-﻿The Article Component is a UI control that displays the full content of an article. Use this component to easily display articles. The Article Component also makes it easy act on company and executive events, providing users with the ability to include inline detail about the people and companies important to the content they're reading.
