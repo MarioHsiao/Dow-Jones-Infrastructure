@@ -13,6 +13,7 @@
       <dependency id="DowJones.Scripts" />
       <dependency id="DowJones.Web.Mvc.Diagnostics" />
       <dependency id="DowJones.Web.Mvc.UI.Components" />
+      <dependency id="Modernizr" />
     </dependencies>
   </metadata>
 </package>
