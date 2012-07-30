@@ -9,10 +9,10 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Meta-package that installs and configures everything you need to begin using the Dow Jones ASP.NET MVC platform extensions.</description>
     <dependencies>
-      <dependency id="DowJones.Assemblers.v3" />
+      <dependency id="DowJones.Assemblers" />
       <dependency id="DowJones.Scripts" />
-      <dependency id="DowJones.Web.Mvc.Diagnostics.v3" />
-      <dependency id="DowJones.Web.Mvc.UI.Components.v3" />
+      <dependency id="DowJones.Web.Mvc.Diagnostics" />
+      <dependency id="DowJones.Web.Mvc.UI.Components" />
     </dependencies>
   </metadata>
 </package>
