@@ -155,6 +155,7 @@
     <Content Include="images\ConnectingToTFS.png" />
     <Content Include="images\Download.png" />
     <Content Include="images\DowJonesItemTemplates.png" />
+    <Content Include="images\InstallingWebsiteTemplate.png" />
     <Content Include="images\NuGet_AddedSource.png" />
     <Content Include="images\NuGet_AddPackageReference.png" />
     <Content Include="images\NuGet_Navigation.png" />

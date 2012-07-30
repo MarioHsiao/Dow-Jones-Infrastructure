@@ -1,6 +1,6 @@
 [
 	{ "category": "GettingStarted", "page": "UseAComponent"}, 
-	{ "category": "Components", "page": "WorkingWithData"},
-	{ "category": "Components", "page": "WorkingWithEvents"}, 
-	{ "category": "Components", "page": "Customization"} 
+	{ "category": "3Components", "page": "WorkingWithData"},
+	{ "category": "3Components", "page": "WorkingWithEvents"}, 
+	{ "category": "3Components", "page": "Customization"} 
 ] 
