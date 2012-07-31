@@ -1,4 +1,4 @@
-﻿
+
 DJ.UI.VideoPlayer = DJ.UI.Component.extend({
 
     defaults: {
@@ -18,7 +18,7 @@ DJ.UI.VideoPlayer = DJ.UI.Component.extend({
     selectors: {
         videoPlayer: 'div.video-player',
         playListContainer: 'div.playlist-container',
-        playListWrap: 'div.playlist-wrap', 
+        playListWrap: 'div.playlist-wrap',
         playListItems: 'div.playlist-items',
         playListEntries: 'div.entries',
         playListNav: 'div.playlist-nav',
@@ -35,7 +35,7 @@ DJ.UI.VideoPlayer = DJ.UI.Component.extend({
         // end base constructor
 
         this.playerId = this.$element.attr("id") + "_player";
-        
+
         $(this.$element).html(this.templates.success);
         
         this.player = $(this.selectors.videoPlayer, this.$element).attr('id', this.playerId);
@@ -286,7 +286,7 @@ DJ.UI.VideoPlayer.prototype.iDevices = DJ.UI.VideoPlayer.prototype.iDevices || {
 };
 
 // Declare this class as a jQuery plugin
-$.plugin('dj_VideoPlayerControl', DJ.UI.VideoPlayer);
+$.plugin('dj_VideoPlayer', DJ.UI.VideoPlayer);
 
 
 $dj.debug('Registered DJ.UI.VideoPlayer (extends DJ.UI.Component)');

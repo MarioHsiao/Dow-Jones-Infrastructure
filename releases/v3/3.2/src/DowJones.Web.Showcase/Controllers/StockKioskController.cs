@@ -63,7 +63,7 @@ namespace DowJones.Web.Showcase.Controllers
             _assembler = assembler;
         }
 
-        public ActionResult Index([ModelBinder(typeof(StringSplitModelBinder))]string[] syms, SymbolType symbolType = SymbolType.FCode, Frequency frequency = Frequency.FifteenMinutes, int pageSize = 10)
+        public ActionResult Index([ModelBinder(typeof(CommaStringSplitModelBinder))]string[] syms, SymbolType symbolType = SymbolType.FCode, Frequency frequency = Frequency.FifteenMinutes, int pageSize = 10)
         {
             var leftSyms = new List<string>(syms ?? new[] { "reggr", "carsvc", "cmdbnn", "rgrc", "stgtec", "precos", "comasc" });
             var rightSyms = new List<string>(new[] { "ibm", "mcrost", "goog", "reggr", "carsvc", "cmdbnn", "rgrc", "stgtec", "precos", "comasc" });
@@ -77,7 +77,7 @@ namespace DowJones.Web.Showcase.Controllers
             return View( "Index", model);
         } 
 
-        public ActionResult Dylan([ModelBinder(typeof(StringSplitModelBinder))]string[]fCodes)
+        public ActionResult Dylan([ModelBinder(typeof(CommaStringSplitModelBinder))]string[]fCodes)
         {
             var manager = new InstrumentManager();
 
@@ -102,7 +102,7 @@ namespace DowJones.Web.Showcase.Controllers
             return kioskModel;
         }
 
-        public ActionResult ComponentExplorerDemo([ModelBinder(typeof(StringSplitModelBinder))]string[] syms, SymbolType symbolType = SymbolType.FCode, Frequency frequency = Frequency.FifteenMinutes, int pageSize = 10)
+        public ActionResult ComponentExplorerDemo([ModelBinder(typeof(CommaStringSplitModelBinder))]string[] syms, SymbolType symbolType = SymbolType.FCode, Frequency frequency = Frequency.FifteenMinutes, int pageSize = 10)
         {
 
             var leftSyms = new List<string>(syms ?? new[] { "reggr", "carsvc", "cmdbnn", "rgrc", "stgtec", "precos", "comasc" });

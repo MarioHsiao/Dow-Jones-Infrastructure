@@ -1,3 +1,0 @@
-﻿Autosuggest component will turn regular text input box into an auto-complete box. As you type into the AutoSuggest input box, it will filter through it's Data and "suggest" matched Data items to you. You can pass in an Object of Data to AutoSuggest or you can have it call a URL as you type to get it's Data from. AutoSuggest will display the matched Data items in a selectable list, which is 100% customizable. 
-
-The component expects the Data passed into it (or gathered from the URL) to be formatted in JSON.

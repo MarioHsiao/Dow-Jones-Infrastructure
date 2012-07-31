@@ -5,7 +5,6 @@ set ZIP="%CD%\7z.exe"
 CALL :Clean
 CALL :UpdateReferences
 CALL :CompressFiles "ItemTemplates" "%CD%\Item\*"
-CALL :CompressFiles "ProjectTemplates" "%CD%\Project\*"
 CALL :CompressVSI "VSI" 
 CALL :Deploy
 
@@ -20,7 +19,6 @@ GOTO:EOF
 :CompressVSI
 %ZIP% a -tzip "%CD%\build\%1\Dow Jones Templates.vsi" "%CD%\Dow Jones Templates.vscontent"
 %ZIP% a -tzip "%CD%\build\%1\Dow Jones Templates.vsi" "%CD%\build\ItemTemplates\*.zip"
-%ZIP% a -tzip "%CD%\build\%1\Dow Jones Templates.vsi" "%CD%\build\ProjectTemplates\*.zip"
 GOTO:EOF
 
 :Clean

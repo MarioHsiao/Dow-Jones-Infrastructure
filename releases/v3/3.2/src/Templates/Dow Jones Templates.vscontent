@@ -1,17 +1,5 @@
 ﻿<VSContent xmlns="http://schemas.microsoft.com/developer/vscontent/2005">
     <Content>
-        <FileName>MVC Application.zip</FileName>
-        <DisplayName>Dow Jones ASP.NET MVC Application</DisplayName>
-        <Description>ASP.NET MVC Application pre-configured with the Dow Jones Infrastructure libraries</Description>
-        <FileContentType>VSTemplate</FileContentType>
-        <ContentVersion>2.0</ContentVersion>
-        <Attributes>
-            <Attribute name="ProjectType" value="Visual C#"/>
-            <Attribute name="ProjectSubType" value="Dow Jones"/>
-            <Attribute name="TemplateType" value="Project"/>
-        </Attributes>
-    </Content>
-    <Content>
         <FileName>Bootstrapper Task.zip</FileName>
         <DisplayName>Dow Jones Bootstrapper Task</DisplayName>
 		<Description>
@@ -51,7 +39,7 @@
     </Content>
     <Content>
         <FileName>Embedded Script.zip</FileName>
-        <DisplayName>Embedded Javascript File</DisplayName>
+        <DisplayName>Embedded JavaScript File</DisplayName>
         <Description>Generates a javascript file that has build action set to "Embedded Resource"</Description>
         <FileContentType>VSTemplate</FileContentType>
         <ContentVersion>1.0</ContentVersion>
