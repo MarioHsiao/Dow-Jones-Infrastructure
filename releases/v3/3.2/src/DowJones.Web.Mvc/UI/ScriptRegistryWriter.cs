@@ -23,7 +23,7 @@ namespace DowJones.Web.Mvc.UI
         private static readonly IEnumerable<ClientResource> CommonResources =
             new[] {
                 "underscore", "common", "pubsub", "composite-component", 
-                "dj-jquery-ext", "jquery-json", "overlay"
+                "dj-jquery-ext", "jquery-json"
             }.Select(x => (ClientResource)x);
 
         internal static readonly Func<ClientResource, bool> IndependentScriptsFilter =
