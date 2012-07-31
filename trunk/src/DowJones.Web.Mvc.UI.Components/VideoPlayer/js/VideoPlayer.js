@@ -286,7 +286,7 @@ DJ.UI.VideoPlayer.prototype.iDevices = DJ.UI.VideoPlayer.prototype.iDevices || {
 };
 
 // Declare this class as a jQuery plugin
-$.plugin('dj_VideoPlayerControl', DJ.UI.VideoPlayer);
+$.plugin('dj_VideoPlayer', DJ.UI.VideoPlayer);
 
 
 $dj.debug('Registered DJ.UI.VideoPlayer (extends DJ.UI.Component)');
