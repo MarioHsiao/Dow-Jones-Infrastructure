@@ -16,7 +16,7 @@
             <dependency id="Argotic.Extensions" version="2008.0.2.0" />
             <dependency id="Argotic.Core" version="2008.0.2.0" />
             <dependency id="Argotic.Web" version="2008.0.2.0" />
-            <dependency id="log4net" version="1.2.10" />
+            <dependency id="log4net" version="[1.2.10]" />
             <dependency id="Factiva.Gateway" version="7.5.0.50" />
         </dependencies>
     </metadata>
