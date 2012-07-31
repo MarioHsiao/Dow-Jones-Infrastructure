@@ -50,7 +50,7 @@ namespace DowJones.Web.Showcase.Controllers
 			});
 		}
 
-        public ActionResult AccessionNumSearch([ModelBinder(typeof(StringSplitModelBinder))]string[] accessionNums)
+        public ActionResult AccessionNumSearch([ModelBinder(typeof(CommaStringSplitModelBinder))]string[] accessionNums)
         {
             if (accessionNums.IsNullOrEmpty())
             {

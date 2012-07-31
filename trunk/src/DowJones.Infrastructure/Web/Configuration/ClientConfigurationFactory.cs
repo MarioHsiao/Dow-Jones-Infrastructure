@@ -46,9 +46,18 @@ namespace DowJones.Web.Configuration
                 ProxyUserNamespace = _controlData.ProxyProductId,
                 RemoteAddress = _controlData.IpAddress,
                 SeamlessAccessFrom = _session.ProductPrefix,
-                SessionId = _controlData.SessionID,
-                Token = _controlData.EncryptedToken,
             };
+
+            if (_controlData.SessionID.IsNotEmpty())
+            {
+                credentials.Token = _controlData.SessionID;
+                credentials.CredentialType = CredentialType.Session;
+            }
+            else if (_controlData.EncryptedToken.IsNotEmpty())
+            {
+                credentials.Token = _controlData.EncryptedToken;
+                credentials.CredentialType = CredentialType.EncryptedToken;
+            }
 
             config = new ClientConfiguration
                          {

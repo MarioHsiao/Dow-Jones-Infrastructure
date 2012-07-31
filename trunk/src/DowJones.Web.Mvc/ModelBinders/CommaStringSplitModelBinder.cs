@@ -1,6 +1,5 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="StringSplitModelBinder.cs" company="Dow Jones">
-// TODO: Update copyright text.
+// <copyright file="CommaStringSplitModelBinder.cs" company="Dow Jones">
 // </copyright>
 // -----------------------------------------------------------------------
 
@@ -12,7 +11,7 @@ namespace DowJones.Web.Mvc.ModelBinders
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class StringSplitModelBinder : IModelBinder
+    public class CommaStringSplitModelBinder : IModelBinder
     {
         #region Implementation of IModelBinder
 
@@ -28,5 +27,22 @@ namespace DowJones.Web.Mvc.ModelBinders
         }
 
         #endregion
+    }
+}
+
+namespace DowJones.Web.Mvc
+{
+    using ModelBinders;
+
+    /// <summary>
+    /// 
+    /// </summary>
+    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Enum | AttributeTargets.Interface | AttributeTargets.Parameter | AttributeTargets.Struct | AttributeTargets.Property, AllowMultiple = false, Inherited = false)]
+    public class StringSplitModelBinderAttribute : CustomModelBinderAttribute
+    {
+        public override IModelBinder GetBinder()
+        {
+            return new CommaStringSplitModelBinder();
+        }
     }
 }
