@@ -1,5 +1,6 @@
 ﻿using System;
-namespace DowJones.Web.Mvc.UI.Components.Models
+using DowJones.Web.Mvc.UI.Components.OutletList;
+namespace DowJones.Web.Mvc.UI.Components.CompositeOutlet
 {
     public class CompositeOutletModel : CompositeComponentModel
     {

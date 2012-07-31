@@ -3,8 +3,9 @@ using System.ComponentModel;
 using System.Linq;
 using System.Web.Mvc;
 using System;
+using DowJones.Web.Mvc.UI.Components.AuthorList;
 
-namespace DowJones.Web.Mvc.UI.Components.Models
+namespace DowJones.Web.Mvc.UI.Components.OutletList
 {
 	public class OutletListModel : ViewComponentModel
 	{

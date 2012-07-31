@@ -1,5 +1,6 @@
 using System;
-namespace DowJones.Web.Mvc.UI.Components.Models
+using DowJones.Web.Mvc.UI.Components.AuthorList;
+namespace DowJones.Web.Mvc.UI.Components.CompositeAuthor
 {
     public class CompositeAuthorModel : CompositeComponentModel
     {

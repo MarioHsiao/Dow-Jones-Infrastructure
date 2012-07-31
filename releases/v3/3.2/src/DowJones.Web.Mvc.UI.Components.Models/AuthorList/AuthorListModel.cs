@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web.Mvc;
 using System;
 
-namespace DowJones.Web.Mvc.UI.Components.Models
+namespace DowJones.Web.Mvc.UI.Components.AuthorList
 {
 	public class AuthorListModel : ViewComponentModel
 	{
