@@ -1,12 +1,4 @@
 ﻿<configuration>
-	<applicationSettings>
-		<$safeprojectname$.Properties.Settings>
-			<!-- This should match the AssemblyName for DI Container to work. -->
-			<setting name="DependencyInjectionAutoLoadedAssemblyPatterns" serializeAs="String">
-				<value>$safeprojectname$*.dll</value>
-			</setting>
-		</$safeprojectname$.Properties.Settings>
-	</applicationSettings>
 	<system.web>
 		<httpHandlers>
 			<add verb="GET" path="ClientResource.axd" type="DowJones.Web.ClientResourceHandler" />
