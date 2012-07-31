@@ -17,9 +17,8 @@
 @ClientTemplate RelativeResourceName=ClientTemplates.sourceFilterPill.htm, TemplateId=sourceFilterPill
 @ClientTemplate RelativeResourceName=ClientTemplates.sourceListBrowse.htm, TemplateId=sourceListBrowse
 @ClientTemplate RelativeResourceName=ClientTemplates.sourceGroupBrowse.htm, TemplateId=sourceGroupBrowse
-@ScriptResource RelativeResourceName=SearchCategoriesLookUp.js
+@ScriptResource RelativeResourceName=SearchCategoriesLookUp.js, DependsOn=overlay;jquery-ui-widgets
 @{ 
     CssClass = "dj_SearchCategoriesLookUp";
-    Html.DJ().ScriptRegistry().WithJQueryUIWidgets();
     Html.DJ().AutoSuggest();
 }

@@ -30,7 +30,7 @@ namespace DowJones.Web.Mvc.UI.Components.TaxonomySearchBrowse
     using System.Web.UI;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 06/29/2012 01:36 PM
+    // Last Generated Timestamp: 07/31/2012 04:35 PM
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.TaxonomySearchBrowse.ClientTemplates.main.htm", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="main", DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.TaxonomySearchBrowse.TaxonomySearchBrowseComponent))]
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.TaxonomySearchBrowse.ClientTemplates.searchList.ht" +
         "m", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="searchList", DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.TaxonomySearchBrowse.TaxonomySearchBrowseComponent))]
@@ -39,8 +39,9 @@ namespace DowJones.Web.Mvc.UI.Components.TaxonomySearchBrowse
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.TaxonomySearchBrowse.ClientTemplates.browseList.ht" +
         "m", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="browseList", DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.TaxonomySearchBrowse.TaxonomySearchBrowseComponent))]
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.TaxonomySearchBrowse.ClientTemplates.djIICode.htm", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="djIICode", DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.TaxonomySearchBrowse.TaxonomySearchBrowseComponent))]
-    [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.TaxonomySearchBrowse.TaxonomySearchBrowse.js", ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.TaxonomySearchBrowse.TaxonomySearchBrowseComponent))]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.22175")]
+    [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.TaxonomySearchBrowse.TaxonomySearchBrowse.js", DependsOn=new string[] {
+            "overlay"}, ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.TaxonomySearchBrowse.TaxonomySearchBrowseComponent))]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.27108")]
     public class TaxonomySearchBrowseComponent : DowJones.Web.Mvc.UI.ViewComponentBase<TaxonomySearchBrowseModel>
     {
 #line hidden
