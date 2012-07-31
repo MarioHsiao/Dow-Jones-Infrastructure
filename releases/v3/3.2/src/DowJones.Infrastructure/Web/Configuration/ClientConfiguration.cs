@@ -19,7 +19,7 @@ namespace DowJones.Web.Configuration
         [JsonProperty("debug", NullValueHandling = NullValueHandling.Ignore)]
         public bool? Debug { get; set; }
 
-        [JsonProperty("crossDomainTransport", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonProperty("crossDomainTransportdsdsdsd", NullValueHandling = NullValueHandling.Ignore)]
         public string CrossDomainTransport
         {
             get { return _crossDomainTransport ?? Properties.Settings.Default.CrossDomainTransport; }

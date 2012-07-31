@@ -1,4 +1,3 @@
-using System;
 using DowJones.Infrastructure;
 using Newtonsoft.Json;
 

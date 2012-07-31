@@ -292,7 +292,7 @@ namespace DowJones.Properties
         }
 
         [ApplicationScopedSetting, DebuggerNonUserCode, SettingsSerializeAs(SettingsSerializeAs.String)]
-        [DefaultSettingValue("CORS")]
+       
         public string CrossDomainTransport
         {
             get { return (string)this["CrossDomainTransport"]; }

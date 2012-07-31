@@ -1,5 +1,4 @@
 ﻿using System.Web.Mvc;
-using DowJones.Web.Mvc.UI.Components.DiscoveryGraph;
 
 namespace DowJones.Web.Showcase.Controllers
 {
@@ -8,18 +7,9 @@ namespace DowJones.Web.Showcase.Controllers
         //
         // GET: /DiscoveryGraph/
 
-        public ActionResult Index(string master = "_Layout")
+        public ActionResult Index()
         {
-            var discoveryGraph = new DiscoveryGraphModel();
-            return View("Index", master, discoveryGraph);
+            return View("Index");
         }
-
-		public ActionResult ComponentExplorerDemo(bool interact = false)
-		{
-			ViewBag.IsInteractive = interact;
-			return Index("_Layout_ComponentExplorer");
-		}
-
-
     }
 }

@@ -165,12 +165,13 @@ namespace DowJones.Globalization
         /// </summary>
         [AssignedToken("langMs")]
         ms,
-        //Infosys-23/Oct/2010-END:Bahasa changes
+
         /// <summary>
         /// Corresponds to Arabic.
         /// </summary>
         [AssignedToken("langAr")]
         ar,
+
         /// <summary>
         /// Corresponds to Vietnamese.
         /// </summary>
@@ -182,5 +183,6 @@ namespace DowJones.Globalization
         /// </summary>
         [AssignedToken("langTh")]
         th,
+
     }
 }
