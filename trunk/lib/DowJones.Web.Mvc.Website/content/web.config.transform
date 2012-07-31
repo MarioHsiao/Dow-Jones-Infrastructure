@@ -1,11 +1,11 @@
-﻿<configuration>
+﻿	<configuration>
 	<applicationSettings>
-		<$safeprojectname$.Properties.Settings>
-			<!-- This should match the AssemblyName for DI Container to work. -->
+		<$rootnamespace$.Properties.Settings>
+			<!-- IMPORTANT: The value should match the AssemblyName for DI Container to work. -->
 			<setting name="DependencyInjectionAutoLoadedAssemblyPatterns" serializeAs="String">
-				<value>$safeprojectname$*.dll</value>
+				<value>$rootnamespace$*.dll</value>
 			</setting>
-		</$safeprojectname$.Properties.Settings>
+		</$rootnamespace$.Properties.Settings>
 	</applicationSettings>
 	<system.web>
 		<httpHandlers>
