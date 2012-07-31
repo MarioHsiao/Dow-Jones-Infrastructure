@@ -703,5 +703,5 @@
 
     });
 
-    $.plugin('dj_NewsChartControl', DJ.UI.NewsChart);
+    $.plugin('dj_NewsChart', DJ.UI.NewsChart);
 
