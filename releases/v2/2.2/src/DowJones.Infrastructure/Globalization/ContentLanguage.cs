@@ -171,5 +171,16 @@ namespace DowJones.Globalization
         /// </summary>
         [AssignedToken("langAr")]
         ar,
+        /// <summary>
+        /// Corresponds to Vietnamese.
+        /// </summary>
+        [AssignedToken("langVi")]
+        vi,
+
+        /// <summary>
+        /// Corresponds to Arabic.
+        /// </summary>
+        [AssignedToken("langTh")]
+        th,
     }
 }
