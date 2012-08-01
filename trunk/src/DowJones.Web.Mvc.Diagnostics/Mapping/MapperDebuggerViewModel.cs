@@ -41,7 +41,7 @@ namespace DowJones.Web.Mvc.Diagnostics.Mapping
         {
             SourceTypeName = definition.SourceType == null ? "[Unspecified]" : definition.SourceType.FullName;
 
-            if (TargetTypeName.IsEmpty() && definition.TargetType != null)
+            if (TargetTypeName == null || (TargetTypeName.IsEmpty() && definition.TargetType != null))
                 TargetTypeName = definition.TargetType.ToString();
 
             MapperName = MapperName ?? "[Unspecified]";
