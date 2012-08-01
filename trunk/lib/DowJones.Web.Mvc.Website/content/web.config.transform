@@ -1,11 +1,16 @@
-﻿	<configuration>
+﻿<configuration>
+	<configSections>
+		<sectionGroup name="applicationSettings" type="System.Configuration.ApplicationSettingsGroup, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+			<section name="DowJones.Properties.Settings" type="System.Configuration.ClientSettingsSection, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" requirePermission="false" />
+		</sectionGroup>
+	</configSections>
 	<applicationSettings>
-		<$rootnamespace$.Properties.Settings>
+		<DowJones.Properties.Settings>
 			<!-- IMPORTANT: The value should match the AssemblyName for DI Container to work. -->
 			<setting name="DependencyInjectionAutoLoadedAssemblyPatterns" serializeAs="String">
-				<value>$rootnamespace$*.dll</value>
+				<value>DowJones*.dll;$rootnamespace$*.dll</value>
 			</setting>
-		</$rootnamespace$.Properties.Settings>
+		</DowJones.Properties.Settings>
 	</applicationSettings>
 	<system.web>
 		<httpHandlers>
