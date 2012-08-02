@@ -14,7 +14,6 @@
             gotoPage: ".entity-list-current-page",
             pager: ".entity-list-pager",
             pageSizeSelector: ".entity-list-select-page-size",
-            // new from 2012-01-24; Checkbox ALL & gear menu.
             checkboxAll: "input:checkbox[name='dj_outlet-select-all']",
             checkboxOutlets: "td input:checkbox",
             gearMenu: "span.fi.fi_gear",
@@ -371,30 +370,5 @@
         }
     });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     // Declare this class as a jQuery plugin
     $.plugin('dj_CompositeOutlet', DJ.UI.CompositeOutlet);
-
-
-
-
-
-
-})(jQuery);
-
-
