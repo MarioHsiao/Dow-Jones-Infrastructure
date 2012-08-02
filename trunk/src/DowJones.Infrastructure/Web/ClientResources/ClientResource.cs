@@ -69,14 +69,17 @@ namespace DowJones.Web
         /// Gets or sets the template id for Client Template directives.
         /// </summary>
         /// <value>The template id.</value>
-        public string TemplateId
-        {
-            get; 
-            set;
-        }
+        public string TemplateId { get; set; }
 
+		/// <summary>
+		/// Gets or sets a value indicating whether this instance is minified.
+		/// </summary>
+		/// <value>
+		/// <c>true</c> if this instance is minified; otherwise, <c>false</c>.
+		/// </value>
+		public bool IsMinified { get; set; }
 
-        public ClientResource()
+	    public ClientResource()
         {
             ClientTemplates = Enumerable.Empty<ClientResource>();
             ResourceKind = ClientResourceKind.Content;
