@@ -29,6 +29,10 @@ namespace DowJones.DegreasedDashboards.Website.BootstrapperTasks
                                 Html = "<strong>It works!</strong>",
                                 Script = "console.log('Simple HTML Module '+this.name+' loaded!')",
                             },
+                            new HtmlModule { Id = 3, 
+                                Title = "External HTML Module", 
+                                Html = "<script src='http://nmp.newsgator.com/NGBuzz/buzz.ashx?buzzId=81503&apiToken=AAA11919E8A84EB8986088D0B39F3E0B&trkP=&trkM=94EB6FAB-58C5-EE96-F3DB-C2444C40C1BA' type='text/javascript'></script>",
+                            },
                             new HtmlModule { Id = 2, 
                                 Title = "More interesting HTML Module", 
                                 Html = "The time is: <span class='time'/>",
@@ -78,10 +82,6 @@ namespace DowJones.DegreasedDashboards.Website.BootstrapperTasks
                                     // Retrieve an external RSS feed  (using our custom proxy to facilitate the cross-domain call)
                                     $.ajax('../platformproxy.asmx?url=http://online.wsj.com/xml/rss/3_7011.xml')
                                         .success(populatePortalHeadlines)",
-                            },
-                            new HtmlModule { Id = 3, 
-                                Title = "External HTML Module", 
-                                Html = "<script src='http://nmp.newsgator.com/NGBuzz/buzz.ashx?buzzId=81503&apiToken=AAA11919E8A84EB8986088D0B39F3E0B&trkP=&trkM=94EB6FAB-58C5-EE96-F3DB-C2444C40C1BA' type='text/javascript'></script>",
                             },
                         }
                 });
