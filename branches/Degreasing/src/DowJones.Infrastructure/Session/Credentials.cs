@@ -1,36 +1,67 @@
 ﻿using System.Runtime.Serialization;
+using Newtonsoft.Json;
 
 namespace DowJones.Infrastructure
 {
-    [DataContract(Name = "credentials", Namespace = "")]
-    public class Credentials
+    public interface ICredentials
     {
         [DataMember(Name = "token")]
-        public string Token;
+        string Token { get; set; }
 
         [DataMember(Name = "credentialType")]
-        public CredentialType CredentialType;
+        CredentialType CredentialType { get; set; }
 
         [DataMember(Name = "remoteAddress")]
-        public string RemoteAddress;
+        string RemoteAddress { get; set; }
 
         [DataMember(Name = "accessPointCode")]
-        public string AccessPointCode;
+        string AccessPointCode { get; set; }
 
         [DataMember(Name = "accessPointCodeUsage")]
-        public string AccessPointCodeUsage;
+        string AccessPointCodeUsage { get; set; }
 
         [DataMember(Name = "clientCode")]
-        public string ClientCode;
+        string ClientCode { get; set; }
 
         [DataMember(Name = "cacheKey")]
-        public string CacheKey;
+        string CacheKey { get; set; }
 
         [DataMember(Name = "proxyUserId")]
-        public string ProxyUserId;
+        string ProxyUserId { get; set; }
 
         [DataMember(Name = "proxyUserNamespace")]
-        public string ProxyUserNamespace;
+        string ProxyUserNamespace { get; set; }
+    }
+
+    [DataContract(Name = "credentials", Namespace = "")]
+    public class Credentials : ICredentials
+    {
+        [DataMember(Name = "token")]
+        public string Token { get; set; }
+
+        [DataMember(Name = "credentialType")]
+        public CredentialType CredentialType { get; set; }
+
+        [DataMember(Name = "remoteAddress")]
+        public string RemoteAddress { get; set; }
+
+        [DataMember(Name = "accessPointCode")]
+        public string AccessPointCode { get; set; }
+
+        [DataMember(Name = "accessPointCodeUsage")]
+        public string AccessPointCodeUsage { get; set; }
+
+        [DataMember(Name = "clientCode")]
+        public string ClientCode { get; set; }
+
+        [DataMember(Name = "cacheKey")]
+        public string CacheKey { get; set; }
+
+        [DataMember(Name = "proxyUserId")]
+        public string ProxyUserId { get; set; }
+
+        [DataMember(Name = "proxyUserNamespace")]
+        public string ProxyUserNamespace { get; set; }
 
         public Credentials() { }
        

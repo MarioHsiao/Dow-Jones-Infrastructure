@@ -15,6 +15,6 @@ namespace DowJones.Assemblers.Headlines
 
     public interface IExtendedListDataResultConverter
     {
-        IListDataResult Process(Delegate generateExternalUrl, GenerateSnippetThumbnailForHeadlineInfo generateSnippetThumbnailForHeadlineInfo);
+        IListDataResult Process(Delegate generateExternalUrl, GenerateSnippetThumbnailForHeadlineInfo generateSnippetThumbnailForHeadlineInfoDelegate);
     }
 }

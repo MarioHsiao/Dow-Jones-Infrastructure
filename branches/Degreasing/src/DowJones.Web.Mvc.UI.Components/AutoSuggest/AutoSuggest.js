@@ -84,6 +84,11 @@
             // Call the base constructor
             this._super(element, $meta);
 
+            //Bind the template
+            $(this.$element).html(this.templates.success);
+
+            $('.dj_AutoSuggest', element).attr('id', this.options.controlId);
+
             // TODO: Add custom initialization code like the following:
             // this._testButton = $('.testButton', element).get(0);
             var suggestSettings = {
@@ -392,7 +397,7 @@
 
                 if (isUrlGenerated === true) {
                     //Call the transaction and get the authentication token
-                    $.jsonp({
+                    $.crossDomain({
                         url: authenticationUrl,
                         callbackParameter: "callback",
                         success: function(data, textStatus) {

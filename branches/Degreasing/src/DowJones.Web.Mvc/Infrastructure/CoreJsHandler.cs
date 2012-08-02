@@ -4,10 +4,14 @@ using System.Net;
 using System.Web;
 using DowJones.Extensions;
 using DowJones.Extensions.Web;
+using DowJones.Infrastructure;
 using DowJones.Web.Configuration;
 
 namespace DowJones.Web.Mvc.Infrastructure
 {
+    /// <summary>
+    /// 
+    /// </summary>
 	public class CoreJsHandler : ClientResourceHandler
 	{
 		private static readonly string[] JQueryAndRequire = new[] { "jquery", "require" };
@@ -17,6 +21,10 @@ namespace DowJones.Web.Mvc.Infrastructure
                 "pubsub", "composite-component", "jquery-ui", "jquery-ui-interactions"
             };
 
+        /// <summary>
+        /// Called when [process request].
+        /// </summary>
+        /// <param name="context">The context.</param>
 		public override void OnProcessRequest(HttpContextBase context)
 		{
 			var culture = SetRequestLanguage(context.Request["lang"]);
@@ -79,9 +87,17 @@ namespace DowJones.Web.Mvc.Infrastructure
 			var clientConfiguration = new ClientConfiguration
 			{
 				Debug = debugEnabled,
-				Credentials = new ClientCredentials { Token = encrytedToken, SessionId = sessionId },
 				Preferences = new ClientPreferences { InterfaceLanguage = language },
 			};
+
+            if (sessionId.IsNotEmpty())
+            {
+                clientConfiguration.Credentials = new ClientCredentials {Token = sessionId, CredentialType = CredentialType.Session};
+            }
+            else if(encrytedToken.IsNotEmpty())
+            {
+                clientConfiguration.Credentials = new ClientCredentials { Token = encrytedToken, CredentialType = CredentialType.EncryptedToken };
+            }
 
 			clientConfiguration.WriteTo(context.Response.Output);
 		}

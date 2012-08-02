@@ -36,25 +36,28 @@ namespace DowJones.Web.Configuration
                 return config;
 
 
-            ClientCredentialTokenType credentialType = ClientCredentialTokenType.SessionId;
-
-            if(_controlData.EncryptedToken.HasValue())
-                credentialType = ClientCredentialTokenType.EncryptedToken;
-
             var credentials = new ClientCredentials
             {
                 AccessPointCode = _controlData.AccessPointCode,
                 AccessPointCodeUsage = _controlData.AccessPointCodeUsage,
-#pragma warning disable 618
-                CredentialType = credentialType,
-#pragma warning restore 618
+                ClientCode = _controlData.ClientCode,
+                ClientType = _controlData.ClientType,
                 ProxyUserId = _controlData.ProxyUserId,
                 ProxyUserNamespace = _controlData.ProxyProductId,
                 RemoteAddress = _controlData.IpAddress,
                 SeamlessAccessFrom = _session.ProductPrefix,
-                SessionId = _controlData.SessionID,
-                Token = _controlData.EncryptedToken,
             };
+
+            if (_controlData.SessionID.IsNotEmpty())
+            {
+                credentials.Token = _controlData.SessionID;
+                credentials.CredentialType = CredentialType.Session;
+            }
+            else if (_controlData.EncryptedToken.IsNotEmpty())
+            {
+                credentials.Token = _controlData.EncryptedToken;
+                credentials.CredentialType = CredentialType.EncryptedToken;
+            }
 
             config = new ClientConfiguration
                          {

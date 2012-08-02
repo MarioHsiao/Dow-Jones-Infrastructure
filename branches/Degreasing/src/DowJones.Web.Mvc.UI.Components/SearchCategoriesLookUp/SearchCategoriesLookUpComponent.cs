@@ -52,7 +52,7 @@ namespace DowJones.Web.Mvc.UI.Components.SearchCategoriesLookUp
     using DowJones.Web.Mvc.Extensions;
     using DowJones.Web.Mvc.UI.Components.AutoSuggest;
     
-    // Last Generated Timestamp: 06/29/2012 01:27 PM
+    // Last Generated Timestamp: 07/31/2012 04:34 PM
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.SearchCategoriesLookUp.ClientTemplates.main.htm", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="main", DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.SearchCategoriesLookUp.SearchCategoriesLookUpComponent))]
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.SearchCategoriesLookUp.ClientTemplates.filterPill." +
         "htm", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="filterPill", DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.SearchCategoriesLookUp.SearchCategoriesLookUpComponent))]
@@ -82,8 +82,10 @@ namespace DowJones.Web.Mvc.UI.Components.SearchCategoriesLookUp
         "rowse.htm", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="sourceListBrowse", DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.SearchCategoriesLookUp.SearchCategoriesLookUpComponent))]
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.SearchCategoriesLookUp.ClientTemplates.sourceGroup" +
         "Browse.htm", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="sourceGroupBrowse", DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.SearchCategoriesLookUp.SearchCategoriesLookUpComponent))]
-    [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.SearchCategoriesLookUp.SearchCategoriesLookUp.js", ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.SearchCategoriesLookUp.SearchCategoriesLookUpComponent))]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.22175")]
+    [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.SearchCategoriesLookUp.SearchCategoriesLookUp.js", DependsOn=new string[] {
+            "overlay",
+            "jquery-ui-widgets"}, ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.SearchCategoriesLookUp.SearchCategoriesLookUpComponent))]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.27108")]
     public class SearchCategoriesLookUpComponent : DowJones.Web.Mvc.UI.ViewComponentBase<SearchCategoriesLookUpModel>
     {
 #line hidden
@@ -123,7 +125,6 @@ namespace DowJones.Web.Mvc.UI.Components.SearchCategoriesLookUp
 
    
     CssClass = "dj_SearchCategoriesLookUp";
-    Html.DJ().ScriptRegistry().WithJQueryUIWidgets();
     Html.DJ().AutoSuggest();
 
 

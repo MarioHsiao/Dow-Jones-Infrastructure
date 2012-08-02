@@ -44,6 +44,10 @@ namespace DowJones.Search.Core
         private const string PICTURE_FORMAT = "fmt=picture";
         private const string PUBLICATION_FORMAT = "fmt=(article or report or file)";
         private const string WEBPAGE_FORMAT = "fmt=webpage";
+        private const string FMT_OPERATOR = " or ";
+        public const string ALL_COMMON_FORMAT = "fmt=(article or report or file or webpage or blog or multimedia or picture)";
+        public const string ALL_COMMON_ALERT_FORMAT = "fmt=(article or report or file or webpage)";
+
         #endregion
 
         #region ScopeType enum
@@ -56,177 +60,212 @@ namespace DowJones.Search.Core
             /// <summary>
             /// The any languages.
             /// </summary>
-            [SearchStringInfo(SearchMode.Any, false, true, SearchType.Controlled, "la")] AnyLanguages, 
+            [SearchStringInfo(SearchMode.Any, false, true, SearchType.Controlled, "la")]
+            AnyLanguages,
 
             /// <summary>
             /// The any source.
             /// </summary>
-            [SearchStringInfo(SearchMode.Any, false, true, SearchType.Controlled, "sc")] AnySource, 
+            [SearchStringInfo(SearchMode.Any, false, true, SearchType.Controlled, "sc")]
+            AnySource,
 
             /// <summary>
             /// The excluded sources.
             /// </summary>
-            [SearchStringInfo(SearchMode.None, false, true, SearchType.Controlled, "sc")] ExcludedSources, 
+            [SearchStringInfo(SearchMode.None, false, true, SearchType.Controlled, "sc")]
+            ExcludedSources,
 
             /// <summary>
             /// The any group source code.
             /// </summary>
-            [SearchStringInfo(SearchMode.Any, false, true, SearchType.Controlled, "rst")] AnyGroupSourceCode, 
+            [SearchStringInfo(SearchMode.Any, false, true, SearchType.Controlled, "rst")]
+            AnyGroupSourceCode,
 
             /// <summary>
             /// The excluded group source codes.
             /// </summary>
-            [SearchStringInfo(SearchMode.None, false, true, SearchType.Controlled, "rst")] ExcludedGroupSourceCodes, 
+            [SearchStringInfo(SearchMode.None, false, true, SearchType.Controlled, "rst")]
+            ExcludedGroupSourceCodes,
 
             /// <summary>
             /// The any restrictor.
             /// </summary>
-            [SearchStringInfo(SearchMode.Any, false, true, SearchType.Controlled, "rst")] AnyRestrictor, 
+            [SearchStringInfo(SearchMode.Any, false, true, SearchType.Controlled, "rst")]
+            AnyRestrictor,
 
             /// <summary>
             /// The all restrictors.
             /// </summary>
-            [SearchStringInfo(SearchMode.All, false, true, SearchType.Controlled, "rst")] AllRestrictors, 
+            [SearchStringInfo(SearchMode.All, false, true, SearchType.Controlled, "rst")]
+            AllRestrictors,
 
             /// <summary>
             /// The excluded restrictors.
             /// </summary>
-            [SearchStringInfo(SearchMode.None, false, true, SearchType.Controlled, "rst")] ExcludedRestrictors, 
+            [SearchStringInfo(SearchMode.None, false, true, SearchType.Controlled, "rst")]
+            ExcludedRestrictors,
 
             /// <summary>
             /// The any news subject.
             /// </summary>
-            [SearchStringInfo(SearchMode.Any, false, true, SearchType.Controlled, "ns")] AnyNewsSubject, 
+            [SearchStringInfo(SearchMode.Any, false, true, SearchType.Controlled, "ns")]
+            AnyNewsSubject,
 
             /// <summary>
             /// The all news subjects.
             /// </summary>
-            [SearchStringInfo(SearchMode.All, false, true, SearchType.Controlled, "ns")] AllNewsSubjects, 
+            [SearchStringInfo(SearchMode.All, false, true, SearchType.Controlled, "ns")]
+            AllNewsSubjects,
 
             /// <summary>
             /// The excluded new subjects.
             /// </summary>
-            [SearchStringInfo(SearchMode.None, false, true, SearchType.Controlled, "ns")] ExcludedNewSubjects, 
+            [SearchStringInfo(SearchMode.None, false, true, SearchType.Controlled, "ns")]
+            ExcludedNewSubjects,
 
             /// <summary>
             /// The any company.
             /// </summary>
-            [SearchStringInfo(SearchMode.Any, false, true, SearchType.Controlled, "co")] AnyCompany, 
+            [SearchStringInfo(SearchMode.Any, false, true, SearchType.Controlled, "co")]
+            AnyCompany,
 
             /// <summary>
             /// The all companies.
             /// </summary>
-            [SearchStringInfo(SearchMode.All, false, true, SearchType.Controlled, "co")] AllCompanies, 
+            [SearchStringInfo(SearchMode.All, false, true, SearchType.Controlled, "co")]
+            AllCompanies,
 
             /// <summary>
             /// The excluded companies.
             /// </summary>
-            [SearchStringInfo(SearchMode.None, false, true, SearchType.Controlled, "co")] ExcludedCompanies, 
+            [SearchStringInfo(SearchMode.None, false, true, SearchType.Controlled, "co")]
+            ExcludedCompanies,
 
             /// <summary>
             /// The any company occurance.
             /// </summary>
-            [SearchStringInfo(SearchMode.Any, false, true, SearchType.Controlled, "co:occur")] AnyCompanyOccurance, 
+            [SearchStringInfo(SearchMode.Any, false, true, SearchType.Controlled, "co:occur")]
+            AnyCompanyOccurance,
 
             /// <summary>
             /// The all companies ocurrance.
             /// </summary>
-            [SearchStringInfo(SearchMode.All, false, true, SearchType.Controlled, "co:occur")] AllCompaniesOcurrance, 
+            [SearchStringInfo(SearchMode.All, false, true, SearchType.Controlled, "co:occur")]
+            AllCompaniesOcurrance,
 
             /// <summary>
             /// The excluded companies occurance.
             /// </summary>
-            [SearchStringInfo(SearchMode.None, false, true, SearchType.Controlled, "co:occur")] ExcludedCompaniesOccurance, 
+            [SearchStringInfo(SearchMode.None, false, true, SearchType.Controlled, "co:occur")]
+            ExcludedCompaniesOccurance,
 
             /// <summary>
             /// The any author.
             /// </summary>
-            [SearchStringInfo(SearchMode.Any, false, true, SearchType.Controlled, "au")] AnyAuthor, 
+            [SearchStringInfo(SearchMode.Any, false, true, SearchType.Controlled, "au")]
+            AnyAuthor,
 
             /// <summary>
             /// The all authors.
             /// </summary>
-            [SearchStringInfo(SearchMode.All, false, true, SearchType.Controlled, "au")] AllAuthors, 
+            [SearchStringInfo(SearchMode.All, false, true, SearchType.Controlled, "au")]
+            AllAuthors,
 
             /// <summary>
             /// The excluded authors.
             /// </summary>
-            [SearchStringInfo(SearchMode.None, false, true, SearchType.Controlled, "au")] ExcludedAuthors, 
+            [SearchStringInfo(SearchMode.None, false, true, SearchType.Controlled, "au")]
+            ExcludedAuthors,
 
             /// <summary>
             /// The any region.
             /// </summary>
-            [SearchStringInfo(SearchMode.Any, false, true, SearchType.Controlled, "re")] AnyRegion, 
+            [SearchStringInfo(SearchMode.Any, false, true, SearchType.Controlled, "re")]
+            AnyRegion,
 
             /// <summary>
             /// The all regions.
             /// </summary>
-            [SearchStringInfo(SearchMode.All, false, true, SearchType.Controlled, "re")] AllRegions, 
+            [SearchStringInfo(SearchMode.All, false, true, SearchType.Controlled, "re")]
+            AllRegions,
 
             /// <summary>
             /// The excluded regions.
             /// </summary>
-            [SearchStringInfo(SearchMode.None, false, true, SearchType.Controlled, "re")] ExcludedRegions, 
+            [SearchStringInfo(SearchMode.None, false, true, SearchType.Controlled, "re")]
+            ExcludedRegions,
 
             /// <summary>
             /// The any fds.
             /// </summary>
-            [SearchStringInfo(SearchMode.Any, false, true, SearchType.Controlled, "fds")] AnyFDS, 
+            [SearchStringInfo(SearchMode.Any, false, true, SearchType.Controlled, "fds")]
+            AnyFDS,
 
             /// <summary>
             /// The all fd ss.
             /// </summary>
-            [SearchStringInfo(SearchMode.Any, false, true, SearchType.Controlled, "fds")] AllFDSs, 
+            [SearchStringInfo(SearchMode.Any, false, true, SearchType.Controlled, "fds")]
+            AllFDSs,
 
             /// <summary>
             /// The excluded fd ss.
             /// </summary>
-            [SearchStringInfo(SearchMode.Any, false, true, SearchType.Controlled, "fds")] ExcludedFDSs, 
+            [SearchStringInfo(SearchMode.Any, false, true, SearchType.Controlled, "fds")]
+            ExcludedFDSs,
 
             /// <summary>
             /// The keywords.
             /// </summary>
-            [SearchStringInfo(SearchMode.Simple, false, false, SearchType.Free, "")] Keywords, 
+            [SearchStringInfo(SearchMode.Simple, false, false, SearchType.Free, "")]
+            Keywords,
 
             /// <summary>
             /// The editors choice.
             /// </summary>
-            [SearchStringInfo(SearchMode.Any, false, true, SearchType.Controlled, "ns")] EditorsChoice, 
+            [SearchStringInfo(SearchMode.Any, false, true, SearchType.Controlled, "ns")]
+            EditorsChoice,
 
             /// <summary>
             /// The any industry.
             /// </summary>
-            [SearchStringInfo(SearchMode.Any, false, true, SearchType.Controlled, "in")] AnyIndustry, 
+            [SearchStringInfo(SearchMode.Any, false, true, SearchType.Controlled, "in")]
+            AnyIndustry,
 
             /// <summary>
             /// The all industries.
             /// </summary>
-            [SearchStringInfo(SearchMode.Any, false, true, SearchType.Controlled, "in")] AllIndustries, 
+            [SearchStringInfo(SearchMode.Any, false, true, SearchType.Controlled, "in")]
+            AllIndustries,
 
             /// <summary>
             /// The excluded industries.
             /// </summary>
-            [SearchStringInfo(SearchMode.Any, false, true, SearchType.Controlled, "in")] ExcludedIndustries, 
+            [SearchStringInfo(SearchMode.Any, false, true, SearchType.Controlled, "in")]
+            ExcludedIndustries,
 
             /// <summary>
             /// The any accession number.
             /// </summary>
-            [SearchStringInfo(SearchMode.Any, false, true, SearchType.Controlled, "an")] AnyAccessionNumber, 
+            [SearchStringInfo(SearchMode.Any, false, true, SearchType.Controlled, "an")]
+            AnyAccessionNumber,
 
             /// <summary>
             /// The any people.
             /// </summary>
-            [SearchStringInfo(SearchMode.Any, false, true, SearchType.Controlled, "pe")] AnyPeople, 
+            [SearchStringInfo(SearchMode.Any, false, true, SearchType.Controlled, "pe")]
+            AnyPeople,
 
             /// <summary>
             /// The all people.
             /// </summary>
-            [SearchStringInfo(SearchMode.All, false, true, SearchType.Controlled, "pe")] AllPeople, 
+            [SearchStringInfo(SearchMode.All, false, true, SearchType.Controlled, "pe")]
+            AllPeople,
 
             /// <summary>
             /// The excluded people.
             /// </summary>
-            [SearchStringInfo(SearchMode.None, false, true, SearchType.Controlled, "pe")] ExcludedPeople, 
+            [SearchStringInfo(SearchMode.None, false, true, SearchType.Controlled, "pe")]
+            ExcludedPeople,
         }
 
         #endregion
@@ -249,22 +288,22 @@ namespace DowJones.Search.Core
                 (metaDataController.CustomCodeNavigatorIds != null && metaDataController.CustomCodeNavigatorIds.Length > 0))
             {
                 var objCodeNavigatorControl = new CodeNavigatorControl
-                                                  {
-                                                      MaxBuckets = metaDataController.MaxBuckets, 
-                                                      MinBucketValue = metaDataController.MinBucketValue, 
-                                                      Mode = metaDataController.Mode
-                                                  };
+                {
+                    MaxBuckets = metaDataController.MaxBuckets,
+                    MinBucketValue = metaDataController.MinBucketValue,
+                    Mode = metaDataController.Mode
+                };
 
                 if (metaDataController.CustomCodeNavigatorIds != null && metaDataController.CustomCodeNavigatorIds.Length > 0)
                 {
                     foreach (string s in metaDataController.CustomCodeNavigatorIds)
                     {
                         var control = new NavigatorControl
-                                          {
-                                              Id = s, 
-                                              MaxBuckets = metaDataController.MaxBuckets, 
-                                              MinBucketValue = metaDataController.MinBucketValue
-                                          };
+                        {
+                            Id = s,
+                            MaxBuckets = metaDataController.MaxBuckets,
+                            MinBucketValue = metaDataController.MinBucketValue
+                        };
                         objCodeNavigatorControl.CustomCollection.Add(control);
                     }
                 }
@@ -276,9 +315,12 @@ namespace DowJones.Search.Core
             if (metaDataController.CustomContextualNavigatorIds != null && metaDataController.CustomContextualNavigatorIds.Length > 0)
             {
                 foreach (ContextualNavigatorControl objContextualNavigatorControl in metaDataController.CustomContextualNavigatorIds.Select(s => new ContextualNavigatorControl
-                                                                                                                                                     {
-                                                                                                                                                         CountOncePerDocument = metaDataController.CountCustomContextualNavigatorIdsOncePerDocument, Id = s, MaxBuckets = metaDataController.MaxBuckets, MinBucketValue = metaDataController.MinBucketValue
-                                                                                                                                                     }))
+                {
+                    CountOncePerDocument = metaDataController.CountCustomContextualNavigatorIdsOncePerDocument,
+                    Id = s,
+                    MaxBuckets = metaDataController.MaxBuckets,
+                    MinBucketValue = metaDataController.MinBucketValue
+                }))
                 {
                     navigationControl.ContextualNavigatorControlCollection.Add(objContextualNavigatorControl);
                 }
@@ -287,11 +329,11 @@ namespace DowJones.Search.Core
             if (metaDataController.ReturnKeywordsSet)
             {
                 var objKeywordControl = new KeywordControl
-                                            {
-                                                MaxKeywords = metaDataController.MaxKeywords, 
-                                                MinWeight = (float)metaDataController.MinWeightKeywords, 
-                                                ReturnKeywords = metaDataController.ReturnKeywordsSet
-                                            };
+                {
+                    MaxKeywords = metaDataController.MaxKeywords,
+                    MinWeight = (float)metaDataController.MinWeightKeywords,
+                    ReturnKeywords = metaDataController.ReturnKeywordsSet
+                };
                 navigationControl.KeywordControl = objKeywordControl;
             }
 
@@ -314,10 +356,10 @@ namespace DowJones.Search.Core
             }
 
             var objDates = new Dates
-                               {
-                                   Type = dateType, 
-                                   Format = dateController.DateFormat, 
-                               };
+            {
+                Type = dateType,
+                Format = dateController.DateFormat,
+            };
 
             if (dateController.Before != null)
             {
@@ -403,11 +445,11 @@ namespace DowJones.Search.Core
         public static SimilarityFilter GetSimilarityFilter(string documentVector)
         {
             var similarityFilter = new SimilarityFilter
-                                       {
-                                           Type = SimilarityType.Refine, 
-                                           Value = documentVector, 
-                                           SortBy = true
-                                       };
+            {
+                Type = SimilarityType.Refine,
+                Value = documentVector,
+                SortBy = true
+            };
             return similarityFilter;
         }
 
@@ -616,6 +658,99 @@ namespace DowJones.Search.Core
             return included;
         }
 
+        public static SearchStringCollection BuildSourceSearchStringCollection(SearchSourceGroupPreferenceItem ssgpItem, bool isAlertApi = false)
+        {
+            var searchStringCollection = new SearchStringCollection();
+            if (ssgpItem != null && ssgpItem.Value != null && ssgpItem.Value.Count > 0)
+            {
+                var includedSources = new List<string>();
+                var excludedSources = new List<string>();
+                foreach (SourceList sourceList in ssgpItem.Value)
+                {
+                    includedSources.AddRange(sourceList.CodeIncluded);
+                    excludedSources.AddRange(sourceList.CodeExcluded);
+                }
+                excludedSources = excludedSources.Where(d => includedSources.IndexOf(d) == -1).ToList();
+
+                var fmtParts = GetFmtParts(ssgpItem, false);
+                var excludedFmtParts = GetFmtParts(ssgpItem, true);
+
+                var sb = new StringBuilder((isAlertApi) ? ALL_COMMON_ALERT_FORMAT : ALL_COMMON_FORMAT);
+
+                if (fmtParts.Count() > 0 || includedSources.Count() > 0)
+                {
+                    sb.Append(" AND ");
+                    sb.Append(GetFormatedSearchString(fmtParts, includedSources));
+                }
+
+                if (excludedFmtParts.Count() > 0 || excludedSources.Count() > 0)
+                {
+                    sb.Append(" NOT ");
+                    sb.Append(GetFormatedSearchString(excludedFmtParts, excludedSources));
+                }
+                searchStringCollection.Add(CreateBSSSourceSearchString(sb.ToString()));
+            }
+            return searchStringCollection;
+        }
+
+        private static List<string> GetFmtParts(SearchSourceGroupPreferenceItem ssgpItem, bool excluded)
+        {
+            bool allPub = excluded ? GetAllExcluded(ssgpItem, ALL_PUBLICATIONS_CODE) : GetAllSelected(ssgpItem, ALL_PUBLICATIONS_CODE);
+            bool allWeb = excluded ? GetAllExcluded(ssgpItem, ALL_WEBSITES_CODE) : GetAllSelected(ssgpItem, ALL_WEBSITES_CODE);
+            bool allBlog = excluded ? GetAllExcluded(ssgpItem, ALL_BLOGS_CODE) : GetAllSelected(ssgpItem, ALL_BLOGS_CODE);
+            bool allPic = excluded ? GetAllExcluded(ssgpItem, ALL_PICTURES_CODE) : GetAllSelected(ssgpItem, ALL_PICTURES_CODE);
+            bool allMult = excluded ? GetAllExcluded(ssgpItem, ALL_MULTIMEDIAS_CODE) : GetAllSelected(ssgpItem, ALL_MULTIMEDIAS_CODE);
+
+            var fmtParts = new List<string>();
+            if (allPub)
+            {
+                fmtParts.Add(PUBLICATION_FORMAT.Substring(4));
+            }
+            if (allWeb)
+            {
+                fmtParts.Add(WEBPAGE_FORMAT.Substring(4));
+            }
+            if (allBlog)
+            {
+                fmtParts.Add(BLOG_FORMAT.Substring(4));
+            }
+            if (allMult)
+            {
+                fmtParts.Add(MULTIMEDIA_FORMAT.Substring(4));
+            }
+            if (allPic)
+            {
+                fmtParts.Add(PICTURE_FORMAT.Substring(4));
+            }
+            return fmtParts;
+        }
+
+        private static string GetFormatedSearchString(IEnumerable<string> fmtParts, IEnumerable<string> rstParts)
+        {
+            var sb = new StringBuilder();
+            if (fmtParts.Count() > 0 || rstParts.Count() > 0)
+            {
+                var appendOperator = false;
+                sb.Append("(");
+                if (fmtParts.Count() > 0)
+                {
+                    sb.Append("fmt=(").Append(String.Join(FMT_OPERATOR, fmtParts.ToArray())).Append(")");
+                    appendOperator = true;
+                }
+                if (rstParts.Count() > 0)
+                {
+                    if (appendOperator)
+                    {
+                        sb.Append(" OR ");
+                    }
+                    sb.Append("rst=(").Append(String.Join(FMT_OPERATOR, rstParts.ToArray())).Append(")");
+                }
+                sb.Append(")");
+            }
+            return sb.ToString();
+        }
+
+
         public static SearchStringCollection BuildSearchStringCollection(
             SearchSourceGroupPreferenceItem searchSourceGroupPreferenceItem)
         {
@@ -635,7 +770,7 @@ namespace DowJones.Search.Core
                 bool allPic = GetAllSelected(searchSourceGroupPreferenceItem, ALL_PICTURES_CODE);
                 bool allMult = GetAllSelected(searchSourceGroupPreferenceItem, ALL_MULTIMEDIAS_CODE);
 
-                
+
                 //Add source search string
                 if ((includedSources != null && includedSources.Count > 0) ||
                     (excludedSources != null && excludedSources.Count > 0))
@@ -654,6 +789,16 @@ namespace DowJones.Search.Core
                 searchSourceGroupPreferenceItem.Value.Count > 0)
             {
                 return searchSourceGroupPreferenceItem.Value.Any(sourceList => sourceList.IsAllSourcesSelected && sourceList.Type == MapAllCode(allCode));
+            }
+            return false;
+        }
+
+        private static bool GetAllExcluded(SearchSourceGroupPreferenceItem searchSourceGroupPreferenceItem, string allCode)
+        {
+            if (searchSourceGroupPreferenceItem != null && searchSourceGroupPreferenceItem.Value != null &&
+                searchSourceGroupPreferenceItem.Value.Count > 0)
+            {
+                return searchSourceGroupPreferenceItem.Value.Any(sourceList => sourceList.IsAllSourcesExcluded && sourceList.Type == MapAllCode(allCode));
             }
             return false;
         }
@@ -938,3 +1083,4 @@ namespace DowJones.Search.Core
         }
     }
 }
+

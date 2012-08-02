@@ -1049,6 +1049,22 @@ namespace DowJones.Formatters.Globalization.DateTime
         }
 
         /// <summary>
+        /// Gets the date time.
+        /// </summary>
+        /// <param name="dt">The dt.</param>
+        /// <returns></returns>
+        public System.DateTime GetDateTime(System.DateTime dt)
+        {
+            var temp = ConvertToUtc(dt);
+            if (TimeZoneBuilder.ConvertToLocalTime)
+            {
+                temp = TimeZoneBuilder.UITimeZone.ToLocalTime(temp, TimeZoneBuilder.AdjustToDaylightSavingsTime);
+                return temp;
+            }
+            return temp;
+        }
+
+        /// <summary>
         /// Formats the long date time.
         /// </summary>
         /// <param name="s">

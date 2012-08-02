@@ -7,10 +7,7 @@
 @ClientTemplate RelativeResourceName=ClientTemplates.Key.htm, TemplateId=key
 @ClientTemplate RelativeResourceName=ClientTemplates.Radar.htm, TemplateId=radar
 @ClientTemplate RelativeResourceName=ClientTemplates.Success.htm, TemplateId=success
-@ScriptResource RelativeResourceName=NewsRadar.js
+@ScriptResource RelativeResourceName=NewsRadar.js, DependsOn=jquery-tools;highcharts
 @{ 
     CssClass = "dj_newsRadar";
-    DJ.ScriptRegistry()
-        .WithHighCharts()
-        .WithJQueryTools(); 
 }

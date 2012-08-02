@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
@@ -7,6 +8,7 @@ using DowJones.Articles;
 using DowJones.Assemblers.Articles;
 using DowJones.DependencyInjection;
 using DowJones.Exceptions;
+using DowJones.Extensions;
 using DowJones.Generators;
 using DowJones.Managers.RelatedConcept;
 using DowJones.Managers.Search;
@@ -30,13 +32,12 @@ using DowJones.Web.Mvc.Search.ViewModels;
 using DowJones.Web.Mvc.UI;
 using DowJones.Web.Mvc.UI.Components.Article;
 using DowJones.Web.Mvc.UI.Components.CompositeHeadline;
-using DowJones.Web.Mvc.UI.Components.DateHistogram;
-using DowJones.Web.Mvc.UI.Components.Discovery;
 using DowJones.Web.Mvc.UI.Components.HeadlineList;
 using DowJones.Web.Mvc.UI.Components.CompanySparkline;
-using DowJones.Web.Mvc.UI.Components.PostProcessing;
+using DowJones.Web.Mvc.UI.Components.Discovery;
 using DowJones.Web.Mvc.UI.Components.RelatedConcepts;
-using SearchBuilder = DowJones.Web.Mvc.Search.UI.Components.Builders.SearchBuilder;
+using DowJones.Web.Mvc.UI.Components.PostProcessing;
+using DowJones.Web.Mvc.UI.Components.DateHistogram;
 
 namespace DowJones.Web.Mvc.Search.Controllers
 {
@@ -316,7 +317,7 @@ namespace DowJones.Web.Mvc.Search.Controllers
             //Specific request processing
             if ((request is SimpleSearchRequest) && !string.IsNullOrWhiteSpace(request.FreeText))
             {
-                searchResults.RelatedConcepts = new RelatedConceptsModel
+                searchResults.RelatedConcepts = new RelatedConceptsComponentModel
                                                     {
                                                         Keywords = request.FreeText,
                                                         MaxNumberOfTerms = 10,
@@ -329,8 +330,12 @@ namespace DowJones.Web.Mvc.Search.Controllers
             if (IsAlertResult(request))
             {
                 excludeEnumItems = new SortOrder[0];
-                //Commenting this as a part of Alert Dedup enhancement
-                //searchResults.ShowDuplicates = ShowDuplicates.Off;
+
+                if (!request.ShowDuplicates.HasValue)
+                {
+                    searchResults.ShowDuplicates = ShowDuplicates.Off;
+                }
+
                 if (searchResults.Headlines != null && searchResults.Headlines.HeadlineList != null)
                 {
                     searchResults.Headlines.ShowPressClip = UserContext.Principle.CoreServices.AlertsService.HasPressClipsEnabled;
@@ -343,12 +348,13 @@ namespace DowJones.Web.Mvc.Search.Controllers
                             searchResults.Headlines.PostProcessing.PostProcessingOptions
                                 = searchResults.Headlines.PostProcessing.PostProcessingOptions.Concat(new[] { PostProcessingOptions.PressClips });
                         }
-                        // apply post procesing actions to individual headlines 
-                        searchResults.Headlines.HeadlineList.PostProcessingOptions = searchResults.Headlines.PostProcessing.PostProcessingOptions;
                     }
                     searchResults.Headlines.HeadlineList.ShowPressClip = searchResults.Headlines.ShowPressClip;
-                    //Commenting this as a part of Alert Dedup enhancement
-                    //searchResults.Headlines.EnableDuplicateOption = false;
+
+                    if (!request.ShowDuplicates.HasValue)
+                    {
+                        searchResults.Headlines.EnableDuplicateOption = false;
+                    }
                 }
             }
             searchResults.Headlines.HeadlineSortOptions = new EnumSelectListWithTranslatedText<SortOrder>(searchResults.HeadlineSort, excludeEnumItems);

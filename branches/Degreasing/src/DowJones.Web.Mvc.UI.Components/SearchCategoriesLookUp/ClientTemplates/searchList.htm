@@ -2,8 +2,15 @@
     for(var i = 0;i < data.length;i++){ 
         d = data[i];
         desc = d.Name || d.desc;
-        if(self.isAuthor && d.PrimarySource && d.PrimarySource.Description){
-            desc += " (" + d.PrimarySource.Description  +")";
+        if(self.isAuthor){
+            if(d.PrimarySource && d.PrimarySource.Description){
+                desc += " (" + d.PrimarySource.Description  + ")";
+            }
+        }
+        else if(self.isExecutive){
+            if(d.AssociatedCompanies && d.AssociatedCompanies.length && d.AssociatedCompanies[0].Name){
+                desc += " (" + d.AssociatedCompanies[0].Name  + ")";
+            }
         }
 %>
     <li class="item" data-code="<%= (d.Code || d.code).toLowerCase() %>">

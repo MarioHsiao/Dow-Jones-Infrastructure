@@ -1,8 +1,8 @@
-﻿<% _.each(self.filterItems, function(filterItem, i) { 
+﻿<% $.each(self.filterItems, function(i, filteItem) { 
     if(filterItem && filterItem.filter && filterItem.filter.length > 0) { %>
         <div>
             <span class="filterLabel"><%= filterItem.filterName %>:</span>
-            <% _.each(filterItem.filter, function(filter, j) { %>
+            <% $.each(filterItem.filter, function(j, filter) { %>
                 <span class="filter">
                     <span class="label"><%= filter.desc %></span>
                     <span class="icon-close" fIndex="<%= i %>" iIndex="<%= j %>" title="<%= Token("removeFilter")%>"></span>

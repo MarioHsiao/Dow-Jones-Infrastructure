@@ -39,12 +39,11 @@
     <DocumentationFile>bin\Release\DowJones.Web.Mvc.UI.Components.Models.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="factiva.gateway.messages, Version=7.5.0.83, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Factiva.Gateway.7.5.0.83\lib\factiva.gateway.messages.dll</HintPath>
+    <Reference Include="factiva.gateway.messages">
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.90\lib\factiva.gateway.messages.dll</HintPath>
     </Reference>
-    <Reference Include="FactivaGateway, Version=1.5.0.7, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Factiva.Gateway.7.5.0.83\lib\FactivaGateway.dll</HintPath>
+    <Reference Include="FactivaGateway">
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.90\lib\FactivaGateway.dll</HintPath>
     </Reference>
     <Reference Include="Interop.FCMLib">
       <HintPath>..\packages\Factiva.Gateway.7.5.0.83\lib\Interop.FCMLib.dll</HintPath>
@@ -91,8 +90,11 @@
     <Compile Include="CalloutPopup\CalloutPopupModel.cs" />
     <Compile Include="CompositeAuthor\CompositeAuthorModel.cs" />
     <Compile Include="CompositeOutlet\CompositeOutletModel.cs" />
+    <Compile Include="DateHistogram\DateHistogramModel.cs" />
     <Compile Include="DateSlider\DateSliderModel.cs" />
+    <Compile Include="DiscoveryGraph\Entities.cs" />
     <Compile Include="DiscoveryGraph\DiscoveryGraphModel.cs" />
+    <Compile Include="DiscoveryGraph\Orientation.cs" />
     <Compile Include="EntityList\EntityListModel.cs" />
     <Compile Include="HeadlineListCarousel\HeadlineListCarouselModel.cs" />
     <Compile Include="NewsRadar\EntityModel.cs" />
@@ -123,7 +125,6 @@
     <Compile Include="PostProcessing\PostProcessingModel.cs" />
     <Compile Include="RelatedConcepts\RelatedConceptsComponentModel.cs" />
     <Compile Include="SearchNewsFilter\SearchNewsFilterModel.cs" />
-    <Compile Include="DateHistogram\DateHistogramModel.cs" />
     <Compile Include="Search\SearchResponseToCompositeHeadlinesModelMapper.cs" />
     <Compile Include="HeadlinePostProcessing\HeadlinePostProcessingModel.cs" />
     <Compile Include="Search\SearchResponseToCompanyProfilesMapper.cs" />
@@ -132,6 +133,8 @@
     <Compile Include="SimpleAlert\SimpleAlertModel.cs" />
     <Compile Include="StockKiosk\StockKioskModel.cs" />
     <Compile Include="TaxonomySearchBrowse\TaxonomySearchBrowseModel.cs" />
+    <Compile Include="TopicEditor\TopicSearchQuery.cs" />
+    <Compile Include="TopicEditor\TopicData.cs" />
     <Compile Include="TopicEditor\TopicEditorModel.cs" />
     <Compile Include="SearchBuilder\SearchBuilderModel.cs" />
     <Compile Include="Common\Author.cs" />

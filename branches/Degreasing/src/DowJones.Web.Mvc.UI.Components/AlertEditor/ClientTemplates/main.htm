@@ -10,7 +10,7 @@
 			<label><%= Token("criteria") %></label>
 			<p></p>
 		</div>
-        <div class="alert-filters" style="position:relative"></div>
+        <div class="alert-filters"></div>
 		<div class="dj_form-field select alert-email">
 			<label><%= Token("emailAddress") %></label>
 			<input type="text" maxlength="50"/>
@@ -21,17 +21,15 @@
 		</div>
         <div class="dj_form-field radio alert-delivery-method">
 	        <div class="dj_form-group-inline">
-				<label><%= Token("deliveryTime") %></label>
-                <input type="radio" name="dj_custom-delivery" value="nodelivery" />
-				<label class="radio"><%= Token("noDelivery") %></label>
+				<label><%= Token("customEmailDelivery") %></label>
 				<input type="radio" name="dj_custom-delivery" value="scheduled" />
-				<label class="radio"><%= Token("scheduled") %></label>
+				<label class="radio"><%= Token("cmScheduledDelivery") %></label>
 	            <input type="radio" name="dj_custom-delivery" value="continuous" />
-				<label class="radio"><%= Token("continuous") %></label>
+				<label class="radio"><%= Token("cmContinuousDelivery") %></label>
 	        </div>
 	    </div>
 		<div class="dj_form-field auto-height alert-delivery">
-	        <label class="top"><%= Token("selectDeliveryTime") %></label>
+	        <label class="top"><%= Token("deliveryTime") %></label>
 			<ul class="inline-checklist">
 				<li>
 					<label>

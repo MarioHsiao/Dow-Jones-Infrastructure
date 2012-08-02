@@ -1,9 +1,10 @@
-﻿@model DowJones.Web.Mvc.Search.UI.Components.Filters.SearchFilters
+﻿@using DowJones.Extensions;
+@model DowJones.Web.Mvc.Search.UI.Components.Filters.SearchFilters
 @ClientPlugin dj_SearchFilters
 @ScriptResource RelativeResourceName=SearchFiltersManager.js
 @ScriptResource RelativeResourceName=SearchFilters.js
 
-<input type="hidden" name="filters" class="filters" value='@Model.SerializedFilters' />
+<input type="hidden" name="filters" class="filters" value="@Model.SerializedFilters.EscapeForHtml(HtmlEscapeType.DoubleQuote)"/>
 
 
 @* If we don't have any filters just write the hidden field and bail out *@
@@ -37,8 +38,8 @@
                         @foreach (var filter in group)
                         {
                         
-                            <li class="dj_pill" data-code="@filter.Code" data-name="@filter.Name">
-                                    <span href="#" class="filter">@filter.Name</span>
+                            <li class="dj_pill" data-code="@filter.Code" data-name="@filter.Name.EscapeForHtml(HtmlEscapeType.DoubleQuote)">
+                                    <span href="#" class="filter ellipsis">@filter.Name</span>
                                     <span class="remove"></span>
                             </li>
                         

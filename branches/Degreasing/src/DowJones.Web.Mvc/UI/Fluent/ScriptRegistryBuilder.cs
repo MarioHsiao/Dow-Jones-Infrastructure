@@ -128,6 +128,12 @@ namespace DowJones.Web.Mvc.UI
             return this;
         }
 
+        public virtual ScriptRegistryBuilder WithCrossDomain(bool enabled = true)
+        {
+            RegisterFrameworkWebResource(EmbeddedResources.Js.CrossDomain, ClientResourceDependencyLevel.Core, enabled);
+            return this;
+        }
+
         public virtual ScriptRegistryBuilder WithJQueryUIEffects(bool enabled = true)
         {
             RegisterFrameworkWebResource(EmbeddedResources.Js.JQueryUICore, ClientResourceDependencyLevel.Global, enabled);

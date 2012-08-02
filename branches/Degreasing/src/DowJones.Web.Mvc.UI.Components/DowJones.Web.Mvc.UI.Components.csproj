@@ -82,12 +82,11 @@
     <Reference Include="CommonServiceLocator.NinjectAdapter">
       <HintPath>..\packages\Ninject.2.2.0.0\lib\.NetFramework 4.0\extensions\CommonServiceLocator.NinjectAdapter.dll</HintPath>
     </Reference>
-    <Reference Include="factiva.gateway.messages, Version=7.5.0.83, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Factiva.Gateway.7.5.0.83\lib\factiva.gateway.messages.dll</HintPath>
+    <Reference Include="factiva.gateway.messages">
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.90\lib\factiva.gateway.messages.dll</HintPath>
     </Reference>
-    <Reference Include="FactivaGateway, Version=1.5.0.7, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Factiva.Gateway.7.5.0.83\lib\FactivaGateway.dll</HintPath>
+    <Reference Include="FactivaGateway">
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.90\lib\FactivaGateway.dll</HintPath>
     </Reference>
     <Reference Include="Interop.FCMLib">
       <HintPath>..\packages\Factiva.Gateway.7.5.0.83\lib\Interop.FCMLib.dll</HintPath>
@@ -153,7 +152,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AutoSuggestComponent.cshtml</DependentUpon>
     </Compile>
-    <Compile Include="AutoSuggest\WebResources.cs" />
+    <Compile Include="AutoSuggest\EmbeddedResources.cs" />
     <Compile Include="AutoSuggest\AutoSuggestComponentExtensions.cs" />
     <Compile Include="CalendarEventList\CalendarEventListComponent.cs">
       <AutoGen>True</AutoGen>
@@ -192,7 +191,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CompositeOutletComponent.cshtml</DependentUpon>
     </Compile>
-    <Compile Include="DateHistogram\DateHistogramComponent.cs">
+    <Compile Include="DateHistogram\DateHistogramComponent1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DateHistogramComponent.cshtml</DependentUpon>
@@ -392,6 +391,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>TwitterExpertsComponent.cshtml</DependentUpon>
     </Compile>
+    <Compile Include="VideoPlayer\EmbeddedResources.cs" />
     <Compile Include="VideoPlayer\VideoPlayerComponent.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -464,7 +464,6 @@
     <EmbeddedResource Include="AlertEditor\AlertEditor.js" />
     <EmbeddedResource Include="AlertEditor\ClientTemplates\filters.htm" />
     <EmbeddedResource Include="AlertEditor\ClientTemplates\main.htm" />
-    <EmbeddedResource Include="RelatedConcepts\RelatedConcepts.js" />
     <EmbeddedResource Include="RelatedConcepts\ClientTemplates\Success.htm" />
     <EmbeddedResource Include="PersonalizationFilters\ClientTemplates\filterPill.htm" />
     <EmbeddedResource Include="AuthorList\AuthorList.js" />
@@ -503,7 +502,6 @@
     <EmbeddedResource Include="Radar\images\bar-graph-ltBlue.png" />
     <EmbeddedResource Include="VideoPlayer\js\flowplayer-combined.js" />
     <EmbeddedResource Include="TagCloud\TagCloud.js" />
-    <EmbeddedResource Include="Radar\jquery.ba-dotimeout.min.js" />
     <EmbeddedResource Include="HeadlineCarousel\HeadlineCarousel.js" />
     <EmbeddedResource Include="NewsStandTicker\jquery.SmoothScrollDiv.js" />
     <EmbeddedResource Include="NewsStandTicker\NewsStandTicker.js" />
@@ -566,6 +564,10 @@
       <Generator>RazorViewComponentClassGenerator</Generator>
       <LastGenOutput>CompositeOutletComponent.cs</LastGenOutput>
     </None>
+    <None Include="DateHistogram\DateHistogramComponent.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>DateHistogramComponent1.cs</LastGenOutput>
+    </None>
     <None Include="DateSlider\DateSliderComponent.cshtml">
       <Generator>RazorViewComponentClassGenerator</Generator>
       <LastGenOutput>DateSliderComponent.cs</LastGenOutput>
@@ -614,10 +616,6 @@
     <None Include="SearchNewsFilter\SearchNewsFilterComponent.cshtml">
       <Generator>RazorViewComponentClassGenerator</Generator>
       <LastGenOutput>SearchNewsFilterComponent.cs</LastGenOutput>
-    </None>
-    <None Include="DateHistogram\DateHistogramComponent.cshtml">
-      <Generator>RazorViewComponentClassGenerator</Generator>
-      <LastGenOutput>DateHistogramComponent.cs</LastGenOutput>
     </None>
     <None Include="SimpleAlert\SimpleAlertComponent.cshtml">
       <Generator>RazorViewComponentClassGenerator</Generator>
@@ -684,23 +682,11 @@
     <EmbeddedResource Include="HeadlineCarousel\ClientTemplates\HeadlineHitCountsPackage.htm" />
     <EmbeddedResource Include="HeadlineCarousel\ClientTemplates\VideoX.htm" />
     <EmbeddedResource Include="HeadlineCarousel\ClientTemplates\VideoY.htm" />
-    <EmbeddedResource Include="HeadlineCarousel\jquery.ui.headline-carousel.js" />
     <EmbeddedResource Include="HeadlineCarousel\ClientTemplates\NoData.htm" />
     <EmbeddedResource Include="HeadlineList\ClientTemplates\Success.htm" />
     <EmbeddedResource Include="HeadlineList\HeadlineList.js" />
     <EmbeddedResource Include="Discovery\ClientTemplates\Success.htm" />
     <EmbeddedResource Include="AutoSuggest\AutoSuggest.js" />
-    <EmbeddedResource Include="AutoSuggest\AutoSuggest.css" />
-    <EmbeddedResource Include="AutoSuggest\images\acInfo.png" />
-    <EmbeddedResource Include="AutoSuggest\images\acNot.png" />
-    <EmbeddedResource Include="AutoSuggest\images\acPromote.png" />
-    <EmbeddedResource Include="AutoSuggest\images\source_blog.png" />
-    <EmbeddedResource Include="AutoSuggest\images\source_discont.png" />
-    <EmbeddedResource Include="AutoSuggest\images\source_multimedia.png" />
-    <EmbeddedResource Include="AutoSuggest\images\source_picture.png" />
-    <EmbeddedResource Include="AutoSuggest\images\source_publication.png" />
-    <EmbeddedResource Include="AutoSuggest\images\source_sourceFamily.png" />
-    <EmbeddedResource Include="AutoSuggest\images\source_webpage.png" />
     <EmbeddedResource Include="AutoSuggest\scripts\jquery.autocomplete.js" />
     <EmbeddedResource Include="CalendarEventList\ClientTemplates\Container.htm" />
     <EmbeddedResource Include="CalendarEventList\ClientTemplates\Success.htm" />
@@ -710,7 +696,6 @@
     <EmbeddedResource Include="DateSlider\DateSlider.js" />
     <EmbeddedResource Include="HeadlineListCarousel\HeadlineListCarousel.css" />
     <EmbeddedResource Include="HeadlineListCarousel\HeadlineListCarousel.js" />
-    <EmbeddedResource Include="AutoSuggest\images\progress.gif" />
     <EmbeddedResource Include="Pager\Pager.js" />
     <EmbeddedResource Include="RegionalMap\images\world_map.gif" />
     <EmbeddedResource Include="RegionalMap\RegionalMap.js" />
@@ -804,6 +789,19 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="AutoSuggest\scripts\jquery.jsonp-2.3.1.min.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AutoSuggest\ClientTemplates\Success.htm" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="RelatedConcepts\RelatedConcepts.js" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="VideoPlayer\ClientTemplates\Success.htm" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="DiscoveryGraph\ClientTemplates\Layout.htm" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

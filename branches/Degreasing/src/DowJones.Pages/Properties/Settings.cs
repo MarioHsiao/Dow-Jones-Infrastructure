@@ -6,7 +6,7 @@ namespace DowJones.Pages
 {
     public partial class Settings
     {
-        [ApplicationScopedSetting, DebuggerNonUserCode, SettingsSerializeAs(SettingsSerializeAs.String)]
+        [ApplicationScopedSetting, DebuggerNonUserCode, SettingsSerializeAs(SettingsSerializeAs.Xml)]
         [DefaultSettingValue("<lightWeightUser><userId>snap_proxy</userId><userPassword>pa55w0rd</userPassword><productId>16</productId><clientCodeType>D</clientCodeType><accessPointCodeUsage>SC</accessPointCodeUsage></lightWeightUser>")]
         public LightWeightUser PageMetadataProxyUser
         {

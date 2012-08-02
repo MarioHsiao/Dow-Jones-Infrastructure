@@ -48,13 +48,17 @@ namespace DowJones.Web.Mvc.Search.Requests.Mappers
 
         private CompoundQueryFilter MapSourceSearchFilter(SourceSearchFilter sourceSearchFilter)
         {
-            if (sourceSearchFilter == null || ((sourceSearchFilter.Include == null || sourceSearchFilter.Include.Count == 0) && string.IsNullOrEmpty(sourceSearchFilter.ListId)))
+            if (sourceSearchFilter == null 
+                || ((sourceSearchFilter.Include == null || sourceSearchFilter.Include.Count == 0)
+                        && (sourceSearchFilter.Exclude == null || sourceSearchFilter.Exclude.Count == 0)
+                        && string.IsNullOrEmpty(sourceSearchFilter.ListId)))
             {
                 return null;
             }
             var compoundQueryFilter = new CompoundQueryFilter
                                           {
                                               Include = sourceSearchFilter.Include.Select(MapSourceSourceFilter),
+                                              Exclude = sourceSearchFilter.Exclude.Select(MapSourceSourceFilter),
                                               ListId = sourceSearchFilter.ListId,
                                               ListName = sourceSearchFilter.ListName,
                                               ListType =  CompoundQueryListType.Source
@@ -64,18 +68,21 @@ namespace DowJones.Web.Mvc.Search.Requests.Mappers
 
         public SourceSearchFilter MapSourceSearchFilter(CompoundQueryFilter compoundQueryFilter)
         {
-            if (compoundQueryFilter == null || ((compoundQueryFilter.Include == null || compoundQueryFilter.Include.Count() == 0) && string.IsNullOrEmpty(compoundQueryFilter.ListId)))
+            if (compoundQueryFilter == null 
+                || ((compoundQueryFilter.Include == null || compoundQueryFilter.Include.Count() == 0)
+                        && (compoundQueryFilter.Exclude == null || compoundQueryFilter.Exclude.Count() == 0)
+                        && string.IsNullOrEmpty(compoundQueryFilter.ListId)))
             {
                 return new SourceSearchFilter();
             }
 
-            var includes = MapSourceQueryFilters(compoundQueryFilter.Include);
-            var sourceSearchFilter = new SourceSearchFilter {
-                                              Include = includes.ToList(),
-                                              ListId = compoundQueryFilter.ListId,
-                                              ListName = compoundQueryFilter.ListName
-                                          };
-            return sourceSearchFilter;
+            return new SourceSearchFilter
+            {
+                Include = MapSourceQueryFilters(compoundQueryFilter.Include).ToList(),
+                Exclude = MapSourceQueryFilters(compoundQueryFilter.Exclude).ToList(),
+                ListId = compoundQueryFilter.ListId,
+                ListName = compoundQueryFilter.ListName
+            };
         }
 
         private IQueryFilter MapSourceSourceFilter(QueryFilters filters)
@@ -171,15 +178,12 @@ namespace DowJones.Web.Mvc.Search.Requests.Mappers
 
                 if (filter is SourceQueryFilterEntities)
                 {
-                    var sourceFilters = ((SourceQueryFilterEntities)filter);
-                    var filterEntities = sourceFilters.Select(MapSourceQueryFilterEntity);
-                    queryFilters.AddRange(filterEntities);
+                    queryFilters.AddRange(((SourceQueryFilterEntities)filter).Select(MapSourceQueryFilterEntity));
                 }
 
                 if (filter is SourceQueryFilterEntity)
                 {
-                    var entity = MapSourceQueryFilterEntity((SourceQueryFilterEntity)filter);
-                    queryFilters.Add(entity);
+                    queryFilters.Add(MapSourceQueryFilterEntity((SourceQueryFilterEntity)filter));
                 }
 
                 yield return queryFilters;

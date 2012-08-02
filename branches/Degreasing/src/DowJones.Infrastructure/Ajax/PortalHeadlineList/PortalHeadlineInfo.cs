@@ -33,7 +33,7 @@ namespace DowJones.Ajax.PortalHeadlineList
     [JsonObject(MemberSerialization.OptIn, Id = "portalHeadline")]
     public class PortalHeadlineInfo
     {
-        private Reference reference;
+        private Reference _reference;
 
         [DataMember(Name = "index")]
         [JsonProperty("index")]
@@ -115,8 +115,8 @@ namespace DowJones.Ajax.PortalHeadlineList
         [JsonProperty("reference")]
         public Reference Reference
         {
-            get { return reference ?? (reference = new Reference()); }
-            set { reference = value; }
+            get { return _reference ?? (_reference = new Reference()); }
+            set { _reference = value; }
         }
 
         [DataMember(Name = "snippets")]

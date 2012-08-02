@@ -16,28 +16,33 @@ namespace DowJones.Assemblers.Session
 
     public class ControlDataFactory : Factory<IControlData>
     {
-        private readonly HttpRequestBase _request;
-        private readonly IUserSession _session;
+        protected readonly HttpRequestBase Request;
+        protected readonly IUserSession Session;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ControlDataFactory" /> class.
+        /// </summary>
+        /// <param name="session">The session.</param>
+        /// <param name="request">The request.</param>
         public ControlDataFactory(IUserSession session, HttpRequestBase request = null)
         {
-            _request = request;
-            _session = session;
+            Request = request;
+            Session = session;
         }
 
         public override IControlData Create()
         {
             var controlData = new ControlData {
-                    AccessPointCode = _session.AccessPointCode,
-                    AccessPointCodeUsage = _session.AccessPointCode,
-                    Debug = _session.IsDebug,
-                    ClientCode = _session.ClientTypeCode,
-                    IpAddress = (_request == null) ? null : _request.ServerVariables["REMOTE_ADDR"],
-                    UserID = _session.UserId,
-                    SessionID = _session.SessionId,
-                    ProductID = _session.ProductId,
-                    ProxyUserId = _session.IsProxySession ? _session.ProxyUserId : null,
-                    ProxyProductId = _session.IsProxySession ? _session.ProxyNamespace : null
+                    AccessPointCode = Session.AccessPointCode,
+                    AccessPointCodeUsage = Session.AccessPointCode,
+                    Debug = Session.IsDebug,
+                    ClientType = Session.ClientTypeCode,
+                    IpAddress = (Request == null) ? null : Request.ServerVariables["REMOTE_ADDR"],
+                    UserID = Session.UserId,
+                    SessionID = Session.SessionId,
+                    ProductID = Session.ProductId,
+                    ProxyUserId = Session.IsProxySession ? Session.ProxyUserId : null,
+                    ProxyProductId = Session.IsProxySession ? Session.ProxyNamespace : null
                 };
 
             return controlData;

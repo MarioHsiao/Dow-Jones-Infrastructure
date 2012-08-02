@@ -1,27 +1,10 @@
-/*!
- * ScrollBar
- *   e.g. , "this._imageSize" is generated automatically.
- *
- *   
- *  Getters and Setters are generated automatically for every Client Property during init;
- *   e.g. if you have a Client Property called "imageSize" on server side code
- *        get_imageSize() and set_imageSize() will be generated during init.
- *  
- *  These can be overriden by defining your own implementation in the script. 
- *  You'd normally override the base implementation if you have extra logic in your getter/setter 
- *  such as calling another function or validating some params.
- *
- * @dependency jquery.ui.core.js
- * @dependency jquery.ui.widget.js
- * @dependency jquery.validate.js
- */
 DJ.UI.ScrollBar = DJ.UI.Component.extend({
     // Default options
     defaults: {
         scrollbarY: '',  //ScrollbarY elements
         scrollbarYThumb: '',
         scrollbarX: '', //ScrollbarY elements
-        scrollbarXThumb: '',        
+        scrollbarXThumb: '',
         elemHeight: '', // Dynamic properties:
         elemWidth: '',
         scrollX: false,
@@ -39,17 +22,29 @@ DJ.UI.ScrollBar = DJ.UI.Component.extend({
     // Widget options
     options: {
         minThumbSize: 30, // Minimum size of the scrollbar handle
-        autoRefresh: false // Experimental feature based on the DOMSubtreeModified event. (Gegko and Wekbkit only) Setting this value to true will automatically recalculate the scrollbar size when the content is updated.
+        autoRefresh: false, // Experimental feature based on the DOMSubtreeModified event. (Gegko and Wekbkit only) Setting this value to true will automatically recalculate the scrollbar size when the content is updated.
+        paddingclip: true // if false, using clip to take the container width 
     },
 
     selectors: {
         scrollbar: '.dj_scrollbar',
-        scrollbarinit: 'dj_scrollbar-init',
         scrollbarthumb: '.dj_scrollbar-thumb',
-        scrollbartrack: '.dj_scrollbar-track',
+        scrollbartrack: '.dj_scrollbar-track'
+    },
+
+    classNames: {
+        scrollbar: 'dj_scrollbar',
+        scrollbarinit: 'dj_scrollbar-init',
         scrollbarios: 'dj_scrollbar-ios',
         scrollbary: 'dj_scrollbar-y',
-        scrollbarx: 'dj_scrollbar-x'
+        scrollbarx: 'dj_scrollbar-x',
+        scrollbarthumb: 'dj_scrollbar-thumb',
+        scrollbartrack: 'dj_scrollbar-track'
+    },
+
+    templates: {
+        templateX: _.template('<div class="<%= scrollbar %>" style="width:<%= elemWidth %>px; margin-top:<%= elemHeight %>px; position:relative;"><div class="<%= scrollbartrack %>" style="width:<%= elemWidth %>px;"><div class="<%= scrollbarthumb %>"></div></div></div>'),
+        templateY: _.template('<div class="<%= scrollbar %>" style="height:<%= elemHeight %>px; margin-left:<%= elemWidth %>px; position:relative;"><div class="<%= scrollbartrack %>" style="height:<%= elemHeight %>px;"><div class="<%= scrollbarthumb %>"></div></div></div>')
     },
 
     init: function (element, meta) {
@@ -59,24 +54,43 @@ DJ.UI.ScrollBar = DJ.UI.Component.extend({
         this._super(element, $meta);
 
         this._scrollable();
+
     },
 
     _scrollable: function () {
         var self = this,
             $parentContainer = this.$element;
 
-        $parentContainer.addClass(self.selectors.scrollbarinit);
+        //remove existing classes and existing css if it exist.
+        //clearing off any scrollbar element and its properties that got added, before adding new one.
+        $("div.dj_scrollbar", $parentContainer.parent()).show().remove();
+        $parentContainer.css({ "width": $parentContainer.parent().width() - 10, "padding-right": "10px" })
+                        .removeClass("dj_scrollbar-y dj_scrollbar-init")
+                        .parent().css("width", "");
+        //addclass
+        if (self.options.direction && self.options.direction === 'horizontal') {
+            $parentContainer.addClass(self.classNames.scrollbarx);
+        }
+        else {
+            $parentContainer.addClass(self.classNames.scrollbary);
+        }
+
+        $parentContainer.addClass(self.classNames.scrollbarinit);
 
         // Browser Detection
         if ($.browser.mozilla) {
-            self._renderFFScrollbar();
+            self._renderScrollbar();
+
+            window.setTimeout(function () {
+                self.refresh();
+            }, 500);
         }
 
         // Mobile
         var deviceAgent = navigator.userAgent.toLowerCase();
         var ios = deviceAgent.match(/(iphone|ipod|ipad)/);
         if (ios) {
-            $parentContainer.addClass(self.selectors.scrollbarios);
+            $parentContainer.addClass(self.classNames.scrollbarios);
         }
     },
 
@@ -89,7 +103,7 @@ DJ.UI.ScrollBar = DJ.UI.Component.extend({
     /**
     * Render a custom scrollbar
     */
-    _renderFFScrollbar: function () {
+    _renderScrollbar: function () {
         var self = this,
 			$parentContainer = self.$element,
 			o = self.options;
@@ -98,14 +112,22 @@ DJ.UI.ScrollBar = DJ.UI.Component.extend({
         self.elemWidth = $parentContainer.width();
 
         // X-axis
-        if ($parentContainer.hasClass(self.selectors.scrollbarx)) {
+        if ($parentContainer.hasClass(self.classNames.scrollbarx)) {
             self.scrollX = true;
             var paddingBottom = parseInt($parentContainer.css('padding-bottom').replace(/[^-\d\.]/g, ''));
 
             $parentContainer.height(self.elemHeight + 15)
                             .width(self.elemWidth);
 
-            var scrollbarX = $.validator.format('<div class="{0}" style="width:{1}px; margin-top:{2}px; position:relative;"><div class="{3}" style="width:{1}px;"><div class="{4}"></div></div></div>', self.selectors.scrollbar.replace(".", ""), self.elemWidth, self.elemHeight, self.selectors.scrollbartrack.replace(".", ""), self.selectors.scrollbarthumb.replace(".", ""));
+            //var scrollbarX = $.validator.format('<div class="{0}" style="width:{1}px; margin-top:{2}px; position:relative;"><div class="{3}" style="width:{1}px;"><div class="{4}"></div></div></div>', self.selectors.scrollbar.replace(".", ""), self.elemWidth, self.elemHeight, self.selectors.scrollbartrack.replace(".", ""), self.selectors.scrollbarthumb.replace(".", ""));
+            //self.selectors.scrollbar.replace(".", ""), self.elemWidth, self.elemHeight, self.selectors.scrollbartrack.replace(".", ""), self.selectors.scrollbarthumb.replace(".", "")
+            var scrollbarX = self.templates.templateX({
+                scrollbar: self.classNames.scrollbar,
+                elemWidth: self.elemWidth,
+                elemHeight: self.elemHeight,
+                scrollbartrack: self.classNames.scrollbartrack,
+                scrollbarthumb: self.classNames.scrollbarthumb
+            });
 
             $parentContainer.css('position', 'absolute')
                             .css('clip', 'rect(0px ' + self.elemWidth + 'px ' + (self.elemHeight + paddingBottom) + 'px 0px)')
@@ -113,23 +135,24 @@ DJ.UI.ScrollBar = DJ.UI.Component.extend({
 
             self.scrollbarX = $parentContainer.siblings(self.selectors.scrollbar).first();
             self.scrollbarXThumb = $(self.scrollbarX).find(self.selectors.scrollbarthumb);
+            self.scrollbarXTrack = $(self.scrollbarX).find(self.selectors.scrollbartrack);
 
             // Prevent Scrollbar selection
             self._disableSelection($(self.scrollbarX));
             self._disableSelection($(self.selectors.scrollbarthumb));
             self._disableSelection($(self.selectors.scrollbartrack));
 
-            self.scrollbarX.on('click', self.selectors.scrollbarthumb, function (event) {
+            self.scrollbarXThumb.bind('click', function (event) {
                 event.stopPropagation();
             })
 
             // Track clicks
-            self.scrollbarX.on('click', self.selectors.scrollbartrack, function (event) {
+            self.scrollbarXTrack.bind('click', function (event) {
                 self.dragged = true;
 
                 var position = 0;
                 var mouseX = event.pageX - $(this).offset().left;
-                var thumbLeft = parseInt($(this).css('left').replace(/[^-\d\.]/g, ''));
+                var thumbLeft = parseInt($(self.scrollbarXThumb).css('left').replace(/[^-\d\.]/g, ''));
 
                 if (mouseX < thumbLeft) {
                     position = thumbLeft - self.thumbWidth;
@@ -144,11 +167,12 @@ DJ.UI.ScrollBar = DJ.UI.Component.extend({
                 }
 
                 // Scrolling animation
-                $(self.selectors.scrollbarthumb).animate({ left: position }, 200, function () { self.dragged = false });
+                $(self.scrollbarXThumb).animate({ left: position }, 200, function () { self.dragged = false });
                 $parentContainer.animate({ scrollLeft: ((position * self.maxScrollLeft) / (self.elemWidth - self.thumbWidth)) }, 200);
             });
 
-            $(self.selectors.scrollbarthumb).draggable({
+
+            $(self.scrollbarXThumb).draggable({
                 containment: 'parent',
                 scroll: false,
                 start: function () { self.dragged = true; },
@@ -159,7 +183,7 @@ DJ.UI.ScrollBar = DJ.UI.Component.extend({
             });
 
             if (o.autoRefresh) {
-                $(el).bind('DOMSubtreeModified', function () {
+                $parentContainer.bind('DOMSubtreeModified', function () {
                     self._updateThumbSize('x');
                     self._updateThumbPosition('x');
                 });
@@ -170,13 +194,21 @@ DJ.UI.ScrollBar = DJ.UI.Component.extend({
             self._updateThumbPosition('x');
         }
         // Y-axis
-        if ($parentContainer.hasClass(self.selectors.scrollbary)) {
+        if ($parentContainer.hasClass(self.classNames.scrollbary)) {
             self.scrollY = true;
             var paddingRight = parseInt($parentContainer.css('padding-right').replace(/[^-\d\.]/g, ''));
 
+            if (!self.options.paddingclip) paddingRight = 0;
             $parentContainer.width(self.elemWidth + 5);
 
-            var scrollbarY = $.validator.format('<div class="{0}" style="height:{1}px; margin-left:{2}px; position:relative;"><div class="{3}" style="height:{1}px;"><div class="{4}"></div></div></div>', self.selectors.scrollbar.replace(".", ""), self.elemHeight, self.elemWidth, self.selectors.scrollbartrack.replace(".", ""), self.selectors.scrollbarthumb.replace(".", ""));
+            //var scrollbarY = $.validator.format('<div class="{0}" style="height:{1}px; margin-left:{2}px; position:relative;"><div class="{3}" style="height:{1}px;"><div class="{4}"></div></div></div>', self.selectors.scrollbar.replace(".", ""), self.elemHeight, self.elemWidth, self.selectors.scrollbartrack.replace(".", ""), self.selectors.scrollbarthumb.replace(".", ""));
+            var scrollbarY = self.templates.templateY({
+                scrollbar: self.classNames.scrollbar,
+                elemHeight: self.elemHeight,
+                elemWidth: self.options.paddingclip ? self.elemWidth : self.elemWidth - 1,
+                scrollbartrack: self.classNames.scrollbartrack,
+                scrollbarthumb: self.classNames.scrollbarthumb
+            });
 
             $parentContainer.css('position', 'absolute')
                             .css('clip', 'rect(0px ' + (self.elemWidth - paddingRight) + 'px ' + self.elemHeight + 'px 0px)')
@@ -184,23 +216,24 @@ DJ.UI.ScrollBar = DJ.UI.Component.extend({
 
             self.scrollbarY = $parentContainer.siblings(self.selectors.scrollbar).first();
             self.scrollbarYThumb = $(self.scrollbarY).find(self.selectors.scrollbarthumb);
-            
+            self.scrollbarYTrack = $(self.scrollbarY).find(self.selectors.scrollbartrack);
+
             // Prevent Scrollbar selection
             self._disableSelection($(self.scrollbarY));
             self._disableSelection($(self.selectors.scrollbarthumb));
             self._disableSelection($(self.selectors.scrollbartrack));
 
-            self.scrollbarY.on('click', self.selectors.scrollbarthumb, function (event) {
+            self.scrollbarYThumb.bind('click', function (event) {
                 event.stopPropagation();
             })
 
             // Track clicks
-            self.scrollbarY.on('click', self.selectors.scrollbartrack, function (event) {
+            self.scrollbarYTrack.bind('click', function (event) {
                 self.dragged = true;
 
                 var position = 0;
                 var mouseY = event.pageY - $(this).offset().top;
-                var thumbTop = parseInt($(this).css('top').replace(/[^-\d\.]/g, ''));
+                var thumbTop = parseInt($(self.scrollbarYThumb).css('top').replace(/[^-\d\.]/g, ''));
 
                 if (mouseY < thumbTop) {
                     position = thumbTop - self.thumbHeight;
@@ -215,11 +248,11 @@ DJ.UI.ScrollBar = DJ.UI.Component.extend({
                 }
 
                 // Scrolling Animation
-                $(self.selectors.scrollbarthumb).animate({ top: position }, 200, function () { self.dragged = false });
+                $(self.scrollbarYThumb).animate({ top: position }, 200, function () { self.dragged = false });
                 $parentContainer.animate({ scrollTop: ((position * self.maxScrollTop) / (self.elemHeight - self.thumbHeight)) }, 200);
             });
 
-            $(self.selectors.scrollbarthumb).draggable({
+            $(self.scrollbarYThumb).draggable({
                 containment: 'parent',
                 scroll: false,
                 start: function () { self.dragged = true; },
@@ -247,7 +280,7 @@ DJ.UI.ScrollBar = DJ.UI.Component.extend({
     *
     * @param	string		axis	Scrollbar axis (Possible values: 'x', 'y')		
     */
-    _updateScrollingPosition: function (axis) {        
+    _updateScrollingPosition: function (axis) {
         var self = this,
 			el = self.element;
 
@@ -276,14 +309,23 @@ DJ.UI.ScrollBar = DJ.UI.Component.extend({
 
         self.scrollTop = $(el).scrollTop();
         self.scrollLeft = $(el).scrollLeft();
-
         // X-axis
         if (axis == 'x') {
             $(self.scrollbarXThumb).css('left', ((self.scrollLeft * (self.elemWidth - self.thumbWidth)) / self.maxScrollLeft) + 'px');
         }
         // Y-axis
         if (axis == 'y') {
-            $(self.scrollbarYThumb).css('top', ((self.scrollTop * (self.elemHeight - self.thumbHeight)) / self.maxScrollTop) + 'px');
+            if (self.scrollTop === 0) {
+                $(self.scrollbarYThumb).css('top', 0);
+            }
+            else {
+                if (self.maxScrollTop >= self.scrollTop) {
+                    $(self.scrollbarYThumb).css('top', ((self.scrollTop * (self.elemHeight - self.thumbHeight)) / self.maxScrollTop) + 'px');
+                }
+                else {
+                    $(self.scrollbarYThumb).css('top', ((self.scrollTop * (self.elemHeight - self.thumbHeight)) / self.scrollTop) + 'px');
+                }
+            }
         }
     },
 
@@ -313,7 +355,7 @@ DJ.UI.ScrollBar = DJ.UI.Component.extend({
         // Y-axis
         if (axis == 'y') {
             if ((self.elemHeight / self.scrollHeight) < 1) {
-                $(el).parent().width(self.elemWidth - 5);
+                $(el).parent().width(self.elemWidth + 10);
                 self.scrollbarY.css('display', 'block');
                 self.thumbHeight = Math.round(self.elemHeight * (self.elemHeight / self.scrollHeight));
                 if (self.thumbHeight < o.minThumbSize) self.thumbHeight = o.minThumbSize;
@@ -321,6 +363,7 @@ DJ.UI.ScrollBar = DJ.UI.Component.extend({
             else {
                 $(el).parent().css('width', '');
                 self.scrollbarY.css('display', 'none');
+                if (!self.options.paddingclip) { self.$element.css('clip', 'rect(0px ' + (self.elemWidth + 10) + 'px ' + self.elemHeight + 'px 0px)') }
             }
             $(self.scrollbarYThumb).height(self.thumbHeight);
         }

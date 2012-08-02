@@ -1158,18 +1158,6 @@ DJ.$dj.define('$dj', ['jquery'], DJ.$dj);
 
             this._initializeEventHandlers();
 
-            // take name of event handlers (that come as strings) 
-            // and turn them to function references
-            this.mappedhandlers = {};
-            for (var handler in this.eventHandlers) {
-                this.mappedhandlers[handler] = this._mapperR(this.eventHandlers[handler]);
-            }
-
-            // avoid some overhead if no valid handlers are found
-            if (!$.isEmptyObject(this.mappedhandlers)) {
-                this.$element.bind(this.mappedhandlers);
-            }
-
             // declare an instance variable for all internal subscribers
             this._eventSubscribers = {};
         },

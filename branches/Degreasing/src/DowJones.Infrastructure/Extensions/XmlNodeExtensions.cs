@@ -7,6 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System.Linq;
 using System.Xml;
 
 namespace DowJones.Extensions
@@ -76,15 +77,7 @@ namespace DowJones.Extensions
         /// <returns>The CData section content</returns>
         public static string GetCDataSection(this XmlNode parentNode)
         {
-            foreach (var node in parentNode.ChildNodes)
-            {
-                if (node is XmlCDataSection)
-                {
-                    return ((XmlCDataSection) node).Value;
-                }
-            }
-
-            return null;
+            return parentNode.ChildNodes.OfType<XmlCDataSection>().Select(node => (node).Value).FirstOrDefault();
         }
 
         /// <summary>

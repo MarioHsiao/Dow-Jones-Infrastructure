@@ -149,3 +149,4 @@
 
     // Declare this class as a jQuery plugin
     $.plugin('dj_SimpleSearchBuilder', DJ.UI.SimpleSearchBuilder);
+

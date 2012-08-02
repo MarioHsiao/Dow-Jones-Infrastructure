@@ -76,3 +76,4 @@
 
     // Declare this class as a jQuery plugin
     $.plugin('dj_DidYouMean', DJ.UI.DidYouMean);
+

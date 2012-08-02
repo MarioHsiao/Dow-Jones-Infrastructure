@@ -1,4 +1,4 @@
-using System;
+using DowJones.Infrastructure;
 using Newtonsoft.Json;
 
 namespace DowJones.Web.Configuration
@@ -6,9 +6,8 @@ namespace DowJones.Web.Configuration
     /// <summary>
     /// Client-Side Credentials for use in the browser
     /// </summary>
-    public class ClientCredentials
+    public class ClientCredentials : ICredentials
     {
-
         /// <summary>The access point code.</summary>
         [JsonProperty("accessPointCode",
                       NullValueHandling = NullValueHandling.Ignore,
@@ -21,12 +20,23 @@ namespace DowJones.Web.Configuration
                       DefaultValueHandling = DefaultValueHandling.Ignore)]
         public string AccessPointCodeUsage { get; set; }
 
-        /// <summary>The type of the token.</summary>
-        [Obsolete("Use sessionId and/or encryptedToken instead")]
-        [JsonProperty("credentialType", 
-                      NullValueHandling = NullValueHandling.Ignore, 
+        /// <summary>The client type code.</summary>
+        [JsonProperty("clientCode",
+                      NullValueHandling = NullValueHandling.Ignore,
                       DefaultValueHandling = DefaultValueHandling.Ignore)]
-        public ClientCredentialTokenType CredentialType { get; set; }
+        public string ClientCode { get; set; }
+
+        /// <summary>The client type code.</summary>
+        [JsonProperty("cacheKey",
+                      NullValueHandling = NullValueHandling.Ignore,
+                      DefaultValueHandling = DefaultValueHandling.Ignore)]
+        public string CacheKey { get; set; }
+
+        /// <summary>The client code.</summary>
+        [JsonProperty("clientType",
+                      NullValueHandling = NullValueHandling.Ignore,
+                      DefaultValueHandling = DefaultValueHandling.Ignore)]
+        public string ClientType { get; set; }
 
         /// <summary>The Proxy User ID</summary>
         [JsonProperty("proxyUserId",
@@ -40,6 +50,17 @@ namespace DowJones.Web.Configuration
                       DefaultValueHandling = DefaultValueHandling.Ignore)]
         public string ProxyUserNamespace { get; set; }
 
+        /// <summary>
+        /// Gets or sets the type of the credential.
+        /// </summary>
+        /// <value>
+        /// The type of the credential.
+        /// </value>
+        [JsonProperty("credentialType",
+                NullValueHandling = NullValueHandling.Ignore,
+                DefaultValueHandling = DefaultValueHandling.Ignore)]
+        public CredentialType CredentialType { get; set; }
+
         /// <summary>The remote address.</summary>
         [JsonProperty("remoteAddress",
                       NullValueHandling = NullValueHandling.Ignore,
@@ -51,13 +72,7 @@ namespace DowJones.Web.Configuration
                       NullValueHandling = NullValueHandling.Ignore,
                       DefaultValueHandling = DefaultValueHandling.Ignore)]
         public string SeamlessAccessFrom { get; set; }
-
-        /// <summary>The user's current Session ID.</summary>
-        [JsonProperty("sessionId",
-                      NullValueHandling = NullValueHandling.Ignore,
-                      DefaultValueHandling = DefaultValueHandling.Ignore)]
-        public string SessionId { get; set; }
-
+        
         /// <summary>The user's current encrypted token.</summary>
         [JsonProperty("token",
                       NullValueHandling = NullValueHandling.Ignore,

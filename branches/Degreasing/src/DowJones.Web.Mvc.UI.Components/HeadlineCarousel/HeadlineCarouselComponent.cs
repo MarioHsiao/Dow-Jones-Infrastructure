@@ -33,8 +33,6 @@ namespace DowJones.Web.Mvc.UI.Components.HeadlineCarousel
     // Last Generated Timestamp: 06/29/2012 12:46 PM
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.HeadlineCarousel.HeadlineCarousel.js", DependsOn=new string[] {
             "jquery-ui-widgets"}, ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.HeadlineCarousel.HeadlineCarouselComponent))]
-    [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.HeadlineCarousel.jquery.ui.headline-carousel.js", DependsOn=new string[] {
-            "jquery-ui-widgets"}, ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.HeadlineCarousel.HeadlineCarouselComponent))]
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.HeadlineCarousel.ClientTemplates.VideoX.htm", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="videoX", DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.HeadlineCarousel.HeadlineCarouselComponent))]
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.HeadlineCarousel.ClientTemplates.VideoY.htm", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="videoY", DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.HeadlineCarousel.HeadlineCarouselComponent))]
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.HeadlineCarousel.ClientTemplates.HeadlineHitCounts" +

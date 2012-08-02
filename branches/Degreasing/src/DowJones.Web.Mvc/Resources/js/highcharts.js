@@ -990,8 +990,8 @@ if (globalAdapter && globalAdapter.init) {
 	// of path animations.
 	globalAdapter.init(pathAnim);
 }
-if (!globalAdapter && win.jQuery) {
-	var jQ = jQuery;
+if (!globalAdapter && (win.jQuery || $)) {
+	var jQ = win.jQuery || $;
 
 	/**
 	 * Downloads a script and executes a callback when done.

@@ -23,11 +23,11 @@ namespace DowJones.Web.Mvc.UI.Components.RelatedConcepts
     using System.Web.UI;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 06/29/2012 01:25 PM
+    // Last Generated Timestamp: 07/27/2012 04:27 PM
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.RelatedConcepts.RelatedConcepts.js", ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.RelatedConcepts.RelatedConceptsComponent))]
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.RelatedConcepts.ClientTemplates.Success.htm", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="success", DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.RelatedConcepts.RelatedConceptsComponent))]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.22175")]
-    public class RelatedConceptsComponent : DowJones.Web.Mvc.UI.ViewComponentBase<RelatedConceptsModel>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.27108")]
+    public class RelatedConceptsComponent : DowJones.Web.Mvc.UI.ViewComponentBase<RelatedConceptsComponentModel>
     {
 #line hidden
 
@@ -38,7 +38,7 @@ namespace DowJones.Web.Mvc.UI.Components.RelatedConcepts
         {
             get
             {
-                return "dj_RelatedConcepts";
+                return "dj_RelatedConceptsComponent";
             }
         }
         public override void ExecuteTemplate()
@@ -51,7 +51,7 @@ WriteLiteral("\r\n\r\n");
 
 
    
-    CssClass = "dj_RelatedConcepts"; 
+    CssClass = "dj_RelatedConceptsComponent"; 
 
 
 WriteLiteral("\r\n");

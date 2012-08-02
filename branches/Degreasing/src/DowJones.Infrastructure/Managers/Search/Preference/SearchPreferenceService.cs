@@ -4,6 +4,7 @@ using System.Linq;
 using DowJones.Articles;
 using DowJones.Preferences;
 using Factiva.Gateway.Messages.Preferences.V1_0;
+using DowJones.Search;
 
 namespace DowJones.Managers.Search.Preference
 {
@@ -27,6 +28,8 @@ namespace DowJones.Managers.Search.Preference
                                PreferenceClassID.SearchSorting,
                                PreferenceClassID.SearchHeadlinesToShow,
                                PreferenceClassID.SearchDuplicateIdentification,
+                               PreferenceClassID.SimpleSearchSource,
+                               PreferenceClassID.DefaultSimpleSearchDateRange,
                                /* General */
                                PreferenceClassID.DateFormat,
                                PreferenceClassID.ArticleDisplayFormat,
@@ -215,6 +218,15 @@ namespace DowJones.Managers.Search.Preference
             }
         }
 
+        public DefaultSimpleSearchDateRange DefaultSimpleSearchDateRange
+        {
+            get
+            {
+                var item = PreferenceResponse.DefaultSimpleSearchDateRange;
+                return item != null ? item.Value : DefaultSimpleSearchDateRange.LastWeek;
+            }
+        }
+
         private static PictureSize MapPreferencePictureSize(PictureSizePreferenceItem item)
         {
             if (item != null)
@@ -227,7 +239,6 @@ namespace DowJones.Managers.Search.Preference
             }
             return PictureSize.Large;
         }
-
         #endregion
     }
 }

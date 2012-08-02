@@ -1,16 +1,15 @@
 ﻿using System.Linq;
-using DowJones.Web.Mvc.UI.Components.Common;
-using DowJones.Web.Mvc.UI.Components.Search;
 using Newtonsoft.Json;
 using DowJones.Globalization;
 using DowJones.Utilities.Search.Core;
+using DowJones.Web.Mvc.UI.Components.Search;
 
 namespace DowJones.Web.Mvc.UI.Components.SearchCategoriesLookUp
 {
     public class SearchCategoriesLookUpModel : ViewComponentModel
     {
         private LookUpData _lookUpData = new LookUpData();
-
+        
         /// <summary>
         /// Gets or sets the FilterType.
         /// </summary>
@@ -52,7 +51,7 @@ namespace DowJones.Web.Mvc.UI.Components.SearchCategoriesLookUp
                 if ((FilterType == FilterType.Language || FilterType == FilterType.Source) && _lookUpData.LanguageList == null)
                 {
                     var sortedLangList = LanguageUtilityManager.GetSortedLanguageList();
-                    _lookUpData.LanguageList = sortedLangList.Select(lang => new CodeDesc {Code = lang.Key, Desc = lang.Value}).ToList();
+                    _lookUpData.LanguageList = sortedLangList.Select(lang => new CodeDesc() {Code = lang.Key, Desc = lang.Value}).ToList();
                 }
                 return _lookUpData;
             } 
