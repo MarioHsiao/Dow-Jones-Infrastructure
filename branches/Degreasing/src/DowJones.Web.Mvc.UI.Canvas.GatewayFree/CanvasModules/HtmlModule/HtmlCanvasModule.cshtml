@@ -1,0 +1,13 @@
+﻿@inherits DowJones.Web.Mvc.UI.Canvas.AbstractCanvasModule<CanvasModules.HtmlModule.HtmlModule>
+@ScriptResource RelativeResourceName=HtmlModule.js
+@ClientPlugin dj_HtmlModule
+
+@section ContentArea {
+    @Html.Raw(Model.Html)
+
+    @if (Model.HasScript) {
+        <script class="script" type="text/delayed-execution-javascript">
+        @Html.Raw(Model.Script)
+        </script>
+    }
+}

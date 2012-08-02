@@ -1355,8 +1355,10 @@ DJ.$dj.define('$dj', ['jquery'], DJ.$dj);
             
             // container can either be a DOM element or an id string
             // if it's a string, resolve it to a DOM element
-            if (configuration.container && !$.isPlainObject(configuration.container))
-                configuration.container = document.getElementById(configuration.container);
+            if (configuration.container) {
+                if (typeof configuration.container === "string")
+                    configuration.container = document.getElementById(configuration.container);
+            }
 
             if (configuration.container === null) {
                 errors.push('container not found');

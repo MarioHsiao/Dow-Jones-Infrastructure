@@ -1,0 +1,33 @@
+﻿@{
+    DJ.StylesheetRegistry()
+        .Include("~/content/site.css", ClientResourceDependencyLevel.Global);
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+
+    <script type="text/javascript">
+    var DJ = { config: { debug: true } };
+    </script>
+    
+    @DJ.ScriptRegistry().RenderHead()
+
+    <script type="text/javascript">
+        jQuery = $ = DJ.jQuery, _ = DJ.underscore;
+    </script>
+
+    @DJ.StylesheetRegistry().RenderHead()
+</head>
+<body>
+    
+    <header>
+        <h1>PAM-less Dashboards Demo</h1>
+    </header>
+
+    @RenderBody()
+    
+    @DJ.StylesheetRegistry().Render() 
+    @DJ.ScriptRegistry().Render()
+</body>
+</html>
