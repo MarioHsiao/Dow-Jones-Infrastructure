@@ -56,5 +56,10 @@ namespace DowJones.Web.Showcase.Controllers
             var module = (ViewComponentViewResult)Module(id, pageId, callback);
             return new JsonpViewComponentResult(module) { Callback = jsonpCallback };
         }
+
+		public ActionResult ArticlePopup()
+		{
+			return PartialView("_PopupArticleContent");
+		}
     }
 }

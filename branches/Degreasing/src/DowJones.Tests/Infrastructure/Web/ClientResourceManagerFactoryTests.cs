@@ -89,17 +89,23 @@ namespace DowJones.Web
         [TestMethod]
         public void ShouldLoadClientResourcesFromClientResourceAttributes()
         {
+            var targetAssembly = typeof (TestClientResourceDecoratedType).Assembly;
+
             _mockAssemblyRegistry
                 .Setup(x => x.Assemblies)
-                .Returns(new[] { typeof(TestClientResourceDecoratedType).Assembly });
+                .Returns(new[] { targetAssembly });
 
             var resources = ClientResourceManagerFactory.GetClientResources();
 
-            Assert.AreEqual(2, resources.Count());
-            Assert.AreEqual(TestScriptResourceName, 
-                            resources.Single(x => x.ResourceKind == ClientResourceKind.Script).Name);
-            Assert.AreEqual(TestStylesheetResourceName, 
-                            resources.Single(x => x.ResourceKind == ClientResourceKind.Stylesheet).Name);
+            var expectedResourceAttributeCount = 
+                targetAssembly
+                    .GetExportedTypes()
+                    .SelectMany(x => x.GetCustomAttributes(false).OfType<ClientResourceAttribute>())
+                    .Count();
+
+            Assert.AreEqual(expectedResourceAttributeCount, resources.Count());
+            Assert.IsNotNull(resources.Single(x => x.Name == TestScriptResourceName));
+            Assert.IsNotNull(resources.Single(x => x.Name == TestStylesheetResourceName));
         }
 
         [TestMethod]

@@ -269,13 +269,6 @@
     <EmbeddedResource Include="Resources\images\hl\video.gif" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\js\jquery.validate.js" />
-    <EmbeddedResource Include="Resources\js\jquery.validate.unobtrusive.js" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\js\jquery.unobtrusive-ajax.js" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Resources\js\common.js" />
   </ItemGroup>
   <ItemGroup>
@@ -297,7 +290,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\js\jquery-ui.core.js" />
-    <EmbeddedResource Include="Resources\js\jquery-ui.core.min.js" />
+    <EmbeddedResource Include="Resources\js\jquery-ui.core.min.js">
+      <DependentUpon>jquery-ui.core.js</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\js\jquery-ui.effects.js" />
     <EmbeddedResource Include="Resources\js\jquery-ui.interactions.js" />
     <EmbeddedResource Include="Resources\js\jquery-ui.widgets.js" />
@@ -314,7 +309,6 @@
   <ItemGroup>
     <EmbeddedResource Include="Resources\js\jquery-json.js" />
     <EmbeddedResource Include="Resources\js\jquery.blockui.js" />
-    <EmbeddedResource Include="Resources\js\jquery.easing.js" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\js\jquery.cycle.all.js" />
@@ -343,7 +337,7 @@
   <ItemGroup>
     <EmbeddedResource Include="Resources\js\jquery.jscrollpane.js" />
     <EmbeddedResource Include="Resources\js\jquery.popupballoon.js" />
-    <EmbeddedResource Include="Resources\js\jquery.touchwipe.js" />
+    <EmbeddedResource Include="Resources\js\jquery.touchwipe.min.js" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\js\jquery.js" />
@@ -361,7 +355,9 @@
     <EmbeddedResource Include="Resources\js\crossdomain.js" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\js\jquery.tools.min.js" />
+    <EmbeddedResource Include="Resources\js\jquery.tools.min.js">
+      <DependentUpon>jquery.tools.js</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\js\jquery.timeago.js" />
@@ -380,6 +376,79 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\js\highcharts-more.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\js\jquery.min.js">
+      <DependentUpon>jquery.js</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\js\jquery.cycle.all.min.js">
+      <DependentUpon>jquery.cycle.all.js</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\js\jquery-ui.effects.min.js">
+      <DependentUpon>jquery-ui.effects.js</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\js\jquery-ui.interactions.min.js">
+      <DependentUpon>jquery-ui.interactions.js</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\js\jquery-ui.widgets.min.js">
+      <DependentUpon>jquery-ui.widgets.js</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\js\jquery-json.min.js">
+      <DependentUpon>jquery-json.js</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\js\error-manager.min.js">
+      <DependentUpon>error-manager.js</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\js\ellipsis.min.js">
+      <DependentUpon>ellipsis.js</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\js\crossdomain.min.js">
+      <DependentUpon>crossdomain.js</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\js\color-picker.min.js">
+      <DependentUpon>color-picker.js</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\js\highcharts-more.min.js">
+      <DependentUpon>highcharts-more.js</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\js\highcharts.min.js">
+      <DependentUpon>highcharts.js</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\js\jquery.jcarousel.min.js">
+      <DependentUpon>jquery.jcarousel.js</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\js\jquery.jscrollpane.min.js">
+      <DependentUpon>jquery.jscrollpane.js</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\js\jquery.timeago.min.js">
+      <DependentUpon>jquery.timeago.js</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\js\jquery.popupballoon.min.js">
+      <DependentUpon>jquery.popupballoon.js</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\js\require.min.js">
+      <DependentUpon>require.js</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\js\underscore.min.js">
+      <DependentUpon>underscore.js</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\js\json2.min.js"><DependentUpon>json2.js</DependentUpon></EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

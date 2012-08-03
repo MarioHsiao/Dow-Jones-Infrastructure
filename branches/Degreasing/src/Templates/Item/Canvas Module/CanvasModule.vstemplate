@@ -18,7 +18,6 @@
         <ProjectItem TargetFileName="$fileinputname$CanvasModule.cshtml"    ReplaceParameters="true" CustomTool="RazorViewComponentClassGenerator">CanvasModule.cshtml</ProjectItem>
         <ProjectItem TargetFileName="$fileinputname$Module.cs"              ReplaceParameters="true">CanvasModuleModel.cs</ProjectItem>
         <ProjectItem TargetFileName="$fileinputname$CanvasModule.js"        ReplaceParameters="true" ItemType="EmbeddedResource">CanvasModule.js</ProjectItem>
-        <ProjectItem TargetFileName="$fileinputname$CanvasModule.css"       ReplaceParameters="true" ItemType="EmbeddedResource">CanvasModule.css</ProjectItem>
         
     </TemplateContent>
 </VSTemplate>
