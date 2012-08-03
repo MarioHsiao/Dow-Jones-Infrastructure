@@ -24,9 +24,10 @@ namespace DowJones.Web.Mvc.UI.Canvas.GatewayFree.CanvasModules.EmbeddedContent.E
     using System.Web.Mvc.Html;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 08/03/2012 12:54 PM
+    // Last Generated Timestamp: 08/03/2012 01:51 PM
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Canvas.GatewayFree.CanvasModules.EmbeddedContent.Editor.Embed" +
-        "dedContentEditor.js", ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Web.Mvc.UI.Canvas.GatewayFree.CanvasModules.EmbeddedContent.Editor.EmbeddedContentEditorComponent))]
+        "dedContentEditor.js", DependsOn=new string[] {
+            "AbstractCanvasModuleEditor"}, ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Web.Mvc.UI.Canvas.GatewayFree.CanvasModules.EmbeddedContent.Editor.EmbeddedContentEditorComponent))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.27108")]
     public class EmbeddedContentEditorComponent : DowJones.Web.Mvc.UI.ViewComponentBase<DowJones.Web.Mvc.UI.Canvas.GatewayFree.CanvasModules.EmbeddedContent.Editor.EmbeddedContentEditor>
     {

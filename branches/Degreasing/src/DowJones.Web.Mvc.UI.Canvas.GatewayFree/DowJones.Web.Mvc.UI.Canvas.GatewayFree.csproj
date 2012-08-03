@@ -57,6 +57,12 @@
       <DependentUpon>EmbeddedContentCanvasModule.cshtml</DependentUpon>
     </Compile>
     <Compile Include="CanvasModules\EmbeddedContent\EmbeddedContentModule.cs" />
+    <Compile Include="CanvasModules\HtmlModule\Editor\HtmlModuleEditor.cs" />
+    <Compile Include="CanvasModules\HtmlModule\Editor\HtmlModuleEditorComponent.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HtmlModuleEditorComponent.cshtml</DependentUpon>
+    </Compile>
     <Compile Include="Managers\InMemoryPageManager.cs" />
     <Compile Include="Managers\InMemoryPageSubscriptionManager.cs" />
     <Compile Include="CanvasModules\HtmlModule\HtmlCanvasModule.cs">
@@ -77,6 +83,10 @@
     <None Include="CanvasModules\EmbeddedContent\EmbeddedContentCanvasModule.cshtml">
       <Generator>RazorViewComponentClassGenerator</Generator>
       <LastGenOutput>EmbeddedContentCanvasModule.cs</LastGenOutput>
+    </None>
+    <None Include="CanvasModules\HtmlModule\Editor\HtmlModuleEditorComponent.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>HtmlModuleEditorComponent.cs</LastGenOutput>
     </None>
     <None Include="CanvasModules\HtmlModule\HtmlCanvasModule.cshtml">
       <Generator>RazorViewComponentClassGenerator</Generator>
@@ -109,6 +119,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="CanvasModules\EmbeddedContent\Editor\EmbeddedContentEditor.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="CanvasModules\HtmlModule\Editor\HtmlModuleEditor.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

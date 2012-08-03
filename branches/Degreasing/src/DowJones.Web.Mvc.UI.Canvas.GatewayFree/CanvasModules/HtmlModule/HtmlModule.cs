@@ -1,4 +1,5 @@
 ﻿using DowJones.Mapping;
+using DowJones.Web.Mvc.UI.Canvas.GatewayFree.CanvasModules.HtmlModule.Editor;
 
 namespace DowJones.Web.Mvc.UI.Canvas.GatewayFree.CanvasModules.HtmlModule
 {
@@ -10,6 +11,11 @@ namespace DowJones.Web.Mvc.UI.Canvas.GatewayFree.CanvasModules.HtmlModule
         public bool HasScript
         {
             get { return !string.IsNullOrWhiteSpace(Script); }
+        }
+
+        public HtmlModule()
+        {
+            Editor = new HtmlModuleEditor(this);
         }
 
 
