@@ -71,7 +71,9 @@
     </Compile>
     <Compile Include="Caching\Properties\Settings.cs" />
     <Compile Include="Common\AssetType.cs" />
+    <Compile Include="Mappers\AssetTypeMapper.cs" />
     <Compile Include="Common\FilterType.cs" />
+    <Compile Include="Mappers\FilterTypeMapper.cs" />
     <Compile Include="Common\QueryFilterSet.cs" />
     <Compile Include="Common\EntityType.cs" />
     <Compile Include="Common\QueryFilter.cs" />
