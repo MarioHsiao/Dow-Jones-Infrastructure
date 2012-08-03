@@ -48,6 +48,20 @@ $viewsWebConfig.Document.Selection.ReplaceText("pageBaseType=""System.Web.Mvc.We
 $viewsWebConfig.Document.Close(0)
 
 
+#### Modify the BaseController #### 
+Write-Host "Setting base controller to DowJones.Web.Mvc.ControllerBase..."
+$controllers = $project.ProjectItems | where {$_.Name -eq "Controllers"} | ForEach-Object { $_.ProjectItems } | where { $_.Name.EndsWith("Controller.cs") }
+
+foreach	($controller in $controllers) {
+	$controller.Open()
+	$controller.Save()
+	$controller.Document.Activate()
+	$controller.Document.Selection.SelectAll()
+	$controller.Document.Selection.ReplaceText(": Controller", ": DowJones.Web.Mvc.ControllerBase")
+	$controller.Document.Close(0)
+}
+
+
 
 #### Overwrite _Layout.cshtml ####
 Write-Host "Overwriting _Layout.cshtml..."
