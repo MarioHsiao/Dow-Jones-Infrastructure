@@ -1,7 +1,8 @@
 ﻿@{
     DJ.StylesheetRegistry()
         .Include("~/content/site.css", ClientResourceDependencyLevel.Global)
-        .Include("~/content/isotope.css", ClientResourceDependencyLevel.Global);
+        .Include("~/content/isotope.css", ClientResourceDependencyLevel.Global)
+        .Include("~/content/dashboard.css", ClientResourceDependencyLevel.Global);
 }
 <!DOCTYPE html>
 <html>
@@ -19,20 +20,6 @@
     </script>
 
     @DJ.StylesheetRegistry().RenderHead()
-    <style>
-        body {
-            min-height: 800px;
-        }
-        .dj_Canvas {
-            position: relative;
-        }
-        .dj_module {
-            float: left;
-            width: 250px;
-            min-height: 200px;
-            margin: 10px;
-        }
-    </style>
 </head>
 <body>
     

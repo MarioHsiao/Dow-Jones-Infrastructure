@@ -24,6 +24,12 @@ namespace DowJones.DegreasedDashboards.Website.BootstrapperTasks
                     Title = "Test Page 1234",
                     ModuleCollection = new List<Module>
                         {
+                            new EmbeddedContentModule { Id = 5, 
+                                Title = "Embedded Content Module", 
+                                Url = "http://montana.dev.us.factiva.com/MVCShowCase/NewsRadar90DayAvg",
+                                Height = 350,
+                                Width = 600,
+                            },
                             new HtmlModule { Id = 1, 
                                 Title = "Simple HTML Module", 
                                 Html = "<strong>It works!</strong>",
@@ -35,7 +41,7 @@ namespace DowJones.DegreasedDashboards.Website.BootstrapperTasks
                             },
                             new HtmlModule { Id = 2, 
                                 Title = "More interesting HTML Module", 
-                                Html = "The time is: <strong><span class='time'/></strong>",
+                                Html = "<strong><span class='time'/></strong>",
                                 Script = @"
                                             var timeEl = $('.time', this.element);
                                             setInterval(function () {
@@ -45,7 +51,7 @@ namespace DowJones.DegreasedDashboards.Website.BootstrapperTasks
                             },
                             new HtmlModule { Id = 4, 
                                 Title = "Component HTML Module", 
-                                Html = "<div class='rss-feed' style='height: 200px; overflow-y: auto' />",
+                                Html = "<div class='rss-feed' style='height: 200px; overflow-y: auto'></div>",
                                 Script = @"
                                     // The function that maps an RSS feed to a Portal Headlines component
                                     function populatePortalHeadlines(rss) {
@@ -82,12 +88,6 @@ namespace DowJones.DegreasedDashboards.Website.BootstrapperTasks
                                     // Retrieve an external RSS feed  (using our custom proxy to facilitate the cross-domain call)
                                     $.ajax('../platformproxy.asmx?url=http://online.wsj.com/xml/rss/3_7011.xml')
                                         .success(populatePortalHeadlines)",
-                            },
-                             new EmbeddedContentModule { Id = 5, 
-                                Title = "Embedded Content Module", 
-                                Url = "http://montana.dev.us.factiva.com/MVCShowCase/NewsRadar90DayAvg",
-                                Height = 350,
-                                Width = 600,
                             },
                        }
                 });
