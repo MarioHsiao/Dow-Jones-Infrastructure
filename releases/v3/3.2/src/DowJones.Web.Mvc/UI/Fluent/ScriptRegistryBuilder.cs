@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
@@ -107,27 +107,6 @@ namespace DowJones.Web.Mvc.UI
             return this;
         }
         
-        public virtual ScriptRegistryBuilder WithUnobtrusiveJavaScript(bool enabled = true)
-        {
-            HtmlHelper.EnableUnobtrusiveJavaScript(enabled);
-
-            RegisterFrameworkWebResource(EmbeddedResources.Js.JQueryUnobtrusiveAjax, ClientResourceDependencyLevel.MidLevel, enabled);
-
-            return this;
-        }
-
-        public virtual ScriptRegistryBuilder WithClientSideValidation(bool enabled = true)
-        {
-            HtmlHelper.EnableClientValidation(enabled);
-
-            WithUnobtrusiveJavaScript(enabled);
-            
-            RegisterFrameworkWebResource(EmbeddedResources.Js.JQueryValidate, ClientResourceDependencyLevel.MidLevel, enabled);
-            RegisterFrameworkWebResource(EmbeddedResources.Js.JQueryValidateUnobtrusive, ClientResourceDependencyLevel.MidLevel, enabled);
-
-            return this;
-        }
-
         public virtual ScriptRegistryBuilder WithCrossDomain(bool enabled = true)
         {
             RegisterFrameworkWebResource(EmbeddedResources.Js.CrossDomain, ClientResourceDependencyLevel.Core, enabled);
@@ -204,7 +183,7 @@ namespace DowJones.Web.Mvc.UI
 
         public virtual ScriptRegistryBuilder WithJQueryTouch(bool enabled = true)
         {
-            RegisterFrameworkWebResource(EmbeddedResources.Js.JQueryTouch, ClientResourceDependencyLevel.MidLevel, enabled);
+            RegisterFrameworkWebResource(EmbeddedResources.Js.JQueryTouchMin, ClientResourceDependencyLevel.MidLevel, enabled);
             return this;
         }
 

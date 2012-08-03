@@ -1625,6 +1625,7 @@
       <SubType>Code</SubType>
     </Content>
     <Content Include="Views\CoreJs.cshtml" />
+    <Content Include="Views\Canvas\_PopupArticleContent.cshtml" />
     <None Include="Views\NewsRadar\sample.json" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
