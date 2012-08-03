@@ -1,15 +1,12 @@
-using DowJones.Web.Mvc.UI.Canvas;
-
 namespace $rootnamespace$
 {
-	public class $ViewComponentModelName$ : Module</* TODO: Factiva Module Type */>
+	public class $ViewComponentModelName$ : DowJones.Web.Mvc.UI.Canvas.Module
 	{
-
 		// TODO:  Add properties
 
         public $ViewComponentModelName$() 
         {
-            DataServiceUrl = CanvasModuleSettings.Default.GetDataServiceUrl(GetType());
+            DataServiceUrl = DowJones.Web.Mvc.UI.Canvas.CanvasSettings.Default.GetDataServiceUrl(GetType(), /* Module Settings */);
         }
 	}
 }
