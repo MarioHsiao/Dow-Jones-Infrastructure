@@ -10,7 +10,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using DowJones.Infrastructure;
-using DowJones.Pages;
 using DowJones.Preferences;
 using DowJones.Session;
 using DowJones.Web.Mvc.UI.Components.PersonalizationFilters;
@@ -98,6 +97,12 @@ namespace DowJones.Web.Mvc.UI.Canvas
         [ClientProperty]
         public IPreferences Preferences { get; set; }
 
+        /// <summary>
+        /// Gets or sets the preference
+        /// </summary>
+        /// <value>The preference.</value>
+        [ClientProperty("title")]
+        public string Title { get; set; }
 
         /// <summary>
         /// Gets or sets the web service path.

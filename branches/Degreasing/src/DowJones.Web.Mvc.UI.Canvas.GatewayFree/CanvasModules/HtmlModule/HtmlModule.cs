@@ -21,6 +21,7 @@ namespace DowJones.Web.Mvc.UI.Canvas.GatewayFree.CanvasModules.HtmlModule
                         ModuleId = source.Id,
                         Title = source.Title,
                         Description = source.Description,
+                        Position = source.Position,
                         Html = source.Html,
                         Script = source.Script,
                     };

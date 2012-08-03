@@ -4,7 +4,6 @@
 
 .dj_module {
     float: left;
-    min-height: 200px;
     margin: 10px;
 	background: #007db9e8;
 
@@ -34,6 +33,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', end
 	border-left: .1em solid #ccc;
 	border-right: .1em solid #ccc;
 	border-bottom: .1em solid #ccc;
+    min-height: 75px;
 	}
 
 

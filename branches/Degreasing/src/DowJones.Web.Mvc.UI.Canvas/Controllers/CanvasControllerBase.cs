@@ -116,7 +116,14 @@ namespace DowJones.Web.Mvc.UI.Canvas.Controllers
             where TCanvasModel : Canvas
         {
             var modules = page.ModuleCollection.Select(Mapper.Map<IModule>).ToArray();
-            return Canvas(canvas, modules);
+            
+            var viewResult = Canvas(canvas, modules);
+            var viewModel = ((TCanvasModel) viewResult.Model);
+            
+            if (string.IsNullOrWhiteSpace(viewModel.Title))
+                viewModel.Title = page.Title;
+            
+            return viewResult;
         }
 
         protected virtual CanvasViewResult Canvas<TCanvasModel>(TCanvasModel canvas, IEnumerable<IModule> modules = null)
@@ -137,7 +144,7 @@ namespace DowJones.Web.Mvc.UI.Canvas.Controllers
             if (string.IsNullOrWhiteSpace(canvas.AddModuleUrl))
                 canvas.AddModuleUrl = Url.Action("AddModule");
 
-            canvas.AddChildren(modules ?? Enumerable.Empty<IModule>());
+            canvas.AddChildren((modules ?? Enumerable.Empty<IModule>()).OrderBy(x => x.Position));
 
             ViewData.Model = canvas;
 

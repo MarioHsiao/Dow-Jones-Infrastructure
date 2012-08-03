@@ -21,6 +21,7 @@ namespace DowJones.Web.Mvc.UI.Canvas.GatewayFree.CanvasModules.EmbeddedContent
                     ModuleId = source.Id,
                     Title = source.Title,
                     Description = source.Description,
+                    Position = source.Position,
                     Width = source.Width.GetValueOrDefault(DefaultWidth),
                     Height = source.Height.GetValueOrDefault(DefaultHeight),
                     Url = source.Url,

@@ -24,32 +24,30 @@ namespace DowJones.DegreasedDashboards.Website.BootstrapperTasks
                     Title = "Test Page 1234",
                     ModuleCollection = new List<Module>
                         {
-                            new EmbeddedContentModule { Id = 5, 
-                                Title = "Embedded Content Module", 
-                                Url = "http://montana.dev.us.factiva.com/MVCShowCase/NewsRadar90DayAvg",
-                                Height = 350,
-                                Width = 600,
-                            },
                             new HtmlModule { Id = 1, 
+                                Position = 1,
                                 Title = "Simple HTML Module", 
                                 Html = "<strong>It works!</strong>",
                                 Script = "console.log('Simple HTML Module '+this.name+' loaded!')",
                             },
                             new HtmlModule { Id = 3, 
-                                Title = "External HTML Module", 
-                                Html = "<script src='http://nmp.newsgator.com/NGBuzz/buzz.ashx?buzzId=81503&apiToken=AAA11919E8A84EB8986088D0B39F3E0B&trkP=&trkM=94EB6FAB-58C5-EE96-F3DB-C2444C40C1BA' type='text/javascript'></script>",
-                            },
-                            new HtmlModule { Id = 2, 
+                                Position = 4,
                                 Title = "More interesting HTML Module", 
                                 Html = "<strong><span class='time'/></strong>",
                                 Script = @"
-                                            var timeEl = $('.time', this.element);
-                                            setInterval(function () {
-                                                timeEl.text(new Date().toLocaleString());
-                                            }, 100);
-                                        ",
+                                    var timeEl = $('.time', this.element);
+                                    setInterval(function () {
+                                        timeEl.text(new Date().toLocaleString());
+                                    }, 100);
+                                ",
+                            },
+                            new HtmlModule { Id = 3, 
+                                Position = 5,
+                                Title = "External HTML Module", 
+                                Html = "<script src='http://nmp.newsgator.com/NGBuzz/buzz.ashx?buzzId=81503&apiToken=AAA11919E8A84EB8986088D0B39F3E0B&trkP=&trkM=94EB6FAB-58C5-EE96-F3DB-C2444C40C1BA' type='text/javascript'></script>",
                             },
                             new HtmlModule { Id = 4, 
+                                Position = 3,
                                 Title = "Component HTML Module", 
                                 Html = "<div class='rss-feed' style='height: 200px; overflow-y: auto'></div>",
                                 Script = @"
@@ -88,6 +86,13 @@ namespace DowJones.DegreasedDashboards.Website.BootstrapperTasks
                                     // Retrieve an external RSS feed  (using our custom proxy to facilitate the cross-domain call)
                                     $.ajax('../platformproxy.asmx?url=http://online.wsj.com/xml/rss/3_7011.xml')
                                         .success(populatePortalHeadlines)",
+                            },
+                            new EmbeddedContentModule { Id = 5, 
+                                Position = 2,
+                                Title = "Embedded Content Module", 
+                                Url = "http://montana.dev.us.factiva.com/MVCShowCase/NewsRadar90DayAvg",
+                                Height = 350,
+                                Width = 600,
                             },
                        }
                 });
