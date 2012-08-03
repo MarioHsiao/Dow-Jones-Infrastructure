@@ -1,12 +1,35 @@
 ﻿@{
     Layout = "~/Views/Shared/_CanvasLayout.cshtml";
+    
 }
+@ScriptRegistry.OnDocumentReady("onInit();")
 
-@ScriptRegistry.OnDocumentReady(@<text>
+<fieldset class="clearfix">
+    <legend>Canvas Actions</legend>
+    <button id="getModuleIds">Get Module IDs</button>
+    <button id="getData">Refresh Modules</button>
+    <button id="addModule">Add Module (Partial)</button>
+    <button id="addJsonpModule">Add Module (JSONP)</button>
+    <button id="loadArticle">Load Article</button>
+</fieldset>
 
-DJ.$dj.require(['jquery', 'underscore', 'DowJones.Web.Showcase.Modules.Empty.EmptyCanvasModule'], 
-    function ($) {
 
+@DJ.Render(Model)
+
+<fieldset>
+    <legend>Article Container</legend>
+    <div id="articleContainer"></div>
+</fieldset>
+
+<script id="moduleTestAreaTemplate" type="text/html">
+    <span><a href="#" class="GetData">Get Data</a></span> |
+    <span><a href="#" class="ShowErrorMessage">Trigger Error</a></span> |
+    <span>Loading: (<a href="#" class="ShowLoading">Show</a> / <a href="#" class="HideLoading">
+        Hide</a>)</span>
+</script>
+
+<script type="text/javascript">
+    function onRequireDone($, _) {
         // Canvas Stuff
         function getCanvas() {
             return $('.dj_Canvas').findComponent(DJ.UI.AbstractCanvas);
@@ -30,11 +53,11 @@ DJ.$dj.require(['jquery', 'underscore', 'DowJones.Web.Showcase.Modules.Empty.Emp
 
         $('#addJsonpModule').click(function () {
             $dj.debug('Calling canvas.addModule()...');
-            
+
             var canvas = getCanvas();
 
-            var callback = $dj.callback(function() { canvas._initializeModules(); });
-            
+            var callback = $dj.callback(function () { canvas._initializeModules(); });
+
             $.ajax({
                 url: '@Url.Action("JsonpModule")',
                 success: function (data) { canvas.$element.append(data.html); },
@@ -43,6 +66,22 @@ DJ.$dj.require(['jquery', 'underscore', 'DowJones.Web.Showcase.Modules.Empty.Emp
                 jsonp: 'jsonpCallback'
             });
         });
+
+
+        $('#loadArticle').click(function () {
+            $.ajax({
+                url: "Canvas/ArticlePopup",
+                success: function (response) {
+                    $("#articleContainer").empty().append(response);
+                },
+                failure: function (response) {
+                    if (response) {
+                        $("#articleContainer").html('<span style="color:red; font-weight:bold">Error while loading Article popup content</span>');
+                    }
+                }
+            });
+        });
+
 
 
         // Module Stuff
@@ -69,23 +108,10 @@ DJ.$dj.require(['jquery', 'underscore', 'DowJones.Web.Showcase.Modules.Empty.Emp
             getModule(this).showModuleArea();
         });
 
-    });
-</text>)
-
-<fieldset class="clearfix">
-    <legend>Canvas Actions</legend>
-    <button id="getModuleIds">Get Module IDs</button>
-    <button id="getData">Refresh Modules</button>
-    <button id="addModule">Add Module (Partial)</button>
-    <button id="addJsonpModule">Add Module (JSONP)</button>
-</fieldset>
-
-
-@DJ.Render(Model)
-
-
-<script id="moduleTestAreaTemplate" type="text/html">
-    <span><a href="#" class="GetData">Get Data</a></span> |
-    <span><a href="#" class="ShowErrorMessage">Trigger Error</a></span> |
-    <span>Loading: (<a href="#" class="ShowLoading">Show</a> / <a href="#" class="HideLoading">Hide</a>)</span>
+    
+    }
+    
+    function onInit() {
+        DJ.$dj.require(['jquery', 'underscore', 'DJ.UI.EmptyCanvasModule'], onRequireDone);
+    }
 </script>
