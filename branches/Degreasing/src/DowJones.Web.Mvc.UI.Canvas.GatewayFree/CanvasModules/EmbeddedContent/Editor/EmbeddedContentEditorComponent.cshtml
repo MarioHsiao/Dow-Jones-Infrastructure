@@ -1,20 +1,19 @@
-﻿@using System.Web.Mvc.Html
-@model DowJones.Web.Mvc.UI.Canvas.GatewayFree.CanvasModules.EmbeddedContent.Editor.EmbeddedContentEditor
+﻿@inherits AbstractCanvasModuleEditor<CanvasModules.EmbeddedContent.Editor.EmbeddedContentEditor>
 @ClientPlugin dj_EmbeddedContentEditor
 @ScriptResource RelativeResourceName=EmbeddedContentEditor.js, DependsOn=AbstractCanvasModuleEditor
-@{ CssClass = "dj_EmbeddedContentEditor"; }
+@{ CssClass += " dj_EmbeddedContentEditor"; }
 
 <fieldset>
     <p>
-        @Html.Label("Width")
-        @Html.TextBox("Width", Model.Width)
+        <label>@DJ.Token("width")</label>
+        <input type="text" class="width" value="@Model.Width" />
     </p>
     <p>
-        @Html.Label("Height")
-        @Html.TextBox("Height", Model.Height)
+        <label>@DJ.Token("height")</label>
+        <input type="text" class="height" value="@Model.Height" />
     </p>
     <p>
-        @Html.Label("Url")
-        @Html.TextBox("Url", Model.Url)
+        <label>@DJ.Token("url")</label>
+        <input type="text" class="url" value="@Model.Url" />
     </p>
 </fieldset>

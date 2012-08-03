@@ -1,15 +1,25 @@
+.dj_menu {
+  background-color: #fff;
+  padding: 5px; }
+
 .dj_Canvas {
   position: relative; }
 
 .dj_module {
   float: left;
   margin: 10px;
-  background: #007db9e8; }
+  background: #007db9e8;
+  border-left: .1em solid #ccc;
+  border-right: .1em solid #ccc;
+  border-bottom: .1em solid #ccc; }
+  .dj_module fieldset {
+    border: none; }
   .dj_module .dj_module-header {
+    height: 45px;
     padding: 1px 15px;
     color: #fff;
     font-weight: bold;
-    margin-bottom: -5px;
+    margin: -10px 0;
     border-radius: 10px 10px 0px 0px;
     -moz-border-radius: 10px 10px 0px 0px;
     -webkit-border-radius: 10px 10px 0px 0px;
@@ -29,10 +39,18 @@
     /* W3C */
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#1e5799', endColorstr='#007db9e8',GradientType=0 );
     /* IE6-8 */ }
+    .dj_module .dj_module-header .module-title {
+      display: inline; }
+    .dj_module .dj_module-header .scope-container {
+      display: none; }
+    .dj_module .dj_module-header .actions-container {
+      float: right; }
+      .dj_module .dj_module-header .actions-container .fi_gear {
+        display: block;
+        background-image: url(gear.png);
+        width: 32px;
+        height: 32px; }
   .dj_module .dj_module-core {
     padding: 10px;
-    border-left: .1em solid #ccc;
-    border-right: .1em solid #ccc;
-    border-bottom: .1em solid #ccc;
     min-height: 75px; }
 

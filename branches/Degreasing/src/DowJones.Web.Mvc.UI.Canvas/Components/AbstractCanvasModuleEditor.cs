@@ -21,6 +21,10 @@ namespace DowJones.Web.Mvc.UI.Canvas
     public abstract class AbstractCanvasModuleEditor<TModel> : ViewComponentBase<TModel>
         where TModel : class
     {
+        protected AbstractCanvasModuleEditor()
+        {
+            CssClass = "dj_Editor ";
+        }
     }
     
 }

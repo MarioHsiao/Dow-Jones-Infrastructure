@@ -21,7 +21,6 @@
 
 
         init: function (element, meta) {
-
             var $meta = $.extend({ name: "Menu" }, meta);
 
             // Call the base constructor
@@ -30,9 +29,7 @@
             this.$menu = this._createMenuElement(this.options.items);
 
             this._registerEventHandlers();
-            //this.$element.append(this.$menu);
             $('body').append(this.$menu);
-
         },
 
 

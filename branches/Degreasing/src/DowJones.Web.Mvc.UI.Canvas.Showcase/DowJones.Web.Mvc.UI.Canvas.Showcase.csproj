@@ -120,6 +120,7 @@
     <Content Include="Content\dashboard.css">
       <DependentUpon>dashboard.scss</DependentUpon>
     </Content>
+    <Content Include="Content\gear.png" />
     <Content Include="Content\isotope.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />

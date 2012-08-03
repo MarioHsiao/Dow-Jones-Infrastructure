@@ -21,15 +21,14 @@ namespace DowJones.Web.Mvc.UI.Canvas.GatewayFree.CanvasModules.EmbeddedContent.E
     using System.Web;
     using System.Web.Security;
     using System.Web.UI;
-    using System.Web.Mvc.Html;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 08/03/2012 01:51 PM
+    // Last Generated Timestamp: 08/03/2012 03:48 PM
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Canvas.GatewayFree.CanvasModules.EmbeddedContent.Editor.Embed" +
         "dedContentEditor.js", DependsOn=new string[] {
             "AbstractCanvasModuleEditor"}, ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Web.Mvc.UI.Canvas.GatewayFree.CanvasModules.EmbeddedContent.Editor.EmbeddedContentEditorComponent))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.27108")]
-    public class EmbeddedContentEditorComponent : DowJones.Web.Mvc.UI.ViewComponentBase<DowJones.Web.Mvc.UI.Canvas.GatewayFree.CanvasModules.EmbeddedContent.Editor.EmbeddedContentEditor>
+    public class EmbeddedContentEditorComponent : AbstractCanvasModuleEditor<CanvasModules.EmbeddedContent.Editor.EmbeddedContentEditor>
     {
 #line hidden
 
@@ -49,40 +48,39 @@ namespace DowJones.Web.Mvc.UI.Canvas.GatewayFree.CanvasModules.EmbeddedContent.E
 
 
 
+   CssClass += " dj_EmbeddedContentEditor"; 
 
-   CssClass = "dj_EmbeddedContentEditor"; 
-
-WriteLiteral("\r\n<fieldset>\r\n    <p>\r\n        ");
-
-
-   Write(Html.Label("Width"));
-
-WriteLiteral("\r\n        ");
+WriteLiteral("\r\n<fieldset>\r\n    <p>\r\n        <label>");
 
 
-   Write(Html.TextBox("Width", Model.Width));
+          Write(DJ.Token("width"));
 
-WriteLiteral("\r\n    </p>\r\n    <p>\r\n        ");
-
-
-   Write(Html.Label("Height"));
-
-WriteLiteral("\r\n        ");
+WriteLiteral("</label>\r\n        <input type=\"text\" class=\"width\" value=\"");
 
 
-   Write(Html.TextBox("Height", Model.Height));
+                                           Write(Model.Width);
 
-WriteLiteral("\r\n    </p>\r\n    <p>\r\n        ");
-
-
-   Write(Html.Label("Url"));
-
-WriteLiteral("\r\n        ");
+WriteLiteral("\" />\r\n    </p>\r\n    <p>\r\n        <label>");
 
 
-   Write(Html.TextBox("Url", Model.Url));
+          Write(DJ.Token("height"));
 
-WriteLiteral("\r\n    </p>\r\n</fieldset>");
+WriteLiteral("</label>\r\n        <input type=\"text\" class=\"height\" value=\"");
+
+
+                                            Write(Model.Height);
+
+WriteLiteral("\" />\r\n    </p>\r\n    <p>\r\n        <label>");
+
+
+          Write(DJ.Token("url"));
+
+WriteLiteral("</label>\r\n        <input type=\"text\" class=\"url\" value=\"");
+
+
+                                         Write(Model.Url);
+
+WriteLiteral("\" />\r\n    </p>\r\n</fieldset>");
 
 
         }

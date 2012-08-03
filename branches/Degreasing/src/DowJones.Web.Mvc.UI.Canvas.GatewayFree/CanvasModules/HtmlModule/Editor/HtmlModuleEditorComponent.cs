@@ -23,12 +23,12 @@ namespace DowJones.Web.Mvc.UI.Canvas.GatewayFree.CanvasModules.HtmlModule.Editor
     using System.Web.UI;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 08/03/2012 01:56 PM
+    // Last Generated Timestamp: 08/03/2012 03:43 PM
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Canvas.GatewayFree.CanvasModules.HtmlModule.Editor.HtmlModule" +
         "Editor.js", DependsOn=new string[] {
             "AbstractCanvasModuleEditor"}, ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Web.Mvc.UI.Canvas.GatewayFree.CanvasModules.HtmlModule.Editor.HtmlModuleEditorComponent))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.27108")]
-    public class HtmlModuleEditorComponent : DowJones.Web.Mvc.UI.ViewComponentBase<DowJones.Web.Mvc.UI.Canvas.GatewayFree.CanvasModules.HtmlModule.Editor.HtmlModuleEditor>
+    public class HtmlModuleEditorComponent : AbstractCanvasModuleEditor<CanvasModules.HtmlModule.Editor.HtmlModuleEditor>
     {
 #line hidden
 
@@ -48,7 +48,7 @@ namespace DowJones.Web.Mvc.UI.Canvas.GatewayFree.CanvasModules.HtmlModule.Editor
 
 
 
-   CssClass = "dj_HtmlModuleEditor"; 
+   CssClass += " dj_HtmlModuleEditor"; 
 
 WriteLiteral("\r\n");
 

@@ -1,5 +1,5 @@
-﻿@model DowJones.Web.Mvc.UI.Canvas.GatewayFree.CanvasModules.HtmlModule.Editor.HtmlModuleEditor
+﻿@inherits AbstractCanvasModuleEditor<CanvasModules.HtmlModule.Editor.HtmlModuleEditor>
 @ClientPlugin dj_HtmlModuleEditor
 @ScriptResource RelativeResourceName=HtmlModuleEditor.js, DependsOn=AbstractCanvasModuleEditor
-@{ CssClass = "dj_HtmlModuleEditor"; }
+@{ CssClass += " dj_HtmlModuleEditor"; }
 
