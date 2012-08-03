@@ -23,7 +23,7 @@ namespace DowJones.Web.Mvc.UI.Canvas.GatewayFree.CanvasModules.HtmlModule.Editor
     using System.Web.UI;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 08/03/2012 03:43 PM
+    // Last Generated Timestamp: 08/03/2012 04:01 PM
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Canvas.GatewayFree.CanvasModules.HtmlModule.Editor.HtmlModule" +
         "Editor.js", DependsOn=new string[] {
             "AbstractCanvasModuleEditor"}, ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Web.Mvc.UI.Canvas.GatewayFree.CanvasModules.HtmlModule.Editor.HtmlModuleEditorComponent))]
@@ -50,7 +50,27 @@ namespace DowJones.Web.Mvc.UI.Canvas.GatewayFree.CanvasModules.HtmlModule.Editor
 
    CssClass += " dj_HtmlModuleEditor"; 
 
-WriteLiteral("\r\n");
+WriteLiteral("\r\n<fieldset>\r\n    <p>\r\n        <label>");
+
+
+          Write(DJ.Token("html"));
+
+WriteLiteral("</label>\r\n        <textarea class=\"html\">");
+
+
+                          Write(Model.Html);
+
+WriteLiteral("</textarea>\r\n    </p>\r\n    <p>\r\n        <label>");
+
+
+          Write(DJ.Token("script"));
+
+WriteLiteral("</label>\r\n        <textarea class=\"script\">");
+
+
+                            Write(Model.Script);
+
+WriteLiteral("</textarea>\r\n    </p>\r\n</fieldset>");
 
 
         }

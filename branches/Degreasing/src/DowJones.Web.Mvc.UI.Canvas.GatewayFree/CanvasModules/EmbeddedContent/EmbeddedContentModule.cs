@@ -35,6 +35,5 @@ namespace DowJones.Web.Mvc.UI.Canvas.GatewayFree.CanvasModules.EmbeddedContent
                 };
             }
         }
-
 	}
 }

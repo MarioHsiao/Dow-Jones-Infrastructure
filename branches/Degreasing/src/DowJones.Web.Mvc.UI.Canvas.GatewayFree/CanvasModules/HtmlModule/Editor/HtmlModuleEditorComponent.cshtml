@@ -3,3 +3,13 @@
 @ScriptResource RelativeResourceName=HtmlModuleEditor.js, DependsOn=AbstractCanvasModuleEditor
 @{ CssClass += " dj_HtmlModuleEditor"; }
 
+<fieldset>
+    <p>
+        <label>@DJ.Token("html")</label>
+        <textarea class="html">@Model.Html</textarea>
+    </p>
+    <p>
+        <label>@DJ.Token("script")</label>
+        <textarea class="script">@Model.Script</textarea>
+    </p>
+</fieldset>

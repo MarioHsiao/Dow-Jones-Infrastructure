@@ -24,13 +24,14 @@ namespace DowJones.Web.Mvc.UI.Canvas.GatewayFree.CanvasModules.HtmlModule
             public override Web.Mvc.UI.Canvas.IModule Map(Web.Mvc.UI.Canvas.GatewayFree.Modules.HtmlModule source)
             {
                 return new HtmlModule {
-                        ModuleId = source.Id,
-                        Title = source.Title,
-                        Description = source.Description,
-                        Position = source.Position,
-                        Html = source.Html,
-                        Script = source.Script,
-                    };
+                    CanEdit = true,
+                    ModuleId = source.Id,
+                    Title = source.Title,
+                    Description = source.Description,
+                    Position = source.Position,
+                    Html = source.Html,
+                    Script = source.Script,
+                };
             }
         }
     }

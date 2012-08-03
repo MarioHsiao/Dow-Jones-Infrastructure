@@ -23,7 +23,7 @@ namespace DowJones.Web.Mvc.UI.Canvas.GatewayFree.CanvasModules.EmbeddedContent
     using System.Web.UI;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 08/03/2012 11:18 AM
+    // Last Generated Timestamp: 08/03/2012 03:58 PM
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Canvas.GatewayFree.CanvasModules.EmbeddedContent.EmbeddedCont" +
         "entCanvasModule.js", ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Web.Mvc.UI.Canvas.GatewayFree.CanvasModules.EmbeddedContent.EmbeddedContentCanvasModule))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.27108")]
@@ -67,90 +67,6 @@ WriteLiteral("\" height=\"");
                                                                               Write(Model.Height);
 
 WriteLiteral("\" border=\"0\" style=\"border: none;\"></iframe>\r\n");
-
-
-});
-
-WriteLiteral("\r\n\r\n");
-
-
-DefineSection("EditArea", () => {
-
-WriteLiteral("\r\n    ");
-
-
-
-WriteLiteral("\r\n");
-
-
-});
-
-WriteLiteral("\r\n\r\n");
-
-
-DefineSection("HeaderArea", () => {
-
-WriteLiteral("\r\n    ");
-
-
-
-WriteLiteral("\r\n");
-
-
-});
-
-WriteLiteral("\r\n\r\n");
-
-
-DefineSection("OptionsArea", () => {
-
-WriteLiteral("\r\n    ");
-
-
-
-WriteLiteral("\r\n");
-
-
-});
-
-WriteLiteral("\r\n\r\n");
-
-
-DefineSection("InfoArea", () => {
-
-WriteLiteral("\r\n    ");
-
-
-
-WriteLiteral("\r\n");
-
-
-});
-
-WriteLiteral("\r\n\r\n");
-
-
-DefineSection("MessageArea", () => {
-
-WriteLiteral("\r\n    ");
-
-
-
-WriteLiteral("\r\n");
-
-
-});
-
-WriteLiteral("\r\n\r\n");
-
-
-DefineSection("LoadingArea", () => {
-
-WriteLiteral("\r\n    ");
-
-
-
-WriteLiteral("\r\n");
 
 
 });
