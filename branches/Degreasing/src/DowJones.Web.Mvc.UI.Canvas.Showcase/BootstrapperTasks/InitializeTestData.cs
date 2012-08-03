@@ -35,7 +35,7 @@ namespace DowJones.DegreasedDashboards.Website.BootstrapperTasks
                             },
                             new HtmlModule { Id = 2, 
                                 Title = "More interesting HTML Module", 
-                                Html = "The time is: <span class='time'/>",
+                                Html = "The time is: <strong><span class='time'/></strong>",
                                 Script = @"
                                             var timeEl = $('.time', this.element);
                                             setInterval(function () {
@@ -83,7 +83,13 @@ namespace DowJones.DegreasedDashboards.Website.BootstrapperTasks
                                     $.ajax('../platformproxy.asmx?url=http://online.wsj.com/xml/rss/3_7011.xml')
                                         .success(populatePortalHeadlines)",
                             },
-                        }
+                             new EmbeddedContentModule { Id = 5, 
+                                Title = "Embedded Content Module", 
+                                Url = "http://montana.dev.us.factiva.com/MVCShowCase/NewsRadar90DayAvg",
+                                Height = 350,
+                                Width = 600,
+                            },
+                       }
                 });
         }
     }

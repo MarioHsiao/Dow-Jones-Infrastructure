@@ -45,6 +45,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CanvasModules\EmbeddedContent\EmbeddedContentCanvasModule.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EmbeddedContentCanvasModule.cshtml</DependentUpon>
+    </Compile>
+    <Compile Include="CanvasModules\EmbeddedContent\EmbeddedContentModule.cs" />
     <Compile Include="Managers\InMemoryPageManager.cs" />
     <Compile Include="Managers\InMemoryPageSubscriptionManager.cs" />
     <Compile Include="CanvasModules\HtmlModule\HtmlCanvasModule.cs">
@@ -53,10 +59,15 @@
       <DependentUpon>HtmlCanvasModule.cshtml</DependentUpon>
     </Compile>
     <Compile Include="CanvasModules\HtmlModule\HtmlModule.cs" />
+    <Compile Include="Modules\EmbeddedContentModule.cs" />
     <Compile Include="Modules\HtmlModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="CanvasModules\EmbeddedContent\EmbeddedContentCanvasModule.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>EmbeddedContentCanvasModule.cs</LastGenOutput>
+    </None>
     <None Include="CanvasModules\HtmlModule\HtmlCanvasModule.cshtml">
       <Generator>RazorViewComponentClassGenerator</Generator>
       <LastGenOutput>HtmlCanvasModule.cs</LastGenOutput>
@@ -82,6 +93,9 @@
       <Project>{3e440d53-aca6-422a-8fc8-778d505ad1e9}</Project>
       <Name>DowJones.Web.Mvc</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="CanvasModules\EmbeddedContent\EmbeddedContentCanvasModule.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
