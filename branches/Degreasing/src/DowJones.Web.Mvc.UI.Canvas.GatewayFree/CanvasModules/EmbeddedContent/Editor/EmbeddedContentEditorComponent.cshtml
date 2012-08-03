@@ -1,0 +1,20 @@
+﻿@using System.Web.Mvc.Html
+@model DowJones.Web.Mvc.UI.Canvas.GatewayFree.CanvasModules.EmbeddedContent.Editor.EmbeddedContentEditor
+@ClientPlugin dj_EmbeddedContentEditor
+@ScriptResource RelativeResourceName=EmbeddedContentEditor.js
+@{ CssClass = "dj_EmbeddedContentEditor"; }
+
+<fieldset>
+    <p>
+        @Html.Label("Width")
+        @Html.TextBox("Width", Model.Width)
+    </p>
+    <p>
+        @Html.Label("Height")
+        @Html.TextBox("Height", Model.Height)
+    </p>
+    <p>
+        @Html.Label("Url")
+        @Html.TextBox("Url", Model.Url)
+    </p>
+</fieldset>

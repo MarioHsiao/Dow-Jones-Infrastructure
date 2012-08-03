@@ -1,4 +1,5 @@
 using DowJones.Mapping;
+using DowJones.Web.Mvc.UI.Canvas.GatewayFree.CanvasModules.EmbeddedContent.Editor;
 
 namespace DowJones.Web.Mvc.UI.Canvas.GatewayFree.CanvasModules.EmbeddedContent
 {
@@ -11,6 +12,11 @@ namespace DowJones.Web.Mvc.UI.Canvas.GatewayFree.CanvasModules.EmbeddedContent
         public int Width { get; set; }
         public string Url { get; set; }
 
+        public EmbeddedContentModule()
+        {
+            Editor = new EmbeddedContentEditor(this);
+        }
+
 
         public class EmbeddedContentModuleMapper : TypeMapper<Web.Mvc.UI.Canvas.GatewayFree.Modules.EmbeddedContentModule, DowJones.Web.Mvc.UI.Canvas.IModule>
         {
@@ -18,6 +24,7 @@ namespace DowJones.Web.Mvc.UI.Canvas.GatewayFree.CanvasModules.EmbeddedContent
             {
                 return new EmbeddedContentModule
                 {
+                    CanEdit = true,
                     ModuleId = source.Id,
                     Title = source.Title,
                     Description = source.Description,
