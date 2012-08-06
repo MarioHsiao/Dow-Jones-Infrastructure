@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -168,6 +168,7 @@
     <Compile Include="Controllers\DiscoveryGraphController.cs" />
     <Compile Include="Controllers\EntityListController.cs" />
     <Compile Include="Controllers\HeadlineListCarouselController.cs" />
+    <Compile Include="Controllers\LookupServiceController.cs" />
     <Compile Include="Controllers\NewsFeedController.cs" />
     <Compile Include="Controllers\NewsLetterController.cs" />
     <Compile Include="Controllers\NewsRadarController.cs" />
@@ -1626,6 +1627,7 @@
     </Content>
     <Content Include="Views\CoreJs.cshtml" />
     <Content Include="Views\Canvas\_PopupArticleContent.cshtml" />
+    <Content Include="Views\LookupService\Index.cshtml" />
     <None Include="Views\NewsRadar\sample.json" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
