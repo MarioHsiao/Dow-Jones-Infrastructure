@@ -168,6 +168,7 @@
     <Compile Include="Controllers\DiscoveryGraphController.cs" />
     <Compile Include="Controllers\EntityListController.cs" />
     <Compile Include="Controllers\HeadlineListCarouselController.cs" />
+    <Compile Include="Controllers\LookupServiceController.cs" />
     <Compile Include="Controllers\NewsFeedController.cs" />
     <Compile Include="Controllers\NewsLetterController.cs" />
     <Compile Include="Controllers\NewsRadarController.cs" />
@@ -1626,6 +1627,7 @@
     </Content>
     <Content Include="Views\CoreJs.cshtml" />
     <Content Include="Views\Canvas\_PopupArticleContent.cshtml" />
+    <Content Include="Views\LookupService\Index.cshtml" />
     <None Include="Views\NewsRadar\sample.json" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

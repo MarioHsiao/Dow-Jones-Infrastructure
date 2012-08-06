@@ -28,6 +28,11 @@ namespace DowJones.Managers.Search
         
         private readonly IPreferences _preferences;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SearchManager" /> class.
+        /// </summary>
+        /// <param name="controlData">The control data.</param>
+        /// <param name="preferences">The preferences.</param>
         public SearchManager(IControlData controlData, IPreferences preferences)
             : base(controlData)
         {

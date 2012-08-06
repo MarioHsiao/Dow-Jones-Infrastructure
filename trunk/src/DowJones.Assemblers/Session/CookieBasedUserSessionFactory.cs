@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Script.Serialization;
 using System.Xml.Linq;
+using DowJones.Extensions;
 using DowJones.Infrastructure;
 using DowJones.Properties;
 using DowJones.Session;
@@ -193,10 +194,13 @@ namespace DowJones.Assemblers.Session
 
         private void PopulateProxyInfo(UserSession userSession)
         {
-            if (userSession.SessionId == null)
+            var pu = userSession.ProxyUserId = CookieManager.GetSessionValue(ProductPrefix + "_PU");
+            var pn = userSession.ProxyNamespace = CookieManager.GetSessionValue(ProductPrefix + "_PN");
+
+            // if both are populated, remove the session id logic
+            if (!pu.IsNullOrEmpty() && !pn.IsNullOrEmpty())
             {
-                userSession.ProxyUserId = CookieManager.GetSessionValue(ProductPrefix + "_PU");
-                userSession.ProxyNamespace = CookieManager.GetSessionValue(ProductPrefix + "_PN");
+                userSession.SessionId = null;
             }
 
             PopulateProxyInfoFromCredentials(userSession, HttpContext.Request.Headers["credentials"]);
@@ -275,12 +279,12 @@ namespace DowJones.Assemblers.Session
 
             try
             {
-                XDocument doc = XDocument.Parse(credentialsXml);
+                var doc = XDocument.Parse(credentialsXml);
 
                 if (doc.Root == null) return false;
 
                 IEnumerable<XElement> populatedNodes =
-                    doc.Root.Descendants().Where(x => !string.IsNullOrWhiteSpace(x.Value));
+                    doc.Root.Descendants().Where(x => !string.IsNullOrWhiteSpace(x.Value)).ToArray();
 
                 userSession.ProxyUserId =
                     populatedNodes.Where(x => x.Name == "proxyUserId")
