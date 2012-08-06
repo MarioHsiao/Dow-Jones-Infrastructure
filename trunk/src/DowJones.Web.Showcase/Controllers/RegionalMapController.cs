@@ -19,6 +19,7 @@ namespace DowJones.Web.Showcase.Controllers
             var regionalMapModel = new RegionalMapModel{
                                        OnRegionClick = "RegionClicked",
                                        ShowTextLabels = true,
+                                       Size = MapSize.Large       
                                    };
             return new ContentContainerModel(new IViewComponentModel[] { regionalMapModel });
         }
