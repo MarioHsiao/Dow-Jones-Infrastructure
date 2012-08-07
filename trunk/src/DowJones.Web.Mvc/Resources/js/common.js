@@ -1195,12 +1195,12 @@ DJ.$dj.define('$dj', ['jquery'], DJ.$dj);
 
         on: function (/* string */ event, /* function */ handler) {
             if (!$dj.isString(event)) {
-                $dj.warn('DJ.UI.Component::on - Event can only be a string. Handler will not be subscribed.');
+                $dj.warn(this.name + '>> on() handler not subscribed: "event" must be a string.');
                 return;
             }
 
             if (typeof handler !== 'function') {
-                $dj.warn('DJ.UI.Component::on - Handler is not a valid function. Handler will not be subscribed.');
+                $dj.warn(this.name + '>> on() handler not subscribed: "handler" is not a valid function.');
                 return;
             }
 
@@ -1213,7 +1213,7 @@ DJ.$dj.define('$dj', ['jquery'], DJ.$dj);
 
         off: function (/* string */ event) {
             if (!$dj.isString(event)) {
-                $dj.warn('DJ.UI.Component::on - Event can only be a string. Handler(s) will not be removed.');
+                $dj.warn(this.name + '>> off() event parameter must be a string. Handlers will not be removed.');
                 return;
             }
 
@@ -1235,18 +1235,15 @@ DJ.$dj.define('$dj', ['jquery'], DJ.$dj);
                     setTimeout((function (s) {
                         return function () {
                             s.apply(this, [args]);
-                            $dj.info('DJ.UI.Component::notifyInstanceSubscribers: Notified to "', s.name || 'anonymous function', '"');
+                            $dj.info(this.name + '>> Notified "', s.name || 'anonymous function', '"');
                         };
                     }(subscriber)));
-
-
                 }
             }
-
         },
 
         publish: function (/* string */eventName, /* object */args) {
-            $dj.info('DJ.UI.Component.Publish:', this._owner || window, eventName);
+            $dj.info(this.name + '>> Publish:', this._owner || window, eventName);
             var publish = (this._owner && this._owner._innerPublish && this._owner._innerPublish instanceof Function) ? this._owner._innerPublish : $dj.publish;
             publish.call(this._owner || window, eventName, args);
             this.notifyInstanceSubscribers(eventName, args);
@@ -1286,7 +1283,7 @@ DJ.$dj.define('$dj', ['jquery'], DJ.$dj);
 
             // Freak out if this isn't a Component
             if (!(value instanceof DJ.UI.Component)) {
-                $dj.info('Owner is not a DJ.UI.Component - skipping setOwner()');
+                this.debug('Owner is not a DJ.UI.Component - skipping setOwner()');
                 return this;
             }
 
@@ -1316,7 +1313,7 @@ DJ.$dj.define('$dj', ['jquery'], DJ.$dj);
         },
 
         _appendData: function (value) {
-            $dj.info('TODO: Implement _appendData function');
+            this.debug('TODO: Implement _appendData function');
         },
 
         _clear: function () {
@@ -1324,11 +1321,7 @@ DJ.$dj.define('$dj', ['jquery'], DJ.$dj);
         },
 
         _initializeElements: function (ctx) {
-            var sample = 'Implement _initializeElements function to lookup html elements and cache them at component level\n' +
-						 '     e.g. this.$industry = $(this.selectors.industry, ctx);\n' +
-						 '          where $industry is an html select control and this.selectors.industry = \'select.dj_Lens_Industry\'\n' +
-						 '          and ctx is usually this.$element when inside a component';
-            $dj.info(sample);
+            this.debug('TODO: Implement _initializeElements function to lookup html elements and cache them at component level');
         },
 
         EOF: {}
@@ -1342,21 +1335,25 @@ DJ.$dj.define('$dj', ['jquery'], DJ.$dj);
 
 })(DJ.jQuery, DJ.$dj);
 
+
+/* DJ.add() */
 (function ($, $dj) {
     var add = function (name, config) {
 
         var validateConfig = function (configuration) {
             var errors = [];
-            
+
             if (configuration === undefined) {
                 errors.push('configuration not defined');
                 return errors;
             }
-            
+
             // container can either be a DOM element or an id string
             // if it's a string, resolve it to a DOM element
-            if (configuration.container && !$.isPlainObject(configuration.container))
-                configuration.container = document.getElementById(configuration.container);
+            if (configuration.container) {
+                if (typeof configuration.container === "string")
+                    configuration.container = document.getElementById(configuration.container);
+            }
 
             if (configuration.container === null) {
                 errors.push('container not found');
@@ -1379,22 +1376,22 @@ DJ.$dj.define('$dj', ['jquery'], DJ.$dj);
                 $dj.warn('Cannot wire up eventHandlers - either instance is null, or not of type DJ.UI.Component or ".on()" is not a function.');
                 return;
             }
-            
+
             for (var event in eventHandlers) {
                 var handler = eventHandlers[event];
                 instance.on(event, handler);
             }
         };
-        
+
         // Assume the 'DJ.UI' namespace if not specified
-        if(name.indexOf('.') < 0) {
+        if (name.indexOf('.') < 0) {
             name = "DJ.UI." + name;
         }
 
 
         var promise = $.Deferred();
 
-        var notify = function(state) {
+        var notify = function (state) {
             promise.notify({ state: state, name: name, config: config });
         };
 
