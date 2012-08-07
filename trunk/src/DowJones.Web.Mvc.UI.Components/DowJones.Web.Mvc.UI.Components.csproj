@@ -796,9 +796,6 @@
     <EmbeddedResource Include="RelatedConcepts\RelatedConcepts.js" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="RegionalMap\Resources\world_map.png" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="VideoPlayer\ClientTemplates\Success.htm" />
   </ItemGroup>
   <ItemGroup>
