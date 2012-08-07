@@ -1283,7 +1283,7 @@ DJ.$dj.define('$dj', ['jquery'], DJ.$dj);
 
             // Freak out if this isn't a Component
             if (!(value instanceof DJ.UI.Component)) {
-                this.debug('Owner is not a DJ.UI.Component - skipping setOwner()');
+                this._debug('Owner is not a DJ.UI.Component - skipping setOwner()');
                 return this;
             }
 
@@ -1313,7 +1313,7 @@ DJ.$dj.define('$dj', ['jquery'], DJ.$dj);
         },
 
         _appendData: function (value) {
-            this.debug('TODO: Implement _appendData function');
+            this._debug('TODO: Implement _appendData function');
         },
 
         _clear: function () {
@@ -1321,7 +1321,7 @@ DJ.$dj.define('$dj', ['jquery'], DJ.$dj);
         },
 
         _initializeElements: function (ctx) {
-            this.debug('TODO: Implement _initializeElements function to lookup html elements and cache them at component level');
+            this._debug('TODO: Implement _initializeElements function to lookup html elements and cache them at component level');
         },
 
         EOF: {}
