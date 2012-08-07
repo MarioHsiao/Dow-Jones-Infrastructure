@@ -19,7 +19,8 @@ namespace DowJones.Web.Mvc.UI.Canvas
         "AbstractCanvas",
         DeclaringType = typeof(AbstractCanvas),
         DependencyLevel = ClientResourceDependencyLevel.MidLevel,
-        ResourceName = AbstractCanvas.ScriptFile
+        ResourceName = AbstractCanvas.ScriptFile,
+        DependsOn = new [] { "jquery-ui-interactions" }
     )]
     public abstract class AbstractCanvas<TState> : CompositeComponent<TState> 
         where TState : class, IViewComponentModel
