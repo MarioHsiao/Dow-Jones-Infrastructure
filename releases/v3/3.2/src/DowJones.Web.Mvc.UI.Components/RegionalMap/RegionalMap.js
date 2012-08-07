@@ -10,16 +10,27 @@
             circleFillColor: 'rgba(0,0,0,.5)', // Circle Fill Color
             innerCircleFillColor: 'rgba(0,0,0,.7)', // Circle Stroke Color
             circleStrokeWidth: 3, // Circle Stroke Width (Value in Pixels)
-            circleMaxRadius: 70, // The maximum radius that a circle can have
-            circleMinRadius: 15, // The minimum radius that a circle can have
             textMaxSize: 30, // Text Max Size (Value in Px)
             textMinSize: 9, // Text Min Size (Value in Px)
             smallVersionTextSize: 7, // The text size that will trigger the small version
             showTooltips: true, //Show Text Labels (true/false)
-            tooltipAlign: 'right', //Alignment of tooltip (right/left/center)
-            width: 988, // Plugin Width
-            height: 530 // Plugin Height            
+            tooltipAlign: 'right' //Alignment of tooltip (right/left/center)                       
         },
+
+        mapsize:{
+            small:{ 
+                width:298, //width of the component 
+                height:198,
+                circleMaxRadius: 32, //The maximum radius that a circle can have
+                circleMinRadius: 7  //The minimum radius that a circle can have
+            },
+            large:{
+                width: 988, 
+                height: 530,
+                circleMaxRadius: 70, //The maximum radius that a circle can have
+                circleMinRadius: 15  //The minimum radius that a circle can have 
+            }  
+        }, 
         
         events: {
             regionClick: "regionClick.dj.RegionalMap"
@@ -99,6 +110,7 @@
         worldMapRenderer: '', // Highcharts renderer object
         regionCircles: {}, // Highcharts groups
         highestValue: 0, // The Highest ArticleVolume value among the regions
+        _mapsize: "large", //local default variable used.
         
         // Localization/Templating tokens
         tokens: {
@@ -122,18 +134,11 @@
                 regionID;
             
             //Set the height/width based on size
-            if(o.size == 0)//Large
-            {
-                o.width = this.defaults.width;
-                o.height = this.defaults.height;
-            }
-            else//Small
-            {
-                o.width = 298;
-                o.height = 198;
-                o.circleMaxRadius = 32;
-                o.circleMinRadius = 7;
-            }
+            this._mapsize         = (o.size == 0)?"large":"small";
+            o.width               = this.mapsize[this._mapsize].width;
+            o.height              = this.mapsize[this._mapsize].height;
+            o.circleMaxRadius     = this.mapsize[this._mapsize].circleMaxRadius;
+            o.circleMinRadius     = this.mapsize[this._mapsize].circleMinRadius;
 
             el.addClass('dj-regionalmap').css({
                 width: o.width,
@@ -150,7 +155,10 @@
             this.mapWidth = Math.min(o.width, mc.mapImgWidth);
             this.mapHeight = Math.min(o.height, mc.mapImgHeight);
             
-            this.worldMapRenderer.image('<%= WebResource("DowJones.Web.Mvc.UI.Components.RegionalMap.images.world_map.gif") %>', this.mapX, this.mapY, this.mapWidth, this.mapHeight).add();
+            //this.worldMapRenderer.image('<%= WebResource("DowJones.Web.Mvc.UI.Components.RegionalMap.images.world_map.gif") %>', this.mapX, this.mapY, this.mapWidth, this.mapHeight).add();
+            $dj.debug(o.imageMapPath);
+            //accesssing embedded resource from the model.
+            this.worldMapRenderer.image(o.imageMapPath, this.mapX, this.mapY, this.mapWidth, this.mapHeight).add();
 
             // NN - what is this for?
             el.find('img').css("-ms-interpolation-mode","bicubic");       

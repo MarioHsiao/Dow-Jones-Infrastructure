@@ -697,7 +697,6 @@
     <EmbeddedResource Include="HeadlineListCarousel\HeadlineListCarousel.css" />
     <EmbeddedResource Include="HeadlineListCarousel\HeadlineListCarousel.js" />
     <EmbeddedResource Include="Pager\Pager.js" />
-    <EmbeddedResource Include="RegionalMap\images\world_map.gif" />
     <EmbeddedResource Include="RegionalMap\RegionalMap.js" />
     <EmbeddedResource Include="PortalHeadlineList\PortalHeadlineList.js" />
     <EmbeddedResource Include="InlineMp3Player\InlineMp3PlayerBehavior.js" />
@@ -796,7 +795,9 @@
   <ItemGroup>
     <EmbeddedResource Include="RelatedConcepts\RelatedConcepts.js" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="RegionalMap\Resources\world_map.png" />
+  </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="VideoPlayer\ClientTemplates\Success.htm" />
   </ItemGroup>

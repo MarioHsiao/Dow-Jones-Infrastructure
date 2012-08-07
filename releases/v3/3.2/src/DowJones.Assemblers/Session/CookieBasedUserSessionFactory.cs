@@ -194,15 +194,9 @@ namespace DowJones.Assemblers.Session
 
         private void PopulateProxyInfo(UserSession userSession)
         {
-            var pu = userSession.ProxyUserId = CookieManager.GetSessionValue(ProductPrefix + "_PU");
-            var pn = userSession.ProxyNamespace = CookieManager.GetSessionValue(ProductPrefix + "_PN");
-
-            // if both are populated, remove the session id logic
-            if (!pu.IsNullOrEmpty() && !pn.IsNullOrEmpty())
-            {
-                userSession.SessionId = null;
-            }
-
+            // updated the logic pull from cookie override from credentials where appropriate
+            userSession.ProxyUserId = CookieManager.GetSessionValue(ProductPrefix + "_PU");
+            userSession.ProxyNamespace = CookieManager.GetSessionValue(ProductPrefix + "_PN");
             PopulateProxyInfoFromCredentials(userSession, HttpContext.Request.Headers["credentials"]);
         }
 
