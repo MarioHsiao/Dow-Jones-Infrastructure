@@ -39,7 +39,7 @@
 
         init: function (element, meta) {
             var startDate = new Date();
-            this._debug("Start Initialize AbstractCanvasRenderManager");
+            this._debug("Initializing canvas...");
 
             this._super(element, meta);
 
@@ -56,8 +56,7 @@
             this._initializeModules();
             this._initializeModuleReordering();
 
-
-            this._debug("End Initialize AbstractCanvasRenderManager: " + (new Date().getTime() - startDate.getTime()));
+            this._debug("Done initializing canvas: " + (new Date().getTime() - startDate.getTime()));
         },
 
         // Obsolete
@@ -191,7 +190,7 @@
                 zones[zones.length] = this.getModuleIds(modules);
             }, this);
 
-            var request = { pageId: this.get_canvasId(), columns: zones };
+            var request = { pageId: this.getId(), columns: zones };
 
             $.ajax({
                 url: this.options.webServiceBaseUrl + '/modules/positions/json',
@@ -227,27 +226,20 @@
         },
 
         _fireSortableOnActivate: function (e, ui) {
-            this._debug('_fireSortableOnActivate: ' + ui.id);
             this.$activate$i++;
-            if (this.$activate$i % this.options.NumberOfGroups === 0) {
-                this._debug("fireSortableOnActivate");
-            }
         },
 
         _fireSortableOnDeactivate: function (e, ui) {
-            this._debug('_fireSortableOnDeactivate: ' + ui.id);
-
             this.$deactivate$i++;
 
             // If all of the zones are not done deactivating,
             // ignore this event and wait for the last one
             if (this.$deactivate$i % this._numberOfZones !== 0) {
-                this._debug('Ignoring fireSortableOnDeactivate for ' + ui.id +
+                this._debug('Ignoring fireSortableOnDeactivate for ' + e.id +
                             '. Waiting for last zone to deactivate.');
                 return;
             }
 
-            this._debug("fireSortableOnDeactivate");
             this.getZones().enableSelection();
 
             if (document.selection) {
@@ -336,7 +328,7 @@
         },
 
         _initializeModuleReordering: function () {
-            this._debug("_initializeModuleReordering: Started...");
+            this._debug("Initializing module reordering...");
 
             // Get a copy of the default sort-able settings
             // and update it with our current items and delegates
@@ -364,7 +356,7 @@
 
             $(">H3", $(this.sortableSettings.handle, this._sortableItems));
 
-            this._debug('_initializeModuleReordering: Initialized ' +
+            this._debug('Module reordering nitialized: ' +
                         this._sortableItems.length + ' modules in ' + this._numberOfZones + ' zones');
 
             this._numberOfZones = _zones.length;
@@ -389,5 +381,7 @@
 
     });
 
+    $.plugin('dj_Canvas', DJ.UI.AbstractCanvas);
+    
     $dj.debug('Registered DJ.UI.AbstractCanvas (extends DJ.UI.Component)');
 

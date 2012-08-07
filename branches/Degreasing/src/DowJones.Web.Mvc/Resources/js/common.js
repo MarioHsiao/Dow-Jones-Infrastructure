@@ -1190,6 +1190,13 @@ DJ.$dj.define('$dj', ['jquery'], DJ.$dj);
         },
 
         getOwner: function () {
+            // Lazy evaluation of $ -> DJ.UI.Component owner, if applicable
+            if (this._owner instanceof $) {
+                var owner = this._owner.findComponent(DJ.UI.Component);
+                if (owner)
+                    this._owner = owner;
+            }
+
             return this._owner;
         },
 
@@ -1266,28 +1273,24 @@ DJ.$dj.define('$dj', ['jquery'], DJ.$dj);
         setOwner: function (value) {
             if (!value) {
                 this._owner = null;
-                return null;
-            }
-
-            var owner = value;
-
-            // Convert a DOM ID to a jQuery object
-            if ($dj.isString(value)) {
-                owner = $(value);
-            }
-
-            // Convert a jQuery object to a DJ.UI.Component
-            if (value instanceof $) {
-                owner = value.findComponent(DJ.UI.Component);
-            }
-
-            // Freak out if this isn't a Component
-            if (!(value instanceof DJ.UI.Component)) {
-                this._debug('Owner is not a DJ.UI.Component - skipping setOwner()');
                 return this;
             }
 
-            this._owner = owner;
+            var owner = value;
+            
+            // If value is not a Component object, convert it to one
+            if (!(owner instanceof DJ.UI.Component)) {
+
+                // If value is not a jQuery object, convert it to one
+                if (!(owner instanceof $)) {
+                    owner = $(owner);
+                }
+
+                // Convert the jQuery object to a DJ.UI.Component
+                owner = owner.findComponent(DJ.UI.Component);
+            }
+
+            this._owner = owner || value;
 
             return this;
         },
