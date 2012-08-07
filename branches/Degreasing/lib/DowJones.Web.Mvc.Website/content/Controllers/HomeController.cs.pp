@@ -2,7 +2,7 @@
 
 namespace $rootnamespace$.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : DowJones.Web.Mvc.ControllerBase
     {
 
         public ActionResult Index()

@@ -19,9 +19,9 @@ namespace DowJones.Web.Mvc.ActionFilters
 
         public void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            InterfaceLanguage interfaceLanguage = Session.InterfaceLanguage;
+            var interfaceLanguage = Session.InterfaceLanguage;
 
-            CultureInfo culture = CultureManager.GetCultureInfoFromInterfaceLanguage(interfaceLanguage);
+            var culture = CultureManager.GetCultureInfoFromInterfaceLanguage(interfaceLanguage);
 
             Thread.CurrentThread.CurrentCulture = Thread.CurrentThread.CurrentUICulture = culture;
         }

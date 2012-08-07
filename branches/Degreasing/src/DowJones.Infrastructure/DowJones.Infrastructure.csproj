@@ -135,6 +135,12 @@
     <Compile Include="Caching\ICacheKey.cs" />
     <Compile Include="Caching\Properties\Settings.cs" />
     <Compile Include="Converters\JsonEnumConverter.cs" />
+    <Compile Include="GeoLocation\Country.cs" />
+    <Compile Include="GeoLocation\DatabaseInfo.cs" />
+    <Compile Include="GeoLocation\Location.cs" />
+    <Compile Include="GeoLocation\LookupService.cs" />
+    <Compile Include="GeoLocation\Region.cs" />
+    <Compile Include="GeoLocation\RegionName.cs" />
     <Compile Include="Managers\Multimedia\MediaContents.cs" />
     <Compile Include="Managers\Multimedia\MultimediaManager.cs" />
     <Compile Include="Managers\Multimedia\MultimediaPackage.cs" />
@@ -948,6 +954,7 @@
     <Compile Include="Managers\Search\SearchManager.NewsPageQueryEntitySearch.cs" />
     <Compile Include="Managers\SocialMedia\Config\IndustryChannelMap.cs" />
     <None Include="DowJones.Infrastructure.nuspec" />
+    <EmbeddedResource Include="GeoLocation\GeoIPCountryWhois.csv" />
     <None Include="Managers\MarketWatch\Instrument\output.config" />
     <None Include="Managers\SocialMedia\Config\IndustryChannel.config" />
     <None Include="Managers\MarketWatch\Symbology\output.config" />
