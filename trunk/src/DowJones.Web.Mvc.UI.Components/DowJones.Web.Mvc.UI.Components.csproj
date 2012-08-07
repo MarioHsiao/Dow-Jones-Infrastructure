@@ -191,6 +191,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CompositeOutletComponent.cshtml</DependentUpon>
     </Compile>
+    <Compile Include="NewsMatrix\NewsMatrixComponent.cs">
+      <DependentUpon>NewsMatrixComponent.cshtml</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="DateHistogram\DateHistogramComponent1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -407,7 +412,6 @@
     <EmbeddedResource Include="NewsRadar\ClientTemplates\Key.htm" />
     <EmbeddedResource Include="NewsRadar\ClientTemplates\Radar.htm" />
     <EmbeddedResource Include="NewsRadar\ClientTemplates\Success.htm" />
-    <EmbeddedResource Include="NewsRadar\ClientTemplates\Container.htm" />
     <EmbeddedResource Include="NewsRadar\ClientTemplates\Error.htm" />
     <EmbeddedResource Include="NewsRadar\NewsRadar.js" />
     <EmbeddedResource Include="TwitterExperts\ClientTemplates\noData.htm" />
@@ -563,6 +567,10 @@
     <None Include="CompositeOutlet\CompositeOutletComponent.cshtml">
       <Generator>RazorViewComponentClassGenerator</Generator>
       <LastGenOutput>CompositeOutletComponent.cs</LastGenOutput>
+    </None>
+    <None Include="NewsMatrix\NewsMatrixComponent.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>NewsMatrixComponent.cs</LastGenOutput>
     </None>
     <None Include="DateHistogram\DateHistogramComponent.cshtml">
       <Generator>RazorViewComponentClassGenerator</Generator>
@@ -800,6 +808,22 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="DiscoveryGraph\ClientTemplates\Layout.htm" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="NewsMatrix\ClientTemplates\Error.htm" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="NewsMatrix\ClientTemplates\Matrix.htm" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="NewsMatrix\ClientTemplates\Success.htm" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="NewsMatrix\NewsMatrix.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="NewsMatrix\ClientTemplates\Container.htm" />
+    <Content Include="NewsRadar\ClientTemplates\Container.htm" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

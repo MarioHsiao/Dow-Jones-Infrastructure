@@ -163,6 +163,7 @@
     <Compile Include="Controllers\CanvasController.cs" />
     <Compile Include="Controllers\CanvasControllerBase.cs" />
     <Compile Include="Controllers\ClientUIController.cs" />
+    <Compile Include="Controllers\NewsMatrixController.cs" />
     <Compile Include="Controllers\DateHistogramController.cs" />
     <Compile Include="Controllers\DateSliderController.cs" />
     <Compile Include="Controllers\DiscoveryGraphController.cs" />
@@ -1348,6 +1349,7 @@
     <Content Include="Styles\css\canvas.icons.css" />
     <Content Include="Styles\css\canvas.nav.css" />
     <Content Include="Styles\css\canvas.tag-cloud.css" />
+    <Content Include="Styles\css\newsMatrix.css" />
     <Content Include="Styles\css\newsRadar.css" />
     <Content Include="Styles\css\normalizeExtensions.css" />
     <Content Include="Styles\css\dashboard.crud-form.css" />
@@ -1628,6 +1630,8 @@
     <Content Include="Views\CoreJs.cshtml" />
     <Content Include="Views\Canvas\_PopupArticleContent.cshtml" />
     <Content Include="Views\LookupService\Index.cshtml" />
+    <Content Include="Views\NewsMatrix\Index.cshtml" />
+    <Content Include="Views\NewsMatrix\sample.json" />
     <None Include="Views\NewsRadar\sample.json" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
