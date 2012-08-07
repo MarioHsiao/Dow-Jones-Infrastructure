@@ -1,5 +1,6 @@
 ﻿using DowJones.Mapping;
 using DowJones.Web.Mvc.UI.Canvas.GatewayFree.CanvasModules.HtmlModule.Editor;
+using DowJones.Web.Mvc.UI.Canvas.GatewayFree.Properties;
 
 namespace DowJones.Web.Mvc.UI.Canvas.GatewayFree.CanvasModules.HtmlModule
 {
@@ -16,6 +17,7 @@ namespace DowJones.Web.Mvc.UI.Canvas.GatewayFree.CanvasModules.HtmlModule
         public HtmlModule()
         {
             Editor = new HtmlModuleEditor(this);
+            DataServiceUrl = CanvasSettings.Default.GetDataServiceUrl(GetType(), Settings.Default);
         }
 
 

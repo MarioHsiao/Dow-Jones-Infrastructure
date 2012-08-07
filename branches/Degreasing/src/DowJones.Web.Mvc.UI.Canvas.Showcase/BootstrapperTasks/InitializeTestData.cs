@@ -26,28 +26,23 @@ namespace DowJones.DegreasedDashboards.Website.BootstrapperTasks
                         {
                             new HtmlModule { Id = 1, 
                                 Position = 5,
-                                Title = "Simple HTML Module", 
-                                Html = "<p style='text-align: center; width:140px'>Just some simple HTML (check the console for a script example)</p>",
+                                Title = "Simple Module", 
+                                Html = "<p style='text-align: center; width:160px'>Just some simple HTML (check the console for a script example)</p>",
                                 Script = "console.log('Simple HTML Module '+this.name+' loaded!')",
                             },
                             new HtmlModule { Id = 3, 
                                 Position = 4,
                                 Title = "More interesting HTML Module", 
                                 Html = "<strong><span class='time'/></strong>",
-                                Script = @"
-                                    var timeEl = $('.time', this.element);
-                                    setInterval(function () {
-                                        timeEl.text(new Date().toLocaleString());
-                                    }, 100);
-                                ",
+                                Script = @"setInterval(function () { $('.time', this.element).text(new Date().toLocaleString()); }, 100);",
                             },
-                            new EmbeddedContentModule { Id = 3, 
+                            /*new EmbeddedContentModule { Id = 3, 
                                 Position = 2,
-                                Title = "Dow Jones HQ Map",
+                                Title = "Dow Jones SBK",
                                 Width = 215,
                                 Height = 350,
                                 Url = "https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=820+Ridge+Rd,+Monmouth+Junction,+NJ&amp;aq=1&amp;oq=8&amp;sll=37.6,-95.665&amp;sspn=75.424868,56.513672&amp;t=h&amp;ie=UTF8&amp;hq=&amp;hnear=820+Ridge+Rd,+South+Brunswick+Township,+Middlesex,+New+Jersey+08540&amp;z=14&amp;ll=40.367372,-74.585825&amp;output=embed&amp;iwloc=near",
-                            },
+                            },*/
                             new HtmlModule { Id = 4, 
                                 Position = 1,
                                 Title = "Component HTML Module", 
@@ -96,6 +91,20 @@ namespace DowJones.DegreasedDashboards.Website.BootstrapperTasks
                                 Height = 350,
                                 Width = 600,
                             },
+                          /*  new HtmlModule { Id = 6, 
+                                Title = "Widget Example", 
+                                Html = @"
+                                  <style type='text/css'>
+                                    body { font-family:Verdana; font-size:11px; color:#000000; background:url(/Developer/Content/images/examples-bg.png); margin:7px; }
+                                  </style>
+                                  <!-- The following script reference is required for the widgets to work -->
+                                  <script type='text/javascript' src='http://widgets.dowjones.com/Widgets/2.0/common.js?sessionId=27140ZzZINHEQT2TAAAGUBAAAAAAHGBOAAAAAABSGAYTEMBYGAZTCNRTGUZTMMRX'></script>
+                                  <!-- This div element is where the headlines widget will be rendered -->
+                                  <div id='headlinesContainer' class='djModule'></div>
+                                  <!-- Define the Headlines Widget -->
+                                  <script type='text/javascript' src='http://widgets.dowjones.com/Widgets/2.0/widget.js#w=headlines&container=headlinesContainer&sourcetype=querystring&sourcevalue=solar&title=Solar Headlines'></script>
+                                "
+                            },*/
                        }
                 });
         }
