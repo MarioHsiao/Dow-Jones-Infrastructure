@@ -26,7 +26,9 @@ namespace DowJones.Pages
         IEnumerable<Page> GetPages(SortBy sort, SortOrder order);
 
         void UpdateModule(Module module);
+        void UpdateModulePositions(PageReference pageRef, IEnumerable<IEnumerable<int>> list);
 
         void UpdatePage(Page page);
+
     }
 }

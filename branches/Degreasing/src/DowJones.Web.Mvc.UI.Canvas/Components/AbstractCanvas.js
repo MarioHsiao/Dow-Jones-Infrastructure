@@ -190,7 +190,7 @@
                 zones[zones.length] = this.getModuleIds(modules);
             }, this);
 
-            var request = { pageId: this.getId(), columns: zones };
+            var request = { pageId: this.options.canvasId, columns: zones };
 
             $.ajax({
                 url: this.options.webServiceBaseUrl + '/modules/positions/json',

@@ -129,5 +129,21 @@ namespace DowJones.DegreasedDashboards
             _pages.Remove(existing);
             _pages.Insert(index, page);
         }
+
+
+        public void UpdateModulePositions(PageReference pageRef, IEnumerable<IEnumerable<int>> list)
+        {
+            var page = GetPage(pageRef);
+
+            var reorderedModules =
+                (
+                    from moduleId in list.SelectMany(x => x)
+                    join module in page.ModuleCollection on moduleId equals module.Id
+                    select module
+                ).ToArray();
+
+            for (int i = 0; i < reorderedModules.Length; i++)
+                reorderedModules[i].Position = i;
+        }
     }
 }

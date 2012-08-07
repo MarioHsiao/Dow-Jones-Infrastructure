@@ -119,7 +119,10 @@ namespace DowJones.Web.Mvc.UI.Canvas.Controllers
             
             var viewResult = Canvas(canvas, modules);
             var viewModel = ((TCanvasModel) viewResult.Model);
-            
+
+            if (string.IsNullOrWhiteSpace(viewModel.CanvasID))
+                viewModel.CanvasID = page.ID;
+
             if (string.IsNullOrWhiteSpace(viewModel.Title))
                 viewModel.Title = page.Title;
             

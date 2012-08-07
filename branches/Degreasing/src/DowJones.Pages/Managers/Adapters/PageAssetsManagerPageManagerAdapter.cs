@@ -98,5 +98,10 @@ namespace DowJones.Pages
             var gwPage = Mapper.Map<Gateway.Page>(page);
             PageAssetsManager.UpdatePage(gwPage);
         }
+
+        public void UpdateModulePositions(PageReference pageRef, IEnumerable<IEnumerable<int>> list)
+        {
+            PageAssetsManager.UpdateModulePositionsOnPage(pageRef, list);
+        }
     }
 }
