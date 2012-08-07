@@ -146,6 +146,7 @@
     <Compile Include="Managers\Multimedia\MultimediaPackage.cs" />
     <Compile Include="Managers\Multimedia\MultiMediaRequest.cs" />
     <Compile Include="Managers\Multimedia\MultiMediaResponse.cs" />
+    <Compile Include="Models\Common\RegionNewsVolume.cs" />
     <Compile Include="Web\ClientResources\EmbeddedClientResourceValidator.cs" />
     <Compile Include="Web\Extensions\UrlExtensions.cs" />
     <Compile Include="Globalization\ResourceTextManagerFactory.cs" />
