@@ -33,6 +33,14 @@ namespace DowJones.Web.Mvc.UI.Canvas
             }
         }
 
+        public override string ClientPluginName
+        {
+            get
+            {
+                return "dj_Canvas";
+            }
+        }
+
         protected AbstractCanvas()
         {
             CssClass += " dj_Canvas";
