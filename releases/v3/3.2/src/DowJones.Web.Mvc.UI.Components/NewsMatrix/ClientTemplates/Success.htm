@@ -1,11 +1,14 @@
-﻿<%  var item = self.item, pName= self.propName, settings= self.settings, defaults = self.defaults, templates = self.templates, f = self.f; %>
-<%  
-    var text = (settings.displayTicker) ? f.getTicker(item) : item.companyName;
+﻿<%  var item = self.item, 
+        pName= self.propName, 
+        settings= self.settings, 
+        defaults = self.defaults, 
+        f = self.f, 
+        text = (settings.displayTicker) ? f.getTicker(item) : item.companyName;
 %>
 
 <div class="djWidgetItem djContentItemFixed">
-	<% for (var i = item.newsEntities.length-1; i >= 0; i--) { %>
-			<%= templates.matrix({item:item, matrix:item.newsEntities[i], index: i, propName: pName}) %>
+	<% for (var i = 0, len = item.newsEntities.length; i < len; i++) { %>
+			<%= this.matrix({item:item, matrix:item.newsEntities[i], index: i, propName: pName}) %>
 	<% } %>
 	<div class="mask-fade"></div>
 </div>
