@@ -32,24 +32,24 @@ namespace DowJones.Web.Mvc.UI.Canvas.Controllers
         }
 
         [RequireAuthentication]
-        public virtual ActionResult AddModule(string id, string pageId, string callback)
+        public virtual ActionResult AddModule(int id, string pageId, string callback)
         {
             return AddModuleInternal(id, pageId, callback);
         }
 
-        protected virtual CanvasModuleViewResult AddModuleInternal(string id, string pageId, string callback)
+        protected virtual CanvasModuleViewResult AddModuleInternal(int id, string pageId, string callback)
         {
             PageManager.AddModuleToPage(pageId, id);
             return ModuleInternal(id, pageId, callback);
         }
 
         [RequireAuthentication]
-        public virtual ActionResult Module(string id, string pageId, string callback)
+        public virtual ActionResult Module(int id, string pageId, string callback)
         {
             return ModuleInternal(id, pageId, callback);
         }
 
-        protected virtual CanvasModuleViewResult ModuleInternal(string id, string pageId, string callback)
+        protected virtual CanvasModuleViewResult ModuleInternal(int id, string pageId, string callback)
         {
             var pagesModule = PageManager.GetModuleById(pageId, id);
             var canvasModule = Mapper.Map<IModule>(pagesModule);

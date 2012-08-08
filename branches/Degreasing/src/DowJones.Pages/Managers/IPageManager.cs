@@ -6,18 +6,18 @@ namespace DowJones.Pages
     public interface IPageManager
     {
         string AddModuleToPage(PageReference pageRef, Module module);
-        void AddModuleToPage(PageReference pageRef, params string[] moduleIds);
+        void AddModuleToPage(PageReference pageRef, params int[] moduleIds);
 
         PageReference CreatePage(Page page);
 
-        void DeleteModules(PageReference pageRef, params string[] moduleIds);
+        void RemoveModules(PageReference pageRef, params int[] moduleIds);
 
         void DeletePage(PageReference pageRef);
 
         MetaData GetModuleMetaData(Module module);
 
-        Module GetModuleById(string moduleId);
-        Module GetModuleById(PageReference pageRef, string moduleId);
+        Module GetModuleById(int moduleId);
+        Module GetModuleById(PageReference pageRef, int moduleId);
 
         Page GetPage(PageReference pageRef);
         Page GetPage(PageReference pageRef, bool cachePage, bool forceCacheRefresh);

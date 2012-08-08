@@ -34,13 +34,13 @@ namespace DowJones.DegreasedDashboards
             return module.Id.ToString();
         }
 
-        public void AddModuleToPage(PageReference pageRef, params string[] moduleIds)
+        public void AddModuleToPage(PageReference pageRef, params int[] moduleIds)
         {
             var page = GetPage(pageRef);
 
             foreach (var moduleId in moduleIds)
             {
-                page.ModuleCollection.Add(new Module { Id = Convert.ToInt32(moduleId) });
+                page.ModuleCollection.Add(new Module { Id = moduleId });
             }
         }
 
@@ -54,12 +54,10 @@ namespace DowJones.DegreasedDashboards
             return page.ID;
         }
 
-        public void DeleteModules(PageReference pageRef, params string[] moduleIds)
+        public void RemoveModules(PageReference pageRef, params int[] moduleIds)
         {
-            var intModuleIds = moduleIds.Select(int.Parse);
-            
             var page = GetPage(pageRef);
-            page.ModuleCollection.RemoveAll(x => intModuleIds.Contains(x.Id));
+            page.ModuleCollection.RemoveAll(x => moduleIds.Contains(x.Id));
         }
 
         public void DeletePage(PageReference pageRef)
@@ -73,15 +71,15 @@ namespace DowJones.DegreasedDashboards
             return new MetaData();
         }
 
-        public Module GetModuleById(string moduleId)
+        public Module GetModuleById(int moduleId)
         {
-            return Modules.FirstOrDefault(x => x.Id.ToString() == moduleId);
+            return Modules.FirstOrDefault(x => x.Id == moduleId);
         }
 
-        public Module GetModuleById(PageReference pageRef, string moduleId)
+        public Module GetModuleById(PageReference pageRef, int moduleId)
         {
             var page = GetPage(pageRef);
-            return page.ModuleCollection.FirstOrDefault(x => x.Id.ToString() == moduleId);
+            return page.ModuleCollection.FirstOrDefault(x => x.Id == moduleId);
         }
 
         public Page GetPage(PageReference pageRef)

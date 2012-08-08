@@ -24,9 +24,9 @@ namespace DowJones.Pages
             return PageAssetsManager.AddModuleToPage(pageRef, 1, gwModule, null);
         }
 
-        public void AddModuleToPage(PageReference pageRef, params string[] moduleIds)
+        public void AddModuleToPage(PageReference pageRef, params int[] moduleIds)
         {
-            PageAssetsManager.AddModuleIdsToEndOfPage(pageRef, moduleIds);
+            PageAssetsManager.AddModuleIdsToEndOfPage(pageRef, moduleIds.Select(x => x.ToString()).ToArray());
         }
 
         public PageReference CreatePage(Page page)
@@ -34,9 +34,9 @@ namespace DowJones.Pages
             return PageAssetsManager.CreatePage(Mapper.Map<Gateway.Page>(page));
         }
 
-        public void DeleteModules(PageReference pageRef, params string[] moduleIds)
+        public void RemoveModules(PageReference pageRef, params int[] moduleIds)
         {
-            PageAssetsManager.DeleteModules(pageRef, moduleIds);
+            PageAssetsManager.DeleteModules(pageRef, moduleIds.Select(x => x.ToString()).ToArray());
         }
 
         public void DeletePage(PageReference pageRef)
@@ -49,15 +49,15 @@ namespace DowJones.Pages
             return PageAssetsManager.GetModuleMetaData(Mapper.Map<Gateway.Module>(module));
         }
 
-        public Module GetModuleById(string moduleId)
+        public Module GetModuleById(int moduleId)
         {
-            var module = PageAssetsManager.GetModuleById(moduleId);
+            var module = PageAssetsManager.GetModuleById(moduleId.ToString());
             return Mapper.Map<Module>(module);
         }
 
-        public Module GetModuleById(PageReference pageRef, string moduleId)
+        public Module GetModuleById(PageReference pageRef, int moduleId)
         {
-            var module = PageAssetsManager.GetModuleById(pageRef, moduleId);
+            var module = PageAssetsManager.GetModuleById(pageRef, moduleId.ToString());
             return Mapper.Map<Module>(module);
         }
 

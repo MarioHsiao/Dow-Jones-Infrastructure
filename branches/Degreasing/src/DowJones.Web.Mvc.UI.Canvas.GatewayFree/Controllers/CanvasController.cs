@@ -20,7 +20,7 @@ namespace DowJones.Web.Mvc.UI.Canvas.GatewayFree.Controllers
 
     public class CanvasController : PageControllerBase
     {
-        private IPageManager _pageManager;
+        private readonly IPageManager _pageManager;
 
         public CanvasController(IPageManager pageManager)
         {
@@ -31,12 +31,26 @@ namespace DowJones.Web.Mvc.UI.Canvas.GatewayFree.Controllers
         [Route("canvas/modules/positions/{method}")]
         public ActionResult UpdateModulePositions()
         {
-            UpdateModulePositionsRequest request =
-                JsonConvert.DeserializeObject<UpdateModulePositionsRequest>(Request.Form[0]);
+            var request = ParsePostData<UpdateModulePositionsRequest>();
 
             _pageManager.UpdateModulePositions(request.PageId, request.Columns);
 
-            return Json(request, JsonRequestBehavior.AllowGet);
+            return new HttpStatusCodeResult(200);
+        }
+
+        [HttpDelete]
+        [Route("/canvas/modules/id")]
+        [Route("canvas/modules/id/{method}")]
+        public ActionResult RemoveModule(string pageId, int moduleId)
+        {
+            _pageManager.RemoveModules(pageId, moduleId);
+
+            return new HttpStatusCodeResult(200);
+        }
+
+        private T ParsePostData<T>()
+        {
+            return JsonConvert.DeserializeObject<T>(Request.Form[0]);
         }
     }
 }
