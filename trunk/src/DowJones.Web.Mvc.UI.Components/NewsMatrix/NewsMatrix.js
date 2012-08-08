@@ -97,21 +97,25 @@ DJ.UI.NewsMatrix = DJ.UI.Component.extend({
 
         // Get a list of news categories to display in the category template
         var items = response[0].newsEntities;
-        $dj.debug('what to do about localize()');
+        
+        // TODO: what to do about localize()? Uncomment localsubjects, categoryname logic after figuring out!
         //var local = DJ.Widgets.localize();
-        var local = {};
-        var localSubjects = local.matrix && local.matrix.subjects ? local.matrix.subjects : false;
+        //var local = {};
+        //var localSubjects = local.matrix && local.matrix.subjects ? local.matrix.subjects : false;
         var categoryName;
+
         for (var k in items) {
             var radarSearchQuery = items[k].radarSearchQuery,
                 code = radarSearchQuery.searchString,
                 name = radarSearchQuery.name;
-            categoryName = localSubjects && localSubjects[code] ? localSubjects[code] : name;
-            FinalResults.MatrixCategories.push({ fcode: code, name: categoryName });
+            //categoryName = localSubjects && localSubjects[code] ? localSubjects[code] : name;
+            //FinalResults.MatrixCategories.push({ fcode: code, name: categoryName });
+            FinalResults.MatrixCategories.push({ fcode: code, name: name });
         }
 
         // Add the 'All News' category to the list
-        categoryName = localSubjects && localSubjects['ALLNEWS'] ? localSubjects['ALLNEWS'] : 'All News';
+        //categoryName = localSubjects && localSubjects['ALLNEWS'] ? localSubjects['ALLNEWS'] : 'All News';
+        categoryName = 'All News';
         FinalResults.MatrixCategories.push({ fcode: 'ALLNEWS', name: categoryName });
 
         // Loop through each company and add the needed companies info into the FinalResults object 
@@ -276,10 +280,9 @@ DJ.UI.NewsMatrix = DJ.UI.Component.extend({
 
         var $items = $('.djWidgetItems', this.$element);
         var self = this;
-        var matrixTemplate = self.templates.matrix;
         var html = [];
         for (var i in data) {
-            html[html.length] = this.templates.success({ settings: self.options, propName: i, item: data[i], templates: { matrix: matrixTemplate }, f: { getTicker: self.getTicker } });
+            html[html.length] = this.templates.success({ settings: self.options, propName: i, item: data[i], f: { getTicker: self.getTicker } });
         }
 
 
