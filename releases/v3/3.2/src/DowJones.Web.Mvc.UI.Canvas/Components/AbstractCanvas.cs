@@ -19,9 +19,10 @@ namespace DowJones.Web.Mvc.UI.Canvas
         "AbstractCanvas",
         DeclaringType = typeof(AbstractCanvas),
         DependencyLevel = ClientResourceDependencyLevel.MidLevel,
-        ResourceName = AbstractCanvas.ScriptFile
+        ResourceName = AbstractCanvas.ScriptFile,
+        DependsOn = new[] { "jquery-ui-interactions" }
     )]
-    public abstract class AbstractCanvas<TState> : CompositeComponent<TState> 
+    public abstract class AbstractCanvas<TState> : CompositeComponent<TState>
         where TState : class, IViewComponentModel
     {
 
@@ -30,6 +31,14 @@ namespace DowJones.Web.Mvc.UI.Canvas
             get
             {
                 return base.Children.Select(x => x as ICanvasModule);
+            }
+        }
+
+        public override string ClientPluginName
+        {
+            get
+            {
+                return "dj_Canvas";
             }
         }
 
@@ -42,7 +51,7 @@ namespace DowJones.Web.Mvc.UI.Canvas
         {
             if (!(child is ICanvasModule))
                 throw new ApplicationException("Only Canvas Modules can be added to a Canvas");
-            
+
             base.AddChild(child);
         }
 

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -190,6 +190,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CompositeOutlet.cshtml</DependentUpon>
+    </Compile>
+    <Compile Include="NewsMatrix\NewsMatrixComponent.cs">
+      <DependentUpon>NewsMatrixComponent.cshtml</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="DateHistogram\DateHistogramComponent1.cs">
       <AutoGen>True</AutoGen>
@@ -562,7 +567,11 @@
     </None>
     <None Include="CompositeOutlet\CompositeOutlet.cshtml">
       <Generator>RazorViewComponentClassGenerator</Generator>
-      <LastGenOutput>CompositeOutlet.cs</LastGenOutput>
+      <LastGenOutput>CompositeOutletComponent.cs</LastGenOutput>
+    </None>
+    <None Include="NewsMatrix\NewsMatrixComponent.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>NewsMatrixComponent.cs</LastGenOutput>
     </None>
     <None Include="DateHistogram\DateHistogramComponent.cshtml">
       <Generator>RazorViewComponentClassGenerator</Generator>
@@ -803,6 +812,22 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="DiscoveryGraph\ClientTemplates\Layout.htm" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="NewsMatrix\ClientTemplates\Error.htm" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="NewsMatrix\ClientTemplates\Matrix.htm" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="NewsMatrix\ClientTemplates\Success.htm" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="NewsMatrix\NewsMatrix.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="NewsMatrix\ClientTemplates\Container.htm" />
+    <Content Include="NewsRadar\ClientTemplates\Container.htm" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

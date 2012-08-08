@@ -1,17 +1,17 @@
 ﻿@using DowJones.Extensions
 @{
     Layout = "~/Views/Shared/_Layout_ComponentExplorer.cshtml";
-    ViewBag.Title = "News Radar";
+    ViewBag.Title = "News Matrix";
     
 }
-<link rel="stylesheet" href="@Url.Content("~/Styles/css/newsradar.css")"/>
+<link rel="stylesheet" href="@Url.Content("~/Styles/css/newsMatrix.css")"/>
 <style>
-    .djWidgetRadar90 .djRadarCategory {
+    .djWidgetMatrix90 .djMatrixCategory {
         position: relative;
         
     }
 </style>
-<div class="dj_NewsRadarControl">
+<div class="dj_NewsMatrixControl">
     @Html.DJ().Render(Model)
 </div>
 
