@@ -14,27 +14,23 @@ DJ.UI.AbstractCanvasModuleEditor = DJ.UI.Component.extend({
 
 
     resetEditArea: function () {
-        throw 'Implement Edit Area reset!';
+        $dj.debug('TODO: Implement Edit Area reset!');
     },
 
     buildProperties: function () {
-        throw 'Implement buildProperties()!';
+        $dj.debug('TODO: Implement buildProperties()!');
     },
 
     saveProperties: function (props, callback) {
-        throw 'Implement saveProperties()!';
+        $dj.debug('TODO: Implement saveProperties()!');
     },
 
     getData: function () {
-        $dj.debug('Implement getData()!');
-    },
-
-    onShow: function () {
-        throw 'Implement onShow()!';
+        $dj.debug('TODO: Implement getData()!');
     },
 
     onShown: function () {
-        $dj.debug('Implement onShown()!');
+        $dj.debug('TODO: Implement onShow()');
     },
 
 

@@ -52,7 +52,7 @@
 
 			.fi_gear {
 				display: block;
-				background-image: url(gear.png);
+				background-image: url(<%= AbsoluteUrl("~/content/gear.png") %>);
 				width: 32px;
 				height: 32px;
 			}
