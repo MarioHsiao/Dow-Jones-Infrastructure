@@ -3,7 +3,10 @@
   <Profiles />
   <Settings>
     <Setting Name="HtmlModuleServiceUrl" Type="System.String" Scope="Application">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">/modules/Html/1.0/data/json</Value>
+    </Setting>
+    <Setting Name="EmbeddedContentModuleServiceUrl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">/modules/EmbeddedContent/1.0/data/json</Value>
     </Setting>
   </Settings>
 </SettingsFile>

@@ -2,6 +2,7 @@
 using System.Web.Mvc;
 using DowJones.Web.Mvc.Routing;
 using DowJones.Web.Mvc.UI.Canvas.Controllers;
+using DowJones.Web.Mvc.UI.Canvas.GatewayFree.Modules;
 using Newtonsoft.Json;
 using DowJones.Pages;
 
@@ -39,11 +40,50 @@ namespace DowJones.Web.Mvc.UI.Canvas.GatewayFree.Controllers
         }
 
         [HttpDelete]
-        [Route("/canvas/modules/id")]
+        [Route("canvas/modules/id")]
         [Route("canvas/modules/id/{method}")]
         public ActionResult RemoveModule(string pageId, int moduleId)
         {
             _pageManager.RemoveModules(pageId, moduleId);
+
+            return new HttpStatusCodeResult(200);
+        }
+
+        private T ParsePostData<T>()
+        {
+            return JsonConvert.DeserializeObject<T>(Request.Form[0]);
+        }
+    }
+
+    public class HtmlModuleController : PageControllerBase
+    {
+        private readonly IPageManager _pageManager;
+
+        public HtmlModuleController(IPageManager pageManager)
+        {
+            _pageManager = pageManager;
+        }
+
+        [HttpPut]
+        [Route("canvas/modules/Html/{version}/data/{method}")]
+        [ValidateInput(false)]
+        public ActionResult Create(string pageId)
+        {
+            var module = ParsePostData<HtmlModule>();
+
+            _pageManager.AddModuleToPage(pageId, module);
+
+            return new HttpStatusCodeResult(200);
+        }
+
+        [HttpPost]
+        [Route("canvas/modules/Html/{version}/data/{method}")]
+        [ValidateInput(false)]
+        public ActionResult Update()
+        {
+            var module = ParsePostData<HtmlModule>();
+
+            _pageManager.UpdateModule(module);
 
             return new HttpStatusCodeResult(200);
         }
