@@ -66,12 +66,6 @@
   width: 19px;
     font-weight: normal;
 }
-.djWidgetMatrix90 .djContentItemFixed:hover,
-.djWidgetMatrix90 .djContentItemFixed:hover .djMatrixItemNode,
-.djWidgetMatrix90 .djContentItemFixed .djMatrixItemNode.highlight,
-.djWidgetMatrix90 .djMatrixCategory.highlight {
-  background: #ffffe5;
-}
 .djWidgetMatrix90 .djContentItemFixed .djMatrixItemNode.highlightCurrent {
   background: #ffffb7;
 }
@@ -87,24 +81,16 @@
   width: 19px;
 }
 
-.djWidgetMatrix90 .mask-fade {
-  background-image: -webkit-gradient(linear, left top, 80% top, from(rgba(255, 255, 255, 0)), to(white));
-  background-image: -moz-linear-gradient(left center, rgba(255, 255, 255, 0) 0%, white 85%);
-  display: block;
-  float: right;
-  height: 19px;
-  position: relative;
-  width: 40px;
-  z-index: 2;
-  zoom: 1;
-  filter: expression('progid:DXImageTransform.Microsoft.Gradient(GradientType=1,StartColorStr=#00ffffff, EndColorStr=#ffffffff)');
-  -ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=1, startColorstr=#00ffffff, endColorstr=#ffffffff)";
+#tooltip {
+	position: absolute;
+	z-index: 3000;
+	padding: 5px;
+	background:#e6ebf3; 
+	overflow:hidden; 
+	border:1px solid #b6cdf2; 
+	border-radius:4px;
+	font-size: 12px;
 }
-.djWidgetMatrix90 .djContentItemFixed:hover .mask-fade {
-  background-image: -webkit-gradient(linear, left top, 80% top, from(rgba(255, 255, 255, 0)), to(#ffffFF));
-  background-image: -moz-linear-gradient(left center, rgba(255, 255, 255, 0) 0%, #ffffff 85%);
-  filter: expression('progid:DXImageTransform.Microsoft.Gradient(GradientType=1,StartColorStr=#00ffffe5, EndColorStr=#ffffffff)');
-  -ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr=#00ffffe5, endColorstr=#ffffffff)";
-}
+#tooltip h3, #tooltip div { margin: 0; }
 
-
+	

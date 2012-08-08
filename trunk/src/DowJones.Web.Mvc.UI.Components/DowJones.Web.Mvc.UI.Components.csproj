@@ -823,6 +823,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="NewsMatrix\ClientTemplates\Container.htm" />
+    <EmbeddedResource Include="Resources\js\jquery.tooltip.js" />
+    <EmbeddedResource Include="Resources\js\jquery.tooltip.min.js" />
     <Content Include="NewsRadar\ClientTemplates\Container.htm" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

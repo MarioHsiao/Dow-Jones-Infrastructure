@@ -48,7 +48,21 @@ DJ.UI.NewsMatrix = DJ.UI.Component.extend({
 
 
     _initializeEventHandlers: function () {
-        $('.djMatrixItemNode', this.$element).on('click', this._delegates.OnMatrixItemBoxClicked);
+        var self = this;
+        // When hovering over an individual item
+        this.$element.on(
+            {
+                click: this._delegates.OnMatrixItemBoxClicked,
+                mouseenter: function (e) {
+                    var $this = $(this);
+                    
+                }
+            },
+            '.djWidgetMatrix90 .djMatrixItemNode',
+            {
+                bgColor: this.options.backgroundColor,
+                hlColor: this.options.highlightColor
+            });
     },
     
 
@@ -67,7 +81,13 @@ DJ.UI.NewsMatrix = DJ.UI.Component.extend({
         var index = $target.data("index");
         var rItem = this.matrix.MatrixItems[propname];
         var rNewsEntity = rItem.newsEntities[index];
-        var data = { companyName: rItem.companyName, ownershipType: rItem.ownershipType, isNewsCoded: rItem.isNewsCoded, instrumentReference: rItem.instrumentReference, newsEntity: rNewsEntity };
+        var data = {
+            companyName: rItem.companyName,
+            ownershipType: rItem.ownershipType,
+            isNewsCoded: rItem.isNewsCoded,
+            instrumentReference: rItem.instrumentReference,
+            newsEntity: rNewsEntity
+        };
         this.publish(this.events.matrixItemClicked, data);
     },
     
@@ -129,7 +149,6 @@ DJ.UI.NewsMatrix = DJ.UI.Component.extend({
 
         this.matrix = FinalResults;
         this.publish(this.events.dataTransformed, FinalResults);
-        //this.renderCategories(FinalResults);
         this.showErrors = false;
         this.renderContent(this.matrix.MatrixItems);
 
@@ -145,21 +164,7 @@ DJ.UI.NewsMatrix = DJ.UI.Component.extend({
             $(".djWidgetContentList", this.$element).height(((FinalResults.MatrixItems.length) * this.defaults.chipHeight) + (FinalResults.MatrixItems.length - 1));
         }
 
-        var bgColor = self.options.backgroundColor;
-        var hlColor = self.options.highlightColor;
-
-        // When hovering over an individual item
-        $(".djWidgetMatrix90 .djMatrixItemNode").hover(function () {
-            var index = $(this).attr("data-index");
-            $(this).css({ backgroundColor: hlColor });
-            $(this).closest(".djWidgetItem").find(".djMatrixItemNode").css({ backgroundColor: hlColor });
-            $(this).closest(".djWidgetMatrix90").find("[data-index=" + index + "]").css({ backgroundColor: hlColor });
-        }, function () {
-            var index = $(this).attr("data-index");
-            $(this).css({ backgroundColor: bgColor });
-            $(this).closest(".djWidgetItem").find(".djMatrixItemNode").css({ backgroundColor: bgColor });
-            $(this).closest(".djWidgetMatrix90").find("[data-index=" + index + "]").css({ backgroundColor: bgColor });
-        });        
+              
     },
 
     // Loop through each news category of a given company and pull out needed data for the widget
@@ -168,9 +173,10 @@ DJ.UI.NewsMatrix = DJ.UI.Component.extend({
             allNewsDayCount = 0,
             allNewsThreeMonthCount = 0;
         for (var i in company.newsEntities) {
-            var category = company.newsEntities[i];
-            category.oneDayCount = this.extractCount("Day", company.newsEntities[i].newsVolumes);
-            category.threeMonthCount = this.extractCount("ThreeMonth", company.newsEntities[i].newsVolumes);
+            var category = company.newsEntities[i],
+                newsVolumes = category.newsVolumes;
+            category.oneDayCount = this.extractCount("Day", newsVolumes);
+            category.threeMonthCount = this.extractCount("ThreeMonth", newsVolumes);
             category.threeMonthAvg = this.getAverage(category.threeMonthCount, 89);
             category.growthRate = this.getGrowthRate(category.oneDayCount, category.threeMonthAvg);
             category.growthCode = this.getGrowthCode(category);
@@ -185,7 +191,7 @@ DJ.UI.NewsMatrix = DJ.UI.Component.extend({
         var allNews = {};
         allNews.name = "All News";
         allNews.subjectCode = "ALLNEWS";
-        allNews.matrixSearchQuery = { searchString: "ALLNEWS" };
+        allNews.radarSearchQuery = { searchString: "ALLNEWS", name: "All News" };
         allNews.oneDayCount = allNewsDayCount;
         allNews.threeMonthCount = allNewsThreeMonthCount;
         allNews.threeMonthAvg = this.getAverage(allNewsThreeMonthCount, 89);
@@ -279,10 +285,14 @@ DJ.UI.NewsMatrix = DJ.UI.Component.extend({
     renderContent: function (data) {
 
         var $items = $('.djWidgetItems', this.$element);
-        var self = this;
         var html = [];
         for (var i in data) {
-            html[html.length] = this.templates.success({ settings: self.options, propName: i, item: data[i], f: { getTicker: self.getTicker } });
+            html[html.length] = this.templates.success({
+                settings: this.options,
+                propName: i,
+                item: data[i],
+                f: { getTicker: this.getTicker }
+            });
         }
 
 
@@ -295,10 +305,18 @@ DJ.UI.NewsMatrix = DJ.UI.Component.extend({
             if (matrix && matrix.length) {
                 var chipStyle = matrix.data('grc');
                 if (chipStyle) {
-                    self._delegates.DrawChip(matrix[0], chipStyle);
+                    this._delegates.DrawChip(matrix[0], chipStyle);
                 }
             }
         }
+
+        // attach tooltips        
+        $items.find('.djMatrixItemNode').tooltip({
+            showURL: false,
+            showBody: " - ",
+            delay: 0,
+            fade: 250
+        });
     },
 
     drawChip: function (target, chipStyle) {
@@ -348,27 +366,6 @@ DJ.UI.NewsMatrix = DJ.UI.Component.extend({
         return target;
 
     },
-
-
-    renderCategories: function (data) {
-        var $categories = $('.djCategories', this.$element);
-
-        var self = this;
-        var cats = [];
-
-        // need to rework this for ie8 and under.
-        for (var i in data.MatrixCategories) {
-            var category = data.MatrixCategories[i];
-            var catMarkup = self.templates.category({ index: i, settings: self.options, category: category });
-            var label = this.drawCategoryLabel($(catMarkup)[0], category.name || category.fcode);
-            var labelMarkup = $('<div/>').append(label).html();
-            cats.push(labelMarkup);
-        }
-        cats.reverse();
-        $categories.html(cats.join(''));
-    },
-
-
 
     colorLuminance: function (hex, lum) {
         // validate hex string  
@@ -470,7 +467,7 @@ DJ.UI.NewsMatrix = DJ.UI.Component.extend({
     extractGrowthRate: function (categories, v) {
         for (var i = 0; i < categories.length; i++) {
             var category = categories[i];
-            if (category.matrixSearchQuery.searchString == v) {
+            if (category.radarSearchQuery.searchString == v) {
                 return {
                     growthCode: category.growthCode,
                     growthRate: category.growthRate
@@ -479,13 +476,6 @@ DJ.UI.NewsMatrix = DJ.UI.Component.extend({
         }
 
         return 0;
-    },
-    validateSettings: function () {
-        settings = self.settings; // pull from instance
-        if (settings === undefined || !settings) settings = {};
-        if (typeof settings.symbology === 'undefined' || !settings.symbology) {
-            settings.symbology = 'fii';
-        }
     }
 });
 
