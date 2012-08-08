@@ -34,13 +34,12 @@
   overflow:hidden;
 }
 .djWidgetMatrix90 .djWidgetItems {
-  line-height: 0;
+	line-height: 0;
     position: absolute;
-    width: 100%;
 }
 .djWidgetMatrix90 .djContentItemFixed {
   border-bottom-style: solid;
-  border-bottom-color: #f0f0f0;
+  border-bottom-color: #ffffff;
   border-bottom-width: 1px;
   height: 19px;
   line-height: 19px;

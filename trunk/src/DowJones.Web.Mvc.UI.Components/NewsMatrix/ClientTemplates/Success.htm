@@ -3,11 +3,21 @@
         settings= self.settings, 
         defaults = self.defaults, 
         f = self.f, 
-        text = (settings.displayTicker) ? f.getTicker(item) : item.companyName;
+        text = (settings.displayTicker) ? f.getTicker(item) : item.companyName,
+        company = item.companyName;
 %>
 
-<div class="djWidgetItem djContentItemFixed">
-	<% for (var i = 0, len = item.newsEntities.length; i < len; i++) { %>
-			<%= this.matrix({item:item, matrix:item.newsEntities[i], index: i, propName: pName}) %>
+<ul class="djWidgetItem djContentItemFixed">
+    <%  for (var i = 0, len = item.newsEntities.length; i < len; i++) {
+        var cell = item.newsEntities[i],
+            category = cell.radarSearchQuery.name;
+    %>
+    <li class="djMatrixItemNode" data-propname="<%= pName %>" data-index="<%= i %>" 
+        title="<%= company %> - <%= category %>" href="javascript:void(0)">
+        <div class="djMatrixItemBox djMatrixItemBox<%= cell.growthCode %>" data-grc="<%= cell.growthCode %>"
+            data-p1d="<%= cell.oneDayCount %>" data-p3m="<%= cell.threeMonthCount %>"
+            data-a3m="<%= cell.threeMonthAvg %>" data-grv="<%= cell.growthRate %>">
+        </div>
+    </li>
 	<% } %>
-</div>
+</ul>

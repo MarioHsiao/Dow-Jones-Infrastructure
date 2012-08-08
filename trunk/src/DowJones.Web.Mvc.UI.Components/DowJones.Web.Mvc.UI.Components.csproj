@@ -813,9 +813,6 @@
     <EmbeddedResource Include="NewsMatrix\ClientTemplates\Error.htm" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="NewsMatrix\ClientTemplates\Matrix.htm" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="NewsMatrix\ClientTemplates\Success.htm" />
   </ItemGroup>
   <ItemGroup>

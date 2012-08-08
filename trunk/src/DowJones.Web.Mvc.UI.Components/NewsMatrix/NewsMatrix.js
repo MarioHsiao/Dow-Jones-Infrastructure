@@ -33,14 +33,14 @@ DJ.UI.NewsMatrix = DJ.UI.Component.extend({
         this._super(element, $meta);
 
         // set up some variables
-        this.scrollSize = (this.options.windowSize || this.defaults.windowSize) - 1;
+        this.scrollSize = (this.options.windowSize) - 1;
 
         // call databind if we got data from server
         if (this.data) {
             this.bindOnSuccess(this.data, this.options);
         }
     },
-    
+
 
     _initializeElements: function () {
         this.$element.html(this.templates.container());
@@ -48,32 +48,17 @@ DJ.UI.NewsMatrix = DJ.UI.Component.extend({
 
 
     _initializeEventHandlers: function () {
-        var self = this;
-        // When hovering over an individual item
-        this.$element.on(
-            {
-                click: this._delegates.OnMatrixItemBoxClicked,
-                mouseenter: function (e) {
-                    var $this = $(this);
-                    
-                }
-            },
-            '.djWidgetMatrix90 .djMatrixItemNode',
-            {
-                bgColor: this.options.backgroundColor,
-                hlColor: this.options.highlightColor
-            });
+        this.$element.on('click', '.djMatrixItemNode', this._delegates.OnMatrixItemBoxClicked);
     },
-    
+
 
     _initializeDelegates: function () {
         this._super();
         $.extend(this._delegates, {
-            OnMatrixItemBoxClicked: $dj.delegate(this, this._onMatrixItemBoxClicked),
-            DrawChip: $dj.delegate(this, this.drawChip)
+            OnMatrixItemBoxClicked: $dj.delegate(this, this._onMatrixItemBoxClicked)
         });
     },
-    
+
 
     _onMatrixItemBoxClicked: function (ev) {
         var $target = $(ev.currentTarget);
@@ -90,7 +75,7 @@ DJ.UI.NewsMatrix = DJ.UI.Component.extend({
         };
         this.publish(this.events.matrixItemClicked, data);
     },
-    
+
 
     _setScrollable: function () {
         $(this.selectors.scrollable, this.$element).scrollable({
@@ -98,73 +83,71 @@ DJ.UI.NewsMatrix = DJ.UI.Component.extend({
             mousewheel: true,
             easing: 'linear'
         });
+
+        var scrollSize = this.scrollSize;
+        var windowSize = this.options.windowSize;
+
+        if (scrollSize > 0 && windowSize < this.matrix.MatrixItems.length) {
+            $(".djWidgetContentList", this.$element).height((windowSize * this.options.chipHeight) + (windowSize - 1));
+        }
+        else {
+            $(".djWidgetContentList", this.$element).height(((this.matrix.MatrixItems.length) * this.options.chipHeight) + (this.matrix.MatrixItems.length - 1));
+        }
     },
 
 
     bindOnSuccess: function (response, params) {
-        //this.publish(this.events.dataReceived, response);
-        var self = this;
-
         if (!this.validateResponse(response)) {
             return;
         }
 
-        // After parsing out the necessary data, this is the object we will use to render the widget..remove("highlightCurrent")
-        var FinalResults = {
-            MatrixCategories: [],
-            MatrixItems: []
+        this.matrix = this.extractCategoriesAndItems(response);
+        this.publish(this.events.dataTransformed, this.matrix);
+
+        this.showErrors = false;
+
+        this.renderContent(this.matrix.MatrixItems);
+
+        this._setScrollable();
+    },
+
+    extractCategoriesAndItems: function (data) {
+        var categories = this.extractCategories(data[0].newsEntities);
+        var items = this.extractItems(data);
+
+        return {
+            MatrixCategories: categories,
+            MatrixItems: items
         };
+    },
 
-        // Get a list of news categories to display in the category template
-        var items = response[0].newsEntities;
-        
-        // TODO: what to do about localize()? Uncomment localsubjects, categoryname logic after figuring out!
-        //var local = DJ.Widgets.localize();
-        //var local = {};
-        //var localSubjects = local.matrix && local.matrix.subjects ? local.matrix.subjects : false;
-        var categoryName;
+    extractCategories: function (newsEntities) {
+        var categories = [];
 
-        for (var k in items) {
-            var radarSearchQuery = items[k].radarSearchQuery,
+        for (var k in newsEntities) {
+            var radarSearchQuery = newsEntities[k].radarSearchQuery,
                 code = radarSearchQuery.searchString,
                 name = radarSearchQuery.name;
-            //categoryName = localSubjects && localSubjects[code] ? localSubjects[code] : name;
-            //FinalResults.MatrixCategories.push({ fcode: code, name: categoryName });
-            FinalResults.MatrixCategories.push({ fcode: code, name: name });
+            categories.push({ fcode: code, name: name });
         }
 
         // Add the 'All News' category to the list
-        //categoryName = localSubjects && localSubjects['ALLNEWS'] ? localSubjects['ALLNEWS'] : 'All News';
-        categoryName = 'All News';
-        FinalResults.MatrixCategories.push({ fcode: 'ALLNEWS', name: categoryName });
+        categories.push({ fcode: 'ALLNEWS', name: 'All News' });
 
-        // Loop through each company and add the needed companies info into the FinalResults object 
+        return categories;
+    },
+
+    extractItems: function (response) {
+        var items = [];
+
+        // Loop through each company and add the needed companies info 
         for (var p = 0; p < response.length; p++) {
             var company = response[p];
             company.newsEntities = this.setNewsData(response[p]);
-
-            FinalResults.MatrixItems.push(company);
+            items.push(company);
         }
 
-
-        this.matrix = FinalResults;
-        this.publish(this.events.dataTransformed, FinalResults);
-        this.showErrors = false;
-        this.renderContent(this.matrix.MatrixItems);
-
-        // update the window viewport (windowsize * 15) + (windowsize -1)
-        this._setScrollable();
-        var scrollSize = this.scrollSize;
-        var windowSize = this.options.windowSize;
-
-        if (scrollSize > 0 && windowSize < FinalResults.MatrixItems.length) {
-            $(".djWidgetContentList", this.$element).height((windowSize * this.defaults.chipHeight) + (windowSize - 1));
-        }
-        else {
-            $(".djWidgetContentList", this.$element).height(((FinalResults.MatrixItems.length) * this.defaults.chipHeight) + (FinalResults.MatrixItems.length - 1));
-        }
-
-              
+        return items;
     },
 
     // Loop through each news category of a given company and pull out needed data for the widget
@@ -304,9 +287,7 @@ DJ.UI.NewsMatrix = DJ.UI.Component.extend({
             var matrix = $(matrixs[r]);
             if (matrix && matrix.length) {
                 var chipStyle = matrix.data('grc');
-                if (chipStyle) {
-                    this._delegates.DrawChip(matrix[0], chipStyle);
-                }
+                this.drawChip(matrix[0], chipStyle);
             }
         }
 
@@ -325,7 +306,7 @@ DJ.UI.NewsMatrix = DJ.UI.Component.extend({
         var neutralColor = options.noMovementColor,
             negativeColor = options.negativeMovementColor,
             positiveColor = options.positiveMovementColor,
-            baseColor = '#fff';
+            baseColor = options.backgroundColor;
 
         switch (chipStyle) {
             case 'less':
@@ -359,7 +340,7 @@ DJ.UI.NewsMatrix = DJ.UI.Component.extend({
                 baseColor = positiveColor;
                 break;
             default:
-                return target;
+                break;
         }
 
         target.style.backgroundColor = baseColor;
@@ -396,7 +377,7 @@ DJ.UI.NewsMatrix = DJ.UI.Component.extend({
         if (hex.length < 6) {
             hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
         }
-        
+
         // convert to decimal and change saturation
         var rgb = "#", c, i;
         for (i = 0; i < 3; i++) {
@@ -404,55 +385,6 @@ DJ.UI.NewsMatrix = DJ.UI.Component.extend({
             rgb += ("00" + c).substr(c.length); // padleft
         }
         return rgb;
-    },
-
-    drawCategoryLabel: function (target, text) {
-        var categoryLabel = '<div title="' + text + '">' + text + '</div>';
-        var fontSize = this.options.hitSize;
-        var fontFamily = this.options.hitFont;
-        var tColor = this.colorLuminance(this.options.hitColor || this.defaults.hitColor, 0);
-
-        if (Highcharts.VMLRenderer) {
-            $(target).css({
-                position: "relative",
-                top: '0',
-                left: '0',
-                zoom: '1',
-                filter: 'progid:DXImageTransform.Microsoft.BasicImage(rotation=2)'
-            });
-            var $categoryLabel = $(categoryLabel);
-            $categoryLabel.css({
-                position: 'absolute',
-                writingMode: 'tb-rl',
-                top: '3px',
-                height: '143px',
-                width: '19px',
-                textAlign: 'left',
-                lineHeight: '19px',
-                clip: 'rect(0px,19px,143px,0px)'
-            }).addClass("verticalLabel");
-
-            $(target).css({ backgroundColor: '#FFF' });
-            $(target).html($categoryLabel);
-            return target;
-        }
-
-        else {
-            var renderer = new Highcharts.Renderer(target, 19, 143);
-            var xPos = 12.5;
-            var yPos = 140;
-
-            renderer.text(text, xPos, yPos).attr({
-                rotation: 270
-            }).css({
-                fontSize: fontSize + 'px',
-                lineHeight: '19px',
-                fontFamily: fontFamily,
-                fontWeight: 'normal',
-                color: tColor
-            }).add();
-        }
-        return target;
     },
 
     getTicker: function (item) {
