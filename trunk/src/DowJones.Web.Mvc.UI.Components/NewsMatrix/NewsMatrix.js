@@ -44,8 +44,9 @@ DJ.UI.NewsMatrix = DJ.UI.Component.extend({
     },
 
 
-    _initializeElements: function () {
+    _initializeElements: function (ctx) {
         this.$element.html(this.templates.container());
+        this.scrollableContainer = ctx.find('.djWidgetContentList');
     },
 
 
@@ -80,11 +81,13 @@ DJ.UI.NewsMatrix = DJ.UI.Component.extend({
 
 
     _setScrollable: function () {
-        $(this.selectors.scrollable, this.$element).scrollable({
-            vertical: true,
-            mousewheel: true,
-            easing: 'linear'
-        });
+        this.scrollableContainer
+            .addClass('scrollable')
+            .scrollable({
+                vertical: true,
+                mousewheel: true,
+                easing: 'linear'
+            });
 
         var scrollSize = this.scrollSize;
         var windowSize = this.options.windowSize;
