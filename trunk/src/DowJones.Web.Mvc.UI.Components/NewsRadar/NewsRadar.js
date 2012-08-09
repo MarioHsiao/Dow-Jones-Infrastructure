@@ -202,20 +202,30 @@ DJ.UI.NewsRadar = DJ.UI.Component.extend({
             $(".djActions", this.$element).hide();
         }
         
-        var bgColor = self.options.backgroundColor || self.defaults.backgroundColor;
-        var hlColor = self.options.highlightColor || self.defaults.highlightColor;
+        var bgColor = self.options.backgroundColor;
+        var hlColor = self.options.highlightColor;
         
+        this.$element.on({
+            mouseenter: function (e) {
+                var hlColor = e.data.hlColor;
+                var index = $(this).attr("data-index");
+                var $this = $(this);
+                $(this).css({ backgroundColor: hlColor });
+                $(this).closest(".djWidgetItem").find(".djRadarItemNode").css({ backgroundColor: hlColor });
+                $(this).closest(".djWidgetRadar90").find("[data-index=" + index + "]").css({ backgroundColor: hlColor });
+            },
+            mouseleave: function (e) {
+                var index = $(this).attr("data-index");
+                $(this).css({ backgroundColor: bgColor });
+                $(this).closest(".djWidgetItem").find(".djRadarItemNode").css({ backgroundColor: bgColor });
+                $(this).closest(".djWidgetRadar90").find("[data-index=" + index + "]").css({ backgroundColor: bgColor });
+            }
+        }, ".djWidgetRadar90 .djRadarItemNode", { bgColor: self.options.backgroundColor, hlColor: self.options.highlightColor })
         // When hovering over an individual item
         $(".djWidgetRadar90 .djRadarItemNode").hover(function() {
-            var index = $(this).attr("data-index");
-            $(this).css({ backgroundColor: hlColor});
-            $(this).closest(".djWidgetItem").find(".djRadarItemNode").css({ backgroundColor: hlColor});
-            $(this).closest(".djWidgetRadar90").find("[data-index=" + index + "]").css({ backgroundColor: hlColor});
+            
         }, function() {
-            var index = $(this).attr("data-index");
-            $(this).css({ backgroundColor: bgColor });
-            $(this).closest(".djWidgetItem").find(".djRadarItemNode").css({ backgroundColor: bgColor });
-            $(this).closest(".djWidgetRadar90").find("[data-index=" + index + "]").css({ backgroundColor: bgColor });
+            
         });
         
         // When hovering over an company item
@@ -596,13 +606,6 @@ DJ.UI.NewsRadar = DJ.UI.Component.extend({
         }
 
         return 0;
-    },
-    validateSettings: function () {
-        settings = self.settings; // pull from instance
-        if (settings === undefined || !settings) settings = {};
-        if (typeof settings.symbology === 'undefined' || !settings.symbology) {
-            settings.symbology = 'fii';
-        }
     }
 });
 

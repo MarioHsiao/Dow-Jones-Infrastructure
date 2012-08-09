@@ -21,8 +21,7 @@ DJ.UI.NewsMatrix = DJ.UI.Component.extend({
     events: {
         matrixItemClicked: 'matrixItemClicked.dj.NewsMatrix',
         dataTransformed: 'dataTransformed.dj.NewsMatrix',
-        error: 'error.dj.NewsMatrix',
-        log: 'log.dj.NewsMatrix'
+        error: 'error.dj.NewsMatrix'
     },
 
 
@@ -35,6 +34,9 @@ DJ.UI.NewsMatrix = DJ.UI.Component.extend({
         // set up some variables
         this.scrollSize = (this.options.windowSize) - 1;
 
+        // calculate and memoize colors for chips based on options
+        this._initChipColorMap();
+        
         // call databind if we got data from server
         if (this.data) {
             this.bindOnSuccess(this.data, this.options);
@@ -94,7 +96,26 @@ DJ.UI.NewsMatrix = DJ.UI.Component.extend({
             $(".djWidgetContentList", this.$element).height(((this.matrix.MatrixItems.length) * this.options.chipHeight) + (this.matrix.MatrixItems.length - 1));
         }
     },
+    
+    _initChipColorMap: function () {
+        var options = this.options,
+            neutralColor = options.noMovementColor,
+            negativeColor = options.negativeMovementColor,
+            positiveColor = options.positiveMovementColor,
+            baseColor = options.backgroundColor;
 
+        // could be an array but having as an object leaves room for 
+        // adding labels in future (e.g. 'less', 'same' etc.)
+        this.chipColorMap = {
+            0: baseColor,
+            1: negativeColor,
+            2: neutralColor,
+            3: this.shade(positiveColor, .6),
+            4: this.shade(positiveColor, .4),
+            5: this.shade(positiveColor, .2),
+            6: positiveColor
+        };
+    },
 
     bindOnSuccess: function (response, params) {
         if (!this.validateResponse(response)) {
@@ -108,7 +129,7 @@ DJ.UI.NewsMatrix = DJ.UI.Component.extend({
 
         this.renderContent(this.matrix.MatrixItems);
 
-        this._setScrollable();
+        //this._setScrollable();
     },
 
     extractCategoriesAndItems: function (data) {
@@ -278,18 +299,10 @@ DJ.UI.NewsMatrix = DJ.UI.Component.extend({
             });
         }
 
-
         $items.html(html.join(""));
 
-        var matrixs = $('.djMatrixItemBox', this.$element); //table and key
-
-        for (var r = 0; r < matrixs.length; r++) {
-            var matrix = $(matrixs[r]);
-            if (matrix && matrix.length) {
-                var chipStyle = matrix.data('grc');
-                this.drawChip(matrix[0], chipStyle);
-            }
-        }
+        //table and key
+        this.drawChips($('.djMatrixItemBox', this.$element));
 
         // attach tooltips        
         $items.find('.djMatrixItemNode').tooltip({
@@ -300,52 +313,12 @@ DJ.UI.NewsMatrix = DJ.UI.Component.extend({
         });
     },
 
-    drawChip: function (target, chipStyle) {
-        var options = this.options;
-
-        var neutralColor = options.noMovementColor,
-            negativeColor = options.negativeMovementColor,
-            positiveColor = options.positiveMovementColor,
-            baseColor = options.backgroundColor;
-
-        switch (chipStyle) {
-            case 'less':
-            case 'djMatrixItemBox1':
-            case 1:
-                baseColor = negativeColor;
-                break;
-            case 'same':
-            case 'djMatrixItemBox2':
-            case 2:
-                baseColor = neutralColor;
-                break;
-            case '50':
-            case 'djMatrixItemBox3':
-            case 3:
-                baseColor = this.shade(positiveColor, .6);
-                break;
-            case '200':
-            case 'djMatrixItemBox4':
-            case 4:
-                baseColor = this.shade(positiveColor, .4);
-                break;
-            case '400':
-            case 'djMatrixItemBox5':
-            case 5:
-                baseColor = this.shade(positiveColor, .2);
-                break;
-            case '400plus':
-            case 'djMatrixItemBox6':
-            case 6:
-                baseColor = positiveColor;
-                break;
-            default:
-                break;
+    drawChips: function (matrixCells) {
+        for (var r = 0, len = matrixCells.length; r < len; r++) {
+            var cell = $(matrixCells[r]);
+            var chipStyle = cell.data('grc');
+            cell.css('backgroundColor', this.chipColorMap[chipStyle] || this.options.backgroundColor);
         }
-
-        target.style.backgroundColor = baseColor;
-        return target;
-
     },
 
     colorLuminance: function (hex, lum) {
