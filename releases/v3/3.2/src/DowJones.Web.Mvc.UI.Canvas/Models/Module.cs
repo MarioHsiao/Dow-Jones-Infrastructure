@@ -112,6 +112,9 @@ namespace DowJones.Web.Mvc.UI.Canvas
         [ClientProperty("inheritPageFilters")]
         public bool InheritPageFilters { get; set; }
 
+        [ClientProperty("companyFilter")]
+        public CodeDesc CompanyFilter { get; set; }
+
         [ClientProperty("regionFilter")]
         public CodeDesc RegionFilter { get; set; }
 
@@ -135,6 +138,11 @@ namespace DowJones.Web.Mvc.UI.Canvas
                 InheritPageFilters = queryFilterSet.Inherit;
                 if (queryFilterSet.QueryFilters != null)
                 {
+                    var companyQueryFilter = queryFilterSet.QueryFilters.Where(queryFilter => queryFilter.Type == Pages.Common.FilterType.Company).FirstOrDefault();
+                    if (companyQueryFilter != null)
+                    {
+                        CompanyFilter = new CodeDesc(companyQueryFilter.Text.ToLower(), null);
+                    }
                     var industryQueryFilter = queryFilterSet.QueryFilters.Where(queryFilter => queryFilter.Type == Pages.Common.FilterType.Industry).FirstOrDefault();
                     if (industryQueryFilter != null)
                     {
