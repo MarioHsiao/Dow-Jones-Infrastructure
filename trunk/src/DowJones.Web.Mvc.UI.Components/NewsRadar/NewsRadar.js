@@ -49,6 +49,64 @@ DJ.UI.NewsRadar = DJ.UI.Component.extend({
         $('.djPrev', this.$element).on('click', this._delegates.OnPrevClicked);
         $('.djNext', this.$element).on('click', this._delegates.OnNextClicked);
         $('.djTop', this.$element).on('click', this._delegates.OnTopClicked);
+        
+        // When hovering over an individual item
+        this.$element.on({
+            mouseenter: function (e) {
+                var hlColor = e.data.hlColor;
+                var $this = $(this);
+                var index = $this.data("index");
+                $this.css({ backgroundColor: hlColor });
+                $this.closest(".djWidgetItem").find(".djRadarItemNode").css({ backgroundColor: hlColor });
+                $this.closest(".djWidgetRadar90").find("[data-index=" + index + "]").css({ backgroundColor: hlColor });
+            },
+            mouseleave: function (e) {
+                var bgColor = e.data.bgColor;
+                var $this = $(this);
+                var index = $this.data("index");
+                $this.css({ backgroundColor: bgColor });
+                $this.closest(".djWidgetItem").find(".djRadarItemNode").css({ backgroundColor: bgColor });
+                $this.closest(".djWidgetRadar90").find("[data-index=" + index + "]").css({ backgroundColor: bgColor });
+            }
+        }, ".djWidgetRadar90 .djRadarItemNode", { bgColor: this.options.backgroundColor, hlColor: this.options.highlightColor });
+        
+
+        // When hovering over an company item
+        this.$element.on({
+            mouseenter: function (e) {
+                var hlColor = e.data.hlColor;
+                var $this = $(this);
+                $this.css({ backgroundColor: hlColor });
+                $this.children().css({ backgroundColor: hlColor });
+            },
+            mouseleave: function (e) {
+                var bgColor = e.data.bgColor;
+                var $this = $(this);
+                $this.css({ backgroundColor: bgColor });
+                $this.children().css({ backgroundColor: bgColor });
+            }
+        }, ".djWidgetRadar90 .djWidgetItem", { bgColor: this.options.backgroundColor, hlColor: this.options.highlightColor });
+        
+        // When hovering over a category
+        this.$element.on({
+            mouseenter: function (e) {
+                var hlColor = e.data.hlColor;
+                var $this = $(this);
+                var index = $this.data("index");
+                $this.css({ backgroundColor: hlColor });
+                $this.closest(".djWidgetRadar90").find("[data-index=" + index + "]").css({ backgroundColor: hlColor });
+            },
+            mouseleave: function (e) {
+                var bgColor = e.data.bgColor;
+                var $this = $(this);
+                var index = $this.data("index");
+                $this.css({ backgroundColor: bgColor });
+                $this.closest(".djWidgetRadar90").find("[data-index=" + index + "]").css({ backgroundColor: bgColor });
+            }
+        }, ".djWidgetRadar90 li.djRadarCategory", { bgColor: this.options.backgroundColor, hlColor: this.options.highlightColor });
+        
+        this.$element.on('click', '.djRadarCategory', this._delegates.HandleSort);
+        this.$element.on('click', '.djRadarItemNode', this._delegates.OnRadarItemBoxClicked);
     },
 
     _initializeDelegates: function () {
@@ -160,20 +218,15 @@ DJ.UI.NewsRadar = DJ.UI.Component.extend({
 
         // Get a list of news categories to display in the category template
         var items = response[0].newsEntities;
-        $dj.debug('what to do about localize()');
-        //var local = DJ.Widgets.localize();
-        var local = {};
-        var localSubjects = local.radar && local.radar.subjects ? local.radar.subjects : false;
         var categoryName;
         for (var k in items) {
             var code = items[k].radarSearchQuery.searchString && items[k].radarSearchQuery.searchString;
-            categoryName = localSubjects && localSubjects[code] ? localSubjects[code] : items[k].radarSearchQuery.name;
+            categoryName = items[k].radarSearchQuery.name;
             FinalResults.RadarCategories.push({ fcode: code, name: categoryName });
         }
 
         // Add the 'All News' category to the list
-        categoryName = localSubjects && localSubjects['ALLNEWS'] ? localSubjects['ALLNEWS'] : 'All News';
-        FinalResults.RadarCategories.push({ fcode: 'ALLNEWS', name: categoryName });
+        FinalResults.RadarCategories.push({ fcode: 'ALLNEWS', name: 'All News' });
 
         // Loop through each company and add the needed companies info into the FinalResults object 
         for (var p = 0; p < response.length; p++) {
@@ -202,54 +255,6 @@ DJ.UI.NewsRadar = DJ.UI.Component.extend({
             $(".djActions", this.$element).hide();
         }
         
-        var bgColor = self.options.backgroundColor;
-        var hlColor = self.options.highlightColor;
-        
-        this.$element.on({
-            mouseenter: function (e) {
-                var hlColor = e.data.hlColor;
-                var index = $(this).attr("data-index");
-                var $this = $(this);
-                $(this).css({ backgroundColor: hlColor });
-                $(this).closest(".djWidgetItem").find(".djRadarItemNode").css({ backgroundColor: hlColor });
-                $(this).closest(".djWidgetRadar90").find("[data-index=" + index + "]").css({ backgroundColor: hlColor });
-            },
-            mouseleave: function (e) {
-                var index = $(this).attr("data-index");
-                $(this).css({ backgroundColor: bgColor });
-                $(this).closest(".djWidgetItem").find(".djRadarItemNode").css({ backgroundColor: bgColor });
-                $(this).closest(".djWidgetRadar90").find("[data-index=" + index + "]").css({ backgroundColor: bgColor });
-            }
-        }, ".djWidgetRadar90 .djRadarItemNode", { bgColor: self.options.backgroundColor, hlColor: self.options.highlightColor })
-        // When hovering over an individual item
-        $(".djWidgetRadar90 .djRadarItemNode").hover(function() {
-            
-        }, function() {
-            
-        });
-        
-        // When hovering over an company item
-        $(".djWidgetRadar90 .djWidgetItem").hover(function () {
-            $(this).css({ backgroundColor: hlColor});
-            $(this).children().css({ backgroundColor: hlColor});
-        }, function () {
-            $(this).css({ backgroundColor: bgColor });
-            $(this).children().css({ backgroundColor: bgColor });
-        });
-
-        // When hovering over a category
-        $(".djWidgetRadar90 li.djRadarCategory").hover(function () {
-            var index = $(this).attr("data-index");
-            $(this).css({ backgroundColor: hlColor});
-            $(this).closest(".djWidgetRadar90").find("[data-index=" + index + "]").css({ backgroundColor: hlColor});
-        }, function () {
-            var index = $(this).attr("data-index");
-            $(this).css({ backgroundColor: bgColor });
-            $(this).closest(".djWidgetRadar90").find("[data-index=" + index + "]").css({ backgroundColor: bgColor });
-        });
-        
-        $('.djRadarCategory', this.$element).on('click', this._delegates.HandleSort);
-        $('.djRadarItemNode', this.$element).on('click', this._delegates.OnRadarItemBoxClicked);
     },
 
     _handleSort: function (ev) {
@@ -272,7 +277,6 @@ DJ.UI.NewsRadar = DJ.UI.Component.extend({
 
         this.renderContent(this.radar.RadarItems);
         this._onTopClicked(0);
-        $('.djRadarItemNode', this.$element).on('click', this._delegates.OnRadarItemBoxClicked);
     },
 
     // Loop through each news category of a given company and pull out needed data for the widget
