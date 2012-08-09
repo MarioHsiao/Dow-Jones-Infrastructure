@@ -21,8 +21,7 @@ DJ.UI.NewsMatrix = DJ.UI.Component.extend({
     events: {
         matrixItemClicked: 'matrixItemClicked.dj.NewsMatrix',
         dataTransformed: 'dataTransformed.dj.NewsMatrix',
-        error: 'error.dj.NewsMatrix',
-        log: 'log.dj.NewsMatrix'
+        error: 'error.dj.NewsMatrix'
     },
 
 
@@ -33,33 +32,36 @@ DJ.UI.NewsMatrix = DJ.UI.Component.extend({
         this._super(element, $meta);
 
         // set up some variables
-        this.scrollSize = (this.options.windowSize || this.defaults.windowSize) - 1;
+        this.scrollSize = (this.options.windowSize) - 1;
 
+        // calculate and memoize colors for chips based on options
+        this._initChipColorMap();
+        
         // call databind if we got data from server
         if (this.data) {
             this.bindOnSuccess(this.data, this.options);
         }
     },
-    
 
-    _initializeElements: function () {
+
+    _initializeElements: function (ctx) {
         this.$element.html(this.templates.container());
+        this.scrollableContainer = ctx.find('.djWidgetContentList');
     },
 
 
     _initializeEventHandlers: function () {
-        $('.djMatrixItemNode', this.$element).on('click', this._delegates.OnMatrixItemBoxClicked);
+        this.$element.on('click', '.djMatrixItemNode', this._delegates.OnMatrixItemBoxClicked);
     },
-    
+
 
     _initializeDelegates: function () {
         this._super();
         $.extend(this._delegates, {
-            OnMatrixItemBoxClicked: $dj.delegate(this, this._onMatrixItemBoxClicked),
-            DrawChip: $dj.delegate(this, this.drawChip)
+            OnMatrixItemBoxClicked: $dj.delegate(this, this._onMatrixItemBoxClicked)
         });
     },
-    
+
 
     _onMatrixItemBoxClicked: function (ev) {
         var $target = $(ev.currentTarget);
@@ -67,99 +69,109 @@ DJ.UI.NewsMatrix = DJ.UI.Component.extend({
         var index = $target.data("index");
         var rItem = this.matrix.MatrixItems[propname];
         var rNewsEntity = rItem.newsEntities[index];
-        var data = { companyName: rItem.companyName, ownershipType: rItem.ownershipType, isNewsCoded: rItem.isNewsCoded, instrumentReference: rItem.instrumentReference, newsEntity: rNewsEntity };
+        var data = {
+            companyName: rItem.companyName,
+            ownershipType: rItem.ownershipType,
+            isNewsCoded: rItem.isNewsCoded,
+            instrumentReference: rItem.instrumentReference,
+            newsEntity: rNewsEntity
+        };
         this.publish(this.events.matrixItemClicked, data);
     },
-    
+
 
     _setScrollable: function () {
-        $(this.selectors.scrollable, this.$element).scrollable({
-            vertical: true,
-            mousewheel: true,
-            easing: 'linear'
-        });
+        this.scrollableContainer
+            .addClass('scrollable')
+            .scrollable({
+                vertical: true,
+                mousewheel: true,
+                easing: 'linear'
+            });
+
+        var scrollSize = this.scrollSize;
+        var windowSize = this.options.windowSize;
+
+        if (scrollSize > 0 && windowSize < this.matrix.MatrixItems.length) {
+            $(".djWidgetContentList", this.$element).height((windowSize * this.options.chipHeight) + (windowSize - 1));
+        }
+        else {
+            $(".djWidgetContentList", this.$element).height(((this.matrix.MatrixItems.length) * this.options.chipHeight) + (this.matrix.MatrixItems.length - 1));
+        }
+    },
+    
+    _initChipColorMap: function () {
+        var options = this.options,
+            neutralColor = options.noMovementColor,
+            negativeColor = options.negativeMovementColor,
+            positiveColor = options.positiveMovementColor,
+            baseColor = options.backgroundColor;
+
+        // could be an array but having as an object leaves room for 
+        // adding labels in future (e.g. 'less', 'same' etc.)
+        this.chipColorMap = {
+            0: baseColor,
+            1: negativeColor,
+            2: neutralColor,
+            3: this.shade(positiveColor, .6),
+            4: this.shade(positiveColor, .4),
+            5: this.shade(positiveColor, .2),
+            6: positiveColor
+        };
     },
 
-
     bindOnSuccess: function (response, params) {
-        //this.publish(this.events.dataReceived, response);
-        var self = this;
-
         if (!this.validateResponse(response)) {
             return;
         }
 
-        // After parsing out the necessary data, this is the object we will use to render the widget..remove("highlightCurrent")
-        var FinalResults = {
-            MatrixCategories: [],
-            MatrixItems: []
+        this.matrix = this.extractCategoriesAndItems(response);
+        this.publish(this.events.dataTransformed, this.matrix);
+
+        this.showErrors = false;
+
+        this.renderContent(this.matrix.MatrixItems);
+
+        //this._setScrollable();
+    },
+
+    extractCategoriesAndItems: function (data) {
+        var categories = this.extractCategories(data[0].newsEntities);
+        var items = this.extractItems(data);
+
+        return {
+            MatrixCategories: categories,
+            MatrixItems: items
         };
+    },
 
-        // Get a list of news categories to display in the category template
-        var items = response[0].newsEntities;
-        
-        // TODO: what to do about localize()? Uncomment localsubjects, categoryname logic after figuring out!
-        //var local = DJ.Widgets.localize();
-        //var local = {};
-        //var localSubjects = local.matrix && local.matrix.subjects ? local.matrix.subjects : false;
-        var categoryName;
+    extractCategories: function (newsEntities) {
+        var categories = [];
 
-        for (var k in items) {
-            var radarSearchQuery = items[k].radarSearchQuery,
+        for (var k in newsEntities) {
+            var radarSearchQuery = newsEntities[k].radarSearchQuery,
                 code = radarSearchQuery.searchString,
                 name = radarSearchQuery.name;
-            //categoryName = localSubjects && localSubjects[code] ? localSubjects[code] : name;
-            //FinalResults.MatrixCategories.push({ fcode: code, name: categoryName });
-            FinalResults.MatrixCategories.push({ fcode: code, name: name });
+            categories.push({ fcode: code, name: name });
         }
 
         // Add the 'All News' category to the list
-        //categoryName = localSubjects && localSubjects['ALLNEWS'] ? localSubjects['ALLNEWS'] : 'All News';
-        categoryName = 'All News';
-        FinalResults.MatrixCategories.push({ fcode: 'ALLNEWS', name: categoryName });
+        categories.push({ fcode: 'ALLNEWS', name: 'All News' });
 
-        // Loop through each company and add the needed companies info into the FinalResults object 
+        return categories;
+    },
+
+    extractItems: function (response) {
+        var items = [];
+
+        // Loop through each company and add the needed companies info 
         for (var p = 0; p < response.length; p++) {
             var company = response[p];
             company.newsEntities = this.setNewsData(response[p]);
-
-            FinalResults.MatrixItems.push(company);
+            items.push(company);
         }
 
-
-        this.matrix = FinalResults;
-        this.publish(this.events.dataTransformed, FinalResults);
-        //this.renderCategories(FinalResults);
-        this.showErrors = false;
-        this.renderContent(this.matrix.MatrixItems);
-
-        // update the window viewport (windowsize * 15) + (windowsize -1)
-        this._setScrollable();
-        var scrollSize = this.scrollSize;
-        var windowSize = this.options.windowSize;
-
-        if (scrollSize > 0 && windowSize < FinalResults.MatrixItems.length) {
-            $(".djWidgetContentList", this.$element).height((windowSize * this.defaults.chipHeight) + (windowSize - 1));
-        }
-        else {
-            $(".djWidgetContentList", this.$element).height(((FinalResults.MatrixItems.length) * this.defaults.chipHeight) + (FinalResults.MatrixItems.length - 1));
-        }
-
-        var bgColor = self.options.backgroundColor;
-        var hlColor = self.options.highlightColor;
-
-        // When hovering over an individual item
-        $(".djWidgetMatrix90 .djMatrixItemNode").hover(function () {
-            var index = $(this).attr("data-index");
-            $(this).css({ backgroundColor: hlColor });
-            $(this).closest(".djWidgetItem").find(".djMatrixItemNode").css({ backgroundColor: hlColor });
-            $(this).closest(".djWidgetMatrix90").find("[data-index=" + index + "]").css({ backgroundColor: hlColor });
-        }, function () {
-            var index = $(this).attr("data-index");
-            $(this).css({ backgroundColor: bgColor });
-            $(this).closest(".djWidgetItem").find(".djMatrixItemNode").css({ backgroundColor: bgColor });
-            $(this).closest(".djWidgetMatrix90").find("[data-index=" + index + "]").css({ backgroundColor: bgColor });
-        });        
+        return items;
     },
 
     // Loop through each news category of a given company and pull out needed data for the widget
@@ -168,9 +180,10 @@ DJ.UI.NewsMatrix = DJ.UI.Component.extend({
             allNewsDayCount = 0,
             allNewsThreeMonthCount = 0;
         for (var i in company.newsEntities) {
-            var category = company.newsEntities[i];
-            category.oneDayCount = this.extractCount("Day", company.newsEntities[i].newsVolumes);
-            category.threeMonthCount = this.extractCount("ThreeMonth", company.newsEntities[i].newsVolumes);
+            var category = company.newsEntities[i],
+                newsVolumes = category.newsVolumes;
+            category.oneDayCount = this.extractCount("Day", newsVolumes);
+            category.threeMonthCount = this.extractCount("ThreeMonth", newsVolumes);
             category.threeMonthAvg = this.getAverage(category.threeMonthCount, 89);
             category.growthRate = this.getGrowthRate(category.oneDayCount, category.threeMonthAvg);
             category.growthCode = this.getGrowthCode(category);
@@ -185,7 +198,7 @@ DJ.UI.NewsMatrix = DJ.UI.Component.extend({
         var allNews = {};
         allNews.name = "All News";
         allNews.subjectCode = "ALLNEWS";
-        allNews.matrixSearchQuery = { searchString: "ALLNEWS" };
+        allNews.radarSearchQuery = { searchString: "ALLNEWS", name: "All News" };
         allNews.oneDayCount = allNewsDayCount;
         allNews.threeMonthCount = allNewsThreeMonthCount;
         allNews.threeMonthAvg = this.getAverage(allNewsThreeMonthCount, 89);
@@ -279,96 +292,37 @@ DJ.UI.NewsMatrix = DJ.UI.Component.extend({
     renderContent: function (data) {
 
         var $items = $('.djWidgetItems', this.$element);
-        var self = this;
         var html = [];
         for (var i in data) {
-            html[html.length] = this.templates.success({ settings: self.options, propName: i, item: data[i], f: { getTicker: self.getTicker } });
+            html[html.length] = this.templates.success({
+                settings: this.options,
+                propName: i,
+                item: data[i],
+                f: { getTicker: this.getTicker }
+            });
         }
-
 
         $items.html(html.join(""));
 
-        var matrixs = $('.djMatrixItemBox', this.$element); //table and key
+        //table and key
+        this.drawChips($('.djMatrixItemBox', this.$element));
 
-        for (var r = 0; r < matrixs.length; r++) {
-            var matrix = $(matrixs[r]);
-            if (matrix && matrix.length) {
-                var chipStyle = matrix.data('grc');
-                if (chipStyle) {
-                    self._delegates.DrawChip(matrix[0], chipStyle);
-                }
-            }
-        }
+        // attach tooltips        
+        $items.find('.djMatrixItemNode').tooltip({
+            showURL: false,
+            showBody: " - ",
+            delay: 0,
+            fade: 250
+        });
     },
 
-    drawChip: function (target, chipStyle) {
-        var options = this.options;
-
-        var neutralColor = options.noMovementColor,
-            negativeColor = options.negativeMovementColor,
-            positiveColor = options.positiveMovementColor,
-            baseColor = '#fff';
-
-        switch (chipStyle) {
-            case 'less':
-            case 'djMatrixItemBox1':
-            case 1:
-                baseColor = negativeColor;
-                break;
-            case 'same':
-            case 'djMatrixItemBox2':
-            case 2:
-                baseColor = neutralColor;
-                break;
-            case '50':
-            case 'djMatrixItemBox3':
-            case 3:
-                baseColor = this.shade(positiveColor, .6);
-                break;
-            case '200':
-            case 'djMatrixItemBox4':
-            case 4:
-                baseColor = this.shade(positiveColor, .4);
-                break;
-            case '400':
-            case 'djMatrixItemBox5':
-            case 5:
-                baseColor = this.shade(positiveColor, .2);
-                break;
-            case '400plus':
-            case 'djMatrixItemBox6':
-            case 6:
-                baseColor = positiveColor;
-                break;
-            default:
-                return target;
+    drawChips: function (matrixCells) {
+        for (var r = 0, len = matrixCells.length; r < len; r++) {
+            var cell = $(matrixCells[r]);
+            var chipStyle = cell.data('grc');
+            cell.css('backgroundColor', this.chipColorMap[chipStyle] || this.options.backgroundColor);
         }
-
-        target.style.backgroundColor = baseColor;
-        return target;
-
     },
-
-
-    renderCategories: function (data) {
-        var $categories = $('.djCategories', this.$element);
-
-        var self = this;
-        var cats = [];
-
-        // need to rework this for ie8 and under.
-        for (var i in data.MatrixCategories) {
-            var category = data.MatrixCategories[i];
-            var catMarkup = self.templates.category({ index: i, settings: self.options, category: category });
-            var label = this.drawCategoryLabel($(catMarkup)[0], category.name || category.fcode);
-            var labelMarkup = $('<div/>').append(label).html();
-            cats.push(labelMarkup);
-        }
-        cats.reverse();
-        $categories.html(cats.join(''));
-    },
-
-
 
     colorLuminance: function (hex, lum) {
         // validate hex string  
@@ -399,7 +353,7 @@ DJ.UI.NewsMatrix = DJ.UI.Component.extend({
         if (hex.length < 6) {
             hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
         }
-        
+
         // convert to decimal and change saturation
         var rgb = "#", c, i;
         for (i = 0; i < 3; i++) {
@@ -407,55 +361,6 @@ DJ.UI.NewsMatrix = DJ.UI.Component.extend({
             rgb += ("00" + c).substr(c.length); // padleft
         }
         return rgb;
-    },
-
-    drawCategoryLabel: function (target, text) {
-        var categoryLabel = '<div title="' + text + '">' + text + '</div>';
-        var fontSize = this.options.hitSize;
-        var fontFamily = this.options.hitFont;
-        var tColor = this.colorLuminance(this.options.hitColor || this.defaults.hitColor, 0);
-
-        if (Highcharts.VMLRenderer) {
-            $(target).css({
-                position: "relative",
-                top: '0',
-                left: '0',
-                zoom: '1',
-                filter: 'progid:DXImageTransform.Microsoft.BasicImage(rotation=2)'
-            });
-            var $categoryLabel = $(categoryLabel);
-            $categoryLabel.css({
-                position: 'absolute',
-                writingMode: 'tb-rl',
-                top: '3px',
-                height: '143px',
-                width: '19px',
-                textAlign: 'left',
-                lineHeight: '19px',
-                clip: 'rect(0px,19px,143px,0px)'
-            }).addClass("verticalLabel");
-
-            $(target).css({ backgroundColor: '#FFF' });
-            $(target).html($categoryLabel);
-            return target;
-        }
-
-        else {
-            var renderer = new Highcharts.Renderer(target, 19, 143);
-            var xPos = 12.5;
-            var yPos = 140;
-
-            renderer.text(text, xPos, yPos).attr({
-                rotation: 270
-            }).css({
-                fontSize: fontSize + 'px',
-                lineHeight: '19px',
-                fontFamily: fontFamily,
-                fontWeight: 'normal',
-                color: tColor
-            }).add();
-        }
-        return target;
     },
 
     getTicker: function (item) {
@@ -470,7 +375,7 @@ DJ.UI.NewsMatrix = DJ.UI.Component.extend({
     extractGrowthRate: function (categories, v) {
         for (var i = 0; i < categories.length; i++) {
             var category = categories[i];
-            if (category.matrixSearchQuery.searchString == v) {
+            if (category.radarSearchQuery.searchString == v) {
                 return {
                     growthCode: category.growthCode,
                     growthRate: category.growthRate
@@ -479,13 +384,6 @@ DJ.UI.NewsMatrix = DJ.UI.Component.extend({
         }
 
         return 0;
-    },
-    validateSettings: function () {
-        settings = self.settings; // pull from instance
-        if (settings === undefined || !settings) settings = {};
-        if (typeof settings.symbology === 'undefined' || !settings.symbology) {
-            settings.symbology = 'fii';
-        }
     }
 });
 

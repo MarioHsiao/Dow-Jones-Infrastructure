@@ -10,7 +10,6 @@
 
 [assembly: System.Web.UI.WebResourceAttribute("DowJones.Web.Mvc.UI.Components.NewsMatrix.ClientTemplates.Container.htm", "text/html")]
 [assembly: System.Web.UI.WebResourceAttribute("DowJones.Web.Mvc.UI.Components.NewsMatrix.ClientTemplates.Error.htm", "text/html")]
-[assembly: System.Web.UI.WebResourceAttribute("DowJones.Web.Mvc.UI.Components.NewsMatrix.ClientTemplates.Matrix.htm", "text/html")]
 [assembly: System.Web.UI.WebResourceAttribute("DowJones.Web.Mvc.UI.Components.NewsMatrix.ClientTemplates.Success.htm", "text/html")]
 [assembly: System.Web.UI.WebResourceAttribute("DowJones.Web.Mvc.UI.Components.NewsMatrix.NewsMatrix.js", "text/javascript")]
 
@@ -26,13 +25,13 @@ namespace DowJones.Web.Mvc.UI.Components.NewsMatrix
     using System.Web.UI;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 08/07/2012 05:19 PM
+    // Last Generated Timestamp: 08/08/2012 03:36 PM
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.NewsMatrix.ClientTemplates.Container.htm", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="container", DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.NewsMatrix.NewsMatrixComponent))]
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.NewsMatrix.ClientTemplates.Error.htm", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="error", DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.NewsMatrix.NewsMatrixComponent))]
-    [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.NewsMatrix.ClientTemplates.Matrix.htm", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="matrix", DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.NewsMatrix.NewsMatrixComponent))]
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.NewsMatrix.ClientTemplates.Success.htm", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="success", DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.NewsMatrix.NewsMatrixComponent))]
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.NewsMatrix.NewsMatrix.js", DependsOn=new string[] {
-            "jquery-tools"}, ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.NewsMatrix.NewsMatrixComponent))]
+            "jquery-tools",
+            "jquery-tooltip"}, ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.NewsMatrix.NewsMatrixComponent))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.27108")]
     public class NewsMatrixComponent : DowJones.Web.Mvc.UI.ViewComponentBase<NewsMatrix.NewsMatrixModel>
     {
@@ -50,7 +49,6 @@ namespace DowJones.Web.Mvc.UI.Components.NewsMatrix
         }
         public override void ExecuteTemplate()
         {
-
 
 
 

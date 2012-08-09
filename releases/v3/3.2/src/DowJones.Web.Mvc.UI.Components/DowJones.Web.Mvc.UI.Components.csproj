@@ -814,9 +814,6 @@
     <EmbeddedResource Include="NewsMatrix\ClientTemplates\Error.htm" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="NewsMatrix\ClientTemplates\Matrix.htm" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="NewsMatrix\ClientTemplates\Success.htm" />
   </ItemGroup>
   <ItemGroup>
@@ -824,6 +821,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="NewsMatrix\ClientTemplates\Container.htm" />
+    <EmbeddedResource Include="Resources\js\jquery.tooltip.js" />
+    <EmbeddedResource Include="Resources\js\jquery.tooltip.min.js" />
     <Content Include="NewsRadar\ClientTemplates\Container.htm" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
