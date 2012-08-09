@@ -142,6 +142,7 @@
     <Compile Include="GeoLocation\LookupService.cs" />
     <Compile Include="GeoLocation\Region.cs" />
     <Compile Include="GeoLocation\RegionName.cs" />
+    <Compile Include="Managers\Authorization\AuthorizationManager.cs" />
     <Compile Include="Managers\Multimedia\MediaContents.cs" />
     <Compile Include="Managers\Multimedia\MultimediaManager.cs" />
     <Compile Include="Managers\Multimedia\MultimediaPackage.cs" />

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Linq;
+using System.Collections;
+using System.Collections.Generic;
 using DowJones.Globalization;
 using DowJones.Session;
 using DowJones.Infrastructure.Common;
@@ -11,11 +13,12 @@ namespace DowJones.Pages
     [TestClass]
     public class PageTest : AbstractUnitTest
     {
-        public PageAssetsManager pageAssetsManager = new PageAssetsManager(ControlDataManager.GetLightWeightUserControlData("snapshot5", "passwd", "16"), new Preferences.Preferences{InterfaceLanguage = "en", ContentLanguages = new ContentLanguageCollection()}, new Product("Np", "SNAPSHOT"));
+        //public PageAssetsManager pageAssetsManager = new PageAssetsManager(ControlDataManager.GetLightWeightUserControlData("snapshot5", "passwd", "16"), new Preferences.Preferences { InterfaceLanguage = "en", ContentLanguages = new ContentLanguageCollection() }, new Product("Np", "SNAPSHOT"));
+        public PageAssetsManager pageAssetsManager = new PageAssetsManager(ControlDataManager.GetLightWeightUserControlData("made5204", "made5204", "16"), new Preferences.Preferences { InterfaceLanguage = "en", ContentLanguages = new ContentLanguageCollection() }, new Product("CM", "COMMUNICATOR"));
 
         private Factiva.Gateway.Messages.Assets.Pages.V1_0.Page GetPageById(string pageId)
         {
-            Factiva.Gateway.Messages.Assets.Pages.V1_0.Page page = pageAssetsManager.GetPage(pageId,false,true);
+            Factiva.Gateway.Messages.Assets.Pages.V1_0.Page page = pageAssetsManager.GetPage(pageId, false, true);
 
             Console.WriteLine(page.Id + "|" + page.ShareProperties.AssignedScope.ToString());
             Console.WriteLine("");
@@ -52,9 +55,11 @@ namespace DowJones.Pages
             Console.WriteLine("ModuleProperties");
             if (module.ModuleProperties != null && module.ModuleProperties.ModuleMetaData != null)
             {
-                if (module.ModuleProperties.ModuleMetaData.CategoryCollection != null){
+                if (module.ModuleProperties.ModuleMetaData.CategoryCollection != null)
+                {
                     Console.WriteLine("CategoryCollection: " + module.ModuleProperties.ModuleMetaData.CategoryCollection.Count());
-                    foreach (MetadataField metadataField in module.ModuleProperties.ModuleMetaData.CategoryCollection){
+                    foreach (MetadataField metadataField in module.ModuleProperties.ModuleMetaData.CategoryCollection)
+                    {
                         Console.WriteLine("\t" + metadataField.Text + "|" + metadataField.IsDefault);
                     }
                 }
@@ -74,13 +79,13 @@ namespace DowJones.Pages
                         Console.WriteLine("\t" + metadataField.Text + "|" + metadataField.IsDefault);
                     }
                 }
-                
-                
+
+
             }
             return module;
         }
 
-//        [TestMethod]
+        //        [TestMethod]
         public void UpdateModuleTest()
         {
             var moduleId = "24496";
@@ -107,6 +112,19 @@ namespace DowJones.Pages
             pageAssetsManager.UpdateModule(moduleEx);
 
             GetModuleById(moduleId);
+        }
+
+
+        [TestMethod]
+        public void GetPageListTest()
+        {
+            //ControlData = ControlDataManager.GetLightWeightUserControlData("made5204", "made5204", "16");
+            PageListInfoCollection PageList = pageAssetsManager.GetPageListInfoCollection(new List<PageType> { PageType.CommunicatorDashboard }, Factiva.Gateway.Messages.Assets.Common.V2_0.SortOrder.Ascending, SortBy.Name);
+            foreach (var page in PageList)
+            {
+                Console.WriteLine(page.Id + "|" + page.PageProperties.Title);
+            }
+
         }
 
         //[TestMethod]

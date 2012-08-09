@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using DowJones.Infrastructure.Common;
 using DowJones.Infrastructure.Models.SocialMedia;
 using DowJones.Managers.SocialMedia;
 using DowJones.Managers.SocialMedia.Config;
@@ -43,16 +44,15 @@ namespace DowJones.Infrastructure.SocialMedia.Tests
         /// <summary>
         ///A test for GetTweetsByChannel
         ///</summary>
-		// once the build script is updated to not run integration tests, take out ignore attrib
-		[Ignore]
-		[TestMethod]
-		[TestCategory("Integration")]
-		public void GetTweetsByChannelTest()
-		{
-			DJSession.IControlData _controlData = new DJSession.ControlData { UserID = "snap_proxy", UserPassword = "pa55w0rd", ProductID = "16" };
-			var target = new SocialMediaService(new TweetRiverProvider(), new PAMSocialMediaIndustryProvider(_controlData));
+        [TestMethod]
+        [TestCategory("Integration")]
+        public void GetTweetsByChannelTest()
+        {
+            DJSession.IControlData _controlData = new DJSession.ControlData { UserID = "snap_proxy", UserPassword = "pa55w0rd", ProductID = "16" };
+            Product _product = new Product("test", "test", null, true);
+            var target = new SocialMediaService(new TweetRiverProvider(), new PAMSocialMediaIndustryProvider(_controlData), _controlData, _product);
             const string channel = "accounting-consulting";
-            var actual = target.GetTweetsByChannel(channel, new RequestOptions {Limit = 20});
+            var actual = target.GetTweetsByChannel(channel, new RequestOptions { Limit = 20 });
             Assert.AreEqual(Status.Success, actual.Status);
             Assert.IsTrue(actual.Capacity > 0);
         }
@@ -60,14 +60,13 @@ namespace DowJones.Infrastructure.SocialMedia.Tests
         /// <summary>
         ///A test for GetTweetsByIndustry
         ///</summary>
-		// once the build script is updated to not run integration tests, take out ignore attrib
-		[Ignore]
-		[TestMethod]
-		[TestCategory("Integration")]
-		public void GetTweetsByIndustryTest()
+        [TestMethod]
+        [TestCategory("Integration")]
+        public void GetTweetsByIndustryTest()
         {
-			DJSession.IControlData _controlData = new DJSession.ControlData { UserID = "snap_proxy", UserPassword = "pa55w0rd", ProductID = "16" };
-			var target = new SocialMediaService(new TweetRiverProvider(), new PAMSocialMediaIndustryProvider(_controlData));
+            DJSession.IControlData _controlData = new DJSession.ControlData { UserID = "snap_proxy", UserPassword = "pa55w0rd", ProductID = "16" };
+            Product _product = new Product("test", "test", null, true);
+            var target = new SocialMediaService(new TweetRiverProvider(), new PAMSocialMediaIndustryProvider(_controlData), _controlData, _product);
             const string industryCode = "iacc";
             var actual = target.GetTweetsByIndustry(industryCode, new RequestOptions { Limit = 20 });
             Assert.AreEqual(Status.Success, actual.Status);
@@ -78,14 +77,13 @@ namespace DowJones.Infrastructure.SocialMedia.Tests
         /// <summary>
         ///A test for GetExpertsByIndustry
         ///</summary>
-		// once the build script is updated to not run integration tests, take out ignore attrib
-		[Ignore]
-		[TestMethod]
-		[TestCategory("Integration")]
-		public void GetExpertsByIndustry()
+        [TestMethod]
+        [TestCategory("Integration")]
+        public void GetExpertsByIndustry()
         {
-			DJSession.IControlData _controlData = new DJSession.ControlData { UserID = "snap_proxy", UserPassword = "pa55w0rd", ProductID = "16" };
-			var target = new SocialMediaService(new TweetRiverProvider(), new PAMSocialMediaIndustryProvider(_controlData));
+            DJSession.IControlData _controlData = new DJSession.ControlData { UserID = "snap_proxy", UserPassword = "pa55w0rd", ProductID = "16" };
+            Product _product = new Product("test", "test", null, true);
+            var target = new SocialMediaService(new TweetRiverProvider(), new PAMSocialMediaIndustryProvider(_controlData), _controlData, _product);
             const string industryCode = "iacc";
             var actual = target.GetExpertsByIndustry(industryCode);
             Assert.AreEqual(Status.Success, actual.Status);
@@ -95,14 +93,13 @@ namespace DowJones.Infrastructure.SocialMedia.Tests
         /// <summary>
         ///A negative test for GetTweetsByIndustry by passing invalid code
         ///</summary>
-		// once the build script is updated to not run integration tests, take out ignore attrib
-		[Ignore]
-		[TestMethod]
-		[TestCategory("Integration")]
-		public void ShouldFailOnGetTweetsByIndustry()
+        [TestMethod]
+        [TestCategory("Integration")]
+        public void ShouldFailOnGetTweetsByIndustry()
         {
-			DJSession.IControlData _controlData = new DJSession.ControlData { UserID = "snap_proxy", UserPassword = "pa55w0rd", ProductID = "16" };
-			var target = new SocialMediaService(new TweetRiverProvider(), new PAMSocialMediaIndustryProvider(_controlData));
+            DJSession.IControlData _controlData = new DJSession.ControlData { UserID = "snap_proxy", UserPassword = "pa55w0rd", ProductID = "16" };
+            Product _product = new Product("test", "test", null, true);
+            var target = new SocialMediaService(new TweetRiverProvider(), new PAMSocialMediaIndustryProvider(_controlData), _controlData, _product);
             const string industryCode = "junk";
             try
             {
@@ -111,25 +108,24 @@ namespace DowJones.Infrastructure.SocialMedia.Tests
             }
             catch (ArgumentOutOfRangeException ex)
             {
-                
+
                 Assert.IsTrue(ex != null);
             }
-           
+
         }
 
 
         /// <summary>
         ///A test for GetTweetsByIndustry
         ///</summary>
-		// once the build script is updated to not run integration tests, take out ignore attrib
-		[Ignore]
-		[TestMethod]
-		[TestCategory("Integration")]
-		public void GetTweetsByIndustryMapperTest()
+        [TestMethod]
+        [TestCategory("Integration")]
+        public void GetTweetsByIndustryMapperTest()
         {
             List<Ajax.SocialMedia.Tweet> ajaxTweets = new List<Ajax.SocialMedia.Tweet>();
-			DJSession.IControlData _controlData = new DJSession.ControlData { UserID = "snap_proxy", UserPassword = "pa55w0rd", ProductID = "16" };
-			var target = new SocialMediaService(new TweetRiverProvider(), new PAMSocialMediaIndustryProvider(_controlData));
+            DJSession.IControlData _controlData = new DJSession.ControlData { UserID = "snap_proxy", UserPassword = "pa55w0rd", ProductID = "16" };
+            Product _product = new Product("test", "test", null, true);
+            var target = new SocialMediaService(new TweetRiverProvider(), new PAMSocialMediaIndustryProvider(_controlData), _controlData, _product);
             const string industryCode = "iacc";
             var actual = target.GetTweetsByIndustry(industryCode, new RequestOptions { Limit = 20 });
             Assert.AreEqual(Status.Success, actual.Status);
@@ -148,16 +144,15 @@ namespace DowJones.Infrastructure.SocialMedia.Tests
         /// <summary>
         ///A test for GetExpertsByIndustry
         ///</summary>
-		// once the build script is updated to not run integration tests, take out ignore attrib
-		[Ignore]
-		[TestMethod]
-		[TestCategory("Integration")]
-		public void GetExpertsByIndustryMapperTest()
+        [TestMethod]
+        [TestCategory("Integration")]
+        public void GetExpertsByIndustryMapperTest()
         {
             List<Ajax.SocialMedia.User> ajaxUsers = new List<Ajax.SocialMedia.User>();
 
-			DJSession.IControlData _controlData = new DJSession.ControlData { UserID = "snap_proxy", UserPassword = "pa55w0rd", ProductID = "16" };
-			var target = new SocialMediaService(new TweetRiverProvider(), new PAMSocialMediaIndustryProvider(_controlData));
+            DJSession.IControlData _controlData = new DJSession.ControlData { UserID = "snap_proxy", UserPassword = "pa55w0rd", ProductID = "16" };
+            Product _product = new Product("test", "test", null, true);
+            var target = new SocialMediaService(new TweetRiverProvider(), new PAMSocialMediaIndustryProvider(_controlData), _controlData, _product);
             const string industryCode = "iacc";
             var actual = target.GetExpertsByIndustry(industryCode);
             Assert.AreEqual(Status.Success, actual.Status);
