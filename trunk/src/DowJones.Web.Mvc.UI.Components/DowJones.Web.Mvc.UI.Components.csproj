@@ -412,6 +412,7 @@
     <EmbeddedResource Include="NewsRadar\ClientTemplates\Key.htm" />
     <EmbeddedResource Include="NewsRadar\ClientTemplates\Radar.htm" />
     <EmbeddedResource Include="NewsRadar\ClientTemplates\Success.htm" />
+    <EmbeddedResource Include="NewsRadar\ClientTemplates\Container.htm" />
     <EmbeddedResource Include="NewsRadar\ClientTemplates\Error.htm" />
     <EmbeddedResource Include="NewsRadar\NewsRadar.js" />
     <EmbeddedResource Include="TwitterExperts\ClientTemplates\noData.htm" />
@@ -814,6 +815,7 @@
     <EmbeddedResource Include="NewsMatrix\ClientTemplates\Success.htm" />
     <EmbeddedResource Include="NewsMatrix\NewsMatrix.js" />
     <EmbeddedResource Include="NewsMatrix\ClientTemplates\Container.htm" />
+  </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\js\jquery.tooltip.js" />
     <EmbeddedResource Include="Resources\js\jquery.tooltip.min.js" />
