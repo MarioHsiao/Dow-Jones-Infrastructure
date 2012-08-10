@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using DowJones.Pages;
 using DowJones.Pages.Modules;
@@ -12,7 +11,7 @@ namespace DowJones.DegreasedDashboards
 
         protected IEnumerable<Module> Modules
         {
-            get { return _pages.SelectMany(x => x.ModuleCollection); }
+            get { return _pages.Where(x => x != null).SelectMany(x => x.ModuleCollection ?? Enumerable.Empty<Module>()).Where(x => x != null); }
         }
 
 

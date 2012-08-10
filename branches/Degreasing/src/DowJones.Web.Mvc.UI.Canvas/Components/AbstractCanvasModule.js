@@ -6,9 +6,16 @@
 DJ.UI.AbstractCanvasModule = DJ.UI.CompositeComponent.extend({
 
     defaults: {
-        cssClass: 'canvas-module'
+        cssClass: 'canvas-module',
+        menuItems: [
+            { id: 'move-up', label: "<%= Token('moduleMenuMoveUp') %>" },
+            { id: 'move-down', label: "<%= Token('moduleMenuMoveDown') %>" },
+            { type: 'separator' },
+            { id: 'remove', label: "<%= Token('moduleMenuRemove') %>" },
+            { id: 'edit', label: "<%= Token('moduleMenuEdit') %>" }
+        ]
     },
-
+    
     _canvas: null,
 
     //baseline module objects
@@ -374,7 +381,6 @@ DJ.UI.AbstractCanvasModule = DJ.UI.CompositeComponent.extend({
     },
 
     _reloadMenu: function () {
-
         var $modules = $('.module', '#dashboard').not('.select-a-module'),
 			index = $modules.index(this._module),
             menu = this.$settings.findComponent(DJ.UI.Menu),
@@ -391,8 +397,6 @@ DJ.UI.AbstractCanvasModule = DJ.UI.CompositeComponent.extend({
             }
 
         });
-
-
     },
 
     _initializeMenus: function () {
@@ -406,23 +410,7 @@ DJ.UI.AbstractCanvasModule = DJ.UI.CompositeComponent.extend({
 
         this.$settings.dj_menu({
             options: {
-                items: [
-                        {
-                            label: "<%= Token('moduleMenuMoveUp') %>",
-                            id: 'move-up'
-                        }, {
-                            label: "<%= Token('moduleMenuMoveDown') %>",
-                            id: 'move-down'
-                        }, {
-                            label: "<%= Token('moduleMenuRemove') %>",
-                            id: 'remove'
-                        }, {
-                            type: 'separator'
-                        }, {
-                            label: "<%= Token('moduleMenuEdit') %>",
-                            id: 'edit'
-                        }
-                ],
+                items: this.options.menuItems,
                 onItemClick: function (e, itemData) {
                     handleMenuCommand(itemData.data.id, e);
                 },
@@ -457,6 +445,14 @@ DJ.UI.AbstractCanvasModule = DJ.UI.CompositeComponent.extend({
             return false;
         });
 
+    },
+
+    maximize: function () {
+        $('.dj_module-core', this.element).show();
+    },
+
+    minimize: function () {
+        $('.dj_module-core', this.element).hide();
     },
 
 

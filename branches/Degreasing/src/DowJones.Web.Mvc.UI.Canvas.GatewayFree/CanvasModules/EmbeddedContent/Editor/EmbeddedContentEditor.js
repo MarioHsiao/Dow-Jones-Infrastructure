@@ -8,17 +8,14 @@ DJ.UI.EmbeddedContentEditor = DJ.UI.AbstractCanvasModuleEditor.extend({
         this._super(element, $.extend({ name: "EmbeddedContentEditor" }, meta));
     },
 
+    _initializeElements: function () { },
+
     buildProperties: function () {
         return {
-          width: $('.width', this.element).val(),
-          height: $('.height', this.element).val(),
-          url: $('.url', this.element).val()
+            width: $('.width', this.element).val(),
+            height: $('.height', this.element).val(),
+            url: $('.url', this.element).val()
         };
-    },
-    
-    saveProperties: function (props, callback) {
-        $dj.debug('Module properties updated: ', props);
-        if(callback) callback(props);
     },
 
     EOF: null  // Final property placeholder (without a comma) to allow easier moving of functions

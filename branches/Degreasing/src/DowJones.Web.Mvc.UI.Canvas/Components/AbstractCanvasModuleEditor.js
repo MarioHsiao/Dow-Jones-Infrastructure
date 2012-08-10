@@ -14,23 +14,42 @@ DJ.UI.AbstractCanvasModuleEditor = DJ.UI.Component.extend({
 
 
     resetEditArea: function () {
-        $dj.debug('TODO: Implement Edit Area reset!');
+        this._debug('TODO: Implement resetEditArea!');
     },
 
     buildProperties: function () {
-        $dj.debug('TODO: Implement buildProperties()!');
+        this._debug('TODO: Implement buildProperties!');
     },
 
     saveProperties: function (props, callback) {
-        $dj.debug('TODO: Implement saveProperties()!');
+        this._debug('Updating module properties: ', props);
+
+        var canvas = this.getCanvas();
+
+        if (!canvas) return;
+
+        var url = canvas.get_webServiceBaseUrl() + this.get_dataServiceUrl();
+        var queryParams = { pageId: canvas.get_canvasId(), moduleId: this.get_moduleId() };
+
+        $.ajax({
+            url: url + '?' + $.param(queryParams),
+            type: this.get_moduleId() ? 'PUT' : 'POST',
+            data: JSON.stringify(props),
+            success: callback,
+            contentType: "application/json"
+        });
     },
 
     getData: function () {
-        $dj.debug('TODO: Implement getData()!');
+        this._debug('TODO: Implement getData!');
+    },
+
+    onShow: function () {
+        this._debug('TODO: Implement onShow');
     },
 
     onShown: function () {
-        $dj.debug('TODO: Implement onShow()');
+        this._debug('TODO: Implement onShown');
     },
 
 
@@ -73,7 +92,7 @@ DJ.UI.AbstractCanvasModuleEditor = DJ.UI.Component.extend({
         var $parent = this.$element.parents('.dj_module').findComponent(DJ.UI.AbstractCanvasModule);
 
         if (!$parent || $parent.length === 0) {
-            $dj.debug('Unable to locate parent module');
+            this._debug('Unable to locate parent module');
             return;
         }
 

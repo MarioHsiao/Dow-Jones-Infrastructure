@@ -56,6 +56,20 @@
 				width: 32px;
 				height: 32px;
 			}
+
+			.minimize {
+				display: block;
+				background-image: url(<%= AbsoluteUrl("~/content/minimize.png") %>);
+				width: 32px;
+				height: 32px;
+			}
+
+			.maximize {
+				display: block;
+				background-image: url(<%= AbsoluteUrl("~/content/maximize.png") %>);
+				width: 32px;
+				height: 32px;
+			}
 		}
 	}
 

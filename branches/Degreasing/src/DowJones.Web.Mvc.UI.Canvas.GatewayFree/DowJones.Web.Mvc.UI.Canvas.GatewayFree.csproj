@@ -71,6 +71,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>HtmlModuleEditorComponent.cshtml</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\EmbeddedContentModuleController.cs" />
+    <Compile Include="Controllers\HtmlModuleController.cs" />
+    <Compile Include="Controllers\ModuleController.cs" />
     <Compile Include="Managers\InMemoryPageManager.cs" />
     <Compile Include="Managers\InMemoryPageSubscriptionManager.cs" />
     <Compile Include="CanvasModules\HtmlModule\HtmlCanvasModule.cs">

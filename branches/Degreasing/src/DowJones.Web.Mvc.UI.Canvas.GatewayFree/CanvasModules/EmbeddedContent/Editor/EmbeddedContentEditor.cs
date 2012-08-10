@@ -1,8 +1,16 @@
+using DowJones.Web.Mvc.UI.Canvas.GatewayFree.Properties;
+
 namespace DowJones.Web.Mvc.UI.Canvas.GatewayFree.CanvasModules.EmbeddedContent.Editor
 {
-    public class EmbeddedContentEditor : ViewComponentModel
+    public class EmbeddedContentEditor : CompositeComponentModel
     {
         private readonly EmbeddedContentModule _module;
+
+        [ClientProperty("moduleId")]
+        public int? ModuleId
+        {
+            get { return _module.ModuleId == default(int) ? null : (int?)_module.ModuleId; }
+        }
 
         public int Width
         {
@@ -25,6 +33,7 @@ namespace DowJones.Web.Mvc.UI.Canvas.GatewayFree.CanvasModules.EmbeddedContent.E
         public EmbeddedContentEditor(EmbeddedContentModule module = null)
         {
             _module = module ?? new EmbeddedContentModule();
+            DataServiceUrl = CanvasSettings.Default.GetDataServiceUrl(typeof(EmbeddedContentModule), Settings.Default);
         }
     }
 }

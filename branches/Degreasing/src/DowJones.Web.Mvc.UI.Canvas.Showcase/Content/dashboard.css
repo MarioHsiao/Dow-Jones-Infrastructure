@@ -50,6 +50,16 @@
         background-image: url(<%= AbsoluteUrl("~/content/gear.png") %>);
         width: 32px;
         height: 32px; }
+      .dj_module .dj_module-header .actions-container .minimize {
+        display: block;
+        background-image: url(<%= AbsoluteUrl("~/content/minimize.png") %>);
+        width: 32px;
+        height: 32px; }
+      .dj_module .dj_module-header .actions-container .maximize {
+        display: block;
+        background-image: url(<%= AbsoluteUrl("~/content/maximize.png") %>);
+        width: 32px;
+        height: 32px; }
   .dj_module .dj_module-core {
     padding: 10px;
     min-height: 75px; }
