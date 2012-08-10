@@ -15,17 +15,9 @@
     @Html.DJ().Render(Model)
 </div>
 
-<div style="display: none;">
+<div id="sampleData" style="display: none;">
 	<h3>sample data</h3>
 	<textarea style="width: 972px; height: 500px;">
-    @Html.Raw(ObjectExtensions.ToJson(Model));
+    @Html.Raw(ObjectExtensions.ToJson(Model))
     </textarea>
 </div>
-
-<script type="text/javascript">
-    var $ = DJ.jQuery;
-    
-    $(function () {
-
-    });
-</script>
