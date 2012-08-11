@@ -1,0 +1,729 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DowJones.Web.Mvc</name>
+    </assembly>
+    <members>
+        <member name="M:DowJones.Web.Mvc.Extensions.HtmlHelperExtensions.DJ(System.Web.Mvc.HtmlHelper)">
+            <summary>
+            Gets the View Component Factory
+            </summary>
+            <param name="helper">The helper.</param>
+            <returns>The Factory</returns>
+        </member>
+        <member name="T:DowJones.Web.Mvc.ModelBinders.CommaStringSplitModelBinder">
+            <summary>
+            TODO: Update summary.
+            </summary>
+        </member>
+        <member name="T:DowJones.Web.Mvc.StringSplitModelBinderAttribute">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:DowJones.Web.Mvc.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached TokenRegistry instance used by this class.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.Properties.Resources.ArrayCannotBeEmpty">
+            <summary>
+              Looks up a localized string similar to &quot;{0}&quot; array cannot be empty..
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.Properties.Resources.CannotBeNegative">
+            <summary>
+              Looks up a localized string similar to &quot;{0}&quot; cannot be negative..
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.Properties.Resources.CannotBeNegativeOrZero">
+            <summary>
+              Looks up a localized string similar to &quot;{0}&quot; cannot be negative or zero..
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.Properties.Resources.CannotBeNull">
+            <summary>
+              Looks up a localized string similar to &quot;{0}&quot; cannot be null..
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.Properties.Resources.CannotBeNullOrEmpty">
+            <summary>
+              Looks up a localized string similar to &quot;{0}&quot; cannot be null or empty..
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.Properties.Resources.CannotFindPropertyToSortBy">
+            <summary>
+              Looks up a localized string similar to Cannot find a public property of primitive type to sort by..
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.Properties.Resources.CannotHaveMoreOneColumnInOrderWhenSortModeIsSetToSingleColumn">
+            <summary>
+              Looks up a localized string similar to Cannot have more one column in order when sort mode is set to single column..
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.Properties.Resources.CannotRouteToClassNamedController">
+            <summary>
+              Looks up a localized string similar to Cannot route to class named &apos;Controller&apos;..
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.Properties.Resources.CannotUseAjaxAndWebServiceAtTheSameTime">
+            <summary>
+              Looks up a localized string similar to Cannot use Ajax and WebService binding at the same time..
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.Properties.Resources.CannotUseTemplatesInAjaxOrWebService">
+            <summary>
+              Looks up a localized string similar to Cannot use only server templates in Ajax or WebService binding mode. Please specify a client template as well..
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.Properties.Resources.CollectionCannotBeEmpty">
+            <summary>
+              Looks up a localized string similar to &quot;{0}&quot; collection cannot be empty..
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.Properties.Resources.ControllerNameAmbiguousWithoutRouteUrl">
+             <summary>
+               Looks up a localized string similar to Multiple types were found that match the controller named &apos;{0}&apos;. This can happen if the route that services this request does not specify namespaces to search for a controller that matches the request. If this is the case, register this route by calling an overload of the &apos;MapRoute&apos; method that takes a &apos;namespaces&apos; parameter.
+            
+            The request for &apos;{0}&apos; has found the following matching controllers:{1}.
+             </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.Properties.Resources.ControllerNameAmbiguousWithRouteUrl">
+             <summary>
+               Looks up a localized string similar to Multiple types were found that match the controller named &apos;{0}&apos;. This can happen if the route that services this request (&apos;{1}&apos;) does not specify namespaces to search for a controller that matches the request. If this is the case, register this route by calling an overload of the &apos;MapRoute&apos; method that takes a &apos;namespaces&apos; parameter.
+            
+            The request for &apos;{0}&apos; has found the following matching controllers:{2}.
+             </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.Properties.Resources.ControllerNameMustEndWithController">
+            <summary>
+              Looks up a localized string similar to Controller name must end with &apos;Controller&apos;..
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.Properties.Resources.DataKeysEmpty">
+            <summary>
+              Looks up a localized string similar to The DataKeys collection is empty. Please specify a data key..
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.Properties.Resources.DateOutOfRange">
+            <summary>
+              Looks up a localized string similar to Date should be bigger than MinDate and less than MaxDate..
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.Properties.Resources.DeleteCommandRequiresDelete">
+            <summary>
+              Looks up a localized string similar to The Delete data binding setting is required by the delete command. Please specify the Delete action or url in the DataBinding configuration..
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.Properties.Resources.EditCommandRequiresUpdate">
+            <summary>
+              Looks up a localized string similar to The Update data binding setting is required by the edit command. Please specify the Update action or url in the DataBinding configuration..
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.Properties.Resources.GroupWithSpecifiedNameAlreadyExists">
+            <summary>
+              Looks up a localized string similar to Group with specified name already exists..
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.Properties.Resources.GroupWithSpecifiedNameAlreadyExistsPleaseSpecifyADifferentName">
+            <summary>
+              Looks up a localized string similar to Group with specified name &quot;{0}&quot; already exists. Please specify a different name..
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.Properties.Resources.GroupWithSpecifiedNameDoesNotExistInAssetTypeOfSharedWebAssets">
+            <summary>
+              Looks up a localized string similar to Group with &quot;{0}&quot; does not exist in {1} SharedWebAssets..
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.Properties.Resources.GroupWithSpecifiedNameDoesNotExistPleaseMakeSureYouHaveSpecifiedACorrectName">
+            <summary>
+              Looks up a localized string similar to Group with specified name &quot;{0}&quot; does not exist. Please make sure you have specified a correct name..
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.Properties.Resources.IndexOutOfRange">
+            <summary>
+              Looks up a localized string similar to Provided index is out of range..
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.Properties.Resources.InsertCommandRequiresInsert">
+            <summary>
+              Looks up a localized string similar to The Insert data binding setting is required by the insert command. Please specify the Insert action or url in the DataBinding configuration..
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.Properties.Resources.ItemWithSpecifiedSourceAlreadyExists">
+            <summary>
+              Looks up a localized string similar to Item with specified source already exists..
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.Properties.Resources.LocalGroupWithSpecifiedNameAlreadyExists">
+            <summary>
+              Looks up a localized string similar to Local group with name &quot;{0}&quot; already exists..
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.Properties.Resources.MemberExpressionRequired">
+            <summary>
+              Looks up a localized string similar to Bound columns require a field or property access expression..
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.Properties.Resources.MinDateShouldBeLessThanMaxDate">
+            <summary>
+              Looks up a localized string similar to MinDate should be less than MaxDate..
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.Properties.Resources.MinHeightShouldBeLessThanMaxHeight">
+            <summary>
+              Looks up a localized string similar to MinHeight should be less than MaxHeight..
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.Properties.Resources.MinValueShouldBeLessThanMaxValue">
+            <summary>
+              Looks up a localized string similar to MinValue should be less than MaxValue.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.Properties.Resources.MinWidthShouldBeLessThanMaxWidth">
+            <summary>
+              Looks up a localized string similar to MinWidth should be less than MaxWidth..
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.Properties.Resources.NameCannotBeBlank">
+            <summary>
+              Looks up a localized string similar to Name cannot be blank..
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.Properties.Resources.NoneIsOnlyUsedForInternalPurpose">
+            <summary>
+              Looks up a localized string similar to &quot;None&quot; is only used for internal purpose..
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.Properties.Resources.OnlyOneScriptRegistrarIsAllowedInASingleRequest">
+            <summary>
+              Looks up a localized string similar to Only one ScriptRegistrar is allowed in a single request..
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.Properties.Resources.OnlyOneStyleSheetRegistrarIsAllowedInASingleRequest">
+            <summary>
+              Looks up a localized string similar to Only one StyleSheetRegistrar is allowed in a single request..
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.Properties.Resources.OnlyPropertyAndFieldExpressionsAreSupported">
+            <summary>
+              Looks up a localized string similar to Only property and field expressions are supported.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.Properties.Resources.PropertyShouldBeInRange">
+            <summary>
+              Looks up a localized string similar to {0} should be bigger than {1} and less then {2}.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.Properties.Resources.SiteMapShouldBeDefinedInViewData">
+            <summary>
+              Looks up a localized string similar to You must have SiteMap defined with key &quot;{0}&quot; in ViewData dictionary..
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.Properties.Resources.SourceMustBeAVirtualPathWhichShouldStartsWithTileAndSlash">
+            <summary>
+              Looks up a localized string similar to Source must be a virtual path which should starts with &quot;~/&quot;.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.Properties.Resources.SpecifiedFileDoesNotExist">
+            <summary>
+              Looks up a localized string similar to Specified file does not exist: &quot;{0}&quot;..
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.Properties.Resources.StringNotCorrectDate">
+            <summary>
+              Looks up a localized string similar to Passed string cannot be parsed to DateTime object..
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.Properties.Resources.TheSpecifiedMethodIsNotAnActionMethod">
+            <summary>
+              Looks up a localized string similar to The specified method is not an action method..
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.Properties.Resources.UrlAndContentUrlCannotBeSet">
+            <summary>
+              Looks up a localized string similar to You cannot set Url and ContentUrl at the same time..
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.Properties.Resources.ValueOutOfRange">
+            <summary>
+              Looks up a localized string similar to Value should be bigger than MinValue and less than MaxValue..
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.Properties.Resources.WebServiceUrlRequired">
+            <summary>
+              Looks up a localized string similar to The Url of the WebService must be set.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.Properties.Resources.YouCannotAddMoreThanOnceColumnWhenSortModeIsSetToSingle">
+            <summary>
+              Looks up a localized string similar to You cannot add more than once column when sort mode is set to single column..
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.Properties.Resources.YouCannotCallRenderMoreThanOnce">
+            <summary>
+              Looks up a localized string similar to You cannot call render more than once..
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.Properties.Resources.YouCannotCallStartMoreThanOnce">
+            <summary>
+              Looks up a localized string similar to You cannot call Start more than once..
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.Properties.Resources.YouCannotConfigureASharedWebAssetGroup">
+            <summary>
+              Looks up a localized string similar to You cannot configure a shared web asset group..
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.Properties.Resources.YouMustHaveToCallStartPriorCallingThisMethod">
+            <summary>
+              Looks up a localized string similar to You must have to call Start prior calling this method..
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.Routing.RouteAttribute.Constraints">
+            <summary>
+            JSON object containing route data part constraints
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.Routing.RouteAttribute.Defaults">
+            <summary>
+            JSON object containing route data part defaults
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.Routing.RouteAttribute.Pattern">
+            <summary>
+            Url routing pattern, including route data part placeholders
+            </summary>
+        </member>
+        <member name="T:DowJones.Web.Mvc.Infrastructure.CoreJsHandler">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:DowJones.Web.Mvc.Infrastructure.CoreJsHandler.OnProcessRequest(System.Web.HttpContextBase)">
+            <summary>
+            Called when [process request].
+            </summary>
+            <param name="context">The context.</param>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.ClientStateAttribute.Merge">
+            <summary>
+            When applied to a dictionary, should
+            the value be merged into the target 
+            client state or directly added as a value
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.ClientStateAttribute.ReplaceExistingValuesDuringMerge">
+            <summary>
+            When <see cref="P:DowJones.Web.Mvc.UI.ClientStateAttribute.Merge"/> is enabled,
+            should existing destination client state 
+            values be overwritten?
+            If [true] (the default setting), existing 
+            destination client state values will be overwritten.
+            If [false], existing destination client
+            state values will not be replaced.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.ClientStateAttribute.TypeConverter">
+            <summary>
+            The TypeMapper used to convert this value to
+            another type prior to adding it to the ClientState
+            </summary>
+        </member>
+        <member name="T:DowJones.Web.Mvc.UI.ClientPropertyAttribute">
+            <summary>
+            Represents a client state Option value
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.ClientPropertyAttribute.Nested">
+            <summary>
+            When applied to an IDictionary value,
+            should that value be merged into the 
+            client state options dictionary, or
+            mapped directly as with any other type.
+            If [true] (the default) then the
+            value will be mapped directly.
+            If [false], the dictionary values will
+            be merged with the target client state 
+            options.
+            </summary>
+        </member>
+        <member name="M:DowJones.Web.Mvc.UI.IClientStateMapper.Map(System.Object)">
+            <summary>
+            Accepts a source object and maps the
+            ClientStateAttribute-decorated properties
+            to a ClientState object.
+            </summary>
+            <param name="source">
+            Source object with ClientStateAttribute-decorated properties
+            </param>
+            <returns>A populated ClientState</returns>
+        </member>
+        <member name="T:DowJones.Web.Mvc.UI.ViewComponentBase">
+            <summary>
+            View component base class.
+            </summary>
+        </member>
+        <member name="M:DowJones.Web.Mvc.UI.IRenderable.Render">
+            <summary>
+            Renders the component.
+            </summary>
+        </member>
+        <member name="M:DowJones.Web.Mvc.UI.IRenderable.Render(System.Web.UI.HtmlTextWriter)">
+            <summary>
+            Renders the component.
+            </summary>
+        </member>
+        <member name="M:DowJones.Web.Mvc.UI.IViewComponent.WriteInitializationScript(System.IO.TextWriter)">
+            <summary>
+            Writes the initialization script.
+            </summary>
+            <param name="writer">The writer.</param>
+        </member>
+        <member name="M:DowJones.Web.Mvc.UI.IViewComponent.WriteCleanupScript(System.IO.TextWriter)">
+            <summary>
+            Writes the cleanup script.
+            </summary>
+            <param name="writer">The writer.</param>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.IViewComponent.ClientID">
+            <summary>
+            Gets the id.
+            </summary>
+            <value>The id.</value>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.IViewComponent.ClientResources">
+            <summary>
+            The Client Resources (scripts and stylesheets) 
+            registered with this component
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.IViewComponent.CssClass">
+            <summary>
+            The component's CSS class (the "class" DOM property)
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.IViewComponent.Html">
+            <summary>
+            The Html Helper
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.IViewComponent.HtmlAttributes">
+            <summary>
+            Gets the HTML attributes.
+            </summary>
+            <value>The HTML attributes.</value>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.IViewComponent.Model">
+            <summary>
+            The component's model
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.IViewComponent.Name">
+            <summary>
+            Gets or sets the name.
+            </summary>
+            <value>The name.</value>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.IViewComponent.Parent">
+            <summary>
+             The component's parent component
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.IViewComponent.ViewContext">
+            <summary>
+             The component's view context
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:DowJones.Web.Mvc.UI.ViewComponentBase.DependsOn``1" -->
+        <member name="M:DowJones.Web.Mvc.UI.ViewComponentBase.EnsureClientID">
+            <summary>
+            If this component requires a client ID and none
+            was provided, be nice and generate one
+            </summary>
+        </member>
+        <member name="M:DowJones.Web.Mvc.UI.ViewComponentBase.Render">
+            <summary>
+            Renders the component.
+            </summary>
+        </member>
+        <member name="M:DowJones.Web.Mvc.UI.ViewComponentBase.Render(System.Web.Mvc.ViewContext,System.IO.TextWriter)">
+            <summary>
+            Satisfies the ASP.NET MVC IView contract
+            </summary>
+        </member>
+        <member name="M:DowJones.Web.Mvc.UI.ViewComponentBase.Render(System.Web.UI.HtmlTextWriter)">
+            <summary>
+            Render this control to an HtmlTextWriter
+            </summary>
+        </member>
+        <member name="M:DowJones.Web.Mvc.UI.ViewComponentBase.ToHtmlString">
+            <summary>
+            Render this control to Html
+            </summary>
+        </member>
+        <member name="M:DowJones.Web.Mvc.UI.ViewComponentBase.ToString">
+            <summary>
+            Render this control to a string
+            </summary>
+        </member>
+        <member name="M:DowJones.Web.Mvc.UI.ViewComponentBase.WriteInitializationScript(System.IO.TextWriter)">
+            <summary>
+            Writes the initialization script.
+            </summary>
+            <param name="writer">The writer.</param>
+        </member>
+        <member name="M:DowJones.Web.Mvc.UI.ViewComponentBase.WriteCleanupScript(System.IO.TextWriter)">
+            <summary>
+            Writes the cleanup script.
+            </summary>
+            <param name="writer">The writer.</param>
+        </member>
+        <member name="M:DowJones.Web.Mvc.UI.ViewComponentBase.GetHtmlAttribute``1(System.String)">
+            <summary>
+            Read a value from the HtmlAttributes property
+            </summary>
+        </member>
+        <member name="M:DowJones.Web.Mvc.UI.ViewComponentBase.InitializeClientPlugin(System.IO.TextWriter)">
+            <summary>
+            Render the client-side intialization script.
+            </summary>
+            <remarks>
+            By default, this will render a call to the jQuery plugin 
+            specified by the ClientPluginName and pass in a metadata
+            object with the options, data, and event handlers.
+            </remarks>
+        </member>
+        <member name="M:DowJones.Web.Mvc.UI.ViewComponentBase.AutoDiscoverClientResources">
+            <summary>
+            Traverse the object hierarchy and map
+            all of the ClientResourceAttributes
+            to the local ClientResources collection
+            </summary>
+        </member>
+        <member name="M:DowJones.Web.Mvc.UI.ViewComponentBase.WriteHtml(System.Web.UI.HtmlTextWriter)">
+            <summary>
+            Writes the HTML.
+            </summary>
+        </member>
+        <member name="M:DowJones.Web.Mvc.UI.ViewComponentBase.WriteAttributes(System.Web.UI.HtmlTextWriter)">
+            <summary>
+            Writes the HTML attributes for the component's wrapper
+            </summary>
+            <remarks>
+            By default, this will render out all of the attributes
+            registered in the HtmlAttributes property
+            </remarks>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.ViewComponentBase.Children">
+            <summary>
+            This component's child components
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.ViewComponentBase.ClientIDRequired">
+            <summary>
+            Indicates whether or not this component requires
+            a valid ClientID.
+            </summary>
+            <remarks>Most do... some don't.</remarks>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.ViewComponentBase.ClientPluginName">
+            <summary>
+            The client (jQuery) plugin name.
+            If this component does not have a plugin,
+            this should be [null]
+            </summary>
+            <remarks>
+            A ClientPluginName name of "dj_MyComponent"
+            would render out an initialization script such as:
+            $('#MyComponent').dj_MyComponent({ ... });
+            </remarks>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.ViewComponentBase.ClientResources">
+            <summary>
+            The Client Resources (scripts, stylesheets, etc.)
+            that this component depends on
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.ViewComponentBase.ClientSideObjectWriterFactory">
+            <summary>
+            Gets the client side object writer factory.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.ViewComponentBase.ClientStateMapper">
+            <summary>
+            Gets the client side object writer factory.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.ViewComponentBase.ComponentFactory">
+            <summary>
+            The ViewComponentFactory that created this component
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.ViewComponentBase.DJ">
+            <summary>
+            Alias for ComponentFactory (to match the signature on DJ.WebViewPage)
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.ViewComponentBase.CssClass">
+            <summary>
+            The default Css class
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.ViewComponentBase.HtmlAttributes">
+            <summary>
+            Gets the HTML attributes.
+            </summary>
+            <value>The HTML attributes.</value>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.ViewComponentBase.Html">
+            <summary>
+            The current Html Helper
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.ViewComponentBase.ClientID">
+            <summary>
+            Gets the id.
+            </summary>
+            <value>The id.</value>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.ViewComponentBase.Name">
+            <summary>
+            Gets or sets the name.
+            </summary>
+            <value>The name.</value>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.ViewComponentBase.Parent">
+            <summary>
+            This component's parent
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.ViewComponentBase.Model">
+            <summary>
+            The component's model
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.ViewComponentBase.ViewContext">
+            <summary>
+            Gets or sets the view context to rendering a view.
+            </summary>
+            <value>The view context.</value>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.ViewComponentBase`1.Model">
+            <summary>
+            The component's model
+            </summary>
+        </member>
+        <member name="M:DowJones.Web.Mvc.UI.ScriptRegistryBuilder.OnDocumentReady(System.Func{System.Object,System.Object})">
+            <summary>
+            Defines the inline handler executed when the DOM document is ready (using the $(document).ready jQuery event)
+            </summary>
+            <param name="onDocumentReadyAction">The action defining the inline handler</param>
+            <example>
+            <code lang="CS">
+            @DJ.ScriptRegistry().OnDocumentReady(@&lt;text&gt;
+                        function() {
+                            alert("Document is ready");
+                        }
+                      &lt;/text&gt;);
+            </code>
+            </example>
+        </member>
+        <member name="M:DowJones.Web.Mvc.UI.ScriptRegistryBuilder.OnDocumentReady(System.String)">
+            <summary>
+            Appends the specified statement in $(document).ready jQuery event.
+            </summary>
+            <param name="statements">The statements.</param>
+            <returns></returns>
+        </member>
+        <member name="T:DowJones.Web.Mvc.UI.IScriptRegistry">
+            <summary>
+            Registry to keep track of all scripts required
+            for an individual request
+            </summary>
+        </member>
+        <member name="M:DowJones.Web.Mvc.UI.IScriptRegistry.GetCleanupStatements">
+            <summary>
+            Gets the component cleanup statements
+            </summary>
+        </member>
+        <member name="M:DowJones.Web.Mvc.UI.IScriptRegistry.GetClientTemplates">
+            <summary>
+            Get the registered client templates
+            </summary>
+        </member>
+        <member name="M:DowJones.Web.Mvc.UI.IScriptRegistry.GetInitializationStatements">
+            <summary>
+            Gets the component initialization statements
+            </summary>
+        </member>
+        <member name="M:DowJones.Web.Mvc.UI.IScriptRegistry.GetScripts">
+            <summary>
+            Get the registered script resources
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.IScriptRegistry.OnDocumentReadyStatements">
+            <summary>
+            Gets the on document ready statements
+            </summary>
+            <value>The on page load actions.</value>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.IScriptRegistry.OnWindowUnloadStatements">
+            <summary>
+            Gets the on window unload statements
+            </summary>
+            <value>The on page load actions.</value>
+        </member>
+        <member name="T:DowJones.Web.Mvc.UI.IStylesheetRegistry">
+            <summary>
+            Registry to keep track of all stylesheets required
+            for an individual request
+            </summary>
+        </member>
+        <member name="T:DowJones.Web.Mvc.UI.StylesheetRegistry">
+            <summary>
+            Registry to keep track of all stylesheets required
+            for an individual request
+            </summary>
+        </member>
+        <member name="T:DowJones.Web.Mvc.UI.ScriptRegistry">
+            <summary>
+            Registry to keep track of all stylesheets required
+            for an individual request
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.ScriptRegistry.OnDocumentReadyStatements">
+            <summary>
+            Gets the on document ready statements that is used in <code>RenderAction</code>.
+            </summary>
+            <value>The on page load actions.</value>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.ScriptRegistry.OnWindowUnloadStatements">
+            <summary>
+            Gets the on window unload statements.that is used in <code>RenderAction</code>.
+            </summary>
+            <value>The on page load actions.</value>
+        </member>
+        <member name="M:DowJones.Web.Mvc.UI.ViewComponentFactory.Token(System.String)">
+            <summary>
+            Render a token value
+            </summary>
+        </member>
+        <member name="M:DowJones.Web.Mvc.UI.ViewComponentFactory.Token(System.Enum)">
+            <summary>
+            Render a token value
+            </summary>
+        </member>
+    </members>
+</doc>

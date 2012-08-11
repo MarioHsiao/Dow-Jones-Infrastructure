@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DowJones.Web.Mvc.UI.Components</name>
+    </assembly>
+    <members>
+        <member name="T:DowJones.Web.Mvc.UI.Components.ReadSpeaker">
+            <summary>
+            The read speaker.
+            </summary>
+        </member>
+        <member name="M:DowJones.Web.Mvc.UI.Components.ReadSpeaker.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:DowJones.Web.Mvc.UI.Components.ReadSpeaker"/> class.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.ReadSpeaker.ShowDownloadLink">
+            <summary>
+            Gets or sets a value indicating whether ShowDownloadLink.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.ReadSpeaker.Volume">
+            <summary>
+            Gets or sets Volume.
+            </summary>
+        </member>
+        <member name="P:DowJones.Web.Mvc.UI.Components.ReadSpeaker.AutoStart">
+            <summary>
+            Gets or sets a value indicating whether AutoStart.
+            </summary>
+        </member>
+    </members>
+</doc>
