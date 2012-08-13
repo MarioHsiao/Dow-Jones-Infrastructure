@@ -97,6 +97,7 @@ namespace DowJones.Web.Mvc.UI.Canvas
         protected Module()
         {
             NeedsClientData = true;
+            ModuleState = ModuleState.Maximized;
         }
 
         [ClientProperty("inheritPageFilters")]

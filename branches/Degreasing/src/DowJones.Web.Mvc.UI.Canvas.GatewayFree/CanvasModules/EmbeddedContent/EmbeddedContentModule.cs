@@ -5,8 +5,8 @@ namespace DowJones.Web.Mvc.UI.Canvas.GatewayFree.CanvasModules.EmbeddedContent
 {
     public class EmbeddedContentModule : DowJones.Web.Mvc.UI.Canvas.Module
     {
-        public const int DefaultHeight = 300;
-        public const int DefaultWidth = 300;
+        public const int DefaultHeight = 400;
+        public const int DefaultWidth = 400;
 
         public int Height { get; set; }
         public int Width { get; set; }
@@ -15,6 +15,8 @@ namespace DowJones.Web.Mvc.UI.Canvas.GatewayFree.CanvasModules.EmbeddedContent
         public EmbeddedContentModule()
         {
             Editor = new EmbeddedContentEditor(this);
+            Width = DefaultWidth;
+            Height = DefaultHeight;
         }
 
 

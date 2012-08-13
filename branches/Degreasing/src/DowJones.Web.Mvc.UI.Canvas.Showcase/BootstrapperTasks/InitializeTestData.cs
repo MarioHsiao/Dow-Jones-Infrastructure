@@ -24,7 +24,7 @@ namespace DowJones.DegreasedDashboards.Website.BootstrapperTasks
                     Title = "Test Page 1234",
                     ModuleCollection = new List<Module>
                         {
-                            new HtmlModule { Id = 1, 
+                            new HtmlModule { Id = 1,
                                 Position = 5,
                                 Title = "Simple Module", 
                                 Html = "<p style='text-align: center; width:160px'>Just some simple HTML (check the console for a script example)</p>",

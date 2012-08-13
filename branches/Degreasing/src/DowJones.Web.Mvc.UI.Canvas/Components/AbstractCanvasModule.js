@@ -452,14 +452,10 @@ DJ.UI.AbstractCanvasModule = DJ.UI.CompositeComponent.extend({
 
     maximize: function () {
         this.$element.removeClass('minimized');
-        this.$element.addClass('maximized');
-        $('.dj_module-core', this.element).show();
     },
 
     minimize: function () {
-        this.$element.removeClass('maximized');
         this.$element.addClass('minimized');
-        $('.dj_module-core', this.element).hide();
     },
 
 
