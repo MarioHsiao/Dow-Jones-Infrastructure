@@ -27,7 +27,7 @@
     },
 
     executeScript: function () {
-        eval(this._script);
+            eval(this._script);
     },
 
     fireOnSaveAndCloseEditArea: function () {
