@@ -42,9 +42,9 @@ namespace DowJones.Web.Mvc.UI.Canvas.GatewayFree.Controllers
 
             MapModule(canvasModule, module);
 
-            PageManager.AddModuleToPage(pageId, module);
+            var moduleId = PageManager.AddModuleToPage(pageId, module);
 
-            return new HttpStatusCodeResult(200);
+            return Json(new { moduleId }, JsonRequestBehavior.AllowGet);
         }
 
         [ValidateInput(false)]

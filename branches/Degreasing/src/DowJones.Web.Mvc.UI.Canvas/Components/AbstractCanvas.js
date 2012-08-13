@@ -67,6 +67,10 @@ DJ.UI.AbstractCanvas = DJ.UI.CompositeComponent.extend({
     },
 
     loadModule: function (moduleId, onSuccess, onError) {
+        this._loadModule(moduleId, onSuccess, onError, this._delegates.addModuleToCanvas);
+    },
+    
+    _loadModule: function (moduleId, onSuccess, onError, addModuleToCanvas) {
         if (!this.canAddModule(moduleId)) { return; }
 
         var request = {
@@ -81,28 +85,26 @@ DJ.UI.AbstractCanvas = DJ.UI.CompositeComponent.extend({
         // the partial rendering initialization has completed
         request.callback = $dj.callback(this._delegates.fireModuleAdded);
 
-        var success = onSuccess || function (html) {
-            this.$element.append(html);
-        };
-
-        var error = onError || function(err) {
-            this.publish('addModuleError.dj.Canvas', err);
-        };
-
         $.ajax({
             url: this.options.loadModuleUrl + '?' + $.param(request),
             cache: false,
             complete: $dj.delegate(this, function (xhr) {
                 var err = $dj.getError(xhr);
                 if (err !== null) {
-                    error(err);
+                    this.publish('addModuleError.dj.Canvas', err);
+                    if(onError) onError(err);
                 }
                 else {
-                    success(xhr.responseText);
+                    addModuleToCanvas(xhr.responseText);
+                    if(onSuccess) onSuccess(xhr.responseText);
                 }
             }),
             dataType: 'html'
         });
+    },
+    
+    _addModuleToCanvas: function (html) {
+        this.$element.prepend(html);
     },
 
     reloadModule: function (moduleId) {
@@ -112,13 +114,14 @@ DJ.UI.AbstractCanvas = DJ.UI.CompositeComponent.extend({
 
         module.showLoadingArea();
         
-        this.loadModule(
+        this._loadModule(
             moduleId,
-            function (html) {
-                module.$element.replaceWith(html);
-            },
+            null,
             function (err) {
                 module.showErrorMessage(err);
+            },
+            function (html) {
+                module.$element.replaceWith(html);
             }
         );
     },
@@ -331,6 +334,7 @@ DJ.UI.AbstractCanvas = DJ.UI.CompositeComponent.extend({
 
     _initializeDelegates: function () {
         this._delegates = {
+            addModuleToCanvas: $dj.delegate(this, this._addModuleToCanvas),
             fireModuleAdded: $dj.delegate(this, this._fireModuleAdded),
             fireModuleRemoved: $dj.delegate(this, this._fireModuleRemoved),
             fireSortableOnActivate: $dj.delegate(this, this._fireSortableOnActivate),
@@ -428,8 +432,9 @@ DJ.UI.AbstractCanvas = DJ.UI.CompositeComponent.extend({
                             .appendTo(zoneContainer);
             }
         }
-    }
-
+    },
+    
+    EOF: null
 });
 
     $.plugin('dj_Canvas', DJ.UI.AbstractCanvas);

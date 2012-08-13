@@ -85,6 +85,8 @@ DJ.UI.AbstractCanvasModule = DJ.UI.CompositeComponent.extend({
         this._removeTrigger = $(".dj_module-remove", this._moduleHead).get(0);
 
         this.$settings = $('.settings', this._moduleHead);
+        this._maximizeButton = $('.maximize', this._moduleHead);
+        this._minimizeButton = $('.minimize', this._moduleHead);
 
 
         // If no canvas has been specified (via _set_Owner), try to actively find one
@@ -367,6 +369,8 @@ DJ.UI.AbstractCanvasModule = DJ.UI.CompositeComponent.extend({
 
     _initializeDelegates: function () {
         this._delegates = $.extend({}, {
+            fireOnMaximize: $dj.delegate(this, this.maximize),
+            fireOnMinimize: $dj.delegate(this, this.minimize),
             fireOnEditCloseTrigger: $dj.delegate(this, this.fireOnEditCloseTrigger),
             fireOnEditTrigger: $dj.delegate(this, this.fireOnEditTrigger),
             fireOnEditShown: $dj.delegate(this, this.fireOnEditShown),
@@ -442,6 +446,8 @@ DJ.UI.AbstractCanvasModule = DJ.UI.CompositeComponent.extend({
             return false;
         });
 
+        this._maximizeButton.click(this._delegates.fireOnMaximize);
+        this._minimizeButton.click(this._delegates.fireOnMinimize);
     },
 
     maximize: function () {
