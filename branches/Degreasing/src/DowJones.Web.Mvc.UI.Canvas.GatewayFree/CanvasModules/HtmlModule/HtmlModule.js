@@ -20,8 +20,8 @@
     _initializeElements: function (el) {
         this._super();
         this._script = $('.script', el).text();
-        this._maximizeButton = $('<div class="maximize">');
-        this._minimizeButton = $('<div class="minimize">');
+        this._maximizeButton = $('<span class="maximize">');
+        this._minimizeButton = $('<span class="minimize">');
 
         $('.actions-container', el)
             .append(this._maximizeButton)
@@ -35,9 +35,14 @@
         this._maximizeButton.click($dj.delegate(this, this.maximize));
     },
 
-    
     executeScript: function () {
         eval(this._script);
+    },
+
+    fireOnSaveAndCloseEditArea: function () {
+        this._saveProperties($dj.delegate(this, function () {
+            this.get_Canvas().reloadModule(this.get_moduleId());
+        }));
     },
 
     EOF: null

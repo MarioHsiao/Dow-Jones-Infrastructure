@@ -24,9 +24,19 @@ namespace DowJones.Web.Mvc.UI.Canvas.GatewayFree.CanvasModules.HtmlModule.Editor
             set { _module.Script = value; }
         }
 
+        public string Title
+        {
+            get { return _module.Title; }
+            set { _module.Title = value; }
+        }
+
+        public HtmlModuleEditor() : this(null)
+        {
+        }
+
         public HtmlModuleEditor(HtmlModule module)
         {
-            _module = module;
+            _module = module ?? new HtmlModule();
             DataServiceUrl = CanvasSettings.Default.GetDataServiceUrl(typeof(HtmlModule), Settings.Default);
         }
     }

@@ -5,7 +5,7 @@ using DowJones.Web.Mvc.UI.Canvas.GatewayFree.CanvasModules.EmbeddedContent;
 
 namespace DowJones.Web.Mvc.UI.Canvas.GatewayFree.Controllers
 {
-    public class EmbeddedContentModuleController : ModuleController<EmbeddedContentModule>
+    public class EmbeddedContentModuleController : ModuleController<EmbeddedContentModule, Modules.EmbeddedContentModule>
     {
         public EmbeddedContentModuleController(IPageManager pageManager)
             : base(pageManager)
@@ -14,20 +14,12 @@ namespace DowJones.Web.Mvc.UI.Canvas.GatewayFree.Controllers
 
         [Route("canvas/modules/EmbeddedContent/{version}/data/{method}")]
         [ValidateInput(false)]
-        public ActionResult Post(string pageId, int? moduleId, [Bind(Prefix = "")]EmbeddedContentModule canvasModule)
+        public override ActionResult Post(string pageId, int? moduleId, EmbeddedContentModule canvasModule)
         {
-            if (moduleId.GetValueOrDefault() == default(int))
-                return Create(pageId, canvasModule);
-            else
-                return Update(pageId, moduleId.Value, canvasModule);
+            return base.Post(pageId, moduleId, canvasModule);
         }
 
-        protected override void MapModule(EmbeddedContentModule source, Pages.Modules.Module dest)
-        {
-            MapEmbeddedContentModule(source, dest as Modules.EmbeddedContentModule);
-        }
-
-        private void MapEmbeddedContentModule(EmbeddedContentModule source, Modules.EmbeddedContentModule dest)
+        protected override void MapModule(EmbeddedContentModule source, Modules.EmbeddedContentModule dest)
         {
             dest.Height = source.Height;
             dest.Width = source.Width;

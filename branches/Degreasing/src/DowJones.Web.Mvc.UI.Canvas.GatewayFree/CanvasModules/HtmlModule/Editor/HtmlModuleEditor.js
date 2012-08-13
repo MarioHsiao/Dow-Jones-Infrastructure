@@ -12,6 +12,7 @@ DJ.UI.HtmlModuleEditor = DJ.UI.AbstractCanvasModuleEditor.extend({
 
     buildProperties: function () {
         return {
+            title: $('.title', this.element).val(),
             html: $('.html', this.element).val(),
             script: $('.script', this.element).val()
         };

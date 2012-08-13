@@ -12,13 +12,17 @@ namespace DowJones.Web.Mvc.UI.Canvas
         internal const string ScriptFile = BaseDirectory + ".AbstractCanvasModuleEditor.js";
     }
 
+    public interface IAbstractCanvasModuleEditor
+    {
+    }
+
     [ScriptResource(
         "AbstractCanvasModuleEditor",
         ResourceName = AbstractCanvasModuleEditor.ScriptFile,
         DeclaringType = typeof(AbstractCanvasModuleEditor),
         DependencyLevel = ClientResourceDependencyLevel.MidLevel
     )]
-    public abstract class AbstractCanvasModuleEditor<TModel> : ViewComponentBase<TModel>
+    public abstract class AbstractCanvasModuleEditor<TModel> : ViewComponentBase<TModel>, IAbstractCanvasModuleEditor
         where TModel : class
     {
         protected AbstractCanvasModuleEditor()
@@ -26,5 +30,4 @@ namespace DowJones.Web.Mvc.UI.Canvas
             CssClass = "dj_Editor ";
         }
     }
-    
 }

@@ -21,8 +21,8 @@ DJ.UI.EmbeddedContentCanvasModule = DJ.UI.AbstractCanvasModule.extend({
 
     _initializeElements: function (el) {
         this._super();
-        this._maximizeButton = $('<div class="maximize">');
-        this._minimizeButton = $('<div class="minimize">');
+        this._maximizeButton = $('<span class="maximize">');
+        this._minimizeButton = $('<span class="minimize">');
 
         $('.actions-container', el)
             .append(this._maximizeButton)
@@ -36,6 +36,12 @@ DJ.UI.EmbeddedContentCanvasModule = DJ.UI.AbstractCanvasModule.extend({
         this._maximizeButton.click($dj.delegate(this, this.maximize));
     },
     
+    fireOnSaveAndCloseEditArea: function () {
+        this._saveProperties($dj.delegate(this, function () {
+            this.get_Canvas().reloadModule(this.get_moduleId());
+        }));
+    },
+
     EOF: null
 });
 

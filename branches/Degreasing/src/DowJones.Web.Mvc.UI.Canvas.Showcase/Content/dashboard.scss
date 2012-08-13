@@ -49,26 +49,27 @@
 
 		.actions-container {
 			float: right;
+			white-space: nowrap;
 
 			.fi_gear {
-				display: block;
+				display: inline-block;
 				background-image: url(<%= AbsoluteUrl("~/content/gear.png") %>);
 				width: 32px;
 				height: 32px;
 			}
 
 			.minimize {
-				display: block;
+				display: inline-block;
 				background-image: url(<%= AbsoluteUrl("~/content/minimize.png") %>);
-				width: 32px;
-				height: 32px;
+				width: 24px;
+				height: 24px;
 			}
 
 			.maximize {
-				display: block;
+				display: inline-block;
 				background-image: url(<%= AbsoluteUrl("~/content/maximize.png") %>);
-				width: 32px;
-				height: 32px;
+				width: 24px;
+				height: 24px;
 			}
 		}
 	}
@@ -78,3 +79,6 @@
 		min-height: 75px;
 	}
 }
+
+.dj_Editor label { display: inline-block; width: 20%; text-align: right;vertical-align: top; padding-right: 5px; }
+.dj_Editor input, .dj_Editor textarea { width: 75%; }

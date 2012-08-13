@@ -25,7 +25,8 @@ namespace DowJones.DegreasedDashboards.Website.BootstrapperTasks
             _routes.MapRoute(
                 "CanvasPage", // Route name
                 "pages/{id}", // URL with parameters
-                new {controller = "Pages", action = "Page" } // Parameter defaults
+                new {controller = "Pages", action = "Page" },
+                new { id = "[0-9]*" }
             );
 
             _routes.MapRoute(

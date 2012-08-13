@@ -31,6 +31,7 @@ namespace DowJones.Web.Mvc.UI
             var scriptRegistry = _componentFactory.ScriptRegistry();
 
             var viewComponent = _componentFactory.Create(Model) as ViewComponentBase;
+            viewComponent.Html = new HtmlHelper(new ViewContext(context, viewComponent, ViewData, TempData, output), viewComponent);
 
             if (string.IsNullOrEmpty(viewComponent.ClientID))
                 viewComponent.ClientID = string.Format("{0}_{1}", viewComponent.GetType().Name, Guid.NewGuid().ToString().Replace("-", ""));

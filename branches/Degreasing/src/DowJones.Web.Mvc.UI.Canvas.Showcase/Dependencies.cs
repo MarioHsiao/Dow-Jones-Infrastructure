@@ -3,6 +3,9 @@ using DowJones.Pages;
 using DowJones.Preferences;
 using DowJones.Security.Interfaces;
 using DowJones.Session;
+using Ninject;
+using Raven.Client;
+using Raven.Client.Embedded;
 
 namespace DowJones.DegreasedDashboards.Website
 {
@@ -16,6 +19,19 @@ namespace DowJones.DegreasedDashboards.Website
             Bind<IPrinciple>().ToConstant(new Principle());
             Bind<Product>().ToConstant(new GlobalProduct());
 
+
+            Bind<IDocumentStore>()
+                .ToConstant(new EmbeddableDocumentStore { DataDirectory = "App_Data" })
+                .InSingletonScope()
+                .OnActivation(x => x.Initialize());
+
+            Bind<IDocumentSession>()
+                .ToMethod(x => x.Kernel.Get<IDocumentStore>().OpenSession())
+                .InRequestScope()
+                .OnDeactivation(x => x.SaveChanges());
+
+
+//            Bind<IPageManager>().To<RavenDbPageManager>().InRequestScope();
             Bind<IPageManager>().To<InMemoryPageManager>().InSingletonScope();
             Bind<IPageSubscriptionManager>().To<InMemoryPageSubscriptionManager>().InSingletonScope();
         }

@@ -1,2 +1,26 @@
 ﻿@{ ViewBag.Title = Model.Title; }
+
+<section>
+    <div id="add-module">[+] Add Module</div>
+    
+    <div id="module-selector" style="display: none">
+        <ul>
+            @foreach(var moduleType in ViewBag.ModuleTypes)
+            {
+                <li class="module" data-editor="@moduleType.EditorClass">@moduleType.DisplayName</li>
+            }
+        </ul>
+    </div>
+    
+    <div id="new-module-info" style="display: none">
+        <div class="editor"></div>
+        <div class="actions">
+            <input class="create" type="button" value="Create" />
+            <input class="cancel" type="button" value="Cancel" />
+        </div>
+    </div>
+
+</section>
+
+
 @DJ.Render(Model)

@@ -42,7 +42,8 @@ DJ.UI.AbstractCanvasModule = DJ.UI.CompositeComponent.extend({
     _baseEvents: {
         canvasModuleRemove: 'RemoveModuleRequest.dj.CanvasModule',
         canvasModuleRemoveSuccess: 'RemoveModuleSuccess.dj.CanvasModule',
-        canvasModuleRemoveFailure: 'RemoveModuleFailure.dj.CanvasModule'
+        canvasModuleRemoveFailure: 'RemoveModuleFailure.dj.CanvasModule',
+        canvasModuleEditSuccess: 'EditModuleSuccess.dj.CanvasModule'
     },
 
     // Constructor
@@ -202,11 +203,7 @@ DJ.UI.AbstractCanvasModule = DJ.UI.CompositeComponent.extend({
     },
 
     fireOnSaveAndCloseEditArea: function () {
-        if(this._editor) {
-            var props = this._editor.buildProperties();
-            this._editor.saveProperties(props);
-        }
-        this.showModuleArea();
+        this._saveProperties($dj.delegate(this, this.showModuleArea));
     },
 
     get_CanvasId: function () {
@@ -448,10 +445,14 @@ DJ.UI.AbstractCanvasModule = DJ.UI.CompositeComponent.extend({
     },
 
     maximize: function () {
+        this.$element.removeClass('minimized');
+        this.$element.addClass('maximized');
         $('.dj_module-core', this.element).show();
     },
 
     minimize: function () {
+        this.$element.removeClass('maximized');
+        this.$element.addClass('minimized');
         $('.dj_module-core', this.element).hide();
     },
 
@@ -469,6 +470,13 @@ DJ.UI.AbstractCanvasModule = DJ.UI.CompositeComponent.extend({
             innerData: innerData,
             canvasId: this.get_Canvas().get_canvasId()
         };
+    },
+    
+    _saveProperties: function (callback) {
+        if (this._editor) {
+            var props = this._editor.buildProperties();
+            this._editor.saveProperties(props, callback);
+        }
     },
 
     EOF: null

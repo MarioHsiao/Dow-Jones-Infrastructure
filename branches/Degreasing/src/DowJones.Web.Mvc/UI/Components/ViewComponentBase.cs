@@ -247,7 +247,6 @@ namespace DowJones.Web.Mvc.UI
             get { return _tagName; }
             set { _tagName = value; }
         }
-
         private string _tagName = HtmlTextWriterTag.Div.ToString();
 
         protected UrlHelper Url

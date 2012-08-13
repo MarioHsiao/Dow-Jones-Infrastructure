@@ -107,6 +107,9 @@ namespace DowJones.DegreasedDashboards.Website.BootstrapperTasks
                             },*/
                        }
                 });
+
+            if(_pageManager is RavenDbPageManager)
+                ((RavenDbPageManager)_pageManager).SaveChanges();
         }
     }
 }

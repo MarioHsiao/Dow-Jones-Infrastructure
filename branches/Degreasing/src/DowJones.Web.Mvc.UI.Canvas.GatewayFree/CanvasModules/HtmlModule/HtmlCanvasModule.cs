@@ -42,37 +42,16 @@ namespace DowJones.Web.Mvc.UI.Canvas.GatewayFree.CanvasModules.HtmlModule
         public override void ExecuteTemplate()
         {
 
-
-
-WriteLiteral("\r\n");
-
-
 DefineSection("ContentArea", () => {
-
-WriteLiteral("\r\n    ");
-
-
-Write(Html.Raw(Model.Html));
-
-WriteLiteral("\r\n\r\n");
-
+    
+    Write(Html.Raw(Model.Html));
 
      if (Model.HasScript) {
-
-WriteLiteral("        <script class=\"script\" type=\"text/delayed-execution-javascript\">\r\n       " +
-" ");
-
-
-   Write(Html.Raw(Model.Script));
-
-WriteLiteral("\r\n        </script>\r\n");
-
-
+        WriteLiteral("<script class=\"script\" type=\"text/delayed-execution-javascript\">\r\n");
+        Write(Html.Raw(Model.Script));
+        WriteLiteral("\r\n</script>\r\n");
     }
-
-
 });
-
 
         }
     }

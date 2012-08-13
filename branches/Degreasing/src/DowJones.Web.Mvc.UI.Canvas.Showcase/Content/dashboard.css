@@ -44,23 +44,27 @@
     .dj_module .dj_module-header .scope-container {
       display: none; }
     .dj_module .dj_module-header .actions-container {
-      float: right; }
+      float: right; white-space: nowrap;  }
       .dj_module .dj_module-header .actions-container .fi_gear {
-        display: block;
+        display: inline-block;
         background-image: url(<%= AbsoluteUrl("~/content/gear.png") %>);
         width: 32px;
         height: 32px; }
       .dj_module .dj_module-header .actions-container .minimize {
-        display: block;
+        display: inline-block;
         background-image: url(<%= AbsoluteUrl("~/content/minimize.png") %>);
-        width: 32px;
-        height: 32px; }
+        width: 24px;
+        height: 24px; }
       .dj_module .dj_module-header .actions-container .maximize {
-        display: block;
+        display: inline-block;
         background-image: url(<%= AbsoluteUrl("~/content/maximize.png") %>);
-        width: 32px;
-        height: 32px; }
+        width: 24px;
+        height: 24px; }
   .dj_module .dj_module-core {
     padding: 10px;
     min-height: 75px; }
+
+
+  .dj_Editor label { display: inline-block; width: 20%; text-align: right;vertical-align: top; padding-right: 5px; }
+  .dj_Editor input, .dj_Editor textarea { width: 75%; }
 

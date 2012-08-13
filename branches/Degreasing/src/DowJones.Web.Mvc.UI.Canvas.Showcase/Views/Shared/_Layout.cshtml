@@ -1,4 +1,8 @@
 ﻿@{
+    DJ.ScriptRegistry()
+        .Include("~/Scripts/dashboard.js", ClientResourceDependencyLevel.Global)
+        .WithJQueryUIWidgets();
+        
     DJ.StylesheetRegistry()
         .Include("~/content/site.css", ClientResourceDependencyLevel.Global)
         .Include("~/content/isotope.css", ClientResourceDependencyLevel.Global)
@@ -10,7 +14,10 @@
     <title>@ViewBag.Title</title>
 
     <script type="text/javascript">
-        var DJ = { config: { debug: true } };
+        var DJ = {
+            config: { debug: true },
+            Dashboards: { EditorsUrl: '@Url.Action("Editors", "Pages")/' }
+        };
     </script>
     
     @DJ.ScriptRegistry().RenderHead()

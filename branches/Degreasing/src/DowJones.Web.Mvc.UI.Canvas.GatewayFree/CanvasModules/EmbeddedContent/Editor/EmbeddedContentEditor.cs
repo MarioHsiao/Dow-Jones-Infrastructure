@@ -30,7 +30,17 @@ namespace DowJones.Web.Mvc.UI.Canvas.GatewayFree.CanvasModules.EmbeddedContent.E
             set { _module.Url = value; }
         }
 
-        public EmbeddedContentEditor(EmbeddedContentModule module = null)
+        public string Title
+        {
+            get { return _module.Title; }
+            set { _module.Title = value; }
+        }
+
+        public EmbeddedContentEditor() : this(null)
+        {
+        }
+
+        public EmbeddedContentEditor(EmbeddedContentModule module)
         {
             _module = module ?? new EmbeddedContentModule();
             DataServiceUrl = CanvasSettings.Default.GetDataServiceUrl(typeof(EmbeddedContentModule), Settings.Default);

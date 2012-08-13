@@ -5,9 +5,11 @@ using DowJones.Web.Mvc.UI.Canvas.Controllers;
 namespace DowJones.Web.Mvc.UI.Canvas.GatewayFree.Controllers
 {
     using CanvasModule = DowJones.Web.Mvc.UI.Canvas.Module;
+    using Module = DowJones.Pages.Modules.Module;
 
-    public abstract class ModuleController<TCanvasModule> : PageControllerBase
-        where TCanvasModule : CanvasModule
+    public abstract class ModuleController<TCanvasModule, TModule> : PageControllerBase
+        where TCanvasModule : CanvasModule 
+        where TModule : Module, new()
     {
         private readonly IPageManager _pageManager;
 
@@ -21,11 +23,22 @@ namespace DowJones.Web.Mvc.UI.Canvas.GatewayFree.Controllers
             _pageManager = pageManager;
         }
 
+        [ValidateInput(false)]
+        public virtual ActionResult Post(string pageId, int? moduleId, [Bind(Prefix = "")]TCanvasModule canvasModule)
+        {
+            if (moduleId.GetValueOrDefault() == default(int))
+                return Create(pageId, canvasModule);
+            else
+                return Update(pageId, moduleId.Value, canvasModule);
+        }
+
 
         [ValidateInput(false)]
         public ActionResult Create(string pageId, [Bind(Prefix = "")]TCanvasModule canvasModule)
         {
-            var module = new Modules.HtmlModule();
+            var module = new TModule();
+
+            module.Title = canvasModule.Title;
 
             MapModule(canvasModule, module);
 
@@ -37,7 +50,9 @@ namespace DowJones.Web.Mvc.UI.Canvas.GatewayFree.Controllers
         [ValidateInput(false)]
         public ActionResult Update(string pageId, int moduleId, [Bind(Prefix = "")]TCanvasModule canvasModule)
         {
-            var module = (Modules.HtmlModule)PageManager.GetModuleById(moduleId);
+            var module = (TModule)PageManager.GetModuleById(moduleId);
+
+            module.Title = canvasModule.Title;
 
             MapModule(canvasModule, module);
 
@@ -46,6 +61,6 @@ namespace DowJones.Web.Mvc.UI.Canvas.GatewayFree.Controllers
             return new HttpStatusCodeResult(200);
         }
         
-        protected abstract void MapModule(TCanvasModule source, Pages.Modules.Module dest);
+        protected abstract void MapModule(TCanvasModule source, TModule dest);
     }
 }

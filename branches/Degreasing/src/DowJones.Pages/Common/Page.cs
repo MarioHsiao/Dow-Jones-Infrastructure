@@ -107,6 +107,9 @@ namespace DowJones.Pages
         public Page()
         {
             IsActive = true;
+            ModuleCollection = new List<Module>();
+            QueryFilterSet = new QueryFilterSet();
+            MetaDataCollection = new List<MetaData>();
         }
 
 

@@ -53,7 +53,16 @@ namespace DowJones.Web.Mvc.UI.Canvas.GatewayFree.CanvasModules.HtmlModule.Editor
 WriteLiteral("\r\n<fieldset>\r\n    <p>\r\n        <label>");
 
 
-          Write(DJ.Token("html"));
+Write(DJ.Token("title"));
+
+WriteLiteral("</label>\r\n        <input type=\"text\" class=\"title\" value=\"");
+
+
+Write(Model.Title);
+
+WriteLiteral("\" />\r\n    </p>\r\n    <p>\r\n        <label>");
+
+            Write(DJ.Token("html"));
 
 WriteLiteral("</label>\r\n        <textarea class=\"html\">");
 

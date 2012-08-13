@@ -25,15 +25,16 @@ DJ.UI.AbstractCanvasModuleEditor = DJ.UI.Component.extend({
         this._debug('Updating module properties: ', props);
 
         var canvas = this.getCanvas();
+        var moduleId = this.get_moduleId ? this.get_moduleId() : null;
 
         if (!canvas) return;
 
         var url = canvas.get_webServiceBaseUrl() + this.get_dataServiceUrl();
-        var queryParams = { pageId: canvas.get_canvasId(), moduleId: this.get_moduleId() };
+        var queryParams = { pageId: canvas.get_canvasId(), moduleId: moduleId };
 
         $.ajax({
             url: url + '?' + $.param(queryParams),
-            type: this.get_moduleId() ? 'PUT' : 'POST',
+            type: moduleId ? 'PUT' : 'POST',
             data: JSON.stringify(props),
             success: callback,
             contentType: "application/json"

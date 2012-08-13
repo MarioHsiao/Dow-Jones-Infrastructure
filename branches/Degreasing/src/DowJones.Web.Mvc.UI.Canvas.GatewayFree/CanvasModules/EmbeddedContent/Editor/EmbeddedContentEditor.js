@@ -12,6 +12,7 @@ DJ.UI.EmbeddedContentEditor = DJ.UI.AbstractCanvasModuleEditor.extend({
 
     buildProperties: function () {
         return {
+            title: $('.title', this.element).val(),
             width: $('.width', this.element).val(),
             height: $('.height', this.element).val(),
             url: $('.url', this.element).val()
