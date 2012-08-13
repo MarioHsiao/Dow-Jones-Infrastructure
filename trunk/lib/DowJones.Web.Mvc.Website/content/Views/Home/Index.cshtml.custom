@@ -119,7 +119,7 @@
     <ol>
         <li>Install the <em>Factiva.Gateway.Resources</em> NuGet package to retrieve the Gateway configuration files.</li>
         <li>Customize your dependency injection bindings in the <strong>Dependencies</strong> class in the root of your website</li>
-        <li>Modify <em>LoginServer.config</em> to configure the Login Server settings for your application</li>
+        <li>Install Dowjones.Web.Mvc.Website.DJReady package to configure Login, Log4Net settings and other resources to start developing Dowjones application</li>
         <li>Execute the <em>Update-Tokens [Token Product Name]</em> script in the Package Manager Console to generate tokens for your application</li>
         <li>Install the <em>DowJones.Web.Mvc.UI.Canvas.Modules</em> NuGet package create a Canvas/Dashboard application.</li>
     </ol>
