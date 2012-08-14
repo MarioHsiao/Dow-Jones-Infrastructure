@@ -113,7 +113,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActionFilters\PageListPopulationFilter.cs" />
-    <Compile Include="Mapping\FactivaModuleModelMapper.cs" />
     <Compile Include="ViewResults\PageNotFoundViewResult.cs" />
     <Compile Include="Models\AbstractEditorModel.cs" />
     <Compile Include="Models\Canvas.cs" />
@@ -131,7 +130,6 @@
     <Compile Include="..\SolutionInfo.cs">
       <Link>Properties\SolutionInfo.cs</Link>
     </Compile>
-    <Compile Include="Mapping\FactivaModuleModelMappingRegistration.cs" />
     <Compile Include="Models\ModuleTypeIRTCodes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\CanvasSettings.cs" />
