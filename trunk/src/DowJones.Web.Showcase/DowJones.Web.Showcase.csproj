@@ -190,6 +190,7 @@
     <Compile Include="Controllers\SocialMediaController.cs" />
     <Compile Include="Controllers\StockKioskController.cs" />
     <Compile Include="Controllers\TopicController.cs" />
+    <Compile Include="Controllers\TrendingNewsController.cs" />
     <Compile Include="Hub\NewsFeed.cs" />
     <Compile Include="JsonSerializers\JsonConvertAdapter.cs" />
     <Compile Include="Mocks\MockSearchManager.cs" />
@@ -1657,6 +1658,7 @@
     </Content>
     <Content Include="Views\VideoPlayer\Index.cshtml" />
     <Content Include="Views\SocialButtons\Index.cshtml" />
+    <Content Include="Views\TrendingNews\TrendingNews.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Browsers\Devices\" />
