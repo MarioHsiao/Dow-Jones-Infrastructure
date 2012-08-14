@@ -1,11 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using DowJones.Pages;
 using DowJones.Pages.Common;
 using DowJones.Preferences;
 using DowJones.Session;
 using DowJones.Web.Mvc.UI.Components.Search;
-using Factiva.Gateway.Messages.Assets.Pages.V1_0;
-using AccessQualifier = DowJones.Pages.AccessQualifier;
 
 namespace DowJones.Web.Mvc.UI.Canvas
 {

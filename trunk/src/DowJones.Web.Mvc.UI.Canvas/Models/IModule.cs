@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Factiva.Gateway.Messages.Assets.Pages.V1_0;
 
 namespace DowJones.Web.Mvc.UI.Canvas
 {
