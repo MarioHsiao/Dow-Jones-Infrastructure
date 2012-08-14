@@ -128,6 +128,10 @@
     <Compile Include="Managers\PageMetadataUtility.cs" />
     <Compile Include="Common\PagePosition.cs" />
     <Compile Include="Modules\Module.cs" />
+    <Compile Include="ModuleTemplates\IModuleTemplateManager.cs" />
+    <Compile Include="ModuleTemplates\ModuleTemplate.cs" />
+    <Compile Include="ModuleTemplates\ModuleTemplateMetaDatum.cs" />
+    <Compile Include="ModuleTemplates\ModuleTemplateOption.cs" />
     <Compile Include="Multimedia\MediaContent.cs" />
     <Compile Include="Multimedia\MediaContents.cs" />
     <Compile Include="Multimedia\MustPlayFromSource.cs" />

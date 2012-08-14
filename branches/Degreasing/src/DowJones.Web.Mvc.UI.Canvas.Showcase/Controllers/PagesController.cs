@@ -4,17 +4,20 @@ using System.Linq;
 using System.Web.Mvc;
 using DowJones.Infrastructure;
 using DowJones.Mapping.Types;
+using DowJones.Pages.Modules;
 using DowJones.Web.Mvc.UI.Canvas;
 
 namespace DowJones.DegreasedDashboards.Website.Controllers
 {
     public class PagesController : DowJones.Web.Mvc.UI.Canvas.Controllers.DashboardControllerBase
     {
-        private readonly IDictionary<string, Type> ModuleEditorTypes;
+        private readonly IModuleTemplateManager _moduleTemplateManager;
+        private readonly IDictionary<string, Type> _moduleEditorTypes;
 
-        public PagesController(IAssemblyRegistry assemblyRegistry)
+        public PagesController(IAssemblyRegistry assemblyRegistry, IModuleTemplateManager moduleTemplateManager)
         {
-            ModuleEditorTypes =
+            _moduleTemplateManager = moduleTemplateManager;
+            _moduleEditorTypes =
                 assemblyRegistry.GetConcreteTypesDerivingFrom(typeof(IAbstractCanvasModuleEditor))
                     .ToGenericBaseTypeMappings()
                     .Select(x => x.GenericType)
@@ -30,7 +33,7 @@ namespace DowJones.DegreasedDashboards.Website.Controllers
         public ActionResult Editors(string id)
         {
             Type editorType;
-            if (!ModuleEditorTypes.TryGetValue(id, out editorType))
+            if (!_moduleEditorTypes.TryGetValue(id, out editorType))
                 return HttpNotFound();
 
             var model = Activator.CreateInstance(editorType);
@@ -39,12 +42,8 @@ namespace DowJones.DegreasedDashboards.Website.Controllers
 
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            var moduleTypes = new[] {
-                    new ModuleType{DisplayName = "HTML Module", EditorClass = "HtmlModule"},
-                    new ModuleType{DisplayName = "Embedded Module", EditorClass = "EmbeddedContent"},
-                };
-            
-            ViewBag.ModuleTypes = moduleTypes;
+            var moduleTemplates = _moduleTemplateManager.GetTemplates();
+            ViewBag.ModuleTemplates = moduleTemplates;
         }
     }
 

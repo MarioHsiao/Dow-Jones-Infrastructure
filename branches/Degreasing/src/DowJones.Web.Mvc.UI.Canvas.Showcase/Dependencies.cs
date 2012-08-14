@@ -1,5 +1,6 @@
 using DowJones.Infrastructure.Common;
 using DowJones.Pages;
+using DowJones.Pages.Modules;
 using DowJones.Preferences;
 using DowJones.Security.Interfaces;
 using DowJones.Session;
@@ -34,6 +35,7 @@ namespace DowJones.DegreasedDashboards.Website
 //            Bind<IPageManager>().To<RavenDbPageManager>().InRequestScope();
             Bind<IPageManager>().To<InMemoryPageManager>().InSingletonScope();
             Bind<IPageSubscriptionManager>().To<InMemoryPageSubscriptionManager>().InSingletonScope();
+            Bind<IModuleTemplateManager>().To<InMemoryModuleTemplateManager>().InSingletonScope();
         }
 
         public class Principle : IPrinciple

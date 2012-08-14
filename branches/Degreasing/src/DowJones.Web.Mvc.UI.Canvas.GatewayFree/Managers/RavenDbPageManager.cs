@@ -30,7 +30,7 @@ namespace DowJones.DegreasedDashboards
             _session.SaveChanges();
         }
 
-        public string AddModuleToPage(PageReference pageRef, Module module)
+        public int AddModuleToPage(PageReference pageRef, Module module)
         {
             var page = GetPage(pageRef);
 
@@ -39,7 +39,7 @@ namespace DowJones.DegreasedDashboards
             if (module.Id == default(int))
                 module.Id = Modules.Max(x => x.Id) + 1;
 
-            return module.Id.ToString();
+            return module.Id;
         }
 
         public void AddModuleToPage(PageReference pageRef, params int[] moduleIds)

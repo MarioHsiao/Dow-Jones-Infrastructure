@@ -1,0 +1,52 @@
+﻿@model IEnumerable<DowJones.Pages.Modules.ModuleTemplate>
+@{
+    DJ.StylesheetRegistry().Include("~/Content/ModuleGallery.css");
+    
+    DJ.ScriptRegistry()
+        .Include("overlay")
+        .Include("~/Scripts/ModuleGallery.js", ClientResourceDependencyLevel.MidLevel);
+}
+
+<section class="module-gallery" style="display: none">
+    <h3 class="heading">Add New Module</h3>
+    <ul>
+        @foreach(var template in Model)
+        {
+            <li class="module" data-template-id="@template.Id" data-module-type="@template.ModuleType">@template.Title</li>
+        }
+    </ul>
+    
+    <div class="new-module-info">
+        
+        @foreach(var template in Model) {
+            <div class="template-@template.Id editor">
+                <form action="@Url.Action("Create", "ModuleGallery")" method="POST">
+                    <input type="hidden" name="templateId" value="@template.Id" />
+                    
+                    <p>
+                        <label>@DJ.Token("title")</label>
+                        <textarea name="title">@template.Title</textarea>
+                    </p>
+                    
+                    @{ var i = 0; }
+                    @foreach(var option in template.Options)
+                    {
+                        <p class="option">
+                            <label>@option.DisplayName</label>
+                            <input type="hidden" name="options[@(i)].Name" value="@option.Name" />
+                            <textarea name="options[@(i)].Value">@option.DefaultValue</textarea>
+                        </p>
+                        
+                        i++;
+                    }
+                </form>
+            </div>
+        }
+
+        <div class="actions">
+            <input class="save" type="button" value="Save" />
+            <input class="cancel" type="button" value="Cancel" />
+        </div>
+    </div>
+
+</section>

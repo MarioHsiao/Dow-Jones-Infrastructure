@@ -18,10 +18,10 @@ namespace DowJones.Pages
             PageType = pageType;
         }
 
-        public string AddModuleToPage(PageReference pageRef, Module module)
+        public int AddModuleToPage(PageReference pageRef, Module module)
         {
             var gwModule = Mapper.Map<Gateway.Module>(module);
-            return PageAssetsManager.AddModuleToPage(pageRef, 1, gwModule, null);
+            return int.Parse(PageAssetsManager.AddModuleToPage(pageRef, 1, gwModule, null));
         }
 
         public void AddModuleToPage(PageReference pageRef, params int[] moduleIds)

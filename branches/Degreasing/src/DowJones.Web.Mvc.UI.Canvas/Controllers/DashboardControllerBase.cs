@@ -38,8 +38,12 @@ namespace DowJones.Web.Mvc.UI.Canvas.Controllers
         protected virtual CanvasModuleViewResult ModuleInternal(int id, string pageId, string callback)
         {
             var module = GetModule(id, pageId);
-            var canvasModule = Mapper.Map<IModule>(module);
+            return Module(module, callback);
+        }
 
+        protected virtual CanvasModuleViewResult Module(Pages.Modules.Module module, string callback)
+        {
+            var canvasModule = Mapper.Map<IModule>(module);
             return Module(canvasModule, callback);
         }
 
@@ -102,6 +106,7 @@ namespace DowJones.Web.Mvc.UI.Canvas.Controllers
         protected virtual CanvasViewResult Canvas<TCanvasModel>(TCanvasModel canvas, Page page) 
             where TCanvasModel : Canvas
         {
+            canvas.CanvasID = page.ID;
             return Canvas(canvas, page.ModuleCollection.Select(Mapper.Map<IModule>));
         }
 

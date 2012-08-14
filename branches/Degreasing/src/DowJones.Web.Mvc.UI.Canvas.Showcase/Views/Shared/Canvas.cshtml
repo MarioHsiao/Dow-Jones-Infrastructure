@@ -1,29 +1,29 @@
 ﻿@{
     ViewBag.Title = Model.Title;
 
-    DJ.ScriptRegistry().Include("overlay");
+    DJ.StylesheetRegistry().Include("~/Content/dashboard.css");
+    DJ.ScriptRegistry().OnDocumentReady("initializeDashboard();");
 }
 
 <button id="add-module">Add Module</button>
 
-<section id="module-selector" style="display: none">
-    <h3 class="heading">Add New Module</h3>
-    <ul>
-        @foreach(var moduleType in ViewBag.ModuleTypes)
-        {
-            <li class="module" data-editor="@moduleType.EditorClass">@moduleType.DisplayName</li>
-        }
-    </ul>
-    
-    <div id="new-module-info" style="display: none">
-        <div class="editor"></div>
-        <div class="actions">
-            <input class="create" type="button" value="Create" />
-            <input class="cancel" type="button" value="Cancel" />
-        </div>
-    </div>
-
-</section>
-
+@Html.Partial("_ModuleGallery", (object)ViewBag.ModuleTemplates)
 
 @DJ.Render(Model)
+
+<script type="text/javascript">
+    
+    function initializeDashboard() {
+        var canvas = $('.dj_Canvas').findComponent(DJ.UI.AbstractCanvas);
+
+        var moduleGallery = new DJ.UI.ModuleGallery($('.module-gallery'));
+        moduleGallery.options.pageId = canvas.get_canvasId();
+
+        DJ.subscribe('moduleSaved.dj.ModuleGallery', function(args) {
+            canvas.loadModule(args.moduleId);
+        });
+        
+        $('#add-module').click(function () { moduleGallery.show(); });
+    }
+
+</script>

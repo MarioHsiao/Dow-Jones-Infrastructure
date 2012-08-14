@@ -1,0 +1,54 @@
+.module-gallery {
+    background: #fff;
+    border: 1px solid #000;
+    margin: 10px;
+    padding: 10px;
+    vertical-align: top;
+    min-width: 600px;
+
+	.heading {
+		text-align: center;
+		text-decoration: underline;
+		margin: 0;
+	}
+
+	ul {
+		display: inline-block;
+		vertical-align: top;
+		margin: 0px;
+		padding: 0px;
+	}
+
+	li {
+		list-style: none;
+		line-height: 35px;
+		padding: 0 10px;
+		cursor: pointer;
+	}
+
+	li:hover, li.selected {
+        font-weight: bold;
+    }
+
+	.new-module-info {
+		display: inline-block;
+		vertical-align: top;
+		width: 60%;
+
+		.editor {
+			display: none;
+		}
+
+		.editor.selected {
+			display: block;
+		}
+
+		fieldset {
+			border: 0;
+		}
+
+		.actions {
+			text-align: center;
+		}
+	}
+}

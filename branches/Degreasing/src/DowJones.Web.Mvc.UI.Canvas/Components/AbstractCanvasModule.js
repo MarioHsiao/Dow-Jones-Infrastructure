@@ -59,8 +59,8 @@ DJ.UI.AbstractCanvasModule = DJ.UI.CompositeComponent.extend({
 
     _initializeElements: function (element) {
         element = element || this.element;
-        this._header = $(".dj_header", element).get(0);
-        this.$contentArea = $(".dj_content", element);
+        this._header = $(".dj_module-header", element).get(0);
+        this.$contentArea = $(".dj_module-content", element);
         this.$contentContainer = $(".dj_module-core", element);
         this.$loadingArea = $('.dj_module-loading-area', element);
         this.$footerArea = $(".dj_footer", element);
@@ -69,7 +69,7 @@ DJ.UI.AbstractCanvasModule = DJ.UI.CompositeComponent.extend({
 
         // get baseline module objects
         this._module = this.element;
-        this._moduleHead = $(".dj_module-header", this._module).get(0);
+        this._moduleHead = this._header;
         this._moduleTitle = $("H3", this._moduleHead).get(0);
         this.$editArea = $(".module-edit-options", this._module);
 

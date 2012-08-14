@@ -160,6 +160,7 @@
     <Compile Include="BootstrapperTasks\GlobalFilterRegistrationTask.cs" />
     <Compile Include="BootstrapperTasks\InitializeTestData.cs" />
     <Compile Include="BootstrapperTasks\RouteRegistrationTask.cs" />
+    <Compile Include="Controllers\ModuleGalleryController.cs" />
     <Compile Include="Controllers\PagesController.cs" />
     <Compile Include="Dependencies.cs" />
     <Compile Include="Global.asax.cs">
@@ -182,6 +183,9 @@
     <Content Include="Content\isotope.css" />
     <Content Include="Content\maximize.png" />
     <Content Include="Content\minimize.png" />
+    <Content Include="Content\ModuleGallery.css">
+      <DependentUpon>ModuleGallery.scss</DependentUpon>
+    </Content>
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -211,9 +215,10 @@
     <Content Include="Content\themes\base\jquery.ui.theme.css" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\ModuleGallery.scss" />
     <None Include="Properties\PublishProfiles\Montana.pubxml" />
     <None Include="Scripts\jquery-1.6.2-vsdoc.js" />
-    <Content Include="Scripts\dashboard.js" />
+    <Content Include="Scripts\ModuleGallery.js" />
     <Content Include="Scripts\jquery-1.6.2.js" />
     <Content Include="Scripts\jquery-1.6.2.min.js">
       <DependentUpon>jquery-1.6.2.js</DependentUpon>
@@ -251,6 +256,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Canvas.cshtml" />
+    <Content Include="Views\Shared\_ModuleGallery.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

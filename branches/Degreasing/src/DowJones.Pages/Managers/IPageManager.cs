@@ -5,7 +5,7 @@ namespace DowJones.Pages
 {
     public interface IPageManager
     {
-        string AddModuleToPage(PageReference pageRef, Module module);
+        int AddModuleToPage(PageReference pageRef, Module module);
         void AddModuleToPage(PageReference pageRef, params int[] moduleIds);
 
         PageReference CreatePage(Page page);

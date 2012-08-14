@@ -77,39 +77,6 @@
 #add-module {
   margin-bottom: 20px; }
 
-#module-selector {
-  background: #fff;
-  border: 1px solid #000;
-  margin: 10px;
-  padding: 10px;
-  vertical-align: top;
-  min-width: 600px; }
-  #module-selector .heading {
-    text-align: center;
-    text-decoration: underline;
-    margin: 0; }
-  #module-selector ul {
-    display: inline-block;
-    vertical-align: top;
-    margin: 0px;
-    padding: 0px; }
-  #module-selector li {
-    list-style: none;
-    line-height: 35px;
-    padding: 0 10px;
-    cursor: pointer; }
-  #module-selector li:hover, #module-selector li.selected {
-    font-weight: bold; }
-
-#new-module-info {
-  display: inline-block;
-  vertical-align: top;
-  width: 60%; }
-  #new-module-info fieldset {
-    border: 0; }
-  #new-module-info .actions {
-    text-align: center; }
-
 .dj_module.minimized .dj_module-core {
   display: none !important; }
 

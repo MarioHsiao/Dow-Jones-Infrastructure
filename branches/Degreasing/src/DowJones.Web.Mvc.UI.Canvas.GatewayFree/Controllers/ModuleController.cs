@@ -1,5 +1,7 @@
+using System.Collections.Generic;
 using System.Web.Mvc;
 using DowJones.Pages;
+using DowJones.Pages.Modules;
 using DowJones.Web.Mvc.UI.Canvas.Controllers;
 
 namespace DowJones.Web.Mvc.UI.Canvas.GatewayFree.Controllers
