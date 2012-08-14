@@ -1,4 +1,3 @@
-﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
@@ -10,21 +9,14 @@ using DowJones.Web.Mvc.Extensions;
 
 namespace DowJones.Web.Mvc.UI.Canvas.Controllers
 {
-    [Obsolete("Use PageControllerBase instead")]
-    public class CanvasControllerBase : PageControllerBase
-    {
-        [Obsolete]
-        [Inject("Injected to avoid a base constructor call in derived classes")]
-        protected IPageAssetsManager PageAssetsManager { get; set; }
-    }
-
-    public class PageControllerBase : ControllerBase
+    public abstract class DashboardControllerBase : ControllerBase
     {
         [Inject("Injected to avoid a base constructor call in derived classes")]
         protected IPageManager PageManager { get; set; }
 
         [Inject("Injected to avoid a base constructor call in derived classes")]
         protected IPageSubscriptionManager PageSubscriptionManager { get; set; }
+
 
         protected PageCollection PageCollection
         {
@@ -37,12 +29,6 @@ namespace DowJones.Web.Mvc.UI.Canvas.Controllers
             return AddModuleInternal(id, pageId, callback);
         }
 
-        protected virtual CanvasModuleViewResult AddModuleInternal(int id, string pageId, string callback)
-        {
-            PageManager.AddModuleToPage(pageId, id);
-            return ModuleInternal(id, pageId, callback);
-        }
-
         [RequireAuthentication]
         public virtual ActionResult Module(int id, string pageId, string callback)
         {
@@ -51,8 +37,8 @@ namespace DowJones.Web.Mvc.UI.Canvas.Controllers
 
         protected virtual CanvasModuleViewResult ModuleInternal(int id, string pageId, string callback)
         {
-            var pagesModule = PageManager.GetModuleById(pageId, id);
-            var canvasModule = Mapper.Map<IModule>(pagesModule);
+            var module = GetModule(id, pageId);
+            var canvasModule = Mapper.Map<IModule>(module);
 
             return Module(canvasModule, callback);
         }
@@ -85,13 +71,14 @@ namespace DowJones.Web.Mvc.UI.Canvas.Controllers
             Page page = null;
 
             if(!string.IsNullOrWhiteSpace(id))
-                page = PageManager.GetPage(id);
+                page = GetPage(id);
 
             if (page == null)
                 return PageNotFound(id);
 
             return Canvas(new Canvas(), page);
         }
+
 
         public virtual ActionResult PageNotFound(string id)
         {
@@ -100,33 +87,22 @@ namespace DowJones.Web.Mvc.UI.Canvas.Controllers
             return result;
         }
 
+        [RequireAuthentication]
         public virtual ActionResult Subscribe(string id, string position)
         {
             int positionNumber;
             if (!int.TryParse(position ?? string.Empty, out positionNumber))
                 positionNumber = 1;
 
-            id = PageSubscriptionManager.SubscribeToPage(id, positionNumber);
+            id = SubscribeToPage(id, positionNumber);
 
             return Page(id);
         }
 
-
-        protected virtual CanvasViewResult Canvas<TCanvasModel>(TCanvasModel canvas, Page page)
+        protected virtual CanvasViewResult Canvas<TCanvasModel>(TCanvasModel canvas, Page page) 
             where TCanvasModel : Canvas
         {
-            var modules = page.ModuleCollection.Select(Mapper.Map<IModule>).ToArray();
-            
-            var viewResult = Canvas(canvas, modules);
-            var viewModel = ((TCanvasModel) viewResult.Model);
-
-            if (string.IsNullOrWhiteSpace(viewModel.CanvasID))
-                viewModel.CanvasID = page.ID;
-
-            if (string.IsNullOrWhiteSpace(viewModel.Title))
-                viewModel.Title = page.Title;
-            
-            return viewResult;
+            return Canvas(canvas, page.ModuleCollection.Select(Mapper.Map<IModule>));
         }
 
         protected virtual CanvasViewResult Canvas<TCanvasModel>(TCanvasModel canvas, IEnumerable<IModule> modules = null)
@@ -147,17 +123,39 @@ namespace DowJones.Web.Mvc.UI.Canvas.Controllers
             if (string.IsNullOrWhiteSpace(canvas.AddModuleUrl))
                 canvas.AddModuleUrl = Url.Action("AddModule");
 
-            canvas.AddChildren((modules ?? Enumerable.Empty<IModule>()).OrderBy(x => x.Position));
+            canvas.AddChildren(modules ?? Enumerable.Empty<IModule>());
 
             ViewData.Model = canvas;
 
             var result = new CanvasViewResult(canvas)
-            {
-                ViewData = ViewData,
-                TempData = TempData
-            };
+                             {
+                                 ViewData = ViewData,
+                                 TempData = TempData
+                             };
 
             return result;
+        }
+
+
+        protected virtual CanvasModuleViewResult AddModuleInternal(int id, string pageId, string callback)
+        {
+            PageManager.AddModuleToPage(pageId, id);
+            return ModuleInternal(id, pageId, callback);
+        }
+
+        protected virtual Pages.Modules.Module GetModule(int id, string pageId)
+        {
+            return PageManager.GetModuleById(pageId, id);
+        }
+
+        protected virtual Page GetPage(string id)
+        {
+            return PageManager.GetPage(id);
+        }
+
+        protected virtual string SubscribeToPage(string id, int positionNumber)
+        {
+            return PageSubscriptionManager.SubscribeToPage(id, positionNumber);
         }
     }
 }

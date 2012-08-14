@@ -3,7 +3,6 @@ using System.Web.Mvc;
 using DowJones.Web.Mvc.Routing;
 using DowJones.Web.Mvc.UI.Canvas.Controllers;
 using Newtonsoft.Json;
-using DowJones.Pages;
 
 namespace DowJones.Web.Mvc.UI.Canvas.GatewayFree.Controllers.Requests
 {
@@ -18,22 +17,15 @@ namespace DowJones.Web.Mvc.UI.Canvas.GatewayFree.Controllers
 {
     using Requests;
 
-    public class CanvasController : PageControllerBase
+    public class CanvasController : DashboardControllerBase
     {
-        private readonly IPageManager _pageManager;
-
-        public CanvasController(IPageManager pageManager)
-        {
-            _pageManager = pageManager;
-        }
-
         [Route("canvas/modules/positions")]
         [Route("canvas/modules/positions/{method}")]
         public ActionResult UpdateModulePositions()
         {
             var request = ParsePostData<UpdateModulePositionsRequest>();
 
-            _pageManager.UpdateModulePositions(request.PageId, request.Columns);
+            PageManager.UpdateModulePositions(request.PageId, request.Columns);
 
             return new HttpStatusCodeResult(200);
         }
@@ -43,7 +35,7 @@ namespace DowJones.Web.Mvc.UI.Canvas.GatewayFree.Controllers
         [Route("canvas/modules/id/{method}")]
         public ActionResult RemoveModule(string pageId, int moduleId)
         {
-            _pageManager.RemoveModules(pageId, moduleId);
+            PageManager.RemoveModules(pageId, moduleId);
 
             return new HttpStatusCodeResult(200);
         }

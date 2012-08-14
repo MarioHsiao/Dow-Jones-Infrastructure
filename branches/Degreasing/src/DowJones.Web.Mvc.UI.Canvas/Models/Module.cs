@@ -4,12 +4,7 @@ using DowJones.Pages;
 using DowJones.Pages.Common;
 using DowJones.Preferences;
 using DowJones.Session;
-using DowJones.Web.Mvc.UI.Components.Common;
-using DowJones.Web.Mvc.UI.Components.PersonalizationFilters;
 using DowJones.Web.Mvc.UI.Components.Search;
-using Factiva.Gateway.Messages.Assets.Pages.V1_0;
-using AccessQualifier = DowJones.Pages.AccessQualifier;
-using TagCollection = Factiva.Gateway.Messages.Assets.Pages.V1_0.TagCollection;
 
 namespace DowJones.Web.Mvc.UI.Canvas
 {
@@ -52,10 +47,7 @@ namespace DowJones.Web.Mvc.UI.Canvas
         public IViewComponentModel Editor { get; set; }
 
         [ClientProperty("moduleType")]
-        public string ModuleType
-        {
-            get { return GetType().Name; }
-        }
+        public string ModuleType { get; set; }
 
         public ModuleState ModuleState { get; set; }
 
@@ -98,7 +90,7 @@ namespace DowJones.Web.Mvc.UI.Canvas
         }
         private IPreferences _preferences;
 
-        public TagCollection TagCollection { get; set; }
+        public List<string> TagCollection { get; set; }
 
         [ClientProperty("title")]
         public string Title { get; set; }
@@ -106,6 +98,7 @@ namespace DowJones.Web.Mvc.UI.Canvas
         protected Module()
         {
             NeedsClientData = true;
+            ModuleType = GetType().Name;
         }
 
         #region Personalization stuff

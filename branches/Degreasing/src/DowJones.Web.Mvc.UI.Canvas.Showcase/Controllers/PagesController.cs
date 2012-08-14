@@ -8,7 +8,7 @@ using DowJones.Web.Mvc.UI.Canvas;
 
 namespace DowJones.DegreasedDashboards.Website.Controllers
 {
-    public class PagesController : DowJones.Web.Mvc.UI.Canvas.Controllers.PageControllerBase
+    public class PagesController : DowJones.Web.Mvc.UI.Canvas.Controllers.DashboardControllerBase
     {
         private readonly IDictionary<string, Type> ModuleEditorTypes;
 

@@ -7,7 +7,7 @@ namespace DowJones.Web.Mvc.UI.Canvas.GatewayFree.Controllers
     using CanvasModule = DowJones.Web.Mvc.UI.Canvas.Module;
     using Module = DowJones.Pages.Modules.Module;
 
-    public abstract class ModuleController<TCanvasModule, TModule> : PageControllerBase
+    public abstract class ModuleController<TCanvasModule, TModule> : DashboardControllerBase
         where TCanvasModule : CanvasModule 
         where TModule : Module, new()
     {

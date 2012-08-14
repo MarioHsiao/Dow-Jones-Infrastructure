@@ -73,20 +73,6 @@
     <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CommonServiceLocator.NinjectAdapter">
-      <HintPath>..\packages\Ninject.2.2.0.0\lib\.NetFramework 4.0\extensions\CommonServiceLocator.NinjectAdapter.dll</HintPath>
-    </Reference>
-    <Reference Include="factiva.gateway.messages, Version=7.5.0.83, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Factiva.Gateway.7.5.0.83\lib\factiva.gateway.messages.dll</HintPath>
-    </Reference>
-    <Reference Include="FactivaGateway, Version=1.5.0.7, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Factiva.Gateway.7.5.0.83\lib\FactivaGateway.dll</HintPath>
-    </Reference>
-    <Reference Include="Interop.FCMLib">
-      <HintPath>..\packages\Factiva.Gateway.7.5.0.83\lib\Interop.FCMLib.dll</HintPath>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </Reference>
     <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
       <HintPath>..\packages\log4net.1.2.99\lib\2.0\log4net.dll</HintPath>
     </Reference>
@@ -113,9 +99,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ActionFilters\PageListPopulationFilter.cs">
-      <SubType>Code</SubType>
-    </Compile>
+    <Compile Include="Controllers\DashboardControllerBase.cs" />
     <Compile Include="Models\ModuleState.cs" />
     <Compile Include="ViewResults\PageNotFoundViewResult.cs" />
     <Compile Include="Models\AbstractEditorModel.cs" />
@@ -127,7 +111,6 @@
     <Compile Include="Components\AbstractCanvasModule.cs" />
     <Compile Include="Components\AbstractCanvas.cs" />
     <Compile Include="Components\AbstractCanvasModuleEditor.cs" />
-    <Compile Include="Controllers\CanvasControllerBase.cs" />
     <Compile Include="Components\CanvasModulesCollection.cs" />
     <Compile Include="ViewResults\CanvasViewResult.cs" />
     <Compile Include="Components\ICanvasModule.cs" />

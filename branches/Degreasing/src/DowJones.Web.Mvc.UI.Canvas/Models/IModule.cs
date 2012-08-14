@@ -12,9 +12,9 @@ namespace DowJones.Web.Mvc.UI.Canvas
         IViewComponentModel Editor { get; set; }
         int ModuleId { get; set; }
         ModuleState ModuleState { get; set; }
-        string ModuleType { get; }
+        string ModuleType { get; set; }
         int Position { get; set; }
-        IList<string> TagCollection { get; set; }
+        List<string> TagCollection { get; set; }
         string Title { get; set; }
     }
 }
