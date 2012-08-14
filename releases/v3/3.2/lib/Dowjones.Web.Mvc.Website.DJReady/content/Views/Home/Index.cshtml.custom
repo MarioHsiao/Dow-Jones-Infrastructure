@@ -119,8 +119,13 @@
     <ol>
         <li>Install the <em>Factiva.Gateway.Resources</em> NuGet package to retrieve the Gateway configuration files.</li>
         <li>Customize your dependency injection bindings in the <strong>Dependencies</strong> class in the root of your website</li>
-        <li>Modify <em>LoginServer.config</em> to configure the Login Server settings for your application</li>
         <li>Execute the <em>Update-Tokens [Token Product Name]</em> script in the Package Manager Console to generate tokens for your application</li>
         <li>Install the <em>DowJones.Web.Mvc.UI.Canvas.Modules</em> NuGet package create a Canvas/Dashboard application.</li>
+		<li>Change the login server settings under <b>Dowjones.Properties.Settings</b> in web.config file as per your requirement.</li>
+		<li>Change the <b>log4net</b> settings as per your requriement in web.config file.</li>
+		<li>Specify the required <b>Web.Config Transformations</b> in each of the web.config transform files.</li>
+		<li>Set the landing/home page urls in <b>Config.Xml</b> for each of the environement.</li>
     </ol>
+	<br />
+	Here is the link for getting started to use <a href="http://montana.dev.us.factiva.com/Documentation/">Dowjones UI Architecture Protal</a>.
 </section>

@@ -1,22 +1,16 @@
-﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using DowJones.DependencyInjection;
-using DowJones.Extensions;
 using DowJones.Infrastructure;
 using DowJones.Pages;
 using DowJones.Web.Mvc.ActionFilters;
 using DowJones.Web.Mvc.Extensions;
-using Page = Factiva.Gateway.Messages.Assets.Pages.V1_0.Page;
 
 namespace DowJones.Web.Mvc.UI.Canvas.Controllers
 {
-    public class CanvasControllerBase : ControllerBase
+    public abstract class DashboardControllerBase : ControllerBase
     {
-        [Inject("Injected to avoid a base constructor call in derived classes")]
-        protected IPageAssetsManager PageAssetsManager { get; set; }
-
         protected PageCollection PageCollection
         {
             get { return ViewData.SingleOrDefault<PageCollection>(); }
@@ -28,12 +22,7 @@ namespace DowJones.Web.Mvc.UI.Canvas.Controllers
             return AddModuleInternal(id, pageId, callback);
         }
 
-        protected virtual CanvasModuleViewResult AddModuleInternal(string id, string pageId, string callback)
-        {
-            var moduleIds = new[] { id };
-            PageAssetsManager.AddModuleIdsToEndOfPage(pageId, moduleIds.ToList());
-            return ModuleInternal(id, pageId, callback);
-        }
+        protected abstract CanvasModuleViewResult AddModuleInternal(string id, string pageId, string callback);
 
         [RequireAuthentication]
         public virtual ActionResult Module(string id, string pageId, string callback)
@@ -43,13 +32,13 @@ namespace DowJones.Web.Mvc.UI.Canvas.Controllers
 
         protected virtual CanvasModuleViewResult ModuleInternal(string id, string pageId, string callback)
         {
-            var factivaModule = PageAssetsManager.GetModuleById(pageId, id);
-
-            var pagesModule = Mapper.Map<DowJones.Pages.Modules.Module>(factivaModule);
-            var canvasModule = Mapper.Map<IModule>(pagesModule);
+            var module = GetModule(id, pageId);
+            var canvasModule = Mapper.Map<IModule>(module);
 
             return Module(canvasModule, callback);
         }
+
+        protected abstract Pages.Modules.Module GetModule(string id, string pageId);
 
         protected virtual CanvasModuleViewResult Module(IModule canvasModule, string callback)
         {
@@ -79,13 +68,15 @@ namespace DowJones.Web.Mvc.UI.Canvas.Controllers
             Page page = null;
 
             if(!string.IsNullOrWhiteSpace(id))
-                page = PageAssetsManager.GetPage(id);
+                page = GetPage(id);
 
             if (page == null)
                 return PageNotFound(id);
 
             return Canvas(new Canvas(), page);
         }
+
+        protected abstract Page GetPage(string id);
 
         public virtual ActionResult PageNotFound(string id)
         {
@@ -101,33 +92,17 @@ namespace DowJones.Web.Mvc.UI.Canvas.Controllers
             if (!int.TryParse(position ?? string.Empty, out positionNumber))
                 positionNumber = 1;
 
-            id = PageAssetsManager.SubscribeToPage(id, positionNumber);
+            id = SubscribeToPage(id, positionNumber);
 
             return Page(id);
         }
 
-        [Obsolete("Avoid using Gateway objects directly within the UI layer")]
-        protected CanvasViewResult Canvas<TCanvasModel>(TCanvasModel canvas, Page page)
+        protected abstract string SubscribeToPage(string id, int positionNumber);
+
+        protected virtual CanvasViewResult Canvas<TCanvasModel>(TCanvasModel canvas, Page page) 
             where TCanvasModel : Canvas
         {
-            Guard.IsNotNull(canvas, "canvas");
-            Guard.IsNotNull(page, "page");
-
-            if (canvas.CanvasID.IsNullOrEmpty())
-                canvas.CanvasID = page.Id.ToString();
-
-            return Canvas(canvas, page.ModuleCollection);
-        }
-
-        [Obsolete("Avoid using Gateway objects directly within the UI layer")]
-        protected CanvasViewResult Canvas<TCanvasModel>(TCanvasModel canvas, IEnumerable<Factiva.Gateway.Messages.Assets.Pages.V1_0.Module> modules)
-            where TCanvasModel : Canvas
-        {
-            Guard.IsNotNull(canvas, "canvas");
-            Guard.IsNotNull(modules, "modules");
-
-            var canvasModules = modules.Select(Mapper.Map<IModule>);
-            return Canvas(canvas, canvasModules);
+            return Canvas(canvas, page.ModuleCollection.Select(Mapper.Map<IModule>));
         }
 
         protected virtual CanvasViewResult Canvas<TCanvasModel>(TCanvasModel canvas, IEnumerable<IModule> modules = null)
@@ -153,10 +128,10 @@ namespace DowJones.Web.Mvc.UI.Canvas.Controllers
             ViewData.Model = canvas;
 
             var result = new CanvasViewResult(canvas)
-            {
-                ViewData = ViewData,
-                TempData = TempData
-            };
+                             {
+                                 ViewData = ViewData,
+                                 TempData = TempData
+                             };
 
             return result;
         }
