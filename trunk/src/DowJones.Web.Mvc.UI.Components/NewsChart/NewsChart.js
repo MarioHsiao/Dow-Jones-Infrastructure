@@ -8,7 +8,15 @@
         defaults: {
 
             debug: false,
-            cssClass: 'CompanyProfileGraph'
+            cssClass: 'CompanyProfileGraph',
+            graphHeight: 300,
+            newsSeriesColor: "#FFAD33",
+            stockSeriesColor: "#5EA9C3",
+            newsSeriesStep: 10,
+            newsSeriesTitle: "News Volume",
+            stockSeriesTitle: "Stock Price",
+            summaryGraphDateFormat: "%m/%e",
+            fullChartDisplayDateFormat: "%b. %d"
         },
 
         events: {
