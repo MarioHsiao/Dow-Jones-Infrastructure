@@ -132,8 +132,8 @@ namespace DowJones.DegreasedDashboards.Website.BootstrapperTasks
         private void CreateModuleTemplates()
         {
             _moduleTemplateManager.CreateTemplate(new ModuleTemplate {
-                Title = "Portal Headline List",
-                Description = "Direct access to the Portal Headline Component",
+                Title = "RSS Feed",
+                Description = "Displays an RSS Feed",
                 ModuleType = typeof(HtmlModule),
                 MetaData = new List<ModuleTemplateMetaDatum> {
                         new ModuleTemplateMetaDatum {
