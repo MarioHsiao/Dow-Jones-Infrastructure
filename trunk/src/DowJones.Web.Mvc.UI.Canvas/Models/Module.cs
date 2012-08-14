@@ -47,10 +47,7 @@ namespace DowJones.Web.Mvc.UI.Canvas
         public IViewComponentModel Editor { get; set; }
 
         [ClientProperty("moduleType")]
-        public string ModuleType
-        {
-            get { return GetType().Name; }
-        }
+        public string ModuleType { get; set; }
 
         public ModuleState ModuleState { get; set; }
 
@@ -101,6 +98,7 @@ namespace DowJones.Web.Mvc.UI.Canvas
         protected Module()
         {
             NeedsClientData = true;
+            ModuleType = GetType().Name;
         }
 
         #region Personalization stuff
