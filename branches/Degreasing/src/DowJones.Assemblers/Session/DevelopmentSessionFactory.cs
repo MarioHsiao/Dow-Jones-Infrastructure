@@ -56,6 +56,9 @@ namespace DowJones.Assemblers.Session
 
         public override IUserSession Create()
         {
+            if(!_httpContext.IsDebuggingEnabled)
+                throw new ApplicationException("Refusing to allow the DevelopmentSessionFactory outside of debug mode!");
+
             // If a session id was passed in the request, use that
             var sessionId = GetRequestValue("session") ?? GetRequestValue("sessionid");
             if (sessionId != null)

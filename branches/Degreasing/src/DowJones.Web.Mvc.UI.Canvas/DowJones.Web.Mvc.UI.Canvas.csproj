@@ -36,7 +36,8 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Release\DowJones.Web.Mvc.UI.Canvas.XML</DocumentationFile>
+    <DocumentationFile>
+    </DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Control n Showcase|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
@@ -115,7 +116,6 @@
     <Compile Include="ActionFilters\PageListPopulationFilter.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Mapping\FactivaModuleModelMapper.cs" />
     <Compile Include="Models\ModuleState.cs" />
     <Compile Include="ViewResults\PageNotFoundViewResult.cs" />
     <Compile Include="Models\AbstractEditorModel.cs" />
@@ -134,7 +134,6 @@
     <Compile Include="..\SolutionInfo.cs">
       <Link>Properties\SolutionInfo.cs</Link>
     </Compile>
-    <Compile Include="Mapping\FactivaModuleModelMappingRegistration.cs" />
     <Compile Include="Models\ModuleTypeIRTCodes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\CanvasSettings.cs" />

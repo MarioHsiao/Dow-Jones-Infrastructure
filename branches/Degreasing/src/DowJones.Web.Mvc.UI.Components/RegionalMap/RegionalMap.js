@@ -156,7 +156,7 @@
             this.mapHeight = Math.min(o.height, mc.mapImgHeight);
             
             //this.worldMapRenderer.image('<%= WebResource("DowJones.Web.Mvc.UI.Components.RegionalMap.images.world_map.gif") %>', this.mapX, this.mapY, this.mapWidth, this.mapHeight).add();
-            $dj.debug(o.imageMapPath);
+            //$dj.debug(o.imageMapPath);
             //accesssing embedded resource from the model.
             this.worldMapRenderer.image(o.imageMapPath, this.mapX, this.mapY, this.mapWidth, this.mapHeight).add();
 

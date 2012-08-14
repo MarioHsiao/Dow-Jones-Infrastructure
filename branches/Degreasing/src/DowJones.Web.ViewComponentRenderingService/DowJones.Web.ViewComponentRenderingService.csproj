@@ -56,29 +56,30 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>packages\DowJones.Charting.3.2.33\lib\DowJones.Charting.dll</HintPath>
     </Reference>
-    <Reference Include="DowJones.Infrastructure, Version=3.2.40.31374, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="DowJones.Infrastructure, Version=3.2.49.39069, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>packages\DowJones.Infrastructure.3.2.40\lib\DowJones.Infrastructure.dll</HintPath>
+      <HintPath>packages\DowJones.Infrastructure.3.2.49\lib\DowJones.Infrastructure.dll</HintPath>
     </Reference>
     <Reference Include="DowJones.Parallel">
       <HintPath>packages\DowJones.Parallel.1.0.0\lib\DowJones.Parallel.dll</HintPath>
     </Reference>
-    <Reference Include="DowJones.Web.Mvc, Version=3.2.40.31374, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="DowJones.Web.Mvc, Version=3.2.49.39069, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>packages\DowJones.Web.Mvc.3.2.40\lib\DowJones.Web.Mvc.dll</HintPath>
+      <HintPath>packages\DowJones.Web.Mvc.3.2.49\lib\DowJones.Web.Mvc.dll</HintPath>
     </Reference>
-    <Reference Include="DowJones.Web.Mvc.UI.Components, Version=3.2.40.31374, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="DowJones.Web.Mvc.UI.Components, Version=3.2.49.39069, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>packages\DowJones.Web.Mvc.UI.Components.3.2.40\lib\DowJones.Web.Mvc.UI.Components.dll</HintPath>
+      <HintPath>packages\DowJones.Web.Mvc.UI.Components.3.2.49\lib\DowJones.Web.Mvc.UI.Components.dll</HintPath>
     </Reference>
     <Reference Include="DowJones.Web.Mvc.UI.Components.Models, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\DowJones.Web.Mvc.UI.Components.Models.3.2.40\lib\DowJones.Web.Mvc.UI.Components.Models.dll</HintPath>
+      <HintPath>packages\DowJones.Web.Mvc.UI.Components.Models.3.2.49\lib\DowJones.Web.Mvc.UI.Components.Models.dll</HintPath>
     </Reference>
-    <Reference Include="factiva.gateway.messages">
-      <HintPath>packages\Factiva.Gateway.7.5.0.90\lib\factiva.gateway.messages.dll</HintPath>
+    <Reference Include="factiva.gateway.messages, Version=7.5.0.93, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>packages\Factiva.Gateway.7.5.0.93\lib\factiva.gateway.messages.dll</HintPath>
     </Reference>
-    <Reference Include="FactivaGateway">
-      <HintPath>packages\Factiva.Gateway.7.5.0.90\lib\FactivaGateway.dll</HintPath>
+    <Reference Include="FactivaGateway, Version=1.5.0.7, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Factiva.Gateway.7.5.0.93\lib\FactivaGateway.dll</HintPath>
     </Reference>
     <Reference Include="Hammock, Version=1.0.0.0, Culture=neutral, PublicKeyToken=c148cfba29ed1a4d, processorArchitecture=MSIL">
       <HintPath>packages\Hammock.1.2.9\lib\4.0\Hammock.dll</HintPath>
@@ -86,9 +87,10 @@
     <Reference Include="Hammock.ClientProfile, Version=1.0.0.0, Culture=neutral, PublicKeyToken=c148cfba29ed1a4d, processorArchitecture=MSIL">
       <HintPath>packages\Hammock.1.2.9\lib\4.0\Hammock.ClientProfile.dll</HintPath>
     </Reference>
-    <Reference Include="Interop.FCMLib">
-      <HintPath>packages\Factiva.Gateway.7.5.0.90\lib\Interop.FCMLib.dll</HintPath>
-      <EmbedInteropTypes>False</EmbedInteropTypes>
+    <Reference Include="Interop.FCMLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <Private>True</Private>
+      <HintPath>packages\Factiva.Gateway.7.5.0.93\lib\Interop.FCMLib.dll</HintPath>
     </Reference>
     <Reference Include="itextsharp">
       <HintPath>packages\iTextSharp.5.2.0\lib\itextsharp.dll</HintPath>

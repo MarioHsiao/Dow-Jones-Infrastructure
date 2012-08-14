@@ -11,8 +11,8 @@ namespace DowJones.Managers.Topics.Caching
 
         private static readonly CacheExiprationPolicy DefaultCacheExiprationPolicy = CacheKeyConstants.DefaultCacheExiprationPolicy;
 
-        private const int DefaultCacheExpirationTime = 60;
-        private const int DefaultCacheRefreshInterval = 30;
+        private static int DefaultCacheExpirationTime = CacheKeyConstants.DefaultCacheExpirationTime;//60;
+        private static int DefaultCacheRefreshInterval = CacheKeyConstants.DefaultCacheRefreshInterval;//30;
         private const CacheScope DefaultCacheScope = CacheScope.Account;
         private const bool DefaultCacheForceCacheRefresh = false;
 
@@ -26,7 +26,6 @@ namespace DowJones.Managers.Topics.Caching
             CacheRefreshInterval = DefaultCacheRefreshInterval;
             CacheExiprationPolicy = DefaultCacheExiprationPolicy;
             CacheForceCacheRefresh = DefaultCacheForceCacheRefresh;
-
             ShareScopeCollection = shareScopeCollection;
         }
 

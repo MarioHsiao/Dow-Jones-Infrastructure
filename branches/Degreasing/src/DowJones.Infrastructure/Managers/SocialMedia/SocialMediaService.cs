@@ -1,43 +1,52 @@
 ﻿using System;
 using System.Diagnostics;
 using DowJones.Infrastructure;
+using DowJones.Infrastructure.Common;
 using DowJones.Infrastructure.Converters;
 using DowJones.Infrastructure.Models.SocialMedia;
 using DowJones.Managers.Abstract;
-using DowJones.Managers.SocialMedia.Config;
-using DowJones.Managers.SocialMedia.Responses;
-using DowJones.Managers.SocialMedia.Serializers;
-using Hammock;
+using DowJones.Managers.Authorization;
 using Newtonsoft.Json;
+using DowJones.Exceptions;
+using DowJones.Extensions;
+using DowJones.Session;
+
 
 namespace DowJones.Managers.SocialMedia
 {
+
+    using Config;
+    using DowJones.Managers.SocialMedia.Responses;
+    using Hammock;
+    using DowJones.Managers.SocialMedia.Serializers;
 
     /// <summary>
     /// The Service for interacting with TweetRiver API
     /// </summary>
     public class SocialMediaService : IService
     {
-        
-        /// <summary>
+        // <summary>
         /// The settings.
         /// </summary>
-        private  readonly JsonSerializerSettings Settings;
-        private readonly ISocialMediaProvider _socialMediaProvider;
-        private readonly ISocialMediaIndustryProvider _industryProvider;
+        private readonly JsonSerializerSettings Settings;
+
+        private ISocialMediaProvider _socialMediaProvider;
+        private ISocialMediaIndustryProvider _industryProvider;
+        private IControlData _controlData;
+        private readonly Product _product;
 
         /// <summary>
         /// Gets the default json serializer settings.
         /// </summary>
-        private  JsonSerializerSettings GetDefaultJsonSerializerSettings()
+        private JsonSerializerSettings GetDefaultJsonSerializerSettings()
         {
             var settings = new JsonSerializerSettings
-                           {
-                               MissingMemberHandling = MissingMemberHandling.Ignore,
-                               NullValueHandling = NullValueHandling.Ignore,
-                               DefaultValueHandling = DefaultValueHandling.Include,
-                               ContractResolver = new JsonConventionResolver(),
-                           };
+            {
+                MissingMemberHandling = MissingMemberHandling.Ignore,
+                NullValueHandling = NullValueHandling.Ignore,
+                DefaultValueHandling = DefaultValueHandling.Include,
+                ContractResolver = new JsonConventionResolver(),
+            };
 
             settings.Converters.Add(new UnicodeJsonStringConverter());
             settings.Converters.Add(new JsonDateTimeConverter());
@@ -183,28 +192,36 @@ namespace DowJones.Managers.SocialMedia
             }
         }
 
-        
-
         /// <summary>
         /// Initializes members of the <see cref="SocialMediaService"/> class.
         /// </summary>
-        public SocialMediaService(ISocialMediaProvider socialMediaProvider, ISocialMediaIndustryProvider industryprovider)
+        public SocialMediaService(ISocialMediaProvider socialMediaProvider, ISocialMediaIndustryProvider industryprovider, IControlData controlData, Product product)
         {
             Settings = GetDefaultJsonSerializerSettings();
             //IndustryChannelMap = new IndustryChannelMap();
             _industryProvider = industryprovider;
             _socialMediaProvider = socialMediaProvider;
+            _controlData = controlData;
+            _product = product;
         }
-
 
         /// <summary>
         /// Gets the tweets by channel.
         /// </summary>
         /// <param name="channel">The channel.</param>
-        /// <param name="requestOptions">The request options.</param>
+        /// <param name="count">The count.</param>
         /// <returns></returns>
         public GetTweetsByChannelResponse GetTweetsByChannel(string channel, RequestOptions requestOptions = null)
         {
+            //Check Social Media Blocking
+            if (_product.IsSocialMediaBlockingOn)
+            {
+                AuthorizationManager manager = new AuthorizationManager(_controlData);
+                if (manager.IsSocialMediaBlocked())
+                {
+                    throw new DowJonesUtilitiesException(DowJonesUtilitiesException.SocialMediaNotEntitled);
+                }
+            }
             Guard.IsNotNullOrEmpty(channel, "channel");
             if (requestOptions == null)
                 requestOptions = new RequestOptions();
@@ -218,11 +235,20 @@ namespace DowJones.Managers.SocialMedia
 
         public GetTweetsByChannelResponse GetTweetsByIndustry(string industry, RequestOptions requestOptions = null)
         {
+            //Check Social Media Blocking
+            if (_product.IsSocialMediaBlockingOn)
+            {
+                AuthorizationManager manager = new AuthorizationManager(_controlData);
+                if (manager.IsSocialMediaBlocked())
+                {
+                    throw new DowJonesUtilitiesException(DowJonesUtilitiesException.SocialMediaNotEntitled);
+                }
+            }
             Guard.IsNotNullOrEmpty(industry, "industry");
 
             if (requestOptions == null)
                 requestOptions = new RequestOptions();
-            
+
             Guard.IsNotZeroOrNegative(requestOptions.Limit, "limit");
 
             var channel = _industryProvider.GetChannelFromIndustryCode(industry); //IndustryChannelMap.GetChannelFromIndustryCode(industry);
@@ -231,13 +257,22 @@ namespace DowJones.Managers.SocialMedia
 
         public GetExpertsByIndustryResponse GetExpertsByIndustry(string industry, RequestOptions requestOptions = null)
         {
+            //Check Social Media Blocking
+            if (_product.IsSocialMediaBlockingOn)
+            {
+                AuthorizationManager manager = new AuthorizationManager(_controlData);
+                if (manager.IsSocialMediaBlocked())
+                {
+                    throw new DowJonesUtilitiesException(DowJonesUtilitiesException.SocialMediaNotEntitled);
+                }
+            }
             Guard.IsNotNullOrEmpty(industry, "industry");
 
             if (requestOptions == null)
                 requestOptions = new RequestOptions
-                                     {
-                                         QueryType = QueryType.Experts
-                                     };
+                {
+                    QueryType = QueryType.Experts
+                };
 
             var metaResponse = GetMetaByIndustry(industry, requestOptions);
 
@@ -250,6 +285,15 @@ namespace DowJones.Managers.SocialMedia
 
         public GetMetaByIndustryResponse GetMetaByIndustry(string industry, RequestOptions requestOptions)
         {
+            //Check Social Media Blocking
+            if (_product.IsSocialMediaBlockingOn)
+            {
+                AuthorizationManager manager = new AuthorizationManager(_controlData);
+                if (manager.IsSocialMediaBlocked())
+                {
+                    throw new DowJonesUtilitiesException(DowJonesUtilitiesException.SocialMediaNotEntitled);
+                }
+            }
             Guard.IsNotNullOrEmpty(industry, "industry");
 
             var channel = _industryProvider.GetChannelFromIndustryCode(industry);
@@ -257,7 +301,6 @@ namespace DowJones.Managers.SocialMedia
             var response = TryGetSocialMediaResponseImplementation<GetMetaByIndustryResponse>(request);
 
             return response;
-
         }
     }
 }

@@ -38,7 +38,8 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <GenerateSerializationAssemblies>On</GenerateSerializationAssemblies>
-    <DocumentationFile>bin\Release\DowJones.Infrastructure.XML</DocumentationFile>
+    <DocumentationFile>
+    </DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DowJones.Parallel">
@@ -141,11 +142,13 @@
     <Compile Include="GeoLocation\LookupService.cs" />
     <Compile Include="GeoLocation\Region.cs" />
     <Compile Include="GeoLocation\RegionName.cs" />
+    <Compile Include="Managers\Authorization\AuthorizationManager.cs" />
     <Compile Include="Managers\Multimedia\MediaContents.cs" />
     <Compile Include="Managers\Multimedia\MultimediaManager.cs" />
     <Compile Include="Managers\Multimedia\MultimediaPackage.cs" />
     <Compile Include="Managers\Multimedia\MultiMediaRequest.cs" />
     <Compile Include="Managers\Multimedia\MultiMediaResponse.cs" />
+    <Compile Include="Models\Common\RegionNewsVolume.cs" />
     <Compile Include="Web\ClientResources\EmbeddedClientResourceValidator.cs" />
     <Compile Include="Web\Extensions\UrlExtensions.cs" />
     <Compile Include="Globalization\ResourceTextManagerFactory.cs" />

@@ -1,6 +1,6 @@
 ﻿@using DowJones.Extensions
 @{
-    Layout = "~/Views/Shared/_SignalR.cshtml";
+    Layout = "~/Views/Shared/_Layout_ComponentExplorer.cshtml";
     ViewBag.Title = "News Radar";
     
 }
@@ -16,8 +16,16 @@
 </div>
 
 <div style="display: none;">
-    <h3>sample data</h3>
-    <textarea style="width: 972px; height: 500px;">
+	<h3>sample data</h3>
+	<textarea style="width: 972px; height: 500px;">
     @Html.Raw(ObjectExtensions.ToJson(Model));
     </textarea>
 </div>
+
+<script type="text/javascript">
+    var $ = DJ.jQuery;
+    
+    $(function () {
+
+    });
+</script>

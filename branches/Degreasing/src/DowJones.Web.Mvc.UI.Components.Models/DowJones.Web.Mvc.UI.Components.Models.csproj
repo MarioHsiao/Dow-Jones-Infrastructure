@@ -97,6 +97,7 @@
     <Compile Include="DiscoveryGraph\Orientation.cs" />
     <Compile Include="EntityList\EntityListModel.cs" />
     <Compile Include="HeadlineListCarousel\HeadlineListCarouselModel.cs" />
+    <Compile Include="NewsMatrix\NewsMatrixModel.cs" />
     <Compile Include="NewsRadar\EntityModel.cs" />
     <Compile Include="NewsRadar\EntityType.cs" />
     <Compile Include="NewsRadar\InstrumentReferenceModel.cs" />
@@ -220,6 +221,7 @@
   <ItemGroup>
     <EmbeddedResource Include="RegionalMap\Resources\world_map.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

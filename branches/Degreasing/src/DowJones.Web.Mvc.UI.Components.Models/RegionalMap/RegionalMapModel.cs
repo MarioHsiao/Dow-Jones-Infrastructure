@@ -1,6 +1,9 @@
+
 using System.Web.UI;
+using System.Collections.Generic; 
 using DowJones.Web;
 using DowJones.Extensions;
+using DowJones.Models.Common;
 using DowJones.Web.Mvc.UI.Components.RegionalMap;
 
 [assembly: WebResource(RegionalMapModel.resourceWorldMapImage, KnownMimeTypes.PngImage)]
@@ -43,20 +46,9 @@ namespace DowJones.Web.Mvc.UI.Components.RegionalMap
 
         #region ..:: Client Data ::..
 
-        //[ClientData]
-        //public List<EntityNewsVolumeVariation> Result { get; set; }
-
-        #endregion
-
-        #region ..:: Client Event Handlers ::..
-
-        /// <summary>
-        /// Gets or sets the client side onRegionClick event handler.
-        /// </summary>
-        /// <value>The OnHeadlineClick event handler name.</value>
-        [ClientEventHandler("dj.RegionalMap.onRegionClick")]
-        public string OnRegionClick { get; set; }
-
+        [ClientData]
+        public RegionNewsVolumeResult Data { get; set; }
+        
         #endregion
 
         #region ..:: Client Tokens ::..

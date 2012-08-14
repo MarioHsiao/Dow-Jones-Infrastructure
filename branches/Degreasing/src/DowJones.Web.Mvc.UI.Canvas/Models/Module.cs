@@ -1,10 +1,15 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using DowJones.Pages;
 using DowJones.Pages.Common;
 using DowJones.Preferences;
 using DowJones.Session;
+using DowJones.Web.Mvc.UI.Components.Common;
+using DowJones.Web.Mvc.UI.Components.PersonalizationFilters;
 using DowJones.Web.Mvc.UI.Components.Search;
+using Factiva.Gateway.Messages.Assets.Pages.V1_0;
 using AccessQualifier = DowJones.Pages.AccessQualifier;
+using TagCollection = Factiva.Gateway.Messages.Assets.Pages.V1_0.TagCollection;
 
 namespace DowJones.Web.Mvc.UI.Canvas
 {
@@ -13,10 +18,14 @@ namespace DowJones.Web.Mvc.UI.Canvas
         [ClientProperty("canEdit")]
         public bool CanEdit
         {
-            get { return _canEdit.GetValueOrDefault(Canvas != null && Canvas.CanEdit); }
-            set { _canEdit = value; }
+            get
+            {
+                return canEdit
+                    ?? (Canvas != null && Canvas.CanEdit);
+            }
+            set { canEdit = value; }
         }
-        private bool? _canEdit;
+        private bool? canEdit;
 
         public bool CanRefresh { get; set; }
 
@@ -89,7 +98,7 @@ namespace DowJones.Web.Mvc.UI.Canvas
         }
         private IPreferences _preferences;
 
-        public IList<string> TagCollection { get; set; }
+        public TagCollection TagCollection { get; set; }
 
         [ClientProperty("title")]
         public string Title { get; set; }
@@ -97,11 +106,14 @@ namespace DowJones.Web.Mvc.UI.Canvas
         protected Module()
         {
             NeedsClientData = true;
-            ModuleState = ModuleState.Maximized;
         }
 
+        #region Personalization stuff
         [ClientProperty("inheritPageFilters")]
         public bool InheritPageFilters { get; set; }
+
+        [ClientProperty("companyFilter")]
+        public CodeDesc CompanyFilter { get; set; }
 
         [ClientProperty("regionFilter")]
         public CodeDesc RegionFilter { get; set; }
@@ -111,7 +123,7 @@ namespace DowJones.Web.Mvc.UI.Canvas
 
         [ClientProperty("keywordFilter")]
         public string KeywordFilter { get; set; }
-
+        #endregion
 
         public void UpdatePersonalizationValues(QueryFilterSet queryFilterSet, AccessQualifier accessQualifier)
         {
@@ -126,17 +138,22 @@ namespace DowJones.Web.Mvc.UI.Canvas
                 InheritPageFilters = queryFilterSet.Inherit;
                 if (queryFilterSet.QueryFilters != null)
                 {
-                    var industryQueryFilter = queryFilterSet.QueryFilters.FirstOrDefault(queryFilter => queryFilter.Type == FilterType.Industry);
+                    var companyQueryFilter = queryFilterSet.QueryFilters.Where(queryFilter => queryFilter.Type == Pages.Common.FilterType.Company).FirstOrDefault();
+                    if (companyQueryFilter != null)
+                    {
+                        CompanyFilter = new CodeDesc(companyQueryFilter.Text.ToLower(), null);
+                    }
+                    var industryQueryFilter = queryFilterSet.QueryFilters.Where(queryFilter => queryFilter.Type == Pages.Common.FilterType.Industry).FirstOrDefault();
                     if (industryQueryFilter != null)
                     {
                         IndustryFilter = new CodeDesc(industryQueryFilter.Text.ToLower(), null);
                     }
-                    var regionQueryFilter = queryFilterSet.QueryFilters.FirstOrDefault(queryFilter => queryFilter.Type == FilterType.Region);
+                    var regionQueryFilter = queryFilterSet.QueryFilters.Where(queryFilter => queryFilter.Type == Pages.Common.FilterType.Region).FirstOrDefault();
                     if (regionQueryFilter != null)
                     {
                         RegionFilter = new CodeDesc(regionQueryFilter.Text.ToLower(), null);
                     }
-                    var keywordQueryFilter = queryFilterSet.QueryFilters.FirstOrDefault(queryFilter => queryFilter.Type == FilterType.Keyword);
+                    var keywordQueryFilter = queryFilterSet.QueryFilters.Where(queryFilter => queryFilter.Type == Pages.Common.FilterType.Keyword).FirstOrDefault();
                     if (keywordQueryFilter != null)
                     {
                         KeywordFilter = keywordQueryFilter.Text;

@@ -12,5 +12,9 @@ namespace DowJones.Web.Mvc.UI.Components
             return builder.IncludeResource(CurrentAssembly, Resources.EmbeddedResources.Js.JQueryThreeDots);
         }
 
+		public static ScriptRegistryBuilder WithJQueryTooltip(this ScriptRegistryBuilder builder)
+		{
+			return builder.IncludeResource(CurrentAssembly, Resources.EmbeddedResources.Js.JQueryTooltip);
+		}
     }
 }

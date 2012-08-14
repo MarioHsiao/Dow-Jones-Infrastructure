@@ -1,8 +1,7 @@
 ﻿@model RegionalMapModel
 @using DowJones.Extensions
 @ClientPlugin dj_RegionalMap
-@ScriptResource RelativeResourceName=RegionalMap.js
+@ScriptResource RelativeResourceName=RegionalMap.js, DependsOn=highcharts
 @{
     CssClass = "dj_RegionalMap";
-    DJ.ScriptRegistry().WithHighCharts();
 }

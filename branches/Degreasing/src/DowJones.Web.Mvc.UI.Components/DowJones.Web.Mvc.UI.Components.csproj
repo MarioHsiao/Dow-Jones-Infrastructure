@@ -191,6 +191,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CompositeOutletComponent.cshtml</DependentUpon>
     </Compile>
+    <Compile Include="NewsMatrix\NewsMatrixComponent.cs">
+      <DependentUpon>NewsMatrixComponent.cshtml</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="DateHistogram\DateHistogramComponent1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -564,6 +569,10 @@
       <Generator>RazorViewComponentClassGenerator</Generator>
       <LastGenOutput>CompositeOutletComponent.cs</LastGenOutput>
     </None>
+    <None Include="NewsMatrix\NewsMatrixComponent.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>NewsMatrixComponent.cs</LastGenOutput>
+    </None>
     <None Include="DateHistogram\DateHistogramComponent.cshtml">
       <Generator>RazorViewComponentClassGenerator</Generator>
       <LastGenOutput>DateHistogramComponent1.cs</LastGenOutput>
@@ -800,6 +809,16 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="DiscoveryGraph\ClientTemplates\Layout.htm" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="NewsMatrix\ClientTemplates\Error.htm" />
+    <EmbeddedResource Include="NewsMatrix\ClientTemplates\Success.htm" />
+    <EmbeddedResource Include="NewsMatrix\NewsMatrix.js" />
+    <EmbeddedResource Include="NewsMatrix\ClientTemplates\Container.htm" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\js\jquery.tooltip.js" />
+    <EmbeddedResource Include="Resources\js\jquery.tooltip.min.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
