@@ -40,10 +40,10 @@ DJ.UI.AbstractCanvasModule = DJ.UI.CompositeComponent.extend({
     _toggleSpeed: "fast",
 
     _baseEvents: {
-        canvasModuleRemove: 'RemoveModuleRequest.dj.CanvasModule',
-        canvasModuleRemoveSuccess: 'RemoveModuleSuccess.dj.CanvasModule',
-        canvasModuleRemoveFailure: 'RemoveModuleFailure.dj.CanvasModule',
-        canvasModuleEditSuccess: 'EditModuleSuccess.dj.CanvasModule'
+        canvasModuleRemove: 'CanvasModule.RemoveModuleRequest',
+        canvasModuleRemoveSuccess: 'CanvasModule.RemoveModuleSuccess',
+        canvasModuleRemoveFailure: 'CanvasModule.RemoveModuleFailure',
+        canvasModuleEditSuccess: 'CanvasModule.EditModuleSuccess'
     },
 
     // Constructor
