@@ -1,11 +1,11 @@
 ﻿@model DowJones.Web.Mvc.UI.Components.SocialMedia.ExpertsModel
 @ClientPlugin dj_TwitterExperts
-@ScriptResource RelativeResourceName=TwitterExperts.js, DependsOn=ods-manager
+@ScriptResource RelativeResourceName=TwitterExperts.js
 @ClientTemplate RelativeResourceName=ClientTemplates.experts.htm, TemplateId=experts
 @ClientTemplate RelativeResourceName=ClientTemplates.noData.htm, TemplateId=noData
-@{ 
-    CssClass = "dj_twitter-top-experts dj_TwitterExperts ";
-    TagName = "ul";
+@{ CssClass = "dj_twitter-top-experts dj_TwitterExperts ";
+   TagName = "ul";
+   Html.DJ().ScriptRegistry().WithODSManager();
  }
 @foreach (var expert in Model.Experts)
 {

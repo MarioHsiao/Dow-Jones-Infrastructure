@@ -1,11 +1,12 @@
 ﻿@using DowJones.Extensions
 @model DowJones.Web.Mvc.UI.Components.SocialMedia.TweetLinesModel
 @ClientPlugin dj_TweetLines
-@ScriptResource RelativeResourceName=TweetLines.js, DependsOn=jquery-timeago;ods-manager;ScrollBar
+@ScriptResource RelativeResourceName=TweetLines.js
 @ClientTemplate RelativeResourceName=ClientTemplates.tweetlines.htm, TemplateId=tweetlines
 @ClientTemplate RelativeResourceName=ClientTemplates.noData.htm, TemplateId=noData
-@{ 
-    CssClass += " dj_TweetLines ";
+@{ CssClass += " dj_TweetLines ";
+   Html.DJ().ScriptRegistry().WithJQueryTimeAgo();
+   Html.DJ().ScriptRegistry().WithODSManager();
 }
 <div class="dj_more-tweets dj_new-tweets hide" style="z-index: 15;">
 	<span></span>

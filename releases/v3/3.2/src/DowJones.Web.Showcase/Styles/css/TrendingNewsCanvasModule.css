@@ -20,93 +20,44 @@
 /* >> General Styles
 ----------------------------------------------------------------------------------------------------*/
 
-.dj_TrendingNewsCanvasModule .module-col-title {
-	position: relative;
-	color: #666;
-	display: inline;
-	padding-right: 18px;
-	margin-bottom: 0;
-}
+h1,h2,h3,h4,h5,h6{font-weight:bold}
+a:hover,a:active{outline:0}
+a,a:active,a:visited{color:#39c;text-decoration:none}
+a:hover{color:#006ca2}
+ol,ul{list-style:none; display: block;}
+body { font: 13px/1.231 arial,helvetica,clean,sans-serif;} 
 
-.module-col-secondary-title {
-	font-size: 85%;
-	color: #666;
-	display: block;
-	margin-bottom: 15px;
-}
+.TrendingNews .module-col-title {position: relative;color: #666;display: inline;padding-right: 18px;margin-bottom: 0;}
 
-.industry-item-title {
-	font-size: 93%;
-    font-weight: bold;
-	color: #4b9dc8;
-}
+.module-col-secondary-title {font-size: 85%;color: #666;display: block; margin-bottom: 15px;}
 
-.top-five-mentioned ol {
-	list-style-type: decimal;
-	padding-left: 20px;
-}
-	.ie6 .top-five-mentioned ol {
-		padding-left: 25px;
-	}
+.industry-item-title {font-size: 93%; font-weight: bold;color: #4b9dc8;}
 
-.top-five-mentioned ol li {
-	margin-bottom: 10px;
-}
+.top-five-mentioned ol{list-style-type:none;padding-left:0;letter-spacing:.04em}
+.top-five-mentioned ol li{margin-bottom:10px}
+	.ie6 .top-five-mentioned ol {padding-left: 25px;}
 
-.trending-up ul li,
-.trending-down ul li {
-	margin-bottom: 10px;
-}
-
-.item-total, .item-total-type,
-.news-volume-previous, .news-volume-current,
-.news-volume-percentage {
-	color: #999;
-	font-size: 85%;
-	font-weight: bold;
-	vertical-align: middle;
-}
-
-.item-total {
-	text-transform: uppercase;
-}
-
-.news-volume-percentage.increase {
-	color: #11a106;
-}
-
-.news-volume-percentage.decrease {
-	color: #b90202;
-}
-
-
+.trending-up ul li,.trending-down ul li {margin-bottom: 10px;}
+.item-total, .item-total-type, .news-volume-previous, .news-volume-current, .news-volume-percentage {	color: #999;	font-size: 85%;	font-weight: bold;	vertical-align: middle; }
+.item-total {	text-transform: uppercase;}
+.news-volume-percentage.increase {	color: #11a106;}
+.news-volume-percentage.decrease {	color: #b90202;}
 /* >> Icon Styles
 ----------------------------------------------------------------------------------------------------*/
-
-.fi.fi_arrow-increase-green {
-	vertical-align: text-top;
-}
-
-.fi.fi_arrow-decrease-red {
-	vertical-align: middle;
-}
-
-.fi.fi_arrow-grey-small {
-	padding-bottom: 1px;
-}
-
-.fi.fi_arrow-increase-green,
-.fi.fi_arrow-decrease-red {
-	position: absolute;
-	top: 2px;
-	right: 0;
-	margin-left: 4px;
-}
-
-.fi.fi_arrow-green-small,
-.fi.fi_arrow-red-small {
-	vertical-align: middle;
-	display: inline-block;
-	display: -moz-inline-stack; /* required for ff2 */
-	margin: 0 2px 0 2px;
-}
+.fi{display:inline-block;background:transparent url(../images/factiva-icons.png) no-repeat 0 0;cursor:pointer}
+.fi.fi_arrow-increase-green { vertical-align: text-top; }
+.fi.fi_arrow-decrease-red { vertical-align: middle; }
+.fi.fi_arrow-grey-small {	padding-bottom: 1px; }
+.fi.fi_arrow-increase-green,.fi.fi_arrow-decrease-red {	position: absolute;	top: 2px;	right: 0;	margin-left: 4px; }
+.fi.fi_arrow-green-small,.fi.fi_arrow-red-small { vertical-align: middle; display: inline-block;	display: -moz-inline-stack; /* required for ff2 */	margin: 0 2px 0 2px;}
+.fi.fi_arrow-increase-green{width:14px;height:16px;background-position:0 -1000px}
+.fi.fi_arrow-decrease-red{width:14px;height:16px;background-position:0 -1030px}
+.fi.fi_arrow-green-small{width:8px;height:7px;background-position:0 -1060px}
+.fi.fi_arrow-red-small{width:8px;height:7px;background-position:0 -1080px}
+.fi.fi_next-green{width:18px;height:18px;background-position:0 -1100px}
+.fi.fi_prev-green{width:18px;height:18px;background-position:0 -1140px}
+.fi.fi_next-gray{width:18px;height:18px;background-position:0 -1180px}
+.fi.fi_prev-gray{width:18px;height:18px;background-position:0 -1220px}
+.fi.fi_add-blue-large{width:18px;height:17px;background-position:0 -1260px}
+.fi.fi_arrow-blue-small{width:12px;height:11px;background-position:0 -1295px}
+.fi.fi_down-arrow-blue{width:11px;height:9px;background-position:0 -1431px}

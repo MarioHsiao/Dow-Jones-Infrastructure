@@ -1,0 +1,24 @@
+﻿<!--Top5Trends-->
+<div class="top-five-mentioned">
+    <h3 class="module-col-title"><%=Token("top5Mentioned")%></h3>
+        <span class="module-col-secondary-title"><%=Token("basedOnNewsVolume")%></span>
+        <ol>
+        <%
+             var entities = self.data;
+             if (entities) { 
+             _.each(entities, function (entity, key) {
+        %>
+                <li>
+                    <h4 class="industry-item-title">
+                        <a href="javascript:void(0)" class="popup-trigger" data-searchContext="<%= entity.searchContextRef%>"> <%= entity.descriptor %> </a>
+                    </h4>
+                    <p>
+                        <span class="item-total"> <%= entity.currentTimeFrameNewsVolume.displayText.value %> </span> 
+                        <span class="item-total-type"><%=Token("articlesLabel")%> </span>
+                    </p>               
+                </li>            
+         <%   
+            }); }
+         %>
+        </ol>
+</div>

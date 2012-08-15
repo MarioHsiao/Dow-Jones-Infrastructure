@@ -386,6 +386,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>TranslateArticleComponent.cshtml</DependentUpon>
     </Compile>
+    <Compile Include="TrendingNews\TrendingNews.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TrendingNews.cshtml</DependentUpon>
+    </Compile>
     <Compile Include="TweetLines\TweetLinesComponent.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -759,6 +764,10 @@
       <Generator>RazorViewComponentClassGenerator</Generator>
       <LastGenOutput>TranslateArticleComponent.cs</LastGenOutput>
     </None>
+    <None Include="TrendingNews\TrendingNews.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>TrendingNews.cs</LastGenOutput>
+    </None>
     <None Include="TweetLines\TweetLinesComponent.cshtml">
       <Generator>RazorViewComponentClassGenerator</Generator>
       <LastGenOutput>TweetLinesComponent.cs</LastGenOutput>
@@ -819,6 +828,14 @@
   <ItemGroup>
     <EmbeddedResource Include="Resources\js\jquery.tooltip.js" />
     <EmbeddedResource Include="Resources\js\jquery.tooltip.min.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="TrendingNews\ClientTemplates\trendingnewspercentagesuccess.htm" />
+    <Content Include="TrendingNews\ClientTemplates\nodata.htm" />
+    <Content Include="TrendingNews\ClientTemplates\trendingnewstop5success.htm" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TrendingNews\TrendingNews.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

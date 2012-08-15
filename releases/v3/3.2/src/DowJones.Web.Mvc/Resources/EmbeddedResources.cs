@@ -79,7 +79,7 @@ namespace DowJones.Web.Mvc.Resources
         [ScriptResource(ResourceName = JQueryUIInteractions, DependencyLevel = ClientResourceDependencyLevel.MidLevel, Name = "jquery-ui-interactions", DependsOn = new[] { "jquery-ui" })]
         [ScriptResource(ResourceName = JQueryUIWidgets, DependencyLevel = ClientResourceDependencyLevel.MidLevel, Name = "jquery-ui-widgets", DependsOn = new[] { "jquery-ui" })]
         [ScriptResource(ResourceName = Json2, DependencyLevel = ClientResourceDependencyLevel.Core, Name = "JSON")]
-		[ScriptResource(ResourceName = ODSManager, DependencyLevel = ClientResourceDependencyLevel.MidLevel)]
+		[ScriptResource(ResourceName = ODSManager, DependencyLevel = ClientResourceDependencyLevel.MidLevel, Name = "ods-manager")]
         [ScriptResource(ResourceName = Overlay, DependencyLevel = ClientResourceDependencyLevel.MidLevel, Name = "overlay")]
         [ScriptResource(ResourceName = PubSubManager, DependencyLevel = ClientResourceDependencyLevel.Core, Name = "pubsub")]
         [ScriptResource(ResourceName = Require, DependencyLevel = ClientResourceDependencyLevel.Core, Name = "require")]

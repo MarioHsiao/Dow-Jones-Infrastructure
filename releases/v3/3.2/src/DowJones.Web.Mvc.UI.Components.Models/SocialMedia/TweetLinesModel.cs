@@ -1,7 +1,7 @@
 using DowJones.Ajax.SocialMedia;
+using Newtonsoft.Json;
 using System.Collections.Generic;
-
-namespace DowJones.Web.Mvc.UI.Components.TweetLines
+namespace DowJones.Web.Mvc.UI.Components.SocialMedia
 {
     public class TweetLinesModel : ViewComponentModel
     {
@@ -18,6 +18,7 @@ namespace DowJones.Web.Mvc.UI.Components.TweetLines
         /// </remarks>
         [ClientProperty("maxPagesInHistory")]
         public int MaxPagesInHistory { get; set; }
+
 
         [ClientData("tweets")]
         public List<Tweet> Tweets { get; set; }
