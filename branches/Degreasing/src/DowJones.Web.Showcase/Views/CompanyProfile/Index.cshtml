@@ -1,0 +1,786 @@
+﻿@{
+    ViewBag.Title = "Company Profile Respon";
+    Layout = null;
+    Html.DJ().ScriptRegistry()
+        .WithJQueryUIInteractions();
+    Html.DJ().StylesheetRegistry()
+        .Include("~/styles/css/normalize.css", ClientResourceDependencyLevel.Global)
+        .Include("~/styles/css/normalizeExtensions.css", ClientResourceDependencyLevel.Global)
+        .Include("~/styles/css/smoothness/jquery-ui-1.8.22.custom.css", ClientResourceDependencyLevel.Independent);
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <!--[if lt IE 9]>
+	    <script src="https://raw.github.com/scottjehl/Respond/master/respond.min.js"></script>
+    <![endif]-->
+    <script type="text/javascript">
+        var DJ = { config: { debug: true } };
+    </script>
+    @Html.DJ().ScriptRegistry().RenderHead()
+    @Html.DJ().StylesheetRegistry().RenderHead()
+    <script type="text/javascript">
+        var $dj = DJ.$dj;
+    </script>
+
+    <style>
+        #djshowcase_content_wrapper {
+            padding: 1%;
+        }
+
+        #container {
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            max-width: 980px;
+            min-width: 280px;
+            min-height: 340px;
+        }
+
+            #container > h3 {
+                margin: 0;
+                background-color: #e0e0e0;
+            }
+
+        .summary-chart-med, .sparkline {
+            display: none;
+        }
+
+        .sparkline {
+            margin-left: 10px;
+        }
+
+        .mediumView, .smallView {
+            display: none;
+        }
+
+        .fullView {
+            display: block;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            width: auto\9; /* ie8 */
+        }
+
+        @@media screen and (max-width: 980px) {
+            .summary-chart-med, .sparkline {
+                display: none;
+            }
+
+            .mediumView, .smallView {
+                display: none;
+            }
+
+            .fullView {
+                display: block;
+            }
+        }
+
+        @@media screen and (max-width: 768px) {
+            .summary-chart-full, .sparkline {
+                display: none;
+            }
+
+            .summary-chart-med {
+                display: block;
+            }
+
+            .summary-chart-med {
+                float: left;
+                width: 47%;
+                margin-right: 1%;
+            }
+
+            .summary-data {
+                float: right;
+                width: 52%;
+            }
+
+            .fullView, .smallView {
+                display: none;
+            }
+
+            .mediumView {
+                display: block;
+            }
+        }
+
+        @@media screen and (max-width: 480px) {
+            .summary-chart-full, .summary-chart-med, .fullView, .mediumView {
+                display: none;
+            }
+
+            .sparkline {
+                display: inline;
+            }
+
+            .smallView {
+                display: block;
+            }
+
+            .summary-data {
+                float: none;
+                width: auto;
+            }
+        }
+    </style>
+
+    <!-- Snapshot styles -->
+    <style>
+        a {
+            margin: 0;
+            padding: 0;
+            font-size: 100%;
+            vertical-align: baseline;
+            background: transparent;
+        }
+
+            a, a:active, a:visited {
+                color: #39C;
+                text-decoration: none;
+            }
+
+                a, a:active, a:visited {
+                    color: #39C;
+                    text-decoration: none;
+                }
+
+
+        .dj_market-data .market-snapshot {
+            color: #666;
+            font-size: 138.5%;
+            font-weight: bold;
+            letter-spacing: -0.025em;
+        }
+
+            .dj_market-data .market-snapshot .stock-exchange {
+                color: #CCC;
+                font-size: 55.6%;
+                text-transform: uppercase;
+            }
+
+            .dj_market-data .market-snapshot .market-data-source {
+                display: -moz-inline-stack;
+                display: inline-block;
+                vertical-align: bottom;
+                zoom: 1;
+                float: right;
+                color: #999;
+                font-size: 55.6%;
+                padding: 8px 0 0;
+                letter-spacing: normal;
+            }
+
+
+        .dj_market-data .stock-value {
+            padding-bottom: 10px;
+        }
+
+            .dj_market-data .stock-value .current-value {
+                font-size: 146.5%;
+                margin-right: 30px;
+            }
+
+            .dj_market-data .stock-value .difference-value.positive, .dj_market-data .stock-value .difference-percentage.positive {
+                color: #11A106;
+            }
+
+            .dj_market-data .stock-value .difference-value, .dj_market-data .stock-value .difference-percentage {
+                display: -moz-inline-stack;
+                display: inline-block;
+                zoom: 1;
+                vertical-align: top;
+                font-size: 138.5%;
+                font-weight: bold;
+                letter-spacing: -0.025em;
+                margin-right: 10px;
+            }
+
+        .dj_market-data .summary-data li {
+            width: 130px;
+            display: -moz-inline-stack;
+            display: inline-block;
+            vertical-align: top;
+            zoom: 1;
+            float: left;
+            color: #999;
+            font-weight: bold;
+            letter-spacing: -0.025em;
+            margin: 0 10px 10px 0;
+        }
+
+            .dj_market-data .summary-data li .summary-data-label {
+                display: block;
+                font-size: 85%;
+                text-transform: uppercase;
+                padding-bottom: 3px;
+                margin-bottom: 3px;
+                border-bottom: 1px solid #999;
+            }
+
+            .dj_market-data .summary-data li .summary-data-value {
+                font-size: 123.1%;
+            }
+
+        .dj_module-company-snapshot-disclaimer {
+            color: #999;
+            font-size: 10px;
+            line-height: 15px;
+            clear: both;
+        }
+    </style>
+
+    <style>
+        #action_links, #add_criteria_wizard, #chart-section, #companyheader,
+        #market-data-div, #market-news, #pf-empty, #portfolio-news, #secperf,
+        #topmovers, .gf-chart-footer, .gf-table-control-plain, .hdg, .id-compare-bar-wrapper,
+        .searchtabsheader, .sfe-section, .sfe-section-major, table.topmovers td {
+            margin-left: 0;
+            padding-left: 0;
+        }
+
+        #market-data-div {
+            padding: 0 0 8px 8px;
+        }
+
+        .nwp {
+            white-space: nowrap;
+        }
+
+        @@media (max-width: 1060px), (max-height: 590px) #market-data-div div#price-panel, #market-data-div table.snap-data {
+            margin-right: 6px;
+        }
+
+        @@media (max-width: 1252px), (max-height: 640px) #market-data-div div#price-panel, #market-data-div table.snap-data {
+            margin-right: 12px;
+        }
+
+        #market-data-div div#price-panel, #market-data-div table.snap-data {
+            margin-right: 18px;
+        }
+
+        #price-panel {
+            display: table-cell;
+            padding-right: 12px;
+            vertical-align: top;
+        }
+
+        .snap-panel-and-plusone {
+            display: table-cell;
+            vertical-align: top;
+            white-space: normal;
+        }
+
+        .g-tpl-right-1 > .g-unit:not(.g-first) {
+            margin-right: 316px;
+        }
+
+        .g-unit .g-tpl-right-1 .g-unit, .g-tpl-right-1 .g-unit {
+            display: block;
+            float: none;
+            margin: 0 300px 0 0;
+            width: auto;
+        }
+
+        .g-unit .g-tpl-left-11p4em .g-unit, .g-tpl-left-11p4em .g-unit {
+            display: block;
+            float: none;
+            margin: 0 0 0 11.41em;
+            width: auto;
+        }
+
+        .g-unit .g-tpl-right-1 .g-unit, .g-tpl-right-1 .g-unit {
+            display: block;
+            float: none;
+            margin: 0 300px 0 0;
+            width: auto;
+        }
+
+        .g-section, .g-unit {
+            zoom: 1;
+        }
+    </style>
+</head>
+<body>
+    <div id="djshowcase_content_wrapper">
+        <div id="container">
+            <h3>Resize the browser</h3>
+            <div id="quoteContainer" class="dj_market-data">
+                <div id="newsChartContainerFull" class="summary-chart-full">
+                    @*<img src="@Url.Content("~/styles/images/companyprofile/chart-full.png")" />*@
+                </div>
+                <p class="market-snapshot">
+                    <span class="ticker-symbol">AAPL</span>
+                    <span class="stock-exchange">XNAS</span>
+                    <img class="sparkline" src="@Url.Content("~/styles/images/companyprofile/chart-sparkline.png")"/>
+                    <span class="market-data-source">Source: <a href="javascript:void(0);">SIX-Telekurs</a></span>
+                </p>
+                <!-- end: .market-snapshot -->
+
+                <p class="stock-value">
+                    <span class="current-value">629.08</span>
+                    <span class="difference-value positive">7.38
+                    </span>
+                    <span class="difference-percentage positive">1.19%
+                    </span>
+                </p>
+
+
+                <div id="newsChartContainerMed" class="summary-chart-med">
+                    @*<img src="@Url.Content("~/styles/images/companyprofile/chart-med.gif")" />*@
+                </div>
+
+                <ul class="summary-data">
+                    <li class="stock-open-price">
+                        <span class="summary-data-label">Open</span>
+                        <span class="summary-data-value">623.39</span>
+                    </li>
+                    <li class="shares">
+                        <span class="summary-data-label">Volume</span>
+                        <span class="summary-data-value">7,778,013</span>
+                    </li>
+                    <li class="high-price">
+                        <span class="summary-data-label">High</span>
+                        <span class="summary-data-value">629.25</span>
+                    </li>
+                    <li class="low-price">
+                        <span class="summary-data-label">Low</span>
+                        <span class="summary-data-value">623.25</span>
+                    </li>
+                    <li>
+                        <span class="summary-data-label">52Wk Range</span>
+                        <span class="summary-data-value">644.00 - 354.24</span>
+                    </li>
+                    <li class="market-cap">
+                        <span class="summary-data-label">Market Cap</span>
+                        <span class="summary-data-value">582,785.0</span>
+                    </li>
+                </ul>
+
+                <p class="dj_module-company-snapshot-disclaimer">
+                    <span class="middot">·</span> Quotes delayed at least 15 minutes or according to
+                    exchange regulations <span class="middot">·</span> Quotes in local currency
+                </p>
+            </div>
+
+            <div id="newsChartContainer"></div>
+        </div>
+    </div>
+
+    @*<div>
+        <div class="smallView">
+            <div class="std">
+                <h2 class="r"><b>AAPL</b> - <span>Apple Inc.</span><span>
+                    <img class="sparkline" src="@Url.Content("~/styles/images/companyprofile/chart-sparkline.png")"/></span>
+                </h2>
+            </div>
+            <div class="std" style="margin-right: -150px; margin-top: 5px">
+                <table class="ti" style="padding-bottom: 0; margin-top: -5px"
+                    border="0" width="1%">
+                    <tbody>
+                        <tr>
+                            <td colspan="3" nowrap="">
+                                <div style="font-size: 157%">
+                                    <b><span id="AAPL_l">634.45</span>&nbsp;</b><span id="AAPL_c"
+                                        style="color: #008000"><span style="color: #008000"><b>+4.45</b>‎ (0.71%‎)</span>&nbsp;</span>
+                                </div>
+                                <span id="AAPL_lt" class="f">Aug 14 2:49pm ET</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <table cellspacing="0" cellpadding="2" border="0">
+                                    <tbody>
+                                        <tr>
+                                            <td style="padding-left: 0px" nowrap=""><b>Open:</b>&nbsp;</td>
+                                            <td id="AAPL_op" nowrap="" align="right">631.87</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding-left: 0px" nowrap=""><b>High:</b>&nbsp;</td>
+                                            <td id="AAPL_hi" nowrap="" align="right">638.61</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding-left: 0px" nowrap=""><b>Low:</b>&nbsp;</td>
+                                            <td id="AAPL_lo" nowrap="" align="right">631.85</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                            <td width="20">&nbsp;</td>
+                            <td valign="top">
+                                <table cellspacing="0" cellpadding="2" border="0">
+                                    <tbody>
+                                        <tr>
+                                            <td style="padding-left: 0px" nowrap=""><b>Volume:</b>&nbsp;</td>
+                                            <td id="AAPL_vo" nowrap="" align="right">9,332,566</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding-left: 0px" nowrap=""><b>Avg&nbsp;Vol:</b>&nbsp;</td>
+                                            <td nowrap="" align="right">13,696,000</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding-left: 0px" nowrap=""><b>Mkt&nbsp;Cap:</b>&nbsp;</td>
+                                            <td nowrap="" align="right">594.14B</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="dj_module-company-snapshot-disclaimer">
+                    <span class="middot">·</span> Quotes delayed at least 15 minutes or according to
+                    exchange regulations <span class="middot">·</span> Quotes in local currency
+                </p>
+            </div>
+        </div>
+        <div class="mediumView">
+            <div class="std">
+                <h2 class="r"><a href="/url?url=/finance%3Fclient%3Dob%26q%3DNASDAQ:AAPL&amp;rct=j&amp;sa=X&amp;ei=Dp0qUI3JE6re0QHM0oGwCg&amp;ved=0CFwQowE&amp;q=aapl&amp;usg=AFQjCNG3wDL5ryfnYCNjGIUuGA9SU3GtbQ"
+                    class="fl"><b>AAPL</b>‎</a> - <span>Apple Inc.</span> <span>(NASDAQ)</span>‎
+                </h2>
+            </div>
+            <div class="std" style="margin-right: -150px; margin-top: 5px">
+                <img src="@Url.Content("~/styles/images/companyprofile/chart-med.gif")"
+                alt="" border="0" height="116" style="float: left; padding-right: 20px" width="212"
+                id="AAPL_finance_chart">
+                <table class="ti" style="padding-bottom: 0; margin-top: -5px"
+                    border="0" width="1%">
+                    <tbody>
+                        <tr>
+                            <td colspan="3" nowrap="">
+                                <div style="font-size: 157%">
+                                    <b><span id="AAPL_l">634.45</span>&nbsp;</b><span id="AAPL_c"
+                                        style="color: #008000"><span style="color: #008000"><b>+4.45</b>‎ (0.71%‎)</span>&nbsp;</span>
+                                </div>
+                                <span id="AAPL_lt" class="f">Aug 14 2:49pm ET</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <table cellspacing="0" cellpadding="2" border="0">
+                                    <tbody>
+                                        <tr>
+                                            <td style="padding-left: 0px" nowrap=""><b>Open:</b>&nbsp;</td>
+                                            <td id="AAPL_op" nowrap="" align="right">631.87</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding-left: 0px" nowrap=""><b>High:</b>&nbsp;</td>
+                                            <td id="AAPL_hi" nowrap="" align="right">638.61</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding-left: 0px" nowrap=""><b>Low:</b>&nbsp;</td>
+                                            <td id="AAPL_lo" nowrap="" align="right">631.85</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                            <td width="20">&nbsp;</td>
+                            <td valign="top">
+                                <table cellspacing="0" cellpadding="2" border="0">
+                                    <tbody>
+                                        <tr>
+                                            <td style="padding-left: 0px" nowrap=""><b>Volume:</b>&nbsp;</td>
+                                            <td id="AAPL_vo" nowrap="" align="right">9,332,566</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding-left: 0px" nowrap=""><b>Avg&nbsp;Vol:</b>&nbsp;</td>
+                                            <td nowrap="" align="right">13,696,000</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding-left: 0px" nowrap=""><b>Mkt&nbsp;Cap:</b>&nbsp;</td>
+                                            <td nowrap="" align="right">594.14B</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="dj_module-company-snapshot-disclaimer">
+                    <span class="middot">·</span> Quotes delayed at least 15 minutes or according to
+                    exchange regulations <span class="middot">·</span> Quotes in local currency
+                </p>
+            </div>
+        </div>
+        <div class="fullView">
+            <div class="g-section g-tpl-right-1">
+                <div class="g-unit g-first">
+                    <div class="g-c">
+                        <div id="r-perf" class="g-section g-tpl-67-33 g-split nwp">
+                            <div id="r-perf-quotes" class="id-r-perf-quotes g-unit g-first">
+                                <table width="100%">
+                                    <tbody>
+                                        <tr>
+                                            <td class="name nwp"><a href="/finance?q=INDEXDJX:.DJI" title="Dow Jones">Dow Jones</a>
+                                            </td>
+                                            <td class="price"><span id="ref_983582_l">13,189.10</span></td>
+                                            <td class="change"><span id="ref_983582_cp" class="chg">0.15%</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="name nwp"><a href="/finance?q=INDEXNASDAQ:.IXIC" title="Nasdaq">Nasdaq</a>
+                                            </td>
+                                            <td class="price"><span id="ref_13756934_l">3,024.57</span></td>
+                                            <td class="change"><span id="ref_13756934_cp" class="chg">0.07%</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="name nwp" colspan="2"><a href="/finance?catid=us-66529330" title="Technology">
+                                                Technology</a></td>
+                                            <td class="change"><span id="ref_0_cp" class="chr">-0.17%</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="name nwp"><a href="/finance?q=NASDAQ:AAPL" title="AAPL">AAPL</a></td>
+                                            <td class="price"><span id="ref_22144_l" class="unchanged"><span class="unchanged">634.42</span><span></span></span>
+                                            </td>
+                                            <td class="change"><span id="ref_22144_cp" class="up">0.70%</span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div id="r-perf-charts" class="id-r-perf-charts g-unit">
+                                <table width="100%">
+                                    <tbody>
+                                        <tr>
+                                            <td width="-19.540229885057474%" class="bar-left">&nbsp;</td>
+                                            <td width="80.45977011494253%" class="bar-right">
+                                                <table width="100%" class="barChart">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td class="chg-bar-right" width="21.42857142857143%">&nbsp;</td>
+                                                            <td>&nbsp;</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td width="-19.540229885057474%" class="bar-left">&nbsp;</td>
+                                            <td width="80.45977011494253%" class="bar-right">
+                                                <table width="100%" class="barChart">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td class="chg-bar-right" width="10.000000000000002%">&nbsp;</td>
+                                                            <td>&nbsp;</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td width="-19.540229885057474%" class="bar-left">
+                                                <table width="100%" class="barChart">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>&nbsp;</td>
+                                                            <td class="chr-bar-left" width="100%">&nbsp;</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                            <td width="80.45977011494253%" class="bar-right">&nbsp;</td>
+                                        </tr>
+                                        <tr>
+                                            <td width="-19.540229885057474%" class="bar-left">&nbsp;</td>
+                                            <td width="80.45977011494253%" class="bar-right">
+                                                <table width="100%" class="barChart">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td class="chg-bar-right" width="100%">&nbsp;</td>
+                                                            <td>&nbsp;</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <script>google.finance.renderRelativePerformance();</script>
+                    </div>
+                </div>
+                <div class="g-unit">
+                    <div id="market-data-div" class="id-market-data-div nwp g-floatfix wide" style="">
+                        <div id="price-panel" class="id-price-panel goog-inline-block">
+                            <div>
+                                <span class="pr">
+                                    <span id="ref_22144_l" class="unchanged"><span class="unchanged">634.42</span><span></span></span>
+                                </span>
+                                <div class="id-price-change nwp goog-inline-block">
+                                    <span class="ch bld"><span class="up" id="ref_22144_c">+4.42</span>
+                                        <span class="up" id="ref_22144_cp">(0.70%)</span>
+                                    </span>
+                                </div>
+                            </div>
+                            <div>
+                                <span class="nwp">Real-time:
+&nbsp;
+                                    <span id="ref_22144_ltt" class="unchanged">3:08PM EDT</span>
+                                </span>
+                                <div class="mdata-dis">
+                                    <span class="dis-large">
+                                        <nobr>NASDAQ
+real-time data -
+<a href="http://www.google.com/help/stock_disclaimer.html#realtime" class="dis-large">Disclaimer</a>
+</nobr>
+                                    </span>
+                                    <div>Currency in USD</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="snap-panel-and-plusone">
+                            <div class="snap-panel">
+                                <table class="snap-data">
+                                    <tbody>
+                                        <tr>
+                                            <td class="key" data-snapfield="range" aria-label="&lt;div style=&quot;max-width: 300px; &quot;&gt;Range&lt;br&gt;&lt;br&gt;Price range (low - high) in the latest trading day.&lt;/div&gt;"
+                                                data-tooltip="&lt;div style=&quot;max-width: 300px; &quot;&gt;Range&lt;br&gt;&lt;br&gt;Price range (low - high) in the latest trading day.&lt;/div&gt;">
+                                                Range
+                                            </td>
+                                            <td class="val">631.85 - 638.61
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="key" data-snapfield="range_52week" aria-label="&lt;div style=&quot;max-width: 300px; &quot;&gt;52-week range&lt;br&gt;&lt;br&gt;Price range (low - high) in the last 52 weeks&lt;/div&gt;"
+                                                data-tooltip="&lt;div style=&quot;max-width: 300px; &quot;&gt;52-week range&lt;br&gt;&lt;br&gt;Price range (low - high) in the last 52 weeks&lt;/div&gt;">
+                                                52 week
+                                            </td>
+                                            <td class="val">354.24 - 644.00
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="key" data-snapfield="open" aria-label="&lt;div style=&quot;max-width: 300px; &quot;&gt;Open&lt;br&gt;&lt;br&gt;Opening price on the latest trading day.&lt;/div&gt;"
+                                                data-tooltip="&lt;div style=&quot;max-width: 300px; &quot;&gt;Open&lt;br&gt;&lt;br&gt;Opening price on the latest trading day.&lt;/div&gt;">
+                                                Open
+                                            </td>
+                                            <td class="val">631.87
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="key" data-snapfield="vol_and_avg" aria-label="&lt;div style=&quot;max-width: 300px; &quot;&gt;Volume / average volume&lt;br&gt;&lt;br&gt;Volume is the number of shares traded on the latest trading day. The average volume is measured over 30 days.&lt;/div&gt;"
+                                                data-tooltip="&lt;div style=&quot;max-width: 300px; &quot;&gt;Volume / average volume&lt;br&gt;&lt;br&gt;Volume is the number of shares traded on the latest trading day. The average volume is measured over 30 days.&lt;/div&gt;">
+                                                Vol / Avg.
+                                            </td>
+                                            <td class="val">9.44M/13.70M
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="key" data-snapfield="market_cap" aria-label="&lt;div style=&quot;max-width: 300px; &quot;&gt;Market capitalization&lt;br&gt;&lt;br&gt;The total value of a company in the stock market. It is generally calculated by multiplying the shares outstanding by the current share price.&lt;/div&gt;"
+                                                data-tooltip="&lt;div style=&quot;max-width: 300px; &quot;&gt;Market capitalization&lt;br&gt;&lt;br&gt;The total value of a company in the stock market. It is generally calculated by multiplying the shares outstanding by the current share price.&lt;/div&gt;">
+                                                Mkt cap
+                                            </td>
+                                            <td class="val">594.62B
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="key" data-snapfield="pe_ratio" aria-label="&lt;div style=&quot;max-width: 300px; &quot;&gt;Price to earnings ratio&lt;br&gt;&lt;br&gt;The share price divided by the earnings per share.&lt;/div&gt;"
+                                                data-tooltip="&lt;div style=&quot;max-width: 300px; &quot;&gt;Price to earnings ratio&lt;br&gt;&lt;br&gt;The share price divided by the earnings per share.&lt;/div&gt;">
+                                                P/E
+                                            </td>
+                                            <td class="val">14.91
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <table class="snap-data">
+                                    <tbody>
+                                        <tr>
+                                            <td class="key" data-snapfield="latest_dividend-dividend_yield" aria-label="&lt;div style=&quot;max-width: 300px; &quot;&gt;Latest dividend/dividend yield&lt;br&gt;&lt;br&gt;Latest dividend is dividend per share paid to shareholders in the most recent quarter. Dividend yield is the value of the latest dividend, multiplied by the number of times dividends are typically paid per year, divided by the stock price.&lt;/div&gt;"
+                                                data-tooltip="&lt;div style=&quot;max-width: 300px; &quot;&gt;Latest dividend/dividend yield&lt;br&gt;&lt;br&gt;Latest dividend is dividend per share paid to shareholders in the most recent quarter. Dividend yield is the value of the latest dividend, multiplied by the number of times dividends are typically paid per year, divided by the stock price.&lt;/div&gt;">
+                                                Div/yield
+                                            </td>
+                                            <td class="val">2.65/1.67
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="key" data-snapfield="eps" aria-label="&lt;div style=&quot;max-width: 300px; &quot;&gt;Earnings per share&lt;br&gt;&lt;br&gt;The net income over the last four quarters divided by the shares outstanding.&lt;/div&gt;"
+                                                data-tooltip="&lt;div style=&quot;max-width: 300px; &quot;&gt;Earnings per share&lt;br&gt;&lt;br&gt;The net income over the last four quarters divided by the shares outstanding.&lt;/div&gt;">
+                                                EPS
+                                            </td>
+                                            <td class="val">42.54
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="key" data-snapfield="shares" aria-label="&lt;div style=&quot;max-width: 300px; &quot;&gt;Shares outstanding&lt;br&gt;&lt;br&gt;The number of shares held by investors and company insiders, excluding dilutive securities such as non-vested RSUs and unexercised options.&lt;/div&gt;"
+                                                data-tooltip="&lt;div style=&quot;max-width: 300px; &quot;&gt;Shares outstanding&lt;br&gt;&lt;br&gt;The number of shares held by investors and company insiders, excluding dilutive securities such as non-vested RSUs and unexercised options.&lt;/div&gt;">
+                                                Shares
+                                            </td>
+                                            <td class="val">937.41M
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="key" data-snapfield="beta" aria-label="&lt;div style=&quot;max-width: 300px; &quot;&gt;Beta&lt;br&gt;&lt;br&gt;The measure of a fund's or a stock's risk in relation to the market or to an alternative benchmark.&lt;/div&gt;"
+                                                data-tooltip="&lt;div style=&quot;max-width: 300px; &quot;&gt;Beta&lt;br&gt;&lt;br&gt;The measure of a fund's or a stock's risk in relation to the market or to an alternative benchmark.&lt;/div&gt;">
+                                                Beta
+                                            </td>
+                                            <td class="val">1.23
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="key" data-snapfield="inst_own" aria-label="&lt;div style=&quot;max-width: 300px; &quot;&gt;Institutional ownership&lt;br&gt;&lt;br&gt;The percentage of shares outstanding held by institutional investors such as pension plans.&lt;/div&gt;"
+                                                data-tooltip="&lt;div style=&quot;max-width: 300px; &quot;&gt;Institutional ownership&lt;br&gt;&lt;br&gt;The percentage of shares outstanding held by institutional investors such as pension plans.&lt;/div&gt;">
+                                                Inst. own
+                                            </td>
+                                            <td class="val">68%
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="plusone-box" id="plusone-box">
+                                <div id="___plusone_0" style="height: 24px; width: 106px; display: inline-block;
+                                    text-indent: 0px; margin: 0px; padding: 0px; background-color: transparent; border-style: none;
+                                    float: none; line-height: normal; font-size: 1px; vertical-align: baseline; background-position: initial initial;
+                                    background-repeat: initial initial;">
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>*@
+    </div>
+    @Html.DJ().StylesheetRegistry().Render()
+    @Html.DJ().ScriptRegistry().Render()
+    <script type="text/javascript">
+        $dj.define('Data', ['DJ', 'JSON'], function () {
+            var o = { "newsDataResult": { "dataPoints": [{ "dataPoint": { "__type": "wholeNumber", "displayText": { "value": "469" }, "value": 469 }, "date": new Date(1336521600000), "dateDisplay": "9 May 2012" }, { "dataPoint": { "__type": "wholeNumber", "displayText": { "value": "649" }, "value": 649 }, "date": new Date(1336608000000), "dateDisplay": "10 May 2012" }, { "dataPoint": { "__type": "wholeNumber", "displayText": { "value": "403" }, "value": 403 }, "date": new Date(1336694400000), "dateDisplay": "11 May 2012" }, { "dataPoint": { "__type": "wholeNumber", "displayText": { "value": "153" }, "value": 153 }, "date": new Date(1336780800000), "dateDisplay": "12 May 2012" }, { "dataPoint": { "__type": "wholeNumber", "displayText": { "value": "139" }, "value": 139 }, "date": new Date(1336867200000), "dateDisplay": "13 May 2012" }, { "dataPoint": { "__type": "wholeNumber", "displayText": { "value": "593" }, "value": 593 }, "date": new Date(1336953600000), "dateDisplay": "14 May 2012" }, { "dataPoint": { "__type": "wholeNumber", "displayText": { "value": "809" }, "value": 809 }, "date": new Date(1337040000000), "dateDisplay": "15 May 2012" }, { "dataPoint": { "__type": "wholeNumber", "displayText": { "value": "829" }, "value": 829 }, "date": new Date(1337126400000), "dateDisplay": "16 May 2012" }, { "dataPoint": { "__type": "wholeNumber", "displayText": { "value": "618" }, "value": 618 }, "date": new Date(1337212800000), "dateDisplay": "17 May 2012" }, { "dataPoint": { "__type": "wholeNumber", "displayText": { "value": "422" }, "value": 422 }, "date": new Date(1337299200000), "dateDisplay": "18 May 2012" }, { "dataPoint": { "__type": "wholeNumber", "displayText": { "value": "128" }, "value": 128 }, "date": new Date(1337385600000), "dateDisplay": "19 May 2012" }, { "dataPoint": { "__type": "wholeNumber", "displayText": { "value": "95" }, "value": 95 }, "date": new Date(1337472000000), "dateDisplay": "20 May 2012" }, { "dataPoint": { "__type": "wholeNumber", "displayText": { "value": "626" }, "value": 626 }, "date": new Date(1337558400000), "dateDisplay": "21 May 2012" }, { "dataPoint": { "__type": "wholeNumber", "displayText": { "value": "738" }, "value": 738 }, "date": new Date(1337644800000), "dateDisplay": "22 May 2012" }, { "dataPoint": { "__type": "wholeNumber", "displayText": { "value": "618" }, "value": 618 }, "date": new Date(1337731200000), "dateDisplay": "23 May 2012" }, { "dataPoint": { "__type": "wholeNumber", "displayText": { "value": "524" }, "value": 524 }, "date": new Date(1337817600000), "dateDisplay": "24 May 2012" }, { "dataPoint": { "__type": "wholeNumber", "displayText": { "value": "475" }, "value": 475 }, "date": new Date(1337904000000), "dateDisplay": "25 May 2012" }, { "dataPoint": { "__type": "wholeNumber", "displayText": { "value": "175" }, "value": 175 }, "date": new Date(1337990400000), "dateDisplay": "26 May 2012" }, { "dataPoint": { "__type": "wholeNumber", "displayText": { "value": "86" }, "value": 86 }, "date": new Date(1338076800000), "dateDisplay": "27 May 2012" }, { "dataPoint": { "__type": "wholeNumber", "displayText": { "value": "258" }, "value": 258 }, "date": new Date(1338163200000), "dateDisplay": "28 May 2012" }, { "dataPoint": { "__type": "wholeNumber", "displayText": { "value": "564" }, "value": 564 }, "date": new Date(1338249600000), "dateDisplay": "29 May 2012" }, { "dataPoint": { "__type": "wholeNumber", "displayText": { "value": "828" }, "value": 828 }, "date": new Date(1338336000000), "dateDisplay": "30 May 2012" }, { "dataPoint": { "__type": "wholeNumber", "displayText": { "value": "655" }, "value": 655 }, "date": new Date(1338422400000), "dateDisplay": "31 May 2012" }, { "dataPoint": { "__type": "wholeNumber", "displayText": { "value": "527" }, "value": 527 }, "date": new Date(1338508800000), "dateDisplay": "1 June 2012" }, { "dataPoint": { "__type": "wholeNumber", "displayText": { "value": "127" }, "value": 127 }, "date": new Date(1338595200000), "dateDisplay": "2 June 2012" }, { "dataPoint": { "__type": "wholeNumber", "displayText": { "value": "73" }, "value": 73 }, "date": new Date(1338681600000), "dateDisplay": "3 June 2012" }, { "dataPoint": { "__type": "wholeNumber", "displayText": { "value": "533" }, "value": 533 }, "date": new Date(1338768000000), "dateDisplay": "4 June 2012" }, { "dataPoint": { "__type": "wholeNumber", "displayText": { "value": "623" }, "value": 623 }, "date": new Date(1338854400000), "dateDisplay": "5 June 2012" }, { "dataPoint": { "__type": "wholeNumber", "displayText": { "value": "581" }, "value": 581 }, "date": new Date(1338940800000), "dateDisplay": "6 June 2012" }, { "dataPoint": { "__type": "wholeNumber", "displayText": { "value": "837" }, "value": 837 }, "date": new Date(1339027200000), "dateDisplay": "7 June 2012" }, { "dataPoint": { "__type": "wholeNumber", "displayText": { "value": "618" }, "value": 618 }, "date": new Date(1339113600000), "dateDisplay": "8 June 2012" }, { "dataPoint": { "__type": "wholeNumber", "displayText": { "value": "168" }, "value": 168 }, "date": new Date(1339200000000), "dateDisplay": "9 June 2012" }, { "dataPoint": { "__type": "wholeNumber", "displayText": { "value": "129" }, "value": 129 }, "date": new Date(1339286400000), "dateDisplay": "10 June 2012" }, { "dataPoint": { "__type": "wholeNumber", "displayText": { "value": "1,605" }, "value": 1605 }, "date": new Date(1339372800000), "dateDisplay": "11 June 2012" }, { "dataPoint": { "__type": "wholeNumber", "displayText": { "value": "1,133" }, "value": 1133 }, "date": new Date(1339459200000), "dateDisplay": "12 June 2012" }, { "dataPoint": { "__type": "wholeNumber", "displayText": { "value": "795" }, "value": 795 }, "date": new Date(1339545600000), "dateDisplay": "13 June 2012" }, { "dataPoint": { "__type": "wholeNumber", "displayText": { "value": "753" }, "value": 753 }, "date": new Date(1339632000000), "dateDisplay": "14 June 2012" }, { "dataPoint": { "__type": "wholeNumber", "displayText": { "value": "545" }, "value": 545 }, "date": new Date(1339718400000), "dateDisplay": "15 June 2012" }, { "dataPoint": { "__type": "wholeNumber", "displayText": { "value": "198" }, "value": 198 }, "date": new Date(1339804800000), "dateDisplay": "16 June 2012" }, { "dataPoint": { "__type": "wholeNumber", "displayText": { "value": "105" }, "value": 105 }, "date": new Date(1339891200000), "dateDisplay": "17 June 2012" }, { "dataPoint": { "__type": "wholeNumber", "displayText": { "value": "703" }, "value": 703 }, "date": new Date(1339977600000), "dateDisplay": "18 June 2012" }, { "dataPoint": { "__type": "wholeNumber", "displayText": { "value": "986" }, "value": 986 }, "date": new Date(1340064000000), "dateDisplay": "19 June 2012" }, { "dataPoint": { "__type": "wholeNumber", "displayText": { "value": "765" }, "value": 765 }, "date": new Date(1340150400000), "dateDisplay": "20 June 2012" }, { "dataPoint": { "__type": "wholeNumber", "displayText": { "value": "741" }, "value": 741 }, "date": new Date(1340236800000), "dateDisplay": "21 June 2012" }, { "dataPoint": { "__type": "wholeNumber", "displayText": { "value": "531" }, "value": 531 }, "date": new Date(1340323200000), "dateDisplay": "22 June 2012" }, { "dataPoint": { "__type": "wholeNumber", "displayText": { "value": "173" }, "value": 173 }, "date": new Date(1340409600000), "dateDisplay": "23 June 2012" }, { "dataPoint": { "__type": "wholeNumber", "displayText": { "value": "109" }, "value": 109 }, "date": new Date(1340496000000), "dateDisplay": "24 June 2012" }, { "dataPoint": { "__type": "wholeNumber", "displayText": { "value": "588" }, "value": 588 }, "date": new Date(1340582400000), "dateDisplay": "25 June 2012" }, { "dataPoint": { "__type": "wholeNumber", "displayText": { "value": "494" }, "value": 494 }, "date": new Date(1340668800000), "dateDisplay": "26 June 2012" }, { "dataPoint": { "__type": "wholeNumber", "displayText": { "value": "1,194" }, "value": 1194 }, "date": new Date(1340755200000), "dateDisplay": "27 June 2012" }, { "dataPoint": { "__type": "wholeNumber", "displayText": { "value": "1,006" }, "value": 1006 }, "date": new Date(1340841600000), "dateDisplay": "28 June 2012" }, { "dataPoint": { "__type": "wholeNumber", "displayText": { "value": "656" }, "value": 656 }, "date": new Date(1340928000000), "dateDisplay": "29 June 2012" }, { "dataPoint": { "__type": "wholeNumber", "displayText": { "value": "278" }, "value": 278 }, "date": new Date(1341014400000), "dateDisplay": "30 June 2012" }, { "dataPoint": { "__type": "wholeNumber", "displayText": { "value": "173" }, "value": 173 }, "date": new Date(1341100800000), "dateDisplay": "1 July 2012" }, { "dataPoint": { "__type": "wholeNumber", "displayText": { "value": "905" }, "value": 905 }, "date": new Date(1341187200000), "dateDisplay": "2 July 2012" }, { "dataPoint": { "__type": "wholeNumber", "displayText": { "value": "704" }, "value": 704 }, "date": new Date(1341273600000), "dateDisplay": "3 July 2012" }, { "dataPoint": { "__type": "wholeNumber", "displayText": { "value": "478" }, "value": 478 }, "date": new Date(1341360000000), "dateDisplay": "4 July 2012" }, { "dataPoint": { "__type": "wholeNumber", "displayText": { "value": "674" }, "value": 674 }, "date": new Date(1341446400000), "dateDisplay": "5 July 2012" }, { "dataPoint": { "__type": "wholeNumber", "displayText": { "value": "666" }, "value": 666 }, "date": new Date(1341532800000), "dateDisplay": "6 July 2012" }, { "dataPoint": { "__type": "wholeNumber", "displayText": { "value": "202" }, "value": 202 }, "date": new Date(1341619200000), "dateDisplay": "7 July 2012" }, { "dataPoint": { "__type": "wholeNumber", "displayText": { "value": "72" }, "value": 72 }, "date": new Date(1341705600000), "dateDisplay": "8 July 2012" }, { "dataPoint": { "__type": "wholeNumber", "displayText": { "value": "584" }, "value": 584 }, "date": new Date(1341792000000), "dateDisplay": "9 July 2012" }, { "dataPoint": { "__type": "wholeNumber", "displayText": { "value": "782" }, "value": 782 }, "date": new Date(1341878400000), "dateDisplay": "10 July 2012" }, { "dataPoint": { "__type": "wholeNumber", "displayText": { "value": "671" }, "value": 671 }, "date": new Date(1341964800000), "dateDisplay": "11 July 2012" }, { "dataPoint": { "__type": "wholeNumber", "displayText": { "value": "570" }, "value": 570 }, "date": new Date(1342051200000), "dateDisplay": "12 July 2012" }, { "dataPoint": { "__type": "wholeNumber", "displayText": { "value": "464" }, "value": 464 }, "date": new Date(1342137600000), "dateDisplay": "13 July 2012" }, { "dataPoint": { "__type": "wholeNumber", "displayText": { "value": "167" }, "value": 167 }, "date": new Date(1342224000000), "dateDisplay": "14 July 2012" }, { "dataPoint": { "__type": "wholeNumber", "displayText": { "value": "122" }, "value": 122 }, "date": new Date(1342310400000), "dateDisplay": "15 July 2012" }, { "dataPoint": { "__type": "wholeNumber", "displayText": { "value": "527" }, "value": 527 }, "date": new Date(1342396800000), "dateDisplay": "16 July 2012" }, { "dataPoint": { "__type": "wholeNumber", "displayText": { "value": "681" }, "value": 681 }, "date": new Date(1342483200000), "dateDisplay": "17 July 2012" }, { "dataPoint": { "__type": "wholeNumber", "displayText": { "value": "550" }, "value": 550 }, "date": new Date(1342569600000), "dateDisplay": "18 July 2012" }, { "dataPoint": { "__type": "wholeNumber", "displayText": { "value": "739" }, "value": 739 }, "date": new Date(1342656000000), "dateDisplay": "19 July 2012" }, { "dataPoint": { "__type": "wholeNumber", "displayText": { "value": "517" }, "value": 517 }, "date": new Date(1342742400000), "dateDisplay": "20 July 2012" }, { "dataPoint": { "__type": "wholeNumber", "displayText": { "value": "155" }, "value": 155 }, "date": new Date(1342828800000), "dateDisplay": "21 July 2012" }, { "dataPoint": { "__type": "wholeNumber", "displayText": { "value": "123" }, "value": 123 }, "date": new Date(1342915200000), "dateDisplay": "22 July 2012" }, { "dataPoint": { "__type": "wholeNumber", "displayText": { "value": "686" }, "value": 686 }, "date": new Date(1343001600000), "dateDisplay": "23 July 2012" }, { "dataPoint": { "__type": "wholeNumber", "displayText": { "value": "1,403" }, "value": 1403 }, "date": new Date(1343088000000), "dateDisplay": "24 July 2012" }, { "dataPoint": { "__type": "wholeNumber", "displayText": { "value": "1,643" }, "value": 1643 }, "date": new Date(1343174400000), "dateDisplay": "25 July 2012" }, { "dataPoint": { "__type": "wholeNumber", "displayText": { "value": "942" }, "value": 942 }, "date": new Date(1343260800000), "dateDisplay": "26 July 2012" }, { "dataPoint": { "__type": "wholeNumber", "displayText": { "value": "887" }, "value": 887 }, "date": new Date(1343347200000), "dateDisplay": "27 July 2012" }, { "dataPoint": { "__type": "wholeNumber", "displayText": { "value": "303" }, "value": 303 }, "date": new Date(1343433600000), "dateDisplay": "28 July 2012" }, { "dataPoint": { "__type": "wholeNumber", "displayText": { "value": "231" }, "value": 231 }, "date": new Date(1343520000000), "dateDisplay": "29 July 2012" }, { "dataPoint": { "__type": "wholeNumber", "displayText": { "value": "1,065" }, "value": 1065 }, "date": new Date(1343606400000), "dateDisplay": "30 July 2012" }, { "dataPoint": { "__type": "wholeNumber", "displayText": { "value": "1,009" }, "value": 1009 }, "date": new Date(1343692800000), "dateDisplay": "31 July 2012" }, { "dataPoint": { "__type": "wholeNumber", "displayText": { "value": "670" }, "value": 670 }, "date": new Date(1343779200000), "dateDisplay": "1 August 2012" }, { "dataPoint": { "__type": "wholeNumber", "displayText": { "value": "619" }, "value": 619 }, "date": new Date(1343865600000), "dateDisplay": "2 August 2012" }, { "dataPoint": { "__type": "wholeNumber", "displayText": { "value": "605" }, "value": 605 }, "date": new Date(1343952000000), "dateDisplay": "3 August 2012" }, { "dataPoint": { "__type": "wholeNumber", "displayText": { "value": "156" }, "value": 156 }, "date": new Date(1344038400000), "dateDisplay": "4 August 2012" }, { "dataPoint": { "__type": "wholeNumber", "displayText": { "value": "114" }, "value": 114 }, "date": new Date(1344124800000), "dateDisplay": "5 August 2012" }, { "dataPoint": { "__type": "wholeNumber", "displayText": { "value": "695" }, "value": 695 }, "date": new Date(1344211200000), "dateDisplay": "6 August 2012" }, { "dataPoint": { "__type": "wholeNumber", "displayText": { "value": "741" }, "value": 741 }, "date": new Date(1344297600000), "dateDisplay": "7 August 2012" }, { "dataPoint": { "__type": "wholeNumber", "displayText": { "value": "736" }, "value": 736 }, "date": new Date(1344384000000), "dateDisplay": "8 August 2012" }, { "dataPoint": { "__type": "wholeNumber", "displayText": { "value": "600" }, "value": 600 }, "date": new Date(1344470400000), "dateDisplay": "9 August 2012" }, { "dataPoint": { "__type": "wholeNumber", "displayText": { "value": "554" }, "value": 554 }, "date": new Date(1344556800000), "dateDisplay": "10 August 2012" }, { "dataPoint": { "__type": "wholeNumber", "displayText": { "value": "162" }, "value": 162 }, "date": new Date(1344643200000), "dateDisplay": "11 August 2012" }, { "dataPoint": { "__type": "wholeNumber", "displayText": { "value": "116" }, "value": 116 }, "date": new Date(1344729600000), "dateDisplay": "12 August 2012" }, { "dataPoint": { "__type": "wholeNumber", "displayText": { "value": "347" }, "value": 347 }, "date": new Date(1344816000000), "dateDisplay": "13 August 2012" }, { "dataPoint": { "__type": "wholeNumber", "displayText": { "value": "19" }, "value": 19 }, "date": new Date(1344902400000), "dateDisplay": "14 August 2012" }], "frequency": 0 }, "stockDataResult": { "currencyCode": null, "dataPoints": [{ "dataPoint": { "__type": "doubleNumberStock", "displayText": { "value": "558.22" }, "value": 558.22 }, "date": new Date(1336953600000), "dateDisplay": "14 May 2012", "closePrice": { "displayText": { "value": "558.22" }, "value": 558.22 }, "dayHighPrice": { "displayText": { "value": "567.51" }, "value": 567.51 }, "dayLowPrice": { "displayText": { "value": "557.60" }, "value": 557.6 }, "openPrice": { "displayText": { "value": "562.57" }, "value": 562.57 }, "volume": { "displayText": { "value": "12,593,729" }, "value": 12593729 } }, { "dataPoint": { "__type": "doubleNumberStock", "displayText": { "value": "553.17" }, "value": 553.17 }, "date": new Date(1337040000000), "dateDisplay": "15 May 2012", "closePrice": { "displayText": { "value": "553.17" }, "value": 553.17 }, "dayHighPrice": { "displayText": { "value": "563.22" }, "value": 563.22 }, "dayLowPrice": { "displayText": { "value": "551.75" }, "value": 551.75 }, "openPrice": { "displayText": { "value": "561.45" }, "value": 561.45 }, "volume": { "displayText": { "value": "17,010,954" }, "value": 17010954 } }, { "dataPoint": { "__type": "doubleNumberStock", "displayText": { "value": "546.08" }, "value": 546.075 }, "date": new Date(1337126400000), "dateDisplay": "16 May 2012", "closePrice": { "displayText": { "value": "546.08" }, "value": 546.075 }, "dayHighPrice": { "displayText": { "value": "556.89" }, "value": 556.89 }, "dayLowPrice": { "displayText": { "value": "541.04" }, "value": 541.04 }, "openPrice": { "displayText": { "value": "554.05" }, "value": 554.05 }, "volume": { "displayText": { "value": "20,031,982" }, "value": 20031982 } }, { "dataPoint": { "__type": "doubleNumberStock", "displayText": { "value": "530.12" }, "value": 530.12 }, "date": new Date(1337212800000), "dateDisplay": "17 May 2012", "closePrice": { "displayText": { "value": "530.12" }, "value": 530.12 }, "dayHighPrice": { "displayText": { "value": "547.50" }, "value": 547.5 }, "dayLowPrice": { "displayText": { "value": "530.12" }, "value": 530.12 }, "openPrice": { "displayText": { "value": "545.31" }, "value": 545.31 }, "volume": { "displayText": { "value": "25,614,959" }, "value": 25614959 } }, { "dataPoint": { "__type": "doubleNumberStock", "displayText": { "value": "530.38" }, "value": 530.38 }, "date": new Date(1337299200000), "dateDisplay": "18 May 2012", "closePrice": { "displayText": { "value": "530.38" }, "value": 530.38 }, "dayHighPrice": { "displayText": { "value": "543.41" }, "value": 543.41 }, "dayLowPrice": { "displayText": { "value": "522.18" }, "value": 522.18 }, "openPrice": { "displayText": { "value": "533.96" }, "value": 533.96 }, "volume": { "displayText": { "value": "26,153,209" }, "value": 26153209 } }, { "dataPoint": { "__type": "doubleNumberStock", "displayText": { "value": "561.28" }, "value": 561.28 }, "date": new Date(1337558400000), "dateDisplay": "21 May 2012", "closePrice": { "displayText": { "value": "561.28" }, "value": 561.28 }, "dayHighPrice": { "displayText": { "value": "561.54" }, "value": 561.54 }, "dayLowPrice": { "displayText": { "value": "534.05" }, "value": 534.05 }, "openPrice": { "displayText": { "value": "534.50" }, "value": 534.5 }, "volume": { "displayText": { "value": "22,538,970" }, "value": 22538970 } }, { "dataPoint": { "__type": "doubleNumberStock", "displayText": { "value": "556.97" }, "value": 556.97 }, "date": new Date(1337644800000), "dateDisplay": "22 May 2012", "closePrice": { "displayText": { "value": "556.97" }, "value": 556.97 }, "dayHighPrice": { "displayText": { "value": "573.88" }, "value": 573.88 }, "dayLowPrice": { "displayText": { "value": "552.58" }, "value": 552.58 }, "openPrice": { "displayText": { "value": "569.55" }, "value": 569.55 }, "volume": { "displayText": { "value": "24,813,822" }, "value": 24813822 } }, { "dataPoint": { "__type": "doubleNumberStock", "displayText": { "value": "570.56" }, "value": 570.56 }, "date": new Date(1337731200000), "dateDisplay": "23 May 2012", "closePrice": { "displayText": { "value": "570.56" }, "value": 570.56 }, "dayHighPrice": { "displayText": { "value": "572.80" }, "value": 572.8 }, "dayLowPrice": { "displayText": { "value": "553.23" }, "value": 553.23 }, "openPrice": { "displayText": { "value": "557.50" }, "value": 557.5 }, "volume": { "displayText": { "value": "20,889,195" }, "value": 20889195 } }, { "dataPoint": { "__type": "doubleNumberStock", "displayText": { "value": "565.32" }, "value": 565.32 }, "date": new Date(1337817600000), "dateDisplay": "24 May 2012", "closePrice": { "displayText": { "value": "565.32" }, "value": 565.32 }, "dayHighPrice": { "displayText": { "value": "576.50" }, "value": 576.5 }, "dayLowPrice": { "displayText": { "value": "561.23" }, "value": 561.23 }, "openPrice": { "displayText": { "value": "575.87" }, "value": 575.87 }, "volume": { "displayText": { "value": "17,721,358" }, "value": 17721358 } }, { "dataPoint": { "__type": "doubleNumberStock", "displayText": { "value": "562.29" }, "value": 562.29 }, "date": new Date(1337904000000), "dateDisplay": "25 May 2012", "closePrice": { "displayText": { "value": "562.29" }, "value": 562.29 }, "dayHighPrice": { "displayText": { "value": "565.85" }, "value": 565.85 }, "dayLowPrice": { "displayText": { "value": "558.47" }, "value": 558.472 }, "openPrice": { "displayText": { "value": "564.59" }, "value": 564.59 }, "volume": { "displayText": { "value": "11,730,936" }, "value": 11730936 } }, { "dataPoint": { "__type": "doubleNumberStock", "displayText": { "value": "572.27" }, "value": 572.27 }, "date": new Date(1338249600000), "dateDisplay": "29 May 2012", "closePrice": { "displayText": { "value": "572.27" }, "value": 572.27 }, "dayHighPrice": { "displayText": { "value": "574.00" }, "value": 574 }, "dayLowPrice": { "displayText": { "value": "565.31" }, "value": 565.31 }, "openPrice": { "displayText": { "value": "570.90" }, "value": 570.9 }, "volume": { "displayText": { "value": "13,589,478" }, "value": 13589478 } }, { "dataPoint": { "__type": "doubleNumberStock", "displayText": { "value": "579.17" }, "value": 579.17 }, "date": new Date(1338336000000), "dateDisplay": "30 May 2012", "closePrice": { "displayText": { "value": "579.17" }, "value": 579.17 }, "dayHighPrice": { "displayText": { "value": "579.99" }, "value": 579.99 }, "dayLowPrice": { "displayText": { "value": "566.56" }, "value": 566.56 }, "openPrice": { "displayText": { "value": "569.20" }, "value": 569.2 }, "volume": { "displayText": { "value": "18,907,887" }, "value": 18907887 } }, { "dataPoint": { "__type": "doubleNumberStock", "displayText": { "value": "577.73" }, "value": 577.73 }, "date": new Date(1338422400000), "dateDisplay": "31 May 2012", "closePrice": { "displayText": { "value": "577.73" }, "value": 577.73 }, "dayHighPrice": { "displayText": { "value": "581.50" }, "value": 581.5 }, "dayLowPrice": { "displayText": { "value": "571.46" }, "value": 571.46 }, "openPrice": { "displayText": { "value": "580.74" }, "value": 580.74 }, "volume": { "displayText": { "value": "17,568,229" }, "value": 17568229 } }, { "dataPoint": { "__type": "doubleNumberStock", "displayText": { "value": "560.99" }, "value": 560.99 }, "date": new Date(1338508800000), "dateDisplay": "1 June 2012", "closePrice": { "displayText": { "value": "560.99" }, "value": 560.99 }, "dayHighPrice": { "displayText": { "value": "572.65" }, "value": 572.65 }, "dayLowPrice": { "displayText": { "value": "560.52" }, "value": 560.52 }, "openPrice": { "displayText": { "value": "569.16" }, "value": 569.16 }, "volume": { "displayText": { "value": "18,606,442" }, "value": 18606442 } }, { "dataPoint": { "__type": "doubleNumberStock", "displayText": { "value": "564.29" }, "value": 564.29 }, "date": new Date(1338768000000), "dateDisplay": "4 June 2012", "closePrice": { "displayText": { "value": "564.29" }, "value": 564.29 }, "dayHighPrice": { "displayText": { "value": "567.50" }, "value": 567.5 }, "dayLowPrice": { "displayText": { "value": "548.50" }, "value": 548.5 }, "openPrice": { "displayText": { "value": "561.50" }, "value": 561.5 }, "volume": { "displayText": { "value": "19,892,447" }, "value": 19892447 } }, { "dataPoint": { "__type": "doubleNumberStock", "displayText": { "value": "562.83" }, "value": 562.83 }, "date": new Date(1338854400000), "dateDisplay": "5 June 2012", "closePrice": { "displayText": { "value": "562.83" }, "value": 562.83 }, "dayHighPrice": { "displayText": { "value": "566.47" }, "value": 566.47 }, "dayLowPrice": { "displayText": { "value": "558.33" }, "value": 558.33 }, "openPrice": { "displayText": { "value": "561.27" }, "value": 561.27 }, "volume": { "displayText": { "value": "13,864,768" }, "value": 13864768 } }, { "dataPoint": { "__type": "doubleNumberStock", "displayText": { "value": "571.46" }, "value": 571.46 }, "date": new Date(1338940800000), "dateDisplay": "6 June 2012", "closePrice": { "displayText": { "value": "571.46" }, "value": 571.46 }, "dayHighPrice": { "displayText": { "value": "573.85" }, "value": 573.85 }, "dayLowPrice": { "displayText": { "value": "565.50" }, "value": 565.5 }, "openPrice": { "displayText": { "value": "567.77" }, "value": 567.77 }, "volume": { "displayText": { "value": "14,337,466" }, "value": 14337466 } }, { "dataPoint": { "__type": "doubleNumberStock", "displayText": { "value": "571.72" }, "value": 571.72 }, "date": new Date(1339027200000), "dateDisplay": "7 June 2012", "closePrice": { "displayText": { "value": "571.72" }, "value": 571.72 }, "dayHighPrice": { "displayText": { "value": "577.32" }, "value": 577.32 }, "dayLowPrice": { "displayText": { "value": "570.50" }, "value": 570.5 }, "openPrice": { "displayText": { "value": "577.29" }, "value": 577.29 }, "volume": { "displayText": { "value": "13,570,452" }, "value": 13570452 } }, { "dataPoint": { "__type": "doubleNumberStock", "displayText": { "value": "580.32" }, "value": 580.32 }, "date": new Date(1339113600000), "dateDisplay": "8 June 2012", "closePrice": { "displayText": { "value": "580.32" }, "value": 580.32 }, "dayHighPrice": { "displayText": { "value": "580.58" }, "value": 580.584 }, "dayLowPrice": { "displayText": { "value": "569.00" }, "value": 569 }, "openPrice": { "displayText": { "value": "571.60" }, "value": 571.6 }, "volume": { "displayText": { "value": "12,410,410" }, "value": 12410410 } }, { "dataPoint": { "__type": "doubleNumberStock", "displayText": { "value": "571.17" }, "value": 571.17 }, "date": new Date(1339372800000), "dateDisplay": "11 June 2012", "closePrice": { "displayText": { "value": "571.17" }, "value": 571.17 }, "dayHighPrice": { "displayText": { "value": "588.50" }, "value": 588.5 }, "dayLowPrice": { "displayText": { "value": "570.63" }, "value": 570.63 }, "openPrice": { "displayText": { "value": "587.72" }, "value": 587.72 }, "volume": { "displayText": { "value": "21,116,528" }, "value": 21116528 } }, { "dataPoint": { "__type": "doubleNumberStock", "displayText": { "value": "576.16" }, "value": 576.16 }, "date": new Date(1339459200000), "dateDisplay": "12 June 2012", "closePrice": { "displayText": { "value": "576.16" }, "value": 576.16 }, "dayHighPrice": { "displayText": { "value": "576.62" }, "value": 576.62 }, "dayLowPrice": { "displayText": { "value": "566.70" }, "value": 566.7 }, "openPrice": { "displayText": { "value": "574.46" }, "value": 574.46 }, "volume": { "displayText": { "value": "15,556,423" }, "value": 15556423 } }, { "dataPoint": { "__type": "doubleNumberStock", "displayText": { "value": "572.16" }, "value": 572.16 }, "date": new Date(1339545600000), "dateDisplay": "13 June 2012", "closePrice": { "displayText": { "value": "572.16" }, "value": 572.16 }, "dayHighPrice": { "displayText": { "value": "578.48" }, "value": 578.48 }, "dayLowPrice": { "displayText": { "value": "570.38" }, "value": 570.38 }, "openPrice": { "displayText": { "value": "574.52" }, "value": 574.52 }, "volume": { "displayText": { "value": "10,491,890" }, "value": 10491890 } }, { "dataPoint": { "__type": "doubleNumberStock", "displayText": { "value": "571.53" }, "value": 571.53 }, "date": new Date(1339632000000), "dateDisplay": "14 June 2012", "closePrice": { "displayText": { "value": "571.53" }, "value": 571.53 }, "dayHighPrice": { "displayText": { "value": "573.50" }, "value": 573.5 }, "dayLowPrice": { "displayText": { "value": "567.26" }, "value": 567.26 }, "openPrice": { "displayText": { "value": "571.24" }, "value": 571.24 }, "volume": { "displayText": { "value": "12,351,469" }, "value": 12351469 } }, { "dataPoint": { "__type": "doubleNumberStock", "displayText": { "value": "574.13" }, "value": 574.13 }, "date": new Date(1339718400000), "dateDisplay": "15 June 2012", "closePrice": { "displayText": { "value": "574.13" }, "value": 574.13 }, "dayHighPrice": { "displayText": { "value": "574.62" }, "value": 574.62 }, "dayLowPrice": { "displayText": { "value": "569.55" }, "value": 569.55 }, "openPrice": { "displayText": { "value": "571.00" }, "value": 571 }, "volume": { "displayText": { "value": "11,973,340" }, "value": 11973340 } }, { "dataPoint": { "__type": "doubleNumberStock", "displayText": { "value": "585.78" }, "value": 585.78 }, "date": new Date(1339977600000), "dateDisplay": "18 June 2012", "closePrice": { "displayText": { "value": "585.78" }, "value": 585.78 }, "dayHighPrice": { "displayText": { "value": "587.89" }, "value": 587.89 }, "dayLowPrice": { "displayText": { "value": "570.37" }, "value": 570.37 }, "openPrice": { "displayText": { "value": "570.96" }, "value": 570.96 }, "volume": { "displayText": { "value": "15,728,970" }, "value": 15728970 } }, { "dataPoint": { "__type": "doubleNumberStock", "displayText": { "value": "587.41" }, "value": 587.41 }, "date": new Date(1340064000000), "dateDisplay": "19 June 2012", "closePrice": { "displayText": { "value": "587.41" }, "value": 587.41 }, "dayHighPrice": { "displayText": { "value": "590.00" }, "value": 590 }, "dayLowPrice": { "displayText": { "value": "583.10" }, "value": 583.1 }, "openPrice": { "displayText": { "value": "583.40" }, "value": 583.4 }, "volume": { "displayText": { "value": "12,907,276" }, "value": 12907276 } }, { "dataPoint": { "__type": "doubleNumberStock", "displayText": { "value": "585.74" }, "value": 585.741 }, "date": new Date(1340150400000), "dateDisplay": "20 June 2012", "closePrice": { "displayText": { "value": "585.74" }, "value": 585.741 }, "dayHighPrice": { "displayText": { "value": "589.25" }, "value": 589.25 }, "dayLowPrice": { "displayText": { "value": "580.80" }, "value": 580.8 }, "openPrice": { "displayText": { "value": "588.21" }, "value": 588.21 }, "volume": { "displayText": { "value": "12,827,092" }, "value": 12827092 } }, { "dataPoint": { "__type": "doubleNumberStock", "displayText": { "value": "577.67" }, "value": 577.67 }, "date": new Date(1340236800000), "dateDisplay": "21 June 2012", "closePrice": { "displayText": { "value": "577.67" }, "value": 577.67 }, "dayHighPrice": { "displayText": { "value": "588.22" }, "value": 588.22 }, "dayLowPrice": { "displayText": { "value": "577.44" }, "value": 577.44 }, "openPrice": { "displayText": { "value": "585.44" }, "value": 585.44 }, "volume": { "displayText": { "value": "11,660,894" }, "value": 11660894 } }, { "dataPoint": { "__type": "doubleNumberStock", "displayText": { "value": "582.10" }, "value": 582.1 }, "date": new Date(1340323200000), "dateDisplay": "22 June 2012", "closePrice": { "displayText": { "value": "582.10" }, "value": 582.1 }, "dayHighPrice": { "displayText": { "value": "582.19" }, "value": 582.19 }, "dayLowPrice": { "displayText": { "value": "575.42" }, "value": 575.42 }, "openPrice": { "displayText": { "value": "579.04" }, "value": 579.04 }, "volume": { "displayText": { "value": "10,169,473" }, "value": 10169473 } }, { "dataPoint": { "__type": "doubleNumberStock", "displayText": { "value": "570.77" }, "value": 570.765 }, "date": new Date(1340582400000), "dateDisplay": "25 June 2012", "closePrice": { "displayText": { "value": "570.77" }, "value": 570.765 }, "dayHighPrice": { "displayText": { "value": "579.80" }, "value": 579.8 }, "dayLowPrice": { "displayText": { "value": "570.37" }, "value": 570.37 }, "openPrice": { "displayText": { "value": "577.30" }, "value": 577.3 }, "volume": { "displayText": { "value": "10,869,808" }, "value": 10869808 } }, { "dataPoint": { "__type": "doubleNumberStock", "displayText": { "value": "572.03" }, "value": 572.025 }, "date": new Date(1340668800000), "dateDisplay": "26 June 2012", "closePrice": { "displayText": { "value": "572.03" }, "value": 572.025 }, "dayHighPrice": { "displayText": { "value": "574.49" }, "value": 574.49 }, "dayLowPrice": { "displayText": { "value": "567.33" }, "value": 567.33 }, "openPrice": { "displayText": { "value": "571.33" }, "value": 571.33 }, "volume": { "displayText": { "value": "9,883,929" }, "value": 9883929 } }, { "dataPoint": { "__type": "doubleNumberStock", "displayText": { "value": "574.50" }, "value": 574.5 }, "date": new Date(1340755200000), "dateDisplay": "27 June 2012", "closePrice": { "displayText": { "value": "574.50" }, "value": 574.5 }, "dayHighPrice": { "displayText": { "value": "576.74" }, "value": 576.74 }, "dayLowPrice": { "displayText": { "value": "571.92" }, "value": 571.92 }, "openPrice": { "displayText": { "value": "575.00" }, "value": 575 }, "volume": { "displayText": { "value": "7,252,110" }, "value": 7252110 } }, { "dataPoint": { "__type": "doubleNumberStock", "displayText": { "value": "569.05" }, "value": 569.05 }, "date": new Date(1340841600000), "dateDisplay": "28 June 2012", "closePrice": { "displayText": { "value": "569.05" }, "value": 569.05 }, "dayHighPrice": { "displayText": { "value": "574.00" }, "value": 574 }, "dayLowPrice": { "displayText": { "value": "565.61" }, "value": 565.61 }, "openPrice": { "displayText": { "value": "571.67" }, "value": 571.67 }, "volume": { "displayText": { "value": "10,108,649" }, "value": 10108649 } }, { "dataPoint": { "__type": "doubleNumberStock", "displayText": { "value": "584.00" }, "value": 584 }, "date": new Date(1340928000000), "dateDisplay": "29 June 2012", "closePrice": { "displayText": { "value": "584.00" }, "value": 584 }, "dayHighPrice": { "displayText": { "value": "584.00" }, "value": 584 }, "dayLowPrice": { "displayText": { "value": "574.25" }, "value": 574.25 }, "openPrice": { "displayText": { "value": "578.00" }, "value": 578 }, "volume": { "displayText": { "value": "15,051,433" }, "value": 15051433 } }, { "dataPoint": { "__type": "doubleNumberStock", "displayText": { "value": "592.52" }, "value": 592.52 }, "date": new Date(1341187200000), "dateDisplay": "2 July 2012", "closePrice": { "displayText": { "value": "592.52" }, "value": 592.52 }, "dayHighPrice": { "displayText": { "value": "593.47" }, "value": 593.47 }, "dayLowPrice": { "displayText": { "value": "583.60" }, "value": 583.6 }, "openPrice": { "displayText": { "value": "584.73" }, "value": 584.73 }, "volume": { "displayText": { "value": "14,288,968" }, "value": 14288968 } }, { "dataPoint": { "__type": "doubleNumberStock", "displayText": { "value": "599.41" }, "value": 599.41 }, "date": new Date(1341273600000), "dateDisplay": "3 July 2012", "closePrice": { "displayText": { "value": "599.41" }, "value": 599.41 }, "dayHighPrice": { "displayText": { "value": "600.00" }, "value": 600 }, "dayLowPrice": { "displayText": { "value": "594.00" }, "value": 594 }, "openPrice": { "displayText": { "value": "594.88" }, "value": 594.88 }, "volume": { "displayText": { "value": "8,632,595" }, "value": 8632595 } }, { "dataPoint": { "__type": "doubleNumberStock", "displayText": { "value": "609.94" }, "value": 609.94 }, "date": new Date(1341446400000), "dateDisplay": "5 July 2012", "closePrice": { "displayText": { "value": "609.94" }, "value": 609.94 }, "dayHighPrice": { "displayText": { "value": "614.34" }, "value": 614.34 }, "dayLowPrice": { "displayText": { "value": "599.65" }, "value": 599.65 }, "openPrice": { "displayText": { "value": "600.56" }, "value": 600.56 }, "volume": { "displayText": { "value": "17,299,303" }, "value": 17299303 } }, { "dataPoint": { "__type": "doubleNumberStock", "displayText": { "value": "605.88" }, "value": 605.88 }, "date": new Date(1341532800000), "dateDisplay": "6 July 2012", "closePrice": { "displayText": { "value": "605.88" }, "value": 605.88 }, "dayHighPrice": { "displayText": { "value": "608.44" }, "value": 608.44 }, "dayLowPrice": { "displayText": { "value": "601.58" }, "value": 601.58 }, "openPrice": { "displayText": { "value": "607.09" }, "value": 607.09 }, "volume": { "displayText": { "value": "14,965,308" }, "value": 14965308 } }, { "dataPoint": { "__type": "doubleNumberStock", "displayText": { "value": "613.89" }, "value": 613.89 }, "date": new Date(1341792000000), "dateDisplay": "9 July 2012", "closePrice": { "displayText": { "value": "613.89" }, "value": 613.89 }, "dayHighPrice": { "displayText": { "value": "613.90" }, "value": 613.9 }, "dayLowPrice": { "displayText": { "value": "604.11" }, "value": 604.11 }, "openPrice": { "displayText": { "value": "605.30" }, "value": 605.3 }, "volume": { "displayText": { "value": "13,550,032" }, "value": 13550032 } }, { "dataPoint": { "__type": "doubleNumberStock", "displayText": { "value": "608.21" }, "value": 608.21 }, "date": new Date(1341878400000), "dateDisplay": "10 July 2012", "closePrice": { "displayText": { "value": "608.21" }, "value": 608.21 }, "dayHighPrice": { "displayText": { "value": "619.87" }, "value": 619.87 }, "dayLowPrice": { "displayText": { "value": "605.31" }, "value": 605.31 }, "openPrice": { "displayText": { "value": "617.97" }, "value": 617.97 }, "volume": { "displayText": { "value": "18,284,201" }, "value": 18284201 } }, { "dataPoint": { "__type": "doubleNumberStock", "displayText": { "value": "604.43" }, "value": 604.43 }, "date": new Date(1341964800000), "dateDisplay": "11 July 2012", "closePrice": { "displayText": { "value": "604.43" }, "value": 604.43 }, "dayHighPrice": { "displayText": { "value": "607.66" }, "value": 607.66 }, "dayLowPrice": { "displayText": { "value": "597.22" }, "value": 597.22 }, "openPrice": { "displayText": { "value": "606.12" }, "value": 606.12 }, "volume": { "displayText": { "value": "16,761,338" }, "value": 16761338 } }, { "dataPoint": { "__type": "doubleNumberStock", "displayText": { "value": "598.90" }, "value": 598.9 }, "date": new Date(1342051200000), "dateDisplay": "12 July 2012", "closePrice": { "displayText": { "value": "598.90" }, "value": 598.9 }, "dayHighPrice": { "displayText": { "value": "603.47" }, "value": 603.47 }, "dayLowPrice": { "displayText": { "value": "592.68" }, "value": 592.68 }, "openPrice": { "displayText": { "value": "600.24" }, "value": 600.24 }, "volume": { "displayText": { "value": "15,285,309" }, "value": 15285309 } }, { "dataPoint": { "__type": "doubleNumberStock", "displayText": { "value": "604.97" }, "value": 604.97 }, "date": new Date(1342137600000), "dateDisplay": "13 July 2012", "closePrice": { "displayText": { "value": "604.97" }, "value": 604.97 }, "dayHighPrice": { "displayText": { "value": "607.19" }, "value": 607.19 }, "dayLowPrice": { "displayText": { "value": "600.00" }, "value": 600 }, "openPrice": { "displayText": { "value": "602.95" }, "value": 602.95 }, "volume": { "displayText": { "value": "11,129,207" }, "value": 11129207 } }, { "dataPoint": { "__type": "doubleNumberStock", "displayText": { "value": "606.91" }, "value": 606.91 }, "date": new Date(1342396800000), "dateDisplay": "16 July 2012", "closePrice": { "displayText": { "value": "606.91" }, "value": 606.91 }, "dayHighPrice": { "displayText": { "value": "611.62" }, "value": 611.62 }, "dayLowPrice": { "displayText": { "value": "605.02" }, "value": 605.02 }, "openPrice": { "displayText": { "value": "605.12" }, "value": 605.12 }, "volume": { "displayText": { "value": "10,760,906" }, "value": 10760906 } }, { "dataPoint": { "__type": "doubleNumberStock", "displayText": { "value": "606.94" }, "value": 606.94 }, "date": new Date(1342483200000), "dateDisplay": "17 July 2012", "closePrice": { "displayText": { "value": "606.94" }, "value": 606.94 }, "dayHighPrice": { "displayText": { "value": "611.50" }, "value": 611.5 }, "dayLowPrice": { "displayText": { "value": "603.15" }, "value": 603.15 }, "openPrice": { "displayText": { "value": "610.79" }, "value": 610.79 }, "volume": { "displayText": { "value": "10,493,291" }, "value": 10493291 } }, { "dataPoint": { "__type": "doubleNumberStock", "displayText": { "value": "606.26" }, "value": 606.26 }, "date": new Date(1342569600000), "dateDisplay": "18 July 2012", "closePrice": { "displayText": { "value": "606.26" }, "value": 606.26 }, "dayHighPrice": { "displayText": { "value": "608.34" }, "value": 608.34 }, "dayLowPrice": { "displayText": { "value": "603.56" }, "value": 603.56 }, "openPrice": { "displayText": { "value": "606.59" }, "value": 606.59 }, "volume": { "displayText": { "value": "9,024,984" }, "value": 9024984 } }, { "dataPoint": { "__type": "doubleNumberStock", "displayText": { "value": "614.32" }, "value": 614.32 }, "date": new Date(1342656000000), "dateDisplay": "19 July 2012", "closePrice": { "displayText": { "value": "614.32" }, "value": 614.32 }, "dayHighPrice": { "displayText": { "value": "615.35" }, "value": 615.35 }, "dayLowPrice": { "displayText": { "value": "606.00" }, "value": 606 }, "openPrice": { "displayText": { "value": "611.28" }, "value": 611.28 }, "volume": { "displayText": { "value": "15,602,081" }, "value": 15602081 } }, { "dataPoint": { "__type": "doubleNumberStock", "displayText": { "value": "604.30" }, "value": 604.3 }, "date": new Date(1342742400000), "dateDisplay": "20 July 2012", "closePrice": { "displayText": { "value": "604.30" }, "value": 604.3 }, "dayHighPrice": { "displayText": { "value": "614.44" }, "value": 614.44 }, "dayLowPrice": { "displayText": { "value": "603.70" }, "value": 603.7 }, "openPrice": { "displayText": { "value": "613.03" }, "value": 613.03 }, "volume": { "displayText": { "value": "14,195,350" }, "value": 14195350 } }, { "dataPoint": { "__type": "doubleNumberStock", "displayText": { "value": "603.83" }, "value": 603.83 }, "date": new Date(1343001600000), "dateDisplay": "23 July 2012", "closePrice": { "displayText": { "value": "603.83" }, "value": 603.83 }, "dayHighPrice": { "displayText": { "value": "605.90" }, "value": 605.9 }, "dayLowPrice": { "displayText": { "value": "587.71" }, "value": 587.71 }, "openPrice": { "displayText": { "value": "594.40" }, "value": 594.4 }, "volume": { "displayText": { "value": "17,427,685" }, "value": 17427685 } }, { "dataPoint": { "__type": "doubleNumberStock", "displayText": { "value": "600.92" }, "value": 600.92 }, "date": new Date(1343088000000), "dateDisplay": "24 July 2012", "closePrice": { "displayText": { "value": "600.92" }, "value": 600.92 }, "dayHighPrice": { "displayText": { "value": "609.68" }, "value": 609.68 }, "dayLowPrice": { "displayText": { "value": "598.51" }, "value": 598.51 }, "openPrice": { "displayText": { "value": "607.38" }, "value": 607.38 }, "volume": { "displayText": { "value": "20,183,292" }, "value": 20183292 } }, { "dataPoint": { "__type": "doubleNumberStock", "displayText": { "value": "574.97" }, "value": 574.97 }, "date": new Date(1343174400000), "dateDisplay": "25 July 2012", "closePrice": { "displayText": { "value": "574.97" }, "value": 574.97 }, "dayHighPrice": { "displayText": { "value": "580.80" }, "value": 580.8 }, "dayLowPrice": { "displayText": { "value": "570.00" }, "value": 570 }, "openPrice": { "displayText": { "value": "574.46" }, "value": 574.46 }, "volume": { "displayText": { "value": "31,330,624" }, "value": 31330624 } }, { "dataPoint": { "__type": "doubleNumberStock", "displayText": { "value": "574.88" }, "value": 574.88 }, "date": new Date(1343260800000), "dateDisplay": "26 July 2012", "closePrice": { "displayText": { "value": "574.88" }, "value": 574.88 }, "dayHighPrice": { "displayText": { "value": "580.40" }, "value": 580.4 }, "dayLowPrice": { "displayText": { "value": "570.36" }, "value": 570.36 }, "openPrice": { "displayText": { "value": "579.76" }, "value": 579.76 }, "volume": { "displayText": { "value": "14,528,940" }, "value": 14528940 } }, { "dataPoint": { "__type": "doubleNumberStock", "displayText": { "value": "585.16" }, "value": 585.16 }, "date": new Date(1343347200000), "dateDisplay": "27 July 2012", "closePrice": { "displayText": { "value": "585.16" }, "value": 585.16 }, "dayHighPrice": { "displayText": { "value": "585.83" }, "value": 585.83 }, "dayLowPrice": { "displayText": { "value": "571.59" }, "value": 571.59 }, "openPrice": { "displayText": { "value": "575.01" }, "value": 575.01 }, "volume": { "displayText": { "value": "14,430,463" }, "value": 14430463 } }, { "dataPoint": { "__type": "doubleNumberStock", "displayText": { "value": "595.03" }, "value": 595.03 }, "date": new Date(1343606400000), "dateDisplay": "30 July 2012", "closePrice": { "displayText": { "value": "595.03" }, "value": 595.03 }, "dayHighPrice": { "displayText": { "value": "599.44" }, "value": 599.44 }, "dayLowPrice": { "displayText": { "value": "587.82" }, "value": 587.82 }, "openPrice": { "displayText": { "value": "590.92" }, "value": 590.92 }, "volume": { "displayText": { "value": "13,540,710" }, "value": 13540710 } }, { "dataPoint": { "__type": "doubleNumberStock", "displayText": { "value": "610.76" }, "value": 610.76 }, "date": new Date(1343692800000), "dateDisplay": "31 July 2012", "closePrice": { "displayText": { "value": "610.76" }, "value": 610.76 }, "dayHighPrice": { "displayText": { "value": "611.70" }, "value": 611.7 }, "dayLowPrice": { "displayText": { "value": "602.72" }, "value": 602.72 }, "openPrice": { "displayText": { "value": "603.23" }, "value": 603.23 }, "volume": { "displayText": { "value": "16,511,668" }, "value": 16511668 } }, { "dataPoint": { "__type": "doubleNumberStock", "displayText": { "value": "606.81" }, "value": 606.81 }, "date": new Date(1343779200000), "dateDisplay": "1 August 2012", "closePrice": { "displayText": { "value": "606.81" }, "value": 606.81 }, "dayHighPrice": { "displayText": { "value": "616.40" }, "value": 616.4 }, "dayLowPrice": { "displayText": { "value": "603.00" }, "value": 603 }, "openPrice": { "displayText": { "value": "615.91" }, "value": 615.905 }, "volume": { "displayText": { "value": "13,732,106" }, "value": 13732106 } }, { "dataPoint": { "__type": "doubleNumberStock", "displayText": { "value": "607.79" }, "value": 607.79 }, "date": new Date(1343865600000), "dateDisplay": "2 August 2012", "closePrice": { "displayText": { "value": "607.79" }, "value": 607.79 }, "dayHighPrice": { "displayText": { "value": "610.69" }, "value": 610.69 }, "dayLowPrice": { "displayText": { "value": "600.25" }, "value": 600.25 }, "openPrice": { "displayText": { "value": "602.84" }, "value": 602.84 }, "volume": { "displayText": { "value": "11,866,029" }, "value": 11866029 } }, { "dataPoint": { "__type": "doubleNumberStock", "displayText": { "value": "615.70" }, "value": 615.7 }, "date": new Date(1343952000000), "dateDisplay": "3 August 2012", "closePrice": { "displayText": { "value": "615.70" }, "value": 615.7 }, "dayHighPrice": { "displayText": { "value": "617.98" }, "value": 617.98 }, "dayLowPrice": { "displayText": { "value": "611.56" }, "value": 611.56 }, "openPrice": { "displayText": { "value": "613.63" }, "value": 613.63 }, "volume": { "displayText": { "value": "12,318,372" }, "value": 12318372 } }, { "dataPoint": { "__type": "doubleNumberStock", "displayText": { "value": "622.55" }, "value": 622.55 }, "date": new Date(1344211200000), "dateDisplay": "6 August 2012", "closePrice": { "displayText": { "value": "622.55" }, "value": 622.55 }, "dayHighPrice": { "displayText": { "value": "624.87" }, "value": 624.868 }, "dayLowPrice": { "displayText": { "value": "615.26" }, "value": 615.26 }, "openPrice": { "displayText": { "value": "617.29" }, "value": 617.29 }, "volume": { "displayText": { "value": "10,797,144" }, "value": 10797144 } }, { "dataPoint": { "__type": "doubleNumberStock", "displayText": { "value": "620.91" }, "value": 620.914 }, "date": new Date(1344297600000), "dateDisplay": "7 August 2012", "closePrice": { "displayText": { "value": "620.91" }, "value": 620.914 }, "dayHighPrice": { "displayText": { "value": "625.00" }, "value": 625 }, "dayLowPrice": { "displayText": { "value": "618.04" }, "value": 618.04 }, "openPrice": { "displayText": { "value": "622.77" }, "value": 622.77 }, "volume": { "displayText": { "value": "10,375,356" }, "value": 10375356 } }, { "dataPoint": { "__type": "doubleNumberStock", "displayText": { "value": "619.86" }, "value": 619.86 }, "date": new Date(1344384000000), "dateDisplay": "8 August 2012", "closePrice": { "displayText": { "value": "619.86" }, "value": 619.86 }, "dayHighPrice": { "displayText": { "value": "623.88" }, "value": 623.88 }, "dayLowPrice": { "displayText": { "value": "617.10" }, "value": 617.1 }, "openPrice": { "displayText": { "value": "619.39" }, "value": 619.39 }, "volume": { "displayText": { "value": "8,739,440" }, "value": 8739440 } }, { "dataPoint": { "__type": "doubleNumberStock", "displayText": { "value": "620.73" }, "value": 620.73 }, "date": new Date(1344470400000), "dateDisplay": "9 August 2012", "closePrice": { "displayText": { "value": "620.73" }, "value": 620.73 }, "dayHighPrice": { "displayText": { "value": "621.73" }, "value": 621.73 }, "dayLowPrice": { "displayText": { "value": "617.80" }, "value": 617.8 }, "openPrice": { "displayText": { "value": "617.85" }, "value": 617.85 }, "volume": { "displayText": { "value": "7,921,798" }, "value": 7921798 } }, { "dataPoint": { "__type": "doubleNumberStock", "displayText": { "value": "621.70" }, "value": 621.7 }, "date": new Date(1344556800000), "dateDisplay": "10 August 2012", "closePrice": { "displayText": { "value": "621.70" }, "value": 621.7 }, "dayHighPrice": { "displayText": { "value": "621.76" }, "value": 621.76 }, "dayLowPrice": { "displayText": { "value": "618.70" }, "value": 618.7 }, "openPrice": { "displayText": { "value": "618.71" }, "value": 618.71 }, "volume": { "displayText": { "value": "6,966,435" }, "value": 6966435 } }], "djTicker": "AAPL", "exchange": { "code": "XNAS", "descriptor": "U.S.: Nasdaq", "isPrimary": true }, "frequency": 0, "fromDate": null, "instrumentName": "Apple Inc.", "provider": { "externalUrl": "http://www.six-telekurs.com", "name": "SIX-Telekurs" }, "requestedSymbol": "AAPL", "ric": null, "toDate": null } };
+            return o;
+        });
+
+        $dj.require(['Data', 'DJ', 'jquery-ui-interactions'], function (Data) {
+            //$('#container').resizable();
+            DJ.add("NewsChart", {
+                container: 'newsChartContainerFull',
+                options: {
+                    isFullChart: true,
+                    newsSeriesTitle: "News Volume",
+                    stockSeriesTitle: "Stock Price",
+                    graphHeight: 300,
+                    graphWidth: 987,
+                },
+                data: Data
+            });
+
+            DJ.add("NewsChart", {
+                container: 'newsChartContainerMed',
+                options: {
+                    isFullChart: false,
+                    newsSeriesTitle: "News Volume",
+                    stockSeriesTitle: "Stock Price",
+                    newsSeriesColor: "#ebebeb",
+                    graphHeight: 152,
+                    graphWidth: 302,
+                    summaryGraphDateFormat: "%l%p"
+                },
+                data: Data
+            });
+        });
+    </script>
+</body>
+</html>
+

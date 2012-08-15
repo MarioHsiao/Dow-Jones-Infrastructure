@@ -163,6 +163,7 @@
     <Compile Include="Controllers\CanvasController.cs" />
     <Compile Include="Controllers\CanvasControllerBase.cs" />
     <Compile Include="Controllers\ClientUIController.cs" />
+    <Compile Include="Controllers\CompanyProfileController.cs" />
     <Compile Include="Controllers\NewsMatrixController.cs" />
     <Compile Include="Controllers\DateHistogramController.cs" />
     <Compile Include="Controllers\DateSliderController.cs" />
@@ -189,6 +190,7 @@
     <Compile Include="Controllers\SocialMediaController.cs" />
     <Compile Include="Controllers\StockKioskController.cs" />
     <Compile Include="Controllers\TopicController.cs" />
+    <Compile Include="Controllers\TrendingNewsController.cs" />
     <Compile Include="Hub\NewsFeed.cs" />
     <Compile Include="JsonSerializers\JsonConvertAdapter.cs" />
     <Compile Include="Mocks\MockSearchManager.cs" />
@@ -1354,6 +1356,20 @@
     <Content Include="Styles\css\dashboard.crud-form.css" />
     <Content Include="Styles\css\module.social-media.css" />
     <Content Include="Styles\css\normalize.css" />
+    <Content Include="Styles\css\smoothness\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Styles\css\smoothness\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Styles\css\smoothness\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Styles\css\smoothness\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Styles\css\smoothness\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Styles\css\smoothness\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Styles\css\smoothness\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Styles\css\smoothness\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Styles\css\smoothness\images\ui-icons_222222_256x240.png" />
+    <Content Include="Styles\css\smoothness\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Styles\css\smoothness\images\ui-icons_454545_256x240.png" />
+    <Content Include="Styles\css\smoothness\images\ui-icons_888888_256x240.png" />
+    <Content Include="Styles\css\smoothness\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Styles\css\smoothness\jquery-ui-1.8.22.custom.css" />
     <Content Include="Styles\css\socialMediaStyles.css" />
     <Content Include="Styles\css\stockkiosk.css" />
     <Content Include="Styles\css\dashboard.article-group.css" />
@@ -1631,6 +1647,7 @@
     <Content Include="Views\LookupService\Index.cshtml" />
     <Content Include="Views\NewsMatrix\Index.cshtml" />
     <Content Include="Views\NewsMatrix\sample.json" />
+    <Content Include="Views\CompanyProfile\Index.cshtml" />
     <None Include="Views\NewsRadar\sample.json" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -1640,6 +1657,7 @@
     </Content>
     <Content Include="Views\VideoPlayer\Index.cshtml" />
     <Content Include="Views\SocialButtons\Index.cshtml" />
+    <Content Include="Views\TrendingNews\TrendingNews.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Browsers\Devices\" />

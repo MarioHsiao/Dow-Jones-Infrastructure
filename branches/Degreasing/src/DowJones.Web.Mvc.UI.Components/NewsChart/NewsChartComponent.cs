@@ -24,11 +24,13 @@ namespace DowJones.Web.Mvc.UI.Components.NewsChart
     using System.Web.UI;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 06/29/2012 12:53 PM
+    // Last Generated Timestamp: 08/14/2012 02:33 PM
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.NewsChart.ClientTemplates.MarketIndex.htm", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="marketindex", DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.NewsChart.NewsChartComponent))]
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.NewsChart.ClientTemplates.NewsVolume.htm", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="newsvolume", DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.NewsChart.NewsChartComponent))]
-    [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.NewsChart.NewsChart.js", ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.NewsChart.NewsChartComponent))]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.22175")]
+    [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.NewsChart.NewsChart.js", DependsOn=new string[] {
+            "highcharts",
+            "service-proxy"}, ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.NewsChart.NewsChartComponent))]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.27108")]
     public class NewsChartComponent : DowJones.Web.Mvc.UI.ViewComponentBase<NewsChartModel>
     {
 #line hidden
@@ -54,9 +56,7 @@ namespace DowJones.Web.Mvc.UI.Components.NewsChart
 
    
     CssClass = "dj_NewsChart"; 
-    DJ.ScriptRegistry().WithHighCharts();
-    DJ.ScriptRegistry().WithServiceProxy();
-  
+ 
 
 
 
