@@ -56,6 +56,8 @@ DJ.UI.TweetLines = DJ.UI.Component.extend({
 			details: "https://twitter.com/#!/{screen-name}/status/"
 		};
 
+
+
 		if (this.data && this.data.tweets && this.data.tweets.length > 0) {
 		    this.setData(this.data);
 		}
@@ -70,6 +72,16 @@ DJ.UI.TweetLines = DJ.UI.Component.extend({
 
 
 	_initializeElements: function (ctx) {
+	    // see if this is being added via DJ.Add.
+        // if yes, render container markup via templates first
+	    this.isPurelyClientSide = !ctx.find(this.selectors.recentItems).length;
+
+	    if (this.isPurelyClientSide) {
+	        this.$element.html(this.templates.container({ options: this.options }));
+
+            // re-init the context
+	        ctx = this.$element;
+	    }
 
 		this.$newTweets = ctx.find(this.selectors.newTweets);
 		this.$newTweetsSpan = this.$newTweets.find('span');
@@ -82,6 +94,7 @@ DJ.UI.TweetLines = DJ.UI.Component.extend({
 		this.$toTop = ctx.find(this.selectors.toTop);
 
 	},
+
 
 	_initializeEventHandlers: function () {
 		this._super();
