@@ -36,7 +36,8 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Release\DowJones.Web.Mvc.UI.Components.Models.XML</DocumentationFile>
+    <DocumentationFile>
+    </DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="factiva.gateway.messages">
@@ -150,8 +151,8 @@
     <Compile Include="Common\PriceTrend.cs" />
     <Compile Include="SearchCategoriesLookUp\SearchCategoriesLookUpModel.cs" />
     <Compile Include="TrendingNews\TrendingNewsModel.cs" />
-    <Compile Include="TweetLines\TweetLinesModel.cs" />
-    <Compile Include="TwitterExperts\TwitterExpertsModel.cs" />
+    <Compile Include="SocialMedia\TweetLinesModel.cs" />
+    <Compile Include="SocialMedia\ExpertsModel.cs" />
     <Compile Include="VideoPlayer\Clip.cs" />
     <Compile Include="VideoPlayer\ClipCollection.cs" />
     <Compile Include="VideoPlayer\MediaContentToClipMapper.cs" />

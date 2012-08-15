@@ -21,6 +21,5 @@
     <files>
         <file src="DowJones.Web.Mvc.UI.Canvas.dll" target="lib" />
         <file src="DowJones.Web.Mvc.UI.Canvas.pdb" target="lib" />
-        <file src="DowJones.Web.Mvc.UI.Canvas.xml" target="lib" />
     </files>
 </package>

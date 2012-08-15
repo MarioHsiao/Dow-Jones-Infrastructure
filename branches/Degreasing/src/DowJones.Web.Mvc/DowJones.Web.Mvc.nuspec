@@ -17,6 +17,5 @@
     <files>
         <file src="DowJones.Web.Mvc.dll" target="lib" />
         <file src="DowJones.Web.Mvc.pdb" target="lib" />
-        <file src="DowJones.Web.Mvc.xml" target="lib" />
     </files>
 </package>
