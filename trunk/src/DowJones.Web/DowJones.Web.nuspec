@@ -20,6 +20,5 @@
     <files>
         <file src="DowJones.Web.dll" target="lib" />
         <file src="DowJones.Web.pdb" target="lib" />
-        <file src="DowJones.Web.xml" target="lib" />
     </files>
 </package>
