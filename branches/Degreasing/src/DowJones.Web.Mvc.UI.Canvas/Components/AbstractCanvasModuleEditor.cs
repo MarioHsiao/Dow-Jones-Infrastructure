@@ -27,7 +27,7 @@ namespace DowJones.Web.Mvc.UI.Canvas
     {
         protected AbstractCanvasModuleEditor()
         {
-            CssClass = "dj_Editor ";
+            CssClass = "dj_ModuleEditor ";
         }
     }
 }
