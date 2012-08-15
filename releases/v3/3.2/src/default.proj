@@ -24,6 +24,7 @@
             <MvcAssembly>$(DeploymentDestination)\DowJones.Web.Mvc.dll</MvcAssembly>
             <TempMvcAssembly>$(DeploymentDestination)\DowJones.Web.Mvc.Temp.dll</TempMvcAssembly>
             <NinjectMvcAssembly>$(DeploymentDestination)\Ninject.Web.Mvc.dll</NinjectMvcAssembly>
+            <PreReleaseDesignator Condition="'$(PreRelease)' == 'true'">beta</PreReleaseDesignator>
         </PropertyGroup>
 
         <Move SourceFiles="$(MvcAssembly)" DestinationFiles="$(TempMvcAssembly)" ContinueOnError="true" />
@@ -37,7 +38,7 @@
         <Message Importance="high" Text="NuGetPackageVersion not specified, using DowJonesFrameworkVersion" />
         <Message Importance="low" Text="DowJonesFrameworkVersion: $(DowJonesFrameworkVersion)" />
 
-        <CreateProperty Value="$(DowJonesFrameworkVersion)">
+        <CreateProperty Value="$(MajorReleaseVersion).$(MinorReleaseVersion)$(PreReleaseDesignator).$(BuildVersion)">
             <Output TaskParameter="Value" PropertyName="NuGetPackageVersion" />
         </CreateProperty>
 

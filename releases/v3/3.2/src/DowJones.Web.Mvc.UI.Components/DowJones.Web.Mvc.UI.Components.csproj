@@ -838,5 +838,8 @@
   <ItemGroup>
     <EmbeddedResource Include="TrendingNews\TrendingNews.js" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TweetLines\ClientTemplates\container.htm" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

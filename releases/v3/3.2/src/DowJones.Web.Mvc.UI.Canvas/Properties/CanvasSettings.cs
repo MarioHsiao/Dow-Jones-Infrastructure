@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Configuration;
+using System.Web;
 using DowJones.Exceptions;
 using DowJones.Infrastructure;
 
@@ -12,9 +13,17 @@ namespace DowJones.Web.Mvc.UI.Canvas
             if (string.IsNullOrWhiteSpace(relativeUrl))
                 return null;
 
+            if (relativeUrl.StartsWith("http") || relativeUrl.StartsWith("/"))
+                return relativeUrl;
+
             // this allows to override the base URL for settings
             // return the url as is if it doesn't start with a "/"
-            return relativeUrl.StartsWith("/") ? DashboardServiceBaseUrl + relativeUrl : relativeUrl;
+            var dashboardServiceBaseUrl = DashboardServiceBaseUrl;
+
+            if (!dashboardServiceBaseUrl.StartsWith("http"))
+                dashboardServiceBaseUrl = VirtualPathUtility.ToAbsolute(dashboardServiceBaseUrl);
+
+            return dashboardServiceBaseUrl + relativeUrl;
         }
 
         public string GetDataServiceUrl(string key, ApplicationSettingsBase settings)

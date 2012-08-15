@@ -111,7 +111,6 @@
     <Compile Include="Components\AbstractCanvasModule.cs" />
     <Compile Include="Components\AbstractCanvas.cs" />
     <Compile Include="Components\AbstractCanvasModuleEditor.cs" />
-    <Compile Include="Components\CanvasModulesCollection.cs" />
     <Compile Include="ViewResults\CanvasViewResult.cs" />
     <Compile Include="Components\ICanvasModule.cs" />
     <Compile Include="..\SolutionInfo.cs">
