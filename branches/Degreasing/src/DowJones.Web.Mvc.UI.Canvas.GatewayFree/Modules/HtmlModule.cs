@@ -32,7 +32,10 @@ namespace DowJones.Web.Mvc.UI.Canvas.GatewayFree.Modules
     {
         public string Html { get; set; }
         public string Script { get; set; }
+
         public IEnumerable<ModuleOption> Options { get; set; }
+
+        public int TemplateId { get; set; }
 
         public HtmlModule()
         {
