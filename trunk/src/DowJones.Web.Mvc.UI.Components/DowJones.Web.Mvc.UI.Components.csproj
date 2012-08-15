@@ -830,9 +830,9 @@
     <EmbeddedResource Include="Resources\js\jquery.tooltip.min.js" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="TrendingNews\ClientTemplates\trendingnewspercentagesuccess.htm" />
-    <Content Include="TrendingNews\ClientTemplates\nodata.htm" />
-    <Content Include="TrendingNews\ClientTemplates\trendingnewstop5success.htm" />
+    <EmbeddedResource Include="TrendingNews\ClientTemplates\trendingnewspercentagesuccess.htm" />
+    <EmbeddedResource Include="TrendingNews\ClientTemplates\nodata.htm" />
+    <EmbeddedResource Include="TrendingNews\ClientTemplates\trendingnewstop5success.htm" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="TrendingNews\TrendingNews.js" />

@@ -1,5 +1,7 @@
 ﻿using System.Reflection;
+using DowJones.Web;
 
+[assembly: System.Web.UI.WebResourceAttribute("DowJones.Web.Mvc.UI.Components.ScrollBar.ScrollBar.js", KnownMimeTypes.JavaScript)]
 namespace DowJones.Web.Mvc.UI.Components.ScrollBar
 {
     [ScriptResourceAttribute("ScrollBar", ResourceName = "DowJones.Web.Mvc.UI.Components.ScrollBar.ScrollBar.js", ResourceKind = ClientResourceKind.Script, DependencyLevel = ClientResourceDependencyLevel.MidLevel)]
