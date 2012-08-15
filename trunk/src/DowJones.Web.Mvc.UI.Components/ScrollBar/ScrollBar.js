@@ -1,3 +1,10 @@
+/*!
+* ScrollBar
+*
+* @dependency jquery.ui.core.js
+* @dependency jquery.ui.widget.js
+* @dependency jquery.validate.js
+*/
 DJ.UI.ScrollBar = DJ.UI.Component.extend({
     // Default options
     defaults: {
@@ -79,11 +86,11 @@ DJ.UI.ScrollBar = DJ.UI.Component.extend({
 
         // Browser Detection
         if ($.browser.mozilla) {
-            self._renderScrollbar();
+        	self._renderScrollbar();
 
-            window.setTimeout(function () {
-                self.refresh();
-            }, 500);
+        	window.setTimeout(function () {
+      			self.refresh();
+        	}, 500);
         }
 
         // Mobile

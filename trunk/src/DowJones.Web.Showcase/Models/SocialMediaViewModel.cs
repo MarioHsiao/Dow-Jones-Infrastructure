@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using DowJones.Ajax.SocialMedia;
-using DowJones.Web.Mvc.UI.Components.TweetLines;
-using DowJones.Web.Mvc.UI.Components.TwitterExperts;
+using DowJones.Web.Mvc.UI.Components.SocialMedia;
 
 namespace DowJones.Web.Showcase.Models
 {
@@ -12,7 +11,7 @@ namespace DowJones.Web.Showcase.Models
 	{
 		public TweetLinesModel TweetLinesModel { get; set; }
 
-		public TwitterExpertsModel TwitterExperts { get; set; }
+		public ExpertsModel TwitterExperts { get; set; }
 
 		public SocialMediaViewModel()
 		{
@@ -54,6 +53,6 @@ namespace DowJones.Web.Showcase.Models
 
 
 
-		public TwitterExpertsModel TwitterExpertsModel { get; set; }
+		public ExpertsModel TwitterExpertsModel { get; set; }
 	}
 }
