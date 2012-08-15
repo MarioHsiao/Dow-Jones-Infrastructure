@@ -150,8 +150,8 @@
     <Compile Include="Common\PriceTrend.cs" />
     <Compile Include="SearchCategoriesLookUp\SearchCategoriesLookUpModel.cs" />
     <Compile Include="TrendingNews\TrendingNewsModel.cs" />
-    <Compile Include="TweetLines\TweetLinesModel.cs" />
-    <Compile Include="TwitterExperts\TwitterExpertsModel.cs" />
+    <Compile Include="SocialMedia\TweetLinesModel.cs" />
+    <Compile Include="SocialMedia\ExpertsModel.cs" />
     <Compile Include="VideoPlayer\Clip.cs" />
     <Compile Include="VideoPlayer\ClipCollection.cs" />
     <Compile Include="VideoPlayer\MediaContentToClipMapper.cs" />
@@ -224,7 +224,9 @@
   <ItemGroup>
     <EmbeddedResource Include="RegionalMap\Resources\world_map.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="TwitterExperts\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
