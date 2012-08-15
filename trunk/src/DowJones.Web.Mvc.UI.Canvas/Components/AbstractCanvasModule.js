@@ -6,9 +6,16 @@
 DJ.UI.AbstractCanvasModule = DJ.UI.CompositeComponent.extend({
 
     defaults: {
-        cssClass: 'canvas-module'
+        cssClass: 'canvas-module',
+        menuItems: [
+            { id: 'move-up', label: "<%= Token('moduleMenuMoveUp') %>" },
+            { id: 'move-down', label: "<%= Token('moduleMenuMoveDown') %>" },
+            { type: 'separator' },
+            { id: 'remove', label: "<%= Token('moduleMenuRemove') %>" },
+            { id: 'edit', label: "<%= Token('moduleMenuEdit') %>" }
+        ]
     },
-
+    
     _canvas: null,
 
     //baseline module objects
@@ -35,7 +42,8 @@ DJ.UI.AbstractCanvasModule = DJ.UI.CompositeComponent.extend({
     _baseEvents: {
         canvasModuleRemove: 'CanvasModule.RemoveModuleRequest',
         canvasModuleRemoveSuccess: 'CanvasModule.RemoveModuleSuccess',
-        canvasModuleRemoveFailure: 'CanvasModule.RemoveModuleFailure'
+        canvasModuleRemoveFailure: 'CanvasModule.RemoveModuleFailure',
+        canvasModuleEditSuccess: 'CanvasModule.EditModuleSuccess'
     },
 
     // Constructor
@@ -51,8 +59,8 @@ DJ.UI.AbstractCanvasModule = DJ.UI.CompositeComponent.extend({
 
     _initializeElements: function (element) {
         element = element || this.element;
-        this._header = $(".dj_header", element).get(0);
-        this.$contentArea = $(".dj_content", element);
+        this._header = $(".dj_module-header", element).get(0);
+        this.$contentArea = $(".dj_module-content", element);
         this.$contentContainer = $(".dj_module-core", element);
         this.$loadingArea = $('.dj_module-loading-area', element);
         this.$footerArea = $(".dj_footer", element);
@@ -61,7 +69,7 @@ DJ.UI.AbstractCanvasModule = DJ.UI.CompositeComponent.extend({
 
         // get baseline module objects
         this._module = this.element;
-        this._moduleHead = $(".dj_module-header", this._module).get(0);
+        this._moduleHead = this._header;
         this._moduleTitle = $("H3", this._moduleHead).get(0);
         this.$editArea = $(".module-edit-options", this._module);
 
@@ -77,6 +85,8 @@ DJ.UI.AbstractCanvasModule = DJ.UI.CompositeComponent.extend({
         this._removeTrigger = $(".dj_module-remove", this._moduleHead).get(0);
 
         this.$settings = $('.settings', this._moduleHead);
+        this._maximizeButton = $('.maximize', this._moduleHead);
+        this._minimizeButton = $('.minimize', this._moduleHead);
 
 
         // If no canvas has been specified (via _set_Owner), try to actively find one
@@ -195,7 +205,7 @@ DJ.UI.AbstractCanvasModule = DJ.UI.CompositeComponent.extend({
     },
 
     fireOnSaveAndCloseEditArea: function () {
-        this.showModuleArea();
+        this._saveProperties($dj.delegate(this, this.showModuleArea));
     },
 
     get_CanvasId: function () {
@@ -359,6 +369,8 @@ DJ.UI.AbstractCanvasModule = DJ.UI.CompositeComponent.extend({
 
     _initializeDelegates: function () {
         this._delegates = $.extend({}, {
+            fireOnMaximize: $dj.delegate(this, this.maximize),
+            fireOnMinimize: $dj.delegate(this, this.minimize),
             fireOnEditCloseTrigger: $dj.delegate(this, this.fireOnEditCloseTrigger),
             fireOnEditTrigger: $dj.delegate(this, this.fireOnEditTrigger),
             fireOnEditShown: $dj.delegate(this, this.fireOnEditShown),
@@ -370,7 +382,6 @@ DJ.UI.AbstractCanvasModule = DJ.UI.CompositeComponent.extend({
     },
 
     _reloadMenu: function () {
-
         var $modules = $('.module', '#dashboard').not('.select-a-module'),
 			index = $modules.index(this._module),
             menu = this.$settings.findComponent(DJ.UI.Menu),
@@ -387,8 +398,6 @@ DJ.UI.AbstractCanvasModule = DJ.UI.CompositeComponent.extend({
             }
 
         });
-
-
     },
 
     _initializeMenus: function () {
@@ -402,23 +411,7 @@ DJ.UI.AbstractCanvasModule = DJ.UI.CompositeComponent.extend({
 
         this.$settings.dj_menu({
             options: {
-                items: [
-                        {
-                            label: "<%= Token('moduleMenuMoveUp') %>",
-                            id: 'move-up'
-                        }, {
-                            label: "<%= Token('moduleMenuMoveDown') %>",
-                            id: 'move-down'
-                        }, {
-                            label: "<%= Token('moduleMenuRemove') %>",
-                            id: 'remove'
-                        }, {
-                            type: 'separator'
-                        }, {
-                            label: "<%= Token('moduleMenuEdit') %>",
-                            id: 'edit'
-                        }
-                ],
+                items: this.options.menuItems,
                 onItemClick: function (e, itemData) {
                     handleMenuCommand(itemData.data.id, e);
                 },
@@ -453,6 +446,16 @@ DJ.UI.AbstractCanvasModule = DJ.UI.CompositeComponent.extend({
             return false;
         });
 
+        this._maximizeButton.click(this._delegates.fireOnMaximize);
+        this._minimizeButton.click(this._delegates.fireOnMinimize);
+    },
+
+    maximize: function () {
+        this.$element.removeClass('minimized');
+    },
+
+    minimize: function () {
+        this.$element.addClass('minimized');
     },
 
 
@@ -469,6 +472,13 @@ DJ.UI.AbstractCanvasModule = DJ.UI.CompositeComponent.extend({
             innerData: innerData,
             canvasId: this.get_Canvas().get_canvasId()
         };
+    },
+    
+    _saveProperties: function (callback) {
+        if (this._editor) {
+            var props = this._editor.buildProperties();
+            this._editor.saveProperties(props, callback);
+        }
     },
 
     EOF: null

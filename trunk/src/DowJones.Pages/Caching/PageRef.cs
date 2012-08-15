@@ -40,11 +40,6 @@ namespace DowJones.Pages.Caching
         private const CacheScope DefaultGlobalCacheScope = CacheScope.All;
         private static readonly CacheExiprationPolicy DefaultGlobalCacheExiprationPolicy = CacheKeyConstants.DefaultCacheExiprationPolicy;
 
-        //internal PageRef()
-        //{
-        //    Name = DefaultName;
-        //    CacheForceCacheRefresh = DefaultCacheForceCacheRefresh;
-        //}
 
         public PageRef(int pageId, Product product, bool forceCacheRefresh = DefaultCacheForceCacheRefresh) 
             : base(product)
@@ -117,21 +112,18 @@ namespace DowJones.Pages.Caching
                         CacheExpirationTime = DefaultGlobalCacheExpirationTime;
                         CacheRefreshInterval = DefaultGlobalCacheRefreshInterval;
                         CacheExiprationPolicy = DefaultGlobalCacheExiprationPolicy;
-                        //CachedPageId = ParentId;
                         break;
                     case AccessControlScope.Account:
                         CacheScope = DefaultAccountCacheScope;
                         CacheExpirationTime = DefaultAccountCacheExpirationTime;
                         CacheRefreshInterval = DefaultAccountCacheRefreshInterval;
                         CacheExiprationPolicy = DefaultAccountCacheExiprationPolicy;
-                        //CachedPageId = ParentId;
                         break;
                     case AccessControlScope.Personal:
                         CacheScope = DefaultUserCacheScope;
                         CacheExpirationTime = DefaultUserCacheExpirationTime;
                         CacheRefreshInterval = DefaultUserCacheRefreshInterval;
                         CacheExiprationPolicy = DefaultUserCacheExiprationPolicy;
-                        //CachedPageId = ParentId;
                         break;
                 }
             }

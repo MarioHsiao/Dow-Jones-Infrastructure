@@ -60,6 +60,8 @@ namespace DowJones.Web.Mvc.UI.Canvas
             if (Model.CanEdit)
                 CssClass += " dj_module-movable";
 
+            CssClass += " " + Module.ModuleState.ToString().ToLower();
+
             HtmlAttributes.Add("data-module-id", Model.ModuleId);
 
             base.WriteAttributes(writer);
@@ -123,6 +125,14 @@ namespace DowJones.Web.Mvc.UI.Canvas
                         writer.RenderSection(
                             tag: HtmlTextWriterTag.Span,
                             className: "fi fi_gear settings"
+                        );
+                        writer.RenderSection(
+                            tag: HtmlTextWriterTag.Span,
+                            className: "fi maximize"
+                        );
+                        writer.RenderSection(
+                            tag: HtmlTextWriterTag.Span,
+                            className: "fi minimize"
                         );
                     });
             }

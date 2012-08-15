@@ -103,5 +103,44 @@ namespace DowJones.Extensions
                 }
             }
         }
+
+        /// <summary>
+        /// Replaces in item in a list with another item
+        /// </summary>
+        /// <typeparam name="T">The generic type of the list</typeparam>
+        /// <param name="list"></param>
+        /// <param name="existing"></param>
+        /// <param name="replacement"></param>
+        /// <returns>The index of the replaced item</returns>
+        public static int Replace<T>(this IList<T> list, T existing, T replacement)
+        {
+            Guard.IsNotNull(list, "list");
+
+            var index = list.IndexOf(existing);
+
+            return Replace(list, index, replacement);
+        }
+
+        public static int Replace<T>(this IList<T> list, Predicate<T> predicate, T replacement)
+        {
+            Guard.IsNotNull(list, "list");
+
+            var index = list.IndexOf(predicate);
+
+            return Replace(list, index, replacement);
+        }
+
+        public static int Replace<T>(this IList<T> list, int index, T replacement)
+        {
+            Guard.IsNotNull(list, "list");
+
+            if (index >= 0)
+            {
+                list.RemoveAt(index);
+                list.Insert(index, replacement);
+            }
+
+            return index;
+        }
     }
 }

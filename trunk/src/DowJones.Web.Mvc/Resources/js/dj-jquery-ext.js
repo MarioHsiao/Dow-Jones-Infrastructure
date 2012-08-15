@@ -59,6 +59,10 @@
             ///     $('#PortalList1').findComponent('dj_PortalHeadlineList');
             ///
             /// </example>
+
+            if (!componentTypeOrName)
+                return this._findComponent(DJ.UI.Component);
+
             return (DJ.$dj.isString(componentTypeOrName) ?
                 this._getComponent(componentTypeOrName) : this._findComponent(componentTypeOrName));
         },

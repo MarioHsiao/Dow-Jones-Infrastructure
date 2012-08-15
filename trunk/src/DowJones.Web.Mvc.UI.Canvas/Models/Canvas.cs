@@ -69,8 +69,6 @@ namespace DowJones.Web.Mvc.UI.Canvas
         [ClientProperty]
         public int NumberOfGroups { get; set; }
 
-
-        #region Personalization stuff
         [ClientProperty("regionFilter")]
         public CodeDesc RegionFilter { get; set; }
 
@@ -91,7 +89,6 @@ namespace DowJones.Web.Mvc.UI.Canvas
 
         [ClientProperty("parentCodes")]
         public IEnumerable<string> ParentCodes { get; set; }
-        #endregion
 
         /// <summary>
         /// Gets or sets the preference
@@ -100,6 +97,12 @@ namespace DowJones.Web.Mvc.UI.Canvas
         [ClientProperty]
         public IPreferences Preferences { get; set; }
 
+        /// <summary>
+        /// Gets or sets the preference
+        /// </summary>
+        /// <value>The preference.</value>
+        [ClientProperty("title")]
+        public string Title { get; set; }
 
         /// <summary>
         /// Gets or sets the web service path.
