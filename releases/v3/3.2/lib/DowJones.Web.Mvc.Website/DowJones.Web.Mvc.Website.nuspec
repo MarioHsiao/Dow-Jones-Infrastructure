@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>DowJones.Web.Mvc.Website</id>
-    <version>3.4.0</version>
+    <version>3.4.1</version>
     <title>Dow Jones ASP.NET MVC Website</title>
     <authors>Jess Chadwick, Hrusikesh Panda</authors>
     <owners>Platform Integration Team</owners>

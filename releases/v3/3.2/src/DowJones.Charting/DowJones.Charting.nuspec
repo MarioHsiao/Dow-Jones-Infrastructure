@@ -19,6 +19,5 @@
     <files>
         <file src="DowJones.Charting.dll" target="lib" />
         <file src="DowJones.Charting.pdb" target="lib" />
-        <!--<file src="DowJones.Charting.xml" target="lib" />-->
     </files>
 </package>

@@ -18,6 +18,5 @@
     <files>
         <file src="DowJones.Pages.dll" target="lib" />
         <file src="DowJones.Pages.pdb" target="lib" />
-        <!--<file src="DowJones.Pages.xml" target="lib" />-->
     </files>
 </package>

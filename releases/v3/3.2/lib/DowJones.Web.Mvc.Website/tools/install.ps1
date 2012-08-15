@@ -88,3 +88,64 @@ if($layout) {
 } else {
 	Write-Host "_Layout.cshtml not found -- skipping update"
 }
+
+
+#### Relacing HomeController and Index view if they exist or else just copy from the pacakge ####
+Write-Host "Overwriting Home Controller content..."
+$homeController = $controllers | where { $_.Name -eq "HomeController.cs" }
+if($homeController){
+	$homeController.Delete()
+}
+
+$project.ProjectItems.Item("Controllers").ProjectItems.Item("HomeController.cs.custom").Name = "HomeController.cs"
+
+Write-Host "Overwriting Home Index View..."
+
+$views = $project.ProjectItems | where {$_.Name -eq "Views"}
+$homeIndexView = $views.ProjectItems | where {$_.Name -eq "Home"} | ForEach-Object { $_.ProjectItems } | where{ $_.Name -eq "Index.cshtml" }
+if($homeIndexView){
+	$homeIndexView.Delete()
+}
+
+$project.ProjectItems.Item("Views").ProjectItems.Item("Home").ProjectItems.Item("Index.cshtml.custom").Name = "Index.cshtml"
+
+#### Delete Account Model, View and Controller ####
+$accountModel = $project.ProjectItems | where { $_.Name -eq "Models" } | ForEach-Object { $_.ProjectItems } | where { $_.Name -eq "AccountModels.cs" }
+if($accountModel){
+	$accountModel.Delete()
+}
+$accountView = $views.ProjectItems | where { $_.Name -eq "Account" }
+if($accountView){
+	$accountView.Delete()
+}
+$accountController = $controllers | where { $_.Name -eq "AccountController.cs" }
+if($accountController){
+	$accountController.Delete()
+}
+
+
+#### Delete Scripts folder ####
+$scripts = $project.ProjectItems | where { $_.Name -eq "Scripts" }
+if($scripts){
+	$scripts.Delete()
+}
+
+#### Delete themes folder and site.css ####
+$content = $project.ProjectItems | where { $_.Name -eq "Content" }
+$themes = $content.ProjectItems | where { $_.Name -eq "themes" }
+if($themes){
+	$themes.Delete()
+}
+$siteCss = $content.ProjectItems | where { $_.Name -eq "site.css" }
+if($siteCss){
+	$siteCss.Delete()
+}
+
+#### Delete _LogOnPartial.cshtml partial view ####
+$logOnPartial = $sharedViews.ProjectItems | where { $_.Name -eq "_LogOnPartial.cshtml" }
+if($logOnPartial){
+	$logOnPartial.Delete()
+}
+
+
+

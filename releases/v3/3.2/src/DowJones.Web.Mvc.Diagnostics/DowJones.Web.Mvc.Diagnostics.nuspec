@@ -18,6 +18,5 @@
     <files>
         <file src="DowJones.Web.Mvc.Diagnostics.dll" target="lib" />
         <file src="DowJones.Web.Mvc.Diagnostics.pdb" target="lib" />
-        <!--<file src="DowJones.Web.Mvc.Diagnostics.xml" target="lib" />-->
     </files>
 </package>
