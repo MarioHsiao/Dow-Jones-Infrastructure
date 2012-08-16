@@ -1,7 +1,0 @@
-<?xml version="1.0"?>
-<updateSourceGroupRequest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="urn:factiva:Communicator:SourceGroupsService:v1_0">
-  <sourceGroupID>0</sourceGroupID>
-  <sourceGroupName>String</sourceGroupName>
-  <sourceName>String</sourceName>
-  <contentType>Internal</contentType>
-</updateSourceGroupRequest>

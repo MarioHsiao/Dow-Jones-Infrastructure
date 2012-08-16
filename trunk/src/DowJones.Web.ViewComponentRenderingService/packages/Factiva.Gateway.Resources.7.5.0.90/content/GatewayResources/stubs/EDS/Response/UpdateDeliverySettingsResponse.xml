@@ -1,9 +1,0 @@
-<UpdateDeliverySettingsResponse>
-  <Status value="0"/>
-  <userid>update user</userid>
-  <productid>897689696</productid>
-  <Resultset count="1">
-    <Result DeliveryID="123456"></Result>
-	<Result DeliveryID="78965"></Result>
-  </Resultset>
-</UpdateDeliverySettingsResponse>
