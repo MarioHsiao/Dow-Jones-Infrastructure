@@ -539,6 +539,9 @@
     <Content Include="GatewayResources\xslt\triggers\PerformTriggerSearchResponse.xsl" />
     <Content Include="GatewayResources\xslt\utility\PerformContentSearchResponse.xslt" />
     <Content Include="Global.asax" />
+    <Content Include="TopStoriesResources.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -789,6 +792,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="GatewayResources\config\Analyze.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\PublishProfiles\fdevweb3.pubxml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
