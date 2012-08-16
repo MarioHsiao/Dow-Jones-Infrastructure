@@ -841,5 +841,9 @@
   <ItemGroup>
     <EmbeddedResource Include="TweetLines\ClientTemplates\container.htm" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\js\jcarousellite.js" />
+    <EmbeddedResource Include="Resources\js\jcarousellite.min.js" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
