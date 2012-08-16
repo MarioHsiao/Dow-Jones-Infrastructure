@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<GetAccountVirtualItemsRequest>
-  <GROUP_ITEM_LIST fcstype="list">
-    <ITEM_CLASS>11</ITEM_CLASS>
-    <LOAD_BLOB>Y</LOAD_BLOB>
-    <ITEM_CLASS>12</ITEM_CLASS>
-  </GROUP_ITEM_LIST>
-  <GROUP_NAME>9TES003400</GROUP_NAME>
-</GetAccountVirtualItemsRequest>

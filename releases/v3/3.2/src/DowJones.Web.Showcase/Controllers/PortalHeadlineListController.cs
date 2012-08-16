@@ -47,6 +47,10 @@ namespace DowJones.Web.Showcase.Controllers
 				SourceClickable = true,
 				DisplaySnippets = SnippetDisplayType.Hover,
 				Layout = PortalHeadlineListLayout.HeadlineLayout,
+				AllowPagination = true,
+				PagePrevSelector = ".prev",
+				PageNextSelector = ".next"
+
 			});
 		}
 
@@ -170,6 +174,9 @@ namespace DowJones.Web.Showcase.Controllers
                 SourceClickable = true,
                 DisplaySnippets = SnippetDisplayType.Hover, 
                 Layout = PortalHeadlineListLayout.HeadlineLayout,
+				AllowPagination = true,
+				PagePrevSelector = ".prev",
+				PageNextSelector = ".next"
             };
         }
 

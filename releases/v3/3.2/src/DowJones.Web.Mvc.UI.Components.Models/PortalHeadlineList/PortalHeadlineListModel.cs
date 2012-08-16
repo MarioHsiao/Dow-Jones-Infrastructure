@@ -133,6 +133,52 @@ namespace DowJones.Web.Mvc.UI.Components.PortalHeadlineList
         [ClientProperty("multimediaMode")]
         public bool MultimediaMode { get; set; }
 
+		/// <summary>
+		/// Gets or sets a value indicating whether headlines can be paginated.
+		/// </summary>
+		/// <value>
+		///   <c>true</c> if [allow pagination]; otherwise, <c>false</c>.
+		/// </value>
+		[ClientProperty("allowPagination")]
+		public bool AllowPagination { get; set; }
+
+		/// <summary>
+		/// Gets or sets the size of the page (no. of items to scroll) when pagination is enabled.
+		/// </summary>
+		/// <value>
+		/// The size of the page.
+		/// </value>
+		[ClientProperty("pageSize")]
+		public uint PageSize { get; set; }
+
+
+		/// <summary>
+		/// Gets or sets the page direction - horizontal (default) or vertical.
+		/// </summary>
+		/// <value>
+		/// The page direction.
+		/// </value>
+		[ClientProperty("pageDirection")]
+		public Direction PageDirection { get; set; }
+
+		/// <summary>
+		/// Gets or sets the page prev selector.
+		/// </summary>
+		/// <value>
+		/// The page prev selector.
+		/// </value>
+		[ClientProperty("pagePrevSelector")]
+		public string PagePrevSelector { get; set; }
+
+		/// <summary>
+		/// Gets or sets the page next selector.
+		/// </summary>
+		/// <value>
+		/// The page next selector.
+		/// </value>
+		[ClientProperty("pageNextSelector")]
+		public string PageNextSelector { get; set; }
+
         #endregion
 
 

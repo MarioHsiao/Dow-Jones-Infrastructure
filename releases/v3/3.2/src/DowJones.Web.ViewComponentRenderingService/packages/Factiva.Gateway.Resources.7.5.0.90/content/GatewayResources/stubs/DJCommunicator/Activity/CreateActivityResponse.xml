@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-
-<CreateActivityResponse 
-                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                    xmlns:xsd="http://www.w3.org/2001/XMLSchema"                    
-                    xmlns="urn:factiva:Communicator:ActivityService:v1_0" 
-                    >  
-  <activityId>15</activityId>
-</CreateActivityResponse>
