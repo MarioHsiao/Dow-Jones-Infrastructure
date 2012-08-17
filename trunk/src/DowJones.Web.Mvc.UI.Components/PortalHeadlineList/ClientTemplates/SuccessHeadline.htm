@@ -1,10 +1,11 @@
 ﻿<%  var showSource, showPublicationDateTime, showAuthor, title, x, multimediaMode, selected, headlineUrl,
-        headlines = self.headlines, options = self.options;
+        headlines = self.headlines, options = self.options,
+        headlinesCount = options.allowPagination ? headlines.length : Math.min(headlines.length, options.maxNumHeadlinesToShow);
 %>
 <div class="carouselContainer">
     <ul class="article-list">
         <% 
-        for (var i = 0, len = headlines.length; i < len; i++) { 
+        for (var i = 0; i < headlinesCount; i++) { 
         x = headlines[i]; 
         selected = (x.reference.guid === options.selectedGuid);
         showSource = options.showSource && x.sourceCode && x.sourceDescriptor;
