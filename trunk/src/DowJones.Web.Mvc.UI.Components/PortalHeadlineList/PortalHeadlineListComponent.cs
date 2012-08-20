@@ -18,6 +18,7 @@
 [assembly: System.Web.UI.WebResourceAttribute("DowJones.Web.Mvc.UI.Components.PortalHeadlineList.ClientTemplates.NoData.htm", "text/html")]
 [assembly: System.Web.UI.WebResourceAttribute("DowJones.Web.Mvc.UI.Components.PortalHeadlineList.ClientTemplates.AddNewContent.h" +
     "tm", "text/html")]
+[assembly: System.Web.UI.WebResourceAttribute("DowJones.Web.Mvc.UI.Components.PortalHeadlineList.ClientTemplates.Slides.htm", "text/html")]
 [assembly: System.Web.UI.WebResourceAttribute("DowJones.Web.Mvc.UI.Components.PortalHeadlineList.PortalHeadlineList.js", "text/javascript")]
 
 namespace DowJones.Web.Mvc.UI.Components.PortalHeadlineList
@@ -32,7 +33,7 @@ namespace DowJones.Web.Mvc.UI.Components.PortalHeadlineList
     using System.Web.UI;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 08/16/2012 04:12 PM
+    // Last Generated Timestamp: 08/17/2012 01:33 PM
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.PortalHeadlineList.ClientTemplates.Error.htm", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="error", DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.PortalHeadlineList.PortalHeadlineListComponent))]
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.PortalHeadlineList.ClientTemplates.SuccessHeadline" +
         ".htm", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="successHeadline", DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.PortalHeadlineList.PortalHeadlineListComponent))]
@@ -43,6 +44,7 @@ namespace DowJones.Web.Mvc.UI.Components.PortalHeadlineList
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.PortalHeadlineList.ClientTemplates.NoData.htm", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="noData", DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.PortalHeadlineList.PortalHeadlineListComponent))]
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.PortalHeadlineList.ClientTemplates.AddNewContent.h" +
         "tm", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="addNewContent", DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.PortalHeadlineList.PortalHeadlineListComponent))]
+    [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.PortalHeadlineList.ClientTemplates.Slides.htm", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="slides", DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.PortalHeadlineList.PortalHeadlineListComponent))]
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.PortalHeadlineList.PortalHeadlineList.js", DependsOn=new string[] {
             "jcarousel-lite"}, ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.PortalHeadlineList.PortalHeadlineListComponent))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.27108")]
@@ -62,6 +64,7 @@ namespace DowJones.Web.Mvc.UI.Components.PortalHeadlineList
         }
         public override void ExecuteTemplate()
         {
+
 
 
 

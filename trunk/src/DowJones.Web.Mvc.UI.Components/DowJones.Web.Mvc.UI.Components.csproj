@@ -845,5 +845,8 @@
     <EmbeddedResource Include="Resources\js\jcarousellite.js" />
     <EmbeddedResource Include="Resources\js\jcarousellite.min.js" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="PortalHeadlineList\ClientTemplates\Slides.htm" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

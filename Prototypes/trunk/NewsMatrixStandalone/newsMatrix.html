@@ -1,0 +1,117 @@
+﻿<!DOCTYPE html>
+<!--[if IEMobile 7]><html class="no-js iem7 oldie"><![endif]-->
+<!--[if lt IE 7]><html class="no-js lt-ie7 oldie" lang="en"><![endif]-->
+<!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie8 oldie" lang="en"><![endif]-->
+<!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9 oldie" lang="en"><![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
+<!--[if (gte IE 9)|(gt IEMobile 7)]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="newsletter">
+
+    <!--iOS. -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <!--Microsoft. -->
+    <meta http-equiv="cleartype" content="on">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>News Radar</title>
+    <link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css" />
+    <link rel="Stylesheet" type="text/css" href="./css/widget.css" />
+    <link rel="Stylesheet" type="text/css" href="./css/newsMatrix.css" />
+    <link rel="Stylesheet" type="text/css" href="./css/AutoSuggest.css" />
+    <!--[if lt IE 7 ]>
+		    <script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.2/CFInstall.min.js"></script>
+		    <script>window.attachEvent("onload",function(){CFInstall.check({mode:"overlay"})})</script>
+	    <![endif]-->
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+          <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+
+
+</head>
+<body>
+    <header>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <p class="edition span6"><a href="javascript:void(0);" title="Customize Companies"
+                    id="customize"><i class="icon-cog icon-white"></i></a>News Matrix</p>
+                <p class="company span6">Factiva</p>
+            </div>
+        </div>
+        <!-- end: .container -->
+    </header>
+    <section id="main" role="main">
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span12">
+                    <div id="viewPage">
+                        <div id="loading" class="loading"></div>
+                        <div id="newsMatrixContainer" class="notActive"></div>
+                        <div id="noCompanies" class="noCompanies notActive">No Companies.</div>
+                    </div>
+                    <div id="editPage">
+                        <div class="entry">
+                            Enter company name:
+                        <input id="autoSuggestSearchInput" type="text" />
+                        </div>
+                        <div id="autoSuggestSearchContainer"></div>
+                        <ul id="companyList" class="unstyled"></ul>
+                        <a id="djSave" class="btn btn-small" href="#"><i class="icon-ok"></i> Save</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container-fluid">
+            <p>
+                <script language="javascript">document.write(new Date().getFullYear())</script>
+                &copy; Dow Jones &amp; Co, Inc. All Rights Reserved
+            </p>
+        </div>
+    </footer>
+
+    <div class="modal hide" id="clearModal">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">X</button>
+            <h3>Clear Companies</h3>
+        </div>
+        <div class="modal-body">
+            <p>Would you like to clear all the companies in this widget?</p>
+        </div>
+        <div class="modal-footer">
+            <a href="#" class="btn" data-dismiss="modal">No</a>
+            <a id="confirmClear" href="#" class="btn btn-primary">Yes</a>
+        </div>
+    </div>
+
+    <!-- Le javascript ================================================== -->
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript" src="./js/modernizr.min.js"></script>
+    <script type="text/javascript" src="./js/mobile.helper.js"></script>
+    <script type="text/javascript" src="http://mybox.dev.us.factiva.com/oldshowcase/common.js"></script>
+    <script type="text/javascript" src="./js/bootstrap-transition.js"></script>
+    <script type="text/javascript" src="./js/bootstrap-modal.js"></script>
+    <script type="text/javascript" src="./js/underscore.js"></script>
+    <script type="text/javascript" src="./js/jquery.cookie.js"></script>
+    <script type="text/javascript" src="./js/AutoSuggestComponent.js"></script>
+    <script type="text/javascript" src="./js/AutoSuggestPlugin.js"></script>
+    <script type="text/javascript" src="./js/jquery.tooltip.js"></script>
+    <!--<script type="text/javascript" src="./js/NewsMatrix.js"></script>-->
+    <script type="text/javascript" src="./js/widget.js"></script>
+</body>
+</html>

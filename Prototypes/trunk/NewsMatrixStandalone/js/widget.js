@@ -1,0 +1,249 @@
+var top, left;
+var widgetHeightCookieName = "radar90Test_Widget_Height";
+var widgetLeftCookieName = "radar90Test_Widget_Left";
+var widgetTopCookieName = "radar90Test_Widget_Top";
+var widgetCompanies = "radar90Test_companies";
+var widgetSubjects = "radar90Test_subjects";
+var loadingSelector = "#loading";
+var radarSelector = "#newsMatrixContainer";
+var noCompaniesSelector = "#noCompanies";
+var autoSuggestInputSelector = "#autoSuggestSearchInput";
+var resizeWidth = 450;
+var cOptions = { expires: 365, path: "/" };
+
+window.defaultHeight = window.defaultHeight || 700;
+window.defaultCompanies = window.defaultCompanies || "AMD|ARMCOS|CGE|GMACUS|AMXLE|AMKEL|ARASRV|CMPCRD|BSCHL|BELO|BBDR|BOYDG|BRWICK|PRMUS|CHSPKE|ELLMED|CONPOW|CHSIHO|COOPIN|CSCSIN|SUZFOD|DELCP|DDSA|ECHOSP|FDATC|FRDMO|FOILC|FCALEI|CIUT|GANINC|RLNRSC|COLHSP|HMANAS|MARIOT|INTLST|ILFC|PIELE|APMT|HOVN|KAUFBH|ENRONL|LENC|LVLTCM|STRLV|LBMED|LTDI|LOUPAC|MBIAPK|MRTRAU|MGIC|MGMG|NORFOR|NOVCHE|NRGENG|OLINC|OWENIL|TNCPKG|PRKDRL|PHH|PARPAR|GEONCO|DONNRR|CMACF|TANDIE|RLGYCP|RSDNCC|RTEAID|RCCL|SAGRHO|PFFTT|SNMINA|SEAGT|WRGRCE|SROEAC|SMFODS|AMEGFC|UNITEL|SPF|SUNGDS|SUNOL|SVU|NME|TSPTC|AESCOR|GDYRR|HERTZ|HRTZGP|MCCLAT|NMANM|NYT|TOYRUS|TRWA|BURCP|URENT|USXMAR|UHSIB|BATCH|WHYPCK|VALORT";
+window.defaultSubjects = window.defaultSubjects || "CACTIO|C16|C02|C411|GFINC|C12|MCPDBT|CRECAL";
+
+$(function () {
+    var height = window.parseInt($.cookie(widgetHeightCookieName) || defaultHeight);
+    left = window.parseInt($.cookie(widgetLeftCookieName) || 50);
+    top = window.parseInt($.cookie(widgetTopCookieName) || 50);
+    window.resizeTo(resizeWidth, height);
+    window.moveTo(left, top);
+
+    DJ.add("AutoSuggest", {
+        container: "autoSuggestSearchContainer",
+        options: {
+            controlId: "autoSuggestSearchInput",
+            filternewscoded: true,
+            suggestcategory: "company",
+            authTypeValue: "YPC0P9uW1Y1h0s_2Fv0nvy9KEpZNqzujMiHtU8jVmuAI3DuZR9rqe_2Fo8grbceo4EdJYl1NRAhWtX9DLf_2B82_2BYxaOmquK3Oe_2Bwx|2",
+            authType: "SuggestContext",
+            selectFirst: true,
+            fillInputOnKeyUpDown: true,
+            autocompletionType: "Company",
+            suggestServiceUrl: "http://suggest.factiva.com/search/1.0"
+        }
+    });
+
+    renderNewsMatrix();
+
+    monitorWindowPosition();
+    $.cookie(widgetCompanies, $.trim($.cookie(widgetCompanies)) || defaultCompanies, cOptions);
+
+    $("#customize").on("click", function () {
+        $('#viewPage').hide();
+        $('#editPage').show();
+
+    });
+
+    $('#companyList').on('click', '.djContentLink', function () {
+        var querystring = 'fds:' + $(this).data('fcode');
+
+        if ($(this).data('SubjectCode')) {
+            querystring += " AND ns:" + $(this).data('subjectcode');
+        }
+
+        var url = "headlines.html?querystring=" + escape(querystring);
+        var windowName = "newsMatrixHeadlines";
+        window.open(url, windowName, "scrollbars=yes,height=500,width=500").focus();
+    });
+
+    $('#companyList').on('click', '.djRemoveContentLink', function () {
+        var tCompanies = $.cookie(widgetCompanies) || defaultCompanies;
+        var temp = tCompanies.split("|");
+        var fcode = $(this).data("fcode");
+        temp = _.without(temp, fcode).join("|");
+        $.cookie(widgetCompanies, $.trim(temp), cOptions);
+    });
+
+    $('#djSave').click(function () {
+        renderNewsMatrix();
+        
+    });
+
+
+    // attach event to clear
+    $("#confirmClear").on("click", function () {
+        clearCompanies();
+    });
+});
+
+function renderNewsMatrix() {
+    $.getJSON('http://api.dowjones.com/api/1.0/NewsRadar/Ex/json',
+    {
+        entityid: $.trim($.cookie(widgetCompanies)) || defaultCompanies,
+        subjectid: $.cookie(widgetSubjects) || defaultSubjects,
+        symbology: "fii",
+        encryptedtoken: "S001WF92XV72cbbMXmsNXmnMpMvNTAsOTMm5DByMa3G2DJqMsFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUEA"
+    },
+    function (data) {
+        DJ.subscribe("dataTransformed.dj.NewsMatrix", function (data) {
+            createCompanyEditList(data.MatrixItems);
+        });
+
+        DJ.add("NewsMatrix", {
+            container: "newsMatrixContainer",
+            options: {
+                displayTicker: false,
+                hitcolor: "999",
+                hitsize: "8",
+                windowSize: 6,
+                scrollSize: 5
+            },
+            /*eventHandlers: {
+                "dataTransformed.dj.NewsMatrix": function (data) { createCompanyEditList(data.MatrixItems); }
+            },*/
+            data: data.ParentNewsEntities
+        }).done(resizeRadarList);
+    });
+}
+
+function createCompanyEditList(items) {
+    var companyListItems = [];
+
+    for (var i = 0; i < items.length; i++) {
+        var item = items[i];
+        var company = ['<li><a href="#" class="djRemoveContentLink" title="Click to remove ',
+                        item.CompanyName,
+                        '" data-fcode="',
+                        item.InstrumentReference.FCode,
+                        '"><i class="icon-remove"></i></a>',
+                        '<a href="#" class="djContentLink" title="',
+                        item.CompanyName,
+                        '" data-fcode="',
+                        item.InstrumentReference.FCode,
+                        '" data-subjectCode="',
+                        (item.Radar && item.Radar.SubjectCode) || '',
+                        '">',
+                        item.CompanyName,
+                        '</a></li>'].join('');
+
+        companyListItems.push(company);
+    }
+
+    $('#companyList').html(companyListItems.join(''));
+}
+
+function resizeRadarList() {
+    $(loadingSelector).addClass("notActive");
+    $(noCompaniesSelector).addClass("notActive");
+    $(radarSelector).removeClass("notActive");
+
+    $('#editPage').hide();
+    $('#viewPage').show();
+}
+
+function monitorWindowPosition() {
+    if (screenLeft() !== left || screenTop() !== top) {
+        $.cookie(widgetLeftCookieName, left = screenLeft(), cOptions);
+        $.cookie(widgetTopCookieName, top = screenTop(), cOptions);
+    }
+    window.setTimeout("monitorWindowPosition()", 1000);
+}
+
+function screenLeft() {
+    return window.screenX || window.screenLeft;
+}
+
+function screenTop() {
+    return window.screenY || window.screenTop;
+}
+
+$(window).resize(function () {
+    $.cookie(widgetHeightCookieName, window.outerHeight, cOptions);
+});
+
+
+function errorHandler() {
+    $(loadingSelector).addClass("notActive");
+    $(noCompaniesSelector).addClass("notActive");
+    $(radarSelector).removeClass("notActive");
+    $(".djWidgetFooter").hide();
+    $(".djCategories").hide();
+    $("#clear").hide();
+    $(".entry").hide();
+}
+
+function radarItemClickedHandler(event, data) {
+    var querystring = 'fds:' + data.data.Item.InstrumentReference.FCode;
+
+    if (data.data.Radar && data.data.Radar.SubjectCode && data.data.Radar.SubjectCode != 'ALLNEWS') {
+        querystring += " AND ns:" + data.data.Radar.SubjectCode;
+    }
+
+    var url = "headlines.html?querystring=" + escape(querystring);
+    var windowName = "radar90Headlines";
+    window.open(url, windowName, "scrollbars=yes,height=500,width=500").focus();
+}
+
+function clearCompanies() {
+    $(noCompaniesSelector).removeClass("notActive");
+    $(loadingSelector).addClass("notActive");
+    $(radarSelector).addClass("notActive");
+    $.cookie(widgetCompanies, " ", cOptions);
+    $('#clearModal').modal('hide');
+}
+
+function addCompanyHandler(event, data) {
+    var tCompanies = $.cookie(widgetCompanies) || defaultCompanies;
+    var temp = tCompanies.split("|");
+    temp.push(data.data.Result.fCode);
+    temp = _.uniq(temp).join("|");
+
+    var r = DJ.Widgets.items["radar_90"];
+
+    if (r.settings.entityid != temp) {
+        r.set({
+            "entityid": $.trim(temp)
+        });
+
+        $(radarSelector).addClass("notActive");
+        $(noCompaniesSelector).addClass("notActive");
+        $(loadingSelector).removeClass("notActive");
+        $.cookie(widgetCompanies, $.trim(temp), cOptions);
+    }
+    $(autoSuggestInputSelector).val("");
+}
+
+function removeCompanyHandler(event, data) {
+    var tCompanies = $.cookie(widgetCompanies) || defaultCompanies;
+    var temp = tCompanies.split("|");
+    var fcode = data.data.Item.InstrumentReference.FCode;
+    temp = _.without(temp, fcode).join("|");
+
+    if (temp) {
+        DJ.Widgets.items["radar_90"].set({
+            "entityid": $.trim(temp)
+        });
+
+        $(radarSelector).addClass("notActive");
+        $(noCompaniesSelector).addClass("notActive");
+        $(loadingSelector).removeClass("notActive");
+    }
+    else {
+        $(noCompaniesSelector).removeClass("notActive");
+        $(loadingSelector).addClass("notActive");
+        $(radarSelector).addClass("notActive");
+    }
+    $.cookie(widgetCompanies, $.trim(temp), cOptions);
+}
+
+// Attach events
+
+//DJ.Notify(resizeRadarList).on("viewRendered").forType("radar90").attach();
+//DJ.Notify(removeCompanyHandler).on("removeItemClicked").forType('radar90').attach();
+//DJ.Notify(radarItemClickedHandler).on("itemClicked").forType('radar90').attach();
+//DJ.Notify(errorHandler).on("error").forType('radar90').attach();
+//DJ.Notify(addCompanyHandler).on("itemSelected").forType('autosuggestsearch').attach();
