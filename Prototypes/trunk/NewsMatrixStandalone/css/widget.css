@@ -83,7 +83,7 @@ a#clear {
 }
 
 a.djContentLink {
-	left: 30px;
+	padding-left: 6px;
 	white-space: nowrap;
 	color: #969696;
 	text-decoration: none;
@@ -118,4 +118,13 @@ footer {
 
 #editPage, #viewPage {
 	margin-top: 10px;
+}
+
+#companyList li {
+	border-top: 1px solid #E7E7E7;
+	padding: 4px 0 4px 0;
+}
+
+#djAdd {
+	margin-bottom: 9px
 }

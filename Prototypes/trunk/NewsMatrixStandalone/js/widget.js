@@ -34,6 +34,17 @@ $(function () {
             fillInputOnKeyUpDown: true,
             autocompletionType: "Company",
             suggestServiceUrl: "http://suggest.factiva.com/search/1.0"
+        },
+        eventHandlers: {
+            "onItemClick": function (data) {
+                console.log(data);
+                window.itemToAdd = {
+                    CompanyName: 'name',
+                    InstrumentReference: {
+                        FCode: 'fcode'
+                    }
+                };
+            }
         }
     });
 
@@ -63,14 +74,49 @@ $(function () {
     $('#companyList').on('click', '.djRemoveContentLink', function () {
         var tCompanies = $.cookie(widgetCompanies) || defaultCompanies;
         var temp = tCompanies.split("|");
-        var fcode = $(this).data("fcode");
+        var $target = $(this);
+        var fcode = $target.data("fcode");
         temp = _.without(temp, fcode).join("|");
         $.cookie(widgetCompanies, $.trim(temp), cOptions);
+        $target.parent('li').hide('slow', function () { $target.remove() });
     });
 
     $('#djSave').click(function () {
         renderNewsMatrix();
+    });
+
+
+    $('#djAdd').click(function () {
+        if (!itemToAdd) {
+            return;
+        }
+
+        var tCompanies = $.cookie(widgetCompanies) || defaultCompanies;
+        var temp = tCompanies.split("|");
+        temp.push(data.data.Result.fCode);
+        temp = _.uniq(temp).join("|");
+
+
+        var company = ['<li><a href="#" class="djRemoveContentLink" title="Click to remove ',
+                        itemToAdd.CompanyName,
+                        '" data-fcode="',
+                        itemToAdd.InstrumentReference.FCode,
+                        '"><i class="icon-remove"></i></a>',
+                        '<a href="#" class="djContentLink" title="',
+                        itemToAdd.CompanyName,
+                        '" data-fcode="',
+                        itemToAdd.InstrumentReference.FCode,
+                        '" data-subjectCode="',
+                        (itemToAdd.Radar && itemToAdd.Radar.SubjectCode) || '',
+                        '">',
+                        itemToAdd.CompanyName,
+                        '</a></li>'].join('');
+
+        $(company).prependTo($('#companyList')).slideDown('slow', function () {
+            $(autoSuggestInputSelector).val("");
+        });
         
+
     });
 
 
@@ -81,6 +127,9 @@ $(function () {
 });
 
 function renderNewsMatrix() {
+    $(loadingSelector).show();
+    $('#editPage').hide();
+
     $.getJSON('http://api.dowjones.com/api/1.0/NewsRadar/Ex/json',
     {
         entityid: $.trim($.cookie(widgetCompanies)) || defaultCompanies,
@@ -141,6 +190,8 @@ function resizeRadarList() {
     $(noCompaniesSelector).addClass("notActive");
     $(radarSelector).removeClass("notActive");
 
+    $(loadingSelector).hide();
+
     $('#editPage').hide();
     $('#viewPage').show();
 }
@@ -176,18 +227,6 @@ function errorHandler() {
     $(".entry").hide();
 }
 
-function radarItemClickedHandler(event, data) {
-    var querystring = 'fds:' + data.data.Item.InstrumentReference.FCode;
-
-    if (data.data.Radar && data.data.Radar.SubjectCode && data.data.Radar.SubjectCode != 'ALLNEWS') {
-        querystring += " AND ns:" + data.data.Radar.SubjectCode;
-    }
-
-    var url = "headlines.html?querystring=" + escape(querystring);
-    var windowName = "radar90Headlines";
-    window.open(url, windowName, "scrollbars=yes,height=500,width=500").focus();
-}
-
 function clearCompanies() {
     $(noCompaniesSelector).removeClass("notActive");
     $(loadingSelector).addClass("notActive");
@@ -216,34 +255,3 @@ function addCompanyHandler(event, data) {
     }
     $(autoSuggestInputSelector).val("");
 }
-
-function removeCompanyHandler(event, data) {
-    var tCompanies = $.cookie(widgetCompanies) || defaultCompanies;
-    var temp = tCompanies.split("|");
-    var fcode = data.data.Item.InstrumentReference.FCode;
-    temp = _.without(temp, fcode).join("|");
-
-    if (temp) {
-        DJ.Widgets.items["radar_90"].set({
-            "entityid": $.trim(temp)
-        });
-
-        $(radarSelector).addClass("notActive");
-        $(noCompaniesSelector).addClass("notActive");
-        $(loadingSelector).removeClass("notActive");
-    }
-    else {
-        $(noCompaniesSelector).removeClass("notActive");
-        $(loadingSelector).addClass("notActive");
-        $(radarSelector).addClass("notActive");
-    }
-    $.cookie(widgetCompanies, $.trim(temp), cOptions);
-}
-
-// Attach events
-
-//DJ.Notify(resizeRadarList).on("viewRendered").forType("radar90").attach();
-//DJ.Notify(removeCompanyHandler).on("removeItemClicked").forType('radar90').attach();
-//DJ.Notify(radarItemClickedHandler).on("itemClicked").forType('radar90').attach();
-//DJ.Notify(errorHandler).on("error").forType('radar90').attach();
-//DJ.Notify(addCompanyHandler).on("itemSelected").forType('autosuggestsearch').attach();
