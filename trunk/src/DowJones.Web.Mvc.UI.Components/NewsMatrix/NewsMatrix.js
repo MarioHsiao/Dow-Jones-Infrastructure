@@ -68,13 +68,13 @@ DJ.UI.NewsMatrix = DJ.UI.Component.extend({
         var propname = $target.data("propname");
         var index = $target.data("index");
         var rItem = this.matrix.MatrixItems[propname];
-        var rNewsEntity = rItem.newsEntities[index];
+        var rNewsEntity = rItem.NewsEntities[index];
         var data = {
-            companyName: rItem.companyName,
-            ownershipType: rItem.ownershipType,
-            isNewsCoded: rItem.isNewsCoded,
-            instrumentReference: rItem.instrumentReference,
-            newsEntity: rNewsEntity
+            CompanyName: rItem.CompanyName,
+            OwnershipType: rItem.OwnershipType,
+            IsNewsCoded: rItem.IsNewsCoded,
+            InstrumentReference: rItem.InstrumentReference,
+            NewsEntity: rNewsEntity
         };
         this.publish(this.events.matrixItemClicked, data);
     },
