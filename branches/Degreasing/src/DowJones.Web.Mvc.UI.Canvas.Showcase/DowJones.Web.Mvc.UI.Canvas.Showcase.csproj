@@ -247,6 +247,7 @@
     <Content Include="Views\ScriptModule\_ModuleGallery.cshtml" />
     <Content Include="Views\ScriptModule\List.cshtml" />
     <Content Include="Views\ScriptModule\Edit.cshtml" />
+    <Content Include="Views\Shared\PageNotFound.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

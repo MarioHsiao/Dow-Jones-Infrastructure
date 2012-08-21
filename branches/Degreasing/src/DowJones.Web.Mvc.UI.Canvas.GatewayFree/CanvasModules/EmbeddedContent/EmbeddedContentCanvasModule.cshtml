@@ -1,7 +1,0 @@
-﻿@inherits DowJones.Web.Mvc.UI.Canvas.AbstractCanvasModule<DowJones.Web.Mvc.UI.Canvas.GatewayFree.CanvasModules.EmbeddedContent.EmbeddedContentModule>
-@ClientPlugin dj_EmbeddedContentCanvasModule
-@ScriptResource RelativeResourceName=EmbeddedContentCanvasModule.js
-
-@section ContentArea {
-    <iframe class="external-content" src="@Model.Url" width="@Model.Width" height="@Model.Height" border="0" style="border: none;"></iframe>
-}
