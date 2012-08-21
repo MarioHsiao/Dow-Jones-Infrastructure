@@ -54,7 +54,7 @@ section#main div.entry {
 	background-image: url("../img/ajax-loader.gif");
 	background-repeat: no-repeat;
 	background-position: center center;
-	height: 200px;
+	height: 100px;
 }
 
 a#clear {

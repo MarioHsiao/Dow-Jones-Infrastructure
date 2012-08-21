@@ -21,12 +21,11 @@ $(function () {
     top = window.parseInt($.cookie(widgetTopCookieName) || 50);
     window.resizeTo(resizeWidth, height);
     window.moveTo(left, top);
-
     var companySuggest = {
         url: 'http://suggest.factiva.com/Search/1.0',
         controlId: 'autoSuggestSearchInput',
         autocompletionType: "Company",
-        suggestContext: "YPC0P9uW1Y1h0s_2Fv0nvy9KEpZNqzujMiHtU8jVmuAI3DuZR9rqe_2Fo8grbceo4EdJYl1NRAhWtX9DLf_2B82_2BYxaOmquK3Oe_2Bwx|2",
+        useEncryptedKey: "S001WF92XV72cbbMXmsNXmnMpMvNTAsOTMm5DByMa3G2DJqMsFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUEA",
         selectFirst: true,
         onItemSelect: function (data) {
             var tCompanies = $.cookie(widgetCompanies) || defaultCompanies;
@@ -48,15 +47,18 @@ $(function () {
             }
         }
     }
-    djV3.web.widgets.autocomplete(companySuggest);
+    djV3.web.widgets.autocomplete(companySuggest);
+
     renderNewsMatrix();
 
     monitorWindowPosition();
     $.cookie(widgetCompanies, $.trim($.cookie(widgetCompanies)) || defaultCompanies, cOptions);
 
     $("#customize").on("click", function () {
-        $('#viewPage').hide();
-        $('#editPage').show();
+        $('#viewPage').fadeOut(function () {
+            $('#editPage').show();
+        });
+        
     });
 
     $('#companyList').on('click', '.djContentLink', function () {
@@ -111,6 +113,10 @@ $(function () {
         });
     });
 
+    $('#undock').click(function () {
+        window.open('undock.html', 'newsMatrixUndock', 'scrollbars=yes,height=600,width=197,location=0,resizable=0');
+        return false;
+    });
 
     // attach event to clear
     $("#confirmClear").on("click", function () {
@@ -157,7 +163,11 @@ function renderNewsMatrix() {
                 }
             },
             data: data.ParentNewsEntities
-        }).done(resizeRadarList);
+        }).done(function () {
+            $('#loading').fadeOut('fast', function () {
+                $('#viewPage').hide().removeClass('notActive').fadeIn();
+            });
+        });
     });
 }
 
@@ -185,17 +195,6 @@ function createCompanyEditList(items) {
     }
 
     $('#companyList').html(companyListItems.join(''));
-}
-
-function resizeRadarList() {
-    $(loadingSelector).addClass("notActive");
-    $(noCompaniesSelector).addClass("notActive");
-    $(radarSelector).removeClass("notActive");
-
-    $(loadingSelector).hide();
-
-    $('#editPage').hide();
-    $('#viewPage').show();
 }
 
 function monitorWindowPosition() {

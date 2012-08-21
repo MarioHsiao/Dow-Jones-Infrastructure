@@ -69,13 +69,13 @@ DJ.UI.NewsMatrix = DJ.UI.Component.extend({
         var propname = $target.data("propname");
         var index = $target.data("index");
         var rItem = this.matrix.MatrixItems[propname];
-        var rNewsEntity = rItem.newsEntities[index];
+        var rNewsEntity = rItem.NewsEntities[index];
         var data = {
-            companyName: rItem.companyName,
-            ownershipType: rItem.ownershipType,
-            isNewsCoded: rItem.isNewsCoded,
-            instrumentReference: rItem.instrumentReference,
-            newsEntity: rNewsEntity
+            CompanyName: rItem.CompanyName,
+            OwnershipType: rItem.OwnershipType,
+            IsNewsCoded: rItem.IsNewsCoded,
+            InstrumentReference: rItem.InstrumentReference,
+            NewsEntity: rNewsEntity
         };
         this.publish(this.events.matrixItemClicked, data);
     },
@@ -137,7 +137,7 @@ DJ.UI.NewsMatrix = DJ.UI.Component.extend({
     },
 
     extractCategoriesAndItems: function (data) {
-        var categories = this.extractCategories(data[0].newsEntities);
+        var categories = this.extractCategories(data[0].NewsEntities);
         var items = this.extractItems(data);
 
         return {
@@ -150,9 +150,9 @@ DJ.UI.NewsMatrix = DJ.UI.Component.extend({
         var categories = [];
 
         for (var k in newsEntities) {
-            var radarSearchQuery = newsEntities[k].radarSearchQuery,
-                code = radarSearchQuery.searchString,
-                name = radarSearchQuery.name;
+            var radarSearchQuery = newsEntities[k].RadarSearchQuery,
+                code = radarSearchQuery.SearchString,
+                name = radarSearchQuery.Name;
             categories.push({ fcode: code, name: name });
         }
 
@@ -168,7 +168,7 @@ DJ.UI.NewsMatrix = DJ.UI.Component.extend({
         // Loop through each company and add the needed companies info 
         for (var p = 0; p < response.length; p++) {
             var company = response[p];
-            company.newsEntities = this.setNewsData(response[p]);
+            company.NewsEntities = this.setNewsData(response[p]);
             items.push(company);
         }
 
@@ -180,9 +180,9 @@ DJ.UI.NewsMatrix = DJ.UI.Component.extend({
         var categories = [],
             allNewsDayCount = 0,
             allNewsThreeMonthCount = 0;
-        for (var i in company.newsEntities) {
-            var category = company.newsEntities[i],
-                newsVolumes = category.newsVolumes;
+        for (var i in company.NewsEntities) {
+            var category = company.NewsEntities[i],
+                newsVolumes = category.NewsVolumes;
             category.oneDayCount = this.extractCount("Day", newsVolumes);
             category.threeMonthCount = this.extractCount("ThreeMonth", newsVolumes);
             category.threeMonthAvg = this.getAverage(category.threeMonthCount, 89);
@@ -197,9 +197,9 @@ DJ.UI.NewsMatrix = DJ.UI.Component.extend({
 
         // Create an 'All News' category for the company by adding up each category
         var allNews = {};
-        allNews.name = "All News";
-        allNews.subjectCode = "ALLNEWS";
-        allNews.radarSearchQuery = { searchString: "ALLNEWS", name: "All News" };
+        allNews.Name = "All News";
+        allNews.SubjectCode = "ALLNEWS";
+        allNews.RadarSearchQuery = { searchString: "ALLNEWS", name: "All News" };
         allNews.oneDayCount = allNewsDayCount;
         allNews.threeMonthCount = allNewsThreeMonthCount;
         allNews.threeMonthAvg = this.getAverage(allNewsThreeMonthCount, 89);
@@ -212,8 +212,8 @@ DJ.UI.NewsMatrix = DJ.UI.Component.extend({
     // Getting the count of certain category of a certain timeframe
     extractCount: function (timeFrame, newsVolumes) {
         for (var i = 0; i < newsVolumes.length; i++) {
-            if (newsVolumes[i].timeFrame == timeFrame) {
-                return newsVolumes[i].hitCount;
+            if (newsVolumes[i].TimeFrame === timeFrame) {
+                return newsVolumes[i].HitCount;
             }
         }
         return null;
@@ -392,7 +392,7 @@ DJ.UI.NewsMatrix = DJ.UI.Component.extend({
 // Declare this class as a jQuery plugin
 $.plugin('dj_NewsMatrix', DJ.UI.NewsMatrix);
 $dj.debug('Registered DJ.UI.NewsMatrix (extends DJ.UI.Component)');DJ.jQuery.extend(DJ.UI.NewsMatrix.prototype.templates, { container: function (self){var out='<div class="djWidget djWidgetMatrix90">    <div class="djWidgetHeader"></div>    <div class="djWidgetContentList djCarouselMask">        <div class="djWidgetItems items" data-djcontent="content"></div>    </div></div>';return out;} });
-DJ.jQuery.extend(DJ.UI.NewsMatrix.prototype.templates, { success: function (self){var out='';  var item = self.item,         pName= self.propName,         settings= self.settings,         defaults = self.defaults,         f = self.f,         text = (settings.displayTicker) ? f.getTicker(item) : item.companyName,        company = item.companyName;out+='<ul class="djWidgetItem djContentItemFixed item">    ';  for (var i = 0, len = item.newsEntities.length; i < len; i++) {        var cell = item.newsEntities[i],        category = cell.radarSearchQuery.name,        growthRate = (Math.round(cell.growthRate * 100, 2)) / 100;    out+='    <li class="djMatrixItemNode" data-propname="'+( pName )+'" data-index="'+( i )+'"         title="'+( company )+' - '+( category )+' ('+( growthRate )+')" href="javascript:void(0)">        <div class="djMatrixItemBox djMatrixItemBox'+( cell.growthCode )+'" data-grc="'+( cell.growthCode )+'"            data-p1d="'+( cell.oneDayCount )+'" data-p3m="'+( cell.threeMonthCount )+'"            data-a3m="'+( cell.threeMonthAvg )+'" data-grv="'+( cell.growthRate )+'">        </div>    </li>'; } out+='</ul>';return out;} });
+DJ.jQuery.extend(DJ.UI.NewsMatrix.prototype.templates, { success: function (self){var out='';  var item = self.item,         pName= self.propName,         settings= self.settings,         defaults = self.defaults,         f = self.f,         text = (settings.displayTicker) ? f.getTicker(item) : item.CompanyName,        company = item.CompanyName;out+='<ul class="djWidgetItem djContentItemFixed item">    ';  for (var i = 0, len = item.NewsEntities.length; i < len; i++) {        var cell = item.NewsEntities[i],        category = cell.RadarSearchQuery.name,        growthRate = (Math.round(cell.growthRate * 100, 2)) / 100;    out+='    <li class="djMatrixItemNode" data-propname="'+( pName )+'" data-index="'+( i )+'"         title="'+( company )+' - '+( category )+' ('+( growthRate )+')" href="javascript:void(0)">        <div class="djMatrixItemBox djMatrixItemBox'+( cell.growthCode )+'" data-grc="'+( cell.growthCode )+'"            data-p1d="'+( cell.oneDayCount )+'" data-p3m="'+( cell.threeMonthCount )+'"            data-a3m="'+( cell.threeMonthAvg )+'" data-grv="'+( cell.growthRate )+'">        </div>    </li>'; } out+='</ul>';return out;} });
 DJ.jQuery.extend(DJ.UI.NewsMatrix.prototype.templates, { error: function (self){var out=''; if (self.Error.Message) { out+='<div class="djError"><p>Error: <span class="djErrorMessage">'+( self.Error.Message )+'</span> <span class="djErrorCode">('+( self.Error.Code )+')</span></p></div>'; } return out;} });
  
 });

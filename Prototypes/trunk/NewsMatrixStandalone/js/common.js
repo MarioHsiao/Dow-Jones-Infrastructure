@@ -11228,9 +11228,9 @@ var requirejs, require, define;
     }
 
 } ());
-require.config({"baseUrl":"http://fdevweb3.win.dowjones.net/Scripts/3.0/ClientResource.axd?lang=en&t=na&debug=true&require=","waitSeconds":20});
+require.config({"baseUrl":"http://mybox.dev.us.factiva.com/OldShowcase/ClientResource.axd?lang=en&t=634807467637317062&debug=true&require=","waitSeconds":20});
 if(!window['DJ']) { DJ = window['DJ'] = {} };
-$.extend(true, DJ, {'config':{"credentials":null,"preferences":{"adjustToDST":false,"clockType":0,"convertToLocalTime":false},"productId":null,"debug":true}});
+$.extend(true, DJ, {'config':{"credentials":null,"preferences":{"adjustToDST":false,"clockType":0,"convertToLocalTime":false},"productId":null,"debug":true,"crossDomainTransportdsdsdsd":"JSONP2"}});
 //     Underscore.js 1.3.3
 //     (c) 2009-2012 Jeremy Ashkenas, DocumentCloud Inc.
 //     Underscore is freely distributable under the MIT license.
@@ -13871,7 +13871,7 @@ var __dateFormat = function () {
 			    t: H < 12 ? "a" : "p",
 			    tt: H < 12 ? "${smallAm}" : "${smallPm}",
 			    T: H < 12 ? "A" : "P",
-			    TT: H < 12 ? "AM" : "PM",
+			    TT: H < 12 ? "${capitalAm}" : "${capitalPm}",
 			    Z: utc ? "UTC" : (String(date).match(timezone) || [""]).pop().replace(timezoneClip, ""),
 			    o: (o > 0 ? "-" : "+") + pad(Math.floor(Math.abs(o) / 60) * 100 + Math.abs(o) % 60, 4),
 			    S: ["th", "st", "nd", "rd"][d % 10 > 3 ? 0 : (d % 100 - d % 10 != 10) * d % 10]

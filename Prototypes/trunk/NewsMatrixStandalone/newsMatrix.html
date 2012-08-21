@@ -46,34 +46,47 @@
     <header>
         <div class="container-fluid">
             <div class="row-fluid">
-                <p class="edition span6"><a href="javascript:void(0);" title="Customize Companies"
-                    id="customize"><i class="icon-cog icon-white"></i></a>News Matrix</p>
+                <p class="edition span6">
+                    News Matrix
+                </p>
                 <p class="company span6">Factiva</p>
             </div>
         </div>
         <!-- end: .container -->
     </header>
+    <section class="toolbar">
+    </section>
     <section id="main" role="main">
         <div class="container-fluid">
             <div class="row-fluid">
-                <div class="span12">
-                    <div id="loading" class="loading"></div>
-                    <div id="viewPage">
-                        <div id="newsMatrixContainer" class="notActive"></div>
-                        <div id="noCompanies" class="noCompanies notActive">No Companies.</div>
-                    </div>
-                    <div id="editPage">
-                        <div class="entry">
-                            Enter company name:
-                        <input id="autoSuggestSearchInput" type="text" />
-                        <a id="djAdd" class="btn btn-small" href="#"><i class="icon-plus"></i> Add</a>
+                <div id="loading" class="loading"></div>
+                <div id="viewPage" class="notActive">
+                    <div>
+                        <div id="newsMatrixContainer" class="pull-left"></div>
+                        <div class="btn-group pull-right">
+                            <button id="customize" class="btn btn-mini" title="Customize Companies">
+                                <i class="icon-cog"></i>
+                            </button>
+                            <button id="undock" class="btn btn-mini" title="Undock to a new window">
+                                <i class="icon-share"></i>
+                            </button>
                         </div>
-                        <div id="autoSuggestSearchContainer"></div>
-                        <ul id="companyList" class="unstyled"></ul>
-                        <a id="djSave" class="btn btn-small" href="#"><i class="icon-ok"></i> Save</a>
                     </div>
+                    <div id="noCompanies" class="noCompanies notActive">No Companies.</div>
                 </div>
+                <div id="editPage">
+                    <div class="entry">
+                        Enter company name:
+                        <input id="autoSuggestSearchInput" type="text" />
+                        <a id="djAdd" class="btn btn-small" href="#"><i class="icon-plus"></i>Add</a>
+                    </div>
+                    <div id="autoSuggestSearchContainer"></div>
+                    <ul id="companyList" class="unstyled"></ul>
+                    <a id="djSave" class="btn btn-small" href="#"><i class="icon-ok"></i>Save</a>
+                </div>
+
             </div>
+        </div>
         </div>
     </section>
 
@@ -104,14 +117,15 @@
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     <script type="text/javascript" src="./js/modernizr.min.js"></script>
     <script type="text/javascript" src="./js/mobile.helper.js"></script>
-    <script type="text/javascript" src="http://mybox.dev.us.factiva.com/oldshowcase/common.js"></script>
+    <script type="text/javascript" src="./js/common.js"></script>
     <script type="text/javascript" src="./js/bootstrap-transition.js"></script>
+    <script type="text/javascript" src="./js/bootstrap-dropdown.js"></script>
     <script type="text/javascript" src="./js/bootstrap-modal.js"></script>
     <script type="text/javascript" src="./js/underscore.js"></script>
     <script type="text/javascript" src="./js/jquery.cookie.js"></script>
     <script type="text/javascript" src="http://utilities.factiva.com/handlers/emg.tools.web.widgets.autosuggest.ashx?version=3.0"></script>
     <script type="text/javascript" src="./js/jquery.tooltip.js"></script>
-    <!--<script type="text/javascript" src="./js/NewsMatrix.js"></script>-->
+    <script type="text/javascript" src="./js/NewsMatrix.js"></script>
     <script type="text/javascript" src="./js/widget.js"></script>
 </body>
 </html>
