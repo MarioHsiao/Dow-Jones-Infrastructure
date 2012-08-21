@@ -114,7 +114,7 @@ $(function () {
     });
 
     $('#undock').click(function () {
-        window.open('undock.html', 'newsMatrixUndock', 'scrollbars=yes,height=600,width=197,location=0,resizable=0');
+        window.open('undock.html', 'newsMatrixUndock', 'scrollbars=yes,height=600,width=199,location=0,resizable=0');
         return false;
     });
 
