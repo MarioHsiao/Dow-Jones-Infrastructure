@@ -28,6 +28,7 @@ namespace DowJones.Web.Showcase
     {
         protected override void OnLoad()
         {
+
             RouteTable.Routes.MapConnection<RealTimeAlertsConnection>("realtimealertsconnection", "realtimealertsconnection/{*operation}");
             RouteTable.Routes.MapConnection<MyConnection>("echo", "echo/{*operation}");
             
@@ -35,11 +36,11 @@ namespace DowJones.Web.Showcase
             BindToFactory<IControlData, ControlDataFactory>().InRequestScope();
             BindToFactory<IPreferences, PreferencesFactory>().InRequestScope();
             BindToFactory<IUserSession, DevelopmentSessionFactory>().InRequestScope();
-
-            Bind<IPageManager>().To<PageAssetsManagerPageManagerAdapter>();
-            Bind<IPageSubscriptionManager>().To<PageAssetManagerPageSubscriptionManagerAdapter>();
+//            RebindToFactory<IPreferenceService, CachedPreferenceServiceFactory>().InRequestScope();
 
             Bind<IMenuDataSource>().To<ShowcaseMenuDataSource>().InSingletonScope();
+
+            Bind<IPageAssetsManager>().To<MockPageAssetsManager>().InRequestScope();
 
             // In a production app, this should be replaced with something meaningful rather than hard coded values
             Bind<Product>().ToConstant(new Product("CM", "Communicator", "Communicator")).InSingletonScope();
@@ -49,6 +50,10 @@ namespace DowJones.Web.Showcase
             Bind<ISourceListService>().To<SourceListService>();
 
             Bind<IRelatedConceptService>().To<RelatedConceptService>();
+
+            //Bind<IJsonSerializer>().To<JsonSerializers.JsonConvertAdapter>();
+
+            //Bind<SignalR.Infrastructure.IDependencyResolver>().To<NinjectDependencyResolver>();
 
             Bind <IAssembler<MarketDataInstrumentIntradayResultSet, IEnumerable<MarketChartDataServicePartResult<MarketChartDataPackage>>>>().To<MarketDataInstrumentIntradayResultSetAssembler>();
         }

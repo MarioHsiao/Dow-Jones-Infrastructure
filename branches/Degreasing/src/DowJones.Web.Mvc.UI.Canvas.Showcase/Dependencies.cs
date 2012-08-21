@@ -1,9 +1,12 @@
+using System;
+using System.Configuration;
 using DowJones.Infrastructure.Common;
 using DowJones.Pages;
-using DowJones.Pages.Modules;
+using DowJones.Pages.Modules.Templates;
 using DowJones.Preferences;
 using DowJones.Security.Interfaces;
 using DowJones.Session;
+using DowJones.Web.Mvc.UI.Canvas.RavenDb;
 using Ninject;
 using Raven.Client;
 using Raven.Client.Embedded;
@@ -20,22 +23,27 @@ namespace DowJones.DegreasedDashboards.Website
             Bind<IPrinciple>().ToConstant(new Principle());
             Bind<Product>().ToConstant(new GlobalProduct());
 
+            var documentStore = new EmbeddableDocumentStore();
+            documentStore.DataDirectory = ConfigurationManager.AppSettings["RavenDb.DataDirectory"];
+
+            if ("true".Equals(ConfigurationManager.AppSettings["RavenDb.RunInMemory"]))
+                documentStore.RunInMemory = true;
 
             Bind<IDocumentStore>()
-                .ToConstant(new EmbeddableDocumentStore { DataDirectory = "App_Data" })
+                .ToConstant(documentStore)
                 .InSingletonScope()
                 .OnActivation(x => x.Initialize());
 
             Bind<IDocumentSession>()
                 .ToMethod(x => x.Kernel.Get<IDocumentStore>().OpenSession())
-                .InRequestScope()
-                .OnDeactivation(x => x.SaveChanges());
+                .InRequestScope();
 
+            Bind<IPageRepository>().To<RavenDbPageRepository>().InRequestScope();
+            Bind<IScriptModuleTemplateManager>().To<RavenDbScriptModuleTemplateRepository>().InRequestScope();
 
-//            Bind<IPageManager>().To<RavenDbPageManager>().InRequestScope();
-            Bind<IPageManager>().To<InMemoryPageManager>().InSingletonScope();
+//            Bind<IPageManager>().To<InMemoryPageManager>().InSingletonScope();
             Bind<IPageSubscriptionManager>().To<InMemoryPageSubscriptionManager>().InSingletonScope();
-            Bind<IModuleTemplateManager>().To<InMemoryModuleTemplateManager>().InSingletonScope();
+//            Bind<IScriptModuleTemplateManager>().To<InMemoryScriptModuleTemplateManager>().InSingletonScope();
         }
 
         public class Principle : IPrinciple

@@ -1,0 +1,52 @@
+﻿@model IEnumerable<DowJones.DegreasedDashboards.Website.Models.ScriptModuleTemplateViewModel>
+
+@{
+    ViewBag.Title = "Script Templates";
+}
+
+@section Header {
+    <div class="btn-group pull-right">
+        @Html.ActionLink("Add New Template", "Create", null, new {@class = "btn btn-primary"})
+    </div>
+}
+
+<table class="table table-striped">
+    <colgroup>
+        <col class="actions" width="60px"/>
+        <col class="title"/>
+        <col class="description"/>
+    </colgroup>
+
+    <thead>
+        <tr>
+            <th></th>
+            <th>
+                Title
+            </th>
+            <th>
+                Description
+            </th>
+        </tr>
+    </thead>
+    
+    <tbody>
+
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                <p class="btn-group">
+                @Html.ActionLink(" ", "Edit", new { id=item.Id }, new { @class="edit icon-edit" })
+                @Html.ActionLink(" ", "Delete", new { id=item.Id }, new { @class="delete icon-remove" })
+                </p>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+        </tr>
+    }
+
+    </tbody>
+</table>

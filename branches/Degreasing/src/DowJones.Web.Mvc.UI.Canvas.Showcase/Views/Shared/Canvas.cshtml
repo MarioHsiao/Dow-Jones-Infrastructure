@@ -1,29 +1,65 @@
 ﻿@{
     ViewBag.Title = Model.Title;
 
-    DJ.StylesheetRegistry().Include("~/Content/dashboard.css");
-    DJ.ScriptRegistry().OnDocumentReady("initializeDashboard();");
+    DJ.StylesheetRegistry()
+        .Include("~/Content/ModuleGallery.css")
+        .Include("~/Content/dashboard.css");
 }
 
-<button id="add-module">Add Module</button>
+@section Header {
+    <div class="btn-group pull-right">
+        <a href="#module-gallery" class="btn btn-primary" data-toggle="modal">Add Module</a>
+    </div>
+}
 
-@Html.Partial("_ModuleGallery", (object)ViewBag.ModuleTemplates)
+@if (Model.Children.Count == 0)
+{
+    <div class="no-modules alert-message">
+        <h3>No modules have been added to this page yet</h3>
+        <p>Try using the "Add Module" button to add some!</p>
+    </div>
+}
 
 @DJ.Render(Model)
 
+
+@Html.Action("Gallery", "ScriptModule", new { pageId = ViewBag.PageId })
+
+
 <script type="text/javascript">
+    @{ DJ.ScriptRegistry().OnDocumentReady("initializeDashboard()"); }
     
     function initializeDashboard() {
-        var canvas = $('.dj_Canvas').findComponent(DJ.UI.AbstractCanvas);
+        var canvas = DJ.UI.Canvas.find();
 
-        var moduleGallery = new DJ.UI.ModuleGallery($('.module-gallery'));
-        moduleGallery.options.pageId = canvas.get_canvasId();
+        function fixComponentClasses() {
+            var modules = $('.dj_module');
+            
+            $('.dj_edit-box .dc_item', modules)
+                .addClass('btn')
+                .first().addClass('btn-primary');
 
-        DJ.subscribe('moduleSaved.dj.ModuleGallery', function(args) {
-            canvas.loadModule(args.moduleId);
+            $('.dj_module-refresh', modules).addClass('icon-refresh').addClass('icon-white');
+            $('.settings', modules).addClass('icon-cog').addClass('icon-white');
+            $('.minimize', modules).addClass('icon-resize-small').addClass('icon-white');
+            $('.maximize', modules).addClass('icon-resize-full').addClass('icon-white');
+
+            $('.dj_menu').addClass('dropdown-menu');
+        }
+
+
+        canvas.subscribe('CanvasModule.EditModuleSuccess', function (args) {
+            canvas.reloadModule(args.moduleId);
         });
-        
-        $('#add-module').click(function () { moduleGallery.show(); });
-    }
 
+        canvas.subscribe('addModuleSuccess.dj.Canvas', function (args) {
+            fixComponentClasses();
+        });
+
+        $('#reset-page-data').click(function() {
+            return confirm('This will delete all of the module data on this page!  Continue?');
+        });
+
+        fixComponentClasses();
+    }
 </script>

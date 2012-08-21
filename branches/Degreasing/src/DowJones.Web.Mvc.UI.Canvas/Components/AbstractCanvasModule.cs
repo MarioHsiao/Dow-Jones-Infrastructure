@@ -156,11 +156,11 @@ namespace DowJones.Web.Mvc.UI.Canvas
                         y =>
                         {
                             writer.RenderSection("dc_item",
-                                z => writer.RenderLink(DJ.Token("saveModuleOptions").ToString(), "#save-module-options", "dashboard-control dc_btn dc_btn-2 dc_btn-save")
+                                z => writer.RenderLink(DJ.Token("saveModuleOptions").ToString(), className: "dashboard-control dc_btn dc_btn-2 dc_btn-save")
                                 , tag: HtmlTextWriterTag.Li);
 
                             writer.RenderSection("dc_item",
-                                z => writer.RenderLink(DJ.Token("cancelModuleOptions").ToString(), "#cancel-module-options", "dashboard-control dc_btn dc_btn-3 dc_btn-cancel")
+                                z => writer.RenderLink(DJ.Token("cancelModuleOptions").ToString(), className: "dashboard-control dc_btn dc_btn-3 dc_btn-cancel")
                                 , tag: HtmlTextWriterTag.Li);
 
                         }, tag: HtmlTextWriterTag.Ul));

@@ -21,6 +21,11 @@ DJ.UI.AbstractCanvasModuleEditor = DJ.UI.Component.extend({
         this._debug('TODO: Implement buildProperties!');
     },
 
+    save: function (callback) {
+        var props = this.buildProperties();
+        this.saveProperties(props, callback);
+    },
+    
     saveProperties: function (props, callback) {
         this._debug('Updating module properties: ', props);
 
@@ -29,7 +34,7 @@ DJ.UI.AbstractCanvasModuleEditor = DJ.UI.Component.extend({
 
         if (!canvas) return;
 
-        var url = canvas.get_webServiceBaseUrl() + this.get_dataServiceUrl();
+        var url = this.get_dataServiceUrl();
         var queryParams = { pageId: canvas.get_canvasId(), moduleId: moduleId };
 
         $.ajax({

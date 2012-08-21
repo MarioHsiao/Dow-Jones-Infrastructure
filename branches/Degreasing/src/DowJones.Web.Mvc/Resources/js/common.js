@@ -988,7 +988,7 @@ DJ.$dj.define('$dj', ['jquery'], DJ.$dj);
                     this.init.apply(this, arguments);
                 }
             } catch (ex) {
-                $dj.error('Error initializing component:', ex.toString(), this);
+                $dj.error('Error initializing component ', this.name, ':', ex.toString(), this);
                 if(ex.stack) $dj.debug(ex.stack);
             }
         }

@@ -17,6 +17,7 @@ namespace DowJones.DegreasedDashboards.Website.BootstrapperTasks
         {
             _routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
             _routes.IgnoreRoute("{resource}.asmx/{*pathInfo}");
+            _routes.IgnoreRoute("pages/platformproxy.asmx");
             _routes.IgnoreRoute("{resource}.svc/{*pathInfo}");
             _routes.IgnoreRoute("{resource}.ashx/{*pathInfo}");
 

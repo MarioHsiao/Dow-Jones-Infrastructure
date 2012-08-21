@@ -1,21 +1,17 @@
 DJ.$dj.require(['DJ', '$dj', '$'], function (DJ, $dj, $) {
 
     DJ.UI.ModuleGallery = DJ.UI.Component.extend({
-        init: function (el, meta) {
-            this._super(el, meta);
 
-            if (!el.id) el.id = 'module-gallery';
+        _init: function (el, meta) {
+            this._super(el, meta);
         },
 
-
         _initializeDelegates: function () {
-            this._super();
-
-            $.extend(this._delegates, {
-                hide: $dj.delegate(this, this.hide),
+            this._delegates = {
+                onCancel: $dj.delegate(this, this._onCancel),
                 onSaved: $dj.delegate(this, this._onSaved),
-                save: $dj.delegate(this, this.save),
-            });
+                save: $dj.delegate(this, this.save)
+            };
         },
 
         _initializeElements: function (el) {
@@ -26,7 +22,7 @@ DJ.$dj.require(['DJ', '$dj', '$'], function (DJ, $dj, $) {
             this._cancelButton = $('.cancel', el);
             this._saveButton = $('.save', el);
 
-            this._editors.first().show().addClass('selected');
+            this.selectTemplate(1);
         },
 
         _initializeEventHandlers: function () {
@@ -35,42 +31,41 @@ DJ.$dj.require(['DJ', '$dj', '$'], function (DJ, $dj, $) {
             var gallery = this;
 
             this._modules.click(function () {
-                $(this).addClass('selected');
-                gallery._modules.removeClass('selected');
+                gallery._modules.removeClass('active');
+                $(this).addClass('active');
                 gallery._showSelectedEditor();
             });
 
-            this._cancelButton.click(this._delegates.hide);
+            this._cancelButton.click(this._delegates.onCancel);
             this._saveButton.click(this._delegates.save);
         },
 
-        show: function () {
-            this.$element.show().overlay();
-        },
-
-        hide: function () {
-            $().overlay.hide('.module-gallery');
-        },
-
         save: function () {
-            var url = DJ.Dashboards.ModuleGalleryUrl + '?pageId=' + this.options.pageId;
-            var data = this._editors.filter('.selected').find('form').serialize();
-            $.post(url, data, this._delegates.onSaved);
+            var editor = this._editors.filter('.active').find('.dj_ModuleEditor').findComponent();
+            editor.save(this._delegates.onSaved);
         },
 
         selectTemplate: function (templateId) {
-            this._editors.removeClass('selected');
-            var sel = '.template-' + templateId;
-            this._editors.filter(sel).addClass('selected');
+            console.log('Selecting template ' + templateId);
+            var moduleSel = '[data-template-id=' + templateId +']';
+            this._modules.removeClass('active');
+            this._modules.filter(moduleSel).addClass('active');
+            
+            var editorSel = '.template-' + templateId;
+            this._editors.removeClass('active');
+            this._editors.filter(editorSel).addClass('active');
         },
         
         _onSaved: function (args) {
             this.publish('moduleSaved.dj.ModuleGallery', { moduleId: args.moduleId });
-            this.hide();
+        },
+
+        _onCancel: function (args) {
+            this.publish('canceled.dj.ModuleGallery', { moduleId: args.moduleId });
         },
 
         _showSelectedEditor: function () {
-            var templateId = this._modules.filter('.selected').data('template-id');
+            var templateId = this._modules.filter('.active').data('template-id');
             this.selectTemplate(templateId);
         },
 
@@ -78,4 +73,5 @@ DJ.$dj.require(['DJ', '$dj', '$'], function (DJ, $dj, $) {
     });
 
 
+    $.plugin('dj_ModuleGallery', DJ.UI.ModuleGallery);
 });

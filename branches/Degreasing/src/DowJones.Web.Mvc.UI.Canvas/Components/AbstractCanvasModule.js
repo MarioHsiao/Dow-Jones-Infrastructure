@@ -108,7 +108,13 @@ DJ.UI.AbstractCanvasModule = DJ.UI.CompositeComponent.extend({
         if (!childComponents) { $dj.debug('_registerOwnerOnChildComponents: No child components found'); return; }
 
         for (var i = 0, len = childComponents.length; i < len; i++) {
-            this.$element.find('#' + childComponents[i].id).findComponent(DJ.UI.Component).setOwner(this);
+            var childId = '#' + childComponents[i].id;
+            try {
+                this.$element.find(childId).findComponent().setOwner(this);
+            } catch(e) {
+                $dj.error(this.name, '>>Error setting owner on child component', childId, ':', e);
+                if(e.stack) $dj.debug(e.stack);
+            } 
         }
     },
 
@@ -428,12 +434,10 @@ DJ.UI.AbstractCanvasModule = DJ.UI.CompositeComponent.extend({
         $(this._refreshTrigger)
             .click(this._delegates.fireOnRefreshTrigger);
 
-
         $(this._removeTrigger)
             .mousedown(function (e) { e.stopPropagation(); })
             .click(this._delegates.fireOnRemoveTrigger)
             .dj_simpleTooltip("dj_iconTip");
-
 
         $(this._saveEditsTrigger)
             .mousedown(function (e) { e.stopPropagation(); })
@@ -455,12 +459,13 @@ DJ.UI.AbstractCanvasModule = DJ.UI.CompositeComponent.extend({
 
     maximize: function () {
         this.$element.removeClass('minimized');
+        DJ.publish('resized.dj.CanvasModule', { moduleId: this.get_moduleId(), newSize: 'maximized' });
     },
 
     minimize: function () {
         this.$element.addClass('minimized');
+        DJ.publish('resized.dj.CanvasModule', { moduleId: this.get_moduleId(), newSize: 'minimized' });
     },
-
 
     publish: function (/* string */eventName, /* object */data) {
         this._super(eventName, this._appendModuleData(data));

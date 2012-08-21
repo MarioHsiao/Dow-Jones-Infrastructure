@@ -73,23 +73,19 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Ninject.2.2.1.4\lib\net40-Full\Ninject.dll</HintPath>
     </Reference>
-    <Reference Include="NLog, Version=2.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="NLog">
       <HintPath>..\packages\NLog.2.0.0.2000\lib\net40\NLog.dll</HintPath>
     </Reference>
-    <Reference Include="Raven.Abstractions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=37f41c7f99471593, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Raven.Abstractions">
       <HintPath>..\packages\RavenDB.Client.1.0.960\lib\net40\Raven.Abstractions.dll</HintPath>
     </Reference>
     <Reference Include="Raven.Backup">
       <HintPath>..\packages\RavenDB.Database.1.0.960\lib\net40\Raven.Backup.exe</HintPath>
     </Reference>
-    <Reference Include="Raven.Client.Embedded, Version=1.0.0.0, Culture=neutral, PublicKeyToken=37f41c7f99471593, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Raven.Client.Embedded">
       <HintPath>..\packages\RavenDB.Embedded.1.0.960\lib\net40\Raven.Client.Embedded.dll</HintPath>
     </Reference>
-    <Reference Include="Raven.Client.Lightweight, Version=1.0.0.0, Culture=neutral, PublicKeyToken=37f41c7f99471593, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Raven.Client.Lightweight">
       <HintPath>..\packages\RavenDB.Client.1.0.960\lib\net40\Raven.Client.Lightweight.dll</HintPath>
     </Reference>
     <Reference Include="Raven.Database">
@@ -160,7 +156,9 @@
     <Compile Include="BootstrapperTasks\GlobalFilterRegistrationTask.cs" />
     <Compile Include="BootstrapperTasks\InitializeTestData.cs" />
     <Compile Include="BootstrapperTasks\RouteRegistrationTask.cs" />
-    <Compile Include="Controllers\ModuleGalleryController.cs" />
+    <Compile Include="Controllers\CanvasController.cs" />
+    <Compile Include="Models\EditScriptModuleTemplateRequest.cs" />
+    <Compile Include="Controllers\ScriptModuleController.cs" />
     <Compile Include="Controllers\PagesController.cs" />
     <Compile Include="Dependencies.cs" />
     <Compile Include="Global.asax.cs">
@@ -169,15 +167,28 @@
     <Compile Include="Global.asax.generated.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Managers\InMemoryScriptModuleTemplateManager.cs" />
+    <Compile Include="Managers\InMemoryPageRepository.cs" />
+    <Compile Include="Managers\InMemoryPageSubscriptionManager.cs" />
+    <Compile Include="Models\ModuleGalleryModel.cs" />
+    <Compile Include="Models\ScriptModuleTemplateViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Views\Canvas.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Content\dashboard.scss" />
+    <Content Include="Content\bootstrap-responsive.css" />
+    <Content Include="Content\bootstrap-responsive.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\dashboard.css">
       <DependentUpon>dashboard.scss</DependentUpon>
     </Content>
-    <Content Include="Content\gear.png">
+    <Content Include="Content\gear.png" />
+    <Content Include="Content\images\glyphicons-halflings-white.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\images\glyphicons-halflings.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\isotope.css" />
@@ -186,38 +197,13 @@
     <Content Include="Content\ModuleGallery.css">
       <DependentUpon>ModuleGallery.scss</DependentUpon>
     </Content>
-    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
-    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
-    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
-    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
-    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
-    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
-    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
-    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
-    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
-    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
-    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
-    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
-    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
-    <Content Include="Content\themes\base\jquery.ui.accordion.css" />
-    <Content Include="Content\themes\base\jquery.ui.all.css" />
-    <Content Include="Content\themes\base\jquery.ui.autocomplete.css" />
-    <Content Include="Content\themes\base\jquery.ui.base.css" />
-    <Content Include="Content\themes\base\jquery.ui.button.css" />
-    <Content Include="Content\themes\base\jquery.ui.core.css" />
-    <Content Include="Content\themes\base\jquery.ui.datepicker.css" />
-    <Content Include="Content\themes\base\jquery.ui.dialog.css" />
-    <Content Include="Content\themes\base\jquery.ui.progressbar.css" />
-    <Content Include="Content\themes\base\jquery.ui.resizable.css" />
-    <Content Include="Content\themes\base\jquery.ui.selectable.css" />
-    <Content Include="Content\themes\base\jquery.ui.slider.css" />
-    <Content Include="Content\themes\base\jquery.ui.tabs.css" />
-    <Content Include="Content\themes\base\jquery.ui.theme.css" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
     <Content Include="Content\ModuleGallery.scss" />
+    <None Include="Properties\PublishProfiles\Montana 2.pubxml" />
     <None Include="Properties\PublishProfiles\Montana.pubxml" />
     <None Include="Scripts\jquery-1.6.2-vsdoc.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\ModuleGallery.js" />
     <Content Include="Scripts\jquery-1.6.2.js" />
     <Content Include="Scripts\jquery-1.6.2.min.js">
@@ -233,7 +219,9 @@
       <DependentUpon>jquery.validate.js</DependentUpon>
     </Content>
     <Content Include="Scripts\modernizr-2.5.3.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -256,11 +244,12 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Canvas.cshtml" />
-    <Content Include="Views\Shared\_ModuleGallery.cshtml" />
+    <Content Include="Views\ScriptModule\_ModuleGallery.cshtml" />
+    <Content Include="Views\ScriptModule\List.cshtml" />
+    <Content Include="Views\ScriptModule\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -278,9 +267,9 @@
       <Project>{dc6f4246-50e5-4e2e-a90b-70e4beca1eb6}</Project>
       <Name>DowJones.Web.Mvc.Diagnostics</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DowJones.Web.Mvc.UI.Canvas.GatewayFree\DowJones.Web.Mvc.UI.Canvas.GatewayFree.csproj">
-      <Project>{B0DF0C3B-6D62-4A2A-9240-81F7B2A262A6}</Project>
-      <Name>DowJones.Web.Mvc.UI.Canvas.GatewayFree</Name>
+    <ProjectReference Include="..\DowJones.Web.Mvc.UI.Canvas.RavenDb\DowJones.Web.Mvc.UI.Canvas.RavenDb.csproj">
+      <Project>{b8067e18-ad8d-4791-b1f0-9d989bc550d2}</Project>
+      <Name>DowJones.Web.Mvc.UI.Canvas.RavenDb</Name>
     </ProjectReference>
     <ProjectReference Include="..\DowJones.Web.Mvc.UI.Canvas\DowJones.Web.Mvc.UI.Canvas.csproj">
       <Project>{c03f69d0-bd01-4861-bf39-bf2d52812797}</Project>

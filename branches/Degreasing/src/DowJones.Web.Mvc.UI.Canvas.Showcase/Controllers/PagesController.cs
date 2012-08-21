@@ -1,28 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web.Mvc;
-using DowJones.Infrastructure;
-using DowJones.Mapping.Types;
-using DowJones.Pages.Modules;
-using DowJones.Web.Mvc.UI.Canvas;
+﻿using System.Web.Mvc;
+using DowJones.Pages;
+using DowJones.Web.Mvc.Routing;
 
 namespace DowJones.DegreasedDashboards.Website.Controllers
 {
-    public class PagesController : DowJones.Web.Mvc.UI.Canvas.Controllers.DashboardControllerBase
+    public class PagesController : DowJones.Web.Mvc.UI.Canvas.Controllers.PagesControllerBase
     {
-        private readonly IModuleTemplateManager _moduleTemplateManager;
-        private readonly IDictionary<string, Type> _moduleEditorTypes;
+        private readonly IPageRepository _pageRepository;
 
-        public PagesController(IAssemblyRegistry assemblyRegistry, IModuleTemplateManager moduleTemplateManager)
+        public PagesController(IPageRepository pageRepository)
         {
-            _moduleTemplateManager = moduleTemplateManager;
-            _moduleEditorTypes =
-                assemblyRegistry.GetConcreteTypesDerivingFrom(typeof(IAbstractCanvasModuleEditor))
-                    .ToGenericBaseTypeMappings()
-                    .Select(x => x.GenericType)
-                    .Select(x => new KeyValuePair<string,Type>(x.Name.Replace("Editor", string.Empty), x))
-                    .ToDictionary(x => x.Key, y => y.Value);
+            _pageRepository = pageRepository;
         }
 
         public ActionResult Index()
@@ -30,26 +18,24 @@ namespace DowJones.DegreasedDashboards.Website.Controllers
             return RedirectToAction("Page", new {id = "1234"});
         }
 
-        public ActionResult Editors(string id)
+        [Route("pages/{pageId}/reset")]
+        public ActionResult Reset(string pageId)
         {
-            Type editorType;
-            if (!_moduleEditorTypes.TryGetValue(id, out editorType))
-                return HttpNotFound();
+            _pageRepository.DeletePage(pageId);
 
-            var model = Activator.CreateInstance(editorType);
-            return ViewComponent(model);
+            TempData["SuccessMessage"] = "Page data reset";
+
+            return RedirectToAction("Page", new { id = pageId });
         }
 
-        protected override void OnActionExecuting(ActionExecutingContext filterContext)
+        public override ActionResult PageNotFound(string id)
         {
-            var moduleTemplates = _moduleTemplateManager.GetTemplates();
-            ViewBag.ModuleTemplates = moduleTemplates;
-        }
-    }
+            if(string.IsNullOrWhiteSpace(id))
+                return base.PageNotFound(id);
 
-    public class ModuleType
-    {
-        public string DisplayName { get; set; }
-        public string EditorClass { get; set; }
+            var pageId = _pageRepository.CreatePage(new Page { ID = id, Title = "Test Page " + id});
+            
+            return Page(pageId);
+        }
     }
 }

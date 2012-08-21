@@ -32,7 +32,6 @@ namespace DowJones.Pages
         void SetPageShareProperties(string pageRef, ShareProperties shareProperties);
         void MakePageModulesPublic(IEnumerable<GWModule> moduleCollection);
         void MakePageModulesPrivate(IEnumerable<GWModule> moduleCollection);
-        //bool CachingEnabled { get; set; }
         AccessControlScope GetRootAccessControlScope(int pageId, ShareProperties properties, Factiva.Gateway.Messages.Assets.Pages.V1_0.AccessQualifier accessQualifier);
         PageRef ExtractPageRef(string pageRef, bool forceCacheRefresh = false);
         EnableDisable EnableDisablePage(string pageRef, EnableDisable action = EnableDisable.Enable);

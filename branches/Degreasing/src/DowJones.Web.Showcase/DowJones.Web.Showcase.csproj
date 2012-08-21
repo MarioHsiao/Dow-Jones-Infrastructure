@@ -215,6 +215,7 @@
     <Compile Include="Controllers\RegionalMapController.cs" />
     <Compile Include="Extensions\HeadlineListConversionManagerExtensions.cs" />
     <Compile Include="Extensions\TagCloudConversionManagerExtensions.cs" />
+    <Compile Include="Mocks\MockPageAssetsManager.cs" />
     <Compile Include="Mocks\ShowcaseMenuDataSource.cs" />
     <Compile Include="BootstrapperTasks\GlobalFilterRegistrationTask.cs" />
     <Compile Include="BootstrapperTasks\MobileViewEngineBootstrapper.cs" />

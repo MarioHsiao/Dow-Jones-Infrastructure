@@ -107,6 +107,7 @@ namespace DowJones.Pages
         public Page()
         {
             IsActive = true;
+            ModuleCollection = new List<Module>();
         }
 
 

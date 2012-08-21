@@ -1,36 +1,30 @@
-.module-gallery {
+.dj_ModuleGallery.tabs-left > .nav-tabs {
+  border-right: none;
+  margin-right: 0; }
+
+.dj_ModuleGallery {
   background: #fff;
-  border: 1px solid #000;
-  margin: 10px;
-  padding: 10px;
-  vertical-align: top;
-  min-width: 600px; }
-  .module-gallery .heading {
+  vertical-align: top; }
+  .dj_ModuleGallery .heading {
     text-align: center;
     text-decoration: underline;
     margin: 0; }
-  .module-gallery ul {
-    display: inline-block;
+  .dj_ModuleGallery .modules {
+    float: left;
+    min-height: 175px;
+    width: 175px;
+    margin-left: 5px; }
+  .dj_ModuleGallery .new-module-info {
     vertical-align: top;
-    margin: 0px;
-    padding: 0px; }
-  .module-gallery li {
-    list-style: none;
-    line-height: 35px;
-    padding: 0 10px;
-    cursor: pointer; }
-  .module-gallery li:hover, .module-gallery li.selected {
-    font-weight: bold; }
-  .module-gallery .new-module-info {
-    display: inline-block;
-    vertical-align: top;
-    width: 60%; }
-    .module-gallery .new-module-info .editor {
+    padding-left: 10px;
+    border-left: 1px solid #DDD; }
+    .dj_ModuleGallery .new-module-info .editor {
       display: none; }
-    .module-gallery .new-module-info .editor.selected {
+      .dj_ModuleGallery .new-module-info .editor input[type=text], .dj_ModuleGallery .new-module-info .editor textarea {
+        width: 90%; }
+    .dj_ModuleGallery .new-module-info .editor.active {
       display: block; }
-    .module-gallery .new-module-info fieldset {
-      border: 0; }
-    .module-gallery .new-module-info .actions {
-      text-align: center; }
+    .dj_ModuleGallery .new-module-info fieldset {
+      border: 0;
+      vertical-align: top; }
 

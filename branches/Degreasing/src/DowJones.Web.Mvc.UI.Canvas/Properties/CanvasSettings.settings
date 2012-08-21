@@ -8,5 +8,8 @@
     <Setting Name="DashboardServiceBaseUrl" Type="System.String" Scope="Application">
       <Value Profile="(Default)">http://api.dowjones.com/api/dashboard</Value>
     </Setting>
+    <Setting Name="ScriptModuleServiceUrl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">modules/Script/1.0/data/json</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Serialization;
 
-namespace DowJones.Pages
+namespace DowJones.Pages.Common
 {
     [Serializable]
     public enum SortBy

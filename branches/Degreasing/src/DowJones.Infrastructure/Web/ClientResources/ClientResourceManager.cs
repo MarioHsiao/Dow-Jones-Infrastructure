@@ -67,15 +67,11 @@ namespace DowJones.Web
 
         public IEnumerable<ClientResource> GetClientResources(IEnumerable<string> resourceNames)
         {
-            var dealiasedNames = resourceNames.SelectMany(ParseClientResourceNames).ToArray();
+            var dealiased = resourceNames.SelectMany(ParseClientResourceNames).ToArray();
 
-			//var filtered = dealiasedNames.Where(dealiasedName => !dealiasedNames.Contains(dealiasedName.Replace(".js", ".min.js")));
+			var registeredResources = ClientResources.Where(x => dealiased.Contains(x.Name)).ToList();
 
-			var filtered = dealiasedNames;
-
-			var registeredResources = ClientResources.Where(x => filtered.Contains(x.Name)).ToList();
-
-			var unregisteredResources = GetUnregisteredResources(filtered, registeredResources);
+			var unregisteredResources = GetUnregisteredResources(dealiased, registeredResources);
 
             return registeredResources.Union(unregisteredResources).ToArray();
         }

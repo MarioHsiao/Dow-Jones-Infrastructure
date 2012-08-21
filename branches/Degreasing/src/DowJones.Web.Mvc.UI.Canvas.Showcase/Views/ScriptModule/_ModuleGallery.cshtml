@@ -1,0 +1,88 @@
+﻿@model DowJones.DegreasedDashboards.Website.Models.ModuleGalleryModel
+@{
+    DJ.ScriptRegistry()
+        .Include("overlay")
+        .Include("AbstractCanvas")
+        .Include("~/Scripts/ModuleGallery.js", ClientResourceDependencyLevel.MidLevel)
+        .OnDocumentReady("initializeModuleGallery();");
+}
+
+<section id="module-gallery" class="modal hide fade">
+    <div class="modal-header">
+         <button type="button" class="close" data-dismiss="modal">×</button>
+        <h3>Add New Module</h3>
+    </div>
+    
+<div class="dj_ModuleGallery tabbable tabs-left">
+    
+    <ul class="modules nav nav-tabs">
+        <li class="nav-header">Module Types</li>
+        @foreach(var template in Model.Templates)
+        {
+            <li class="module" data-template-id="@template.Id"><a>@template.Title</a></li>
+        }
+    </ul>
+
+    <div class="new-module-info tab-content">
+        
+        @foreach(var template in Model.Templates) 
+        {
+            <div class="template-@template.Id editor">
+            <form class="form-horizontal">
+                @Html.Action("Editor", "ScriptModule", new { id = template.Id, pageId = Model.PageId })
+            </form>
+            </div>
+        }
+
+    </div>
+
+</div>
+    <div class="actions modal-footer">
+        <div class="btn-group dropup pull-left">
+            <a class="btn btn-mini btn-info" href="@Url.Action("Create", "ScriptModule")">Add Template</a>
+            
+            <button class="btn btn-mini btn-info dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
+            <ul class="dropdown-menu">
+                <li><a class="" href="@Url.Action("Index", "ScriptModule")">Edit Templates</a></li>
+            </ul>
+        </div>
+
+        <input class="save btn btn-primary" type="button" value="Save" />
+        <a href="#module-gallery" class="btn" data-dismiss="modal">Cancel</a>
+    </div>
+</section>
+
+
+<script type="text/javascript">
+    
+    function initializeModuleGallery() {
+        var moduleGallery = $('.dj_ModuleGallery').dj_ModuleGallery({ options: { pageId: '@Model.PageId' } });
+
+        $('#module-gallery .save').click(function () {
+            moduleGallery.save();
+        });
+
+        DJ.subscribe('canceled.dj.ModuleGallery', function () {
+            $('#module-gallery').modal('hide');
+        });
+        
+        DJ.subscribe('moduleSaved.dj.ModuleGallery', function (args) {
+            DJ.UI.Canvas.find().loadModule(args.moduleId);
+            $('.no-modules').remove();
+            $('#module-gallery').modal('hide');
+        });
+        
+        DJ.subscribe('resized.dj.CanvasModule', function (args) {
+            var data = {
+                pageId: '@Model.PageId',
+                moduleId: args.moduleId,
+                moduleState: args.newSize
+            };
+            
+            $.ajax('@Url.Action("ResizeModule", "Canvas")', { data: data });
+        });
+        
+        $('#module-gallery').modal({ show: false });
+    }
+
+</script>

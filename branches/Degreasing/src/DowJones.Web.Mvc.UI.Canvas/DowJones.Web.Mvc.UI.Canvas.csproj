@@ -84,6 +84,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Extensions.Design" />
@@ -100,7 +101,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\DashboardControllerBase.cs" />
+    <Compile Include="Controllers\PagesControllerBase.cs" />
     <Compile Include="Models\ModuleState.cs" />
+    <Compile Include="Modules\ScriptModule\Editor\ScriptModuleEditor.cs" />
+    <Compile Include="Modules\ScriptModule\Editor\ScriptModuleEditorComponent.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ScriptModuleEditorComponent.cshtml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\ScriptModule\ScriptCanvasModule.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ScriptCanvasModule.cshtml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\ScriptModule\ScriptModule.cs" />
     <Compile Include="ViewResults\PageNotFoundViewResult.cs" />
     <Compile Include="Models\AbstractEditorModel.cs" />
     <Compile Include="Models\Canvas.cs" />
@@ -156,14 +170,19 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="DowJones.Web.Mvc.UI.Canvas.nuspec" />
+    <None Include="Modules\ScriptModule\Editor\ScriptModuleEditorComponent.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>ScriptModuleEditorComponent.cs</LastGenOutput>
+    </None>
+    <None Include="Modules\ScriptModule\ScriptCanvasModule.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>ScriptCanvasModule.cs</LastGenOutput>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\CanvasSettings.settings">
       <Generator>PublicSettingsSingleFileGenerator</Generator>
       <LastGenOutput>CanvasSettings.Designer.cs</LastGenOutput>
       <CustomToolNamespace>DowJones.Web.Mvc.UI.Canvas</CustomToolNamespace>
-    </None>
-    <None Include="Web.config">
-      <SubType>Designer</SubType>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -172,7 +191,10 @@
   <ItemGroup>
     <EmbeddedResource Include="Components\AbstractModulePager.js" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Modules\ScriptModule\Editor\ScriptModuleEditor.js" />
+    <EmbeddedResource Include="Modules\ScriptModule\ScriptModule.js" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

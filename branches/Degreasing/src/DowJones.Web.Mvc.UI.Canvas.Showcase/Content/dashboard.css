@@ -1,25 +1,53 @@
 .dj_menu {
   background-color: #fff;
-  padding: 5px; }
+  padding: 5px;
+  display: none; }
+
+h2 a.reset {
+  font-size: 70%;
+  font-weight: normal; }
+
+.no-modules {
+  margin-top: 30px;
+  text-align: center; }
 
 .dj_Canvas {
   position: relative; }
 
 .dj_module {
-  float: left;
-  margin: 10px;
   background: #007db9e8;
   border-left: .1em solid #ccc;
   border-right: .1em solid #ccc;
-  border-bottom: .1em solid #ccc; }
+  border-bottom: .1em solid #ccc;
+  margin-top: 20px; }
   .dj_module fieldset {
     border: none; }
+  .dj_module .dj_module-edit-options {
+    clear: both;
+    display: block;
+    border-bottom: 1px ridge #ccc;
+    padding-top: 10px; }
+    .dj_module .dj_module-edit-options .button-pane {
+      text-align: center;
+      padding-bottom: 10px; }
+    .dj_module .dj_module-edit-options .dc_list {
+      list-style: none;
+      position: relative;
+      width: 90%; }
+    .dj_module .dj_module-edit-options .dc_item {
+      margin-left: 10px; }
+    .dj_module .dj_module-edit-options .radio.inline {
+      width: 10px;
+      margin-right: 5px; }
+  .dj_module .dj_module-handle {
+    cursor: move; }
   .dj_module .dj_module-header {
     height: 45px;
-    padding: 1px 15px;
+    padding: 0px 7px 0 15px;
     color: #fff;
     font-weight: bold;
     margin: -10px 0;
+    white-space: nowrap;
     border-radius: 10px 10px 0px 0px;
     -moz-border-radius: 10px 10px 0px 0px;
     -webkit-border-radius: 10px 10px 0px 0px;
@@ -40,30 +68,25 @@
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#1e5799', endColorstr='#007db9e8',GradientType=0 );
     /* IE6-8 */ }
     .dj_module .dj_module-header .module-title {
-      display: inline; }
+      display: inline;
+      max-width: 70%;
+      overflow: hidden;
+      font-size: 20px; }
     .dj_module .dj_module-header .scope-container {
+      float: right;
       display: none; }
     .dj_module .dj_module-header .actions-container {
       float: right;
+      margin-top: 5px;
+      max-width: 28%;
       white-space: nowrap; }
-      .dj_module .dj_module-header .actions-container .fi_gear {
-        display: inline-block;
-        background-image: url('<%= AbsoluteUrl("~/content/gear.png") %>');
-        width: 32px;
-        height: 32px; }
-      .dj_module .dj_module-header .actions-container .minimize {
-        display: inline-block;
-        background-image: url('<%= AbsoluteUrl("~/content/minimize.png") %>');
-        width: 24px;
-        height: 24px; }
-      .dj_module .dj_module-header .actions-container .maximize {
-        display: inline-block;
-        background-image: url('<%= AbsoluteUrl("~/content/maximize.png") %>');
-        width: 24px;
-        height: 24px; }
   .dj_module .dj_module-core {
-    padding: 10px;
-    min-height: 75px; }
+    max-height: 250px;
+    overflow: auto;
+    margin-top: 7px;
+    width: 100%; }
+    .dj_module .dj_module-core .dj_content {
+      padding: 5px; }
 
 .dj_Editor label {
   display: inline-block;
@@ -73,6 +96,11 @@
   padding-right: 5px; }
 .dj_Editor input, .dj_Editor textarea {
   width: 75%; }
+.dj_Editor .radio input {
+  width: auto; }
+
+.dj_menu {
+  border: 1px solid #666; }
 
 #add-module {
   margin-bottom: 20px; }

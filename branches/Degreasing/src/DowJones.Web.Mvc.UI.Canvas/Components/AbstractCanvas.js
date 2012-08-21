@@ -47,6 +47,9 @@ DJ.UI.AbstractCanvas = DJ.UI.CompositeComponent.extend({
         this.sortableSettings = $dj.clone(this.sortableSettings);
 
         $.extend(this.options, this.getSettings());
+        
+        if (!this.$element.attr('data-canvas-id'))
+            this.$element.attr('data-canvas-id', this.options.canvasId);
 
         this._numberOfZones = this.options.NumberOfGroups;
 
@@ -56,7 +59,7 @@ DJ.UI.AbstractCanvas = DJ.UI.CompositeComponent.extend({
         this._initializeModules();
         this._initializeModuleReordering();
 
-        this.subscribe('RemoveModuleRequest.dj.CanvasModule', this._delegates.fireModuleRemoved);
+        this.subscribe('CanvasModule.RemoveModuleRequest', this._delegates.fireModuleRemoved);
 
         this._debug("Done initializing canvas: " + (new Date().getTime() - startDate.getTime()));
     },
@@ -437,7 +440,26 @@ DJ.UI.AbstractCanvas = DJ.UI.CompositeComponent.extend({
     EOF: null
 });
 
-    $.plugin('dj_Canvas', DJ.UI.AbstractCanvas);
+$.plugin('dj_Canvas', DJ.UI.AbstractCanvas);
     
-    $dj.debug('Registered DJ.UI.AbstractCanvas (extends DJ.UI.Component)');
+$dj.debug('Registered DJ.UI.AbstractCanvas (extends DJ.UI.Component)');
 
+DJ.UI.Canvas = {
+    find: function (canvasId) {
+        var canvases = $('.dj_Canvas');
+
+        if (canvasId) {
+            // Try to get a specific one
+            for (var i = 0; i < canvases.length; i++) {
+                var canvas = $(canvases[i]);
+                if (canvas && canvas.data('canvas-id') == canvasId)
+                    return canvas.findComponent(DJ.UI.AbstractCanvas);
+            }
+        } else if(canvases.length == 1) {
+            // Otherwise, return the first canvas
+            return $(canvases).findComponent(DJ.UI.AbstractCanvas);
+        }
+
+        return null;
+    }
+}
