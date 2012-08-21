@@ -10,6 +10,7 @@
 
 [assembly: System.Web.UI.WebResourceAttribute("DowJones.Web.Mvc.UI.Components.TweetLines.TweetLines.js", "text/javascript")]
 [assembly: System.Web.UI.WebResourceAttribute("DowJones.Web.Mvc.UI.Components.TweetLines.ClientTemplates.tweetlines.htm", "text/html")]
+[assembly: System.Web.UI.WebResourceAttribute("DowJones.Web.Mvc.UI.Components.TweetLines.ClientTemplates.container.htm", "text/html")]
 [assembly: System.Web.UI.WebResourceAttribute("DowJones.Web.Mvc.UI.Components.TweetLines.ClientTemplates.noData.htm", "text/html")]
 
 namespace DowJones.Web.Mvc.UI.Components.TweetLines
@@ -25,12 +26,13 @@ namespace DowJones.Web.Mvc.UI.Components.TweetLines
     using DowJones.Extensions;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 08/15/2012 11:31 AM
+    // Last Generated Timestamp: 08/15/2012 01:12 PM
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.TweetLines.TweetLines.js", DependsOn=new string[] {
             "jquery-timeago",
             "ods-manager",
             "ScrollBar"}, ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.TweetLines.TweetLinesComponent))]
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.TweetLines.ClientTemplates.tweetlines.htm", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="tweetlines", DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.TweetLines.TweetLinesComponent))]
+    [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.TweetLines.ClientTemplates.container.htm", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="container", DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.TweetLines.TweetLinesComponent))]
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.TweetLines.ClientTemplates.noData.htm", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="noData", DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.TweetLines.TweetLinesComponent))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.27108")]
     public class TweetLinesComponent : DowJones.Web.Mvc.UI.ViewComponentBase<DowJones.Web.Mvc.UI.Components.SocialMedia.TweetLinesModel>
@@ -49,6 +51,7 @@ namespace DowJones.Web.Mvc.UI.Components.TweetLines
         }
         public override void ExecuteTemplate()
         {
+
 
 
 

@@ -17,6 +17,42 @@
       <setting name="LoginConfigFile" serializeAs="String">
         <value>~/Cfg/Staging/Config.xml</value>
       </setting>
+      <setting name="ClientResourceCombiningEnabled" serializeAs="String">
+        <value>False</value>
+      </setting>
+      <!-- Specify the version number here -->
+      <setting name="ClientResourceCachingToken" serializeAs="String">
+        <value>VersionNumber</value>
+      </setting>
+      <setting name="JavaScriptMinificationEnabled" serializeAs="String">
+        <value>False</value>
+      </setting>
+      <setting name="ClientResourceCombiningEnabled" serializeAs="String">
+        <value>False</value>
+      </setting>
+      <setting name="ClientResourceHandlerPath" serializeAs="String">
+        <value>~/ClientResource.axd</value>
+      </setting>
+      <!-- Specify the default access point code as per requirement -->
+      <setting name="DefaultAccessPointCode" serializeAs="String">
+        <value>O</value>
+      </setting>
+      <!-- Specify the default product prefix as per requirement -->
+      <setting name="DefaultProductPrefix" serializeAs="String">
+        <value>GL</value>
+      </setting>
+      <!-- Specify the default client code type as per requirement -->
+      <setting name="DefaultClientCodeType" serializeAs="String">
+        <value>U</value>
+      </setting>
+      <!-- Modify the resource name as per requirement -->
+      <setting name="ResourceManagerResourceName" serializeAs="String">
+        <value>UiGlobalResources</value>
+      </setting>
+      <!-- Modify the resource assembly name as per requirement -->
+      <setting name="ResourceManagerAssemblyName" serializeAs="String">
+        <value>UiGlobalResources</value>
+      </setting>
     </DowJones.Properties.Settings>
   </applicationSettings>
   <system.web>

@@ -3,211 +3,218 @@
 }
 
 <h2>Controls</h3>
-<div><button value="Set Data" onclick="setHeadlineData();">Swap Data [Client Side]</div>
+    <div>
+        <button value="Set Data" onclick="setHeadlineData();">
+        Swap Data [Client Side]</div>
 
-<h2>UI Control</h3>
-<hr/>
-@DJ.Render(Model)
+    <h2>UI Control</h3>
+    <ul class="carousel-nav">
+        <li class="prev" title="Previous"><< Prev</li>
+        <li class="next" title="Next">Next >></li>
+    </ul>
 
-<script language="javascript" type="text/javascript">
-    function setHeadlineData() {
-        $('#PortalHeadlineListControl-0').findComponent(DJ.UI.PortalHeadlineList).bindOnSuccess(
-            {
-                "count": {
-                    "exp": 0,
-                    "isPositive": true,
-                    "rawText": {
-                        "Value": "8"
-                    },
-                    "text": {
-                        "Value": "8"
-                    },
-                    "value": 8
-                },
-                "headlines": [
-                {
-                    "sourceDescriptor": "Dow Jones Global Press Release Wire",
-                    "title": "<span class=\"\">Mediachase</span><span class=\"\">Announces Guidance Solutions</span><span class=\"dj_space\">...</span>",
-                    "headlineUrl": "javascript:void(0)",
-                    "publicationDateTimeDescriptor": "Tuesday, 21 December 2010 2:00 PM GMT",
-                    "author": [
+        <hr />
+        @DJ.Render(Model)
+
+        <script language="javascript" type="text/javascript">
+            function setHeadlineData() {
+                $('#PortalHeadlineListControl-0').findComponent(DJ.UI.PortalHeadlineList).bindOnSuccess(
+                    {
+                        "count": {
+                            "exp": 0,
+                            "isPositive": true,
+                            "rawText": {
+                                "Value": "8"
+                            },
+                            "text": {
+                                "Value": "8"
+                            },
+                            "value": 8
+                        },
+                        "headlines": [
                         {
-                            "guid": "guid_text",
-                            "class": "dj_text",
-                            "value": "author_text"
+                            "sourceDescriptor": "Dow Jones Global Press Release Wire",
+                            "title": "<span class=\"\">Mediachase</span><span class=\"\">Announces Guidance Solutions</span><span class=\"dj_space\">...</span>",
+                            "headlineUrl": "javascript:void(0)",
+                            "publicationDateTimeDescriptor": "Tuesday, 21 December 2010 2:00 PM GMT",
+                            "author": [
+                                {
+                                    "guid": "guid_text",
+                                    "class": "dj_text",
+                                    "value": "author_text"
+                                },
+                                {
+                                    "guid": "guid_highlight",
+                                    "class": "dj_highlight",
+                                    "value": "author_highlight"
+                                },
+                                {
+                                    "guid": "guid_Company",
+                                    "class": "dj_company",
+                                    "value": "author_Company"
+                                },
+                                {
+                                    "guid": "guid_Person",
+                                    "class": "dj_person",
+                                    "value": "author_Person"
+                                }
+                            ],
+                            "reference": {
+                                "type": "accessionNo",
+                                "guid": "DJGPRW0020101221e6cl0libj",
+                                "mimetype": "text/xml"
+                            },
+                            "snippet": {
+                                "value": "...and choice by including <b>source code</b> and engaging developer communities with each of its software platforms. The flagship"
+                            }
                         },
                         {
-                            "guid": "guid_highlight",
-                            "class": "dj_highlight",
-                            "value": "author_highlight"
+                            "sourceDescriptor": "PR Newswire (U.S.)",
+                            "title": "<span class=\"\">Servant Systems Upgrades Franchisee</span><span class=\"dj_space\">...</span>",
+                            "headlineUrl": "javascript:void(0)",
+                            "publicationDateTimeDescriptor": "Tuesday, 21 December 2010 5:54 PM GMT",
+                            "author": [
+                                {
+                                    "guid": "guid_text",
+                                    "class": "dj_text",
+                                    "value": "author_text"
+                                },
+                                {
+                                    "guid": "guid_highlight",
+                                    "class": "dj_highlight",
+                                    "value": "author_highlight"
+                                },
+                                {
+                                    "guid": "guid_Company",
+                                    "class": "dj_company",
+                                    "value": "author_Company"
+                                },
+                                {
+                                    "guid": "guid_Person",
+                                    "class": "dj_person",
+                                    "value": "author_Person"
+                                }
+                            ],
+                            "reference": {
+                                "type": "accessionNo",
+                                "guid": "PRN0000020101221e6cl000ae",
+                                "mimetype": "text/xml"
+                            },
+                            "snippet": {
+                                "value": "...product options and pricing to better serve the needs of customers in their local areas. The site runs on Microsoft's"
+                            }
                         },
                         {
-                            "guid": "guid_Company",
-                            "class": "dj_company",
-                            "value": "author_Company"
+                            "sourceDescriptor": "Business Wire",
+                            "title": "<span class=\"\">GrapeCity Announces ActiveReports</span><span class=\"dj_space\">...</span>",
+                            "headlineUrl": "javascript:void(0)",
+                            "publicationDateTimeDescriptor": "Friday, 17 December 2010 4:04 PM GMT",
+                            "author": [
+                                {
+                                    "guid": "guid_text",
+                                    "class": "dj_text",
+                                    "value": "author_text"
+                                },
+                                {
+                                    "guid": "guid_highlight",
+                                    "class": "dj_highlight",
+                                    "value": "author_highlight"
+                                },
+                                {
+                                    "guid": "guid_Company",
+                                    "class": "dj_company",
+                                    "value": "author_Company"
+                                },
+                                {
+                                    "guid": "guid_Person",
+                                    "class": "dj_person",
+                                    "value": "author_Person"
+                                }
+                            ],
+                            "reference": {
+                                "type": "accessionNo",
+                                "guid": "BWR0000020101217e6ch00086",
+                                "mimetype": "text/xml"
+                            },
+                            "snippet": {
+                                "value": "...New release makes ActiveReports the only .NET reporting tool to offer report viewers for Windows,"
+                            }
                         },
                         {
-                            "guid": "guid_Person",
-                            "class": "dj_person",
-                            "value": "author_Person"
+                            "sourceDescriptor": "Dow Jones Global Press Release Wire",
+                            "title": "<span class=\"\">ORM and Business App Frameworks</span><span class=\"dj_space\">...</span>",
+                            "headlineUrl": "javascript:void(0)",
+                            "publicationDateTimeDescriptor": "Friday, 17 December 2010 9:01 PM GMT",
+                            "author": [
+                                {
+                                    "guid": "guid_text",
+                                    "class": "dj_text",
+                                    "value": "author_text"
+                                },
+                                {
+                                    "guid": "guid_highlight",
+                                    "class": "dj_highlight",
+                                    "value": "author_highlight"
+                                },
+                                {
+                                    "guid": "guid_Company",
+                                    "class": "dj_company",
+                                    "value": "author_Company"
+                                },
+                                {
+                                    "guid": "guid_Person",
+                                    "class": "dj_person",
+                                    "value": "author_Person"
+                                }
+                            ],
+                            "reference": {
+                                "type": "accessionNo",
+                                "guid": "DJGPRW0020101217e6ch0ljj5",
+                                "mimetype": "text/xml"
+                            },
+                            "snippet": {
+                                "value": "... -- Actions in Detail View Layout --"
+                            }
+                        },
+                        {
+                            "sourceDescriptor": "Business Wire",
+                            "title": "<span class=\"\">GrapeCity Announces ActiveReports</span><span class=\"dj_space\">...</span>",
+                            "headlineUrl": "javascript:void(0)",
+                            "publicationDateTimeDescriptor": "Friday, 17 December 2010 4:04 PM GMT",
+                            "author": [
+                                {
+                                    "guid": "guid_text",
+                                    "class": "dj_text",
+                                    "value": "author_text"
+                                },
+                                {
+                                    "guid": "guid_highlight",
+                                    "class": "dj_highlight",
+                                    "value": "author_highlight"
+                                },
+                                {
+                                    "guid": "guid_Company",
+                                    "class": "dj_company",
+                                    "value": "author_Company"
+                                },
+                                {
+                                    "guid": "guid_Person",
+                                    "class": "dj_person",
+                                    "value": "author_Person"
+                                }
+                            ],
+                            "reference": {
+                                "type": "accessionNo",
+                                "guid": "BWRFIN0020101217e6ch000b5",
+                                "mimetype": "text/xml"
+                            },
+                            "snippet": {
+                                "value": "...The new release makes ActiveReports 6 the only .NET reporting tool to provide report viewers for Windows,"
+                            }
                         }
-                    ],
-                    "reference": {
-                        "type": "accessionNo",
-                        "guid": "DJGPRW0020101221e6cl0libj",
-                        "mimetype": "text/xml"
-                    },
-                    "snippet": {
-                        "value": "...and choice by including <b>source code</b> and engaging developer communities with each of its software platforms. The flagship"
-                    }
-                },
-                {
-                    "sourceDescriptor": "PR Newswire (U.S.)",
-                    "title": "<span class=\"\">Servant Systems Upgrades Franchisee</span><span class=\"dj_space\">...</span>",
-                    "headlineUrl": "javascript:void(0)",
-                    "publicationDateTimeDescriptor": "Tuesday, 21 December 2010 5:54 PM GMT",
-                    "author": [
-                        {
-                            "guid": "guid_text",
-                            "class": "dj_text",
-                            "value": "author_text"
-                        },
-                        {
-                            "guid": "guid_highlight",
-                            "class": "dj_highlight",
-                            "value": "author_highlight"
-                        },
-                        {
-                            "guid": "guid_Company",
-                            "class": "dj_company",
-                            "value": "author_Company"
-                        },
-                        {
-                            "guid": "guid_Person",
-                            "class": "dj_person",
-                            "value": "author_Person"
-                        }
-                    ],
-                    "reference": {
-                        "type": "accessionNo",
-                        "guid": "PRN0000020101221e6cl000ae",
-                        "mimetype": "text/xml"
-                    },
-                    "snippet": {
-                        "value": "...product options and pricing to better serve the needs of customers in their local areas. The site runs on Microsoft's"
-                    }
-                },
-                {
-                    "sourceDescriptor": "Business Wire",
-                    "title": "<span class=\"\">GrapeCity Announces ActiveReports</span><span class=\"dj_space\">...</span>",
-                    "headlineUrl": "javascript:void(0)",
-                    "publicationDateTimeDescriptor": "Friday, 17 December 2010 4:04 PM GMT",
-                    "author": [
-                        {
-                            "guid": "guid_text",
-                            "class": "dj_text",
-                            "value": "author_text"
-                        },
-                        {
-                            "guid": "guid_highlight",
-                            "class": "dj_highlight",
-                            "value": "author_highlight"
-                        },
-                        {
-                            "guid": "guid_Company",
-                            "class": "dj_company",
-                            "value": "author_Company"
-                        },
-                        {
-                            "guid": "guid_Person",
-                            "class": "dj_person",
-                            "value": "author_Person"
-                        }
-                    ],
-                    "reference": {
-                        "type": "accessionNo",
-                        "guid": "BWR0000020101217e6ch00086",
-                        "mimetype": "text/xml"
-                    },
-                    "snippet": {
-                        "value": "...New release makes ActiveReports the only .NET reporting tool to offer report viewers for Windows,"
-                    }
-                },
-                {
-                    "sourceDescriptor": "Dow Jones Global Press Release Wire",
-                    "title": "<span class=\"\">ORM and Business App Frameworks</span><span class=\"dj_space\">...</span>",
-                    "headlineUrl": "javascript:void(0)",
-                    "publicationDateTimeDescriptor": "Friday, 17 December 2010 9:01 PM GMT",
-                    "author": [
-                        {
-                            "guid": "guid_text",
-                            "class": "dj_text",
-                            "value": "author_text"
-                        },
-                        {
-                            "guid": "guid_highlight",
-                            "class": "dj_highlight",
-                            "value": "author_highlight"
-                        },
-                        {
-                            "guid": "guid_Company",
-                            "class": "dj_company",
-                            "value": "author_Company"
-                        },
-                        {
-                            "guid": "guid_Person",
-                            "class": "dj_person",
-                            "value": "author_Person"
-                        }
-                    ],
-                    "reference": {
-                        "type": "accessionNo",
-                        "guid": "DJGPRW0020101217e6ch0ljj5",
-                        "mimetype": "text/xml"
-                    },
-                    "snippet": {
-                        "value": "... -- Actions in Detail View Layout --"
-                    }
-                },
-                {
-                    "sourceDescriptor": "Business Wire",
-                    "title": "<span class=\"\">GrapeCity Announces ActiveReports</span><span class=\"dj_space\">...</span>",
-                    "headlineUrl": "javascript:void(0)",
-                    "publicationDateTimeDescriptor": "Friday, 17 December 2010 4:04 PM GMT",
-                    "author": [
-                        {
-                            "guid": "guid_text",
-                            "class": "dj_text",
-                            "value": "author_text"
-                        },
-                        {
-                            "guid": "guid_highlight",
-                            "class": "dj_highlight",
-                            "value": "author_highlight"
-                        },
-                        {
-                            "guid": "guid_Company",
-                            "class": "dj_company",
-                            "value": "author_Company"
-                        },
-                        {
-                            "guid": "guid_Person",
-                            "class": "dj_person",
-                            "value": "author_Person"
-                        }
-                    ],
-                    "reference": {
-                        "type": "accessionNo",
-                        "guid": "BWRFIN0020101217e6ch000b5",
-                        "mimetype": "text/xml"
-                    },
-                    "snippet": {
-                        "value": "...The new release makes ActiveReports 6 the only .NET reporting tool to provide report viewers for Windows,"
-                    }
-                }
-            ]
-            });
-    }
-    function OnHeadlineClick() { $dj.debug('OnHeadlineClick fired'); alert("First Control"); }
-    function OnHeadlineClick2() { $dj.debug('OnHeadlineClick2 fired'); alert("Second Control"); }
-</script>
+                        ]
+                    });
+            }
+            function OnHeadlineClick() { $dj.debug('OnHeadlineClick fired'); alert("First Control"); }
+            function OnHeadlineClick2() { $dj.debug('OnHeadlineClick2 fired'); alert("Second Control"); }
+        </script>

@@ -9,17 +9,23 @@
             author: 'span.article-clickable',
             noResultSpan: 'span.dj_noResults',
             headline: 'a.article-view-trigger',
-            headlineEntry: 'li.dj_entry'
+            headlineEntry: 'li.dj_entry',
+            headlineList: '.article-list'
         },
         
-        options: {
+        defaults: {
             displayHeadlineTooltip: false,
             displayNoResultsToken: true,
             displaySnippets: 3,
             extension: "",
             layout: 0,
             maxNumHeadlinesToShow: 5,
-            truncationType: 0
+            truncationType: 0,
+            allowPagination: false,
+            pageSize: 5,
+            pageDirection: 'Vertical',
+            pagePrevSelector: '.prev',
+            pageNextSelector: '.next'
         },
 
         events: {
@@ -69,6 +75,20 @@
                         }
                     }
             }, this);
+
+            if (this.options.allowPagination) {
+                this.$element
+                    .find('.carouselContainer')
+                    .jCarouselLite({
+                        btnNext: this.options.pageNextSelector,
+                        btnPrev: this.options.pagePrevSelector,
+                        vertical: this.options.pageDirection === 'Vertical',
+                        visible: this.options.maxNumHeadlinesToShow,
+                        scroll: this.options.maxNumHeadlinesToShow,
+                        circular: false
+                    });
+
+            }
 
         },
 

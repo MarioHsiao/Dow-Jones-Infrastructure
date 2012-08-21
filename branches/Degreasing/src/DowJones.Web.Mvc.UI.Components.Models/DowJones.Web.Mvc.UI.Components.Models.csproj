@@ -115,6 +115,7 @@
     <Compile Include="OutletList\OutletListModel.cs" />
     <Compile Include="OutletList\OutletListTokens.cs" />
     <Compile Include="OutletList\OutletModel.cs" />
+    <Compile Include="PortalHeadlineList\Direction.cs" />
     <Compile Include="SearchBuilder\SearchBuilderData.cs" />
     <Compile Include="SearchCategoriesLookUp\LookUpData.cs" />
     <Compile Include="Search\CodeDesc.cs" />

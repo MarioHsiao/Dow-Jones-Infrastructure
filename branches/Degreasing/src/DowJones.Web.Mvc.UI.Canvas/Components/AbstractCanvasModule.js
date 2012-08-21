@@ -205,7 +205,10 @@ DJ.UI.AbstractCanvasModule = DJ.UI.CompositeComponent.extend({
     },
 
     fireOnSaveAndCloseEditArea: function () {
-        this._saveProperties($dj.delegate(this, this.showModuleArea));
+        this._saveProperties($dj.delegate(this, function () {
+            this.publish(this.events.canvasModuleEditSuccess, { moduleId: this.get_moduleId(), module: this });
+            this.showModuleArea();
+        }));
     },
 
     get_CanvasId: function () {
