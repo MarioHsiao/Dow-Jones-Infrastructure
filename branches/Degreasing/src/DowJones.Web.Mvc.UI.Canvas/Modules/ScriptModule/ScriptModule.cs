@@ -13,6 +13,9 @@ namespace DowJones.Web.Mvc.UI.Canvas.Modules.ScriptModule
 
         public string Html { get; set; }
 
+        [ClientProperty("externalIncludes")]
+        public IEnumerable<string> ExternalIncludes { get; set; }
+
         [ClientProperty("scriptOptions", Nested = false)]
         public IEnumerable<KeyValuePair<string, object>> ScriptOptions { get; set; }
 
@@ -40,17 +43,19 @@ namespace DowJones.Web.Mvc.UI.Canvas.Modules.ScriptModule
             {
                 var canEdit = true;
                 var template = _scriptModuleTemplateManager.GetTemplate(source.TemplateId);
+                    template = template ?? new ScriptModuleTemplate();
 
                 return new ScriptModule {
                     CanEdit = canEdit,
                     ColumnSpan = source.ColumnSpan,
                     Editor = CreateEditor(source, template) ?? new ScriptModuleEditor(),
+                    ExternalIncludes = template.ExternalIncludes ?? Enumerable.Empty<string>(),
                     ModuleId = source.Id,
                     Title = source.Title,
                     Description = source.Description,
                     Position = source.Position,
                     TemplateId = source.TemplateId,
-                    Html = (template == null) ? string.Empty : (template.Html ?? string.Empty),
+                    Html = (template == null) ? string.Empty : (template.HtmlLayout ?? string.Empty),
                     ScriptOptions = source.Options.Select(x => new KeyValuePair<string, object>(x.Name, x.Value)),
                     ModuleState = Mapper.Map<ModuleState>(source.ModuleState),
                 };

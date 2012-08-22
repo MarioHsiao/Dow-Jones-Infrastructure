@@ -151,7 +151,6 @@
     <Compile Include="Managers\Multimedia\MultiMediaResponse.cs" />
     <Compile Include="Models\Common\RegionNewsVolume.cs" />
     <Compile Include="Web\ClientResources\EmbeddedClientResourceValidator.cs" />
-    <Compile Include="Web\ClientResources\IClientResourceRepository.cs" />
     <Compile Include="Web\Extensions\UrlExtensions.cs" />
     <Compile Include="Globalization\ResourceTextManagerFactory.cs" />
     <Compile Include="Infrastructure\GenericEqualityComparer.cs" />

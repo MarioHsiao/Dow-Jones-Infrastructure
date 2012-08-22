@@ -32,19 +32,22 @@
     executeScript: function () {
         var params = {
             container: this._scriptContainer,
-            options: this.options,//.scriptOptions,
+            options: this.options,
             module: this
         };
 
         function evalClosure(script) {
             $.extend(this, params);
-            
             eval(script);
         }
 
         var scriptUrl = this.options.dataServiceUrl + '/script/' + this.options.templateId;
+        var self = this;
         
-        $.ajax(scriptUrl, { dataType: 'html' }).success(evalClosure);
+        $.ajax(scriptUrl, { dataType: 'html' }).success(function (script) {
+            var validIncludes = _.filter(self.options.externalIncludes, function (include) { return include ? true : false; })
+            DJ.$dj.require(validIncludes, function() { evalClosure(script); });
+        });
     },
 
     EOF: null

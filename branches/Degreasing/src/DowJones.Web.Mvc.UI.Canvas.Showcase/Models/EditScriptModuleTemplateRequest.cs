@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
 using DowJones.Pages.Modules.Templates;
 
 namespace DowJones.DegreasedDashboards.Website.Models
@@ -29,23 +28,30 @@ namespace DowJones.DegreasedDashboards.Website.Models
 
         public List<ScriptModuleTemplateOption> Options { get; set; }
 
+        public List<string> ExternalIncludes { get; set; }
+
         public EditScriptModuleTemplateRequest()
         {
             Options = new List<ScriptModuleTemplateOption>();
+            ExternalIncludes = new List<string>();
         }
 
         public EditScriptModuleTemplateRequest(ScriptModuleTemplate template)
         {
             Options = new List<ScriptModuleTemplateOption>();
+            ExternalIncludes = new List<string>();
 
             if (template == null)
                 return;
 
             Id = template.Id;
             Description = template.Description;
+            Html = template.HtmlLayout;
+            Script = template.Script;
             Title = template.Title;
-            Script = template.Scripts.FirstOrDefault();
-            Html = template.Html;
+
+            if (template.ExternalIncludes != null)
+                ExternalIncludes = new List<string>(template.ExternalIncludes);
 
             if (template.Options != null)
                 Options = new List<ScriptModuleTemplateOption>(template.Options);

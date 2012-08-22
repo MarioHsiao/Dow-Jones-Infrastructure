@@ -10,13 +10,14 @@ namespace DowJones.DegreasedDashboards.Website.Models
         public string Title { get; set; }
         public string Description { get; set; }
 
-        public IEnumerable<string> Scripts { get; set; }
+        public string Script { get; set; }
+        public IEnumerable<string> ExternalIncludes { get; set; }
         public IEnumerable<ScriptModuleTemplateOption> Options { get; set; }
 
 
-        public int ScriptCount
+        public int ExternalIncludesCount
         {
-            get { return Scripts.Count(); }
+            get { return ExternalIncludes.Count(); }
         }
 
         public int OptionCount
@@ -27,7 +28,8 @@ namespace DowJones.DegreasedDashboards.Website.Models
 
         public ScriptModuleTemplateViewModel()
         {
-            Scripts = Enumerable.Empty<string>();
+            Script = string.Empty;
+            ExternalIncludes = Enumerable.Empty<string>();
             Options = Enumerable.Empty<ScriptModuleTemplateOption>();
         }
 
@@ -39,8 +41,9 @@ namespace DowJones.DegreasedDashboards.Website.Models
             Id = template.Id;
             Title = template.Title;
             Description = template.Description;
-            Scripts = template.Scripts;
+            Script = template.Script;
             Options = template.Options;
+            ExternalIncludes = template.ExternalIncludes;
         }
     }
 }

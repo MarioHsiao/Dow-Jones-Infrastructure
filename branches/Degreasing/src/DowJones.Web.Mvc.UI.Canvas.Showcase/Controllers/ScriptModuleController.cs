@@ -64,10 +64,11 @@ namespace DowJones.DegreasedDashboards.Website.Controllers
                 if (template != null)
                 {
                     template.Description = request.Description;
-                    template.Title = request.Title;
-                    template.Html = request.Html;
-                    template.Scripts = new[] {request.Script};
+                    template.ExternalIncludes = request.ExternalIncludes;
+                    template.HtmlLayout = request.Html;
                     template.Options = request.Options ?? Enumerable.Empty<ScriptModuleTemplateOption>();
+                    template.Script = request.Script;
+                    template.Title = request.Title;
 
                     if (request.IsNew)
                         templateId = _templateManager.CreateTemplate(template);
@@ -155,13 +156,13 @@ namespace DowJones.DegreasedDashboards.Website.Controllers
 
             var scriptResult = new System.Text.StringBuilder();
 
-            scriptResult.AppendFormat("console.log('Script Template {0}>> Executing with context ', this);\r\n", templateId);
+            scriptResult.AppendFormat("console.log('Script Template {0}>> Executing with context ', this);{1}", templateId, template.Script);
 
-            foreach (var script in template.Scripts)
-            {
-                scriptResult.Append(script);
-                scriptResult.AppendLine();
-            }
+			//foreach (var script in template.Script)
+			//{
+			//	scriptResult.Append(script);
+			//	scriptResult.AppendLine();
+			//}
 
             return Content(scriptResult.ToString(), "text/javascript");
         }
