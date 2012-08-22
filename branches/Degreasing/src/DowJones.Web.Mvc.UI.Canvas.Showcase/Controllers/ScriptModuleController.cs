@@ -158,12 +158,6 @@ namespace DowJones.DegreasedDashboards.Website.Controllers
 
             scriptResult.AppendFormat("console.log('Script Template {0}>> Executing with context ', this);{1}", templateId, template.Script);
 
-			//foreach (var script in template.Script)
-			//{
-			//	scriptResult.Append(script);
-			//	scriptResult.AppendLine();
-			//}
-
             return Content(scriptResult.ToString(), "text/javascript");
         }
 
