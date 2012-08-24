@@ -68,13 +68,13 @@ DJ.UI.NewsMatrix = DJ.UI.Component.extend({
         var propname = $target.data("propname");
         var index = $target.data("index");
         var rItem = this.matrix.MatrixItems[propname];
-        var rNewsEntity = rItem.newsEntities[index];
+        var rNewsEntity = rItem.NewsEntities[index];
         var data = {
-            companyName: rItem.companyName,
-            ownershipType: rItem.ownershipType,
-            isNewsCoded: rItem.isNewsCoded,
-            instrumentReference: rItem.instrumentReference,
-            newsEntity: rNewsEntity
+            CompanyName: rItem.CompanyName,
+            OwnershipType: rItem.OwnershipType,
+            IsNewsCoded: rItem.IsNewsCoded,
+            InstrumentReference: rItem.InstrumentReference,
+            NewsEntity: rNewsEntity
         };
         this.publish(this.events.matrixItemClicked, data);
     },
@@ -136,7 +136,7 @@ DJ.UI.NewsMatrix = DJ.UI.Component.extend({
     },
 
     extractCategoriesAndItems: function (data) {
-        var categories = this.extractCategories(data[0].newsEntities);
+        var categories = this.extractCategories(data[0].NewsEntities);
         var items = this.extractItems(data);
 
         return {
@@ -149,9 +149,9 @@ DJ.UI.NewsMatrix = DJ.UI.Component.extend({
         var categories = [];
 
         for (var k in newsEntities) {
-            var radarSearchQuery = newsEntities[k].radarSearchQuery,
-                code = radarSearchQuery.searchString,
-                name = radarSearchQuery.name;
+            var radarSearchQuery = newsEntities[k].RadarSearchQuery,
+                code = radarSearchQuery.SearchString,
+                name = radarSearchQuery.Name;
             categories.push({ fcode: code, name: name });
         }
 
@@ -167,7 +167,7 @@ DJ.UI.NewsMatrix = DJ.UI.Component.extend({
         // Loop through each company and add the needed companies info 
         for (var p = 0; p < response.length; p++) {
             var company = response[p];
-            company.newsEntities = this.setNewsData(response[p]);
+            company.NewsEntities = this.setNewsData(response[p]);
             items.push(company);
         }
 
@@ -179,9 +179,9 @@ DJ.UI.NewsMatrix = DJ.UI.Component.extend({
         var categories = [],
             allNewsDayCount = 0,
             allNewsThreeMonthCount = 0;
-        for (var i in company.newsEntities) {
-            var category = company.newsEntities[i],
-                newsVolumes = category.newsVolumes;
+        for (var i in company.NewsEntities) {
+            var category = company.NewsEntities[i],
+                newsVolumes = category.NewsVolumes;
             category.oneDayCount = this.extractCount("Day", newsVolumes);
             category.threeMonthCount = this.extractCount("ThreeMonth", newsVolumes);
             category.threeMonthAvg = this.getAverage(category.threeMonthCount, 89);
@@ -196,9 +196,9 @@ DJ.UI.NewsMatrix = DJ.UI.Component.extend({
 
         // Create an 'All News' category for the company by adding up each category
         var allNews = {};
-        allNews.name = "All News";
-        allNews.subjectCode = "ALLNEWS";
-        allNews.radarSearchQuery = { searchString: "ALLNEWS", name: "All News" };
+        allNews.Name = "All News";
+        allNews.SubjectCode = "ALLNEWS";
+        allNews.RadarSearchQuery = { searchString: "ALLNEWS", name: "All News" };
         allNews.oneDayCount = allNewsDayCount;
         allNews.threeMonthCount = allNewsThreeMonthCount;
         allNews.threeMonthAvg = this.getAverage(allNewsThreeMonthCount, 89);
@@ -211,8 +211,8 @@ DJ.UI.NewsMatrix = DJ.UI.Component.extend({
     // Getting the count of certain category of a certain timeframe
     extractCount: function (timeFrame, newsVolumes) {
         for (var i = 0; i < newsVolumes.length; i++) {
-            if (newsVolumes[i].timeFrame == timeFrame) {
-                return newsVolumes[i].hitCount;
+            if (newsVolumes[i].TimeFrame === timeFrame) {
+                return newsVolumes[i].HitCount;
             }
         }
         return null;

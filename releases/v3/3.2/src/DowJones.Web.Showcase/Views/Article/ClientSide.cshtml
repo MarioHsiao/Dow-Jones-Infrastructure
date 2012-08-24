@@ -1,0 +1,100 @@
+﻿@{
+    ViewBag.Title = "Client Side Article Demo";
+    Layout = "~/Views/Shared/_Layout_ComponentExplorer.cshtml";
+}
+@section Styles{
+    <link href="@Url.Content("~/styles/css/article.css")" rel="stylesheet" />
+
+    <style>
+        header h1 {
+            margin: 0 !important;
+            padding: 4px 0 4px 4px;
+            /*background-color: #d3e6ea;
+            color: #CC988B;
+            text-shadow: 0px -1px 1px rgba(50,61,64, 0.5);*/
+            color: #A5A5A5;
+            background-color: #E4E4E4;
+            text-shadow: 0px 2px 1px #F1F1F1;
+            margin-bottom: 20px !important;
+        }
+
+        .article-page {
+            margin-left: 4px !important;
+        }
+    </style>
+}
+<header>
+    <h1>@ViewBag.Title</h1>
+</header>
+
+<section class="article-page">
+    <div id="articleContainer" class="article"></div>
+</section>
+
+<script src="@Url.Content("~/common.js")" type="text/javascript"></script>
+<script type="text/javascript">
+    var model = {
+        "showIndexing": false,
+        "status": 0,
+        "statusMessage": "",
+        "accessionNo": "J000000020120628e86s0002m",
+        "articleDisplayOption": "Full",
+        "articleDisplayOptions": 0,
+        "reference": {
+            "guid": "J000000020120628e86s0002m",
+            "contentCategory": 2,
+            "contentSubCategory": 9,
+            "contentCategoryDescriptor": "Publication",
+            "contentSubCategoryDescriptor": "Article",
+            "originalContentCategory": "article",
+            "externalUri": "",
+            "mimetype": "text/xml"
+        },
+        "head": [{
+            "text": "J Logo",
+            "value": "http://global.factiva.com/FactivaLogos/jLogo.gif",
+            "imageSize": "Logo",
+            "hasLargeImage": false
+        }],
+        "headlines": [{
+            "text": "Heard & Scene: Actor at Home on High",
+            "isHyperLink": false
+        }],
+        "hasHeadline": true,
+        "renderDefaultPostProcessing": true,
+        "showSourceLinks": true,
+        "showAuthorLinks": true,
+        "postProcessing": 0,
+        "sources": [{
+            "entityData": {
+                "fcode": "J",
+                "name": "The Wall Street Journal",
+                "category": "source"
+            },
+            "entityName": "The Wall Street Journal",
+            "isEntityLink": true
+        }],
+        "authors": [{
+            "entityData": {
+                "fcode": "3433960",
+                "name": "MikeVilensky",
+                "category": "author"
+            },
+            "entityName": "Mike Vilensky"
+        }],
+        "renderAuthors": true,
+        "credits": [],
+        "renderCredits": false
+    };
+
+</script>
+
+<script type="text/javascript">
+    $(function () {
+        DJ.add('Article2', {
+            container: "articleContainer",
+            data: model
+        });
+    });
+
+</script>

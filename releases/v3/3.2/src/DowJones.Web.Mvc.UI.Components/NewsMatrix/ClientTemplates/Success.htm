@@ -3,14 +3,14 @@
         settings= self.settings, 
         defaults = self.defaults, 
         f = self.f, 
-        text = (settings.displayTicker) ? f.getTicker(item) : item.companyName,
-        company = item.companyName;
+        text = (settings.displayTicker) ? f.getTicker(item) : item.CompanyName,
+        company = item.CompanyName;
 %>
 
 <ul class="djWidgetItem djContentItemFixed item">
-    <%  for (var i = 0, len = item.newsEntities.length; i < len; i++) {
-        var cell = item.newsEntities[i],
-        category = cell.radarSearchQuery.name,
+    <%  for (var i = 0, len = item.NewsEntities.length; i < len; i++) {
+        var cell = item.NewsEntities[i],
+        category = cell.RadarSearchQuery.name,
         growthRate = (Math.round(cell.growthRate * 100, 2)) / 100;
     %>
     <li class="djMatrixItemNode" data-propname="<%= pName %>" data-index="<%= i %>" 

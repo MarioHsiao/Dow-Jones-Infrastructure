@@ -58,7 +58,7 @@
           DestinationFolder="$(FactivaBuildDir)\Factiva.Gateway\" />
     
     <ItemGroup>
-      <FactivaGatewayResourceFiles Include="$(FactivaGatewayUncompressedSourcesDir)\**\*.*" />
+      <FactivaGatewayResourceFiles Include="$(FactivaGatewayUncompressedSourcesDir)\**\*.*" Exclude="$(FactivaGatewayUncompressedSourcesDir)\**\stubs\**" />
     </ItemGroup>
     <Attrib Files="@(FactivaGatewayResourceFiles)" ReadOnly="false" />
     <Copy SourceFiles="@(FactivaGatewayResourceFiles)"

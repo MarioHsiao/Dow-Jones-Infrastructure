@@ -272,6 +272,9 @@
     <Content Include="ScriptAdd.html" />
     <Content Include="Scripts\loose2.js" />
     <Content Include="Scripts\loose.js" />
+    <Content Include="Styles\css\article.css">
+      <DependentUpon>article.scss</DependentUpon>
+    </Content>
     <Content Include="Styles\css\AutoSuggest\AutoSuggest.css" />
     <Content Include="Styles\css\AutoSuggest\images\acInfo.png" />
     <Content Include="Styles\css\AutoSuggest\images\acNot.png" />
@@ -1649,6 +1652,8 @@
     <Content Include="Views\NewsMatrix\Index.cshtml" />
     <Content Include="Views\NewsMatrix\sample.json" />
     <Content Include="Views\CompanyProfile\Index.cshtml" />
+    <Content Include="Views\Article\ClientSide.cshtml" />
+    <Content Include="Styles\css\article.scss" />
     <None Include="Views\NewsRadar\sample.json" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
