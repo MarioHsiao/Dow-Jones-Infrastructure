@@ -192,6 +192,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CompositeOutletComponent.cshtml</DependentUpon>
     </Compile>
+    <Compile Include="Article2\ArticleComponent.cs">
+      <DependentUpon>ArticleComponent.cshtml</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="NewsMatrix\NewsMatrixComponent.cs">
       <DependentUpon>NewsMatrixComponent.cshtml</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -575,6 +580,10 @@
       <Generator>RazorViewComponentClassGenerator</Generator>
       <LastGenOutput>CompositeOutletComponent.cs</LastGenOutput>
     </None>
+    <None Include="Article2\ArticleComponent.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>ArticleComponent.cs</LastGenOutput>
+    </None>
     <None Include="NewsMatrix\NewsMatrixComponent.cshtml">
       <Generator>RazorViewComponentClassGenerator</Generator>
       <LastGenOutput>NewsMatrixComponent.cs</LastGenOutput>
@@ -847,6 +856,27 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="PortalHeadlineList\ClientTemplates\Slides.htm" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Article2\Article2.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Article2\ClientTemplates\success.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Article2\ClientTemplates\error.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Article2\ClientTemplates\noData.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Article2\ClientTemplates\video.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Article2\ClientTemplates\logo.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Article2\ClientTemplates\meta.html" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
