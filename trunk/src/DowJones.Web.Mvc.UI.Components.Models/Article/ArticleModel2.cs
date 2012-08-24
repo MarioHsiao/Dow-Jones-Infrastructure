@@ -9,13 +9,15 @@ using DowJones.Extensions;
 using DowJones.Infrastructure;
 using DowJones.Token;
 using DowJones.Web.Mvc.UI.Components.PostProcessing;
+using Newtonsoft.Json;
 
 
 namespace DowJones.Web.Mvc.UI.Components.Article
 {
 	public class ArticleModel2
 	{
-		[ClientProperty("showIndexing ")]
+		[ClientProperty("showIndexing")]
+		[JsonProperty("showIndexing")]
 		public bool ShowIndexing
 		{
 			get
@@ -26,9 +28,11 @@ namespace DowJones.Web.Mvc.UI.Components.Article
 		}
 
 		[ClientProperty("status")]
+		[JsonProperty("status")]
 		public int Status { get; set; }
 
 		[ClientProperty("statusMessage")]
+		[JsonProperty("statusMessage")]
 		public string StatusMessage
 		{
 			get
@@ -38,14 +42,17 @@ namespace DowJones.Web.Mvc.UI.Components.Article
 		}
 
 		[ClientProperty("accessionNo")]
+		[JsonProperty("accessionNo")]
 		public string AccessionNo { get; set; }
 
 		[ClientProperty("articleDisplayOption")]
+		[JsonProperty("articleDisplayOption")]
 		public string ArticleDisplayOption { get { return ArticleDisplayOptions.ToString(); } }
 
 		public DisplayOptions ArticleDisplayOptions { get; set; }
 
 		[ClientProperty("reference")]
+		[JsonProperty("reference")]
 		public string Reference
 		{
 			get
@@ -55,16 +62,20 @@ namespace DowJones.Web.Mvc.UI.Components.Article
 		}
 
 		[ClientProperty("head")]
+		[JsonProperty("head")]
 		public IEnumerable<LogoItem> Head { get; set; }
 
 		[ClientProperty("headlines")]
+		[JsonProperty("headlines")]
 		public IEnumerable<HeadlineItem> Headlines { get; set; }
 
 		[ClientProperty("hasHeadline")]
+		[JsonProperty("hasHeadline")]
 		public bool HasHeadline { get; protected set; }
 
 		[ClientProperty("renderDefaultPostProcessing")]
-		public bool RenderDefaultPostProcessing 
+		[JsonProperty("renderDefaultPostProcessing")]
+		public bool RenderDefaultPostProcessing
 		{
 			get
 			{
@@ -91,29 +102,35 @@ namespace DowJones.Web.Mvc.UI.Components.Article
 		public IEnumerable<PostProcessingOptions> PostProcessingOptions { get; set; }
 
 		[ClientProperty("sources")]
+		[JsonProperty("sources")]
 		public IEnumerable<SourceItem> Sources { get; set; }
 
 		[ClientProperty("sourceName")]
+		[JsonProperty("sourceName")]
 		public string SourceName { get; set; }
 
 		[ClientProperty("authors")]
+		[JsonProperty("authors")]
 		public IEnumerable<AuthorItem> Authors { get; set; }
 
 		[ClientProperty("renderAuthors")]
+		[JsonProperty("renderAuthors")]
 		public bool RenderAuthors
 		{
 			get
 			{
-				return ShowAuthorLinks 
+				return ShowAuthorLinks
 						&& Authors.Any()
 						&& PostProcessing == DowJones.Infrastructure.PostProcessing.UnSpecified;
 			}
 		}
 
 		[ClientProperty("credits")]
+		[JsonProperty("credits")]
 		public IEnumerable<CreditItem> Credits { get; set; }
 
 		[ClientProperty("renderCredits")]
+		[JsonProperty("renderCredits")]
 		public bool RenderCredits
 		{
 			get
@@ -122,7 +139,40 @@ namespace DowJones.Web.Mvc.UI.Components.Article
 			}
 		}
 
-		
+		[ClientProperty("correction")]
+		[JsonProperty("correction")]
+		public IEnumerable<Paragraph> Corrections { get; set; }
+
+		[ClientProperty("hasCorrections")]
+		[JsonProperty("hasCorrections")]
+		public bool HasCorrections { get { return Corrections.Any(); } }
+
+		[ClientProperty("leadParagraphs")]
+		[JsonProperty("leadParagraphs")]
+		public IEnumerable<Paragraph> LeadParagraphs { get; set; }
+
+		[ClientProperty("hasLeadParagraphs")]
+		[JsonProperty("hasLeadParagraphs")]
+		public bool HasLeadParagraphs { get { return LeadParagraphs.Any(); } }
+
+
+		[ClientProperty("tailParagraphs")]
+		[JsonProperty("tailParagraphs")]
+		public IEnumerable<Paragraph> TailParagraphs { get; set; }
+
+		[ClientProperty("renderTailParagraphs")]
+		[JsonProperty("renderTailParagraphs")]
+		public bool RenderTailParagraphs { get { return TailParagraphs.Any() && ArticleDisplayOptions != DisplayOptions.Headline; } }
+
+		[ClientProperty("notes")]
+		[JsonProperty("notes")]
+		public IEnumerable<Paragraph> Notes { get; set; }
+
+		[ClientProperty("hasNotes")]
+		[JsonProperty("hasNotes")]
+		public bool HasNotes { get { return Notes.Any(); } }
+
+
 		private ArticleRef _articleRef;
 
 		[Inject("Until we figure out a better way")]
@@ -159,7 +209,7 @@ namespace DowJones.Web.Mvc.UI.Components.Article
 			});
 
 			var headlines = articleDataSet.Headline ?? Enumerable.Empty<RenderItem>();
-			Headlines = headlines.Select(h => new HeadlineItem 
+			Headlines = headlines.Select(h => new HeadlineItem
 			{
 				Text = h.ItemText,
 				IsHyperLink = h.ItemMarkUp == MarkUpType.Anchor
@@ -169,7 +219,8 @@ namespace DowJones.Web.Mvc.UI.Components.Article
 			Sources = sources.Select(s => new SourceItem(s));
 
 			var authors = articleDataSet.Authors ?? Enumerable.Empty<RenderItem>();
-			Authors = authors.Select(a => new AuthorItem {
+			Authors = authors.Select(a => new AuthorItem
+			{
 				EntityData = a.ItemEntityData.ToJson().EscapeForHtml(),
 				EntityName = a.ItemEntityData.Name
 			});
@@ -181,8 +232,28 @@ namespace DowJones.Web.Mvc.UI.Components.Article
 			});
 
 
+			Corrections = GetParagraphs(articleDataSet.Correction);
+			LeadParagraphs = GetParagraphs(articleDataSet.LeadParagraph);
+			TailParagraphs = GetParagraphs(articleDataSet.TailParagraphs);
+			Notes = GetParagraphs(articleDataSet.Notes);
+			
 		}
 
+
+		private IEnumerable<Paragraph> GetParagraphs(IEnumerable<Dictionary<string, List<RenderItem>>> sources)
+		{
+			if (sources != null)
+				return sources
+					.SelectMany(s => s)
+					.Select(kvc => new Paragraph
+					{
+						Tag = kvc.Key.ToLower() == "pre" ? "pre" : "p",
+						Items = kvc.Value.Select(r => new ParagraphItem(r))
+					}).ToArray();
+
+			return Enumerable.Empty<Paragraph>();
+
+		}
 
 		/// <summary>
 		/// Calculates the size of the picture based on rules and requested size.
@@ -215,6 +286,6 @@ namespace DowJones.Web.Mvc.UI.Components.Article
 
 
 
-		
+
 	}
 }
