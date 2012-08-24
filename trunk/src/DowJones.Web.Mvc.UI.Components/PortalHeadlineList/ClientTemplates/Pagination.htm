@@ -1,0 +1,9 @@
+﻿<div class="dj_Carousel <%= self.options.pageDirection.toLowerCase() %>">
+    <div class="dj_Carousel-inner">
+        <% for (var i = 0; i < self.headlinePages.length; i++) { %>
+        <div class="slidePanel">
+            <%= self.sucessTemplate({ headlines: self.headlinePages[i], options: self.options }) %>
+        </div>        
+        <% } %>
+    </div>
+</div>
