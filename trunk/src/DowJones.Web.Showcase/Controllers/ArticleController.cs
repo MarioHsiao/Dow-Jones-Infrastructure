@@ -21,6 +21,7 @@ using DowJones.Web.Mvc.UI.Components.SocialButtons;
 using DowJones.Web.Mvc.UI.Components.VideoPlayer;
 using Factiva.Gateway.Messages.Archive.V2_0;
 using ControllerBase = DowJones.Web.Mvc.ControllerBase;
+using DowJones.Token;
 
 namespace DowJones.Web.Showcase.Controllers
 {
@@ -62,16 +63,27 @@ namespace DowJones.Web.Showcase.Controllers
         }
 
 		[Route("article2/{accessionNumber}")]
-		public ActionResult Article2(string accessionNumber, DisplayOptions option = DisplayOptions.Full,
+		public JsonResult Article2(string accessionNumber, DisplayOptions option = DisplayOptions.Full,
 			ImageType imageType = ImageType.Thumbnail, PictureSize pictureSize = PictureSize.Large,
 			string callback = null, string canonicalSearchString = DefaultCanonicalSearchString)
 		{
+			
 			var oldModel = GetArticle(accessionNumber, canonicalSearchString, imageType, pictureSize, option);
 
-			var model = new ArticleModel2(oldModel.ArticleDataSet);
-			
+			var model = new ArticleModel2(oldModel.ArticleDataSet, TokenRegistry)
+			{
+				ShowAuthorLinks = true,
+				ShowPostProcessing = true,
+				ShowSourceLinks = true,
+				PostProcessingOptions = new [] {
+					PostProcessingOptions.Print, PostProcessingOptions.Save, 
+					PostProcessingOptions.Email, PostProcessingOptions.Listen, 
+					PostProcessingOptions.Translate, PostProcessingOptions.Share
+				}
+			};
 
-			return Request.IsAjaxRequest() ? ViewComponent(model, callback) : View("Index", model);
+
+			return Json(model, JsonRequestBehavior.AllowGet);
 		}
 
 		[Route("article2/clientside")]
