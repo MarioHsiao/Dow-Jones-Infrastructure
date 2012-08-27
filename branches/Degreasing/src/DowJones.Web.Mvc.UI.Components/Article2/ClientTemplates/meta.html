@@ -1,0 +1,82 @@
+﻿<% 
+    var model = self;
+%>
+<div class="dj_article_meta">
+
+    <% if(model.hasHeadline) { 
+        if (model.showIndexing) { %>
+            <div class="dj_article_index">HD</div>
+        <% } %>
+
+    <h4 class="dj_article_hd dj_article_section headline" data-meta="<%= model.accessionNo %>">
+        <% for(var i = 0, len = model.headlines.length; i < len; i++) { 
+                var headline = model.headlines[i];
+                if(headline.isHyperLink) {
+        %>
+                    <a class="dj_article_headline_link" href="javascript:void(0)"><%= headline.text %></a>
+             <% } else { %>
+                    <%= headline.text %>
+             <% } %>
+    </h4>
+    <% } } %>
+
+    <div class="meta">
+        <% if (model.showIndexing) { %>
+        <div class="dj_article_index">HD</div>
+        <% } %>
+
+        <div class="dj_article_sn dj_article_section">
+            <% if (model.renderDefaultPostProcessing) { 
+                for(var i = 0, len = model.sources.length; i < len; i++) { 
+                var source = model.sources[i];
+            %>
+            <span class="value source drop-down-button" data-dd-type="source">
+                <% if(source.isEntityLink) { %>
+                    <span class="dj_article_source"
+                        data-entity="<%= source.entityData %>"><%= source.entityName %></span>
+                <% } else { %>
+                    <%= source.text %>
+                <% } %>
+            </span>
+            <% }} else if(model.sourceName) {  %>
+                <span class="value source drop-down-button" data-dd-type="source"><%= model.sourceName %></span>
+                <span class="dj_article_comma">,</span>
+            <% } %>
+        </div>
+        <% if(model.hasByLines) { %>
+            <% if (model.showIndexing) { %>
+                <div class="dj_article_index">BY</div>
+            <% } %>                
+                    <div class="dj_article_by dj_article_section">
+                        <% if(model.renderAuthors) { 
+                            for(var i = 0, len = model.authors.length; i < len; i++) { 
+                                var author = model.authors[i];
+                        %>
+                            <span class="value author drop-down-button" data-dd-type="author">
+                                <span class="dj_article_author" data-entity="<%= author.entityData %>"><%= author.entityName %></span>
+                            </span>
+                        <% } } else { 
+                            for(var i = 0, len = model.byLines.length; i < len; i++) { 
+                                var byLine = model.byLines[i];
+                        %>                
+                            <span class="value author drop-down-button" data-dd-type="author"><%= byLine.text %></span><span
+                                class="dj_article_comma">, </span>
+                        <% } } %>    
+                    </div>
+        <% } 
+        if(model.renderCredits) { %>
+            <% if (model.showIndexing) { %>
+                <div class="dj_article_index">CR</div>
+            <% } %>    
+                        
+                    <div class="dj_article_cr dj_article_section">
+                        <% for(var i = 0, len = model.credits.length; i < len; i++) { 
+                                var credit = model.credits[i];
+                        %>
+                            <span class="credit"><%= credit.text %></span><span class="dj_article_comma">,
+                            </span>
+                        <% } %>
+                    </div>
+        <% } %>
+    </div>
+</div>

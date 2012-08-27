@@ -61,6 +61,25 @@ namespace DowJones.Web.Showcase.Controllers
             return Request.IsAjaxRequest() ? ViewComponent(model, callback) : View("Index", model);
         }
 
+		[Route("article2/{accessionNumber}")]
+		public ActionResult Article2(string accessionNumber, DisplayOptions option = DisplayOptions.Full,
+			ImageType imageType = ImageType.Thumbnail, PictureSize pictureSize = PictureSize.Large,
+			string callback = null, string canonicalSearchString = DefaultCanonicalSearchString)
+		{
+			var oldModel = GetArticle(accessionNumber, canonicalSearchString, imageType, pictureSize, option);
+
+			var model = new ArticleModel2(oldModel.ArticleDataSet);
+			
+
+			return Request.IsAjaxRequest() ? ViewComponent(model, callback) : View("Index", model);
+		}
+
+		[Route("article2/clientside")]
+		public ActionResult ClientSide()
+		{
+			return View();
+		}
+
         [Route("article/video/{accessionNumber}")]
         [Route("article/multimedia/{accessionNumber}")]
         public ActionResult Multimedia(string accessionNumber)
