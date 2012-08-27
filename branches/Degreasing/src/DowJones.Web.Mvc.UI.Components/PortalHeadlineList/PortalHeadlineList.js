@@ -50,6 +50,10 @@
             // Call the base constructor
             this._super(element, $meta);
 
+            if (this.options.allowPagination) {
+                this._initializePagination();
+            }
+
             // Initialize component if we got data from server
             this._setData(this.data);
         },
@@ -88,20 +92,9 @@
                 this._setupPagination();
             }
         },
-
-        _setupPagination: function () {
+        
+        _initializePagination: function() {
             var me = this;
-
-            this.$carousel = this.$element.find(".dj_Carousel");
-            this.$carouselInner = this.$carousel.find(".dj_Carousel-inner");
-            this.$pages = this.$carouselInner.find(".slidePanel");
-            this.currentPageIndex = 0;
-
-            var containerWidth = this.$element.width();
-
-            this.$pages.width(containerWidth);
-
-            this._resizeCarousel(true);
             
             $(this.options.pagePrevSelector).click(function () {
                 me._goToPage(me.currentPageIndex - 1);
@@ -110,8 +103,7 @@
             $(this.options.pageNextSelector).click(function () {
                 me._goToPage(me.currentPageIndex + 1);
             });
-
-
+            
             // to capture resizing of the container this.$element
             $(window).resize(function () {
                 var containerWidth = me.$element.width();
@@ -120,6 +112,17 @@
                 me._goToPage(me.currentPageIndex, true);
                 //resize(containerWidth);
             });
+        },
+
+        _setupPagination: function () {
+            var me = this;
+            this.$carousel = this.$element.find(".dj_Carousel");
+            this.$carouselInner = this.$carousel.find(".dj_Carousel-inner");
+            this.$pages = this.$carouselInner.find(".slidePanel");
+            this.currentPageIndex = 0;
+            var containerWidth = this.$element.width();
+            this.$pages.width(containerWidth);
+            this._resizeCarousel(true);
         },
 
         _goToPage: function (pageIndex, disableAnimation) {
@@ -151,14 +154,25 @@
             }
 
             this.currentPageIndex = pageIndex;
-            this._resizeCarousel(true);
+            this._resizeCarousel(disableAnimation);
         },
 
-        _resizeCarousel: function(disableAnimation) {
+        _resizeCarousel: function(disableAnimation, imagesAreLoaded) {
             var me = this;
             var $currentPage = this.$pages.eq(this.currentPageIndex);
             var width, height;
   
+            // if there are images, need to wait for them to load before setting height/width
+            if (!imagesAreLoaded) {
+                var $images = this.$element.find("img");                
+                if ($images.length > 0) {
+                    this.$element.imagesLoaded(function() {
+                        me._resizeCarousel(disableAnimation, true);
+                    });
+                    return;
+                }
+            }
+            
             // if there are hidden parents, need to recalculate everything 
             var $hiddenParents = this.$element.parents(":hidden");         
             if ($hiddenParents.length > 0) {
@@ -167,20 +181,13 @@
                 var containerWidth = this.$element.width();
                 this.$pages.width(containerWidth);
                 this.$carouselInner.width(this._getCarouselWidth(containerWidth));
-                
-                var $images = this.$element.find("img");                
-                if ($images.length > 0) {
-                    this.$element.imagesLoaded(function() {
-                        me._setCarouselWidthAndHeight($currentPage.width(), $currentPage.height(), disableAnimation);
-                        $hiddenParents.removeClass("dj_show");                        
-                    });
-                    return;
-                }
-                
                 this._setCarouselWidthAndHeight($currentPage.width(), $currentPage.height(), disableAnimation);
+                
                 $hiddenParents.removeClass("dj_show");
             }
             else {
+                var containerWidth = this.$element.width();
+                this.$carouselInner.width(this._getCarouselWidth(containerWidth));
                 this._setCarouselWidthAndHeight($currentPage.width(), $currentPage.height(), disableAnimation);
             }
         },
@@ -218,7 +225,7 @@
         
         _includePagingCssStyles: function() {
             if ($("style#PortalHeadlineListPagination").length === 0) {
-                $("<style id='PortalHeadlineListPagination' type='text/css'>.dj_Carousel{position:relative;width:0;overflow:hidden;margin:0;}.dj_Carousel .dj_Carousel-inner{position:absolute;}.dj_Carousel.vertical .dj_Carousel-inner .slidePanel{float:none;}.dj_Carousel .dj_Carousel-inner .slidePanel{padding-bottom:1px;float:left;}.dj_show{visibility:hidden!important;display:block!important;position:absolute!important;}</style>").appendTo("head");                
+                $("<style id='PortalHeadlineListPagination' type='text/css'>.dj_Carousel{position:relative;width:0;overflow:hidden;margin:0;}.dj_Carousel .dj_Carousel-inner{position:absolute;}.dj_Carousel.vertical .dj_Carousel-inner .slidePanel{float:none;}.dj_Carousel.horizontal .dj_Carousel-inner .slidePanel{float:left;}.dj_Carousel .dj_Carousel-inner .slidePanel{padding-bottom:1px;}.dj_show{visibility:hidden!important;display:block!important;position:absolute!important;}</style>").appendTo("head");                
             }
         },
 
