@@ -134,12 +134,14 @@
                     pageIndex = 0;
             }
             
-            this.publish(this.events.pageIndexChanged,
-                         {
-                             currentPageIndex: this.currentPageIndex,
-                             newPageIndex: pageIndex,
-                             pagesCount: this.pagesCount
-                         });
+            if (pageIndex !== this.currentPageIndex) {            
+                this.publish(this.events.pageIndexChanged,
+                             {
+                                 currentPageIndex: this.currentPageIndex,
+                                 newPageIndex: pageIndex,
+                                 pagesCount: this.pagesCount
+                             });            
+            }
 
             var targetPosition = this.$pages.eq(pageIndex).position();
             
