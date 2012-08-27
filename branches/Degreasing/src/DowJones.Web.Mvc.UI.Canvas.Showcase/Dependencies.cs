@@ -9,6 +9,7 @@ using DowJones.Session;
 using DowJones.Web.Mvc.UI.Canvas.RavenDb;
 using Ninject;
 using Raven.Client;
+using Raven.Client.Document;
 using Raven.Client.Embedded;
 
 namespace DowJones.DegreasedDashboards.Website
@@ -23,11 +24,19 @@ namespace DowJones.DegreasedDashboards.Website
             Bind<IPrinciple>().ToConstant(new Principle());
             Bind<Product>().ToConstant(new GlobalProduct());
 
-            var documentStore = new EmbeddableDocumentStore();
-            documentStore.DataDirectory = ConfigurationManager.AppSettings["RavenDb.DataDirectory"];
+            IDocumentStore documentStore;
 
-            if ("true".Equals(ConfigurationManager.AppSettings["RavenDb.RunInMemory"]))
-                documentStore.RunInMemory = true;
+            if ("true".Equals(ConfigurationManager.AppSettings["RavenDb.Embedded"]))
+            {
+                documentStore = new EmbeddableDocumentStore {
+                        DataDirectory = ConfigurationManager.AppSettings["RavenDb.DataDirectory"],
+                        RunInMemory = "true".Equals(ConfigurationManager.AppSettings["RavenDb.RunInMemory"]),
+                    };
+            }
+            else
+            {
+                documentStore = new DocumentStore { ConnectionStringName = "RavenDb" };
+            }
 
             Bind<IDocumentStore>()
                 .ToConstant(documentStore)
@@ -36,7 +45,8 @@ namespace DowJones.DegreasedDashboards.Website
 
             Bind<IDocumentSession>()
                 .ToMethod(x => x.Kernel.Get<IDocumentStore>().OpenSession())
-                .InRequestScope();
+                .InRequestScope()
+                .OnDeactivation(x => x.Dispose());
 
             Bind<IPageRepository>().To<RavenDbPageRepository>().InRequestScope();
             Bind<IScriptModuleTemplateManager>().To<RavenDbScriptModuleTemplateRepository>().InRequestScope();

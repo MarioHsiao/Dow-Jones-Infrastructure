@@ -1,4 +1,5 @@
-﻿@{
+﻿@using System.Configuration
+@{
     DJ.ScriptRegistry()
         .WithJQueryUIWidgets();
 }
@@ -108,7 +109,8 @@
     <footer>
         <hr>
         <p>
-            © @DateTime.Now.Year <a href="http://www.dowjones.com">Dow Jones &amp; Company Inc.</a>
+            <a href="@ConfigurationManager.ConnectionStrings["RavenDb"].ConnectionString.Replace("Url=", string.Empty)" target="ravendb">©</a>
+            @DateTime.Now.Year <a href="http://www.dowjones.com">Dow Jones &amp; Company Inc.</a>
             All Rights Reserved
         </p>
     </footer>
