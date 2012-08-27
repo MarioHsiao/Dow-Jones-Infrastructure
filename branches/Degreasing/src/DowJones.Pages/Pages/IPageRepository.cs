@@ -10,8 +10,6 @@ namespace DowJones.Pages
 
         PageReference CreatePage(Page page);
 
-        void RemoveModulesFromPage(PageReference pageRef, params int[] moduleIds);
-
         void DeletePage(PageReference pageRef);
 
         Module GetModule(PageReference pageRef, int moduleId);
@@ -20,10 +18,12 @@ namespace DowJones.Pages
 
         IEnumerable<Page> GetPages(Common.SortBy sort, Common.SortOrder order);
 
+        void RemoveModulesFromPage(PageReference pageRef, params int[] moduleIds);
+
         void UpdateModule(Module module);
-        void UpdateModulePositions(PageReference pageRef, IEnumerable<IEnumerable<int>> list);
 
         void UpdatePage(Page page);
 
+        void UpdatePageLayout(PageReference pageRef, PageLayout layout);
     }
 }

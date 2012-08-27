@@ -22,7 +22,7 @@ namespace DowJones.Web.Mvc.UI.Canvas.Modules.ScriptModule
     using System.Web.UI;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 08/20/2012 04:40 PM
+    // Last Generated Timestamp: 08/27/2012 12:27 PM
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Canvas.Modules.ScriptModule.ScriptModule.js", ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Web.Mvc.UI.Canvas.Modules.ScriptModule.ScriptCanvasModule))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.27108")]
     public class ScriptCanvasModule : AbstractCanvasModule<Modules.ScriptModule.ScriptModule>
@@ -42,12 +42,6 @@ namespace DowJones.Web.Mvc.UI.Canvas.Modules.ScriptModule
         public override void ExecuteTemplate()
         {
 
-
-
-
-  
-    var colSpan = Module.ColumnSpan * 3; // Convert from 4col to 12col grid
-    CssClass += " span" + colSpan;
 
 
 

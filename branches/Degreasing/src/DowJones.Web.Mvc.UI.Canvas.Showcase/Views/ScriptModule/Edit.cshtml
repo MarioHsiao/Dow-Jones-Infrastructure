@@ -9,6 +9,16 @@
         min-height: 250px;
     }
 
+    form>fieldset {
+        /* HACK: cancel out the margin for the first label (below) */
+        margin-top: -20px; 
+    }
+
+    label {
+        font-weight: bold;
+        margin-top: 20px;
+    }
+
     input[type=text], textarea {
         width: 99%;
     }
@@ -40,6 +50,7 @@
 
     .external-includes {
         list-style: none;
+        margin: 0;
     }
 
         .external-includes .include {
@@ -246,13 +257,8 @@
 
 
         $('.save', module).click(function () {
-
-            //alert('TODO:  Merge External Includes into the object!');
-
-            //return false;
-
             $('li', externalIncludes).each(function (i) {
-                $(':input', this).attr('name', function(x, val) {
+                $('.include :input', this).attr('name', function (x, val) {
                     return 'externalIncludes[' + i + ']';
                 });
             });

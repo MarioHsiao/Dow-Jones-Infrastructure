@@ -8,8 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Web.UI.WebResourceAttribute("DowJones.Web.Mvc.UI.Canvas.Modules.ScriptModule.Editor.ScriptModuleEditor.js", "text/javascript")]
-
 namespace DowJones.Web.Mvc.UI.Canvas.Modules.ScriptModule.Editor
 {
     using System;
@@ -22,9 +20,7 @@ namespace DowJones.Web.Mvc.UI.Canvas.Modules.ScriptModule.Editor
     using System.Web.UI;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 08/20/2012 04:45 PM
-    [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Canvas.Modules.ScriptModule.Editor.ScriptModuleEditor.js", DependsOn=new string[] {
-            "AbstractCanvasModuleEditor"}, ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Web.Mvc.UI.Canvas.Modules.ScriptModule.Editor.ScriptModuleEditorComponent))]
+    // Last Generated Timestamp: 08/27/2012 03:19 PM
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.27108")]
     public class ScriptModuleEditorComponent : AbstractCanvasModuleEditor<Modules.ScriptModule.Editor.ScriptModuleEditor>
     {
@@ -37,12 +33,11 @@ namespace DowJones.Web.Mvc.UI.Canvas.Modules.ScriptModule.Editor
         {
             get
             {
-                return "dj_ScriptModuleEditor";
+                return "dj_CanvasModuleEditor";
             }
         }
         public override void ExecuteTemplate()
         {
-
 
 
 
@@ -59,39 +54,6 @@ WriteLiteral("\"/>\r\n<input type=\"hidden\" name=\"templateId\" value=\"");
                                          Write(Model.TemplateId);
 
 WriteLiteral("\"/>\r\n\r\n<fieldset>\r\n    <p>\r\n        <label>");
-
-
-          Write(DJ.Token("columnSpan"));
-
-WriteLiteral("</label>\r\n");
-
-
-         for (int colSpan = Model.MinColumnSpan; colSpan <= Model.MaxColumnSpan; colSpan++)
-        {
-            var selected = Model.ColumnSpan == colSpan;
-
-WriteLiteral("            <label class=\"radio inline\">\r\n                <input type=\"radio\" nam" +
-"e=\"columnSpan\" class=\"columnSpan\" value=\"");
-
-
-                                                                           Write(colSpan);
-
-WriteLiteral("\" ");
-
-
-                                                                                      Write(selected ? "checked" : "");
-
-WriteLiteral("/>\r\n                ");
-
-
-           Write(colSpan);
-
-WriteLiteral("\r\n            </label>\r\n");
-
-
-        }
-
-WriteLiteral("    </p>\r\n    \r\n    <p>\r\n        <label>");
 
 
           Write(DJ.Token("title"));

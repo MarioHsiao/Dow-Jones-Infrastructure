@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using DowJones.Pages.Modules;
@@ -77,13 +78,19 @@ namespace DowJones.Pages
             PageAssetsManager.UpdatePage(gwPage);
         }
 
-        public void UpdateModulePositions(PageReference pageRef, IEnumerable<IEnumerable<int>> list)
+        public void UpdatePageLayout(PageReference pageRef, PageLayout layout)
         {
-            PageAssetsManager.UpdateModulePositionsOnPage(pageRef, list);
-        }
+            if(!(layout is GroupedPageLayout))
+                throw new NotSupportedException("Only the Grouped Layout is supported");
 
-        public void SaveChanges()
-        {
+            var groupedLayout = (GroupedPageLayout)layout;
+
+            if (groupedLayout == null)
+                return;
+
+            var zones = groupedLayout.Groups.Select(x => x);
+
+            PageAssetsManager.UpdateModulePositionsOnPage(pageRef, zones);
         }
     }
 }

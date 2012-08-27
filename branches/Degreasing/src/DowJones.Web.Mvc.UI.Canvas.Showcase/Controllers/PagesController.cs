@@ -1,6 +1,7 @@
 ﻿using System.Web.Mvc;
 using DowJones.Pages;
 using DowJones.Web.Mvc.Routing;
+using DowJones.Web.Mvc.UI.Canvas;
 
 namespace DowJones.DegreasedDashboards.Website.Controllers
 {
@@ -33,7 +34,14 @@ namespace DowJones.DegreasedDashboards.Website.Controllers
             if(string.IsNullOrWhiteSpace(id))
                 return base.PageNotFound(id);
 
-            var pageId = _pageRepository.CreatePage(new Page { ID = id, Title = "Test Page " + id});
+            var page = new Page
+                           {
+                               ID = id,
+                               Layout = new GroupedPageLayout(),
+                               Title = "Test Page " + id, 
+                           };
+
+            var pageId = _pageRepository.CreatePage(page);
             
             return Page(pageId);
         }

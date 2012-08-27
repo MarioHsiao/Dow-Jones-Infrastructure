@@ -47,7 +47,6 @@
             $('.dj_menu').addClass('dropdown-menu');
         }
 
-
         canvas.subscribe('CanvasModule.EditModuleSuccess', function (args) {
             canvas.reloadModule(args.moduleId);
         });
@@ -59,6 +58,8 @@
         $('#reset-page-data').click(function() {
             return confirm('This will delete all of the module data on this page!  Continue?');
         });
+
+        $('.dj_group').height($('.main-content').height());
 
         fixComponentClasses();
     }

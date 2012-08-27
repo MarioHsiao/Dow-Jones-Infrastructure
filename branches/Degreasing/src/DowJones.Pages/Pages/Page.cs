@@ -73,6 +73,9 @@ namespace DowJones.Pages
         [DataMember(Name = "createdDate")]
         public virtual DateTime CreatedDate { get; set; }
 
+        [DataMember(Name = "layout")]
+        public virtual PageLayout Layout { get; set; }
+
         [DataMember(Name = "metaDataInfo")]
         public virtual MetaData MetaData { get; set; }
 
@@ -113,14 +116,11 @@ namespace DowJones.Pages
 
         public static Type[] GetKnownTypes()
         {
-            if (_knownTypes == null)
-                _knownTypes = ServiceLocator.Resolve<IAssemblyRegistry>().GetKnownTypesOf<Page>().ToArray();
-
-            return _knownTypes;
+            return ServiceLocator.Resolve<IAssemblyRegistry>().GetKnownTypesOf<Page>().ToArray();
         }
-        private static volatile Type[] _knownTypes;
     }
 
+    [Obsolete]
     public class Page<TGatewayModel> : Page
     {
     }

@@ -24,12 +24,9 @@
 
     <style>
         body { padding-top: 40px;}
-        .page-header {
-            padding: 0px 15px;
+        .page-header .btn-group {
+            margin-top: 15px;
         }
-            .page-header div {
-                margin-top: 15px;
-            }
         .main-content {
             min-height: 600px;
             margin-bottom: 45px;    /* Rise above the footer */
@@ -83,7 +80,7 @@
     <div class="main-content container-fluid">
     
         <div class="row-fluid">
-            <div class="span12 well page-header">
+            <div class="span12 well well-small page-header">
                 <h2 class="pull-left">@ViewBag.Title</h2>
                 @RenderSection("Header", false)
             </div>

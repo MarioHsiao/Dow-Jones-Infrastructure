@@ -102,6 +102,7 @@
   <ItemGroup>
     <Compile Include="Controllers\DashboardControllerBase.cs" />
     <Compile Include="Controllers\PagesControllerBase.cs" />
+    <Compile Include="Models\CanvasLayout.cs" />
     <Compile Include="Models\ModuleState.cs" />
     <Compile Include="Modules\ScriptModule\Editor\ScriptModuleEditor.cs" />
     <Compile Include="Modules\ScriptModule\Editor\ScriptModuleEditorComponent.cs">
@@ -192,7 +193,6 @@
     <EmbeddedResource Include="Components\AbstractModulePager.js" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Modules\ScriptModule\Editor\ScriptModuleEditor.js" />
     <EmbeddedResource Include="Modules\ScriptModule\ScriptModule.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

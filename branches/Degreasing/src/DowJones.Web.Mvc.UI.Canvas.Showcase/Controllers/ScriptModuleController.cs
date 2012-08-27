@@ -63,12 +63,7 @@ namespace DowJones.DegreasedDashboards.Website.Controllers
 
                 if (template != null)
                 {
-                    template.Description = request.Description;
-                    template.ExternalIncludes = request.ExternalIncludes;
-                    template.HtmlLayout = request.Html;
-                    template.Options = request.Options ?? Enumerable.Empty<ScriptModuleTemplateOption>();
-                    template.Script = request.Script;
-                    template.Title = request.Title;
+                    request.Update(template);
 
                     if (request.IsNew)
                         templateId = _templateManager.CreateTemplate(template);

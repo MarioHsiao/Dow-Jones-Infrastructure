@@ -12,14 +12,24 @@ h2 a.reset {
   text-align: center; }
 
 .dj_Canvas {
-  position: relative; }
+  position: relative;
+  /* Hide all modules... */
+  /* ...except the ones in a canvas zone */ }
+  .dj_Canvas .dj_module {
+    display: none; }
+  .dj_Canvas .dj_group .dj_module {
+    display: block; }
+
+.sorting .dj_group {
+  background-color: #F5F5F5; }
 
 .dj_module {
   background: #007db9e8;
   border-left: .1em solid #ccc;
   border-right: .1em solid #ccc;
   border-bottom: .1em solid #ccc;
-  margin-top: 20px; }
+  margin-top: 20px;
+  min-height: 35px; }
   .dj_module fieldset {
     border: none; }
   .dj_module .dj_module-edit-options {
@@ -81,11 +91,9 @@ h2 a.reset {
       max-width: 28%;
       white-space: nowrap; }
   .dj_module .dj_module-core {
-    max-height: 250px;
-    overflow: auto;
     margin-top: 7px;
     width: 100%; }
-    .dj_module .dj_module-core .dj_content {
+    .dj_module .dj_module-core .padded {
       padding: 5px; }
 
 .dj_Editor label {

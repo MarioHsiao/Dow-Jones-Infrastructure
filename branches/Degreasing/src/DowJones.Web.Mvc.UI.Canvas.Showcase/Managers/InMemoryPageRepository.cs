@@ -116,20 +116,10 @@ namespace DowJones.DegreasedDashboards
             _pages.Insert(index, page);
         }
 
-
-        public void UpdateModulePositions(PageReference pageRef, IEnumerable<IEnumerable<int>> list)
+        public void UpdatePageLayout(PageReference pageRef, PageLayout layout)
         {
             var page = GetPage(pageRef);
-
-            var reorderedModules =
-                (
-                    from moduleId in list.SelectMany(x => x) // The method signature supports zones, but we ignore them
-                    join module in page.ModuleCollection on moduleId equals module.Id
-                    select module
-                ).ToArray();
-
-            for (int i = 0; i < reorderedModules.Length; i++)
-                reorderedModules[i].Position = i;
+            page.Layout = layout;
         }
     }
 }

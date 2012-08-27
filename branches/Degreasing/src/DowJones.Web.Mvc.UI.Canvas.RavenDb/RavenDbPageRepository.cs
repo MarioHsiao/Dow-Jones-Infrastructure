@@ -58,6 +58,8 @@ namespace DowJones.Web.Mvc.UI.Canvas.RavenDb
             string id = _session.Advanced.DocumentStore.Conventions.GenerateDocumentKey(module);
             module.Id = Convert.ToInt32(id.Substring(id.IndexOf('/') + 1));
 
+            page.Layout.AddModule(module.Id);
+
             _session.SaveChanges();
 
             return module.Id;
@@ -91,6 +93,11 @@ namespace DowJones.Web.Mvc.UI.Canvas.RavenDb
         {
             var page = GetPage(pageRef);
             page.ModuleCollection.RemoveAll(x => moduleIds.Contains(x.Id));
+
+            foreach (var moduleId in moduleIds)
+            {
+                page.Layout.RemoveModule(moduleId);
+            }
 
             _session.SaveChanges();
         }
@@ -167,26 +174,18 @@ namespace DowJones.Web.Mvc.UI.Canvas.RavenDb
             _session.SaveChanges();
         }
 
-        public void UpdateModulePositions(PageReference pageRef, IEnumerable<IEnumerable<int>> list)
-        {
-            var page = GetPage(pageRef);
-
-            var reorderedModules =
-                (
-                    from moduleId in list.SelectMany(x => x) // The method signature supports zones, but we ignore them
-                    join module in page.ModuleCollection on moduleId equals module.Id
-                    select module
-                ).ToArray();
-
-            for (int i = 0; i < reorderedModules.Length; i++)
-                reorderedModules[i].Position = i;
-
-            _session.SaveChanges();
-        }
-
         public void UpdatePage(Page page)
         {
             _session.Store(page);
+            _session.SaveChanges();
+        }
+
+        public void UpdatePageLayout(PageReference pageRef, PageLayout layout)
+        {
+            var page = GetPage(pageRef);
+            
+            page.Layout = layout;
+
             _session.SaveChanges();
         }
     }

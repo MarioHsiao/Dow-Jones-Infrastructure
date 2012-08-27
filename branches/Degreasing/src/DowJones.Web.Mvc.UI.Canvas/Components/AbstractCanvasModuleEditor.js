@@ -18,7 +18,22 @@ DJ.UI.AbstractCanvasModuleEditor = DJ.UI.Component.extend({
     },
 
     buildProperties: function () {
-        this._debug('TODO: Implement buildProperties!');
+        var props = {};
+
+        var a = $(this.element).closest('form').serializeArray();
+
+        $.each(a, function () {
+            if (props[this.name]) {
+                if (!props[this.name].push) {
+                    props[this.name] = [props[this.name]];
+                }
+                props[this.name].push(this.value || '');
+            } else {
+                props[this.name] = this.value || '';
+            }
+        });
+
+        return props;
     },
 
     save: function (callback) {
@@ -114,3 +129,6 @@ DJ.UI.AbstractCanvasModuleEditor = DJ.UI.Component.extend({
     }
 });
 
+
+// Declare this class as a jQuery plugin
+$.plugin('dj_CanvasModuleEditor', DJ.UI.AbstractCanvasModuleEditor);

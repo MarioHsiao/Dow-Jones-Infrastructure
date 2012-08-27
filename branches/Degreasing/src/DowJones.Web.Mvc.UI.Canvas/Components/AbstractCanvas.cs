@@ -44,7 +44,7 @@ namespace DowJones.Web.Mvc.UI.Canvas
 
         protected AbstractCanvas()
         {
-            CssClass += " dj_Canvas";
+            CssClass += " dj_Canvas row-fluid";
         }
 
         public override void AddChild(IViewComponent child)

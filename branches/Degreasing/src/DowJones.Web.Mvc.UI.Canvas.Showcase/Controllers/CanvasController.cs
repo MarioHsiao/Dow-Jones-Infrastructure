@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
+using DowJones.Pages;
 using DowJones.Pages.Modules;
 using DowJones.Web.Mvc.Routing;
 using DowJones.Web.Mvc.UI.Canvas.Controllers;
@@ -37,7 +39,9 @@ namespace DowJones.Web.Mvc.UI.Canvas.GatewayFree.Controllers
         {
             var request = ParsePostData<UpdateModulePositionsRequest>();
 
-            PageRepository.UpdateModulePositions(request.PageId, request.Columns);
+            var groups = request.Columns.Select(x => new GroupedPageLayout.Group(x));
+
+            PageRepository.UpdatePageLayout(request.PageId, new GroupedPageLayout(groups));
 
             return new HttpStatusCodeResult(200);
         }

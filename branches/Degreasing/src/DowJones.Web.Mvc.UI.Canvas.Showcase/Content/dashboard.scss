@@ -16,7 +16,21 @@ h2 a.reset {
 
 .dj_Canvas {
     position: relative;
+
+	/* Hide all modules... */
+	.dj_module { display: none; }
+
+	/* ...except the ones in a canvas zone */
+	.dj_group {
+		.dj_module { display: block; }
+	}
 }
+
+	.sorting {
+		.dj_group {
+			background-color: #F5F5F5;
+		}
+	}
 
 .dj_module {
 	background: #007db9e8;
@@ -24,6 +38,7 @@ h2 a.reset {
 	border-right: .1em solid #ccc;
 	border-bottom: .1em solid #ccc;
 	margin-top: 20px;
+	min-height: 35px;
 	
 	fieldset {
 		border: none;
@@ -102,12 +117,10 @@ h2 a.reset {
 	}
 
 	.dj_module-core {
-		max-height: 250px;
-		overflow: auto;
 		margin-top: 7px;
 		width: 100%;
 
-		.dj_content {
+		.padded {
 			padding: 5px;
 		}
 	}

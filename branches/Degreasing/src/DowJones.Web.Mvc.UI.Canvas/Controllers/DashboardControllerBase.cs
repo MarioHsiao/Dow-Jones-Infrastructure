@@ -109,8 +109,9 @@ namespace DowJones.Web.Mvc.UI.Canvas.Controllers
         protected virtual CanvasViewResult Canvas<TCanvasModel>(TCanvasModel canvas, Page page) 
             where TCanvasModel : Canvas
         {
-            canvas.Title = page.Title;
             canvas.CanvasID = page.ID;
+            canvas.Title = page.Title;
+            canvas.Layout = Mapper.Map<CanvasLayout>(page.Layout);
 
             return Canvas(canvas, page.ModuleCollection.Select(Mapper.Map<IModule>));
         }

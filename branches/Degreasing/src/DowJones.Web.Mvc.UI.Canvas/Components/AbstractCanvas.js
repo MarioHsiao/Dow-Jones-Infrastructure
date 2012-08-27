@@ -283,18 +283,13 @@ DJ.UI.AbstractCanvas = DJ.UI.CompositeComponent.extend({
 
     _fireSortableOnActivate: function (e, ui) {
         this.$activate$i++;
+        this.$element.addClass('sorting');
     },
 
     _fireSortableOnDeactivate: function (e, ui) {
+        this.$element.removeClass('sorting');
+        
         this.$deactivate$i++;
-
-        // If all of the zones are not done deactivating,
-        // ignore this event and wait for the last one
-        if (this.$deactivate$i % this._numberOfZones !== 0) {
-            this._debug('Ignoring fireSortableOnDeactivate for ' + e.id +
-                            '. Waiting for last zone to deactivate.');
-            return;
-        }
 
         this.getZones().enableSelection();
 
@@ -360,6 +355,7 @@ DJ.UI.AbstractCanvas = DJ.UI.CompositeComponent.extend({
 
             var $el = module.$element;
 
+            var moduleId = module.get_moduleId();
             module.setOwner(this);
 
             if (module.options.needsClientData) {
@@ -367,9 +363,24 @@ DJ.UI.AbstractCanvas = DJ.UI.CompositeComponent.extend({
                 module.options.needsClientData = false;
             }
 
-            if (module.options.position > -1) {
-                var zoneIndex = Math.ceil(module.options.position % zoneCount);
-                var zone = (zoneIndex > -1) ? zones.get(zoneIndex) : null;
+            var zoneIndex = -1;
+            var layout = this.options.layout;
+            if (layout && layout.groups) {
+                var groups = layout.groups;
+                for (var groupId = 0; groupId < groups.length; groupId++) {
+                    for (var y = 0; y < groups[groupId].length; y++) {
+                        if (groups[groupId][y] == moduleId)
+                            zoneIndex = groupId;
+                    }
+                }
+            }
+
+            if (zoneIndex <= -1) {
+                zoneIndex = Math.ceil(module.options.position % zoneCount);
+            }
+
+            var zone = (zoneIndex > -1) ? zones.get(zoneIndex) : null;
+            if(zone) {
                 $(zone).append($el);
             }
             else {
@@ -397,16 +408,16 @@ DJ.UI.AbstractCanvas = DJ.UI.CompositeComponent.extend({
             deactivate: this._delegates.fireSortableOnDeactivate
         });
 
-        var _zones = this.getZones();
+        var zones = this.getZones();
 
-        _zones.sortable($.extend(settings));
+        zones.sortable($.extend(settings));
 
-        if (_zones.length > 1) {
-            _zones.sortable("option", "connectWith", _zones);
+        if (zones.length > 1) {
+            zones.sortable("option", "connectWith", zones);
         }
 
         // Initialize Crosshairs
-        this._sortableItems = $(settings.items, _zones);
+        this._sortableItems = $(settings.items, zones);
         this._sortableItems.find(this.sortableSettings.handle)
                     .css({ cursor: 'move' })
                     .mousedown(this._fireCrossHairsCursorOnMousedown)
@@ -417,22 +428,23 @@ DJ.UI.AbstractCanvas = DJ.UI.CompositeComponent.extend({
         this._debug('Module reordering nitialized: ' +
                         this._sortableItems.length + ' modules in ' + this._numberOfZones + ' zones');
 
-        this._numberOfZones = _zones.length;
+        this._numberOfZones = zones.length;
     },
 
     _initializeZones: function () {
         var zones = this.getZones();
+        var numberOfGroups = this.options.NumberOfGroups;
+        var layoutClass = 'span' + (12 / numberOfGroups);
 
         if (zones.length === 0) {
             var zoneContainer = $(this._canvasRenderManager);
-            var zoneClass = this._groupSelector.substring(1);
-            var i;
 
-            for (i = 0; i < this.options.NumberOfGroups; i++) {
+            for (var i = 0; i < numberOfGroups; i++) {
                 $("<div />")
-                            .addClass(zoneClass)
-                            .attr('id', 'zone-' + i)
-                            .appendTo(zoneContainer);
+                    .attr('id', 'zone-' + i)
+                    .addClass(this._groupSelector.substring(1))
+                    .addClass(layoutClass)
+                    .appendTo(zoneContainer);
             }
         }
     },

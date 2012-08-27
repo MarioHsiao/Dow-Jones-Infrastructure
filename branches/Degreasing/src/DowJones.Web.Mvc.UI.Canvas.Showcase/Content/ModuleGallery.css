@@ -14,6 +14,8 @@
     min-height: 175px;
     width: 175px;
     margin-left: 5px; }
+  .dj_ModuleGallery .modules, .dj_ModuleGallery .new-module-info {
+    padding-top: 10px; }
   .dj_ModuleGallery .new-module-info {
     vertical-align: top;
     padding-left: 10px;
