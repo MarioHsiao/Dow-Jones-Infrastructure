@@ -859,27 +859,17 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Article2\Article2.js" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Article2\ClientTemplates\success.html" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Article2\ClientTemplates\error.html" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Article2\ClientTemplates\noData.html" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Article2\ClientTemplates\video.html" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Article2\ClientTemplates\logo.html" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Article2\ClientTemplates\meta.html" />
+    <EmbeddedResource Include="Article2\ClientTemplates\body.html" />
+    <EmbeddedResource Include="Article2\ClientTemplates\paragraph.html" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="PortalHeadlineList\ClientTemplates\Pagination.htm" />
+    <EmbeddedResource Include="PortalHeadlineList\ClientTemplates\Pagination.htm" />
     <EmbeddedResource Include="Resources\js\jquery.imagesloaded.min.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

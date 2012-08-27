@@ -1,0 +1,32 @@
+﻿<% 
+    var model = self;
+%>
+<div class="dj_article_article_body">
+    <% if(model.hasCorrections) { 
+        for(var i = 0, len = model.corrections.length; i < len; i++) { 
+        var item = model.corrections[i]; %>
+                <%= this.paragraph(item) %>
+    <% }} %>
+    
+    <% if(model.hasLeadParagraphs) { 
+        for(var i = 0, len = model.leadParagraphs.length; i < len; i++) { 
+        var item = model.leadParagraphs[i]; 
+        if (model.showIndexing) { %>
+            <div class="dj_article_index">LP</div>
+        <% } %>  
+        <div class="dj_article_lp dj_article_section">      
+            <%= this.paragraph(item) %>
+        </div>
+    <% }} %>
+    
+    <% if(model.renderTailParagraphs) { 
+        for(var i = 0, len = model.tailParagraphs.length; i < len; i++) { 
+        var item = model.tailParagraphs[i]; 
+        if (model.showIndexing) { %>
+            <div class="dj_article_index">TD</div>
+        <% } %>      
+        <div class="dj_article_td dj_article_section">  
+            <%= this.paragraph(item) %>
+        </div>
+    <% }} %>
+</div>
