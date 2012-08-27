@@ -111,7 +111,9 @@ namespace DowJones.Web.Mvc.UI.Canvas.Controllers
         {
             canvas.CanvasID = page.ID;
             canvas.Title = page.Title;
-            canvas.Layout = Mapper.Map<CanvasLayout>(page.Layout);
+
+            if (page.Layout != null)
+                canvas.Layout = Mapper.Map<CanvasLayout>(page.Layout);
 
             return Canvas(canvas, page.ModuleCollection.Select(Mapper.Map<IModule>));
         }
