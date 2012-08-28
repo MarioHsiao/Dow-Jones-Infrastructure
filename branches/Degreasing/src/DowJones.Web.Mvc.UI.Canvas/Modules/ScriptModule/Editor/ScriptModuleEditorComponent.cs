@@ -20,7 +20,7 @@ namespace DowJones.Web.Mvc.UI.Canvas.Modules.ScriptModule.Editor
     using System.Web.UI;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 08/27/2012 03:19 PM
+    // Last Generated Timestamp: 08/28/2012 09:56 AM
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.27108")]
     public class ScriptModuleEditorComponent : AbstractCanvasModuleEditor<Modules.ScriptModule.Editor.ScriptModuleEditor>
     {
@@ -53,7 +53,12 @@ WriteLiteral("\"/>\r\n<input type=\"hidden\" name=\"templateId\" value=\"");
 
                                          Write(Model.TemplateId);
 
-WriteLiteral("\"/>\r\n\r\n<fieldset>\r\n    <p>\r\n        <label>");
+WriteLiteral("\"/>\r\n\r\n<fieldset>\r\n    <p>\r\n        ");
+
+
+   Write(Model.Description);
+
+WriteLiteral("\r\n    </p>\r\n    <p>\r\n        <label>");
 
 
           Write(DJ.Token("title"));
