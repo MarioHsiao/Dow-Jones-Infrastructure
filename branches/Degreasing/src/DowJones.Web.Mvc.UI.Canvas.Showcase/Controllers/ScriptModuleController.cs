@@ -1,9 +1,13 @@
-﻿using System.Linq;
+﻿using System.IO;
+using System.Linq;
 using System.Web.Mvc;
+using System.Xml.Serialization;
 using DowJones.DegreasedDashboards.Website.Models;
 using DowJones.Pages;
 using DowJones.Pages.Modules;
 using DowJones.Pages.Modules.Templates;
+using DowJones.Web.Mvc;
+using DowJones.Web.Mvc.ActionResults;
 using DowJones.Web.Mvc.Routing;
 using DowJones.Web.Mvc.UI.Canvas.Modules.ScriptModule.Editor;
 
@@ -48,39 +52,72 @@ namespace DowJones.DegreasedDashboards.Website.Controllers
 
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult Edit(string id, EditScriptModuleTemplateRequest request, string returnUrl)
+        public ActionResult Edit(string id, EditScriptModuleTemplateRequest template, string returnUrl = null)
         {
-            var templateId = id;
+            string templateId;
 
-            if(ModelState.IsValid)
+            if (TryUpdateTemplate(id, template, out templateId))
+            {
+                TempData["SuccessMessage"] = "Your template has been saved";
+                TempData["ModuleTemplateId"] = templateId;
+
+                if (!string.IsNullOrWhiteSpace(returnUrl))
+                    return Redirect(returnUrl);
+
+                return RedirectToAction("Index");
+            }
+
+            return Edit(id);
+        }
+
+        private bool TryUpdateTemplate(string templateId, EditScriptModuleTemplateRequest request, out string newTemplateId)
+        {
+            newTemplateId = templateId;
+
+            if (ModelState.IsValid)
             {
                 ScriptModuleTemplate template;
 
                 if (request.IsNew)
                     template = new ScriptModuleTemplate { Id = templateId };
                 else
-                    template = _templateManager.GetTemplate(id);
+                    template = _templateManager.GetTemplate(templateId);
 
                 if (template != null)
                 {
                     request.Update(template);
 
                     if (request.IsNew)
-                        templateId = _templateManager.CreateTemplate(template);
+                        newTemplateId = _templateManager.CreateTemplate(template);
                     else
                         _templateManager.UpdateTemplate(template);
 
-                    TempData["SuccessMessage"] = "Your template has been saved";
-                    TempData["ModuleTemplateId"] = templateId;
-
-                    if (!string.IsNullOrWhiteSpace(returnUrl))
-                        return Redirect(returnUrl);
-
-                    return RedirectToAction("Index");
+                    return true;
                 }
             }
 
-            return Edit(id);
+            return false;
+        }
+
+        public ActionResult Export(string id)
+        {
+            var template = _templateManager.GetTemplate(id);
+
+            var viewModel = new EditScriptModuleTemplateRequest(template);
+
+            return new XmlResult(viewModel);
+        }
+
+        public ActionResult Import(string id, [XmlModelBinder]EditScriptModuleTemplateRequest template)
+        {
+            string templateId;
+
+            if (TryUpdateTemplate(id, template, out templateId))
+            {
+                return Content(templateId);
+            }
+
+            return new HttpStatusCodeResult(500, "Could not import template");
         }
 
         public ActionResult Delete(string id)
@@ -130,7 +167,7 @@ namespace DowJones.DegreasedDashboards.Website.Controllers
         [Route("modules/Script/1.0/data/json")]
         public ActionResult Save(string pageId, int? moduleId, [Bind(Prefix = "")]ScriptModule module)
         {
-            if(moduleId == null)
+            if (moduleId == null)
             {
                 moduleId = _pageRepository.AddModuleToPage(pageId, module);
             }

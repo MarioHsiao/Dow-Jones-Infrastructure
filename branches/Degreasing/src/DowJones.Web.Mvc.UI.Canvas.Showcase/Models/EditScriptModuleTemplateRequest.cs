@@ -1,10 +1,14 @@
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Xml.Serialization;
 using DowJones.Pages.Modules.Templates;
 
 namespace DowJones.DegreasedDashboards.Website.Models
 {
+    [Serializable]
+    [XmlRoot(ElementName = "ScriptModuleTemplate", Namespace = "")]
     public class EditScriptModuleTemplateRequest
     {
         public bool IsNew
@@ -30,6 +34,8 @@ namespace DowJones.DegreasedDashboards.Website.Models
         [DataType(DataType.MultilineText)]
         public string Styles { get; set; }
 
+        [XmlArray("Options")]
+        [XmlArrayItem("Option")]
         public List<ScriptModuleTemplateOption> Options { get; set; }
 
         public List<string> ExternalIncludes { get; set; }

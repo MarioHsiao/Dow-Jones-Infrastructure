@@ -1,5 +1,10 @@
+using System;
+using System.Xml.Serialization;
+
 namespace DowJones.Pages.Modules.Templates
 {
+    [Serializable]
+    [XmlRoot(ElementName = "Option", Namespace = "")]
     public class ScriptModuleTemplateOption
     {
         public string DefaultValue { get; set; }
