@@ -1,5 +1,8 @@
 ﻿@inherits AbstractCanvasModule<Modules.ScriptModule.ScriptModule>
 @ScriptResource RelativeResourceName=ScriptModule.js
 @ClientPlugin dj_ScriptModule
-@section ContentArea {<div class="script-component-container">@Html.Raw(Model.Html ?? string.Empty)</div>}
+@section ContentArea {
+    @if(Model.HasStylesheet) { <link rel="stylesheet" href="@Model.StylesheetUrl"/> }
+    <div class="script-component-container">@Html.Raw(Model.Html ?? string.Empty)</div>
+}
 @section EditArea {}

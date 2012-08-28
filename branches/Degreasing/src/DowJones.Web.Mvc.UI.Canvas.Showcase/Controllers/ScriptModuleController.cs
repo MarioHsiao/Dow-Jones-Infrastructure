@@ -156,5 +156,19 @@ namespace DowJones.DegreasedDashboards.Website.Controllers
             return Content(scriptResult.ToString(), "text/javascript");
         }
 
+        [Route("modules/Script/1.0/data/json/styles/{templateId}")]
+        public ActionResult ScriptModuleStylesheet(string templateId)
+        {
+            var template = _templateManager.GetTemplate(templateId);
+
+            var scriptResult = new System.Text.StringBuilder();
+
+            scriptResult.AppendLine("/* Template " + templateId + " */");
+            scriptResult.AppendLine(template.Styles);
+            scriptResult.AppendLine();
+
+            return Content(scriptResult.ToString(), "text/css");
+        }
+
     }
 }

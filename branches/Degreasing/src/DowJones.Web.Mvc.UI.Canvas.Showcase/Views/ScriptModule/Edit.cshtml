@@ -107,15 +107,23 @@
         <div class="editor-label">
             @Html.LabelFor(model => model.Html)
         </div>
-        <div class="editor-field">
+        <div class="editor-field html">
             @Html.EditorFor(model => model.Html)
             @Html.ValidationMessageFor(model => model.Html)
         </div>
 
         <div class="editor-label">
+            @Html.LabelFor(model => model.Styles)
+        </div>
+        <div class="editor-field css">
+            @Html.EditorFor(model => model.Styles)
+            @Html.ValidationMessageFor(model => model.Styles)
+        </div>
+
+        <div class="editor-label">
             @Html.LabelFor(model => Model.Script)
         </div>
-        <div class="editor-field">
+        <div class="editor-field javascript">
             @Html.EditorFor(model => Model.Script)
             @Html.ValidationMessageFor(model => Model.Script)
         </div>
@@ -142,8 +150,7 @@
                 </li>
             </ul>
 
-            @helper ExternalInclude(string include = null)
-{<input type="text" class="input-medium" value="@include"/>}
+            @helper ExternalInclude(string include = null){<input type="text" class="input-medium url" value="@include"/>}
         </fieldset>
 
         <fieldset>

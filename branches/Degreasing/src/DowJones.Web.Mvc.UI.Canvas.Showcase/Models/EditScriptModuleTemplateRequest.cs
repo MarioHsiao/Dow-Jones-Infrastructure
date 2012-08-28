@@ -27,6 +27,9 @@ namespace DowJones.DegreasedDashboards.Website.Models
         [DataType(DataType.MultilineText)]
         public string Html { get; set; }
 
+        [DataType(DataType.MultilineText)]
+        public string Styles { get; set; }
+
         public List<ScriptModuleTemplateOption> Options { get; set; }
 
         public List<string> ExternalIncludes { get; set; }
@@ -49,6 +52,7 @@ namespace DowJones.DegreasedDashboards.Website.Models
             Description = template.Description;
             Html = template.HtmlLayout;
             Script = template.Script;
+            Styles = template.Styles;
             Title = template.Title;
 
             if (template.ExternalIncludes != null)
@@ -68,6 +72,7 @@ namespace DowJones.DegreasedDashboards.Website.Models
             template.HtmlLayout = Html;
             template.Options = Options ?? Enumerable.Empty<ScriptModuleTemplateOption>();
             template.Script = Script;
+            template.Styles = Styles;
             template.Title = Title;
         }
     }

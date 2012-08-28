@@ -22,6 +22,13 @@ namespace DowJones.Web.Mvc.UI.Canvas.Modules.ScriptModule
         [ClientProperty("columnSpan")]
         public int ColumnSpan { get; set; }
 
+        public bool HasStylesheet { get; set; }
+
+        public string StylesheetUrl
+        {
+            get { return DataServiceUrl + "/styles/" + TemplateId; }
+        }
+
         public ScriptModule()
         {
             DataServiceUrl = CanvasSettings.Default.GetDataServiceUrl(GetType(), CanvasSettings.Default);
@@ -55,7 +62,8 @@ namespace DowJones.Web.Mvc.UI.Canvas.Modules.ScriptModule
                     Description = source.Description,
                     Position = source.Position,
                     TemplateId = source.TemplateId,
-                    Html = (template == null) ? string.Empty : (template.HtmlLayout ?? string.Empty),
+                    HasStylesheet = !string.IsNullOrWhiteSpace(template.Styles),
+                    Html = (template.HtmlLayout ?? string.Empty),
                     ScriptOptions = source.Options.Select(x => new KeyValuePair<string, object>(x.Name, x.Value)),
                     ModuleState = Mapper.Map<ModuleState>(source.ModuleState),
                 };

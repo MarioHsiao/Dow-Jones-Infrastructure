@@ -11,6 +11,7 @@ namespace DowJones.Pages.Modules.Templates
         public string HtmlLayout { get; set; }
         public IEnumerable<ScriptModuleTemplateOption> Options { get; set; }
         public string Script { get; set; }
+        public string Styles { get; set; }
         public string Title { get; set; }
 
 
