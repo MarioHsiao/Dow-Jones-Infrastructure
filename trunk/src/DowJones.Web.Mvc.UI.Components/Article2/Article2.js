@@ -32,7 +32,7 @@ DJ.UI.Article2 = DJ.UI.Component.extend({
         sourceLinks: '.dj_article_source',
         authorLinks: '.dj_article_author',
         eLinks: '.dj_article_elink',
-        headline: 'h4.headline',
+        headline: '.headline',
         headlineLink: '.dj_article_headline_link',
         smallPictureImg: 'img.smallImage',
         accessionNum: '.dj_article_accessionNum',
