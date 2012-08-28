@@ -34,9 +34,6 @@ h2 a.reset {
 
 .dj_module {
 	background: #007db9e8;
-	border-left: .1em solid #ccc;
-	border-right: .1em solid #ccc;
-	border-bottom: .1em solid #ccc;
 	margin-top: 20px;
 	min-height: 35px;
 	
@@ -47,8 +44,10 @@ h2 a.reset {
 	.dj_module-edit-options {
 		clear: both;
 		display: block;
-		border-bottom: 1px ridge #ccc;
 		padding-top: 10px;
+		border-bottom: 1px ridge #ccc;
+		border-left: .1em solid #ccc;
+		border-right: .1em solid #ccc;
 
 		.button-pane {
 			text-align: center;
@@ -81,7 +80,6 @@ h2 a.reset {
 		padding: 0px 7px 0 15px;
 		color: #fff;
 		font-weight: bold;
-		margin: -10px 0;
 		white-space: nowrap;
 		border-radius: 10px 10px 0px 0px; 
 		-moz-border-radius: 10px 10px 0px 0px; 
@@ -119,8 +117,12 @@ h2 a.reset {
 	}
 
 	.dj_module-core {
-		margin-top: 7px;
-		width: 100%;
+		margin-top: -5px;
+		padding-top: 5px;
+		width: 99.5%;
+		border-left: .1em solid #ccc;
+		border-right: .1em solid #ccc;
+		border-bottom: .1em solid #ccc;
 
 		.padded {
 			padding: 5px;
