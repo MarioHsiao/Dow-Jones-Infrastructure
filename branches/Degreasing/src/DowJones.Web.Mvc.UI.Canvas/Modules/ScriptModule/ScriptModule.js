@@ -41,12 +41,25 @@
             eval(script);
         }
 
-        var scriptUrl = this.options.dataServiceUrl + '/script/' + this.options.templateId;
-        var self = this;
+        var scriptIncludes = [];
         
+        var includes = this.options.externalIncludes;
+        for (var i = 0; i < includes.length; i++) {
+            var include = includes[i];
+            
+            if (   include.substr(-4) === '.css'
+                || include.substr(-5) === '.less'
+                || include.substr(-5) === '.scss'
+               )
+                $dj.loadStylesheet(include);
+            else
+                scriptIncludes.push(include);
+        }
+
+        var scriptUrl = this.options.dataServiceUrl + '/script/' + this.options.templateId;
+
         $.ajax(scriptUrl, { dataType: 'html' }).success(function (script) {
-            var validIncludes = _.filter(self.options.externalIncludes, function (include) { return include ? true : false; })
-            DJ.$dj.require(validIncludes, function() { evalClosure(script); });
+            DJ.$dj.require(scriptIncludes, function () { evalClosure(script); });
         });
     },
 

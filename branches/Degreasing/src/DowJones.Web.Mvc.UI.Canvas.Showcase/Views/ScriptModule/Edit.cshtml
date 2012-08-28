@@ -257,8 +257,8 @@
 
 
         $('.save', module).click(function () {
-            $('li', externalIncludes).each(function (i) {
-                $('.include :input', this).attr('name', function (x, val) {
+            $('.include', externalIncludes).each(function (i) {
+                $(':input', this).attr('name', function (x, val) {
                     return 'externalIncludes[' + i + ']';
                 });
             });
