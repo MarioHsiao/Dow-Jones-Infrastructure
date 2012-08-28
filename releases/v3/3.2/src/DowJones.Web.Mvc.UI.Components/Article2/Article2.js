@@ -7,8 +7,8 @@ DJ.UI.Article2 = DJ.UI.Component.extend({
     // Default options
     defaults: {
         debug: false,
-        cssClass: 'ArticleControl'
-        // ,name: value     // add more defaults here separated by comma
+        cssClass: 'ArticleControl',
+        instrument: false
     },
 
     events: {
@@ -32,7 +32,7 @@ DJ.UI.Article2 = DJ.UI.Component.extend({
         sourceLinks: '.dj_article_source',
         authorLinks: '.dj_article_author',
         eLinks: '.dj_article_elink',
-        headline: 'h4.headline',
+        headline: '.headline',
         headlineLink: '.dj_article_headline_link',
         smallPictureImg: 'img.smallImage',
         accessionNum: '.dj_article_accessionNum',
@@ -88,7 +88,7 @@ DJ.UI.Article2 = DJ.UI.Component.extend({
                     entityCode: $(this).data("accessionNum")
                 });
         });
-        
+
         this.$element.on('click', this.selectors.sourceLinks, function (e) {
             //self.publish(self.events.sourceClick, $(this).data("entity"));
             self.publish(self.events.sourceClick,
@@ -158,9 +158,18 @@ DJ.UI.Article2 = DJ.UI.Component.extend({
     },
 
     bindOnSuccess: function (data) {
-        var articleMarkup = this.templates.success(data);
+        var timerName = 'Article Rendered In'
+        if (this.options.instrument === true && (console && console.time)) {
+            console.time(timerName);
+        }
 
+        var articleMarkup = this.templates.success(data);
         this.$element.append(articleMarkup);
+
+        if (this.options.instrument === true && (console && console.timeEnd)) {
+            console.timeEnd(timerName);
+        }
+
     },
 
     bindOnError: function (data) {
@@ -168,5 +177,5 @@ DJ.UI.Article2 = DJ.UI.Component.extend({
 
 });
 
-    // Declare this class as a jQuery plugin
+// Declare this class as a jQuery plugin
 $.plugin('dj_Article2', DJ.UI.Article2);

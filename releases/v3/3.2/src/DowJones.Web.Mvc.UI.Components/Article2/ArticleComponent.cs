@@ -28,7 +28,7 @@ namespace DowJones.Web.Mvc.UI.Components.Article2
     using System.Web.UI;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 08/24/2012 01:40 PM
+    // Last Generated Timestamp: 08/27/2012 12:47 PM
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.Article2.Article2.js", ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.Article2.ArticleComponent))]
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.Article2.ClientTemplates.success.html", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="success", DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.Article2.ArticleComponent))]
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.Article2.ClientTemplates.logo.html", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="logo", DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.Article2.ArticleComponent))]

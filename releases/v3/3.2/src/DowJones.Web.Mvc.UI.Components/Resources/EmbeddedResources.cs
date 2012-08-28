@@ -7,6 +7,7 @@ using DowJones.Web.Mvc.UI.Components.Resources;
 [assembly: WebResource(EmbeddedResources.Js.JQueryThreeDots, KnownMimeTypes.JavaScript)]
 [assembly: WebResource(EmbeddedResources.Js.JQueryTooltip, KnownMimeTypes.JavaScript)]
 [assembly: WebResource(EmbeddedResources.Js.JCarouselLite, KnownMimeTypes.JavaScript)]
+[assembly: WebResource(EmbeddedResources.Js.JQueryImagesLoaded, KnownMimeTypes.JavaScript)]
 
 #endregion
 

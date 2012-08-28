@@ -1,8 +1,11 @@
 ﻿<% 
     var model = self;
+    var hasCorrections = model.hasCorrections || (model.corrections && model.corrections.length);
+    var hasLeadParagraphs = model.hasLeadParagraphs || (model.leadParagraphs && model.leadParagraphs.length);
+    var renderTailParagraphs = model.renderTailParagraphs || (model.tailParagraphs && model.tailParagraphs.length);
 %>
 <div class="dj_article_article_body">
-    <% if(model.hasCorrections) { 
+    <% if(hasCorrections) { 
         for(var i = 0, len = model.corrections.length; i < len; i++) { 
         var item = model.corrections[i]; %>
                 <%= this.paragraph(item) %>
@@ -19,7 +22,7 @@
         </div>
     <% }} %>
     
-    <% if(model.renderTailParagraphs) { 
+    <% if(renderTailParagraphs) { 
         for(var i = 0, len = model.tailParagraphs.length; i < len; i++) { 
         var item = model.tailParagraphs[i]; 
         if (model.showIndexing) { %>

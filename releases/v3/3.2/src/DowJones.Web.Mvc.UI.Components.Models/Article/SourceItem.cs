@@ -18,6 +18,9 @@ namespace DowJones.Web.Mvc.UI.Components.Article
 		[JsonProperty("entityName")]
 		public string EntityName { get; set; }
 
+		[JsonProperty("entityCode")]
+		public string EntityCode { get; set; }
+
 		[JsonProperty("isEntityLink")]
 		public bool IsEntityLink { get; protected set; }
 
@@ -28,6 +31,7 @@ namespace DowJones.Web.Mvc.UI.Components.Article
 				IsEntityLink = true;
 				EntityData = item.ItemEntityData.ToJson().EscapeForHtml();
 				EntityName = item.ItemEntityData.Name;
+				EntityCode = item.ItemEntityData.Code;
 			}
 			else if (item.ItemMarkUp == DowJones.Infrastructure.MarkUpType.Span)
 			{
@@ -36,5 +40,8 @@ namespace DowJones.Web.Mvc.UI.Components.Article
 
 			// do nothing if markup type is not one of the above
 		}
+
+
+		
 	}
 }
