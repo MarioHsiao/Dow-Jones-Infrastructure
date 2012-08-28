@@ -30,7 +30,7 @@ namespace DowJones.DegreasedDashboards.Website
             {
                 documentStore = new EmbeddableDocumentStore {
                         DataDirectory = ConfigurationManager.AppSettings["RavenDb.DataDirectory"],
-                        RunInMemory = "true".Equals(ConfigurationManager.AppSettings["RavenDb.RunInMemory"]),
+                        RunInMemory = "true".Equals(ConfigurationManager.AppSettings["RavenDb.Embedded.RunInMemory"]),
                     };
             }
             else
