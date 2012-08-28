@@ -42,23 +42,24 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DowJones.Infrastructure, Version=3.2.65.27826, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="DowJones.Infrastructure, Version=3.2.67.44104, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\DowJones.Infrastructure.3.2.65\lib\DowJones.Infrastructure.dll</HintPath>
+      <HintPath>..\packages\DowJones.Infrastructure.3.2.67\lib\DowJones.Infrastructure.dll</HintPath>
     </Reference>
     <Reference Include="DowJones.Parallel">
       <HintPath>..\packages\DowJones.Parallel.1.0.0\lib\DowJones.Parallel.dll</HintPath>
     </Reference>
-    <Reference Include="DowJones.Web.Mvc, Version=3.2.65.27826, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="DowJones.Web.Mvc, Version=3.2.67.44104, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\DowJones.Web.Mvc.3.2.65\lib\DowJones.Web.Mvc.dll</HintPath>
+      <HintPath>..\packages\DowJones.Web.Mvc.3.2.67\lib\DowJones.Web.Mvc.dll</HintPath>
     </Reference>
-    <Reference Include="DowJones.Web.Mvc.UI.Components, Version=3.2.65.27826, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="DowJones.Web.Mvc.UI.Components, Version=3.2.67.44104, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\DowJones.Web.Mvc.UI.Components.3.2.65\lib\DowJones.Web.Mvc.UI.Components.dll</HintPath>
+      <HintPath>..\packages\DowJones.Web.Mvc.UI.Components.3.2.67\lib\DowJones.Web.Mvc.UI.Components.dll</HintPath>
     </Reference>
     <Reference Include="DowJones.Web.Mvc.UI.Components.Models, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DowJones.Web.Mvc.UI.Components.Models.3.2.65\lib\DowJones.Web.Mvc.UI.Components.Models.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DowJones.Web.Mvc.UI.Components.Models.3.2.67\lib\DowJones.Web.Mvc.UI.Components.Models.dll</HintPath>
     </Reference>
     <Reference Include="factiva.gateway.messages">
       <HintPath>..\packages\Factiva.Gateway.7.5.0.93\lib\factiva.gateway.messages.dll</HintPath>
