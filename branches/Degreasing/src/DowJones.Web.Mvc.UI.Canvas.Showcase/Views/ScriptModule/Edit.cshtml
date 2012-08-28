@@ -72,6 +72,10 @@
         .external-includes .include .delete-option {
             display: inline-block;
         }
+
+    .CodeMirror {
+        border: 1px solid #ccc;
+    }
 </style>
 
 <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
@@ -216,7 +220,17 @@
 
 <script type="text/javascript">
 
-    @DJ.ScriptRegistry().OnDocumentReady("initializeEditor()")
+    @{
+        DJ.StylesheetRegistry()
+            .Include("~/Scripts/CodeMirror-2.32/lib/codemirror.css");
+            
+        DJ.ScriptRegistry()
+            .Include("~/Scripts/CodeMirror-2.32/lib/codemirror.js", ClientResourceDependencyLevel.MidLevel)
+            .Include("~/Scripts/CodeMirror-2.32/mode/javascript/javascript.js", ClientResourceDependencyLevel.MidLevel)
+            .Include("~/Scripts/CodeMirror-2.32/mode/xml/xml.js", ClientResourceDependencyLevel.MidLevel)
+            .Include("~/Scripts/CodeMirror-2.32/mode/css/css.js", ClientResourceDependencyLevel.MidLevel)
+            .OnDocumentReady("initializeEditor()");
+    }
 
     function initializeEditor() {
         var module = $('.edit-script-module');
@@ -276,6 +290,11 @@
                 });
             });
         });
+
+
+        CodeMirror.fromTextArea($('#Styles')[0], { mode: 'css' });
+        CodeMirror.fromTextArea($('#Script')[0], { mode: 'javascript' });
+        CodeMirror.fromTextArea($('#Html')[0], { mode: 'xml', htmlMode:true });
     }
 
 </script>
