@@ -46,8 +46,16 @@
             DJ.$dj.debug('Article loaded in', new Date().getTime() - timer, 'ms');
         });
         $(function () {
-            var accn = 'J000000020120628e86s0002m'
+            $('#articleContainer').text('fetching data...');
+            console.time('Date fetched in');
+
+            // 460k+ words - 'BTBW000020070531e35l000zc'
+            var accn = 'J000000020120628e86s0002m';
             $.getJSON('http://mybox.dev.us.factiva.com/oldshowcase/article2/' + accn, function(data){
+
+                console.timeEnd('Date fetched in');
+                $('#articleContainer').empty();
+
                 DJ.add('Article2', {
                     container: "articleContainer",
                     options: {

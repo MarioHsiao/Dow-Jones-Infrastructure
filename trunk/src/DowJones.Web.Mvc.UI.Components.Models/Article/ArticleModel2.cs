@@ -10,6 +10,7 @@ using DowJones.Infrastructure;
 using DowJones.Token;
 using DowJones.Web.Mvc.UI.Components.PostProcessing;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 
 namespace DowJones.Web.Mvc.UI.Components.Article
@@ -87,6 +88,7 @@ namespace DowJones.Web.Mvc.UI.Components.Article
 		/// <summary>
 		/// Gets or sets PostProcessing.
 		/// </summary>
+		[JsonConverter(typeof(StringEnumConverter))]
 		public DowJones.Infrastructure.PostProcessing PostProcessing { get; set; }
 
 
@@ -235,7 +237,7 @@ namespace DowJones.Web.Mvc.UI.Components.Article
 
 		[ClientProperty("renderWordCount")]
 		[JsonProperty("renderWordCount")]
-		public bool RenderWordCount { get { return WordCount > 0; } }
+		public bool RenderWordCount { get { return WordCount > 0 && !Html.Any(); } }
 
 		[ClientProperty("language")]
 		[JsonProperty("language")]

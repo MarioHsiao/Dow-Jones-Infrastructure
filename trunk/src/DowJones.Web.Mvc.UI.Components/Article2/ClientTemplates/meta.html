@@ -1,9 +1,37 @@
 ﻿<% 
     var model = self;
+
+    function isNotEmpty(collection) {
+        return collection && collection.length;
+    }
+
+    /* in case the model was not built by our server side code */
+    var hasHeadline = model.hasHeadline || isNotEmpty(model.headlines);
+    
+    var renderDefaultPostProcessing = model.renderDefaultPostProcessing 
+                                      || (model.showSourceLinks && model.postProcessing === 'Unspecified');
+
+    var hasByLines = model.hasByLines || isNotEmpty(model.byLines);
+    
+    var renderAuthors = model.renderAuthors 
+                        || (model.showAuthorLinks 
+                            && isNotEmpty(model.authors) 
+                            && model.postProcessing === 'Unspecified');
+
+    var hasCredits = model.hasCredits || isNotEmpty(model.credits);
+
+    var renderWordCount = model.renderWordCount || (model.wordCount > 0 && !isNotEmpty(model.Html));
+
+    var hasSources = model.hasSources || isNotEmpty(model.sources);
+
+    var hasPages = model.hasPages || isNotEmpty(model.pages);
+
+    var hasCopyRights = model.hasCopyRights || isNotEmpty(model.copyRights);
+
 %>
 <div class="dj_article_meta">
 
-    <% if(model.hasHeadline) { 
+    <% if(hasHeadline) { 
         if (model.showIndexing) { %>
             <div class="dj_article_index">HD</div>
         <% } %>
@@ -26,7 +54,7 @@
         <% } %>
 
         <div class="dj_article_sn dj_article_section">
-            <% if (model.renderDefaultPostProcessing) { 
+            <% if (renderDefaultPostProcessing) { 
                 for(var i = 0, len = model.sources.length; i < len; i++) { 
                 var source = model.sources[i];
             %>
@@ -43,12 +71,12 @@
                 <span class="dj_article_comma">,</span>
             <% } %>
         </div>
-        <% if(model.hasByLines) { %>
+        <% if(hasByLines) { %>
             <% if (model.showIndexing) { %>
                 <div class="dj_article_index">BY</div>
             <% } %>                
                 <div class="dj_article_by dj_article_section">
-                    <% if(model.renderAuthors) { 
+                    <% if(renderAuthors) { 
                         for(var i = 0, len = model.authors.length; i < len; i++) { 
                             var author = model.authors[i];
                     %>
@@ -64,7 +92,7 @@
                     <% } } %>    
                 </div>
         <% } 
-        if(model.hasCredits) { %>
+        if(hasCredits) { %>
             <% if (model.showIndexing) { %>
                 <div class="dj_article_index">CR</div>
             <% } %>    
@@ -94,7 +122,7 @@
                 <span class="dj_article_comma">, </span>
             </div>
 
-            <% if (model.renderWordCount) { %>
+            <% if (renderWordCount) { %>
                  <% if (model.showIndexing) { %>
                     <div class="dj_article_index">WC</div>
                 <% } %>
@@ -111,7 +139,7 @@
                     <%= model.language %><span class="dj_article_comma">, </span>
                 </div>
             <% } %>
-            <% if (model.hasSources) { %>
+            <% if (hasSources) { %>
                  <% if (model.showIndexing) { %>
                     <div class="dj_article_index">SC</div>
                 <% } %>
@@ -124,7 +152,7 @@
                     <span class="dj_article_comma">, </span>
                 </div>
             <% } %>
-            <% if (model.hasPages) { %>
+            <% if (hasPages) { %>
                  <% if (model.showIndexing) { %>
                     <div class="dj_article_index">PG</div>
                 <% } %>
@@ -138,7 +166,7 @@
                 </div>
             <% } %>
         </div>
-        <% if (model.hasCopyRights) { %>
+        <% if (hasCopyRights) { %>
             <% if (model.showIndexing) { %>
                 <div class="dj_article_index">CY</div>
             <% } %>
