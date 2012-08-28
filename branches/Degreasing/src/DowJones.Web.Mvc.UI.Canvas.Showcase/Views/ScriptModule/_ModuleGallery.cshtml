@@ -28,9 +28,10 @@
         @foreach(var template in Model.Templates) 
         {
             <div class="template-@template.Id editor">
-            <form class="form-horizontal">
-                @Html.Action("Editor", "ScriptModule", new { id = template.Id, pageId = Model.PageId })
-            </form>
+                <p>@template.Description</p>
+                <form class="form-horizontal">
+                    @Html.Action("Editor", "ScriptModule", new { id = template.Id, pageId = Model.PageId })
+                </form>
             </div>
         }
 
