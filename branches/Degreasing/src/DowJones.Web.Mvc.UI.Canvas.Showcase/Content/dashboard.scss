@@ -76,6 +76,7 @@ h2 a.reset {
 	}
 
 	.dj_module-header {
+		position: relative;
 		height: 45px;
 		padding: 0px 7px 0 15px;
 		color: #fff;
@@ -109,8 +110,9 @@ h2 a.reset {
 		}
 
 		.actions-container {
-			float: right;
-			margin-top: 5px;
+			position: absolute;
+			top: 7px;
+			right: 10px;
 			max-width: 28%;
 			white-space: nowrap;
 		}

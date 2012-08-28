@@ -52,6 +52,7 @@ h2 a.reset {
   .dj_module .dj_module-handle {
     cursor: move; }
   .dj_module .dj_module-header {
+    position: relative;
     height: 45px;
     padding: 0px 7px 0 15px;
     color: #fff;
@@ -86,8 +87,9 @@ h2 a.reset {
       float: right;
       display: none; }
     .dj_module .dj_module-header .actions-container {
-      float: right;
-      margin-top: 5px;
+      position: absolute;
+      top: 7px;
+      right: 10px;
       max-width: 28%;
       white-space: nowrap; }
   .dj_module .dj_module-core {
