@@ -291,10 +291,15 @@
             });
         });
 
+        var codeMirrorOptions = {
+            lineNumbers: true,
+            gutter: true,
+            fixedGutter: true,
+        };
 
-        CodeMirror.fromTextArea($('#Styles')[0], { mode: 'css' });
-        CodeMirror.fromTextArea($('#Script')[0], { mode: 'javascript' });
-        CodeMirror.fromTextArea($('#Html')[0], { mode: 'xml', htmlMode:true });
+        CodeMirror.fromTextArea($('#Styles')[0], $.extend({}, codeMirrorOptions, { mode: 'css' }));
+        CodeMirror.fromTextArea($('#Script')[0], $.extend({}, codeMirrorOptions, { mode: 'javascript' }));
+        CodeMirror.fromTextArea($('#Html')[0], $.extend({}, codeMirrorOptions, { mode: 'xml', htmlMode: true }));
     }
 
 </script>
