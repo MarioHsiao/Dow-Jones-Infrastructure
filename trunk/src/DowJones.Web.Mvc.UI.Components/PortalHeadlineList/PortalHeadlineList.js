@@ -310,12 +310,6 @@
                     // bind events and perform other wiring up
                     this._initializeHeadlineList(data.headlines);
                     
-                    this.publish(this.events.componentRendered,
-                                 {
-                                     currentPageIndex: 0,
-                                     pagesCount: this.pagesCount,
-                                     data: data
-                                 });
                 }
                 else {
                     // bind the template
@@ -328,6 +322,12 @@
                         }
                     }
                 }
+                this.publish(this.events.componentRendered,
+                             {
+                                 currentPageIndex: 0,
+                                 pagesCount: this.pagesCount || 0,
+                                 data: data
+                             });
             } catch (e) {
                 $dj.error('Error in PortalHeadlineList.bindOnSuccess:', e);
             }
