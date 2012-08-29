@@ -24,7 +24,6 @@ namespace DowJones.DegreasedDashboards.Website.Models
         [Required]
         public string Title { get; set; }
 
-        [Required]
         [DataType(DataType.MultilineText)]
         public string Script { get; set; }
 

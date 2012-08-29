@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using DowJones.Pages.Modules.Templates;
@@ -20,8 +21,12 @@ namespace DowJones.Web.Mvc.UI.Canvas.RavenDb
 
         public string CreateTemplate(ScriptModuleTemplate template)
         {
+            if (template.Id == null)
+                template.Id = string.Empty;
+
             _session.Store(template, template.Id);
             _session.SaveChanges();
+
             return template.Id;
         }
 

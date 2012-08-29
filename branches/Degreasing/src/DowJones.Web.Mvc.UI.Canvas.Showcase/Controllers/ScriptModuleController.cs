@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
+using System.Threading;
 using System.Web.Mvc;
 using DowJones.DegreasedDashboards.Website.Models;
 using DowJones.Pages;
@@ -24,7 +26,7 @@ namespace DowJones.DegreasedDashboards.Website.Controllers
 
         public ActionResult Index()
         {
-            var templates = _templateManager.GetTemplates().OrderBy(x => x.Title);
+            var templates = _templateManager.GetTemplates().OrderBy(x => x.Title).ToArray();
             var viewModels = templates.Select(x => new ScriptModuleTemplateViewModel(x));
             return View("List", viewModels);
         }
@@ -86,7 +88,11 @@ namespace DowJones.DegreasedDashboards.Website.Controllers
                     request.Update(template);
 
                     if (request.IsNew)
+                    {
                         newTemplateId = _templateManager.CreateTemplate(template);
+                        // HACK: Wait for RavenDB to do whatever it needs to do...
+                        Thread.Sleep(100);
+                    }
                     else
                         _templateManager.UpdateTemplate(template);
 
@@ -125,6 +131,25 @@ namespace DowJones.DegreasedDashboards.Website.Controllers
             TempData["SuccessMessage"] = "Template deleted";
 
             return RedirectToAction("Index");
+        }
+
+        public ActionResult Clone(string id)
+        {
+            var template = _templateManager.GetTemplate(id ?? "0");
+
+            if (template == null)
+            {
+                TempData["ErrorMessage"] = "Cloning failed: could not find Template " + id;
+                return Index();
+            }
+
+            var clone = new EditScriptModuleTemplateRequest(template)
+                            {
+                                Id = null,
+                                Title = string.Format("** CLONE **  {0}", template.Title),
+                            };
+
+            return Edit(null, clone);
         }
 
         public ActionResult Editor(string id, string pageId)
@@ -204,6 +229,5 @@ namespace DowJones.DegreasedDashboards.Website.Controllers
 
             return Content(scriptResult.ToString(), "text/css");
         }
-
     }
 }
