@@ -192,11 +192,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CompositeOutletComponent.cshtml</DependentUpon>
     </Compile>
-    <Compile Include="Article2\ArticleComponent.cs">
-      <DependentUpon>ArticleComponent.cshtml</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="NewsMatrix\NewsMatrixComponent.cs">
       <DependentUpon>NewsMatrixComponent.cshtml</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -580,10 +575,6 @@
       <Generator>RazorViewComponentClassGenerator</Generator>
       <LastGenOutput>CompositeOutletComponent.cs</LastGenOutput>
     </None>
-    <None Include="Article2\ArticleComponent.cshtml">
-      <Generator>RazorViewComponentClassGenerator</Generator>
-      <LastGenOutput>ArticleComponent.cs</LastGenOutput>
-    </None>
     <None Include="NewsMatrix\NewsMatrixComponent.cshtml">
       <Generator>RazorViewComponentClassGenerator</Generator>
       <LastGenOutput>NewsMatrixComponent.cs</LastGenOutput>
@@ -858,19 +849,22 @@
     <EmbeddedResource Include="PortalHeadlineList\ClientTemplates\Slides.htm" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Article2\Article2.js" />
-    <EmbeddedResource Include="Article2\ClientTemplates\success.html" />
-    <EmbeddedResource Include="Article2\ClientTemplates\error.html" />
-    <EmbeddedResource Include="Article2\ClientTemplates\noData.html" />
-    <EmbeddedResource Include="Article2\ClientTemplates\video.html" />
-    <EmbeddedResource Include="Article2\ClientTemplates\logo.html" />
-    <EmbeddedResource Include="Article2\ClientTemplates\meta.html" />
-    <EmbeddedResource Include="Article2\ClientTemplates\body.html" />
-    <EmbeddedResource Include="Article2\ClientTemplates\paragraph.html" />
+    <EmbeddedResource Include="PortalArticle\PortalArticle.js" />
+    <EmbeddedResource Include="PortalArticle\ClientTemplates\success.html" />
+    <EmbeddedResource Include="PortalArticle\ClientTemplates\error.html" />
+    <EmbeddedResource Include="PortalArticle\ClientTemplates\noData.html" />
+    <EmbeddedResource Include="PortalArticle\ClientTemplates\video.html" />
+    <EmbeddedResource Include="PortalArticle\ClientTemplates\logo.html" />
+    <EmbeddedResource Include="PortalArticle\ClientTemplates\meta.html" />
+    <EmbeddedResource Include="PortalArticle\ClientTemplates\body.html" />
+    <EmbeddedResource Include="PortalArticle\ClientTemplates\paragraph.html" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="PortalHeadlineList\ClientTemplates\Pagination.htm" />
     <EmbeddedResource Include="Resources\js\jquery.imagesloaded.min.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Article2\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

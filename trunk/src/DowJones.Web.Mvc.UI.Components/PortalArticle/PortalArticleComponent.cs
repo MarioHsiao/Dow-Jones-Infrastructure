@@ -8,6 +8,14 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+[assembly: System.Web.UI.WebResourceAttribute("DowJones.Web.Mvc.UI.Components.PortalArticle.PortalArticle.js", "text/javascript")]
+[assembly: System.Web.UI.WebResourceAttribute("DowJones.Web.Mvc.UI.Components.PortalArticle.ClientTemplates.success.html", "text/html")]
+[assembly: System.Web.UI.WebResourceAttribute("DowJones.Web.Mvc.UI.Components.PortalArticle.ClientTemplates.logo.html", "text/html")]
+[assembly: System.Web.UI.WebResourceAttribute("DowJones.Web.Mvc.UI.Components.PortalArticle.ClientTemplates.body.html", "text/html")]
+[assembly: System.Web.UI.WebResourceAttribute("DowJones.Web.Mvc.UI.Components.PortalArticle.ClientTemplates.paragraph.html", "text/html")]
+[assembly: System.Web.UI.WebResourceAttribute("DowJones.Web.Mvc.UI.Components.PortalArticle.ClientTemplates.meta.html", "text/html")]
+[assembly: System.Web.UI.WebResourceAttribute("DowJones.Web.Mvc.UI.Components.PortalArticle.ClientTemplates.noData.html", "text/html")]
+
 namespace DowJones.Web.Mvc.UI.Components.PortalArticle
 {
     using System;
@@ -20,8 +28,15 @@ namespace DowJones.Web.Mvc.UI.Components.PortalArticle
     using System.Web.UI;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 06/29/2012 01:17 PM
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.22175")]
+    // Last Generated Timestamp: 08/29/2012 01:31 PM
+    [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.PortalArticle.PortalArticle.js", ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.PortalArticle.PortalArticleComponent))]
+    [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.PortalArticle.ClientTemplates.success.html", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="success", DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.PortalArticle.PortalArticleComponent))]
+    [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.PortalArticle.ClientTemplates.logo.html", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="logo", DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.PortalArticle.PortalArticleComponent))]
+    [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.PortalArticle.ClientTemplates.body.html", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="body", DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.PortalArticle.PortalArticleComponent))]
+    [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.PortalArticle.ClientTemplates.paragraph.html", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="paragraph", DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.PortalArticle.PortalArticleComponent))]
+    [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.PortalArticle.ClientTemplates.meta.html", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="meta", DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.PortalArticle.PortalArticleComponent))]
+    [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.PortalArticle.ClientTemplates.noData.html", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="noData", DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.PortalArticle.PortalArticleComponent))]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.27108")]
     public class PortalArticleComponent : DowJones.Web.Mvc.UI.ViewComponentBase<PortalArticleModel>
     {
 #line hidden
@@ -40,35 +55,21 @@ namespace DowJones.Web.Mvc.UI.Components.PortalArticle
         {
 
 
-WriteLiteral(@"
-<div class=""articleContainer"" style=""width:560px; height:642px;"">
-    <div class=""jspPane"" style=""padding:0px; top:0px; width:539px"" >
-        <div id=""dj_modal-article-content-wrap"">
-            <div id=""dj_modal-article-meta"">
-                <span class=""article-meta-source"">");
+WriteLiteral("\r\n");
 
 
-                                             Write(Model.ArticleObject.sourceName);
-
-WriteLiteral("</span> - <span class=\"article-meta-date\">");
+WriteLiteral("\r\n");
 
 
-                                                                                                                      Write(Model.ArticleObject.publicationDate.ToLongDateString());
-
-WriteLiteral("</span>\r\n            </div>\r\n            <h4 id=\"dj_modal-article-title\">\r\n      " +
-"          <a href=\"#\">");
 
 
-                       Write(Model.RenderArticleTitle());
-
-WriteLiteral("</a>\r\n            </h4>\r\n            <div id=\"dj_modal-article-body\">\r\n          " +
-"      ");
 
 
-           Write(Model.RenderArticleParagraph());
 
-WriteLiteral("\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>");
+WriteLiteral("\r\n");
 
+
+   CssClass = "dj_PortalArticle"; 
 
         }
     }

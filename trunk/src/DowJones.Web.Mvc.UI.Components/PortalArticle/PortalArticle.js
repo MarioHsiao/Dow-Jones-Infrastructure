@@ -1,27 +1,26 @@
 ﻿/*!
-* ArticleControl
+* Portal Article Component
 */
 
-DJ.UI.Article2 = DJ.UI.Component.extend({
+DJ.UI.PortalArticle = DJ.UI.Component.extend({
 
     // Default options
     defaults: {
         debug: false,
-        cssClass: 'ArticleControl',
         instrument: false
     },
 
     events: {
-        entityClick: 'entityClick.dj.Article',
-        accessionNumClick: 'accessionNumClick.dj.Article',
-        sourceClick: 'sourceClick.dj.Article',
-        authorClick: 'authorClick.dj.Article',
-        anchorClick: 'anchorClick.dj.Article',
-        postProcessingClick: 'postprocessing.dj.article',
-        eLinkClick: 'eLinkClick.dj.Article',
-        headlineLinkClick: 'headlineLinkClick.dj.article',
-        smallPictureClick: 'smallPictureClick.dj.article',
-        enlargeImageLinkClick: 'enlargeImageLinkClick.dj.Article'
+        entityClick: 'entityClick.dj.PortalArticle',
+        accessionNumClick: 'accessionNumClick.dj.PortalArticle',
+        sourceClick: 'sourceClick.dj.PortalArticle',
+        authorClick: 'authorClick.dj.PortalArticle',
+        anchorClick: 'anchorClick.dj.PortalArticle',
+        postProcessingClick: 'postprocessing.dj.PortalArticle',
+        eLinkClick: 'eLinkClick.dj.PortalArticle',
+        headlineLinkClick: 'headlineLinkClick.dj.PortalArticle',
+        smallPictureClick: 'smallPictureClick.dj.PortalArticle',
+        enlargeImageLinkClick: 'enlargeImageLinkClick.dj.PortalArticle'
     },
 
     selectors: {
@@ -43,7 +42,7 @@ DJ.UI.Article2 = DJ.UI.Component.extend({
     * Initialization (constructor)
     */
     init: function (element, meta) {
-        var $meta = $.extend({ name: "ArticleComponent" }, meta);
+        var $meta = $.extend({ name: "PortalArticleComponent" }, meta);
 
         // Call the base constructor
         this._super(element, $meta);
@@ -55,8 +54,6 @@ DJ.UI.Article2 = DJ.UI.Component.extend({
     },
 
     _initializeElements: function () {
-        this.$articleContainer = this.$element.find(this.selectors.articleContainer);
-        $dj.debug("initialize -> $articleContainer:", this.$articleContainer)
     },
 
     _initializeDelegates: function () {
@@ -121,14 +118,14 @@ DJ.UI.Article2 = DJ.UI.Component.extend({
                              $.extend({
                                  type: $(this).data("ref"),
                                  title: $(self.selectors.headline, self.$element).text()
-                             }, self.$articleContainer.data("ref")));
+                             }, self.$element.data("ref")));
             return false;
         });
 
         this.$element.on("click", this.selectors.headlineLink, function (e) {
             self.publish(self.events.headlineLinkClick,
                              $.extend({ title: $(this).text() },
-                                      self.$articleContainer.data("ref")));
+                                      self.$element.data("ref")));
             return false;
         });
 
@@ -178,4 +175,4 @@ DJ.UI.Article2 = DJ.UI.Component.extend({
 });
 
 // Declare this class as a jQuery plugin
-$.plugin('dj_Article2', DJ.UI.Article2);
+$.plugin('dj_PortalArticle', DJ.UI.PortalArticle);

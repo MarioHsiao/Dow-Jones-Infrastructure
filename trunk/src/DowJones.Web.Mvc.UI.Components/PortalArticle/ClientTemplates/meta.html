@@ -1,38 +1,37 @@
 ﻿<% 
     var model = self;
+    var options = self.options || {};
 
     function isNotEmpty(collection) {
         return collection && collection.length;
     }
 
     /* in case the model was not built by our server side code */
-    var hasHeadline = model.hasHeadline || isNotEmpty(model.headlines);
+    var hasHeadline = isNotEmpty(model.headlines);
     
-    var renderDefaultPostProcessing = model.renderDefaultPostProcessing 
-                                      || (model.showSourceLinks && model.postProcessing === 'Unspecified');
+    var renderDefaultPostProcessing = options.showSourceLinks && options.postProcessing === 'Unspecified';
 
-    var hasByLines = model.hasByLines || isNotEmpty(model.byLines);
+    var hasByLines = isNotEmpty(model.byLines);
     
-    var renderAuthors = model.renderAuthors 
-                        || (model.showAuthorLinks 
+    var renderAuthors = options.showAuthorLinks 
                             && isNotEmpty(model.authors) 
-                            && model.postProcessing === 'Unspecified');
+                            && options.postProcessing === 'Unspecified';
 
-    var hasCredits = model.hasCredits || isNotEmpty(model.credits);
+    var hasCredits = isNotEmpty(model.credits);
 
-    var renderWordCount = model.renderWordCount || (model.wordCount > 0 && !isNotEmpty(model.Html));
+    var renderWordCount = model.wordCount > 0 && !isNotEmpty(model.html);
 
-    var hasSources = model.hasSources || isNotEmpty(model.sources);
+    var hasSources = isNotEmpty(model.sources);
 
-    var hasPages = model.hasPages || isNotEmpty(model.pages);
+    var hasPages = isNotEmpty(model.pages);
 
-    var hasCopyRights = model.hasCopyRights || isNotEmpty(model.copyRights);
+    var hasCopyRights = isNotEmpty(model.copyRights);
 
 %>
 <div class="dj_article_meta">
 
     <% if(hasHeadline) { 
-        if (model.showIndexing) { %>
+        if (options.showIndexing) { %>
             <div class="dj_article_index">HD</div>
         <% } %>
 
@@ -49,7 +48,7 @@
     <% } } %>
 
     <ul class="meta">
-        <% if (model.showIndexing) { %>
+        <% if (options.showIndexing) { %>
         <div class="dj_article_index">HD</div>
         <% } %>
 
@@ -72,7 +71,7 @@
             <% } %>
         </div>
         <% if(hasByLines) { %>
-            <% if (model.showIndexing) { %>
+            <% if (options.showIndexing) { %>
                 <div class="dj_article_index">BY</div>
             <% } %>                
                 <div class="dj_article_by dj_article_section">
@@ -93,7 +92,7 @@
                 </div>
         <% } 
         if(hasCredits) { %>
-            <% if (model.showIndexing) { %>
+            <% if (options.showIndexing) { %>
                 <div class="dj_article_index">CR</div>
             <% } %>    
                         
@@ -108,7 +107,7 @@
         <% } %>
 
         <div class="dj_meta_group">
-            <% if (model.showIndexing) { %>
+            <% if (options.showIndexing) { %>
                 <div class="dj_article_index">PD</div>
             <% } %>
 
@@ -123,7 +122,7 @@
             </div>
 
             <% if (renderWordCount) { %>
-                 <% if (model.showIndexing) { %>
+                 <% if (options.showIndexing) { %>
                     <div class="dj_article_index">WC</div>
                 <% } %>
                 <div class="dj_article_wc dj_article_section">
@@ -132,7 +131,7 @@
                 </div>
             <% } %>
             <% if (model.language) { %>
-                 <% if (model.showIndexing) { %>
+                 <% if (options.showIndexing) { %>
                     <div class="dj_article_index">LA</div>
                 <% } %>
                 <div class="dj_article_la dj_article_section">
@@ -140,7 +139,7 @@
                 </div>
             <% } %>
             <% if (hasSources) { %>
-                 <% if (model.showIndexing) { %>
+                 <% if (options.showIndexing) { %>
                     <div class="dj_article_index">SC</div>
                 <% } %>
                 <div class="dj_article_sc dj_article_section">
@@ -153,7 +152,7 @@
                 </div>
             <% } %>
             <% if (hasPages) { %>
-                 <% if (model.showIndexing) { %>
+                 <% if (options.showIndexing) { %>
                     <div class="dj_article_index">PG</div>
                 <% } %>
                 <div class="dj_article_pg dj_article_section">
@@ -167,7 +166,7 @@
             <% } %>
         </div>
         <% if (hasCopyRights) { %>
-            <% if (model.showIndexing) { %>
+            <% if (options.showIndexing) { %>
                 <div class="dj_article_index">CY</div>
             <% } %>
             <div class="copyright dj_article_cy dj_article_section">
@@ -178,7 +177,7 @@
                 <% } %>
             </div>
         <% } %>
-        <% if (model.showPostProcessing) { %>
+        <% if (options.showPostProcessing) { %>
             <ul class="dj_PostProcessing actions clearfix">
                 <% for(var i = 0, len = model.postProcessingOptionsWithToken.length; i < len; i++) { 
                         var postProcessingOption = model.postProcessingOptionsWithToken[i],

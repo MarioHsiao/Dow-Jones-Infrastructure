@@ -85,6 +85,19 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Ajax\PortalArticle\ArticleRef.cs" />
+    <Compile Include="Ajax\PortalArticle\AuthorItem.cs" />
+    <Compile Include="Ajax\PortalArticle\CreditItem.cs" />
+    <Compile Include="Ajax\PortalArticle\ElinkItem.cs" />
+    <Compile Include="Ajax\PortalArticle\HeadlineItem.cs" />
+    <Compile Include="Ajax\PortalArticle\ImageSize.cs" />
+    <Compile Include="Ajax\PortalArticle\LogoItem.cs" />
+    <Compile Include="Ajax\PortalArticle\MarkupType.cs" />
+    <Compile Include="Ajax\PortalArticle\Paragraph.cs" />
+    <Compile Include="Ajax\PortalArticle\ParagraphItem.cs" />
+    <Compile Include="Ajax\PortalArticle\PortalArticleResultSet.cs" />
+    <Compile Include="Ajax\PortalArticle\PostProcessingData.cs" />
+    <Compile Include="Ajax\PortalArticle\SourceItem.cs" />
     <Compile Include="Ajax\CompanySparkline\CompanySparklineDataResult.cs" />
     <Compile Include="Ajax\SocialMedia\Mapper.cs" />
     <Compile Include="Ajax\SocialMedia\Tweet.cs" />
@@ -976,7 +989,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Ajax\Article\" />
     <Folder Include="Managers\Query\Cache\" />
     <Folder Include="MSBuild\" />
     <Folder Include="OperationalData\DashboardView\" />

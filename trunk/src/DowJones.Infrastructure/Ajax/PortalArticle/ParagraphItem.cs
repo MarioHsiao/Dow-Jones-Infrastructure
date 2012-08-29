@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 using DowJones.Extensions;
 using System.Linq;
 
-namespace DowJones.Web.Mvc.UI.Components.Article
+namespace DowJones.Ajax.PortalArticle
 {
 	public class ParagraphItem
 	{

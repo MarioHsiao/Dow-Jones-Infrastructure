@@ -22,6 +22,8 @@ using DowJones.Web.Mvc.UI.Components.VideoPlayer;
 using Factiva.Gateway.Messages.Archive.V2_0;
 using ControllerBase = DowJones.Web.Mvc.ControllerBase;
 using DowJones.Token;
+using DowJones.Web.Mvc.UI.Components.PortalArticle;
+using DowJones.Ajax.PortalArticle;
 
 namespace DowJones.Web.Showcase.Controllers
 {
@@ -70,7 +72,7 @@ namespace DowJones.Web.Showcase.Controllers
 			
 			var oldModel = GetArticle(accessionNumber, canonicalSearchString, imageType, pictureSize, option);
 
-			var model = new ArticleModel2(oldModel.ArticleDataSet, TokenRegistry)
+			var model = new PortalArticleModel(TokenRegistry)
 			{
 				ShowAuthorLinks = true,
 				ShowPostProcessing = true,
@@ -79,9 +81,9 @@ namespace DowJones.Web.Showcase.Controllers
 					PostProcessingOptions.Print, PostProcessingOptions.Save, 
 					PostProcessingOptions.Email, PostProcessingOptions.Listen, 
 					PostProcessingOptions.Translate, PostProcessingOptions.Share
-				}
+				},
+				Result = Mapper.Map<PortalArticleResultSet>(oldModel.ArticleDataSet)
 			};
-
 
 			return Json(model, JsonRequestBehavior.AllowGet);
 		}
