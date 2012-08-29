@@ -97,11 +97,11 @@
             var me = this;
             
             $(this.options.pagePrevSelector).click(function () {
-                me._goToPage(me.currentPageIndex - 1);
+                me.goToPage(me.currentPageIndex - 1);
             });
 
             $(this.options.pageNextSelector).click(function () {
-                me._goToPage(me.currentPageIndex + 1);
+                me.goToPage(me.currentPageIndex + 1);
             });
             
             // to capture resizing of the container this.$element
@@ -109,7 +109,7 @@
                 var containerWidth = me.$element.width();
                 me.$pages.width(containerWidth);
                 me.$carouselInner.width(me._getCarouselWidth(containerWidth));
-                me._goToPage(me.currentPageIndex, true);
+                me.goToPage(me.currentPageIndex, true);
                 //resize(containerWidth);
             });
         },
@@ -125,27 +125,65 @@
             this._resizeCarousel(true);
         },
 
-        _goToPage: function (pageIndex, disableAnimation) {
-            if (pageIndex < 0 || pageIndex >= this.pagesCount)
-            {
-                if (!this.options.circularPaging)
-                    return;
-                    
-                if (pageIndex < 0)
-                    pageIndex = this.pagesCount - 1;
-                else if (pageIndex >= this.pagesCount)
-                    pageIndex = 0;
+        goToPage: function (pageIndex, disableAnimation, disableEvent) {
+            // Only enabled if pagination is turned on
+            if (!this.options.allowPagination)
+                return;
+
+            var slideDirection = pageIndex - this.currentPageIndex;
+            
+            var $currentPage = this.getPageByIndex(this.currentPageIndex);
+            var currentPosition;
+            var publishEvent = false;
+            
+            var $targetPage;
+            if (slideDirection === 0) {
+                $targetPage = $currentPage;
+            }
+            else {
+                if (slideDirection < 0) {
+                    // slide left
+                    var $prevSiblings = $currentPage.prevAll();
+                    var absSlideDirection = Math.abs(slideDirection);
+                    if ($prevSiblings.length >= absSlideDirection) {
+                        $targetPage = $prevSiblings.eq(absSlideDirection - 1);
+                    }
+                    else {
+                        if (!this.options.circularPaging)
+                            return;
+                            
+                        // need to move things from the end to the beginning, so the target page is on the left of current page
+                        this.$carouselInner.find(".slidePanel").slice(slideDirection + $prevSiblings.length).detach().prependTo(this.$carouselInner);
+                        // update current window position to the currentpage first
+                        currentPosition = $currentPage.position();
+                        $targetPage = this.$carouselInner.children().first();
+                    }
+                }
+                else if (slideDirection > 0) {
+                    // slide right
+                    var $nextSiblings = $currentPage.nextAll();
+                    if ($nextSiblings.length >= slideDirection) {
+                        $targetPage = $nextSiblings.eq(slideDirection - 1);
+                    }
+                    else {
+                        if (!this.options.circularPaging)
+                            return;
+                            
+                        // need to move things from the beginning to the end, so the target page is on the right of current page
+                        this.$carouselInner.find(".slidePanel").slice(0, slideDirection - $nextSiblings.length).detach().appendTo(this.$carouselInner);
+                        // update current window position to the currentpage first
+                        currentPosition = $currentPage.position();
+                        $targetPage = this.$carouselInner.children().last();
+                    }
+                }
+                publishEvent = true;
             }
             
-            this.publish(this.events.pageIndexChanged,
-                         {
-                             currentPageIndex: this.currentPageIndex,
-                             newPageIndex: pageIndex,
-                             pagesCount: this.pagesCount
-                         });
-
-            var targetPosition = this.$pages.eq(pageIndex).position();
+            if (currentPosition) {                
+                this.$carouselInner.css({ left: -currentPosition.left, top: -currentPosition.top });
+            }
             
+            var targetPosition = $targetPage.position();
             if (disableAnimation) {
                 this.$carouselInner.css({ left: -targetPosition.left, top: -targetPosition.top });
             }
@@ -153,14 +191,28 @@
                 this.$carouselInner.animate({ left: -targetPosition.left, top: -targetPosition.top }, this.options.speed);
             }
 
+            if (pageIndex < 0) {
+                pageIndex = this.$pages.length - 1;
+            }
+            else if (pageIndex >= this.$pages.length) {
+                pageIndex = 0;
+            }
             this.currentPageIndex = pageIndex;
             this._resizeCarousel(disableAnimation);
+            
+            if (!disableEvent && publishEvent) {
+                this.publish(this.events.pageIndexChanged,
+                             {
+                                 currentPageIndex: this.currentPageIndex,
+                                 newPageIndex: pageIndex,
+                                 pagesCount: this.pagesCount
+                             });
+            }
         },
 
         _resizeCarousel: function(disableAnimation, imagesAreLoaded) {
             var me = this;
-            var $currentPage = this.$pages.eq(this.currentPageIndex);
-            var width, height;
+            var $currentPage = this.getPageByIndex(this.currentPageIndex);
   
             // if there are images, need to wait for them to load before setting height/width
             if (!imagesAreLoaded) {
@@ -190,6 +242,10 @@
                 this.$carouselInner.width(this._getCarouselWidth(containerWidth));
                 this._setCarouselWidthAndHeight($currentPage.width(), $currentPage.height(), disableAnimation);
             }
+        },
+        
+        getPageByIndex: function(index) {
+            return this.$carouselInner.find(".slidePanel[data-page=" + index + "]");
         },
         
         _setCarouselWidthAndHeight: function(width, height, disableAnimation) {
@@ -295,7 +351,7 @@
                         
                         var headlinePages = [];
                         // split the headlines into pages
-                        for (var i = 0; i < data.headlines.length; i+=this.options.pageSize) {
+                        for (var i = 0; i < Math.min(this.options.maxNumHeadlinesToShow, data.headlines.length); i+=this.options.pageSize) {
                             headlinePages.push(data.headlines.slice(i, i + this.options.pageSize));
                         }
                         this.pagesCount = headlinePages.length;                        
