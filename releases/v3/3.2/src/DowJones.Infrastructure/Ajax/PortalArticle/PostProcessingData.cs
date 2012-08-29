@@ -1,11 +1,13 @@
-﻿using Newtonsoft.Json;
+﻿using DowJones.Ajax.Article;
+using DowJones.Infrastructure;
+using Newtonsoft.Json;
 
-namespace DowJones.Web.Mvc.UI.Components.Article
+namespace DowJones.Ajax.PortalArticle
 {
 	public class PostProcessingData
 	{
 		[JsonProperty("type")]
-		public DowJones.Infrastructure.PostProcessing Type { get; set; }
+		public PostProcessing Type { get; set; }
 
 		[JsonProperty("elinkValue")]
 		public string ElinkValue { get; set; }
@@ -15,7 +17,7 @@ namespace DowJones.Web.Mvc.UI.Components.Article
 
 		public PostProcessingData()
 		{
-
+			Type = PostProcessing.UnSpecified;
 		}
 
 		public PostProcessingData(PostProcessData source)

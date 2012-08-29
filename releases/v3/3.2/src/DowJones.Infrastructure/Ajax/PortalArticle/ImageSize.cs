@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using DowJones.Attributes;
 
-namespace DowJones.Web.Mvc.UI.Components.Article
+namespace DowJones.Ajax.PortalArticle
 {
 	public enum ImageSize
 	{

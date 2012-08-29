@@ -1,5 +1,6 @@
 ﻿<% 
     var model = self;
+    var options = self.options || {};
 %>
 <div class="dj_article_body">
     <div class="dj_article_articleError error">
@@ -9,7 +10,7 @@
     </div>
 
     <% if (model.AccessionNo) { 
-            if (model.showIndexing) { %>
+            if (options.showIndexing) { %>
                <div class="dj_article_index">AN</div>
             <% } %>
             <div class="dj_article_an dj_article_section">

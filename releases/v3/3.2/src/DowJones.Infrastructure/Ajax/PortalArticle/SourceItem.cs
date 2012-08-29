@@ -4,8 +4,10 @@ using System.Linq;
 using System.Text;
 using Newtonsoft.Json;
 using DowJones.Extensions;
+using DowJones.Ajax.Article;
+using DowJones.Infrastructure;
 
-namespace DowJones.Web.Mvc.UI.Components.Article
+namespace DowJones.Ajax.PortalArticle
 {
 	public class SourceItem
 	{
@@ -24,9 +26,9 @@ namespace DowJones.Web.Mvc.UI.Components.Article
 		[JsonProperty("isEntityLink")]
 		public bool IsEntityLink { get; protected set; }
 
-		public SourceItem(DowJones.Ajax.Article.RenderItem item)
+		public SourceItem(RenderItem item)
 		{
-			if (item.ItemMarkUp == DowJones.Infrastructure.MarkUpType.EntityLink)
+			if (item.ItemMarkUp == MarkUpType.EntityLink)
 			{
 				IsEntityLink = true;
 				EntityData = item.ItemEntityData.ToJson().EscapeForHtml();

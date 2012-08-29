@@ -4,14 +4,11 @@ using System.Linq;
 using System.Text;
 using Newtonsoft.Json;
 
-namespace DowJones.Web.Mvc.UI.Components.Article
+namespace DowJones.Ajax.PortalArticle
 {
-	public class HeadlineItem
+	public class CreditItem
 	{
 		[JsonProperty("text")]
 		public string Text { get; set; }
-
-		[JsonProperty("isHyperLink")]
-		public bool IsHyperLink { get; set; }
 	}
 }

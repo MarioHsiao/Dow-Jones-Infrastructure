@@ -7,7 +7,7 @@ using DowJones.Mapping;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-namespace DowJones.Web.Mvc.UI.Components.Article
+namespace DowJones.Ajax.PortalArticle
 {
 	[JsonConverter(typeof(StringEnumConverter))]
 	public enum MarkupType

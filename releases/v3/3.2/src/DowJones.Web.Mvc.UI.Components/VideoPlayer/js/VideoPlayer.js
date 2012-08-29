@@ -1,4 +1,3 @@
-
 DJ.UI.VideoPlayer = DJ.UI.Component.extend({
 
     defaults: {
@@ -164,12 +163,12 @@ DJ.UI.VideoPlayer = DJ.UI.Component.extend({
 
     },
 
-    _onPlayListNext: function (e) {
+    _onPlayListNext: function () {
         this._playClip(true);
         return false;
     },
 
-    _onPlayListPrev: function (next, entriesId) {
+    _onPlayListPrev: function () {
         this._playClip(false);
         return false;
     },
@@ -245,11 +244,16 @@ DJ.UI.VideoPlayer = DJ.UI.Component.extend({
             });
             return fpPlayList;
         }
+        return null;
     },
 
-    play: function (list, container) {
-        this.data = $.isArray(list) ? list : [list];
+    play: function (list, container) { /* here for backward compatability for snapshot */
         this.options.container = container;
+        this.setData(list);
+    },
+    
+    setData: function (data) {
+        this.data = $.isArray(list) ? data : [list];
         this._initializePlayer();
     },
 
@@ -272,11 +276,11 @@ DJ.UI.VideoPlayer = DJ.UI.Component.extend({
             this.player.css("width", width);
     },
 
-    getHeight: function (height) {
+    getHeight: function() {
         return (this.options.height || this.defaults.height);
     },
 
-    getWidth: function (width) {
+    getWidth: function() {
         return (this.options.width || this.defaults.width);
     }
 });

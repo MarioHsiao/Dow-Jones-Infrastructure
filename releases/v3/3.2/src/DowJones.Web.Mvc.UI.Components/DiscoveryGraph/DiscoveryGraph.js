@@ -61,7 +61,6 @@ DJ.UI.DiscoveryGraph = DJ.UI.Component.extend({
         } else if (this.options.orientation === 'vertical' && this.options.sortable) {
             this.sortable();
         }
-
     },
 
     //Function to Set Data
@@ -212,13 +211,10 @@ DJ.UI.DiscoveryGraph = DJ.UI.Component.extend({
 
     //Render DiscoveryGraph
     _renderDiscoveryGraph: function (discoveryData, idx) {
-        var self = this,
-            $chartContainer = this.$element.find('.dj_discoveryGraph-item-' + idx).find('.dj_discovery-graph'),
-            itemCount = $chartContainer.data('items') || 5,
-            seriesData = this._extractSeriesData(discoveryData.seriesData),
-            chart;
-
-        chart = new Highcharts.Chart($.extend(true, {}, this.discoveryGraphConfig, {
+        var $chartContainer = this.$element.find('.dj_discoveryGraph-item-' + idx).find('.dj_discovery-graph');
+        var itemCount = $chartContainer.data('items') || 5;
+        var seriesData = this._extractSeriesData(discoveryData.seriesData);
+        return new Highcharts.Chart($.extend(true, {}, this.discoveryGraphConfig, {
             chart: {
                 renderTo: $chartContainer[0],
                 height: 10 + (20 * itemCount) + 10
@@ -231,7 +227,6 @@ DJ.UI.DiscoveryGraph = DJ.UI.Component.extend({
             }, {
                 data: seriesData[1]
             }]
-
         }));
     },
 
@@ -245,9 +240,7 @@ DJ.UI.DiscoveryGraph = DJ.UI.Component.extend({
 
     //On Discovery Item Click Event Handler
     _onDiscoveryItemClicked: function (evt) {
-        var self = this,
-                o = self.options,
-                el = $(self.element);
+        var self = this;
         $dj.info(self.events.discoveryItemClicked + " Event clicked");
         self.publish(self.events.discoveryItemClicked, { "data": evt.point.options.jsonObj });
     },

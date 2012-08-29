@@ -8,7 +8,7 @@ using DowJones.Web.Mvc.UI.Components.PostProcessing;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-namespace DowJones.Web.Mvc.UI.Components.Article
+namespace DowJones.Web.Mvc.UI.Components.PortalArticle
 {
 	public class PostProcessingOptionItem
 	{
