@@ -29,13 +29,12 @@
         events: {
             // jQuery events are namespaced as <event>.<namespace>
             itemSelect: "itemSelect.dj.AutoSuggest",
-            viewAllClick: "viewAllClick.dj.AutoSuggest",
             viewMorePrivateMarketsClick: "viewMorePrivateMarketsClick.dj.AutoSuggest",
             infoClick: "infoClick.dj.AutoSuggest",
             promoteClick: "promoteClick.dj.AutoSuggest",
             notClick: "notClick.dj.AutoSuggest",
             discontClick: "discontClick.dj.AutoSuggest",
-            viewAllClick: "viewAllClick.dj.AutoSuggest",
+            viewAll: "viewAll.dj.AutoSuggest",
             viewMorePrivateMarketsClick: "viewMorePrivateMarketsClick.dj.AutoSuggest"
         },
 
@@ -566,26 +565,22 @@
 
             //Event handlers
             //OnItemSelect EventHandler
-            if ($.isFunction(settings.onItemSelect)) {
-                $("#" + settings.controlId)._djResult(function(e) {
-                    self.globalSettingsObj.onItemSelect(arguments[1]);
-                    e.stopPropagation();
-                    return false;
-                });
-            }
+            $("#" + settings.controlId)._djResult(function(e, result) {
+                self.publish(self.events.itemSelect, result);
+                e.stopPropagation();
+                return false;
+            });
 
-            //onViewAllClick EventHandler
-            if ($.isFunction(settings.onViewAllClick)) {
-                $("#" + settings.controlId)._djViewAll(function(e) {
-                    if (arguments[1]) {
-                        arguments[1].autocompletionType = self.globalSettingsObj.autocompletionType;
-                        arguments[1].options = self.globalSettingsObj.options;
-                    }
-                    self.globalSettingsObj.onViewAllClick(arguments[1]);
-                    e.stopPropagation();
-                    return false;
-                });
-            }
+            //onViewAll EventHandler
+            $("#" + settings.controlId)._djViewAll(function(e, result) {
+                if (result) {
+                    result.autocompletionType = self.globalSettingsObj.autocompletionType;
+                    result.options = self.globalSettingsObj.options;
+                }
+                self.publish(self.events.viewAll, result);
+                e.stopPropagation();
+                return false;
+            });
 
             //OnViewMorePrivateMarketsClick EventHandler
             if ($.isFunction(settings.onViewMorePrivateMarketsClick)) {
