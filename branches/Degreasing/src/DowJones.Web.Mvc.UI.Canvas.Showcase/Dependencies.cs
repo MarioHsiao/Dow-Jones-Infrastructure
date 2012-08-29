@@ -1,5 +1,6 @@
 using System;
 using System.Configuration;
+using DowJones.DegreasedDashboards.Website.BootstrapperTasks;
 using DowJones.Infrastructure.Common;
 using DowJones.Pages;
 using DowJones.Pages.Modules.Templates;
@@ -26,11 +27,14 @@ namespace DowJones.DegreasedDashboards.Website
 
             IDocumentStore documentStore;
 
-            if ("true".Equals(ConfigurationManager.AppSettings["RavenDb.Embedded"]))
+            var useEmbeddedRavenDb = "true".Equals(ConfigurationManager.AppSettings["RavenDb.Embedded"]);
+            var useInMemoryRavenDb = "true".Equals(ConfigurationManager.AppSettings["RavenDb.Embedded.RunInMemory"]);
+            
+            if (useEmbeddedRavenDb)
             {
                 documentStore = new EmbeddableDocumentStore {
                         DataDirectory = ConfigurationManager.AppSettings["RavenDb.DataDirectory"],
-                        RunInMemory = "true".Equals(ConfigurationManager.AppSettings["RavenDb.Embedded.RunInMemory"]),
+                        RunInMemory = useInMemoryRavenDb,
                     };
             }
             else
@@ -50,10 +54,12 @@ namespace DowJones.DegreasedDashboards.Website
 
             Bind<IPageRepository>().To<RavenDbPageRepository>().InRequestScope();
             Bind<IScriptModuleTemplateManager>().To<RavenDbScriptModuleTemplateRepository>().InRequestScope();
-
-//            Bind<IPageManager>().To<InMemoryPageManager>().InSingletonScope();
             Bind<IPageSubscriptionManager>().To<InMemoryPageSubscriptionManager>().InSingletonScope();
-//            Bind<IScriptModuleTemplateManager>().To<InMemoryScriptModuleTemplateManager>().InSingletonScope();
+
+            if(useEmbeddedRavenDb && useInMemoryRavenDb)
+            {
+                Bind<InitializeTestData>().ToSelf().WithPropertyValue("ShouldExecute", true);
+            }
         }
 
         public class Principle : IPrinciple

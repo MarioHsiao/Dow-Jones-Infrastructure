@@ -22,7 +22,7 @@ namespace DowJones.Web.Mvc.UI.Canvas.Modules.ScriptModule
     using System.Web.UI;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 08/28/2012 03:53 PM
+    // Last Generated Timestamp: 08/28/2012 04:29 PM
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Canvas.Modules.ScriptModule.ScriptModule.js", ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Web.Mvc.UI.Canvas.Modules.ScriptModule.ScriptCanvasModule))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.27108")]
     public class ScriptCanvasModule : AbstractCanvasModule<Modules.ScriptModule.ScriptModule>
@@ -66,10 +66,15 @@ WriteLiteral("\"/> ");
 
                                                                                     }
 
-WriteLiteral("    <div class=\"script-component-container\">");
+WriteLiteral("    <div id=\"");
 
 
-                                       Write(Html.Raw(Model.Html ?? string.Empty));
+         Write(ClientID);
+
+WriteLiteral("_container\" class=\"script-component-container\">");
+
+
+                                                                  Write(Html.Raw(Model.Html ?? string.Empty));
 
 WriteLiteral("</div>\r\n");
 

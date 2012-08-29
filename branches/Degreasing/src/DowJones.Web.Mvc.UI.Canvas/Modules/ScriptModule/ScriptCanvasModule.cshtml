@@ -6,6 +6,6 @@
 }
 @section ContentArea {
     @if(Model.HasStylesheet) { <link rel="stylesheet" href="@Model.StylesheetUrl"/> }
-    <div class="script-component-container">@Html.Raw(Model.Html ?? string.Empty)</div>
+    <div id="@(ClientID)_container" class="script-component-container">@Html.Raw(Model.Html ?? string.Empty)</div>
 }
 @section EditArea {}
