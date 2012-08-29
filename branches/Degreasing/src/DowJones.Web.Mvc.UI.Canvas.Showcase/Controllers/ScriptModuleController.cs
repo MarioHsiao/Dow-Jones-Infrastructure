@@ -1,7 +1,5 @@
-﻿using System.IO;
-using System.Linq;
+﻿using System.Linq;
 using System.Web.Mvc;
-using System.Xml.Serialization;
 using DowJones.DegreasedDashboards.Website.Models;
 using DowJones.Pages;
 using DowJones.Pages.Modules;
@@ -26,7 +24,7 @@ namespace DowJones.DegreasedDashboards.Website.Controllers
 
         public ActionResult Index()
         {
-            var templates = _templateManager.GetTemplates();
+            var templates = _templateManager.GetTemplates().OrderBy(x => x.Title);
             var viewModels = templates.Select(x => new ScriptModuleTemplateViewModel(x));
             return View("List", viewModels);
         }
