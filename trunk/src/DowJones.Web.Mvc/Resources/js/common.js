@@ -1264,11 +1264,6 @@ DJ.$dj.define('$dj', ['jquery'], DJ.$dj);
             return this;
         },
 
-        setData: function (value) {
-            this._super(value);
-            this._clear();
-        },
-
         setOwner: function (value) {
             if (!value) {
                 this._owner = null;
