@@ -60,8 +60,10 @@ namespace DowJones.Assemblers.Articles
 			{
 				Text = h.ItemText,
 				Value = h.ItemValue,
-				ImageSize = CalculatePictureSize(h.ItemMarkUp, articleResultSet.PictureSize)
+				ImageSize = CalculatePictureSize(h.ItemMarkUp, articleResultSet.PictureSize),
 			});
+
+			portalArticleResultSet.LargeImageUrl = head.Where(h => h.ItemMarkUp == MarkUpType.HeadImageLarge).First().ItemText;
 
 			var headlines = articleResultSet.Headline ?? Enumerable.Empty<RenderItem>();
 			portalArticleResultSet.Headlines = headlines.Select(h => new HeadlineItem

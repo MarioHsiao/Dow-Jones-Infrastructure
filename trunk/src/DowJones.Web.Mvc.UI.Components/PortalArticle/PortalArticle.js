@@ -160,7 +160,7 @@ DJ.UI.PortalArticle = DJ.UI.Component.extend({
             console.time(timerName);
         }
 
-        var articleMarkup = this.templates.success(data);
+        var articleMarkup = this.templates.success.call(this, data);
         this.$element.append(articleMarkup);
 
         if (this.options.instrument === true && (console && console.timeEnd)) {

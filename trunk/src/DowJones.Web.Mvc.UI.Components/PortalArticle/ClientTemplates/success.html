@@ -1,10 +1,10 @@
 ﻿<% 
     var model = self.data;
-    var options = self.options;
+    var options = this.options;
     var languageCode = model.languageCode || "en";
 %>
 <div class="dj_article-container dj_article_display_<%= options.articleDisplayOption %> dj_article_lang_<%= languageCode.toLowerCase() %>" data-ref="<%= model.reference %>">
-    <%= this.logo(model) %>
-    <%= this.meta(model) %>
-    <%= this.body(model) %>
+    <%= this.templates.logo(model) %>
+    <%= this.templates.meta(model) %>
+    <%= this.templates.body(model) %>
 </div>

@@ -19,6 +19,9 @@ namespace DowJones.Ajax.PortalArticle
 		[JsonProperty("accessionNo")]
 		public string AccessionNo { get; set; }
 
+		[JsonProperty("largeImageUrl")]
+		public string LargeImageUrl { get; set; }
+
 		[JsonProperty("reference")]
 		public string Reference { get; set; }
 

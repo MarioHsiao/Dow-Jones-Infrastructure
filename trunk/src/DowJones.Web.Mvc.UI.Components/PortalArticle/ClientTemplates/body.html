@@ -1,6 +1,6 @@
 ﻿<% 
     var model = self;
-    var options = self.options || {};
+    var options = this.options;
     var hasCorrections = model.corrections && model.corrections.length;
     var hasLeadParagraphs = model.leadParagraphs && model.leadParagraphs.length;
     var renderTailParagraphs = model.tailParagraphs && model.tailParagraphs.length;
@@ -9,7 +9,7 @@
     <% if(hasCorrections) { 
         for(var i = 0, len = model.corrections.length; i < len; i++) { 
         var item = model.corrections[i]; %>
-                <%= this.paragraph(item) %>
+                <%= this.templates.paragraph(item) %>
     <% }} %>
     
     <% if(model.hasLeadParagraphs) { 
@@ -19,7 +19,7 @@
             <div class="dj_article_index">LP</div>
         <% } %>  
         <div class="dj_article_lp dj_article_section">      
-            <%= this.paragraph(item) %>
+            <%= this.templates.paragraph(item) %>
         </div>
     <% }} %>
     
@@ -30,7 +30,7 @@
             <div class="dj_article_index">TD</div>
         <% } %>      
         <div class="dj_article_td dj_article_section">  
-            <%= this.paragraph(item) %>
+            <%= this.templates.paragraph(item) %>
         </div>
     <% }} %>
 </div>
