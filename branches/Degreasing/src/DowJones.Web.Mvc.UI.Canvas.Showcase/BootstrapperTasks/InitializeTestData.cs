@@ -22,6 +22,9 @@ namespace DowJones.DegreasedDashboards.Website.BootstrapperTasks
 
         public void Execute()
         {
+            if (!ShouldExecute)
+                return;
+
             CreatePages();
             CreateModuleTemplates();
         }
