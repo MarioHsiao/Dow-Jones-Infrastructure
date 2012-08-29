@@ -154,7 +154,7 @@ namespace DowJones.DegreasedDashboards.Website.Controllers
             var viewModel = new ModuleGalleryModel
                                 {
                                     PageId = pageId,
-                                    Templates = _templateManager.GetTemplates(),
+                                    Templates = _templateManager.GetTemplates().OrderBy(x => x.Title),
                                 };
             return PartialView("_ModuleGallery", viewModel);
         }

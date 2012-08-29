@@ -25,13 +25,23 @@
 
     <style>
         body { padding-top: 40px;}
-        .page-header .btn-group {
-            margin-top: 15px;
+        
+        .page-header {
+            clear: both;
         }
+            .page-header h2 {
+                margin-right: 20px;
+                width: 300px;
+            }
+            .page-header .actions {
+                margin: 15px 0;
+            }
+
         .main-content {
             min-height: 600px;
             margin-bottom: 45px;    /* Rise above the footer */
         }
+
         footer {
             position: fixed;
             bottom: 0px;
@@ -83,7 +93,9 @@
         <div class="row-fluid">
             <div class="span12 well well-small page-header">
                 <h2 class="pull-left">@ViewBag.Title</h2>
-                @RenderSection("Header", false)
+                <div class="actions">
+                    @RenderSection("Header", false)
+                </div>
             </div>
         </div>
         
