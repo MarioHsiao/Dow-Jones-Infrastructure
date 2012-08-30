@@ -1,7 +1,7 @@
 ﻿<script src="../template.js"></script>
 <script>
-    setTargetScript('../../DowJones.Web.Mvc.UI.Canvas/AbstractCanvas.js');
-    include('../../DowJones.Web.Mvc.UI.Canvas/AbstractCanvasModule.js');
+    setTargetScript('../../DowJones.Web.Mvc.UI.Canvas/Components/AbstractCanvas.js');
+    include('../../DowJones.Web.Mvc.UI.Canvas/Components/AbstractCanvasModule.js');
 
     $dj.registerNamespace('DJ.Services');
     DJ.Services.CanvasRenderingManagerDataService = function (path) {
@@ -11,14 +11,15 @@
         };
     };
 
+    var nextModuleId = 0;
     function createMockModule(canvas, position, moduleEl) {
         var moduleEl = moduleEl || $('<div />');
 
         var module = new DJ.UI.AbstractCanvasModule(moduleEl, {
-            options: { Position: position || 0 }
+            options: { moduleId: nextModuleId++, position: position || 0 }
         });
 
-        moduleEl.addClass('dj_module')
+        moduleEl.addClass('dj_module');
         moduleEl.data('AbstractCanvasModule', module);
         moduleEl.appendTo(canvas);
 
@@ -59,7 +60,7 @@
             var module1 = createMockModule(canvasElement, 0, $('<div>Module 1</div>'));
             var module2 = createMockModule(canvasElement, 1, $('<div>Module 2</div>'));
 
-            var canvas = new DJ.UI.AbstractCanvas(canvasElement, { NumberOfGroups: 2 });
+            var canvas = new DJ.UI.AbstractCanvas(canvasElement, { options: { NumberOfGroups: 2 } });
             var zones = canvas.getZones();
 
             equals($(canvas._moduleSelector, zones.get(0)).get(0), module1._module.get(0));
@@ -89,19 +90,6 @@
 
             equals($(canvas._moduleSelector).index(module2._module), 0);
         });
-
-        test('should be able to set the web service path via options', function () {
-            var expectedPath = '/TESTSERVICE.asmx';
-
-            var canvas = new DJ.UI.AbstractCanvas(createjQueryTestElement(), {
-                options: { WebServicePath: expectedPath }
-            });
-
-            equals(canvas.$base$web$service.path, expectedPath);
-        });
-
-
-
     });
 
 </script>
