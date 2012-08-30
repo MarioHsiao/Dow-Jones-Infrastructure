@@ -45,6 +45,31 @@ else {
     dj_require(['JSON']);
 }
 
+// define bind, if not existing. Used in fixing scope of templates
+if (!Function.prototype.bind) {
+    Function.prototype.bind = function (oThis) {
+        if (typeof this !== "function") {
+            // closest thing possible to the ECMAScript 5 internal IsCallable function
+            throw new TypeError("Function.prototype.bind - what is trying to be bound is not callable");
+        }
+
+        var aArgs = Array.prototype.slice.call(arguments, 1),
+            fToBind = this,
+            fNOP = function () { },
+            fBound = function () {
+                return fToBind.apply(this instanceof fNOP && oThis
+                                        ? this
+                                        : oThis,
+                                        aArgs.concat(Array.prototype.slice.call(arguments)));
+            };
+
+        fNOP.prototype = this.prototype;
+        fBound.prototype = new fNOP();
+
+        return fBound;
+    };
+}
+
 
 //
 // $dj:  Custom Global Functions
@@ -1064,6 +1089,7 @@ DJ.$dj.define('$dj', ['jquery'], DJ.$dj);
             for (var delegate in this._delegates) {
                 this._delegates[delegate] = null;
             }
+            this.options = null;
         },
 
         getData: function () {
@@ -1142,6 +1168,13 @@ DJ.$dj.define('$dj', ['jquery'], DJ.$dj);
 
             if ($meta["templates"])
                 this.templates = $.extend({}, this.templates, $meta.templates);
+
+            // re-assign the scope of 'this' inside templates to the instance
+            for (var template in this.templates) {
+                if (this.templates.hasOwnProperty(template)) {
+                    this.templates[template] = this.templates[template].bind(this);
+                }
+            }
 
             $.extend(this.tokens, $meta.tokens);
             this.eventHandlers = $.extend(true, {}, this.eventHandlers, $meta.eventHandlers);
@@ -1403,6 +1436,8 @@ DJ.$dj.define('$dj', ['jquery'], DJ.$dj);
             var createInstance = function () {
                 var type = getTypeHandle(name);
                 var instance = new type(config.container, config);
+
+                
                 wireUpEventHandlers(instance, config.eventHandlers);
 
                 notify('Loaded');
