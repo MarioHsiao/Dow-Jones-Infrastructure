@@ -107,10 +107,12 @@
             // to capture resizing of the container this.$element
             $(window).resize(function () {
                 var containerWidth = me.$element.width();
-                me.$pages.width(containerWidth);
-                me.$carouselInner.width(me._getCarouselWidth(containerWidth));
-                me.goToPage(me.currentPageIndex, true);
-                //resize(containerWidth);
+                try {
+                    me.$pages.width(containerWidth);
+                    me.$carouselInner.width(me._getCarouselWidth(containerWidth));
+                    me.goToPage(me.currentPageIndex, true);
+                }
+                catch(e) {}
             });
         },
 
