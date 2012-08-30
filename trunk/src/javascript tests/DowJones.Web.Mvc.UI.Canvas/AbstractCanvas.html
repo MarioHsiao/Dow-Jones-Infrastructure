@@ -3,14 +3,6 @@
     setTargetScript('../../DowJones.Web.Mvc.UI.Canvas/Components/AbstractCanvas.js');
     include('../../DowJones.Web.Mvc.UI.Canvas/Components/AbstractCanvasModule.js');
 
-    $dj.registerNamespace('DJ.Services');
-    DJ.Services.CanvasRenderingManagerDataService = function (path) {
-        return {
-            path: path,
-            UpdateCanvasModulesPositions: function (params) { }
-        };
-    };
-
     var nextModuleId = 0;
     function createMockModule(canvas, position, moduleEl) {
         var moduleEl = moduleEl || $('<div />');
@@ -20,20 +12,30 @@
         });
 
         moduleEl.addClass('dj_module');
+        moduleEl.addClass('dj_module-movable');
         moduleEl.data('AbstractCanvasModule', module);
         moduleEl.appendTo(canvas);
 
         return module;
     };
+    
+    function createMockCanvas(options, canvasElement) {
+        return new DJ.UI.AbstractCanvas(
+            canvasElement || createjQueryTestElement(),
+            { options: options || {} }
+        );
+    };
 
     $(document).ready(function () {
+        DJ.config.debug = true;
+        $.ajax = function () { console.log('$.ajax: ', arguments); };
 
         test('has DJ.UI.AbstractCanvas', function () {
             ok(DJ.UI.AbstractCanvas);
         });
 
         test('should be able to create a new Canvas', function () {
-            var canvas = new DJ.UI.AbstractCanvas(createjQueryTestElement(), {});
+            var canvas = createMockCanvas();
             ok(canvas);
         });
 
@@ -41,14 +43,13 @@
             var canvasElement = createjQueryTestElement();
 
             var module = createMockModule(canvasElement);
-
-            var canvas = new DJ.UI.AbstractCanvas(canvasElement, {});
+            var canvas = createMockCanvas({}, canvasElement);
 
             equals(module.get_Canvas(), canvas);
         });
 
         test('should create zones', function () {
-            var canvas = new DJ.UI.AbstractCanvas(createjQueryTestElement(), {});
+            var canvas = createMockCanvas({ NumberOfGroups: 2 });
             var zones = canvas.getZones();
 
             equals(zones.get().length, canvas.options.NumberOfGroups);
@@ -60,7 +61,7 @@
             var module1 = createMockModule(canvasElement, 0, $('<div>Module 1</div>'));
             var module2 = createMockModule(canvasElement, 1, $('<div>Module 2</div>'));
 
-            var canvas = new DJ.UI.AbstractCanvas(canvasElement, { options: { NumberOfGroups: 2 } });
+            var canvas = createMockCanvas({ NumberOfGroups: 2 }, canvasElement);
             var zones = canvas.getZones();
 
             equals($(canvas._moduleSelector, zones.get(0)).get(0), module1._module.get(0));
@@ -73,7 +74,7 @@
             var module1 = createMockModule(canvasElement, 0, $('<div>Module 1</div>'));
             var module2 = createMockModule(canvasElement, 1, $('<div>Module 2</div>'));
 
-            var canvas = new DJ.UI.AbstractCanvas(canvasElement, { NumberOfGroups: 2 });
+            var canvas = createMockCanvas({ }, canvasElement);
             canvas.moveModule(module1, 'down');
 
             equals($(canvas._moduleSelector).index(module1._module), 1);
@@ -85,7 +86,7 @@
             var module1 = createMockModule(canvasElement, 0, $('<div>Module 1</div>'));
             var module2 = createMockModule(canvasElement, 1, $('<div>Module 2</div>'));
 
-            var canvas = new DJ.UI.AbstractCanvas(canvasElement, { NumberOfGroups: 2 });
+            var canvas = createMockCanvas({ }, canvasElement);
             canvas.moveModule(module2, 'up');
 
             equals($(canvas._moduleSelector).index(module2._module), 0);
