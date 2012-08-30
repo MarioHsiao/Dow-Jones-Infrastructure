@@ -1014,7 +1014,7 @@ DJ.$dj.define('$dj', ['jquery'], DJ.$dj);
                 }
             } catch (ex) {
                 $dj.error('Error initializing component:', ex.toString(), this);
-                if(ex.stack) $dj.debug(ex.stack);
+                if (ex.stack) $dj.debug(ex.stack);
             }
         }
 
@@ -1047,7 +1047,7 @@ DJ.$dj.define('$dj', ['jquery'], DJ.$dj);
         // Initialization
         //
         init: function (meta) {
-            var $meta = $.extend({ name: 'Component' }, meta);
+            var $meta = $.extend({}, meta);
 
             this.data = $meta.data;
             this.defaults = $.extend(true, {}, this.defaults, $meta.defaults);
@@ -1114,7 +1114,7 @@ DJ.$dj.define('$dj', ['jquery'], DJ.$dj);
         },
 
         _debug: function (message) {
-            $dj.debug(this.name + '>> ' + message);
+            $dj.debug(this, ((this.name) ? (this.name + '>> ') : '') + message);
         },
 
         _initializeDelegates: function () {
@@ -1149,7 +1149,7 @@ DJ.$dj.define('$dj', ['jquery'], DJ.$dj);
         // Initialization
         //
         init: function (element, meta) {
-            var $meta = $.extend({ name: "UIComponent" }, meta);
+            var $meta = $.extend({}, meta);
 
             this.element = element;
             this.$element = $(element);
@@ -1304,7 +1304,7 @@ DJ.$dj.define('$dj', ['jquery'], DJ.$dj);
             }
 
             var owner = value;
-            
+
             // If value is not a Component object, convert it to one
             if (!(owner instanceof DJ.UI.Component)) {
 
@@ -1437,7 +1437,7 @@ DJ.$dj.define('$dj', ['jquery'], DJ.$dj);
                 var type = getTypeHandle(name);
                 var instance = new type(config.container, config);
 
-                
+
                 wireUpEventHandlers(instance, config.eventHandlers);
 
                 notify('Loaded');
