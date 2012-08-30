@@ -41,7 +41,7 @@
             // pageIndexChanged throws currentPageIndex, newPageIndex, and pagesCount
             pageIndexChanged: "pageIndexChanged.dj.PortalHeadlineList",
             // componentRendered is raised when the component is done rendering
-            componentRendered: "componentRendered.dj.PortalHeadlineList",
+            componentRendered: "componentRendered.dj.PortalHeadlineList"
         },
 
         init: function (element, meta) {
@@ -333,6 +333,7 @@
                          });
                          
             var headlineMarkup;
+            this.pagesCount = 0;
 
             try {
                 this.$element.html("");
