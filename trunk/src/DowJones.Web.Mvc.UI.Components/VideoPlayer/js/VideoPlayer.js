@@ -253,7 +253,7 @@
     },
     
     setData: function (data) {
-        this.data = $.isArray(list) ? data : [list];
+        this.data = $.isArray(data) ? data : [data];
         this._initializePlayer();
     },
 
