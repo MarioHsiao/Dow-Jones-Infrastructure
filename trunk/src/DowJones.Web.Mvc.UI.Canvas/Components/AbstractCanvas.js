@@ -1,75 +1,35 @@
-﻿/// <reference name="common.js" assembly="DowJones.Web.Mvc" />
+﻿DJ.UI.AbstractCanvas = DJ.UI.CompositeComponent.extend({
 
-DJ.UI.AbstractCanvas = DJ.UI.CompositeComponent.extend({
-
-    defaults: {
-        NumberOfGroups: 1
-    },
-
-    sortableSettings: {
-        axis: false,
-        containment: false,
-        delay: 100,
-        distance: 30,
-        draggingClass: "dj_module-dragging",
-        forcePlaceholderSize: true,
-        handle: ".dj_module-handle",
-        items: "> .dj_module-movable",
-        opacity: 0.8,
-        placeholder: "dj_module-placeholder",
-        revert: 300,
-        scroll: true,
-        tolerance: "pointer" // pointer || intersect [default]
-    },
-
-    _canvasName: null,
-    _canvasRenderManager: null,
     _moduleCount: 0,
-    _registeredModules: null,
     _moduleSelector: ".dj_module",
-    _contentSelector: ".dj_module-body",
-    _groupContainerSelector: ".dj_groups",
-    _groupSelector: ".dj_group",
-    _sortableItems: {},
-    _pubSubManager: this._pubSubManager || new DJ.PubSubManager(),
-
-    $activate$i: 0,
-    $deactivate$i: 0,
-    $subscribedElements: [],
+    _pubSubManager: null,
 
     init: function (element, meta) {
-        var startDate = new Date();
         this._debug("Initializing canvas...");
+
+        this._pubSubManager = this._pubSubManager || new DJ.PubSubManager();
 
         this._super(element, meta);
 
-        this._selectors = $dj.clone(this._selectors);
-        this.sortableSettings = $dj.clone(this.sortableSettings);
+        $.extend(this.options, window[this.getId() + "_clientState"]);
 
-        $.extend(this.options, this.getSettings());
-
-        this._numberOfZones = this.options.NumberOfGroups;
-
-        this._canvasRenderManager = $(this.element).get(0);
-
-        this._initializeZones();
+        this._initializeLayout();
         this._initializeModules();
-        this._initializeModuleReordering();
 
         this.subscribe('RemoveModuleRequest.dj.CanvasModule', this._delegates.fireModuleRemoved);
-
-        this._debug("Done initializing canvas: " + (new Date().getTime() - startDate.getTime()));
     },
 
     // Obsolete
     addModule: function (moduleId) {
+        $dj.warn("[OBSOLETE] AbstractCanvas.addModule(moduleId) is obsolete -- use loadModule(moduleId) instead");
+
         this.loadModule(moduleId);
     },
 
     loadModule: function (moduleId, onSuccess, onError) {
         this._loadModule(moduleId, onSuccess, onError, this._delegates.addModuleToCanvas);
     },
-    
+
     _loadModule: function (moduleId, onSuccess, onError, addModuleToCanvas) {
         if (!this.canAddModule(moduleId)) { return; }
 
@@ -92,17 +52,17 @@ DJ.UI.AbstractCanvas = DJ.UI.CompositeComponent.extend({
                 var err = $dj.getError(xhr);
                 if (err !== null) {
                     this.publish('addModuleError.dj.Canvas', err);
-                    if(onError) onError(err);
+                    if (onError) onError(err);
                 }
                 else {
                     addModuleToCanvas(xhr.responseText);
-                    if(onSuccess) onSuccess(xhr.responseText);
+                    if (onSuccess) onSuccess(xhr.responseText);
                 }
             }),
             dataType: 'html'
         });
     },
-    
+
     _addModuleToCanvas: function (html) {
         this.$element.prepend(html);
     },
@@ -113,7 +73,7 @@ DJ.UI.AbstractCanvas = DJ.UI.CompositeComponent.extend({
         if (!module) return;
 
         module.showLoadingArea();
-        
+
         this._loadModule(
             moduleId,
             null,
@@ -129,7 +89,7 @@ DJ.UI.AbstractCanvas = DJ.UI.CompositeComponent.extend({
     deleteModule: function (moduleId, onSuccess, onError) {
         var request = { pageId: this.get_canvasId(), moduleId: moduleId };
 
-        var module = this.module(moduleId) || { showLoadingArea: function () {}, showContentArea: function () {} };
+        var module = this.module(moduleId) || { showLoadingArea: function () { }, showContentArea: function () { } };
 
         module.showLoadingArea();
 
@@ -137,33 +97,34 @@ DJ.UI.AbstractCanvas = DJ.UI.CompositeComponent.extend({
             url: this.options.deleteModuleUrl + '?' + $.param(request),
             type: 'DELETE',
             success: $dj.delegate(this, function (data) {
-                        module.$element.remove();
+                module.$element.remove();
 
-                        this._initializeModules();
+                this._initializeModules();
 
-                        if (onSuccess) {
-                            onSuccess(data);
-                        }
-                    }),
+                if (onSuccess) {
+                    onSuccess(data);
+                }
+            }),
             error: $dj.delegate(this, function (data) {
-                        module.showContentArea();
-                        if (onError) {
-                             onError(data);
-                        }
-                    })
+                module.showContentArea();
+                if (onError) {
+                    onError(data);
+                }
+            })
         });
     },
 
+    // Obsolete
     getModuleIds: function (modules) {
+        $dj.warn("[OBSOLETE] AbstractCanvas.getModuleIds() is obsolete");
+
         modules = modules || this.getModules();
         var moduleIds = _.map(modules, function (module) { return module.get_moduleId(); });
         return moduleIds;
     },
 
-    getModules: function (zone) {
-        var context = zone || this.$element;
-
-        var moduleElements = $(this._moduleSelector, context);
+    getModules: function () {
+        var moduleElements = $(this._moduleSelector, this.$element);
 
         var modules = _.map(moduleElements, function (el) {
             var module = $(el).findComponent(DJ.UI.AbstractCanvasModule);
@@ -175,38 +136,20 @@ DJ.UI.AbstractCanvas = DJ.UI.CompositeComponent.extend({
 
     dispose: function () {
         this._super();
-
-        // Clean up common variables
-        this._canvasRenderManager = null;
-        this._sortableItems = null;
-        this._sortableSettings = null;
-        this._registeredModules = null;
         this.options = null;
-        this.$deactivate$i = null;
-        this.$activate$i = null;
-        this.$subscribedElements = null;
-    },
-
-    getSettings: function () {
-        var _temp = window[this.getId() + "_clientState"];
-        if (_temp !== null) {
-            return _temp;
-        }
-        return null;
-    },
-
-    getZones: function () {
-        var zones = $(this._groupSelector, this._canvasRenderManager);
-        return zones;
     },
 
     module: function (moduleId) {
         if (!moduleId) return null;
 
-        var moduleEls = $(this._moduleSelector, this.element);
-        var dataAttr = '[data-module-id="' + moduleId + '"]';
-        var module = moduleEls.filter(dataAttr);
-        return module.findComponent(DJ.UI.AbstractCanvasModule);
+        var modules = this.getModules() || [];
+
+        for (var i = 0; i < modules.length; i++) {
+            if (modules[i].get_moduleId == moduleId)
+                return modules[i];
+        }
+
+        return null;
     },
 
     moveModule: function (module, direction) {
@@ -220,8 +163,8 @@ DJ.UI.AbstractCanvas = DJ.UI.CompositeComponent.extend({
             $module.insertAfter($module.next());
         }
 
-        this._initializeZones();
-        this.saveCanvasModulePositions();
+        this._layout.update();
+        this._layout.save();
     },
 
     getData: function (forceCacheRefresh) {
@@ -231,23 +174,20 @@ DJ.UI.AbstractCanvas = DJ.UI.CompositeComponent.extend({
         }, this);
     },
 
+    // Obsolete
+    getZones: function () {
+        $dj.warn("[OBSOLETE] AbstractCanvas.getZones() is obsolete");
+
+        if (this._layout._getZones)
+            return this._layout._getZones();
+
+        return null;
+    },
+
+    // Obsolete
     saveCanvasModulePositions: function () {
-        var zones = [];
-
-        _.each(this.getZones(), function (zone) {
-            var modules = this.getModules(zone);
-            zones[zones.length] = this.getModuleIds(modules);
-        }, this);
-
-        var request = { pageId: this.options.canvasId, columns: zones };
-
-        $.ajax({
-            url: this.options.webServiceBaseUrl + '/modules/positions/json',
-            type: 'PUT',
-            data: JSON.stringify(request)
-        });
-
-        return request;
+        $dj.warn("[OBSOLETE] AbstractCanvas.saveCanvasModulePositions() is obsolete");
+        this._layout.save();
     },
 
     canAddModule: function () {
@@ -259,14 +199,8 @@ DJ.UI.AbstractCanvas = DJ.UI.CompositeComponent.extend({
         this._pubSubManager.publish(eventName, args);
     },
 
-
     subscribe: function (/* string */eventName, /* function() */handler) {
         return this._pubSubManager.subscribe(eventName, handler);
-    },
-
-
-    _invokeService: function (params) {
-        $.ajax(params);
     },
 
     _fireModuleRemoved: function (args) {
@@ -278,84 +212,33 @@ DJ.UI.AbstractCanvas = DJ.UI.CompositeComponent.extend({
         this.publish('addModuleSuccess.dj.Canvas', moduleElementId);
     },
 
-    _fireSortableOnActivate: function (e, ui) {
-        this.$activate$i++;
-    },
-
-    _fireSortableOnDeactivate: function (e, ui) {
-        this.$deactivate$i++;
-
-        // If all of the zones are not done deactivating,
-        // ignore this event and wait for the last one
-        if (this.$deactivate$i % this._numberOfZones !== 0) {
-            this._debug('Ignoring fireSortableOnDeactivate for ' + e.id +
-                            '. Waiting for last zone to deactivate.');
-            return;
-        }
-
-        this.getZones().enableSelection();
-
-        if (document.selection) {
-            document.selection.clear();
-        }
-
-        this.saveCanvasModulePositions();
-
-        var _groupCntr = $(this._groupContainerSelector, this._canvasRenderManager).get(0);
-        if (_groupCntr) {
-            var _children = $(_groupCntr).children();
-            if ($.browser.msie && $.browser.version === 6.0) {
-                _children.css({ 'height': '400px' });
-            }
-            _children.css({ 'min-height': '400px' });
-        }
-
-        this._sortableItems.find(this.sortableSettings.handle + ">H3").data("enableSimpleTooltip", true);
-    },
-
-    _fireSortableOnStart: function (e, ui) {
-        $(ui.helper).addClass(this.sortableSettings.draggingClass);
-
-        if (document.selection) {
-            document.selection.clear();
-        }
-
-        this.getZones()
-                    .disableSelection()
-                    .sortable('refreshPositions');
-        this._sortableItems.find(this.sortableSettings.handle + ">H3").data("enableSimpleTooltip", false);
-        $("#dj_tooltip").hide();
-    },
-
-    _fireSortableOnStop: function (e, ui) {
-        $(ui.item).css({ width: '' }).removeClass(this.sortableSettings.draggingClass);
-        this.getZones().sortable('enable');
-    },
-
     _initializeDelegates: function () {
         this._delegates = {
             addModuleToCanvas: $dj.delegate(this, this._addModuleToCanvas),
             fireModuleAdded: $dj.delegate(this, this._fireModuleAdded),
-            fireModuleRemoved: $dj.delegate(this, this._fireModuleRemoved),
-            fireSortableOnActivate: $dj.delegate(this, this._fireSortableOnActivate),
-            fireSortableOnDeactivate: $dj.delegate(this, this._fireSortableOnDeactivate),
-            fireSortableOnStart: $dj.delegate(this, this._fireSortableOnStart),
-            fireSortableOnStop: $dj.delegate(this, this._fireSortableOnStop)
+            fireModuleRemoved: $dj.delegate(this, this._fireModuleRemoved)
         };
     },
 
     _initializeElements: function () { },
+    _initializeEventHandlers: function () { },
+
+    _initializeLayout: function () {
+        // HACK: options.layout doesn't actually exist yet - fake it till you make it
+        this.options.layout = this.options.layout || { zoneCount: this.options.NumberOfGroups };
+        this.options.layout.dataServiceUrl = this.options.webServiceBaseUrl + '/modules/positions/json';
+
+        // TODO: Layout Factory
+        var layoutOptions = this.options.layout;
+        layoutOptions.canvasId = this.options.canvasId,
+        this._layout = new DJ.UI.AbstractCanvas.ZoneLayout(this.element, layoutOptions);
+    },
 
     _initializeModules: function () {
-        var zones = this.getZones();
-        var zoneCount = zones.length;
-
         var modules = this.getModules();
 
         _.each(modules, function (module) {
             if (module === null) { return; }
-
-            var $el = module.$element;
 
             module.setOwner(this);
 
@@ -364,22 +247,190 @@ DJ.UI.AbstractCanvas = DJ.UI.CompositeComponent.extend({
                 module.options.needsClientData = false;
             }
 
-            if (module.options.position > -1) {
-                var zoneIndex = Math.ceil(module.options.position % zoneCount);
-                var zone = (zoneIndex > -1) ? zones.get(zoneIndex) : null;
-                $(zone).append($el);
-            }
-            else {
-                $dj.debug('hiding module ' + module.toString() + ' because it does not have a Position');
-                $(module.element).hide();
-            }
-
             // wire up events
             this.events = this.events || {};
             _.each(module.events, function (value, key) {
                 this.events[key] = value;
             }, this);
         }, this);
+
+        this._layout.update();
+    },
+
+    EOF: null
+});
+
+
+$dj.debug('Registered DJ.UI.AbstractCanvas (extends DJ.UI.Component)');
+
+
+DJ.UI.Canvas = DJ.UI.AbstractCanvas.extend({});
+DJ.UI.Canvas.find = function (canvasId) {
+    var canvases = $('.dj_Canvas');
+
+    if (canvasId) {
+        // Try to get a specific one
+        for (var i = 0; i < canvases.length; i++) {
+            var canvas = $(canvases[i]);
+            if (canvas && canvas.data('canvas-id') == canvasId)
+                return canvas.findComponent(DJ.UI.AbstractCanvas);
+        }
+    } else if (canvases.length == 1) {
+        // Otherwise, return the first canvas
+        return $(canvases).findComponent(DJ.UI.AbstractCanvas);
+    }
+
+    return null;
+};
+
+$.plugin('dj_Canvas', DJ.UI.Canvas);
+$dj.debug('Registered DJ.UI.Canvas');
+
+
+
+
+
+DJ.UI.CanvasLayout = DJ.Component.extend({
+    init: function (element, options) {
+        this._super({ options: options });
+        this._canvas = element;
+    },
+
+    save: function () {
+        $dj.debug('TODO: Implement DJ.UI.CanvasLayout.save()');
+    },
+
+    update: function () {
+        $dj.debug('TODO: Implement DJ.UI.CanvasLayout.update()');
+    },
+
+    EOF: null
+});
+
+$dj.debug('Registered DJ.UI.CanvasLayout');
+
+
+
+DJ.UI.AbstractCanvas.ZoneLayout = DJ.UI.CanvasLayout.extend({
+    defaults: {
+        dataServiceUrl: null,
+        groups: null,
+        sortableSettings: {
+            axis: false,
+            containment: false,
+            delay: 100,
+            distance: 30,
+            draggingClass: "dj_module-dragging",
+            forcePlaceholderSize: true,
+            handle: ".dj_module-handle",
+            items: "> .dj_module-movable",
+            opacity: 0.8,
+            placeholder: "dj_module-placeholder",
+            revert: 300,
+            scroll: true,
+            tolerance: "pointer" // pointer || intersect [default]
+        }
+    },
+
+    _zoneSelector: '.dj_group',
+    _moduleSelector: '.dj_module',
+
+    save: function () {
+        var zones = [];
+
+        _.each(this._getZones(), function (zone) {
+            var modules = this._getModules(zone);
+            var moduleIds = _.map(modules, function (module) { return module.get_moduleId(); });
+            zones[zones.length] = moduleIds;
+        }, this);
+
+        var request = { pageId: this.options.canvasId, columns: zones };
+
+        $.ajax({
+            url: this.options.dataServiceUrl,
+            type: 'PUT',
+            data: JSON.stringify(request)
+        });
+
+        return request;
+    },
+
+    update: function () {
+        var zones = this._getZones();
+        var modules = this._getModules();
+        var zoneModuleIds = this.options.groups;
+
+        _.each(modules, function (module) {
+            if (module === null) { return; }
+
+            var zoneIndex = -1;
+
+            if (zoneModuleIds) {
+                for (var groupId = 0; groupId < zoneModuleIds.length; groupId++) {
+                    for (var y = 0; y < zoneModuleIds[groupId].length; y++) {
+                        if (zoneModuleIds[groupId][y] == module.get_moduleId())
+                            zoneIndex = groupId;
+                    }
+                }
+            }
+
+            if (zoneIndex == -1) {
+                zoneIndex = Math.ceil(module.options.position % zones.length);
+            }
+
+            var zone = (zoneIndex != -1) ? zones.get(zoneIndex) : null;
+            if (zone) {
+                $(zone).append(module.element);
+            }
+            else {
+                $dj.debug('hiding module ' + module.toString() + ' because it does not have a Position');
+                $(module.element).hide();
+            }
+        });
+
+        this._initializeModuleReordering();
+    },
+
+    _getModules: function (zone) {
+        var moduleElements = $(this._moduleSelector, zone || this._canvas);
+
+        var modules = _.map(moduleElements, function (el) {
+            var module = $(el).findComponent(DJ.UI.AbstractCanvasModule);
+            return module;
+        });
+
+        return _.filter(modules, function (module) { return module !== null; });
+    },
+
+    _getZones: function () {
+        var zoneCount = this.options.zoneCount || (this.options.groups || [[]]).length;
+        var zones = $(this._zoneSelector, this._canvas).get();
+
+        if (zones.length !== zoneCount) {
+            var zoneClass = this._zoneSelector.substring(1);
+
+            zoneClass += " span" + (12 / zoneCount);
+
+            for (var i = 0; i < zoneCount; i++) {
+                var zone =
+                    $("<div />")
+                        .addClass(zoneClass)
+                        .attr('id', 'zone-' + i)
+                        .appendTo(this._canvas);
+
+                zones.push(zone);
+            }
+        }
+
+        return $(zones);
+    },
+
+    _initializeEventHandlers: function () { },
+
+    _initializeDelegates: function () {
+        this._delegates = {
+            save: $dj.delegate(this, this.save)
+        };
     },
 
     _initializeModuleReordering: function () {
@@ -387,57 +438,62 @@ DJ.UI.AbstractCanvas = DJ.UI.CompositeComponent.extend({
 
         // Get a copy of the default sort-able settings
         // and update it with our current items and delegates
-        var settings = $.extend(this.sortableSettings, {
-            start: this._delegates.fireSortableOnStart,
-            stop: this._delegates.fireSortableOnStop,
-            activate: this._delegates.fireSortableOnActivate,
-            deactivate: this._delegates.fireSortableOnDeactivate
+        var settings = $.extend({}, this.options.sortableSettings);
+
+        var zones = this._getZones();
+        var sortableItems = $(settings.items, zones);
+        var tooltipHandles = sortableItems.find(settings.handle + ">H3");
+
+        // Save delegate
+        var savePositions = this._delegates.save;
+
+        $.extend(settings, {
+            start: function (e, ui) {
+                $(ui.helper).addClass(settings.draggingClass);
+
+                if (document.selection) {
+                    document.selection.clear();
+                }
+
+                zones.disableSelection().sortable('refreshPositions');
+
+                tooltipHandles.data("enableSimpleTooltip", false);
+                $("#dj_tooltip").hide();
+            },
+
+            stop: function (e, ui) {
+                $(ui.item).css({ width: '' }).removeClass(settings.draggingClass);
+                zones.sortable('enable');
+            },
+
+            deactivate: function (e, ui) {
+                zones.enableSelection();
+
+                if (document.selection) {
+                    document.selection.clear();
+                }
+
+                savePositions();
+
+                tooltipHandles.data("enableSimpleTooltip", true);
+            }
         });
 
-        var _zones = this.getZones();
+        zones.sortable(settings);
 
-        _zones.sortable($.extend(settings));
-
-        if (_zones.length > 1) {
-            _zones.sortable("option", "connectWith", _zones);
+        if (zones.length > 1) {
+            zones.sortable("option", "connectWith", zones);
         }
 
         // Initialize Crosshairs
-        this._sortableItems = $(settings.items, _zones);
-        this._sortableItems.find(this.sortableSettings.handle)
-                    .css({ cursor: 'move' })
-                    .mousedown(this._fireCrossHairsCursorOnMousedown)
-                    .mouseup(this._fireCrossHairsCursorOnMouseup);
+        sortableItems.find(settings.handle).css({ cursor: 'move' });
 
-        $(">H3", $(this.sortableSettings.handle, this._sortableItems));
-
-        this._debug('Module reordering nitialized: ' +
-                        this._sortableItems.length + ' modules in ' + this._numberOfZones + ' zones');
-
-        this._numberOfZones = _zones.length;
+        this._debug('Module reordering initialized: ' +
+                    sortableItems.length + ' modules in '
+                    + zones.length + ' zones');
     },
 
-    _initializeZones: function () {
-        var zones = this.getZones();
-
-        if (zones.length === 0) {
-            var zoneContainer = $(this._canvasRenderManager);
-            var zoneClass = this._groupSelector.substring(1);
-            var i;
-
-            for (i = 0; i < this.options.NumberOfGroups; i++) {
-                $("<div />")
-                            .addClass(zoneClass)
-                            .attr('id', 'zone-' + i)
-                            .appendTo(zoneContainer);
-            }
-        }
-    },
-    
     EOF: null
 });
 
-    $.plugin('dj_Canvas', DJ.UI.AbstractCanvas);
-    
-    $dj.debug('Registered DJ.UI.AbstractCanvas (extends DJ.UI.Component)');
-
+$dj.debug('Registered DJ.UI.AbstractCanvas.ZoneLayout');
