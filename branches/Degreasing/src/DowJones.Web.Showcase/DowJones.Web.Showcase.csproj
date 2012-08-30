@@ -246,6 +246,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Content Include="Scripts\views\articleClientSide.js" />
     <Compile Include="Services\Charting\ChartService.cs" />
     <Compile Include="Services\Charting\StockDataService.cs" />
     <Compile Include="Settings.cs" />
@@ -272,6 +273,7 @@
     <Content Include="ScriptAdd.html" />
     <Content Include="Scripts\loose2.js" />
     <Content Include="Scripts\loose.js" />
+    <Content Include="Scripts\views\instrumentation.js" />
     <Content Include="Styles\css\article.css">
       <DependentUpon>article.scss</DependentUpon>
     </Content>

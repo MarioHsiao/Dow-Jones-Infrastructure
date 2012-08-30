@@ -1,9 +1,9 @@
 ﻿using System.Web.Mvc;
 using DowJones.Session;
+using DowJones.Web.Mvc.UI.Components.PortalArticle;
 using Factiva.Gateway.Messages.Archive.V1_0;
 using Factiva.Gateway.Services.V1_0;
 using Factiva.Gateway.V1_0;
-using DowJones.Web.Mvc.UI.Components.PortalArticle;
 using ControllerBase = DowJones.Web.Mvc.ControllerBase;
 
 namespace DowJones.Web.Showcase.Controllers
@@ -18,13 +18,14 @@ namespace DowJones.Web.Showcase.Controllers
 
         private PortalArticleModel GetPortalArticle(string acn)
         {
-            var objArticle2 = GetArticle(acn).CopyTo();
-            var portalModel = new PortalArticleModel
-                                  {
-                                      ArticleObject = objArticle2,
-                                      SourceLanguage = Preferences.InterfaceLanguage
-                                  };
-            return portalModel;
+			//var objArticle2 = GetArticle(acn).CopyTo();
+			//var portalModel = new PortalArticleModel(TokenRegistry)
+			//					  {
+			//						  Result = Mapper.Map,
+			//						  SourceLanguage = Preferences.InterfaceLanguage
+			//					  };
+			//return portalModel;
+			return new PortalArticleModel(TokenRegistry);
         }
 
         /// <summary>

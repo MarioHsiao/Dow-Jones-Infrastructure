@@ -30,9 +30,9 @@ namespace DowJones.Web.Mvc.UI.Components.Article
     using PostProcessingOptions = PostProcessing.PostProcessingOptions;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 06/29/2012 03:42 PM
+    // Last Generated Timestamp: 08/29/2012 04:54 PM
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.Article.Article.js", ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.Article.ArticleComponent))]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.22175")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.27108")]
     public class ArticleComponent : DowJones.Web.Mvc.UI.ViewComponentBase<ArticleModel>
     {
 #line hidden
@@ -142,7 +142,9 @@ WriteLiteral("            <div class=\"dj_article_image article-logo\">\r\n");
 
 
                   
-            var largeImgUrl = string.Empty;
+            var largeImgUrl = Model.ArticleDataSet.Head
+                                .Where(h => h.ItemMarkUp == MarkUpType.HeadImageLarge)
+                                .First().ItemText;
                 
 
 
@@ -169,7 +171,6 @@ WriteLiteral("\"/>\r\n");
 
                                                              break;
                         case MarkUpType.HeadImageLarge:
-                                                             largeImgUrl = renderItem.ItemValue;
                                                              if (Model.ArticleDataSet.PictureSize == PictureSize.Large)
                                                              {
 
