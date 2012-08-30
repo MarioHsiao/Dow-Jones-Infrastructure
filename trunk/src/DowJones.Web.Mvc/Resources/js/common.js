@@ -1089,6 +1089,7 @@ DJ.$dj.define('$dj', ['jquery'], DJ.$dj);
             for (var delegate in this._delegates) {
                 this._delegates[delegate] = null;
             }
+            this.options = null;
         },
 
         getData: function () {
