@@ -50,7 +50,7 @@
             // Call the base constructor
             this._super(element, $meta);
 
-            if (this.options.allowPagination) {
+            if (this._isPaginationOn()) {
                 this._initializePagination();
             }
 
@@ -88,11 +88,15 @@
                     }
             }, this);
 
-            if (this.options.allowPagination) {
+            if (this._isPaginationOn()) {
                 this._setupPagination();
             }
         },
-        
+            
+        _isPaginationOn: function () {
+            return  this.options.allowPagination && this.options.pageSize > 0;
+        },
+            
         _initializePagination: function() {
             var me = this;
             
@@ -129,7 +133,7 @@
 
         goToPage: function (pageIndex, disableAnimation, disableEvent) {
             // Only enabled if pagination is turned on
-            if (!this.options.allowPagination)
+            if (!this._isPaginationOn())
                 return;
 
             var slideDirection = pageIndex - this.currentPageIndex;
@@ -348,7 +352,7 @@
                             break;
                     }
 
-                    if (this.options.allowPagination) {
+                    if (this._isPaginationOn()) {
                         this._includePagingCssStyles();
                         
                         var headlinePages = [];
