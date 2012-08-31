@@ -11,9 +11,6 @@ namespace DowJones.Ajax.PortalArticle
 {
 	public class SourceItem
 	{
-		[JsonProperty("text")]
-		public string Text { get; set; }
-
 		[JsonProperty("entityData")]
 		public string EntityData { get; set; }
 
@@ -35,9 +32,9 @@ namespace DowJones.Ajax.PortalArticle
 				EntityName = item.ItemEntityData.Name;
 				EntityCode = item.ItemEntityData.Code;
 			}
-			else if (item.ItemMarkUp == DowJones.Infrastructure.MarkUpType.Span)
+			else if (item.ItemMarkUp == MarkUpType.Span)
 			{
-				Text = item.ItemText;
+				EntityName = item.ItemText;
 			}
 
 			// do nothing if markup type is not one of the above
