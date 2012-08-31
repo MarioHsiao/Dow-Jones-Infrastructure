@@ -1,36 +1,185 @@
 ﻿DJ.UI.AbstractCanvas = DJ.UI.CompositeComponent.extend({
 
-    _moduleCount: 0,
+    layout: null,
     _moduleSelector: ".dj_module",
     _pubSubManager: null,
 
     init: function (element, meta) {
         this._debug("Initializing canvas...");
 
-        this._pubSubManager = this._pubSubManager || new DJ.PubSubManager();
-
         this._super(element, meta);
+
+        this._pubSubManager = this._pubSubManager || new DJ.PubSubManager();
 
         $.extend(this.options, window[this.getId() + "_clientState"]);
 
-        this._initializeLayout();
         this._initializeModules();
+        this._initializeLayout();
 
         this.subscribe('RemoveModuleRequest.dj.CanvasModule', this._delegates.fireModuleRemoved);
     },
 
-    // Obsolete
-    addModule: function (moduleId) {
-        $dj.warn("[OBSOLETE] AbstractCanvas.addModule(moduleId) is obsolete -- use loadModule(moduleId) instead");
+    addModule: function (module) {
+        if (module === null || module === undefined)
+            return;
 
-        this.loadModule(moduleId);
+        if (!isNaN(module)) {
+            $dj.warn("[OBSOLETE] AbstractCanvas.addModule(moduleId) is obsolete -- use loadModule(moduleId) instead");
+            this.loadModule(parseInt(module));
+        }
+
+        this.layout.add(module);
+    },
+
+    canAddModule: function () {
+        return true;
+    },
+
+    deleteModule: function (moduleId, onSuccess, onError) {
+        var request = { pageId: this.get_canvasId(), moduleId: moduleId };
+
+        var module = this.module(moduleId) || { showLoadingArea: function () { }, showContentArea: function () { } };
+
+        module.showLoadingArea();
+
+        $.ajax({
+            url: this.options.deleteModuleUrl + '?' + $.param(request),
+            type: 'DELETE',
+            success: $dj.delegate(this, function (data) {
+                this.layout.remove(module);
+
+                this._initializeModules();
+
+                if (onSuccess) {
+                    onSuccess(data);
+                }
+            }),
+            error: $dj.delegate(this, function (data) {
+                module.showContentArea();
+                if (onError) {
+                    onError(data);
+                }
+            })
+        });
+    },
+
+    getData: function (forceCacheRefresh) {
+        var modules = this.getModules();
+        _.each(modules, function (module) {
+            module.getData(forceCacheRefresh);
+        }, this);
+    },
+
+    // Obsolete
+    getModuleIds: function (modules) {
+        $dj.warn("[OBSOLETE] AbstractCanvas.getModuleIds() is obsolete");
+
+        modules = modules || this.getModules();
+        var moduleIds = _.map(modules, function (module) { return module.get_moduleId(); });
+        return moduleIds;
+    },
+
+    getModules: function () {
+        var moduleElements = $(this._moduleSelector, this.$element);
+
+        var modules = _.map(moduleElements, function (el) {
+            var module = $(el).findComponent(DJ.UI.AbstractCanvasModule);
+            return module;
+        });
+
+        return _.filter(modules, function (module) { return module !== null; });
     },
 
     loadModule: function (moduleId, onSuccess, onError) {
-        this._loadModule(moduleId, onSuccess, onError, this._delegates.addModuleToCanvas);
+        this._loadModule(moduleId, onSuccess, onError, this._delegates.addModule);
     },
 
-    _loadModule: function (moduleId, onSuccess, onError, addModuleToCanvas) {
+    module: function (moduleId) {
+        if (!moduleId) return null;
+
+        var modules = this.getModules() || [];
+
+        for (var i = 0; i < modules.length; i++) {
+            if (modules[i].get_moduleId == moduleId)
+                return modules[i];
+        }
+
+        return null;
+    },
+
+    reloadModule: function (moduleId) {
+        var module = this.module(moduleId);
+
+        if (!module) return;
+
+        module.showLoadingArea();
+
+        this._loadModule(
+            moduleId,
+            null,
+            function (err) {
+                module.showErrorMessage(err);
+            },
+            function (html) {
+                module.$element.replaceWith(html);
+            }
+        );
+    },
+
+
+    _fireModuleAdded: function (moduleElementId) {
+        this._initializeModules();
+        this.publish('addModuleSuccess.dj.Canvas', moduleElementId);
+    },
+
+    _fireModuleRemoved: function (args) {
+        this.deleteModule(args.moduleId);
+    },
+
+    _initializeDelegates: function () {
+        this._delegates = {
+            addModule: $dj.delegate(this, this.addModule),
+            fireModuleAdded: $dj.delegate(this, this._fireModuleAdded),
+            fireModuleRemoved: $dj.delegate(this, this._fireModuleRemoved)
+        };
+    },
+
+    _initializeElements: function () { },
+
+    _initializeEventHandlers: function () { },
+
+    _initializeLayout: function () {
+        // HACK: options.layout doesn't actually exist yet - fake it till you make it
+        this.options.layout = this.options.layout || { zoneCount: this.options.NumberOfGroups };
+        this.options.layout.dataServiceUrl = this.options.webServiceBaseUrl + '/modules/positions/json';
+        this.options.layout.canvasId = this.options.canvasId;
+
+        // TODO: Layout Factory
+        this.layout = new DJ.UI.AbstractCanvas.ZoneLayout(this.element, this.options.layout, this);
+    },
+
+    _initializeModules: function () {
+        var modules = this.getModules();
+
+        _.each(modules, function (module) {
+            if (module === null) { return; }
+
+            module.setOwner(this);
+
+            if (module.options.needsClientData) {
+                module.getData();
+                module.options.needsClientData = false;
+            }
+
+            // wire up events
+            this.events = this.events || {};
+            _.each(module.events, function (value, key) {
+                this.events[key] = value;
+            }, this);
+        }, this);
+    },
+
+    _loadModule: function (moduleId, onSuccess, onError, addModule) {
         if (!this.canAddModule(moduleId)) { return; }
 
         var request = {
@@ -55,206 +204,12 @@
                     if (onError) onError(err);
                 }
                 else {
-                    addModuleToCanvas(xhr.responseText);
+                    if (addModule) addModule(xhr.responseText);
                     if (onSuccess) onSuccess(xhr.responseText);
                 }
             }),
             dataType: 'html'
         });
-    },
-
-    _addModuleToCanvas: function (html) {
-        this.$element.prepend(html);
-    },
-
-    reloadModule: function (moduleId) {
-        var module = this.module(moduleId);
-
-        if (!module) return;
-
-        module.showLoadingArea();
-
-        this._loadModule(
-            moduleId,
-            null,
-            function (err) {
-                module.showErrorMessage(err);
-            },
-            function (html) {
-                module.$element.replaceWith(html);
-            }
-        );
-    },
-
-    deleteModule: function (moduleId, onSuccess, onError) {
-        var request = { pageId: this.get_canvasId(), moduleId: moduleId };
-
-        var module = this.module(moduleId) || { showLoadingArea: function () { }, showContentArea: function () { } };
-
-        module.showLoadingArea();
-
-        $.ajax({
-            url: this.options.deleteModuleUrl + '?' + $.param(request),
-            type: 'DELETE',
-            success: $dj.delegate(this, function (data) {
-                module.$element.remove();
-
-                this._initializeModules();
-
-                if (onSuccess) {
-                    onSuccess(data);
-                }
-            }),
-            error: $dj.delegate(this, function (data) {
-                module.showContentArea();
-                if (onError) {
-                    onError(data);
-                }
-            })
-        });
-    },
-
-    // Obsolete
-    getModuleIds: function (modules) {
-        $dj.warn("[OBSOLETE] AbstractCanvas.getModuleIds() is obsolete");
-
-        modules = modules || this.getModules();
-        var moduleIds = _.map(modules, function (module) { return module.get_moduleId(); });
-        return moduleIds;
-    },
-
-    getModules: function () {
-        var moduleElements = $(this._moduleSelector, this.$element);
-
-        var modules = _.map(moduleElements, function (el) {
-            var module = $(el).findComponent(DJ.UI.AbstractCanvasModule);
-            return module;
-        });
-
-        return _.filter(modules, function (module) { return module !== null; });
-    },
-
-    dispose: function () {
-        this._super();
-        this.options = null;
-    },
-
-    module: function (moduleId) {
-        if (!moduleId) return null;
-
-        var modules = this.getModules() || [];
-
-        for (var i = 0; i < modules.length; i++) {
-            if (modules[i].get_moduleId == moduleId)
-                return modules[i];
-        }
-
-        return null;
-    },
-
-    moveModule: function (module, direction) {
-        this._debug('Moving module ' + module.toString() + ' ' + direction);
-
-        var $module = $(module._module);
-        if (direction === 'up') {
-            $module.insertBefore($module.prev());
-        }
-        else {
-            $module.insertAfter($module.next());
-        }
-
-        this._layout.update();
-        this._layout.save();
-    },
-
-    getData: function (forceCacheRefresh) {
-        var modules = this.getModules();
-        _.each(modules, function (module) {
-            module.getData(forceCacheRefresh);
-        }, this);
-    },
-
-    // Obsolete
-    getZones: function () {
-        $dj.warn("[OBSOLETE] AbstractCanvas.getZones() is obsolete");
-
-        if (this._layout._getZones)
-            return this._layout._getZones();
-
-        return null;
-    },
-
-    // Obsolete
-    saveCanvasModulePositions: function () {
-        $dj.warn("[OBSOLETE] AbstractCanvas.saveCanvasModulePositions() is obsolete");
-        this._layout.save();
-    },
-
-    canAddModule: function () {
-        this._debug("*** canAddModule == true ***  Override canAddModule function to provide canvas-specific logic");
-        return true;
-    },
-
-    publish: function (/* string */eventName, /* object */args) {
-        this._pubSubManager.publish(eventName, args);
-    },
-
-    subscribe: function (/* string */eventName, /* function() */handler) {
-        return this._pubSubManager.subscribe(eventName, handler);
-    },
-
-    _fireModuleRemoved: function (args) {
-        this.deleteModule(args.moduleId);
-    },
-
-    _fireModuleAdded: function (moduleElementId) {
-        this._initializeModules();
-        this.publish('addModuleSuccess.dj.Canvas', moduleElementId);
-    },
-
-    _initializeDelegates: function () {
-        this._delegates = {
-            addModuleToCanvas: $dj.delegate(this, this._addModuleToCanvas),
-            fireModuleAdded: $dj.delegate(this, this._fireModuleAdded),
-            fireModuleRemoved: $dj.delegate(this, this._fireModuleRemoved)
-        };
-    },
-
-    _initializeElements: function () { },
-    _initializeEventHandlers: function () { },
-
-    _initializeLayout: function () {
-        // HACK: options.layout doesn't actually exist yet - fake it till you make it
-        this.options.layout = this.options.layout || { zoneCount: this.options.NumberOfGroups };
-        this.options.layout.dataServiceUrl = this.options.webServiceBaseUrl + '/modules/positions/json';
-
-        // TODO: Layout Factory
-        var layoutOptions = this.options.layout;
-        layoutOptions.canvasId = this.options.canvasId,
-        this._layout = new DJ.UI.AbstractCanvas.ZoneLayout(this.element, layoutOptions);
-    },
-
-    _initializeModules: function () {
-        var modules = this.getModules();
-
-        _.each(modules, function (module) {
-            if (module === null) { return; }
-
-            module.setOwner(this);
-
-            if (module.options.needsClientData) {
-                module.getData();
-                module.options.needsClientData = false;
-            }
-
-            // wire up events
-            this.events = this.events || {};
-            _.each(module.events, function (value, key) {
-                this.events[key] = value;
-            }, this);
-        }, this);
-
-        this._layout.update();
     },
 
     EOF: null
@@ -296,6 +251,14 @@ DJ.UI.CanvasLayout = DJ.Component.extend({
         this._canvas = element;
     },
 
+    add: function (module) {
+        $dj.debug('TODO: Implement DJ.UI.CanvasLayout.add()');
+    },
+
+    remove: function (module) {
+        $dj.debug('TODO: Implement DJ.UI.CanvasLayout.remove()');
+    },
+
     save: function () {
         $dj.debug('TODO: Implement DJ.UI.CanvasLayout.save()');
     },
@@ -335,6 +298,40 @@ DJ.UI.AbstractCanvas.ZoneLayout = DJ.UI.CanvasLayout.extend({
     _zoneSelector: '.dj_group',
     _moduleSelector: '.dj_module',
 
+    init: function (element, options, canvas) {
+        this._super(element, options);
+
+        // Map refactored layout methods for backwards compatability
+        canvas.getZones = this._delegates.getZones;
+        canvas.moveModule = this._delegates.move;
+        canvas.saveCanvasModulePositions = this._delegates.save;
+
+        this._initializeModules();
+    },
+
+    add: function (module, zone) {
+        var el = module;
+
+        if (module instanceof DJ.UI.Component)
+            el = module.element;
+
+        zone = zone || 0;
+
+        if (!isNaN(zone))
+            zone = this._getZones()[zone];
+
+        $(zone).prepend(el);
+    },
+
+    remove: function (module) {
+        var el = module;
+
+        if (typeof (module) == DJ.UI.Component)
+            el = module.element;
+
+        $(el).remove();
+    },
+
     save: function () {
         var zones = [];
 
@@ -346,6 +343,8 @@ DJ.UI.AbstractCanvas.ZoneLayout = DJ.UI.CanvasLayout.extend({
 
         var request = { pageId: this.options.canvasId, columns: zones };
 
+        this._debug('Saving positions: ' + JSON.stringify(request));
+
         $.ajax({
             url: this.options.dataServiceUrl,
             type: 'PUT',
@@ -355,41 +354,6 @@ DJ.UI.AbstractCanvas.ZoneLayout = DJ.UI.CanvasLayout.extend({
         return request;
     },
 
-    update: function () {
-        var zones = this._getZones();
-        var modules = this._getModules();
-        var zoneModuleIds = this.options.groups;
-
-        _.each(modules, function (module) {
-            if (module === null) { return; }
-
-            var zoneIndex = -1;
-
-            if (zoneModuleIds) {
-                for (var groupId = 0; groupId < zoneModuleIds.length; groupId++) {
-                    for (var y = 0; y < zoneModuleIds[groupId].length; y++) {
-                        if (zoneModuleIds[groupId][y] == module.get_moduleId())
-                            zoneIndex = groupId;
-                    }
-                }
-            }
-
-            if (zoneIndex == -1) {
-                zoneIndex = Math.ceil(module.options.position % zones.length);
-            }
-
-            var zone = (zoneIndex != -1) ? zones.get(zoneIndex) : null;
-            if (zone) {
-                $(zone).append(module.element);
-            }
-            else {
-                $dj.debug('hiding module ' + module.toString() + ' because it does not have a Position');
-                $(module.element).hide();
-            }
-        });
-
-        this._initializeModuleReordering();
-    },
 
     _getModules: function (zone) {
         var moduleElements = $(this._moduleSelector, zone || this._canvas);
@@ -429,8 +393,54 @@ DJ.UI.AbstractCanvas.ZoneLayout = DJ.UI.CanvasLayout.extend({
 
     _initializeDelegates: function () {
         this._delegates = {
+            getZones: $dj.delegate(this, this._getZones),
+            move: $dj.delegate(this, this._move),
             save: $dj.delegate(this, this.save)
         };
+    },
+
+    _initializeModules: function () {
+        $(this._moduleSelector, this._canvas).hide();
+
+        var groups = this.options.groups;
+        var zones = this._getZones();
+        var modules = this._getModules();
+        var moduleZones = [];
+
+        // Backwards Compatibility: build groups if none are provided
+        if (!groups) {
+            var zoneCount = this.options.zoneCount || 1;
+
+            groups = new Array(zoneCount);
+
+            _.each(
+                 _.sortBy(modules, function (module) { return module.options.position; }),
+                 function (module) {
+                     var zoneIndex = Math.ceil(module.options.position % zoneCount);
+                     var zone = groups[zoneIndex] || (groups[zoneIndex] = []);
+                     zone.push(module.get_moduleId());
+                 }
+             );
+        }
+
+        for (var zoneIndex = 0; zoneIndex < groups.length; zoneIndex++) {
+            var zone = groups[zoneIndex];
+            for (var i = 0; i < zone.length; i++) {
+                moduleZones.push({ moduleId: zone[i], zone: zoneIndex });
+            }
+        }
+
+        for (var x = 0; x < moduleZones.length; x++) {
+            var moduleZone = moduleZones[x];
+            var zone = zones[moduleZone.zone];
+            var module = _.find(modules, function (mod) {
+                return mod.get_moduleId() == moduleZone.moduleId;
+            });
+
+            $(module.element).appendTo(zone).show();
+        }
+
+        this._initializeModuleReordering();
     },
 
     _initializeModuleReordering: function () {
@@ -463,11 +473,8 @@ DJ.UI.AbstractCanvas.ZoneLayout = DJ.UI.CanvasLayout.extend({
 
             stop: function (e, ui) {
                 $(ui.item).css({ width: '' }).removeClass(settings.draggingClass);
-                zones.sortable('enable');
-            },
 
-            deactivate: function (e, ui) {
-                zones.enableSelection();
+                zones.enableSelection().sortable('enable');
 
                 if (document.selection) {
                     document.selection.clear();
@@ -491,6 +498,21 @@ DJ.UI.AbstractCanvas.ZoneLayout = DJ.UI.CanvasLayout.extend({
         this._debug('Module reordering initialized: ' +
                     sortableItems.length + ' modules in '
                     + zones.length + ' zones');
+    },
+
+    _move: function (module, direction) {
+        this._debug('Moving module ' + module.toString() + ' ' + direction);
+
+        var $module = $(module._module);
+        if (direction === 'up') {
+            $module.insertBefore($module.prev());
+        }
+        else {
+            $module.insertAfter($module.next());
+        }
+
+        this.update();
+        this.save();
     },
 
     EOF: null
