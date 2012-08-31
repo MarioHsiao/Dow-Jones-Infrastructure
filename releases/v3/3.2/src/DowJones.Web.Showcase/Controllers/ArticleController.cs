@@ -71,6 +71,7 @@ namespace DowJones.Web.Showcase.Controllers
 		{
 			
 			var oldModel = GetArticle(accessionNumber, canonicalSearchString, imageType, pictureSize, option);
+			//
 
 			var model = new PortalArticleModel(TokenRegistry)
 			{
@@ -88,7 +89,28 @@ namespace DowJones.Web.Showcase.Controllers
 			return Json(model, JsonRequestBehavior.AllowGet);
 		}
 
-		[Route("article2/clientside")]
+		[Route("webarticle/{accessionNumber}")]
+		public JsonResult WebArticle(string accessionNumber)
+		{
+			var oldModel = GetArticle(accessionNumber, "website");
+
+			var model = new PortalArticleModel(TokenRegistry)
+			{
+				ShowAuthorLinks = true,
+				ShowPostProcessing = true,
+				ShowSourceLinks = true,
+				PostProcessingOptions = new[] {
+					PostProcessingOptions.Print, PostProcessingOptions.Save, 
+					PostProcessingOptions.Email, PostProcessingOptions.Listen, 
+					PostProcessingOptions.Translate, PostProcessingOptions.Share
+				},
+				Result = Mapper.Map<PortalArticleResultSet>(oldModel.ArticleDataSet)
+			};
+
+			return Json(model, JsonRequestBehavior.AllowGet);
+		}
+
+	    [Route("article2/clientside")]
 		public ActionResult ClientSide()
 		{
 			return View();
@@ -270,7 +292,7 @@ namespace DowJones.Web.Showcase.Controllers
             return browsers;
         }
 
-        private ArticleModel GetArticle(string accessionNumber, string contentType)
+	    private ArticleModel GetArticle(string accessionNumber, string contentType)
         {
             var articleReference = new ArticleReference
             {
@@ -309,13 +331,18 @@ namespace DowJones.Web.Showcase.Controllers
             var urlBuilder = new UrlBuilder("~/article/" + accessionNumber);
             var articleDataSet = _articleConversionManager.Convert(article);
 
+			VideoPlayerModel videoPlayerModel = null;
+
+			if (contentType == "video")
+				videoPlayerModel = GetMultimediaModel(articleDataSet.AccessionNo, articleDataSet.ContentSubCategory).MultiMediaPlayerModel;
+
             return new ArticleModel
             {
                 ArticleDataSet = articleDataSet,
                 ShowPostProcessing = true,
                 ShowSourceLinks = true,
                 ShowSocialButtons = true,
-                VideoPlayer = GetMultimediaModel(articleDataSet.AccessionNo, articleDataSet.ContentSubCategory).MultiMediaPlayerModel,
+                VideoPlayer = videoPlayerModel,
                 SocialButtons = new SocialButtonsModel
                 {
                     Url = urlBuilder.ToString(),

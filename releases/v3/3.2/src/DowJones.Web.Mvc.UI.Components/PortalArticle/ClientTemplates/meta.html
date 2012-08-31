@@ -1,6 +1,6 @@
 ﻿<% 
     var model = self;
-    var options = self.options || {};
+    var options = this.options;
 
     function isNotEmpty(collection) {
         return collection && collection.length;
@@ -9,13 +9,13 @@
     /* in case the model was not built by our server side code */
     var hasHeadline = isNotEmpty(model.headlines);
     
-    var renderDefaultPostProcessing = options.showSourceLinks && options.postProcessing === 'Unspecified';
+    var renderDefaultPostProcessing = options.showSourceLinks && (!options.postProcessing || options.postProcessing.toLowerCase() === 'unspecified');
 
     var hasByLines = isNotEmpty(model.byLines);
     
     var renderAuthors = options.showAuthorLinks 
                             && isNotEmpty(model.authors) 
-                            && options.postProcessing === 'Unspecified';
+                            && (!options.postProcessing || options.postProcessing.toLowerCase() === 'unspecified');
 
     var hasCredits = isNotEmpty(model.credits);
 
@@ -49,7 +49,7 @@
 
     <ul class="meta">
         <% if (options.showIndexing) { %>
-        <div class="dj_article_index">HD</div>
+        <div class="dj_article_index">SN</div>
         <% } %>
 
         <div class="dj_article_sn dj_article_section">
@@ -62,7 +62,7 @@
                     <span class="dj_article_source"
                         data-entity="<%= source.entityData %>"><%= source.entityName %></span>
                 <% } else { %>
-                    <%= source.text %>
+                    <%= source.entityName %>
                 <% } %>
             </span>
             <% }} else if(model.sourceName) {  %>
@@ -179,8 +179,8 @@
         <% } %>
         <% if (options.showPostProcessing) { %>
             <ul class="dj_PostProcessing actions clearfix">
-                <% for(var i = 0, len = model.postProcessingOptionsWithToken.length; i < len; i++) { 
-                        var postProcessingOption = model.postProcessingOptionsWithToken[i],
+                <% for(var i = 0, len = options.postProcessingOptionsWithToken.length; i < len; i++) { 
+                        var postProcessingOption = options.postProcessingOptionsWithToken[i],
                             option = postProcessingOption.option.toLowerCase(),
                             tokenizedOption = postProcessingOption.token;
                 %>

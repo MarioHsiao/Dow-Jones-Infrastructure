@@ -48,7 +48,9 @@
 @*Begin logo section*@
             <div class="dj_article_image article-logo">
                 @{
-            var largeImgUrl = string.Empty;
+            var largeImgUrl = (Model.ArticleDataSet.Head
+                                .Where(h => h.ItemMarkUp == MarkUpType.HeadImageLarge)
+                                .FirstOrDefault() ?? new RenderItem()).ItemText;
                 }
                 @foreach (var renderItem in Model.ArticleDataSet.Head)
                 {
@@ -60,7 +62,6 @@
                                  src="@renderItem.ItemValue" alt="@renderItem.ItemText"/>
                                                              break;
                         case MarkUpType.HeadImageLarge:
-                                                             largeImgUrl = renderItem.ItemValue;
                                                              if (Model.ArticleDataSet.PictureSize == PictureSize.Large)
                                                              {
                                 <p class="dj_article_paragraph">

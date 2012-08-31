@@ -87,7 +87,6 @@ DJ.UI.PortalArticle = DJ.UI.Component.extend({
         });
 
         this.$element.on('click', this.selectors.sourceLinks, function (e) {
-            //self.publish(self.events.sourceClick, $(this).data("entity"));
             self.publish(self.events.sourceClick,
                 {
                     event: e,
@@ -98,7 +97,6 @@ DJ.UI.PortalArticle = DJ.UI.Component.extend({
         });
 
         this.$element.on('click', this.selectors.authorLinks, function (e) {
-            //self.publish(self.events.authorClick, $(this).data("entity"));
             self.publish(self.events.authorClick,
                 {
                     event: e,
@@ -146,7 +144,7 @@ DJ.UI.PortalArticle = DJ.UI.Component.extend({
             return;
         }
 
-        if (data.status != 0) {
+        if (data.status !== 0) {
             this.bindOnError(data);
             return;
         }
@@ -170,6 +168,11 @@ DJ.UI.PortalArticle = DJ.UI.Component.extend({
     },
 
     bindOnError: function (data) {
+        this.templates.error(data);
+    },
+
+    bindOnNoData: function () {
+        this.templates.noData();
     }
 
 });

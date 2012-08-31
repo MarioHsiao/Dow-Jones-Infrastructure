@@ -50,21 +50,39 @@
             console.time('Date fetched in');
 
             // 460k+ words - 'BTBW000020070531e35l000zc'
-            var accn = 'J000000020120628e86s0002m';
-            $.getJSON('http://montana.dev.us.factiva.com/oldshowcase/article2/' + accn, function(data){
+            var accn = 'WCWSJB0020120831e88v003ju';
+            $.getJSON('http://mybox.dev.us.factiva.com/oldshowcase/webarticle/' + accn, function(data){
 
                 console.timeEnd('Date fetched in');
                 $('#articleContainer').empty();
 
-                DJ.add('Article2', {
+                DJ.add('PortalArticle', {
                     container: "articleContainer",
                     options: {
+                        articleDisplayOptions: "Indexing",
+                        showSourceLinks: true,
+                        showAuthorLinks: true,
+                        showSocialButtons: false,
+                        showTranslator: false,
+                        showPostProcessing: true,
+                        postProcessingOptionsWithToken: [{
+                            "option": "Print",
+                            "token": "${printLabel}"
+                        },
+                        {
+                            "option": "Save",
+                            "token": "${save}"
+                        },
+                        {
+                            "option": "Email",
+                            "token": "${email}"
+                        }],
                         instrument: true
                     },
-                    data: data
+                    data: data.Result
                 });
             });
-            /*DJ.add('Article2', {
+            /*DJ.add('PortalArticle', {
                 container: "articleContainer",
                 options: {
                     instrument: true

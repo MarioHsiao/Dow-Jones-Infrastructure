@@ -263,3 +263,12 @@
       .dj_article-container .dj_article_meta ul.actions li:last-child {
         border-bottom: 0; }
 
+.dj_article_index {
+  position: absolute;
+  width: 35px;
+  text-align: right; }
+  .dj_article_index + .dj_article_section {
+    margin: 0;
+    margin-left: 45px;
+    position: relative; }
+

@@ -863,6 +863,8 @@
     <EmbeddedResource Include="PortalHeadlineList\ClientTemplates\Pagination.htm" />
     <EmbeddedResource Include="Resources\js\jquery.imagesloaded.min.js" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="PortalArticle\ClientTemplates\section.html" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

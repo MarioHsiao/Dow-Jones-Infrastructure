@@ -24,74 +24,96 @@ namespace DowJones.Assemblers.Articles
 		{
 			Guard.IsNotNull(articleResultSet, "articleResultSet");
 
-			var portalArticleResultSet = new PortalArticleResultSet();
+			// create lighter payload by mapping only used fields
 
-			portalArticleResultSet.Status = articleResultSet.Status;
+			var portalArticleResultSet = new PortalArticleResultSet
+				{
+					Status = articleResultSet.Status,
+					AccessionNo = articleResultSet.AccessionNo,
+					PublicationDate = articleResultSet.PublicationDate,
+					PublicationTime = articleResultSet.PublicationTime,
+					WordCount = articleResultSet.WordCount,
+
+					Html = EnsureCollection(articleResultSet.Html)
+							.Where(c => c.ItemMarkUp == MarkUpType.Html).Select(c => c.ItemText),
+
+					Pages = EnsureCollection(articleResultSet.Pages),
+
+					CopyRights = EnsureCollection(articleResultSet.Copyright)
+									.Where(c => c.ItemMarkUp == MarkUpType.Plain).Select(c => c.ItemText),
+
+					Head = EnsureCollection(articleResultSet.Head)
+									.Select(h => new LogoItem
+										{
+											Text = h.ItemText,
+											Value = h.ItemValue,
+											ImageSize = CalculatePictureSize(h.ItemMarkUp, articleResultSet.PictureSize),
+										}),
+
+					Headlines = EnsureCollection(articleResultSet.Headline)
+									.Select(h => new HeadlineItem
+										{
+											Text = h.ItemText,
+											IsHyperLink = h.ItemMarkUp == MarkUpType.Anchor
+										}),
+
+					Sources = EnsureCollection(articleResultSet.Source).Select(s => new SourceItem(s)),
+
+					Credits = EnsureCollection(articleResultSet.Credit).Select(c => c.ItemText),
+
+					Authors = EnsureCollection(articleResultSet.Authors)
+									.Select(a => new AuthorItem
+										{
+											EntityData = a.ItemEntityData.ToJson().EscapeForHtml(),
+											EntityName = a.ItemEntityData.Name
+										}),
+
+					IndexingCodeSets = EnsureCollection(articleResultSet.IndexingCodeSets)
+											.Select(ics => new IndexingCodeSet
+												{
+													Code = ics.Key,
+													Set = ics.Value
+															.Select(c => string.Format("{0} : {1} | ", c.Key, c.Value))
+															.Aggregate((cur, next) => cur + next)
+															.TrimEnd("| ".ToCharArray())
+												}),
+
+					Language = articleResultSet.Language,
+					LanguageCode = articleResultSet.LanguageCode,
+
+					Corrections = GetParagraphs(articleResultSet.Correction),
+					LeadParagraphs = GetParagraphs(articleResultSet.LeadParagraph),
+					TailParagraphs = GetParagraphs(articleResultSet.TailParagraphs),
+					Notes = GetParagraphs(articleResultSet.Notes),
+
+					Contact = GetParagraph(articleResultSet.Contact),
+					ArtWork = GetParagraph(articleResultSet.ArtWorks),
+
+					Reference = new ArticleRef
+						{
+							AccessionNo = articleResultSet.AccessionNo,
+							ContentCategory = articleResultSet.ContentCategory,
+							ContentCategoryDescriptor = articleResultSet.ContentCategoryDescriptor,
+							ContentSubCategory = articleResultSet.ContentSubCategory,
+							ContentSubCategoryDescriptor = articleResultSet.ContentSubCategoryDescriptor,
+							OriginalContentCategory = articleResultSet.OriginalContentCategory,
+							ExternalUri = articleResultSet.ExternalUri,
+							MimeType = articleResultSet.MimeType,
+							@ref = articleResultSet.Ref,
+							SubType = articleResultSet.SubType
+						}.ToJson().EscapeForHtml()
+				};
+
+
+			
+
+			var largeImageItem = portalArticleResultSet.Head.FirstOrDefault(h => h.ImageSize == ImageSize.Large);
+			if (largeImageItem != null)
+				portalArticleResultSet.LargeImageUrl = largeImageItem.Text;
+
+
 			if (articleResultSet.Status != 0)
 				portalArticleResultSet.StatusMessage = _resourceTextManager.GetErrorMessage(articleResultSet.Status.ToString());
-
-			portalArticleResultSet.AccessionNo = articleResultSet.AccessionNo;
-			portalArticleResultSet.PublicationDate = articleResultSet.PublicationDate;
-			portalArticleResultSet.PublicationTime = articleResultSet.PublicationTime;
-			portalArticleResultSet.WordCount = articleResultSet.WordCount;
-			portalArticleResultSet.Html = (articleResultSet.Html ?? Enumerable.Empty<RenderItem>()).Where(c => c.ItemMarkUp == MarkUpType.Html).Select(c => c.ItemText);
-			portalArticleResultSet.Pages = articleResultSet.Pages ?? Enumerable.Empty<string>();
-			portalArticleResultSet.CopyRights = (articleResultSet.Copyright ?? Enumerable.Empty<RenderItem>()).Where(c => c.ItemMarkUp == MarkUpType.Plain).Select(c => c.ItemText);
-			portalArticleResultSet.Language = articleResultSet.Language;
-
-			portalArticleResultSet.Reference = new ArticleRef
-			{
-				AccessionNo = articleResultSet.AccessionNo,
-				ContentCategory = articleResultSet.ContentCategory,
-				ContentCategoryDescriptor = articleResultSet.ContentCategoryDescriptor,
-				ContentSubCategory = articleResultSet.ContentSubCategory,
-				ContentSubCategoryDescriptor = articleResultSet.ContentSubCategoryDescriptor,
-				OriginalContentCategory = articleResultSet.OriginalContentCategory,
-				ExternalUri = articleResultSet.ExternalUri,
-				MimeType = articleResultSet.MimeType,
-				@ref = articleResultSet.Ref,
-				SubType = articleResultSet.SubType
-			}.ToJson().EscapeForHtml();
-
-			// create lighter payloads
-
-			var head = articleResultSet.Head ?? Enumerable.Empty<RenderItem>();
-			portalArticleResultSet.Head = head.Select(h => new LogoItem
-			{
-				Text = h.ItemText,
-				Value = h.ItemValue,
-				ImageSize = CalculatePictureSize(h.ItemMarkUp, articleResultSet.PictureSize)
-			});
-
-			var headlines = articleResultSet.Headline ?? Enumerable.Empty<RenderItem>();
-			portalArticleResultSet.Headlines = headlines.Select(h => new HeadlineItem
-			{
-				Text = h.ItemText,
-				IsHyperLink = h.ItemMarkUp == MarkUpType.Anchor
-			});
-
-			var sources = articleResultSet.Source ?? Enumerable.Empty<RenderItem>();
-			portalArticleResultSet.Sources = sources.Select(s => new SourceItem(s));
-
-			var authors = articleResultSet.Authors ?? Enumerable.Empty<RenderItem>();
-			portalArticleResultSet.Authors = authors.Select(a => new AuthorItem
-			{
-				EntityData = a.ItemEntityData.ToJson().EscapeForHtml(),
-				EntityName = a.ItemEntityData.Name
-			});
-
-			var credits = articleResultSet.Credit ?? Enumerable.Empty<RenderItem>();
-			portalArticleResultSet.Credits = credits.Select(c => new CreditItem
-			{
-				Text = c.ItemText
-			});
-
-
-
-			portalArticleResultSet.Corrections = GetParagraphs(articleResultSet.Correction);
-			portalArticleResultSet.LeadParagraphs = GetParagraphs(articleResultSet.LeadParagraph);
-			portalArticleResultSet.TailParagraphs = GetParagraphs(articleResultSet.TailParagraphs);
-			portalArticleResultSet.Notes = GetParagraphs(articleResultSet.Notes);
 
 			return portalArticleResultSet;
 		}
@@ -109,6 +131,18 @@ namespace DowJones.Assemblers.Articles
 
 			return Enumerable.Empty<Paragraph>();
 
+		}
+
+		private Paragraph GetParagraph(IEnumerable<RenderItem> sources, string tag = "p")
+		{
+			if (sources != null)
+				return new Paragraph
+				{
+					Tag = tag,
+					Items = sources.Select(r => new ParagraphItem(r))
+				};
+
+			return null;
 		}
 
 
@@ -139,6 +173,11 @@ namespace DowJones.Assemblers.Articles
 
 			return ImageSize.Unknown;
 
+		}
+
+		private IEnumerable<T> EnsureCollection<T>(IEnumerable<T> source)
+		{
+			return source ?? Enumerable.Empty<T>();
 		}
 	}
 }

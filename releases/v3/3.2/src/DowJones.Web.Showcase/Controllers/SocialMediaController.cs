@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using DowJones.Ajax.SocialMedia;
 using DowJones.Infrastructure;
@@ -11,25 +9,19 @@ using DowJones.Web.Mvc.UI.Components.SocialMedia;
 using DowJones.Web.Showcase.Models;
 using DowJones.Managers.SocialMedia;
 using SocialMediaMapper = DowJones.Ajax.SocialMedia.Mapper;
-using SystemIO = System.IO;
 using DowJones.Managers.SocialMedia.Config;
 using DowJones.Session;
 
 namespace DowJones.Web.Showcase.Controllers
 {
-    public class SocialMediaController : CanvasControllerBase
+    public class SocialMediaController : DowJones.Web.Mvc.ControllerBase
     {
-        //
-        // GET: /SocialMedia/
-
         public ActionResult Index(string i = "iacc")
         {
             Guard.IsNotNullOrEmpty(i, "i");
 
             var mapper = new SocialMediaMapper();
 
-            //var filePath = @"C:\MVCProjects\Dow Jones Infrastructure\releases\v2\2.2\src\DowJones.Tests\bin\Release\Infrastructure\Managers\SocialMedia\IndustryChannel.config";
-            //SystemIO.FileStream stream = SystemIO.File.Open(filePath, SystemIO.FileMode.Open);
             IControlData controlData = new ControlData { UserID = "snap_proxy", UserPassword = "pa55w0rd", ProductID = "16" };
             Product product = new Product("test", "test", null, true);
             var response = new SocialMediaService(new TweetRiverProvider(), new PAMSocialMediaIndustryProvider(controlData), controlData, product).GetTweetsByIndustry(i);
