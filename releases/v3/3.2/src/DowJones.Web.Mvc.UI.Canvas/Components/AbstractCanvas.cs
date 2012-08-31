@@ -6,12 +6,14 @@ using DowJones.Web;
 using DowJones.Web.Mvc.UI.Canvas;
 
 [assembly: WebResource(AbstractCanvas.ScriptFile, KnownMimeTypes.JavaScript)]
+[assembly: WebResource(AbstractCanvas.LayoutScriptFile, KnownMimeTypes.JavaScript)]
 
 namespace DowJones.Web.Mvc.UI.Canvas
 {
     internal static class AbstractCanvas
     {
         internal const string ScriptFile = "DowJones.Web.Mvc.UI.Canvas.Components.AbstractCanvas.js";
+        internal const string LayoutScriptFile = "DowJones.Web.Mvc.UI.Canvas.Components.Layout.Layout.js";
     }
 
 
@@ -20,7 +22,13 @@ namespace DowJones.Web.Mvc.UI.Canvas
         DeclaringType = typeof(AbstractCanvas),
         DependencyLevel = ClientResourceDependencyLevel.MidLevel,
         ResourceName = AbstractCanvas.ScriptFile,
-        DependsOn = new[] { "jquery-ui-interactions" }
+        DependsOn = new[] { "error-manager", "jquery-ui-interactions", "canvas-layout" }
+    )]
+    [ScriptResource(
+        "canvas-layout",
+        DeclaringType = typeof(AbstractCanvas),
+        DependencyLevel = ClientResourceDependencyLevel.MidLevel,
+        ResourceName = AbstractCanvas.LayoutScriptFile
     )]
     public abstract class AbstractCanvas<TState> : CompositeComponent<TState>
         where TState : class, IViewComponentModel
