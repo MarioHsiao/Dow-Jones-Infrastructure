@@ -2,8 +2,8 @@
     var model = self;
     var options = this.options;
     var hasCorrections = model.corrections && model.corrections.length;
+    var hasNotes = model.notes && model.notes.length;
     var hasLeadParagraphs = model.leadParagraphs && model.leadParagraphs.length;
-    var renderTailParagraphs = model.tailParagraphs && model.tailParagraphs.length;
 %>
 <div class="dj_article_article_body">
     <% if(hasCorrections) { 
@@ -12,25 +12,16 @@
                 <%= this.templates.paragraph(item) %>
     <% }} %>
     
-    <% if(model.hasLeadParagraphs) { 
-        for(var i = 0, len = model.leadParagraphs.length; i < len; i++) { 
-        var item = model.leadParagraphs[i]; 
-        if (options.showIndexing) { %>
-            <div class="dj_article_index">LP</div>
-        <% } %>  
-        <div class="dj_article_lp dj_article_section">      
-            <%= this.templates.paragraph(item) %>
-        </div>
-    <% }} %>
+    <%= this.templates.section({indexCode: "LP", items: model.leadParagraphs}) %>
+    <%= this.templates.section({indexCode: "TD", items: model.tailParagraphs}) %>
     
-    <% if(renderTailParagraphs) { 
-        for(var i = 0, len = model.tailParagraphs.length; i < len; i++) { 
-        var item = model.tailParagraphs[i]; 
-        if (options.showIndexing) { %>
-            <div class="dj_article_index">TD</div>
-        <% } %>      
-        <div class="dj_article_td dj_article_section">  
-            <%= this.templates.paragraph(item) %>
-        </div>
-    <% }} %>
+    <% if (options.articleDisplayOptions !== "Headline") {
+        if (model.contact) { %>
+            <%= this.templates.section({indexCode: "CT", items: [model.contact]}) %>
+        <% } %>
+        <%= this.templates.section({indexCode: "RF", items: model.notes}) %>
+        <% if (model.artWork) { %>
+            <%= this.templates.section({indexCode: "ART", items: [model.artWork]}) %>
+        <% } 
+    } %>  
 </div>

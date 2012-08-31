@@ -76,12 +76,12 @@ namespace DowJones.Web.Mvc.UI.Canvas
         {
             get
             {
-                var groupedLayout = (Layout as GroupedCanvasLayout);
+                var groupedLayout = (Layout as ZoneCanvasLayout);
 
-                if (groupedLayout == null || groupedLayout.Groups == null)
+                if (groupedLayout == null || groupedLayout.Zones == null)
                     return 1;
 
-                return groupedLayout.Groups.Count();
+                return groupedLayout.Zones.Count();
             }
         }
 

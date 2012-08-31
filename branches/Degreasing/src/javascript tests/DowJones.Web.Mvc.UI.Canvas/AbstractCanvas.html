@@ -14,7 +14,8 @@
         moduleEl.addClass('dj_module');
         moduleEl.addClass('dj_module-movable');
         moduleEl.data('AbstractCanvasModule', module);
-        moduleEl.appendTo(canvas);
+        
+        if (canvas) moduleEl.appendTo(canvas);
 
         return module;
     };
@@ -48,6 +49,15 @@
             equals(module.get_Canvas(), canvas);
         });
 
+        test('should be able to add a module', function () {
+            var module = createMockModule();
+            var canvas = createMockCanvas();
+
+            canvas.addModule(module);
+
+            equals(module, canvas.getModules()[0]);
+        });
+
         test('should create zones', function () {
             var canvas = createMockCanvas({ NumberOfGroups: 2 });
             var zones = canvas.getZones();
@@ -61,11 +71,11 @@
             var module1 = createMockModule(canvasElement, 0, $('<div>Module 1</div>'));
             var module2 = createMockModule(canvasElement, 1, $('<div>Module 2</div>'));
 
-            var canvas = createMockCanvas({ NumberOfGroups: 2 }, canvasElement);
+            var canvas = createMockCanvas({ NumberOfGroups: 1 }, canvasElement);
             var zones = canvas.getZones();
 
-            equals($(canvas._moduleSelector, zones.get(0)).get(0), module1._module.get(0));
-            equals($(canvas._moduleSelector, zones.get(1)).get(0), module2._module.get(0));
+            equals($(canvas._moduleSelector, zones[0])[0], module1._module[0]);
+            equals($(canvas._moduleSelector, zones[0])[1], module2._module[0]);
         });
 
         test('should be able to move module down', function () {

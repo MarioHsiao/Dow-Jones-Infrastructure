@@ -119,6 +119,10 @@ DJ.UI.AbstractCanvasModuleEditor = DJ.UI.Component.extend({
 
         return $parent;
     },
+    
+    _initializeElements: function () {},
+    _initializeEventHandlers: function () {},
+    _initializeDelegates: function () {},
 
     _publish: function (/* string */eventName, /* object */data) {
         this.getCanvas().publish(eventName, data);

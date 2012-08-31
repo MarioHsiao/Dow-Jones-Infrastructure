@@ -80,15 +80,15 @@ namespace DowJones.Pages
 
         public void UpdatePageLayout(PageReference pageRef, PageLayout layout)
         {
-            if(!(layout is GroupedPageLayout))
+            if(!(layout is ZonePageLayout))
                 throw new NotSupportedException("Only the Grouped Layout is supported");
 
-            var groupedLayout = (GroupedPageLayout)layout;
+            var groupedLayout = (ZonePageLayout)layout;
 
             if (groupedLayout == null)
                 return;
 
-            var zones = groupedLayout.Groups.Select(x => x);
+            var zones = groupedLayout.Zones.Select(x => x);
 
             PageAssetsManager.UpdateModulePositionsOnPage(pageRef, zones);
         }

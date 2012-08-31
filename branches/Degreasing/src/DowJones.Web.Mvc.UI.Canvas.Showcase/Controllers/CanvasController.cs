@@ -39,9 +39,9 @@ namespace DowJones.Web.Mvc.UI.Canvas.GatewayFree.Controllers
         {
             var request = ParsePostData<UpdateModulePositionsRequest>();
 
-            var groups = request.Columns.Select(x => new GroupedPageLayout.Group(x));
+            var groups = request.Columns.Select(x => new ZonePageLayout.Group(x));
 
-            PageRepository.UpdatePageLayout(request.PageId, new GroupedPageLayout(groups));
+            PageRepository.UpdatePageLayout(request.PageId, new ZonePageLayout(groups));
 
             return new HttpStatusCodeResult(200);
         }

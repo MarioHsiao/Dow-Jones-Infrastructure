@@ -10,14 +10,12 @@ namespace DowJones.DegreasedDashboards.Website.BootstrapperTasks
         private readonly IPageRepository _pageRepository;
         private readonly IScriptModuleTemplateManager _scriptModuleTemplateManager;
 
-        public bool ShouldExecute { get; set; }
+        public static bool ShouldExecute { get; set; }
 
         public InitializeTestData(IPageRepository pageRepository, IScriptModuleTemplateManager scriptModuleTemplateManager)
         {
             _pageRepository = pageRepository;
             _scriptModuleTemplateManager = scriptModuleTemplateManager;
-
-            ShouldExecute = false;
         }
 
         public void Execute()

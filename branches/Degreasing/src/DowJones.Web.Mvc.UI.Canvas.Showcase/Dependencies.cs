@@ -1,4 +1,3 @@
-using System;
 using System.Configuration;
 using DowJones.DegreasedDashboards.Website.BootstrapperTasks;
 using DowJones.Infrastructure.Common;
@@ -42,6 +41,8 @@ namespace DowJones.DegreasedDashboards.Website
                 documentStore = new DocumentStore { ConnectionStringName = "RavenDb" };
             }
 
+            InitializeTestData.ShouldExecute = useEmbeddedRavenDb && useInMemoryRavenDb;
+
             Bind<IDocumentStore>()
                 .ToConstant(documentStore)
                 .InSingletonScope()
@@ -56,10 +57,6 @@ namespace DowJones.DegreasedDashboards.Website
             Bind<IScriptModuleTemplateManager>().To<RavenDbScriptModuleTemplateRepository>().InRequestScope();
             Bind<IPageSubscriptionManager>().To<InMemoryPageSubscriptionManager>().InSingletonScope();
 
-            if(useEmbeddedRavenDb && useInMemoryRavenDb)
-            {
-                Bind<InitializeTestData>().ToSelf().WithPropertyValue("ShouldExecute", true);
-            }
         }
 
         public class Principle : IPrinciple

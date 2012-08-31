@@ -109,7 +109,7 @@
     <Compile Include="Modules\Templates\ScriptModuleTemplateOption.cs" />
     <Compile Include="Pages\Adapters\PageAssetManagerPageSubscriptionManagerAdapter.cs" />
     <Compile Include="Pages\Adapters\PageAssetsRepositoryPageRepositoryAdapter.cs" />
-    <Compile Include="Pages\Layouts\Grouped\GroupedPageLayout.cs" />
+    <Compile Include="Pages\Layouts\Grouped\ZonePageLayout.cs" />
     <Compile Include="Pages\IPageRepository.cs" />
     <Compile Include="Pages\IPageSubscriptionManager.cs" />
     <Compile Include="Pages\PageAssetsManager.cs" />

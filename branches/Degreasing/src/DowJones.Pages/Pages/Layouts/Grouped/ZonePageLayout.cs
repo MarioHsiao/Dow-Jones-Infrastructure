@@ -5,34 +5,34 @@ using System.Runtime.Serialization;
 namespace DowJones.Pages
 {
     [DataContract(Name = "groupedLayout", Namespace = "")]
-    public class GroupedPageLayout : PageLayout
+    public class ZonePageLayout : PageLayout
     {
         public const int DefaultNumberOfGroups = 3;
 
         [DataMember(Name = "groups")]
-        public List<Group> Groups { get; set; }
+        public List<Group> Zones { get; set; }
 
-        public GroupedPageLayout() : this(DefaultNumberOfGroups)
+        public ZonePageLayout() : this(DefaultNumberOfGroups)
         {
         }
 
-        public GroupedPageLayout(int numberOfGroups)
+        public ZonePageLayout(int numberOfGroups)
             : this(new int[numberOfGroups].Select(x => new Group()))
         {
         }
 
-        public GroupedPageLayout(IEnumerable<Group> groups)
+        public ZonePageLayout(IEnumerable<Group> groups)
         {
-            Groups = new List<Group>(groups ?? Enumerable.Empty<Group>());
+            Zones = new List<Group>(groups ?? Enumerable.Empty<Group>());
         }
 
         public override void AddModule(int moduleId)
         {
-            var nextGroup = Groups.FirstOrDefault();
+            var nextGroup = Zones.FirstOrDefault();
 
             if(nextGroup == null)
             {
-                Groups.Add(new Group(new [] { moduleId }));
+                Zones.Add(new Group(new [] { moduleId }));
             }
             else
             {
@@ -42,7 +42,7 @@ namespace DowJones.Pages
 
         public override void RemoveModule(int moduleId)
         {
-            foreach (var @group in Groups.Where(x => x.Contains(moduleId)))
+            foreach (var @group in Zones.Where(x => x.Contains(moduleId)))
             {
                 @group.Remove(moduleId);
             }

@@ -6,9 +6,12 @@ using Newtonsoft.Json;
 
 namespace DowJones.Ajax.PortalArticle
 {
-	public class CreditItem
+	public class IndexingCodeSet
 	{
-		[JsonProperty("text")]
-		public string Text { get; set; }
+		[JsonProperty("code")]
+		public string Code { get; set; }
+
+		[JsonProperty("set")]
+		public string Set { get; set; }
 	}
 }

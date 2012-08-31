@@ -10,23 +10,27 @@ namespace DowJones.Web.Mvc.UI.Canvas
     {
     }
 
-    public class GroupedCanvasLayout : CanvasLayout
+    public class ZoneCanvasLayout : CanvasLayout
     {
-        [JsonProperty("groups")]
-        public IEnumerable<IEnumerable<int>> Groups { get; set; }
+        [JsonProperty("zoneCount")]
+        public int? ZoneCount { get; set; }
 
-        public GroupedCanvasLayout(int numberOfGroups = 3)
+        [JsonProperty("zones")]
+        public IEnumerable<IEnumerable<int>> Zones { get; set; }
+
+        public ZoneCanvasLayout(int? zoneCount = null)
         {
-            Groups = new IEnumerable<int>[numberOfGroups];
+            ZoneCount = zoneCount;
         }
 
-        public class GroupedCanvasLayoutMapper : TypeMapper<GroupedPageLayout, CanvasLayout>
+        public class ZoneCanvasLayoutMapper : TypeMapper<ZonePageLayout, CanvasLayout>
         {
-            public override CanvasLayout Map(GroupedPageLayout source)
+            public override CanvasLayout Map(ZonePageLayout source)
             {
-                return new GroupedCanvasLayout
+                return new ZoneCanvasLayout
                            {
-                               Groups = source.Groups.Select(x => x)
+                               ZoneCount = source.Zones.Count,
+                               Zones = source.Zones.Select(x => x)
                            };
             }
         }

@@ -87,10 +87,11 @@
   <ItemGroup>
     <Compile Include="Ajax\PortalArticle\ArticleRef.cs" />
     <Compile Include="Ajax\PortalArticle\AuthorItem.cs" />
-    <Compile Include="Ajax\PortalArticle\CreditItem.cs" />
+    <Compile Include="Ajax\PortalArticle\ContactItem.cs" />
     <Compile Include="Ajax\PortalArticle\ElinkItem.cs" />
     <Compile Include="Ajax\PortalArticle\HeadlineItem.cs" />
     <Compile Include="Ajax\PortalArticle\ImageSize.cs" />
+    <Compile Include="Ajax\PortalArticle\IndexingCodeSet.cs" />
     <Compile Include="Ajax\PortalArticle\LogoItem.cs" />
     <Compile Include="Ajax\PortalArticle\MarkupType.cs" />
     <Compile Include="Ajax\PortalArticle\Paragraph.cs" />

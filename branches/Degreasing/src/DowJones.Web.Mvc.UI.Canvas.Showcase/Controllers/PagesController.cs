@@ -37,7 +37,7 @@ namespace DowJones.DegreasedDashboards.Website.Controllers
             var page = new Page
                            {
                                ID = id,
-                               Layout = new GroupedPageLayout(),
+                               Layout = new ZonePageLayout(),
                                Title = "Test Page " + id, 
                            };
 
