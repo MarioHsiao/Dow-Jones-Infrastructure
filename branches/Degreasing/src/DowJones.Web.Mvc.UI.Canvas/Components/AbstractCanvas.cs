@@ -20,7 +20,7 @@ namespace DowJones.Web.Mvc.UI.Canvas
         DeclaringType = typeof(AbstractCanvas),
         DependencyLevel = ClientResourceDependencyLevel.MidLevel,
         ResourceName = AbstractCanvas.ScriptFile,
-        DependsOn = new[] { "error-manager", "jquery-ui-interactions", "AbstractCanvasModule" }
+        DependsOn = new[] { "error-manager", "jquery-ui-interactions" }
     )]
     public abstract class AbstractCanvas<TState> : CompositeComponent<TState>
         where TState : class, IViewComponentModel
@@ -44,7 +44,7 @@ namespace DowJones.Web.Mvc.UI.Canvas
 
         protected AbstractCanvas()
         {
-            CssClass += " dj_Canvas row-fluid";
+            CssClass += " dj_Canvas";
         }
 
         public override void AddChild(IViewComponent child)

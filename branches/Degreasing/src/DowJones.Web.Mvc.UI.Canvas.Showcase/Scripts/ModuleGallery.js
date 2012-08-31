@@ -15,8 +15,6 @@ DJ.$dj.require(['DJ', '$dj', '$'], function (DJ, $dj, $) {
         },
 
         _initializeElements: function (el) {
-            this._super();
-
             this._modules = $('.module', el);
             this._editors = $('.editor', el);
             this._cancelButton = $('.cancel', el);
@@ -26,8 +24,6 @@ DJ.$dj.require(['DJ', '$dj', '$'], function (DJ, $dj, $) {
         },
 
         _initializeEventHandlers: function () {
-            this._super();
-
             var gallery = this;
 
             this._modules.click(function () {
