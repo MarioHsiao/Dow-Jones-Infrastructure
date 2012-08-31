@@ -7,7 +7,8 @@
     init: function (element, meta) {
         this._debug("Initializing canvas...");
 
-        this._super(element, meta);
+        var $meta = $.extend({ name: 'Canvas' }, meta);
+        this._super(element, $meta);
 
         this._pubSubManager = this._pubSubManager || new DJ.PubSubManager();
 
@@ -152,10 +153,9 @@
         // HACK: options.layout doesn't actually exist yet - fake it till you make it
         this.options.layout = this.options.layout || { zoneCount: this.options.NumberOfGroups };
         this.options.layout.dataServiceUrl = this.options.webServiceBaseUrl + '/modules/positions/json';
-        this.options.layout.canvasId = this.options.canvasId;
 
         // TODO: Layout Factory
-        this.layout = new DJ.UI.AbstractCanvas.ZoneLayout(this.element, this.options.layout, this);
+        this.layout = new DJ.UI.AbstractCanvas.ZoneLayout(this, this.options.layout);
     },
 
     _initializeModules: function () {
@@ -246,9 +246,13 @@ $dj.debug('Registered DJ.UI.Canvas');
 
 
 DJ.UI.CanvasLayout = DJ.Component.extend({
-    init: function (element, options) {
+    init: function (canvas, options) {
         this._super({ options: options });
-        this._canvas = element;
+        this.element = canvas.element;
+
+        if (!this.options.canvasId && canvas.options) {
+            this.options.canvasId = canvas.options.canvasId;
+        }
     },
 
     add: function (module) {
@@ -261,10 +265,6 @@ DJ.UI.CanvasLayout = DJ.Component.extend({
 
     save: function () {
         $dj.debug('TODO: Implement DJ.UI.CanvasLayout.save()');
-    },
-
-    update: function () {
-        $dj.debug('TODO: Implement DJ.UI.CanvasLayout.update()');
     },
 
     EOF: null
@@ -298,8 +298,8 @@ DJ.UI.AbstractCanvas.ZoneLayout = DJ.UI.CanvasLayout.extend({
     _zoneSelector: '.dj_group',
     _moduleSelector: '.dj_module',
 
-    init: function (element, options, canvas) {
-        this._super(element, options);
+    init: function (canvas, options) {
+        this._super(canvas, options);
 
         // Map refactored layout methods for backwards compatability
         canvas.getZones = this._delegates.getZones;
@@ -356,7 +356,7 @@ DJ.UI.AbstractCanvas.ZoneLayout = DJ.UI.CanvasLayout.extend({
 
 
     _getModules: function (zone) {
-        var moduleElements = $(this._moduleSelector, zone || this._canvas);
+        var moduleElements = $(this._moduleSelector, zone || this.element);
 
         var modules = _.map(moduleElements, function (el) {
             var module = $(el).findComponent(DJ.UI.AbstractCanvasModule);
@@ -368,7 +368,7 @@ DJ.UI.AbstractCanvas.ZoneLayout = DJ.UI.CanvasLayout.extend({
 
     _getZones: function () {
         var zoneCount = this.options.zoneCount || (this.options.groups || [[]]).length;
-        var zones = $(this._zoneSelector, this._canvas).get();
+        var zones = $(this._zoneSelector, this.element).get();
 
         if (zones.length !== zoneCount) {
             var zoneClass = this._zoneSelector.substring(1);
@@ -380,7 +380,7 @@ DJ.UI.AbstractCanvas.ZoneLayout = DJ.UI.CanvasLayout.extend({
                     $("<div />")
                         .addClass(zoneClass)
                         .attr('id', 'zone-' + i)
-                        .appendTo(this._canvas);
+                        .appendTo(this.element);
 
                 zones.push(zone);
             }
@@ -400,7 +400,7 @@ DJ.UI.AbstractCanvas.ZoneLayout = DJ.UI.CanvasLayout.extend({
     },
 
     _initializeModules: function () {
-        $(this._moduleSelector, this._canvas).hide();
+        $(this._moduleSelector, this.element).hide();
 
         var groups = this.options.groups;
         var zones = this._getZones();
@@ -414,17 +414,17 @@ DJ.UI.AbstractCanvas.ZoneLayout = DJ.UI.CanvasLayout.extend({
             groups = new Array(zoneCount);
 
             _.each(
-                 _.sortBy(modules, function (module) { return module.options.position; }),
-                 function (module) {
-                     var zoneIndex = Math.ceil(module.options.position % zoneCount);
+                 _.sortBy(modules, function (mod) { return mod.options.position; }),
+                 function (mod) {
+                     var zoneIndex = Math.ceil(mod.options.position % zoneCount);
                      var zone = groups[zoneIndex] || (groups[zoneIndex] = []);
-                     zone.push(module.get_moduleId());
+                     zone.push(mod.get_moduleId());
                  }
              );
         }
 
         for (var zoneIndex = 0; zoneIndex < groups.length; zoneIndex++) {
-            var zone = groups[zoneIndex];
+            var zone = groups[zoneIndex] || [];
             for (var i = 0; i < zone.length; i++) {
                 moduleZones.push({ moduleId: zone[i], zone: zoneIndex });
             }
@@ -441,11 +441,11 @@ DJ.UI.AbstractCanvas.ZoneLayout = DJ.UI.CanvasLayout.extend({
         }
 
         this._initializeModuleReordering();
+
+        this._debug('Initialized ' + moduleZones.length + ' modules in ' + zones.length + ' zones');
     },
 
     _initializeModuleReordering: function () {
-        this._debug("Initializing module reordering...");
-
         // Get a copy of the default sort-able settings
         // and update it with our current items and delegates
         var settings = $.extend({}, this.options.sortableSettings);
@@ -495,9 +495,7 @@ DJ.UI.AbstractCanvas.ZoneLayout = DJ.UI.CanvasLayout.extend({
         // Initialize Crosshairs
         sortableItems.find(settings.handle).css({ cursor: 'move' });
 
-        this._debug('Module reordering initialized: ' +
-                    sortableItems.length + ' modules in '
-                    + zones.length + ' zones');
+        this._debug('Initialized module sorting');
     },
 
     _move: function (module, direction) {
@@ -511,7 +509,6 @@ DJ.UI.AbstractCanvas.ZoneLayout = DJ.UI.CanvasLayout.extend({
             $module.insertAfter($module.next());
         }
 
-        this.update();
         this.save();
     },
 
