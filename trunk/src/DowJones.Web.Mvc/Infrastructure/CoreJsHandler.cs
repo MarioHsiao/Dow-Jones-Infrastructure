@@ -18,7 +18,7 @@ namespace DowJones.Web.Mvc.Infrastructure
 
 		private static readonly string[] CoreLibraries = new[] {
                 "underscore", "common", "dj-jquery-ext", "jquery-json",
-                "pubsub", "composite-component", "jquery-ui", "jquery-ui-interactions"
+                "pubsub", "composite-component", "jquery-ui", "jquery-ui-interactions", "tmpload"
             };
 
         /// <summary>
