@@ -1,7 +1,7 @@
 ﻿using System.Web.Mvc;
 using DowJones.Pages;
+using DowJones.Pages.Layout;
 using DowJones.Web.Mvc.Routing;
-using DowJones.Web.Mvc.UI.Canvas;
 
 namespace DowJones.DegreasedDashboards.Website.Controllers
 {
@@ -37,7 +37,7 @@ namespace DowJones.DegreasedDashboards.Website.Controllers
             var page = new Page
                            {
                                ID = id,
-                               Layout = new ZonePageLayout(),
+                               Layout = new ZoneLayout(),
                                Title = "Test Page " + id, 
                            };
 

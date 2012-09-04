@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using DowJones.Pages.Layout;
 using DowJones.Pages.Modules;
 using Gateway = Factiva.Gateway.Messages.Assets.Pages.V1_0;
 using GatewayCommon = Factiva.Gateway.Messages.Assets.Common.V2_0;
@@ -80,10 +81,10 @@ namespace DowJones.Pages
 
         public void UpdatePageLayout(PageReference pageRef, PageLayout layout)
         {
-            if(!(layout is ZonePageLayout))
+            if(!(layout is ZoneLayout))
                 throw new NotSupportedException("Only the Grouped Layout is supported");
 
-            var groupedLayout = (ZonePageLayout)layout;
+            var groupedLayout = (ZoneLayout)layout;
 
             if (groupedLayout == null)
                 return;

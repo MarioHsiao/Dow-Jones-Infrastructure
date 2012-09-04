@@ -102,7 +102,7 @@
   <ItemGroup>
     <Compile Include="Controllers\DashboardControllerBase.cs" />
     <Compile Include="Controllers\PagesControllerBase.cs" />
-    <Compile Include="Models\CanvasLayout.cs" />
+    <Compile Include="Models\Layout\CanvasLayout.cs" />
     <Compile Include="Models\ModuleState.cs" />
     <Compile Include="Modules\ScriptModule\Editor\ScriptModuleEditor.cs" />
     <Compile Include="Modules\ScriptModule\Editor\ScriptModuleEditorComponent.cs">
