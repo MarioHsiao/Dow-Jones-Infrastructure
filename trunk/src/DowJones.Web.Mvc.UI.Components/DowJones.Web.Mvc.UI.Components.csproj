@@ -866,5 +866,8 @@
   <ItemGroup>
     <EmbeddedResource Include="PortalArticle\ClientTemplates\section.html" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="PortalArticle\ClientTemplates\simpleSection.html" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
