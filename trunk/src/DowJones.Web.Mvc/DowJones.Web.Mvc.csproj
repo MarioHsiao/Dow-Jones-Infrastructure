@@ -453,6 +453,10 @@
       <DependentUpon>json2.js</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\js\tmpload.js" />
+    <EmbeddedResource Include="Resources\js\tmpload.min.js" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>
