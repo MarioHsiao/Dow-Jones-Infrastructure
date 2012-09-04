@@ -7,7 +7,7 @@ DJ.UI.VideoPlayer = DJ.UI.Component.extend({
         autoPlay: false
     },
 
-    templates: { playList: '<a href="${url}"><div>${title}</div><span><em>${duration} min</em></span></a>' },
+    templateMarkups: { playList: '<a href="${url}"><div>${title}</div><span><em>${duration} min</em></span></a>' },
 
     events: {
         onFullScreenExit: 'fullScreenExit.dj.videoPlayer',
@@ -131,7 +131,7 @@ DJ.UI.VideoPlayer = DJ.UI.Component.extend({
                     var playListItems = $(this.selectors.playListItems, playListWrap);
                     this.entriesId = this.playerId + "_entries";
 
-                    playListEntries.attr("id", this.entriesId).empty().css({ "left": "0px" }).html(this.templates.playList);
+                    playListEntries.attr("id", this.entriesId).empty().css({ "left": "0px" }).html(this.templateMarkups.playList);
                     playListContainer.show();
 
                     this.fPlayer = $f(
