@@ -6,14 +6,7 @@
 DJ.UI.AbstractCanvasModule = DJ.UI.CompositeComponent.extend({
 
     defaults: {
-        cssClass: 'canvas-module',
-        menuItems: [
-            { id: 'move-up', label: "<%= Token('moduleMenuMoveUp') %>" },
-            { id: 'move-down', label: "<%= Token('moduleMenuMoveDown') %>" },
-            { type: 'separator' },
-            { id: 'remove', label: "<%= Token('moduleMenuRemove') %>" },
-            { id: 'edit', label: "<%= Token('moduleMenuEdit') %>" }
-        ]
+        cssClass: 'canvas-module'
     },
     
     _canvas: null,
@@ -394,7 +387,7 @@ DJ.UI.AbstractCanvasModule = DJ.UI.CompositeComponent.extend({
         var $modules = $('.module', '#dashboard').not('.select-a-module'),
 			index = $modules.index(this._module),
             menu = this.$settings.findComponent(DJ.UI.Menu),
-			menuItems = menu.options.items;
+			menuItems = menu.options.items || DJ.UI.AbstractCanvasModule.DefaultMenuItems;
 
         $.each(menuItems, function (key, item) {
             switch (item.id) {
@@ -418,9 +411,10 @@ DJ.UI.AbstractCanvasModule = DJ.UI.CompositeComponent.extend({
             return;
         }
 
+        var menuItems = this.options.menuItems || DJ.UI.AbstractCanvasModule.DefaultMenuItems;
         this.$settings.dj_menu({
             options: {
-                items: this.options.menuItems,
+                items: menuItems,
                 onItemClick: function (e, itemData) {
                     handleMenuCommand(itemData.data.id, e);
                 },
@@ -492,6 +486,14 @@ DJ.UI.AbstractCanvasModule = DJ.UI.CompositeComponent.extend({
     EOF: null
 
 });
+
+DJ.UI.AbstractCanvasModule.DefaultMenuItems = [
+    { id: 'move-up', label: "<%= Token('moduleMenuMoveUp') %>" },
+    { id: 'move-down', label: "<%= Token('moduleMenuMoveDown') %>" },
+    { type: 'separator' },
+    { id: 'remove', label: "<%= Token('moduleMenuRemove') %>" },
+    { id: 'edit', label: "<%= Token('moduleMenuEdit') %>" }
+];
 
 DJ.UI.AbstractCanvasModule.GetParentModule = function (childElement) {
     return $(childElement).parents('.module').findComponent(DJ.UI.AbstractCanvasModule);

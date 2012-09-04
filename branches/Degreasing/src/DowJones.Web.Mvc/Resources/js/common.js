@@ -1171,7 +1171,7 @@ DJ.$dj.define('$dj', ['jquery'], DJ.$dj);
 
             // re-assign the scope of 'this' inside templates to the instance
             for (var template in this.templates) {
-                if (this.templates.hasOwnProperty(template)) {
+                if (this.templates.hasOwnProperty(template) && this.templates[template].bind) {
                     this.templates[template] = this.templates[template].bind(this);
                 }
             }

@@ -47,6 +47,7 @@ using DowJones.Web.Mvc.Resources;
 [assembly: WebResource(EmbeddedResources.Js.Require, KnownMimeTypes.JavaScript)]
 [assembly: WebResource(EmbeddedResources.Js.RequireMin, KnownMimeTypes.JavaScript)]
 [assembly: WebResource(EmbeddedResources.Js.ServiceProxy, KnownMimeTypes.JavaScript)]
+[assembly: WebResource(EmbeddedResources.Js.TmpLoad, KnownMimeTypes.JavaScript)]
 [assembly: WebResource(EmbeddedResources.Js.Underscore, KnownMimeTypes.JavaScript)]
 [assembly: WebResource(EmbeddedResources.Js.UnderscoreMin, KnownMimeTypes.JavaScript)]
 [assembly: WebResource(EmbeddedResources.Js.WindowManager, KnownMimeTypes.JavaScript)]
@@ -84,6 +85,7 @@ namespace DowJones.Web.Mvc.Resources
         [ScriptResource(ResourceName = PubSubManager, DependencyLevel = ClientResourceDependencyLevel.Core, Name = "pubsub")]
         [ScriptResource(ResourceName = Require, DependencyLevel = ClientResourceDependencyLevel.Core, Name = "require")]
         [ScriptResource(ResourceName = ServiceProxy, DependencyLevel = ClientResourceDependencyLevel.Global, Name = "service-proxy", DependsOn = new[] { "error-manager" })]
+        [ScriptResource(ResourceName = TmpLoad, DependencyLevel = ClientResourceDependencyLevel.Global, Name = "tmpload", DependsOn = new[] { "jquery" })]
         [ScriptResource(ResourceName = Underscore, DependencyLevel = ClientResourceDependencyLevel.Core, Name = "underscore")]
         [ScriptResource(ResourceName = WindowManager, DependencyLevel = ClientResourceDependencyLevel.Global, Name = "window-manager")]
 
@@ -137,6 +139,8 @@ namespace DowJones.Web.Mvc.Resources
             public const string Require = JsRoot + "require.js";
 			public const string RequireMin = JsRoot + "require.min.js";
             public const string ServiceProxy = JsRoot + "service-proxy.js";
+            public const string TmpLoad = JsRoot + "tmpload.js";
+
             public const string Underscore = JsRoot + "underscore.js";
 			public const string UnderscoreMin = JsRoot + "underscore.min.js";
             public const string WindowManager = JsRoot + "window-manager.js";

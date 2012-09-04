@@ -37,11 +37,14 @@
                 <% if (item.elinkItems.length > 0) { 
                     for (var j = 0, len2 = item.elinkItems.length; j < len2; j++) { 
                     var elinkItem = item.elinkItems[j];
-                    var classSuffix = elinkItem.markupType === "ArticleElinkHighlight" ? '_highlight' : ''; %>
-                        <span class="dj_article<%= classSuffix %>"><%= elinkItem.text %></span>
-                    <% } } else { %>
-                        <%= item.text %></a>
+                    if (elinkItem.markupType === "ArticleElinkHighlight") { %>
+                        <span class="dj_article_highlight"><%= elinkItem.text %></span>
+                    <% } else if (elinkItem.markupType === "Plain") { %>
+                        <%= elinkItem.text %>
+                    <% } } } else { %>
+                    <%= item.text %>
                 <% } %>
+                </a>
             <% break; 
             case "Plain": %>
                 <span class="dj_article_plain"><%= item.text %></span>

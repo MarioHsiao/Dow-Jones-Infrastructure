@@ -50,8 +50,10 @@
             console.time('Date fetched in');
 
             // 460k+ words - 'BTBW000020070531e35l000zc'
-            var accn = 'WCWSJB0020120831e88v003ju';
-            $.getJSON('http://mybox.dev.us.factiva.com/oldshowcase/webarticle/' + accn, function(data){
+            // var accn = 'WCWSJB0020120831e88v003ju'; // web article
+            
+            var accn = 'DJDN000020120831e88v0ljuu';
+            $.getJSON('http://mybox.dev.us.factiva.com/oldshowcase/article2/' + accn, function(data){
 
                 console.timeEnd('Date fetched in');
                 $('#articleContainer').empty();

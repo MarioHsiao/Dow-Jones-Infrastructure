@@ -4,24 +4,36 @@
     var hasCorrections = model.corrections && model.corrections.length;
     var hasNotes = model.notes && model.notes.length;
     var hasLeadParagraphs = model.leadParagraphs && model.leadParagraphs.length;
+    var showICS = options.showIndexing && model.indexingCodeSets && model.indexingCodeSets.length;
+    var i, len;
 %>
 <div class="dj_article_article_body">
     <% if(hasCorrections) { 
-        for(var i = 0, len = model.corrections.length; i < len; i++) { 
-        var item = model.corrections[i]; %>
-                <%= this.templates.paragraph(item) %>
+        for(i = 0, len = model.corrections.length; i < len; i++) { 
+            var item = model.corrections[i]; %>
+            <%= this.templates.paragraph(item) %>
     <% }} %>
     
     <%= this.templates.section({indexCode: "LP", items: model.leadParagraphs}) %>
     <%= this.templates.section({indexCode: "TD", items: model.tailParagraphs}) %>
     
     <% if (options.articleDisplayOptions !== "Headline") {
-        if (model.contact) { %>
-            <%= this.templates.section({indexCode: "CT", items: [model.contact]}) %>
-        <% } %>
+        if (model.contact) %> <%= this.templates.section({indexCode: "CT", items: [model.contact]}) %>
+
         <%= this.templates.section({indexCode: "RF", items: model.notes}) %>
-        <% if (model.artWork) { %>
-            <%= this.templates.section({indexCode: "ART", items: [model.artWork]}) %>
-        <% } 
-    } %>  
+    
+        <% if (model.artWork) %> <%= this.templates.section({indexCode: "ART", items: [model.artWork]}) %>
+    <% } %>  
+    
+    <% if (showICS) 
+        for (i = 0, len = model.indexingCodeSets.length; i < len; i++) { 
+            var ics = model.indexingCodeSets[i];       
+    %> 
+        <div class="dj_article_index"><%= ics.code.toUpperCase() %></div>
+        <div class="dj_article_<%= ics.code.toLowerCase() %> dj_article_section">
+            <p class="dj_article_paragraph">
+                <%= ics.set %>
+            </p>
+        </div>
+    <% } %> 
 </div>
