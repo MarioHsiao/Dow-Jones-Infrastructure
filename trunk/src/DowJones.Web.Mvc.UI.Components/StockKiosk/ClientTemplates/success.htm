@@ -7,7 +7,13 @@
 </div>	
 <div class="dj_marketBlock scrollable">        
     <div class="dj_tickerItems">      
-         <%  var data = self.data, options = self.options, pagesize = options.pagesize, quote, tickerrowselected, j; 
+        <%  
+            var data = self, 
+                options = this.options, 
+                pagesize = this.options.pagesize, 
+                quote, 
+                tickerrowselected, 
+                j; 
             for (var i = 0; i < data.length; i++) { 
                 tickerrowselected= "";
                 quote = data[i];  
