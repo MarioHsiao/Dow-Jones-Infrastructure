@@ -2,7 +2,8 @@
     <label><%= Token("filters") %></label>
     <ul class="dj_search-builder_filters-list add-margin clearfix">
     <% 
-        var data = self.data, fDetails = self.fDetails, fArr = ["source", "author", "executive", "company", "subject", "industry", "region"], f, name;
+        var data = self, fDetails = this.filterDetails, fArr = ["source", "author", "executive", "company", "subject", "industry", "region"], f, name;
+        var languageList = this.options.languageList, newsFilterEditable = this.options.searchCriteriaEditable;
         $.each(fArr, function(i, item){
             f = data.filters[item];
             if(f && ((f.include && f.include.length > 0) || (f.exclude && f.exclude.length > 0) || f.list)){

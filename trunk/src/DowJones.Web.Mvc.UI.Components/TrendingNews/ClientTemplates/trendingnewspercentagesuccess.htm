@@ -1,6 +1,6 @@
 ﻿<%
-    var packageType = self.options.packageType;    
-    var entities    = self.data;
+    var packageType = this.options.packageType;    
+    var entities    = self;
  %>
 <div class="trending-up">
     <h3 class="module-col-title"><% if (packageType === "TrendingDownPackage"){%><%=Token("trendingDown")%><%}else{%><%=Token("trendingUp")%><%}%> 

@@ -3,7 +3,7 @@
     <ul class="dj_search-builder_filters-list add-margin clearfix">
     <% 
         var fArr = ["company", "author", "executive", "subject", "industry", "region"], f, name, len,
-            data = self.data, newsFilterEditable = self.newsFilterEditable, fDetails = self.fDetails;
+            data = self, newsFilterEditable = this.options.searchCriteriaEditable, fDetails = this.filterDetails;
         $.each(fArr, function(i, item){
             f = data.filters[item];
             if(f && ((f.include && f.include.length > 0) || (f.exclude && f.exclude.length > 0) || f.list)){
