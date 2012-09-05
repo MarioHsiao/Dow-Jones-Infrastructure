@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using DowJones.Extensions;
 
 namespace DowJones.Ajax.PortalArticle
 {
@@ -30,6 +26,9 @@ namespace DowJones.Ajax.PortalArticle
 
 		[JsonProperty("headlines")]
 		public IEnumerable<HeadlineItem> Headlines { get; set; }
+
+		[JsonProperty("publisherName", NullValueHandling = NullValueHandling.Ignore)]
+		public string PublisherName { get; set; }
 
 		[JsonProperty("publicationDate", NullValueHandling = NullValueHandling.Ignore)]
 		public string PublicationDate { get; set; }
@@ -87,5 +86,11 @@ namespace DowJones.Ajax.PortalArticle
 
 		[JsonProperty("indexingCodeSets")]
 		public IEnumerable<IndexingCodeSet> IndexingCodeSets { get; set; }
+
+		[JsonProperty("ics")]
+		public IEnumerable<string> Ipcs { get; set; }
+
+		[JsonProperty("ipds")]
+		public IEnumerable<string> Ipds { get; set; }
 	}
 }

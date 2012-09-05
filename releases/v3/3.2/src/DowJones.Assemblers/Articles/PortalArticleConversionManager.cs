@@ -30,6 +30,7 @@ namespace DowJones.Assemblers.Articles
 				{
 					Status = articleResultSet.Status,
 					AccessionNo = articleResultSet.AccessionNo,
+					PublisherName = articleResultSet.PublisherName,
 					PublicationDate = articleResultSet.PublicationDate,
 					PublicationTime = articleResultSet.PublicationTime,
 					WordCount = articleResultSet.WordCount,
@@ -80,6 +81,9 @@ namespace DowJones.Assemblers.Articles
 
 					Language = articleResultSet.Language,
 					LanguageCode = articleResultSet.LanguageCode,
+
+					Ipcs = articleResultSet.Ipcs.ToArray(),
+					Ipds = articleResultSet.Ipds.ToArray(),
 
 					Corrections = GetParagraphs(articleResultSet.Correction),
 					LeadParagraphs = GetParagraphs(articleResultSet.LeadParagraph),

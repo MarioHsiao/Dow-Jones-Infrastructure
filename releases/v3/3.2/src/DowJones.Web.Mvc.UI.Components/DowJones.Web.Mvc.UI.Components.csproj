@@ -494,7 +494,7 @@
     <EmbeddedResource Include="PortalHeadlineList\PortalHeadlineList.vsdoc.js" />
     <EmbeddedResource Include="StockKiosk\StockKiosk.js" />
     <EmbeddedResource Include="TweetLines\ClientTemplates\tweetlines.htm" />
-    <EmbeddedResource Include="StockKiosk\ClientTemplates\stockkiosk.htm" />
+    <EmbeddedResource Include="StockKiosk\ClientTemplates\success.htm" />
     <EmbeddedResource Include="DiscoveryGraph\DiscoveryGraph.js" />
     <EmbeddedResource Include="DiscoveryGraph\ClientTemplates\Success.htm" />
     <EmbeddedResource Include="TwitterExperts\ClientTemplates\experts.htm" />
@@ -865,6 +865,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="PortalArticle\ClientTemplates\section.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="PortalArticle\ClientTemplates\simpleSection.html" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -342,17 +342,19 @@ DJ.UI.PortalHeadlineList = DJ.UI.Component.extend({
             this.$element.html("");
             if (data && data.count && data.count.value > 0) {
                 // call to bind and append html to ul in one shot
-                var successTemplate;
 
                 switch (this.options.layout) {
                     case 0: // normal headline view
-                        successTemplate = this.templates.successHeadline;
+                        this.successTemplate = this.templates.successHeadline;
                         break;
                     case 1: // author headline view
-                        successTemplate = this.templates.successAuthor;
+                        this.successTemplate = this.templates.successAuthor;
                         break;
                     case 2: // timeline headline view
-                        successTemplate = this.templates.successTimeline;
+                        this.successTemplate = this.templates.successTimeline;
+                        break;
+                    default:
+                        this.successTemplate = this.templates.successHeadline;
                         break;
                 }
 
@@ -365,10 +367,10 @@ DJ.UI.PortalHeadlineList = DJ.UI.Component.extend({
                         headlinePages.push(data.headlines.slice(i, i + this.options.pageSize));
                     }
                     this.pagesCount = headlinePages.length;
-                    headlineMarkup = this.templates.pagination({ headlinePages: headlinePages, options: this.options, sucessTemplate: successTemplate });
+                    headlineMarkup = this.templates.pagination(headlinePages);
                 }
                 else {
-                    headlineMarkup = successTemplate({ headlines: data.headlines, options: this.options });
+                    headlineMarkup = this.successTemplate(data.headlines);
                 }
 
                 this.$element.append(headlineMarkup);
@@ -382,10 +384,7 @@ DJ.UI.PortalHeadlineList = DJ.UI.Component.extend({
                 this.$element.append(this.templates.noData());
 
                 if (!this.options.displayNoResultsToken) {
-                    var no_results = $(this.selectors.noResultSpan, this.$element).get(0);
-                    if (no_results) {
-                        $(no_results).hide();
-                    }
+                    $(this.selectors.noResultSpan, this.$element).hide();
                 }
             }
             this.publish(this.events.componentRendered,

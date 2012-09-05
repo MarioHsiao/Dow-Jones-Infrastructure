@@ -91,8 +91,39 @@
         return _.filter(modules, function (module) { return module !== null; });
     },
 
-    loadModule: function (moduleId, onSuccess, onError) {
-        this._loadModule(moduleId, onSuccess, onError, this._delegates.addModule);
+    loadModule: function (moduleId, onSuccess, onError, addModule) {
+        if (!this.canAddModule(moduleId)) { return; }
+
+        addModule = addModule || this._delegates.addModule;
+        
+        var request = {
+            'pageId': this.options.canvasId,
+            'id': moduleId
+        };
+
+        if (DJ.config && DJ.config.credentials)
+            request['SA_FROM'] = DJ.config.credentials.SA_FROM;
+
+        // Pass a callback function to initialize the canvas after 
+        // the partial rendering initialization has completed
+        request.callback = $dj.callback(this._delegates.fireModuleAdded);
+
+        $.ajax({
+            url: this.options.loadModuleUrl + '?' + $.param(request),
+            cache: false,
+            complete: $dj.delegate(this, function (xhr) {
+                var err = $dj.getError(xhr);
+                if (err !== null) {
+                    this.publish('addModuleError.dj.Canvas', err);
+                    if (onError) onError(err);
+                }
+                else {
+                    if (addModule) addModule(xhr.responseText);
+                    if (onSuccess) onSuccess(xhr.responseText);
+                }
+            }),
+            dataType: 'html'
+        });
     },
 
     module: function (moduleId) {
@@ -115,7 +146,7 @@
 
         module.showLoadingArea();
 
-        this._loadModule(
+        this.loadModule(
             moduleId,
             null,
             function (err) {
@@ -168,39 +199,6 @@
                 this.events[key] = value;
             }, this);
         }, this);
-    },
-
-    _loadModule: function (moduleId, onSuccess, onError, addModule) {
-        if (!this.canAddModule(moduleId)) { return; }
-
-        var request = {
-            'pageId': this.options.canvasId,
-            'id': moduleId
-        };
-
-        if (DJ.config && DJ.config.credentials)
-            request['SA_FROM'] = DJ.config.credentials.SA_FROM;
-
-        // Pass a callback function to initialize the canvas after 
-        // the partial rendering initialization has completed
-        request.callback = $dj.callback(this._delegates.fireModuleAdded);
-
-        $.ajax({
-            url: this.options.loadModuleUrl + '?' + $.param(request),
-            cache: false,
-            complete: $dj.delegate(this, function (xhr) {
-                var err = $dj.getError(xhr);
-                if (err !== null) {
-                    this.publish('addModuleError.dj.Canvas', err);
-                    if (onError) onError(err);
-                }
-                else {
-                    if (addModule) addModule(xhr.responseText);
-                    if (onSuccess) onSuccess(xhr.responseText);
-                }
-            }),
-            dataType: 'html'
-        });
     },
 
     EOF: null
@@ -352,7 +350,7 @@ DJ.UI.Canvas.ZoneLayout = DJ.UI.Canvas.Layout.extend({
         if (!isNaN(zone))
             zone = this._getZones()[zone];
 
-        $(zone).prepend(el);
+        $(zone).append(el);
     },
 
     remove: function (module) {

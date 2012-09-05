@@ -13,6 +13,7 @@
 [assembly: System.Web.UI.WebResourceAttribute("DowJones.Web.Mvc.UI.Components.PortalArticle.ClientTemplates.logo.html", "text/html")]
 [assembly: System.Web.UI.WebResourceAttribute("DowJones.Web.Mvc.UI.Components.PortalArticle.ClientTemplates.error.html", "text/html")]
 [assembly: System.Web.UI.WebResourceAttribute("DowJones.Web.Mvc.UI.Components.PortalArticle.ClientTemplates.section.html", "text/html")]
+[assembly: System.Web.UI.WebResourceAttribute("DowJones.Web.Mvc.UI.Components.PortalArticle.ClientTemplates.simpleSection.html", "text/html")]
 [assembly: System.Web.UI.WebResourceAttribute("DowJones.Web.Mvc.UI.Components.PortalArticle.ClientTemplates.body.html", "text/html")]
 [assembly: System.Web.UI.WebResourceAttribute("DowJones.Web.Mvc.UI.Components.PortalArticle.ClientTemplates.paragraph.html", "text/html")]
 [assembly: System.Web.UI.WebResourceAttribute("DowJones.Web.Mvc.UI.Components.PortalArticle.ClientTemplates.meta.html", "text/html")]
@@ -30,12 +31,13 @@ namespace DowJones.Web.Mvc.UI.Components.PortalArticle
     using System.Web.UI;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 08/30/2012 03:41 PM
+    // Last Generated Timestamp: 09/04/2012 02:55 PM
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.PortalArticle.PortalArticle.js", ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.PortalArticle.PortalArticleComponent))]
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.PortalArticle.ClientTemplates.success.html", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="success", DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.PortalArticle.PortalArticleComponent))]
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.PortalArticle.ClientTemplates.logo.html", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="logo", DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.PortalArticle.PortalArticleComponent))]
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.PortalArticle.ClientTemplates.error.html", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="error", DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.PortalArticle.PortalArticleComponent))]
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.PortalArticle.ClientTemplates.section.html", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="section", DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.PortalArticle.PortalArticleComponent))]
+    [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.PortalArticle.ClientTemplates.simpleSection.html", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="simpleSection", DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.PortalArticle.PortalArticleComponent))]
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.PortalArticle.ClientTemplates.body.html", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="body", DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.PortalArticle.PortalArticleComponent))]
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.PortalArticle.ClientTemplates.paragraph.html", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="paragraph", DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.PortalArticle.PortalArticleComponent))]
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.PortalArticle.ClientTemplates.meta.html", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="meta", DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.PortalArticle.PortalArticleComponent))]
@@ -63,6 +65,7 @@ WriteLiteral("\r\n");
 
 
 WriteLiteral("\r\n");
+
 
 
 

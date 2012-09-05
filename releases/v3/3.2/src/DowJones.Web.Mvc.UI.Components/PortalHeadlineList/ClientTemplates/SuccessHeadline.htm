@@ -1,5 +1,5 @@
 ﻿<%  var showSource, showPublicationDateTime, showAuthor, title, x, multimediaMode, selected, headlineUrl,
-        headlines = self.headlines, options = self.options,
+        headlines = self, options = this.options,
         headlinesCount = options.allowPagination ? headlines.length : Math.min(headlines.length, options.maxNumHeadlinesToShow);
 %>
 
@@ -7,7 +7,7 @@
     <% 
     for (var i = 0; i < headlinesCount; i++) { 
     x = headlines[i]; 
-    selected = (x.reference.guid === options.selectedGuid);
+    selected = (x.reference.guid === options.selectedGuid) ? ' selected': '';
     showSource = options.showSource && x.sourceCode && x.sourceDescriptor;
     showPublicationDateTime = options.showPublicationDateTime && x.publicationDateTimeDescriptor;
     showAuthor = options.showAuthor && x.authors && x.authors.length > 0;
@@ -15,7 +15,7 @@
     headlineUrl = (x.headlineUrl && $.trim(x.headlineUrl)) || "javascript:void(0)";
     multimediaMode = options.multimediaMode && (x.contentCategoryDescriptor && x.contentCategoryDescriptor === 'multimedia');
     %>
-    <li class="dj_entry<%=(selected) ? " selected": ""%>  <%=x.contentCategoryDescriptor%> <%=x.contentSubCategoryDescriptor%>">
+    <li class="dj_entry<%=selected %> <%=x.contentCategoryDescriptor%> <%=x.contentSubCategoryDescriptor%>">
         <div class="article-wrap">
             <h4 class="article-headline">
                 <a href="<%= headlineUrl %>" class="article-view-trigger">

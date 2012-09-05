@@ -1,6 +1,6 @@
 ﻿<%  var tweetId, userId, screenName, reTweetId, fullName, profileUrl, profileHashUrl, profileImageUrl, tweetText, tweetTimeStamp, tweetTimeStampRaw;
-    var tweets = self.tweets,
-        options = self.options;
+    var tweets = self,
+        options = this.options;
     for (var i = 0, len = Math.min(tweets.length, options.maxTweetsToShow); i < len; i++) { 
         t = tweets[i]; 
         tweetId = t.id; 

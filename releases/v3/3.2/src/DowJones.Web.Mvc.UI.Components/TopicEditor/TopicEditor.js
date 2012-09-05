@@ -220,7 +220,7 @@
 
     _bindFilters: function (searchQuery) {
         if (searchQuery && (searchQuery.freeText || searchQuery.filters || searchQuery.newsFilters)) {
-            this.$filters.html(this.templates.filters({ data: searchQuery, fDetails: this.filterDetails, newsFilterEditable: this.options.searchCriteriaEditable })).show();
+            this.$filters.html(this.templates.filters(searchQuery)).show();
 
             //Hide the filters wrapper if no filters are present
             $.each(this.$filters.children(), function () {

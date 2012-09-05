@@ -29,10 +29,10 @@
         return false;
     },
     _renderContainer: function () {
-        this.$element.html(this.templates.container(this.options));
+        this.$element.html(this.templates.container());
     },
     _render: function (data) {
-        $(this.selectors.contentBody, this.$element).html(this.templates.success({ Dates: data.Dates, Options: this.options }));
+        $(this.selectors.contentBody, this.$element).html(this.templates.success(data.Dates));
     }
 });
 
