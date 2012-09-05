@@ -153,18 +153,20 @@ DJ.UI.PortalArticle = DJ.UI.Component.extend({
     },
 
     bindOnSuccess: function (data) {
-        var timerName = 'Article Rendered In'
-        if (this.options.instrument === true && (console && console.time)) {
-            console.time(timerName);
+        var timerName = 'Article Rendered In';
+        var isConsoleDefined = typeof console !== 'undefined';
+        if (this.options.instrument === true && isConsoleDefined) {
+            if (console.time)
+                console.time(timerName);
         }
 
         var articleMarkup = this.templates.success(data);
         this.$element.append(articleMarkup);
 
-        if (this.options.instrument === true && (console && console.timeEnd)) {
-            console.timeEnd(timerName);
+        if (this.options.instrument === true && isConsoleDefined) {
+            if (console.timeEnd)
+                console.timeEnd(timerName);
         }
-
     },
 
     bindOnError: function (data) {
