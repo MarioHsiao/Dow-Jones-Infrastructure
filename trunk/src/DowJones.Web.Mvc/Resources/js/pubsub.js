@@ -8,7 +8,10 @@
         return {
             publish: function (eventName, args) {
 
-                if (!_pubSubCache || !eventName) { $dj.warn('PubSubManager.publish: Event not found.', eventName, args); return; }
+                if (!_pubSubCache || !eventName) {
+                    $dj.warn('PubSubManager.publish: Event not found.', eventName, args);
+                    return;
+                }
 
                 $dj.info('PubSubManager.publish: Publishing "', eventName, '" with following arguments:', args);
 
@@ -29,9 +32,15 @@
 
             subscribe: function (eventName, handler) {
 
-                if (!eventName) { $dj.warn('PubSubManager.subscribe: Event Name cannot be null or empty'); return; }
+                if (!eventName) {
+                    $dj.warn('PubSubManager.subscribe: Event Name cannot be null or empty');
+                    return;
+                }
 
-                if (!handler || typeof handler !== 'function') { $dj.warn('PubSubManager.subscribe: Not a valid handler'); return; }
+                if (!handler || typeof handler !== 'function') {
+                    $dj.warn('PubSubManager.subscribe: Not a valid handler');
+                    return;
+                }
 
                 $dj.info('PubSubManager.subscribe: Subscribing to "',
                             eventName,

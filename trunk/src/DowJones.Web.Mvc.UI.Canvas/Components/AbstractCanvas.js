@@ -2,15 +2,12 @@
 
     layout: null,
     _moduleSelector: ".dj_module",
-    _pubSubManager: null,
 
     init: function (element, meta) {
         this._debug("Initializing canvas...");
 
         var $meta = $.extend({ name: 'Canvas' }, meta);
         this._super(element, $meta);
-
-        this._pubSubManager = this._pubSubManager || new DJ.PubSubManager();
 
         $.extend(this.options, window[this.getId() + "_clientState"]);
 

@@ -1283,9 +1283,18 @@ DJ.$dj.define('$dj', ['jquery'], DJ.$dj);
 
         publish: function (/* string */eventName, /* object */args) {
             $dj.info(this.name + '>> Publish:', this._owner || window, eventName);
-            var publish = (this._owner && this._owner._innerPublish && this._owner._innerPublish instanceof Function) ? this._owner._innerPublish : $dj.publish;
-            publish.call(this._owner || window, eventName, args);
+
+            var publisher = this;
+
+            if (this._owner && this._owner._innerPublish && this._owner._innerPublish instanceof Function) {
+                publisher = this._owner;
+            }
+            
+            var publish = publisher._innerPublish || $dj.publish;
+            publish.call(publisher || window, eventName, args);
+
             this.notifyInstanceSubscribers(eventName, args);
+
             return this;
         },
 
