@@ -26,6 +26,16 @@ namespace DowJones.Assemblers.Articles
 
 			// create lighter payload by mapping only used fields
 
+            var a1 = EnsureCollection(articleResultSet.IndexingCodeSets)
+                                            .Select(ics => new IndexingCodeSet
+                                                {
+                                                    Code = ics.Key,
+                                                    Set = ics.Value
+                                                            .Select(c => string.Format("{0} : {1} | ", c.Key, c.Value))
+                                                            .Aggregate((cur, next) => cur + next)
+                                                            .TrimEnd("| ".ToCharArray())
+                                                });
+
 			var portalArticleResultSet = new PortalArticleResultSet
 				{
 					Status = articleResultSet.Status,
@@ -82,8 +92,8 @@ namespace DowJones.Assemblers.Articles
 					Language = articleResultSet.Language,
 					LanguageCode = articleResultSet.LanguageCode,
 
-					Ipcs = articleResultSet.Ipcs.ToArray(),
-					Ipds = articleResultSet.Ipds.ToArray(),
+                    Ipcs = EnsureCollection(articleResultSet.Ipcs).ToArray(),
+                    Ipds = EnsureCollection(articleResultSet.Ipds).ToArray(),
 
 					Corrections = GetParagraphs(articleResultSet.Correction),
 					LeadParagraphs = GetParagraphs(articleResultSet.LeadParagraph),
