@@ -93,7 +93,6 @@ namespace DowJones.Ajax.PortalArticle
 		[JsonProperty("ipds")]
 		public IEnumerable<string> Ipds { get; set; }
 
-		// alien property. REST API populates it, not sure why or how to map it internally.
 		[JsonProperty("externalUri")]
 		public string ExternalUri { get; set; }
 	}

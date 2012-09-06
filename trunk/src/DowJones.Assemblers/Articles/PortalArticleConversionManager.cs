@@ -26,16 +26,6 @@ namespace DowJones.Assemblers.Articles
 
 			// create lighter payload by mapping only used fields
 
-            var a1 = EnsureCollection(articleResultSet.IndexingCodeSets)
-                                            .Select(ics => new IndexingCodeSet
-                                                {
-                                                    Code = ics.Key,
-                                                    Set = ics.Value
-                                                            .Select(c => string.Format("{0} : {1} | ", c.Key, c.Value))
-                                                            .Aggregate((cur, next) => cur + next)
-                                                            .TrimEnd("| ".ToCharArray())
-                                                });
-
 			var portalArticleResultSet = new PortalArticleResultSet
 				{
 					Status = articleResultSet.Status,
@@ -44,6 +34,7 @@ namespace DowJones.Assemblers.Articles
 					PublicationDate = articleResultSet.PublicationDate,
 					PublicationTime = articleResultSet.PublicationTime,
 					WordCount = articleResultSet.WordCount,
+					ExternalUri = articleResultSet.ExternalUri,
 
 					Html = EnsureCollection(articleResultSet.Html)
 							.Where(c => c.ItemMarkUp == MarkUpType.Html).Select(c => c.ItemText),
