@@ -328,7 +328,7 @@ DJ.UI.StockKiosk = DJ.UI.Component.extend({
         var self = this;
 
         if (self.data) {
-            self.$element.html(this.templates.stockkiosk({ data: self.data, options: this.options }));                  
+            self.$element.html(this.templates.success(data));                  
         }
         else {
             self.$element.html("<span class='no-results'><%= Token("noStockKioskResults") %></span>"); 

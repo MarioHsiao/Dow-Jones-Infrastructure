@@ -53,7 +53,7 @@ Headline PostProcessing Plugin
 
                 //Create exclusion content
                 this.$printFormatsContainer.addClass('dj_HdlnFmtOptions').children(":last").children().children(this.selectors.modalContent)
-            .prepend(this.templates.formatOptions({ formatOptions: null, idPrefix: this.$element.attr('id') }));
+            .prepend(this.templates.formatOptions());
             }
 
             this.$printFormatsContainer.overlay({ closeOnEsc: true });
@@ -68,7 +68,7 @@ Headline PostProcessing Plugin
 
                 //Create exclusion content
                 this.$saveFormatsContainer.addClass('dj_SaveFmtOptions').children(":last").children().children(this.selectors.modalContent)
-            .prepend(this.templates.saveOptions({ saveOptions: null, idPrefix: this.$element.attr('id') }));
+            .prepend(this.templates.saveOptions());
             }
 
             this.$saveFormatsContainer.overlay({ closeOnEsc: true });
@@ -84,7 +84,7 @@ Headline PostProcessing Plugin
 
                 //Create exclusion content
                 this.$emailFormatsContainer.addClass('dj_HdlnFmtOptions').children(":last").children().children(this.selectors.modalContent)
-            .prepend(this.templates.formatOptions({ formatOptions: null, idPrefix: this.$element.attr('id') }));
+            .prepend(this.templates.formatOptions());
             }
 
             this.$emailFormatsContainer.overlay({ closeOnEsc: true });

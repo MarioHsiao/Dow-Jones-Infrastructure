@@ -77,7 +77,7 @@ DJ.UI.TweetLines = DJ.UI.Component.extend({
 	    this.isPurelyClientSide = !ctx.find(this.selectors.recentItems).length;
 
 	    if (this.isPurelyClientSide) {
-	        this.$element.html(this.templates.container({ options: this.options }));
+	        this.$element.html(this.templates.container());
 
             // re-init the context
 	        ctx = this.$element;
@@ -289,7 +289,7 @@ DJ.UI.TweetLines = DJ.UI.Component.extend({
 			this.$newTweets.addClass("hide");
 
 			// call to bind and append html to the div section 
-			tweetLines = this.templates.tweetlines({ tweets: data.tweets, options: this.options });
+			tweetLines = this.templates.tweetlines(data.tweets);
 
 			if (data.refresh) {
 				this.$element.animate({ scrollTop: 0 }, 0);

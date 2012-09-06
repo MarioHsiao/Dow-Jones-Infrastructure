@@ -81,12 +81,12 @@
                     case "trendingUpPackage":
                     case "TrendingDownPackage":
                     case "TrendingUpPackage":
-                        newstrends = this.templates.trendingnewspercentagesuccess({ data: data.trendingEntitiesdata, options: this.options }); //can multiply options in the future/
+                        newstrends = this.templates.trendingnewspercentagesuccess(data.trendingEntitiesdata); //can multiply options in the future/
                         break;
                     case "trendingTopEntitiesPackage":
                     case "TrendingTopEntitiesPackage":
                     default:
-                        newstrends = this.templates.trendingnewstop5success({ data: data.trendingEntitiesdata, options: this.options });
+                        newstrends = this.templates.trendingnewstop5success(data.trendingEntitiesdata);
                         break;
                 }
 

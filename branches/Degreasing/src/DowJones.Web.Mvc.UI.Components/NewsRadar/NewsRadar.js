@@ -400,7 +400,7 @@ DJ.UI.NewsRadar = DJ.UI.Component.extend({
         var radarTemplate = self.templates.radar;
         var html = [];
         for (var i in data) {
-            html[html.length] = this.templates.success({ settings: self.options, propName: i, item: data[i], templates: { radar: radarTemplate}, f: { getTicker: self.getTicker} });
+            html[html.length] = this.templates.success({ propName: i, item: data[i], f: { getTicker: self.getTicker} });
         }
 
 

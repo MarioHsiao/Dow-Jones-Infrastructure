@@ -2,15 +2,12 @@
 
     layout: null,
     _moduleSelector: ".dj_module",
-    _pubSubManager: null,
 
     init: function (element, meta) {
         this._debug("Initializing canvas...");
 
         var $meta = $.extend({ name: 'Canvas' }, meta);
         this._super(element, $meta);
-
-        this._pubSubManager = this._pubSubManager || new DJ.PubSubManager();
 
         $.extend(this.options, window[this.getId() + "_clientState"]);
 
@@ -91,8 +88,39 @@
         return _.filter(modules, function (module) { return module !== null; });
     },
 
-    loadModule: function (moduleId, onSuccess, onError) {
-        this._loadModule(moduleId, onSuccess, onError, this._delegates.addModule);
+    loadModule: function (moduleId, onSuccess, onError, addModule) {
+        if (!this.canAddModule(moduleId)) { return; }
+
+        addModule = addModule || this._delegates.addModule;
+        
+        var request = {
+            'pageId': this.options.canvasId,
+            'id': moduleId
+        };
+
+        if (DJ.config && DJ.config.credentials)
+            request['SA_FROM'] = DJ.config.credentials.SA_FROM;
+
+        // Pass a callback function to initialize the canvas after 
+        // the partial rendering initialization has completed
+        request.callback = $dj.callback(this._delegates.fireModuleAdded);
+
+        $.ajax({
+            url: this.options.loadModuleUrl + '?' + $.param(request),
+            cache: false,
+            complete: $dj.delegate(this, function (xhr) {
+                var err = $dj.getError(xhr);
+                if (err !== null) {
+                    this.publish('addModuleError.dj.Canvas', err);
+                    if (onError) onError(err);
+                }
+                else {
+                    if (addModule) addModule(xhr.responseText);
+                    if (onSuccess) onSuccess(xhr.responseText);
+                }
+            }),
+            dataType: 'html'
+        });
     },
 
     module: function (moduleId) {
@@ -115,7 +143,7 @@
 
         module.showLoadingArea();
 
-        this._loadModule(
+        this.loadModule(
             moduleId,
             null,
             function (err) {
@@ -170,39 +198,6 @@
         }, this);
     },
 
-    _loadModule: function (moduleId, onSuccess, onError, addModule) {
-        if (!this.canAddModule(moduleId)) { return; }
-
-        var request = {
-            'pageId': this.options.canvasId,
-            'id': moduleId
-        };
-
-        if (DJ.config && DJ.config.credentials)
-            request['SA_FROM'] = DJ.config.credentials.SA_FROM;
-
-        // Pass a callback function to initialize the canvas after 
-        // the partial rendering initialization has completed
-        request.callback = $dj.callback(this._delegates.fireModuleAdded);
-
-        $.ajax({
-            url: this.options.loadModuleUrl + '?' + $.param(request),
-            cache: false,
-            complete: $dj.delegate(this, function (xhr) {
-                var err = $dj.getError(xhr);
-                if (err !== null) {
-                    this.publish('addModuleError.dj.Canvas', err);
-                    if (onError) onError(err);
-                }
-                else {
-                    if (addModule) addModule(xhr.responseText);
-                    if (onSuccess) onSuccess(xhr.responseText);
-                }
-            }),
-            dataType: 'html'
-        });
-    },
-
     EOF: null
 });
 
@@ -238,7 +233,7 @@ $dj.debug('Registered DJ.UI.Canvas');
 DJ.UI.Canvas.Layout = DJ.Component.extend({
     init: function (canvas, options) {
         this._super({ options: options || {} });
-        
+
         this.element = canvas.element;
 
         if (!this.options.canvasId && canvas.options) {
@@ -264,8 +259,8 @@ DJ.UI.Canvas.Layout = DJ.Component.extend({
 
 // "Static" members
 $.extend(DJ.UI.Canvas.Layout, {
-    _layouts: { },
-    
+    _layouts: {},
+
     initialize: function (canvas, options) {
         var name = (options || {}).name || 'zone';
 
@@ -281,14 +276,14 @@ $.extend(DJ.UI.Canvas.Layout, {
             return new layout(canvas, options);
         } catch (e) {
             $dj.error(e);
-        } 
-        
+        }
+
         $dj.error("Failed to initialized canvas layout for ", canvas, "with options", options);
 
         return null;
     },
-    
-    register: function(name, layout) {
+
+    register: function (name, layout) {
         DJ.UI.Canvas.Layout._layouts[name] = layout;
         $dj.debug("Registered layout ", name, layout);
     }
@@ -352,7 +347,7 @@ DJ.UI.Canvas.ZoneLayout = DJ.UI.Canvas.Layout.extend({
         if (!isNaN(zone))
             zone = this._getZones()[zone];
 
-        $(zone).prepend(el);
+        $(zone).append(el);
     },
 
     remove: function (module) {
@@ -453,7 +448,7 @@ DJ.UI.Canvas.ZoneLayout = DJ.UI.Canvas.Layout.extend({
                  }
              );
         }
-        
+
         for (var zoneIndex = 0; zoneIndex < zones.length; zoneIndex++) {
             var zone = zones[zoneIndex] || [];
             for (var i = 0; i < zone.length; i++) {

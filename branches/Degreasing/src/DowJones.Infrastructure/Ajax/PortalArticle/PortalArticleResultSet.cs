@@ -27,6 +27,9 @@ namespace DowJones.Ajax.PortalArticle
 		[JsonProperty("headlines")]
 		public IEnumerable<HeadlineItem> Headlines { get; set; }
 
+		[JsonProperty("publisherName", NullValueHandling = NullValueHandling.Ignore)]
+		public string PublisherName { get; set; }
+
 		[JsonProperty("publicationDate", NullValueHandling = NullValueHandling.Ignore)]
 		public string PublicationDate { get; set; }
 
@@ -83,5 +86,14 @@ namespace DowJones.Ajax.PortalArticle
 
 		[JsonProperty("indexingCodeSets")]
 		public IEnumerable<IndexingCodeSet> IndexingCodeSets { get; set; }
+
+		[JsonProperty("ics")]
+		public IEnumerable<string> Ipcs { get; set; }
+
+		[JsonProperty("ipds")]
+		public IEnumerable<string> Ipds { get; set; }
+
+		[JsonProperty("externalUri")]
+		public string ExternalUri { get; set; }
 	}
 }

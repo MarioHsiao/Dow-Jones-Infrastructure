@@ -30,9 +30,11 @@ namespace DowJones.Assemblers.Articles
 				{
 					Status = articleResultSet.Status,
 					AccessionNo = articleResultSet.AccessionNo,
+					PublisherName = articleResultSet.PublisherName,
 					PublicationDate = articleResultSet.PublicationDate,
 					PublicationTime = articleResultSet.PublicationTime,
 					WordCount = articleResultSet.WordCount,
+					ExternalUri = articleResultSet.ExternalUri,
 
 					Html = EnsureCollection(articleResultSet.Html)
 							.Where(c => c.ItemMarkUp == MarkUpType.Html).Select(c => c.ItemText),
@@ -80,6 +82,9 @@ namespace DowJones.Assemblers.Articles
 
 					Language = articleResultSet.Language,
 					LanguageCode = articleResultSet.LanguageCode,
+
+                    Ipcs = EnsureCollection(articleResultSet.Ipcs).ToArray(),
+                    Ipds = EnsureCollection(articleResultSet.Ipds).ToArray(),
 
 					Corrections = GetParagraphs(articleResultSet.Correction),
 					LeadParagraphs = GetParagraphs(articleResultSet.LeadParagraph),

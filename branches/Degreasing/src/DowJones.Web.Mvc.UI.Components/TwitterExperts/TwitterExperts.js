@@ -105,7 +105,7 @@ DJ.UI.TwitterExperts = DJ.UI.Component.extend({
         try {
             if (data && data.length && data.length > 0) {
                 // call to bind and append html to the div section 
-                expertsHtml = this.templates.experts({ experts: data, options: this.options });
+                expertsHtml = this.templates.experts(data);
                 this.$element.html(expertsHtml);
 
                 // initialize the fancy scroll bar only once

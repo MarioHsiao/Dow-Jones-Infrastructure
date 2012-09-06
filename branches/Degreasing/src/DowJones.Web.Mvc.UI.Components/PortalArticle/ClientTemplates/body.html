@@ -4,7 +4,9 @@
     var hasCorrections = model.corrections && model.corrections.length;
     var hasNotes = model.notes && model.notes.length;
     var hasLeadParagraphs = model.leadParagraphs && model.leadParagraphs.length;
-    var showICS = options.showIndexing && model.indexingCodeSets && model.indexingCodeSets.length;
+    var showIndexingCodeSets = options.showIndexing && model.indexingCodeSets && model.indexingCodeSets.length;
+    var showIpcs = options.showIndexing && model.ipcs && model.ipcs.length;
+    var showIpds = options.showIndexing && model.ipds && model.ipds.length;
     var i, len;
 %>
 <div class="dj_article_article_body">
@@ -25,15 +27,24 @@
         <% if (model.artWork) %> <%= this.templates.section({indexCode: "ART", items: [model.artWork]}) %>
     <% } %>  
     
-    <% if (showICS) 
+    <% if (showIndexingCodeSets) 
         for (i = 0, len = model.indexingCodeSets.length; i < len; i++) { 
             var ics = model.indexingCodeSets[i];       
     %> 
-        <div class="dj_article_index"><%= ics.code.toUpperCase() %></div>
-        <div class="dj_article_<%= ics.code.toLowerCase() %> dj_article_section">
-            <p class="dj_article_paragraph">
-                <%= ics.set %>
-            </p>
-        </div>
+        <%= this.templates.simpleSection({indexCode: ics.code, item: ics.set}) %>
     <% } %> 
+    
+    <% if (showIpcs) %> 
+        <%= this.templates.simpleSection({indexCode: "IPC", item: model.ipcs.join(' | ')}) %>
+    
+    <% if (showIpds) %> 
+        <%= this.templates.simpleSection({indexCode: "IPD", item: model.ipds.join(' | ')}) %>
+    
+    <% if (model.publisherName) %> 
+        <%= this.templates.simpleSection({indexCode: "PUB", item: model.publisherName}) %>
+    
+    <% if (model.accessionNo) %> 
+        <%= this.templates.simpleSection({indexCode: "AN", item: '<%= Token("document") %> ' + model.accessionNo}) %>
+    
+    <% if(model.contentCategory === "Picture") %> <div class="dj_article_clear"></div>
 </div>

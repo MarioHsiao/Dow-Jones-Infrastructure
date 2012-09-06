@@ -227,7 +227,7 @@
 
         _bindFilters: function (searchQuery) {
             if (searchQuery.filters || searchQuery.newsFilters || searchQuery.contentLanguages) {
-                this.$filters.html(this.templates.filters({ data: searchQuery, fDetails: this.filterDetails, languageList: this.options.languageList, newsFilterEditable: this.options.searchCriteriaEditable })).show();
+                this.$filters.html(this.templates.filters(searchQuery)).show();
             }
             else {
                 this.$filters.hide();
