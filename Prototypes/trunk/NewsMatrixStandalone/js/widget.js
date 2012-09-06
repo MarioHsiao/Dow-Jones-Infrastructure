@@ -128,46 +128,49 @@ function renderNewsMatrix() {
     $(loadingSelector).show();
     $('#editPage').hide();
 
-    $.getJSON('http://api.dowjones.com/api/1.0/NewsRadar/Ex/json',
-    {
-        entityid: $.trim($.cookie(widgetCompanies)) || defaultCompanies,
-        subjectid: $.cookie(widgetSubjects) || defaultSubjects,
-        symbology: "fii",
-        encryptedtoken: "S001WF92XV72cbbMXmsNXmnMpMvNTAsOTMm5DByMa3G2DJqMsFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUEA"
-    },
-    function (data) {
-        DJ.subscribe("dataTransformed.dj.NewsMatrix", function (data) {
-            createCompanyEditList(data.MatrixItems);
-        });
-
-        DJ.add("NewsMatrix", {
-            container: "newsMatrixContainer",
-            options: {
-                displayTicker: false,
-                hitcolor: "999",
-                hitsize: "8",
-                windowSize: 6,
-                scrollSize: 5
-            },
-            eventHandlers: {
-                "matrixItemClicked.dj.NewsMatrix": function (data) {
-                    var querystring = 'fds:' + data.InstrumentReference.FCode;
-
-                    if (data.NewsEntity.Radar && data.NewsEntity.Radar.SubjectCode && data.NewsEntity.Radar.SubjectCode != 'ALLNEWS') {
-                        querystring += " AND ns:" + data.NewsEntity.Radar.SubjectCode;
-                    }
-
-                    var url = "headlines.html?querystring=" + escape(querystring);
-                    var windowName = "radar90Headlines";
-                    window.open(url, windowName, "scrollbars=yes,height=500,width=500").focus();
-                }
-            },
-            data: data.ParentNewsEntities
-        }).done(function () {
-            $('#loading').fadeOut('fast', function () {
-                $('#viewPage').hide().removeClass('notActive').fadeIn();
+    $.jsonp({
+        url: 'http://api.dowjones.com/api/1.0/NewsRadar/Ex/json?callback=?',
+        callback: "callback",
+        data: {
+            entityid: $.trim($.cookie(widgetCompanies)) || defaultCompanies,
+            subjectid: $.cookie(widgetSubjects) || defaultSubjects,
+            symbology: "fii",
+            encryptedtoken: "S001WF92XV72cbbMXmsNXmnMpMvNTAsOTMm5DByMa3G2DJqMsFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUEA"
+        },
+        success: function (data) {
+            DJ.subscribe("dataTransformed.dj.NewsMatrix", function (data) {
+                createCompanyEditList(data.MatrixItems);
             });
-        });
+
+            DJ.add("NewsMatrix", {
+                container: "newsMatrixContainer",
+                options: {
+                    displayTicker: false,
+                    hitcolor: "999",
+                    hitsize: "8",
+                    windowSize: 6,
+                    scrollSize: 5
+                },
+                eventHandlers: {
+                    "matrixItemClicked.dj.NewsMatrix": function (data) {
+                        var querystring = 'fds:' + data.InstrumentReference.FCode;
+
+                        if (data.NewsEntity.Radar && data.NewsEntity.Radar.SubjectCode && data.NewsEntity.Radar.SubjectCode != 'ALLNEWS') {
+                            querystring += " AND ns:" + data.NewsEntity.Radar.SubjectCode;
+                        }
+
+                        var url = "headlines.html?querystring=" + escape(querystring);
+                        var windowName = "radar90Headlines";
+                        window.open(url, windowName, "scrollbars=yes,height=500,width=500").focus();
+                    }
+                },
+                data: data.ParentNewsEntities
+            }).done(function () {
+                $('#loading').fadeOut('fast', function () {
+                    $('#viewPage').hide().removeClass('notActive').fadeIn();
+                });
+            });
+        }
     });
 }
 

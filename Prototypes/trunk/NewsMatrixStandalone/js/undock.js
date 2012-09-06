@@ -6,41 +6,44 @@ window.defaultSubjects = window.defaultSubjects || "CACTIO|C16|C02|C411|GFINC|C1
 $(function () {
     window.moveTo(100, 100);
 
-    $.getJSON('http://api.dowjones.com/api/1.0/NewsRadar/Ex/json',
-    {
-        entityid: $.trim($.cookie(widgetCompanies)) || defaultCompanies,
-        subjectid: $.cookie(widgetSubjects) || defaultSubjects,
-        symbology: "fii",
-        encryptedtoken: "S001WF92XV72cbbMXmsNXmnMpMvNTAsOTMm5DByMa3G2DJqMsFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUEA"
-    },
-    function (data) {
-        DJ.add("NewsMatrix", {
-            container: "newsMatrixContainer",
-            options: {
-                displayTicker: false,
-                hitcolor: "999",
-                hitsize: "8",
-                windowSize: 6,
-                scrollSize: 5
-            },
-            eventHandlers: {
-                "matrixItemClicked.dj.NewsMatrix": function (data) {
-                    var querystring = 'fds:' + data.InstrumentReference.FCode;
+    $.jsonp({
+        url: 'http://api.dowjones.com/api/1.0/NewsRadar/Ex/json?callback=?',
+        callback: "callback",
+        data: {
+            entityid: $.trim($.cookie(widgetCompanies)) || defaultCompanies,
+            subjectid: $.cookie(widgetSubjects) || defaultSubjects,
+            symbology: "fii",
+            encryptedtoken: "S001WF92XV72cbbMXmsNXmnMpMvNTAsOTMm5DByMa3G2DJqMsFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUEA"
+        },
+        success: function (data) {
+            DJ.add("NewsMatrix", {
+                container: "newsMatrixContainer",
+                options: {
+                    displayTicker: false,
+                    hitcolor: "999",
+                    hitsize: "8",
+                    windowSize: 6,
+                    scrollSize: 5
+                },
+                eventHandlers: {
+                    "matrixItemClicked.dj.NewsMatrix": function (data) {
+                        var querystring = 'fds:' + data.InstrumentReference.FCode;
 
-                    if (data.NewsEntity.Radar && data.NewsEntity.Radar.SubjectCode && data.NewsEntity.Radar.SubjectCode != 'ALLNEWS') {
-                        querystring += " AND ns:" + data.NewsEntity.Radar.SubjectCode;
+                        if (data.NewsEntity.Radar && data.NewsEntity.Radar.SubjectCode && data.NewsEntity.Radar.SubjectCode != 'ALLNEWS') {
+                            querystring += " AND ns:" + data.NewsEntity.Radar.SubjectCode;
+                        }
+
+                        var url = "headlines.html?querystring=" + escape(querystring);
+                        var windowName = "radar90Headlines";
+                        window.open(url, windowName, "scrollbars=yes,height=500,width=500").focus();
                     }
-
-                    var url = "headlines.html?querystring=" + escape(querystring);
-                    var windowName = "radar90Headlines";
-                    window.open(url, windowName, "scrollbars=yes,height=500,width=500").focus();
-                }
-            },
-            data: data.ParentNewsEntities
-        }).done(function () {
-            $('#loading').fadeOut('fast', function () {
-                $('#newsMatrixContainer').fadeIn();
+                },
+                data: data.ParentNewsEntities
+            }).done(function () {
+                $('#loading').fadeOut('fast', function () {
+                    $('#newsMatrixContainer').fadeIn();
+                });
             });
-        });
+        }
     });
 });

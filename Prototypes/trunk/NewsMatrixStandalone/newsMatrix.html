@@ -47,7 +47,13 @@
         <div class="container-fluid">
             <div class="row-fluid">
                 <p class="edition span6">
-                    News Matrix
+                    News Matrix 
+                    <button id="customize" class="btn btn-mini" title="Customize Companies">
+                        <i class="icon-cog"></i>
+                    </button>
+                    <button id="undock" class="btn btn-mini" title="Undock to a new window">
+                        <i class="icon-share"></i>
+                    </button>
                 </p>
                 <p class="company span6">Factiva</p>
             </div>
@@ -64,12 +70,6 @@
                     <div>
                         <div id="newsMatrixContainer" class="pull-left"></div>
                         <div class="btn-group pull-right">
-                            <button id="customize" class="btn btn-mini" title="Customize Companies">
-                                <i class="icon-cog"></i>
-                            </button>
-                            <button id="undock" class="btn btn-mini" title="Undock to a new window">
-                                <i class="icon-share"></i>
-                            </button>
                         </div>
                     </div>
                     <div id="noCompanies" class="noCompanies notActive">No Companies.</div>
@@ -79,10 +79,11 @@
                         Enter company name:
                         <input id="autoSuggestSearchInput" type="text" />
                         <a id="djAdd" class="btn btn-small" href="#"><i class="icon-plus"></i>Add</a>
+                        <a id="djSave" class="btn btn-small" href="#"><i class="icon-ok"></i>Save</a>
                     </div>
                     <div id="autoSuggestSearchContainer"></div>
                     <ul id="companyList" class="unstyled"></ul>
-                    <a id="djSave" class="btn btn-small" href="#"><i class="icon-ok"></i>Save</a>
+
                 </div>
 
             </div>
@@ -125,6 +126,7 @@
     <script type="text/javascript" src="./js/jquery.cookie.js"></script>
     <script type="text/javascript" src="http://utilities.factiva.com/handlers/emg.tools.web.widgets.autosuggest.ashx?version=3.0"></script>
     <script type="text/javascript" src="./js/jquery.tooltip.js"></script>
+    <script type="text/javascript" src="./js/jquery.jsonp-2.4.0.min.js"></script>
     <script type="text/javascript" src="./js/NewsMatrix.js"></script>
     <script type="text/javascript" src="./js/widget.js"></script>
 </body>
