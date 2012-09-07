@@ -23,7 +23,7 @@ namespace DowJones.Dash.Components.TopPages
     using System.Web.UI;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 09/07/2012 03:50 PM
+    // Last Generated Timestamp: 09/07/2012 03:55 PM
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Dash.Components.TopPages.TopPages.js", ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Dash.Components.TopPages.TopPagesComponent))]
     [DowJones.Web.StylesheetResourceAttribute(null, ResourceName="DowJones.Dash.Components.TopPages.TopPages.css", ResourceKind=DowJones.Web.ClientResourceKind.Stylesheet, DeclaringType=typeof(DowJones.Dash.Components.TopPages.TopPagesComponent))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.27108")]

@@ -3,24 +3,24 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Website", "Website\Website.csproj", "{91B09179-8BB5-4A39-9D8F-4426A155530D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DowJones.Dash.Components", "Components\DowJones.Dash.Components.csproj", "{973B633A-E26B-4990-BF22-95847CDB1B40}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DowJones.Dash.Components", "DowJones.Dash.Components\DowJones.Dash.Components.csproj", "{973B633A-E26B-4990-BF22-95847CDB1B40}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DowJones.Dash.Components.Models", "DowJones.ExecutiveDashboards.Components.Models\DowJones.Dash.Components.Models.csproj", "{E42D79E9-E80A-46C1-B987-EF45A0830C7E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DowJones.Dash.Components.Models", "DowJones.Dash.Components.Models\DowJones.Dash.Components.Models.csproj", "{E42D79E9-E80A-46C1-B987-EF45A0830C7E}"
 EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccLocalPath0 = .
 		SccLocalPath1 = Website
-		SccLocalPath2 = Components
-		SccLocalPath3 = DowJones.ExecutiveDashboards.Components.Models
+		SccLocalPath2 = DowJones.Dash.Components
+		SccLocalPath3 = DowJones.Dash.Components.Models
 		SccNumberOfProjects = 4
 		SccProjectName1 = Website
-		SccProjectName2 = Components
-		SccProjectName3 = DowJones.ExecutiveDashboards.Components.Models
+		SccProjectName2 = DowJones.Dash.Components
+		SccProjectName3 = DowJones.Dash.Components.Models
 		SccProjectUniqueName1 = Website\\Website.csproj
-		SccProjectUniqueName2 = Components\\DowJones.Dash.Components.csproj
-		SccProjectUniqueName3 = DowJones.ExecutiveDashboards.Components.Models\\DowJones.Dash.Components.Models.csproj
+		SccProjectUniqueName2 = DowJones.Dash.Components\\DowJones.Dash.Components.csproj
+		SccProjectUniqueName3 = DowJones.Dash.Components.Models\\DowJones.Dash.Components.Models.csproj
 		SccTeamFoundationServer = http://sbknwstfs1:8080/tfs/defaultcollection
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
