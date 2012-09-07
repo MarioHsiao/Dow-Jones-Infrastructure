@@ -524,8 +524,8 @@
     <EmbeddedResource Include="Article\Article.js" />
     <EmbeddedResource Include="Discovery\Discovery.js" />
     <EmbeddedResource Include="PortalHeadlineList\ClientTemplates\AddNewContent.htm" />
-    <EmbeddedResource Include="ShareChart\ClientTemplates\error.htm" />
-    <EmbeddedResource Include="ShareChart\ClientTemplates\noData.htm" />
+    <EmbeddedResource Include="PortalHeadlineList\ClientTemplates\Error.htm" />
+    <EmbeddedResource Include="PortalHeadlineList\ClientTemplates\NoData.htm" />
     <EmbeddedResource Include="PortalHeadlineList\ClientTemplates\SuccessHeadline.htm" />
     <EmbeddedResource Include="Quote\ClientTemplates\Error.htm" />
     <EmbeddedResource Include="Quote\ClientTemplates\NoData.htm" />
