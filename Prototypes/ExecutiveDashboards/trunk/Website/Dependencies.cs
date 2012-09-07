@@ -1,4 +1,3 @@
-using DowJones.Assemblers.Session;
 using DowJones.Infrastructure.Common;
 using DowJones.Preferences;
 using DowJones.Security;
@@ -17,6 +16,8 @@ namespace DowJones.Dash.Website
             Bind<IPreferences>().ToMethod(x => new DowJones.Preferences.Preferences("en")).InRequestScope();
             Bind<IPrinciple>().ToMethod(x => new EntitlementsPrinciple(new GetUserAuthorizationsResponse())).InRequestScope();
             Bind<Product>().ToConstant(new GlobalProduct()).InSingletonScope();
+
+            AutoBind<DataSources.IDataSource>(null, x => x.InSingletonScope());
         }
     }
 }

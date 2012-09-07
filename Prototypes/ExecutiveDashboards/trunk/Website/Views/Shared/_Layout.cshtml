@@ -1,28 +1,28 @@
-﻿<!DOCTYPE html>
+﻿@using System.Web.Optimization
+<!DOCTYPE html>
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>DASH: Executive Dashboard</title>
-    @(DJ.ScriptRegistry()
-          .Include("~/scripts/bootstrap.js")
-          .RenderHead())
 
     @(DJ.StylesheetRegistry()
         .Include("~/content/bootstrap.css")
         .Include("~/content/bootstrap-responsive.css")
         .RenderHead())
+    @DJ.ScriptRegistry().RenderHead()
+    @Scripts.Render("~/bundles/core")
 </head>
 <body>
 
-    <div class="container">
+<div class="container">
 
-        @RenderBody()
+    @RenderBody()
         
-        <hr/>
-        <footer>&copy; @DateTime.Now.Year Dow Jones</footer>
-    </div>
+    <hr/>
+    <footer>&copy; @DateTime.Now.Year Dow Jones</footer>
+</div>
 
-    @DJ.ScriptRegistry().Render()
-    @DJ.StylesheetRegistry().Render()
+@DJ.ScriptRegistry().Render()
+@DJ.StylesheetRegistry().Render()
 </body>
 </html>
