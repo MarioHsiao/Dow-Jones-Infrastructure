@@ -245,6 +245,16 @@
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Components\DowJones.Dash.Components.csproj">
+      <Project>{973b633a-e26b-4990-bf22-95847cdb1b40}</Project>
+      <Name>DowJones.Dash.Components</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DowJones.ExecutiveDashboards.Components.Models\DowJones.Dash.Components.Models.csproj">
+      <Project>{e42d79e9-e80a-46c1-b987-ef45a0830c7e}</Project>
+      <Name>DowJones.Dash.Components.Models</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
