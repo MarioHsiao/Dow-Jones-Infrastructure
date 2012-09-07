@@ -2,8 +2,9 @@
     ViewBag.Title = "Home Page";
 }
 
-<section class="dashboard">
+<section id="dashboard" class="row-fluid">
 </section>
+
 
 <script src="@Url.Content("~/signalr/hubs")" type="text/javascript"></script>
 <script type="text/javascript">
@@ -14,18 +15,18 @@
     }
 
     function initializeDashboard() {
-        var dashboard = $('.dashboard');
+        var dashboard = $('#dashboard');
 
-        var clockModule = dashboard.append('<div class=module><h2>Clock</h2><p class="time" /></div>');
+        var clockModule = dashboard.append('<div class="small module"><h2>Clock</h2><p class="time" /></div>');
         var currentTime = $('.time', clockModule);
 
-        var currentUsersModule = dashboard.append('<div class=module><h2>Current Users</h2><p>Desktop: <span class="desktop" /></p><p>Mobile: <span class="mobile" /></p></div>');
+        var currentUsersModule = dashboard.append('<div class="medium module"><h2>Current Users</h2><p>Desktop: <span class="desktop" /></p><p>Mobile: <span class="mobile" /></p></div>');
         var desktopUserCount = $('.desktop', currentUsersModule);
         var mobileUserCount = $('.mobile', currentUsersModule);
 
         function dataReceived(type, data) {
-            if(type == 'Clock') {
-                currentTime.text(data.Time);
+            if (type == 'Clock') {
+                currentTime.text(new Date(data.Time).toTimeString());
             }
             
             if(type == 'CurrentUserStats') {
@@ -36,5 +37,18 @@
 
         $.connection.dashboard.dataReceived = dataReceived;
         $.connection.hub.start();
+
+        $('.small.module').addClass('span2');
+        $('.medium.module').addClass('span4');
+        $('.large.module').addClass('span6');
+        $('.x-large.module').addClass('span8');
+        
+        DJ.$dj.require(['https://raw.github.com/desandro/isotope/master/jquery.isotope.min.js'], function () {
+            DJ.$dj.loadStylesheet('https://raw.github.com/desandro/isotope/master/css/style.css');
+            dashboard.isotope({
+                itemSelector: '.module',
+                layoutMode: 'fitRows'
+            });
+        });
     }
 </script>
