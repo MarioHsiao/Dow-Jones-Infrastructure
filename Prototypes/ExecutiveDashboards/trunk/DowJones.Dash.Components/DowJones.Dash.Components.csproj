@@ -103,7 +103,7 @@
     <EmbeddedResource Include="TopPages\TopPages.js" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DowJones.ExecutiveDashboards.Components.Models\DowJones.Dash.Components.Models.csproj">
+    <ProjectReference Include="..\DowJones.Dash.Components.Models\DowJones.Dash.Components.Models.csproj">
       <Project>{e42d79e9-e80a-46c1-b987-ef45a0830c7e}</Project>
       <Name>DowJones.Dash.Components.Models</Name>
     </ProjectReference>
