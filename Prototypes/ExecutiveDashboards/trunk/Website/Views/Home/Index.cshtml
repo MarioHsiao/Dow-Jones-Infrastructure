@@ -1,48 +1,56 @@
-﻿@{
+@{
     ViewBag.Title = "Home Page";
 }
 
-<section id="dashboard" class="row-fluid">
+<style>
+    .realtime-news {
+        list-style: none;
+    }
 
-    <div id="clock" class="small module" data-type="Clock"></div>
+    .time-stamp {
+        display: inline-block;
+        vertical-align: top;
+        text-align: right;
+        width: 55px;
+        margin-right: 25px;
+        color: #777;
+        font-weight: bold;
+    }
 
-    <div id="current-users" class="medium module" data-type="CurrentUserStats"></div>
+    .headline-text {
+        color: #666;
+        font-weight: normal;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+        white-space: nowrap;
+        width: 79%;
+        display: inline-block;
+        vertical-align: top;
+        text-align: left;
+    }
 
-    <div id="top-pages" class="large module" data-type="TopPages"></div>
-
+    .article-view-trigger ellipsis {
+        display: block;
+        height: 100%;
+        width: 100%;
+        text-decoration: none;
+        padding-top: 10px;
+    }
+</style>
+<section class="dashboard">
+    <div class="row">
+        <div class="module topPagesModule span6">
+            <h2>Top Pages</h2>
+            <div id="topPagesContainer">Initializing Top Pages...</div>
+        </div>
+    </div>
 </section>
 
-
-    <script id="clock-template" type="text/x-template">
-        <h2>Clock</h2>
-        <p><%= new Date(Time).toTimeString() %></p>
-    </script>
-    
-    <script id="current-users-template" type="text/x-template">
-        <h2>Current Users</h2>
-        <p>Desktop: <%= numberWithCommas(DesktopUserCount) %></p>
-        <p>Mobile: <%= numberWithCommas(MobileUserCount) %></p>
-    </script>
-    
-<script id="top-pages-template" type="text/x-template">
-        <% var pages = Result.resultSet.headlines; %>
-        <h2>Top Pages</h2>
-        <ul class="unstyled">
-            <% for(var i = 0; i <= pages.length; i += 1) { 
-                var page = pages[i];
-                if(!page) continue;
-            %>
-            <li>
-                <span class="muted">[<%= numberWithCommas(page.modificationTimeDescriptor) %>]</span>
-                <a href="<%= page.headlineUrl %>" target="_blank"><%= page.title %></a>
-            </li>
-            <% } %>
-        </ul>
-    </script>
-
-
-
 <script src="@Url.Content("~/signalr/hubs")" type="text/javascript"></script>
+
+<script src="http://mybox.dev.us.factiva.com/oldshowcase/common.js" type="text/javascript"></script>
+
 <script type="text/javascript">
     @DJ.ScriptRegistry().OnDocumentReady("initializeDashboard();");
 
@@ -50,33 +58,60 @@
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
 
-    var templates = window['templates'] = {};
-    $(function () {
-        $('[type="text/x-template"]').each(function() {
-            templates[this.id] = _.template($(this).html());
-        });
-    });
-
-    // Temp "shim" to make jQuery elements act like DJ components
-    $.fn.setData = function (data) {
-        var template = templates[this.attr('id') + '-template'];
-        this.html(template(data)).append($('<span class="last-update muted" />').text('Last Updated: ' + new Date().toLocaleTimeString()));
-    };
-
     function initializeDashboard() {
-        $.connection.dashboard.dataReceived = function (type, data) {
-            try {
-                var module = $('.module[data-type=' + type + ']');
-                module.setData(data);
-            } catch (e) {
-                DJ.$dj.error(e);
-            } 
+        var dashboard = $('.dashboard');
+
+        var clockModule = dashboard.append('<div class=module><h2>Clock</h2><p class="time" /></div>');
+        var currentTime = $('.time', clockModule);
+
+        var currentUsersModule = dashboard.append('<div class=module><h2>Current Users</h2><p>Desktop: <span class="desktop" /></p><p>Mobile: <span class="mobile" /></p></div>');
+        var desktopUserCount = $('.desktop', currentUsersModule);
+        var mobileUserCount = $('.mobile', currentUsersModule);
+
+        function dataReceived(type, data) {
+            if(type == 'Clock') {
+                currentTime.text(data.Time);
+            }
+            
+            if(type == 'CurrentUserStats') {
+                desktopUserCount.text(numberWithCommas(data.DesktopUserCount));
+                mobileUserCount.text(numberWithCommas(data.MobileUserCount));
+            }
         };
+
+        $.connection.dashboard.dataReceived = dataReceived;
         $.connection.hub.start();
 
-        $('.small.module').addClass('span2');
-        $('.medium.module').addClass('span4');
-        $('.large.module').addClass('span6');
-        $('.x-large.module').addClass('span8');
+        // temp workaround
+        setTimeout(initializeTopPages, 100);
+    }
+
+    function initializeTopPages(){
+        var mapToHeadlineData = function(chartBeatData) {
+            var headlines = [];
+            for(var i = 0, len = chartBeatData.length; i < len; i++) {
+                var chartBeat = chartBeatData[i];
+                headlines.push({title: chartBeat.i, modificationTimeDescriptor: chartBeat.visitors, headlineUrl: chartBeat.path});
+            }
+            return {
+                resultSet : {
+                    count : { value: headlines.length},
+                    headlines: headlines
+                }
+            };
+            
+        };
+        $.getJSON('http://api.chartbeat.com/toppages/?host=online.wsj.com&limit=250&apikey=9afde3c7a533572878d27e80cf001244', function(data){
+            DJ.add('PortalHeadlineList', {
+                container: 'topPagesContainer',
+                options : {
+                    layout: 2
+                },
+                data: mapToHeadlineData(data),
+                eventHandlers: {
+                    'headlineClick.dj.PortalHeadlineList' :function (item) {window.open('http://' + item.headline.headlineUrl)}
+                }
+            });
+        })
     }
 </script>
