@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>DASH: Executive Dashboard</title>
+    @(DJ.ScriptRegistry()
+          .Include("~/scripts/bootstrap.js")
+          .RenderHead())
+
+    @(DJ.StylesheetRegistry()
+        .Include("~/content/bootstrap.css")
+        .Include("~/content/bootstrap-responsive.css")
+        .RenderHead())
+</head>
+<body>
+
+    <div class="container">
+
+        @RenderBody()
+        
+        <hr/>
+        <footer>&copy; @DateTime.Now.Year Dow Jones</footer>
+    </div>
+
+    @DJ.ScriptRegistry().Render()
+    @DJ.StylesheetRegistry().Render()
+</body>
+</html>

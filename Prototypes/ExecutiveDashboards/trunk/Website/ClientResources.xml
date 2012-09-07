@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClientResourceRegistry>
+
+    <resources>
+        <resource name="~/scripts/bootstrap.js" level="Core" />
+    </resources>
+
+    <aliases>
+      <mapping alias="bootstrap" name="~/scripts/bootstrap.js" />
+    </aliases>
+
+</ClientResourceRegistry>
