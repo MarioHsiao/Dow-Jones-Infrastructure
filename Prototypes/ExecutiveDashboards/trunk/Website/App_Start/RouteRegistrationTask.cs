@@ -2,7 +2,7 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using DowJones.Infrastructure;
 
-namespace DowJones.Dash.Website.BootstrapperTasks
+namespace DowJones.Dash.Website.App_Start
 {
     public class RouteRegistrationTask : IBootstrapperTask
     {

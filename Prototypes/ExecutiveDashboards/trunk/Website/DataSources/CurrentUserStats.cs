@@ -21,7 +21,7 @@ namespace DowJones.Dash.Website.DataSources
             Task.Factory.StartNew(Poll);
         }
 
-        private void Poll()
+        protected internal void Poll()
         {
             while (true)
             {

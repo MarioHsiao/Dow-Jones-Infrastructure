@@ -1,15 +1,16 @@
 using System.Collections.Generic;
+using DowJones.Dash.Website.DataSources;
 using DowJones.Dash.Website.Hubs;
 using DowJones.Infrastructure;
 using SignalR;
 
-namespace DowJones.Dash.Website.DataSources
+namespace DowJones.Dash.Website.App_Start
 {
-    public class DataSourceInitializer : IBootstrapperTask
+    public class DataSourcesInitializationTask : IBootstrapperTask
     {
         private readonly IEnumerable<IDataSource> _dataSources;
 
-        public DataSourceInitializer(IEnumerable<IDataSource> dataSources)
+        public DataSourcesInitializationTask(IEnumerable<IDataSource> dataSources)
         {
             _dataSources = dataSources;
         }

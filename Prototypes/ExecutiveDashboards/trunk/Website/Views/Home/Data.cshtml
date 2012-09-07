@@ -24,7 +24,7 @@
         <p>Mobile: <%= numberWithCommas(MobileUserCount) %></p>
     </script>
     
-    <script id="top-pages-template" type="text/x-template">
+<script id="top-pages-template" type="text/x-template">
         <% var pages = Result.resultSet.headlines; %>
         <h2>Top Pages</h2>
         <ul>
@@ -75,5 +75,13 @@
         $('.medium.module').addClass('span4');
         $('.large.module').addClass('span6');
         $('.x-large.module').addClass('span8');
+/*
+        DJ.$dj.require(['https://raw.github.com/desandro/isotope/master/jquery.isotope.min.js'], function () {
+            DJ.$dj.loadStylesheet('https://raw.github.com/desandro/isotope/master/css/style.css');
+            $('#dashboard').isotope({
+                itemSelector: '.module',
+                layoutMode: 'fitRows'
+            });
+        });*/
     }
 </script>

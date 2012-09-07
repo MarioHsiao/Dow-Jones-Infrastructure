@@ -1,7 +1,7 @@
 ﻿using System.Web.Optimization;
 using DowJones.Infrastructure;
 
-namespace DowJones.Dash.Website.BootstrapperTasks
+namespace DowJones.Dash.Website.App_Start
 {
     public class BundlesConfigurationTask : IBootstrapperTask
     {

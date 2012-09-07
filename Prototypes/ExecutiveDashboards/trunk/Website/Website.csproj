@@ -182,14 +182,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BootstrapperTasks\BundlesConfig.cs" />
-    <Compile Include="BootstrapperTasks\GlobalFilterRegistrationTask.cs" />
-    <Compile Include="BootstrapperTasks\RouteRegistrationTask.cs" />
+    <Compile Include="App_Start\BundlesConfig.cs" />
+    <Compile Include="App_Start\GlobalFilterRegistrationTask.cs" />
+    <Compile Include="App_Start\RouteRegistrationTask.cs" />
     <Compile Include="DataSources\Clock.cs" />
     <Compile Include="DataSources\CurrentUserStats.cs" />
-    <Compile Include="DataSources\DataSourceInitializer.cs" />
-    <Compile Include="DataSources\EventHandlerExtensions.cs" />
-    <Compile Include="DataSources\IDataSource.cs" />
+    <Compile Include="App_Start\DataSourcesInitializationTask.cs" />
+    <Compile Include="DataSources\DataSource.cs" />
+    <Compile Include="DataSources\TopPages.cs" />
     <Compile Include="Dependencies.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -222,6 +222,7 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\Shared\Validate.cshtml" />
+    <Content Include="Views\Home\Data.cshtml" />
     <None Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
