@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using DowJones.Dash.Website.DataSources;
 using DowJones.Dash.Website.Hubs;
 using DowJones.Infrastructure;
-using SignalR;
 
 namespace DowJones.Dash.Website.App_Start
 {
@@ -19,14 +18,8 @@ namespace DowJones.Dash.Website.App_Start
         {
             foreach (var dataSource in _dataSources)
             {
-                dataSource.DataReceived += DataReceived;
+                dataSource.DataReceived += Dashboard.OnDashboardDataReceived;
             }
-        }
-
-        private static void DataReceived(object sender, DataReceivedEvent args)
-        {
-            var dashboardHub = GlobalHost.ConnectionManager.GetHubContext<Dashboard>();
-            dashboardHub.Clients.dataReceived(sender.GetType().Name, args.Data);
         }
     }
 }

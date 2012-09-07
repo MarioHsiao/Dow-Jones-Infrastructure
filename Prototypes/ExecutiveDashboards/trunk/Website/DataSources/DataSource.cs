@@ -2,11 +2,11 @@ using System;
 
 namespace DowJones.Dash.Website.DataSources
 {
-    public class DataReceivedEvent : EventArgs
+    public class DataReceivedEventArgs : EventArgs
     {
         public object Data { get; private set; }
 
-        public DataReceivedEvent(object data)
+        public DataReceivedEventArgs(object data)
         {
             Data = data;
         }
@@ -14,12 +14,12 @@ namespace DowJones.Dash.Website.DataSources
 
     public interface IDataSource
     {
-        event EventHandler<DataReceivedEvent> DataReceived;
+        event EventHandler<DataReceivedEventArgs> DataReceived;
     }
 
     public abstract class DataSource : IDataSource
     {
-        public event EventHandler<DataReceivedEvent> DataReceived;
+        public event EventHandler<DataReceivedEventArgs> DataReceived;
 
         protected bool Enabled
         {
@@ -29,7 +29,7 @@ namespace DowJones.Dash.Website.DataSources
         protected void OnDataReceived(object data)
         {
             if(DataReceived != null && data != null)
-                DataReceived(this, new DataReceivedEvent(data));
+                DataReceived(this, new DataReceivedEventArgs(data));
         }
     }
 }

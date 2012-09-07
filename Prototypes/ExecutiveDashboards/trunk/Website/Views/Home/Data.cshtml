@@ -53,7 +53,7 @@
     // Temp "shim" to make jQuery elements act like DJ components
     $.fn.setData = function (data) {
         var template = templates[this.attr('id') + '-template'];
-        this.html(template(data));
+        this.html(template(data)).append($('<span class="muted"/>').text('Last Updated: ' + new Date().toLocaleTimeString()));
     };
 
     function initializeDashboard() {
