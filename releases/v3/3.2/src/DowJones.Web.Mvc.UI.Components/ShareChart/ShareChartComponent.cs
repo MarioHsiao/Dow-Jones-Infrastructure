@@ -25,13 +25,13 @@ namespace DowJones.Web.Mvc.UI.Components.ShareChart
     using System.Web.UI;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 09/07/2012 11:44 AM
+    // Last Generated Timestamp: 09/07/2012 05:18 PM
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.ShareChart.ShareChart.js", ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.ShareChart.ShareChartComponent))]
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.ShareChart.ClientTemplates.success.html", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="success", DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.ShareChart.ShareChartComponent))]
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.ShareChart.ClientTemplates.error.html", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="error", DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.ShareChart.ShareChartComponent))]
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.ShareChart.ClientTemplates.noData.html", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="noData", DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.ShareChart.ShareChartComponent))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.27108")]
-    public class ShareChartComponent : DowJones.Web.Mvc.UI.ViewComponentBase<DowJones.Web.Mvc.UI.Components.ShareChart>
+    public class ShareChartComponent : DowJones.Web.Mvc.UI.ViewComponentBase<DowJones.Web.Mvc.UI.Components.ShareChart.ShareChartModel>
     {
 #line hidden
 
