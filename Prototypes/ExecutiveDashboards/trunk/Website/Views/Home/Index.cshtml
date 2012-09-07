@@ -27,7 +27,7 @@
     <script id="top-pages-template" type="text/x-template">
         <% var pages = Result.resultSet.headlines; %>
         <h2>Top Pages</h2>
-        <ul>
+        <ul class="unstyled">
             <% for(var i = 0; i <= pages.length; i += 1) { 
                 var page = pages[i];
                 if(!page) continue;
@@ -57,7 +57,7 @@
     // Temp "shim" to make jQuery elements act like DJ components
     $.fn.setData = function (data) {
         var template = templates[this.attr('id') + '-template'];
-        this.html(template(data));
+        this.html(template(data)).append($('<span class="last-update muted" />').text('Last Updated: ' + new Date().toLocaleTimeString()));
     };
 
     function initializeDashboard() {
