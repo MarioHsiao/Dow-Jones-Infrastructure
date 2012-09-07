@@ -1,7 +1,14 @@
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
+using System.Linq;
+using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 using DowJones.Ajax.PortalHeadlineList;
 using DowJones.Web.Mvc.UI.Components.PortalHeadlineList;
+using Newtonsoft.Json;
 
 namespace DowJones.Dash.Website.DataSources
 {
@@ -18,22 +25,36 @@ namespace DowJones.Dash.Website.DataSources
             {
                 var data = GetData();
                 OnDataReceived(data);
-                Thread.Sleep(1000);
+                Thread.Sleep(2000);
             }
         }
 
         private object GetData()
         {
-            PortalHeadlineInfo[] headlines = new[]
+            try
+            {
+                var request = WebRequest.Create("http://api.chartbeat.com/toppages/?host=online.wsj.com&limit=5&apikey=9afde3c7a533572878d27e80cf001244");
+                using(var response = request.GetResponse())
+                using(var stream = new StreamReader(response.GetResponseStream()))
                 {
-                    new PortalHeadlineInfo { Title = "Top Page 1", HeadlineUrl = "http://www.google.com", ModificationTimeDescriptor = "55555" },
-                    new PortalHeadlineInfo { Title = "Top Page 2", HeadlineUrl = "http://www.google.com", ModificationTimeDescriptor = "44444" },
-                    new PortalHeadlineInfo { Title = "Top Page 3", HeadlineUrl = "http://www.google.com", ModificationTimeDescriptor = "33333" },
-                    new PortalHeadlineInfo { Title = "Top Page 4", HeadlineUrl = "http://www.google.com", ModificationTimeDescriptor = "22222" },
-                    new PortalHeadlineInfo { Title = "Top Page 5", HeadlineUrl = "http://www.google.com", ModificationTimeDescriptor = "11111" },
-                };
+                    var source = JsonConvert.DeserializeObject<IEnumerable<dynamic>>(stream.ReadToEnd());
+                    var pages =
+                        from page in source
+                        select new PortalHeadlineInfo
+                            {
+                                Title = page.i,
+                                HeadlineUrl = "http://" + page.path,
+                                ModificationTimeDescriptor = page.visitors,
+                            };
 
-            return new PortalHeadlineListModel { Result = new PortalHeadlineListDataResult(new PortalHeadlineListResultSet(headlines)) };
+                    return new PortalHeadlineListModel { Result = new PortalHeadlineListDataResult(new PortalHeadlineListResultSet(pages)) };
+                }
+            }
+            catch (Exception ex)
+            {
+                Trace.TraceError("TopPages request failed: {0}", ex);
+                return null;
+            }
         }
     }
 }
