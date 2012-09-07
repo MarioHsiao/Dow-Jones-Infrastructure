@@ -1,5 +1,5 @@
 ﻿<ul class="realtime-news">
-    <%  var x, title, headlines = self.headlines, options = self.options;
+    <%  var x, title, headlines = self, options = this.options;
         for (var i = 0, len = Math.min(headlines.length, options.maxNumHeadlinesToShow); i < len; i++) { 
             x = headlines[i]; 
             title = (options.showTruncatedTitle && $.trim(x.truncatedTitle)) || x.title;
