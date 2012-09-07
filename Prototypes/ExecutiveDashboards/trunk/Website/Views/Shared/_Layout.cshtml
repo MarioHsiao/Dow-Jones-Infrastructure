@@ -15,37 +15,28 @@
 
     <!-- typekit -->
     <script type="text/javascript" src="//use.typekit.net/iqn2tar.js"></script>
-    <style type="text/css">
-        .tk-franklin-gothic-urw {
-            font-family: "franklin-gothic-urw",sans-serif;
-        }
-
-        .logo, .tk-kulturista-web {
-            font-family: "kulturista-web",serif;
-        }
-
-        .mediaViewer h3, .pageContent h3, .pagination, .tile .title, .tk-nimbus-sans {
-            font-family: "nimbus-sans",sans-serif;
-        }
-    </style>
     <link rel="stylesheet" href="http://use.typekit.net/c/40b737/kulturista-web:n6:n4,nimbus-sans:n3:n4,franklin-gothic-urw:n4:n7:n5,nimbus-sans:n7.S0Z:F:2,S0f:F:2,SKm:F:2,SKp:F:2,VYn:F:2,VYs:F:2,VyZ:F:2,Wlm:F:2/d?3bb2a6e53c9684ffdc9a9bf6135b2a629dfd401408a09a37c12b6131cd262a196f4b8dc14fbf1e0162d0f6a4820fe031c3aa67cf641364e960f71b2199c20bd62cf4d3197f4d9ffd0b7aeed5eae92375f7179ac3d727d79916cdcd237bf2607d73a9602ca536fe07201553d09b">
     <script type="text/javascript">try { Typekit.load(); } catch (e) { }</script>
     <!-- !typekit -->
+
+    @RenderSection("styles", false)
 </head>
 <body>
     <div class="headerNav">
-        
-            <div class="headBar"><div class="container">
+        <div class="headBar">
+            <div class="container">
                 <div class="brand">
                     <a href="#" class="logo">Dash</a>
                     <h4 class="tagline">Executive Dashboards</h4>
                 </div>
             </div>
-            <div class="trendTabsContainer"><div class="container">
-                <ul class="trendTabs clearFix">
-                    <li class="defaultTab"><a href="#">Trending</a></li>
-                </ul>
-            </div></div>
+            <div class="trendTabsContainer">
+                <div class="container">
+                    <ul class="trendTabs clearFix">
+                        <li class="defaultTab"><a href="#">Trending</a></li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -54,18 +45,17 @@
             @RenderBody()
         </div>
     </div>
+
     <footer class="">
         <div class="container">
             <h5>Welcome to the private beta of Executive Dashboards!</h5>
             <div class="copyright">
-                ©2012 Factiva, Inc. All rights reserved. <a href="#">Privacy Policy</a>
+                ©@DateTime.Now.Year Factiva, Inc. All rights reserved. <a href="#">Privacy Policy</a>
             </div>
         </div>
     </footer>
-
-
-
-    @DJ.ScriptRegistry().Render()
-    @DJ.StylesheetRegistry().Render()
 </body>
+@DJ.ScriptRegistry().Render()
+@DJ.StylesheetRegistry().Render()
+@RenderSection("scripts", false)
 </html>

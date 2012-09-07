@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -190,7 +190,6 @@
     <Compile Include="App_Start\DataSourcesInitializationTask.cs" />
     <Compile Include="DataSources\DataSource.cs" />
     <Compile Include="DataSources\TopPages.cs" />
-    <Compile Include="DataSources\IDataSource.cs" />
     <Compile Include="Dependencies.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -215,6 +214,9 @@
     <Content Include="Content\layout.css">
       <DependentUpon>layout.scss</DependentUpon>
     </Content>
+    <Content Include="Content\topPages.css">
+      <DependentUpon>topPages.scss</DependentUpon>
+    </Content>
     <Content Include="Global.asax" />
     <Compile Include="Controllers\HomeController.cs" />
     <Content Include="Scripts\bootstrap.js" />
@@ -232,6 +234,7 @@
     <Content Include="Views\Shared\Validate.cshtml" />
     <Content Include="Views\Home\Data.cshtml" />
     <Content Include="Content\layout.scss" />
+    <Content Include="Content\topPages.scss" />
     <None Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />

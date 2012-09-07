@@ -1,0 +1,31 @@
+.realtime-news {
+  list-style: none; }
+
+.time-stamp {
+  display: inline-block;
+  vertical-align: top;
+  text-align: right;
+  width: 55px;
+  margin-right: 25px;
+  color: #777;
+  font-weight: bold; }
+
+.headline-text {
+  color: #666;
+  font-weight: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+  white-space: nowrap;
+  width: 79%;
+  display: inline-block;
+  vertical-align: top;
+  text-align: left; }
+
+.article-view-trigger ellipsis {
+  display: block;
+  height: 100%;
+  width: 100%;
+  text-decoration: none;
+  padding-top: 10px; }
+
