@@ -884,5 +884,11 @@
   <ItemGroup>
     <EmbeddedResource Include="ShareChart\ClientTemplates\success.html" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ShareChart\ClientTemplates\noData.htm" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ShareChart\ClientTemplates\error.htm" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
