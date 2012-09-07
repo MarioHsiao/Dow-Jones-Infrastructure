@@ -84,7 +84,10 @@ namespace DowJones.Dash.Website.DataSources
                     };
 
             return new PortalHeadlineListModel
-                {Result = new PortalHeadlineListDataResult(new PortalHeadlineListResultSet(pages))};
+                {
+					Layout = PortalHeadlineListLayout.TimelineLayout,
+					Result = new PortalHeadlineListDataResult(new PortalHeadlineListResultSet(pages))
+				};
         }
     }
 }
