@@ -186,7 +186,6 @@
     <Compile Include="App_Start\GlobalFilterRegistrationTask.cs" />
     <Compile Include="App_Start\RouteRegistrationTask.cs" />
     <Compile Include="DataSources\ChartBeatDataSource.cs" />
-    <Compile Include="DataSources\CurrentUserStats.cs" />
     <Compile Include="App_Start\DataSourcesInitializationTask.cs" />
     <Compile Include="DataSources\DataSource.cs" />
     <Compile Include="DataSources\QuickStats.cs" />

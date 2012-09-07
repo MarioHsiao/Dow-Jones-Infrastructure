@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Demo Dashboard";
 }
 
 <section id="dashboard" class="row-fluid">
@@ -10,11 +10,32 @@
 
 </section>
 
+<script src="@Url.Content("~/signalr/hubs")" type="text/javascript"></script>
+<script type="text/javascript">
+    @DJ.ScriptRegistry().OnDocumentReady("initializeDashboard();");
+
+    function initializeDashboard() {
+        $.connection.dashboard.dataReceived = function (type, data) {
+            DJ.publish('dataReceived.' + type, data);
+        };
+        
+        $.connection.hub.start();
+
+        $('.small.module').addClass('span2');
+        $('.medium.module').addClass('span4');
+        $('.large.module').addClass('span6');
+        $('.x-large.module').addClass('span8');
+    }
+</script>
+
+
+
+<!-- Fake Component initialization -->
 
 <script id="current-users-template" type="text/x-template">
     <h2>Current Users</h2>
-    <p>Desktop: <%= numberWithCommas(DesktopUserCount) %></p>
-    <p>Mobile: <%= numberWithCommas(MobileUserCount) %></p>
+    <p>Desktop: <%= numberWithCommas(desktopCount) %> (%<%= desktopPercent %>)</p>
+    <p>Mobile: <%= numberWithCommas(mobileCount) %> (%<%= mobilePercent %>) </p>
 </script>
     
 <script id="top-pages-template" type="text/x-template">
@@ -33,22 +54,10 @@
     </ul>
 </script>
 
-
-
-<script src="@Url.Content("~/signalr/hubs")" type="text/javascript"></script>
 <script type="text/javascript">
-    @DJ.ScriptRegistry().OnDocumentReady("initializeDashboard();");
-
     function numberWithCommas(x) {
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
-
-    var templates = window['templates'] = {};
-    $(function () {
-        $('[type="text/x-template"]').each(function() {
-            templates[this.id] = _.template($(this).html());
-        });
-    });
 
     // Temp "shim" to make jQuery elements act like DJ components
     $.fn.setData = function (data) {
@@ -56,21 +65,26 @@
         this.html(template(data)).append($('<span class="muted"/>').text('Last Updated: ' + new Date().toLocaleTimeString()));
     };
 
-    function initializeDashboard() {
-        $.connection.dashboard.dataReceived = function (type, data) {
-            console.log('dataReceived:', type, data);
-            try {
-                var module = $('.module[data-type=' + type + ']');
-                module.setData(data);
-            } catch (e) {
-                DJ.$dj.error(e);
-            } 
-        };
-        $.connection.hub.start();
+    var templates = window['templates'] = {};
+    $(function () {
+        $('[type="text/x-template"]').each(function () {
+            templates[this.id] = _.template($(this).html());
+        });
+    });
 
-        $('.small.module').addClass('span2');
-        $('.medium.module').addClass('span4');
-        $('.large.module').addClass('span6');
-        $('.x-large.module').addClass('span8');
-    }
+
+    $(function() {
+        DJ.subscribe('dataReceived.TopPages', function (data) { $('#top-pages').setData(data); });
+        DJ.subscribe('dataReceived.QuickStats', function (data) {
+            var userStats = {
+                desktopCount: data.platform.d, 
+                desktopPercent: data.platform.d / data.visits,
+
+                mobileCount: data.platform.m,
+                mobilePercent: data.platform.m / data.visits,
+            };
+            
+            $('#current-users').setData(userStats);
+        });
+    });
 </script>
