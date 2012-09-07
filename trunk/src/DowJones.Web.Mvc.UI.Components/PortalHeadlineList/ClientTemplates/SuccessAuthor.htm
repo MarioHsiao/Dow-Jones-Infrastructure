@@ -1,6 +1,6 @@
 ﻿<ul class="author-list">
     <%  var showSource, showPublicationDateTime, showAuthor, title, x, multimediaMode,
-        headlines = self.headlines, options = self.options;
+        headlines = self, options = this.options;
         for (var i = 0, len = Math.min(headlines.length, options.maxNumHeadlinesToShow); i < len; i++) { 
             x = headlines[i]; 
             showSource = options.showSource && x.sourceCode && x.sourceDescriptor;
