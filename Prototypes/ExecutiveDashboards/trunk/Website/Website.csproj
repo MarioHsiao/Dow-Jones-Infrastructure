@@ -185,10 +185,11 @@
     <Compile Include="App_Start\BundlesConfig.cs" />
     <Compile Include="App_Start\GlobalFilterRegistrationTask.cs" />
     <Compile Include="App_Start\RouteRegistrationTask.cs" />
-    <Compile Include="DataSources\Clock.cs" />
+    <Compile Include="DataSources\ChartBeatDataSource.cs" />
     <Compile Include="DataSources\CurrentUserStats.cs" />
     <Compile Include="App_Start\DataSourcesInitializationTask.cs" />
     <Compile Include="DataSources\DataSource.cs" />
+    <Compile Include="DataSources\QuickStats.cs" />
     <Compile Include="DataSources\TopPages.cs" />
     <Compile Include="Dependencies.cs" />
     <Compile Include="Global.asax.cs">

@@ -4,8 +4,6 @@
 
 <section id="dashboard" class="row-fluid">
 
-    <div id="clock" class="small module" data-type="Clock"></div>
-
     <div id="current-users" class="medium module" data-type="CurrentUserStats"></div>
 
     <div id="top-pages" class="medium module" data-type="TopPages"></div>
@@ -13,29 +11,27 @@
 </section>
 
 
-    <script id="clock-template" type="text/x-template">
-        <h2>Clock</h2>
-        <p><%= new Date(Time).toTimeString() %></p>
-    </script>
-    
-    <script id="current-users-template" type="text/x-template">
-        <h2>Current Users</h2>
-        <p>Desktop: <%= numberWithCommas(DesktopUserCount) %></p>
-        <p>Mobile: <%= numberWithCommas(MobileUserCount) %></p>
-    </script>
+<script id="current-users-template" type="text/x-template">
+    <h2>Current Users</h2>
+    <p>Desktop: <%= numberWithCommas(DesktopUserCount) %></p>
+    <p>Mobile: <%= numberWithCommas(MobileUserCount) %></p>
+</script>
     
 <script id="top-pages-template" type="text/x-template">
-        <% var pages = Result.resultSet.headlines; %>
-        <h2>Top Pages</h2>
-        <ul>
-            <% for(var i = 0; i <= pages.length; i += 1) { 
-                var page = pages[i];
-                if(!page) continue;
-            %>
-            <li><%= page.title %></li>
-            <% } %>
-        </ul>
-    </script>
+    <% var pages = Result.resultSet.headlines; %>
+    <h2>Top Pages</h2>
+    <ul>
+        <% for(var i = 0; i <= pages.length; i += 1) { 
+            var page = pages[i];
+            if(!page) continue;
+        %>
+            <li>
+                <span class="muted">[<%= numberWithCommas(page.modificationTimeDescriptor) %>]</span>
+                <a href="<%= page.headlineUrl %>" target="_blank"><%= page.title %></a>
+            </li>
+        <% } %>
+    </ul>
+</script>
 
 
 
@@ -62,6 +58,7 @@
 
     function initializeDashboard() {
         $.connection.dashboard.dataReceived = function (type, data) {
+            console.log('dataReceived:', type, data);
             try {
                 var module = $('.module[data-type=' + type + ']');
                 module.setData(data);
@@ -75,13 +72,5 @@
         $('.medium.module').addClass('span4');
         $('.large.module').addClass('span6');
         $('.x-large.module').addClass('span8');
-/*
-        DJ.$dj.require(['https://raw.github.com/desandro/isotope/master/jquery.isotope.min.js'], function () {
-            DJ.$dj.loadStylesheet('https://raw.github.com/desandro/isotope/master/css/style.css');
-            $('#dashboard').isotope({
-                itemSelector: '.module',
-                layoutMode: 'fitRows'
-            });
-        });*/
     }
 </script>
