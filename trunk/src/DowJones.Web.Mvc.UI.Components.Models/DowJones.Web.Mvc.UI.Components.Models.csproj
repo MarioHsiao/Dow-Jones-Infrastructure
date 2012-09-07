@@ -134,6 +134,7 @@
     <Compile Include="Search\SearchResponseToCompositeHeadlinesModelMapper.cs" />
     <Compile Include="HeadlinePostProcessing\HeadlinePostProcessingModel.cs" />
     <Compile Include="Search\SearchResponseToCompanyProfilesMapper.cs" />
+    <Compile Include="ShareChart\ShareChartModel.cs" />
     <Compile Include="SimpleAlert\Option.cs" />
     <Compile Include="SimpleAlert\SimpleAlertData.cs" />
     <Compile Include="SimpleAlert\SimpleAlertModel.cs" />
