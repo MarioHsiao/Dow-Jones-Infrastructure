@@ -8,7 +8,7 @@
 
     <div id="current-users" class="medium module" data-type="CurrentUserStats"></div>
 
-    <div id="top-pages" class="medium module" data-type="TopPages"></div>
+    <div id="top-pages" class="large module" data-type="TopPages"></div>
 
 </section>
 
@@ -24,7 +24,7 @@
         <p>Mobile: <%= numberWithCommas(MobileUserCount) %></p>
     </script>
     
-    <script id="top-pages-template" type="text/x-template">
+<script id="top-pages-template" type="text/x-template">
         <% var pages = Result.resultSet.headlines; %>
         <h2>Top Pages</h2>
         <ul class="unstyled">
@@ -32,7 +32,10 @@
                 var page = pages[i];
                 if(!page) continue;
             %>
-            <li><%= page.title %></li>
+            <li>
+                <span class="muted">[<%= numberWithCommas(page.modificationTimeDescriptor) %>]</span>
+                <a href="<%= page.headlineUrl %>" target="_blank"><%= page.title %></a>
+            </li>
             <% } %>
         </ul>
     </script>
