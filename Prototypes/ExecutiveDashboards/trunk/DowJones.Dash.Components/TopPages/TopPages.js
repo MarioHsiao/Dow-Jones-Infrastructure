@@ -2,36 +2,60 @@
  * TopPages
  */
 
-    DJ.UI.TopPages = DJ.UI.Component.extend({
+DJ.UI.TopPages = DJ.UI.CompositeComponent.extend({
 
-        init: function (element, meta) {
-            // Call the base constructor
-            this._super(element, $.extend({ name: "TopPages" }, meta));
+    selectors: {
+        portalHeadlineListContainer: '.portalHeadlineListContainer'
+    },
 
-            // TODO: Add custom initialization code
-        },
+    init: function (element, meta) {
+        // Call the base constructor
+        this._super(element, $.extend({ name: "TopPages" }, meta));
 
-        _initializeDelegates: function () {
-            this._delegates = $.extend(this._delegates, {
-                // TODO: Add delegates
-                // e.g.  OnHeadlineClick: $dj.delegate(this, this._onHeadlineClick)
-            });
-        },
+        
+        this._initPortalHeadlines();
+    },
 
-        _initializeElements: function () {
-            // TODO: Get references to child elements
-            // e.g.  this._headlines = this.$element.find('.clear-filters');
-        },
+    _initPortalHeadlines: function () {
+        var self = this;
+        DJ.add('PortalHeadlineList', {
+            container: this._portalHeadlinesContainer[0],
+            options: { layout: 2 }
+        }).done(function (comp) {
+            self.portalHeadlines = comp;
+        });
+    },
 
-        _initializeEventHandlers: function () {
-            // TODO:  Wire up events to delegates
-            // e.g.  this._headlines.click(this._delegates.OnHeadlineClick);
-        },
+    _initializeDelegates: function () {
+        this._delegates = $.extend(this._delegates, {
+            // TODO: Add delegates
+            // e.g.  OnHeadlineClick: $dj.delegate(this, this._onHeadlineClick)
+        });
+    },
+
+    _initializeElements: function () {
+        this.$element.html(this.templates.container());
+        this._portalHeadlinesContainer = this.$element.find(this.selectors.portalHeadlineListContainer);
+    },
+
+    _initializeEventHandlers: function () {
+        var self = this;
+        $dj.subscribe('dataReceived.TopPages', function (data) {
+            if (!self.portalHeadlines) {
+                $dj.error("PortalHeadlinesComponent is not initialized. Refresh the page to try again.");
+                return;
+            }
+
+            self.portalHeadlines._setData(data.Result);
+            
+        });
+
+        this.subscribe('headlineClick.dj.PortalHeadlineList', function (item) {
+            window.open(item.headline.headlineUrl);
+        });
+    },
+});
 
 
-        EOF: null  // Final property placeholder (without a comma) to allow easier moving of functions
-    });
-
-
-    // Declare this class as a jQuery plugin
-    $.plugin('dj_TopPages', DJ.UI.TopPages);
+// Declare this class as a jQuery plugin
+$.plugin('dj_TopPages', DJ.UI.TopPages);

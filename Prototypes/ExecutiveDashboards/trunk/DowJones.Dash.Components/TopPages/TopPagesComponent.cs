@@ -9,7 +9,7 @@
 //------------------------------------------------------------------------------
 
 [assembly: System.Web.UI.WebResourceAttribute("DowJones.Dash.Components.TopPages.TopPages.js", "text/javascript")]
-[assembly: System.Web.UI.WebResourceAttribute("DowJones.Dash.Components.TopPages.TopPages.css", "text/css")]
+[assembly: System.Web.UI.WebResourceAttribute("DowJones.Dash.Components.TopPages.ClientTemplates.container.html", "text/html")]
 
 namespace DowJones.Dash.Components.TopPages
 {
@@ -23,9 +23,9 @@ namespace DowJones.Dash.Components.TopPages
     using System.Web.UI;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 09/07/2012 03:55 PM
+    // Last Generated Timestamp: 09/07/2012 05:07 PM
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Dash.Components.TopPages.TopPages.js", ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Dash.Components.TopPages.TopPagesComponent))]
-    [DowJones.Web.StylesheetResourceAttribute(null, ResourceName="DowJones.Dash.Components.TopPages.TopPages.css", ResourceKind=DowJones.Web.ClientResourceKind.Stylesheet, DeclaringType=typeof(DowJones.Dash.Components.TopPages.TopPagesComponent))]
+    [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Dash.Components.TopPages.ClientTemplates.container.html", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="container", DeclaringType=typeof(DowJones.Dash.Components.TopPages.TopPagesComponent))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.27108")]
     public class TopPagesComponent : DowJones.Web.Mvc.UI.ViewComponentBase<DowJones.Dash.Components.Models.TopPages.TopPagesModel>
     {

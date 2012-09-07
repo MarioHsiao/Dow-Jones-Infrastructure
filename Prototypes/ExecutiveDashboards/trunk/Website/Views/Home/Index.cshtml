@@ -1,82 +1,36 @@
+@using DowJones.Dash.Components.Models.TopPages
 @{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Dash> Executive Dashboard";
 }
 
+@section styles {
+	<link href="~/Content/topPages.css" rel="stylesheet" />
+}
+<section id="dashboard" class="row-fluid">
 
-<section class="dashboard">
-    <div class="row">
-        <div class="module topPagesModule span6">
-            <h2>Top Pages</h2>
-            <div id="topPagesContainer">Initializing Top Pages...</div>
-        </div>
-    </div>
+    <div id="current-users" class="medium module" data-type="CurrentUserStats"></div>
+
+	<div id="top-pages" class="medium module" data-type="TopPages">
+		@DJ.Render(new TopPagesModel())
+	</div>
+
 </section>
 
 <script src="@Url.Content("~/signalr/hubs")" type="text/javascript"></script>
 
-<script src="http://mybox.dev.us.factiva.com/oldshowcase/common.js" type="text/javascript"></script>
-
 <script type="text/javascript">
     @DJ.ScriptRegistry().OnDocumentReady("initializeDashboard();");
 
-    function numberWithCommas(x) {
-        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    }
-
     function initializeDashboard() {
-        var dashboard = $('.dashboard');
-
-        var clockModule = dashboard.append('<div class=module><h2>Clock</h2><p class="time" /></div>');
-        var currentTime = $('.time', clockModule);
-
-        var currentUsersModule = dashboard.append('<div class=module><h2>Current Users</h2><p>Desktop: <span class="desktop" /></p><p>Mobile: <span class="mobile" /></p></div>');
-        var desktopUserCount = $('.desktop', currentUsersModule);
-        var mobileUserCount = $('.mobile', currentUsersModule);
-
-        function dataReceived(type, data) {
-            if(type == 'Clock') {
-                currentTime.text(data.Time);
-            }
-            
-            if(type == 'CurrentUserStats') {
-                desktopUserCount.text(numberWithCommas(data.DesktopUserCount));
-                mobileUserCount.text(numberWithCommas(data.MobileUserCount));
-            }
+        $.connection.dashboard.dataReceived = function (type, data) {
+            DJ.publish('dataReceived.' + type, data);
         };
-
-        $.connection.dashboard.dataReceived = dataReceived;
+        
         $.connection.hub.start();
 
-        // temp workaround
-        setTimeout(initializeTopPages, 100);
-    }
-
-    function initializeTopPages(){
-        var mapToHeadlineData = function(chartBeatData) {
-            var headlines = [];
-            for(var i = 0, len = chartBeatData.length; i < len; i++) {
-                var chartBeat = chartBeatData[i];
-                headlines.push({title: chartBeat.i, modificationTimeDescriptor: chartBeat.visitors, headlineUrl: chartBeat.path});
-            }
-            return {
-                resultSet : {
-                    count : { value: headlines.length},
-                    headlines: headlines
-                }
-            };
-            
-        };
-        $.getJSON('http://api.chartbeat.com/toppages/?host=online.wsj.com&limit=250&apikey=9afde3c7a533572878d27e80cf001244', function(data){
-            DJ.add('PortalHeadlineList', {
-                container: 'topPagesContainer',
-                options : {
-                    layout: 2
-                },
-                data: mapToHeadlineData(data),
-                eventHandlers: {
-                    'headlineClick.dj.PortalHeadlineList' :function (item) {window.open('http://' + item.headline.headlineUrl)}
-                }
-            });
-        })
+        $('.small.module').addClass('span2');
+        $('.medium.module').addClass('span4');
+        $('.large.module').addClass('span6');
+        $('.x-large.module').addClass('span8');
     }
 </script>
