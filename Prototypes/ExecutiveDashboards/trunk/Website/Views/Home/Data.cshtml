@@ -52,6 +52,7 @@
 </script>
 
 <script type="text/javascript">
+    DJ.config.debug = true;
     function numberWithCommas(x) {
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
@@ -72,7 +73,7 @@
 
     $(function() {
         DJ.subscribe('data.TopPages', function (data) {
-             $('#top-pages').setData({pages: data});
+            $('#top-pages').setData({pages: data});
         });
         
         DJ.subscribe('data.QuickStats', function (data) {

@@ -4,6 +4,8 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
@@ -11,43 +13,51 @@ using System.Xml;
 using System.Xml.Linq;
 using DowJones.Infrastructure;
 using Newtonsoft.Json;
+using ICredentials=System.Net.ICredentials;
 
 namespace DowJones.Dash.Website.DataSources
 {
     public abstract class WebDataSource : DataSource
     {
+        public ICredentials Credentials { get; set; }
+
         public int ErrorDelay
         {
             get { return PollDelay * 2; }
         }
 
+        public HttpMethod Method { get; set; }
+
         public IDictionary<string, object> Parameters { get; private set; }
 
-        public string Path { get; set; }
+        public string Path { get; private set; }
 
         public int PollDelay { get; set; }
 
-        public string QueryString
+        public string Url
         {
             get
             {
-                var parameters = Parameters.Select(x => string.Format("{0}={1}", x.Key, HttpUtility.UrlEncode((string) x.Value.ToString())));
-                return string.Join("&", parameters);
-            }
-        }
+                if(Method == HttpMethod.Get)
+                    return string.Format("{0}?{1}", Path, SerializeParameters());
 
-        public string Url
-        {
-            get { return string.Format("{0}?{1}", Path, QueryString);  }
+                return Path;
+            }
         }
 
         public WebDataSource(string path, IDictionary<string, object> parameters = null, int pollDelay = 3)
         {
             Guard.IsNotNullOrEmpty(path, "path");
 
+            Method = HttpMethod.Get;
             Path = path;
-            Parameters = parameters ?? new Dictionary<string, object>();
+            Parameters = new Dictionary<string, object>(parameters ?? new Dictionary<string, object>());
             PollDelay = pollDelay;
+        }
+
+        public override void Start()
+        {
+            ServicePointManager.ServerCertificateValidationCallback = (x, y, z, a) => true;
 
             Task.Factory.StartNew(Poll);
         }
@@ -56,10 +66,27 @@ namespace DowJones.Dash.Website.DataSources
         {
             try
             {
-                WebRequest
-                    .Create(Url)
-                    .GetResponseAsync()
-                    .ContinueWith(task => OnResponse(task.Result));
+                var request = WebRequest.Create(Url);
+
+                request.Method = Method.ToString().ToUpper();
+
+                if (Credentials != null)
+                {
+                    request.Credentials = Credentials.GetCredential(request.RequestUri, "Basic");
+                    request.PreAuthenticate = true;
+                }
+
+                if (Method == HttpMethod.Post)
+                {
+                    var parameters = SerializeParameters();
+                    var postData = Encoding.UTF8.GetBytes(parameters);
+                    var contentLength = postData.Length;
+                    request.ContentLength = contentLength;
+                    request.GetRequestStream().Write(postData, 0, contentLength);
+                }
+
+                request.GetResponseAsync()
+                       .ContinueWith(task => OnResponse(task.Result));
             }
             catch (Exception ex)
             {
@@ -93,13 +120,19 @@ namespace DowJones.Dash.Website.DataSources
             }
         }
 
+        private string SerializeParameters()
+        {
+            var parameters = Parameters.Select(x => string.Format("{0}={1}", x.Key, HttpUtility.UrlEncode(x.Value.ToString())));
+            return string.Join("&", parameters);
+        }
+
         protected internal abstract dynamic ParseResponse(Stream stream);
     }
 
     public abstract class JsonWebDataSource : WebDataSource
     {
-        public JsonWebDataSource(string path, IDictionary<string, object> parameters = null, int pollDelay = 3) 
-            : base(path, parameters, pollDelay)
+        public JsonWebDataSource(string path, IDictionary<string, object> parameters = null)
+            : base(path, parameters)
         {
         }
 
@@ -113,8 +146,8 @@ namespace DowJones.Dash.Website.DataSources
 
     public abstract class XmlWebDataSource : WebDataSource
     {
-        public XmlWebDataSource(string path, IDictionary<string, object> parameters = null, int pollDelay = 3) 
-            : base(path, parameters, pollDelay)
+        public XmlWebDataSource(string path, IDictionary<string, object> parameters = null)
+            : base(path, parameters)
         {
         }
 

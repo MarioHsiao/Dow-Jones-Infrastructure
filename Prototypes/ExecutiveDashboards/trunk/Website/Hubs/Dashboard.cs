@@ -30,7 +30,7 @@ namespace DowJones.Dash.Website.Hubs
 
         private void PushCachedMessages()
         {
-            var dataCache = MessageCache;
+            var dataCache = new Dictionary<string,object>(MessageCache);
             foreach (var eventName in dataCache.Keys)
             {
                 Publish(eventName, dataCache[eventName], Caller);

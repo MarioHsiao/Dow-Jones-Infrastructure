@@ -20,6 +20,8 @@ namespace DowJones.Dash.Website.App_Start
             {
                 dataSource.DataReceived += (sender, args) =>
                     Dashboard.Publish("data." + ((IDataSource)sender).Name, args.Data);
+                
+                dataSource.Start();
             }
         }
     }

@@ -14,23 +14,26 @@ namespace DowJones.Dash.Website.DataSources
 
     public interface IDataSource
     {
-        string Name { get; }
         event EventHandler<DataReceivedEventArgs> DataReceived;
+        string Name { get; }
+        void Start();
     }
 
     public abstract class DataSource : IDataSource
     {
+        public event EventHandler<DataReceivedEventArgs> DataReceived;
+
         public virtual string Name
         {
             get { return GetType().Name; }
         }
 
-        public event EventHandler<DataReceivedEventArgs> DataReceived;
-
         protected bool Enabled
         {
             get { return DataReceived != null; }
         }
+
+        public abstract void Start();
 
         protected void OnDataReceived(object data)
         {
