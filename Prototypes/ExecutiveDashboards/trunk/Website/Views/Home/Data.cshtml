@@ -39,7 +39,6 @@
 </script>
     
 <script id="top-pages-template" type="text/x-template">
-    <% var pages = Result.resultSet.headlines; %>
     <h2>Top Pages</h2>
     <ul>
         <% for(var i = 0; i <= pages.length; i += 1) { 
@@ -47,8 +46,8 @@
             if(!page) continue;
         %>
             <li>
-                <span class="muted">[<%= numberWithCommas(page.modificationTimeDescriptor) %>]</span>
-                <a href="<%= page.headlineUrl %>" target="_blank"><%= page.title %></a>
+                <span class="muted">[<%= numberWithCommas(page.visitors) %>]</span>
+                <a href="<%= page.path %>" target="_blank"><%= page.i %></a>
             </li>
         <% } %>
     </ul>
@@ -74,11 +73,14 @@
 
 
     $(function() {
-        DJ.subscribe('dataReceived.TopPages', function (data) { $('#top-pages').setData(data); });
+        DJ.subscribe('dataReceived.TopPages', function (data) {
+             $('#top-pages').setData({pages: data});
+        });
+        
         DJ.subscribe('dataReceived.QuickStats', function (data) {
-            var percentageOfUsers = function (count) {
+            var percentageOfUsers = function(count) {
                 return ((count / data.visits) * 100).toFixed(2);
-            }
+            };
 
             var userStats = {
                 desktopCount: data.platform.d, 

@@ -1,113 +1,35 @@
 using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Threading;
-using System.Threading.Tasks;
-using DowJones.Infrastructure;
-using Newtonsoft.Json;
 
 namespace DowJones.Dash.Website.DataSources
 {
-    public abstract class ChartBeatDataSource : DataSource
+    public abstract class ChartBeatDataSource : JsonWebDataSource
     {
-        public string ApiKey
+        public ChartBeatDataSource(string relativePath, string host = "online.wsj.com", int? pollDelay = null)
+            : base(ResolveChartBeatPath(relativePath), GetParameters(host), GetPollDelay(pollDelay))
         {
-            get { return ConfigurationManager.AppSettings["ChartBeat.ApiKey"]; }
+            Path = string.Format("{0}{1}", ConfigurationManager.AppSettings["ChartBeat.BasePath"], relativePath);
+            PollDelay = Convert.ToInt32(ConfigurationManager.AppSettings["ChartBeat.PollDelay"]);
         }
 
-        public string BasePath
+        private static string ResolveChartBeatPath(string relativePath)
         {
-            get { return ConfigurationManager.AppSettings["ChartBeat.BasePath"]; }
+            return string.Format("{0}{1}", ConfigurationManager.AppSettings["ChartBeat.BasePath"], relativePath);
         }
 
-        public int ErrorDelay
+        private static IDictionary<string, object> GetParameters(string host)
         {
-            get { return PollDelay * 2; }
-        }
-
-        public IDictionary<string, object> Parameters { get; private set; }
-
-        public string Path { get; set; }
-
-        public int PollDelay
-        {
-            get { return Convert.ToInt32(ConfigurationManager.AppSettings["ChartBeat.PollDelay"]); }
-        }
-
-        public string Url
-        {
-            get
-            {
-                var parameters = Parameters.Select(x => string.Format("{0}={1}", x.Key, x.Value));
-                return string.Format("{0}{1}?{2}", BasePath, Path, string.Join("&", parameters));
-            }
-        }
-
-        public ChartBeatDataSource(string path, string host = "online.wsj.com")
-        {
-            Guard.IsNotNullOrEmpty(path, "path");
-
-            Parameters = new Dictionary<string, object>
+            return new Dictionary<string, object>
                 {
-                    {"apikey", ApiKey},
+                    {"apikey", ConfigurationManager.AppSettings["ChartBeat.ApiKey"]},
                     {"host", host},
                 };
-
-            Path = path;
-
-            Task.Factory.StartNew(Poll);
         }
 
-        protected internal void Poll()
+        private static int GetPollDelay(int? pollDelay)
         {
-            try
-            {
-                WebRequest
-                    .Create(Url)
-                    .GetResponseAsync()
-                    .ContinueWith(task => OnResponse(task.Result));
-            }
-            catch (Exception ex)
-            {
-                OnError(ex);
-            }
-        }
-
-        protected virtual void OnError(Exception ex = null)
-        {
-            Trace.TraceError("{0} request failed: {1}", Path, ex);
-            Thread.Sleep(ErrorDelay * 1000);
-            Poll();
-        }
-
-        protected void OnResponse(WebResponse response)
-        {
-            try
-            {
-                using(var stream = response.GetResponseStream())
-                {
-                    var json = new StreamReader(stream).ReadToEnd();
-                    var data = JsonConvert.DeserializeObject<dynamic>(json);
-                    var mapped = Map(data);
-                    OnDataReceived(mapped);
-                }
-
-                Thread.Sleep(PollDelay * 1000);
-                Poll();
-            }
-            catch (Exception ex)
-            {
-                OnError(ex);
-            }
-        }
-
-        protected virtual dynamic Map(dynamic response)
-        {
-            return response;
+            return pollDelay.GetValueOrDefault(Convert.ToInt32(ConfigurationManager.AppSettings["ChartBeat.PollDelay"]));
         }
     }
 }
