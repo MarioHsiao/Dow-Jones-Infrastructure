@@ -7,6 +7,7 @@ body {
 	background-color: #2c2c2c;
 }
 
+
 .headerNav {
 	position: static;
 	z-index: 1234;
@@ -168,4 +169,48 @@ footer {
 
 .mediaViewer h3, .pageContent h3, .pagination, .tile .title, .tk-nimbus-sans {
     font-family: "nimbus-sans",sans-serif;
+}
+
+.moduleControls {
+  float: right;
+  li {
+    float: left;
+    border-left: solid 1px #e4e4e4;
+    height: 22px;
+    line-height: 22px;
+    &.moduleIcon {
+      width: 35px;
+      background: url(./images/murdochSprites.png) 0 0 no-repeat;
+      cursor: pointer;
+      &.disabled {
+        opacity: .5;
+        cursor: default; } } } }
+
+.moduleHead {
+  height: 22px;
+  border-bottom: solid 1px #e4e4e4;
+  h3 {
+    font-size: 1.6em;
+    color: #02a2db;
+    text-transform: uppercase;
+    float: left;
+	margin: 0;
+	line-height: 1.6em;
+    margin-left: 8px;
+    font-weight: 300;
+    span.companyName {
+      text-transform: none; } } }
+
+.module {
+	ul, ol {
+	 list-style:none;
+	 margin: 0;
+	}
+
+	a {
+		text-decoration: none;
+		&:hover {
+			text-decoration: none;
+		}
+	}
 }
