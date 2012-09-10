@@ -40,13 +40,26 @@ DJ.UI.TopPages = DJ.UI.CompositeComponent.extend({
 
     _initializeEventHandlers: function () {
         var self = this;
-        $dj.subscribe('dataReceived.TopPages', function (data) {
+        $dj.subscribe('data.TopPages', function (data) {
             if (!self.portalHeadlines) {
                 $dj.error("PortalHeadlinesComponent is not initialized. Refresh the page to try again.");
                 return;
             }
 
-            self.portalHeadlines._setData(data.Result);
+            var headlines = _.map(data, function (page) {
+                return {
+                    title: page.i,
+                    headlineUrl: "http://" + page.path,
+                    modificationTimeDescriptor: page.visitors
+                };
+            });
+
+            var result = {
+                count: { value: headlines.length },
+                headlines: headlines
+            };
+
+            self.portalHeadlines.setData({ resultSet: result });
             
         });
 
