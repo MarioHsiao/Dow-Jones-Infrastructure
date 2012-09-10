@@ -34,8 +34,8 @@
 
 <script id="current-users-template" type="text/x-template">
     <h2>Current Users</h2>
-    <p>Desktop: <%= numberWithCommas(desktopCount) %> (%<%= desktopPercent %>)</p>
-    <p>Mobile: <%= numberWithCommas(mobileCount) %> (%<%= mobilePercent %>) </p>
+    <p>Desktop: <%= numberWithCommas(desktopCount) %> (<%= desktopPercent %>%)</p>
+    <p>Mobile: <%= numberWithCommas(mobileCount) %> (<%= mobilePercent %>%) </p>
 </script>
     
 <script id="top-pages-template" type="text/x-template">
@@ -76,12 +76,16 @@
     $(function() {
         DJ.subscribe('dataReceived.TopPages', function (data) { $('#top-pages').setData(data); });
         DJ.subscribe('dataReceived.QuickStats', function (data) {
+            var percentageOfUsers = function (count) {
+                return ((count / data.visits) * 100).toFixed(2);
+            }
+
             var userStats = {
                 desktopCount: data.platform.d, 
-                desktopPercent: data.platform.d / data.visits,
+                desktopPercent: percentageOfUsers(data.platform.d),
 
                 mobileCount: data.platform.m,
-                mobilePercent: data.platform.m / data.visits,
+                mobilePercent: percentageOfUsers(data.platform.m),
             };
             
             $('#current-users').setData(userStats);
