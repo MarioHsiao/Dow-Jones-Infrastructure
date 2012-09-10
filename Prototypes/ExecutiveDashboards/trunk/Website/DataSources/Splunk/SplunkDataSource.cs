@@ -28,30 +28,23 @@ namespace DowJones.Dash.Website.DataSources
         }
     }
 
-    public class BrowserDataSource : SplunkDataSource
+    public class Browser : SplunkDataSource
     {
-        public BrowserDataSource() : base("RTBus_Browser")
+        public Browser() : base("RTBus_Browser")
         {
         }
     }
 
-    public class HandheldDataSource : SplunkDataSource
+    public class Handheld : SplunkDataSource
     {
-        public HandheldDataSource() : base("RTBus_Handheld")
+        public Handheld() : base("RTBus_Handheld")
         {
         }
     }
 
-    public class ReferrerDataSource : SplunkDataSource
+    public class HandheldVsPc : SplunkDataSource
     {
-        public ReferrerDataSource() : base("RTBus_ReferrerBreakdown")
-        {
-        }
-    }
-
-    public class HandheldVsPcDataSource : SplunkDataSource
-    {
-        public HandheldVsPcDataSource() : base("RTBus_HandheldvsPC")
+        public HandheldVsPc() : base("RTBus_HandheldvsPC")
         {
         }
     }

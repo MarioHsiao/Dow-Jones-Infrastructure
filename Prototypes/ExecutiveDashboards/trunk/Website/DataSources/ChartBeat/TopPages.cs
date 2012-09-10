@@ -4,7 +4,7 @@ namespace DowJones.Dash.Website.DataSources
     {
         public TopPages() : base("/toppages")
         {
-            Parameters.Add("limit", 15);
+            Parameters.Add("limit", 10);
         }
     }
 }

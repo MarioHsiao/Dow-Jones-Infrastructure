@@ -191,6 +191,7 @@
     <Compile Include="App_Start\RouteRegistrationTask.cs" />
     <Compile Include="DataSources\ChartBeat\ChartBeatDataSource.cs" />
     <Compile Include="App_Start\DataSourcesInitializationTask.cs" />
+    <Compile Include="DataSources\ChartBeat\Referrers.cs" />
     <Compile Include="DataSources\DataSource.cs" />
     <Compile Include="DataSources\ChartBeat\QuickStats.cs" />
     <Compile Include="DataSources\Splunk\SplunkDataSource.cs" />
