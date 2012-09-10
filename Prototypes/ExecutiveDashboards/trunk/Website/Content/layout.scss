@@ -51,13 +51,13 @@ body {
 		margin: 12px 0;
 		a {
 			padding-right: 20px;
-			background: #1B1B1B url(images/dash.png) no-repeat right 100% ;
+			background: #1B1B1B url(./images/dash.png) no-repeat right 100% ;
 		}
 	}
 }
 
 .trendTabsContainer {
-  background: white url(images/tabsBG.png) left 0 repeat; }
+  background: white url(./images/tabsBG.png) left 0 repeat; }
 
 .trendTabs {
   min-height: 42px;
@@ -73,12 +73,12 @@ body {
       padding: 0 6px 0 12px;
       color: #cbcbcb;
       line-height: 28px;
-      background: #2c2c2c url(images/tabSeparator.png) right center no-repeat;
+      background: #2c2c2c url(./images/tabSeparator.png) right center no-repeat;
       float: left;
       cursor: pointer;
       font-weight: bold; }
     span.closeTab {
-      background: #2c2c2c url(images/murdochSprites.png) -19px 0 no-repeat;
+      background: #2c2c2c url(./images/murdochSprites.png) -19px 0 no-repeat;
       height: 28px;
       display: block;
       width: 19px;
@@ -142,7 +142,7 @@ footer {
 		float: right;
 		color: #999;
 		padding: 12px 70px 12px 0;
-		background: url(images/djFooterLogo.png) right 11px no-repeat;
+		background: url(./images/djFooterLogo.png) right 11px no-repeat;
 		font-size: 1em;
 		a {
 			color: #fff;
