@@ -15,12 +15,6 @@
     @DJ.ScriptRegistry().OnDocumentReady("initializeDashboard();");
 
     function initializeDashboard() {
-        $.connection.dashboard.dataReceived = function (type, data) {
-            DJ.publish('dataReceived.' + type, data);
-        };
-        
-        $.connection.hub.start();
-
         $('.small.module').addClass('span2');
         $('.medium.module').addClass('span4');
         $('.large.module').addClass('span6');
@@ -73,11 +67,11 @@
 
 
     $(function() {
-        DJ.subscribe('dataReceived.TopPages', function (data) {
+        DJ.subscribe('data.TopPages', function (data) {
              $('#top-pages').setData({pages: data});
         });
         
-        DJ.subscribe('dataReceived.QuickStats', function (data) {
+        DJ.subscribe('data.QuickStats', function (data) {
             var percentageOfUsers = function(count) {
                 return ((count / data.visits) * 100).toFixed(2);
             };

@@ -22,12 +22,6 @@
     @DJ.ScriptRegistry().OnDocumentReady("initializeDashboard();");
 
     function initializeDashboard() {
-        $.connection.dashboard.dataReceived = function (type, data) {
-            DJ.publish('dataReceived.' + type, data);
-        };
-        
-        $.connection.hub.start();
-
         $('.small.module').addClass('span2');
         $('.medium.module').addClass('span4');
         $('.large.module').addClass('span6');

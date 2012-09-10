@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using DowJones.Dash.Website.DataSources;
 using SignalR;
 using SignalR.Hubs;
 
@@ -8,40 +7,34 @@ namespace DowJones.Dash.Website.Hubs
 {
     public class Dashboard : Hub, IConnected
     {
-        private static readonly IDictionary<string,object> DataCache = new Dictionary<string, object>();
-
+        private static readonly IDictionary<string,object> MessageCache = new Dictionary<string, object>();
 
         public Task Connect()
         {
-            return Task.Factory.StartNew(PushCachedData);
+            return Task.Factory.StartNew(PushCachedMessages);
+        }
+
+        public static void Publish(string eventName, object data, dynamic context = null)
+        {
+            context = context ?? GlobalHost.ConnectionManager.GetHubContext<Dashboard>().Clients;
+            context.publish(eventName, data);
+
+            // Cache the latest version of the event for future clients
+            MessageCache[eventName] = data;
         }
 
         public Task Reconnect(IEnumerable<string> groups)
         {
-            return Task.Factory.StartNew(PushCachedData);
+            return Task.Factory.StartNew(PushCachedMessages);
         }
 
-        private void PushCachedData()
+        private void PushCachedMessages()
         {
-            var dataCache = DataCache;
+            var dataCache = MessageCache;
             foreach (var eventName in dataCache.Keys)
             {
-                Caller.dataReceived(eventName, dataCache[eventName]);
+                Publish(eventName, dataCache[eventName], Caller);
             }
-        }
-
-
-        public static void OnDashboardDataReceived(object sender, DataReceivedEventArgs args)
-        {
-            var dashboardHub = GlobalHost.ConnectionManager.GetHubContext<Dashboard>();
-            var eventName = sender.GetType().Name;
-            var eventData = args.Data;
-
-            // Publish the event to all clients
-            dashboardHub.Clients.dataReceived(eventName, eventData);
-
-            // Cache the latest version of the event for future clients
-            DataCache[eventName] = eventData;
         }
     }
 }

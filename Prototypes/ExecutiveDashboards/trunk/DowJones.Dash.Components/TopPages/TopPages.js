@@ -9,9 +9,7 @@ DJ.UI.TopPages = DJ.UI.CompositeComponent.extend({
     },
 
     init: function (element, meta) {
-        // Call the base constructor
         this._super(element, $.extend({ name: "TopPages" }, meta));
-
         
         this._initPortalHeadlines();
     },
@@ -28,8 +26,7 @@ DJ.UI.TopPages = DJ.UI.CompositeComponent.extend({
 
     _initializeDelegates: function () {
         this._delegates = $.extend(this._delegates, {
-            // TODO: Add delegates
-            // e.g.  OnHeadlineClick: $dj.delegate(this, this._onHeadlineClick)
+            setData: $dj.delegate(this, this.setData)
         });
     },
 
@@ -39,34 +36,36 @@ DJ.UI.TopPages = DJ.UI.CompositeComponent.extend({
     },
 
     _initializeEventHandlers: function () {
-        var self = this;
-        $dj.subscribe('data.TopPages', function (data) {
-            if (!self.portalHeadlines) {
-                $dj.error("PortalHeadlinesComponent is not initialized. Refresh the page to try again.");
-                return;
-            }
-
-            var headlines = _.map(data, function (page) {
-                return {
-                    title: page.i,
-                    headlineUrl: "http://" + page.path,
-                    modificationTimeDescriptor: page.visitors
-                };
-            });
-
-            var result = {
-                count: { value: headlines.length },
-                headlines: headlines
-            };
-
-            self.portalHeadlines.setData({ resultSet: result });
-            
-        });
+        $dj.subscribe('data.TopPages', this._delegates.setData);
 
         this.subscribe('headlineClick.dj.PortalHeadlineList', function (item) {
             window.open(item.headline.headlineUrl);
         });
     },
+    
+    _setData: function (data) {
+        if (!this.portalHeadlines) {
+            $dj.error("PortalHeadlinesComponent is not initialized. Refresh the page to try again.");
+            return;
+        }
+
+        var headlines = _.map(data, function (page) {
+            return {
+                title: page.i,
+                headlineUrl: "http://" + page.path,
+                modificationTimeDescriptor: page.visitors
+            };
+        });
+
+        var result = {
+            count: { value: headlines.length },
+            headlines: headlines
+        };
+
+        this.portalHeadlines.setData({ resultSet: result });
+    },
+    
+    EOF: null
 });
 
 

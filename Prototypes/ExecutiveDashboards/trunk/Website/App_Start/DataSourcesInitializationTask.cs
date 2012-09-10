@@ -18,7 +18,8 @@ namespace DowJones.Dash.Website.App_Start
         {
             foreach (var dataSource in _dataSources)
             {
-                dataSource.DataReceived += Dashboard.OnDashboardDataReceived;
+                dataSource.DataReceived += (sender, args) =>
+                    Dashboard.Publish("data." + ((IDataSource)sender).Name, args.Data);
             }
         }
     }
