@@ -1,0 +1,11 @@
+﻿@model DowJones.Web.Mvc.UI.Components.Gauge.GaugeModel
+@{
+    Layout = "~/Views/Shared/_SignalR.cshtml";
+    ViewBag.Title = "Gauge";
+    Html.DJ().StylesheetRegistry()
+            .Include("~/styles/css/stockkiosk.css");
+}
+
+<div id="tempContent">
+    <div class="top">@Html.DJ().Render( Model, new { id = "gaugeContainer"} )</div>
+</div>

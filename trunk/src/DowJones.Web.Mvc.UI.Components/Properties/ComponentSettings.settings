@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="AutoSuggestHandlerServiceUrl" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">http://arch.dev.us.factiva.com/showcase/emgajaxtoolkittests2008/emg.tools.web.widgets.autosuggest.ashx?version=2.0</Value>
+      <Data Profile="(Default)">http://arch.dev.us.factiva.com/showcase/emgajaxtoolkittests2008/emg.tools.web.widgets.autosuggest.ashx?version=2.0</Data>
     </Setting>
   </Settings>
 </SettingsFile>

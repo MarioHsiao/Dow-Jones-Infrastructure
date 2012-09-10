@@ -122,7 +122,7 @@
                     labels: {
 
                         formatter: function () {
-                            //return Highcharts.dateFormat(_dateformat, this.value);
+                            //return Highcharts.dateFormat(_dateformat, this.Data);
                             return (new Date(this.value)).format("hTT", true);
                         },
                         style: {
@@ -282,7 +282,7 @@
                         //not sure we need this anymore....
                         formatter: function () {
 
-                            //return parseInt( Highcharts.dateFormat('%m', this.value) ) + Highcharts.dateFormat('/%e', this.value);
+                            //return parseInt( Highcharts.dateFormat('%m', this.Data) ) + Highcharts.dateFormat('/%e', this.Data);
                             return (new Date(this.value)).format("d - mmm", true);
 
                         },

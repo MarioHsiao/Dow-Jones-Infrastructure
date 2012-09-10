@@ -3,10 +3,10 @@
   <Profiles />
   <Settings>
     <Setting Name="CanvasServiceUrl" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">/pages/1.0</Value>
+      <Data Profile="(Default)">/pages/1.0</Data>
     </Setting>
     <Setting Name="DashboardServiceBaseUrl" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">http://api.dowjones.com/api/dashboard</Value>
+      <Data Profile="(Default)">http://api.dowjones.com/api/dashboard</Data>
     </Setting>
   </Settings>
 </SettingsFile>

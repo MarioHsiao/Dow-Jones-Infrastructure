@@ -161,14 +161,14 @@
 		alt_text_e: 		alt_text_e is a shortcut to enabling the user of the product that 
 							made use of ThreeDots to see the full text, prior to truncation
 							
-							if the value is set to true, then the ellipsis span's title property
+							if the Data is set to true, then the ellipsis span's title property
 							is set to the full, original text (pre-truncation)
 		
 		
 		alt_text_t: 		alt_text_t is a shortcut to enabling the user of the product that 
 							made use of ThreeDots to see the full text, prior to truncation
 							
-							if the value is set to true AND the ellipsis is displayed, then the 
+							if the Data is set to true AND the ellipsis is displayed, then the 
 							text span's title property is set to the full, original text 
 							(pre-truncation) 
 	
@@ -466,10 +466,10 @@
 			returns the number of rows/lines that the current object's text covers if
 			cstate is an object
 			
-			this function can be initially called to pre-calculate values that will 
+			this function can be initially called to pre-calculate Datas that will 
 			stay fixed throughout the truncation process for the current object so
-			that the values do not have to be called every time; to do this the
-			num_rows function is called with a boolean value within the cstate
+			that the Datas do not have to be called every time; to do this the
+			num_rows function is called with a boolean Data within the cstate
 			
 			when boolean cstate, an object is returned containing padding and line
 			height information that is then passed in as the cstate object on

@@ -24,12 +24,12 @@
         defaults: {
             debug: false,
             cssClass: 'AlertSearchBuilder'
-            // ,name: value     // add more defaults here separated by comma
+            // ,name: Data     // add more defaults here separated by comma
         },
 
         // Localization/Templating tokens
         tokens: {
-            // name: value     // add more defaults here separated by comma
+            // name: Data     // add more defaults here separated by comma
         },
 
 

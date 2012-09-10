@@ -95,7 +95,7 @@ namespace DowJones.Web.Mvc.UI.Components.AutoSuggest
         public string SuggestContext { get; set; }
 
         /// <summary>
-        /// Gets or Sets AutenticationType Value
+        /// Gets or Sets AutenticationType Data
         /// </summary>
         [ClientProperty("authTypeValue")]
         public string AuthTypeValue { get; set; }

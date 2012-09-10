@@ -5,9 +5,9 @@
     DJ.UI.PortalHeadlineList = DJ.UI.PortalHeadlineList.extend({
 
         selectors: {
-            /// <value name="selectors" type="object" mayBeNull="true" locid="selectors">
+            /// <Data name="selectors" type="object" mayBeNull="true" locid="selectors">
             /// jQuery selectors that are used to lookup various elements within the component. 
-            /// Defining them here also makes easy to manage changes to the actual selector names (think of why you define constants in C#).</value>
+            /// Defining them here also makes easy to manage changes to the actual selector names (think of why you define constants in C#).</Data>
             /// <example>
             /// selectors {
             ///     source: 'span.source-clickable',
@@ -17,7 +17,7 @@
         },
 
         options: {
-            /// <value name="options" type="object" mayBeNull="true" locid="options">Client side Options and their default values</value>
+            /// <Data name="options" type="object" mayBeNull="true" locid="options">Client side Options and their default Datas</Data>
             /// <example>
             /// options {
             ///     maxHeadlines: 5,
@@ -27,7 +27,7 @@
         },
 
         events: {
-            /// <value name="events" type="object" mayBeNull="true" locid="events">List of events that the component exposes</value>
+            /// <Data name="events" type="object" mayBeNull="true" locid="events">List of events that the component exposes</Data>
             /// <example>headlineClick: "headlineClick.dj.PortalHeadlineList"</example>
             /// <remarks>Follows jQuery style namespacing - [eventName].[namespace]</remarks>
         },

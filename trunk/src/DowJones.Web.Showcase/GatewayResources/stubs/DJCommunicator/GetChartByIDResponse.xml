@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <GetChartByIDResponse xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="urn:factiva:Communicator:MetricService:v1_0">
   <chart>
     <definition>
@@ -1602,7 +1602,7 @@
         </category>
         <kpi>
           <topicId xsi:nil="true" />
-          <kpiValue>-100</kpiValue>
+          <kpiData>-100</kpiData>
           <kpiType>PeakToPeakCurrentPeriod</kpiType>
           <kpiLabel>apple</kpiLabel>
         </kpi>

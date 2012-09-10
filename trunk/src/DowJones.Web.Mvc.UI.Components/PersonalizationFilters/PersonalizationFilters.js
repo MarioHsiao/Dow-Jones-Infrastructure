@@ -466,7 +466,7 @@
             this._bindTextBoxHandlers(this.filterType.Company, this._companyInputId, false);
             this._bindTextBoxHandlers(this.filterType.Keyword, this._keywordInputId, false);
             this._disableInput(this._disabled);
-            //remove the watermark class if there is a value in the keyword textbox other that watermark text
+            //remove the watermark class if there is a Data in the keyword textbox other that watermark text
             if ($.trim(this.$keywordInput.val()) != this.filterDetails[this.filterType.Keyword].autoCompleteText) {
                 this.$keywordInput.removeClass("dj_text-placeholder");
             }
@@ -592,7 +592,7 @@
         },
 
         //This function will be called when any of the ajax calls to get the descriptions of industry/region/company filters
-        //There now should be a value in the cache for these codes.
+        //There now should be a Data in the cache for these codes.
         setFilterDescriptions: function () {
             if (this.data) {
                 if (this.data.industryFilter && _.isEmpty(this.data.industryFilter.desc)) {

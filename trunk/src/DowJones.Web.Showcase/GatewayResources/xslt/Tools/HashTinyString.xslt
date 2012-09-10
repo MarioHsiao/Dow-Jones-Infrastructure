@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 	<xsl:output method="xml" version="1.0" encoding="UTF-8" indent="no"/>
 
@@ -25,9 +25,9 @@
 					<uid>
 						<xsl:value-of select="substring(@id,4)"/>
 					</uid>
-					<Value>
+					<Data>
 						<xsl:value-of select="."/>
-					</Value>
+					</Data>
 				</Result>
 			</xsl:for-each>
 		</ResultSet>

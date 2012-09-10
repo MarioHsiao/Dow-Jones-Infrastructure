@@ -94,7 +94,7 @@
             this._submitting = true;
 
             var action = (this._searchResultsForm.attr('action') || location.href).split('?')[0];
-            //Only for Chrome browser it is required to update the form action with some random value to avoid caching 
+            //Only for Chrome browser it is required to update the form action with some random Data to avoid caching 
             if ($.browser.webkit && !!window.chrome) {
 //                var action = this._searchResultsForm.attr('action') || location.href;
 //                if (action.indexOf("?") != -1) {
@@ -204,7 +204,7 @@
 
             var value = $('[name="' + name + '"]', this._searchBuilderForm).val();
             this._getOrCreateHiddenField(name).val(value);
-            $dj.debug('Copied form field ' + name + ' (value: ' + value + ') from Builder to Results');
+            $dj.debug('Copied form field ' + name + ' (Data: ' + value + ') from Builder to Results');
         },
 
         _onRelatedConceptsClick: function (data) {

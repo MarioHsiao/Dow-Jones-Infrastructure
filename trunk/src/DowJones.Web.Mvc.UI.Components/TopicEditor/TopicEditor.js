@@ -237,10 +237,10 @@
 
     _bindTopicCategories: function (cat) {
         this.$topicCategoryDD.empty();
-        this.$topicCategoryDD.append('<option value=""><%= Token("selectCategory") %></option>');
+        this.$topicCategoryDD.append('<option Data=""><%= Token("selectCategory") %></option>');
         if (cat) {
             for (var i = 0; i < cat.length; i++) {
-                this.$topicCategoryDD.append('<option value="' + cat[i].code + '">' + cat[i].desc + '</option>');
+                this.$topicCategoryDD.append('<option Data="' + cat[i].code + '">' + cat[i].desc + '</option>');
             }
         }
     },

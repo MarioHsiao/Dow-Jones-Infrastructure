@@ -604,7 +604,7 @@ namespace DowJones.Assemblers.Headlines
 
             if (contentHeadline.ContentItems.ItemCollection != null && contentHeadline.ContentItems.ItemCollection.Count > 0)
             {
-                foreach (ContentItem item in contentHeadline.ContentItems.ItemCollection.Where(item => (string.IsNullOrEmpty(item.Mimetype) && item.Type.ToLower() == "tnail" && !string.IsNullOrEmpty(item.Ref))))
+                foreach (var item in contentHeadline.ContentItems.ItemCollection.Where(item => (string.IsNullOrEmpty(item.Mimetype) && item.Type.ToLower() == "tnail" && !string.IsNullOrEmpty(item.Ref))))
                 {
                     return new ThumbnailImage {URI = item.Ref};
                 }

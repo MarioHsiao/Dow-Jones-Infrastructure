@@ -100,9 +100,9 @@
  *      auto: 800,
  *      speed: 500
  * });
- * @desc You can make your carousel auto-navigate itself by specfying a millisecond value in this option.
- * The value you specify is the amount of time between 2 slides. The default is null, and that disables auto scrolling.
- * Specify this value and magically your carousel will start auto scrolling.
+ * @desc You can make your carousel auto-navigate itself by specfying a millisecond Data in this option.
+ * The Data you specify is the amount of time between 2 slides. The default is null, and that disables auto scrolling.
+ * Specify this Data and magically your carousel will start auto scrolling.
  *
  * @option speed : number - 200 is default
  * @example

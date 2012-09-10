@@ -184,9 +184,9 @@ namespace DowJones.Web.UI.ClientState
                 NamedClientEventHandlerProperty = "NamedClientEvent";
                 ClientOptionProperty = 1234;
                 ClientTokenProperty = "ClientToken";
-                ClientTokenDictionaryProperty = new Dictionary<string, string> { { "SomeToken", "Token Value" } };
-                MergableClientOptionProperty = new Dictionary<string, object> { { "MyValue", "Merged Value" } };
-                NestedClientOptionProperty = new Dictionary<string, object> { { "MyValue", "Nested Value" } };
+                ClientTokenDictionaryProperty = new Dictionary<string, string> { { "SomeToken", "Token Data" } };
+                MergableClientOptionProperty = new Dictionary<string, object> { { "MyValue", "Merged Data" } };
+                NestedClientOptionProperty = new Dictionary<string, object> { { "MyValue", "Nested Data" } };
             }
         }
 

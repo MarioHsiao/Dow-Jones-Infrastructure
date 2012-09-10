@@ -1,0 +1,11 @@
+﻿@model DowJones.Web.Mvc.UI.Components.ShareChart.ShareChartModel
+@{
+    Layout = "~/Views/Shared/_SignalR.cshtml";
+    ViewBag.Title = "Share Chart";
+    Html.DJ().StylesheetRegistry()
+            .Include("~/styles/css/stockkiosk.css");
+}
+
+<div id="tempContent">
+    <div class="top">@Html.DJ().Render( Model, new { id = "shareChartContainer"} )</div>
+</div>
