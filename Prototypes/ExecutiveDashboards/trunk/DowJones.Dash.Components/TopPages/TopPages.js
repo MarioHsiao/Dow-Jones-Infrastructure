@@ -53,7 +53,7 @@ DJ.UI.TopPages = DJ.UI.CompositeComponent.extend({
             return {
                 title: page.i,
                 headlineUrl: "http://" + page.path,
-                modificationTimeDescriptor: page.visitors
+                modificationTimeDescriptor: page.visitors.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
             };
         });
 
