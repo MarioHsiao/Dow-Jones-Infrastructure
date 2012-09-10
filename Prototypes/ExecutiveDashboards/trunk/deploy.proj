@@ -11,6 +11,10 @@
     
     <ItemGroup>
       <WebsiteFiles Include="$(BuildDir)\_PublishedWebsites\Website\**" />
+      <WebsiteFiles Include="Website\**\*.jpg" />
+      <WebsiteFiles Include="Website\**\*.png" />
+      <WebsiteFiles Include="Website\**\*.css" />
+      <WebsiteFiles Include="Website\**\*.js" />
     </ItemGroup>
 
     <Copy SourceFiles="@(WebsiteFiles)"

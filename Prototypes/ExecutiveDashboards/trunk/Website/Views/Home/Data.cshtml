@@ -23,6 +23,10 @@
 </script>
 
 
+<style>
+    #top-pages ul { list-style: none;margin: 0;}
+    #top-pages li { padding-bottom: 5px;}
+</style>
 
 <!-- Fake Component initialization -->
 
@@ -41,7 +45,7 @@
         %>
             <li>
                 <span class="muted">[<%= numberWithCommas(page.visitors) %>]</span>
-                <a href="<%= page.path %>" target="_blank"><%= page.i %></a>
+                <a href="http://<%= page.path %>" target="_blank"><%= page.i %></a>
             </li>
         <% } %>
     </ul>
