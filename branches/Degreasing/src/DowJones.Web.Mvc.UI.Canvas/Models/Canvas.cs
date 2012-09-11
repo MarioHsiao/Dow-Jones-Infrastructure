@@ -76,7 +76,7 @@ namespace DowJones.Web.Mvc.UI.Canvas
         {
             get
             {
-                var groupedLayout = (Layout as ZoneCanvasLayout);
+                var groupedLayout = (Layout as ZoneLayout);
 
                 if (groupedLayout == null || groupedLayout.Zones == null)
                     return 1;
