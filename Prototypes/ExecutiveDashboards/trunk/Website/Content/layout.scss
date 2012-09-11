@@ -1,3 +1,5 @@
+@import "bootstrap";
+
 body {
 	text-align: left;
 	font-family: Arial, Helvetica, sans-serif;
@@ -63,6 +65,7 @@ body {
 .trendTabs {
   min-height: 42px;
   margin: 0;
+  list-style: none;
   li {
     float: left;
     margin-top: 13px;
@@ -212,5 +215,23 @@ footer {
 		&:hover {
 			text-decoration: none;
 		}
+	}
+}
+
+.module {
+	&.small {
+		@extend .span2;
+	}
+
+	&.medium {
+		@extend .span4;
+	}
+
+	&.large {
+		@extend .span6;
+	}
+
+	&.x-large {
+		@extend .span8;
 	}
 }

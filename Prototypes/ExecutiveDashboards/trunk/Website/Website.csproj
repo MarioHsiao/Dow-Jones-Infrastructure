@@ -215,11 +215,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\bootstrap.css">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <DependentUpon>bootstrap.scss</DependentUpon>
     </Content>
-    <Content Include="Content\bootstrap.min.css">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <Content Include="Content\images\browser-sprites.png" />
     <Content Include="Content\images\dash.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -244,6 +242,9 @@
     <Content Include="Content\layout.css">
       <DependentUpon>layout.scss</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\perfGuage.css">
+      <DependentUpon>perfGuage.scss</DependentUpon>
     </Content>
     <Content Include="Content\topPages.css">
       <DependentUpon>topPages.scss</DependentUpon>
@@ -289,6 +290,12 @@
       <Project>{973b633a-e26b-4990-bf22-95847cdb1b40}</Project>
       <Name>DowJones.Dash.Components</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\perfGuage.scss" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap.scss" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

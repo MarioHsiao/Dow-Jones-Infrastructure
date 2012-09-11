@@ -8,11 +8,13 @@
 }
 <section id="dashboard" class="row-fluid">
 
-    <div id="current-users" class="medium module" data-type="CurrentUserStats"></div>
+    <div id="current-users" class="module medium" data-type="CurrentUserStats"></div>
 
-	<div id="top-pages" class="medium module" data-type="TopPages">
+	<div id="top-pages" class="module medium" data-type="TopPages">
 		@DJ.Render(new TopPagesModel())
 	</div>
+    
+    <div id="browser-stats" class="module medium" data-type="BrowserStats"></div>
 
 </section>
 
@@ -22,9 +24,5 @@
     @DJ.ScriptRegistry().OnDocumentReady("initializeDashboard();");
 
     function initializeDashboard() {
-        $('.small.module').addClass('span2');
-        $('.medium.module').addClass('span4');
-        $('.large.module').addClass('span6');
-        $('.x-large.module').addClass('span8');
     }
 </script>

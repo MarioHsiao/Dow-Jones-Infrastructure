@@ -7,9 +7,8 @@
     <title>DASH: Executive Dashboard</title>
 
     @(DJ.StylesheetRegistry()
-        .Include("~/content/bootstrap.css")
-        .Include("~/content/bootstrap-responsive.css")
         .Include("~/content/layout.css")
+        .Include("~/content/bootstrap-responsive.css")
         .RenderHead())
     @DJ.ScriptRegistry().RenderHead()
     @Scripts.Render("~/bundles/core")
