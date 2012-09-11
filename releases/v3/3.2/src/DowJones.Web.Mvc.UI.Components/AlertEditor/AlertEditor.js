@@ -238,7 +238,7 @@
             this.$alertFormatDD.empty();
             if (frmt) {
                 for (var i = 0; i < frmt.length; i++) {
-                    this.$alertFormatDD.append('<option value="' + frmt[i].code + '">' + frmt[i].desc + '</option>');
+                    this.$alertFormatDD.append('<option Data="' + frmt[i].code + '">' + frmt[i].desc + '</option>');
                 }
             }
         },

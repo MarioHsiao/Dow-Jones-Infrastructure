@@ -170,7 +170,7 @@ DJ.UI.MP3PlayerType.prototype = {
                 downloadCntr.className = "emg_speaker_download_cntr";
                 var downloadLink = document.createElement("a");
                 downloadLink.className = "emg_speaker_download_lnk";
-                // unescape because value is encoded 
+                // unescape because Data is encoded 
                 downloadLink.href = unescape(this.options.downloadUrl);
                 downloadLink.innerHTML = this.tokens.downloadToken;
                 downloadCntr.appendChild(downloadLink);

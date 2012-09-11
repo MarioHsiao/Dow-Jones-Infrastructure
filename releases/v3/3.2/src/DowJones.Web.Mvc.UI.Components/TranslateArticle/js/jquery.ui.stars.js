@@ -22,13 +22,13 @@ $.widget('ui.stars', {
 		split: 0, // decrease number of stars by splitting each star into pieces [2|3|4|...]
 		disabled: false, // set to [true] to make the stars initially disabled
 		cancelTitle: 'Cancel Rating',
-		cancelValue: 0, // default value of Cancel btn.
+		cancelValue: 0, // default Data of Cancel btn.
 		cancelShow: true,
-		disableValue: true, // set to [false] to not disable the hidden input when Cancel btn is clicked, so the value will present in POST data.
+		disableValue: true, // set to [false] to not disable the hidden input when Cancel btn is clicked, so the Data will present in POST data.
 		oneVoteOnly: false,
 		showTitles: false,
 		captionEl: null, // jQuery object - target for text captions 
-		callback: null, // function(ui, type, value, event)
+		callback: null, // function(ui, type, Data, event)
 
 		/*
 		 * CSS classes
@@ -135,9 +135,9 @@ $.widget('ui.stars', {
 		}
 		
 		/*
-		 * The only FORM element, that has been linked to the stars control. The value field is updated on each Star click event
+		 * The only FORM element, that has been linked to the stars control. The Data field is updated on each Star click event
 		 */
-		this.$value = $("<input type='hidden' name='"+o.name+"' value='"+o.value+"' />");
+		this.$value = $("<input type='hidden' name='"+o.name+"' Data='"+o.value+"' />");
 		this.element.append(this.$value);
 
 

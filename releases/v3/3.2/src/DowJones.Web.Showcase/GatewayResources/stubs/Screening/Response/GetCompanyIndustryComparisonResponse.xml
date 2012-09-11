@@ -1,13 +1,13 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <GetCompanyIndustryComparisonResponse xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="urn:factiva:fcp:v2_0">
   <peersResult contentRestricted="false">
     <industry code="Code" industryCodeScheme="FII" totalCompanies="0">
-      <descriptor lang="Lang">Value</descriptor>
+      <descriptor lang="Lang">Data</descriptor>
       <description lang="Lang">Value</description>
     </industry>
     <otherIndustry>
       <parents industryCodeScheme="FII">
-        <industry code="Code" level="0" lang="Lang" totalCompanies="0">Value</industry>
+        <industry code="Code" level="0" lang="Lang" totalCompanies="0">Data</industry>
       </parents>
     </otherIndustry>
     <companies referenceCompanyFcode="ReferenceCompanyFcode" count="0">

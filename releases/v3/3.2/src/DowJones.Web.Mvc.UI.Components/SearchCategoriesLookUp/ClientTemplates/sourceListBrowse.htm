@@ -5,7 +5,7 @@
         infoHidden = '';
         if(d.SourceEntites && d.SourceEntites[0]){
             e = d.SourceEntites[0];attribs = '';
-            code = e.Value;
+            code = e.Data;
             type = e.SourceEntityType;
             if(type == "PDF"){
                 cdesc = sourceGroupItems[code];
@@ -40,7 +40,7 @@
                 }
 
                 e = d.SourceEntites[1];
-                code1 = e.Value;
+                code1 = e.Data;
                 type1 = e.SourceEntityType;
                 if(type1 === "BY"){
                     cdesc = cdesc + " (" + code1 + ")";

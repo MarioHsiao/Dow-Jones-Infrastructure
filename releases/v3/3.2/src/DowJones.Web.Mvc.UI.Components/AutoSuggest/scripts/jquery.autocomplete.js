@@ -1,4 +1,4 @@
-/*
+﻿/*
 * jQuery Autocomplete plugin 1.1
 *
 * Copyright (c) 2009 Jörn Zaefferer
@@ -325,9 +325,9 @@
             // autofill in the complete box w/the first match as long as the user hasn't entered in more data
             // if the last user key pressed was backspace, don't autofill
             if (options.autoFill && (lastWord($input.val()).toLowerCase() == q.toLowerCase()) && lastKeyPressCode != KEY.BACKSPACE) {
-                // fill in the value (keep the case the user has typed)
+                // fill in the Data (keep the case the user has typed)
                 $input.val($input.val() + sValue.substring(lastWord(previousValue).length));
-                // select the portion of the value not typed by the user (so the next character will erase)
+                // select the portion of the Data not typed by the user (so the next character will erase)
                 $(input).selection(previousValue.length, previousValue.length + sValue.length);
             }
         }
@@ -346,7 +346,7 @@
                 // call search and run callback
                 $input.search(
 				function(result) {
-				    // if no value found, clear the input box
+				    // if no Data found, clear the input box
 				    if (!result) {
 				        if (options.multiple) {
 				            var words = trimWords($input.val()).slice(0, -1);

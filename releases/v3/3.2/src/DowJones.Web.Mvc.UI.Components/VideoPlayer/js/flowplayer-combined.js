@@ -1440,7 +1440,7 @@
 
             /******* nested PARAM tags *******/
             if (opts.w3c || IE) {
-                html += '<param name="movie" value="' + opts.src + '" />';
+                html += '<param name="movie" Data="' + opts.src + '" />';
             }
 
             // not allowed params
@@ -1449,7 +1449,7 @@
 
             for (var key in opts) {
                 if (opts[key]) {
-                    html += '<param name="' + key + '" value="' + opts[key] + '" />';
+                    html += '<param name="' + key + '" Data="' + opts[key] + '" />';
                 }
             }
 
@@ -1464,7 +1464,7 @@
                     }
                 }
                 vars = vars.slice(0, -1);
-                html += '<param name="flashvars" value=\'' + vars + '\' />';
+                html += '<param name="flashvars" Data=\'' + vars + '\' />';
             }
 
             html += "</object>";

@@ -110,25 +110,22 @@ DJ.UI.StockKiosk = DJ.UI.Component.extend({
     transformDataResult: function (dataPoints, marketDirection) {
         var stockDataSeries = [];
         if (dataPoints && dataPoints != null) {  //change to small case dataPoints
-            $.each(dataPoints, function (i, objvalue) {
-                //or new Date(objvalue.date).getTime()
+            $.each(dataPoints, function(i, objvalue) {
+                //or new Date(objData.date).getTime()
                 if (objvalue.dataPoint) {
                     if (objvalue.isLast && (marketDirection === 'up' || marketDirection === 'down')) {
                         if (marketDirection === 'up') {
-                            stockDataSeries.push({ x: JSON.parseDate(objvalue.date).getTime(), y: objvalue.dataPoint.value, dateDisplay: objvalue.dateDisplay, marker: { enabled:true, radius:2, symbol:'circle', fillColor: '#11a106' } });                 
+                            stockDataSeries.push({ x: JSON.parseDate(objvalue.date).getTime(), y: objvalue.dataPoint.value, dateDisplay: objvalue.dateDisplay, marker: { enabled: true, radius: 2, symbol: 'circle', fillColor: '#11a106' } });
+                        } else {
+                            stockDataSeries.push({ x: JSON.parseDate(objvalue.date).getTime(), y: objvalue.dataPoint.value, dateDisplay: objvalue.dateDisplay, marker: { enabled: true, radius: 2, symbol: 'circle', fillColor: '#cc3e33' } });
                         }
-                        else {
-                            stockDataSeries.push({ x: JSON.parseDate(objvalue.date).getTime(), y: objvalue.dataPoint.value, dateDisplay: objvalue.dateDisplay, marker: { enabled:true, radius:2, symbol:'circle', fillColor: '#cc3e33'  } });
-                        }
-                    }
-                    else {
+                    } else {
                         stockDataSeries.push({ x: JSON.parseDate(objvalue.date).getTime(), y: objvalue.dataPoint.value, dateDisplay: objvalue.dateDisplay });
                     }
+                } else {
+                    stockDataSeries.push({ x: JSON.parseDate(objvalue.date).getTime(), y: null, dateDisplay: null });
                 }
-                else {
-                    stockDataSeries.push({x:JSON.parseDate(objvalue.date).getTime(),  y:null, dateDisplay:null});
-                }
-            })
+            });
         }
 
         return {
@@ -284,7 +281,7 @@ DJ.UI.StockKiosk = DJ.UI.Component.extend({
 
             series: graphLineConfig
 
-        } //end of marketIndexChartOptions
+        }; //end of marketIndexChartOptions
         return marketIndexChartOptions;
     },
 
@@ -331,7 +328,10 @@ DJ.UI.StockKiosk = DJ.UI.Component.extend({
             self.$element.html(this.templates.success(data));                  
         }
         else {
-            self.$element.html("<span class='no-results'><%= Token("noStockKioskResults") %></span>"); 
+            self.$element.html("<span class='no-results'><%= Token(";
+            noStockKioskResults;
+            ") %></span>");
+            ; 
             return;           
         } 
     },
@@ -350,7 +350,7 @@ DJ.UI.StockKiosk = DJ.UI.Component.extend({
             $(self.selectors.stock_label_name, this.$element).html(requestedIntradaryMarketData.name + " [" + requestedIntradaryMarketData.exchange.code + "]");       
             $(self.selectors.timezone_name, this.$element).html(requestedIntradaryMarketData.exchange.timeZoneDescriptor);      
             var currency = $(self.selectors.stock_currency, this.$element);
-            var currencyVal =  $(self.selectors.stock_currency + " .dj_value", this.$element);
+            var currencyVal =  $(self.selectors.stock_currency + " .dj_Data", this.$element);
             if (currency.length > 0 )
             {
                 if (requestedIntradaryMarketData.currency) {
@@ -406,7 +406,7 @@ DJ.UI.StockKiosk = DJ.UI.Component.extend({
             $(self.selectors.stock_label_name, this.$element).html(requestedIntradaryMarketData.name + " [" + requestedIntradaryMarketData.exchange.code + "]");      
             $(self.selectors.timezone_name, this.$element).html(requestedIntradaryMarketData.exchange.timeZoneDescriptor);
             var currency = $(self.selectors.stock_currency, this.$element);
-            var currencyVal =  $(self.selectors.stock_currency + " .dj_value", this.$element);
+            var currencyVal =  $(self.selectors.stock_currency + " .dj_Data", this.$element);
             if (currency.length > 0 )
             {
                 if (requestedIntradaryMarketData.currency) {
@@ -433,7 +433,10 @@ DJ.UI.StockKiosk = DJ.UI.Component.extend({
         var self = this;
         try {
             if (graphDataModel.objStockSeries.length == 0) {
-                chartContainer.html("<span class='no-results'><%= Token("noChartResults") %></span>"); 
+                chartContainer.html("<span class='no-results'><%= Token(";
+                noChartResults;
+                ") %></span>");
+                ; 
                 if (this.chart) {
                     this.chart = null;
                 }

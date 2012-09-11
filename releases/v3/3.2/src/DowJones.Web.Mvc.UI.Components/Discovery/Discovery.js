@@ -40,7 +40,7 @@ DJ.UI.Discovery = DJ.UI.Component.extend({
             var $this = $(this)
                     , type = $this.attr('data-type')
                     , name = $this.attr('data-name')
-                    , value = $this.attr('data-value');
+                    , value = $this.attr('data-Data');
 
             var term = {
                 type: type,

@@ -93,6 +93,7 @@
     <Compile Include="CalloutPopup\CalloutPopupModel.cs" />
     <Compile Include="CompositeAuthor\CompositeAuthorModel.cs" />
     <Compile Include="CompositeOutlet\CompositeOutletModel.cs" />
+    <Compile Include="Gauge\GaugeModel.cs" />
     <Compile Include="DateHistogram\DateHistogramModel.cs" />
     <Compile Include="DateSlider\DateSliderModel.cs" />
     <Compile Include="DiscoveryGraph\Entities.cs" />

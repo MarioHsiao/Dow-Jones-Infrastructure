@@ -500,7 +500,7 @@
 					el.data("autoScrollInterval", null);
 				}
 				else {
-					// Store the old scrollLeft value to see if the scrolling has reached the end
+					// Store the old scrollLeft Data to see if the scrolling has reached the end
 					el.data("previousScrollLeft", el.data("scrollWrapper").scrollLeft());
 
 
@@ -550,7 +550,7 @@
 						case "endlessloopright":
 							// Get the width of the first element. When it has scrolled out of view,
 							// the element swapping should be executed. A true/false variable is used
-							// as a flag variable so the swapAt value doesn't have to be recalculated
+							// as a flag variable so the swapAt Data doesn't have to be recalculated
 							// in each loop.
 
 							if (el.data("getNextElementWidth")) {
@@ -579,7 +579,7 @@
 						case "endlessloopleft":
 							// Get the width of the first element. When it has scrolled out of view,
 							// the element swapping should be executed. A true/false variable is used
-							// as a flag variable so the swapAt value doesn't have to be recalculated
+							// as a flag variable so the swapAt Data doesn't have to be recalculated
 							// in each loop.
 
 							if (el.data("getNextElementWidth")) {

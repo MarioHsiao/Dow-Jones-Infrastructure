@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <GetTriggerDetailsResponse xmlns="urn:dowjones:emg:tr:v2_0" xmlns:s2="http://types.factiva.com/search" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<getTriggerDetailsResponseContent serverIPAddress="String" apiVersion="String">
 		<status code="0">String</status>
 		<getTriggerDetailsResults>
 			<masterTrigger displayLowerDateTime="2001-12-17T09:30:47Z" confidence="0" lastPublicationDateTime="2001-12-17T09:30:47Z" modifiedDateTime="2001-12-17T09:30:47Z" createDateTime="2001-12-17T09:30:47Z" currentAwarenessDateTime="2001-12-17T09:30:47Z" displayUpperDateTime="2001-12-17T09:30:47Z" mostRecentTriggerDateTime="2001-12-17T09:30:47Z" displayName="String" instanceCount="0" firstPublicationDateTime="2001-12-17T09:30:47Z" id="2147483647" code="String" documentCount="0" confidenceRange="String">
-				<property sortOrder="0" minimumRequired="0" allowReference="String" type="String" requiredToMerge="true" maximumAllowed="String" displayName="String" isValueTranslatable="true" code="String">
+				<property sortOrder="0" minimumRequired="0" allowReference="String" type="String" requiredToMerge="true" maximumAllowed="String" displayName="String" isDataTranslatable="true" code="String">
 					<value isMostRecent="true" content="String" code="String">
 						<reference>String</reference>
 						<feature name="String" content="String"/>

@@ -192,6 +192,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CompositeOutletComponent.cshtml</DependentUpon>
     </Compile>
+    <Compile Include="Gauge\Gauge.cs">
+      <DependentUpon>Gauge.cshtml</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="NewsMatrix\NewsMatrixComponent.cs">
       <DependentUpon>NewsMatrixComponent.cshtml</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -580,6 +585,10 @@
       <Generator>RazorViewComponentClassGenerator</Generator>
       <LastGenOutput>CompositeOutletComponent.cs</LastGenOutput>
     </None>
+    <None Include="Gauge\Gauge.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>Gauge.cs</LastGenOutput>
+    </None>
     <None Include="NewsMatrix\NewsMatrixComponent.cshtml">
       <Generator>RazorViewComponentClassGenerator</Generator>
       <LastGenOutput>NewsMatrixComponent.cs</LastGenOutput>
@@ -882,13 +891,21 @@
     <EmbeddedResource Include="ShareChart\ShareChart.js" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Gauge\ClientTemplates\error.htm" />
+    <EmbeddedResource Include="Gauge\ClientTemplates\noData.htm" />
+    <EmbeddedResource Include="Gauge\ClientTemplates\layout.htm" />
     <EmbeddedResource Include="ShareChart\ClientTemplates\success.html" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ShareChart\ClientTemplates\noData.html" />
+    <EmbeddedResource Include="Gauge\ClientTemplates\success.htm" />
+    <EmbeddedResource Include="ShareChart\ClientTemplates\noData.html" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ShareChart\ClientTemplates\error.html" />
+    <EmbeddedResource Include="ShareChart\ClientTemplates\error.html" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Gauge\Gauge.js" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -11,6 +11,7 @@ using DowJones.Managers.Charting.MarketData;
 using DowJones.Managers.MarketWatch.Instrument;
 using DowJones.Web.Mvc.ModelBinders;
 using DowJones.Web.Mvc.UI.Components.StockKiosk;
+using DowJones.Web.Showcase.Models;
 
 namespace DowJones.Web.Showcase.Controllers
 {
@@ -47,12 +48,6 @@ namespace DowJones.Web.Showcase.Controllers
         {
             base.WriteStartElement(prefix, XmlConvert.EncodeLocalName(localName), ns);
         }
-    }
-
-    public class StockKioskControllerModel
-    {
-        public StockKioskModel Top;
-        public StockKioskModel Bottom;
     }
 
     public class StockKioskController : Controller

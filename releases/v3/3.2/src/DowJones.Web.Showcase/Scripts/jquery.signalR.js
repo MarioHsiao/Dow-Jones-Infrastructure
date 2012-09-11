@@ -869,7 +869,7 @@
     };
 
     signalR.noConflict = function () {
-        /// <summary>Reinstates the original value of $.connection and returns the signalR object for manual assignment</summary>
+        /// <summary>Reinstates the original Data of $.connection and returns the signalR object for manual assignment</summary>
         /// <returns type="signalR" />
         if ($.connection === signalR) {
             $.connection = _connection;

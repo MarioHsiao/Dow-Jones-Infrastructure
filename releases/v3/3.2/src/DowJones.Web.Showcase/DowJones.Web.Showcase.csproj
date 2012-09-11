@@ -39,6 +39,7 @@
     <NoWarn>1762</NoWarn>
     <PrecompileBeforePublish>true</PrecompileBeforePublish>
     <DeployIisAppPath>Default Web Site/MVCShowcase</DeployIisAppPath>
+    <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -164,6 +165,7 @@
     <Compile Include="Controllers\CanvasControllerBase.cs" />
     <Compile Include="Controllers\ClientUIController.cs" />
     <Compile Include="Controllers\CompanyProfileController.cs" />
+    <Compile Include="Controllers\GaugeController.cs" />
     <Compile Include="Controllers\NewsMatrixController.cs" />
     <Compile Include="Controllers\DateHistogramController.cs" />
     <Compile Include="Controllers\DateSliderController.cs" />
@@ -186,6 +188,7 @@
     <Compile Include="Controllers\CompanySparklineController.cs" />
     <Compile Include="Controllers\CompositeComponentController.cs" />
     <Compile Include="Controllers\NavBarController.cs" />
+    <Compile Include="Controllers\ShareChartController.cs" />
     <Compile Include="Controllers\SocialButtonsController.cs" />
     <Compile Include="Controllers\SocialMediaController.cs" />
     <Compile Include="Controllers\StockKioskController.cs" />
@@ -195,9 +198,11 @@
     <Compile Include="JsonSerializers\JsonConvertAdapter.cs" />
     <Compile Include="Mocks\MockSearchManager.cs" />
     <Compile Include="Mocks\MockSearchQueryResourceManager.cs" />
+    <Compile Include="Models\GaugeViewModel.cs" />
     <Compile Include="Models\MultiviiewPortalHeadlinesListModel.cs" />
     <Compile Include="Models\Newsletter\EditionModel.cs" />
     <Compile Include="Models\SocialMediaViewModel.cs" />
+    <Compile Include="Models\StockKioskControllerModel.cs" />
     <Compile Include="Models\TagCloudDemoViewModel.cs" />
     <Compile Include="MockRESTServices\MockRestServiceController.cs" />
     <Compile Include="Controllers\ArticleController.cs" />
@@ -1656,6 +1661,7 @@
     <Content Include="Views\CompanyProfile\Index.cshtml" />
     <Content Include="Views\Article\ClientSide.cshtml" />
     <Content Include="Styles\css\article.scss" />
+    <Content Include="Views\Gauge\Index.cshtml" />
     <None Include="Views\NewsRadar\sample.json" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -1666,6 +1672,7 @@
     <Content Include="Views\VideoPlayer\Index.cshtml" />
     <Content Include="Views\SocialButtons\Index.cshtml" />
     <Content Include="Views\TrendingNews\TrendingNews.cshtml" />
+    <Content Include="Views\ShareChart\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Browsers\Devices\" />

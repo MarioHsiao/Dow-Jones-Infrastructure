@@ -276,7 +276,7 @@
                         me.getSourceGroupItem = function (group) {
                             var code = group.code.toLowerCase();
                             sGItems[code] = group.desc;
-                            markup.push('<div data-value="' + code + '">' + group.desc + '</div>');
+                            markup.push('<div data-Data="' + code + '">' + group.desc + '</div>');
                             if (group.collection && group.collection.length) {
                                 markup.push('<ul>');
                                 $.each(group.collection, function () {
@@ -295,9 +295,9 @@
                         this._sourceGroupItems = sGItems;
                         $dd.html(markup.join(''));
 
-                        //Set the initial value in the dropdown menu
+                        //Set the initial Data in the dropdown menu
                         var initialValue = sourceGroups[0];
-                        this.$sourceGroupDD.data("value", initialValue.code).children("span:first").html(initialValue.desc);
+                        this.$sourceGroupDD.data("Data", initialValue.code).children("span:first").html(initialValue.desc);
                     }
 
                     this.$alphabetList = $selectBoxAlt.children(this.selectors.alphabetList);
@@ -358,9 +358,9 @@
                         var $this = $(this), $target = $(e.target);
                         $this.children(me.selectors.multiLevelMenu).toggle();
                         if ($target.is("div") && !$target.attr('class')) {
-                            var oldVal = $this.data("value"), newVal = $target.data("value");
+                            var oldVal = $this.data("Data"), newVal = $target.data("Data");
                             if (oldVal != newVal) {
-                                $this.data("value", newVal).children("span:first").html($target.html());
+                                $this.data("Data", newVal).children("span:first").html($target.html());
                                 $this.data("af", $target.data("af"));
                                 $this.trigger('change'); //Trigger the change event
                             }
@@ -380,7 +380,7 @@
                         if (!$this.hasClass('active')) {
                             $this.closest('ul').find('.active').removeClass('active');
                             $this.addClass('active');
-                            me._onAlphaClick($this.data("value"));
+                            me._onAlphaClick($this.data("Data"));
                         }
                     });
                 }
@@ -464,7 +464,7 @@
 
                     if (this.options.filterType == this.filterType.Source) {
                         this.$browseList.delegate(this.selectors.browseItem, 'mouseenter', function (e) {//List Item Hover
-                            //if (me.$sourceSortByDD.data("value")) {//If source category is selected
+                            //if (me.$sourceSortByDD.data("Data")) {//If source category is selected
                             me._onListItemHover(this, e);
                             //}
                         }).delegate(this.selectors.browseItem, 'click', function (e) {
@@ -562,7 +562,7 @@
 
         _onSourceGroupFilterChange: function () {
 
-            var sourceCategory = this.$sourceSortByDD.data("value")
+            var sourceCategory = this.$sourceSortByDD.data("Data")
 
             //Remove infoHidden clas
             this.$browseList.removeClass("infoHidden");
@@ -580,7 +580,7 @@
                 //Hide the alphabetList
                 this.$alphabetList.addClass('hidden');
 
-                var groupCode = this.$sourceGroupDD.data("value");
+                var groupCode = this.$sourceGroupDD.data("Data");
 
                 //Set the visibility of the expand description conditionally
                 if (!sourceCategory) {//Filter not selected
@@ -608,7 +608,7 @@
 
                     if (this.$sourceSortByDD.data("af")) {//If Additional filter
                         data.sourceCategory = "restrictor";
-                        data.code = this.$sourceSortByDD.data("value");
+                        data.code = this.$sourceSortByDD.data("Data");
                     }
                     this._getSourceByGroupCode(data);
                 }
@@ -617,7 +617,7 @@
 
         _onAlphaClick: function (alpha) {
             this._getSourceByFirstCharacter({
-                groupCode: this.$sourceGroupDD.data("value"),
+                groupCode: this.$sourceGroupDD.data("Data"),
                 container: this.$browseList,
                 searchString: alpha
             });
@@ -740,7 +740,7 @@
                 if (this._sourceList && this._sourceList.SourceListQueries) {
                     var $dd = this.$existingSLstDD;
                     $.each(this._sourceList.SourceListQueries, function () {
-                        $dd.append("<option value='" + this.Id + "'>" + this.Name + "</option>");
+                        $dd.append("<option Data='" + this.Id + "'>" + this.Name + "</option>");
                     });
                 }
             }
@@ -875,7 +875,7 @@
 
                     if (this.$existingSLstDD) {
                         //Remove the source list from the drop down
-                        this.$existingSLstDD.find("option[value=" + listId + "]").remove();
+                        this.$existingSLstDD.find("option[Data=" + listId + "]").remove();
                         this.$existingSLstDD.change();
                         if (this.$existingSLstDD.children().length == 1) {//No source list
                             this._sourceList = {}; //empty object
@@ -1012,7 +1012,7 @@
         },
 
         _onSourceGroupItemClick: function (elem, e, not) {
-            var $item = $(elem), code = $item.data("code"), code1 = this.$sourceGroupDD.data("value"), sourceCat = this.$sourceSortByDD.data("value");
+            var $item = $(elem), code = $item.data("code"), code1 = this.$sourceGroupDD.data("Data"), sourceCat = this.$sourceSortByDD.data("Data");
             code1 = (sourceCat && code1) ? code1 : ''; //If source category is selected then consider it
             if (!this._isFilterPresent(code1 + code)) {
                 var filter = [];
@@ -1206,7 +1206,7 @@
                 info.articleCoverage = entityInfo.ArticleCoverage;
                 //Format
                 if (entityInfo.PublicationFormats && entityInfo.PublicationFormats.length > 0) {
-                    //ToDo- Get the string value fron token
+                    //ToDo- Get the string Data fron token
                     info.format = entityInfo.PublicationFormats[0];
                 }
                 //Publisher
@@ -1264,8 +1264,8 @@
                             childrenType: $itemNext.data("ctype"),
                             container: $div,
                             code: code,
-                            sourceCategory: this.$sourceSortByDD.data("value"),
-                            groupCode: this.$sourceGroupDD.data("value")
+                            sourceCategory: this.$sourceSortByDD.data("Data"),
+                            groupCode: this.$sourceGroupDD.data("Data")
                         };
                         if (this.$sourceSortByDD.data("af")) {//If Additional filter
                             data.sourceCategory = "restrictor";
@@ -1523,7 +1523,7 @@
                 this._showHideSaveListBtn();
             }
 
-            //Set the filters wrapper top to 0px. If it was scrolled the top might have negative value
+            //Set the filters wrapper top to 0px. If it was scrolled the top might have negative Data
             this.$filters.parent().css("top", "0px");
         },
 
@@ -1758,7 +1758,7 @@
                 this._addAllLanguages();
             }
             this._sourceListAdded = false;
-            //Set the filters wrapper top to 0px. If it was scrolled the top might have negative value
+            //Set the filters wrapper top to 0px. If it was scrolled the top might have negative Data
             this.$filters.parent().css("top", "0px");
             this._triggerResize();
         },

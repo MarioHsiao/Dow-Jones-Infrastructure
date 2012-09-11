@@ -21,8 +21,8 @@
                             <ul class="discovery-items dj_emg_djc_keyword_list">
                                 @foreach (var k in list.DiscoveryItems)
                                 { 
-                                    <li class="@("dj_emg_djc_keyword_item" + Math.Ceiling(k.ShareOfTop / 10)) item cloud-item" data-type="text" data-name="@k.Value" data-value="@k.Id">
-                                        <a href="#" title="@k.Value">@k.Value</a>
+                                    <li class="@("dj_emg_djc_keyword_item" + Math.Ceiling(k.ShareOfTop / 10)) item cloud-item" data-type="text" data-name="@k.Data" data-value="@k.Id">
+                                        <a href="#" title="@k.Data">@k.Data</a>
                                     </li>
                                 }
                             </ul>
@@ -38,9 +38,9 @@
                             <ul class="discovery-items">
                                 @foreach (var b in list.DiscoveryItems)
                                 {
-                                    <li class="item chart-item" data-type="@list.DataTypeCode" data-name="@b.Value" data-value="@b.Id">
+                                    <li class="item chart-item" data-type="@list.DataTypeCode" data-name="@b.Data" data-value="@b.Id">
                                         <span class="discovery-label">
-                                            <a href="#" title="@b.Value">@b.Value</a>
+                                            <a href="#" title="@b.Data">@b.Data</a>
                                         </span> 
                                         <span class="discovery-chart">
                                             <span class="chart-value">@(b.Count > 0 ? b.Count : b.Count)</span>

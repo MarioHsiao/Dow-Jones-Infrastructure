@@ -457,6 +457,10 @@
     <EmbeddedResource Include="Resources\js\tmpload.js" />
     <EmbeddedResource Include="Resources\js\tmpload.min.js" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\js\domReady.js" />
+    <EmbeddedResource Include="Resources\js\text.js" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>

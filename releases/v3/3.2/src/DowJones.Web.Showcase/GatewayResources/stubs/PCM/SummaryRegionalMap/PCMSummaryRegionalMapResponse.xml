@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <soap-env:Envelope xmlns:soap-env="http://schemas.xmlsoap.org/soap/envelope/">
   <soap-env:Body>
     <PCMSummaryRegionalMapResponse xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
@@ -10,12 +10,12 @@
               <Exp>0</Exp>
               <IsPositive>true</IsPositive>
               <RawText>
-                <Value>1,711</Value>
+                <Data>1,711</Data>
               </RawText>
               <Text>
-                <Value>1,711</Value>
+                <Data>1,711</Data>
               </Text>
-              <Value>1711</Value>
+              <Data>1711</Data>
             </CurrentTimeFrameNewsVolume>
             <Code>NAMZ</Code>
           </NewsEntity>
@@ -25,12 +25,12 @@
               <Exp>0</Exp>
               <IsPositive>true</IsPositive>
               <RawText>
-                <Value>35</Value>
+                <Data>35</Data>
               </RawText>
               <Text>
-                <Value>35</Value>
+                <Data>35</Data>
               </Text>
-              <Value>35</Value>
+              <Data>35</Data>
             </CurrentTimeFrameNewsVolume>
             <Code>SAMZ</Code>
           </NewsEntity>
@@ -40,12 +40,12 @@
               <Exp>0</Exp>
               <IsPositive>true</IsPositive>
               <RawText>
-                <Value>33</Value>
+                <Data>33</Data>
               </RawText>
               <Text>
-                <Value>33</Value>
+                <Data>33</Data>
               </Text>
-              <Value>33</Value>
+              <Data>33</Data>
             </CurrentTimeFrameNewsVolume>
             <Code>CAMZ</Code>
           </NewsEntity>
@@ -55,12 +55,12 @@
               <Exp>0</Exp>
               <IsPositive>true</IsPositive>
               <RawText>
-                <Value>766</Value>
+                <Data>766</Data>
               </RawText>
               <Text>
-                <Value>766</Value>
+                <Data>766</Data>
               </Text>
-              <Value>766</Value>
+              <Data>766</Data>
             </CurrentTimeFrameNewsVolume>
             <Code>EURZ</Code>
           </NewsEntity>
@@ -70,12 +70,12 @@
               <Exp>0</Exp>
               <IsPositive>true</IsPositive>
               <RawText>
-                <Value>37</Value>
+                <Data>37</Data>
               </RawText>
               <Text>
-                <Value>37</Value>
+                <Data>37</Data>
               </Text>
-              <Value>37</Value>
+              <Data>37</Data>
             </CurrentTimeFrameNewsVolume>
             <Code>RUSS</Code>
           </NewsEntity>
@@ -85,12 +85,12 @@
               <Exp>0</Exp>
               <IsPositive>true</IsPositive>
               <RawText>
-                <Value>28</Value>
+                <Data>28</Data>
               </RawText>
               <Text>
-                <Value>28</Value>
+                <Data>28</Data>
               </Text>
-              <Value>28</Value>
+              <Data>28</Data>
             </CurrentTimeFrameNewsVolume>
             <Code>MEASTZ</Code>
           </NewsEntity>
@@ -100,12 +100,12 @@
               <Exp>0</Exp>
               <IsPositive>true</IsPositive>
               <RawText>
-                <Value>40</Value>
+                <Data>40</Data>
               </RawText>
               <Text>
-                <Value>40</Value>
+                <Data>40</Data>
               </Text>
-              <Value>40</Value>
+              <Data>40</Data>
             </CurrentTimeFrameNewsVolume>
             <Code>AFRICAZ</Code>
           </NewsEntity>
@@ -115,12 +115,12 @@
               <Exp>0</Exp>
               <IsPositive>true</IsPositive>
               <RawText>
-                <Value>334</Value>
+                <Data>334</Data>
               </RawText>
               <Text>
-                <Value>334</Value>
+                <Data>334</Data>
               </Text>
-              <Value>334</Value>
+              <Data>334</Data>
             </CurrentTimeFrameNewsVolume>
             <Code>ASIAZ</Code>
           </NewsEntity>
@@ -130,12 +130,12 @@
               <Exp>0</Exp>
               <IsPositive>true</IsPositive>
               <RawText>
-                <Value>29</Value>
+                <Data>29</Data>
               </RawText>
               <Text>
-                <Value>29</Value>
+                <Data>29</Data>
               </Text>
-              <Value>29</Value>
+              <Data>29</Data>
             </CurrentTimeFrameNewsVolume>
             <Code>INDSUBZ</Code>
           </NewsEntity>
@@ -145,12 +145,12 @@
               <Exp>0</Exp>
               <IsPositive>true</IsPositive>
               <RawText>
-                <Value>72</Value>
+                <Data>72</Data>
               </RawText>
               <Text>
-                <Value>72</Value>
+                <Data>72</Data>
               </Text>
-              <Value>72</Value>
+              <Data>72</Data>
             </CurrentTimeFrameNewsVolume>
             <Code>AUSNZ</Code>
           </NewsEntity>

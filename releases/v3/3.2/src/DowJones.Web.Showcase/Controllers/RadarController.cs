@@ -24,7 +24,7 @@ namespace DowJones.Web.Showcase.Controllers
             //                   {
             //                       Name = subject, 
             //                       Total = total, 
-            //                       Value = value,
+            //                       Data = value,
             //                   }
 
             //    let totalCount = subjectCounts.Sum(x => x.Total.GetValueOrDefault())

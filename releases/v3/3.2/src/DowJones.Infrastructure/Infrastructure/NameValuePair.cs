@@ -10,5 +10,15 @@ namespace DowJones
 
         [DataMember(Name = "value")]
         public string Value { get; set; }
+
+        public NameValuePair()
+        {
+        }
+
+        public NameValuePair(string name, string value)
+        {
+            Name = name;
+            Value = value;
+        }
     }
 }

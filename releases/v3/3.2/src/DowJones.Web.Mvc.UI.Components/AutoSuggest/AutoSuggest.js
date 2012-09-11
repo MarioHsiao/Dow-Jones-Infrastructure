@@ -40,7 +40,7 @@
 
         // Localization/Templating tokens
         tokens: {
-            // name: value     // add more defaults here separated by comma
+            // name: Data     // add more defaults here separated by comma
             companyTkn: "<%= Token("companyTkn") %>",
             executiveTkn: "<%= Token("executiveTkn") %>",
             industryTkn: "<%= Token("industryTkn") %>",
@@ -131,7 +131,7 @@
         /*
         * Private methods
         */
-        //Return an object which gives value depending on autosuggestion type
+        //Return an object which gives Data depending on autosuggestion type
         _getValueByAutoSuggestType : function (){
             return {
             author: "formalName",
@@ -139,11 +139,11 @@
             publishercity: "formalName",
             publishermetadata: "name",
             executive: "completeName",
-            company: "value",
+            company: "Data",
             privatemarketcompany: "companyName",
             privatemarketindustry: "industryName",
             privatemarketregion: "regionName",
-            company: "value",
+            company: "Data",
             region: "descriptor",
             newssubject: "descriptor",
             industry: "descriptor",

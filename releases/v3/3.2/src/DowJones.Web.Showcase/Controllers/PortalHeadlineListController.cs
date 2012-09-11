@@ -28,13 +28,18 @@ namespace DowJones.Web.Showcase.Controllers
             _searchManager = searchManger;
         }
 
+        public ActionResult Picture(string query="obama", int count = 10)
+        {
+            return View("Index", GetPortalHeadlineListPictureSection(query, count));
+        }
+
         public ActionResult Index(string query = "obama and sc=j", int count = 10)
         {
             var model = GetPortalHeadlineListSection(query, count);
             return View("Index", model);          
         }
 
-		public ActionResult ComponentExplorerDemo(string query = "obama and sc=j", int count = 10)
+        public ActionResult ComponentExplorerDemo(string query = "obama and sc=j", int count = 10)
 		{
 			return View("Index", "_Layout_ComponentExplorer", new PortalHeadlineListModel
 			{
@@ -47,7 +52,6 @@ namespace DowJones.Web.Showcase.Controllers
 				SourceClickable = true,
 				DisplaySnippets = SnippetDisplayType.Hover,
 				Layout = PortalHeadlineListLayout.HeadlineLayout,
-				AllowPagination = true,
 				PagePrevSelector = ".prev",
 				PageNextSelector = ".next"
 
@@ -136,10 +140,51 @@ namespace DowJones.Web.Showcase.Controllers
             return View("Multi", model);
         }
 
+        
         public ActionResult PartialResult(string url, string callback)
         {
             var model = GetPortalHeadlineListSection(url);
             return ViewComponent(model, callback);
+        }
+
+        private  PortalHeadlineListModel GetPortalHeadlineListPictureSection(string query, int count)
+        {
+            var request = new PerformContentSearchRequest();
+            request.StructuredSearch.Query.SearchStringCollection.Add(new SearchString
+            {
+                Mode = SearchMode.Traditional,
+                Value = query,
+            });
+
+            request.StructuredSearch.Formatting.ExtendedFields = true;
+            request.StructuredSearch.Formatting.MarkupType = MarkupType.Highlight;
+            request.StructuredSearch.Formatting.SortOrder = ResultSortOrder.PublicationDateReverseChronological;
+            request.StructuredSearch.Formatting.SnippetType = SnippetType.Fixed;
+            request.StructuredSearch.Query.SearchCollectionCollection.Add(SearchCollection.Pictures);
+            request.NavigationControl.ReturnHeadlineCoding = true;
+            request.MaxResults = count;
+            request.FirstResult = 0;
+
+            var results = _searchManager.PerformContentSearch<PerformContentSearchResponse>(request);
+            var headlineListDataResult = _headlineListManager.Process(results);
+            var portalHeadlineListDataResult = PortalHeadlineConversionManager.Convert(headlineListDataResult);
+
+            return new PortalHeadlineListModel
+            {
+                MaxNumHeadlinesToShow = 5,
+                Result = portalHeadlineListDataResult,
+                ShowAuthor = true,
+                ShowSource = true,
+                ShowPublicationDateTime = true,
+                ShowTruncatedTitle = false,
+                AuthorClickable = true,
+                SourceClickable = true,
+                DisplaySnippets = SnippetDisplayType.Hover,
+                Layout = PortalHeadlineListLayout.HeadlineLayout,
+                AllowPagination = false,
+                PagePrevSelector = ".prev",
+                PageNextSelector = ".next"
+            };
         }
 
         private PortalHeadlineListModel GetPortalHeadlineListSection(string query, int count)
@@ -174,7 +219,7 @@ namespace DowJones.Web.Showcase.Controllers
                 SourceClickable = true,
                 DisplaySnippets = SnippetDisplayType.Hover, 
                 Layout = PortalHeadlineListLayout.HeadlineLayout,
-				AllowPagination = true,
+                AllowPagination = false,
 				PagePrevSelector = ".prev",
 				PageNextSelector = ".next"
             };
