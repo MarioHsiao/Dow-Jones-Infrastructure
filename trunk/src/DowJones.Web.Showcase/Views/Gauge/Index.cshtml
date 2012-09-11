@@ -1,4 +1,4 @@
-﻿@model DowJones.Web.Mvc.UI.Components.Gauge.GaugeModel
+﻿@model GaugeViewModel
 @{
     Layout = "~/Views/Shared/_SignalR.cshtml";
     ViewBag.Title = "Gauge";
@@ -6,6 +6,12 @@
             .Include("~/styles/css/stockkiosk.css");
 }
 
-<div id="tempContent">
-    <div class="top">@Html.DJ().Render( Model, new { id = "gaugeContainer"} )</div>
+<div id="speedometer">
+    <h3>Speedometer</h3>
+    <div class="top">@Html.DJ().Render( Model.Speedometer, new { id = "speedometerContainer"} )</div>
+</div>
+
+<div id="meter">
+    <h3>Meter</h3>
+    <div class="top">@Html.DJ().Render( Model.Meter, new { id = "meterContainer"} )</div>
 </div>

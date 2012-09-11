@@ -7,10 +7,10 @@ namespace DowJones.Web.Mvc.UI.Components.Gauge
     public class Band
     {
         [JsonProperty("to")]
-        public decimal To { get; set; }
+        public double To { get; set; }
 
         [JsonProperty("from")]
-        public decimal From { get; set; }
+        public double From { get; set; }
 
         [JsonProperty("color")]
         public string Color { get; set; }
@@ -111,8 +111,8 @@ namespace DowJones.Web.Mvc.UI.Components.Gauge
 
     public enum  GaugeType
     {
-        Spedometer,
-        Warning,
+        Speedometer,
+        Meter,
     }
 
     public class GaugeModel : ViewComponentModel
@@ -125,17 +125,17 @@ namespace DowJones.Web.Mvc.UI.Components.Gauge
             Angle = 65;
             Title = string.Empty;
             Footer = string.Empty;
-            GaugeType = GaugeType.Spedometer;
+            GaugeType = GaugeType.Speedometer;
         }
 
         [ClientProperty("max")]
-        public decimal Max { get; set; }
+        public double Max { get; set; }
 
         [ClientProperty("min")]
-        public decimal Min { get; set; }
+        public double Min { get; set; }
 
         [ClientData("data")]
-        public decimal Data { get; set; }
+        public double Data { get; set; }
 
         [ClientProperty("bands")]
         public List<Band> Bands { get; set; }
@@ -152,7 +152,10 @@ namespace DowJones.Web.Mvc.UI.Components.Gauge
         [ClientProperty("footer")]
         public string Footer { get; set; }
 
-        [ClientProperty("GaugeType")]
+        [ClientProperty("gaugeType")]
         public GaugeType GaugeType { get; set; }
+
+        [ClientProperty("colors")]
+        public List<string> Colors { get; set; }
     }
 }

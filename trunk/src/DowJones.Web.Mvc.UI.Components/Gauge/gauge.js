@@ -2,6 +2,7 @@
 DJ.UI.Gauge = DJ.UI.Component.extend({
 
     defaults: {
+        colors: Highcharts.getOptions().colors,
         debug: false,
         min: 0,
         max: 100,
@@ -20,35 +21,7 @@ DJ.UI.Gauge = DJ.UI.Component.extend({
             borderWidth: 0,
             topWidth: 1,
             baseLength: '70%', // of radius
-        },
-        spedometerBands :[{
-            from: 0,
-            to: 6000,
-            color: '#99CC00',
-            innerRadius: '45%',
-            outerRadius: '90%'
-        }],
-        monitoringBands: [{
-            from: 0,
-            to: 6000,
-            color: '#99CC00',
-            innerRadius: '45%',
-            outerRadius: '90%'
-        },
-        {
-            from: 0,
-            to: 6000,
-            color: '#99CC00',
-            innerRadius: '45%',
-            outerRadius: '90%'
-        },
-        {
-            from: 0,
-            to: 6000,
-            color: '#99CC00',
-            innerRadius: '45%',
-            outerRadius: '90%'
-        }]
+        }
     },
 
     selectors: {
@@ -77,7 +50,8 @@ DJ.UI.Gauge = DJ.UI.Component.extend({
 
     _initializeElements: function (ctx) {
         //Bind the layout template
-        $(this.$element).html(this.templates.layout({value: this.data}));
+        DJ.config.debug = true;
+        $(this.$element).html(this.templates.layout({value: this.data, title: this.options.title, footer: this.options.footer }));
     },
 
     /* Public methods */
@@ -144,6 +118,50 @@ DJ.UI.Gauge = DJ.UI.Component.extend({
       
     },
     
+    _getSpedometerBands: function() {
+        return [{
+            from: 0,
+            to: this.data,
+            color: this.options.colors[0],
+            innerRadius: '45%',
+            outerRadius: '90%'
+        },
+        {
+            from: this.data,
+            to: this.options.max,
+            color: '#CCC',
+            innerRadius: '45%',
+            outerRadius: '90%'
+        }];
+    },
+    
+    _getMeterBands: function () {
+        var max = this.options.max;
+        var segment1 = (max * 80 / 100);
+        var segment2 = (max * 90 / 100);
+        return [{
+                from: 0,
+                to: segment1,
+                color: this.options.colors[0],
+                innerRadius: '45%',
+                outerRadius: '90%'
+            },
+            {
+                from: segment1,
+                to: segment2,
+                color: this.options.colors[1],
+                innerRadius: '45%',
+                outerRadius: '90%'
+            },
+            {
+                from: segment2,
+                to: max,
+                color: this.options.colors[2],
+                innerRadius: '45%',
+                outerRadius: '90%'
+        }];
+    },
+    
     getGaugeConfig: function () {
         //BEGIN: Discovery Graph Configuration
         return {
@@ -181,7 +199,7 @@ DJ.UI.Gauge = DJ.UI.Component.extend({
                     distance: 20,
                     enabled: false,
                 },
-                plotBands: this.options.bands ,
+                plotBands: (this.options.gaugeType === 0 ) ? this._getSpedometerBands() : this._getMeterBands(),
                 pane: 0,
                 title: {
                     text: '',
