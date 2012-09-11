@@ -107,19 +107,17 @@ namespace DowJones.Pages
         public Page()
         {
             IsActive = true;
+            ModuleCollection = new List<Module>();
         }
 
 
         public static Type[] GetKnownTypes()
         {
-            if (_knownTypes == null)
-                _knownTypes = ServiceLocator.Resolve<IAssemblyRegistry>().GetKnownTypesOf<Page>().ToArray();
-
-            return _knownTypes;
+            return ServiceLocator.Resolve<IAssemblyRegistry>().GetKnownTypesOf<Page>().ToArray();
         }
-        private static volatile Type[] _knownTypes;
     }
 
+    [Obsolete]
     public class Page<TGatewayModel> : Page
     {
     }

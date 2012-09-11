@@ -15,7 +15,7 @@ namespace DowJones.Infrastructure.Web.Search
     public class QueryUtilityTest : UnitTestFixture
     {
         #region PerformContentSearch
-//        [TestMethod]
+        //        [TestMethod]
         public void PerformContentSearchRequestXML_Test()
         {
 
@@ -24,8 +24,8 @@ namespace DowJones.Infrastructure.Web.Search
 
             Console.WriteLine("Request:");
 
-            ControlData controlData = ControlDataManager.GetLightWeightUserControlData("apichecker","apichecker","16");
-            
+            ControlData controlData = ControlDataManager.GetLightWeightUserControlData("apichecker", "apichecker", "16");
+
 
 
             Console.WriteLine(GeneralUtils.serialize(request));
@@ -48,12 +48,12 @@ namespace DowJones.Infrastructure.Web.Search
             request.StructuredSearch = new StructuredSearch { Formatting = new ResultFormatting { MarkupType = Factiva.Gateway.Messages.Search.V2_0.MarkupType.All, SnippetType = SnippetType.Fixed, SortOrder = ResultSortOrder.Relevance, FreshnessDate = DateTime.Today, ClusterMode = ClusterMode.Off, DeduplicationMode = DeduplicationMode.Off }, Linguistics = new Linguistics { LemmatizationOn = true, SpellCheckMode = LinguisticsMode.Suggest, SynonymsOn = true, SymbolRecognitionMode = LinguisticsMode.Suggest, NameRecognitionMode = LinguisticsMode.Suggest } };
             request.StructuredSearch.Query = new StructuredQuery { Dates = new Dates { Format = Factiva.Gateway.Messages.Search.V2_0.DateFormat.MMDDCCYY, After = "-91" } };
 
-            //request.StructuredSearch.Query.RankSearchStringCollection = new RankSearchStringCollection { new RankSearchString { Mode = SearchMode.Traditional, Value = "rst=djnwp or rst=bwr" } };
+            //request.StructuredSearch.Query.RankSearchStringCollection = new RankSearchStringCollection { new RankSearchString { Mode = SearchMode.Traditional, Data = "rst=djnwp or rst=bwr" } };
 
             request.StructuredSearch.Query.SearchStringCollection = new SearchStringCollection();
             request.StructuredSearch.Query.SearchStringCollection.Add(new SearchString { Id = "freetext", Mode = SearchMode.Traditional, Type = SearchType.Free, Value = "msft" });
             request.StructuredSearch.Query.SearchStringCollection.Add(new SearchString { Id = "freetext1", Mode = SearchMode.Simple, Type = SearchType.Free, Value = "google" });
-            //request.StructuredSearch.Query.SearchStringCollection.Add(new SearchString { Id = "laAny", Mode = SearchMode.Any, Type = SearchType.Controlled, Scope = "la", Filter = true, Value = "en ru de" });
+            //request.StructuredSearch.Query.SearchStringCollection.Add(new SearchString { Id = "laAny", Mode = SearchMode.Any, Type = SearchType.Controlled, Scope = "la", Filter = true, Data = "en ru de" });
 
 
             request.DescriptorControl = new DescriptorControl { Mode = DescriptorControlMode.All, Language = "en" };
@@ -102,7 +102,7 @@ namespace DowJones.Infrastructure.Web.Search
 
             ControlData controlData = ControlDataManager.GetLightWeightUserControlData("apichecker", "apichecker", "16");
 
-            //ProximityRule rule = new ProximityRule { FilterTypes = new List<FilterType> { FilterType.ExecutiveScreeningFilter, FilterType.DJPersonCodeFilter }, RuleOperator = RuleOperator.Within, Value = 2 };
+            //ProximityRule rule = new ProximityRule { FilterTypes = new List<FilterType> { FilterType.ExecutiveScreeningFilter, FilterType.DJPersonCodeFilter }, RuleOperator = RuleOperator.Within, Data = 2 };
             //request.QueryRequests[0].Rules.Clear();
             //request.QueryRequests[0].Rules.Add(rule);
             Console.WriteLine(GeneralUtils.serialize(request));

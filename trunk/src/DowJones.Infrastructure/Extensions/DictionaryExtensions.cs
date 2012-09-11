@@ -134,6 +134,9 @@ namespace DowJones.Extensions
 
             foreach (var pair in from.Where(pair => replaceExisting || !instance.ContainsKey(pair.Key)))
             {
+                if (string.IsNullOrWhiteSpace(pair.Key))
+                    continue;
+
                 instance[pair.Key] = pair.Value;
             }
         }

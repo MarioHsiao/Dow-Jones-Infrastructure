@@ -8,8 +8,8 @@ namespace DowJones.Infrastructure
     [TestClass]
     public class EnumHelperTests : UnitTestFixture
     {
-        private const string Value1Token = "Value 1";
-        private const string Value2Token = "Value 2";
+        private const string Value1Token = "Data 1";
+        private const string Value2Token = "Data 2";
 
         [TestInitialize]
         public override void SetUp()
