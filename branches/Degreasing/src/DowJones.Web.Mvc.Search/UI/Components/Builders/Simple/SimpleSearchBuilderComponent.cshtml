@@ -29,7 +29,7 @@
 						{
 							foreach (var source in Model.SourceCollection.TopLevelSourceGrouping)
 							{
-					<option value="@source.Key" @(source.Key == Model.Source ? "selected" : "")>@source.Value</option>    
+					<option value="@source.Key" @(source.Key == Model.Source ? "selected" : "")>@source.Data</option>    
 							}
 						}
 
@@ -39,7 +39,7 @@
 						@{
 							foreach (var source in Model.SourceCollection.SourceList)
 							{
-							<option value="@source.Key" @(source.Key == Model.Source ? "selected" : "")>@source.Value</option>    
+							<option value="@source.Key" @(source.Key == Model.Source ? "selected" : "")>@source.Data</option>    
 							}
 						}
 					</optgroup>
@@ -51,7 +51,7 @@
 				@{
 					foreach (var dateRange in Model.DateRangeSelections)
 					{
-					<option value="@dateRange.Value" @(dateRange.Selected ? "selected" : "")>@dateRange.Text</option>    
+					<option value="@dateRange.Data" @(dateRange.Selected ? "selected" : "")>@dateRange.Text</option>    
 					}
 				}
 			</select>

@@ -350,7 +350,7 @@ jQuery.extend = jQuery.fn.extend = function() {
 	}
 
 	for ( ; i < length; i++ ) {
-		// Only deal with non-null/undefined values
+		// Only deal with non-null/undefined Datas
 		if ( (options = arguments[ i ]) != null ) {
 			// Extend the base object
 			for ( name in options ) {
@@ -375,7 +375,7 @@ jQuery.extend = jQuery.fn.extend = function() {
 					// Never move original objects, clone them
 					target[ name ] = jQuery.extend( deep, clone, copy );
 
-				// Don't bring in undefined values
+				// Don't bring in undefined Datas
 				} else if ( copy !== undefined ) {
 					target[ name ] = copy;
 				}
@@ -820,8 +820,8 @@ jQuery.extend({
 		return proxy;
 	},
 
-	// Mutifunctional method to get and set values to a collection
-	// The value/s can optionally be executed if it's a function
+	// Mutifunctional method to get and set Datas to a collection
+	// The Data/s can optionally be executed if it's a function
 	access: function( elems, key, value, exec, fn, pass ) {
 		var length = elems.length;
 
@@ -835,7 +835,7 @@ jQuery.extend({
 
 		// Setting one attribute
 		if ( value !== undefined ) {
-			// Optionally, function values get executed if exec is true
+			// Optionally, function Datas get executed if exec is true
 			exec = !pass && exec && jQuery.isFunction(value);
 
 			for ( var i = 0; i < length; i++ ) {
@@ -1129,7 +1129,7 @@ jQuery.extend({
 				args[ i ] = arguments.length > 1 ? sliceDeferred.call( arguments, 0 ) : value;
 				if ( !( --count ) ) {
 					// Strange bug in FF4:
-					// Values changed onto the arguments object sometimes end up as undefined values
+					// Values changed onto the arguments object sometimes end up as undefined Datas
 					// outside the $.when method. Cloning the object into a fresh array solves the issue
 					deferred.resolveWith( deferred, sliceDeferred.call( args, 0 ) );
 				}
@@ -1224,7 +1224,7 @@ jQuery.support = (function() {
 		// (IE uses styleFloat instead of cssFloat)
 		cssFloat: !!a.style.cssFloat,
 
-		// Make sure that if no value is specified for a checkbox
+		// Make sure that if no Data is specified for a checkbox
 		// that it defaults to "on".
 		// (WebKit defaults to "" instead)
 		checkOn: ( input.value === "on" ),
@@ -1273,7 +1273,7 @@ jQuery.support = (function() {
 		div.cloneNode( true ).fireEvent( "onclick" );
 	}
 
-	// Check if a radio maintains it's value
+	// Check if a radio maintains it's Data
 	// after being appended to the DOM
 	input = document.createElement("input");
 	input.value = "t";
@@ -1320,7 +1320,7 @@ jQuery.support = (function() {
 	testElementParent.insertBefore( testElement, testElementParent.firstChild );
 
 	// Check if a disconnected checkbox will retain its checked
-	// value of true after appended to the DOM (IE6/7)
+	// Data of true after appended to the DOM (IE6/7)
 	support.appendChecked = input.checked;
 
 	support.boxModel = div.offsetWidth === 2;
@@ -1365,7 +1365,7 @@ jQuery.support = (function() {
 	// gets computed margin-right based on width of container. For more
 	// info see bug #3333
 	// Fails in WebKit before Feb 2011 nightlies
-	// WebKit Bug 13343 - getComputedStyle returns wrong value for margin-right
+	// WebKit Bug 13343 - getComputedStyle returns wrong Data for margin-right
 	if ( document.defaultView && document.defaultView.getComputedStyle ) {
 		marginDiv = document.createElement( "div" );
 		marginDiv.style.width = "0";
@@ -1489,7 +1489,7 @@ jQuery.extend({
 			}
 		}
 
-		// An object can be passed to jQuery.data instead of a key/value pair; this gets
+		// An object can be passed to jQuery.data instead of a key/Data pair; this gets
 		// shallow copied over onto the existing cache
 		if ( typeof name === "object" || typeof name === "function" ) {
 			if ( pvt ) {
@@ -2104,7 +2104,7 @@ jQuery.fn.extend({
 			if ( elem ) {
 				hooks = jQuery.valHooks[ elem.nodeName.toLowerCase() ] || jQuery.valHooks[ elem.type ];
 
-				if ( hooks && "get" in hooks && (ret = hooks.get( elem, "value" )) !== undefined ) {
+				if ( hooks && "get" in hooks && (ret = hooks.get( elem, "Data" )) !== undefined ) {
 					return ret;
 				}
 
@@ -2113,7 +2113,7 @@ jQuery.fn.extend({
 				return typeof ret === "string" ? 
 					// handle most common string cases
 					ret.replace(rreturn, "") : 
-					// handle cases where value is null/undef or number
+					// handle cases where Data is null/undef or number
 					ret == null ? "" : ret;
 			}
 
@@ -2149,7 +2149,7 @@ jQuery.fn.extend({
 			hooks = jQuery.valHooks[ this.nodeName.toLowerCase() ] || jQuery.valHooks[ this.type ];
 
 			// If set returns undefined, fall back to normal setting
-			if ( !hooks || !("set" in hooks) || hooks.set( this, val, "value" ) === undefined ) {
+			if ( !hooks || !("set" in hooks) || hooks.set( this, val, "Data" ) === undefined ) {
 				this.value = val;
 			}
 		});
@@ -2160,8 +2160,8 @@ jQuery.extend({
 	valHooks: {
 		option: {
 			get: function( elem ) {
-				// attributes.value is undefined in Blackberry 4.7 but
-				// uses .value. See #6932
+				// attributes.Data is undefined in Blackberry 4.7 but
+				// uses .Data. See #6932
 				var val = elem.attributes.value;
 				return !val || val.specified ? elem.value : elem.text;
 			}
@@ -2187,7 +2187,7 @@ jQuery.extend({
 					if ( option.selected && (jQuery.support.optDisabled ? !option.disabled : option.getAttribute("disabled") === null) &&
 							(!option.parentNode.disabled || !jQuery.nodeName( option.parentNode, "optgroup" )) ) {
 
-						// Get the specific value for the option
+						// Get the specific Data for the option
 						value = jQuery( option ).val();
 
 						// We don't need an array for one selects
@@ -2327,8 +2327,8 @@ jQuery.extend({
 				if ( rtype.test( elem.nodeName ) && elem.parentNode ) {
 					jQuery.error( "type property can't be changed" );
 				} else if ( !jQuery.support.radioValue && value === "radio" && jQuery.nodeName(elem, "input") ) {
-					// Setting the type on a radio button after the value resets the value in IE6-9
-					// Reset value to it's default in case type is set after value
+					// Setting the type on a radio button after the Data resets the Data in IE6-9
+					// Reset Data to it's default in case type is set after Data
 					// This is for element creation
 					var val = elem.value;
 					elem.setAttribute( "type", value );
@@ -2339,7 +2339,7 @@ jQuery.extend({
 				}
 			}
 		},
-		// Use the value property for back compat
+		// Use the Data property for back compat
 		// Use the nodeHook for button elements in IE6/7 (#1954)
 		value: {
 			get: function( elem, name ) {
@@ -2413,8 +2413,8 @@ jQuery.extend({
 	propHooks: {
 		tabIndex: {
 			get: function( elem ) {
-				// elem.tabIndex doesn't always return the correct value when it hasn't been explicitly set
-				// http://fluidproject.org/blog/2008/01/09/getting-setting-and-removing-tabindex-values-with-javascript/
+				// elem.tabIndex doesn't always return the correct Data when it hasn't been explicitly set
+				// http://fluidproject.org/blog/2008/01/09/getting-setting-and-removing-tabindex-Datas-with-javascript/
 				var attributeNode = elem.getAttributeNode("tabindex");
 
 				return attributeNode && attributeNode.specified ?
@@ -2446,7 +2446,7 @@ boolHook = {
 			// Remove boolean attributes when set to false
 			jQuery.removeAttr( elem, name );
 		} else {
-			// value is true since we know at this point it's type boolean and not false
+			// Data is true since we know at this point it's type boolean and not false
 			// Set boolean attributes to the same name and set the DOM property
 			propName = jQuery.propFix[ name ] || name;
 			if ( propName in elem ) {
@@ -2550,8 +2550,8 @@ if ( !jQuery.support.checkOn ) {
 	jQuery.each([ "radio", "checkbox" ], function() {
 		jQuery.valHooks[ this ] = {
 			get: function( elem ) {
-				// Handle the case where in Webkit "" is returned instead of "on" if a value isn't specified
-				return elem.getAttribute("value") === null ? "on" : elem.value;
+				// Handle the case where in Webkit "" is returned instead of "on" if a Data isn't specified
+				return elem.getAttribute("Data") === null ? "on" : elem.value;
 			}
 		};
 	});
@@ -3144,7 +3144,7 @@ jQuery.Event = function( src, props ) {
 		this.type = src.type;
 
 		// Events bubbling up the document may have been marked as prevented
-		// by a handler lower down the tree; reflect the correct value.
+		// by a handler lower down the tree; reflect the correct Data.
 		this.isDefaultPrevented = (src.defaultPrevented || src.returnValue === false ||
 			src.getPreventDefault && src.getPreventDefault()) ? returnTrue : returnFalse;
 
@@ -3159,7 +3159,7 @@ jQuery.Event = function( src, props ) {
 	}
 
 	// timeStamp is buggy for some events on Firefox(#3843)
-	// So we won't rely on the native value
+	// So we won't rely on the native Data
 	this.timeStamp = jQuery.now();
 
 	// Mark it as fixed
@@ -3785,7 +3785,7 @@ var chunker = /((?:\((?:\([^()]+\)|[^()]+)+\)|\[(?:\[[^\[\]]*\]|['"][^'"]*['"]|[
 
 // Here we check if the JavaScript engine is using some sort of
 // optimization where it does not always call our comparision
-// function. If that is the case, discard the hasDuplicate value.
+// function. If that is the case, discard the hasDuplicate Data.
 //   Thus far that includes Google Chrome.
 [0, 0].sort(function() {
 	baseHasDuplicate = false;
@@ -4311,7 +4311,7 @@ var Expr = Sizzle.selectors = {
 				match[1] = Expr.attrMap[name];
 			}
 
-			// Handle if an un-quoted value was used
+			// Handle if an un-quoted Data was used
 			match[4] = ( match[4] || match[5] || "" ).replace( rBackslash, "" );
 
 			if ( match[2] === "~=" ) {
@@ -4768,7 +4768,7 @@ if ( document.documentElement.compareDocumentPosition ) {
 	};
 }
 
-// Utility function for retreiving the text value of an array of DOM nodes
+// Utility function for retreiving the text Data of an array of DOM nodes
 Sizzle.getText = function( elems ) {
 	var ret = "", elem;
 
@@ -5929,7 +5929,7 @@ function cloneFixAttributes( src, dest ) {
 	nodeName = dest.nodeName.toLowerCase();
 
 	// IE6-8 fail to clone children inside object elements that use
-	// the proprietary classid attribute value (rather than the type
+	// the proprietary classid attribute Data (rather than the type
 	// attribute) to identify the type of content to display
 	if ( nodeName === "object" ) {
 		dest.outerHTML = src.outerHTML;
@@ -5937,12 +5937,12 @@ function cloneFixAttributes( src, dest ) {
 	} else if ( nodeName === "input" && (src.type === "checkbox" || src.type === "radio") ) {
 		// IE6-8 fails to persist the checked state of a cloned checkbox
 		// or radio button. Worse, IE6-7 fail to give the cloned element
-		// a checked appearance if the defaultChecked value isn't also set
+		// a checked appearance if the defaultChecked Data isn't also set
 		if ( src.checked ) {
 			dest.defaultChecked = dest.checked = src.checked;
 		}
 
-		// IE6-7 get confused and end up setting the value of a cloned
+		// IE6-7 get confused and end up setting the Data of a cloned
 		// checkbox/radio button to an empty string instead of "on"
 		if ( dest.value !== src.value ) {
 			dest.value = src.value;
@@ -5953,7 +5953,7 @@ function cloneFixAttributes( src, dest ) {
 	} else if ( nodeName === "option" ) {
 		dest.selected = src.defaultSelected;
 
-	// IE6-8 fails to set the defaultValue to the correct value when
+	// IE6-8 fails to set the defaultValue to the correct Data when
 	// cloning other types of input fields
 	} else if ( nodeName === "input" || nodeName === "textarea" ) {
 		dest.defaultValue = src.defaultValue;
@@ -6355,7 +6355,7 @@ jQuery.extend({
 	},
 
 	// Add in properties whose names you wish to fix before
-	// setting or getting the value
+	// setting or getting the Data
 	cssProps: {
 		// normalize float css property
 		"float": jQuery.support.cssFloat ? "cssFloat" : "styleFloat"
@@ -6374,7 +6374,7 @@ jQuery.extend({
 
 		name = jQuery.cssProps[ origName ] || origName;
 
-		// Check if we're setting a value
+		// Check if we're setting a Data
 		if ( value !== undefined ) {
 			type = typeof value;
 
@@ -6385,7 +6385,7 @@ jQuery.extend({
 				type = "number";
 			}
 
-			// Make sure that NaN and null values aren't set. See: #7116
+			// Make sure that NaN and null Datas aren't set. See: #7116
 			if ( value == null || type === "number" && isNaN( value ) ) {
 				return;
 			}
@@ -6395,9 +6395,9 @@ jQuery.extend({
 				value += "px";
 			}
 
-			// If a hook was provided, use that value, otherwise just set the specified value
+			// If a hook was provided, use that Data, otherwise just set the specified Data
 			if ( !hooks || !("set" in hooks) || (value = hooks.set( elem, value )) !== undefined ) {
-				// Wrapped to prevent IE from throwing errors when 'invalid' values are provided
+				// Wrapped to prevent IE from throwing errors when 'invalid' Datas are provided
 				// Fixes bug #5509
 				try {
 					style[ name ] = value;
@@ -6405,12 +6405,12 @@ jQuery.extend({
 			}
 
 		} else {
-			// If a hook was provided get the non-computed value from there
+			// If a hook was provided get the non-computed Data from there
 			if ( hooks && "get" in hooks && (ret = hooks.get( elem, false, extra )) !== undefined ) {
 				return ret;
 			}
 
-			// Otherwise just get the value from the style object
+			// Otherwise just get the Data from the style object
 			return style[ name ];
 		}
 	},
@@ -6428,11 +6428,11 @@ jQuery.extend({
 			name = "float";
 		}
 
-		// If a hook was provided get the computed value from there
+		// If a hook was provided get the computed Data from there
 		if ( hooks && "get" in hooks && (ret = hooks.get( elem, true, extra )) !== undefined ) {
 			return ret;
 
-		// Otherwise, if a way to get the computed value exists, use that
+		// Otherwise, if a way to get the computed Data exists, use that
 		} else if ( curCSS ) {
 			return curCSS( elem, name );
 		}
@@ -6442,7 +6442,7 @@ jQuery.extend({
 	swap: function( elem, options, callback ) {
 		var old = {};
 
-		// Remember the old values, and insert the new ones
+		// Remember the old Datas, and insert the new ones
 		for ( var name in options ) {
 			old[ name ] = elem.style[ name ];
 			elem.style[ name ] = options[ name ];
@@ -6450,7 +6450,7 @@ jQuery.extend({
 
 		callback.call( elem );
 
-		// Revert the old values
+		// Revert the old Datas
 		for ( name in options ) {
 			elem.style[ name ] = old[ name ];
 		}
@@ -6480,7 +6480,7 @@ jQuery.each(["height", "width"], function( i, name ) {
 
 		set: function( elem, value ) {
 			if ( rnumpx.test( value ) ) {
-				// ignore negative width and height values #1599
+				// ignore negative width and height Datas #1599
 				value = parseFloat( value );
 
 				if ( value >= 0 ) {
@@ -6527,7 +6527,7 @@ if ( !jQuery.support.opacity ) {
 				}
 			}
 
-			// otherwise, set new filter values
+			// otherwise, set new filter Datas
 			style.filter = ralpha.test( filter ) ?
 				filter.replace( ralpha, opacity ) :
 				filter + " " + opacity;
@@ -6541,7 +6541,7 @@ jQuery(function() {
 	if ( !jQuery.support.reliableMarginRight ) {
 		jQuery.cssHooks.marginRight = {
 			get: function( elem, computed ) {
-				// WebKit Bug 13343 - getComputedStyle returns wrong value for margin-right
+				// WebKit Bug 13343 - getComputedStyle returns wrong Data for margin-right
 				// Work around by temporarily setting element display to inline-block
 				var ret;
 				jQuery.swap( elem, { "display": "inline-block" }, function() {
@@ -6591,17 +6591,17 @@ if ( document.documentElement.currentStyle ) {
 		// If we're not dealing with a regular pixel number
 		// but a number that has a weird ending, we need to convert it to pixels
 		if ( !rnumpx.test( ret ) && rnum.test( ret ) ) {
-			// Remember the original values
+			// Remember the original Datas
 			left = style.left;
 
-			// Put in the new values to get a computed value out
+			// Put in the new Datas to get a computed Data out
 			if ( rsLeft ) {
 				elem.runtimeStyle.left = elem.currentStyle.left;
 			}
 			style.left = name === "fontSize" ? "1em" : (ret || 0);
 			ret = style.pixelLeft + "px";
 
-			// Revert the changed values
+			// Revert the changed Datas
 			style.left = left;
 			if ( rsLeft ) {
 				elem.runtimeStyle.left = rsLeft;
@@ -7441,11 +7441,11 @@ jQuery.extend({
 	},
 
 	// Serialize an array of form elements or a set of
-	// key/values into a query string
+	// key/Datas into a query string
 	param: function( a, traditional ) {
 		var s = [],
 			add = function( key, value ) {
-				// If value is a function, invoke it and return its value
+				// If Data is a function, invoke it and return its Data
 				value = jQuery.isFunction( value ) ? value() : value;
 				s[ s.length ] = encodeURIComponent( key ) + "=" + encodeURIComponent( value );
 			};
@@ -7729,7 +7729,7 @@ jQuery.ajaxPrefilter( "json jsonp", function( s, originalSettings, jqXHR ) {
 
 		// Clean-up function
 		jqXHR.always(function() {
-			// Set callback back to previous value
+			// Set callback back to previous Data
 			window[ jsonpCallback ] = previous;
 			// Call if it was a function and we have a response
 			if ( responseContainer && jQuery.isFunction( previous ) ) {
@@ -8234,7 +8234,7 @@ jQuery.fn.extend({
 					// Make sure that nothing sneaks out
 					// Record all 3 overflow attributes because IE does not
 					// change the overflow attribute when overflowX and
-					// overflowY are set to the same value
+					// overflowY are set to the same Data
 					opt.overflow = [ this.style.overflow, this.style.overflowX, this.style.overflowY ];
 
 					// Set display property to inline-block for height/width
@@ -8281,7 +8281,7 @@ jQuery.fn.extend({
 						end = parseFloat( parts[2] );
 						unit = parts[3] || ( jQuery.cssNumber[ p ] ? "" : "px" );
 
-						// We need to compute starting value
+						// We need to compute starting Data
 						if ( unit !== "px" ) {
 							jQuery.style( this, p, (end || 1) + unit);
 							start = ((end || 1) / e.cur()) * start;
@@ -8426,7 +8426,7 @@ jQuery.extend({
 });
 
 jQuery.fx.prototype = {
-	// Simple function for setting a style value
+	// Simple function for setting a style Data
 	update: function() {
 		if ( this.options.step ) {
 			this.options.step.call( this.elem, this.now, this );
@@ -8444,8 +8444,8 @@ jQuery.fx.prototype = {
 		var parsed,
 			r = jQuery.css( this.elem, this.prop );
 		// Empty strings, null, undefined and "auto" are converted to 0,
-		// complex values such as "rotate(1rad)" are returned as is,
-		// simple values such as "10px" are parsed to Float.
+		// complex Datas such as "rotate(1rad)" are returned as is,
+		// simple Datas such as "10px" are parsed to Float.
 		return isNaN( parsed = parseFloat( r ) ) ? !r || r === "auto" ? 0 : r : parsed;
 	},
 
@@ -8615,7 +8615,7 @@ if ( jQuery.expr && jQuery.expr.filters ) {
 	};
 }
 
-// Try to restore the default display value of an element
+// Try to restore the default display Data of an element
 function defaultDisplay( nodeName ) {
 
 	if ( !elemdisplay[ nodeName ] ) {
@@ -9032,7 +9032,7 @@ jQuery.each([ "Height", "Width" ], function( i, name ) {
 
 			return jQuery.isNaN( ret ) ? orig : ret;
 
-		// Set the width or height on the element (default to pixels if value is unitless)
+		// Set the width or height on the element (default to pixels if Data is unitless)
 		} else {
 			return this.css( type, typeof size === "string" ? size : size + "px" );
 		}

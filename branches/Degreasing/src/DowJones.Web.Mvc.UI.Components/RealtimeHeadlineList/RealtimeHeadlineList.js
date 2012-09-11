@@ -314,7 +314,7 @@
             }
         },
 
-        //Remove an array element by value
+        //Remove an array element by Data
         removeArrayElementByValue: function (arr, arrElement) {
             for (var i = 0; i < arr.length; i++) {
                 if (arr[i].reference.guid === arrElement)

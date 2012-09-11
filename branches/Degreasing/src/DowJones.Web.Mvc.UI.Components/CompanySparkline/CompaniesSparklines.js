@@ -14,7 +14,7 @@
         defaults: {
             debug: false,
             cssClass: 'CompaniesSparklines'
-            // ,name: value     // add more defaults here separated by comma
+            // ,name: Data     // add more defaults here separated by comma
         },
 
         eventNames: {
@@ -24,7 +24,7 @@
 
         // Localization/Templating tokens
         tokens: {
-        // name: value     // add more defaults here separated by comma
+        // name: Data     // add more defaults here separated by comma
     },
 
     _initializeEventHandlers: function () {

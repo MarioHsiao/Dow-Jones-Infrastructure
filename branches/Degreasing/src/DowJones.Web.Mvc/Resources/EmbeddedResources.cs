@@ -45,6 +45,8 @@ using DowJones.Web.Mvc.Resources;
 [assembly: WebResource(EmbeddedResources.Js.ODSManager, KnownMimeTypes.JavaScript)]
 [assembly: WebResource(EmbeddedResources.Js.PubSubManager, KnownMimeTypes.JavaScript)]
 [assembly: WebResource(EmbeddedResources.Js.Require, KnownMimeTypes.JavaScript)]
+[assembly: WebResource(EmbeddedResources.Js.DomReady, KnownMimeTypes.JavaScript)]
+[assembly: WebResource(EmbeddedResources.Js.Text, KnownMimeTypes.JavaScript)]
 [assembly: WebResource(EmbeddedResources.Js.RequireMin, KnownMimeTypes.JavaScript)]
 [assembly: WebResource(EmbeddedResources.Js.ServiceProxy, KnownMimeTypes.JavaScript)]
 [assembly: WebResource(EmbeddedResources.Js.TmpLoad, KnownMimeTypes.JavaScript)]
@@ -65,7 +67,7 @@ namespace DowJones.Web.Mvc.Resources
         [ScriptResource(ResourceName = Ellipsis, DependencyLevel = ClientResourceDependencyLevel.MidLevel, Name = "ellipsis")]
         [ScriptResource(ResourceName = ErrorManager, DependencyLevel = ClientResourceDependencyLevel.Global, Name = "error-manager")]
         [ScriptResource(ResourceName = Highcharts, DependencyLevel = ClientResourceDependencyLevel.MidLevel, Name = "highcharts")]
-        [ScriptResource(ResourceName = HighchartsMore, DependencyLevel = ClientResourceDependencyLevel.MidLevel, Name = "highcharts-more")]
+        [ScriptResource(ResourceName = HighchartsMore, DependencyLevel = ClientResourceDependencyLevel.MidLevel, Name = "highcharts-more", DependsOn = new[] {"highcharts"})]
         [ScriptResource(ResourceName = JQuery, DependencyLevel = ClientResourceDependencyLevel.Core, Name = "jquery")]
         [ScriptResource(ResourceName = JQueryCarousel, DependencyLevel = ClientResourceDependencyLevel.MidLevel, Name = "jquery-carousel")]
         [ScriptResource(ResourceName = JQueryCycle, DependencyLevel = ClientResourceDependencyLevel.MidLevel, Name = "jquery-cycle")]
@@ -84,6 +86,8 @@ namespace DowJones.Web.Mvc.Resources
         [ScriptResource(ResourceName = Overlay, DependencyLevel = ClientResourceDependencyLevel.MidLevel, Name = "overlay")]
         [ScriptResource(ResourceName = PubSubManager, DependencyLevel = ClientResourceDependencyLevel.Core, Name = "pubsub")]
         [ScriptResource(ResourceName = Require, DependencyLevel = ClientResourceDependencyLevel.Core, Name = "require")]
+        [ScriptResource(ResourceName = DomReady, DependencyLevel = ClientResourceDependencyLevel.Core, Name = "domReady")]
+        [ScriptResource(ResourceName = Text, DependencyLevel = ClientResourceDependencyLevel.Core, Name = "text")]
         [ScriptResource(ResourceName = ServiceProxy, DependencyLevel = ClientResourceDependencyLevel.Global, Name = "service-proxy", DependsOn = new[] { "error-manager" })]
         [ScriptResource(ResourceName = TmpLoad, DependencyLevel = ClientResourceDependencyLevel.Global, Name = "tmpload", DependsOn = new[] { "jquery" })]
         [ScriptResource(ResourceName = Underscore, DependencyLevel = ClientResourceDependencyLevel.Core, Name = "underscore")]
@@ -137,10 +141,11 @@ namespace DowJones.Web.Mvc.Resources
             public const string Overlay = JsRoot + "overlay.js";
             public const string PubSubManager = JsRoot + "pubsub.js";
             public const string Require = JsRoot + "require.js";
+            public const string DomReady = JsRoot + "domReady.js";
+            public const string Text = JsRoot + "text.js";
 			public const string RequireMin = JsRoot + "require.min.js";
             public const string ServiceProxy = JsRoot + "service-proxy.js";
             public const string TmpLoad = JsRoot + "tmpload.js";
-
             public const string Underscore = JsRoot + "underscore.js";
 			public const string UnderscoreMin = JsRoot + "underscore.min.js";
             public const string WindowManager = JsRoot + "window-manager.js";

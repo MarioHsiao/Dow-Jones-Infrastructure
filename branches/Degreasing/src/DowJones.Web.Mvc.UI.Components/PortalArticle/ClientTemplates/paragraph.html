@@ -25,9 +25,9 @@
                 <% break; 
             case "PostProcessing": 
                     if(item.postProcessingData.type === "Print") %>
-                        <span class='dj_article_colorLinks'><%= item.postProcessingData.elinkValue %> [<%= item.postProcessingData.elinkText %>]</span>
+                        <span class='dj_article_colorLinks'><%= item.postProcessingData.elinkData %> [<%= item.postProcessingData.elinkText %>]</span>
                     <% else if(item.postProcessingData.type === "Save") %>
-                        <%= item.postProcessingData.elinkValue %> <%= item.postProcessingData.elinkText %>
+                        <%= item.postProcessingData.elinkData %> <%= item.postProcessingData.elinkText %>
             <% break; 
             case "Html": %>
                 <div class="embededHtml"><%= item.text %></div>

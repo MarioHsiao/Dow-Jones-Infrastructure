@@ -10,7 +10,7 @@
             <ol class="options sort-options">
                 <% for (var i = 0; i < options.sortOptions.length; i++) { %>
                     <li class="item <%= (options.sortOption == options.sortOptions[i].Key) ? "selected" : "" %>" data-name="sort" data-type="select" data-value="<%= options.sortOptions[i].Key %>">
-                        <a href="#"><%= options.sortOptions[i].Value %></a>
+                        <a href="#"><%= options.sortOptions[i].Data %></a>
                     </li>
                 <% } %>
                 <li class="item divided <%=  options.showDuplicates ? "selected" : "" %>" data-name="duplicates" data-type="radio">

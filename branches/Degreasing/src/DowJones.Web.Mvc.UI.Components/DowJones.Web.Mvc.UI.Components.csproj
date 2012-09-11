@@ -192,6 +192,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CompositeOutletComponent.cshtml</DependentUpon>
     </Compile>
+    <Compile Include="Gauge\Gauge.cs">
+      <DependentUpon>Gauge.cshtml</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="NewsMatrix\NewsMatrixComponent.cs">
       <DependentUpon>NewsMatrixComponent.cshtml</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -268,6 +273,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>HeadlinePostProcessingComponent.cshtml</DependentUpon>
+    </Compile>
+    <Compile Include="ShareChart\ShareChartComponent.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ShareChartComponent.cshtml</DependentUpon>
     </Compile>
     <Compile Include="SimpleAlert\SimpleAlertComponent.cs">
       <AutoGen>True</AutoGen>
@@ -575,6 +585,10 @@
       <Generator>RazorViewComponentClassGenerator</Generator>
       <LastGenOutput>CompositeOutletComponent.cs</LastGenOutput>
     </None>
+    <None Include="Gauge\Gauge.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>Gauge.cs</LastGenOutput>
+    </None>
     <None Include="NewsMatrix\NewsMatrixComponent.cshtml">
       <Generator>RazorViewComponentClassGenerator</Generator>
       <LastGenOutput>NewsMatrixComponent.cs</LastGenOutput>
@@ -631,6 +645,10 @@
     <None Include="SearchNewsFilter\SearchNewsFilterComponent.cshtml">
       <Generator>RazorViewComponentClassGenerator</Generator>
       <LastGenOutput>SearchNewsFilterComponent.cs</LastGenOutput>
+    </None>
+    <None Include="ShareChart\ShareChartComponent.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>ShareChartComponent.cs</LastGenOutput>
     </None>
     <None Include="SimpleAlert\SimpleAlertComponent.cshtml">
       <Generator>RazorViewComponentClassGenerator</Generator>
@@ -869,5 +887,25 @@
   <ItemGroup>
     <EmbeddedResource Include="PortalArticle\ClientTemplates\simpleSection.html" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ShareChart\ShareChart.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Gauge\ClientTemplates\error.htm" />
+    <Content Include="Gauge\ClientTemplates\noData.htm" />
+    <Content Include="Gauge\ClientTemplates\layout.htm" />
+    <Content Include="ShareChart\ClientTemplates\success.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Gauge\ClientTemplates\success.htm" />
+    <Content Include="ShareChart\ClientTemplates\noData.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ShareChart\ClientTemplates\error.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Gauge\gauge.js" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

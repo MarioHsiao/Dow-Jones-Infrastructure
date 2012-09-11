@@ -93,6 +93,7 @@
     <Compile Include="CalloutPopup\CalloutPopupModel.cs" />
     <Compile Include="CompositeAuthor\CompositeAuthorModel.cs" />
     <Compile Include="CompositeOutlet\CompositeOutletModel.cs" />
+    <Compile Include="Gauge\GaugeModel.cs" />
     <Compile Include="DateHistogram\DateHistogramModel.cs" />
     <Compile Include="DateSlider\DateSliderModel.cs" />
     <Compile Include="DiscoveryGraph\Entities.cs" />
@@ -134,6 +135,7 @@
     <Compile Include="Search\SearchResponseToCompositeHeadlinesModelMapper.cs" />
     <Compile Include="HeadlinePostProcessing\HeadlinePostProcessingModel.cs" />
     <Compile Include="Search\SearchResponseToCompanyProfilesMapper.cs" />
+    <Compile Include="ShareChart\ShareChartModel.cs" />
     <Compile Include="SimpleAlert\Option.cs" />
     <Compile Include="SimpleAlert\SimpleAlertData.cs" />
     <Compile Include="SimpleAlert\SimpleAlertModel.cs" />

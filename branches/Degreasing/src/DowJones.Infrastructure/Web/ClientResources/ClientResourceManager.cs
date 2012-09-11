@@ -69,15 +69,15 @@ namespace DowJones.Web
         {
             var dealiased = resourceNames.SelectMany(ParseClientResourceNames).ToArray();
 
-			var registeredResources = ClientResources.Where(x => dealiased.Contains(x.Name)).ToList();
+            var registeredResources = ClientResources.Where(x => dealiased.Contains(x.Name)).ToList();
 
-			var unregisteredResources = GetUnregisteredResources(dealiased, registeredResources);
+            var unregisteredResources = GetUnregisteredResources(dealiased, registeredResources);
 
             return registeredResources.Union(unregisteredResources).ToArray();
         }
 
 
-	    private IEnumerable<ClientResource> GetUnregisteredResources(IEnumerable<string> resourceNames, IEnumerable<ClientResource> registeredResources)
+        private IEnumerable<ClientResource> GetUnregisteredResources(IEnumerable<string> resourceNames, IEnumerable<ClientResource> registeredResources)
         {
             var unresolvedResourceNames = resourceNames.Except(registeredResources.Select(x => x.Name));
             var unregisteredResources =

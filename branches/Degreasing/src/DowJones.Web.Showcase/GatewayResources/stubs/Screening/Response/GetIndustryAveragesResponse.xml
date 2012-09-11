@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <GetIndustryAveragesResponse xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="urn:factiva:fcp:v2_0">
   <industryAveragesResult contentRestricted="false">
     <industry code="Code" industryCodeScheme="FII">
-      <descriptor lang="Lang">Value</descriptor>
+      <descriptor lang="Lang">Data</descriptor>
     </industry>
     <averages ownershipType="All" totalCompanies="0">
       <salesGrowth>0</salesGrowth>

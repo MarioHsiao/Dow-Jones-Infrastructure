@@ -8,7 +8,7 @@ DJ.UI.ArticleControl = DJ.UI.Component.extend({
     defaults: {
         debug: false,
         cssClass: 'ArticleControl'
-        // ,name: value     // add more defaults here separated by comma
+        // ,name: Data     // add more defaults here separated by comma
     },
 
     events: {

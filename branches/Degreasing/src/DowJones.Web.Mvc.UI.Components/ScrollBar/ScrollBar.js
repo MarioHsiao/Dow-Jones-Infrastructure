@@ -29,7 +29,7 @@ DJ.UI.ScrollBar = DJ.UI.Component.extend({
     // Widget options
     options: {
         minThumbSize: 30, // Minimum size of the scrollbar handle
-        autoRefresh: false, // Experimental feature based on the DOMSubtreeModified event. (Gegko and Wekbkit only) Setting this value to true will automatically recalculate the scrollbar size when the content is updated.
+        autoRefresh: false, // Experimental feature based on the DOMSubtreeModified event. (Gegko and Wekbkit only) Setting this Data to true will automatically recalculate the scrollbar size when the content is updated.
         paddingclip: true // if false, using clip to take the container width 
     },
 
@@ -285,7 +285,7 @@ DJ.UI.ScrollBar = DJ.UI.Component.extend({
     /**
     * Update the scrolling position
     *
-    * @param	string		axis	Scrollbar axis (Possible values: 'x', 'y')		
+    * @param	string		axis	Scrollbar axis (Possible Datas: 'x', 'y')		
     */
     _updateScrollingPosition: function (axis) {
         var self = this,
@@ -307,7 +307,7 @@ DJ.UI.ScrollBar = DJ.UI.Component.extend({
     /**
     * Update the scrollbar thumb position
     *
-    * @param	string		axis	Scrollbar axis (Possible values: 'x', 'y')		
+    * @param	string		axis	Scrollbar axis (Possible Datas: 'x', 'y')		
     */
     _updateThumbPosition: function (axis) {
         var self = this,
@@ -339,7 +339,7 @@ DJ.UI.ScrollBar = DJ.UI.Component.extend({
     /**
     * Update the scrollbar thumb size
     *
-    * @param	string		axis	Scrollbar axis (Possible values: 'x', 'y')		
+    * @param	string		axis	Scrollbar axis (Possible Datas: 'x', 'y')		
     */
     _updateThumbSize: function (axis) {
         var self = this,

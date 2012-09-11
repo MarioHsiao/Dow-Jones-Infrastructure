@@ -238,7 +238,7 @@
             var v = $('input[type=radio][name=articleDisplayOptions]:checked').val();
             if (this.$articleDisplayOption.val() != v) {
 
-                // set the value
+                // set the Data
                 this.$articleDisplayOption.val(v);
                 // some cleanup
                 $('body').unbind('mouseup.dj_CompositeArticleOptionsDropDown');

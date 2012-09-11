@@ -147,7 +147,7 @@ jQuery.Event = function( src, props ) {
 		this.type = src.type;
 
 		// Events bubbling up the document may have been marked as prevented
-		// by a handler lower down the tree; reflect the correct value.
+		// by a handler lower down the tree; reflect the correct Data.
 		this.isDefaultPrevented = (src.defaultPrevented || src.returnValue === false ||
 			src.getPreventDefault && src.getPreventDefault()) ? returnTrue : returnFalse;
 
@@ -162,7 +162,7 @@ jQuery.Event = function( src, props ) {
 	}
 
 	// timeStamp is buggy for some events on Firefox(#3843)
-	// So we won't rely on the native value
+	// So we won't rely on the native Data
 	this.timeStamp = jQuery.now();
 
 	// Mark it as fixed
@@ -306,7 +306,7 @@ jQuery.access = function( elems, key, value, exec, fn, pass ) {
 
 		// Setting one attribute
 		if ( value !== undefined ) {
-			// Optionally, function values get executed if exec is true
+			// Optionally, function Datas get executed if exec is true
 			exec = !pass && exec && jQuery.isFunction(value);
 
 			for ( var i = 0; i < length; i++ ) {
@@ -330,7 +330,7 @@ jQuery.ajax = function( url, options ) {
 ///     A string containing the URL to which the request is sent.
 /// </param>
 /// <param name="options" type="Object">
-///     A set of key/value pairs that configure the Ajax request. All settings are optional. A default can be set for any option with $.ajaxSetup(). See jQuery.ajax( settings ) below for a complete list of all settings.
+///     A set of key/Data pairs that configure the Ajax request. All settings are optional. A default can be set for any option with $.ajaxSetup(). See jQuery.ajax( settings ) below for a complete list of all settings.
 /// </param>
 
 
@@ -722,7 +722,7 @@ jQuery.ajaxPrefilter = function( dataTypeExpression, func ) {
 ///     An optional string containing one or more space-separated dataTypes
 /// </param>
 /// <param name="func" type="Function">
-///     A handler to set default values for future Ajax requests.
+///     A handler to set default Datas for future Ajax requests.
 /// </param>
 /// <returns type="undefined" />
 
@@ -770,10 +770,10 @@ jQuery.ajaxSettings = { "url": 'http://localhost:25813/?ver=1.6.4&newLineMethod=
 "jsonp": 'callback' };
 jQuery.ajaxSetup = function( target, settings ) {
 /// <summary>
-///     Set default values for future Ajax requests.
+///     Set default Datas for future Ajax requests.
 /// </summary>
 /// <param name="target" type="Object">
-///     A set of key/value pairs that configure the default Ajax request. All options are optional.
+///     A set of key/Data pairs that configure the default Ajax request. All options are optional.
 /// </param>
 
 		if ( settings ) {
@@ -1254,11 +1254,11 @@ jQuery.css = function( elem, name, extra ) {
 			name = "float";
 		}
 
-		// If a hook was provided get the computed value from there
+		// If a hook was provided get the computed Data from there
 		if ( hooks && "get" in hooks && (ret = hooks.get( elem, true, extra )) !== undefined ) {
 			return ret;
 
-		// Otherwise, if a way to get the computed value exists, use that
+		// Otherwise, if a way to get the computed Data exists, use that
 		} else if ( curCSS ) {
 			return curCSS( elem, name );
 		}
@@ -1289,20 +1289,20 @@ jQuery.curCSS = function( elem, name, extra ) {
 			name = "float";
 		}
 
-		// If a hook was provided get the computed value from there
+		// If a hook was provided get the computed Data from there
 		if ( hooks && "get" in hooks && (ret = hooks.get( elem, true, extra )) !== undefined ) {
 			return ret;
 
-		// Otherwise, if a way to get the computed value exists, use that
+		// Otherwise, if a way to get the computed Data exists, use that
 		} else if ( curCSS ) {
 			return curCSS( elem, name );
 		}
 	};
 jQuery.data = function( elem, name, data, pvt /* Internal Use Only */ ) {
 /// <summary>
-///     1: Store arbitrary data associated with the specified element. Returns the value that was set.
-///     <para>    1.1 - jQuery.data(element, key, value)</para>
-///     <para>2: Returns value at named data store for the element, as set by jQuery.data(element, name, value), or the full data store for the element.</para>
+///     1: Store arbitrary data associated with the specified element. Returns the Data that was set.
+///     <para>    1.1 - jQuery.data(element, key, Data)</para>
+///     <para>2: Returns Data at named data store for the element, as set by jQuery.data(element, name, Data), or the full data store for the element.</para>
 ///     <para>    2.1 - jQuery.data(element, key) </para>
 ///     <para>    2.2 - jQuery.data(element)</para>
 /// </summary>
@@ -1313,7 +1313,7 @@ jQuery.data = function( elem, name, data, pvt /* Internal Use Only */ ) {
 ///     A string naming the piece of data to set.
 /// </param>
 /// <param name="data" type="Object">
-///     The new data value.
+///     The new data Data.
 /// </param>
 /// <returns type="Object" />
 
@@ -1364,7 +1364,7 @@ jQuery.data = function( elem, name, data, pvt /* Internal Use Only */ ) {
 			}
 		}
 
-		// An object can be passed to jQuery.data instead of a key/value pair; this gets
+		// An object can be passed to jQuery.data instead of a key/Data pair; this gets
 		// shallow copied over onto the existing cache
 		if ( typeof name === "object" || typeof name === "function" ) {
 			if ( pvt ) {
@@ -1596,7 +1596,7 @@ jQuery.extend = function() {
 	}
 
 	for ( ; i < length; i++ ) {
-		// Only deal with non-null/undefined values
+		// Only deal with non-null/undefined Datas
 		if ( (options = arguments[ i ]) != null ) {
 			// Extend the base object
 			for ( name in options ) {
@@ -1621,7 +1621,7 @@ jQuery.extend = function() {
 					// Never move original objects, clone them
 					target[ name ] = jQuery.extend( deep, clone, copy );
 
-				// Don't bring in undefined values
+				// Don't bring in undefined Datas
 				} else if ( copy !== undefined ) {
 					target[ name ] = copy;
 				}
@@ -1825,7 +1825,7 @@ jQuery.grep = function( elems, callback, inv ) {
 ///     The array to search through.
 /// </param>
 /// <param name="callback" type="Function">
-///     The function to process each item against.  The first argument to the function is the item, and the second argument is the index.  The function should return a Boolean value.  this will be the global window object.
+///     The function to process each item against.  The first argument to the function is the item, and the second argument is the index.  The function should return a Boolean Data.  this will be the global window object.
 /// </param>
 /// <param name="inv" type="Boolean">
 ///     If "invert" is false, or not provided, then the function returns an array consisting of all elements for which "callback" returns true.  If "invert" is true, then the function returns an array consisting of all elements for which "callback" returns false.
@@ -1877,10 +1877,10 @@ jQuery.holdReady = function( hold ) {
 	};
 jQuery.inArray = function( elem, array ) {
 /// <summary>
-///     Search for a specified value within an array and return its index (or -1 if not found).
+///     Search for a specified Data within an array and return its index (or -1 if not found).
 /// </summary>
 /// <param name="elem" type="Object">
-///     The value to search for.
+///     The Data to search for.
 /// </param>
 /// <param name="array" type="Array">
 ///     An array through which to search.
@@ -2027,13 +2027,13 @@ jQuery.map = function( elems, callback, arg ) {
 /// <summary>
 ///     Translate all items in an array or object to new array of items.
 ///     <para>1 - jQuery.map(array, callback(elementOfArray, indexInArray)) </para>
-///     <para>2 - jQuery.map(arrayOrObject, callback( value, indexOrKey ))</para>
+///     <para>2 - jQuery.map(arrayOrObject, callback( Data, indexOrKey ))</para>
 /// </summary>
 /// <param name="elems" type="Array">
 ///     The Array to translate.
 /// </param>
 /// <param name="callback" type="Function">
-///     The function to process each item against.  The first argument to the function is the array item, the second argument is the index in array The function can return any value. Within the function, this refers to the global (window) object.
+///     The function to process each item against.  The first argument to the function is the array item, the second argument is the index in array The function can return any Data. Within the function, this refers to the global (window) object.
 /// </param>
 /// <returns type="Array" />
 
@@ -2167,7 +2167,7 @@ jQuery.param = function( a, traditional ) {
 
 		var s = [],
 			add = function( key, value ) {
-				// If value is a function, invoke it and return its value
+				// If Data is a function, invoke it and return its Data
 				value = jQuery.isFunction( value ) ? value() : value;
 				s[ s.length ] = encodeURIComponent( key ) + "=" + encodeURIComponent( value );
 			};
@@ -2614,7 +2614,7 @@ jQuery.style = function( elem, name, value, extra ) {
 
 		name = jQuery.cssProps[ origName ] || origName;
 
-		// Check if we're setting a value
+		// Check if we're setting a Data
 		if ( value !== undefined ) {
 			type = typeof value;
 
@@ -2625,7 +2625,7 @@ jQuery.style = function( elem, name, value, extra ) {
 				type = "number";
 			}
 
-			// Make sure that NaN and null values aren't set. See: #7116
+			// Make sure that NaN and null Datas aren't set. See: #7116
 			if ( value == null || type === "number" && isNaN( value ) ) {
 				return;
 			}
@@ -2635,9 +2635,9 @@ jQuery.style = function( elem, name, value, extra ) {
 				value += "px";
 			}
 
-			// If a hook was provided, use that value, otherwise just set the specified value
+			// If a hook was provided, use that Data, otherwise just set the specified Data
 			if ( !hooks || !("set" in hooks) || (value = hooks.set( elem, value )) !== undefined ) {
-				// Wrapped to prevent IE from throwing errors when 'invalid' values are provided
+				// Wrapped to prevent IE from throwing errors when 'invalid' Datas are provided
 				// Fixes bug #5509
 				try {
 					style[ name ] = value;
@@ -2645,12 +2645,12 @@ jQuery.style = function( elem, name, value, extra ) {
 			}
 
 		} else {
-			// If a hook was provided get the non-computed value from there
+			// If a hook was provided get the non-computed Data from there
 			if ( hooks && "get" in hooks && (ret = hooks.get( elem, false, extra )) !== undefined ) {
 				return ret;
 			}
 
-			// Otherwise just get the value from the style object
+			// Otherwise just get the Data from the style object
 			return style[ name ];
 		}
 	};
@@ -2710,7 +2710,7 @@ jQuery.swap = function( elem, options, callback ) {
 
 		var old = {};
 
-		// Remember the old values, and insert the new ones
+		// Remember the old Datas, and insert the new ones
 		for ( var name in options ) {
 			old[ name ] = elem.style[ name ];
 			elem.style[ name ] = options[ name ];
@@ -2718,7 +2718,7 @@ jQuery.swap = function( elem, options, callback ) {
 
 		callback.call( elem );
 
-		// Revert the old values
+		// Revert the old Datas
 		for ( name in options ) {
 			elem.style[ name ] = old[ name ];
 		}
@@ -2830,7 +2830,7 @@ jQuery.when = function( firstParam ) {
 				args[ i ] = arguments.length > 1 ? sliceDeferred.call( arguments, 0 ) : value;
 				if ( !( --count ) ) {
 					// Strange bug in FF4:
-					// Values changed onto the arguments object sometimes end up as undefined values
+					// Values changed onto the arguments object sometimes end up as undefined Datas
 					// outside the $.when method. Cloning the object into a fresh array solves the issue
 					deferred.resolveWith( deferred, sliceDeferred.call( args, 0 ) );
 				}
@@ -2982,7 +2982,7 @@ jQuery.prototype.addClass = function( value ) {
 ///     <para>1 - addClass(className) </para>
 ///     <para>2 - addClass(function(index, currentClass))</para>
 /// </summary>
-/// <param name="value" type="String">
+/// <param name="Data" type="String">
 ///     One or more class names to be added to the class attribute of each matched element.
 /// </param>
 /// <returns type="jQuery" />
@@ -3194,7 +3194,7 @@ jQuery.prototype.animate = function( prop, speed, easing, callback ) {
 					// Make sure that nothing sneaks out
 					// Record all 3 overflow attributes because IE does not
 					// change the overflow attribute when overflowX and
-					// overflowY are set to the same value
+					// overflowY are set to the same Data
 					opt.overflow = [ this.style.overflow, this.style.overflowX, this.style.overflowY ];
 
 					// Set display property to inline-block for height/width
@@ -3241,7 +3241,7 @@ jQuery.prototype.animate = function( prop, speed, easing, callback ) {
 						end = parseFloat( parts[2] );
 						unit = parts[3] || ( jQuery.cssNumber[ p ] ? "" : "px" );
 
-						// We need to compute starting value
+						// We need to compute starting Data
 						if ( unit !== "px" ) {
 							jQuery.style( this, p, (end || 1) + unit);
 							start = ((end || 1) / e.cur()) * start;
@@ -3314,18 +3314,18 @@ jQuery.prototype.appendTo = function( selector ) {
 	};
 jQuery.prototype.attr = function( name, value ) {
 /// <summary>
-///     1: Get the value of an attribute for the first element in the set of matched elements.
+///     1: Get the Data of an attribute for the first element in the set of matched elements.
 ///     <para>    1.1 - attr(attributeName)</para>
 ///     <para>2: Set one or more attributes for the set of matched elements.</para>
-///     <para>    2.1 - attr(attributeName, value) </para>
+///     <para>    2.1 - attr(attributeName, Data) </para>
 ///     <para>    2.2 - attr(map) </para>
 ///     <para>    2.3 - attr(attributeName, function(index, attr))</para>
 /// </summary>
 /// <param name="name" type="String">
 ///     The name of the attribute to set.
 /// </param>
-/// <param name="value" type="Number">
-///     A value to set for the attribute.
+/// <param name="Data" type="Number">
+///     A Data to set for the attribute.
 /// </param>
 /// <returns type="jQuery" />
 
@@ -3531,10 +3531,10 @@ jQuery.prototype.clone = function( dataAndEvents, deepDataAndEvents ) {
 ///     <para>2 - clone(withDataAndEvents, deepWithDataAndEvents)</para>
 /// </summary>
 /// <param name="dataAndEvents" type="Boolean">
-///     A Boolean indicating whether event handlers and data should be copied along with the elements. The default value is false. *In jQuery 1.5.0 the default value was incorrectly true; it was changed back to false in 1.5.1 and up.
+///     A Boolean indicating whether event handlers and data should be copied along with the elements. The default Data is false. *In jQuery 1.5.0 the default Data was incorrectly true; it was changed back to false in 1.5.1 and up.
 /// </param>
 /// <param name="deepDataAndEvents" type="Boolean">
-///     A Boolean indicating whether event handlers and data for all children of the cloned element should be copied. By default its value matches the first argument's value (which defaults to false).
+///     A Boolean indicating whether event handlers and data for all children of the cloned element should be copied. By default its Data matches the first argument's Data (which defaults to false).
 /// </param>
 /// <returns type="jQuery" />
 
@@ -3661,18 +3661,18 @@ jQuery.prototype.contents = function( until, selector ) {
 	};
 jQuery.prototype.css = function( name, value ) {
 /// <summary>
-///     1: Get the value of a style property for the first element in the set of matched elements.
+///     1: Get the Data of a style property for the first element in the set of matched elements.
 ///     <para>    1.1 - css(propertyName)</para>
 ///     <para>2: Set one or more CSS properties for the  set of matched elements.</para>
-///     <para>    2.1 - css(propertyName, value) </para>
-///     <para>    2.2 - css(propertyName, function(index, value)) </para>
+///     <para>    2.1 - css(propertyName, Data) </para>
+///     <para>    2.2 - css(propertyName, function(index, Data)) </para>
 ///     <para>    2.3 - css(map)</para>
 /// </summary>
 /// <param name="name" type="String">
 ///     A CSS property name.
 /// </param>
-/// <param name="value" type="Number">
-///     A value to set for the property.
+/// <param name="Data" type="Number">
+///     A Data to set for the property.
 /// </param>
 /// <returns type="jQuery" />
 
@@ -3690,17 +3690,17 @@ jQuery.prototype.css = function( name, value ) {
 jQuery.prototype.data = function( key, value ) {
 /// <summary>
 ///     1: Store arbitrary data associated with the matched elements.
-///     <para>    1.1 - data(key, value) </para>
+///     <para>    1.1 - data(key, Data) </para>
 ///     <para>    1.2 - data(obj)</para>
-///     <para>2: Returns value at named data store for the first element in the jQuery collection, as set by data(name, value).</para>
+///     <para>2: Returns Data at named data store for the first element in the jQuery collection, as set by data(name, Data).</para>
 ///     <para>    2.1 - data(key) </para>
 ///     <para>    2.2 - data()</para>
 /// </summary>
 /// <param name="key" type="String">
 ///     A string naming the piece of data to set.
 /// </param>
-/// <param name="value" type="Object">
-///     The new data value; it can be any Javascript type including Array or Object.
+/// <param name="Data" type="Object">
+///     The new data Data; it can be any Javascript type including Array or Object.
 /// </param>
 /// <returns type="jQuery" />
 
@@ -4108,7 +4108,7 @@ jQuery.prototype.extend = function() {
 	}
 
 	for ( ; i < length; i++ ) {
-		// Only deal with non-null/undefined values
+		// Only deal with non-null/undefined Datas
 		if ( (options = arguments[ i ]) != null ) {
 			// Extend the base object
 			for ( name in options ) {
@@ -4133,7 +4133,7 @@ jQuery.prototype.extend = function() {
 					// Never move original objects, clone them
 					target[ name ] = jQuery.extend( deep, clone, copy );
 
-				// Don't bring in undefined values
+				// Don't bring in undefined Datas
 				} else if ( copy !== undefined ) {
 					target[ name ] = copy;
 				}
@@ -4422,7 +4422,7 @@ jQuery.prototype.height = function( size ) {
 ///     1: Get the current computed height for the first element in the set of matched elements.
 ///     <para>    1.1 - height()</para>
 ///     <para>2: Set the CSS height of every matched element.</para>
-///     <para>    2.1 - height(value) </para>
+///     <para>    2.1 - height(Data) </para>
 ///     <para>    2.2 - height(function(index, height))</para>
 /// </summary>
 /// <param name="size" type="Number">
@@ -4467,7 +4467,7 @@ jQuery.prototype.height = function( size ) {
 
 			return jQuery.isNaN( ret ) ? orig : ret;
 
-		// Set the width or height on the element (default to pixels if value is unitless)
+		// Set the width or height on the element (default to pixels if Data is unitless)
 		} else {
 			return this.css( type, typeof size === "string" ? size : size + "px" );
 		}
@@ -4540,7 +4540,7 @@ jQuery.prototype.html = function( value ) {
 ///     <para>    2.1 - html(htmlString) </para>
 ///     <para>    2.2 - html(function(index, oldhtml))</para>
 /// </summary>
-/// <param name="value" type="String">
+/// <param name="Data" type="String">
 ///     A string of HTML to set as the content of each matched element.
 /// </param>
 /// <returns type="jQuery" />
@@ -5075,7 +5075,7 @@ jQuery.prototype.load = function( url, params, callback ) {
 	};
 jQuery.prototype.map = function( callback ) {
 /// <summary>
-///     Pass each element in the current matched set through a function, producing a new jQuery object containing the return values.
+///     Pass each element in the current matched set through a function, producing a new jQuery object containing the return Datas.
 /// </summary>
 /// <param name="callback" type="Function">
 ///     A function object that will be invoked for each element in the current set.
@@ -5842,18 +5842,18 @@ jQuery.prototype.promise = function( type, object ) {
 	};
 jQuery.prototype.prop = function( name, value ) {
 /// <summary>
-///     1: Get the value of a property for the first element in the set of matched elements.
+///     1: Get the Data of a property for the first element in the set of matched elements.
 ///     <para>    1.1 - prop(propertyName)</para>
 ///     <para>2: Set one or more properties for the set of matched elements.</para>
-///     <para>    2.1 - prop(propertyName, value) </para>
+///     <para>    2.1 - prop(propertyName, Data) </para>
 ///     <para>    2.2 - prop(map) </para>
 ///     <para>    2.3 - prop(propertyName, function(index, oldPropertyValue))</para>
 /// </summary>
 /// <param name="name" type="String">
 ///     The name of the property to set.
 /// </param>
-/// <param name="value" type="Boolean">
-///     A value to set for the property.
+/// <param name="Data" type="Boolean">
+///     A Data to set for the property.
 /// </param>
 /// <returns type="jQuery" />
 
@@ -5992,7 +5992,7 @@ jQuery.prototype.removeClass = function( value ) {
 ///     <para>1 - removeClass(className) </para>
 ///     <para>2 - removeClass(function(index, class))</para>
 /// </summary>
-/// <param name="value" type="String">
+/// <param name="Data" type="String">
 ///     One or more space-separated classes to be removed from the class attribute of each matched element.
 /// </param>
 /// <returns type="jQuery" />
@@ -6092,7 +6092,7 @@ jQuery.prototype.replaceWith = function( value ) {
 ///     <para>1 - replaceWith(newContent) </para>
 ///     <para>2 - replaceWith(function)</para>
 /// </summary>
-/// <param name="value" type="jQuery">
+/// <param name="Data" type="jQuery">
 ///     The content to insert. May be an HTML string, DOM element, or jQuery object.
 /// </param>
 /// <returns type="jQuery" />
@@ -6182,7 +6182,7 @@ jQuery.prototype.scrollLeft = function( val ) {
 ///     1: Get the current horizontal position of the scroll bar for the first element in the set of matched elements.
 ///     <para>    1.1 - scrollLeft()</para>
 ///     <para>2: Set the current horizontal position of the scroll bar for each of the set of matched elements.</para>
-///     <para>    2.1 - scrollLeft(value)</para>
+///     <para>    2.1 - scrollLeft(Data)</para>
 /// </summary>
 /// <param name="val" type="Number">
 ///     An integer indicating the new position to set the scroll bar to.
@@ -6227,7 +6227,7 @@ jQuery.prototype.scrollTop = function( val ) {
 ///     1: Get the current vertical position of the scroll bar for the first element in the set of matched elements.
 ///     <para>    1.1 - scrollTop()</para>
 ///     <para>2: Set the current vertical position of the scroll bar for each of the set of matched elements.</para>
-///     <para>    2.1 - scrollTop(value)</para>
+///     <para>    2.1 - scrollTop(Data)</para>
 /// </summary>
 /// <param name="val" type="Number">
 ///     An integer indicating the new position to set the scroll bar to.
@@ -6301,7 +6301,7 @@ jQuery.prototype.serialize = function() {
 	};
 jQuery.prototype.serializeArray = function() {
 /// <summary>
-///     Encode a set of form elements as an array of names and values.
+///     Encode a set of form elements as an array of names and Datas.
 /// </summary>
 /// <returns type="Array" />
 
@@ -6639,17 +6639,17 @@ jQuery.prototype.toggle = function( fn, fn2, callback ) {
 	};
 jQuery.prototype.toggleClass = function( value, stateVal ) {
 /// <summary>
-///     Add or remove one or more classes from each element in the set of matched elements, depending on either the class's presence or the value of the switch argument.
+///     Add or remove one or more classes from each element in the set of matched elements, depending on either the class's presence or the Data of the switch argument.
 ///     <para>1 - toggleClass(className) </para>
 ///     <para>2 - toggleClass(className, switch) </para>
 ///     <para>3 - toggleClass(switch) </para>
 ///     <para>4 - toggleClass(function(index, class, switch), switch)</para>
 /// </summary>
-/// <param name="value" type="String">
+/// <param name="Data" type="String">
 ///     One or more class names (separated by spaces) to be toggled for each element in the matched set.
 /// </param>
 /// <param name="stateVal" type="Boolean">
-///     A Boolean (not just truthy/falsy) value to determine whether the class should be added or removed.
+///     A Boolean (not just truthy/falsy) Data to determine whether the class should be added or removed.
 /// </param>
 /// <returns type="jQuery" />
 
@@ -6815,14 +6815,14 @@ jQuery.prototype.unwrap = function() {
 	};
 jQuery.prototype.val = function( value ) {
 /// <summary>
-///     1: Get the current value of the first element in the set of matched elements.
+///     1: Get the current Data of the first element in the set of matched elements.
 ///     <para>    1.1 - val()</para>
-///     <para>2: Set the value of each element in the set of matched elements.</para>
-///     <para>    2.1 - val(value) </para>
-///     <para>    2.2 - val(function(index, value))</para>
+///     <para>2: Set the Data of each element in the set of matched elements.</para>
+///     <para>    2.1 - val(Data) </para>
+///     <para>    2.2 - val(function(index, Data))</para>
 /// </summary>
-/// <param name="value" type="String">
-///     A string of text or an array of strings corresponding to the value of each matched element to set as selected/checked.
+/// <param name="Data" type="String">
+///     A string of text or an array of strings corresponding to the Data of each matched element to set as selected/checked.
 /// </param>
 /// <returns type="jQuery" />
 
@@ -6833,7 +6833,7 @@ jQuery.prototype.val = function( value ) {
 			if ( elem ) {
 				hooks = jQuery.valHooks[ elem.nodeName.toLowerCase() ] || jQuery.valHooks[ elem.type ];
 
-				if ( hooks && "get" in hooks && (ret = hooks.get( elem, "value" )) !== undefined ) {
+				if ( hooks && "get" in hooks && (ret = hooks.get( elem, "Data" )) !== undefined ) {
 					return ret;
 				}
 
@@ -6842,7 +6842,7 @@ jQuery.prototype.val = function( value ) {
 				return typeof ret === "string" ? 
 					// handle most common string cases
 					ret.replace(rreturn, "") : 
-					// handle cases where value is null/undef or number
+					// handle cases where Data is null/undef or number
 					ret == null ? "" : ret;
 			}
 
@@ -6878,7 +6878,7 @@ jQuery.prototype.val = function( value ) {
 			hooks = jQuery.valHooks[ this.nodeName.toLowerCase() ] || jQuery.valHooks[ this.type ];
 
 			// If set returns undefined, fall back to normal setting
-			if ( !hooks || !("set" in hooks) || hooks.set( this, val, "value" ) === undefined ) {
+			if ( !hooks || !("set" in hooks) || hooks.set( this, val, "Data" ) === undefined ) {
 				this.value = val;
 			}
 		});
@@ -6888,7 +6888,7 @@ jQuery.prototype.width = function( size ) {
 ///     1: Get the current computed width for the first element in the set of matched elements.
 ///     <para>    1.1 - width()</para>
 ///     <para>2: Set the CSS width of each element in the set of matched elements.</para>
-///     <para>    2.1 - width(value) </para>
+///     <para>    2.1 - width(Data) </para>
 ///     <para>    2.2 - width(function(index, width))</para>
 /// </summary>
 /// <param name="size" type="Number">
@@ -6933,7 +6933,7 @@ jQuery.prototype.width = function( size ) {
 
 			return jQuery.isNaN( ret ) ? orig : ret;
 
-		// Set the width or height on the element (default to pixels if value is unitless)
+		// Set the width or height on the element (default to pixels if Data is unitless)
 		} else {
 			return this.css( type, typeof size === "string" ? size : size + "px" );
 		}

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <PCMRegionalMapResponse xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <regionalMapNewsVolumePackage>
     <regionNewsVolume>
@@ -8,12 +8,12 @@
           <Exp>0</Exp>
           <IsPositive>true</IsPositive>
           <RawText>
-            <Value>6,646</Value>
+            <Data>6,646</Data>
           </RawText>
           <Text>
-            <Value>6,646</Value>
+            <Data>6,646</Data>
           </Text>
-          <Value>6646</Value>
+          <Data>6646</Value>
         </CurrentTimeFrameNewsVolume>
         <Code>NAMZ</Code>
         <SearchContextRef>{"pn":"NewsPages","sct":"RegionalMapBubbleSearchContext","j":"{"c":"NAMZ","tf":-9}","pid":"Not_Specified","mid":"22755"}</SearchContextRef>
@@ -21,23 +21,23 @@
           <Exp>0</Exp>
           <IsPositive>true</IsPositive>
           <RawText>
-            <Value>5,107</Value>
+            <Data>5,107</Data>
           </RawText>
           <Text>
-            <Value>5,107</Value>
+            <Data>5,107</Data>
           </Text>
-          <Value>5107</Value>
+          <Data>5107</Data>
         </PreviousTimeFrameNewsVolume>
         <PercentVolumeChange>
           <Exp>0</Exp>
           <IsPositive>true</IsPositive>
           <RawText>
-            <Value>30.1351086743685</Value>
+            <Data>30.1351086743685</Data>
           </RawText>
           <Text>
-            <Value>30.14%</Value>
+            <Data>30.14%</Data>
           </Text>
-          <Value>30.135108674368503</Value>
+          <Value>30.135108674368503</Data>
         </PercentVolumeChange>
         <NewEntrant>false</NewEntrant>
       </NewsEntityNewsVolumeVariation>
@@ -47,12 +47,12 @@
           <Exp>0</Exp>
           <IsPositive>true</IsPositive>
           <RawText>
-            <Value>95</Value>
+            <Data>95</Data>
           </RawText>
           <Text>
-            <Value>95</Value>
+            <Data>95</Data>
           </Text>
-          <Value>95</Value>
+          <Data>95</Data>
         </CurrentTimeFrameNewsVolume>
         <Code>SAMZ</Code>
         <SearchContextRef>{"pn":"NewsPages","sct":"RegionalMapBubbleSearchContext","j":"{"c":"SAMZ","tf":-9}","pid":"Not_Specified","mid":"22755"}</SearchContextRef>
@@ -60,23 +60,23 @@
           <Exp>0</Exp>
           <IsPositive>true</IsPositive>
           <RawText>
-            <Value>111</Value>
+            <Data>111</Data>
           </RawText>
           <Text>
-            <Value>111</Value>
+            <Data>111</Data>
           </Text>
-          <Value>111</Value>
+          <Data>111</Data>
         </PreviousTimeFrameNewsVolume>
         <PercentVolumeChange>
           <Exp>0</Exp>
           <IsPositive>false</IsPositive>
           <RawText>
-            <Value>-14.4144144144144</Value>
+            <Data>-14.4144144144144</Data>
           </RawText>
           <Text>
-            <Value>-14.41%</Value>
+            <Data>-14.41%</Data>
           </Text>
-          <Value>-14.414414414414411</Value>
+          <Data>-14.414414414414411</Data>
         </PercentVolumeChange>
         <NewEntrant>false</NewEntrant>
       </NewsEntityNewsVolumeVariation>
@@ -86,12 +86,12 @@
           <Exp>0</Exp>
           <IsPositive>true</IsPositive>
           <RawText>
-            <Value>115</Value>
+            <Data>115</Data>
           </RawText>
           <Text>
-            <Value>115</Value>
+            <Data>115</Data>
           </Text>
-          <Value>115</Value>
+          <Data>115</Data>
         </CurrentTimeFrameNewsVolume>
         <Code>CAMZ</Code>
         <SearchContextRef>{"pn":"NewsPages","sct":"RegionalMapBubbleSearchContext","j":"{"c":"CAMZ","tf":-9}","pid":"Not_Specified","mid":"22755"}</SearchContextRef>
@@ -99,23 +99,23 @@
           <Exp>0</Exp>
           <IsPositive>true</IsPositive>
           <RawText>
-            <Value>109</Value>
+            <Data>109</Data>
           </RawText>
           <Text>
-            <Value>109</Value>
+            <Data>109</Data>
           </Text>
-          <Value>109</Value>
+          <Data>109</Data>
         </PreviousTimeFrameNewsVolume>
         <PercentVolumeChange>
           <Exp>0</Exp>
           <IsPositive>true</IsPositive>
           <RawText>
-            <Value>5.50458715596329</Value>
+            <Data>5.50458715596329</Data>
           </RawText>
           <Text>
-            <Value>5.50%</Value>
+            <Data>5.50%</Data>
           </Text>
-          <Value>5.504587155963292</Value>
+          <Data>5.504587155963292</Data>
         </PercentVolumeChange>
         <NewEntrant>false</NewEntrant>
       </NewsEntityNewsVolumeVariation>
@@ -125,12 +125,12 @@
           <Exp>0</Exp>
           <IsPositive>true</IsPositive>
           <RawText>
-            <Value>3,436</Value>
+            <Data>3,436</Data>
           </RawText>
           <Text>
-            <Value>3,436</Value>
+            <Data>3,436</Data>
           </Text>
-          <Value>3436</Value>
+          <Data>3436</Data>
         </CurrentTimeFrameNewsVolume>
         <Code>EURZ</Code>
         <SearchContextRef>{"pn":"NewsPages","sct":"RegionalMapBubbleSearchContext","j":"{"c":"EURZ","tf":-9}","pid":"Not_Specified","mid":"22755"}</SearchContextRef>
@@ -138,23 +138,23 @@
           <Exp>0</Exp>
           <IsPositive>true</IsPositive>
           <RawText>
-            <Value>2,247</Value>
+            <Data>2,247</Data>
           </RawText>
           <Text>
-            <Value>2,247</Value>
+            <Value>2,247</Data>
           </Text>
-          <Value>2247</Value>
+          <Data>2247</Data>
         </PreviousTimeFrameNewsVolume>
         <PercentVolumeChange>
           <Exp>0</Exp>
           <IsPositive>true</IsPositive>
           <RawText>
-            <Value>52.9149977748109</Value>
+            <Data>52.9149977748109</Data>
           </RawText>
           <Text>
-            <Value>52.91%</Value>
+            <Data>52.91%</Data>
           </Text>
-          <Value>52.914997774810857</Value>
+          <Data>52.914997774810857</Data>
         </PercentVolumeChange>
         <NewEntrant>false</NewEntrant>
       </NewsEntityNewsVolumeVariation>
@@ -164,12 +164,12 @@
           <Exp>0</Exp>
           <IsPositive>true</IsPositive>
           <RawText>
-            <Value>82</Value>
+            <Data>82</Data>
           </RawText>
           <Text>
-            <Value>82</Value>
+            <Data>82</Data>
           </Text>
-          <Value>82</Value>
+          <Data>82</Data>
         </CurrentTimeFrameNewsVolume>
         <Code>RUSS</Code>
         <SearchContextRef>{"pn":"NewsPages","sct":"RegionalMapBubbleSearchContext","j":"{"c":"RUSS","tf":-9}","pid":"Not_Specified","mid":"22755"}</SearchContextRef>
@@ -177,23 +177,23 @@
           <Exp>0</Exp>
           <IsPositive>true</IsPositive>
           <RawText>
-            <Value>57</Value>
+            <Data>57</Data>
           </RawText>
           <Text>
-            <Value>57</Value>
+            <Data>57</Data>
           </Text>
-          <Value>57</Value>
+          <Data>57</Data>
         </PreviousTimeFrameNewsVolume>
         <PercentVolumeChange>
           <Exp>0</Exp>
           <IsPositive>true</IsPositive>
           <RawText>
-            <Value>43.859649122807</Value>
+            <Data>43.859649122807</Data>
           </RawText>
           <Text>
-            <Value>43.86%</Value>
+            <Data>43.86%</Data>
           </Text>
-          <Value>43.859649122807021</Value>
+          <Data>43.859649122807021</Data>
         </PercentVolumeChange>
         <NewEntrant>false</NewEntrant>
       </NewsEntityNewsVolumeVariation>
@@ -203,12 +203,12 @@
           <Exp>0</Exp>
           <IsPositive>true</IsPositive>
           <RawText>
-            <Value>98</Value>
+            <Data>98</Data>
           </RawText>
           <Text>
-            <Value>98</Value>
+            <Data>98</Data>
           </Text>
-          <Value>98</Value>
+          <Data>98</Data>
         </CurrentTimeFrameNewsVolume>
         <Code>MEASTZ</Code>
         <SearchContextRef>{"pn":"NewsPages","sct":"RegionalMapBubbleSearchContext","j":"{"c":"MEASTZ","tf":-9}","pid":"Not_Specified","mid":"22755"}</SearchContextRef>
@@ -216,23 +216,23 @@
           <Exp>0</Exp>
           <IsPositive>true</IsPositive>
           <RawText>
-            <Value>101</Value>
+            <Data>101</Data>
           </RawText>
           <Text>
-            <Value>101</Value>
+            <Data>101</Data>
           </Text>
-          <Value>101</Value>
+          <Data>101</Data>
         </PreviousTimeFrameNewsVolume>
         <PercentVolumeChange>
           <Exp>0</Exp>
           <IsPositive>false</IsPositive>
           <RawText>
-            <Value>-2.97029702970297</Value>
+            <Data>-2.97029702970297</Data>
           </RawText>
           <Text>
-            <Value>-2.97%</Value>
+            <Data>-2.97%</Data>
           </Text>
-          <Value>-2.9702970297029729</Value>
+          <Data>-2.9702970297029729</Data>
         </PercentVolumeChange>
         <NewEntrant>false</NewEntrant>
       </NewsEntityNewsVolumeVariation>
@@ -242,12 +242,12 @@
           <Exp>0</Exp>
           <IsPositive>true</IsPositive>
           <RawText>
-            <Value>135</Value>
+            <Data>135</Data>
           </RawText>
           <Text>
-            <Value>135</Value>
+            <Data>135</Data>
           </Text>
-          <Value>135</Value>
+          <Data>135</Data>
         </CurrentTimeFrameNewsVolume>
         <Code>AFRICAZ</Code>
         <SearchContextRef>{"pn":"NewsPages","sct":"RegionalMapBubbleSearchContext","j":"{"c":"AFRICAZ","tf":-9}","pid":"Not_Specified","mid":"22755"}</SearchContextRef>
@@ -255,23 +255,23 @@
           <Exp>0</Exp>
           <IsPositive>true</IsPositive>
           <RawText>
-            <Value>115</Value>
+            <Data>115</Data>
           </RawText>
           <Text>
-            <Value>115</Value>
+            <Data>115</Data>
           </Text>
-          <Value>115</Value>
+          <Data>115</Data>
         </PreviousTimeFrameNewsVolume>
         <PercentVolumeChange>
           <Exp>0</Exp>
           <IsPositive>true</IsPositive>
           <RawText>
-            <Value>17.3913043478261</Value>
+            <Data>17.3913043478261</Data>
           </RawText>
           <Text>
-            <Value>17.39%</Value>
+            <Data>17.39%</Data>
           </Text>
-          <Value>17.391304347826097</Value>
+          <Data>17.391304347826097</Data>
         </PercentVolumeChange>
         <NewEntrant>false</NewEntrant>
       </NewsEntityNewsVolumeVariation>
@@ -281,12 +281,12 @@
           <Exp>0</Exp>
           <IsPositive>true</IsPositive>
           <RawText>
-            <Value>1,264</Value>
+            <Data>1,264</Data>
           </RawText>
           <Text>
-            <Value>1,264</Value>
+            <Data>1,264</Data>
           </Text>
-          <Value>1264</Value>
+          <Data>1264</Data>
         </CurrentTimeFrameNewsVolume>
         <Code>ASIAZ</Code>
         <SearchContextRef>{"pn":"NewsPages","sct":"RegionalMapBubbleSearchContext","j":"{"c":"ASIAZ","tf":-9}","pid":"Not_Specified","mid":"22755"}</SearchContextRef>
@@ -294,23 +294,23 @@
           <Exp>0</Exp>
           <IsPositive>true</IsPositive>
           <RawText>
-            <Value>1,524</Value>
+            <Data>1,524</Data>
           </RawText>
           <Text>
-            <Value>1,524</Value>
+            <Data>1,524</Data>
           </Text>
-          <Value>1524</Value>
+          <Data>1524</Data>
         </PreviousTimeFrameNewsVolume>
         <PercentVolumeChange>
           <Exp>0</Exp>
           <IsPositive>false</IsPositive>
           <RawText>
-            <Value>-17.0603674540682</Value>
+            <Data>-17.0603674540682</Data>
           </RawText>
           <Text>
-            <Value>-17.06%</Value>
+            <Data>-17.06%</Data>
           </Text>
-          <Value>-17.060367454068238</Value>
+          <Data>-17.060367454068238</Data>
         </PercentVolumeChange>
         <NewEntrant>false</NewEntrant>
       </NewsEntityNewsVolumeVariation>
@@ -320,12 +320,12 @@
           <Exp>0</Exp>
           <IsPositive>true</IsPositive>
           <RawText>
-            <Value>152</Value>
+            <Data>152</Data>
           </RawText>
           <Text>
-            <Value>152</Value>
+            <Data>152</Data>
           </Text>
-          <Value>152</Value>
+          <Data>152</Data>
         </CurrentTimeFrameNewsVolume>
         <Code>INDSUBZ</Code>
         <SearchContextRef>{"pn":"NewsPages","sct":"RegionalMapBubbleSearchContext","j":"{"c":"INDSUBZ","tf":-9}","pid":"Not_Specified","mid":"22755"}</SearchContextRef>
@@ -333,23 +333,23 @@
           <Exp>0</Exp>
           <IsPositive>true</IsPositive>
           <RawText>
-            <Value>167</Value>
+            <Data>167</Data>
           </RawText>
           <Text>
-            <Value>167</Value>
+            <Data>167</Data>
           </Text>
-          <Value>167</Value>
+          <Data>167</Data>
         </PreviousTimeFrameNewsVolume>
         <PercentVolumeChange>
           <Exp>0</Exp>
           <IsPositive>false</IsPositive>
           <RawText>
-            <Value>-8.98203592814372</Value>
+            <Data>-8.98203592814372</Data>
           </RawText>
           <Text>
-            <Value>-8.98%</Value>
+            <Data>-8.98%</Data>
           </Text>
-          <Value>-8.9820359281437163</Value>
+          <Data>-8.9820359281437163</Data>
         </PercentVolumeChange>
         <NewEntrant>false</NewEntrant>
       </NewsEntityNewsVolumeVariation>
@@ -359,12 +359,12 @@
           <Exp>0</Exp>
           <IsPositive>true</IsPositive>
           <RawText>
-            <Value>203</Value>
+            <Data>203</Data>
           </RawText>
           <Text>
-            <Value>203</Value>
+            <Data>203</Data>
           </Text>
-          <Value>203</Value>
+          <Data>203</Data>
         </CurrentTimeFrameNewsVolume>
         <Code>AUSNZ</Code>
         <SearchContextRef>{"pn":"NewsPages","sct":"RegionalMapBubbleSearchContext","j":"{"c":"AUSNZ","tf":-9}","pid":"Not_Specified","mid":"22755"}</SearchContextRef>
@@ -372,23 +372,23 @@
           <Exp>0</Exp>
           <IsPositive>true</IsPositive>
           <RawText>
-            <Value>164</Value>
+            <Data>164</Data>
           </RawText>
           <Text>
-            <Value>164</Value>
+            <Data>164</Data>
           </Text>
-          <Value>164</Value>
+          <Data>164</Data>
         </PreviousTimeFrameNewsVolume>
         <PercentVolumeChange>
           <Exp>0</Exp>
           <IsPositive>true</IsPositive>
           <RawText>
-            <Value>23.780487804878</Value>
+            <Data>23.780487804878</Data>
           </RawText>
           <Text>
-            <Value>23.78%</Value>
+            <Data>23.78%</Data>
           </Text>
-          <Value>23.780487804878049</Value>
+          <Data>23.780487804878049</Data>
         </PercentVolumeChange>
         <NewEntrant>false</NewEntrant>
       </NewsEntityNewsVolumeVariation>

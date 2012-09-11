@@ -109,7 +109,7 @@
         },
         worldMapRenderer: '', // Highcharts renderer object
         regionCircles: {}, // Highcharts groups
-        highestValue: 0, // The Highest ArticleVolume value among the regions
+        highestValue: 0, // The Highest ArticleVolume Data among the regions
         _mapsize: "large", //local default variable used.
         
         // Localization/Templating tokens

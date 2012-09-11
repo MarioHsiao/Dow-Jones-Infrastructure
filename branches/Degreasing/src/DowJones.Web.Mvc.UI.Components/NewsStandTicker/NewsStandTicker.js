@@ -25,7 +25,7 @@ var popupVisible = false;
             'h = data.topNewsVolumeEntities[index]; %>',
                                         '<li class="dj_news-ticker-item">',
                                         '<h3><%= h.descriptor %></h3>',
-                                        '<span><%= h.currentTimeFrameNewsVolume.displayText.value %> <%= tokens.articlesTkn %></span>',
+                                        '<span><%= h.currentTimeFrameNewsVolume.displayText.Data %> <%= tokens.articlesTkn %></span>',
                                         '</li>',
                                          '<% } %>',
                                             '</ul>',

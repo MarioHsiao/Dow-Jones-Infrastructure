@@ -17,7 +17,7 @@
 
         // Localization/Templating tokens
         tokens: {
-            // name: value     // add more defaults he0re separated by comma
+            // name: Data     // add more defaults he0re separated by comma
         },
 
 

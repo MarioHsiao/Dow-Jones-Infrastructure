@@ -67,7 +67,7 @@
                 // 14 and 194 are right and left margins of radar-content, defined in css
                 var availableWidth = $radarContainer.width() - 14 - 194;
                 var pagesCount = Math.ceil(self.data.parentNewsEntities.length / o.pageSize);
-                //Ron: removing the dynamic calculation of the image width, IE7 calculates availableWidth as -208 due to $radarContainer.width() not having a value 
+                //Ron: removing the dynamic calculation of the image width, IE7 calculates availableWidth as -208 due to $radarContainer.width() not having a Data 
                 //var imageWidth = Math.floor(availableWidth / o.pageSize);
                 var imageWidth = 128;
 
