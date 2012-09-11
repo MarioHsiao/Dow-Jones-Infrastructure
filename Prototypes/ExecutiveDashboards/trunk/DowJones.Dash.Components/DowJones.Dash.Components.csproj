@@ -116,6 +116,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConcurrentVisits\ConcurrentVisits.cs" />
+    <Compile Include="ConcurrentVisits\ConcurrentVisitsComponent.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ConcurrentVisitsComponent.cshtml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TopPages\TopPagesComponent.cs">
       <AutoGen>True</AutoGen>
@@ -124,6 +130,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="ConcurrentVisits\ConcurrentVisitsComponent.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>ConcurrentVisitsComponent.cs</LastGenOutput>
+    </None>
     <None Include="packages.config" />
     <None Include="TopPages\TopPagesComponent.cshtml">
       <Generator>RazorViewComponentClassGenerator</Generator>
@@ -141,6 +151,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="TopPages\ClientTemplates\container.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ConcurrentVisits\ConcurrentVisits.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ConcurrentVisits\ClientTemplates\container.html" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

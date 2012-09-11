@@ -6,7 +6,7 @@ namespace DowJones.Dash.Website.DataSources
 {
     public abstract class ChartBeatDataSource : JsonWebDataSource
     {
-        public ChartBeatDataSource(string relativePath, string host = "online.wsj.com")
+        protected ChartBeatDataSource(string relativePath, string host = "online.wsj.com")
             : base(
                 ConfigurationManager.AppSettings["ChartBeat.BasePath"] + relativePath,
                 new Dictionary<string, object>

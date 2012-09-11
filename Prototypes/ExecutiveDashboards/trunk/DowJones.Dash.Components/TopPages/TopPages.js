@@ -21,6 +21,7 @@ DJ.UI.TopPages = DJ.UI.CompositeComponent.extend({
             options: { layout: 2 }
         }).done(function (comp) {
             self.portalHeadlines = comp;
+            comp.owner = self;
         });
     },
 
