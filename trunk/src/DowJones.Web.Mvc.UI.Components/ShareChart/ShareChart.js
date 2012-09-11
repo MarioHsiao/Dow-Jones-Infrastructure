@@ -123,6 +123,7 @@ DJ.UI.ShareChart = DJ.UI.Component.extend({
             tooltip: {
                 valueSuffix: '%'
             },
+            credits: false,
             series: [{
                 name: 'Browsers',
                 data: data.browserData,
