@@ -53,7 +53,7 @@ DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
     _setData: function (data) {
         if (this.gauge) {
             console.log(data.visits);
-            this.gauge.setData(data.visits + Math.floor(Math.random()*5001));
+            this.gauge.setData(data.visits);
         }
     },
 
