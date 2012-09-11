@@ -2,84 +2,153 @@
  * ShareChart
  */
 
-    DJ.UI.ShareChart = DJ.UI.Component.extend({
+DJ.UI.ShareChart = DJ.UI.Component.extend({
 
-        init: function (element, meta) {
-            // Call the base constructor
-            this._super(element, $.extend({ name: "ShareChart" }, meta));
+    defaults: {
+        colors: Highcharts.getOptions().colors || []
+    },
 
-            // TODO: Add custom initialization code
-        },
+    init: function (element, meta) {
+        // Call the base constructor
+        this._super(element, $.extend({ name: "ShareChart" }, meta));
 
-        _initializeDelegates: function () {
-            this._delegates = $.extend(this._delegates, {
-                // TODO: Add delegates
-                // e.g.  OnHeadlineClick: $dj.delegate(this, this._onHeadlineClick)
+        // Initialize component if we got data from server
+        this.setData(this.data);
+    },
+
+    _initializeDelegates: function () {
+        this._delegates = $.extend(this._delegates, {
+            // TODO: Add delegates
+            // e.g.  OnHeadlineClick: $dj.delegate(this, this._onHeadlineClick)
+        });
+    },
+
+    _initializeElements: function () {
+    },
+
+    _initializeEventHandlers: function () {
+        // TODO:  Wire up events to delegates
+        // e.g.  this._headlines.click(this._delegates.OnHeadlineClick);
+    },
+
+    _mapToHighChartsData: function (result) {
+        if (!result) {
+            $dj.warn('_mapToHighChartsData: result is or undefined');
+            return;
+        }
+
+        // Build the data arrays
+        var browserData = [];
+        var versionsData = [];
+        for (var i = 0; i < result.data.length; i++) {
+
+            // add browser data
+            browserData.push({
+                name: result.categories[i],
+                y: result.data[i].share,
+                color: this._getSafeColorByIndex(i)
             });
-        },
 
-        _initializeElements: function () {
-            // TODO: Get references to child elements
-            // e.g.  this._headlines = this.$element.find('.clear-filters');
-        },
+            // add version data
+            for (var j = 0; j < result.data[i].drilldown.data.length; j++) {
+                var brightness = 0.2 - (j / result.data[i].drilldown.data.length) / 5;
+                versionsData.push({
+                    name: result.data[i].drilldown.categories[j],
+                    y: result.data[i].drilldown.data[j],
+                    color: Highcharts.Color(this._getSafeColorByIndex(i)).brighten(brightness).get()
+                });
+            }
+        };
 
-        _initializeEventHandlers: function () {
-            // TODO:  Wire up events to delegates
-            // e.g.  this._headlines.click(this._delegates.OnHeadlineClick);
-        },
+        return {
+            chartTitle: result.chartTitle,
+            browserData: browserData,
+            versionsData: versionsData
+        };
+    },
+    
+    _getSafeColorByIndex: function (index) {
+        /// <summary>
+        /// Always return a valid color. 
+        /// If the index is above bounds, it warps to a valid index based on number of colors specified.
+        /// </summary>
+        
+        var upper = this.options.colors.length;
+        
+        if(upper === 0) {
+            $dj.error('_getSafeColorByIndex: Chart colors not specified.');
+            return '#fff';
+        }
+        
+        if(index < 0) {
+            index = Math.abs(index);
+        }
 
-        getPieConfig: function () {
-            return {
-                chart: {
-                    plotBackgroundColor: null,
-                    plotBorderWidth: null,
-                    plotShadow: false
-                },
-                title: {
-                    text: ''
-                },
-                tooltip: {
-                    pointFormat: '{series.name}: <b>{point.percentage}%</b>',
-                    percentageDecimals: 1
-                },
-                plotOptions: {
-                    pie: {
-                        allowPointSelect: true,
-                        cursor: 'pointer',
-                        dataLabels: {
-                            enabled: true,
-                            color: '#000000',
-                            connectorColor: '#000000',
-                            formatter: function() {
-                                return '<b>' + this.point.name + '</b>: ' + this.percentage + ' %';
-                            }
-                        }
+        if (index >= upper)
+            return this.options.colors[index - upper];
+
+        return this.options.colors[index];
+    },
+
+    setData: function (data) {
+        if (!data) {
+            this.bindOnNoData();
+            return;
+        }
+
+        var highChartsData = this._mapToHighChartsData(data);
+        this.bindOnSuccess(highChartsData);
+    },
+
+    bindOnNoData: function () {
+
+    },
+
+    bindOnSuccess: function (data) {
+        this.$element.append(this.templates.success());
+
+        this.chart = new Highcharts.Chart({
+            chart: {
+                renderTo: this.$element.find('.chartContainer')[0],
+                type: 'pie'
+            },
+            title: {
+                text: data.chartTitle || ''
+            },
+            plotOptions: {
+                pie: {
+                    shadow: false
+                }
+            },
+            tooltip: {
+                valueSuffix: '%'
+            },
+            series: [{
+                name: 'Browsers',
+                data: data.browserData,
+                size: '60%',
+                dataLabels: {
+                    formatter: function () {
+                        return this.y > 5 ? this.point.name : null;
+                    },
+                    color: 'white',
+                    distance: -30
+                }
+            }, {
+                name: 'Versions',
+                data: data.versionsData,
+                innerSize: '60%',
+                dataLabels: {
+                    formatter: function () {
+                        // display only if larger than 1
+                        return this.y > 1 ? '<b>' + this.point.name + ':</b> ' + this.y + '%' : null;
                     }
-                }/*     // This is here to show how to use the data
-                        ,  
-                        series: [{
-                            type: 'pie',
-                            name: 'Browser share',
-                            data: [
-                                ['Firefox', 45.0],
-                                ['IE', 26.8],
-                                {
-                                    name: 'Chrome',
-                                    y: 12.8,
-                                    sliced: true,
-                                    selected: true
-                                },
-                                ['Safari', 8.5],
-                                ['Opera', 6.2],
-                                ['Others', 0.7]
-                            ]
-                        }]*/
-            };
-        },
-
-        EOF: null  // Final property placeholder (without a comma) to allow easier moving of functions
-    });
+                }
+            }]
+        });
+    }
+});
 
 
-    // Declare this class as a jQuery plugin
-    $.plugin('dj_ShareChart', DJ.UI.ShareChart);
+// Declare this class as a jQuery plugin
+$.plugin('dj_ShareChart', DJ.UI.ShareChart);

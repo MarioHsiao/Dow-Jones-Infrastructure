@@ -894,14 +894,14 @@
     <Content Include="Gauge\ClientTemplates\error.htm" />
     <Content Include="Gauge\ClientTemplates\noData.htm" />
     <Content Include="Gauge\ClientTemplates\layout.htm" />
-    <Content Include="ShareChart\ClientTemplates\success.htm" />
+    <Content Include="ShareChart\ClientTemplates\success.html" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Gauge\ClientTemplates\success.htm" />
-    <Content Include="ShareChart\ClientTemplates\noData.htm" />
+    <Content Include="ShareChart\ClientTemplates\noData.html" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ShareChart\ClientTemplates\error.htm" />
+    <Content Include="ShareChart\ClientTemplates\error.html" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Gauge\gauge.js" />
