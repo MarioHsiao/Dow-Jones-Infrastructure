@@ -898,7 +898,7 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Gauge\ClientTemplates\success.htm" />
-    <Content Include="ShareChart\ClientTemplates\noData.html" />
+    <EmbeddedResource Include="ShareChart\ClientTemplates\noData.html" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="ShareChart\ClientTemplates\error.html" />
