@@ -5,19 +5,52 @@
 }
 
 @section styles {
-	<link href="~/Content/topPages.css" rel="stylesheet" />
+    <link href="~/Content/topPages.css" rel="stylesheet" />
+    <link href="~/Content/perfGauge.css" rel="stylesheet" />
 }
 <section id="dashboard" class="row-fluid">
 
-    <div id="current-users" class="medium module" data-type="CurrentUserStats">
-        @DJ.Render(new ConcurrentVisitsModel())
+    <div id="current-users" class="module medium" data-type="CurrentUserStats">
+    	@DJ.Render(new ConcurrentVisitsModel())
     </div>
 
-	<div id="top-pages" class="module medium" data-type="TopPages">
-		@DJ.Render(new TopPagesModel())
-	</div>
+    <div id="top-pages" class="module medium" data-type="TopPages">
+        @DJ.Render(new TopPagesModel())
+    </div>
 
-    <div id="browser-stats" class="module medium" data-type="BrowserStats"></div>
+    <div id="browser-stats" class="module medium" data-type="BrowserStats">
+        <div class="dj_perfGuage">
+            <div class="moduleHead">
+                <h3>Browser Stats</h3>
+                <ul class="moduleControls" style="">
+                    <li class="moduleIcon"></li>
+                </ul>
+            </div>
+            <div class="perfGaugeContainer">
+                <ul class="dj-perfGaugeItems">
+					<li>&nbsp;</li>
+                    <li class="trafficBar"><span class="visitors">114</span>
+                        <div class="browser"><i class="dj-chrome"></i></div>
+                        <div class="bar cool">
+                            <div class="barValue cool dj-perfGaugeChart-0" style="width: 6%">&nbsp;</div>12ms
+                        </div>
+                    </li>
+                    <li class="trafficBar"><span class="visitors">87</span>
+                        <div class="browser"><i class="dj-firefox"></i></div>
+                        <div class="bar neutral">
+                            <div class="barValue neutral dj-perfGaugeChart-1" style="width: 16%">&nbsp;</div>22ms
+                        </div>
+                    </li>
+                    <li class="trafficBar"><span class="visitors">64</span>
+                        <div class="browser"><i class="dj-ie"></i></div>
+                        <div class="bar hot">
+                            <div class="barValue hot dj-perfGaugeChart-2" style="width: 56%">&nbsp;</div>84ms
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
 
 </section>
 

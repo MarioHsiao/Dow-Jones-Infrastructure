@@ -245,8 +245,8 @@
       <DependentUpon>layout.scss</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\perfGuage.css">
-      <DependentUpon>perfGuage.scss</DependentUpon>
+    <Content Include="Content\perfGauge.css">
+      <DependentUpon>perfGauge.scss</DependentUpon>
     </Content>
     <Content Include="Content\topPages.css">
       <DependentUpon>topPages.scss</DependentUpon>
@@ -294,7 +294,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\perfGuage.scss" />
+    <Content Include="Content\perfGauge.scss" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.scss" />

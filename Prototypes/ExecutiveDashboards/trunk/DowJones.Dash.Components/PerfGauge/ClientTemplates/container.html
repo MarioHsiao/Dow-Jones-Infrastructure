@@ -1,0 +1,17 @@
+<% var model = self; %>
+<div class="dj_perfGuage">
+    <div class="moduleHead">
+        <h3><%= Token("browserStats") %></h3>
+        <ul class="moduleControls" style="">
+            <li class="moduleIcon"></li>
+        </ul>
+    </div>
+    <div class="perfGaugeContainer">
+        <ul class="dj-perfGaugeItems">
+            <% for(var i=0, len = model.length; i< len; i++) { %>
+            <li><span><%= model[i].visitors %></span><span class="<%= model[i].browser %>"><%= %></span>
+                <span class="dj-perfGaugeChart-<%= i %>"></span></li>
+            <% } %>
+        </ul>
+    </div>
+</div>
