@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Net;
-using System.Net.Http;
 
 namespace DowJones.Dash.Website.DataSources
 {
