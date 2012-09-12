@@ -23,7 +23,7 @@ namespace DowJones.Dash.Website.DataSources
                 ConfigurationManager.AppSettings["Splunk.Username"], 
                 ConfigurationManager.AppSettings["Splunk.Password"]
             );
-            Method = HttpMethod.Post;
+            Method = "POST";
             PollDelay = Convert.ToInt32(ConfigurationManager.AppSettings["Splunk.PollDelay"]);
         }
     }

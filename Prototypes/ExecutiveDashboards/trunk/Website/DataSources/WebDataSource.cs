@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Text;
 using System.Web;
 using System.Xml;
@@ -18,7 +17,7 @@ namespace DowJones.Dash.Website.DataSources
     {
         public ICredentials Credentials { get; set; }
 
-        public HttpMethod Method { get; set; }
+        public string Method { get; set; }
 
         public IDictionary<string, object> Parameters { get; private set; }
 
@@ -29,7 +28,7 @@ namespace DowJones.Dash.Website.DataSources
         {
             get
             {
-                if(Method == HttpMethod.Get)
+                if("GET".Equals(Method, StringComparison.OrdinalIgnoreCase))
                     return string.Format("{0}?{1}", Path, SerializeParameters());
 
                 return Path;
@@ -40,7 +39,7 @@ namespace DowJones.Dash.Website.DataSources
         {
             Guard.IsNotNullOrEmpty(path, "path");
 
-            Method = HttpMethod.Get;
+            Method = "GET";
             Path = path;
             Parameters = new Dictionary<string, object>(parameters ?? new Dictionary<string, object>());
             PollDelay = pollDelay;
@@ -59,7 +58,7 @@ namespace DowJones.Dash.Website.DataSources
 
                 var request = WebRequest.Create(Url);
 
-                request.Method = Method.ToString().ToUpper();
+                request.Method = Method.ToUpper();
 
                 if (Credentials != null)
                 {
@@ -67,7 +66,7 @@ namespace DowJones.Dash.Website.DataSources
                     request.PreAuthenticate = true;
                 }
 
-                if (Method == HttpMethod.Post)
+                if (request.Method == "POST")
                 {
                     var parameters = SerializeParameters();
                     var postData = Encoding.UTF8.GetBytes(parameters);
