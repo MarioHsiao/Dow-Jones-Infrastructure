@@ -11,20 +11,20 @@
 }
 <section id="dashboard" class="row-fluid">
 
-    <div id="current-users" class="module medium" data-type="CurrentUserStats">
+    <div id="current-users" class="module span4" data-type="CurrentUserStats">
     	@DJ.Render(new ConcurrentVisitsModel())
     </div>
 
-    <div id="top-pages" class="module medium" data-type="TopPages">
+    <div id="top-pages" class="module span4" data-type="TopPages">
         @DJ.Render(new TopPagesModel())
     </div>
     
-    <div id="top-referrer" class="module medium" data-type="TopRerrer">
+    <div id="top-referrer" class="module span4" data-type="TopRerrer">
         @DJ.Render(new TopReferrerModel())
     </div>
     
 
-    <div id="browser-stats" class="module medium" data-type="BrowserStats">
+    <div id="browser-stats" class="module span4" data-type="BrowserStats">
         <div class="dj_perfGuage">
             <div class="moduleHead">
                 <h3>Browser Stats</h3>

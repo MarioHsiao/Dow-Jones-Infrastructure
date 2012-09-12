@@ -5,11 +5,9 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>DASH: Executive Dashboard</title>
-
-    @(DJ.StylesheetRegistry()
-        .Include("~/content/layout.css")
-        .Include("~/content/bootstrap-responsive.css")
-        .RenderHead())
+    
+	<link rel="stylesheet" href="~/content/layout.css" />
+    <link rel="stylesheet" href="~/content/bootstrap-responsive.css" />
     @DJ.ScriptRegistry().RenderHead()
     @Scripts.Render("~/bundles/core")
 
