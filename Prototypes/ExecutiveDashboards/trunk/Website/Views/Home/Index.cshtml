@@ -1,5 +1,6 @@
 @using DowJones.Dash.Components.Models.TopPages
 @using DowJones.Dash.Components.Models.ConcurrentVisits
+@using DowJones.Dash.Components.Models.TopReferrer
 @{
     ViewBag.Title = "Dash> Executive Dashboard";
 }
@@ -17,6 +18,11 @@
     <div id="top-pages" class="module medium" data-type="TopPages">
         @DJ.Render(new TopPagesModel())
     </div>
+    
+    <div id="top-referrer" class="module medium" data-type="TopRerrer">
+        @DJ.Render(new TopReferrerModel())
+    </div>
+    
 
     <div id="browser-stats" class="module medium" data-type="BrowserStats">
         <div class="dj_perfGuage">
