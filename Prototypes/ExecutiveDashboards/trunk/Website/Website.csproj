@@ -196,6 +196,10 @@
     <Compile Include="DataSources\ChartBeat\Referrers.cs" />
     <Compile Include="DataSources\DataSource.cs" />
     <Compile Include="DataSources\ChartBeat\QuickStats.cs" />
+    <Compile Include="DataSources\Gomez\GomezDataSource.cs" />
+    <Compile Include="DataSources\Gomez\PageTimings.cs" />
+    <Compile Include="DataSources\IIntializable.cs" />
+    <Compile Include="DataSources\PollingDataSource.cs" />
     <Compile Include="DataSources\Splunk\SplunkDataSource.cs" />
     <Compile Include="DataSources\SqlDataSource.cs" />
     <Compile Include="DataSources\WebDataSource.cs" />

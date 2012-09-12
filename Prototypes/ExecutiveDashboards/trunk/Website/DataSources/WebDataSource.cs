@@ -1,13 +1,10 @@
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Web;
 using System.Xml;
 using System.Xml.Linq;
@@ -17,14 +14,9 @@ using ICredentials=System.Net.ICredentials;
 
 namespace DowJones.Dash.Website.DataSources
 {
-    public abstract class WebDataSource : DataSource
+    public abstract class WebDataSource : PollingDataSource, IIntializable
     {
         public ICredentials Credentials { get; set; }
-
-        public int ErrorDelay
-        {
-            get { return PollDelay * 2; }
-        }
 
         public HttpMethod Method { get; set; }
 
@@ -32,7 +24,6 @@ namespace DowJones.Dash.Website.DataSources
 
         public string Path { get; private set; }
 
-        public int PollDelay { get; set; }
 
         public string Url
         {
@@ -55,17 +46,17 @@ namespace DowJones.Dash.Website.DataSources
             PollDelay = pollDelay;
         }
 
-        public override void Start()
+        public void Initialize()
         {
             ServicePointManager.ServerCertificateValidationCallback = (x, y, z, a) => true;
-
-            Task.Factory.StartNew(Poll);
         }
 
-        protected internal void Poll()
+        protected override void Poll()
         {
             try
             {
+                Log("Polling {0}...", Url);
+
                 var request = WebRequest.Create(Url);
 
                 request.Method = Method.ToString().ToUpper();
@@ -86,19 +77,21 @@ namespace DowJones.Dash.Website.DataSources
                 }
 
                 request.GetResponseAsync()
-                       .ContinueWith(task => OnResponse(task.Result));
+                       .ContinueWith(task => {
+                               try
+                               {
+                                   OnResponse(task.Result);
+                               }
+                               catch (Exception ex)
+                               {
+                                   OnError(ex);
+                               }
+                           });
             }
             catch (Exception ex)
             {
                 OnError(ex);
             }
-        }
-
-        protected virtual void OnError(Exception ex = null)
-        {
-            Trace.TraceError("{0} request failed: {1}", Path, ex);
-            Thread.Sleep(ErrorDelay * 1000);
-            Poll();
         }
 
         protected void OnResponse(WebResponse response)
@@ -110,14 +103,22 @@ namespace DowJones.Dash.Website.DataSources
                     var data = ParseResponse(stream);
                     OnDataReceived(data);
                 }
-
-                Thread.Sleep(PollDelay * 1000);
-                Poll();
             }
             catch (Exception ex)
             {
                 OnError(ex);
             }
+        }
+
+        protected override void OnError(Exception ex = null)
+        {
+            if(ex != null && ex is HttpException)
+            {
+                var message = string.Format("HTTP error: {0}", ((HttpException) ex).ErrorCode);
+                ex = new ApplicationException(message, ex);
+            }
+
+            base.OnError(ex);
         }
 
         private string SerializeParameters()
