@@ -35,6 +35,10 @@ $browserBackground: url(images/browser-sprites.png) no-repeat;
 	height: 33px;
 }
 
+dj-perfGauge {
+	width: 100%;
+}
+
 .dj-perfGaugeItems {
 	font-size: 16px;
 	color: #777;
@@ -46,10 +50,37 @@ $browserBackground: url(images/browser-sprites.png) no-repeat;
 
  .trafficBar {
 	position: relative;
-	width:55%;
+	width:100%;
 	margin-bottom: 10px;
 	height: 40px;
+	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
 
+	&:first-child {
+		margin: 10px 0;
+		font-weight: bold;
+		color: #AAA;
+		height: 20px;
+	
+	 div {
+		position: absolute;
+
+		&:first-child { 
+			text-align: right; }
+
+		&:last-child { 
+			left: 80px;
+			text-align: right;
+			width: 76%;
+		} } }
+
+	.visitorText {
+		visibility: hidden;
+		font-size: 9px;
+		top: 12px;
+		position: absolute;
+		color: #999;
+		text-align:center;
+	}
 
 	.browser {
 		height: 40px;
@@ -57,14 +88,40 @@ $browserBackground: url(images/browser-sprites.png) no-repeat;
 		border-radius: 20px;
 		background-color: #F7F7F7;
 		border: solid 1px #DDD;
-		left: 30px;
+		left: 40px;
 		position: absolute;
 		z-index: 10;
+	}
+
+	.browserVersion {
+		position: absolute;
+		left: 82px;
+		top: 26px;
+		font-size: 10px;
 	}
 
 	.visitors {
 		position: absolute;
 		top: 9px;
+		text-align:center;
+
+	}
+
+	.visitorsText {
+		text-align:center;
+		font-size: 9px;
+		left:0;
+		top: 24px;
+		position: absolute;
+		opacity: 0;
+		color: #999;
+		-webkit-transition: opacity .25s ease-in-out;
+		-moz-transition:opacity .25s ease-in-out;
+		-o-transition: opacity .25s ease-in-out;
+	}
+
+	&:hover .visitorsText {
+		opacity: 1;
 	}
 	
 	i {
@@ -78,8 +135,8 @@ $browserBackground: url(images/browser-sprites.png) no-repeat;
 
 	.bar {
 		position: absolute;
-		left: 69px;
-		width: 100%;
+		left: 79px;
+		width: 75%;
 		height: 20px;
 		top: 9px;
 		border-top-right-radius: 4px;
