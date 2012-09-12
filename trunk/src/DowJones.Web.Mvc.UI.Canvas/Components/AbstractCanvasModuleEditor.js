@@ -18,9 +18,29 @@ DJ.UI.AbstractCanvasModuleEditor = DJ.UI.Component.extend({
     },
 
     buildProperties: function () {
-        this._debug('TODO: Implement buildProperties!');
+        var props = {};
+
+        var a = $(this.element).closest('form').serializeArray();
+
+        $.each(a, function () {
+            if (props[this.name]) {
+                if (!props[this.name].push) {
+                    props[this.name] = [props[this.name]];
+                }
+                props[this.name].push(this.value || '');
+            } else {
+                props[this.name] = this.value || '';
+            }
+        });
+
+        return props;
     },
 
+    save: function (callback) {
+        var props = this.buildProperties();
+        this.saveProperties(props, callback);
+    },
+    
     saveProperties: function (props, callback) {
         this._debug('Updating module properties: ', props);
 
@@ -29,7 +49,7 @@ DJ.UI.AbstractCanvasModuleEditor = DJ.UI.Component.extend({
 
         if (!canvas) return;
 
-        var url = canvas.get_webServiceBaseUrl() + this.get_dataServiceUrl();
+        var url = this.get_dataServiceUrl();
         var queryParams = { pageId: canvas.get_canvasId(), moduleId: moduleId };
 
         $.ajax({
@@ -99,6 +119,10 @@ DJ.UI.AbstractCanvasModuleEditor = DJ.UI.Component.extend({
 
         return $parent;
     },
+    
+    _initializeElements: function () {},
+    _initializeEventHandlers: function () {},
+    _initializeDelegates: function () {},
 
     _publish: function (/* string */eventName, /* object */data) {
         this.getCanvas().publish(eventName, data);
@@ -109,3 +133,6 @@ DJ.UI.AbstractCanvasModuleEditor = DJ.UI.Component.extend({
     }
 });
 
+
+// Declare this class as a jQuery plugin
+$.plugin('dj_CanvasModuleEditor', DJ.UI.AbstractCanvasModuleEditor);

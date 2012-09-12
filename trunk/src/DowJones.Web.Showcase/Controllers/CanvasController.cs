@@ -35,7 +35,7 @@ namespace DowJones.Web.Showcase.Controllers
             return string.Format("Current time: {0}", DateTime.Now);
         }
 
-        public override ActionResult Module(string id, string pageId, string callback)
+        public override ActionResult Module(int id, string pageId, string callback)
         {
             var headlines = new PortalHeadlineListResultSet(Headlines);
             var portalHeadlines = new PortalHeadlineListModel(new PortalHeadlineListDataResult(headlines));
@@ -51,7 +51,7 @@ namespace DowJones.Web.Showcase.Controllers
             return Module(module, callback);
         }
 
-        public ActionResult JsonpModule(string id, string pageId, string jsonpCallback, string callback = null)
+        public ActionResult JsonpModule(int id, string pageId, string jsonpCallback, string callback = null)
         {
             var module = (ViewComponentViewResult)Module(id, pageId, callback);
             return new JsonpViewComponentResult(module) { Callback = jsonpCallback };

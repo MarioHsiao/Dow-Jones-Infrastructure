@@ -28,6 +28,7 @@ namespace DowJones.Pages.Modules
         [DataMember(Name = "lastModifiedDate")]
         public virtual DateTime LastModifiedDate { get; set; }
 
+        [Obsolete("Replaced by Page.Layout")]
         [DataMember(Name = "position")]
         public virtual int Position { get; set; }
 

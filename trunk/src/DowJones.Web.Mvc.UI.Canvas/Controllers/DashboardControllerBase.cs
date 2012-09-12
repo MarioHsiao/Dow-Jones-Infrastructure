@@ -17,28 +17,32 @@ namespace DowJones.Web.Mvc.UI.Canvas.Controllers
         }
 
         [RequireAuthentication]
-        public virtual ActionResult AddModule(string id, string pageId, string callback)
+        public virtual ActionResult AddModule(int id, string pageId, string callback)
         {
             return AddModuleInternal(id, pageId, callback);
         }
 
-        protected abstract CanvasModuleViewResult AddModuleInternal(string id, string pageId, string callback);
+        protected abstract CanvasModuleViewResult AddModuleInternal(int id, string pageId, string callback);
 
         [RequireAuthentication]
-        public virtual ActionResult Module(string id, string pageId, string callback)
+        public virtual ActionResult Module(int id, string pageId, string callback)
         {
             return ModuleInternal(id, pageId, callback);
         }
 
-        protected virtual CanvasModuleViewResult ModuleInternal(string id, string pageId, string callback)
+        protected virtual CanvasModuleViewResult ModuleInternal(int id, string pageId, string callback)
         {
             var module = GetModule(id, pageId);
+            
+            if (module == null)
+                return null;
+
             var canvasModule = Mapper.Map<IModule>(module);
 
             return Module(canvasModule, callback);
         }
 
-        protected abstract Pages.Modules.Module GetModule(string id, string pageId);
+        protected abstract Pages.Modules.Module GetModule(int id, string pageId);
 
         protected virtual CanvasModuleViewResult Module(IModule canvasModule, string callback)
         {
@@ -67,6 +71,8 @@ namespace DowJones.Web.Mvc.UI.Canvas.Controllers
         {
             Page page = null;
 
+            ViewBag.PageId = id;
+
             if(!string.IsNullOrWhiteSpace(id))
                 page = GetPage(id);
 
@@ -82,6 +88,7 @@ namespace DowJones.Web.Mvc.UI.Canvas.Controllers
         {
             var result = View("PageNotFound");
             result.ViewData.Model = id;
+            Response.StatusCode = 404;
             return result;
         }
 
@@ -102,6 +109,12 @@ namespace DowJones.Web.Mvc.UI.Canvas.Controllers
         protected virtual CanvasViewResult Canvas<TCanvasModel>(TCanvasModel canvas, Page page) 
             where TCanvasModel : Canvas
         {
+            canvas.CanvasID = page.ID;
+            canvas.Title = page.Title;
+
+            if (page.Layout != null)
+                canvas.Layout = Mapper.Map<CanvasLayout>(page.Layout);
+
             return Canvas(canvas, page.ModuleCollection.Select(Mapper.Map<IModule>));
         }
 
@@ -109,7 +122,6 @@ namespace DowJones.Web.Mvc.UI.Canvas.Controllers
             where TCanvasModel : Canvas
         {
             Guard.IsNotNull(canvas, "canvas");
-            Guard.IsNotNull(modules, "modules");
 
             if (canvas.ControlData == null)
                 canvas.ControlData = ControlData;
@@ -123,7 +135,8 @@ namespace DowJones.Web.Mvc.UI.Canvas.Controllers
             if (string.IsNullOrWhiteSpace(canvas.AddModuleUrl))
                 canvas.AddModuleUrl = Url.Action("AddModule");
 
-            canvas.AddChildren(modules ?? Enumerable.Empty<IModule>());
+            var orderedModules = (modules ?? Enumerable.Empty<IModule>()).OrderBy(x => x.Position);
+            canvas.AddChildren(orderedModules);
 
             ViewData.Model = canvas;
 

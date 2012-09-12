@@ -77,7 +77,7 @@ namespace DowJones.Web.Mvc.UI
                 string key = attribute.Name ?? clientStateInfo.Property.Name;
                 object value = GetPropertyValue(clientStateInfo, source);
 
-                if (value == null)
+                if (string.IsNullOrWhiteSpace(key) || value == null)
                     continue;
 
                 if (attribute.Merge && value is IEnumerable<KeyValuePair<string, TValue>>)

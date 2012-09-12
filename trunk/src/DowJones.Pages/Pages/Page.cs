@@ -73,6 +73,9 @@ namespace DowJones.Pages
         [DataMember(Name = "createdDate")]
         public virtual DateTime CreatedDate { get; set; }
 
+        [DataMember(Name = "layout")]
+        public virtual PageLayout Layout { get; set; }
+
         [DataMember(Name = "metaDataInfo")]
         public virtual MetaData MetaData { get; set; }
 

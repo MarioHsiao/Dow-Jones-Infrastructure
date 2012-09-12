@@ -78,7 +78,7 @@
         * Initialization (constructor)
         */
         init: function (element, meta) {
-            var $meta = $.extend({ name: "AutoSuggestComponent" }, meta);
+            var $meta = $.extend({ name: "AutoSuggest" }, meta);
 
             // Call the base constructor
             this._super(element, $meta);
@@ -563,16 +563,19 @@
                 autoFill: ((settings.autocompletionType.toLowerCase() === 'keyword' || settings.autocompletionType.toLowerCase() === 'calendarkeyword') && settings.autoFill) ? true : false
             });
 
+            var suggestControl = $("#" + settings.controlId);
+
             //Event handlers
             //OnItemSelect EventHandler
-            $("#" + settings.controlId)._djResult(function(e, result) {
+            suggestControl._djResult(function(e, result) {
+                suggestControl.data('autosuggest', result);
                 self.publish(self.events.itemSelect, result);
                 e.stopPropagation();
                 return false;
             });
 
             //onViewAll EventHandler
-            $("#" + settings.controlId)._djViewAll(function(e, result) {
+            suggestControl._djViewAll(function(e, result) {
                 if (result) {
                     result.autocompletionType = self.globalSettingsObj.autocompletionType;
                     result.options = self.globalSettingsObj.options;
@@ -589,7 +592,7 @@
                         var parentTrTag = $(this).closest("tr").get(0);
                         var parentContainerDiv = $(this).closest("div." + self.globalSettingsObj.resultsClass).get(0);
                         var data = $(parentTrTag).data("ac_cat_data");
-                        $('#' + self.globalSettingsObj.controlId).focus();
+                        suggestControl.focus();
                         self.globalSettingsObj.onViewMorePrivateMarketsClick(data);
                         $(parentContainerDiv).show();
                         e.stopPropagation();
@@ -606,7 +609,7 @@
                         var parentTrTag = $(this).closest("tr").get(0);
                         var parentContainerDiv = $(this).closest("div." + self.globalSettingsObj.resultsClass).get(0);
                         var data = $(parentTrTag).data("ac_data").data;
-                        $('#' + self.globalSettingsObj.controlId).focus();
+                        suggestControl.focus();
                         self.globalSettingsObj.onInfoClick(data);
                         $(parentContainerDiv).show();
                         e.stopPropagation();
@@ -623,7 +626,7 @@
                         var parentTrTag = $(this).closest("tr").get(0);
                         var parentContainerDiv = $(this).closest("div." + self.globalSettingsObj.resultsClass).get(0);
                         var data = $(parentTrTag).data("ac_data").data;
-                        $('#' + self.globalSettingsObj.controlId).focus();
+                        suggestControl.focus();
                         self.globalSettingsObj.onPromoteClick(data);
                         $(parentContainerDiv).show();
                         e.stopPropagation();
@@ -640,7 +643,7 @@
                         var parentTrTag = $(this).closest("tr").get(0);
                         var parentContainerDiv = $(this).closest("div." + self.globalSettingsObj.resultsClass).get(0);
                         var data = $(parentTrTag).data("ac_data").data;
-                        $('#' + self.globalSettingsObj.controlId).focus();
+                        suggestControl.focus();
                         self.globalSettingsObj.onNotClick(data);
                         $(parentContainerDiv).show();
                         e.stopPropagation();
@@ -657,7 +660,7 @@
                         var parentTrTag = $(this).closest("tr").get(0);
                         var parentContainerDiv = $(this).closest("div." + self.globalSettingsObj.resultsClass).get(0);
                         var data = $(parentTrTag).data("ac_data").data;
-                        $('#' + self.globalSettingsObj.controlId).focus();
+                        suggestControl.focus();
                         self.globalSettingsObj.onDiscontClick(data);
                         $(parentContainerDiv).show();
                         e.stopPropagation();
@@ -704,7 +707,6 @@
         }
     });
 
-    //DJ.UI.AutoSuggest.prototype.autoSuggestContext = DJ.UI.AutoSuggest.prototype.autoSuggestContext || { retrieving:false };
     // Declare this class as a jQuery plugin
-    $.plugin('dj_AutoSuggestComponent', DJ.UI.AutoSuggest);
+    $.plugin('dj_AutoSuggest', DJ.UI.AutoSuggest);
     $dj.debug('Registered DJ.UI.AutoSuggest (extends DJ.UI.Component)');

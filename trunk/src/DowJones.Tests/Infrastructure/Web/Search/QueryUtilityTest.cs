@@ -15,7 +15,7 @@ namespace DowJones.Infrastructure.Web.Search
     public class QueryUtilityTest : UnitTestFixture
     {
         #region PerformContentSearch
-//        [TestMethod]
+        //        [TestMethod]
         public void PerformContentSearchRequestXML_Test()
         {
 
@@ -24,8 +24,8 @@ namespace DowJones.Infrastructure.Web.Search
 
             Console.WriteLine("Request:");
 
-            ControlData controlData = ControlDataManager.GetLightWeightUserControlData("apichecker","apichecker","16");
-            
+            ControlData controlData = ControlDataManager.GetLightWeightUserControlData("apichecker", "apichecker", "16");
+
 
 
             Console.WriteLine(GeneralUtils.serialize(request));
