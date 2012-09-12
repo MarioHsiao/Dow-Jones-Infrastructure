@@ -74,9 +74,20 @@ dj-perfGauge {
     z-index: 10; }
   .trafficBar .browserVersion {
     position: absolute;
-    left: 82px;
-    top: 26px;
-    font-size: 10px; }
+    left: 62px;
+    top: 18px;
+    font-size: 14px;
+    font-weight: bold;
+    z-index: 12;
+    text-shadow: 0px -1px 1px #eeeeee, 0px 1px 1px #eeeeee, -1px 0px 1px #eeeeee, 1px 0px 1px #eeeeee, -1px -1px 1px #eeeeee, -1px 1px 1px #eeeeee, 1px -1px 1px #eeeeee, 1px 1px 1px #eeeeee;
+    /* south-east */
+    		 /*&.firefox {
+    			color: #CF450B;
+    		 }
+    
+    		 &.ie {
+    			color: #158FD8;
+    		 }*/ }
   .trafficBar .visitors {
     position: absolute;
     top: 9px;

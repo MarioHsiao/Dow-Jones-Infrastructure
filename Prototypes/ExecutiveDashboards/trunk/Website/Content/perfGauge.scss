@@ -95,9 +95,30 @@ dj-perfGauge {
 
 	.browserVersion {
 		position: absolute;
-		left: 82px;
-		top: 26px;
-		font-size: 10px;
+		left: 62px;
+		top: 18px;
+		font-size: 14px;
+		font-weight: bold;
+		
+		z-index: 12;
+
+		text-shadow:
+		 0px -1px 1px #eee,     /* north      */
+		 0px  1px 1px #eee,     /* south      */
+		-1px  0px 1px #eee,     /* west       */
+		 1px  0px 1px #eee,     /* east       */
+		-1px -1px 1px #eee,     /* north-west */
+		-1px  1px 1px #eee,     /* north-east */
+		 1px -1px 1px #eee,     /* south-west */
+		 1px  1px 1px #eee;     /* south-east */
+
+		 /*&.firefox {
+			color: #CF450B;
+		 }
+
+		 &.ie {
+			color: #158FD8;
+		 }*/
 	}
 
 	.visitors {
