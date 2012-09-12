@@ -23,12 +23,17 @@ DJ.UI.DashGauge = DJ.UI.Component.extend({
             baseLength: '70%', // of radius
         }
     },
+    
+    internalTemplates: {
+        maxTemplate: function (val) { return "30-Day Max <span class=\"chartMax\">" + val + "</span>"; }
+    },
 
     selectors: {
         chartContainer: ".dj_DashGaugeChartContainer",
         chartTitle: ".dj_DashGaugeChartTitle",
         chartValue: ".dj_DashGaugeChartValue",
-        chartFooter: ".dj_DashGaugeChartFooter"
+        chartFooter: ".dj_DashGaugeChartFooter",
+        chartMax: ".dj_DashGaugeChartMax"
     },
 
     events: {
@@ -50,34 +55,17 @@ DJ.UI.DashGauge = DJ.UI.Component.extend({
 
     _initializeElements: function (ctx) {
         //Bind the layout template
-        $(this.$element).html(this.templates.layout({ value: this.data, title: this.options.title, footer: this.options.footer }));
+        $(this.$element).html(this.templates.layout({ value: this.data, title: this.options.title, footer: this.options.footer, max: this.options.max }));
     },
 
     /* Public methods */
-    formatNumber: function (n, separator) {
-        separator = separator || ",";
-
-        n = n.toString()
-            .split("").reverse().join("")
-            .replace(/(\d{3})/g, "$1" + separator)
-            .split("").reverse().join("");
-
-        // Strings that have a length that is a multiple of 3 will have a leading separator
-        return n[0] == separator ? n.substr(1) : n;
-    },
-
-
+    
     // Bind the data to the component on Success
     bindOnSuccess: function () {
-        if (!this.data) {
-            $dj.warn("bindOnSuccess:: called with empty data object");
-            return;
-        }
-
         if (!this.chart) {
             this._renderGauge(this._getChartObject(this.data));
         } else {
-            $(this.selectors.chartValue, this.$element).html(this.formatNumber(this.data, ","));
+            $(this.selectors.chartValue, this.$element).html(Highcharts.numberFormat(this.data, 0));
             this._updateGauge();
         }
     },
@@ -85,33 +73,63 @@ DJ.UI.DashGauge = DJ.UI.Component.extend({
     //Function to Set Data
     setData: function (value) {
         this.data = value;
-        if (this.options.gaugeType === 0) { // Is a speedometer
-            this.bindOnSuccess();
+        if (this.options.gaugeType === 0 && this.chart) { // Is a speedometer
             var axis = this.chart.yAxis[0];
-            var plotBand = this._getSpedometerBands()[0];
-            if (this.data < this.options.min) {
-                plotBand = $.extend(true, plotBand, { to: this.options.min });
+            if (axis) {
+                var plotBand = this._getSpedometerBands()[1];
+                if (this.data <= this.options.min) {
+                    plotBand = $.extend(true, plotBand, { to: this.options.min });
+                } else if (this.data > this.options.max) {
+                    plotBand = $.extend(true, plotBand, { to: this.options.max });
+                } else {
+                    plotBand = $.extend(true, plotBand, { to: this.data });
+                }
+                axis.removePlotBand("speed1");
+                axis.addPlotBand(plotBand);
             }
-            else if (this.data > this.options.max) {
-                plotBand = $.extend(true, plotBand, { to: this.options.max });
-            }
-            else {
-                plotBand = $.extend(true, plotBand, { to: this.options.data });
-            }
-            axis.removePlotBand("speed1");
-            axis.addPlotBand(plotBand);
         }
-
+        this.bindOnSuccess();
     },
 
-    UpdateTitle: function (str) {
-        this.options.title = str;
-        $(this.selectors.chartTitle, this.$element).html(str);
+    updateTitle: function (val) {
+        this.options.title = val;
+        $(this.selectors.chartTitle, this.$element).html(val);
     },
 
-    UpdateFooter: function (str) {
-        this.options.footer = str;
-        $(this.selectors.chartFooter, this.$element).html(str);
+    updateMax: function (val) {
+        if (this.options.max != val && this.chart) {
+
+            this.options.max = val;
+            var axis = this.chart.yAxis[0];
+            
+            if (this.options.gaugeType === 0) { // Is a speedometer
+                
+                if (axis) {
+                    var plotBandSpeed0 = this._getSpedometerBands()[0];
+                    var plotBandSpeed1 = this._getSpedometerBands()[1];
+                    plotBandSpeed0 = $.extend(true, plotBandSpeed0, { to: this.options.max });
+                    if (this.data < this.options.min) {
+                        plotBandSpeed1 = $.extend(true, plotBandSpeed1, { to: this.options.min });
+                    } else if (this.data > this.options.max) {
+                        plotBandSpeed1 = $.extend(true, plotBandSpeed1, { to: this.options.max });
+                    } else {
+                        plotBandSpeed1 = $.extend(true, plotBandSpeed1, { to: this.data });
+                    }
+
+                    axis.removePlotBand("speed0");
+                    axis.removePlotBand("speed1");
+                    axis.addPlotBand(plotBandSpeed0);
+                    axis.addPlotBand(plotBandSpeed1);
+                }
+            }
+            axis.setExtremes(this.options.min, this.options.max,false);
+            $(this.selectors.chartMax, this.$element).html(this.internalTemplates.maxTemplate(Highcharts.numberFormat(val,0)));
+        }
+    },
+    
+    updateFooter: function (val) {
+        this.options.footer = val;
+        $(this.selectors.chartFooter, this.$element).html(val);
     },
 
 
@@ -197,6 +215,7 @@ DJ.UI.DashGauge = DJ.UI.Component.extend({
             chart: {
                 type: 'gauge',
                 plotBorderWidth: 0,
+                backgroundColor: 'transparent',
                 plotBackgroundImage: null,
                 height: this.options.height,
                 width: this.options.width

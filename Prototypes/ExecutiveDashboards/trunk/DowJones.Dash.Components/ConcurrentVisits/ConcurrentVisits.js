@@ -20,7 +20,7 @@ DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
         DJ.add('DashGauge', {
             container: this._gaugeContainer[0],
             options: {
-                max: 100000,
+                max: 100,
                 min: 0,
                 angle: 65,
                 footer: "",
@@ -28,7 +28,7 @@ DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
                 height: 200,
                 width: 200
             },
-            data: 90
+            data: 0
         }).done(function (comp) {
             self.gauge = comp;
             comp.owner = self;
@@ -37,8 +37,9 @@ DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
 
     _initializeDelegates: function () {
         this._delegates = $.extend(this._delegates, {
-            setData: $dj.delegate(this, this.setData)
-        });
+                updateGauge: $dj.delegate(this, this._updateGauge),
+                updateGaugeMax: $dj.delegate(this, this._updateGaugeMax),
+            });
     },
 
     _initializeElements: function () {
@@ -47,13 +48,21 @@ DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
     },
 
     _initializeEventHandlers: function () {
-        $dj.subscribe('data.QuickStats', this._delegates.setData);
+        $dj.subscribe('data.QuickStats', this._delegates.updateGauge);
+        $dj.subscribe('data.HistorialTrafficStats', this._delegates.updateGaugeMax);
+        
     },
 
-    _setData: function (data) {
+    _updateGauge: function (data) {
         if (this.gauge) {
-            console.log(data.visits);
             this.gauge.setData(data.visits);
+        }
+    },
+    
+    _updateGaugeMax: function (data) {
+        var max = data.data['online.wsj.com'].people.max;
+        if (this.gauge) {
+            this.gauge.updateMax(max);
         }
     },
 

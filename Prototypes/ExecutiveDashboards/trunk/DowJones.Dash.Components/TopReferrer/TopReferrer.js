@@ -46,21 +46,12 @@ DJ.UI.TopReferrer = DJ.UI.CompositeComponent.extend({
             return;
         }
 
-        console.log(data);
         var headlines = [];
         for (var prop in data.referrers)
             if (prop.length > 0) {
-                console.log(prop);
                 headlines[headlines.length] = { title: prop, modificationTimeDescriptor: data.referrers[prop] };
             }
-        /*var headlines = _.map(data, function (page) {
-            return {
-                title: page.i,
-                headlineUrl: "http://" + page.path,
-                modificationTimeDescriptor: page.visitors.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-            };
-        });*/
-
+        
         var result = {
             count: { value: headlines.length },
             headlines: headlines

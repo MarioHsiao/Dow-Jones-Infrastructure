@@ -1,0 +1,41 @@
+.dj_DashGaugeChart {
+	width: 200px;
+	margin: 0 auto;
+	position:relative;
+		
+}
+
+.dj_DashGaugeChart .dj_DashGaugeChartHeader .dj_DashGaugeChartValue{
+	position: absolute;
+	top: 22px;
+	font-size: 4.0em;
+	text-align:center;
+	z-index:1000;
+	width:200px;
+	line-height: 1em;
+	color: #333333;
+	font-weight:bold;
+	text-shadow: 0 1px 0 #ccc,
+				 0 2px 0 #c9c9c9,
+				 0 3px 0 #bbb,
+				 0 4px 0 #b9b9b9,
+				 0 5px 0 #aaa,
+				 0 6px 1px rgba(0,0,0,.1),
+				 0 0 5px rgba(0,0,0,.1);
+}
+
+.dj_DashGaugeChart .dj_DashGaugeChartHeader .dj_DashGaugeChartMax{
+	position: absolute;
+	top: 145px;
+	left: -5px;
+	font-size: 1.0em;
+	text-align:right;
+	z-index:1000;
+	width:200px;
+	line-height: 1em;
+	color: #666;
+}
+
+.dj_DashGaugeChart .dj_DashGaugeChartHeader .dj_DashGaugeChartMax .chartMax{
+	display:block;
+}
