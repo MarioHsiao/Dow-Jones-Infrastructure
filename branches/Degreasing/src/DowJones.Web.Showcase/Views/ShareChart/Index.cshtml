@@ -14,12 +14,12 @@
 
         DJ.add('ShareChart', {
             container: 'shareChartContainer',
-            data: getStubData()
+            data: transformSplunkData()
         });
 
 
         function getStubData() {
-            
+
             var result = {
                 categories: ['MSIE', 'Firefox', 'Chrome', 'Safari', 'Opera'],
                 data: [{
@@ -28,7 +28,6 @@
                         name: 'MSIE versions',
                         categories: ['MSIE 6.0', 'MSIE 7.0', 'MSIE 8.0', 'MSIE 9.0'],
                         data: [10.85, 7.35, 33.06, 2.81],
-
                     }
                 }, {
                     share: 21.63,
@@ -64,6 +63,89 @@
             };
 
             return result;
+        }
+
+        function transformSplunkData() {
+            var splunkData = [{
+                browser: "safari",
+                count: "447",
+                percent: "51.976744"
+            }, {
+                browser: "ie-9",
+                count: "184",
+                percent: "21.395349"
+            }, {
+                browser: "ie-8",
+                count: "143",
+                percent: "16.627907"
+            }, {
+                browser: "ie-7",
+                count: "60",
+                percent: "6.976744"
+            }, {
+                browser: "ff-3-win",
+                count: "7",
+                percent: "0.813953"
+            }, {
+                browser: "opera",
+                count: "5",
+                percent: "0.581395"
+            }, {
+                browser: "ie-6",
+                count: "3",
+                percent: "0.348837"
+            }, {
+                browser: "ff-5-win",
+                count: "3",
+                percent: "0.348837"
+            }, {
+                browser: "ff-3-mac",
+                count: "2",
+                percent: "0.232558"
+            }, {
+                browser: "ff-1-win",
+                count: "2",
+                percent: "0.232558"
+            }];
+
+            var categories = [], subCategories = [], subCategoriesData = [], browserInfo, data = [];
+            for (var i = 0, len = splunkData.length; i < len; i++) {
+                browserInfo = splunkData[i];
+                var category = browserInfo.browser.split('-')[0];
+                var catIndex = _.indexOf(categories, category.toUpperCase());
+
+                if (catIndex === -1) {
+                    categories.push(category.toUpperCase());
+                    catIndex = categories.length - 1;
+                    data.push({
+                        share: parseFloat(browserInfo.percent),
+                        drilldown: {
+                            name: category.toUpperCase() + ' versions',
+                            categories: [],
+                            data: []
+                        }
+                    });
+                }
+                else {
+                    data[catIndex].share = (data[catIndex].share || 0) + parseFloat(browserInfo.percent);
+                }
+
+
+                var browserVersion = browserInfo.browser.split('-')[1] || '';
+                var subCategoryKey = category + browserVersion;
+                var drillDownData = data[catIndex].drilldown;
+
+                var drillDownDataIndex = _.indexOf(drillDownData.categories, subCategoryKey);
+                
+                if (drillDownDataIndex === -1) {
+                    drillDownData.categories.push(subCategoryKey);
+                    drillDownDataIndex = drillDownData.categories.length - 1;
+                }
+                drillDownData.data[drillDownDataIndex] = (drillDownData.data[drillDownDataIndex] || 0.0) + parseFloat(browserInfo.percent);
+            }
+
+            var results = { categories: categories, data: data };
+            return results;
         }
     </script>
 }

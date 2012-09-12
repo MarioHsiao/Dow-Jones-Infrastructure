@@ -197,6 +197,7 @@
     <Compile Include="DataSources\DataSource.cs" />
     <Compile Include="DataSources\ChartBeat\QuickStats.cs" />
     <Compile Include="DataSources\Splunk\SplunkDataSource.cs" />
+    <Compile Include="DataSources\SqlDataSource.cs" />
     <Compile Include="DataSources\WebDataSource.cs" />
     <Compile Include="DataSources\ChartBeat\TopPages.cs" />
     <Compile Include="Dependencies.cs" />

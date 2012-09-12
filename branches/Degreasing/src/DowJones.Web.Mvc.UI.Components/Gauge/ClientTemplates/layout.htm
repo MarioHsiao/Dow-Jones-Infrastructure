@@ -9,6 +9,6 @@
     <div class="dj_GaugeChartValue"><%=this.formatNumber(model.value,",")%></div>
 </div>
 <div class="dj_GaugeChartContainer"></div>
-<% if (this.options.footer) { %>
-    <div class="dj_GaugeChartFooter"><%=this.options.footer%></div>
+<% if (model.footer) { %>
+    <div class="dj_GaugeChartFooter"><%=model.footer%></div>
 <% } %>

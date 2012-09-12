@@ -2,6 +2,7 @@
 DJ.UI.Gauge = DJ.UI.Component.extend({
 
     defaults: {
+        colors: Highcharts.getOptions().colors,
         debug: false,
         min: 0,
         max: 100,
@@ -20,35 +21,7 @@ DJ.UI.Gauge = DJ.UI.Component.extend({
             borderWidth: 0,
             topWidth: 1,
             baseLength: '70%', // of radius
-        },
-        spedometerBands :[{
-            from: 0,
-            to: 6000,
-            color: '#99CC00',
-            innerRadius: '45%',
-            outerRadius: '90%'
-        }],
-        monitoringBands: [{
-            from: 0,
-            to: 6000,
-            color: '#99CC00',
-            innerRadius: '45%',
-            outerRadius: '90%'
-        },
-        {
-            from: 0,
-            to: 6000,
-            color: '#99CC00',
-            innerRadius: '45%',
-            outerRadius: '90%'
-        },
-        {
-            from: 0,
-            to: 6000,
-            color: '#99CC00',
-            innerRadius: '45%',
-            outerRadius: '90%'
-        }]
+        }
     },
 
     selectors: {
@@ -77,7 +50,8 @@ DJ.UI.Gauge = DJ.UI.Component.extend({
 
     _initializeElements: function (ctx) {
         //Bind the layout template
-        $(this.$element).html(this.templates.layout({value: this.data}));
+        DJ.config.debug = true;
+        $(this.$element).html(this.templates.layout({value: this.data, title: this.options.title, footer: this.options.footer }));
     },
 
     /* Public methods */
@@ -104,6 +78,7 @@ DJ.UI.Gauge = DJ.UI.Component.extend({
         if (!this.chart) {
             this._renderGauge(this._getChartObject(this.data));
         } else {
+            $(this.selectors.chartValue, this.$element).html(this.formatNumber(this.data, ","));
             this._updateGauge();
         }
     },
@@ -111,10 +86,29 @@ DJ.UI.Gauge = DJ.UI.Component.extend({
     //Function to Set Data
     setData: function (gaugeData) {
         this.data = gaugeData;
-        this.bindOnSuccess();
+        if (this.options.gaugeType === 0) { // Is a speedometer
+            var temp = this.options.max;
+            this.bindOnSuccess();
+            if (this.data <= this.options.max) {
+               // remove the plotbands and add new ones.
+               var axis = this.chart.yAxis[0];
+               axis.removePlotBand("speed1");
+               var plotBands = this._getSpedometerBands();
+               axis.addPlotBand(plotBands[1]);
+           }
+        }
+        
     },
     
- 
+    UpdateTitle: function (str) {
+        this.options.title = str;
+        $(this.selectors.chartTitle, this.$element).html(str);
+    },
+    
+    UpdateFooter: function (str) {
+        this.options.footer = str;
+        $(this.selectors.chartFooter, this.$element).html(str);
+    },
 
     /* Private methods */
 
@@ -136,12 +130,61 @@ DJ.UI.Gauge = DJ.UI.Component.extend({
     
     _updateGauge: function() {
         var point = this.chart.series[0].points[0];
-        point.update(this.data, true);
+        point.update(this.data, true, false);
     },
+    
 
     //Initialize Delegates
     _initializeDelegates: function () {
       
+    },
+    
+    _getSpedometerBands: function() {
+        return [{
+            id: 'speed0',
+            from: 0,
+            to: this.options.max,
+            color: '#CCC',
+            innerRadius: '45%',
+            outerRadius: '90%'
+        }, {
+            id: 'speed1',
+            from: 0,
+            to: this.data,
+            color: this.options.colors[0],
+            innerRadius: '45%',
+            outerRadius: '90%'
+        }];
+    },
+    
+    _getMeterBands: function () {
+        var max = this.options.max;
+        var segment1 = (max * 80 / 100);
+        var segment2 = (max * 90 / 100);
+        return [{
+                id: 'meter1',
+                from: 0,
+                to: segment1,
+                color: this.options.colors[0],
+                innerRadius: '45%',
+                outerRadius: '90%'
+            },
+            {
+                id: 'meter2',
+                from: segment1,
+                to: segment2,
+                color: this.options.colors[1],
+                innerRadius: '45%',
+                outerRadius: '90%'
+            },
+            {
+                id: 'meter3',
+                from: segment2,
+                to: max,
+                color: this.options.colors[2],
+                innerRadius: '45%',
+                outerRadius: '90%'
+        }];
     },
     
     getGaugeConfig: function () {
@@ -181,7 +224,7 @@ DJ.UI.Gauge = DJ.UI.Component.extend({
                     distance: 20,
                     enabled: false,
                 },
-                plotBands: this.options.bands ,
+                plotBands: (this.options.gaugeType === 0 ) ? this._getSpedometerBands() : this._getMeterBands(),
                 pane: 0,
                 title: {
                     text: '',

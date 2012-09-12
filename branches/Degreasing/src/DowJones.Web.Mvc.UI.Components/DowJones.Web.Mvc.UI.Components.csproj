@@ -891,20 +891,20 @@
     <EmbeddedResource Include="ShareChart\ShareChart.js" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Gauge\ClientTemplates\error.htm" />
-    <Content Include="Gauge\ClientTemplates\noData.htm" />
-    <Content Include="Gauge\ClientTemplates\layout.htm" />
-    <Content Include="ShareChart\ClientTemplates\success.html" />
+    <EmbeddedResource Include="Gauge\ClientTemplates\error.htm" />
+    <EmbeddedResource Include="Gauge\ClientTemplates\noData.htm" />
+    <EmbeddedResource Include="Gauge\ClientTemplates\layout.htm" />
+    <EmbeddedResource Include="ShareChart\ClientTemplates\success.html" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Gauge\ClientTemplates\success.htm" />
-    <Content Include="ShareChart\ClientTemplates\noData.html" />
+    <EmbeddedResource Include="Gauge\ClientTemplates\success.htm" />
+    <EmbeddedResource Include="ShareChart\ClientTemplates\noData.html" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ShareChart\ClientTemplates\error.html" />
+    <EmbeddedResource Include="ShareChart\ClientTemplates\error.html" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Gauge\gauge.js" />
+    <EmbeddedResource Include="Gauge\Gauge.js" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

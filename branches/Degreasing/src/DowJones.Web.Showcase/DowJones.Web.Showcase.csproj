@@ -198,9 +198,11 @@
     <Compile Include="JsonSerializers\JsonConvertAdapter.cs" />
     <Compile Include="Mocks\MockSearchManager.cs" />
     <Compile Include="Mocks\MockSearchQueryResourceManager.cs" />
+    <Compile Include="Models\GaugeViewModel.cs" />
     <Compile Include="Models\MultiviiewPortalHeadlinesListModel.cs" />
     <Compile Include="Models\Newsletter\EditionModel.cs" />
     <Compile Include="Models\SocialMediaViewModel.cs" />
+    <Compile Include="Models\StockKioskControllerModel.cs" />
     <Compile Include="Models\TagCloudDemoViewModel.cs" />
     <Compile Include="MockRESTServices\MockRestServiceController.cs" />
     <Compile Include="Controllers\ArticleController.cs" />
