@@ -37,14 +37,16 @@
                         <div>Visitors</div>
                         <div>Page Load Time</div>
                     </li>
-					<li class="trafficBar"><span class="visitors">152</span><div class="visitorsText">visitors</div>
+                    <li class="trafficBar"><span class="visitors">152</span><div class="visitorsText">visitors
+                        </div>
                         <div class="browser"><i class="dj-chrome"></i></div>
                         <div class="bar cool">
                             <div class="barValue cool dj-perfGaugeChart-0" style="width: 6%">&nbsp;</div>
                             12ms
                         </div>
                     </li>
-                    <li class="trafficBar"><span class="visitors">127</span><div class="visitorsText">visitors</div>
+                    <li class="trafficBar"><span class="visitors">127</span><div class="visitorsText">visitors
+                        </div>
                         <div class="browser"><i class="dj-ie"></i></div>
                         <div class="bar hot">
                             <div class="barValue hot dj-perfGaugeChart-2" style="width: 63%">&nbsp;</div>
@@ -52,7 +54,8 @@
                         </div>
                         <div class="browserVersion">IE7</div>
                     </li>
-                    <li class="trafficBar"><span class="visitors">104</span><div class="visitorsText">visitors</div>
+                    <li class="trafficBar"><span class="visitors">104</span><div class="visitorsText">visitors
+                        </div>
                         <div class="browser"><i class="dj-ie"></i></div>
                         <div class="bar hot">
                             <div class="barValue hot dj-perfGaugeChart-2" style="width: 48%">&nbsp;</div>
@@ -60,7 +63,8 @@
                         </div>
                         <div class="browserVersion">IE8</div>
                     </li>
-                    <li class="trafficBar"><span class="visitors">87</span><div class="visitorsText">visitors</div>
+                    <li class="trafficBar"><span class="visitors">87</span><div class="visitorsText">visitors
+                        </div>
                         <div class="browser"><i class="dj-firefox"></i></div>
                         <div class="bar neutral">
                             <div class="barValue neutral dj-perfGaugeChart-1" style="width: 16%">&nbsp;</div>
@@ -68,7 +72,8 @@
                         </div>
 
                     </li>
-                    <li class="trafficBar"><span class="visitors">64</span><div class="visitorsText">visitors</div>
+                    <li class="trafficBar"><span class="visitors">64</span><div class="visitorsText">visitors
+                        </div>
                         <div class="browser"><i class="dj-ie"></i></div>
                         <div class="bar neutral">
                             <div class="barValue neutral dj-perfGaugeChart-2" style="width: 24%">&nbsp;</div>
@@ -85,11 +90,19 @@
 
 </section>
 
-<script src="@Url.Content("~/signalr/hubs")" type="text/javascript"></script>
+@DJ.ScriptRegistry().OnDocumentReady("initializeDashboard();");
 
-<script type="text/javascript">
-    @DJ.ScriptRegistry().OnDocumentReady("initializeDashboard();");
 
-    function initializeDashboard() {
-    }
-</script>
+
+@section scripts{
+    <script src="@Url.Content("~/signalr/hubs")" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        function initializeDashboard() {
+            $('.trendTabs li').not(':first').find('a').click(function () {
+                alert('Coming Soon');
+                return false;
+            });
+        }
+    </script>
+}

@@ -4346,3 +4346,6 @@ footer {
   .module a:hover {
     text-decoration: none; }
 
+.modal-body p {
+  font-size: 16px; }
+
