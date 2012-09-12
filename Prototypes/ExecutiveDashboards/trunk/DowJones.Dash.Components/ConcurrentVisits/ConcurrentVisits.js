@@ -17,10 +17,10 @@ DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
     
     _initGauge: function () {
         var self = this;
-        DJ.add('Gauge', {
+        DJ.add('DashGauge', {
             container: this._gaugeContainer[0],
             options: {
-                max: 65000,
+                max: 100000,
                 min: 0,
                 angle: 65,
                 footer: "",

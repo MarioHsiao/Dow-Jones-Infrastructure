@@ -84,6 +84,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConcurrentVisits\ConcurrentVisitsModel.cs" />
+    <Compile Include="DashGauge\DashGauge.cs" />
     <Compile Include="TopReferrer\TopReferrer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TopPages\TopPages.cs" />

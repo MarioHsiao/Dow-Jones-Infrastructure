@@ -23,8 +23,9 @@ namespace DowJones.Dash.Components.ConcurrentVisits
     using System.Web.UI;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 09/11/2012 04:34 PM
-    [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Dash.Components.ConcurrentVisits.ConcurrentVisits.js", ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Dash.Components.ConcurrentVisits.ConcurrentVisitsComponent))]
+    // Last Generated Timestamp: 09/12/2012 09:58 AM
+    [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Dash.Components.ConcurrentVisits.ConcurrentVisits.js", DependsOn=new string[] {
+            "DJ.UI.DashGauge"}, ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Dash.Components.ConcurrentVisits.ConcurrentVisitsComponent))]
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Dash.Components.ConcurrentVisits.ClientTemplates.container.html", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="container", DeclaringType=typeof(DowJones.Dash.Components.ConcurrentVisits.ConcurrentVisitsComponent))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.27108")]
     public class ConcurrentVisitsComponent : DowJones.Web.Mvc.UI.ViewComponentBase<Models.ConcurrentVisits.ConcurrentVisitsModel>

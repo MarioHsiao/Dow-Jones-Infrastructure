@@ -1,0 +1,14 @@
+﻿<% 
+    var model = self;
+%>
+
+<div class="dj_DashGaugeChartHeader">
+    <% if (this.options.title) { %>
+    <div class="dj_DashGaugeChartTitle"><%=this.options.title%></div>
+    <% } %>
+    <div class="dj_DashGaugeChartValue"><%=this.formatNumber(model.value,",")%></div>
+</div>
+<div class="dj_DashGaugeChartContainer"></div>
+<% if (model.footer) { %>
+    <div class="dj_DashGaugeChartFooter"><%=model.footer%></div>
+<% } %>

@@ -122,6 +122,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ConcurrentVisitsComponent.cshtml</DependentUpon>
     </Compile>
+    <Compile Include="DashGauge\DashGauge.cs">
+      <DependentUpon>DashGauge.cshtml</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="TopReferrer\TopPagesComponent.cs">
       <DependentUpon>TopPagesComponent.cshtml</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -138,6 +143,10 @@
     <None Include="ConcurrentVisits\ConcurrentVisitsComponent.cshtml">
       <Generator>RazorViewComponentClassGenerator</Generator>
       <LastGenOutput>ConcurrentVisitsComponent.cs</LastGenOutput>
+    </None>
+    <None Include="DashGauge\DashGauge.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>DashGauge.cs</LastGenOutput>
     </None>
     <None Include="TopReferrer\TopPagesComponent.cshtml">
       <Generator>RazorViewComponentClassGenerator</Generator>
@@ -172,6 +181,18 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="TopReferrer\TopReferrer.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="DashGauge\ClientTemplates\layout.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="DashGauge\ClientTemplates\error.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="DashGauge\ClientTemplates\noData.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="DashGauge\DashGauge.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
