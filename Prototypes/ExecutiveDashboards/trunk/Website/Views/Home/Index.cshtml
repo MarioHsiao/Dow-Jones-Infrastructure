@@ -31,74 +31,9 @@
         </div>
     </div>
 	<div id="column2" class="span4">
-		@DJ.Render(new BrowserStatsModel())
-		@*<div id="browser-stats" class="module" data-type="BrowserStats">
-            <div class="dj_perfGauge">
-                <div class="moduleHead">
-                    <h3>Browser Stats</h3>
-                    <ul class="moduleControls" style="">
-                        <li class="moduleIcon"></li>
-                    </ul>
-                </div>
-                <div class="perfGaugeContainer">
-                    <ul class="dj-perfGaugeItems">
-                        
-						<li class="dj-trafficBar">
-							<span class="visitors">152</span>
-							<div class="browser"><i class="dj-logo-chrome"></i></div>
-							<div class="bar cool">
-								<div class="gauge" style="width: 6%">&nbsp;</div>
-								12ms
-							</div>
-						</li>
-						<li class="dj-trafficBar">
-							<span class="visitors">127</span>
-							<div class="browser"><i class="dj-logo-ie7"></i></div>
-							<div class="bar hot">
-								<div class="gauge" style="width: 63%">&nbsp;</div>
-								84ms
-							</div>
-							<div class="browserVersion ie">7</div>
-						</li>
-						<li class="dj-trafficBar">
-							<span class="visitors">104</span>
-							<div class="browser"><i class="dj-logo-ie8"></i></div>
-							<div class="bar hot">
-								<div class="gauge" style="width: 48%">&nbsp;</div>
-								84ms
-							</div>
-							<div class="browserVersion ie">8</div>
-						</li>
-						<li class="dj-trafficBar">
-							<span class="visitors">87</span>
-							<div class="browser"><i class="dj-logo-firefox"></i></div>
-							<div class="bar neutral">
-								<div class="gauge" style="width: 16%">&nbsp;</div>
-								22ms
-							</div>
-							<div class="browserVersion firefox">5</div>
-						</li>
-                        <li class="dj-trafficBar"><span class="visitors">64</span>
-                            <div class="browser"><i class="dj-logo-ie9"></i></div>
-                            <div class="bar neutral">
-                                <div class="gauge" style="width: 24%">&nbsp;</div>
-                                84ms
-                            </div>
-                        </li>
-						<li class="dj-trafficBar">
-							<span class="visitors">19</span>
-							<div class="browser"><i class="dj-logo-firefox"></i></div>
-							<div class="bar neutral">
-								<div class="gauge" style="width: 20%">&nbsp;</div>
-								22ms
-							</div>
-							<div class="browserVersion">3</div>
-						</li>
-
-                    </ul>
-                </div>
-            </div>
-        </div>*@
+		<div id="browser-stats" class="module" data-type="BrowserStats">
+            @DJ.Render(new BrowserStatsModel())
+        </div>
 	</div>
 
     <div id="column3" class="span4">

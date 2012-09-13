@@ -116,7 +116,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BrowserShare\BrowserShareComponent.cs" />
+    <Compile Include="BrowserShare\BrowserShareComponent.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BrowserShareComponent.cshtml</DependentUpon>
+    </Compile>
+    <Compile Include="BrowserStats\BrowserStatsComponent.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BrowserStatsComponent.cshtml</DependentUpon>
+    </Compile>
     <Compile Include="ConcurrentVisits\ConcurrentVisitsComponent.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -158,6 +167,10 @@
     <None Include="BrowserShare\BrowserShareComponent.cshtml">
       <Generator>RazorViewComponentClassGenerator</Generator>
       <LastGenOutput>BrowserShareComponent.cs</LastGenOutput>
+    </None>
+    <None Include="BrowserStats\BrowserStatsComponent.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>BrowserStatsComponent.cs</LastGenOutput>
     </None>
     <None Include="ConcurrentVisits\ConcurrentVisitsComponent.cshtml">
       <Generator>RazorViewComponentClassGenerator</Generator>
@@ -232,8 +245,11 @@
     <EmbeddedResource Include="PageTimings\PageTimings.js" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="BrowserShare\BrowserShare.js" />
-    <Content Include="BrowserShare\ClientTemplates\container.html" />
+    <EmbeddedResource Include="BrowserShare\BrowserShare.js" />
+    <EmbeddedResource Include="BrowserShare\ClientTemplates\container.html" />
+    <EmbeddedResource Include="BrowserStats\BrowserStats.js" />
+    <EmbeddedResource Include="BrowserStats\ClientTemplates\container.html" />
+    <EmbeddedResource Include="BrowserStats\ClientTemplates\statBars.html" />
     <EmbeddedResource Include="PlatformStats\PlatformStats.js" />
     <EmbeddedResource Include="PlatformStats\ClientTemplates\container.html" />
     <EmbeddedResource Include="UsersStats\UsersStats.js" />

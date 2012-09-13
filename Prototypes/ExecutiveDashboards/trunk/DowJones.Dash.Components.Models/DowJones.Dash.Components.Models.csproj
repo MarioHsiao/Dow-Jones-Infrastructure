@@ -84,6 +84,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BrowserShare\BrowserShare.cs" />
+    <Compile Include="BrowserStats\BrowserStats.cs" />
     <Compile Include="ConcurrentVisits\ConcurrentVisitsModel.cs" />
     <Compile Include="PlatformStats\PlatformStatsModel.cs" />
     <Compile Include="UsersStats\UsersStatsModel.cs" />

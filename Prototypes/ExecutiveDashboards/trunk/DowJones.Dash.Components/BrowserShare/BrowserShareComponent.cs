@@ -23,7 +23,7 @@ namespace DowJones.Dash.Components.BrowserShare
     using System.Web.UI;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 09/12/2012 05:24 PM
+    // Last Generated Timestamp: 09/13/2012 05:17 PM
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Dash.Components.BrowserShare.BrowserShare.js", ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Dash.Components.BrowserShare.BrowserShareComponent))]
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Dash.Components.BrowserShare.ClientTemplates.container.html", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="container", DeclaringType=typeof(DowJones.Dash.Components.BrowserShare.BrowserShareComponent))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.27108")]
