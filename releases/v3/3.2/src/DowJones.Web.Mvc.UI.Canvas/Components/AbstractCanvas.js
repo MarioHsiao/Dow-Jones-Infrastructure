@@ -231,10 +231,13 @@ $dj.debug('Registered DJ.UI.Canvas');
 
 
 DJ.UI.Canvas.Layout = DJ.Component.extend({
+    _moduleSelector: '.dj_module',
+
     init: function (canvas, options) {
         this._super({ options: options || {} });
 
         this.element = canvas.element;
+        this._moduleSelector = canvas._moduleSelector;
 
         if (!this.options.canvasId && canvas.options) {
             this.options.canvasId = canvas.options.canvasId;
@@ -264,6 +267,17 @@ $.extend(DJ.UI.Canvas.Layout, {
     initialize: function (canvas, options) {
         var name = (options || {}).name || 'zone';
 
+        var initLayout = $dj.delegate(this, function () { this._initialize(canvas, options); });
+
+        if (name == 'zone')
+            initLayout();
+        else
+            $dj.require([name + '-layout'], initLayout);
+    },
+
+    _initialize: function (canvas, options) {
+        var name = (options || {}).name || 'zone';
+
         var layout = DJ.UI.Canvas.Layout._layouts[name];
 
         if (!layout) {
@@ -272,20 +286,19 @@ $.extend(DJ.UI.Canvas.Layout, {
         }
 
         try {
-            $dj.debug("Initializing canvas", canvas, "with layout '" + name + "' and options", options);
-            return new layout(canvas, options);
+            $dj.debug("Initializing canvas", canvas, "with '" + name + "' layout; options:", options);
+            canvas.layout = new layout(canvas, options);
         } catch (e) {
+            $dj.error("Failed to initialized canvas layout for ", canvas, "with options", options);
             $dj.error(e);
         }
 
-        $dj.error("Failed to initialized canvas layout for ", canvas, "with options", options);
-
-        return null;
+        return canvas.layout;
     },
 
     register: function (name, layout) {
         DJ.UI.Canvas.Layout._layouts[name] = layout;
-        $dj.debug("Registered layout ", name, layout);
+        $dj.debug("Registered '" + name + "' canvas layout");
     }
 });
 
@@ -315,7 +328,6 @@ DJ.UI.Canvas.ZoneLayout = DJ.UI.Canvas.Layout.extend({
     },
 
     _zoneSelector: '.dj_group',
-    _moduleSelector: '.dj_module',
 
     init: function (canvas, options) {
         this._super(canvas, options);

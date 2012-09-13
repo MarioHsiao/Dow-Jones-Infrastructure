@@ -132,6 +132,8 @@
     <Compile Include="ActionFilters\SetThreadCultureToInterfaceLanguageFilter.cs" />
     <Compile Include="ActionResults\NewtonSoftJsonResult.cs" />
     <Compile Include="ActionResults\RedirectToAuthenticationServerActionResult.cs" />
+    <Compile Include="ActionResults\XmlResult.cs" />
+    <Compile Include="ModelBinders\XmlModelBinder.cs" />
     <Compile Include="Properties\Controllers\AuthenticationControllerBase.cs" />
     <Compile Include="Extensions\HtmlExtensions.cs" />
     <Compile Include="Extensions\HtmlHelperExtensions.cs" />

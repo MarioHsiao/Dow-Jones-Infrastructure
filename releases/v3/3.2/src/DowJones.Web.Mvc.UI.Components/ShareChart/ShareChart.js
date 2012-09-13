@@ -96,8 +96,8 @@ DJ.UI.ShareChart = DJ.UI.Component.extend({
             return;
         }
 
-        var highChartsData = this._mapToHighChartsData(data);
-        this.bindOnSuccess(highChartsData);
+        //var highChartsData = this._mapToHighChartsData(data);
+        this.bindOnSuccess(data);
     },
 
     bindOnNoData: function () {
@@ -110,41 +110,38 @@ DJ.UI.ShareChart = DJ.UI.Component.extend({
         this.chart = new Highcharts.Chart({
             chart: {
                 renderTo: this.$element.find('.chartContainer')[0],
-                type: 'pie'
+                type: 'pie',
+                backgroundColor: 'transparent',
+                plotBorderWidth: null,
+                plotShadow: false,
+                width: 300
             },
             title: {
                 text: data.chartTitle || ''
             },
             plotOptions: {
                 pie: {
-                    shadow: false
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: false,
+                        color: '#000000',
+                        connectorColor: '#000000',
+                        formatter: function() {
+                            return '<b>'+ this.point.name +'</b>: '+ this.percentage +' %';
+                        }
+                    }
                 }
             },
             tooltip: {
-                valueSuffix: '%'
+                pointFormat: '{series.name}: <b>{point.percentage}%</b>',
+                percentageDecimals: 1
             },
             credits: false,
             series: [{
-                name: 'Browsers',
-                data: data.browserData,
-                size: '60%',
-                dataLabels: {
-                    formatter: function () {
-                        return this.y > 5 ? this.point.name : null;
-                    },
-                    color: 'white',
-                    distance: -30
-                }
-            }, {
-                name: 'Versions',
-                data: data.versionsData,
-                innerSize: '60%',
-                dataLabels: {
-                    formatter: function () {
-                        // display only if larger than 1
-                        return this.y > 1 ? '<b>' + this.point.name + ':</b> ' + this.y + '%' : null;
-                    }
-                }
+                type: 'pie',
+                name: 'Browser Share',
+                data: data.browserData
             }]
         });
     }

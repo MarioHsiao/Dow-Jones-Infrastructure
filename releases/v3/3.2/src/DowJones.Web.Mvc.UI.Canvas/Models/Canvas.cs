@@ -7,6 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using DowJones.Infrastructure;
@@ -59,6 +60,9 @@ namespace DowJones.Web.Mvc.UI.Canvas
         [ClientProperty("isPublished")]
         public bool IsPublished { get; set; }
 
+        [ClientProperty("layout")]
+        public CanvasLayout Layout { get; set; }
+
         /// <summary>
         /// Gets or sets the url to load
         /// a Module via AJAX
@@ -66,8 +70,20 @@ namespace DowJones.Web.Mvc.UI.Canvas
         [ClientProperty("loadModuleUrl")]
         public string LoadModuleUrl { get; set; }
 
+        [Obsolete("Use Layout")]
         [ClientProperty]
-        public int NumberOfGroups { get; set; }
+        public int NumberOfGroups
+        {
+            get
+            {
+                var groupedLayout = (Layout as ZoneLayout);
+
+                if (groupedLayout == null || groupedLayout.Zones == null)
+                    return 1;
+
+                return groupedLayout.Zones.Count();
+            }
+        }
 
         [ClientProperty("regionFilter")]
         public CodeDesc RegionFilter { get; set; }
@@ -129,7 +145,6 @@ namespace DowJones.Web.Mvc.UI.Canvas
             Children = new List<IModule>(modules ?? Enumerable.Empty<IModule>());
             WebServiceBaseUrl = CanvasSettings.Default.GetDataServiceUrl(CanvasSettings.Default.CanvasServiceUrl);
             DeleteModuleUrl = WebServiceBaseUrl + "/modules/id/json";
-            NumberOfGroups = 1;
         }
 
 

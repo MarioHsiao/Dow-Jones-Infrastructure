@@ -45,8 +45,12 @@ namespace DowJones.Web.Mvc.UI
             clientId = viewComponent.ClientID;
 
             viewComponent.Render(output);
-            _componentFactory.StylesheetRegistry().Render(output);
-            scriptRegistry.Render(output);
+
+            if(!context.IsChildAction)
+            {
+                _componentFactory.StylesheetRegistry().Render(output);
+                scriptRegistry.Render(output);
+            }
         }
     }
 }
