@@ -85,6 +85,7 @@
   <ItemGroup>
     <Compile Include="BrowserShare\BrowserShare.cs" />
     <Compile Include="ConcurrentVisits\ConcurrentVisitsModel.cs" />
+    <Compile Include="BrowserStats\BrowserStats.cs" />
     <Compile Include="PageTimings\PageTimings.cs" />
     <Compile Include="DashGauge\DashGauge.cs" />
     <Compile Include="TopReferrer\TopReferrer.cs" />

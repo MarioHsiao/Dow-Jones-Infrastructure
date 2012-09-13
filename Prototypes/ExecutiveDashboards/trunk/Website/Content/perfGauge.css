@@ -36,7 +36,8 @@
 
 .dj-perfGaugeItems {
   font-size: 16px;
-  color: #777; }
+  color: #777;
+  list-style: none; }
   .dj-perfGaugeItems .visitors {
     font-weight: bold; }
 

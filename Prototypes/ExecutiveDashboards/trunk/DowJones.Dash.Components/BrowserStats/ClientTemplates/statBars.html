@@ -1,0 +1,21 @@
+﻿<% var model = self, bar, i, len, percent; %>
+<ul class="dj-perfGaugeItems">
+    <li class="dj-trafficBar">
+        <div>Visitors</div>
+        <div>Page Load Time</div>
+    </li>
+    <% for(i = 0, len < model.length; i < len; i++) { 
+        bar = model[i];
+        percent = Math.round((bar.timings * 100) / 210);
+    %>
+    <li class="dj-trafficBar">
+        <span class="visitors"><%= bar.visitors %></span>
+        <div class="browser"><i class="dj-logo-<%= bar.browser %>"></i></div>
+        <div class="bar <%= bar.temperature %>">
+            <div class="gauge" style="width: <%= percent %>">&nbsp;</div>
+            <%= bar.timing %>ms
+        </div>
+        <div class="browserVersion"><%= bar.browserVersion %></div>
+    </li>
+    <% } %>
+</ul>

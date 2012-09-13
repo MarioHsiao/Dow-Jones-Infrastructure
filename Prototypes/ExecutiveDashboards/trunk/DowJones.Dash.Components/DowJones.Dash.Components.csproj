@@ -122,6 +122,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ConcurrentVisitsComponent.cshtml</DependentUpon>
     </Compile>
+    <Compile Include="BrowserStats\BrowserStatsComponent.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BrowserStatsComponent.cshtml</DependentUpon>
+    </Compile>
     <Compile Include="PageTimings\PageTimings.cs">
       <DependentUpon>PageTimings.cshtml</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -152,6 +157,10 @@
     <None Include="ConcurrentVisits\ConcurrentVisitsComponent.cshtml">
       <Generator>RazorViewComponentClassGenerator</Generator>
       <LastGenOutput>ConcurrentVisitsComponent.cs</LastGenOutput>
+    </None>
+    <None Include="BrowserStats\BrowserStatsComponent.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>BrowserStatsComponent.cs</LastGenOutput>
     </None>
     <None Include="PageTimings\PageTimings.cshtml">
       <Generator>RazorViewComponentClassGenerator</Generator>
@@ -216,6 +225,9 @@
   <ItemGroup>
     <Content Include="BrowserShare\BrowserShare.js" />
     <Content Include="BrowserShare\ClientTemplates\container.html" />
+    <Content Include="BrowserStats\BrowserStats.js" />
+    <EmbeddedResource Include="BrowserStats\ClientTemplates\container.html" />
+    <EmbeddedResource Include="BrowserStats\ClientTemplates\statBars.html" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
