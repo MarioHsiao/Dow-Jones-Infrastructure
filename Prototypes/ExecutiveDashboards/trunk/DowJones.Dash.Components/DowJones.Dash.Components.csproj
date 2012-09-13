@@ -116,7 +116,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConcurrentVisits\ConcurrentVisits.cs" />
+    <Compile Include="BrowserShare\BrowserShareComponent.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BrowserShareComponent.cshtml</DependentUpon>
+    </Compile>
     <Compile Include="ConcurrentVisits\ConcurrentVisitsComponent.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -140,6 +144,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="BrowserShare\BrowserShareComponent.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>BrowserShareComponent.cs</LastGenOutput>
+    </None>
     <None Include="ConcurrentVisits\ConcurrentVisitsComponent.cshtml">
       <Generator>RazorViewComponentClassGenerator</Generator>
       <LastGenOutput>ConcurrentVisitsComponent.cs</LastGenOutput>
@@ -193,6 +201,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="DashGauge\DashGauge.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="BrowserShare\BrowserShare.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="BrowserShare\ClientTemplates\container.html" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

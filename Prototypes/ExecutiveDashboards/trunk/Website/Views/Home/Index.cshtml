@@ -1,6 +1,8 @@
+@using DowJones.Dash.Components.Models.BrowserShare
 @using DowJones.Dash.Components.Models.TopPages
 @using DowJones.Dash.Components.Models.ConcurrentVisits
 @using DowJones.Dash.Components.Models.TopReferrer
+
 @{
     ViewBag.Title = "Dash> Executive Dashboard";
 }
@@ -95,6 +97,11 @@
                 </ul>
             </div>
         </div>
+    </div>
+    
+    
+    <div id="browser-share" class="module span4">
+        @DJ.Render(new BrowserShareModel())
     </div>
 
 </section>

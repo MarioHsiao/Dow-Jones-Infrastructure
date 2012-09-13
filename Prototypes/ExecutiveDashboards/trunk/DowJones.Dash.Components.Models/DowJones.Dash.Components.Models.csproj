@@ -83,6 +83,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BrowserShare\BrowserShare.cs" />
     <Compile Include="ConcurrentVisits\ConcurrentVisitsModel.cs" />
     <Compile Include="DashGauge\DashGauge.cs" />
     <Compile Include="TopReferrer\TopReferrer.cs" />
