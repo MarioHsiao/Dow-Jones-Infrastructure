@@ -1,3 +1,4 @@
+@using DowJones.Dash.Components.Models.PageTimings
 @using DowJones.Dash.Components.Models.BrowserShare
 @using DowJones.Dash.Components.Models.TopPages
 @using DowJones.Dash.Components.Models.ConcurrentVisits
@@ -12,21 +13,17 @@
     <link href="~/Content/concurrentVisits.css" rel="stylesheet" />
 }
 <section id="dashboard" class="row-fluid">
+    <div id="column1" class="span4">
+        <div id="current-users" class="module" data-type="CurrentUserStats">
+            @DJ.Render(new ConcurrentVisitsModel())
+        </div>
 
-    <div id="current-users" class="module span4" data-type="CurrentUserStats">
-        @DJ.Render(new ConcurrentVisitsModel())
+         <div id="current-users" class="module" data-type="PageTimings">
+            @DJ.Render(new PageTimingsModel())
+        </div>
     </div>
-
-    <div id="top-pages" class="module span4" data-type="TopPages">
-        @DJ.Render(new TopPagesModel())
-    </div>
-
-    <div id="top-referrer" class="module span4" data-type="TopRerrer">
-        @DJ.Render(new TopReferrerModel())
-    </div>
-
-
-    <div id="browser-stats" class="module span4" data-type="BrowserStats">
+    <div id="column2" class="span4">
+        <div id="browser-stats" class="module" data-type="BrowserStats">
         <div class="dj_perfGauge">
             <div class="moduleHead">
                 <h3>Browser Stats</h3>
@@ -97,16 +94,25 @@
                 </ul>
             </div>
         </div>
+        </div>
     </div>
     
-    
-    <div id="browser-share" class="module span4">
-        @DJ.Render(new BrowserShareModel())
-    </div>
+    <div id="column3" class="span4">
+        <div id="browser-share" class="module" data-type="BrowserShare">
+            @DJ.Render(new BrowserShareModel())
+        </div>
 
+        <div id="top-pages" class="module" data-type="TopPages">
+            @DJ.Render(new TopPagesModel())
+        </div>
+
+        <div id="top-referrer" class="module" data-type="TopRerrer">
+            @DJ.Render(new TopReferrerModel())
+        </div>
+    </div>
 </section>
 
-@DJ.ScriptRegistry().OnDocumentReady("initializeDashboard();");
+@DJ.ScriptRegistry().OnDocumentReady("initializeDashboard();")
 
 
 

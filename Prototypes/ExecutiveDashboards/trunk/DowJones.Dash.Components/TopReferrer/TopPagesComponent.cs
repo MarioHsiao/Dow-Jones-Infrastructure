@@ -23,8 +23,9 @@ namespace DowJones.Dash.Components.TopReferrer
     using System.Web.UI;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 09/11/2012 09:51 PM
-    [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Dash.Components.TopReferrer.TopReferrer.js", ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Dash.Components.TopReferrer.TopPagesComponent))]
+    // Last Generated Timestamp: 09/13/2012 11:55 AM
+    [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Dash.Components.TopReferrer.TopReferrer.js", DependsOn=new string[] {
+            "highcharts-more"}, ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Dash.Components.TopReferrer.TopPagesComponent))]
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Dash.Components.TopReferrer.ClientTemplates.container.html", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="container", DeclaringType=typeof(DowJones.Dash.Components.TopReferrer.TopPagesComponent))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.27108")]
     public class TopPagesComponent : DowJones.Web.Mvc.UI.ViewComponentBase<DowJones.Dash.Components.Models.TopReferrer.TopReferrerModel>

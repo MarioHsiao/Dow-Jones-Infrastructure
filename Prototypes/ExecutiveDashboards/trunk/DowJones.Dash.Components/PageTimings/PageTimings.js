@@ -2,15 +2,14 @@
  * TopReferrer
  */
 
-DJ.UI.TopReferrer = DJ.UI.CompositeComponent.extend({
+DJ.UI.PageTimings = DJ.UI.CompositeComponent.extend({
 
     selectors: {
         portalHeadlineListContainer: '.portalHeadlineListContainer'
     },
 
     init: function (element, meta) {
-        this._super(element, $.extend({ name: "TopReferrer" }, meta));
-        
+        this._super(element, $.extend({ name: "PageTimings" }, meta));
         this._initPortalHeadlines();
     },
 
@@ -37,7 +36,7 @@ DJ.UI.TopReferrer = DJ.UI.CompositeComponent.extend({
     },
 
     _initializeEventHandlers: function () {
-        $dj.subscribe('data.Referrers', this._delegates.setData);
+        $dj.subscribe('data.PageTimings', this._delegates.setData);
     },
     
     _setData: function (data) {
@@ -47,11 +46,11 @@ DJ.UI.TopReferrer = DJ.UI.CompositeComponent.extend({
         }
 
         var headlines = [];
-        for (var prop in data.referrers)
-            if (prop.length > 0) {
-                headlines[headlines.length] = { title: prop, modificationTimeDescriptor: Highcharts.numberFormat(data.referrers[prop],0) };
-            }
         
+        for (var i = 0; i < data.length; i++) {
+            headlines[headlines.length] = { title: data[i].page_name, modificationTimeDescriptor: Highcharts.numberFormat(data[i].page_load_time/1000, 3) + "s" };
+        }
+
         var result = {
             count: { value: headlines.length },
             headlines: headlines
@@ -65,4 +64,4 @@ DJ.UI.TopReferrer = DJ.UI.CompositeComponent.extend({
 
 
 // Declare this class as a jQuery plugin
-$.plugin('dj_TopReferrer', DJ.UI.TopReferrer);
+$.plugin('dj_PageTimings', DJ.UI.PageTimings);
