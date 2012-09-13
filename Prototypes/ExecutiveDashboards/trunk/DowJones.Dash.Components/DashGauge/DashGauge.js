@@ -218,7 +218,8 @@ DJ.UI.DashGauge = DJ.UI.Component.extend({
                 backgroundColor: 'transparent',
                 plotBackgroundImage: null,
                 height: this.options.height,
-                width: this.options.width
+                width: this.options.width,
+                margin:[0,0,0,0]
             },
 
             title: {

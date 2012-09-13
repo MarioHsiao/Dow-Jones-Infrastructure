@@ -23,7 +23,7 @@ namespace DowJones.Dash.Components.PageTimings
     using System.Web.UI;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 09/13/2012 11:20 AM
+    // Last Generated Timestamp: 09/13/2012 01:29 PM
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Dash.Components.PageTimings.PageTimings.js", DependsOn=new string[] {
             "highcharts-more"}, ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Dash.Components.PageTimings.PageTimings))]
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Dash.Components.PageTimings.ClientTemplates.container.html", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="container", DeclaringType=typeof(DowJones.Dash.Components.PageTimings.PageTimings))]
@@ -50,9 +50,6 @@ namespace DowJones.Dash.Components.PageTimings
 
 
    CssClass = "dj_PageTimings"; 
-
-WriteLiteral("\r\nH");
-
 
         }
     }

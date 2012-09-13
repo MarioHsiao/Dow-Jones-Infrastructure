@@ -23,7 +23,7 @@ namespace DowJones.Dash.Components.ConcurrentVisits
     using System.Web.UI;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 09/12/2012 09:58 AM
+    // Last Generated Timestamp: 09/13/2012 01:28 PM
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Dash.Components.ConcurrentVisits.ConcurrentVisits.js", DependsOn=new string[] {
             "DJ.UI.DashGauge"}, ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Dash.Components.ConcurrentVisits.ConcurrentVisitsComponent))]
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Dash.Components.ConcurrentVisits.ClientTemplates.container.html", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="container", DeclaringType=typeof(DowJones.Dash.Components.ConcurrentVisits.ConcurrentVisitsComponent))]
@@ -52,9 +52,6 @@ WriteLiteral("\r\n");
 
 
    CssClass = "dj_ConcurrentVisitsModel"; 
-
-WriteLiteral("\r\n");
-
 
         }
     }

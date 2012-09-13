@@ -5,20 +5,27 @@
 DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
 
     selectors: {
-        gaugeContainer: '.gaugeContainer'
+        visitorsGauge: '.visitorsGauge',
     },
     
     init: function (element, meta) {
         // Call the base constructor
         this._super(element, $.extend({ name: "ConcurrentVisits" }, meta));
-
         this._initGauge();
     },
     
     _initGauge: function () {
         var self = this;
-        DJ.add('DashGauge', {
-            container: this._gaugeContainer[0],
+        DJ.add('DashGauge', this._visitorGaugeConfig()).done(function (comp) {
+            self.visitorsGauge = comp;
+            comp.owner = self;
+            comp.updateMax(91995);
+        });
+    },
+    
+    _visitorGaugeConfig: function() {
+        return {
+            container: this._visitorsGauge[0],
             options: {
                 max: 100,
                 min: 0,
@@ -29,40 +36,36 @@ DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
                 width: 200
             },
             data: 0
-        }).done(function (comp) {
-            self.gauge = comp;
-            comp.owner = self;
-        });
+        };
     },
-
     _initializeDelegates: function () {
         this._delegates = $.extend(this._delegates, {
-                updateGauge: $dj.delegate(this, this._updateGauge),
+                updateStats: $dj.delegate(this, this._updateStats),
                 updateGaugeMax: $dj.delegate(this, this._updateGaugeMax),
             });
     },
 
     _initializeElements: function () {
         this.$element.html(this.templates.container());
-        this._gaugeContainer = this.$element.find(this.selectors.gaugeContainer);
+        this._visitorsGauge = this.$element.find(this.selectors.visitorsGauge);
     },
 
     _initializeEventHandlers: function () {
-        $dj.subscribe('data.QuickStats', this._delegates.updateGauge);
+        $dj.subscribe('data.QuickStats', this._delegates.updateStats);
         $dj.subscribe('data.HistorialTrafficStats', this._delegates.updateGaugeMax);
         
     },
 
-    _updateGauge: function (data) {
-        if (this.gauge) {
-            this.gauge.setData(data.visits);
+    _updateStats: function (data) {
+        if (this.visitorsGauge) {
+            this.visitorsGauge.setData(data.visits);
         }
     },
     
     _updateGaugeMax: function (data) {
         var max = data.data['online.wsj.com'].people.max;
-        if (this.gauge) {
-            this.gauge.updateMax(max);
+        if (this.visitorsGauge) {
+            this.visitorsGauge.updateMax(max);
         }
     },
 

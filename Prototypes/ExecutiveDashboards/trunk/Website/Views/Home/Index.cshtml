@@ -1,9 +1,11 @@
 @using DowJones.Dash.Components.Models.BrowserStats
 @using DowJones.Dash.Components.Models.PageTimings
 @using DowJones.Dash.Components.Models.BrowserShare
+@using DowJones.Dash.Components.Models.PlatformStats
 @using DowJones.Dash.Components.Models.TopPages
 @using DowJones.Dash.Components.Models.ConcurrentVisits
 @using DowJones.Dash.Components.Models.TopReferrer
+@using DowJones.Dash.Components.Models.UsersStats
 @{
     ViewBag.Title = "Dash> Executive Dashboard";
 }
@@ -17,7 +19,13 @@
         <div id="current-users" class="module" data-type="CurrentUserStats">
             @DJ.Render(new ConcurrentVisitsModel())
         </div>
-
+        <div id="current-users" class="module" data-type="PlatformStats">
+            @DJ.Render(new PlatformStatsModel())
+        </div>
+        
+        <div id="current-users" class="module" data-type="PlatformStats">
+            @DJ.Render(new UsersStatsModel())
+        </div>
         <div id="current-users" class="module" data-type="PageTimings">
             @DJ.Render(new PageTimingsModel())
         </div>
