@@ -48,7 +48,7 @@ DJ.UI.BrowserShare = DJ.UI.Component.extend({
         }
         
         var browserData = _.map(data, function (browser) {
-            return [browser.platform, parseFloat(browser.percent)];
+            return [browser.platform, parseFloat(parseFloat(browser.percent).toFixed(2))];
         });
         
         this.shareChart.setData({ browserData: browserData });
