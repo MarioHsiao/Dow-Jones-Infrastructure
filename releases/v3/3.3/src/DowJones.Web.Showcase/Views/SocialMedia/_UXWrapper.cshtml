@@ -1,0 +1,443 @@
+﻿@{
+    Layout = null;
+
+    DJ.ScriptRegistry()
+        .WithJQueryUIInteractions()
+        .WithJQueryUIEffects();
+
+    DJ.StylesheetRegistry()
+        .Include("~/Styles/css/NavBar.css");
+}
+<!doctype html>
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html lang="en" class="no-js">
+<!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>@ViewBag.Title</title>
+    <link rel="icon" type="image/png" href="@Url.Content("~/areas/factiva/content/ux-temp/images/favicon.png")">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../../Styles/css/socialMediaStyles.css" />
+    @Html.DJ().ScriptRegistry().RenderHead()
+    @Html.DJ().StylesheetRegistry().RenderHead()
+</head>
+<body>
+    <!-- end: .message -->
+    
+    <!-- end: #header -->
+    <div id="dashboard" class="ui-sortable">
+        <div id="dashboard-wrap" class="container_9 clearfix">
+            <div class="dj_dashboard-settings-drawer">
+                <!-- DEV-NOTE: Example of standard dashboard edit display -->
+                <div class="dj_dashboard-crud dj_edit-box">
+                    <div class="edit-details">
+                        <h3 class="dj_edit-title">
+                            Edit &lt;Dashboard Name&gt;</h3>
+                        <!-- DEV NOTE: [DASHBOARD NAME] refers to the dashboard name from the tab. -->
+                        <p class="dj_edit-description no-margin">
+                            Edit your dashboard topic, name and details below.
+                        </p>
+                        <div class="dj_edit-date-created-modified">
+                            <p>
+                                Created: <strong>mm/dd/yy</strong></p>
+                            <p>
+                                Last modified: <strong>mm/dd/yy HH:MM: AM/PM</strong></p>
+                        </div>
+                    </div>
+                    <!-- end: .edit-details -->
+                    <ul class="dj_progress_steps">
+                        <li class="first"><span class="icon">1</span>Dashboard Topic </li>
+                        <li><span class="icon">2</span>Dashboard Name &amp; Description </li>
+                    </ul>
+                    <!-- end: .dj_progress_steps -->
+                    <div class="dj_edit-content clearfix">
+                        <div class="dj_edit-col first-col">
+                            <div class="dj_edit-input-wrap">
+                                <label class="dj_edit-label" for="dj_dashboard-topic">
+                                    Current Topic</label>
+                                <div class="dj_value">
+                                    Apple</div>
+                                <div class="dj_instructions">
+                                    Select a Different Topic for New Modules</div>
+                                <select id="dj_dashboard-topic" class="dj_selectbox dj_selectbox-small">
+                                    <option value="select">Select a topic</option>
+                                    <optgroup label="Companies">
+                                        <option value="topicA">Topic A</option>
+                                        <option value="topicB">Topic B</option>
+                                    </optgroup>
+                                    <optgroup label="Executives">
+                                        <option value="topicC">Topic C</option>
+                                        <option value="topicD">Topic D</option>
+                                    </optgroup>
+                                    <optgroup label="Brands">
+                                        <option value="topicE">Topic E</option>
+                                        <option value="topicF">Topic F</option>
+                                    </optgroup>
+                                    <optgroup label="Issues">
+                                        <option value="topicG">Topic G</option>
+                                        <option value="topicH">Topic H</option>
+                                    </optgroup>
+                                    <optgroup label="Messages">
+                                        <option value="topicI">Topic I</option>
+                                        <option value="topicJ">Topic J</option>
+                                    </optgroup>
+                                </select>
+                                <span class="dj_btn dj_btn-square">Apply</span>
+                            </div>
+                            <!-- end: .dj_edit-input-wrap -->
+                            <div class="dj_edit-input-wrap">
+                                <label for="chx_topic-filter" class="dj_chkbox_wrapper">
+                                    <input type="checkbox" id="chx_topic-filter">
+                                    Only display topics that I've created
+                                </label>
+                            </div>
+                            <!-- end: dj_edit-input-wrap -->
+                        </div>
+                        <!-- end: .dj_edit-col .first-col -->
+                        <div class="dj_edit-col second-col">
+                            <div class="dj_edit-input-wrap">
+                                <label class="dj_edit-label" for="dj_dashboard-name">
+                                    Dashboard Name</label>
+                                <span class="dj_max-char-note">(40 char. max)</span>
+                                <div class="dj_text-element-wrapper">
+                                    <input type="text" id="dj_dashboard-name" maxlength="25">
+                                </div>
+                            </div>
+                            <!-- end: .dj_edit-input-wrap -->
+                            <div class="dj_edit-input-wrap no-margin">
+                                <label class="dj_edit-label" for="dj_dashboard-description">
+                                    Dashboard Description
+                                </label>
+                                <span class="dj_max-char-note">(250 char. max)</span>
+                                <div class="dj_text-element-wrapper no-margin">
+                                    <textarea id="dj_dashboard-description" maxlength="250"></textarea>
+                                </div>
+                            </div>
+                            <!-- end: .dj_edit-input-wrap -->
+                        </div>
+                        <!-- end: .dj_edit-col .second-col -->
+                        <div class="button-pane">
+                            <span class="dj_btn dj_btn-lrg dj_btn-blue">Save &amp; Close</span><span class="dj_btn-cancel dj_btn dj_btn-lrg dj_btn-grey">
+                                Cancel</span>
+                        </div>
+                        <!-- end: .button-pane -->
+                    </div>
+                    <!-- end: .dj_edit-content -->
+                </div>
+                <!-- end: .dj_edit-box -->
+                <!-- DEV-NOTE: Example of published dashboard edit display -->
+                <div class="dj_dashboard-crud dj_edit-box">
+                    <div class="edit-details">
+                        <h3 class="dj_edit-title">
+                            Edit &lt;Dashboard Name&gt;</h3>
+                        <!-- DEV NOTE: [DASHBOARD NAME] refers to the dashboard name from the tab. -->
+                        <p class="dj_edit-description no-margin">
+                            Edit your dashboard topic, name and details below.
+                        </p>
+                        <div class="dj_edit-date-created-modified">
+                            <p>
+                                Created: <strong>mm/dd/yy</strong></p>
+                            <p>
+                                Last modified: <strong>mm/dd/yy HH:MM: AM/PM</strong></p>
+                        </div>
+                    </div>
+                    <!-- end: .edit-details -->
+                    <ul class="dj_progress_steps">
+                        <li class="first"><span class="icon">1</span>Dashboard Topic </li>
+                        <li><span class="icon">2</span>Dashboard Name &amp; Description </li>
+                    </ul>
+                    <!-- end: .dj_progress_steps -->
+                    <div class="dj_edit-content clearfix">
+                        <div class="dj_edit-col first-col">
+                            <div class="dj_edit-input-wrap">
+                                <label class="dj_edit-label" for="dj_dashboard-topic">
+                                    Current Topic</label>
+                                <div class="dj_value">
+                                    Apple</div>
+                                <div class="dj_instructions">
+                                    Select a Different Topic for New Modules</div>
+                                <select id="dj_dashboard-topic" class="dj_selectbox dj_selectbox-small">
+                                    <option value="select">Select a topic</option>
+                                    <optgroup label="Companies">
+                                        <option value="topicA">Topic A</option>
+                                        <option value="topicB">Topic B</option>
+                                    </optgroup>
+                                    <optgroup label="Executives">
+                                        <option value="topicC">Topic C</option>
+                                        <option value="topicD">Topic D</option>
+                                    </optgroup>
+                                    <optgroup label="Brands">
+                                        <option value="topicE">Topic E</option>
+                                        <option value="topicF">Topic F</option>
+                                    </optgroup>
+                                    <optgroup label="Issues">
+                                        <option value="topicG">Topic G</option>
+                                        <option value="topicH">Topic H</option>
+                                    </optgroup>
+                                    <optgroup label="Messages">
+                                        <option value="topicI">Topic I</option>
+                                        <option value="topicJ">Topic J</option>
+                                    </optgroup>
+                                </select>
+                                <span class="dj_btn dj_btn-square">Apply</span>
+                            </div>
+                            <!-- end: .dj_edit-input-wrap -->
+                            <div class="dj_edit-input-wrap">
+                                <label for="chx_topic-filter" class="dj_chkbox_wrapper">
+                                    <input type="checkbox" id="chx_topic-filter">
+                                    Only display topics that I've created
+                                </label>
+                            </div>
+                            <!-- end: dj_edit-input-wrap -->
+                        </div>
+                        <!-- end: .dj_edit-col .first-col -->
+                        <div class="dj_edit-col second-col">
+                            <div class="dj_edit-input-wrap">
+                                <label class="dj_edit-label" for="dj_dashboard-name">
+                                    Dashboard Name</label>
+                                <span class="dj_max-char-note">(40 char. max)</span>
+                                <div class="dj_text-element-wrapper">
+                                    <input type="text" id="dj_dashboard-name" maxlength="25">
+                                </div>
+                            </div>
+                            <!-- end: .dj_edit-input-wrap -->
+                            <div class="dj_edit-input-wrap no-margin">
+                                <label class="dj_edit-label" for="dj_dashboard-description">
+                                    Dashboard Description
+                                </label>
+                                <span class="dj_max-char-note">(250 char. max)</span>
+                                <div class="dj_text-element-wrapper no-margin">
+                                    <textarea id="dj_dashboard-description" maxlength="250"></textarea>
+                                </div>
+                            </div>
+                            <!-- end: .dj_edit-input-wrap -->
+                            <p class="dj_edit-description">
+                                Changes to this page will be shown to everyone viewing your dashboard
+                            </p>
+                        </div>
+                        <!-- end: .dj_edit-col .second-col -->
+                        <div class="button-pane">
+                            <span class="dj_btn dj_btn-lrg dj_btn-blue">Save &amp; Close</span><span class="dj_btn-cancel dj_btn dj_btn-lrg dj_btn-grey">
+                                Cancel</span>
+                        </div>
+                        <!-- end: .button-pane -->
+                    </div>
+                    <!-- end: .dj_edit-content -->
+                </div>
+                <!-- end: .dj_edit-box -->
+            </div>
+            <div class="dj_module dj_module-social-media wrap-9">
+                <div class="module-header">
+                    <h3 class="module-title">
+                        Social Media</h3>
+                    <div class="actions-container">
+                        <span class="fi fi_gear settings"></span>
+                    </div>
+                </div>
+                <!-- end: .module-header -->
+                <form class="module-edit-options">
+                <div class="dj_edit-box dj_create-custom-pg">
+                    <div class="dj_edit-col">
+                        <div class="dj_edit-input-wrap">
+                            <label class="dj_edit-label" for="">
+                                Module Name</label>
+                            <div class="dj_text-element-wrapper">
+                                <input type="text" id="">
+                            </div>
+                        </div>
+                        <div class="dj_edit-input-wrap">
+                            <label class="dj_edit-label" for="">
+                                Description</label>
+                            <span class="dj_max-char-note">(250 char. max)</span>
+                            <div class="dj_text-element-wrapper">
+                                <textarea id=""></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end:dj_edit-col-->
+                    <div class="dj_edit-col two-thirds">
+                        <p class="dj_edit-label-wrap">
+                            <label class="dj_edit-label" for="">
+                                [Lens]</label>
+                        </p>
+                        <div class="dj_edit-lens-row">
+                            <input type="radio">
+                            <label class="dj_edit-label" for="">
+                                Industry</label>
+                            <select>
+                                <option disabled="disabled" selected="selected" value="Select Industry">Select Industry
+                                </option>
+                                <option value="Industry 1">Industry 1</option>
+                                <option value="Industry 2">Industry 2</option>
+                                <option value="Industry 3">Industry 3</option>
+                                <option value="Industry 4">Industry 4</option>
+                                <option value="Industry 5">Industry 5</option>
+                                <option value="Industry 6">Industry 6</option>
+                                <option value="Industry 7">Industry 7</option>
+                            </select>
+                        </div>
+                        <div class="dj_edit-lens-row">
+                            <input type="radio">
+                            <label class="dj_edit-label" for="">
+                                Topic</label>
+                            <select>
+                                <option disabled="disabled" selected="selected" value="Select Topic">Select Topic
+                                </option>
+                                <option value="Topic 1">Topic 1</option>
+                                <option value="Topic 2">Topic 2</option>
+                                <option value="Topic 3">Topic 3</option>
+                                <option value="Topic 4">Topic 4</option>
+                                <option value="Topic 5">Topic 5</option>
+                                <option value="Topic 6">Topic 6</option>
+                                <option value="Topic 7">Topic 7</option>
+                            </select>
+                        </div>
+                        <div class="dj_edit-lens-row">
+                            <input type="radio">
+                            <label class="dj_edit-label" for="">
+                                Region</label>
+                            <select>
+                                <option disabled="disabled" selected="selected" value="Select Region">Select Region
+                                </option>
+                                <option value="Region 1">Region 1</option>
+                                <option value="Region 2">Region 2</option>
+                                <option value="Region 3">Region 3</option>
+                                <option value="Region 4">Region 4</option>
+                                <option value="Region 5">Region 5</option>
+                                <option value="Region 6">Region 6</option>
+                                <option value="Region 7">Region 7</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="button-pane">
+                        <ul class="dc_list dc_list-lg">
+                            <li class="dc_item"><a href="#" class="dashboard-control dc_btn dc_btn-2 dc_btn-save">
+                                Save</a></li>
+                            <li class="dc_item"><a href="#" class="dashboard-control dc_btn dc_btn-3 dc_btn-cancel">
+                                Cancel</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- end: .dj_edit-box -->
+                </form>
+                <!-- START OF THE MODULE CONTENT -->
+                <div class="module-core">
+                    <div class="module-content">
+                        <div class="module-row article-row clearfix">
+                            <h3 class="module-col-title">
+                                Recent Tweets</h3>
+                            <div class="dj_recent-tweets module-col two-thirds first-col">
+                                <div class="module-col-wrap standard-padding ">
+                                    <!-- Developer Note: Ron signed off, actually INSISTED I used this extra div. Feb 6, 2012 - Dan Ramos-->
+                                    <div class="dj_recent-tweets-wrap">
+                                        @RenderSection("RecentTweets")
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="dj_top-experts module-col one-third">
+                                <div class="module-col-wrap standard-padding">
+                                    <!-- Developer Note: Ron signed off, actually INSISTED I used this extra div. Feb 6, 2012 - Dan Ramos-->
+                                    <div class="dj_top-experts-wrap">
+                                        <h3 class="module-col-title">
+                                            Top Experts</h3>
+                                        @RenderSection("TopExperts")
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end: .module-row -->
+                        <div class="module-footer">
+                        </div>
+                        <!-- end: .module-footer -->
+                    </div>
+                    <!-- end: .module-content -->
+                </div>
+                <!-- end: .module-core -->
+            </div>
+            <!-- end: .social-media-module -->
+        </div>
+    </div>
+    <!-- end: #dashboard -->
+    <div id="footer">
+        <div id="footer-top">
+            <div id="footer-top-wrap" class="container_9 clearfix">
+                <div id="product-logo">
+                    <h1 class="png_bg">
+                        Factiva</h1>
+                </div>
+                <!-- end: #client-logo -->
+                <div id="footer-search">
+                    <form action="./Index_files/Index.htm" method="post">
+                    <div class="form-field input">
+                        <input type="text" name="s" id="" value="Search companies, industries, topics, people, documents or news"
+                            class="search-field default" />
+                    </div>
+                    <div class="submit-btn-wrap">
+                        <input type="submit" id="" class="s-btn" value="Search" />
+                    </div>
+                    </form>
+                </div>
+                <!-- end: #factiva-search -->
+            </div>
+        </div>
+        <!-- DEV: The footer-links markup remains in place though the content is hidden from the browser.  -->
+        <div id="footer-links">
+            <div id="footer-links-wrap" class="container_9 clearfix">
+                <div id="industry-links">
+                    <h5 class="section-title">
+                        Industry</h5>
+                    <div id="industry-links-wrap" class="clearfix">
+                        <ul class="footer-links-list">
+                            <li></li>
+                        </ul>
+                        <ul class="footer-links-list">
+                            <li></li>
+                        </ul>
+                        <ul class="footer-links-list">
+                            <li></li>
+                        </ul>
+                        <ul class="footer-links-list">
+                            <li></li>
+                        </ul>
+                    </div>
+                </div>
+                <div id="ma-legal-links">
+                    <div id="my-account-links">
+                        <h5 class="section-title">
+                            My Account</h5>
+                        <ul class="footer-links-list">
+                            <li><a href="./Index_files/Index.htm">Profile</a></li>
+                            <li><a href="./Index_files/Index.htm">Preferences</a></li>
+                        </ul>
+                    </div>
+                    <div id="legal-links">
+                        <h5 class="section-title">
+                            My Account</h5>
+                        <ul class="footer-links-list">
+                            <li><a href="./Index_files/Index.htm">Feedback</a></li>
+                            <li><a href="./Index_files/Index.htm">Privacy Policy</a></li>
+                            <li><a href="./Index_files/Index.htm">Contact Us</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="copyright">
+            <div id="copyright-wrap" class="container_9 clearfix">
+                <p class="copyright-text">
+                    © 2011 Dow Jones Factiva | All Rights Reserved</p>
+                <p class="copyright-text-links">
+                    <a href="#">Feedback</a> | <a href="#">What's New</a> | <a href="#">Privacy Policy</a>
+                    | <a href="#">Contact Us</a></p>
+            </div>
+        </div>
+        <!-- end: .copyright -->
+    </div>
+    @DJ.ScriptRegistry().Render()
+</body>
+</html>

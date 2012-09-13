@@ -1,0 +1,898 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GetAuthorListDetailResponse xmlns="urn:factiva:Communicator:AuthorService:v1_0">
+  <author p2:middleName="middleName1" p2:namePrefix="namePrefix1" p2:nameSuffix="nameSuffix1" p2:gender="Female" p2:lastArticleWrittenDate="1900-01-01T01:01:01+02:00" p2:deceased="true" p2:id="1" p2:firstName="firstName1" p2:lastName="lastName1" p2:pitchNotes="pitchNotes1" p2:biography="biography1" p2:webSite="webSite1" xmlns:p2="urn:factiva:Communicator:AuthorService:v1_0">
+    <p2:outletId>1</p2:outletId>
+    <p2:subjectBeat>
+      <id xmlns="urn:factiva:Communicator:Common:v1_0">1</id>
+      <name xmlns="urn:factiva:Communicator:Common:v1_0">name1</name>
+      <parentBeatId xmlns="urn:factiva:Communicator:Common:v1_0">1</parentBeatId>
+    </p2:subjectBeat>
+    <p2:subjectBeat>
+      <id xmlns="urn:factiva:Communicator:Common:v1_0">-2147483647</id>
+      <name xmlns="urn:factiva:Communicator:Common:v1_0">name2</name>
+      <parentBeatId xmlns="urn:factiva:Communicator:Common:v1_0">-2147483647</parentBeatId>
+    </p2:subjectBeat>
+    <p2:subjectBeat>
+      <id xmlns="urn:factiva:Communicator:Common:v1_0">2147483647</id>
+      <name xmlns="urn:factiva:Communicator:Common:v1_0">name3</name>
+      <parentBeatId xmlns="urn:factiva:Communicator:Common:v1_0">2147483647</parentBeatId>
+    </p2:subjectBeat>
+    <p2:industryBeat>
+      <id xmlns="urn:factiva:Communicator:Common:v1_0">1</id>
+      <name xmlns="urn:factiva:Communicator:Common:v1_0">name1</name>
+      <parentBeatId xmlns="urn:factiva:Communicator:Common:v1_0">1</parentBeatId>
+    </p2:industryBeat>
+    <p2:industryBeat>
+      <id xmlns="urn:factiva:Communicator:Common:v1_0">-2147483647</id>
+      <name xmlns="urn:factiva:Communicator:Common:v1_0">name2</name>
+      <parentBeatId xmlns="urn:factiva:Communicator:Common:v1_0">-2147483647</parentBeatId>
+    </p2:industryBeat>
+    <p2:industryBeat>
+      <id xmlns="urn:factiva:Communicator:Common:v1_0">2147483647</id>
+      <name xmlns="urn:factiva:Communicator:Common:v1_0">name3</name>
+      <parentBeatId xmlns="urn:factiva:Communicator:Common:v1_0">2147483647</parentBeatId>
+    </p2:industryBeat>
+    <p2:regionBeat p4:code="code1" xmlns:p4="urn:factiva:Communicator:Common:v1_0">
+      <p4:id>1</p4:id>
+      <p4:name>name1</p4:name>
+      <p4:parentBeatId>1</p4:parentBeatId>
+    </p2:regionBeat>
+    <p2:regionBeat p4:code="code2" xmlns:p4="urn:factiva:Communicator:Common:v1_0">
+      <p4:id>-2147483647</p4:id>
+      <p4:name>name2</p4:name>
+      <p4:parentBeatId>-2147483647</p4:parentBeatId>
+    </p2:regionBeat>
+    <p2:regionBeat p4:code="code3" xmlns:p4="urn:factiva:Communicator:Common:v1_0">
+      <p4:id>2147483647</p4:id>
+      <p4:name>name3</p4:name>
+      <p4:parentBeatId>2147483647</p4:parentBeatId>
+    </p2:regionBeat>
+    <p2:workingLanguage p4:id="1" p4:Name="Name1" p4:Code="Code1" xmlns:p4="urn:factiva:Communicator:Common:v1_0" />
+    <p2:workingLanguage p4:id="-2147483647" p4:Name="Name2" p4:Code="Code2" xmlns:p4="urn:factiva:Communicator:Common:v1_0" />
+    <p2:workingLanguage p4:id="2147483647" p4:Name="Name3" p4:Code="Code3" xmlns:p4="urn:factiva:Communicator:Common:v1_0" />
+    <p2:address p4:id="1" p4:building="building1" p4:isHeadquarters="true" p4:poBox="poBox1" p4:floor="floor1" p4:room="room1" p4:postOrZip="postOrZip1" p4:line2="line21" p4:line1="line11" xmlns:p4="urn:factiva:Communicator:Common:v1_0">
+      <p4:country p4:id="1" p4:name="name1" p4:code="code1" />
+      <p4:state p4:id="1" p4:name="name1" p4:code="code1" />
+      <p4:city p4:id="1" p4:name="name1" p4:code="code1" />
+    </p2:address>
+    <p2:contactInfo p4:value="value1" p4:isPreferred="true" p4:templateUrl="templateUrl1" p4:icon="AAECAwQFBgcICQoLDA0ODw==" p4:isIM="true" p4:typeName="typeName1" xmlns:p4="urn:factiva:Communicator:Common:v1_0">
+      <p4:type>Email</p4:type>
+    </p2:contactInfo>
+    <p2:contactInfo p4:value="value2" p4:isPreferred="false" p4:templateUrl="templateUrl2" p4:icon="AAECAwQFBgcICQoLDA0ODw==" p4:isIM="false" p4:typeName="typeName2" xmlns:p4="urn:factiva:Communicator:Common:v1_0">
+      <p4:type>EmailWork</p4:type>
+    </p2:contactInfo>
+    <p2:contactInfo p4:value="value3" p4:isPreferred="true" p4:templateUrl="templateUrl3" p4:icon="AAECAwQFBgcICQoLDA0ODw==" p4:isIM="true" p4:typeName="typeName3" xmlns:p4="urn:factiva:Communicator:Common:v1_0">
+      <p4:type>EmailOutlet</p4:type>
+    </p2:contactInfo>
+    <p2:employment p2:id="1" p2:jobTitle="jobTitle1" p2:dateUpdated="1900-01-01T01:01:01+02:00" p2:dateCreated="1900-01-01T01:01:01+02:00" p2:isPrimaryContact="true" p2:typeName="typeName1" p2:bureau="bureau1" p2:email="email1" p2:isPrimaryEmployer="true">
+      <p2:role p2:id="1" p2:name="name1" />
+      <p2:outletId>1</p2:outletId>
+      <p2:yearStart>1</p2:yearStart>
+      <p2:yearEnd>1</p2:yearEnd>
+      <p2:contactInfo p5:value="value1" p5:isPreferred="true" p5:templateUrl="templateUrl1" p5:icon="AAECAwQFBgcICQoLDA0ODw==" p5:isIM="true" p5:typeName="typeName1" xmlns:p5="urn:factiva:Communicator:Common:v1_0">
+        <p5:type>Email</p5:type>
+      </p2:contactInfo>
+      <p2:contactInfo p5:value="value2" p5:isPreferred="false" p5:templateUrl="templateUrl2" p5:icon="AAECAwQFBgcICQoLDA0ODw==" p5:isIM="false" p5:typeName="typeName2" xmlns:p5="urn:factiva:Communicator:Common:v1_0">
+        <p5:type>EmailWork</p5:type>
+      </p2:contactInfo>
+      <p2:contactInfo p5:value="value3" p5:isPreferred="true" p5:templateUrl="templateUrl3" p5:icon="AAECAwQFBgcICQoLDA0ODw==" p5:isIM="true" p5:typeName="typeName3" xmlns:p5="urn:factiva:Communicator:Common:v1_0">
+        <p5:type>EmailOutlet</p5:type>
+      </p2:contactInfo>
+    </p2:employment>
+    <p2:employment p2:id="-2147483647" p2:jobTitle="jobTitle2" p2:dateUpdated="0001-01-01T00:00:00+02:00" p2:dateCreated="0001-01-01T00:00:00+02:00" p2:isPrimaryContact="false" p2:typeName="typeName2" p2:bureau="bureau2" p2:email="email2" p2:isPrimaryEmployer="false">
+      <p2:role p2:id="-2147483647" p2:name="name2" />
+      <p2:outletId>-2147483647</p2:outletId>
+      <p2:yearStart>-2147483647</p2:yearStart>
+      <p2:yearEnd>-2147483647</p2:yearEnd>
+      <p2:contactInfo p5:value="value4" p5:isPreferred="false" p5:templateUrl="templateUrl4" p5:icon="AAECAwQFBgcICQoLDA0ODw==" p5:isIM="false" p5:typeName="typeName4" xmlns:p5="urn:factiva:Communicator:Common:v1_0">
+        <p5:type>Phone</p5:type>
+      </p2:contactInfo>
+      <p2:contactInfo p5:value="value5" p5:isPreferred="true" p5:templateUrl="templateUrl5" p5:icon="AAECAwQFBgcICQoLDA0ODw==" p5:isIM="true" p5:typeName="typeName5" xmlns:p5="urn:factiva:Communicator:Common:v1_0">
+        <p5:type>PhoneWork</p5:type>
+      </p2:contactInfo>
+      <p2:contactInfo p5:value="value6" p5:isPreferred="false" p5:templateUrl="templateUrl6" p5:icon="AAECAwQFBgcICQoLDA0ODw==" p5:isIM="false" p5:typeName="typeName6" xmlns:p5="urn:factiva:Communicator:Common:v1_0">
+        <p5:type>PhoneOutlet</p5:type>
+      </p2:contactInfo>
+    </p2:employment>
+    <p2:employment p2:id="2147483647" p2:jobTitle="jobTitle3" p2:dateUpdated="9999-12-31T23:59:59.9999999+02:00" p2:dateCreated="9999-12-31T23:59:59.9999999+02:00" p2:isPrimaryContact="true" p2:typeName="typeName3" p2:bureau="bureau3" p2:email="email3" p2:isPrimaryEmployer="true">
+      <p2:role p2:id="2147483647" p2:name="name3" />
+      <p2:outletId>2147483647</p2:outletId>
+      <p2:yearStart>2147483647</p2:yearStart>
+      <p2:yearEnd>2147483647</p2:yearEnd>
+      <p2:contactInfo p5:value="value7" p5:isPreferred="true" p5:templateUrl="templateUrl7" p5:icon="AAECAwQFBgcICQoLDA0ODw==" p5:isIM="true" p5:typeName="typeName7" xmlns:p5="urn:factiva:Communicator:Common:v1_0">
+        <p5:type>PhoneOutlet2</p5:type>
+      </p2:contactInfo>
+      <p2:contactInfo p5:value="value8" p5:isPreferred="false" p5:templateUrl="templateUrl8" p5:icon="AAECAwQFBgcICQoLDA0ODw==" p5:isIM="false" p5:typeName="typeName8" xmlns:p5="urn:factiva:Communicator:Common:v1_0">
+        <p5:type>Mobile</p5:type>
+      </p2:contactInfo>
+      <p2:contactInfo p5:value="value9" p5:isPreferred="true" p5:templateUrl="templateUrl9" p5:icon="AAECAwQFBgcICQoLDA0ODw==" p5:isIM="true" p5:typeName="typeName9" xmlns:p5="urn:factiva:Communicator:Common:v1_0">
+        <p5:type>MobileOutlet</p5:type>
+      </p2:contactInfo>
+    </p2:employment>
+    <p2:NNID>1</p2:NNID>
+    <p2:book p2:id="1" p2:name="name1" />
+    <p2:book p2:id="-2147483647" p2:name="name2" />
+    <p2:book p2:id="2147483647" p2:name="name3" />
+    <p2:proprietaryInfoID>1</p2:proprietaryInfoID>
+    <p2:homeCountry p4:id="1" p4:name="name1" p4:code="code1" xmlns:p4="urn:factiva:Communicator:Common:v1_0" />
+    <p2:homeState p4:id="1" p4:name="name1" p4:code="code1" xmlns:p4="urn:factiva:Communicator:Common:v1_0" />
+    <p2:homeCity p4:id="1" p4:name="name1" p4:code="code1" xmlns:p4="urn:factiva:Communicator:Common:v1_0" />
+    <p2:dayBirth>1</p2:dayBirth>
+    <p2:monthBirth>1</p2:monthBirth>
+    <p2:yearBirth>1</p2:yearBirth>
+    <p2:column p4:id="1" p4:name="name1" p4:webAddress="webAddress1" xmlns:p4="urn:factiva:Communicator:Common:v1_0">
+      <p4:authorId>1</p4:authorId>
+      <p4:authorId>-2147483647</p4:authorId>
+      <p4:authorId>2147483647</p4:authorId>
+      <p4:subjectBeat>
+        <p4:id>1</p4:id>
+        <p4:name>name1</p4:name>
+        <p4:parentBeatId>1</p4:parentBeatId>
+      </p4:subjectBeat>
+      <p4:subjectBeat>
+        <p4:id>-2147483647</p4:id>
+        <p4:name>name2</p4:name>
+        <p4:parentBeatId>-2147483647</p4:parentBeatId>
+      </p4:subjectBeat>
+      <p4:subjectBeat>
+        <p4:id>2147483647</p4:id>
+        <p4:name>name3</p4:name>
+        <p4:parentBeatId>2147483647</p4:parentBeatId>
+      </p4:subjectBeat>
+      <p4:industryBeat>
+        <p4:id>1</p4:id>
+        <p4:name>name1</p4:name>
+        <p4:parentBeatId>1</p4:parentBeatId>
+      </p4:industryBeat>
+      <p4:industryBeat>
+        <p4:id>-2147483647</p4:id>
+        <p4:name>name2</p4:name>
+        <p4:parentBeatId>-2147483647</p4:parentBeatId>
+      </p4:industryBeat>
+      <p4:industryBeat>
+        <p4:id>2147483647</p4:id>
+        <p4:name>name3</p4:name>
+        <p4:parentBeatId>2147483647</p4:parentBeatId>
+      </p4:industryBeat>
+      <p4:regionBeat p4:code="code1">
+        <p4:id>1</p4:id>
+        <p4:name>name1</p4:name>
+        <p4:parentBeatId>1</p4:parentBeatId>
+      </p4:regionBeat>
+      <p4:regionBeat p4:code="code2">
+        <p4:id>-2147483647</p4:id>
+        <p4:name>name2</p4:name>
+        <p4:parentBeatId>-2147483647</p4:parentBeatId>
+      </p4:regionBeat>
+      <p4:regionBeat p4:code="code3">
+        <p4:id>2147483647</p4:id>
+        <p4:name>name3</p4:name>
+        <p4:parentBeatId>2147483647</p4:parentBeatId>
+      </p4:regionBeat>
+    </p2:column>
+    <p2:column p4:id="-2147483647" p4:name="name2" p4:webAddress="webAddress2" xmlns:p4="urn:factiva:Communicator:Common:v1_0">
+      <p4:authorId>0</p4:authorId>
+      <p4:authorId>2</p4:authorId>
+      <p4:authorId>-2147483646</p4:authorId>
+      <p4:subjectBeat>
+        <p4:id>0</p4:id>
+        <p4:name>name4</p4:name>
+        <p4:parentBeatId>0</p4:parentBeatId>
+      </p4:subjectBeat>
+      <p4:subjectBeat>
+        <p4:id>2</p4:id>
+        <p4:name>name5</p4:name>
+        <p4:parentBeatId>2</p4:parentBeatId>
+      </p4:subjectBeat>
+      <p4:subjectBeat>
+        <p4:id>-2147483646</p4:id>
+        <p4:name>name6</p4:name>
+        <p4:parentBeatId>-2147483646</p4:parentBeatId>
+      </p4:subjectBeat>
+      <p4:industryBeat>
+        <p4:id>0</p4:id>
+        <p4:name>name4</p4:name>
+        <p4:parentBeatId>0</p4:parentBeatId>
+      </p4:industryBeat>
+      <p4:industryBeat>
+        <p4:id>2</p4:id>
+        <p4:name>name5</p4:name>
+        <p4:parentBeatId>2</p4:parentBeatId>
+      </p4:industryBeat>
+      <p4:industryBeat>
+        <p4:id>-2147483646</p4:id>
+        <p4:name>name6</p4:name>
+        <p4:parentBeatId>-2147483646</p4:parentBeatId>
+      </p4:industryBeat>
+      <p4:regionBeat p4:code="code4">
+        <p4:id>0</p4:id>
+        <p4:name>name4</p4:name>
+        <p4:parentBeatId>0</p4:parentBeatId>
+      </p4:regionBeat>
+      <p4:regionBeat p4:code="code5">
+        <p4:id>2</p4:id>
+        <p4:name>name5</p4:name>
+        <p4:parentBeatId>2</p4:parentBeatId>
+      </p4:regionBeat>
+      <p4:regionBeat p4:code="code6">
+        <p4:id>-2147483646</p4:id>
+        <p4:name>name6</p4:name>
+        <p4:parentBeatId>-2147483646</p4:parentBeatId>
+      </p4:regionBeat>
+    </p2:column>
+    <p2:column p4:id="2147483647" p4:name="name3" p4:webAddress="webAddress3" xmlns:p4="urn:factiva:Communicator:Common:v1_0">
+      <p4:authorId>2147483646</p4:authorId>
+      <p4:authorId>-1</p4:authorId>
+      <p4:authorId>3</p4:authorId>
+      <p4:subjectBeat>
+        <p4:id>2147483646</p4:id>
+        <p4:name>name7</p4:name>
+        <p4:parentBeatId>2147483646</p4:parentBeatId>
+      </p4:subjectBeat>
+      <p4:subjectBeat>
+        <p4:id>-1</p4:id>
+        <p4:name>name8</p4:name>
+        <p4:parentBeatId>-1</p4:parentBeatId>
+      </p4:subjectBeat>
+      <p4:subjectBeat>
+        <p4:id>3</p4:id>
+        <p4:name>name9</p4:name>
+        <p4:parentBeatId>3</p4:parentBeatId>
+      </p4:subjectBeat>
+      <p4:industryBeat>
+        <p4:id>2147483646</p4:id>
+        <p4:name>name7</p4:name>
+        <p4:parentBeatId>2147483646</p4:parentBeatId>
+      </p4:industryBeat>
+      <p4:industryBeat>
+        <p4:id>-1</p4:id>
+        <p4:name>name8</p4:name>
+        <p4:parentBeatId>-1</p4:parentBeatId>
+      </p4:industryBeat>
+      <p4:industryBeat>
+        <p4:id>3</p4:id>
+        <p4:name>name9</p4:name>
+        <p4:parentBeatId>3</p4:parentBeatId>
+      </p4:industryBeat>
+      <p4:regionBeat p4:code="code7">
+        <p4:id>2147483646</p4:id>
+        <p4:name>name7</p4:name>
+        <p4:parentBeatId>2147483646</p4:parentBeatId>
+      </p4:regionBeat>
+      <p4:regionBeat p4:code="code8">
+        <p4:id>-1</p4:id>
+        <p4:name>name8</p4:name>
+        <p4:parentBeatId>-1</p4:parentBeatId>
+      </p4:regionBeat>
+      <p4:regionBeat p4:code="code9">
+        <p4:id>3</p4:id>
+        <p4:name>name9</p4:name>
+        <p4:parentBeatId>3</p4:parentBeatId>
+      </p4:regionBeat>
+    </p2:column>
+    <p2:education p2:id="1" p2:outcome="outcome1">
+      <p2:university p2:id="1" p2:name="name1">
+        <p2:country p6:id="1" p6:name="name1" p6:code="code1" xmlns:p6="urn:factiva:Communicator:Common:v1_0" />
+      </p2:university>
+      <p2:degree p2:type="type1" p2:subject="subject1" />
+      <p2:year>1</p2:year>
+    </p2:education>
+    <p2:education p2:id="-2147483647" p2:outcome="outcome2">
+      <p2:university p2:id="-2147483647" p2:name="name2">
+        <p2:country p6:id="-2147483647" p6:name="name2" p6:code="code2" xmlns:p6="urn:factiva:Communicator:Common:v1_0" />
+      </p2:university>
+      <p2:degree p2:type="type2" p2:subject="subject2" />
+      <p2:year>-2147483647</p2:year>
+    </p2:education>
+    <p2:education p2:id="2147483647" p2:outcome="outcome3">
+      <p2:university p2:id="2147483647" p2:name="name3">
+        <p2:country p6:id="2147483647" p6:name="name3" p6:code="code3" xmlns:p6="urn:factiva:Communicator:Common:v1_0" />
+      </p2:university>
+      <p2:degree p2:type="type3" p2:subject="subject3" />
+      <p2:year>2147483647</p2:year>
+    </p2:education>
+    <p2:socialNetwork p4:id="1" p4:name="name1" p4:url="url1" p4:icon="AAECAwQFBgcICQoLDA0ODw==" p4:templateUrl="templateUrl1" xmlns:p4="urn:factiva:Communicator:Common:v1_0" />
+    <p2:socialNetwork p4:id="-2147483647" p4:name="name2" p4:url="url2" p4:icon="AAECAwQFBgcICQoLDA0ODw==" p4:templateUrl="templateUrl2" xmlns:p4="urn:factiva:Communicator:Common:v1_0" />
+    <p2:socialNetwork p4:id="2147483647" p4:name="name3" p4:url="url3" p4:icon="AAECAwQFBgcICQoLDA0ODw==" p4:templateUrl="templateUrl3" xmlns:p4="urn:factiva:Communicator:Common:v1_0" />
+    <p2:nameVariations p2:id="1" p2:name="name1" p2:type="None" />
+    <p2:nameVariations p2:id="-2147483647" p2:name="name2" p2:type="Alias" />
+    <p2:nameVariations p2:id="2147483647" p2:name="name3" p2:type="Nickname" />
+  </author>
+  <author p2:middleName="middleName2" p2:namePrefix="namePrefix2" p2:nameSuffix="nameSuffix2" p2:gender="Male" p2:lastArticleWrittenDate="0001-01-01T00:00:00+02:00" p2:deceased="false" p2:id="-2147483647" p2:firstName="firstName2" p2:lastName="lastName2" p2:pitchNotes="pitchNotes2" p2:biography="biography2" p2:webSite="webSite2" xmlns:p2="urn:factiva:Communicator:AuthorService:v1_0">
+    <p2:outletId>-2147483647</p2:outletId>
+    <p2:subjectBeat>
+      <id xmlns="urn:factiva:Communicator:Common:v1_0">0</id>
+      <name xmlns="urn:factiva:Communicator:Common:v1_0">name4</name>
+      <parentBeatId xmlns="urn:factiva:Communicator:Common:v1_0">0</parentBeatId>
+    </p2:subjectBeat>
+    <p2:subjectBeat>
+      <id xmlns="urn:factiva:Communicator:Common:v1_0">2</id>
+      <name xmlns="urn:factiva:Communicator:Common:v1_0">name5</name>
+      <parentBeatId xmlns="urn:factiva:Communicator:Common:v1_0">2</parentBeatId>
+    </p2:subjectBeat>
+    <p2:subjectBeat>
+      <id xmlns="urn:factiva:Communicator:Common:v1_0">-2147483646</id>
+      <name xmlns="urn:factiva:Communicator:Common:v1_0">name6</name>
+      <parentBeatId xmlns="urn:factiva:Communicator:Common:v1_0">-2147483646</parentBeatId>
+    </p2:subjectBeat>
+    <p2:industryBeat>
+      <id xmlns="urn:factiva:Communicator:Common:v1_0">0</id>
+      <name xmlns="urn:factiva:Communicator:Common:v1_0">name4</name>
+      <parentBeatId xmlns="urn:factiva:Communicator:Common:v1_0">0</parentBeatId>
+    </p2:industryBeat>
+    <p2:industryBeat>
+      <id xmlns="urn:factiva:Communicator:Common:v1_0">2</id>
+      <name xmlns="urn:factiva:Communicator:Common:v1_0">name5</name>
+      <parentBeatId xmlns="urn:factiva:Communicator:Common:v1_0">2</parentBeatId>
+    </p2:industryBeat>
+    <p2:industryBeat>
+      <id xmlns="urn:factiva:Communicator:Common:v1_0">-2147483646</id>
+      <name xmlns="urn:factiva:Communicator:Common:v1_0">name6</name>
+      <parentBeatId xmlns="urn:factiva:Communicator:Common:v1_0">-2147483646</parentBeatId>
+    </p2:industryBeat>
+    <p2:regionBeat p4:code="code4" xmlns:p4="urn:factiva:Communicator:Common:v1_0">
+      <p4:id>0</p4:id>
+      <p4:name>name4</p4:name>
+      <p4:parentBeatId>0</p4:parentBeatId>
+    </p2:regionBeat>
+    <p2:regionBeat p4:code="code5" xmlns:p4="urn:factiva:Communicator:Common:v1_0">
+      <p4:id>2</p4:id>
+      <p4:name>name5</p4:name>
+      <p4:parentBeatId>2</p4:parentBeatId>
+    </p2:regionBeat>
+    <p2:regionBeat p4:code="code6" xmlns:p4="urn:factiva:Communicator:Common:v1_0">
+      <p4:id>-2147483646</p4:id>
+      <p4:name>name6</p4:name>
+      <p4:parentBeatId>-2147483646</p4:parentBeatId>
+    </p2:regionBeat>
+    <p2:workingLanguage p4:id="0" p4:Name="Name4" p4:Code="Code4" xmlns:p4="urn:factiva:Communicator:Common:v1_0" />
+    <p2:workingLanguage p4:id="2" p4:Name="Name5" p4:Code="Code5" xmlns:p4="urn:factiva:Communicator:Common:v1_0" />
+    <p2:workingLanguage p4:id="-2147483646" p4:Name="Name6" p4:Code="Code6" xmlns:p4="urn:factiva:Communicator:Common:v1_0" />
+    <p2:address p4:id="-2147483647" p4:building="building2" p4:isHeadquarters="false" p4:poBox="poBox2" p4:floor="floor2" p4:room="room2" p4:postOrZip="postOrZip2" p4:line2="line22" p4:line1="line12" xmlns:p4="urn:factiva:Communicator:Common:v1_0">
+      <p4:country p4:id="-2147483647" p4:name="name2" p4:code="code2" />
+      <p4:state p4:id="-2147483647" p4:name="name2" p4:code="code2" />
+      <p4:city p4:id="-2147483647" p4:name="name2" p4:code="code2" />
+    </p2:address>
+    <p2:contactInfo p4:value="value4" p4:isPreferred="false" p4:templateUrl="templateUrl4" p4:icon="AAECAwQFBgcICQoLDA0ODw==" p4:isIM="false" p4:typeName="typeName4" xmlns:p4="urn:factiva:Communicator:Common:v1_0">
+      <p4:type>Phone</p4:type>
+    </p2:contactInfo>
+    <p2:contactInfo p4:value="value5" p4:isPreferred="true" p4:templateUrl="templateUrl5" p4:icon="AAECAwQFBgcICQoLDA0ODw==" p4:isIM="true" p4:typeName="typeName5" xmlns:p4="urn:factiva:Communicator:Common:v1_0">
+      <p4:type>PhoneWork</p4:type>
+    </p2:contactInfo>
+    <p2:contactInfo p4:value="value6" p4:isPreferred="false" p4:templateUrl="templateUrl6" p4:icon="AAECAwQFBgcICQoLDA0ODw==" p4:isIM="false" p4:typeName="typeName6" xmlns:p4="urn:factiva:Communicator:Common:v1_0">
+      <p4:type>PhoneOutlet</p4:type>
+    </p2:contactInfo>
+    <p2:employment p2:id="0" p2:jobTitle="jobTitle4" p2:dateUpdated="1899-11-30T01:01:01+02:00" p2:dateCreated="1899-11-30T01:01:01+02:00" p2:isPrimaryContact="false" p2:typeName="typeName4" p2:bureau="bureau4" p2:email="email4" p2:isPrimaryEmployer="false">
+      <p2:role p2:id="0" p2:name="name4" />
+      <p2:outletId>0</p2:outletId>
+      <p2:yearStart>0</p2:yearStart>
+      <p2:yearEnd>0</p2:yearEnd>
+      <p2:contactInfo p5:value="value10" p5:isPreferred="false" p5:templateUrl="templateUrl10" p5:icon="AAECAwQFBgcICQoLDA0ODw==" p5:isIM="false" p5:typeName="typeName10" xmlns:p5="urn:factiva:Communicator:Common:v1_0">
+        <p5:type>Fax</p5:type>
+      </p2:contactInfo>
+      <p2:contactInfo p5:value="value11" p5:isPreferred="true" p5:templateUrl="templateUrl11" p5:icon="AAECAwQFBgcICQoLDA0ODw==" p5:isIM="true" p5:typeName="typeName11" xmlns:p5="urn:factiva:Communicator:Common:v1_0">
+        <p5:type>FaxWork</p5:type>
+      </p2:contactInfo>
+      <p2:contactInfo p5:value="value12" p5:isPreferred="false" p5:templateUrl="templateUrl12" p5:icon="AAECAwQFBgcICQoLDA0ODw==" p5:isIM="false" p5:typeName="typeName12" xmlns:p5="urn:factiva:Communicator:Common:v1_0">
+        <p5:type>FaxOutlet</p5:type>
+      </p2:contactInfo>
+    </p2:employment>
+    <p2:employment p2:id="2" p2:jobTitle="jobTitle5" p2:dateUpdated="1900-02-02T01:01:01+02:00" p2:dateCreated="1900-02-02T01:01:01+02:00" p2:isPrimaryContact="true" p2:typeName="typeName5" p2:bureau="bureau5" p2:email="email5" p2:isPrimaryEmployer="true">
+      <p2:role p2:id="2" p2:name="name5" />
+      <p2:outletId>2</p2:outletId>
+      <p2:yearStart>2</p2:yearStart>
+      <p2:yearEnd>2</p2:yearEnd>
+      <p2:contactInfo p5:value="value13" p5:isPreferred="true" p5:templateUrl="templateUrl13" p5:icon="AAECAwQFBgcICQoLDA0ODw==" p5:isIM="true" p5:typeName="typeName13" xmlns:p5="urn:factiva:Communicator:Common:v1_0">
+        <p5:type>Email</p5:type>
+      </p2:contactInfo>
+      <p2:contactInfo p5:value="value14" p5:isPreferred="false" p5:templateUrl="templateUrl14" p5:icon="AAECAwQFBgcICQoLDA0ODw==" p5:isIM="false" p5:typeName="typeName14" xmlns:p5="urn:factiva:Communicator:Common:v1_0">
+        <p5:type>EmailWork</p5:type>
+      </p2:contactInfo>
+      <p2:contactInfo p5:value="value15" p5:isPreferred="true" p5:templateUrl="templateUrl15" p5:icon="AAECAwQFBgcICQoLDA0ODw==" p5:isIM="true" p5:typeName="typeName15" xmlns:p5="urn:factiva:Communicator:Common:v1_0">
+        <p5:type>EmailOutlet</p5:type>
+      </p2:contactInfo>
+    </p2:employment>
+    <p2:employment p2:id="-2147483646" p2:jobTitle="jobTitle6" p2:dateUpdated="0001-02-02T00:00:00+02:00" p2:dateCreated="0001-02-02T00:00:00+02:00" p2:isPrimaryContact="false" p2:typeName="typeName6" p2:bureau="bureau6" p2:email="email6" p2:isPrimaryEmployer="false">
+      <p2:role p2:id="-2147483646" p2:name="name6" />
+      <p2:outletId>-2147483646</p2:outletId>
+      <p2:yearStart>-2147483646</p2:yearStart>
+      <p2:yearEnd>-2147483646</p2:yearEnd>
+      <p2:contactInfo p5:value="value16" p5:isPreferred="false" p5:templateUrl="templateUrl16" p5:icon="AAECAwQFBgcICQoLDA0ODw==" p5:isIM="false" p5:typeName="typeName16" xmlns:p5="urn:factiva:Communicator:Common:v1_0">
+        <p5:type>Phone</p5:type>
+      </p2:contactInfo>
+      <p2:contactInfo p5:value="value17" p5:isPreferred="true" p5:templateUrl="templateUrl17" p5:icon="AAECAwQFBgcICQoLDA0ODw==" p5:isIM="true" p5:typeName="typeName17" xmlns:p5="urn:factiva:Communicator:Common:v1_0">
+        <p5:type>PhoneWork</p5:type>
+      </p2:contactInfo>
+      <p2:contactInfo p5:value="value18" p5:isPreferred="false" p5:templateUrl="templateUrl18" p5:icon="AAECAwQFBgcICQoLDA0ODw==" p5:isIM="false" p5:typeName="typeName18" xmlns:p5="urn:factiva:Communicator:Common:v1_0">
+        <p5:type>PhoneOutlet</p5:type>
+      </p2:contactInfo>
+    </p2:employment>
+    <p2:NNID>-2147483647</p2:NNID>
+    <p2:book p2:id="0" p2:name="name4" />
+    <p2:book p2:id="2" p2:name="name5" />
+    <p2:book p2:id="-2147483646" p2:name="name6" />
+    <p2:proprietaryInfoID>-2147483647</p2:proprietaryInfoID>
+    <p2:homeCountry p4:id="-2147483647" p4:name="name2" p4:code="code2" xmlns:p4="urn:factiva:Communicator:Common:v1_0" />
+    <p2:homeState p4:id="-2147483647" p4:name="name2" p4:code="code2" xmlns:p4="urn:factiva:Communicator:Common:v1_0" />
+    <p2:homeCity p4:id="-2147483647" p4:name="name2" p4:code="code2" xmlns:p4="urn:factiva:Communicator:Common:v1_0" />
+    <p2:dayBirth>-32768</p2:dayBirth>
+    <p2:monthBirth>-32768</p2:monthBirth>
+    <p2:yearBirth>-32768</p2:yearBirth>
+    <p2:column p4:id="0" p4:name="name4" p4:webAddress="webAddress4" xmlns:p4="urn:factiva:Communicator:Common:v1_0">
+      <p4:authorId>-2147483645</p4:authorId>
+      <p4:authorId>2147483645</p4:authorId>
+      <p4:authorId>-2</p4:authorId>
+      <p4:subjectBeat>
+        <p4:id>-2147483645</p4:id>
+        <p4:name>name10</p4:name>
+        <p4:parentBeatId>-2147483645</p4:parentBeatId>
+      </p4:subjectBeat>
+      <p4:subjectBeat>
+        <p4:id>2147483645</p4:id>
+        <p4:name>name11</p4:name>
+        <p4:parentBeatId>2147483645</p4:parentBeatId>
+      </p4:subjectBeat>
+      <p4:subjectBeat>
+        <p4:id>-2</p4:id>
+        <p4:name>name12</p4:name>
+        <p4:parentBeatId>-2</p4:parentBeatId>
+      </p4:subjectBeat>
+      <p4:industryBeat>
+        <p4:id>-2147483645</p4:id>
+        <p4:name>name10</p4:name>
+        <p4:parentBeatId>-2147483645</p4:parentBeatId>
+      </p4:industryBeat>
+      <p4:industryBeat>
+        <p4:id>2147483645</p4:id>
+        <p4:name>name11</p4:name>
+        <p4:parentBeatId>2147483645</p4:parentBeatId>
+      </p4:industryBeat>
+      <p4:industryBeat>
+        <p4:id>-2</p4:id>
+        <p4:name>name12</p4:name>
+        <p4:parentBeatId>-2</p4:parentBeatId>
+      </p4:industryBeat>
+      <p4:regionBeat p4:code="code10">
+        <p4:id>-2147483645</p4:id>
+        <p4:name>name10</p4:name>
+        <p4:parentBeatId>-2147483645</p4:parentBeatId>
+      </p4:regionBeat>
+      <p4:regionBeat p4:code="code11">
+        <p4:id>2147483645</p4:id>
+        <p4:name>name11</p4:name>
+        <p4:parentBeatId>2147483645</p4:parentBeatId>
+      </p4:regionBeat>
+      <p4:regionBeat p4:code="code12">
+        <p4:id>-2</p4:id>
+        <p4:name>name12</p4:name>
+        <p4:parentBeatId>-2</p4:parentBeatId>
+      </p4:regionBeat>
+    </p2:column>
+    <p2:column p4:id="2" p4:name="name5" p4:webAddress="webAddress5" xmlns:p4="urn:factiva:Communicator:Common:v1_0">
+      <p4:authorId>4</p4:authorId>
+      <p4:authorId>-2147483644</p4:authorId>
+      <p4:authorId>2147483644</p4:authorId>
+      <p4:subjectBeat>
+        <p4:id>4</p4:id>
+        <p4:name>name13</p4:name>
+        <p4:parentBeatId>4</p4:parentBeatId>
+      </p4:subjectBeat>
+      <p4:subjectBeat>
+        <p4:id>-2147483644</p4:id>
+        <p4:name>name14</p4:name>
+        <p4:parentBeatId>-2147483644</p4:parentBeatId>
+      </p4:subjectBeat>
+      <p4:subjectBeat>
+        <p4:id>2147483644</p4:id>
+        <p4:name>name15</p4:name>
+        <p4:parentBeatId>2147483644</p4:parentBeatId>
+      </p4:subjectBeat>
+      <p4:industryBeat>
+        <p4:id>4</p4:id>
+        <p4:name>name13</p4:name>
+        <p4:parentBeatId>4</p4:parentBeatId>
+      </p4:industryBeat>
+      <p4:industryBeat>
+        <p4:id>-2147483644</p4:id>
+        <p4:name>name14</p4:name>
+        <p4:parentBeatId>-2147483644</p4:parentBeatId>
+      </p4:industryBeat>
+      <p4:industryBeat>
+        <p4:id>2147483644</p4:id>
+        <p4:name>name15</p4:name>
+        <p4:parentBeatId>2147483644</p4:parentBeatId>
+      </p4:industryBeat>
+      <p4:regionBeat p4:code="code13">
+        <p4:id>4</p4:id>
+        <p4:name>name13</p4:name>
+        <p4:parentBeatId>4</p4:parentBeatId>
+      </p4:regionBeat>
+      <p4:regionBeat p4:code="code14">
+        <p4:id>-2147483644</p4:id>
+        <p4:name>name14</p4:name>
+        <p4:parentBeatId>-2147483644</p4:parentBeatId>
+      </p4:regionBeat>
+      <p4:regionBeat p4:code="code15">
+        <p4:id>2147483644</p4:id>
+        <p4:name>name15</p4:name>
+        <p4:parentBeatId>2147483644</p4:parentBeatId>
+      </p4:regionBeat>
+    </p2:column>
+    <p2:column p4:id="-2147483646" p4:name="name6" p4:webAddress="webAddress6" xmlns:p4="urn:factiva:Communicator:Common:v1_0">
+      <p4:authorId>-3</p4:authorId>
+      <p4:authorId>5</p4:authorId>
+      <p4:authorId>-2147483643</p4:authorId>
+      <p4:subjectBeat>
+        <p4:id>-3</p4:id>
+        <p4:name>name16</p4:name>
+        <p4:parentBeatId>-3</p4:parentBeatId>
+      </p4:subjectBeat>
+      <p4:subjectBeat>
+        <p4:id>5</p4:id>
+        <p4:name>name17</p4:name>
+        <p4:parentBeatId>5</p4:parentBeatId>
+      </p4:subjectBeat>
+      <p4:subjectBeat>
+        <p4:id>-2147483643</p4:id>
+        <p4:name>name18</p4:name>
+        <p4:parentBeatId>-2147483643</p4:parentBeatId>
+      </p4:subjectBeat>
+      <p4:industryBeat>
+        <p4:id>-3</p4:id>
+        <p4:name>name16</p4:name>
+        <p4:parentBeatId>-3</p4:parentBeatId>
+      </p4:industryBeat>
+      <p4:industryBeat>
+        <p4:id>5</p4:id>
+        <p4:name>name17</p4:name>
+        <p4:parentBeatId>5</p4:parentBeatId>
+      </p4:industryBeat>
+      <p4:industryBeat>
+        <p4:id>-2147483643</p4:id>
+        <p4:name>name18</p4:name>
+        <p4:parentBeatId>-2147483643</p4:parentBeatId>
+      </p4:industryBeat>
+      <p4:regionBeat p4:code="code16">
+        <p4:id>-3</p4:id>
+        <p4:name>name16</p4:name>
+        <p4:parentBeatId>-3</p4:parentBeatId>
+      </p4:regionBeat>
+      <p4:regionBeat p4:code="code17">
+        <p4:id>5</p4:id>
+        <p4:name>name17</p4:name>
+        <p4:parentBeatId>5</p4:parentBeatId>
+      </p4:regionBeat>
+      <p4:regionBeat p4:code="code18">
+        <p4:id>-2147483643</p4:id>
+        <p4:name>name18</p4:name>
+        <p4:parentBeatId>-2147483643</p4:parentBeatId>
+      </p4:regionBeat>
+    </p2:column>
+    <p2:education p2:id="0" p2:outcome="outcome4">
+      <p2:university p2:id="0" p2:name="name4">
+        <p2:country p6:id="0" p6:name="name4" p6:code="code4" xmlns:p6="urn:factiva:Communicator:Common:v1_0" />
+      </p2:university>
+      <p2:degree p2:type="type4" p2:subject="subject4" />
+      <p2:year>0</p2:year>
+    </p2:education>
+    <p2:education p2:id="2" p2:outcome="outcome5">
+      <p2:university p2:id="2" p2:name="name5">
+        <p2:country p6:id="2" p6:name="name5" p6:code="code5" xmlns:p6="urn:factiva:Communicator:Common:v1_0" />
+      </p2:university>
+      <p2:degree p2:type="type5" p2:subject="subject5" />
+      <p2:year>2</p2:year>
+    </p2:education>
+    <p2:education p2:id="-2147483646" p2:outcome="outcome6">
+      <p2:university p2:id="-2147483646" p2:name="name6">
+        <p2:country p6:id="-2147483646" p6:name="name6" p6:code="code6" xmlns:p6="urn:factiva:Communicator:Common:v1_0" />
+      </p2:university>
+      <p2:degree p2:type="type6" p2:subject="subject6" />
+      <p2:year>-2147483646</p2:year>
+    </p2:education>
+    <p2:socialNetwork p4:id="0" p4:name="name4" p4:url="url4" p4:icon="AAECAwQFBgcICQoLDA0ODw==" p4:templateUrl="templateUrl4" xmlns:p4="urn:factiva:Communicator:Common:v1_0" />
+    <p2:socialNetwork p4:id="2" p4:name="name5" p4:url="url5" p4:icon="AAECAwQFBgcICQoLDA0ODw==" p4:templateUrl="templateUrl5" xmlns:p4="urn:factiva:Communicator:Common:v1_0" />
+    <p2:socialNetwork p4:id="-2147483646" p4:name="name6" p4:url="url6" p4:icon="AAECAwQFBgcICQoLDA0ODw==" p4:templateUrl="templateUrl6" xmlns:p4="urn:factiva:Communicator:Common:v1_0" />
+    <p2:nameVariations p2:id="0" p2:name="name4" p2:type="Pseudonym" />
+    <p2:nameVariations p2:id="2" p2:name="name5" p2:type="None" />
+    <p2:nameVariations p2:id="-2147483646" p2:name="name6" p2:type="Alias" />
+  </author>
+  <author p2:middleName="middleName3" p2:namePrefix="namePrefix3" p2:nameSuffix="nameSuffix3" p2:gender="NotKnown" p2:lastArticleWrittenDate="9999-12-31T23:59:59.9999999+02:00" p2:deceased="true" p2:id="2147483647" p2:firstName="firstName3" p2:lastName="lastName3" p2:pitchNotes="pitchNotes3" p2:biography="biography3" p2:webSite="webSite3" xmlns:p2="urn:factiva:Communicator:AuthorService:v1_0">
+    <p2:outletId>2147483647</p2:outletId>
+    <p2:subjectBeat>
+      <id xmlns="urn:factiva:Communicator:Common:v1_0">2147483646</id>
+      <name xmlns="urn:factiva:Communicator:Common:v1_0">name7</name>
+      <parentBeatId xmlns="urn:factiva:Communicator:Common:v1_0">2147483646</parentBeatId>
+    </p2:subjectBeat>
+    <p2:subjectBeat>
+      <id xmlns="urn:factiva:Communicator:Common:v1_0">-1</id>
+      <name xmlns="urn:factiva:Communicator:Common:v1_0">name8</name>
+      <parentBeatId xmlns="urn:factiva:Communicator:Common:v1_0">-1</parentBeatId>
+    </p2:subjectBeat>
+    <p2:subjectBeat>
+      <id xmlns="urn:factiva:Communicator:Common:v1_0">3</id>
+      <name xmlns="urn:factiva:Communicator:Common:v1_0">name9</name>
+      <parentBeatId xmlns="urn:factiva:Communicator:Common:v1_0">3</parentBeatId>
+    </p2:subjectBeat>
+    <p2:industryBeat>
+      <id xmlns="urn:factiva:Communicator:Common:v1_0">2147483646</id>
+      <name xmlns="urn:factiva:Communicator:Common:v1_0">name7</name>
+      <parentBeatId xmlns="urn:factiva:Communicator:Common:v1_0">2147483646</parentBeatId>
+    </p2:industryBeat>
+    <p2:industryBeat>
+      <id xmlns="urn:factiva:Communicator:Common:v1_0">-1</id>
+      <name xmlns="urn:factiva:Communicator:Common:v1_0">name8</name>
+      <parentBeatId xmlns="urn:factiva:Communicator:Common:v1_0">-1</parentBeatId>
+    </p2:industryBeat>
+    <p2:industryBeat>
+      <id xmlns="urn:factiva:Communicator:Common:v1_0">3</id>
+      <name xmlns="urn:factiva:Communicator:Common:v1_0">name9</name>
+      <parentBeatId xmlns="urn:factiva:Communicator:Common:v1_0">3</parentBeatId>
+    </p2:industryBeat>
+    <p2:regionBeat p4:code="code7" xmlns:p4="urn:factiva:Communicator:Common:v1_0">
+      <p4:id>2147483646</p4:id>
+      <p4:name>name7</p4:name>
+      <p4:parentBeatId>2147483646</p4:parentBeatId>
+    </p2:regionBeat>
+    <p2:regionBeat p4:code="code8" xmlns:p4="urn:factiva:Communicator:Common:v1_0">
+      <p4:id>-1</p4:id>
+      <p4:name>name8</p4:name>
+      <p4:parentBeatId>-1</p4:parentBeatId>
+    </p2:regionBeat>
+    <p2:regionBeat p4:code="code9" xmlns:p4="urn:factiva:Communicator:Common:v1_0">
+      <p4:id>3</p4:id>
+      <p4:name>name9</p4:name>
+      <p4:parentBeatId>3</p4:parentBeatId>
+    </p2:regionBeat>
+    <p2:workingLanguage p4:id="2147483646" p4:Name="Name7" p4:Code="Code7" xmlns:p4="urn:factiva:Communicator:Common:v1_0" />
+    <p2:workingLanguage p4:id="-1" p4:Name="Name8" p4:Code="Code8" xmlns:p4="urn:factiva:Communicator:Common:v1_0" />
+    <p2:workingLanguage p4:id="3" p4:Name="Name9" p4:Code="Code9" xmlns:p4="urn:factiva:Communicator:Common:v1_0" />
+    <p2:address p4:id="2147483647" p4:building="building3" p4:isHeadquarters="true" p4:poBox="poBox3" p4:floor="floor3" p4:room="room3" p4:postOrZip="postOrZip3" p4:line2="line23" p4:line1="line13" xmlns:p4="urn:factiva:Communicator:Common:v1_0">
+      <p4:country p4:id="2147483647" p4:name="name3" p4:code="code3" />
+      <p4:state p4:id="2147483647" p4:name="name3" p4:code="code3" />
+      <p4:city p4:id="2147483647" p4:name="name3" p4:code="code3" />
+    </p2:address>
+    <p2:contactInfo p4:value="value7" p4:isPreferred="true" p4:templateUrl="templateUrl7" p4:icon="AAECAwQFBgcICQoLDA0ODw==" p4:isIM="true" p4:typeName="typeName7" xmlns:p4="urn:factiva:Communicator:Common:v1_0">
+      <p4:type>PhoneOutlet2</p4:type>
+    </p2:contactInfo>
+    <p2:contactInfo p4:value="value8" p4:isPreferred="false" p4:templateUrl="templateUrl8" p4:icon="AAECAwQFBgcICQoLDA0ODw==" p4:isIM="false" p4:typeName="typeName8" xmlns:p4="urn:factiva:Communicator:Common:v1_0">
+      <p4:type>Mobile</p4:type>
+    </p2:contactInfo>
+    <p2:contactInfo p4:value="value9" p4:isPreferred="true" p4:templateUrl="templateUrl9" p4:icon="AAECAwQFBgcICQoLDA0ODw==" p4:isIM="true" p4:typeName="typeName9" xmlns:p4="urn:factiva:Communicator:Common:v1_0">
+      <p4:type>MobileOutlet</p4:type>
+    </p2:contactInfo>
+    <p2:employment p2:id="2147483646" p2:jobTitle="jobTitle7" p2:dateUpdated="9999-11-29T23:59:59.9999999+02:00" p2:dateCreated="9999-11-29T23:59:59.9999999+02:00" p2:isPrimaryContact="true" p2:typeName="typeName7" p2:bureau="bureau7" p2:email="email7" p2:isPrimaryEmployer="true">
+      <p2:role p2:id="2147483646" p2:name="name7" />
+      <p2:outletId>2147483646</p2:outletId>
+      <p2:yearStart>2147483646</p2:yearStart>
+      <p2:yearEnd>2147483646</p2:yearEnd>
+      <p2:contactInfo p5:value="value19" p5:isPreferred="true" p5:templateUrl="templateUrl19" p5:icon="AAECAwQFBgcICQoLDA0ODw==" p5:isIM="true" p5:typeName="typeName19" xmlns:p5="urn:factiva:Communicator:Common:v1_0">
+        <p5:type>PhoneOutlet2</p5:type>
+      </p2:contactInfo>
+      <p2:contactInfo p5:value="value20" p5:isPreferred="false" p5:templateUrl="templateUrl20" p5:icon="AAECAwQFBgcICQoLDA0ODw==" p5:isIM="false" p5:typeName="typeName20" xmlns:p5="urn:factiva:Communicator:Common:v1_0">
+        <p5:type>Mobile</p5:type>
+      </p2:contactInfo>
+      <p2:contactInfo p5:value="value21" p5:isPreferred="true" p5:templateUrl="templateUrl21" p5:icon="AAECAwQFBgcICQoLDA0ODw==" p5:isIM="true" p5:typeName="typeName21" xmlns:p5="urn:factiva:Communicator:Common:v1_0">
+        <p5:type>MobileOutlet</p5:type>
+      </p2:contactInfo>
+    </p2:employment>
+    <p2:employment p2:id="-1" p2:jobTitle="jobTitle8" p2:dateUpdated="1899-10-29T01:01:01+03:00" p2:dateCreated="1899-10-29T01:01:01+03:00" p2:isPrimaryContact="false" p2:typeName="typeName8" p2:bureau="bureau8" p2:email="email8" p2:isPrimaryEmployer="false">
+      <p2:role p2:id="-1" p2:name="name8" />
+      <p2:outletId>-1</p2:outletId>
+      <p2:yearStart>-1</p2:yearStart>
+      <p2:yearEnd>-1</p2:yearEnd>
+      <p2:contactInfo p5:value="value22" p5:isPreferred="false" p5:templateUrl="templateUrl22" p5:icon="AAECAwQFBgcICQoLDA0ODw==" p5:isIM="false" p5:typeName="typeName22" xmlns:p5="urn:factiva:Communicator:Common:v1_0">
+        <p5:type>Fax</p5:type>
+      </p2:contactInfo>
+      <p2:contactInfo p5:value="value23" p5:isPreferred="true" p5:templateUrl="templateUrl23" p5:icon="AAECAwQFBgcICQoLDA0ODw==" p5:isIM="true" p5:typeName="typeName23" xmlns:p5="urn:factiva:Communicator:Common:v1_0">
+        <p5:type>FaxWork</p5:type>
+      </p2:contactInfo>
+      <p2:contactInfo p5:value="value24" p5:isPreferred="false" p5:templateUrl="templateUrl24" p5:icon="AAECAwQFBgcICQoLDA0ODw==" p5:isIM="false" p5:typeName="typeName24" xmlns:p5="urn:factiva:Communicator:Common:v1_0">
+        <p5:type>FaxOutlet</p5:type>
+      </p2:contactInfo>
+    </p2:employment>
+    <p2:employment p2:id="3" p2:jobTitle="jobTitle9" p2:dateUpdated="1900-03-06T01:01:01+02:00" p2:dateCreated="1900-03-06T01:01:01+02:00" p2:isPrimaryContact="true" p2:typeName="typeName9" p2:bureau="bureau9" p2:email="email9" p2:isPrimaryEmployer="true">
+      <p2:role p2:id="3" p2:name="name9" />
+      <p2:outletId>3</p2:outletId>
+      <p2:yearStart>3</p2:yearStart>
+      <p2:yearEnd>3</p2:yearEnd>
+      <p2:contactInfo p5:value="value25" p5:isPreferred="true" p5:templateUrl="templateUrl25" p5:icon="AAECAwQFBgcICQoLDA0ODw==" p5:isIM="true" p5:typeName="typeName25" xmlns:p5="urn:factiva:Communicator:Common:v1_0">
+        <p5:type>Email</p5:type>
+      </p2:contactInfo>
+      <p2:contactInfo p5:value="value26" p5:isPreferred="false" p5:templateUrl="templateUrl26" p5:icon="AAECAwQFBgcICQoLDA0ODw==" p5:isIM="false" p5:typeName="typeName26" xmlns:p5="urn:factiva:Communicator:Common:v1_0">
+        <p5:type>EmailWork</p5:type>
+      </p2:contactInfo>
+      <p2:contactInfo p5:value="value27" p5:isPreferred="true" p5:templateUrl="templateUrl27" p5:icon="AAECAwQFBgcICQoLDA0ODw==" p5:isIM="true" p5:typeName="typeName27" xmlns:p5="urn:factiva:Communicator:Common:v1_0">
+        <p5:type>EmailOutlet</p5:type>
+      </p2:contactInfo>
+    </p2:employment>
+    <p2:NNID>2147483647</p2:NNID>
+    <p2:book p2:id="2147483646" p2:name="name7" />
+    <p2:book p2:id="-1" p2:name="name8" />
+    <p2:book p2:id="3" p2:name="name9" />
+    <p2:proprietaryInfoID>2147483647</p2:proprietaryInfoID>
+    <p2:homeCountry p4:id="2147483647" p4:name="name3" p4:code="code3" xmlns:p4="urn:factiva:Communicator:Common:v1_0" />
+    <p2:homeState p4:id="2147483647" p4:name="name3" p4:code="code3" xmlns:p4="urn:factiva:Communicator:Common:v1_0" />
+    <p2:homeCity p4:id="2147483647" p4:name="name3" p4:code="code3" xmlns:p4="urn:factiva:Communicator:Common:v1_0" />
+    <p2:dayBirth>32767</p2:dayBirth>
+    <p2:monthBirth>32767</p2:monthBirth>
+    <p2:yearBirth>32767</p2:yearBirth>
+    <p2:column p4:id="2147483646" p4:name="name7" p4:webAddress="webAddress7" xmlns:p4="urn:factiva:Communicator:Common:v1_0">
+      <p4:authorId>2147483643</p4:authorId>
+      <p4:authorId>-4</p4:authorId>
+      <p4:authorId>6</p4:authorId>
+      <p4:subjectBeat>
+        <p4:id>2147483643</p4:id>
+        <p4:name>name19</p4:name>
+        <p4:parentBeatId>2147483643</p4:parentBeatId>
+      </p4:subjectBeat>
+      <p4:subjectBeat>
+        <p4:id>-4</p4:id>
+        <p4:name>name20</p4:name>
+        <p4:parentBeatId>-4</p4:parentBeatId>
+      </p4:subjectBeat>
+      <p4:subjectBeat>
+        <p4:id>6</p4:id>
+        <p4:name>name21</p4:name>
+        <p4:parentBeatId>6</p4:parentBeatId>
+      </p4:subjectBeat>
+      <p4:industryBeat>
+        <p4:id>2147483643</p4:id>
+        <p4:name>name19</p4:name>
+        <p4:parentBeatId>2147483643</p4:parentBeatId>
+      </p4:industryBeat>
+      <p4:industryBeat>
+        <p4:id>-4</p4:id>
+        <p4:name>name20</p4:name>
+        <p4:parentBeatId>-4</p4:parentBeatId>
+      </p4:industryBeat>
+      <p4:industryBeat>
+        <p4:id>6</p4:id>
+        <p4:name>name21</p4:name>
+        <p4:parentBeatId>6</p4:parentBeatId>
+      </p4:industryBeat>
+      <p4:regionBeat p4:code="code19">
+        <p4:id>2147483643</p4:id>
+        <p4:name>name19</p4:name>
+        <p4:parentBeatId>2147483643</p4:parentBeatId>
+      </p4:regionBeat>
+      <p4:regionBeat p4:code="code20">
+        <p4:id>-4</p4:id>
+        <p4:name>name20</p4:name>
+        <p4:parentBeatId>-4</p4:parentBeatId>
+      </p4:regionBeat>
+      <p4:regionBeat p4:code="code21">
+        <p4:id>6</p4:id>
+        <p4:name>name21</p4:name>
+        <p4:parentBeatId>6</p4:parentBeatId>
+      </p4:regionBeat>
+    </p2:column>
+    <p2:column p4:id="-1" p4:name="name8" p4:webAddress="webAddress8" xmlns:p4="urn:factiva:Communicator:Common:v1_0">
+      <p4:authorId>-2147483642</p4:authorId>
+      <p4:authorId>2147483642</p4:authorId>
+      <p4:authorId>-5</p4:authorId>
+      <p4:subjectBeat>
+        <p4:id>-2147483642</p4:id>
+        <p4:name>name22</p4:name>
+        <p4:parentBeatId>-2147483642</p4:parentBeatId>
+      </p4:subjectBeat>
+      <p4:subjectBeat>
+        <p4:id>2147483642</p4:id>
+        <p4:name>name23</p4:name>
+        <p4:parentBeatId>2147483642</p4:parentBeatId>
+      </p4:subjectBeat>
+      <p4:subjectBeat>
+        <p4:id>-5</p4:id>
+        <p4:name>name24</p4:name>
+        <p4:parentBeatId>-5</p4:parentBeatId>
+      </p4:subjectBeat>
+      <p4:industryBeat>
+        <p4:id>-2147483642</p4:id>
+        <p4:name>name22</p4:name>
+        <p4:parentBeatId>-2147483642</p4:parentBeatId>
+      </p4:industryBeat>
+      <p4:industryBeat>
+        <p4:id>2147483642</p4:id>
+        <p4:name>name23</p4:name>
+        <p4:parentBeatId>2147483642</p4:parentBeatId>
+      </p4:industryBeat>
+      <p4:industryBeat>
+        <p4:id>-5</p4:id>
+        <p4:name>name24</p4:name>
+        <p4:parentBeatId>-5</p4:parentBeatId>
+      </p4:industryBeat>
+      <p4:regionBeat p4:code="code22">
+        <p4:id>-2147483642</p4:id>
+        <p4:name>name22</p4:name>
+        <p4:parentBeatId>-2147483642</p4:parentBeatId>
+      </p4:regionBeat>
+      <p4:regionBeat p4:code="code23">
+        <p4:id>2147483642</p4:id>
+        <p4:name>name23</p4:name>
+        <p4:parentBeatId>2147483642</p4:parentBeatId>
+      </p4:regionBeat>
+      <p4:regionBeat p4:code="code24">
+        <p4:id>-5</p4:id>
+        <p4:name>name24</p4:name>
+        <p4:parentBeatId>-5</p4:parentBeatId>
+      </p4:regionBeat>
+    </p2:column>
+    <p2:column p4:id="3" p4:name="name9" p4:webAddress="webAddress9" xmlns:p4="urn:factiva:Communicator:Common:v1_0">
+      <p4:authorId>7</p4:authorId>
+      <p4:authorId>-2147483641</p4:authorId>
+      <p4:authorId>2147483641</p4:authorId>
+      <p4:subjectBeat>
+        <p4:id>7</p4:id>
+        <p4:name>name25</p4:name>
+        <p4:parentBeatId>7</p4:parentBeatId>
+      </p4:subjectBeat>
+      <p4:subjectBeat>
+        <p4:id>-2147483641</p4:id>
+        <p4:name>name26</p4:name>
+        <p4:parentBeatId>-2147483641</p4:parentBeatId>
+      </p4:subjectBeat>
+      <p4:subjectBeat>
+        <p4:id>2147483641</p4:id>
+        <p4:name>name27</p4:name>
+        <p4:parentBeatId>2147483641</p4:parentBeatId>
+      </p4:subjectBeat>
+      <p4:industryBeat>
+        <p4:id>7</p4:id>
+        <p4:name>name25</p4:name>
+        <p4:parentBeatId>7</p4:parentBeatId>
+      </p4:industryBeat>
+      <p4:industryBeat>
+        <p4:id>-2147483641</p4:id>
+        <p4:name>name26</p4:name>
+        <p4:parentBeatId>-2147483641</p4:parentBeatId>
+      </p4:industryBeat>
+      <p4:industryBeat>
+        <p4:id>2147483641</p4:id>
+        <p4:name>name27</p4:name>
+        <p4:parentBeatId>2147483641</p4:parentBeatId>
+      </p4:industryBeat>
+      <p4:regionBeat p4:code="code25">
+        <p4:id>7</p4:id>
+        <p4:name>name25</p4:name>
+        <p4:parentBeatId>7</p4:parentBeatId>
+      </p4:regionBeat>
+      <p4:regionBeat p4:code="code26">
+        <p4:id>-2147483641</p4:id>
+        <p4:name>name26</p4:name>
+        <p4:parentBeatId>-2147483641</p4:parentBeatId>
+      </p4:regionBeat>
+      <p4:regionBeat p4:code="code27">
+        <p4:id>2147483641</p4:id>
+        <p4:name>name27</p4:name>
+        <p4:parentBeatId>2147483641</p4:parentBeatId>
+      </p4:regionBeat>
+    </p2:column>
+    <p2:education p2:id="2147483646" p2:outcome="outcome7">
+      <p2:university p2:id="2147483646" p2:name="name7">
+        <p2:country p6:id="2147483646" p6:name="name7" p6:code="code7" xmlns:p6="urn:factiva:Communicator:Common:v1_0" />
+      </p2:university>
+      <p2:degree p2:type="type7" p2:subject="subject7" />
+      <p2:year>2147483646</p2:year>
+    </p2:education>
+    <p2:education p2:id="-1" p2:outcome="outcome8">
+      <p2:university p2:id="-1" p2:name="name8">
+        <p2:country p6:id="-1" p6:name="name8" p6:code="code8" xmlns:p6="urn:factiva:Communicator:Common:v1_0" />
+      </p2:university>
+      <p2:degree p2:type="type8" p2:subject="subject8" />
+      <p2:year>-1</p2:year>
+    </p2:education>
+    <p2:education p2:id="3" p2:outcome="outcome9">
+      <p2:university p2:id="3" p2:name="name9">
+        <p2:country p6:id="3" p6:name="name9" p6:code="code9" xmlns:p6="urn:factiva:Communicator:Common:v1_0" />
+      </p2:university>
+      <p2:degree p2:type="type9" p2:subject="subject9" />
+      <p2:year>3</p2:year>
+    </p2:education>
+    <p2:socialNetwork p4:id="2147483646" p4:name="name7" p4:url="url7" p4:icon="AAECAwQFBgcICQoLDA0ODw==" p4:templateUrl="templateUrl7" xmlns:p4="urn:factiva:Communicator:Common:v1_0" />
+    <p2:socialNetwork p4:id="-1" p4:name="name8" p4:url="url8" p4:icon="AAECAwQFBgcICQoLDA0ODw==" p4:templateUrl="templateUrl8" xmlns:p4="urn:factiva:Communicator:Common:v1_0" />
+    <p2:socialNetwork p4:id="3" p4:name="name9" p4:url="url9" p4:icon="AAECAwQFBgcICQoLDA0ODw==" p4:templateUrl="templateUrl9" xmlns:p4="urn:factiva:Communicator:Common:v1_0" />
+    <p2:nameVariations p2:id="2147483646" p2:name="name7" p2:type="Nickname" />
+    <p2:nameVariations p2:id="-1" p2:name="name8" p2:type="Pseudonym" />
+    <p2:nameVariations p2:id="3" p2:name="name9" p2:type="None" />
+  </author>
+  <totalRecords>1</totalRecords>
+</GetAuthorListDetailResponse>

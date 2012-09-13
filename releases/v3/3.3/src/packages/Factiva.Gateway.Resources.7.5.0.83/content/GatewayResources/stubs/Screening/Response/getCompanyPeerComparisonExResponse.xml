@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GetCompanyPeerComparisonExResponse xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="urn:factiva:fcp:v2_0">
+  <GetCompanyPeerComparisonExResult contentRestricted="false">
+    <industry code="i3302020" industryCodeScheme="FII" totalCompanies="193">
+      <descriptor lang="en">Systems Software</descriptor>
+      <description lang="en">Computer operating systems software (programs that manage all the other programs in a computer). E.g. UNIX, Windows, VMS.</description>
+    </industry>
+    <otherIndustry>
+      <parents industryCodeScheme="FII">
+        <industry code="i3302020" level="1" lang="en" totalCompanies="193">Systems Software</industry>
+        <industry code="i330202" level="2" lang="en" totalCompanies="1578">Software</industry>
+        <industry code="icomp" level="3" lang="en" totalCompanies="3214">Computing</industry>
+        <industry code="i3302" level="4" lang="en" totalCompanies="6553">Computers/Electronics</industry>
+      </parents>
+      <parents industryCodeScheme="NACE">
+        <industry code="72.2" level="1" lang="en" totalCompanies="1005">Software consultancy and supply</industry>
+        <industry code="72" level="2" lang="en" totalCompanies="2562">Computer and related activities</industry>
+        <industry code="KA" level="3" lang="en" totalCompanies="8106">Real estate, renting and business activities</industry>
+        <industry code="K" level="4" lang="en" totalCompanies="8106">Real estate, renting and business activities</industry>
+      </parents>
+      <parents industryCodeScheme="NAICS">
+        <industry code="511210" level="1" lang="en" totalCompanies="967">Software Publishers</industry>
+        <industry code="51121" level="2" lang="en" totalCompanies="967">Software Publishers</industry>
+        <industry code="5112" level="3" lang="en" totalCompanies="967">Software Publishers</industry>
+        <industry code="511" level="4" lang="en" totalCompanies="1306">Publishing Industries (except Internet)</industry>
+        <industry code="51" level="5" lang="en" totalCompanies="2911">Information</industry>
+      </parents>
+      <parents industryCodeScheme="SIC">
+        <industry code="7372" level="1" lang="en" totalCompanies="1003">Prepackaged Software</industry>
+        <industry code="737" level="2" lang="en" totalCompanies="2706">Computer Programming, Data Processing</industry>
+        <industry code="73" level="3" lang="en" totalCompanies="3719">Business services</industry>
+        <industry code="I" level="4" lang="en" totalCompanies="6614">Services</industry>
+      </parents>
+    </otherIndustry>
+    <companies referenceCompanyFcode="MCROST" count="10">
+      <company rank="1" fcode="TSHBC" lastUpdated="2007-09-30T04:45:00">
+        <providerID>BRRIVST</providerID>
+        <sourceCode>RRSCH</sourceCode>
+        <companyName>Toshiba Corporation</companyName>
+        <sales>63325174008</sales>
+        <employees>190708</employees>
+        <marketCap>27584850000</marketCap>
+        <netIncome>1188266828</netIncome>
+        <netProfitMargin>2.09</netProfitMargin>
+        <lastReportedPeriod>2007-06-30</lastReportedPeriod>
+        <ownershipType>Public</ownershipType>
+        <ric>TOSBF.PK</ric>
+        <djTicker>TOSBF</djTicker>
+        <primaryExchange>PNK</primaryExchange>
+        <newsMentions>0</newsMentions>
+        <region>JAP</region>
+        <regionDescriptor>Japan</regionDescriptor>
+        <industry>i3302020</industry>
+        <industryDescriptor>Systems Software</industryDescriptor>
+        <currency>USD</currency>
+        <phone>81 3 34574511</phone>
+        <fax>81 3 54449202</fax>
+      </company>
+      <company rank="2" fcode="MCROST" lastUpdated="2009-12-10T11:56:00" referenceCompany="true">
+        <providerID>FACTSET</providerID>
+        <sourceCode>FSET</sourceCode>
+        <companyName>Microsoft Corp.</companyName>
+        <sales>58437000000</sales>
+        <marketCap>267979000000</marketCap>
+        <netIncome>14569000000</netIncome>
+        <netProfitMargin>24.93</netProfitMargin>
+        <lastReportedPeriod>2009</lastReportedPeriod>
+        <ownershipType>Public</ownershipType>
+        <ric>MSFT.O</ric>
+        <djTicker>MSFT</djTicker>
+        <newsMentions>147330</newsMentions>
+        <region>USA</region>
+        <regionDescriptor>United States</regionDescriptor>
+        <industry>i3302020</industry>
+        <industryDescriptor>Systems Software</industryDescriptor>
+        <currency>USD</currency>
+        <address1>One Microsoft Way</address1>
+        <state>WASHINGTON</state>
+        <country>UNITED STATES</country>
+        <postalCode>98052-6399</postalCode>
+        <phone>425 8828080</phone>
+        <mainContactName>Bill Koefoed, General Manager IR</mainContactName>
+        <mainContactPhone>425 7068000</mainContactPhone>
+        <mainContactEmail>msft@microsoft.com</mainContactEmail>
+      </company>
+      <company rank="3" fcode="SAICIU" lastUpdated="2009-12-10T12:05:00">
+        <providerID>FACTSET</providerID>
+        <sourceCode>FSET</sourceCode>
+        <companyName>SAIC, Inc.</companyName>
+        <sales>10070000000</sales>
+        <marketCap>3820520000</marketCap>
+        <netIncome>447000000</netIncome>
+        <netProfitMargin>4.44</netProfitMargin>
+        <lastReportedPeriod>2008</lastReportedPeriod>
+        <ownershipType>Public</ownershipType>
+        <djTicker>SAI</djTicker>
+        <newsMentions>0</newsMentions>
+        <region>USA</region>
+        <regionDescriptor>United States</regionDescriptor>
+        <industry>i3302020</industry>
+        <industryDescriptor>Systems Software</industryDescriptor>
+        <currency>USD</currency>
+        <address1>10260 Campus Point Drive</address1>
+        <state>CALIFORNIA</state>
+        <country>UNITED STATES</country>
+        <postalCode>92121</postalCode>
+        <phone>858 8266000</phone>
+        <mainContactName>Stuart Davis, Senior Vice President</mainContactName>
+        <mainContactPhone>703 6766344</mainContactPhone>
+      </company>
+      <company rank="4" fcode="DIMDHP" lastUpdated="2009-12-05T09:01:00">
+        <providerID>BRRIVST</providerID>
+        <sourceCode>RRSCH</sourceCode>
+        <companyName>Dimension Data Holdings plc</companyName>
+        <sales>4510640000</sales>
+        <employees>11055</employees>
+        <marketCap>2106754522</marketCap>
+        <netIncome>118410000</netIncome>
+        <netProfitMargin>3.13</netProfitMargin>
+        <lastReportedPeriod>2008-09-30</lastReportedPeriod>
+        <ownershipType>Public</ownershipType>
+        <ric>DDT.L</ric>
+        <djTicker>DDT</djTicker>
+        <primaryExchange>LSE</primaryExchange>
+        <newsMentions>0</newsMentions>
+        <region>SAFR</region>
+        <regionDescriptor>South Africa</regionDescriptor>
+        <industry>i3302020</industry>
+        <industryDescriptor>Systems Software</industryDescriptor>
+        <currency>USD</currency>
+        <address1>The Campus</address1>
+        <address2>57 Sloane Street</address2>
+        <address3>Bryanston</address3>
+        <city>Johannesburg</city>
+        <country>South Africa</country>
+        <postalCode>2191</postalCode>
+        <phone>27 11 5750000</phone>
+        <fax>27 11 5750000</fax>
+      </company>
+      <company rank="5" fcode="NIPBC" lastUpdated="2009-12-05T10:34:00">
+        <providerID>BRRIVST</providerID>
+        <sourceCode>RRSCH</sourceCode>
+        <companyName>Hitachi Information Systems, Ltd.</companyName>
+        <sales>2038229972</sales>
+        <employees>6990</employees>
+        <marketCap>1404328891</marketCap>
+        <netIncome>71053353</netIncome>
+        <netProfitMargin>2.95</netProfitMargin>
+        <lastReportedPeriod>2009-03-31</lastReportedPeriod>
+        <ownershipType>Public</ownershipType>
+        <ric>9741.T</ric>
+        <djTicker>jT9741</djTicker>
+        <primaryExchange>TYO</primaryExchange>
+        <newsMentions>15</newsMentions>
+        <region>JAP</region>
+        <regionDescriptor>Japan</regionDescriptor>
+        <industry>I3302020</industry>
+        <industryDescriptor>Systems Software</industryDescriptor>
+        <currency>USD</currency>
+        <address1>1-2-1, Osaki</address1>
+        <city>Tokyo</city>
+        <state>TKY</state>
+        <country>Japan</country>
+        <postalCode>141-8672</postalCode>
+        <phone>81 3 54355002</phone>
+      </company>
+      <company rank="6" fcode="HITSOF" lastUpdated="2009-12-05T09:42:00">
+        <providerID>BRRIVST</providerID>
+        <sourceCode>RRSCH</sourceCode>
+        <companyName>Hitachi Software Engineering Co., Ltd.</companyName>
+        <sales>1890673432</sales>
+        <employees>6501</employees>
+        <marketCap>1869223702</marketCap>
+        <netIncome>43516628</netIncome>
+        <netProfitMargin>4.59</netProfitMargin>
+        <lastReportedPeriod>2009-03-31</lastReportedPeriod>
+        <ownershipType>Public</ownershipType>
+        <ric>9694.T</ric>
+        <djTicker>jT9694</djTicker>
+        <primaryExchange>TYO</primaryExchange>
+        <newsMentions>10</newsMentions>
+        <region>JAP</region>
+        <regionDescriptor>Japan</regionDescriptor>
+        <industry>i3302020</industry>
+        <industryDescriptor>Systems Software</industryDescriptor>
+        <currency>USD</currency>
+        <address1>4-12-7 Higashi-Shinagawa</address1>
+        <city>Tokyo</city>
+        <state>TKY</state>
+        <country>Japan</country>
+        <postalCode>140-0002</postalCode>
+        <phone>81 3 57802111</phone>
+      </company>
+      <company rank="7" fcode="CMPWRE" lastUpdated="2009-12-10T11:35:00">
+        <providerID>FACTSET</providerID>
+        <sourceCode>FSET</sourceCode>
+        <companyName>Compuware Corp.</companyName>
+        <sales>1090455000</sales>
+        <marketCap>1721620000</marketCap>
+        <netIncome>139647000</netIncome>
+        <netProfitMargin>12.81</netProfitMargin>
+        <lastReportedPeriod>2009</lastReportedPeriod>
+        <ownershipType>Public</ownershipType>
+        <ric>CPWR.O</ric>
+        <djTicker>CPWR</djTicker>
+        <newsMentions>118</newsMentions>
+        <region>USA</region>
+        <regionDescriptor>United States</regionDescriptor>
+        <industry>I3302020</industry>
+        <industryDescriptor>Systems Software</industryDescriptor>
+        <currency>USD</currency>
+        <address1>One Campus Martius</address1>
+        <state>MICHIGAN</state>
+        <country>UNITED STATES</country>
+        <postalCode>48226-5099</postalCode>
+        <phone>313 2277300</phone>
+        <mainContactName>Lisa Elkin, Vice President IR</mainContactName>
+        <mainContactPhone>313 2277345</mainContactPhone>
+        <mainContactEmail>lisa.elkin@compuware.com</mainContactEmail>
+      </company>
+      <company rank="8" fcode="PCWR" lastUpdated="2009-12-05T09:20:00">
+        <providerID>BRRIVST</providerID>
+        <sourceCode>RRSCH</sourceCode>
+        <companyName>PC-Ware Information Technologies AG</companyName>
+        <sales>1001065994</sales>
+        <employees>1485</employees>
+        <marketCap>206829812</marketCap>
+        <netIncome>11033617</netIncome>
+        <netProfitMargin>0.99</netProfitMargin>
+        <lastReportedPeriod>2009-03-31</lastReportedPeriod>
+        <ownershipType>Public</ownershipType>
+        <ric>PCWG.DE</ric>
+        <djTicker>eiPCW</djTicker>
+        <primaryExchange>GER</primaryExchange>
+        <newsMentions>8</newsMentions>
+        <region>GFR</region>
+        <regionDescriptor>Germany</regionDescriptor>
+        <industry>I3302020</industry>
+        <industryDescriptor>Systems Software</industryDescriptor>
+        <currency>USD</currency>
+        <address1>Blochstrasse 1</address1>
+        <city>Leipzig</city>
+        <country>Germany</country>
+        <postalCode>04329</postalCode>
+        <phone>49 341 2568000</phone>
+        <fax>49 341 2568999</fax>
+      </company>
+      <company rank="9" fcode="NINC" lastUpdated="2009-12-10T11:42:00">
+        <providerID>FACTSET</providerID>
+        <sourceCode>FSET</sourceCode>
+        <companyName>Novell, Inc.</companyName>
+        <sales>956513000</sales>
+        <marketCap>0</marketCap>
+        <netIncome>0</netIncome>
+        <netProfitMargin>0.00</netProfitMargin>
+        <lastReportedPeriod>2008</lastReportedPeriod>
+        <ownershipType>Public</ownershipType>
+        <ric>NOVL.O</ric>
+        <djTicker>NOVL</djTicker>
+        <newsMentions>87</newsMentions>
+        <region>USA</region>
+        <regionDescriptor>United States</regionDescriptor>
+        <industry>i3302020</industry>
+        <industryDescriptor>Systems Software</industryDescriptor>
+        <currency>USD</currency>
+        <address1>Suite 500</address1>
+        <address2>404 Wyman Street</address2>
+        <state>MASSACHUSETTS</state>
+        <country>UNITED STATES</country>
+        <postalCode>02451</postalCode>
+        <phone>781 4648000</phone>
+        <mainContactName>Susan Walker White, Director IR</mainContactName>
+        <mainContactPhone>800 3173195</mainContactPhone>
+        <mainContactEmail>irmail@novell.com</mainContactEmail>
+      </company>
+      <company rank="10" fcode="SOFTAG" lastUpdated="2009-12-05T09:01:00">
+        <providerID>BRRIVST</providerID>
+        <sourceCode>RRSCH</sourceCode>
+        <companyName>Software AG</companyName>
+        <sales>942502877</sales>
+        <employees>3479</employees>
+        <marketCap>3274574532</marketCap>
+        <netIncome>151590457</netIncome>
+        <netProfitMargin>16.08</netProfitMargin>
+        <lastReportedPeriod>2008-12-31</lastReportedPeriod>
+        <ownershipType>Public</ownershipType>
+        <ric>SOWG.F</ric>
+        <djTicker>eiSOW</djTicker>
+        <primaryExchange>FRA</primaryExchange>
+        <newsMentions>111</newsMentions>
+        <region>GFR</region>
+        <regionDescriptor>Germany</regionDescriptor>
+        <industry>I3302020</industry>
+        <industryDescriptor>Systems Software</industryDescriptor>
+        <currency>USD</currency>
+        <address1>Uhlandstrasse 12</address1>
+        <city>Darmstadt</city>
+        <country>Germany</country>
+        <postalCode>64297</postalCode>
+        <phone>49 6151 920</phone>
+        <fax>49 6151 921191</fax>
+      </company>
+    </companies>
+  </GetCompanyPeerComparisonExResult>
+</GetCompanyPeerComparisonExResponse>

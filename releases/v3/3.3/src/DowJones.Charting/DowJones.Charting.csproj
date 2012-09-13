@@ -1,0 +1,205 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{A8BBD7EC-67E5-48E8-A283-3547A059ED83}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DowJones.Charting</RootNamespace>
+    <AssemblyName>DowJones.Charting</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\src\</SolutionDir>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CordaNetEmbedder">
+      <HintPath>..\packages\Corda.Embedder.7.0.0\lib\CordaNetEmbedder.dll</HintPath>
+    </Reference>
+    <Reference Include="factiva.gateway.messages">
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.90\lib\factiva.gateway.messages.dll</HintPath>
+    </Reference>
+    <Reference Include="FactivaGateway">
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.90\lib\FactivaGateway.dll</HintPath>
+    </Reference>
+    <Reference Include="Interop.FCMLib">
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.83\lib\Interop.FCMLib.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="itextsharp, Version=5.2.0.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\iTextSharp.5.2.0\lib\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.1.2.99\lib\2.0\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.4.0.8\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject, Version=2.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Ninject.2.2.1.4\lib\net40-Full\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="Svg, Version=0.5.2.17984, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Svg.0.5.2.17984\lib\Svg.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\SolutionInfo.cs">
+      <Link>Properties\SolutionInfo.cs</Link>
+    </Compile>
+    <Compile Include="Highcharts\SaveImageHttpHandler.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Highcharts\ImageHttpHandler.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Highcharts\ExportChart.cs" />
+    <Compile Include="Highcharts\Exporter.cs" />
+    <Compile Include="Highcharts\ExporterHttpHandler.cs" />
+    <Compile Include="Manager\ChartFormatType.cs" />
+    <Compile Include="Manager\ChartingManager.cs" />
+    <Compile Include="Manager\ChartTemplate.cs" />
+    <Compile Include="Manager\ColorUtilities.cs" />
+    <Compile Include="Common\BubbleMapChartDataSet.cs" />
+    <Compile Include="Common\BubbleMapChartGenerator.cs" />
+    <Compile Include="Common\ComboStocHlocGenerator.cs" />
+    <Compile Include="Common\ComboStockBarChartGenerator.cs" />
+    <Compile Include="Common\ComboStockHlGenerator.cs" />
+    <Compile Include="Common\ComboTimeLineBarChartGenerator.cs" />
+    <Compile Include="Common\PieLegendChartDataSet.cs" />
+    <Compile Include="Common\PieLegendChartGenerator.cs" />
+    <Compile Include="Common\StackedBarChartDataSet.cs" />
+    <Compile Include="Common\StackedBarChartGenerator.cs" />
+    <Compile Include="Common\StockChartDataSet.cs" />
+    <Compile Include="Common\TimeLineChartDataSet.cs" />
+    <Compile Include="Common\TrendChartDataSet.cs" />
+    <Compile Include="Common\TrendChartGenerator.cs" />
+    <Compile Include="Core\AbstractChartGenerator.cs" />
+    <Compile Include="Core\Data\BaseItem.cs" />
+    <Compile Include="Core\Data\BaseLine.cs" />
+    <Compile Include="Core\Data\BubbleMapSeries.cs" />
+    <Compile Include="Core\Data\Column.cs" />
+    <Compile Include="Core\Data\Core.cs" />
+    <Compile Include="Core\Data\DataItem.cs" />
+    <Compile Include="Core\Data\Enum.cs" />
+    <Compile Include="Core\Data\Legend.cs" />
+    <Compile Include="Core\Data\Line.cs" />
+    <Compile Include="Core\Data\PieSeries.cs" />
+    <Compile Include="Core\Data\SeriesItem.cs" />
+    <Compile Include="Core\Data\StackedBarSeries.cs" />
+    <Compile Include="Core\Data\StockDataItem.cs" />
+    <Compile Include="Core\Data\StockItem.cs" />
+    <Compile Include="Core\Data\StockSeries.cs" />
+    <Compile Include="Core\Data\TextBox.cs" />
+    <Compile Include="Core\Data\TimeItem.cs" />
+    <Compile Include="Core\Data\TimeSeries.cs" />
+    <Compile Include="Core\Data\TrendSeries.cs" />
+    <Compile Include="Core\DateTimeFormat.cs" />
+    <Compile Include="Core\Enum.cs" />
+    <Compile Include="Core\IBytesResponse.cs" />
+    <Compile Include="Core\IChartGenerator.cs" />
+    <Compile Include="Core\IEmbeddedHTMLResponse.cs" />
+    <Compile Include="Core\IGeneratesITXML.cs" />
+    <Compile Include="Core\IUriResponse.cs" />
+    <Compile Include="Core\Palettes\AbstractColorPalette.cs" />
+    <Compile Include="Core\Palettes\Core.cs" />
+    <Compile Include="Core\Palettes\IColorPalette.cs" />
+    <Compile Include="Core\Response\ChartBytesResponse.cs" />
+    <Compile Include="Core\Response\ChartEmbeddedHTMLResponse.cs" />
+    <Compile Include="Core\Response\ChartUriResponse.cs" />
+    <Compile Include="Discovery\DiscoveryBarChartDataSet.cs" />
+    <Compile Include="Discovery\DiscoveryBarChartGenerator.cs" />
+    <Compile Include="Discovery\DiscoveryChartDataSet.cs" />
+    <Compile Include="Discovery\DiscoveryChartGenerator.cs" />
+    <Compile Include="Discovery\enum.cs" />
+    <Compile Include="Discovery\KeywordsNewsClustersChartGenerator.cs" />
+    <Compile Include="Discovery\TextBoxDataSet.cs" />
+    <Compile Include="Fcp\BarChartDataSet.cs" />
+    <Compile Include="Fcp\BarChartGenerator.cs" />
+    <Compile Include="Fcp\ScreeningPieChartDataSet.cs" />
+    <Compile Include="Fcp\ScreeningPieChartGenerator.cs" />
+    <Compile Include="Fcp\TimeLineChartGenerator.cs" />
+    <Compile Include="Fcp\TimeLineStockChartGenerator.cs" />
+    <Compile Include="Manager\PlatformCacheManager.cs" />
+    <Compile Include="MarketData\ThumbnailStockChartDataSet.cs" />
+    <Compile Include="MarketData\ThumbnailStockChartGenerator.cs" />
+    <Compile Include="Manager\OutputChartType.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Segmentation\InvestmentBanker\ThumbnailStockChartDataSet.cs" />
+    <Compile Include="Segmentation\InvestmentBanker\ThumbnailStockChartGenerator.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="DowJones.Charting.nuspec" />
+    <None Include="ITXMLs\common\bubblemap_lg.itxml" />
+    <None Include="ITXMLs\common\bubblemap_sm.itxml" />
+    <None Include="ITXMLs\common\pielegend_lg.itxml" />
+    <None Include="ITXMLs\common\pielegend_sm.itxml" />
+    <None Include="ITXMLs\common\stackedbar_lg.itxml" />
+    <None Include="ITXMLs\common\stackedbar_sm.itxml" />
+    <None Include="ITXMLs\common\trend_lg.itxml" />
+    <None Include="ITXMLs\common\trend_sm.itxml" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ITXMLs\segmentation\investmentbanker\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DowJones.Infrastructure\DowJones.Infrastructure.csproj">
+      <Project>{095DE252-E183-4AE6-824A-B4504AE737C1}</Project>
+      <Name>DowJones.Infrastructure</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

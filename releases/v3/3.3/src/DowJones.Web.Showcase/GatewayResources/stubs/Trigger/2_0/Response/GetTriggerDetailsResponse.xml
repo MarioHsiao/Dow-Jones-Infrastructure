@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<GetTriggerDetailsResponse xmlns="urn:dowjones:emg:tr:v2_0" xmlns:s2="http://types.factiva.com/search" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<getTriggerDetailsResponseContent serverIPAddress="String" apiVersion="String">
+		<status code="0">String</status>
+		<getTriggerDetailsResults>
+			<masterTrigger displayLowerDateTime="2001-12-17T09:30:47Z" confidence="0" lastPublicationDateTime="2001-12-17T09:30:47Z" modifiedDateTime="2001-12-17T09:30:47Z" createDateTime="2001-12-17T09:30:47Z" currentAwarenessDateTime="2001-12-17T09:30:47Z" displayUpperDateTime="2001-12-17T09:30:47Z" mostRecentTriggerDateTime="2001-12-17T09:30:47Z" displayName="String" instanceCount="0" firstPublicationDateTime="2001-12-17T09:30:47Z" id="2147483647" code="String" documentCount="0" confidenceRange="String">
+				<property sortOrder="0" minimumRequired="0" allowReference="String" type="String" requiredToMerge="true" maximumAllowed="String" displayName="String" isDataTranslatable="true" code="String">
+					<value isMostRecent="true" content="String" code="String">
+						<reference>String</reference>
+						<feature name="String" content="String"/>
+						<triggerInstanceId>2147483647</triggerInstanceId>
+					</value>
+					<validValue displayName="String" code="String"/>
+					<description>String</description>
+					<feature name="String" content="String"/>
+				</property>
+				<document>
+					<contentHeadline>
+						<s2:rank>String</s2:rank>
+						<s2:documentVector>String</s2:documentVector>
+						<s2:accessionNo>String</s2:accessionNo>
+						<s2:ipDocumentID>String</s2:ipDocumentID>
+						<s2:attributionCode>String</s2:attributionCode>
+						<s2:wordCount>0</s2:wordCount>
+						<s2:publicationDate>1967-08-13</s2:publicationDate>
+						<s2:publicationTime>14:20:00.0Z</s2:publicationTime>
+						<s2:baseLanguage>String</s2:baseLanguage>
+						<s2:linkage>String</s2:linkage>
+						<s2:sourceCode>String</s2:sourceCode>
+						<s2:sourceName>String</s2:sourceName>
+						<s2:sectionName/>
+						<s2:columnName/>
+						<s2:headline/>
+						<s2:snippet/>
+						<s2:byline/>
+						<s2:credit/>
+						<s2:copyright/>
+						<s2:truncationRules>
+							<s2:extraSmall>0</s2:extraSmall>
+							<s2:small>0</s2:small>
+							<s2:medium>0</s2:medium>
+							<s2:large>0</s2:large>
+						</s2:truncationRules>
+						<s2:contentItems>
+							<s2:contentType>String</s2:contentType>
+							<s2:primaryRef>String</s2:primaryRef>
+							<s2:item size="String" subtype="String" ref="String" type="String" mimetype="String" la="String"/>
+						</s2:contentItems>
+						<s2:codeSets count="0">
+							<s2:codeSet id="String">
+								<s2:code scheme="String" language="String" id="String">String</s2:code>
+							</s2:codeSet>
+						</s2:codeSets>
+					</contentHeadline>
+					<instanceTrigger publicationDateTime="2001-12-17T09:30:47Z" confidence="0" confidenceRange="String" upperDateTime="2001-12-17T09:30:47Z" lowerDateTime="2001-12-17T09:30:47Z" id="2147483647" code="String">
+						<detectionKeyword endIndex="0" startIndex="0">String</detectionKeyword>
+						<detectionPhrase endIndex="0" startIndex="0">String</detectionPhrase>
+					</instanceTrigger>
+				</document>
+			</masterTrigger>
+		</getTriggerDetailsResults>
+		<getTriggerDetailsRequest>
+			<masterTriggerIds>2147483647</masterTriggerIds>
+			<interfaceLanguageCode>en</interfaceLanguageCode>
+		</getTriggerDetailsRequest>
+	</getTriggerDetailsResponseContent>
+</GetTriggerDetailsResponse>

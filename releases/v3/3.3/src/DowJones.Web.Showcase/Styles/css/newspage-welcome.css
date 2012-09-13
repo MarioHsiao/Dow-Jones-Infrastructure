@@ -1,0 +1,27 @@
+/*
+
+	-- -- -- -- -- -- --
+	Description: 
+	Version: 0.1
+	Last Update: 11/17/2010
+	Authors:
+	Company: Dow Jones & Company Inc.
+	Copyright 2010 Dow Jones & Company Inc.
+	
+	Dependencies
+	
+	-- -- -- -- -- -- --
+	
+*/
+
+.welcome-message {
+	margin-bottom:10px;
+}
+
+.welcome-message h2 {
+	color:#333;
+	font-size:167%;
+}
+
+.welcome-message p {
+}

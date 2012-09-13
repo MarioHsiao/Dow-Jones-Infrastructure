@@ -1,0 +1,76 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+    <title>Tweet Experts</title>
+    <link href="../../../DowJones.Web.Showcase/styles/css/reset.css" type="text/css"
+        rel="stylesheet">
+    <link href="../../../DowJones.Web.Showcase/styles/css/global.css" type="text/css"
+        rel="stylesheet">
+    <link href="phoenixbundle.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <div class="twitter_experts">
+        
+    </div>
+</body>
+<script type="text/javascript" src="../../../DowJones.Web.Mvc/Resources/js/core.js"></script>
+
+<script type="text/javascript" src="https://raw.github.com/olado/doT/master/doT.js"></script>
+<script type="text/javascript" src="ExpertsMockFeedData.js"></script>
+<script type="text/javascript" src="../../../DowJones.Web.Mvc.UI.Components/TwitterExperts/TwitterExperts.js"></script>
+<script type="text/template" id="experts">
+<% 
+var experts = self.experts, options = self.options, expertsCount = experts.length, count = 0, expert;
+%>
+
+<div class="expert-list-cnt clearfix">
+    <ul class="expert-list column_one">
+    <% for(i = 0; i < expertsCount; i++) {
+        expert = experts[i]; 
+    %>
+        <li class="top_expert-data" data-user-id="<%= expert.id%>" data-screen-name="<%= expert.screenName%>">
+        <div class="avatar">
+            <img width="32" height="32" class="expert-profile-link" alt="<%= expert.Name %>" src="<%= expert.profile_image_url %>"/>
+        </div> 
+        <div class="expert_info">
+            <span class="expert-full-name"><a title="<%= expert.Name%>" href="javascript:void(0)" class="expert-profile-link"><%= expert.Name%></a></span>
+            <% if (expert.verified){%>
+                <span class="verified-icon" title="<%= Token("verified") %>"></span>
+            <% } %><br/>
+            <span class="expert-screen-name">@<%= expert.screenName %></span>
+        </div>
+        </li>
+        <% } %>
+    </ul>
+</div>
+
+</script>
+
+<script type="text/javascript">
+    doT.templateSettings = {
+        evaluate: /<%([\s\S]+?)%>/g,
+        interpolate: /<%=([\s\S]+?)%>/g,
+        encode: /<%!([\s\S]+?)%>/g,
+        use: /<%#([\s\S]+?)%>/g,
+        define: /<%##\s*([\w\.$]+)\s*(\:|=)([\s\S]+?)#%>/g,
+        varname: 'self',
+        strip: true,
+        append: true
+    };
+</script>
+<script type="text/javascript">
+    $(function () {
+        var expertsTemplate = $('#experts').html();
+        //console.log(expertsTemplate);
+        $.extend(DJ.UI.TwitterExperts.prototype.templates, { topexperts: doT.template(expertsTemplate) });
+        $('div.twitter_experts').dj_TwitterExperts({ data: mockExperts.data, options: 10 });
+        //                var expertsTemplate = $('#experts').html();
+        //                var anyonymous_self_function = doT.template(expertsTemplate);
+        //                var htmldata = anyonymous_self_function({ experts: mockExperts.data, options: 10 });
+
+        //                $("twitter_experts").html(htmldata);
+        //                $("twitter_experts").dj_TwitterExperts();
+  
+    });
+</script>
+</html>

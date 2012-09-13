@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GetActiveUserSummaryResponse ver="1.0" xsi:noNamespaceSchemaLocation="GetActiveUserSummaryResponse.xsd" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<status value="0">Success</status>
+	<requestInfo>
+		<accountScope>S1234</accountScope>
+		<beginDate>2008-01-01</beginDate>
+		<endDate>2009-01-01</endDate>
+		<summarizedBy>location</summarizedBy>
+		<summarized2By>account</summarized2By>
+		<includeActivityTypeSummary>false</includeActivityTypeSummary>
+	</requestInfo>
+	<locationSummaryList first="1" count="2" total="3">
+			<locationSummary locationCode="in" emailUsers="12" sessionUsers="12" totalUsers="24">
+				<locationName>India</locationName>
+				<accountSummaryList first="1" count="4" total="4">
+					<accountSummary accountID="A111" emailUsers="6" sessionUsers="6" totalUsers="12">
+						<accountName>IBM</accountName>
+					</accountSummary>
+					<accountSummary accountID="A1112"  emailUsers="6" sessionUsers="6" totalUsers="12">
+						<accountName>TUSA</accountName>
+					</accountSummary>	
+				</accountSummaryList>
+			</locationSummary>
+			<locationSummary locationCode="en" emailUsers="12" sessionUsers="12" totalUsers="24">
+				<locationName>England</locationName>
+				<accountSummaryList first="1" count="4" total="4">
+					<accountSummary accountID="A111" emailUsers="6" sessionUsers="6" totalUsers="12">
+						<accountName>INFY</accountName>
+					</accountSummary>
+					<accountSummary accountID="A1112" emailUsers="6" sessionUsers="6" totalUsers="12">
+						<accountName>TCS</accountName>
+					</accountSummary>	
+				</accountSummaryList>
+			</locationSummary>
+	</locationSummaryList>
+</GetActiveUserSummaryResponse>

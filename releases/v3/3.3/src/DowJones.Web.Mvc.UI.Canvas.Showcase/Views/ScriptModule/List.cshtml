@@ -1,0 +1,56 @@
+﻿@model IEnumerable<DowJones.DegreasedDashboards.Website.Models.ScriptModuleTemplateViewModel>
+
+@{
+    ViewBag.Title = "Script Templates";
+}
+
+@section Header {
+    <div class="btn-group pull-right">
+        @Html.ActionLink("Add New Template", "Create", null, new {@class = "btn btn-primary"})
+    </div>
+}
+
+<table class="table table-striped">
+    <colgroup>
+        <col class="actions" width="60px"/>
+        <col class="title"/>
+        <col class="description"/>
+    </colgroup>
+
+    <thead>
+        <tr>
+            <th></th>
+            <th>
+                Title
+            </th>
+            <th>
+                Description
+            </th>
+        </tr>
+    </thead>
+    
+    <tbody>
+
+    @foreach (var item in Model) {
+        <tr data-template-id="@item.Id" class="@(item.Id.Equals(TempData["ModuleTemplateId"]) ? "success" : "") ">
+            <td>
+                <div class="btn-group">
+                    <a class="edit btn" href="@Url.Action("Edit", new { id=item.Id })"><i class="icon-edit"> </i> Edit</a>
+                    <button class="btn dropdown-toggle" data-toggle="dropdown"><span class="caret"> </span></button>
+                    <ul class="dropdown-menu">
+                        <li><a class="clone" href="@Url.Action("Clone", new { id=item.Id })"><i class="icon-share"> </i> Clone</a></li>
+                        <li><a class="delete btn-danger" href="@Url.Action("Delete", new { id=item.Id })"><i class="icon-remove"> </i> Delete</a></li>
+                    </ul>
+                </div>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+        </tr>
+    }
+
+    </tbody>
+</table>

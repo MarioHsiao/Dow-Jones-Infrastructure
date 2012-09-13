@@ -1,0 +1,16 @@
+<UpdateDeliverySettingsResponse>
+  <Status value="1"/>
+  <userid></userid>
+  <productid></productid>
+  <Resultset count="1">
+    <Result DeliveryID="123456">
+      <ErrorCode>2</ErrorCode>
+      <StatusDetails>
+        <Items>
+          <Item ID="300019066" Type="FOLDER" Description="tst"/>
+          <Item ID="51" Type="COLLECTION" Description="tyest"/>
+       </Items>
+    </StatusDetails>
+    </Result>
+  </Resultset>
+</UpdateDeliverySettingsResponse>

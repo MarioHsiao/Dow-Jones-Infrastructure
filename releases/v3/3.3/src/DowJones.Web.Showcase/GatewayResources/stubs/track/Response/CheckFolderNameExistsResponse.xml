@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" ?>
+<TrackFolderNameResponse xmlns:xsi='http://www.w3.org/2000/10/XMLSchema-instance' ver='1.0'>
+  <Control>
+    <Stamp type='TrackCTP' date='ccyymmdd' time='hhmmssnnn' value='string' />
+  </Control>
+  <Status value='0'>
+    <Description>string</Description>
+  </Status>
+  <ResultSet>
+    <Result interface='response' action='check' folderName='unknown' duplicate='yes' folderId='12' productType='bri' />
+  </ResultSet>
+</TrackFolderNameResponse>

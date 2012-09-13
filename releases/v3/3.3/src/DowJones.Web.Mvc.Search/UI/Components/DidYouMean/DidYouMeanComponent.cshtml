@@ -1,0 +1,38 @@
+﻿@model DowJones.Web.Mvc.Search.UI.Components.DidYouMean.DidYouMean
+@using System.Web.Mvc.Html
+@using DowJones.Extensions;
+@ClientPlugin dj_DidYouMean
+@ScriptResource RelativeResourceName=DidYouMean.js
+@{ CssClass = "dj_DidYouMean dj_did-you-mean"; }
+
+	<h2>@DJ.Token("didYouMean")</h2>
+
+	<ul class="list-items" style="display:@(Model.HideEntities ? "none" : "block");">
+
+    @foreach (var group in Model.Groups)
+    {
+        <li class="recognized-entity-group" data-category="@group.Category">
+            <span class="section-category">@group.Name:</span>
+            <ul>
+            @foreach (var item in group.Distinct(i=>i.Code))
+            {
+                <li>
+                    <input class="recognized-entity" type="checkbox" data-code="@item.Code" data-searchtext="@item.SearchTerm" data-name="@item.Name"/>
+                    <label for="recognized-entity">@item.Name</label>
+                </li>
+            }
+            </ul>
+        </li>
+    }
+    </ul>
+
+    @Html.Hidden("Context", Model.Context)
+
+	<div class="ok-btn dj_OkButton" style="display:@(Model.HideEntities ? "none" : "block");">
+        <span class="dj_btn dj_btn-lrg dj_btn-gray">@DJ.Token("ok")</span>
+    </div>
+
+	<div class="expand showHide" style="visibility: visible">
+        <span class="label">@DJ.Token(Model.HideEntities ? "show" : "hide")</span>
+        <span class="dj_icon @(Model.HideEntities ? "dj_icon-more" : "dj_icon-less")"></span>
+	</div>

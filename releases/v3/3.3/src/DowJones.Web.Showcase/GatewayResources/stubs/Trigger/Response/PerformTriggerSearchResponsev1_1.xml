@@ -1,0 +1,329 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <soap:Header/>
+  <soap:Body>
+    <PerformTriggerSearchResponse xmlns="urn:dowjones:emg:tr:v1_1">
+      <TriggerSearchResponse trVersion="v1.1.0.1" serverIPAddress="172.25.213.44">
+        <triggerSearchResult count="1" firstResult="1" hitCount="10">
+          <triggerSearchResultSet>
+            <trigger xsi:type="MasterTrigger" id="80" typecode="TT_DJMergerAcquisition" displayName="Merger / Acquisition" category="Master" confidence="50" lowerDate="2008-01-01" upperDate="2010-12-31" createDateTime="2009-05-27T13:59:33" modifiedDateTime="2009-08-03T15:14:38">
+              <property xsi:type="MandAOrganization" code="PN_Organization" displayName="Organization" type="Organization" hasNaturalKey="true" naturalKeyData="MCROST" minimumRequired="2" maximumAllowed="2" requiredToMerge="true" value="MicroSoft Corporation" normalizedData="microsoft" occurrenceType="MutuallyExclusive" useType="Display" firstDate="2009-05-27" lastDate="2009-05-27" numberOfOccurrences="10" isDataTranslatable="false" city="Redmond" postalCode="98052-7329" country="United States" primaryIndustry="i3302020">
+                <property code="PN_OrganizationRole" displayName="Organization Role" type="String" hasNaturalKey="true" naturalKeyData="0" minimumRequired="0" maximumAllowed="1" requiredToMerge="false" value="Buyer" normalizedData="buyer" occurrenceType="MutuallyExclusive" useType="Display" firstDate="2009-05-27" lastDate="2009-05-27" numberOfOccurrences="10" isDataTranslatable="false"/>
+              </property>
+              <property xsi:type="MandAOrganization" code="PN_Organization" displayName="Organization" type="Organization" hasNaturalKey="true" naturalKeyData="YAHCOR" minimumRequired="2" maximumAllowed="2" requiredToMerge="true" value="Yahoo Inc" normalizedData="yahoo" occurrenceType="MutuallyExclusive" useType="Display" firstDate="2009-05-27" lastDate="2009-05-27" numberOfOccurrences="10" isDataTranslatable="false" city="Sunnyvale" postalCode="94089" country="United States" primaryIndustry="i8395464">
+                <property code="PN_OrganizationRole" displayName="Organization Role" type="String" hasNaturalKey="true" naturalKeyData="0" minimumRequired="0" maximumAllowed="1" requiredToMerge="false" value="Seller" normalizedData="seller" occurrenceType="MutuallyExclusive" useType="Display" firstDate="2009-05-27" lastDate="2009-05-27" numberOfOccurrences="10" isDataTranslatable="false"/>
+              </property>
+              <property code="PN_Type" displayName="Type" type="string" hasNaturalKey="false" naturalKeyData="0" minimumRequired="1" maximumAllowed="1" requiredToMerge="false" value="Acquisition" normalizedData="acquisition" occurrenceType="MutuallyExclusive" useType="Display" firstDate="2009-05-27" lastDate="2009-05-27" numberOfOccurrences="10" isDataTranslatable="true"/>
+              <property code="PN_Assests" displayName="Assests" type="string" hasNaturalKey="false" naturalKeyData="0" minimumRequired="1" maximumAllowed="0" requiredToMerge="false" value="Part" normalizedData="part" occurrenceType="MutuallyExclusive" useType="Display" firstDate="2009-05-27" lastDate="2009-05-27" numberOfOccurrences="10" isDataTranslatable="false"/>
+              <property code="PN_Status" displayName="Status" type="string" hasNaturalKey="false" naturalKeyData="0" minimumRequired="1" maximumAllowed="1" requiredToMerge="false" value="Planned" normalizedData="planned" occurrenceType="Evolutionary" useType="Display" firstDate="2009-05-27" lastDate="2009-05-27" numberOfOccurrences="10" isDataTranslatable="true"/>
+              <error/>
+              <defaultDetectionKeyword>
+                <startIndex>332</startIndex>
+                <endIndex>338</endIndex>
+                <value>acquire</value>
+              </defaultDetectionKeyword>
+              <defaultDetectionPhrase>
+                <startIndex>260</startIndex>
+                <endIndex>345</endIndex>
+                <value>It is unclear how the launchof Bing will affect Microsoft's attempt to acquire Yahoo!</value>
+              </defaultDetectionPhrase>
+              <defaultContentHeadline>
+                <rank xmlns="http://types.factiva.com/search"/>
+                <documentVector xmlns="http://types.factiva.com/search"/>
+                <accessionNo xmlns="http://types.factiva.com/search">AFNR000020090618e56j0002w</accessionNo>
+                <ipDocumentID xmlns="http://types.factiva.com/search">AFNR000020090618e56j0002t</ipDocumentID>
+                <attributionCode xmlns="http://types.factiva.com/search"/>
+                <wordCount xmlns="http://types.factiva.com/search">74</wordCount>
+                <publicationDate xmlns="http://types.factiva.com/search">2009-06-19</publicationDate>
+                <publicationTime xmlns="http://types.factiva.com/search">09:20:20.0000000-04:00</publicationTime>
+                <baseLanguage xmlns="http://types.factiva.com/search">en</baseLanguage>
+                <linkage xmlns="http://types.factiva.com/search"/>
+                <sourceCode xmlns="http://types.factiva.com/search">afnr</sourceCode>
+                <sourceName xmlns="http://types.factiva.com/search">Australian Financial Review (Abstracts)</sourceName>
+                <sectionName xmlns="http://types.factiva.com/search">
+                  <para>Information</para>
+                </sectionName>
+                <headline xmlns="http://types.factiva.com/search">
+                  <para>Contentious Outlook</para>
+                </headline>
+                <snippet xmlns="http://types.factiva.com/search">
+                  <para>Microsoft claims Google's new Outlook email plug-in is flawed andhas a 'serious bug' that would disable key parts of the software.Writing in a blog post, Outlook product managerDev Balasubramanian criticised the Google Apps synch ...</para>
+                </snippet>
+                <byline xmlns="http://types.factiva.com/search">
+                  <para>Paul Smith</para>
+                </byline>
+                <copyright xmlns="http://types.factiva.com/search">
+                  <para>Copyright 2009 Media Monitors Australia Pty Ltd. All Rights Reserved</para>
+                </copyright>
+                <truncationRules xmlns="http://types.factiva.com/search">
+                  <extraSmall>27</extraSmall>
+                  <small>30</small>
+                  <medium>78</medium>
+                  <large>35</large>
+                </truncationRules>
+                <contentItems xmlns="http://types.factiva.com/search">
+                  <contentType>Artical</contentType>
+                  <primaryRef>distdoc:archive/ArchiveDoc::Article</primaryRef>
+                  <item type="arttext" ref="distdoc:archive/ArchiveDoc::Article" size="1086" la="en"/>
+                  <item type="invtext" ref="distdoc:archive/InvertText" size="1417" la="en"/>
+                </contentItems>
+              </defaultContentHeadline>
+            </trigger>
+            <trigger xsi:type="MasterTrigger" id="80" typecode="TT_DJMergerAcquisition" displayName="Merger / Acquisition" category="Master" confidence="50" lowerDate="2008-01-01" upperDate="2010-12-31" createDateTime="2009-05-27T13:59:33" modifiedDateTime="2009-08-03T15:14:38">
+              <property xsi:type="MandAOrganization" code="PN_Organization" displayName="Organization" type="Organization" hasNaturalKey="true" naturalKeyData="MCROST" minimumRequired="2" maximumAllowed="2" requiredToMerge="true" value="MicroSoft Corporation" normalizedData="microsoft" occurrenceType="MutuallyExclusive" useType="Display" firstDate="2009-05-27" lastDate="2009-05-27" numberOfOccurrences="10" isDataTranslatable="false" city="Redmond" postalCode="98052-7329" country="United States" primaryIndustry="i3302020">
+                <property code="PN_OrganizationRole" displayName="Organization Role" type="String" hasNaturalKey="true" naturalKeyData="0" minimumRequired="0" maximumAllowed="1" requiredToMerge="false" value="Buyer" normalizedData="buyer" occurrenceType="MutuallyExclusive" useType="Display" firstDate="2009-05-27" lastDate="2009-05-27" numberOfOccurrences="10" isDataTranslatable="false"/>
+              </property>
+              <property xsi:type="MandAOrganization" code="PN_Organization" displayName="Organization" type="Organization" hasNaturalKey="true" naturalKeyData="YAHCOR" minimumRequired="2" maximumAllowed="2" requiredToMerge="true" value="Yahoo Inc" normalizedData="yahoo" occurrenceType="MutuallyExclusive" useType="Display" firstDate="2009-05-27" lastDate="2009-05-27" numberOfOccurrences="10" isDataTranslatable="false" city="Sunnyvale" postalCode="94089" country="United States" primaryIndustry="i8395464">
+                <property code="PN_OrganizationRole" displayName="Organization Role" type="String" hasNaturalKey="true" naturalKeyData="0" minimumRequired="0" maximumAllowed="1" requiredToMerge="false" value="Seller" normalizedValue="seller" occurrenceType="MutuallyExclusive" useType="Display" firstDate="2009-05-27" lastDate="2009-05-27" numberOfOccurrences="10" isDataTranslatable="false"/>
+              </property>
+              <property code="PN_Type" displayName="Type" type="string" hasNaturalKey="false" naturalKeyData="0" minimumRequired="1" maximumAllowed="1" requiredToMerge="false" value="Acquisition" normalizedValue="acquisition" occurrenceType="MutuallyExclusive" useType="Display" firstDate="2009-05-27" lastDate="2009-05-27" numberOfOccurrences="10" isDataTranslatable="true"/>
+              <property code="PN_Assests" displayName="Assests" type="string" hasNaturalKey="false" naturalKeyData="0" minimumRequired="1" maximumAllowed="0" requiredToMerge="false" value="Part" normalizedData="part" occurrenceType="MutuallyExclusive" useType="Display" firstDate="2009-05-27" lastDate="2009-05-27" numberOfOccurrences="10" isDataTranslatable="false"/>
+              <property code="PN_Status" displayName="Status" type="string" hasNaturalKey="false" naturalKeyData="0" minimumRequired="1" maximumAllowed="1" requiredToMerge="false" value="Planned" normalizedData="planned" occurrenceType="Evolutionary" useType="Display" firstDate="2009-05-27" lastDate="2009-05-27" numberOfOccurrences="10" isDataTranslatable="true"/>
+              <error/>
+              <defaultDetectionKeyword>
+                <startIndex>332</startIndex>
+                <endIndex>338</endIndex>
+                <value>acquire</value>
+              </defaultDetectionKeyword>
+              <defaultDetectionPhrase>
+                <startIndex>260</startIndex>
+                <endIndex>345</endIndex>
+                <value>It is unclear how the launchof Bing will affect Microsoft's attempt to acquire Yahoo!</value>
+              </defaultDetectionPhrase>
+              <defaultContentHeadline>
+                <rank xmlns="http://types.factiva.com/search"/>
+                <documentVector xmlns="http://types.factiva.com/search"/>
+                <accessionNo xmlns="http://types.factiva.com/search">AFNR000020090618e56j0002w</accessionNo>
+                <ipDocumentID xmlns="http://types.factiva.com/search">AFNR000020090618e56j0002t</ipDocumentID>
+                <attributionCode xmlns="http://types.factiva.com/search"/>
+                <wordCount xmlns="http://types.factiva.com/search">74</wordCount>
+                <publicationDate xmlns="http://types.factiva.com/search">2009-06-19</publicationDate>
+                <publicationTime xmlns="http://types.factiva.com/search">09:20:20.0000000-04:00</publicationTime>
+                <baseLanguage xmlns="http://types.factiva.com/search">en</baseLanguage>
+                <linkage xmlns="http://types.factiva.com/search"/>
+                <sourceCode xmlns="http://types.factiva.com/search">afnr</sourceCode>
+                <sourceName xmlns="http://types.factiva.com/search">Australian Financial Review (Abstracts)</sourceName>
+                <sectionName xmlns="http://types.factiva.com/search">
+                  <para>Information</para>
+                </sectionName>
+                <headline xmlns="http://types.factiva.com/search">
+                  <para>Contentious Outlook</para>
+                </headline>
+                <snippet xmlns="http://types.factiva.com/search">
+                  <para>Microsoft claims Google's new Outlook email plug-in is flawed andhas a 'serious bug' that would disable key parts of the software.Writing in a blog post, Outlook product managerDev Balasubramanian criticised the Google Apps synch ...</para>
+                </snippet>
+                <byline xmlns="http://types.factiva.com/search">
+                  <para>Paul Smith</para>
+                </byline>
+                <copyright xmlns="http://types.factiva.com/search">
+                  <para>Copyright 2009 Media Monitors Australia Pty Ltd. All Rights Reserved</para>
+                </copyright>
+                <truncationRules xmlns="http://types.factiva.com/search">
+                  <extraSmall>27</extraSmall>
+                  <small>30</small>
+                  <medium>78</medium>
+                  <large>35</large>
+                </truncationRules>
+                <contentItems xmlns="http://types.factiva.com/search">
+                  <contentType>Artical</contentType>
+                  <primaryRef>distdoc:archive/ArchiveDoc::Article</primaryRef>
+                  <item type="arttext" ref="distdoc:archive/ArchiveDoc::Article" size="1086" la="en"/>
+                  <item type="invtext" ref="distdoc:archive/InvertText" size="1417" la="en"/>
+                </contentItems>
+              </defaultContentHeadline>
+            </trigger>
+            <trigger xsi:type="MasterTrigger" id="80" typecode="TT_DJMergerAcquisition" displayName="Merger / Acquisition" category="Master" confidence="50" lowerDate="2008-01-01" upperDate="2010-12-31" createDateTime="2009-05-27T13:59:33" modifiedDateTime="2009-08-03T15:14:38">
+              <property xsi:type="MandAOrganization" code="PN_Organization" displayName="Organization" type="Organization" hasNaturalKey="true" naturalKeyData="MCROST" minimumRequired="2" maximumAllowed="2" requiredToMerge="true" value="MicroSoft Corporation" normalizedData="microsoft" occurrenceType="MutuallyExclusive" useType="Display" firstDate="2009-05-27" lastDate="2009-05-27" numberOfOccurrences="10" isDataTranslatable="false" city="Redmond" postalCode="98052-7329" country="United States" primaryIndustry="i3302020">
+                <property code="PN_OrganizationRole" displayName="Organization Role" type="String" hasNaturalKey="true" naturalKeyData="0" minimumRequired="0" maximumAllowed="1" requiredToMerge="false" value="Buyer" normalizedData="buyer" occurrenceType="MutuallyExclusive" useType="Display" firstDate="2009-05-27" lastDate="2009-05-27" numberOfOccurrences="10" isDataTranslatable="false"/>
+              </property>
+              <property xsi:type="MandAOrganization" code="PN_Organization" displayName="Organization" type="Organization" hasNaturalKey="true" naturalKeyData="YAHCOR" minimumRequired="2" maximumAllowed="2" requiredToMerge="true" value="Yahoo Inc" normalizedData="yahoo" occurrenceType="MutuallyExclusive" useType="Display" firstDate="2009-05-27" lastDate="2009-05-27" numberOfOccurrences="10" isDataTranslatable="false" city="Sunnyvale" postalCode="94089" country="United States" primaryIndustry="i8395464">
+                <property code="PN_OrganizationRole" displayName="Organization Role" type="String" hasNaturalKey="true" naturalKeyData="0" minimumRequired="0" maximumAllowed="1" requiredToMerge="false" value="Seller" normalizedData="seller" occurrenceType="MutuallyExclusive" useType="Display" firstDate="2009-05-27" lastDate="2009-05-27" numberOfOccurrences="10" isDataTranslatable="false"/>
+              </property>
+              <property code="PN_Type" displayName="Type" type="string" hasNaturalKey="false" naturalKeyData="0" minimumRequired="1" maximumAllowed="1" requiredToMerge="false" value="Acquisition" normalizedData="acquisition" occurrenceType="MutuallyExclusive" useType="Display" firstDate="2009-05-27" lastDate="2009-05-27" numberOfOccurrences="10" isDataTranslatable="true"/>
+              <property code="PN_Assests" displayName="Assests" type="string" hasNaturalKey="false" naturalKeyData="0" minimumRequired="1" maximumAllowed="0" requiredToMerge="false" value="Part" normalizedData="part" occurrenceType="MutuallyExclusive" useType="Display" firstDate="2009-05-27" lastDate="2009-05-27" numberOfOccurrences="10" isDataTranslatable="false"/>
+              <property code="PN_Status" displayName="Status" type="string" hasNaturalKey="false" naturalKeyData="0" minimumRequired="1" maximumAllowed="1" requiredToMerge="false" value="Planned" normalizedData="planned" occurrenceType="Evolutionary" useType="Display" firstDate="2009-05-27" lastDate="2009-05-27" numberOfOccurrences="10" isDataTranslatable="true"/>
+              <error/>
+              <defaultDetectionKeyword>
+                <startIndex>332</startIndex>
+                <endIndex>338</endIndex>
+                <value>acquire</value>
+              </defaultDetectionKeyword>
+              <defaultDetectionPhrase>
+                <startIndex>260</startIndex>
+                <endIndex>345</endIndex>
+                <value>It is unclear how the launchof Bing will affect Microsoft's attempt to acquire Yahoo!</value>
+              </defaultDetectionPhrase>
+              <defaultContentHeadline>
+                <rank xmlns="http://types.factiva.com/search"/>
+                <documentVector xmlns="http://types.factiva.com/search"/>
+                <accessionNo xmlns="http://types.factiva.com/search">AFNR000020090618e56j0002w</accessionNo>
+                <ipDocumentID xmlns="http://types.factiva.com/search">AFNR000020090618e56j0002t</ipDocumentID>
+                <attributionCode xmlns="http://types.factiva.com/search"/>
+                <wordCount xmlns="http://types.factiva.com/search">74</wordCount>
+                <publicationDate xmlns="http://types.factiva.com/search">2009-06-19</publicationDate>
+                <publicationTime xmlns="http://types.factiva.com/search">09:20:20.0000000-04:00</publicationTime>
+                <baseLanguage xmlns="http://types.factiva.com/search">en</baseLanguage>
+                <linkage xmlns="http://types.factiva.com/search"/>
+                <sourceCode xmlns="http://types.factiva.com/search">afnr</sourceCode>
+                <sourceName xmlns="http://types.factiva.com/search">Australian Financial Review (Abstracts)</sourceName>
+                <sectionName xmlns="http://types.factiva.com/search">
+                  <para>Information</para>
+                </sectionName>
+                <headline xmlns="http://types.factiva.com/search">
+                  <para>Contentious Outlook</para>
+                </headline>
+                <snippet xmlns="http://types.factiva.com/search">
+                  <para>Microsoft claims Google's new Outlook email plug-in is flawed andhas a 'serious bug' that would disable key parts of the software.Writing in a blog post, Outlook product managerDev Balasubramanian criticised the Google Apps synch ...</para>
+                </snippet>
+                <byline xmlns="http://types.factiva.com/search">
+                  <para>Paul Smith</para>
+                </byline>
+                <copyright xmlns="http://types.factiva.com/search">
+                  <para>Copyright 2009 Media Monitors Australia Pty Ltd. All Rights Reserved</para>
+                </copyright>
+                <truncationRules xmlns="http://types.factiva.com/search">
+                  <extraSmall>27</extraSmall>
+                  <small>30</small>
+                  <medium>78</medium>
+                  <large>35</large>
+                </truncationRules>
+                <contentItems xmlns="http://types.factiva.com/search">
+                  <contentType>Artical</contentType>
+                  <primaryRef>distdoc:archive/ArchiveDoc::Article</primaryRef>
+                  <item type="arttext" ref="distdoc:archive/ArchiveDoc::Article" size="1086" la="en"/>
+                  <item type="invtext" ref="distdoc:archive/InvertText" size="1417" la="en"/>
+                </contentItems>
+              </defaultContentHeadline>
+            </trigger>
+            <trigger xsi:type="MasterTrigger" id="80" typecode="TT_DJMergerAcquisition" displayName="Merger / Acquisition" category="Master" confidence="50" lowerDate="2008-01-01" upperDate="2010-12-31" createDateTime="2009-05-27T13:59:33" modifiedDateTime="2009-08-03T15:14:38">
+              <property xsi:type="MandAOrganization" code="PN_Organization" displayName="Organization" type="Organization" hasNaturalKey="true" naturalKeyData="MCROST" minimumRequired="2" maximumAllowed="2" requiredToMerge="true" value="MicroSoft Corporation" normalizedData="microsoft" occurrenceType="MutuallyExclusive" useType="Display" firstDate="2009-05-27" lastDate="2009-05-27" numberOfOccurrences="10" isDataTranslatable="false" city="Redmond" postalCode="98052-7329" country="United States" primaryIndustry="i3302020">
+                <property code="PN_OrganizationRole" displayName="Organization Role" type="String" hasNaturalKey="true" naturalKeyData="0" minimumRequired="0" maximumAllowed="1" requiredToMerge="false" value="Buyer" normalizedData="buyer" occurrenceType="MutuallyExclusive" useType="Display" firstDate="2009-05-27" lastDate="2009-05-27" numberOfOccurrences="10" isDataTranslatable="false"/>
+              </property>
+              <property xsi:type="MandAOrganization" code="PN_Organization" displayName="Organization" type="Organization" hasNaturalKey="true" naturalKeyData="YAHCOR" minimumRequired="2" maximumAllowed="2" requiredToMerge="true" value="Yahoo Inc" normalizedData="yahoo" occurrenceType="MutuallyExclusive" useType="Display" firstDate="2009-05-27" lastDate="2009-05-27" numberOfOccurrences="10" isDataTranslatable="false" city="Sunnyvale" postalCode="94089" country="United States" primaryIndustry="i8395464">
+                <property code="PN_OrganizationRole" displayName="Organization Role" type="String" hasNaturalKey="true" naturalKeyData="0" minimumRequired="0" maximumAllowed="1" requiredToMerge="false" value="Seller" normalizedData="seller" occurrenceType="MutuallyExclusive" useType="Display" firstDate="2009-05-27" lastDate="2009-05-27" numberOfOccurrences="10" isDataTranslatable="false"/>
+              </property>
+              <property code="PN_Type" displayName="Type" type="string" hasNaturalKey="false" naturalKeyData="0" minimumRequired="1" maximumAllowed="1" requiredToMerge="false" value="Acquisition" normalizedData="acquisition" occurrenceType="MutuallyExclusive" useType="Display" firstDate="2009-05-27" lastDate="2009-05-27" numberOfOccurrences="10" isDataTranslatable="true"/>
+              <property code="PN_Assests" displayName="Assests" type="string" hasNaturalKey="false" naturalKeyData="0" minimumRequired="1" maximumAllowed="0" requiredToMerge="false" value="Part" normalizedData="part" occurrenceType="MutuallyExclusive" useType="Display" firstDate="2009-05-27" lastDate="2009-05-27" numberOfOccurrences="10" isDataTranslatable="false"/>
+              <property code="PN_Status" displayName="Status" type="string" hasNaturalKey="false" naturalKeyData="0" minimumRequired="1" maximumAllowed="1" requiredToMerge="false" value="Planned" normalizedData="planned" occurrenceType="Evolutionary" useType="Display" firstDate="2009-05-27" lastDate="2009-05-27" numberOfOccurrences="10" isDataTranslatable="true"/>
+              <error/>
+              <defaultDetectionKeyword>
+                <startIndex>332</startIndex>
+                <endIndex>338</endIndex>
+                <value>acquire</value>
+              </defaultDetectionKeyword>
+              <defaultDetectionPhrase>
+                <startIndex>260</startIndex>
+                <endIndex>345</endIndex>
+                <value>It is unclear how the launchof Bing will affect Microsoft's attempt to acquire Yahoo!</value>
+              </defaultDetectionPhrase>
+              <defaultContentHeadline>
+                <rank xmlns="http://types.factiva.com/search"/>
+                <documentVector xmlns="http://types.factiva.com/search"/>
+                <accessionNo xmlns="http://types.factiva.com/search">AFNR000020090618e56j0002w</accessionNo>
+                <ipDocumentID xmlns="http://types.factiva.com/search">AFNR000020090618e56j0002t</ipDocumentID>
+                <attributionCode xmlns="http://types.factiva.com/search"/>
+                <wordCount xmlns="http://types.factiva.com/search">74</wordCount>
+                <publicationDate xmlns="http://types.factiva.com/search">2009-06-19</publicationDate>
+                <publicationTime xmlns="http://types.factiva.com/search">09:20:20.0000000-04:00</publicationTime>
+                <baseLanguage xmlns="http://types.factiva.com/search">en</baseLanguage>
+                <linkage xmlns="http://types.factiva.com/search"/>
+                <sourceCode xmlns="http://types.factiva.com/search">afnr</sourceCode>
+                <sourceName xmlns="http://types.factiva.com/search">Australian Financial Review (Abstracts)</sourceName>
+                <sectionName xmlns="http://types.factiva.com/search">
+                  <para>Information</para>
+                </sectionName>
+                <headline xmlns="http://types.factiva.com/search">
+                  <para>Contentious Outlook</para>
+                </headline>
+                <snippet xmlns="http://types.factiva.com/search">
+                  <para>Microsoft claims Google's new Outlook email plug-in is flawed andhas a 'serious bug' that would disable key parts of the software.Writing in a blog post, Outlook product managerDev Balasubramanian criticised the Google Apps synch ...</para>
+                </snippet>
+                <byline xmlns="http://types.factiva.com/search">
+                  <para>Paul Smith</para>
+                </byline>
+                <copyright xmlns="http://types.factiva.com/search">
+                  <para>Copyright 2009 Media Monitors Australia Pty Ltd. All Rights Reserved</para>
+                </copyright>
+                <truncationRules xmlns="http://types.factiva.com/search">
+                  <extraSmall>27</extraSmall>
+                  <small>30</small>
+                  <medium>78</medium>
+                  <large>35</large>
+                </truncationRules>
+                <contentItems xmlns="http://types.factiva.com/search">
+                  <contentType>Artical</contentType>
+                  <primaryRef>distdoc:archive/ArchiveDoc::Article</primaryRef>
+                  <item type="arttext" ref="distdoc:archive/ArchiveDoc::Article" size="1086" la="en"/>
+                  <item type="invtext" ref="distdoc:archive/InvertText" size="1417" la="en"/>
+                </contentItems>
+              </defaultContentHeadline>
+            </trigger>
+            <trigger xsi:type="MasterTrigger" id="80" typecode="TT_DJMergerAcquisition" displayName="Merger / Acquisition" category="Master" confidence="50" lowerDate="2008-01-01" upperDate="2010-12-31" createDateTime="2009-05-27T13:59:33" modifiedDateTime="2009-08-03T15:14:38">
+              <property xsi:type="MandAOrganization" code="PN_Organization" displayName="Organization" type="Organization" hasNaturalKey="true" naturalKeyData="MCROST" minimumRequired="2" maximumAllowed="2" requiredToMerge="true" value="MicroSoft Corporation" normalizedData="microsoft" occurrenceType="MutuallyExclusive" useType="Display" firstDate="2009-05-27" lastDate="2009-05-27" numberOfOccurrences="10" isDataTranslatable="false" city="Redmond" postalCode="98052-7329" country="United States" primaryIndustry="i3302020">
+                <property code="PN_OrganizationRole" displayName="Organization Role" type="String" hasNaturalKey="true" naturalKeyData="0" minimumRequired="0" maximumAllowed="1" requiredToMerge="false" value="Buyer" normalizedData="buyer" occurrenceType="MutuallyExclusive" useType="Display" firstDate="2009-05-27" lastDate="2009-05-27" numberOfOccurrences="10" isDataTranslatable="false"/>
+              </property>
+              <property xsi:type="MandAOrganization" code="PN_Organization" displayName="Organization" type="Organization" hasNaturalKey="true" naturalKeyData="YAHCOR" minimumRequired="2" maximumAllowed="2" requiredToMerge="true" value="Yahoo Inc" normalizedData="yahoo" occurrenceType="MutuallyExclusive" useType="Display" firstDate="2009-05-27" lastDate="2009-05-27" numberOfOccurrences="10" isDataTranslatable="false" city="Sunnyvale" postalCode="94089" country="United States" primaryIndustry="i8395464">
+                <property code="PN_OrganizationRole" displayName="Organization Role" type="String" hasNaturalKey="true" naturalKeyData="0" minimumRequired="0" maximumAllowed="1" requiredToMerge="false" value="Seller" normalizedData="seller" occurrenceType="MutuallyExclusive" useType="Display" firstDate="2009-05-27" lastDate="2009-05-27" numberOfOccurrences="10" isDataTranslatable="false"/>
+              </property>
+              <property code="PN_Type" displayName="Type" type="string" hasNaturalKey="false" naturalKeyData="0" minimumRequired="1" maximumAllowed="1" requiredToMerge="false" value="Acquisition" normalizedData="acquisition" occurrenceType="MutuallyExclusive" useType="Display" firstDate="2009-05-27" lastDate="2009-05-27" numberOfOccurrences="10" isDataTranslatable="true"/>
+              <property code="PN_Assests" displayName="Assests" type="string" hasNaturalKey="false" naturalKeyData="0" minimumRequired="1" maximumAllowed="0" requiredToMerge="false" value="Part" normalizedData="part" occurrenceType="MutuallyExclusive" useType="Display" firstDate="2009-05-27" lastDate="2009-05-27" numberOfOccurrences="10" isDataTranslatable="false"/>
+              <property code="PN_Status" displayName="Status" type="string" hasNaturalKey="false" naturalKeyData="0" minimumRequired="1" maximumAllowed="1" requiredToMerge="false" value="Planned" normalizedData="planned" occurrenceType="Evolutionary" useType="Display" firstDate="2009-05-27" lastDate="2009-05-27" numberOfOccurrences="10" isDataTranslatable="true"/>
+              <error/>
+              <defaultDetectionKeyword>
+                <startIndex>332</startIndex>
+                <endIndex>338</endIndex>
+                <value>acquire</value>
+              </defaultDetectionKeyword>
+              <defaultDetectionPhrase>
+                <startIndex>260</startIndex>
+                <endIndex>345</endIndex>
+                <value>It is unclear how the launchof Bing will affect Microsoft's attempt to acquire Yahoo!</value>
+              </defaultDetectionPhrase>
+              <defaultContentHeadline>
+                <rank xmlns="http://types.factiva.com/search"/>
+                <documentVector xmlns="http://types.factiva.com/search"/>
+                <accessionNo xmlns="http://types.factiva.com/search">AFNR000020090618e56j0002w</accessionNo>
+                <ipDocumentID xmlns="http://types.factiva.com/search">AFNR000020090618e56j0002t</ipDocumentID>
+                <attributionCode xmlns="http://types.factiva.com/search"/>
+                <wordCount xmlns="http://types.factiva.com/search">74</wordCount>
+                <publicationDate xmlns="http://types.factiva.com/search">2009-06-19</publicationDate>
+                <publicationTime xmlns="http://types.factiva.com/search">09:20:20.0000000-04:00</publicationTime>
+                <baseLanguage xmlns="http://types.factiva.com/search">en</baseLanguage>
+                <linkage xmlns="http://types.factiva.com/search"/>
+                <sourceCode xmlns="http://types.factiva.com/search">afnr</sourceCode>
+                <sourceName xmlns="http://types.factiva.com/search">Australian Financial Review (Abstracts)</sourceName>
+                <sectionName xmlns="http://types.factiva.com/search">
+                  <para>Information</para>
+                </sectionName>
+                <headline xmlns="http://types.factiva.com/search">
+                  <para>Contentious Outlook</para>
+                </headline>
+                <snippet xmlns="http://types.factiva.com/search">
+                  <para>Microsoft claims Google's new Outlook email plug-in is flawed andhas a 'serious bug' that would disable key parts of the software.Writing in a blog post, Outlook product managerDev Balasubramanian criticised the Google Apps synch ...</para>
+                </snippet>
+                <byline xmlns="http://types.factiva.com/search">
+                  <para>Paul Smith</para>
+                </byline>
+                <copyright xmlns="http://types.factiva.com/search">
+                  <para>Copyright 2009 Media Monitors Australia Pty Ltd. All Rights Reserved</para>
+                </copyright>
+                <truncationRules xmlns="http://types.factiva.com/search">
+                  <extraSmall>27</extraSmall>
+                  <small>30</small>
+                  <medium>78</medium>
+                  <large>35</large>
+                </truncationRules>
+                <contentItems xmlns="http://types.factiva.com/search">
+                  <contentType>Artical</contentType>
+                  <primaryRef>distdoc:archive/ArchiveDoc::Article</primaryRef>
+                  <item type="arttext" ref="distdoc:archive/ArchiveDoc::Article" size="1086" la="en"/>
+                  <item type="invtext" ref="distdoc:archive/InvertText" size="1417" la="en"/>
+                </contentItems>
+              </defaultContentHeadline>
+            </trigger>
+          </triggerSearchResultSet>
+        </triggerSearchResult>
+      </TriggerSearchResponse>
+    </PerformTriggerSearchResponse>
+  </soap:Body>
+</soap:Envelope>

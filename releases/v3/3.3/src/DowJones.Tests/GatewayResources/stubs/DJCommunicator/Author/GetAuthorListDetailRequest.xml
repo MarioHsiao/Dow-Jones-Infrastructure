@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<GetAuthorListDetailRequest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="urn:factiva:Communicator:AuthorService:v1_0">
+  <paging>
+    <firstResultToReturn xmlns="urn:factiva:Communicator:Common:v1_0">1</firstResultToReturn>
+    <maxResultsToReturn xmlns="urn:factiva:Communicator:Common:v1_0">10</maxResultsToReturn>
+  </paging>
+  <sortOrder>Ascending</sortOrder>
+  <sortBy>Email</sortBy>
+  <field>Circulation</field>
+  <field>Email</field>
+</GetAuthorListDetailRequest>
