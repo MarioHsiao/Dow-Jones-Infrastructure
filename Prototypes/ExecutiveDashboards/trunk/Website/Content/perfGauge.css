@@ -1,41 +1,38 @@
-.dj-chrome {
+.dj-logo-chrome {
   background: url(images/browser-sprites.png) no-repeat;
   background-position: 0 0;
   width: 36px;
   height: 33px; }
 
-.dj-firefox {
+.dj-logo-firefox {
   background: url(images/browser-sprites.png) no-repeat;
   background-position: -42px 0;
   width: 36px;
   height: 33px; }
 
-.dj-safari {
+.dj-logo-safari {
   background: url(images/browser-sprites.png) no-repeat;
   background-position: -84px 0;
   width: 36px;
   height: 33px; }
 
-.dj-ie9 {
+.dj-logo-ie9 {
   background: url(images/browser-sprites.png) no-repeat;
   background-position: -126px 0;
   width: 36px;
   height: 33px; }
 
-.dj-opera {
+.dj-logo-opera {
   background: url(images/browser-sprites.png) no-repeat;
   background-position: -168px 0;
   width: 32px;
   height: 32px; }
 
-.dj-ie8, .dj-ie7 {
+.dj-logo-ie8, .dj-logo-ie7 {
   background: url(images/browser-sprites.png) no-repeat;
   background-position: -210px 0;
   width: 32px;
   height: 32px; }
-
-dj-perfGauge {
-  width: 100%; }
 
 .dj-perfGaugeItems {
   font-size: 16px;
@@ -43,62 +40,47 @@ dj-perfGauge {
   .dj-perfGaugeItems .visitors {
     font-weight: bold; }
 
-.trafficBar {
+.dj-trafficBar {
   position: relative;
   width: 100%;
   margin-bottom: 10px;
   height: 40px;
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5); }
-  .trafficBar:first-child {
+  .dj-trafficBar:first-child {
     margin: 10px 0;
     font-weight: bold;
     color: #AAA;
     height: 20px; }
-    .trafficBar:first-child div {
+    .dj-trafficBar:first-child div {
       position: absolute; }
-      .trafficBar:first-child div:first-child {
+      .dj-trafficBar:first-child div:first-child {
         text-align: right; }
-      .trafficBar:first-child div:last-child {
+      .dj-trafficBar:first-child div:last-child {
         left: 80px;
         text-align: right;
         width: 76%; }
-  .trafficBar .visitorText {
-    visibility: hidden;
-    font-size: 9px;
-    top: 12px;
-    position: absolute;
-    color: #999;
-    text-align: center; }
-  .trafficBar .browser {
-    height: 40px;
-    width: 40px;
-    border-radius: 20px;
+  .dj-trafficBar .browser {
+    height: 42px;
+    width: 42px;
+    border-radius: 22px;
     background-color: #F7F7F7;
     border: solid 1px #DDD;
     left: 40px;
     position: absolute;
     z-index: 10; }
-  .trafficBar .browserVersion {
+  .dj-trafficBar .browserVersion {
     position: absolute;
     left: 62px;
     top: 18px;
     font-size: 14px;
     font-weight: bold;
     z-index: 12;
-    text-shadow: 0px -1px 1px #eeeeee, 0px 1px 1px #eeeeee, -1px 0px 1px #eeeeee, 1px 0px 1px #eeeeee, -1px -1px 1px #eeeeee, -1px 1px 1px #eeeeee, 1px -1px 1px #eeeeee, 1px 1px 1px #eeeeee;
-    /* south-east */
-    		 /*&.firefox {
-    			color: #CF450B;
-    		 }
-    
-    		 &.ie {
-    			color: #158FD8;
-    		 }*/ }
-  .trafficBar .visitors {
+    text-shadow: 0px -1px 1px #eeeeee, 0px 1px 1px #eeeeee, -1px 0px 1px #eeeeee, 1px 0px 1px #eeeeee, -1px -1px 1px #eeeeee, -1px 1px 1px #eeeeee, 1px -1px 1px #eeeeee, 1px 1px 1px #eeeeee; }
+  .dj-trafficBar .visitors {
     position: absolute;
     top: 9px;
     text-align: center; }
-  .trafficBar .visitorsText {
+  .dj-trafficBar .visitorsText {
     text-align: center;
     font-size: 9px;
     left: 0;
@@ -109,16 +91,16 @@ dj-perfGauge {
     -webkit-transition: opacity .25s ease-in-out;
     -moz-transition: opacity .25s ease-in-out;
     -o-transition: opacity .25s ease-in-out; }
-  .trafficBar:hover .visitorsText {
+  .dj-trafficBar:hover .visitorsText {
     opacity: 1; }
-  .trafficBar i {
+  .dj-trafficBar i {
     display: inline-block;
     width: 40px;
     height: 32px;
-    top: 3px;
-    left: 2px;
+    top: 5px;
+    left: 3px;
     position: absolute; }
-  .trafficBar .bar {
+  .dj-trafficBar .bar {
     position: absolute;
     left: 79px;
     width: 75%;
@@ -129,87 +111,44 @@ dj-perfGauge {
     padding-right: 4px;
     text-align: right;
     font-size: 14px; }
-    .trafficBar .bar.cool {
+    .dj-trafficBar .bar .gauge {
+      position: absolute;
+      left: 0;
+      padding-left: 10px; }
+    .dj-trafficBar .bar.cool {
       border: 1px solid #85b372;
       border-top: 1px solid #8ebc7c;
       border-bottom: 1px solid #79a967; }
-    .trafficBar .bar.hot {
+      .dj-trafficBar .bar.cool .gauge {
+        background-color: #81ba6b;
+        background-repeat: no-repeat;
+        background-image: -moz-linear-gradient(#a6ce8d, #81ba6b);
+        background-image: -ms-linear-gradient(top, #a6ce8d, #81ba6b);
+        background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#a6ce8d), to(#81ba6b));
+        background-image: -webkit-linear-gradient(#a6ce8d, #81ba6b);
+        background-image: linear-gradient(top, #a6ce8d, #81ba6b); }
+    .dj-trafficBar .bar.hot {
       border: 1px solid #dc8b49;
       border-top: 1px solid #ec9956;
       border-bottom: 1px solid #cd7d3c; }
-    .trafficBar .bar.neutral {
+      .dj-trafficBar .bar.hot .gauge {
+        background-color: #ec9054;
+        background-repeat: no-repeat;
+        background-image: -moz-linear-gradient(#f1b16e, #ec9054);
+        background-image: -ms-linear-gradient(top, #f1b16e, #ec9054);
+        background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#f1b16e), to(#ec9054));
+        background-image: -webkit-linear-gradient(#f1b16e, #ec9054);
+        background-image: linear-gradient(top, #f1b16e, #ec9054); }
+    .dj-trafficBar .bar.neutral {
       border: 1px solid #c9b45d;
       border-top: 1px solid #cbba72;
       border-bottom: 1px solid #c7ae43; }
-
-.barValue {
-  position: absolute;
-  left: 0;
-  padding-left: 10px; }
-  .barValue.cool {
-    background-color: #81ba6b;
-    background-repeat: no-repeat;
-    background-image: -moz-linear-gradient(#a6ce8d, #81ba6b);
-    background-image: -ms-linear-gradient(top, #a6ce8d, #81ba6b);
-    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#a6ce8d), to(#81ba6b));
-    background-image: -webkit-linear-gradient(#a6ce8d, #81ba6b);
-    background-image: linear-gradient(top, #a6ce8d, #81ba6b);
-    background-color: #81ba6b;
-    background-repeat: no-repeat;
-    background-image: -moz-linear-gradient(#a6ce8d, #81ba6b);
-    background-image: -ms-linear-gradient(top, #a6ce8d, #81ba6b);
-    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#a6ce8d), to(#81ba6b));
-    background-image: -webkit-linear-gradient(#a6ce8d, #81ba6b);
-    background-image: linear-gradient(top, #a6ce8d, #81ba6b);
-    background-color: #81ba6b;
-    background-repeat: no-repeat;
-    background-image: -moz-linear-gradient(#a6ce8d, #81ba6b);
-    background-image: -ms-linear-gradient(top, #a6ce8d, #81ba6b);
-    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#a6ce8d), to(#81ba6b));
-    background-image: -webkit-linear-gradient(#a6ce8d, #81ba6b);
-    background-image: linear-gradient(top, #a6ce8d, #81ba6b); }
-  .barValue.hot {
-    background-color: #ec9054;
-    background-repeat: no-repeat;
-    background-image: -moz-linear-gradient(#f1b16e, #ec9054);
-    background-image: -ms-linear-gradient(top, #f1b16e, #ec9054);
-    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#f1b16e), to(#ec9054));
-    background-image: -webkit-linear-gradient(#f1b16e, #ec9054);
-    background-image: linear-gradient(top, #f1b16e, #ec9054);
-    background-color: #ec9054;
-    background-repeat: no-repeat;
-    background-image: -moz-linear-gradient(#f1b16e, #ec9054);
-    background-image: -ms-linear-gradient(top, #f1b16e, #ec9054);
-    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#f1b16e), to(#ec9054));
-    background-image: -webkit-linear-gradient(#f1b16e, #ec9054);
-    background-image: linear-gradient(top, #f1b16e, #ec9054);
-    background-color: #ec9054;
-    background-repeat: no-repeat;
-    background-image: -moz-linear-gradient(#f1b16e, #ec9054);
-    background-image: -ms-linear-gradient(top, #f1b16e, #ec9054);
-    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#f1b16e), to(#ec9054));
-    background-image: -webkit-linear-gradient(#f1b16e, #ec9054);
-    background-image: linear-gradient(top, #f1b16e, #ec9054); }
-  .barValue.neutral {
-    background-color: #dbc566;
-    background-repeat: no-repeat;
-    background-image: -moz-linear-gradient(#e6d686, #dbc566);
-    background-image: -ms-linear-gradient(top, #e6d686, #dbc566);
-    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#e6d686), to(#dbc566));
-    background-image: -webkit-linear-gradient(#e6d686, #dbc566);
-    background-image: linear-gradient(top, #e6d686, #dbc566);
-    background-color: #dbc566;
-    background-repeat: no-repeat;
-    background-image: -moz-linear-gradient(#e6d686, #dbc566);
-    background-image: -ms-linear-gradient(top, #e6d686, #dbc566);
-    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#e6d686), to(#dbc566));
-    background-image: -webkit-linear-gradient(#e6d686, #dbc566);
-    background-image: linear-gradient(top, #e6d686, #dbc566);
-    background-color: #dbc566;
-    background-repeat: no-repeat;
-    background-image: -moz-linear-gradient(#e6d686, #dbc566);
-    background-image: -ms-linear-gradient(top, #e6d686, #dbc566);
-    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#e6d686), to(#dbc566));
-    background-image: -webkit-linear-gradient(#e6d686, #dbc566);
-    background-image: linear-gradient(top, #e6d686, #dbc566); }
+      .dj-trafficBar .bar.neutral .gauge {
+        background-color: #dbc566;
+        background-repeat: no-repeat;
+        background-image: -moz-linear-gradient(#e6d686, #dbc566);
+        background-image: -ms-linear-gradient(top, #e6d686, #dbc566);
+        background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#e6d686), to(#dbc566));
+        background-image: -webkit-linear-gradient(#e6d686, #dbc566);
+        background-image: linear-gradient(top, #e6d686, #dbc566); }
 
