@@ -1,10 +1,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using DowJones.DependencyInjection;
 
 namespace DowJones.Dash.Website.DataSources
 {
-    public class PageTimings : GomezDataSource, IIntializable
+    public class PageTimings : GomezDataSource, IInitializable
     {
         private const string QueryTemplate =
             @"

@@ -7,13 +7,14 @@ using System.Text;
 using System.Web;
 using System.Xml;
 using System.Xml.Linq;
+using DowJones.DependencyInjection;
 using DowJones.Infrastructure;
 using Newtonsoft.Json;
 using ICredentials=System.Net.ICredentials;
 
 namespace DowJones.Dash.Website.DataSources
 {
-    public abstract class WebDataSource : PollingDataSource, IIntializable
+    public abstract class WebDataSource : PollingDataSource, IInitializable
     {
         public ICredentials Credentials { get; set; }
 

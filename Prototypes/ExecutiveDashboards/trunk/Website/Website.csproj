@@ -199,7 +199,6 @@
     <Compile Include="DataSources\ChartBeat\QuickStats.cs" />
     <Compile Include="DataSources\Gomez\GomezDataSource.cs" />
     <Compile Include="DataSources\Gomez\PageTimings.cs" />
-    <Compile Include="DataSources\IIntializable.cs" />
     <Compile Include="DataSources\PollingDataSource.cs" />
     <Compile Include="DataSources\Splunk\SplunkDataSource.cs" />
     <Compile Include="DataSources\SqlDataSource.cs" />
@@ -287,7 +286,9 @@
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="packages.config" />
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

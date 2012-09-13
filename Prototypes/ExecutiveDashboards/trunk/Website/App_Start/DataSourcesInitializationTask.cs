@@ -27,9 +27,6 @@ namespace DowJones.Dash.Website.App_Start
                         args.Exception == null ? "Unknown error" : args.Exception.Message
                     );
                 
-                if(dataSource is IIntializable)
-                    ((IIntializable)dataSource).Initialize();
-
                 dataSource.Start();
             }
         }
