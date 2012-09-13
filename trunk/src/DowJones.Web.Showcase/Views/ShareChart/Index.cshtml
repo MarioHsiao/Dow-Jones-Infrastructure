@@ -14,9 +14,27 @@
 
         DJ.add('ShareChart', {
             container: 'shareChartContainer',
-            data: transformSplunkData()
+            data: getStubData2()
         });
 
+        function getStubData2() {
+            return {
+                chartTitle: '',
+                browserData: [
+                    ['Firefox', 45.0],
+                    ['IE', 26.8],
+                    {
+                        name: 'Chrome',
+                        y: 12.8,
+                        sliced: true,
+                        selected: true
+                    },
+                    ['Safari', 8.5],
+                    ['Opera', 6.2],
+                    ['Others', 0.7]
+                ]
+            };
+        }
 
         function getStubData() {
 
@@ -136,7 +154,7 @@
                 var drillDownData = data[catIndex].drilldown;
 
                 var drillDownDataIndex = _.indexOf(drillDownData.categories, subCategoryKey);
-                
+
                 if (drillDownDataIndex === -1) {
                     drillDownData.categories.push(subCategoryKey);
                     drillDownDataIndex = drillDownData.categories.length - 1;
