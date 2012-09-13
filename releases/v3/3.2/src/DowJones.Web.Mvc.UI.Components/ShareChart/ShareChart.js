@@ -128,7 +128,7 @@ DJ.UI.ShareChart = DJ.UI.Component.extend({
                         dataLabels: {
                             enabled: true,
                             distance: -30,
-                            color: 'white',
+                            color: 'white', 
                             formatter: function () {
                                 return '<b>' + this.point.name + '</b><br/> ' + parseFloat(this.percentage).toFixed(2) + ' %';
                             }
