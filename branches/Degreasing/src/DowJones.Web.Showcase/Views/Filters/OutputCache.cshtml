@@ -1,9 +1,0 @@
-﻿@{ ViewBag.Title = "Output Caching Demo: " + ViewData["CacheType"]; }
-
-<p> This request took @Html.ExecutionTime() </p>
-<p> Render time: @DateTime.Now</p>
-
-<div>
-	@Html.ActionLink("Uncached version", "Uncached") |
-	@Html.ActionLink("Cached version", "OutputCached")
-</div>
