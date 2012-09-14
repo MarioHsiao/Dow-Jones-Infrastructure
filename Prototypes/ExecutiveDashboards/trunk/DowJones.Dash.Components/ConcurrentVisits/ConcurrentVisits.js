@@ -6,6 +6,7 @@ DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
 
     selectors: {
         visitorsGauge: '.visitorsGauge',
+        timeCounter: '.dj_DashGaugeChartFooter .time'
     },
     
     init: function (element, meta) {
@@ -30,13 +31,14 @@ DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
                 max: 100,
                 min: 0,
                 angle: 65,
-                footer: "",
+                footer: "0:0s",
                 gaugeType: 0,
                 height: 200,
                 width: 200
             },
             templates: {
-                max: this._maxTemplate
+                max: this._maxTemplate,
+                footer: this._footerTemplate
             },
             data: 0
         };
@@ -63,6 +65,8 @@ DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
         if (this.visitorsGauge) {
             this.visitorsGauge.setData(data.visits);
         }
+        console.log(data);
+        this.$element.find(this.selectors.timeCounter).html("0:" +data.engaged_time.avg.toFixed(0) + "m");
     },
     
     _updateGaugeMax: function (data) {
@@ -74,6 +78,10 @@ DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
     
     _maxTemplate: function (val) {
         return "30-Day Max <span class=\"chartMax\">" + val + "</span>"; 
+    },
+    
+    _footerTemplate: function (val) {
+        return "<span class=\"label\">Engaged for <span class=\"time\">" + val + "</span> on average";
     },
 
     EOF: null  // Final property placeholder (without a comma) to allow easier moving of functions

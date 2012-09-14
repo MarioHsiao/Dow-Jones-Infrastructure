@@ -25,6 +25,9 @@
     color: #666666; }
   .visitorsGauge .dj_DashGaugeChart .dj_DashGaugeChartHeader .chartMax {
     display: block; }
+  .visitorsGauge .dj_DashGaugeChart .dj_DashGaugeChartFooter {
+    text-align: center;
+    width: 200px; }
 
 .newGauge .dj_DashGaugeChart, .writeGauge .dj_DashGaugeChart, .readGauge .dj_DashGaugeChart, .idleGauge .dj_DashGaugeChart {
   width: 100px;
@@ -55,9 +58,7 @@
     display: block; }
   .newGauge .dj_DashGaugeChart .dj_DashGaugeChartFooter, .writeGauge .dj_DashGaugeChart .dj_DashGaugeChartFooter, .readGauge .dj_DashGaugeChart .dj_DashGaugeChartFooter, .idleGauge .dj_DashGaugeChart .dj_DashGaugeChartFooter {
     text-align: center;
-    width: 100px;
-    color: #333;
-    font-weight: bold; }
+    width: 100px; }
 
 .platformContainer .desktop {
   height: 60px;

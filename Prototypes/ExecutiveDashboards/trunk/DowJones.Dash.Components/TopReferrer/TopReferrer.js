@@ -47,10 +47,18 @@ DJ.UI.TopReferrer = DJ.UI.CompositeComponent.extend({
         }
 
         var headlines = [];
+        var tempdata = [];
         for (var prop in data.referrers)
             if (prop.length > 0) {
-                headlines[headlines.length] = { title: prop, modificationTimeDescriptor: Highcharts.numberFormat(data.referrers[prop],0) };
+                tempdata.push( { title: prop, count: data.referrers[prop], countDescriptor: Highcharts.numberFormat(data.referrers[prop], 0) });
             }
+
+        tempdata = _.sortBy(tempdata, function (obj) { return obj.count; }).reverse();
+
+        var len, i;
+        for (i = 0, len = tempdata.length; i<len; i++) {
+            headlines.push({ title: tempdata[i].title, modificationTimeDescriptor: tempdata[i].countDescriptor });
+        }
         
         var result = {
             count: { value: headlines.length },

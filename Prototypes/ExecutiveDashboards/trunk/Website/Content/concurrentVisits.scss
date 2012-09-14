@@ -38,7 +38,11 @@
 		    }
 			.chartMax {
 				display: block; 
-			} 
+			} 			
+		}
+		.dj_DashGaugeChartFooter {
+			text-align:center;
+			width: 200px;
 		}
 	} 
 } 
@@ -62,8 +66,6 @@
 		.dj_DashGaugeChartFooter {
 			text-align:center;
 			width:100px;
-			color: #333;
-			font-weight: bold;
 		}
 	}
 }

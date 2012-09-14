@@ -54,13 +54,13 @@ DJ.UI.UsersStats = DJ.UI.CompositeComponent.extend({
     _footerTemplate: function(val) {
         switch(val.toLowerCase()) {
             case "idle":
-                return "<span class=\"tip\" title=\"Idle: The number of poeople idle (defined as no activity for a few minutes).\">Idle</span>";
+                return "<span class=\"tip label\" title=\"Idle: The number of poeople idle (defined as no activity for a few minutes).\">Idle</span>";
             case "read":
-                return "<span class=\"tip\" title=\"Read: The number of poeople reading (defined as actively moving around the page).\">Read</span>";
+                return "<span class=\"tip label\" title=\"Read: The number of poeople reading (defined as actively moving around the page).\">Read</span>";
             case "new":
-                return "<span class=\"tip\" title=\"New: Number of users that are new.\">New</span>";
+                return "<span class=\"tip label\" title=\"New: Number of users that are new.\">New</span>";
             case "write":
-                return "<span class=\"tip\" title=\"Write: The number of poeople writing (defined as actively typing on the page).\">Write</span>";
+                return "<span class=\"tip label\" title=\"Write: The number of poeople writing (defined as actively typing on the page).\">Write</span>";
         }
     },
     
