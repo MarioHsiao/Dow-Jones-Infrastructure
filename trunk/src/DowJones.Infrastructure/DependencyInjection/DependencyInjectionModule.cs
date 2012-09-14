@@ -38,7 +38,7 @@ namespace DowJones.DependencyInjection
         /// </summary>
         /// <example>
         /// <code>
-        /// AutoBind<IBootstrapperTask>();
+        /// AutoBind&lt;IBootstrapperTask&gt;();
         /// </code>
         /// will bind all of the implementations of IBootstrapperTask
         /// located in the currently-loaded assemblies.
@@ -52,6 +52,16 @@ namespace DowJones.DependencyInjection
                 targetTypes = targetTypes.Where(predicate);
 
             BindToTypes(targetTypes, bindingAction);
+        }
+
+        // HACK: This is a workaround to "fix" module loading order issues
+        //       should module loading order get corrected, stop using this method!
+        public void BindIfAbsent<T>(Action<IBindingToSyntax<T>> binding)
+        {
+            if(Kernel.GetBindings(typeof(T)).Any())
+                return;
+            
+            binding(Bind<T>());
         }
 
         public void BindToTypes<T>(IEnumerable<Type> targets, Action<IBindingWhenInNamedWithOrOnSyntax<T>> postBindingAction = null)
