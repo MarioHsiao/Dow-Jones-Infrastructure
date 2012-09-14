@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Net;
-using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Web;
 using DowJones.DependencyInjection;
@@ -23,7 +22,7 @@ namespace DowJones.Web
 
 		public ClientResourceProcessorOrder? Order
 		{
-			get { return ClientResourceProcessorOrder.First; }
+			get { return ClientResourceProcessorOrder.Last; }
 		}
 
 		public ClientResourceProcessorKind ProcessorKind

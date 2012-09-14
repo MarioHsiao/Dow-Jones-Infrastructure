@@ -56,9 +56,7 @@
                 scriptIncludes.push(include);
         }
 
-        var scriptUrl = this.options.templateUrl + '/' + this.options.templateId;
-
-        $.ajax(scriptUrl, { dataType: 'html' }).success(function (script) {
+        $.ajax(this.options.templateUrl, { dataType: 'html' }).success(function (script) {
             DJ.$dj.require(scriptIncludes, function () { evalClosure(script); });
         });
     },

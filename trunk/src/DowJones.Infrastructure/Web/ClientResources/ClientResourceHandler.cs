@@ -74,6 +74,12 @@ namespace DowJones.Web
             return GenerateUrl(resourceId, culture, context, debug);
         }
 
+        // Target for Func<string, string> delegate
+        public static string GenerateUrl(string resourceId)
+        {
+            return GenerateUrl(resourceId, null, null, null);
+        }
+
         // Target for Func<string, CultureInfo, string> delegate
         public static string GenerateUrl(string resourceId, CultureInfo culture)
         {
@@ -83,6 +89,8 @@ namespace DowJones.Web
         public static string GenerateUrl(string resourceId, CultureInfo culture, HttpContextBase context, bool? debug)
         {
             Guard.IsNotNullOrEmpty(resourceId, "resourceId");
+
+            culture = culture ?? Thread.CurrentThread.CurrentCulture;
 
             if (!resourceId.Contains(";"))
             {

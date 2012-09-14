@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using DowJones.Mapping;
 using DowJones.Pages.Modules.Templates;
 using DowJones.Web.Mvc.UI.Canvas.Modules.ScriptModule.Editor;
@@ -9,6 +9,10 @@ namespace DowJones.Web.Mvc.UI.Canvas.Modules.ScriptModule
 {
     public class ScriptModule : Module
     {
+        public const string ClientResourcePrefix = "ScriptModule-";
+
+        internal static Func<string, string> TemplateUrlThunk = ClientResourceHandler.GenerateUrl;
+
         [ClientProperty("templateId")]
         public string TemplateId { get; set; }
 
@@ -27,20 +31,27 @@ namespace DowJones.Web.Mvc.UI.Canvas.Modules.ScriptModule
 
         public string StylesheetUrl
         {
-            get { return string.Format("{0}/{1}.css", TemplateUrl, TemplateId); }
+            get { return TemplateUrlThunk(ClientResourceName(TemplateId) + ".css"); }
         }
 
         [ClientProperty("templateUrl")]
-        public string TemplateUrl { get; set; }
+        public string TemplateUrl
+        {
+            get { return TemplateUrlThunk(ClientResourceName(TemplateId)); }
+        }
 
         public ScriptModule()
         {
             DataServiceUrl = CanvasSettings.Default.GetDataServiceUrl(GetType(), CanvasSettings.Default);
-            TemplateUrl = VirtualPathUtility.ToAbsolute(CanvasSettings.Default.ScriptModuleTemplateUrl);
             ScriptOptions = Enumerable.Empty<KeyValuePair<string, object>>();
             ModuleState = ModuleState.Maximized;
         }
 
+
+        public static string ClientResourceName(string id)
+        {
+            return ClientResourcePrefix + id;
+        }
 
         public class ScriptModuleMapper : TypeMapper<DowJones.Pages.Modules.ScriptModule, IModule>
         {
