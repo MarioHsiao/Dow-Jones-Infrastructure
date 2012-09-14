@@ -228,6 +228,9 @@
     <Content Include="Content\bootstrap.css">
       <DependentUpon>bootstrap.scss</DependentUpon>
     </Content>
+    <Content Include="Content\browserShare.css">
+      <DependentUpon>browserShare.scss</DependentUpon>
+    </Content>
     <Content Include="Content\concurrentVisits.css">
       <DependentUpon>concurrentVisits.scss</DependentUpon>
     </Content>
@@ -317,6 +320,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\concurrentVisits.scss" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\browserShare.scss" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
