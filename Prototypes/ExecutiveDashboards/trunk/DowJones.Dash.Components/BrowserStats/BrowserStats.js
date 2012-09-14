@@ -32,6 +32,7 @@ DJ.UI.BrowserStats = DJ.UI.Component.extend({
     },
 
     _setData: function (data) {
+        
         var self = this;
         var browserData = _.map(data, function (item) {
             var browser = self._parseBrowserInfo(item.browser);
@@ -45,10 +46,37 @@ DJ.UI.BrowserStats = DJ.UI.Component.extend({
             };
         });
 
-        this.barContainer.html(this.templates.statBars(browserData));
+        if (!this._intializedData) {
+            this.barContainer.html(this.templates.statBars(browserData));
+        }
+        else {
+            this._updateData(browserData);
+        }
+
+        if(data && data.length > 0) {
+            this._intializedData = true;
+        }
+    },
+    
+    _updateData: function (data) {
+        var trafficBars = this.barContainer.find('.dj-trafficBar');
+        var bars = this.barContainer.find('.bar'),
+            gauges = this.barContainer.find('.guage'),
+            browsers = this.barContainer.find('.browser i'),
+            visitors = this.barContainer.find('.visitors');
+        for (var i = 0, len = data.length; i < len; i++) {
+            var stat = data[i],
+                trafficBar = $(trafficBars[i]),
+                broswerLogo = stat.browser === 'internetexplorer' ? 'ie' + stat.browserVersion : stat.browser;
+            trafficBar.find('.visitors').counter(stat.visitors);
+            trafficBar.find('.bar').removeClass().addClass('bar').addClass(stat.temperature);
+            trafficBar.find('.timing').text(stat.timing + 'ms');
+            trafficBar.find('.gauge').animate({width: Math.round((stat.timing * 100) / 210) + '%'}, 600);
+            trafficBar.find('.browser i').removeClass().addClass('dj-logo-' + broswerLogo);
+        }
     },
 
-    /* TODO: dummy data related functions. review their worthiness after requirements are finalized */
+        /* TODO: dummy data related functions. review their worthiness after requirements are finalized */
     _parseBrowserInfo: function (info) {
         var items = info.split(' ');
         var name = items[0];

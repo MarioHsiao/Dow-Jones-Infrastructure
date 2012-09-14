@@ -24,8 +24,9 @@ namespace DowJones.Dash.Components.BrowserStats
     using System.Web.UI;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 09/13/2012 05:17 PM
-    [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Dash.Components.BrowserStats.BrowserStats.js", ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Dash.Components.BrowserStats.BrowserStatsComponent))]
+    // Last Generated Timestamp: 09/14/2012 06:03 PM
+    [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Dash.Components.BrowserStats.BrowserStats.js", DependsOn=new string[] {
+            "jquery-counter"}, ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Dash.Components.BrowserStats.BrowserStatsComponent))]
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Dash.Components.BrowserStats.ClientTemplates.container.html", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="container", DeclaringType=typeof(DowJones.Dash.Components.BrowserStats.BrowserStatsComponent))]
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Dash.Components.BrowserStats.ClientTemplates.statBars.html", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="statBars", DeclaringType=typeof(DowJones.Dash.Components.BrowserStats.BrowserStatsComponent))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.27108")]

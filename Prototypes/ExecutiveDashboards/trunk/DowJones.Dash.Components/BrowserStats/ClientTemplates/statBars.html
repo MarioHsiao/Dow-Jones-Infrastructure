@@ -16,7 +16,7 @@
         <div class="browser"><i class="dj-logo-<%= broswerLogo %>"></i></div>
         <div class="bar <%= bar.temperature %>">
             <div class="gauge" style="width: <%= percent %>%">&nbsp;</div>
-            <%= bar.timing %>ms
+            <span class="timing"><%= bar.timing %>ms</span>
         </div>
         <% if(showVersion) %>
         <div class="browserVersion"><%= bar.browserVersion %></div>
