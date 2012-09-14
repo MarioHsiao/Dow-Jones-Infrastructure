@@ -61,7 +61,7 @@ DJ.UI.DashGauge = DJ.UI.Component.extend({
         if (!this.chart) {
             this._renderGauge(this._getChartObject(this.data));
         } else {
-            $(this.selectors.chartValue, this.$element).html(Highcharts.numberFormat(this.data, 0));
+            $(this.selectors.chartValue, this.$element).counter(this.data);
             this._updateGauge();
         }
     },
