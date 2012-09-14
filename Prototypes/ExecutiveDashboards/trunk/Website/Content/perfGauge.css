@@ -128,17 +128,17 @@
         background-image: -webkit-linear-gradient(#a6ce8d, #81ba6b);
         background-image: linear-gradient(top, #a6ce8d, #81ba6b); }
     .dj-trafficBar .bar.hot {
-      border: 1px solid #dc8b49;
-      border-top: 1px solid #ec9956;
-      border-bottom: 1px solid #cd7d3c; }
+      border: 1px solid #AA4643;
+      border-top: 1px solid #C35F5C;
+      border-bottom: 1px solid #AA4643; }
       .dj-trafficBar .bar.hot .gauge {
-        background-color: #ec9054;
+        background-color: #AA4643;
         background-repeat: no-repeat;
-        background-image: -moz-linear-gradient(#f1b16e, #ec9054);
-        background-image: -ms-linear-gradient(top, #f1b16e, #ec9054);
-        background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#f1b16e), to(#ec9054));
-        background-image: -webkit-linear-gradient(#f1b16e, #ec9054);
-        background-image: linear-gradient(top, #f1b16e, #ec9054); }
+        background-image: -moz-linear-gradient(#c35f5c, #aa4643);
+        background-image: -ms-linear-gradient(top, #c35f5c, #aa4643);
+        background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#c35f5c), to(#aa4643));
+        background-image: -webkit-linear-gradient(#c35f5c, #aa4643);
+        background-image: linear-gradient(top, #c35f5c, #aa4643); }
     .dj-trafficBar .bar.neutral {
       border: 1px solid #c9b45d;
       border-top: 1px solid #cbba72;

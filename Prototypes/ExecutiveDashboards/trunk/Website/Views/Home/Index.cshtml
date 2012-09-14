@@ -26,19 +26,20 @@
         <div id="current-users" class="module" data-type="PlatformStats">
             @DJ.Render(new UsersStatsModel())
         </div>
-        <div id="current-users" class="module" data-type="PageTimings">
-            @DJ.Render(new PageTimingsModel())
-        </div>
+       
     </div>
 	<div id="column2" class="span4">
 		<div id="browser-stats" class="module" data-type="BrowserStats">
-            @DJ.Render(new BrowserStatsModel())
+			@DJ.Render(new BrowserStatsModel())
+		</div>
+        <div id="browser-share" class="module" data-type="BrowserShare">
+            @DJ.Render(new BrowserShareModel())
         </div>
 	</div>
 
     <div id="column3" class="span4">
-        <div id="browser-share" class="module" data-type="BrowserShare">
-            @DJ.Render(new BrowserShareModel())
+         <div id="current-users" class="module" data-type="PageTimings">
+            @DJ.Render(new PageTimingsModel())
         </div>
 
         <div id="top-pages" class="module" data-type="TopPages">
@@ -57,10 +58,14 @@
 
     <script type="text/javascript">
         function initializeDashboard() {
-            $('.trendTabs li').not(':first').find('a').click(function () {
-                alert('Coming Soon');
-                return false;
-            });
+            $('.trendTabs li').not(':first').find('a')
+                .popover({ content: 'Coming soon!', delay: { show: 1000, hide: 1000 } })
+                .click(function () {
+                    var self = this;
+                    setTimeout(function () {
+                        $(self).popover('hide');
+                    }, 1000);
+                });
         }
     </script>
 }
