@@ -8,6 +8,8 @@
         bar = model[i]; 
         percent = Math.round((bar.timing * 100) / 210);
         broswerLogo = bar.browser === 'internetexplorer' ? 'ie' + bar.browserVersion : bar.browser;
+        showVersion = (bar.browser === 'internetexplorer' || (bar.browser === 'firefox' && bar.browserVersion < 4)) ? true : false;
+
     %>
     <li class="dj-trafficBar">
         <span class="visitors"><%= bar.visitors %></span>
@@ -16,6 +18,7 @@
             <div class="gauge" style="width: <%= percent %>%">&nbsp;</div>
             <%= bar.timing %>ms
         </div>
+        <% if(showVersion) %>
         <div class="browserVersion"><%= bar.browserVersion %></div>
     </li>
     <% } %>
