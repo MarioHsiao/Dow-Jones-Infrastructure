@@ -25,6 +25,15 @@ namespace DowJones.Web.Mvc.UI.Canvas {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("modules/Script/1.0/data/json")]
+        public string ScriptModuleServiceUrl {
+            get {
+                return ((string)(this["ScriptModuleServiceUrl"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("/pages/1.0")]
         public string CanvasServiceUrl {
             get {
@@ -43,10 +52,10 @@ namespace DowJones.Web.Mvc.UI.Canvas {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("modules/Script/1.0/data/json")]
-        public string ScriptModuleServiceUrl {
+        [global::System.Configuration.DefaultSettingValueAttribute("/ScriptModule.axd")]
+        public string ScriptModuleTemplateUrl {
             get {
-                return ((string)(this["ScriptModuleServiceUrl"]));
+                return ((string)(this["ScriptModuleTemplateUrl"]));
             }
         }
     }

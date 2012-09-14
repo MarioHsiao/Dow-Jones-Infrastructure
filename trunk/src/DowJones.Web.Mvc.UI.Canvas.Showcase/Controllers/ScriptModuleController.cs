@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading;
 using System.Web.Mvc;
 using DowJones.DegreasedDashboards.Website.Models;
@@ -202,32 +201,6 @@ namespace DowJones.DegreasedDashboards.Website.Controllers
             }
 
             return Json(new { moduleId });
-        }
-
-        [Route("modules/Script/1.0/data/json/script/{templateId}")]
-        public ActionResult ScriptModuleScript(string templateId)
-        {
-            var template = _templateManager.GetTemplate(templateId);
-
-            var scriptResult = new System.Text.StringBuilder();
-
-            scriptResult.AppendFormat("console.log('Script Template {0}>> Executing with context ', this);{1}", templateId, template.Script);
-
-            return Content(scriptResult.ToString(), "text/javascript");
-        }
-
-        [Route("modules/Script/1.0/data/json/styles/{templateId}")]
-        public ActionResult ScriptModuleStylesheet(string templateId)
-        {
-            var template = _templateManager.GetTemplate(templateId);
-
-            var scriptResult = new System.Text.StringBuilder();
-
-            scriptResult.AppendLine("/* Template " + templateId + " */");
-            scriptResult.AppendLine(template.Styles);
-            scriptResult.AppendLine();
-
-            return Content(scriptResult.ToString(), "text/css");
         }
     }
 }

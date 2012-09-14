@@ -56,7 +56,7 @@
                 scriptIncludes.push(include);
         }
 
-        var scriptUrl = this.options.dataServiceUrl + '/script/' + this.options.templateId;
+        var scriptUrl = this.options.templateUrl + '/' + this.options.templateId;
 
         $.ajax(scriptUrl, { dataType: 'html' }).success(function (script) {
             DJ.$dj.require(scriptIncludes, function () { evalClosure(script); });

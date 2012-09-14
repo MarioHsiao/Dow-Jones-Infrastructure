@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Web;
 using DowJones.Mapping;
 using DowJones.Pages.Modules.Templates;
 using DowJones.Web.Mvc.UI.Canvas.Modules.ScriptModule.Editor;
@@ -26,12 +27,16 @@ namespace DowJones.Web.Mvc.UI.Canvas.Modules.ScriptModule
 
         public string StylesheetUrl
         {
-            get { return DataServiceUrl + "/styles/" + TemplateId; }
+            get { return string.Format("{0}/{1}.css", TemplateUrl, TemplateId); }
         }
+
+        [ClientProperty("templateUrl")]
+        public string TemplateUrl { get; set; }
 
         public ScriptModule()
         {
             DataServiceUrl = CanvasSettings.Default.GetDataServiceUrl(GetType(), CanvasSettings.Default);
+            TemplateUrl = VirtualPathUtility.ToAbsolute(CanvasSettings.Default.ScriptModuleTemplateUrl);
             ScriptOptions = Enumerable.Empty<KeyValuePair<string, object>>();
             ModuleState = ModuleState.Maximized;
         }
