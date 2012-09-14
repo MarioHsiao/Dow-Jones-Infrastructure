@@ -8,9 +8,6 @@ namespace DowJones.Web.Mvc.UI.Canvas.Controllers
         [Inject("Avoiding base class controller injection")]
         public IPageRepository PageRepository { get; set; }
 
-        [Inject("Avoiding base class controller injection")]
-        public IPageSubscriptionManager SubscriptionManager { get; set; }
-
         protected override CanvasModuleViewResult AddModuleInternal(int id, string pageId, string callback)
         {
             PageRepository.AddModuleToPage(pageId, id);
@@ -25,11 +22,6 @@ namespace DowJones.Web.Mvc.UI.Canvas.Controllers
         protected override Page GetPage(string id)
         {
             return PageRepository.GetPage(id);
-        }
-
-        protected override string SubscribeToPage(string id, int positionNumber)
-        {
-            return SubscriptionManager.SubscribeToPage(id, positionNumber);
         }
     }
 }
