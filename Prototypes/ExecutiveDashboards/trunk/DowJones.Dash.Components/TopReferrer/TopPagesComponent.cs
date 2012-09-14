@@ -23,7 +23,7 @@ namespace DowJones.Dash.Components.TopReferrer
     using System.Web.UI;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 09/13/2012 11:55 AM
+    // Last Generated Timestamp: 09/14/2012 02:34 PM
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Dash.Components.TopReferrer.TopReferrer.js", DependsOn=new string[] {
             "highcharts-more"}, ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Dash.Components.TopReferrer.TopPagesComponent))]
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Dash.Components.TopReferrer.ClientTemplates.container.html", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="container", DeclaringType=typeof(DowJones.Dash.Components.TopReferrer.TopPagesComponent))]
@@ -50,8 +50,6 @@ namespace DowJones.Dash.Components.TopReferrer
 
 
    CssClass = "dj_TopReferrer"; 
-
-WriteLiteral("\r\nH");
 
 
         }
