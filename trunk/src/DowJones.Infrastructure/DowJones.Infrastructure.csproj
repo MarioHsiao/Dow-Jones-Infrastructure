@@ -165,7 +165,10 @@
     <Compile Include="Managers\Multimedia\MultiMediaRequest.cs" />
     <Compile Include="Managers\Multimedia\MultiMediaResponse.cs" />
     <Compile Include="Models\Common\RegionNewsVolume.cs" />
+    <Compile Include="Web\ClientResources\EmbeddedClientResourceRepository.cs" />
     <Compile Include="Web\ClientResources\EmbeddedClientResourceValidator.cs" />
+    <Compile Include="Web\ClientResources\IClientResourceRepository.cs" />
+    <Compile Include="Web\ClientResources\LocalFileClientResourceRepository.cs" />
     <Compile Include="Web\Extensions\UrlExtensions.cs" />
     <Compile Include="Globalization\ResourceTextManagerFactory.cs" />
     <Compile Include="Infrastructure\GenericEqualityComparer.cs" />
@@ -706,7 +709,7 @@
     <Compile Include="Web\ClientResources\ClientResourceDefinition.cs" />
     <Compile Include="Web\ClientResources\ClientResourceDefinitionToClientResourceMapper.cs" />
     <Compile Include="Web\ClientResources\ClientResourceHandler.cs" />
-    <Compile Include="Web\ClientResources\ClientResourceManagerFactory.cs" />
+    <Compile Include="Web\ClientResources\ClientResourceConfiguration.cs" />
     <Compile Include="Web\ClientResources\ClientResourceModuleName.cs" />
     <Compile Include="Web\ClientResources\ClientResourcePopulator.cs" />
     <Compile Include="Web\ClientResources\ClientResourceUrlProcessor.cs" />

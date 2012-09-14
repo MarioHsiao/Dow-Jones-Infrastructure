@@ -55,7 +55,9 @@ namespace DowJones
             Bind<HttpRequestBase>().ToMethod(x => x.Kernel.Get<HttpContextBase>().Request).InTransientScope();
             Bind<System.Web.Caching.Cache>().ToMethod(x => x.Kernel.Get<HttpContextBase>().Cache).InTransientScope();
 
-            BindToFactory<IClientResourceManager, ClientResourceManagerFactory>().InSingletonScope();
+            Bind<IClientResourceManager>().To<ClientResourceManager>().InSingletonScope();
+            Bind<IClientResourceRepository>().To<LocalFileClientResourceRepository>().InSingletonScope();
+            Bind<IClientResourceRepository>().To<EmbeddedClientResourceRepository>().InSingletonScope();
 
             Bind<IClientResourceProcessor>().To<ClientResourcePopulator>().InRequestScope();
             Bind<IClientResourceProcessor>().To<ClientResourceUrlProcessor>().InRequestScope();

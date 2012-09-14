@@ -4,31 +4,42 @@ using System.Globalization;
 using System.Linq;
 using System.Linq.Expressions;
 using DowJones.Extensions;
+using DowJones.Web.ClientResources;
 
 namespace DowJones.Web
 {
     public class ClientResourceManager : IClientResourceManager
     {
-        private readonly IDictionary<string, string> _aliasCache;
-        private readonly IDictionary<string, string> _nameCache;
-
         public const string ResourceNameDelimiter = ";";
         private const StringComparison IgnoreCase = StringComparison.OrdinalIgnoreCase;
 
+        private readonly IDictionary<string, string> _aliasCache;
+        private readonly IDictionary<string, string> _nameCache;
+        private readonly IEnumerable<IClientResourceRepository> _repositories;
+
         public IEnumerable<ClientResourceAlias> Aliases { get; private set; }
 
-        public IEnumerable<ClientResource> ClientResources { get; private set; }
+        public IEnumerable<ClientResource> ClientResources
+        {
+            get { return _repositories.SelectMany(x => x.GetClientResources()); }
+        }
 
         public Func<string, CultureInfo, string> UrlResolver { get; set; }
 
 
-        public ClientResourceManager(IEnumerable<ClientResource> clientResources, IEnumerable<ClientResourceAlias> aliases)
+        public ClientResourceManager(IEnumerable<IClientResourceRepository> repositories, ClientResourceConfiguration config)
+            :this(repositories, config.Aliases)
+        {
+        }
+
+        internal ClientResourceManager(IEnumerable<IClientResourceRepository> repositories, IEnumerable<ClientResourceAlias> aliases)
         {
             _aliasCache = new Dictionary<string, string>();
             _nameCache = new Dictionary<string, string>();
 
+            _repositories = repositories ?? Enumerable.Empty<IClientResourceRepository>();
+
             Aliases = aliases ?? Enumerable.Empty<ClientResourceAlias>();
-            ClientResources = clientResources ?? Enumerable.Empty<ClientResource>();
             UrlResolver = ClientResourceHandler.GenerateUrl;
         }
 
@@ -64,7 +75,6 @@ namespace DowJones.Web
             return globalResource;
         }
 
-
         public IEnumerable<ClientResource> GetClientResources(IEnumerable<string> resourceNames)
         {
             var dealiased = resourceNames.SelectMany(ParseClientResourceNames).ToArray();
@@ -75,7 +85,6 @@ namespace DowJones.Web
 
             return registeredResources.Union(unregisteredResources).ToArray();
         }
-
 
         private IEnumerable<ClientResource> GetUnregisteredResources(IEnumerable<string> resourceNames, IEnumerable<ClientResource> registeredResources)
         {
