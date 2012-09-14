@@ -65,7 +65,6 @@ DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
         if (this.visitorsGauge) {
             this.visitorsGauge.setData(data.visits);
         }
-        console.log(data);
         this.$element.find(this.selectors.timeCounter).html("0:" +data.engaged_time.avg.toFixed(0) + "m");
     },
     
