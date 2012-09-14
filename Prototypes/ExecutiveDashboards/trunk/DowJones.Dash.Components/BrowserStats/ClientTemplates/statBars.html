@@ -4,7 +4,7 @@
         <div>Visitors</div>
         <div>Page Load Time</div>
     </li>
-    <% for(i = 0, len = model.length; i < len; i++) { 
+    <% for(i = 0, len = Math.min(model.length, 5); i < len; i++) { 
         bar = model[i]; 
         percent = Math.round((bar.timing * 100) / 210);
         broswerLogo = bar.browser === 'internetexplorer' ? 'ie' + bar.browserVersion : bar.browser;
