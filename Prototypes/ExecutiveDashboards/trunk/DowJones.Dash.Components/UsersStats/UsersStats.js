@@ -43,6 +43,25 @@ DJ.UI.UsersStats = DJ.UI.CompositeComponent.extend({
             comp.owner = self;
             comp.updateMax(91995);
         });
+        
+        this.$element.find('.tip').tooltip();
+    },
+    
+    _maxTemplate: function(val) {
+        return "Max <span class=\"chartMax\">" + val + "</span>";
+    },
+    
+    _footerTemplate: function(val) {
+        switch(val.toLowerCase()) {
+            case "idle":
+                return "<span class=\"tip\" title=\"Idle: The number of poeople idle (defined as no activity for a few minutes).\">Idle</span>";
+            case "read":
+                return "<span class=\"tip\" title=\"Read: The number of poeople reading (defined as actively moving around the page).\">Read</span>";
+            case "new":
+                return "<span class=\"tip\" title=\"New: Number of users that are new.\">New</span>";
+            case "write":
+                return "<span class=\"tip\" title=\"Write: The number of poeople writing (defined as actively typing on the page).\">Write</span>";
+        }
     },
     
     _basicGaugeConfig: function(element, vFooter) {
@@ -56,6 +75,10 @@ DJ.UI.UsersStats = DJ.UI.CompositeComponent.extend({
                 gaugeType: 0,
                 height: 100,
                 width: 100
+            },
+            templates: {
+                max: this._maxTemplate,
+                footer: this._footerTemplate
             },
             data: 0
         };

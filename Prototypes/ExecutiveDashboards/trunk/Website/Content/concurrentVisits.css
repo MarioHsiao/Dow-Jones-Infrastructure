@@ -5,24 +5,74 @@
   .visitorsGauge .dj_DashGaugeChart .dj_DashGaugeChartHeader .dj_DashGaugeChartValue {
     position: absolute;
     top: 22px;
-    font-size: 4.0em;
+    font-size: 4em;
     text-align: center;
     z-index: 1000;
     width: 200px;
     line-height: 1em;
     color: #333333;
     font-weight: bold;
-    text-shadow: 0 1px 0 #cccccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbbbbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaaaaa, 0 6px 1px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.1); }
+    text-shadow: 0 1px 0 #cccccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbbbbb; }
   .visitorsGauge .dj_DashGaugeChart .dj_DashGaugeChartHeader .dj_DashGaugeChartMax {
     position: absolute;
-    top: 145px;
+    top: 155px;
     left: -5px;
-    font-size: 1.0em;
+    font-size: 1em;
     text-align: right;
     z-index: 1000;
     width: 200px;
     line-height: 1em;
-    color: #666; }
-    .visitorsGauge .dj_DashGaugeChart .dj_DashGaugeChartHeader .dj_DashGaugeChartMax .chartMax {
-      display: block; }
+    color: #666666; }
+  .visitorsGauge .dj_DashGaugeChart .dj_DashGaugeChartHeader .chartMax {
+    display: block; }
+
+.newGauge .dj_DashGaugeChart, .writeGauge .dj_DashGaugeChart, .readGauge .dj_DashGaugeChart, .idleGauge .dj_DashGaugeChart {
+  width: 100px;
+  margin: 0 auto;
+  position: relative; }
+  .newGauge .dj_DashGaugeChart .dj_DashGaugeChartHeader .dj_DashGaugeChartValue, .writeGauge .dj_DashGaugeChart .dj_DashGaugeChartHeader .dj_DashGaugeChartValue, .readGauge .dj_DashGaugeChart .dj_DashGaugeChartHeader .dj_DashGaugeChartValue, .idleGauge .dj_DashGaugeChart .dj_DashGaugeChartHeader .dj_DashGaugeChartValue {
+    position: absolute;
+    top: 15px;
+    font-size: 1.5em;
+    text-align: center;
+    z-index: 1000;
+    width: 100px;
+    line-height: 1em;
+    color: #333333;
+    font-weight: bold;
+    text-shadow: 0 1px 0 #cccccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbbbbb; }
+  .newGauge .dj_DashGaugeChart .dj_DashGaugeChartHeader .dj_DashGaugeChartMax, .writeGauge .dj_DashGaugeChart .dj_DashGaugeChartHeader .dj_DashGaugeChartMax, .readGauge .dj_DashGaugeChart .dj_DashGaugeChartHeader .dj_DashGaugeChartMax, .idleGauge .dj_DashGaugeChart .dj_DashGaugeChartHeader .dj_DashGaugeChartMax {
+    position: absolute;
+    top: 70px;
+    left: -5px;
+    font-size: 0.9em;
+    text-align: right;
+    z-index: 1000;
+    width: 100px;
+    line-height: 1em;
+    color: #666666; }
+  .newGauge .dj_DashGaugeChart .dj_DashGaugeChartHeader .chartMax, .writeGauge .dj_DashGaugeChart .dj_DashGaugeChartHeader .chartMax, .readGauge .dj_DashGaugeChart .dj_DashGaugeChartHeader .chartMax, .idleGauge .dj_DashGaugeChart .dj_DashGaugeChartHeader .chartMax {
+    display: block; }
+  .newGauge .dj_DashGaugeChart .dj_DashGaugeChartFooter, .writeGauge .dj_DashGaugeChart .dj_DashGaugeChartFooter, .readGauge .dj_DashGaugeChart .dj_DashGaugeChartFooter, .idleGauge .dj_DashGaugeChart .dj_DashGaugeChartFooter {
+    text-align: center;
+    width: 100px;
+    color: #333;
+    font-weight: bold; }
+
+.platformContainer .desktop {
+  height: 60px;
+  display: block;
+  background-image: url(./images/computer-icon.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  text-align: center;
+  padding-top: 55px; }
+.platformContainer .mobile {
+  height: 60px;
+  display: block;
+  background-image: url(./images/smartphone-icon.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  text-align: center;
+  padding-top: 55px; }
 

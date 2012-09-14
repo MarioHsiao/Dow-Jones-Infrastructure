@@ -12,6 +12,9 @@
 [assembly: System.Web.UI.WebResourceAttribute("DowJones.Dash.Components.DashGauge.ClientTemplates.error.html", "text/html")]
 [assembly: System.Web.UI.WebResourceAttribute("DowJones.Dash.Components.DashGauge.ClientTemplates.noData.html", "text/html")]
 [assembly: System.Web.UI.WebResourceAttribute("DowJones.Dash.Components.DashGauge.ClientTemplates.layout.html", "text/html")]
+[assembly: System.Web.UI.WebResourceAttribute("DowJones.Dash.Components.DashGauge.ClientTemplates.max.html", "text/html")]
+[assembly: System.Web.UI.WebResourceAttribute("DowJones.Dash.Components.DashGauge.ClientTemplates.title.html", "text/html")]
+[assembly: System.Web.UI.WebResourceAttribute("DowJones.Dash.Components.DashGauge.ClientTemplates.footer.html", "text/html")]
 
 namespace DowJones.Dash.Components.DashGauge
 {
@@ -25,12 +28,15 @@ namespace DowJones.Dash.Components.DashGauge
     using System.Web.UI;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 09/12/2012 09:37 AM
+    // Last Generated Timestamp: 09/14/2012 11:23 AM
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Dash.Components.DashGauge.DashGauge.js", DependsOn=new string[] {
             "highcharts-more"}, ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Dash.Components.DashGauge.DashGauge))]
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Dash.Components.DashGauge.ClientTemplates.error.html", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="error", DeclaringType=typeof(DowJones.Dash.Components.DashGauge.DashGauge))]
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Dash.Components.DashGauge.ClientTemplates.noData.html", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="noData", DeclaringType=typeof(DowJones.Dash.Components.DashGauge.DashGauge))]
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Dash.Components.DashGauge.ClientTemplates.layout.html", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="layout", DeclaringType=typeof(DowJones.Dash.Components.DashGauge.DashGauge))]
+    [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Dash.Components.DashGauge.ClientTemplates.max.html", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="max", DeclaringType=typeof(DowJones.Dash.Components.DashGauge.DashGauge))]
+    [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Dash.Components.DashGauge.ClientTemplates.title.html", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="title", DeclaringType=typeof(DowJones.Dash.Components.DashGauge.DashGauge))]
+    [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Dash.Components.DashGauge.ClientTemplates.footer.html", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="footer", DeclaringType=typeof(DowJones.Dash.Components.DashGauge.DashGauge))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.27108")]
     public class DashGauge : DowJones.Web.Mvc.UI.ViewComponentBase<Models.DashGauge.DashGaugeModel>
     {
@@ -48,6 +54,9 @@ namespace DowJones.Dash.Components.DashGauge
         }
         public override void ExecuteTemplate()
         {
+
+
+
 
 
 

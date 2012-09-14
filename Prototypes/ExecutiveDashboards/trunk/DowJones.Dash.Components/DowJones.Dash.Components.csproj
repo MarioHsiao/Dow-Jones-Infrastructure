@@ -231,6 +231,15 @@
     <EmbeddedResource Include="UsersStats\UsersStats.js" />
     <EmbeddedResource Include="UsersStats\ClientTemplates\container.html" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="DashGauge\ClientTemplates\max.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="DashGauge\ClientTemplates\title.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="DashGauge\ClientTemplates\footer.html" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

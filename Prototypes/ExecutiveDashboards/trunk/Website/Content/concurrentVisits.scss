@@ -1,36 +1,91 @@
+
+@mixin gaugeMaxLabel($fontSize: .9em, $width: 100px, $color: #666, $top: 70px, $left: -5px) {
+	position: absolute;
+	top: $top;
+	left: $left;
+	font-size: $fontSize;
+	text-align: right;
+	z-index: 1000;
+	width: $width;
+	line-height: 1em;
+	color: $color;
+}
+
+@mixin LabelShadow($fontSize: 1.5em, $width: 100px, $color: #333, $top: 15px) {
+	position: absolute;
+	top: $top;
+	font-size: $fontSize;
+	text-align: center;
+	z-index: 1000;
+	width: $width;
+	line-height: 1em;
+	color: $color;
+	font-weight: bold;
+	text-shadow: 0 1px 0 #cccccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbbbbb; 
+}
+
 .visitorsGauge{
 	.dj_DashGaugeChart {
-	  width: 200px;
-	  margin: 0 auto;
-	  position: relative;
-	  .dj_DashGaugeChartHeader {
-		.dj_DashGaugeChartValue {
-		  position: absolute;
-		  top: 22px;
-		  font-size: 4.0em;
-		  text-align: center;
-		  z-index: 1000;
-		  width: 200px;
-		  line-height: 1em;
-		  color: #333333;
-		  font-weight: bold;
-		  text-shadow: 0 1px 0 #cccccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbbbbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaaaaa, 0 6px 1px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.1); }
-		.dj_DashGaugeChartMax {
-		  position: absolute;
-		  top: 145px;
-		  left: -5px;
-		  font-size: 1.0em;
-		  text-align: right;
-		  z-index: 1000;
-		  width: 200px;
-		  line-height: 1em;
-		  color: #666;
-		  .chartMax {
-			display: block; } } } } }
+		width: 200px;
+		margin: 0 auto;
+		position: relative;
+		.dj_DashGaugeChartHeader {
+			.dj_DashGaugeChartValue {
+			  @include LabelShadow(4.0em, 200px, #333, 22px)
+			}
+			.dj_DashGaugeChartMax {
+			  @include gaugeMaxLabel(1.0em, 200px, #666, 155px, -5px)
+		    }
+			.chartMax {
+				display: block; 
+			} 
+		}
+	} 
+} 
 
-			
-.platformContainer {
-	.desktop {
-		
-	}	
+.newGauge, .writeGauge,.readGauge, .idleGauge{
+	.dj_DashGaugeChart {
+		width: 100px;
+		margin: 0 auto;
+		position: relative;
+		.dj_DashGaugeChartHeader {
+			.dj_DashGaugeChartValue {
+				@include LabelShadow
+			}
+			.dj_DashGaugeChartMax {
+				@include gaugeMaxLabel
+			}	
+			.chartMax {
+				display:block;
+			}
+		}
+		.dj_DashGaugeChartFooter {
+			text-align:center;
+			width:100px;
+			color: #333;
+			font-weight: bold;
+		}
+	}
+}
+
+
+.platformContainer{
+	.desktop{
+		height: 60px;
+		display:block;
+		background-image: url(./images/computer-icon.png);
+		background-repeat: no-repeat;
+		background-position: center; 
+		text-align: center;
+		padding-top: 55px;
+	}
+	.mobile{
+		height: 60px;
+		display: block;
+		background-image: url(./images/smartphone-icon.png);
+		background-repeat: no-repeat;
+		background-position: center; 
+		text-align: center;
+		padding-top: 55px;
+	}
 }

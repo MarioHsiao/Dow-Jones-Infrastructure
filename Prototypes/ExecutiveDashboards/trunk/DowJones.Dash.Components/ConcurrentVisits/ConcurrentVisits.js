@@ -35,6 +35,9 @@ DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
                 height: 200,
                 width: 200
             },
+            templates: {
+                max: this._maxTemplate
+            },
             data: 0
         };
     },
@@ -67,6 +70,10 @@ DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
         if (this.visitorsGauge) {
             this.visitorsGauge.updateMax(max);
         }
+    },
+    
+    _maxTemplate: function (val) {
+        return "30-Day Max <span class=\"chartMax\">" + val + "</span>"; 
     },
 
     EOF: null  // Final property placeholder (without a comma) to allow easier moving of functions

@@ -24,10 +24,6 @@ DJ.UI.DashGauge = DJ.UI.Component.extend({
         }
     },
     
-    internalTemplates: {
-        maxTemplate: function (val) { return "30-Day Max <span class=\"chartMax\">" + val + "</span>"; }
-    },
-
     selectors: {
         chartContainer: ".dj_DashGaugeChartContainer",
         chartTitle: ".dj_DashGaugeChartTitle",
@@ -123,7 +119,7 @@ DJ.UI.DashGauge = DJ.UI.Component.extend({
                 }
             }
             axis.setExtremes(this.options.min, this.options.max,false);
-            $(this.selectors.chartMax, this.$element).html(this.internalTemplates.maxTemplate(Highcharts.numberFormat(val,0)));
+            $(this.selectors.chartMax, this.$element).html(this.templates.max(Highcharts.numberFormat(val,0)));
         }
     },
     
