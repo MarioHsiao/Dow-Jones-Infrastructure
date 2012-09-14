@@ -117,6 +117,7 @@
       <DependentUpon>ScriptCanvasModule.cshtml</DependentUpon>
     </Compile>
     <Compile Include="Modules\ScriptModule\ScriptModule.cs" />
+    <Compile Include="Modules\ScriptModule\ScriptModuleHandler.cs" />
     <Compile Include="ViewResults\PageNotFoundViewResult.cs" />
     <Compile Include="Models\AbstractEditorModel.cs" />
     <Compile Include="Models\Canvas.cs" />
