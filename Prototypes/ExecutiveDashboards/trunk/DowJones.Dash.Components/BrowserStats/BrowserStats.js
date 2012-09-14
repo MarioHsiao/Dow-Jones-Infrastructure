@@ -60,19 +60,17 @@ DJ.UI.BrowserStats = DJ.UI.Component.extend({
     
     _updateData: function (data) {
         var trafficBars = this.barContainer.find('.dj-trafficBar');
-        var bars = this.barContainer.find('.bar'),
-            gauges = this.barContainer.find('.guage'),
-            browsers = this.barContainer.find('.browser i'),
-            visitors = this.barContainer.find('.visitors');
         for (var i = 0, len = data.length; i < len; i++) {
             var stat = data[i],
                 trafficBar = $(trafficBars[i]),
-                broswerLogo = stat.browser === 'internetexplorer' ? 'ie' + stat.browserVersion : stat.browser;
+                broswerLogo = stat.browser === 'internetexplorer' ? 'ie' + stat.browserVersion : stat.browser,
+                version = (stat.browser === 'internetexplorer' || (stat.browser === 'firefox' && stat.browserVersion < 4)) ? stat.browserVersion : '';
             trafficBar.find('.visitors').counter(stat.visitors);
             trafficBar.find('.bar').removeClass().addClass('bar').addClass(stat.temperature);
             trafficBar.find('.timing').text(stat.timing + 'ms');
             trafficBar.find('.gauge').animate({width: Math.round((stat.timing * 100) / 210) + '%'}, 600);
             trafficBar.find('.browser i').removeClass().addClass('dj-logo-' + broswerLogo);
+            trafficBar.find('.browserVersion').text(version);
         }
     },
 

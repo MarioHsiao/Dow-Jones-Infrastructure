@@ -16,7 +16,7 @@
   width: 36px;
   height: 33px; }
 
-.dj-logo-ie9 {
+.dj-logo-internetexplorer9, .dj-logo-ie9 {
   background: url(images/browser-sprites.png) no-repeat;
   background-position: -126px 0;
   width: 36px;
@@ -28,7 +28,7 @@
   width: 32px;
   height: 32px; }
 
-.dj-logo-ie8, .dj-logo-ie7 {
+.dj-logo-internetexplorer8, .dj-logo-internetexplorer7, .dj-logo-ie8, .dj-logo-ie7 {
   background: url(images/browser-sprites.png) no-repeat;
   background-position: -210px 0;
   width: 32px;
