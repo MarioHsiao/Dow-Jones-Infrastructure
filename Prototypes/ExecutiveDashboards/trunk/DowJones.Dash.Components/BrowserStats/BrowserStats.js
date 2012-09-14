@@ -35,11 +35,11 @@ DJ.UI.BrowserStats = DJ.UI.Component.extend({
         var self = this;
         var browserData = _.map(data, function (item) {
             var browser = self._parseBrowserInfo(item.browser);
-            var name = browser.name.toLowerCase().replace(' ', '');
+            var name = browser.name.toLowerCase().replace(' ', '').replace('-','');
             return {
                 browser: name,
                 visitors: item.count,
-                timings: self._getStubTimings(name, browser.version),
+                timing: self._getStubTimings(name, browser.version),
                 temperature: self._getStubTemperature(name, browser.version),
                 browserVersion: browser.version
             };
@@ -94,7 +94,7 @@ DJ.UI.BrowserStats = DJ.UI.Component.extend({
             case 'firefox':
             case 'opera':
                 return 'neutral';
-            case 'ie':
+            case 'internetexplorer':
                 return version < 9 ? 'hot' : 'neutral';
             default:
                 return 'neutral';
