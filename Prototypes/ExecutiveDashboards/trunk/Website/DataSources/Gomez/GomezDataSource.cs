@@ -7,7 +7,7 @@ namespace DowJones.Dash.Website.DataSources
             get { return "Data Source=10.0.64.14;Initial Catalog=master;User Id=webuser;Password=webpwd;Asynchronous Processing=True"; }
         }
 
-        public GomezDataSource(string query = null)
+        protected GomezDataSource(string query = null)
             : base(GomezConnectionString, query)
         {
         }

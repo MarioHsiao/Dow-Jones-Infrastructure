@@ -202,6 +202,8 @@
     <Compile Include="DataSources\ChartBeat\Referrers.cs" />
     <Compile Include="DataSources\DataSource.cs" />
     <Compile Include="DataSources\ChartBeat\QuickStats.cs" />
+    <Compile Include="DataSources\Gomez\BrowserStats.cs" />
+    <Compile Include="DataSources\Gomez\DeviceTrafficByPage.cs" />
     <Compile Include="DataSources\Gomez\GomezDataSource.cs" />
     <Compile Include="DataSources\Gomez\PageTimings.cs" />
     <Compile Include="DataSources\PollingDataSource.cs" />
