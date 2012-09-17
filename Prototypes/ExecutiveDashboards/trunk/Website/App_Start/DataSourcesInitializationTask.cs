@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using DowJones.Dash.Website.DataSources;
+using DowJones.Dash.DataSources;
 using DowJones.Dash.Website.Hubs;
 using DowJones.Infrastructure;
 

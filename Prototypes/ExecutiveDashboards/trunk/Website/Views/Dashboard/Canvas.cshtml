@@ -1,0 +1,40 @@
+﻿@{
+    ViewBag.Title = "Demo Dashboard";
+}
+
+@section styles {
+    <link href="~/Content/dashboard.css" rel="stylesheet" />
+}
+
+<section id="dashboard" class="row-fluid">
+    @DJ.Render(Model)
+</section>
+
+
+@DJ.ScriptRegistry().OnDocumentReady("initializeDashboard();")
+@section scripts{
+    <script src="@Url.Content("~/signalr/hubs")" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        function initializeDashboard() {
+            $('.trendTabs li').not(':first').find('a')
+                .popover({ content: 'Coming soon!', delay: { show: 1000, hide: 1000 } })
+                .click(function () {
+                    var self = this;
+                    setTimeout(function () {
+                        $(self).popover('hide');
+                    }, 1000);
+                });
+            $('LI.defaultTab A').tooltip();
+
+            initializeModuleSizes();
+        }
+
+        function initializeModuleSizes() {
+            $('.small.module').addClass('span2');
+            $('.medium.module').addClass('span4');
+            $('.large.module').addClass('span6');
+            $('.x-large.module').addClass('span8');
+        }
+    </script>
+}
