@@ -5,18 +5,17 @@
         <div>Page Load Time</div>
     </li>
     <% for(i = 0, len = Math.min(model.length, 5); i < len; i++) { 
-        bar = model[i]; 
-        percent = Math.round((bar.timing * 100) / 210);
-        broswerLogo = bar.browser === 'internetexplorer' ? 'ie' + bar.browserVersion : bar.browser;
-        version = (bar.browser === 'internetexplorer' || (bar.browser === 'firefox' && bar.browserVersion < 4)) ? bar.browserVersion : '';
+        bar = model[i];
+        broswerLogo = bar.browser + (bar.browserVersion || '');
+        version = (bar.browser === 'msie' || (bar.browser === 'firefox' && bar.browserVersion < 4)) ? bar.browserVersion : '';
 
     %>
     <li class="dj-trafficBar">
         <span class="visitors"><%= bar.visitors %></span>
         <div class="browser"><i class="dj-logo-<%= broswerLogo %>"></i></div>
         <div class="bar <%= bar.temperature %>">
-            <div class="gauge" style="width: <%= percent %>%">&nbsp;</div>
-            <span class="timing"><%= bar.timing %>ms</span>
+            <div class="gauge" style="width: <%= bar.percent %>%">&nbsp;</div>
+            <span class="timing"><%= bar.timing %>s</span>
         </div>
         <div class="browserVersion"><%= version %></div>
     </li>

@@ -16,7 +16,7 @@
   width: 36px;
   height: 33px; }
 
-.dj-logo-internetexplorer9, .dj-logo-ie9 {
+.dj-logo-msie9 {
   background: url(images/browser-sprites.png) no-repeat;
   background-position: -126px 0;
   width: 36px;
@@ -28,7 +28,7 @@
   width: 32px;
   height: 32px; }
 
-.dj-logo-internetexplorer8, .dj-logo-internetexplorer7, .dj-logo-ie8, .dj-logo-ie7 {
+.dj-logo-msie8, .dj-logo-msie7 {
   background: url(images/browser-sprites.png) no-repeat;
   background-position: -210px 0;
   width: 32px;
@@ -111,10 +111,11 @@
     padding-right: 4px;
     text-align: right;
     font-size: 14px; }
+    .dj-trafficBar .bar .timing {
+      z-index: 10; }
     .dj-trafficBar .bar .gauge {
       position: absolute;
-      left: 0;
-      padding-left: 10px; }
+      left: 0; }
     .dj-trafficBar .bar.cool {
       border: 1px solid #85b372;
       border-top: 1px solid #8ebc7c;

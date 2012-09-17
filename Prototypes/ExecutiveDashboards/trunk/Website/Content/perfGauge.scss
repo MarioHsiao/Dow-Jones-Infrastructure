@@ -21,7 +21,7 @@ $browserBackground: url(images/browser-sprites.png) no-repeat;
   height: 33px; }
 
 
-.dj-logo-internetexplorer9, .dj-logo-ie9 {
+.dj-logo-msie9 {
   background: $browserBackground;
   background-position: -126px 0;
   width: 36px;
@@ -35,7 +35,7 @@ $browserBackground: url(images/browser-sprites.png) no-repeat;
   height: 32px; }
 
 
-.dj-logo-internetexplorer8, .dj-logo-internetexplorer7, .dj-logo-ie8, .dj-logo-ie7 {
+.dj-logo-msie8, .dj-logo-msie7 {
   background: $browserBackground;
   background-position: -210px 0;
   width: 32px;
@@ -133,10 +133,14 @@ $browserBackground: url(images/browser-sprites.png) no-repeat;
     text-align: right;
     font-size: 14px;
 
+	.timing {
+		z-index: 10;
+	}
+
     .gauge {
       position: absolute;
       left: 0;
-      padding-left: 10px; }
+    }
 
     &.cool {
       border: 1px solid #85b372;
