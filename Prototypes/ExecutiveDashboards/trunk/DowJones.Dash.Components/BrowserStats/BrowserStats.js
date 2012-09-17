@@ -67,6 +67,7 @@ DJ.UI.BrowserStats = DJ.UI.Component.extend({
         });
 
         var avgPageLoadAcrossBrowsers = pageLoadTimings / workingSet.length;
+        var maxPageLoad = 15000;
         var greenZone = 5000; //avgPageLoadAcrossBrowsers * 0.3; // 30%
         var neutralZone = 7000; //avgPageLoadAcrossBrowsers * 0.7; // 30% < x < 70%
         
@@ -79,7 +80,7 @@ DJ.UI.BrowserStats = DJ.UI.Component.extend({
                 browser: browser.name.toLowerCase(),
                 visitors: item.Count,
                 timing: Math.round(avg / 1000),
-                percent: Math.min(avg / avgPageLoadAcrossBrowsers * 100, 100),
+                percent: Math.min(avg / maxPageLoad * 100, 100),
                 temperature: zone,
                 browserVersion: browser.version
             };
