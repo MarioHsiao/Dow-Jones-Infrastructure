@@ -31,13 +31,14 @@ DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
                 max: 100,
                 min: 0,
                 angle: 65,
-                footer: "0:0s",
+                footer: "0:0m",
                 gaugeType: 0,
                 height: 200,
                 width: 200
             },
             templates: {
                 max: this._maxTemplate,
+                min: this._minTemplate,
                 footer: this._footerTemplate
             },
             data: 0
@@ -46,7 +47,7 @@ DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
     _initializeDelegates: function () {
         this._delegates = $.extend(this._delegates, {
                 updateStats: $dj.delegate(this, this._updateStats),
-                updateGaugeMax: $dj.delegate(this, this._updateGaugeMax),
+                updateDashboard: $dj.delegate(this, this._updateDashboard),
             });
     },
 
@@ -57,7 +58,7 @@ DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
 
     _initializeEventHandlers: function () {
         $dj.subscribe('data.QuickStats', this._delegates.updateStats);
-        $dj.subscribe('data.HistorialTrafficStats', this._delegates.updateGaugeMax);
+        $dj.subscribe('data.DashboardStats', this._delegates.updateDashboard);
         
     },
 
@@ -68,15 +69,19 @@ DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
         this.$element.find(this.selectors.timeCounter).html("0:" +data.engaged_time.avg.toFixed(0) + "m");
     },
     
-    _updateGaugeMax: function (data) {
-        var max = data.data['online.wsj.com'].people.max;
+    _updateDashboard: function (data) {
         if (this.visitorsGauge) {
-            this.visitorsGauge.updateMax(max);
+            this.visitorsGauge.updateMax(data.people_max);
+            this.visitorsGauge.updateMin(data.people_min);
         }
     },
     
     _maxTemplate: function (val) {
         return "30-Day Max <span class=\"chartMax\">" + val + "</span>"; 
+    },
+    
+    _minTemplate: function (val) {
+        return "30-Day Min <span class=\"chartMin\">" + val + "</span>";
     },
     
     _footerTemplate: function (val) {

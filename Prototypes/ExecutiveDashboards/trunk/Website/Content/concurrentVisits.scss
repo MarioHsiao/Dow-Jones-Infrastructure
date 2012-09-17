@@ -1,10 +1,10 @@
 
-@mixin gaugeMaxLabel($fontSize: .9em, $width: 100px, $color: #666, $top: 70px, $left: -5px) {
+@mixin gaugeMaxLabel($fontSize: .9em, $width: 100px, $color: #666, $top: 70px, $left: -5px, $align: right) {
 	position: absolute;
 	top: $top;
 	left: $left;
 	font-size: $fontSize;
-	text-align: right;
+	text-align: $align;
 	z-index: 1000;
 	width: $width;
 	line-height: 1em;
@@ -36,7 +36,13 @@
 			.dj_DashGaugeChartMax {
 			  @include gaugeMaxLabel(1.0em, 200px, #666, 155px, -5px)
 		    }
+			.dj_DashGaugeChartMin {
+			  @include gaugeMaxLabel(1.0em, 200px, #666, 155px, 5px, left)
+		    }
 			.chartMax {
+				display: block; 
+			} 	
+			.chartMin {
 				display: block; 
 			} 			
 		}
@@ -59,7 +65,13 @@
 			.dj_DashGaugeChartMax {
 				@include gaugeMaxLabel
 			}	
+			.dj_DashGaugeChartMin {
+			  display:none;
+		    }
 			.chartMax {
+				display:block;
+			}
+			.chartMin {
 				display:block;
 			}
 		}

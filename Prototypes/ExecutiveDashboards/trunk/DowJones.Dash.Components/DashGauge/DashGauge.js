@@ -17,10 +17,16 @@ DJ.UI.DashGauge = DJ.UI.Component.extend({
             backgroundColor: '#333',
             borderColor: '#333',
             rearLength: 0,
-            baseWidth: 3,
+            baseWidth: 5,
             borderWidth: 0,
             topWidth: 1,
             baseLength: '70%', // of radius
+        },
+        pivot: {
+            backgroundColor: '#333',
+            borderColor: '#333',
+            borderWidth: 0,
+            radius: 2.5
         }
     },
     
@@ -29,7 +35,8 @@ DJ.UI.DashGauge = DJ.UI.Component.extend({
         chartTitle: ".dj_DashGaugeChartTitle",
         chartValue: ".dj_DashGaugeChartValue",
         chartFooter: ".dj_DashGaugeChartFooter",
-        chartMax: ".dj_DashGaugeChartMax"
+        chartMax: ".dj_DashGaugeChartMax",
+        chartMin: ".dj_DashGaugeChartMin"
     },
 
     events: {
@@ -51,7 +58,13 @@ DJ.UI.DashGauge = DJ.UI.Component.extend({
 
     _initializeElements: function (ctx) {
         //Bind the layout template
-        $(this.$element).html(this.templates.layout({ value: this.data, title: this.options.title, footer: this.options.footer, max: this.options.max }));
+        $(this.$element).html(this.templates.layout({
+            value: this.data,
+            title: this.options.title,
+            footer: this.options.footer,
+            max: this.options.max,
+            min: this.options.min
+        }));
     },
 
     /* Public methods */
@@ -91,8 +104,39 @@ DJ.UI.DashGauge = DJ.UI.Component.extend({
         this.options.title = val;
         $(this.selectors.chartTitle, this.$element).html(val);
     },
+    
+    updateMin: function(val) {
+        if (this.options.min != val && this.chart) {
 
-    updateMax: function (val) {
+            this.options.min = val;
+            var axis = this.chart.yAxis[0];
+
+            if (this.options.gaugeType === 0) { // Is a speedometer
+
+                if (axis) {
+                    var plotBandSpeed0 = this._getSpedometerBands()[0];
+                    var plotBandSpeed1 = this._getSpedometerBands()[1];
+                    plotBandSpeed0 = $.extend(true, plotBandSpeed0, { to: this.options.max });
+                    if (this.data < this.options.min) {
+                        plotBandSpeed1 = $.extend(true, plotBandSpeed1, { to: this.options.min });
+                    } else if (this.data > this.options.max) {
+                        plotBandSpeed1 = $.extend(true, plotBandSpeed1, { to: this.options.max });
+                    } else {
+                        plotBandSpeed1 = $.extend(true, plotBandSpeed1, { to: this.data });
+                    }
+
+                    axis.removePlotBand("speed0");
+                    axis.removePlotBand("speed1");
+                    axis.addPlotBand(plotBandSpeed0);
+                    axis.addPlotBand(plotBandSpeed1);
+                }
+            }
+            axis.setExtremes(this.options.min, this.options.max, false);
+            $(this.selectors.chartMin, this.$element).html(this.templates.min(Highcharts.numberFormat(val, 0)));
+        }
+    },
+
+    updateMax: function(val) {
         if (this.options.max != val && this.chart) {
 
             this.options.max = val;
@@ -119,7 +163,7 @@ DJ.UI.DashGauge = DJ.UI.Component.extend({
                 }
             }
             axis.setExtremes(this.options.min, this.options.max,false);
-            $(this.selectors.chartMax, this.$element).html(this.templates.max(Highcharts.numberFormat(val,0)));
+            $(this.selectors.chartMax, this.$element).html(this.templates.max(Highcharts.numberFormat(val, 0)));
         }
     },
     
@@ -258,9 +302,7 @@ DJ.UI.DashGauge = DJ.UI.Component.extend({
                         enabled: false
                     },
                     dial: this.options.dial,
-                    pivot: {
-                        radius: 0
-                    },
+                    pivot: this.options.pivot,
                     states: {
                         hover: { enabled: false }
                     }

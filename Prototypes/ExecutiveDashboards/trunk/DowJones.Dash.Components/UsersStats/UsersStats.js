@@ -23,25 +23,21 @@ DJ.UI.UsersStats = DJ.UI.CompositeComponent.extend({
         DJ.add('DashGauge', this._basicGaugeConfig(this._newGauge[0], "New")).done(function (comp) {
             self.newGauge = comp;
             comp.owner = self;
-            comp.updateMax(12000);
         });
         
         DJ.add('DashGauge', this._basicGaugeConfig(this._readGauge[0], "Read")).done(function (comp) {
             self.readGauge = comp;
             comp.owner = self;
-            comp.updateMax(12000);
         });
         
         DJ.add('DashGauge', this._basicGaugeConfig(this._writeGauge[0], "Write")).done(function (comp) {
             self.writeGauge = comp;
             comp.owner = self;
-            comp.updateMax(1000);
         });
         
         DJ.add('DashGauge', this._basicGaugeConfig(this._idleGauge[0], "Idle")).done(function (comp) {
             self.idleGauge = comp;
             comp.owner = self;
-            comp.updateMax(91995);
         });
         
         this.$element.find('.tip').tooltip();
@@ -86,8 +82,9 @@ DJ.UI.UsersStats = DJ.UI.CompositeComponent.extend({
 
     _initializeDelegates: function () {
         this._delegates = $.extend(this._delegates, {
-                updateStats: $dj.delegate(this, this._updateStats)
-            });
+            updateStats: $dj.delegate(this, this._updateStats),
+            updateDashboard: $dj.delegate(this, this._updateDashboard),
+        });
     },
 
     _initializeElements: function () {
@@ -100,9 +97,31 @@ DJ.UI.UsersStats = DJ.UI.CompositeComponent.extend({
 
     _initializeEventHandlers: function () {
         $dj.subscribe('data.QuickStats', this._delegates.updateStats);
-        
+        $dj.subscribe('data.DashboardStats', this._delegates.updateDashboard);
     },
 
+    _updateDashboard: function (data) {
+        if (this.newGauge) {
+            this.newGauge.updateMax(data.new_max);
+            this.newGauge.updateMin(data.new_min);
+        }
+        
+        if (this.readGauge) {
+            this.readGauge.updateMax(data.read_max);
+            this.readGauge.updateMin(data.read_min);
+        }
+        
+        if (this.writeGauge) {
+            this.writeGauge.updateMax(data.write_max);
+            this.writeGauge.updateMin(data.write_min);
+        }
+        
+        if (this.idleGauge) {
+            this.idleGauge.updateMax(data.idle_max);
+            this.idleGauge.updateMin(data.idle_min);
+        }
+    },
+    
     _updateStats: function (data) {
         this.newGauge.setData(data.new);
         this.readGauge.setData(data.read);
