@@ -203,6 +203,7 @@
     <Compile Include="DataSources\DataSource.cs" />
     <Compile Include="DataSources\ChartBeat\QuickStats.cs" />
     <Compile Include="DataSources\Gomez\BrowserStats.cs" />
+    <Compile Include="DataSources\Gomez\PageLoadHistoricalDetails.cs" />
     <Compile Include="DataSources\Gomez\DeviceTraffic.cs" />
     <Compile Include="DataSources\Gomez\DeviceTrafficByPage.cs" />
     <Compile Include="DataSources\Gomez\GomezDataSource.cs" />
