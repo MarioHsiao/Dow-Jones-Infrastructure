@@ -329,6 +329,9 @@
   <ItemGroup>
     <Content Include="Content\browserShare.scss" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Less1.less" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
