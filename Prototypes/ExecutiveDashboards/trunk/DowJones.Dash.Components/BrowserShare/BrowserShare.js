@@ -38,7 +38,7 @@ DJ.UI.BrowserShare = DJ.UI.Component.extend({
     },
 
     _initializeEventHandlers: function () {
-        $dj.subscribe('data.Handheld', this._delegates.setData);
+        $dj.subscribe('data.DeviceTrafficByPage', this._delegates.setData);
     },
     
     _setData: function (data) {
@@ -46,10 +46,14 @@ DJ.UI.BrowserShare = DJ.UI.Component.extend({
             $dj.error("ShareChart Component is not initialized. Refresh the page to try again.");
             return;
         }
-        
-        var browserData = _.map(data, function (browser) {
-            return [browser.platform, parseFloat(parseFloat(browser.percent).toFixed(2))];
-        });
+
+        data = data[0];
+        var total = parseInt(data['All'], 10);
+        var browserData = [];
+        for(var key in data) {
+            if (key !== 'page_name' && key !== 'All')
+                browserData.push([key, parseFloat((parseInt(data[key], 10)/total * 100).toFixed(2))]);
+        }
         
         this.shareChart.setData({ browserData: browserData });
     }
