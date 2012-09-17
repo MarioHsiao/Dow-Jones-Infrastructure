@@ -2,9 +2,10 @@ using System.Linq;
 using System.Text;
 using System.Xml.Linq;
 using DowJones.Exceptions;
+using DowJones.Web;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace DowJones.Web
+namespace DowJones.Infrastructure.Web.ClientResources
 {
     [TestClass]
     public class ClientResourceConfigurationTests : UnitTestFixture
@@ -39,7 +40,7 @@ namespace DowJones.Web
 
             try
             {
-                new ClientResourceConfiguration(config);
+                var aliases = new ClientResourceConfiguration(config).Aliases;
             }
             catch(DowJonesUtilitiesException)
             {
@@ -60,7 +61,7 @@ namespace DowJones.Web
 
             try
             {
-                new ClientResourceConfiguration(config);
+                var aliases = new ClientResourceConfiguration(config).Aliases;
             }
             catch(DowJonesUtilitiesException)
             {

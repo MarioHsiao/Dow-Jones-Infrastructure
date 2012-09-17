@@ -2,11 +2,12 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
+using DowJones.Web;
 using DowJones.Web.ClientResources;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 
-namespace DowJones.Web
+namespace DowJones.Infrastructure.Web.ClientResources
 {
     [TestClass]
     public class ClientResourceManagerTests : UnitTestFixture

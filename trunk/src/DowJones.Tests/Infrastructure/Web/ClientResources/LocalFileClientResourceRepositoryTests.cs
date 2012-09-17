@@ -3,10 +3,11 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Xml.Linq;
+using DowJones.Web;
 using DowJones.Web.ClientResources;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace DowJones.Web
+namespace DowJones.Infrastructure.Web.ClientResources
 {
     [TestClass]
     public class LocalFileClientResourceRepositoryTests : UnitTestFixture

@@ -27,71 +27,81 @@ namespace DowJones.Web
         {
             get
             {
-                var mappings =
+                if (_aliases != null)
+                    return _aliases;
+
+                _aliases =
                     (
                         from mapping in _config.Descendants("mapping")
-                        let alias = mapping.Attribute("alias")
-                        let name = mapping.Attribute("name")
-                        select new Tuple<XAttribute, XAttribute>(alias, name)
+                        let alias = mapping.Attribute("alias").Value
+                        let name = mapping.Attribute("name").Value
+                        select new ClientResourceAlias
+                                   {
+                                       Alias = alias,
+                                       Name = name
+                                   }
                     ).ToArray();
 
-                ValidateMappings(mappings);
+                ValidateAliases(_aliases);
 
-                var aliases =
-                    from mapping in mappings
-                    let alias = mapping.Item1.Value
-                    let name = mapping.Item2.Value
-                    select new ClientResourceAlias
-                               {
-                                   Alias = alias,
-                                   Name = name
-                               };
-
-                return aliases.ToArray();
+                return _aliases;
             }
         }
+        private IEnumerable<ClientResourceAlias> _aliases;
 
-        public IEnumerable<ClientResourceDefinition> Resources()
+        public IEnumerable<ClientResourceDefinition> Resources
         {
-            var resourceDefinitions =
-                from mapping in _config.Descendants("resource")
-                let name = mapping.GetAttributeValue("name")
-                where name.HasValue()
-                let level = Mapper.Map<ClientResourceDependencyLevel>(mapping.GetAttributeValue("level"))
-                let kind = Mapper.Map<ClientResourceKind?>(mapping.GetAttributeValue("kind"))
-                let assembly = mapping.GetAttributeValue("assembly")
-                let templateId = mapping.GetAttributeValue("templateId")
-                let dependsOn = mapping.Elements("dependsOn").Select(x => x.Value)
-                let isEmbeddedResource = assembly.HasValue()
-                select new ClientResourceDefinition
-                {
-                    DeclaringAssembly = assembly,
-                    DependencyLevel = level,
-                    DependsOn = dependsOn.ToArray(),
-                    Name = name,
-                    ResourceKind = kind,
-                    ResourceName = (isEmbeddedResource) ? name : null,
-                    TemplateId = templateId,
-                    Url = (isEmbeddedResource) ? null : name,
-                };
+            get
+            {
+                if (_resources != null)
+                    return _resources;
 
-            return resourceDefinitions;
+                _resources =
+                    (
+                        from mapping in _config.Descendants("resource")
+                        let name = mapping.GetAttributeValue("name")
+                        where name.HasValue()
+                        let level = Mapper.Map<ClientResourceDependencyLevel>(mapping.GetAttributeValue("level"))
+                        let kind = Mapper.Map<ClientResourceKind?>(mapping.GetAttributeValue("kind"))
+                        let assembly = mapping.GetAttributeValue("assembly")
+                        let templateId = mapping.GetAttributeValue("templateId")
+                        let dependsOn = mapping.Elements("dependsOn").Select(x => x.Value)
+                        let isEmbeddedResource = assembly.HasValue()
+                        select new ClientResourceDefinition
+                                   {
+                                       DeclaringAssembly = assembly,
+                                       DependencyLevel = level,
+                                       DependsOn = dependsOn.ToArray(),
+                                       Name = name,
+                                       ResourceKind = kind,
+                                       ResourceName = (isEmbeddedResource) ? name : null,
+                                       TemplateId = templateId,
+                                       Url = (isEmbeddedResource) ? null : name,
+                                   }
+                    ).ToArray();
+
+                ValidateResources(_resources);
+
+                return _resources;
+            }
         }
+        private IEnumerable<ClientResourceDefinition> _resources;
 
         public IEnumerable<ClientResourceDirectory> Directories
         {
             get
             {
-                var directories =
+                _directories = _directories ??
                     from mapping in _config.Descendants("directory")
                     let path = mapping.GetAttributeValue("path")
                     let level = Mapper.Map<ClientResourceDependencyLevel>(mapping.GetAttributeValue("level"))
                     where path != null
                     select new ClientResourceDirectory { Path = path, Level = level };
 
-                return directories;
+                return _directories;
             }
         }
+        private IEnumerable<ClientResourceDirectory> _directories;
 
         public ClientResourceConfiguration()
             : this(Config.Value)
@@ -103,27 +113,32 @@ namespace DowJones.Web
             _config = config;
         }
 
-        static void ValidateMappings(IEnumerable<Tuple<XAttribute, XAttribute>> mappingTuples)
+        static void ValidateAliases(IEnumerable<ClientResourceAlias> aliases)
         {
-            // Convert tuple to anonymous class for better readability
-            var mappings = mappingTuples.Select(x => new { alias = x.Item1, name = x.Item2 });
-
-            var invalidAliases = mappings.Where(x => x.alias == null || string.IsNullOrWhiteSpace(x.alias.Value));
-            var invalidNames = mappings.Where(x => x.name == null || string.IsNullOrWhiteSpace(x.name.Value));
+            var invalidAliases = aliases.Where(x => x.Alias == null || string.IsNullOrWhiteSpace(x.Alias)).ToArray();
+            var invalidNames = aliases.Where(x => x.Name == null || string.IsNullOrWhiteSpace(x.Name)).ToArray();
 
             if (invalidAliases.Any() || invalidNames.Any())
             {
-                StringBuilder errorMessage = new StringBuilder("Invalid Client Resource Alias mappings: ");
+                var errorMessage = new StringBuilder("Invalid Client Resource Aliases: ");
 
-                errorMessage.Append(string.Join("Name: {0}; ", invalidAliases.Where(x => x.name != null).Select(x => x.name.Value)));
-                errorMessage.Append(string.Join("Alias: {0}; ", invalidNames.Where(x => x.alias != null).Select(x => x.name.Value)));
+                errorMessage.Append(string.Join("Name: {0}; ", invalidAliases.Where(x => x.Name != null).Select(x => x.Name)));
+                errorMessage.Append(string.Join("Alias: {0}; ", invalidNames.Where(x => x.Alias != null).Select(x => x.Name)));
 
                 errorMessage.AppendFormat("Invalid aliases: {0}", invalidAliases.Count());
                 errorMessage.AppendFormat("Invalid names: {0}", invalidNames.Count());
 
-                throw new DowJonesUtilitiesException("Invalid Client Resource Alias mappings");
+                throw new DowJonesUtilitiesException(errorMessage.ToString());
             }
         }
+
+        static void ValidateResources(IEnumerable<ClientResourceDefinition> resources)
+        {
+            var invalidNames = resources.Where(x => x.Name == null || string.IsNullOrWhiteSpace(x.Name)).ToArray();
+            if(invalidNames.Any())
+                throw new DowJonesUtilitiesException("Invalid Client Resources found (name is empty)");
+        }
+
 
         private static XDocument ParseConfigFile()
         {

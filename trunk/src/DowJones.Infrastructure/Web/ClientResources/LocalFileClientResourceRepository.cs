@@ -43,7 +43,7 @@ namespace DowJones.Web.ClientResources
 
         private IEnumerable<ClientResource> GetSpecificMappedResources()
         {
-            return _config.Resources().Select(Mapper.Map<ClientResource>);
+            return _config.Resources.Select(Mapper.Map<ClientResource>);
         }
 
         private IEnumerable<ClientResource> GetDirectoryMappedResources()
@@ -56,7 +56,7 @@ namespace DowJones.Web.ClientResources
                         (mapping.Path.StartsWith("~/"))
                             ? Path.Combine(RootDirectory, mapping.Path.Substring(2))
                             : mapping.Path
-                from filename in Directory.GetFiles(mapping.Path)
+                from filename in Directory.GetFiles(absolutePath)
                 select new ClientResource(filename)
                            {
                                DependencyLevel = mapping.Level
