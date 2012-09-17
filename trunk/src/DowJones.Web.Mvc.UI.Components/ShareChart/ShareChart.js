@@ -107,6 +107,10 @@ DJ.UI.ShareChart = DJ.UI.Component.extend({
     bindOnSuccess: function (data) {
         this.$element.append(this.templates.success());
 
+
+        var filteredData = _.filter(data.browserData, function (item) {
+            return item[1] !== 0;
+        });
         if (!this.chart) {
             this.chart = new Highcharts.Chart({
                 chart: {
@@ -115,8 +119,7 @@ DJ.UI.ShareChart = DJ.UI.Component.extend({
                     backgroundColor: 'transparent',
                     plotBorderWidth: null,
                     plotShadow: false,
-                    width: 300,
-                    height: 300
+                    spacingLeft: 50
                 },
                 title: {
                     text: data.chartTitle || ''
@@ -127,12 +130,12 @@ DJ.UI.ShareChart = DJ.UI.Component.extend({
                         cursor: 'pointer',
                         dataLabels: {
                             enabled: true,
-                            distance: -30,
-                            color: 'white', 
+                            color: '#777', 
                             formatter: function () {
-                                return '<b>' + this.point.name + '</b><br/> ' + parseFloat(this.percentage).toFixed(2) + ' %';
+                                return '<b>' + this.point.name + '</b><br/>' + parseFloat(this.percentage).toFixed(2) + '%';
                             }
-                        }
+                        },
+                        softConnector: false
                     }
                 },
                 tooltip: {
@@ -143,12 +146,12 @@ DJ.UI.ShareChart = DJ.UI.Component.extend({
                 series: [{
                     type: 'pie',
                     name: 'Browser Share',
-                    data: data.browserData
+                    data: filteredData
                 }]
             });
         }
         else {
-            this.chart.series[0].setData(data.browserData);
+            this.chart.series[0].setData(filteredData);
         }
     }
 });
