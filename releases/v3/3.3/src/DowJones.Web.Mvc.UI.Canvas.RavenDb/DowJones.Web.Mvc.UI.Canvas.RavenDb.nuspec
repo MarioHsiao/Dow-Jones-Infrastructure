@@ -12,6 +12,7 @@
         <licenseUrl>http://dowjones.com</licenseUrl>
         <dependencies>
             <dependency id="DowJones.Pages" version="$version$" />
+            <dependency id="DowJones.Web.Mvc.UI.Canvas" version="$version$" />
             <dependency id="RavenDB.Client" version="1.0.960" />
         </dependencies>
     </metadata>

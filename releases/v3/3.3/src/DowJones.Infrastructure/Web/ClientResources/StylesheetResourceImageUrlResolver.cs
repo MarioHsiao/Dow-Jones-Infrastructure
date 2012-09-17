@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Text.RegularExpressions;
 using System.Web;
 using DowJones.Infrastructure;
@@ -43,8 +44,17 @@ namespace DowJones.Web
             if(resource.ClientResource is EmbeddedClientResource)
                 return;
 
-            string basePath = VirtualPathUtility.GetDirectory(resource.ClientResource.Url);
-            
+            string basePath;
+
+            try
+            {
+                basePath = VirtualPathUtility.GetDirectory(resource.ClientResource.Url);
+            }
+            catch (Exception)
+            {
+                return;
+            }
+
             if (basePath.StartsWith("~"))
                 basePath = basePath.Substring(1);
 

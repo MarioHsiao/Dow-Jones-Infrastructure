@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using DowJones.Mapping;
 using DowJones.Pages.Modules.Templates;
@@ -8,6 +9,10 @@ namespace DowJones.Web.Mvc.UI.Canvas.Modules.ScriptModule
 {
     public class ScriptModule : Module
     {
+        public const string ClientResourcePrefix = "ScriptModule-";
+
+        internal static Func<string, string> TemplateUrlThunk = ClientResourceHandler.GenerateUrl;
+
         [ClientProperty("templateId")]
         public string TemplateId { get; set; }
 
@@ -26,7 +31,13 @@ namespace DowJones.Web.Mvc.UI.Canvas.Modules.ScriptModule
 
         public string StylesheetUrl
         {
-            get { return DataServiceUrl + "/styles/" + TemplateId; }
+            get { return TemplateUrlThunk(ClientResourceName(TemplateId) + ".css"); }
+        }
+
+        [ClientProperty("templateUrl")]
+        public string TemplateUrl
+        {
+            get { return TemplateUrlThunk(ClientResourceName(TemplateId)); }
         }
 
         public ScriptModule()
@@ -36,6 +47,11 @@ namespace DowJones.Web.Mvc.UI.Canvas.Modules.ScriptModule
             ModuleState = ModuleState.Maximized;
         }
 
+
+        public static string ClientResourceName(string id)
+        {
+            return ClientResourcePrefix + id;
+        }
 
         public class ScriptModuleMapper : TypeMapper<DowJones.Pages.Modules.ScriptModule, IModule>
         {

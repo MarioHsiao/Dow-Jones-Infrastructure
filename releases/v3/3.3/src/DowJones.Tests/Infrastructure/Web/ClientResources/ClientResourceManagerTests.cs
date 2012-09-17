@@ -2,9 +2,12 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
+using DowJones.Web;
+using DowJones.Web.ClientResources;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 
-namespace DowJones.Web
+namespace DowJones.Infrastructure.Web.ClientResources
 {
     [TestClass]
     public class ClientResourceManagerTests : UnitTestFixture
@@ -320,8 +323,13 @@ namespace DowJones.Web
             IEnumerable<ClientResourceAlias> aliases = null
         )
         {
+            var mockRepository = new Mock<IClientResourceRepository>();
+            mockRepository
+                .Setup(x => x.GetClientResources())
+                .Returns(resources ?? Enumerable.Empty<ClientResource>());
+
             return new ClientResourceManager(
-                resources ?? Enumerable.Empty<ClientResource>(),
+                new [] { mockRepository.Object },
                 aliases ?? Enumerable.Empty<ClientResourceAlias>()
             );
         }

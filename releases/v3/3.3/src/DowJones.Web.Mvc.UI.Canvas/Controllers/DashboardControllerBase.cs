@@ -92,20 +92,6 @@ namespace DowJones.Web.Mvc.UI.Canvas.Controllers
             return result;
         }
 
-        [RequireAuthentication]
-        public virtual ActionResult Subscribe(string id, string position)
-        {
-            int positionNumber;
-            if (!int.TryParse(position ?? string.Empty, out positionNumber))
-                positionNumber = 1;
-
-            id = SubscribeToPage(id, positionNumber);
-
-            return Page(id);
-        }
-
-        protected abstract string SubscribeToPage(string id, int positionNumber);
-
         protected virtual CanvasViewResult Canvas<TCanvasModel>(TCanvasModel canvas, Page page) 
             where TCanvasModel : Canvas
         {

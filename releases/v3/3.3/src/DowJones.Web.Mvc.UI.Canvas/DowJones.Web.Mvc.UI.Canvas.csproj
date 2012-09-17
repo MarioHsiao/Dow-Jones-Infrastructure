@@ -102,9 +102,11 @@
   <ItemGroup>
     <Compile Include="Controllers\DashboardControllerBase.cs" />
     <Compile Include="Controllers\PagesControllerBase.cs" />
+    <Compile Include="CanvasDependencies.cs" />
     <Compile Include="Models\Layout\CanvasLayout.cs" />
     <Compile Include="Models\Layout\ZoneLayout.cs" />
     <Compile Include="Models\ModuleState.cs" />
+    <Compile Include="Modules\ScriptModule\ClientResources\ScriptModuleResourceRepository.cs" />
     <Compile Include="Modules\ScriptModule\Editor\ScriptModuleEditor.cs" />
     <Compile Include="Modules\ScriptModule\Editor\ScriptModuleEditorComponent.cs">
       <AutoGen>True</AutoGen>
@@ -117,6 +119,8 @@
       <DependentUpon>ScriptCanvasModule.cshtml</DependentUpon>
     </Compile>
     <Compile Include="Modules\ScriptModule\ScriptModule.cs" />
+    <Compile Include="Modules\ScriptModule\ScriptModuleClientResourcePopulator.cs" />
+    <Compile Include="Modules\ScriptModule\ScriptModuleHandler.cs" />
     <Compile Include="ViewResults\PageNotFoundViewResult.cs" />
     <Compile Include="Models\AbstractEditorModel.cs" />
     <Compile Include="Models\Canvas.cs" />

@@ -144,6 +144,8 @@
     <Compile Include="Infrastructure\Session\ControlDataManagerTests.cs" />
     <Compile Include="Infrastructure\Tokens\TokenRegistryTests.cs" />
     <Compile Include="Infrastructure\Web\ClientResources\EmbeddedClientResourceTests.cs" />
+    <Compile Include="Infrastructure\Web\ClientResources\EmbeddedClientResourceRepositoryTests.cs" />
+    <Compile Include="Infrastructure\Web\ClientResources\LocalFileClientResourceRepositoryTests.cs" />
     <Compile Include="Infrastructure\Web\Search\FIICodeInfoUtilityTest.cs" />
     <Compile Include="Infrastructure\Web\Search\PerformContentSearchServiceTest.cs" />
     <Compile Include="Infrastructure\Web\Search\QueryUtilityTest.cs" />
@@ -164,8 +166,8 @@
     <Compile Include="Pages\Pages\PageListCacheKeyTests.cs" />
     <Compile Include="Pages\Pages\PageRefTests.cs" />
     <Compile Include="TestHelperExtensions.cs" />
-    <Compile Include="Infrastructure\Web\ClientResourceManagerFactoryTests.cs" />
-    <Compile Include="Infrastructure\Web\ClientResourceManagerTests.cs" />
+    <Compile Include="Infrastructure\Web\ClientResources\ClientResourceConfigurationTests.cs" />
+    <Compile Include="Infrastructure\Web\ClientResources\ClientResourceManagerTests.cs" />
     <Compile Include="Infrastructure\Web\CookieGenerator.cs" />
     <Compile Include="Infrastructure\Web\UI\ClientTemplateProcessorTests.cs" />
     <Compile Include="Mocks\MockHttpContext.cs" />
