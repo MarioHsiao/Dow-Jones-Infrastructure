@@ -137,10 +137,22 @@
       <DependentUpon>ConcurrentVisitsComponent.cshtml</DependentUpon>
     </Compile>
     <Compile Include="EmbeddedResources\EmbeddedResources.cs" />
+    <Compile Include="PerfGauge\PerfGauge.cs" />
+    <Compile Include="PerfGauge\PerfGaugeComponent.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PerfGaugeComponent.cshtml</DependentUpon>
+    </Compile>
     <Compile Include="PlatformStats\PlatformStatsComponent.cs">
       <DependentUpon>PlatformStatsComponent.cshtml</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="StatsMap\StatsMap.cs" />
+    <Compile Include="StatsMap\StatsMapComponent.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StatsMapComponent.cshtml</DependentUpon>
     </Compile>
     <Compile Include="UsersStats\UsersStatsComponent.cs">
       <DependentUpon>UsersStatsComponent.cshtml</DependentUpon>
@@ -182,9 +194,17 @@
       <Generator>RazorViewComponentClassGenerator</Generator>
       <LastGenOutput>ConcurrentVisitsComponent.cs</LastGenOutput>
     </None>
+    <None Include="PerfGauge\PerfGaugeComponent.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>PerfGaugeComponent.cs</LastGenOutput>
+    </None>
     <None Include="PlatformStats\PlatformStatsComponent.cshtml">
       <Generator>RazorViewComponentClassGenerator</Generator>
       <LastGenOutput>PlatformStatsComponent.cs</LastGenOutput>
+    </None>
+    <None Include="StatsMap\StatsMapComponent.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>StatsMapComponent.cs</LastGenOutput>
     </None>
     <None Include="UsersStats\UsersStatsComponent.cshtml">
       <Generator>RazorViewComponentClassGenerator</Generator>
@@ -275,6 +295,13 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="DashGauge\ClientTemplates\min.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="StatsMap\StatsMap.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="PerfGauge\ClientTemplates\container.html" />
+    <EmbeddedResource Include="PerfGauge\PerfGauge.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

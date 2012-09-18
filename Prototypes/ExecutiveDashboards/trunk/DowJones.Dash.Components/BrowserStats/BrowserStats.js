@@ -79,7 +79,7 @@ DJ.UI.BrowserStats = DJ.UI.Component.extend({
             return {
                 browser: browser.name.toLowerCase(),
                 visitors: item.Count,
-                timing: Math.round(avg / 1000),
+                timing: (avg / 1000).toFixed(2),
                 percent: Math.min(avg / maxPageLoad * 100, 100),
                 temperature: zone,
                 browserVersion: browser.version
