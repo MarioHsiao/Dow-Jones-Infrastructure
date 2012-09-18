@@ -87,9 +87,10 @@ h2 a.reset {
       display: none; }
     .dj_module .dj_module-header .actions-container {
       position: absolute;
-      top: 7px;
-      right: 10px;
-      max-width: 28%;
+      top: 0;
+      right: 0;
+      padding-top: 5px;
+      max-width: 25%;
       white-space: nowrap; }
   .dj_module .dj_module-core {
     margin-top: -5px;

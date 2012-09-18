@@ -55,10 +55,10 @@ namespace DowJones.Dash.Website.Controllers
         }
 
         [Route("dashboard/modules/resize/{state}")]
-        public ActionResult ResizeModule(string pageId, int moduleId, DowJones.Pages.Modules.ModuleState moduleState)
+        public ActionResult ResizeModule(string pageId, int moduleId, DowJones.Pages.Modules.ModuleState state)
         {
             var module = PageRepository.GetModule(pageId, moduleId) as ScriptModule;
-            module.ModuleState = moduleState;
+            module.ModuleState = state;
 
             PageRepository.UpdateModule(module);
 

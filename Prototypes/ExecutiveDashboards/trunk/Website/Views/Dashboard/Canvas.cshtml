@@ -27,14 +27,24 @@
                 });
             $('LI.defaultTab A').tooltip();
 
-            initializeModuleSizes();
+            var canvasId = DJ.UI.Canvas.find().get_canvasId();
+
+            DJ.subscribe('resized.dj.CanvasModule', function(args) {
+                var request = { pageId: canvasId, moduleId: args.moduleId };
+                $.ajax('@Url.Content("~/dashboard/modules/resize/")' + args.newSize, { data: request });
+            });
+
+            initializeModuleStyles();
         }
 
-        function initializeModuleSizes() {
+        function initializeModuleStyles() {
             $('.small.module').addClass('span2');
             $('.medium.module').addClass('span4');
             $('.large.module').addClass('span6');
             $('.x-large.module').addClass('span8');
+
+            $('.minimize').append($('<i class="icon-resize-small"/>'));
+            $('.maximize').append($('<i class="icon-resize-full"/>'));
         }
     </script>
 }
