@@ -87,4 +87,9 @@
         <Exec WorkingDirectory="$(NuGetOutputPath)" Command="$(NuGetOutputPath)\__RUN_ME_TO_ARCHIVE_PACKAGES__.exe" />
     </Target>
 
+	<Target Name="BeforeGet">
+		<Message Text="Marking NuGet.exe as readonly: $(SolutionRoot)\lib\nuget\nuget.exe" />
+		<Exec Command="attrib +R &quot;$(SolutionRoot)\lib\nuget\nuget.exe&quot;" />
+	</Target>
+
 </Project>
