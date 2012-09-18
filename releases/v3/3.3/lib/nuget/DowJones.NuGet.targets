@@ -27,4 +27,7 @@
     <Exec Command="&quot;$(NuGetExe)&quot; pack -BasePath &quot;$(NuGetBasePath)&quot; -OutputDirectory &quot;$(NuGetOutputPath)&quot; -Version &quot;$(NuGetPackageVersion)&quot; &quot;%(NuSpecFiles.FullPath)&quot;"  />
   </Target>
 
+	<Target Name="BeforeGet">
+		<Exec Command="attrib +R &quot;%(NuGetExe.Identity)&quot;" />
+	</Target>
 </Project>
