@@ -15,7 +15,7 @@ DJ.UI.ShareChart = DJ.UI.Component.extend({
         // Initialize component if we got data from server
         this.setData(this.data);
     },
-
+     
     _initializeDelegates: function () {
         this._delegates = $.extend(this._delegates, {
             // TODO: Add delegates
