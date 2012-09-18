@@ -1,4 +1,4 @@
-namespace DowJones.Dash.Website.DataSources
+namespace DowJones.Dash.DataSources.ChartBeat
 {
     public class HistorialTrafficSeriesWeekAgo : ChartBeatDataSource
     {

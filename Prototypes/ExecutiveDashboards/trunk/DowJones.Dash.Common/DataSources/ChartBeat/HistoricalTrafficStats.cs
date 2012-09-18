@@ -1,9 +1,11 @@
 namespace DowJones.Dash.DataSources.ChartBeat
 {
-    public class HistorialTrafficStats : ChartBeatDataSource
+    public class HistoricalTrafficStats : ChartBeatDataSource
     {
-        public HistorialTrafficStats() : base("/historical/traffic/stats/")
+        public HistoricalTrafficStats() : base("/historical/traffic/stats/")
         {
+            Parameters.Add("fields", "srvload,people,srvload");
+            Parameters.Add("properties", "min,max,avg");
         }
     }
 }
