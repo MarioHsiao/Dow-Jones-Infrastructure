@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using DowJones.Infrastructure;
 using DowJones.Pages;
 using DowJones.Pages.Common;
@@ -84,9 +85,17 @@ namespace DowJones.Web.Mvc.UI.Canvas.RavenDb
         {
             Guard.IsNotNull(page, "page");
 
-            _session.Store(page, page.ID);
+            _session.Store(page);
             _session.SaveChanges();
-            return _session.Advanced.GetDocumentId(page);
+
+            if (string.IsNullOrWhiteSpace(page.ID))
+            {
+                var ravenId = _session.Advanced.GetDocumentId(page);
+                page.ID = ravenId.Substring(ravenId.LastIndexOf('/')+1);
+                _session.SaveChanges();
+            }
+
+            return page.ID;
         }
 
         public void RemoveModulesFromPage(PageReference pageRef, params int[] moduleIds)
@@ -125,7 +134,7 @@ namespace DowJones.Web.Mvc.UI.Canvas.RavenDb
 
         public Page GetPage(PageReference pageRef)
         {
-            var page = _session.Load<Page>(pageRef.Value);
+            var page = _session.Load<Page>("pages/"+pageRef.Value);
             return page;
         }
 
@@ -170,13 +179,11 @@ namespace DowJones.Web.Mvc.UI.Canvas.RavenDb
 
         public void UpdateModule(Module module)
         {
-            _session.Store(module);
             _session.SaveChanges();
         }
 
         public void UpdatePage(Page page)
         {
-            _session.Store(page);
             _session.SaveChanges();
         }
 
