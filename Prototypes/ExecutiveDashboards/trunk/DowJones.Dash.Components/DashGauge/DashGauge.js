@@ -51,8 +51,6 @@ DJ.UI.DashGauge = DJ.UI.Component.extend({
 
         // Call the base constructor
         this._super(element, $meta);
-
-        this.gaugeConfig = this.getGaugeConfig();
         this.bindOnSuccess();
     },
 
@@ -183,7 +181,7 @@ DJ.UI.DashGauge = DJ.UI.Component.extend({
                 data: [value],
                 yAxis: 0
             }]
-        }, this.gaugeConfig);
+        }, this.getGaugeConfig());
     },
 
     //Render Gauge
@@ -263,7 +261,7 @@ DJ.UI.DashGauge = DJ.UI.Component.extend({
             },
 
             title: {
-                text: ''
+                text: null
             },
 
             pane: [{
@@ -311,7 +309,7 @@ DJ.UI.DashGauge = DJ.UI.Component.extend({
             tooltip: {
                 enabled: false
             },
-            credits: false,
+            credits: false
         };//END: Gauge Graph Configuration
     },
 

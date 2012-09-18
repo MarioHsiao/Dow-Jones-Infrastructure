@@ -85,7 +85,10 @@
     <Compile Include="DataGenerators\ScriptModuleTemplatesGenerator.cs" />
     <Compile Include="DataSources\ChartBeat\ChartBeatDataSource.cs" />
     <Compile Include="DataSources\ChartBeat\DashboardStats.cs" />
+    <Compile Include="DataSources\ChartBeat\HistoricalTrafficSeries.cs" />
+    <Compile Include="DataSources\ChartBeat\HistoricalTrafficSeriesWeekAgo.cs" />
     <Compile Include="DataSources\ChartBeat\HistoricalTrafficStats.cs" />
+    <Compile Include="DataSources\ChartBeat\HistoricalTrafficValues.cs" />
     <Compile Include="DataSources\ChartBeat\QuickStats.cs" />
     <Compile Include="DataSources\ChartBeat\Referrers.cs" />
     <Compile Include="DataSources\ChartBeat\TopPages.cs" />

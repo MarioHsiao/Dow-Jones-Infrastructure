@@ -6,22 +6,26 @@ DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
 
     selectors: {
         visitorsGauge: '.visitorsGauge',
+        currentVisitorsChart: '.currentVisitorsChart',
         timeCounter: '.dj_DashGaugeChartFooter .time'
     },
     
     init: function (element, meta) {
         // Call the base constructor
         this._super(element, $.extend({ name: "ConcurrentVisits" }, meta));
-        this._initGauge();
+        this._initComponent();
     },
     
-    _initGauge: function () {
+    _initComponent: function () {
         var self = this;
         DJ.add('DashGauge', this._visitorGaugeConfig()).done(function (comp) {
             self.visitorsGauge = comp;
             comp.owner = self;
             comp.updateMax(91995);
         });
+
+        // initialize the histogram
+        self._renderHistogram(self._getChartObject());
     },
     
     _visitorGaugeConfig: function() {
@@ -44,10 +48,123 @@ DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
             data: 0
         };
     },
+    
+    _histogramConfig: function () {
+        var now = new Date();
+        var startDate = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate());
+        var endDate = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate(), 24);
+        return {
+            chart: {
+                spacingRight: 20,
+                height: 150,
+                backgroundColor: 'transparent'
+            },
+            title: {
+                text: null
+            },
+            subtitle: {
+                text: null
+            },
+            xAxis: {
+                type: 'datetime',
+                title: {
+                    text: null
+                },
+                labels: {
+                    formatter: function () {
+                        if (!this.isLast) {
+                            return Highcharts.dateFormat('%H:%M', this.value);
+                        }
+                        return '24:00';
+                    }
+                },
+                endOnTick: false,
+                min: startDate,
+                max: endDate,
+                
+            },
+            yAxis: {
+                id: 'visitors',
+                title: {
+                    text: 'Number of Visitors'
+                },
+                startOnTick: false,
+                showFirstLabel: false
+            },
+            tooltip: {
+                shared: true
+            },
+            legend: {
+                enabled: false
+            },
+            plotOptions: {
+                areaspline: {
+                    fillColor: {
+                        linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1},
+                        stops: [
+                            [0, Highcharts.getOptions().colors[0]],
+                            [1, 'rgba(2,0,0,0)']
+                        ]
+                    },
+                    lineWidth: 1,
+                    marker: {
+                        enabled: false
+                    },
+                    shadow: false,
+                    states: {
+                        hover: {
+                            enabled: false
+                        }
+                    }
+                },
+                spline : {
+                    marker: {
+                        enabled: false
+                    },
+                    states: {
+                        hover: {
+                            enabled: false
+                        }
+                    }
+                }
+            },
+    
+            series: [{
+                type: 'areaspline',
+                name: '7-Days Ago',
+                id:'historical',
+                pointInterval: 20 * 60 * 1000,
+                pointStart: startDate
+            },
+            {
+                type: 'spline',
+                name: 'Today',
+                id:'realtime',
+                pointInterval: 20 * 60 * 1000,
+                pointStart: startDate
+            }],
+            credits: false
+        };
+    },
+    
+    //Get historical chart Object
+    _getChartObject: function (value) {
+        return $.extend(true, {
+            chart: { renderTo: $(this.selectors.currentVisitorsChart, this.$element)[0] }
+        }, this._histogramConfig());
+    },
+
+    //Render Gauge
+    _renderHistogram: function (chartObj) {
+        this.histogram = new Highcharts.Chart(chartObj);
+    },
+
     _initializeDelegates: function () {
         this._delegates = $.extend(this._delegates, {
                 updateStats: $dj.delegate(this, this._updateStats),
                 updateDashboard: $dj.delegate(this, this._updateDashboard),
+                updateHistoricalSeries: $dj.delegate(this, this._updateHistoricalSeries),
+                updateRealtimeSeries: $dj.delegate(this, this._updateRealtimeSeries)
             });
     },
 
@@ -59,9 +176,41 @@ DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
     _initializeEventHandlers: function () {
         $dj.subscribe('data.QuickStats', this._delegates.updateStats);
         $dj.subscribe('data.DashboardStats', this._delegates.updateDashboard);
-        
+        $dj.subscribe('data.HistorialTrafficSeries', this._delegates.updateRealtimeSeries);
+        $dj.subscribe('data.HistorialTrafficSeriesWeekAgo', this._delegates.updateHistoricalSeries);
     },
 
+    _updateRealtimeSeries: function (data) {
+        if (this.histogram) {
+            for(var prop in data.data) {
+                var obj = data.data[prop];
+                if ($.isPlainObject(obj)) {
+                    var realtimeSeries = this.histogram.get('realtime');
+                    var tData = obj.series.people;
+                    if (realtimeSeries) {
+                        realtimeSeries.setData(tData);
+                    }
+
+                }
+            }
+        }
+    },
+    
+    _updateHistoricalSeries: function (data) {
+        if (this.histogram) {
+            for (var prop in data.data) {
+                var obj = data.data[prop];
+                if ($.isPlainObject(obj)) {
+                    var historicalSeries = this.histogram.get('historical');
+                    var tData = obj.series.people;
+                    if (historicalSeries) {
+                        historicalSeries.setData(tData);
+                    }
+                }
+            }
+        }
+    },
+    
     _updateStats: function (data) {
         if (this.visitorsGauge) {
             this.visitorsGauge.setData(data.visits);
@@ -76,6 +225,9 @@ DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
         if (this.visitorsGauge) {
             this.visitorsGauge.updateMax(data.people_max);
             this.visitorsGauge.updateMin(data.people_min);
+
+            var yAxis = this.histogram.get('visitors');
+            yAxis.setExtremes(data.people_min, data.people_max);
         }
     },
     
