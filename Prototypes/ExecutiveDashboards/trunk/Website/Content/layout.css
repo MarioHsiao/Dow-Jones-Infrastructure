@@ -4295,9 +4295,6 @@ footer {
 .mediaViewer h3, .pageContent h3, .pagination, .tile .title, .tk-nimbus-sans {
   font-family: "nimbus-sans",sans-serif; }
 
-.module {
-    margin-top: 15px;   
-}
 .moduleControls {
   float: right; }
   .moduleControls li {

@@ -219,9 +219,7 @@
     <Compile Include="App_Start\ScriptModuleTemplatesInitializer.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="App_Start\DataSourcesInitializationTask.cs" />
-    <Compile Include="Dependencies.cs">
-      <SubType>Code</SubType>
-    </Compile>
+    <Compile Include="Dependencies.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -343,13 +341,7 @@
     <Content Include="Content\browserShare.scss" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Dashboard\Index.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Dashboard\Canvas.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Content\dashboard.scss" />
+    <Content Include="Content\Less1.less" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
