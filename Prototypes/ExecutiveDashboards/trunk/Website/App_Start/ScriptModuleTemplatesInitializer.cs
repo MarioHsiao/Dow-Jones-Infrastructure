@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using System.Web;
 using DowJones.Dash.DataGenerators;
 using DowJones.Infrastructure;
 using DowJones.Pages.Modules.Templates;
@@ -25,8 +24,7 @@ namespace DowJones.Dash.Website.App_Start
             if (_templateManager.GetTemplates().Count() != 0)
                 return;
 
-            var basePath = VirtualPathUtility.ToAbsolute("~/Content");
-            var templates = _templatesGenerator.GenerateScripModuleTemplates(basePath);
+            var templates = _templatesGenerator.GenerateScripModuleTemplates();
 
             foreach (var template in templates)
             {

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using DowJones.Pages.Modules.Templates;
 
@@ -6,7 +7,14 @@ namespace DowJones.Dash.DataGenerators
 {
     public class ScriptModuleTemplatesGenerator
     {
-        public IEnumerable<ScriptModuleTemplate> GenerateScripModuleTemplates(string stylesheetBasePath)
+        public string StylesheetPath
+        {
+            get { return _stylesheetPath ?? ConfigurationManager.AppSettings["ScriptModuleTemplateStylesheetPath"]; }
+            set { _stylesheetPath = value; }
+        }
+        private string _stylesheetPath;
+
+        public IEnumerable<ScriptModuleTemplate> GenerateScripModuleTemplates()
         {
             var dashboardComponents = new[] {
                 new { Title = "Browser Share", Component = "BrowserShare" },
@@ -23,7 +31,7 @@ namespace DowJones.Dash.DataGenerators
                 new ScriptModuleTemplate {
                     Title = component.Title,
                     Script = string.Format(@"DJ.add('{0}', {{ container: this.container }})", component.Component),
-                    ExternalIncludes = new[] { string.Format("{0}/{1}.css", stylesheetBasePath, component.Component) }
+                    ExternalIncludes = new[] { string.Format("{0}/{1}.css", StylesheetPath, component.Component) }
                 }
             );
         }
