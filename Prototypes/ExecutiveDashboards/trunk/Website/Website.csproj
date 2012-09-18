@@ -67,9 +67,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\DowJones.Infrastructure.3.3.7\lib\DowJones.Infrastructure.dll</HintPath>
     </Reference>
-    <Reference Include="DowJones.Pages, Version=3.3.6.35649, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="DowJones.Pages, Version=3.3.7.37133, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\DowJones.Pages.3.3.6\lib\DowJones.Pages.dll</HintPath>
+      <HintPath>..\packages\DowJones.Pages.3.3.7\lib\DowJones.Pages.dll</HintPath>
     </Reference>
     <Reference Include="DowJones.Parallel">
       <HintPath>..\packages\DowJones.Parallel.1.0.0\lib\DowJones.Parallel.dll</HintPath>
@@ -86,17 +86,16 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\DowJones.Web.Mvc.Search.3.3.6\lib\DowJones.Web.Mvc.Search.dll</HintPath>
     </Reference>
-    <Reference Include="DowJones.Web.Mvc.UI.Canvas, Version=3.3.6.35649, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\DowJones.Web.Mvc.UI.Canvas.3.3.6\lib\DowJones.Web.Mvc.UI.Canvas.dll</HintPath>
+    <Reference Include="DowJones.Web.Mvc.UI.Canvas">
+      <HintPath>..\packages\DowJones.Web.Mvc.UI.Canvas.3.3.7\lib\DowJones.Web.Mvc.UI.Canvas.dll</HintPath>
     </Reference>
     <Reference Include="DowJones.Web.Mvc.UI.Canvas.RavenDb, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\DowJones.Web.Mvc.UI.Canvas.RavenDb.3.3.6\lib\DowJones.Web.Mvc.UI.Canvas.RavenDb.dll</HintPath>
     </Reference>
-    <Reference Include="DowJones.Web.Mvc.UI.Components, Version=3.3.6.35649, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="DowJones.Web.Mvc.UI.Components, Version=3.3.7.37133, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\DowJones.Web.Mvc.UI.Components.3.3.6\lib\DowJones.Web.Mvc.UI.Components.dll</HintPath>
+      <HintPath>..\packages\DowJones.Web.Mvc.UI.Components.3.3.7\lib\DowJones.Web.Mvc.UI.Components.dll</HintPath>
     </Reference>
     <Reference Include="DowJones.Web.Mvc.UI.Components.Models, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
