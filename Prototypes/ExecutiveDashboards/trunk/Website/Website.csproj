@@ -59,47 +59,48 @@
     <Reference Include="Argotic.Web">
       <HintPath>..\packages\Argotic.Web.2008.0.2.0\lib\Net35\Argotic.Web.dll</HintPath>
     </Reference>
-    <Reference Include="DowJones.Assemblers, Version=3.2.79.43525, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="DowJones.Assemblers, Version=3.3.6.35649, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\DowJones.Assemblers.3.2.79\lib\DowJones.Assemblers.dll</HintPath>
+      <HintPath>..\packages\DowJones.Assemblers.3.3.6\lib\DowJones.Assemblers.dll</HintPath>
     </Reference>
-    <Reference Include="DowJones.Infrastructure, Version=3.3.2.30034, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="DowJones.Infrastructure, Version=3.3.6.35649, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\DowJones.Infrastructure.3.3.2\lib\DowJones.Infrastructure.dll</HintPath>
+      <HintPath>..\packages\DowJones.Infrastructure.3.3.6\lib\DowJones.Infrastructure.dll</HintPath>
     </Reference>
-    <Reference Include="DowJones.Pages, Version=3.3.2.30034, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="DowJones.Pages, Version=3.3.6.35649, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\DowJones.Pages.3.3.2\lib\DowJones.Pages.dll</HintPath>
+      <HintPath>..\packages\DowJones.Pages.3.3.6\lib\DowJones.Pages.dll</HintPath>
     </Reference>
     <Reference Include="DowJones.Parallel">
       <HintPath>..\packages\DowJones.Parallel.1.0.0\lib\DowJones.Parallel.dll</HintPath>
     </Reference>
-    <Reference Include="DowJones.Web.Mvc, Version=3.3.2.30034, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="DowJones.Web.Mvc, Version=3.3.6.35649, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\DowJones.Web.Mvc.3.3.2\lib\DowJones.Web.Mvc.dll</HintPath>
+      <HintPath>..\packages\DowJones.Web.Mvc.3.3.6\lib\DowJones.Web.Mvc.dll</HintPath>
     </Reference>
-    <Reference Include="DowJones.Web.Mvc.Diagnostics, Version=3.2.79.43525, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="DowJones.Web.Mvc.Diagnostics, Version=3.3.6.35649, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\DowJones.Web.Mvc.Diagnostics.3.2.79\lib\DowJones.Web.Mvc.Diagnostics.dll</HintPath>
+      <HintPath>..\packages\DowJones.Web.Mvc.Diagnostics.3.3.6\lib\DowJones.Web.Mvc.Diagnostics.dll</HintPath>
     </Reference>
     <Reference Include="DowJones.Web.Mvc.Search, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\DowJones.Web.Mvc.Search.3.3.1\lib\DowJones.Web.Mvc.Search.dll</HintPath>
+      <HintPath>..\packages\DowJones.Web.Mvc.Search.3.3.6\lib\DowJones.Web.Mvc.Search.dll</HintPath>
     </Reference>
-    <Reference Include="DowJones.Web.Mvc.UI.Canvas, Version=3.3.2.30034, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="DowJones.Web.Mvc.UI.Canvas, Version=3.3.6.35649, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\DowJones.Web.Mvc.UI.Canvas.3.3.2\lib\DowJones.Web.Mvc.UI.Canvas.dll</HintPath>
+      <HintPath>..\packages\DowJones.Web.Mvc.UI.Canvas.3.3.6\lib\DowJones.Web.Mvc.UI.Canvas.dll</HintPath>
     </Reference>
-    <Reference Include="DowJones.Web.Mvc.UI.Canvas.RavenDb">
-      <HintPath>..\packages\DowJones.Web.Mvc.UI.Canvas.RavenDb.3.3.2\lib\DowJones.Web.Mvc.UI.Canvas.RavenDb.dll</HintPath>
-    </Reference>
-    <Reference Include="DowJones.Web.Mvc.UI.Components, Version=3.3.2.30034, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="DowJones.Web.Mvc.UI.Canvas.RavenDb, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\DowJones.Web.Mvc.UI.Components.3.3.2\lib\DowJones.Web.Mvc.UI.Components.dll</HintPath>
+      <HintPath>..\packages\DowJones.Web.Mvc.UI.Canvas.RavenDb.3.3.6\lib\DowJones.Web.Mvc.UI.Canvas.RavenDb.dll</HintPath>
+    </Reference>
+    <Reference Include="DowJones.Web.Mvc.UI.Components, Version=3.3.6.35649, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DowJones.Web.Mvc.UI.Components.3.3.6\lib\DowJones.Web.Mvc.UI.Components.dll</HintPath>
     </Reference>
     <Reference Include="DowJones.Web.Mvc.UI.Components.Models, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\DowJones.Web.Mvc.UI.Components.Models.3.3.2\lib\DowJones.Web.Mvc.UI.Components.Models.dll</HintPath>
+      <HintPath>..\packages\DowJones.Web.Mvc.UI.Components.Models.3.3.6\lib\DowJones.Web.Mvc.UI.Components.Models.dll</HintPath>
     </Reference>
     <Reference Include="factiva.gateway.messages">
       <HintPath>..\packages\Factiva.Gateway.7.5.0.93\lib\factiva.gateway.messages.dll</HintPath>
