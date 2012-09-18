@@ -16,7 +16,7 @@ namespace DowJones.Dash.DataGenerators
             _templateManager = templateManager;
         }
 
-        public Page GeneratePage(string id)
+        public Page GeneratePage(string userId)
         {
             var templates = _templateManager.GetTemplates();
 
@@ -37,7 +37,7 @@ namespace DowJones.Dash.DataGenerators
 
             var page = new Page
                 {
-                    ID = id,
+                    OwnerUserId = userId,
                     Layout = new ZoneLayout(zones),
                     ModuleCollection = new List<Module>(modules),
                 };

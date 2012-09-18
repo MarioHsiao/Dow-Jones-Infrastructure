@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Web.Mvc;
 using DowJones.Dash.DataGenerators;
+using DowJones.Pages.Common;
 using DowJones.Pages.Modules;
 using DowJones.Web.Mvc.Routing;
 using DowJones.Web.Mvc.UI.Canvas;
@@ -28,18 +29,20 @@ namespace DowJones.Dash.Website.Controllers
                 $.connection.hub.start();");
         }
 
+        [Authorize]
         [Route("dashboard/{pageId}")]
-        public ActionResult Index(string pageId)
+        public ActionResult Index()
         {
-            if (string.IsNullOrWhiteSpace(pageId))
-                pageId = "1";
+            var username = User.Identity.Name;
 
-            var page = PageRepository.GetPage(pageId);
+            var page =
+                PageRepository.GetPages(SortBy.Position, SortOrder.Ascending)
+                    .FirstOrDefault(x => x.OwnerUserId == username);
             
             if(page == null)
             {
-                page = _pageGenerator.GeneratePage(pageId);
-                PageRepository.CreatePage(page);
+                page = _pageGenerator.GeneratePage(username);
+                page.ID = PageRepository.CreatePage(page);
             }
 
             return Canvas(new Canvas { WebServiceBaseUrl = Url.Content("~/dashboard") }, page);
