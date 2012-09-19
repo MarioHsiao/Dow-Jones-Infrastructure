@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data;
 using System.Data.SqlClient;
+using System.Dynamic;
 using System.Linq;
 using System.Text;
 using DowJones.Infrastructure;
@@ -65,7 +67,7 @@ namespace DowJones.Dash.DataSources
                 using (command.Connection)
                 using (var reader = command.EndExecuteReader(result))
                 {
-                    var data = new DynamicSqlDataReader().Read(reader);
+					var data = new DynamicSqlDataReader().Read(reader);
                     OnDataReceived(data);
                 }
             }
@@ -75,38 +77,26 @@ namespace DowJones.Dash.DataSources
             }
         }
 
-        public class DynamicSqlDataReader
-        {
-            public IEnumerable<dynamic> Read(SqlDataReader reader)
-            {
-                var columnNames = GetColumnNames(reader).ToArray();
 
-                var json = new StringBuilder("[");
+		public class DynamicSqlDataReader
+		{
+			private static dynamic ToExpando(IDataRecord record)
+			{
+				var expandoObject = new ExpandoObject() as IDictionary<string, object>;
 
-                while (reader.Read())
-                {
-                    json.Append("{");
-                    foreach (var col in columnNames)
-                    {
-                        json.AppendFormat("\"{0}\": \"{1}\",", col, reader[col].ToString().Replace("\"", "\\\""));
-                    }
-                    json.Remove(json.Length - 1, 1);
-                    json.Append(" },");
-                }
+				for (var i = 0; i < record.FieldCount; i++)
+					expandoObject.Add(record.GetName(i), record[i]);
 
-                json.Remove(json.Length - 1, 1);
-                json.Append("]");
+				return expandoObject;
+			}
 
-                return JsonConvert.DeserializeObject<IEnumerable<dynamic>>(json.ToString());
-            }
-
-            private static IEnumerable<string> GetColumnNames(IDataRecord reader)
-            {
-                for (int i = 0; i < reader.FieldCount; ++i)
-                {
-                    yield return reader.GetName(i);
-                }
-            }
-        }
+			public IEnumerable<dynamic> Read(SqlDataReader reader)
+			{
+				while (reader.Read())
+				{
+					yield return ToExpando(reader);
+				}
+			}
+		}
     }
 }
