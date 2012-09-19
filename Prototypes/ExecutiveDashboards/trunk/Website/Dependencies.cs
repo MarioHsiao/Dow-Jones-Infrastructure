@@ -38,14 +38,14 @@ namespace DowJones.Dash.Website
 
             if ("true".Equals(ConfigurationManager.AppSettings["RavenDb.Embedded"]))
             {
-/*
                 documentStore = new Raven.Client.Embedded.EmbeddableDocumentStore
                     {
                         DataDirectory = ConfigurationManager.AppSettings["RavenDb.DataDirectory"],
                         RunInMemory = "true".Equals(ConfigurationManager.AppSettings["RavenDb.Embedded.RunInMemory"]),
                     };
-*/
             }
+
+            documentStore.Conventions.AllowQueriesOnId = true;
 
             Bind<IDocumentStore>()
                 .ToConstant(documentStore)
