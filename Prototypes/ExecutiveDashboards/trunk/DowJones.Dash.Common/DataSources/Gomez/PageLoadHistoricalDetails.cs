@@ -6,7 +6,7 @@ namespace DowJones.Dash.DataSources.Gomez
     {
         public void Initialize()
         {
-            Query = @"exec [SplunkExport].[dbo].[GetPageLoadHistoricalDetails] @pageid = 421139, @days = 1";
+            Query = @"exec [SplunkExport].[dbo].[GetPageLoadHistoricalDetails] @days = 7";
         }
     }
 }
