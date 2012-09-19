@@ -31,7 +31,7 @@ namespace DowJones.Dash.DataGenerators
                 new ScriptModuleTemplate {
                     Title = component.Title,
                     Script = string.Format(@"DJ.add('{0}', {{ container: this.container }})", component.Component),
-                    ExternalIncludes = new[] { string.Format("{0}/{1}.css", StylesheetPath, component.Component) }
+                    ExternalIncludes = new string[] {},
                 }
             );
         }

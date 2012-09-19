@@ -29,7 +29,7 @@
 
             var canvasId = DJ.UI.Canvas.find().get_canvasId();
 
-            DJ.subscribe('resized.dj.CanvasModule', function(args) {
+            DJ.subscribe('resized.dj.CanvasModule', function (args) {
                 var request = { pageId: canvasId, moduleId: args.moduleId };
                 $.ajax('@Url.Content("~/dashboard/modules/resize/")' + args.newSize, { data: request });
             });
