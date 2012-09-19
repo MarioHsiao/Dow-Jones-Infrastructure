@@ -1,17 +1,2 @@
-﻿<% 
-    var model = self;
-%>
-<div class="dj_DashGaugeChart">
-    <div class="dj_DashGaugeChartHeader">
-        <% if (model.title) { %>
-        <div class="dj_DashGaugeChartTitle"><%=this.templates.title(model.title)%></div>
-        <% } %>
-        <div class="dj_DashGaugeChartValue"><%=model.value%></div>
-        <div class="dj_DashGaugeChartMin"><%=this.templates.min(model.min)%></div>
-        <div class="dj_DashGaugeChartMax"><%=this.templates.max(model.max)%></div>
-    </div>
-    <div class="dj_DashGaugeChartContainer"></div>
-    <% if (model.footer) { %>
-        <div class="dj_DashGaugeChartFooter"><%=this.templates.footer(model.footer)%></div>
-    <% } %>
-</div>
+﻿<% var data = self.data; %>
+<span class="dj_sparkline-container" style="height:20px;width:120px; display:"></span>

@@ -9,7 +9,9 @@ DJ.UI.Sparkline = DJ.UI.Component.extend({
     defaults: {
         debug: false,
         cssClass: 'Sparkline',
-        baselineSeriesColor : Highcharts.getColors
+        baselineSeriesColor: Highcharts.getOptions().colors[0],
+        seriesColorForDecrease: Highcharts.getOptions().colors[1],
+        seriesColorForIncrease: Highcharts.getOptions().colors[2]
     },
 
     eventNames: {
@@ -38,47 +40,37 @@ DJ.UI.Sparkline = DJ.UI.Component.extend({
     },
 
     _onPillClicked: function (evt) {
-        var self = this,
-           o = self.options,
-           el =  self.$element;
+        var self = this;
     },
 
-    initializeGraphOptions: function (chartContainer, seriesData, max, min, seriesColor) {
+    initializeGraphOptions: function (chartContainer, seriesData, seriesColor) {
 
         var self = this,
-            o = self.options,
-            el = self.$element;
+            o = self.options;
 
         var sparklineChartConfig = {
             chart: {
                 renderTo: 'container',
-                backgroundColor: 'none',
-                defaultSeriesType: 'line',
-                margin: [0, 0, 0, 0],
-                height: o.height || 14
+                defaultSeriesType: 'area',
+                backgroundColor: 'transparent',
+                margin: [2, 0, 0, 0],
+                //borderWidth:1
             },
             title: {
                 text: ''
-            },
-            exporting: {
-                enabled: false
             },
             credits: {
                 enabled: false
             },
             xAxis: {
-                minPadding: 0.05,
-                maxPadding: 0.05,
                 labels: {
                     enabled: false
                 }
             },
             yAxis: {
+                maxPadding: 0,
+                minPadding: 0,
                 endOnTick: false,
-                startOnTick: false,
-                max: Math.ceil(max + (max * .01)),
-                min: Math.floor(min - (min * .01)),
-                gridLineWidth: 0,
                 labels: {
                     enabled: false
                 }
@@ -90,32 +82,46 @@ DJ.UI.Sparkline = DJ.UI.Component.extend({
                 enabled: false
             },
             plotOptions: {
-                series: {
+                areaspline: {
+                    color: Highcharts.getOptions().colors[0],
+                    fillColor: {
+                        linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
+                        stops: [
+                            [0, Highcharts.getOptions().colors[0]],
+                            [1, 'rgba(255,255,255,0)']
+                        ]
+                    },
                     lineWidth: 1,
                     shadow: false,
                     states: {
                         hover: {
-                            lineWidth: 2
+                            lineWidth: 1
                         }
                     },
                     marker: {
-                        enabled: false,
-                        radius: 0,
+                        //enabled:false,
+                        radius: 1,
                         states: {
                             hover: {
-                                radius: 0
+                                radius: 2
                             }
                         }
                     }
                 }
-            }
+            },
+            series: [{
+                type: 'areaspline',
+                id: 'sparkline',
+                name: 'sparkline'
+                
+            }]
         };
 
         if (seriesData && seriesData.length > 0) {
             seriesData[0]["color"] = seriesColor;
         }
 
-        return $.extend(true, {}, sparklineChartConfig, {
+        return $.extend(true, { }, sparklineChartConfig, {
             chart: {
                 renderTo: chartContainer,
                 events: {
@@ -123,20 +129,18 @@ DJ.UI.Sparkline = DJ.UI.Component.extend({
                 }
             },
             series: seriesData
-        })
+        });
     },
 
-    transformDataResult: function () {
+    mapData: function () {
         var self = this,
-            el = $(self.element),
-            o = self.options,
             dataSeries = [];
 
         if (self.data &&
             self.data.values &&
             self.data.values.length > 0) {
             $.each(self.data.values, function (i, objvalue) {
-                dataSeries.push(objvalue.value);
+                dataSeries.push(objvalue);
             });
         }
 
@@ -172,24 +176,24 @@ DJ.UI.Sparkline = DJ.UI.Component.extend({
             o = self.options;
 
         if (self.data) {
-            self.$element.html(self.templates.pillcontents({ data: self.data }));
+            self.$element.html(self.templates.layout({ data: self.data }));
             var chartContainer = el.find('.dj_sparkline-container'),
-                graphDataModel = self.transformDataResult(),
+                graphDataModel = self.mapData(),
                 chartOptions;
 
             if (graphDataModel.length > 0) {
 
                 switch (self.data.status) {
                     case 1:
-                        chartOptions = self.initializeGraphOptions(chartContainer[0], graphDataModel, self.data.max, self.data.min, o.seriesColorForIncrease);
+                        chartOptions = self.initializeGraphOptions(chartContainer[0], graphDataModel, o.seriesColorForIncrease);
                         el.addClass("increase");
                         break;
                     case 2:
-                        chartOptions = self.initializeGraphOptions(chartContainer[0], graphDataModel, self.data.max, self.data.min, o.seriesColorForDecrease);
+                        chartOptions = self.initializeGraphOptions(chartContainer[0], graphDataModel, o.seriesColorForDecrease);
                         el.addClass("decrease");
                         break;
                     default:
-                        chartOptions = self.initializeGraphOptions(chartContainer[0], graphDataModel, self.data.max, self.data.min, o.baselineSeriesColor);
+                        chartOptions = self.initializeGraphOptions(chartContainer[0], graphDataModel, o.baselineSeriesColor);
                         break;
                 }
                 // bind events if necessary

@@ -57,13 +57,22 @@ DJ.UI.BrowserStats = DJ.UI.Component.extend({
         var browserStatsByPages = _.groupBy(data, function (item) {
             return item.page_id;
         });
+        
+        var browserStatsByPages = _.groupBy(data, function (item) {
+            return item.page_id;
+        });
 
         var workingSet = browserStatsByPages[groupToReturn];
 
-        var pageLoadTimings = 0;
+        var pageLoadTimings = 0,
+            numVisitors = 0;
 
         _.each(workingSet, function (item) {
             pageLoadTimings += parseInt(item.Avg, 10);
+        });
+        
+        _.each(workingSet, function (item) {
+            numVisitors += parseInt(item.Count, 10);
         });
 
         var avgPageLoadAcrossBrowsers = pageLoadTimings / workingSet.length;
@@ -78,7 +87,7 @@ DJ.UI.BrowserStats = DJ.UI.Component.extend({
                 zone = avg < greenZone ? 'cool' : (avg <= neutralZone ? 'neutral' : 'hot');
             return {
                 browser: browser.name.toLowerCase(),
-                visitors: item.Count,
+                visitors: ((item.Count * 100) / numVisitors).toFixed(0),
                 timing: (avg / 1000).toFixed(2),
                 percent: Math.min(avg / maxPageLoad * 100, 100),
                 temperature: zone,

@@ -27,7 +27,8 @@ DJ.UI.PageTimings = DJ.UI.CompositeComponent.extend({
 
     _initializeDelegates: function () {
         this._delegates = $.extend(this._delegates, {
-            setData: $dj.delegate(this, this.setData)
+            updateHeadlines: $dj.delegate(this, this._updateHeadlines),
+            updateSparklines: $dj.delegate(this, this._updateSparklines)
         });
     },
 
@@ -37,27 +38,76 @@ DJ.UI.PageTimings = DJ.UI.CompositeComponent.extend({
     },
 
     _initializeEventHandlers: function () {
-        $dj.subscribe('data.PageTimings', this._delegates.setData);
+        $dj.subscribe('data.PageTimings', this._delegates.updateHeadlines);
+        //$dj.subscribe('data.PageLoadHistoricalDetails', this._delegates.updateSparklines);
     },
     
-    _setData: function (data) {
+    _destroySparklines: function () {
+        var self = this;
+        if (self.sparklineCharts && self.sparklineCharts.length) {
+            for (var i = 0, len = self.sparklineCharts.length; i < len; i++) {
+                var sLineComp = self.sparklineCharts[i];
+                if (sLineComp) {
+                    if (sLineComp.chart) {
+                        sLineComp.chart.destroy();
+                    }
+                    sLineComp.owner = null;
+                    self.sparklineCharts[i] = null;
+                }
+            }
+        }
+        self.sparklineCharts = [];
+    },
+
+    _updateSparklines: function (data) {
+        console.log("_updateSparklines:");
+        console.log(data);
+        
+        var self = this;
+        if (!this.portalHeadlines) {
+            $dj.error("PortalHeadlinesComponent is not initialized. Refresh the page to try again.");
+            return;
+        }
+
+        var sparklineContainers = self.$element.find(".sparklineContainer");
+        self._destroySparklines();
+        self.sparklineCharts = [];
+
+        $.each(sparklineContainers, function (index, value) {
+            console.log(this);
+            DJ.add('Sparkline', {
+                container: this,
+                data: {
+                    values: [100, 102, 405, 602, 53]
+                }
+            }).done(function (comp) {
+                console.log("done");
+                comp.owner = self;
+                self.sparklineCharts.push(comp);
+            });
+        });
+    },
+    
+    _updateHeadlines: function (data) {
+        var self = this;
         if (!this.portalHeadlines) {
             $dj.error("PortalHeadlinesComponent is not initialized. Refresh the page to try again.");
             return;
         }
 
         var headlines = [];
-        
         for (var i = 0; i < data.length; i++) {
-            headlines[headlines.length] = { title: data[i].page_name, modificationTimeDescriptor: Highcharts.numberFormat(data[i].page_load_time/1000, 3) + "s" };
+            headlines[headlines.length] = { title: data[i].page_name, modificationTimeDescriptor: Highcharts.numberFormat(data[i].Avg/1000, 3) + "s" };
         }
 
         var result = {
             count: { value: headlines.length },
             headlines: headlines
         };
-
-        this.portalHeadlines.setData({ resultSet: result });
+        
+        self._destroySparklines();
+        self.portalHeadlines.setData({ resultSet: result });
+        this._updateSparklines();
     },
     
     EOF: null

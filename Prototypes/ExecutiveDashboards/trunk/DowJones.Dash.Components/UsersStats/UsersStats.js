@@ -8,7 +8,9 @@ DJ.UI.UsersStats = DJ.UI.CompositeComponent.extend({
         newGauge: '.newGauge',
         readGauge: '.readGauge',
         writeGauge: '.writeGauge',
-        idleGauge: '.idleGauge'
+        idleGauge: '.idleGauge',
+        percentEngaged: '.dj_concurrent-visits .counter',
+        engagementBar: '.dj_concurrent-visits .progress .bar',
     },
     
     init: function (element, meta) {
@@ -55,6 +57,7 @@ DJ.UI.UsersStats = DJ.UI.CompositeComponent.extend({
                 return "<span class=\"tip label\" title=\"Read: The number of poeople reading (defined as actively moving around the page).\">Read</span>";
             case "new":
                 return "<span class=\"tip label\" title=\"New: Number of users that are new.\">New</span>";
+            default :
             case "write":
                 return "<span class=\"tip label\" title=\"Write: The number of poeople writing (defined as actively typing on the page).\">Write</span>";
         }
@@ -127,6 +130,13 @@ DJ.UI.UsersStats = DJ.UI.CompositeComponent.extend({
         this.readGauge.setData(data.read);
         this.writeGauge.setData(data.write);
         this.idleGauge.setData(data.idle);
+
+        var total = data.read + data.write + data.idle;
+        var percentEngaged = ((data.read + data.write) * 100) / total;
+        var percentIdle = (data.idle * 100) / total;
+
+        this.$element.find(this.selectors.percentEngaged).html(percentEngaged.toFixed(2) + "%");
+        this.$element.find(this.selectors.engagementBar).css( {width: percentEngaged.toFixed(2) + "%"});
     },
 
     EOF: null  // Final property placeholder (without a comma) to allow easier moving of functions

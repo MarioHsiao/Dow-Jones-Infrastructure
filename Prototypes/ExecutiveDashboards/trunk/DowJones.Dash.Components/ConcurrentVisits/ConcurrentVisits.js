@@ -120,7 +120,9 @@ DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
                         hover: {
                             enabled: false
                         }
-                    }
+                    },
+                    pointInterval: 5 * 60 * 1000,
+                    pointStart: startDate
                 },
                 spline: {
                     color: Highcharts.getOptions().colors[1],
@@ -131,23 +133,21 @@ DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
                         hover: {
                             enabled: false
                         }
-                    }
+                    },
+                    pointInterval: 5 * 60 * 1000,
+                    pointStart: startDate
                 }
             },
     
             series: [{
                 type: 'areaspline',
                 name: '7-Days Ago',
-                id: 'historical',
-                pointInterval: 20 * 60 * 1000,
-                pointStart: startDate
+                id: 'historical'
             },
             {
                 type: 'spline',
                 name: 'Today',
-                id:'realtime',
-                pointInterval: 20 * 60 * 1000,
-                pointStart: startDate
+                id:'realtime'
             }],
             credits: false
         };
@@ -192,6 +192,8 @@ DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
                 var obj = data.data[prop];
                 if ($.isPlainObject(obj)) {
                     var realtimeSeries = this.histogram.get('realtime');
+                    var frequency = data.data.frequency;
+                    this.histogram.options.plotOptions.spline.pointInterval = frequency * 60 * 1000;
                     var tData = obj.series.people;
                     if (realtimeSeries) {
                         realtimeSeries.setData(tData);
@@ -207,6 +209,8 @@ DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
                 var obj = data.data[prop];
                 if ($.isPlainObject(obj)) {
                     var historicalSeries = this.histogram.get('historical');
+                    var frequency = data.data.frequency;
+                    this.histogram.options.plotOptions.areaspline.pointInterval = frequency * 60 * 1000;
                     var tData = obj.series.people;
                     if (historicalSeries) {
                         historicalSeries.setData(tData);
