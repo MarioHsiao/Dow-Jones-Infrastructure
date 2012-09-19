@@ -1,132 +1,179 @@
-#dashboard {
-  margin-bottom: 20px; }
+#dashboard
+{
+	margin-bottom: 20px;
+}
 
 .dj_menu {
-  background-color: #fff;
-  padding: 5px;
-  display: none; }
+	background-color: #fff;
+	padding: 5px;
+	display: none;
+}
 
 h2 a.reset {
-  font-size: 70%;
-  font-weight: normal; }
+	font-size: 70%;
+	font-weight: normal;
+}
 
 .no-modules {
-  margin-top: 30px;
-  text-align: center; }
+	margin-top: 30px;
+	text-align: center;
+}
 
 .dj_emg_autosuggest_results {
-  background: #fff;
-  border: 1px solid #000;
-  border-top: none; }
-  .dj_emg_autosuggest_results table {
-    width: 100%; }
-    .dj_emg_autosuggest_results table td {
-      padding: 3px 5px; }
-  .dj_emg_autosuggest_results .dj_emg_autosuggest_over {
-    background: #ccc; }
+	background: #fff;
+	border: 1px solid #000;
+	border-top: none;
+
+	table {
+		width: 100%;
+		td { padding: 3px 5px; }
+	}
+
+	.dj_emg_autosuggest_over {
+		background: #ccc;
+	}
+}
+
 
 .form-search {
-  display: inline-block;
-  clear: none; }
+	display: inline-block;
+	clear: none;
+}
+
+.dj_Canvas.sorting .zone {
+	background-color: #666;
+}
 
 .dj_Canvas {
-  position: relative;
-  /* Hide all modules... */
-  /* ...except the ones in a canvas zone */ }
-  .dj_Canvas .dj_module {
-    display: none; }
-  .dj_Canvas .dj_group .dj_module {
-    display: block; }
+    position: relative;
 
-.sorting .dj_group {
-  background-color: #F5F5F5; }
+	/* Hide all modules... */
+	.dj_module { display: none; }
+
+	/* ...except the ones in a canvas zone */
+	.dj_group {
+		.dj_module { display: block; }
+	}
+}
+
+	.sorting {
+		.dj_group {
+			background-color: #F5F5F5;
+		}
+	}
 
 .dj_module {
-  margin-top: 20px;
-  min-height: 35px; }
-  .dj_module fieldset {
-    border: none; }
-  .dj_module .dj_module-edit-options {
-    clear: both;
-    display: block;
-    padding-top: 10px; }
-    .dj_module .dj_module-edit-options .button-pane {
-      text-align: center;
-      padding-bottom: 10px; }
-    .dj_module .dj_module-edit-options .dc_list {
-      list-style: none;
-      position: relative;
-      width: 90%; }
-    .dj_module .dj_module-edit-options .dc_item {
-      margin-left: 10px; }
-    .dj_module .dj_module-edit-options .radio.inline {
-      width: 10px;
-      margin-right: 5px; }
-  .dj_module .dj_module-handle {
-    cursor: move; }
-  .dj_module .dj_module-header {
-    position: relative;
-    height: 30px;
-    padding: 0px 7px 0 15px;
-    color: #fff;
-    font-weight: bold;
-    white-space: nowrap;
-    border-bottom: solid 1px #E4E4E4; }
-    .dj_module .dj_module-header .module-title {
-      display: inline;
-      max-width: 70%;
-      overflow: hidden;
-      font-size: 1.6em;
-      color: #02A2DB;
-      text-transform: uppercase;
-      margin: 0;
-      line-height: 1.6em;
-      font-weight: 300; }
-    .dj_module .dj_module-header .scope-container {
-      float: right;
-      display: none; }
-    .dj_module .dj_module-header .actions-container {
-      position: absolute;
-      top: 0;
-      right: 0;
-      padding-top: 5px;
-      max-width: 25%;
-      white-space: nowrap; }
-  .dj_module .dj_module-core {
-    margin-top: -5px;
-    padding-top: 5px;
-    width: 99.5%; }
-    .dj_module .dj_module-core .padded {
-      padding: 5px; }
-  .dj_module .script-component-container .moduleHead {
-    display: none; }
+	margin-top: 20px;
+	min-height: 35px;
+	
+	fieldset {
+		border: none;
+	}
 
-.dj_Editor label {
-  display: inline-block;
-  width: 20%;
-  text-align: right;
-  vertical-align: top;
-  padding-right: 5px; }
-.dj_Editor input, .dj_Editor textarea {
-  width: 75%; }
-.dj_Editor .radio input {
-  width: auto; }
+	.dj_module-edit-options {
+		clear: both;
+		display: block;
+		padding-top: 10px;
+
+		.button-pane {
+			text-align: center;
+			padding-bottom: 10px;
+		}
+
+		.dc_list {
+			list-style: none;
+			position: relative;
+			width: 90%;
+		}
+
+		.dc_item {
+			margin-left: 10px;
+		}
+
+		.radio.inline {
+			width: 10px;
+			margin-right: 5px;
+		}
+	}
+
+	.dj_module-handle {
+		cursor: move;
+	}
+
+	.dj_module-header {
+		position: relative;
+		height: 30px;
+		padding: 0px 7px 0 15px;
+		color: #fff;
+		font-weight: bold;
+		white-space: nowrap;
+		border-bottom: solid 1px #E4E4E4;
+
+		.module-title {
+			display: inline;
+			max-width: 70%;
+			overflow: hidden;
+			font-size: 1.6em;
+			color: #02A2DB;
+			text-transform: uppercase;
+			margin: 0;
+			line-height: 1.6em;
+			font-weight: 300;
+		}
+
+		.scope-container {
+			float: right;
+			display: none;
+		}
+
+		.actions-container {
+			position: absolute;
+			top: 0;
+			right: 0;
+			padding-top: 5px;
+			max-width: 25%;
+			white-space: nowrap;
+		}
+	}
+
+	.dj_module-core {
+		margin-top: -5px;
+		padding-top: 5px;
+		width: 99.5%;
+
+		.padded {
+			padding: 5px;
+		}
+	}
+
+	.script-component-container .moduleHead {
+		display: none;
+	}
+}
+
+
+.dj_Editor {
+	label { display: inline-block; width: 20%; text-align: right;vertical-align: top; padding-right: 5px; }
+	input, textarea { width: 75%; }
+	.radio input { width: auto; }
+}
+
 
 .dj_menu {
-  border: 1px solid #666; }
+	border: 1px solid #666;
+}
+
 
 #add-module {
-  margin-bottom: 20px; }
+    margin-bottom: 20px;
+}
+
 
 .dj_module.minimized .dj_module-core {
-  display: none !important; }
-
+    display: none !important;
+}
 .minimized .minimize {
-  display: none !important; }
-
-.maximize {
-  display: none !important; }
-
-.minimized .maximize {
-  display: inline-block !important; }
-
+     display: none !important;
+}
+.maximize { display: none !important; }
+.minimized .maximize { display: inline-block !important; }
