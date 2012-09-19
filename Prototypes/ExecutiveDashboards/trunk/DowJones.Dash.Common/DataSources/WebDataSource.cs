@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Web;
 using System.Xml;
@@ -36,7 +37,8 @@ namespace DowJones.Dash.DataSources
             }
         }
 
-        public WebDataSource(string path, IDictionary<string, object> parameters = null, int pollDelay = 3)
+        public WebDataSource(string name, string path, IDictionary<string, object> parameters = null, int pollDelay = 3)
+            : base(name)
         {
             Guard.IsNotNullOrEmpty(path, "path");
 
@@ -46,9 +48,21 @@ namespace DowJones.Dash.DataSources
             PollDelay = pollDelay;
         }
 
-        public void Initialize()
+        public virtual void Initialize()
         {
+            // Accept insecure certificates -- we're only hitting known services
+            ServicePointManager.CertificatePolicy = new AcceptAllCertificatePolicy();
             ServicePointManager.ServerCertificateValidationCallback = (x, y, z, a) => true;
+        }
+
+        internal class AcceptAllCertificatePolicy : ICertificatePolicy
+        {
+            public bool CheckValidationResult(ServicePoint sPoint,
+               X509Certificate cert, WebRequest wRequest, int certProb)
+            {
+                // Always accept
+                return true;
+            }
         }
 
         protected override void Poll()
@@ -130,10 +144,10 @@ namespace DowJones.Dash.DataSources
         protected internal abstract dynamic ParseResponse(Stream stream);
     }
 
-    public abstract class JsonWebDataSource : WebDataSource
+    public class JsonWebDataSource : WebDataSource
     {
-        public JsonWebDataSource(string path, IDictionary<string, object> parameters = null)
-            : base(path, parameters)
+        public JsonWebDataSource(string name, string path, IDictionary<string, object> parameters = null)
+            : base(name, path, parameters)
         {
         }
 
@@ -145,10 +159,10 @@ namespace DowJones.Dash.DataSources
         }
     }
 
-    public abstract class XmlWebDataSource : WebDataSource
+    public class XmlWebDataSource : WebDataSource
     {
-        public XmlWebDataSource(string path, IDictionary<string, object> parameters = null)
-            : base(path, parameters)
+        public XmlWebDataSource(string name, string path, IDictionary<string, object> parameters = null)
+            : base(name, path, parameters)
         {
         }
 

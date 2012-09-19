@@ -33,17 +33,25 @@ namespace DowJones.Dash.DataSources
 
     public abstract class DataSource : IDataSource
     {
+        private readonly string _name;
+
         public event EventHandler<DataReceivedEventArgs> DataReceived;
+
         public event EventHandler<ErrorEventArgs> Error;
 
         public virtual string Name
         {
-            get { return GetType().Name; }
+            get { return _name; }
         }
 
         protected bool Enabled
         {
             get { return DataReceived != null; }
+        }
+
+        protected DataSource(string name = null)
+        {
+            _name = name ?? GetType().Name;
         }
 
         public abstract void Start();

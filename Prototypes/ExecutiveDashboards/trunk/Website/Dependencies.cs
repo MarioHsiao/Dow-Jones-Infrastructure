@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Configuration;
+using DowJones.Dash.DataSources;
 using DowJones.Infrastructure.Common;
 using DowJones.Pages;
 using DowJones.Pages.Modules;
@@ -27,9 +28,9 @@ namespace DowJones.Dash.Website
             Bind<Product>().ToConstant(new GlobalProduct()).InSingletonScope();
             Bind<IPageSubscriptionManager>().To<PageSubscriptionManagerStub>();
 
-            AutoBind<DataSources.IDataSource>(null, x => x.InSingletonScope());
-
             InitializeRavenDb();
+
+            Bind<IDataSourceRepository>().To<DataSourceRepository>().InSingletonScope();
         }
 
         private void InitializeRavenDb()
@@ -60,6 +61,8 @@ namespace DowJones.Dash.Website
             Bind<IPageRepository>().To<RavenDbPageRepository>().InRequestScope();
             Bind<IScriptModuleTemplateManager>().To<RavenDbScriptModuleTemplateRepository>().InRequestScope();
         }
+
+
 
         class PageSubscriptionManagerStub : IPageSubscriptionManager
         {

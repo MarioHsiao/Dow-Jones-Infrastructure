@@ -83,30 +83,23 @@
   <ItemGroup>
     <Compile Include="DataGenerators\PageGenerator.cs" />
     <Compile Include="DataGenerators\ScriptModuleTemplatesGenerator.cs" />
-    <Compile Include="DataSources\ChartBeat\ChartBeatDataSource.cs" />
-    <Compile Include="DataSources\ChartBeat\DashboardStats.cs" />
-    <Compile Include="DataSources\ChartBeat\HistoricalTrafficSeries.cs" />
-    <Compile Include="DataSources\ChartBeat\HistoricalTrafficSeriesWeekAgo.cs" />
-    <Compile Include="DataSources\ChartBeat\HistoricalTrafficStats.cs" />
-    <Compile Include="DataSources\ChartBeat\HistoricalTrafficValues.cs" />
-    <Compile Include="DataSources\ChartBeat\QuickStats.cs" />
-    <Compile Include="DataSources\ChartBeat\Referrers.cs" />
-    <Compile Include="DataSources\ChartBeat\TopPages.cs" />
+    <Compile Include="DataSources\ChartBeatDataSource.cs" />
     <Compile Include="DataSources\DataSource.cs" />
-    <Compile Include="DataSources\Gomez\BrowserStats.cs" />
-    <Compile Include="DataSources\Gomez\DeviceTraffic.cs" />
-    <Compile Include="DataSources\Gomez\DeviceTrafficByPage.cs" />
-    <Compile Include="DataSources\Gomez\GomezDataSource.cs" />
-    <Compile Include="DataSources\Gomez\PageLoadHistoricalDetails.cs" />
-    <Compile Include="DataSources\Gomez\PageTimings.cs" />
+    <Compile Include="DataSources\DataSourceRepository.cs" />
+    <Compile Include="DataSources\GomezDataSource.cs" />
     <Compile Include="DataSources\PollingDataSource.cs" />
-    <Compile Include="DataSources\Splunk\SplunkDataSource.cs" />
+    <Compile Include="DataSources\SplunkDataSource.cs" />
     <Compile Include="DataSources\SqlDataSource.cs" />
     <Compile Include="DataSources\WebDataSource.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="DataSources\ChartBeat\" />
+    <Folder Include="DataSources\Gomez\" />
+    <Folder Include="DataSources\Splunk\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -14,7 +14,8 @@ namespace DowJones.Dash.DataSources
 
         public int PollDelay { get; set; }
 
-        public PollingDataSource()
+        protected PollingDataSource(string name = null)
+            : base(name)
         {
             if(PollDelay == 0)
             {

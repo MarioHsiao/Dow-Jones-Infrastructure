@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Net;
 
-namespace DowJones.Dash.DataSources.Splunk
+namespace DowJones.Dash.DataSources
 {
-    public abstract class SplunkDataSource : JsonWebDataSource
+    public class SplunkDataSource : JsonWebDataSource
     {
-        public SplunkDataSource(string savedSearch)
+        public SplunkDataSource(string name, string savedSearch)
             : base(
+                name,
                 ConfigurationManager.AppSettings["Splunk.BasePath"] + "/search/jobs",
                 new Dictionary<string, object>
                 {
@@ -24,27 +25,6 @@ namespace DowJones.Dash.DataSources.Splunk
             );
             Method = "POST";
             PollDelay = Convert.ToInt32(ConfigurationManager.AppSettings["Splunk.PollDelay"]);
-        }
-    }
-
-    public class Browser : SplunkDataSource
-    {
-        public Browser() : base("RTBus_Browser")
-        {
-        }
-    }
-
-    public class Handheld : SplunkDataSource
-    {
-        public Handheld() : base("RTBus_Handheld")
-        {
-        }
-    }
-
-    public class HandheldVsPc : SplunkDataSource
-    {
-        public HandheldVsPc() : base("RTBus_HandheldvsPC")
-        {
         }
     }
 }

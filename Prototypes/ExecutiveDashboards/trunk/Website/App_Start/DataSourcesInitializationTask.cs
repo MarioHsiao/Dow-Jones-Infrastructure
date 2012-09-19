@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using DowJones.Dash.DataSources;
 using DowJones.Dash.Website.Hubs;
 using DowJones.Infrastructure;
@@ -7,23 +6,26 @@ namespace DowJones.Dash.Website.App_Start
 {
     public class DataSourcesInitializationTask : IBootstrapperTask
     {
-        private readonly IEnumerable<IDataSource> _dataSources;
+        private readonly IDataSourceRepository _repository;
 
-        public DataSourcesInitializationTask(IEnumerable<IDataSource> dataSources)
+        public DataSourcesInitializationTask(IDataSourceRepository repository)
         {
-            _dataSources = dataSources;
+            _repository = repository;
         }
 
         public void Execute()
         {
-            foreach (var dataSource in _dataSources)
+            var datasources = _repository.GetDataSources();
+            foreach (var dataSource in datasources)
             {
+                var name = dataSource.Name;
+
                 dataSource.DataReceived += (sender, args) =>
-                    Dashboard.Publish("data." + ((IDataSource)sender).Name, args.Data);
+                    Dashboard.Publish("data." + name, args.Data);
 
                 dataSource.Error += (sender, args) =>
                     Dashboard.Publish(
-                        "dataError." + ((IDataSource)sender).Name, 
+                        "dataError." + name, 
                         args.Exception == null ? "Unknown error" : args.Exception.Message
                     );
                 

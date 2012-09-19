@@ -9,15 +9,23 @@ using Newtonsoft.Json;
 
 namespace DowJones.Dash.DataSources
 {
-    public abstract class SqlDataSource : PollingDataSource
+    public class SqlDataSource : PollingDataSource
     {
+        private readonly IDictionary<string, object> _parameters;
+        
+        public CommandType CommandType { get; set; }
+        
         public string ConnectionString { get; protected set; }
+        
         public string Query { get; protected set; }
 
-        protected SqlDataSource(string connectionString, string query = null)
+        protected SqlDataSource(string name, string connectionString, string query = null, IDictionary<string, object> parameters = null)
+            : base(name)
         {
+            _parameters = parameters;
             Guard.IsNotNullOrEmpty(connectionString, "connectionString");
 
+            CommandType = CommandType.StoredProcedure;
             ConnectionString = connectionString;
             Query = query;
         }
@@ -30,7 +38,12 @@ namespace DowJones.Dash.DataSources
             try
             {
                 var connection = new SqlConnection(ConnectionString);
-                var command = new SqlCommand(Query, connection);
+                var command = new SqlCommand(Query, connection) { CommandType = CommandType };
+
+                foreach (var parameter in _parameters)
+                {
+                    command.Parameters.AddWithValue(parameter.Key, parameter.Value);
+                }
 
                 Log("Opening connection to {0}...", connection.Database);
                 connection.Open();

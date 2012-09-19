@@ -2,14 +2,15 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 
-namespace DowJones.Dash.DataSources.ChartBeat
+namespace DowJones.Dash.DataSources
 {
-    public abstract class ChartBeatDataSource : JsonWebDataSource
+    public class ChartBeatDataSource : JsonWebDataSource
     {
-        protected ChartBeatDataSource(string relativePath, string host = "online.wsj.com")
+        public ChartBeatDataSource(string name, string relativePath, string host = "online.wsj.com", IDictionary<string,object> parameters = null)
             : base(
+                name,
                 ConfigurationManager.AppSettings["ChartBeat.BasePath"] + relativePath,
-                new Dictionary<string, object>
+                new Dictionary<string, object>(parameters ?? new Dictionary<string, object>())
                     {
                         {"apikey", ConfigurationManager.AppSettings["ChartBeat.ApiKey"]},
                         {"host", host},
