@@ -17,7 +17,8 @@ DJ.UI.PageTimings = DJ.UI.CompositeComponent.extend({
         var self = this;
         DJ.add('PortalHeadlineList', {
             container: this._portalHeadlinesContainer[0],
-            options: { layout: 2 }
+            options: { layout: 2 },
+            templates: { successTimeline: this.templates.headlineSuccess }
         }).done(function (comp) {
             self.portalHeadlines = comp;
             comp.owner = self;

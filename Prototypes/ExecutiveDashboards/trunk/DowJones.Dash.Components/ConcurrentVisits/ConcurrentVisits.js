@@ -86,10 +86,12 @@ DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
             yAxis: {
                 id: 'visitors',
                 title: {
-                    text: 'Number of Visitors'
+                    text: null
                 },
                 startOnTick: false,
-                showFirstLabel: false
+                gridLineDashStyle: 'dot',
+                gridLineWidth: 0,
+                labels: { enabled: false}
             },
             tooltip: {
                 shared: true
@@ -99,10 +101,11 @@ DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
             },
             plotOptions: {
                 areaspline: {
+                    color: '#B4635C',
                     fillColor: {
                         linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1},
                         stops: [
-                            [0, Highcharts.getOptions().colors[0]],
+                            [0, '#B4635C'],
                             [1, 'rgba(2,0,0,0)']
                         ]
                     },
@@ -117,7 +120,8 @@ DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
                         }
                     }
                 },
-                spline : {
+                spline: {
+                    color: '#4572A7',
                     marker: {
                         enabled: false
                     },
@@ -130,14 +134,14 @@ DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
             },
     
             series: [{
-                type: 'areaspline',
+                type: 'spline',
                 name: '7-Days Ago',
-                id:'historical',
+                id: 'historical',
                 pointInterval: 20 * 60 * 1000,
                 pointStart: startDate
             },
             {
-                type: 'spline',
+                type: 'areaspline',
                 name: 'Today',
                 id:'realtime',
                 pointInterval: 20 * 60 * 1000,

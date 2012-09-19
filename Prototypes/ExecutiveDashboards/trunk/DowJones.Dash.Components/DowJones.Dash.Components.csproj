@@ -148,6 +148,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Sparkline\Sparkline.cs">
+      <DependentUpon>Sparkline.cshtml</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="StatsMap\StatsMap.cs" />
     <Compile Include="StatsMap\StatsMapComponent.cs">
       <AutoGen>True</AutoGen>
@@ -201,6 +206,10 @@
     <None Include="PlatformStats\PlatformStatsComponent.cshtml">
       <Generator>RazorViewComponentClassGenerator</Generator>
       <LastGenOutput>PlatformStatsComponent.cs</LastGenOutput>
+    </None>
+    <None Include="Sparkline\Sparkline.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>Sparkline.cs</LastGenOutput>
     </None>
     <None Include="StatsMap\StatsMapComponent.cshtml">
       <Generator>RazorViewComponentClassGenerator</Generator>
@@ -302,6 +311,21 @@
   <ItemGroup>
     <EmbeddedResource Include="PerfGauge\ClientTemplates\container.html" />
     <EmbeddedResource Include="PerfGauge\PerfGauge.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="PageTimings\ClientTemplates\success.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Sparkline\ClientTemplates\error.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Sparkline\ClientTemplates\layout.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Sparkline\ClientTemplates\noData.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Sparkline\Sparkline.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
