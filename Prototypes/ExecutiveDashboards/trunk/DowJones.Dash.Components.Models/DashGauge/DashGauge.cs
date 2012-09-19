@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Runtime.Serialization;
 using DowJones.Web.Mvc.UI;
 using Newtonsoft.Json;
 

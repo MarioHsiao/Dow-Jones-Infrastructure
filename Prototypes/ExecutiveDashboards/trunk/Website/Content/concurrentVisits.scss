@@ -76,12 +76,21 @@
 			}
 		}
 		.dj_DashGaugeChartFooter {
+			position:relative;
+			top: -10px;
 			text-align:center;
 			width:100px;
 		}
-	}
+	}	
 }
 
+.usersContainer{
+	.description {
+		margin: 0 auto;
+		text-align:center;
+		width: 150px;
+	}
+}
 
 .platformContainer{
 	.desktop{

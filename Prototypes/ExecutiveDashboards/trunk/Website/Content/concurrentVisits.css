@@ -73,8 +73,15 @@
   .newGauge .dj_DashGaugeChart .dj_DashGaugeChartHeader .chartMin, .writeGauge .dj_DashGaugeChart .dj_DashGaugeChartHeader .chartMin, .readGauge .dj_DashGaugeChart .dj_DashGaugeChartHeader .chartMin, .idleGauge .dj_DashGaugeChart .dj_DashGaugeChartHeader .chartMin {
     display: block; }
   .newGauge .dj_DashGaugeChart .dj_DashGaugeChartFooter, .writeGauge .dj_DashGaugeChart .dj_DashGaugeChartFooter, .readGauge .dj_DashGaugeChart .dj_DashGaugeChartFooter, .idleGauge .dj_DashGaugeChart .dj_DashGaugeChartFooter {
+    position: relative;
+    top: -10px;
     text-align: center;
     width: 100px; }
+
+.usersContainer .description {
+  margin: 0 auto;
+  text-align: center;
+  width: 150px; }
 
 .platformContainer .desktop {
   height: 60px;

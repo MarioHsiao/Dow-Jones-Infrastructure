@@ -56,8 +56,10 @@ DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
         return {
             chart: {
                 spacingRight: 20,
+                spacingLeft: 20,
                 height: 150,
-                backgroundColor: 'transparent'
+                backgroundColor: 'transparent',
+                margin:[0,20,20,20]
             },
             title: {
                 text: null
@@ -101,12 +103,12 @@ DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
             },
             plotOptions: {
                 areaspline: {
-                    color: '#B4635C',
+                    color: Highcharts.getOptions().colors[0],
                     fillColor: {
                         linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1},
                         stops: [
-                            [0, '#B4635C'],
-                            [1, 'rgba(2,0,0,0)']
+                            [0, Highcharts.getOptions().colors[0]],
+                            [1, 'rgba(255,255,255,255)']
                         ]
                     },
                     lineWidth: 1,
@@ -121,7 +123,7 @@ DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
                     }
                 },
                 spline: {
-                    color: '#4572A7',
+                    color: Highcharts.getOptions().colors[1],
                     marker: {
                         enabled: false
                     },
@@ -134,14 +136,14 @@ DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
             },
     
             series: [{
-                type: 'spline',
+                type: 'areaspline',
                 name: '7-Days Ago',
                 id: 'historical',
                 pointInterval: 20 * 60 * 1000,
                 pointStart: startDate
             },
             {
-                type: 'areaspline',
+                type: 'spline',
                 name: 'Today',
                 id:'realtime',
                 pointInterval: 20 * 60 * 1000,
@@ -194,7 +196,6 @@ DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
                     if (realtimeSeries) {
                         realtimeSeries.setData(tData);
                     }
-
                 }
             }
         }
