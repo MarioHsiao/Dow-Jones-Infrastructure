@@ -6,7 +6,7 @@ namespace DowJones.Dash.DataSources.ChartBeat
         public HistorialTrafficSeries()
             : base("/historical/traffic/series/")
         {
-            Parameters.Add("frequency", "20");
+            Parameters.Add("frequency", "5");
         }
     }
 }
