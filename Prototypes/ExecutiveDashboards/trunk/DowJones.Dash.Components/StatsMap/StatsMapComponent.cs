@@ -9,6 +9,7 @@
 //------------------------------------------------------------------------------
 
 [assembly: System.Web.UI.WebResourceAttribute("DowJones.Dash.Components.StatsMap.StatsMap.js", "text/javascript")]
+[assembly: System.Web.UI.WebResourceAttribute("DowJones.Dash.Components.StatsMap.ClientTemplates.container.html", "text/html")]
 
 namespace DowJones.Dash.Components.StatsMap
 {
@@ -22,10 +23,12 @@ namespace DowJones.Dash.Components.StatsMap
     using System.Web.UI;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 09/18/2012 12:54 PM
-    [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Dash.Components.StatsMap.StatsMap.js", ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Dash.Components.StatsMap.StatsMapComponent))]
+    // Last Generated Timestamp: 09/19/2012 02:46 PM
+    [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Dash.Components.StatsMap.StatsMap.js", DependsOn=new string[] {
+            "highcharts-more"}, ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Dash.Components.StatsMap.StatsMapComponent))]
+    [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Dash.Components.StatsMap.ClientTemplates.container.html", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="container", DeclaringType=typeof(DowJones.Dash.Components.StatsMap.StatsMapComponent))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.27108")]
-    public class StatsMapComponent : DowJones.Web.Mvc.UI.ViewComponentBase<DowJones.Dash.Components.StatsMap.StatsMap>
+    public class StatsMapComponent : DowJones.Web.Mvc.UI.ViewComponentBase<DowJones.Dash.Components.Model.StatsMap.StatsMapModel>
     {
 #line hidden
 
@@ -45,10 +48,8 @@ namespace DowJones.Dash.Components.StatsMap
 
 
 
+
    CssClass = "dj_StatsMap"; 
-
-WriteLiteral("\r\n");
-
 
         }
     }

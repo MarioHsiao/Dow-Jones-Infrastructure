@@ -1,5 +1,5 @@
-﻿@model DowJones.Dash.Components.StatsMap.StatsMap
+﻿@model DowJones.Dash.Components.Model.StatsMap.StatsMapModel
 @ClientPlugin dj_StatsMap
-@ScriptResource RelativeResourceName=StatsMap.js
+@ScriptResource RelativeResourceName=StatsMap.js, DependsOn=highcharts-more
+@ClientTemplate RelativeResourceName=ClientTemplates.container.html, TemplateId=container
 @{ CssClass = "dj_StatsMap"; }
-

@@ -25,6 +25,7 @@ namespace DowJones.Dash.DataGenerators
                 new { Title = "Top Pages", Component = "TopPages" },
                 new { Title = "Top Referrers", Component = "TopReferrer" },
                 new { Title = "Users Stats", Component = "UsersStats" },
+				new { Title = "Page Load Details By City", Component = "StatsMap" },
             };
 
             return dashboardComponents.Select(component => 
