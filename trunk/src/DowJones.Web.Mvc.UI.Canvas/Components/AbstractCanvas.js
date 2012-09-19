@@ -498,6 +498,7 @@ DJ.UI.Canvas.ZoneLayout = DJ.UI.Canvas.Layout.extend({
         // and update it with our current items and delegates
         var settings = $.extend({}, this.options.sortableSettings);
 
+        var canvas = $(this.element);
         var zones = this._getZones();
         var sortableItems = $(settings.items, zones);
         var tooltipHandles = sortableItems.find(settings.handle + ">H3");
@@ -507,6 +508,7 @@ DJ.UI.Canvas.ZoneLayout = DJ.UI.Canvas.Layout.extend({
 
         $.extend(settings, {
             start: function (e, ui) {
+                canvas.addClass('sorting');
                 $(ui.helper).addClass(settings.draggingClass);
 
                 if (document.selection) {
@@ -520,6 +522,7 @@ DJ.UI.Canvas.ZoneLayout = DJ.UI.Canvas.Layout.extend({
             },
 
             stop: function (e, ui) {
+                canvas.removeClass('sorting');
                 $(ui.item).css({ width: '' }).removeClass(settings.draggingClass);
 
                 zones.enableSelection().sortable('enable');
