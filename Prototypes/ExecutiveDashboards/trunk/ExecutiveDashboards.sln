@@ -34,22 +34,31 @@ Global
 		SccLocalPath4 = DowJones.Dash.Common
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		DashDev|Any CPU = DashDev|Any CPU
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{91B09179-8BB5-4A39-9D8F-4426A155530D}.DashDev|Any CPU.ActiveCfg = DashDev|Any CPU
+		{91B09179-8BB5-4A39-9D8F-4426A155530D}.DashDev|Any CPU.Build.0 = DashDev|Any CPU
 		{91B09179-8BB5-4A39-9D8F-4426A155530D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{91B09179-8BB5-4A39-9D8F-4426A155530D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{91B09179-8BB5-4A39-9D8F-4426A155530D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{91B09179-8BB5-4A39-9D8F-4426A155530D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{973B633A-E26B-4990-BF22-95847CDB1B40}.DashDev|Any CPU.ActiveCfg = DashDev|Any CPU
+		{973B633A-E26B-4990-BF22-95847CDB1B40}.DashDev|Any CPU.Build.0 = DashDev|Any CPU
 		{973B633A-E26B-4990-BF22-95847CDB1B40}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{973B633A-E26B-4990-BF22-95847CDB1B40}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{973B633A-E26B-4990-BF22-95847CDB1B40}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{973B633A-E26B-4990-BF22-95847CDB1B40}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E42D79E9-E80A-46C1-B987-EF45A0830C7E}.DashDev|Any CPU.ActiveCfg = DashDev|Any CPU
+		{E42D79E9-E80A-46C1-B987-EF45A0830C7E}.DashDev|Any CPU.Build.0 = DashDev|Any CPU
 		{E42D79E9-E80A-46C1-B987-EF45A0830C7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E42D79E9-E80A-46C1-B987-EF45A0830C7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E42D79E9-E80A-46C1-B987-EF45A0830C7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E42D79E9-E80A-46C1-B987-EF45A0830C7E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0FC55532-400C-44E6-9392-563FF4600842}.DashDev|Any CPU.ActiveCfg = DashDev|Any CPU
+		{0FC55532-400C-44E6-9392-563FF4600842}.DashDev|Any CPU.Build.0 = DashDev|Any CPU
 		{0FC55532-400C-44E6-9392-563FF4600842}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0FC55532-400C-44E6-9392-563FF4600842}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0FC55532-400C-44E6-9392-563FF4600842}.Release|Any CPU.ActiveCfg = Release|Any CPU
