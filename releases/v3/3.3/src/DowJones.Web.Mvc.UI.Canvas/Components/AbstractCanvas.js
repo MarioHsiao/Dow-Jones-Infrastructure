@@ -242,6 +242,8 @@ DJ.UI.Canvas.Layout = DJ.Component.extend({
         if (!this.options.canvasId && canvas.options) {
             this.options.canvasId = canvas.options.canvasId;
         }
+
+        canvas.layout = this;
     },
 
     add: function (module) {
@@ -309,6 +311,7 @@ $dj.debug('Registered DJ.UI.Canvas.Layout');
 DJ.UI.Canvas.ZoneLayout = DJ.UI.Canvas.Layout.extend({
     defaults: {
         dataServiceUrl: null,
+        mode: 'column',
         zones: null,
         sortableSettings: {
             axis: false,
@@ -384,10 +387,15 @@ DJ.UI.Canvas.ZoneLayout = DJ.UI.Canvas.Layout.extend({
 
         this._debug('Saving positions: ' + JSON.stringify(request));
 
+        var resizeZones = this._delegates.resizeZones;
+
         $.ajax({
             url: this.options.dataServiceUrl,
             type: 'PUT',
             data: JSON.stringify(request)
+        }).done(function() {
+            resizeZones();
+            DJ.publish('layoutUpdated.dj.ZoneLayout', zones);
         });
 
         return request;
@@ -434,7 +442,8 @@ DJ.UI.Canvas.ZoneLayout = DJ.UI.Canvas.Layout.extend({
         this._delegates = {
             getZones: $dj.delegate(this, this._getZones),
             move: $dj.delegate(this, this._move),
-            save: $dj.delegate(this, this.save)
+            save: $dj.delegate(this, this.save),
+            resizeZones: $dj.delegate(this, this._resizeZones)
         };
     },
 
@@ -452,13 +461,13 @@ DJ.UI.Canvas.ZoneLayout = DJ.UI.Canvas.Layout.extend({
             zones = new Array(zoneCount);
 
             _.each(
-                 _.sortBy(modules, function (mod) { return mod.options.position; }),
-                 function (mod) {
-                     var zoneIndex = Math.ceil(mod.options.position % zoneCount);
-                     var zone = zones[zoneIndex] || (zones[zoneIndex] = []);
-                     zone.push(mod.get_moduleId());
-                 }
-             );
+                _.sortBy(modules, function (mod) { return mod.options.position; }),
+                function (mod) {
+                    var zoneIndex = Math.ceil(mod.options.position % zoneCount);
+                    var zone = zones[zoneIndex] || (zones[zoneIndex] = []);
+                    zone.push(mod.get_moduleId());
+                }
+            );
         }
 
         for (var zoneIndex = 0; zoneIndex < zones.length; zoneIndex++) {
@@ -489,6 +498,7 @@ DJ.UI.Canvas.ZoneLayout = DJ.UI.Canvas.Layout.extend({
         // and update it with our current items and delegates
         var settings = $.extend({}, this.options.sortableSettings);
 
+        var canvas = $(this.element);
         var zones = this._getZones();
         var sortableItems = $(settings.items, zones);
         var tooltipHandles = sortableItems.find(settings.handle + ">H3");
@@ -498,6 +508,7 @@ DJ.UI.Canvas.ZoneLayout = DJ.UI.Canvas.Layout.extend({
 
         $.extend(settings, {
             start: function (e, ui) {
+                canvas.addClass('sorting');
                 $(ui.helper).addClass(settings.draggingClass);
 
                 if (document.selection) {
@@ -511,6 +522,7 @@ DJ.UI.Canvas.ZoneLayout = DJ.UI.Canvas.Layout.extend({
             },
 
             stop: function (e, ui) {
+                canvas.removeClass('sorting');
                 $(ui.item).css({ width: '' }).removeClass(settings.draggingClass);
 
                 zones.enableSelection().sortable('enable');
@@ -549,6 +561,28 @@ DJ.UI.Canvas.ZoneLayout = DJ.UI.Canvas.Layout.extend({
         }
 
         this.save();
+    },
+
+    _resizeZones: function() {
+        var zones = this._getZones();
+        var rowMode = this.options.mode == 'row';
+
+        var values = 
+            zones.map(function() { 
+                if(rowMode)
+                    return $(this).width();
+                else
+                    return $(this).height();
+            }).get();
+
+        var max = Math.max.apply(null, values);
+
+        if(rowMode)
+            zones.width(max);
+        else
+            zones.height(max);
+
+        this._debug('Resized zones to ' + max);
     },
 
     EOF: null

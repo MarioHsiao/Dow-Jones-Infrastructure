@@ -113,7 +113,7 @@ namespace DowJones.Web.Mvc.UI.Canvas.RavenDb
 
         public void DeletePage(PageReference pageRef)
         {
-            var page = _session.Load<Page>(pageRef.Value);
+            var page = GetPage(pageRef);
             
             if (page == null)
                 return;
