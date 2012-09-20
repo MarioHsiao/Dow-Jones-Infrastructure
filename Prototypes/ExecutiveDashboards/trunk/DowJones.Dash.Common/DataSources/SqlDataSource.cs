@@ -67,7 +67,7 @@ namespace DowJones.Dash.DataSources
                 using (command.Connection)
                 using (var reader = command.EndExecuteReader(result))
                 {
-					var data = new DynamicSqlDataReader().Read(reader);
+					var data = new DynamicSqlDataReader().Read(reader).ToArray();
                     OnDataReceived(data);
                 }
             }
