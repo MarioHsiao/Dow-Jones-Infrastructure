@@ -105,6 +105,12 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\DowJones.Web.Mvc.UI.Components.Models.3.3.7\lib\DowJones.Web.Mvc.UI.Components.Models.dll</HintPath>
     </Reference>
+    <Reference Include="Elmah">
+      <HintPath>..\packages\elmah.corelibrary.1.2.2\lib\Elmah.dll</HintPath>
+    </Reference>
+    <Reference Include="Elmah.Mvc">
+      <HintPath>..\packages\Elmah.MVC.2.0.1\lib\net40\Elmah.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="Esent.Interop, Version=1.7.0.0, Culture=neutral, PublicKeyToken=8dd49bbdae3f61af, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\RavenDB.Database.1.2.2085-Unstable\lib\net40\Esent.Interop.dll</HintPath>
