@@ -41,10 +41,6 @@ namespace DowJones.Dash.DataSources
                     });
 
 
-            yield return new SplunkDataSource("Browser", "RTBus_Browser");
-            yield return new SplunkDataSource("Handheld", "RTBus_Handheld");
-            yield return new SplunkDataSource("HandheldvsPC", "RTBus_HandheldvsPC");
-
 
             yield return new GomezDataSource("BrowserStats", @"[SplunkExport].[dbo].[GetPageLoadDetailsByBrowser]",
                 parameters: new Dictionary<string, object> {
