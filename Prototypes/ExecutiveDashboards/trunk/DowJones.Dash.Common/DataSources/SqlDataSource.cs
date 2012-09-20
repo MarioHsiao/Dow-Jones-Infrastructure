@@ -21,6 +21,8 @@ namespace DowJones.Dash.DataSources
         
         public string Query { get; protected set; }
 
+        public bool Scalar { get; set; }
+
         protected SqlDataSource(string name, string connectionString, string query = null, IDictionary<string, object> parameters = null)
             : base(name)
         {
@@ -68,7 +70,11 @@ namespace DowJones.Dash.DataSources
                 using (var reader = command.EndExecuteReader(result))
                 {
 					var data = new DynamicSqlDataReader().Read(reader).ToArray();
-                    OnDataReceived(data);
+
+                    if (Scalar)
+                        OnDataReceived(data.FirstOrDefault());
+                    else
+                        OnDataReceived(data);
                 }
             }
             catch (Exception ex)
