@@ -21,12 +21,19 @@ namespace DowJones.Dash.Website.App_Start
 
         public void Execute()
         {
-            if (_templateManager.GetTemplates().Count() != 0)
-                return;
+            var existingTemplates = _templateManager.GetTemplates();
+            var generatedTemplates = _templatesGenerator.GenerateScripModuleTemplates();
 
-            var templates = _templatesGenerator.GenerateScripModuleTemplates();
-
-            foreach (var template in templates)
+            var templatesToAdd =
+                (
+                    from generated in generatedTemplates
+                    join ex in existingTemplates on generated.Title equals ex.Title into joined
+                    from existing in joined.DefaultIfEmpty()
+                    where existing == null
+                    select generated
+                ).ToArray();
+                
+            foreach (var template in templatesToAdd)
             {
                 _templateManager.CreateTemplate(template);
             }
