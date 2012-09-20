@@ -60,12 +60,15 @@ DJ.UI.PageTimings = DJ.UI.CompositeComponent.extend({
         self.sparklineCharts = [];
     },
 
-    _updateSparklines: function (data) {        
+    _updateSparklines: function (data) {
+        console.log(data);
         var self = this;
         if (!this.portalHeadlines) {
             $dj.error("PortalHeadlinesComponent is not initialized. Refresh the page to try again.");
             return;
         }
+
+        console.log(data);
 
         this.tSparklineData = data;
         data = data || this.tSparklineData;
