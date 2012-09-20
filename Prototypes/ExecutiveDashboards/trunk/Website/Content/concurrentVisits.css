@@ -82,6 +82,15 @@
   margin: 0 auto;
   text-align: center;
   width: 150px; }
+.dj_concurrent-visits .counter {
+  font-size: 1.5em;
+  text-align: center;
+  line-height: 1em;
+  color: #333;
+  font-weight: bold;
+  text-shadow: 0 1px 0 #cccccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbbbbb; }
+.dj_concurrent-visits .idle {
+  text-align: right; }
 
 .platformContainer .desktop {
   height: 60px;

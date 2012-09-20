@@ -53,7 +53,7 @@ DJ.UI.Sparkline = DJ.UI.Component.extend({
                 renderTo: 'container',
                 defaultSeriesType: 'area',
                 backgroundColor: 'transparent',
-                margin: [2, 0, 0, 0],
+                margin: [0, 0, 0, 0]
                 //borderWidth:1
             },
             title: {
