@@ -157,6 +157,7 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Sparkline\Sparkline.cs" />
     <Compile Include="StatsMap\StatsMap.cs" />
     <Compile Include="StatsMap\StatsMapComponent.cs">
       <AutoGen>True</AutoGen>
@@ -211,6 +212,7 @@
       <Generator>RazorViewComponentClassGenerator</Generator>
       <LastGenOutput>PlatformStatsComponent.cs</LastGenOutput>
     </None>
+    <None Include="Sparkline\Sparkline.cshtml" />
     <None Include="StatsMap\StatsMapComponent.cshtml">
       <Generator>RazorViewComponentClassGenerator</Generator>
       <LastGenOutput>StatsMapComponent.cs</LastGenOutput>
