@@ -14,10 +14,10 @@ namespace DowJones.Dash.DataSources
                     {
                         {"apikey", ConfigurationManager.AppSettings["ChartBeat.ApiKey"]},
                         {"host", host},
-                    }
+                    },
+                () => Convert.ToInt32(ConfigurationManager.AppSettings["ChartBeat.PollDelay"])
             )
         {
-            PollDelay = Convert.ToInt32(ConfigurationManager.AppSettings["ChartBeat.PollDelay"]);
         }
     }
 }

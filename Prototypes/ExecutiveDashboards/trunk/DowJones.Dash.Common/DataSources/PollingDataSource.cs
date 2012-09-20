@@ -7,22 +7,33 @@ namespace DowJones.Dash.DataSources
 {
     public abstract class PollingDataSource : DataSource
     {
+        private static readonly Func<int> DefaultPollDelayFactory = 
+            () => Convert.ToInt32(ConfigurationManager.AppSettings["DefaultPollDelay"]);
+
         public int ErrorDelay
         {
-            get { return PollDelay * 2; }
+            get { return _errorDelay.Value; }
+            set { _errorDelay = new Lazy<int>(() => value); }
         }
+        private Lazy<int> _errorDelay;
 
-        public int PollDelay { get; set; }
+        public int PollDelay
+        {
+            get { return _pollDelay.Value; }
+            set { _pollDelay = new Lazy<int>(() => value); }
+        }
+        private Lazy<int> _pollDelay;
 
-        protected PollingDataSource(string name = null)
+
+        protected PollingDataSource(string name = null, Func<int> pollDelayFactory = null, Func<int> errorDelayFactory = null)
             : base(name)
         {
-            if(PollDelay == 0)
-            {
-                PollDelay = Convert.ToInt32(ConfigurationManager.AppSettings["DefaultPollDelay"]);
-                Log("No poll delay set - defaulting to {0}", PollDelay);
-            }
+            _pollDelay = new Lazy<int>(pollDelayFactory ?? DefaultPollDelayFactory);
+
+            errorDelayFactory = errorDelayFactory ?? (() => _pollDelay.Value * 2);
+            _errorDelay = new Lazy<int>(errorDelayFactory);
         }
+
 
         public override void Start()
         {

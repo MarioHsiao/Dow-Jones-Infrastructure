@@ -1,13 +1,10 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Dynamic;
 using System.Linq;
-using System.Text;
 using DowJones.Infrastructure;
-using Newtonsoft.Json;
 
 namespace DowJones.Dash.DataSources
 {
@@ -23,8 +20,8 @@ namespace DowJones.Dash.DataSources
 
         public bool Scalar { get; set; }
 
-        protected SqlDataSource(string name, string connectionString, string query = null, IDictionary<string, object> parameters = null)
-            : base(name)
+        protected SqlDataSource(string name, string connectionString, string query = null, IDictionary<string, object> parameters = null, Func<int> pollDelayFactory = null, Func<int> errorDelayFactory = null)
+            : base(name, pollDelayFactory, errorDelayFactory)
         {
             _parameters = parameters;
             Guard.IsNotNullOrEmpty(connectionString, "connectionString");

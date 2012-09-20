@@ -37,15 +37,14 @@ namespace DowJones.Dash.DataSources
             }
         }
 
-        public WebDataSource(string name, string path, IDictionary<string, object> parameters = null, int pollDelay = 3)
-            : base(name)
+        public WebDataSource(string name, string path, IDictionary<string, object> parameters = null, Func<int> pollDelayFactory = null, Func<int> errorDelayFactory = null)
+            : base(name, pollDelayFactory, errorDelayFactory)
         {
             Guard.IsNotNullOrEmpty(path, "path");
 
             Method = "GET";
             Path = path;
             Parameters = new Dictionary<string, object>(parameters ?? new Dictionary<string, object>());
-            PollDelay = pollDelay;
         }
 
         public virtual void Initialize()
@@ -146,8 +145,8 @@ namespace DowJones.Dash.DataSources
 
     public class JsonWebDataSource : WebDataSource
     {
-        public JsonWebDataSource(string name, string path, IDictionary<string, object> parameters = null)
-            : base(name, path, parameters)
+        public JsonWebDataSource(string name, string path, IDictionary<string, object> parameters = null, Func<int> pollDelayFactory = null, Func<int> errorDelayFactory = null)
+            : base(name, path, parameters, pollDelayFactory, errorDelayFactory)
         {
         }
 
@@ -161,8 +160,8 @@ namespace DowJones.Dash.DataSources
 
     public class XmlWebDataSource : WebDataSource
     {
-        public XmlWebDataSource(string name, string path, IDictionary<string, object> parameters = null)
-            : base(name, path, parameters)
+        public XmlWebDataSource(string name, string path, IDictionary<string, object> parameters = null, Func<int> pollDelayFactory = null, Func<int> errorDelayFactory = null)
+            : base(name, path, parameters, pollDelayFactory, errorDelayFactory)
         {
         }
 

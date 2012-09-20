@@ -11,12 +11,12 @@ namespace DowJones.Dash.DataSources
             : base(
                 name,
                 ConfigurationManager.AppSettings["Splunk.BasePath"] + "/search/jobs",
-                new Dictionary<string, object>
-                {
+                new Dictionary<string, object> {
                     { "output_mode", "json" },
                     { "exec_mode", "oneshot" },
                     { "search", "savedsearch " + savedSearch }
-                }
+                },
+                () => Convert.ToInt32(ConfigurationManager.AppSettings["Splunk.PollDelay"])
             )
         {
             Credentials = new NetworkCredential(
@@ -24,7 +24,6 @@ namespace DowJones.Dash.DataSources
                 ConfigurationManager.AppSettings["Splunk.Password"]
             );
             Method = "POST";
-            PollDelay = Convert.ToInt32(ConfigurationManager.AppSettings["Splunk.PollDelay"]);
         }
     }
 }
