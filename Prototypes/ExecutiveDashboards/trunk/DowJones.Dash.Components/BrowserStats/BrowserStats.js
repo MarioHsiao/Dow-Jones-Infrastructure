@@ -54,9 +54,6 @@ DJ.UI.BrowserStats = DJ.UI.Component.extend({
         
         var self = this;
         
-        var browserStatsByPages = _.groupBy(data, function (item) {
-            return item.page_id;
-        });
         
         var browserStatsByPages = _.groupBy(data, function (item) {
             return item.page_id;
@@ -75,7 +72,6 @@ DJ.UI.BrowserStats = DJ.UI.Component.extend({
             numVisitors += parseInt(item.Count, 10);
         });
 
-        var avgPageLoadAcrossBrowsers = pageLoadTimings / workingSet.length;
         var maxPageLoad = 15000;
         var greenZone = 5000; //avgPageLoadAcrossBrowsers * 0.3; // 30%
         var neutralZone = 7000; //avgPageLoadAcrossBrowsers * 0.7; // 30% < x < 70%
