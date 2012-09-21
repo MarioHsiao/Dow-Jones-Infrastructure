@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 using System.Web.Mvc;
 using DowJones.Dash.DataGenerators;
 using DowJones.Pages.Common;
@@ -60,12 +59,8 @@ namespace DowJones.Dash.Website.Controllers
             if (page != null)
             {
                 PageRepository.DeletePage(page.ID);
-                
-                // HACK: Wait for RavenDB to catch up!
-                Thread.Sleep(100);
+                TempData["SuccessMessage"] = "Page reset";
             }
-
-            TempData["SuccessMessage"] = "Page reset";
 
             return RedirectToAction("Index");
         }
