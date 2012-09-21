@@ -20,7 +20,8 @@ DJ.UI.StatsMap = DJ.UI.Component.extend({
         'new york': {
             name: 'New York',
             x: 860,
-            y: 190
+            y: 190,
+            dataLabels: { align: 'right', y: -14 }
         },
         'los angeles': {
             name: 'Los Angeles',
@@ -45,13 +46,14 @@ DJ.UI.StatsMap = DJ.UI.Component.extend({
 
         plotOptions: {
             series: {
-                animation: false,
+                animation: false
+            },
+            map: {
                 dataLabels: {
                     enabled: false,
                 }
             },
             scatter: {
-                animation: false,
                 dataLabels: {
                     enabled: true,
                     align: 'left',
@@ -60,9 +62,7 @@ DJ.UI.StatsMap = DJ.UI.Component.extend({
                     },
                     style: {
                         color: '#666',
-                        padding: 10,
                         fontWeight: 'bold',
-                        shadow: true
                     }
                 },
                 cursor: 'pointer'
@@ -80,26 +80,7 @@ DJ.UI.StatsMap = DJ.UI.Component.extend({
             }
         },
 
-        series: [{
-            data: [],
-        },
-        {
-            type: 'scatter',
-            dataLabels: {
-                    enabled: true,
-                    align: 'left',
-                    formatter: function () {
-                        return this.point.name;
-                    },
-                    style: {
-                        color: '#666',
-                        padding: 10,
-                        fontWeight: 'bold',
-                        shadow: true
-                    }
-                },
-            data: []
-        }]
+        series: [{ type: 'map', data:[]}, { type: 'scatter'}]
     },
 
     init: function (element, meta) {
@@ -107,38 +88,6 @@ DJ.UI.StatsMap = DJ.UI.Component.extend({
         this._super(element, $.extend({ name: "StatsMap" }, meta));
 
         this.setData(this.data);
-    },
-
-    renderMap: function (data) {
-        var i;
-
-        if (!data || !data.length)
-            return;
-
-        var point, chartData = [];
-        for (var i = 0; i < data.length; i++) {
-            if (data[i].city) {
-                point = this.knownCoordinates[data[i].city.toLowerCase()];
-            }
-            
-            if (!point) continue;
-
-            chartData.push({
-                name: point.name,
-                x: point.x,
-                y: point.y,
-                avg: (data[i].avg / 1000).toFixed(2),
-                min: (data[i].min / 1000).toFixed(2),
-                max: (data[i].max / 1000).toFixed(2),
-                marker: {
-                    symbol: 'url(' + data[i].marker + ')'
-                }
-            });
-            
-        }
-
-        this.chart.series[1].type = 'scatter';
-        this.chart.series[1].setData(chartData);
     },
 
 
@@ -171,17 +120,13 @@ DJ.UI.StatsMap = DJ.UI.Component.extend({
         this.mapConfig.chart.renderTo = this.$element.find('.mapContainer')[0];
         this.chart = new Highcharts.Map(this.mapConfig);
 
-        /*this.chart.tooltip.formatter = function () {
-            if (!this.x) return false;
-            return '<b>' + this.key + '</b>: ' + this.avg + 's';
-        };*/
     },
 
     setData: function (data) {
         if (!data)
             return;
 
-        this.renderMap(this._mapData(data));
+        this.chart.series[1].setData(this._mapData(data));
     },
 
     _mapData: function (data) {
@@ -196,17 +141,40 @@ DJ.UI.StatsMap = DJ.UI.Component.extend({
         // Homepage: Sub
         var workingSet = statsByPages[421139];
 
-        var stats = _.map(workingSet, function(item) {
-            return {
-                city: item.city_name,
-                min: item.Min,
-                max: item.Max,
-                avg: item.Avg,
-                marker: self._getMarker(item.Avg)
-            };
-        });
+        var city, point, chartData = [],
+            dataLabels = this.chart.series[1].dataLabels,
+            pointData;
         
-        return stats;
+        _.each(workingSet, function (item) {
+            city = item.city_name;
+            if (city) {
+                point = self.knownCoordinates[city.toLowerCase()];
+            }
+
+            if (point) {
+
+                pointData = {
+                    name: point.name,
+                    x: point.x,
+                    y: point.y,
+                    avg: (item.Avg / 1000).toFixed(2),
+                    min: (item.Min / 1000).toFixed(2),
+                    max: (item.Max / 1000).toFixed(2),
+                    marker: {
+                        symbol: 'url(' + self._getMarker(item.Avg) + ')'
+                    }
+                };
+
+                // although not as fluent, this check it improves performance by skipping an expensive array copy
+                if (point.dataLabels) {
+                    pointData.dataLabels = $.extend(true, { }, dataLabels, point.dataLabels);
+                }
+
+                chartData.push(pointData);
+            }
+        });
+
+        return chartData;
     },
 
     _getMarker: function (num) {
