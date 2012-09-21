@@ -44,13 +44,12 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DowJones.Infrastructure, Version=3.3.6.35649, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="DowJones.Infrastructure, Version=3.3.8.45916, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\DowJones.Infrastructure.3.3.6\lib\DowJones.Infrastructure.dll</HintPath>
+      <HintPath>..\packages\DowJones.Infrastructure.3.3.8\lib\DowJones.Infrastructure.dll</HintPath>
     </Reference>
-    <Reference Include="DowJones.Pages, Version=3.3.6.35649, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\DowJones.Pages.3.3.6\lib\DowJones.Pages.dll</HintPath>
+    <Reference Include="DowJones.Pages">
+      <HintPath>..\packages\DowJones.Pages.3.3.8\lib\DowJones.Pages.dll</HintPath>
     </Reference>
     <Reference Include="DowJones.Parallel">
       <HintPath>..\packages\DowJones.Parallel.1.0.0\lib\DowJones.Parallel.dll</HintPath>

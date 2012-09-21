@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Web.Mvc;
 using DowJones.Dash.DataGenerators;
 using DowJones.Pages.Common;
@@ -30,7 +31,6 @@ namespace DowJones.Dash.Website.Controllers
         }
 
         [Authorize]
-        [Route("dashboard/{pageId}")]
         public ActionResult Index()
         {
             var username = User.Identity.Name;
@@ -46,6 +46,28 @@ namespace DowJones.Dash.Website.Controllers
             }
 
             return Canvas(new Canvas { WebServiceBaseUrl = Url.Content("~/dashboard") }, page);
+        }
+
+        [Authorize]
+        public ActionResult Reset()
+        {
+            var username = User.Identity.Name;
+
+            var page =
+                PageRepository.GetPages(SortBy.Position, SortOrder.Ascending)
+                    .FirstOrDefault(x => x.OwnerUserId == username);
+
+            if (page != null)
+            {
+                PageRepository.DeletePage(page.ID);
+                
+                // HACK: Wait for RavenDB to catch up!
+                Thread.Sleep(100);
+            }
+
+            TempData["SuccessMessage"] = "Page reset";
+
+            return RedirectToAction("Index");
         }
 
 
