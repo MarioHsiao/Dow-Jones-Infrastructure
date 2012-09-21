@@ -1,7 +1,7 @@
 /**
  * @license Map plugin v0.1 for Highcharts
  *
- * (c) 2011 Torstein HÃ¸nsi
+ * (c) 2011 Torstein Hønsi
  *
  * License: www.highcharts.com/license
  */
@@ -380,4 +380,4 @@
 	
 		return new Highcharts.Chart(options, callback);
 	};
-})(Highcharts);window.console && console.log('--- Running modules/map.src.js from GitHub ---'); 
+})(Highcharts);

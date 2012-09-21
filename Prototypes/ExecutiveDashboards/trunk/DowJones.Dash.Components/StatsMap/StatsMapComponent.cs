@@ -23,9 +23,10 @@ namespace DowJones.Dash.Components.StatsMap
     using System.Web.UI;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 09/19/2012 02:46 PM
+    // Last Generated Timestamp: 09/20/2012 12:43 PM
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Dash.Components.StatsMap.StatsMap.js", DependsOn=new string[] {
-            "highcharts-more"}, ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Dash.Components.StatsMap.StatsMapComponent))]
+            "highcharts-map",
+            "us-map-shapes"}, ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Dash.Components.StatsMap.StatsMapComponent))]
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Dash.Components.StatsMap.ClientTemplates.container.html", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="container", DeclaringType=typeof(DowJones.Dash.Components.StatsMap.StatsMapComponent))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.27108")]
     public class StatsMapComponent : DowJones.Web.Mvc.UI.ViewComponentBase<DowJones.Dash.Components.Model.StatsMap.StatsMapModel>

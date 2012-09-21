@@ -323,6 +323,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\images\computer-icon.png" />
+    <Content Include="Content\images\marker_rounded_red.png" />
+    <Content Include="Content\images\marker_rounded_yellow_green.png" />
+    <Content Include="Content\images\marker_rounded_yellow_orange.png" />
     <Content Include="Content\images\smartphone-icon.png" />
     <Content Include="Content\images\murdochSprites.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -340,6 +343,9 @@
     </Content>
     <Content Include="Content\perfGauge.css">
       <DependentUpon>perfGauge.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\StatsMap.css">
+      <DependentUpon>StatsMap.scss</DependentUpon>
     </Content>
     <Content Include="Content\topPages.css">
       <DependentUpon>topPages.scss</DependentUpon>
@@ -408,6 +414,8 @@
     <Content Include="Content\dashboard.scss" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\StatsMap.scss" />
+    <None Include="Properties\PublishProfiles\local.pubxml" />
     <None Include="Properties\PublishProfiles\montana.pubxml" />
   </ItemGroup>
   <PropertyGroup>
