@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <Target Name="Deploy">
-    <MSBuild Projects="ExecutiveDashboards.sln" Properties="Configuration=Release;OutDir=$(BuildDir)" />
+    <MSBuild Projects="ExecutiveDashboards.sln" Properties="Configuration=%(ConfigurationToBuild.FlavorToBuild);OutDir=$(BuildDir)" />
     
     <ItemGroup>
       <WebsiteFiles Include="$(BuildDir)\_PublishedWebsites\Website\**" />

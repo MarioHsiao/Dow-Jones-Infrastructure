@@ -1,3 +1,4 @@
+@using DowJones.Dash.Components.Model.StatsMap
 @using DowJones.Dash.Components.Models.BrowserStats
 @using DowJones.Dash.Components.Models.PageTimings
 @using DowJones.Dash.Components.Models.BrowserShare
@@ -16,30 +17,25 @@
     <link href="~/Content/browserShare.css" rel="stylesheet" />
 }
 <section id="dashboard" class="row-fluid">
-    <div id="column1" class="span4">
-        <div id="current-users" class="module" data-type="CurrentUserStats">
-            @DJ.Render(new ConcurrentVisitsModel())
-        </div>
-        <div id="current-users" class="module" data-type="PlatformStats">
-            @DJ.Render(new PlatformStatsModel())
-        </div>
-        
-        <div id="current-users" class="module" data-type="PlatformStats">
-            @DJ.Render(new UsersStatsModel())
-        </div>
+	<div id="column1" class="span4">
+		StatsMapModel
+		<div id="current-users" class="module" data-type="CurrentUserStats">
+			@DJ.Render(new StatsMapModel())
+		</div>
+		
        
-    </div>
+	</div>
 	<div id="column2" class="span4">
-		<div id="browser-stats" class="module" data-type="BrowserStats">
+		@*<div id="browser-stats" class="module" data-type="BrowserStats">
 			@DJ.Render(new BrowserStatsModel())
 		</div>
         <div id="browser-share" class="module" data-type="BrowserShare">
             @DJ.Render(new BrowserShareModel())
-        </div>
+        </div>*@
 	</div>
 
     <div id="column3" class="span4">
-         <div id="current-users" class="module" data-type="PageTimings">
+         @*<div id="current-users" class="module" data-type="PageTimings">
             @DJ.Render(new PageTimingsModel())
         </div>
 
@@ -49,7 +45,7 @@
 
         <div id="top-referrer" class="module" data-type="TopReferrer">
             @DJ.Render(new TopReferrerModel())
-        </div>
+        </div>*@
     </div>
 </section>
 

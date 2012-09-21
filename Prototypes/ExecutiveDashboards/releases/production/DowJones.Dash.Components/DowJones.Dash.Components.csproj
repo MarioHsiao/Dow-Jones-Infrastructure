@@ -331,10 +331,11 @@
   <ItemGroup>
     <EmbeddedResource Include="Sparkline\Sparkline.js" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <Content Include="EmbeddedResources\js\highcharts-map\map.src.js" />
-    <Content Include="EmbeddedResources\js\highcharts-map\us-map-shapes.js" />
+    <EmbeddedResource Include="EmbeddedResources\js\highchartsMap\highchartsMap.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="EmbeddedResources\js\highchartsMap\us.map.shapes.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

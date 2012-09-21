@@ -63,6 +63,10 @@ namespace DowJones.Dash.DataSources
                 parameters: new Dictionary<string, object> {
                         {"seconds", 300},
                     });
+			yield return new GomezDataSource("PageLoadDetailsByCityForUS", @"[SplunkExport].[dbo].[GetPageLoadDetailsByCityForUS]",
+				parameters: new Dictionary<string, object> {
+                        {"seconds", 600},
+                    });
         }
     }
 }

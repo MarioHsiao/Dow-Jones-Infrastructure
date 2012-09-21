@@ -81,7 +81,7 @@ DJ.UI.PageTimings = DJ.UI.CompositeComponent.extend({
                             });
 
             var artPages = _.filter(tData, function(point) {
-                                return point.page_id === 421143;
+                                return point.page_id === 1940521;
                             });
             
             if (!self.isSparklinesSeeded) {
