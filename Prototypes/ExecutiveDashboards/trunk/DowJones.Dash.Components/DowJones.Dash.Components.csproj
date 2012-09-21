@@ -158,6 +158,7 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Sparkline\Sparkline.cs" />
+    <Compile Include="StatsMap\EmbeddedResources.cs" />
     <Compile Include="StatsMap\StatsMap.cs" />
     <Compile Include="StatsMap\StatsMapComponent.cs">
       <AutoGen>True</AutoGen>
@@ -323,9 +324,6 @@
     <EmbeddedResource Include="Sparkline\ClientTemplates\noData.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="StatsMap\world_map.png" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="StatsMap\ClientTemplates\container.html" />
   </ItemGroup>
   <ItemGroup>
@@ -336,6 +334,11 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="EmbeddedResources\js\highchartsMap\us.map.shapes.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="StatsMap\marker_rounded_red.png" />
+    <EmbeddedResource Include="StatsMap\marker_rounded_yellow_green.png" />
+    <EmbeddedResource Include="StatsMap\marker_rounded_yellow_orange.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

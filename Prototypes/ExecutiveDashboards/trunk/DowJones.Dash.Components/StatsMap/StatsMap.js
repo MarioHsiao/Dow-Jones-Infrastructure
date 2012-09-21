@@ -36,7 +36,6 @@ DJ.UI.StatsMap = DJ.UI.Component.extend({
 
     mapConfig: {
         chart: {
-            
             type: 'map',
             backgroundColor: 'transparent',
             borderWidth: 0,
@@ -85,8 +84,20 @@ DJ.UI.StatsMap = DJ.UI.Component.extend({
             data: [],
         },
         {
-            id: 'scatter',
             type: 'scatter',
+            dataLabels: {
+                    enabled: true,
+                    align: 'left',
+                    formatter: function () {
+                        return this.point.name;
+                    },
+                    style: {
+                        color: '#666',
+                        padding: 10,
+                        fontWeight: 'bold',
+                        shadow: true
+                    }
+                },
             data: []
         }]
     },
@@ -126,6 +137,7 @@ DJ.UI.StatsMap = DJ.UI.Component.extend({
             
         }
 
+        this.chart.series[1].type = 'scatter';
         this.chart.series[1].setData(chartData);
     },
 
@@ -199,12 +211,12 @@ DJ.UI.StatsMap = DJ.UI.Component.extend({
 
     _getMarker: function (num) {
         if (num <= 5000)
-            return 'dash/content/images/marker_rounded_yellow_green.png';
+            return '<%= WebResource("DowJones.Dash.Components.StatsMap.marker_rounded_yellow_green.png") %>';
 
         if (num <= 7000)
-            return 'dash/content/images/marker_rounded_yellow_orange.png';
+            return '<%= WebResource("DowJones.Dash.Components.StatsMap.marker_rounded_yellow_orange.png") %>';
 
-        return 'dash/content/images/marker_rounded_red.png';
+        return '<%= WebResource("DowJones.Dash.Components.StatsMap.marker_rounded_red.png") %>';
     }
 });
 
