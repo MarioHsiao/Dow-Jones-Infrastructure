@@ -1,0 +1,56 @@
+﻿@{
+    ViewBag.Title = "Demo Dashboard";
+}
+
+@section styles {
+    <link href="~/Content/dashboard.css" rel="stylesheet" />
+    <link href="~/Content/browserShare.css" rel="stylesheet" />
+    <link href="~/Content/concurrentVisits.css" rel="stylesheet" />
+    <link href="~/Content/perfGauge.css" rel="stylesheet" />
+    <link href="~/Content/topPages.css" rel="stylesheet" />
+}
+
+<section id="dashboard" class="row-fluid">
+    @DJ.Render(Model)
+</section>
+
+
+@DJ.ScriptRegistry().OnDocumentReady("initializeDashboard();")
+
+
+@section scripts{
+    <script src="@Url.Content("~/signalr/hubs")" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        function initializeDashboard() {
+            $('.trendTabs li').not(':first').find('a')
+                .popover({ content: 'Coming soon!', delay: { show: 1000, hide: 1000 } })
+                .click(function () {
+                    var self = this;
+                    setTimeout(function () {
+                        $(self).popover('hide');
+                    }, 1000);
+                });
+            $('LI.defaultTab A').tooltip();
+
+            var canvasId = DJ.UI.Canvas.find().get_canvasId();
+
+            DJ.subscribe('resized.dj.CanvasModule', function (args) {
+                var request = { pageId: canvasId, moduleId: args.moduleId };
+                $.ajax('@Url.Content("~/dashboard/modules/resize/")' + args.newSize, { data: request });
+            });
+
+            initializeModuleStyles();
+        }
+
+        function initializeModuleStyles() {
+            $('.small.module').addClass('span2');
+            $('.medium.module').addClass('span4');
+            $('.large.module').addClass('span6');
+            $('.x-large.module').addClass('span8');
+
+            $('.minimize').append($('<i class="icon-chevron-up"/>'));
+            $('.maximize').append($('<i class="icon-chevron-down"/>'));
+        }
+    </script>
+}

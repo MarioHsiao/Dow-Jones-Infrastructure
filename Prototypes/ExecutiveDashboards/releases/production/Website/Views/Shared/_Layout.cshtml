@@ -1,0 +1,95 @@
+﻿@using System.Web.Optimization
+@using DowJones.Dash.Website
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>DASH: Executive Dashboard</title>
+
+    <link rel="stylesheet" href="~/content/layout.css" />
+	<link rel="stylesheet" href="~/content/bootstrap-responsive.css" />
+    <link rel="stylesheet" href="~/content/perfGauge.css" />
+    @DJ.ScriptRegistry().RenderHead()
+    @Scripts.Render("~/bundles/core")
+
+    <!-- typekit -->
+    <script type="text/javascript" src="//use.typekit.net/iqn2tar.js"></script>
+    <link rel="stylesheet" href="http://use.typekit.net/c/40b737/kulturista-web:n6:n4,nimbus-sans:n3:n4,franklin-gothic-urw:n4:n7:n5,nimbus-sans:n7.S0Z:F:2,S0f:F:2,SKm:F:2,SKp:F:2,VYn:F:2,VYs:F:2,VyZ:F:2,Wlm:F:2/d?3bb2a6e53c9684ffdc9a9bf6135b2a629dfd401408a09a37c12b6131cd262a196f4b8dc14fbf1e0162d0f6a4820fe031c3aa67cf641364e960f71b2199c20bd62cf4d3197f4d9ffd0b7aeed5eae92375f7179ac3d727d79916cdcd237bf2607d73a9602ca536fe07201553d09b">
+    <script type="text/javascript">try { Typekit.load(); } catch (e) { }</script>
+    <!-- !typekit -->
+
+    @RenderSection("styles", false)
+</head>
+<body>
+    <div class="headerNav">
+        <div class="headBar">
+            <div class="container">
+                <div class="brand">
+                    <a href="@Url.Content("~/")" class="logo">Dash</a>
+                    <h4 class="tagline">Executive Dashboards</h4>
+                </div>
+            </div>
+            <div class="trendTabsContainer">
+                <div class="container">
+                    <ul class="trendTabs clearFix">
+                        <li class="defaultTab activeTab"><a href="#" title="online.wsj.com">WSJ</a></li>
+                        <li class="defaultTab"><a href="javascript:void(0)" title="marketwwath.com">Marketwatch</a></li>
+                        <li class="defaultTab"><a href="#dashAlert" title="online.wsj.com">WSJ: APAC</a></li>
+						<li class="defaultTab"><a href="#dashAlert" title="jp.wsj.com">WSJ: JP</a></li>
+						<li class="defaultTab"><a href="#dashAlert" title="factiva.com.com">Factiva</a></li>
+						<li class="defaultTab"><a href="#dashAlert" title="smartmoney.com">SmartMoney</a></li>
+                        <li class="defaultTab"><a href="#dashAlert" title="online.barrons.com">Barrons</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bodyContent">
+        <div class="container">
+            @RenderBody()
+        </div>
+    </div>
+
+    <footer class="">
+        <div class="container">
+            <h5>Welcome to the private beta of Executive Dashboards!</h5>
+            <div class="copyright">
+                ©@DateTime.Now.Year Factiva, Inc. All rights reserved. <a href="#">Privacy Policy</a>
+            </div>
+        </div>
+        <div class="container">
+            <span class="username pull-left">@User.Identity.Name</span>
+            <span class="version pull-right">Version: @MvcApplication.Version.Value (@MvcApplication.AssemblyTimestamp
+                UTC)</span>
+
+        </div>
+    </footer>
+
+    <div class="modal hide fade" id="dashAlertModal" tabindex="-1" role="dialog" aria-labelledby="dashAlertModalLabel"
+        aria-hidden="true" data-backdrop="static" data-keyboard="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="dashAlertModalLabel">Alert</h3>
+        </div>
+        <div class="modal-body">
+            <p></p>
+        </div>
+        <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">Ok</button>
+        </div>
+    </div>
+</body>
+@DJ.ScriptRegistry().Render()
+@DJ.StylesheetRegistry().Render()
+	<script type="text/javascript">
+	    window._alert = window.alert;
+	    window.alert = function (msg) {
+	        $('#dashAlertModal .modal-body p').text(msg);
+	        $('#dashAlertModal').modal('show');
+	        return false;
+	    };
+	</script>
+
+@RenderSection("scripts", false)
+</html>
