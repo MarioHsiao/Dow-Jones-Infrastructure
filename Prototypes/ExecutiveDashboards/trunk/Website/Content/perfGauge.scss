@@ -134,7 +134,10 @@ $browserBackground: url(images/browser-sprites.png) no-repeat;
     font-size: 14px;
 
 	.timing {
-		z-index: 10;
+		color: #777;
+		position:relative;
+		font-weight:bold;
+		z-index: 1000;
 	}
 
     .gauge {

@@ -41,6 +41,14 @@
     text-align: center;
     width: 200px; }
 
+.pageTimings .time-stamp {
+  font-size: 1.5em;
+  text-align: center;
+  line-height: 1em;
+  color: #333;
+  font-weight: bold;
+  text-shadow: 0 1px 0 #cccccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbbbbb; }
+
 .newGauge .dj_DashGaugeChart, .writeGauge .dj_DashGaugeChart, .readGauge .dj_DashGaugeChart, .idleGauge .dj_DashGaugeChart {
   width: 100px;
   margin: 0 auto;

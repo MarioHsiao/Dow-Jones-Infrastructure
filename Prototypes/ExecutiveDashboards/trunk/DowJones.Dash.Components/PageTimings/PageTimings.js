@@ -18,7 +18,7 @@ DJ.UI.PageTimings = DJ.UI.CompositeComponent.extend({
         var self = this;
         DJ.add('PortalHeadlineList', {
             container: this._portalHeadlinesContainer[0],
-            options: { layout: 2 },
+            options: { layout: 2, displayNoResultsToken: false },
             templates: { successTimeline: this.templates.headlineSuccess }
         }).done(function (comp) {
             self.portalHeadlines = comp;
@@ -61,54 +61,65 @@ DJ.UI.PageTimings = DJ.UI.CompositeComponent.extend({
     },
 
     _updateSparklines: function (data) {
-        console.log(data);
         var self = this;
         if (!this.portalHeadlines) {
             $dj.error("PortalHeadlinesComponent is not initialized. Refresh the page to try again.");
             return;
         }
 
-        console.log(data);
-
         this.tSparklineData = data;
-        data = data || this.tSparklineData;
-        
-        if (!self.isSparklinesSeeded) {
-            var sparklineContainers = self.$element.find(".sparklineContainer");
-            self.sparklineCharts = [];
+        var tData = data || this.tSparklineData;
+        this.tSparklineData = tData;
 
-            $.each(sparklineContainers, function () {
-                DJ.add('Sparkline', {
-                    container: this,
-                    data: {
-                        values: [100, 102, 405, 602, 53]
-                    }
-                }).done(function (comp) {
-                    var myArray = [];
-                    var arrayMax = 40;
-                    var limit = arrayMax + 1;
-                    for (var i = 0; i < arrayMax; i++) {
-                        myArray.push(Math.floor(Math.random() * limit));
-                    }
-                    comp.owner = self;
-                    comp.setData({ values: myArray });
-                    self.sparklineCharts.push(comp);
+        if (tData) {
+            var subPages = _.filter(tData, function (point) {
+                                return point.page_id === 421139;
+                            });
+            
+            var pubPages = _.filter(tData, function (point) {
+                                return point.page_id === 421143;
+                            });
+
+            var artPages = _.filter(tData, function(point) {
+                                return point.page_id === 421143;
+                            });
+            
+            if (!self.isSparklinesSeeded) {
+                var sparklineContainers = self.$element.find(".sparklineContainer");
+                self.sparklineCharts = [];
+
+                $.each(sparklineContainers, function (i, val) {
+                    var tVals = (i == 0) ? _.pluck(subPages, "Avg") : (i == 1) ? _.pluck(pubPages, "Avg") : _.pluck(artPages, "Avg");
+                    var vals = _.map(tVals, function (num) { return num / 1000; });
+                    var tMax = _.max(vals);
+                    var tMin = _.min(vals);
+                    DJ.add('Sparkline', {
+                        container: val,
+                        options: {
+                            max: tMax,
+                            min: tMin
+                        },
+                        data: {
+                            values: vals
+                        }
+                    }).done(function (comp) {
+                        comp.owner = self;
+                        self.sparklineCharts.push(comp);
+                    });
                 });
-            });
-            self.isSparklinesSeeded = true;
-            return;
-        }
-
-        $.each(self.sparklineCharts, function (j) {
-            var myArray = [];
-            var arrayMax = 40;
-            var limit = arrayMax + 1;
-            for (var i = 0; i < arrayMax; i++) {
-                myArray.push(Math.floor(Math.random() * limit));
-                this.setData({ values: myArray });
+                self.isSparklinesSeeded = true;
+                return;
             }
-        });
-        
+
+            $.each(self.sparklineCharts, function(i) {
+                var tVals = (i == 0) ? _.pluck(subPages, "Avg") : (i == 1) ? _.pluck(pubPages, "Avg") : _.pluck(artPages, "Avg");
+                var vals = _.map(tVals, function (num) { return num / 1000; });
+                var tMax = _.max(vals);
+                var tMin = _.min(vals);
+                this.setExtremes(tMin, tMax);
+                this.setData({ values: vals });
+            });
+        }
     },
     
     _updateHeadlines: function (data) {

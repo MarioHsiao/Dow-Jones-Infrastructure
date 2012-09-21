@@ -4,16 +4,14 @@
             x = headlines[i]; 
             title = ($.trim(x.truncatedTitle)) || x.title;
     %>
-    <li class="dj_entry modified">
-        <h4 class="headline">
-            <a class="article-view-trigger ellipsis" href="#">
-                <% if (x.modificationTimeDescriptor) { %>
-                <span class="time-stamp"><%= x.modificationTimeDescriptor %></span>
-                <% } %>
-                <span class="headline-text"><%= title %></span>
-            </a>
-            <span class="sparklineContainer"></span>
-        </h4>
+    <li><div><small class="muted"><%= title %></small></div>
+        <span class="sparklineContainer"></span> 
+        <% if (x.modificationTimeDescriptor) { %>
+        <span>&nbsp;</span><strong class="time-stamp"><%= x.modificationTimeDescriptor %></strong>
+        <% } %>
+        <% if (i < len-1) { %>
+            <hr />
+        <% } %> 
     </li>
     <% } %> 
 </ul>
