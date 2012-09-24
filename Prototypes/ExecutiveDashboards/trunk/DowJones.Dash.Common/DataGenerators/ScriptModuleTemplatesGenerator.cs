@@ -17,7 +17,6 @@ namespace DowJones.Dash.DataGenerators
         public IEnumerable<ScriptModuleTemplate> GenerateScripModuleTemplates()
         {
             var dashboardComponents = new[] {
-                new { Title = "Browser Share", Component = "BrowserShare" },
                 new { Title = "Browser Stats", Component = "BrowserStats" },
                 new { Title = "Concurrent Visits", Component = "ConcurrentVisits" },
                 new { Title = "Page Timings", Component = "PageTimings" },
