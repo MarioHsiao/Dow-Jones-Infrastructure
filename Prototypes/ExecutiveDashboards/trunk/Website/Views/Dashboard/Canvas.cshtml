@@ -61,6 +61,10 @@
                 $.ajax('@Url.Content("~/dashboard/modules/resize/")' + args.newSize, { data: request });
             });
 
+            $('.dj_module .hide').click(function() {
+                $(this).closest('.dj_module').findComponent().hide();
+            });
+
             initializeModuleStyles();
         }
 
@@ -72,7 +76,7 @@
 
             $('.minimize').append($('<i class="icon-chevron-up"/>'));
             $('.maximize').append($('<i class="icon-chevron-down"/>'));
-            $('.hide').append($('<i class="icon-remove"/>')).removeClass('hide');
+            $('.dj_module .hide').append($('<i class="icon-remove"/>')).removeClass('hide');
             $('.dj_module-refresh').remove();
         }
 

@@ -9,7 +9,7 @@
         
         @foreach(var template in Model)
         {
-            <li class="template" data-template-id="@template.Id">
+            <li class="template" data-script-template-id="@template.Id">
                 <strong>@template.Title</strong>
                 <p>@template.Description</p>
             </li>
@@ -24,28 +24,42 @@
 </section>
 
 <script type="text/javascript">
+    @{ DJ.ScriptRegistry().OnDocumentReady("initializeModuleGallery();"); }
 
-@{ DJ.ScriptRegistry().OnDocumentReady("initializeModuleGallery();"); }
     function initializeModuleGallery() {
-        $('.template', '#module-gallery').click(function () {
-            var templateId = $(this).data('template-id');
-            var selector = '.dj_module[data-script-template-id="' + templateId + '"]';
-            var el = $(selector);
-            var isVisible = el.filter(':visible').length;
-            $(this).toggleClass('muted', isVisible);
+        $('.template', '#module-gallery').each(function () {
+            var button = $(this);
+            var templateId = button.data('script-template-id');
+            var moduleSelector = '.dj_module[data-script-template-id="' + templateId + '"]';
+            var module = $(moduleSelector).findComponent(DJ.UI.AbstractCanvasModule);
 
-            var moduleId = el.data('module-id');
-            var module = DJ.UI.Canvas.find().module(moduleId);
-            
-            if(isVisible) {
-                module.hide();
-            }
-            else {
-                module.maximize();
-            }
+            var isModuleVisible = function() {
+                return $(module.element).filter(':visible').length != 0;
+            };
+
+            button.data('syncState', function () {
+                button.toggleClass('muted', isModuleVisible());
+            });
+
+            button.click(function () {
+                var isVisible = isModuleVisible();
+
+                if (isVisible) {
+                    module.hide();
+                }
+                else {
+                    module.maximize();
+                }
+                
+                button.data('syncState')();
+            });
         });
 
-        $('#module-gallery').modal({ show: false });
+        $('#module-gallery').modal({ show: false })
+            .on('show', function() {
+                $('.template', '#module-gallery').each(function () {
+                    $(this).data('syncState')();
+                });
+            });
     }
-
 </script>
