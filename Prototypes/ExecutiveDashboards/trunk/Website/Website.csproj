@@ -340,7 +340,6 @@
     <Content Include="Content\images\tabSeparator.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <EmbeddedResource Include="Content\images\world_map.png" />
     <Content Include="Content\layout.css">
       <DependentUpon>layout.scss</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -420,6 +419,7 @@
   <ItemGroup>
     <None Include="Properties\PublishProfiles\montana.pubxml" />
     <Content Include="Views\Dashboard\_Gallery.cshtml" />
+    <Content Include="Views\Home\Test.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
