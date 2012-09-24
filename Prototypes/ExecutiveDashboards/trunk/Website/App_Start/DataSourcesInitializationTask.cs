@@ -22,18 +22,12 @@ namespace DowJones.Dash.Website.App_Start
                 var name = dataSource.Name;
 
                 dataSource.DataReceived += (sender, args) =>
-                    Dashboard.Publish(new DashboardMessage("data." + name, args.Data));
+                    Dashboard.Publish(new DashboardMessage(name, args.Data));
 
                 dataSource.Error += (sender, args) => {
-                        LogManager.GetLogger(sender.GetType()).Warn("Error retriving data", args.Exception);
-
-                        Dashboard.Publish(
-                            new DashboardMessage(
-                                "dataError." + name, 
-                                args.Exception == null ? "Unknown error" : args.Exception.Message
-                            )
-                        );
-                    };
+                    LogManager.GetLogger(sender.GetType()).Warn("Error retriving data", args.Exception);
+                    Dashboard.Publish(new DashboardErrorMessage(name, args.Exception));
+                };
                 
                 dataSource.Start();
             }
