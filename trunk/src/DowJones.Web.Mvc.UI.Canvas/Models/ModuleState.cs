@@ -10,5 +10,7 @@ namespace DowJones.Web.Mvc.UI.Canvas
         Minimized,
         [XmlEnum(Name = "Maximized")]
         Maximized,
+        [XmlEnum(Name = "Hidden")]
+        Hidden,
     }
 }
