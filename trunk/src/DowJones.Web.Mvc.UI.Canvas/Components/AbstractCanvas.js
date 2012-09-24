@@ -130,7 +130,7 @@
         var modules = this.getModules() || [];
 
         for (var i = 0; i < modules.length; i++) {
-            if (modules[i].get_moduleId == moduleId)
+            if (modules[i].get_moduleId() == moduleId)
                 return modules[i];
         }
 
