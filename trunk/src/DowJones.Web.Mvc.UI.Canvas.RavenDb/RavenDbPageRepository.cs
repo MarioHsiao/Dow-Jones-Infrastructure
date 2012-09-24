@@ -85,13 +85,19 @@ namespace DowJones.Web.Mvc.UI.Canvas.RavenDb
         {
             Guard.IsNotNull(page, "page");
 
-            _session.Store(page);
-            _session.SaveChanges();
-
-            if (string.IsNullOrWhiteSpace(page.ID))
+            if (!string.IsNullOrWhiteSpace(page.ID))
             {
+                _session.Store(page, "pages/" + page.ID);
+                _session.SaveChanges();
+            }
+            else
+            {
+                _session.Store(page);
+                _session.SaveChanges();
+
+                // Set the Page ID
                 var ravenId = _session.Advanced.GetDocumentId(page);
-                page.ID = ravenId.Substring(ravenId.LastIndexOf('/')+1);
+                page.ID = ravenId.Substring(ravenId.LastIndexOf('/') + 1);
                 _session.SaveChanges();
             }
 

@@ -451,14 +451,25 @@ DJ.UI.AbstractCanvasModule = DJ.UI.CompositeComponent.extend({
         this._minimizeButton.click(this._delegates.fireOnMinimize);
     },
 
+    hide: function () {
+        this._resize('hidden');
+    },
+
     maximize: function () {
-        this.$element.removeClass('minimized');
-        DJ.publish('resized.dj.CanvasModule', { moduleId: this.get_moduleId(), newSize: 'maximized' });
+        this._resize('maximized');
     },
 
     minimize: function () {
-        this.$element.addClass('minimized');
-        DJ.publish('resized.dj.CanvasModule', { moduleId: this.get_moduleId(), newSize: 'minimized' });
+        this._resize('minimized');
+    },
+
+    _resize: function (newSize) {
+        $(this.element).show();
+        this.$element.removeClass('maximized');
+        this.$element.removeClass('minimized');
+        this.$element.removeClass('hidden');
+        this.$element.addClass(newSize);
+        DJ.publish('resized.dj.CanvasModule', { moduleId: this.get_moduleId(), newSize: newSize });
     },
 
     publish: function (/* string */eventName, /* object */data) {
