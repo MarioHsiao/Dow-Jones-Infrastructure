@@ -12,7 +12,8 @@
         $.extend(this.options, window[this.getId() + "_clientState"]);
 
         this._initializeModules();
-        this.layout = DJ.UI.Canvas.Layout.initialize(this, this.options.layout);
+
+        DJ.UI.Canvas.Layout.initialize(this, this.options.layout);
 
         this.subscribe('RemoveModuleRequest.dj.CanvasModule', this._delegates.fireModuleRemoved);
     },
