@@ -20,7 +20,7 @@ namespace DowJones.Dash.Website.Hubs
             context.publish(eventName, data);
 
             // Cache the latest version of the event for future clients
-            MessageCache[eventName] = data;
+//            MessageCache[eventName] = data;
         }
 
         public Task Reconnect(IEnumerable<string> groups)
