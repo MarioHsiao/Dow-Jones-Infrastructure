@@ -12,7 +12,8 @@
         $.extend(this.options, window[this.getId() + "_clientState"]);
 
         this._initializeModules();
-        this.layout = DJ.UI.Canvas.Layout.initialize(this, this.options.layout);
+
+        DJ.UI.Canvas.Layout.initialize(this, this.options.layout);
 
         this.subscribe('RemoveModuleRequest.dj.CanvasModule', this._delegates.fireModuleRemoved);
     },
@@ -129,7 +130,7 @@
         var modules = this.getModules() || [];
 
         for (var i = 0; i < modules.length; i++) {
-            if (modules[i].get_moduleId == moduleId)
+            if (modules[i].get_moduleId() == moduleId)
                 return modules[i];
         }
 

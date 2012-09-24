@@ -16,5 +16,11 @@ namespace DowJones.Pages.Modules
         /// </summary>
         [EnumMember]
         Maximized = 1,
+
+        /// <summary>
+        /// Hidden Module State.
+        /// </summary>
+        [EnumMember]
+        Hidden = 2,
     }
 }

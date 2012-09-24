@@ -80,6 +80,7 @@ DJ.UI.AbstractCanvasModule = DJ.UI.CompositeComponent.extend({
         this.$settings = $('.settings', this._moduleHead);
         this._maximizeButton = $('.maximize', this._moduleHead);
         this._minimizeButton = $('.minimize', this._moduleHead);
+        this._hideButton = $('.hide', this._moduleHead);
 
 
         // If no canvas has been specified (via _set_Owner), try to actively find one
@@ -371,6 +372,7 @@ DJ.UI.AbstractCanvasModule = DJ.UI.CompositeComponent.extend({
 
     _initializeDelegates: function () {
         this._delegates = $.extend({}, {
+            fireOnHide: $dj.delegate(this, this.hide),
             fireOnMaximize: $dj.delegate(this, this.maximize),
             fireOnMinimize: $dj.delegate(this, this.minimize),
             fireOnEditCloseTrigger: $dj.delegate(this, this.fireOnEditCloseTrigger),
@@ -449,16 +451,28 @@ DJ.UI.AbstractCanvasModule = DJ.UI.CompositeComponent.extend({
 
         this._maximizeButton.click(this._delegates.fireOnMaximize);
         this._minimizeButton.click(this._delegates.fireOnMinimize);
+        this._hideButton.click(this._delegates.fireOnHide);
+    },
+
+    hide: function () {
+        this._resize('hidden');
     },
 
     maximize: function () {
-        this.$element.removeClass('minimized');
-        DJ.publish('resized.dj.CanvasModule', { moduleId: this.get_moduleId(), newSize: 'maximized' });
+        this._resize('maximized');
     },
 
     minimize: function () {
-        this.$element.addClass('minimized');
-        DJ.publish('resized.dj.CanvasModule', { moduleId: this.get_moduleId(), newSize: 'minimized' });
+        this._resize('minimized');
+    },
+
+    _resize: function (newSize) {
+        $(this.element).show();
+        this.$element.removeClass('maximized');
+        this.$element.removeClass('minimized');
+        this.$element.removeClass('hidden');
+        this.$element.addClass(newSize);
+        DJ.publish('resized.dj.CanvasModule', { moduleId: this.get_moduleId(), newSize: newSize });
     },
 
     publish: function (/* string */eventName, /* object */data) {
