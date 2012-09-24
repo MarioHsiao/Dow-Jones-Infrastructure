@@ -340,6 +340,10 @@
     <EmbeddedResource Include="StatsMap\marker_rounded_yellow_green.png" />
     <EmbeddedResource Include="StatsMap\marker_rounded_yellow_orange.png" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="EmbeddedResources\js\quickflip\jquery.quickflip.js" />
+    <EmbeddedResource Include="EmbeddedResources\js\quickflip\jquery.quickflip.min.js" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
