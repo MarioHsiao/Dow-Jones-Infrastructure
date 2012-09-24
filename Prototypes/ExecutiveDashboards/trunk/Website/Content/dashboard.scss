@@ -49,6 +49,9 @@ h2 a.reset {
 
 	/* Hide all modules... */
 	.dj_module { display: none; }
+	
+	/* REALLY hide the hidden ones... */
+	.dj_module.hidden { display: none !important; }
 
 	/* ...except the ones in a canvas zone */
 	.dj_group {

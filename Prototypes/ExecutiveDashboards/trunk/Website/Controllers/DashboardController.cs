@@ -9,6 +9,7 @@ using DowJones.Web.Mvc.Routing;
 using DowJones.Web.Mvc.UI.Canvas;
 using DowJones.Web.Mvc.UI.Canvas.Controllers;
 using Newtonsoft.Json;
+using ModuleState = DowJones.Pages.Modules.ModuleState;
 using ZoneLayout = DowJones.Pages.Layout.ZoneLayout;
 
 namespace DowJones.Dash.Website.Controllers
@@ -88,7 +89,7 @@ namespace DowJones.Dash.Website.Controllers
         }
 
         [Route("dashboard/modules/resize/{state}")]
-        public ActionResult ResizeModule(string pageId, int moduleId, DowJones.Pages.Modules.ModuleState state)
+        public ActionResult ResizeModule(string pageId, int moduleId, ModuleState state)
         {
             var module = PageRepository.GetModule(pageId, moduleId) as ScriptModule;
             module.ModuleState = state;
@@ -116,9 +117,7 @@ namespace DowJones.Dash.Website.Controllers
         [Route("dashboard/modules/id/{method}")]
         public ActionResult RemoveModule(string pageId, int moduleId)
         {
-            PageRepository.RemoveModulesFromPage(pageId, moduleId);
-
-            return new HttpStatusCodeResult(200);
+            return ResizeModule(pageId, moduleId, ModuleState.Hidden);
         }
 
         #endregion

@@ -37,12 +37,12 @@
 @Html.Action("Gallery")
 
 
+@DJ.ScriptRegistry().OnDocumentReady("initializeDashboard();")
 @section scripts{
     <script src="@Url.Content("~/signalr/hubs")" type="text/javascript"></script>
 
     <script type="text/javascript">
         
-        @DJ.ScriptRegistry().OnDocumentReady("initializeDashboard();")
         function initializeDashboard() {
             $('.trendTabs li').not(':first').find('a')
                 .popover({ content: 'Coming soon!', delay: { show: 1000, hide: 1000 } })
@@ -72,6 +72,8 @@
 
             $('.minimize').append($('<i class="icon-chevron-up"/>'));
             $('.maximize').append($('<i class="icon-chevron-down"/>'));
+            $('.hide').append($('<i class="icon-remove"/>')).removeClass('hide');
+            $('.dj_module-refresh').remove();
         }
 
         (function initializeTabs() {

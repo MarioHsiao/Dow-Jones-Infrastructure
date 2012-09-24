@@ -35,9 +35,12 @@ h2 a.reset {
 .dj_Canvas {
   position: relative;
   /* Hide all modules... */
+  /* REALLY hide the hidden ones... */
   /* ...except the ones in a canvas zone */ }
   .dj_Canvas .dj_module {
     display: none; }
+  .dj_Canvas .dj_module.hidden {
+    display: none !important; }
   .dj_Canvas .dj_group .dj_module {
     display: block; }
 

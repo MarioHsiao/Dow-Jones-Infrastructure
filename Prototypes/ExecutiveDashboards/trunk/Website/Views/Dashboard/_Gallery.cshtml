@@ -27,12 +27,22 @@
 
 @{ DJ.ScriptRegistry().OnDocumentReady("initializeModuleGallery();"); }
     function initializeModuleGallery() {
-        $('.template', '#module-gallery').click(function() {
+        $('.template', '#module-gallery').click(function () {
             var templateId = $(this).data('template-id');
             var selector = '.dj_module[data-script-template-id="' + templateId + '"]';
-            var module = $(selector);
-            var isVisible = module.toggle().filter(':visible').length;
+            var el = $(selector);
+            var isVisible = el.filter(':visible').length;
             $(this).toggleClass('muted', isVisible);
+
+            var moduleId = el.data('module-id');
+            var module = DJ.UI.Canvas.find().module(moduleId);
+            
+            if(isVisible) {
+                module.hide();
+            }
+            else {
+                module.maximize();
+            }
         });
 
         $('#module-gallery').modal({ show: false });
