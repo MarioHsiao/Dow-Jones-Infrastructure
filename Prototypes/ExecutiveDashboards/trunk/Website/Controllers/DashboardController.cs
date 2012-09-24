@@ -4,6 +4,7 @@ using System.Web.Mvc;
 using DowJones.Dash.DataGenerators;
 using DowJones.Pages.Common;
 using DowJones.Pages.Modules;
+using DowJones.Pages.Modules.Templates;
 using DowJones.Web.Mvc.Routing;
 using DowJones.Web.Mvc.UI.Canvas;
 using DowJones.Web.Mvc.UI.Canvas.Controllers;
@@ -15,10 +16,12 @@ namespace DowJones.Dash.Website.Controllers
     public class DashboardController : PagesControllerBase
     {
         private readonly PageGenerator _pageGenerator;
+        private readonly IScriptModuleTemplateManager _templateManager;
 
-        public DashboardController(PageGenerator pageGenerator)
+        public DashboardController(PageGenerator pageGenerator, IScriptModuleTemplateManager templateManager)
         {
             _pageGenerator = pageGenerator;
+            _templateManager = templateManager;
         }
 
         protected override void OnActionExecuted(ActionExecutedContext filterContext)
@@ -63,6 +66,16 @@ namespace DowJones.Dash.Website.Controllers
             }
 
             return RedirectToAction("Index");
+        }
+
+//        [OutputCache(Duration = 36000)]
+        public ActionResult Gallery(string pageId)
+        {
+            var templates = _templateManager.GetTemplates()
+                        .OrderBy(x => x.Title)
+                        .ToArray();
+
+            return PartialView("_Gallery", templates);
         }
 
 

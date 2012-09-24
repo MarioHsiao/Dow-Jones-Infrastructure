@@ -30,21 +30,10 @@
                     <h4 class="tagline">Executive Dashboards</h4>
                 </div>
             </div>
-            <div class="trendTabsContainer">
-                <div class="container">
-                    <ul class="trendTabs clearFix">
-                        <li class="defaultTab activeTab"><a href="#" title="online.wsj.com">WSJ</a></li>
-                        <li class="defaultTab"><a href="javascript:void(0)" title="marketwwath.com">Marketwatch</a></li>
-                        <li class="defaultTab"><a href="#dashAlert" title="online.wsj.com">WSJ: APAC</a></li>
-						<li class="defaultTab"><a href="#dashAlert" title="jp.wsj.com">WSJ: JP</a></li>
-						<li class="defaultTab"><a href="#dashAlert" title="factiva.com.com">Factiva</a></li>
-						<li class="defaultTab"><a href="#dashAlert" title="smartmoney.com">SmartMoney</a></li>
-                        <li class="defaultTab"><a href="#dashAlert" title="online.barrons.com">Barrons</a></li>
-                    </ul>
-                </div>
-            </div>
         </div>
     </div>
+    
+    @RenderSection("header", false)
 
     <div class="bodyContent">
         <div class="container">
@@ -83,14 +72,5 @@
 </body>
 @DJ.ScriptRegistry().Render()
 @DJ.StylesheetRegistry().Render()
-	<script type="text/javascript">
-	    window._alert = window.alert;
-	    window.alert = function (msg) {
-	        $('#dashAlertModal .modal-body p').text(msg);
-	        $('#dashAlertModal').modal('show');
-	        return false;
-	    };
-	</script>
-
 @RenderSection("scripts", false)
 </html>

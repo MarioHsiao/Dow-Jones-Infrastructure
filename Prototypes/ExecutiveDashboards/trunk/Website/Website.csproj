@@ -309,6 +309,9 @@
     <Content Include="Content\dashboard.css">
       <DependentUpon>dashboard.scss</DependentUpon>
     </Content>
+    <Content Include="Content\gallery.css">
+      <DependentUpon>gallery.scss</DependentUpon>
+    </Content>
     <Content Include="Content\images\browser-sprites.png" />
     <Content Include="Content\images\dash.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -414,9 +417,8 @@
     <Content Include="Content\dashboard.scss" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\StatsMap.scss" />
-    <None Include="Properties\PublishProfiles\local.pubxml" />
     <None Include="Properties\PublishProfiles\montana.pubxml" />
+    <Content Include="Views\Dashboard\_Gallery.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

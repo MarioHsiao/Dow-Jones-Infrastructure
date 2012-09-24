@@ -35,7 +35,7 @@ namespace DowJones.Dash.Website
 
         private void InitializeRavenDb()
         {
-            IDocumentStore documentStore = new DocumentStore { ConnectionStringName = "RavenDb" };
+            IDocumentStore documentStore;
 
             if ("true".Equals(ConfigurationManager.AppSettings["RavenDb.Embedded"]))
             {
@@ -44,6 +44,10 @@ namespace DowJones.Dash.Website
                         DataDirectory = ConfigurationManager.AppSettings["RavenDb.DataDirectory"],
                         RunInMemory = "true".Equals(ConfigurationManager.AppSettings["RavenDb.Embedded.RunInMemory"]),
                     };
+            }
+            else
+            {
+                documentStore = new DocumentStore {ConnectionStringName = "RavenDb"};
             }
 
             documentStore.Conventions.AllowQueriesOnId = true;

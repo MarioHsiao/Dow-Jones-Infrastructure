@@ -1,0 +1,41 @@
+﻿@model IEnumerable<DowJones.Pages.Modules.Templates.ScriptModuleTemplate>
+
+<section id="module-gallery" class="modal hide fade">
+    <div class="modal-header">
+        <h3>Performance Indicators</h3>
+    </div>
+    <div class="modal-body">
+        <ul class="unstyled">
+        
+        @foreach(var template in Model)
+        {
+            <li class="template" data-template-id="@template.Id">
+                <strong>@template.Title</strong>
+                <p>@template.Description</p>
+            </li>
+        }
+
+        </ul>
+    </div>
+    <div class="modal-footer">
+        <a href="@Url.Action("Reset")" class="btn btn-danger btn-mini pull-left">Reset Page</a>
+        <a href="#" class="btn close" data-dismiss="modal">Close</a>
+    </div>
+</section>
+
+<script type="text/javascript">
+
+@{ DJ.ScriptRegistry().OnDocumentReady("initializeModuleGallery();"); }
+    function initializeModuleGallery() {
+        $('.template', '#module-gallery').click(function() {
+            var templateId = $(this).data('template-id');
+            var selector = '.dj_module[data-script-template-id="' + templateId + '"]';
+            var module = $(selector);
+            var isVisible = module.toggle().filter(':visible').length;
+            $(this).toggleClass('muted', isVisible);
+        });
+
+        $('#module-gallery').modal({ show: false });
+    }
+
+</script>
