@@ -118,10 +118,13 @@ namespace DowJones.Web.Mvc.UI.Canvas
                     {
                         WriteHeaderIconsArea(x);
 
-                        writer.RenderSection(
-                            tag: HtmlTextWriterTag.Span,
-                            className: "fi fi_reload-white dj_module-refresh{0}".FormatWith(Model.CanRefresh ? "" : " hide")
-                        );
+                        if (Model.CanRefresh)
+                        {
+                            writer.RenderSection(
+                                tag: HtmlTextWriterTag.Span,
+                                className: "fi fi_reload-white dj_module-refresh"
+                            );
+                        }
                         writer.RenderSection(
                             tag: HtmlTextWriterTag.Span,
                             className: "fi fi_gear settings"
@@ -133,6 +136,10 @@ namespace DowJones.Web.Mvc.UI.Canvas
                         writer.RenderSection(
                             tag: HtmlTextWriterTag.Span,
                             className: "fi minimize"
+                        );
+                        writer.RenderSection(
+                            tag: HtmlTextWriterTag.Span,
+                            className: "fi hide"
                         );
                     });
             }
