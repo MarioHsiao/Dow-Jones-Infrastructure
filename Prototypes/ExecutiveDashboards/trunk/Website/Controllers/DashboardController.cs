@@ -69,7 +69,7 @@ namespace DowJones.Dash.Website.Controllers
             return RedirectToAction("Index");
         }
 
-//        [OutputCache(Duration = 36000)]
+        [OutputCache(Duration = 36000)]
         public ActionResult Gallery(string pageId)
         {
             var templates = _templateManager.GetTemplates()
