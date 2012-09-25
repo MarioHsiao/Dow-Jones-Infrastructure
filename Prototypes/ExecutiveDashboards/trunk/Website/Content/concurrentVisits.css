@@ -41,6 +41,10 @@
     text-align: center;
     width: 200px; }
 
+.pageTimings .title {
+  position: relative;
+  top: -7px;
+  left: 10px; }
 .pageTimings .time-stamp {
   font-size: 1.5em;
   text-align: center;

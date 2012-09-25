@@ -21,27 +21,34 @@ DJ.UI.UsersStats = DJ.UI.CompositeComponent.extend({
     
     _initGauge: function () {
         var self = this;
-        
-        DJ.add('DashGauge', this._basicGaugeConfig(this._newGauge[0], "New")).done(function (comp) {
-            self.newGauge = comp;
-            comp.owner = self;
-        });
-        
-        DJ.add('DashGauge', this._basicGaugeConfig(this._readGauge[0], "Read")).done(function (comp) {
-            self.readGauge = comp;
-            comp.owner = self;
-        });
-        
-        DJ.add('DashGauge', this._basicGaugeConfig(this._writeGauge[0], "Write")).done(function (comp) {
-            self.writeGauge = comp;
-            comp.owner = self;
-        });
-        
-        DJ.add('DashGauge', this._basicGaugeConfig(this._idleGauge[0], "Idle")).done(function (comp) {
-            self.idleGauge = comp;
-            comp.owner = self;
-        });
-        
+        if (this._newGauge && this._newGauge.length) {
+            DJ.add('DashGauge', this._basicGaugeConfig(this._newGauge[0], "New")).done(function(comp) {
+                self.newGauge = comp;
+                comp.owner = self;
+            });
+        }
+
+        if (this._readGauge && this._readGauge.length) {
+            DJ.add('DashGauge', this._basicGaugeConfig(this._readGauge[0], "Read")).done(function(comp) {
+                self.readGauge = comp;
+                comp.owner = self;
+            });
+        }
+
+        if (this._writeGauge && this._writeGauge.length) {
+            DJ.add('DashGauge', this._basicGaugeConfig(this._writeGauge[0], "Write")).done(function(comp) {
+                self.writeGauge = comp;
+                comp.owner = self;
+            });
+        }
+
+        if (this._idleGauge && this._idleGauge.length) {
+            DJ.add('DashGauge', this._basicGaugeConfig(this._idleGauge[0], "Idle")).done(function(comp) {
+                self.idleGauge = comp;
+                comp.owner = self;
+            });
+        }
+
         this.$element.find('.tip').tooltip();
     },
     
@@ -126,12 +133,22 @@ DJ.UI.UsersStats = DJ.UI.CompositeComponent.extend({
     },
     
     _updateStats: function (data) {
-        this.newGauge.setData(data.new);
-        this.readGauge.setData(data.read);
-        this.writeGauge.setData(data.write);
-        this.idleGauge.setData(data.idle);
-
-        var total = data.read + data.write + data.idle;
+        if (this.newGauge) {
+            this.newGauge.setData(data.new);
+        }
+        if (this.readGauge) {
+            this.readGauge.setData(data.read);
+        }
+        
+        if (this.writeGauge) {
+            this.writeGauge.setData(data.write);
+        }
+        
+        if (this.idleGauge) {
+            this.idleGauge.setData(data.idle);
+        }
+        
+        var total = data.read + data.write + data.idle; 
         var percentEngaged = ((data.read + data.write) * 100) / total;
         var percentIdle = (data.idle * 100) / total;
 

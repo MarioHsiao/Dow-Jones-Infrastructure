@@ -54,6 +54,11 @@
 } 
 
 .pageTimings {
+	.title {
+		position:relative;
+		top: -7px;
+		left: 10px;
+	}
 	.time-stamp {
 		font-size: 1.5em;
 		text-align:center;
