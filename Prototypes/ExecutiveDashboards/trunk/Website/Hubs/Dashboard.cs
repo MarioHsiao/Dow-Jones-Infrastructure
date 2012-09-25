@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DowJones.Dash.Caching;
 using SignalR;
 using SignalR.Hubs;
 
@@ -9,7 +10,7 @@ namespace DowJones.Dash.Website.Hubs
     public class Dashboard : Hub, IConnected
     {
         private static readonly IDashboardMessageCache Cache =
-            DowJones.DependencyInjection.ServiceLocator.Resolve<RavenDbMessageCache>();
+            DowJones.DependencyInjection.ServiceLocator.Resolve<IDashboardMessageCache>();
 
         public Task Connect()
         {

@@ -287,8 +287,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Hubs\Dashboard.cs" />
-    <Compile Include="Hubs\DashboardMessageCache.cs" />
+    <Compile Include="RavenDB\RavenDbMessageCache.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RavenDB\RavenDbDocumentStoreFactory.cs" />
     <Compile Include="Views\Dashboard\DashCanvas.cs" />
   </ItemGroup>
   <ItemGroup>

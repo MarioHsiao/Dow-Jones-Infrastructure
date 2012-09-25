@@ -1,6 +1,8 @@
 using System.Collections.Generic;
-using System.Configuration;
+using DowJones.Dash.Caching;
 using DowJones.Dash.DataSources;
+using DowJones.Dash.Website.Hubs;
+using DowJones.Dash.Website.RavenDB;
 using DowJones.Infrastructure.Common;
 using DowJones.Pages;
 using DowJones.Pages.Modules;
@@ -13,7 +15,6 @@ using DowJones.Web.Mvc.UI.Canvas.RavenDb;
 using Factiva.Gateway.Messages.Membership.Authorization.V1_0;
 using Ninject;
 using Raven.Client;
-using Raven.Client.Document;
 
 namespace DowJones.Dash.Website
 {
@@ -27,33 +28,9 @@ namespace DowJones.Dash.Website
             Bind<IPrinciple>().ToMethod(x => new EntitlementsPrinciple(new GetUserAuthorizationsResponse())).InRequestScope();
             Bind<Product>().ToConstant(new GlobalProduct()).InSingletonScope();
             Bind<IPageSubscriptionManager>().To<PageSubscriptionManagerStub>();
-
-            InitializeRavenDb();
-
             Bind<IDataSourceRepository>().To<DataSourceRepository>().InSingletonScope();
-        }
 
-        private void InitializeRavenDb()
-        {
-            IDocumentStore documentStore;
-
-            if ("true".Equals(ConfigurationManager.AppSettings["RavenDb.Embedded"]))
-            {
-                documentStore = new Raven.Client.Embedded.EmbeddableDocumentStore
-                    {
-                        DataDirectory = ConfigurationManager.AppSettings["RavenDb.DataDirectory"],
-                        RunInMemory = "true".Equals(ConfigurationManager.AppSettings["RavenDb.Embedded.RunInMemory"]),
-                    };
-            }
-            else
-            {
-                documentStore = new DocumentStore {ConnectionStringName = "RavenDb"};
-            }
-
-            documentStore.Conventions.AllowQueriesOnId = true;
-
-            Bind<IDocumentStore>()
-                .ToConstant(documentStore)
+            BindToFactory<IDocumentStore, RavenDbDocumentStoreFactory>()
                 .InSingletonScope()
                 .OnActivation(x => x.Initialize());
 
@@ -64,51 +41,50 @@ namespace DowJones.Dash.Website
 
             Bind<IPageRepository>().To<RavenDbPageRepository>().InRequestScope();
             Bind<IScriptModuleTemplateManager>().To<RavenDbScriptModuleTemplateRepository>().InRequestScope();
+            Bind<IDashboardMessageCache>().To<RavenDbMessageCache>().InSingletonScope();
+        }
+    }
+
+    class PageSubscriptionManagerStub : IPageSubscriptionManager
+    {
+        public void PrivatizeModules(IEnumerable<Module> modules)
+        {
+            throw new System.NotImplementedException();
         }
 
-
-
-        class PageSubscriptionManagerStub : IPageSubscriptionManager
+        public void PublicizeModules(IEnumerable<Module> modules)
         {
-            public void PrivatizeModules(IEnumerable<Module> modules)
-            {
-                throw new System.NotImplementedException();
-            }
+            throw new System.NotImplementedException();
+        }
 
-            public void PublicizeModules(IEnumerable<Module> modules)
-            {
-                throw new System.NotImplementedException();
-            }
+        public void EnablePage(PageReference pageRef, bool enabled = true)
+        {
+            throw new System.NotImplementedException();
+        }
 
-            public void EnablePage(PageReference pageRef, bool enabled = true)
-            {
-                throw new System.NotImplementedException();
-            }
+        public void PublishPage(PageReference pageRef, params int[] personalAlertIds)
+        {
+            throw new System.NotImplementedException();
+        }
 
-            public void PublishPage(PageReference pageRef, params int[] personalAlertIds)
-            {
-                throw new System.NotImplementedException();
-            }
+        public string SubscribeToPage(PageReference pageRef)
+        {
+            throw new System.NotImplementedException();
+        }
 
-            public string SubscribeToPage(PageReference pageRef)
-            {
-                throw new System.NotImplementedException();
-            }
+        public string SubscribeToPage(PageReference pageRef, int position)
+        {
+            throw new System.NotImplementedException();
+        }
 
-            public string SubscribeToPage(PageReference pageRef, int position)
-            {
-                throw new System.NotImplementedException();
-            }
+        public void UnpublishPage(PageReference pageRef)
+        {
+            throw new System.NotImplementedException();
+        }
 
-            public void UnpublishPage(PageReference pageRef)
-            {
-                throw new System.NotImplementedException();
-            }
-
-            public void UnsubscribeToPage(PageReference pageRef)
-            {
-                throw new System.NotImplementedException();
-            }
+        public void UnsubscribeToPage(PageReference pageRef)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

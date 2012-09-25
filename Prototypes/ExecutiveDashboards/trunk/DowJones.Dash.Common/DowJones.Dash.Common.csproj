@@ -90,6 +90,10 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Caching\DashboardErrorMessage.cs" />
+    <Compile Include="Caching\DashboardMessage.cs" />
+    <Compile Include="Caching\DashboardMessageCache.cs" />
+    <Compile Include="Caching\IDashboardMessageCache.cs" />
     <Compile Include="DataGenerators\PageGenerator.cs" />
     <Compile Include="DataGenerators\ScriptModuleTemplatesGenerator.cs" />
     <Compile Include="DataSources\ChartBeatDataSource.cs" />
