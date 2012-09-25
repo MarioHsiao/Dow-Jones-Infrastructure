@@ -3859,11 +3859,11 @@ a.label:hover, a.badge:hover {
   margin-bottom: 20px;
   overflow: hidden;
   background-color: #f7f7f7;
-  background-image: -moz-linear-gradient(top, #f5f5f5, #f9f9f9);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#f5f5f5), to(#f9f9f9));
-  background-image: -webkit-linear-gradient(top, #f5f5f5, #f9f9f9);
-  background-image: -o-linear-gradient(top, #f5f5f5, #f9f9f9);
-  background-image: linear-gradient(to bottom, #f5f5f5, #f9f9f9);
+  background-image: -moz-linear-gradient(top, whitesmoke, #f9f9f9);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(whitesmoke), to(#f9f9f9));
+  background-image: -webkit-linear-gradient(top, whitesmoke, #f9f9f9);
+  background-image: -o-linear-gradient(top, whitesmoke, #f9f9f9);
+  background-image: linear-gradient(to bottom, whitesmoke, #f9f9f9);
   background-repeat: repeat-x;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
@@ -4167,13 +4167,16 @@ body {
   color: white;
   width: 100%; }
   .headBar .logo {
+    font-family: quantico, serif;
     display: inline-block;
     margin: 0 0 4px 0;
     font-size: 2em;
+    font-style: italic;
     color: white;
     font-weight: 600;
     letter-spacing: 0.05em; }
   .headBar .tagline {
+    font-family: questrial, serif;
     font-size: 1.1em;
     color: #CBCBCB;
     margin: 0;
