@@ -71,69 +71,66 @@ DJ.UI.PageTimings = DJ.UI.CompositeComponent.extend({
     },
 
     _updateSparklines: function (data) {
-        var self = this,
-            o = self.options;
-        if (!self.isPageTimingsListSeeded) {
-            return;
-        }
+        var self = this;
         
-        this.tSparklineData = data;
         var tData = data || this.tSparklineData;
-        this.tSparklineData = tData;
-
+        
         if (tData) {
-            var subPages = _.filter(tData, function (point) {
-                                return point.page_id === 421139;
-                            });
-            
-            var pubPages = _.filter(tData, function (point) {
-                                return point.page_id === 421143;
-                            });
+            this.tSparklineData = tData;
+            if (self.isPageTimingsListSeeded) {
+                var subPages = _.filter(tData, function(point) {
+                    return point.page_id === 421139;
+                });
 
-            var artPages = _.filter(tData, function(point) {
-                                return point.page_id === 1940521;
-                            });
-            
-            if (!self.isSparklinesSeeded) {
-                var sparklineContainers = self.$element.find(".sparklineContainer");
-                self.sparklineCharts = [];
+                var pubPages = _.filter(tData, function(point) {
+                    return point.page_id === 421143;
+                });
 
-                $.each(sparklineContainers, function (i, val) {
+                var artPages = _.filter(tData, function(point) {
+                    return point.page_id === 1940521;
+                });
+
+                if (!self.isSparklinesSeeded) {
+                    var sparklineContainers = self.$element.find(".sparklineContainer");
+                    self.sparklineCharts = [];
+
+                    $.each(sparklineContainers, function(i, val) {
+                        var tVals = (i == 0) ? _.pluck(subPages, "Avg") : (i == 1) ? _.pluck(pubPages, "Avg") : _.pluck(artPages, "Avg");
+                        var vals = _.map(tVals, function(num) { return num / 1000; });
+                        var objs = _.map(vals, function(num) { return { color: self._delegates.getColor(num), y: num }; });
+                        var tMax = _.max(vals);
+                        var tMin = 0;
+                        DJ.add('Sparkline', {
+                            container: val,
+                            options: {
+                                max: tMax,
+                                min: tMin,
+                                type: 1
+                            },
+                            data: {
+                                values: objs
+                            }
+                        }).done(function(comp) {
+                            comp.owner = self;
+                            self.sparklineCharts.push(comp);
+                        });
+                    });
+                    self.isSparklinesSeeded = true;
+                    return;
+                }
+
+                $.each(self.sparklineCharts, function(i) {
                     var tVals = (i == 0) ? _.pluck(subPages, "Avg") : (i == 1) ? _.pluck(pubPages, "Avg") : _.pluck(artPages, "Avg");
-                    var vals = _.map(tVals, function (num) { return num / 1000; });
-                    var objs = _.map(vals, function (num) { return { color: self._delegates.getColor(num), y: num }; });
+                    var vals = _.map(tVals, function(num) { return num / 1000; });
+                    var objs = _.map(vals, function(num) {
+                        return { color: self._delegates.getColor(num), y: num };
+                    });
                     var tMax = _.max(vals);
                     var tMin = 0;
-                    DJ.add('Sparkline', {
-                        container: val,
-                        options: {
-                            max: tMax,
-                            min: tMin,
-                            type: 1
-                        },
-                        data: {
-                            values: objs
-                        }
-                    }).done(function (comp) {
-                        comp.owner = self;
-                        self.sparklineCharts.push(comp);
-                    });
+                    this.setExtremes(tMin, tMax);
+                    this.setData({ values: objs });
                 });
-                self.isSparklinesSeeded = true;
-                return;
             }
-
-            $.each(self.sparklineCharts, function(i) {
-                var tVals = (i == 0) ? _.pluck(subPages, "Avg") : (i == 1) ? _.pluck(pubPages, "Avg") : _.pluck(artPages, "Avg");
-                var vals = _.map(tVals, function (num) { return num / 1000; });
-                var objs = _.map(vals, function (num) {
-                    return { color: self._delegates.getColor(num), y: num };
-                });
-                var tMax = _.max(vals);
-                var tMin = 0;
-                this.setExtremes(tMin, tMax);
-                this.setData({ values: objs });
-            });
         }
     },
     
