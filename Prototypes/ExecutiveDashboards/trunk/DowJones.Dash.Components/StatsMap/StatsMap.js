@@ -16,85 +16,16 @@ DJ.UI.StatsMap = DJ.UI.Component.extend({
         circleMinRadius: 7      //The minimum radius that a circle can have
     },
 
-    stateCodes: {
-        'alabama': 'al',
-        'alaska': 'ak',
-        'arizona': 'az',
-        'arkansas': 'ar',
-        'california': 'ca',
-        'colorado': 'co',
-        'connecticut': 'ct',
-        'delaware': 'de',
-        'district of columbia': 'dc',
-        'florida': 'fl',
-        'georgia': 'ga',
-        'hawaii': 'hi',
-        'idaho': 'id',
-        'illinois': 'il',
-        'indiana': 'in',
-        'iowa': 'ia',
-        'kansas': 'ks',
-        'kentucky': 'ky',
-        'louisiana': 'la',
-        'maine': 'me',
-        'maryland': 'md',
-        'massachusetts': 'ma',
-        'michigan': 'mi',
-        'minnesota': 'mn',
-        'mississippi': 'ms',
-        'missouri': 'mo',
-        'montana': 'mt',
-        'nebraska': 'ne',
-        'nevada': 'nv',
-        'new hampshire': 'nh',
-        'new jersey': 'nj',
-        'new mexico': 'nm',
-        'new york': 'ny',
-        'north carolina': 'nc',
-        'north dakota': 'nd',
-        'ohio': 'oh',
-        'oklahoma': 'ok',
-        'oregon': 'or',
-        'pennsylvania': 'pa',
-        'rhode island': 'ri',
-        'south carolina': 'sc',
-        'south dakota': 'sd',
-        'tennessee': 'tn',
-        'texas': 'tx',
-        'utah': 'ut',
-        'vermont': 'vt',
-        'virginia': 'va',
-        'washington': 'wa',
-        'west virginia': 'wv',
-        'wisconsin': 'wi',
-        'wyoming': 'wy'
-    },
+    stateCodes: { 'alabama': 'al', 'alaska': 'ak', 'arizona': 'az', 'arkansas': 'ar', 'california': 'ca', 'colorado': 'co', 'connecticut': 'ct', 'delaware': 'de', 'district of columbia': 'dc', 'florida': 'fl', 'georgia': 'ga', 'hawaii': 'hi', 'idaho': 'id', 'illinois': 'il', 'indiana': 'in', 'iowa': 'ia', 'kansas': 'ks', 'kentucky': 'ky', 'louisiana': 'la', 'maine': 'me', 'maryland': 'md', 'massachusetts': 'ma', 'michigan': 'mi', 'minnesota': 'mn', 'mississippi': 'ms', 'missouri': 'mo', 'montana': 'mt', 'nebraska': 'ne', 'nevada': 'nv', 'new hampshire': 'nh', 'new jersey': 'nj', 'new mexico': 'nm', 'new york': 'ny', 'north carolina': 'nc', 'north dakota': 'nd', 'ohio': 'oh', 'oklahoma': 'ok', 'oregon': 'or', 'pennsylvania': 'pa', 'rhode island': 'ri', 'south carolina': 'sc', 'south dakota': 'sd', 'tennessee': 'tn', 'texas': 'tx', 'utah': 'ut', 'vermont': 'vt', 'virginia': 'va', 'washington': 'wa', 'west virginia': 'wv', 'wisconsin': 'wi', 'wyoming': 'wy' },
 
     dataLabelOptions: {
-        ak: {
-            y: -10
-        },
-        ca: {
-            x: -10,
-            y: 20
-        },
-        dc: {},
-        fl: {
-            x: 40
-        },
-        id: {
-            y: 40
-        },
-        hi: {
-            color: 'black',
-            y: 15
-        },
-        la: {
-            x: -20
-        },
-        tn: {
-            y: 5
-        }
+        ak: { y: -10 },
+        ca: { x: -10, y: 20 },
+        fl: { x: 40 },
+        id: { y: 40 },
+        hi: { color: 'black', y: 15 },
+        la: { x: -20 },
+        tn: { y: 5 }
     },
 
     mapConfig: {
@@ -112,7 +43,7 @@ DJ.UI.StatsMap = DJ.UI.Component.extend({
             },
             map: {
                 dataLabels: {
-                    enabled: true,
+                    enabled: false,
                     formatter: function (dataLabelOptions) {
                         return this.point.options.key.toUpperCase();
                     },
@@ -120,8 +51,8 @@ DJ.UI.StatsMap = DJ.UI.Component.extend({
                         fontWeight: 'bold'
                     }
                 },
-                valueRanges: [ {
-                    color: '#ccc'
+                valueRanges: [{
+                    color: '#ddd'
                 }, {
                     from: 0.01,
                     to: 5,
@@ -176,12 +107,12 @@ DJ.UI.StatsMap = DJ.UI.Component.extend({
     },
 
     _initializeChart: function () {
-        for (var i = 1; i < Highcharts.UsMapStates.length; i++) {
-            var key = Highcharts.UsMapStates[i];
+        for (var i = 0; i < Highcharts.Maps.us.states.length; i++) {
+            var key = Highcharts.Maps.us.states[i];
 
             this.mapConfig.series[0].data.push({
                 key: key,
-                path: Highcharts.pathToArray(Highcharts.UsMapShapes[key]),
+                path: Highcharts.pathToArray(Highcharts.Maps.us.shapes[key]),
                 dataLabels: this.dataLabelOptions[key] // or undefined
             });
         }
@@ -224,12 +155,12 @@ DJ.UI.StatsMap = DJ.UI.Component.extend({
         });
 
         var chartData = [];
-        for (var i = 1, len = Highcharts.UsMapStates.length; i < len; i++) {
-            var key = Highcharts.UsMapStates[i],
+        for (var i = 0, len = Highcharts.Maps.us.states.length; i < len; i++) {
+            var key = Highcharts.Maps.us.states[i],
                 stateData = stateMap[key] || {};
             chartData.push({
                 key: key,
-                path: Highcharts.pathToArray(Highcharts.UsMapShapes[key]),
+                path: Highcharts.pathToArray(Highcharts.Maps.us.shapes[key]),
                 dataLabels: this.dataLabelOptions[key], // or undefined
                 name: stateData.name,
                 y: stateData.avg || -1,

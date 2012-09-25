@@ -8,7 +8,10 @@
   text-shadow: -1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white;
   color: '#666'; }
 .dj_statMap .mapContainer {
-  height: 280px; }
+  min-height: 280px;
+  min-width: 368px;
+  max-height: 280px;
+  max-width: 368px; }
 .dj_statMap .highcharts-series path {
   /*fill: #ccc !important;*/ }
 

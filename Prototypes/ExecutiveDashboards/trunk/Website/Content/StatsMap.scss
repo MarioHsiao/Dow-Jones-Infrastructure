@@ -18,7 +18,11 @@
 		color: '#666';
 	}
 
-	.mapContainer { height: 280px; }
+	.mapContainer { 
+		min-height: 280px;
+		min-width: 368px;
+		max-height: 280px;
+		max-width: 368px; }
 
 	.highcharts-series path { 
 		/*fill: #ccc !important;*/
