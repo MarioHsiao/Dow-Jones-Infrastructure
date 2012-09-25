@@ -23,16 +23,16 @@ namespace DowJones.Dash.Components.ConcurrentVisits
     using System.Web.UI;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 09/13/2012 01:28 PM
+    // Last Generated Timestamp: 09/25/2012 05:00 PM
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Dash.Components.ConcurrentVisits.ConcurrentVisits.js", DependsOn=new string[] {
-            "DJ.UI.DashGauge"}, ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Dash.Components.ConcurrentVisits.ConcurrentVisitsComponent))]
-    [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Dash.Components.ConcurrentVisits.ClientTemplates.container.html", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="container", DeclaringType=typeof(DowJones.Dash.Components.ConcurrentVisits.ConcurrentVisitsComponent))]
+            "DJ.UI.DashGauge"}, ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Dash.Components.ConcurrentVisits.ConcurrentVisits))]
+    [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Dash.Components.ConcurrentVisits.ClientTemplates.container.html", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="container", DeclaringType=typeof(DowJones.Dash.Components.ConcurrentVisits.ConcurrentVisits))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.27108")]
-    public class ConcurrentVisitsComponent : DowJones.Web.Mvc.UI.ViewComponentBase<Models.ConcurrentVisits.ConcurrentVisitsModel>
+    public class ConcurrentVisits : DowJones.Web.Mvc.UI.ViewComponentBase<Models.ConcurrentVisits.ConcurrentVisitsModel>
     {
 #line hidden
 
-        public ConcurrentVisitsComponent()
+        public ConcurrentVisits()
         {
         }
         public override string ClientPluginName
@@ -48,10 +48,6 @@ namespace DowJones.Dash.Components.ConcurrentVisits
 
 
 
-WriteLiteral("\r\n");
-
-
-   CssClass = "dj_ConcurrentVisitsModel"; 
 
         }
     }

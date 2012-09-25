@@ -5,8 +5,7 @@
             title = x.title;
     %>
     <li class="sparklineEntry">
-        <span class="sparklineContainer"></span> 
-        <span>&nbsp;</span><strong class="time-stamp" style="border-bottom: solid 2px <%= x.color %>"><%= x.avg %></strong>
+        <span class="sparklineContainer"></span><strong class="time-stamp" style="border-bottom: solid <%=x.width%>px <%= x.color %>"><%= x.avg %></strong>
         <div class="title"><small class="muted"><%= title %></small></div>
     </li>
     <% } %> 

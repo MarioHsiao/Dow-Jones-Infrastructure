@@ -25,7 +25,7 @@ namespace DowJones.Dash.Components.Sparkline
     using System.Web.UI;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 09/18/2012 05:25 PM
+    // Last Generated Timestamp: 09/25/2012 05:05 PM
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Dash.Components.Sparkline.Sparkline.js", DependsOn=new string[] {
             "highcharts-more",
             "jquery-counter"}, ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Dash.Components.Sparkline.Sparkline))]
@@ -58,9 +58,6 @@ namespace DowJones.Dash.Components.Sparkline
 
    
     CssClass = "dj_Sparkline";
-
-
-WriteLiteral("\r\n");
 
 
         }

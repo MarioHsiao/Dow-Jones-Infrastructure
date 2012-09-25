@@ -140,12 +140,22 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BrowserStatsComponent.cshtml</DependentUpon>
     </Compile>
-    <Compile Include="ConcurrentVisits\ConcurrentVisitsComponent.cs">
+    <Compile Include="ConcurrentVisits\ConcurrentVisits.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ConcurrentVisitsComponent.cshtml</DependentUpon>
+      <DependentUpon>ConcurrentVisits.cshtml</DependentUpon>
     </Compile>
     <Compile Include="EmbeddedResources\EmbeddedResources.cs" />
+    <Compile Include="Sparkline\Sparkline.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Sparkline.cshtml</DependentUpon>
+    </Compile>
+    <Compile Include="ThemeManager\ThemeManager.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ThemeManager.cshtml</DependentUpon>
+    </Compile>
     <Compile Include="PerfGauge\PerfGauge.cs" />
     <Compile Include="PerfGauge\PerfGaugeComponent.cs">
       <AutoGen>True</AutoGen>
@@ -157,7 +167,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Sparkline\Sparkline.cs" />
     <Compile Include="StatsMap\EmbeddedResources.cs" />
     <Compile Include="StatsMap\StatsMap.cs" />
     <Compile Include="StatsMap\StatsMapComponent.cs">
@@ -201,9 +210,13 @@
       <Generator>RazorViewComponentClassGenerator</Generator>
       <LastGenOutput>BrowserStatsComponent.cs</LastGenOutput>
     </None>
-    <None Include="ConcurrentVisits\ConcurrentVisitsComponent.cshtml">
+    <None Include="ConcurrentVisits\ConcurrentVisits.cshtml">
       <Generator>RazorViewComponentClassGenerator</Generator>
-      <LastGenOutput>ConcurrentVisitsComponent.cs</LastGenOutput>
+      <LastGenOutput>ConcurrentVisits.cs</LastGenOutput>
+    </None>
+    <None Include="ThemeManager\ThemeManager.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>ThemeManager.cs</LastGenOutput>
     </None>
     <None Include="PerfGauge\PerfGaugeComponent.cshtml">
       <Generator>RazorViewComponentClassGenerator</Generator>
@@ -213,7 +226,10 @@
       <Generator>RazorViewComponentClassGenerator</Generator>
       <LastGenOutput>PlatformStatsComponent.cs</LastGenOutput>
     </None>
-    <None Include="Sparkline\Sparkline.cshtml" />
+    <None Include="Sparkline\Sparkline.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>Sparkline.cs</LastGenOutput>
+    </None>
     <None Include="StatsMap\StatsMapComponent.cshtml">
       <Generator>RazorViewComponentClassGenerator</Generator>
       <LastGenOutput>StatsMapComponent.cs</LastGenOutput>
@@ -343,6 +359,10 @@
   <ItemGroup>
     <EmbeddedResource Include="EmbeddedResources\js\quickflip\jquery.quickflip.js" />
     <EmbeddedResource Include="EmbeddedResources\js\quickflip\jquery.quickflip.min.js" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="ThemeManager\ThemeManger.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

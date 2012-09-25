@@ -53,13 +53,21 @@
 	} 
 } 
 
-.pageTimings {
+
+.dj_pageTimings .pageTimings {
+	margin-top: 10px;
+	.dj_sparkline-container {
+		height: 20px;
+		width: 57px;
+		display: inline-block;
+	}
 	.title {
 		position:relative;
-		top: -7px;
-		left: 10px;
+		top: -3px;
 	}
 	.time-stamp {
+		position:relative;
+		top: -5px;
 		font-size: 1.5em;
 		text-align:center;
 		line-height: 1em;
