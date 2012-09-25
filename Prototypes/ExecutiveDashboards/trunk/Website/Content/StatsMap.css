@@ -7,6 +7,8 @@
   fill-opacity:1;stroke:#fff;stroke-width:0.9;stroke-linecap:round;stroke-linejoin:miter;stroke-opacity:1;*/
   text-shadow: -1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white;
   color: '#666'; }
+.dj_statMap .mapContainer {
+  height: 280px; }
 .dj_statMap .highcharts-series path {
-  fill: #ccc !important; }
+  /*fill: #ccc !important;*/ }
 

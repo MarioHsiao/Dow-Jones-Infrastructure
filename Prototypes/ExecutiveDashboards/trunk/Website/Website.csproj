@@ -418,6 +418,8 @@
     <Content Include="Content\dashboard.scss" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\gallery.scss" />
+    <Content Include="Content\StatsMap.scss" />
     <None Include="Properties\PublishProfiles\montana.pubxml" />
     <Content Include="Views\Dashboard\_Gallery.cshtml" />
     <Content Include="Views\Home\Test.cshtml" />
