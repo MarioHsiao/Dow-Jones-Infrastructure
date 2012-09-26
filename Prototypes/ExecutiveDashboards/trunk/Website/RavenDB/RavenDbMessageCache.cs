@@ -26,10 +26,7 @@ namespace DowJones.Dash.Website.RavenDB
 
         protected IDocumentSession GetSession()
         {
-            var session = _store.OpenSession();
-            session.Advanced.MaxNumberOfRequestsPerSession = int.MaxValue;
-            session.Advanced.DocumentStore.DisableAggressiveCaching();
-            return session;
+            return _store.OpenSession();
         }
 
 
