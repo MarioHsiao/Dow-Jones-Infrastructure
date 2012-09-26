@@ -83,7 +83,18 @@
     <div class="container-fluid">
         @RenderBody()
     </div>
-
+    <footer class="container-fluid">
+        <div class="row-fluid">
+            <h5 class="pull-left">Welcome to the private beta of Executive Dashboards!</h5>
+            <div class="copyright pull-right">
+                ©@DateTime.Now.Year Factiva, Inc. All rights reserved. <a href="#">Privacy Policy</a><img src="@Url.Content("~/content/images/djFooterLogo.png")" alt="DowJones Logo"/>
+            </div>
+        </div>
+        <div class="row-fluid">
+            <p class="username pull-left">Logged in as: @User.Identity.Name</p>
+            <p class="version pull-right">Version: @MvcApplication.Version.Value (@MvcApplication.AssemblyTimestamp) UTC</p>
+        </div>
+    </footer>
 </body>
 @DJ.ScriptRegistry().Render()
 @DJ.StylesheetRegistry().Render()

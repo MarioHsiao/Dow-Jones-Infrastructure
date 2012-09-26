@@ -4,7 +4,6 @@ a:hover {
 
 body {
   padding-top: 60px;
-  padding-bottom: 40px;
   background-color: #f2f2f2;
   background-repeat: no-repeat;
   background-image: -moz-linear-gradient(#fafafa, #f2f2f2);
@@ -142,4 +141,28 @@ header {
     margin-top: 18px; } }
 .hidden-desktop.hidden-tablet .nav > li > a > img {
   margin-right: 10px; }
+
+footer {
+  background: #2C2C2C;
+  position: relative;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 2345; }
+  footer h5 {
+    color: #999;
+    margin: 0; }
+  footer .copyright {
+    color: #999;
+    padding: 4px 0 0 0; }
+    footer .copyright img {
+      margin-left: 10px; }
+    footer .copyright a {
+      color: #fff;
+      padding-left: 8px; }
+      footer .copyright a:first-child {
+        padding-right: 8px;
+        border-right: solid 1px #999; }
+      footer .copyright a:hover {
+        text-decoration: underline; }
 
