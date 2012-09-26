@@ -5,12 +5,12 @@ using System.Threading.Tasks;
 
 namespace DowJones.Dash.DataSources
 {
-    public abstract class PollingDataSource : DataSource
+    public abstract class PollingDataSource : DataSource, IDisposable
     {
-        public static readonly CancellationTokenSource GlobalCancellationTokenSource = new CancellationTokenSource();
-
         private static readonly Func<int> DefaultPollDelayFactory = 
             () => Convert.ToInt32(ConfigurationManager.AppSettings["DefaultPollDelay"]);
+
+        private readonly CancellationTokenSource _cancellationToken = new CancellationTokenSource();
 
         public int ErrorDelay
         {
@@ -37,28 +37,32 @@ namespace DowJones.Dash.DataSources
         }
 
 
+        public void Dispose()
+        {
+            _cancellationToken.Cancel(false);
+        }
+
         public override void Start()
         {
-            StartNewThread();
+            Task.Factory.StartNew(
+                () => Poll(null), 
+                _cancellationToken.Token
+            );
         }
 
         protected override void OnDataReceived(object data)
         {
             base.OnDataReceived(data);
-            StartNewThread(PollDelay);
+            Poll(PollDelay);
         }
 
         protected override void OnError(Exception ex = null)
         {
             base.OnError(ex);
-            StartNewThread(ErrorDelay);
+            Poll(ErrorDelay);
         }
 
-
-        protected abstract void Poll();
-
-
-        private void StartNewThread(int? delay = null)
+        protected internal void Poll(int? delay)
         {
             if(delay != null)
             {
@@ -68,7 +72,9 @@ namespace DowJones.Dash.DataSources
             }
 
             Log.Debug("Polling for data...");
-            Task.Factory.StartNew(Poll, GlobalCancellationTokenSource.Token);
+            Poll();
         }
+
+        protected abstract void Poll();
     }
 }
