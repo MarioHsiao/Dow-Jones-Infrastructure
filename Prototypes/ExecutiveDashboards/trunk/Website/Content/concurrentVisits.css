@@ -53,6 +53,7 @@
   .dj_pageTimings .pageTimings .time-stamp {
     position: relative;
     top: -7px;
+    margin-left: 3px;
     font-size: 1.5em;
     text-align: center;
     line-height: 1em;
