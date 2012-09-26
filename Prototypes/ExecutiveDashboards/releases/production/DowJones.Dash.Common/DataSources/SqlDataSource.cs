@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Dynamic;
 using System.Linq;
 using DowJones.Infrastructure;
+using log4net;
 
 namespace DowJones.Dash.DataSources
 {
@@ -19,6 +20,12 @@ namespace DowJones.Dash.DataSources
         public string Query { get; protected set; }
 
         public bool Scalar { get; set; }
+
+        protected override ILog Log
+        {
+            get { return _log; }
+        }
+        private static readonly ILog _log = LogManager.GetLogger(typeof(SqlDataSource));
 
         protected SqlDataSource(string name, string connectionString, string query = null, IDictionary<string, object> parameters = null, Func<int> pollDelayFactory = null, Func<int> errorDelayFactory = null)
             : base(name, pollDelayFactory, errorDelayFactory)
@@ -46,10 +53,10 @@ namespace DowJones.Dash.DataSources
                     command.Parameters.AddWithValue(parameter.Key, parameter.Value);
                 }
 
-                Log("Opening connection to {0}...", connection.Database);
+                Log.DebugFormat("Opening connection to {0}...", connection.Database);
                 connection.Open();
 
-                Log("Executing query: {0}", Query);
+                Log.DebugFormat("Executing query: {0}", Query);
                 command.BeginExecuteReader(OnReaderExecuted, command);
             }
             catch (Exception ex)
@@ -60,6 +67,8 @@ namespace DowJones.Dash.DataSources
 
         protected internal void OnReaderExecuted(IAsyncResult result)
         {
+            Log.DebugFormat("Query executed: {0}", Query);
+
             try
             {
                 var command = (SqlCommand)result.AsyncState;
