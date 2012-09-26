@@ -4,14 +4,11 @@ using DowJones.Pages;
 using DowJones.Pages.Layout;
 using DowJones.Pages.Modules;
 using DowJones.Pages.Modules.Templates;
-using log4net;
 
 namespace DowJones.Dash.DataGenerators
 {
     public class PageGenerator
     {
-        private static readonly ILog Log = LogManager.GetLogger(typeof (PageGenerator));
-
         private readonly IScriptModuleTemplateManager _templateManager;
 
         public PageGenerator(IScriptModuleTemplateManager templateManager)
@@ -21,8 +18,6 @@ namespace DowJones.Dash.DataGenerators
 
         public Page GeneratePage(string userId)
         {
-            Log.DebugFormat("Generating new page for {0}", userId);
-
             var templates = _templateManager.GetTemplates();
 
             var moduleId = 0;

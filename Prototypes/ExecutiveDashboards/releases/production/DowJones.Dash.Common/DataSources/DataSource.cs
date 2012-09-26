@@ -1,5 +1,5 @@
 using System;
-using log4net;
+using System.Diagnostics;
 
 namespace DowJones.Dash.DataSources
 {
@@ -33,8 +33,6 @@ namespace DowJones.Dash.DataSources
 
     public abstract class DataSource : IDataSource
     {
-        protected abstract ILog Log { get; }
-
         private readonly string _name;
 
         public event EventHandler<DataReceivedEventArgs> DataReceived;
@@ -62,21 +60,27 @@ namespace DowJones.Dash.DataSources
         {
             if (DataReceived != null && data != null)
             {
-                Log.Debug("Data received");
+                Log("Data received");
                 DataReceived(this, new DataReceivedEventArgs(data));
             }
             else
             {
-                Log.Debug("Data received, but no listeners!");
+                Log("Data received, but no listeners!");
             }
         }
 
         protected virtual void OnError(Exception ex = null)
         {
-            Log.WarnFormat("Data Source {0} Failed: {1}", GetType().Name, ex);
+            Trace.TraceError("{0} Failed: {1}", GetType().Name, ex);
 
             if (Error != null)
                 Error(this, new ErrorEventArgs(ex));
+        }
+
+
+        protected void Log(string format, params object[] args)
+        {
+            Trace.WriteLine(string.Format(format, args), GetType().Name);
         }
     }
 }

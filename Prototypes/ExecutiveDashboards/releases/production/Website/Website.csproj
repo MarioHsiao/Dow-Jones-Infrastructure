@@ -279,7 +279,6 @@
     <Compile Include="App_Start\ScriptModuleTemplatesInitializer.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="App_Start\DataSourcesInitializationTask.cs" />
-    <Compile Include="DataSources.cs" />
     <Compile Include="Dependencies.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
