@@ -58,6 +58,15 @@ namespace DowJones.Dash.DataSources
 
         protected override void OnError(Exception ex = null)
         {
+            // Don't let thread aborts go on forever
+            if (ex is ThreadAbortException || (ex != null && ex.InnerException is ThreadAbortException))
+            {
+                if(_cancellationToken != null && !_cancellationToken.IsCancellationRequested)
+                    _cancellationToken.Cancel(false);
+
+                throw ex;
+            }
+
             base.OnError(ex);
             Poll(ErrorDelay);
         }
