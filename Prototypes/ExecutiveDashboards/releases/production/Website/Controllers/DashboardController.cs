@@ -36,6 +36,8 @@ namespace DowJones.Dash.Website.Controllers
             
             if(page == null)
             {
+                Log.DebugFormat("{0} doesn't have a page - creating one...", username);
+
                 page = _pageGenerator.GeneratePage(username);
                 page.ID = PageRepository.CreatePage(page);
             }
@@ -54,6 +56,8 @@ namespace DowJones.Dash.Website.Controllers
 
             if (page != null)
             {
+                Log.DebugFormat("Reseting {0}'s page", username);
+
                 PageRepository.DeletePage(page.ID);
                 TempData["SuccessMessage"] = "Page reset";
             }
@@ -83,6 +87,9 @@ namespace DowJones.Dash.Website.Controllers
         [Route("dashboard/modules/resize/{state}")]
         public ActionResult ResizeModule(string pageId, int moduleId, ModuleState state)
         {
+            Log.DebugFormat("ResizeModule: {{ pageId: {0}, moduleId: {1}, state: {2} }}", 
+                            pageId, moduleId, state);
+
             var module = PageRepository.GetModule(pageId, moduleId) as ScriptModule;
             module.ModuleState = state;
 
@@ -93,8 +100,10 @@ namespace DowJones.Dash.Website.Controllers
 
         [Route("dashboard/modules/positions")]
         [Route("dashboard/modules/positions/{method}")]
-        public ActionResult UpdateModulePositions()
+        public ActionResult UpdateModulePositions(string pageId)
         {
+            Log.DebugFormat("UpdateModulePositions for page {0}", pageId);
+
             var request = JsonConvert.DeserializeObject<UpdateModulePositionsRequest>(Request.Form[0]);
 
             var groups = request.Columns.Select(x => new ZoneLayout.Zone(x));
@@ -109,6 +118,9 @@ namespace DowJones.Dash.Website.Controllers
         [Route("dashboard/modules/id/{method}")]
         public ActionResult RemoveModule(string pageId, int moduleId)
         {
+            Log.DebugFormat("RemoveModule: {{ pageId: {0}, moduleId: {1} }}",
+                            pageId, moduleId);
+
             return ResizeModule(pageId, moduleId, ModuleState.Hidden);
         }
 

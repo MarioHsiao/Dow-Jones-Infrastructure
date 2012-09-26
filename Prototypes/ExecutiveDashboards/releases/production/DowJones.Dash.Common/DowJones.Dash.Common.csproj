@@ -98,7 +98,6 @@
     <Compile Include="DataGenerators\ScriptModuleTemplatesGenerator.cs" />
     <Compile Include="DataSources\ChartBeatDataSource.cs" />
     <Compile Include="DataSources\DataSource.cs" />
-    <Compile Include="DataSources\DataSourceRepository.cs" />
     <Compile Include="DataSources\GomezDataSource.cs" />
     <Compile Include="DataSources\PollingDataSource.cs" />
     <Compile Include="DataSources\SplunkDataSource.cs" />

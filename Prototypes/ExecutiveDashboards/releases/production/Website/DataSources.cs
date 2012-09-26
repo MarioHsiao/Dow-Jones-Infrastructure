@@ -1,15 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
+using DowJones.Dash.DataSources;
 
-namespace DowJones.Dash.DataSources
+namespace DowJones.Dash.Website
 {
-    public interface IDataSourceRepository
+    public class DataSources : DependencyInjection.DependencyInjectionModule
     {
-        IEnumerable<IDataSource> GetDataSources();
-    }
+        protected override void OnLoad()
+        {
+            var dataSources = GetDataSources();
 
-    public class DataSourceRepository : IDataSourceRepository
-    {
+            foreach (var dataSource in dataSources)
+            {
+                Bind<IDataSource>().ToConstant(dataSource);
+            }
+        }
+
         public IEnumerable<IDataSource> GetDataSources()
         {
             yield return new ChartBeatDataSource("DashboardStats", "/dashapi/stats/");
