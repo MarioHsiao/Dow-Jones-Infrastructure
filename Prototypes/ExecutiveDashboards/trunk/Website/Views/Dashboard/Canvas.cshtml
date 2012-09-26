@@ -75,7 +75,7 @@
         }
         
         function initializeTabs() {
-            $('.trendTabs li').not(':first').find('a')
+            $('.trendTabs li').not(':first').find('a').not('[href=#module-gallery]')
                 .popover({ content: 'Coming soon!', delay: { show: 1000, hide: 1000 } })
                 .click(function () {
                     var self = this;

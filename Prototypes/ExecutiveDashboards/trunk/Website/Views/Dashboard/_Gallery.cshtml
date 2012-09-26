@@ -5,21 +5,29 @@
         <h3>Performance Indicators</h3>
     </div>
     <div class="modal-body">
-        <ul class="unstyled">
-        
+        <table class="table">
+            
         @foreach(var template in Model)
         {
-            <li class="template" data-script-template-id="@template.Id">
-                <strong>@template.Title</strong>
-                <p>@template.Description</p>
-            </li>
+            <tr class="template" data-script-template-id="@template.Id">
+                <td>
+                    <strong>@template.Title</strong>
+                    <p class="muted">@template.Description</p>
+                </td>
+                <td>
+                    <div class="btn-group">
+                        <button class="on btn btn-small">Show</button>
+                        <button class="off btn btn-small">Hide</button>
+                    </div>​
+                </td>
+            </tr>
         }
 
-        </ul>
+        </table>
     </div>
     <div class="modal-footer">
-        <a href="@Url.Action("Reset")" class="btn btn-danger btn-mini pull-left">Reset Page</a>
-        <a href="#" class="btn close" data-dismiss="modal">Close</a>
+        <a href="@Url.Action("Reset")" class="btn btn-danger btn-mini pull-left">Reset All</a>
+        <a href="#" class="btn" data-dismiss="modal">Ok</a>
     </div>
 </section>
 
@@ -27,37 +35,45 @@
     @{ DJ.ScriptRegistry().OnDocumentReady("initializeModuleGallery();"); }
 
     function initializeModuleGallery() {
-        $('.template', '#module-gallery').each(function () {
-            var button = $(this);
-            var templateId = button.data('script-template-id');
+        var templateElements = $('.template', '#module-gallery');
+        
+        templateElements.each(function () {
+            var templateEl = $(this);
+            var templateId = templateEl.data('script-template-id');
             var moduleSelector = '.dj_module[data-script-template-id="' + templateId + '"]';
             var module = $(moduleSelector).findComponent(DJ.UI.AbstractCanvasModule);
 
             var isModuleVisible = function() {
                 return $(module.element).filter(':visible').length != 0;
             };
+            
+            var toggles = $('button', templateEl);
 
-            button.data('syncState', function () {
-                button.toggleClass('muted', isModuleVisible());
+            templateEl.data('syncState', function () {
+                toggles.removeClass('btn-primary');
+
+                var selected = isModuleVisible() ? toggles.filter('.on') : toggles.filter('.off');
+                selected.addClass('btn-primary');
             });
 
-            button.click(function () {
-                var isVisible = isModuleVisible();
 
-                if (isVisible) {
-                    module.hide();
-                }
-                else {
+            toggles.click(function () {
+                var showModule = $(this).hasClass('on');
+
+                if (showModule) {
                     module.maximize();
                 }
+                else {
+                    module.hide();
+                }
                 
-                button.data('syncState')();
+                templateEl.data('syncState')();
             });
         });
 
         $('#module-gallery').modal({ show: false })
             .on('show', function() {
-                $('.template', '#module-gallery').each(function () {
+                templateElements.each(function () {
                     $(this).data('syncState')();
                 });
             });
