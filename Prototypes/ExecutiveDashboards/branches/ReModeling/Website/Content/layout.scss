@@ -110,13 +110,13 @@ header {
       &.main-nav-arrow a {
         background-position: center bottom;
         background-repeat: no-repeat;
-        background-image: url("../images/top-arrow.png");
+        /* background-image: url("../images/top-arrow.png"); */
       }
     }
     &.main-nav-arrow a {
       background-position: center bottom;
       background-repeat: no-repeat;
-      background-image: url("../images/top-arrow.png");
+      /* background-image: url("../images/top-arrow.png");*/
     }
   }
   margin-bottom: 0px;
@@ -173,4 +173,10 @@ header {
     .main-nav .btn-group {
         margin-top: 18px;
     }
+}
+
+.hidden-desktop.hidden-tablet {
+	.nav > li > a > img {
+		margin-right: 10px;
+	}
 }

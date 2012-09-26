@@ -20,7 +20,8 @@ namespace DowJones.Dash.Website.App_Start
             ));
 
 			bundles.Add(new StyleBundle("~/bundles/bootstrap").Include(
-				"~/Content/bootstrap*"
+				"~/Content/bootstrap.css",
+				"~/Content/bootstrap-responsive.css"
 				));
         }
     }

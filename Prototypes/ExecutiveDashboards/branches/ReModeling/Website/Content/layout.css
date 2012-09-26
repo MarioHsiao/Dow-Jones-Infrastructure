@@ -84,11 +84,11 @@ header {
   .main-nav li.active.main-nav-arrow a {
     background-position: center bottom;
     background-repeat: no-repeat;
-    background-image: url("../images/top-arrow.png"); }
+    /* background-image: url("../images/top-arrow.png"); */ }
   .main-nav li.main-nav-arrow a {
     background-position: center bottom;
     background-repeat: no-repeat;
-    background-image: url("../images/top-arrow.png"); }
+    /* background-image: url("../images/top-arrow.png");*/ }
 
 .navbar .nav {
   float: none; }
@@ -140,4 +140,6 @@ header {
 
   .main-nav .btn-group {
     margin-top: 18px; } }
+.hidden-desktop.hidden-tablet .nav > li > a > img {
+  margin-right: 10px; }
 

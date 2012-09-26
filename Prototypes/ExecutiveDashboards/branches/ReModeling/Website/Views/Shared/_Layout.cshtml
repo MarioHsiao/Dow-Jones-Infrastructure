@@ -5,7 +5,7 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>DASH: Executive Dashboard</title>
-    
+
     @Styles.Render("~/bundles/bootstrap")
     <link rel="stylesheet" href="~/content/layout.css" />
 
@@ -14,76 +14,75 @@
     @DJ.ScriptRegistry().RenderHead()
     @Scripts.Render("~/bundles/core")
 
-    <script src="http://use.edgefonts.net/quantico.js"></script>
-    <script src="http://use.edgefonts.net/questrial.js"></script>
     @RenderSection("styles", false)
 </head>
 <body>
-	<header>
-		<a href="#module-gallery" class="cog" role="button" data-toggle="modal" data-original-title=""></a>
-		<h1><a href="@Url.Content("~")">Dash</a></h1>
-	</header>
-    <div class="main-nav-wrapper hidden-phone">
-    <div class="navbar navbar-top main-nav">
+    <header>
+        <a href="#module-gallery" class="cog" role="button" data-toggle="modal" data-original-title="">
+        </a>
+        <h1><a href="@Url.Content("~")">Dash</a></h1>
+    </header>
+
+    <div class="navbar navbar-fixed-top hidden-desktop hidden-tablet">
         <div class="navbar-inner">
-            <div class="container-fluid ">
+            <div class="container-fluid">
                 <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </a>
+                <a class="brand" href="@Url.Content("~")">Dash</a>
 
                 <div class="nav-collapse">
                     <ul class="nav">
-                        <li class="active main-nav-arrow">
-                            <a class="main-menu-link" href="#dash">
-                                <div class="main-nav-icon-big"><img src="~/Content/images/wsj.png" alt="Wall Street Journal: US" /></div>
-                                WSJ
-                            </a>
-                        </li>
-                        <li class="">
-                            <a class="main-menu-link" href="#dash">
-                                <div class="main-nav-icon-big"><img src="~/Content/images/marketwatch.png" alt="Marketwatch" /></div>
-                                Marketwatch
-                            </a>
-                        </li>
-                        <li class="">
-                            <a class="main-menu-link" href="#dash">
-                                <div class="main-nav-icon-big"><img src="~/Content/images/wsj.png" alt="Wall Street Journal: Asia Pacific" /></div>
-                                WSJ: APAC
-                            </a>
+                        <li>
+                             <a href="#"><img src="~/Content/images/wsj.png" alt="Wall Street Journal: US" />WSJ</a>
                         </li>
                         <li>
-                            <a class="main-menu-link" href="#dash">
-                                <div class="main-nav-icon-big"><img src="~/Content/images/wsj.png" alt="Wall Street Journal: Japan" /></div>
-                                WSJ: JP
-                            </a>
+							<a href="#"><img src="~/Content/images/marketwatch.png" alt="Marketwatch" />Marketwatch</a>
                         </li>
-						<li>
-							<a class="main-menu-link" data-filter="sub-menu-calendar" href="#dash">
-								<div class="main-nav-icon-big">
-                                    <img src="~/Content/images/factiva.png" alt="Factiva" /></div>
-								Factiva
-							</a>
-						</li>
                         <li>
-                            <a class="main-menu-link" href="#dash">
-                                <div class="main-nav-icon-big"><img src="~/Content/images/barrons.png" alt="Barrons" /></div>
-                                Barrons
-                            </a>
+                            <a href="#"><img src="~/Content/images/wsj.png" alt="Wall Street Journal: Asia Pacific" />WSJ: APAC</a>
+                        </li>
+                        <li>
+                            <a href="#"><img src="~/Content/images/wsj.png" alt="Wall Street Journal: Japan" />WSJ: JP</a>
+                        </li>
+                        <li>
+                            <a href="#"><img src="~/Content/images/factiva.png" alt="Factiva" />Factiva</a>
+                        </li>
+                        <li>
+                            <a href="#"><img src="~/Content/images/barrons.png" alt="Barrons" />Barrons</a>
                         </li>
                     </ul>
-                </div><!--/.nav-collapse -->
+                </div>
+                <!--/.nav-collapse -->
             </div>
-
         </div>
     </div>
+    <div class="main-nav-wrapper hidden-phone">
+        <div class="navbar navbar-top main-nav">
+            <div class="navbar-inner">
+                <div class="container-fluid ">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
 
-   
-</div>
-	<div class="container-fluid">
-		@RenderBody()
-	</div>
+                    <div class="nav-collapse">
+                        @Html.Partial("_MainNavigation")
+                    </div>
+                    <!--/.nav-collapse -->
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+    <div class="container-fluid">
+        @RenderBody()
+    </div>
 
 </body>
 @DJ.ScriptRegistry().Render()
