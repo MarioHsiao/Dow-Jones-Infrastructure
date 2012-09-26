@@ -6,20 +6,22 @@
     </div>
     <div class="modal-body">
         <table class="table">
-            
+            <colgroup>
+                <col />
+                <col width="50px"/>
+            </colgroup>
+
         @foreach(var template in Model)
         {
             <tr class="template" data-script-template-id="@template.Id">
                 <td>
-                    <strong>@template.Title</strong>
+                    <p class="title">@template.Title</p>
                     <p class="muted">@template.Description</p>
                 </td>
-                <td>
-                    <div class="btn-group">
-                        <button class="on btn btn-small">Show</button>
-                        <button class="off btn btn-small">Hide</button>
-                    </div>​
-                </td>
+                <td class="btn-group">
+                    <button class="on btn btn-small">Show</button>
+                    <button class="off btn btn-small">Hide</button>
+                ​</td>
             </tr>
         }
 
@@ -32,8 +34,6 @@
 </section>
 
 <script type="text/javascript">
-    @{ DJ.ScriptRegistry().OnDocumentReady("initializeModuleGallery();"); }
-
     function initializeModuleGallery() {
         var templateElements = $('.template', '#module-gallery');
         
@@ -41,10 +41,10 @@
             var templateEl = $(this);
             var templateId = templateEl.data('script-template-id');
             var moduleSelector = '.dj_module[data-script-template-id="' + templateId + '"]';
-            var module = $(moduleSelector).findComponent(DJ.UI.AbstractCanvasModule);
+            var moduleEl = $(moduleSelector);
 
             var isModuleVisible = function() {
-                return $(module.element).filter(':visible').length != 0;
+                return moduleEl.filter(':visible').length != 0;
             };
             
             var toggles = $('button', templateEl);
@@ -60,6 +60,7 @@
             toggles.click(function () {
                 var showModule = $(this).hasClass('on');
 
+                var module = moduleEl.findComponent(DJ.UI.AbstractCanvasModule);
                 if (showModule) {
                     module.maximize();
                 }
@@ -78,4 +79,6 @@
                 });
             });
     }
+
+    $(initializeModuleGallery);
 </script>

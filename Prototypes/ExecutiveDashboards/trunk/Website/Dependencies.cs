@@ -41,7 +41,7 @@ namespace DowJones.Dash.Website
 
             Bind<IPageRepository>().To<RavenDbPageRepository>().InRequestScope();
             Bind<IScriptModuleTemplateManager>().To<RavenDbScriptModuleTemplateRepository>().InRequestScope();
-            Bind<IDashboardMessageCache>().To<RavenDbMessageCache>().InSingletonScope();
+            Bind<IDashboardMessageCache>().To<DashboardMessageCache>().InSingletonScope();
         }
     }
 
