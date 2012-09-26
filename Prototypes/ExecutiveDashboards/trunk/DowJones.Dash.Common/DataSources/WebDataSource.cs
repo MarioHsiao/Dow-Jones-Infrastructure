@@ -155,7 +155,7 @@ namespace DowJones.Dash.DataSources
         protected internal override dynamic ParseResponse(Stream stream)
         {
             var json = new StreamReader(stream).ReadToEnd();
-            var data = JsonConvert.DeserializeObject<ExpandoObject>(json);
+            var data = JsonConvert.DeserializeObject<dynamic>(json);
             return data;
         }
     }

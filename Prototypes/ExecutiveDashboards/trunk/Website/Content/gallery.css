@@ -1,4 +1,8 @@
 #module-gallery {
   z-index: 3000;
   text-align: center; }
+  #module-gallery .template:first-child td {
+    border-top: none; }
+  #module-gallery .template .title {
+    font-size: 140%; }
 

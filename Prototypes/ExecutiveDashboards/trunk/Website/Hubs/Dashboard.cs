@@ -10,8 +10,13 @@ namespace DowJones.Dash.Website.Hubs
 {
     public class Dashboard : Hub
     {
-        private static readonly IDashboardMessageCache Cache =
-            DowJones.DependencyInjection.ServiceLocator.Resolve<IDashboardMessageCache>();
+        private static IDashboardMessageCache Cache
+        {
+            get
+            {
+                return DependencyInjection.ServiceLocator.Resolve<IDashboardMessageCache>();
+            }
+        }
 
         public Task<dynamic> Refresh(IEnumerable<string> groups)
         {
