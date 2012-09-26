@@ -107,8 +107,8 @@ DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
                     fillColor: {
                         linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1},
                         stops: [
-                            [0, Highcharts.getOptions().colors[0]],
-                            [1, 'rgba(255,255,255,255)']
+                            [0, "#4183C4"],
+                            [1, Highcharts.Color("#4183C4").brighten(-0.3).get('rgb')] // darken
                         ]
                     },
                     lineWidth: 1,

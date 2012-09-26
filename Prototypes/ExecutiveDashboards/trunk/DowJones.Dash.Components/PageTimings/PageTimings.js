@@ -39,7 +39,8 @@ DJ.UI.PageTimings = DJ.UI.CompositeComponent.extend({
         this._delegates = $.extend(this._delegates, {
             updateTimings: $dj.delegate(this, this._updateTimings),
             updateSparklines: $dj.delegate(this, this._updateSparklines),
-            getColor: $dj.delegate(this, this._getColor)
+            getColor: $dj.delegate(this, this._getColor),
+            getSingleColor: $dj.delegate(this, this._getSingleColor)
         });
     },
 
@@ -139,12 +140,31 @@ DJ.UI.PageTimings = DJ.UI.CompositeComponent.extend({
     
     _getColor: function (num) {
         var self = this,
-          o = self.options;
+         o = self.options;
         var color = Highcharts.getOptions().colors[1];
         if (num <= o.bands.green.max) {
             return Highcharts.getOptions().colors[2];
         } else if (num > o.bands.yellow.min && num < o.bands.yellow.max) {
             return Highcharts.getOptions().colors[5];
+        }
+        return color;
+    },
+    
+    _getSingleColor: function (num) {
+        var self = this,
+          o = self.options;
+        var color = this._parseColor(Highcharts.getOptions().colors[1]);
+        if (num <= o.bands.green.max) {
+            return this._parseColor(Highcharts.getOptions().colors[2]);
+        } else if (num > o.bands.yellow.min && num < o.bands.yellow.max) {
+            return this._parseColor(Highcharts.getOptions().colors[5]);
+        }
+        return color;
+    },
+    
+    _parseColor: function (color) {
+        if ($.isPlainObject(color)) {
+            return color.stops[0][1];
         }
         return color;
     },
@@ -159,7 +179,7 @@ DJ.UI.PageTimings = DJ.UI.CompositeComponent.extend({
                 pageTimings.push({
                     title: data[i].page_name,
                     avg: Highcharts.numberFormat(p, 3) + "s",
-                    color: self._delegates.getColor(p),
+                    color: self._delegates.getSingleColor(p),
                     width: 4
                 });
             }
@@ -175,7 +195,7 @@ DJ.UI.PageTimings = DJ.UI.CompositeComponent.extend({
             var $this = $(this);
             var n = data[j].Avg / 1000;
             $this.html(Highcharts.numberFormat(n, 3) + "s");
-            $this.css({ borderBottom: "solid 4px " + self._delegates.getColor(n) });
+            $this.css({ borderBottom: "solid 4px " + self._delegates.getSingleColor(n) });
         });
     },
     

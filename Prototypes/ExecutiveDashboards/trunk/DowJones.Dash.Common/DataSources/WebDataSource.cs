@@ -6,16 +6,29 @@ using System.Linq;
 using System.Net;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
+using System.Threading.Tasks;
 using System.Web;
 using System.Xml;
 using System.Xml.Linq;
 using DowJones.DependencyInjection;
 using DowJones.Infrastructure;
+using DowJones.Utilities;
 using Newtonsoft.Json;
 using ICredentials = System.Net.ICredentials;
 
 namespace DowJones.Dash.DataSources
 {
+    public static class WebRequestExtensions
+    {
+        public static Task<WebResponse> GetTaskFactoryManagerReponseAsync(this WebRequest request)
+        {
+            return TaskFactoryManager.Instance.GetDefaultTaskFactory().FromAsync<WebResponse>(
+                            request.BeginGetResponse,
+                            request.EndGetResponse,
+                            null);
+        }
+    }
+
     public abstract class WebDataSource : PollingDataSource, IInitializable
     {
         public ICredentials Credentials { get; set; }
@@ -90,7 +103,7 @@ namespace DowJones.Dash.DataSources
                     request.GetRequestStream().Write(postData, 0, contentLength);
                 }
 
-                request.GetResponseAsync()
+                request.GetTaskFactoryManagerReponseAsync()
                        .ContinueWith(task => {
                                try
                                {

@@ -49,10 +49,10 @@
     display: inline-block; }
   .dj_pageTimings .pageTimings .title {
     position: relative;
-    top: -3px; }
+    top: -10px; }
   .dj_pageTimings .pageTimings .time-stamp {
     position: relative;
-    top: -5px;
+    top: -7px;
     font-size: 1.5em;
     text-align: center;
     line-height: 1em;
