@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -153,7 +154,7 @@ namespace DowJones.Dash.DataSources
         protected internal override dynamic ParseResponse(Stream stream)
         {
             var json = new StreamReader(stream).ReadToEnd();
-            var data = JsonConvert.DeserializeObject<dynamic>(json);
+            var data = JsonConvert.DeserializeObject<ExpandoObject>(json);
             return data;
         }
     }

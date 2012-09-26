@@ -2,33 +2,25 @@
 using System.Linq;
 using System.Threading.Tasks;
 using DowJones.Dash.Caching;
+using Newtonsoft.Json;
 using SignalR;
 using SignalR.Hubs;
 
 namespace DowJones.Dash.Website.Hubs
 {
-    public class Dashboard : Hub, IConnected
+    public class Dashboard : Hub
     {
         private static readonly IDashboardMessageCache Cache =
             DowJones.DependencyInjection.ServiceLocator.Resolve<IDashboardMessageCache>();
 
-        public Task Connect()
+        public Task<dynamic> Refresh(IEnumerable<string> groups)
         {
-            return Task.Factory.StartNew(() => PushCachedMessages());
-        }
-
-        public Task Reconnect(IEnumerable<string> groups)
-        {
-            return Task.Factory.StartNew(() => PushCachedMessages(groups));
-        }
-
-        private void PushCachedMessages(IEnumerable<string> groups = null)
-        {
-            var messages = Cache.Get((groups ?? Enumerable.Empty<string>()).ToArray());
-            foreach (var message in messages)
-            {
-                Publish(message, Caller);
-            }
+            return Task.Factory.StartNew(() =>
+                (dynamic)
+                Cache
+                    .Get((groups ?? Enumerable.Empty<string>()).ToArray())
+                    .Select(x => new ClientEvent(x))
+            );
         }
 
         public static void Publish(DashboardMessage message)
@@ -41,10 +33,32 @@ namespace DowJones.Dash.Website.Hubs
 
         private static void Publish(DashboardMessage message, dynamic context)
         {
-            var isError = message is DashboardErrorMessage;
-            var prefix = isError ? "dataError." : "data.";
+            var clientEvent = new ClientEvent(message);
+            context.publish(clientEvent.EventName, clientEvent.Data);
+        }
 
-            context.publish(prefix + message.DataSource, message.Data);
+        class ClientEvent
+        {
+            [JsonProperty("eventName")]
+            public string EventName { get; private set; }
+
+            [JsonProperty("data")]
+            public object Data { get; private set; }
+
+            public ClientEvent(string eventName = null, object data = null)
+            {
+                EventName = eventName;
+                Data = data;
+            }
+
+            public ClientEvent(DashboardMessage message)
+            {
+                Data = message.Data;
+                
+                var isError = message is DashboardErrorMessage;
+                var prefix = isError ? "dataError." : "data.";
+                EventName = prefix + message.DataSource;
+            }
         }
     }
 }
