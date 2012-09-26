@@ -51,6 +51,7 @@ DJ.UI.StatsMap = DJ.UI.Component.extend({
                         fontWeight: 'bold'
                     }
                 },
+                marker: {enabled:false},
                 valueRanges: [{
                     color: '#ddd'
                 }, {

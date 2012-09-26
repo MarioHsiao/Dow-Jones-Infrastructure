@@ -156,12 +156,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ThemeManager.cshtml</DependentUpon>
     </Compile>
-    <Compile Include="PerfGauge\PerfGauge.cs" />
-    <Compile Include="PerfGauge\PerfGaugeComponent.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>PerfGaugeComponent.cshtml</DependentUpon>
-    </Compile>
     <Compile Include="PlatformStats\PlatformStatsComponent.cs">
       <DependentUpon>PlatformStatsComponent.cshtml</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -217,10 +211,6 @@
     <None Include="ThemeManager\ThemeManager.cshtml">
       <Generator>RazorViewComponentClassGenerator</Generator>
       <LastGenOutput>ThemeManager.cs</LastGenOutput>
-    </None>
-    <None Include="PerfGauge\PerfGaugeComponent.cshtml">
-      <Generator>RazorViewComponentClassGenerator</Generator>
-      <LastGenOutput>PerfGaugeComponent.cs</LastGenOutput>
     </None>
     <None Include="PlatformStats\PlatformStatsComponent.cshtml">
       <Generator>RazorViewComponentClassGenerator</Generator>
@@ -328,10 +318,6 @@
     <EmbeddedResource Include="StatsMap\StatsMap.js" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="PerfGauge\ClientTemplates\container.html" />
-    <EmbeddedResource Include="PerfGauge\PerfGauge.js" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="PageTimings\ClientTemplates\success.html" />
   </ItemGroup>
   <ItemGroup>
@@ -362,7 +348,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <EmbeddedResource Include="ThemeManager\ThemeManger.js" />
+    <EmbeddedResource Include="ThemeManager\ThemeManager.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

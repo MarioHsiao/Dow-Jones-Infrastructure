@@ -1,4 +1,5 @@
-﻿@{
+﻿@using DowJones.Dash.Components.Models.ThemeManager
+@{
     ViewBag.Title = "Demo Dashboard";
 }
 
@@ -13,20 +14,26 @@
 
 @section header {
 
-<div class="trendTabsContainer">
-    <div class="container">
-        <ul class="trendTabs">
-            <li class="defaultTab activeTab"><a href="#" title="online.wsj.com">WSJ</a></li>
-            <li class="defaultTab"><a href="javascript:void(0)" title="marketwatch.com">Marketwatch</a></li>
-            <li class="defaultTab"><a href="#dashAlert" title="online.wsj.com">WSJ: APAC</a></li>
-            <li class="defaultTab"><a href="#dashAlert" title="jp.wsj.com">WSJ: JP</a></li>
-            <li class="defaultTab"><a href="#dashAlert" title="factiva.com">Factiva</a></li>
-            <li class="defaultTab"><a href="#dashAlert" title="smartmoney.com">SmartMoney</a></li>
-            <li class="defaultTab"><a href="#dashAlert" title="online.barrons.com">Barrons</a></li>
-            <li class="defaultTab pull-right"><a href="#module-gallery" role="button" data-toggle="modal"><i class="icon-cog icon-white"></i></a></li>
-        </ul>
+    @DJ.Render(new ThemeManagerModel
+        {
+            ID = "TrendManager",
+            Colors = new List<string>(new[] {"#4C0099", "#99CC00", "#3D991f","#FFE21A", "#FF4C33", "#EB0079", "#D4CCC8", "#F2F2F2", "#D4D0C8", "#003366"})
+        })
+
+    <div class="trendTabsContainer">
+        <div class="container">
+            <ul class="trendTabs">
+                <li class="defaultTab activeTab"><a href="#" title="online.wsj.com">WSJ</a></li>
+                <li class="defaultTab"><a href="javascript:void(0)" title="marketwatch.com">Marketwatch</a></li>
+                <li class="defaultTab"><a href="#dashAlert" title="online.wsj.com">WSJ: APAC</a></li>
+                <li class="defaultTab"><a href="#dashAlert" title="jp.wsj.com">WSJ: JP</a></li>
+                <li class="defaultTab"><a href="#dashAlert" title="factiva.com">Factiva</a></li>
+                <li class="defaultTab"><a href="#dashAlert" title="smartmoney.com">SmartMoney</a></li>
+                <li class="defaultTab"><a href="#dashAlert" title="online.barrons.com">Barrons</a></li>
+                <li class="defaultTab pull-right"><a href="#module-gallery" role="button" data-toggle="modal"><i class="icon-cog icon-white"></i></a></li>
+            </ul>
+        </div>
     </div>
-</div>
 
 }
 

@@ -22,10 +22,9 @@ namespace DowJones.Dash.Components.ThemeManager
     using System.Web.UI;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 09/25/2012 05:09 PM
+    // Last Generated Timestamp: 09/25/2012 09:41 PM
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Dash.Components.ThemeManager.ThemeManager.js", DependsOn=new string[] {
-            "highcharts-more",
-            ""}, ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Dash.Components.ThemeManager.ThemeManager))]
+            "highcharts-more"}, ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Dash.Components.ThemeManager.ThemeManager))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.27108")]
     public class ThemeManager : DowJones.Web.Mvc.UI.ViewComponentBase<Models.ThemeManager.ThemeManagerModel>
     {
@@ -38,7 +37,7 @@ namespace DowJones.Dash.Components.ThemeManager
         {
             get
             {
-                return "dj_Sparkline";
+                return "dj_ThemeManager";
             }
         }
         public override void ExecuteTemplate()
@@ -48,7 +47,7 @@ namespace DowJones.Dash.Components.ThemeManager
 
 
    
-    CssClass = "dj_Sparkline";
+    CssClass = "dj_ThemeManager";
 
 
 WriteLiteral("\r\n");
