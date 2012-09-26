@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using DowJones.Dash.Caching;
 using DowJones.Dash.DataSources;
 using DowJones.Dash.Website.Hubs;
@@ -10,19 +11,18 @@ namespace DowJones.Dash.Website.App_Start
     {
         private static readonly ILog Log = LogManager.GetLogger(typeof(DataSourcesInitializationTask));
 
-        private readonly IDataSourceRepository _repository;
+        private readonly IEnumerable<IDataSource> _dataSources;
 
-        public DataSourcesInitializationTask(IDataSourceRepository repository)
+        public DataSourcesInitializationTask(IEnumerable<IDataSource> dataSources)
         {
-            _repository = repository;
+            _dataSources = dataSources;
         }
 
         public void Execute()
         {
             Log.Info("Initializing data sources...");
 
-            var datasources = _repository.GetDataSources();
-            foreach (var dataSource in datasources)
+            foreach (var dataSource in _dataSources)
             {
                 var name = dataSource.Name;
 

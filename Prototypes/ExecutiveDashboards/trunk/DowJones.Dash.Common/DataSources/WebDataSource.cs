@@ -103,6 +103,7 @@ namespace DowJones.Dash.DataSources
                        .ContinueWith(task => {
                                try
                                {
+                                   Log.DebugFormat("Processing response from {0}", Url);
                                    OnResponse(task.Result);
                                }
                                catch (Exception ex)
@@ -117,29 +118,21 @@ namespace DowJones.Dash.DataSources
             }
         }
 
-        protected void OnResponse(WebResponse response)
+        protected virtual void OnResponse(WebResponse response)
         {
-            Log.DebugFormat("OnResponse: {0}", Url);
-
-            try
+            using (var stream = response.GetResponseStream())
             {
-                using (var stream = response.GetResponseStream())
-                {
-                    var data = ParseResponse(stream);
-                    OnDataReceived(data);
-                }
-            }
-            catch (Exception ex)
-            {
-                OnError(ex);
+                var data = ParseResponse(stream);
+                OnDataReceived(data);
             }
         }
 
         protected override void OnError(Exception ex = null)
         {
-            if(ex != null && ex is HttpException)
+            var httpException = ex as HttpException;
+            if (httpException != null)
             {
-                var message = string.Format("HTTP error: {0}", ((HttpException) ex).ErrorCode);
+                var message = string.Format("HTTP error: {0}", httpException.ErrorCode);
                 ex = new ApplicationException(message, ex);
             }
 
