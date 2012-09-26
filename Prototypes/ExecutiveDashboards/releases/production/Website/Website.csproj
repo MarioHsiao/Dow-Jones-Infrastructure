@@ -67,20 +67,20 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\DowJones.Assemblers.3.3.6\lib\DowJones.Assemblers.dll</HintPath>
     </Reference>
-    <Reference Include="DowJones.Infrastructure, Version=3.3.8.45916, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="DowJones.Infrastructure, Version=3.3.10.38595, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\DowJones.Infrastructure.3.3.8\lib\DowJones.Infrastructure.dll</HintPath>
+      <HintPath>..\packages\DowJones.Infrastructure.3.3.10\lib\DowJones.Infrastructure.dll</HintPath>
     </Reference>
-    <Reference Include="DowJones.Pages, Version=3.3.8.45916, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="DowJones.Pages, Version=3.3.10.38595, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\DowJones.Pages.3.3.8\lib\DowJones.Pages.dll</HintPath>
+      <HintPath>..\packages\DowJones.Pages.3.3.10\lib\DowJones.Pages.dll</HintPath>
     </Reference>
     <Reference Include="DowJones.Parallel">
       <HintPath>..\packages\DowJones.Parallel.1.0.0\lib\DowJones.Parallel.dll</HintPath>
     </Reference>
-    <Reference Include="DowJones.Web.Mvc, Version=3.3.8.45916, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="DowJones.Web.Mvc, Version=3.3.10.38595, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\DowJones.Web.Mvc.3.3.8\lib\DowJones.Web.Mvc.dll</HintPath>
+      <HintPath>..\packages\DowJones.Web.Mvc.3.3.10\lib\DowJones.Web.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="DowJones.Web.Mvc.Diagnostics, Version=3.3.6.35649, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -90,21 +90,21 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\DowJones.Web.Mvc.Search.3.3.6\lib\DowJones.Web.Mvc.Search.dll</HintPath>
     </Reference>
-    <Reference Include="DowJones.Web.Mvc.UI.Canvas, Version=3.3.8.45916, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="DowJones.Web.Mvc.UI.Canvas, Version=3.3.10.38595, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\DowJones.Web.Mvc.UI.Canvas.3.3.8\lib\DowJones.Web.Mvc.UI.Canvas.dll</HintPath>
+      <HintPath>..\packages\DowJones.Web.Mvc.UI.Canvas.3.3.10\lib\DowJones.Web.Mvc.UI.Canvas.dll</HintPath>
     </Reference>
     <Reference Include="DowJones.Web.Mvc.UI.Canvas.RavenDb, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\DowJones.Web.Mvc.UI.Canvas.RavenDb.3.3.8\lib\DowJones.Web.Mvc.UI.Canvas.RavenDb.dll</HintPath>
+      <HintPath>..\packages\DowJones.Web.Mvc.UI.Canvas.RavenDb.3.3.10\lib\DowJones.Web.Mvc.UI.Canvas.RavenDb.dll</HintPath>
     </Reference>
-    <Reference Include="DowJones.Web.Mvc.UI.Components, Version=3.3.8.45916, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="DowJones.Web.Mvc.UI.Components, Version=3.3.10.38595, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\DowJones.Web.Mvc.UI.Components.3.3.8\lib\DowJones.Web.Mvc.UI.Components.dll</HintPath>
+      <HintPath>..\packages\DowJones.Web.Mvc.UI.Components.3.3.10\lib\DowJones.Web.Mvc.UI.Components.dll</HintPath>
     </Reference>
     <Reference Include="DowJones.Web.Mvc.UI.Components.Models, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\DowJones.Web.Mvc.UI.Components.Models.3.3.8\lib\DowJones.Web.Mvc.UI.Components.Models.dll</HintPath>
+      <HintPath>..\packages\DowJones.Web.Mvc.UI.Components.Models.3.3.10\lib\DowJones.Web.Mvc.UI.Components.Models.dll</HintPath>
     </Reference>
     <Reference Include="Elmah">
       <HintPath>..\packages\elmah.corelibrary.1.2.2\lib\Elmah.dll</HintPath>
@@ -287,7 +287,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Hubs\Dashboard.cs" />
+    <Compile Include="RavenDB\RavenDbDashboardMessageCache.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RavenDB\RavenDbDocumentStoreFactory.cs" />
     <Compile Include="Views\Dashboard\DashCanvas.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -308,6 +310,9 @@
     </Content>
     <Content Include="Content\dashboard.css">
       <DependentUpon>dashboard.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\gallery.css">
+      <DependentUpon>gallery.scss</DependentUpon>
     </Content>
     <Content Include="Content\images\browser-sprites.png" />
     <Content Include="Content\images\dash.png">
@@ -336,7 +341,6 @@
     <Content Include="Content\images\tabSeparator.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <EmbeddedResource Include="Content\images\world_map.png" />
     <Content Include="Content\layout.css">
       <DependentUpon>layout.scss</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -414,9 +418,11 @@
     <Content Include="Content\dashboard.scss" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\gallery.scss" />
     <Content Include="Content\StatsMap.scss" />
-    <None Include="Properties\PublishProfiles\local.pubxml" />
     <None Include="Properties\PublishProfiles\montana.pubxml" />
+    <Content Include="Views\Dashboard\_Gallery.cshtml" />
+    <Content Include="Views\Home\Test.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

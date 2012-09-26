@@ -9,13 +9,19 @@ DJ.UI.Sparkline = DJ.UI.Component.extend({
     defaults: {
         debug: false,
         cssClass: 'Sparkline',
+        type: 0,
         baselineSeriesColor: Highcharts.getOptions().colors[0],
         seriesColorForDecrease: Highcharts.getOptions().colors[1],
-        seriesColorForIncrease: Highcharts.getOptions().colors[2]
+        seriesColorForIncrease: Highcharts.getOptions().colors[2],
+    },
+    
+    sparklineType: {
+        line: 0,
+        column: 1
     },
 
     eventNames: {
-        pillClicked: 'pillClick.dj.Sparkline'
+        clicked: 'click.dj.Sparkline'
     },
     
     init: function (element, meta) {
@@ -28,29 +34,100 @@ DJ.UI.Sparkline = DJ.UI.Component.extend({
 
     _initializeDelegates: function () {
         $.extend(this._delegates, {
-            OnPillClicked: $dj.delegate(this, this._onPillClicked)
+            clicked: $dj.delegate(this, this._clicked)
         });
     },
 
     _initializeEventHandlers: function () {
-        this.$element.click(this._delegates.OnPillClicked);
     },
 
     _initializeElements: function () {
     },
 
-    _onPillClicked: function (evt) {
-        var self = this;
+    _clicked: function (evt) {
+        var self = this,
+            o = self.options;
+        if (o.click && $.isFunction(o.click)) {
+            o.click(evt);
+            return;
+        }
+        self.publish(self.eventNames.clicked, evt);
     },
 
-    initializeGraphOptions: function (chartContainer, seriesData, seriesColor) {
+    initializeColumnGraphOptions: function (chartContainer, seriesData) {
+        var self = this,
+            o = self.options;
+
+        var sparklineChartConfig = {
+            chart: {
+                renderTo: 'container',
+                defaultSeriesType: 'column',
+                backgroundColor: 'transparent',
+                margin: [0,0,0,0],
+                borderRadius: 0
+            },
+            title: {
+                text: ''
+            },
+            credits: {
+                enabled: false
+            },
+            xAxis: {
+                labels: {
+                    enabled: false
+                }
+            },
+            yAxis: {
+                max: Math.ceil(o.max + (o.max * .001)),
+                min: Math.floor(o.min - (o.min * .001)),
+                gridLineWidth: 0,
+                startOnTick: false,
+                endOnTick: false,
+                labels: {
+                    enabled: false
+                }
+            },
+            legend: {
+                enabled: false
+            },
+            tooltip: {
+                enabled: false
+            },
+            plotOptions: {
+                series: {
+                    cursor: 'pointer',
+                    pointPadding: .1,
+                    groupPadding: .1,
+                    borderWidth: 0,
+                    events: {
+                        click: self._delegates.clicked
+                    }
+                }
+            },
+            series: [{
+                shadow: false,
+                type: 'column',
+                id: 'sparkline',
+                name: 'sparkline'
+            }]
+        };
+
+        return $.extend(true, {}, sparklineChartConfig, {
+            chart: {
+                renderTo: chartContainer
+            },
+            series: seriesData
+        });
+    },
+
+    initializeHistogramGraphOptions: function (chartContainer, seriesData, seriesColor) {
 
         var self = this,
             o = self.options;
         var sparklineChartConfig = {
             chart: {
                 renderTo: 'container',
-                defaultSeriesType: 'area',
+                defaultSeriesType: 'areaspline',
                 backgroundColor: 'transparent',
                 margin: [0, 0, 0, 0]
                 //borderWidth:1
@@ -115,7 +192,6 @@ DJ.UI.Sparkline = DJ.UI.Component.extend({
                 type: 'areaspline',
                 id: 'sparkline',
                 name: 'sparkline'
-                
             }]
         };
 
@@ -127,7 +203,7 @@ DJ.UI.Sparkline = DJ.UI.Component.extend({
             chart: {
                 renderTo: chartContainer,
                 events: {
-                    click: self._delegates.OnPillClicked
+                    click: self._delegates.clicked
                 }
             },
             series: seriesData
@@ -148,13 +224,7 @@ DJ.UI.Sparkline = DJ.UI.Component.extend({
 
         return [{
             // fillColor:( o.seriesFillColor || 'rgba(204,204,204,.25)'),
-            data: dataSeries,
-            // cursor: 'pointer', // removed by RE, fixes DJIMS Issue 40587
-            point: {
-                events: {
-                    click: this._delegates.OnPillClicked
-                }
-            }
+            data: dataSeries
         }];
     },
 
@@ -189,24 +259,22 @@ DJ.UI.Sparkline = DJ.UI.Component.extend({
         if (self.data) {
             self.$element.html(self.templates.layout({ data: self.data }));
             var chartContainer = el.find('.dj_sparkline-container'),
-                graphDataModel = self.mapData(),
                 chartOptions;
 
-            if (graphDataModel.length > 0) {
+            if (self.data &&
+                self.data.values &&
+                self.data.values.length > 0)  {
 
-                switch (self.data.status) {
-                    case 1:
-                        chartOptions = self.initializeGraphOptions(chartContainer[0], graphDataModel, o.seriesColorForIncrease);
-                        el.addClass("increase");
+                switch(o.type) {
+                    case self.sparklineType.line:
+                        graphDataModel = self.mapData();
+                        chartOptions = self.initializeHistogramGraphOptions(chartContainer[0], graphDataModel, o.baselineSeriesColor);
                         break;
-                    case 2:
-                        chartOptions = self.initializeGraphOptions(chartContainer[0], graphDataModel, o.seriesColorForDecrease);
-                        el.addClass("decrease");
+                    case self.sparklineType.column:
+                        graphDataModel = self.mapData();
+                        chartOptions = self.initializeColumnGraphOptions(chartContainer[0], graphDataModel);
                         break;
-                    default:
-                        chartOptions = self.initializeGraphOptions(chartContainer[0], graphDataModel, o.baselineSeriesColor);
-                        break;
-                }
+                }        
                 // bind events if necessary
                 this.showSparklineControl(chartOptions);
             }

@@ -4,10 +4,12 @@ using System.Web.Mvc;
 using DowJones.Dash.DataGenerators;
 using DowJones.Pages.Common;
 using DowJones.Pages.Modules;
+using DowJones.Pages.Modules.Templates;
 using DowJones.Web.Mvc.Routing;
 using DowJones.Web.Mvc.UI.Canvas;
 using DowJones.Web.Mvc.UI.Canvas.Controllers;
 using Newtonsoft.Json;
+using ModuleState = DowJones.Pages.Modules.ModuleState;
 using ZoneLayout = DowJones.Pages.Layout.ZoneLayout;
 
 namespace DowJones.Dash.Website.Controllers
@@ -15,18 +17,12 @@ namespace DowJones.Dash.Website.Controllers
     public class DashboardController : PagesControllerBase
     {
         private readonly PageGenerator _pageGenerator;
+        private readonly IScriptModuleTemplateManager _templateManager;
 
-        public DashboardController(PageGenerator pageGenerator)
+        public DashboardController(PageGenerator pageGenerator, IScriptModuleTemplateManager templateManager)
         {
             _pageGenerator = pageGenerator;
-        }
-
-        protected override void OnActionExecuted(ActionExecutedContext filterContext)
-        {
-            // Initialize SignalR
-            ScriptRegistry.OnDocumentReady(@"
-                $.connection.dashboard.publish = DJ.publish;
-                $.connection.hub.start();");
+            _templateManager = templateManager;
         }
 
         [Authorize]
@@ -65,6 +61,16 @@ namespace DowJones.Dash.Website.Controllers
             return RedirectToAction("Index");
         }
 
+        [OutputCache(Duration = 36000)]
+        public ActionResult Gallery(string pageId)
+        {
+            var templates = _templateManager.GetTemplates()
+                        .OrderBy(x => x.Title)
+                        .ToArray();
+
+            return PartialView("_Gallery", templates);
+        }
+
 
         #region Canvas "Services"
 
@@ -75,7 +81,7 @@ namespace DowJones.Dash.Website.Controllers
         }
 
         [Route("dashboard/modules/resize/{state}")]
-        public ActionResult ResizeModule(string pageId, int moduleId, DowJones.Pages.Modules.ModuleState state)
+        public ActionResult ResizeModule(string pageId, int moduleId, ModuleState state)
         {
             var module = PageRepository.GetModule(pageId, moduleId) as ScriptModule;
             module.ModuleState = state;
@@ -103,9 +109,7 @@ namespace DowJones.Dash.Website.Controllers
         [Route("dashboard/modules/id/{method}")]
         public ActionResult RemoveModule(string pageId, int moduleId)
         {
-            PageRepository.RemoveModulesFromPage(pageId, moduleId);
-
-            return new HttpStatusCodeResult(200);
+            return ResizeModule(pageId, moduleId, ModuleState.Hidden);
         }
 
         #endregion

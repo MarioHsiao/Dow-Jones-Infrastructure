@@ -41,13 +41,25 @@
     text-align: center;
     width: 200px; }
 
-.pageTimings .time-stamp {
-  font-size: 1.5em;
-  text-align: center;
-  line-height: 1em;
-  color: #333;
-  font-weight: bold;
-  text-shadow: 0 1px 0 #cccccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbbbbb; }
+.dj_pageTimings .pageTimings {
+  margin-top: 10px; }
+  .dj_pageTimings .pageTimings .dj_sparkline-container {
+    height: 20px;
+    width: 57px;
+    display: inline-block; }
+  .dj_pageTimings .pageTimings .title {
+    position: relative;
+    top: -10px; }
+  .dj_pageTimings .pageTimings .time-stamp {
+    position: relative;
+    top: -7px;
+    margin-left: 3px;
+    font-size: 1.5em;
+    text-align: center;
+    line-height: 1em;
+    color: #333;
+    font-weight: bold;
+    text-shadow: 0 1px 0 #cccccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbbbbb; }
 
 .newGauge .dj_DashGaugeChart, .writeGauge .dj_DashGaugeChart, .readGauge .dj_DashGaugeChart, .idleGauge .dj_DashGaugeChart {
   width: 100px;

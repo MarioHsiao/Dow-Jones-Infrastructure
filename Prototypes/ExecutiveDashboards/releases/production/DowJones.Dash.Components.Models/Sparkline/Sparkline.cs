@@ -18,9 +18,7 @@ namespace DowJones.Dash.Components.Models.Sparkline
 
     public class SparklineModel : ViewComponentModel
     {
-        public SparklineModel()
-        {
-           
-        }
+        [ClientData("data")]
+        public SparklineResult Data { get; set; }
     }
 }

@@ -107,8 +107,8 @@ DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
                     fillColor: {
                         linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1},
                         stops: [
-                            [0, Highcharts.getOptions().colors[0]],
-                            [1, 'rgba(255,255,255,255)']
+                            [0, "#4183C4"],
+                            [1, Highcharts.Color("#CCC").brighten(-0.3).get('rgb')] // darken
                         ]
                     },
                     lineWidth: 1,
@@ -121,7 +121,7 @@ DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
                             enabled: false
                         }
                     },
-                    pointInterval: 5 * 60 * 1000,
+                    pointInterval: 30 * 60 * 1000,
                     pointStart: startDate
                 },
                 spline: {
@@ -134,7 +134,7 @@ DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
                             enabled: false
                         }
                     },
-                    pointInterval: 5 * 60 * 1000,
+                    pointInterval: 30 * 60 * 1000,
                     pointStart: startDate
                 }
             },

@@ -1,6 +1,8 @@
+using DowJones.Dash.Caching;
 using DowJones.Dash.DataSources;
 using DowJones.Dash.Website.Hubs;
 using DowJones.Infrastructure;
+using log4net;
 
 namespace DowJones.Dash.Website.App_Start
 {
@@ -21,13 +23,12 @@ namespace DowJones.Dash.Website.App_Start
                 var name = dataSource.Name;
 
                 dataSource.DataReceived += (sender, args) =>
-                    Dashboard.Publish("data." + name, args.Data);
+                    Dashboard.Publish(new DashboardMessage(name, args.Data));
 
-                dataSource.Error += (sender, args) =>
-                    Dashboard.Publish(
-                        "dataError." + name, 
-                        args.Exception == null ? "Unknown error" : args.Exception.Message
-                    );
+                dataSource.Error += (sender, args) => {
+                    LogManager.GetLogger(sender.GetType()).Warn("Error retriving data", args.Exception);
+                    Dashboard.Publish(new DashboardErrorMessage(name, args.Exception));
+                };
                 
                 dataSource.Start();
             }

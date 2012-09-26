@@ -44,12 +44,13 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DowJones.Infrastructure, Version=3.3.8.45916, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="DowJones.Infrastructure, Version=3.3.10.38595, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\DowJones.Infrastructure.3.3.8\lib\DowJones.Infrastructure.dll</HintPath>
+      <HintPath>..\packages\DowJones.Infrastructure.3.3.10\lib\DowJones.Infrastructure.dll</HintPath>
     </Reference>
-    <Reference Include="DowJones.Pages">
-      <HintPath>..\packages\DowJones.Pages.3.3.8\lib\DowJones.Pages.dll</HintPath>
+    <Reference Include="DowJones.Pages, Version=3.3.10.38595, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DowJones.Pages.3.3.10\lib\DowJones.Pages.dll</HintPath>
     </Reference>
     <Reference Include="DowJones.Parallel">
       <HintPath>..\packages\DowJones.Parallel.1.0.0\lib\DowJones.Parallel.dll</HintPath>
@@ -89,6 +90,10 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Caching\DashboardErrorMessage.cs" />
+    <Compile Include="Caching\DashboardMessage.cs" />
+    <Compile Include="Caching\DashboardMessageCache.cs" />
+    <Compile Include="Caching\IDashboardMessageCache.cs" />
     <Compile Include="DataGenerators\PageGenerator.cs" />
     <Compile Include="DataGenerators\ScriptModuleTemplatesGenerator.cs" />
     <Compile Include="DataSources\ChartBeatDataSource.cs" />

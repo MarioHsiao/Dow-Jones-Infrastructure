@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace DowJones.Dash.DataSources
 {
@@ -14,14 +15,14 @@ namespace DowJones.Dash.DataSources
             yield return new ChartBeatDataSource("DashboardStats", "/dashapi/stats/");
             yield return new ChartBeatDataSource("HistorialTrafficSeries", "/historical/traffic/series/", 
                 parameters: new Dictionary<string, object> {
-                        { "frequency", "5" }
-                    });
+                        { "frequency", "30" }
+                    }) { PollDelay = (int)TimeSpan.FromMinutes(3).TotalSeconds };
             yield return new ChartBeatDataSource("HistorialTrafficSeriesWeekAgo", "/historical/traffic/series/", 
                 parameters: new Dictionary<string, object> {
-                        {"frequency", "5"},
+                        {"frequency", "30"},
                         {"days_ago", "7"},
                         {"limit", "288"},
-                    });
+                    }) { PollDelay = (int)TimeSpan.FromMinutes(3).TotalSeconds };
             yield return new ChartBeatDataSource("HistoricalTrafficStats", "/historical/traffic/stats/",
                 parameters: new Dictionary<string, object> {
                         {"fields", "srvload,people,srvload"},
@@ -63,9 +64,9 @@ namespace DowJones.Dash.DataSources
                 parameters: new Dictionary<string, object> {
                         {"seconds", 300},
                     });
-			yield return new GomezDataSource("PageLoadDetailsByCityForUS", @"[SplunkExport].[dbo].[GetPageLoadDetailsByCityForUS]",
+			yield return new GomezDataSource("PageLoadDetailsBySubCountryforCountry", @"[SplunkExport].[dbo].[GetPageLoadDetailsBySubCountryforCountry]",
 				parameters: new Dictionary<string, object> {
-                        {"seconds", 600},
+                        {"country", 223},{"seconds", 600},
                     });
         }
     }

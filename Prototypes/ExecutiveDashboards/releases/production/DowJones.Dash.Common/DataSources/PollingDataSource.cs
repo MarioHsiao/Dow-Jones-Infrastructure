@@ -7,6 +7,8 @@ namespace DowJones.Dash.DataSources
 {
     public abstract class PollingDataSource : DataSource
     {
+        public static readonly CancellationTokenSource GlobalCancellationTokenSource = new CancellationTokenSource();
+
         private static readonly Func<int> DefaultPollDelayFactory = 
             () => Convert.ToInt32(ConfigurationManager.AppSettings["DefaultPollDelay"]);
 
@@ -66,7 +68,7 @@ namespace DowJones.Dash.DataSources
             }
 
             Log("Polling for data...");
-            Task.Factory.StartNew(Poll);
+            Task.Factory.StartNew(Poll, GlobalCancellationTokenSource.Token);
         }
     }
 }

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -15,6 +16,7 @@ using ICredentials = System.Net.ICredentials;
 
 namespace DowJones.Dash.DataSources
 {
+    
     public abstract class WebDataSource : PollingDataSource, IInitializable
     {
         public ICredentials Credentials { get; set; }

@@ -9,6 +9,11 @@ namespace DowJones.Dash.Website.Controllers
             return View();
         }
 
+		public ActionResult Test()
+		{
+			return View();
+		}
+
         public ActionResult Data()
         {
             return View();
