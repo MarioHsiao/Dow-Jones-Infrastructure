@@ -12,6 +12,7 @@ using System.Xml.Linq;
 using DowJones.DependencyInjection;
 using DowJones.Infrastructure;
 using Newtonsoft.Json;
+using log4net;
 using ICredentials = System.Net.ICredentials;
 
 namespace DowJones.Dash.DataSources
@@ -19,14 +20,18 @@ namespace DowJones.Dash.DataSources
     
     public abstract class WebDataSource : PollingDataSource, IInitializable
     {
+        private string _method;
         public ICredentials Credentials { get; set; }
 
-        public string Method { get; set; }
+        public string Method
+        {
+            get { return _method; }
+            set { _method = (value ?? string.Empty).ToUpper(); }
+        }
 
         public IDictionary<string, object> Parameters { get; private set; }
 
         public string Path { get; private set; }
-
 
         public string Url
         {
@@ -38,6 +43,7 @@ namespace DowJones.Dash.DataSources
                 return Path;
             }
         }
+
 
         public WebDataSource(string name, string path, IDictionary<string, object> parameters = null, Func<int> pollDelayFactory = null, Func<int> errorDelayFactory = null)
             : base(name, pollDelayFactory, errorDelayFactory)
@@ -70,11 +76,10 @@ namespace DowJones.Dash.DataSources
         {
             try
             {
-                Log("Polling {0}...", Url);
+                Log.DebugFormat("{0} {1}", Method, Url);
 
                 var request = WebRequest.Create(Url);
-
-                request.Method = Method.ToUpper();
+                request.Method = Method;
 
                 if (Credentials != null)
                 {
@@ -82,9 +87,12 @@ namespace DowJones.Dash.DataSources
                     request.PreAuthenticate = true;
                 }
 
-                if (request.Method == "POST")
+                if (Method == "POST")
                 {
                     var parameters = SerializeParameters();
+
+                    Log.DebugFormat("Parameters: {0}", parameters);
+
                     var postData = Encoding.UTF8.GetBytes(parameters);
                     var contentLength = postData.Length;
                     request.ContentLength = contentLength;
@@ -111,6 +119,8 @@ namespace DowJones.Dash.DataSources
 
         protected void OnResponse(WebResponse response)
         {
+            Log.DebugFormat("OnResponse: {0}", Url);
+
             try
             {
                 using (var stream = response.GetResponseStream())
@@ -147,6 +157,12 @@ namespace DowJones.Dash.DataSources
 
     public class JsonWebDataSource : WebDataSource
     {
+        protected override ILog Log
+        {
+            get { return _log; }
+        }
+        private static readonly ILog _log = LogManager.GetLogger(typeof(JsonWebDataSource));
+
         public JsonWebDataSource(string name, string path, IDictionary<string, object> parameters = null, Func<int> pollDelayFactory = null, Func<int> errorDelayFactory = null)
             : base(name, path, parameters, pollDelayFactory, errorDelayFactory)
         {
@@ -162,6 +178,12 @@ namespace DowJones.Dash.DataSources
 
     public class XmlWebDataSource : WebDataSource
     {
+        protected override ILog Log
+        {
+            get { return _log; }
+        }
+        private static readonly ILog _log = LogManager.GetLogger(typeof(XmlWebDataSource));
+
         public XmlWebDataSource(string name, string path, IDictionary<string, object> parameters = null, Func<int> pollDelayFactory = null, Func<int> errorDelayFactory = null)
             : base(name, path, parameters, pollDelayFactory, errorDelayFactory)
         {

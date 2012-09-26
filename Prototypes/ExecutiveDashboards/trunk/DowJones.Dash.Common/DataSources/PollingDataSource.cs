@@ -62,12 +62,12 @@ namespace DowJones.Dash.DataSources
         {
             if(delay != null)
             {
-                Log("Waiting for {0} seconds...", delay);
+                Log.DebugFormat("Waiting for {0} seconds...", delay);
 
                 Thread.Sleep(delay.Value * 1000);
             }
 
-            Log("Polling for data...");
+            Log.Debug("Polling for data...");
             Task.Factory.StartNew(Poll, GlobalCancellationTokenSource.Token);
         }
     }

@@ -2,11 +2,14 @@
 using DowJones.Dash.DataGenerators;
 using DowJones.Infrastructure;
 using DowJones.Pages.Modules.Templates;
+using log4net;
 
 namespace DowJones.Dash.Website.App_Start
 {
     public class ScriptModuleTemplatesInitializer : IBootstrapperTask
     {
+        private static readonly ILog Log = LogManager.GetLogger(typeof(ScriptModuleTemplatesInitializer));
+
         private readonly IScriptModuleTemplateManager _templateManager;
         private readonly ScriptModuleTemplatesGenerator _templatesGenerator;
 
@@ -21,6 +24,8 @@ namespace DowJones.Dash.Website.App_Start
 
         public void Execute()
         {
+            Log.Info("Initializing script module templates...");
+
             var existingTemplates = _templateManager.GetTemplates();
             var generatedTemplates = _templatesGenerator.GenerateScripModuleTemplates();
 
@@ -36,7 +41,10 @@ namespace DowJones.Dash.Website.App_Start
             foreach (var template in templatesToAdd)
             {
                 _templateManager.CreateTemplate(template);
+                Log.InfoFormat("Added {0}", template.Title);
             }
+
+            Log.Info("Script module templates initialized.");
         }
     }
 }

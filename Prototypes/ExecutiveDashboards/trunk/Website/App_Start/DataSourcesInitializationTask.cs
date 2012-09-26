@@ -8,6 +8,8 @@ namespace DowJones.Dash.Website.App_Start
 {
     public class DataSourcesInitializationTask : IBootstrapperTask
     {
+        private static readonly ILog Log = LogManager.GetLogger(typeof(DataSourcesInitializationTask));
+
         private readonly IDataSourceRepository _repository;
 
         public DataSourcesInitializationTask(IDataSourceRepository repository)
@@ -17,6 +19,8 @@ namespace DowJones.Dash.Website.App_Start
 
         public void Execute()
         {
+            Log.Info("Initializing data sources...");
+
             var datasources = _repository.GetDataSources();
             foreach (var dataSource in datasources)
             {
@@ -31,7 +35,11 @@ namespace DowJones.Dash.Website.App_Start
                 };
                 
                 dataSource.Start();
+
+                Log.DebugFormat("Started {0}", dataSource.GetType().Name);
             }
+
+            Log.Info("Data sources initialized.");
         }
     }
 }
