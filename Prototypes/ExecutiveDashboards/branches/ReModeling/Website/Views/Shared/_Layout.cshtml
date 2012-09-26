@@ -5,66 +5,86 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>DASH: Executive Dashboard</title>
-
+    
+    @Styles.Render("~/bundles/bootstrap")
     <link rel="stylesheet" href="~/content/layout.css" />
-	<link rel="stylesheet" href="~/content/bootstrap-responsive.css" />
-	<link rel="stylesheet" href="~/content/perfGauge.css" />
+
+    <link rel="stylesheet" href="~/content/perfGauge.css" />
     <link rel="stylesheet" href="~/content/statsMap.css" />
     @DJ.ScriptRegistry().RenderHead()
     @Scripts.Render("~/bundles/core")
-    
+
     <script src="http://use.edgefonts.net/quantico.js"></script>
-	<script src="http://use.edgefonts.net/questrial.js"></script>
+    <script src="http://use.edgefonts.net/questrial.js"></script>
     @RenderSection("styles", false)
 </head>
 <body>
-    <div class="headerNav">
-        <div class="headBar">
-            <div class="container">
-                <div class="brand">
-                    <a href="@Url.Content("~/")" class="logo">Dash</a>
-                    <h4 class="tagline">Executive Dashboards</h4>
-                </div>
+	<header>
+		<a href="#module-gallery" class="cog" role="button" data-toggle="modal" data-original-title=""></a>
+		<h1><a href="@Url.Content("~")">Dash</a></h1>
+	</header>
+    <div class="main-nav-wrapper hidden-phone">
+    <div class="navbar navbar-top main-nav">
+        <div class="navbar-inner">
+            <div class="container-fluid ">
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
+
+                <div class="nav-collapse">
+                    <ul class="nav">
+                        <li class="active main-nav-arrow">
+                            <a class="main-menu-link" href="#dash">
+                                <div class="main-nav-icon-big"><img src="~/Content/images/wsj.png" alt="Wall Street Journal: US" /></div>
+                                WSJ
+                            </a>
+                        </li>
+                        <li class="">
+                            <a class="main-menu-link" href="#dash">
+                                <div class="main-nav-icon-big"><img src="~/Content/images/marketwatch.png" alt="Marketwatch" /></div>
+                                Marketwatch
+                            </a>
+                        </li>
+                        <li class="">
+                            <a class="main-menu-link" href="#dash">
+                                <div class="main-nav-icon-big"><img src="~/Content/images/wsj.png" alt="Wall Street Journal: Asia Pacific" /></div>
+                                WSJ: APAC
+                            </a>
+                        </li>
+                        <li>
+                            <a class="main-menu-link" href="#dash">
+                                <div class="main-nav-icon-big"><img src="~/Content/images/wsj.png" alt="Wall Street Journal: Japan" /></div>
+                                WSJ: JP
+                            </a>
+                        </li>
+						<li>
+							<a class="main-menu-link" data-filter="sub-menu-calendar" href="#dash">
+								<div class="main-nav-icon-big">
+                                    <img src="~/Content/images/factiva.png" alt="Factiva" /></div>
+								Factiva
+							</a>
+						</li>
+                        <li>
+                            <a class="main-menu-link" href="#dash">
+                                <div class="main-nav-icon-big"><img src="~/Content/images/barrons.png" alt="Barrons" /></div>
+                                Barrons
+                            </a>
+                        </li>
+                    </ul>
+                </div><!--/.nav-collapse -->
             </div>
-        </div>
-    </div>
-    
-    @RenderSection("header", false)
 
-    <div class="bodyContent">
-        <div class="container">
-            @RenderBody()
         </div>
     </div>
 
-    <footer class="">
-        <div class="container">
-            <h5>Welcome to the private beta of Executive Dashboards!</h5>
-            <div class="copyright">
-                ©@DateTime.Now.Year Factiva, Inc. All rights reserved. <a href="#">Privacy Policy</a>
-            </div>
-        </div>
-        <div class="container">
-            <span class="username pull-left">Logged in as: @User.Identity.Name</span>
-            <span class="version pull-right">Version: @MvcApplication.Version.Value (@MvcApplication.AssemblyTimestamp
-                UTC)</span>
+   
+</div>
+	<div class="container-fluid">
+		@RenderBody()
+	</div>
 
-        </div>
-    </footer>
-
-    <div class="modal hide fade" id="dashAlertModal" tabindex="-1" role="dialog" aria-labelledby="dashAlertModalLabel"
-        aria-hidden="true" data-backdrop="static" data-keyboard="true">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            <h3 id="dashAlertModalLabel">Alert</h3>
-        </div>
-        <div class="modal-body">
-            <p></p>
-        </div>
-        <div class="modal-footer">
-            <button class="btn" data-dismiss="modal" aria-hidden="true">Ok</button>
-        </div>
-    </div>
 </body>
 @DJ.ScriptRegistry().Render()
 @DJ.StylesheetRegistry().Render()
