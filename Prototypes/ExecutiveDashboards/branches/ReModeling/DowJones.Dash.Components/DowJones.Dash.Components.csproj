@@ -1,0 +1,361 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{973B633A-E26B-4990-BF22-95847CDB1B40}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DowJones.Dash.Components</RootNamespace>
+    <AssemblyName>DowJones.Dash.Components</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DashDev|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\DashDev\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DowJones.Infrastructure, Version=3.3.10.38595, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DowJones.Infrastructure.3.3.10\lib\DowJones.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="DowJones.Parallel">
+      <HintPath>..\packages\DowJones.Parallel.1.0.0\lib\DowJones.Parallel.dll</HintPath>
+    </Reference>
+    <Reference Include="DowJones.Web.Mvc, Version=3.3.10.38595, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DowJones.Web.Mvc.3.3.10\lib\DowJones.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="DowJones.Web.Mvc.Search, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DowJones.Web.Mvc.Search.3.3.10\lib\DowJones.Web.Mvc.Search.dll</HintPath>
+    </Reference>
+    <Reference Include="DowJones.Web.Mvc.UI.Components, Version=3.3.10.38595, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DowJones.Web.Mvc.UI.Components.3.3.10\lib\DowJones.Web.Mvc.UI.Components.dll</HintPath>
+    </Reference>
+    <Reference Include="DowJones.Web.Mvc.UI.Components.Models, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DowJones.Web.Mvc.UI.Components.Models.3.3.10\lib\DowJones.Web.Mvc.UI.Components.Models.dll</HintPath>
+    </Reference>
+    <Reference Include="factiva.gateway.messages">
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.93\lib\factiva.gateway.messages.dll</HintPath>
+    </Reference>
+    <Reference Include="FactivaGateway">
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.93\lib\FactivaGateway.dll</HintPath>
+    </Reference>
+    <Reference Include="Hammock">
+      <HintPath>..\packages\Hammock.1.2.9\lib\4.0\Hammock.dll</HintPath>
+    </Reference>
+    <Reference Include="Hammock.ClientProfile">
+      <HintPath>..\packages\Hammock.1.2.9\lib\4.0\Hammock.ClientProfile.dll</HintPath>
+    </Reference>
+    <Reference Include="Interop.FCMLib">
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.93\lib\Interop.FCMLib.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\packages\log4net.1.2.99\lib\2.0\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.0.8.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.4.0.8\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject">
+      <HintPath>..\packages\Ninject.2.2.1.4\lib\net40-Full\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.4.0.20710.0\lib\net40\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.2.0.20710.0\lib\net40\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BrowserShare\BrowserShareComponent.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BrowserShareComponent.cshtml</DependentUpon>
+    </Compile>
+    <Compile Include="BrowserStats\BrowserStatsComponent.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BrowserStatsComponent.cshtml</DependentUpon>
+    </Compile>
+    <Compile Include="ConcurrentVisits\ConcurrentVisits.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ConcurrentVisits.cshtml</DependentUpon>
+    </Compile>
+    <Compile Include="EmbeddedResources\EmbeddedResources.cs" />
+    <Compile Include="Sparkline\Sparkline.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Sparkline.cshtml</DependentUpon>
+    </Compile>
+    <Compile Include="ThemeManager\ThemeManager.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ThemeManager.cshtml</DependentUpon>
+    </Compile>
+    <Compile Include="PlatformStats\PlatformStatsComponent.cs">
+      <DependentUpon>PlatformStatsComponent.cshtml</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="StatsMap\EmbeddedResources.cs" />
+    <Compile Include="StatsMap\StatsMap.cs" />
+    <Compile Include="StatsMap\StatsMapComponent.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StatsMapComponent.cshtml</DependentUpon>
+    </Compile>
+    <Compile Include="UsersStats\UsersStatsComponent.cs">
+      <DependentUpon>UsersStatsComponent.cshtml</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="PageTimings\PageTimings.cs">
+      <DependentUpon>PageTimings.cshtml</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="DashGauge\DashGauge.cs">
+      <DependentUpon>DashGauge.cshtml</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="TopReferrer\TopPagesComponent.cs">
+      <DependentUpon>TopPagesComponent.cshtml</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TopPages\TopPagesComponent.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TopPagesComponent.cshtml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="BrowserShare\BrowserShareComponent.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>BrowserShareComponent.cs</LastGenOutput>
+    </None>
+    <None Include="BrowserStats\BrowserStatsComponent.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>BrowserStatsComponent.cs</LastGenOutput>
+    </None>
+    <None Include="ConcurrentVisits\ConcurrentVisits.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>ConcurrentVisits.cs</LastGenOutput>
+    </None>
+    <None Include="ThemeManager\ThemeManager.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>ThemeManager.cs</LastGenOutput>
+    </None>
+    <None Include="PlatformStats\PlatformStatsComponent.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>PlatformStatsComponent.cs</LastGenOutput>
+    </None>
+    <None Include="Sparkline\Sparkline.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>Sparkline.cs</LastGenOutput>
+    </None>
+    <None Include="StatsMap\StatsMapComponent.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>StatsMapComponent.cs</LastGenOutput>
+    </None>
+    <None Include="UsersStats\UsersStatsComponent.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>UsersStatsComponent.cs</LastGenOutput>
+    </None>
+    <None Include="PageTimings\PageTimings.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>PageTimings.cs</LastGenOutput>
+    </None>
+    <None Include="DashGauge\DashGauge.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>DashGauge.cs</LastGenOutput>
+    </None>
+    <None Include="TopReferrer\TopPagesComponent.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>TopPagesComponent.cs</LastGenOutput>
+    </None>
+    <None Include="packages.config" />
+    <None Include="TopPages\TopPagesComponent.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>TopPagesComponent.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TopPages\TopPages.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DowJones.Dash.Components.Models\DowJones.Dash.Components.Models.csproj">
+      <Project>{e42d79e9-e80a-46c1-b987-ef45a0830c7e}</Project>
+      <Name>DowJones.Dash.Components.Models</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TopPages\ClientTemplates\container.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ConcurrentVisits\ConcurrentVisits.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ConcurrentVisits\ClientTemplates\container.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TopReferrer\ClientTemplates\container.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TopReferrer\TopReferrer.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="DashGauge\ClientTemplates\layout.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="DashGauge\ClientTemplates\error.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="DashGauge\ClientTemplates\noData.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="DashGauge\DashGauge.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="PageTimings\ClientTemplates\container.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="PageTimings\PageTimings.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="BrowserShare\BrowserShare.js" />
+    <EmbeddedResource Include="BrowserShare\ClientTemplates\container.html" />
+    <EmbeddedResource Include="BrowserStats\BrowserStats.js" />
+    <EmbeddedResource Include="BrowserStats\ClientTemplates\container.html" />
+    <EmbeddedResource Include="BrowserStats\ClientTemplates\statBars.html" />
+    <EmbeddedResource Include="PlatformStats\PlatformStats.js" />
+    <EmbeddedResource Include="PlatformStats\ClientTemplates\container.html" />
+    <EmbeddedResource Include="UsersStats\UsersStats.js" />
+    <EmbeddedResource Include="UsersStats\ClientTemplates\container.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="DashGauge\ClientTemplates\max.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="DashGauge\ClientTemplates\title.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="DashGauge\ClientTemplates\footer.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="EmbeddedResources\js\jquery.counter.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="DashGauge\ClientTemplates\min.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="StatsMap\StatsMap.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="PageTimings\ClientTemplates\success.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Sparkline\ClientTemplates\error.html" />
+    <EmbeddedResource Include="Sparkline\ClientTemplates\layout.html" />
+    <EmbeddedResource Include="Sparkline\ClientTemplates\noData.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="StatsMap\ClientTemplates\container.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Sparkline\Sparkline.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="EmbeddedResources\js\highchartsMap\highchartsMap.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="EmbeddedResources\js\highchartsMap\us.map.shapes.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="StatsMap\marker_rounded_red.png" />
+    <EmbeddedResource Include="StatsMap\marker_rounded_yellow_green.png" />
+    <EmbeddedResource Include="StatsMap\marker_rounded_yellow_orange.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="EmbeddedResources\js\quickflip\jquery.quickflip.js" />
+    <EmbeddedResource Include="EmbeddedResources\js\quickflip\jquery.quickflip.min.js" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="ThemeManager\ThemeManager.js" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

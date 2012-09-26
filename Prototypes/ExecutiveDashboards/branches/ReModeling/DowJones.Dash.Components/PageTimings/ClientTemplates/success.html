@@ -1,0 +1,12 @@
+<ul class="pageTimings modified">
+    <%  var x, title, pageTimings = self, options = this.options;
+        for (var i = 0, len = Math.min(pageTimings.length, 100); i < len; i++) { 
+            x = pageTimings[i]; 
+            title = x.title;
+    %>
+    <li class="sparklineEntry">
+        <span class="sparklineContainer"></span><strong class="time-stamp" style="border-bottom: solid <%=x.width%>px <%= x.color %>"><%= x.avg %></strong>
+        <div class="title"><small class="muted"><%= title %></small></div>
+    </li>
+    <% } %> 
+</ul>

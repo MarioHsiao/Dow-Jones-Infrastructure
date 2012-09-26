@@ -1,0 +1,149 @@
+
+@mixin gaugeMaxLabel($fontSize: .9em, $width: 100px, $color: #666, $top: 70px, $left: -5px, $align: right) {
+	position: absolute;
+	top: $top;
+	left: $left;
+	font-size: $fontSize;
+	text-align: $align;
+	z-index: 1000;
+	width: $width;
+	line-height: 1em;
+	color: $color;
+}
+
+@mixin LabelShadow($fontSize: 1.5em, $width: 100px, $color: #333, $top: 15px) {
+	position: absolute;
+	top: $top;
+	font-size: $fontSize;
+	text-align: center;
+	z-index: 1000;
+	width: $width;
+	line-height: 1em;
+	color: $color;
+	font-weight: bold;
+	text-shadow: 0 1px 0 #cccccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbbbbb; 
+}
+
+.visitorsGauge{
+	.dj_DashGaugeChart {
+		width: 200px;
+		margin: 0 auto;
+		position: relative;
+		.dj_DashGaugeChartHeader {
+			.dj_DashGaugeChartValue {
+			  @include LabelShadow(4.0em, 200px, #333, 22px)
+			}
+			.dj_DashGaugeChartMax {
+			  @include gaugeMaxLabel(1.0em, 200px, #666, 155px, -5px)
+		    }
+			.dj_DashGaugeChartMin {
+			  @include gaugeMaxLabel(1.0em, 200px, #666, 155px, 5px, left)
+		    }
+			.chartMax {
+				display: block; 
+			} 	
+			.chartMin {
+				display: block; 
+			} 			
+		}
+		.dj_DashGaugeChartFooter {
+			text-align:center;
+			width: 200px;
+		}
+	} 
+} 
+
+
+.dj_pageTimings .pageTimings {
+	margin-top: 10px;
+	.dj_sparkline-container {
+		height: 20px;
+		width: 57px;
+		display: inline-block;
+	}
+	.title {
+		position:relative;
+		top: -3px;
+	}
+	.time-stamp {
+		position:relative;
+		top: -5px;
+		font-size: 1.5em;
+		text-align:center;
+		line-height: 1em;
+		color: #333;
+		font-weight: bold;
+		text-shadow: 0 1px 0 #cccccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbbbbb; 
+	}
+}
+
+.newGauge, .writeGauge,.readGauge, .idleGauge{
+	.dj_DashGaugeChart {
+		width: 100px;
+		margin: 0 auto;
+		position: relative;
+		.dj_DashGaugeChartHeader {
+			.dj_DashGaugeChartValue {
+				@include LabelShadow
+			}
+			.dj_DashGaugeChartMax {
+				@include gaugeMaxLabel
+			}	
+			.dj_DashGaugeChartMin {
+			  display:none;
+		    }
+			.chartMax {
+				display:block;
+			}
+			.chartMin {
+				display:block;
+			}
+		}
+		.dj_DashGaugeChartFooter {
+			position:relative;
+			top: -10px;
+			text-align:center;
+			width:100px;
+		}
+	}	
+}
+
+.dj_concurrent-visits{
+	.description {
+		margin: 0 auto;
+		text-align:center;
+		width: 150px;
+	}
+	.counter {
+		font-size: 1.5em;
+		text-align:center;
+		line-height: 1em;
+		color: #333;
+		font-weight: bold;
+		text-shadow: 0 1px 0 #cccccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbbbbb; 
+	}
+	.idle {
+		text-align:right;
+	}
+}
+
+.platformContainer{
+	.desktop{
+		height: 60px;
+		display:block;
+		background-image: url(./images/computer-icon.png);
+		background-repeat: no-repeat;
+		background-position: center; 
+		text-align: center;
+		padding-top: 55px;
+	}
+	.mobile{
+		height: 60px;
+		display: block;
+		background-image: url(./images/smartphone-icon.png);
+		background-repeat: no-repeat;
+		background-position: center; 
+		text-align: center;
+		padding-top: 55px;
+	}
+}

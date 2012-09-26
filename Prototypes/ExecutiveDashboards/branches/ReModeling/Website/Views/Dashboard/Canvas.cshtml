@@ -1,0 +1,115 @@
+﻿@using DowJones.Dash.Components.Models.ThemeManager
+@{
+    ViewBag.Title = "Demo Dashboard";
+}
+
+@section styles {
+    <link href="~/Content/dashboard.css" rel="stylesheet" />
+    <link href="~/Content/gallery.css" rel="stylesheet" />
+    <link href="~/Content/browserShare.css" rel="stylesheet" />
+    <link href="~/Content/concurrentVisits.css" rel="stylesheet" />
+    <link href="~/Content/perfGauge.css" rel="stylesheet" />
+    <link href="~/Content/topPages.css" rel="stylesheet" />
+}
+
+@section header {
+
+    @DJ.Render(new ThemeManagerModel
+        {
+            ID = "TrendManager",
+            Colors = new List<string>(new[] {"#4C0099", "#99CC00", "#3D991f","#FFE21A", "#FF4C33", "#EB0079", "#D4CCC8", "#F2F2F2", "#D4D0C8", "#003366"})
+        })
+
+    <div class="trendTabsContainer">
+        <div class="container">
+            <ul class="trendTabs">
+                <li class="defaultTab activeTab"><a href="#" title="online.wsj.com">WSJ</a></li>
+                <li class="defaultTab"><a href="javascript:void(0)" title="marketwatch.com">Marketwatch</a></li>
+                <li class="defaultTab"><a href="#dashAlert" title="online.wsj.com">WSJ: APAC</a></li>
+                <li class="defaultTab"><a href="#dashAlert" title="jp.wsj.com">WSJ: JP</a></li>
+                <li class="defaultTab"><a href="#dashAlert" title="factiva.com">Factiva</a></li>
+                <li class="defaultTab"><a href="#dashAlert" title="smartmoney.com">SmartMoney</a></li>
+                <li class="defaultTab"><a href="#dashAlert" title="online.barrons.com">Barrons</a></li>
+                <li class="defaultTab pull-right"><a href="#module-gallery" role="button" data-toggle="modal"><i class="icon-cog icon-white"></i></a></li>
+            </ul>
+        </div>
+    </div>
+
+}
+
+<section id="dashboard" class="row-fluid">
+    @DJ.Render(Model)
+</section>
+
+@Html.Action("Gallery")
+
+
+@DJ.ScriptRegistry().OnDocumentReady("initializeDashboard();")
+@section scripts{
+    <script src="@Url.Content("~/signalr/hubs")" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        
+        function initializeDashboard() {
+            initializeTabs();
+            initializeModuleStyles();
+
+            DJ.subscribe('resized.dj.CanvasModule', function (args) {
+                var request = {
+                    pageId: DJ.UI.Canvas.find().get_canvasId(),
+                    moduleId: args.moduleId
+                };
+                $.ajax('@Url.Content("~/dashboard/modules/resize/")' + args.newSize, { data: request });
+            });
+            
+            $.connection.dashboard.publish = DJ.publish;
+            $.connection.hub.start()
+                .done(function () {
+                    $.connection.dashboard.refresh([])
+                        .done(function (messages) {
+                            for (var i = 0; i < messages.length; i++) {
+                                DJ.publish(messages[i].eventName, messages[i].data);
+                            }
+                        });
+                });
+        }
+        
+        function initializeTabs() {
+            $('.trendTabs li').not(':first').find('a').not('[href=#module-gallery]')
+                .popover({ content: 'Coming soon!', delay: { show: 1000, hide: 1000 } })
+                .click(function () {
+                    var self = this;
+                    setTimeout(function () {
+                        $(self).popover('hide');
+                    }, 1000);
+                });
+            $('LI.defaultTab A').tooltip();
+        }
+
+        function initializeModuleStyles() {
+            $('.small.module').addClass('span2');
+            $('.medium.module').addClass('span4');
+            $('.large.module').addClass('span6');
+            $('.x-large.module').addClass('span8');
+
+            $('.dj_module .hide').click(function () {
+                $(this).closest('.dj_module').findComponent().hide();
+            });
+
+            $('.minimize').append($('<i class="icon-chevron-up"/>'));
+            $('.maximize').append($('<i class="icon-chevron-down"/>'));
+            $('.dj_module .hide').append($('<i class="icon-remove"/>')).removeClass('hide');
+            $('.dj_module-refresh').remove();
+        }
+
+        (function overrideAlert() {
+            window._alert = window.alert;
+            window.alert = function(msg) {
+                $('#dashAlertModal .modal-body p').text(msg);
+                $('#dashAlertModal').modal('show');
+                return false;
+            };
+        })();
+
+    </script>
+}

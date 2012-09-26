@@ -1,0 +1,114 @@
+﻿@{
+    ViewBag.Title = "Demo Dashboard";
+}
+<section id="dashboard" class="row-fluid">
+    
+    @* Current Users *@
+    <div id="current-users" class="medium module" data-type="CurrentUserStats"></div>
+    <script id="current-users-template" type="text/x-template">
+        <h2>Current Users</h2>
+        <p>Desktop: <%= numberWithCommas(desktopCount) %> (<%= desktopPercent %>%)</p>
+        <p>Mobile: <%= numberWithCommas(mobileCount) %> (<%= mobilePercent %>%) </p>
+    </script>
+    
+
+    @* Top Pages *@
+    <style>
+        #top-pages li { padding-bottom: 5px;}
+    </style>
+    <div id="top-pages" class="medium module" data-type="TopPages"></div>
+    <script id="top-pages-template" type="text/x-template">
+        <h2>Top Pages</h2>
+        <ul class="unstyled">
+            <% for(var i = 0; i <= pages.length; i += 1) { 
+                var page = pages[i];
+                if(!page || page == 'http://online.wsj.com/home-page') continue;
+            %>
+                <li>
+                    <span class="muted">[<%= numberWithCommas(page.visitors) %>]</span>
+                    <a href="http://<%= page.path %>" target="_blank"><%= page.i %></a>
+                </li>
+            <% } %>
+        </ul>
+    </script>
+
+
+    @* Referrers *@
+    <div id="referrers" class="medium module" data-type="Referrer"></div>
+    <script id="referrers-template" type="text/x-template">
+        <h2>Referrers</h2>
+        <ul class="unstyled">
+            <% for(var name in referrers) { %>
+                <li>
+                    <span class="muted">[<%= numberWithCommas(referrers[name]) %>]</span>
+                    <span><%= (name.length == 0) ? '<em>[direct]</em>' : name %></span>
+                </li>
+            <% } %>
+        </ul>
+    </script>
+
+
+</section>
+
+<script src="@Url.Content("~/signalr/hubs")" type="text/javascript"></script>
+<script type="text/javascript">
+    @DJ.ScriptRegistry().OnDocumentReady("initializeDashboard();");
+
+    function initializeDashboard() {
+        $('.small.module').addClass('span2');
+        $('.medium.module').addClass('span4');
+        $('.large.module').addClass('span6');
+        $('.x-large.module').addClass('span8');
+    }
+</script>
+
+
+
+<!-- Fake Component initialization -->
+
+<script type="text/javascript">
+    DJ.config.debug = true;
+    function numberWithCommas(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+
+    // Temp "shim" to make jQuery elements act like DJ components
+    $.fn.setData = function (data) {
+        var template = templates[this.attr('id') + '-template'];
+        this.html(template(data)).append($('<span class="muted"/>').text('Last Updated: ' + new Date().toLocaleTimeString()));
+    };
+
+    var templates = window['templates'] = {};
+    $(function () {
+        $('[type="text/x-template"]').each(function () {
+            templates[this.id] = _.template($(this).html());
+        });
+    });
+
+
+    $(function() {
+        DJ.subscribe('data.QuickStats', function (data) {
+            var percentageOfUsers = function(count) {
+                return ((count / data.visits) * 100).toFixed(2);
+            };
+
+            var userStats = {
+                desktopCount: data.platform.d, 
+                desktopPercent: percentageOfUsers(data.platform.d),
+
+                mobileCount: data.platform.m,
+                mobilePercent: percentageOfUsers(data.platform.m),
+            };
+            
+            $('#current-users').setData(userStats);
+        });
+        
+        DJ.subscribe('data.Referrers', function (data) {
+            $('#referrers').setData(data);
+        });
+
+        DJ.subscribe('data.TopPages', function (data) {
+            $('#top-pages').setData({ pages: data });
+        });
+    });
+</script>
