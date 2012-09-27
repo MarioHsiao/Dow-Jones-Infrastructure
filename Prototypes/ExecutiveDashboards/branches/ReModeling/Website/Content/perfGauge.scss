@@ -44,7 +44,8 @@ $browserBackground: url(images/browser-sprites.png) no-repeat;
 
 .dj-perfGaugeItems {
   font-size: 16px;
-  color: #777;
+  color: #999;
+  text-shadow: 0px 3px 8px #2A2A2A;
 
   .visitors {
     font-weight: bold; } }
@@ -55,12 +56,10 @@ $browserBackground: url(images/browser-sprites.png) no-repeat;
   width: 100%;
   margin-bottom: 10px;
   height: 40px;
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
 
   &:first-child {
     margin: 10px 0;
     font-weight: bold;
-    color: #AAA;
     height: 20px;
 
     div {
@@ -90,8 +89,7 @@ $browserBackground: url(images/browser-sprites.png) no-repeat;
     top: 18px;
     font-size: 14px;
     font-weight: bold;
-    z-index: 12;
-    text-shadow: 0px -1px 1px #eeeeee, 0px 1px 1px #eeeeee, -1px 0px 1px #eeeeee, 1px 0px 1px #eeeeee, -1px -1px 1px #eeeeee, -1px 1px 1px #eeeeee, 1px -1px 1px #eeeeee, 1px 1px 1px #eeeeee; }
+    z-index: 12; }
 
   .visitors {
     position: absolute;
@@ -105,7 +103,6 @@ $browserBackground: url(images/browser-sprites.png) no-repeat;
     top: 24px;
     position: absolute;
     opacity: 0;
-    color: #999;
     -webkit-transition: opacity .25s ease-in-out;
     -moz-transition: opacity .25s ease-in-out;
     -o-transition: opacity .25s ease-in-out; }
@@ -134,7 +131,6 @@ $browserBackground: url(images/browser-sprites.png) no-repeat;
     font-size: 14px;
 
 	.timing {
-		color: #777;
 		position:relative;
 		font-weight:bold;
 		z-index: 1000;
@@ -143,6 +139,7 @@ $browserBackground: url(images/browser-sprites.png) no-repeat;
     .gauge {
       position: absolute;
       left: 0;
+	  height: 100%;
     }
 
     &.cool {

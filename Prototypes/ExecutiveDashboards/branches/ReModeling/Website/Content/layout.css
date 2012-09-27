@@ -1,16 +1,18 @@
-/*@import "compass";*/
 a:hover {
   text-decoration: none; }
 
 body {
   padding-top: 60px;
-  background-color: #f2f2f2;
+  background-color: #3c3c3c;
   background-repeat: no-repeat;
-  background-image: -moz-linear-gradient(#fafafa, #f2f2f2);
-  background-image: -ms-linear-gradient(top, #fafafa, #f2f2f2);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#fafafa), to(#f2f2f2));
-  background-image: -webkit-linear-gradient(#fafafa, #f2f2f2);
-  background-image: linear-gradient(top, #fafafa, #f2f2f2); }
+  background-image: -moz-linear-gradient(#3a3a3a, #3c3c3c);
+  background-image: -ms-linear-gradient(top, #3a3a3a, #3c3c3c);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#3a3a3a), to(#3c3c3c));
+  background-image: -webkit-linear-gradient(#3a3a3a, #3c3c3c);
+  background-image: linear-gradient(top, #3a3a3a, #3c3c3c); }
+
+ul, ol {
+  list-style: none; }
 
 header {
   font-family: tahoma;
@@ -44,7 +46,7 @@ header {
 .main-nav.navbar .nav > li {
   display: inline-block;
   float: left;
-  width: 14.5%;
+  width: 12.5%;
   border-left: 1px solid #61B0DF; }
   .main-nav.navbar .nav > li > a {
     margin-top: 0px;
@@ -63,7 +65,8 @@ header {
   position: relative;
   top: -90px;
   margin-left: -20px;
-  margin-right: -20px; }
+  margin-right: -20px;
+  text-transform: uppercase; }
 
 .page-header {
   padding-bottom: 0; }
@@ -98,7 +101,7 @@ header {
 
 @media (min-width: 980px) {
   body {
-    padding-top: 190px; }
+    padding-top: 140px; }
 
   .main-nav-wrapper {
     position: absolute;
