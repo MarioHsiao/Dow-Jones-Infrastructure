@@ -136,10 +136,14 @@ h2 a.reset {
 			padding-top: 5px;
 			max-width: 25%;
 			white-space: nowrap;
-
+			visibility: hidden;
 			span {
 				cursor: pointer;
 			}
+		}
+
+		&:hover .actions-container {
+			visibility: visible;
 		}
 	}
 

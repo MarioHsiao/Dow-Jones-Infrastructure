@@ -60,18 +60,25 @@
 	}
 	.title {
 		position:relative;
-		top: -10px;
+		top: -5px;
+
+		.muted {
+			font-size: smaller;
+		}
 	}
 	.time-stamp {
 		position:relative;
 		top: -7px;
 		margin-left: 3px;
-		font-size: 1.5em;
 		text-align:center;
 		line-height: 1em;
-		color: #333;
 		font-weight: bold;
-		text-shadow: 0 1px 0 #cccccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbbbbb; 
+		color: #999;
+		text-shadow: 0px 3px 8px #2A2A2A;
+	}
+
+	.sparklineEntry {
+		margin-bottom: 10px;
 	}
 }
 
@@ -127,9 +134,8 @@
 	}
 
 	.progress-success .bar {
-	    border: 1px solid #729316;
         border-top: 1px solid #9BBD32;
-        border-bottom: 1px solid #729316;
+        border-bottom: 1px solid #9BBD32;
 		background-color: #81ba6b;
         background-repeat: no-repeat;
         background-image: -moz-linear-gradient(#9bbd32, #729316);
