@@ -21,10 +21,7 @@ namespace DowJones.Dash.Website.Controllers
 
         protected override void OnActionExecuted(ActionExecutedContext filterContext)
         {
-            // Initialize SignalR
-            ScriptRegistry.OnDocumentReady(@"
-                $.connection.dashboard.publish = DJ.publish;
-                $.connection.hub.start();");
+            
         }
     }
 }

@@ -61,7 +61,7 @@ h2 a.reset {
 
 	.sorting {
 		.dj_group {
-			background-color: #F5F5F5;
+			background-color: #3f3f3f;
 		}
 	}
 
@@ -136,10 +136,14 @@ h2 a.reset {
 			padding-top: 5px;
 			max-width: 25%;
 			white-space: nowrap;
-
+			visibility: hidden;
 			span {
 				cursor: pointer;
 			}
+		}
+
+		&:hover .actions-container {
+			visibility: visible;
 		}
 	}
 

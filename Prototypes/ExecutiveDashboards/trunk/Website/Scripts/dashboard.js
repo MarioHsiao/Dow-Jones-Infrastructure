@@ -41,13 +41,15 @@
             $('.large.module').addClass('span6');
             $('.x-large.module').addClass('span8');
 
+            $('.dj_module').addClass('row-fluid');
+
             $('.dj_module .hide').click(function () {
                 $(this).closest('.dj_module').findComponent().hide();
             });
 
-            $('.minimize').append($('<i class="icon-chevron-up"/>'));
-            $('.maximize').append($('<i class="icon-chevron-down"/>'));
-            $('.dj_module .hide').append($('<i class="icon-remove"/>')).removeClass('hide');
+            $('.minimize').append($('<i class="icon-chevron-up icon-white"/>'));
+            $('.maximize').append($('<i class="icon-chevron-down icon-white"/>'));
+            $('.dj_module .hide').append($('<i class="icon-remove icon-white"/>')).removeClass('hide');
             $('.dj_module-refresh').remove();
         },
 

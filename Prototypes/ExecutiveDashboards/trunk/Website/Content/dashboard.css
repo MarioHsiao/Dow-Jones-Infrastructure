@@ -45,7 +45,7 @@ h2 a.reset {
     display: block; }
 
 .sorting .dj_group {
-  background-color: #F5F5F5; }
+  background-color: #3f3f3f; }
 
 .dj_module {
   margin-top: 20px;
@@ -97,9 +97,12 @@ h2 a.reset {
       right: 0;
       padding-top: 5px;
       max-width: 25%;
-      white-space: nowrap; }
+      white-space: nowrap;
+      visibility: hidden; }
       .dj_module .dj_module-header .actions-container span {
         cursor: pointer; }
+    .dj_module .dj_module-header:hover .actions-container {
+      visibility: visible; }
   .dj_module .dj_module-core {
     margin-top: -5px;
     padding-top: 5px;

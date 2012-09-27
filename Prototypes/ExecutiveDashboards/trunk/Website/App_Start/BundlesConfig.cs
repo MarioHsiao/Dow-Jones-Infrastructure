@@ -18,6 +18,11 @@ namespace DowJones.Dash.Website.App_Start
                 "~/Scripts/bootstrap*",
                 "~/Scripts/jquery.signalR-{version}.js"
             ));
+
+			bundles.Add(new StyleBundle("~/bundles/bootstrap").Include(
+				"~/Content/bootstrap.css",
+				"~/Content/bootstrap-responsive.css"
+				));
         }
     }
 }

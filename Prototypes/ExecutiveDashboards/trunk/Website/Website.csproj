@@ -294,11 +294,11 @@
     <Compile Include="Views\Dashboard\DashCanvas.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Content\bootstrap-responsive.scss">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <Content Include="Content\bootstrap-responsive.css">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\bootstrap-responsive.min.css">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <DependentUpon>bootstrap-responsive.scss</DependentUpon>
     </Content>
     <Content Include="Content\bootstrap.css">
       <DependentUpon>bootstrap.scss</DependentUpon>
@@ -315,13 +315,18 @@
     <Content Include="Content\gallery.css">
       <DependentUpon>gallery.scss</DependentUpon>
     </Content>
+    <Content Include="Content\images\barrons.png" />
     <Content Include="Content\images\browser-sprites.png" />
+    <Content Include="Content\images\cogwheels-white.png" />
+    <Content Include="Content\images\cogwheels.png" />
+    <Content Include="Content\images\computer-icon-white.png" />
     <Content Include="Content\images\dash.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\images\djFooterLogo.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\images\factiva.png" />
     <Content Include="Content\images\glyphicons-halflings-white.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -332,6 +337,9 @@
     <Content Include="Content\images\marker_rounded_red.png" />
     <Content Include="Content\images\marker_rounded_yellow_green.png" />
     <Content Include="Content\images\marker_rounded_yellow_orange.png" />
+    <Content Include="Content\images\marketwatch.png" />
+    <Content Include="Content\images\smartmoney.png" />
+    <Content Include="Content\images\smartphone-icon-white.png" />
     <Content Include="Content\images\smartphone-icon.png" />
     <Content Include="Content\images\murdochSprites.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -342,6 +350,7 @@
     <Content Include="Content\images\tabSeparator.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\images\wsj.png" />
     <Content Include="Content\layout.css">
       <DependentUpon>layout.scss</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -378,6 +387,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_MainNavigation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />

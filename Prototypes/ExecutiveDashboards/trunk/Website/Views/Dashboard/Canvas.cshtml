@@ -12,33 +12,13 @@
     <link href="~/Content/topPages.css" rel="stylesheet" />
 }
 
-@section header {
-
-    @DJ.Render(new ThemeManagerModel
-{
-    ID = "TrendManager",
-    Colors = new List<string>(new[] {"#4183C4", "#E54A4F", "#A4C639","#86C9EF" ,"#613854", "#FFCC33" })
-})
-
-    <div class="trendTabsContainer">
-        <div class="container">
-            <ul class="trendTabs">
-                <li class="defaultTab activeTab"><a href="#" title="online.wsj.com">WSJ</a></li>
-                <li class="defaultTab"><a href="javascript:void(0)" title="marketwatch.com">Marketwatch</a></li>
-                <li class="defaultTab"><a href="#dashAlert" title="online.wsj.com">WSJ: APAC</a></li>
-                <li class="defaultTab"><a href="#dashAlert" title="jp.wsj.com">WSJ: JP</a></li>
-                <li class="defaultTab"><a href="#dashAlert" title="factiva.com">Factiva</a></li>
-                <li class="defaultTab"><a href="#dashAlert" title="smartmoney.com">SmartMoney</a></li>
-                <li class="defaultTab"><a href="#dashAlert" title="online.barrons.com">Barrons</a></li>
-                <li class="defaultTab pull-right"><a href="#module-gallery" role="button" data-toggle="modal"><i class="icon-cog icon-white"></i></a></li>
-            </ul>
-        </div>
-    </div>
-
-}
-
 <section id="dashboard" class="row-fluid">
-    @DJ.Render(Model)
+	    @DJ.Render(new ThemeManagerModel
+        {
+            ID = "ThemeManager",
+            Colors = new List<string>(new[] {"#4183C4", "#E54A4F", "#A4C639","#86C9EF" ,"#613854", "#FFCC33" })
+        })
+	@DJ.Render(Model)
 </section>
 
 @Html.Action("Gallery")
