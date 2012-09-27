@@ -213,13 +213,21 @@ namespace DowJones.Managers.Search
                 {
                     var sourceTypes = Join(SearchOperator.Or, searchRequest.StructuredSearch.Query.SourceTypeCollection.Where(t => t != null));
                     //Empty the collection since we are adding it in the search string
-                    searchRequest.StructuredSearch.Query.SourceTypeCollection = null;
+
+                    // NN - 09/27/2012 - PTG bug #40604
+                    // http://ptgbugs.factiva.net/defectdetail.asp?defectdb=Factiva&defecttable=Factiva&formid=40604
+                    // Fixed
+                    // 1. SourceTypeCollection shouldn't be nullified.
+                    // 2. searchString.Filter/Combine should be true.
+                    // 3. Search string should be "pst=(...) NOT (rst=..)". pst= was missing.
+                    // searchRequest.StructuredSearch.Query.SourceTypeCollection = null;
                     sourceSearchString = new SearchString
                     {
                         Mode = SearchMode.Traditional,
                         Id = "BSSSource",
-                        Value = string.Format("({0}) NOT ({1})",
-                            sourceTypes, excludeSearchString)
+                        Value = string.Format("pst=({0}) NOT ({1})", sourceTypes, excludeSearchString),
+                        Filter = true,
+                        Combine = true
                     };
                 }
 
