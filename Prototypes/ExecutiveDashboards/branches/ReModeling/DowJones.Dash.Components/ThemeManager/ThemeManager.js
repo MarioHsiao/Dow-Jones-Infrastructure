@@ -28,7 +28,6 @@ DJ.UI.ThemeManager = DJ.UI.Component.extend({
     },
     
     initializeHighchartsGradient: function () {
-    
         Highcharts.getOptions().colors = $.map(Highcharts.getOptions().colors, function (color) {
             return {
                 radialGradient: { cx: 0.5, cy: 0.3, r: 0.7 },
@@ -50,6 +49,6 @@ DJ.UI.ThemeManager = DJ.UI.Component.extend({
     EOF: null
 });
 
-
 // Declare this class as a jQuery plugin
 $.plugin('dj_ThemeManager', DJ.UI.ThemeManager);
+

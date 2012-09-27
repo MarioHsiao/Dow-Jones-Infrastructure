@@ -279,6 +279,7 @@
     <Compile Include="App_Start\ScriptModuleTemplatesInitializer.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="App_Start\DataSourcesInitializationTask.cs" />
+    <Compile Include="DataSources.cs" />
     <Compile Include="Dependencies.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -287,7 +288,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Hubs\Dashboard.cs" />
-    <Compile Include="RavenDB\RavenDbMessageCache.cs" />
+    <Compile Include="RavenDB\RavenDbDashboardMessageCache.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RavenDB\RavenDbDocumentStoreFactory.cs" />
     <Compile Include="Views\Dashboard\DashCanvas.cs" />
@@ -365,6 +366,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\dashboard.js" />
     <Content Include="Scripts\jquery.signalR-0.5.3.js" />
     <Content Include="Scripts\jquery.signalR-0.5.3.min.js" />
     <Content Include="Web.config" />

@@ -2,11 +2,18 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Net;
+using log4net;
 
 namespace DowJones.Dash.DataSources
 {
     public class SplunkDataSource : JsonWebDataSource
     {
+        protected override ILog Log
+        {
+            get { return _log; }
+        }
+        private static readonly ILog _log = LogManager.GetLogger(typeof(SplunkDataSource));
+
         public SplunkDataSource(string name, string savedSearch)
             : base(
                 name,

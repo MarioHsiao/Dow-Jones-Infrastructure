@@ -24,7 +24,7 @@ header {
   top: 0px;
   /* 60AFDC 2B7DA1 */ }
   header .cog {
-    background: url(./images/cogwheels.png) no-repeat left 70%;
+    background: url(./images/cogwheels-white.png) no-repeat left 70%;
     width: 26px;
     height: 26px;
     margin-top: 10px;
@@ -101,7 +101,7 @@ header {
 
 @media (min-width: 980px) {
   body {
-    padding-top: 140px; }
+    padding-top: 130px; }
 
   .main-nav-wrapper {
     position: absolute;
@@ -168,4 +168,7 @@ footer {
         border-right: solid 1px #999; }
       footer .copyright a:hover {
         text-decoration: underline; }
+
+.pillContainer {
+  font-size: smaller; }
 

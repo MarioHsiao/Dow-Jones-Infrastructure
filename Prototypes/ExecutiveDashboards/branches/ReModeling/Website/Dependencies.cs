@@ -1,8 +1,6 @@
 using System.Collections.Generic;
 using DowJones.Dash.Caching;
 using DowJones.Dash.DataSources;
-using DowJones.Dash.Website.Hubs;
-using DowJones.Dash.Website.RavenDB;
 using DowJones.Infrastructure.Common;
 using DowJones.Pages;
 using DowJones.Pages.Modules;
@@ -28,7 +26,6 @@ namespace DowJones.Dash.Website
             Bind<IPrinciple>().ToMethod(x => new EntitlementsPrinciple(new GetUserAuthorizationsResponse())).InRequestScope();
             Bind<Product>().ToConstant(new GlobalProduct()).InSingletonScope();
             Bind<IPageSubscriptionManager>().To<PageSubscriptionManagerStub>();
-            Bind<IDataSourceRepository>().To<DataSourceRepository>().InSingletonScope();
 
             BindToFactory<IDocumentStore, RavenDbDocumentStoreFactory>()
                 .InSingletonScope()
@@ -42,6 +39,8 @@ namespace DowJones.Dash.Website
             Bind<IPageRepository>().To<RavenDbPageRepository>().InRequestScope();
             Bind<IScriptModuleTemplateManager>().To<RavenDbScriptModuleTemplateRepository>().InRequestScope();
             Bind<IDashboardMessageCache>().To<DashboardMessageCache>().InSingletonScope();
+
+            // NOTE: See DataSources.cs for Data Sources registration
         }
     }
 

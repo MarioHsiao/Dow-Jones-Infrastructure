@@ -346,9 +346,14 @@
     <EmbeddedResource Include="EmbeddedResources\js\quickflip\jquery.quickflip.js" />
     <EmbeddedResource Include="EmbeddedResources\js\quickflip\jquery.quickflip.min.js" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="StatsMap\ClientTemplates\navPills.html" />
+  </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="ThemeManager\ThemeManager.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="BrowserStats\ClientTemplates\navPills.html" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

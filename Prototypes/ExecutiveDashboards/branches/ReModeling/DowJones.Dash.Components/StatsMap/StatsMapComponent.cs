@@ -10,6 +10,7 @@
 
 [assembly: System.Web.UI.WebResourceAttribute("DowJones.Dash.Components.StatsMap.StatsMap.js", "text/javascript")]
 [assembly: System.Web.UI.WebResourceAttribute("DowJones.Dash.Components.StatsMap.ClientTemplates.container.html", "text/html")]
+[assembly: System.Web.UI.WebResourceAttribute("DowJones.Dash.Components.StatsMap.ClientTemplates.navPills.html", "text/html")]
 
 namespace DowJones.Dash.Components.StatsMap
 {
@@ -23,11 +24,12 @@ namespace DowJones.Dash.Components.StatsMap
     using System.Web.UI;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 09/20/2012 12:43 PM
+    // Last Generated Timestamp: 09/27/2012 11:28 AM
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Dash.Components.StatsMap.StatsMap.js", DependsOn=new string[] {
             "highcharts-map",
             "us-map-shapes"}, ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Dash.Components.StatsMap.StatsMapComponent))]
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Dash.Components.StatsMap.ClientTemplates.container.html", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="container", DeclaringType=typeof(DowJones.Dash.Components.StatsMap.StatsMapComponent))]
+    [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Dash.Components.StatsMap.ClientTemplates.navPills.html", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="navPills", DeclaringType=typeof(DowJones.Dash.Components.StatsMap.StatsMapComponent))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.27108")]
     public class StatsMapComponent : DowJones.Web.Mvc.UI.ViewComponentBase<DowJones.Dash.Components.Model.StatsMap.StatsMapModel>
     {
@@ -45,6 +47,7 @@ namespace DowJones.Dash.Components.StatsMap
         }
         public override void ExecuteTemplate()
         {
+
 
 
 

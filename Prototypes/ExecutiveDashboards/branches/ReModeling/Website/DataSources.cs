@@ -1,28 +1,34 @@
 ﻿using System;
 using System.Collections.Generic;
+using DowJones.Dash.DataSources;
 
-namespace DowJones.Dash.DataSources
+namespace DowJones.Dash.Website
 {
-    public interface IDataSourceRepository
+    public class DataSources : DependencyInjection.DependencyInjectionModule
     {
-        IEnumerable<IDataSource> GetDataSources();
-    }
+        protected override void OnLoad()
+        {
+            var dataSources = GetDataSources();
 
-    public class DataSourceRepository : IDataSourceRepository
-    {
+            foreach (var dataSource in dataSources)
+            {
+                Bind<IDataSource>().ToConstant(dataSource);
+            }
+        }
+
         public IEnumerable<IDataSource> GetDataSources()
         {
             yield return new ChartBeatDataSource("DashboardStats", "/dashapi/stats/");
             yield return new ChartBeatDataSource("HistorialTrafficSeries", "/historical/traffic/series/", 
                 parameters: new Dictionary<string, object> {
-                        { "frequency", "5" }
+                        { "frequency", "30" }
                     }) { PollDelay = (int)TimeSpan.FromMinutes(3).TotalSeconds };
             yield return new ChartBeatDataSource("HistorialTrafficSeriesWeekAgo", "/historical/traffic/series/", 
                 parameters: new Dictionary<string, object> {
-                        {"frequency", "5"},
+                        {"frequency", "30"},
                         {"days_ago", "7"},
                         {"limit", "288"},
-                    }) { PollDelay = (int)TimeSpan.FromHours(1).TotalSeconds};
+                    }) { PollDelay = (int)TimeSpan.FromMinutes(3).TotalSeconds };
             yield return new ChartBeatDataSource("HistoricalTrafficStats", "/historical/traffic/stats/",
                 parameters: new Dictionary<string, object> {
                         {"fields", "srvload,people,srvload"},

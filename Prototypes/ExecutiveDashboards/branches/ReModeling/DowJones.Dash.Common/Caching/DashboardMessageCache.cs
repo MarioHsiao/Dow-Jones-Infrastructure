@@ -6,23 +6,27 @@ namespace DowJones.Dash.Caching
 {
     public class DashboardMessageCache : IDashboardMessageCache
     {
+        protected IDictionary<string, DashboardMessage> Cache
+        {
+            get { return _cache; }
+        }
         private readonly IDictionary<string, DashboardMessage> _cache =
             new ConcurrentDictionary<string, DashboardMessage>();
 
-        public void Add(DashboardMessage message)
+        public virtual void Add(DashboardMessage message)
         {
-            if (_cache.ContainsKey(message.DataSource))
-                _cache[message.DataSource] = message;
+            if (Cache.ContainsKey(message.DataSource))
+                Cache[message.DataSource] = message;
             else
-                _cache.Add(message.DataSource, message);
+                Cache.Add(message.DataSource, message);
         }
 
-        public IEnumerable<DashboardMessage> Get(params string[] eventNames)
+        public virtual IEnumerable<DashboardMessage> Get(params string[] dataSources)
         {
-            if (eventNames == null || eventNames.Length == 0)
-                return _cache.Values;
+            if (dataSources == null || dataSources.Length == 0)
+                return Cache.Values;
 
-            return _cache.Keys.Select(key => _cache[key]);
+            return Cache.Keys.Select(key => _cache[key]);
         }
     }
 }
