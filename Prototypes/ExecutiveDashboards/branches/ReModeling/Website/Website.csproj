@@ -317,7 +317,9 @@
     </Content>
     <Content Include="Content\images\barrons.png" />
     <Content Include="Content\images\browser-sprites.png" />
+    <Content Include="Content\images\cogwheels-white.png" />
     <Content Include="Content\images\cogwheels.png" />
+    <Content Include="Content\images\computer-icon-white.png" />
     <Content Include="Content\images\dash.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -337,6 +339,7 @@
     <Content Include="Content\images\marker_rounded_yellow_orange.png" />
     <Content Include="Content\images\marketwatch.png" />
     <Content Include="Content\images\smartmoney.png" />
+    <Content Include="Content\images\smartphone-icon-white.png" />
     <Content Include="Content\images\smartphone-icon.png" />
     <Content Include="Content\images\murdochSprites.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

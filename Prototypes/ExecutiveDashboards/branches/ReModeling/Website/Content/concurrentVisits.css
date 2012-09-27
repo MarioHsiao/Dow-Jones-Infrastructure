@@ -10,9 +10,7 @@
     z-index: 1000;
     width: 200px;
     line-height: 1em;
-    color: #333333;
-    font-weight: bold;
-    text-shadow: 0 1px 0 #cccccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbbbbb; }
+    font-weight: bold; }
   .visitorsGauge .dj_DashGaugeChart .dj_DashGaugeChartHeader .dj_DashGaugeChartMax {
     position: absolute;
     top: 155px;
@@ -21,8 +19,7 @@
     text-align: right;
     z-index: 1000;
     width: 200px;
-    line-height: 1em;
-    color: #666666; }
+    line-height: 1em; }
   .visitorsGauge .dj_DashGaugeChart .dj_DashGaugeChartHeader .dj_DashGaugeChartMin {
     position: absolute;
     top: 155px;
@@ -31,8 +28,7 @@
     text-align: left;
     z-index: 1000;
     width: 200px;
-    line-height: 1em;
-    color: #666666; }
+    line-height: 1em; }
   .visitorsGauge .dj_DashGaugeChart .dj_DashGaugeChartHeader .chartMax {
     display: block; }
   .visitorsGauge .dj_DashGaugeChart .dj_DashGaugeChartHeader .chartMin {
@@ -73,9 +69,7 @@
     z-index: 1000;
     width: 100px;
     line-height: 1em;
-    color: #333333;
-    font-weight: bold;
-    text-shadow: 0 1px 0 #cccccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbbbbb; }
+    font-weight: bold; }
   .newGauge .dj_DashGaugeChart .dj_DashGaugeChartHeader .dj_DashGaugeChartMax, .writeGauge .dj_DashGaugeChart .dj_DashGaugeChartHeader .dj_DashGaugeChartMax, .readGauge .dj_DashGaugeChart .dj_DashGaugeChartHeader .dj_DashGaugeChartMax, .idleGauge .dj_DashGaugeChart .dj_DashGaugeChartHeader .dj_DashGaugeChartMax {
     position: absolute;
     top: 70px;
@@ -84,8 +78,7 @@
     text-align: right;
     z-index: 1000;
     width: 100px;
-    line-height: 1em;
-    color: #666666; }
+    line-height: 1em; }
   .newGauge .dj_DashGaugeChart .dj_DashGaugeChartHeader .dj_DashGaugeChartMin, .writeGauge .dj_DashGaugeChart .dj_DashGaugeChartHeader .dj_DashGaugeChartMin, .readGauge .dj_DashGaugeChart .dj_DashGaugeChartHeader .dj_DashGaugeChartMin, .idleGauge .dj_DashGaugeChart .dj_DashGaugeChartHeader .dj_DashGaugeChartMin {
     display: none; }
   .newGauge .dj_DashGaugeChart .dj_DashGaugeChartHeader .chartMax, .writeGauge .dj_DashGaugeChart .dj_DashGaugeChartHeader .chartMax, .readGauge .dj_DashGaugeChart .dj_DashGaugeChartHeader .chartMax, .idleGauge .dj_DashGaugeChart .dj_DashGaugeChartHeader .chartMax {
@@ -98,24 +91,36 @@
     text-align: center;
     width: 100px; }
 
-.dj_concurrent-visits .description {
-  margin: 0 auto;
-  text-align: center;
-  width: 150px; }
-.dj_concurrent-visits .counter {
-  font-size: 1.5em;
-  text-align: center;
-  line-height: 1em;
-  color: #333;
-  font-weight: bold;
-  text-shadow: 0 1px 0 #cccccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbbbbb; }
-.dj_concurrent-visits .idle {
-  text-align: right; }
+.dj_concurrent-visits {
+  color: #999;
+  text-shadow: 0px 3px 8px #2A2A2A; }
+  .dj_concurrent-visits .description {
+    margin: 0 auto;
+    text-align: center;
+    width: 150px; }
+  .dj_concurrent-visits .counter {
+    font-size: 1.5em;
+    text-align: center;
+    line-height: 1em;
+    font-weight: bold; }
+  .dj_concurrent-visits .idle {
+    text-align: right; }
+  .dj_concurrent-visits .progress-success .bar {
+    border: 1px solid #729316;
+    border-top: 1px solid #9BBD32;
+    border-bottom: 1px solid #729316;
+    background-color: #81ba6b;
+    background-repeat: no-repeat;
+    background-image: -moz-linear-gradient(#9bbd32, #729316);
+    background-image: -ms-linear-gradient(top, #9bbd32, #729316);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#9bbd32), to(#729316));
+    background-image: -webkit-linear-gradient(#9bbd32, #729316);
+    background-image: linear-gradient(top, #9bbd32, #729316); }
 
 .platformContainer .desktop {
   height: 60px;
   display: block;
-  background-image: url(./images/computer-icon.png);
+  background-image: url(./images/computer-icon-white.png);
   background-repeat: no-repeat;
   background-position: center;
   text-align: center;
@@ -123,7 +128,7 @@
 .platformContainer .mobile {
   height: 60px;
   display: block;
-  background-image: url(./images/smartphone-icon.png);
+  background-image: url(./images/smartphone-icon-white.png);
   background-repeat: no-repeat;
   background-position: center;
   text-align: center;
