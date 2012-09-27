@@ -346,7 +346,9 @@
     <EmbeddedResource Include="EmbeddedResources\js\quickflip\jquery.quickflip.js" />
     <EmbeddedResource Include="EmbeddedResources\js\quickflip\jquery.quickflip.min.js" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="StatsMap\ClientTemplates\navPills.html" />
+  </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="ThemeManager\ThemeManager.js" />
   </ItemGroup>
