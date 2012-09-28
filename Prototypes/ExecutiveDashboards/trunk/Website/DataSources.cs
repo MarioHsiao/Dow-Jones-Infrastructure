@@ -21,11 +21,11 @@ namespace DowJones.Dash.Website
             yield return new ChartBeatDataSource("DashboardStats", "/dashapi/stats/");
             yield return new ChartBeatDataSource("HistorialTrafficSeries", "/historical/traffic/series/", 
                 parameters: new Dictionary<string, object> {
-                        { "frequency", "30" }
+                        { "frequency", "15" }
                     }) { PollDelay = (int)TimeSpan.FromMinutes(3).TotalSeconds };
             yield return new ChartBeatDataSource("HistorialTrafficSeriesWeekAgo", "/historical/traffic/series/", 
                 parameters: new Dictionary<string, object> {
-                        {"frequency", "30"},
+                        {"frequency", "15"},
                         {"days_ago", "7"},
                         {"limit", "288"},
                     }) { PollDelay = (int)TimeSpan.FromMinutes(3).TotalSeconds };

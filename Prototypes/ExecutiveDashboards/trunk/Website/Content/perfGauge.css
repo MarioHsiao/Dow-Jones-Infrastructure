@@ -69,11 +69,14 @@
     z-index: 10; }
   .dj-trafficBar .browserVersion {
     position: absolute;
-    left: 62px;
-    top: 18px;
+    left: 65px;
+    top: 31px;
     font-size: 14px;
     font-weight: bold;
-    z-index: 12; }
+    z-index: 12;
+    background-color: #3c3c3c;
+    border-radius: 10px;
+    padding: 0 5px; }
   .dj-trafficBar .visitors {
     position: absolute;
     top: 9px;

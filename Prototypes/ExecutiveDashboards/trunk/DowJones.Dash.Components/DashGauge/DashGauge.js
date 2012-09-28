@@ -1,4 +1,4 @@
-
+﻿
 DJ.UI.DashGauge = DJ.UI.Component.extend({
 
     defaults: {
@@ -14,8 +14,8 @@ DJ.UI.DashGauge = DJ.UI.Component.extend({
         orientation: 'horizontal',
         dial: {
             radius: '95%',
-            backgroundColor: '#333',
-            borderColor: '#333',
+            backgroundColor: '#AEAEAE',
+            borderColor: '#AEAEAE',
             rearLength: 0,
             baseWidth: 5,
             borderWidth: 0,
@@ -23,8 +23,8 @@ DJ.UI.DashGauge = DJ.UI.Component.extend({
             baseLength: '70%', // of radius
         },
         pivot: {
-            backgroundColor: '#333',
-            borderColor: '#333',
+            backgroundColor: '#AEAEAE',
+            borderColor: '#AEAEAE',
             borderWidth: 0,
             radius: 2.5
         }
@@ -160,7 +160,7 @@ DJ.UI.DashGauge = DJ.UI.Component.extend({
                     axis.addPlotBand(plotBandSpeed1);
                 }
             }
-            axis.setExtremes(this.options.min, this.options.max,false);
+            axis.setExtremes(this.options.min, this.options.max, false);
             $(this.selectors.chartMax, this.$element).html(this.templates.max(Highcharts.numberFormat(val, 0)));
         }
     },
@@ -191,7 +191,7 @@ DJ.UI.DashGauge = DJ.UI.Component.extend({
 
     _updateGauge: function () {
         var point = this.chart.series[0].points[0];
-        point.update(this.data, true, this.options.gaugeType === 1); // if the type is meter use animation.
+        point.update(this.data, true, { easing: 'easeInOutElastic' }); // if the type is meter use animation.easeOutElastic
     },
 
     //Initialize Delegates
@@ -211,7 +211,7 @@ DJ.UI.DashGauge = DJ.UI.Component.extend({
             id: 'speed1',
             from: 0,
             to: this.data,
-            color: this.options.colors[0],
+            color: this.options.colors[2],
             innerRadius: '45%',
             outerRadius: '90%'
         }];
@@ -318,4 +318,3 @@ DJ.UI.DashGauge = DJ.UI.Component.extend({
 
 // Declare this class as a jQuery plugin
 $.plugin('dj_Gauge', DJ.UI.DashGauge);
-

@@ -259,12 +259,12 @@ DJ.UI.Sparkline = DJ.UI.Component.extend({
         if (self.data) {
             self.$element.html(self.templates.layout({ data: self.data }));
             var chartContainer = el.find('.dj_sparkline-container'),
-                chartOptions;
+                chartOptions = null,
+                graphDataModel;
 
             if (self.data &&
                 self.data.values &&
                 self.data.values.length > 0)  {
-
                 switch(o.type) {
                     case self.sparklineType.line:
                         graphDataModel = self.mapData();
