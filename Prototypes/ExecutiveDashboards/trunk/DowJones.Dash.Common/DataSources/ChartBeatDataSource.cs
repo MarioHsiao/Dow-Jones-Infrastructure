@@ -14,7 +14,7 @@ namespace DowJones.Dash.DataSources
         private static readonly ILog _log = LogManager.GetLogger(typeof(ChartBeatDataSource));
 
 
-        public ChartBeatDataSource(string name, string dataName, string relativePath, string host, IDictionary<string, object> parameters = null)
+        public ChartBeatDataSource(string name, string dataName, string relativePath, string host, IDictionary<string, object> parameters = null, int? pollDelay = null)
             : base(
                 name,
                 dataName,
@@ -24,7 +24,7 @@ namespace DowJones.Dash.DataSources
                         {"apikey", ConfigurationManager.AppSettings["ChartBeat.ApiKey"]},
                         {"host", host},
                     },
-                () => Convert.ToInt32(ConfigurationManager.AppSettings["ChartBeat.PollDelay"])
+                () => pollDelay ?? Convert.ToInt32(ConfigurationManager.AppSettings["ChartBeat.PollDelay"])
             )
         {
         }

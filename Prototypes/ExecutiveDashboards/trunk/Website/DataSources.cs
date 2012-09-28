@@ -19,20 +19,21 @@ namespace DowJones.Dash.Website
         public IEnumerable<IDataSource> GetDataSources()
         {
             yield return new ChartBeatDataSource("online.wsj.com-DashboardStats", "DashboardStats", "/dashapi/stats/",
-                host: "online.wsj.com"
-                );
+                host: "online.wsj.com");
             yield return new ChartBeatDataSource("online.wsj.com-HistorialTrafficSeries", "HistorialTrafficSeries", "/historical/traffic/series/", 
                 host: "online.wsj.com",
                 parameters: new Dictionary<string, object> {
                         { "frequency", "15" }
-                    }) { PollDelay = (int)TimeSpan.FromMinutes(3).TotalSeconds };
+                    }, 
+                pollDelay: (int)TimeSpan.FromMinutes(3).TotalSeconds);
             yield return new ChartBeatDataSource("online.wsj.com-HistorialTrafficSeriesWeekAgo", "HistorialTrafficSeriesWeekAgo", "/historical/traffic/series/",
                 host: "online.wsj.com", 
                 parameters: new Dictionary<string, object> {
                         {"frequency", "15"},
                         {"days_ago", "7"},
                         {"limit", "288"},
-                    }) { PollDelay = (int)TimeSpan.FromMinutes(3).TotalSeconds };
+                    }, 
+                pollDelay: (int)TimeSpan.FromMinutes(3).TotalSeconds);
             yield return new ChartBeatDataSource("online.wsj.com-HistoricalTrafficStats", "HistoricalTrafficStats", "/historical/traffic/stats/",
                 host: "online.wsj.com",
                 parameters: new Dictionary<string, object> {
