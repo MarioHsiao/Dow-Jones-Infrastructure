@@ -26,8 +26,10 @@
 
 @section scripts{
     <script src="@Url.Content("~/signalr/hubs")" type="text/javascript"></script>
-    <script type="text/javascript">
-        $.extend(DJ.config, { dash: { moduleResizeUrl: '@Url.Content("~/dashboard/modules/resize/")' } });
-    </script>
     <script src="@Url.Content("~/scripts/dashboard.js")" type="text/javascript"></script>
+    <script type="text/javascript">
+        DJ.$dj.require(['$dj'], function ($dj) {
+            window['Dash'] = new DJ.UI.Dash($('body'), { options: { moduleResizeUrl: '@Url.Content("~/dashboard/modules/resize/")' } });
+        })();
+    </script>
 }

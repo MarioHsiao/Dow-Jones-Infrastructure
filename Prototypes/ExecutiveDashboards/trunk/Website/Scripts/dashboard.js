@@ -31,7 +31,7 @@
                     pageId: DJ.UI.Canvas.find().get_canvasId(),
                     moduleId: args.moduleId
                 };
-                $.ajax(DJ.config.dash.moduleResizeUrl + args.newSize, { data: request });
+                $.ajax(this.options.moduleResizeUrl + args.newSize, { data: request });
             });
         },
 
@@ -67,9 +67,6 @@
 
         EOF: null
     });
-    
-
-    window['Dash'] = new DJ.UI.Dash($('body'));
 })
 
 
