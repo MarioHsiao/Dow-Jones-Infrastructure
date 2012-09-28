@@ -27,17 +27,16 @@ namespace DowJones.Dash.Website.Hubs
             return null;
         }
 
-        public Task Reconnect(IEnumerable<string> groups)
+        public Task Reconnect(IEnumerable<string> sources)
         {
             Log.DebugFormat("Reconnect: {0}:{1} ({2})", 
-                            Context.ConnectionId, Context.User.Identity.Name, string.Join(", ", groups));
+                            Context.ConnectionId, Context.User.Identity.Name, string.Join(", ", sources));
             return null;
         }
-        
-        public Task<dynamic> Refresh(IEnumerable<string> groups)
+
+        public Task<IEnumerable<DashboardMessage>> Refresh(IEnumerable<string> groups)
         {
             return Task.Factory.StartNew(() =>
-                (dynamic)
                 Cache.Get((groups ?? Enumerable.Empty<string>()).ToArray())
             );
         }

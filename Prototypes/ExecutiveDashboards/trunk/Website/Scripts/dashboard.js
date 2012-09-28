@@ -1,4 +1,4 @@
-﻿DJ.$dj.require(['$dj'], function ($dj) {
+﻿DJ.$dj.require(['DJ','$dj'], function (DJ,$dj) {
     DJ.UI.Dash = DJ.UI.Component.extend({
 
         init: function (el, meta) {
@@ -6,43 +6,9 @@
 
             this._initializeModuleStyles();
             this._initializeModuleResizing();
-            this._initializeDataSources();
             this._initializeTabs();
-        },
 
-        refresh: function () {
-            var handleMessage = this._delegates.messageReceived;
-            
-            $.connection.dashboard.refresh([])
-                .done(function (messages) {
-                    for (var i = 0; i < messages.length; i++) {
-                        handleMessage(messages[i]);
-                    }
-                });
-        },
-        
-        _messageReceived: function (message) {
-            var prefix = 'data.';
-            
-            if (!message || message.error) {
-                prefix = 'dataError.';
-                $dj.error('Data error: ' + message.error, message.data);
-            }
-
-            DJ.publish(prefix + message.eventName, message.data);
-        },
-
-        _initializeDataSources: function () {
-            $.connection.dashboard.messageReceived = this._delegates.messageReceived;
-            $.connection.hub.start()
-                .done(this._delegates.refresh);
-        },
-
-        _initializeDelegates: function () {
-            this._delegates = $.extend(this._delegates, {
-                messageReceived: $dj.delegate(this, this._messageReceived),
-                refresh: $dj.delegate(this, this.refresh)
-            });
+            this._groups = new DJ.DashGroupManager().start();
         },
 
         _initializeModuleResizing: function () {
@@ -86,6 +52,60 @@
         },
 
         EOF: null
+    });
+
+
+    DJ.DashGroupManager = DJ.Component.extend({
+        
+        _currentGroups: [],
+
+        init: function (meta) {
+            this._super(meta);
+            $.connection.dashboard.messageReceived = this._delegates.messageReceived;
+        },
+
+        refresh: function () {
+            var handleMessage = this._delegates.messageReceived;
+
+            $.connection.dashboard.refresh(this._currentGroups)
+                .done(function (messages) {
+                    for (var i = 0; i < messages.length; i++) {
+                        handleMessage(messages[i]);
+                    }
+                });
+            return this;
+        },
+        
+        start: function () {
+            $.connection.hub.start()
+                .done(this._delegates.refresh);
+            return this;
+        },
+
+        stop: function () {
+            $.connection.hub.stop();
+            return this;
+        },
+
+        _initializeDelegates: function () {
+            this._delegates = $.extend(this._delegates, {
+                messageReceived: $dj.delegate(this, this._messageReceived),
+                refresh: $dj.delegate(this, this.refresh)
+            });
+        },
+
+        _messageReceived: function (message) {
+            var prefix = 'data.';
+
+            if (!message || message.error) {
+                prefix = 'dataError.';
+                $dj.error('Data error: ' + message.error, message.data);
+            }
+
+            DJ.publish(prefix + message.eventName, message.data);
+        },
+        
+        EOF: null,
     });
 })
 
