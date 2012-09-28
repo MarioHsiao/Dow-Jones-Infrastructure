@@ -24,14 +24,14 @@ namespace DowJones.Dash.Website.App_Start
 
             foreach (var dataSource in _dataSources)
             {
-                var name = dataSource.Name;
+                var sourceName = dataSource.Name;
 
                 dataSource.DataReceived += (sender, args) =>
-                    Dashboard.Publish(new DashboardMessage(name, args.Data));
+                    Dashboard.Publish(new DashboardMessage(sourceName, args.Name, args.Data));
 
                 dataSource.Error += (sender, args) => {
                     LogManager.GetLogger(sender.GetType()).Warn("Error retriving data", args.Exception);
-                    Dashboard.Publish(new DashboardErrorMessage(name, args.Exception));
+                    Dashboard.Publish(new DashboardErrorMessage(sourceName, args.Name, args.Exception));
                 };
                 
                 dataSource.Start();

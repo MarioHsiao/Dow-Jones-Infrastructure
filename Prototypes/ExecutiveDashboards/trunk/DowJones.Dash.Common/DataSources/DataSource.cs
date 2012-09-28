@@ -3,30 +3,37 @@ using log4net;
 
 namespace DowJones.Dash.DataSources
 {
-    public class DataReceivedEventArgs : EventArgs
+    public abstract class DataSourceEvent : EventArgs
     {
-        public object Data { get; private set; }
+        public string Name { get; private set; }
 
-        public DataReceivedEventArgs(object data)
+        public class DataReceived : DataSourceEvent
         {
-            Data = data;
+            public object Data { get; private set; }
+
+            public DataReceived(string name, object data)
+            {
+                Name = name;
+                Data = data;
+            }
         }
-    }
 
-    public class ErrorEventArgs : EventArgs
-    {
-        public Exception Exception { get; private set; }
-
-        public ErrorEventArgs(Exception exception = null)
+        public class Error : DataSourceEvent
         {
-            Exception = exception;
+            public Exception Exception { get; private set; }
+
+            public Error(string name, Exception exception = null)
+            {
+                Name = name;
+                Exception = exception;
+            }
         }
     }
 
     public interface IDataSource
     {
-        event EventHandler<DataReceivedEventArgs> DataReceived;
-        event EventHandler<ErrorEventArgs> Error;
+        event EventHandler<DataSourceEvent.DataReceived> DataReceived;
+        event EventHandler<DataSourceEvent.Error> Error;
         string Name { get; }
         void Start();
     }
@@ -37,9 +44,11 @@ namespace DowJones.Dash.DataSources
 
         private readonly string _name;
 
-        public event EventHandler<DataReceivedEventArgs> DataReceived;
+        public event EventHandler<DataSourceEvent.DataReceived> DataReceived;
 
-        public event EventHandler<ErrorEventArgs> Error;
+        public event EventHandler<DataSourceEvent.Error> Error;
+
+        public string DataName { get; set; }
 
         public virtual string Name
         {
@@ -51,19 +60,20 @@ namespace DowJones.Dash.DataSources
             get { return DataReceived != null; }
         }
 
-        protected DataSource(string name = null)
+        protected DataSource(string name = null, string dataName = null)
         {
             _name = name ?? GetType().Name;
+            DataName = dataName ?? Name;
         }
 
         public abstract void Start();
 
-        protected virtual void OnDataReceived(object data)
+        protected virtual void OnDataReceived(object data, string name = null)
         {
             if (DataReceived != null && data != null)
             {
                 Log.Debug("Data received");
-                DataReceived(this, new DataReceivedEventArgs(data));
+                DataReceived(this, new DataSourceEvent.DataReceived(name ?? DataName, data));
             }
             else
             {
@@ -71,12 +81,12 @@ namespace DowJones.Dash.DataSources
             }
         }
 
-        protected virtual void OnError(Exception ex = null)
+        protected virtual void OnError(Exception ex = null, string name = null)
         {
             Log.WarnFormat("Data Source {0} Failed: {1}", GetType().Name, ex);
 
             if (Error != null)
-                Error(this, new ErrorEventArgs(ex));
+                Error(this, new DataSourceEvent.Error(name ?? DataName, ex));
         }
     }
 }

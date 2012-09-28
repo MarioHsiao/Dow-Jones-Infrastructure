@@ -27,8 +27,8 @@ namespace DowJones.Dash.DataSources
         private Lazy<int> _pollDelay;
 
 
-        protected PollingDataSource(string name = null, Func<int> pollDelayFactory = null, Func<int> errorDelayFactory = null)
-            : base(name)
+        protected PollingDataSource(string name = null, string dataName = null, Func<int> pollDelayFactory = null, Func<int> errorDelayFactory = null)
+            : base(name, dataName)
         {
             _pollDelay = new Lazy<int>(pollDelayFactory ?? DefaultPollDelayFactory);
 
@@ -50,13 +50,13 @@ namespace DowJones.Dash.DataSources
             );
         }
 
-        protected override void OnDataReceived(object data)
+        protected override void OnDataReceived(object data, string name = null)
         {
-            base.OnDataReceived(data);
+            base.OnDataReceived(data, name);
             Poll(PollDelay);
         }
 
-        protected override void OnError(Exception ex = null)
+        protected override void OnError(Exception ex = null, string name = null)
         {
             // Don't let thread aborts go on forever
             if (ex is ThreadAbortException || (ex != null && ex.InnerException is ThreadAbortException))

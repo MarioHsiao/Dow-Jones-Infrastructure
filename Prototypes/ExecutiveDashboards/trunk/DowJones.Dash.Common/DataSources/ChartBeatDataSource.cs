@@ -14,9 +14,10 @@ namespace DowJones.Dash.DataSources
         private static readonly ILog _log = LogManager.GetLogger(typeof(ChartBeatDataSource));
 
 
-        public ChartBeatDataSource(string name, string relativePath, string host = "online.wsj.com", IDictionary<string, object> parameters = null)
+        public ChartBeatDataSource(string name, string dataName, string relativePath, string host, IDictionary<string, object> parameters = null)
             : base(
                 name,
+                dataName,
                 ConfigurationManager.AppSettings["ChartBeat.BasePath"] + relativePath,
                 new Dictionary<string, object>(parameters ?? new Dictionary<string, object>())
                     {

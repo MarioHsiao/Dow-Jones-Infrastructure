@@ -15,10 +15,10 @@ namespace DowJones.Dash.Caching
 
         public virtual void Add(DashboardMessage message)
         {
-            if (Cache.ContainsKey(message.DataSource))
-                Cache[message.DataSource] = message;
+            if (Cache.ContainsKey(message.Source))
+                Cache[message.Source] = message;
             else
-                Cache.Add(message.DataSource, message);
+                Cache.Add(message.Source, message);
         }
 
         public virtual IEnumerable<DashboardMessage> Get(params string[] dataSources)

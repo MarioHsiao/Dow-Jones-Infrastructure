@@ -11,18 +11,38 @@
         },
 
         refresh: function () {
+            var handleMessage = this._delegates.messageReceived;
+            
             $.connection.dashboard.refresh([])
                 .done(function (messages) {
                     for (var i = 0; i < messages.length; i++) {
-                        DJ.publish(messages[i].eventName, messages[i].data);
+                        handleMessage(messages[i]);
                     }
                 });
         },
+        
+        _messageReceived: function (message) {
+            var prefix = 'data.';
+            
+            if (!message || message.error) {
+                prefix = 'dataError.';
+                $dj.error('Data error: ' + message.error, message.data);
+            }
+
+            DJ.publish(prefix + message.eventName, message.data);
+        },
 
         _initializeDataSources: function () {
-            $.connection.dashboard.publish = DJ.publish;
+            $.connection.dashboard.messageReceived = this._delegates.messageReceived;
             $.connection.hub.start()
-                .done(this.refresh);
+                .done(this._delegates.refresh);
+        },
+
+        _initializeDelegates: function () {
+            this._delegates = $.extend(this._delegates, {
+                messageReceived: $dj.delegate(this, this._messageReceived),
+                refresh: $dj.delegate(this, this.refresh)
+            });
         },
 
         _initializeModuleResizing: function () {

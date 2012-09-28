@@ -27,8 +27,8 @@ namespace DowJones.Dash.DataSources
         }
         private static readonly ILog _log = LogManager.GetLogger(typeof(SqlDataSource));
 
-        protected SqlDataSource(string name, string connectionString, string query = null, IDictionary<string, object> parameters = null, Func<int> pollDelayFactory = null, Func<int> errorDelayFactory = null)
-            : base(name, pollDelayFactory, errorDelayFactory)
+        protected SqlDataSource(string name, string dataName, string connectionString, string query = null, IDictionary<string, object> parameters = null, Func<int> pollDelayFactory = null, Func<int> errorDelayFactory = null)
+            : base(name, dataName, pollDelayFactory, errorDelayFactory)
         {
             _parameters = parameters;
             Guard.IsNotNullOrEmpty(connectionString, "connectionString");

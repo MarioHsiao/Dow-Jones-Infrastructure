@@ -4,9 +4,12 @@ namespace DowJones.Dash.Caching
 {
     public class DashboardErrorMessage : DashboardMessage
     {
-        public DashboardErrorMessage(string dataSource, Exception exception = null)
-            : base(dataSource, exception == null ? "Unknown error" : exception.Message)
+        public string Error { get; private set; }
+
+        public DashboardErrorMessage(string eventName, string source, Exception exception = null)
+            : base(eventName, source, null)
         {
+            Error = (exception == null) ? "General Error" : exception.Message;
         }
     }
 }

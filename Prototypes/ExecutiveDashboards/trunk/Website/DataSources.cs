@@ -18,59 +18,68 @@ namespace DowJones.Dash.Website
 
         public IEnumerable<IDataSource> GetDataSources()
         {
-            yield return new ChartBeatDataSource("DashboardStats", "/dashapi/stats/");
-            yield return new ChartBeatDataSource("HistorialTrafficSeries", "/historical/traffic/series/", 
+            yield return new ChartBeatDataSource("online.wsj.com-DashboardStats", "DashboardStats", "/dashapi/stats/",
+                host: "online.wsj.com"
+                );
+            yield return new ChartBeatDataSource("online.wsj.com-HistorialTrafficSeries", "HistorialTrafficSeries", "/historical/traffic/series/", 
+                host: "online.wsj.com",
                 parameters: new Dictionary<string, object> {
                         { "frequency", "15" }
                     }) { PollDelay = (int)TimeSpan.FromMinutes(3).TotalSeconds };
-            yield return new ChartBeatDataSource("HistorialTrafficSeriesWeekAgo", "/historical/traffic/series/", 
+            yield return new ChartBeatDataSource("online.wsj.com-HistorialTrafficSeriesWeekAgo", "HistorialTrafficSeriesWeekAgo", "/historical/traffic/series/",
+                host: "online.wsj.com", 
                 parameters: new Dictionary<string, object> {
                         {"frequency", "15"},
                         {"days_ago", "7"},
                         {"limit", "288"},
                     }) { PollDelay = (int)TimeSpan.FromMinutes(3).TotalSeconds };
-            yield return new ChartBeatDataSource("HistoricalTrafficStats", "/historical/traffic/stats/",
+            yield return new ChartBeatDataSource("online.wsj.com-HistoricalTrafficStats", "HistoricalTrafficStats", "/historical/traffic/stats/",
+                host: "online.wsj.com",
                 parameters: new Dictionary<string, object> {
                         {"fields", "srvload,people,srvload"},
                         {"properties_ago", "min,max,avg"},
                     });
-            yield return new ChartBeatDataSource("HistoricalTrafficValues", "/historical/traffic/values/",
+            yield return new ChartBeatDataSource("online.wsj.com-HistoricalTrafficValues", "HistoricalTrafficValues", "/historical/traffic/values/",
+                host: "online.wsj.com",
                 parameters: new Dictionary<string, object> {
                         {"days_ago", "0"},
                         {"limit", "1"},
                         {"fields", "internal,search,links,direct,social"},
                     });
-            yield return new ChartBeatDataSource("QuickStats", "/live/quickstats/v3");
-            yield return new ChartBeatDataSource("Referrers", "/live/referrers/v3");
-            yield return new ChartBeatDataSource("TopPages", "/toppages",
+            yield return new ChartBeatDataSource("online.wsj.com-QuickStats", "QuickStats", "/live/quickstats/v3",
+                host: "online.wsj.com");
+            yield return new ChartBeatDataSource("online.wsj.com-Referrers", "Referrers", "/live/referrers/v3",
+                host: "online.wsj.com");
+            yield return new ChartBeatDataSource("online.wsj.com-TopPages", "TopPages", "/toppages",
+                host: "online.wsj.com",
                 parameters: new Dictionary<string, object> {
                         {"limit", 10},
                     });
 
 
 
-            yield return new GomezDataSource("BrowserStats", @"[SplunkExport].[dbo].[GetPageLoadDetailsByBrowser]",
+            yield return new GomezDataSource("online.wsj.com-BrowserStats", "BrowserStats", @"[SplunkExport].[dbo].[GetPageLoadDetailsByBrowser]",
                 parameters: new Dictionary<string, object> {
                         {"seconds", 300},
                     });
-            yield return new GomezDataSource("DeviceTraffic", @"[SplunkExport].[dbo].[GetDeviceTraffic]",
+            yield return new GomezDataSource("online.wsj.com-DeviceTraffic", "DeviceTraffic", @"[SplunkExport].[dbo].[GetDeviceTraffic]",
                 parameters: new Dictionary<string, object> {
                         {"seconds", 300},
                     });
-            yield return new GomezDataSource("DeviceTrafficByPage", @"[SplunkExport].[dbo].[GetDeviceTrafficByPage]",
+            yield return new GomezDataSource("online.wsj.com-DeviceTrafficByPage", "DeviceTrafficByPage", @"[SplunkExport].[dbo].[GetDeviceTrafficByPage]",
                 parameters: new Dictionary<string, object> {
                         {"pageid", 421139},
                         {"seconds", 300},
                     });
-            yield return new GomezDataSource("PageLoadHistoricalDetails", @"[SplunkExport].[dbo].[GetPageLoadHistoricalDetails]",
+            yield return new GomezDataSource("online.wsj.com-PageLoadHistoricalDetails", "PageLoadHistoricalDetails", @"[SplunkExport].[dbo].[GetPageLoadHistoricalDetails]",
                 parameters: new Dictionary<string, object> {
                         {"days", 7},
                     });
-            yield return new GomezDataSource("PageTimings", @"[SplunkExport].[dbo].[GetPageLoadDetails]",
+            yield return new GomezDataSource("online.wsj.com-PageTimings", "PageTimings", @"[SplunkExport].[dbo].[GetPageLoadDetails]",
                 parameters: new Dictionary<string, object> {
                         {"seconds", 300},
                     });
-			yield return new GomezDataSource("PageLoadDetailsBySubCountryforCountry", @"[SplunkExport].[dbo].[GetPageLoadDetailsBySubCountryforCountry]",
+            yield return new GomezDataSource("online.wsj.com-PageLoadDetailsBySubCountryforCountry", "PageLoadDetailsBySubCountryforCountry", @"[SplunkExport].[dbo].[GetPageLoadDetailsBySubCountryforCountry]",
 				parameters: new Dictionary<string, object> {
                         {"country", 223},{"seconds", 600},
                     });

@@ -45,8 +45,8 @@ namespace DowJones.Dash.DataSources
         }
 
 
-        public WebDataSource(string name, string path, IDictionary<string, object> parameters = null, Func<int> pollDelayFactory = null, Func<int> errorDelayFactory = null)
-            : base(name, pollDelayFactory, errorDelayFactory)
+        public WebDataSource(string name, string dataName, string path, IDictionary<string, object> parameters = null, Func<int> pollDelayFactory = null, Func<int> errorDelayFactory = null)
+            : base(name, dataName, pollDelayFactory, errorDelayFactory)
         {
             Guard.IsNotNullOrEmpty(path, "path");
 
@@ -127,7 +127,7 @@ namespace DowJones.Dash.DataSources
             }
         }
 
-        protected override void OnError(Exception ex = null)
+        protected override void OnError(Exception ex = null, string name = null)
         {
             var httpException = ex as HttpException;
             if (httpException != null)
@@ -136,7 +136,7 @@ namespace DowJones.Dash.DataSources
                 ex = new ApplicationException(message, ex);
             }
 
-            base.OnError(ex);
+            base.OnError(ex, name);
         }
 
         private string SerializeParameters()
@@ -156,8 +156,8 @@ namespace DowJones.Dash.DataSources
         }
         private static readonly ILog _log = LogManager.GetLogger(typeof(JsonWebDataSource));
 
-        public JsonWebDataSource(string name, string path, IDictionary<string, object> parameters = null, Func<int> pollDelayFactory = null, Func<int> errorDelayFactory = null)
-            : base(name, path, parameters, pollDelayFactory, errorDelayFactory)
+        public JsonWebDataSource(string name, string dataName, string path, IDictionary<string, object> parameters = null, Func<int> pollDelayFactory = null, Func<int> errorDelayFactory = null)
+            : base(name, dataName, path, parameters, pollDelayFactory, errorDelayFactory)
         {
         }
 
@@ -177,8 +177,8 @@ namespace DowJones.Dash.DataSources
         }
         private static readonly ILog _log = LogManager.GetLogger(typeof(XmlWebDataSource));
 
-        public XmlWebDataSource(string name, string path, IDictionary<string, object> parameters = null, Func<int> pollDelayFactory = null, Func<int> errorDelayFactory = null)
-            : base(name, path, parameters, pollDelayFactory, errorDelayFactory)
+        public XmlWebDataSource(string name, string dataName, string path, IDictionary<string, object> parameters = null, Func<int> pollDelayFactory = null, Func<int> errorDelayFactory = null)
+            : base(name,dataName, path, parameters, pollDelayFactory, errorDelayFactory)
         {
         }
 

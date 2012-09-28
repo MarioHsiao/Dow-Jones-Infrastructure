@@ -14,9 +14,10 @@ namespace DowJones.Dash.DataSources
         }
         private static readonly ILog _log = LogManager.GetLogger(typeof(SplunkDataSource));
 
-        public SplunkDataSource(string name, string savedSearch)
+        public SplunkDataSource(string name, string dataName, string savedSearch)
             : base(
                 name,
+                dataName,
                 ConfigurationManager.AppSettings["Splunk.BasePath"] + "/search/jobs",
                 new Dictionary<string, object> {
                     { "output_mode", "json" },
