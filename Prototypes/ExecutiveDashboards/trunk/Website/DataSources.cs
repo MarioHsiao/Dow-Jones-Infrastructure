@@ -37,7 +37,7 @@ namespace DowJones.Dash.Website
             yield return new ChartBeatDataSource("online.wsj.com-HistoricalTrafficStats", "HistoricalTrafficStats", "/historical/traffic/stats/",
                 host: "online.wsj.com",
                 parameters: new Dictionary<string, object> {
-                        {"fields", "srvload,people,srvload"},
+                        {"fields", "srvload,peoples"},
                         {"properties_ago", "min,max,avg"},
                     });
             yield return new ChartBeatDataSource("online.wsj.com-HistoricalTrafficValues", "HistoricalTrafficValues", "/historical/traffic/values/",

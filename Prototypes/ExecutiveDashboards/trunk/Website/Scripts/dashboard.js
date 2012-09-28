@@ -107,15 +107,16 @@
         
         EOF: null,
     });
+
+    (function() {
+        window._alert = window.alert;
+        window.alert = function (msg) {
+            $('#dashAlertModal .modal-body p').text(msg);
+            $('#dashAlertModal').modal('show');
+            return false;
+        };
+})();
 })
 
 
 
-(function overrideAlert() {
-    window._alert = window.alert;
-    window.alert = function (msg) {
-        $('#dashAlertModal .modal-body p').text(msg);
-        $('#dashAlertModal').modal('show');
-        return false;
-    };
-})();

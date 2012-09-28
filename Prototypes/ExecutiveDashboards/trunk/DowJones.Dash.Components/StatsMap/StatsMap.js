@@ -56,7 +56,14 @@ DJ.UI.StatsMap = DJ.UI.Component.extend({
                         fontWeight: 'bold'
                     }
                 },
-                marker: { enabled: false },
+                marker: {
+                    enabled: false
+                },
+                states: {
+                    hover: {
+                        color: Highcharts.getOptions().colors[6]
+                    }
+                },
                 valueRanges: [{
                     color: '#ddd'
                 }, {

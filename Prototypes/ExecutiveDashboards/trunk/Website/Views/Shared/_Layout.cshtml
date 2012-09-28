@@ -38,14 +38,14 @@
                              <a href="#"><img src="~/Content/images/wsj.png" alt="Wall Street Journal: US" />US</a>
                         </li>
                         <li>
-							<a href="#"><img src="~/Content/images/marketwatch.png" alt="Marketwatch" />Marketwatch</a>
-                        </li>
+							<a href="#"><img src="~/Content/images/wsj.png" alt="Wall Street Journal: Japan" />Japan</a>
+						</li>
                         <li>
                             <a href="#"><img src="~/Content/images/wsj.png" alt="Wall Street Journal: Asia Pacific" />China</a>
                         </li>
 						<li>
-							<a href="#"><img src="~/Content/images/wsj.png" alt="Wall Street Journal: Japan" />Japan</a>
-						</li>
+							<a href="#"><img src="~/Content/images/marketwatch.png" alt="Marketwatch" />Marketwatch</a>
+                        </li>
                         <li>
 							<a href="#"><img src="~/Content/images/smartmoney.png" alt="Smart Money" />SmartMoney</a>
 						</li>
@@ -98,6 +98,20 @@
             <p class="version pull-right">Version: @MvcApplication.Version.Value (@MvcApplication.AssemblyTimestamp) UTC</p>
         </div>
     </footer>
+    
+    <div class="modal hide fade" id="dashAlertModal" tabindex="-1" role="dialog" aria-labelledby="dashAlertModalLabel"
+        aria-hidden="true" data-backdrop="static" data-keyboard="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="dashAlertModalLabel">Alert</h3>
+        </div>
+        <div class="modal-body">
+            <p></p>
+        </div>
+        <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">Ok</button>
+        </div>
+    </div>
 </body>
 @DJ.ScriptRegistry().Render()
 @DJ.StylesheetRegistry().Render()

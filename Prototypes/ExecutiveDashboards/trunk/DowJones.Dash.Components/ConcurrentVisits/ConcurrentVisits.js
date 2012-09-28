@@ -56,8 +56,8 @@ DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
             fillColor: {
                 linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
                 stops: [
-                    [0, themeManager.colors.green()],
-                    [1, Highcharts.Color(themeManager.colors.green()).brighten(-0.3).get('rgb')] // darken
+                    [0, themeManager.colors.ltBlue()],
+                    [1, Highcharts.Color(themeManager.colors.ltBlue()).brighten(-0.3).get('rgb')] // darken
                 ]
             },
             lineWidth: 1,
@@ -254,9 +254,14 @@ DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
         if (this.visitorsGauge) {
             this.visitorsGauge.updateMax(data.people_max);
             this.visitorsGauge.updateMin(data.people_min);
-
+           
+        }
+        
+        if (this.histogram) {
             var yAxis = this.histogram.get('visitors');
-            yAxis.setExtremes(data.people_min, data.people_max);
+            if (yAxis) {
+                yAxis.setExtremes(data.people_min, data.people_max);
+            }
         }
     },
     

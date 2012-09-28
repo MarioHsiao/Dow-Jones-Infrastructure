@@ -7,6 +7,7 @@ DJ.UI.ThemeManager = DJ.UI.Component.extend({
 
     // Default options
     defaults: {
+        debug: false
     },
    
     init: function (element, meta) {
@@ -18,6 +19,9 @@ DJ.UI.ThemeManager = DJ.UI.Component.extend({
         if (!DJ.UI.ThemeManager.instance) {
             DJ.UI.ThemeManager.instance = this;
         }
+        if (this.options.debug) {
+            DJ.config.debug = true;
+        }
         this._initializeObject();
         this.initializeHighchartsTheme();
         this.initializeHighchartsGradient();
@@ -28,25 +32,25 @@ DJ.UI.ThemeManager = DJ.UI.Component.extend({
     
     _initializeObject: function () {
         this.colors = {
-            blue: $dj.delegate(this,function() {
+            blue: $dj.delegate(this, function() {
                 return this.options.colors[0];
             }),
-            red: $dj.delegate(this,function() {
+            red: $dj.delegate(this, function() {
                     return this.options.colors[1];
             }),
-            green: $dj.delegate(this,function() {
+            green: $dj.delegate(this, function() {
                     return this.options.colors[2];
             }),
-                purple: $dj.delegate(this,function() {
+            purple: $dj.delegate(this, function() {
                     return this.options.colors[3];
             }),
-            ltBlue: $dj.delegate(this,function() {
-                    return this.options.colors[4];
+            ltBlue: $dj.delegate(this, function () {
+                    return this.options.colors[6];
             }),
-                yellow: $dj.delegate(this,function() {
+            yellow: $dj.delegate(this, function() {
                     return this.options.colors[5];
             }),
-            grey: $dj.delegate(this,function() {
+            grey: $dj.delegate(this, function() {
                     return "#CCCCCC";
             }),
             siteBackground: function () {

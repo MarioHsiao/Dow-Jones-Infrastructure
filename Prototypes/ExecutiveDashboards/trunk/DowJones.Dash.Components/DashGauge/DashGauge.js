@@ -211,7 +211,7 @@ DJ.UI.DashGauge = DJ.UI.Component.extend({
             id: 'speed1',
             from: 0,
             to: this.data,
-            color: this.options.colors[2],
+            color: this.options.colors[6],
             innerRadius: '45%',
             outerRadius: '90%'
         }];
