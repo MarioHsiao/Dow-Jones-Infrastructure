@@ -1594,7 +1594,7 @@ table {
   *margin-right: .3em;
   line-height: 14px;
   vertical-align: text-top;
-  background-image: url("./images/glyphicons-halflings.png");
+  background-image: url(./images/glyphicons-halflings.png);
   background-position: 14px 14px;
   background-repeat: no-repeat;
 }
@@ -1604,11 +1604,11 @@ table {
 }
 
 .icon-white {
-  background-image: url("./images/glyphicons-halflings-white.png");
+  background-image: url(./images/glyphicons-halflings-white.png);
 }
 
 .icon-glass {
-  background-position: 0 0;
+  background-position: 0 0;	
 }
 
 .icon-music {
@@ -3068,8 +3068,8 @@ button.btn.btn-mini, input[type="submit"].btn.btn-mini {
 
 .nav-pills > {
   li > a {
-    padding-top: 8px;
-    padding-bottom: 8px;
+    padding-top: 4px;
+    padding-bottom: 4px;
     margin-top: 2px;
     margin-bottom: 2px;
     -webkit-border-radius: 5px;

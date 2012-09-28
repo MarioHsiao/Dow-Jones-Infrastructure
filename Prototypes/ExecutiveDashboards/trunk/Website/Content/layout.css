@@ -36,7 +36,8 @@ header {
     color: #60AFDC;
     margin-top: 10px;
     font-family: tahoma;
-    display: inline-block; }
+    display: inline-block;
+    margin-left: 34px; }
     header h1 a {
       padding-right: 30px;
       background: url(./images/dash.png) no-repeat right 70%; }

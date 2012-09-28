@@ -19,7 +19,7 @@ namespace DowJones.Dash.Website.App_Start
                 "~/Scripts/jquery.signalR-{version}.js"
             ));
 
-			bundles.Add(new StyleBundle("~/bundles/bootstrap").Include(
+			bundles.Add(new StyleBundle("~/content/bootstrap").Include(
 				"~/Content/bootstrap.css",
 				"~/Content/bootstrap-responsive.css"
 				));
