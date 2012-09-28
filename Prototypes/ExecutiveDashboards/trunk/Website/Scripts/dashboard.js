@@ -4,11 +4,32 @@
         init: function (el, meta) {
             this._super(el, meta);
 
+            this._groups = new DJ.DashGroupManager();
+            
             this._initializeModuleStyles();
             this._initializeModuleResizing();
             this._initializeTabs();
+        },
+        
+        domain: function (domain) {
+            this._groups.changeDomain(domain);
+            return this;
+        },
 
-            this._groups = new DJ.DashGroupManager().start();
+        start: function (domain) {
+            this._groups.start(domain);
+            return this;
+        },
+        
+        stop: function () {
+            this._groups.stop();
+            return this;
+        },
+
+        _initializeDelegates: function () {
+            this._delegates = $.extend(this._delegates || { }, {
+                domain: $dj.delegate(this, this.domain)
+            });
         },
 
         _initializeModuleResizing: function () {
@@ -40,15 +61,15 @@
         },
 
         _initializeTabs: function () {
-            $('.trendTabs li').not(':first').find('a').not('[href=#module-gallery]')
-                .popover({ content: 'Coming soon!', delay: { show: 1000, hide: 1000 } })
-                .click(function () {
-                    var self = this;
-                    setTimeout(function () {
-                        $(self).popover('hide');
-                    }, 1000);
-                });
-            $('LI.defaultTab A').tooltip();
+            var changeDomain = this._delegates.domain;
+
+            var tabs = $('.trendTabs li').not('> a[href=#module-gallery]');
+            tabs.click(function () {
+                tabs.removeClass('active');
+                $(this).addClass('active');
+                var source = $(this).data('source');
+                changeDomain(source);
+            });
         },
 
         EOF: null
@@ -57,41 +78,101 @@
 
     DJ.DashGroupManager = DJ.Component.extend({
         
-        _currentGroups: [],
+        defaults: {
+            domain: null,
+        },
+
+        _currentSources: [],
 
         init: function (meta) {
             this._super(meta);
             $.connection.dashboard.messageReceived = this._delegates.messageReceived;
         },
 
-        refresh: function () {
-            var handleMessage = this._delegates.messageReceived;
+        changeDomain: function (domain) {
+            var oldSources = this._currentSources;
+            var newSources = this._getSources(domain);
 
-            $.connection.dashboard.refresh(this._currentGroups)
-                .done(function (messages) {
-                    for (var i = 0; i < messages.length; i++) {
-                        handleMessage(messages[i]);
-                    }
-                });
-            return this;
+            var handleMessage = this._delegates.messageReceived;
+            $.connection.dashboard.unsubscribe(oldSources)
+                .done($dj.delegate(this, function () {
+                    this.options.domain = domain;
+                    this._currentSources = newSources;
+
+                    $.connection.dashboard.subscribe(this._currentSources)
+                        .done(function (messages) {
+                            for (var i = 0; i < messages.length; i++) {
+                                handleMessage(messages[i]);
+                            }
+                        });
+                }));
         },
-        
-        start: function () {
+
+        start: function (domain) {
+            if (this._started)
+                return this;
+            
             $.connection.hub.start()
-                .done(this._delegates.refresh);
+                .done($dj.delegate(this, function () {
+                    this._started = true;
+                    this.changeDomain(domain);
+                }));
+            
             return this;
         },
 
         stop: function () {
-            $.connection.hub.stop();
+            if (!this._started)
+                return this;
+
+            $.connection.dashboard.unsubscribe(this._currentSources);
+            $.connection.hub.stop($dj.delegate(this, function () {
+                this._started = false;
+            }));
+            
             return this;
         },
 
+
+        _getSources: function (domain) {
+
+            var chartBeatEvents = [
+                'DashboardStats',
+                'HistorialTrafficSeries',
+                'HistorialTrafficSeriesWeekAgo',
+                'HistoricalTrafficStats',
+                'HistoricalTrafficValues',
+                'QuickStats',
+                'Referrers',
+                'TopPages'
+            ];
+            
+            var gomezEvents = [
+                'BrowserStats',
+                'DeviceTraffic',
+                'DeviceTrafficByPage',
+                'PageLoadHistoricalDetails',
+                'PageTimings',
+                'PageLoadDetailsBySubCountryforCountry'
+            ];
+
+            var events = [];
+            
+            // We've got ChartBeat for pretty much everything
+            events = events.concat(chartBeatEvents);
+            
+            if (domain == 'online.wsj.com') {
+                events = events.concat(gomezEvents);
+            }
+
+            // Convert to '[domain]-[event name]', e.g. 'online.wsj.com-BrowserStats'
+            return _.map(events, function (name) { return domain + '-' + name; });
+        },
+
         _initializeDelegates: function () {
-            this._delegates = $.extend(this._delegates, {
-                messageReceived: $dj.delegate(this, this._messageReceived),
-                refresh: $dj.delegate(this, this.refresh)
-            });
+            this._delegates = {
+                messageReceived: $dj.delegate(this, this._messageReceived)
+            };
         },
 
         _messageReceived: function (message) {

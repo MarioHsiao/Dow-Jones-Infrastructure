@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using DowJones.Dash.DataSources;
 
 namespace DowJones.Dash.Website
@@ -8,7 +9,7 @@ namespace DowJones.Dash.Website
     {
         protected override void OnLoad()
         {
-            var dataSources = GetDataSources();
+            var dataSources = WSJ().Union(Marketwatch());
 
             foreach (var dataSource in dataSources)
             {
@@ -16,7 +17,49 @@ namespace DowJones.Dash.Website
             }
         }
 
-        public IEnumerable<IDataSource> GetDataSources()
+        public IEnumerable<IDataSource> Marketwatch()
+        {
+            yield return new ChartBeatDataSource("marketwatch.com-DashboardStats", "DashboardStats", "/dashapi/stats/",
+                host: "marketwatch.com");
+            yield return new ChartBeatDataSource("marketwatch.com-HistorialTrafficSeries", "HistorialTrafficSeries", "/historical/traffic/series/",
+                host: "marketwatch.com",
+                parameters: new Dictionary<string, object> {
+                        { "frequency", "15" }
+                    },
+                pollDelay: (int)TimeSpan.FromMinutes(3).TotalSeconds);
+            yield return new ChartBeatDataSource("marketwatch.com-HistorialTrafficSeriesWeekAgo", "HistorialTrafficSeriesWeekAgo", "/historical/traffic/series/",
+                host: "marketwatch.com",
+                parameters: new Dictionary<string, object> {
+                        {"frequency", "15"},
+                        {"days_ago", "7"},
+                        {"limit", "288"},
+                    },
+                pollDelay: (int)TimeSpan.FromMinutes(3).TotalSeconds);
+            yield return new ChartBeatDataSource("marketwatch.com-HistoricalTrafficStats", "HistoricalTrafficStats", "/historical/traffic/stats/",
+                host: "marketwatch.com",
+                parameters: new Dictionary<string, object> {
+                        {"fields", "srvload,peoples"},
+                        {"properties_ago", "min,max,avg"},
+                    });
+            yield return new ChartBeatDataSource("marketwatch.com-HistoricalTrafficValues", "HistoricalTrafficValues", "/historical/traffic/values/",
+                host: "marketwatch.com",
+                parameters: new Dictionary<string, object> {
+                        {"days_ago", "0"},
+                        {"limit", "1"},
+                        {"fields", "internal,search,links,direct,social"},
+                    });
+            yield return new ChartBeatDataSource("marketwatch.com-QuickStats", "QuickStats", "/live/quickstats/v3",
+                host: "marketwatch.com");
+            yield return new ChartBeatDataSource("marketwatch.com-Referrers", "Referrers", "/live/referrers/v3",
+                host: "marketwatch.com");
+            yield return new ChartBeatDataSource("marketwatch.com-TopPages", "TopPages", "/toppages",
+                host: "marketwatch.com",
+                parameters: new Dictionary<string, object> {
+                        {"limit", 10},
+                    });
+        }
+
+        public IEnumerable<IDataSource> WSJ()
         {
             yield return new ChartBeatDataSource("online.wsj.com-DashboardStats", "DashboardStats", "/dashapi/stats/",
                 host: "online.wsj.com");

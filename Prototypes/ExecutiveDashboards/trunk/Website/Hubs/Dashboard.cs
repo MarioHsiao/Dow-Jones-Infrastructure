@@ -8,7 +8,7 @@ using log4net;
 
 namespace DowJones.Dash.Website.Hubs
 {
-    public class Dashboard : Hub, IConnected
+    public class Dashboard : Hub
     {
         private static readonly ILog Log = LogManager.GetLogger(typeof (Dashboard));
 
@@ -20,39 +20,52 @@ namespace DowJones.Dash.Website.Hubs
             }
         }
 
-        public Task Connect()
+        public Task<IEnumerable<DashboardMessage>> Subscribe(IEnumerable<string> sources)
         {
-            Log.DebugFormat("Connect: {0}:{1}", 
-                            Context.ConnectionId, Context.User.Identity.Name);
-            return null;
+            var clientId = Context.ConnectionId;
+
+            return Task.Factory.StartNew(() => {
+                var groups = (sources ?? Enumerable.Empty<string>()).ToArray();
+
+                foreach (var @group in groups)
+                {
+                    Groups.Add(clientId, @group);
+                }
+
+                return Cache.Get(groups);
+            });
         }
 
-        public Task Reconnect(IEnumerable<string> sources)
+        public Task Unsubscribe(IEnumerable<string> sources)
         {
-            Log.DebugFormat("Reconnect: {0}:{1} ({2})", 
-                            Context.ConnectionId, Context.User.Identity.Name, string.Join(", ", sources));
-            return null;
-        }
+            var clientId = Context.ConnectionId;
 
-        public Task<IEnumerable<DashboardMessage>> Refresh(IEnumerable<string> groups)
-        {
             return Task.Factory.StartNew(() =>
-                Cache.Get((groups ?? Enumerable.Empty<string>()).ToArray())
-            );
+            {
+                var groups = (sources ?? Enumerable.Empty<string>()).ToArray();
+                foreach (var @group in groups)
+                {
+                    Groups.Remove(clientId, @group);
+                }
+            });
         }
 
         public static void Publish(DashboardMessage message)
         {
-            Publish(message, GlobalHost.ConnectionManager.GetHubContext<Dashboard>().Clients);
+            if (message == null)
+                return;
+
+            Log.DebugFormat("Publishing {0}", message.EventName);
+            
+            dynamic subscribers = GlobalHost.ConnectionManager.GetHubContext<Dashboard>().Clients;
+
+            if (string.IsNullOrWhiteSpace(message.Source))
+                subscribers = subscribers[message.Source];
+
+            subscribers.messageReceived(message);
 
             if (!(message is DashboardErrorMessage))
                 Cache.Add(message);
-        }
-
-        private static void Publish(DashboardMessage message, dynamic context)
-        {
-            Log.DebugFormat("Publishing {0}", message.EventName);
-            context.messageReceived(message);
         }
     }
 }
