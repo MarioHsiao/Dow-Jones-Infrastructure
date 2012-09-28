@@ -31,7 +31,7 @@
                     pageId: DJ.UI.Canvas.find().get_canvasId(),
                     moduleId: args.moduleId
                 };
-                $.ajax('@Url.Content("~/dashboard/modules/resize/")' + args.newSize, { data: request });
+                $.ajax(DJ.config.dash.moduleResizeUrl + args.newSize, { data: request });
             });
         },
 
