@@ -90,22 +90,35 @@
         },
 
         changeDomain: function (domain) {
-            var oldSources = this._currentSources;
+            if (domain === this.options.domain)
+                return;
+            var self = this,
+                o = self.options;
+            var oldSources = this._getSources(o.domain);
             var newSources = this._getSources(domain);
-
+            
             var handleMessage = this._delegates.messageReceived;
-            $.connection.dashboard.unsubscribe(oldSources)
-                .done($dj.delegate(this, function () {
-                    this.options.domain = domain;
-                    this._currentSources = newSources;
-
-                    $.connection.dashboard.subscribe(this._currentSources)
-                        .done(function (messages) {
-                            for (var i = 0; i < messages.length; i++) {
-                                handleMessage(messages[i]);
-                            }
-                        });
-                }));
+            if (oldSources) {
+                $.connection.dashboard.unsubscribe(oldSources)
+                    .done($dj.delegate(this, function() {
+                        $.connection.dashboard.subscribe(newSources)
+                            .done(function (messages) {
+                                o.domain = domain;
+                                for (var i = 0; i < messages.length; i++) {
+                                    handleMessage(messages[i]);
+                                }
+                            });
+                    }));
+            }
+            else {
+                $.connection.dashboard.subscribe(newSources)
+                    .done(function (messages) {
+                        o.domain = domain;
+                        for (var i = 0; i < messages.length; i++) {
+                            handleMessage(messages[i]);
+                        }
+                    });
+            }
         },
 
         start: function (domain) {

@@ -9,7 +9,10 @@ namespace DowJones.Dash.Website
     {
         protected override void OnLoad()
         {
-            var dataSources = WSJ().Union(Marketwatch());
+            var dataSources = WsjUs()
+                                .Union(WsjJapan())
+                                .Union(WsjChina())
+                                .Union(Marketwatch());
 
             foreach (var dataSource in dataSources)
             {
@@ -25,16 +28,13 @@ namespace DowJones.Dash.Website
                 host: "marketwatch.com",
                 parameters: new Dictionary<string, object> {
                         { "frequency", "15" }
-                    },
-                pollDelay: (int)TimeSpan.FromMinutes(3).TotalSeconds);
+                    });
             yield return new ChartBeatDataSource("marketwatch.com-HistorialTrafficSeriesWeekAgo", "HistorialTrafficSeriesWeekAgo", "/historical/traffic/series/",
                 host: "marketwatch.com",
                 parameters: new Dictionary<string, object> {
                         {"frequency", "15"},
-                        {"days_ago", "7"},
-                        {"limit", "288"},
-                    },
-                pollDelay: (int)TimeSpan.FromMinutes(3).TotalSeconds);
+                        {"days_ago", "7"}
+                    });
             yield return new ChartBeatDataSource("marketwatch.com-HistoricalTrafficStats", "HistoricalTrafficStats", "/historical/traffic/stats/",
                 host: "marketwatch.com",
                 parameters: new Dictionary<string, object> {
@@ -59,7 +59,85 @@ namespace DowJones.Dash.Website
                     });
         }
 
-        public IEnumerable<IDataSource> WSJ()
+        public IEnumerable<IDataSource> WsjChina()
+        {
+            yield return new ChartBeatDataSource("cn.wsj.com-DashboardStats", "DashboardStats", "/dashapi/stats/",
+                host: "cn.wsj.com");
+            yield return new ChartBeatDataSource("cn.wsj.com-HistorialTrafficSeries", "HistorialTrafficSeries", "/historical/traffic/series/",
+                host: "cn.wsj.com",
+                parameters: new Dictionary<string, object> {
+                        { "frequency", "15" }
+                    });
+            yield return new ChartBeatDataSource("cn.wsj.com-HistorialTrafficSeriesWeekAgo", "HistorialTrafficSeriesWeekAgo", "/historical/traffic/series/",
+                host: "cn.wsj.com",
+                parameters: new Dictionary<string, object> {
+                        {"frequency", "15"},
+                        {"days_ago", "7"}
+                    });
+            yield return new ChartBeatDataSource("cn.wsj.com-HistoricalTrafficStats", "HistoricalTrafficStats", "/historical/traffic/stats/",
+                host: "cn.wsj.com",
+                parameters: new Dictionary<string, object> {
+                        {"fields", "srvload,peoples"},
+                        {"properties_ago", "min,max,avg"},
+                    });
+            yield return new ChartBeatDataSource("cn.wsj.com-HistoricalTrafficValues", "HistoricalTrafficValues", "/historical/traffic/values/",
+                host: "cn.wsj.com",
+                parameters: new Dictionary<string, object> {
+                        {"days_ago", "0"},
+                        {"limit", "1"},
+                        {"fields", "internal,search,links,direct,social"},
+                    });
+            yield return new ChartBeatDataSource("cn.wsj.com-QuickStats", "QuickStats", "/live/quickstats/v3",
+                host: "cn.wsj.com");
+            yield return new ChartBeatDataSource("cn.wsj.com-Referrers", "Referrers", "/live/referrers/v3",
+                host: "cn.wsj.com");
+            yield return new ChartBeatDataSource("cn.wsj.com-TopPages", "TopPages", "/toppages",
+                host: "cn.wsj.com",
+                parameters: new Dictionary<string, object> {
+                        {"limit", 10},
+                    });
+        }
+
+        public IEnumerable<IDataSource> WsjJapan()
+        {
+            yield return new ChartBeatDataSource("jp.wsj.com-DashboardStats", "DashboardStats", "/dashapi/stats/",
+                host: "jp.wsj.com");
+            yield return new ChartBeatDataSource("jp.wsj.com-HistorialTrafficSeries", "HistorialTrafficSeries", "/historical/traffic/series/",
+                host: "jp.wsj.com",
+                parameters: new Dictionary<string, object> {
+                        { "frequency", "15" }
+                    });
+            yield return new ChartBeatDataSource("jp.wsj.com-HistorialTrafficSeriesWeekAgo", "HistorialTrafficSeriesWeekAgo", "/historical/traffic/series/",
+                host: "jp.wsj.com",
+                parameters: new Dictionary<string, object> {
+                        {"frequency", "15"},
+                        {"days_ago", "7"}
+                    });
+            yield return new ChartBeatDataSource("jp.wsj.com-HistoricalTrafficStats", "HistoricalTrafficStats", "/historical/traffic/stats/",
+                host: "jp.wsj.com",
+                parameters: new Dictionary<string, object> {
+                        {"fields", "srvload,peoples"},
+                        {"properties_ago", "min,max,avg"},
+                    });
+            yield return new ChartBeatDataSource("jp.wsj.com-HistoricalTrafficValues", "HistoricalTrafficValues", "/historical/traffic/values/",
+                host: "jp.wsj.com",
+                parameters: new Dictionary<string, object> {
+                        {"days_ago", "0"},
+                        {"limit", "1"},
+                        {"fields", "internal,search,links,direct,social"},
+                    });
+            yield return new ChartBeatDataSource("jp.wsj.com-QuickStats", "QuickStats", "/live/quickstats/v3",
+                host: "jp.wsj.com");
+            yield return new ChartBeatDataSource("jp.wsj.com-Referrers", "Referrers", "/live/referrers/v3",
+                host: "jp.wsj.com");
+            yield return new ChartBeatDataSource("jp.wsj.com-TopPages", "TopPages", "/toppages",
+                host: "jp.wsj.com",
+                parameters: new Dictionary<string, object> {
+                        {"limit", 10},
+                    });
+        }
+
+        public IEnumerable<IDataSource> WsjUs()
         {
             yield return new ChartBeatDataSource("online.wsj.com-DashboardStats", "DashboardStats", "/dashapi/stats/",
                 host: "online.wsj.com");
@@ -67,16 +145,13 @@ namespace DowJones.Dash.Website
                 host: "online.wsj.com",
                 parameters: new Dictionary<string, object> {
                         { "frequency", "15" }
-                    }, 
-                pollDelay: (int)TimeSpan.FromMinutes(3).TotalSeconds);
+                    });
             yield return new ChartBeatDataSource("online.wsj.com-HistorialTrafficSeriesWeekAgo", "HistorialTrafficSeriesWeekAgo", "/historical/traffic/series/",
                 host: "online.wsj.com", 
                 parameters: new Dictionary<string, object> {
                         {"frequency", "15"},
-                        {"days_ago", "7"},
-                        {"limit", "288"},
-                    }, 
-                pollDelay: (int)TimeSpan.FromMinutes(3).TotalSeconds);
+                        {"days_ago", "7"}
+                    });
             yield return new ChartBeatDataSource("online.wsj.com-HistoricalTrafficStats", "HistoricalTrafficStats", "/historical/traffic/stats/",
                 host: "online.wsj.com",
                 parameters: new Dictionary<string, object> {
@@ -99,8 +174,6 @@ namespace DowJones.Dash.Website
                 parameters: new Dictionary<string, object> {
                         {"limit", 10},
                     });
-
-
 
             yield return new GomezDataSource("online.wsj.com-BrowserStats", "BrowserStats", @"[SplunkExport].[dbo].[GetPageLoadDetailsByBrowser]",
                 parameters: new Dictionary<string, object> {
