@@ -150,12 +150,12 @@
         _getSources: function (domain) {
 
             var chartBeatEvents = [
+                'QuickStats',
                 'DashboardStats',
-                'HistorialTrafficSeries',
                 'HistorialTrafficSeriesWeekAgo',
+                'HistorialTrafficSeries',
                 'HistoricalTrafficStats',
                 'HistoricalTrafficValues',
-                'QuickStats',
                 'Referrers',
                 'TopPages'
             ];
@@ -190,6 +190,11 @@
 
         _messageReceived: function (message) {
             var prefix = 'data.';
+
+            // filter the domain
+            
+
+            console.log(message.source);
 
             if (!message || message.error) {
                 prefix = 'dataError.';

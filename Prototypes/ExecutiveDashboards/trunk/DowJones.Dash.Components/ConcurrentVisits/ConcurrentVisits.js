@@ -198,7 +198,7 @@ DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
         var now = new Date();
         var startDate = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate());
         var endDate = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate(), 24);
-        if (this.histogram) {
+        if (this.histogram && data) {
             for(var prop in data.data) {
                 var obj = data.data[prop];
                 if ($.isPlainObject(obj)) {
@@ -221,7 +221,7 @@ DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
         var now = new Date();
         var startDate = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate());
         var endDate = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate(), 24);
-        if (this.histogram) {
+        if (this.histogram && data) {
             for (var prop in data.data) {
                 var obj = data.data[prop];
                 if ($.isPlainObject(obj)) {
@@ -254,10 +254,9 @@ DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
         if (this.visitorsGauge) {
             this.visitorsGauge.updateMax(data.people_max);
             this.visitorsGauge.updateMin(data.people_min);
-           
         }
         
-        if (this.histogram) {
+        if (this.histogram && data) {
             var yAxis = this.histogram.get('visitors');
             if (yAxis) {
                 yAxis.setExtremes(data.people_min, data.people_max);

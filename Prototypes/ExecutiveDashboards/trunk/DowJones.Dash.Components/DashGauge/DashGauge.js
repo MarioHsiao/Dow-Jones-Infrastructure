@@ -129,7 +129,7 @@ DJ.UI.DashGauge = DJ.UI.Component.extend({
                     axis.addPlotBand(plotBandSpeed1);
                 }
             }
-            axis.setExtremes(this.options.min, this.options.max, false);
+            axis.setExtremes(this.options.min, this.options.max, true);
             $(this.selectors.chartMin, this.$element).html(this.templates.min(Highcharts.numberFormat(val, 0)));
         }
     },
@@ -160,7 +160,7 @@ DJ.UI.DashGauge = DJ.UI.Component.extend({
                     axis.addPlotBand(plotBandSpeed1);
                 }
             }
-            axis.setExtremes(this.options.min, this.options.max, false);
+            axis.setExtremes(this.options.min, this.options.max, true);
             $(this.selectors.chartMax, this.$element).html(this.templates.max(Highcharts.numberFormat(val, 0)));
         }
     },
