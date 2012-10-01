@@ -56,13 +56,15 @@ namespace DowJones.Dash.Website.Hubs
                 return;
 
             Log.DebugFormat("Publishing {0}", message.EventName);
-            
-            dynamic subscribers = GlobalHost.ConnectionManager.GetHubContext<Dashboard>().Clients;
 
-            if (string.IsNullOrWhiteSpace(message.Source))
+            var context = GlobalHost.ConnectionManager.GetHubContext<Dashboard>();
+            var subscribers = context.Clients;
+
+            if (!string.IsNullOrWhiteSpace(message.Source))
+            {
                 subscribers = subscribers[message.Source];
-
-            subscribers.messageReceived(message);
+                subscribers.messageReceived(message);
+            }
 
             if (!(message is DashboardErrorMessage))
                 Cache.Add(message);
