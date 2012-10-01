@@ -12,12 +12,132 @@ namespace DowJones.Dash.Website
             var dataSources = WsjUs()
                                 .Union(WsjJapan())
                                 .Union(WsjChina())
+                                .Union(WsjGermany())
+                                .Union(SmartMoney())
+                                .Union(Barrons())
                                 .Union(Marketwatch());
 
             foreach (var dataSource in dataSources)
             {
                 Bind<IDataSource>().ToConstant(dataSource);
             }
+        }
+
+        public IEnumerable<IDataSource> WsjGermany()
+        {
+            yield return new ChartBeatDataSource("wallstreetjournal.de-DashboardStats", "DashboardStats", "/dashapi/stats/",
+                host: "wallstreetjournal.de");
+            yield return new ChartBeatDataSource("wallstreetjournal.de-HistorialTrafficSeries", "HistorialTrafficSeries", "/historical/traffic/series/",
+                host: "wallstreetjournal.de",
+                parameters: new Dictionary<string, object> {
+                        { "frequency", "15" }
+                    });
+            yield return new ChartBeatDataSource("wallstreetjournal.de-HistorialTrafficSeriesWeekAgo", "HistorialTrafficSeriesWeekAgo", "/historical/traffic/series/",
+                host: "wallstreetjournal.de",
+                parameters: new Dictionary<string, object> {
+                        {"frequency", "15"},
+                        {"days_ago", "7"}
+                    });
+            yield return new ChartBeatDataSource("wallstreetjournal.de-HistoricalTrafficStats", "HistoricalTrafficStats", "/historical/traffic/stats/",
+                host: "wallstreetjournal.de",
+                parameters: new Dictionary<string, object> {
+                        {"fields", "srvload,peoples"},
+                        {"properties_ago", "min,max,avg"},
+                    });
+            yield return new ChartBeatDataSource("wallstreetjournal.de-HistoricalTrafficValues", "HistoricalTrafficValues", "/historical/traffic/values/",
+                host: "wallstreetjournal.de",
+                parameters: new Dictionary<string, object> {
+                        {"days_ago", "0"},
+                        {"limit", "1"},
+                        {"fields", "internal,search,links,direct,social"},
+                    });
+            yield return new ChartBeatDataSource("wallstreetjournal.de-QuickStats", "QuickStats", "/live/quickstats/v3",
+                host: "wallstreetjournal.de");
+            yield return new ChartBeatDataSource("wallstreetjournal.de-Referrers", "Referrers", "/live/referrers/v3",
+                host: "wallstreetjournal.de");
+            yield return new ChartBeatDataSource("wallstreetjournal.de-TopPages", "TopPages", "/toppages",
+                host: "wallstreetjournal.de",
+                parameters: new Dictionary<string, object> {
+                        {"limit", 10},
+                    });
+        }
+
+        public IEnumerable<IDataSource> Barrons()
+        {
+            yield return new ChartBeatDataSource("online.barrons.com-DashboardStats", "DashboardStats", "/dashapi/stats/",
+                host: "online.barrons.com");
+            yield return new ChartBeatDataSource("online.barrons.com-HistorialTrafficSeries", "HistorialTrafficSeries", "/historical/traffic/series/",
+                host: "online.barrons.com",
+                parameters: new Dictionary<string, object> {
+                        { "frequency", "15" }
+                    });
+            yield return new ChartBeatDataSource("online.barrons.com-HistorialTrafficSeriesWeekAgo", "HistorialTrafficSeriesWeekAgo", "/historical/traffic/series/",
+                host: "online.barrons.com",
+                parameters: new Dictionary<string, object> {
+                        {"frequency", "15"},
+                        {"days_ago", "7"}
+                    });
+            yield return new ChartBeatDataSource("online.barrons.com-HistoricalTrafficStats", "HistoricalTrafficStats", "/historical/traffic/stats/",
+                host: "online.barrons.com",
+                parameters: new Dictionary<string, object> {
+                        {"fields", "srvload,peoples"},
+                        {"properties_ago", "min,max,avg"},
+                    });
+            yield return new ChartBeatDataSource("online.barrons.com-HistoricalTrafficValues", "HistoricalTrafficValues", "/historical/traffic/values/",
+                host: "online.barrons.com",
+                parameters: new Dictionary<string, object> {
+                        {"days_ago", "0"},
+                        {"limit", "1"},
+                        {"fields", "internal,search,links,direct,social"},
+                    });
+            yield return new ChartBeatDataSource("online.barrons.com-QuickStats", "QuickStats", "/live/quickstats/v3",
+                host: "online.barrons.com");
+            yield return new ChartBeatDataSource("online.barrons.com-Referrers", "Referrers", "/live/referrers/v3",
+                host: "online.barrons.com");
+            yield return new ChartBeatDataSource("online.barrons.com-TopPages", "TopPages", "/toppages",
+                host: "online.barrons.com",
+                parameters: new Dictionary<string, object> {
+                        {"limit", 10},
+                    });
+        }
+
+        public IEnumerable<IDataSource> SmartMoney()
+        {
+            yield return new ChartBeatDataSource("smartmoney.com-DashboardStats", "DashboardStats", "/dashapi/stats/",
+                host: "smartmoney.com");
+            yield return new ChartBeatDataSource("smartmoney.com-HistorialTrafficSeries", "HistorialTrafficSeries", "/historical/traffic/series/",
+                host: "smartmoney.com",
+                parameters: new Dictionary<string, object> {
+                        { "frequency", "15" }
+                    });
+            yield return new ChartBeatDataSource("smartmoney.com-HistorialTrafficSeriesWeekAgo", "HistorialTrafficSeriesWeekAgo", "/historical/traffic/series/",
+                host: "smartmoney.com",
+                parameters: new Dictionary<string, object> {
+                        {"frequency", "15"},
+                        {"days_ago", "7"}
+                    });
+            yield return new ChartBeatDataSource("smartmoney.com-HistoricalTrafficStats", "HistoricalTrafficStats", "/historical/traffic/stats/",
+                host: "smartmoney.com",
+                parameters: new Dictionary<string, object> {
+                        {"fields", "srvload,peoples"},
+                        {"properties_ago", "min,max,avg"},
+                    });
+            yield return new ChartBeatDataSource("smartmoney.com-HistoricalTrafficValues", "HistoricalTrafficValues", "/historical/traffic/values/",
+                host: "smartmoney.com",
+                parameters: new Dictionary<string, object> {
+                        {"days_ago", "0"},
+                        {"limit", "1"},
+                        {"fields", "internal,search,links,direct,social"},
+                    });
+            yield return new ChartBeatDataSource("smartmoney.com-QuickStats", "QuickStats", "/live/quickstats/v3",
+                host: "smartmoney.com");
+            yield return new ChartBeatDataSource("smartmoney.com-Referrers", "Referrers", "/live/referrers/v3",
+                host: "smartmoney.com");
+            yield return new ChartBeatDataSource("smartmoney.com-TopPages", "TopPages", "/toppages",
+                host: "smartmoney.com",
+                parameters: new Dictionary<string, object> {
+                        {"limit", 10},
+                    });
         }
 
         public IEnumerable<IDataSource> Marketwatch()
