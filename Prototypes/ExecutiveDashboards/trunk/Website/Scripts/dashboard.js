@@ -95,13 +95,13 @@
             var self = this,
                 o = self.options;
             var oldSources = this._getSources(o.domain);
-            var newSources = this._getSources(domain);
+            self.subscribedSources = this._getSources(domain);
             
             var handleMessage = this._delegates.messageReceived;
             if (oldSources) {
                 $.connection.dashboard.unsubscribe(oldSources)
                     .done($dj.delegate(this, function() {
-                        $.connection.dashboard.subscribe(newSources)
+                        $.connection.dashboard.subscribe(self.subscribedSources)
                             .done(function (messages) {
                                 o.domain = domain;
                                 for (var i = 0; i < messages.length; i++) {
@@ -111,7 +111,7 @@
                     }));
             }
             else {
-                $.connection.dashboard.subscribe(newSources)
+                $.connection.dashboard.subscribe(self.subscribedSources)
                     .done(function (messages) {
                         o.domain = domain;
                         for (var i = 0; i < messages.length; i++) {
@@ -189,19 +189,19 @@
         },
 
         _messageReceived: function (message) {
-            var prefix = 'data.';
+            var self = this,
+                o = self.options,
+                prefix = 'data.';
 
-            // filter the domain
-            
+            if (_.contains(self.subscribedSources, message.source)) {
 
-            console.log(message.source);
+                if (!message || message.error) {
+                    prefix = 'dataError.';
+                    $dj.error('Data error: ' + message.error, message.data);
+                }
 
-            if (!message || message.error) {
-                prefix = 'dataError.';
-                $dj.error('Data error: ' + message.error, message.data);
+                DJ.publish(prefix + message.eventName, message.data);
             }
-
-            DJ.publish(prefix + message.eventName, message.data);
         },
         
         EOF: null,
