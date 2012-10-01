@@ -63,7 +63,7 @@ DJ.UI.PageTimings = DJ.UI.CompositeComponent.extend({
                     if (sLineComp.chart) {
                         sLineComp.chart.destroy();
                     }
-                    sLineComp.owner = null;
+                    sLineComp._owner = null;
                     self.sparklineCharts[i] = null;
                 }
             }
@@ -115,7 +115,7 @@ DJ.UI.PageTimings = DJ.UI.CompositeComponent.extend({
                                 values: objs
                             }
                         }).done(function(comp) {
-                            comp.owner = self;
+                            comp.setOwner(self);
                             self.sparklineCharts.push(comp);
                         });
                     });

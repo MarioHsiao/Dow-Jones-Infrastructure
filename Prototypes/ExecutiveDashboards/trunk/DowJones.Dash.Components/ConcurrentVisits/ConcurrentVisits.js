@@ -20,7 +20,7 @@ DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
         var self = this;
         DJ.add('DashGauge', this._visitorGaugeConfig()).done(function (comp) {
             self.visitorsGauge = comp;
-            comp.owner = self;
+            comp.setOwner(self);
             comp.updateMax(91995);
         });
 

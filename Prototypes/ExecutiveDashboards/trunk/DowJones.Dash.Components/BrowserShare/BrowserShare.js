@@ -21,7 +21,7 @@ DJ.UI.BrowserShare = DJ.UI.Component.extend({
             container: this._shareChartContainer[0],
         }).done(function (comp) {
             self.shareChart = comp;
-            comp.owner = self;
+            comp.setOwner(self);
         });
     },
 
