@@ -88,6 +88,9 @@ h2 a.reset {
       margin: 0;
       line-height: 1.6em;
       font-weight: 300; }
+      .dj_module .dj_module-header .module-title + i[class^="icon"] {
+        visibility: hidden;
+        cursor: pointer; }
     .dj_module .dj_module-header .scope-container {
       float: right;
       display: none; }
@@ -95,13 +98,14 @@ h2 a.reset {
       position: absolute;
       top: 0;
       right: 0;
-      padding-top: 5px;
+      padding-top: 10px;
       max-width: 25%;
       white-space: nowrap;
-      visibility: hidden; }
-      .dj_module .dj_module-header .actions-container span {
-        cursor: pointer; }
+      visibility: hidden;
+      cursor: pointer; }
     .dj_module .dj_module-header:hover .actions-container {
+      visibility: visible; }
+    .dj_module .dj_module-header:hover i[class^="icon"] {
       visibility: visible; }
   .dj_module .dj_module-core {
     margin-top: -5px;
