@@ -23,7 +23,8 @@ DJ.UI.PageTimings = DJ.UI.CompositeComponent.extend({
     
     selectors: {
         timingsContainer: '.dj_pageTimings',
-        timings: '.pageTimings .time-stamp'
+        timings: '.pageTimings .time-stamp',
+        timestamp: '.curTime-stamp'
     },
 
     init: function (element, meta) {
@@ -98,7 +99,7 @@ DJ.UI.PageTimings = DJ.UI.CompositeComponent.extend({
                     $.each(sparklineContainers, function(i, val) {
                         var tVals = (i == 0) ? _.pluck(subPages, "Avg") : (i == 1) ? _.pluck(pubPages, "Avg") : _.pluck(artPages, "Avg");
                         var vals = _.map(tVals, function(num) { return num / 1000; });
-                        var objs = _.map(vals, function(num) { return { color: self._delegates.getColor(num), y: num }; });
+                        var objs = _.map(vals, function(num) { return { color: self._delegates.getColor(num), y: num, container: val }; });
                         var tMax = _.max(vals);
                         var tMin = 0;
                         DJ.add('Sparkline', {
@@ -107,8 +108,13 @@ DJ.UI.PageTimings = DJ.UI.CompositeComponent.extend({
                                 max: tMax,
                                 min: tMin,
                                 type: 1,
-                                click: function(evt) {
-                                    alert(evt.point.y);
+                                mouseover: function (evt) {
+                                    var el = $(evt.target.container).parent('LI').find(self.selectors.timestamp);
+                                    el.html(evt.target.y.toFixed(3));
+                                },
+                                mouseout: function(evt) {
+                                    var el = $(evt.target.container).parent('LI').find(self.selectors.timestamp);
+                                    el.html('&nbsp;');
                                 }
                             },
                             data: {
@@ -123,11 +129,12 @@ DJ.UI.PageTimings = DJ.UI.CompositeComponent.extend({
                     return;
                 }
 
+                sparklineContainers = self.$element.find(".sparklineContainer");
                 $.each(self.sparklineCharts, function(i) {
                     var tVals = (i == 0) ? _.pluck(subPages, "Avg") : (i == 1) ? _.pluck(pubPages, "Avg") : _.pluck(artPages, "Avg");
                     var vals = _.map(tVals, function(num) { return num / 1000; });
                     var objs = _.map(vals, function(num) {
-                        return { color: self._delegates.getColor(num), y: num };
+                        return { color: self._delegates.getColor(num), y: num, container: sparklineContainers[i] };
                     });
                     var tMax = _.max(vals);
                     var tMin = 0;

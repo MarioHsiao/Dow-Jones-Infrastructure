@@ -21,7 +21,9 @@ DJ.UI.Sparkline = DJ.UI.Component.extend({
     },
 
     eventNames: {
-        clicked: 'click.dj.Sparkline'
+        clicked: 'click.dj.Sparkline',
+        mouseover: 'mouseover.dj.Sparkline',
+        mouseout: 'mouseout.dj.Sparkline'
     },
     
     init: function (element, meta) {
@@ -34,7 +36,9 @@ DJ.UI.Sparkline = DJ.UI.Component.extend({
 
     _initializeDelegates: function () {
         $.extend(this._delegates, {
-            clicked: $dj.delegate(this, this._clicked)
+            clicked: $dj.delegate(this, this._clicked),
+            mouseover: $dj.delegate(this, this._mouseover),
+            mouseout: $dj.delegate(this, this._mouseout)
         });
     },
 
@@ -52,6 +56,26 @@ DJ.UI.Sparkline = DJ.UI.Component.extend({
             return;
         }
         self.publish(self.eventNames.clicked, evt);
+    },
+    
+    _mouseover: function (evt) {
+        var self = this,
+            o = self.options;
+        if (o.mouseover && $.isFunction(o.mouseover)) {
+            o.mouseover(evt);
+            return;
+        }
+        self.publish(self.eventNames.mouseover, evt);
+    },
+    
+    _mouseout: function (evt) {
+        var self = this,
+            o = self.options;
+        if (o.mouseout && $.isFunction(o.mouseout)) {
+            o.mouseout(evt);
+            return;
+        }
+        self.publish(self.eventNames.mouseout, evt);
     },
 
     initializeColumnGraphOptions: function (chartContainer, seriesData) {
@@ -100,8 +124,12 @@ DJ.UI.Sparkline = DJ.UI.Component.extend({
                     pointPadding: .1,
                     groupPadding: .1,
                     borderWidth: 0,
-                    events: {
-                        click: self._delegates.clicked
+                    point: {
+                            events: {
+                                click: self._delegates.clicked,
+                                mouseOver: self._delegates.mouseover,
+                                mouseOut: self._delegates.mouseout
+                        },
                     }
                 }
             },

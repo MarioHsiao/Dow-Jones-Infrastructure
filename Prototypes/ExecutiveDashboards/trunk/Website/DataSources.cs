@@ -318,7 +318,7 @@ namespace DowJones.Dash.Website
                     });
             yield return new GomezDataSource("online.wsj.com-PageLoadDetailsBySubCountryforCountry", "PageLoadDetailsBySubCountryforCountry", @"[SplunkExport].[dbo].[GetPageLoadDetailsBySubCountryforCountry]",
 				parameters: new Dictionary<string, object> {
-                        {"country", 223},{"seconds", 600},
+                        {"country", 223},{"seconds", 3600}
                     });
         }
     }
