@@ -73,6 +73,9 @@
   .hidden-desktop {
     display: inherit !important;
   }
+  .hidden-phone {
+    display: none !important;
+  }
   .visible-desktop {
     display: none !important;
   }
