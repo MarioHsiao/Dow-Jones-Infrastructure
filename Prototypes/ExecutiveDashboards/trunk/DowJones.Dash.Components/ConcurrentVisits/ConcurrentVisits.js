@@ -175,10 +175,11 @@ DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
 
     _initializeDelegates: function () {
         this._delegates = $.extend(this._delegates, {
-                updateStats: $dj.delegate(this, this._updateStats),
-                updateDashboard: $dj.delegate(this, this._updateDashboard),
+                updateQuickStats: $dj.delegate(this, this._updateQuickStats),
+                updateDashboardStats: $dj.delegate(this, this._updateDashboardStats),
                 updateHistoricalSeries: $dj.delegate(this, this._updateHistoricalSeries),
-                updateRealtimeSeries: $dj.delegate(this, this._updateRealtimeSeries)
+                updateRealtimeSeries: $dj.delegate(this, this._updateRealtimeSeries),
+                reset: $dj.delegate(this, this._reset)
             });
     },
 
@@ -188,12 +189,19 @@ DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
     },
 
     _initializeEventHandlers: function () {
-        $dj.subscribe('data.QuickStats', this._delegates.updateStats);
-        $dj.subscribe('data.DashboardStats', this._delegates.updateDashboard);
+        $dj.subscribe('data.QuickStats', this._delegates.updateQuickStats);
+        $dj.subscribe('data.DashboardStats', this._delegates.updateDashboardStats);
         $dj.subscribe('data.HistorialTrafficSeries', this._delegates.updateRealtimeSeries);
         $dj.subscribe('data.HistorialTrafficSeriesWeekAgo', this._delegates.updateHistoricalSeries);
+        $dj.subscribe('comm.domain.reset', this._delegates.reset);
     },
 
+    _reset: function(data) {
+        this.domain = data.domain;
+        this.histogram.get('realtime').hide();
+        this.histogram.get('historical').hide();
+    },
+    
     _updateRealtimeSeries: function (data) {
         var now = new Date();
         var startDate = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate());
@@ -206,11 +214,11 @@ DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
                     var frequency = data.data.frequency;
                     var tData = obj.series.people;
                     var axis = this.histogram.get('day');
-                    axis.setExtremes(startDate, endDate);
+                    axis.setExtremes(startDate, endDate, false);
                     if (realtimeSeries) {
                         realtimeSeries.pointInterval = frequency * 60 * 1000;
                         realtimeSeries.pointStart = startDate;
-                        realtimeSeries.setData(tData);
+                        realtimeSeries.setData(tData, true, false);
                     }
                 }
             }
@@ -229,18 +237,18 @@ DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
                     var frequency = data.data.frequency;
                     var tData = obj.series.people;
                     var axis = this.histogram.get('day');
-                    axis.setExtremes(startDate, endDate);
+                    axis.setExtremes(startDate, endDate, false);
                     if (historicalSeries) {
                         historicalSeries.pointInterval = frequency * 60 * 1000;
                         historicalSeries.pointStart = startDate;
-                        historicalSeries.setData(tData);
+                        historicalSeries.setData(tData, true, false);
                     }
                 }
             }
         }
     },
     
-    _updateStats: function (data) {
+    _updateQuickStats: function (data) {
         if (this.visitorsGauge) {
             this.visitorsGauge.setData(data.visits);
         }
@@ -250,7 +258,7 @@ DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
         this.$element.find(this.selectors.timeCounter).html( minutes + ":" + (seconds <10 ? "0" + seconds: seconds) + "m");
     },
     
-    _updateDashboard: function (data) {
+    _updateDashboardStats: function (data) {
         if (this.visitorsGauge) {
             this.visitorsGauge.updateMax(data.people_max);
             this.visitorsGauge.updateMin(data.people_min);
@@ -259,7 +267,9 @@ DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
         if (this.histogram && data) {
             var yAxis = this.histogram.get('visitors');
             if (yAxis) {
-                yAxis.setExtremes(data.people_min, data.people_max);
+                yAxis.setExtremes(0, data.people_max, false);
+                this.histogram.get('realtime').show();
+                this.histogram.get('historical').show();
             }
         }
     },

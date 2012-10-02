@@ -1,6 +1,6 @@
 ﻿DJ.$dj.require(['DJ','$dj'], function (DJ,$dj) {
     DJ.UI.Dash = DJ.UI.Component.extend({
-
+        
         init: function (el, meta) {
             this._super(el, meta);
 
@@ -80,22 +80,28 @@
         
         defaults: {
             domain: null,
+            dataPrefix: 'data.',
+            communicationPrefix: 'comm.'
         },
-
-        _currentSources: [],
-
+        
         init: function (meta) {
             this._super(meta);
             $.connection.dashboard.messageReceived = this._delegates.messageReceived;
         },
 
         changeDomain: function (domain) {
-            if (domain === this.options.domain)
-                return;
             var self = this,
-                o = self.options;
-            var oldSources = this._getSources(o.domain);
+                o = self.options,
+                communicationPrefix = o.communicationPrefix,
+                oldSources = this._getSources(o.domain);
+
+            if (domain === o.domain)
+                return;
+            
             self.subscribedSources = this._getSources(domain);
+
+            // fire a reset for the module to know we are recycling the view.
+            DJ.publish(communicationPrefix + "domain.reset", { domain: domain });
             
             var handleMessage = this._delegates.messageReceived;
             if (oldSources) {
@@ -152,8 +158,8 @@
             var chartBeatEvents = [
                 'QuickStats',
                 'DashboardStats',
-                'HistorialTrafficSeriesWeekAgo',
                 'HistorialTrafficSeries',
+                'HistorialTrafficSeriesWeekAgo',
                 'HistoricalTrafficStats',
                 'HistoricalTrafficValues',
                 'Referrers',
@@ -191,16 +197,16 @@
         _messageReceived: function (message) {
             var self = this,
                 o = self.options,
-                prefix = 'data.';
+                dataPrefix = o.dataPrefix;
 
             if (_.contains(self.subscribedSources, message.source)) {
 
                 if (!message || message.error) {
-                    prefix = 'dataError.';
+                    dataPrefix = 'dataError.';
                     $dj.error('Data error: ' + message.error, message.data);
                 }
 
-                DJ.publish(prefix + message.eventName, message.data);
+                DJ.publish(dataPrefix + message.eventName, message.data);
             }
         },
         
