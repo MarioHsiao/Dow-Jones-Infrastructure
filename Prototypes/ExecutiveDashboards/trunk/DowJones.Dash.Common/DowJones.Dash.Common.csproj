@@ -97,12 +97,17 @@
     <Compile Include="DataGenerators\PageGenerator.cs" />
     <Compile Include="DataGenerators\ScriptModuleTemplatesGenerator.cs" />
     <Compile Include="DataSources\ChartBeatDataSource.cs" />
+    <Compile Include="DataSources\ConfigurationDataSource.cs" />
     <Compile Include="DataSources\DataSource.cs" />
+    <Compile Include="DataSources\DataSourceEvent.cs" />
     <Compile Include="DataSources\GomezDataSource.cs" />
+    <Compile Include="DataSources\IDataSource.cs" />
+    <Compile Include="DataSources\JsonWebDataSource.cs" />
     <Compile Include="DataSources\PollingDataSource.cs" />
     <Compile Include="DataSources\SplunkDataSource.cs" />
     <Compile Include="DataSources\SqlDataSource.cs" />
     <Compile Include="DataSources\WebDataSource.cs" />
+    <Compile Include="DataSources\XmlWebDataSource.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

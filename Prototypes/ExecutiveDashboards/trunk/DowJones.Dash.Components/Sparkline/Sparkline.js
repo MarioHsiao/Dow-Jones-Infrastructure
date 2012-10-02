@@ -91,6 +91,7 @@ DJ.UI.Sparkline = DJ.UI.Component.extend({
                 enabled: false
             },
             tooltip: {
+                useHTML: false,
                 enabled: false
             },
             plotOptions: {

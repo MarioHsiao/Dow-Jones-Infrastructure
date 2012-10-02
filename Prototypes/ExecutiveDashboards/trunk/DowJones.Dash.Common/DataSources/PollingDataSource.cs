@@ -67,7 +67,11 @@ namespace DowJones.Dash.DataSources
                 throw ex;
             }
 
-            base.OnError(ex);
+            if (ex != null)
+            {
+                base.OnError(ex: ex);
+            }
+
             Poll(ErrorDelay);
         }
 

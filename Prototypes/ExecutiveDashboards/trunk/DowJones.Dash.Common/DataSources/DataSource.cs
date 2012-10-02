@@ -3,41 +3,6 @@ using log4net;
 
 namespace DowJones.Dash.DataSources
 {
-    public abstract class DataSourceEvent : EventArgs
-    {
-        public string Name { get; private set; }
-
-        public class DataReceived : DataSourceEvent
-        {
-            public object Data { get; private set; }
-
-            public DataReceived(string name, object data)
-            {
-                Name = name;
-                Data = data;
-            }
-        }
-
-        public class Error : DataSourceEvent
-        {
-            public Exception Exception { get; private set; }
-
-            public Error(string name, Exception exception = null)
-            {
-                Name = name;
-                Exception = exception;
-            }
-        }
-    }
-
-    public interface IDataSource
-    {
-        event EventHandler<DataSourceEvent.DataReceived> DataReceived;
-        event EventHandler<DataSourceEvent.Error> Error;
-        string Name { get; }
-        void Start();
-    }
-
     public abstract class DataSource : IDataSource
     {
         protected abstract ILog Log { get; }
@@ -86,7 +51,9 @@ namespace DowJones.Dash.DataSources
             Log.WarnFormat("Data Source {0} Failed: {1}", GetType().Name, ex);
 
             if (Error != null)
+            {
                 Error(this, new DataSourceEvent.Error(name ?? DataName, ex));
+            }
         }
     }
 }
