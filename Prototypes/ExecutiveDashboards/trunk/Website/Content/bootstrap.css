@@ -305,7 +305,7 @@ p {
 
 h1, h2, h3, h4, h5, h6 {
   margin: 0;
-  font-family: 'Telex',sans-serif;
+  font-family: 'Ubuntu',sans-serif;
   font-weight: bold;
   color: #317eac;
   text-rendering: optimizelegibility; }
@@ -3623,7 +3623,7 @@ a.label:hover, a.badge:hover {
   visibility: hidden; }
 
 .navbar {
-  font-family: 'Telex',sans-serif; }
+  font-family: 'Ubuntu',sans-serif; }
   .navbar .navbar-inner {
     background-color: #3f9fd9;
     background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#369bd7), color-stop(90%, #369bd7), to(#61b0df));
@@ -3650,7 +3650,7 @@ a.label:hover, a.badge:hover {
     background-color: #cccccc; }
 
 div.subnav {
-  font-family: 'Telex',sans-serif; }
+  font-family: 'Ubuntu',sans-serif; }
 
 .btn {
   background-color: #ffffff;
