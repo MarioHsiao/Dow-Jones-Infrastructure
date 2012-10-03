@@ -29,6 +29,10 @@ DJ.UI.PlatformStats = DJ.UI.CompositeComponent.extend({
     },
 
     _updateStats: function (data) {
+        if (!data) {
+            return;
+        }
+
         var total = data.platform.d + data.platform.m;
         var mPercentage = (data.platform.m * 100 / total).toFixed(2);
         var dPercentage = (data.platform.d * 100 / total).toFixed(2);

@@ -2,20 +2,24 @@
  * BrowserStats
  */
 
-DJ.UI.BrowserStats = DJ.UI.Component.extend({
+DJ.UI.BrowserStats = DJ.UI.CompositeComponent.extend({
 
     selectors: {
         shareChartContainer: '.shareChartContainer',
         barContainer: '.barContainer',
         pillContainer: '.pillContainer',
+        noDataContainer: '.noData',
+        contentContainer: '.content',
         pill: '.dj-pills > li'
     },
 
     init: function (element, meta) {
         this._super(element, $.extend({ name: "BrowserStats" }, meta));
+        this._showContent();
 
-        if (this.data)
+        if (this.data) {
             this.setData(this.data);
+        }
     },
 
     _initializeDelegates: function () {
@@ -44,9 +48,14 @@ DJ.UI.BrowserStats = DJ.UI.Component.extend({
     },
 
     _setData: function (data) {
-        if (!data)
+        if (!data || !data.length) {
+            if (!data == null) {
+                this._showComingSoon();
+            }
             return;
+        }
 
+        this._showContent();
         // get some sensible structure from a flat result set
         var mappedData = this._mapData(data);
 
@@ -150,6 +159,16 @@ DJ.UI.BrowserStats = DJ.UI.Component.extend({
             name: items[0],
             version: items.length > 0 ? items[1] : ''
         };
+    },
+    
+    _showComingSoon: function () {
+        this.$element.find(this.selectors.contentContainer).hide('fast');
+        this.$element.find(this.selectors.noDataContainer).show('fast');
+    },
+    
+    _showContent: function () {
+        this.$element.find(this.selectors.contentContainer).show('fast');
+        this.$element.find(this.selectors.noDataContainer).hide('fast');
     },
 
     setPills: function (pills) {

@@ -111,6 +111,10 @@ DJ.UI.UsersStats = DJ.UI.CompositeComponent.extend({
     },
 
     _updateDashboard: function (data) {
+        if (!data) {
+            return;
+        }
+        
         if (this.newGauge) {
             this.newGauge.updateMax(data.new_max);
             this.newGauge.updateMin(data.new_min);
@@ -133,6 +137,10 @@ DJ.UI.UsersStats = DJ.UI.CompositeComponent.extend({
     },
     
     _updateStats: function (data) {
+        if (!data) {
+            return;
+        }
+        
         if (this.newGauge) {
             this.newGauge.setData(data.new);
         }

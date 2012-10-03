@@ -41,6 +41,9 @@ DJ.UI.TopReferrer = DJ.UI.CompositeComponent.extend({
     },
     
     _setData: function (data) {
+        if (!data)
+            return;
+        
         if (!this.portalHeadlines) {
             $dj.error("PortalHeadlinesComponent is not initialized. Refresh the page to try again.");
             return;

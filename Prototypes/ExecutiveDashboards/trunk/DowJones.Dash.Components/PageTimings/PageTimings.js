@@ -22,7 +22,9 @@ DJ.UI.PageTimings = DJ.UI.CompositeComponent.extend({
     },
     
     selectors: {
-        timingsContainer: '.dj_pageTimings',
+        timingsContainer: '.dj_pageTimings .content',
+        noDataContainer: '.noData',
+        contentContainer: '.content',
         timings: '.pageTimings .time-stamp',
         timestamp: '.curTime-stamp'
     },
@@ -30,6 +32,7 @@ DJ.UI.PageTimings = DJ.UI.CompositeComponent.extend({
     init: function (element, meta) {
         this._super(element, $.extend({ name: "PageTimings" }, meta));
         this._initPortalHeadlines();
+        this._showContent();
     },
 
     _initPortalHeadlines: function () {
@@ -74,10 +77,9 @@ DJ.UI.PageTimings = DJ.UI.CompositeComponent.extend({
 
     _updateSparklines: function (data) {
         var self = this;
-        
         var tData = data || this.tSparklineData;
-        
-        if (tData) {
+
+        if (tData && tData.length && tData.length > 0) {
             this.tSparklineData = tData;
             if (self.isPageTimingsListSeeded) {
                 var subPages = _.filter(tData, function(point) {
@@ -107,6 +109,8 @@ DJ.UI.PageTimings = DJ.UI.CompositeComponent.extend({
                             options: {
                                 max: tMax,
                                 min: tMin,
+                                height: 20,
+                                width: 57,
                                 type: 1,
                                 mouseover: function (evt) {
                                     var el = $(evt.target.container).parent('LI').find(self.selectors.timestamp);
@@ -176,9 +180,25 @@ DJ.UI.PageTimings = DJ.UI.CompositeComponent.extend({
         return color;
     },
     
+    _showComingSoon: function () {
+        this.$element.find(this.selectors.contentContainer).hide('fast');
+        this.$element.find(this.selectors.noDataContainer).show('fast');
+    },
+
+    _showContent: function () {
+        this.$element.find(this.selectors.contentContainer).show('fast');
+        this.$element.find(this.selectors.noDataContainer).hide('fast');
+    },
+    
     _updateTimings: function (data) {
+        if (!data || !data.length) {
+            this._showComingSoon();
+            return;
+        }
+        
         var self = this;
-      
+        self._showContent();
+
         if (!self.isPageTimingsListSeeded) {
             var pageTimings = [];
             for (var i = 0; i < data.length; i++) {

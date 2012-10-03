@@ -2,6 +2,7 @@ using System;
 using System.Configuration;
 using System.Threading;
 using System.Threading.Tasks;
+using DowJones.Utilities;
 
 namespace DowJones.Dash.DataSources
 {
@@ -44,7 +45,7 @@ namespace DowJones.Dash.DataSources
 
         public override void Start()
         {
-            Task.Factory.StartNew(
+            TaskFactoryManager.Instance.GetDefaultTaskFactory().StartNew(
                 () => Poll(null), 
                 _cancellationToken.Token
             );

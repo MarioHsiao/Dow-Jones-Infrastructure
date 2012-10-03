@@ -18,7 +18,9 @@ DJ.UI.StatsMap = DJ.UI.Component.extend({
     
     selectors: {
         pillContainer: '.pillContainer',
-        pill: '.dj-pills > li'
+        pill: '.dj-pills > li',
+        noDataContainer: '.noData',
+        contentContainer: '.content'
     },
 
     stateCodes: { 'alabama': 'al', 'alaska': 'ak', 'arizona': 'az', 'arkansas': 'ar', 'california': 'ca', 'colorado': 'co', 'connecticut': 'ct', 'delaware': 'de', 'district of columbia': 'dc', 'florida': 'fl', 'georgia': 'ga', 'hawaii': 'hi', 'idaho': 'id', 'illinois': 'il', 'indiana': 'in', 'iowa': 'ia', 'kansas': 'ks', 'kentucky': 'ky', 'louisiana': 'la', 'maine': 'me', 'maryland': 'md', 'massachusetts': 'ma', 'michigan': 'mi', 'minnesota': 'mn', 'mississippi': 'ms', 'missouri': 'mo', 'montana': 'mt', 'nebraska': 'ne', 'nevada': 'nv', 'new hampshire': 'nh', 'new jersey': 'nj', 'new mexico': 'nm', 'new york': 'ny', 'north carolina': 'nc', 'north dakota': 'nd', 'ohio': 'oh', 'oklahoma': 'ok', 'oregon': 'or', 'pennsylvania': 'pa', 'rhode island': 'ri', 'south carolina': 'sc', 'south dakota': 'sd', 'tennessee': 'tn', 'texas': 'tx', 'utah': 'ut', 'vermont': 'vt', 'virginia': 'va', 'washington': 'wa', 'west virginia': 'wv', 'wisconsin': 'wi', 'wyoming': 'wy' },
@@ -99,7 +101,10 @@ DJ.UI.StatsMap = DJ.UI.Component.extend({
         // Call the base constructor
         this._super(element, $.extend({ name: 'StatsMap' }, meta));
 
-        this.setData(this.data);
+        this._showContent();
+        if (this.data) {
+            this.setData(this.data);
+        }
     },
 
 
@@ -147,8 +152,12 @@ DJ.UI.StatsMap = DJ.UI.Component.extend({
     },
 
     setData: function (data) {
-        if (!data)
+        if (!data || !data.length) {
+            this._showComingSoon();
             return;
+        }
+
+        this._showContent();
 
         // get some sensible structure from a flat result set
         var mappedData = this._mapData(data);
@@ -218,7 +227,7 @@ DJ.UI.StatsMap = DJ.UI.Component.extend({
     },
 
     _mapData: function (data) {
-        if (!data)
+        if (!data || !data.length)
             return;
 
         var groups = _.groupBy(data, function (item) {
@@ -235,6 +244,16 @@ DJ.UI.StatsMap = DJ.UI.Component.extend({
         };
     },
 
+    _showComingSoon: function () {
+        this.$element.find(this.selectors.contentContainer).hide('fast');
+        this.$element.find(this.selectors.noDataContainer).show('fast');
+    },
+
+    _showContent: function () {
+        this.$element.find(this.selectors.contentContainer).show('fast');
+        this.$element.find(this.selectors.noDataContainer).hide('fast');
+    },
+    
     _getMarker: function (num) {
         if (num <= 5000)
             return '<%= WebResource("DowJones.Dash.Components.StatsMap.marker_rounded_yellow_green.png") %>';

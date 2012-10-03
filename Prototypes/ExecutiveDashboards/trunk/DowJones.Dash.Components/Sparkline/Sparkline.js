@@ -87,7 +87,8 @@ DJ.UI.Sparkline = DJ.UI.Component.extend({
                 renderTo: 'container',
                 defaultSeriesType: 'column',
                 backgroundColor: 'transparent',
-                margin: [0,0,0,0],
+                margin: [0, 0, 0, 0],
+                
                 borderRadius: 0
             },
             title: {
@@ -141,7 +142,23 @@ DJ.UI.Sparkline = DJ.UI.Component.extend({
             }]
         };
 
-        return $.extend(true, {}, sparklineChartConfig, {
+        if (o.height) {
+            $.extend(true, sparklineChartConfig, {
+                chart: {
+                    height: o.height
+                }
+            });
+        }
+
+        if (o.width) {
+            $.extend(true, sparklineChartConfig, {
+                chart: {
+                    width: o.width
+                }
+            });
+        }
+
+        return $.extend(true, sparklineChartConfig, {
             chart: {
                 renderTo: chartContainer
             },
@@ -159,7 +176,6 @@ DJ.UI.Sparkline = DJ.UI.Component.extend({
                 defaultSeriesType: 'areaspline',
                 backgroundColor: 'transparent',
                 margin: [0, 0, 0, 0]
-                //borderWidth:1
             },
             title: {
                 text: ''
@@ -227,13 +243,26 @@ DJ.UI.Sparkline = DJ.UI.Component.extend({
         if (seriesData && seriesData.length > 0) {
             seriesData[0]["color"] = seriesColor;
         }
-
-        return $.extend(true, { }, sparklineChartConfig, {
-            chart: {
-                renderTo: chartContainer,
-                events: {
-                    click: self._delegates.clicked
+        
+        if (o.height) {
+            $.extend(true, sparklineChartConfig, {
+                chart: {
+                    height: o.height
                 }
+            });
+        }
+        
+        if (o.width) {
+            $.extend(true, sparklineChartConfig, {
+                chart: {
+                    width: o.width
+                }
+            });
+        }
+
+        return $.extend(true, sparklineChartConfig, {
+            chart: {
+                renderTo: chartContainer
             },
             series: seriesData
         });

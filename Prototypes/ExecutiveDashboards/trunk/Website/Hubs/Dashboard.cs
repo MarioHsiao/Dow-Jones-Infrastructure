@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using DowJones.Dash.Caching;
+using DowJones.Utilities;
 using SignalR;
 using SignalR.Hubs;
 using log4net;
@@ -11,12 +12,13 @@ namespace DowJones.Dash.Website.Hubs
     public class Dashboard : Hub
     {
         private static readonly ILog Log = LogManager.GetLogger(typeof (Dashboard));
+        private static readonly DashboardMessageCache _cache = new DashboardMessageCache();
 
         private static IDashboardMessageCache Cache
         {
             get
             {
-                return DependencyInjection.ServiceLocator.Resolve<IDashboardMessageCache>();
+                return _cache;
             }
         }
 
@@ -24,7 +26,7 @@ namespace DowJones.Dash.Website.Hubs
         {
             var clientId = Context.ConnectionId;
 
-            return Task.Factory.StartNew(() => {
+            return TaskFactoryManager.Instance.GetDefaultTaskFactory().StartNew(() => {
                 var groups = (sources ?? Enumerable.Empty<string>()).ToArray();
 
                 foreach (var @group in groups)

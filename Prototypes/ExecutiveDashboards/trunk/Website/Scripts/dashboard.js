@@ -180,9 +180,9 @@
             // We've got ChartBeat for pretty much everything
             events = events.concat(chartBeatEvents);
             
-            if (domain == 'online.wsj.com') {
+            //if (domain == 'online.wsj.com') {
                 events = events.concat(gomezEvents);
-            }
+            //}
 
             // Convert to '[domain]-[event name]', e.g. 'online.wsj.com-BrowserStats'
             return _.map(events, function (name) { return domain + '-' + name; });
@@ -206,7 +206,9 @@
                     $dj.error('Data error: ' + message.error, message.data);
                 }
 
-                DJ.publish(dataPrefix + message.eventName, message.data);
+                var name = dataPrefix + message.eventName;
+                console.log(name + message.data);
+                DJ.publish(name, message.data);
             }
         },
         

@@ -15,18 +15,33 @@ namespace DowJones.Dash.Caching
 
         public virtual void Add(DashboardMessage message)
         {
-            if (Cache.ContainsKey(message.Source))
-                Cache[message.Source] = message;
+            if (_cache.ContainsKey(message.Source))
+            {
+                _cache[message.Source] = message;
+            }
             else
-                Cache.Add(message.Source, message);
+            {
+                _cache.Add(message.Source, message);
+            }
         }
 
         public virtual IEnumerable<DashboardMessage> Get(params string[] dataSources)
         {
             if (dataSources == null || dataSources.Length == 0)
-                return Cache.Values;
+            {
+                return _cache.Values;
+            }
 
-            return Cache.Keys.Select(key => _cache[key]);
+            var list = new List<DashboardMessage>();
+            foreach (var dataSource in dataSources)
+            {
+                DashboardMessage message;
+                if (_cache.TryGetValue(dataSource, out message))
+                {
+                    list.Add(message);
+                }
+            }
+            return list;
         }
     }
 }
