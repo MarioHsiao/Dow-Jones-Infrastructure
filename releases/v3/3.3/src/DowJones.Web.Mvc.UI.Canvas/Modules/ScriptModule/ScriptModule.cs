@@ -75,7 +75,7 @@ namespace DowJones.Web.Mvc.UI.Canvas.Modules.ScriptModule
                     ExternalIncludes = template.ExternalIncludes ?? Enumerable.Empty<string>(),
                     ModuleId = source.Id,
                     Title = source.Title,
-                    Description = source.Description,
+                    Description = source.Description ?? template.Description,
                     Position = source.Position,
                     TemplateId = source.TemplateId,
                     HasStylesheet = !string.IsNullOrWhiteSpace(template.Styles),
