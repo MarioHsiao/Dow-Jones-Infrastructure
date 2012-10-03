@@ -22,7 +22,7 @@ namespace DowJones.Web.Mvc.UI.Canvas.Modules.ScriptModule
     using System.Web.UI;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 08/28/2012 04:29 PM
+    // Last Generated Timestamp: 10/03/2012 11:32 AM
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Canvas.Modules.ScriptModule.ScriptModule.js", ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Web.Mvc.UI.Canvas.Modules.ScriptModule.ScriptCanvasModule))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.27108")]
     public class ScriptCanvasModule : AbstractCanvasModule<Modules.ScriptModule.ScriptModule>
@@ -47,6 +47,7 @@ namespace DowJones.Web.Mvc.UI.Canvas.Modules.ScriptModule
 
   
     HtmlAttributes.Add("data-script-template-id", Model.TemplateId);
+    HtmlAttributes.Add("data-description", Model.Description);
 
 
 

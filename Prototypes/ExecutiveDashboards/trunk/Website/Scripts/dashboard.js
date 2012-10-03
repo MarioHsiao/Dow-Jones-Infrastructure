@@ -61,6 +61,39 @@
             $('.maximize').append($('<i class="icon-chevron-down icon-white"/>'));
             $('.dj_module .hide').append($('<i class="icon-remove icon-white"/>')).removeClass('hide');
             $('.dj_module-refresh').remove();
+
+            this._initializeInfoIcons();
+        },
+        
+        _initializeInfoIcons: function () {
+            $('.dj_module-title')
+                .after('<i class="icon-info-sign icon-white"/>');
+
+            $('.dj_module-title + i.icon-info-sign')
+                .each(function (i, elem) {
+                    var el = $(this),
+                        tooltipAttached = el.data('tooltipAttached');
+                    
+                    if(!tooltipAttached) {
+                        el.tooltip({
+                            title: el.closest('.dj_module').data('description'),
+                            delay: { show: 500, hide: 100 },
+                            placement: 'bottom'
+                        });
+                        el.data('tooltipAttached', true);
+                    }
+
+                    //clearTimeout(el.data('timeOut') || 0);
+                    
+                    //el.tooltip('show');
+
+                    //var timeOut = setTimeout(function () {
+                    //    el.tooltip('hide');
+                    //}, 10000);
+
+                    //el.data('timeOut', timeOut);
+                });
+            
         },
 
         _initializeTabs: function () {
