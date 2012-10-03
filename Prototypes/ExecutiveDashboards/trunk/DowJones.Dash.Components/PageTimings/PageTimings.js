@@ -114,7 +114,7 @@ DJ.UI.PageTimings = DJ.UI.CompositeComponent.extend({
                                 type: 1,
                                 mouseover: function (evt) {
                                     var el = $(evt.target.container).parent('LI').find(self.selectors.timestamp);
-                                    el.html(evt.target.y.toFixed(3));
+                                    el.html(evt.target.y.toFixed(3) + "s");
                                 },
                                 mouseout: function(evt) {
                                     var el = $(evt.target.container).parent('LI').find(self.selectors.timestamp);

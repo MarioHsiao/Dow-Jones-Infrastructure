@@ -30,7 +30,7 @@ namespace DowJones.Dash.Website.App_Start
                     Dashboard.Publish(new DashboardMessage(sourceName, args.Name, args.Data));
 
                 dataSource.Error += (sender, args) => {
-                    LogManager.GetLogger(sender.GetType()).Warn("Error retriving data" + sourceName, args.Exception);
+                    LogManager.GetLogger(sender.GetType()).Warn("Error retrieving data" + sourceName, args.Exception);
                     Dashboard.Publish(new DashboardErrorMessage(sourceName, args.Name, args.Exception));
                 };
                 

@@ -83,7 +83,9 @@ header {
     background-image: none;
     background-position: center bottom;
     background-repeat: no-repeat;
-    background-color: transparent; }
+    background-color: transparent;
+    font-size: 1.4em;
+    font-weight: bold; }
   .main-nav li.active.main-nav-arrow a {
     background-position: center bottom;
     background-repeat: no-repeat;
