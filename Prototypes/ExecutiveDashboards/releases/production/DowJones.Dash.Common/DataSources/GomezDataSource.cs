@@ -14,9 +14,9 @@ namespace DowJones.Dash.DataSources
         private static readonly ILog _log = LogManager.GetLogger(typeof(GomezDataSource));
 
 
-        public GomezDataSource(string name, string query = null, IDictionary<string, object> parameters = null)
-            : base(name, ConfigurationManager.ConnectionStrings["Gomez"].ConnectionString, query, parameters,
-                   () => Convert.ToInt32(ConfigurationManager.AppSettings["Gomez.PollDelay"]))
+        public GomezDataSource(string name, string dataName, string query = null, IDictionary<string, object> parameters = null, int? pollDelay = null)
+            : base(name, dataName, ConfigurationManager.ConnectionStrings["Gomez"].ConnectionString, query, parameters,
+                   () => pollDelay ?? Convert.ToInt32(ConfigurationManager.AppSettings["Gomez.PollDelay"]))
         {
         }
     }

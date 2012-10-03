@@ -24,28 +24,28 @@ DJ.UI.UsersStats = DJ.UI.CompositeComponent.extend({
         if (this._newGauge && this._newGauge.length) {
             DJ.add('DashGauge', this._basicGaugeConfig(this._newGauge[0], "New")).done(function(comp) {
                 self.newGauge = comp;
-                comp.owner = self;
+                comp.setOwner(self);
             });
         }
 
         if (this._readGauge && this._readGauge.length) {
             DJ.add('DashGauge', this._basicGaugeConfig(this._readGauge[0], "Read")).done(function(comp) {
                 self.readGauge = comp;
-                comp.owner = self;
+                comp.setOwner(self);
             });
         }
 
         if (this._writeGauge && this._writeGauge.length) {
             DJ.add('DashGauge', this._basicGaugeConfig(this._writeGauge[0], "Write")).done(function(comp) {
                 self.writeGauge = comp;
-                comp.owner = self;
+                comp.setOwner(self);
             });
         }
 
         if (this._idleGauge && this._idleGauge.length) {
             DJ.add('DashGauge', this._basicGaugeConfig(this._idleGauge[0], "Idle")).done(function(comp) {
                 self.idleGauge = comp;
-                comp.owner = self;
+                comp.setOwner(self);
             });
         }
 
@@ -111,6 +111,10 @@ DJ.UI.UsersStats = DJ.UI.CompositeComponent.extend({
     },
 
     _updateDashboard: function (data) {
+        if (!data) {
+            return;
+        }
+        
         if (this.newGauge) {
             this.newGauge.updateMax(data.new_max);
             this.newGauge.updateMin(data.new_min);
@@ -133,6 +137,10 @@ DJ.UI.UsersStats = DJ.UI.CompositeComponent.extend({
     },
     
     _updateStats: function (data) {
+        if (!data) {
+            return;
+        }
+        
         if (this.newGauge) {
             this.newGauge.setData(data.new);
         }

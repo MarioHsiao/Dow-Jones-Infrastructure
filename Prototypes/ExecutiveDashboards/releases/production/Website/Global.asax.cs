@@ -7,13 +7,7 @@ namespace DowJones.Dash.Website
     public partial class MvcApplication
     {
         private readonly static ILog Logger = LogManager.GetLogger(typeof (MvcApplication));
-/*
-        public static string Version
-        {
-            // Clean up outstanding polling tasks
-            PollingDataSource.GlobalCancellationTokenSource.Cancel(false);
-        }
-*/
+
         public static Lazy<string> Version = 
             new Lazy<string>(typeof(MvcApplication).Assembly.GetName().Version.ToString);
 

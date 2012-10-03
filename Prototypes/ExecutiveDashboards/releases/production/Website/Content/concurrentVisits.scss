@@ -8,7 +8,17 @@
 	z-index: 1000;
 	width: $width;
 	line-height: 1em;
-	color: $color;
+}
+
+
+.kpiComponent {
+	.noData{
+		text-align: center;
+		margin: 30px auto;
+		font-family: "League-Gothic", Courier;
+		text-transform: uppercase;
+		font-size: 1.4em;
+	}
 }
 
 @mixin LabelShadow($fontSize: 1.5em, $width: 100px, $color: #333, $top: 15px) {
@@ -19,9 +29,7 @@
 	z-index: 1000;
 	width: $width;
 	line-height: 1em;
-	color: $color;
 	font-weight: bold;
-	text-shadow: 0 1px 0 #cccccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbbbbb; 
 }
 
 .visitorsGauge{
@@ -63,18 +71,35 @@
 	}
 	.title {
 		position:relative;
-		top: -10px;
+		top: -5px;
+
+		.muted {
+			font-size: smaller;
+		}
 	}
 	.time-stamp {
 		position:relative;
 		top: -7px;
 		margin-left: 3px;
-		font-size: 1.5em;
-		text-align:center;
 		line-height: 1em;
-		color: #333;
 		font-weight: bold;
-		text-shadow: 0 1px 0 #cccccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbbbbb; 
+		color: #999;
+		text-shadow: 0px 3px 8px #2A2A2A;
+	}
+	
+	.sparklineEntry {
+		margin-bottom: 10px;
+		.muted {
+			font-size: smaller;
+		}
+		.curTime-stamp {
+			position:relative;
+			top: -7px;
+			line-height: 1em;
+			font-weight: normal;
+			color: #ccc;
+			text-shadow: 0px 3px 8px #2A2A2A;
+		}
 	}
 }
 
@@ -110,6 +135,10 @@
 }
 
 .dj_concurrent-visits{
+
+	color: #999;
+	text-shadow: 0px 3px 8px #2A2A2A;
+
 	.description {
 		margin: 0 auto;
 		text-align:center;
@@ -119,12 +148,22 @@
 		font-size: 1.5em;
 		text-align:center;
 		line-height: 1em;
-		color: #333;
 		font-weight: bold;
-		text-shadow: 0 1px 0 #cccccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbbbbb; 
 	}
 	.idle {
 		text-align:right;
+	}
+
+	.progress-success .bar {
+        border-top: 1px solid #02A1DA;
+        border-bottom: 1px solid #0179B2;
+		background-color: #81ba6b;
+        background-repeat: no-repeat;
+        background-image: -moz-linear-gradient(#02A1DA, #0179B2);
+        background-image: -ms-linear-gradient(top, #02A1DA, #0179B2);
+        background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#02A1DA), to(#0179B2));
+        background-image: -webkit-linear-gradient(#02A1DA, #0179B2);
+        background-image: linear-gradient(top, #02A1DA, #0179B2); 
 	}
 }
 
@@ -132,7 +171,7 @@
 	.desktop{
 		height: 60px;
 		display:block;
-		background-image: url(./images/computer-icon.png);
+		background-image: url(./images/computer-icon-white.png);
 		background-repeat: no-repeat;
 		background-position: center; 
 		text-align: center;
@@ -141,7 +180,7 @@
 	.mobile{
 		height: 60px;
 		display: block;
-		background-image: url(./images/smartphone-icon.png);
+		background-image: url(./images/smartphone-icon-white.png);
 		background-repeat: no-repeat;
 		background-position: center; 
 		text-align: center;

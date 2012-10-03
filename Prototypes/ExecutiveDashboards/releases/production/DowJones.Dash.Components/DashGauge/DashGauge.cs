@@ -29,10 +29,11 @@ namespace DowJones.Dash.Components.DashGauge
     using System.Web.UI;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 09/17/2012 09:59 AM
+    // Last Generated Timestamp: 09/27/2012 10:37 PM
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Dash.Components.DashGauge.DashGauge.js", DependsOn=new string[] {
             "highcharts-more",
-            "jquery-counter"}, ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Dash.Components.DashGauge.DashGauge))]
+            "jquery-counter",
+            "jquery-ui-effects"}, ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Dash.Components.DashGauge.DashGauge))]
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Dash.Components.DashGauge.ClientTemplates.error.html", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="error", DeclaringType=typeof(DowJones.Dash.Components.DashGauge.DashGauge))]
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Dash.Components.DashGauge.ClientTemplates.noData.html", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="noData", DeclaringType=typeof(DowJones.Dash.Components.DashGauge.DashGauge))]
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Dash.Components.DashGauge.ClientTemplates.layout.html", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="layout", DeclaringType=typeof(DowJones.Dash.Components.DashGauge.DashGauge))]
@@ -72,7 +73,7 @@ namespace DowJones.Dash.Components.DashGauge
     CssClass = "dj_DashGauge";
 
 
-WriteLiteral("\r\n");
+WriteLiteral("\r\n\r\n\r\n");
 
 
         }

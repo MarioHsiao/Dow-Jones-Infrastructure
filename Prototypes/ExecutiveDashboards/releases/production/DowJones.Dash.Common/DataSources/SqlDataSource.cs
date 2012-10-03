@@ -27,8 +27,8 @@ namespace DowJones.Dash.DataSources
         }
         private static readonly ILog _log = LogManager.GetLogger(typeof(SqlDataSource));
 
-        protected SqlDataSource(string name, string connectionString, string query = null, IDictionary<string, object> parameters = null, Func<int> pollDelayFactory = null, Func<int> errorDelayFactory = null)
-            : base(name, pollDelayFactory, errorDelayFactory)
+        protected SqlDataSource(string name, string dataName, string connectionString, string query = null, IDictionary<string, object> parameters = null, Func<int> pollDelayFactory = null, Func<int> errorDelayFactory = null)
+            : base(name, dataName, pollDelayFactory, errorDelayFactory)
         {
             _parameters = parameters;
             Guard.IsNotNullOrEmpty(connectionString, "connectionString");
@@ -75,12 +75,9 @@ namespace DowJones.Dash.DataSources
                 using (command.Connection)
                 using (var reader = command.EndExecuteReader(result))
                 {
-					var data = new DynamicSqlDataReader().Read(reader).ToArray();
+                    var data = new DynamicSqlDataReader().Read(reader).ToArray();
 
-                    if (Scalar)
-                        OnDataReceived(data.FirstOrDefault());
-                    else
-                        OnDataReceived(data);
+                    OnDataReceived(Scalar ? data.FirstOrDefault() : data);
                 }
             }
             catch (Exception ex)

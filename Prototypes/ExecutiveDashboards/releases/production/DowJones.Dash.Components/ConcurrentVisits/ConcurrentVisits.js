@@ -20,7 +20,7 @@ DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
         var self = this;
         DJ.add('DashGauge', this._visitorGaugeConfig()).done(function (comp) {
             self.visitorsGauge = comp;
-            comp.owner = self;
+            comp.setOwner(self);
             comp.updateMax(91995);
         });
 
@@ -34,7 +34,7 @@ DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
             options: {
                 max: 100,
                 min: 0,
-                angle: 65,
+                angle: 70,
                 footer: "0:0m",
                 gaugeType: 0,
                 height: 200,
@@ -49,6 +49,46 @@ DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
         };
     },
     
+    _areaSplineConfig: function (startDate) {
+        var themeManager = DJ.UI.ThemeManager.instance;
+        return {
+            color: themeManager.colors.siteBackground(),
+            fillColor: {
+                linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
+                stops: [
+                    [0, themeManager.colors.ltBlue()],
+                    [1, Highcharts.Color(themeManager.colors.ltBlue()).brighten(-0.3).get('rgb')] // darken
+                ]
+            },
+            lineWidth: 1,
+            marker: {
+                enabled: false
+            },
+            shadow: false,
+            states: {
+                hover: {
+                    enabled: false
+                }
+            },
+            pointStart: startDate
+        };
+    },
+    
+    _splineConfig:function (startDate) {
+        return {
+            color: Highcharts.getOptions().colors[1],
+            marker: {
+                enabled: false
+            },
+            states: {
+                hover: {
+                    enabled: false
+                }
+            },
+            pointStart: startDate
+        };
+    },
+        
     _histogramConfig: function () {
         var now = new Date();
         var startDate = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate());
@@ -68,6 +108,7 @@ DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
                 text: null
             },
             xAxis: {
+                id: 'day',
                 type: 'datetime',
                 title: {
                     text: null
@@ -102,41 +143,8 @@ DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
                 enabled: false
             },
             plotOptions: {
-                areaspline: {
-                    color: Highcharts.getOptions().colors[0],
-                    fillColor: {
-                        linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1},
-                        stops: [
-                            [0, "#4183C4"],
-                            [1, Highcharts.Color("#CCC").brighten(-0.3).get('rgb')] // darken
-                        ]
-                    },
-                    lineWidth: 1,
-                    marker: {
-                        enabled: false
-                    },
-                    shadow: false,
-                    states: {
-                        hover: {
-                            enabled: false
-                        }
-                    },
-                    pointInterval: 30 * 60 * 1000,
-                    pointStart: startDate
-                },
-                spline: {
-                    color: Highcharts.getOptions().colors[1],
-                    marker: {
-                        enabled: false
-                    },
-                    states: {
-                        hover: {
-                            enabled: false
-                        }
-                    },
-                    pointInterval: 30 * 60 * 1000,
-                    pointStart: startDate
-                }
+                areaspline: this._areaSplineConfig(startDate),
+                spline: this._splineConfig(startDate)
             },
     
             series: [{
@@ -167,10 +175,11 @@ DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
 
     _initializeDelegates: function () {
         this._delegates = $.extend(this._delegates, {
-                updateStats: $dj.delegate(this, this._updateStats),
-                updateDashboard: $dj.delegate(this, this._updateDashboard),
+                updateQuickStats: $dj.delegate(this, this._updateQuickStats),
+                updateDashboardStats: $dj.delegate(this, this._updateDashboardStats),
                 updateHistoricalSeries: $dj.delegate(this, this._updateHistoricalSeries),
-                updateRealtimeSeries: $dj.delegate(this, this._updateRealtimeSeries)
+                updateRealtimeSeries: $dj.delegate(this, this._updateRealtimeSeries),
+                domainChanged: $dj.delegate(this, this._domainChanged)
             });
     },
 
@@ -180,23 +189,36 @@ DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
     },
 
     _initializeEventHandlers: function () {
-        $dj.subscribe('data.QuickStats', this._delegates.updateStats);
-        $dj.subscribe('data.DashboardStats', this._delegates.updateDashboard);
+        $dj.subscribe('data.QuickStats', this._delegates.updateQuickStats);
+        $dj.subscribe('data.DashboardStats', this._delegates.updateDashboardStats);
         $dj.subscribe('data.HistorialTrafficSeries', this._delegates.updateRealtimeSeries);
         $dj.subscribe('data.HistorialTrafficSeriesWeekAgo', this._delegates.updateHistoricalSeries);
+        $dj.subscribe('comm.domain.changed', this._delegates.domainChanged);
     },
 
+    _domainChanged: function(data) {
+        this.domain = data.domain;
+        this.histogram.get('realtime').hide();
+        this.histogram.get('historical').hide();
+    },
+    
     _updateRealtimeSeries: function (data) {
-        if (this.histogram) {
+        var now = new Date();
+        var startDate = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate());
+        var endDate = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate(), 24);
+        if (this.histogram && data) {
             for(var prop in data.data) {
                 var obj = data.data[prop];
                 if ($.isPlainObject(obj)) {
                     var realtimeSeries = this.histogram.get('realtime');
                     var frequency = data.data.frequency;
-                    this.histogram.options.plotOptions.spline.pointInterval = frequency * 60 * 1000;
                     var tData = obj.series.people;
+                    var axis = this.histogram.get('day');
+                    axis.setExtremes(startDate, endDate, false);
                     if (realtimeSeries) {
-                        realtimeSeries.setData(tData);
+                        realtimeSeries.pointInterval = frequency * 60 * 1000;
+                        realtimeSeries.pointStart = startDate;
+                        realtimeSeries.setData(tData, true, false);
                     }
                 }
             }
@@ -204,23 +226,29 @@ DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
     },
     
     _updateHistoricalSeries: function (data) {
-        if (this.histogram) {
+        var now = new Date();
+        var startDate = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate());
+        var endDate = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate(), 24);
+        if (this.histogram && data) {
             for (var prop in data.data) {
                 var obj = data.data[prop];
                 if ($.isPlainObject(obj)) {
                     var historicalSeries = this.histogram.get('historical');
                     var frequency = data.data.frequency;
-                    this.histogram.options.plotOptions.areaspline.pointInterval = frequency * 60 * 1000;
                     var tData = obj.series.people;
+                    var axis = this.histogram.get('day');
+                    axis.setExtremes(startDate, endDate, false);
                     if (historicalSeries) {
-                        historicalSeries.setData(tData);
+                        historicalSeries.pointInterval = frequency * 60 * 1000;
+                        historicalSeries.pointStart = startDate;
+                        historicalSeries.setData(tData, true, false);
                     }
                 }
             }
         }
     },
     
-    _updateStats: function (data) {
+    _updateQuickStats: function (data) {
         if (this.visitorsGauge) {
             this.visitorsGauge.setData(data.visits);
         }
@@ -230,13 +258,19 @@ DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
         this.$element.find(this.selectors.timeCounter).html( minutes + ":" + (seconds <10 ? "0" + seconds: seconds) + "m");
     },
     
-    _updateDashboard: function (data) {
+    _updateDashboardStats: function (data) {
         if (this.visitorsGauge) {
             this.visitorsGauge.updateMax(data.people_max);
             this.visitorsGauge.updateMin(data.people_min);
-
+        }
+        
+        if (this.histogram && data) {
             var yAxis = this.histogram.get('visitors');
-            yAxis.setExtremes(data.people_min, data.people_max);
+            if (yAxis) {
+                yAxis.setExtremes(0, data.people_max, false);
+                this.histogram.get('realtime').show();
+                this.histogram.get('historical').show();
+            }
         }
     },
     

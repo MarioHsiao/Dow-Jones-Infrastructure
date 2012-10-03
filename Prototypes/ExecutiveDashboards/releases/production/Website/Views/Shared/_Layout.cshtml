@@ -6,49 +6,85 @@
     <meta name="viewport" content="width=device-width" />
     <title>DASH: Executive Dashboard</title>
 
+    @Styles.Render("~/content/bootstrap")
     <link rel="stylesheet" href="~/content/layout.css" />
-	<link rel="stylesheet" href="~/content/bootstrap-responsive.css" />
-	<link rel="stylesheet" href="~/content/perfGauge.css" />
+    <link rel="stylesheet" href="~/content/perfGauge.css" />
     <link rel="stylesheet" href="~/content/statsMap.css" />
     @DJ.ScriptRegistry().RenderHead()
     @Scripts.Render("~/bundles/core")
-    
-    <script src="http://use.edgefonts.net/quantico.js"></script>
-	<script src="http://use.edgefonts.net/questrial.js"></script>
+
     @RenderSection("styles", false)
 </head>
 <body>
-    <div class="headerNav">
-        <div class="headBar">
-            <div class="container">
-                <div class="brand">
-                    <a href="@Url.Content("~/")" class="logo">Dash</a>
-                    <h4 class="tagline">Executive Dashboards</h4>
+    <header>
+        <table border="0">
+            <tr>
+                <td class="djtech">
+                    <img src="~/Content/images/djtech.png" /><br />
+					<span> Innovation Realized Results Delivered</span></td>
+                <td class="logo">
+                    <h1><a href="@Url.Content("~")">Dash</a></h1>
+                    <br />
+                    Executive Dashboard</td>
+            </tr>
+        </table>
+        <span></span>
+
+
+        <a href="#module-gallery" class="cog pull-right" role="button" data-toggle="modal"
+            data-original-title=""></a>
+
+    </header>
+
+    <div class="navbar navbar-fixed-top hidden-desktop hidden-tablet">
+        <div class="navbar-inner">
+            <div class="container-fluid">
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
+                <a class="brand" href="@Url.Content("~")">Dash</a>
+            </div>
+        </div>
+    </div>
+    <div class="main-nav-wrapper hidden-phone">
+        <div class="navbar navbar-top main-nav">
+            <div class="navbar-inner">
+                <div class="container-fluid ">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+
+                    <div class="nav-collapse">
+                        @Html.Partial("_MainNavigation")
+                    </div>
+                    <!--/.nav-collapse -->
                 </div>
+
             </div>
         </div>
-    </div>
-    
-    @RenderSection("header", false)
 
-    <div class="bodyContent">
-        <div class="container">
-            @RenderBody()
-        </div>
-    </div>
 
-    <footer class="">
-        <div class="container">
-            <h5>Welcome to the private beta of Executive Dashboards!</h5>
-            <div class="copyright">
-                ©@DateTime.Now.Year Factiva, Inc. All rights reserved. <a href="#">Privacy Policy</a>
+    </div>
+    <div class="container-fluid">
+        @RenderBody()
+    </div>
+    <footer class="container-fluid">
+        <div class="row-fluid">
+            <h5 class="pull-left">Welcome to the private beta of Executive Dashboards!</h5>
+            <div class="copyright pull-right">
+                ©@DateTime.Now.Year Factiva, Inc. All rights reserved. <a href="#">Privacy Policy</a><img src="@Url.Content("~/content/images/djFooterLogo.png")" alt="DowJones Logo"/>
             </div>
         </div>
-        <div class="container">
-            <span class="username pull-left">Logged in as: @User.Identity.Name</span>
-            <span class="version pull-right">Version: @MvcApplication.Version.Value (@MvcApplication.AssemblyTimestamp
-                UTC)</span>
-
+        <div class="row-fluid">
+            <p class="username pull-left">Logged in as: @User.Identity.Name</p>
+            <p class="version pull-right">
+                Version: @MvcApplication.Version.Value (@MvcApplication.AssemblyTimestamp)
+                UTC
+            </p>
         </div>
     </footer>
 

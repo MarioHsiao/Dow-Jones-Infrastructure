@@ -15,6 +15,13 @@ DJ.UI.StatsMap = DJ.UI.Component.extend({
         circleMaxRadius: 32,    //The maximum radius that a circle can have
         circleMinRadius: 7      //The minimum radius that a circle can have
     },
+    
+    selectors: {
+        pillContainer: '.pillContainer',
+        pill: '.dj-pills > li',
+        noDataContainer: '.noData',
+        contentContainer: '.content'
+    },
 
     stateCodes: { 'alabama': 'al', 'alaska': 'ak', 'arizona': 'az', 'arkansas': 'ar', 'california': 'ca', 'colorado': 'co', 'connecticut': 'ct', 'delaware': 'de', 'district of columbia': 'dc', 'florida': 'fl', 'georgia': 'ga', 'hawaii': 'hi', 'idaho': 'id', 'illinois': 'il', 'indiana': 'in', 'iowa': 'ia', 'kansas': 'ks', 'kentucky': 'ky', 'louisiana': 'la', 'maine': 'me', 'maryland': 'md', 'massachusetts': 'ma', 'michigan': 'mi', 'minnesota': 'mn', 'mississippi': 'ms', 'missouri': 'mo', 'montana': 'mt', 'nebraska': 'ne', 'nevada': 'nv', 'new hampshire': 'nh', 'new jersey': 'nj', 'new mexico': 'nm', 'new york': 'ny', 'north carolina': 'nc', 'north dakota': 'nd', 'ohio': 'oh', 'oklahoma': 'ok', 'oregon': 'or', 'pennsylvania': 'pa', 'rhode island': 'ri', 'south carolina': 'sc', 'south dakota': 'sd', 'tennessee': 'tn', 'texas': 'tx', 'utah': 'ut', 'vermont': 'vt', 'virginia': 'va', 'washington': 'wa', 'west virginia': 'wv', 'wisconsin': 'wi', 'wyoming': 'wy' },
 
@@ -51,7 +58,14 @@ DJ.UI.StatsMap = DJ.UI.Component.extend({
                         fontWeight: 'bold'
                     }
                 },
-                marker: {enabled:false},
+                marker: {
+                    enabled: false
+                },
+                states: {
+                    hover: {
+                        color: Highcharts.getOptions().colors[6]
+                    }
+                },
                 valueRanges: [{
                     color: '#ddd'
                 }, {
@@ -87,26 +101,44 @@ DJ.UI.StatsMap = DJ.UI.Component.extend({
         // Call the base constructor
         this._super(element, $.extend({ name: 'StatsMap' }, meta));
 
-        this.setData(this.data);
+        this._showContent();
+        if (this.data) {
+            this.setData(this.data);
+        }
     },
 
 
     _initializeDelegates: function () {
         this._delegates = $.extend(this._delegates, {
-            setData: $dj.delegate(this, this.setData)
+            setData: $dj.delegate(this, this.setData),
+            domainChanged: $dj.delegate(this._domainChanged)
         });
     },
 
     _initializeElements: function (ctx) {
         this.$element.html(this.templates.container());
-
+        this.pillContainer = ctx.find(this.selectors.pillContainer);
         this._initializeChart();
     },
 
     _initializeEventHandlers: function () {
         $dj.subscribe('data.PageLoadDetailsBySubCountryforCountry', this._delegates.setData);
+        $dj.subscribe('comm.domain.changed', this._delegates.domainChanged);
+        
+        var self = this;
+        this.$element.on('click', this.selectors.pill, function () {
+            var el = $(this);
+            el.siblings('.active').add(el).toggleClass('active');
+            self.activePillId = el.data('id');
+            if (self.chartGroupsData)
+                self.chart.series[0].setData(self._getChartData(self.chartGroupsData[self.activePillId]));
+        });
     },
 
+    _domainChanged: function(data) {
+        this.domain = data.domain;
+    },
+       
     _initializeChart: function () {
         for (var i = 0; i < Highcharts.Maps.us.states.length; i++) {
             var key = Highcharts.Maps.us.states[i];
@@ -120,28 +152,55 @@ DJ.UI.StatsMap = DJ.UI.Component.extend({
 
         this.mapConfig.chart.renderTo = this.$element.find('.mapContainer')[0];
         this.chart = new Highcharts.Map(this.mapConfig);
-
     },
 
     setData: function (data) {
-        if (!data)
+        if (!data || !data.length) {
+            this._showComingSoon();
             return;
+        }
+        
+        if (this.domain != "online.wsj.com") {
+            this._showComingSoon();
+            return;
+        }
 
-        this.chart.series[0].setData(this._mapData(data));
+        this._showContent();
+
+        // get some sensible structure from a flat result set
+        var mappedData = this._mapData(data);
+
+        // draw the pills
+        this.setPills(mappedData.pills);
+
+        this.chartGroupsData = mappedData.chartGroups;
+
+        // now that we know what the active pill is, draw the corresponding chart
+        var chartData = this._getChartData(mappedData.chartGroups[this.activePillId]);
+        this.chart.series[0].setData(chartData);
     },
 
-    _mapData: function (data) {
-        if (!data)
+    setPills: function (pills) {
+        this.activePillId = this.activePillId || pills[0].id;
+
+        if (pills.length <= 1) {
+            return;
+        }
+        
+        // set the active item in the dataset before drawing pills
+        for (var i = 0; i < pills.length; i++) {
+            pills[i].active = this.activePillId === pills[i].id;
+        }
+        
+        this.pillContainer.html(this.templates.navPills(pills));
+    },
+
+    _getChartData: function (workingSet) {
+        if (!workingSet)
             return;
 
         var self = this;
-        var statsByPages = _.groupBy(data, function (item) {
-            return item.page_id;
-        });
-
-        // Homepage: Sub
-        var workingSet = statsByPages[421139];
-
+        
         // from a simple array, map it to an associative array
         // with the state abbreviation as the key. this makes subsequent lookups o(1) operation.
         var stateMap = {};
@@ -173,6 +232,40 @@ DJ.UI.StatsMap = DJ.UI.Component.extend({
         return chartData;
     },
 
+    _getfirstKey: function (data) {
+        for (var prop in data)
+            if (data.propertyIsEnumerable(prop))
+                return prop;
+    },
+
+    _mapData: function (data) {
+        if (!data || !data.length)
+            return;
+
+        var groups = _.groupBy(data, function (item) {
+            return item.page_id;
+        });
+
+        var pills = _.map(groups, function (item) {
+            return { id: item[0].page_id, name: item[0].page_name };
+        });
+
+        return {
+            pills: pills,
+            chartGroups: groups
+        };
+    },
+
+    _showComingSoon: function () {
+        this.$element.find(this.selectors.contentContainer).hide('fast');
+        this.$element.find(this.selectors.noDataContainer).show('fast');
+    },
+
+    _showContent: function () {
+        this.$element.find(this.selectors.contentContainer).show('fast');
+        this.$element.find(this.selectors.noDataContainer).hide('fast');
+    },
+    
     _getMarker: function (num) {
         if (num <= 5000)
             return '<%= WebResource("DowJones.Dash.Components.StatsMap.marker_rounded_yellow_green.png") %>';

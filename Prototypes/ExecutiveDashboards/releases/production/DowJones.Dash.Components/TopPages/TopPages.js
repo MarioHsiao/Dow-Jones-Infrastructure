@@ -20,8 +20,8 @@ DJ.UI.TopPages = DJ.UI.CompositeComponent.extend({
             container: this._portalHeadlinesContainer[0],
             options: { layout: 2 }
         }).done(function (comp) {
+            comp.setOwner(self);
             self.portalHeadlines = comp;
-            comp.owner = self;
         });
     },
 
@@ -40,6 +40,7 @@ DJ.UI.TopPages = DJ.UI.CompositeComponent.extend({
         $dj.subscribe('data.TopPages', this._delegates.setData);
 
         this.subscribe('headlineClick.dj.PortalHeadlineList', function (item) {
+            console.log(item);
             window.open(item.headline.headlineUrl);
         });
     },

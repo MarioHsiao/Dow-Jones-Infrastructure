@@ -1,18 +1,13 @@
 using System;
 using System.Collections.Generic;
-using System.Dynamic;
 using System.IO;
 using System.Linq;
 using System.Net;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Web;
-using System.Xml;
-using System.Xml.Linq;
 using DowJones.DependencyInjection;
 using DowJones.Infrastructure;
-using Newtonsoft.Json;
-using log4net;
 using ICredentials = System.Net.ICredentials;
 
 namespace DowJones.Dash.DataSources
@@ -45,8 +40,8 @@ namespace DowJones.Dash.DataSources
         }
 
 
-        public WebDataSource(string name, string path, IDictionary<string, object> parameters = null, Func<int> pollDelayFactory = null, Func<int> errorDelayFactory = null)
-            : base(name, pollDelayFactory, errorDelayFactory)
+        protected WebDataSource(string name, string dataName, string path, IDictionary<string, object> parameters = null, Func<int> pollDelayFactory = null, Func<int> errorDelayFactory = null)
+            : base(name, dataName, pollDelayFactory, errorDelayFactory)
         {
             Guard.IsNotNullOrEmpty(path, "path");
 
@@ -127,7 +122,7 @@ namespace DowJones.Dash.DataSources
             }
         }
 
-        protected override void OnError(Exception ex = null)
+        protected override void OnError(Exception ex = null, string name = null)
         {
             var httpException = ex as HttpException;
             if (httpException != null)
@@ -136,7 +131,7 @@ namespace DowJones.Dash.DataSources
                 ex = new ApplicationException(message, ex);
             }
 
-            base.OnError(ex);
+            base.OnError(ex, name);
         }
 
         private string SerializeParameters()
@@ -146,48 +141,5 @@ namespace DowJones.Dash.DataSources
         }
 
         protected internal abstract dynamic ParseResponse(Stream stream);
-    }
-
-    public class JsonWebDataSource : WebDataSource
-    {
-        protected override ILog Log
-        {
-            get { return _log; }
-        }
-        private static readonly ILog _log = LogManager.GetLogger(typeof(JsonWebDataSource));
-
-        public JsonWebDataSource(string name, string path, IDictionary<string, object> parameters = null, Func<int> pollDelayFactory = null, Func<int> errorDelayFactory = null)
-            : base(name, path, parameters, pollDelayFactory, errorDelayFactory)
-        {
-        }
-
-        protected internal override dynamic ParseResponse(Stream stream)
-        {
-            var json = new StreamReader(stream).ReadToEnd();
-            var data = JsonConvert.DeserializeObject<dynamic>(json);
-            return data;
-        }
-    }
-
-    public class XmlWebDataSource : WebDataSource
-    {
-        protected override ILog Log
-        {
-            get { return _log; }
-        }
-        private static readonly ILog _log = LogManager.GetLogger(typeof(XmlWebDataSource));
-
-        public XmlWebDataSource(string name, string path, IDictionary<string, object> parameters = null, Func<int> pollDelayFactory = null, Func<int> errorDelayFactory = null)
-            : base(name, path, parameters, pollDelayFactory, errorDelayFactory)
-        {
-        }
-
-        protected internal override dynamic ParseResponse(Stream stream)
-        {
-            XNode node = XNode.ReadFrom(new XmlTextReader(new StreamReader(stream)));
-            var json = JsonConvert.SerializeXNode(node, Newtonsoft.Json.Formatting.None, true);
-            var data = JsonConvert.DeserializeObject<dynamic>(json);
-            return data;
-        }
     }
 }

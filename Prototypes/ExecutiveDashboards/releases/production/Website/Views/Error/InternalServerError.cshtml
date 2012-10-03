@@ -1,0 +1,28 @@
+﻿
+<div class="row-fluid">
+    <div class="error span12">	
+        <h2>
+            Sorry, an internal server error occurred while processing your request.
+        </h2>
+               
+        @{
+            var exception = ((HandleErrorInfo)ViewData.Model).Exception;
+            var djUtilitiesException = exception as DowJones.Exceptions.DowJonesUtilitiesException;
+        }    
+            
+        @if (djUtilitiesException != null)
+        {                
+            <div class="error">
+                <div class="code">Error: @djUtilitiesException.ReturnCode</div>   
+                <div class="message">Message: @DJ.TokenForErrorNumber(djUtilitiesException.ReturnCode.ToString())</div> 
+            </div>                    
+        }
+        else { 
+            <div class="error">
+                <div class="code">-1</div>   
+                <div class="message">@DJ.TokenForErrorNumber(-1)</div> 
+            </div>
+        } 
+
+    </div>
+</div>

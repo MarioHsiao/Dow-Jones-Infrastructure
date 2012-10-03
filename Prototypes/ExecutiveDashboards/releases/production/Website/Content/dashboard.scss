@@ -61,7 +61,7 @@ h2 a.reset {
 
 	.sorting {
 		.dj_group {
-			background-color: #F5F5F5;
+			background-color: #3f3f3f;
 		}
 	}
 
@@ -122,6 +122,11 @@ h2 a.reset {
 			margin: 0;
 			line-height: 1.6em;
 			font-weight: 300;
+
+			&+i[class^="icon"] {
+				visibility: hidden;
+				cursor: pointer;
+			}
 		}
 
 		.scope-container {
@@ -133,12 +138,20 @@ h2 a.reset {
 			position: absolute;
 			top: 0;
 			right: 0;
-			padding-top: 5px;
+			padding-top: 10px;
 			max-width: 25%;
 			white-space: nowrap;
+			visibility: hidden;
+			cursor: pointer;
+		}
 
-			span {
-				cursor: pointer;
+		&:hover {
+			.actions-container {
+				visibility: visible;
+			}
+
+			i[class^="icon"] {
+				visibility: visible;
 			}
 		}
 	}

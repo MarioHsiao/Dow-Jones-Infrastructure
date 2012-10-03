@@ -2,86 +2,74 @@
 using System.Linq;
 using System.Threading.Tasks;
 using DowJones.Dash.Caching;
-using Newtonsoft.Json;
+using DowJones.Utilities;
 using SignalR;
 using SignalR.Hubs;
 using log4net;
 
 namespace DowJones.Dash.Website.Hubs
 {
-    public class Dashboard : Hub, IConnected
+    public class Dashboard : Hub
     {
         private static readonly ILog Log = LogManager.GetLogger(typeof (Dashboard));
+        private static readonly DashboardMessageCache _cache = new DashboardMessageCache();
 
         private static IDashboardMessageCache Cache
         {
             get
             {
-                return DependencyInjection.ServiceLocator.Resolve<IDashboardMessageCache>();
+                return _cache;
             }
         }
 
-        public Task Connect()
+        public Task<IEnumerable<DashboardMessage>> Subscribe(IEnumerable<string> sources)
         {
-            Log.DebugFormat("Connect: {0}:{1}", 
-                            Context.ConnectionId, Context.User.Identity.Name);
-            return null;
+            var clientId = Context.ConnectionId;
+
+            return TaskFactoryManager.Instance.GetDefaultTaskFactory().StartNew(() => {
+                var groups = (sources ?? Enumerable.Empty<string>()).ToArray();
+
+                foreach (var @group in groups)
+                {
+                    Groups.Add(clientId, @group);
+                }
+
+                return Cache.Get(groups);
+            });
         }
 
-        public Task Reconnect(IEnumerable<string> groups)
+        public Task Unsubscribe(IEnumerable<string> sources)
         {
-            Log.DebugFormat("Reconnect: {0}:{1} ({2})", 
-                            Context.ConnectionId, Context.User.Identity.Name, string.Join(", ", groups));
-            return null;
-        }
-        
-        public Task<dynamic> Refresh(IEnumerable<string> groups)
-        {
+            var clientId = Context.ConnectionId;
+
             return Task.Factory.StartNew(() =>
-                (dynamic)
-                Cache
-                    .Get((groups ?? Enumerable.Empty<string>()).ToArray())
-                    .Select(x => new ClientEvent(x))
-            );
+            {
+                var groups = (sources ?? Enumerable.Empty<string>()).ToArray();
+                foreach (var @group in groups)
+                {
+                    Groups.Remove(clientId, @group);
+                }
+            });
         }
 
         public static void Publish(DashboardMessage message)
         {
-            Publish(message, GlobalHost.ConnectionManager.GetHubContext<Dashboard>().Clients);
+            if (message == null)
+                return;
+
+            Log.DebugFormat("Publishing {0}", message.EventName);
+
+            var context = GlobalHost.ConnectionManager.GetHubContext<Dashboard>();
+            var subscribers = context.Clients;
+
+            if (!string.IsNullOrWhiteSpace(message.Source))
+            {
+                subscribers = subscribers[message.Source];
+                subscribers.messageReceived(message);
+            }
 
             if (!(message is DashboardErrorMessage))
                 Cache.Add(message);
-        }
-
-        private static void Publish(DashboardMessage message, dynamic context)
-        {
-            var clientEvent = new ClientEvent(message);
-            Log.DebugFormat("Publishing {0}", clientEvent.EventName);
-            context.publish(clientEvent.EventName, clientEvent.Data);
-        }
-
-        class ClientEvent
-        {
-            [JsonProperty("eventName")]
-            public string EventName { get; private set; }
-
-            [JsonProperty("data")]
-            public object Data { get; private set; }
-
-            public ClientEvent(string eventName = null, object data = null)
-            {
-                EventName = eventName;
-                Data = data;
-            }
-
-            public ClientEvent(DashboardMessage message)
-            {
-                Data = message.Data;
-                
-                var isError = message is DashboardErrorMessage;
-                var prefix = isError ? "dataError." : "data.";
-                EventName = prefix + message.DataSource;
-            }
         }
     }
 }

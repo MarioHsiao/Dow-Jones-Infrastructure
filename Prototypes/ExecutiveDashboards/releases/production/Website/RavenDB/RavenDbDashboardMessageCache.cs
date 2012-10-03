@@ -70,7 +70,7 @@ namespace DowJones.Dash.Website.RavenDB
                     var message = cachedMessages[key];
                     var documentId = GetDocumentId(key);
 
-                    var existing = existingMessages.FirstOrDefault(x => x.DataSource == message.DataSource);
+                    var existing = existingMessages.FirstOrDefault(x => x.Source == message.Source);
                     
                     if (existing != null)
                     {

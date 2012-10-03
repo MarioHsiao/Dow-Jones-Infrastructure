@@ -22,13 +22,17 @@ DJ.UI.PageTimings = DJ.UI.CompositeComponent.extend({
     },
     
     selectors: {
-        timingsContainer: '.dj_pageTimings',
-        timings: '.pageTimings .time-stamp'
+        timingsContainer: '.dj_pageTimings .content',
+        noDataContainer: '.noData',
+        contentContainer: '.content',
+        timings: '.pageTimings .time-stamp',
+        timestamp: '.curTime-stamp'
     },
 
     init: function (element, meta) {
         this._super(element, $.extend({ name: "PageTimings" }, meta));
         this._initPortalHeadlines();
+        this._showContent();
     },
 
     _initPortalHeadlines: function () {
@@ -40,7 +44,8 @@ DJ.UI.PageTimings = DJ.UI.CompositeComponent.extend({
             updateTimings: $dj.delegate(this, this._updateTimings),
             updateSparklines: $dj.delegate(this, this._updateSparklines),
             getColor: $dj.delegate(this, this._getColor),
-            getSingleColor: $dj.delegate(this, this._getSingleColor)
+            getSingleColor: $dj.delegate(this, this._getSingleColor),
+            domainChanged: $dj.delegate(this, this._domainChanged)
         });
     },
 
@@ -52,6 +57,16 @@ DJ.UI.PageTimings = DJ.UI.CompositeComponent.extend({
     _initializeEventHandlers: function () {
         $dj.subscribe('data.PageTimings', this._delegates.updateTimings);
         $dj.subscribe('data.PageLoadHistoricalDetails', this._delegates.updateSparklines);
+        $dj.subscribe('comm.domain.changed', this._delegates.domainChanged);
+    },
+    
+    _domainChanged: function (data) {
+        var self = this;
+        self.domain = data.domain;
+        self._destroySparklines();
+        self._timingsContainer.html("");
+        self.isPageTimingsListSeeded = false;
+        self.isSparklinesSeeded = false;
     },
     
     _destroySparklines: function () {
@@ -63,7 +78,7 @@ DJ.UI.PageTimings = DJ.UI.CompositeComponent.extend({
                     if (sLineComp.chart) {
                         sLineComp.chart.destroy();
                     }
-                    sLineComp.owner = null;
+                    sLineComp._owner = null;
                     self.sparklineCharts[i] = null;
                 }
             }
@@ -73,10 +88,9 @@ DJ.UI.PageTimings = DJ.UI.CompositeComponent.extend({
 
     _updateSparklines: function (data) {
         var self = this;
-        
         var tData = data || this.tSparklineData;
-        
-        if (tData) {
+
+        if (tData && tData.length && tData.length > 0) {
             this.tSparklineData = tData;
             if (self.isPageTimingsListSeeded) {
                 var subPages = _.filter(tData, function(point) {
@@ -98,7 +112,7 @@ DJ.UI.PageTimings = DJ.UI.CompositeComponent.extend({
                     $.each(sparklineContainers, function(i, val) {
                         var tVals = (i == 0) ? _.pluck(subPages, "Avg") : (i == 1) ? _.pluck(pubPages, "Avg") : _.pluck(artPages, "Avg");
                         var vals = _.map(tVals, function(num) { return num / 1000; });
-                        var objs = _.map(vals, function(num) { return { color: self._delegates.getColor(num), y: num }; });
+                        var objs = _.map(vals, function(num) { return { color: self._delegates.getColor(num), y: num, container: val }; });
                         var tMax = _.max(vals);
                         var tMin = 0;
                         DJ.add('Sparkline', {
@@ -106,16 +120,23 @@ DJ.UI.PageTimings = DJ.UI.CompositeComponent.extend({
                             options: {
                                 max: tMax,
                                 min: tMin,
+                                height: 20,
+                                width: 57,
                                 type: 1,
-                                click: function(evt) {
-                                    alert(evt.point.y);
+                                mouseover: function (evt) {
+                                    var el = $(evt.target.container).parent('LI').find(self.selectors.timestamp);
+                                    el.html(evt.target.y.toFixed(3) + "s");
+                                },
+                                mouseout: function(evt) {
+                                    var el = $(evt.target.container).parent('LI').find(self.selectors.timestamp);
+                                    el.html('&nbsp;');
                                 }
                             },
                             data: {
                                 values: objs
                             }
                         }).done(function(comp) {
-                            comp.owner = self;
+                            comp.setOwner(self);
                             self.sparklineCharts.push(comp);
                         });
                     });
@@ -123,11 +144,12 @@ DJ.UI.PageTimings = DJ.UI.CompositeComponent.extend({
                     return;
                 }
 
+                sparklineContainers = self.$element.find(".sparklineContainer");
                 $.each(self.sparklineCharts, function(i) {
                     var tVals = (i == 0) ? _.pluck(subPages, "Avg") : (i == 1) ? _.pluck(pubPages, "Avg") : _.pluck(artPages, "Avg");
                     var vals = _.map(tVals, function(num) { return num / 1000; });
                     var objs = _.map(vals, function(num) {
-                        return { color: self._delegates.getColor(num), y: num };
+                        return { color: self._delegates.getColor(num), y: num, container: sparklineContainers[i] };
                     });
                     var tMax = _.max(vals);
                     var tMin = 0;
@@ -169,9 +191,25 @@ DJ.UI.PageTimings = DJ.UI.CompositeComponent.extend({
         return color;
     },
     
+    _showComingSoon: function () {
+        this.$element.find(this.selectors.contentContainer).hide('fast');
+        this.$element.find(this.selectors.noDataContainer).show('fast');
+    },
+
+    _showContent: function () {
+        this.$element.find(this.selectors.contentContainer).show('fast');
+        this.$element.find(this.selectors.noDataContainer).hide('fast');
+    },
+    
     _updateTimings: function (data) {
+        if (!data || !data.length) {
+            this._showComingSoon();
+            return;
+        }
+        
         var self = this;
-      
+        self._showContent();
+
         if (!self.isPageTimingsListSeeded) {
             var pageTimings = [];
             for (var i = 0; i < data.length; i++) {

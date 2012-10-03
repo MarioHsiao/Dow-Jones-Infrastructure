@@ -6,6 +6,9 @@ namespace DowJones.Dash.Components.Models.ThemeManager
     public class ThemeManagerModel : ViewComponentModel
     {
         [ClientProperty("colors")]
-        public List<string> Colors { get; set; } 
+        public List<string> Colors { get; set; }
+
+        [ClientProperty("debug")]
+        public bool Debug { get; set; }
     }
 }

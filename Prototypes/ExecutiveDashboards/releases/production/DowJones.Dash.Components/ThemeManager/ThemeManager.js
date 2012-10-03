@@ -7,6 +7,7 @@ DJ.UI.ThemeManager = DJ.UI.Component.extend({
 
     // Default options
     defaults: {
+        debug: false
     },
    
     init: function (element, meta) {
@@ -14,19 +15,53 @@ DJ.UI.ThemeManager = DJ.UI.Component.extend({
 
         // Call the base constructor
         this._super(element, $meta);
+
+        if (!DJ.UI.ThemeManager.instance) {
+            DJ.UI.ThemeManager.instance = this;
+        }
+        if (this.options.debug) {
+            DJ.config.debug = true;
+        }
+        this._initializeObject();
         this.initializeHighchartsTheme();
         this.initializeHighchartsGradient();
     },
-
-    _initializeDelegates: function () {
-    },
-
+    
     _initializeEventHandlers: function () {
     },
-
-    _initializeElements: function () {
-    },
     
+    _initializeObject: function () {
+        this.colors = {
+            blue: $dj.delegate(this, function() {
+                return this.options.colors[0];
+            }),
+            red: $dj.delegate(this, function() {
+                    return this.options.colors[1];
+            }),
+            green: $dj.delegate(this, function() {
+                    return this.options.colors[2];
+            }),
+            purple: $dj.delegate(this, function() {
+                    return this.options.colors[3];
+            }),
+            ltBlue: $dj.delegate(this, function () {
+                    return this.options.colors[6];
+            }),
+            yellow: $dj.delegate(this, function() {
+                    return this.options.colors[5];
+            }),
+            grey: $dj.delegate(this, function() {
+                    return "#CCCCCC";
+            }),
+            siteBackground: function () {
+                return "3C3C3C";
+            },
+            brighten: function(color, brightness) {
+                Highcharts.Color(color).brighten(brightness).get('rgb');
+            }
+        };
+    },
+
     initializeHighchartsGradient: function () {
         Highcharts.getOptions().colors = $.map(Highcharts.getOptions().colors, function (color) {
             return {
@@ -48,6 +83,9 @@ DJ.UI.ThemeManager = DJ.UI.Component.extend({
     
     EOF: null
 });
+
+DJ.UI.ThemeManager.instance = null;
+
 
 // Declare this class as a jQuery plugin
 $.plugin('dj_ThemeManager', DJ.UI.ThemeManager);

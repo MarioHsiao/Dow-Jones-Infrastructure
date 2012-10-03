@@ -21,7 +21,9 @@ DJ.UI.Sparkline = DJ.UI.Component.extend({
     },
 
     eventNames: {
-        clicked: 'click.dj.Sparkline'
+        clicked: 'click.dj.Sparkline',
+        mouseover: 'mouseover.dj.Sparkline',
+        mouseout: 'mouseout.dj.Sparkline'
     },
     
     init: function (element, meta) {
@@ -34,7 +36,9 @@ DJ.UI.Sparkline = DJ.UI.Component.extend({
 
     _initializeDelegates: function () {
         $.extend(this._delegates, {
-            clicked: $dj.delegate(this, this._clicked)
+            clicked: $dj.delegate(this, this._clicked),
+            mouseover: $dj.delegate(this, this._mouseover),
+            mouseout: $dj.delegate(this, this._mouseout)
         });
     },
 
@@ -53,6 +57,26 @@ DJ.UI.Sparkline = DJ.UI.Component.extend({
         }
         self.publish(self.eventNames.clicked, evt);
     },
+    
+    _mouseover: function (evt) {
+        var self = this,
+            o = self.options;
+        if (o.mouseover && $.isFunction(o.mouseover)) {
+            o.mouseover(evt);
+            return;
+        }
+        self.publish(self.eventNames.mouseover, evt);
+    },
+    
+    _mouseout: function (evt) {
+        var self = this,
+            o = self.options;
+        if (o.mouseout && $.isFunction(o.mouseout)) {
+            o.mouseout(evt);
+            return;
+        }
+        self.publish(self.eventNames.mouseout, evt);
+    },
 
     initializeColumnGraphOptions: function (chartContainer, seriesData) {
         var self = this,
@@ -63,7 +87,8 @@ DJ.UI.Sparkline = DJ.UI.Component.extend({
                 renderTo: 'container',
                 defaultSeriesType: 'column',
                 backgroundColor: 'transparent',
-                margin: [0,0,0,0],
+                margin: [0, 0, 0, 0],
+                
                 borderRadius: 0
             },
             title: {
@@ -91,6 +116,7 @@ DJ.UI.Sparkline = DJ.UI.Component.extend({
                 enabled: false
             },
             tooltip: {
+                useHTML: false,
                 enabled: false
             },
             plotOptions: {
@@ -99,8 +125,12 @@ DJ.UI.Sparkline = DJ.UI.Component.extend({
                     pointPadding: .1,
                     groupPadding: .1,
                     borderWidth: 0,
-                    events: {
-                        click: self._delegates.clicked
+                    point: {
+                            events: {
+                                click: self._delegates.clicked,
+                                mouseOver: self._delegates.mouseover,
+                                mouseOut: self._delegates.mouseout
+                        },
                     }
                 }
             },
@@ -112,7 +142,23 @@ DJ.UI.Sparkline = DJ.UI.Component.extend({
             }]
         };
 
-        return $.extend(true, {}, sparklineChartConfig, {
+        if (o.height) {
+            $.extend(true, sparklineChartConfig, {
+                chart: {
+                    height: o.height
+                }
+            });
+        }
+
+        if (o.width) {
+            $.extend(true, sparklineChartConfig, {
+                chart: {
+                    width: o.width
+                }
+            });
+        }
+
+        return $.extend(true, sparklineChartConfig, {
             chart: {
                 renderTo: chartContainer
             },
@@ -130,7 +176,6 @@ DJ.UI.Sparkline = DJ.UI.Component.extend({
                 defaultSeriesType: 'areaspline',
                 backgroundColor: 'transparent',
                 margin: [0, 0, 0, 0]
-                //borderWidth:1
             },
             title: {
                 text: ''
@@ -198,13 +243,26 @@ DJ.UI.Sparkline = DJ.UI.Component.extend({
         if (seriesData && seriesData.length > 0) {
             seriesData[0]["color"] = seriesColor;
         }
-
-        return $.extend(true, { }, sparklineChartConfig, {
-            chart: {
-                renderTo: chartContainer,
-                events: {
-                    click: self._delegates.clicked
+        
+        if (o.height) {
+            $.extend(true, sparklineChartConfig, {
+                chart: {
+                    height: o.height
                 }
+            });
+        }
+        
+        if (o.width) {
+            $.extend(true, sparklineChartConfig, {
+                chart: {
+                    width: o.width
+                }
+            });
+        }
+
+        return $.extend(true, sparklineChartConfig, {
+            chart: {
+                renderTo: chartContainer
             },
             series: seriesData
         });
@@ -259,12 +317,12 @@ DJ.UI.Sparkline = DJ.UI.Component.extend({
         if (self.data) {
             self.$element.html(self.templates.layout({ data: self.data }));
             var chartContainer = el.find('.dj_sparkline-container'),
-                chartOptions;
+                chartOptions = null,
+                graphDataModel;
 
             if (self.data &&
                 self.data.values &&
                 self.data.values.length > 0)  {
-
                 switch(o.type) {
                     case self.sparklineType.line:
                         graphDataModel = self.mapData();

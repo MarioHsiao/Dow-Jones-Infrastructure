@@ -44,7 +44,8 @@ $browserBackground: url(images/browser-sprites.png) no-repeat;
 
 .dj-perfGaugeItems {
   font-size: 16px;
-  color: #777;
+  color: #999;
+  text-shadow: 0px 3px 8px #2A2A2A;
 
   .visitors {
     font-weight: bold; } }
@@ -55,12 +56,10 @@ $browserBackground: url(images/browser-sprites.png) no-repeat;
   width: 100%;
   margin-bottom: 10px;
   height: 40px;
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
 
   &:first-child {
     margin: 10px 0;
     font-weight: bold;
-    color: #AAA;
     height: 20px;
 
     div {
@@ -86,12 +85,15 @@ $browserBackground: url(images/browser-sprites.png) no-repeat;
 
   .browserVersion {
     position: absolute;
-    left: 62px;
-    top: 18px;
+    left: 65px;
+    top: 31px;
     font-size: 14px;
     font-weight: bold;
     z-index: 12;
-    text-shadow: 0px -1px 1px #eeeeee, 0px 1px 1px #eeeeee, -1px 0px 1px #eeeeee, 1px 0px 1px #eeeeee, -1px -1px 1px #eeeeee, -1px 1px 1px #eeeeee, 1px -1px 1px #eeeeee, 1px 1px 1px #eeeeee; }
+	background-color: #3c3c3c;
+	border-radius: 10px;
+	padding: 0 5px;
+	}
 
   .visitors {
     position: absolute;
@@ -105,7 +107,6 @@ $browserBackground: url(images/browser-sprites.png) no-repeat;
     top: 24px;
     position: absolute;
     opacity: 0;
-    color: #999;
     -webkit-transition: opacity .25s ease-in-out;
     -moz-transition: opacity .25s ease-in-out;
     -o-transition: opacity .25s ease-in-out; }
@@ -134,7 +135,6 @@ $browserBackground: url(images/browser-sprites.png) no-repeat;
     font-size: 14px;
 
 	.timing {
-		color: #777;
 		position:relative;
 		font-weight:bold;
 		z-index: 1000;
@@ -143,46 +143,47 @@ $browserBackground: url(images/browser-sprites.png) no-repeat;
     .gauge {
       position: absolute;
       left: 0;
+	  height: 100%;
     }
 
     &.cool {
-      border: 1px solid #85b372;
-      border-top: 1px solid #8ebc7c;
-      border-bottom: 1px solid #79a967;
+      border: 1px solid #729316;
+      border-top: 1px solid #9BBD32;
+      border-bottom: 1px solid #729316;
 
       .gauge {
         background-color: #81ba6b;
         background-repeat: no-repeat;
-        background-image: -moz-linear-gradient(#a6ce8d, #81ba6b);
-        background-image: -ms-linear-gradient(top, #a6ce8d, #81ba6b);
-        background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#a6ce8d), to(#81ba6b));
-        background-image: -webkit-linear-gradient(#a6ce8d, #81ba6b);
-        background-image: linear-gradient(top, #a6ce8d, #81ba6b); } }
+        background-image: -moz-linear-gradient(#9BBD32, #729316);
+        background-image: -ms-linear-gradient(top, #9BBD32, #729316);
+        background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#9BBD32), to(#729316));
+        background-image: -webkit-linear-gradient(#9BBD32, #729316);
+        background-image: linear-gradient(top, #9BBD32, #729316); } }
 
     &.hot {
-      border: 1px solid #AA4643;
-      border-top: 1px solid #C35F5C;
-      border-bottom: 1px solid #AA4643;
+      border: 1px solid #990003;
+      border-top: 1px solid #DD4247;
+      border-bottom: 1px solid #990003;
 
       .gauge {
-        background-color: #AA4643;
+        background-color: #DD4247;
         background-repeat: no-repeat;
-        background-image: -moz-linear-gradient(#C35F5C, #AA4643);
-        background-image: -ms-linear-gradient(top, #C35F5C, #AA4643);
-        background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#C35F5C), to(#AA4643));
-        background-image: -webkit-linear-gradient(#C35F5C, #AA4643);
-        background-image: linear-gradient(top, #C35F5C, #AA4643); } }
+        background-image: -moz-linear-gradient(#DD4247, #990003);
+        background-image: -ms-linear-gradient(top, #DD4247, #990003);
+        background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#DD4247), to(#990003));
+        background-image: -webkit-linear-gradient(#DD4247, #990003);
+        background-image: linear-gradient(top, #DD4247, #990003); } }
 
     &.neutral {
-      border: 1px solid #c9b45d;
-      border-top: 1px solid #cbba72;
-      border-bottom: 1px solid #c7ae43;
+      border: 1px solid #C3900B;
+      border-top: 1px solid #FFCC33;
+      border-bottom: 1px solid #C3900B;
 
       .gauge {
-        background-color: #dbc566;
+        background-color: #FFCC33;
         background-repeat: no-repeat;
-        background-image: -moz-linear-gradient(#e6d686, #dbc566);
-        background-image: -ms-linear-gradient(top, #e6d686, #dbc566);
-        background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#e6d686), to(#dbc566));
-        background-image: -webkit-linear-gradient(#e6d686, #dbc566);
-        background-image: linear-gradient(top, #e6d686, #dbc566); } } } }
+        background-image: -moz-linear-gradient(#FFCC33, #C3900B);
+        background-image: -ms-linear-gradient(top, #FFCC33, #C3900B);
+        background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#FFCC33), to(#C3900B));
+        background-image: -webkit-linear-gradient(#FFCC33, #C3900B);
+        background-image: linear-gradient(top, #FFCC33, #C3900B); } } } }
