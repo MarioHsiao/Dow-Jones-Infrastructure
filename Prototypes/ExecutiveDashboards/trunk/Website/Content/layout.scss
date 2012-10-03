@@ -22,7 +22,7 @@ ul, ol {
 header {
 
 	background-repeat: no-repeat;
-	height: 62px;
+	height: 82px;
 	width: 99%;
 	margin: 5px;
 	position: absolute;
@@ -38,20 +38,30 @@ header {
 		display: inline-block;
 	}
 
+	table {
+		color: #999;
+		line-height: 1.2;
+		font-size: smaller;
+		float: left;
+
+		.djtech {
+
+			span {
+				width: 94px;
+				display: inline-block;
+				margin-left: 67px;
+			}
+		}
+
+		.logo {
+			padding-left: 20px; 
+		}
+	}
+
 	h1 {
 		font: small-caps 40px/40px 'Kaushan Script', sans-serif;
 		color: #60AFDC;
-		margin-top: 10px;
-		
 		display: inline-block;
-		margin-left: 34px;
-		a {
-			padding-right: 190px;
-			background: url(./images/djtech.png) no-repeat right 70%;
-			&:hover {
-				color: #2B7DA1;
-			}
-		}
 	}
 }
 
@@ -126,12 +136,12 @@ header {
 
 @media (min-width: 980px) {
     body {
-        padding-top:130px;
+        padding-top:150px;
     }
 
     .main-nav-wrapper {
         position: absolute;
-        top:62px;
+        top:82px;
         width: 100%;
         margin-left: 0;
         margin-right: 0;

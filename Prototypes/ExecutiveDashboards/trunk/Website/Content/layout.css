@@ -17,7 +17,7 @@ ul, ol {
 
 header {
   background-repeat: no-repeat;
-  height: 62px;
+  height: 82px;
   width: 99%;
   margin: 5px;
   position: absolute;
@@ -30,17 +30,21 @@ header {
     margin-top: 10px;
     background-position: 0 0;
     display: inline-block; }
+  header table {
+    color: #999;
+    line-height: 1.2;
+    font-size: smaller;
+    float: left; }
+    header table .djtech span {
+      width: 94px;
+      display: inline-block;
+      margin-left: 67px; }
+    header table .logo {
+      padding-left: 20px; }
   header h1 {
     font: small-caps 40px/40px "Kaushan Script", sans-serif;
     color: #60AFDC;
-    margin-top: 10px;
-    display: inline-block;
-    margin-left: 34px; }
-    header h1 a {
-      padding-right: 190px;
-      background: url(./images/djtech.png) no-repeat right 70%; }
-      header h1 a:hover {
-        color: #2B7DA1; }
+    display: inline-block; }
 
 .main-nav.navbar .nav > li {
   display: inline-block;
@@ -94,11 +98,11 @@ header {
 
 @media (min-width: 980px) {
   body {
-    padding-top: 130px; }
+    padding-top: 150px; }
 
   .main-nav-wrapper {
     position: absolute;
-    top: 62px;
+    top: 82px;
     width: 100%;
     margin-left: 0;
     margin-right: 0; }

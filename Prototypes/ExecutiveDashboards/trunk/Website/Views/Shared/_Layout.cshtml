@@ -17,9 +17,23 @@
 </head>
 <body>
     <header>
-        <a href="#module-gallery" class="cog pull-right" role="button" data-toggle="modal" data-original-title="">
-        </a>
-        <h1><a href="@Url.Content("~")">Dash</a></h1>
+        <table border="0">
+            <tr>
+                <td class="djtech">
+                    <img src="~/Content/images/djtech.png" /><br />
+					<span> Innovation Realized Results Delivered</span></td>
+                <td class="logo">
+                    <h1><a href="@Url.Content("~")">Dash</a></h1>
+                    <br />
+                    Executive Dashboard</td>
+            </tr>
+        </table>
+        <span></span>
+
+
+        <a href="#module-gallery" class="cog pull-right" role="button" data-toggle="modal"
+            data-original-title=""></a>
+
     </header>
 
     <div class="navbar navbar-fixed-top hidden-desktop hidden-tablet">
@@ -67,10 +81,13 @@
         </div>
         <div class="row-fluid">
             <p class="username pull-left">Logged in as: @User.Identity.Name</p>
-            <p class="version pull-right">Version: @MvcApplication.Version.Value (@MvcApplication.AssemblyTimestamp) UTC</p>
+            <p class="version pull-right">
+                Version: @MvcApplication.Version.Value (@MvcApplication.AssemblyTimestamp)
+                UTC
+            </p>
         </div>
     </footer>
-    
+
     <div class="modal hide fade" id="dashAlertModal" tabindex="-1" role="dialog" aria-labelledby="dashAlertModalLabel"
         aria-hidden="true" data-backdrop="static" data-keyboard="true">
         <div class="modal-header">
