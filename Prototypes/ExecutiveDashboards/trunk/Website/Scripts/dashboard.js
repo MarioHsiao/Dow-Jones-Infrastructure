@@ -28,18 +28,21 @@
 
         _initializeDelegates: function () {
             this._delegates = $.extend(this._delegates || { }, {
-                domain: $dj.delegate(this, this.domain)
+                domain: $dj.delegate(this, this.domain),
+                callModuleResize: $dj.delegate(this, this._callModuleResize)
             });
         },
 
         _initializeModuleResizing: function () {
-            DJ.subscribe('resized.dj.CanvasModule', function (args) {
-                var request = {
-                    pageId: DJ.UI.Canvas.find().get_canvasId(),
-                    moduleId: args.moduleId
-                };
-                $.ajax(this.options.moduleResizeUrl + args.newSize, { data: request });
-            });
+            DJ.subscribe('resized.dj.CanvasModule', this._delegates.callModuleResize);
+        },
+        
+        _callModuleResize: function (args) {
+            var request = {
+                pageId: DJ.UI.Canvas.find().get_canvasId(),
+                moduleId: args.moduleId
+            };
+            $.ajax(this.options.moduleResizeUrl + args.newSize, { data: request });
         },
 
         _initializeModuleStyles: function () {
