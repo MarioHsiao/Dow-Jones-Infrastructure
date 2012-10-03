@@ -1,9 +1,10 @@
 /*!  jquery counter plugin
 * Author: Hrusikesh Panda
-* Version: 0.2
+* Version: 0.3
 *
 * Provides a counter like animation while updating a number field.
 *
+* 0.3: Faster Accel logic
 * 0.2: Simpler acceleration logic
 * 0.1: Basic functionality
 */
@@ -11,7 +12,7 @@
     $.fn.counter = function (target, callback) {
         var count = function (elem, stop) {
             var timer;
-            var braking = 25,
+            var braking = 15,
                 $el = $(elem),
                 start = parseInt($el.text().replace(',', ''), 10),
                 step;
@@ -22,12 +23,14 @@
 
             if (start !== stop) {
                 // accelerate if the distance is too wide
-                step = (stop - start) / braking;
+                //step = (stop - start) / braking;
                 
+                step = start + (stop - start) / braking;
+               
                 // slow down when approaching target
-                if (Math.abs(step) < .2) braking = braking * 10;
+                if (Math.abs(stop - step) < 5) braking = braking * 10;
 
-                $el.text(Math.ceil((start + step)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+                $el.text(Math.ceil((step)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
                 timer = setTimeout(function () {
                     count(elem, stop, callback);
                 }, braking);
