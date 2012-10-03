@@ -49,7 +49,7 @@ DJ.UI.BrowserStats = DJ.UI.CompositeComponent.extend({
 
     _setData: function (data) {
         if (!data || !data.length) {
-            if (!data == null) {
+            if (data != null) {
                 this._showComingSoon();
             }
             return;

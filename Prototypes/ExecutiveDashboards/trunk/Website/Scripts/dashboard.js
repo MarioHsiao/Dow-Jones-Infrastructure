@@ -207,7 +207,7 @@
                 }
 
                 var name = dataPrefix + message.eventName;
-                console.log(name + message.data);
+                //console.log(name + message.data);
                 DJ.publish(name, message.data);
             }
         },
