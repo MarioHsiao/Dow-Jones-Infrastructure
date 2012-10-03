@@ -55,6 +55,9 @@ DJ.UI.BrowserStats = DJ.UI.CompositeComponent.extend({
             return;
         }
 
+        console.log(this.domain);
+        console.log(data);
+
         this._showContent();
         // get some sensible structure from a flat result set
         var mappedData = this._mapData(data);

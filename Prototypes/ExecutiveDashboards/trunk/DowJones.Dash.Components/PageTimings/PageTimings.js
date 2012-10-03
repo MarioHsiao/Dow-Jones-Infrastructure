@@ -66,6 +66,7 @@ DJ.UI.PageTimings = DJ.UI.CompositeComponent.extend({
         self._destroySparklines();
         self._timingsContainer.html("");
         self.isPageTimingsListSeeded = false;
+        self.isSparklinesSeeded = false;
     },
     
     _destroySparklines: function () {
