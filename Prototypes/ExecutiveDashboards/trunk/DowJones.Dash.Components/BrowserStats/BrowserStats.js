@@ -24,7 +24,8 @@ DJ.UI.BrowserStats = DJ.UI.CompositeComponent.extend({
 
     _initializeDelegates: function () {
         this._delegates = $.extend(this._delegates, {
-            setData: $dj.delegate(this, this.setData)
+            setData: $dj.delegate(this, this.setData),
+            domainChanged: $dj.delegate(this, this._domainChanged)
         });
     },
 
@@ -36,6 +37,7 @@ DJ.UI.BrowserStats = DJ.UI.CompositeComponent.extend({
 
     _initializeEventHandlers: function () {
         $dj.subscribe('data.BrowserStats', this._delegates.setData);
+        $dj.subscribe('comm.domain.changed', this._delegates.domainChanged);
 
         var self = this;
         this.$element.on('click', this.selectors.pill, function () {
@@ -45,6 +47,12 @@ DJ.UI.BrowserStats = DJ.UI.CompositeComponent.extend({
             if (self.browserStats)
                 self._updateData(self._getBarData(self.browserStats[self.activePillId]));
         });
+    },
+    
+    _domainChanged: function (data) {
+        this.domain = data.domain;
+        this._intializedData = false;
+        delete this.activePillId;
     },
 
     _setData: function (data) {
