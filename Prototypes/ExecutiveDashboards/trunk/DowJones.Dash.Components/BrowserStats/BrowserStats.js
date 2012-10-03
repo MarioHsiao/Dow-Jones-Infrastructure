@@ -136,17 +136,19 @@ DJ.UI.BrowserStats = DJ.UI.CompositeComponent.extend({
     },
 
     _updateData: function (data) {
-        var trafficBars = this.barContainer.find('.dj-trafficBar');
-        for (var i = 0, len = data.length; i < len; i++) {
-            var stat = data[i],
-                trafficBar = $(trafficBars[i]),
-                version = (stat.browser === 'msie' || (stat.browser === 'firefox' && stat.browserVersion < 4)) ? stat.browserVersion : '';
-            trafficBar.find('.visitors').counter(stat.visitors);
-            trafficBar.find('.bar').removeClass().addClass('bar').addClass(stat.temperature);
-            trafficBar.find('.timing').text(stat.timing + 's');
-            trafficBar.find('.gauge').animate({ width: stat.percent + '%' }, 600);
-            trafficBar.find('.browser i').removeClass().addClass('dj-logo-' + stat.browser + version);
-            trafficBar.find('.browserVersion').text(version);
+        if (data && data.length) {
+            var trafficBars = this.barContainer.find('.dj-trafficBar');
+            for (var i = 0, len = data.length; i < len; i++) {
+                var stat = data[i],
+                    trafficBar = $(trafficBars[i]),
+                    version = (stat.browser === 'msie' || (stat.browser === 'firefox' && stat.browserVersion < 4)) ? stat.browserVersion : '';
+                trafficBar.find('.visitors').counter(stat.visitors);
+                trafficBar.find('.bar').removeClass().addClass('bar').addClass(stat.temperature);
+                trafficBar.find('.timing').text(stat.timing + 's');
+                trafficBar.find('.gauge').animate({ width: stat.percent + '%' }, 600);
+                trafficBar.find('.browser i').removeClass().addClass('dj-logo-' + stat.browser + version);
+                trafficBar.find('.browserVersion').text(version);
+            }
         }
     },
 
@@ -173,6 +175,10 @@ DJ.UI.BrowserStats = DJ.UI.CompositeComponent.extend({
 
     setPills: function (pills) {
         this.activePillId = this.activePillId || pills[0].id;
+        
+        if (pills.length <= 1) {
+            return;
+        }
 
         // set the active item in the dataset before drawing pills
         for (var i = 0; i < pills.length; i++) {

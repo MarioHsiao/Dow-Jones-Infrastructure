@@ -107,8 +107,7 @@ header {
         background-position: center bottom;
         background-repeat: no-repeat;
         background-color: transparent;
-		font-size: 1.4em;
-		font-weight: bold;
+		font-size: 1.2em;
       }
       &.main-nav-arrow a {
         background-position: center bottom;
@@ -121,6 +120,9 @@ header {
       background-repeat: no-repeat;
       /* background-image: url("../images/top-arrow.png");*/
     }
+	a {
+	
+	}
   }
   margin-bottom: 0px;
 }

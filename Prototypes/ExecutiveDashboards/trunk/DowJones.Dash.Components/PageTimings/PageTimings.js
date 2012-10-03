@@ -44,7 +44,8 @@ DJ.UI.PageTimings = DJ.UI.CompositeComponent.extend({
             updateTimings: $dj.delegate(this, this._updateTimings),
             updateSparklines: $dj.delegate(this, this._updateSparklines),
             getColor: $dj.delegate(this, this._getColor),
-            getSingleColor: $dj.delegate(this, this._getSingleColor)
+            getSingleColor: $dj.delegate(this, this._getSingleColor),
+            domainChanged: $dj.delegate(this, this._domainChanged)
         });
     },
 
@@ -56,6 +57,15 @@ DJ.UI.PageTimings = DJ.UI.CompositeComponent.extend({
     _initializeEventHandlers: function () {
         $dj.subscribe('data.PageTimings', this._delegates.updateTimings);
         $dj.subscribe('data.PageLoadHistoricalDetails', this._delegates.updateSparklines);
+        $dj.subscribe('comm.domain.changed', this._delegates.domainChanged);
+    },
+    
+    _domainChanged: function (data) {
+        var self = this;
+        self.domain = data.domain;
+        self._destroySparklines();
+        self._timingsContainer.html("");
+        self.isPageTimingsListSeeded = false;
     },
     
     _destroySparklines: function () {

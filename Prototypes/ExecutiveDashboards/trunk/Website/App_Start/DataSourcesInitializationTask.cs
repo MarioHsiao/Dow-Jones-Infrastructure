@@ -35,7 +35,6 @@ namespace DowJones.Dash.Website.App_Start
                 };
                 
                 dataSource.Start();
-
                 Log.DebugFormat("Started {0}", dataSource.GetType().Name);
             }
 

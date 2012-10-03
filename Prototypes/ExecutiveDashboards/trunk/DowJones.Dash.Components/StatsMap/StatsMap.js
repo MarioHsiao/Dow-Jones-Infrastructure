@@ -110,21 +110,21 @@ DJ.UI.StatsMap = DJ.UI.Component.extend({
 
     _initializeDelegates: function () {
         this._delegates = $.extend(this._delegates, {
-            setData: $dj.delegate(this, this.setData)
+            setData: $dj.delegate(this, this.setData),
+            domainChanged: $dj.delegate(this._domainChanged)
         });
     },
 
     _initializeElements: function (ctx) {
         this.$element.html(this.templates.container());
-
         this.pillContainer = ctx.find(this.selectors.pillContainer);
-
         this._initializeChart();
     },
 
     _initializeEventHandlers: function () {
         $dj.subscribe('data.PageLoadDetailsBySubCountryforCountry', this._delegates.setData);
-
+        $dj.subscribe('comm.domain.changed', this._delegates.domainChanged);
+        
         var self = this;
         this.$element.on('click', this.selectors.pill, function () {
             var el = $(this);
@@ -135,6 +135,10 @@ DJ.UI.StatsMap = DJ.UI.Component.extend({
         });
     },
 
+    _domainChanged: function(data) {
+        this.domain = data.domain;
+    },
+       
     _initializeChart: function () {
         for (var i = 0; i < Highcharts.Maps.us.states.length; i++) {
             var key = Highcharts.Maps.us.states[i];
@@ -148,11 +152,15 @@ DJ.UI.StatsMap = DJ.UI.Component.extend({
 
         this.mapConfig.chart.renderTo = this.$element.find('.mapContainer')[0];
         this.chart = new Highcharts.Map(this.mapConfig);
-
     },
 
     setData: function (data) {
         if (!data || !data.length) {
+            this._showComingSoon();
+            return;
+        }
+        
+        if (this.domain != "online.wsj.com") {
             this._showComingSoon();
             return;
         }
@@ -175,6 +183,10 @@ DJ.UI.StatsMap = DJ.UI.Component.extend({
     setPills: function (pills) {
         this.activePillId = this.activePillId || pills[0].id;
 
+        if (pills.length <= 1) {
+            return;
+        }
+        
         // set the active item in the dataset before drawing pills
         for (var i = 0; i < pills.length; i++) {
             pills[i].active = this.activePillId === pills[i].id;

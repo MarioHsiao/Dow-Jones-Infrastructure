@@ -179,7 +179,7 @@ DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
                 updateDashboardStats: $dj.delegate(this, this._updateDashboardStats),
                 updateHistoricalSeries: $dj.delegate(this, this._updateHistoricalSeries),
                 updateRealtimeSeries: $dj.delegate(this, this._updateRealtimeSeries),
-                reset: $dj.delegate(this, this._reset)
+                domainChanged: $dj.delegate(this, this._domainChanged)
             });
     },
 
@@ -193,10 +193,10 @@ DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
         $dj.subscribe('data.DashboardStats', this._delegates.updateDashboardStats);
         $dj.subscribe('data.HistorialTrafficSeries', this._delegates.updateRealtimeSeries);
         $dj.subscribe('data.HistorialTrafficSeriesWeekAgo', this._delegates.updateHistoricalSeries);
-        $dj.subscribe('comm.domain.reset', this._delegates.reset);
+        $dj.subscribe('comm.domain.changed', this._delegates.domainChanged);
     },
 
-    _reset: function(data) {
+    _domainChanged: function(data) {
         this.domain = data.domain;
         this.histogram.get('realtime').hide();
         this.histogram.get('historical').hide();

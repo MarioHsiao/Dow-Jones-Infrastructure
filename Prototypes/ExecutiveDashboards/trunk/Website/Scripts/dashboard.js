@@ -127,7 +127,7 @@
             self.subscribedSources = this._getSources(domain);
 
             // fire a reset for the module to know we are recycling the view.
-            DJ.publish(communicationPrefix + "domain.reset", { domain: domain });
+            DJ.publish(communicationPrefix + "domain.changed", { domain: domain });
             
             var handleMessage = this._delegates.messageReceived;
             if (oldSources) {
