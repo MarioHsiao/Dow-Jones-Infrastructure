@@ -327,6 +327,7 @@
     <Content Include="Content\images\djFooterLogo.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\images\djtech.png" />
     <Content Include="Content\images\factiva.png" />
     <Content Include="Content\images\glyphicons-halflings-white.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
