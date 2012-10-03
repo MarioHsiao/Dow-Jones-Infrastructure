@@ -111,7 +111,7 @@ DJ.UI.StatsMap = DJ.UI.Component.extend({
     _initializeDelegates: function () {
         this._delegates = $.extend(this._delegates, {
             setData: $dj.delegate(this, this.setData),
-            domainChanged: $dj.delegate(this._domainChanged)
+            domainChanged: $dj.delegate(this, this._domainChanged)
         });
     },
 
@@ -135,7 +135,7 @@ DJ.UI.StatsMap = DJ.UI.Component.extend({
         });
     },
 
-    _domainChanged: function(data) {
+    _domainChanged: function (data) {
         this.domain = data.domain;
     },
        
@@ -159,7 +159,7 @@ DJ.UI.StatsMap = DJ.UI.Component.extend({
             this._showComingSoon();
             return;
         }
-        
+
         if (this.domain != "online.wsj.com") {
             this._showComingSoon();
             return;
