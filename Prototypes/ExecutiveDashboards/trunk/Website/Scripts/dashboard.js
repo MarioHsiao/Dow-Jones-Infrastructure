@@ -70,7 +70,7 @@
                 .after('<i class="icon-info-sign icon-white"/>');
 
             $('.dj_module-title + i.icon-info-sign')
-                .each(function (i, elem) {
+                .each(function () {
                     var el = $(this),
                         tooltipAttached = el.data('tooltipAttached');
                     
@@ -82,16 +82,6 @@
                         });
                         el.data('tooltipAttached', true);
                     }
-
-                    //clearTimeout(el.data('timeOut') || 0);
-                    
-                    //el.tooltip('show');
-
-                    //var timeOut = setTimeout(function () {
-                    //    el.tooltip('hide');
-                    //}, 10000);
-
-                    //el.data('timeOut', timeOut);
                 });
             
         },
