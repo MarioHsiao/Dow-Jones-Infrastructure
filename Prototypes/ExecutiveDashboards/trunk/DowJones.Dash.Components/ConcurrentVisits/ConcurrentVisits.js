@@ -249,13 +249,15 @@ DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
     },
     
     _updateQuickStats: function (data) {
-        if (this.visitorsGauge) {
+        if (this.visitorsGauge && data && data.visitors) {
             this.visitorsGauge.setData(data.visits);
         }
 
-        var minutes = (data.engaged_time.avg / 60).toFixed(0);
-        var seconds = (data.engaged_time.avg % 60).toFixed(0);
-        this.$element.find(this.selectors.timeCounter).html( minutes + ":" + (seconds <10 ? "0" + seconds: seconds) + "m");
+        if (!data && !data.engaged_time) {
+            var minutes = (data.engaged_time.avg / 60).toFixed(0);
+            var seconds = (data.engaged_time.avg % 60).toFixed(0);
+            this.$element.find(this.selectors.timeCounter).html(minutes + ":" + (seconds < 10 ? "0" + seconds : seconds) + "m");
+        }
     },
     
     _updateDashboardStats: function (data) {
