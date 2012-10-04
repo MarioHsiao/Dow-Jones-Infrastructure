@@ -6,14 +6,19 @@
     <meta name="viewport" content="width=device-width" />
     <title>DASH: Executive Dashboard</title>
 
-    @Styles.Render("~/content/bootstrap")
+    <link rel="stylesheet" href="~/content/bootstrap.css" />
+    <link rel="stylesheet" href="~/content/bootstrap-responsive.css" />
+
     <link rel="stylesheet" href="~/content/layout.css" />
+
     <link rel="stylesheet" href="~/content/perfGauge.css" />
     <link rel="stylesheet" href="~/content/statsMap.css" />
-    @DJ.ScriptRegistry().RenderHead()
-    @Scripts.Render("~/bundles/core")
 
     @RenderSection("styles", false)
+
+    @DJ.ScriptRegistry().RenderHead()
+
+    @Scripts.Render("~/bundles/core")
 </head>
 <body>
     <header>
@@ -21,7 +26,7 @@
             <tr>
                 <td class="djtech">
                     <img src="~/Content/images/djtech.png" /><br />
-					<span> Innovation Realized Results Delivered</span></td>
+                    <span>Innovation Realized Results Delivered</span></td>
                 <td class="logo">
                     <h1><a href="@Url.Content("~")">Dash</a></h1>
                     <br />
@@ -39,12 +44,17 @@
     <div class="navbar navbar-fixed-top hidden-desktop hidden-tablet">
         <div class="navbar-inner">
             <div class="container-fluid">
-                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse-mobile">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </a>
                 <a class="brand" href="@Url.Content("~")">Dash</a>
+                <div class="nav-collapse-mobile">
+                    @Html.Partial("_MobileNavigation")
+                </div>
+                <!--/.nav-collapse -->
+                
             </div>
         </div>
     </div>
@@ -83,7 +93,7 @@
             <p class="username pull-left">Logged in as: @User.Identity.Name</p>
             <p class="version pull-right">
                 Version: @MvcApplication.Version.Value (@MvcApplication.AssemblyTimestamp)
-                UTC
+					UTC
             </p>
         </div>
     </footer>

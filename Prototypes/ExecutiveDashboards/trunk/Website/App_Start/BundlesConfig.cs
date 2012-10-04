@@ -15,14 +15,10 @@ namespace DowJones.Dash.Website.App_Start
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/core").Include(
-                "~/Scripts/bootstrap*",
+                "~/Scripts/bootstrap.*",
                 "~/Scripts/jquery.signalR-{version}.js"
             ));
 
-			bundles.Add(new StyleBundle("~/content/bootstrap").Include(
-				"~/Content/bootstrap.css",
-				"~/Content/bootstrap-responsive.css"
-				));
         }
     }
 }

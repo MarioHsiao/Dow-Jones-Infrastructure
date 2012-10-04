@@ -398,6 +398,7 @@
     <Content Include="Views\Error\NotFound.cshtml">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="Views\Shared\_MobileNavigation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
