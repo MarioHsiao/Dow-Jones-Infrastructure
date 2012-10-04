@@ -19,21 +19,6 @@ h2 a.reset {
 	text-align: center;
 }
 
-.dj_emg_autosuggest_results {
-	background: #fff;
-	border: 1px solid #000;
-	border-top: none;
-
-	table {
-		width: 100%;
-		td { padding: 3px 5px; }
-	}
-
-	.dj_emg_autosuggest_over {
-		background: #ccc;
-	}
-}
-
 
 .form-search {
 	display: inline-block;
@@ -67,7 +52,9 @@ h2 a.reset {
 
 .dj_module {
 	margin-top: 20px;
-	min-height: 35px;
+	min-height: 100px;
+	min-width: 320px;
+	width: 100%;
 	
 	fieldset {
 		border: none;

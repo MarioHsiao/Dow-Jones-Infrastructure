@@ -14,17 +14,6 @@ h2 a.reset {
   margin-top: 30px;
   text-align: center; }
 
-.dj_emg_autosuggest_results {
-  background: #fff;
-  border: 1px solid #000;
-  border-top: none; }
-  .dj_emg_autosuggest_results table {
-    width: 100%; }
-    .dj_emg_autosuggest_results table td {
-      padding: 3px 5px; }
-  .dj_emg_autosuggest_results .dj_emg_autosuggest_over {
-    background: #ccc; }
-
 .form-search {
   display: inline-block;
   clear: none; }
@@ -49,7 +38,9 @@ h2 a.reset {
 
 .dj_module {
   margin-top: 20px;
-  min-height: 35px; }
+  min-height: 100px;
+  min-width: 320px;
+  width: 100%; }
   .dj_module fieldset {
     border: none; }
   .dj_module .dj_module-edit-options {

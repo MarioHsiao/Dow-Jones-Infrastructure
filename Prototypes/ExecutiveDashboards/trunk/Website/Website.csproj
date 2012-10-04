@@ -353,6 +353,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\images\wsj.png" />
+    <Content Include="Content\layout-responsive.css">
+      <DependentUpon>layout-responsive.scss</DependentUpon>
+    </Content>
     <Content Include="Content\layout.css">
       <DependentUpon>layout.scss</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -443,6 +446,7 @@
   <ItemGroup>
     <Content Include="Content\gallery.scss" />
     <Content Include="Content\StatsMap.scss" />
+    <Content Include="Content\layout-responsive.scss" />
     <None Include="Properties\PublishProfiles\montana.pubxml" />
     <Content Include="Views\Dashboard\_Gallery.cshtml" />
     <Content Include="Views\Home\Test.cshtml" />
