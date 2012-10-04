@@ -44,15 +44,18 @@ DJ.UI.BrowserStats = DJ.UI.CompositeComponent.extend({
             var el = $(this);
             el.siblings('.active').add(el).toggleClass('active');
             self.activePillId = el.data('id');
-            if (self.browserStats)
-                self._updateData(self._getBarData(self.browserStats[self.activePillId]));
+            if (self.browserStats) {
+                self.barContainer.html(self.templates.statBars(self._getBarData(self.browserStats[self.activePillId])));
+            }
         });
     },
     
     _domainChanged: function (data) {
         this.domain = data.domain;
         this._intializedData = false;
-        delete this.activePillId;
+        this.barContainer.html('');
+        this.pillContainer.html('');
+        this.activePillId = null;
     },
 
     _setData: function (data) {
@@ -147,6 +150,7 @@ DJ.UI.BrowserStats = DJ.UI.CompositeComponent.extend({
         if (data && data.length) {
             var trafficBars = this.barContainer.find('.dj-trafficBar');
             for (var i = 0, len = data.length; i < len; i++) {
+                
                 var stat = data[i],
                     trafficBar = $(trafficBars[i]),
                     version = (stat.browser === 'msie' || (stat.browser === 'firefox' && stat.browserVersion < 4)) ? stat.browserVersion : '';
@@ -184,10 +188,6 @@ DJ.UI.BrowserStats = DJ.UI.CompositeComponent.extend({
     setPills: function (pills) {
         this.activePillId = this.activePillId || pills[0].id;
         
-        if (pills.length <= 1) {
-            return;
-        }
-
         // set the active item in the dataset before drawing pills
         for (var i = 0; i < pills.length; i++) {
             pills[i].active = this.activePillId === pills[i].id;
