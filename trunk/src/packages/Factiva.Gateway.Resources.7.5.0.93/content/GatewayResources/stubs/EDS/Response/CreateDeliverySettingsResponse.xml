@@ -1,0 +1,9 @@
+<CreateDeliverySettingsResponse>
+  <Status value="0"/>
+  <userid>Gateway05</userid>
+  <productid>16</productid>
+  <Resultset count="1">
+    <Result DeliveryID="123456"></Result>
+<Result DeliveryID="123456"></Result>
+  </Resultset>
+</CreateDeliverySettingsResponse>
