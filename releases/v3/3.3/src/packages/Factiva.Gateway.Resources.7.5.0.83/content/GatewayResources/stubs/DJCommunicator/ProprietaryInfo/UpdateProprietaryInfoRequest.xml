@@ -1,7 +1,0 @@
-<?xml version="1.0"?>
-<UpdateProprietaryInfoRequest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="urn:factiva:Communicator:ProprietaryInfoService:v1_0">
-  <proprietaryInfo id="1" address1="address1" address2="address2" city="city1" state="state1" country="country1" postOrZip="paostorZip1" phone="phone1" mobile="mobile1" fax="fax1" email1="email1" email2="email2" email3="email3" notes="notes">
-    <entityID>1</entityID>
-    <entityType>Author</entityType>
-  </proprietaryInfo>
-</UpdateProprietaryInfoRequest>

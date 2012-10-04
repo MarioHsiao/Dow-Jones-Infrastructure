@@ -1,4 +1,0 @@
-<?xml version="1.0"?>
-<GetAuthorByIdRequest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="urn:factiva:Communicator:AuthorService:v1_0">
-  <authorId>1001</authorId>
-</GetAuthorByIdRequest>

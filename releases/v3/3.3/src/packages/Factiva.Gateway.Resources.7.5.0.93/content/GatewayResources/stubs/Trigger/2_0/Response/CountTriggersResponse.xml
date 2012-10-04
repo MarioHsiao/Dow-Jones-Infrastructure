@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CountTriggersResponse xmlns="urn:dowjones:emg:tr:v2_0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<countTriggersResponseContent serverIPAddress="String" apiVersion="String">
+		<status code="0">String</status>
+		<countTriggersResults triggerTypeCount="0" triggerTotalCount="0">
+			<countTriggers displayName="String" category="String" count="0" code="String"/>
+		</countTriggersResults>
+		<countTriggersRequest>
+			<triggerTypeCodes>String</triggerTypeCodes>
+			<interfaceLanguageCode>en</interfaceLanguageCode>
+			<fromDateTime>2001-12-17T09:30:47Z</fromDateTime>
+			<toDateTime>2001-12-17T09:30:47Z</toDateTime>
+			<sinceDays>String</sinceDays>
+			<searchType>CurrentAwareness</searchType>
+			<resultType>All</resultType>
+			<confidenceRange>Standard</confidenceRange>
+			<allTriggerTypesFilters>
+				<organizationCodes>String</organizationCodes>
+				<industryCodes>String</industryCodes>
+				<regionCodes>String</regionCodes>
+			</allTriggerTypesFilters>
+			<propertyFilters>
+				<property sortOrder="0" minimumRequired="0" allowReference="String" type="String" requiredToMerge="true" maximumAllowed="String" displayName="String" isValueTranslatable="true" code="String">
+					<value isMostRecent="true" content="String" code="String">
+						<reference>String</reference>
+						<feature name="String" content="String"/>
+						<triggerInstanceId>2147483647</triggerInstanceId>
+					</value>
+					<validValue displayName="String" code="String"/>
+					<description>String</description>
+					<feature name="String" content="String"/>
+				</property>
+			</propertyFilters>
+		</countTriggersRequest>
+	</countTriggersResponseContent>
+</CountTriggersResponse>

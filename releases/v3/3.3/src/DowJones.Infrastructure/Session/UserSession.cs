@@ -135,7 +135,10 @@ namespace DowJones.Session
         /// <param name="languageCode">The language code.</param>
         public void SetInterfaceLanguage(string languageCode)
         {
-            InterfaceLanguage = (InterfaceLanguage) Enum.Parse(typeof (InterfaceLanguage), languageCode, true);
+            InterfaceLanguage interfaceLanguage;
+            //Default to "en" if it is not a valid supported interface language
+            Enum.TryParse(languageCode, true, out interfaceLanguage);
+            InterfaceLanguage = interfaceLanguage;
         }
 
         /// <summary>
