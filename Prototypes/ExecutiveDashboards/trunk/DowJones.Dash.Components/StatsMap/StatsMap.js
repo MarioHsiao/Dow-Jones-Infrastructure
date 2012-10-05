@@ -24,18 +24,18 @@ DJ.UI.StatsMap = DJ.UI.Component.extend({
     },
 
     stateCodes: {
-        us: { 1871: "al", 1885: "ak", 1853: "az", 1879: "ar", 1854: "ca", 1884: "co", 1880: "ct", 1881: "de", 1858: "dc", 1856: "fl", 1859: "ga", 1882: "hi", 1869: "id", 1855: "il", 1870: "in", 1886: "ia", 1851: "ks", 1900: "ky", 1897: "la", 1802: "me", 1872: "md", 1866: "ma", 1857: "mi", 1868: "mn", 1883: "ms", 1852: "mo", 1899: "mt", 1895: "ne", 1898: "nv", 1893: "nh", 1861: "nj", 1863: "nm", 1865: "ny", 1860: "nc", 1887: "nd", 1877: "oh", 1874: "ok", 1878: "or", 1873: "pa", 1890: "ri", 1896: "sc", 1889: "sd", 1888: "tn", 1862: "tx", 1867: "ut", 1892: "vt", 1876: "va", 1864: "wa", 1891: "wv", 1894: "wi", 1902: "wy" },
-        de: {540: "baden-wurttemberg", 548: "bavaria", 547: "berlin", 542: "brandenburg", 549: "bremen", 550: "hamburg", 551: "hesse", 543: "mecklenburg-vorpommern", 552: "niedersachsen", 553: "nordrhein-westfalen", 554: "rheinland-pfalz", 555: "saarland", 544: "sachsen", 545: "sachsen-anhalt", 541: "schleswig-holstein", 546: "thuringia" }
+        us: { 1871: "Alabama", 1885: "Alaska", 1853: "Arizona", 1879: "Arkansas", 1854: "California", 1884: "Colorado", 1880: "Connecticut", 1881: "Delaware", 1858: "District of Columbia", 1856: "Florida", 1859: "Georgia", 1882: "Hawaii", 1869: "Idaho", 1855: "Illinois", 1870: "Indiana", 1886: "Iowa", 1851: "Kansas", 1900: "Kentucky", 1897: "Louisiana", 1802: "Maine", 1872: "Maryland", 1866: "Massachusetts", 1857: "Michigan", 1868: "Minnesota", 1883: "Mississippi", 1852: "Missouri", 1899: "Montana", 1895: "Nebraska", 1898: "Nevada", 1893: "New Hampshire", 1861: "New Jersey", 1863: "New Mexico", 1865: "New York", 1860: "North Carolina", 1887: "North Dakota", 1877: "Ohio", 1874: "Oklahoma", 1878: "Oregon", 1873: "Pennsylvania", 1890: "Rhode Island", 1896: "South Carolina", 1889: "South Dakota", 1888: "Tennessee", 1862: "Texas", 1867: "Utah", 1892: "Vermont", 1876: "Virginia", 1864: "Washington", 1891: "West Virginia", 1894: "Wisconsin", 1902: "Wyoming" },
+        de: {540: "Baden-Wurttemberg", 548: "Bavaria", 547: "Berlin", 542: "Brandenburg", 549: "Bremen", 550: "Hamburg", 551: "Hesse", 543: "Mecklenburg-Vorpommern", 552: "Lower Saxony", 553: "North Rhine-Westphalia", 554: "Rhineland-Palatinate", 555: "Saarland", 544: "Saxony", 545: "Saxony-Anhalt", 541: "Schleswig-Holstein", 546: "Thuringia" }
     },
     
     dataLabelOptions: {
-        ak: { y: -10 },
-        ca: { x: -10, y: 20 },
-        fl: { x: 40 },
-        id: { y: 40 },
-        hi: { color: 'black', y: 15 },
-        la: { x: -20 },
-        tn: { y: 5 }
+        Alaska: { y: -10 },
+        California: { x: -10, y: 20 },
+        Florida: { x: 40 },
+        Idaho: { y: 40 },
+        Hawaii: { color: 'black', y: 15 },
+        Louisiana: { x: -20 },
+        Tennessee: { y: 5 }
     },
 
     mapConfig: {
@@ -92,8 +92,8 @@ DJ.UI.StatsMap = DJ.UI.Component.extend({
 
         tooltip: {
             formatter: function () {
-                if (!this.y || this.y === -1) return false;
-                return '<b>' + this.point.name + '</b><br/>Avg: ' + this.y + 's<br/>Min:' + this.point.min + 's<br/>Max:' + this.point.max + 's';
+                if (!this.y || this.y === -1) return '<b>' + this.point.key + '</b><br/>No Data';
+                return '<b>' + this.point.key + '</b><br/>Avg: ' + this.y + 's<br/>Min:' + this.point.min + 's<br/>Max:' + this.point.max + 's';
             }
         },
 
@@ -173,7 +173,7 @@ DJ.UI.StatsMap = DJ.UI.Component.extend({
             this.mapConfig.series[0].data.push({
                 key: key,
                 path: this.paths[key],
-                dataLabels: this.dataLabelOptions[key] // or undefined
+                dataLabels: this.dataLabelOptions[key] // Oregon undefined
             });
         }
 
@@ -250,7 +250,7 @@ DJ.UI.StatsMap = DJ.UI.Component.extend({
             chartData.push({
                 key: key,
                 path: this.paths[key],
-                dataLabels: this.dataLabelOptions[key], // or undefined
+                dataLabels: this.dataLabelOptions[key], // Oregon undefined
                 name: stateData.name,
                 y: stateData.avg || -1,
                 min: stateData.min,

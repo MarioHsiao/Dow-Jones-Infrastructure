@@ -125,8 +125,8 @@
                 oldSources = this._getSources(domain.source);
 
             // initialize for first time
-            if (!this.domain) this.domain = domain;
-            
+            this.domain = this.domain || { };
+                       
             if (domain.source === this.domain.source)
                 return;
             
