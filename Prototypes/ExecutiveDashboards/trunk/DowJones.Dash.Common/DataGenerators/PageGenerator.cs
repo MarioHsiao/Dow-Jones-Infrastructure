@@ -4,6 +4,7 @@ using DowJones.Pages;
 using DowJones.Pages.Layout;
 using DowJones.Pages.Modules;
 using DowJones.Pages.Modules.Templates;
+using Factiva.Gateway.Messages.DJComm.BriefingBook.V1_0;
 using log4net;
 
 namespace DowJones.Dash.DataGenerators
@@ -50,15 +51,26 @@ namespace DowJones.Dash.DataGenerators
             return page;
         }
 
-        private IEnumerable<ZoneLayout.Zone> GetZones(int zoneCount, IEnumerable<ScriptModule> modules)
+        private static IEnumerable<ZoneLayout.Zone> GetZones(int zoneCount, IEnumerable<ScriptModule> modules)
         {
             var moduleArray = modules.ToArray();
 
-            for (int zoneIndex = 1; zoneIndex <= zoneCount; zoneIndex++)
+            // generate three zones
+            var zone1 = new ZoneLayout.Zone(new[] {moduleArray[0].Id, moduleArray[1].Id, moduleArray[2].Id});
+            yield return zone1;
+
+            var zone2 = new ZoneLayout.Zone(new[] { moduleArray[3].Id, moduleArray[4].Id});
+            yield return zone2;
+
+            var zone3 = new ZoneLayout.Zone(new[] { moduleArray[5].Id, moduleArray[6].Id, moduleArray[7].Id });
+            yield return zone3;
+            
+            /*
+            for (var zoneIndex = 1; zoneIndex <= zoneCount; zoneIndex++)
             {
                 var zone = new ZoneLayout.Zone();
 
-                int moduleIndex = 0;
+                var moduleIndex = 0;
 
                 zone.AddRange(
                     from module in moduleArray
@@ -66,7 +78,7 @@ namespace DowJones.Dash.DataGenerators
                     select module.Id);
 
                 yield return zone;
-            }
+            }*/
         }
     }
 }
