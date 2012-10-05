@@ -92,7 +92,7 @@ namespace DowJones.Dash.Website
                 });
             yield return new GomezDataSource("wallstreetjournal.de-PageLoadDetailsBySubCountryforCountry", "PageLoadDetailsBySubCountryforCountry", @"[SplunkExport].[dbo].[GetPageLoadDetailsBySubCountryforCountry]", new Dictionary<string, object>
                 {
-                    {"country", 223},
+                    {"country", 57},
                     {"seconds", 3600},
                     {"site", (int) Sites.WsjGermany},
                 });
@@ -348,7 +348,7 @@ namespace DowJones.Dash.Website
                 });
             yield return new GomezDataSource("cn.wsj.com-PageLoadDetailsBySubCountryforCountry", "PageLoadDetailsBySubCountryforCountry", @"[SplunkExport].[dbo].[GetPageLoadDetailsBySubCountryforCountry]", new Dictionary<string, object>
                 {
-                    {"country", 223},
+                    {"country", 49},
                     {"seconds", 3600},
                     {"site", (int) Sites.WsjChina},
                 });
@@ -412,7 +412,7 @@ namespace DowJones.Dash.Website
                 });
             yield return new GomezDataSource("jp.wsj.com-PageLoadDetailsBySubCountryforCountry", "PageLoadDetailsBySubCountryforCountry", @"[SplunkExport].[dbo].[GetPageLoadDetailsBySubCountryforCountry]", new Dictionary<string, object>
                 {
-                    {"country", 223},
+                    {"country", 111},
                     {"seconds", 3600},
                     {"site", (int) Sites.WsjJapan},
                 });
