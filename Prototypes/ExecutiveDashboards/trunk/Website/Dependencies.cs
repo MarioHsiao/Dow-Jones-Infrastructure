@@ -1,6 +1,7 @@
 using System.Collections.Generic;
+using System.Web.Routing;
 using DowJones.Dash.Caching;
-using DowJones.Dash.DataSources;
+using DowJones.Dash.Website.DependencyResolver;
 using DowJones.Infrastructure.Common;
 using DowJones.Pages;
 using DowJones.Pages.Modules;
@@ -13,6 +14,7 @@ using DowJones.Web.Mvc.UI.Canvas.RavenDb;
 using Factiva.Gateway.Messages.Membership.Authorization.V1_0;
 using Ninject;
 using Raven.Client;
+using SignalR;
 
 namespace DowJones.Dash.Website
 {
@@ -39,6 +41,10 @@ namespace DowJones.Dash.Website
             Bind<IPageRepository>().To<RavenDbPageRepository>().InRequestScope();
             Bind<IScriptModuleTemplateManager>().To<RavenDbScriptModuleTemplateRepository>().InRequestScope();
             Bind<IDashboardMessageCache>().To<DashboardMessageCache>().InSingletonScope();
+
+
+            GlobalHost.DependencyResolver = new NinjectDependencyResolver(Kernel);
+            RouteTable.Routes.MapHubs();
 
             // NOTE: See DataSources.cs for Data Sources registration
         }

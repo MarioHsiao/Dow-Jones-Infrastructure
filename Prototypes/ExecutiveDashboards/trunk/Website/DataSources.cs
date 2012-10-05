@@ -66,7 +66,7 @@ namespace DowJones.Dash.Website
 
             yield return new GomezDataSource("wallstreetjournal.de-BrowserStats", "BrowserStats", @"[SplunkExport].[dbo].[GetPageLoadDetailsByBrowser]", new Dictionary<string, object>
                 {
-                    {"seconds", 300},
+                    {"seconds", 3600},
                     {"site", (int) Sites.WsjGermany},
                 });
             yield return new GomezDataSource("wallstreetjournal.de-DeviceTraffic", "DeviceTraffic", @"[SplunkExport].[dbo].[GetDeviceTraffic]", new Dictionary<string, object>
@@ -130,7 +130,7 @@ namespace DowJones.Dash.Website
 
             yield return new GomezDataSource("online.barrons.com-BrowserStats", "BrowserStats", @"[SplunkExport].[dbo].[GetPageLoadDetailsByBrowser]", new Dictionary<string, object>
                 {
-                    {"seconds", 300},
+                    {"seconds", 3600},
                     {"site", (int) Sites.Barrons},
                 });
             yield return new GomezDataSource("online.barrons.com-DeviceTraffic", "DeviceTraffic", @"[SplunkExport].[dbo].[GetDeviceTraffic]", new Dictionary<string, object>
@@ -194,7 +194,7 @@ namespace DowJones.Dash.Website
 
             yield return new GomezDataSource("smartmoney.com-BrowserStats", "BrowserStats", @"[SplunkExport].[dbo].[GetPageLoadDetailsByBrowser]", new Dictionary<string, object>
                 {
-                    {"seconds", 300},
+                    {"seconds", 3600},
                     {"site", (int) Sites.SmartMoney},
                 });
             yield return new GomezDataSource("smartmoney.com-DeviceTraffic", "DeviceTraffic", @"[SplunkExport].[dbo].[GetDeviceTraffic]", new Dictionary<string, object>
@@ -258,7 +258,7 @@ namespace DowJones.Dash.Website
 
             yield return new GomezDataSource("marketwatch.com-BrowserStats", "BrowserStats", @"[SplunkExport].[dbo].[GetPageLoadDetailsByBrowser]", new Dictionary<string, object>
                 {
-                    {"seconds", 300},
+                    {"seconds", 3600},
                     {"site", (int) Sites.MarketWatch},
                 });
             yield return new GomezDataSource("marketwatch.com-DeviceTraffic", "DeviceTraffic", @"[SplunkExport].[dbo].[GetDeviceTraffic]", new Dictionary<string, object>
@@ -322,7 +322,7 @@ namespace DowJones.Dash.Website
 
             yield return new GomezDataSource("cn.wsj.com-BrowserStats", "BrowserStats", @"[SplunkExport].[dbo].[GetPageLoadDetailsByBrowser]", new Dictionary<string, object>
                 {
-                    {"seconds", 300},
+                    {"seconds", 3600},
                     {"site", (int) Sites.WsjChina},
                 });
             yield return new GomezDataSource("cn.wsj.com-DeviceTraffic", "DeviceTraffic", @"[SplunkExport].[dbo].[GetDeviceTraffic]", new Dictionary<string, object>
@@ -386,7 +386,7 @@ namespace DowJones.Dash.Website
 
             yield return new GomezDataSource("jp.wsj.com-BrowserStats", "BrowserStats", @"[SplunkExport].[dbo].[GetPageLoadDetailsByBrowser]", new Dictionary<string, object>
                 {
-                    {"seconds", 300},
+                    {"seconds", 3600},
                     {"site", (int) Sites.WsjJapan},
                 });
             yield return new GomezDataSource("jp.wsj.com-DeviceTraffic", "DeviceTraffic", @"[SplunkExport].[dbo].[GetDeviceTraffic]", new Dictionary<string, object>
@@ -450,7 +450,7 @@ namespace DowJones.Dash.Website
 
             yield return new GomezDataSource("online.wsj.com-BrowserStats", "BrowserStats", @"[SplunkExport].[dbo].[GetPageLoadDetailsByBrowser]", new Dictionary<string, object>
                 {
-                    {"seconds", 300},
+                    {"seconds", 3600},
                     {"site", (int) Sites.WsjUs},
                 });
             yield return new GomezDataSource("online.wsj.com-DeviceTraffic", "DeviceTraffic", @"[SplunkExport].[dbo].[GetDeviceTraffic]", new Dictionary<string, object>
