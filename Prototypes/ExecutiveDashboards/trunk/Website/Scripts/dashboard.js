@@ -1,43 +1,42 @@
 ﻿DJ.$dj.require(['DJ','$dj'], function (DJ,$dj) {
-    DJ.UI.Dash = DJ.UI.Component.extend({
-        
-        init: function (el, meta) {
+    DJ.UI.Dash = DJ.UI.Component.extend({        
+        init: function(el, meta) {
             this._super(el, meta);
 
             this._groups = new DJ.DashGroupManager();
-            
+
             this._initializeModuleStyles();
             this._initializeModuleResizing();
             this._initializeTabs();
         },
-        
-        domain: function (domain) {
+
+        changeDomain: function(domain) {
             this._groups.changeDomain(domain);
             return this;
         },
 
-        start: function (domain) {
+        start: function(domain) {
             this._groups.start(domain);
             return this;
         },
-        
-        stop: function () {
+
+        stop: function() {
             this._groups.stop();
             return this;
         },
 
-        _initializeDelegates: function () {
+        _initializeDelegates: function() {
             this._delegates = $.extend(this._delegates || { }, {
-                domain: $dj.delegate(this, this.domain),
+                changeDomain: $dj.delegate(this, this.changeDomain),
                 callModuleResize: $dj.delegate(this, this._callModuleResize)
             });
         },
 
-        _initializeModuleResizing: function () {
+        _initializeModuleResizing: function() {
             DJ.subscribe('resized.dj.CanvasModule', this._delegates.callModuleResize);
         },
-        
-        _callModuleResize: function (args) {
+
+        _callModuleResize: function(args) {
             var request = {
                 pageId: DJ.UI.Canvas.find().get_canvasId(),
                 moduleId: args.moduleId
@@ -45,7 +44,7 @@
             $.ajax(this.options.moduleResizeUrl + args.newSize, { data: request });
         },
 
-        _initializeModuleStyles: function () {
+        _initializeModuleStyles: function() {
             $('.small.module').addClass('span2');
             $('.medium.module').addClass('span4');
             $('.large.module').addClass('span6');
@@ -53,7 +52,7 @@
 
             $('.dj_module').addClass('row-fluid');
 
-            $('.dj_module .hide').click(function () {
+            $('.dj_module .hide').click(function() {
                 $(this).closest('.dj_module').findComponent().hide();
             });
 
@@ -64,17 +63,17 @@
 
             this._initializeInfoIcons();
         },
-        
-        _initializeInfoIcons: function () {
+
+        _initializeInfoIcons: function() {
             $('.dj_module-title')
                 .after('<i class="icon-info-sign icon-white"/>');
 
             $('.dj_module-title + i.icon-info-sign')
-                .each(function () {
+                .each(function() {
                     var el = $(this),
                         tooltipAttached = el.data('tooltipAttached');
-                    
-                    if(!tooltipAttached) {
+
+                    if (!tooltipAttached) {
                         el.tooltip({
                             title: el.closest('.dj_module').data('description'),
                             delay: { show: 500, hide: 100 },
@@ -83,29 +82,32 @@
                         el.data('tooltipAttached', true);
                     }
                 });
-            
+
         },
 
-        _initializeTabs: function () {
-            var changeDomain = this._delegates.domain;
+        _initializeTabs: function() {
+            var changeDomain = this._delegates.changeDomain;
 
-            var tabs = $('.trendTabs li').not('> a[href=#module-gallery]');
-            tabs.click(function () {
+            var tabs = $('.dashNav li').not('> a[href=#module-gallery]');
+            tabs.click(function() {
+                var el = $(this);
                 tabs.removeClass('active');
-                $(this).addClass('active');
-                var source = $(this).data('source');
-                changeDomain(source);
+                el.addClass('active');
+                changeDomain({ source: el.data('source'), map: el.data('map') });
             });
         },
 
-        EOF: null
+        _getActiveTab: function () {
+            return $('.dashNav li.active');
+        }
+
+
     });
 
 
     DJ.DashGroupManager = DJ.Component.extend({
         
         defaults: {
-            domain: null,
             dataPrefix: 'data.',
             communicationPrefix: 'comm.'
         },
@@ -113,21 +115,25 @@
         init: function (meta) {
             this._super(meta);
             $.connection.dashboard.messageReceived = this._delegates.messageReceived;
+            
         },
 
         changeDomain: function (domain) {
             var self = this,
                 o = self.options,
                 communicationPrefix = o.communicationPrefix,
-                oldSources = this._getSources(o.domain);
+                oldSources = this._getSources(domain.source);
 
-            if (domain === o.domain)
+            // initialize for first time
+            if (!this.domain) this.domain = domain;
+            
+            if (domain.source === this.domain.source)
                 return;
             
-            self.subscribedSources = this._getSources(domain);
+            self.subscribedSources = this._getSources(domain.source);
 
             // fire a reset for the module to know we are recycling the view.
-            DJ.publish(communicationPrefix + "domain.changed", { domain: domain });
+            DJ.publish(communicationPrefix + "domain.changed", domain);
             
             var handleMessage = this._delegates.messageReceived;
             if (oldSources) {
@@ -135,7 +141,7 @@
                     .done($dj.delegate(this, function() {
                         $.connection.dashboard.subscribe(self.subscribedSources)
                             .done(function (messages) {
-                                o.domain = domain;
+                                self.domain = domain;
                                 for (var i = 0; i < messages.length; i++) {
                                     handleMessage(messages[i]);
                                 }
@@ -145,7 +151,7 @@
             else {
                 $.connection.dashboard.subscribe(self.subscribedSources)
                     .done(function (messages) {
-                        o.domain = domain;
+                        self.domain = domain;
                         for (var i = 0; i < messages.length; i++) {
                             handleMessage(messages[i]);
                         }
@@ -179,7 +185,7 @@
         },
 
 
-        _getSources: function (domain) {
+        _getSources: function (source) {
 
             var chartBeatEvents = [
                 'QuickStats',
@@ -211,7 +217,7 @@
             //}
 
             // Convert to '[domain]-[event name]', e.g. 'online.wsj.com-BrowserStats'
-            return _.map(events, function (name) { return domain + '-' + name; });
+            return _.map(events, function (name) { return source + '-' + name; });
         },
 
         _initializeDelegates: function () {

@@ -23,8 +23,11 @@ DJ.UI.StatsMap = DJ.UI.Component.extend({
         contentContainer: '.content'
     },
 
-    stateCodes: { 'alabama': 'al', 'alaska': 'ak', 'arizona': 'az', 'arkansas': 'ar', 'california': 'ca', 'colorado': 'co', 'connecticut': 'ct', 'delaware': 'de', 'district of columbia': 'dc', 'florida': 'fl', 'georgia': 'ga', 'hawaii': 'hi', 'idaho': 'id', 'illinois': 'il', 'indiana': 'in', 'iowa': 'ia', 'kansas': 'ks', 'kentucky': 'ky', 'louisiana': 'la', 'maine': 'me', 'maryland': 'md', 'massachusetts': 'ma', 'michigan': 'mi', 'minnesota': 'mn', 'mississippi': 'ms', 'missouri': 'mo', 'montana': 'mt', 'nebraska': 'ne', 'nevada': 'nv', 'new hampshire': 'nh', 'new jersey': 'nj', 'new mexico': 'nm', 'new york': 'ny', 'north carolina': 'nc', 'north dakota': 'nd', 'ohio': 'oh', 'oklahoma': 'ok', 'oregon': 'or', 'pennsylvania': 'pa', 'rhode island': 'ri', 'south carolina': 'sc', 'south dakota': 'sd', 'tennessee': 'tn', 'texas': 'tx', 'utah': 'ut', 'vermont': 'vt', 'virginia': 'va', 'washington': 'wa', 'west virginia': 'wv', 'wisconsin': 'wi', 'wyoming': 'wy' },
-
+    stateCodes: {
+        us: { 1871: "al", 1885: "ak", 1853: "az", 1879: "ar", 1854: "ca", 1884: "co", 1880: "ct", 1881: "de", 1858: "dc", 1856: "fl", 1859: "ga", 1882: "hi", 1869: "id", 1855: "il", 1870: "in", 1886: "ia", 1851: "ks", 1900: "ky", 1897: "la", 1802: "me", 1872: "md", 1866: "ma", 1857: "mi", 1868: "mn", 1883: "ms", 1852: "mo", 1899: "mt", 1895: "ne", 1898: "nv", 1893: "nh", 1861: "nj", 1863: "nm", 1865: "ny", 1860: "nc", 1887: "nd", 1877: "oh", 1874: "ok", 1878: "or", 1873: "pa", 1890: "ri", 1896: "sc", 1889: "sd", 1888: "tn", 1862: "tx", 1867: "ut", 1892: "vt", 1876: "va", 1864: "wa", 1891: "wv", 1894: "wi", 1902: "wy" },
+        de: {540: "baden-wurttemberg", 548: "bavaria", 547: "berlin", 542: "brandenburg", 549: "bremen", 550: "hamburg", 551: "hesse", 543: "mecklenburg-vorpommern", 552: "niedersachsen", 553: "nordrhein-westfalen", 554: "rheinland-pfalz", 555: "saarland", 544: "sachsen", 545: "sachsen-anhalt", 541: "schleswig-holstein", 546: "thuringia" }
+    },
+    
     dataLabelOptions: {
         ak: { y: -10 },
         ca: { x: -10, y: 20 },
@@ -101,6 +104,9 @@ DJ.UI.StatsMap = DJ.UI.Component.extend({
         // Call the base constructor
         this._super(element, $.extend({ name: 'StatsMap' }, meta));
 
+        this._initializeChartProps();
+        this._initializeChart();
+        
         this._showContent();
         if (this.data) {
             this.setData(this.data);
@@ -118,7 +124,7 @@ DJ.UI.StatsMap = DJ.UI.Component.extend({
     _initializeElements: function (ctx) {
         this.$element.html(this.templates.container());
         this.pillContainer = ctx.find(this.selectors.pillContainer);
-        this._initializeChart();
+
     },
 
     _initializeEventHandlers: function () {
@@ -134,33 +140,60 @@ DJ.UI.StatsMap = DJ.UI.Component.extend({
                 self.chart.series[0].setData(self._getChartData(self.chartGroupsData[self.activePillId]));
         });
     },
+    
+    _initializeChartProps: function(map){
+        map = map || 'us';
+        this.country = Highcharts.Maps[map];
+        this.states = this.country.states;
+        this.paths = this.country.paths;
+        this.stateCodes.current = this.stateCodes[map];
+
+        this.activePillId = null;
+    },
 
     _domainChanged: function (data) {
-        this.domain = data.domain;
+        if (!data)
+            return;
+
+        this.domain = data;
+        
+        this._initializeChartProps(data.map);
+        this._initializeChart();
     },
        
     _initializeChart: function () {
-        for (var i = 0; i < Highcharts.Maps.us.states.length; i++) {
-            var key = Highcharts.Maps.us.states[i];
+        this._initializingChart = true;
+        
+        // highcharts will wipe out series object, hence initialize this
+        this.mapConfig.series = this.mapConfig.series || [{ type: 'map', data: [] }];
+        
+        for (var i = 0; i < this.states.length; i++) {
+            var key = this.states[i];
 
             this.mapConfig.series[0].data.push({
                 key: key,
-                path: Highcharts.pathToArray(Highcharts.Maps.us.shapes[key]),
+                path: this.paths[key],
                 dataLabels: this.dataLabelOptions[key] // or undefined
             });
         }
 
+        // blank out previous maps
+        this.$element.find('.mapContainer').html('');
+        
         this.mapConfig.chart.renderTo = this.$element.find('.mapContainer')[0];
+        
+        if (this.chart) this.chart.destroy();
+        
         this.chart = new Highcharts.Map(this.mapConfig);
+        
+        this._initializingChart = false;
     },
 
     setData: function (data) {
+        // don't bother until chart is initialized
+        if (this._initializingChart) return;
+        
         if (!data || !data.length) {
-            this._showComingSoon();
-            return;
-        }
-
-        if (this.domain != "online.wsj.com") {
             this._showComingSoon();
             return;
         }
@@ -183,10 +216,6 @@ DJ.UI.StatsMap = DJ.UI.Component.extend({
     setPills: function (pills) {
         this.activePillId = this.activePillId || pills[0].id;
 
-        if (pills.length <= 1) {
-            return;
-        }
-        
         // set the active item in the dataset before drawing pills
         for (var i = 0; i < pills.length; i++) {
             pills[i].active = this.activePillId === pills[i].id;
@@ -205,7 +234,7 @@ DJ.UI.StatsMap = DJ.UI.Component.extend({
         // with the state abbreviation as the key. this makes subsequent lookups o(1) operation.
         var stateMap = {};
         _.each(workingSet, function (item) {
-            var state = self.stateCodes[item.subcountry_name.toLowerCase()];
+            var state = self.stateCodes.current[item.subcountry_id];
             stateMap[state] = {
                 name: item.subcountry_name,
                 avg: parseFloat((item.Avg / 1000).toFixed(2)),
@@ -215,12 +244,12 @@ DJ.UI.StatsMap = DJ.UI.Component.extend({
         });
 
         var chartData = [];
-        for (var i = 0, len = Highcharts.Maps.us.states.length; i < len; i++) {
-            var key = Highcharts.Maps.us.states[i],
+        for (var i = 0, len = this.states.length; i < len; i++) {
+            var key = this.states[i],
                 stateData = stateMap[key] || {};
             chartData.push({
                 key: key,
-                path: Highcharts.pathToArray(Highcharts.Maps.us.shapes[key]),
+                path: this.paths[key],
                 dataLabels: this.dataLabelOptions[key], // or undefined
                 name: stateData.name,
                 y: stateData.avg || -1,

@@ -30,7 +30,9 @@
     <script type="text/javascript">
         DJ.$dj.require(['$dj'], function ($dj) {
             var meta = { options: { moduleResizeUrl: '@Url.Content("~/dashboard/modules/resize/")' } };
-            window['Dash'] = new DJ.UI.Dash($('body'), meta).start('online.wsj.com');
+            var activeTab = $('.dashNav li.active');
+            var domain = { source: activeTab.data('source'), map: activeTab.data('map')};
+            window['Dash'] = new DJ.UI.Dash($('body'), meta).start(domain);
         })();
     </script>
 }
