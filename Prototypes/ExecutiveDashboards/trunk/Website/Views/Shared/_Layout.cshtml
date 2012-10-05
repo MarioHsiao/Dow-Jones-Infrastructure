@@ -5,21 +5,21 @@
 <head>
     <meta charset="utf-8">
     <title>DASH: Executive Dashboard</title>
-    
+
     <!-- Common -->
     <meta name="HandheldFriendly" content="True">
-	<meta name="MobileOptimized" content="320">
+    <meta name="MobileOptimized" content="320">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
     <meta name="description" content="Executive Dashboard">
 
     <!--iOS. -->
-	<meta name="apple-mobile-web-app-capable" content="yes">
-	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-	<!--Microsoft. -->
-	<meta http-equiv="cleartype" content="on">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      
+    <!--Microsoft. -->
+    <meta http-equiv="cleartype" content="on">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
 
     <link rel="stylesheet" href="~/content/bootstrap.css" />
     <link rel="stylesheet" href="~/content/bootstrap-responsive.css" />
@@ -54,9 +54,14 @@
 
     </header>
 
-	<div class="main-nav-wrapper">
-		@Html.Partial("_MainNavigation")
-	</div>
+    <div class="navbar navbar-fixed-top hidden-desktop hidden-tablet">
+        @Html.Partial("_MainNavigation")
+    </div>
+    <div class="main-nav-wrapper hidden-phone">
+        <div class="navbar navbar-top main-nav">
+            @Html.Partial("_MainNavigation")
+        </div>
+    </div>
 
     <div class="container-fluid">
         @RenderBody()

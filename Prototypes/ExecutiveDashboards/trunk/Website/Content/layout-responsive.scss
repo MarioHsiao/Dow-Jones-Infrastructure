@@ -66,3 +66,21 @@
 		margin-left: -20px;
 	}
 }
+
+@media (max-width: 480px) {
+	.nav-pills {
+		li {
+			a { 
+				padding-right: 4px;
+				padding-left: 4px;
+				margin-right: 0px;
+			}
+		}
+	}
+
+	.dashNav {
+		.main-nav-icon-big {
+			display: inline-block;
+		}
+	}
+}
