@@ -22,6 +22,7 @@ namespace DowJones.Dash.Components.EmbeddedResources
 		[ScriptResource(ResourceName = Counter, DependencyLevel = ClientResourceDependencyLevel.MidLevel, Name = "jquery-counter", DependsOn = new[] { "jquery" })]
 		[ScriptResource(ResourceName = HighChartsMap, DependencyLevel = ClientResourceDependencyLevel.MidLevel, Name = "highcharts-map", DependsOn = new[] { "highcharts-more" })]
 		[ScriptResource(ResourceName = HighChartsUsMapShapes, DependencyLevel = ClientResourceDependencyLevel.MidLevel, Name = "us-map-shapes", DependsOn = new[] { "highcharts-more" })]
+		[ScriptResource(ResourceName = HighChartsGermanyMapShapes, DependencyLevel = ClientResourceDependencyLevel.MidLevel, Name = "germany-map-shapes", DependsOn = new[] { "highcharts-more" })]
 		[ScriptResource(ResourceName = QuickFlip, DependencyLevel = ClientResourceDependencyLevel.MidLevel, Name = "quickflip", DependsOn = new[] { "jquery" })]
 
 		public static class Js
@@ -33,6 +34,7 @@ namespace DowJones.Dash.Components.EmbeddedResources
 			public const string HighchartsMapBasePath = "DowJones.Dash.Components.EmbeddedResources.js.highchartsMap.";
 			public const string HighChartsMap = HighchartsMapBasePath + "highchartsMap.js";
 			public const string HighChartsUsMapShapes = HighchartsMapBasePath + "us.map.shapes.js";
+			public const string HighChartsGermanyMapShapes = HighchartsMapBasePath + "germany.map.shapes.js";
 
 			#endregion
 
