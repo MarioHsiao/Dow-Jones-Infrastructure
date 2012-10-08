@@ -299,6 +299,7 @@
     <None Include="Content\bootstrap-responsive.scss">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <Content Include="app_offline_template.htm" />
     <Content Include="Content\bootstrap-responsive.css">
       <DependentUpon>bootstrap-responsive.scss</DependentUpon>
     </Content>
