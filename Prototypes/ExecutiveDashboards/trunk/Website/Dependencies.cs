@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Web.Routing;
 using DowJones.Dash.Caching;
 using DowJones.Dash.Website.DependencyResolver;
+using DowJones.Dash.Website.Serializer;
 using DowJones.Infrastructure.Common;
 using DowJones.Pages;
 using DowJones.Pages.Modules;
@@ -12,6 +13,9 @@ using DowJones.Security.Interfaces;
 using DowJones.Session;
 using DowJones.Web.Mvc.UI.Canvas.RavenDb;
 using Factiva.Gateway.Messages.Membership.Authorization.V1_0;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
 using Ninject;
 using Raven.Client;
 using SignalR;
@@ -41,6 +45,13 @@ namespace DowJones.Dash.Website
             Bind<IPageRepository>().To<RavenDbPageRepository>().InRequestScope();
             Bind<IScriptModuleTemplateManager>().To<RavenDbScriptModuleTemplateRepository>().InRequestScope();
             Bind<IDashboardMessageCache>().To<DashboardMessageCache>().InSingletonScope();
+           Bind<IJsonSerializer>().ToMethod(x => new CustomJsonNetSerializer(new JsonSerializerSettings
+                {
+                   NullValueHandling = NullValueHandling.Ignore,
+                   ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
+// this does not work                   ContractResolver = new CamelCasePropertyNamesContractResolver(),
+                   Converters = new[] { new StringEnumConverter() },
+                })).InRequestScope();
 
 
             GlobalHost.DependencyResolver = new NinjectDependencyResolver(Kernel);

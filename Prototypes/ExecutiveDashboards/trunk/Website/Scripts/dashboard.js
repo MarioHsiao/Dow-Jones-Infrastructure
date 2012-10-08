@@ -187,6 +187,10 @@
 
         _getSources: function (source) {
 
+            var configurationEvents = [
+                'BasicHostConfiguration'
+            ];
+            
             var chartBeatEvents = [
                 'QuickStats',
                 'DashboardStats',
@@ -209,12 +213,9 @@
 
             var events = [];
             
-            // We've got ChartBeat for pretty much everything
-            events = events.concat(chartBeatEvents);
-            
-            //if (domain == 'online.wsj.com') {
-                events = events.concat(gomezEvents);
-            //}
+            events = events.concat(configurationEvents)
+                .concat(chartBeatEvents)
+                .concat(gomezEvents);
 
             // Convert to '[domain]-[event name]', e.g. 'online.wsj.com-BrowserStats'
             return _.map(events, function (name) { return source + '-' + name; });

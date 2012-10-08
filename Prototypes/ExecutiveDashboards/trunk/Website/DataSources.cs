@@ -16,6 +16,7 @@ namespace DowJones.Dash.Website
             Barrons = 6,
             MarketWatch = 7,
             Factiva = 8,
+            WsjLive = 3,
         }
 
         protected override void OnLoad()
@@ -24,9 +25,10 @@ namespace DowJones.Dash.Website
                 .Union(WsjJapan())
                 .Union(WsjChina())
                 .Union(WsjGermany())
-                .Union(SmartMoney())
-                .Union(Barrons())
-                .Union(Marketwatch());
+                .Union(WsjLive());
+//                .Union(SmartMoney())
+//                .Union(Barrons())
+//                .Union(Marketwatch());
 
             foreach (var dataSource in dataSources)
             {
@@ -34,8 +36,103 @@ namespace DowJones.Dash.Website
             }
         }
 
+        public IEnumerable<IDataSource> WsjLive()
+        {
+            yield return new ConfigurationDataSource<BasicHostConfiguration>(
+                "live.wsj.com-BasicHostConfiguration",
+                "BasicHostConfiguration",
+                new BasicHostConfiguration
+                {
+                    Domain = "live.wsj.com",
+                    MapType = MapType.Country,
+                    Region = "us",
+                    PerformanceZones = new[]
+                            {
+                                new PerformanceZone{To = 0, From = 5, ZoneType = PerformanceZoneType.Cool},
+                                new PerformanceZone{To = 5, From = 7, ZoneType = PerformanceZoneType.Neutral},
+                                new PerformanceZone{To = 7, From = 100, ZoneType = PerformanceZoneType.Hot},
+                            },
+                });
+            yield return new ChartBeatDataSource("live.wsj.com-DashboardStats", "DashboardStats", "/dashapi/stats/", "live.wsj.com");
+            yield return new ChartBeatDataSource("live.wsj.com-HistorialTrafficSeries", "HistorialTrafficSeries", "/historical/traffic/series/", "live.wsj.com", new Dictionary<string, object>
+                {
+                    {"frequency", "15"}
+                });
+            yield return new ChartBeatDataSource("live.wsj.com-HistorialTrafficSeriesWeekAgo", "HistorialTrafficSeriesWeekAgo", "/historical/traffic/series/", "live.wsj.com", new Dictionary<string, object>
+                {
+                    {"frequency", "15"},
+                    {"days_ago", "7"}
+                });
+            yield return new ChartBeatDataSource("live.wsj.com-HistoricalTrafficStats", "HistoricalTrafficStats", "/historical/traffic/stats/", "live.wsj.com", new Dictionary<string, object>
+                {
+                    {"fields", "srvload,peoples"},
+                    {"properties_ago", "min,max,avg"},
+                });
+            yield return new ChartBeatDataSource("live.wsj.com-HistoricalTrafficValues", "HistoricalTrafficValues", "/historical/traffic/values/", "live.wsj.com", new Dictionary<string, object>
+                {
+                    {"days_ago", "0"},
+                    {"limit", "1"},
+                    {"fields", "internal,search,links,direct,social"},
+                });
+            yield return new ChartBeatDataSource("live.wsj.com-QuickStats", "QuickStats", "/live/quickstats/v3", "live.wsj.com");
+            yield return new ChartBeatDataSource("live.wsj.com-Referrers", "Referrers", "/live/referrers/v3", "live.wsj.com");
+            yield return new ChartBeatDataSource("live.wsj.com-TopPages", "TopPages", "/toppages", "live.wsj.com", new Dictionary<string, object>
+                {
+                    {"limit", 10},
+                });
+
+            yield return new GomezDataSource("live.wsj.com-BrowserStats", "BrowserStats", @"[SplunkExport].[dbo].[GetPageLoadDetailsByBrowser]", new Dictionary<string, object>
+                {
+                    {"seconds", 3600},
+                    {"site", (int) Sites.WsjLive},
+                });
+            yield return new GomezDataSource("live.wsj.com-DeviceTraffic", "DeviceTraffic", @"[SplunkExport].[dbo].[GetDeviceTraffic]", new Dictionary<string, object>
+                {
+                    {"seconds", 300},
+                    {"site", (int) Sites.WsjLive},
+                });
+            /*yield return new GomezDataSource("live.wsj.com-DeviceTrafficByPage", "DeviceTrafficByPage", @"[SplunkExport].[dbo].[GetDeviceTrafficByPage]", new Dictionary<string, object>
+                {
+                    {"pageid", 421139},
+                    {"seconds", 300},
+                    //{"site", (int) Sites.WsjGermany},
+                });*/
+            yield return new GomezDataSource("live.wsj.com-PageLoadHistoricalDetails", "PageLoadHistoricalDetails", @"[SplunkExport].[dbo].[GetPageLoadHistoricalDetails]", new Dictionary<string, object>
+                {
+                    {"days", 7},
+                    {"site", (int) Sites.WsjLive},
+                });
+            yield return new GomezDataSource("live.wsj.com-PageTimings", "PageTimings", @"[SplunkExport].[dbo].[GetPageLoadDetails]", new Dictionary<string, object>
+                {
+                    {"seconds", 300},
+                    {"site", (int) Sites.WsjLive},
+                });
+            yield return new GomezDataSource("live.wsj.com-PageLoadDetailsBySubCountryforCountry", "PageLoadDetailsBySubCountryforCountry", @"[SplunkExport].[dbo].[GetPageLoadDetailsBySubCountryforCountry]", new Dictionary<string, object>
+                {
+                    {"country", 57},
+                    {"seconds", 3600},
+                    {"site", (int) Sites.WsjLive},
+                });
+        } 
+
         public IEnumerable<IDataSource> WsjGermany()
         {
+            yield return new ConfigurationDataSource<BasicHostConfiguration>(
+                "wallstreetjournal.de-BasicHostConfiguration", 
+                "BasicHostConfiguration", 
+                new BasicHostConfiguration
+                    {
+                        Domain = "wallstreetjournal.de",
+                        MapType = MapType.Country,
+                        Region = "de", 
+                        PerformanceZones = new[]
+                            {
+                                new PerformanceZone{To = 0, From = 8, ZoneType = PerformanceZoneType.Cool},
+                                new PerformanceZone{To = 8, From = 10, ZoneType = PerformanceZoneType.Neutral},
+                                new PerformanceZone{To = 10, From = 100, ZoneType = PerformanceZoneType.Hot},
+                            },
+                    }
+                );
             yield return new ChartBeatDataSource("wallstreetjournal.de-DashboardStats", "DashboardStats", "/dashapi/stats/", "wallstreetjournal.de");
             yield return new ChartBeatDataSource("wallstreetjournal.de-HistorialTrafficSeries", "HistorialTrafficSeries", "/historical/traffic/series/", "wallstreetjournal.de", new Dictionary<string, object>
                 {
@@ -292,6 +389,21 @@ namespace DowJones.Dash.Website
 
         public IEnumerable<IDataSource> WsjChina()
         {
+            yield return new ConfigurationDataSource<BasicHostConfiguration>(
+                "cn.wsj.com-BasicHostConfiguration",
+                "BasicHostConfiguration",
+                new BasicHostConfiguration
+                {
+                    Domain = "cn.wsj.com",
+                    MapType = MapType.Country,
+                    Region = "cn",
+                    PerformanceZones = new[]
+                            {
+                                new PerformanceZone{To = 0, From = 8, ZoneType = PerformanceZoneType.Cool},
+                                new PerformanceZone{To = 8, From = 10, ZoneType = PerformanceZoneType.Neutral},
+                                new PerformanceZone{To = 10, From = 100, ZoneType = PerformanceZoneType.Hot},
+                            },
+                });
             yield return new ChartBeatDataSource("cn.wsj.com-DashboardStats", "DashboardStats", "/dashapi/stats/", "cn.wsj.com");
             yield return new ChartBeatDataSource("cn.wsj.com-HistorialTrafficSeries", "HistorialTrafficSeries", "/historical/traffic/series/", "cn.wsj.com", new Dictionary<string, object>
                 {
@@ -356,6 +468,21 @@ namespace DowJones.Dash.Website
 
         public IEnumerable<IDataSource> WsjJapan()
         {
+            yield return new ConfigurationDataSource<BasicHostConfiguration>(
+                "jp.wsj.com-BasicHostConfiguration",
+                "BasicHostConfiguration",
+                new BasicHostConfiguration
+                {
+                    Domain = "jp.wsj.com",
+                    MapType = MapType.Country,
+                    Region = "jp",
+                    PerformanceZones = new[]
+                            {
+                                new PerformanceZone{To = 0, From = 8, ZoneType = PerformanceZoneType.Cool},
+                                new PerformanceZone{To = 8, From = 10, ZoneType = PerformanceZoneType.Neutral},
+                                new PerformanceZone{To = 10, From = 100, ZoneType = PerformanceZoneType.Hot},
+                            },
+                });
             yield return new ChartBeatDataSource("jp.wsj.com-DashboardStats", "DashboardStats", "/dashapi/stats/", "jp.wsj.com");
             yield return new ChartBeatDataSource("jp.wsj.com-HistorialTrafficSeries", "HistorialTrafficSeries", "/historical/traffic/series/", "jp.wsj.com", new Dictionary<string, object>
                 {
@@ -420,6 +547,22 @@ namespace DowJones.Dash.Website
 
         public IEnumerable<IDataSource> WsjUs()
         {
+            yield return new ConfigurationDataSource<BasicHostConfiguration>(
+                "online.wsj.com-BasicHostConfiguration", 
+                "BasicHostConfiguration", 
+                new BasicHostConfiguration
+                    {
+                        Domain = "online.wsj.com",
+                        MapType = MapType.Country,
+                        Region = "us", 
+                        PerformanceZones = new[]
+                            {
+                                new PerformanceZone{To = 0, From = 5, ZoneType = PerformanceZoneType.Cool},
+                                new PerformanceZone{To = 5, From = 7, ZoneType = PerformanceZoneType.Neutral},
+                                new PerformanceZone{To = 7, From = 100, ZoneType = PerformanceZoneType.Hot},
+                            },
+                    }
+                );
             yield return new ChartBeatDataSource("online.wsj.com-DashboardStats", "DashboardStats", "/dashapi/stats/", "online.wsj.com");
             yield return new ChartBeatDataSource("online.wsj.com-HistorialTrafficSeries", "HistorialTrafficSeries", "/historical/traffic/series/", "online.wsj.com", new Dictionary<string, object>
                 {
