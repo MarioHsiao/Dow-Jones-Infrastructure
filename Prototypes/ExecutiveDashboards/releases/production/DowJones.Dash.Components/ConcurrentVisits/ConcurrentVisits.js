@@ -249,27 +249,32 @@ DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
     },
     
     _updateQuickStats: function (data) {
-        if (this.visitorsGauge) {
-            this.visitorsGauge.setData(data.visits);
-        }
+        if (data) {
+            if (this.visitorsGauge) {
+                this.visitorsGauge.setData(data.visits);
+            }
 
-        var minutes = (data.engaged_time.avg / 60).toFixed(0);
-        var seconds = (data.engaged_time.avg % 60).toFixed(0);
-        this.$element.find(this.selectors.timeCounter).html( minutes + ":" + (seconds <10 ? "0" + seconds: seconds) + "m");
+            var minutes = (data.engaged_time.avg / 60).toFixed(0);
+            var seconds = (data.engaged_time.avg % 60).toFixed(0);
+            this.$element.find(this.selectors.timeCounter).html(minutes + ":" + (seconds < 10 ? "0" + seconds : seconds) + "m");
+        }
     },
     
     _updateDashboardStats: function (data) {
-        if (this.visitorsGauge) {
-            this.visitorsGauge.updateMax(data.people_max);
-            this.visitorsGauge.updateMin(data.people_min);
-        }
         
-        if (this.histogram && data) {
-            var yAxis = this.histogram.get('visitors');
-            if (yAxis) {
-                yAxis.setExtremes(0, data.people_max, false);
-                this.histogram.get('realtime').show();
-                this.histogram.get('historical').show();
+        if (data) {
+            if (this.visitorsGauge) {
+                this.visitorsGauge.updateMax(data.people_max);
+                this.visitorsGauge.updateMin(data.people_min);
+            }
+
+            if (this.histogram) {
+                var yAxis = this.histogram.get('visitors');
+                if (yAxis) {
+                    yAxis.setExtremes(0, data.people_max, false);
+                    this.histogram.get('realtime').show();
+                    this.histogram.get('historical').show();
+                }
             }
         }
     },

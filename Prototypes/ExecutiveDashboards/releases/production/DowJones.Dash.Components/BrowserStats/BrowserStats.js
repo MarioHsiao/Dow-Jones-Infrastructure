@@ -24,7 +24,8 @@ DJ.UI.BrowserStats = DJ.UI.CompositeComponent.extend({
 
     _initializeDelegates: function () {
         this._delegates = $.extend(this._delegates, {
-            setData: $dj.delegate(this, this.setData)
+            setData: $dj.delegate(this, this.setData),
+            domainChanged: $dj.delegate(this, this._domainChanged)
         });
     },
 
@@ -36,15 +37,25 @@ DJ.UI.BrowserStats = DJ.UI.CompositeComponent.extend({
 
     _initializeEventHandlers: function () {
         $dj.subscribe('data.BrowserStats', this._delegates.setData);
+        $dj.subscribe('comm.domain.changed', this._delegates.domainChanged);
 
         var self = this;
         this.$element.on('click', this.selectors.pill, function () {
             var el = $(this);
             el.siblings('.active').add(el).toggleClass('active');
             self.activePillId = el.data('id');
-            if (self.browserStats)
-                self._updateData(self._getBarData(self.browserStats[self.activePillId]));
+            if (self.browserStats) {
+                self.barContainer.html(self.templates.statBars(self._getBarData(self.browserStats[self.activePillId])));
+            }
         });
+    },
+    
+    _domainChanged: function (data) {
+        this.domain = data.domain;
+        this._intializedData = false;
+        this.barContainer.html('');
+        this.pillContainer.html('');
+        this.activePillId = null;
     },
 
     _setData: function (data) {
@@ -54,11 +65,8 @@ DJ.UI.BrowserStats = DJ.UI.CompositeComponent.extend({
             }
             return;
         }
-
-        console.log(this.domain);
-        console.log(data);
-
-        this._showContent();
+        
+       this._showContent();
         // get some sensible structure from a flat result set
         var mappedData = this._mapData(data);
 
@@ -142,6 +150,7 @@ DJ.UI.BrowserStats = DJ.UI.CompositeComponent.extend({
         if (data && data.length) {
             var trafficBars = this.barContainer.find('.dj-trafficBar');
             for (var i = 0, len = data.length; i < len; i++) {
+                
                 var stat = data[i],
                     trafficBar = $(trafficBars[i]),
                     version = (stat.browser === 'msie' || (stat.browser === 'firefox' && stat.browserVersion < 4)) ? stat.browserVersion : '';
@@ -179,10 +188,6 @@ DJ.UI.BrowserStats = DJ.UI.CompositeComponent.extend({
     setPills: function (pills) {
         this.activePillId = this.activePillId || pills[0].id;
         
-        if (pills.length <= 1) {
-            return;
-        }
-
         // set the active item in the dataset before drawing pills
         for (var i = 0; i < pills.length; i++) {
             pills[i].active = this.activePillId === pills[i].id;

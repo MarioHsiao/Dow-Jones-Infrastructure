@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using DowJones.Dash.Caching;
+using DowJones.DependencyInjection;
 using DowJones.Utilities;
 using SignalR;
 using SignalR.Hubs;
@@ -12,13 +13,17 @@ namespace DowJones.Dash.Website.Hubs
     public class Dashboard : Hub
     {
         private static readonly ILog Log = LogManager.GetLogger(typeof (Dashboard));
-        private static readonly DashboardMessageCache _cache = new DashboardMessageCache();
-
+        private static  IDashboardMessageCache _cache;
         private static IDashboardMessageCache Cache
         {
-            get
+            get { return _cache ?? (_cache = ServiceLocator.Current.Resolve<IDashboardMessageCache>()); }
+        }
+
+        public Dashboard(IDashboardMessageCache cache)
+        {
+            if (_cache == null)
             {
-                return _cache;
+                _cache = cache;
             }
         }
 
