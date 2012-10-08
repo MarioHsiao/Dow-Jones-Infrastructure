@@ -15,4 +15,9 @@
   margin: 0 auto; }
 .dj_statMap .highcharts-series path {
   /*fill: #ccc !important;*/ }
+.dj_statMap .pillContainer .nav-pills {
+  margin-bottom: 0; }
+.dj_statMap .modal {
+  height: 700px;
+  width: 900px; }
 

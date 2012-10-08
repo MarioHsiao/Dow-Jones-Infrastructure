@@ -358,6 +358,9 @@
   <ItemGroup>
     <EmbeddedResource Include="EmbeddedResources\js\highchartsMap\germany.map.shapes.js" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="EmbeddedResources\js\highchartsMap\world.map.shapes.js" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

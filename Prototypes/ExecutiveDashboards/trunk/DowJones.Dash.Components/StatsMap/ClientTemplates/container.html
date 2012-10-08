@@ -2,7 +2,24 @@
 <div class="dj_statMap kpiComponent">
     <div class="content">
         <div class="pillContainer"></div>
+        <div class="worldViewToggler">
+            <a href="#worldViewModal" role="button" data-toggle="modal"><i class="icon icon-globe icon-white pull-right"
+                title="Click here for the world map"></i></a>
+        </div>
         <div class="mapContainer"></div>
+        <div class="modal hide fade" id="worldViewModal" tabindex="-1" role="dialog" aria-labelledby="worldViewModalLabel"
+            aria-hidden="true">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3 id="worldViewModalLabel"></h3>
+            </div>
+            <div class="modal-body">
+                <div class="worldMapContainer"></div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" data-dismiss="modal" aria-hidden="true">Close</button>
+            </div>
+        </div>
     </div>
     <div class="noData">Coming Soon...</div>
 </div>
