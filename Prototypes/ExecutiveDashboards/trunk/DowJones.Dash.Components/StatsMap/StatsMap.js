@@ -23,16 +23,6 @@ DJ.UI.StatsMap = DJ.UI.Component.extend({
         world: { 6: "Afghanistan", 9: "Albania", 62: "Algeria", 15: "American Samoa", 4: "Andorra", 12: "Angola", 7: "Antigua and Barbuda", 14: "Argentina", 10: "Armenia", 18: "Aruba", 17: "Australia", 16: "Austria", 19: "Azerbaijan", 33: "Bahamas, The", 26: "Bahrain", 22: "Bangladesh", 21: "Barbados", 37: "Belarus", 23: "Belgium", 38: "Belize", 28: "Benin", 34: "Bhutan", 31: "Bolivia", 20: "Bosnia and Herzegovina", 36: "Botswana", 32: "Brazil", 30: "Brunei Darussalam", 25: "Bulgaria", 24: "Burkina Faso", 27: "Burundi", 114: "Cambodia", 48: "Cameroon", 39: "Canada", 121: "Cayman Islands", 42: "Central African Republic", 206: "Chad", 47: "Chile", 49: "China", 50: "Colombia", 43: "Congo", 51: "Costa Rica", 45: "Cote d'Ivoire", 97: "Croatia", 52: "Cuba", 55: "Cyprus", 56: "Czech Republic", 59: "Denmark", 58: "Djibouti", 60: "Dominica", 61: "Dominican Republic", 63: "Ecuador", 65: "Egypt, Arab Rep.", 202: "El Salvador", 87: "Equatorial Guinea", 67: "Eritrea", 64: "Estonia", 69: "Ethiopia", 71: "Fiji", 70: "Finland", 75: "France", 76: "Gabon", 84: "Gambia, The", 79: "Georgia", 57: "Germany", 81: "Ghana", 88: "Greece", 83: "Greenland", 78: "Grenada", 90: "Guatemala", 85: "Guinea", 93: "Guyana", 98: "Haiti", 96: "Honduras", 99: "Hungary", 107: "Iceland", 103: "India", 100: "Indonesia", 106: "Iran, Islamic Rep.", 105: "Iraq", 101: "Ireland", 102: "Israel", 108: "Italy", 109: "Jamaica", 111: "Japan", 110: "Jordan", 122: "Kazakhstan", 112: "Kenya", 118: "Korea, Dem. Rep.", 119: "Korea, Rep.", 120: "Kuwait", 113: "Kyrgyz Republic", 123: "Lao PDR", 132: "Latvia", 124: "Lebanon", 129: "Lesotho", 128: "Liberia", 133: "Libya", 130: "Lithuania", 131: "Luxembourg", 139: "Macedonia, FYR", 137: "Madagascar", 151: "Malawi", 153: "Malaysia", 140: "Mali", 148: "Malta", 146: "Mauritania", 152: "Mexico", 136: "Moldova", 135: "Monaco", 142: "Mongolia", 147: "Montenegro", 134: "Morocco", 154: "Mozambique", 141: "Myanmar", 155: "Namibia", 163: "Nepal", 161: "Netherlands", 156: "New Caledonia", 166: "New Zealand", 160: "Nicaragua", 157: "Niger", 159: "Nigeria", 162: "Norway", 167: "Oman", 173: "Pakistan", 168: "Panama", 171: "Papua New Guinea", 180: "Paraguay", 169: "Peru", 172: "Philippines", 174: "Poland", 178: "Portugal", 176: "Puerto Rico", 181: "Qatar", 183: "Romania", 184: "Russian Federation", 185: "Rwanda", 186: "Saudi Arabia", 198: "Senegal", 196: "Sierra Leone", 191: "Singapore", 195: "Slovak Republic", 193: "Slovenia", 187: "Solomon Islands", 199: "Somalia", 238: "South Africa", 68: "Spain", 127: "Sri Lanka", 189: "Sudan", 200: "Suriname", 204: "Swaziland", 190: "Sweden", 44: "Switzerland", 203: "Syria Arab Republic", 210: "Tajikistan", 219: "Tanzania", 209: "Thailand", 208: "Togo", 214: "Tonga", 216: "Trinidad and Tobago", 213: "Tunisia", 215: "Turkey", 212: "Turkmenistan", 221: "Uganda", 220: "Ukraine", 5: "United Arab Emirates", 77: "United Kingdom", 223: "United States", 224: "Uruguay", 225: "Uzbekistan", 232: "Vanuatu", 228: "Venezuela, RB", 231: "Vietnam", 235: "Yemen, Rep.", 3001: "Zaire", 239: "Zambia", 240: "Zimbabwe" }
     },
 
-    dataLabelOptions: {
-        Alaska: { y: -10 },
-        California: { x: -10, y: 20 },
-        Florida: { x: 40 },
-        Idaho: { y: 40 },
-        Hawaii: { color: 'black', y: 15 },
-        Louisiana: { x: -20 },
-        Tennessee: { y: 5 }
-    },
-
     mapConfig: {
         chart: {
             type: 'map',
@@ -126,7 +116,7 @@ DJ.UI.StatsMap = DJ.UI.Component.extend({
 
     _initializeEventHandlers: function () {
         $dj.subscribe(this.options.dataEvent, this._delegates.setData);
-        $dj.subscribe('comm.domain.changed', this._delegates.domainChanged);
+        $dj.subscribe('data.BasicHostConfiguration', this._delegates.domainChanged);
 
         var self = this;
         this.$element.on('click', this.selectors.pill, function () {
@@ -148,15 +138,11 @@ DJ.UI.StatsMap = DJ.UI.Component.extend({
         this.territories = this.map.territories;
         this.paths = this.map.paths;
         this.currentStateCodes = this.stateCodes[map];
-
-
     },
 
     _domainChanged: function (data) {
         if (!data)
             return;
-
-        this.domain = data;
 
         this.activePillId = null;
 
@@ -164,22 +150,24 @@ DJ.UI.StatsMap = DJ.UI.Component.extend({
         if (this.options.map !== 'world')
             this._initializeMapData(data.map);
 
-        this._initializeChart();
+        this._initializeChart(data);
     },
 
-    _initializeChart: function () {
+    _initializeChart: function (config) {
         this._initializingChart = true;
 
         // highcharts will wipe out series object, hence initialize this
         this.mapConfig.series = this.mapConfig.series || [{ type: 'map', data: [] }];
+
+        if (config && config.performanceZones)
+            this.mapConfig.plotOptions.map.valueRanges = this._configureValueRanges(config.performanceZones);
 
         for (var i = 0; i < this.territories.length; i++) {
             var key = this.territories[i];
 
             this.mapConfig.series[0].data.push({
                 key: key,
-                path: this.paths[key],
-                dataLabels: this.dataLabelOptions[key]
+                path: this.paths[key]
             });
         }
 
@@ -193,6 +181,30 @@ DJ.UI.StatsMap = DJ.UI.Component.extend({
         this.chart = new Highcharts.Map(this.mapConfig);
 
         this._initializingChart = false;
+    },
+
+
+    _configureValueRanges: function (zones) {
+        var valueRanges = [{ color: '#ddd' }], key, zone;
+
+        for (key in zones) {
+            zone = zones[key];
+            valueRanges.push({ from: zone.from, to: zone.to, color: this.getZoneColor(zone.zoneType) });
+        }
+
+        return valueRanges;
+    },
+
+    getZoneColor: function (type) {
+        switch (type) {
+            case 'Cool':
+                return Highcharts.getOptions().colors[2];
+            case 'Neutral': return Highcharts.getOptions().colors[5];
+            case 'Hot': return Highcharts.getOptions().colors[1];
+            default:
+                return '#ddd';
+        }
+
     },
 
     setData: function (data) {
@@ -256,7 +268,6 @@ DJ.UI.StatsMap = DJ.UI.Component.extend({
             chartData.push({
                 key: key,
                 path: this.paths[key],
-                dataLabels: this.dataLabelOptions[key], // Oregon undefined
                 name: stateData.name,
                 y: stateData.avg || -1,
                 min: stateData.min,
@@ -299,16 +310,6 @@ DJ.UI.StatsMap = DJ.UI.Component.extend({
     _showContent: function () {
         this.$element.find(this.selectors.contentContainer).show('fast');
         this.$element.find(this.selectors.noDataContainer).hide('fast');
-    },
-
-    _getMarker: function (num) {
-        if (num <= 5000)
-            return '<%= WebResource("DowJones.Dash.Components.StatsMap.marker_rounded_yellow_green.png") %>';
-
-        if (num <= 7000)
-            return '<%= WebResource("DowJones.Dash.Components.StatsMap.marker_rounded_yellow_orange.png") %>';
-
-        return '<%= WebResource("DowJones.Dash.Components.StatsMap.marker_rounded_red.png") %>';
     }
 });
 
