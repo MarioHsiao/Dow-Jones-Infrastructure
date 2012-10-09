@@ -52,12 +52,12 @@ DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
     _areaSplineConfig: function (startDate) {
         var themeManager = DJ.UI.ThemeManager.instance;
         return {
-            color: themeManager.colors.siteBackground(),
+            color: themeManager.colors.siteBackground,
             fillColor: {
                 linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
                 stops: [
-                    [0, themeManager.colors.ltBlue()],
-                    [1, Highcharts.Color(themeManager.colors.ltBlue()).brighten(-0.3).get('rgb')] // darken
+                    [0, themeManager.colors.ltBlue],
+                    [1, Highcharts.Color(themeManager.colors.ltBlue).brighten(-0.3).get('rgb')] // darken
                 ]
             },
             lineWidth: 1,

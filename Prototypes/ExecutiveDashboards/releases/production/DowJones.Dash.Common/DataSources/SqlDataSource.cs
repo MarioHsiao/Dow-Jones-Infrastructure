@@ -85,8 +85,7 @@ namespace DowJones.Dash.DataSources
                 OnError(ex);
             }
         }
-
-
+        
 		public class DynamicSqlDataReader
 		{
 			private static dynamic ToExpando(IDataRecord record)

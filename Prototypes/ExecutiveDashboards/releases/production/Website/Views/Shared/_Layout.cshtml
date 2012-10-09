@@ -37,16 +37,24 @@
     @Scripts.Render("~/bundles/core")
 </head>
 <body>
+    @* Short term fix for thememanager *@
+    <div id="themeManager" class="hide"></div>
+	<script>
+	    DJ.add(
+	        "ThemeManager",
+	        { container: 'themeManager', options: { colors: ["#4183C4", "#E54A4F", "#A4C639", "#86C9EF", "#613854", "#FFCC33", "#02A2DB"] } }
+	    );
+	</script>
+
     <header>
         <table border="0">
             <tr>
                 <td class="djtech">
                     <img src="~/Content/images/djtech.png" /><br />
-                    <span>Innovation Realized Results Delivered</span></td>
-                <td class="logo">
-                    <h1><a href="@Url.Content("~")">Dash</a></h1>
-                    <br />
-                    Executive Dashboard</td>
+                    <td class="logo">
+                        <h1><a href="@Url.Content("~")">Dash</a></h1>
+                        <br />
+                        Executive Dashboard</td>
             </tr>
         </table>
         <a href="#module-gallery" class="cog pull-right" role="button" data-toggle="modal"

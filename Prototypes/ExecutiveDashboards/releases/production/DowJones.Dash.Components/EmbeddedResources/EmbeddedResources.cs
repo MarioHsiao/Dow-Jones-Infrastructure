@@ -11,6 +11,8 @@ using DowJones.Web;
 [assembly: WebResource(EmbeddedResources.Js.Counter, KnownMimeTypes.JavaScript)]
 [assembly: WebResource(EmbeddedResources.Js.HighChartsMap, KnownMimeTypes.JavaScript)]
 [assembly: WebResource(EmbeddedResources.Js.HighChartsUsMapShapes, KnownMimeTypes.JavaScript)]
+[assembly: WebResource(EmbeddedResources.Js.HighChartsGermanyMapShapes, KnownMimeTypes.JavaScript)]
+[assembly: WebResource(EmbeddedResources.Js.HighChartsWorldMapShapes, KnownMimeTypes.JavaScript)]
 [assembly: WebResource(EmbeddedResources.Js.QuickFlip, KnownMimeTypes.JavaScript)]
 
 #endregion
@@ -20,9 +22,10 @@ namespace DowJones.Dash.Components.EmbeddedResources
 	public static class EmbeddedResources
 	{
 		[ScriptResource(ResourceName = Counter, DependencyLevel = ClientResourceDependencyLevel.MidLevel, Name = "jquery-counter", DependsOn = new[] { "jquery" })]
-		[ScriptResource(ResourceName = HighChartsMap, DependencyLevel = ClientResourceDependencyLevel.MidLevel, Name = "highcharts-map", DependsOn = new[] { "highcharts-more" })]
-		[ScriptResource(ResourceName = HighChartsUsMapShapes, DependencyLevel = ClientResourceDependencyLevel.MidLevel, Name = "us-map-shapes", DependsOn = new[] { "highcharts-more" })]
-		[ScriptResource(ResourceName = HighChartsGermanyMapShapes, DependencyLevel = ClientResourceDependencyLevel.MidLevel, Name = "germany-map-shapes", DependsOn = new[] { "highcharts-more" })]
+		[ScriptResource(ResourceName = HighChartsMap, DependencyLevel = ClientResourceDependencyLevel.MidLevel, Name = "highcharts-map", DependsOn = new[] { "highcharts" })]
+		[ScriptResource(ResourceName = HighChartsUsMapShapes, DependencyLevel = ClientResourceDependencyLevel.MidLevel, Name = "us-map-shapes", DependsOn = new[] { "highcharts-map" })]
+		[ScriptResource(ResourceName = HighChartsGermanyMapShapes, DependencyLevel = ClientResourceDependencyLevel.MidLevel, Name = "germany-map-shapes", DependsOn = new[] { "highcharts-map" })]
+		[ScriptResource(ResourceName = HighChartsWorldMapShapes, DependencyLevel = ClientResourceDependencyLevel.MidLevel, Name = "world-map-shapes", DependsOn = new[] { "highcharts-map" })]
 		[ScriptResource(ResourceName = QuickFlip, DependencyLevel = ClientResourceDependencyLevel.MidLevel, Name = "quickflip", DependsOn = new[] { "jquery" })]
 
 		public static class Js
@@ -35,6 +38,7 @@ namespace DowJones.Dash.Components.EmbeddedResources
 			public const string HighChartsMap = HighchartsMapBasePath + "highchartsMap.js";
 			public const string HighChartsUsMapShapes = HighchartsMapBasePath + "us.map.shapes.js";
 			public const string HighChartsGermanyMapShapes = HighchartsMapBasePath + "germany.map.shapes.js";
+			public const string HighChartsWorldMapShapes = HighchartsMapBasePath + "world.map.shapes.js";
 
 			#endregion
 

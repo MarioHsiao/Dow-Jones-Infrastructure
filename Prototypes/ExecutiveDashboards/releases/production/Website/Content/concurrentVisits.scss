@@ -10,17 +10,6 @@
 	line-height: 1em;
 }
 
-
-.kpiComponent {
-	.noData{
-		text-align: center;
-		margin: 30px auto;
-		font-family: "League-Gothic", Courier;
-		text-transform: uppercase;
-		font-size: 1.4em;
-	}
-}
-
 @mixin LabelShadow($fontSize: 1.5em, $width: 100px, $color: #333, $top: 15px) {
 	position: absolute;
 	top: $top;

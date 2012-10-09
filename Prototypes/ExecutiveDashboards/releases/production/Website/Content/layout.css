@@ -1,9 +1,8 @@
-@import url(http://fonts.googleapis.com/css?family=Kaushan+Script);
 a:hover {
   text-decoration: none; }
 
 body {
-  padding-top: 85px;
+  padding-top: 65px;
   background-color: #3c3c3c;
   background-repeat: no-repeat;
   background-image: -moz-linear-gradient(#3a3a3a, #3c3c3c);
@@ -47,7 +46,7 @@ header {
     header table .logo {
       padding-left: 20px; }
   header h1 {
-    font: small-caps 40px/40px "Kaushan Script", sans-serif;
+    font: small-caps 40px/40px "Ubuntu", sans-serif;
     color: #60AFDC;
     display: inline-block; }
 

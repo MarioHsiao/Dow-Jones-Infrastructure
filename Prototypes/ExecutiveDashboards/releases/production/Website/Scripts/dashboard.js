@@ -1,42 +1,41 @@
-﻿DJ.$dj.require(['DJ','$dj'], function (DJ,$dj) {
-    DJ.UI.Dash = DJ.UI.Component.extend({        
-        init: function(el, meta) {
+﻿DJ.$dj.require(['DJ', '$dj'], function (DJ, $dj) {
+    DJ.UI.Dash = DJ.UI.Component.extend({
+        init: function (el, meta) {
             this._super(el, meta);
 
             this._groups = new DJ.DashGroupManager();
 
             this._initializeModuleStyles();
-            this._initializeModuleResizing();
+            this._initializeSubscriptions();
             this._initializeTabs();
+            this._initializeWorldStatsMap();
         },
 
-        changeDomain: function(domain) {
+        changeDomain: function (domain) {
             this._groups.changeDomain(domain);
             return this;
         },
 
-        start: function(domain) {
+        start: function (domain) {
             this._groups.start(domain);
             return this;
         },
 
-        stop: function() {
+        stop: function () {
             this._groups.stop();
             return this;
         },
 
-        _initializeDelegates: function() {
-            this._delegates = $.extend(this._delegates || { }, {
+        _initializeDelegates: function () {
+            this._delegates = $.extend(this._delegates || {}, {
                 changeDomain: $dj.delegate(this, this.changeDomain),
-                callModuleResize: $dj.delegate(this, this._callModuleResize)
+                callModuleResize: $dj.delegate(this, this._callModuleResize),
+                worldViewClick:  $dj.delegate(this, this._worldViewClick)
             });
         },
 
-        _initializeModuleResizing: function() {
-            DJ.subscribe('resized.dj.CanvasModule', this._delegates.callModuleResize);
-        },
 
-        _callModuleResize: function(args) {
+        _callModuleResize: function (args) {
             var request = {
                 pageId: DJ.UI.Canvas.find().get_canvasId(),
                 moduleId: args.moduleId
@@ -44,7 +43,7 @@
             $.ajax(this.options.moduleResizeUrl + args.newSize, { data: request });
         },
 
-        _initializeModuleStyles: function() {
+        _initializeModuleStyles: function () {
             $('.small.module').addClass('span2');
             $('.medium.module').addClass('span4');
             $('.large.module').addClass('span6');
@@ -52,7 +51,7 @@
 
             $('.dj_module').addClass('row-fluid');
 
-            $('.dj_module .hide').click(function() {
+            $('.dj_module .hide').click(function () {
                 $(this).closest('.dj_module').findComponent().hide();
             });
 
@@ -64,12 +63,12 @@
             this._initializeInfoIcons();
         },
 
-        _initializeInfoIcons: function() {
+        _initializeInfoIcons: function () {
             $('.dj_module-title')
                 .after('<i class="icon-info-sign icon-white"/>');
 
             $('.dj_module-title + i.icon-info-sign')
-                .each(function() {
+                .each(function () {
                     var el = $(this),
                         tooltipAttached = el.data('tooltipAttached');
 
@@ -85,11 +84,11 @@
 
         },
 
-        _initializeTabs: function() {
+        _initializeTabs: function () {
             var changeDomain = this._delegates.changeDomain;
 
             var tabs = $('.dashNav li').not('> a[href=#module-gallery]');
-            tabs.click(function() {
+            tabs.click(function () {
                 var el = $(this);
                 tabs.removeClass('active');
                 el.addClass('active');
@@ -99,23 +98,40 @@
 
         _getActiveTab: function () {
             return $('.dashNav li.active');
+        },
+
+        _initializeSubscriptions: function () {
+            DJ.subscribe('resized.dj.CanvasModule', this._delegates.callModuleResize);
+            DJ.subscribe('worldView.dj.StatsMap', this._delegates.worldViewClick);
+        },
+
+        _worldViewClick: function () {
+            $('#worldViewModal').modal('show');
+        },
+
+        _initializeWorldStatsMap: function () {
+            DJ.add("StatsMap", {
+                container: $('#worldViewModal .worldMapContainer')[0],
+                options: {
+                    dataEvent: 'data.PageLoadDetailsByCountryForRegion',
+                    map: 'world'
+                }
+            });
         }
-
-
     });
 
 
     DJ.DashGroupManager = DJ.Component.extend({
-        
+
         defaults: {
             dataPrefix: 'data.',
             communicationPrefix: 'comm.'
         },
-        
+
         init: function (meta) {
             this._super(meta);
             $.connection.dashboard.messageReceived = this._delegates.messageReceived;
-            
+
         },
 
         changeDomain: function (domain) {
@@ -125,20 +141,20 @@
                 oldSources = this._getSources(domain.source);
 
             // initialize for first time
-            this.domain = this.domain || { };
-                       
+            this.domain = this.domain || {};
+
             if (domain.source === this.domain.source)
                 return;
-            
+
             self.subscribedSources = this._getSources(domain.source);
 
             // fire a reset for the module to know we are recycling the view.
             DJ.publish(communicationPrefix + "domain.changed", domain);
-            
+
             var handleMessage = this._delegates.messageReceived;
             if (oldSources) {
                 $.connection.dashboard.unsubscribe(oldSources)
-                    .done($dj.delegate(this, function() {
+                    .done($dj.delegate(this, function () {
                         $.connection.dashboard.subscribe(self.subscribedSources)
                             .done(function (messages) {
                                 self.domain = domain;
@@ -162,13 +178,13 @@
         start: function (domain) {
             if (this._started)
                 return this;
-            
+
             $.connection.hub.start()
                 .done($dj.delegate(this, function () {
                     this._started = true;
                     this.changeDomain(domain);
                 }));
-            
+
             return this;
         },
 
@@ -180,12 +196,16 @@
             $.connection.hub.stop($dj.delegate(this, function () {
                 this._started = false;
             }));
-            
+
             return this;
         },
 
 
         _getSources: function (source) {
+
+            var configurationEvents = [
+                'BasicHostConfiguration'
+            ];
 
             var chartBeatEvents = [
                 'QuickStats',
@@ -197,24 +217,22 @@
                 'Referrers',
                 'TopPages'
             ];
-            
+
             var gomezEvents = [
                 'BrowserStats',
                 'DeviceTraffic',
                 'DeviceTrafficByPage',
                 'PageLoadHistoricalDetails',
                 'PageTimings',
-                'PageLoadDetailsBySubCountryforCountry'
+                'PageLoadDetailsBySubCountryforCountry',
+                'PageLoadDetailsByCountryForRegion'
             ];
 
             var events = [];
-            
-            // We've got ChartBeat for pretty much everything
-            events = events.concat(chartBeatEvents);
-            
-            //if (domain == 'online.wsj.com') {
-                events = events.concat(gomezEvents);
-            //}
+
+            events = events.concat(configurationEvents)
+                .concat(chartBeatEvents)
+                .concat(gomezEvents);
 
             // Convert to '[domain]-[event name]', e.g. 'online.wsj.com-BrowserStats'
             return _.map(events, function (name) { return source + '-' + name; });
@@ -243,18 +261,18 @@
                 DJ.publish(name, message.data);
             }
         },
-        
+
         EOF: null,
     });
 
-    (function() {
+    (function () {
         window._alert = window.alert;
         window.alert = function (msg) {
             $('#dashAlertModal .modal-body p').text(msg);
             $('#dashAlertModal').modal('show');
             return false;
         };
-})();
+    })();
 })
 
 
