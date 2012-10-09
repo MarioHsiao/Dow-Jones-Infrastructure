@@ -162,7 +162,7 @@ namespace DowJones.Dash.Website
 				new Dictionary<string, object>
                 {
                     {"region", 0},
-                    {"seconds", 300},
+                    {"seconds", 3600},
                     {"site", (int) dataSourceConfig.Site},
                 });
 
