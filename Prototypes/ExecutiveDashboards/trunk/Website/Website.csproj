@@ -280,6 +280,7 @@
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="App_Start\DataSourcesInitializationTask.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
+    <Compile Include="DataSourceConfig.cs" />
     <Compile Include="DataSources.cs" />
     <Compile Include="Dependencies.cs" />
     <Compile Include="DependencyResolver\NinjectDependencyResolver.cs" />
