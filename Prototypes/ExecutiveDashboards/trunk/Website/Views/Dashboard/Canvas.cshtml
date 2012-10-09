@@ -13,15 +13,29 @@
 }
 
 <section id="dashboard" class="row-fluid">
-	    @DJ.Render(new ThemeManagerModel
+    @DJ.Render(new ThemeManagerModel
         {
             ID = "ThemeManager",
-            Colors = new List<string>(new[] {"#4183C4", "#E54A4F", "#A4C639","#86C9EF" ,"#613854", "#FFCC33", "#02A2DB" }),
+            Colors = new List<string>(new[] { "#4183C4", "#E54A4F", "#A4C639", "#86C9EF", "#613854", "#FFCC33", "#02A2DB" }),
         })
-	@DJ.Render(Model)
+    @DJ.Render(Model)
 </section>
 
 @Html.Action("Gallery")
+
+<div class="modal hide fade" id="worldViewModal" tabindex="-1" role="dialog" aria-labelledby="worldViewModalLabel"
+    aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="worldViewModalLabel">Page Load By Country</h3>
+    </div>
+    <div class="modal-body">
+        <div class="worldMapContainer"></div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" data-dismiss="modal" aria-hidden="true">Close</button>
+    </div>
+</div>
 
 
 @section scripts{
@@ -31,7 +45,7 @@
         DJ.$dj.require(['$dj'], function ($dj) {
             var meta = { options: { moduleResizeUrl: '@Url.Content("~/dashboard/modules/resize/")' } };
             var activeTab = $('.dashNav li.active');
-            var domain = { source: activeTab.data('source'), map: activeTab.data('map')};
+            var domain = { source: activeTab.data('source'), map: activeTab.data('map') };
             window['Dash'] = new DJ.UI.Dash($('body'), meta).start(domain);
         })();
     </script>

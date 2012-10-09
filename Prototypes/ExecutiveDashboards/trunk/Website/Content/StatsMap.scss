@@ -21,8 +21,6 @@
 	.mapContainer { 
 		min-height: 280px;
 		min-width: 368px;
-		max-height: 280px;
-		max-width: 368px; 
 		margin: 0 auto; }
 
 	.highcharts-series path { 
@@ -33,10 +31,5 @@
 		.nav-pills {
 			margin-bottom: 0;
 		}
-	}
-
-	.modal {
-		height: 700px;
-		width: 900px;
 	}
 }

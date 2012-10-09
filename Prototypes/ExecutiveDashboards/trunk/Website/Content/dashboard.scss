@@ -184,3 +184,24 @@ h2 a.reset {
 }
 .maximize { display: none !important; }
 .minimized .maximize { display: inline-block !important; }
+
+
+.kpiComponent {
+	.noData{
+		text-align: center;
+		margin: 30px auto;
+		font-family: "League-Gothic", Courier;
+		text-transform: uppercase;
+		font-size: 1.4em;
+		display: none;
+	}
+}
+
+
+#worldViewModal {
+	width: 630px;
+
+	.modal-body {
+		max-height: 480px;
+	}
+}
