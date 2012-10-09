@@ -9,7 +9,7 @@
   color: '#666'; }
 .dj_statMap .mapContainer {
   min-height: 280px;
-  min-width: 368px;
+  min-width: 300px;
   margin: 0 auto; }
 .dj_statMap .highcharts-series path {
   /*fill: #ccc !important;*/ }
