@@ -3,7 +3,7 @@
 
   <PropertyGroup>
     <MSBuildCommunityTasksPath>..\MSBuildCommunityTasks</MSBuildCommunityTasksPath>
-    <FactivaGatewayReleaseDir>\\172.25.15.86\tplib\Platform Integration\Releases\EMGGateway\factiva.gateway.messages</FactivaGatewayReleaseDir>
+    <FactivaGatewayReleaseDir>\\172.25.15.86\tplib\Platform Integration\Releases\EMGGateway_3.5\factiva.gateway.messages</FactivaGatewayReleaseDir>
     <FactivaTempDir>Source</FactivaTempDir>
     <FactivaBuildDir>Build</FactivaBuildDir>
     <FactivaGatewayMessagesSourceFile>$(FactivaGatewayReleaseDir)\factiva.gateway.messages REL $(FactivaVersion).zip</FactivaGatewayMessagesSourceFile>
