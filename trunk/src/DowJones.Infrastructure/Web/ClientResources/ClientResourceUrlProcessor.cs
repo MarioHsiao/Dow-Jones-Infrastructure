@@ -53,14 +53,7 @@ namespace DowJones.Web
             if(string.IsNullOrWhiteSpace(url))
                 return string.Empty;
 
-            string absoluteUrl;
-
-            if(kind == UrlKind.Relative)
-                absoluteUrl = RelativeUrlThunk(url);
-            else
-                absoluteUrl = AbsoluteUrlThunk(url, _request);
-
-            return absoluteUrl;
+            return kind == UrlKind.Relative ? RelativeUrlThunk(url) : AbsoluteUrlThunk(url, _request);
         }
 
 

@@ -102,7 +102,7 @@ namespace DowJones.Web
 
             var relativeUrl = string.Format("{0}?{1}={2}&{3}={4}&{5}={6}",
                                     Settings.Default.ClientResourceHandlerPath,
-                                    LanguageKey, culture.TwoLetterISOLanguageName,
+                                    LanguageKey, MapLanguageKey(culture),
                                     ClientResourceIDKey, HttpUtility.UrlEncode(resourceId).Replace("%3b", ";"),
                                     CachingTokenKey, CacheTokenFactory()
                                 );
@@ -113,6 +113,19 @@ namespace DowJones.Web
             context = context ?? new HttpContextWrapper(HttpContext.Current);
 
             return context.GetExternalUrl(relativeUrl);
+        }
+
+        public static string MapLanguageKey(CultureInfo culture)
+        {
+            switch(culture.ThreeLetterWindowsLanguageName)
+            {
+                case "CHT":
+                    return "zhtw";
+                case "CHS":
+                    return "zhcn";
+                default:
+                    return culture.TwoLetterISOLanguageName;
+            }
         }
 
         public static string GenerateRequireJsBaseUrl(CultureInfo culture = null, HttpContextBase context = null, bool? debug = null)
