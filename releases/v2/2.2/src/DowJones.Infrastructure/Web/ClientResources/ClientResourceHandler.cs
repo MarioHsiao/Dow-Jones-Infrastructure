@@ -108,7 +108,7 @@ namespace DowJones.Web
 
             var relativeUrl = string.Format("{0}?{1}={2}&{3}={4}&{5}={6}",
                                     Settings.Default.ClientResourceHandlerPath,
-                                    LanguageKey, MapLanguageKey(culture.TwoLetterISOLanguageName),
+                                    LanguageKey, MapLanguageKey(culture),
                                     ClientResourceIDKey, HttpUtility.UrlEncode(resourceId).Replace("%3b", ";"),
                                     CachingTokenKey, CachingToken
                                 );
