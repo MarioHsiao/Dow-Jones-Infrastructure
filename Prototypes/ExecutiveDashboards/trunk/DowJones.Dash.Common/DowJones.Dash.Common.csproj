@@ -96,7 +96,7 @@
     <Compile Include="Caching\IDashboardMessageCache.cs" />
     <Compile Include="DataGenerators\PageGenerator.cs" />
     <Compile Include="DataGenerators\ScriptModuleTemplatesGenerator.cs" />
-    <Compile Include="DataSources\ChartBeatDataSource.cs" />
+    <Compile Include="DataSources\ChartBeatApiDataSource.cs" />
     <Compile Include="DataSources\ConfigurationDataSource.cs" />
     <Compile Include="DataSources\DataSource.cs" />
     <Compile Include="DataSources\DataSourceEvent.cs" />

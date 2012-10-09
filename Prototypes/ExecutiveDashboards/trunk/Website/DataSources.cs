@@ -53,30 +53,30 @@ namespace DowJones.Dash.Website
                                 new PerformanceZone{To = 7, From = 100, ZoneType = PerformanceZoneType.Hot},
                             },
                 });
-            yield return new ChartBeatDataSource("live.wsj.com-DashboardStats", "DashboardStats", "/dashapi/stats/", "live.wsj.com");
-            yield return new ChartBeatDataSource("live.wsj.com-HistorialTrafficSeries", "HistorialTrafficSeries", "/historical/traffic/series/", "live.wsj.com", new Dictionary<string, object>
+            yield return new ChartBeatApiDataSource("live.wsj.com-DashboardStats", "DashboardStats", "/dashapi/stats/", "live.wsj.com");
+            yield return new ChartBeatApiDataSource("live.wsj.com-HistorialTrafficSeries", "HistorialTrafficSeries", "/historical/traffic/series/", "live.wsj.com", new Dictionary<string, object>
                 {
                     {"frequency", "15"}
                 });
-            yield return new ChartBeatDataSource("live.wsj.com-HistorialTrafficSeriesWeekAgo", "HistorialTrafficSeriesWeekAgo", "/historical/traffic/series/", "live.wsj.com", new Dictionary<string, object>
+            yield return new ChartBeatApiDataSource("live.wsj.com-HistorialTrafficSeriesWeekAgo", "HistorialTrafficSeriesWeekAgo", "/historical/traffic/series/", "live.wsj.com", new Dictionary<string, object>
                 {
                     {"frequency", "15"},
                     {"days_ago", "7"}
                 });
-            yield return new ChartBeatDataSource("live.wsj.com-HistoricalTrafficStats", "HistoricalTrafficStats", "/historical/traffic/stats/", "live.wsj.com", new Dictionary<string, object>
+            yield return new ChartBeatApiDataSource("live.wsj.com-HistoricalTrafficStats", "HistoricalTrafficStats", "/historical/traffic/stats/", "live.wsj.com", new Dictionary<string, object>
                 {
                     {"fields", "srvload,peoples"},
                     {"properties_ago", "min,max,avg"},
                 });
-            yield return new ChartBeatDataSource("live.wsj.com-HistoricalTrafficValues", "HistoricalTrafficValues", "/historical/traffic/values/", "live.wsj.com", new Dictionary<string, object>
+            yield return new ChartBeatApiDataSource("live.wsj.com-HistoricalTrafficValues", "HistoricalTrafficValues", "/historical/traffic/values/", "live.wsj.com", new Dictionary<string, object>
                 {
                     {"days_ago", "0"},
                     {"limit", "1"},
                     {"fields", "internal,search,links,direct,social"},
                 });
-            yield return new ChartBeatDataSource("live.wsj.com-QuickStats", "QuickStats", "/live/quickstats/v3", "live.wsj.com");
-            yield return new ChartBeatDataSource("live.wsj.com-Referrers", "Referrers", "/live/referrers/v3", "live.wsj.com");
-            yield return new ChartBeatDataSource("live.wsj.com-TopPages", "TopPages", "/toppages", "live.wsj.com", new Dictionary<string, object>
+            yield return new ChartBeatApiDataSource("live.wsj.com-QuickStats", "QuickStats", "/live/quickstats/v3", "live.wsj.com");
+            yield return new ChartBeatApiDataSource("live.wsj.com-Referrers", "Referrers", "/live/referrers/v3", "live.wsj.com");
+            yield return new ChartBeatApiDataSource("live.wsj.com-TopPages", "TopPages", "/toppages", "live.wsj.com", new Dictionary<string, object>
                 {
                     {"limit", 10},
                 });
@@ -133,30 +133,41 @@ namespace DowJones.Dash.Website
                             },
                     }
                 );
-            yield return new ChartBeatDataSource("wallstreetjournal.de-DashboardStats", "DashboardStats", "/dashapi/stats/", "wallstreetjournal.de");
-            yield return new ChartBeatDataSource("wallstreetjournal.de-HistorialTrafficSeries", "HistorialTrafficSeries", "/historical/traffic/series/", "wallstreetjournal.de", new Dictionary<string, object>
+            yield return new ChartBeatApiDataSource("wallstreetjournal.de-DashboardStats", "DashboardStats", "/dashapi/stats/", "wallstreetjournal.de");
+            //yield return new ChartBeatSiteDataSource("wallstreetjournal.de-DashboardStats", "DashboardStats", "/dashapi/stats/", "wallstreetjournal.de");
+            yield return new ChartBeatApiDataSource("wallstreetjournal.de-HistorialTrafficSeries", "HistorialTrafficSeries", "/historical/traffic/series/", "wallstreetjournal.de", new Dictionary<string, object>
                 {
                     {"frequency", "15"}
                 });
-            yield return new ChartBeatDataSource("wallstreetjournal.de-HistorialTrafficSeriesWeekAgo", "HistorialTrafficSeriesWeekAgo", "/historical/traffic/series/", "wallstreetjournal.de", new Dictionary<string, object>
+            yield return new ChartBeatApiDataSource("wallstreetjournal.de-HistorialTrafficSeriesWeekAgo", "HistorialTrafficSeriesWeekAgo", "/historical/traffic/series/", "wallstreetjournal.de", new Dictionary<string, object>
                 {
                     {"frequency", "15"},
                     {"days_ago", "7"}
                 });
-            yield return new ChartBeatDataSource("wallstreetjournal.de-HistoricalTrafficStats", "HistoricalTrafficStats", "/historical/traffic/stats/", "wallstreetjournal.de", new Dictionary<string, object>
+            yield return new ChartBeatApiDataSource("wallstreetjournal.de-HistoricalTrafficStats", "HistoricalTrafficStats", "/historical/traffic/stats/", "wallstreetjournal.de", new Dictionary<string, object>
                 {
                     {"fields", "srvload,peoples"},
                     {"properties_ago", "min,max,avg"},
                 });
-            yield return new ChartBeatDataSource("wallstreetjournal.de-HistoricalTrafficValues", "HistoricalTrafficValues", "/historical/traffic/values/", "wallstreetjournal.de", new Dictionary<string, object>
+            yield return new ChartBeatApiDataSource("wallstreetjournal.de-HistoricalTrafficValues", "HistoricalTrafficValues", "/historical/traffic/values/", "wallstreetjournal.de", new Dictionary<string, object>
                 {
                     {"days_ago", "0"},
                     {"limit", "1"},
                     {"fields", "internal,search,links,direct,social"},
                 });
-            yield return new ChartBeatDataSource("wallstreetjournal.de-QuickStats", "QuickStats", "/live/quickstats/v3", "wallstreetjournal.de");
-            yield return new ChartBeatDataSource("wallstreetjournal.de-Referrers", "Referrers", "/live/referrers/v3", "wallstreetjournal.de");
-            yield return new ChartBeatDataSource("wallstreetjournal.de-TopPages", "TopPages", "/toppages", "wallstreetjournal.de", new Dictionary<string, object>
+            yield return new ChartBeatApiDataSource("wallstreetjournal.de-QuickStats", "QuickStats", "/live/quickstats/v3", "wallstreetjournal.de");
+            /*yield return new ChartBeatSiteDataSource("wallstreetjournal.de-QuickStats", "QuickStats", "/api/quickstats/", "wallstreetjournal.de",
+                new Dictionary<string, object>()
+                    {
+                        {"v", "2"},
+                        {"path", ""},
+                        {"author", ""},
+                        {"section", ""},
+                        {"now_on", "false"},                        
+                    }
+                );*/
+            yield return new ChartBeatApiDataSource("wallstreetjournal.de-Referrers", "Referrers", "/live/referrers/v3", "wallstreetjournal.de");
+            yield return new ChartBeatApiDataSource("wallstreetjournal.de-TopPages", "TopPages", "/toppages", "wallstreetjournal.de", new Dictionary<string, object>
                 {
                     {"limit", 10},
                 });
@@ -197,30 +208,30 @@ namespace DowJones.Dash.Website
 
         public IEnumerable<IDataSource> Barrons()
         {
-            yield return new ChartBeatDataSource("online.barrons.com-DashboardStats", "DashboardStats", "/dashapi/stats/", "online.barrons.com");
-            yield return new ChartBeatDataSource("online.barrons.com-HistorialTrafficSeries", "HistorialTrafficSeries", "/historical/traffic/series/", "online.barrons.com", new Dictionary<string, object>
+            yield return new ChartBeatApiDataSource("online.barrons.com-DashboardStats", "DashboardStats", "/dashapi/stats/", "online.barrons.com");
+            yield return new ChartBeatApiDataSource("online.barrons.com-HistorialTrafficSeries", "HistorialTrafficSeries", "/historical/traffic/series/", "online.barrons.com", new Dictionary<string, object>
                 {
                     {"frequency", "15"}
                 });
-            yield return new ChartBeatDataSource("online.barrons.com-HistorialTrafficSeriesWeekAgo", "HistorialTrafficSeriesWeekAgo", "/historical/traffic/series/", "online.barrons.com", new Dictionary<string, object>
+            yield return new ChartBeatApiDataSource("online.barrons.com-HistorialTrafficSeriesWeekAgo", "HistorialTrafficSeriesWeekAgo", "/historical/traffic/series/", "online.barrons.com", new Dictionary<string, object>
                 {
                     {"frequency", "15"},
                     {"days_ago", "7"}
                 });
-            yield return new ChartBeatDataSource("online.barrons.com-HistoricalTrafficStats", "HistoricalTrafficStats", "/historical/traffic/stats/", "online.barrons.com", new Dictionary<string, object>
+            yield return new ChartBeatApiDataSource("online.barrons.com-HistoricalTrafficStats", "HistoricalTrafficStats", "/historical/traffic/stats/", "online.barrons.com", new Dictionary<string, object>
                 {
                     {"fields", "srvload,peoples"},
                     {"properties_ago", "min,max,avg"},
                 });
-            yield return new ChartBeatDataSource("online.barrons.com-HistoricalTrafficValues", "HistoricalTrafficValues", "/historical/traffic/values/", "online.barrons.com", new Dictionary<string, object>
+            yield return new ChartBeatApiDataSource("online.barrons.com-HistoricalTrafficValues", "HistoricalTrafficValues", "/historical/traffic/values/", "online.barrons.com", new Dictionary<string, object>
                 {
                     {"days_ago", "0"},
                     {"limit", "1"},
                     {"fields", "internal,search,links,direct,social"},
                 });
-            yield return new ChartBeatDataSource("online.barrons.com-QuickStats", "QuickStats", "/live/quickstats/v3", "online.barrons.com");
-            yield return new ChartBeatDataSource("online.barrons.com-Referrers", "Referrers", "/live/referrers/v3", "online.barrons.com");
-            yield return new ChartBeatDataSource("online.barrons.com-TopPages", "TopPages", "/toppages", "online.barrons.com", new Dictionary<string, object>
+            yield return new ChartBeatApiDataSource("online.barrons.com-QuickStats", "QuickStats", "/live/quickstats/v3", "online.barrons.com");
+            yield return new ChartBeatApiDataSource("online.barrons.com-Referrers", "Referrers", "/live/referrers/v3", "online.barrons.com");
+            yield return new ChartBeatApiDataSource("online.barrons.com-TopPages", "TopPages", "/toppages", "online.barrons.com", new Dictionary<string, object>
                 {
                     {"limit", 10},
                 });
@@ -261,30 +272,30 @@ namespace DowJones.Dash.Website
 
         public IEnumerable<IDataSource> SmartMoney()
         {
-            yield return new ChartBeatDataSource("smartmoney.com-DashboardStats", "DashboardStats", "/dashapi/stats/", "smartmoney.com");
-            yield return new ChartBeatDataSource("smartmoney.com-HistorialTrafficSeries", "HistorialTrafficSeries", "/historical/traffic/series/", "smartmoney.com", new Dictionary<string, object>
+            yield return new ChartBeatApiDataSource("smartmoney.com-DashboardStats", "DashboardStats", "/dashapi/stats/", "smartmoney.com");
+            yield return new ChartBeatApiDataSource("smartmoney.com-HistorialTrafficSeries", "HistorialTrafficSeries", "/historical/traffic/series/", "smartmoney.com", new Dictionary<string, object>
                 {
                     {"frequency", "15"}
                 });
-            yield return new ChartBeatDataSource("smartmoney.com-HistorialTrafficSeriesWeekAgo", "HistorialTrafficSeriesWeekAgo", "/historical/traffic/series/", "smartmoney.com", new Dictionary<string, object>
+            yield return new ChartBeatApiDataSource("smartmoney.com-HistorialTrafficSeriesWeekAgo", "HistorialTrafficSeriesWeekAgo", "/historical/traffic/series/", "smartmoney.com", new Dictionary<string, object>
                 {
                     {"frequency", "15"},
                     {"days_ago", "7"}
                 });
-            yield return new ChartBeatDataSource("smartmoney.com-HistoricalTrafficStats", "HistoricalTrafficStats", "/historical/traffic/stats/", "smartmoney.com", new Dictionary<string, object>
+            yield return new ChartBeatApiDataSource("smartmoney.com-HistoricalTrafficStats", "HistoricalTrafficStats", "/historical/traffic/stats/", "smartmoney.com", new Dictionary<string, object>
                 {
                     {"fields", "srvload,peoples"},
                     {"properties_ago", "min,max,avg"},
                 });
-            yield return new ChartBeatDataSource("smartmoney.com-HistoricalTrafficValues", "HistoricalTrafficValues", "/historical/traffic/values/", "smartmoney.com", new Dictionary<string, object>
+            yield return new ChartBeatApiDataSource("smartmoney.com-HistoricalTrafficValues", "HistoricalTrafficValues", "/historical/traffic/values/", "smartmoney.com", new Dictionary<string, object>
                 {
                     {"days_ago", "0"},
                     {"limit", "1"},
                     {"fields", "internal,search,links,direct,social"},
                 });
-            yield return new ChartBeatDataSource("smartmoney.com-QuickStats", "QuickStats", "/live/quickstats/v3", "smartmoney.com");
-            yield return new ChartBeatDataSource("smartmoney.com-Referrers", "Referrers", "/live/referrers/v3", "smartmoney.com");
-            yield return new ChartBeatDataSource("smartmoney.com-TopPages", "TopPages", "/toppages", "smartmoney.com", new Dictionary<string, object>
+            yield return new ChartBeatApiDataSource("smartmoney.com-QuickStats", "QuickStats", "/live/quickstats/v3", "smartmoney.com");
+            yield return new ChartBeatApiDataSource("smartmoney.com-Referrers", "Referrers", "/live/referrers/v3", "smartmoney.com");
+            yield return new ChartBeatApiDataSource("smartmoney.com-TopPages", "TopPages", "/toppages", "smartmoney.com", new Dictionary<string, object>
                 {
                     {"limit", 10},
                 });
@@ -325,30 +336,30 @@ namespace DowJones.Dash.Website
 
         public IEnumerable<IDataSource> Marketwatch()
         {
-            yield return new ChartBeatDataSource("marketwatch.com-DashboardStats", "DashboardStats", "/dashapi/stats/", "marketwatch.com");
-            yield return new ChartBeatDataSource("marketwatch.com-HistorialTrafficSeries", "HistorialTrafficSeries", "/historical/traffic/series/", "marketwatch.com", new Dictionary<string, object>
+            yield return new ChartBeatApiDataSource("marketwatch.com-DashboardStats", "DashboardStats", "/dashapi/stats/", "marketwatch.com");
+            yield return new ChartBeatApiDataSource("marketwatch.com-HistorialTrafficSeries", "HistorialTrafficSeries", "/historical/traffic/series/", "marketwatch.com", new Dictionary<string, object>
                 {
                     {"frequency", "15"}
                 });
-            yield return new ChartBeatDataSource("marketwatch.com-HistorialTrafficSeriesWeekAgo", "HistorialTrafficSeriesWeekAgo", "/historical/traffic/series/", "marketwatch.com", new Dictionary<string, object>
+            yield return new ChartBeatApiDataSource("marketwatch.com-HistorialTrafficSeriesWeekAgo", "HistorialTrafficSeriesWeekAgo", "/historical/traffic/series/", "marketwatch.com", new Dictionary<string, object>
                 {
                     {"frequency", "15"},
                     {"days_ago", "7"}
                 });
-            yield return new ChartBeatDataSource("marketwatch.com-HistoricalTrafficStats", "HistoricalTrafficStats", "/historical/traffic/stats/", "marketwatch.com", new Dictionary<string, object>
+            yield return new ChartBeatApiDataSource("marketwatch.com-HistoricalTrafficStats", "HistoricalTrafficStats", "/historical/traffic/stats/", "marketwatch.com", new Dictionary<string, object>
                 {
                     {"fields", "srvload,peoples"},
                     {"properties_ago", "min,max,avg"},
                 });
-            yield return new ChartBeatDataSource("marketwatch.com-HistoricalTrafficValues", "HistoricalTrafficValues", "/historical/traffic/values/", "marketwatch.com", new Dictionary<string, object>
+            yield return new ChartBeatApiDataSource("marketwatch.com-HistoricalTrafficValues", "HistoricalTrafficValues", "/historical/traffic/values/", "marketwatch.com", new Dictionary<string, object>
                 {
                     {"days_ago", "0"},
                     {"limit", "1"},
                     {"fields", "internal,search,links,direct,social"},
                 });
-            yield return new ChartBeatDataSource("marketwatch.com-QuickStats", "QuickStats", "/live/quickstats/v3", "marketwatch.com");
-            yield return new ChartBeatDataSource("marketwatch.com-Referrers", "Referrers", "/live/referrers/v3", "marketwatch.com");
-            yield return new ChartBeatDataSource("marketwatch.com-TopPages", "TopPages", "/toppages", "marketwatch.com", new Dictionary<string, object>
+            yield return new ChartBeatApiDataSource("marketwatch.com-QuickStats", "QuickStats", "/live/quickstats/v3", "marketwatch.com");
+            yield return new ChartBeatApiDataSource("marketwatch.com-Referrers", "Referrers", "/live/referrers/v3", "marketwatch.com");
+            yield return new ChartBeatApiDataSource("marketwatch.com-TopPages", "TopPages", "/toppages", "marketwatch.com", new Dictionary<string, object>
                 {
                     {"limit", 10},
                 });
@@ -404,30 +415,30 @@ namespace DowJones.Dash.Website
                                 new PerformanceZone{To = 10, From = 100, ZoneType = PerformanceZoneType.Hot},
                             },
                 });
-            yield return new ChartBeatDataSource("cn.wsj.com-DashboardStats", "DashboardStats", "/dashapi/stats/", "cn.wsj.com");
-            yield return new ChartBeatDataSource("cn.wsj.com-HistorialTrafficSeries", "HistorialTrafficSeries", "/historical/traffic/series/", "cn.wsj.com", new Dictionary<string, object>
+            yield return new ChartBeatApiDataSource("cn.wsj.com-DashboardStats", "DashboardStats", "/dashapi/stats/", "cn.wsj.com");
+            yield return new ChartBeatApiDataSource("cn.wsj.com-HistorialTrafficSeries", "HistorialTrafficSeries", "/historical/traffic/series/", "cn.wsj.com", new Dictionary<string, object>
                 {
                     {"frequency", "15"}
                 });
-            yield return new ChartBeatDataSource("cn.wsj.com-HistorialTrafficSeriesWeekAgo", "HistorialTrafficSeriesWeekAgo", "/historical/traffic/series/", "cn.wsj.com", new Dictionary<string, object>
+            yield return new ChartBeatApiDataSource("cn.wsj.com-HistorialTrafficSeriesWeekAgo", "HistorialTrafficSeriesWeekAgo", "/historical/traffic/series/", "cn.wsj.com", new Dictionary<string, object>
                 {
                     {"frequency", "15"},
                     {"days_ago", "7"}
                 });
-            yield return new ChartBeatDataSource("cn.wsj.com-HistoricalTrafficStats", "HistoricalTrafficStats", "/historical/traffic/stats/", "cn.wsj.com", new Dictionary<string, object>
+            yield return new ChartBeatApiDataSource("cn.wsj.com-HistoricalTrafficStats", "HistoricalTrafficStats", "/historical/traffic/stats/", "cn.wsj.com", new Dictionary<string, object>
                 {
                     {"fields", "srvload,peoples"},
                     {"properties_ago", "min,max,avg"},
                 });
-            yield return new ChartBeatDataSource("cn.wsj.com-HistoricalTrafficValues", "HistoricalTrafficValues", "/historical/traffic/values/", "cn.wsj.com", new Dictionary<string, object>
+            yield return new ChartBeatApiDataSource("cn.wsj.com-HistoricalTrafficValues", "HistoricalTrafficValues", "/historical/traffic/values/", "cn.wsj.com", new Dictionary<string, object>
                 {
                     {"days_ago", "0"},
                     {"limit", "1"},
                     {"fields", "internal,search,links,direct,social"},
                 });
-            yield return new ChartBeatDataSource("cn.wsj.com-QuickStats", "QuickStats", "/live/quickstats/v3", "cn.wsj.com");
-            yield return new ChartBeatDataSource("cn.wsj.com-Referrers", "Referrers", "/live/referrers/v3", "cn.wsj.com");
-            yield return new ChartBeatDataSource("cn.wsj.com-TopPages", "TopPages", "/toppages", "cn.wsj.com", new Dictionary<string, object>
+            yield return new ChartBeatApiDataSource("cn.wsj.com-QuickStats", "QuickStats", "/live/quickstats/v3", "cn.wsj.com");
+            yield return new ChartBeatApiDataSource("cn.wsj.com-Referrers", "Referrers", "/live/referrers/v3", "cn.wsj.com");
+            yield return new ChartBeatApiDataSource("cn.wsj.com-TopPages", "TopPages", "/toppages", "cn.wsj.com", new Dictionary<string, object>
                 {
                     {"limit", 10},
                 });
@@ -483,30 +494,30 @@ namespace DowJones.Dash.Website
                                 new PerformanceZone{To = 10, From = 100, ZoneType = PerformanceZoneType.Hot},
                             },
                 });
-            yield return new ChartBeatDataSource("jp.wsj.com-DashboardStats", "DashboardStats", "/dashapi/stats/", "jp.wsj.com");
-            yield return new ChartBeatDataSource("jp.wsj.com-HistorialTrafficSeries", "HistorialTrafficSeries", "/historical/traffic/series/", "jp.wsj.com", new Dictionary<string, object>
+            yield return new ChartBeatApiDataSource("jp.wsj.com-DashboardStats", "DashboardStats", "/dashapi/stats/", "jp.wsj.com");
+            yield return new ChartBeatApiDataSource("jp.wsj.com-HistorialTrafficSeries", "HistorialTrafficSeries", "/historical/traffic/series/", "jp.wsj.com", new Dictionary<string, object>
                 {
                     {"frequency", "15"}
                 });
-            yield return new ChartBeatDataSource("jp.wsj.com-HistorialTrafficSeriesWeekAgo", "HistorialTrafficSeriesWeekAgo", "/historical/traffic/series/", "jp.wsj.com", new Dictionary<string, object>
+            yield return new ChartBeatApiDataSource("jp.wsj.com-HistorialTrafficSeriesWeekAgo", "HistorialTrafficSeriesWeekAgo", "/historical/traffic/series/", "jp.wsj.com", new Dictionary<string, object>
                 {
                     {"frequency", "15"},
                     {"days_ago", "7"}
                 });
-            yield return new ChartBeatDataSource("jp.wsj.com-HistoricalTrafficStats", "HistoricalTrafficStats", "/historical/traffic/stats/", "jp.wsj.com", new Dictionary<string, object>
+            yield return new ChartBeatApiDataSource("jp.wsj.com-HistoricalTrafficStats", "HistoricalTrafficStats", "/historical/traffic/stats/", "jp.wsj.com", new Dictionary<string, object>
                 {
                     {"fields", "srvload,peoples"},
                     {"properties_ago", "min,max,avg"},
                 });
-            yield return new ChartBeatDataSource("jp.wsj.com-HistoricalTrafficValues", "HistoricalTrafficValues", "/historical/traffic/values/", "jp.wsj.com", new Dictionary<string, object>
+            yield return new ChartBeatApiDataSource("jp.wsj.com-HistoricalTrafficValues", "HistoricalTrafficValues", "/historical/traffic/values/", "jp.wsj.com", new Dictionary<string, object>
                 {
                     {"days_ago", "0"},
                     {"limit", "1"},
                     {"fields", "internal,search,links,direct,social"},
                 });
-            yield return new ChartBeatDataSource("jp.wsj.com-QuickStats", "QuickStats", "/live/quickstats/v3", "jp.wsj.com");
-            yield return new ChartBeatDataSource("jp.wsj.com-Referrers", "Referrers", "/live/referrers/v3", "jp.wsj.com");
-            yield return new ChartBeatDataSource("jp.wsj.com-TopPages", "TopPages", "/toppages", "jp.wsj.com", new Dictionary<string, object>
+            yield return new ChartBeatApiDataSource("jp.wsj.com-QuickStats", "QuickStats", "/live/quickstats/v3", "jp.wsj.com");
+            yield return new ChartBeatApiDataSource("jp.wsj.com-Referrers", "Referrers", "/live/referrers/v3", "jp.wsj.com");
+            yield return new ChartBeatApiDataSource("jp.wsj.com-TopPages", "TopPages", "/toppages", "jp.wsj.com", new Dictionary<string, object>
                 {
                     {"limit", 10},
                 });
@@ -563,30 +574,30 @@ namespace DowJones.Dash.Website
                             },
                     }
                 );
-            yield return new ChartBeatDataSource("online.wsj.com-DashboardStats", "DashboardStats", "/dashapi/stats/", "online.wsj.com");
-            yield return new ChartBeatDataSource("online.wsj.com-HistorialTrafficSeries", "HistorialTrafficSeries", "/historical/traffic/series/", "online.wsj.com", new Dictionary<string, object>
+            yield return new ChartBeatApiDataSource("online.wsj.com-DashboardStats", "DashboardStats", "/dashapi/stats/", "online.wsj.com");
+            yield return new ChartBeatApiDataSource("online.wsj.com-HistorialTrafficSeries", "HistorialTrafficSeries", "/historical/traffic/series/", "online.wsj.com", new Dictionary<string, object>
                 {
                     {"frequency", "15"}
                 });
-            yield return new ChartBeatDataSource("online.wsj.com-HistorialTrafficSeriesWeekAgo", "HistorialTrafficSeriesWeekAgo", "/historical/traffic/series/", "online.wsj.com", new Dictionary<string, object>
+            yield return new ChartBeatApiDataSource("online.wsj.com-HistorialTrafficSeriesWeekAgo", "HistorialTrafficSeriesWeekAgo", "/historical/traffic/series/", "online.wsj.com", new Dictionary<string, object>
                 {
                     {"frequency", "15"},
                     {"days_ago", "7"}
                 });
-            yield return new ChartBeatDataSource("online.wsj.com-HistoricalTrafficStats", "HistoricalTrafficStats", "/historical/traffic/stats/", "online.wsj.com", new Dictionary<string, object>
+            yield return new ChartBeatApiDataSource("online.wsj.com-HistoricalTrafficStats", "HistoricalTrafficStats", "/historical/traffic/stats/", "online.wsj.com", new Dictionary<string, object>
                 {
                     {"fields", "srvload,peoples"},
                     {"properties_ago", "min,max,avg"},
                 });
-            yield return new ChartBeatDataSource("online.wsj.com-HistoricalTrafficValues", "HistoricalTrafficValues", "/historical/traffic/values/", "online.wsj.com", new Dictionary<string, object>
+            yield return new ChartBeatApiDataSource("online.wsj.com-HistoricalTrafficValues", "HistoricalTrafficValues", "/historical/traffic/values/", "online.wsj.com", new Dictionary<string, object>
                 {
                     {"days_ago", "0"},
                     {"limit", "1"},
                     {"fields", "internal,search,links,direct,social"},
                 });
-            yield return new ChartBeatDataSource("online.wsj.com-QuickStats", "QuickStats", "/live/quickstats/v3", "online.wsj.com");
-            yield return new ChartBeatDataSource("online.wsj.com-Referrers", "Referrers", "/live/referrers/v3", "online.wsj.com");
-            yield return new ChartBeatDataSource("online.wsj.com-TopPages", "TopPages", "/toppages", "online.wsj.com", new Dictionary<string, object>
+            yield return new ChartBeatApiDataSource("online.wsj.com-QuickStats", "QuickStats", "/live/quickstats/v3", "online.wsj.com");
+            yield return new ChartBeatApiDataSource("online.wsj.com-Referrers", "Referrers", "/live/referrers/v3", "online.wsj.com");
+            yield return new ChartBeatApiDataSource("online.wsj.com-TopPages", "TopPages", "/toppages", "online.wsj.com", new Dictionary<string, object>
                 {
                     {"limit", 10},
                 });

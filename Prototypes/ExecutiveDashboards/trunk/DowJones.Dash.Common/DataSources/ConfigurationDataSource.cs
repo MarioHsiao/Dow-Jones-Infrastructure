@@ -63,7 +63,7 @@ namespace DowJones.Dash.DataSources
         {
             get { return _log; }
         }
-        private static readonly ILog _log = LogManager.GetLogger(typeof(ChartBeatDataSource));
+        private static readonly ILog _log = LogManager.GetLogger(typeof(ChartBeatApiDataSource));
 
         public T Configuration { get; set; }
 
