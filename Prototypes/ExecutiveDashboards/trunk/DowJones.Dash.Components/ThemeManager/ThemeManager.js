@@ -9,61 +9,49 @@ DJ.UI.ThemeManager = DJ.UI.Component.extend({
     defaults: {
         debug: false
     },
-   
+
+    instance: null,
+
     init: function (element, meta) {
+
+        // loose singleton implementation
+        if (DJ.UI.ThemeManager.instance)
+            return;
+
         var $meta = $.extend({ name: "ThemeManager" }, meta);
 
         // Call the base constructor
         this._super(element, $meta);
 
-        if (!DJ.UI.ThemeManager.instance) {
-            DJ.UI.ThemeManager.instance = this;
-        }
         if (this.options.debug) {
             DJ.config.debug = true;
         }
-        this._initializeObject();
-        this.initializeHighchartsTheme();
+
+        this._initializeNamedColors();
         this.initializeHighchartsGradient();
+
+        DJ.UI.ThemeManager.instance = this;
+
     },
-    
-    _initializeEventHandlers: function () {
-    },
-    
-    _initializeObject: function () {
+
+    _initializeNamedColors: function () {
         this.colors = {
-            blue: $dj.delegate(this, function() {
-                return this.options.colors[0];
-            }),
-            red: $dj.delegate(this, function() {
-                    return this.options.colors[1];
-            }),
-            green: $dj.delegate(this, function() {
-                    return this.options.colors[2];
-            }),
-            purple: $dj.delegate(this, function() {
-                    return this.options.colors[3];
-            }),
-            ltBlue: $dj.delegate(this, function () {
-                    return this.options.colors[6];
-            }),
-            yellow: $dj.delegate(this, function() {
-                    return this.options.colors[5];
-            }),
-            grey: $dj.delegate(this, function() {
-                    return "#CCCCCC";
-            }),
-            siteBackground: function () {
-                return "3C3C3C";
-            },
-            brighten: function(color, brightness) {
+            blue: this.options.colors[0],
+            red: this.options.colors[1],
+            green: this.options.colors[2],
+            purple: this.options.colors[3],
+            ltBlue: this.options.colors[6],
+            yellow: this.options.colors[5],
+            grey: "#CCCCCC",
+            siteBackground: "#3C3C3C",
+            brighten: function (color, brightness) {
                 Highcharts.Color(color).brighten(brightness).get('rgb');
             }
         };
     },
 
     initializeHighchartsGradient: function () {
-        Highcharts.getOptions().colors = $.map(Highcharts.getOptions().colors, function (color) {
+        Highcharts.getOptions().colors = $.map(this.options.colors, function (color) {
             return {
                 radialGradient: { cx: 0.5, cy: 0.3, r: 0.7 },
                 stops: [
@@ -72,20 +60,8 @@ DJ.UI.ThemeManager = DJ.UI.Component.extend({
                 ]
             };
         });
-    },
-    
-    initializeHighchartsTheme: function () {
-        var self = this,
-            o = self.options;
-        var tempOptions = Highcharts.getOptions();
-        tempOptions.colors = o.colors;
-    },
-    
-    EOF: null
+    }
 });
-
-DJ.UI.ThemeManager.instance = null;
-
 
 // Declare this class as a jQuery plugin
 $.plugin('dj_ThemeManager', DJ.UI.ThemeManager);

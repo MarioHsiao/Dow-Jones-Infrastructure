@@ -1,6 +1,6 @@
 ﻿@using DowJones.Dash.Components.Models.ThemeManager
 @{
-    ViewBag.Title = "Demo Dashboard";
+    ViewBag.Title = "Dash - Executive Dashboard";
 }
 
 @section styles {
@@ -13,11 +13,6 @@
 }
 
 <section id="dashboard" class="row-fluid">
-    @DJ.Render(new ThemeManagerModel
-        {
-            ID = "ThemeManager",
-            Colors = new List<string>(new[] { "#4183C4", "#E54A4F", "#A4C639", "#86C9EF", "#613854", "#FFCC33", "#02A2DB" }),
-        })
     @DJ.Render(Model)
 </section>
 

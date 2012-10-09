@@ -99,7 +99,7 @@ DJ.UI.StatsMap = DJ.UI.Component.extend({
         // Call the base constructor
         this._super(element, $.extend({ name: 'StatsMap' }, meta));
 
-        this._initializeChartProps();
+        this._initializeMapData();
         this._initializeChart();
 
         this._showContent();
@@ -126,9 +126,7 @@ DJ.UI.StatsMap = DJ.UI.Component.extend({
 
     _initializeEventHandlers: function () {
         $dj.subscribe(this.options.dataEvent, this._delegates.setData);
-
-        if (this.options.map !== 'world')
-            $dj.subscribe('comm.domain.changed', this._delegates.domainChanged);
+        $dj.subscribe('comm.domain.changed', this._delegates.domainChanged);
 
         var self = this;
         this.$element.on('click', this.selectors.pill, function () {
@@ -144,14 +142,14 @@ DJ.UI.StatsMap = DJ.UI.Component.extend({
         });
     },
 
-    _initializeChartProps: function (map) {
+    _initializeMapData: function (map) {
         map = map || this.options.map;
         this.map = Highcharts.Maps[map];
         this.territories = this.map.territories;
         this.paths = this.map.paths;
         this.currentStateCodes = this.stateCodes[map];
 
-        this.activePillId = null;
+
     },
 
     _domainChanged: function (data) {
@@ -160,7 +158,12 @@ DJ.UI.StatsMap = DJ.UI.Component.extend({
 
         this.domain = data;
 
-        this._initializeChartProps(data.map);
+        this.activePillId = null;
+
+        // world map doesn't change by country!
+        if (this.options.map !== 'world')
+            this._initializeMapData(data.map);
+
         this._initializeChart();
     },
 
@@ -176,7 +179,7 @@ DJ.UI.StatsMap = DJ.UI.Component.extend({
             this.mapConfig.series[0].data.push({
                 key: key,
                 path: this.paths[key],
-                dataLabels: this.dataLabelOptions[key] // Oregon undefined
+                dataLabels: this.dataLabelOptions[key]
             });
         }
 
