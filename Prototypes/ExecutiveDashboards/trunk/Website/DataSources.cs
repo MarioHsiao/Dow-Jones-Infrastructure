@@ -182,9 +182,9 @@ namespace DowJones.Dash.Website
 					Region = "us",
 					PerformanceZones = new[]
                             {
-                                new PerformanceZone{To = 0, From = 5, ZoneType = PerformanceZoneType.Cool},
-                                new PerformanceZone{To = 5, From = 7, ZoneType = PerformanceZoneType.Neutral},
-                                new PerformanceZone{To = 7, From = 100, ZoneType = PerformanceZoneType.Hot},
+                                new PerformanceZone{From = 0, To = 5, ZoneType = PerformanceZoneType.Cool},
+                                new PerformanceZone{From = 5, To = 7, ZoneType = PerformanceZoneType.Neutral},
+                                new PerformanceZone{From = 7, To = 100, ZoneType = PerformanceZoneType.Hot},
                             },
 				}
 				);
@@ -199,9 +199,9 @@ namespace DowJones.Dash.Website
 					Region = "de",
 					PerformanceZones = new[]
                             {
-                                new PerformanceZone{To = 0, From = 8, ZoneType = PerformanceZoneType.Cool},
-                                new PerformanceZone{To = 8, From = 10, ZoneType = PerformanceZoneType.Neutral},
-                                new PerformanceZone{To = 10, From = 100, ZoneType = PerformanceZoneType.Hot},
+                                new PerformanceZone{From = 0, To = 8, ZoneType = PerformanceZoneType.Cool},
+                                new PerformanceZone{From = 8, To = 10, ZoneType = PerformanceZoneType.Neutral},
+                                new PerformanceZone{From = 10, To = 100, ZoneType = PerformanceZoneType.Hot},
                             },
 				}
 				);
@@ -216,9 +216,9 @@ namespace DowJones.Dash.Website
 					Region = "jp",
 					PerformanceZones = new[]
                             {
-                                new PerformanceZone{To = 0, From = 8, ZoneType = PerformanceZoneType.Cool},
-                                new PerformanceZone{To = 8, From = 10, ZoneType = PerformanceZoneType.Neutral},
-                                new PerformanceZone{To = 10, From = 100, ZoneType = PerformanceZoneType.Hot},
+                                new PerformanceZone{From = 0, To = 8, ZoneType = PerformanceZoneType.Cool},
+                                new PerformanceZone{From = 8, To = 10, ZoneType = PerformanceZoneType.Neutral},
+                                new PerformanceZone{From = 10, To = 100, ZoneType = PerformanceZoneType.Hot},
                             },
 				});
 
@@ -232,9 +232,9 @@ namespace DowJones.Dash.Website
 					Region = "cn",
 					PerformanceZones = new[]
                             {
-                                new PerformanceZone{To = 0, From = 8, ZoneType = PerformanceZoneType.Cool},
-                                new PerformanceZone{To = 8, From = 10, ZoneType = PerformanceZoneType.Neutral},
-                                new PerformanceZone{To = 10, From = 100, ZoneType = PerformanceZoneType.Hot},
+                                new PerformanceZone{From = 0, To = 8, ZoneType = PerformanceZoneType.Cool},
+                                new PerformanceZone{From = 8, To = 10, ZoneType = PerformanceZoneType.Neutral},
+                                new PerformanceZone{From = 10, To = 100, ZoneType = PerformanceZoneType.Hot},
                             },
 				});
 
@@ -248,9 +248,9 @@ namespace DowJones.Dash.Website
 					Region = "us",
 					PerformanceZones = new[]
                             {
-                                new PerformanceZone{To = 0, From = 5, ZoneType = PerformanceZoneType.Cool},
-                                new PerformanceZone{To = 5, From = 7, ZoneType = PerformanceZoneType.Neutral},
-                                new PerformanceZone{To = 7, From = 100, ZoneType = PerformanceZoneType.Hot},
+                                new PerformanceZone{From = 0, To = 5, ZoneType = PerformanceZoneType.Cool},
+                                new PerformanceZone{From = 5, To = 7, ZoneType = PerformanceZoneType.Neutral},
+                                new PerformanceZone{From = 7, To = 100, ZoneType = PerformanceZoneType.Hot},
                             },
 				}
 				);
