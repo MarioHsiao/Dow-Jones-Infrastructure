@@ -107,10 +107,17 @@ namespace DowJones.Dash.Website
                     {"seconds", 300},
                     {"site", (int) Sites.WsjLive},
                 });
-            yield return new GomezDataSource("live.wsj.com-PageLoadDetailsBySubCountryforCountry", "PageLoadDetailsBySubCountryforCountry", @"[SplunkExport].[dbo].[GetPageLoadDetailsBySubCountryforCountry]", new Dictionary<string, object>
+            yield return new GomezDataSource("live.wsj.com-PageLoadDetailsBySubCountryforCountryNew", "PageLoadDetailsBySubCountryforCountry", @"[SplunkExport].[dbo].[GetPageLoadDetailsBySubCountryforCountry]", new Dictionary<string, object>
                 {
                     {"country", 57},
                     {"seconds", 3600},
+                    {"site", (int) Sites.WsjLive},
+                });
+
+			yield return new GomezDataSource("live.wsj.com-PageLoadDetailsByCountryForRegion", "PageLoadDetailsByCountryForRegion", @"[SplunkExport].[dbo].[GetPageLoadDetailsByCountryForRegion]", new Dictionary<string, object>
+                {
+                    {"region", 0},
+                    {"seconds", 300},
                     {"site", (int) Sites.WsjLive},
                 });
         } 
