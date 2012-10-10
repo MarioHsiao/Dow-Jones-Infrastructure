@@ -125,7 +125,8 @@ h2 a.reset {
   margin-bottom: 20px; }
 
 .dj_module.minimized .dj_module-core {
-  display: none !important; }
+  margin-left: -10000px;
+  height: 0px; }
 
 .minimized .minimize {
   display: none !important; }
