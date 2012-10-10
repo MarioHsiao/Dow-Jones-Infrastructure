@@ -170,7 +170,7 @@ DJ.UI.StatsMap = DJ.UI.Component.extend({
         if (this.options.map !== 'world')
             this._initializeMapData(data.map);
 
-        if (this.chart) this.chart.destroy();
+        this.mapContainer.hide();
         
         this.dataSourceConfig = data;
         this.initializeChart = true;
@@ -211,7 +211,7 @@ DJ.UI.StatsMap = DJ.UI.Component.extend({
 
         //if (this.chart) this.chart.destroy();
 
-        window.StatsChart = this.chart = new Highcharts.Map(this.mapConfig);
+        this.chart = new Highcharts.Map(this.mapConfig);
 
         this._initializingChart = false;
     },
@@ -251,8 +251,10 @@ DJ.UI.StatsMap = DJ.UI.Component.extend({
 
         this._showContent();
         
-        if (this._initializeChart)
+        if (this._initializeChart) {
+            this.mapContainer.show();
             this._initializeChart(this.dataSourceConfig);
+        }
 
         // get some sensible structure from a flat result set
         var mappedData = this._mapData(data);
