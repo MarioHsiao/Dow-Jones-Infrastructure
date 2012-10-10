@@ -162,13 +162,19 @@ DJ.UI.StatsMap = DJ.UI.Component.extend({
         if (!data)
             return;
 
+        this._showContent();
+        
         this.activePillId = null;
 
         // world map doesn't change by country!
         if (this.options.map !== 'world')
             this._initializeMapData(data.map);
 
-        this._initializeChart(data);
+        if (this.chart) this.chart.destroy();
+        
+        this.dataSourceConfig = data;
+        this.initializeChart = true;
+        
     },
 
     _initializeChart: function (config) {
@@ -203,7 +209,7 @@ DJ.UI.StatsMap = DJ.UI.Component.extend({
         //console.log('_initializeChart:', this.mapSource, this.mapConfig.chart);
         this.mapConfig.chart.renderTo = this.$element.find('.mapContainer')[0];
 
-        if (this.chart) this.chart.destroy();
+        //if (this.chart) this.chart.destroy();
 
         window.StatsChart = this.chart = new Highcharts.Map(this.mapConfig);
 
@@ -244,6 +250,9 @@ DJ.UI.StatsMap = DJ.UI.Component.extend({
         }
 
         this._showContent();
+        
+        if (this._initializeChart)
+            this._initializeChart(this.dataSourceConfig);
 
         // get some sensible structure from a flat result set
         var mappedData = this._mapData(data);
@@ -330,12 +339,12 @@ DJ.UI.StatsMap = DJ.UI.Component.extend({
     },
 
     _showComingSoon: function () {
-        this.$element.find(this.selectors.contentContainer).hide('fast');
+        this.$element.find(this.selectors.contentContainer).addClass('visuallyHidden');
         this.$element.find(this.selectors.noDataContainer).show('fast');
     },
 
     _showContent: function () {
-        this.$element.find(this.selectors.contentContainer).show('fast');
+        this.$element.find(this.selectors.contentContainer).removeClass('visuallyHidden');
         this.$element.find(this.selectors.noDataContainer).hide('fast');
     }
 });
