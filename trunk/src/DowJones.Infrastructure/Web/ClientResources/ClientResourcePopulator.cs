@@ -13,14 +13,13 @@ namespace DowJones.Web
 {
 	public class ClientResourcePopulator : IClientResourceProcessor
 	{
-		private readonly HttpContextBase _httpContext;
-
-
+        
 		[Inject("Cross-cutting concern")]
 		protected internal ILog Log { get; set; }
+        
+	    public HttpContextBase HttpContext { get; set; }
 
-
-		public ClientResourceProcessorOrder? Order
+	    public ClientResourceProcessorOrder? Order
 		{
 			get { return ClientResourceProcessorOrder.Last; }
 		}
@@ -30,14 +29,7 @@ namespace DowJones.Web
 			get { return ClientResourceProcessorKind.Populator; }
 		}
 
-
-		public ClientResourcePopulator(HttpContextBase httpContext)
-		{
-			_httpContext = httpContext;
-		}
-
-
-		public void Process(ProcessedClientResource resource)
+        public void Process(ProcessedClientResource resource)
 		{
 			var clientResource = resource.ClientResource;
 
@@ -94,7 +86,7 @@ namespace DowJones.Web
 			var resourceName = GetPreferredResourceName(embeddedClientResource);
 			var stream = embeddedClientResource.TargetAssembly.GetManifestResourceStream(resourceName);
 
-			if (_httpContext.DebugEnabled())
+			if (HttpContext.DebugEnabled())
 			{
 				var localFile = RetrieveLocallyModifiedEmbeddedResourceFile(embeddedClientResource);
 				stream = localFile ?? stream;
@@ -120,7 +112,7 @@ namespace DowJones.Web
 				return resourceName;
 
 			// the developer knows what he's doing!
-			if (_httpContext.DebugEnabled())
+			if (HttpContext.DebugEnabled())
 				return resourceName;
 
 			var minifiedResourceName = Regex.Replace(resourceName, "\\.js$", ".min.js");
@@ -135,7 +127,7 @@ namespace DowJones.Web
 
 		private Stream RetrieveLocallyModifiedEmbeddedResourceFile(EmbeddedClientResource embeddedClientResource)
 		{
-			var websiteDirectory = _httpContext.Server.MapPath(".");
+			var websiteDirectory = HttpContext.Server.MapPath(".");
 
 			var assemblyName = embeddedClientResource.TargetAssembly.GetName().Name;
 			var resourceNameWithoutAssembly = embeddedClientResource.ResourceName.Remove(0, assemblyName.Length + 1);
@@ -195,7 +187,7 @@ namespace DowJones.Web
 			else
 				relativePath = VirtualPathUtility.ToAbsolute(url);
 
-			string filename = _httpContext.Server.MapPath(relativePath);
+			string filename = HttpContext.Server.MapPath(relativePath);
 
 			var fileInfo = new FileInfo(filename);
 

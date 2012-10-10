@@ -14,13 +14,9 @@ namespace DowJones.Globalization
             interfaceLanguage = interfaceLanguage ?? string.Empty;
 
             InterfaceLanguage language;
-            bool isValidLanguage = Enum.TryParse(interfaceLanguage, true, out language);
+            var isValidLanguage = Enum.TryParse(interfaceLanguage, true, out language);
 
-            if (isValidLanguage)
-                return GetCultureInfoFromInterfaceLanguage(language);
-
-            return CultureInfo.CurrentUICulture;
-
+            return isValidLanguage ? GetCultureInfoFromInterfaceLanguage(language) : CultureInfo.CurrentUICulture;
         }
 
         public static CultureInfo GetCultureInfoFromInterfaceLanguage(InterfaceLanguage language)

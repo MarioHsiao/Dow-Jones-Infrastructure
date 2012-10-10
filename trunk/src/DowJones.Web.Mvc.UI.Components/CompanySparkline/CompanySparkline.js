@@ -114,7 +114,7 @@
                         shadow: false,
                         states: {
                             hover: {
-                                lineWidth: 2
+                                lineWidth: 0
                             }
                         },
                         marker: {

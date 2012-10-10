@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web;
 using DowJones.Exceptions;
 using DowJones.Infrastructure;
 
@@ -13,6 +14,7 @@ namespace DowJones.Web.UI
 
         private readonly IClientTemplateParser _parser;
 
+        public HttpContextBase HttpContext { get; set; }
 
         public ClientResourceProcessorOrder? Order
         {

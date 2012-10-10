@@ -1,4 +1,5 @@
 ﻿using System.Text.RegularExpressions;
+using System.Web;
 using DowJones.Infrastructure;
 using DowJones.Token;
 
@@ -12,6 +13,8 @@ namespace DowJones.Web
                       RegexOptions.IgnorePatternWhitespace | RegexOptions.CultureInvariant);
 
         private readonly ITokenRegistry _tokenRegistry;
+
+        public HttpContextBase HttpContext { get; set; }
 
         public ClientResourceProcessorOrder? Order
         {

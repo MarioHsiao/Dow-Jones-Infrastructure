@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
@@ -6,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Web;
 using DowJones.DependencyInjection;
 using DowJones.Extensions;
@@ -248,7 +250,7 @@ namespace DowJones.Web
             return isModified;
         }
 
-        private ProcessedClientResource ProcessClientResource(ClientResource resource)
+        private ProcessedClientResource ProcessClientResource(HttpContextBase context, ClientResource resource)
         {
             var processedResource = new ProcessedClientResource(resource);
 
@@ -258,6 +260,7 @@ namespace DowJones.Web
 
             foreach (var processor in processors)
             {
+                processor.HttpContext = context;
                 var processedDependentResources = new List<ProcessedClientResource>();
                 foreach (var processedDependentResource in processedResource.ClientTemplates)
                 {
@@ -310,14 +313,14 @@ namespace DowJones.Web
                 Log.Debug("Client Resources retrieved from cache: " + string.Join(", ", cachedResourceNames));
             }
 
-            var uncachedResources = LoadClientResources(uncachedResourceNames);
+            var uncachedResources = LoadClientResources(context, uncachedResourceNames);
 
             var newlyCachedResources = uncachedResources.Select(resource => CacheClientResource(resource, culture));
 
             return cachedResources.Union(newlyCachedResources);
         }
 
-        private IEnumerable<ProcessedClientResource> LoadClientResources(IEnumerable<string> resourceNames)
+        private IEnumerable<ProcessedClientResource> LoadClientResources(HttpContextBase context, IEnumerable<string> resourceNames)
         {
             if (resourceNames == null || resourceNames.IsEmpty())
                 return Enumerable.Empty<ProcessedClientResource>();
@@ -326,6 +329,9 @@ namespace DowJones.Web
 
             var existingResourceNames = resources.Select(x => x.Name ?? x.Url);
 
+            var queue = new ConcurrentQueue<ProcessedClientResource>(); 
+            var tasks = new List<Task>();
+
             var resourcesRequestedButDidntExist = resourceNames.Except(existingResourceNames);
             if (resourcesRequestedButDidntExist.Any())
             {
@@ -333,9 +339,16 @@ namespace DowJones.Web
                          string.Join(", ", resourcesRequestedButDidntExist));
             }
 
-            var processedResources = resources.Select(ProcessClientResource).ToArray();
+            //var processedResources = resources.Select(ProcessClientResource).ToArray();
+            foreach (var clientResource in resources)
+            {
+                tasks.Add(Task.Factory.StartNew(() => queue.Enqueue(ProcessClientResource(context, clientResource))));
+            }
 
-            return processedResources;
+            Task.WaitAll(tasks.ToArray());
+            return queue.ToList();
+
+            //return resources.Select(resource => ProcessClientResource(context, resource)).ToList();
         }
 
         private ContentCacheItem CacheClientResource(ProcessedClientResource resource, CultureInfo culture)

@@ -50,7 +50,6 @@ DJ.UI.Gauge = DJ.UI.Component.extend({
 
     _initializeElements: function (ctx) {
         //Bind the layout template
-        DJ.config.debug = true;
         $(this.$element).html(this.templates.layout({value: this.data, title: this.options.title, footer: this.options.footer }));
     },
 
@@ -87,15 +86,17 @@ DJ.UI.Gauge = DJ.UI.Component.extend({
     setData: function (gaugeData) {
         this.data = gaugeData;
         if (this.options.gaugeType === 0) { // Is a speedometer
-            var temp = this.options.max;
             this.bindOnSuccess();
-            if (this.data <= this.options.max) {
-               // remove the plotbands and add new ones.
-               var axis = this.chart.yAxis[0];
-               axis.removePlotBand("speed1");
-               var plotBands = this._getSpedometerBands();
-               axis.addPlotBand(plotBands[1]);
-           }
+            var axis = this.chart.yAxis[0];
+            var plotBand = this._getSpedometerBands()[0];
+            if (this.data < this.options.min) {
+                plotBand = $.extend(true, plotBand, { to: this.options.ming });
+            }
+            else if (this.data > this.options.max) {
+                plotBand = $.extend(true, plotBand, { to: this.options.ming });
+            }
+            axis.removePlotBand("speed1");
+            axis.addPlotBand(plotBand);
         }
         
     },
@@ -109,6 +110,7 @@ DJ.UI.Gauge = DJ.UI.Component.extend({
         this.options.footer = str;
         $(this.selectors.chartFooter, this.$element).html(str);
     },
+
 
     /* Private methods */
 
@@ -130,10 +132,9 @@ DJ.UI.Gauge = DJ.UI.Component.extend({
     
     _updateGauge: function() {
         var point = this.chart.series[0].points[0];
-        point.update(this.data, true, false);
+        point.update(this.data, true, this.options.gaugeType === 1); // if the type is meter use animation.
     },
     
-
     //Initialize Delegates
     _initializeDelegates: function () {
       

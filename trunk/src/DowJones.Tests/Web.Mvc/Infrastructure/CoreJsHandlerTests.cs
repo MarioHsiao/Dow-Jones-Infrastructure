@@ -27,7 +27,7 @@ namespace DowJones.Web.Mvc.Infrastructure
 
 			//using (var outputStream = new MemoryStream())
 			//{
-			//	var context = new Mock<HttpContextBase>();
+			//	var context = new Mock<HttpContext>();
 			//	context.Setup(x => x.Request.Url).Returns(new Uri(Url));
 			//	context.Setup(x => x.Request.Headers).Returns(new NameValueCollection());
 			//	context.Setup(x => x.Items).Returns(EmptyDictionary.Instance);
