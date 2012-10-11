@@ -1169,10 +1169,15 @@ DJ.$dj.define('$dj', ['jquery'], DJ.$dj);
             if ($meta["templates"])
                 this.templates = $.extend({}, this.templates, $meta.templates);
 
+            var self = this;
             // re-assign the scope of 'this' inside templates to the instance
             for (var template in this.templates) {
                 if (this.templates.hasOwnProperty(template) && this.templates[template].bind) {
-                    this.templates[template] = this.templates[template].bind(this);
+                    (function (t) {
+                        return function () {
+                            self.template[t] = self.templates[t].bind(self);
+                        };
+                    }(template));
                 }
             }
 
