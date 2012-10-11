@@ -20,385 +20,389 @@ using log4net;
 
 namespace DowJones.Web
 {
-    public class ClientResourceHandler : HttpHandlerBase
-    {
-        public const string CachingTokenKey = "t";
-        public const string ClientResourceIDKey = "id";
-        public const string ClientTokenFilename = "~/ClientToken.txt";
-        public static readonly Encoding DefaultEncoding = Encoding.UTF8;
-        public const string LanguageKey = "lang";
-        public const string RequireModuleKey = "require";
+	public class ClientResourceHandler : HttpHandlerBase
+	{
+		public const string CachingTokenKey = "t";
+		public const string ClientResourceIDKey = "id";
+		public const string ClientTokenFilename = "~/ClientToken.txt";
+		public static readonly Encoding DefaultEncoding = Encoding.UTF8;
+		public const string LanguageKey = "lang";
+		public const string RequireModuleKey = "require";
 
-        public static Func<ContentCacheItem, bool> IsCacheItemValid =
-            cacheItem => cacheItem != null && cacheItem.IsValid;
+		public static Func<ContentCacheItem, bool> IsCacheItemValid =
+			cacheItem => cacheItem != null && cacheItem.IsValid;
 
-        public static Func<HttpContextBase, bool> IsClientCachingEnabled =
-            context => !context.DebugEnabled();
+		public static Func<HttpContextBase, bool> IsClientCachingEnabled =
+			context => !context.DebugEnabled();
 
-        public static Func<string> CacheTokenFactory = () => _cachingToken.Value;
+		public static Func<string> CacheTokenFactory = () => _cachingToken.Value;
 
-        private static readonly Lazy<string> _cachingToken = new Lazy<string>(GetCachingToken);
-        
-        /// <summary>
-        /// Function used to determine the LastModifiedTimestamp of a request
-        /// </summary>
-        public static Func<HttpContextBase, DateTime> LastModifiedCalculator
-        {
-            get
-            {
-                if (_lastModifiedCalculator == null)
-                {
-                    var timestamp = typeof (ClientResourceHandler).Assembly.GetAssemblyTimestamp();
-                    return context => timestamp;
-                }
+		private static readonly Lazy<string> _cachingToken = new Lazy<string>(GetCachingToken);
 
-                return _lastModifiedCalculator;
-            }
-            set { _lastModifiedCalculator = value; }
-        }
-        private volatile static Func<HttpContextBase, DateTime> _lastModifiedCalculator;
+		/// <summary>
+		/// Function used to determine the LastModifiedTimestamp of a request
+		/// </summary>
+		public static Func<HttpContextBase, DateTime> LastModifiedCalculator
+		{
+			get
+			{
+				if (_lastModifiedCalculator == null)
+				{
+					var timestamp = typeof(ClientResourceHandler).Assembly.GetAssemblyTimestamp();
+					return context => timestamp;
+				}
 
-        [Inject("Cannot use constructor injection on HttpHandlers")]
-        protected internal ILog Log { get; set; }
+				return _lastModifiedCalculator;
+			}
+			set { _lastModifiedCalculator = value; }
+		}
+		private volatile static Func<HttpContextBase, DateTime> _lastModifiedCalculator;
 
-        [Inject("Cannot use constructor injection on HttpHandlers")]
-        protected internal IContentCache ContentCache { get; set; }
+		[Inject("Cannot use constructor injection on HttpHandlers")]
+		protected internal ILog Log { get; set; }
 
-        [Inject("Cannot use constructor injection on HttpHandlers")]
-        protected internal IClientResourceManager ClientResourceManager { get; set; }
+		[Inject("Cannot use constructor injection on HttpHandlers")]
+		protected internal IContentCache ContentCache { get; set; }
 
-        [Inject("Cannot use constructor injection on HttpHandlers")]
-        protected internal IEnumerable<IClientResourceProcessor> ClientResourceProcessors { get; set; }
+		[Inject("Cannot use constructor injection on HttpHandlers")]
+		protected internal IClientResourceManager ClientResourceManager { get; set; }
 
-
-        public static string GenerateUrl(string resourceId, InterfaceLanguage language, HttpContextBase context = null, bool? debug = null)
-        {
-            var culture = CultureManager.GetCultureInfoFromInterfaceLanguage(language);
-            return GenerateUrl(resourceId, culture, context, debug);
-        }
-
-        // Target for Func<string, string> delegate
-        public static string GenerateUrl(string resourceId)
-        {
-            return GenerateUrl(resourceId, null, null, null);
-        }
-
-        // Target for Func<string, CultureInfo, string> delegate
-        public static string GenerateUrl(string resourceId, CultureInfo culture)
-        {
-            return GenerateUrl(resourceId, culture, null, null);
-        }
-
-        public static string GenerateUrl(string resourceId, CultureInfo culture, HttpContextBase context, bool? debug)
-        {
-            Guard.IsNotNullOrEmpty(resourceId, "resourceId");
-
-            culture = culture ?? Thread.CurrentThread.CurrentCulture;
-
-            if (!resourceId.Contains(";"))
-            {
-                if (resourceId.StartsWith("http", true, culture))
-                    return resourceId;
-                if (resourceId.StartsWith("~/"))
-                    return VirtualPathUtility.ToAbsolute(resourceId);
-            }
-
-            var relativeUrl = string.Format("{0}?{1}={2}&{3}={4}&{5}={6}",
-                                    Settings.Default.ClientResourceHandlerPath,
-                                    LanguageKey, MapLanguageKey(culture),
-                                    ClientResourceIDKey, HttpUtility.UrlEncode(resourceId).Replace("%3b", ";"),
-                                    CachingTokenKey, CacheTokenFactory()
-                                );
-
-            if (debug == true || context.DebugEnabled())
-                relativeUrl += "&debug=true";
-
-            context = context ?? new HttpContextWrapper(HttpContext.Current);
-
-            return context.GetExternalUrl(relativeUrl);
-        }
-
-        public static string MapLanguageKey(CultureInfo culture)
-        {
-            switch(culture.ThreeLetterWindowsLanguageName)
-            {
-                case "CHT":
-                    return "zhtw";
-                case "CHS":
-                    return "zhcn";
-                default:
-                    return culture.TwoLetterISOLanguageName;
-            }
-        }
-
-        public static string GenerateRequireJsBaseUrl(CultureInfo culture = null, HttpContextBase context = null, bool? debug = null)
-        {
-            culture = culture ?? Thread.CurrentThread.CurrentCulture;
-            context = context ?? new HttpContextWrapper(HttpContext.Current);
-
-            var baseUrl = new StringBuilder();
-            baseUrl.Append(context.GetExternalUrl(Settings.Default.ClientResourceHandlerPath));
-            baseUrl.Append("?");
-            baseUrl.AppendFormat("{0}={1}", LanguageKey, culture.TwoLetterISOLanguageName);
-            baseUrl.AppendFormat("&{0}={1}", CachingTokenKey, CacheTokenFactory());
-
-            if (debug == true || context.DebugEnabled())
-                baseUrl.Append("&debug=true");
-
-            baseUrl.AppendFormat("&{0}={1}", RequireModuleKey, string.Empty);
-
-            return baseUrl.ToString();
-        }
+		[Inject("Cannot use constructor injection on HttpHandlers")]
+		protected internal IEnumerable<IClientResourceProcessor> ClientResourceProcessors { get; set; }
 
 
-        public override void OnProcessRequest(HttpContextBase context)
-        {
-            var culture = SetRequestLanguage(context.Request[LanguageKey]);
+		public static string GenerateUrl(string resourceId, InterfaceLanguage language, HttpContextBase context = null, bool? debug = null)
+		{
+			var culture = CultureManager.GetCultureInfoFromInterfaceLanguage(language);
+			return GenerateUrl(resourceId, culture, context, debug);
+		}
 
-            var resourceId = context.Request[ClientResourceIDKey];
+		// Target for Func<string, string> delegate
+		public static string GenerateUrl(string resourceId)
+		{
+			return GenerateUrl(resourceId, null, null, null);
+		}
 
-            if (string.IsNullOrWhiteSpace(resourceId))
-            {
-                // Check for a require.js request in the form of: /[ResourceId].js
-                var requireResourceId = context.Request[RequireModuleKey];
+		// Target for Func<string, CultureInfo, string> delegate
+		public static string GenerateUrl(string resourceId, CultureInfo culture)
+		{
+			return GenerateUrl(resourceId, culture, null, null);
+		}
 
-                if (string.IsNullOrWhiteSpace(requireResourceId))
-                {
-                    throw new HttpException(400, "Invalid Client Resource");
-                }
+		public static string GenerateUrl(string resourceId, CultureInfo culture, HttpContextBase context, bool? debug)
+		{
+			Guard.IsNotNullOrEmpty(resourceId, "resourceId");
 
-                // Chop off the beginning / and trailing .js
-                resourceId = requireResourceId.Substring(1, requireResourceId.Length - 4);
-            }
+			culture = culture ?? Thread.CurrentThread.CurrentCulture;
 
-            if (ResourceHasNotBeenModified(context))
-            {
-                context.Response.StatusCode = (int)HttpStatusCode.NotModified;
-                return;
-            }
+			if (!resourceId.Contains(";"))
+			{
+				if (resourceId.StartsWith("http", true, culture))
+					return resourceId;
+				if (resourceId.StartsWith("~/"))
+					return VirtualPathUtility.ToAbsolute(resourceId);
+			}
 
-            context.Response.Clear();
-            context.Response.Buffer = true;
+			var relativeUrl = string.Format("{0}?{1}={2}&{3}={4}&{5}={6}",
+									Settings.Default.ClientResourceHandlerPath,
+									LanguageKey, MapLanguageKey(culture),
+									ClientResourceIDKey, HttpUtility.UrlEncode(resourceId).Replace("%3b", ";"),
+									CachingTokenKey, CacheTokenFactory()
+								);
 
-            RenderClientResources(context, resourceId, culture);
-        }
+			if (debug == true || context.DebugEnabled())
+				relativeUrl += "&debug=true";
 
-        public void RenderClientResources(HttpContextBase context, string resourceId, CultureInfo culture = null)
-        {
-            var resourceNames = ClientResourceManager.ParseClientResourceNames(resourceId);
-            RenderClientResources(context, resourceNames, culture);
-        }
+			context = context ?? new HttpContextWrapper(HttpContext.Current);
 
-        public void RenderClientResources(HttpContextBase context, IEnumerable<string> resourceNames, CultureInfo culture = null)
-        {
-            resourceNames = resourceNames as List<string> ?? resourceNames.ToList();
-            var clientResources = GetClientResources(context, resourceNames, culture);
+			return context.GetExternalUrl(relativeUrl);
+		}
 
-            var contentResourcesCacheItems = clientResources as List<ContentCacheItem> ?? clientResources.ToList();
-            if (!contentResourcesCacheItems.Any())
-                throw new HttpException(404, "Client Resource Not Found");
+		public static string MapLanguageKey(CultureInfo culture)
+		{
+			switch (culture.ThreeLetterWindowsLanguageName)
+			{
+				case "CHT":
+					return "zhtw";
+				case "CHS":
+					return "zhcn";
+				default:
+					return culture.TwoLetterISOLanguageName;
+			}
+		}
 
-            // The resources aren't necessarily retrieved in the
-            // correct order, so reorder them before they're rendered
-            var orderedClientResources =
-                from name in resourceNames
-                from resource in contentResourcesCacheItems
-                where resource.Key.Id == name
-                select resource;
+		public static string GenerateRequireJsBaseUrl(CultureInfo culture = null, HttpContextBase context = null, bool? debug = null)
+		{
+			culture = culture ?? Thread.CurrentThread.CurrentCulture;
+			context = context ?? new HttpContextWrapper(HttpContext.Current);
 
-            RenderClientResources(context, orderedClientResources, DefaultEncoding);
-        }
+			var baseUrl = new StringBuilder();
+			baseUrl.Append(context.GetExternalUrl(Settings.Default.ClientResourceHandlerPath));
+			baseUrl.Append("?");
+			baseUrl.AppendFormat("{0}={1}", LanguageKey, culture.TwoLetterISOLanguageName);
+			baseUrl.AppendFormat("&{0}={1}", CachingTokenKey, CacheTokenFactory());
 
-        private void RenderClientResources(HttpContextBase context, IEnumerable<ContentCacheItem> cachedItems, Encoding contentEncoding)
-        {
-            Guard.IsNotNull(context, "context");
-            Guard.IsNotNull(cachedItems, "cachedItems");
+			if (debug == true || context.DebugEnabled())
+				baseUrl.Append("&debug=true");
 
-            cachedItems = cachedItems as List<ContentCacheItem> ?? cachedItems.ToList();
-            var cachedItem = cachedItems.First();
+			baseUrl.AppendFormat("&{0}={1}", RequireModuleKey, string.Empty);
 
-            context.Response.ContentType = cachedItem.ContentType;
-            context.Response.ContentEncoding = contentEncoding;
+			return baseUrl.ToString();
+		}
 
-            if (IsClientCachingEnabled(context))
-            {
-                var expirationDate = DateTime.Now.AddYears(1);
-                context.Response.Cache.SetExpires(expirationDate);
-                context.Response.Cache.SetLastModified(LastModifiedCalculator(context));
-                context.Response.Cache.SetMaxAge(new TimeSpan(expirationDate.ToFileTimeUtc()));
-                context.Response.Cache.SetCacheability(HttpCacheability.ServerAndPrivate); // dacostad changed from public to not allow proxy servers to cache.
-            }
 
-            foreach (var cacheItem in cachedItems)
-            {
-                context.Response.WriteStream(cacheItem.GetContentStream(contentEncoding));
-                context.Response.Write("\r\n");
-            }
-        }
+		public override void OnProcessRequest(HttpContextBase context)
+		{
+			var culture = SetRequestLanguage(context.Request[LanguageKey]);
 
-        private bool ResourceHasNotBeenModified(HttpContextBase context)
-        {
-            // If client caching is disabled everything is always modified!
-            if (!IsClientCachingEnabled(context))
-                return false;
+			var resourceId = context.Request[ClientResourceIDKey];
 
-            var isModified = false;
-            var ifModifiedSinceHeader = context.Request.Headers["If-Modified-Since"];
-            DateTime ifModifiedSince;
-            if (
-                ifModifiedSinceHeader.HasValue() &&
-                DateTime.TryParse(ifModifiedSinceHeader, out ifModifiedSince))
-            {
-                isModified = (ifModifiedSince.GetDay() <= LastModifiedCalculator(context));
-            }
-            return isModified;
-        }
+			if (string.IsNullOrWhiteSpace(resourceId))
+			{
+				// Check for a require.js request in the form of: /[ResourceId].js
+				var requireResourceId = context.Request[RequireModuleKey];
 
-        private ProcessedClientResource ProcessClientResource(HttpContextBase context, ClientResource resource)
-        {
-            var processedResource = new ProcessedClientResource(resource);
+				if (string.IsNullOrWhiteSpace(requireResourceId))
+				{
+					throw new HttpException(400, "Invalid Client Resource");
+				}
 
-            var processors = ClientResourceProcessors
-                .OrderBy(x => x.Order)
-                .ThenBy(x => x.ProcessorKind);
+				// Chop off the beginning / and trailing .js
+				resourceId = requireResourceId.Substring(1, requireResourceId.Length - 4);
+			}
 
-            foreach (var processor in processors)
-            {
-                processor.HttpContext = context;
-                var processedDependentResources = new List<ProcessedClientResource>();
-                foreach (var processedDependentResource in processedResource.ClientTemplates)
-                {
-                    processor.Process(processedDependentResource);
-                    processedDependentResources.Add(processedDependentResource);
-                }
+			if (ResourceHasNotBeenModified(context))
+			{
+				context.Response.StatusCode = (int)HttpStatusCode.NotModified;
+				return;
+			}
 
-                processedResource.ClientTemplates = processedDependentResources;
+			context.Response.Clear();
+			context.Response.Buffer = true;
 
-                processor.Process(processedResource);
-            }
-            return processedResource;
-        }
+			RenderClientResources(context, resourceId, culture);
+		}
 
-        private IEnumerable<ContentCacheItem> GetCachedClientResources(HttpContextBase context, IEnumerable<string> resourceNames, CultureInfo culture)
-        {
-            context = context ?? new HttpContextWrapper(HttpContext.Current);
+		public void RenderClientResources(HttpContextBase context, string resourceId, CultureInfo culture = null)
+		{
+			var resourceNames = ClientResourceManager.ParseClientResourceNames(resourceId);
+			RenderClientResources(context, resourceNames, culture);
+		}
 
-            // Don't cache anything in debug mode
-            if (context.DebugEnabled())
-            {
-                Log.Info("Client resource caching disabled - skipping retrieval from cache.  (DowJones.Properties.Settings.BrowserCachingEnabled == false)");
-                return Enumerable.Empty<ContentCacheItem>();
-            }
+		public void RenderClientResources(HttpContextBase context, IEnumerable<string> resourceNames, CultureInfo culture = null)
+		{
+			resourceNames = resourceNames as List<string> ?? resourceNames.ToList();
+			var clientResources = GetClientResources(context, resourceNames, culture);
 
-            var cachedItems =
-                from id in resourceNames
-                let cacheKey = new ContentCacheKey(id, culture)
-                let cacheItem = ContentCache.Get(cacheKey)
-                where IsCacheItemValid(cacheItem)
-                select cacheItem;
+			var contentResourcesCacheItems = clientResources as List<ContentCacheItem> ?? clientResources.ToList();
+			if (!contentResourcesCacheItems.Any())
+				throw new HttpException(404, "Client Resource Not Found");
 
-            return cachedItems.ToArray();
-        }
+			// The resources aren't necessarily retrieved in the
+			// correct order, so reorder them before they're rendered
+			var orderedClientResources =
+				from name in resourceNames
+				from resource in contentResourcesCacheItems
+				where resource.Key.Id == name
+				select resource;
 
-        private IEnumerable<ContentCacheItem> GetClientResources(HttpContextBase context, IEnumerable<string> resourceNames, CultureInfo culture)
-        {
-            resourceNames = resourceNames as List<string> ?? resourceNames.ToList();
-            if (resourceNames.IsEmpty())
-                return Enumerable.Empty<ContentCacheItem>();
+			RenderClientResources(context, orderedClientResources, DefaultEncoding);
+		}
+
+		private void RenderClientResources(HttpContextBase context, IEnumerable<ContentCacheItem> cachedItems, Encoding contentEncoding)
+		{
+			Guard.IsNotNull(context, "context");
+			Guard.IsNotNull(cachedItems, "cachedItems");
+
+			cachedItems = cachedItems as List<ContentCacheItem> ?? cachedItems.ToList();
+			var cachedItem = cachedItems.First();
+
+			context.Response.ContentType = cachedItem.ContentType;
+			context.Response.ContentEncoding = contentEncoding;
+
+			if (IsClientCachingEnabled(context))
+			{
+				var expirationDate = DateTime.Now.AddYears(1);
+				context.Response.Cache.SetExpires(expirationDate);
+				context.Response.Cache.SetLastModified(LastModifiedCalculator(context));
+				context.Response.Cache.SetMaxAge(new TimeSpan(expirationDate.ToFileTimeUtc()));
+				context.Response.Cache.SetCacheability(HttpCacheability.ServerAndPrivate); // dacostad changed from public to not allow proxy servers to cache.
+			}
+
+			foreach (var cacheItem in cachedItems)
+			{
+				context.Response.WriteStream(cacheItem.GetContentStream(contentEncoding));
+				context.Response.Write("\r\n");
+			}
+		}
+
+		private bool ResourceHasNotBeenModified(HttpContextBase context)
+		{
+			// If client caching is disabled everything is always modified!
+			if (!IsClientCachingEnabled(context))
+				return false;
+
+			var isModified = false;
+			var ifModifiedSinceHeader = context.Request.Headers["If-Modified-Since"];
+			DateTime ifModifiedSince;
+			if (
+				ifModifiedSinceHeader.HasValue() &&
+				DateTime.TryParse(ifModifiedSinceHeader, out ifModifiedSince))
+			{
+				isModified = (ifModifiedSince.GetDay() <= LastModifiedCalculator(context));
+			}
+			return isModified;
+		}
+
+		private static ProcessedClientResource ProcessClientResource(IEnumerable<IClientResourceProcessor> clientResourceProcessors, 
+			HttpContextBase context, ClientResource resource)
+		{
+			var processedResource = new ProcessedClientResource(resource);
+
+			var processors = clientResourceProcessors
+				.OrderBy(x => x.Order)
+				.OrderBy(x => x.ProcessorKind).ToArray();
+
+			foreach (var processor in processors)
+			{
+				processor.HttpContext = context;
+				var processedDependentResources = new List<ProcessedClientResource>();
+				foreach (var processedDependentResource in processedResource.ClientTemplates)
+				{
+					processor.Process(processedDependentResource);
+					processedDependentResources.Add(processedDependentResource);
+				}
+
+				processedResource.ClientTemplates = processedDependentResources;
+
+				processor.Process(processedResource);
+			}
+			return processedResource;
+		}
+
+		private IEnumerable<ContentCacheItem> GetCachedClientResources(HttpContextBase context, IEnumerable<string> resourceNames, CultureInfo culture)
+		{
+			context = context ?? new HttpContextWrapper(HttpContext.Current);
+
+			// Don't cache anything in debug mode
+			if (context.DebugEnabled())
+			{
+				Log.Info("Client resource caching disabled - skipping retrieval from cache.  (DowJones.Properties.Settings.BrowserCachingEnabled == false)");
+				return Enumerable.Empty<ContentCacheItem>();
+			}
+
+			var cachedItems =
+				from id in resourceNames
+				let cacheKey = new ContentCacheKey(id, culture)
+				let cacheItem = ContentCache.Get(cacheKey)
+				where IsCacheItemValid(cacheItem)
+				select cacheItem;
+
+			return cachedItems.ToArray();
+		}
+
+		private IEnumerable<ContentCacheItem> GetClientResources(HttpContextBase context, IEnumerable<string> resourceNames, CultureInfo culture)
+		{
+			resourceNames = resourceNames as List<string> ?? resourceNames.ToList();
+			if (resourceNames.IsEmpty())
+				return Enumerable.Empty<ContentCacheItem>();
 
 			var cachedResources = GetCachedClientResources(context, resourceNames, culture).ToArray();
 
-            var cachedResourceNames = cachedResources.Select(y => y.Key.Id).ToArray();
+			var cachedResourceNames = cachedResources.Select(y => y.Key.Id).ToArray();
 
-            var uncachedResourceNames = resourceNames.Except(cachedResourceNames).ToArray();
+			var uncachedResourceNames = resourceNames.Except(cachedResourceNames).ToArray();
 
-            if (Log.IsDebugEnabled)
-            {
-                Log.Debug("Client Resources requested but not in cache: " + string.Join(", ", uncachedResourceNames));
-                Log.Debug("Client Resources retrieved from cache: " + string.Join(", ", cachedResourceNames));
-            }
+			if (Log.IsDebugEnabled)
+			{
+				Log.Debug("Client Resources requested but not in cache: " + string.Join(", ", uncachedResourceNames));
+				Log.Debug("Client Resources retrieved from cache: " + string.Join(", ", cachedResourceNames));
+			}
 
-            var uncachedResources = LoadClientResources(context, uncachedResourceNames);
+			var uncachedResources = LoadClientResources(context, uncachedResourceNames);
 
-            var newlyCachedResources = uncachedResources.Select(resource => CacheClientResource(resource, culture));
+			var newlyCachedResources = uncachedResources.Select(resource => CacheClientResource(resource, culture));
 
-            return cachedResources.Union(newlyCachedResources);
-        }
+			return cachedResources.Union(newlyCachedResources);
+		}
 
-        private IEnumerable<ProcessedClientResource> LoadClientResources(HttpContextBase context, IEnumerable<string> resourceNames)
-        {
-            resourceNames = resourceNames as List<string> ?? resourceNames.ToList();
-            if (resourceNames.IsEmpty())
-                return Enumerable.Empty<ProcessedClientResource>();
+		private IEnumerable<ProcessedClientResource> LoadClientResources(HttpContextBase context, IEnumerable<string> resourceNames)
+		{
+			resourceNames = resourceNames as List<string> ?? resourceNames.ToList();
+			if (resourceNames.IsEmpty())
+				return Enumerable.Empty<ProcessedClientResource>();
 
-            var resources = ClientResourceManager.GetClientResources(resourceNames);
+			var resources = ClientResourceManager.GetClientResources(resourceNames);
 
-            var clientResources = resources as List<ClientResource> ?? resources.ToList();
-            var existingResourceNames = clientResources.Select(x => x.Name ?? x.Url);
+			var clientResources = resources as List<ClientResource> ?? resources.ToList();
+			var existingResourceNames = clientResources.Select(x => x.Name ?? x.Url);
 
-            var queue = new ConcurrentQueue<ProcessedClientResource>();
+			var queue = new ConcurrentQueue<ProcessedClientResource>();
 
-            var resourcesRequestedButDidntExist = resourceNames.Except(existingResourceNames);
-            var requestedButDidntExist = resourcesRequestedButDidntExist as List<string> ?? resourcesRequestedButDidntExist.ToList();
-            var factory = TaskFactoryManager.Instance.GetLimitedConcurrencyLevelTaskFactory();
-            if (requestedButDidntExist.Any())
-            {
-                Log.Warn("Client Resources NOT retrieved: " +
-                         string.Join(", ", requestedButDidntExist));
-            }
-            try
-            {
-                Task.WaitAll(clientResources.Select(clientResource => factory.StartNew(() => queue.Enqueue(ProcessClientResource(context, clientResource)))).ToArray());
-                return queue.ToList();
-            }
-            catch(AggregateException aggregateException)
-            {
-                Log.Debug(aggregateException.Message);
-                throw new HttpException(500, "AggregateException");
-            }
-            catch(Exception ex)
-            {
-                Log.Debug(ex.Message);
-                throw new HttpException(500, "General Error");
-            }
-        }
+			var resourcesRequestedButDidntExist = resourceNames.Except(existingResourceNames);
+			var requestedButDidntExist = resourcesRequestedButDidntExist as List<string> ?? resourcesRequestedButDidntExist.ToList();
+			var factory = TaskFactoryManager.Instance.GetLimitedConcurrencyLevelTaskFactory();
+			if (requestedButDidntExist.Any())
+			{
+				Log.Warn("Client Resources NOT retrieved: " +
+						 string.Join(", ", requestedButDidntExist));
+			}
 
-        private ContentCacheItem CacheClientResource(ProcessedClientResource resource, CultureInfo culture)
-        {
-            var cacheKey = new ContentCacheKey(resource.Name, culture);
-            return ContentCache.Add(cacheKey, resource.MimeType, resource.Content);
-        }
+			var processors = ClientResourceProcessors.ToArray();
+			try
+			{
+				Task.WaitAll(clientResources.Select(clientResource => factory.StartNew(() => queue.Enqueue(ProcessClientResource(processors, context, clientResource)))).ToArray());
+				return queue.ToList();
+			}
+			catch (AggregateException aggregateException)
+			{
+				Log.Debug(aggregateException.Message);
+				//throw new HttpException(500, "AggregateException");
+				throw;
+			}
+			catch (Exception ex)
+			{
+				Log.Debug(ex.Message);
+				throw new HttpException(500, "General Error");
+			}
+		}
 
-        protected virtual CultureInfo SetRequestLanguage(string language)
-        {
-            var culture = CultureManager.GetCultureInfoFromInterfaceLanguage(language);
-            Thread.CurrentThread.CurrentCulture = culture;
-            Thread.CurrentThread.CurrentUICulture = culture;
-            return culture;
-        }
+		private ContentCacheItem CacheClientResource(ProcessedClientResource resource, CultureInfo culture)
+		{
+			var cacheKey = new ContentCacheKey(resource.Name, culture);
+			return ContentCache.Add(cacheKey, resource.MimeType, resource.Content);
+		}
 
-        private static string GetCachingToken()
-        {
-            var cachingToken = Settings.Default.ClientResourceCachingToken;
+		protected virtual CultureInfo SetRequestLanguage(string language)
+		{
+			var culture = CultureManager.GetCultureInfoFromInterfaceLanguage(language);
+			Thread.CurrentThread.CurrentCulture = culture;
+			Thread.CurrentThread.CurrentUICulture = culture;
+			return culture;
+		}
 
-            var context = new Lazy<HttpContextBase>(HttpContext.Current.ToHttpContextBase);
+		private static string GetCachingToken()
+		{
+			var cachingToken = Settings.Default.ClientResourceCachingToken;
 
-            // if no setting value was specified, try to grab it from a file
-            if (string.IsNullOrWhiteSpace(cachingToken))
-            {
-                string tokenFile = context.Value.Server.MapPath(ClientTokenFilename);
+			var context = new Lazy<HttpContextBase>(HttpContext.Current.ToHttpContextBase);
 
-                if (File.Exists(tokenFile))
-                    cachingToken = File.ReadAllText(tokenFile).Trim();
-            }
+			// if no setting value was specified, try to grab it from a file
+			if (string.IsNullOrWhiteSpace(cachingToken))
+			{
+				string tokenFile = context.Value.Server.MapPath(ClientTokenFilename);
 
-            if (string.IsNullOrWhiteSpace(cachingToken))
-            {
-                cachingToken = LastModifiedCalculator(context.Value).Ticks.ToString(CultureInfo.InvariantCulture).Trim('0');
-            }
+				if (File.Exists(tokenFile))
+					cachingToken = File.ReadAllText(tokenFile).Trim();
+			}
 
-            return cachingToken;
-        }
-    }
+			if (string.IsNullOrWhiteSpace(cachingToken))
+			{
+				cachingToken = LastModifiedCalculator(context.Value).Ticks.ToString(CultureInfo.InvariantCulture).Trim('0');
+			}
+
+			return cachingToken;
+		}
+	}
 
 }
