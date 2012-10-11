@@ -51,36 +51,6 @@
 } 
 
 
-.dj_pageTimings .pageTimings {
-	margin-top: 10px;
-
-	
-	.pageTimingEntry {
-		background-color:red;
-		width: 100px;
-		height:100px;
-		float:left; 
-		margin-right: 10px;
-		h4.title {
-			font-size: smaller;
-			font-weight:normal;
-			color: #f0f0f0;
-		}
-		.dj_sparkline-container {
-			height: 30px;
-			width: 100px;
-			display: inline-block;
-		}
-		.sparklineTooltip {
-			position:relative;
-			top: -7px;
-			line-height: 1em;
-			font-weight: normal;
-			color: #ccc;
-			text-shadow: 0px 3px 8px #2A2A2A;
-		}
-	}
-}
 
 .newGauge, .writeGauge,.readGauge, .idleGauge{
 	.dj_DashGaugeChart {

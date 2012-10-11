@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using DowJones.Dash.DataSources;
 using DowJones.Extensions;
@@ -153,7 +153,7 @@ namespace DowJones.Dash.Website
 			yield return new GomezDataSource("{0}-PageLoadHistoricalDetails".FormatWith(dataSourceConfig.Host), "PageLoadHistoricalDetails",
 				"[SplunkExport].[dbo].[GetPageLoadHistoricalDetails]", new Dictionary<string, object>
                 {
-                    {"days", 7},
+                    {"days", 14},
                     {"site", (int) dataSourceConfig.Site},
                 });
 
@@ -260,7 +260,7 @@ namespace DowJones.Dash.Website
 				new BasicHostConfiguration
 				{
 					Domain = "asia.wsj.com",
-					MapType = MapType.Region,
+					MapType = MapType.Country,
 					Region = "asia",
 					PerformanceZones = new[]
                             {

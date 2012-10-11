@@ -143,11 +143,11 @@ DJ.UI.PageTimings = DJ.UI.CompositeComponent.extend({
                                 max: tMax,
                                 min: tMin,
                                 height: 20,
-                                width: 57,
+                                width: 71,
                                 type: 1,
                                 mouseover: function (evt) {
                                     var el = $(evt.target.container).parent('LI').find(self.selectors.sparklineTooltip);
-                                    el.html(evt.target.y.toFixed(3) + "s");
+                                    el.html(evt.target.y.toFixed(2) + "s");
                                 },
                                 mouseout: function(evt) {
                                     var el = $(evt.target.container).parent('LI').find(self.selectors.sparklineTooltip);
@@ -234,7 +234,7 @@ DJ.UI.PageTimings = DJ.UI.CompositeComponent.extend({
             for (var i = 0; i < data.length; i++) {
                 var d = data[i];
                 pageTimings.push({
-                    title: d.page_name,
+                    title: d.page_name.replace("Mobile","").replace("Germany", ""),
                     width: 4
                 });
             }
@@ -249,21 +249,25 @@ DJ.UI.PageTimings = DJ.UI.CompositeComponent.extend({
             var $this = $(this);
             var n = data[j];
             $this.html(Highcharts.numberFormat(n.Avg/1000, 2) + "s");
-            $this.css({ borderBottom: "solid 4px " + self._delegates.getSingleColor(n.Avg) });
+            $this.css({ borderBottom: "solid 1px " + self._delegates.getSingleColor(n.Avg/1000) });
         });
         
         temp = self.$element.find(self.selectors.max);
         $.each(temp, function (j) {
             var $this = $(this);
             var n = data[j];
-            $this.html(Highcharts.numberFormat(n.Max/1000, 2) + "s");
+            $this.html(Highcharts.numberFormat(n.Max / 1000, 2) + "s");
+            $this.css({ borderBottom: "solid 1px " + self._delegates.getSingleColor(n.Max / 1000) });
+
         });
         
         temp = self.$element.find(self.selectors.min);
         $.each(temp, function (j) {
             var $this = $(this);
             var n = data[j];
-            $this.html(Highcharts.numberFormat(n.Min/1000, 2) + "s");
+            $this.html(Highcharts.numberFormat(n.Min / 1000, 2) + "s");
+            $this.css({ borderBottom: "solid 1px " + self._delegates.getSingleColor(n.Min / 1000) });
+
         });
     },
     
