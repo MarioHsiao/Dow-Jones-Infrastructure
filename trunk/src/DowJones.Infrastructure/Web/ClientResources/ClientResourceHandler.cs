@@ -15,6 +15,7 @@ using DowJones.Extensions.Web;
 using DowJones.Globalization;
 using DowJones.Infrastructure;
 using DowJones.Properties;
+using DowJones.Utilities;
 using log4net;
 
 namespace DowJones.Web
@@ -339,6 +340,7 @@ namespace DowJones.Web
 
             var resourcesRequestedButDidntExist = resourceNames.Except(existingResourceNames);
             var requestedButDidntExist = resourcesRequestedButDidntExist as List<string> ?? resourcesRequestedButDidntExist.ToList();
+            var factory = TaskFactoryManager.Instance.GetLimitedConcurrencyLevelTaskFactory();
             if (requestedButDidntExist.Any())
             {
                 Log.Warn("Client Resources NOT retrieved: " +
@@ -346,7 +348,7 @@ namespace DowJones.Web
             }
             try
             {
-                Task.WaitAll(clientResources.Select(clientResource => Task.Factory.StartNew(() => queue.Enqueue(ProcessClientResource(context, clientResource)))).ToArray());
+                Task.WaitAll(clientResources.Select(clientResource => factory.StartNew(() => queue.Enqueue(ProcessClientResource(context, clientResource)))).ToArray());
                 return queue.ToList();
             }
             catch(AggregateException aggregateException)
