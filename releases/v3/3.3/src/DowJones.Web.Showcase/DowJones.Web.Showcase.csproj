@@ -198,6 +198,8 @@
     <Compile Include="Controllers\TrendingNewsController.cs" />
     <Compile Include="Hub\NewsFeed.cs" />
     <Compile Include="JsonSerializers\JsonConvertAdapter.cs" />
+    <Compile Include="Mocks\MockPageRepository.cs" />
+    <Compile Include="Mocks\MockScriptModuleTemplateManager.cs" />
     <Compile Include="Mocks\MockSearchManager.cs" />
     <Compile Include="Mocks\MockSearchQueryResourceManager.cs" />
     <Compile Include="Models\GaugeViewModel.cs" />
