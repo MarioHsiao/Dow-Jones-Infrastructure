@@ -1,4 +1,6 @@
-﻿namespace DowJones.Web
+﻿using System.Web;
+
+namespace DowJones.Web
 {
     public enum ClientResourceProcessorOrder : short
     {
@@ -18,6 +20,8 @@
 
     public interface IClientResourceProcessor
     {
+        HttpContextBase HttpContext { get; set; }
+
         ClientResourceProcessorOrder? Order { get; }
 
         ClientResourceProcessorKind ProcessorKind { get; }

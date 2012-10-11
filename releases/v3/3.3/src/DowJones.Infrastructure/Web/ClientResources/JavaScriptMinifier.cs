@@ -9,9 +9,9 @@ namespace DowJones.Web
 
 	public class JavaScriptMinifier : IClientResourceProcessor
 	{
-		private readonly HttpContextBase _httpContext;
+		public HttpContextBase HttpContext { get; set; }
 
-		public ClientResourceProcessorOrder? Order
+	    public ClientResourceProcessorOrder? Order
 		{
 			get { return ClientResourceProcessorOrder.Last; }
 		}
@@ -21,10 +21,6 @@ namespace DowJones.Web
 			get { return ClientResourceProcessorKind.Postprocessor; }
 		}
 
-		public JavaScriptMinifier(HttpContextBase httpContext)
-		{
-			_httpContext = httpContext;
-		}
 
 		public void Process(ProcessedClientResource resource)
 		{
@@ -36,7 +32,7 @@ namespace DowJones.Web
 			if (!resource.HasContent)
 				return;
 
-			if (_httpContext.DebugEnabled())
+			if (HttpContext.DebugEnabled())
 				return;
 
 			// do not minify already minified files 

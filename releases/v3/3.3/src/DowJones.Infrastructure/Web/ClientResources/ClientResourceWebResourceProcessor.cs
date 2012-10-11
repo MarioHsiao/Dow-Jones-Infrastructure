@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Reflection;
 using System.Text.RegularExpressions;
+using System.Web;
 using DowJones.Extensions;
 using DowJones.Infrastructure;
 
@@ -17,6 +18,8 @@ namespace DowJones.Web
         internal static Func<Assembly, string, string> ResolveWebResourceUrlThunk =
             (assembly, resourceName) => assembly.GetWebResourceUrl(resourceName);
 
+
+        public HttpContextBase HttpContext { get; set; }
 
         public ClientResourceProcessorOrder? Order
         {

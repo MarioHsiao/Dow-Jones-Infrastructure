@@ -13,13 +13,15 @@ namespace DowJones.Web
                       RegexOptions.Compiled | RegexOptions.IgnoreCase |
                       RegexOptions.IgnorePatternWhitespace | RegexOptions.CultureInvariant);
 
-        internal static string ApplicationPath
+        internal string ApplicationPath
         {
-            get { return applicationPath ?? HttpContext.Current.Request.ApplicationPath; }
+            get { return applicationPath ?? HttpContext.Request.ApplicationPath; }
             set { applicationPath = value; }
         }
         private static string applicationPath;
 
+
+        public HttpContextBase HttpContext { get; set; }
 
         public ClientResourceProcessorOrder? Order
         {
@@ -65,7 +67,7 @@ namespace DowJones.Web
                 );
         }
 
-        private static string ReplaceTokenMatch(Match match, string basePath)
+        private string ReplaceTokenMatch(Match match, string basePath)
         {
             var styleSheetRelativePath = match.Groups[1].Value.Trim();
 

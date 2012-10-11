@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
@@ -6,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Web;
 using DowJones.DependencyInjection;
 using DowJones.Extensions;
@@ -13,6 +15,7 @@ using DowJones.Extensions.Web;
 using DowJones.Globalization;
 using DowJones.Infrastructure;
 using DowJones.Properties;
+using DowJones.Utilities;
 using log4net;
 
 namespace DowJones.Web
@@ -46,7 +49,7 @@ namespace DowJones.Web
                 if (_lastModifiedCalculator == null)
                 {
                     var timestamp = typeof (ClientResourceHandler).Assembly.GetAssemblyTimestamp();
-                    return (context) => timestamp;
+                    return context => timestamp;
                 }
 
                 return _lastModifiedCalculator;
@@ -102,7 +105,7 @@ namespace DowJones.Web
 
             var relativeUrl = string.Format("{0}?{1}={2}&{3}={4}&{5}={6}",
                                     Settings.Default.ClientResourceHandlerPath,
-                                    LanguageKey, culture.TwoLetterISOLanguageName,
+                                    LanguageKey, MapLanguageKey(culture),
                                     ClientResourceIDKey, HttpUtility.UrlEncode(resourceId).Replace("%3b", ";"),
                                     CachingTokenKey, CacheTokenFactory()
                                 );
@@ -113,6 +116,19 @@ namespace DowJones.Web
             context = context ?? new HttpContextWrapper(HttpContext.Current);
 
             return context.GetExternalUrl(relativeUrl);
+        }
+
+        public static string MapLanguageKey(CultureInfo culture)
+        {
+            switch(culture.ThreeLetterWindowsLanguageName)
+            {
+                case "CHT":
+                    return "zhtw";
+                case "CHS":
+                    return "zhcn";
+                default:
+                    return culture.TwoLetterISOLanguageName;
+            }
         }
 
         public static string GenerateRequireJsBaseUrl(CultureInfo culture = null, HttpContextBase context = null, bool? debug = null)
@@ -175,16 +191,18 @@ namespace DowJones.Web
 
         public void RenderClientResources(HttpContextBase context, IEnumerable<string> resourceNames, CultureInfo culture = null)
         {
+            resourceNames = resourceNames as List<string> ?? resourceNames.ToList();
             var clientResources = GetClientResources(context, resourceNames, culture);
 
-            if (!clientResources.Any())
+            var contentResourcesCacheItems = clientResources as List<ContentCacheItem> ?? clientResources.ToList();
+            if (!contentResourcesCacheItems.Any())
                 throw new HttpException(404, "Client Resource Not Found");
 
             // The resources aren't necessarily retrieved in the
             // correct order, so reorder them before they're rendered
             var orderedClientResources =
                 from name in resourceNames
-                from resource in clientResources
+                from resource in contentResourcesCacheItems
                 where resource.Key.Id == name
                 select resource;
 
@@ -196,6 +214,7 @@ namespace DowJones.Web
             Guard.IsNotNull(context, "context");
             Guard.IsNotNull(cachedItems, "cachedItems");
 
+            cachedItems = cachedItems as List<ContentCacheItem> ?? cachedItems.ToList();
             var cachedItem = cachedItems.First();
 
             context.Response.ContentType = cachedItem.ContentType;
@@ -235,16 +254,17 @@ namespace DowJones.Web
             return isModified;
         }
 
-        private ProcessedClientResource ProcessClientResource(ClientResource resource)
+        private ProcessedClientResource ProcessClientResource(HttpContextBase context, ClientResource resource)
         {
             var processedResource = new ProcessedClientResource(resource);
 
             var processors = ClientResourceProcessors
                 .OrderBy(x => x.Order)
-                .OrderBy(x => x.ProcessorKind);
+                .ThenBy(x => x.ProcessorKind);
 
             foreach (var processor in processors)
             {
+                processor.HttpContext = context;
                 var processedDependentResources = new List<ProcessedClientResource>();
                 foreach (var processedDependentResource in processedResource.ClientTemplates)
                 {
@@ -270,7 +290,7 @@ namespace DowJones.Web
                 return Enumerable.Empty<ContentCacheItem>();
             }
 
-            IEnumerable<ContentCacheItem> cachedItems =
+            var cachedItems =
                 from id in resourceNames
                 let cacheKey = new ContentCacheKey(id, culture)
                 let cacheItem = ContentCache.Get(cacheKey)
@@ -282,7 +302,8 @@ namespace DowJones.Web
 
         private IEnumerable<ContentCacheItem> GetClientResources(HttpContextBase context, IEnumerable<string> resourceNames, CultureInfo culture)
         {
-            if (resourceNames == null || resourceNames.IsEmpty())
+            resourceNames = resourceNames as List<string> ?? resourceNames.ToList();
+            if (resourceNames.IsEmpty())
                 return Enumerable.Empty<ContentCacheItem>();
 
 			var cachedResources = GetCachedClientResources(context, resourceNames, culture).ToArray();
@@ -297,32 +318,49 @@ namespace DowJones.Web
                 Log.Debug("Client Resources retrieved from cache: " + string.Join(", ", cachedResourceNames));
             }
 
-            var uncachedResources = LoadClientResources(uncachedResourceNames);
+            var uncachedResources = LoadClientResources(context, uncachedResourceNames);
 
             var newlyCachedResources = uncachedResources.Select(resource => CacheClientResource(resource, culture));
 
             return cachedResources.Union(newlyCachedResources);
         }
 
-        private IEnumerable<ProcessedClientResource> LoadClientResources(IEnumerable<string> resourceNames)
+        private IEnumerable<ProcessedClientResource> LoadClientResources(HttpContextBase context, IEnumerable<string> resourceNames)
         {
-            if (resourceNames == null || resourceNames.IsEmpty())
+            resourceNames = resourceNames as List<string> ?? resourceNames.ToList();
+            if (resourceNames.IsEmpty())
                 return Enumerable.Empty<ProcessedClientResource>();
 
             var resources = ClientResourceManager.GetClientResources(resourceNames);
 
-            var existingResourceNames = resources.Select(x => x.Name ?? x.Url);
+            var clientResources = resources as List<ClientResource> ?? resources.ToList();
+            var existingResourceNames = clientResources.Select(x => x.Name ?? x.Url);
+
+            var queue = new ConcurrentQueue<ProcessedClientResource>();
 
             var resourcesRequestedButDidntExist = resourceNames.Except(existingResourceNames);
-            if (resourcesRequestedButDidntExist.Any())
+            var requestedButDidntExist = resourcesRequestedButDidntExist as List<string> ?? resourcesRequestedButDidntExist.ToList();
+            var factory = TaskFactoryManager.Instance.GetLimitedConcurrencyLevelTaskFactory();
+            if (requestedButDidntExist.Any())
             {
                 Log.Warn("Client Resources NOT retrieved: " +
-                         string.Join(", ", resourcesRequestedButDidntExist));
+                         string.Join(", ", requestedButDidntExist));
             }
-
-            var processedResources = resources.Select(ProcessClientResource).ToArray();
-
-            return processedResources;
+            try
+            {
+                Task.WaitAll(clientResources.Select(clientResource => factory.StartNew(() => queue.Enqueue(ProcessClientResource(context, clientResource)))).ToArray());
+                return queue.ToList();
+            }
+            catch(AggregateException aggregateException)
+            {
+                Log.Debug(aggregateException.Message);
+                throw new HttpException(500, "AggregateException");
+            }
+            catch(Exception ex)
+            {
+                Log.Debug(ex.Message);
+                throw new HttpException(500, "General Error");
+            }
         }
 
         private ContentCacheItem CacheClientResource(ProcessedClientResource resource, CultureInfo culture)
@@ -356,7 +394,7 @@ namespace DowJones.Web
 
             if (string.IsNullOrWhiteSpace(cachingToken))
             {
-                cachingToken = LastModifiedCalculator(context.Value).Ticks.ToString().Trim('0');
+                cachingToken = LastModifiedCalculator(context.Value).Ticks.ToString(CultureInfo.InvariantCulture).Trim('0');
             }
 
             return cachingToken;

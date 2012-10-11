@@ -1,9 +1,12 @@
-﻿using DowJones.Infrastructure;
+﻿using System.Web;
+using DowJones.Infrastructure;
 
 namespace DowJones.Web.ClientResources
 {
     public class DependentResourceProcessor : IClientResourceProcessor
     {
+        public HttpContextBase HttpContext { get; set; }
+
         public ClientResourceProcessorOrder? Order
         {
             get { return ClientResourceProcessorOrder.Last; }

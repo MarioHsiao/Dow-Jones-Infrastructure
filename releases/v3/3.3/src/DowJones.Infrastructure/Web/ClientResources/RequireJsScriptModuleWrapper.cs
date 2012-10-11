@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Web;
 using DowJones.Infrastructure;
 using DowJones.Web.ClientResources;
 
@@ -7,7 +8,8 @@ namespace DowJones.Web
     public class RequireJsScriptModuleWrapper : IClientResourceProcessor
     {
         private static readonly string[] GlobalDependencies = new[] { "$", "$dj", "_", "JSON" };
-
+        
+        public HttpContextBase HttpContext { get; set; }
 
         public ClientResourceProcessorOrder? Order
         {

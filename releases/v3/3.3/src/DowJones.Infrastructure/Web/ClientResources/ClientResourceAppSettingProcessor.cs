@@ -1,6 +1,7 @@
 ﻿using System.Collections.Specialized;
 using System.Configuration;
 using System.Text.RegularExpressions;
+using System.Web;
 using DowJones.Infrastructure;
 
 namespace DowJones.Web
@@ -20,6 +21,8 @@ namespace DowJones.Web
         }
         private NameValueCollection _appSettings;
 
+
+        public HttpContextBase HttpContext { get; set; }
 
         public ClientResourceProcessorOrder? Order
         {

@@ -26,7 +26,9 @@ namespace DowJones.Web.UI
             var resource = new ProcessedClientResource(new ClientResource("~/test.html"), Content);
 
             var request = new MockHttpRequest();
-            new ClientResourceUrlProcessor(request).Process(resource);
+            var response = new MockHttpResponse();
+            var context = new MockHttpContext(request, response);
+            new ClientResourceUrlProcessor() { HttpContext = context }.Process(resource);
 
             string expectedUrl = ClientResourceUrlProcessor.AbsoluteUrlThunk(Url, request);
 
@@ -45,7 +47,10 @@ namespace DowJones.Web.UI
             const string Content = "Absolute URL: <%= RelativeUrl(\"" + url + "\") %>";
             var resource = new ProcessedClientResource(new ClientResource("~/test.html"), Content);
 
-            new ClientResourceUrlProcessor(null).Process(resource);
+            var request = new MockHttpRequest();
+            var response = new MockHttpResponse();
+            var context = new MockHttpContext(request, response);
+            new ClientResourceUrlProcessor() { HttpContext = context }.Process(resource);
 
             string expectedUrl = ClientResourceUrlProcessor.RelativeUrlThunk(url);
 

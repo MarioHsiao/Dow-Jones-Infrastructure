@@ -14,10 +14,10 @@ namespace DowJones.Web
                       RegexOptions.IgnorePatternWhitespace | RegexOptions.CultureInvariant);
 
         internal static Func<string, HttpRequestBase, string> AbsoluteUrlThunk = UrlExtensions.ToAbsoluteUrl;
+
         internal static Func<string, string> RelativeUrlThunk = VirtualPathUtility.ToAbsolute;
-
-        private readonly HttpRequestBase _request;
-
+        
+        public HttpContextBase HttpContext { get; set; }
 
         public ClientResourceProcessorOrder? Order
         {
@@ -28,14 +28,7 @@ namespace DowJones.Web
         {
             get { return ClientResourceProcessorKind.Preprocessor; }
         }
-
-
-        public ClientResourceUrlProcessor(HttpRequestBase request)
-        {
-            _request = request;
-        }
-
-
+        
         public void Process(ProcessedClientResource resource)
         {
             Guard.IsNotNull(resource, "resource");
@@ -53,17 +46,9 @@ namespace DowJones.Web
             if(string.IsNullOrWhiteSpace(url))
                 return string.Empty;
 
-            string absoluteUrl;
-
-            if(kind == UrlKind.Relative)
-                absoluteUrl = RelativeUrlThunk(url);
-            else
-                absoluteUrl = AbsoluteUrlThunk(url, _request);
-
-            return absoluteUrl;
+            return kind == UrlKind.Relative ? RelativeUrlThunk(url) : AbsoluteUrlThunk(url, HttpContext.Request);
         }
-
-
+        
         enum UrlKind
         {
             Absolute,

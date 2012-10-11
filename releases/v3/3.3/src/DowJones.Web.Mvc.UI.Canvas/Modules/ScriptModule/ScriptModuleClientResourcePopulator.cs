@@ -1,5 +1,7 @@
 ﻿using System;
 using System.IO;
+using System.Web;
+using DowJones.DependencyInjection;
 using DowJones.Pages.Modules.Templates;
 
 namespace DowJones.Web.Mvc.UI.Canvas.Modules.ScriptModule
@@ -7,6 +9,8 @@ namespace DowJones.Web.Mvc.UI.Canvas.Modules.ScriptModule
     public class ScriptModuleClientResourcePopulator : IClientResourceProcessor
     {
         private readonly IScriptModuleTemplateManager _templateManager;
+
+        public HttpContextBase HttpContext { get; set; }
 
         public ClientResourceProcessorOrder? Order
         {
