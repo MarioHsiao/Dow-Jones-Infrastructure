@@ -153,6 +153,12 @@ DJ.UI.StatsMap = DJ.UI.Component.extend({
         map = map || this.options.map;
         this.mapSource = map;
         this.map = Highcharts.Maps[map];
+        
+        if(!this.map) {
+            this._showComingSoon();
+            return;
+        }
+        
         this.territories = this.map.territories;
         this.paths = this.map.paths;
         this.currentStateCodes = this.stateCodes[map];
@@ -244,7 +250,7 @@ DJ.UI.StatsMap = DJ.UI.Component.extend({
         // don't bother until chart is initialized
         if (this._initializingChart) return;
 
-        if (!data || !data.length) {
+        if (!data || !data.length || !this.map) {
             this._showComingSoon();
             return;
         }
