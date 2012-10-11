@@ -193,7 +193,7 @@ DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
         $dj.subscribe('data.DashboardStats', this._delegates.updateDashboardStats);
         $dj.subscribe('data.HistorialTrafficSeries', this._delegates.updateRealtimeSeries);
         $dj.subscribe('data.HistorialTrafficSeriesWeekAgo', this._delegates.updateHistoricalSeries);
-        $dj.subscribe('comm.domain.changed', this._delegates.domainChanged);
+        $dj.subscribe('data.BasicHostConfiguration', this._delegates.domainChanged);
     },
 
     _domainChanged: function(data) {

@@ -4,10 +4,13 @@
             x = pageTimings[i]; 
             title = x.title;
     %>
-    <li class="sparklineEntry">
-        <span class="sparklineContainer"></span><strong class="time-stamp" style="border-bottom: solid <%=x.width%>px <%= x.color %>"><%= x.avg %></strong>
-        <div class="title"><small class="muted"><%= title %></small></div>
-        <div class="curTime-stamp muted">&nbsp;</div>
+    <li class="pageTimingEntry">
+        <h4 class="title"><%= title %></h4>
+        <div class="avg-stamp"><span class="value" title="Avg"><%= x.avg %></span></div>
+        <div class="max-stamp"><span class="value" title="Max"><%= x.max %></span></div>
+        <div class="min-stamp"><span class="value" title="Min"><%= x.min %></span></div>
+        <div class="sparklineContainer"></div>
+        <div class="sparklineTooltip muted">&nbsp;</div>
     </li>
     <% } %> 
 </ul>

@@ -4,6 +4,23 @@
 
 DJ.UI.BrowserStats = DJ.UI.CompositeComponent.extend({
 
+    defaults: {
+        zones: {
+            cool: {
+                to: 5,
+                from: 0,
+            },
+            neutral: {
+                to: 7,
+                from: 5,
+            },
+            hot: {
+                to: 100,
+                from: 7,
+            }
+        }
+    },
+    
     selectors: {
         shareChartContainer: '.shareChartContainer',
         barContainer: '.barContainer',
@@ -37,7 +54,8 @@ DJ.UI.BrowserStats = DJ.UI.CompositeComponent.extend({
 
     _initializeEventHandlers: function () {
         $dj.subscribe('data.BrowserStats', this._delegates.setData);
-        $dj.subscribe('comm.domain.changed', this._delegates.domainChanged);
+        $dj.subscribe('data.BasicHostConfiguration', this._delegates.domainChanged);
+
 
         var self = this;
         this.$element.on('click', this.selectors.pill, function () {
@@ -56,8 +74,25 @@ DJ.UI.BrowserStats = DJ.UI.CompositeComponent.extend({
         this.barContainer.html('');
         this.pillContainer.html('');
         this.activePillId = null;
+        this._mapZones(data.performanceZones);
     },
 
+    _mapZones: function (zones) {
+        var self = this,
+            cZones = self.options.zones;
+
+        cZones.cool = _.find(zones, function (item) {
+            return item.zoneType.toLowerCase() == 'cool';
+        });
+
+        cZones.neutral = _.find(zones, function (item) {
+            return item.zoneType.toLowerCase() == 'neutral';
+        });
+
+        cZones.hot = _.find(zones, function (item) {
+            return item.zoneType.toLowerCase() == 'hot';
+        });
+    },
     _setData: function (data) {
         if (!data || !data.length) {
             if (data != null) {
@@ -92,7 +127,9 @@ DJ.UI.BrowserStats = DJ.UI.CompositeComponent.extend({
         if (!workingSet)
             return;
 
-        var self = this;
+        var self = this,
+            o = self.options,
+            zones = self.options.zones;
         
         var pageLoadTimings = 0,
             numVisitors = 0;
@@ -105,15 +142,14 @@ DJ.UI.BrowserStats = DJ.UI.CompositeComponent.extend({
             numVisitors += parseInt(item.Count, 10);
         });
 
-        var maxPageLoad = 15000;
-        var greenZone = 5000; //avgPageLoadAcrossBrowsers * 0.3; // 30%
-        var neutralZone = 7000; //avgPageLoadAcrossBrowsers * 0.7; // 30% < x < 70%
-
+        var maxPageLoad = zones.hot.to * 1000;
+        var greenZone = zones.cool.to * 1000; 
+        var neutralZone = zones.neutral.to * 1000; 
 
         var browserData = _.map(workingSet, function (item) {
             var browser = self._parseBrowserInfo(item.Browser),
                 avg = parseInt(item.Avg, 10),
-                zone = avg < greenZone ? 'cool' : (avg <= neutralZone ? 'neutral' : 'hot');
+                zone = avg <= greenZone ? 'cool' : (avg <= neutralZone ? 'neutral' : 'hot');
             return {
                 browser: browser.name.toLowerCase(),
                 visitors: ((item.Count * 100) / numVisitors).toFixed(0),
