@@ -12,10 +12,13 @@ using DowJones.Managers.RelatedConcept;
 using DowJones.Managers.Sparkline;
 using DowJones.Models.Charting.MarketData;
 using DowJones.Pages;
+using DowJones.Pages.Modules;
+using DowJones.Pages.Modules.Templates;
 using DowJones.Preferences;
 using DowJones.Security.Interfaces;
 using DowJones.Session;
 using DowJones.Web.Mvc.Search.UI.Components.Builders;
+
 using DowJones.Web.Navigation;
 using DowJones.Web.Showcase.Connections;
 using DowJones.Web.Showcase.Connections.RealTimeAlerts;
@@ -56,6 +59,13 @@ namespace DowJones.Web.Showcase
             //Bind<SignalR.Infrastructure.IDependencyResolver>().To<NinjectDependencyResolver>();
 
             Bind <IAssembler<MarketDataInstrumentIntradayResultSet, IEnumerable<MarketChartDataServicePartResult<MarketChartDataPackage>>>>().To<MarketDataInstrumentIntradayResultSetAssembler>();
+
+			Bind<IScriptModuleTemplateManager>().To<MockScriptModuleTemplateManager>();
+
+			BindIfAbsent<IPageRepository>(binding => binding
+				.To<MockPageRepository>()
+				.InRequestScope()
+			);
         }
     }
 }
