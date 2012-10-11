@@ -48,7 +48,7 @@ namespace DowJones.Web
                 if (_lastModifiedCalculator == null)
                 {
                     var timestamp = typeof (ClientResourceHandler).Assembly.GetAssemblyTimestamp();
-                    return (context) => timestamp;
+                    return context => timestamp;
                 }
 
                 return _lastModifiedCalculator;
@@ -190,16 +190,18 @@ namespace DowJones.Web
 
         public void RenderClientResources(HttpContextBase context, IEnumerable<string> resourceNames, CultureInfo culture = null)
         {
+            resourceNames = resourceNames as List<string> ?? resourceNames.ToList();
             var clientResources = GetClientResources(context, resourceNames, culture);
 
-            if (!clientResources.Any())
+            var contentResourcesCacheItems = clientResources as List<ContentCacheItem> ?? clientResources.ToList();
+            if (!contentResourcesCacheItems.Any())
                 throw new HttpException(404, "Client Resource Not Found");
 
             // The resources aren't necessarily retrieved in the
             // correct order, so reorder them before they're rendered
             var orderedClientResources =
                 from name in resourceNames
-                from resource in clientResources
+                from resource in contentResourcesCacheItems
                 where resource.Key.Id == name
                 select resource;
 
@@ -211,6 +213,7 @@ namespace DowJones.Web
             Guard.IsNotNull(context, "context");
             Guard.IsNotNull(cachedItems, "cachedItems");
 
+            cachedItems = cachedItems as List<ContentCacheItem> ?? cachedItems.ToList();
             var cachedItem = cachedItems.First();
 
             context.Response.ContentType = cachedItem.ContentType;
@@ -256,7 +259,7 @@ namespace DowJones.Web
 
             var processors = ClientResourceProcessors
                 .OrderBy(x => x.Order)
-                .OrderBy(x => x.ProcessorKind);
+                .ThenBy(x => x.ProcessorKind);
 
             foreach (var processor in processors)
             {
@@ -286,7 +289,7 @@ namespace DowJones.Web
                 return Enumerable.Empty<ContentCacheItem>();
             }
 
-            IEnumerable<ContentCacheItem> cachedItems =
+            var cachedItems =
                 from id in resourceNames
                 let cacheKey = new ContentCacheKey(id, culture)
                 let cacheItem = ContentCache.Get(cacheKey)
@@ -298,7 +301,8 @@ namespace DowJones.Web
 
         private IEnumerable<ContentCacheItem> GetClientResources(HttpContextBase context, IEnumerable<string> resourceNames, CultureInfo culture)
         {
-            if (resourceNames == null || resourceNames.IsEmpty())
+            resourceNames = resourceNames as List<string> ?? resourceNames.ToList();
+            if (resourceNames.IsEmpty())
                 return Enumerable.Empty<ContentCacheItem>();
 
 			var cachedResources = GetCachedClientResources(context, resourceNames, culture).ToArray();
@@ -322,33 +326,39 @@ namespace DowJones.Web
 
         private IEnumerable<ProcessedClientResource> LoadClientResources(HttpContextBase context, IEnumerable<string> resourceNames)
         {
-            if (resourceNames == null || resourceNames.IsEmpty())
+            resourceNames = resourceNames as List<string> ?? resourceNames.ToList();
+            if (resourceNames.IsEmpty())
                 return Enumerable.Empty<ProcessedClientResource>();
 
             var resources = ClientResourceManager.GetClientResources(resourceNames);
 
-            var existingResourceNames = resources.Select(x => x.Name ?? x.Url);
+            var clientResources = resources as List<ClientResource> ?? resources.ToList();
+            var existingResourceNames = clientResources.Select(x => x.Name ?? x.Url);
 
-            var queue = new ConcurrentQueue<ProcessedClientResource>(); 
-            var tasks = new List<Task>();
+            var queue = new ConcurrentQueue<ProcessedClientResource>();
 
             var resourcesRequestedButDidntExist = resourceNames.Except(existingResourceNames);
-            if (resourcesRequestedButDidntExist.Any())
+            var requestedButDidntExist = resourcesRequestedButDidntExist as List<string> ?? resourcesRequestedButDidntExist.ToList();
+            if (requestedButDidntExist.Any())
             {
                 Log.Warn("Client Resources NOT retrieved: " +
-                         string.Join(", ", resourcesRequestedButDidntExist));
+                         string.Join(", ", requestedButDidntExist));
             }
-
-            //var processedResources = resources.Select(ProcessClientResource).ToArray();
-            foreach (var clientResource in resources)
+            try
             {
-                tasks.Add(Task.Factory.StartNew(() => queue.Enqueue(ProcessClientResource(context, clientResource))));
+                Task.WaitAll(clientResources.Select(clientResource => Task.Factory.StartNew(() => queue.Enqueue(ProcessClientResource(context, clientResource)))).ToArray());
+                return queue.ToList();
             }
-
-            Task.WaitAll(tasks.ToArray());
-            return queue.ToList();
-
-            //return resources.Select(resource => ProcessClientResource(context, resource)).ToList();
+            catch(AggregateException aggregateException)
+            {
+                Log.Debug(aggregateException.Message);
+                throw new HttpException(500, "AggregateException");
+            }
+            catch(Exception ex)
+            {
+                Log.Debug(ex.Message);
+                throw new HttpException(500, "General Error");
+            }
         }
 
         private ContentCacheItem CacheClientResource(ProcessedClientResource resource, CultureInfo culture)
@@ -382,7 +392,7 @@ namespace DowJones.Web
 
             if (string.IsNullOrWhiteSpace(cachingToken))
             {
-                cachingToken = LastModifiedCalculator(context.Value).Ticks.ToString().Trim('0');
+                cachingToken = LastModifiedCalculator(context.Value).Ticks.ToString(CultureInfo.InvariantCulture).Trim('0');
             }
 
             return cachingToken;
