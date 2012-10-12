@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using DowJones.Dash.DataSources;
 using DowJones.Extensions;
 
@@ -153,7 +152,7 @@ namespace DowJones.Dash.Website
 			yield return new GomezDataSource("{0}-PageLoadHistoricalDetails".FormatWith(dataSourceConfig.Host), "PageLoadHistoricalDetails",
 				"[SplunkExport].[dbo].[GetPageLoadHistoricalDetails]", new Dictionary<string, object>
                 {
-                    {"days", 14},
+                    {"days", 7},
                     {"site", (int) dataSourceConfig.Site},
                 });
 

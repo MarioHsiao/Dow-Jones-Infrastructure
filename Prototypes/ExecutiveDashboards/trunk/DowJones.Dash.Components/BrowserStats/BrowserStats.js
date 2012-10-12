@@ -15,7 +15,7 @@ DJ.UI.BrowserStats = DJ.UI.CompositeComponent.extend({
                 from: 5,
             },
             hot: {
-                to: 100,
+                to: 15,
                 from: 7,
             }
         }

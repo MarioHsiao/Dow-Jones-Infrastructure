@@ -248,8 +248,9 @@ DJ.UI.PageTimings = DJ.UI.CompositeComponent.extend({
         $.each(temp, function (j) {
             var $this = $(this);
             var n = data[j];
-            $this.html(Highcharts.numberFormat(n.Avg/1000, 2) + "s");
-            $this.css({ borderBottom: "solid 1px " + self._delegates.getSingleColor(n.Avg/1000) });
+            $this.html(Highcharts.numberFormat(n.Avg / 1000, 2) + "s");
+            var color = self._delegates.getSingleColor(n.Avg / 1000);
+            $this.css({ borderBottom: "solid 1px " + color, color: color });
         });
         
         temp = self.$element.find(self.selectors.max);
@@ -257,7 +258,8 @@ DJ.UI.PageTimings = DJ.UI.CompositeComponent.extend({
             var $this = $(this);
             var n = data[j];
             $this.html(Highcharts.numberFormat(n.Max / 1000, 2) + "s");
-            $this.css({ borderBottom: "solid 1px " + self._delegates.getSingleColor(n.Max / 1000) });
+            var color = self._delegates.getSingleColor(n.Max / 1000);
+            $this.css({ borderBottom: "solid 1px " + color, color: color });
 
         });
         
@@ -266,7 +268,8 @@ DJ.UI.PageTimings = DJ.UI.CompositeComponent.extend({
             var $this = $(this);
             var n = data[j];
             $this.html(Highcharts.numberFormat(n.Min / 1000, 2) + "s");
-            $this.css({ borderBottom: "solid 1px " + self._delegates.getSingleColor(n.Min / 1000) });
+            var color = self._delegates.getSingleColor(n.Min / 1000);
+            $this.css({ borderBottom: "solid 1px " + color,  color: color });
 
         });
     },
