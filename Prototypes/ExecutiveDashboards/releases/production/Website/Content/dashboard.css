@@ -39,7 +39,7 @@ h2 a.reset {
 .dj_module {
   margin-top: 20px;
   min-height: 100px;
-  min-width: 270px;
+  min-width: 320px;
   width: 100%; }
   .dj_module fieldset {
     border: none; }
@@ -101,7 +101,7 @@ h2 a.reset {
   .dj_module .dj_module-core {
     margin-top: -5px;
     padding-top: 5px;
-    width: 98.5%; }
+    width: 99.5%; }
     .dj_module .dj_module-core .padded {
       padding: 5px; }
   .dj_module .script-component-container .moduleHead {
@@ -125,8 +125,7 @@ h2 a.reset {
   margin-bottom: 20px; }
 
 .dj_module.minimized .dj_module-core {
-  margin-left: -10000px;
-  height: 0px; }
+  display: none !important; }
 
 .minimized .minimize {
   display: none !important; }
@@ -149,40 +148,4 @@ h2 a.reset {
   width: 630px; }
   #worldViewModal .modal-body {
     max-height: 480px; }
-
-.visuallyHidden {
-  margin-left: -10000px;
-  height: 0; }
-
-@media (max-width: 1132px) {
-  header {
-    margin-right: -20px;
-    margin-left: -20px; }
-
-  ul, ol {
-    margin: 0 0 9px 15px; }
-
-  .dj-trafficBar {
-    width: 96%; }
-
-  .nav-pills li {
-    width: 33%;
-    word-break: break-word;
-    text-align: center; }
-    .nav-pills li a {
-      padding-right: 6px;
-      padding-left: 6px;
-      margin-right: 0px; }
-
-  .dj_module .dj_module-header {
-    padding-left: 5px;
-    padding-right: 0; } }
-@media (max-width: 480px) {
-  .nav-pills li a {
-    padding-right: 4px;
-    padding-left: 4px;
-    margin-right: 0px; }
-
-  .dashNav .main-nav-icon-big {
-    display: inline-block; } }
 

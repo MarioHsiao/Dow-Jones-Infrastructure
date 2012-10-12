@@ -5,18 +5,18 @@
 DJ.UI.PageTimings = DJ.UI.CompositeComponent.extend({
 
     defaults: {
-        zones: {
-            cool: {
-                to: 5,
-                from: 0,
+        bands: {
+            green: {
+                max: 5,
+                min: 0,
             },
-            neutral: {
-                to: 7,
-                from: 5,
+            yellow: {
+                max: 7,
+                min: 5,
             },
-            hot: {
-                to: 100,
-                from: 7,
+            red: {
+                max: 15,
+                min: 7,
             }
         }
     },
@@ -25,10 +25,8 @@ DJ.UI.PageTimings = DJ.UI.CompositeComponent.extend({
         timingsContainer: '.dj_pageTimings .content',
         noDataContainer: '.noData',
         contentContainer: '.content',
-        avg: '.pageTimings .avg-stamp .value',
-        min: '.pageTimings .min-stamp .value',
-        max: '.pageTimings .max-stamp .value',
-        sparklineTooltip: '.sparklineTooltip'
+        timings: '.pageTimings .time-stamp',
+        timestamp: '.curTime-stamp'
     },
 
     init: function (element, meta) {
@@ -59,7 +57,7 @@ DJ.UI.PageTimings = DJ.UI.CompositeComponent.extend({
     _initializeEventHandlers: function () {
         $dj.subscribe('data.PageTimings', this._delegates.updateTimings);
         $dj.subscribe('data.PageLoadHistoricalDetails', this._delegates.updateSparklines);
-        $dj.subscribe('data.BasicHostConfiguration', this._delegates.domainChanged);
+        $dj.subscribe('comm.domain.changed', this._delegates.domainChanged);
     },
     
     _domainChanged: function (data) {
@@ -69,24 +67,6 @@ DJ.UI.PageTimings = DJ.UI.CompositeComponent.extend({
         self._timingsContainer.html("");
         self.isPageTimingsListSeeded = false;
         self.isSparklinesSeeded = false;
-        this._mapZones(data.performanceZones);
-    },
-    
-    _mapZones: function (zones) {
-        var self = this,
-            cZones = self.options.zones;
-        
-        cZones.cool = _.find(zones, function(item) {
-            return item.zoneType.toLowerCase() == 'cool';
-        });
-        
-        cZones.neutral = _.find(zones, function (item) {
-            return item.zoneType.toLowerCase() == 'neutral';
-        });
-        
-        cZones.hot = _.find(zones, function (item) {
-            return item.zoneType.toLowerCase() == 'hot';
-        });
     },
     
     _destroySparklines: function () {
@@ -108,18 +88,10 @@ DJ.UI.PageTimings = DJ.UI.CompositeComponent.extend({
 
     _updateSparklines: function (data) {
         var self = this;
-        
-        if (this.tSparklineData && data && self.isSparklinesSeeded) {
-            if (_.isEqual(this.tSparklineData, data)) {
-                return;
-            }
-        }
-
         var tData = data || this.tSparklineData;
 
         if (tData && tData.length && tData.length > 0) {
             this.tSparklineData = tData;
-            
             if (self.isPageTimingsListSeeded) {
                 
                 var statsByPages = _.groupBy(tData, function (item) {
@@ -151,14 +123,14 @@ DJ.UI.PageTimings = DJ.UI.CompositeComponent.extend({
                                 max: tMax,
                                 min: tMin,
                                 height: 20,
-                                width: 71,
+                                width: 57,
                                 type: 1,
                                 mouseover: function (evt) {
-                                    var el = $(evt.target.container).parent('LI').find(self.selectors.sparklineTooltip);
-                                    el.html(evt.target.y.toFixed(2) + "s");
+                                    var el = $(evt.target.container).parent('LI').find(self.selectors.timestamp);
+                                    el.html(evt.target.y.toFixed(3) + "s");
                                 },
                                 mouseout: function(evt) {
-                                    var el = $(evt.target.container).parent('LI').find(self.selectors.sparklineTooltip);
+                                    var el = $(evt.target.container).parent('LI').find(self.selectors.timestamp);
                                     el.html('&nbsp;');
                                 }
                             },
@@ -195,25 +167,31 @@ DJ.UI.PageTimings = DJ.UI.CompositeComponent.extend({
     
     _getColor: function (num) {
         var self = this,
-            o = self.options;
-        
-        return num <= o.zones.cool.to ? Highcharts.getOptions().colors[2] :
-                                        (num <= o.zones.neutral.to ? Highcharts.getOptions().colors[5] :
-                                                                     Highcharts.getOptions().colors[1]);
+         o = self.options;
+        var color = Highcharts.getOptions().colors[1];
+        if (num <= o.bands.green.max) {
+            return Highcharts.getOptions().colors[2];
+        } else if (num > o.bands.yellow.min && num < o.bands.yellow.max) {
+            return Highcharts.getOptions().colors[5];
+        }
+        return color;
     },
     
     _getSingleColor: function (num) {
         var self = this,
-            o = self.options;
-        
-        return num <= o.zones.cool.to ? this._parseColor(Highcharts.getOptions().colors[2]) :
-                                        (num <= o.zones.neutral.to ? this._parseColor(Highcharts.getOptions().colors[5]) :
-                                                                     this._parseColor(Highcharts.getOptions().colors[1]));
+          o = self.options;
+        var color = this._parseColor(Highcharts.getOptions().colors[1]);
+        if (num <= o.bands.green.max) {
+            return this._parseColor(Highcharts.getOptions().colors[2]);
+        } else if (num > o.bands.yellow.min && num < o.bands.yellow.max) {
+            return this._parseColor(Highcharts.getOptions().colors[5]);
+        }
+        return color;
     },
     
     _parseColor: function (color) {
         if ($.isPlainObject(color)) {
-            return color.stops[1][1];
+            return color.stops[0][1];
         }
         return color;
     },
@@ -240,47 +218,28 @@ DJ.UI.PageTimings = DJ.UI.CompositeComponent.extend({
         if (!self.isPageTimingsListSeeded) {
             var pageTimings = [];
             for (var i = 0; i < data.length; i++) {
-                var d = data[i];
+                var p = data[i].Avg / 1000;
                 pageTimings.push({
-                    title: d.page_name.replace("Mobile","").replace("Germany", ""),
+                    title: data[i].page_name,
+                    avg: Highcharts.numberFormat(p, 3) + "s",
+                    color: self._delegates.getSingleColor(p),
                     width: 4
                 });
             }
 
             self._timingsContainer.html(self.templates.success(pageTimings));
             self.isPageTimingsListSeeded = true;
-            
+            this._updateSparklines();
+            return;
         }
 
-        var temp = self.$element.find(self.selectors.avg);
+        var temp = self.$element.find(self.selectors.timings);
         $.each(temp, function (j) {
             var $this = $(this);
-            var n = data[j];
-            $this.html(Highcharts.numberFormat(n.Avg / 1000, 2) + "s");
-            var color = self._delegates.getSingleColor(n.Avg / 1000);
-            $this.css({ borderBottom: "solid 1px " + color, color: color });
+            var n = data[j].Avg / 1000;
+            $this.html(Highcharts.numberFormat(n, 3) + "s");
+            $this.css({ borderBottom: "solid 4px " + self._delegates.getSingleColor(n) });
         });
-        
-        temp = self.$element.find(self.selectors.max);
-        $.each(temp, function (j) {
-            var $this = $(this);
-            var n = data[j];
-            $this.html(Highcharts.numberFormat(n.Max / 1000, 2) + "s");
-            var color = self._delegates.getSingleColor(n.Max / 1000);
-            $this.css({ borderBottom: "solid 1px " + color, color: color });
-
-        });
-        
-        temp = self.$element.find(self.selectors.min);
-        $.each(temp, function (j) {
-            var $this = $(this);
-            var n = data[j];
-            $this.html(Highcharts.numberFormat(n.Min / 1000, 2) + "s");
-            var color = self._delegates.getSingleColor(n.Min / 1000);
-            $this.css({ borderBottom: "solid 1px " + color,  color: color });
-
-        });
-        this._updateSparklines();
     },
     
     EOF: null

@@ -79,7 +79,7 @@ header {
     }
     display: inline-block;
     float: left;
-    width: 12%;
+    width: 12.5%;
     border-left: 1px solid #61B0DF;
     &:first-child {
       border-left: none;
@@ -183,10 +183,4 @@ footer {
 
 .pillContainer {
 	font-size: smaller;
-}
-
-.beta {
-	font-size: 9px;
-	font-family: Tahoma, sans-serif;
-	text-transform: lowercase;
 }

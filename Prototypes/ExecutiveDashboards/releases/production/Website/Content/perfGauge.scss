@@ -53,7 +53,7 @@ $browserBackground: url(images/browser-sprites.png) no-repeat;
 
 .dj-trafficBar {
   position: relative;
-  width: 98%;
+  width: 100%;
   margin-bottom: 10px;
   height: 40px;
 
@@ -63,14 +63,15 @@ $browserBackground: url(images/browser-sprites.png) no-repeat;
     height: 20px;
 
     div {
+      position: absolute;
 
       &:first-child {
-        float: left; }
+        text-align: right; }
 
       &:last-child {
-		float: right;
+        left: 80px;
         text-align: right;
-         } } }
+        width: 76%; } } }
 
   .browser {
     height: 42px;
@@ -186,20 +187,3 @@ $browserBackground: url(images/browser-sprites.png) no-repeat;
         background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#FFCC33), to(#C3900B));
         background-image: -webkit-linear-gradient(#FFCC33, #C3900B);
         background-image: linear-gradient(top, #FFCC33, #C3900B); } } } }
-
-@media (max-width: 1132px) {
-	.dj-trafficBar {
-		.browser {
-			left: 35px;
-		}
-
-		.bar {
-			left: 74px;
-		}
-	}
-}
-@media (max-width: 480px) {
-	.dj-trafficBar {
-		  width: 91%;
-	  }
-}

@@ -28,9 +28,8 @@ DJ.UI.StatsMap = DJ.UI.Component.extend({
             type: 'map',
             backgroundColor: 'transparent',
             borderWidth: 0,
-            //spacingBottom: 0,
-            //spacingTop: 0,
-            //spacingLeft: 0
+            spacingBottom: 0,
+            spacingTop: 0
         },
 
         plotOptions: {
@@ -110,7 +109,6 @@ DJ.UI.StatsMap = DJ.UI.Component.extend({
     _initializeElements: function (ctx) {
         this.$element.html(this.templates.container());
         this.pillContainer = ctx.find(this.selectors.pillContainer);
-        this.mapContainer = ctx.find('.mapContainer');
 
         if (this.options.map === 'world')
             ctx.find('.worldViewToggler').hide();
@@ -132,33 +130,11 @@ DJ.UI.StatsMap = DJ.UI.Component.extend({
         this.$element.on('click', this.selectors.worldViewToggler, function () {
             self.publish('worldView.dj.StatsMap');
         });
-
-        $(window).resize(function () {
-            var mapContainer = self.mapContainer;
-            var width = mapContainer.width(),
-                height = mapContainer.height();
-
-            if (!height || !width) return;
-
-            // set height, width to be slightly less than actual box
-            var chartWidth = width - width * 0.05,
-                chartHeight = height - height * 0.05;
-
-            self.chart.setSize(chartWidth, chartHeight);
-            self.chart.series[0].setData(self.chartData, true);
-        });
     },
 
     _initializeMapData: function (map) {
         map = map || this.options.map;
-        this.mapSource = map;
         this.map = Highcharts.Maps[map];
-        
-        if(!this.map) {
-            this._showComingSoon();
-            return;
-        }
-        
         this.territories = this.map.territories;
         this.paths = this.map.paths;
         this.currentStateCodes = this.stateCodes[map];
@@ -168,19 +144,13 @@ DJ.UI.StatsMap = DJ.UI.Component.extend({
         if (!data)
             return;
 
-        this._showContent();
-        
         this.activePillId = null;
 
         // world map doesn't change by country!
         if (this.options.map !== 'world')
             this._initializeMapData(data.map);
 
-        this.mapContainer.hide();
-        
-        this.dataSourceConfig = data;
-        this.initializeChart = true;
-        
+        this._initializeChart(data);
     },
 
     _initializeChart: function (config) {
@@ -202,20 +172,11 @@ DJ.UI.StatsMap = DJ.UI.Component.extend({
         }
 
         // blank out previous maps
-        this.mapContainer.html('');
+        this.$element.find('.mapContainer').html('');
 
-        var width = this.mapContainer.width(),
-            height = this.mapContainer.height();
-
-        //console.log('_initializeChart:', this.mapSource, width, height);
-
-        this.mapConfig.chart.width = width - width * 0.05;
-        this.mapConfig.chart.height = height - height * 0.05;
-
-        //console.log('_initializeChart:', this.mapSource, this.mapConfig.chart);
         this.mapConfig.chart.renderTo = this.$element.find('.mapContainer')[0];
 
-        //if (this.chart) this.chart.destroy();
+        if (this.chart) this.chart.destroy();
 
         this.chart = new Highcharts.Map(this.mapConfig);
 
@@ -250,17 +211,12 @@ DJ.UI.StatsMap = DJ.UI.Component.extend({
         // don't bother until chart is initialized
         if (this._initializingChart) return;
 
-        if (!data || !data.length || !this.map) {
+        if (!data || !data.length) {
             this._showComingSoon();
             return;
         }
 
         this._showContent();
-        
-        if (this._initializeChart) {
-            this.mapContainer.show();
-            this._initializeChart(this.dataSourceConfig);
-        }
 
         // get some sensible structure from a flat result set
         var mappedData = this._mapData(data);
@@ -271,8 +227,8 @@ DJ.UI.StatsMap = DJ.UI.Component.extend({
         this.chartGroupsData = mappedData.chartGroups;
 
         // now that we know what the active pill is, draw the corresponding chart
-        this.chartData = this._getChartData(mappedData.chartGroups[this.activePillId]);
-        this.chart.series[0].setData(this.chartData);
+        var chartData = this._getChartData(mappedData.chartGroups[this.activePillId]);
+        this.chart.series[0].setData(chartData);
     },
 
     setPills: function (pills) {
@@ -347,12 +303,12 @@ DJ.UI.StatsMap = DJ.UI.Component.extend({
     },
 
     _showComingSoon: function () {
-        this.$element.find(this.selectors.contentContainer).addClass('visuallyHidden');
+        this.$element.find(this.selectors.contentContainer).hide('fast');
         this.$element.find(this.selectors.noDataContainer).show('fast');
     },
 
     _showContent: function () {
-        this.$element.find(this.selectors.contentContainer).removeClass('visuallyHidden');
+        this.$element.find(this.selectors.contentContainer).show('fast');
         this.$element.find(this.selectors.noDataContainer).hide('fast');
     }
 });

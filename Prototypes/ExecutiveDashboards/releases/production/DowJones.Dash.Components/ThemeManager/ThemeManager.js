@@ -7,8 +7,7 @@ DJ.UI.ThemeManager = DJ.UI.Component.extend({
 
     // Default options
     defaults: {
-        debug: false,
-        useGradientsInCharts: true,
+        debug: false
     },
 
     instance: null,
@@ -45,7 +44,6 @@ DJ.UI.ThemeManager = DJ.UI.Component.extend({
             yellow: this.options.colors[5],
             grey: "#CCCCCC",
             siteBackground: "#3C3C3C",
-            
             brighten: function (color, brightness) {
                 Highcharts.Color(color).brighten(brightness).get('rgb');
             }

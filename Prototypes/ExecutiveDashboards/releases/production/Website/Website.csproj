@@ -67,20 +67,20 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\DowJones.Assemblers.3.3.6\lib\DowJones.Assemblers.dll</HintPath>
     </Reference>
-    <Reference Include="DowJones.Infrastructure, Version=3.3.24.39500, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="DowJones.Infrastructure, Version=3.3.12.32173, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\DowJones.Infrastructure.3.3.24\lib\DowJones.Infrastructure.dll</HintPath>
+      <HintPath>..\packages\DowJones.Infrastructure.3.3.12\lib\DowJones.Infrastructure.dll</HintPath>
     </Reference>
-    <Reference Include="DowJones.Pages, Version=3.3.24.39500, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="DowJones.Pages, Version=3.3.12.32173, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\DowJones.Pages.3.3.24\lib\DowJones.Pages.dll</HintPath>
+      <HintPath>..\packages\DowJones.Pages.3.3.12\lib\DowJones.Pages.dll</HintPath>
     </Reference>
     <Reference Include="DowJones.Parallel">
       <HintPath>..\packages\DowJones.Parallel.1.0.0\lib\DowJones.Parallel.dll</HintPath>
     </Reference>
-    <Reference Include="DowJones.Web.Mvc, Version=3.3.24.39500, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="DowJones.Web.Mvc, Version=3.3.12.32173, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\DowJones.Web.Mvc.3.3.24\lib\DowJones.Web.Mvc.dll</HintPath>
+      <HintPath>..\packages\DowJones.Web.Mvc.3.3.12\lib\DowJones.Web.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="DowJones.Web.Mvc.Diagnostics, Version=3.3.6.35649, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -90,21 +90,21 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\DowJones.Web.Mvc.Search.3.3.6\lib\DowJones.Web.Mvc.Search.dll</HintPath>
     </Reference>
-    <Reference Include="DowJones.Web.Mvc.UI.Canvas, Version=3.3.24.39500, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="DowJones.Web.Mvc.UI.Canvas, Version=3.3.12.32173, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\DowJones.Web.Mvc.UI.Canvas.3.3.24\lib\DowJones.Web.Mvc.UI.Canvas.dll</HintPath>
+      <HintPath>..\packages\DowJones.Web.Mvc.UI.Canvas.3.3.12\lib\DowJones.Web.Mvc.UI.Canvas.dll</HintPath>
     </Reference>
     <Reference Include="DowJones.Web.Mvc.UI.Canvas.RavenDb, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\DowJones.Web.Mvc.UI.Canvas.RavenDb.3.3.24\lib\DowJones.Web.Mvc.UI.Canvas.RavenDb.dll</HintPath>
+      <HintPath>..\packages\DowJones.Web.Mvc.UI.Canvas.RavenDb.3.3.12\lib\DowJones.Web.Mvc.UI.Canvas.RavenDb.dll</HintPath>
     </Reference>
-    <Reference Include="DowJones.Web.Mvc.UI.Components, Version=3.3.24.39500, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="DowJones.Web.Mvc.UI.Components, Version=3.3.12.32173, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\DowJones.Web.Mvc.UI.Components.3.3.24\lib\DowJones.Web.Mvc.UI.Components.dll</HintPath>
+      <HintPath>..\packages\DowJones.Web.Mvc.UI.Components.3.3.12\lib\DowJones.Web.Mvc.UI.Components.dll</HintPath>
     </Reference>
     <Reference Include="DowJones.Web.Mvc.UI.Components.Models, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\DowJones.Web.Mvc.UI.Components.Models.3.3.24\lib\DowJones.Web.Mvc.UI.Components.Models.dll</HintPath>
+      <HintPath>..\packages\DowJones.Web.Mvc.UI.Components.Models.3.3.12\lib\DowJones.Web.Mvc.UI.Components.Models.dll</HintPath>
     </Reference>
     <Reference Include="Elmah">
       <HintPath>..\packages\elmah.corelibrary.1.2.2\lib\Elmah.dll</HintPath>
@@ -117,12 +117,10 @@
       <HintPath>..\packages\RavenDB.Database.1.2.2085-Unstable\lib\net40\Esent.Interop.dll</HintPath>
     </Reference>
     <Reference Include="factiva.gateway.messages">
-      <HintPath>..\packages\Factiva.Gateway.7.5.0.95\lib\factiva.gateway.messages.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.93\lib\factiva.gateway.messages.dll</HintPath>
     </Reference>
     <Reference Include="FactivaGateway">
-      <HintPath>..\packages\Factiva.Gateway.7.5.0.95\lib\FactivaGateway.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.93\lib\FactivaGateway.dll</HintPath>
     </Reference>
     <Reference Include="FSharp.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <Private>True</Private>
@@ -142,8 +140,8 @@
       <HintPath>..\packages\RavenDB.Database.1.2.2085-Unstable\lib\net40\ICSharpCode.NRefactory.dll</HintPath>
     </Reference>
     <Reference Include="Interop.FCMLib">
-      <HintPath>..\packages\Factiva.Gateway.7.5.0.95\lib\Interop.FCMLib.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.93\lib\Interop.FCMLib.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="log4net">
       <HintPath>..\packages\log4net.1.2.99\lib\2.0\log4net.dll</HintPath>
@@ -366,9 +364,6 @@
       <DependentUpon>layout.scss</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\pageTimings.css">
-      <DependentUpon>pageTimings.scss</DependentUpon>
-    </Content>
     <Content Include="Content\perfGauge.css">
       <DependentUpon>perfGauge.scss</DependentUpon>
     </Content>
@@ -412,6 +407,7 @@
     <Content Include="Views\Error\NotFound.cshtml">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="Views\Shared\_MobileNavigation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
@@ -457,7 +453,6 @@
     <Content Include="Content\gallery.scss" />
     <Content Include="Content\StatsMap.scss" />
     <Content Include="Content\layout-responsive.scss" />
-    <Content Include="Content\pageTimings.scss" />
     <None Include="Properties\PublishProfiles\montana.pubxml" />
     <Content Include="Views\Dashboard\_Gallery.cshtml" />
     <Content Include="Views\Home\Test.cshtml" />

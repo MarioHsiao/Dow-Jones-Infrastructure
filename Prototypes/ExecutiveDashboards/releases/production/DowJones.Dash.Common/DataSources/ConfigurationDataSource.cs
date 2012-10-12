@@ -21,7 +21,6 @@ namespace DowJones.Dash.DataSources
         Country,
         World,
         City,
-	    Region
     }
 
     public enum PerformanceZoneType
