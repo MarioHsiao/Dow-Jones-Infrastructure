@@ -15,6 +15,11 @@ namespace DowJones.Dash.Caching
 
         public virtual void Add(DashboardMessage message)
         {
+            if (message == null)
+            {
+                return;
+            }
+
             if (_cache.ContainsKey(message.Source))
             {
                 _cache[message.Source] = message;

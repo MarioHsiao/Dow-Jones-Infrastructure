@@ -108,10 +108,18 @@ DJ.UI.PageTimings = DJ.UI.CompositeComponent.extend({
 
     _updateSparklines: function (data) {
         var self = this;
+        
+        if (this.tSparklineData && data && self.isSparklinesSeeded) {
+            if (_.isEqual(this.tSparklineData, data)) {
+                return;
+            }
+        }
+
         var tData = data || this.tSparklineData;
 
         if (tData && tData.length && tData.length > 0) {
             this.tSparklineData = tData;
+            
             if (self.isPageTimingsListSeeded) {
                 
                 var statsByPages = _.groupBy(tData, function (item) {
@@ -241,7 +249,7 @@ DJ.UI.PageTimings = DJ.UI.CompositeComponent.extend({
 
             self._timingsContainer.html(self.templates.success(pageTimings));
             self.isPageTimingsListSeeded = true;
-            this._updateSparklines();
+            
         }
 
         var temp = self.$element.find(self.selectors.avg);
@@ -272,6 +280,7 @@ DJ.UI.PageTimings = DJ.UI.CompositeComponent.extend({
             $this.css({ borderBottom: "solid 1px " + color,  color: color });
 
         });
+        this._updateSparklines();
     },
     
     EOF: null
