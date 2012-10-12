@@ -26,6 +26,7 @@ DJ.UI.PlatformStats = DJ.UI.CompositeComponent.extend({
 
     _initializeEventHandlers: function () {
         $dj.subscribe('data.QuickStats', this._delegates.updateStats);
+        this.$element.find(".tip").tooltip();
     },
 
     _updateStats: function (data) {

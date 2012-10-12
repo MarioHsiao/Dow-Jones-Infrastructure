@@ -53,7 +53,7 @@ h2 a.reset {
 .dj_module {
 	margin-top: 20px;
 	min-height: 100px;
-	min-width: 320px;
+	min-width: 270px;
 	width: 100%;
 	
 	fieldset {
@@ -146,7 +146,7 @@ h2 a.reset {
 	.dj_module-core {
 		margin-top: -5px;
 		padding-top: 5px;
-		width: 99.5%;
+		width: 98.5%;
 
 		.padded {
 			padding: 5px;
@@ -177,7 +177,8 @@ h2 a.reset {
 
 
 .dj_module.minimized .dj_module-core {
-    display: none !important;
+	margin-left: -10000px;
+	height: 0px;
 }
 .minimized .minimize {
      display: none !important;
@@ -203,5 +204,64 @@ h2 a.reset {
 
 	.modal-body {
 		max-height: 480px;
+	}
+}
+
+.visuallyHidden {
+	margin-left: -10000px;
+	height: 0;
+}
+
+@media (max-width: 1132px) {
+	header {
+		margin-right: -20px;
+		margin-left: -20px;
+	}
+
+	ul, ol {
+		margin: 0 0 9px 15px;
+	}
+
+	.dj-trafficBar {
+		width: 96%;
+	}
+
+	.nav-pills {
+		li {
+			width: 33%;
+			word-break: break-word; 
+			text-align: center;
+			a { 
+				padding-right: 6px;
+				padding-left: 6px;
+				margin-right: 0px;
+			}
+
+		}
+	}
+
+	.dj_module {
+		.dj_module-header {
+			padding-left: 5px;
+			padding-right: 0;
+		}
+	}
+}
+
+@media (max-width: 480px) {
+	.nav-pills {
+		li {
+			a { 
+				padding-right: 4px;
+				padding-left: 4px;
+				margin-right: 0px;
+			}
+		}
+	}
+	
+	.dashNav {
+		.main-nav-icon-big {
+			display: inline-block;
+		}
 	}
 }

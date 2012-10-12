@@ -50,77 +50,16 @@
 	} 
 } 
 
-
-.dj_pageTimings .pageTimings {
-	margin-top: 10px;
-	.dj_sparkline-container {
-		height: 20px;
-		width: 57px;
-		display: inline-block;
-	}
-	.title {
-		position:relative;
-		top: -5px;
-
-		.muted {
-			font-size: smaller;
-		}
-	}
-	.time-stamp {
-		position:relative;
-		top: -7px;
-		margin-left: 3px;
+.engagement{
+	color: #999;
+	text-shadow: 0px 3px 8px #2A2A2A;
+	.counter{
+		font-size: 4em;
+		text-align: center;
+		z-index: 1000;
 		line-height: 1em;
 		font-weight: bold;
-		color: #999;
-		text-shadow: 0px 3px 8px #2A2A2A;
 	}
-	
-	.sparklineEntry {
-		margin-bottom: 10px;
-		.muted {
-			font-size: smaller;
-		}
-		.curTime-stamp {
-			position:relative;
-			top: -7px;
-			line-height: 1em;
-			font-weight: normal;
-			color: #ccc;
-			text-shadow: 0px 3px 8px #2A2A2A;
-		}
-	}
-}
-
-.newGauge, .writeGauge,.readGauge, .idleGauge{
-	.dj_DashGaugeChart {
-		width: 100px;
-		margin: 0 auto;
-		position: relative;
-		.dj_DashGaugeChartHeader {
-			.dj_DashGaugeChartValue {
-				@include LabelShadow
-			}
-			.dj_DashGaugeChartMax {
-				@include gaugeMaxLabel
-			}	
-			.dj_DashGaugeChartMin {
-			  display:none;
-		    }
-			.chartMax {
-				display:block;
-			}
-			.chartMin {
-				display:block;
-			}
-		}
-		.dj_DashGaugeChartFooter {
-			position:relative;
-			top: -10px;
-			text-align:center;
-			width:100px;
-		}
-	}	
 }
 
 .dj_concurrent-visits{
@@ -132,13 +71,7 @@
 		margin: 0 auto;
 		text-align:center;
 		width: 150px;
-	}
-	.counter {
-		font-size: 1.5em;
-		text-align:center;
-		line-height: 1em;
-		font-weight: bold;
-	}
+	}	
 	.idle {
 		text-align:right;
 	}
@@ -158,21 +91,41 @@
 
 .platformContainer{
 	.desktop{
-		height: 60px;
+		height: 10px;
 		display:block;
 		background-image: url(./images/computer-icon-white.png);
 		background-repeat: no-repeat;
-		background-position: center; 
+		background-position: top; 
 		text-align: center;
+		margin-top:10px;
 		padding-top: 55px;
+		color: #999;
+		text-shadow: 0px 3px 8px #2A2A2A;
+		.val{
+			font-size: 1.2em;
+			text-align: center;
+			z-index: 1000;
+			line-height: 1em;
+			font-weight: bold;
+		}
 	}
 	.mobile{
-		height: 60px;
+		height: 10px;
 		display: block;
 		background-image: url(./images/smartphone-icon-white.png);
 		background-repeat: no-repeat;
-		background-position: center; 
+		background-position: top; 
+		margin-top: 10px;
 		text-align: center;
 		padding-top: 55px;
+		color: #999;
+		text-shadow: 0px 3px 8px #2A2A2A;
+		.val{
+			font-size: 1.2em;
+			text-align: center;
+			z-index: 1000;
+			line-height: 1em;
+			font-weight: bold;
+		}
 	}
 }

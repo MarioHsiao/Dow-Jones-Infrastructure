@@ -54,7 +54,7 @@ DJ.UI.DashGauge = DJ.UI.Component.extend({
         this.bindOnSuccess();
     },
 
-    _initializeElements: function (ctx) {
+    _initializeElements: function () {
         //Bind the layout template
         $(this.$element).html(this.templates.layout({
             value: this.data,

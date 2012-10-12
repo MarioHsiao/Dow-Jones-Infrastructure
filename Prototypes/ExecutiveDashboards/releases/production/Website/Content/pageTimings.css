@@ -1,0 +1,61 @@
+.dj_pageTimings .pageTimings {
+  margin-top: 6px;
+  text-align: left; }
+  .dj_pageTimings .pageTimings .pageTimingEntry {
+    width: 130px;
+    height: 130px;
+    margin-top: 4px;
+    display: inline-block;
+    background-color: #ddd; }
+    .dj_pageTimings .pageTimings .pageTimingEntry h4.title {
+      font-size: smaller;
+      font-weight: normal;
+      text-align: center; }
+    .dj_pageTimings .pageTimings .pageTimingEntry .avg-stamp {
+      position: relative;
+      top: 5px;
+      text-align: center;
+      font-weight: bold;
+      font-size: 2.4em;
+      line-height: 1.1em;
+      margin: 0 auto;
+      width: 75%; }
+    .dj_pageTimings .pageTimings .pageTimingEntry .min-stamp {
+      position: relative;
+      text-align: right;
+      font-size: .9em;
+      font-weight: normal;
+      line-height: 1.7em;
+      margin-left: 5px;
+      padding-top: 15px;
+      display: inline-block;
+      float: left; }
+    .dj_pageTimings .pageTimings .pageTimingEntry .max-stamp {
+      position: relative;
+      text-align: left;
+      font-size: .9em;
+      font-weight: normal;
+      line-height: 1.7em;
+      margin-right: 5px;
+      padding-top: 15px;
+      display: inline-block;
+      float: right; }
+    .dj_pageTimings .pageTimings .pageTimingEntry .dj_sparkline-container {
+      position: relative;
+      padding-left: 5px;
+      top: 15px;
+      height: 30px;
+      display: inline-block;
+      float: left; }
+    .dj_pageTimings .pageTimings .pageTimingEntry .sparklineTooltip {
+      position: relative;
+      top: 20px;
+      padding-left: 5px;
+      line-height: .9em;
+      font-size: .9em;
+      color: #666;
+      line-height: 1.7em;
+      font-weight: normal;
+      display: inline-block;
+      float: left; }
+

@@ -41,9 +41,9 @@ DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
                 width: 200
             },
             templates: {
-                max: this._maxTemplate,
-                min: this._minTemplate,
-                footer: this._footerTemplate
+                max: this._maxTemplate.bind(this),
+                min: this._minTemplate.bind(this),
+                footer: this._footerTemplate.bind(this)
             },
             data: 0
         };
@@ -193,7 +193,7 @@ DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
         $dj.subscribe('data.DashboardStats', this._delegates.updateDashboardStats);
         $dj.subscribe('data.HistorialTrafficSeries', this._delegates.updateRealtimeSeries);
         $dj.subscribe('data.HistorialTrafficSeriesWeekAgo', this._delegates.updateHistoricalSeries);
-        $dj.subscribe('comm.domain.changed', this._delegates.domainChanged);
+        $dj.subscribe('data.BasicHostConfiguration', this._delegates.domainChanged);
     },
 
     _domainChanged: function(data) {

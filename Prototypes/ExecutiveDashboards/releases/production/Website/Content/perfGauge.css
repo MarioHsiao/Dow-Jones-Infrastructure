@@ -43,21 +43,18 @@
 
 .dj-trafficBar {
   position: relative;
-  width: 100%;
+  width: 98%;
   margin-bottom: 10px;
   height: 40px; }
   .dj-trafficBar:first-child {
     margin: 10px 0;
     font-weight: bold;
     height: 20px; }
-    .dj-trafficBar:first-child div {
-      position: absolute; }
-      .dj-trafficBar:first-child div:first-child {
-        text-align: right; }
-      .dj-trafficBar:first-child div:last-child {
-        left: 80px;
-        text-align: right;
-        width: 76%; }
+    .dj-trafficBar:first-child div:first-child {
+      float: left; }
+    .dj-trafficBar:first-child div:last-child {
+      float: right;
+      text-align: right; }
   .dj-trafficBar .browser {
     height: 42px;
     width: 42px;
@@ -155,4 +152,13 @@
         background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffcc33), to(#c3900b));
         background-image: -webkit-linear-gradient(#ffcc33, #c3900b);
         background-image: linear-gradient(top, #ffcc33, #c3900b); }
+
+@media (max-width: 1132px) {
+  .dj-trafficBar .browser {
+    left: 35px; }
+  .dj-trafficBar .bar {
+    left: 74px; } }
+@media (max-width: 480px) {
+  .dj-trafficBar {
+    width: 91%; } }
 
