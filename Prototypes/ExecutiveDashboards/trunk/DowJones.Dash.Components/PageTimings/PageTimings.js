@@ -107,11 +107,14 @@ DJ.UI.PageTimings = DJ.UI.CompositeComponent.extend({
     },
 
     _updateSparklines: function (data) {
+
         var self = this;
-        
-        if (this.tSparklineData && data && self.isSparklinesSeeded) {
-            if (_.isEqual(this.tSparklineData, data)) {
-                return;
+        if (data) {
+            if (this.tSparklineData && data) {
+
+                if (_.isEqual(this.tSparklineData, data)) {
+                    return;
+                }
             }
         }
 
@@ -280,7 +283,8 @@ DJ.UI.PageTimings = DJ.UI.CompositeComponent.extend({
             $this.css({ borderBottom: "solid 1px " + color,  color: color });
 
         });
-        this._updateSparklines();
+        if (!self.isSparklinesSeeded)
+            this._updateSparklines();
     },
     
     EOF: null
