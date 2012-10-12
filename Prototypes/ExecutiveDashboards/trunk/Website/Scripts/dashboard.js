@@ -106,12 +106,12 @@
         },
 
         _worldViewClick: function () {
-            $('#worldViewModal').modal('show');
+            $('#watch-video').toggleClass('medium');
         },
 
         _initializeWorldStatsMap: function () {
             DJ.add("StatsMap", {
-                container: $('#worldViewModal .worldMapContainer')[0],
+                container: $('.worldMapContainer')[0],
                 options: {
                     dataEvent: 'data.PageLoadDetailsByCountryForRegion',
                     map: 'world'
