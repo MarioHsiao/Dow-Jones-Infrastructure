@@ -50,37 +50,16 @@
 	} 
 } 
 
-
-
-.newGauge, .writeGauge,.readGauge, .idleGauge{
-	.dj_DashGaugeChart {
-		width: 100px;
-		margin: 0 auto;
-		position: relative;
-		.dj_DashGaugeChartHeader {
-			.dj_DashGaugeChartValue {
-				@include LabelShadow
-			}
-			.dj_DashGaugeChartMax {
-				@include gaugeMaxLabel
-			}	
-			.dj_DashGaugeChartMin {
-			  display:none;
-		    }
-			.chartMax {
-				display:block;
-			}
-			.chartMin {
-				display:block;
-			}
-		}
-		.dj_DashGaugeChartFooter {
-			position:relative;
-			top: -10px;
-			text-align:center;
-			width:100px;
-		}
-	}	
+.engagement{
+	color: #999;
+	text-shadow: 0px 3px 8px #2A2A2A;
+	.counter{
+		font-size: 4em;
+		text-align: center;
+		z-index: 1000;
+		line-height: 1em;
+		font-weight: bold;
+	}
 }
 
 .dj_concurrent-visits{
@@ -92,13 +71,7 @@
 		margin: 0 auto;
 		text-align:center;
 		width: 150px;
-	}
-	.counter {
-		font-size: 1.5em;
-		text-align:center;
-		line-height: 1em;
-		font-weight: bold;
-	}
+	}	
 	.idle {
 		text-align:right;
 	}

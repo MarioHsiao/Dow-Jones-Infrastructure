@@ -18,7 +18,7 @@ namespace DowJones.Dash.DataGenerators
         {
             var dashboardComponents = new[] {
                 new { Title = "Concurrent Visits",         Description = "Number of users currently visiting the site",        Component = "ConcurrentVisits" },
-                new { Title = "Engagements",               Description = "How users are interacting with the site",            Component = "UsersStats" },
+                new { Title = "Engagement",               Description = "How users are interacting with the site",            Component = "UsersStats" },
 				new { Title = "Platform Stats",            Description = "Desktop vs. Mobile user load",                       Component = "PlatformStats" },
                 new { Title = "Page Load",                 Description = "Historical average page load times",                 Component = "PageTimings" },
                 new { Title = "Page Load By Browser",      Description = "Percentage of users and page load times by browser", Component = "BrowserStats" },

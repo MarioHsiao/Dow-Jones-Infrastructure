@@ -41,9 +41,9 @@ DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
                 width: 200
             },
             templates: {
-                max: this._maxTemplate,
-                min: this._minTemplate,
-                footer: this._footerTemplate
+                max: this._maxTemplate.bind(this),
+                min: this._minTemplate.bind(this),
+                footer: this._footerTemplate.bind(this)
             },
             data: 0
         };
