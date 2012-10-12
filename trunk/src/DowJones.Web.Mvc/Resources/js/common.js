@@ -1154,7 +1154,7 @@ DJ.$dj.define('$dj', ['jquery'], DJ.$dj);
             this.element = element;
             this.$element = $(element);
 
-            if (element) {
+            if (!meta.name && element) {
                 $meta.name = this.element.id || this.element.name;
             }
 
@@ -1166,18 +1166,14 @@ DJ.$dj.define('$dj', ['jquery'], DJ.$dj);
 
             this._super($meta);
 
-            if ($meta["templates"])
-                this.templates = $.extend({}, this.templates, $meta.templates);
+            if ($meta["templates"]) {
+                $.extend(this.templates, $meta["templates"]);
 
-            var self = this;
-            // re-assign the scope of 'this' inside templates to the instance
-            for (var template in this.templates) {
-                if (this.templates.hasOwnProperty(template) && this.templates[template].bind) {
-                    (function (t) {
-                        return function () {
-                            self.template[t] = self.templates[t].bind(self);
-                        };
-                    }(template));
+                // re-assign the scope of 'this' inside templates to the instance
+                for (var template in this.templates) {
+                    this.templates[template] = (function (func, ctx) {
+                            return func.bind(ctx);
+                    }(this.templates[template], this));
                 }
             }
 
@@ -1294,7 +1290,7 @@ DJ.$dj.define('$dj', ['jquery'], DJ.$dj);
             if (this._owner && this._owner._innerPublish && this._owner._innerPublish instanceof Function) {
                 publisher = this._owner;
             }
-            
+
             var publish = publisher._innerPublish || $dj.publish;
             publish.call(publisher || window, eventName, args);
 
