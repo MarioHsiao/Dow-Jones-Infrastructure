@@ -13,6 +13,8 @@ using DowJones.Web;
 [assembly: WebResource(EmbeddedResources.Js.HighChartsUsMapShapes, KnownMimeTypes.JavaScript)]
 [assembly: WebResource(EmbeddedResources.Js.HighChartsGermanyMapShapes, KnownMimeTypes.JavaScript)]
 [assembly: WebResource(EmbeddedResources.Js.HighChartsWorldMapShapes, KnownMimeTypes.JavaScript)]
+[assembly: WebResource(EmbeddedResources.Js.HighChartsSouthKoreaMapShapes, KnownMimeTypes.JavaScript)]
+[assembly: WebResource(EmbeddedResources.Js.HighChartsIndonesiaMapShapes, KnownMimeTypes.JavaScript)]
 [assembly: WebResource(EmbeddedResources.Js.QuickFlip, KnownMimeTypes.JavaScript)]
 
 #endregion
@@ -26,6 +28,8 @@ namespace DowJones.Dash.Components.EmbeddedResources
 		[ScriptResource(ResourceName = HighChartsUsMapShapes, DependencyLevel = ClientResourceDependencyLevel.MidLevel, Name = "us-map-shapes", DependsOn = new[] { "highcharts-map" })]
 		[ScriptResource(ResourceName = HighChartsGermanyMapShapes, DependencyLevel = ClientResourceDependencyLevel.MidLevel, Name = "germany-map-shapes", DependsOn = new[] { "highcharts-map" })]
 		[ScriptResource(ResourceName = HighChartsWorldMapShapes, DependencyLevel = ClientResourceDependencyLevel.MidLevel, Name = "world-map-shapes", DependsOn = new[] { "highcharts-map" })]
+		[ScriptResource(ResourceName = HighChartsSouthKoreaMapShapes, DependencyLevel = ClientResourceDependencyLevel.MidLevel, Name = "south-korea-map-shapes", DependsOn = new[] { "highcharts-map" })]
+		[ScriptResource(ResourceName = HighChartsIndonesiaMapShapes, DependencyLevel = ClientResourceDependencyLevel.MidLevel, Name = "indonesia-map-shapes", DependsOn = new[] { "highcharts-map" })]
 		[ScriptResource(ResourceName = QuickFlip, DependencyLevel = ClientResourceDependencyLevel.MidLevel, Name = "quickflip", DependsOn = new[] { "jquery" })]
 
 		public static class Js
@@ -39,6 +43,8 @@ namespace DowJones.Dash.Components.EmbeddedResources
 			public const string HighChartsUsMapShapes = HighchartsMapBasePath + "us.map.shapes.js";
 			public const string HighChartsGermanyMapShapes = HighchartsMapBasePath + "germany.map.shapes.js";
 			public const string HighChartsWorldMapShapes = HighchartsMapBasePath + "world.map.shapes.js";
+			public const string HighChartsSouthKoreaMapShapes = HighchartsMapBasePath + "south.korea.map.shapes.js";
+			public const string HighChartsIndonesiaMapShapes = HighchartsMapBasePath + "indonesia.map.shapes.js";
 
 			#endregion
 
