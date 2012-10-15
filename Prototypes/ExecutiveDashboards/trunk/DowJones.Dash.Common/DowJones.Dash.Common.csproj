@@ -110,6 +110,7 @@
     <Compile Include="DataSources\SqlDataSource.cs" />
     <Compile Include="DataSources\WebDataSource.cs" />
     <Compile Include="DataSources\XmlWebDataSource.cs" />
+    <Compile Include="Extentions\StringExtentions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

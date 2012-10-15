@@ -156,12 +156,10 @@ namespace DowJones.Web
                 context.Response.StatusCode = (int)HttpStatusCode.NotModified;
                 return;
             }
-
-
+            
             CultureInfo culture = CultureManager.GetCultureInfoFromInterfaceLanguage(language);
             Thread.CurrentThread.CurrentCulture = culture;
             Thread.CurrentThread.CurrentUICulture = culture;
-
 
             IEnumerable<ContentCacheItem> clientResources = 
                 GetClientResources(resourceId, culture);
@@ -221,20 +219,28 @@ namespace DowJones.Web
                 Log.Warn("Client Resources NOT retrieved: " +
                          string.Join(", ", resourcesRequestedButDidntExist));
             }
+                      
 
             foreach(var resource in resources)
             {
-                var processedResource = new ProcessedClientResource(resource);
+                TaskFactoryManager.Instance.GetDefaultTaskFactory().StartNew(
+                () =>
+                {
+                    var processedResource = new ProcessedClientResource(resource);
 
-                var processors = ClientResourceProcessors
-                                    .OrderBy(x => x.Order)
-                                    .OrderBy(x => x.ProcessorKind);
+                    var processors = ClientResourceProcessors
+                                        .OrderBy(x => x.Order)
+                                        .OrderBy(x => x.ProcessorKind);
 
-                foreach (var processor in processors)
-                    processor.Process(processedResource);
+                    foreach (var processor in processors)
+                        processor.Process(processedResource);
 
-                var cacheKey = new ContentCacheKey(resource.Name, culture);
-                ContentCache.Add(cacheKey, processedResource.MimeType, processedResource.Content);
+                    var cacheKey = new ContentCacheKey(resource.Name, culture);
+                    ContentCache.Add(cacheKey, processedResource.MimeType, processedResource.Content);
+                }
+            );
+
+                
             }
         }
 

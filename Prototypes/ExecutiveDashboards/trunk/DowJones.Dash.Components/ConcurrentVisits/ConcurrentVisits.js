@@ -200,6 +200,7 @@ DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
         this.domain = data.domain;
         this.histogram.get('realtime').hide();
         this.histogram.get('historical').hide();
+        delete this.lastVisits;
     },
     
     _updateRealtimeSeries: function (data) {
@@ -252,6 +253,7 @@ DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
         if (data) {
             if (this.visitorsGauge) {
                 this.visitorsGauge.setData(data.visits);
+                this.lastVisits = data.visits;
             }
 
             var minutes = (data.engaged_time.avg / 60).toFixed(0);
@@ -261,19 +263,31 @@ DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
     },
     
     _updateDashboardStats: function (data) {
-        
         if (data) {
             if (this.visitorsGauge) {
-                this.visitorsGauge.updateMax(data.people_max);
-                this.visitorsGauge.updateMin(data.people_min);
+                if (this.lastVisits && this.lastVisits < data.people_min) {
+                    this.visitorsGauge.updateMax(this.lastVisits< 100? 100 : this.lastVisits < 1000 ? 1000: 10000);
+                    this.visitorsGauge.updateMin(0);
+                }
+                else {
+                    this.visitorsGauge.updateMax(data.people_max);
+                    this.visitorsGauge.updateMin(data.people_min);
+                }
             }
 
             if (this.histogram) {
                 var yAxis = this.histogram.get('visitors');
                 if (yAxis) {
-                    yAxis.setExtremes(0, data.people_max, false);
-                    this.histogram.get('realtime').show();
-                    this.histogram.get('historical').show();
+                    if (this.lastVisits && this.lastVisits < data.people_min) {
+                        yAxis.setExtremes(0, this.lastVisits < 100 ? 100 : this.lastVisits < 1000 ? 1000 : 10000, false);
+                        this.histogram.get('realtime').show();
+                        this.histogram.get('historical').show();
+                    }
+                    else {
+                        yAxis.setExtremes(0, data.people_max, false);
+                        this.histogram.get('realtime').show();
+                        this.histogram.get('historical').show();
+                    }
                 }
             }
         }
