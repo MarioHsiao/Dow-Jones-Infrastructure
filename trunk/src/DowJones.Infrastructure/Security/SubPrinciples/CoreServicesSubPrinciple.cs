@@ -11,6 +11,8 @@ using System;
 using DowJones.Security.Interfaces;
 using DowJones.Security.Services;
 using Factiva.Gateway.Messages.Membership.Authorization.V1_0;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace DowJones.Security.SubPrinciples
 {
@@ -565,7 +567,13 @@ namespace DowJones.Security.SubPrinciples
             {
                 return;
             }
-            _interfaceService = new InterfaceService(_ruleSet.IsInterfaceServiceOn, _authorizationMatrix.Interface);
+            var nvp = _authorizationMatrix.AuthMatrixServices.FirstOrDefault(d => d.Key == "interface");
+            var authComponents = new Dictionary<string, string>();
+            if (nvp.Value != null)
+            {
+                authComponents = nvp.Value.AuthComponents;
+            }
+            _interfaceService = new InterfaceService(_ruleSet.IsInterfaceServiceOn, _authorizationMatrix.Interface, authComponents);
         }
 
         private void InitMarketDataService()

@@ -43,5 +43,6 @@ namespace DowJones.Security.Interfaces
         bool IsSelectDedupeOn { get; }
         string SalesworksPartner { get; }
         bool IsTestExecMarkupInArticleUser { get; }
+        bool IsDowJonesTabEnabled { get; }
     }
 }
