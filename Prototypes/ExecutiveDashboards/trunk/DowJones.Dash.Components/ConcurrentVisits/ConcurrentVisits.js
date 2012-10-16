@@ -95,11 +95,9 @@ DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
         var endDate = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate(), 24);
         return {
             chart: {
-                spacingRight: 20,
-                spacingLeft: 20,
                 height: 150,
                 backgroundColor: 'transparent',
-                margin:[0,20,20,20]
+                
             },
             title: {
                 text: null
