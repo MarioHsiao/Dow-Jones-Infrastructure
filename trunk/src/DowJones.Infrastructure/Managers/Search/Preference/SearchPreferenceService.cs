@@ -50,9 +50,9 @@ namespace DowJones.Managers.Search.Preference
             get
             {
                 var item = PreferenceResponse.LeadSentenceStyle;
-                if (item != null && item.Any())
+                if (item != null)
                 {
-                    return item[0].LeadSentenceStyle;
+                    return item.LeadSentenceStyle;
                 }
                 return LeadSentenceStyleType.Traditional;
             }
