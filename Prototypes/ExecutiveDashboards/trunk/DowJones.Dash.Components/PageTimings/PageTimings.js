@@ -216,7 +216,7 @@ DJ.UI.PageTimings = DJ.UI.CompositeComponent.extend({
     
     _parseColor: function (color) {
         if ($.isPlainObject(color)) {
-            return color.stops[1][1];
+            return color.stops[0][1].darken;
         }
         return color;
     },
