@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -25,7 +26,7 @@ namespace NuGet.RepositoryCleaner
                 let filename = Path.GetFileName(fullPath)
                 let parts = Regex.Match(filename, @"(?<Name>(?:[a-zA-Z]+[0-9]*\.?)+)\.(?<Version>[0-9.]*).nupkg").Groups
                 let name = parts["Name"].Value.ToLower()
-                let version = parts["Version"].Value
+                let version = UInt64.Parse(parts["Version"].Value.Replace(".",""))		// do a numeric check so that 3.3.9 doesn't come ahead of 3.3.25 (e.g.)
                 select new { filename = fullPath, version, name };
 
             var packages =
