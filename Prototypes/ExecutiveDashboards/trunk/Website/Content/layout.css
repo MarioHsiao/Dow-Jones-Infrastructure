@@ -3,13 +3,13 @@ a:hover {
 
 body {
   padding-top: 65px;
-  background-color: #3c3c3c;
+  background-color: #2a2a2a;
   background-repeat: no-repeat;
-  background-image: -moz-linear-gradient(#3a3a3a, #3c3c3c);
-  background-image: -ms-linear-gradient(top, #3a3a3a, #3c3c3c);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#3a3a3a), to(#3c3c3c));
-  background-image: -webkit-linear-gradient(#3a3a3a, #3c3c3c);
-  background-image: linear-gradient(top, #3a3a3a, #3c3c3c); }
+  background-image: -moz-linear-gradient(#2a2a2a, #3c3c3c);
+  background-image: -ms-linear-gradient(top, #2a2a2a, #3c3c3c);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#2a2a2a), to(#3c3c3c));
+  background-image: -webkit-linear-gradient(#2a2a2a, #3c3c3c);
+  background-image: linear-gradient(top, #2a2a2a, #3c3c3c); }
 
 ul, ol {
   list-style: none; }

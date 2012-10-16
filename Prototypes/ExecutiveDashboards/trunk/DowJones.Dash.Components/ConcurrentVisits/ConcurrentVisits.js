@@ -266,7 +266,7 @@ DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
         if (data) {
             if (this.visitorsGauge) {
                 if (this.lastVisits && this.lastVisits < data.people_min) {
-                    this.visitorsGauge.updateMax(this.lastVisits< 100? 100 : this.lastVisits < 1000 ? 1000: 10000);
+                    this.visitorsGauge.updateMax(this.lastVisits < 100? 100 : this.lastVisits < 1000 ? 2000:  this.lastVisits < 5000 ? 5000 : 10000);
                     this.visitorsGauge.updateMin(0);
                 }
                 else {
@@ -279,12 +279,12 @@ DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
                 var yAxis = this.histogram.get('visitors');
                 if (yAxis) {
                     if (this.lastVisits && this.lastVisits < data.people_min) {
-                        yAxis.setExtremes(0, this.lastVisits < 100 ? 100 : this.lastVisits < 1000 ? 1000 : 10000, false);
+                        //yAxis.setExtremes(0, this.lastVisits < 100 ? 200 : this.lastVisits < 1000 ? 2000 : this.lastVisits < 5000 ? 5000 : 10000, false);
                         this.histogram.get('realtime').show();
                         this.histogram.get('historical').show();
                     }
                     else {
-                        yAxis.setExtremes(0, data.people_max, false);
+                        //yAxis.setExtremes(0, data.people_max, false);
                         this.histogram.get('realtime').show();
                         this.histogram.get('historical').show();
                     }
