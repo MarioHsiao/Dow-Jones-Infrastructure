@@ -381,7 +381,7 @@ DJ.UI.TweetLines = DJ.UI.Component.extend({
 	_getInterfaceLanguage: function () {
 		var lang = 'en'; // default to english
 		try {
-			lang = $dj.globalHeaders.preferences.interfaceLanguage;
+		    lang = DJ.config.preferences.interfaceLanguage;
 		}
 		catch (ex) {
 			$dj.warn(this.name, "::_getInterfaceLanguage: Failed to get interface langauge. Defaulting to english.\nDetails:", ex);
@@ -419,7 +419,9 @@ DJ.UI.TweetLines = DJ.UI.Component.extend({
 		}
 
 		$dj.recordODSData(fields);
-	}
+	},
+
+	EOF: null
 
 });
 

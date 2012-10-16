@@ -25,6 +25,7 @@
         if (!isNaN(module)) {
             $dj.warn("[OBSOLETE] AbstractCanvas.addModule(moduleId) is obsolete -- use loadModule(moduleId) instead");
             this.loadModule(parseInt(module));
+            return;
         }
 
         this.layout.add(module);
