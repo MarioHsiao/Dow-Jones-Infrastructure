@@ -189,7 +189,7 @@ DJ.UI.BrowserStats = DJ.UI.CompositeComponent.extend({
                 
                 var stat = data[i],
                     trafficBar = $(trafficBars[i]),
-                    version = (stat.browser === 'msie' || (stat.browser === 'firefox' && stat.browserVersion < 4)) ? stat.browserVersion : '';
+                    version = (stat.browser === 'msie') ? stat.browserVersion : '';
                 trafficBar.find('.visitors').counter(stat.visitors);
                 trafficBar.find('.bar').removeClass().addClass('bar').addClass(stat.temperature);
                 trafficBar.find('.timing').text(stat.timing + 's');
