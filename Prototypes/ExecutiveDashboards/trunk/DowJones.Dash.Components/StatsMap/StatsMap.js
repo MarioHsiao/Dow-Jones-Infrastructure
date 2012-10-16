@@ -292,18 +292,26 @@ DJ.UI.StatsMap = DJ.UI.Component.extend({
 
         var self = this;
 
+       
         // from a simple array, map it to an associative array
         // with the state abbreviation as the key. this makes subsequent lookups o(1) operation.
         var stateMap = {};
-        _.each(workingSet, function (item) {
-            var state = self.currentStateCodes[item.Id];
-            stateMap[state] = {
-                name: item.Name,
-                avg: parseFloat((item.Avg / 1000).toFixed(2)),
-                min: parseFloat((item.Min / 1000).toFixed(2)),
-                max: parseFloat((item.Max / 1000).toFixed(2))
-            };
-        });
+        
+        if (this.currentStateCodes) {
+            _.each(workingSet, function(item) {
+                var state = self.currentStateCodes[item.Id];
+                stateMap[state] = {
+                    name: item.Name,
+                    avg: parseFloat((item.Avg / 1000).toFixed(2)),
+                    min: parseFloat((item.Min / 1000).toFixed(2)),
+                    max: parseFloat((item.Max / 1000).toFixed(2))
+                };
+            });
+        }
+        else {
+            $dj.warn("Mapping for states to codes not found for country code: '", this.mapSource, "'. Blank map will be shown.");
+        }
+
 
         var chartData = [];
         for (var i = 0, len = this.territories.length; i < len; i++) {
