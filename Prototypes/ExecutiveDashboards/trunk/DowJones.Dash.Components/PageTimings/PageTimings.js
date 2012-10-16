@@ -261,7 +261,7 @@ DJ.UI.PageTimings = DJ.UI.CompositeComponent.extend({
             var n = data[j];
             $this.html(Highcharts.numberFormat(n.Avg / 1000, 2) + "s");
             var color = self._delegates.getSingleColor(n.Avg / 1000);
-            $this.css({ borderBottom: "solid 1px " + color, color: color });
+            $this.css({ "border-bottom-color": color, color: color });
         });
         
         temp = self.$element.find(self.selectors.max);
@@ -270,7 +270,7 @@ DJ.UI.PageTimings = DJ.UI.CompositeComponent.extend({
             var n = data[j];
             $this.html(Highcharts.numberFormat(n.Max / 1000, 2) + "s");
             var color = self._delegates.getSingleColor(n.Max / 1000);
-            $this.css({ borderBottom: "solid 1px " + color, color: color });
+            $this.css({ "border-bottom-color": color, color: color });
 
         });
         
@@ -280,7 +280,7 @@ DJ.UI.PageTimings = DJ.UI.CompositeComponent.extend({
             var n = data[j];
             $this.html(Highcharts.numberFormat(n.Min / 1000, 2) + "s");
             var color = self._delegates.getSingleColor(n.Min / 1000);
-            $this.css({ borderBottom: "solid 1px " + color,  color: color });
+            $this.css({ "border-bottom-color": color,  color: color });
 
         });
         if (!self.isSparklinesSeeded)

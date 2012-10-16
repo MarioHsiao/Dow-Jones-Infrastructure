@@ -5,13 +5,8 @@ a:hover {
 
 body {
 	padding-top: 65px;
-	background-color: #2a2a2a;
+	background-color: #3c3c3c;
 	background-repeat: no-repeat;
-	background-image: -moz-linear-gradient(#2a2a2a, #3c3c3c);
-	background-image: -ms-linear-gradient(top, #2a2a2a, #3c3c3c);
-	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#2a2a2a), to(#3c3c3c));
-	background-image: -webkit-linear-gradient(#2a2a2a, #3c3c3c);
-	background-image: linear-gradient(top, #2a2a2a, #3c3c3c);
 }
 
 ul, ol {
@@ -189,4 +184,21 @@ footer {
 	font-size: 9px;
 	font-family: Tahoma, sans-serif;
 	text-transform: lowercase;
+}
+
+/* header level elements inside components - level - h1, level2 - h2 and so on */
+.level1 {
+	font-size: 3em;
+}
+
+.level2 {
+	font-size: 2em;
+}
+
+.level3 {
+	font-size: 1em;
+}
+
+.level4 {
+	font-size: 0.8em;
 }

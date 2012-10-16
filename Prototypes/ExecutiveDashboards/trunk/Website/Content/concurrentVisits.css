@@ -5,7 +5,6 @@
   .visitorsGauge .dj_DashGaugeChart .dj_DashGaugeChartHeader .dj_DashGaugeChartValue {
     position: absolute;
     top: 22px;
-    font-size: 4em;
     text-align: center;
     z-index: 1000;
     width: 200px;
@@ -41,7 +40,6 @@
   color: #999;
   text-shadow: 0px 3px 8px #2A2A2A; }
   .engagement .counter {
-    font-size: 4em;
     text-align: center;
     z-index: 1000;
     line-height: 1em;
@@ -79,7 +77,6 @@
   color: #999;
   text-shadow: 0px 3px 8px #2A2A2A; }
   .platformContainer .desktop .val {
-    font-size: 1.2em;
     text-align: center;
     z-index: 1000;
     line-height: 1em;
@@ -96,7 +93,6 @@
   color: #999;
   text-shadow: 0px 3px 8px #2A2A2A; }
   .platformContainer .mobile .val {
-    font-size: 1.2em;
     text-align: center;
     z-index: 1000;
     line-height: 1em;

@@ -10,16 +10,6 @@
 	line-height: 1em;
 }
 
-@mixin LabelShadow($fontSize: 1.5em, $width: 100px, $color: #333, $top: 15px) {
-	position: absolute;
-	top: $top;
-	font-size: $fontSize;
-	text-align: center;
-	z-index: 1000;
-	width: $width;
-	line-height: 1em;
-	font-weight: bold;
-}
 
 .visitorsGauge{
 	.dj_DashGaugeChart {
@@ -28,7 +18,13 @@
 		position: relative;
 		.dj_DashGaugeChartHeader {
 			.dj_DashGaugeChartValue {
-			  @include LabelShadow(4.0em, 200px, #333, 22px)
+			  position: absolute;
+   			  top: 22px;
+			  text-align: center;
+			  z-index: 1000;
+			  width: 200px;
+			  line-height: 1em;
+			  font-weight: bold;
 			}
 			.dj_DashGaugeChartMax {
 			  @include gaugeMaxLabel(1.0em, 200px, #666, 155px, -5px)
@@ -54,7 +50,6 @@
 	color: #999;
 	text-shadow: 0px 3px 8px #2A2A2A;
 	.counter{
-		font-size: 4em;
 		text-align: center;
 		z-index: 1000;
 		line-height: 1em;
@@ -102,7 +97,6 @@
 		color: #999;
 		text-shadow: 0px 3px 8px #2A2A2A;
 		.val{
-			font-size: 1.2em;
 			text-align: center;
 			z-index: 1000;
 			line-height: 1em;
@@ -121,7 +115,6 @@
 		color: #999;
 		text-shadow: 0px 3px 8px #2A2A2A;
 		.val{
-			font-size: 1.2em;
 			text-align: center;
 			z-index: 1000;
 			line-height: 1em;
