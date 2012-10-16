@@ -363,7 +363,6 @@
     <Compile Include="..\SolutionInfo.cs">
       <Link>Properties\SolutionInfo.cs</Link>
     </Compile>
-    <Compile Include="Radar\WebResources.cs" />
     <Compile Include="Radar\RadarComponent.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -521,8 +520,6 @@
     <EmbeddedResource Include="PortalHeadlineList\ClientTemplates\SuccessTimeLine.htm" />
     <EmbeddedResource Include="VideoPlayer\js\VideoPlayer.js" />
     <EmbeddedResource Include="VideoPlayer\js\scrollable.js" />
-    <EmbeddedResource Include="Radar\images\bar-graph-dkBlue.png" />
-    <EmbeddedResource Include="Radar\images\bar-graph-ltBlue.png" />
     <EmbeddedResource Include="VideoPlayer\js\flowplayer-combined.js" />
     <EmbeddedResource Include="TagCloud\TagCloud.js" />
     <EmbeddedResource Include="HeadlineCarousel\HeadlineCarousel.js" />
