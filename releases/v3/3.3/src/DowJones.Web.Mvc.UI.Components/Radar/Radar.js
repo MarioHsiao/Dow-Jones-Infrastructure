@@ -76,8 +76,8 @@
                     data: self.data,
                     pageSize: o.pageSize,
                     pagesCount: pagesCount,
-                    radarNodeTotalImageUrl: '<%= WebResource("DowJones.Web.Mvc.UI.Components.Radar.images.bar-graph-ltBlue.png") %>',
-                    radarNodeValueImageUrl: '<%= WebResource("DowJones.Web.Mvc.UI.Components.Radar.images.bar-graph-dkBlue.png") %>',
+                    radarNodeTotalImageUrl: o.totalImageUrl,
+                    radarNodeValueImageUrl: o.valueImageUrl,
                     //imgWidth: Math.floor(availableWidth / o.pageSize)
                     imgWidth: imageWidth
                 }));

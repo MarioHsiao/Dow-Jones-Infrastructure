@@ -21,6 +21,7 @@ namespace DowJones.Web.Mvc.UI.Components.RegionalMap
 
         private string _imageMapPath = "";
         internal const string resourceWorldMapImage = "DowJones.Web.Mvc.UI.Components.RegionalMap.Resources.world_map.png";
+
         [ClientProperty("imageMapPath")]
         public string ImageMapPath
         {
