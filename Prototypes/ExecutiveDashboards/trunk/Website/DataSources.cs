@@ -274,7 +274,7 @@ namespace DowJones.Dash.Website
                             {
                                 new PerformanceZone {From = 0, To = 5, ZoneType = PerformanceZoneType.Cool},
                                 new PerformanceZone {From = 5, To = 7, ZoneType = PerformanceZoneType.Neutral},
-                                new PerformanceZone {From = 7, To = 15, ZoneType = PerformanceZoneType.Hot}
+                                new PerformanceZone {From = 7, To = 30, ZoneType = PerformanceZoneType.Hot}
                             },
                     }
                 );
@@ -291,7 +291,7 @@ namespace DowJones.Dash.Website
                             {
                                 new PerformanceZone {From = 0, To = 8, ZoneType = PerformanceZoneType.Cool},
                                 new PerformanceZone {From = 8, To = 10, ZoneType = PerformanceZoneType.Neutral},
-                                new PerformanceZone {From = 10, To = 15, ZoneType = PerformanceZoneType.Hot}
+                                new PerformanceZone {From = 10, To = 30, ZoneType = PerformanceZoneType.Hot}
                             },
                     }
                 );
@@ -308,7 +308,7 @@ namespace DowJones.Dash.Website
                             {
                                 new PerformanceZone {From = 0, To = 8, ZoneType = PerformanceZoneType.Cool},
                                 new PerformanceZone {From = 8, To = 10, ZoneType = PerformanceZoneType.Neutral},
-                                new PerformanceZone {From = 10, To = 15, ZoneType = PerformanceZoneType.Hot}
+                                new PerformanceZone {From = 10, To = 30, ZoneType = PerformanceZoneType.Hot}
                             },
                     });
 
@@ -324,7 +324,7 @@ namespace DowJones.Dash.Website
                             {
                                 new PerformanceZone {From = 0, To = 8, ZoneType = PerformanceZoneType.Cool},
                                 new PerformanceZone {From = 8, To = 10, ZoneType = PerformanceZoneType.Neutral},
-                                new PerformanceZone {From = 10, To = 15, ZoneType = PerformanceZoneType.Hot}
+                                new PerformanceZone {From = 10, To = 30, ZoneType = PerformanceZoneType.Hot}
                             },
                     });
 
@@ -338,9 +338,9 @@ namespace DowJones.Dash.Website
                         Region = "asia",
                         PerformanceZones = new[]
                             {
-                                new PerformanceZone {From = 0, To = 5, ZoneType = PerformanceZoneType.Cool},
-                                new PerformanceZone {From = 5, To = 7, ZoneType = PerformanceZoneType.Neutral},
-                                new PerformanceZone {From = 7, To = 15, ZoneType = PerformanceZoneType.Hot}
+                                new PerformanceZone {From = 0, To = 8, ZoneType = PerformanceZoneType.Cool},
+                                new PerformanceZone {From = 8, To = 10, ZoneType = PerformanceZoneType.Neutral},
+                                new PerformanceZone {From = 10, To = 30, ZoneType = PerformanceZoneType.Hot}
                             },
                     }
                 );
@@ -355,9 +355,9 @@ namespace DowJones.Dash.Website
                         Region = "id", // indonesia TLD
                         PerformanceZones = new[]
                             {
-                                new PerformanceZone {From = 0, To = 5, ZoneType = PerformanceZoneType.Cool},
-                                new PerformanceZone {From = 5, To = 7, ZoneType = PerformanceZoneType.Neutral},
-                                new PerformanceZone {From = 7, To = 15, ZoneType = PerformanceZoneType.Hot}
+                                new PerformanceZone {From = 0, To = 8, ZoneType = PerformanceZoneType.Cool},
+                                new PerformanceZone {From = 8, To = 10, ZoneType = PerformanceZoneType.Neutral},
+                                new PerformanceZone {From = 10, To = 30, ZoneType = PerformanceZoneType.Hot}
                             },
                     }
                 );
@@ -372,9 +372,9 @@ namespace DowJones.Dash.Website
                         Region = "kr",
                         PerformanceZones = new[]
                             {
-                                new PerformanceZone {From = 0, To = 5, ZoneType = PerformanceZoneType.Cool},
-                                new PerformanceZone {From = 5, To = 7, ZoneType = PerformanceZoneType.Neutral},
-                                new PerformanceZone {From = 7, To = 15, ZoneType = PerformanceZoneType.Hot}
+                                new PerformanceZone {From = 0, To = 8, ZoneType = PerformanceZoneType.Cool},
+                                new PerformanceZone {From = 8, To = 10, ZoneType = PerformanceZoneType.Neutral},
+                                new PerformanceZone {From = 10, To = 30, ZoneType = PerformanceZoneType.Hot}
                             },
                     }
                 );
