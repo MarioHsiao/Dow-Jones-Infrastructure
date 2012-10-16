@@ -22,9 +22,6 @@ namespace NuGet.RepositoryCleaner
 
         public void Sweep(string folder)
         {
-			if (!Debugger.IsAttached)
-				Debugger.Launch();
-
             var rawPackages =
                 from fullPath in Directory.GetFiles(folder, "*.nupkg")
                 let filename = Path.GetFileName(fullPath)
