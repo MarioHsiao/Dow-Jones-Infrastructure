@@ -229,14 +229,15 @@
                                 @Model.ArticleDataSet.Language<span class="dj_article_comma">, </span>
                             </div>
                         }
-                        @if (!Model.ArticleDataSet.Source.IsNullOrEmpty())
+                        @if (!Model.ArticleDataSet.Source.IsNullOrEmpty() &&
+                             Model.ArticleDataSet.Source.Any(s => s.ItemEntityData != null))
                         {
                             if (showIndexing)
                             {
                             <div class="dj_article_index">SC</div>
                             }
                             <div class="dj_article_sc dj_article_section">
-                                @foreach (var renderItem in Model.ArticleDataSet.Source)
+                                @foreach (var renderItem in Model.ArticleDataSet.Source.Where(s => s.ItemEntityData != null))
                                 {
                                     @renderItem.ItemEntityData.Code
                                 }<span class="dj_article_comma">, </span>
