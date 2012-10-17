@@ -7,6 +7,8 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using DowJones.Extensions;
 using DowJones.Security.Interfaces;
@@ -31,6 +33,8 @@ namespace DowJones.Security.Services
         /// </summary>
         private readonly MatrixInterfaceService _matrixInterfaceService;
 
+        private readonly Dictionary<string, string> _authComponents;
+
         #endregion
 
         #region Constructor(s)
@@ -38,10 +42,11 @@ namespace DowJones.Security.Services
         /// <summary>
         /// Initializes a new instance of the <see cref="InterfaceService"/> class.
         /// </summary>
-        internal InterfaceService(bool isInterfaceServiceOn, MatrixInterfaceService matrixInterfaceService)
+        internal InterfaceService(bool isInterfaceServiceOn, MatrixInterfaceService matrixInterfaceService, Dictionary<string, string> authComponents)
         {
             _isOn = isInterfaceServiceOn;
             _matrixInterfaceService = matrixInterfaceService;
+            _authComponents = authComponents;
             Initialize();
         }
 
@@ -160,6 +165,8 @@ namespace DowJones.Security.Services
 
         public bool IsTestExecMarkupInArticleUser { get; private set; }
 
+        public bool IsDowJonesTabEnabled { get; private set; }
+
         #endregion
 
         #region Service Initialization Method
@@ -237,8 +244,17 @@ namespace DowJones.Security.Services
             //TODO: NO blogDA IN MATRIXINTERFACESERVICE
             SalesworksPartner = _matrixInterfaceService.salesworksPartner;
             //TODO: NO execDQTest IN MATRIXINTERFACESERVICE
+
+            string strValue = null;
+            if (_authComponents.ContainsKey("DJTAB")){
+                strValue = _authComponents["DJTAB"];
+            }
+            IsDowJonesTabEnabled = ((string.IsNullOrEmpty(strValue)) || string.Equals(strValue.Trim(), "ON", StringComparison.InvariantCultureIgnoreCase));
         }
 
         #endregion
+
+
+        
     }
 }
