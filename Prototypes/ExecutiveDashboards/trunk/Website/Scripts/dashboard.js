@@ -106,7 +106,8 @@
         },
 
         _worldViewClick: function () {
-            $('#watch-video').toggleClass('medium');
+            $('#world-map-module-container').toggleClass('watch-wide');
+            $('#world-map-module-inner').toggleClass('medium');
         },
 
         _initializeWorldStatsMap: function () {
@@ -117,6 +118,8 @@
                     map: 'world'
                 }
             });
+
+            $('#world-map-module .actions-container .fi .icon-remove').click(this._delegates.worldViewClick);
         }
     });
 
