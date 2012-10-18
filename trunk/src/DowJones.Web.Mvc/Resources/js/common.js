@@ -1039,8 +1039,6 @@ DJ.$dj.define('$dj', ['jquery'], DJ.$dj);
         //
         data: {},
         defaults: {},
-        options: {},
-        _delegates: {},
 
 
         //
@@ -1051,14 +1049,14 @@ DJ.$dj.define('$dj', ['jquery'], DJ.$dj);
 
             this.data = $meta.data;
             this.defaults = $.extend(true, {}, this.defaults, $meta.defaults);
-            this.options = $.extend(true, {}, this.options, this.defaults);
-            this.options = $.extend(true, {}, this.options, $meta.options);
+            this.options = $.extend(true, {}, this.defaults, $meta.options);
 
             this.name = $meta.name;
 
             // generate auto getter/setter for properties in options
             this._createAccessors(this.options);
 
+            this._delegates = { };
             this._initializeDelegates();
         },
 
@@ -1166,28 +1164,13 @@ DJ.$dj.define('$dj', ['jquery'], DJ.$dj);
 
             this._super($meta);
 
-            /*
-            if ($meta["templates"]) {
-                $.extend(this.templates, $meta["templates"]);
-
-                // re-assign the scope of 'this' inside templates to the instance
-                for (var template in this.templates) {
-                    this.templates[template] = (function (func, ctx) {
-                            return func.bind(ctx);
-                    }(this.templates[template], this));
-                }
-            }*/
-
             if ($meta["templates"])
                 this.templates = $.extend({}, this.templates, $meta.templates, true);
 
             // re-assign the scope of 'this' inside templates to the instance
             for (var template in this.templates) {
-                if (this.templates[template].bind) {
-                    //this.templates[template] = this.templates[template].bind(this);
-                    this.templates[template] = (function (func, ctx) {
-                        return func.bind(ctx);
-                    }(this.templates[template], this));
+                if (this.templates.hasOwnProperty(template)) {
+                    this.templates[template] = this.templates[template].bind(this);
                 }
             }
 
