@@ -1166,6 +1166,7 @@ DJ.$dj.define('$dj', ['jquery'], DJ.$dj);
 
             this._super($meta);
 
+            /*
             if ($meta["templates"]) {
                 $.extend(this.templates, $meta["templates"]);
 
@@ -1173,6 +1174,19 @@ DJ.$dj.define('$dj', ['jquery'], DJ.$dj);
                 for (var template in this.templates) {
                     this.templates[template] = (function (func, ctx) {
                             return func.bind(ctx);
+                    }(this.templates[template], this));
+                }
+            }*/
+
+            if ($meta["templates"])
+                this.templates = $.extend({}, this.templates, $meta.templates, true);
+
+            // re-assign the scope of 'this' inside templates to the instance
+            for (var template in this.templates) {
+                if (this.templates[template].bind) {
+                    //this.templates[template] = this.templates[template].bind(this);
+                    this.templates[template] = (function (func, ctx) {
+                        return func.bind(ctx);
                     }(this.templates[template], this));
                 }
             }
@@ -1185,6 +1199,7 @@ DJ.$dj.define('$dj', ['jquery'], DJ.$dj);
             this.$element.data("data", this.data);
 
             this.$element.addClass(this.options.cssClass);
+
             this._addBaseClass();
 
             this._initializeElements(this.$element);
