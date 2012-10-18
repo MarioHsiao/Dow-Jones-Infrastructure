@@ -1,22 +1,20 @@
 
 .dj_pageTimings .pageTimings {
 	margin-top: 6px;
-	
+	margin-left: 0px;
 	text-align: left;
 	.pageTimingEntry {
-		width: 130px;
-		height:130px;
-		border-radius: 4px;
-		margin-top: 4px;
+		font-weight: bold;
+		width: 280px;
+		height: 70px;
+		margin-top: 5px;
 		padding: 0 5px;
-		display: inline-block;
-		background-color:#2a2a2a;
-		box-shadow: 0 -1px 0 rgba(0, 0, 0, .20) inset, 0 1px 0 rgba(255, 255, 255, .05);
+		display: block;
+		clear: both;
 		h4.title {
-			font-size: smaller;
 			font-weight: normal;
-			text-align: center;
-			margin-bottom: 14px;
+			text-align: left;
+			margin-bottom: 2px;
 		}
 		.stamp {
 			.value {
@@ -24,28 +22,39 @@
 			}
 		}
 		.avg-stamp{
-			text-align: center;
-			font-weight: bold;
+			color: #999;
+	  		text-align: right;
+			width: 120px;
 			margin: 0 auto;
-			margin-bottom: 15px;
-		}
-		.min-stamp{
-			text-align: right;
+			margin-top: 10px;
+			margin-left: 10px;
+			padding-right: 5px;
 			float: left;
 		}
-		.max-stamp{
-			float: right;
+		.minmax {
+			color: #999;
+			float: left;
+			margin-right: 5px;
+			width: 50px;
+			.min-stamp{
+				margin-bottom: 5px;
+				padding-right: 5px;
+				text-align: right;
+			}
+			.max-stamp{
+				padding-right: 5px;
+				text-align: right;
+			}
 		}
 
 		.dj_sparkline-container {
-			margin-top:  12px;
-			height: 30px;
-			float: left;
+		}
+		.sparklineTooltip {
+			height: 22px;
+			margin-right: 5px;
+			padding-top: 3px;
+			text-align: center;
 		}
 
-		.sparklineTooltip {
-			margin-top:  17px;
-			float: left;
-		}
 	}
 }

@@ -245,7 +245,7 @@ DJ.UI.PageTimings = DJ.UI.CompositeComponent.extend({
             for (var i = 0; i < data.length; i++) {
                 var d = data[i];
                 pageTimings.push({
-                    title: d.page_name.replace("Mobile","").replace("Germany", ""),
+                    title: d.page_name,
                     width: 4
                 });
             }
@@ -261,7 +261,7 @@ DJ.UI.PageTimings = DJ.UI.CompositeComponent.extend({
             var n = data[j];
             $this.html(Highcharts.numberFormat(n.Avg / 1000, 2) + "s");
             var color = self._delegates.getSingleColor(n.Avg / 1000);
-            $this.css({ "border-bottom-color": color, color: color });
+            $this.css({ borderBottom: "solid 4px " + color});
         });
         
         temp = self.$element.find(self.selectors.max);
@@ -270,8 +270,7 @@ DJ.UI.PageTimings = DJ.UI.CompositeComponent.extend({
             var n = data[j];
             $this.html(Highcharts.numberFormat(n.Max / 1000, 2) + "s");
             var color = self._delegates.getSingleColor(n.Max / 1000);
-            $this.css({ "border-bottom-color": color, color: color });
-
+            $this.css({ borderBottom: "solid 4px " + color});
         });
         
         temp = self.$element.find(self.selectors.min);
@@ -280,8 +279,7 @@ DJ.UI.PageTimings = DJ.UI.CompositeComponent.extend({
             var n = data[j];
             $this.html(Highcharts.numberFormat(n.Min / 1000, 2) + "s");
             var color = self._delegates.getSingleColor(n.Min / 1000);
-            $this.css({ "border-bottom-color": color,  color: color });
-
+            $this.css({ borderBottom: "solid 4px " + color});
         });
         if (!self.isSparklinesSeeded)
             this._updateSparklines();
