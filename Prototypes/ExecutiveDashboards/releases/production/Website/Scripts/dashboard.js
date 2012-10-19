@@ -9,6 +9,7 @@
             this._initializeSubscriptions();
             this._initializeTabs();
             this._initializeWorldStatsMap();
+            //this._initializeBrowserShare();
         },
 
         changeDomain: function (domain) {
@@ -30,7 +31,8 @@
             this._delegates = $.extend(this._delegates || {}, {
                 changeDomain: $dj.delegate(this, this.changeDomain),
                 callModuleResize: $dj.delegate(this, this._callModuleResize),
-                worldViewClick:  $dj.delegate(this, this._worldViewClick)
+                worldViewClick:  $dj.delegate(this, this._worldViewClick),
+                platformStatsClick:  $dj.delegate(this, this._platformStatsClick)
             });
         },
 
@@ -103,19 +105,33 @@
         _initializeSubscriptions: function () {
             DJ.subscribe('resized.dj.CanvasModule', this._delegates.callModuleResize);
             DJ.subscribe('worldView.dj.StatsMap', this._delegates.worldViewClick);
+            DJ.subscribe('deviceClick.dj.PlatformStats', this._delegates.platformStatsClick);
         },
 
         _worldViewClick: function () {
-            $('#worldViewModal').modal('show');
+            $('#world-map-module-container').toggleClass('watch-wide');
+            $('#world-map-module-inner').toggleClass('medium');
         },
-
+        
+        _platformStatsClick: function () {
+            //$('#browserShareModal').modal('toggle');
+        },
+        
         _initializeWorldStatsMap: function () {
             DJ.add("StatsMap", {
-                container: $('#worldViewModal .worldMapContainer')[0],
+                container: $('.worldMapContainer')[0],
                 options: {
                     dataEvent: 'data.PageLoadDetailsByCountryForRegion',
                     map: 'world'
                 }
+            });
+
+            $('#world-map-module .actions-container .fi .icon-remove').click(this._delegates.worldViewClick);
+        },
+        
+        _initializeBrowserShare: function () {
+            DJ.add("BrowserShare", {
+                container: $('#browserShareContainer')[0]
             });
         }
     });
@@ -221,7 +237,7 @@
             var gomezEvents = [
                 'BrowserStats',
                 'DeviceTraffic',
-                'DeviceTrafficByPage',
+                'DeviceTraffic',
                 'PageLoadHistoricalDetails',
                 'PageTimings',
                 'PageLoadDetailsBySubCountryforCountry',
@@ -260,9 +276,7 @@
                 //console.log(name + message.data);
                 DJ.publish(name, message.data);
             }
-        },
-
-        EOF: null,
+        }
     });
 
     (function () {

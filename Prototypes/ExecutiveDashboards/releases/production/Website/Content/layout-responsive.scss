@@ -1,7 +1,4 @@
 @media (max-width: 480px) {
-	body {
-		padding-left: 10px;
-	}
 	
 	ul, ol {
 		margin-left:0;
@@ -60,27 +57,3 @@
     }
 }
 
-@media (max-width: 767px) {
-	header {
-		margin-right: -20px;
-		margin-left: -20px;
-	}
-}
-
-@media (max-width: 480px) {
-	.nav-pills {
-		li {
-			a { 
-				padding-right: 4px;
-				padding-left: 4px;
-				margin-right: 0px;
-			}
-		}
-	}
-
-	.dashNav {
-		.main-nav-icon-big {
-			display: inline-block;
-		}
-	}
-}

@@ -1,0 +1,52 @@
+.dj_platform-stats {
+  -webkit-transition: all 459ms;
+  -o-transition: all 459ms;
+  -moz-transition: all 459ms;
+  transition: all 459ms; }
+  .dj_platform-stats .actions-container i {
+    cursor: pointer; }
+  .dj_platform-stats h4 {
+    padding: 0 4px; }
+  .dj_platform-stats .platformContainer .device {
+    cursor: pointer;
+    background-repeat: no-repeat;
+    background-position: top;
+    text-align: center;
+    margin-top: 10px;
+    padding-top: 65px;
+    color: #999;
+    text-shadow: 0px 3px 8px #2A2A2A; }
+    .dj_platform-stats .platformContainer .device .val {
+      text-align: center;
+      font-weight: bold; }
+  .dj_platform-stats .platformContainer .desktop {
+    background-image: url(./images/computer-icon-white.png); }
+  .dj_platform-stats .platformContainer .mobile {
+    background-image: url(./images/smartphone-icon-white.png); }
+  .dj_platform-stats .detailsWrapper {
+    -ms-transition: height 0.5s ease-in;
+    -moz-transition: height 0.5s ease-in;
+    -o-transition: height 0.5s ease-in;
+    -webkit-transition: height 0.5s ease-in;
+    transition: height 0.5s ease-in;
+    overflow: hidden;
+    height: 0;
+    width: 100%;
+    margin-top: 10px;
+    border-radius: 4px;
+    /*IE 7 AND 8 DO NOT SUPPORT BORDER RADIUS*/
+    -ms-box-shadow: 0px 0px 15px #000000;
+    -moz-box-shadow: 0px 0px 15px #000000;
+    -webkit-box-shadow: 0px 0px 15px #000000;
+    box-shadow: 0px 0px 15px #000000;
+    /*IE 7 AND 8 DO NOT SUPPORT BLUR PROPERTY OF SHADOWS*/ }
+    .dj_platform-stats .detailsWrapper .shareChartContainer {
+      -moz-transition: background-color 0.2s ease-in-out;
+      -o-transition: background-color 0.2s ease-in-out;
+      -webkit-transition: background-color 0.2s ease-in-out;
+      transition: background-color 0.2s ease-in-out; }
+    .dj_platform-stats .detailsWrapper.visible {
+      height: 100%; }
+      .dj_platform-stats .detailsWrapper.visible .shareChartContainer {
+        background-color: #2a2a2a; }
+

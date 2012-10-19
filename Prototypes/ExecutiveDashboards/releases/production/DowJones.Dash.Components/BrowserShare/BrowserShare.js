@@ -10,19 +10,6 @@ DJ.UI.BrowserShare = DJ.UI.Component.extend({
 
     init: function (element, meta) {
         this._super(element, $.extend({ name: "BrowserShare" }, meta));
-
-        this._initShareChart();
-    },
-
-
-    _initShareChart: function () {
-        var self = this;
-        DJ.add('ShareChart', {
-            container: this._shareChartContainer[0],
-        }).done(function (comp) {
-            self.shareChart = comp;
-            comp.setOwner(self);
-        });
     },
 
 
@@ -38,15 +25,10 @@ DJ.UI.BrowserShare = DJ.UI.Component.extend({
     },
 
     _initializeEventHandlers: function () {
-        $dj.subscribe('data.DeviceTrafficByPage', this._delegates.setData);
+        $dj.subscribe('data.DeviceTraffic', this._delegates.setData);
     },
     
     _setData: function (data) {
-        if (!this.shareChart) {
-            $dj.error("ShareChart Component is not initialized. Refresh the page to try again.");
-            return;
-        }
-
         data = data[0];
         var total = parseInt(data['All'], 10);
         var browserData = [];
@@ -55,7 +37,58 @@ DJ.UI.BrowserShare = DJ.UI.Component.extend({
                 browserData.push([key, parseFloat((parseInt(data[key], 10)/total * 100).toFixed(2))]);
         }
         
-        this.shareChart.setData({ browserData: browserData });
+        this._renderChart(browserData);
+    },
+    
+      
+    _renderChart: function (data) {
+
+        var filteredData = _.filter(data, function (item) {
+            return item[1] !== 0;
+        });
+        if (!this.chart) {
+            this.chart = new Highcharts.Chart({
+                chart: {
+                    renderTo: this.$element.find('.shareChartContainer')[0],
+                    type: 'pie',
+                    backgroundColor: 'transparent',
+                    plotBorderWidth: null,
+                    plotShadow: false,
+                    spacingLeft: 20,
+                    spacingRight: 20
+                },
+                title: {
+                    text: data.chartTitle || ''
+                },
+                plotOptions: {
+                    pie: {
+                        allowPointSelect: true,
+                        cursor: 'pointer',
+                        dataLabels: {
+                            enabled: true,
+                            color: '#777', 
+                            formatter: function () {
+                                return '<b>' + this.point.name + '</b><br/>' + parseFloat(this.percentage).toFixed(2) + '%';
+                            }
+                        },
+                        softConnector: false
+                    }
+                },
+                tooltip: {
+                    pointFormat: '{series.name}: <b>{point.percentage}%</b>',
+                    percentageDecimals: 1
+                },
+                credits: false,
+                series: [{
+                    type: 'pie',
+                    name: 'Browser Share',
+                    data: filteredData
+                }]
+            });
+        }
+        else {
+            this.chart.series[0].setData(filteredData);
+        }
     }
 });
 

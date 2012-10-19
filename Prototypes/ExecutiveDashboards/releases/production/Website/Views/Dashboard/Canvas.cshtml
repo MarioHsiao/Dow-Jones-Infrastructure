@@ -10,23 +10,46 @@
     <link href="~/Content/concurrentVisits.css" rel="stylesheet" />
     <link href="~/Content/perfGauge.css" rel="stylesheet" />
     <link href="~/Content/topPages.css" rel="stylesheet" />
+    <link href="~/Content/pageTimings.css" rel="stylesheet" />
 }
+<section id="world-map-module-container" class="row-fluid">
+    <div id="world-map-module-inner">
+        <div id="world-map-module">
+            <div class="module dj_module canvas-module script-module"
+                data-description="Average page load times, broken down by country">
+                <div class="module-header dj_module-header dj_module-handle" style="cursor: move;">
+                    <h3 class="module-title dj_module-title">Page Load By Country
+                    </h3>
+                    <div class="actions-container" style="">
+                        <span class="fi"><i class="icon-remove icon-white"></i></span>
+                    </div>
+                </div>
+                <div class="module-core dj_module-core" style="">
+                    <div class="dj_content dj_module-content module-content two-row" style="">
+                        <div class="worldMapContainer"></div>
 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 <section id="dashboard" class="row-fluid">
+
     @DJ.Render(Model)
 </section>
 
 @Html.Action("Gallery")
 
-<div class="modal hide fade" id="worldViewModal" tabindex="-1" role="dialog" aria-labelledby="worldViewModalLabel"
+<div class="modal hide fade" id="browserShareModal" tabindex="-1" role="dialog" aria-labelledby="browserShareModalLabel"
     aria-hidden="true">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h3 id="worldViewModalLabel">Page Load By Country</h3>
+        <h3 id="browserShareModalLabel">Browser Share</h3>
     </div>
-    <div class="modal-body">
-        <div class="worldMapContainer"></div>
-    </div>
+	<div class="modal-body">
+		<div id="browserShareContainer"></div>
+	</div>
     <div class="modal-footer">
         <button class="btn btn-primary" data-dismiss="modal" aria-hidden="true">Close</button>
     </div>

@@ -41,9 +41,9 @@ DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
                 width: 200
             },
             templates: {
-                max: this._maxTemplate,
-                min: this._minTemplate,
-                footer: this._footerTemplate
+                max: this._maxTemplate.bind(this),
+                min: this._minTemplate.bind(this),
+                footer: this._footerTemplate.bind(this)
             },
             data: 0
         };
@@ -95,11 +95,9 @@ DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
         var endDate = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate(), 24);
         return {
             chart: {
-                spacingRight: 20,
-                spacingLeft: 20,
                 height: 150,
                 backgroundColor: 'transparent',
-                margin:[0,20,20,20]
+                
             },
             title: {
                 text: null
@@ -193,13 +191,14 @@ DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
         $dj.subscribe('data.DashboardStats', this._delegates.updateDashboardStats);
         $dj.subscribe('data.HistorialTrafficSeries', this._delegates.updateRealtimeSeries);
         $dj.subscribe('data.HistorialTrafficSeriesWeekAgo', this._delegates.updateHistoricalSeries);
-        $dj.subscribe('comm.domain.changed', this._delegates.domainChanged);
+        $dj.subscribe('data.BasicHostConfiguration', this._delegates.domainChanged);
     },
 
     _domainChanged: function(data) {
         this.domain = data.domain;
         this.histogram.get('realtime').hide();
         this.histogram.get('historical').hide();
+        delete this.lastVisits;
     },
     
     _updateRealtimeSeries: function (data) {
@@ -252,6 +251,7 @@ DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
         if (data) {
             if (this.visitorsGauge) {
                 this.visitorsGauge.setData(data.visits);
+                this.lastVisits = data.visits;
             }
 
             var minutes = (data.engaged_time.avg / 60).toFixed(0);
@@ -261,19 +261,31 @@ DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
     },
     
     _updateDashboardStats: function (data) {
-        
         if (data) {
             if (this.visitorsGauge) {
-                this.visitorsGauge.updateMax(data.people_max);
-                this.visitorsGauge.updateMin(data.people_min);
+                if (this.lastVisits && this.lastVisits < data.people_min) {
+                    this.visitorsGauge.updateMax(this.lastVisits < 100? 100 : this.lastVisits < 1000 ? 2000:  this.lastVisits < 5000 ? 5000 : 10000);
+                    this.visitorsGauge.updateMin(0);
+                }
+                else {
+                    this.visitorsGauge.updateMax(data.people_max);
+                    this.visitorsGauge.updateMin(data.people_min);
+                }
             }
 
             if (this.histogram) {
                 var yAxis = this.histogram.get('visitors');
                 if (yAxis) {
-                    yAxis.setExtremes(0, data.people_max, false);
-                    this.histogram.get('realtime').show();
-                    this.histogram.get('historical').show();
+                    if (this.lastVisits && this.lastVisits < data.people_min) {
+                        //yAxis.setExtremes(0, this.lastVisits < 100 ? 200 : this.lastVisits < 1000 ? 2000 : this.lastVisits < 5000 ? 5000 : 10000, false);
+                        this.histogram.get('realtime').show();
+                        this.histogram.get('historical').show();
+                    }
+                    else {
+                        //yAxis.setExtremes(0, data.people_max, false);
+                        this.histogram.get('realtime').show();
+                        this.histogram.get('historical').show();
+                    }
                 }
             }
         }

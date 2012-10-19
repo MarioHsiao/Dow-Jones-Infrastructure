@@ -6,6 +6,7 @@ using System.Net;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Web;
+using DowJones.Dash.Extentions;
 using DowJones.DependencyInjection;
 using DowJones.Infrastructure;
 using ICredentials = System.Net.ICredentials;
@@ -32,10 +33,7 @@ namespace DowJones.Dash.DataSources
         {
             get
             {
-                if("GET".Equals(Method, StringComparison.OrdinalIgnoreCase))
-                    return string.Format("{0}?{1}", Path, SerializeParameters());
-
-                return Path;
+                return "GET".Equals(Method, StringComparison.OrdinalIgnoreCase) ? string.Format("{0}?{1}", Path, SerializeParameters()) : Path;
             }
         }
 
@@ -136,7 +134,11 @@ namespace DowJones.Dash.DataSources
 
         private string SerializeParameters()
         {
-            var parameters = Parameters.Select(x => string.Format("{0}={1}", x.Key, HttpUtility.UrlEncode(x.Value.ToString())));
+            //var parameters = Parameters.Select(x => string.Format("{0}={1}", x.Key, HttpUtility.UrlEncode(x.Value.ToString())));
+
+            var parameters = (from parameter in Parameters let key = parameter.Key let val = parameter.Value.ToString() 
+                        where !string.IsNullOrEmpty(val) 
+                        select "{0}={1}".FormatWith(key, HttpUtility.UrlEncode(val))).ToList();
             return string.Join("&", parameters);
         }
 

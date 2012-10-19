@@ -4,12 +4,7 @@ a:hover {
 body {
   padding-top: 65px;
   background-color: #3c3c3c;
-  background-repeat: no-repeat;
-  background-image: -moz-linear-gradient(#3a3a3a, #3c3c3c);
-  background-image: -ms-linear-gradient(top, #3a3a3a, #3c3c3c);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#3a3a3a), to(#3c3c3c));
-  background-image: -webkit-linear-gradient(#3a3a3a, #3c3c3c);
-  background-image: linear-gradient(top, #3a3a3a, #3c3c3c); }
+  background-repeat: no-repeat; }
 
 ul, ol {
   list-style: none; }
@@ -53,7 +48,7 @@ header {
 .main-nav.navbar .nav > li {
   display: inline-block;
   float: left;
-  width: 12.5%;
+  width: 12%;
   border-left: 1px solid #61B0DF; }
   .main-nav.navbar .nav > li > a {
     margin-top: 0px;
@@ -104,11 +99,8 @@ header {
 
 footer {
   background: #2C2C2C;
-  position: relative;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 2345; }
+  z-index: 22345;
+  font-size: smaller; }
   footer h5 {
     color: #999;
     margin: 0; }
@@ -128,4 +120,22 @@ footer {
 
 .pillContainer {
   font-size: smaller; }
+
+.beta {
+  font-size: 9px;
+  font-family: Tahoma, sans-serif;
+  text-transform: lowercase; }
+
+/* header level elements inside components - level - h1, level2 - h2 and so on */
+.level1 {
+  font-size: 3em; }
+
+.level2 {
+  font-size: 2em; }
+
+.level3 {
+  font-size: 1em; }
+
+.level4 {
+  font-size: 0.8em; }
 

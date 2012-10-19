@@ -5,7 +5,6 @@
   .visitorsGauge .dj_DashGaugeChart .dj_DashGaugeChartHeader .dj_DashGaugeChartValue {
     position: absolute;
     top: 22px;
-    font-size: 4em;
     text-align: center;
     z-index: 1000;
     width: 200px;
@@ -37,70 +36,14 @@
     text-align: center;
     width: 200px; }
 
-.dj_pageTimings .pageTimings {
-  margin-top: 10px; }
-  .dj_pageTimings .pageTimings .dj_sparkline-container {
-    height: 20px;
-    width: 57px;
-    display: inline-block; }
-  .dj_pageTimings .pageTimings .title {
-    position: relative;
-    top: -5px; }
-    .dj_pageTimings .pageTimings .title .muted {
-      font-size: smaller; }
-  .dj_pageTimings .pageTimings .time-stamp {
-    position: relative;
-    top: -7px;
-    margin-left: 3px;
-    line-height: 1em;
-    font-weight: bold;
-    color: #999;
-    text-shadow: 0px 3px 8px #2A2A2A; }
-  .dj_pageTimings .pageTimings .sparklineEntry {
-    margin-bottom: 10px; }
-    .dj_pageTimings .pageTimings .sparklineEntry .muted {
-      font-size: smaller; }
-    .dj_pageTimings .pageTimings .sparklineEntry .curTime-stamp {
-      position: relative;
-      top: -7px;
-      line-height: 1em;
-      font-weight: normal;
-      color: #ccc;
-      text-shadow: 0px 3px 8px #2A2A2A; }
-
-.newGauge .dj_DashGaugeChart, .writeGauge .dj_DashGaugeChart, .readGauge .dj_DashGaugeChart, .idleGauge .dj_DashGaugeChart {
-  width: 100px;
-  margin: 0 auto;
-  position: relative; }
-  .newGauge .dj_DashGaugeChart .dj_DashGaugeChartHeader .dj_DashGaugeChartValue, .writeGauge .dj_DashGaugeChart .dj_DashGaugeChartHeader .dj_DashGaugeChartValue, .readGauge .dj_DashGaugeChart .dj_DashGaugeChartHeader .dj_DashGaugeChartValue, .idleGauge .dj_DashGaugeChart .dj_DashGaugeChartHeader .dj_DashGaugeChartValue {
-    position: absolute;
-    top: 15px;
-    font-size: 1.5em;
+.engagement {
+  color: #999;
+  text-shadow: 0px 3px 8px #2A2A2A; }
+  .engagement .counter {
     text-align: center;
     z-index: 1000;
-    width: 100px;
     line-height: 1em;
     font-weight: bold; }
-  .newGauge .dj_DashGaugeChart .dj_DashGaugeChartHeader .dj_DashGaugeChartMax, .writeGauge .dj_DashGaugeChart .dj_DashGaugeChartHeader .dj_DashGaugeChartMax, .readGauge .dj_DashGaugeChart .dj_DashGaugeChartHeader .dj_DashGaugeChartMax, .idleGauge .dj_DashGaugeChart .dj_DashGaugeChartHeader .dj_DashGaugeChartMax {
-    position: absolute;
-    top: 70px;
-    left: -5px;
-    font-size: 0.9em;
-    text-align: right;
-    z-index: 1000;
-    width: 100px;
-    line-height: 1em; }
-  .newGauge .dj_DashGaugeChart .dj_DashGaugeChartHeader .dj_DashGaugeChartMin, .writeGauge .dj_DashGaugeChart .dj_DashGaugeChartHeader .dj_DashGaugeChartMin, .readGauge .dj_DashGaugeChart .dj_DashGaugeChartHeader .dj_DashGaugeChartMin, .idleGauge .dj_DashGaugeChart .dj_DashGaugeChartHeader .dj_DashGaugeChartMin {
-    display: none; }
-  .newGauge .dj_DashGaugeChart .dj_DashGaugeChartHeader .chartMax, .writeGauge .dj_DashGaugeChart .dj_DashGaugeChartHeader .chartMax, .readGauge .dj_DashGaugeChart .dj_DashGaugeChartHeader .chartMax, .idleGauge .dj_DashGaugeChart .dj_DashGaugeChartHeader .chartMax {
-    display: block; }
-  .newGauge .dj_DashGaugeChart .dj_DashGaugeChartHeader .chartMin, .writeGauge .dj_DashGaugeChart .dj_DashGaugeChartHeader .chartMin, .readGauge .dj_DashGaugeChart .dj_DashGaugeChartHeader .chartMin, .idleGauge .dj_DashGaugeChart .dj_DashGaugeChartHeader .chartMin {
-    display: block; }
-  .newGauge .dj_DashGaugeChart .dj_DashGaugeChartFooter, .writeGauge .dj_DashGaugeChart .dj_DashGaugeChartFooter, .readGauge .dj_DashGaugeChart .dj_DashGaugeChartFooter, .idleGauge .dj_DashGaugeChart .dj_DashGaugeChartFooter {
-    position: relative;
-    top: -10px;
-    text-align: center;
-    width: 100px; }
 
 .dj_concurrent-visits {
   color: #999;
@@ -109,11 +52,6 @@
     margin: 0 auto;
     text-align: center;
     width: 150px; }
-  .dj_concurrent-visits .counter {
-    font-size: 1.5em;
-    text-align: center;
-    line-height: 1em;
-    font-weight: bold; }
   .dj_concurrent-visits .idle {
     text-align: right; }
   .dj_concurrent-visits .progress-success .bar {
@@ -126,21 +64,4 @@
     background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#02a1da), to(#0179b2));
     background-image: -webkit-linear-gradient(#02a1da, #0179b2);
     background-image: linear-gradient(top, #02a1da, #0179b2); }
-
-.platformContainer .desktop {
-  height: 60px;
-  display: block;
-  background-image: url(./images/computer-icon-white.png);
-  background-repeat: no-repeat;
-  background-position: center;
-  text-align: center;
-  padding-top: 55px; }
-.platformContainer .mobile {
-  height: 60px;
-  display: block;
-  background-image: url(./images/smartphone-icon-white.png);
-  background-repeat: no-repeat;
-  background-position: center;
-  text-align: center;
-  padding-top: 55px; }
 

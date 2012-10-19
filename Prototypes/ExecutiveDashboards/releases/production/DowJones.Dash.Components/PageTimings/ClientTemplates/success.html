@@ -1,13 +1,21 @@
 <ul class="pageTimings modified">
-    <%  var x, title, pageTimings = self, options = this.options;
+    <%  var x, title, pageTimings = self, options = this.options, last = '';
         for (var i = 0, len = Math.min(pageTimings.length, 100); i < len; i++) { 
             x = pageTimings[i]; 
             title = x.title;
+            if(i === (len - 1)){
+                last = ' last'
+            }
     %>
-    <li class="sparklineEntry">
-        <span class="sparklineContainer"></span><strong class="time-stamp" style="border-bottom: solid <%=x.width%>px <%= x.color %>"><%= x.avg %></strong>
-        <div class="title"><small class="muted"><%= title %></small></div>
-        <div class="curTime-stamp muted">&nbsp;</div>
+    <li class="pageTimingEntry<%= last %>" >
+        <h4 class="title level3"><%= title %></h4>
+            <div class="avg-stamp"><span class="value level1" title="Avg"></span></div>
+            <div class="minmax">
+                <div class="min-stamp"><span class="value level3" title="Min"></span></div>
+                <div class="max-stamp"><span class="value level3" title="Max"></span></div>
+            </div>
+            <div class="sparklineTooltip muted">&nbsp;</div>
+            <div class="sparklineContainer"></div>
     </li>
     <% } %> 
 </ul>
