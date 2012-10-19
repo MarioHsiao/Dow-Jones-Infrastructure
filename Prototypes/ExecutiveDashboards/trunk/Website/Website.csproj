@@ -374,6 +374,9 @@
     <Content Include="Content\perfGauge.css">
       <DependentUpon>perfGauge.scss</DependentUpon>
     </Content>
+    <Content Include="Content\platformStats.css">
+      <DependentUpon>platformStats.scss</DependentUpon>
+    </Content>
     <Content Include="Content\StatsMap.css">
       <DependentUpon>StatsMap.scss</DependentUpon>
     </Content>
@@ -460,6 +463,7 @@
     <Content Include="Content\StatsMap.scss" />
     <Content Include="Content\layout-responsive.scss" />
     <Content Include="Content\pageTimings.scss" />
+    <Content Include="Content\platformStats.scss" />
     <None Include="Properties\PublishProfiles\montana.pubxml" />
     <Content Include="Views\Dashboard\_Gallery.cshtml" />
     <Content Include="Views\Home\Test.cshtml" />

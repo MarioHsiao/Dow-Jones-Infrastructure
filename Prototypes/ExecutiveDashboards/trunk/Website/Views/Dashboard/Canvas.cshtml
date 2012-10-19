@@ -41,14 +41,15 @@
 
 @Html.Action("Gallery")
 
-<div class="modal hide fade" id="worldViewModal" tabindex="-1" role="dialog" aria-labelledby="worldViewModalLabel"
+<div class="modal hide fade" id="browserShareModal" tabindex="-1" role="dialog" aria-labelledby="browserShareModalLabel"
     aria-hidden="true">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h3 id="worldViewModalLabel">Page Load By Country</h3>
+        <h3 id="browserShareModalLabel">Browser Share</h3>
     </div>
-    <div class="modal-body">
-    </div>
+	<div class="modal-body">
+		<div id="browserShareContainer"></div>
+	</div>
     <div class="modal-footer">
         <button class="btn btn-primary" data-dismiss="modal" aria-hidden="true">Close</button>
     </div>

@@ -65,32 +65,3 @@
     background-image: -webkit-linear-gradient(#02a1da, #0179b2);
     background-image: linear-gradient(top, #02a1da, #0179b2); }
 
-.platformContainer .desktop {
-  height: 10px;
-  display: block;
-  background-image: url(./images/computer-icon-white.png);
-  background-repeat: no-repeat;
-  background-position: top;
-  text-align: center;
-  margin-top: 10px;
-  padding-top: 65px;
-  color: #999;
-  text-shadow: 0px 3px 8px #2A2A2A; }
-  .platformContainer .desktop .val {
-    text-align: center;
-    font-weight: bold; }
-.platformContainer .mobile {
-  height: 10px;
-  display: block;
-  background-image: url(./images/smartphone-icon-white.png);
-  background-repeat: no-repeat;
-  background-position: top;
-  margin-top: 10px;
-  text-align: center;
-  padding-top: 65px;
-  color: #999;
-  text-shadow: 0px 3px 8px #2A2A2A; }
-  .platformContainer .mobile .val {
-    text-align: center;
-    font-weight: bold; }
-

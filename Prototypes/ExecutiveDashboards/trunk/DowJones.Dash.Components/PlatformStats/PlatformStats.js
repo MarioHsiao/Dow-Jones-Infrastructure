@@ -6,18 +6,23 @@ DJ.UI.PlatformStats = DJ.UI.CompositeComponent.extend({
 
     selectors: {
         mobileContainer: 'div.platformContainer div.mobile span.val',
-        desktopContainer: 'div.platformContainer div.desktop span.val'
+        desktopContainer: 'div.platformContainer div.desktop span.val',
+        device: '.device'
     },
-    
+
+    events: {
+        deviceClick: 'deviceClick.dj.PlatformStats'
+    },
+
     init: function (element, meta) {
         // Call the base constructor
         this._super(element, $.extend({ name: "PlatformStats" }, meta));
     },
-    
+
     _initializeDelegates: function () {
         this._delegates = $.extend(this._delegates, {
-                updateStats: $dj.delegate(this, this._updateStats)
-            });
+            updateStats: $dj.delegate(this, this._updateStats)
+        });
     },
 
     _initializeElements: function () {
@@ -27,6 +32,12 @@ DJ.UI.PlatformStats = DJ.UI.CompositeComponent.extend({
     _initializeEventHandlers: function () {
         $dj.subscribe('data.QuickStats', this._delegates.updateStats);
         this.$element.find(".tip").tooltip();
+
+        var self = this;
+        this.$element.on('click', this.selectors.device, function () {
+            var deviceType = $(this).data('device-type');
+            $dj.publish(self.events.deviceClick, { deviceType: deviceType });
+        });
     },
 
     _updateStats: function (data) {

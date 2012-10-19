@@ -254,6 +254,11 @@ h2 a.reset {
 	-webkit-transition: width,height 0.2s ease-out;
 }
 
+.shareChartContainer {
+	height: 300px;
+	width: 400px;
+	margin: 0 auto;
+}
 
 @media (max-width: 1132px) {
 	header {
