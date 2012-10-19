@@ -256,6 +256,15 @@ namespace DowJones.Dash.Website
                                                      {"seconds", 3600},
                                                      {"site", (int) dataSourceConfig.Site},
                                                  });
+
+			yield return new GomezDataSource("{0}-DeviceTraffic".FormatWith(dataSourceConfig.Domain),
+											 "DeviceTraffic",
+											 "[SplunkExport].[dbo].[GetDeviceTraffic]",
+											 new Dictionary<string, object>
+                                                 {
+                                                     {"seconds", 3600},
+                                                     {"site", (int) dataSourceConfig.Site},
+                                                 });
         }
 
 
