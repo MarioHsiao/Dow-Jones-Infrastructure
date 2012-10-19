@@ -29,7 +29,7 @@ namespace DowJones.Web.Handlers.Syndication.Podcast
         // private const string DEFAULT_FOLDER_PATH = "~/{0}.mp3"; OLD STRING
 
         public const string TokenNameValuePair = "tkn";
-        private const string DefaultFolderPath = "~/{1}.mp3?" + TokenNameValuePair + "= {0}";
+        private const string DefaultFolderPath = "~/{1}.mp3?" + TokenNameValuePair + "={0}";
         private readonly string _path;
         private readonly PodcastArticleToken _token = new PodcastArticleToken();
 
