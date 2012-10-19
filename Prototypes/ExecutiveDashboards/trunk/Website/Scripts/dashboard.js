@@ -263,9 +263,7 @@
                 //console.log(name + message.data);
                 DJ.publish(name, message.data);
             }
-        },
-
-        EOF: null,
+        }
     });
 
     (function () {
