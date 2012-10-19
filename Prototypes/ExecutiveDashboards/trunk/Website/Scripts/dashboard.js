@@ -9,7 +9,7 @@
             this._initializeSubscriptions();
             this._initializeTabs();
             this._initializeWorldStatsMap();
-            this._initializeBrowserShare();
+            //this._initializeBrowserShare();
         },
 
         changeDomain: function (domain) {
@@ -114,7 +114,7 @@
         },
         
         _platformStatsClick: function () {
-            $('#browserShareModal').modal('toggle');
+            //$('#browserShareModal').modal('toggle');
         },
         
         _initializeWorldStatsMap: function () {

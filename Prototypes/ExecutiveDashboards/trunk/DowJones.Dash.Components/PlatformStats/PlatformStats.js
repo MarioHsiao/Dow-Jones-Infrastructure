@@ -7,7 +7,10 @@ DJ.UI.PlatformStats = DJ.UI.CompositeComponent.extend({
     selectors: {
         mobileContainer: 'div.platformContainer div.mobile span.val',
         desktopContainer: 'div.platformContainer div.desktop span.val',
-        device: '.device'
+        device: '.device',
+        shareChartContainer: '.shareChartContainer',
+        closeButton: '.actions-container .icon-remove',
+        detailsWrapper: '.detailsWrapper'
     },
 
     events: {
@@ -17,6 +20,8 @@ DJ.UI.PlatformStats = DJ.UI.CompositeComponent.extend({
     init: function (element, meta) {
         // Call the base constructor
         this._super(element, $.extend({ name: "PlatformStats" }, meta));
+
+        this._initBrowserShare();
     },
 
     _initializeDelegates: function () {
@@ -25,8 +30,17 @@ DJ.UI.PlatformStats = DJ.UI.CompositeComponent.extend({
         });
     },
 
-    _initializeElements: function () {
+    _initializeElements: function (ctx) {
         this.$element.html(this.templates.container());
+        this.shareChartContainer = ctx.find(this.selectors.shareChartContainer);
+        this.closeButton = ctx.find(this.selectors.closeButton);
+        this.detailsWrapper = ctx.find(this.selectors.detailsWrapper);
+    },
+    
+    _initBrowserShare: function() {
+        DJ.add("BrowserShare", {
+            container: this.shareChartContainer[0]
+        });
     },
 
     _initializeEventHandlers: function () {
@@ -34,9 +48,14 @@ DJ.UI.PlatformStats = DJ.UI.CompositeComponent.extend({
         this.$element.find(".tip").tooltip();
 
         var self = this;
+
+        this.$element.on('click', this.selectors.closeButton, function () {
+            self.detailsWrapper.toggleClass('visible');
+        });
+        
         this.$element.on('click', this.selectors.device, function () {
             var deviceType = $(this).data('device-type');
-            $dj.publish(self.events.deviceClick, { deviceType: deviceType });
+            self.detailsWrapper.toggleClass('visible');
         });
     },
 

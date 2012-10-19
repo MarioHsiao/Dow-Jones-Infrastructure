@@ -1,38 +1,82 @@
-.platformContainer{
-	.device {
-		cursor: pointer;
+.dj_platform-stats {
+	-webkit-transition: all 459ms;
+	-o-transition: all 459ms;
+	-moz-transition: all 459ms;
+	transition: all 459ms;
+
+	.actions-container {
+		i {
+			cursor: pointer;
+		}
 	}
 
-	.desktop{
-		height: 10px;
-		display:block;
-		background-image: url(./images/computer-icon-white.png);
-		background-repeat: no-repeat;
-		background-position: top; 
-		text-align: center;
-		margin-top:10px;
-		padding-top: 65px;
-		color: #999;
-		text-shadow: 0px 3px 8px #2A2A2A;
-		.val{
+	h4 {
+		padding: 0 4px;
+	}
+
+	.platformContainer{
+		
+		.device {
+			cursor: pointer;
+			background-repeat: no-repeat;
+			background-position: top; 
 			text-align: center;
-			font-weight: bold;
+			margin-top:10px;
+			padding-top: 65px;
+			color: #999;
+			text-shadow: 0px 3px 8px #2A2A2A;
+			.val{
+				text-align: center;
+				font-weight: bold;
+			}
+		}
+
+		.desktop{
+			background-image: url(./images/computer-icon-white.png);
+		}
+		.mobile{
+			background-image: url(./images/smartphone-icon-white.png);
 		}
 	}
-	.mobile{
-		height: 10px;
-		display: block;
-		background-image: url(./images/smartphone-icon-white.png);
-		background-repeat: no-repeat;
-		background-position: top; 
+
+	.detailsWrapper {
+		$bgColorTransition: background-color 0.2s ease-in-out;
+		$dimensionTransition: height 0.5s ease-in;
+
+		-ms-transition: $dimensionTransition;
+		-moz-transition: $dimensionTransition;
+		-o-transition: $dimensionTransition;
+		-webkit-transition: $dimensionTransition;
+		transition: $dimensionTransition; 
+
+		overflow: hidden;
+		height: 0;
+		width: 100%;
 		margin-top: 10px;
-		text-align: center;
-		padding-top: 65px;
-		color: #999;
-		text-shadow: 0px 3px 8px #2A2A2A;
-		.val{
-			text-align: center;
-			font-weight: bold;
+
+		border-radius: 4px;
+		/*IE 7 AND 8 DO NOT SUPPORT BORDER RADIUS*/
+		-ms-box-shadow: 0px 0px 15px #000000;
+		-moz-box-shadow: 0px 0px 15px #000000;
+		-webkit-box-shadow: 0px 0px 15px #000000;
+		box-shadow: 0px 0px 15px #000000;
+		/*IE 7 AND 8 DO NOT SUPPORT BLUR PROPERTY OF SHADOWS*/
+		
+		.shareChartContainer {
+			-moz-transition: $bgColorTransition;
+			-o-transition: $bgColorTransition;
+			-webkit-transition: $bgColorTransition;
+			transition: $bgColorTransition;
 		}
+
+		&.visible {
+			height: 100%;
+			
+
+			.shareChartContainer {
+				background-color: #2a2a2a;
+			}
+		}
+
 	}
 }
