@@ -261,11 +261,6 @@ h2 a.reset {
 }
 
 @media (max-width: 1132px) {
-	header {
-		margin-right: -20px;
-		margin-left: -20px;
-	}
-
 	ul, ol {
 		margin: 0 0 9px 15px;
 	}
@@ -297,6 +292,10 @@ h2 a.reset {
 }
 
 @media (max-width: 480px) {
+	header {
+		margin-left: -20px;
+	}
+
 	.nav-pills {
 		li {
 			a { 
