@@ -13,7 +13,8 @@
     .dj_pageTimings .pageTimings .pageTimingEntry h4.title {
       font-weight: normal;
       text-align: left;
-      margin-bottom: 2px; }
+      margin-bottom: 2px;
+      color: #369BD7; }
     .dj_pageTimings .pageTimings .pageTimingEntry .stamp .value {
       border-bottom: 2px solid; }
     .dj_pageTimings .pageTimings .pageTimingEntry .avg-stamp {
