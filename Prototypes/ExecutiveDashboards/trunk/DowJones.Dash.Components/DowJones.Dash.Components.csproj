@@ -345,10 +345,6 @@
     <EmbeddedResource Include="StatsMap\marker_rounded_yellow_orange.png" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="EmbeddedResources\js\quickflip\jquery.quickflip.js" />
-    <EmbeddedResource Include="EmbeddedResources\js\quickflip\jquery.quickflip.min.js" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="StatsMap\ClientTemplates\navPills.html" />
   </ItemGroup>
   <ItemGroup>
@@ -368,6 +364,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="EmbeddedResources\js\highchartsMap\south.korea.map.shapes.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="EmbeddedResources\js\highchartsMap\asia.pacific.map.shapes.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
