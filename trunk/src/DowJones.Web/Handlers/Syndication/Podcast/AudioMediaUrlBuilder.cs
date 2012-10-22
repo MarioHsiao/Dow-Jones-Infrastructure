@@ -246,9 +246,11 @@ namespace DowJones.Web.Handlers.Syndication.Podcast
         /// </returns>
         new public string ToString()
         {
-            CustomCharacterEncoder encoder = new CustomCharacterEncoder();
-            UrlBuilder ub = new UrlBuilder(string.Format(_path, encoder.Encode(_token.Encrypt()), AccessionNumber));
-            ub.OutputType = UrlBuilder.UrlOutputType.Absolute;
+            var encoder = new CustomCharacterEncoder();
+            var ub = new UrlBuilder(string.Format(_path, encoder.Encode(_token.Encrypt()), AccessionNumber))
+                {
+                    OutputType = UrlBuilder.UrlOutputType.Absolute
+                };
 
             return ub.ToString();
         }
@@ -256,7 +258,7 @@ namespace DowJones.Web.Handlers.Syndication.Podcast
 
         public static string Decode(string token)
         {
-            CustomCharacterEncoder encoder = new CustomCharacterEncoder();
+            var encoder = new CustomCharacterEncoder();
             return encoder.Decode(token);
         }
     }
