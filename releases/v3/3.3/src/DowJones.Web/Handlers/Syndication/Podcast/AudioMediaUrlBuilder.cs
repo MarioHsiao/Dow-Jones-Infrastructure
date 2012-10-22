@@ -29,7 +29,7 @@ namespace DowJones.Web.Handlers.Syndication.Podcast
         // private const string DEFAULT_FOLDER_PATH = "~/{0}.mp3"; OLD STRING
 
         public const string TokenNameValuePair = "tkn";
-        private const string DefaultFolderPath = "~/{1}.mp3?" + TokenNameValuePair + "= {0}";
+        private const string DefaultFolderPath = "~/{1}.mp3?" + TokenNameValuePair + "={0}";
         private readonly string _path;
         private readonly PodcastArticleToken _token = new PodcastArticleToken();
 
@@ -246,9 +246,11 @@ namespace DowJones.Web.Handlers.Syndication.Podcast
         /// </returns>
         new public string ToString()
         {
-            CustomCharacterEncoder encoder = new CustomCharacterEncoder();
-            UrlBuilder ub = new UrlBuilder(string.Format(_path, encoder.Encode(_token.Encrypt()), AccessionNumber));
-            ub.OutputType = UrlBuilder.UrlOutputType.Absolute;
+            var encoder = new CustomCharacterEncoder();
+            var ub = new UrlBuilder(string.Format(_path, encoder.Encode(_token.Encrypt()), AccessionNumber))
+                {
+                    OutputType = UrlBuilder.UrlOutputType.Absolute
+                };
 
             return ub.ToString();
         }
@@ -256,7 +258,7 @@ namespace DowJones.Web.Handlers.Syndication.Podcast
 
         public static string Decode(string token)
         {
-            CustomCharacterEncoder encoder = new CustomCharacterEncoder();
+            var encoder = new CustomCharacterEncoder();
             return encoder.Decode(token);
         }
     }

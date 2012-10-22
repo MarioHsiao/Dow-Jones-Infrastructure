@@ -40,8 +40,7 @@ namespace DowJones.Web.Configuration
             if (includeScriptTags)
                 writer.WriteLine("<script type=\"text/javascript\">");
 
-            writer.WriteLine("if(!window['DJ']) { DJ = window['DJ'] = {} };");
-
+            writer.WriteLine("if(!window['DJ']) { DJ = {} };");
             writer.Write("$.extend(true, DJ, {'config':");
             writer.Write(   JsonConvert.SerializeObject(this));
             writer.WriteLine("});");
