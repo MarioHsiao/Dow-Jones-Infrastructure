@@ -157,6 +157,7 @@
     <Content Include="DowJones.Web.Mvc.UI.Controls\widget_bg.gif">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="DowJones.Web.Mvc\BindRebind.html" />
     <Content Include="DowJones.Web.Mvc\common.html" />
     <Content Include="DowJones.Web.Mvc.UI.Canvas\AbstractCanvasModule.html" />
     <Content Include="DowJones.Web.Mvc\ErrorManager.html" />
