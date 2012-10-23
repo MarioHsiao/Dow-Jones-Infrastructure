@@ -250,14 +250,14 @@ namespace DowJones.Properties
         }
 
         [ApplicationScopedSetting, DebuggerNonUserCode, SettingsSerializeAs(SettingsSerializeAs.String)]
-        [DefaultSettingValue("SIX-Telekurs")]
+        [DefaultSettingValue("SIX Financial Information")]
         public string MarketDataProvider
         {
             get { return (string)this["MarketDataProvider"]; }
         }
 
         [ApplicationScopedSetting, DebuggerNonUserCode, SettingsSerializeAs(SettingsSerializeAs.String)]
-        [DefaultSettingValue("http://www.SIX-Telekurs.com")]
+        [DefaultSettingValue("http://www.six-financial-information.com")]
         public string MarketDataProviderUrl
         {
             get { return (string)this["MarketDataProviderUrl"]; }
