@@ -121,7 +121,8 @@
             DJ.add("StatsMap", {
                 container: $('.worldMapContainer')[0],
                 options: {
-                    dataEvent: 'data.PageLoadDetailsByCountryForRegion',
+                    allowHostConfigurationChange: false,  /* do not respond to domain change events on tab switching */
+                    mapType: 'world',
                     map: 'world'
                 }
             });
@@ -240,8 +241,7 @@
                 'DeviceTraffic',
                 'PageLoadHistoricalDetails',
                 'PageTimings',
-                'PageLoadDetailsBySubCountryforCountry',
-                'PageLoadDetailsByCountryForRegion'
+                'PageLoadDetailsByType'
             ];
 
             var events = [];

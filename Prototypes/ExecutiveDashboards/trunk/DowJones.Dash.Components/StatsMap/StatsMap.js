@@ -5,8 +5,12 @@
 DJ.UI.StatsMap = DJ.UI.Component.extend({
 
     defaults: {
-        dataEvent: 'data.PageLoadDetailsBySubCountryforCountry',
-        map: 'us'
+        mapType: 'country',
+        map: 'us',
+        /* set this to false if you don't want component to respond to host change event.
+           e.g. for world map, this should be false.
+        */
+        allowHostConfigurationChange: true
     },
 
     selectors: {
@@ -21,17 +25,15 @@ DJ.UI.StatsMap = DJ.UI.Component.extend({
         us: { 1871: "Alabama", 1885: "Alaska", 1853: "Arizona", 1879: "Arkansas", 1854: "California", 1884: "Colorado", 1880: "Connecticut", 1881: "Delaware", 1858: "District of Columbia", 1856: "Florida", 1859: "Georgia", 1882: "Hawaii", 1869: "Idaho", 1855: "Illinois", 1870: "Indiana", 1886: "Iowa", 1851: "Kansas", 1900: "Kentucky", 1897: "Louisiana", 1802: "Maine", 1872: "Maryland", 1866: "Massachusetts", 1857: "Michigan", 1868: "Minnesota", 1883: "Mississippi", 1852: "Missouri", 1899: "Montana", 1895: "Nebraska", 1898: "Nevada", 1893: "New Hampshire", 1861: "New Jersey", 1863: "New Mexico", 1865: "New York", 1860: "North Carolina", 1887: "North Dakota", 1877: "Ohio", 1874: "Oklahoma", 1878: "Oregon", 1873: "Pennsylvania", 1890: "Rhode Island", 1896: "South Carolina", 1889: "South Dakota", 1888: "Tennessee", 1862: "Texas", 1867: "Utah", 1892: "Vermont", 1876: "Virginia", 1864: "Washington", 1891: "West Virginia", 1894: "Wisconsin", 1902: "Wyoming" },
         de: { 540: "Baden-Wurttemberg", 548: "Bavaria", 547: "Berlin", 542: "Brandenburg", 549: "Bremen", 550: "Hamburg", 551: "Hesse", 543: "Mecklenburg-Vorpommern", 552: "Lower Saxony", 553: "North Rhine-Westphalia", 554: "Rhineland-Palatinate", 555: "Saarland", 544: "Saxony", 545: "Saxony-Anhalt", 541: "Schleswig-Holstein", 546: "Thuringia" },
         world: { 6: "Afghanistan", 9: "Albania", 62: "Algeria", 15: "American Samoa", 4: "Andorra", 12: "Angola", 7: "Antigua and Barbuda", 14: "Argentina", 10: "Armenia", 18: "Aruba", 17: "Australia", 16: "Austria", 19: "Azerbaijan", 33: "Bahamas, The", 26: "Bahrain", 22: "Bangladesh", 21: "Barbados", 37: "Belarus", 23: "Belgium", 38: "Belize", 28: "Benin", 34: "Bhutan", 31: "Bolivia", 20: "Bosnia and Herzegovina", 36: "Botswana", 32: "Brazil", 30: "Brunei Darussalam", 25: "Bulgaria", 24: "Burkina Faso", 27: "Burundi", 114: "Cambodia", 48: "Cameroon", 39: "Canada", 121: "Cayman Islands", 42: "Central African Republic", 206: "Chad", 47: "Chile", 49: "China", 50: "Colombia", 43: "Congo", 51: "Costa Rica", 45: "Cote d'Ivoire", 97: "Croatia", 52: "Cuba", 55: "Cyprus", 56: "Czech Republic", 59: "Denmark", 58: "Djibouti", 60: "Dominica", 61: "Dominican Republic", 63: "Ecuador", 65: "Egypt, Arab Rep.", 202: "El Salvador", 87: "Equatorial Guinea", 67: "Eritrea", 64: "Estonia", 69: "Ethiopia", 71: "Fiji", 70: "Finland", 75: "France", 76: "Gabon", 84: "Gambia, The", 79: "Georgia", 57: "Germany", 81: "Ghana", 88: "Greece", 83: "Greenland", 78: "Grenada", 90: "Guatemala", 85: "Guinea", 93: "Guyana", 98: "Haiti", 96: "Honduras", 99: "Hungary", 107: "Iceland", 103: "India", 100: "Indonesia", 106: "Iran, Islamic Rep.", 105: "Iraq", 101: "Ireland", 102: "Israel", 108: "Italy", 109: "Jamaica", 111: "Japan", 110: "Jordan", 122: "Kazakhstan", 112: "Kenya", 118: "Korea, Dem. Rep.", 119: "Korea, Rep.", 120: "Kuwait", 113: "Kyrgyz Republic", 123: "Lao PDR", 132: "Latvia", 124: "Lebanon", 129: "Lesotho", 128: "Liberia", 133: "Libya", 130: "Lithuania", 131: "Luxembourg", 139: "Macedonia, FYR", 137: "Madagascar", 151: "Malawi", 153: "Malaysia", 140: "Mali", 148: "Malta", 146: "Mauritania", 152: "Mexico", 136: "Moldova", 135: "Monaco", 142: "Mongolia", 147: "Montenegro", 134: "Morocco", 154: "Mozambique", 141: "Myanmar", 155: "Namibia", 163: "Nepal", 161: "Netherlands", 156: "New Caledonia", 166: "New Zealand", 160: "Nicaragua", 157: "Niger", 159: "Nigeria", 162: "Norway", 167: "Oman", 173: "Pakistan", 168: "Panama", 171: "Papua New Guinea", 180: "Paraguay", 169: "Peru", 172: "Philippines", 174: "Poland", 178: "Portugal", 176: "Puerto Rico", 181: "Qatar", 183: "Romania", 184: "Russian Federation", 185: "Rwanda", 186: "Saudi Arabia", 198: "Senegal", 196: "Sierra Leone", 191: "Singapore", 195: "Slovak Republic", 193: "Slovenia", 187: "Solomon Islands", 199: "Somalia", 238: "South Africa", 68: "Spain", 127: "Sri Lanka", 189: "Sudan", 200: "Suriname", 204: "Swaziland", 190: "Sweden", 44: "Switzerland", 203: "Syria Arab Republic", 210: "Tajikistan", 219: "Tanzania", 209: "Thailand", 208: "Togo", 214: "Tonga", 216: "Trinidad and Tobago", 213: "Tunisia", 215: "Turkey", 212: "Turkmenistan", 221: "Uganda", 220: "Ukraine", 5: "United Arab Emirates", 77: "United Kingdom", 223: "United States", 224: "Uruguay", 225: "Uzbekistan", 232: "Vanuatu", 228: "Venezuela, RB", 231: "Vietnam", 235: "Yemen, Rep.", 3001: "Zaire", 239: "Zambia", 240: "Zimbabwe" },
-        id: { 1022: "Aceh", 67752: "Bali", 69378: "Bangka-Belitung", 67587: "Banten", 69559: "Bengkulu", 1032: "Central Java", 68774: "Central Kalimantan", 1026: "Central Sulawesi", 1033: "East Java", 67351: "East Kalimantan", 69438: "East Nusa Tenggara", 68730: "Gorontalo", 68313: "Jakarta", 1030: "Jambi", 68583: "Lampung", 67306: "Maluku", 68797: "North Sulawesi", 67591: "North Sumatra", 196719: "Riau Islands", 69374: "South East Sulawesi", 69220: "South Kalimantan", 67452: "South Sumatra", 1029: "West Java", 68342: "West Kalimantan", 1024: "West Nusa Tenggara", 196718: "West Papua", 1027: "West Sumatra", 1023: "Yogyakarta" }
+        id: { 1022: "Aceh", 67752: "Bali", 69378: "Bangka-Belitung", 67587: "Banten", 69559: "Bengkulu", 1032: "Central Java", 68774: "Central Kalimantan", 1026: "Central Sulawesi", 1033: "East Java", 67351: "East Kalimantan", 69438: "East Nusa Tenggara", 68730: "Gorontalo", 68313: "Jakarta", 1030: "Jambi", 68583: "Lampung", 67306: "Maluku", 68797: "North Sulawesi", 67591: "North Sumatra", 196719: "Riau Islands", 69374: "South East Sulawesi", 69220: "South Kalimantan", 67452: "South Sumatra", 1029: "West Java", 68342: "West Kalimantan", 1024: "West Nusa Tenggara", 196718: "West Papua", 1027: "West Sumatra", 1023: "Yogyakarta" },
+        apac: { 15: "American_Samoa", 17: "Australia", 22: "Bangladesh", 34: "Bhutan", 104: "British_Indian_Ocean_Te", 30: "Brunei_Darussalam", 114: "Cambodia", 49: "China", 46: "Cook_Islands", 71: "Fiji", 170: "French_Polynesia", 91: "Guam", 103: "India", 100: "Indonesia", 111: "Japan", 115: "Kiribati", 118: "North_Korea", 119: "South_Korea", 123: "Laos", 153: "Malaysia", 150: "Maldives", 138: "Marshall_Islands", 73: "Micronesia", 142: "Mongolia", 141: "Myanmar", 164: "Nauru", 163: "Nepal", 156: "New_Caledonia", 166: "New_Zealand", 144: "Northern_Mariana_Island", 179: "Palau", 171: "Papua_New_Guinea", 172: "Philippines", 184: "Russian_Federation", 234: "Samoa", 191: "Singapore", 187: "Solomon_Islands", 127: "Sri_Lanka", 192: "St_Helena", 189: "Sudan", 209: "Thailand", 214: "Tonga", 235: "Yemen" }
     },
 
     mapConfig: {
         chart: {
             type: 'map',
             backgroundColor: 'transparent',
-            borderWidth: 0,
-            //spacingBottom: 0,
-            //spacingTop: 0,
-            //spacingLeft: 0
+            borderWidth: 0
         },
 
         plotOptions: {
@@ -113,15 +115,19 @@ DJ.UI.StatsMap = DJ.UI.Component.extend({
         this.pillContainer = ctx.find(this.selectors.pillContainer);
         this.mapContainer = ctx.find('.mapContainer');
 
-        if (this.options.map === 'world')
+        if (this.options.mapType === 'world')
             ctx.find('.worldViewToggler').hide();
     },
 
     _initializeEventHandlers: function () {
-        $dj.subscribe(this.options.dataEvent, this._delegates.setData);
-        $dj.subscribe('data.BasicHostConfiguration', this._delegates.domainChanged);
+        $dj.subscribe('data.PageLoadDetailsByType', this._delegates.setData);
+
+        /* don't listen to the event if HostConfigurationChange is not allowed (e.g. world map) */
+        if (this.options.allowHostConfigurationChange)
+            $dj.subscribe('data.BasicHostConfiguration', this._delegates.domainChanged);
 
         var self = this;
+        
         this.$element.on('click', this.selectors.pill, function () {
             var el = $(this);
             el.siblings('.active').add(el).toggleClass('active');
@@ -169,18 +175,14 @@ DJ.UI.StatsMap = DJ.UI.Component.extend({
         if (!data)
             return;
 
+        this._initializeMapData(data.map);
+        this._initializeChart(data);
+        
         this._showContent();
 
         this.activePillId = null;
 
-        // world map doesn't change by country!
-        if (this.options.map !== 'world')
-            this._initializeMapData(data.map);
-
-        this.mapContainer.hide();
-
-        this.dataSourceConfig = data;
-        this.initializeChart = true;
+        //this.mapContainer.hide();
 
     },
 
@@ -216,7 +218,7 @@ DJ.UI.StatsMap = DJ.UI.Component.extend({
         //console.log('_initializeChart:', this.mapSource, this.mapConfig.chart);
         this.mapConfig.chart.renderTo = this.$element.find('.mapContainer')[0];
 
-        //if (this.chart) this.chart.destroy();
+        if (this.chart) this.chart.destroy();
 
         this.chart = new Highcharts.Map(this.mapConfig);
 
@@ -257,11 +259,6 @@ DJ.UI.StatsMap = DJ.UI.Component.extend({
         }
 
         this._showContent();
-
-        if (this._initializeChart) {
-            this.mapContainer.show();
-            this._initializeChart(this.dataSourceConfig);
-        }
 
         // get some sensible structure from a flat result set
         var mappedData = this._mapData(data);

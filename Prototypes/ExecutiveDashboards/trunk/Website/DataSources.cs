@@ -16,8 +16,9 @@ namespace DowJones.Dash.Website
             China = 49,
             Japan = 111,
             Indonesia = 100,
-            Asia = 2,
-            Korea = 119
+            AsiaPacific = 2,
+            Korea = 119,
+			World = 0,
         }
 
         #endregion
@@ -33,9 +34,9 @@ namespace DowJones.Dash.Website
             SmartMoney = 5,
             Barrons = 6,
             MarketWatch = 7,
-            WsjAsia = 8,
+            WsjAsiaPacific = 8,
             WsjIndonesia = 9,
-            WsjKorea = 10
+            WsjKorea = 10,
         }
 
         #endregion
@@ -50,7 +51,8 @@ namespace DowJones.Dash.Website
                             Host = "online.wsj.com",
                             Domain = "online.wsj.com",
                             Path = string.Empty,
-                            GomezCountryCode = GomezCountryCode.Us
+                            GomezCountryCode = GomezCountryCode.Us,
+							MapType = MapType.Country
                         },
                     new DataSourceConfig
                         {
@@ -58,7 +60,8 @@ namespace DowJones.Dash.Website
                             Host = "wallstreetjournal.de",
                             Domain = "wallstreetjournal.de",
                             Path = string.Empty,
-                            GomezCountryCode = GomezCountryCode.Germany
+                            GomezCountryCode = GomezCountryCode.Germany,
+							MapType = MapType.Country
                         },
                     new DataSourceConfig
                         {
@@ -66,7 +69,8 @@ namespace DowJones.Dash.Website
                             Host = "jp.wsj.com",
                             Domain = "jp.wsj.com",
                             Path = string.Empty,
-                            GomezCountryCode = GomezCountryCode.Japan
+                            GomezCountryCode = GomezCountryCode.Japan,
+							MapType = MapType.Country
                         },
                     new DataSourceConfig
                         {
@@ -74,15 +78,17 @@ namespace DowJones.Dash.Website
                             Host = "cn.wsj.com",
                             Domain = "cn.wsj.com",
                             Path = string.Empty,
-                            GomezCountryCode = GomezCountryCode.China
+                            GomezCountryCode = GomezCountryCode.China,
+							MapType = MapType.Country
                         },
                     new DataSourceConfig
                         {
-                            Site = Site.WsjAsia,
+                            Site = Site.WsjAsiaPacific,
                             Host = "online.wsj.com",
                             Domain = "asia.wsj.com",
                             Path = "asia.wsj.com/home-page",
-                            GomezCountryCode = GomezCountryCode.Asia
+                            GomezCountryCode = GomezCountryCode.AsiaPacific,
+							MapType = MapType.Region
                         },
                     new DataSourceConfig
                         {
@@ -90,7 +96,8 @@ namespace DowJones.Dash.Website
                             Host = "online.wsj.com",
                             Domain = "indo.wsj.com",
                             Path = "indo.wsj.com/home-page",
-                            GomezCountryCode = GomezCountryCode.Indonesia
+                            GomezCountryCode = GomezCountryCode.Indonesia,
+							MapType = MapType.Country
                         },
                     new DataSourceConfig
                         {
@@ -98,7 +105,17 @@ namespace DowJones.Dash.Website
                             Host = "online.wsj.com",
                             Domain = "kr.wsj.com",
                             Path = "kr.wsj.com/home-page",
-                            GomezCountryCode = GomezCountryCode.Korea
+                            GomezCountryCode = GomezCountryCode.Korea,
+							MapType = MapType.Country
+                        },
+						new DataSourceConfig
+                        {
+                            Site = Site.WsjUs,
+                            Host = "online.wsj.com",
+                            Domain = "world.wsj.com",
+                            Path = "world.wsj.com/home-page",
+                            GomezCountryCode = GomezCountryCode.World,
+							MapType = MapType.World
                         }
                 };
 
@@ -237,24 +254,16 @@ namespace DowJones.Dash.Website
                                                      {"site", (int) dataSourceConfig.Site},
                                                  });
 
-            yield return new GomezDataSource("{0}-PageLoadDetailsBySubCountryforCountry".FormatWith(dataSourceConfig.Domain),
-                                             "PageLoadDetailsBySubCountryforCountry", 
-                                             "[SplunkExport].[dbo].[GetPageLoadDetailsBySubCountryforCountryNew]",
+			yield return new GomezDataSource("{0}-PageLoadDetailsByType".FormatWith(dataSourceConfig.Domain),
+											 "PageLoadDetailsByType",
+											 "[SplunkExport].[dbo].[GetPageLoadDetailsByType]",
                                              new Dictionary<string, object>
                                                  {
-                                                     {"country", dataSourceConfig.GomezCountryCode},
+                                                     {"type", dataSourceConfig.MapType.ToString().ToLower()},
+													 {"id", dataSourceConfig.GomezCountryCode},
                                                      {"seconds", 3600},
                                                      {"site", (int) dataSourceConfig.Site},
-                                                 });
-
-            yield return new GomezDataSource("{0}-PageLoadDetailsByCountryForRegion".FormatWith(dataSourceConfig.Domain),
-                                             "PageLoadDetailsByCountryForRegion", 
-                                             "[SplunkExport].[dbo].[GetPageLoadDetailsByCountryForRegion]",
-                                             new Dictionary<string, object>
-                                                 {
-                                                     {"region", 0},
-                                                     {"seconds", 3600},
-                                                     {"site", (int) dataSourceConfig.Site},
+													 
                                                  });
 
 			yield return new GomezDataSource("{0}-DeviceTraffic".FormatWith(dataSourceConfig.Domain),
@@ -342,9 +351,9 @@ namespace DowJones.Dash.Website
                 "BasicHostConfiguration",
                 new BasicHostConfiguration
                     {
-                        Domain = "asia.wsj.com",
-                        MapType = MapType.Country,
-                        Region = "asia",
+                        Domain = "online.wsj.com",
+                        MapType = MapType.Region,
+                        Region = "apac",
                         PerformanceZones = new[]
                             {
                                 new PerformanceZone {From = 0, To = 8, ZoneType = PerformanceZoneType.Cool},
@@ -387,6 +396,23 @@ namespace DowJones.Dash.Website
                             },
                     }
                 );
+
+			yield return new ConfigurationDataSource<BasicHostConfiguration>(
+			   "world.wsj.com-BasicHostConfiguration",
+			   "BasicHostConfiguration",
+			   new BasicHostConfiguration
+			   {
+				   Domain = "online.wsj.com",
+				   MapType = MapType.Region,
+				   Region = "world",
+				   PerformanceZones = new[]
+                            {
+                                new PerformanceZone {From = 0, To = 8, ZoneType = PerformanceZoneType.Cool},
+                                new PerformanceZone {From = 8, To = 10, ZoneType = PerformanceZoneType.Neutral},
+                                new PerformanceZone {From = 10, To = 30, ZoneType = PerformanceZoneType.Hot}
+                            },
+			   }
+			   );
         }
     }
 }
