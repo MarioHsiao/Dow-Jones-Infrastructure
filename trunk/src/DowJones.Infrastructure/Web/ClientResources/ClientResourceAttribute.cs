@@ -134,7 +134,7 @@ namespace DowJones.Web
 			if (definition.DependsOn == null)
 				definition.DependsOn = dependants;
 			else
-				definition.DependsOn.AddRange(dependants);
+				definition.DependsOn = definition.DependsOn.Union(dependants).ToArray();
 		}
 
 
