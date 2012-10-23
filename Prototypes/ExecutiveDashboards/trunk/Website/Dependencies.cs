@@ -1,8 +1,9 @@
 using System.Collections.Generic;
 using System.Web.Routing;
 using DowJones.Dash.Caching;
-using DowJones.Dash.Website.DependencyResolver;
-using DowJones.Dash.Website.Serializer;
+using DowJones.Dash.Common.DependencyResolver;
+using DowJones.Dash.Serializer;
+using DowJones.Dash.Website.App_Start;
 using DowJones.Infrastructure.Common;
 using DowJones.Pages;
 using DowJones.Pages.Modules;
@@ -22,13 +23,13 @@ using SignalR;
 
 namespace DowJones.Dash.Website
 {
-    public class Dependencies : DowJones.DependencyInjection.DependencyInjectionModule
+    public class Dependencies : DependencyInjection.DependencyInjectionModule
     {
         protected override void OnLoad()
         {
             Bind<IControlData>().ToMethod(x => new ControlData()).InRequestScope();
             Bind<IUserSession>().ToMethod(x => new UserSession { SessionId = "12345" }).InRequestScope();
-            Bind<IPreferences>().ToMethod(x => new DowJones.Preferences.Preferences("en")).InRequestScope();
+            Bind<IPreferences>().ToMethod(x => new Preferences.Preferences("en")).InRequestScope();
             Bind<IPrinciple>().ToMethod(x => new EntitlementsPrinciple(new GetUserAuthorizationsResponse())).InRequestScope();
             Bind<Product>().ToConstant(new GlobalProduct()).InSingletonScope();
             Bind<IPageSubscriptionManager>().To<PageSubscriptionManagerStub>();
@@ -45,14 +46,17 @@ namespace DowJones.Dash.Website
             Bind<IPageRepository>().To<RavenDbPageRepository>().InRequestScope();
             Bind<IScriptModuleTemplateManager>().To<RavenDbScriptModuleTemplateRepository>().InRequestScope();
             Bind<IDashboardMessageCache>().To<DashboardMessageCache>().InSingletonScope();
-           Bind<IJsonSerializer>().ToMethod(x => new CustomJsonNetSerializer(new JsonSerializerSettings
+            Bind<IJsonSerializer>().ToMethod(x => new CustomJsonNetSerializer(new JsonSerializerSettings
                 {
                    NullValueHandling = NullValueHandling.Ignore,
                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
 // this does not work                   ContractResolver = new CamelCasePropertyNamesContractResolver(),
                    Converters = new[] { new StringEnumConverter() },
+                   TypeNameHandling = TypeNameHandling.Objects,
                 })).InRequestScope();
 
+
+            Bind<HubClientConnection>().To<HubClientConnection>().InSingletonScope();
 
             GlobalHost.DependencyResolver = new NinjectDependencyResolver(Kernel);
             RouteTable.Routes.MapHubs();

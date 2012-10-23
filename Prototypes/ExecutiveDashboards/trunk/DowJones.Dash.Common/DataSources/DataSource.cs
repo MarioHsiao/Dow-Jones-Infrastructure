@@ -1,7 +1,7 @@
 using System;
 using log4net;
 
-namespace DowJones.Dash.DataSources
+namespace DowJones.Dash.Common.DataSources
 {
     public abstract class DataSource : IDataSource
     {

@@ -5,6 +5,7 @@ namespace DowJones.Dash.Caching
     public interface IDashboardMessageCache
     {
         void Add(DashboardMessage message);
-        IEnumerable<DashboardMessage> Get(params string[] dataSources);
+        ICollection<DashboardMessage> Get(params string[] dataSources);
+        ICollection<DashboardMessage> GetAll();
     }
 }

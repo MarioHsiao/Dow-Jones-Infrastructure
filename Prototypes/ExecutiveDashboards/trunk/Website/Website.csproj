@@ -163,7 +163,7 @@
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Newtonsoft.Json.4.5.8\lib\net40\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.4.5.10\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Ninject">
       <HintPath>..\packages\Ninject.2.2.1.4\lib\net40-Full\Ninject.dll</HintPath>
@@ -200,6 +200,9 @@
     </Reference>
     <Reference Include="SignalR">
       <HintPath>..\packages\SignalR.Server.0.5.3\lib\net40\SignalR.dll</HintPath>
+    </Reference>
+    <Reference Include="SignalR.Client">
+      <HintPath>..\packages\SignalR.Client.0.5.3\lib\net40\SignalR.Client.dll</HintPath>
     </Reference>
     <Reference Include="SignalR.Hosting.AspNet">
       <HintPath>..\packages\SignalR.Hosting.AspNet.0.5.3\lib\net40\SignalR.Hosting.AspNet.dll</HintPath>
@@ -287,7 +290,6 @@
     <Compile Include="DataSourceConfig.cs" />
     <Compile Include="DataSources.cs" />
     <Compile Include="Dependencies.cs" />
-    <Compile Include="DependencyResolver\NinjectDependencyResolver.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -298,7 +300,6 @@
     <Compile Include="RavenDB\RavenDbDashboardMessageCache.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RavenDB\RavenDbDocumentStoreFactory.cs" />
-    <Compile Include="Serializer\CustomJsonNetSerializer.cs" />
     <Compile Include="Views\Dashboard\DashCanvas.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -420,6 +421,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
+    <Folder Include="Serializer\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">

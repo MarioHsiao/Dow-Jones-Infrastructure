@@ -3,7 +3,7 @@ using System.Configuration;
 using System.Threading;
 using DowJones.Utilities;
 
-namespace DowJones.Dash.DataSources
+namespace DowJones.Dash.Common.DataSources
 {
     public abstract class PollingDataSource : DataSource, IDisposable
     {

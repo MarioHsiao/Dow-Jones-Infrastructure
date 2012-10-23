@@ -15,9 +15,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DowJones.Dash.Common", "DowJones.Dash.Common\DowJones.Dash.Common.csproj", "{0FC55532-400C-44E6-9392-563FF4600842}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DowJones.Dash.DataSourcesServer", "DowJones.Dash.DataSourcesServer\DowJones.Dash.DataSourcesServer.csproj", "{5A744E40-7E60-46BF-BF72-E586DB3CC461}"
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 5
+		SccNumberOfProjects = 6
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = http://sbknwstfs1:8080/tfs/defaultcollection
 		SccLocalPath0 = .
@@ -33,6 +35,9 @@ Global
 		SccProjectUniqueName4 = DowJones.Dash.Common\\DowJones.Dash.Common.csproj
 		SccProjectName4 = DowJones.Dash.Common
 		SccLocalPath4 = DowJones.Dash.Common
+		SccProjectUniqueName5 = DowJones.Dash.DataSourcesServer\\DowJones.Dash.DataSourcesServer.csproj
+		SccProjectName5 = DowJones.Dash.DataSourcesServer
+		SccLocalPath5 = DowJones.Dash.DataSourcesServer
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		DashDev|Any CPU = DashDev|Any CPU
@@ -64,6 +69,12 @@ Global
 		{0FC55532-400C-44E6-9392-563FF4600842}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0FC55532-400C-44E6-9392-563FF4600842}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0FC55532-400C-44E6-9392-563FF4600842}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A744E40-7E60-46BF-BF72-E586DB3CC461}.DashDev|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A744E40-7E60-46BF-BF72-E586DB3CC461}.DashDev|Any CPU.Build.0 = Debug|Any CPU
+		{5A744E40-7E60-46BF-BF72-E586DB3CC461}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A744E40-7E60-46BF-BF72-E586DB3CC461}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A744E40-7E60-46BF-BF72-E586DB3CC461}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A744E40-7E60-46BF-BF72-E586DB3CC461}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

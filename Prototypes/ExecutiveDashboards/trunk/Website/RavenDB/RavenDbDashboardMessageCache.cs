@@ -54,6 +54,8 @@ namespace DowJones.Dash.Website.RavenDB
         {
             Log.Info("Persisting cached messages...");
 
+            return;
+
             var cachedMessages = new Dictionary<string, DashboardMessage>(Cache);
             var documentIds = cachedMessages.Keys.Select(GetDocumentId);
 

@@ -14,7 +14,7 @@ namespace DowJones.Dash.Website.Hubs
     {
         private static readonly ILog Log = LogManager.GetLogger(typeof (Dashboard));
         private static  IDashboardMessageCache _cache;
-        private static IDashboardMessageCache Cache
+        internal static IDashboardMessageCache Cache
         {
             get { return _cache ?? (_cache = ServiceLocator.Current.Resolve<IDashboardMessageCache>()); }
         }
@@ -27,9 +27,10 @@ namespace DowJones.Dash.Website.Hubs
             }
         }
 
-        public Task<IEnumerable<DashboardMessage>> Subscribe(IEnumerable<string> sources)
+        public Task<ICollection<DashboardMessage>> Subscribe(IEnumerable<string> sources)
         {
             var clientId = Context.ConnectionId;
+            Log.WarnFormat("Subscribe-->{0}", clientId);
 
             return TaskFactoryManager.Instance.GetDefaultTaskFactory().StartNew(() => {
                 var groups = (sources ?? Enumerable.Empty<string>()).ToArray();
@@ -39,7 +40,17 @@ namespace DowJones.Dash.Website.Hubs
                     Groups.Add(clientId, @group);
                 }
 
-                return Cache.Get(groups);
+                var temp = Cache.Get(groups);
+
+                if (Log.IsWarnEnabled)
+                {
+                    foreach (var dashboardMessage in temp)
+                    {
+                        Log.WarnFormat("Subscribe Provideing: {0}", dashboardMessage.Source);
+                    }
+                }
+
+                return temp;
             });
         }
 
@@ -74,7 +85,9 @@ namespace DowJones.Dash.Website.Hubs
             }
 
             if (!(message is DashboardErrorMessage))
+            {
                 Cache.Add(message);
+            }
         }
     }
 }

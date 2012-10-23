@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using log4net;
 
-namespace DowJones.Dash.DataSources
+namespace DowJones.Dash.Common.DataSources
 {
     public class ChartBeatApiDataSource : JsonWebDataSource
     {

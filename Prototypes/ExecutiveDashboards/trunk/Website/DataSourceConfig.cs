@@ -1,4 +1,4 @@
-using DowJones.Dash.DataSources;
+using DowJones.Dash.Common.DataSources;
 
 namespace DowJones.Dash.Website
 {

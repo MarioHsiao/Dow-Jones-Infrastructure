@@ -5,7 +5,7 @@ using System.Text;
 using Newtonsoft.Json;
 using log4net;
 
-namespace DowJones.Dash.DataSources
+namespace DowJones.Dash.Common.DataSources
 {
     public interface IHostConfiguration
     {

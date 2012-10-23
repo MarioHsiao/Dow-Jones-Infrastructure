@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using DowJones.Dash.DataSources;
+using DowJones.Dash.Common.DataSources;
 using DowJones.Dash.Extentions;
 using DowJones.DependencyInjection;
 

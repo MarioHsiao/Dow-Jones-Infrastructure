@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using DowJones.Dash.Website.App_Start;
 using log4net;
 
 namespace DowJones.Dash.Website
@@ -12,7 +13,7 @@ namespace DowJones.Dash.Website
             new Lazy<string>(typeof(MvcApplication).Assembly.GetName().Version.ToString);
 
 
-        protected void Application_Start()
+        protected new void Application_Start()
         {
             TaskScheduler.UnobservedTaskException += (object sender, UnobservedTaskExceptionEventArgs excArgs) =>
             {
@@ -21,6 +22,7 @@ namespace DowJones.Dash.Website
                     Logger.Error(excArgs.Exception);
                 }
             };
+
         }
     }
 }

@@ -44,9 +44,9 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DowJones.Infrastructure, Version=3.3.24.39500, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="DowJones.Infrastructure, Version=3.3.33.49491, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\DowJones.Infrastructure.3.3.24\lib\DowJones.Infrastructure.dll</HintPath>
+      <HintPath>..\packages\DowJones.Infrastructure.3.3.33\lib\DowJones.Infrastructure.dll</HintPath>
     </Reference>
     <Reference Include="DowJones.Pages, Version=3.3.24.39500, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -55,13 +55,13 @@
     <Reference Include="DowJones.Parallel">
       <HintPath>..\packages\DowJones.Parallel.1.0.0\lib\DowJones.Parallel.dll</HintPath>
     </Reference>
-    <Reference Include="factiva.gateway.messages, Version=7.5.0.95, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="factiva.gateway.messages, Version=7.5.0.96, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Factiva.Gateway.7.5.0.95\lib\factiva.gateway.messages.dll</HintPath>
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.96\lib\factiva.gateway.messages.dll</HintPath>
     </Reference>
     <Reference Include="FactivaGateway, Version=1.6.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Factiva.Gateway.7.5.0.95\lib\FactivaGateway.dll</HintPath>
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.96\lib\FactivaGateway.dll</HintPath>
     </Reference>
     <Reference Include="Hammock">
       <HintPath>..\packages\Hammock.1.2.9\lib\4.0\Hammock.dll</HintPath>
@@ -70,17 +70,22 @@
       <HintPath>..\packages\Hammock.1.2.9\lib\4.0\Hammock.ClientProfile.dll</HintPath>
     </Reference>
     <Reference Include="Interop.FCMLib">
-      <HintPath>..\packages\Factiva.Gateway.7.5.0.95\lib\Interop.FCMLib.dll</HintPath>
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.96\lib\Interop.FCMLib.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="log4net">
       <HintPath>..\packages\log4net.1.2.99\lib\2.0\log4net.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.4.0.8\lib\net40\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.4.5.10\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Ninject">
       <HintPath>..\packages\Ninject.2.2.1.4\lib\net40-Full\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="SignalR, Version=0.5.1.10822, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\SignalR.Server.0.5.3\lib\net40\SignalR.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -96,6 +101,7 @@
     <Compile Include="Caching\DashboardMessage.cs" />
     <Compile Include="Caching\DashboardMessageCache.cs" />
     <Compile Include="Caching\IDashboardMessageCache.cs" />
+    <Compile Include="Caching\IDashboardMessageQueue.cs" />
     <Compile Include="DataGenerators\PageGenerator.cs" />
     <Compile Include="DataGenerators\ScriptModuleTemplatesGenerator.cs" />
     <Compile Include="DataSources\ChartBeatApiDataSource.cs" />
@@ -110,8 +116,10 @@
     <Compile Include="DataSources\SqlDataSource.cs" />
     <Compile Include="DataSources\WebDataSource.cs" />
     <Compile Include="DataSources\XmlWebDataSource.cs" />
+    <Compile Include="DependencyResolver\NinjectDependencyResolver.cs" />
     <Compile Include="Extentions\StringExtentions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Serializer\CustomJsonNetSerializer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

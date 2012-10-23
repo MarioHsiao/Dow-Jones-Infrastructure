@@ -1,6 +1,6 @@
 using System;
 
-namespace DowJones.Dash.DataSources
+namespace DowJones.Dash.Common.DataSources
 {
     public abstract class DataSourceEvent : EventArgs
     {
