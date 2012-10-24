@@ -10,7 +10,7 @@ namespace DowJones.Web.UI
     public class ClientTemplateResourceProcessor : IClientResourceProcessor
     {
         public const string JavaScriptClassNamespace = "DJ.UI";
-        public const string ClientComponentTemplateProperty = "prototype.templates";
+        public const string ClientComponentTemplateProperty = "prototype.baseTemplates";
 
         private readonly IClientTemplateParser _parser;
 
