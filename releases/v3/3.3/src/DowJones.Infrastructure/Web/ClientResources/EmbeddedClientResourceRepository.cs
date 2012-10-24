@@ -28,12 +28,14 @@ namespace DowJones.Web.ClientResources
                 let attributes = type.GetCustomAttributes(true).OfType<ClientResourceAttribute>()
                 select new { type, attributes };
 
+
             var resources =
                 from attributeGroup in resourceAttributesByType
                 from attribute in attributeGroup.attributes
                 select attribute.ToClientResource(attributeGroup.type);
+	        
 
-            return resources;
+	        return resources;
         }
     }
 }
