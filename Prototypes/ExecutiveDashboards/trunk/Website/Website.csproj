@@ -282,6 +282,7 @@
   <ItemGroup>
     <Compile Include="App_Start\BundlesConfig.cs" />
     <Compile Include="App_Start\GlobalFilterRegistrationTask.cs" />
+    <Compile Include="App_Start\HubClientConnection.cs" />
     <Compile Include="App_Start\RouteRegistrationTask.cs" />
     <Compile Include="App_Start\ScriptModuleTemplatesInitializer.cs" />
     <Compile Include="Controllers\DashboardController.cs" />

@@ -1,6 +1,5 @@
 ﻿using System;
 using DowJones.Dash.Common.DependencyResolver;
-using DowJones.Dash.DataSourcesServer.Hub;
 using DowJones.Dash.DataSourcesServer.Module;
 using Ninject;
 using SignalR;
@@ -12,7 +11,7 @@ namespace DowJones.Dash.DataSourcesServer
 {
     class Program
     {
-        const string Url = "http://localhost:9091/";
+        private static readonly string Url = Properties.Settings.Default.DataSourcesHubUrl;
         private static readonly ILog Log = LogManager.GetLogger(typeof(Program));
 
         static void Main(string[] args)
@@ -37,11 +36,11 @@ namespace DowJones.Dash.DataSourcesServer
             if (Log.IsInfoEnabled)
             {
                 Log.InfoFormat("Server running on {0}", Url);
-            };
+            }
 
             // Start the DataSources
-            var initializationTask = kernel.Get<DataSourcesInitializationTask>();
-            initializationTask.Execute();
+            var initializationTask = kernel.Get<DataSourcesManger>();
+            initializationTask.Start();
 
             while(true)
             {

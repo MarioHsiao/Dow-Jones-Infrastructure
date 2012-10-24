@@ -1,4 +1,4 @@
-﻿using System.Diagnostics;
+﻿using System;
 using System.ServiceProcess;
 using DowJones.Dash.Common.DependencyResolver;
 using DowJones.Dash.DataSourcesServer;
@@ -13,13 +13,31 @@ namespace DowJones.Dash.DataSourcesService
 {
 	public partial class DataSourcesHub : ServiceBase
 	{
-
-		const string Url = "http://localhost:9091/";
-		private static readonly ILog Log = LogManager.GetLogger(typeof(DataSourcesHub));
+	    private static readonly string Url = Properties.Settings.Default.DataSourcesHubUrl;
+	    private static readonly ILog Log = LogManager.GetLogger(typeof(DataSourcesHub));
+	    private static Server _server;
+	    private readonly IKernel _kernel;
+	    private readonly DataSourcesManger _dataSourcesManager;
 
 		public DataSourcesHub()
 		{
+		    
 			InitializeComponent();
+
+            // Set up reading from the app.config for the logging 
+            XmlConfigurator.Configure();
+
+            // Set up Dependency resolver
+            _kernel = new StandardKernel(new DependenciesModule(), new DataSourcesModule());
+            GlobalHost.DependencyResolver = new NinjectDependencyResolver(_kernel);
+
+            _server = new Server(Url);
+
+            // Map connections
+            _server.MapHubs();
+
+            // Start the DataSources
+            _dataSourcesManager = _kernel.Get<DataSourcesManger>();
 		}
 
 		protected override void OnStart(string[] args)
@@ -27,35 +45,36 @@ namespace DowJones.Dash.DataSourcesService
 			//if (!Debugger.IsAttached)
 			//	Debugger.Launch();
 
-			// Set up logging 
-			XmlConfigurator.Configure();
+            try
+            {
+                // Start the server
+                _server.Start();
 
-			// Set up Dependency resolver
-			IKernel kernel = new StandardKernel(new DependenciesModule(), new DataSourcesModule());
+                if (Log.IsInfoEnabled)
+                {
+                    Log.InfoFormat("Server running on {0}", Url);
+                }
 
-			GlobalHost.DependencyResolver = new NinjectDependencyResolver(kernel);
-
-			var server = new Server(Url);
-
-
-			// Map connections
-			server.MapHubs();
-
-			// Start the server
-			server.Start();
-
-			if (Log.IsInfoEnabled)
+                // Start the DataSources
+                _dataSourcesManager.Start();
+            }
+			catch(Exception ex)
 			{
-				Log.InfoFormat("Server running on {0}", Url);
-			};
-
-			// Start the DataSources
-			var initializationTask = kernel.Get<DataSourcesInitializationTask>();
-			initializationTask.Execute();
+                Log.Fatal("Error On Stop", ex);
+			}
 		}
 
 		protected override void OnStop()
 		{
+            try
+            {
+                _server.Stop();
+                _dataSourcesManager.Suspend();
+            }
+            catch(Exception ex)
+            {
+                Log.Fatal("Error On Stop", ex);
+            }
 		}
 
 	}

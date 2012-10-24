@@ -13,7 +13,7 @@ namespace DowJones.Dash.DataSourcesServer.Hub
     {
         private static readonly ILog Log = LogManager.GetLogger(typeof(DataSourcesHub));
         private static IDashboardMessageCache _messageCache;
-        private static readonly ConcurrentDictionary<string, IDashboardMessageQueue> _queues = new ConcurrentDictionary<string, IDashboardMessageQueue>(); 
+        private static readonly ConcurrentDictionary<string, IDashboardMessageQueue> _queues = new ConcurrentDictionary<string, IDashboardMessageQueue>();
 
         private static IDashboardMessageCache MessageCache
         {
@@ -38,7 +38,7 @@ namespace DowJones.Dash.DataSourcesServer.Hub
                 Log.InfoFormat("have been able to get queue: {0}", clientId);
                 return TaskFactoryManager.Instance.GetDefaultTaskFactory().StartNew(() =>
                     {
-                        var messages = queue.GetAll();
+                        var messages = queue.Get();
                         Log.InfoFormat("clientId {0} picking up items in queue[{1}]", clientId, messages.Count);
                         return messages;
                     });
@@ -72,19 +72,37 @@ namespace DowJones.Dash.DataSourcesServer.Hub
             /* Log.DebugFormat("Publishing {0}", message.EventName);
              context.Clients.message(message);*/
 
+            var inactiveQueues = new List<string>();
+
             foreach (var key in _queues.Keys)
             {
                 IDashboardMessageQueue queue;
                 if (!_queues.TryGetValue(key, out queue)) continue;
-                //Log.InfoFormat("adding to queue: {0}", key );
-                queue.Enqueue(message);
+                Log.DebugFormat("adding to queue: {0}", key );
+                if (queue.IsActive())
+                {
+                    queue.Enqueue(message);
+                }
+                else
+                {
+                    inactiveQueues.Add(key);
+                }
             }
-            
 
             // update the cache
             if (message is DashboardErrorMessage) return;
-            //Log.InfoFormat("Adding to cache {0}", message.Source);
+            Log.DebugFormat("Adding to cache: {0}", message.Source);
             MessageCache.Add(message);
+
+            if (inactiveQueues.Count <= 0) return;
+            foreach (var key in inactiveQueues)
+            {
+                IDashboardMessageQueue q;
+                if (_queues.TryRemove(key, out q))
+                {
+                    Log.DebugFormat("Removing queue: {0}", key);
+                }
+            }
         }
     }
 }

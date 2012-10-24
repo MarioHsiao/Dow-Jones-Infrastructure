@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 
@@ -14,6 +15,7 @@ namespace DowJones.Dash.Caching
         public DashboardMessageQueue(ConcurrentQueue<DashboardMessage> cacheQueue)
         {
             CacheQueue = cacheQueue;
+            LastGet = DateTime.UtcNow;
         }
 
         public virtual void Enqueue(DashboardMessage message)
@@ -26,7 +28,7 @@ namespace DowJones.Dash.Caching
             Cache.Enqueue(message);
         }
 
-        public virtual ICollection<DashboardMessage> GetAll()
+        public virtual ICollection<DashboardMessage> Get()
         {
             var messages = new List<DashboardMessage>();
             DashboardMessage message;
@@ -34,9 +36,16 @@ namespace DowJones.Dash.Caching
             {
                messages.Add(message); 
             }
+            LastGet = DateTime.UtcNow;
             return messages;
-        } 
+        }
 
+        public bool IsActive()
+        {
+            return DateTime.UtcNow.Subtract(LastGet) <= TimeSpan.FromMinutes(5);
+        }
+
+        protected DateTime LastGet { get; set; }
     }
 
     public class DashboardMessageCache : IDashboardMessageCache

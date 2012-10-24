@@ -8,5 +8,6 @@ namespace DowJones.Dash.Common.DataSources
         event EventHandler<DataSourceEvent.Error> Error;
         string Name { get; }
         void Start();
+        void Suspend();
     }
 }

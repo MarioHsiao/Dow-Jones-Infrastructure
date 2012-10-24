@@ -33,6 +33,8 @@ namespace DowJones.Dash.Common.DataSources
 
         public abstract void Start();
 
+        public abstract void Suspend();
+
         protected virtual void OnDataReceived(object data, string name = null)
         {
             if (DataReceived != null && data != null)

@@ -16,9 +16,12 @@ namespace DowJones.Dash.Common.DataSources
 
         private Lazy<int> _pollDelay;
 
+        public bool IsSuspended { get; private set; }
+
         protected PollingDataSource(string name = null, string dataName = null, Func<int> pollDelayFactory = null, Func<int> errorDelayFactory = null)
             : base(name, dataName)
         {
+            IsSuspended = false;
             _pollDelay = new Lazy<int>(pollDelayFactory ?? DefaultPollDelayFactory);
 
             errorDelayFactory = errorDelayFactory ?? (() => _pollDelay.Value * 2);
@@ -42,19 +45,29 @@ namespace DowJones.Dash.Common.DataSources
 
         public override void Start()
         {
+            if (IsSuspended)
+            {
+                IsSuspended = false;
+            }
             TaskFactoryManager.Instance.GetDefaultTaskFactory().StartNew(
                 () => Poll(null),
                 _cancellationToken.Token
             );
         }
 
+        public override void Suspend()
+        {
+            IsSuspended = false;
+        }
+
         protected internal void Poll(int? delay)
         {
+            if (IsSuspended) return;
             if (delay != null)
             {
                 Log.DebugFormat("Waiting for {0} seconds...", delay);
 
-                Thread.Sleep(delay.Value * 1000);
+                Thread.Sleep(delay.Value*1000);
             }
 
             Log.Debug("Polling for data...");

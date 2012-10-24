@@ -92,7 +92,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataSourcesInitializationTask.cs" />
+    <Compile Include="DataSourcesManger.cs" />
     <Compile Include="Hub\DataSourcesHub.cs" />
     <Compile Include="Module\DataSourceConfig.cs" />
     <Compile Include="Module\DataSourcesModule.cs" />

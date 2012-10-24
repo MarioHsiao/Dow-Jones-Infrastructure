@@ -74,6 +74,15 @@ namespace DowJones.Dash.Common.DataSources
             OnDataReceived(Configuration);
         }
 
+        public override void Suspend()
+        {
+        }
+
+        public void Reset()
+        {
+            OnDataReceived(Configuration);
+        }
+
         public void Dispose()
         {
             // Nothing to dispose
