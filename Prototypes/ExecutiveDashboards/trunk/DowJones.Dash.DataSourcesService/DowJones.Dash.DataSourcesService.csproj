@@ -133,4 +133,25 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+
+	<PropertyGroup>
+		<DeployWinService>false</DeployWinService>
+		<ServiceName>DashDataSourcesHub</ServiceName>
+		<ServiceDisplayName>Dash Data Sources Hub</ServiceDisplayName>
+		<ServiceDescription>Data Sources Hub Service for the DowJones Executive Dashboard Site</ServiceDescription>
+		<DeploymentServer Condition="'$(DeploymentServer)' == ''">localhost</DeploymentServer>
+	</PropertyGroup>
+
+	<Target Name="AfterCompile">
+		<CallTarget Targets="PublishService" />
+	</Target>
+
+	<Target Name="PublishService"
+			Condition="'$(DeployWinService)' == 'true'">
+		<Exec Command="sc stop $(ServiceName)" ContinueOnError="true" />
+		<Exec Command="sc delete $(ServiceName)" ContinueOnError="true" />
+		<Exec Command="sc \\$(DeploymentServer) create $(ServiceName) binpath= '$(OutDir)\$(AssemblyName).exe' start= auto displayName= $(ServiceDisplayName)" />
+		<Exec Command="sc \\$(DeploymentServer) description $(ServiceName) $(ServiceDescription)" />
+	    <Exec Command="sc \\$(DeploymentServer) start $(ServiceName)" />
+	</Target>
 </Project>
