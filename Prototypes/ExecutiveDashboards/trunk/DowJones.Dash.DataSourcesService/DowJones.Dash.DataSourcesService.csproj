@@ -36,11 +36,50 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DowJones.Infrastructure">
+      <HintPath>..\packages\DowJones.Infrastructure.3.3.33\lib\DowJones.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="DowJones.Parallel">
+      <HintPath>..\packages\DowJones.Parallel.1.0.0\lib\DowJones.Parallel.dll</HintPath>
+    </Reference>
+    <Reference Include="factiva.gateway.messages">
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.97\lib\factiva.gateway.messages.dll</HintPath>
+    </Reference>
+    <Reference Include="FactivaGateway">
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.97\lib\FactivaGateway.dll</HintPath>
+    </Reference>
+    <Reference Include="Hammock">
+      <HintPath>..\packages\Hammock.1.2.9\lib\4.0\Hammock.dll</HintPath>
+    </Reference>
+    <Reference Include="Hammock.ClientProfile">
+      <HintPath>..\packages\Hammock.1.2.9\lib\4.0\Hammock.ClientProfile.dll</HintPath>
+    </Reference>
+    <Reference Include="Interop.FCMLib">
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.97\lib\Interop.FCMLib.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="log4net">
       <HintPath>..\packages\log4net.1.2.99\lib\2.0\log4net.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.4.5.10\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject">
+      <HintPath>..\packages\Ninject.2.2.1.4\lib\net40-Full\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="SignalR">
+      <HintPath>..\packages\SignalR.Server.0.5.3\lib\net40\SignalR.dll</HintPath>
+    </Reference>
+    <Reference Include="SignalR.Hosting.Common">
+      <HintPath>..\packages\SignalR.Hosting.Common.0.5.3\lib\net40\SignalR.Hosting.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="SignalR.Hosting.Self">
+      <HintPath>..\packages\SignalR.Hosting.Self.0.5.3\lib\net40\SignalR.Hosting.Self.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Management" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -49,6 +88,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ProjectInstaller.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ProjectInstaller.Designer.cs">
+      <DependentUpon>ProjectInstaller.cs</DependentUpon>
+    </Compile>
     <Compile Include="Service1.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -59,12 +104,26 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="ProjectInstaller.resx">
+      <DependentUpon>ProjectInstaller.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Service1.resx">
       <DependentUpon>Service1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DowJones.Dash.Common\DowJones.Dash.Common.csproj">
+      <Project>{0fc55532-400c-44e6-9392-563ff4600842}</Project>
+      <Name>DowJones.Dash.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DowJones.Dash.DataSourcesServer\DowJones.Dash.DataSourcesServer.csproj">
+      <Project>{5a744e40-7e60-46bf-bf72-e586db3cc461}</Project>
+      <Name>DowJones.Dash.DataSourcesServer</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

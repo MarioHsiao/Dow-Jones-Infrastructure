@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.ServiceProcess;
-using System.Text;
+﻿using System.ServiceProcess;
 
 namespace DowJones.Dash.DataSourcesService
 {
@@ -13,12 +9,11 @@ namespace DowJones.Dash.DataSourcesService
         /// </summary>
         static void Main()
         {
-            ServiceBase[] ServicesToRun;
-            ServicesToRun = new ServiceBase[] 
-            { 
-                new DataSourcesService() 
-            };
-            ServiceBase.Run(ServicesToRun);
+            var servicesToRun = new ServiceBase[] 
+                { 
+                    new DataSourcesService() 
+                };
+            ServiceBase.Run(servicesToRun);
         }
     }
 }

@@ -7,7 +7,7 @@ using SignalR;
 
 namespace DowJones.Dash.DataSourcesServer.Module
 {
-    class DependenciesModule : NinjectModule
+    public class DependenciesModule : NinjectModule
     {
         public override void Load()
         {
