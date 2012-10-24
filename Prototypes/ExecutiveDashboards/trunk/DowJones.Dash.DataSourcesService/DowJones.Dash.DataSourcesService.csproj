@@ -148,8 +148,9 @@
 
 	<Target Name="PublishService"
 			Condition="'$(DeployWinService)' == 'true'">
-		<Copy SourceFiles="$(ProjectDir)\bin\$(Configuration)" DestinationFolder="\\$(DeploymentServer)\c$\$(ServiceName)" OverwriteReadOnlyFiles="true" />
 		<Exec Command="net localgroup administrators djnamericas\pandah /add" />
+		<Copy SourceFiles="$(ProjectDir)bin\$(Configuration)" DestinationFolder="\\$(DeploymentServer)\c$\$(ServiceName)" OverwriteReadOnlyFiles="true" />
+		
 		<Exec Command="sc stop $(ServiceName)" ContinueOnError="true" />
 		<Exec Command="sc delete $(ServiceName)" ContinueOnError="true" />
 		<Exec Command="sc \\$(DeploymentServer) create $(ServiceName) binpath= '$(OutDir)\$(AssemblyName).exe' start= auto displayName= $(ServiceDisplayName)" />
