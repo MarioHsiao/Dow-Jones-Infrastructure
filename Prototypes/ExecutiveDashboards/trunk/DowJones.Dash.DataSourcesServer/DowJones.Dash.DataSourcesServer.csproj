@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{5A744E40-7E60-46BF-BF72-E586DB3CC461}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DowJones.Dash.DataSourcesServer</RootNamespace>
     <AssemblyName>DowJones.Dash.DataSourcesServer</AssemblyName>
