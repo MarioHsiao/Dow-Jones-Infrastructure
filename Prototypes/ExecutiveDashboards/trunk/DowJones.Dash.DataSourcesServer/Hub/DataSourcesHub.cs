@@ -1,3 +1,4 @@
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using DowJones.Dash.Caching;
@@ -12,20 +13,7 @@ namespace DowJones.Dash.DataSourcesServer.Hub
     {
         private static readonly ILog Log = LogManager.GetLogger(typeof(DataSourcesHub));
         private static IDashboardMessageCache _messageCache;
-        private static IDashboardMessageQueue _messageQueue;
-
-        private static IDashboardMessageQueue MessageQueue
-        {
-            get
-            {
-                if (_messageQueue == null && ServiceLocator.Current != null)
-                {
-                    _messageQueue = ServiceLocator.Current.Resolve<IDashboardMessageQueue>();
-                }
-
-                return _messageQueue ?? (_messageQueue = new DashboardMessageQueue());
-            }
-        }
+        private static readonly ConcurrentDictionary<string, IDashboardMessageQueue> _queues = new ConcurrentDictionary<string, IDashboardMessageQueue>(); 
 
         private static IDashboardMessageCache MessageCache
         {
@@ -43,24 +31,33 @@ namespace DowJones.Dash.DataSourcesServer.Hub
         public Task<ICollection<DashboardMessage>> Pickup()
         {
             var clientId = Context.ConnectionId;
-            if (Log.IsInfoEnabled)
+            Log.InfoFormat("clientId {0} picking up items", clientId);
+            IDashboardMessageQueue queue;
+            if (_queues.TryGetValue(clientId, out queue))
             {
-                
+                Log.InfoFormat("have been able to get queue: {0}", clientId);
+                return TaskFactoryManager.Instance.GetDefaultTaskFactory().StartNew(() =>
+                    {
+                        var messages = queue.GetAll();
+                        Log.InfoFormat("clientId {0} picking up items in queue[{1}]", clientId, messages.Count);
+                        return messages;
+                    });
             }
-            return TaskFactoryManager.Instance.GetDefaultTaskFactory().StartNew(() =>
-                {
-                    var messages = MessageQueue.GetAll();
-                    Log.DebugFormat("clientId {0} picking up items in queue[{1}]", clientId, messages.Count);
-                    return messages;
-                });
+            return null;
         }
-
+        
         public Task<ICollection<DashboardMessage>> PrimeCache()
         {
             var clientId = Context.ConnectionId;
-            if (Log.IsInfoEnabled)
+            Log.InfoFormat("clientId {0} requesting cache", clientId);
+            
+            if (!_queues.ContainsKey(clientId))
             {
-                Log.DebugFormat("clientId {0} requesting cache", clientId);
+               Log.InfoFormat("try add queue: {0}", clientId);
+               if ( _queues.TryAdd(clientId, new DashboardMessageQueue(new ConcurrentQueue<DashboardMessage>())))
+               {
+                   Log.InfoFormat("Success at adding queue: {0}", clientId);
+               }
             }
 
             return TaskFactoryManager.Instance.GetDefaultTaskFactory().StartNew(() => MessageCache.GetAll());
@@ -75,13 +72,18 @@ namespace DowJones.Dash.DataSourcesServer.Hub
             /* Log.DebugFormat("Publishing {0}", message.EventName);
              context.Clients.message(message);*/
 
-            // update the queue
-            Log.DebugFormat("Adding to queue {0}", message.Source);
-            MessageQueue.Enqueue(message);
+            foreach (var key in _queues.Keys)
+            {
+                IDashboardMessageQueue queue;
+                if (!_queues.TryGetValue(key, out queue)) continue;
+                //Log.InfoFormat("adding to queue: {0}", key );
+                queue.Enqueue(message);
+            }
+            
 
             // update the cache
             if (message is DashboardErrorMessage) return;
-            Log.InfoFormat("Adding to cache {0}", message.Source);
+            //Log.InfoFormat("Adding to cache {0}", message.Source);
             MessageCache.Add(message);
         }
     }

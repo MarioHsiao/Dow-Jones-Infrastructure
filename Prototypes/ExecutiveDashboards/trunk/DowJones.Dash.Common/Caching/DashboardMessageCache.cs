@@ -5,10 +5,15 @@ namespace DowJones.Dash.Caching
 {
     public class DashboardMessageQueue : IDashboardMessageQueue
     {
-        private static readonly ConcurrentQueue<DashboardMessage> CacheQueue = new ConcurrentQueue<DashboardMessage>();
+        private readonly ConcurrentQueue<DashboardMessage> CacheQueue;
         protected ConcurrentQueue<DashboardMessage> Cache
         {
             get { return CacheQueue; }
+        }
+
+        public DashboardMessageQueue(ConcurrentQueue<DashboardMessage> cacheQueue)
+        {
+            CacheQueue = cacheQueue;
         }
 
         public virtual void Enqueue(DashboardMessage message)

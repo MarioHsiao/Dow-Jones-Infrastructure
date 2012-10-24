@@ -42,11 +42,11 @@ namespace DowJones.Dash.Website.Hubs
 
                 var temp = Cache.Get(groups);
 
-                if (Log.IsWarnEnabled)
+                if (Log.IsInfoEnabled)
                 {
                     foreach (var dashboardMessage in temp)
                     {
-                        Log.WarnFormat("Subscribe Provideing: {0}", dashboardMessage.Source);
+                        Log.InfoFormat("Subscribe to Source: {0}", dashboardMessage.Source);
                     }
                 }
 
