@@ -1,6 +1,6 @@
 ﻿namespace DowJones.Dash.DataSourcesService
 {
-    partial class DataSourcesService
+    partial class DataSourcesHub
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            // 
-            // DataSourcesService
-            // 
-            this.ServiceName = "DataSourcesService";
+			// 
+			// DataSourcesHub
+			// 
+			this.ServiceName = "DataSourcesHub";
 
         }
 

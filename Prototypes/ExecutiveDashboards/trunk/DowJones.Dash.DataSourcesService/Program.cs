@@ -11,7 +11,7 @@ namespace DowJones.Dash.DataSourcesService
         {
             var servicesToRun = new ServiceBase[] 
                 { 
-                    new DataSourcesService() 
+                    new DataSourcesHub() 
                 };
             ServiceBase.Run(servicesToRun);
         }

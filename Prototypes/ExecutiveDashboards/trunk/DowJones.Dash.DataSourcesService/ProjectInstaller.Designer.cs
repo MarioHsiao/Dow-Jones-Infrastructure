@@ -28,25 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.serviceProcessInstaller1 = new System.ServiceProcess.ServiceProcessInstaller();
-            this.DataSourcesServiceInstaller = new System.ServiceProcess.ServiceInstaller();
-            // 
-            // serviceProcessInstaller1
-            // 
-            this.serviceProcessInstaller1.Password = null;
-            this.serviceProcessInstaller1.Username = null;
-            // 
-            // DataSourcesServiceInstaller
-            // 
-            this.DataSourcesServiceInstaller.DelayedAutoStart = true;
-            this.DataSourcesServiceInstaller.Description = "DowJones Data Sources Service for the Executive Dashboard Site";
-            this.DataSourcesServiceInstaller.DisplayName = "DataSourcesService";
-            this.DataSourcesServiceInstaller.ServiceName = "DataSourcesService";
-            this.DataSourcesServiceInstaller.StartType = System.ServiceProcess.ServiceStartMode.Automatic;
-            // 
-            // ProjectInstaller
-            // 
-            this.Installers.AddRange(new System.Configuration.Install.Installer[] {
+			this.serviceProcessInstaller1 = new System.ServiceProcess.ServiceProcessInstaller();
+			this.DataSourcesServiceInstaller = new System.ServiceProcess.ServiceInstaller();
+			// 
+			// serviceProcessInstaller1
+			// 
+			this.serviceProcessInstaller1.Account = System.ServiceProcess.ServiceAccount.LocalSystem;
+			this.serviceProcessInstaller1.Password = null;
+			this.serviceProcessInstaller1.Username = null;
+			// 
+			// DataSourcesServiceInstaller
+			// 
+			this.DataSourcesServiceInstaller.DelayedAutoStart = true;
+			this.DataSourcesServiceInstaller.Description = "DowJones Data Sources Service for the Executive Dashboard Site";
+			this.DataSourcesServiceInstaller.DisplayName = "Dash Data Sources Hub";
+			this.DataSourcesServiceInstaller.ServiceName = "DashDataSourcesHub";
+			this.DataSourcesServiceInstaller.StartType = System.ServiceProcess.ServiceStartMode.Automatic;
+			// 
+			// ProjectInstaller
+			// 
+			this.Installers.AddRange(new System.Configuration.Install.Installer[] {
             this.serviceProcessInstaller1,
             this.DataSourcesServiceInstaller});
 
