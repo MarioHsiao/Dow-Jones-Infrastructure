@@ -24,7 +24,7 @@
     <Message Text="Creating NuGet packages in directory: $(NuGetOutputPath)" />
     <Message Importance="low" Text="NuSpec files: @(NuSpecFiles->'%(FullPath)', ',')" />
 
-    <Exec Command="(set EnableNuGetPackageRestore=true) &amp; &quot;$(NuGetExe)&quot; pack -BasePath &quot;$(NuGetBasePath)&quot; -OutputDirectory &quot;$(NuGetOutputPath)&quot; -Version &quot;$(NuGetPackageVersion)&quot; &quot;%(NuSpecFiles.FullPath)&quot;"  />
+    <Exec Command="&quot;$(NuGetExe)&quot; pack -BasePath &quot;$(NuGetBasePath)&quot; -OutputDirectory &quot;$(NuGetOutputPath)&quot; -Version &quot;$(NuGetPackageVersion)&quot; &quot;%(NuSpecFiles.FullPath)&quot;"  />
   </Target>
 
 </Project>
