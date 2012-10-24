@@ -18,7 +18,7 @@
         <IncrementalGet>true</IncrementalGet>
         <ReleaseDeploymentDestination>$(DropLocation)\..\..\Binaries\$(VersionNumber)</ReleaseDeploymentDestination>
         <RunCodeAnalysis>Default</RunCodeAnalysis>
-        <RunTest>false</RunTest>
+        <RunTest>true</RunTest>
         <SkipWorkItemCreation>true</SkipWorkItemCreation>
         <SolutionInfoFile>$(SolutionRoot)\src\SolutionInfo.cs</SolutionInfoFile>
         <TreatTestFailureAsBuildFailure>true</TreatTestFailureAsBuildFailure>
@@ -73,7 +73,7 @@
         <Message Text="Deploying NuGet packages to $(NuGetOutputDir)" />
 
         <MSBuild Projects="$(DowJonesMSBuildProjectFile)"
-                 BuildInParallel="false" StopOnFirstFailure="true"
+                 BuildInParallel="true" StopOnFirstFailure="false"
                  Targets="CreateNuGetPackages"
                  Properties="
                      NuGetOutputPath=$(NuGetOutputPath);
@@ -83,9 +83,9 @@
         />
     </Target>
 
-    <!--<Target Name="CleanArchivedNuGetPackages" AfterTargets="DeployNuGetPackages">
+    <Target Name="CleanArchivedNuGetPackages" AfterTargets="DeployNuGetPackages">
         <Exec WorkingDirectory="$(NuGetOutputPath)" Command="$(NuGetOutputPath)\__RUN_ME_TO_ARCHIVE_PACKAGES__.exe" />
-    </Target>-->
+    </Target>
 
 	<Target Name="BeforeGet">
 		<Message Text="Marking NuGet.exe as readonly: $(SolutionRoot)\lib\nuget\nuget.exe" />
