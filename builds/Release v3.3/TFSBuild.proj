@@ -18,7 +18,7 @@
         <IncrementalGet>true</IncrementalGet>
         <ReleaseDeploymentDestination>$(DropLocation)\..\..\Binaries\$(VersionNumber)</ReleaseDeploymentDestination>
         <RunCodeAnalysis>Default</RunCodeAnalysis>
-        <RunTest>true</RunTest>
+        <RunTest>false</RunTest>
         <SkipWorkItemCreation>true</SkipWorkItemCreation>
         <SolutionInfoFile>$(SolutionRoot)\src\SolutionInfo.cs</SolutionInfoFile>
         <TreatTestFailureAsBuildFailure>true</TreatTestFailureAsBuildFailure>
