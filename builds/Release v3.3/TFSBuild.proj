@@ -73,7 +73,7 @@
         <Message Text="Deploying NuGet packages to $(NuGetOutputDir)" />
 
         <MSBuild Projects="$(DowJonesMSBuildProjectFile)"
-                 BuildInParallel="true" StopOnFirstFailure="false"
+                 BuildInParallel="false" StopOnFirstFailure="true"
                  Targets="CreateNuGetPackages"
                  Properties="
                      NuGetOutputPath=$(NuGetOutputPath);
