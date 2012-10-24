@@ -979,7 +979,7 @@ DJ.$dj.define('$dj', ['jquery'], DJ.$dj);
         var prototype = new this();
         initializing = false;
 
-        prop.templates = prop.templates || {};
+        prop.baseTemplates = prop.baseTemplates || {};
 
         // Copy the properties over onto the new prototype
         for (var name in prop) {
@@ -1056,7 +1056,7 @@ DJ.$dj.define('$dj', ['jquery'], DJ.$dj);
             // generate auto getter/setter for properties in options
             this._createAccessors(this.options);
 
-            this._delegates = { };
+            this._delegates = {};
             this._initializeDelegates();
         },
 
@@ -1164,8 +1164,7 @@ DJ.$dj.define('$dj', ['jquery'], DJ.$dj);
 
             this._super($meta);
 
-            if ($meta["templates"])
-                this.templates = $.extend({}, this.templates, $meta.templates, true);
+            this.templates = $.extend(true, {}, this.baseTemplates, $meta.templates);
 
             // re-assign the scope of 'this' inside templates to the instance
             for (var template in this.templates) {
