@@ -36,8 +36,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DowJones.Infrastructure">
-      <HintPath>..\packages\DowJones.Infrastructure.3.3.33\lib\DowJones.Infrastructure.dll</HintPath>
+    <Reference Include="DowJones.Infrastructure, Version=3.3.48.49055, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DowJones.Infrastructure.3.3.48\lib\DowJones.Infrastructure.dll</HintPath>
     </Reference>
     <Reference Include="DowJones.Parallel">
       <HintPath>..\packages\DowJones.Parallel.1.0.0\lib\DowJones.Parallel.dll</HintPath>
@@ -77,9 +78,11 @@
       <HintPath>..\packages\SignalR.Hosting.Self.0.5.3\lib\net40\SignalR.Hosting.Self.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Core" />
     <Reference Include="System.Management" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -133,28 +136,22 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-
-	<PropertyGroup>
-		<DeployWinService>false</DeployWinService>
-		<ServiceName>DashDataSourcesHub</ServiceName>
-		<ServiceDisplayName>Dash Data Sources Hub</ServiceDisplayName>
-		<ServiceDescription>Data Sources Hub Service for the DowJones Executive Dashboard Site</ServiceDescription>
-		<DeploymentServer Condition="'$(DeploymentServer)' == ''">localhost</DeploymentServer>
-	</PropertyGroup>
-
-	<Target Name="AfterCompile">
-		<CallTarget Targets="PublishService" />
-	</Target>
-
-	<Target Name="PublishService"
-			Condition="'$(DeployWinService)' == 'true'">
-		<Exec Command="net localgroup administrators djnamericas\pandah /add" />
-		<Copy SourceFiles="$(ProjectDir)bin\$(Configuration)" DestinationFolder="\\$(DeploymentServer)\c$\$(ServiceName)" OverwriteReadOnlyFiles="true" />
-		
-		<Exec Command="sc stop $(ServiceName)" ContinueOnError="true" />
-		<Exec Command="sc delete $(ServiceName)" ContinueOnError="true" />
-		<Exec Command="sc \\$(DeploymentServer) create $(ServiceName) binpath= '$(OutDir)\$(AssemblyName).exe' start= auto displayName= $(ServiceDisplayName)" />
-		<Exec Command="sc \\$(DeploymentServer) description $(ServiceName) $(ServiceDescription)" />
-	    <Exec Command="sc \\$(DeploymentServer) start $(ServiceName)" />
-	</Target>
+  <PropertyGroup>
+    <DeployWinService>false</DeployWinService>
+    <ServiceName>DashDataSourcesHub</ServiceName>
+    <ServiceDisplayName>Dash Data Sources Hub</ServiceDisplayName>
+    <ServiceDescription>Data Sources Hub Service for the DowJones Executive Dashboard Site</ServiceDescription>
+    <DeploymentServer Condition="'$(DeploymentServer)' == ''">localhost</DeploymentServer>
+  </PropertyGroup>
+  <Target Name="AfterCompile">
+    <CallTarget Targets="PublishService" />
+  </Target>
+  <Target Name="PublishService" Condition="'$(DeployWinService)' == 'true'">
+    <Copy SourceFiles="$(ProjectDir)bin\$(Configuration)" DestinationFolder="\\$(DeploymentServer)\c$\$(ServiceName)" OverwriteReadOnlyFiles="true" />
+    <Exec Command="sc stop $(ServiceName)" ContinueOnError="true" />
+    <Exec Command="sc delete $(ServiceName)" ContinueOnError="true" />
+    <Exec Command="sc \\$(DeploymentServer) create $(ServiceName) binpath= '$(OutDir)\$(AssemblyName).exe' start= auto displayName= $(ServiceDisplayName)" />
+    <Exec Command="sc \\$(DeploymentServer) description $(ServiceName) $(ServiceDescription)" />
+    <Exec Command="sc \\$(DeploymentServer) start $(ServiceName)" />
+  </Target>
 </Project>

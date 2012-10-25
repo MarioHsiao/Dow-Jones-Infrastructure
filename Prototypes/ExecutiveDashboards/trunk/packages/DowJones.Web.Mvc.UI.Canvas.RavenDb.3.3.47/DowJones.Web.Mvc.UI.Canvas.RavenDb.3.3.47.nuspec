@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>DowJones.Web.Mvc.UI.Canvas.RavenDb</id>
+    <version>3.3.47</version>
+    <title>RavenDB implementations for the Dow Jones Pages Framework</title>
+    <authors>Dow Jones Platform Integration Team</authors>
+    <owners>Dow Jones Platform Integration Team</owners>
+    <licenseUrl>http://dowjones.com</licenseUrl>
+    <projectUrl>http://dowjones.com</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>RavenDB implementations for the Dow Jones Pages Framework</description>
+    <language>en-US</language>
+    <tags>DowJones</tags>
+    <dependencies>
+      <dependency id="DowJones.Pages" version="3.3.47" />
+      <dependency id="DowJones.Web.Mvc.UI.Canvas" version="3.3.47" />
+      <dependency id="RavenDB.Client" version="1.0.960" />
+    </dependencies>
+  </metadata>
+</package>
