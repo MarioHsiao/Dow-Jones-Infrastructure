@@ -1,22 +1,27 @@
 ﻿<Project DefaultTargets="CopyOutputs;DeployService" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
 
-	<PropertyGroup>
-		<ProjectName>DowJones.Dash.DataSourcesService</ProjectName>
+	<!-- These settings control what the service's name, description etc appear in services.msc task panel. -->
+	<PropertyGroup Label="ServiceMetaData">
 		<ServiceName>DashDataSourcesHub</ServiceName>
 		<ServiceDisplayName>Dash Data Sources Hub</ServiceDisplayName>
 		<ServiceDescription>Data Sources Hub Service for the DowJones Executive Dashboard Site</ServiceDescription>
-		<DeploymentServer Condition="'$(DeploymentServer)' == ''">localhost</DeploymentServer>
-		<DeploymentFolder>\\$(DeploymentServer)\c$\$(ServiceName)</DeploymentFolder>
+	</PropertyGroup>
+	
+	<PropertyGroup>
+		<ProjectName>DowJones.Dash.DataSourcesService</ProjectName>
+		<DeploymentServer Condition="'$(DeploymentServerName)' == ''"></DeploymentServer>
+		<DeploymentServer Condition="'$(DeploymentServerName)' != ''">\\$(DeploymentServerName)</DeploymentServer>
+		<DeploymentFolder>$(DeploymentServer)\c$\$(ServiceName)</DeploymentFolder>
 		<ProjectFile>$(MSBuildProjectDirectory)\$(ProjectName).csproj</ProjectFile>
 		<ServiceExecutablePath>C:\$(ServiceName)\$(ProjectName).exe</ServiceExecutablePath>
 	</PropertyGroup>
 
 	<Target Name="DeployService">
-		<Exec Command="sc \\$(DeploymentServer) stop $(ServiceName)" ContinueOnError="true" />
-		<Exec Command="sc \\$(DeploymentServer) delete $(ServiceName)" ContinueOnError="true" />
-		<Exec Command="sc \\$(DeploymentServer) create $(ServiceName) binPath= &quot;$(ServiceExecutablePath)&quot; start= delayed-auto displayName= &quot;$(ServiceDisplayName)&quot;" />
-		<Exec Command="sc \\$(DeploymentServer) description $(ServiceName) $(ServiceDescription)" />
-		<Exec Command="sc \\$(DeploymentServer) start $(ServiceName)" ContinueOnError="true" />
+		<Exec Command="sc $(DeploymentServer) stop $(ServiceName)" ContinueOnError="true" />
+		<Exec Command="sc $(DeploymentServer) delete $(ServiceName)" ContinueOnError="true" />
+		<Exec Command="sc $(DeploymentServer) create $(ServiceName) binPath= &quot;$(ServiceExecutablePath)&quot; start= delayed-auto displayName= &quot;$(ServiceDisplayName)&quot;" />
+		<Exec Command="sc $(DeploymentServer) description $(ServiceName) $(ServiceDescription)" />
+		<Exec Command="sc $(DeploymentServer) start $(ServiceName)" ContinueOnError="true" />
 	</Target>
 
 	<Target Name="CopyOutputs">
