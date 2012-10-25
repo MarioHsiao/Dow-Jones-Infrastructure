@@ -6,18 +6,29 @@
 		<ServiceDisplayName>Dash Data Sources Hub</ServiceDisplayName>
 		<ServiceDescription>Data Sources Hub Service for the DowJones Executive Dashboard Site</ServiceDescription>
 	</PropertyGroup>
-	
+
+	<Choose>
+		<When Condition="'$(DeploymentServerName)' == ''">
+			<PropertyGroup>
+				<DeploymentServer></DeploymentServer>
+				<DeploymentFolder>C:\$(ServiceName)</DeploymentFolder>
+			</PropertyGroup>
+		</When>
+		<Otherwise>
+			<PropertyGroup>
+				<DeploymentServer Condition="'$(DeploymentServerName)' != ''">\\$(DeploymentServerName)</DeploymentServer>
+				<DeploymentFolder>$(DeploymentServer)\C$\$(ServiceName)</DeploymentFolder>
+			</PropertyGroup>
+		</Otherwise>
+	</Choose>
 	<PropertyGroup>
 		<ProjectName>DowJones.Dash.DataSourcesService</ProjectName>
-		<DeploymentServer Condition="'$(DeploymentServerName)' == ''"></DeploymentServer>
-		<DeploymentServer Condition="'$(DeploymentServerName)' != ''">\\$(DeploymentServerName)</DeploymentServer>
-		<DeploymentFolder>$(DeploymentServer)\c$\$(ServiceName)</DeploymentFolder>
 		<ProjectFile>$(MSBuildProjectDirectory)\$(ProjectName).csproj</ProjectFile>
 		<ServiceExecutablePath>C:\$(ServiceName)\$(ProjectName).exe</ServiceExecutablePath>
 	</PropertyGroup>
 
 	<Target Name="DeployService">
-		<Exec Command="sc $(DeploymentServer) stop $(ServiceName)" ContinueOnError="true" />
+
 		<Exec Command="sc $(DeploymentServer) delete $(ServiceName)" ContinueOnError="true" />
 		<Exec Command="sc $(DeploymentServer) create $(ServiceName) binPath= &quot;$(ServiceExecutablePath)&quot; start= delayed-auto displayName= &quot;$(ServiceDisplayName)&quot;" />
 		<Exec Command="sc $(DeploymentServer) description $(ServiceName) $(ServiceDescription)" />
@@ -31,6 +42,10 @@
 		</MSBuild>
 		<Message Text="%0a%0dProjectOutputs:%0a%0d    @(ProjectOutputs,'%0a%0d    ')" />
 
+		<Message Text="Stopping Service..." />
+		<Exec Command="sc $(DeploymentServer) stop $(ServiceName)" ContinueOnError="true" />
+
+		<Message Text="Copying files..." />
 		<Copy SourceFiles="@(ProjectOutputs)"
 			  DestinationFolder="$(DeploymentFolder)"
 			  SkipUnchangedFiles="true"
