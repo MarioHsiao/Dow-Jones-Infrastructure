@@ -66,9 +66,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Factiva.Gateway.7.5.0.97\lib\factiva.gateway.messages.dll</HintPath>
     </Reference>
-    <Reference Include="FactivaGateway">
+    <Reference Include="FactivaGateway, Version=1.6.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Factiva.Gateway.7.5.0.97\lib\FactivaGateway.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="Interop.FCMLib">
       <HintPath>..\packages\Factiva.Gateway.7.5.0.97\lib\Interop.FCMLib.dll</HintPath>
