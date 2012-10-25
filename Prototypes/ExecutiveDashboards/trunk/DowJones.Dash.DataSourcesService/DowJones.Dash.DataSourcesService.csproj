@@ -128,6 +128,9 @@
       <Name>DowJones.Dash.DataSourcesServer</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="deploy.proj" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
@@ -136,22 +139,5 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  <PropertyGroup>
-    <DeployWinService>false</DeployWinService>
-    <ServiceName>DashDataSourcesHub</ServiceName>
-    <ServiceDisplayName>Dash Data Sources Hub</ServiceDisplayName>
-    <ServiceDescription>Data Sources Hub Service for the DowJones Executive Dashboard Site</ServiceDescription>
-    <DeploymentServer Condition="'$(DeploymentServer)' == ''">localhost</DeploymentServer>
-  </PropertyGroup>
-  <Target Name="AfterCompile">
-    <CallTarget Targets="PublishService" />
-  </Target>
-  <Target Name="PublishService" Condition="'$(DeployWinService)' == 'true'">
-    <Copy SourceFiles="$(ProjectDir)bin\$(Configuration)" DestinationFolder="\\$(DeploymentServer)\c$\$(ServiceName)" OverwriteReadOnlyFiles="true" />
-    <Exec Command="sc stop $(ServiceName)" ContinueOnError="true" />
-    <Exec Command="sc delete $(ServiceName)" ContinueOnError="true" />
-    <Exec Command="sc \\$(DeploymentServer) create $(ServiceName) binpath= '$(OutDir)\$(AssemblyName).exe' start= auto displayName= $(ServiceDisplayName)" />
-    <Exec Command="sc \\$(DeploymentServer) description $(ServiceName) $(ServiceDescription)" />
-    <Exec Command="sc \\$(DeploymentServer) start $(ServiceName)" />
-  </Target>
+
 </Project>
