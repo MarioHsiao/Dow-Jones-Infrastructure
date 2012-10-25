@@ -5,7 +5,7 @@
 DJ.UI.UsersStats = DJ.UI.CompositeComponent.extend({
 
     selectors: {
-        percentEngaged: '.counter',
+        percentEngaged: '.counter'
     },
     
     init: function (element, meta) {

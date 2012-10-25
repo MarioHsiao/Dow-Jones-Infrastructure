@@ -6,11 +6,7 @@ DJ.UI.StatsMap = DJ.UI.Component.extend({
 
     defaults: {
         mapType: 'country',
-        map: 'us',
-        /* set this to false if you don't want component to respond to host change event.
-           e.g. for world map, this should be false.
-        */
-        allowHostConfigurationChange: true
+        map: 'us'
     },
 
     selectors: {
@@ -121,13 +117,10 @@ DJ.UI.StatsMap = DJ.UI.Component.extend({
 
     _initializeEventHandlers: function () {
         $dj.subscribe('data.PageLoadDetailsByType', this._delegates.setData);
-
-        /* don't listen to the event if HostConfigurationChange is not allowed (e.g. world map) */
-        if (this.options.allowHostConfigurationChange)
-            $dj.subscribe('data.BasicHostConfiguration', this._delegates.domainChanged);
+        $dj.subscribe('data.BasicHostConfiguration', this._delegates.domainChanged);
 
         var self = this;
-        
+
         this.$element.on('click', this.selectors.pill, function () {
             var el = $(this);
             el.siblings('.active').add(el).toggleClass('active');
@@ -175,9 +168,11 @@ DJ.UI.StatsMap = DJ.UI.Component.extend({
         if (!data)
             return;
 
-        this._initializeMapData(data.map);
-        this._initializeChart(data);
-        
+        if (this.options.mapType !== 'world') {
+            this._initializeMapData(data.map);
+            this._initializeChart(data.performanceZones);
+        }
+
         this._showContent();
 
         this.activePillId = null;
@@ -186,14 +181,14 @@ DJ.UI.StatsMap = DJ.UI.Component.extend({
 
     },
 
-    _initializeChart: function (config) {
+    _initializeChart: function (performanceZones) {
         this._initializingChart = true;
 
         // highcharts will wipe out series object, hence initialize this
         this.mapConfig.series = this.mapConfig.series || [{ type: 'map', data: [] }];
 
-        if (config && config.performanceZones)
-            this.mapConfig.plotOptions.map.valueRanges = this._configureValueRanges(config.performanceZones);
+        if (performanceZones)
+            this.mapConfig.plotOptions.map.valueRanges = this._configureValueRanges(performanceZones);
 
         for (var i = 0; i < this.territories.length; i++) {
             var key = this.territories[i];

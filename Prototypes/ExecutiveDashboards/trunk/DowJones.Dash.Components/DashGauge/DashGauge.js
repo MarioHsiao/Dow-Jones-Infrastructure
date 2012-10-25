@@ -20,7 +20,7 @@ DJ.UI.DashGauge = DJ.UI.Component.extend({
             baseWidth: 5,
             borderWidth: 0,
             topWidth: 1,
-            baseLength: '70%', // of radius
+            baseLength: '70%' // of radius
         },
         pivot: {
             backgroundColor: '#AEAEAE',
@@ -284,7 +284,7 @@ DJ.UI.DashGauge = DJ.UI.Component.extend({
                 labels: {
                     rotation: 'auto',
                     distance: 20,
-                    enabled: false,
+                    enabled: false
                 },
                 plotBands: (this.options.gaugeType === 0) ? this._getSpedometerBands() : this._getMeterBands(),
                 pane: 0,

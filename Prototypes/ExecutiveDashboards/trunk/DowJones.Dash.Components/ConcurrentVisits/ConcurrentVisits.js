@@ -96,7 +96,7 @@ DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
         return {
             chart: {
                 height: 150,
-                backgroundColor: 'transparent',
+                backgroundColor: 'transparent'
                 
             },
             title: {
@@ -121,7 +121,7 @@ DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
                 },
                 endOnTick: false,
                 min: startDate,
-                max: endDate,
+                max: endDate
                 
             },
             yAxis: {
