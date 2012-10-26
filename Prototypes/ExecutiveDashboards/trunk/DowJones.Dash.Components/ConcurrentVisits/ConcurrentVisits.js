@@ -250,12 +250,14 @@ DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
     _updateQuickStats: function (data) {
         if (data) {
             if (this.visitorsGauge) {
-                this.visitorsGauge.setData(data.visits);
-                this.lastVisits = data.visits;
+                var visits = data.visits || 0;
+                this.visitorsGauge.setData(visits);
+                this.lastVisits = visits;
             }
 
-            var minutes = (data.engaged_time.avg / 60).toFixed(0);
-            var seconds = (data.engaged_time.avg % 60).toFixed(0);
+            var engagedTime = data.engaged_time || {avg:0};
+            var minutes = (engagedTime.avg / 60).toFixed(0);
+            var seconds = (engagedTime.avg % 60).toFixed(0);
             this.$element.find(this.selectors.timeCounter).html(minutes + ":" + (seconds < 10 ? "0" + seconds : seconds) + "m");
         }
     },

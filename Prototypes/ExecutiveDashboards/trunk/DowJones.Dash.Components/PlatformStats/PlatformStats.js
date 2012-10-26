@@ -61,12 +61,14 @@ DJ.UI.PlatformStats = DJ.UI.CompositeComponent.extend({
 
     _updateStats: function (data) {
         if (!data) {
-            return;
+            data = { platform: { m: 0, d: 0 } };
         }
 
-        var total = data.platform.d + data.platform.m;
-        var mPercentage = (data.platform.m * 100 / total).toFixed(2);
-        var dPercentage = (data.platform.d * 100 / total).toFixed(2);
+        var platformStats = data.platform || { m: 0, d: 0 };
+        var total = platformStats.d + platformStats.m || 100;
+        
+        var mPercentage = (platformStats.m * 100 / total).toFixed(2);
+        var dPercentage = (platformStats.d * 100 / total).toFixed(2);
 
         $(this.selectors.desktopContainer, this.element).html(dPercentage + "%");
         $(this.selectors.mobileContainer, this.element).html(mPercentage + "%");

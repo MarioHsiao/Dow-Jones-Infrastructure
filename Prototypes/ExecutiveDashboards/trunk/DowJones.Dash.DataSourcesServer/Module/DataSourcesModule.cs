@@ -266,6 +266,18 @@ namespace DowJones.Dash.DataSourcesServer.Module
 													 
                                                  });
 
+            yield return new GomezDataSource("{0}-PageLoadDetailsByTypeForWorld".FormatWith(dataSourceConfig.Domain),
+                                             "PageLoadDetailsByTypeForWorld",
+                                             "[SplunkExport].[dbo].[GetPageLoadDetailsByType]",
+                                             new Dictionary<string, object>
+                                                 {
+                                                     {"type", MapType.World.ToString().ToLower()},
+													 {"id", 0},
+                                                     {"seconds", 3600},
+                                                     {"site", (int) dataSourceConfig.Site},
+                                                 });
+
+
             yield return new GomezDataSource("{0}-DeviceTraffic".FormatWith(dataSourceConfig.Domain),
                                              "DeviceTraffic",
                                              "[SplunkExport].[dbo].[GetDeviceTraffic]",
@@ -279,7 +291,6 @@ namespace DowJones.Dash.DataSourcesServer.Module
 
         public IEnumerable<IDataSource> GetHostConfigurations()
         {
-            // TODO:Dry it up
             yield return new ConfigurationDataSource<BasicHostConfiguration>(
                 "online.wsj.com-BasicHostConfiguration",
                 "BasicHostConfiguration",
@@ -397,7 +408,7 @@ namespace DowJones.Dash.DataSourcesServer.Module
                 }
                 );
 
-            yield return new ConfigurationDataSource<BasicHostConfiguration>(
+            /*yield return new ConfigurationDataSource<BasicHostConfiguration>(
                "world.wsj.com-BasicHostConfiguration",
                "BasicHostConfiguration",
                new BasicHostConfiguration
@@ -412,7 +423,7 @@ namespace DowJones.Dash.DataSourcesServer.Module
                                 new PerformanceZone {From = 10, To = 30, ZoneType = PerformanceZoneType.Hot}
                             },
                }
-               );
+               );*/
         }
     }
 }

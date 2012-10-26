@@ -116,9 +116,14 @@ DJ.UI.StatsMap = DJ.UI.Component.extend({
     },
 
     _initializeEventHandlers: function () {
-        $dj.subscribe('data.PageLoadDetailsByType', this._delegates.setData);
-        $dj.subscribe('data.BasicHostConfiguration', this._delegates.domainChanged);
+        if (this.options.mapType !== 'world') {
+            $dj.subscribe('data.PageLoadDetailsByType', this._delegates.setData);
+        }
+        else {
+            $dj.subscribe('data.PageLoadDetailsByTypeForWorld', this._delegates.setData);
+        }
 
+        $dj.subscribe('data.BasicHostConfiguration', this._delegates.domainChanged);
         var self = this;
 
         this.$element.on('click', this.selectors.pill, function () {
