@@ -243,6 +243,11 @@ namespace DowJones.Ajax.HeadlineList
         /// </summary>
         [EnumMember]
         Author,
+        /// <summary>
+        /// 
+        /// </summary>
+        [EnumMember]
+        Source,
     }
 
     /// <summary>
