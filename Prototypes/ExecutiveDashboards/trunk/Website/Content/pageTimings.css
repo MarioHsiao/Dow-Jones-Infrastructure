@@ -32,12 +32,12 @@
       margin-right: 5px;
       width: 50px; }
       .dj_pageTimings .pageTimings .pageTimingEntry .minmax .min-stamp {
-        margin-bottom: 5px;
         padding-right: 5px;
         text-align: right; }
       .dj_pageTimings .pageTimings .pageTimingEntry .minmax .max-stamp {
         padding-right: 5px;
-        text-align: right; }
+        text-align: right;
+        margin-bottom: 5px; }
     .dj_pageTimings .pageTimings .pageTimingEntry .sparklineTooltip {
       height: 22px;
       margin-right: 5px;

@@ -252,7 +252,7 @@ DJ.UI.PageTimings = DJ.UI.CompositeComponent.extend({
 
             self._timingsContainer.html(self.templates.success(pageTimings));
             self.isPageTimingsListSeeded = true;
-            
+            self.$element.find(".tip").tooltip();
         }
 
         var temp = self.$element.find(self.selectors.avg);

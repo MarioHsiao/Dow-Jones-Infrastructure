@@ -175,8 +175,9 @@ DJ.UI.StatsMap = DJ.UI.Component.extend({
 
         if (this.options.mapType !== 'world') {
             this._initializeMapData(data.map);
-            this._initializeChart(data.performanceZones);
         }
+
+        this._initializeChart(data.performanceZones);
 
         this._showContent();
 
