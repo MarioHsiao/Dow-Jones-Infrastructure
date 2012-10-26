@@ -41,7 +41,9 @@ DJ.UI.PortalHeadlineList = DJ.UI.Component.extend({
         // pageIndexChanged throws currentPageIndex, newPageIndex, and pagesCount
         pageIndexChanged: "pageIndexChanged.dj.PortalHeadlineList",
         // componentRendered is raised when the component is done rendering
-        componentRendered: "componentRendered.dj.PortalHeadlineList"
+        componentRendered: "componentRendered.dj.PortalHeadlineList",
+		// appendDataRendered - raised when appended data is rendered, returns currentPageIndex, pageCount and data
+		appendDataRendered: "appendDataRendered.dj.PortalHeadlineList"
     },
 
     init: function (element, meta) {
@@ -58,40 +60,46 @@ DJ.UI.PortalHeadlineList = DJ.UI.Component.extend({
         this._setData(this.data);
     },
 
-    _initializeHeadlineList: function (data) {
-        var items = $(this.selectors.headlineEntry, this.$element);
+    _initializeHeadlineList: function (data, $container, disablePaginationSetup) {
+		$container = $container || this.$element;
+        var items = $(this.selectors.headlineEntry, $container);
         var me = this;
         _.each(_.first(data, items.length), function (headline, i) {
-            var tLi = items.get(i);
-            // Set the data to the li
-            $(tLi).data("headline", headline);
-
-            // Set the tooltip (snippets)
-            // SnippetDisplayType = Hover
-            if ((me.options.displaySnippets === 3) && headline.snippets && headline.snippets.length > 0) {
-                me._renderSnippets(headline, tLi);
-            }
-
-            else // SnippetDisplayType = HybridHover
-                if ((me.options.displaySnippets === 4) && headline.snippets && headline.snippets.length > 0) {
-                    if (i != 0) {
-                        me._renderSnippets(headline, tLi);
-                    }
-                    else {
-                        var snippetStr = "";
-                        _.each(headline.snippets, function (snippet, s) {
-                            snippetStr += snippet;
-                        });
-                        var inlineSnippetHtml = '<p class="article-snip">' + snippetStr + '</p>';
-                        $('div.article-wrap', tLi).append(inlineSnippetHtml);
-                    }
-                }
+			me._initializeHeadlineEntry(items.get(i), headline);
         }, this);
 
-        if (this._isPaginationOn()) {
+        if (!disablePaginationSetup && this._isPaginationOn()) {
             this._setupPagination();
         }
     },
+	
+	_initializeHeadlineEntry: function(tLi, headline) {
+		var me = this;
+		// Set the data to the li
+		$(tLi).data("headline", headline);
+
+		// Set the tooltip (snippets)
+		// SnippetDisplayType = Hover
+		if ((me.options.displaySnippets === 3) && headline.snippets && headline.snippets.length > 0) {
+			me._renderSnippets(headline, tLi);
+		}
+
+		else { // SnippetDisplayType = HybridHover
+			if ((me.options.displaySnippets === 4) && headline.snippets && headline.snippets.length > 0) {
+				if (i != 0) {
+					me._renderSnippets(headline, tLi);
+				}
+				else {
+					var snippetStr = "";
+					_.each(headline.snippets, function (snippet, s) {
+						snippetStr += snippet;
+					});
+					var inlineSnippetHtml = '<p class="article-snip">' + snippetStr + '</p>';
+					$('div.article-wrap', tLi).append(inlineSnippetHtml);
+				}
+			}
+		}
+	},
 
     _isPaginationOn: function () {
         return this.options.allowPagination && this.options.pageSize > 0;
@@ -398,6 +406,60 @@ DJ.UI.PortalHeadlineList = DJ.UI.Component.extend({
         }
     },
 
+	appendData: function (data) {
+		var resultSet = data.resultSet;
+		if (!resultSet || !resultSet.count || resultSet.count.value <= 0 || !resultSet.headlines) {
+			return;
+		}
+		if (this._isPaginationOn()) {
+			// TODO: appendData for pagination
+			// Check if last page is full or not
+			var $lastPage = this.$carouselInner.find(".slidePanel").last();
+			var availableSlotsOnLastPage = this.options.pageSize - $lastPage.find(this.selectors.headlineEntry).length;
+			// if last page is not full, fill it up first
+			if (availableSlotsOnLastPage > 0) {
+				var $lastPageHeadlineList = $(this.selectors.headlineList, $lastPage);
+				for (var i = 0; i < Math.min(availableSlotsOnLastPage, resultSet.headlines.length); i++) {
+					var headline = resultSet.headlines[i];
+					var $headlineEntry = $(this.templates.successHeadlineEntry(headline));
+					this._initializeHeadlineEntry($headlineEntry, headline);
+					$lastPageHeadlineList.append($headlineEntry);					
+				}
+			}
+			
+			// create new paging pages for the remaining headlines
+			if (availableSlotsOnLastPage < resultSet.headlines.length) {
+				var pageIndex = this.$pages.length;
+				for (var i = availableSlotsOnLastPage; i < resultSet.headlines.length; i += this.options.pageSize, pageIndex++) {
+					var newPageHeadlines = resultSet.headlines.slice(i, i + this.options.pageSize);
+					var $newPage = $(this.templates.paginationPage({index: pageIndex, headlines: newPageHeadlines}));
+					this._initializeHeadlineList(newPageHeadlines, $newPage, true);
+					this.$carouselInner.append($newPage);
+				}
+				// Update $pages variable
+				this.$pages = this.$carouselInner.find(".slidePanel");
+				this.pagesCount = this.$pages.length;
+			}
+			this._resizeCarousel(false);
+		}
+		else {
+			var $headlineList = $(this.selectors.headlineList, this.$element);
+			for (var i = 0; i < resultSet.headlines.length; i++) {
+				var headline = resultSet.headlines[i];
+				var $headlineEntry = $(this.templates.successHeadlineEntry(headline));
+				this._initializeHeadlineEntry($headlineEntry, headline);
+				$headlineList.append($headlineEntry);
+			}
+		}
+		
+		this.publish(this.events.componentRendered,
+						 {
+							 currentPageIndex: this.currentPageIndex,
+							 pagesCount: this.pagesCount || 0,
+							 data: data
+						 });
+	},
+	
     bindOnError: function (data) {
         try {
             this.$element.html("");
@@ -407,16 +469,13 @@ DJ.UI.PortalHeadlineList = DJ.UI.Component.extend({
         }
     },
 
-
     getErrorTemplate: function () {
         return this.templates.error;
     },
 
-
     getNoDataTemplate: function () {
         return this.templates.noData;
     },
-
 
     showEditSection: function (show) {
         show = show || true;
@@ -428,11 +487,9 @@ DJ.UI.PortalHeadlineList = DJ.UI.Component.extend({
         }
     },
 
-
     setErrorTemplate: function (markup) {
         this.templates.error = _.template(markup);
     },
-
 
     setNoDataTemplate: function (markup) {
         this.templates.noData = _.template(markup);

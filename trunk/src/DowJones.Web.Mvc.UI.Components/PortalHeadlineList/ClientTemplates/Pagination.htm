@@ -2,9 +2,7 @@
     <div class="dj_Carousel-inner">
         <% var headlinePages = self;
             for (var i = 0; i < headlinePages.length; i++) { %>
-        <div class="slidePanel" data-page="<%= i %>">
-            <%= this.successTemplate(headlinePages[i]) %>
-        </div>        
+            <%= this.templates.paginationPage({index: i, headlines: headlinePages[i]}) %>
         <% } %>
     </div>
 </div>

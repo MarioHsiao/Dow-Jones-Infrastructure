@@ -905,6 +905,11 @@
   <ItemGroup>
     <EmbeddedResource Include="Gauge\Gauge.js" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="PortalHeadlineList\ClientTemplates\SuccessHeadlineEntry.htm" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="PortalHeadlineList\ClientTemplates\PaginationPage.htm" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
