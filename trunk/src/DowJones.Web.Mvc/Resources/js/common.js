@@ -348,27 +348,6 @@ if (!Function.prototype.bind) {
             return jsonString.replace('\"', '\\\"');
         },
 
-        // [Obsolete("Use serializeConfig instead")]
-        serializeGlobalHeaders: function () {
-            return this.serializeConfig();
-        },
-
-        serializeConfig: function () {
-            var config = DJ.config;
-
-            if (!config) { return null; }
-
-            var headers = {
-                credentials: JSON.stringify(config.credentials),
-                preferences: JSON.stringify(config.preferences),
-                product: config.productId
-            };
-
-            if (config.credentials.Debug) { headers.debug = true; }
-
-            return headers;
-        },
-
         queryParameter: function (name) {
             var match = new RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
             return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
@@ -1527,6 +1506,29 @@ DJ.$dj.require(['JSON', '$dj'], function (JSON, $dj) {
             return dateString;
         };
     }
+});
+
+
+DJ.$dj.require(['JSON', '$dj'], function(JSON, $dj) {
+    $dj.serializeConfig = function() {
+        var config = DJ.config;
+
+        if (!config) {
+            return null;
+        }
+
+        var headers = {
+            credentials: JSON.stringify(config.credentials),
+            preferences: JSON.stringify(config.preferences),
+            product: config.productId
+        };
+
+        if (config.credentials.Debug) {
+            headers.debug = true;
+        }
+
+        return headers;
+    };
 });
 
 
