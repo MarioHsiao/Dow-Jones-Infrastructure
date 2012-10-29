@@ -49,7 +49,7 @@ DJ.UI.ScrollBar = DJ.UI.Component.extend({
         scrollbartrack: 'dj_scrollbar-track'
     },
 
-    templates: {
+    clientTemplates: {
         templateX: _.template('<div class="<%= scrollbar %>" style="width:<%= elemWidth %>px; margin-top:<%= elemHeight %>px; position:relative;"><div class="<%= scrollbartrack %>" style="width:<%= elemWidth %>px;"><div class="<%= scrollbarthumb %>"></div></div></div>'),
         templateY: _.template('<div class="<%= scrollbar %>" style="height:<%= elemHeight %>px; margin-left:<%= elemWidth %>px; position:relative;"><div class="<%= scrollbartrack %>" style="height:<%= elemHeight %>px;"><div class="<%= scrollbarthumb %>"></div></div></div>')
     },
@@ -128,7 +128,7 @@ DJ.UI.ScrollBar = DJ.UI.Component.extend({
 
             //var scrollbarX = $.validator.format('<div class="{0}" style="width:{1}px; margin-top:{2}px; position:relative;"><div class="{3}" style="width:{1}px;"><div class="{4}"></div></div></div>', self.selectors.scrollbar.replace(".", ""), self.elemWidth, self.elemHeight, self.selectors.scrollbartrack.replace(".", ""), self.selectors.scrollbarthumb.replace(".", ""));
             //self.selectors.scrollbar.replace(".", ""), self.elemWidth, self.elemHeight, self.selectors.scrollbartrack.replace(".", ""), self.selectors.scrollbarthumb.replace(".", "")
-            var scrollbarX = self.templates.templateX({
+            var scrollbarX = self.clientTemplates.templateX({
                 scrollbar: self.classNames.scrollbar,
                 elemWidth: self.elemWidth,
                 elemHeight: self.elemHeight,
@@ -209,7 +209,7 @@ DJ.UI.ScrollBar = DJ.UI.Component.extend({
             $parentContainer.width(self.elemWidth + 5);
 
             //var scrollbarY = $.validator.format('<div class="{0}" style="height:{1}px; margin-left:{2}px; position:relative;"><div class="{3}" style="height:{1}px;"><div class="{4}"></div></div></div>', self.selectors.scrollbar.replace(".", ""), self.elemHeight, self.elemWidth, self.selectors.scrollbartrack.replace(".", ""), self.selectors.scrollbarthumb.replace(".", ""));
-            var scrollbarY = self.templates.templateY({
+            var scrollbarY = self.clientTemplates.templateY({
                 scrollbar: self.classNames.scrollbar,
                 elemHeight: self.elemHeight,
                 elemWidth: self.options.paddingclip ? self.elemWidth : self.elemWidth - 1,
