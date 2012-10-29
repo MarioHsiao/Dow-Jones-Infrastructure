@@ -294,11 +294,11 @@ DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
     },
     
     _maxTemplate: function (val) {
-        return "30-Day Max <span class=\"chartMax\">" + val + "</span>"; 
+        return "Max <span class=\"chartMax\" title=\"30 Day Maximum\">" + val + "</span>"; 
     },
     
     _minTemplate: function (val) {
-        return "30-Day Min <span class=\"chartMin\">" + val + "</span>";
+        return "Min <span class=\"chartMin\" title=\"30 Day Minimum\">" + val + "</span>";
     },
     
     _footerTemplate: function (val) {

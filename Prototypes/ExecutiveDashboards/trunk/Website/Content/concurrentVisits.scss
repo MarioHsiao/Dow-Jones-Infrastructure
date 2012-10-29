@@ -3,7 +3,7 @@
 	position: absolute;
 	top: $top;
 	left: $left;
-	font-size: $fontSize;
+    font-weight: bold;
 	text-align: $align;
 	z-index: 1000;
 	width: $width;
@@ -13,7 +13,7 @@
 
 .visitorsGauge{
 	.dj_DashGaugeChart {
-		width: 200px;
+		width: 100%;
 		margin: 0 auto;
 		position: relative;
 		.dj_DashGaugeChartHeader {
@@ -22,15 +22,15 @@
    			  top: 22px;
 			  text-align: center;
 			  z-index: 1000;
-			  width: 200px;
-			  line-height: 1em;
+			  width: 100%;
+			  line-height: 0.9em;
 			  font-weight: bold;
 			}
 			.dj_DashGaugeChartMax {
-			  @include gaugeMaxLabel(1.0em, 200px, #666, 155px, -5px)
+			  @include gaugeMaxLabel(1.0em, 100%, #666, 25px, -5px)
 		    }
 			.dj_DashGaugeChartMin {
-			  @include gaugeMaxLabel(1.0em, 200px, #666, 155px, 5px, left)
+			  @include gaugeMaxLabel(1.0em, 100%, #666, 25px, 5px, left)
 		    }
 			.chartMax {
 				display: block; 
@@ -39,16 +39,23 @@
 				display: block; 
 			} 			
 		}
+		.dj_DashGaugeChartContainer {
+			display: none;
+		}
 		.dj_DashGaugeChartFooter {
 			text-align:center;
-			width: 200px;
+			width: 100%;
+			padding-top: 60px;
 		}
 	} 
 } 
 
+
+
 .engagement{
 	color: #999;
 	text-shadow: 0px 3px 8px #2A2A2A;
+	padding-top: 10px;
 	.counter{
 		text-align: center;
 		z-index: 1000;

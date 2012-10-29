@@ -4,7 +4,7 @@ a:hover {
 }
 
 body {
-	padding-top: 65px;
+	padding-top: 0px;
 	background-color: #3c3c3c;
 	background-repeat: no-repeat;
 }
@@ -70,7 +70,7 @@ header {
     > a {
       margin-top: 0px;
       text-align: center;
-      height: 52px;
+      height: 32px;
     }
     display: inline-block;
     float: left;
@@ -87,7 +87,7 @@ header {
   }
   .main-nav-icon-big {
     text-align: center;
-    padding: 5px;
+    padding: 0px;
   }
 }
 
@@ -185,17 +185,17 @@ footer {
 
 /* header level elements inside components - level - h1, level2 - h2 and so on */
 .level1 {
-	font-size: 3em;
+	font-size: 2.7em;
 }
 
 .level2 {
-	font-size: 2em;
+	font-size: 1.8em;
 }
 
 .level3 {
-	font-size: 1em;
+	font-size: 0.9em;
 }
 
 .level4 {
-	font-size: 0.8em;
+	font-size: 0.6em;
 }
