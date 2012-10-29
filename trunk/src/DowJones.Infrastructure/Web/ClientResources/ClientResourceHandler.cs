@@ -139,7 +139,7 @@ namespace DowJones.Web
 			var baseUrl = new StringBuilder();
 			baseUrl.Append(context.GetExternalUrl(Settings.Default.ClientResourceHandlerPath));
 			baseUrl.Append("?");
-			baseUrl.AppendFormat("{0}={1}", LanguageKey, culture.TwoLetterISOLanguageName);
+            baseUrl.AppendFormat("{0}={1}", LanguageKey, MapLanguageKey(culture));
 			baseUrl.AppendFormat("&{0}={1}", CachingTokenKey, CacheTokenFactory());
 
 			if (debug == true || context.DebugEnabled())
