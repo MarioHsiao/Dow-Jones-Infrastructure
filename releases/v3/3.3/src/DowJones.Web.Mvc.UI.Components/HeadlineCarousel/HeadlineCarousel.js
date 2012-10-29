@@ -178,8 +178,8 @@
                     carouselWrap: '.dj_video_carousel-wrap'
                 });
 
-                //No device check. If the device supports it will work or else will do nothing
-                //if($.iDevices.iPad){
+                //No device check. If the device supports it will work or else will do nothing.  was-> if($.iDevices.iPad){
+                if ($.support.boxModel) {
                     $(".dj_video_carousel-wrap", this.$element).touchwipe({
                         wipeLeft: function() {
                             $videoCarousel.headlineCarousel('moveRight');
@@ -189,7 +189,7 @@
                         },
                         preventDefaultEvents: false
                     });
-                //}
+                }
 
             } else {
                 items = $("div.dj_headline_carousel-wrap ul li h3", this.$element);

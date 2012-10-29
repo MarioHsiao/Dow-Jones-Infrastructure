@@ -139,8 +139,8 @@
                         });
                     });
 
-                    //No device check. If the device supports it will work or else will do nothing
-                    //if ($.iDevices.iPad) {
+                    //No device check. If the device supports it will work or else will do nothing.  was-> if($.iDevices.iPad){
+                    if ($.support.boxModel){
                         $radarContentPages.touchwipe({
                             wipeLeft: function () {
                                 $radarContentPages.cycle("next");
@@ -150,7 +150,7 @@
                             },
                             preventDefaultEvents: false
                         });
-                    //}
+                    }
                 }
             }
             else {

@@ -1,7 +1,7 @@
 ﻿
 DJ.UI.TagCloud = DJ.UI.Component.extend({
 
-    templates: {
+    clientTemplates: {
         success: _.template([
             '<ul class="dj_tag_cloud">',
                 '<% for (var index = 0, len = data.result.length; index < len; index++) {',
@@ -57,14 +57,14 @@ DJ.UI.TagCloud = DJ.UI.Component.extend({
             this.$container.html("");
             if (data && data.result && data.result.length > 0) {
                 // call to bind and append html to ul in one shot
-                this.$container.append(this.templates.success({
+                this.$container.append(this.clientTemplates.success({
                     data: data,
                     options: this.options
 
                 }));
             }
             else {
-                this.$container.append(this.templates.noData());
+                this.$container.append(this.clientTemplates.noData());
             }
         }
     },
@@ -77,7 +77,7 @@ DJ.UI.TagCloud = DJ.UI.Component.extend({
     bindOnError: function (data) {
             try {
                 this.$container.html("");
-                this.$container.append(this.templates.error(data));
+                this.$container.append(this.clientTemplates.error(data));
             } catch (e) {
                 $dj.debug('Error in Tagcloud.bindOnError');
                 $dj.debug(e);

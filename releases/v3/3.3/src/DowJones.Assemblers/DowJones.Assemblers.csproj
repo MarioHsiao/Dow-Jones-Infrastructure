@@ -117,6 +117,7 @@
     <Compile Include="DTO\DTOKeyMapper.cs" />
     <Compile Include="DTO\IRequestDTO.cs" />
     <Compile Include="DTO\SessionRequestDTO.cs" />
+    <Compile Include="Entities\EntitiesConversionManager.cs" />
     <Compile Include="Headlines\GatewayAccessionNumberSearchResponseConverter.cs" />
     <Compile Include="Headlines\PCMAccessionNumberSearchResponseConverter.cs" />
     <Compile Include="Headlines\HeadlineUtility.cs" />
@@ -192,6 +193,7 @@
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
