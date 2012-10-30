@@ -194,6 +194,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CompositeOutletComponent.cshtml</DependentUpon>
     </Compile>
+    <Compile Include="DiscoveryFilters\DiscoveryFilters.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DiscoveryFilters.cshtml</DependentUpon>
+    </Compile>
     <Compile Include="Gauge\Gauge.cs">
       <DependentUpon>Gauge.cshtml</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -583,6 +588,10 @@
     <None Include="CompositeOutlet\CompositeOutletComponent.cshtml">
       <Generator>RazorViewComponentClassGenerator</Generator>
       <LastGenOutput>CompositeOutletComponent.cs</LastGenOutput>
+    </None>
+    <None Include="DiscoveryFilters\DiscoveryFilters.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>DiscoveryFilters.cs</LastGenOutput>
     </None>
     <None Include="Gauge\Gauge.cshtml">
       <Generator>RazorViewComponentClassGenerator</Generator>
