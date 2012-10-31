@@ -156,6 +156,8 @@ h2 a.reset {
   height: 480px;
   margin: 0 auto; }
 
+#world-map-module .dj_module .dj_module-header .actions-container {
+  visibility: visible; }
 #world-map-module.medium {
   width: 640px;
   height: 480px;

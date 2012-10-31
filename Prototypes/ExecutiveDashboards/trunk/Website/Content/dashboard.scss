@@ -211,10 +211,20 @@ h2 a.reset {
 	margin: 0 auto;
 }
 
-#world-map-module.medium {
-	width: 640px;
-	height: 480px;
-	margin: 0 auto;
+#world-map-module {
+	.dj_module {
+		.dj_module-header {
+			.actions-container {
+				visibility: visible;
+			}
+		}
+	}
+	
+	&.medium {
+		width: 640px;
+		height: 480px;
+		margin: 0 auto;
+	}
 }
 
 #world-map-module-container.watch-wide {
