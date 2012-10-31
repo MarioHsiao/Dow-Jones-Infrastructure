@@ -8,7 +8,9 @@ DJ.UI.PlatformStats = DJ.UI.CompositeComponent.extend({
         mobileContainer: 'div.platformContainer div.mobile span.val',
         desktopContainer: 'div.platformContainer div.desktop span.val',
         device: '.device',
-        shareChartContainer: '.shareChartContainer',
+        shareChartContainers: '.shareChartContainer',
+        desktopShareChartContainer: '.shareChartContainer.desktop',
+        mobileShareChartContainer: '.shareChartContainer.mobile',
         closeButton: '.actions-container .icon-remove',
         detailsWrapper: '.detailsWrapper'
     },
@@ -32,14 +34,21 @@ DJ.UI.PlatformStats = DJ.UI.CompositeComponent.extend({
 
     _initializeElements: function (ctx) {
         this.$element.html(this.templates.container());
-        this.shareChartContainer = ctx.find(this.selectors.shareChartContainer);
+        this.shareChartContainers = ctx.find(this.selectors.shareChartContainers);
+        this.desktopShareChartContainer = ctx.find(this.selectors.desktopShareChartContainer);
+        this.mobileShareChartContainer = ctx.find(this.selectors.mobileShareChartContainer);
         this.closeButton = ctx.find(this.selectors.closeButton);
         this.detailsWrapper = ctx.find(this.selectors.detailsWrapper);
     },
     
     _initBrowserShare: function() {
         DJ.add("BrowserShare", {
-            container: this.shareChartContainer[0]
+            container: this.desktopShareChartContainer[0],
+            options: {deviceType: 'desktop'}
+        });
+        DJ.add("BrowserShare", {
+            container: this.mobileShareChartContainer[0],
+            options: {deviceType: 'mobile'}
         });
     },
 
@@ -55,18 +64,22 @@ DJ.UI.PlatformStats = DJ.UI.CompositeComponent.extend({
         
         this.$element.on('click', this.selectors.device, function () {
             var deviceType = $(this).data('device-type');
-            self.detailsWrapper.toggleClass('visible');
+            self.shareChartContainers.hide();
+            self[deviceType + 'ShareChartContainer'].show();
+            self.detailsWrapper.addClass('visible');
         });
     },
 
     _updateStats: function (data) {
         if (!data) {
-            return;
+            data = { platform: { m: 0, d: 0 } };
         }
 
-        var total = data.platform.d + data.platform.m;
-        var mPercentage = (data.platform.m * 100 / total).toFixed(2);
-        var dPercentage = (data.platform.d * 100 / total).toFixed(2);
+        var platformStats = data.platform || { m: 0, d: 0 };
+        var total = platformStats.d + platformStats.m || 100;
+        
+        var mPercentage = (platformStats.m * 100 / total).toFixed(2);
+        var dPercentage = (platformStats.d * 100 / total).toFixed(2);
 
         $(this.selectors.desktopContainer, this.element).html(dPercentage + "%");
         $(this.selectors.mobileContainer, this.element).html(mPercentage + "%");

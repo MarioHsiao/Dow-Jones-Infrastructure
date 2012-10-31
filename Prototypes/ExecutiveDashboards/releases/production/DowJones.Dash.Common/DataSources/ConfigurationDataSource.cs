@@ -5,7 +5,7 @@ using System.Text;
 using Newtonsoft.Json;
 using log4net;
 
-namespace DowJones.Dash.DataSources
+namespace DowJones.Dash.Common.DataSources
 {
     public interface IHostConfiguration
     {
@@ -71,6 +71,15 @@ namespace DowJones.Dash.DataSources
         public override void Start()
         {
            // Nothing to start
+            OnDataReceived(Configuration);
+        }
+
+        public override void Suspend()
+        {
+        }
+
+        public void Reset()
+        {
             OnDataReceived(Configuration);
         }
 

@@ -34,8 +34,8 @@ h2 a.reset {
   background-color: #3f3f3f; }
 
 .dj_module {
-  margin-top: 20px;
-  min-height: 100px;
+  margin-top: 10px;
+  min-height: 75px;
   min-width: 270px;
   width: 100%; }
   .dj_module fieldset {
@@ -156,6 +156,8 @@ h2 a.reset {
   height: 480px;
   margin: 0 auto; }
 
+#world-map-module .dj_module .dj_module-header .actions-container {
+  visibility: visible; }
 #world-map-module.medium {
   width: 640px;
   height: 480px;

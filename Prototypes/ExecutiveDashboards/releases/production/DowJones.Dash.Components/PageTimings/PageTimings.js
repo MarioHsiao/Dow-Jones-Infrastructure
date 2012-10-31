@@ -8,15 +8,15 @@ DJ.UI.PageTimings = DJ.UI.CompositeComponent.extend({
         zones: {
             cool: {
                 to: 5,
-                from: 0,
+                from: 0
             },
             neutral: {
                 to: 7,
-                from: 5,
+                from: 5
             },
             hot: {
                 to: 100,
-                from: 7,
+                from: 7
             }
         }
     },
@@ -252,7 +252,7 @@ DJ.UI.PageTimings = DJ.UI.CompositeComponent.extend({
 
             self._timingsContainer.html(self.templates.success(pageTimings));
             self.isPageTimingsListSeeded = true;
-            
+            self.$element.find(".tip").tooltip();
         }
 
         var temp = self.$element.find(self.selectors.avg);

@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Web.Mvc;
 using DowJones.Dash.DataGenerators;
+using DowJones.Dash.Website.App_Start;
 using DowJones.Pages.Common;
 using DowJones.Pages.Modules;
 using DowJones.Pages.Modules.Templates;
@@ -18,11 +19,13 @@ namespace DowJones.Dash.Website.Controllers
     {
         private readonly PageGenerator _pageGenerator;
         private readonly IScriptModuleTemplateManager _templateManager;
+        private readonly HubClientConnection _clientConnection;
 
-        public DashboardController(PageGenerator pageGenerator, IScriptModuleTemplateManager templateManager)
+        public DashboardController(PageGenerator pageGenerator, IScriptModuleTemplateManager templateManager, HubClientConnection clientConnection)
         {
             _pageGenerator = pageGenerator;
             _templateManager = templateManager;
+            _clientConnection = clientConnection;
         }
 
         [Authorize]
@@ -43,6 +46,20 @@ namespace DowJones.Dash.Website.Controllers
             }
 
             return Canvas(new Canvas { WebServiceBaseUrl = Url.Content("~/dashboard") }, page);
+        }
+
+        [Authorize]
+        public ActionResult Start()
+        {
+            _clientConnection.Start();
+            return RedirectToAction("Index");
+        }
+
+        [Authorize]
+        public ActionResult Stop()
+        {
+            _clientConnection.Stop();
+            return RedirectToAction("Index");
         }
 
         [Authorize]

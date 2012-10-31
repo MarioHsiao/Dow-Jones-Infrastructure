@@ -8,15 +8,15 @@ DJ.UI.BrowserStats = DJ.UI.CompositeComponent.extend({
         zones: {
             cool: {
                 to: 5,
-                from: 0,
+                from: 0
             },
             neutral: {
                 to: 7,
-                from: 5,
+                from: 5
             },
             hot: {
                 to: 15,
-                from: 7,
+                from: 7
             }
         }
     },
@@ -230,7 +230,7 @@ DJ.UI.BrowserStats = DJ.UI.CompositeComponent.extend({
         }
 
         this.pillContainer.html(this.templates.navPills(pills));
-    },
+    }
 });
 
 

@@ -7,7 +7,7 @@ using System.Linq;
 using DowJones.Infrastructure;
 using log4net;
 
-namespace DowJones.Dash.DataSources
+namespace DowJones.Dash.Common.DataSources
 {
     public class SqlDataSource : PollingDataSource
     {

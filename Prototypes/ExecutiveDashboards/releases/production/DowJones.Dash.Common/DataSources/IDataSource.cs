@@ -1,6 +1,6 @@
 using System;
 
-namespace DowJones.Dash.DataSources
+namespace DowJones.Dash.Common.DataSources
 {
     public interface IDataSource
     {
@@ -8,5 +8,6 @@ namespace DowJones.Dash.DataSources
         event EventHandler<DataSourceEvent.Error> Error;
         string Name { get; }
         void Start();
+        void Suspend();
     }
 }

@@ -40,8 +40,8 @@
 	}
 
 	.detailsWrapper {
-		$bgColorTransition: background-color 0.2s ease-in-out;
-		$dimensionTransition: height 0.5s ease-in;
+		$bgColorTransition: background-color 0.2s ease;
+		$dimensionTransition: height, width 0.5s ease-in-out;
 
 		-ms-transition: $dimensionTransition;
 		-moz-transition: $dimensionTransition;
@@ -62,12 +62,6 @@
 		box-shadow: 0px 0px 15px #000000;
 		/*IE 7 AND 8 DO NOT SUPPORT BLUR PROPERTY OF SHADOWS*/
 		
-		.shareChartContainer {
-			-moz-transition: $bgColorTransition;
-			-o-transition: $bgColorTransition;
-			-webkit-transition: $bgColorTransition;
-			transition: $bgColorTransition;
-		}
 
 		&.visible {
 			height: 100%;

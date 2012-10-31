@@ -24,11 +24,11 @@
   .dj_platform-stats .platformContainer .mobile {
     background-image: url(./images/smartphone-icon-white.png); }
   .dj_platform-stats .detailsWrapper {
-    -ms-transition: height 0.5s ease-in;
-    -moz-transition: height 0.5s ease-in;
-    -o-transition: height 0.5s ease-in;
-    -webkit-transition: height 0.5s ease-in;
-    transition: height 0.5s ease-in;
+    -ms-transition: height, width 0.5s ease-in-out;
+    -moz-transition: height, width 0.5s ease-in-out;
+    -o-transition: height, width 0.5s ease-in-out;
+    -webkit-transition: height, width 0.5s ease-in-out;
+    transition: height, width 0.5s ease-in-out;
     overflow: hidden;
     height: 0;
     width: 100%;
@@ -40,11 +40,6 @@
     -webkit-box-shadow: 0px 0px 15px #000000;
     box-shadow: 0px 0px 15px #000000;
     /*IE 7 AND 8 DO NOT SUPPORT BLUR PROPERTY OF SHADOWS*/ }
-    .dj_platform-stats .detailsWrapper .shareChartContainer {
-      -moz-transition: background-color 0.2s ease-in-out;
-      -o-transition: background-color 0.2s ease-in-out;
-      -webkit-transition: background-color 0.2s ease-in-out;
-      transition: background-color 0.2s ease-in-out; }
     .dj_platform-stats .detailsWrapper.visible {
       height: 100%; }
       .dj_platform-stats .detailsWrapper.visible .shareChartContainer {

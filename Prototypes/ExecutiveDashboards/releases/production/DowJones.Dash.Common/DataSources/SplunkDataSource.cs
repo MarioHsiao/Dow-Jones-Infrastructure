@@ -4,7 +4,7 @@ using System.Configuration;
 using System.Net;
 using log4net;
 
-namespace DowJones.Dash.DataSources
+namespace DowJones.Dash.Common.DataSources
 {
     public class SplunkDataSource : JsonWebDataSource
     {

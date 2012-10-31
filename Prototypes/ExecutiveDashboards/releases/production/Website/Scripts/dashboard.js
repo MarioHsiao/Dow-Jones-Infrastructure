@@ -4,6 +4,8 @@
             this._super(el, meta);
 
             this._groups = new DJ.DashGroupManager();
+            this.timeout = null;
+            this.interval = 10 * 1000; // 10 seconds
 
             this._initializeModuleStyles();
             this._initializeSubscriptions();
@@ -16,7 +18,7 @@
             this._groups.changeDomain(domain);
             return this;
         },
-
+        
         start: function (domain) {
             this._groups.start(domain);
             return this;
@@ -121,7 +123,8 @@
             DJ.add("StatsMap", {
                 container: $('.worldMapContainer')[0],
                 options: {
-                    dataEvent: 'data.PageLoadDetailsByCountryForRegion',
+                    allowHostConfigurationChange: false,  /* do not respond to domain change events on tab switching */
+                    mapType: 'world',
                     map: 'world'
                 }
             });
@@ -190,14 +193,43 @@
                     });
             }
         },
+        
+        stateChanged: function (change) {
+            var self = this;
+            if (change.newState === $.signalR.connectionState.reconnecting) {
+                self.timeout = setTimeout(function () {
+                    $("#state").css("background-color", "red")
+                    .css("color", "white")
+                    .html("[" + new Date().toTimeString() + "]: Connection: -unreachable");
+                }, self.interval);
+            }
+            else if (self.timeout && change.newState === $.signalR.connectionState.connected) {
+                $("#state").css("background-color", "cyan")
+                           .css("color", "white")
+                           .html("[" + new Date().toTimeString() + "]: Connection: -connected");
+                clearTimeout(self.timeout);
+                self.timeout = null;
+            }
+        },
 
         start: function (domain) {
             if (this._started)
                 return this;
 
+            $.connection.hub.stateChanged($dj.delegate(this, this.stateChanged));
+
+            $.connection.hub.reconnected(function () {
+                $("#state").css("background-color", "yellow")
+                           .css("color", "white")
+                           .html("[" + new Date().toTimeString() + "]: Connection: -reestablished");
+            });
+            
             $.connection.hub.start()
                 .done($dj.delegate(this, function () {
                     this._started = true;
+                    $("#state").css("background-color", "green")
+                               .css("color", "white")
+                               .html("[" + new Date().toTimeString() + "]: Connection: -online");
                     this.changeDomain(domain);
                 }));
 
@@ -236,12 +268,12 @@
 
             var gomezEvents = [
                 'BrowserStats',
-                'DeviceTraffic',
-                'DeviceTraffic',
+                'DeviceTrafficDesktop',
+                'DeviceTrafficMobile',
                 'PageLoadHistoricalDetails',
                 'PageTimings',
-                'PageLoadDetailsBySubCountryforCountry',
-                'PageLoadDetailsByCountryForRegion'
+                'PageLoadDetailsByType',
+                'PageLoadDetailsByTypeForWorld'
             ];
 
             var events = [];

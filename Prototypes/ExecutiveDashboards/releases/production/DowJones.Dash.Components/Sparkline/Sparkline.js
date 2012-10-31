@@ -12,7 +12,7 @@ DJ.UI.Sparkline = DJ.UI.Component.extend({
         type: 0,
         baselineSeriesColor: Highcharts.getOptions().colors[0],
         seriesColorForDecrease: Highcharts.getOptions().colors[1],
-        seriesColorForIncrease: Highcharts.getOptions().colors[2],
+        seriesColorForIncrease: Highcharts.getOptions().colors[2]
     },
     
     sparklineType: {
@@ -130,7 +130,7 @@ DJ.UI.Sparkline = DJ.UI.Component.extend({
                                 click: self._delegates.clicked,
                                 mouseOver: self._delegates.mouseover,
                                 mouseOut: self._delegates.mouseout
-                        },
+                        }
                     }
                 }
             },

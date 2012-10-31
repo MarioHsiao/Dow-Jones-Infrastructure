@@ -8,7 +8,7 @@ DJ.UI.ThemeManager = DJ.UI.Component.extend({
     // Default options
     defaults: {
         debug: false,
-        useGradientsInCharts: true,
+        useGradientsInCharts: true
     },
 
     instance: null,

@@ -11,7 +11,7 @@ using DowJones.Web;
 [assembly: WebResource(EmbeddedResources.Js.HighChartsWorldMapShapes, KnownMimeTypes.JavaScript)]
 [assembly: WebResource(EmbeddedResources.Js.HighChartsSouthKoreaMapShapes, KnownMimeTypes.JavaScript)]
 [assembly: WebResource(EmbeddedResources.Js.HighChartsIndonesiaMapShapes, KnownMimeTypes.JavaScript)]
-[assembly: WebResource(EmbeddedResources.Js.QuickFlip, KnownMimeTypes.JavaScript)]
+[assembly: WebResource(EmbeddedResources.Js.HighChartsAsiaPacificMapShapes, KnownMimeTypes.JavaScript)]
 
 #endregion
 
@@ -26,7 +26,7 @@ namespace DowJones.Dash.Components.EmbeddedResources
 		[ScriptResource(ResourceName = HighChartsWorldMapShapes, DependencyLevel = ClientResourceDependencyLevel.MidLevel, Name = "world-map-shapes", DependsOn = new[] { "highcharts-map" })]
 		[ScriptResource(ResourceName = HighChartsSouthKoreaMapShapes, DependencyLevel = ClientResourceDependencyLevel.MidLevel, Name = "south-korea-map-shapes", DependsOn = new[] { "highcharts-map" })]
 		[ScriptResource(ResourceName = HighChartsIndonesiaMapShapes, DependencyLevel = ClientResourceDependencyLevel.MidLevel, Name = "indonesia-map-shapes", DependsOn = new[] { "highcharts-map" })]
-		[ScriptResource(ResourceName = QuickFlip, DependencyLevel = ClientResourceDependencyLevel.MidLevel, Name = "quickflip", DependsOn = new[] { "jquery" })]
+		[ScriptResource(ResourceName = HighChartsAsiaPacificMapShapes, DependencyLevel = ClientResourceDependencyLevel.MidLevel, Name = "asia-pacific-map-shapes", DependsOn = new[] { "highcharts-map" })]
 
 		public static class Js
 		{
@@ -41,10 +41,10 @@ namespace DowJones.Dash.Components.EmbeddedResources
 			public const string HighChartsWorldMapShapes = HighchartsMapBasePath + "world.map.shapes.js";
 			public const string HighChartsSouthKoreaMapShapes = HighchartsMapBasePath + "south.korea.map.shapes.js";
 			public const string HighChartsIndonesiaMapShapes = HighchartsMapBasePath + "indonesia.map.shapes.js";
+			public const string HighChartsAsiaPacificMapShapes = HighchartsMapBasePath + "asia.pacific.map.shapes.js";
 
 			#endregion
 
-			public const string QuickFlip = BasePath + "quickflip.jquery.quickflip.js";
 		}
 	}
 }

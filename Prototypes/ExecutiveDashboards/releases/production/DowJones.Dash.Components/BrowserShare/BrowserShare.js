@@ -4,6 +4,10 @@
 
 DJ.UI.BrowserShare = DJ.UI.Component.extend({
 
+    defaults: {
+        deviceType: 'desktop'
+    },
+    
     selectors: {
         shareChartContainer: '.shareChartContainer'
     },
@@ -25,7 +29,10 @@ DJ.UI.BrowserShare = DJ.UI.Component.extend({
     },
 
     _initializeEventHandlers: function () {
-        $dj.subscribe('data.DeviceTraffic', this._delegates.setData);
+        if(this.options.deviceType === 'mobile')
+            $dj.subscribe('data.DeviceTrafficMobile', this._delegates.setData);
+        else
+            $dj.subscribe('data.DeviceTrafficDesktop', this._delegates.setData);
     },
     
     _setData: function (data) {
@@ -49,7 +56,7 @@ DJ.UI.BrowserShare = DJ.UI.Component.extend({
         if (!this.chart) {
             this.chart = new Highcharts.Chart({
                 chart: {
-                    renderTo: this.$element.find('.shareChartContainer')[0],
+                    renderTo: this.$element.find(this.selectors.shareChartContainer)[0],
                     type: 'pie',
                     backgroundColor: 'transparent',
                     plotBorderWidth: null,

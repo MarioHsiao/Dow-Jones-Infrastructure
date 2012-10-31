@@ -21,7 +21,7 @@ $browserBackground: url(images/browser-sprites.png) no-repeat;
   height: 33px; }
 
 
-.dj-logo-msie9 {
+.dj-logo-msie9, .dj-logo-msie10 {
   background: $browserBackground;
   background-position: -126px 0;
   width: 36px;
@@ -38,6 +38,12 @@ $browserBackground: url(images/browser-sprites.png) no-repeat;
 .dj-logo-msie8, .dj-logo-msie7 {
   background: $browserBackground;
   background-position: -210px 0;
+  width: 32px;
+  height: 32px; }
+
+  .dj-logo-android {
+  background: $browserBackground;
+  background-position: -253px 0;
   width: 32px;
   height: 32px; }
 

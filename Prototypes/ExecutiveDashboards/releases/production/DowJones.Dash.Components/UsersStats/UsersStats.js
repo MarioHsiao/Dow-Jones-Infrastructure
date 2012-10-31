@@ -5,7 +5,7 @@
 DJ.UI.UsersStats = DJ.UI.CompositeComponent.extend({
 
     selectors: {
-        percentEngaged: '.counter',
+        percentEngaged: '.counter'
     },
     
     init: function (element, meta) {
@@ -34,12 +34,17 @@ DJ.UI.UsersStats = DJ.UI.CompositeComponent.extend({
     },
     
     _updateStats: function (data) {
-        if (!data || !this.counter) {
+        if (!this.counter) {
             return;
         }
-        
-        var total = data.read + data.write + data.idle; 
-        var percentEngaged = ((data.read + data.write) * 100) / total;
+
+        var stats = {
+            read: data.read || 0,
+            write: data.write || 0,
+            idle: data.idle || 0
+        };
+        var total = stats.read + stats.write + stats.idle || 100; 
+        var percentEngaged = ((stats.read + stats.write) * 100) / total;
         this.counter.html(percentEngaged.toFixed(2) + "%");
     },
 

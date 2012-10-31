@@ -96,7 +96,7 @@ DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
         return {
             chart: {
                 height: 150,
-                backgroundColor: 'transparent',
+                backgroundColor: 'transparent'
                 
             },
             title: {
@@ -121,7 +121,7 @@ DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
                 },
                 endOnTick: false,
                 min: startDate,
-                max: endDate,
+                max: endDate
                 
             },
             yAxis: {
@@ -250,12 +250,14 @@ DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
     _updateQuickStats: function (data) {
         if (data) {
             if (this.visitorsGauge) {
-                this.visitorsGauge.setData(data.visits);
-                this.lastVisits = data.visits;
+                var visits = data.visits || 0;
+                this.visitorsGauge.setData(visits);
+                this.lastVisits = visits;
             }
 
-            var minutes = (data.engaged_time.avg / 60).toFixed(0);
-            var seconds = (data.engaged_time.avg % 60).toFixed(0);
+            var engagedTime = data.engaged_time || {avg:0};
+            var minutes = (engagedTime.avg / 60).toFixed(0);
+            var seconds = (engagedTime.avg % 60).toFixed(0);
             this.$element.find(this.selectors.timeCounter).html(minutes + ":" + (seconds < 10 ? "0" + seconds : seconds) + "m");
         }
     },
@@ -292,11 +294,11 @@ DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
     },
     
     _maxTemplate: function (val) {
-        return "30-Day Max <span class=\"chartMax\">" + val + "</span>"; 
+        return "Max <span class=\"chartMax\" title=\"30 Day Maximum\">" + val + "</span>"; 
     },
     
     _minTemplate: function (val) {
-        return "30-Day Min <span class=\"chartMin\">" + val + "</span>";
+        return "Min <span class=\"chartMin\" title=\"30 Day Minimum\">" + val + "</span>";
     },
     
     _footerTemplate: function (val) {

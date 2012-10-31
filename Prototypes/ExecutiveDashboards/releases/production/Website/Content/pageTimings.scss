@@ -15,6 +15,7 @@
 			font-weight: normal;
 			text-align: left;
 			margin-bottom: 2px;
+			color: #369BD7;
 		}
 		.stamp {
 			.value {
@@ -37,13 +38,13 @@
 			margin-right: 5px;
 			width: 50px;
 			.min-stamp{
-				margin-bottom: 5px;
 				padding-right: 5px;
 				text-align: right;
 			}
 			.max-stamp{
 				padding-right: 5px;
 				text-align: right;
+				margin-bottom: 5px;
 			}
 		}
 

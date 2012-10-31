@@ -4,7 +4,7 @@ using System.IO;
 using Newtonsoft.Json;
 using log4net;
 
-namespace DowJones.Dash.DataSources
+namespace DowJones.Dash.Common.DataSources
 {
     public class JsonWebDataSource : WebDataSource
     {

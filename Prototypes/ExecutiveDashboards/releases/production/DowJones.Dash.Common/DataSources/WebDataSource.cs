@@ -11,7 +11,7 @@ using DowJones.DependencyInjection;
 using DowJones.Infrastructure;
 using ICredentials = System.Net.ICredentials;
 
-namespace DowJones.Dash.DataSources
+namespace DowJones.Dash.Common.DataSources
 {
     
     public abstract class WebDataSource : PollingDataSource, IInitializable

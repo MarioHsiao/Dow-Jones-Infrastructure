@@ -1,7 +1,7 @@
 using System;
 using log4net;
 
-namespace DowJones.Dash.DataSources
+namespace DowJones.Dash.Common.DataSources
 {
     public abstract class DataSource : IDataSource
     {
@@ -32,6 +32,8 @@ namespace DowJones.Dash.DataSources
         }
 
         public abstract void Start();
+
+        public abstract void Suspend();
 
         protected virtual void OnDataReceived(object data, string name = null)
         {
