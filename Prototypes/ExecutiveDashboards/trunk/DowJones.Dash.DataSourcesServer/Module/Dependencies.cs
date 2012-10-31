@@ -20,7 +20,6 @@ namespace DowJones.Dash.DataSourcesServer.Module
                 ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
                 // this does not work                   ContractResolver = new CamelCasePropertyNamesContractResolver(),
                 Converters = new[] { new StringEnumConverter() },
-                TypeNameHandling = TypeNameHandling.Objects,
             })).InRequestScope();
         }
     }
