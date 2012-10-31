@@ -61,7 +61,7 @@
     Here we need to override the Build target with our own that will 
     generate the correct results.
     -->
-	<Target Name="Build"
+	<Target Name="Rebuild"
 		  Condition="'$(ImportProjectFile)'=='true'"
 		  DependsOnTargets="$(BuildDependsOn)"
 		  Outputs="@(AllOutputs->'%(FullPath)')" >
