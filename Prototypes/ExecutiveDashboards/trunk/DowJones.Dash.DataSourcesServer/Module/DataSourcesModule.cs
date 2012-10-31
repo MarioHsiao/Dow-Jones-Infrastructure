@@ -228,12 +228,21 @@ namespace DowJones.Dash.DataSourcesServer.Module
                                                      {"site", (int) dataSourceConfig.Site},
                                                  });
 
-            yield return new GomezDataSource("{0}-DeviceTraffic".FormatWith(dataSourceConfig.Domain),
-                                             "DeviceTraffic",
-                                             "[SplunkExport].[dbo].[GetDeviceTraffic]",
+            yield return new GomezDataSource("{0}-DeviceTrafficDesktop".FormatWith(dataSourceConfig.Domain),
+											 "DeviceTrafficDesktop",
+											 "[SplunkExport].[dbo].[GetDeviceTrafficDesktop]",
                                              new Dictionary<string, object>
                                                  {
-                                                     {"seconds", 300},
+                                                     {"seconds", 3600},
+                                                     {"site", (int) dataSourceConfig.Site},
+                                                 });
+
+			yield return new GomezDataSource("{0}-DeviceTrafficMobile".FormatWith(dataSourceConfig.Domain),
+											 "DeviceTrafficMobile",
+											 "[SplunkExport].[dbo].[GetDeviceTrafficMobile]",
+											 new Dictionary<string, object>
+                                                 {
+                                                     {"seconds", 3600},
                                                      {"site", (int) dataSourceConfig.Site},
                                                  });
 
@@ -277,15 +286,6 @@ namespace DowJones.Dash.DataSourcesServer.Module
                                                      {"site", (int) dataSourceConfig.Site},
                                                  });
 
-
-            yield return new GomezDataSource("{0}-DeviceTraffic".FormatWith(dataSourceConfig.Domain),
-                                             "DeviceTraffic",
-                                             "[SplunkExport].[dbo].[GetDeviceTraffic]",
-                                             new Dictionary<string, object>
-                                                 {
-                                                     {"seconds", 3600},
-                                                     {"site", (int) dataSourceConfig.Site},
-                                                 });
         }
 
 
