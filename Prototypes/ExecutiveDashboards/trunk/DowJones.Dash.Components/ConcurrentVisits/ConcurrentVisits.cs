@@ -23,9 +23,11 @@ namespace DowJones.Dash.Components.ConcurrentVisits
     using System.Web.UI;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 09/25/2012 05:00 PM
+    // Last Generated Timestamp: 10/31/2012 05:59 PM
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Dash.Components.ConcurrentVisits.ConcurrentVisits.js", DependsOn=new string[] {
-            "DJ.UI.DashGauge"}, ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Dash.Components.ConcurrentVisits.ConcurrentVisits))]
+            "highcharts",
+            "jquery-counter",
+            "jquery-ui-effects"}, ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Dash.Components.ConcurrentVisits.ConcurrentVisits))]
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Dash.Components.ConcurrentVisits.ClientTemplates.container.html", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="container", DeclaringType=typeof(DowJones.Dash.Components.ConcurrentVisits.ConcurrentVisits))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.27108")]
     public class ConcurrentVisits : DowJones.Web.Mvc.UI.ViewComponentBase<Models.ConcurrentVisits.ConcurrentVisitsModel>

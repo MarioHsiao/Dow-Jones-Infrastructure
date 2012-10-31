@@ -1,44 +1,3 @@
-.visitorsGauge .dj_DashGaugeChart {
-  width: 100%;
-  margin: 0 auto;
-  position: relative; }
-  .visitorsGauge .dj_DashGaugeChart .dj_DashGaugeChartHeader .dj_DashGaugeChartValue {
-    position: absolute;
-    top: 22px;
-    text-align: center;
-    z-index: 1000;
-    width: 100%;
-    line-height: 0.9em;
-    font-weight: bold; }
-  .visitorsGauge .dj_DashGaugeChart .dj_DashGaugeChartHeader .dj_DashGaugeChartMax {
-    position: absolute;
-    top: 25px;
-    left: -5px;
-    font-weight: bold;
-    text-align: right;
-    z-index: 1000;
-    width: 100%;
-    line-height: 1em; }
-  .visitorsGauge .dj_DashGaugeChart .dj_DashGaugeChartHeader .dj_DashGaugeChartMin {
-    position: absolute;
-    top: 25px;
-    left: 5px;
-    font-weight: bold;
-    text-align: left;
-    z-index: 1000;
-    width: 100%;
-    line-height: 1em; }
-  .visitorsGauge .dj_DashGaugeChart .dj_DashGaugeChartHeader .chartMax {
-    display: block; }
-  .visitorsGauge .dj_DashGaugeChart .dj_DashGaugeChartHeader .chartMin {
-    display: block; }
-  .visitorsGauge .dj_DashGaugeChart .dj_DashGaugeChartContainer {
-    display: none; }
-  .visitorsGauge .dj_DashGaugeChart .dj_DashGaugeChartFooter {
-    text-align: center;
-    width: 100%;
-    padding-top: 60px; }
-
 .engagement {
   color: #999;
   text-shadow: 0px 3px 8px #2A2A2A;
@@ -52,20 +11,13 @@
 .dj_concurrent-visits {
   color: #999;
   text-shadow: 0px 3px 8px #2A2A2A; }
-  .dj_concurrent-visits .description {
-    margin: 0 auto;
+  .dj_concurrent-visits .concurrentVisitsCounter {
     text-align: center;
-    width: 150px; }
-  .dj_concurrent-visits .idle {
-    text-align: right; }
-  .dj_concurrent-visits .progress-success .bar {
-    border-top: 1px solid #02A1DA;
-    border-bottom: 1px solid #0179B2;
-    background-color: #81ba6b;
-    background-repeat: no-repeat;
-    background-image: -moz-linear-gradient(#02a1da, #0179b2);
-    background-image: -ms-linear-gradient(top, #02a1da, #0179b2);
-    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#02a1da), to(#0179b2));
-    background-image: -webkit-linear-gradient(#02a1da, #0179b2);
-    background-image: linear-gradient(top, #02a1da, #0179b2); }
+    z-index: 1000;
+    line-height: 1em;
+    font-weight: bold;
+    position: relative;
+    margin: 10px; }
+  .dj_concurrent-visits .engagementArea {
+    margin: 5px; }
 
