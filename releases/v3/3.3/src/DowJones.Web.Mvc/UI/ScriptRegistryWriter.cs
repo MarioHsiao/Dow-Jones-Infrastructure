@@ -112,8 +112,7 @@ namespace DowJones.Web.Mvc.UI
 
         protected virtual void RenderRequireConfiguration(TextWriter writer)
         {
-            var baseUrl = ClientResourceHandler.GenerateRequireJsBaseUrl(Culture);
-            var requireConfig = new RequireJsConfiguration	() { BaseUrl = baseUrl };
+            var requireConfig = new RequireJsConfiguration	() { BaseUrl = ClientResourceHandler.GenerateRequireJsBaseUrl(Culture) };
             requireConfig.WriteTo(writer);
         }
 

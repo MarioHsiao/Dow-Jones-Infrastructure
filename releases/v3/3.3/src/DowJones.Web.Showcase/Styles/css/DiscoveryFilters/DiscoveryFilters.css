@@ -1,0 +1,17 @@
+﻿body { font-family: Arial,Helvetica,sans-serif; }
+.dj_discoveryFilters-list { list-style-type: none; margin: 0; padding: 0; }
+.dj_discoveryFilters-list li.dj_discoveryFilters-listItem { margin: 0 5px 5px 5px; padding: 5px; }
+.dj_discoveryFilters-list .fdtWrapper div.open span.dj_cd-export { display: block !important; }
+.dj_discoveryFilters-list .dj_df-div .dj_hc-container { width: 220px; height: 216px; margin: 0 10px; }
+.dj_discoveryFilters-list .cd_hideSpan { visibility: hidden; }
+.dj_discoveryFilters-list .dj_df-expand { height: 20px; width: 20px; position: absolute; background: url('http://global.int.factiva.com/img/facelift/facelift-icon-sprite.png?51.1.0?53.2.0') no-repeat scroll 0 -420px transparent; margin: 1px 0 0 20px; z-index: 998; }
+.dj_discoveryFilters-list .cd_collapse { height: 20px; width: 20px; position: absolute; background: url('http://global.int.factiva.com/img/facelift/facelift-icon-sprite.png?51.1.0?53.2.0') no-repeat scroll 0 -460px transparent; margin: 1px 0 0 20px; z-index: 998; }
+.dj_discoveryFilters-list .dj_df-div .cd_div_collapse { display: none; }
+.dj_discoveryFilters-list .dj_df-div .cd_div_expand { display: block; }
+.dj_discoveryFilters-list .dj_df-export { position: relative; top: 5px; z-index: 3; color: #666; float: right; font-size: 8px; }
+.dj_discoveryFilters-list .dj_df-export a { display: -moz-inline-stack; display: inline-block; height: 15px; line-height: 15px; padding: 0 0 0 4px; background-image: url('http://global.int.factiva.com/img/facelift/facelift-icon-sprite.png?51.1.0?53.2.0'); background-repeat: no-repeat; background-position: 0 -1280px; vertical-align: middle; }
+.dj_discoveryFilters-list .dj_df-export span { background-repeat: no-repeat; background-position: right -1295px; display: -moz-inline-stack; display: inline-block; height: 14px; color: #333; line-height: 14px; text-align: center; padding: 0 8px 1px 4px; vertical-align: top; border: solid 1px #ccc; border-radius: 4px; }
+.dj_discoveryFilters-list .dj_df-header { color: #666; text-decoration: none; }
+.dj_discoveryFilters-list .dj_cd-title { position: relative; font-weight: bold; margin: 0; padding: 2px 3px 9px 41px; cursor: move; color: #333; /*font-size: 1.1em;*/ background: url('http://global.int.factiva.com/img/facelift/facelift-icon-sprite.png?51.1.0?53.2.0') no-repeat scroll 0 -659px transparent; }
+/*Draggable Styles*/
+.ui-state-highlight { height: 1.5em; line-height: 1.2em; }
