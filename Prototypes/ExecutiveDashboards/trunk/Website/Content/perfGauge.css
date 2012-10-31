@@ -16,7 +16,7 @@
   width: 36px;
   height: 33px; }
 
-.dj-logo-msie9 {
+.dj-logo-msie9, .dj-logo-msie10 {
   background: url(images/browser-sprites.png) no-repeat;
   background-position: -126px 0;
   width: 36px;
