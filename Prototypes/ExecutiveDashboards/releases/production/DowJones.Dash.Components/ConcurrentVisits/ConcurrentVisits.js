@@ -5,9 +5,9 @@
 DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
 
     selectors: {
-        visitorsGauge: '.visitorsGauge',
+        concurrentVisitsCounter: '.concurrentVisitsCounter',
         currentVisitorsChart: '.currentVisitorsChart',
-        timeCounter: '.dj_DashGaugeChartFooter .time'
+        timeCounter: '.engagementArea .time'
     },
     
     init: function (element, meta) {
@@ -18,35 +18,8 @@ DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
     
     _initComponent: function () {
         var self = this;
-        DJ.add('DashGauge', this._visitorGaugeConfig()).done(function (comp) {
-            self.visitorsGauge = comp;
-            comp.setOwner(self);
-            comp.updateMax(91995);
-        });
-
         // initialize the histogram
         self._renderHistogram(self._getChartObject());
-    },
-    
-    _visitorGaugeConfig: function() {
-        return {
-            container: this._visitorsGauge[0],
-            options: {
-                max: 100,
-                min: 0,
-                angle: 70,
-                footer: "0:0m",
-                gaugeType: 0,
-                height: 200,
-                width: 200
-            },
-            templates: {
-                max: this._maxTemplate.bind(this),
-                min: this._minTemplate.bind(this),
-                footer: this._footerTemplate.bind(this)
-            },
-            data: 0
-        };
     },
     
     _areaSplineConfig: function (startDate) {
@@ -88,14 +61,35 @@ DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
             pointStart: startDate
         };
     },
+    
+    _lineConfig: function (startDate) {
+
+        return {
+            marker: {
+                enabled: false
+            },
+            lineWidth: 1,
+            shadow: false,
+            dashStyle: 'solid',
+            states: {
+                hover: {
+                    enabled: false
+                }
+            },
+            pointStart: startDate
+        };
+        
+    },
         
     _histogramConfig: function () {
+        var themeManager = DJ.UI.ThemeManager.instance;
         var now = new Date();
         var startDate = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate());
         var endDate = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate(), 24);
         return {
             chart: {
-                height: 150,
+                height: 100,
+                margin: [0, 20, 15, 20],
                 backgroundColor: 'transparent'
                 
             },
@@ -122,7 +116,6 @@ DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
                 endOnTick: false,
                 min: startDate,
                 max: endDate
-                
             },
             yAxis: {
                 id: 'visitors',
@@ -132,9 +125,17 @@ DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
                 startOnTick: false,
                 gridLineDashStyle: 'dot',
                 gridLineWidth: 0,
+                minPadding: 0.01,
+                maxPadding: 0.01,
                 labels: { enabled: false}
             },
             tooltip: {
+                crosshairs: {
+                    width: 1,
+                    color: '#000000',
+                    dashStyle: 'shortdot',
+                    zIndex: 15,
+                },
                 shared: true
             },
             legend: {
@@ -142,6 +143,7 @@ DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
             },
             plotOptions: {
                 areaspline: this._areaSplineConfig(startDate),
+                line: this._lineConfig(startDate),
                 spline: this._splineConfig(startDate)
             },
     
@@ -149,11 +151,24 @@ DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
                 type: 'areaspline',
                 name: '7-Days Ago',
                 id: 'historical'
+                
             },
             {
                 type: 'spline',
                 name: 'Today',
                 id:'realtime'
+            },
+            {
+                type: 'line',
+                name: '30-Day Max',
+                color: Highcharts.Color(themeManager.colors.green).brighten(-0.3).get('rgb'),
+                id: 'max'
+            },
+            {
+                type: 'line',
+                name: '30-Day Min',
+                color: Highcharts.Color(themeManager.colors.yellow).brighten(-0.3).get('rgb'),
+                id: 'min'
             }],
             credits: false
         };
@@ -183,7 +198,9 @@ DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
 
     _initializeElements: function () {
         this.$element.html(this.templates.container());
-        this._visitorsGauge = this.$element.find(this.selectors.visitorsGauge);
+        this.concurrentVisitsCounter = this.$element.find(this.selectors.concurrentVisitsCounter);
+        this.timeCounter = this.$element.find(this.selectors.timeCounter);
+        this.concurrentVisitsCounter.counter(0);
     },
 
     _initializeEventHandlers: function () {
@@ -198,10 +215,13 @@ DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
         this.domain = data.domain;
         this.histogram.get('realtime').hide();
         this.histogram.get('historical').hide();
+        this.histogram.get('max').hide();
+        this.histogram.get('min').hide();
         delete this.lastVisits;
     },
     
     _updateRealtimeSeries: function (data) {
+        var self = this;
         var now = new Date();
         var startDate = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate());
         var endDate = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate(), 24);
@@ -211,11 +231,12 @@ DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
                 if ($.isPlainObject(obj)) {
                     var realtimeSeries = this.histogram.get('realtime');
                     var frequency = data.data.frequency;
+                    self.frequency = frequency;
                     var tData = obj.series.people;
                     var axis = this.histogram.get('day');
                     axis.setExtremes(startDate, endDate, false);
                     if (realtimeSeries) {
-                        realtimeSeries.pointInterval = frequency * 60 * 1000;
+                        realtimeSeries.pointInterval = self.frequency * 60 * 1000;
                         realtimeSeries.pointStart = startDate;
                         realtimeSeries.setData(tData, true, false);
                     }
@@ -224,6 +245,36 @@ DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
         }
     },
     
+    _updateMaxSeries: function (value) {
+        var self = this;
+        var now = new Date();
+        var startDate = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate());
+        var endDate = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate(), 24);
+        if (this.histogram && value) {
+            var maxSeries = this.histogram.get('max');
+            if (maxSeries && self.frequency) {
+                maxSeries.pointInterval = self.frequency * 60 * 1000;
+                maxSeries.pointStart = startDate;
+                maxSeries.setData(self._fill((24 * 60)/self.frequency +1, value), true, false);
+            }
+        }
+    },
+    
+    _updateMinSeries: function (value) {
+        var self = this;
+        var now = new Date();
+        var startDate = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate());
+        var endDate = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate(), 24);
+        if (this.histogram && value) {
+            var minSeries = this.histogram.get('min');
+            if (minSeries && self.frequency) {
+                minSeries.pointInterval = self.frequency * 60 * 1000;
+                minSeries.pointStart = startDate;
+                minSeries.setData(self._fill((24 * 60) / self.frequency+1, value), true, false);
+            }
+        }
+    },
+
     _updateHistoricalSeries: function (data) {
         var now = new Date();
         var startDate = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate());
@@ -248,63 +299,65 @@ DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
     },
     
     _updateQuickStats: function (data) {
+        var self = this;
+        
         if (data) {
-            if (this.visitorsGauge) {
+            /*if (this.visitorsGauge) {
                 var visits = data.visits || 0;
                 this.visitorsGauge.setData(visits);
-                this.lastVisits = visits;
-            }
-
+                
+            }*/
+            var visits = data.visits || 0;
+            this.lastVisits = visits;
+            //self.concurrentVisitsCounter.html(visits);
+            self.concurrentVisitsCounter.counter(visits);
             var engagedTime = data.engaged_time || {avg:0};
             var minutes = (engagedTime.avg / 60).toFixed(0);
             var seconds = (engagedTime.avg % 60).toFixed(0);
-            this.$element.find(this.selectors.timeCounter).html(minutes + ":" + (seconds < 10 ? "0" + seconds : seconds) + "m");
+            self.timeCounter.html(minutes + ":" + (seconds < 10 ? "0" + seconds : seconds) + "m");
         }
     },
     
     _updateDashboardStats: function (data) {
+        var self = this;
         if (data) {
-            if (this.visitorsGauge) {
-                if (this.lastVisits && this.lastVisits < data.people_min) {
-                    this.visitorsGauge.updateMax(this.lastVisits < 100? 100 : this.lastVisits < 1000 ? 2000:  this.lastVisits < 5000 ? 5000 : 10000);
-                    this.visitorsGauge.updateMin(0);
-                }
-                else {
-                    this.visitorsGauge.updateMax(data.people_max);
-                    this.visitorsGauge.updateMin(data.people_min);
-                }
-            }
-
-            if (this.histogram) {
-                var yAxis = this.histogram.get('visitors');
+          
+            if (self.histogram) {
+                var yAxis = self.histogram.get('visitors');
                 if (yAxis) {
-                    if (this.lastVisits && this.lastVisits < data.people_min) {
-                        //yAxis.setExtremes(0, this.lastVisits < 100 ? 200 : this.lastVisits < 1000 ? 2000 : this.lastVisits < 5000 ? 5000 : 10000, false);
-                        this.histogram.get('realtime').show();
-                        this.histogram.get('historical').show();
+                    if (self.lastVisits && self.lastVisits < data.people_min) {
+                        yAxis.setExtremes(0, self.lastVisits < 100 ? 200 : self.lastVisits < 1000 ? 2000 : self.lastVisits < 5000 ? 5000 : 10000, false);
+                        self.histogram.get('realtime').show();
+                        self.histogram.get('historical').show();
+                        self.histogram.get('min').hide();
+                        self.histogram.get('max').hide();
                     }
                     else {
-                        //yAxis.setExtremes(0, data.people_max, false);
-                        this.histogram.get('realtime').show();
-                        this.histogram.get('historical').show();
+                        yAxis.setExtremes(0, data.people_max, false);
+                        // update the max and min series
+                        self._updateMaxSeries(data.people_max);
+                        self._updateMinSeries(data.people_min);
+                        self.histogram.get('max').hide();
+                        // show chart series
+                        self.histogram.get('realtime').show();
+                        self.histogram.get('historical').show();
+                        self.histogram.get('min').show();
+                        self.histogram.get('max').show();
                     }
                 }
             }
         }
     },
     
-    _maxTemplate: function (val) {
-        return "Max <span class=\"chartMax\" title=\"30 Day Maximum\">" + val + "</span>"; 
-    },
-    
-    _minTemplate: function (val) {
-        return "Min <span class=\"chartMin\" title=\"30 Day Minimum\">" + val + "</span>";
-    },
-    
-    _footerTemplate: function (val) {
-        return "<span class=\"label\">Engaged for <span class=\"time\">" + val + "</span> on average";
-    },
+    _fill: function (arraySize, value) {
+        var array = [];
+        for (var i = 0; i < arraySize; i++) {
 
+            array[i] = value;
+        }
+        return array;
+    },
+    
     EOF: null  // Final property placeholder (without a comma) to allow easier moving of functions
 });
 

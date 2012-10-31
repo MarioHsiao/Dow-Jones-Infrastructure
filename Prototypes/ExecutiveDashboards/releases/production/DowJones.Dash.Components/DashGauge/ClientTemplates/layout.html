@@ -6,9 +6,9 @@
         <% if (model.title) { %>
         <div class="dj_DashGaugeChartTitle"><%=this.templates.title(model.title)%></div>
         <% } %>
-        <div class="dj_DashGaugeChartValue level1"><%=model.value%></div>
-        <div class="dj_DashGaugeChartMin level3"><%=this.templates.min(model.min)%></div>
-        <div class="dj_DashGaugeChartMax level3"><%=this.templates.max(model.max)%></div>
+        <div class="dj_DashGaugeChartValue"><%=model.value%></div>
+        <div class="dj_DashGaugeChartMin"><%=this.templates.min(model.min)%></div>
+        <div class="dj_DashGaugeChartMax"><%=this.templates.max(model.max)%></div>
     </div>
     <div class="dj_DashGaugeChartContainer"></div>
     <% if (model.footer) { %>

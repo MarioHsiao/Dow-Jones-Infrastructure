@@ -107,15 +107,6 @@ namespace DowJones.Dash.DataSourcesServer.Module
                             Path = "kr.wsj.com/home-page",
                             GomezCountryCode = GomezCountryCode.Korea,
 							MapType = MapType.Country
-                        },
-						new DataSourceConfig
-                        {
-                            Site = Site.WsjUs,
-                            Host = "online.wsj.com",
-                            Domain = "world.wsj.com",
-                            Path = "world.wsj.com/home-page",
-                            GomezCountryCode = GomezCountryCode.World,
-							MapType = MapType.World
                         }
                 };
 
