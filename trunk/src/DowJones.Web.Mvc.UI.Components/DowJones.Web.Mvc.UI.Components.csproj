@@ -920,5 +920,9 @@
   <ItemGroup>
     <EmbeddedResource Include="PortalHeadlineList\ClientTemplates\PaginationPage.htm" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="DiscoveryFilters\ClientTemplates\Success.htm" />
+    <Content Include="DiscoveryFilters\DiscoveryFilters.js" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
