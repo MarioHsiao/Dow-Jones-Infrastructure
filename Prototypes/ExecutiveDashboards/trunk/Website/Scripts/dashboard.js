@@ -268,8 +268,8 @@
 
             var gomezEvents = [
                 'BrowserStats',
-                'DeviceTraffic',
-                'DeviceTraffic',
+                'DeviceTrafficDesktop',
+                'DeviceTrafficMobile',
                 'PageLoadHistoricalDetails',
                 'PageTimings',
                 'PageLoadDetailsByType',
