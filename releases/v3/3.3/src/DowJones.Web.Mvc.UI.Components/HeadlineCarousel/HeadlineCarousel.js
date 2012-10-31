@@ -179,7 +179,7 @@
                 });
 
                 //No device check. If the device supports it will work or else will do nothing.  was-> if($.iDevices.iPad){
-                if ($.support.boxModel) {
+                if (window.addEventListener) {
                     $(".dj_video_carousel-wrap", this.$element).touchwipe({
                         wipeLeft: function() {
                             $videoCarousel.headlineCarousel('moveRight');
