@@ -66,7 +66,7 @@ DJ.UI.PlatformStats = DJ.UI.CompositeComponent.extend({
             var deviceType = $(this).data('device-type');
             self.shareChartContainers.hide();
             self[deviceType + 'ShareChartContainer'].show();
-            self.detailsWrapper.toggleClass('visible');
+            self.detailsWrapper.addClass('visible');
         });
     },
 
