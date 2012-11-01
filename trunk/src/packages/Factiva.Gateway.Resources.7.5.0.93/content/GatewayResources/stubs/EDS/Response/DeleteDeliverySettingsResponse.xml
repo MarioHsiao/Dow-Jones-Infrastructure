@@ -1,9 +1,0 @@
-<DeleteDeliverySettingsResponse>
-  <Status value="0"/>
-  <userid></userid>
-  <productid></productid>
-  <Resultset count="2">
-    <Result DeliveryID="123456"></Result>
-    <Result DeliveryID="789456"></Result>
-  </Resultset>
-</DeleteDeliverySettingsResponse>
