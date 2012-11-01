@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<SearchByUserRequest>
-  <userList fcstype="list">
-    <user>jsmith</user>
-  </userList>
-  <stemSearch>Y</stemSearch>
-  <maxRows>4</maxRows>
-  <accountId>9FAC000700</accountId>
-</SearchByUserRequest>

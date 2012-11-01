@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="1.0"
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
   <xsl:output method="xml" version="1.0" encoding="UTF-8" indent="no" omit-xml-declaration="yes"/>
@@ -84,7 +84,7 @@
     <xsl:choose>
       <xsl:when test="contains($csvString,',')">
         <!-- Select the first value to process -->
-        <xsl:call-template name="writeCommaSeparatedData">
+        <xsl:call-template name="writeCommaSeparatedValue">
           <xsl:with-param name="commaSeparatedElement" select="substring-before($csvString,',')"/>
           <xsl:with-param name="position" select="$position"/>
           <xsl:with-param name="typeofdata" select="$typeofdata"/>
@@ -98,7 +98,7 @@
       </xsl:when>
       <xsl:otherwise>
         <!-- This is the last value so we don't recurse -->
-        <xsl:call-template name="writeCommaSeparatedData">
+        <xsl:call-template name="writeCommaSeparatedValue">
           <xsl:with-param name="commaSeparatedElement" select="$csvString"/>
           <xsl:with-param name="position" select="$position"/>
           <xsl:with-param name="typeofdata" select="$typeofdata"/>
@@ -108,7 +108,7 @@
   </xsl:template>
 
   <!-- Process of individual value here -->
-  <xsl:template name="writeCommaSeparatedData">
+  <xsl:template name="writeCommaSeparatedValue">
     <xsl:param name="commaSeparatedElement"/>
     <xsl:param name="position"/>
     <xsl:param name="typeofdata"/>

@@ -18,6 +18,6 @@
 		<xsl:element name="acc{$pos}">
 			<xsl:value-of select="."/>
 		</xsl:element>
-		<xsl:element name="oty{$pos}">URLR</xsl:element>		
+		<xsl:element name="oty{$pos}">URLP</xsl:element>		
 	</xsl:template>
 </xsl:stylesheet>

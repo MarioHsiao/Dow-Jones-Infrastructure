@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:user="user" xmlns:fcp="urn:factiva:fcp:v2_0" xmlns:msxsl="urn:schemas-microsoft-com:xslt" extension-element-prefixes="msxsl user fcp xsl" xmlns="http://global.factiva.com/fvs/1.0">
 	<xsl:import href="AssetUtility.xslt"/>
 	<xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes"/>
@@ -1656,9 +1656,9 @@
 										<xsl:value-of select="@date"/>
 									</date>
 								</splitDate>
-								<splitData>
+								<splitValue>
 									<xsl:value-of select="."/>
-								</splitData>
+								</splitValue>
 							</split>
 						</xsl:for-each>
 					</splits>
@@ -3368,7 +3368,7 @@
 				<xsl:with-param name="formatType">WholeNumber</xsl:with-param>
 			</xsl:call-template>
 		</total>
-		<xsl:for-each select="./countryData">
+		<xsl:for-each select="./countryValue">
 			<reportTableRow>
 				<reportTableDescription>
 					<xsl:value-of select="country/descriptor"/>

@@ -1,1 +1,0 @@
-<soap-env:Envelope xmlns:soap-env="http://schemas.xmlsoap.org/soap/envelope/"><soap-env:Body><CheckFolderNameRequest xmlns="http://types.factiva.com/search"><action>check</action><folderName>test1</folderName><productType>fs-alert-ib</productType><Group>false</Group></CheckFolderNameRequest></soap-env:Body></soap-env:Envelope>

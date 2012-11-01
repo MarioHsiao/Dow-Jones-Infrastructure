@@ -114,6 +114,16 @@
               <folderID/>
             </xsl:otherwise>
           </xsl:choose>
+          <xsl:if test="string-length(normalize-space(@dedupLevel)) &gt; 0">
+              <deduplicationLevel>
+                <xsl:choose>
+                  <xsl:when test="normalize-space(@dedupLevel)='OFF'">OFF</xsl:when>
+                  <xsl:when test="normalize-space(@dedupLevel)='SIMILAR'">SIMILAR</xsl:when>
+                  <xsl:when test="normalize-space(@dedupLevel)='VIRTUALLYIDENTICAL'">VIRTUALLYIDENTICAL</xsl:when>
+                  <xsl:otherwise>OFF</xsl:otherwise>
+                </xsl:choose>
+              </deduplicationLevel>
+          </xsl:if>
           <xsl:if test="string-length(normalize-space(QueryHighlight)) &gt; 0">
             <highlightString>
               <xsl:value-of select="normalize-space(QueryHighlight)"/>

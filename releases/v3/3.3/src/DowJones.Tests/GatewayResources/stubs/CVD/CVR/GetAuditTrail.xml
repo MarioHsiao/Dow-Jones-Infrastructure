@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-<GetAuditTrail xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <auditTrailType>Report</auditTrailType>
-  <startDate>2010-11-13</startDate>
-  <endDate>2010-11-20</endDate>
-  <sortBy />
-  <sortOrder />
-</GetAuditTrail>

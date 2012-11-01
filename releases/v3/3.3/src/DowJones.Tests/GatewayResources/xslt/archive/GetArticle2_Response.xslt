@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:msxsl="urn:schemas-microsoft-com:xslt" xmlns:user="user" extension-element-prefixes="msxsl" exclude-result-prefixes="user">
-  <xsl:output method="xml" version="1.0" encoding="UTF-8" indent="no"/>
+  <xsl:output method="xml" version="1.0" encoding="UTF-8" indent="no" cdata-section-elements="text partText"/>
   <xsl:param name="tranResponse"/>
   <msxsl:script language="JScript" implements-prefix="user">
     <![CDATA[
@@ -100,6 +100,7 @@
             <xsl:apply-templates select="./PropertySet[@group='docdata']/Property[@name='pubpage']"/>
           </pages>
         </xsl:if>
+          <xsl:apply-templates select="./PropertySet[@group='docdata']/Property[@name='allowtranslation']"/>
         <xsl:apply-templates select="./PropertySet[@group='docdata']/Property[@name='pubdate']"/>
         <xsl:apply-templates select="./PropertySet[@group='docdata']/Property[@name='pubtime']"/>
         <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='pubgroupn']"/>
@@ -123,6 +124,7 @@
         <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='srcsecondarytype']"/>
         <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='srcrightstype']"/>
         <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='allowtranslation']"/>
+          
         <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='circulation']"/>
         <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='webhits']"/>
         <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='firstdate']"/>
@@ -174,6 +176,7 @@
         <xsl:apply-templates select="./SectionName"/>
         <xsl:apply-templates select="./Fields"/>
         <xsl:apply-templates select="./Dict"/>
+        <xsl:apply-templates select="./Property[@name='snippet']/Snippet"/>
         <xsl:apply-templates select="./PropertySet[@group='docdata']/Property[@name='pubvol']"/>
         <xsl:apply-templates select="./PropertySet[@group='docdata']/Property[@name='wordcount']"/>
         <xsl:apply-templates select="./PropertySet[@group='docdata']/Property[@name='bestdate']"/>
@@ -285,6 +288,7 @@
     <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='srcsecondarytype']"/>
     <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='srcrightstype']"/>
     <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='allowtranslation']"/>
+    <xsl:apply-templates select="./PropertySet[@group='docdata']/Property[@name='allowtranslation']"/>
     <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='circulation']"/>
     <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='webhits']"/>
     <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='firstdate']"/>
@@ -443,6 +447,7 @@
     <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='srcsecondarytype']"/>
     <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='srcrightstype']"/>
     <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='allowtranslation']"/>
+    <xsl:apply-templates select="./PropertySet[@group='docdata']/Property[@name='allowtranslation']"/>
     <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='circulation']"/>
     <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='webhits']"/>
     <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='firstdate']"/>
@@ -874,6 +879,7 @@
       </xsl:when>
     </xsl:choose>
     <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='allowtranslation']"/>
+    <xsl:apply-templates select="./PropertySet[@group='docdata']/Property[@name='allowtranslation']"/>
     <xsl:choose>
       <xsl:when test="./PropertySet[@group='pubdata']/Property[@name='circulation']">
         <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='circulation']"/>
@@ -1306,6 +1312,11 @@
       </url>
     </xsl:if>
   </xsl:template>
+  <xsl:template match="Property[@name='snippet']/Snippet">
+    <snippet>
+      <xsl:apply-templates select="Para"/>
+    </snippet>
+  </xsl:template>
   <xsl:template match="PropertySet[@group='replyitem']/Property[@name='snippet']/Snippet">
     <snippet>
       <xsl:apply-templates select="Para"/>
@@ -1682,6 +1693,18 @@
     </xsl:if>
   </xsl:template>
   <xsl:template match="PropertySet[@group='pubdata']/Property[@name='allowtranslation']">
+    <isTranslationAllowedBySource>
+      <xsl:choose>
+        <xsl:when test="normalize-space(@value) = 'Y'">
+          true
+        </xsl:when>
+        <xsl:otherwise>
+          false
+        </xsl:otherwise>
+      </xsl:choose>
+    </isTranslationAllowedBySource>
+  </xsl:template>
+  <xsl:template match="PropertySet[@group='docdata']/Property[@name='allowtranslation']">
     <isTranslationAllowedBySource>
       <xsl:choose>
         <xsl:when test="normalize-space(@value) = 'Y'">
@@ -2101,6 +2124,7 @@
               <text>
                 <xsl:value-of select="."/>
               </text>
+              <xsl:call-template name="articleContentElink"></xsl:call-template>
             </eLink>
           </xsl:if>
           <xsl:if test="@type='company'">
@@ -2112,6 +2136,7 @@
                 <xsl:value-of select="@ref"/>
               </xsl:attribute>
               <xsl:call-template name="articleContent"/>
+              <xsl:call-template name="articleContentElink"></xsl:call-template>
             </eLink>
           </xsl:if>
           <xsl:if test="@type='pro'">
@@ -2139,6 +2164,7 @@
                 <xsl:value-of select="@ref"/>
               </xsl:attribute>
               <xsl:call-template name="articleContent"/>
+              <xsl:call-template name="articleContentElink"></xsl:call-template>
             </eLink>
           </xsl:if>
         </xsl:when>
@@ -2195,6 +2221,24 @@
           <text>
             <xsl:value-of select="."/>
           </text>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:for-each>
+  </xsl:template>
+  <xsl:template name="articleContentElink">
+    <xsl:for-each select="child::node()">
+      <xsl:choose>
+        <xsl:when test="((local-name()='hlt1') or (local-name()='hlt'))">
+          <hlt>
+            <text>
+              <xsl:value-of select="."/>
+            </text>
+          </hlt>
+        </xsl:when>
+        <xsl:otherwise>
+          <partText>
+            <xsl:value-of select="."/>
+          </partText>
         </xsl:otherwise>
       </xsl:choose>
     </xsl:for-each>

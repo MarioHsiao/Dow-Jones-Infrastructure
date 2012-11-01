@@ -1,8 +1,0 @@
-﻿<ValidateAndBillResponse ver="01.0">
-  <Control>
-    <Stamp type="ASRrx" date="20091210" time="15542375"/>
-    <Stamp type="ASRtx" date="20091210" time="15542376"/>
-  </Control>
-  <Status value="00000000"/>
-  <Result accessionno="RNS0000020091002e5a2000jx" status="00015004"/>
-</ValidateAndBillResponse>

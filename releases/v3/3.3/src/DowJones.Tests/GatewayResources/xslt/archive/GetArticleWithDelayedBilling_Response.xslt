@@ -186,7 +186,7 @@
         <xsl:apply-templates select="./SectionName"/>
         <xsl:apply-templates select ="./Fields" />
         <xsl:apply-templates select ="./Dict" />
-
+        <xsl:apply-templates select="./Property[@name='snippet']/Snippet"/>
         <xsl:apply-templates select="./PropertySet[@group='docdata']/Property[@name='pubvol']"/>
 
         <xsl:apply-templates select="./PropertySet[@group='docdata']/Property[@name='wordcount']"/>
@@ -1358,6 +1358,11 @@
       </url>
     </xsl:if>
   </xsl:template>
+  <xsl:template match="Property[@name='snippet']/Snippet">
+    <snippet>
+      <xsl:apply-templates select="Para"/>
+    </snippet>
+  </xsl:template>
   <xsl:template match="PropertySet[@group='replyitem']/Property[@name='snippet']/Snippet">
     <snippet>
       <xsl:apply-templates select="Para"/>
@@ -2047,9 +2052,9 @@
       <xsl:when test="@type='invtext'">
         <!--Do Nothing-->
       </xsl:when>
-      <!--<xsl:when test="parent::AdocTOC/@adoctype='file' and @type!='html'">
-        --><!--Do Nothing--><!--
-      </xsl:when>-->
+      <!--<xsl:when test="parent::AdocTOC/@adoctype='file' and @type!='html'">-->
+        <!--Do Nothing-->
+      <!--</xsl:when>-->
       <xsl:otherwise>
         <part>
           <!-- only processing 2 attributes.. should all be xformed??-->

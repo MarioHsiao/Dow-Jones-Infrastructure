@@ -1,8 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.Serialization;
-using System.Text;
 
 namespace DowJones.Pages
 {
@@ -12,5 +8,6 @@ namespace DowJones.Pages
 		[EnumMember] Account = 2,
 		[EnumMember] AccountAdmin = 1,
 		[EnumMember] Personal = 3,
+        [EnumMember] Group = 4
 	}
 }

@@ -1,7 +1,0 @@
-<?xml version="1.0"?>
-<GetTrendingDetails xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <accountScope>ALL</accountScope>
-  <beginDate>2011-01-01</beginDate>
-  <endDate>2011-03-31</endDate>
-  <reportName>SearchPatternEndTrending</reportName>
-</GetTrendingDetails>

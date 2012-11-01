@@ -21,7 +21,7 @@
 		<xsl:element name="acc{$pos}">
 			<xsl:value-of select="."/>
 		</xsl:element>
-		<xsl:element name="oty{$pos}">URLR</xsl:element>
+		<xsl:element name="oty{$pos}">URLP</xsl:element>
     <xsl:element name="cat{$pos}"> 		
       <xsl:choose>
 			  <xsl:when test ="$category='multimedia'">m</xsl:when>

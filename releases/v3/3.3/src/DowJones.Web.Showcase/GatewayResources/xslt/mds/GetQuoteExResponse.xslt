@@ -148,7 +148,7 @@ xmlns:msxsl="urn:schemas-microsoft-com:xslt" xmlns:user="user" extension-element
           <xsl:apply-templates select="Sample/Num[@fid='TodayHighPrice']"/>
           <xsl:apply-templates select="Sample/Num[@fid='TodayLowPrice']"/>
           <xsl:apply-templates select="Sample/InstrumentType"/>
-          <xsl:apply-templates select="Sample/Num[@fid='DiffInAssetData']"/>
+          <xsl:apply-templates select="Sample/Num[@fid='DiffInAssetValue']"/>
           <xsl:apply-templates select="Sample/Num[@fid='Dividend']"/>
           <xsl:apply-templates select="Sample/Date[@fid='DividendDate']"/>
           <xsl:apply-templates select="Sample/Num[@fid='Earnings']"/>
@@ -163,7 +163,7 @@ xmlns:msxsl="urn:schemas-microsoft-com:xslt" xmlns:user="user" extension-element
           <xsl:apply-templates select="Sample/Num[@fid='LifeLowPrice']"/>
           <xsl:apply-templates select="Sample/Date[@fid='BondMaturesDate']"/>
           <xsl:apply-templates select="Sample/Num[@fid='MidPrice']"/>
-          <xsl:apply-templates select="Sample/Num[@fid='NetAssetData']"/>
+          <xsl:apply-templates select="Sample/Num[@fid='NetAssetValue']"/>
           <xsl:apply-templates select="Sample/Date[@fid='NextInterestDate']"/>
           <xsl:apply-templates select="Sample/Num[@fid='NextInterestRate']"/>
           <xsl:apply-templates select="Sample/Num[@fid='OfferPrice']"/>
@@ -174,8 +174,8 @@ xmlns:msxsl="urn:schemas-microsoft-com:xslt" xmlns:user="user" extension-element
           <xsl:apply-templates select="Sample/Num[@fid='YearLowPrice']"/>
           <xsl:apply-templates select="Sample/Num[@fid='PERatio']"/>
           <xsl:apply-templates select="Sample/Num[@fid='PctChangeFromHistory']"/>
-          <xsl:apply-templates select="Sample/Num[@fid='PreviousNetAssetData']"/>
-          <xsl:apply-templates select="Sample/Date[@fid='PreviousNetAssetDataDate']"/>
+          <xsl:apply-templates select="Sample/Num[@fid='PreviousNetAssetValue']"/>
+          <xsl:apply-templates select="Sample/Date[@fid='PreviousNetAssetValueDate']"/>
           <xsl:apply-templates select="Sample/Rating"/>
           <xsl:apply-templates select="Sample/RatingID"/>
           <xsl:apply-templates select="Sample/SpotRateInverted"/>
@@ -429,16 +429,16 @@ xmlns:msxsl="urn:schemas-microsoft-com:xslt" xmlns:user="user" extension-element
     </xsl:if>
   </xsl:template>
 
-  <xsl:template match="Sample/Num[@fid='DiffInAssetData']">
+  <xsl:template match="Sample/Num[@fid='DiffInAssetValue']">
     <xsl:if test="string(number(@value))!='NaN'">
       <xsl:if test="string-length(normalize-space(@value)) &gt; 0">
-        <changeInNetAssetData>
+        <changeInNetAssetValue>
           <xsl:value-of select="user:FormatNumberToPrecision(string(@exp),normalize-space(@value))"/>
           <!--<xsl:if test="@exp!=''">
 						<xsl:attribute name="exp"><xsl:value-of select="@exp"/></xsl:attribute>
 					</xsl:if>
 					<xsl:value-of select="normalize-space(@value)"/>-->
-        </changeInNetAssetData>
+        </changeInNetAssetValue>
       </xsl:if>
     </xsl:if>
   </xsl:template>
@@ -607,16 +607,16 @@ xmlns:msxsl="urn:schemas-microsoft-com:xslt" xmlns:user="user" extension-element
     </xsl:if>
   </xsl:template>
 
-  <xsl:template match="Sample/Num[@fid='NetAssetData']">
+  <xsl:template match="Sample/Num[@fid='NetAssetValue']">
     <xsl:if test="string(number(@value))!='NaN'">
       <xsl:if test="string-length(normalize-space(@value)) &gt; 0">
-        <netAssetData>
+        <netAssetValue>
           <xsl:value-of select="user:FormatNumberToPrecision(string(@exp),normalize-space(@value))"/>
           <!--<xsl:if test="@exp!=''">
 						<xsl:attribute name="exp"><xsl:value-of select="@exp"/></xsl:attribute>
 					</xsl:if>
 					<xsl:value-of select="normalize-space(@value)"/>-->
-        </netAssetData>
+        </netAssetValue>
       </xsl:if>
     </xsl:if>
   </xsl:template>
@@ -749,26 +749,26 @@ xmlns:msxsl="urn:schemas-microsoft-com:xslt" xmlns:user="user" extension-element
     </xsl:if>
   </xsl:template>
 
-  <xsl:template match="Sample/Num[@fid='PreviousNetAssetData']">
+  <xsl:template match="Sample/Num[@fid='PreviousNetAssetValue']">
     <xsl:if test="string(number(@value))!='NaN'">
       <xsl:if test="string-length(normalize-space(@value)) &gt; 0">
-        <previousNetAssetData>
+        <previousNetAssetValue>
           <xsl:value-of select="user:FormatNumberToPrecision(string(@exp),normalize-space(@value))"/>
           <!--<xsl:if test="@exp!=''">
 						<xsl:attribute name="exp"><xsl:value-of select="@exp"/></xsl:attribute>
 					</xsl:if>
 					<xsl:value-of select="normalize-space(@value)"/>-->
-        </previousNetAssetData>
+        </previousNetAssetValue>
       </xsl:if>
     </xsl:if>
   </xsl:template>
 
-  <xsl:template match="Sample/Date[@fid='PreviousNetAssetDataDate']">
+  <xsl:template match="Sample/Date[@fid='PreviousNetAssetValueDate']">
     <xsl:if test="string(number(@value))!='NaN'">
       <xsl:if test="string-length(normalize-space(@value)) &gt; 0">
-        <previousNetAssetDataDate>
+        <previousNetAssetValueDate>
           <xsl:value-of select="(user:ChangeDateFormat(string(@value)))"/>
-        </previousNetAssetDataDate>
+        </previousNetAssetValueDate>
       </xsl:if>
     </xsl:if>
   </xsl:template>

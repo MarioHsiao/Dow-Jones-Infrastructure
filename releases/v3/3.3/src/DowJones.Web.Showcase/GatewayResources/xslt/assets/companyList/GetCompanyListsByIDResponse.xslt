@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" >
   <xsl:output method="xml" version="1.0" encoding="utf-8" />
 
@@ -41,7 +41,7 @@
                   <xsl:value-of select="CLASS/ITEM/NAME"/>
                 </name>
                 <xsl:call-template name="StringSplit" >
-                  <xsl:with-param name="stringData" select="CLASS/ITEM/VALUE"/>
+                  <xsl:with-param name="stringValue" select="CLASS/ITEM/VALUE"/>
                 </xsl:call-template>
               </xsl:when>
 
@@ -60,19 +60,19 @@
   </xsl:template>
 
   <xsl:template name ="StringSplit">
-    <xsl:param name="stringData"/>
+    <xsl:param name="stringValue"/>
     <xsl:choose>
-      <xsl:when test="contains($stringData,',')">
+      <xsl:when test="contains($stringValue,',')">
         <companyCode>
-          <xsl:value-of select="substring-before($stringData,',')"/>
+          <xsl:value-of select="substring-before($stringValue,',')"/>
         </companyCode>
         <xsl:call-template name="StringSplit" >
-          <xsl:with-param name="stringData" select="substring-after($stringData,',')"/>
+          <xsl:with-param name="stringValue" select="substring-after($stringValue,',')"/>
         </xsl:call-template>
       </xsl:when>
       <xsl:otherwise>
         <companyCode>
-          <xsl:value-of select="$stringData"/>
+          <xsl:value-of select="$stringValue"/>
         </companyCode>
       </xsl:otherwise>
     </xsl:choose>
