@@ -16,10 +16,13 @@ namespace DowJones.Pages.Mappers
 					return ShareScope.Everyone;
 
 				case GatewayShareScope.AccountAdmin:
-					return ShareScope.AccountAdmin;
+                    return ShareScope.AccountAdmin;
 
-				case GatewayShareScope.Account:
-					return ShareScope.Account;
+                case GatewayShareScope.Account:
+                    return ShareScope.Account;
+
+                case GatewayShareScope.Group:
+                    return ShareScope.Group;
                 
                 default:
 					return ShareScope.Personal;
