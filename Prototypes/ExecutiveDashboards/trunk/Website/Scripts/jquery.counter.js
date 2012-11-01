@@ -1,41 +1,50 @@
 /*!  jquery counter plugin
 * Author: Hrusikesh Panda
-* Version: 0.3
+* Version: 0.4
 *
 * Provides a counter like animation while updating a number field.
 *
+* 0.4: Even faster accel logic, fix for midway stop issue
 * 0.3: Faster Accel logic
 * 0.2: Simpler acceleration logic
 * 0.1: Basic functionality
 */
 (function ($) {
     $.fn.counter = function (target, callback) {
-        var count = function (elem, stop) {
+        var render = function(elem, value) {
+            elem.text(value.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+        };
+        
+        var count = function (elem, stop, currentValue) {
             var timer;
-            var braking = 15,
+            var speed = 15,
                 $el = $(elem),
-                start = parseInt($el.text().replace(',', ''), 10),
-                step;
+                step, diff;
+
 
             stop = parseInt(stop, 10);
 
-            if (isNaN(start)) start = 0;
+            currentValue = currentValue || parseInt($el.text().replace(',', ''), 10);
+            if (isNaN(currentValue)) currentValue = 0;
 
-            if (start !== stop) {
-                // accelerate if the distance is too wide
-                //step = (stop - start) / braking;
-                
-                step = start + (stop - start) / braking;
-               
-                // slow down when approaching target
-                if (Math.abs(stop - step) < 5) braking = braking * 10;
+            diff = stop - currentValue;
 
-                $el.text(Math.ceil((step)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
-                timer = setTimeout(function () {
-                    count(elem, stop, callback);
-                }, braking);
-                $el.data('timer', timer);
-            } else if ($.isFunction(callback)) callback();
+            if (stop !== currentValue) {
+                if (Math.abs(diff / speed) > 0.001) {
+
+                    step = currentValue + diff / speed;
+
+                    render($el, step);
+                    
+                    timer = setTimeout(function () {
+                        count(elem, stop, step);
+                    }, speed);
+                    $el.data('timer', timer);
+                }
+                else
+                    render($el, stop); 
+            }
+            else if ($.isFunction(callback)) callback();
         };
 
         return this.each(function () {
