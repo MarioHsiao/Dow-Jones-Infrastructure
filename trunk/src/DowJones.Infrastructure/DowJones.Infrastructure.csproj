@@ -166,8 +166,14 @@
     <Compile Include="Managers\Multimedia\MultimediaPackage.cs" />
     <Compile Include="Managers\Multimedia\MultiMediaRequest.cs" />
     <Compile Include="Managers\Multimedia\MultiMediaResponse.cs" />
+    <Compile Include="Models\Common\DateNewsEntities.cs" />
+    <Compile Include="Models\Common\DateNewsEntity.cs" />
     <Compile Include="Models\Common\Entities.cs" />
+    <Compile Include="Models\Common\ParentDateNewsEntity.cs" />
+    <Compile Include="Models\Common\ParentSourceNewsEntity.cs" />
     <Compile Include="Models\Common\RegionNewsVolume.cs" />
+    <Compile Include="Models\Common\SourceNewsEntities.cs" />
+    <Compile Include="Models\Common\SourceNewsEntity.cs" />
     <Compile Include="Web\ClientResources\EmbeddedClientResourceRepository.cs" />
     <Compile Include="Web\ClientResources\EmbeddedClientResourceValidator.cs" />
     <Compile Include="Web\ClientResources\IClientResourceRepository.cs" />
