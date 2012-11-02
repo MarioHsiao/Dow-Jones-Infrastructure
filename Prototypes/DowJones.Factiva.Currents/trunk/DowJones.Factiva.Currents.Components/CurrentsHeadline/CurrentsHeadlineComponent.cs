@@ -9,7 +9,6 @@
 //------------------------------------------------------------------------------
 
 [assembly: System.Web.UI.WebResourceAttribute("DowJones.Factiva.Currents.Components.CurrentsHeadline.CurrentsHeadline.js", "text/javascript")]
-[assembly: System.Web.UI.WebResourceAttribute("DowJones.Factiva.Currents.Components.CurrentsHeadline.CurrentsHeadline.css", "text/css")]
 
 namespace DowJones.Factiva.Currents.Components.CurrentsHeadline
 {
@@ -21,13 +20,11 @@ namespace DowJones.Factiva.Currents.Components.CurrentsHeadline
     using System.Web;
     using System.Web.Security;
     using System.Web.UI;
-    using DowJones.Extensions;
+    using CurrentsHeadline;
     using DowJones.Web.Mvc.Extensions;
-    using DowJones.Factiva.Currents.Components.CurrentsHeadline;
     
-    // Last Generated Timestamp: 11/01/2012 05:45 PM
+    // Last Generated Timestamp: 11/02/2012 04:20 PM
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Factiva.Currents.Components.CurrentsHeadline.CurrentsHeadline.js", ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Factiva.Currents.Components.CurrentsHeadline.CurrentsHeadlineComponent))]
-    [DowJones.Web.StylesheetResourceAttribute(null, ResourceName="DowJones.Factiva.Currents.Components.CurrentsHeadline.CurrentsHeadline.css", ResourceKind=DowJones.Web.ClientResourceKind.Stylesheet, DeclaringType=typeof(DowJones.Factiva.Currents.Components.CurrentsHeadline.CurrentsHeadlineComponent))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.27108")]
     public class CurrentsHeadlineComponent : DowJones.Web.Mvc.UI.ViewComponentBase<CurrentsHeadlineModel>
     {
@@ -50,21 +47,17 @@ namespace DowJones.Factiva.Currents.Components.CurrentsHeadline
 
 
 
-
-
-
-
    CssClass = "dj_CurrentsHeadline"; 
 
 WriteLiteral("\r\n<ul class=\"dj_CurrentsHeadline items\">\r\n");
 
 
  	if (Model.HasData)
- {
-     foreach (var headline in Model.Headlines)
-     {
+	{
+		foreach (var headline in Model.Headlines)
+		{
 
-WriteLiteral("\t\t <li class=\"dj_entry ");
+WriteLiteral("\t\t\t<li class=\"dj_entry ");
 
 
                   Write(Model.GetSelectionStatus(headline));
@@ -79,95 +72,103 @@ WriteLiteral(" ");
 
                                                                                           Write(headline.ContentSubCategoryDescriptor);
 
-WriteLiteral("\">\r\n\t\t\t <div class=\"article-wrap\">\r\n\t\t\t\t <h4 class=\"article-headline\">\r\n\t\t\t\t\t <a " +
+WriteLiteral("\">\r\n\t\t\t\t<div class=\"article-wrap\">\r\n\t\t\t\t\t<h4 class=\"article-headline\">\r\n\t\t\t\t\t\t<a " +
 "href=\"");
 
 
           Write(headline.HeadlineUrl);
 
-WriteLiteral("\" class=\"article-view-trigger\">\r\n\t\t\t\t\t\t ");
+WriteLiteral("\" class=\"article-view-trigger\">");
 
 
-  Write(headline.Title);
+                                                              Write(headline.Title);
 
-WriteLiteral("</a>\r\n\t\t\t\t </h4>\r\n");
-
-
- 				 if (Model.ShouldShowSource(headline) || Model.ShouldShowPublicationDateTime(headline))
-     { 
-
-WriteLiteral("\t\t\t\t <div class=\"article-meta\">\r\n");
+WriteLiteral("</a>\r\n\t\t\t\t\t</h4>\r\n");
 
 
- 					 if (Model.ShouldShowSource(headline))
-      {
-          if (Model.SourceClickable)
-          {
+ 					if (Model.ShouldShowSource(headline) || Model.ShouldShowPublicationDateTime(headline))
+					{
 
-WriteLiteral("\t\t\t\t\t <span class=\"article-source source-clickable\" rel=\"");
+WriteLiteral("\t\t\t\t\t\t<div class=\"article-meta\">\r\n");
 
 
-                                                    Write(headline.SourceCode);
+ 							if (Model.ShouldShowSource(headline))
+							{
+								if (Model.SourceClickable)
+								{
+
+WriteLiteral("\t\t\t\t\t\t\t\t\t<span class=\"article-source source-clickable\" rel=\"");
+
+
+                                                       Write(headline.SourceCode);
 
 WriteLiteral(" \">");
 
 
-                                                                           Write(headline.SourceDescriptor);
+                                                                              Write(headline.SourceDescriptor);
 
-WriteLiteral(" </span>");
-
-
-
-WriteLiteral("<br />\r\n");
-
-
-          }
-          else
-          { 
-
-WriteLiteral("\t\t\t\t\t <span class=\"article-source\">");
-
-
-                              Write(headline.SourceDescriptor);
-
-WriteLiteral(" </span>");
+WriteLiteral(" </span>\r\n");
 
 
 
-WriteLiteral("<br />\r\n");
+WriteLiteral("\t\t\t\t\t\t\t\t\t<br />\r\n");
 
 
-          }
-      } 
+								}
+								else
+								{
 
-WriteLiteral("\t\t\t\t\t if (Model.ShouldShowPublicationDateTime(headline)) { \r\n\t\t\t\t\t <span class=\"d" +
-"ate-stamp\">");
-
-
-                          Write(headline.PublicationDateDescriptor);
-
-WriteLiteral(" </span>\r\n\t\t\t\t\t  } \r\n\t\t\t\t </div>\r\n");
+WriteLiteral("\t\t\t\t\t\t\t\t\t<span class=\"article-source\">");
 
 
-     }
+                                 Write(headline.SourceDescriptor);
 
-WriteLiteral("                 </li>\r\n");
-
-
-     }
- }
- else
- {
-
-WriteLiteral("\t\t<li><span class=\"dj_noResults\">");
+WriteLiteral(" </span>\r\n");
 
 
-                            Write(DJ.Token("noResults"));
+
+WriteLiteral("\t\t\t\t\t\t\t\t\t<br />\r\n");
+
+
+								}
+							} 
+
+
+ 							if (Model.ShouldShowPublicationDateTime(headline))
+							{
+
+WriteLiteral("\t\t\t\t\t\t\t\t<span class=\"date-stamp\">");
+
+
+                            Write(headline.PublicationDateDescriptor);
+
+WriteLiteral(" </span>\r\n");
+
+
+							} 
+
+WriteLiteral("\t\t\t\t\t\t</div>\r\n");
+
+
+					}
+
+WriteLiteral("\t\t\t\t</div>\r\n\t\t\t</li>\r\n");
+
+
+		}
+	}
+	else
+		  {
+
+WriteLiteral("\t\t\t  <li><span class=\"dj_noResults\">");
+
+
+                               Write(DJ.Token("noResults"));
 
 WriteLiteral("</span></li>\r\n");
 
 
- }
+		  }
 
 WriteLiteral("</ul>");
 

@@ -1,48 +1,47 @@
-﻿@using System.Linq
-@using DowJones.Extensions
-@using DowJones.Web.Mvc.Extensions
-@using DowJones.Factiva.Currents.Components.CurrentsHeadline
+﻿@using CurrentsHeadline
 @model CurrentsHeadlineModel
 @ClientPlugin dj_CurrentsHeadline
 @ScriptResource RelativeResourceName=CurrentsHeadline.js
-@StylesheetResource RelativeResourceName=CurrentsHeadline.css
 @{ CssClass = "dj_CurrentsHeadline"; }
 
 <ul class="dj_CurrentsHeadline items">
 	@if (Model.HasData)
- {
-     foreach (var headline in Model.Headlines)
-     {
-		 <li class="dj_entry @Model.GetSelectionStatus(headline) @headline.ContentCategoryDescriptor @headline.ContentSubCategoryDescriptor">
-			 <div class="article-wrap">
-				 <h4 class="article-headline">
-					 <a href="@headline.HeadlineUrl" class="article-view-trigger">
-						 @headline.Title</a>
-				 </h4>
-				 @if (Model.ShouldShowSource(headline) || Model.ShouldShowPublicationDateTime(headline))
-     { 
-				 <div class="article-meta">
-					 @if (Model.ShouldShowSource(headline))
-      {
-          if (Model.SourceClickable)
-          {
-					 <span class="article-source source-clickable" rel="@headline.SourceCode ">@headline.SourceDescriptor </span><br />
-          }
-          else
-          { 
-					 <span class="article-source">@headline.SourceDescriptor </span><br />
-          }
-      } 
-					 if (Model.ShouldShowPublicationDateTime(headline)) { 
-					 <span class="date-stamp">@headline.PublicationDateDescriptor </span>
-					  } 
-				 </div>
-     }
-                 </li>
-     }
- }
- else
- {
-		<li><span class="dj_noResults">@DJ.Token("noResults")</span></li>
- }
+	{
+		foreach (var headline in Model.Headlines)
+		{
+			<li class="dj_entry @Model.GetSelectionStatus(headline) @headline.ContentCategoryDescriptor @headline.ContentSubCategoryDescriptor">
+				<div class="article-wrap">
+					<h4 class="article-headline">
+						<a href="@headline.HeadlineUrl" class="article-view-trigger">@headline.Title</a>
+					</h4>
+					@if (Model.ShouldShowSource(headline) || Model.ShouldShowPublicationDateTime(headline))
+					{
+						<div class="article-meta">
+							@if (Model.ShouldShowSource(headline))
+							{
+								if (Model.SourceClickable)
+								{
+									<span class="article-source source-clickable" rel="@headline.SourceCode ">@headline.SourceDescriptor </span>
+									<br />
+								}
+								else
+								{
+									<span class="article-source">@headline.SourceDescriptor </span>
+									<br />
+								}
+							} 
+							@if (Model.ShouldShowPublicationDateTime(headline))
+							{
+								<span class="date-stamp">@headline.PublicationDateDescriptor </span>
+							} 
+						</div>
+					}
+				</div>
+			</li>
+		}
+	}
+	else
+		  {
+			  <li><span class="dj_noResults">@DJ.Token("noResults")</span></li>
+		  }
 </ul>
