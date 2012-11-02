@@ -1,19 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using System.Web.Routing;
+using DowJones.Infrastructure;
 
-namespace Website
+namespace DowJones.Factiva.Currents.Website.App_Start
 {
-	public class RouteConfig
-	{
-		public static void RegisterRoutes(RouteCollection routes)
-		{
-			routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+	public class RouteConfigTask : IBootstrapperTask
+    {
+        private readonly RouteCollection _routes;
 
-			routes.MapRoute(
+		public RouteConfigTask(RouteCollection routes)
+        {
+            _routes = routes;
+        }
+		public  void Execute()
+		{
+			_routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+
+			_routes.MapRoute(
 				name: "Default",
 				url: "{controller}/{action}/{id}",
 				defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }

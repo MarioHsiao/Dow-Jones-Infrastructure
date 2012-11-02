@@ -1,0 +1,19 @@
+/* line 2, ../sass/Canvas.scss */
+.module header {
+  background: #3A4450;
+  padding: 0 10px;
+  height: 30px;
+  color: white;
+  text-decoration: none;
+}
+/* line 9, ../sass/Canvas.scss */
+.module header i, .module header span {
+  position: relative;
+  top: 5px;
+}
+/* line 15, ../sass/Canvas.scss */
+.module .content {
+  background: #F7F7FD;
+  color: #3A4450;
+  border: 1px solid #F0F0FB;
+}

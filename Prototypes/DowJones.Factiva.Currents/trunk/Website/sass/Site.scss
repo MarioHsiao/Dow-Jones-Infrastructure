@@ -1,3 +1,33 @@
-body
-{ 
+document, body {
+	width: 100%;
+}
+
+body {
+	background-color: #F2FAFD;
+}
+
+header {
+	.navbar {
+		height: 60px;
+		background: url("images/header-bg.png") no-repeat;
+
+		.navbar-inner {
+			background: transparent;
+			border: 0;
+			border-radius: 0;
+
+			.container {
+				padding-top: 18px;
+			}
+
+			.factivaLogo {
+				display: inline-block;
+				width: 210px;
+				height: 23px;
+				background: url("images/logo_factiva.png") no-repeat;
+			}
+
+		}
+
+	}
 }

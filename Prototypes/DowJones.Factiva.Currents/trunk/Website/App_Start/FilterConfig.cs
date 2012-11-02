@@ -1,10 +1,15 @@
-﻿using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
+using DowJones.Infrastructure;
 
-namespace Website
+namespace DowJones.Factiva.Currents.Website.App_Start
 {
-	public class FilterConfig
+	public class FilterConfigTask : IBootstrapperTask
 	{
+		public void Execute()
+		{
+			RegisterGlobalFilters(GlobalFilters.Filters);
+		}
+
 		public static void RegisterGlobalFilters(GlobalFilterCollection filters)
 		{
 			filters.Add(new HandleErrorAttribute());
