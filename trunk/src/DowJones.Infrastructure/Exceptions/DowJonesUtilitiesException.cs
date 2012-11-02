@@ -135,6 +135,7 @@ namespace DowJones.Exceptions
         public const long InvalidReplaceRequestRequest = 585286;
         public const long ModuleDoesNotExistOnPage = 585287;
         public const long PageIsNull = 585288;
+        public const long AssignedGroupIdListIsNull = 585289;
 
         public const long EmptyAlertCollection = 585289;
         public const long EmptyFCodeCollection = 585290;
