@@ -15,11 +15,14 @@ namespace DowJones.Factiva.Currents.Website.Controllers
 	{
 		public ActionResult Index()
 		{
-			var model = new IndexViewModel
+			var model = new CanvasViewModel
 				{
-					CurrentsHeadlineModel = new CurrentsHeadlineModel(GetStubHeadlines())
+					Sources = new SourcesViewModel
+						{
+							CurrentsHeadlines = new[] { new CurrentsHeadlineModel(GetStubHeadlines()) }
+						}
 				};
-			return View(model);
+			return View("Canvas", model);
 		}
 
 		private PortalHeadlineListModel GetStubHeadlines()

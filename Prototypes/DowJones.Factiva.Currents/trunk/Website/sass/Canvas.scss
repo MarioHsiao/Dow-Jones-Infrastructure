@@ -1,4 +1,20 @@
+ul, ol {
+	list-style: none;
+}
+ 
+.ui-component {
+	ul, ol {
+		margin: 0 0 10px 10px;
+	}
+}
+
+.module-wrapper {
+	
+}
+
 .module {
+	margin: 0 auto;
+
 	header {
 		background: #3A4450;
 		padding: 0 10px;
@@ -13,8 +29,14 @@
 	}
 
 	.content {
+		padding: 0 10px;
 		background: #F7F7FD;
 		color: #3A4450;
 		border: 1px solid #F0F0FB;
+
+		[class*="span"] {
+			margin-left: 20px;
+		}
 	}
 }
+

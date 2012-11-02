@@ -1,0 +1,15 @@
+﻿@model DowJones.Factiva.Currents.Website.Models.SourcesViewModel
+<div class="module">
+    <header>
+        <i class="icon-tasks icon-white"></i>
+        <span>Sources</span>
+    </header>
+    <div class="content">
+		<div class="row">
+			@foreach(var headline in Model.CurrentsHeadlines.Take(3))
+			{
+				<div class="span4">@Html.DJ().Render(headline)</div>
+			}
+		</div>
+    </div>
+</div>

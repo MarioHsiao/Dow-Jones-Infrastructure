@@ -1,4 +1,18 @@
-/* line 2, ../sass/Canvas.scss */
+/* line 1, ../sass/Canvas.scss */
+ul, ol {
+  list-style: none;
+}
+
+/* line 6, ../sass/Canvas.scss */
+.ui-component ul, .ui-component ol {
+  margin: 0 0 10px 10px;
+}
+
+/* line 15, ../sass/Canvas.scss */
+.module {
+  margin: 0 auto;
+}
+/* line 18, ../sass/Canvas.scss */
 .module header {
   background: #3A4450;
   padding: 0 10px;
@@ -6,14 +20,19 @@
   color: white;
   text-decoration: none;
 }
-/* line 9, ../sass/Canvas.scss */
+/* line 25, ../sass/Canvas.scss */
 .module header i, .module header span {
   position: relative;
   top: 5px;
 }
-/* line 15, ../sass/Canvas.scss */
+/* line 31, ../sass/Canvas.scss */
 .module .content {
+  padding: 0 10px;
   background: #F7F7FD;
   color: #3A4450;
   border: 1px solid #F0F0FB;
+}
+/* line 37, ../sass/Canvas.scss */
+.module .content [class*="span"] {
+  margin-left: 20px;
 }

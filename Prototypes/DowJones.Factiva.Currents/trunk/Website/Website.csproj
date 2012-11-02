@@ -153,7 +153,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\IndexViewModel.cs" />
+    <Compile Include="Models\CanvasViewModel.cs" />
+    <Compile Include="Models\SourcesViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -166,6 +167,7 @@
     <Content Include="Content\images\glyphicons-halflings.png" />
     <Content Include="Content\images\header-bg.png" />
     <Content Include="Content\images\logo_factiva.png" />
+    <Content Include="Content\portalHeadlineList.css" />
     <Content Include="Content\Site.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -195,7 +197,7 @@
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\Canvas.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
@@ -224,6 +226,12 @@
       <Project>{a2e7cba8-9918-4f80-9167-27077599e230}</Project>
       <Name>DowJones.Factiva.Currents.Components</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="sass\portalHeadlineList.scss" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Modules\_Sources.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

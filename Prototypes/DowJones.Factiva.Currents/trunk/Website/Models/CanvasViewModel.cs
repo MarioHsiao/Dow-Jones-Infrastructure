@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 using DowJones.Factiva.Currents.Components.CurrentsHeadline;
 
 namespace DowJones.Factiva.Currents.Website.Models
 {
-	public class IndexViewModel
+	public class CanvasViewModel
 	{
-		public CurrentsHeadlineModel CurrentsHeadlineModel { get; set; }
+		public SourcesViewModel Sources { get; set; }
 	}
 }
