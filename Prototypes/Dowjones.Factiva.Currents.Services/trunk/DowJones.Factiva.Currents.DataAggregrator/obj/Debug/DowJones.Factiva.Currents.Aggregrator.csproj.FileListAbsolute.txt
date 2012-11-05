@@ -1,0 +1,14 @@
+C:\Ruchi\Projects\GoogleSEO\Prototypes\DowJones.Factiva.Currents\trunk\DowJones.Factiva.Currents.DataAggregrator\bin\Debug\DowJones.Factiva.Currents.Aggregrator.dll
+C:\Ruchi\Projects\GoogleSEO\Prototypes\DowJones.Factiva.Currents\trunk\DowJones.Factiva.Currents.DataAggregrator\bin\Debug\DowJones.Factiva.Currents.Aggregrator.pdb
+C:\Ruchi\Projects\GoogleSEO\Prototypes\DowJones.Factiva.Currents\trunk\DowJones.Factiva.Currents.DataAggregrator\bin\Debug\Newtonsoft.Json.dll
+C:\Ruchi\Projects\GoogleSEO\Prototypes\DowJones.Factiva.Currents\trunk\DowJones.Factiva.Currents.DataAggregrator\bin\Debug\Newtonsoft.Json.xml
+C:\Ruchi\Projects\GoogleSEO\Prototypes\DowJones.Factiva.Currents\trunk\DowJones.Factiva.Currents.DataAggregrator\obj\Debug\DowJones.Factiva.Currents.Aggregrator.csprojResolveAssemblyReference.cache
+C:\Ruchi\Projects\GoogleSEO\Prototypes\DowJones.Factiva.Currents\trunk\DowJones.Factiva.Currents.DataAggregrator\obj\Debug\DowJones.Factiva.Currents.Aggregrator.dll
+C:\Ruchi\Projects\GoogleSEO\Prototypes\DowJones.Factiva.Currents\trunk\DowJones.Factiva.Currents.DataAggregrator\obj\Debug\DowJones.Factiva.Currents.Aggregrator.pdb
+C:\Ruchi\Projects\GoogleSEO\Prototypes\Dowjones.Factiva.Currents.Services\trunk\DowJones.Factiva.Currents.DataAggregrator\bin\Debug\DowJones.Factiva.Currents.Aggregrator.dll
+C:\Ruchi\Projects\GoogleSEO\Prototypes\Dowjones.Factiva.Currents.Services\trunk\DowJones.Factiva.Currents.DataAggregrator\bin\Debug\DowJones.Factiva.Currents.Aggregrator.pdb
+C:\Ruchi\Projects\GoogleSEO\Prototypes\Dowjones.Factiva.Currents.Services\trunk\DowJones.Factiva.Currents.DataAggregrator\obj\Debug\DowJones.Factiva.Currents.Aggregrator.dll
+C:\Ruchi\Projects\GoogleSEO\Prototypes\Dowjones.Factiva.Currents.Services\trunk\DowJones.Factiva.Currents.DataAggregrator\obj\Debug\DowJones.Factiva.Currents.Aggregrator.pdb
+C:\Ruchi\Projects\GoogleSEO\Prototypes\DowJones.Factiva.Currents.Services\trunk\DowJones.Factiva.Currents.DataAggregrator\bin\Debug\Newtonsoft.Json.dll
+C:\Ruchi\Projects\GoogleSEO\Prototypes\DowJones.Factiva.Currents.Services\trunk\DowJones.Factiva.Currents.DataAggregrator\bin\Debug\Newtonsoft.Json.xml
+C:\Ruchi\Projects\GoogleSEO\Prototypes\DowJones.Factiva.Currents.Services\trunk\DowJones.Factiva.Currents.DataAggregrator\obj\Debug\DowJones.Factiva.Currents.Aggregrator.csprojResolveAssemblyReference.cache

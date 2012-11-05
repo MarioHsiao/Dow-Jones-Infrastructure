@@ -1,0 +1,41 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DowJones.Factiva.Currents.Aggregrator", "DowJones.Factiva.Currents.DataAggregrator\DowJones.Factiva.Currents.Aggregrator.csproj", "{16FFCB66-80A8-4D9A-8A03-8A02D38988EB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DowJones.Factiva.Currents.Aggregrator.Service", "DowJones.Factiva.Currents.Aggregrator.Service\DowJones.Factiva.Currents.Aggregrator.Service.csproj", "{90374150-20A5-4103-9A8E-3F5ED6EE290C}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 2
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://sbknwstfs1:8080/tfs/defaultcollection
+		SccProjectUniqueName0 = DowJones.Factiva.Currents.DataAggregrator\\DowJones.Factiva.Currents.Aggregrator.csproj
+		SccProjectName0 = DowJones.Factiva.Currents.DataAggregrator
+		SccAuxPath0 = http://sbknwstfs1:8080/tfs/defaultcollection
+		SccLocalPath0 = DowJones.Factiva.Currents.DataAggregrator
+		SccProvider0 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccProjectUniqueName1 = DowJones.Factiva.Currents.Aggregrator.Service\\DowJones.Factiva.Currents.Aggregrator.Service.csproj
+		SccProjectName1 = DowJones.Factiva.Currents.Aggregrator.Service
+		SccAuxPath1 = http://sbknwstfs1:8080/tfs/defaultcollection
+		SccLocalPath1 = DowJones.Factiva.Currents.Aggregrator.Service
+		SccProvider1 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{16FFCB66-80A8-4D9A-8A03-8A02D38988EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16FFCB66-80A8-4D9A-8A03-8A02D38988EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16FFCB66-80A8-4D9A-8A03-8A02D38988EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16FFCB66-80A8-4D9A-8A03-8A02D38988EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{90374150-20A5-4103-9A8E-3F5ED6EE290C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90374150-20A5-4103-9A8E-3F5ED6EE290C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90374150-20A5-4103-9A8E-3F5ED6EE290C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90374150-20A5-4103-9A8E-3F5ED6EE290C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
