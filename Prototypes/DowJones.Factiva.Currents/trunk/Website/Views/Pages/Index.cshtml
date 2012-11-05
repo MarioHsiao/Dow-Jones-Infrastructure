@@ -1,0 +1,14 @@
+﻿@model DowJones.Web.Mvc.UI.Canvas.IModule[]
+
+@{
+	ViewBag.Title = "title";
+}
+
+@foreach(var module in Model)
+{
+	<section class="row">
+		<div class="span12">
+			@Html.DJ().Render(module)
+		</div>
+	</section>
+}

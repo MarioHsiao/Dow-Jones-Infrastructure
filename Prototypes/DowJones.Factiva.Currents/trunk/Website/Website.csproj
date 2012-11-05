@@ -44,14 +44,27 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AttributeRouting, Version=3.1.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Bin\AttributeRouting.dll</HintPath>
+    </Reference>
     <Reference Include="DowJones.Infrastructure">
       <HintPath>..\packages\DowJones.Infrastructure.3.3.57\lib\DowJones.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="DowJones.Pages">
+      <HintPath>..\packages\DowJones.Pages.3.3.57\lib\DowJones.Pages.dll</HintPath>
     </Reference>
     <Reference Include="DowJones.Parallel">
       <HintPath>..\packages\DowJones.Parallel.1.0.0\lib\DowJones.Parallel.dll</HintPath>
     </Reference>
     <Reference Include="DowJones.Web.Mvc">
       <HintPath>..\packages\DowJones.Web.Mvc.3.3.57\lib\DowJones.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="DowJones.Web.Mvc.UI.Canvas">
+      <HintPath>..\packages\DowJones.Web.Mvc.UI.Canvas.3.3.57\lib\DowJones.Web.Mvc.UI.Canvas.dll</HintPath>
+    </Reference>
+    <Reference Include="DowJones.Web.Mvc.UI.Components">
+      <HintPath>..\packages\DowJones.Web.Mvc.UI.Components.3.3.57\lib\DowJones.Web.Mvc.UI.Components.dll</HintPath>
     </Reference>
     <Reference Include="DowJones.Web.Mvc.UI.Components.Models, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -148,13 +161,18 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Mocks\MockPageAssetsProvider.cs" />
+    <Compile Include="Mocks\MockScriptModuleTemplateManager.cs" />
+    <Compile Include="Providers\HttpContextCacheProvider.cs" />
+    <Compile Include="Providers\CachedPageAssetProvider.cs" />
+    <Compile Include="Contracts\IPageAssetProvider.cs" />
+    <Compile Include="Contracts\ICacheProvider.cs" />
+    <Compile Include="Providers\PageAssetProvider.cs" />
+    <Compile Include="Controllers\PagesController.cs" />
     <Compile Include="Dependencies.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\CanvasViewModel.cs" />
-    <Compile Include="Models\SourcesViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -186,18 +204,6 @@
     </Content>
     <Content Include="Scripts\_references.js" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
-    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
-    <Content Include="Views\Account\_RemoveExternalLoginsPartial.cshtml" />
-    <Content Include="Views\Account\_SetPasswordPartial.cshtml" />
-    <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Account\Manage.cshtml" />
-    <Content Include="Views\Account\Register.cshtml" />
-    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
-    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Canvas.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
@@ -208,6 +214,7 @@
     <Folder Include="Content\themes\base\images\" />
     <Folder Include="Content\themes\base\minified\images\" />
     <Folder Include="Filters\" />
+    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -226,15 +233,18 @@
       <Project>{a2e7cba8-9918-4f80-9167-27077599e230}</Project>
       <Name>DowJones.Factiva.Currents.Components</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DowJones.Factiva.Currents.Modules\DowJones.Factiva.Currents.Modules.csproj">
+      <Project>{5ea6a5ee-f6ee-4624-b9b5-3976df026c19}</Project>
+      <Name>DowJones.Factiva.Currents.Modules</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="sass\portalHeadlineList.scss" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Modules\_Sources.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Properties\PublishProfiles\montana.pubxml" />
+    <Content Include="Views\Modules\_Sources.cshtml" />
+    <Content Include="Views\Pages\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -1,4 +1,7 @@
-﻿using DowJones.Infrastructure.Common;
+﻿using DowJones.Factiva.Currents.Website.Contracts;
+using DowJones.Factiva.Currents.Website.Mocks;
+using DowJones.Infrastructure.Common;
+using DowJones.Pages.Modules.Templates;
 using DowJones.Preferences;
 using DowJones.Security;
 using DowJones.Security.Interfaces;
@@ -30,6 +33,9 @@ namespace DowJones.Factiva.Currents.Website
 					TypeNameHandling = TypeNameHandling.Objects,
 				});
 
+			Bind<IPageAssetProvider>().To<MockPageAssetsProvider>().InRequestScope();
+
+			Bind<IScriptModuleTemplateManager>().To<MockScriptModuleTemplateManager>();
 		}
 	}
 }
