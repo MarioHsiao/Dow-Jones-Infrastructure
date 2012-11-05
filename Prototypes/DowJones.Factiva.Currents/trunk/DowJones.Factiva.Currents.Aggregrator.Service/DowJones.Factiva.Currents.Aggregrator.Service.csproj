@@ -83,12 +83,6 @@
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\DowJones.Factiva.Currents.DataAggregrator\DowJones.Factiva.Currents.Aggregrator.csproj">
-      <Project>{16ffcb66-80a8-4d9a-8a03-8a02d38988eb}</Project>
-      <Name>DowJones.Factiva.Currents.Aggregrator</Name>
-    </ProjectReference>
-  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
