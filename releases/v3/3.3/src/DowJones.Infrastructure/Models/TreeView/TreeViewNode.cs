@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace DowJones.Web.Mvc.UI.Components.TreeView
+namespace DowJones.Models.TreeView
 {
     public class TreeViewNode
     {

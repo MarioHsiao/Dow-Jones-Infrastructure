@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using DowJones.Models.TreeView;
 
 namespace DowJones.Web.Mvc.UI.Components.TreeView
 {

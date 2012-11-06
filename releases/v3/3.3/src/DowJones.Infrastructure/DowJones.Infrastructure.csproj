@@ -174,6 +174,7 @@
     <Compile Include="Models\Common\RegionNewsVolume.cs" />
     <Compile Include="Models\Common\SourceNewsEntities.cs" />
     <Compile Include="Models\Common\SourceNewsEntity.cs" />
+    <Compile Include="Models\TreeView\TreeViewNode.cs" />
     <Compile Include="Web\ClientResources\EmbeddedClientResourceRepository.cs" />
     <Compile Include="Web\ClientResources\EmbeddedClientResourceValidator.cs" />
     <Compile Include="Web\ClientResources\IClientResourceRepository.cs" />
