@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A09715B7-05D8-4709-B50B-CB83413E9314}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DowJones.API.Common</RootNamespace>
+    <AssemblyName>DowJones.API.Common</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DowJones.Infrastructure">
+      <HintPath>..\packages\DowJones.Infrastructure.3.3.57\lib\DowJones.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="DowJones.Parallel">
+      <HintPath>..\packages\DowJones.Parallel.1.0.0\lib\DowJones.Parallel.dll</HintPath>
+    </Reference>
+    <Reference Include="factiva.gateway.messages">
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.98\lib\factiva.gateway.messages.dll</HintPath>
+    </Reference>
+    <Reference Include="FactivaGateway">
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.98\lib\FactivaGateway.dll</HintPath>
+    </Reference>
+    <Reference Include="Hammock">
+      <HintPath>..\packages\Hammock.1.2.9\lib\4.0\Hammock.dll</HintPath>
+    </Reference>
+    <Reference Include="Hammock.ClientProfile">
+      <HintPath>..\packages\Hammock.1.2.9\lib\4.0\Hammock.ClientProfile.dll</HintPath>
+    </Reference>
+    <Reference Include="Interop.FCMLib">
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.98\lib\Interop.FCMLib.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\packages\log4net.1.2.99\lib\2.0\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.4.0.8\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject">
+      <HintPath>..\packages\Ninject.2.2.1.4\lib\net40-Full\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AuditLog.cs" />
+    <Compile Include="CommonContracts.cs" />
+    <Compile Include="Constants.cs" />
+    <Compile Include="ExceptionHandling\BaseException.cs" />
+    <Compile Include="ExceptionHandling\ErrorResponse.cs" />
+    <Compile Include="ExceptionHandling\ExceptionHandlerUtility.cs" />
+    <Compile Include="ExceptionHandling\ServiceException.cs" />
+    <Compile Include="ExceptionHandling\ServiceFaultException.cs" />
+    <Compile Include="Logging\APILog.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilities\APIFramework.cs" />
+    <Compile Include="Utilities\Common.cs" />
+    <Compile Include="Utilities\EnumConverter.cs" />
+    <Compile Include="Utilities\PIMUtility.cs" />
+    <Compile Include="Utilities\Serialization.cs" />
+    <Compile Include="Utilities\Web.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
