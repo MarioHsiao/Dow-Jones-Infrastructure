@@ -8,6 +8,7 @@ using System.ServiceModel.Channels;
 using System.ServiceModel.Web;
 using System.Text;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace DowJones.Factiva.Currents.Aggregrator
 {
@@ -51,8 +52,8 @@ namespace DowJones.Factiva.Currents.Aggregrator
                     pageId,
                     enToken
                   );
-            List<string> pageModuleList = new List<string>();
-            pageModuleList.Add(GetData(url));
+            Dictionary<string, string> pageModuleList = new Dictionary<string,string>();
+            pageModuleList.Add(pageId,GetData(url));
             GetModuleData(pageModuleList, pageId);
             return GetSerializedPagesModules(pageModuleList);
         }
@@ -83,27 +84,41 @@ namespace DowJones.Factiva.Currents.Aggregrator
             return GetData(url);
         }
 
-        private static string GetSerializedPagesModules(List<string> pageModuleList)
+        private static string GetSerializedPagesModules(Dictionary<string,string> pageModuleList)
         {
-            object[] arr = new object[pageModuleList.Count];
-            int index = 0;
-            foreach (string str in pageModuleList)
+            if (pageModuleList.Count > 0)
             {
-                arr[index] = JsonConvert.DeserializeObject(str);
-                index++;
+                object[] arr = new object[pageModuleList.Count];
+                int itemIndex = 1;
+                arr[0] = JsonConvert.DeserializeObject(pageModuleList.Values.ElementAt(0));
+                for (int index = 1; index < pageModuleList.Keys.Count; index++)
+                {
+                    string[] stringArray = new string[2];
+                    stringArray[0] = @"{""type"":" + JsonConvert.SerializeObject(pageModuleList.Keys.ElementAt(index)) + "}";
+                    stringArray[1] = pageModuleList.Values.ElementAt(index);
+                    string mergedModuleIdAndModule = Cascade(stringArray);
+                    arr[itemIndex] = JsonConvert.DeserializeObject(mergedModuleIdAndModule);
+                    itemIndex++;
+                    //pageModuleList.
+                }
+                //foreach (string str in pageModuleList)
+                //{
+                //    arr[index] = JsonConvert.DeserializeObject(str);
+                //    index++;
+                //}
+                string serializedObject = JsonConvert.SerializeObject(arr);
+                return serializedObject;
             }
-            string serializedObject = JsonConvert.SerializeObject(arr);
-            return serializedObject;
+            return string.Empty;
         }
 
-        private static void GetModuleData(List<string> pageModuleList, string pageId)
+        private static void GetModuleData(Dictionary<string, string> pageModuleList, string pageId)
         {
             int firstResultToReturn = 0;
             int firstPartToReturn = 0;
-            
             string parts = string.Empty;
             string url = string.Empty;
-            dynamic pageById = JsonConvert.DeserializeObject(pageModuleList[0]);
+            dynamic pageById = JsonConvert.DeserializeObject(pageModuleList[pageId]);
             if (pageById.package != null && pageById.package.newsPage != null &&
                 pageById.package.newsPage.modules != null && pageById.package.newsPage.modules.Count > 0)
             {
@@ -114,8 +129,8 @@ namespace DowJones.Factiva.Currents.Aggregrator
                 {
                     if (module != null && module.__type != null)
                     {
-                        string type = module.__type.Value;
                         long moduleId = module.id.Value;
+                        string type = module.__type.Value;
                         switch (type)
                         {
                             case "summaryNewspageModule":
@@ -133,7 +148,7 @@ namespace DowJones.Factiva.Currents.Aggregrator
                                        parts,
                                        enToken
                                      );
-                                pageModuleList.Add(GetData(url));
+                                pageModuleList.Add(type, GetData(url));
                                 break;
                             case "topNewsNewspageModule":
                                  parts = "EditorsChoice|VideoAndAudio|OpinionAndAnalysis";
@@ -148,7 +163,7 @@ namespace DowJones.Factiva.Currents.Aggregrator
                                        parts,
                                        enToken
                                      );
-                                pageModuleList.Add(GetData(url));
+                                pageModuleList.Add(type,GetData(url));
                                 break;
                             case "sourcesNewspageModule":                                 
                                  parts = "EditorsChoice|VideoAndAudio|OpinionAndAnalysis";
@@ -164,7 +179,7 @@ namespace DowJones.Factiva.Currents.Aggregrator
                                        maxResultsToReturn,
                                        enToken
                                      );
-                                pageModuleList.Add(GetData(url));
+                                 pageModuleList.Add(type,GetData(url));
                                 break;
                             case "companyOverviewNewspageModule":
                                  parts = "SnapShot|Chart|RecentArticles|Trending";
@@ -179,7 +194,7 @@ namespace DowJones.Factiva.Currents.Aggregrator
                                        parts,
                                        enToken
                                      );
-                                pageModuleList.Add(GetData(url));
+                                 pageModuleList.Add(type,GetData(url));
                                 break;
                             case "radarNewspageModule":
                                
@@ -192,7 +207,7 @@ namespace DowJones.Factiva.Currents.Aggregrator
                                      timeFrame,
                                       enToken
                                     );
-                                pageModuleList.Add(GetData(url));
+                                pageModuleList.Add(type,GetData(url));
                                 break;
                             case "customTopicsNewspageModule":
                                 url =
@@ -207,7 +222,7 @@ namespace DowJones.Factiva.Currents.Aggregrator
                                        maxResultsToReturn,
                                       enToken
                                     );
-                                pageModuleList.Add(GetData(url));
+                                pageModuleList.Add(type,GetData(url));
                                 break;
                             case "regionalMapNewspageModule":
                                 url =
@@ -219,7 +234,7 @@ namespace DowJones.Factiva.Currents.Aggregrator
                                       timeFrame,
                                       enToken
                                     );
-                                pageModuleList.Add(GetData(url));
+                                pageModuleList.Add(type,GetData(url));
                                 break;
                             case "trendingNewsPageModule":
                                 parts = "TopEntities|TrendingDown|TrendingUp";
@@ -235,7 +250,7 @@ namespace DowJones.Factiva.Currents.Aggregrator
                                       entityType,
                                       enToken
                                     );
-                                pageModuleList.Add(GetData(url));
+                                pageModuleList.Add(type,GetData(url));
                                 break;
                             case "newsstandNewspageModule":
                                 parts = "Headlines|Counts|DiscoveredEntities";
@@ -250,7 +265,7 @@ namespace DowJones.Factiva.Currents.Aggregrator
                                       maxResultsToReturn,
                                       enToken
                                     );
-                                pageModuleList.Add(GetData(url));
+                                pageModuleList.Add(type,GetData(url));
                                 break;
                             case "alertsNewspageModule":
                                 url =
@@ -265,12 +280,36 @@ namespace DowJones.Factiva.Currents.Aggregrator
                                       maxPartsToReturn,
                                       enToken
                                     );
-                                pageModuleList.Add(GetData(url));
+                                pageModuleList.Add(type,GetData(url));
                                 break;
                         }
                     }
 
                 }
+            }
+        }
+
+        public static string Cascade(params string[] jsonArray)
+        {
+            JObject result = new JObject();
+            foreach (string json in jsonArray)
+            {
+                JObject parsed = JObject.Parse(json);
+                Merge(result, parsed);
+            }
+            return result.ToString();
+        }
+
+        private static void Merge(JObject receiver, JObject donor)
+        {
+            foreach (var property in donor)
+            {
+                JObject receiverValue = receiver[property.Key] as JObject;
+                JObject donorValue = property.Value as JObject;
+                if (receiverValue != null && donorValue != null)
+                    Merge(receiverValue, donorValue);
+                else
+                    receiver[property.Key] = property.Value;
             }
         }
 
