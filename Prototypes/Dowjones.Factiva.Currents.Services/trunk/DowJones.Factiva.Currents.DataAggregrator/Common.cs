@@ -108,6 +108,8 @@ namespace DowJones.Factiva.Currents.Aggregrator
                 pageById.package.newsPage.modules != null && pageById.package.newsPage.modules.Count > 0)
             {
                 int maxResultsToReturn = pageById.package.newsPage.modules.Count;
+                int maxPartsToReturn = maxResultsToReturn;
+                string timeFrame = "lastweek";
                 foreach (dynamic module in pageById.package.newsPage.modules)
                 {
                     if (module != null && module.__type != null)
@@ -149,11 +151,11 @@ namespace DowJones.Factiva.Currents.Aggregrator
                                 pageModuleList.Add(GetData(url));
                                 break;
                             case "sourceNewspageModule":
-                                 int maxPartsToReturn = maxResultsToReturn;
+                                 
                                  parts = "EditorsChoice|VideoAndAudio|OpinionAndAnalysis";
                                  url =
                                    string.Format(
-                                       "{0}/Modules/Sources/1.0/data/json?pageid={1}&moduleId={2}&firstPartToReturn{3}&maxResultsToReturn{4}&firstResultToReturn={5}&maxResultsToReturn={6}&encryptedToken={7}",
+                                       "{0}/Modules/Sources/1.0/data/json?pageid={1}&moduleId={2}&firstPartToReturn={3}&maxPartsToReturn={4}&firstResultToReturn={5}&maxResultsToReturn={6}&encryptedToken={7}",
                                        basePath,
                                        pageId,
                                        moduleId,
@@ -178,6 +180,34 @@ namespace DowJones.Factiva.Currents.Aggregrator
                                        parts,
                                        enToken
                                      );
+                                pageModuleList.Add(GetData(url));
+                                break;
+                            case "radarNewspageModule":
+                               
+                                url =
+                                  string.Format(
+                                      "{0}/Modules/Radar/1.0/data/json?pageid={1}&moduleId={2}&timeFrame={3}&encryptedToken={4}",
+                                      basePath,
+                                      pageId,
+                                      moduleId,
+                                     timeFrame,
+                                      enToken
+                                    );
+                                pageModuleList.Add(GetData(url));
+                                break;
+                            case "customTopicsNewspageModule":
+                                url =
+                                  string.Format(
+                                      "{0}/Modules/CustomTopics/1.0/data/json?pageid={1}&moduleId={2}&firstPartToReturn={3}&maxPartsToReturn={4}&firstResultToReturn={5}&maxResultsToReturn={6}&encryptedToken={7}",
+                                      basePath,
+                                      pageId,
+                                      moduleId,
+                                       firstPartToReturn,
+                                       maxPartsToReturn,
+                                       firstResultToReturn,
+                                       maxResultsToReturn,
+                                      enToken
+                                    );
                                 pageModuleList.Add(GetData(url));
                                 break;
                         }
