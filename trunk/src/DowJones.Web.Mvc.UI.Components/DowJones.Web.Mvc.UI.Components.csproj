@@ -403,6 +403,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>TranslateArticleComponent.cshtml</DependentUpon>
     </Compile>
+    <Compile Include="TreeView\TreeViewComponent.cs">
+      <DependentUpon>TreeViewComponent.cshtml</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="TrendingNews\TrendingNews.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -791,6 +796,10 @@
       <Generator>RazorViewComponentClassGenerator</Generator>
       <LastGenOutput>TranslateArticleComponent.cs</LastGenOutput>
     </None>
+    <None Include="TreeView\TreeViewComponent.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>TreeViewComponent.cs</LastGenOutput>
+    </None>
     <None Include="TrendingNews\TrendingNews.cshtml">
       <Generator>RazorViewComponentClassGenerator</Generator>
       <LastGenOutput>TrendingNews.cs</LastGenOutput>
@@ -923,6 +932,15 @@
   <ItemGroup>
     <EmbeddedResource Include="DiscoveryFilters\ClientTemplates\Success.htm" />
     <EmbeddedResource Include="DiscoveryFilters\DiscoveryFilters.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TreeView\TreeView.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TreeView\ClientTemplates\TreeViewNode.htm" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TreeView\ClientTemplates\TreeView.htm" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

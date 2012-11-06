@@ -1,0 +1,21 @@
+﻿<%
+var node = self,
+    options = this.options,
+	hasChildren = node.children && node.children.length > 0,
+	leafClass = hasChildren ? "" : " dj_tree_view_leaf",
+	openClass = hasChildren ? (node.isOpen ? " dj_tree_view_open" : " dj_tree_view_open_closed") : "";
+%>
+
+<li class="dj_tree_view_node<%=node.checkedClass + openClass + leafClass%>" data-id="<%= node.id %>">
+    <div class="dj_tree_view_node_content">
+		<span class="dj_tree_view_node_toggle"></span>
+		<% if (options.enableCheckboxes) { %>
+			<span class="dj_tree_view_node_checkbox"></span>
+		<% } %>
+		<span class="dj_tree_view_node_text"><%= node.text %></span>
+	</div>
+	
+	<% if (hasChildren) { %>
+		<%= this.templates.treeView(node.children) %>
+	<% } %>
+</li>

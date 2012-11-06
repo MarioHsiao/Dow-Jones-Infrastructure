@@ -95,6 +95,8 @@
     <Compile Include="CalloutPopup\CalloutPopupModel.cs" />
     <Compile Include="CompositeAuthor\CompositeAuthorModel.cs" />
     <Compile Include="CompositeOutlet\CompositeOutletModel.cs" />
+    <Compile Include="TreeView\TreeViewNode.cs" />
+    <Compile Include="TreeView\TreeViewModel.cs" />
     <Compile Include="DiscoveryFilters\DiscoveryFiltersModel.cs" />
     <Compile Include="Gauge\GaugeModel.cs" />
     <Compile Include="DateHistogram\DateHistogramModel.cs" />
