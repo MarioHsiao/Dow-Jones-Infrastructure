@@ -207,9 +207,21 @@
 			var treeViewNode = {
 				text: $node.find("> " + this.selectors.nodeContent + " > " + this.selectors.text).html(),
 				id: $node.data("id"),
-				isOpen: $node.hasClass(this.classNames.open),
-				isChecked: $node.hasClass(this.classNames.checked)
+				isOpen: $node.hasClass(this.classNames.open)
 			};
+			
+			if ($node.hasClass(this.classNames.checked)) {
+				treeViewNode.isChecked = true;
+				treeViewNode.checkedStatus = "checked";
+			}
+			else if ($node.hasClass(this.classNames.undetermined)) {
+				treeViewNode.isChecked = false;
+				treeViewNode.checkedStatus = "undetermined";
+			}
+			else {
+				treeViewNode.isChecked = false;
+				treeViewNode.checkedStatus = "unchecked";
+			}
 			
 			var $children = $node.find(childNodesSelector);
 			if ($children.length > 0) {
