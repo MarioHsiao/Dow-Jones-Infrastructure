@@ -66,7 +66,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DowJones.API.Common\DowJones.Factiva.Currents.Common.csproj">
+    <ProjectReference Include="..\DowJones.Factiva.Currents.Common\DowJones.Factiva.Currents.Common.csproj">
       <Project>{a09715b7-05d8-4709-b50b-cb83413e9314}</Project>
       <Name>DowJones.Factiva.Currents.Common</Name>
     </ProjectReference>

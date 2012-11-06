@@ -17,16 +17,16 @@ namespace DowJones.Factiva.Currents.Aggregrator.Services
     {
         public System.IO.Stream GetPageById(string format,string pageId)
         {
-          //  ApiLog.Logger.Info(ApiLog.LogPrefix.Start);
-            //ApiLog.Logger.InfoFormat(ApiLog.LogPrefix.Value, string.Format("request={0}", Web.GetRequestUrl()));
-            //if (string.IsNullOrWhiteSpace(pageId))
-              //  throw ExceptionHandlerUtility.GetWebFaultByServiceException(ErrorConstants.InvalidPageId, HttpStatusCode.BadRequest);
+            ApiLog.Logger.Info(ApiLog.LogPrefix.Start);
+            ApiLog.Logger.InfoFormat(ApiLog.LogPrefix.Value, string.Format("request={0}", Web.GetRequestUrl()));
+            if (string.IsNullOrWhiteSpace(pageId))
+                throw ExceptionHandlerUtility.GetWebFaultByServiceException(ErrorConstants.InvalidPageId, HttpStatusCode.BadRequest);
             string result = Common.GetPageByIdData(pageId);
             
             byte[] byteArray = Encoding.ASCII.GetBytes( result);
             MemoryStream stream = new MemoryStream( byteArray );
             SetResponseHeaders(RequestFormat.Json);
-            //ApiLog.Logger.Info(ApiLog.LogPrefix.End);
+            ApiLog.Logger.Info(ApiLog.LogPrefix.End);
             return stream;
         }
 
