@@ -14,7 +14,7 @@ namespace DowJones.Factiva.Currents.Aggregrator.Services
     {
         [Description("Get Page By Id")]
         [WebGet(UriTemplate = "/Id/{format}?pageId={pageId}", BodyStyle = WebMessageBodyStyle.Bare)]
-        [OperationContract(Name = "GetCollectionList")]
+        [OperationContract(Name = "GetPageById")]
         //[FaultContract(typeof(ErrorResponse))]
         Stream GetPageById(string format,string pageId);
 

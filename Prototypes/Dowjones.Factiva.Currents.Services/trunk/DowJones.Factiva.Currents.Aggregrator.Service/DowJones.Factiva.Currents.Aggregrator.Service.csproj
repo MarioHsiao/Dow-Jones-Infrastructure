@@ -75,6 +75,7 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Log4Net.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -106,7 +107,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>33146</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost/GoogleSEO/</IISUrl>
+          <IISUrl>http://localhost/GoogleSEO2/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

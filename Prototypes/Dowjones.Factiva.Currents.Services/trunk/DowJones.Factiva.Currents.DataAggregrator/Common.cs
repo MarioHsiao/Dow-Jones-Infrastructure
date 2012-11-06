@@ -189,20 +189,41 @@ namespace DowJones.Factiva.Currents.Aggregrator
 
         public static string GetData(string url)
         {
-            var webRequest = WebRequest.Create(new Uri(url));
-            webRequest.Headers.Add("X-Requested-With", "XMLHttpRequest");
-            webRequest.Method = "GET";
             string result = string.Empty;
-            using (var httpResponse = (HttpWebResponse)webRequest.GetResponse())
+            try
             {
-                using (var responseStream = httpResponse.GetResponseStream())
+                var webRequest = WebRequest.Create(new Uri(url));
+                webRequest.Headers.Add("X-Requested-With", "XMLHttpRequest");
+                webRequest.Method = "GET";
+                
+                WebResponse response = webRequest.GetResponse();
+                using (var httpResponse = (HttpWebResponse)response)
                 {
-                    using (var readStream = new StreamReader(responseStream, Encoding.UTF8))
+                    using (var responseStream = httpResponse.GetResponseStream())
                     {
-                        result = readStream.ReadToEnd();
+                        using (var readStream = new StreamReader(responseStream, Encoding.UTF8))
+                        {
+                            result = readStream.ReadToEnd();
+                        }
                     }
                 }
             }
+            catch (WebException ex)
+            {
+                using (var stream = ex.Response.GetResponseStream())
+                using (var reader = new StreamReader(stream))
+                {
+                    result = reader.ReadToEnd();
+                }
+            }
+            catch (Exception ex)
+            {
+                // Something more serious happened
+                // like for example you don't have network access
+                // we cannot talk about a server exception here as
+                // the server probably was never reached
+            }
+            
             return result;
         }
     }

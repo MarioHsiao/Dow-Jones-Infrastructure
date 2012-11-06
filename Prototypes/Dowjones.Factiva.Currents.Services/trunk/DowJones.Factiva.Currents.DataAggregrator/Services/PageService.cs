@@ -6,6 +6,9 @@ using System.Net;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
+using DowJones.Factiva.Currents.Common.ExceptionHandling;
+using DowJones.Factiva.Currents.Common.Logging;
+using DowJones.Factiva.Currents.Common.Utilities;
 using Newtonsoft.Json;
 
 namespace DowJones.Factiva.Currents.Aggregrator.Services
@@ -14,20 +17,27 @@ namespace DowJones.Factiva.Currents.Aggregrator.Services
     {
         public System.IO.Stream GetPageById(string format,string pageId)
         {
+          //  ApiLog.Logger.Info(ApiLog.LogPrefix.Start);
+            //ApiLog.Logger.InfoFormat(ApiLog.LogPrefix.Value, string.Format("request={0}", Web.GetRequestUrl()));
+            //if (string.IsNullOrWhiteSpace(pageId))
+              //  throw ExceptionHandlerUtility.GetWebFaultByServiceException(ErrorConstants.InvalidPageId, HttpStatusCode.BadRequest);
             string result = Common.GetPageByIdData(pageId);
             
             byte[] byteArray = Encoding.ASCII.GetBytes( result);
             MemoryStream stream = new MemoryStream( byteArray );
             SetResponseHeaders(RequestFormat.Json);
+            //ApiLog.Logger.Info(ApiLog.LogPrefix.End);
             return stream;
         }
 
         public System.IO.Stream GetPageList(string format)
         {
+          //  ApiLog.Logger.Info(ApiLog.LogPrefix.Start);
             string result = Common.GetPageListData();
             byte[] byteArray = Encoding.ASCII.GetBytes(result);
             MemoryStream stream = new MemoryStream(byteArray);
             SetResponseHeaders(RequestFormat.Json);
+          //  ApiLog.Logger.Info(ApiLog.LogPrefix.End);
             return stream;
         }
 
