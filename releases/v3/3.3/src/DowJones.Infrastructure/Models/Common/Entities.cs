@@ -21,11 +21,14 @@ namespace DowJones.Models.Common
 		[JsonProperty("subjectNewsEntities")]
 		public ParentNewsEntity SubjectNewsEntities { get; set; }
 
-        [JsonProperty("sourceNewsEntities")]
-        public ParentNewsEntity SourceNewsEntities { get; set; }
-
         [JsonProperty("authorNewsEntities")]
         public ParentNewsEntity AuthorNewsEntities { get; set; }
+
+        [JsonProperty("sourceNewsEntities")]
+        public ParentSourceNewsEntity SourceNewsEntities { get; set; }
+
+        [JsonProperty("dateNewsEntities")]
+        public ParentDateNewsEntity DateNewsEntities { get; set; }
 
         //[JsonProperty("organizationNewsEntities")]
         //public ParentNewsEntity OrganizationNewsEntities { get; set; }

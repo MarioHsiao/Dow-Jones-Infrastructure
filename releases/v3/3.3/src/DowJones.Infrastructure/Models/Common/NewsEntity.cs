@@ -55,6 +55,14 @@ namespace DowJones.Models.Common
         public WholeNumber CurrentTimeFrameNewsVolume { get; set; }
 
         /// <summary>
+        /// Gets or sets the rounded news volume.
+        /// </summary>
+        /// <value>The news volume.</value>
+        /// <remarks></remarks>
+        [DataMember(Name = "currentTimeFrameRoundedNewsVolume")]
+        public string CurrentTimeFrameRoundedNewsVolume { get; set; }
+
+        /// <summary>
         /// Gets or sets the entity factiva code.
         /// </summary>
         /// <value>The entity factiva code.</value>

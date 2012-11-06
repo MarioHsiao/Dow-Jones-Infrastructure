@@ -22,10 +22,12 @@ DJ.UI.DiscoveryFilters = DJ.UI.Component.extend({
     //Selectors
     selectors: {
         discoveryFiltersList: 'ul.dj_discoveryFilters-list',
+        chartContainer: 'div.dj_hc-container',
         export: 'span.dj_df-export a.export',
-        expandBtn: '.dj_df-div .dj_df-expand',
-        expandDiv: 'div.dj_df-div div.cd_div_expand',
-        collapseDiv: 'div.dj_df-div div.cd_div_collapse'
+        expandBtn: 'a.dj_df-expand',
+        collapseBtn: 'a.dj_df-collapse',
+        expandDiv: 'div.cd_div_expand',
+        collapseDiv: 'div.cd_div_collapse'
     },
 
     // Default options
@@ -57,7 +59,7 @@ DJ.UI.DiscoveryFilters = DJ.UI.Component.extend({
         this._super(element, $meta);
 
         this.discoveryFitlersConfig = this._getDiscoveryFiltersConfig();
-        this.bindOnSuccess();
+        this.bindOnSuccess(this.data.discovery);
 
         //Initialize Sortable
         this._initializeSortable();
@@ -72,12 +74,12 @@ DJ.UI.DiscoveryFilters = DJ.UI.Component.extend({
 
     // Bind the data to the component on Success
     bindOnSuccess: function (data) {
-        /*if (!data) {
-        $dj.warn("bindOnSuccess:: called with empty data object");
-        return;
-        }*/
-
-        $(this.$element).html(this.templates.success);
+        if (!data) {
+            $dj.warn("bindOnSuccess:: called with empty data object");
+            return;
+        }
+        var discoveryFiltersMarkUp = this.templates.success(data);
+        $(this.$element).html(discoveryFiltersMarkUp);
 
         // bind events and perform other wiring up
         this._initializeDiscoveryFilters(data);
@@ -107,26 +109,27 @@ DJ.UI.DiscoveryFilters = DJ.UI.Component.extend({
     //Initialize Expand/Collapse Discovery
     _initializeExpandCollapse: function () {
         var self = this;
-        $(this.selectors.expandBtn).bind('click', function () {
-            self._expandCollapse(this, false); return false;
+        $(this.selectors.collapseBtn).bind('click', function () {
+            self._expandCollapse(this, true); return false;
         });
     },
 
     //Expand/Collapse function
     _expandCollapse: function (el, expand) {
         var self = this;
+        var ContainerLi = $(el).closest('li');
         if (expand) {
-            $(el).removeClass('cd_collapse').addClass('dj_df-expand').unbind('click').bind('click', function () {
+            $(el).removeClass('dj_df-collapse').addClass('dj_df-expand').unbind('click').bind('click', function () {
                 self._expandCollapse(this, false); return false;
             });
-            $(this.selectors.collapseDiv).removeClass('cd_div_collapse').addClass('cd_div_expand');
-            $(this.selectors.export).show();
+            $(this.selectors.collapseDiv, ContainerLi).removeClass('cd_div_collapse').addClass('cd_div_expand');
+            $(this.selectors.export, ContainerLi).removeClass('hide').addClass('show');
         } else {
-            $(el).removeClass('dj_df-expand').addClass('cd_collapse').unbind('click').bind('click', function () {
+            $(el).removeClass('dj_df-expand').addClass('dj_df-collapse').unbind('click').bind('click', function () {
                 self._expandCollapse(this, true); return false;
             });
-            $(this.selectors.expandDiv).removeClass('cd_div_expand').addClass('cd_div_collapse');
-            $(this.selectors.export).hide();
+            $(this.selectors.expandDiv, ContainerLi).removeClass('cd_div_expand').addClass('cd_div_collapse');
+            $(this.selectors.export, ContainerLi).removeClass('show').addClass('hide');
         }
     },
 
@@ -145,8 +148,40 @@ DJ.UI.DiscoveryFilters = DJ.UI.Component.extend({
 
     //Initialize Discovery Filters
     _initializeDiscoveryFilters: function (discoveryEntityObj) {
-        var $this = this;
-        this._renderDiscoveryFilters();
+        var $this = this,
+        index = 0,
+        discoveryData = {};
+        //Build the Discovery Entity Lists
+        _.each(discoveryEntityObj, function (entitiesObj) {
+            var categoryArr = [],
+                seriesDataArr = [],
+                discoveryEntityObjArr = entitiesObj.newsEntities;
+
+            //Expand Collapse the div based on the isExpanded property
+            if (entitiesObj.isExpanded) {
+                var container = $this.$element.find('.dj_discoveryFilters-listItem-' + index);
+                var collapseBtn = $($this.selectors.collapseBtn, container);
+                $this._expandCollapse(collapseBtn, true);
+            }
+
+            //Set the height for each hc container based on no. of entities
+            var discoveryLi = $this.$element.find('.dj_discoveryFilters-listItem-' + index);
+            $($this.selectors.chartContainer, discoveryLi).css('height', 27 * (discoveryEntityObjArr.length) + '');
+
+            //Construct the graph for the discovery entity objects
+            _.each(discoveryEntityObjArr, function (entity) {
+                var dataObj = {};
+                dataObj.y = entity.currentTimeFrameNewsVolume.value;
+                dataObj.jsonObj = entity;
+                seriesDataArr[seriesDataArr.length] = dataObj;
+                categoryArr[categoryArr.length] = entity.descriptor;
+            });
+            //discoveryData.title = entitiesObj.title;
+            discoveryData.categories = categoryArr;
+            discoveryData.seriesData = seriesDataArr;
+            $this._renderDiscoveryFilters(discoveryData, index);
+            index++;
+        });
     },
 
     //On Discovery Item Click Event Handler
@@ -163,6 +198,7 @@ DJ.UI.DiscoveryFilters = DJ.UI.Component.extend({
         self.publish(self.events.exportClick, { "data": "test export" });
     },
 
+    //Get discovery Filter Config
     _getDiscoveryFiltersConfig: function () {
         //BEGIN: Discovery Filters Configuration
         return {
@@ -183,7 +219,7 @@ DJ.UI.DiscoveryFilters = DJ.UI.Component.extend({
             },
             plotOptions: {
                 series: {
-                    color: '#0bb6e4',
+                    color: '#5BB4E5',
                     cursor: 'pointer'
                 },
                 bar: {
@@ -202,15 +238,41 @@ DJ.UI.DiscoveryFilters = DJ.UI.Component.extend({
         //END: Discovery Filters Configuration
     },
 
+    _extractSeriesData: function (seriesData) {
+        var actualDataArr = [], tweakedDataArr = [];
+        _.each(seriesData, function (obj) {
+            //Construct original series array
+            actualDataArr[actualDataArr.length] = {
+                dataLabels: {
+                    style: {
+                        display: 'none'
+                    }
+                },
+                y: obj.y
+            };
+
+            //Contruct tweaked series data
+            tweakedDataArr[tweakedDataArr.length] = {
+                y: seriesData[0].y,
+                color: 'transparent',
+                dataLabels: { x: -25, y: 1, formatter: function () { return obj.y; } }
+            }
+        });
+        return { "actual": actualDataArr, "tweaked": tweakedDataArr };
+    },
+
     //Render DiscoveryGraph
     _renderDiscoveryFilters: function (discoveryData, idx) {
+        var chartContainer = this.$element.find('.dj_discoveryFilters-listItem-' + idx).find('.dj_hc-container');
+        var seriesData = this._extractSeriesData(discoveryData.seriesData);
         return new Highcharts.Chart($.extend(true, {}, this.discoveryFitlersConfig, {
             chart: {
-                renderTo: 'hc-container'
+                renderTo: chartContainer[0],
+                width: $(chartContainer[0]).width()
             },
 
             xAxis: {
-                categories: ['Microsoft', 'Apple Inc', 'IBM', 'Amazon', 'Samsung', 'Salesforce', 'Google', 'Netflix']
+                categories: discoveryData.categories
             },
             tooltip: {
                 enabled: false,
@@ -221,101 +283,10 @@ DJ.UI.DiscoveryFilters = DJ.UI.Component.extend({
             },
             series: [{
                 name: null,
-                data: [{ y: 547, color: 'transparent', dataLabels: { x: -25, y: 1} },
-                       { y: 547, color: 'transparent', dataLabels: { x: -25, y: 1, formatter: function () {
-                           return 408;
-                       }
-                       }
-                       },
-                       { y: 547, color: 'transparent', dataLabels: { x: -25, y: 1, formatter: function () {
-                           return 156;
-                       }
-                       }
-                       },
-                       { y: 547, color: 'transparent', dataLabels: { x: -25, y: 1, formatter: function () {
-                           return 133;
-                       }
-                       }
-                       },
-                       { y: 547, color: 'transparent', dataLabels: { x: -25, y: 1, formatter: function () {
-                           return 96;
-                       }
-                       }
-                       },
-                       { y: 547, color: 'transparent', dataLabels: { x: -25, y: 1, formatter: function () {
-                           return 80;
-                       }
-                       }
-                       },
-                       { y: 547, color: 'transparent', dataLabels: { x: -25, y: 1, formatter: function () {
-                           return 66;
-                       }
-                       }
-                       },
-                       { y: 547, color: 'transparent', dataLabels: { x: -25, y: 1, formatter: function () {
-                           return 46;
-                       }
-                       }
-                       }]
+                data: seriesData.tweaked
             }, {
                 name: null,
-                data: [{
-                    dataLabels: {
-                        style: {
-                            display: 'none'
-                        }
-                    },
-                    y: 547
-                }, {
-                    dataLabels: {
-                        style: {
-                            display: 'none'
-                        }
-                    },
-                    y: 408
-                }, {
-                    dataLabels: {
-                        style: {
-                            display: 'none'
-                        }
-                    },
-                    y: 156
-                }, {
-                    dataLabels: {
-                        style: {
-                            display: 'none'
-                        }
-                    },
-                    y: 133
-                }, {
-                    dataLabels: {
-                        style: {
-                            display: 'none'
-                        }
-                    },
-                    y: 96
-                }, {
-                    dataLabels: {
-                        style: {
-                            display: 'none'
-                        }
-                    },
-                    y: 80
-                }, {
-                    dataLabels: {
-                        style: {
-                            display: 'none'
-                        }
-                    },
-                    y: 66
-                }, {
-                    dataLabels: {
-                        style: {
-                            display: 'none'
-                        }
-                    },
-                    y: 46
-                }]
+                data: seriesData.actual
             }]
         }));
     }

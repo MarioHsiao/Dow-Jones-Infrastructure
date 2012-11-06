@@ -254,6 +254,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Content Include="Content\js\DiscoveryFilters.js" />
     <Content Include="GatewayResources\ReleaseNotes.txt" />
     <Content Include="GatewayResources\Xslt\archive\CreateBillingRecord_Response.xslt" />
     <Content Include="GatewayResources\Xslt\archive\GetArchiveEmailWithLimit_V2_0_Response.xslt" />

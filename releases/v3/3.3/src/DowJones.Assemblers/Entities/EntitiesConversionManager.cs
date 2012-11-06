@@ -1,157 +1,311 @@
-﻿using DowJones.Ajax.HeadlineList;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using DowJones.Ajax.HeadlineList;
+using DowJones.Formatters;
+using DowJones.Formatters.Numerical;
 using DowJones.Models.Common;
+using DowJones.Search.Core.ISO8601;
 using Factiva.Gateway.Messages.Search.V2_0;
 
 namespace DowJones.Assemblers.Entities
 {
-    public class EntitiesConversionManager : IAssembler<DowJones.Models.Common.Entities, NavigatorSet>
+    public class EntitiesConversionManager : IAssembler<Models.Common.Entities, NavigatorSet>
     {
-        public DowJones.Models.Common.Entities Convert(NavigatorSet navigatorSet)
+        public Models.Common.Entities Convert(NavigatorSet navigatorSet)
         {
-            DowJones.Models.Common.Entities entities = new Models.Common.Entities();
+            return Convert(navigatorSet, null);
+        }
+
+        public Models.Common.Entities Convert(NavigatorSet navigatorSet, List<string> expandedChartList)
+        {
+            int index = 0;
+            Models.Common.Entities entities = new Models.Common.Entities();
             if (navigatorSet.NavigatorCollection != null)
             {
                 foreach (Navigator objNavigator in navigatorSet.NavigatorCollection)
                 {
-                    ParentNewsEntity parentNewsEntity = new ParentNewsEntity();
-                    Models.Common.NewsEntities newsEntities = new Models.Common.NewsEntities();
-
-                    foreach (Bucket objBucket in objNavigator.BucketCollection)
-                    {
-                        NewsEntity objNewsEntity = new NewsEntity();
-                        objNewsEntity.Code = objBucket.Id;
-                        objNewsEntity.Descriptor = objBucket.Value;
-                        objNewsEntity.CurrentTimeFrameNewsVolume = new Formatters.WholeNumber(objBucket.HitCount);
-                        switch (objNavigator.Id)
-                        {
-                            case "co":
-                                {
-                                    objNewsEntity.TypeDescriptor = "Company";
-                                    objNewsEntity.Type = EntityType.Company;
-                                    break;
-                                }
-                            case "in":
-                                {
-                                    objNewsEntity.TypeDescriptor = "Industry";
-                                    objNewsEntity.Type = EntityType.Industry;
-                                    break;
-                                }
-                            case "ns":
-                                {
-                                    objNewsEntity.TypeDescriptor = "Subject";
-                                    objNewsEntity.Type = EntityType.NewsSubject;
-                                    break;
-                                }
-                            case "pe":
-                                {
-                                    objNewsEntity.TypeDescriptor = "Person";
-                                    objNewsEntity.Type = EntityType.Person;
-                                    break;
-                                }
-                            case "re":
-                                {
-                                    objNewsEntity.TypeDescriptor = "Region";
-                                    objNewsEntity.Type = EntityType.Region;
-                                    break;
-                                }
-                            //case "orgt":
-                            //    {
-                            //        objNewsEntity.TypeDescriptor = "Organization";
-                            //        objNewsEntity.Type = EntityType.Organization;
-                            //        break;
-                            //    }
-                            case "au":
-                                {
-                                    objNewsEntity.TypeDescriptor = "Author";
-                                    objNewsEntity.Type = EntityType.Author;
-                                    break;
-                                }
-                            case "sc":
-                                {
-                                    objNewsEntity.TypeDescriptor = "Source";
-                                    objNewsEntity.Type = EntityType.Source;
-                                    break;
-                                }
-                            //default:
-                            //    {
-                            //        objNewsEntity.TypeDescriptor = "UnSpecified";
-                            //        objNewsEntity.Type = EntityType.UnSpecified;
-                            //        break;
-                            //    }
-                        }
-                        newsEntities.Add(objNewsEntity);
-                    }
-                    parentNewsEntity.NewsEntities = newsEntities;
-                    
                     switch (objNavigator.Id)
                     {
-                        case "co":
+                        case "py":
+                        case "pm":
+                        case "pw":
+                        case "pd":
                             {
-                                parentNewsEntity.Title = "companies";
-                                parentNewsEntity.Type = EntityType.Company;
-                                entities.CompanyNewsEntities = parentNewsEntity;
+                                ParentDateNewsEntity parentNewsEntity = new ParentDateNewsEntity();
+                                parentNewsEntity.Position = index;
+                                if (expandedChartList != null && IsInExpandedList(objNavigator.Id, expandedChartList))
+                                {
+                                    parentNewsEntity.IsExpanded = true;
+                                }
+                                DateNewsEntities newsEntities = new DateNewsEntities();
+                                foreach (Bucket objBucket in objNavigator.BucketCollection)
+                                {
+                                    DateNewsEntity objNewsEntity = new DateNewsEntity();
+                                    objNewsEntity.Code = objBucket.Id;
+                                    objNewsEntity.Descriptor = objBucket.Value;
+                                    objNewsEntity.CurrentTimeFrameNewsVolume = new Formatters.WholeNumber(objBucket.HitCount);
+                                    objNewsEntity.CurrentTimeFrameRoundedNewsVolume = GetRoundedHitCount(objBucket.HitCount);
+                                    switch (objNavigator.Id)
+                                    {
+                                        case "py":
+                                            {
+                                                objNewsEntity.TypeDescriptor = "Date Yearly";
+                                                objNewsEntity.Type = EntityType.DateYearly;
+                                                objNewsEntity.StartDate = new DateTime(Int32.Parse(objBucket.Id.Substring(0, 4)), 1, 1);
+                                                objNewsEntity.EndDate = new DateTime(objNewsEntity.StartDate.Year, 12, 31);
+                                                break;
+                                            }
+                                        case "pm":
+                                            {
+                                                objNewsEntity.TypeDescriptor = "Date Monthly";
+                                                objNewsEntity.Type = EntityType.DateMonthly;
+                                                objNewsEntity.StartDate = new DateTime(Int32.Parse(objBucket.Id.Substring(0, 4)), Int32.Parse(objBucket.Id.Substring(4, 2)), 1);
+                                                objNewsEntity.EndDate = objNewsEntity.StartDate.AddMonths(1).Subtract(new TimeSpan(1, 0, 0, 0));
+                                                break;
+                                            }
+                                        case "pw":
+                                            {
+                                                objNewsEntity.TypeDescriptor = "Date Weekly";
+                                                objNewsEntity.Type = EntityType.DateWeekly;
+                                                objNewsEntity.StartDate = Iso8601Date.GetIso8601Week(Int32.Parse(objBucket.Id.Substring(0, 4)), Int32.Parse(objBucket.Id.Substring(4, 2)));
+                                                objNewsEntity.EndDate = objNewsEntity.StartDate.AddDays(7);
+                                                break;
+                                            }
+                                        case "pd":
+                                            {
+                                                objNewsEntity.TypeDescriptor = "Date Daily";
+                                                objNewsEntity.Type = EntityType.DateDaily;
+                                                objNewsEntity.StartDate = new DateTime(Int32.Parse(objBucket.Id.Substring(0, 4)), Int32.Parse(objBucket.Id.Substring(4, 2)), Int32.Parse(objBucket.Id.Substring(6, 2)));
+                                                objNewsEntity.EndDate = objNewsEntity.StartDate;
+                                                break;
+                                            }
+                                    }
+                                    newsEntities.Add(objNewsEntity);
+                                }
+                                parentNewsEntity.NewsEntities = newsEntities;
+                                parentNewsEntity.Title = "date";
+                                switch (objNavigator.Id)
+                                {
+                                    case "py":
+                                        {
+                                            parentNewsEntity.Type = EntityType.DateYearly;
+                                            break;
+                                        }
+                                    case "pm":
+                                        {
+                                            parentNewsEntity.Type = EntityType.DateMonthly;
+                                            break;
+                                        }
+                                    case "pw":
+                                        {
+                                            parentNewsEntity.Type = EntityType.DateWeekly;
+                                            break;
+                                        }
+                                    case "pd":
+                                        {
+                                            parentNewsEntity.Type = EntityType.DateDaily;
+                                            break;
+                                        }
+                                }
+                                entities.DateNewsEntities = parentNewsEntity;
                                 break;
                             }
-                        case "in":
-                            {
-                                parentNewsEntity.Title = "industries";
-                                parentNewsEntity.Type = EntityType.Industry;
-                                entities.IndustryNewsEntities = parentNewsEntity;
-                                break;
-                            }
-                        case "ns":
-                            {
-                                parentNewsEntity.Title = "newsSubjects";
-                                parentNewsEntity.Type = EntityType.NewsSubject;
-                                entities.SubjectNewsEntities = parentNewsEntity;
-                                break;
-                            }
-                        case "pe":
-                            {
-                                parentNewsEntity.Title = "executives";
-                                parentNewsEntity.Type = EntityType.Person;
-                                entities.PersonNewsEntities = parentNewsEntity;
-                                break;
-                            }
-                        case "re":
-                            {
-                                parentNewsEntity.Title = "regions";
-                                parentNewsEntity.Type = EntityType.Region;
-                                entities.RegionNewsEntities = parentNewsEntity;
-                                break;
-                            }
-                        //case "orgt":
-                        //    {
-                        //        parentNewsEntity.Title = "organizations";
-                        //        parentNewsEntity.Type = EntityType.Organization;
-                        //        entities.OrganizationNewsEntities = parentNewsEntity;
-                        //        break;
-                        //    }
-                        case "au":
-                            {
-                                parentNewsEntity.Title = "authors";
-                                parentNewsEntity.Type = EntityType.Author;
-                                entities.AuthorNewsEntities = parentNewsEntity;
-                                break;
-                            }
+                        case "sf":
                         case "sc":
                             {
+                                ParentSourceNewsEntity parentNewsEntity = new ParentSourceNewsEntity();
+                                parentNewsEntity.Position = index;
+                                if (expandedChartList != null && IsInExpandedList(objNavigator.Id, expandedChartList))
+                                {
+                                    parentNewsEntity.IsExpanded = true;
+                                }
+                                SourceNewsEntities newsEntities = new SourceNewsEntities();
+                                foreach (Bucket objBucket in objNavigator.BucketCollection)
+                                {
+                                    SourceNewsEntity objNewsEntity = new SourceNewsEntity();
+                                    objNewsEntity.Code = objBucket.Id;
+                                    objNewsEntity.Descriptor = objBucket.Value;
+                                    objNewsEntity.CurrentTimeFrameNewsVolume = new Formatters.WholeNumber(objBucket.HitCount);
+                                    objNewsEntity.CurrentTimeFrameRoundedNewsVolume = GetRoundedHitCount(objBucket.HitCount);
+                                    switch (objNavigator.Id)
+                                    {
+                                        case "sc":
+                                            {
+                                                objNewsEntity.TypeDescriptor = "Source";
+                                                objNewsEntity.Type = EntityType.Source;
+                                                break;
+                                            }
+                                        case "sf":
+                                            {
+                                                if(objBucket.Type != null && objBucket.Type == "family")
+                                                {
+                                                    objNewsEntity.IsGroup = true;   //entended property for Source entity
+                                                }
+                                                objNewsEntity.TypeDescriptor = "SourceFamily";
+                                                objNewsEntity.Type = EntityType.SourceFamily;
+                                                break;
+                                            }
+                                    }
+                                    newsEntities.Add(objNewsEntity);
+                                }
+                                parentNewsEntity.NewsEntities = newsEntities;
                                 parentNewsEntity.Title = "sources";
-                                parentNewsEntity.Type = EntityType.Source;
+                                switch (objNavigator.Id)
+                                {
+                                    case "sc":
+                                        {
+                                            parentNewsEntity.Type = EntityType.Source;
+                                            break;
+                                        }
+                                    case "sf":
+                                        {
+                                            parentNewsEntity.Type = EntityType.SourceFamily;
+                                            break;
+                                        }
+                                }
                                 entities.SourceNewsEntities = parentNewsEntity;
                                 break;
                             }
-                        //default:
-                        //    {
-                        //        parentNewsEntity.Title = "UnSpecified";
-                        //        parentNewsEntity.Type = EntityType.UnSpecified;
-                        //        entities.UnSpecifiedNewsEntities = parentNewsEntity;
-                        //        break;
-                        //    }
+                        default:
+                            {
+                                ParentNewsEntity parentNewsEntity = new ParentNewsEntity();
+                                parentNewsEntity.Position = index;
+                                if (expandedChartList != null && IsInExpandedList(objNavigator.Id, expandedChartList))
+                                {
+                                    parentNewsEntity.IsExpanded = true;
+                                }
+                                Models.Common.NewsEntities newsEntities = new Models.Common.NewsEntities();
+                                foreach (Bucket objBucket in objNavigator.BucketCollection)
+                                {
+                                    NewsEntity objNewsEntity = new NewsEntity();
+                                    objNewsEntity.Code = objBucket.Id;
+                                    objNewsEntity.Descriptor = objBucket.Value;
+                                    objNewsEntity.CurrentTimeFrameNewsVolume = new Formatters.WholeNumber(objBucket.HitCount);
+                                    objNewsEntity.CurrentTimeFrameRoundedNewsVolume = GetRoundedHitCount(objBucket.HitCount);
+                                    switch (objNavigator.Id)
+                                    {
+                                        case "co":
+                                            {
+                                                objNewsEntity.TypeDescriptor = "Company";
+                                                objNewsEntity.Type = EntityType.Company;
+                                                break;
+                                            }
+                                        case "in":
+                                            {
+                                                objNewsEntity.TypeDescriptor = "Industry";
+                                                objNewsEntity.Type = EntityType.Industry;
+                                                break;
+                                            }
+                                        case "ns":
+                                            {
+                                                objNewsEntity.TypeDescriptor = "Subject";
+                                                objNewsEntity.Type = EntityType.NewsSubject;
+                                                break;
+                                            }
+                                        case "pe":
+                                            {
+                                                objNewsEntity.TypeDescriptor = "Person";
+                                                objNewsEntity.Type = EntityType.Person;
+                                                break;
+                                            }
+                                        case "re":
+                                            {
+                                                objNewsEntity.TypeDescriptor = "Region";
+                                                objNewsEntity.Type = EntityType.Region;
+                                                break;
+                                            }
+                                        case "au":
+                                            {
+                                                objNewsEntity.TypeDescriptor = "Author";
+                                                objNewsEntity.Type = EntityType.Author;
+                                                break;
+                                            }
+                                    }
+                                    newsEntities.Add(objNewsEntity);
+                                }
+                                parentNewsEntity.NewsEntities = newsEntities;
+
+                                switch (objNavigator.Id)
+                                {
+                                    case "co":
+                                        {
+                                            parentNewsEntity.Title = "companies";
+                                            parentNewsEntity.Type = EntityType.Company;
+                                            entities.CompanyNewsEntities = parentNewsEntity;
+                                            break;
+                                        }
+                                    case "in":
+                                        {
+                                            parentNewsEntity.Title = "industries";
+                                            parentNewsEntity.Type = EntityType.Industry;
+                                            entities.IndustryNewsEntities = parentNewsEntity;
+                                            break;
+                                        }
+                                    case "ns":
+                                        {
+                                            parentNewsEntity.Title = "newsSubjects";
+                                            parentNewsEntity.Type = EntityType.NewsSubject;
+                                            entities.SubjectNewsEntities = parentNewsEntity;
+                                            break;
+                                        }
+                                    case "pe":
+                                        {
+                                            parentNewsEntity.Title = "executives";
+                                            parentNewsEntity.Type = EntityType.Person;
+                                            entities.PersonNewsEntities = parentNewsEntity;
+                                            break;
+                                        }
+                                    case "re":
+                                        {
+                                            parentNewsEntity.Title = "regions";
+                                            parentNewsEntity.Type = EntityType.Region;
+                                            entities.RegionNewsEntities = parentNewsEntity;
+                                            break;
+                                        }
+                                    case "au":
+                                        {
+                                            parentNewsEntity.Title = "authors";
+                                            parentNewsEntity.Type = EntityType.Author;
+                                            entities.AuthorNewsEntities = parentNewsEntity;
+                                            break;
+                                        }
+                                }
+                                break;
+                            }
                     }
+                    index++;
                 }
             }
             return entities;
         }
+
+        private static bool IsInExpandedList(string id, IEnumerable<string> expandedChartList)
+        {
+            return expandedChartList.Any(entityId => entityId == id);
+        }
+
+        public static string GetRoundedHitCount(int count)
+        {
+            if (count < 10000)
+            {
+                return new NumberFormatter().Format(count, NumberFormatType.Whole);
+            }
+            if (count <= 99999)
+            {
+                return String.Format("{0:##.0K}", Math.Round((double)count / 1000, 1));
+            }
+            if (count <= 999999)
+            {
+                return String.Format("{0:###K}", Math.Round((double)count / 1000));
+            }
+            //if (count <= 9999999)
+            //{
+            //    return String.Format("{0:#.0M}", Math.Round((double)count / 1000000,1));
+            //}
+            return String.Format("{0}M", new NumberFormatter().Format(Math.Round((double)count / 1000000, 1), NumberFormatType.Precision));
+        }
+
+
     }
 }

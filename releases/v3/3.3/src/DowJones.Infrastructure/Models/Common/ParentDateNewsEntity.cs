@@ -2,8 +2,8 @@
 
 namespace DowJones.Models.Common
 {
-    [DataContract(Name = "parentNewsEntity", Namespace = "")]
-    public class ParentNewsEntity : NewsEntity
+    [DataContract(Name = "parentDateNewsEntity", Namespace = "")]
+    public class ParentDateNewsEntity : NewsEntity
     {
         [DataMember(Name = "title")]
         public string Title { get; set; }
@@ -15,6 +15,6 @@ namespace DowJones.Models.Common
         public bool IsExpanded { get; set; }
 
         [DataMember(Name = "newsEntities", EmitDefaultValue = false)]
-        public NewsEntities NewsEntities { get; set; }
+        public DateNewsEntities NewsEntities { get; set; }
     }
 }

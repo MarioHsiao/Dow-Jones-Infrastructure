@@ -248,6 +248,31 @@ namespace DowJones.Ajax.HeadlineList
         /// </summary>
         [EnumMember]
         Source,
+        /// <summary>
+        /// 
+        /// </summary>
+        [EnumMember]
+        SourceFamily,
+        /// <summary>
+        /// 
+        /// </summary>
+        [EnumMember]
+        DateYearly,
+        /// <summary>
+        /// 
+        /// </summary>
+        [EnumMember]
+        DateMonthly,
+        /// <summary>
+        /// 
+        /// </summary>
+        [EnumMember]
+        DateWeekly,
+        /// <summary>
+        /// 
+        /// </summary>
+        [EnumMember]
+        DateDaily,
     }
 
     /// <summary>
