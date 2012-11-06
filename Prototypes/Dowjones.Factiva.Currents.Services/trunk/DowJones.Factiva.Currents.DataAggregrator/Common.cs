@@ -150,8 +150,7 @@ namespace DowJones.Factiva.Currents.Aggregrator
                                      );
                                 pageModuleList.Add(GetData(url));
                                 break;
-                            case "sourceNewspageModule":
-                                 
+                            case "sourcesNewspageModule":                                 
                                  parts = "EditorsChoice|VideoAndAudio|OpinionAndAnalysis";
                                  url =
                                    string.Format(
@@ -206,6 +205,64 @@ namespace DowJones.Factiva.Currents.Aggregrator
                                        maxPartsToReturn,
                                        firstResultToReturn,
                                        maxResultsToReturn,
+                                      enToken
+                                    );
+                                pageModuleList.Add(GetData(url));
+                                break;
+                            case "regionalMapNewspageModule":
+                                url =
+                                  string.Format(
+                                      "{0}/Modules/RegionalMap/1.0/data/json?pageid={1}&moduleId={2}&timeFrame={3}&encryptedToken={4}",
+                                      basePath,
+                                      pageId,
+                                      moduleId,
+                                      timeFrame,
+                                      enToken
+                                    );
+                                pageModuleList.Add(GetData(url));
+                                break;
+                            case "trendingNewsPageModule":
+                                parts = "TopEntities|TrendingDown|TrendingUp";
+                                string entityType = "companies";
+                                url =
+                                  string.Format(
+                                      "{0}/Modules/Trending/1.0/data/json?pageid={1}&moduleId={2}&parts={3}&timeFrame={4}&entityType={5}&encryptedToken={6}",
+                                      basePath,
+                                      pageId,
+                                      moduleId,
+                                      parts,
+                                      timeFrame,
+                                      entityType,
+                                      enToken
+                                    );
+                                pageModuleList.Add(GetData(url));
+                                break;
+                            case "newsstandNewspageModule":
+                                parts = "Headlines|Counts|DiscoveredEntities";
+                                url =
+                                  string.Format(
+                                      "{0}/Modules/NewsStand/1.0/data/json?pageid={1}&moduleId={2}&parts={3}&firstResultToReturn={4}&maxResultsToReturn={5}&encryptedToken={6}",
+                                      basePath,
+                                      pageId,
+                                      moduleId,
+                                      parts,
+                                      firstResultToReturn,
+                                      maxResultsToReturn,
+                                      enToken
+                                    );
+                                pageModuleList.Add(GetData(url));
+                                break;
+                            case "alertsNewspageModule":
+                                url =
+                                  string.Format(
+                                      "{0}/Modules/Alerts/1.0/data/json?pageid={1}&moduleId={2}&firstResultToReturn={3}&maxResultsToReturn={4}&firstPartToReturn={5}&maxPartsToReturn={6}&encryptedToken={7}",
+                                      basePath,
+                                      pageId,
+                                      moduleId,
+                                      firstResultToReturn,
+                                      maxResultsToReturn,
+                                      firstPartToReturn,
+                                      maxPartsToReturn,
                                       enToken
                                     );
                                 pageModuleList.Add(GetData(url));
