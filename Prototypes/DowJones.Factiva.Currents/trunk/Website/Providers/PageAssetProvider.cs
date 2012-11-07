@@ -1,26 +1,40 @@
 using System.Collections.Generic;
 using DowJones.Factiva.Currents.Website.Contracts;
+using DowJones.Factiva.Currents.Website.Models.PageService;
 using DowJones.Web.Mvc.UI.Canvas;
+using RestSharp;
+using System.Linq;
 
 namespace DowJones.Factiva.Currents.Website.Providers
 {
 	public class PageAssetProvider : IPageAssetProvider
 	{
+		// TODO: Refactor to read from config
+		private const string ServiceUrl = "http://fdevweb3/data.factiva.com/PageService.svc";
+
 		#region Implementation of IPageAssetProvider
 
-		public int MapPageNameToId(string name)
+		protected string MapPageNameToId(string name)
 		{
-			throw new System.NotImplementedException();
-		}
+			var client = new RestClient(ServiceUrl);
+			var request = new RestRequest("/json", Method.GET);
+			var response = client.Execute<NewsPagesListServiceResult>(request);
 
-		public IEnumerable<IModule> GetModulesForPage(int pageId)
-		{
-			throw new System.NotImplementedException();
+			return response.Data.Package.NewsPages.First(p => p.Title == name).ID;
 		}
 
 		public IEnumerable<IModule> GetModulesForPage(string pageName)
 		{
-			return GetModulesForPage(MapPageNameToId(pageName));
+			var pageId = MapPageNameToId(pageName);
+
+			var client = new RestClient(ServiceUrl);
+			var request = new RestRequest("id/json", Method.GET);
+			request.AddParameter("pageid", pageId);
+
+			//var response = client.Execute<SourcesNewsPageModuleServiceResult>(request);
+
+			return null;
+
 		}
 
 		#endregion

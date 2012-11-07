@@ -1,0 +1,4975 @@
+{
+	"newsPageServiceResult": {
+		"elapsedTime": 46,
+		"returnCode": 0,
+		"statusMessage": null,
+		"package": {
+			"newsPage": {
+				"accessQualifier": 0,
+				"assignedScope": 3,
+				"createdDate": "2012-11-02T14:15:00Z",
+				"description": "Spot and analyze top trends, news, companies, and people in the Accounting/Consulting Industry .",
+				"id": "Np_V1_26414_26414_000000",
+				"isActive": true,
+				"isAvailable": true,
+				"isDefault": false,
+				"lastModifiedDate": "2012-11-02T14:15:10Z",
+				"metaDataCollection": [{
+					"metaDataCode": "iacc",
+					"metaDataDescription": "Spot and analyze top trends, news, companies, and people in the Accounting/Consulting Industry .",
+					"metaDataDescriptor": "Accounting/Consulting",
+					"metaDataType": 0
+				},
+				{
+					"metaDataCode": "iacc",
+					"metaDataDescription": null,
+					"metaDataDescriptor": null,
+					"metaDataType": 4
+				}],
+				"metaDataInfo": {
+					"metaDataCode": "iacc",
+					"metaDataDescription": "Spot and analyze top trends, news, companies, and people in the Accounting/Consulting Industry .",
+					"metaDataDescriptor": "Accounting/Consulting",
+					"metaDataType": 0
+				},
+				"modules": [{
+					"$type": "DowJones.Pages.Modules.Modules.Summary.SummaryNewspageModule, DowJones.Pages.Modules",
+					"description": "The latest headlines, video, index information and more",
+					"id": 22471,
+					"lastModifiedDate": "2012-04-12T08:41:21-04:00",
+					"moduleProperties": {
+						"categoryInfo": 0,
+						"moduleMetaData": {
+							"metaDataCode": "iacc",
+							"metaDataDescription": null,
+							"metaDataDescriptor": null,
+							"metaDataType": 0
+						},
+						"publishStatusScope": 2
+					},
+					"moduleQualifier": 2,
+					"position": 1,
+					"queryFilterSet": {
+						"inherit": true,
+						"queryFilters": []
+					},
+					"rootId": 22471,
+					"title": "Top News: Accounting/Consulting",
+					"hasMarketDataIndex": true,
+					"hasMarketDataSymbol": true
+				},
+				{
+					"$type": "DowJones.Pages.Modules.Modules.Radar.RadarNewspageModule, DowJones.Pages.Modules",
+					"description": "Provides a quick visual summary of the top companies and critical topics affecting them",
+					"id": 22476,
+					"lastModifiedDate": "2011-05-04T14:58:47-04:00",
+					"moduleProperties": {
+						"categoryInfo": 0,
+						"moduleMetaData": {
+							"metaDataCode": "iacc",
+							"metaDataDescription": null,
+							"metaDataDescriptor": null,
+							"metaDataType": 0
+						},
+						"publishStatusScope": 2
+					},
+					"moduleQualifier": 2,
+					"position": 2,
+					"queryFilterSet": {
+						"inherit": true,
+						"queryFilters": []
+					},
+					"rootId": 22476,
+					"title": "Radar: Accounting/Consulting"
+				},
+				{
+					"$type": "DowJones.Pages.Modules.Modules.CustomTopics.CustomTopicsNewspageModule, DowJones.Pages.Modules",
+					"description": "Factiva's content professionals highlight new and noteworthy topics",
+					"id": 22473,
+					"lastModifiedDate": "2012-03-20T15:29:25-04:00",
+					"moduleProperties": {
+						"categoryInfo": 0,
+						"moduleMetaData": {
+							"metaDataCode": "iacc",
+							"metaDataDescription": null,
+							"metaDataDescriptor": null,
+							"metaDataType": 0
+						},
+						"publishStatusScope": 2
+					},
+					"moduleQualifier": 2,
+					"position": 4,
+					"queryFilterSet": {
+						"inherit": true,
+						"queryFilters": []
+					},
+					"rootId": 22473,
+					"title": "Custom Topics: Accounting/Consulting",
+					"maxPartsAvailable": 5
+				}],
+				"ownerNamespace": "16",
+				"ownerUserId": "SEOUser",
+				"pageCategoryInfo": {
+					"categoryCode": "ifin",
+					"categoryDescriptor": "Financial"
+				},
+				"parentId": "26414",
+				"position": 1,
+				"publishStatusScope": 0,
+				"queryFilterSet": {
+					"inherit": false,
+					"queryFilters": []
+				},
+				"shareType": 0,
+				"title": "Accounting/Consulting"
+			}
+		}
+	},
+	"summaryNewspageModuleServiceResult": {
+		"elapsedTime": 466,
+		"returnCode": 0,
+		"statusMessage": null,
+		"maxPartsAvailable": 5,
+		"partResults": [{
+			"elapsedTime": 385,
+			"identifier": null,
+			"package": {
+				"$type": "DowJones.Factiva.Currents.Website.Models.PageService.Modules.Summary.Packages.SummaryChartPackage, DowJones.Factiva.Currents.Website",
+				"marketIndexIntradayResult": {
+					"code": "DWCSPS",
+					"dataPoints": [{
+						"dataPoint": {
+							"$type": "doubleNumberStock",
+							"displayText": {
+								"value": "1,508.76"
+							},
+							"value": 1508.76
+						},
+						"date": "2012-11-07T09:30:00Z",
+						"dateDisplay": "7 November 2012 09:30 GMT"
+					},
+					{
+						"dataPoint": {
+							"$type": "doubleNumberStock",
+							"displayText": {
+								"value": "1,509.44"
+							},
+							"value": 1509.44
+						},
+						"date": "2012-11-07T09:45:00Z",
+						"dateDisplay": "7 November 2012 09:45 GMT"
+					},
+					{
+						"dataPoint": {
+							"$type": "doubleNumberStock",
+							"displayText": {
+								"value": "1,506.01"
+							},
+							"value": 1506.01
+						},
+						"date": "2012-11-07T10:00:00Z",
+						"dateDisplay": "7 November 2012 10:00 GMT"
+					},
+					{
+						"dataPoint": {
+							"$type": "doubleNumberStock",
+							"displayText": {
+								"value": "1,503.82"
+							},
+							"value": 1503.82
+						},
+						"date": "2012-11-07T10:15:00Z",
+						"dateDisplay": "7 November 2012 10:15 GMT"
+					},
+					{
+						"dataPoint": {
+							"$type": "doubleNumberStock",
+							"displayText": {
+								"value": "1,504.52"
+							},
+							"value": 1504.52
+						},
+						"date": "2012-11-07T10:30:00Z",
+						"dateDisplay": "7 November 2012 10:30 GMT"
+					},
+					{
+						"dataPoint": {
+							"$type": "doubleNumberStock",
+							"displayText": {
+								"value": "1,497.92"
+							},
+							"value": 1497.92
+						},
+						"date": "2012-11-07T10:45:00Z",
+						"dateDisplay": "7 November 2012 10:45 GMT"
+					},
+					{
+						"dataPoint": {
+							"$type": "doubleNumberStock",
+							"displayText": {
+								"value": "1,498.47"
+							},
+							"value": 1498.47
+						},
+						"date": "2012-11-07T11:00:00Z",
+						"dateDisplay": "7 November 2012 11:00 GMT"
+					},
+					{
+						"dataPoint": {
+							"$type": "doubleNumberStock",
+							"displayText": {
+								"value": "1,494.37"
+							},
+							"value": 1494.37
+						},
+						"date": "2012-11-07T11:15:00Z",
+						"dateDisplay": "7 November 2012 11:15 GMT"
+					},
+					{
+						"dataPoint": {
+							"$type": "doubleNumberStock",
+							"displayText": {
+								"value": "1,495.69"
+							},
+							"value": 1495.69
+						},
+						"date": "2012-11-07T11:30:00Z",
+						"dateDisplay": "7 November 2012 11:30 GMT"
+					},
+					{
+						"dataPoint": {
+							"$type": "doubleNumberStock",
+							"displayText": {
+								"value": "1,496.73"
+							},
+							"value": 1496.73
+						},
+						"date": "2012-11-07T11:45:00Z",
+						"dateDisplay": "7 November 2012 11:45 GMT"
+					},
+					{
+						"dataPoint": {
+							"$type": "doubleNumberStock",
+							"displayText": {
+								"value": "1,495.83"
+							},
+							"value": 1495.83
+						},
+						"date": "2012-11-07T12:00:00Z",
+						"dateDisplay": "7 November 2012 12:00 GMT"
+					},
+					{
+						"dataPoint": {
+							"$type": "doubleNumberStock",
+							"displayText": {
+								"value": "1,496.09"
+							},
+							"value": 1496.09
+						},
+						"date": "2012-11-07T12:15:00Z",
+						"dateDisplay": "7 November 2012 12:15 GMT"
+					},
+					{
+						"dataPoint": {
+							"$type": "doubleNumberStock",
+							"displayText": {
+								"value": "1,496.43"
+							},
+							"value": 1496.43
+						},
+						"date": "2012-11-07T12:30:00Z",
+						"dateDisplay": "7 November 2012 12:30 GMT"
+					},
+					{
+						"dataPoint": {
+							"$type": "doubleNumberStock",
+							"displayText": {
+								"value": "1,496.45"
+							},
+							"value": 1496.45
+						},
+						"date": "2012-11-07T12:45:00Z",
+						"dateDisplay": "7 November 2012 12:45 GMT"
+					},
+					{
+						"dataPoint": {
+							"$type": "doubleNumberStock",
+							"displayText": {
+								"value": "1,500.42"
+							},
+							"value": 1500.42
+						},
+						"date": "2012-11-07T13:00:00Z",
+						"dateDisplay": "7 November 2012 13:00 GMT"
+					},
+					{
+						"dataPoint": {
+							"$type": "doubleNumberStock",
+							"displayText": {
+								"value": "1,500.57"
+							},
+							"value": 1500.57
+						},
+						"date": "2012-11-07T13:15:00Z",
+						"dateDisplay": "7 November 2012 13:15 GMT"
+					},
+					{
+						"dataPoint": {
+							"$type": "doubleNumberStock",
+							"displayText": {
+								"value": "1,502.68"
+							},
+							"value": 1502.68
+						},
+						"date": "2012-11-07T13:30:00Z",
+						"dateDisplay": "7 November 2012 13:30 GMT"
+					},
+					{
+						"dataPoint": {
+							"$type": "doubleNumberStock",
+							"displayText": {
+								"value": "1,501.67"
+							},
+							"value": 1501.67
+						},
+						"date": "2012-11-07T13:45:00Z",
+						"dateDisplay": "7 November 2012 13:45 GMT"
+					},
+					{
+						"dataPoint": {
+							"$type": "doubleNumberStock",
+							"displayText": {
+								"value": "1,502.94"
+							},
+							"value": 1502.94
+						},
+						"date": "2012-11-07T14:00:00Z",
+						"dateDisplay": "7 November 2012 14:00 GMT"
+					}],
+					"date": "2012-11-07T09:30:00Z",
+					"dateDescripter": "7 November 2012",
+					"high": {
+						"displayText": {
+							"value": "151,020.00"
+						},
+						"value": 151020
+					},
+					"low": {
+						"displayText": {
+							"value": "149,376.00"
+						},
+						"value": 149376
+					},
+					"name": "Dow Jones U.S. Support Services Total Stock Market Index",
+					"previousClose": {
+						"displayText": {
+							"value": "152,524.00"
+						},
+						"value": 152524
+					},
+					"provider": {
+						"externalUrl": "http://www.six-financial-information.com",
+						"name": "SIX Financial Information"
+					}
+				}
+			},
+			"packageType": "SummaryChartPackage",
+			"returnCode": 0,
+			"statusMessage": null
+		},
+		{
+			"elapsedTime": 117,
+			"identifier": null,
+			"package": {
+				"$type": "DowJones.Factiva.Currents.Website.Models.PageService.Modules.Summary.Packages.SummaryRecentArticlesPackage, DowJones.Factiva.Currents.Website",
+				"portalHeadlineListDataResult": {
+					"hitCount": {
+						"displayText": {
+							"value": "32"
+						},
+						"value": 32
+					},
+					"resultSet": {
+						"count": {
+							"displayText": {
+								"value": "3"
+							},
+							"value": 3
+						},
+						"duplicateCount": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"first": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"headlines": [{
+							"authors": ["melissa tan "],
+							"baseLanguage": "en",
+							"baseLanguageDescriptor": "English",
+							"codedAuthors": [{
+								"items": [{
+									"entityType": 12,
+									"entityTypeDescriptor": "Author",
+									"guid": "3537467",
+									"value": "Melissa Tan"
+								}]
+							}],
+							"contentCategoryDescriptor": "publication",
+							"contentSubCategoryDescriptor": "article",
+							"hasPublicationTime": false,
+							"headlineUrl": null,
+							"mediaLength": null,
+							"modificationDateDescriptor": "07 November 2012",
+							"modificationDateTime": "2012-11-07T16:10:21Z",
+							"modificationDateTimeDescriptor": "07 November 2012 16:10 GMT",
+							"modificationTimeDescriptor": "16:10 GMT",
+							"publicationDateDescriptor": null,
+							"publicationDateTime": "2012-11-07T00:00:00Z",
+							"publicationDateTimeDescriptor": "07 November 2012",
+							"publicationTimeDescriptor": null,
+							"reference": {
+								"contentCategory": 2,
+								"contentCategoryDescriptor": "publication",
+								"contentSubCategory": 9,
+								"contentSubCategoryDescriptor": "article",
+								"externalUri": null,
+								"guid": "STIMES0020121107e8b7006zq",
+								"imageType": null,
+								"mimetype": "text/xml",
+								"ref": null,
+								"subType": null,
+								"type": "accessionNo"
+							},
+							"snippets": ["COMPANIES across the globe are planning to send more staff on overseas assignments to emerging markets as growth slows in major developed economies, a study has found. "],
+							"sourceCode": "stimes",
+							"sourceDescriptor": "Straits Times",
+							"thumbnailImage": {
+								"guid": null,
+								"src": null,
+								"uri": null
+							},
+							"title": "Emerging markets on companies' radar, study shows ",
+							"toolTip": null,
+							"truncatedTitle": "Emerging markets on companies' radar, study shows",
+							"wordCount": {
+								"displayText": {
+									"value": "403"
+								},
+								"value": 403
+							},
+							"wordCountDescriptor": "403 words"
+						},
+						{
+							"authors": [""],
+							"baseLanguage": "en",
+							"baseLanguageDescriptor": "English",
+							"codedAuthors": [],
+							"contentCategoryDescriptor": "publication",
+							"contentSubCategoryDescriptor": "article",
+							"hasPublicationTime": true,
+							"headlineUrl": null,
+							"mediaLength": null,
+							"modificationDateDescriptor": "07 November 2012",
+							"modificationDateTime": "2012-11-07T16:47:43Z",
+							"modificationDateTimeDescriptor": "07 November 2012 16:47 GMT",
+							"modificationTimeDescriptor": "16:47 GMT",
+							"publicationDateDescriptor": "07 November 2012",
+							"publicationDateTime": "2012-11-07T16:46:19Z",
+							"publicationDateTimeDescriptor": "07 November 2012 16:46 GMT",
+							"publicationTimeDescriptor": "16:46 GMT",
+							"reference": {
+								"contentCategory": 2,
+								"contentCategoryDescriptor": "publication",
+								"contentSubCategory": 9,
+								"contentSubCategoryDescriptor": "article",
+								"externalUri": null,
+								"guid": "LBA0000020121107e8b7001f0",
+								"imageType": null,
+								"mimetype": "text/xml",
+								"ref": null,
+								"subType": null,
+								"type": "accessionNo"
+							},
+							"snippets": ["PARIS, Nov 7 (Reuters) - French engineering and IT consultancy Alten raised its 2012 growth target on Wednesday after sales rose 13 percent in the first nine months of the year. "],
+							"sourceCode": "lba",
+							"sourceDescriptor": "Reuters News",
+							"thumbnailImage": {
+								"guid": null,
+								"src": null,
+								"uri": null
+							},
+							"title": "Alten lifts sales goal on strong demand abroad ",
+							"toolTip": null,
+							"truncatedTitle": "Alten lifts sales goal on strong demand abroad",
+							"wordCount": {
+								"displayText": {
+									"value": "153"
+								},
+								"value": 153
+							},
+							"wordCountDescriptor": "153 words"
+						},
+						{
+							"authors": ["By Michael Cohn "],
+							"baseLanguage": "en",
+							"baseLanguageDescriptor": "English",
+							"codedAuthors": [{
+								"items": [{
+									"entityType": 12,
+									"entityTypeDescriptor": "Author",
+									"guid": "373238",
+									"value": "Michael Cohn"
+								}]
+							}],
+							"contentCategoryDescriptor": "publication",
+							"contentSubCategoryDescriptor": "article",
+							"hasPublicationTime": false,
+							"headlineUrl": null,
+							"mediaLength": null,
+							"modificationDateDescriptor": "07 November 2012",
+							"modificationDateTime": "2012-11-07T16:11:25Z",
+							"modificationDateTimeDescriptor": "07 November 2012 16:11 GMT",
+							"modificationTimeDescriptor": "16:11 GMT",
+							"publicationDateDescriptor": null,
+							"publicationDateTime": "2012-11-07T00:00:00Z",
+							"publicationDateTimeDescriptor": "07 November 2012",
+							"publicationTimeDescriptor": null,
+							"reference": {
+								"contentCategory": 2,
+								"contentCategoryDescriptor": "publication",
+								"contentSubCategory": 9,
+								"contentSubCategoryDescriptor": "article",
+								"externalUri": null,
+								"guid": "ACTODY0020121107e8b7000b5",
+								"imageType": null,
+								"mimetype": "text/xml",
+								"ref": null,
+								"subType": null,
+								"type": "accessionNo"
+							},
+							"snippets": ["The International Federation of Accountants has released for comment a proposed strategy for projects it plans over the next four years to address the needs of accountants who work within companies or as advisors to businesses. "],
+							"sourceCode": "actody",
+							"sourceDescriptor": "Accounting Today",
+							"thumbnailImage": {
+								"guid": null,
+								"src": null,
+								"uri": null
+							},
+							"title": "IFAC Drafts Strategy for Business Accountants ",
+							"toolTip": null,
+							"truncatedTitle": "IFAC Drafts Strategy for Business Accountants",
+							"wordCount": {
+								"displayText": {
+									"value": "375"
+								},
+								"value": 375
+							},
+							"wordCountDescriptor": "375 words"
+						}]
+					}
+				}
+			},
+			"packageType": "SummaryRecentArticlesPackage",
+			"returnCode": 0,
+			"statusMessage": null
+		},
+		{
+			"elapsedTime": 48,
+			"identifier": null,
+			"package": {
+				"$type": "DowJones.Factiva.Currents.Website.Models.PageService.Modules.Summary.Packages.SummaryVideosPackage, DowJones.Factiva.Currents.Website",
+				"portalHeadlineListDataResult": {
+					"hitCount": {
+						"displayText": {
+							"value": "1"
+						},
+						"value": 1
+					},
+					"resultSet": {
+						"count": {
+							"displayText": {
+								"value": "1"
+							},
+							"value": 1
+						},
+						"duplicateCount": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"first": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"headlines": [{
+							"authors": [""],
+							"baseLanguage": "en",
+							"baseLanguageDescriptor": "English",
+							"codedAuthors": [],
+							"contentCategoryDescriptor": "multimedia",
+							"contentSubCategoryDescriptor": "video",
+							"hasPublicationTime": false,
+							"headlineUrl": null,
+							"mediaLength": "04:00",
+							"modificationDateDescriptor": "11 October 2012",
+							"modificationDateTime": "2012-10-11T00:57:57Z",
+							"modificationDateTimeDescriptor": "11 October 2012 00:57 GMT",
+							"modificationTimeDescriptor": "00:57 GMT",
+							"publicationDateDescriptor": null,
+							"publicationDateTime": "2012-10-10T00:00:00Z",
+							"publicationDateTimeDescriptor": "10 October 2012",
+							"publicationTimeDescriptor": null,
+							"reference": {
+								"contentCategory": 5,
+								"contentCategoryDescriptor": "multimedia",
+								"contentSubCategory": 5,
+								"contentSubCategoryDescriptor": "video",
+								"externalUri": null,
+								"guid": "MMSAVQ0020121011e8aa00001",
+								"imageType": null,
+								"mimetype": "text/xml",
+								"ref": null,
+								"subType": null,
+								"type": "accessionNo"
+							},
+							"snippets": ["Summary: Blucora CEO Bill Ruckelshaus on the company?s online search and tax preparation business. ",
+							"Internet search company -- -- transforming its business pushing beyond the search space as its stock soars nearly 50% so far this year. But ... "],
+							"sourceCode": "mmsavq",
+							"sourceDescriptor": "Fox Business: Latest On Air",
+							"thumbnailImage": {
+								"guid": null,
+								"src": null,
+								"uri": "http://video.foxbusiness.com/thumbnails/101012/146/74/101012_atb_ruckelshaus.jpg"
+							},
+							"title": "Blucora CEO on Monetizing Mobile Users ",
+							"toolTip": null,
+							"truncatedTitle": "Blucora CEO on Monetizing Mobile Users",
+							"wordCount": {
+								"displayText": {
+									"value": "700"
+								},
+								"value": 700
+							},
+							"wordCountDescriptor": "700 words"
+						}]
+					}
+				}
+			},
+			"packageType": "SummaryVideosPackage",
+			"returnCode": 0,
+			"statusMessage": null
+		},
+		{
+			"elapsedTime": 42,
+			"identifier": null,
+			"package": {
+				"$type": "summaryRegionalMapPackage",
+				"regionNewsVolume": [{
+					"code": "AFRICAZ",
+					"currentTimeFrameNewsVolume": {
+						"displayText": {
+							"value": "0"
+						},
+						"value": 0
+					},
+					"descriptor": null,
+					"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"SummaryRegionalMapBubbleSearchContext\",\"j\":\"{\\\"c\\\":\\\"AFRICAZ\\\"}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22471\"}",
+					"type": 6
+				},
+				{
+					"code": "ASIAZ",
+					"currentTimeFrameNewsVolume": {
+						"displayText": {
+							"value": "8"
+						},
+						"value": 8
+					},
+					"descriptor": null,
+					"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"SummaryRegionalMapBubbleSearchContext\",\"j\":\"{\\\"c\\\":\\\"ASIAZ\\\"}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22471\"}",
+					"type": 6
+				},
+				{
+					"code": "AUSNZ",
+					"currentTimeFrameNewsVolume": {
+						"displayText": {
+							"value": "3"
+						},
+						"value": 3
+					},
+					"descriptor": null,
+					"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"SummaryRegionalMapBubbleSearchContext\",\"j\":\"{\\\"c\\\":\\\"AUSNZ\\\"}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22471\"}",
+					"type": 6
+				},
+				{
+					"code": "CAMZ",
+					"currentTimeFrameNewsVolume": {
+						"displayText": {
+							"value": "4"
+						},
+						"value": 4
+					},
+					"descriptor": null,
+					"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"SummaryRegionalMapBubbleSearchContext\",\"j\":\"{\\\"c\\\":\\\"CAMZ\\\"}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22471\"}",
+					"type": 6
+				},
+				{
+					"code": "EURZ",
+					"currentTimeFrameNewsVolume": {
+						"displayText": {
+							"value": "25"
+						},
+						"value": 25
+					},
+					"descriptor": null,
+					"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"SummaryRegionalMapBubbleSearchContext\",\"j\":\"{\\\"c\\\":\\\"EURZ\\\"}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22471\"}",
+					"type": 6
+				},
+				{
+					"code": "INDSUBZ",
+					"currentTimeFrameNewsVolume": {
+						"displayText": {
+							"value": "0"
+						},
+						"value": 0
+					},
+					"descriptor": null,
+					"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"SummaryRegionalMapBubbleSearchContext\",\"j\":\"{\\\"c\\\":\\\"INDSUBZ\\\"}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22471\"}",
+					"type": 6
+				},
+				{
+					"code": "MEASTZ",
+					"currentTimeFrameNewsVolume": {
+						"displayText": {
+							"value": "0"
+						},
+						"value": 0
+					},
+					"descriptor": null,
+					"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"SummaryRegionalMapBubbleSearchContext\",\"j\":\"{\\\"c\\\":\\\"MEASTZ\\\"}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22471\"}",
+					"type": 6
+				},
+				{
+					"code": "NAMZ",
+					"currentTimeFrameNewsVolume": {
+						"displayText": {
+							"value": "35"
+						},
+						"value": 35
+					},
+					"descriptor": null,
+					"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"SummaryRegionalMapBubbleSearchContext\",\"j\":\"{\\\"c\\\":\\\"NAMZ\\\"}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22471\"}",
+					"type": 6
+				},
+				{
+					"code": "RUSS",
+					"currentTimeFrameNewsVolume": {
+						"displayText": {
+							"value": "0"
+						},
+						"value": 0
+					},
+					"descriptor": null,
+					"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"SummaryRegionalMapBubbleSearchContext\",\"j\":\"{\\\"c\\\":\\\"RUSS\\\"}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22471\"}",
+					"type": 6
+				},
+				{
+					"code": "SAMZ",
+					"currentTimeFrameNewsVolume": {
+						"displayText": {
+							"value": "3"
+						},
+						"value": 3
+					},
+					"descriptor": null,
+					"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"SummaryRegionalMapBubbleSearchContext\",\"j\":\"{\\\"c\\\":\\\"SAMZ\\\"}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22471\"}",
+					"type": 6
+				}]
+			},
+			"packageType": "SummaryRegionalMapPackage",
+			"returnCode": 0,
+			"statusMessage": null
+		},
+		{
+			"elapsedTime": 42,
+			"identifier": null,
+			"package": {
+				"$type": "summaryTrendingPackage",
+				"companyNewsEntities": [{
+					"code": "cgs",
+					"currentTimeFrameNewsVolume": {
+						"displayText": {
+							"value": "4"
+						},
+						"value": 4
+					},
+					"descriptor": "Capgemini",
+					"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"SummaryTrendingSearchContext\",\"j\":\"{\\\"et\\\":1,\\\"c\\\":\\\"cgs\\\"}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22471\"}",
+					"type": 1
+				},
+				{
+					"code": "sg",
+					"currentTimeFrameNewsVolume": {
+						"displayText": {
+							"value": "3"
+						},
+						"value": 3
+					},
+					"descriptor": "Societe Generale",
+					"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"SummaryTrendingSearchContext\",\"j\":\"{\\\"et\\\":1,\\\"c\\\":\\\"sg\\\"}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22471\"}",
+					"type": 1
+				},
+				{
+					"code": "prwth",
+					"currentTimeFrameNewsVolume": {
+						"displayText": {
+							"value": "3"
+						},
+						"value": 3
+					},
+					"descriptor": "PricewaterhouseCoopers",
+					"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"SummaryTrendingSearchContext\",\"j\":\"{\\\"et\\\":1,\\\"c\\\":\\\"prwth\\\"}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22471\"}",
+					"type": 1
+				},
+				{
+					"code": "orl",
+					"currentTimeFrameNewsVolume": {
+						"displayText": {
+							"value": "3"
+						},
+						"value": 3
+					},
+					"descriptor": "L'Oreal SA",
+					"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"SummaryTrendingSearchContext\",\"j\":\"{\\\"et\\\":1,\\\"c\\\":\\\"orl\\\"}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22471\"}",
+					"type": 1
+				},
+				{
+					"code": "vvenv",
+					"currentTimeFrameNewsVolume": {
+						"displayText": {
+							"value": "3"
+						},
+						"value": 3
+					},
+					"descriptor": "Veolia Environnement SA",
+					"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"SummaryTrendingSearchContext\",\"j\":\"{\\\"et\\\":1,\\\"c\\\":\\\"vvenv\\\"}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22471\"}",
+					"type": 1
+				},
+				{
+					"code": "tsb",
+					"currentTimeFrameNewsVolume": {
+						"displayText": {
+							"value": "2"
+						},
+						"value": 2
+					},
+					"descriptor": "Lloyds TSB Group PLC",
+					"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"SummaryTrendingSearchContext\",\"j\":\"{\\\"et\\\":1,\\\"c\\\":\\\"tsb\\\"}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22471\"}",
+					"type": 1
+				},
+				{
+					"code": "tkcjap",
+					"currentTimeFrameNewsVolume": {
+						"displayText": {
+							"value": "2"
+						},
+						"value": 2
+					},
+					"descriptor": "TKC Corp",
+					"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"SummaryTrendingSearchContext\",\"j\":\"{\\\"et\\\":1,\\\"c\\\":\\\"tkcjap\\\"}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22471\"}",
+					"type": 1
+				},
+				{
+					"code": "tatcon",
+					"currentTimeFrameNewsVolume": {
+						"displayText": {
+							"value": "2"
+						},
+						"value": 2
+					},
+					"descriptor": "Tata Consultancy Services",
+					"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"SummaryTrendingSearchContext\",\"j\":\"{\\\"et\\\":1,\\\"c\\\":\\\"tatcon\\\"}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22471\"}",
+					"type": 1
+				},
+				{
+					"code": "sdhmrt",
+					"currentTimeFrameNewsVolume": {
+						"displayText": {
+							"value": "2"
+						},
+						"value": 2
+					},
+					"descriptor": "Marriott International Inc (New)",
+					"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"SummaryTrendingSearchContext\",\"j\":\"{\\\"et\\\":1,\\\"c\\\":\\\"sdhmrt\\\"}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22471\"}",
+					"type": 1
+				},
+				{
+					"code": "permra",
+					"currentTimeFrameNewsVolume": {
+						"displayText": {
+							"value": "2"
+						},
+						"value": 2
+					},
+					"descriptor": "Permira",
+					"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"SummaryTrendingSearchContext\",\"j\":\"{\\\"et\\\":1,\\\"c\\\":\\\"permra\\\"}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22471\"}",
+					"type": 1
+				}],
+				"executivesNewsEntities": [{
+					"code": "70768540",
+					"currentTimeFrameNewsVolume": {
+						"displayText": {
+							"value": "2"
+						},
+						"value": 2
+					},
+					"descriptor": "Chuck Gillies",
+					"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"SummaryTrendingSearchContext\",\"j\":\"{\\\"et\\\":2,\\\"c\\\":\\\"70768540\\\"}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22471\"}",
+					"type": 2
+				},
+				{
+					"code": "70885181",
+					"currentTimeFrameNewsVolume": {
+						"displayText": {
+							"value": "2"
+						},
+						"value": 2
+					},
+					"descriptor": "O Ray Bourland",
+					"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"SummaryTrendingSearchContext\",\"j\":\"{\\\"et\\\":2,\\\"c\\\":\\\"70885181\\\"}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22471\"}",
+					"type": 2
+				},
+				{
+					"code": "12362651",
+					"currentTimeFrameNewsVolume": {
+						"displayText": {
+							"value": "1"
+						},
+						"value": 1
+					},
+					"descriptor": "Kevin M Phillips",
+					"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"SummaryTrendingSearchContext\",\"j\":\"{\\\"et\\\":2,\\\"c\\\":\\\"12362651\\\"}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22471\"}",
+					"type": 2
+				},
+				{
+					"code": "13918562",
+					"currentTimeFrameNewsVolume": {
+						"displayText": {
+							"value": "1"
+						},
+						"value": 1
+					},
+					"descriptor": "Jeffrey H Matsuura",
+					"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"SummaryTrendingSearchContext\",\"j\":\"{\\\"et\\\":2,\\\"c\\\":\\\"13918562\\\"}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22471\"}",
+					"type": 2
+				},
+				{
+					"code": "2266862",
+					"currentTimeFrameNewsVolume": {
+						"displayText": {
+							"value": "1"
+						},
+						"value": 1
+					},
+					"descriptor": "Samuel R Strickland",
+					"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"SummaryTrendingSearchContext\",\"j\":\"{\\\"et\\\":2,\\\"c\\\":\\\"2266862\\\"}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22471\"}",
+					"type": 2
+				},
+				{
+					"code": "26659740",
+					"currentTimeFrameNewsVolume": {
+						"displayText": {
+							"value": "1"
+						},
+						"value": 1
+					},
+					"descriptor": "John B Veihmeyer",
+					"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"SummaryTrendingSearchContext\",\"j\":\"{\\\"et\\\":2,\\\"c\\\":\\\"26659740\\\"}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22471\"}",
+					"type": 2
+				},
+				{
+					"code": "27334220",
+					"currentTimeFrameNewsVolume": {
+						"displayText": {
+							"value": "1"
+						},
+						"value": 1
+					},
+					"descriptor": "Kevin Robert",
+					"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"SummaryTrendingSearchContext\",\"j\":\"{\\\"et\\\":2,\\\"c\\\":\\\"27334220\\\"}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22471\"}",
+					"type": 2
+				},
+				{
+					"code": "47610309",
+					"currentTimeFrameNewsVolume": {
+						"displayText": {
+							"value": "1"
+						},
+						"value": 1
+					},
+					"descriptor": "Karen Abramson",
+					"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"SummaryTrendingSearchContext\",\"j\":\"{\\\"et\\\":2,\\\"c\\\":\\\"47610309\\\"}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22471\"}",
+					"type": 2
+				},
+				{
+					"code": "48030683",
+					"currentTimeFrameNewsVolume": {
+						"displayText": {
+							"value": "1"
+						},
+						"value": 1
+					},
+					"descriptor": "Henry Keizer",
+					"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"SummaryTrendingSearchContext\",\"j\":\"{\\\"et\\\":2,\\\"c\\\":\\\"48030683\\\"}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22471\"}",
+					"type": 2
+				},
+				{
+					"code": "49101054",
+					"currentTimeFrameNewsVolume": {
+						"displayText": {
+							"value": "1"
+						},
+						"value": 1
+					},
+					"descriptor": "James W Giddens",
+					"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"SummaryTrendingSearchContext\",\"j\":\"{\\\"et\\\":2,\\\"c\\\":\\\"49101054\\\"}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22471\"}",
+					"type": 2
+				}],
+				"industriesNewsEntities": [{
+					"code": "i836",
+					"currentTimeFrameNewsVolume": {
+						"displayText": {
+							"value": "9"
+						},
+						"value": 9
+					},
+					"descriptor": "Accounting",
+					"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"SummaryTrendingSearchContext\",\"j\":\"{\\\"et\\\":4,\\\"c\\\":\\\"i836\\\"}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22471\"}",
+					"type": 4
+				},
+				{
+					"code": "ibcs",
+					"currentTimeFrameNewsVolume": {
+						"displayText": {
+							"value": "5"
+						},
+						"value": 5
+					},
+					"descriptor": "Business/Consumer Services",
+					"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"SummaryTrendingSearchContext\",\"j\":\"{\\\"et\\\":4,\\\"c\\\":\\\"ibcs\\\"}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22471\"}",
+					"type": 4
+				},
+				{
+					"code": "i831",
+					"currentTimeFrameNewsVolume": {
+						"displayText": {
+							"value": "4"
+						},
+						"value": 4
+					},
+					"descriptor": "Financial Investments",
+					"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"SummaryTrendingSearchContext\",\"j\":\"{\\\"et\\\":4,\\\"c\\\":\\\"i831\\\"}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22471\"}",
+					"type": 4
+				},
+				{
+					"code": "iinv",
+					"currentTimeFrameNewsVolume": {
+						"displayText": {
+							"value": "2"
+						},
+						"value": 2
+					},
+					"descriptor": "Investing/Securities",
+					"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"SummaryTrendingSearchContext\",\"j\":\"{\\\"et\\\":4,\\\"c\\\":\\\"iinv\\\"}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22471\"}",
+					"type": 4
+				},
+				{
+					"code": "iacc",
+					"currentTimeFrameNewsVolume": {
+						"displayText": {
+							"value": "2"
+						},
+						"value": 2
+					},
+					"descriptor": "Accounting/Consulting",
+					"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"SummaryTrendingSearchContext\",\"j\":\"{\\\"et\\\":4,\\\"c\\\":\\\"iacc\\\"}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22471\"}",
+					"type": 4
+				},
+				{
+					"code": "i83108",
+					"currentTimeFrameNewsVolume": {
+						"displayText": {
+							"value": "2"
+						},
+						"value": 2
+					},
+					"descriptor": "Investment Advice",
+					"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"SummaryTrendingSearchContext\",\"j\":\"{\\\"et\\\":4,\\\"c\\\":\\\"i83108\\\"}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22471\"}",
+					"type": 4
+				},
+				{
+					"code": "i81502",
+					"currentTimeFrameNewsVolume": {
+						"displayText": {
+							"value": "2"
+						},
+						"value": 2
+					},
+					"descriptor": "Trusts/Funds/Financial Vehicles",
+					"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"SummaryTrendingSearchContext\",\"j\":\"{\\\"et\\\":4,\\\"c\\\":\\\"i81502\\\"}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22471\"}",
+					"type": 4
+				},
+				{
+					"code": "i81401",
+					"currentTimeFrameNewsVolume": {
+						"displayText": {
+							"value": "2"
+						},
+						"value": 2
+					},
+					"descriptor": "Central Banking",
+					"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"SummaryTrendingSearchContext\",\"j\":\"{\\\"et\\\":4,\\\"c\\\":\\\"i81401\\\"}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22471\"}",
+					"type": 4
+				},
+				{
+					"code": "i7902",
+					"currentTimeFrameNewsVolume": {
+						"displayText": {
+							"value": "2"
+						},
+						"value": 2
+					},
+					"descriptor": "Telecommunications",
+					"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"SummaryTrendingSearchContext\",\"j\":\"{\\\"et\\\":4,\\\"c\\\":\\\"i7902\\\"}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22471\"}",
+					"type": 4
+				},
+				{
+					"code": "i17",
+					"currentTimeFrameNewsVolume": {
+						"displayText": {
+							"value": "1"
+						},
+						"value": 1
+					},
+					"descriptor": "Water Utilities",
+					"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"SummaryTrendingSearchContext\",\"j\":\"{\\\"et\\\":4,\\\"c\\\":\\\"i17\\\"}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22471\"}",
+					"type": 4
+				}],
+				"keywordsTagCollection": [{
+					"$type": "tag",
+					"code": null,
+					"distributionIndex": 3,
+					"navigateUrl": "",
+					"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"SummaryTrendingSearchContext\",\"j\":\"{\\\"et\\\":9,\\\"c\\\":\\\"asset management\\\"}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22471\"}",
+					"snippet": "",
+					"tagWeight": {
+						"displayText": {
+							"value": "3.05"
+						},
+						"value": 3.047208
+					},
+					"text": "asset management",
+					"type": 0
+				},
+				{
+					"$type": "tag",
+					"code": null,
+					"distributionIndex": 5,
+					"navigateUrl": "",
+					"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"SummaryTrendingSearchContext\",\"j\":\"{\\\"et\\\":9,\\\"c\\\":\\\"business development\\\"}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22471\"}",
+					"snippet": "",
+					"tagWeight": {
+						"displayText": {
+							"value": "1.63"
+						},
+						"value": 1.632994
+					},
+					"text": "business development",
+					"type": 0
+				},
+				{
+					"$type": "tag",
+					"code": null,
+					"distributionIndex": 5,
+					"navigateUrl": "",
+					"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"SummaryTrendingSearchContext\",\"j\":\"{\\\"et\\\":9,\\\"c\\\":\\\"district appointed\\\"}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22471\"}",
+					"snippet": "",
+					"tagWeight": {
+						"displayText": {
+							"value": "2.00"
+						},
+						"value": 2
+					},
+					"text": "district appointed",
+					"type": 0
+				},
+				{
+					"$type": "tag",
+					"code": null,
+					"distributionIndex": 5,
+					"navigateUrl": "",
+					"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"SummaryTrendingSearchContext\",\"j\":\"{\\\"et\\\":9,\\\"c\\\":\\\"focused managers\\\"}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22471\"}",
+					"snippet": "",
+					"tagWeight": {
+						"displayText": {
+							"value": "2.00"
+						},
+						"value": 2
+					},
+					"text": "focused managers",
+					"type": 0
+				},
+				{
+					"$type": "tag",
+					"code": null,
+					"distributionIndex": 4,
+					"navigateUrl": "",
+					"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"SummaryTrendingSearchContext\",\"j\":\"{\\\"et\\\":9,\\\"c\\\":\\\"fund management\\\"}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22471\"}",
+					"snippet": "",
+					"tagWeight": {
+						"displayText": {
+							"value": "2.57"
+						},
+						"value": 2.568914
+					},
+					"text": "fund management",
+					"type": 0
+				},
+				{
+					"$type": "tag",
+					"code": null,
+					"distributionIndex": 5,
+					"navigateUrl": "",
+					"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"SummaryTrendingSearchContext\",\"j\":\"{\\\"et\\\":9,\\\"c\\\":\\\"investor inflows\\\"}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22471\"}",
+					"snippet": "",
+					"tagWeight": {
+						"displayText": {
+							"value": "2.00"
+						},
+						"value": 2
+					},
+					"text": "investor inflows",
+					"type": 0
+				},
+				{
+					"$type": "tag",
+					"code": null,
+					"distributionIndex": 5,
+					"navigateUrl": "",
+					"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"SummaryTrendingSearchContext\",\"j\":\"{\\\"et\\\":9,\\\"c\\\":\\\"lafayette spa\\\"}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22471\"}",
+					"snippet": "",
+					"tagWeight": {
+						"displayText": {
+							"value": "2.00"
+						},
+						"value": 2
+					},
+					"text": "lafayette spa",
+					"type": 0
+				},
+				{
+					"$type": "tag",
+					"code": null,
+					"distributionIndex": 5,
+					"navigateUrl": "",
+					"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"SummaryTrendingSearchContext\",\"j\":\"{\\\"et\\\":9,\\\"c\\\":\\\"previously worked\\\"}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22471\"}",
+					"snippet": "",
+					"tagWeight": {
+						"displayText": {
+							"value": "2.00"
+						},
+						"value": 2
+					},
+					"text": "previously worked",
+					"type": 0
+				},
+				{
+					"$type": "tag",
+					"code": null,
+					"distributionIndex": 5,
+					"navigateUrl": "",
+					"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"SummaryTrendingSearchContext\",\"j\":\"{\\\"et\\\":9,\\\"c\\\":\\\"prosystem fx\\\"}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22471\"}",
+					"snippet": "",
+					"tagWeight": {
+						"displayText": {
+							"value": "2.00"
+						},
+						"value": 2
+					},
+					"text": "prosystem fx",
+					"type": 0
+				},
+				{
+					"$type": "tag",
+					"code": null,
+					"distributionIndex": 5,
+					"navigateUrl": "",
+					"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"SummaryTrendingSearchContext\",\"j\":\"{\\\"et\\\":9,\\\"c\\\":\\\"vice president\\\"}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22471\"}",
+					"snippet": "",
+					"tagWeight": {
+						"displayText": {
+							"value": "1.80"
+						},
+						"value": 1.795612
+					},
+					"text": "vice president",
+					"type": 0
+				}],
+				"newsSubjectsNewsEntities": [{
+					"code": "ccat",
+					"currentTimeFrameNewsVolume": {
+						"displayText": {
+							"value": "17"
+						},
+						"value": 17
+					},
+					"descriptor": "Corporate/Industrial News",
+					"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"SummaryTrendingSearchContext\",\"j\":\"{\\\"et\\\":5,\\\"c\\\":\\\"ccat\\\"}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22471\"}",
+					"type": 5
+				},
+				{
+					"code": "cslmc",
+					"currentTimeFrameNewsVolume": {
+						"displayText": {
+							"value": "7"
+						},
+						"value": 7
+					},
+					"descriptor": "Senior Level Management",
+					"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"SummaryTrendingSearchContext\",\"j\":\"{\\\"et\\\":5,\\\"c\\\":\\\"cslmc\\\"}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22471\"}",
+					"type": 5
+				},
+				{
+					"code": "c411",
+					"currentTimeFrameNewsVolume": {
+						"displayText": {
+							"value": "6"
+						},
+						"value": 6
+					},
+					"descriptor": "Management Moves",
+					"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"SummaryTrendingSearchContext\",\"j\":\"{\\\"et\\\":5,\\\"c\\\":\\\"c411\\\"}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22471\"}",
+					"type": 5
+				},
+				{
+					"code": "naudvl",
+					"currentTimeFrameNewsVolume": {
+						"displayText": {
+							"value": "5"
+						},
+						"value": 5
+					},
+					"descriptor": "Audio-visual Links",
+					"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"SummaryTrendingSearchContext\",\"j\":\"{\\\"et\\\":5,\\\"c\\\":\\\"naudvl\\\"}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22471\"}",
+					"type": 5
+				},
+				{
+					"code": "c151",
+					"currentTimeFrameNewsVolume": {
+						"displayText": {
+							"value": "5"
+						},
+						"value": 5
+					},
+					"descriptor": "Earnings",
+					"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"SummaryTrendingSearchContext\",\"j\":\"{\\\"et\\\":5,\\\"c\\\":\\\"c151\\\"}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22471\"}",
+					"type": 5
+				},
+				{
+					"code": "cmmm",
+					"currentTimeFrameNewsVolume": {
+						"displayText": {
+							"value": "4"
+						},
+						"value": 4
+					},
+					"descriptor": "Middle Management",
+					"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"SummaryTrendingSearchContext\",\"j\":\"{\\\"et\\\":5,\\\"c\\\":\\\"cmmm\\\"}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22471\"}",
+					"type": 5
+				},
+				{
+					"code": "c33",
+					"currentTimeFrameNewsVolume": {
+						"displayText": {
+							"value": "4"
+						},
+						"value": 4
+					},
+					"descriptor": "Contracts/Orders",
+					"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"SummaryTrendingSearchContext\",\"j\":\"{\\\"et\\\":5,\\\"c\\\":\\\"c33\\\"}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22471\"}",
+					"type": 5
+				},
+				{
+					"code": "gcrim",
+					"currentTimeFrameNewsVolume": {
+						"displayText": {
+							"value": "3"
+						},
+						"value": 3
+					},
+					"descriptor": "Crime/Courts",
+					"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"SummaryTrendingSearchContext\",\"j\":\"{\\\"et\\\":5,\\\"c\\\":\\\"gcrim\\\"}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22471\"}",
+					"type": 5
+				},
+				{
+					"code": "c152",
+					"currentTimeFrameNewsVolume": {
+						"displayText": {
+							"value": "3"
+						},
+						"value": 3
+					},
+					"descriptor": "Earnings Projections",
+					"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"SummaryTrendingSearchContext\",\"j\":\"{\\\"et\\\":5,\\\"c\\\":\\\"c152\\\"}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22471\"}",
+					"type": 5
+				},
+				{
+					"code": "cboard",
+					"currentTimeFrameNewsVolume": {
+						"displayText": {
+							"value": "2"
+						},
+						"value": 2
+					},
+					"descriptor": "Board of Directors",
+					"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"SummaryTrendingSearchContext\",\"j\":\"{\\\"et\\\":5,\\\"c\\\":\\\"cboard\\\"}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22471\"}",
+					"type": 5
+				}]
+			},
+			"packageType": "SummaryTrendingPackage",
+			"returnCode": 0,
+			"statusMessage": null
+		}],
+		"hasMarketDataIndex": true
+	},
+	"radarNewspageModuleServiceResult": {
+		"elapsedTime": 217,
+		"returnCode": 0,
+		"statusMessage": null,
+		"maxPartsAvailable": 1,
+		"partResults": [{
+			"elapsedTime": 141,
+			"identifier": null,
+			"package": {
+				"maxHitCount": {
+					"displayText": {
+						"value": "43"
+					},
+					"value": 43
+				},
+				"minHitCount": {
+					"displayText": {
+						"value": "-1"
+					},
+					"value": -1
+				},
+				"moreResults": false,
+				"parentNewsEntities": [{
+					"code": "AUDAT",
+					"currentTimeFrameNewsVolume": {
+						"displayText": {
+							"value": "80"
+						},
+						"value": 80
+					},
+					"descriptor": "Automatic Data Processing, Inc.",
+					"searchContextRef": null,
+					"type": 1,
+					"newsEntities": [{
+						"code": "c15",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "43"
+							},
+							"value": 43
+						},
+						"descriptor": "Performance",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"AUDAT\\\",\\\"nsc\\\":\\\"c15\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c411",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "6"
+							},
+							"value": 6
+						},
+						"descriptor": "Management Moves",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"AUDAT\\\",\\\"nsc\\\":\\\"c411\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c33",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Contracts/Orders",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"AUDAT\\\",\\\"nsc\\\":\\\"c33\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c22",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "New Products/Services",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"AUDAT\\\",\\\"nsc\\\":\\\"c22\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c12",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Corporate Crime/Legal/Judicial",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"AUDAT\\\",\\\"nsc\\\":\\\"c12\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c18",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "2"
+							},
+							"value": 2
+						},
+						"descriptor": "Ownership Changes",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"AUDAT\\\",\\\"nsc\\\":\\\"c18\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c151",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "28"
+							},
+							"value": 28
+						},
+						"descriptor": "Earnings",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"AUDAT\\\",\\\"nsc\\\":\\\"c151\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c42",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "-1"
+							},
+							"value": -1
+						},
+						"descriptor": "Labor/Personnel Issues",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"AUDAT\\\",\\\"nsc\\\":\\\"c42\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c17",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "2"
+							},
+							"value": 2
+						},
+						"descriptor": "Funding/Capital",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"AUDAT\\\",\\\"nsc\\\":\\\"c17\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					}]
+				},
+				{
+					"code": "PRWTH",
+					"currentTimeFrameNewsVolume": {
+						"displayText": {
+							"value": "62"
+						},
+						"value": 62
+					},
+					"descriptor": "PricewaterhouseCoopers",
+					"searchContextRef": null,
+					"type": 1,
+					"newsEntities": [{
+						"code": "c15",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "18"
+							},
+							"value": 18
+						},
+						"descriptor": "Performance",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"PRWTH\\\",\\\"nsc\\\":\\\"c15\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c411",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "16"
+							},
+							"value": 16
+						},
+						"descriptor": "Management Moves",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"PRWTH\\\",\\\"nsc\\\":\\\"c411\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c33",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Contracts/Orders",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"PRWTH\\\",\\\"nsc\\\":\\\"c33\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c22",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "New Products/Services",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"PRWTH\\\",\\\"nsc\\\":\\\"c22\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c12",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "7"
+							},
+							"value": 7
+						},
+						"descriptor": "Corporate Crime/Legal/Judicial",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"PRWTH\\\",\\\"nsc\\\":\\\"c12\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c18",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "-1"
+							},
+							"value": -1
+						},
+						"descriptor": "Ownership Changes",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"PRWTH\\\",\\\"nsc\\\":\\\"c18\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c151",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "15"
+							},
+							"value": 15
+						},
+						"descriptor": "Earnings",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"PRWTH\\\",\\\"nsc\\\":\\\"c151\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c42",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "3"
+							},
+							"value": 3
+						},
+						"descriptor": "Labor/Personnel Issues",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"PRWTH\\\",\\\"nsc\\\":\\\"c42\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c17",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "4"
+							},
+							"value": 4
+						},
+						"descriptor": "Funding/Capital",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"PRWTH\\\",\\\"nsc\\\":\\\"c17\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					}]
+				},
+				{
+					"code": "REUT",
+					"currentTimeFrameNewsVolume": {
+						"displayText": {
+							"value": "62"
+						},
+						"value": 62
+					},
+					"descriptor": "Reuters Group Plc",
+					"searchContextRef": null,
+					"type": 1,
+					"newsEntities": [{
+						"code": "c15",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "31"
+							},
+							"value": 31
+						},
+						"descriptor": "Performance",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"REUT\\\",\\\"nsc\\\":\\\"c15\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c411",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "1"
+							},
+							"value": 1
+						},
+						"descriptor": "Management Moves",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"REUT\\\",\\\"nsc\\\":\\\"c411\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c33",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "3"
+							},
+							"value": 3
+						},
+						"descriptor": "Contracts/Orders",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"REUT\\\",\\\"nsc\\\":\\\"c33\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c22",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "New Products/Services",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"REUT\\\",\\\"nsc\\\":\\\"c22\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c12",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Corporate Crime/Legal/Judicial",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"REUT\\\",\\\"nsc\\\":\\\"c12\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c18",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "4"
+							},
+							"value": 4
+						},
+						"descriptor": "Ownership Changes",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"REUT\\\",\\\"nsc\\\":\\\"c18\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c151",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "20"
+							},
+							"value": 20
+						},
+						"descriptor": "Earnings",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"REUT\\\",\\\"nsc\\\":\\\"c151\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c42",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "3"
+							},
+							"value": 3
+						},
+						"descriptor": "Labor/Personnel Issues",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"REUT\\\",\\\"nsc\\\":\\\"c42\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c17",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Funding/Capital",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"REUT\\\",\\\"nsc\\\":\\\"c17\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					}]
+				},
+				{
+					"code": "OLIVET",
+					"currentTimeFrameNewsVolume": {
+						"displayText": {
+							"value": "26"
+						},
+						"value": 26
+					},
+					"descriptor": "Telecom Italia SpA",
+					"searchContextRef": null,
+					"type": 1,
+					"newsEntities": [{
+						"code": "c15",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "14"
+							},
+							"value": 14
+						},
+						"descriptor": "Performance",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"OLIVET\\\",\\\"nsc\\\":\\\"c15\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c411",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Management Moves",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"OLIVET\\\",\\\"nsc\\\":\\\"c411\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c33",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "4"
+							},
+							"value": 4
+						},
+						"descriptor": "Contracts/Orders",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"OLIVET\\\",\\\"nsc\\\":\\\"c33\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c22",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "New Products/Services",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"OLIVET\\\",\\\"nsc\\\":\\\"c22\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c12",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Corporate Crime/Legal/Judicial",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"OLIVET\\\",\\\"nsc\\\":\\\"c12\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c18",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "2"
+							},
+							"value": 2
+						},
+						"descriptor": "Ownership Changes",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"OLIVET\\\",\\\"nsc\\\":\\\"c18\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c151",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "4"
+							},
+							"value": 4
+						},
+						"descriptor": "Earnings",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"OLIVET\\\",\\\"nsc\\\":\\\"c151\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c42",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Labor/Personnel Issues",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"OLIVET\\\",\\\"nsc\\\":\\\"c42\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c17",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "2"
+							},
+							"value": 2
+						},
+						"descriptor": "Funding/Capital",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"OLIVET\\\",\\\"nsc\\\":\\\"c17\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					}]
+				},
+				{
+					"code": "ANDAC",
+					"currentTimeFrameNewsVolume": {
+						"displayText": {
+							"value": "24"
+						},
+						"value": 24
+					},
+					"descriptor": "Accenture Plc",
+					"searchContextRef": null,
+					"type": 1,
+					"newsEntities": [{
+						"code": "c15",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "10"
+							},
+							"value": 10
+						},
+						"descriptor": "Performance",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"ANDAC\\\",\\\"nsc\\\":\\\"c15\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c411",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "1"
+							},
+							"value": 1
+						},
+						"descriptor": "Management Moves",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"ANDAC\\\",\\\"nsc\\\":\\\"c411\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c33",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "3"
+							},
+							"value": 3
+						},
+						"descriptor": "Contracts/Orders",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"ANDAC\\\",\\\"nsc\\\":\\\"c33\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c22",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "2"
+							},
+							"value": 2
+						},
+						"descriptor": "New Products/Services",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"ANDAC\\\",\\\"nsc\\\":\\\"c22\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c12",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "2"
+							},
+							"value": 2
+						},
+						"descriptor": "Corporate Crime/Legal/Judicial",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"ANDAC\\\",\\\"nsc\\\":\\\"c12\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c18",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "2"
+							},
+							"value": 2
+						},
+						"descriptor": "Ownership Changes",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"ANDAC\\\",\\\"nsc\\\":\\\"c18\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c151",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "3"
+							},
+							"value": 3
+						},
+						"descriptor": "Earnings",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"ANDAC\\\",\\\"nsc\\\":\\\"c151\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c42",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "1"
+							},
+							"value": 1
+						},
+						"descriptor": "Labor/Personnel Issues",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"ANDAC\\\",\\\"nsc\\\":\\\"c42\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c17",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Funding/Capital",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"ANDAC\\\",\\\"nsc\\\":\\\"c17\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					}]
+				},
+				{
+					"code": "ERWN",
+					"currentTimeFrameNewsVolume": {
+						"displayText": {
+							"value": "23"
+						},
+						"value": 23
+					},
+					"descriptor": "Ernst & Young LLP",
+					"searchContextRef": null,
+					"type": 1,
+					"newsEntities": [{
+						"code": "c15",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "1"
+							},
+							"value": 1
+						},
+						"descriptor": "Performance",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"ERWN\\\",\\\"nsc\\\":\\\"c15\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c411",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "12"
+							},
+							"value": 12
+						},
+						"descriptor": "Management Moves",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"ERWN\\\",\\\"nsc\\\":\\\"c411\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c33",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Contracts/Orders",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"ERWN\\\",\\\"nsc\\\":\\\"c33\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c22",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "New Products/Services",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"ERWN\\\",\\\"nsc\\\":\\\"c22\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c12",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "2"
+							},
+							"value": 2
+						},
+						"descriptor": "Corporate Crime/Legal/Judicial",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"ERWN\\\",\\\"nsc\\\":\\\"c12\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c18",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "3"
+							},
+							"value": 3
+						},
+						"descriptor": "Ownership Changes",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"ERWN\\\",\\\"nsc\\\":\\\"c18\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c151",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "1"
+							},
+							"value": 1
+						},
+						"descriptor": "Earnings",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"ERWN\\\",\\\"nsc\\\":\\\"c151\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c42",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "1"
+							},
+							"value": 1
+						},
+						"descriptor": "Labor/Personnel Issues",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"ERWN\\\",\\\"nsc\\\":\\\"c42\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c17",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "3"
+							},
+							"value": 3
+						},
+						"descriptor": "Funding/Capital",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"ERWN\\\",\\\"nsc\\\":\\\"c17\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					}]
+				},
+				{
+					"code": "BZALNH",
+					"currentTimeFrameNewsVolume": {
+						"displayText": {
+							"value": "19"
+						},
+						"value": 19
+					},
+					"descriptor": "Booz Allen Hamilton Holding Corp.",
+					"searchContextRef": null,
+					"type": 1,
+					"newsEntities": [{
+						"code": "c15",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "8"
+							},
+							"value": 8
+						},
+						"descriptor": "Performance",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"BZALNH\\\",\\\"nsc\\\":\\\"c15\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c411",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "1"
+							},
+							"value": 1
+						},
+						"descriptor": "Management Moves",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"BZALNH\\\",\\\"nsc\\\":\\\"c411\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c33",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "1"
+							},
+							"value": 1
+						},
+						"descriptor": "Contracts/Orders",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"BZALNH\\\",\\\"nsc\\\":\\\"c33\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c22",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "New Products/Services",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"BZALNH\\\",\\\"nsc\\\":\\\"c22\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c12",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Corporate Crime/Legal/Judicial",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"BZALNH\\\",\\\"nsc\\\":\\\"c12\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c18",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "1"
+							},
+							"value": 1
+						},
+						"descriptor": "Ownership Changes",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"BZALNH\\\",\\\"nsc\\\":\\\"c18\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c151",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "8"
+							},
+							"value": 8
+						},
+						"descriptor": "Earnings",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"BZALNH\\\",\\\"nsc\\\":\\\"c151\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c42",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Labor/Personnel Issues",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"BZALNH\\\",\\\"nsc\\\":\\\"c42\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c17",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Funding/Capital",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"BZALNH\\\",\\\"nsc\\\":\\\"c17\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					}]
+				},
+				{
+					"code": "MCROST",
+					"currentTimeFrameNewsVolume": {
+						"displayText": {
+							"value": "19"
+						},
+						"value": 19
+					},
+					"descriptor": "Microsoft Corp.",
+					"searchContextRef": null,
+					"type": 1,
+					"newsEntities": [{
+						"code": "c15",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "4"
+							},
+							"value": 4
+						},
+						"descriptor": "Performance",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"MCROST\\\",\\\"nsc\\\":\\\"c15\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c411",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "3"
+							},
+							"value": 3
+						},
+						"descriptor": "Management Moves",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"MCROST\\\",\\\"nsc\\\":\\\"c411\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c33",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "2"
+							},
+							"value": 2
+						},
+						"descriptor": "Contracts/Orders",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"MCROST\\\",\\\"nsc\\\":\\\"c33\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c22",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "2"
+							},
+							"value": 2
+						},
+						"descriptor": "New Products/Services",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"MCROST\\\",\\\"nsc\\\":\\\"c22\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c12",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Corporate Crime/Legal/Judicial",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"MCROST\\\",\\\"nsc\\\":\\\"c12\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c18",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "3"
+							},
+							"value": 3
+						},
+						"descriptor": "Ownership Changes",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"MCROST\\\",\\\"nsc\\\":\\\"c18\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c151",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "3"
+							},
+							"value": 3
+						},
+						"descriptor": "Earnings",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"MCROST\\\",\\\"nsc\\\":\\\"c151\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c42",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "2"
+							},
+							"value": 2
+						},
+						"descriptor": "Labor/Personnel Issues",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"MCROST\\\",\\\"nsc\\\":\\\"c42\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c17",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Funding/Capital",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"MCROST\\\",\\\"nsc\\\":\\\"c17\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					}]
+				},
+				{
+					"code": "SUNFLA",
+					"currentTimeFrameNewsVolume": {
+						"displayText": {
+							"value": "11"
+						},
+						"value": 11
+					},
+					"descriptor": "SunTrust Banks, Inc.",
+					"searchContextRef": null,
+					"type": 1,
+					"newsEntities": [{
+						"code": "c15",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "10"
+							},
+							"value": 10
+						},
+						"descriptor": "Performance",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"SUNFLA\\\",\\\"nsc\\\":\\\"c15\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c411",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Management Moves",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"SUNFLA\\\",\\\"nsc\\\":\\\"c411\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c33",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Contracts/Orders",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"SUNFLA\\\",\\\"nsc\\\":\\\"c33\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c22",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "New Products/Services",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"SUNFLA\\\",\\\"nsc\\\":\\\"c22\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c12",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Corporate Crime/Legal/Judicial",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"SUNFLA\\\",\\\"nsc\\\":\\\"c12\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c18",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "1"
+							},
+							"value": 1
+						},
+						"descriptor": "Ownership Changes",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"SUNFLA\\\",\\\"nsc\\\":\\\"c18\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c151",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Earnings",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"SUNFLA\\\",\\\"nsc\\\":\\\"c151\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c42",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Labor/Personnel Issues",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"SUNFLA\\\",\\\"nsc\\\":\\\"c42\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c17",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Funding/Capital",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"SUNFLA\\\",\\\"nsc\\\":\\\"c17\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					}]
+				},
+				{
+					"code": "GINORI",
+					"currentTimeFrameNewsVolume": {
+						"displayText": {
+							"value": "10"
+						},
+						"value": 10
+					},
+					"descriptor": "Richard Ginori 1735 SpA",
+					"searchContextRef": null,
+					"type": 1,
+					"newsEntities": [{
+						"code": "c15",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "10"
+							},
+							"value": 10
+						},
+						"descriptor": "Performance",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"GINORI\\\",\\\"nsc\\\":\\\"c15\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c411",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Management Moves",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"GINORI\\\",\\\"nsc\\\":\\\"c411\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c33",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Contracts/Orders",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"GINORI\\\",\\\"nsc\\\":\\\"c33\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c22",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "New Products/Services",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"GINORI\\\",\\\"nsc\\\":\\\"c22\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c12",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Corporate Crime/Legal/Judicial",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"GINORI\\\",\\\"nsc\\\":\\\"c12\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c18",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Ownership Changes",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"GINORI\\\",\\\"nsc\\\":\\\"c18\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c151",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Earnings",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"GINORI\\\",\\\"nsc\\\":\\\"c151\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c42",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Labor/Personnel Issues",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"GINORI\\\",\\\"nsc\\\":\\\"c42\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c17",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Funding/Capital",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"GINORI\\\",\\\"nsc\\\":\\\"c17\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					}]
+				},
+				{
+					"code": "TEKCMP",
+					"currentTimeFrameNewsVolume": {
+						"displayText": {
+							"value": "10"
+						},
+						"value": 10
+					},
+					"descriptor": "Intek SpA",
+					"searchContextRef": null,
+					"type": 1,
+					"newsEntities": [{
+						"code": "c15",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "10"
+							},
+							"value": 10
+						},
+						"descriptor": "Performance",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"TEKCMP\\\",\\\"nsc\\\":\\\"c15\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c411",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Management Moves",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"TEKCMP\\\",\\\"nsc\\\":\\\"c411\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c33",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Contracts/Orders",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"TEKCMP\\\",\\\"nsc\\\":\\\"c33\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c22",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "New Products/Services",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"TEKCMP\\\",\\\"nsc\\\":\\\"c22\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c12",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Corporate Crime/Legal/Judicial",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"TEKCMP\\\",\\\"nsc\\\":\\\"c12\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c18",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Ownership Changes",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"TEKCMP\\\",\\\"nsc\\\":\\\"c18\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c151",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Earnings",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"TEKCMP\\\",\\\"nsc\\\":\\\"c151\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c42",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Labor/Personnel Issues",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"TEKCMP\\\",\\\"nsc\\\":\\\"c42\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c17",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Funding/Capital",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"TEKCMP\\\",\\\"nsc\\\":\\\"c17\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					}]
+				},
+				{
+					"code": "ITWAIT",
+					"currentTimeFrameNewsVolume": {
+						"displayText": {
+							"value": "10"
+						},
+						"value": 10
+					},
+					"descriptor": "IT Way SpA",
+					"searchContextRef": null,
+					"type": 1,
+					"newsEntities": [{
+						"code": "c15",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "10"
+							},
+							"value": 10
+						},
+						"descriptor": "Performance",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"ITWAIT\\\",\\\"nsc\\\":\\\"c15\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c411",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Management Moves",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"ITWAIT\\\",\\\"nsc\\\":\\\"c411\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c33",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Contracts/Orders",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"ITWAIT\\\",\\\"nsc\\\":\\\"c33\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c22",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "New Products/Services",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"ITWAIT\\\",\\\"nsc\\\":\\\"c22\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c12",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Corporate Crime/Legal/Judicial",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"ITWAIT\\\",\\\"nsc\\\":\\\"c12\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c18",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Ownership Changes",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"ITWAIT\\\",\\\"nsc\\\":\\\"c18\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c151",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Earnings",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"ITWAIT\\\",\\\"nsc\\\":\\\"c151\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c42",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Labor/Personnel Issues",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"ITWAIT\\\",\\\"nsc\\\":\\\"c42\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c17",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Funding/Capital",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"ITWAIT\\\",\\\"nsc\\\":\\\"c17\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					}]
+				},
+				{
+					"code": "GABET",
+					"currentTimeFrameNewsVolume": {
+						"displayText": {
+							"value": "10"
+						},
+						"value": 10
+					},
+					"descriptor": "Gabetti Property Solutions SpA",
+					"searchContextRef": null,
+					"type": 1,
+					"newsEntities": [{
+						"code": "c15",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "10"
+							},
+							"value": 10
+						},
+						"descriptor": "Performance",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"GABET\\\",\\\"nsc\\\":\\\"c15\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c411",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Management Moves",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"GABET\\\",\\\"nsc\\\":\\\"c411\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c33",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Contracts/Orders",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"GABET\\\",\\\"nsc\\\":\\\"c33\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c22",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "New Products/Services",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"GABET\\\",\\\"nsc\\\":\\\"c22\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c12",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Corporate Crime/Legal/Judicial",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"GABET\\\",\\\"nsc\\\":\\\"c12\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c18",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Ownership Changes",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"GABET\\\",\\\"nsc\\\":\\\"c18\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c151",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Earnings",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"GABET\\\",\\\"nsc\\\":\\\"c151\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c42",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Labor/Personnel Issues",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"GABET\\\",\\\"nsc\\\":\\\"c42\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c17",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Funding/Capital",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"GABET\\\",\\\"nsc\\\":\\\"c17\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					}]
+				},
+				{
+					"code": "TECAV",
+					"currentTimeFrameNewsVolume": {
+						"displayText": {
+							"value": "10"
+						},
+						"value": 10
+					},
+					"descriptor": "TAS Technologia Avanzata Sistemi SpA",
+					"searchContextRef": null,
+					"type": 1,
+					"newsEntities": [{
+						"code": "c15",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "10"
+							},
+							"value": 10
+						},
+						"descriptor": "Performance",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"TECAV\\\",\\\"nsc\\\":\\\"c15\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c411",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Management Moves",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"TECAV\\\",\\\"nsc\\\":\\\"c411\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c33",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Contracts/Orders",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"TECAV\\\",\\\"nsc\\\":\\\"c33\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c22",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "New Products/Services",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"TECAV\\\",\\\"nsc\\\":\\\"c22\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c12",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Corporate Crime/Legal/Judicial",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"TECAV\\\",\\\"nsc\\\":\\\"c12\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c18",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Ownership Changes",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"TECAV\\\",\\\"nsc\\\":\\\"c18\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c151",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Earnings",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"TECAV\\\",\\\"nsc\\\":\\\"c151\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c42",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Labor/Personnel Issues",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"TECAV\\\",\\\"nsc\\\":\\\"c42\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c17",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Funding/Capital",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"TECAV\\\",\\\"nsc\\\":\\\"c17\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					}]
+				},
+				{
+					"code": "EMAKIT",
+					"currentTimeFrameNewsVolume": {
+						"displayText": {
+							"value": "10"
+						},
+						"value": 10
+					},
+					"descriptor": "Emak SpA",
+					"searchContextRef": null,
+					"type": 1,
+					"newsEntities": [{
+						"code": "c15",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "10"
+							},
+							"value": 10
+						},
+						"descriptor": "Performance",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"EMAKIT\\\",\\\"nsc\\\":\\\"c15\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c411",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Management Moves",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"EMAKIT\\\",\\\"nsc\\\":\\\"c411\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c33",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Contracts/Orders",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"EMAKIT\\\",\\\"nsc\\\":\\\"c33\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c22",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "New Products/Services",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"EMAKIT\\\",\\\"nsc\\\":\\\"c22\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c12",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Corporate Crime/Legal/Judicial",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"EMAKIT\\\",\\\"nsc\\\":\\\"c12\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c18",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Ownership Changes",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"EMAKIT\\\",\\\"nsc\\\":\\\"c18\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c151",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Earnings",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"EMAKIT\\\",\\\"nsc\\\":\\\"c151\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c42",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Labor/Personnel Issues",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"EMAKIT\\\",\\\"nsc\\\":\\\"c42\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c17",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Funding/Capital",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"EMAKIT\\\",\\\"nsc\\\":\\\"c17\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					}]
+				},
+				{
+					"code": "ELENIT",
+					"currentTimeFrameNewsVolume": {
+						"displayText": {
+							"value": "10"
+						},
+						"value": 10
+					},
+					"descriptor": "El.En. SpA",
+					"searchContextRef": null,
+					"type": 1,
+					"newsEntities": [{
+						"code": "c15",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "10"
+							},
+							"value": 10
+						},
+						"descriptor": "Performance",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"ELENIT\\\",\\\"nsc\\\":\\\"c15\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c411",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Management Moves",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"ELENIT\\\",\\\"nsc\\\":\\\"c411\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c33",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Contracts/Orders",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"ELENIT\\\",\\\"nsc\\\":\\\"c33\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c22",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "New Products/Services",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"ELENIT\\\",\\\"nsc\\\":\\\"c22\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c12",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Corporate Crime/Legal/Judicial",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"ELENIT\\\",\\\"nsc\\\":\\\"c12\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c18",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Ownership Changes",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"ELENIT\\\",\\\"nsc\\\":\\\"c18\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c151",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Earnings",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"ELENIT\\\",\\\"nsc\\\":\\\"c151\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c42",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Labor/Personnel Issues",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"ELENIT\\\",\\\"nsc\\\":\\\"c42\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c17",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Funding/Capital",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"ELENIT\\\",\\\"nsc\\\":\\\"c17\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					}]
+				},
+				{
+					"code": "EDSPA",
+					"currentTimeFrameNewsVolume": {
+						"displayText": {
+							"value": "10"
+						},
+						"value": 10
+					},
+					"descriptor": "Monrif SpA",
+					"searchContextRef": null,
+					"type": 1,
+					"newsEntities": [{
+						"code": "c15",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "10"
+							},
+							"value": 10
+						},
+						"descriptor": "Performance",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"EDSPA\\\",\\\"nsc\\\":\\\"c15\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c411",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Management Moves",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"EDSPA\\\",\\\"nsc\\\":\\\"c411\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c33",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Contracts/Orders",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"EDSPA\\\",\\\"nsc\\\":\\\"c33\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c22",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "New Products/Services",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"EDSPA\\\",\\\"nsc\\\":\\\"c22\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c12",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Corporate Crime/Legal/Judicial",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"EDSPA\\\",\\\"nsc\\\":\\\"c12\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c18",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Ownership Changes",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"EDSPA\\\",\\\"nsc\\\":\\\"c18\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c151",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Earnings",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"EDSPA\\\",\\\"nsc\\\":\\\"c151\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c42",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Labor/Personnel Issues",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"EDSPA\\\",\\\"nsc\\\":\\\"c42\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c17",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Funding/Capital",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"EDSPA\\\",\\\"nsc\\\":\\\"c17\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					}]
+				},
+				{
+					"code": "GCERIC",
+					"currentTimeFrameNewsVolume": {
+						"displayText": {
+							"value": "10"
+						},
+						"value": 10
+					},
+					"descriptor": "Gruppo Ceramiche Ricchetti SpA",
+					"searchContextRef": null,
+					"type": 1,
+					"newsEntities": [{
+						"code": "c15",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "10"
+							},
+							"value": 10
+						},
+						"descriptor": "Performance",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"GCERIC\\\",\\\"nsc\\\":\\\"c15\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c411",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Management Moves",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"GCERIC\\\",\\\"nsc\\\":\\\"c411\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c33",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Contracts/Orders",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"GCERIC\\\",\\\"nsc\\\":\\\"c33\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c22",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "New Products/Services",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"GCERIC\\\",\\\"nsc\\\":\\\"c22\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c12",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Corporate Crime/Legal/Judicial",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"GCERIC\\\",\\\"nsc\\\":\\\"c12\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c18",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Ownership Changes",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"GCERIC\\\",\\\"nsc\\\":\\\"c18\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c151",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Earnings",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"GCERIC\\\",\\\"nsc\\\":\\\"c151\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c42",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Labor/Personnel Issues",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"GCERIC\\\",\\\"nsc\\\":\\\"c42\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c17",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Funding/Capital",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"GCERIC\\\",\\\"nsc\\\":\\\"c17\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					}]
+				},
+				{
+					"code": "TERNA",
+					"currentTimeFrameNewsVolume": {
+						"displayText": {
+							"value": "10"
+						},
+						"value": 10
+					},
+					"descriptor": "TERNA Rete Elettrica Nazionale SpA",
+					"searchContextRef": null,
+					"type": 1,
+					"newsEntities": [{
+						"code": "c15",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "10"
+							},
+							"value": 10
+						},
+						"descriptor": "Performance",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"TERNA\\\",\\\"nsc\\\":\\\"c15\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c411",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Management Moves",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"TERNA\\\",\\\"nsc\\\":\\\"c411\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c33",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Contracts/Orders",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"TERNA\\\",\\\"nsc\\\":\\\"c33\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c22",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "New Products/Services",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"TERNA\\\",\\\"nsc\\\":\\\"c22\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c12",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Corporate Crime/Legal/Judicial",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"TERNA\\\",\\\"nsc\\\":\\\"c12\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c18",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Ownership Changes",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"TERNA\\\",\\\"nsc\\\":\\\"c18\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c151",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Earnings",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"TERNA\\\",\\\"nsc\\\":\\\"c151\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c42",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Labor/Personnel Issues",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"TERNA\\\",\\\"nsc\\\":\\\"c42\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c17",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Funding/Capital",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"TERNA\\\",\\\"nsc\\\":\\\"c17\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					}]
+				},
+				{
+					"code": "TISCAL",
+					"currentTimeFrameNewsVolume": {
+						"displayText": {
+							"value": "10"
+						},
+						"value": 10
+					},
+					"descriptor": "Tiscali SpA",
+					"searchContextRef": null,
+					"type": 1,
+					"newsEntities": [{
+						"code": "c15",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "10"
+							},
+							"value": 10
+						},
+						"descriptor": "Performance",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"TISCAL\\\",\\\"nsc\\\":\\\"c15\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c411",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Management Moves",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"TISCAL\\\",\\\"nsc\\\":\\\"c411\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c33",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Contracts/Orders",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"TISCAL\\\",\\\"nsc\\\":\\\"c33\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c22",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "New Products/Services",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"TISCAL\\\",\\\"nsc\\\":\\\"c22\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c12",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Corporate Crime/Legal/Judicial",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"TISCAL\\\",\\\"nsc\\\":\\\"c12\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c18",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Ownership Changes",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"TISCAL\\\",\\\"nsc\\\":\\\"c18\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c151",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Earnings",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"TISCAL\\\",\\\"nsc\\\":\\\"c151\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c42",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Labor/Personnel Issues",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"TISCAL\\\",\\\"nsc\\\":\\\"c42\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c17",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Funding/Capital",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"TISCAL\\\",\\\"nsc\\\":\\\"c17\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					}]
+				},
+				{
+					"code": "TODSPA",
+					"currentTimeFrameNewsVolume": {
+						"displayText": {
+							"value": "10"
+						},
+						"value": 10
+					},
+					"descriptor": "Tods SpA",
+					"searchContextRef": null,
+					"type": 1,
+					"newsEntities": [{
+						"code": "c15",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "10"
+							},
+							"value": 10
+						},
+						"descriptor": "Performance",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"TODSPA\\\",\\\"nsc\\\":\\\"c15\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c411",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Management Moves",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"TODSPA\\\",\\\"nsc\\\":\\\"c411\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c33",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Contracts/Orders",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"TODSPA\\\",\\\"nsc\\\":\\\"c33\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c22",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "New Products/Services",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"TODSPA\\\",\\\"nsc\\\":\\\"c22\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c12",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Corporate Crime/Legal/Judicial",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"TODSPA\\\",\\\"nsc\\\":\\\"c12\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c18",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Ownership Changes",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"TODSPA\\\",\\\"nsc\\\":\\\"c18\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c151",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Earnings",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"TODSPA\\\",\\\"nsc\\\":\\\"c151\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c42",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Labor/Personnel Issues",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"TODSPA\\\",\\\"nsc\\\":\\\"c42\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c17",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Funding/Capital",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"TODSPA\\\",\\\"nsc\\\":\\\"c17\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					}]
+				},
+				{
+					"code": "HPAIND",
+					"currentTimeFrameNewsVolume": {
+						"displayText": {
+							"value": "10"
+						},
+						"value": 10
+					},
+					"descriptor": "RCS MediaGroup SpA",
+					"searchContextRef": null,
+					"type": 1,
+					"newsEntities": [{
+						"code": "c15",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "10"
+							},
+							"value": 10
+						},
+						"descriptor": "Performance",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"HPAIND\\\",\\\"nsc\\\":\\\"c15\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c411",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Management Moves",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"HPAIND\\\",\\\"nsc\\\":\\\"c411\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c33",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Contracts/Orders",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"HPAIND\\\",\\\"nsc\\\":\\\"c33\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c22",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "New Products/Services",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"HPAIND\\\",\\\"nsc\\\":\\\"c22\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c12",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Corporate Crime/Legal/Judicial",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"HPAIND\\\",\\\"nsc\\\":\\\"c12\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c18",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Ownership Changes",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"HPAIND\\\",\\\"nsc\\\":\\\"c18\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c151",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Earnings",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"HPAIND\\\",\\\"nsc\\\":\\\"c151\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c42",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Labor/Personnel Issues",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"HPAIND\\\",\\\"nsc\\\":\\\"c42\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c17",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Funding/Capital",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"HPAIND\\\",\\\"nsc\\\":\\\"c17\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					}]
+				},
+				{
+					"code": "PTMWM",
+					"currentTimeFrameNewsVolume": {
+						"displayText": {
+							"value": "7"
+						},
+						"value": 7
+					},
+					"descriptor": "KPMG International",
+					"searchContextRef": null,
+					"type": 1,
+					"newsEntities": [{
+						"code": "c15",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Performance",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"PTMWM\\\",\\\"nsc\\\":\\\"c15\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c411",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "2"
+							},
+							"value": 2
+						},
+						"descriptor": "Management Moves",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"PTMWM\\\",\\\"nsc\\\":\\\"c411\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c33",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Contracts/Orders",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"PTMWM\\\",\\\"nsc\\\":\\\"c33\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c22",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "New Products/Services",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"PTMWM\\\",\\\"nsc\\\":\\\"c22\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c12",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Corporate Crime/Legal/Judicial",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"PTMWM\\\",\\\"nsc\\\":\\\"c12\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c18",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "3"
+							},
+							"value": 3
+						},
+						"descriptor": "Ownership Changes",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"PTMWM\\\",\\\"nsc\\\":\\\"c18\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c151",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Earnings",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"PTMWM\\\",\\\"nsc\\\":\\\"c151\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c42",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Labor/Personnel Issues",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"PTMWM\\\",\\\"nsc\\\":\\\"c42\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c17",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "2"
+							},
+							"value": 2
+						},
+						"descriptor": "Funding/Capital",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"PTMWM\\\",\\\"nsc\\\":\\\"c17\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					}]
+				},
+				{
+					"code": "CAPTA",
+					"currentTimeFrameNewsVolume": {
+						"displayText": {
+							"value": "2"
+						},
+						"value": 2
+					},
+					"descriptor": "Capita Plc",
+					"searchContextRef": null,
+					"type": 1,
+					"newsEntities": [{
+						"code": "c15",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "1"
+							},
+							"value": 1
+						},
+						"descriptor": "Performance",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"CAPTA\\\",\\\"nsc\\\":\\\"c15\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c411",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Management Moves",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"CAPTA\\\",\\\"nsc\\\":\\\"c411\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c33",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Contracts/Orders",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"CAPTA\\\",\\\"nsc\\\":\\\"c33\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c22",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "New Products/Services",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"CAPTA\\\",\\\"nsc\\\":\\\"c22\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c12",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Corporate Crime/Legal/Judicial",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"CAPTA\\\",\\\"nsc\\\":\\\"c12\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c18",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Ownership Changes",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"CAPTA\\\",\\\"nsc\\\":\\\"c18\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c151",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "1"
+							},
+							"value": 1
+						},
+						"descriptor": "Earnings",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"CAPTA\\\",\\\"nsc\\\":\\\"c151\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c42",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Labor/Personnel Issues",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"CAPTA\\\",\\\"nsc\\\":\\\"c42\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					},
+					{
+						"code": "c17",
+						"currentTimeFrameNewsVolume": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"descriptor": "Funding/Capital",
+						"searchContextRef": "{\"pn\":\"Np\",\"sct\":\"RadarCellSearchContext\",\"j\":\"{\\\"cc\\\":\\\"CAPTA\\\",\\\"nsc\\\":\\\"c17\\\",\\\"tf\\\":-7}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22476\"}",
+						"type": 5
+					}]
+				}]
+			},
+			"packageType": "RadarPackage",
+			"returnCode": 0,
+			"statusMessage": null
+		}]
+	},
+	"customTopicsNewspageModuleServiceResult": {
+		"elapsedTime": 126,
+		"returnCode": 0,
+		"statusMessage": null,
+		"maxPartsAvailable": 5,
+		"partResults": [{
+			"elapsedTime": 48,
+			"identifier": "0",
+			"package": {
+				"portalHeadlineListDataResult": {
+					"hitCount": {
+						"displayText": {
+							"value": "12,710"
+						},
+						"value": 12710
+					},
+					"resultSet": {
+						"count": {
+							"displayText": {
+								"value": "3"
+							},
+							"value": 3
+						},
+						"duplicateCount": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"first": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"headlines": [{
+							"authors": [""],
+							"baseLanguage": "pt",
+							"baseLanguageDescriptor": "Portuguese",
+							"codedAuthors": [],
+							"contentCategoryDescriptor": "publication",
+							"contentSubCategoryDescriptor": "article",
+							"hasPublicationTime": true,
+							"headlineUrl": null,
+							"mediaLength": null,
+							"modificationDateDescriptor": "07 November 2012",
+							"modificationDateTime": "2012-11-07T12:01:06Z",
+							"modificationDateTimeDescriptor": "07 November 2012 12:01 GMT",
+							"modificationTimeDescriptor": "12:01 GMT",
+							"publicationDateDescriptor": "07 November 2012",
+							"publicationDateTime": "2012-11-07T12:01:00Z",
+							"publicationDateTimeDescriptor": "07 November 2012 12:01 GMT",
+							"publicationTimeDescriptor": "12:01 GMT",
+							"reference": {
+								"contentCategory": 2,
+								"contentCategoryDescriptor": "publication",
+								"contentSubCategory": 9,
+								"contentSubCategoryDescriptor": "article",
+								"externalUri": null,
+								"guid": "DJEP000020121107e8b700054",
+								"imageType": null,
+								"mimetype": "text/xml",
+								"ref": null,
+								"subType": null,
+								"type": "accessionNo"
+							},
+							"snippets": ["...es da Apple Inc. (AAPL) desciam 0,5% para $580,20 esta quarta-feira no pr?-mercado, depois de ter sido noticiado que o novo iPad Mini oferece lucros mais baixos face ? vers?o original, segundo uma an?lise da UBM TechInsights, que estima regularmente os... "],
+							"sourceCode": "djep",
+							"sourceDescriptor": "DJ em Portugu?s",
+							"thumbnailImage": {
+								"guid": null,
+								"src": null,
+								"uri": null
+							},
+							"title": "EUA/HOT STOCKS: iPad Mini da Apple Oferece Lucros Mais Baixos ",
+							"toolTip": null,
+							"truncatedTitle": "EUA/HOT STOCKS: iPad Mini da Apple Oferece Lucros Mais Baixos",
+							"wordCount": {
+								"displayText": {
+									"value": "170"
+								},
+								"value": 170
+							},
+							"wordCountDescriptor": "170 words"
+						},
+						{
+							"authors": [""],
+							"baseLanguage": "pt",
+							"baseLanguageDescriptor": "Portuguese",
+							"codedAuthors": [],
+							"contentCategoryDescriptor": "publication",
+							"contentSubCategoryDescriptor": "article",
+							"hasPublicationTime": true,
+							"headlineUrl": null,
+							"mediaLength": null,
+							"modificationDateDescriptor": "07 November 2012",
+							"modificationDateTime": "2012-11-07T15:00:44Z",
+							"modificationDateTimeDescriptor": "07 November 2012 15:00 GMT",
+							"modificationTimeDescriptor": "15:00 GMT",
+							"publicationDateDescriptor": "07 November 2012",
+							"publicationDateTime": "2012-11-07T15:00:00Z",
+							"publicationDateTimeDescriptor": "07 November 2012 15:00 GMT",
+							"publicationTimeDescriptor": "15:00 GMT",
+							"reference": {
+								"contentCategory": 2,
+								"contentCategoryDescriptor": "publication",
+								"contentSubCategory": 9,
+								"contentSubCategoryDescriptor": "article",
+								"externalUri": null,
+								"guid": "DJEP000020121107e8b7000a6",
+								"imageType": null,
+								"mimetype": "text/xml",
+								"ref": null,
+								"subType": null,
+								"type": "accessionNo"
+							},
+							"snippets": ["...[DJ Bolsa]-- As a??es da Apple Inc. (AAPL) iniciaram esta sess?o a cair 1,8% para $569,57, depois de ter sido noticiado que o novo iPad Mini oferece margens de lucros mais baixas face ao modelo original, segundo uma an?lise da UBM TechInsights.... "],
+							"sourceCode": "djep",
+							"sourceDescriptor": "DJ em Portugu?s",
+							"thumbnailImage": {
+								"guid": null,
+								"src": null,
+								"uri": null
+							},
+							"title": "EUA/HOT STOCKS: Apple -1,8%; iPad Mini c/ Lucros Mais Baixos ",
+							"toolTip": null,
+							"truncatedTitle": "EUA/HOT STOCKS: Apple -1,8%; iPad Mini c/ Lucros Mais Baixos",
+							"wordCount": {
+								"displayText": {
+									"value": "84"
+								},
+								"value": 84
+							},
+							"wordCountDescriptor": "84 words"
+						},
+						{
+							"authors": ["trevor tan "],
+							"baseLanguage": "en",
+							"baseLanguageDescriptor": "English",
+							"codedAuthors": [{
+								"items": [{
+									"entityType": 12,
+									"entityTypeDescriptor": "Author",
+									"guid": "3016279",
+									"value": "Trevor Tan"
+								}]
+							}],
+							"contentCategoryDescriptor": "publication",
+							"contentSubCategoryDescriptor": "article",
+							"hasPublicationTime": false,
+							"headlineUrl": null,
+							"mediaLength": null,
+							"modificationDateDescriptor": "07 November 2012",
+							"modificationDateTime": "2012-11-07T16:08:00Z",
+							"modificationDateTimeDescriptor": "07 November 2012 16:08 GMT",
+							"modificationTimeDescriptor": "16:08 GMT",
+							"publicationDateDescriptor": null,
+							"publicationDateTime": "2012-11-07T00:00:00Z",
+							"publicationDateTimeDescriptor": "07 November 2012",
+							"publicationTimeDescriptor": null,
+							"reference": {
+								"contentCategory": 2,
+								"contentCategoryDescriptor": "publication",
+								"contentSubCategory": 9,
+								"contentSubCategoryDescriptor": "article",
+								"externalUri": null,
+								"guid": "COMPTI0020121107e8b7000ez",
+								"imageType": null,
+								"mimetype": "text/xml",
+								"ref": null,
+								"subType": null,
+								"type": "accessionNo"
+							},
+							"snippets": ["...The iPad mini is a device that had been predicted for so long that its arrival was almost an anticlimax. The only surprise was that no one knew how big it would be or precisely how it would look.... "],
+							"sourceCode": "compti",
+							"sourceDescriptor": "Digital Life",
+							"thumbnailImage": {
+								"guid": null,
+								"src": null,
+								"uri": null
+							},
+							"title": "Tablets; Apple iPad mini ",
+							"toolTip": null,
+							"truncatedTitle": "Tablets; Apple iPad mini",
+							"wordCount": {
+								"displayText": {
+									"value": "882"
+								},
+								"value": 882
+							},
+							"wordCountDescriptor": "882 words"
+						}]
+					}
+				},
+				"title": "IPAD",
+				"viewAllSearchContext": "{\"pn\":\"Np\",\"sct\":\"CustomTopicsViewAllSearchContext\",\"j\":\"{\\\"cti\\\":0,\\\"ctn\\\":null}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22473\"}"
+			},
+			"packageType": "CustomTopicsPackage",
+			"returnCode": 0,
+			"statusMessage": null
+		},
+		{
+			"elapsedTime": 42,
+			"identifier": "1",
+			"package": {
+				"portalHeadlineListDataResult": {
+					"hitCount": {
+						"displayText": {
+							"value": "16"
+						},
+						"value": 16
+					},
+					"resultSet": {
+						"count": {
+							"displayText": {
+								"value": "3"
+							},
+							"value": 3
+						},
+						"duplicateCount": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"first": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"headlines": [{
+							"authors": ["By Michael Cohn "],
+							"baseLanguage": "en",
+							"baseLanguageDescriptor": "English",
+							"codedAuthors": [{
+								"items": [{
+									"entityType": 12,
+									"entityTypeDescriptor": "Author",
+									"guid": "373238",
+									"value": "Michael Cohn"
+								}]
+							}],
+							"contentCategoryDescriptor": "publication",
+							"contentSubCategoryDescriptor": "article",
+							"hasPublicationTime": false,
+							"headlineUrl": null,
+							"mediaLength": null,
+							"modificationDateDescriptor": "06 November 2012",
+							"modificationDateTime": "2012-11-06T19:21:16Z",
+							"modificationDateTimeDescriptor": "06 November 2012 19:21 GMT",
+							"modificationTimeDescriptor": "19:21 GMT",
+							"publicationDateDescriptor": null,
+							"publicationDateTime": "2012-11-06T00:00:00Z",
+							"publicationDateTimeDescriptor": "06 November 2012",
+							"publicationTimeDescriptor": null,
+							"reference": {
+								"contentCategory": 2,
+								"contentCategoryDescriptor": "publication",
+								"contentSubCategory": 9,
+								"contentSubCategoryDescriptor": "article",
+								"externalUri": null,
+								"guid": "ACTODY0020121106e8b6000dx",
+								"imageType": null,
+								"mimetype": "text/xml",
+								"ref": null,
+								"subType": null,
+								"type": "accessionNo"
+							},
+							"snippets": ["The Center for Audit Quality has released a guide to help auditing firms cope with the Public Company Accounting Oversight Board inspection process. "],
+							"sourceCode": "actody",
+							"sourceDescriptor": "Accounting Today",
+							"thumbnailImage": {
+								"guid": null,
+								"src": null,
+								"uri": null
+							},
+							"title": "CAQ Releases Audit Firm Inspection Guide ",
+							"toolTip": null,
+							"truncatedTitle": "CAQ Releases Audit Firm Inspection Guide",
+							"wordCount": {
+								"displayText": {
+									"value": "226"
+								},
+								"value": 226
+							},
+							"wordCountDescriptor": "226 words"
+						},
+						{
+							"authors": ["Francine McKenna "],
+							"baseLanguage": "en",
+							"baseLanguageDescriptor": "English",
+							"codedAuthors": [{
+								"items": [{
+									"entityType": 12,
+									"entityTypeDescriptor": "Author",
+									"guid": "3494378",
+									"value": "Francine McKenna"
+								}]
+							}],
+							"contentCategoryDescriptor": "blog",
+							"contentSubCategoryDescriptor": "blog",
+							"hasPublicationTime": false,
+							"headlineUrl": "http://www.forbes.com/sites/francinemckenna/2012/10/31/on-mf-global-anniversary-something-still-missing/",
+							"mediaLength": null,
+							"modificationDateDescriptor": "02 November 2012",
+							"modificationDateTime": "2012-11-02T03:34:50Z",
+							"modificationDateTimeDescriptor": "02 November 2012 03:34 GMT",
+							"modificationTimeDescriptor": "03:34 GMT",
+							"publicationDateDescriptor": null,
+							"publicationDateTime": "2012-10-31T00:00:00Z",
+							"publicationDateTimeDescriptor": "31 October 2012",
+							"publicationTimeDescriptor": null,
+							"reference": {
+								"contentCategory": 6,
+								"contentCategoryDescriptor": "blog",
+								"contentSubCategory": 2,
+								"contentSubCategoryDescriptor": "blog",
+								"externalUri": "http://www.forbes.com/sites/francinemckenna/2012/10/31/on-mf-global-anniversary-something-still-missing/",
+								"guid": "BC05546020121102e8av00001",
+								"imageType": null,
+								"mimetype": "text/xml",
+								"ref": null,
+								"subType": null,
+								"type": "accessionNo"
+							},
+							"snippets": ["Something is still missing today, the one year anniversary of the bankruptcy of MF Global. Of course, we?re not yet being told who has $1.6 billion of customer funds still unaccounted for. If the SIPA Trustee James Giddens tells you he may ... "],
+							"sourceCode": "bc05546",
+							"sourceDescriptor": "Accounting Watchdog",
+							"thumbnailImage": {
+								"guid": null,
+								"src": null,
+								"uri": null
+							},
+							"title": "On MF Global Anniversary Something Still Missing ",
+							"toolTip": null,
+							"truncatedTitle": "On MF Global Anniversary Something Still Missing",
+							"wordCount": {
+								"displayText": {
+									"value": "1,573"
+								},
+								"value": 1573
+							},
+							"wordCountDescriptor": "1,573 words"
+						},
+						{
+							"authors": ["By Michael Cohn "],
+							"baseLanguage": "en",
+							"baseLanguageDescriptor": "English",
+							"codedAuthors": [{
+								"items": [{
+									"entityType": 12,
+									"entityTypeDescriptor": "Author",
+									"guid": "373238",
+									"value": "Michael Cohn"
+								}]
+							}],
+							"contentCategoryDescriptor": "publication",
+							"contentSubCategoryDescriptor": "article",
+							"hasPublicationTime": false,
+							"headlineUrl": null,
+							"mediaLength": null,
+							"modificationDateDescriptor": "31 October 2012",
+							"modificationDateTime": "2012-10-31T19:40:25Z",
+							"modificationDateTimeDescriptor": "31 October 2012 19:40 GMT",
+							"modificationTimeDescriptor": "19:40 GMT",
+							"publicationDateDescriptor": null,
+							"publicationDateTime": "2012-10-26T00:00:00Z",
+							"publicationDateTimeDescriptor": "26 October 2012",
+							"publicationTimeDescriptor": null,
+							"reference": {
+								"contentCategory": 2,
+								"contentCategoryDescriptor": "publication",
+								"contentSubCategory": 9,
+								"contentSubCategoryDescriptor": "article",
+								"externalUri": null,
+								"guid": "ACTODY0020121026e8aq000dx",
+								"imageType": null,
+								"mimetype": "text/xml",
+								"ref": null,
+								"subType": null,
+								"type": "accessionNo"
+							},
+							"snippets": ["The Public Company Accounting Oversight Board is currently in the midst of disciplinary proceedings against 19 auditing firms and individual auditors, and the PCAOB is considering ending the registrations of up to 870 firms that have not ... "],
+							"sourceCode": "actody",
+							"sourceDescriptor": "Accounting Today",
+							"thumbnailImage": {
+								"guid": null,
+								"src": null,
+								"uri": null
+							},
+							"title": "19 Auditors Face PCAOB Disciplinary Proceedings ",
+							"toolTip": null,
+							"truncatedTitle": "19 Auditors Face PCAOB Disciplinary Proceedings",
+							"wordCount": {
+								"displayText": {
+									"value": "767"
+								},
+								"value": 767
+							},
+							"wordCountDescriptor": "767 words"
+						}]
+					}
+				},
+				"title": "Accounting Regulation",
+				"viewAllSearchContext": "{\"pn\":\"Np\",\"sct\":\"CustomTopicsViewAllSearchContext\",\"j\":\"{\\\"cti\\\":1,\\\"ctn\\\":null}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22473\"}"
+			},
+			"packageType": "CustomTopicsPackage",
+			"returnCode": 0,
+			"statusMessage": null
+		},
+		{
+			"elapsedTime": 49,
+			"identifier": "2",
+			"package": {
+				"portalHeadlineListDataResult": {
+					"hitCount": {
+						"displayText": {
+							"value": "703"
+						},
+						"value": 703
+					},
+					"resultSet": {
+						"count": {
+							"displayText": {
+								"value": "3"
+							},
+							"value": 3
+						},
+						"duplicateCount": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"first": {
+							"displayText": {
+								"value": "0"
+							},
+							"value": 0
+						},
+						"headlines": [{
+							"authors": ["LAURENT THEVENIN "],
+							"baseLanguage": "fr",
+							"baseLanguageDescriptor": "French",
+							"codedAuthors": [{
+								"items": [{
+									"entityType": 12,
+									"entityTypeDescriptor": "Author",
+									"guid": "24263",
+									"value": "LAURENT THEVENIN"
+								}]
+							}],
+							"contentCategoryDescriptor": "publication",
+							"contentSubCategoryDescriptor": "article",
+							"hasPublicationTime": false,
+							"headlineUrl": null,
+							"mediaLength": null,
+							"modificationDateDescriptor": "07 November 2012",
+							"modificationDateTime": "2012-11-07T11:14:18Z",
+							"modificationDateTimeDescriptor": "07 November 2012 11:14 GMT",
+							"modificationTimeDescriptor": "11:14 GMT",
+							"publicationDateDescriptor": null,
+							"publicationDateTime": "2012-11-07T00:00:00Z",
+							"publicationDateTimeDescriptor": "07 November 2012",
+							"publicationTimeDescriptor": null,
+							"reference": {
+								"contentCategory": 2,
+								"contentCategoryDescriptor": "publication",
+								"contentSubCategory": 9,
+								"contentSubCategoryDescriptor": "article",
+								"externalUri": null,
+								"guid": "ECHOS00020121107e8b70000e",
+								"imageType": null,
+								"mimetype": "text/xml",
+								"ref": null,
+								"subType": null,
+								"type": "accessionNo"
+							},
+							"snippets": ["Selon une ?tude d'Accenture dans 15?pays, les??pargnants ne se tournent pas naturellement vers leur assureur pour pr?parer leur retraite. ",
+							"Les assureurs ont beau clamer qu'ils sont les plus indiqu?s pour aider ? la pr?paration ? la retraite, ... "],
+							"sourceCode": "echos",
+							"sourceDescriptor": "Les Echos",
+							"thumbnailImage": {
+								"guid": null,
+								"src": null,
+								"uri": null
+							},
+							"title": "Retraite?: les assureurs invit?s ? mieux segmenter leur offre ",
+							"toolTip": null,
+							"truncatedTitle": "Retraite?: les assureurs invit?s ? mieux segmenter leur offre",
+							"wordCount": {
+								"displayText": {
+									"value": "434"
+								},
+								"value": 434
+							},
+							"wordCountDescriptor": "434 words"
+						},
+						{
+							"authors": [""],
+							"baseLanguage": "en",
+							"baseLanguageDescriptor": "English",
+							"codedAuthors": [],
+							"contentCategoryDescriptor": "publication",
+							"contentSubCategoryDescriptor": "article",
+							"hasPublicationTime": false,
+							"headlineUrl": null,
+							"mediaLength": null,
+							"modificationDateDescriptor": "07 November 2012",
+							"modificationDateTime": "2012-11-07T06:01:23Z",
+							"modificationDateTimeDescriptor": "07 November 2012 06:01 GMT",
+							"modificationTimeDescriptor": "06:01 GMT",
+							"publicationDateDescriptor": null,
+							"publicationDateTime": "2012-11-07T00:00:00Z",
+							"publicationDateTimeDescriptor": "07 November 2012",
+							"publicationTimeDescriptor": null,
+							"reference": {
+								"contentCategory": 2,
+								"contentCategoryDescriptor": "publication",
+								"contentSubCategory": 9,
+								"contentSubCategoryDescriptor": "article",
+								"externalUri": null,
+								"guid": "PMLEAD0020121107e8b700006",
+								"imageType": null,
+								"mimetype": "text/xml",
+								"ref": null,
+								"subType": null,
+								"type": "accessionNo"
+							},
+							"snippets": ["The growth of complexity is reflected in businesses? goals. Today?s companies, on average, set themselves six times as many performance requirements as they did in 1955. And many of those requirements appear to be in conflict. "],
+							"sourceCode": "pmlead",
+							"sourceDescriptor": "Leading Company",
+							"thumbnailImage": {
+								"guid": null,
+								"src": null,
+								"uri": null
+							},
+							"title": "Six ways to get people to solve problems without you ",
+							"toolTip": null,
+							"truncatedTitle": "Six ways to get people to solve problems without you",
+							"wordCount": {
+								"displayText": {
+									"value": "1,243"
+								},
+								"value": 1243
+							},
+							"wordCountDescriptor": "1,243 words"
+						},
+						{
+							"authors": [""],
+							"baseLanguage": "en",
+							"baseLanguageDescriptor": "English",
+							"codedAuthors": [],
+							"contentCategoryDescriptor": "publication",
+							"contentSubCategoryDescriptor": "article",
+							"hasPublicationTime": false,
+							"headlineUrl": null,
+							"mediaLength": null,
+							"modificationDateDescriptor": "06 November 2012",
+							"modificationDateTime": "2012-11-06T21:22:34Z",
+							"modificationDateTimeDescriptor": "06 November 2012 21:22 GMT",
+							"modificationTimeDescriptor": "21:22 GMT",
+							"publicationDateDescriptor": null,
+							"publicationDateTime": "2012-11-07T00:00:00Z",
+							"publicationDateTimeDescriptor": "07 November 2012",
+							"publicationTimeDescriptor": null,
+							"reference": {
+								"contentCategory": 2,
+								"contentCategoryDescriptor": "publication",
+								"contentSubCategory": 9,
+								"contentSubCategoryDescriptor": "article",
+								"externalUri": null,
+								"guid": "AAPFIN0020121106e8b7006bt",
+								"imageType": null,
+								"mimetype": "text/xml",
+								"ref": null,
+								"subType": null,
+								"type": "accessionNo"
+							},
+							"snippets": ["FTSE100 FTSE100 Selected Stocks ",
+							"Prices in Pence ",
+							"LAST CHANGE % CHANGE ",
+							"3I Group 219.12 -0.30 -0.14 ",
+							"Aberdeen New D 856.00 0.00 0.00 ",
+							"ABF 1365.68 -1.00 -0.07 "],
+							"sourceCode": "aapfin",
+							"sourceDescriptor": "Australian Associated Press Financial News Wire",
+							"thumbnailImage": {
+								"guid": null,
+								"src": null,
+								"uri": null
+							},
+							"title": "FTSE100 Selected Stocks ",
+							"toolTip": null,
+							"truncatedTitle": "FTSE100 Selected Stocks",
+							"wordCount": {
+								"displayText": {
+									"value": "1,080"
+								},
+								"value": 1080
+							},
+							"wordCountDescriptor": "1,080 words"
+						}]
+					}
+				},
+				"title": "Management Consulting",
+				"viewAllSearchContext": "{\"pn\":\"Np\",\"sct\":\"CustomTopicsViewAllSearchContext\",\"j\":\"{\\\"cti\\\":2,\\\"ctn\\\":null}\",\"pid\":\"Np_V1_26414_26414_000000\",\"mid\":\"22473\"}"
+			},
+			"packageType": "CustomTopicsPackage",
+			"returnCode": 0,
+			"statusMessage": null
+		}]
+	}
+}
