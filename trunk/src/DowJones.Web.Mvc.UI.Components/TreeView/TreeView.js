@@ -97,35 +97,6 @@
 		}
 	},
 
-    _convertToJsTreeNodes: function (treeViewNodes) {
-        if (!treeViewNodes)
-            return null;
-
-        var jsTreeNodes = [];
-
-        for (var i = 0; i < treeViewNodes.length; i++) {
-            var treeViewNode = treeViewNodes[i];
-            var jsTreeNode = {
-                data: treeViewNode.title,
-                metadata: treeViewNode.metadata,
-                children: this._convertToJsTreeNodes(treeViewNode.children)
-            };
-
-            if (treeViewNode.isChecked) {
-                jsTreeNode.attr = {
-                    "class": "jstree-checked"
-                };
-            }
-
-            if (treeViewNode.isOpen) {
-                jsTreeNode.state = "open";
-            }
-
-            jsTreeNodes.push(jsTreeNode);
-        }
-        return jsTreeNodes;
-    },
-
     _setData: function(treeViewNodes) {
 		if (treeViewNodes) {
 			this._fixCheckedState(treeViewNodes);
@@ -163,11 +134,15 @@
 			
 			if (checkedChildrenCount == node.children.length) {
 				node.isChecked = true;
-				node.checkedClass = " dj_tree_view_checked";
+				node.checkedClass = " "  + this.classNames.checked;
 			}
-			else {			
+			else if (checkedChildrenCount == 0){
 				node.isChecked = false;
-				node.checkedClass = " dj_tree_view_undetermined";
+				node.checkedClass = " "  + this.classNames.unchecked;
+			}
+			else {
+				node.isChecked = false;
+				node.checkedClass = " "  + this.classNames.undetermined;
 			}
 		}
 	},
