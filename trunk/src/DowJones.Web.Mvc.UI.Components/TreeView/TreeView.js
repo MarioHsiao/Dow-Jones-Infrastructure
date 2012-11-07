@@ -1,6 +1,7 @@
 ﻿DJ.UI.TreeView = DJ.UI.Component.extend({
     defaults: {
         enableCheckboxes: false,
+        expandAll: false
     },
 
     events: {
