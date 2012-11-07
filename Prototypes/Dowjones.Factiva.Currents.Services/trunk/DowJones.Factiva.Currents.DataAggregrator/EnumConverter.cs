@@ -6,7 +6,7 @@ using System.Text;
 
 namespace DowJones.Factiva.Currents.Aggregrator
 {
-    public class EnumConverter<T>
+    public class EnumConverter1<T>
     {
         //public static T ConvertStringToEnum(string enumString, long errorCode, bool isRequired, T defaultValue)
         //{

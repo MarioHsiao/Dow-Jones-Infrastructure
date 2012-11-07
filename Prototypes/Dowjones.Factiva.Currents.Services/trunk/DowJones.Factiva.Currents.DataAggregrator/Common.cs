@@ -3,10 +3,16 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Runtime.Serialization.Json;
 using System.ServiceModel;
 using System.ServiceModel.Channels;
 using System.ServiceModel.Web;
 using System.Text;
+using System.Xml;
+using System.Xml.Linq;
+using System.Xml.Serialization;
+using DowJones.Factiva.Currents.Common;
+using DowJones.Factiva.Currents.Common.Utilities;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -43,253 +49,301 @@ namespace DowJones.Factiva.Currents.Aggregrator
             return value;
         }
 
-        public static string GetPageByIdData(string pageId)
+        public static string GetPageByIdData(string pageId, string format)
         {
             string url =
                 string.Format(
-                    "{0}/Pages/1.0/id/json?pageId={1}&encryptedToken={2}",                   
+                    "{0}/Pages/1.0/id/" + format + "?pageId={1}&encryptedToken={2}",                   
                     basePath,
                     pageId,
                     enToken
                   );
-            Dictionary<string, string> pageModuleList = new Dictionary<string,string>();
-            pageModuleList.Add(pageId,GetData(url));
-            GetModuleData(pageModuleList, pageId);
-            return GetSerializedPagesModules(pageModuleList);
+
+            Dictionary<string, string> pageModuleList = new Dictionary<string, string>();
+            string pageData = GetData(url);
+            pageModuleList.Add("newsPage", pageData);
+            if (format.Equals(RequestFormat.Json.ToString(), StringComparison.CurrentCultureIgnoreCase))
+            {
+                GetModuleDataForJson(pageModuleList, pageId);
+                return GetSerializedPagesModulesForJson(pageModuleList);
+            }
+            else
+            {
+                GetModuleDataForXml(pageModuleList, pageId);
+                return GetSerializedPagesModulesForXml(pageModuleList);
+            }
+          
         }
 
-        
-
-        public static string GetPageListData()
+        public static string GetPageListData(string format)
         {
-            //List<string> pageModuleList = new List<string>();
-
             string url =
                 string.Format(
-                    "{0}/Pages/1.0/list/json?encryptedToken={1}",
+                    "{0}/Pages/1.0/list/"+format+"?encryptedToken={1}",
                     basePath,
                     enToken
                   );
-
-            //dynamic pageList = JsonConvert.DeserializeObject(GetData(url));
-            //if (pageList.package != null && pageList.package.newsPages != null && pageList.package.newsPages.Count > 0)
-            //{
-            //    foreach (dynamic newsPage in pageList.package.newsPages)
-            //    {
-            //        string pageId = newsPage.id.Value;
-            //        GetPageByIdData(pageId);
-            //       // GetModuleData(pageModuleList, pageId);
-            //    }
-            //}
             return GetData(url);
         }
 
-        private static string GetSerializedPagesModules(Dictionary<string,string> pageModuleList)
+        private static string GetSerializedPagesModulesForJson(Dictionary<string, string> pageModuleList)
         {
             if (pageModuleList.Count > 0)
             {
                 object[] arr = new object[pageModuleList.Count];
-                int itemIndex = 1;
-                arr[0] = JsonConvert.DeserializeObject(pageModuleList.Values.ElementAt(0));
+                int itemIndex = 0;
+                for (int index = 0; index < pageModuleList.Keys.Count; index++)
+                {
+                    string s = JsonConvert.SerializeObject(pageModuleList.Keys.ElementAt(index) + "ServiceResult");
+                    arr[itemIndex] = @"{" + s + ":" + pageModuleList.Values.ElementAt(index) + "}";
+                    itemIndex++;
+                }
+                return Cascade(arr);
+            }
+            return string.Empty;
+        }
+        
+        private static string GetSerializedPagesModulesForXml(Dictionary<string,string> pageModuleList)
+        {
+            XmlDocument doc = new XmlDocument();
+            XmlNode x = doc.CreateNode(XmlNodeType.Element,"Pages",string.Empty);
+            ////doc.LoadXml(pageModuleList.Values.ElementAt(0));
+            ////XmlNode mainRoot = doc.DocumentElement;
+            ////XmlNode node = mainRoot.SelectSingleNode("/newsPageServiceResult");
+            //XmlNodeReader reader = new XmlNodeReader();
+            doc.AppendChild(x);
+            XmlNode x1 = doc.DocumentElement;
+            
+            //object o = Serialization.DeserializeXmlFileWithXmlSerializer<object>(pageModuleList.Values.ElementAt(0));
+            if (pageModuleList.Count > 0)
+            {
+                XmlDocument doc1 = new XmlDocument();
                 for (int index = 1; index < pageModuleList.Keys.Count; index++)
                 {
-                    string[] stringArray = new string[2];
-                    stringArray[0] = @"{""type"":" + JsonConvert.SerializeObject(pageModuleList.Keys.ElementAt(index)) + "}";
-                    stringArray[1] = pageModuleList.Values.ElementAt(index);
-                    string mergedModuleIdAndModule = Cascade(stringArray);
-                    arr[itemIndex] = JsonConvert.DeserializeObject(mergedModuleIdAndModule);
-                    itemIndex++;
-                    //pageModuleList.
+                    ////doc1.LoadXml(pageModuleList.Values.ElementAt(index));
+                    ////node.AppendChild(doc.ImportNode(doc1.DocumentElement,true));
+                    
+                    doc1.LoadXml(pageModuleList.Values.ElementAt(index));
+                    x1.AppendChild(doc.ImportNode(doc1.DocumentElement, true));
+                   // x = doc.CreateElement(pageModuleList.Keys.ElementAt(index));
+                //    x.InnerText = pageModuleList.Values.ElementAt(index);
+                //    doc.DocumentElement.AppendChild(x);
+                //    //var combinedUnique = xml1.Descendants("AllNodes")
+                //    //      .Union(xml2.Descendants("AllNodes"));
+                //   // object o = Serialization.DeserializeXmlFileXMLSerializer<object>(pageModuleList.Values.ElementAt(index));
+                //   // arr[index] = o;
                 }
-                //foreach (string str in pageModuleList)
-                //{
-                //    arr[index] = JsonConvert.DeserializeObject(str);
-                //    index++;
-                //}
-                string serializedObject = JsonConvert.SerializeObject(arr);
-                return serializedObject;
+                //string serializedObject = Serialization.SerializeObjectToString(arr);
+                //return serializedObject;
             }
             return string.Empty;
         }
 
-        private static void GetModuleData(Dictionary<string, string> pageModuleList, string pageId)
+        private static void GetModuleDataForJson(Dictionary<string, string> pageModuleList, string pageId)
         {
-            int firstResultToReturn = 0;
-            int firstPartToReturn = 0;
-            string parts = string.Empty;
-            string url = string.Empty;
-            dynamic pageById = JsonConvert.DeserializeObject(pageModuleList[pageId]);
+            dynamic pageById = JsonConvert.DeserializeObject(pageModuleList["newsPage"]);
             if (pageById.package != null && pageById.package.newsPage != null &&
                 pageById.package.newsPage.modules != null && pageById.package.newsPage.modules.Count > 0)
             {
                 int maxResultsToReturn = pageById.package.newsPage.modules.Count;
                 int maxPartsToReturn = maxResultsToReturn;
-                string timeFrame = "lastweek";
+              
                 foreach (dynamic module in pageById.package.newsPage.modules)
                 {
                     if (module != null && module.__type != null)
                     {
                         long moduleId = module.id.Value;
                         string type = module.__type.Value;
-                        switch (type)
-                        {
-                            case "summaryNewspageModule":
-                                int maxEntitiesToReturn = maxResultsToReturn;
-                                parts = "Chart|RecentArticles|RecentVideos|RegionalMap|Trending";
-                                url =
-                                   string.Format(
-                                       "{0}/Modules/Summary/1.0/data/json?pageId={1}&moduleId={2}&firstResultToReturn={3}&maxResultsToReturn={4}&maxEntitiesToReturn={5}&parts={6}&encryptedToken={7}",
-                                       basePath,
-                                       pageId,
-                                       moduleId,
-                                       firstResultToReturn,
-                                       maxResultsToReturn,
-                                       maxEntitiesToReturn,
-                                       parts,
-                                       enToken
-                                     );
-                                pageModuleList.Add(type, GetData(url));
-                                break;
-                            case "topNewsNewspageModule":
-                                 parts = "EditorsChoice|VideoAndAudio|OpinionAndAnalysis";
-                                 url =
-                                   string.Format(
-                                       "{0}/Modules/TopNews/1.0/data/json?pageId={1}&moduleId={2}&firstResultToReturn={3}&maxResultsToReturn={4}&parts={5}&encryptedToken={6}",
-                                       basePath,
-                                       pageId,
-                                       moduleId,
-                                       firstResultToReturn,
-                                       maxResultsToReturn,
-                                       parts,
-                                       enToken
-                                     );
-                                pageModuleList.Add(type,GetData(url));
-                                break;
-                            case "sourcesNewspageModule":                                 
-                                 parts = "EditorsChoice|VideoAndAudio|OpinionAndAnalysis";
-                                 url =
-                                   string.Format(
-                                       "{0}/Modules/Sources/1.0/data/json?pageid={1}&moduleId={2}&firstPartToReturn={3}&maxPartsToReturn={4}&firstResultToReturn={5}&maxResultsToReturn={6}&encryptedToken={7}",
-                                       basePath,
-                                       pageId,
-                                       moduleId,
-                                       firstPartToReturn,
-                                       maxPartsToReturn,
-                                       firstResultToReturn,
-                                       maxResultsToReturn,
-                                       enToken
-                                     );
-                                 pageModuleList.Add(type,GetData(url));
-                                break;
-                            case "companyOverviewNewspageModule":
-                                 parts = "SnapShot|Chart|RecentArticles|Trending";
-                                 url =
-                                   string.Format(
-                                       "{0}/Modules/CompanyOverview/1.0/data/json?pageid={1}&moduleId={2}&firstResultToReturn={3}&maxResultsToReturn={4}&parts={5}&encryptedToken={6}",
-                                       basePath,
-                                       pageId,
-                                       moduleId,
-                                       firstResultToReturn,
-                                       maxResultsToReturn,
-                                       parts,
-                                       enToken
-                                     );
-                                 pageModuleList.Add(type,GetData(url));
-                                break;
-                            case "radarNewspageModule":
-                               
-                                url =
-                                  string.Format(
-                                      "{0}/Modules/Radar/1.0/data/json?pageid={1}&moduleId={2}&timeFrame={3}&encryptedToken={4}",
-                                      basePath,
-                                      pageId,
-                                      moduleId,
-                                     timeFrame,
-                                      enToken
-                                    );
-                                pageModuleList.Add(type,GetData(url));
-                                break;
-                            case "customTopicsNewspageModule":
-                                url =
-                                  string.Format(
-                                      "{0}/Modules/CustomTopics/1.0/data/json?pageid={1}&moduleId={2}&firstPartToReturn={3}&maxPartsToReturn={4}&firstResultToReturn={5}&maxResultsToReturn={6}&encryptedToken={7}",
-                                      basePath,
-                                      pageId,
-                                      moduleId,
-                                       firstPartToReturn,
-                                       maxPartsToReturn,
-                                       firstResultToReturn,
-                                       maxResultsToReturn,
-                                      enToken
-                                    );
-                                pageModuleList.Add(type,GetData(url));
-                                break;
-                            case "regionalMapNewspageModule":
-                                url =
-                                  string.Format(
-                                      "{0}/Modules/RegionalMap/1.0/data/json?pageid={1}&moduleId={2}&timeFrame={3}&encryptedToken={4}",
-                                      basePath,
-                                      pageId,
-                                      moduleId,
-                                      timeFrame,
-                                      enToken
-                                    );
-                                pageModuleList.Add(type,GetData(url));
-                                break;
-                            case "trendingNewsPageModule":
-                                parts = "TopEntities|TrendingDown|TrendingUp";
-                                string entityType = "companies";
-                                url =
-                                  string.Format(
-                                      "{0}/Modules/Trending/1.0/data/json?pageid={1}&moduleId={2}&parts={3}&timeFrame={4}&entityType={5}&encryptedToken={6}",
-                                      basePath,
-                                      pageId,
-                                      moduleId,
-                                      parts,
-                                      timeFrame,
-                                      entityType,
-                                      enToken
-                                    );
-                                pageModuleList.Add(type,GetData(url));
-                                break;
-                            case "newsstandNewspageModule":
-                                parts = "Headlines|Counts|DiscoveredEntities";
-                                url =
-                                  string.Format(
-                                      "{0}/Modules/NewsStand/1.0/data/json?pageid={1}&moduleId={2}&parts={3}&firstResultToReturn={4}&maxResultsToReturn={5}&encryptedToken={6}",
-                                      basePath,
-                                      pageId,
-                                      moduleId,
-                                      parts,
-                                      firstResultToReturn,
-                                      maxResultsToReturn,
-                                      enToken
-                                    );
-                                pageModuleList.Add(type,GetData(url));
-                                break;
-                            case "alertsNewspageModule":
-                                url =
-                                  string.Format(
-                                      "{0}/Modules/Alerts/1.0/data/json?pageid={1}&moduleId={2}&firstResultToReturn={3}&maxResultsToReturn={4}&firstPartToReturn={5}&maxPartsToReturn={6}&encryptedToken={7}",
-                                      basePath,
-                                      pageId,
-                                      moduleId,
-                                      firstResultToReturn,
-                                      maxResultsToReturn,
-                                      firstPartToReturn,
-                                      maxPartsToReturn,
-                                      enToken
-                                    );
-                                pageModuleList.Add(type,GetData(url));
-                                break;
-                        }
+                        GetPageModuleByPageId(pageModuleList, pageId, "Json", maxResultsToReturn, maxPartsToReturn, moduleId.ToString(), type);
                     }
 
                 }
             }
         }
 
-        public static string Cascade(params string[] jsonArray)
+        private static void GetModuleDataForXml(Dictionary<string, string> pageModuleList, string pageId)
+        {
+            XDocument xDoc =XDocument.Parse(pageModuleList[pageId]);
+            IEnumerable<XElement> modules = xDoc.Descendants("modules");
+            if (modules != null && modules.First() != null)
+            {
+                IEnumerable<XElement> newsPageModules = modules.First().Descendants("newsPageModule");
+                int maxResultsToReturn = newsPageModules.Count();
+                int maxPartsToReturn = maxResultsToReturn;
+                foreach (XElement module in newsPageModules)
+                {
+                    if (module != null && module.FirstAttribute != null && module.FirstAttribute.Value != null)
+                    {
+                        string type = module.FirstAttribute.Value;
+                        string moduleId = module.Element("id").Value;
+                        GetPageModuleByPageId(pageModuleList, pageId, "Xml", maxResultsToReturn, maxPartsToReturn, moduleId, type);
+                    }
+                }
+            }
+        }
+
+        private static void GetPageModuleByPageId(Dictionary<string, string> pageModuleList, string pageId, string format, int maxResultsToReturn, int maxPartsToReturn, string moduleId, string type)
+        {
+            int firstResultToReturn = 0;
+            int firstPartToReturn = 0;
+            string parts = string.Empty;
+            string url = string.Empty;
+            string timeFrame = "lastweek";
+            switch (type)
+            {
+                case "summaryNewspageModule":
+                    int maxEntitiesToReturn = maxResultsToReturn;
+                    parts = "Chart|RecentArticles|RecentVideos|RegionalMap|Trending";
+                    url =
+                       string.Format(
+                           "{0}/Modules/Summary/1.0/data/" + format + "?pageId={1}&moduleId={2}&firstResultToReturn={3}&maxResultsToReturn={4}&maxEntitiesToReturn={5}&parts={6}&encryptedToken={7}",
+                           basePath,
+                           pageId,
+                           moduleId,
+                           firstResultToReturn,
+                           maxResultsToReturn,
+                           maxEntitiesToReturn,
+                           parts,
+                           enToken
+                         );
+                    pageModuleList.Add(type, GetData(url));
+                    break;
+                case "topNewsNewspageModule":
+                    parts = "EditorsChoice|VideoAndAudio|OpinionAndAnalysis";
+                    url =
+                      string.Format(
+                          "{0}/Modules/TopNews/1.0/data/" + format + "?pageId={1}&moduleId={2}&firstResultToReturn={3}&maxResultsToReturn={4}&parts={5}&encryptedToken={6}",
+                          basePath,
+                          pageId,
+                          moduleId,
+                          firstResultToReturn,
+                          maxResultsToReturn,
+                          parts,
+                          enToken
+                        );
+                    pageModuleList.Add(type, GetData(url));
+                    break;
+                case "sourcesNewspageModule":
+                    parts = "EditorsChoice|VideoAndAudio|OpinionAndAnalysis";
+                    url =
+                      string.Format(
+                          "{0}/Modules/Sources/1.0/data/" + format + "?pageid={1}&moduleId={2}&firstPartToReturn={3}&maxPartsToReturn={4}&firstResultToReturn={5}&maxResultsToReturn={6}&encryptedToken={7}",
+                          basePath,
+                          pageId,
+                          moduleId,
+                          firstPartToReturn,
+                          maxPartsToReturn,
+                          firstResultToReturn,
+                          maxResultsToReturn,
+                          enToken
+                        );
+                    pageModuleList.Add(type, GetData(url));
+                    break;
+                case "companyOverviewNewspageModule":
+                    parts = "SnapShot|Chart|RecentArticles|Trending";
+                    url =
+                      string.Format(
+                          "{0}/Modules/CompanyOverview/1.0/data/" + format + "?pageid={1}&moduleId={2}&firstResultToReturn={3}&maxResultsToReturn={4}&parts={5}&encryptedToken={6}",
+                          basePath,
+                          pageId,
+                          moduleId,
+                          firstResultToReturn,
+                          maxResultsToReturn,
+                          parts,
+                          enToken
+                        );
+                    pageModuleList.Add(type, GetData(url));
+                    break;
+                case "radarNewspageModule":
+
+                    url =
+                      string.Format(
+                          "{0}/Modules/Radar/1.0/data/" + format + "?pageid={1}&moduleId={2}&timeFrame={3}&encryptedToken={4}",
+                          basePath,
+                          pageId,
+                          moduleId,
+                         timeFrame,
+                          enToken
+                        );
+                    pageModuleList.Add(type, GetData(url));
+                    break;
+                case "customTopicsNewspageModule":
+                    url =
+                      string.Format(
+                          "{0}/Modules/CustomTopics/1.0/data/" + format + "?pageid={1}&moduleId={2}&firstPartToReturn={3}&maxPartsToReturn={4}&firstResultToReturn={5}&maxResultsToReturn={6}&encryptedToken={7}",
+                          basePath,
+                          pageId,
+                          moduleId,
+                           firstPartToReturn,
+                           maxPartsToReturn,
+                           firstResultToReturn,
+                           maxResultsToReturn,
+                          enToken
+                        );
+                    pageModuleList.Add(type, GetData(url));
+                    break;
+                case "regionalMapNewspageModule":
+                    url =
+                      string.Format(
+                          "{0}/Modules/RegionalMap/1.0/data/" + format + "?pageid={1}&moduleId={2}&timeFrame={3}&encryptedToken={4}",
+                          basePath,
+                          pageId,
+                          moduleId,
+                          timeFrame,
+                          enToken
+                        );
+                    pageModuleList.Add(type, GetData(url));
+                    break;
+                case "trendingNewsPageModule":
+                    parts = "TopEntities|TrendingDown|TrendingUp";
+                    string entityType = "companies";
+                    url =
+                      string.Format(
+                          "{0}/Modules/Trending/1.0/data/" + format + "?pageid={1}&moduleId={2}&parts={3}&timeFrame={4}&entityType={5}&encryptedToken={6}",
+                          basePath,
+                          pageId,
+                          moduleId,
+                          parts,
+                          timeFrame,
+                          entityType,
+                          enToken
+                        );
+                    pageModuleList.Add(type, GetData(url));
+                    break;
+                case "newsstandNewspageModule":
+                    parts = "Headlines|Counts|DiscoveredEntities";
+                    url =
+                      string.Format(
+                          "{0}/Modules/NewsStand/1.0/data/" + format + "?pageid={1}&moduleId={2}&parts={3}&firstResultToReturn={4}&maxResultsToReturn={5}&encryptedToken={6}",
+                          basePath,
+                          pageId,
+                          moduleId,
+                          parts,
+                          firstResultToReturn,
+                          maxResultsToReturn,
+                          enToken
+                        );
+                    pageModuleList.Add(type, GetData(url));
+                    break;
+                case "alertsNewspageModule":
+                    url =
+                      string.Format(
+                          "{0}/Modules/Alerts/1.0/data/" + format + "?pageid={1}&moduleId={2}&firstResultToReturn={3}&maxResultsToReturn={4}&firstPartToReturn={5}&maxPartsToReturn={6}&encryptedToken={7}",
+                          basePath,
+                          pageId,
+                          moduleId,
+                          firstResultToReturn,
+                          maxResultsToReturn,
+                          firstPartToReturn,
+                          maxPartsToReturn,
+                          enToken
+                        );
+                    pageModuleList.Add(type, GetData(url));
+                    break;
+            }
+        }
+
+        public static string Cascade(params object[] jsonArray)
         {
             JObject result = new JObject();
             foreach (string json in jsonArray)
