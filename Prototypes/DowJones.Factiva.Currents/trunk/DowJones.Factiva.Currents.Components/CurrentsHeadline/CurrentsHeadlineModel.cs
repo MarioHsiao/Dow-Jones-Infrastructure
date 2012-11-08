@@ -64,36 +64,52 @@ namespace DowJones.Factiva.Currents.Components.CurrentsHeadline
 
 		public string GetHeadlineUrl(PortalHeadlineInfo headline)
 		{
-		//	switch (headline.contentCategoryDescriptor) {
-		//	case "customerdoc":
-		//	case "summary":
-		//		Article.getParentArticle(headline.reference.guid);
-		//		break;
-		//	case "external":
-		//		if (headline.headlineUrl) {
-		//			DJGlobal.NewWindow({ url: headline.headlineUrl, windowName: "webArticleWin" });
-		//		}
-		//		break;
-		//	case "multimedia":{
-		//		var an = headline.reference.guid,
-		//			title = headline.title,
-		//			container = data.mediaContainer,
-		//			thumbNail = headline.thumbnailImage ? headline.thumbnailImage.uri : "";
-		//		DJGlobal.getMultimediaVideos(an, title, container, thumbNail);
-		//		break;
-		//	}
-		//	default:
-		//		var an = headline.reference.guid;
-		//		var dv = headline.documentVector || "";
-		//		var cc = headline.contentCategoryDescriptor;
-		//		var sc = headline.contentSubCategoryDescriptor;
-		//		var ref = headline.reference.ref || "";
-		//		var mimeType = headline.reference.mimetype || "";
-		//		var url = headline.headlineUrl;
-		//		var title = headline.title;
-		//		Article.processArticleBasedOnType(an, dv, cc, sc, ref, mimeType, (popup || false), url, title);
-		//		break;
-		//}
+            string headlineTitle = string.Empty;
+            string accessNo = string.Empty;
+            switch (headline.ContentCategoryDescriptor)
+            {
+                case "customerdoc":
+                case "summary":
+                    //Article.getParentArticle(headline.Reference.guid);
+                    break;
+                case "external":
+                    if (headline.HeadlineUrl != string.Empty)
+                    {
+                        //DJGlobal.NewWindow({ url: headline.headlineUrl, windowName: "webArticleWin" });
+                    }
+                    break;
+                case "multimedia":
+                    {
+                        string an = headline.Reference.guid;
+                        headlineTitle = headline.Title;
+                        //DJGlobal.getMultimediaVideos(an, title, container, thumbNail);
+                        break;
+                    }
+                default:
+                    accessNo = headline.Reference.guid;
+                    var url = headline.HeadlineUrl;
+                    headlineTitle = headline.Title;
+                    //Article.processArticleBasedOnType(accessionNumber, dv, cc, sc, ref, mimeType, (popup || false), url, headlineTitle);
+                    break;
+            }
+            string baseUrl = GetBaseUrlPath();
+            baseUrl += @"\headlines\"+headlineTitle.Replace(' ','_')+"?an="+accessNo;
+            return baseUrl;
 		}
+
+        /// <summary>
+        /// gets the domain path
+        /// </summary>
+        /// <returns>returns the domain path</returns>
+        public string GetBaseUrlPath()
+        {
+            WebPageContext context = WebPageContext.Current;
+
+            if (context != null && context.Page != null && context.Page.Request != null)
+            {
+                return context.Page.Request.Url.Host;
+            }
+            return string.Empty; 
+        }
 	}
 }
