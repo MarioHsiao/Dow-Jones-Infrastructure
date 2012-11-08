@@ -179,7 +179,12 @@ DJ.UI.DiscoveryFilters = DJ.UI.Component.extend({
             //discoveryData.title = entitiesObj.title;
             discoveryData.categories = categoryArr;
             discoveryData.seriesData = seriesDataArr;
-            $this._renderDiscoveryFilters(discoveryData, index);
+            if(entitiesObj.type!= 17){
+                $this._renderDiscoveryFilters(discoveryData, index);
+            }else{
+                discoveryData.chartTitle = entitiesObj.newsEntities[0].typeDescriptor;
+                $this._renderDiscoveryDateFilters(discoveryData, index);
+            }
             index++;
         });
     },
@@ -261,6 +266,107 @@ DJ.UI.DiscoveryFilters = DJ.UI.Component.extend({
         return { "actual": actualDataArr, "tweaked": tweakedDataArr };
     },
 
+    _extractDateSeriesData: function (seriesData) {
+        var DateDataArr = [];
+        _.each(seriesData, function (obj) {
+            //Construct original series array
+            var displayVal = obj.jsonObj.currentTimeFrameNewsVolume.displayText.value;
+            DateDataArr[DateDataArr.length] = [displayVal, obj.y];
+        });
+        return DateDataArr;
+    },
+
+    //Render Date Chart
+    _renderDiscoveryDateFilters: function (discoveryData, idx){
+        var chartContainer = this.$element.find('.dj_discoveryFilters-listItem-' + idx).find('.dj_hc-container');
+        var seriesData = this._extractDateSeriesData(discoveryData.seriesData);
+        return new Highcharts.Chart({
+            chart: {
+                renderTo: chartContainer[0],
+                defaultSeriesType: "column",
+				height:160,
+				width:200
+            },
+            credits: {enabled: false},
+            title: {
+                text: null
+            },
+            subtitle: {
+				text:null
+            },
+            xAxis: {
+                categories: discoveryData.categories,
+                gridLineColor: "#ffffff",
+                labels: {
+                    style: {
+                        color: "#003366",
+                        fontFamily: "Arial, sans-serif",
+                        fontSize: "9px",
+                        fontWeight: "normal",
+                        width: "230px"
+                    },
+                    y: 20
+                },
+                lineWidth: 0,
+                maxPadding: 0,
+                minPadding: 0,
+                startOnTick: false,
+                tickWidth: 0,
+                title: {
+                    style: {
+                        fontFamily: "Arial, sans-serif",
+						fontSize: "9px",
+                        fontWeight: "normal",
+                    },
+					margin: 20,
+                    "text": discoveryData.chartTitle
+                }
+            },
+            yAxis: {
+                gridLineWidth: 1,
+                labels: {
+					style: {
+							color: "#003366",
+							fontFamily: "Arial, sans-serif",
+							fontSize: "9px",
+							fontWeight: "normal"
+						}
+					},
+                lineWidth: 2,
+                min: 0,
+                plotLines: [{
+                    color: "#808080",
+                    value: 0,
+                    width: 1}],
+                startOnTick: false,
+                tickPixelInterval: 65,
+                title: {
+                    text: ""
+                }
+            },
+            legend: {
+                enabled: false
+            },
+            tooltip: {
+                enabled: false
+            },
+            plotOptions: {
+                column: {
+                    color: "#5bb4e5",
+                    shadow: false
+                },
+                series: {
+                    borderWidth: 1,
+                    groupPadding: 0,
+                    minPointLength: 3,
+                    pointPadding: 0
+                }
+            },
+            series: [{
+                data: seriesData}]
+        });
+    },
+
     //Render DiscoveryGraph
     _renderDiscoveryFilters: function (discoveryData, idx) {
         var chartContainer = this.$element.find('.dj_discoveryFilters-listItem-' + idx).find('.dj_hc-container');
@@ -275,11 +381,7 @@ DJ.UI.DiscoveryFilters = DJ.UI.Component.extend({
                 categories: discoveryData.categories
             },
             tooltip: {
-                enabled: false,
-                formatter: function () {
-                    return '' +
-                        this.series.name + ': ' + this.y + ' millions';
-                }
+                enabled: false
             },
             series: [{
                 name: null,
