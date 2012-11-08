@@ -105,17 +105,24 @@ namespace DowJones.Factiva.Currents.Aggregrator
 
         private static string GetSerializedPagesModulesForXml(Dictionary<string, string> pageModuleList)
         {
-            XmlDocument doc = new XmlDocument();
-            doc.LoadXml(pageModuleList.Values.ElementAt(0));
-            XmlNode node = doc.DocumentElement.SelectSingleNode("/newsPageServiceResult");
-            node.RemoveAll();
-             XmlDocument doc1 = new XmlDocument();
-             for (int index = 0; index < pageModuleList.Keys.Count; index++)
-             {
-                 doc1.LoadXml(pageModuleList.Values.ElementAt(index));
-                 node.AppendChild(doc.ImportNode(doc1.DocumentElement, true));
-             }
-            return doc.OuterXml;
+            if (pageModuleList.Count > 0)
+            {
+                XmlDocument doc = new XmlDocument();
+                doc.LoadXml(pageModuleList.Values.ElementAt(0));
+                XmlNode node = doc.DocumentElement.SelectSingleNode("/newsPageServiceResult");
+                if (node != null)
+                {
+                    node.RemoveAll();
+                    XmlDocument doc1 = new XmlDocument();
+                    for (int index = 0; index < pageModuleList.Keys.Count; index++)
+                    {
+                        doc1.LoadXml(pageModuleList.Values.ElementAt(index));
+                        node.AppendChild(doc.ImportNode(doc1.DocumentElement, true));
+                    }
+                }
+                return doc.OuterXml;
+            }
+            return string.Empty;
         }
 
         private static void GetModuleDataForJson(Dictionary<string, string> pageModuleList, string pageId)
@@ -144,7 +151,7 @@ namespace DowJones.Factiva.Currents.Aggregrator
         {
             XDocument xDoc =XDocument.Parse(pageModuleList["newsPage"]);
             IEnumerable<XElement> modules = xDoc.Descendants("modules");
-            if (modules != null && modules.First() != null)
+            if (modules != null && modules.Count() > 0)
             {
                 IEnumerable<XElement> newsPageModules = modules.First().Descendants("newsPageModule");
                 int maxResultsToReturn = newsPageModules.Count();
