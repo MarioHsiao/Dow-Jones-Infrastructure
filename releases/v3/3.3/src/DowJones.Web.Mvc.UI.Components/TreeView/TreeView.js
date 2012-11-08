@@ -1,6 +1,7 @@
 ﻿DJ.UI.TreeView = DJ.UI.Component.extend({
     defaults: {
         enableCheckboxes: false,
+        expandAll: false
     },
 
     events: {
@@ -97,35 +98,6 @@
 		}
 	},
 
-    _convertToJsTreeNodes: function (treeViewNodes) {
-        if (!treeViewNodes)
-            return null;
-
-        var jsTreeNodes = [];
-
-        for (var i = 0; i < treeViewNodes.length; i++) {
-            var treeViewNode = treeViewNodes[i];
-            var jsTreeNode = {
-                data: treeViewNode.title,
-                metadata: treeViewNode.metadata,
-                children: this._convertToJsTreeNodes(treeViewNode.children)
-            };
-
-            if (treeViewNode.isChecked) {
-                jsTreeNode.attr = {
-                    "class": "jstree-checked"
-                };
-            }
-
-            if (treeViewNode.isOpen) {
-                jsTreeNode.state = "open";
-            }
-
-            jsTreeNodes.push(jsTreeNode);
-        }
-        return jsTreeNodes;
-    },
-
     _setData: function(treeViewNodes) {
 		if (treeViewNodes) {
 			this._fixCheckedState(treeViewNodes);
@@ -163,11 +135,15 @@
 			
 			if (checkedChildrenCount == node.children.length) {
 				node.isChecked = true;
-				node.checkedClass = " dj_tree_view_checked";
+				node.checkedClass = " "  + this.classNames.checked;
 			}
-			else {			
+			else if (checkedChildrenCount == 0){
 				node.isChecked = false;
-				node.checkedClass = " dj_tree_view_undetermined";
+				node.checkedClass = " "  + this.classNames.unchecked;
+			}
+			else {
+				node.isChecked = false;
+				node.checkedClass = " "  + this.classNames.undetermined;
 			}
 		}
 	},
@@ -207,9 +183,21 @@
 			var treeViewNode = {
 				text: $node.find("> " + this.selectors.nodeContent + " > " + this.selectors.text).html(),
 				id: $node.data("id"),
-				isOpen: $node.hasClass(this.classNames.open),
-				isChecked: $node.hasClass(this.classNames.checked)
+				isOpen: $node.hasClass(this.classNames.open)
 			};
+			
+			if ($node.hasClass(this.classNames.checked)) {
+				treeViewNode.isChecked = true;
+				treeViewNode.checkedStatus = "checked";
+			}
+			else if ($node.hasClass(this.classNames.undetermined)) {
+				treeViewNode.isChecked = false;
+				treeViewNode.checkedStatus = "undetermined";
+			}
+			else {
+				treeViewNode.isChecked = false;
+				treeViewNode.checkedStatus = "unchecked";
+			}
 			
 			var $children = $node.find(childNodesSelector);
 			if ($children.length > 0) {

@@ -3,7 +3,7 @@ var node = self,
     options = this.options,
 	hasChildren = node.children && node.children.length > 0,
 	leafClass = hasChildren ? "" : " dj_tree_view_leaf",
-	openClass = hasChildren ? (node.isOpen ? " dj_tree_view_open" : " dj_tree_view_open_closed") : "";
+	openClass = hasChildren ? ((options.expandAll || node.isOpen) ? " dj_tree_view_open" : " dj_tree_view_closed") : "";
 %>
 
 <li class="dj_tree_view_node<%=node.checkedClass + openClass + leafClass%>" data-id="<%= node.id %>">

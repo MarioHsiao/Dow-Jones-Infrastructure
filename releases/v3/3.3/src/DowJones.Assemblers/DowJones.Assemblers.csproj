@@ -71,8 +71,9 @@
     <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
       <HintPath>..\packages\log4net.1.2.99\lib\2.0\log4net.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.4.0.8\lib\net40\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.4.5.10\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="SgmlReaderDll">
       <HintPath>..\packages\SgmlReader.1.8.8\lib\4.0\SgmlReaderDll.dll</HintPath>
@@ -171,9 +172,12 @@
     <Compile Include="Search\SearchQueryToQueryAssetMapper.cs" />
     <Compile Include="Security\PrincipleFactory.cs" />
     <Compile Include="Security\UninitializedPrinciple.cs" />
+    <Compile Include="Session\ControlDataFactory.cs" />
     <Compile Include="Session\DevelopmentSessionFactory.cs" />
+    <Compile Include="Session\HttpRequestUserSessionFactory.cs" />
     <Compile Include="Session\UserSessionControlDataFactory.cs" />
     <Compile Include="Session\CookieBasedUserSessionFactory.cs" />
+    <Compile Include="Session\UserSessionFactory.cs" />
     <Compile Include="Track\TrackDeletedFoldersCacheManager.cs" />
     <Compile Include="Triggers\SearchTriggersResponseConverter.cs" />
     <Compile Include="Triggers\TriggerListConversionManager.cs" />

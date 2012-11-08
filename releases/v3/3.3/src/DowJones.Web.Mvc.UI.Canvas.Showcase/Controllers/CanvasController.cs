@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using DowJones.Pages;
 using DowJones.Pages.Modules;
 using DowJones.Web.Mvc.Routing;
 using DowJones.Web.Mvc.UI.Canvas.Controllers;

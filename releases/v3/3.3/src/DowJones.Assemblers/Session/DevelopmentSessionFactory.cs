@@ -30,14 +30,14 @@ namespace DowJones.Assemblers.Session
             get { return GetRequestValue("UserId", _username); }
             set { _username = value; }
         }
-        private string _username = "dacostad";
+        private string _username = "apichecker";
 
         public string Password
         {
             get { return GetRequestValue("Password", _password); }
             set { _password = value; }
         }
-        private string _password = "vader";
+        private string _password = "apichecker";
 
         public string ProductId
         {

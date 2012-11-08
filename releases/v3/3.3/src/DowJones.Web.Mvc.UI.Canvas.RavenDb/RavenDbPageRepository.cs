@@ -56,7 +56,7 @@ namespace DowJones.Web.Mvc.UI.Canvas.RavenDb
             page.ModuleCollection.Insert(0, module);
 
             // HACK:  Sub-document ID hack
-            string id = _session.Advanced.DocumentStore.Conventions.GenerateDocumentKey(module);
+            string id = _session.Advanced.DocumentStore.Conventions.GenerateDocumentKey(_session.Advanced.DocumentStore.DatabaseCommands, module);
             module.Id = Convert.ToInt32(id.Substring(id.IndexOf('/') + 1));
 
             page.Layout.AddModule(module.Id);
