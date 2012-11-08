@@ -33,7 +33,7 @@
 					"metaDataType": 0
 				},
 				"modules": [{
-					"$type": "DowJones.Pages.Modules.Modules.Summary.SummaryNewspageModule, DowJones.Pages.Modules",
+					"__type": "summaryNewspageModule",
 					"description": "The latest headlines, video, index information and more",
 					"id": 22471,
 					"lastModifiedDate": "2012-04-12T08:41:21-04:00",
@@ -59,7 +59,7 @@
 					"hasMarketDataSymbol": true
 				},
 				{
-					"$type": "DowJones.Pages.Modules.Modules.Radar.RadarNewspageModule, DowJones.Pages.Modules",
+					"__type": "radarNewspageModule",
 					"description": "Provides a quick visual summary of the top companies and critical topics affecting them",
 					"id": 22476,
 					"lastModifiedDate": "2011-05-04T14:58:47-04:00",
@@ -83,7 +83,7 @@
 					"title": "Radar: Accounting/Consulting"
 				},
 				{
-					"$type": "DowJones.Pages.Modules.Modules.CustomTopics.CustomTopicsNewspageModule, DowJones.Pages.Modules",
+					"__type": "customTopicsNewspageModule",
 					"description": "Factiva's content professionals highlight new and noteworthy topics",
 					"id": 22473,
 					"lastModifiedDate": "2012-03-20T15:29:25-04:00",
@@ -134,12 +134,12 @@
 			"elapsedTime": 385,
 			"identifier": null,
 			"package": {
-				"$type": "DowJones.Factiva.Currents.Website.Models.PageService.Modules.Summary.Packages.SummaryChartPackage, DowJones.Factiva.Currents.Website",
+				"__type": "summaryChartPackage",
 				"marketIndexIntradayResult": {
 					"code": "DWCSPS",
 					"dataPoints": [{
 						"dataPoint": {
-							"$type": "doubleNumberStock",
+							"__type": "doubleNumberStock",
 							"displayText": {
 								"value": "1,508.76"
 							},
@@ -150,7 +150,7 @@
 					},
 					{
 						"dataPoint": {
-							"$type": "doubleNumberStock",
+							"__type": "doubleNumberStock",
 							"displayText": {
 								"value": "1,509.44"
 							},
@@ -161,7 +161,7 @@
 					},
 					{
 						"dataPoint": {
-							"$type": "doubleNumberStock",
+							"__type": "doubleNumberStock",
 							"displayText": {
 								"value": "1,506.01"
 							},
@@ -172,7 +172,7 @@
 					},
 					{
 						"dataPoint": {
-							"$type": "doubleNumberStock",
+							"__type": "doubleNumberStock",
 							"displayText": {
 								"value": "1,503.82"
 							},
@@ -183,7 +183,7 @@
 					},
 					{
 						"dataPoint": {
-							"$type": "doubleNumberStock",
+							"__type": "doubleNumberStock",
 							"displayText": {
 								"value": "1,504.52"
 							},
@@ -194,7 +194,7 @@
 					},
 					{
 						"dataPoint": {
-							"$type": "doubleNumberStock",
+							"__type": "doubleNumberStock",
 							"displayText": {
 								"value": "1,497.92"
 							},
@@ -205,7 +205,7 @@
 					},
 					{
 						"dataPoint": {
-							"$type": "doubleNumberStock",
+							"__type": "doubleNumberStock",
 							"displayText": {
 								"value": "1,498.47"
 							},
@@ -216,7 +216,7 @@
 					},
 					{
 						"dataPoint": {
-							"$type": "doubleNumberStock",
+							"__type": "doubleNumberStock",
 							"displayText": {
 								"value": "1,494.37"
 							},
@@ -227,7 +227,7 @@
 					},
 					{
 						"dataPoint": {
-							"$type": "doubleNumberStock",
+							"__type": "doubleNumberStock",
 							"displayText": {
 								"value": "1,495.69"
 							},
@@ -238,7 +238,7 @@
 					},
 					{
 						"dataPoint": {
-							"$type": "doubleNumberStock",
+							"__type": "doubleNumberStock",
 							"displayText": {
 								"value": "1,496.73"
 							},
@@ -249,7 +249,7 @@
 					},
 					{
 						"dataPoint": {
-							"$type": "doubleNumberStock",
+							"__type": "doubleNumberStock",
 							"displayText": {
 								"value": "1,495.83"
 							},
@@ -260,7 +260,7 @@
 					},
 					{
 						"dataPoint": {
-							"$type": "doubleNumberStock",
+							"__type": "doubleNumberStock",
 							"displayText": {
 								"value": "1,496.09"
 							},
@@ -271,7 +271,7 @@
 					},
 					{
 						"dataPoint": {
-							"$type": "doubleNumberStock",
+							"__type": "doubleNumberStock",
 							"displayText": {
 								"value": "1,496.43"
 							},
@@ -282,7 +282,7 @@
 					},
 					{
 						"dataPoint": {
-							"$type": "doubleNumberStock",
+							"__type": "doubleNumberStock",
 							"displayText": {
 								"value": "1,496.45"
 							},
@@ -293,7 +293,7 @@
 					},
 					{
 						"dataPoint": {
-							"$type": "doubleNumberStock",
+							"__type": "doubleNumberStock",
 							"displayText": {
 								"value": "1,500.42"
 							},
@@ -304,7 +304,7 @@
 					},
 					{
 						"dataPoint": {
-							"$type": "doubleNumberStock",
+							"__type": "doubleNumberStock",
 							"displayText": {
 								"value": "1,500.57"
 							},
@@ -315,7 +315,7 @@
 					},
 					{
 						"dataPoint": {
-							"$type": "doubleNumberStock",
+							"__type": "doubleNumberStock",
 							"displayText": {
 								"value": "1,502.68"
 							},
@@ -326,7 +326,7 @@
 					},
 					{
 						"dataPoint": {
-							"$type": "doubleNumberStock",
+							"__type": "doubleNumberStock",
 							"displayText": {
 								"value": "1,501.67"
 							},
@@ -337,7 +337,7 @@
 					},
 					{
 						"dataPoint": {
-							"$type": "doubleNumberStock",
+							"__type": "doubleNumberStock",
 							"displayText": {
 								"value": "1,502.94"
 							},
@@ -381,7 +381,7 @@
 			"elapsedTime": 117,
 			"identifier": null,
 			"package": {
-				"$type": "DowJones.Factiva.Currents.Website.Models.PageService.Modules.Summary.Packages.SummaryRecentArticlesPackage, DowJones.Factiva.Currents.Website",
+				"__type": "summaryRecentArticlesPackage",
 				"portalHeadlineListDataResult": {
 					"hitCount": {
 						"displayText": {
@@ -583,7 +583,7 @@
 			"elapsedTime": 48,
 			"identifier": null,
 			"package": {
-				"$type": "DowJones.Factiva.Currents.Website.Models.PageService.Modules.Summary.Packages.SummaryVideosPackage, DowJones.Factiva.Currents.Website",
+				"__type": "summaryVideosPackage",
 				"portalHeadlineListDataResult": {
 					"hitCount": {
 						"displayText": {
@@ -672,7 +672,7 @@
 			"elapsedTime": 42,
 			"identifier": null,
 			"package": {
-				"$type": "summaryRegionalMapPackage",
+				"__type": "summaryRegionalMapPackage",
 				"regionNewsVolume": [{
 					"code": "AFRICAZ",
 					"currentTimeFrameNewsVolume": {
@@ -802,7 +802,7 @@
 			"elapsedTime": 42,
 			"identifier": null,
 			"package": {
-				"$type": "summaryTrendingPackage",
+				"__type": "summaryTrendingPackage",
 				"companyNewsEntities": [{
 					"code": "cgs",
 					"currentTimeFrameNewsVolume": {
@@ -1164,7 +1164,7 @@
 					"type": 4
 				}],
 				"keywordsTagCollection": [{
-					"$type": "tag",
+					"__type": "tag",
 					"code": null,
 					"distributionIndex": 3,
 					"navigateUrl": "",
@@ -1180,7 +1180,7 @@
 					"type": 0
 				},
 				{
-					"$type": "tag",
+					"__type": "tag",
 					"code": null,
 					"distributionIndex": 5,
 					"navigateUrl": "",
@@ -1196,7 +1196,7 @@
 					"type": 0
 				},
 				{
-					"$type": "tag",
+					"__type": "tag",
 					"code": null,
 					"distributionIndex": 5,
 					"navigateUrl": "",
@@ -1212,7 +1212,7 @@
 					"type": 0
 				},
 				{
-					"$type": "tag",
+					"__type": "tag",
 					"code": null,
 					"distributionIndex": 5,
 					"navigateUrl": "",
@@ -1228,7 +1228,7 @@
 					"type": 0
 				},
 				{
-					"$type": "tag",
+					"__type": "tag",
 					"code": null,
 					"distributionIndex": 4,
 					"navigateUrl": "",
@@ -1244,7 +1244,7 @@
 					"type": 0
 				},
 				{
-					"$type": "tag",
+					"__type": "tag",
 					"code": null,
 					"distributionIndex": 5,
 					"navigateUrl": "",
@@ -1260,7 +1260,7 @@
 					"type": 0
 				},
 				{
-					"$type": "tag",
+					"__type": "tag",
 					"code": null,
 					"distributionIndex": 5,
 					"navigateUrl": "",
@@ -1276,7 +1276,7 @@
 					"type": 0
 				},
 				{
-					"$type": "tag",
+					"__type": "tag",
 					"code": null,
 					"distributionIndex": 5,
 					"navigateUrl": "",
@@ -1292,7 +1292,7 @@
 					"type": 0
 				},
 				{
-					"$type": "tag",
+					"__type": "tag",
 					"code": null,
 					"distributionIndex": 5,
 					"navigateUrl": "",
@@ -1308,7 +1308,7 @@
 					"type": 0
 				},
 				{
-					"$type": "tag",
+					"__type": "tag",
 					"code": null,
 					"distributionIndex": 5,
 					"navigateUrl": "",

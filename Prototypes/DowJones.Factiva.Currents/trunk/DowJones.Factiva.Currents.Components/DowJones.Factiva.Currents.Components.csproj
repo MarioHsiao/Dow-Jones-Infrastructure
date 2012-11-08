@@ -40,11 +40,13 @@
     <Reference Include="DowJones.Parallel">
       <HintPath>..\packages\DowJones.Parallel.1.0.0\lib\DowJones.Parallel.dll</HintPath>
     </Reference>
-    <Reference Include="DowJones.Web.Mvc">
-      <HintPath>..\packages\DowJones.Web.Mvc.3.3.57\lib\DowJones.Web.Mvc.dll</HintPath>
+    <Reference Include="DowJones.Web.Mvc, Version=3.3.61.38000, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DowJones.Web.Mvc.3.3.61\lib\DowJones.Web.Mvc.dll</HintPath>
     </Reference>
-    <Reference Include="DowJones.Web.Mvc.UI.Components.Models">
-      <HintPath>..\packages\DowJones.Web.Mvc.UI.Components.Models.3.3.57\lib\DowJones.Web.Mvc.UI.Components.Models.dll</HintPath>
+    <Reference Include="DowJones.Web.Mvc.UI.Components.Models, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DowJones.Web.Mvc.UI.Components.Models.3.3.61\lib\DowJones.Web.Mvc.UI.Components.Models.dll</HintPath>
     </Reference>
     <Reference Include="factiva.gateway.messages">
       <HintPath>..\packages\Factiva.Gateway.7.5.0.98\lib\factiva.gateway.messages.dll</HintPath>

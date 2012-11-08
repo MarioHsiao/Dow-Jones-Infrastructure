@@ -69,18 +69,21 @@
     <Reference Include="DowJones.Parallel">
       <HintPath>..\packages\DowJones.Parallel.1.0.0\lib\DowJones.Parallel.dll</HintPath>
     </Reference>
-    <Reference Include="DowJones.Web.Mvc">
-      <HintPath>..\packages\DowJones.Web.Mvc.3.3.57\lib\DowJones.Web.Mvc.dll</HintPath>
+    <Reference Include="DowJones.Web.Mvc, Version=3.3.61.38000, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DowJones.Web.Mvc.3.3.61\lib\DowJones.Web.Mvc.dll</HintPath>
     </Reference>
-    <Reference Include="DowJones.Web.Mvc.UI.Canvas">
-      <HintPath>..\packages\DowJones.Web.Mvc.UI.Canvas.3.3.57\lib\DowJones.Web.Mvc.UI.Canvas.dll</HintPath>
+    <Reference Include="DowJones.Web.Mvc.UI.Canvas, Version=3.3.61.38000, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DowJones.Web.Mvc.UI.Canvas.3.3.61\lib\DowJones.Web.Mvc.UI.Canvas.dll</HintPath>
     </Reference>
-    <Reference Include="DowJones.Web.Mvc.UI.Components">
-      <HintPath>..\packages\DowJones.Web.Mvc.UI.Components.3.3.57\lib\DowJones.Web.Mvc.UI.Components.dll</HintPath>
+    <Reference Include="DowJones.Web.Mvc.UI.Components, Version=3.3.61.38000, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DowJones.Web.Mvc.UI.Components.3.3.61\lib\DowJones.Web.Mvc.UI.Components.dll</HintPath>
     </Reference>
     <Reference Include="DowJones.Web.Mvc.UI.Components.Models, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\DowJones.Web.Mvc.UI.Components.Models.3.3.57\lib\DowJones.Web.Mvc.UI.Components.Models.dll</HintPath>
+      <HintPath>..\packages\DowJones.Web.Mvc.UI.Components.Models.3.3.61\lib\DowJones.Web.Mvc.UI.Components.Models.dll</HintPath>
     </Reference>
     <Reference Include="factiva.gateway.messages">
       <HintPath>..\packages\Factiva.Gateway.7.5.0.98\lib\factiva.gateway.messages.dll</HintPath>
@@ -183,83 +186,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Mocks\MockPageAssetsProvider.cs" />
     <Compile Include="Mocks\MockScriptModuleTemplateManager.cs" />
-    <Compile Include="Models\PageService\AbstractHeadlinePackage.cs" />
-    <Compile Include="Models\PageService\AbstractServicePartResult.cs" />
-    <Compile Include="Models\PageService\AbstractServiceResult.cs" />
-    <Compile Include="Models\PageService\Audit.cs" />
-    <Compile Include="Models\PageService\IPackage.cs" />
-    <Compile Include="Models\PageService\IPortalHeadlines.cs" />
-    <Compile Include="Models\PageService\IServicePartResult.cs" />
-    <Compile Include="Models\PageService\IServicePartResults.cs" />
-    <Compile Include="Models\PageService\IServiceResult.cs" />
-    <Compile Include="Models\PageService\IViewAllSearchContextRef.cs" />
-    <Compile Include="Models\PageService\Modules\Alerts\Packages\AlertsPackage.cs" />
-    <Compile Include="Models\PageService\Modules\Alerts\Results\AlertsNewsPageServicePartResult.cs" />
-    <Compile Include="Models\PageService\Modules\Alerts\Results\AlertsNewsPageServiceResult.cs" />
-    <Compile Include="Models\PageService\Modules\Company\Packages\AbstractCompanyPackage.cs" />
-    <Compile Include="Models\PageService\Modules\Company\Packages\CompanyChartPackage.cs" />
-    <Compile Include="Models\PageService\Modules\Company\Packages\CompanyRecentArticlesPackage.cs" />
-    <Compile Include="Models\PageService\Modules\Company\Packages\CompanySnapshotPackage.cs" />
-    <Compile Include="Models\PageService\Modules\Company\Packages\CompanyTrendingPackage.cs" />
-    <Compile Include="Models\PageService\Modules\Company\Results\CompanyOverviewNewsPageModuleServiceResult.cs" />
-    <Compile Include="Models\PageService\Modules\Company\Results\CompanyOverviewNewsPageServicePartResult.cs" />
-    <Compile Include="Models\PageService\Modules\CustomTopics\Packages\CustomTopicsPackage.cs" />
-    <Compile Include="Models\PageService\Modules\CustomTopics\Results\CustomTopicsNewsPageModuleServiceResult.cs" />
-    <Compile Include="Models\PageService\Modules\CustomTopics\Results\CustomTopicsNewsPageServicePartResult.cs" />
-    <Compile Include="Models\PageService\Modules\Newsstand\Packages\AbstractNewsstandPackage.cs" />
-    <Compile Include="Models\PageService\Modules\Newsstand\Packages\NewsstandDiscoveredEntitiesPackage.cs" />
-    <Compile Include="Models\PageService\Modules\Newsstand\Packages\NewsstandHeadlineHitCount.cs" />
-    <Compile Include="Models\PageService\Modules\Newsstand\Packages\NewsstandHeadlineHitCountsPackage.cs" />
-    <Compile Include="Models\PageService\Modules\Newsstand\Packages\NewsstandHeadlinesPackage.cs" />
-    <Compile Include="Models\PageService\Modules\Newsstand\Packages\NewsstandSection.cs" />
-    <Compile Include="Models\PageService\Modules\Newsstand\Results\NewsstandNewsPageModuleServiceResult.cs" />
-    <Compile Include="Models\PageService\Modules\Newsstand\Results\NewsstandNewsPageServicePartResult.cs" />
-    <Compile Include="Models\PageService\Modules\Radar\Packages\RadarPackage.cs" />
-    <Compile Include="Models\PageService\Modules\Radar\Results\RadarNewsPageModuleServiceResult.cs" />
-    <Compile Include="Models\PageService\Modules\Radar\Results\RadarNewsPageServicePartResult.cs" />
-    <Compile Include="Models\PageService\Modules\RegionalMap\Packages\AbstractRegionalMapPackage.cs" />
-    <Compile Include="Models\PageService\Modules\RegionalMap\Packages\RegionalMapHeadlines.cs" />
-    <Compile Include="Models\PageService\Modules\RegionalMap\Packages\RegionalMapHeadlinesPackage.cs" />
-    <Compile Include="Models\PageService\Modules\RegionalMap\Packages\RegionalMapNewsVolumePackage.cs" />
-    <Compile Include="Models\PageService\Modules\RegionalMap\Results\RegionalMapNewsPageModuleServiceResult.cs" />
-    <Compile Include="Models\PageService\Modules\RegionalMap\Results\RegionalMapNewsPageServicePartResult.cs" />
-    <Compile Include="Models\PageService\Modules\Sources\Packages\SourcePackage.cs" />
-    <Compile Include="Models\PageService\Modules\Sources\Results\SourcesNewsPageModuleServiceResult.cs" />
-    <Compile Include="Models\PageService\Modules\Sources\Results\SourcesNewsPageServicePartResult.cs" />
-    <Compile Include="Models\PageService\Modules\Summary\Packages\AbstractSummaryHeadlinesPackage.cs" />
-    <Compile Include="Models\PageService\Modules\Summary\Packages\AbstractSummaryPackage.cs" />
-    <Compile Include="Models\PageService\Modules\Summary\Packages\SummaryChartPackage.cs" />
-    <Compile Include="Models\PageService\Modules\Summary\Packages\SummaryRecentArticlesPackage.cs" />
-    <Compile Include="Models\PageService\Modules\Summary\Packages\SummaryRegionalMapPackage.cs" />
-    <Compile Include="Models\PageService\Modules\Summary\Packages\SummaryTrendingPackage.cs" />
-    <Compile Include="Models\PageService\Modules\Summary\Packages\SummaryVideosPackage.cs" />
-    <Compile Include="Models\PageService\Modules\Summary\Results\SummaryNewsPageModuleServiceResult.cs" />
-    <Compile Include="Models\PageService\Modules\Summary\Results\SummaryNewsPageServicePartResult.cs" />
-    <Compile Include="Models\PageService\Modules\Syndication\Packages\SyndicationItem.cs" />
-    <Compile Include="Models\PageService\Modules\Syndication\Packages\SyndicationItemsPackage.cs" />
-    <Compile Include="Models\PageService\Modules\Syndication\Packages\SyndicationPackage.cs" />
-    <Compile Include="Models\PageService\Modules\Syndication\Results\SyndicationItemsServiceResult.cs" />
-    <Compile Include="Models\PageService\Modules\Syndication\Results\SyndicationNewsPageModuleServiceResult.cs" />
-    <Compile Include="Models\PageService\Modules\Syndication\Results\SyndicationNewsPageServicePartResult.cs" />
-    <Compile Include="Models\PageService\Modules\Syndication\Results\ValidateSyndicationFeedServiceResult.cs" />
-    <Compile Include="Models\PageService\Modules\TopNews\Packages\AbstractTopNewsPackage.cs" />
-    <Compile Include="Models\PageService\Modules\TopNews\Packages\TopNewsEditorsChoicePackage.cs" />
-    <Compile Include="Models\PageService\Modules\TopNews\Packages\TopNewsOpinionAndAnalysisPackage.cs" />
-    <Compile Include="Models\PageService\Modules\TopNews\Packages\TopNewsVideoAndAudioPackage.cs" />
-    <Compile Include="Models\PageService\Modules\TopNews\Results\TopNewsNewsPageModuleServiceResult.cs" />
-    <Compile Include="Models\PageService\Modules\TopNews\Results\TopNewsNewsPageServicePartResult.cs" />
-    <Compile Include="Models\PageService\Modules\Trending\Packages\AbstractTrendingPackage.cs" />
-    <Compile Include="Models\PageService\Modules\Trending\Packages\TrendingDownPackage.cs" />
-    <Compile Include="Models\PageService\Modules\Trending\Packages\TrendingTopEntitiesPackage.cs" />
-    <Compile Include="Models\PageService\Modules\Trending\Packages\TrendingUpPackage.cs" />
-    <Compile Include="Models\PageService\Modules\Trending\Packages\TrendType.cs" />
-    <Compile Include="Models\PageService\Modules\Trending\Results\TrendingNewsPageModuleServiceResult.cs" />
-    <Compile Include="Models\PageService\Modules\Trending\Results\TrendingNewsPageServicePartResult.cs" />
-    <Compile Include="Models\PageService\NewsPageServiceResult.cs" />
-    <Compile Include="Models\PageService\NewsPagesListPackage.cs" />
-    <Compile Include="Models\PageService\NewsPagesListServiceResult.cs" />
-    <Compile Include="Models\PageService\PageServiceResponse.cs" />
-    <Compile Include="Models\PageService\ServiceResults.cs" />
     <Compile Include="Providers\HttpContextCacheProvider.cs" />
     <Compile Include="Providers\CachedPageAssetProvider.cs" />
     <Compile Include="Contracts\IPageAssetProvider.cs" />
@@ -311,6 +237,7 @@
     <Folder Include="Content\themes\base\images\" />
     <Folder Include="Content\themes\base\minified\images\" />
     <Folder Include="Filters\" />
+    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -332,6 +259,10 @@
     <ProjectReference Include="..\DowJones.Factiva.Currents.Modules\DowJones.Factiva.Currents.Modules.csproj">
       <Project>{5ea6a5ee-f6ee-4624-b9b5-3976df026c19}</Project>
       <Name>DowJones.Factiva.Currents.Modules</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DowJones.Factiva.Currents.ServiceModels\DowJones.Factiva.Currents.ServiceModels.csproj">
+      <Project>{10335cd8-fee9-4736-9863-357c1dd3ebbe}</Project>
+      <Name>DowJones.Factiva.Currents.ServiceModels</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

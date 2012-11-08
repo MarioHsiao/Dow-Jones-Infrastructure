@@ -1,6 +1,6 @@
 using System.Collections.Generic;
+using DowJones.Factiva.Currents.ServiceModels.PageService;
 using DowJones.Factiva.Currents.Website.Contracts;
-using DowJones.Factiva.Currents.Website.Models.PageService;
 using DowJones.Web.Mvc.UI.Canvas;
 using RestSharp;
 using System.Linq;
