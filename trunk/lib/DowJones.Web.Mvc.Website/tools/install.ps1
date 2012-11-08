@@ -107,7 +107,13 @@ if($homeIndexView){
 	$homeIndexView.Delete()
 }
 
+$homeSearchView = $views.ProjectItems | where {$_.Name -eq "Home"} | ForEach-Object { $_.ProjectItems } | where{ $_.Name -eq "Search.cshtml" }
+if($homeSearchView){
+	$homeSearchView.Delete()
+}
+
 $project.ProjectItems.Item("Views").ProjectItems.Item("Home").ProjectItems.Item("Index.cshtml.custom").Name = "Index.cshtml"
+$project.ProjectItems.Item("Views").ProjectItems.Item("Home").ProjectItems.Item("Search.cshtml.custom").Name = "Search.cshtml"
 
 #### Delete Account Model, View and Controller ####
 $accountModel = $project.ProjectItems | where { $_.Name -eq "Models" } | ForEach-Object { $_.ProjectItems } | where { $_.Name -eq "AccountModels.cs" }

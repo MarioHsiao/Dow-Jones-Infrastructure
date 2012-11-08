@@ -4,6 +4,9 @@
 
 <h1>Welcome to your new Dow Jones website!</h1>
 
+<section id="">
+	<h2>Gateway Example</h2>
+</section>
 
 <section id="validation">
     <style>
@@ -112,13 +115,21 @@
     </script>
 </section>
 
-
 <section id="next-steps">
     <h2>Next Steps</h2>
     <p>Here are a few suggestions for what you might want to do next:</p>
     <ol>
-        <li>Install the <em>Factiva.Gateway.Resources</em> NuGet package to retrieve the Gateway configuration files.</li>
         <li>Customize your dependency injection bindings in the <strong>Dependencies</strong> class in the root of your website</li>
+        <li>Click @Html.ActionLink("here", "search", new
+                      {
+                          userid = "apichecker", 
+                          password = "apichecker",
+                          productId= "16"
+                      }) to check the connectivity with Factiva Platform.
+            <ul>
+                <li>You may have to change FactivaGateway.config file in the GatewayResources\config folder and modify teh xml node "preferedTransport" to HTTP.</li>
+            </ul>
+        </li>
         <li>Install Dowjones.Web.Mvc.Website.DJReady package to configure Login, Log4Net settings and other resources to start developing Dowjones application</li>
         <li>Execute the <em>Update-Tokens [Token Product Name]</em> script in the Package Manager Console to generate tokens for your application</li>
         <li>Install the <em>DowJones.Web.Mvc.UI.Canvas.Modules</em> NuGet package create a Canvas/Dashboard application.</li>
