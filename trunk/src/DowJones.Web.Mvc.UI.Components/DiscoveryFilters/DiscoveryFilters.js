@@ -182,6 +182,7 @@ DJ.UI.DiscoveryFilters = DJ.UI.Component.extend({
             if(entitiesObj.type!= 17){
                 $this._renderDiscoveryFilters(discoveryData, index);
             }else{
+                discoveryData.chartTitle = entitiesObj.newsEntities[0].typeDescriptor;
                 $this._renderDiscoveryDateFilters(discoveryData, index);
             }
             index++;
@@ -265,9 +266,20 @@ DJ.UI.DiscoveryFilters = DJ.UI.Component.extend({
         return { "actual": actualDataArr, "tweaked": tweakedDataArr };
     },
 
+    _extractDateSeriesData: function (seriesData) {
+        var DateDataArr = [];
+        _.each(seriesData, function (obj) {
+            //Construct original series array
+            var displayVal = obj.jsonObj.currentTimeFrameNewsVolume.displayText.value;
+            DateDataArr[DateDataArr.length] = [displayVal, obj.y];
+        });
+        return DateDataArr;
+    },
+
     //Render Date Chart
-    _renderDiscoveryDateFilters: function (discoveryDate, idx){
+    _renderDiscoveryDateFilters: function (discoveryData, idx){
         var chartContainer = this.$element.find('.dj_discoveryFilters-listItem-' + idx).find('.dj_hc-container');
+        var seriesData = this._extractDateSeriesData(discoveryData.seriesData);
         return new Highcharts.Chart({
             chart: {
                 renderTo: chartContainer[0],
@@ -283,17 +295,7 @@ DJ.UI.DiscoveryFilters = DJ.UI.Component.extend({
 				text:null
             },
             xAxis: {
-                categories: ["28-Oct-2012",
-                                                 "",
-                                                 "",
-                                                 "",
-                                                 "",
-                                                 "",
-                                                 "",
-                                                 "",
-                                                 "",
-                                                 "06-Nov-2012"
-                                               ],
+                categories: discoveryData.categories,
                 gridLineColor: "#ffffff",
                 labels: {
                     style: {
@@ -317,7 +319,7 @@ DJ.UI.DiscoveryFilters = DJ.UI.Component.extend({
                         fontWeight: "normal",
                     },
 					margin: 20,
-                    "text": "Distribution: Daily"
+                    "text": discoveryData.chartTitle
                 }
             },
             yAxis: {
@@ -361,37 +363,7 @@ DJ.UI.DiscoveryFilters = DJ.UI.Component.extend({
                 }
             },
             series: [{
-                data: [["255",
-                                                                                                                 255
-                                                                                                               ],
-                                                                                                               ["388",
-                                                                                                                 388
-                                                                                                               ],
-                                                                                                               ["388",
-                                                                                                                 388
-                                                                                                               ],
-                                                                                                               ["530",
-                                                                                                                 530
-                                                                                                               ],
-                                                                                                               ["441",
-                                                                                                                 441
-                                                                                                               ],
-                                                                                                               ["428",
-                                                                                                                 428
-                                                                                                               ],
-                                                                                                               ["246",
-                                                                                                                 246
-                                                                                                               ],
-                                                                                                               ["203",
-                                                                                                                 203
-                                                                                                               ],
-                                                                                                               ["215",
-                                                                                                                 215
-                                                                                                               ],
-                                                                                                               ["26",
-                                                                                                                 26
-                                                                                                               ]
-                                                                                                             ]}]
+                data: seriesData}]
         });
     },
 
@@ -409,11 +381,7 @@ DJ.UI.DiscoveryFilters = DJ.UI.Component.extend({
                 categories: discoveryData.categories
             },
             tooltip: {
-                enabled: false,
-                formatter: function () {
-                    return '' +
-                        this.series.name + ': ' + this.y + ' millions';
-                }
+                enabled: false
             },
             series: [{
                 name: null,
