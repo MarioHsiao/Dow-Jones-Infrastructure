@@ -171,9 +171,12 @@
     <Compile Include="Search\SearchQueryToQueryAssetMapper.cs" />
     <Compile Include="Security\PrincipleFactory.cs" />
     <Compile Include="Security\UninitializedPrinciple.cs" />
+    <Compile Include="Session\ControlDataFactory.cs" />
     <Compile Include="Session\DevelopmentSessionFactory.cs" />
+    <Compile Include="Session\HttpRequestUserSessionFactory.cs" />
     <Compile Include="Session\UserSessionControlDataFactory.cs" />
     <Compile Include="Session\CookieBasedUserSessionFactory.cs" />
+    <Compile Include="Session\UserSessionFactory.cs" />
     <Compile Include="Track\TrackDeletedFoldersCacheManager.cs" />
     <Compile Include="Triggers\SearchTriggersResponseConverter.cs" />
     <Compile Include="Triggers\TriggerListConversionManager.cs" />
