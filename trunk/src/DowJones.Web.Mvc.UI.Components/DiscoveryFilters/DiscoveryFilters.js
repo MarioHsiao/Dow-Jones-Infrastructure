@@ -179,7 +179,11 @@ DJ.UI.DiscoveryFilters = DJ.UI.Component.extend({
             //discoveryData.title = entitiesObj.title;
             discoveryData.categories = categoryArr;
             discoveryData.seriesData = seriesDataArr;
-            $this._renderDiscoveryFilters(discoveryData, index);
+            if(entitiesObj.type!= 17){
+                $this._renderDiscoveryFilters(discoveryData, index);
+            }else{
+                $this._renderDiscoveryDateFilters(discoveryData, index);
+            }
             index++;
         });
     },
@@ -259,6 +263,136 @@ DJ.UI.DiscoveryFilters = DJ.UI.Component.extend({
             }
         });
         return { "actual": actualDataArr, "tweaked": tweakedDataArr };
+    },
+
+    //Render Date Chart
+    _renderDiscoveryDateFilters: function (discoveryDate, idx){
+        var chartContainer = this.$element.find('.dj_discoveryFilters-listItem-' + idx).find('.dj_hc-container');
+        return new Highcharts.Chart({
+            chart: {
+                renderTo: chartContainer[0],
+                defaultSeriesType: "column",
+				height:160,
+				width:200
+            },
+            credits: {enabled: false},
+            title: {
+                text: null
+            },
+            subtitle: {
+				text:null
+            },
+            xAxis: {
+                categories: ["28-Oct-2012",
+                                                 "",
+                                                 "",
+                                                 "",
+                                                 "",
+                                                 "",
+                                                 "",
+                                                 "",
+                                                 "",
+                                                 "06-Nov-2012"
+                                               ],
+                gridLineColor: "#ffffff",
+                labels: {
+                    style: {
+                        color: "#003366",
+                        fontFamily: "Arial, sans-serif",
+                        fontSize: "9px",
+                        fontWeight: "normal",
+                        width: "230px"
+                    },
+                    y: 20
+                },
+                lineWidth: 0,
+                maxPadding: 0,
+                minPadding: 0,
+                startOnTick: false,
+                tickWidth: 0,
+                title: {
+                    style: {
+                        fontFamily: "Arial, sans-serif",
+						fontSize: "9px",
+                        fontWeight: "normal",
+                    },
+					margin: 20,
+                    "text": "Distribution: Daily"
+                }
+            },
+            yAxis: {
+                gridLineWidth: 1,
+                labels: {
+					style: {
+							color: "#003366",
+							fontFamily: "Arial, sans-serif",
+							fontSize: "9px",
+							fontWeight: "normal"
+						}
+					},
+                lineWidth: 2,
+                min: 0,
+                plotLines: [{
+                    color: "#808080",
+                    value: 0,
+                    width: 1}],
+                startOnTick: false,
+                tickPixelInterval: 65,
+                title: {
+                    text: ""
+                }
+            },
+            legend: {
+                enabled: false
+            },
+            tooltip: {
+                enabled: false
+            },
+            plotOptions: {
+                column: {
+                    color: "#5bb4e5",
+                    shadow: false
+                },
+                series: {
+                    borderWidth: 1,
+                    groupPadding: 0,
+                    minPointLength: 3,
+                    pointPadding: 0
+                }
+            },
+            series: [{
+                data: [["255",
+                                                                                                                 255
+                                                                                                               ],
+                                                                                                               ["388",
+                                                                                                                 388
+                                                                                                               ],
+                                                                                                               ["388",
+                                                                                                                 388
+                                                                                                               ],
+                                                                                                               ["530",
+                                                                                                                 530
+                                                                                                               ],
+                                                                                                               ["441",
+                                                                                                                 441
+                                                                                                               ],
+                                                                                                               ["428",
+                                                                                                                 428
+                                                                                                               ],
+                                                                                                               ["246",
+                                                                                                                 246
+                                                                                                               ],
+                                                                                                               ["203",
+                                                                                                                 203
+                                                                                                               ],
+                                                                                                               ["215",
+                                                                                                                 215
+                                                                                                               ],
+                                                                                                               ["26",
+                                                                                                                 26
+                                                                                                               ]
+                                                                                                             ]}]
+        });
     },
 
     //Render DiscoveryGraph
