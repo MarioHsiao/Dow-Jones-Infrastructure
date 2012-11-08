@@ -62,6 +62,38 @@ namespace DowJones.Factiva.Currents.Components.CurrentsHeadline
 					&& !headline.PublicationDateDescriptor.IsEmpty();
 		}
 
-		
+		public string GetHeadlineUrl(PortalHeadlineInfo headline)
+		{
+		//	switch (headline.contentCategoryDescriptor) {
+		//	case "customerdoc":
+		//	case "summary":
+		//		Article.getParentArticle(headline.reference.guid);
+		//		break;
+		//	case "external":
+		//		if (headline.headlineUrl) {
+		//			DJGlobal.NewWindow({ url: headline.headlineUrl, windowName: "webArticleWin" });
+		//		}
+		//		break;
+		//	case "multimedia":{
+		//		var an = headline.reference.guid,
+		//			title = headline.title,
+		//			container = data.mediaContainer,
+		//			thumbNail = headline.thumbnailImage ? headline.thumbnailImage.uri : "";
+		//		DJGlobal.getMultimediaVideos(an, title, container, thumbNail);
+		//		break;
+		//	}
+		//	default:
+		//		var an = headline.reference.guid;
+		//		var dv = headline.documentVector || "";
+		//		var cc = headline.contentCategoryDescriptor;
+		//		var sc = headline.contentSubCategoryDescriptor;
+		//		var ref = headline.reference.ref || "";
+		//		var mimeType = headline.reference.mimetype || "";
+		//		var url = headline.headlineUrl;
+		//		var title = headline.title;
+		//		Article.processArticleBasedOnType(an, dv, cc, sc, ref, mimeType, (popup || false), url, title);
+		//		break;
+		//}
+		}
 	}
 }

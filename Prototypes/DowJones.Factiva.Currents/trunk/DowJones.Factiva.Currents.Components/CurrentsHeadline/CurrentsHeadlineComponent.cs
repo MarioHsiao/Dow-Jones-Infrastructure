@@ -23,7 +23,7 @@ namespace DowJones.Factiva.Currents.Components.CurrentsHeadline
     using CurrentsHeadline;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 11/02/2012 04:20 PM
+    // Last Generated Timestamp: 11/08/2012 11:15 AM
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Factiva.Currents.Components.CurrentsHeadline.CurrentsHeadline.js", ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Factiva.Currents.Components.CurrentsHeadline.CurrentsHeadlineComponent))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.27108")]
     public class CurrentsHeadlineComponent : DowJones.Web.Mvc.UI.ViewComponentBase<CurrentsHeadlineModel>
@@ -76,12 +76,12 @@ WriteLiteral("\">\r\n\t\t\t\t<div class=\"article-wrap\">\r\n\t\t\t\t\t<h4 class
 "href=\"");
 
 
-          Write(headline.HeadlineUrl);
+          Write(Model.GetHeadlineUrl(headline));
 
-WriteLiteral("\" class=\"article-view-trigger\">");
+WriteLiteral("\" class=\"article-view-trigger\" target=\"_blank\">");
 
 
-                                                              Write(headline.Title);
+                                                                                        Write(headline.Title);
 
 WriteLiteral("</a>\r\n\t\t\t\t\t</h4>\r\n");
 
