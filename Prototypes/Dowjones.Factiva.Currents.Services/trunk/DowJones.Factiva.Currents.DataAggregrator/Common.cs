@@ -102,41 +102,20 @@ namespace DowJones.Factiva.Currents.Aggregrator
             }
             return string.Empty;
         }
-        
-        private static string GetSerializedPagesModulesForXml(Dictionary<string,string> pageModuleList)
+
+        private static string GetSerializedPagesModulesForXml(Dictionary<string, string> pageModuleList)
         {
             XmlDocument doc = new XmlDocument();
-            XmlNode x = doc.CreateNode(XmlNodeType.Element,"Pages",string.Empty);
-            ////doc.LoadXml(pageModuleList.Values.ElementAt(0));
-            ////XmlNode mainRoot = doc.DocumentElement;
-            ////XmlNode node = mainRoot.SelectSingleNode("/newsPageServiceResult");
-            //XmlNodeReader reader = new XmlNodeReader();
-            doc.AppendChild(x);
-            XmlNode x1 = doc.DocumentElement;
-            
-            //object o = Serialization.DeserializeXmlFileWithXmlSerializer<object>(pageModuleList.Values.ElementAt(0));
-            if (pageModuleList.Count > 0)
-            {
-                XmlDocument doc1 = new XmlDocument();
-                for (int index = 1; index < pageModuleList.Keys.Count; index++)
-                {
-                    ////doc1.LoadXml(pageModuleList.Values.ElementAt(index));
-                    ////node.AppendChild(doc.ImportNode(doc1.DocumentElement,true));
-                    
-                    doc1.LoadXml(pageModuleList.Values.ElementAt(index));
-                    x1.AppendChild(doc.ImportNode(doc1.DocumentElement, true));
-                   // x = doc.CreateElement(pageModuleList.Keys.ElementAt(index));
-                //    x.InnerText = pageModuleList.Values.ElementAt(index);
-                //    doc.DocumentElement.AppendChild(x);
-                //    //var combinedUnique = xml1.Descendants("AllNodes")
-                //    //      .Union(xml2.Descendants("AllNodes"));
-                //   // object o = Serialization.DeserializeXmlFileXMLSerializer<object>(pageModuleList.Values.ElementAt(index));
-                //   // arr[index] = o;
-                }
-                //string serializedObject = Serialization.SerializeObjectToString(arr);
-                //return serializedObject;
-            }
-            return string.Empty;
+            doc.LoadXml(pageModuleList.Values.ElementAt(0));
+            XmlNode node = doc.DocumentElement.SelectSingleNode("/newsPageServiceResult");
+            node.RemoveAll();
+             XmlDocument doc1 = new XmlDocument();
+             for (int index = 0; index < pageModuleList.Keys.Count; index++)
+             {
+                 doc1.LoadXml(pageModuleList.Values.ElementAt(index));
+                 node.AppendChild(doc.ImportNode(doc1.DocumentElement, true));
+             }
+            return doc.OuterXml;
         }
 
         private static void GetModuleDataForJson(Dictionary<string, string> pageModuleList, string pageId)
@@ -163,7 +142,7 @@ namespace DowJones.Factiva.Currents.Aggregrator
 
         private static void GetModuleDataForXml(Dictionary<string, string> pageModuleList, string pageId)
         {
-            XDocument xDoc =XDocument.Parse(pageModuleList[pageId]);
+            XDocument xDoc =XDocument.Parse(pageModuleList["newsPage"]);
             IEnumerable<XElement> modules = xDoc.Descendants("modules");
             if (modules != null && modules.First() != null)
             {

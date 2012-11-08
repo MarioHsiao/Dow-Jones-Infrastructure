@@ -6,6 +6,7 @@ using System.Net;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
+using System.Xml;
 using DowJones.Factiva.Currents.Common;
 using DowJones.Factiva.Currents.Common.ExceptionHandling;
 using DowJones.Factiva.Currents.Common.Logging;
@@ -23,9 +24,8 @@ namespace DowJones.Factiva.Currents.Aggregrator.Services
             if (string.IsNullOrWhiteSpace(pageId))
                 throw ExceptionHandlerUtility.GetWebFaultByServiceException(ErrorConstants.InvalidPageId, HttpStatusCode.BadRequest);
             string result = Common.GetPageByIdData(pageId, format);
-            
-            byte[] byteArray = Encoding.Default.GetBytes( result);
-            MemoryStream stream = new MemoryStream( byteArray );
+            byte[] byteArray = Encoding.UTF8.GetBytes(result);
+            MemoryStream stream = new MemoryStream(byteArray);
             SetResponseHeaders(EnumConverter<RequestFormat>.ConvertStringToEnum(format));
             ApiLog.Logger.Info(ApiLog.LogPrefix.End);
             return stream;
