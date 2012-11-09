@@ -1,5 +1,7 @@
-﻿using DowJones.Factiva.Currents.Website.Contracts;
+﻿using DowJones.Factiva.Currents.ServiceModels.PageService;
+using DowJones.Factiva.Currents.Website.Contracts;
 using DowJones.Factiva.Currents.Website.Mocks;
+using DowJones.Factiva.Currents.Website.Providers;
 using DowJones.Infrastructure.Common;
 using DowJones.Pages.Modules.Templates;
 using DowJones.Preferences;
@@ -36,6 +38,14 @@ namespace DowJones.Factiva.Currents.Website
 			Bind<IPageAssetProvider>().To<MockPageAssetsProvider>().InRequestScope();
 
 			Bind<IScriptModuleTemplateManager>().To<MockScriptModuleTemplateManager>();
+
+			Bind<IPageServiceResponseParser>()
+				.To<PageServiceResponseParser>()
+				.WithConstructorArgument("assemblies", 
+											new[] { 
+												typeof(PageServiceResponse).Assembly, 
+												typeof(Pages.Tag).Assembly 
+											});
 		}
 	}
 }

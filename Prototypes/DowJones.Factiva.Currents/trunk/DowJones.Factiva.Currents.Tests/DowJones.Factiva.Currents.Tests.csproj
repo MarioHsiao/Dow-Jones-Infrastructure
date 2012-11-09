@@ -45,6 +45,10 @@
     <Reference Include="DowJones.Pages">
       <HintPath>..\packages\DowJones.Pages.3.3.61\lib\DowJones.Pages.dll</HintPath>
     </Reference>
+    <Reference Include="DowJones.Pages.Modules, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DowJones.Pages.Modules.3.3.60\lib\DowJones.Pages.Modules.dll</HintPath>
+    </Reference>
     <Reference Include="DowJones.Parallel, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\DowJones.Parallel.1.0.0\lib\DowJones.Parallel.dll</HintPath>
@@ -103,6 +107,7 @@
     <Compile Include="ServiceModels\TypeNameResolverTests.cs" />
     <Compile Include="Website\SerializationTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Website\PageAssetProviderTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -115,6 +120,10 @@
     <ProjectReference Include="..\DowJones.Factiva.Currents.ServiceModels\DowJones.Factiva.Currents.ServiceModels.csproj">
       <Project>{10335cd8-fee9-4736-9863-357c1dd3ebbe}</Project>
       <Name>DowJones.Factiva.Currents.ServiceModels</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Website\Website.csproj">
+      <Project>{0C497985-DC29-4E03-861C-300DE0FC2B4C}</Project>
+      <Name>Website</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

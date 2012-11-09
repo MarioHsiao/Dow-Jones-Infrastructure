@@ -190,6 +190,7 @@
     <Compile Include="Providers\CachedPageAssetProvider.cs" />
     <Compile Include="Contracts\IPageAssetProvider.cs" />
     <Compile Include="Contracts\ICacheProvider.cs" />
+    <Compile Include="Contracts\IPageServiceResponseParser.cs" />
     <Compile Include="Providers\PageAssetProvider.cs" />
     <Compile Include="Controllers\PagesController.cs" />
     <Compile Include="Dependencies.cs" />
@@ -197,6 +198,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Providers\PageServiceResponseParser.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-responsive.css" />

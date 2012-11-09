@@ -153,6 +153,7 @@
     <Compile Include="PageService\Modules\Trending\Packages\TrendType.cs" />
     <Compile Include="PageService\Modules\Trending\Results\TrendingNewsPageModuleServiceResult.cs" />
     <Compile Include="PageService\Modules\Trending\Results\TrendingNewsPageServicePartResult.cs" />
+    <Compile Include="PageService\NewsPagePackage.cs" />
     <Compile Include="PageService\NewsPageServiceResult.cs" />
     <Compile Include="PageService\NewsPagesListPackage.cs" />
     <Compile Include="PageService\NewsPagesListServiceResult.cs" />

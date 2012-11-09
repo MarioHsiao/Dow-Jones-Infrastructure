@@ -9,10 +9,40 @@ namespace DowJones.Factiva.Currents.Website.Providers
 {
 	public class PageAssetProvider : IPageAssetProvider
 	{
+		private readonly IPageServiceResponseParser _pageServiceResponseParser;
+
 		// TODO: Refactor to read from config
 		private const string ServiceUrl = "http://fdevweb3/data.factiva.com/PageService.svc";
 
+		public PageAssetProvider(IPageServiceResponseParser pageServiceResponseParser)
+		{
+			_pageServiceResponseParser = pageServiceResponseParser;
+		}
+
 		#region Implementation of IPageAssetProvider
+
+		public PageServiceResponse GetPageByName(string pageName)
+		{
+			var pageId = MapPageNameToId(pageName);
+
+			return GetPageById(pageId);
+
+		}
+
+		public PageServiceResponse GetPageById(string pageId)
+		{
+			var client = new RestClient(ServiceUrl);
+			var request = new RestRequest("id/json", Method.GET);
+			request.AddParameter("pageid", pageId);
+
+			var rawResponse = client.Execute(request);
+
+			var pageServiceResponse = _pageServiceResponseParser.Parse(rawResponse.Content);
+
+			return pageServiceResponse;
+		}
+
+		#endregion
 
 		protected string MapPageNameToId(string name)
 		{
@@ -22,21 +52,5 @@ namespace DowJones.Factiva.Currents.Website.Providers
 
 			return response.Data.Package.NewsPages.First(p => p.Title == name).ID;
 		}
-
-		public IEnumerable<IModule> GetModulesForPage(string pageName)
-		{
-			var pageId = MapPageNameToId(pageName);
-
-			var client = new RestClient(ServiceUrl);
-			var request = new RestRequest("id/json", Method.GET);
-			request.AddParameter("pageid", pageId);
-
-			//var response = client.Execute<SourcesNewsPageModuleServiceResult>(request);
-
-			return null;
-
-		}
-
-		#endregion
 	}
 }

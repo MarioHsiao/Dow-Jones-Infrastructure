@@ -21,7 +21,7 @@ namespace DowJones.Factiva.Currents.Website.Controllers
 		[Route("{type}/{name}")]
 		public ActionResult Index(string type, string name)
 		{
-			var modules = _pageAssetProvider.GetModulesForPage(name).ToArray();
+			var modules = _pageAssetProvider.GetPageByName(name);
 
 			return View(modules);
 		}

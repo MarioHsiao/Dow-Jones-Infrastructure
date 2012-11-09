@@ -26,5 +26,7 @@ namespace DowJones.Factiva.Currents.Tests.Website
 
 			Assert.IsInstanceOfType(response, typeof(PageServiceResponse));
 		}
+
+		
 	}
 }

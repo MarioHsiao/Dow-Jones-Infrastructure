@@ -3,33 +3,50 @@ using System.Collections.Generic;
 using DowJones.Ajax;
 using DowJones.Ajax.HeadlineList;
 using DowJones.Ajax.PortalHeadlineList;
+using DowJones.Factiva.Currents.ServiceModels.PageService;
+using DowJones.Factiva.Currents.ServiceModels.PageService.Modules.CustomTopics.Packages;
+using DowJones.Factiva.Currents.ServiceModels.PageService.Modules.CustomTopics.Results;
+using DowJones.Factiva.Currents.Website.Contracts;
 using DowJones.Formatters;
-using DowJones.Web.Mvc.UI.Canvas;
 using DowJones.Web.Mvc.UI.Components.PortalHeadlineList;
+using CustomTopicsNewsPageModuleServiceResult = DowJones.Factiva.Currents.ServiceModels.PageService.CustomTopicsNewsPageModuleServiceResult;
 
 namespace DowJones.Factiva.Currents.Website.Mocks
 {
-	using Components.CurrentsHeadline;
-	using Currents.Models;
-	using Contracts;
 
 	public class MockPageAssetsProvider : IPageAssetProvider
 	{
 
 		#region Implementation of IPageAssetProvider
 
-		public int MapPageNameToId(string name)
+		public PageServiceResponse GetPageByName(string pageName)
 		{
-			return 0;
+			return GetPageById("");
 		}
 
-		public IEnumerable<IModule> GetModulesForPage(int pageId)
+		public PageServiceResponse GetPageById(string pageId)
 		{
-			return new[] { new CurrentSourcesModel
+			return new PageServiceResponse
+			{
+				CustomTopicsNewsPageModuleServiceResult = new CustomTopicsNewsPageModuleServiceResult
 				{
-					CurrentsHeadlines = new [] {new CurrentsHeadlineModel(GetStubHeadlines())},
-				} };
+					PartResults = new[]
+								{
+									new CustomTopicsNewsPageServicePartResult<CustomTopicsPackage>
+										{
+											Package = new CustomTopicsPackage
+												{
+													Result = GetStubHeadlines().Result
+												}
+										},
+								}
+				}
+			};
+
 		}
+
+		#endregion
+
 
 		private PortalHeadlineListModel GetStubHeadlines()
 		{
@@ -96,12 +113,5 @@ namespace DowJones.Factiva.Currents.Website.Mocks
 			};
 		}
 
-
-		public IEnumerable<IModule> GetModulesForPage(string pageName)
-		{
-			return GetModulesForPage(MapPageNameToId(pageName));
-		}
-
-		#endregion
 	}
 }
