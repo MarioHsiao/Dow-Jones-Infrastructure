@@ -35,10 +35,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DowJones.Infrastructure">
-      <HintPath>..\packages\DowJones.Infrastructure.3.3.57\lib\DowJones.Infrastructure.dll</HintPath>
+      <HintPath>..\packages\DowJones.Infrastructure.3.3.61\lib\DowJones.Infrastructure.dll</HintPath>
     </Reference>
     <Reference Include="DowJones.Pages">
-      <HintPath>..\packages\DowJones.Pages.3.3.57\lib\DowJones.Pages.dll</HintPath>
+      <HintPath>..\packages\DowJones.Pages.3.3.61\lib\DowJones.Pages.dll</HintPath>
     </Reference>
     <Reference Include="DowJones.Pages.Modules">
       <HintPath>..\packages\DowJones.Pages.Modules.3.3.60\lib\DowJones.Pages.Modules.dll</HintPath>
