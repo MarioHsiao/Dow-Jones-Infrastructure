@@ -10,8 +10,9 @@ using System.Xml;
 using DowJones.Factiva.Currents.Common;
 using DowJones.Factiva.Currents.Common.ExceptionHandling;
 using DowJones.Factiva.Currents.Common.Logging;
-using DowJones.Factiva.Currents.Common.Utilities;
+using CurrentUtilities = DowJones.Factiva.Currents.Common.Utilities;
 using Newtonsoft.Json;
+using DowJones.Factiva.Currents.Common.Utilities;
 
 namespace DowJones.Factiva.Currents.Aggregrator.Services
 {
@@ -26,7 +27,7 @@ namespace DowJones.Factiva.Currents.Aggregrator.Services
             string result = Common.GetPageByIdData(pageId, format);
             byte[] byteArray = Encoding.UTF8.GetBytes(result);
             MemoryStream stream = new MemoryStream(byteArray);
-            SetResponseHeaders(EnumConverter<RequestFormat>.ConvertStringToEnum(format));
+            CurrentUtilities.Web.SetResponseHeaders(EnumConverter<RequestFormat>.ConvertStringToEnum(format));
             ApiLog.Logger.Info(ApiLog.LogPrefix.End);
             return stream;
         }
@@ -37,45 +38,9 @@ namespace DowJones.Factiva.Currents.Aggregrator.Services
             string result = Common.GetPageListData(format);
             byte[] byteArray = Encoding.Default.GetBytes(result);
             MemoryStream stream = new MemoryStream(byteArray);
-            SetResponseHeaders(EnumConverter<RequestFormat>.ConvertStringToEnum(format));
+            CurrentUtilities.Web.SetResponseHeaders(EnumConverter<RequestFormat>.ConvertStringToEnum(format));
           //  ApiLog.Logger.Info(ApiLog.LogPrefix.End);
             return stream;
-        }
-
-        public static void SetResponseHeaders(RequestFormat format)
-        {
-            if (WebOperationContext.Current != null && OperationContext.Current != null)
-            {
-                OutgoingWebResponseContext outgoingResponse = WebOperationContext.Current.OutgoingResponse;
-
-                if (string.IsNullOrWhiteSpace(outgoingResponse.Headers["Access-Control-Allow-Origin"]))
-                    outgoingResponse.Headers.Add("Access-Control-Allow-Origin", "*");
-
-                // Ovveriding Http Status
-                //if (Utilities.Web.OverrideHttpStatus())
-                //    outgoingResponse.StatusCode = HttpStatusCode.OK;
-
-                //Set format and content type for the OutgoingResponse of the WebOperationContext
-                switch (format)
-                {
-                    case RequestFormat.Json:
-                        string callBack = Common.GetQueryStringRequest(Constants.CallbackParam);
-                        outgoingResponse.Format = WebMessageFormat.Json;
-                        outgoingResponse.ContentType = !string.IsNullOrWhiteSpace(callBack) ? Constants.JsonContentWithCallbackType : Constants.JsonContentType;
-                        break;
-                    case RequestFormat.Xml:
-                        outgoingResponse.Format = WebMessageFormat.Xml;
-                        outgoingResponse.ContentType = Constants.XmlContentType;
-                        break;
-                }
-            }
-        }
-
-        public enum RequestFormat
-        {
-            Xml,
-            Json,
-            Soap
         }
     }
 }

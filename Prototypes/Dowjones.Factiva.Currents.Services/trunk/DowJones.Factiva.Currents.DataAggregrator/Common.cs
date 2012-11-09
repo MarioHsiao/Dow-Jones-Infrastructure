@@ -22,6 +22,11 @@ namespace DowJones.Factiva.Currents.Aggregrator
     {
         static string enToken = System.Configuration.ConfigurationManager.AppSettings["EncryptedToken"];
         static string basePath = System.Configuration.ConfigurationManager.AppSettings["DasboardApiBasePath"];
+        static int maxResultsToReturn = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["MaxResultsToReturn"]);
+        static int maxEntitiesToReturn = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["MaxEntitiesToReturn"]);
+        static int maxPartsToReturn = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["MaxPartsToReturn"]);
+        static string timeFrame = Convert.ToString(System.Configuration.ConfigurationManager.AppSettings["TimeFrame"]);
+        static string entityType = Convert.ToString(System.Configuration.ConfigurationManager.AppSettings["EntityType"]);
 
         /// <summary>
         /// Gets the query string request.
@@ -140,7 +145,7 @@ namespace DowJones.Factiva.Currents.Aggregrator
                     {
                         long moduleId = module.id.Value;
                         string type = module.__type.Value;
-                        GetPageModuleByPageId(pageModuleList, pageId, "Json", maxResultsToReturn, maxPartsToReturn, moduleId.ToString(), type);
+                        GetPageModuleByPageId(pageModuleList, pageId, "Json", moduleId.ToString(), type);
                     }
 
                 }
@@ -162,23 +167,22 @@ namespace DowJones.Factiva.Currents.Aggregrator
                     {
                         string type = module.FirstAttribute.Value;
                         string moduleId = module.Element("id").Value;
-                        GetPageModuleByPageId(pageModuleList, pageId, "Xml", maxResultsToReturn, maxPartsToReturn, moduleId, type);
+                        GetPageModuleByPageId(pageModuleList, pageId, "Xml", moduleId, type);
                     }
                 }
             }
         }
 
-        private static void GetPageModuleByPageId(Dictionary<string, string> pageModuleList, string pageId, string format, int maxResultsToReturn, int maxPartsToReturn, string moduleId, string type)
+        private static void GetPageModuleByPageId(Dictionary<string, string> pageModuleList, string pageId, string format, string moduleId, string type)
         {
             int firstResultToReturn = 0;
             int firstPartToReturn = 0;
             string parts = string.Empty;
             string url = string.Empty;
-            string timeFrame = "lastweek";
+
             switch (type)
             {
                 case "summaryNewspageModule":
-                    int maxEntitiesToReturn = maxResultsToReturn;
                     parts = "Chart|RecentArticles|RecentVideos|RegionalMap|Trending";
                     url =
                        string.Format(
@@ -241,7 +245,6 @@ namespace DowJones.Factiva.Currents.Aggregrator
                     pageModuleList.Add(type, GetData(url));
                     break;
                 case "radarNewspageModule":
-
                     url =
                       string.Format(
                           "{0}/Modules/Radar/1.0/data/" + format + "?pageid={1}&moduleId={2}&timeFrame={3}&encryptedToken={4}",
@@ -282,7 +285,6 @@ namespace DowJones.Factiva.Currents.Aggregrator
                     break;
                 case "trendingNewsPageModule":
                     parts = "TopEntities|TrendingDown|TrendingUp";
-                    string entityType = "companies";
                     url =
                       string.Format(
                           "{0}/Modules/Trending/1.0/data/" + format + "?pageid={1}&moduleId={2}&parts={3}&timeFrame={4}&entityType={5}&encryptedToken={6}",
