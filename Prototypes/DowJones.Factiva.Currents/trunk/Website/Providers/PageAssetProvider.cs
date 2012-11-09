@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using DowJones.Factiva.Currents.ServiceModels.PageService;
 using DowJones.Factiva.Currents.Website.Contracts;
@@ -50,7 +51,7 @@ namespace DowJones.Factiva.Currents.Website.Providers
 			var request = new RestRequest("/json", Method.GET);
 			var response = client.Execute<NewsPagesListServiceResult>(request);
 
-			return response.Data.Package.NewsPages.First(p => p.Title == name).ID;
+			return response.Data.Package.NewsPages.First(p => p.Title.Equals(name, StringComparison.OrdinalIgnoreCase)).ID;
 		}
 	}
 }

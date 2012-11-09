@@ -9,7 +9,6 @@ using DowJones.Factiva.Currents.ServiceModels.PageService.Modules.CustomTopics.R
 using DowJones.Factiva.Currents.Website.Contracts;
 using DowJones.Formatters;
 using DowJones.Web.Mvc.UI.Components.PortalHeadlineList;
-using CustomTopicsNewsPageModuleServiceResult = DowJones.Factiva.Currents.ServiceModels.PageService.CustomTopicsNewsPageModuleServiceResult;
 
 namespace DowJones.Factiva.Currents.Website.Mocks
 {

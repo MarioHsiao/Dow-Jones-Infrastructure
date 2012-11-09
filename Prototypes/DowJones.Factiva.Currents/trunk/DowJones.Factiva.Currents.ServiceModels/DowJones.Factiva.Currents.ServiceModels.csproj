@@ -158,7 +158,6 @@
     <Compile Include="PageService\NewsPagesListPackage.cs" />
     <Compile Include="PageService\NewsPagesListServiceResult.cs" />
     <Compile Include="PageService\PageServiceResponse.cs" />
-    <Compile Include="PageService\ServiceResults.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RelativeNameSerializationBinder.cs" />
     <Compile Include="TypeNameResolver.cs" />

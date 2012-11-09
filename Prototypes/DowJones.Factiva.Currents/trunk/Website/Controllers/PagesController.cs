@@ -21,7 +21,8 @@ namespace DowJones.Factiva.Currents.Website.Controllers
 		[Route("{type}/{name}")]
 		public ActionResult Index(string type, string name)
 		{
-			var modules = _pageAssetProvider.GetPageByName(name);
+			var canonicalName = name.Replace("-", " ");
+			var modules = _pageAssetProvider.GetPageByName(canonicalName);
 
 			return View(modules);
 		}

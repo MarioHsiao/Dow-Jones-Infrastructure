@@ -3,6 +3,7 @@ using DowJones.Factiva.Currents.Website.Contracts;
 using DowJones.Factiva.Currents.Website.Mocks;
 using DowJones.Factiva.Currents.Website.Providers;
 using DowJones.Infrastructure.Common;
+using DowJones.Pages.Modules.Modules.Summary;
 using DowJones.Pages.Modules.Templates;
 using DowJones.Preferences;
 using DowJones.Security;
@@ -35,7 +36,7 @@ namespace DowJones.Factiva.Currents.Website
 					TypeNameHandling = TypeNameHandling.Objects,
 				});
 
-			Bind<IPageAssetProvider>().To<MockPageAssetsProvider>().InRequestScope();
+			Bind<IPageAssetProvider>().To<PageAssetProvider>().InRequestScope();
 
 			Bind<IScriptModuleTemplateManager>().To<MockScriptModuleTemplateManager>();
 
@@ -44,7 +45,8 @@ namespace DowJones.Factiva.Currents.Website
 				.WithConstructorArgument("assemblies", 
 											new[] { 
 												typeof(PageServiceResponse).Assembly, 
-												typeof(Pages.Tag).Assembly 
+												typeof(Pages.Tag).Assembly,
+ 												typeof(SummaryNewspageModule).Assembly  
 											});
 		}
 	}

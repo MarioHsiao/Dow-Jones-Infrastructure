@@ -12,7 +12,7 @@ namespace DowJones.Factiva.Currents.Tests.Website
 		[TestMethod]
 		public void CanGetPageById()
 		{
-			const string pageId = "Np_V1_26414_26414_000000";
+			const string pageId = "Np_V1_18836_18836_000000";
 
 			var provider = new PageAssetProvider(new PageServiceResponseParser(new[] { 
 				typeof(PageServiceResponse).Assembly, 

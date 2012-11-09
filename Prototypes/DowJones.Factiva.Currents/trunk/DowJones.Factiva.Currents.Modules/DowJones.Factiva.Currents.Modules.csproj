@@ -124,6 +124,10 @@
       <Project>{a2e7cba8-9918-4f80-9167-27077599e230}</Project>
       <Name>DowJones.Factiva.Currents.Components</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DowJones.Factiva.Currents.ServiceModels\DowJones.Factiva.Currents.ServiceModels.csproj">
+      <Project>{10335cd8-fee9-4736-9863-357c1dd3ebbe}</Project>
+      <Name>DowJones.Factiva.Currents.ServiceModels</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

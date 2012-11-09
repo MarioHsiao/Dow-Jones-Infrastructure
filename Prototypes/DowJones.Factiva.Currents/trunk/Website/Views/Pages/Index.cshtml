@@ -1,14 +1,14 @@
-﻿@model DowJones.Factiva.Currents.ServiceModels.PageService.PageServiceResponse
+﻿@using DowJones
+@using DowJones.Factiva.Currents.Models
+@model DowJones.Factiva.Currents.ServiceModels.PageService.PageServiceResponse
 
 @{
 	ViewBag.Title = "title";
 }
 
-@foreach(var module in Model)
-{
 	<section class="row">
 		<div class="span12">
-			@Html.DJ().Render(module)
+			@Html.DJ().Render(Mapper.Map<CurrentSourcesModel>(Model.SourcesNewsPageModuleServiceResult))
 		</div>
 	</section>
-}
+

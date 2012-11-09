@@ -184,6 +184,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="DashRouteHandler.cs" />
     <Compile Include="Mocks\MockPageAssetsProvider.cs" />
     <Compile Include="Mocks\MockScriptModuleTemplateManager.cs" />
     <Compile Include="Providers\HttpContextCacheProvider.cs" />
