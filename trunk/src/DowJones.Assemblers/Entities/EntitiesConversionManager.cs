@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using DowJones.Ajax.HeadlineList;
+using DowJones.DependencyInjection;
 using DowJones.Formatters;
+using DowJones.Formatters.Globalization.DateTime;
 using DowJones.Formatters.Numerical;
+using DowJones.Globalization;
 using DowJones.Models.Common;
 using DowJones.Search.Core.ISO8601;
 using Factiva.Gateway.Messages.Search.V2_0;
@@ -12,11 +15,58 @@ namespace DowJones.Assemblers.Entities
 {
     public class EntitiesConversionManager : IAssembler<Models.Common.Entities, NavigatorSet>
     {
+        private readonly DateTimeFormatter dateTimeFormatter;
+        private readonly NumberFormatter numberFormatter;
+        private readonly IResourceTextManager resources;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EntitiesConversionManager"/> class.
+        /// </summary>
+        /// <param name="interfaceLanguage">The interface language.</param>
+        public EntitiesConversionManager(string interfaceLanguage)
+            : this(new DateTimeFormatter(interfaceLanguage))
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EntitiesConversionManager"/> class.
+        /// </summary>
+        public EntitiesConversionManager(DateTimeFormatter dateTimeFormatter)
+            : this(dateTimeFormatter, null, null)
+        {
+        }
+
+        public EntitiesConversionManager(DateTimeFormatter dateTimeFormatter, NumberFormatter numberFormatter, IResourceTextManager resources)
+        {
+            this.dateTimeFormatter = dateTimeFormatter ?? new DateTimeFormatter("en");
+            this.numberFormatter = numberFormatter ?? new NumberFormatter();
+            this.resources = resources ?? ServiceLocator.Resolve<IResourceTextManager>();
+        }
+
+        #region Properties
+
+        public DateTimeFormatter DateTimeFormatter
+        {
+            get { return dateTimeFormatter; }
+        }
+
+        public NumberFormatter NumberFormatter
+        {
+            get { return numberFormatter; }
+        }
+
+        public IResourceTextManager ResourceText
+        {
+            get { return resources; }
+        }
+
+        #endregion
+
         public Models.Common.Entities Convert(NavigatorSet navigatorSet)
         {
             return Convert(navigatorSet, null);
         }
-
+    
         public Models.Common.Entities Convert(NavigatorSet navigatorSet, List<string> expandedChartList)
         {
             int index = 0;
@@ -50,7 +100,7 @@ namespace DowJones.Assemblers.Entities
                                     {
                                         case "py":
                                             {
-                                                objNewsEntity.TypeDescriptor = "Date Yearly";
+                                                //objNewsEntity.TypeDescriptor = "Date Yearly";
                                                 objNewsEntity.Type = EntityType.DateYearly;
                                                 objNewsEntity.StartDate = new DateTime(Int32.Parse(objBucket.Id.Substring(0, 4)), 1, 1);
                                                 objNewsEntity.EndDate = new DateTime(objNewsEntity.StartDate.Year, 12, 31);
@@ -58,7 +108,7 @@ namespace DowJones.Assemblers.Entities
                                             }
                                         case "pm":
                                             {
-                                                objNewsEntity.TypeDescriptor = "Date Monthly";
+                                                //objNewsEntity.TypeDescriptor = "Date Monthly";
                                                 objNewsEntity.Type = EntityType.DateMonthly;
                                                 objNewsEntity.StartDate = new DateTime(Int32.Parse(objBucket.Id.Substring(0, 4)), Int32.Parse(objBucket.Id.Substring(4, 2)), 1);
                                                 objNewsEntity.EndDate = objNewsEntity.StartDate.AddMonths(1).Subtract(new TimeSpan(1, 0, 0, 0));
@@ -66,7 +116,7 @@ namespace DowJones.Assemblers.Entities
                                             }
                                         case "pw":
                                             {
-                                                objNewsEntity.TypeDescriptor = "Date Weekly";
+                                                //objNewsEntity.TypeDescriptor = "Date Weekly";
                                                 objNewsEntity.Type = EntityType.DateWeekly;
                                                 objNewsEntity.StartDate = Iso8601Date.GetIso8601Week(Int32.Parse(objBucket.Id.Substring(0, 4)), Int32.Parse(objBucket.Id.Substring(4, 2)));
                                                 objNewsEntity.EndDate = objNewsEntity.StartDate.AddDays(7);
@@ -74,17 +124,20 @@ namespace DowJones.Assemblers.Entities
                                             }
                                         case "pd":
                                             {
-                                                objNewsEntity.TypeDescriptor = "Date Daily";
+                                                //objNewsEntity.TypeDescriptor = "Date Daily";
                                                 objNewsEntity.Type = EntityType.DateDaily;
                                                 objNewsEntity.StartDate = new DateTime(Int32.Parse(objBucket.Id.Substring(0, 4)), Int32.Parse(objBucket.Id.Substring(4, 2)), Int32.Parse(objBucket.Id.Substring(6, 2)));
                                                 objNewsEntity.EndDate = objNewsEntity.StartDate;
                                                 break;
                                             }
                                     }
+                                    objNewsEntity.TypeDescriptor = objNewsEntity.Type.ToString();
+                                    objNewsEntity.StartDateFormattedString = DateTimeFormatter.FormatShortDate(objNewsEntity.StartDate);
+                                    objNewsEntity.EndDateFormattedString = DateTimeFormatter.FormatShortDate(objNewsEntity.EndDate);
                                     newsEntities.Add(objNewsEntity);
                                 }
                                 parentNewsEntity.NewsEntities = newsEntities;
-                                parentNewsEntity.Title = "date";
+                                parentNewsEntity.Title = "${date}";
                                 switch (objNavigator.Id)
                                 {
                                     case "py":
@@ -132,7 +185,7 @@ namespace DowJones.Assemblers.Entities
                                     {
                                         case "sc":
                                             {
-                                                objNewsEntity.TypeDescriptor = "Source";
+                                                //objNewsEntity.TypeDescriptor = "Source";
                                                 objNewsEntity.Type = EntityType.Source;
                                                 break;
                                             }
@@ -142,15 +195,16 @@ namespace DowJones.Assemblers.Entities
                                                 {
                                                     objNewsEntity.IsGroup = true;   //entended property for Source entity
                                                 }
-                                                objNewsEntity.TypeDescriptor = "SourceFamily";
+                                                //objNewsEntity.TypeDescriptor = "SourceFamily";
                                                 objNewsEntity.Type = EntityType.SourceFamily;
                                                 break;
                                             }
                                     }
+                                    objNewsEntity.TypeDescriptor = objNewsEntity.Type.ToString();
                                     newsEntities.Add(objNewsEntity);
                                 }
                                 parentNewsEntity.NewsEntities = newsEntities;
-                                parentNewsEntity.Title = "sources";
+                                parentNewsEntity.Title = "${sources}";
                                 switch (objNavigator.Id)
                                 {
                                     case "sc":
@@ -187,41 +241,42 @@ namespace DowJones.Assemblers.Entities
                                     {
                                         case "co":
                                             {
-                                                objNewsEntity.TypeDescriptor = "Company";
+                                                //objNewsEntity.TypeDescriptor = "Company";
                                                 objNewsEntity.Type = EntityType.Company;
                                                 break;
                                             }
                                         case "in":
                                             {
-                                                objNewsEntity.TypeDescriptor = "Industry";
+                                                //objNewsEntity.TypeDescriptor = "Industry";
                                                 objNewsEntity.Type = EntityType.Industry;
                                                 break;
                                             }
                                         case "ns":
                                             {
-                                                objNewsEntity.TypeDescriptor = "Subject";
+                                                //objNewsEntity.TypeDescriptor = "Subject";
                                                 objNewsEntity.Type = EntityType.NewsSubject;
                                                 break;
                                             }
                                         case "pe":
                                             {
-                                                objNewsEntity.TypeDescriptor = "Person";
+                                                //objNewsEntity.TypeDescriptor = "Person";
                                                 objNewsEntity.Type = EntityType.Person;
                                                 break;
                                             }
                                         case "re":
                                             {
-                                                objNewsEntity.TypeDescriptor = "Region";
+                                                //objNewsEntity.TypeDescriptor = "Region";
                                                 objNewsEntity.Type = EntityType.Region;
                                                 break;
                                             }
                                         case "au":
                                             {
-                                                objNewsEntity.TypeDescriptor = "Author";
+                                                //objNewsEntity.TypeDescriptor = "Author";
                                                 objNewsEntity.Type = EntityType.Author;
                                                 break;
                                             }
                                     }
+                                    objNewsEntity.TypeDescriptor = objNewsEntity.Type.ToString();
                                     newsEntities.Add(objNewsEntity);
                                 }
                                 parentNewsEntity.NewsEntities = newsEntities;
@@ -230,42 +285,42 @@ namespace DowJones.Assemblers.Entities
                                 {
                                     case "co":
                                         {
-                                            parentNewsEntity.Title = "companies";
+                                            parentNewsEntity.Title = "${companies}";
                                             parentNewsEntity.Type = EntityType.Company;
                                             entities.CompanyNewsEntities = parentNewsEntity;
                                             break;
                                         }
                                     case "in":
                                         {
-                                            parentNewsEntity.Title = "industries";
+                                            parentNewsEntity.Title = "${industries}";
                                             parentNewsEntity.Type = EntityType.Industry;
                                             entities.IndustryNewsEntities = parentNewsEntity;
                                             break;
                                         }
                                     case "ns":
                                         {
-                                            parentNewsEntity.Title = "newsSubjects";
+                                            parentNewsEntity.Title = "${newsSubjects}";
                                             parentNewsEntity.Type = EntityType.NewsSubject;
                                             entities.SubjectNewsEntities = parentNewsEntity;
                                             break;
                                         }
                                     case "pe":
                                         {
-                                            parentNewsEntity.Title = "executives";
+                                            parentNewsEntity.Title = "${executives}";
                                             parentNewsEntity.Type = EntityType.Person;
                                             entities.PersonNewsEntities = parentNewsEntity;
                                             break;
                                         }
                                     case "re":
                                         {
-                                            parentNewsEntity.Title = "regions";
+                                            parentNewsEntity.Title = "${regions}";
                                             parentNewsEntity.Type = EntityType.Region;
                                             entities.RegionNewsEntities = parentNewsEntity;
                                             break;
                                         }
                                     case "au":
                                         {
-                                            parentNewsEntity.Title = "authors";
+                                            parentNewsEntity.Title = "${authors}";
                                             parentNewsEntity.Type = EntityType.Author;
                                             entities.AuthorNewsEntities = parentNewsEntity;
                                             break;
