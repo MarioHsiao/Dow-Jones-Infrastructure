@@ -2,12 +2,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.WebPages;
 using DowJones.Ajax.PortalHeadlineList;
+using DowJones.Extensions;
 using DowJones.Web.Mvc.UI.Components.PortalHeadlineList;
 using DowJones.Infrastructure;
 
 namespace DowJones.Factiva.Currents.Components.CurrentsHeadline
 {
-	public class CurrentsHeadlineModel : DowJones.Web.Mvc.UI.ViewComponentModel
+	public class CurrentsHeadlineModel : Web.Mvc.UI.ViewComponentModel
 	{
 		private readonly PortalHeadlineListModel _portalHeadlineList;
 
@@ -30,11 +31,7 @@ namespace DowJones.Factiva.Currents.Components.CurrentsHeadline
 		public bool ShowSource { get; set; }
 		public bool ShowPublicationDateTime { get; set; }
 
-		public bool SourceClickable
-		{
-			get { throw new System.NotImplementedException(); }
-			set { throw new System.NotImplementedException(); }
-		}
+		public bool SourceClickable { get; set; }
 
 		public CurrentsHeadlineModel(PortalHeadlineListModel portalHeadlineList)
 		{
@@ -49,10 +46,10 @@ namespace DowJones.Factiva.Currents.Components.CurrentsHeadline
 			return SelectedGuid == headline.Reference.guid ? "dj_entry_selected" : string.Empty;
 		}
 
-		public bool ShouldShowSource (PortalHeadlineInfo headline)
+		public bool ShouldShowSource(PortalHeadlineInfo headline)
 		{
-			return ShowSource 
-					&& !headline.SourceCode.IsEmpty() 
+			return ShowSource
+					&& !headline.SourceCode.IsEmpty()
 					&& !headline.SourceDescriptor.IsEmpty();
 		}
 
@@ -64,52 +61,14 @@ namespace DowJones.Factiva.Currents.Components.CurrentsHeadline
 
 		public string GetHeadlineUrl(PortalHeadlineInfo headline)
 		{
-            string headlineTitle = string.Empty;
-            string accessNo = string.Empty;
-            switch (headline.ContentCategoryDescriptor)
-            {
-                case "customerdoc":
-                case "summary":
-                    //Article.getParentArticle(headline.Reference.guid);
-                    break;
-                case "external":
-                    if (headline.HeadlineUrl != string.Empty)
-                    {
-                        //DJGlobal.NewWindow({ url: headline.headlineUrl, windowName: "webArticleWin" });
-                    }
-                    break;
-                case "multimedia":
-                    {
-                        string an = headline.Reference.guid;
-                        headlineTitle = headline.Title;
-                        //DJGlobal.getMultimediaVideos(an, title, container, thumbNail);
-                        break;
-                    }
-                default:
-                    accessNo = headline.Reference.guid;
-                    var url = headline.HeadlineUrl;
-                    headlineTitle = headline.Title;
-                    //Article.processArticleBasedOnType(accessionNumber, dv, cc, sc, ref, mimeType, (popup || false), url, headlineTitle);
-                    break;
-            }
-            string baseUrl = GetBaseUrlPath();
-            baseUrl += @"\headlines\"+headlineTitle.Replace(' ','_')+"?an="+accessNo;
-            return baseUrl;
+			if (!headline.ContentCategoryDescriptor.Equals("external"))
+				return "headlines/{0}?an={1}".FormatWith(
+					headline
+					.Title
+					.ToLowerInvariant()
+					.Replace(' ','-'), headline.Reference.guid);
+
+			return headline.HeadlineUrl;
 		}
-
-        /// <summary>
-        /// gets the domain path
-        /// </summary>
-        /// <returns>returns the domain path</returns>
-        public string GetBaseUrlPath()
-        {
-            WebPageContext context = WebPageContext.Current;
-
-            if (context != null && context.Page != null && context.Page.Request != null)
-            {
-                return context.Page.Request.Url.Host;
-            }
-            return string.Empty; 
-        }
 	}
 }

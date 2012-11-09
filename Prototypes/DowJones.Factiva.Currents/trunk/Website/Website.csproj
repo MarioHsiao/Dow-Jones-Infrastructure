@@ -184,6 +184,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\HeadlineController.cs" />
     <Compile Include="DashRouteHandler.cs" />
     <Compile Include="Mocks\MockPageAssetsProvider.cs" />
     <Compile Include="Mocks\MockScriptModuleTemplateManager.cs" />
@@ -275,6 +276,7 @@
     <None Include="Properties\PublishProfiles\montana.pubxml" />
     <Content Include="Views\Modules\_Sources.cshtml" />
     <Content Include="Views\Pages\Index.cshtml" />
+    <Content Include="Views\Headline\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
