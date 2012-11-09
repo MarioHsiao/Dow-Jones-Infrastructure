@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Web.Mvc;
 using System.Web.WebPages;
 using DowJones.Ajax.PortalHeadlineList;
 using DowJones.Extensions;
@@ -59,14 +60,14 @@ namespace DowJones.Factiva.Currents.Components.CurrentsHeadline
 					&& !headline.PublicationDateDescriptor.IsEmpty();
 		}
 
-		public string GetHeadlineUrl(PortalHeadlineInfo headline)
+		public string GetHeadlineUrl(PortalHeadlineInfo headline, UrlHelper urlHelper)
 		{
 			if (!headline.ContentCategoryDescriptor.Equals("external"))
-				return "headlines/{0}?an={1}".FormatWith(
+				return urlHelper.Content("~/headlines/{0}?an={1}".FormatWith(
 					headline
 					.Title
 					.ToLowerInvariant()
-					.Replace(' ','-'), headline.Reference.guid);
+					.Replace(' ', '-'), headline.Reference.guid));
 
 			return headline.HeadlineUrl;
 		}
