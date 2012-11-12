@@ -127,22 +127,31 @@
 			this._fixCheckedState(node.children);
 		
 			// check if children are checked
-			var checkedChildrenCount = 0;
+			var checkedChildrenCount = 0, uncheckedChildrenCount = 0;
 			for (var i = 0; i < node.children.length; i++ ) {
-				if (node.children[i].isChecked) 
-					checkedChildrenCount++;
+				switch (node.children[i].checkedStatus) {
+					case "checked":
+						checkedChildrenCount++;
+						break;
+					case "unchecked":
+						uncheckedChildrenCount++;
+						break;
+				}
 			}
 			
-			if (checkedChildrenCount == node.children.length) {
+			if (checkedChildrenCount === node.children.length) {
 				node.isChecked = true;
+				node.checkedStatus = "checked";
 				node.checkedClass = " "  + this.classNames.checked;
 			}
-			else if (checkedChildrenCount == 0){
+			else if (uncheckedChildrenCount === node.children.length){
 				node.isChecked = false;
+				node.checkedStatus = "unchecked";
 				node.checkedClass = " "  + this.classNames.unchecked;
 			}
 			else {
 				node.isChecked = false;
+				node.checkedStatus = "undetermined";
 				node.checkedClass = " "  + this.classNames.undetermined;
 			}
 		}
