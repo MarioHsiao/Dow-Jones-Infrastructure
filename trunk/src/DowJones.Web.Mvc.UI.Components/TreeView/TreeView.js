@@ -159,7 +159,8 @@
 	
 	_setCheckedState: function(node, isChecked) {
 		node.isChecked = isChecked;
-		node.checkedClass = isChecked ? " dj_tree_view_checked" : " dj_tree_view_unchecked";
+		node.checkedClass = isChecked ? " dj_tree_view_checked" : " dj_tree_view_unchecked";		
+		node.checkedStatus = isChecked ? "checked" : "unchecked";
 		
 		if (node.children) {			
 			for (var i = 0; i < node.children.length; i++) {
