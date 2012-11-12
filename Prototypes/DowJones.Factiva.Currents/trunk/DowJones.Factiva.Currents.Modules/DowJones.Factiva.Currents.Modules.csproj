@@ -129,6 +129,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CurrentSources\CurrentSourcesModel.cs" />
+    <Compile Include="CustomTopics\CustomTopics.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CustomTopics.cshtml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomTopics\CustomTopicsModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CurrentSources\CurrentSources.cs">
       <AutoGen>True</AutoGen>
@@ -137,6 +143,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="CustomTopics\CustomTopics.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>CustomTopics.cs</LastGenOutput>
+    </None>
     <None Include="packages.config" />
     <None Include="CurrentSources\CurrentSources.cshtml">
       <Generator>RazorViewComponentClassGenerator</Generator>
@@ -155,6 +165,10 @@
       <Project>{10335cd8-fee9-4736-9863-357c1dd3ebbe}</Project>
       <Name>DowJones.Factiva.Currents.ServiceModels</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="CustomTopics\CustomTopics.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,0 +1,25 @@
+﻿@using Web.Mvc.Extensions
+@using DowJones.Factiva.Currents.Models
+
+@inherits DowJones.Web.Mvc.UI.CompositeComponent<CustomTopicsModel>
+@ClientPlugin dj_CurrentSources
+@ScriptResource RelativeResourceName=CustomTopics.js
+
+@{ 
+    CssClass += " dj_CustomTopics";
+}
+
+<div class="module">
+    <header>
+        <i class="icon-tasks icon-white"></i>
+        <span>Cutom Topics</span>
+    </header>
+    <div class="content">
+		<div class="row">
+			@foreach(var headline in Model.CurrentsHeadlines.Take(3))
+			{
+				<div class="span4">@Html.DJ().Render(headline)</div>
+			}
+		</div>
+    </div>
+</div>

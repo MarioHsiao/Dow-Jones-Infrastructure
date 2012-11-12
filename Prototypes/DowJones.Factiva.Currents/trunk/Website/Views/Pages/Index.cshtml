@@ -11,4 +11,15 @@
 			@Html.DJ().Render(Mapper.Map<CurrentSourcesModel>(Model.SourcesNewsPageModuleServiceResult))
 		</div>
 	</section>
+@*<section class="row">
+        <div class="span12">
+			@Html.DJ().Render(Mapper.Map<NewsstandModel>(Model.NewsstandNewsPageModuleServiceResult))
+		</div>
+	</section>*@
+
+    <section class="row">
+        <div class="span12">
+			@Html.DJ().Render(Mapper.Map<CustomTopicsModel>(Model.CustomTopicsNewsPageModuleServiceResult))
+		</div>
+	</section>
 
