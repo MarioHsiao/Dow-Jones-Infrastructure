@@ -362,6 +362,7 @@ namespace DowJones.Factiva.Currents.Aggregrator
             {
                 var webRequest = WebRequest.Create(new Uri(url));
                 webRequest.Headers.Add("X-Requested-With", "XMLHttpRequest");
+                webRequest.Headers.Add("preferences", "{\"interfaceLanguage\":\"en\",\"contentLanguages\":[\"en\"]}");
                 webRequest.Method = "GET";
                 
                 WebResponse response = webRequest.GetResponse();
