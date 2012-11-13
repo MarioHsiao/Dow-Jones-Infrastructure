@@ -125,6 +125,12 @@
       <DependentUpon>CurrentsHeadlineComponent.cshtml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Trending\TrendingComponentModel.cs" />
+    <Compile Include="Trending\TrendingComponent.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TrendingComponent.cshtml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="CurrentsHeadline\CurrentsHeadlineComponent.cshtml">
@@ -132,9 +138,16 @@
       <LastGenOutput>CurrentsHeadlineComponent.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
+    <None Include="Trending\TrendingComponent.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>TrendingComponent.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="CurrentsHeadline\CurrentsHeadline.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Trending\Trending.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

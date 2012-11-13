@@ -1,0 +1,26 @@
+﻿@using Trending
+@model TrendingModel1
+@ClientPlugin dj_Trending
+@ScriptResource RelativeResourceName=Trending.js
+@{ CssClass = "dj_Trending"; }
+
+<ul class="dj_Trending items">
+	@if (Model.HasData)
+	{
+        foreach (var topEntity in Model.trendingTopEntitiesPackageModel)
+		{
+			<li class="dj_entry @Model.GetSelectionStatus(topEntity) @topEntity.Descriptor  @topEntity.Descriptor">
+				<div class="article-wrap">
+					<h4 class="article-headline">
+					    <a href="@Model.GetTrendingUrl(topEntity, Url)" class="article-view-trigger" target="_blank">@topEntity.Descriptor</a>
+					</h4>
+				</div>
+
+			</li>
+		}
+	}
+	else
+		  {
+			  <li><span class="dj_noResults">@DJ.Token("noResults")</span></li>
+		  }
+</ul>

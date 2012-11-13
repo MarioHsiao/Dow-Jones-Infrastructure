@@ -1,0 +1,25 @@
+﻿@using Web.Mvc.Extensions
+@using DowJones.Factiva.Currents.Models
+
+@inherits DowJones.Web.Mvc.UI.CompositeComponent<TrendingModel>
+@ClientPlugin dj_Trending
+@ScriptResource RelativeResourceName=Trending.js
+
+@{ 
+    CssClass += " dj_Trending";
+}
+
+<div class="module">
+    <header>
+        <i class="icon-tasks icon-white"></i>
+        <span>Trending</span>
+    </header>
+    <div class="content">
+		<div class="row">
+			@foreach (var headline in Model.trendingTopEntitiesPackageModel.Take(3))
+			{
+				<div class="span4">@Html.DJ().Render(headline)</div>
+			}
+		</div>
+    </div>
+</div>
