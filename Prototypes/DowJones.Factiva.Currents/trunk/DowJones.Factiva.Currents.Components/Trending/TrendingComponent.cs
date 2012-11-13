@@ -23,7 +23,7 @@ namespace DowJones.Factiva.Currents.Components.Trending
     using Trending;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 11/13/2012 04:04 PM
+    // Last Generated Timestamp: 11/13/2012 04:13 PM
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Factiva.Currents.Components.Trending.Trending.js", ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Factiva.Currents.Components.Trending.TrendingComponent))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.27108")]
     public class TrendingComponent : DowJones.Web.Mvc.UI.ViewComponentBase<TrendingComponentModel>
