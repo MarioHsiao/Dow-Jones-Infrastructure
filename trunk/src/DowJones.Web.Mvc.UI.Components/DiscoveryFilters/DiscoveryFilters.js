@@ -58,7 +58,7 @@ DJ.UI.DiscoveryFilters = DJ.UI.Component.extend({
 
 		this.discoveryFitlersConfig = this._getDiscoveryFiltersConfig();
 		this.discoveryFitlersDateChartConfig = this._getDiscoveryFiltersDateChartConfig();
-		if (this.data && this.data.discovery){
+		if (this.data && this.data.discovery) {
 			this.bindOnSuccess(this.data.discovery);
 		}
 
@@ -97,7 +97,7 @@ DJ.UI.DiscoveryFilters = DJ.UI.Component.extend({
 	_initializeEventHandlers: function () {
 
 	},
-	
+
 	//Initialize Sortable
 	_initializeSortable: function () {
 		if (this._isSortable) {
@@ -111,7 +111,7 @@ DJ.UI.DiscoveryFilters = DJ.UI.Component.extend({
 	_initializeExpandCollapse: function () {
 		var self = this;
 		$(this.selectors.collapseBtn).bind('click', function () {
-			self._expandCollapse(this, true); /*alert('Expanding!');*/ return false;
+			self._expandCollapse(this, true); /*alert('Expanding!');*/return false;
 		});
 	},
 
@@ -172,15 +172,15 @@ DJ.UI.DiscoveryFilters = DJ.UI.Component.extend({
 			//Expand Collapse the div based on the isExpanded property
 			/*
 			if (entitiesObj.isExpanded) {
-				var container = $this.$element.find('.dj_discoveryFilters-listItem-' + index);
-				var collapseBtn = $($this.selectors.collapseBtn, container);
-				$this._expandCollapse(collapseBtn, true);
+			var container = $this.$element.find('.dj_discoveryFilters-listItem-' + index);
+			var collapseBtn = $($this.selectors.collapseBtn, container);
+			$this._expandCollapse(collapseBtn, true);
 			}
 			*/
 
 			//Set the height for each hc container based on no. of entities
 			//var discoveryLi = $this.$element.find('.dj_discoveryFilters-listItem-' + index);
-			discoveryLi = $this.$element.find('.dj_discoveryFilters-listItem-' + index);
+			//discoveryLi = $this.$element.find('.dj_discoveryFilters-listItem-' + index);
 
 			//$($this.selectors.chartContainer, discoveryLi).css('height', 27 * (discoveryEntityObjArr.length) + '');
 
@@ -191,21 +191,20 @@ DJ.UI.DiscoveryFilters = DJ.UI.Component.extend({
 				dataObj.y = entity.currentTimeFrameNewsVolume.value;
 				//dataObj.y = (this.options.roundHitCount ? entity.currentTimeFrameRoundedNewsVolume : entity.currentTimeFrameNewsVolume.value);
 				dataObj.jsonObj = entity;
-				seriesDataArr[seriesDataArr.length] = dataObj;
+				seriesDataArr.push(dataObj);
 				if (_.indexOf([15, 16, 17, 18], entitiesObj.type) >= 0) {   //Date Navigator
 					/*if (idx==0) {
-						categoryArr[categoryArr.length] = entity.startDateFormattedString;  //Start
+					categoryArr[categoryArr.length] = entity.startDateFormattedString;  //Start
 					} else if (idx == discoveryEntityObjArr.length - 1){
-						categoryArr[categoryArr.length] = entity.endDateFormattedString;    //End
+					categoryArr[categoryArr.length] = entity.endDateFormattedString;    //End
 					} else {
-						categoryArr[categoryArr.length] = "";   //skip the dates in the middle
+					categoryArr[categoryArr.length] = "";   //skip the dates in the middle
 					}*/
-					categoryArr[categoryArr.length] = [entity.startDateFormattedString,entity.endDateFormattedString];
+					categoryArr.push([entity.startDateFormattedString, entity.endDateFormattedString]);
 				}
-				else
-				{
+				else {
 					if ($this.options.truncationLength > 0) {
-						categoryArr.push([entity.descriptor.substring(0,$this.options.truncationLength - 3) + "...", entity.descriptor]);
+						categoryArr.push([entity.descriptor.substring(0, $this.options.truncationLength - 3) + "...", entity.descriptor]);
 					} else {
 						categoryArr.push([entity.descriptor, entity.descriptor]);
 					}
@@ -219,14 +218,14 @@ DJ.UI.DiscoveryFilters = DJ.UI.Component.extend({
 			discoveryData.entityType = entitiesObj.type;
 			discoveryData.isExpanded = entitiesObj.isExpanded;
 
-			discoveryData.DiscoveryLi = discoveryLi;
+			//discoveryData.DiscoveryLi = discoveryLi;
 			//EntityType at Infrastructure
 			//DateYearly = 15
 			//DateMonthly = 16
 			//DateWeekly = 17
 			//DateDaily = 18
 
-			
+
 			if (_.indexOf([15, 16, 17, 18], entitiesObj.type) >= 0) {   // Date Navigator
 				//$($this.selectors.chartContainer, discoveryLi).css('height', 160 + ''); //Fix height for column chart
 				//var chartTitle = '${distribution}: '
@@ -247,7 +246,7 @@ DJ.UI.DiscoveryFilters = DJ.UI.Component.extend({
 				}
 				discoveryData.chartTitle = chartTitle;  //entitiesObj.newsEntities[0].typeDescriptor;
 				//$this._renderDiscoveryDateFilters(discoveryData, index);
-			}else{
+			} else {
 				//$($this.selectors.chartContainer, discoveryLi).css('height', 27 * (discoveryEntityObjArr.length) + '');  //calucate the height for bar chart, height is depended on the num of items
 				//$this._renderDiscoveryFilters(discoveryData, index);
 			}
@@ -273,11 +272,13 @@ DJ.UI.DiscoveryFilters = DJ.UI.Component.extend({
 				var collapseBtn = $($this.selectors.collapseBtn, container);
 				$this._expandCollapse(collapseBtn, true);
 			}
+			discoveryLi = $this.$element.find('.dj_discoveryFilters-listItem-' + dd.position);
+
 			if (_.indexOf([15, 16, 17, 18], dd.entityType) >= 0) {   // Date Navigator
-				$($this.selectors.chartContainer, dd.DiscoveryLi).css('height', 160 + ''); //Fix height for column chart
+				$($this.selectors.chartContainer, discoveryLi).css('height', 160 + ''); //Fix height for column chart
 				$this._renderDiscoveryDateFilters(dd, dd.position);
-			}else{
-				$($this.selectors.chartContainer, dd.DiscoveryLi).css('height', 27 * (dd.seriesData.length) + '');  //calucate the height for bar chart, height is depended on the num of items
+			} else {
+				$($this.selectors.chartContainer, discoveryLi).css('height', 27 * (dd.seriesData.length) + '');  //calucate the height for bar chart, height is depended on the num of items
 				$this._renderDiscoveryFilters(dd, dd.position);
 			}
 			//idx++;
@@ -312,7 +313,7 @@ DJ.UI.DiscoveryFilters = DJ.UI.Component.extend({
 					align: 'left',
 					x: 0,
 					y: 7,
-					formatter: function() {
+					formatter: function () {
 						return this.value[0];
 					}
 				},
@@ -352,15 +353,15 @@ DJ.UI.DiscoveryFilters = DJ.UI.Component.extend({
 		return {
 			chart: {
 				defaultSeriesType: "column",
-				height:160,
-				width:180
+				height: 160,
+				width: 180
 			},
-			credits: {enabled: false},
+			credits: { enabled: false },
 			title: {
 				text: null
 			},
 			subtitle: {
-				text:null
+				text: null
 			},
 			xAxis: {
 				gridLineColor: "#ffffff",
@@ -373,13 +374,13 @@ DJ.UI.DiscoveryFilters = DJ.UI.Component.extend({
 						width: "180px"
 					},
 					y: 20,
-					formatter: function() {
+					formatter: function () {
 						//if(this.isFirst || this.isLast){
 						//    return this.value;
 						//}
-						if(this.isFirst)
+						if (this.isFirst)
 							return this.value[0];
-						if(this.isLast)
+						if (this.isLast)
 							return this.value[1];
 					}
 				},
@@ -401,18 +402,19 @@ DJ.UI.DiscoveryFilters = DJ.UI.Component.extend({
 				gridLineWidth: 1,
 				labels: {
 					style: {
-							color: "#003366",
-							fontFamily: "Arial, sans-serif",
-							fontSize: "9px",
-							fontWeight: "normal"
-						}
-					},
+						color: "#003366",
+						fontFamily: "Arial, sans-serif",
+						fontSize: "9px",
+						fontWeight: "normal"
+					}
+				},
 				lineWidth: 2,
 				min: 0,
 				plotLines: [{
 					color: "#808080",
 					value: 0,
-					width: 1}],
+					width: 1
+				}],
 				startOnTick: false,
 				tickPixelInterval: 65,
 				title: {
@@ -423,7 +425,7 @@ DJ.UI.DiscoveryFilters = DJ.UI.Component.extend({
 				enabled: false
 			},
 			/*tooltip: {
-				enabled: false
+			enabled: false
 			},*/
 			plotOptions: {
 				column: {
@@ -492,7 +494,7 @@ DJ.UI.DiscoveryFilters = DJ.UI.Component.extend({
 				categories: discoveryData.categories
 			},
 			tooltip: {
-				formatter: function() {
+				formatter: function () {
 					return this.x[1];
 				},
 				style: {
@@ -512,7 +514,7 @@ DJ.UI.DiscoveryFilters = DJ.UI.Component.extend({
 	},
 
 	//Render Discovery Filters Date Chart
-	_renderDiscoveryDateFilters: function (discoveryData, idx){
+	_renderDiscoveryDateFilters: function (discoveryData, idx) {
 		var chartContainer = this.$element.find('.dj_discoveryFilters-listItem-' + idx).find('.dj_hc-container');
 		var chartTitle = this.$element.find('.dj_discoveryFilters-listItem-' + idx).find('.dj_cd-title');
 		chartTitle.html(discoveryData.title);
@@ -530,18 +532,18 @@ DJ.UI.DiscoveryFilters = DJ.UI.Component.extend({
 				}
 			},
 			tooltip: {
-				formatter: function() {
+				formatter: function () {
 					var tooltipStr;
 					if (discoveryData.chartTitle == 'daily') {
-						tooltipStr = '${date}: '+ this.x[0]
+						tooltipStr = '${date}: ' + this.x[0]
 					} else {
-						tooltipStr = '${startDate}: '+ this.x[0] + '<br/>${endDate}: '+ this.x[1]
+						tooltipStr = '${startDate}: ' + this.x[0] + '<br/>${endDate}: ' + this.x[1]
 					}
-					return tooltipStr + '<br/>${numHits}: '+ Highcharts.numberFormat(this.y, 0);
-					
+					return tooltipStr + '<br/>${numHits}: ' + Highcharts.numberFormat(this.y, 0);
+
 					//return /*this.series.name + */'${startDate}: <b>'+ this.x[0] + '${endDate}: <b>'+ this.x[1]
 					//	 +'</b><br/>${numHits}: '+ Highcharts.numberFormat(this.y, 0);
-					
+
 				},
 				style: {
 					color: '#333333',
