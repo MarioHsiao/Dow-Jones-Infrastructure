@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
@@ -15,13 +16,11 @@ namespace DowJones.Factiva.Currents.Components.CurrentsHeadline
 
 		public IEnumerable<PortalHeadlineInfo> Headlines
 		{
-			get { return _portalHeadlineList.Result.ResultSet.Headlines; }
+			get { return _portalHeadlineList
+							.Result.ResultSet.Headlines.Take(MaxNumHeadlinesToShow); }
 		}
 
-		public int MaxNumHeadlinesToShow
-		{
-			get { return _portalHeadlineList.MaxNumHeadlinesToShow; }
-		}
+		public int MaxNumHeadlinesToShow { get; set; }
 
 		public bool HasData
 		{
@@ -38,6 +37,9 @@ namespace DowJones.Factiva.Currents.Components.CurrentsHeadline
 		{
 			Guard.IsNotNull(portalHeadlineList, "portalHeadlineList");
 			_portalHeadlineList = portalHeadlineList;
+			MaxNumHeadlinesToShow = _portalHeadlineList.MaxNumHeadlinesToShow;
+			ShowSource = _portalHeadlineList.ShowSource;
+			ShowPublicationDateTime = _portalHeadlineList.ShowPublicationDateTime;
 		}
 
 
