@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using AttributeRouting;
 using DowJones.Web.Mvc.Routing;
 using ControllerBase = DowJones.Web.Mvc.ControllerBase;
@@ -26,5 +25,7 @@ namespace DowJones.Factiva.Currents.Website.Controllers
 
 			return View(modules);
 		}
+
+		
 	}
 }
