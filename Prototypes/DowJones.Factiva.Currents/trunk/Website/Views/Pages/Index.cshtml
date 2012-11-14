@@ -8,7 +8,10 @@
 
 	<section class="row">
 		<div class="span12">
-			@Html.DJ().Render(Mapper.Map<CurrentSourcesModel>(Model.SourcesNewsPageModuleServiceResult))
+            @if (Model.SourcesNewsPageModuleServiceResult != null)
+            {
+			    @Html.DJ().Render(Mapper.Map<CurrentSourcesModel>(Model.SourcesNewsPageModuleServiceResult))
+            }
 		</div>
 	</section>
 @*<section class="row">
@@ -20,15 +23,18 @@
     <section class="row">
         <div class="span12">
              @if(Model.CustomTopicsNewsPageModuleServiceResult != null)
-            {
+             {
 			    @Html.DJ().Render(Mapper.Map<CustomTopicsModel>(Model.CustomTopicsNewsPageModuleServiceResult))
              }
 		</div>
 	</section>
 
-@*  <section class="row">
-        <div class="span12" id="ruchi">
-			@Html.DJ().Render(Mapper.Map<TrendingModel>(Model.TrendingNewsPageModuleServiceResult))
+  <section class="row">
+        <div class="span12">
+            @if (Model.TrendingNewsPageModuleServiceResult != null)
+            {
+			    @Html.DJ().Render(Mapper.Map<TrendingModel>(Model.TrendingNewsPageModuleServiceResult))
+            }
 		</div>
-	</section>*@
+	</section>
 

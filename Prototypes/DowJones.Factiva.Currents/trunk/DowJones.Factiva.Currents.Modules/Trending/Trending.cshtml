@@ -8,18 +8,68 @@
 @{ 
     CssClass += " dj_Trending";
 }
-
+  
 <div class="module">
     <header>
         <i class="icon-tasks icon-white"></i>
         <span>Trending</span>
     </header>
+    @*<div class="span12">*@
     <div class="content">
-		<div class="row">
-			@foreach (var headline in Model.trendingTopEntitiesPackageModel.Take(3))
-			{
-				<div class="span4">@Html.DJ().Render(headline)</div>
-			}
-		</div>
-    </div>
+        <div class="row">
+          
+                <div class="span4">
+                     <ul>
+                 @foreach (var trendingEntities in Model.TrendingTopEntitiesPackageModel)
+                 {
+                    
+                     foreach (var entity in trendingEntities.TrendingTopEntitiesPackageModel)
+                    {
+                        <li><h4 class="industry-item-title"><a href="javascript:void(0)" class="popup-trigger" searchContext=' + entity.SearchContextRef +'>@entity.Descriptor</a> </h4>
+                            </li>
+                    }
+                        
+                 }
+                          </ul>
+                </div>
+                 <div class="span4">
+                     <ul>
+                @foreach (var trendingEntities in Model.TrendingUpModel)
+                {
+                    foreach (var entity in trendingEntities.TrendingUpDownPackageModel)
+                    {
+                      <li><h4 class="industry-item-title"><a href="javascript:void(0)" class="popup-trigger" searchContext=' + entity.SearchContextRef +'>@entity.Descriptor</a> </h4>
+                        @*  <p><span class="news-volume-previous">@entity.CurrentTimeFrameNewsVolume</span>
+                              <span class="fi fi_arrow-green-small"></span>
+                              <span class="news-volume-current">@entity.CurrentTimeFrameNewsVolume.displayText.value</span>
+                              <span class="news-volume-percentage increase">percentOrNew</span>
+                          </p>*@
+
+                      </li>
+                        @*<li><div class="span4">@entity.Descriptor</div></li>*@
+                    }
+                }
+                         </ul>
+                  </div>
+                 <div class="span4">
+                     <ul>
+                 @foreach (var trendingEntities in Model.TrendingDownModel)
+                 {
+                    foreach (var entity in trendingEntities.TrendingUpDownPackageModel)
+                    {
+                        <li><h4 class="industry-item-title"><a href="javascript:void(0)" class="popup-trigger" searchContext=' + entity.SearchContextRef +'>@entity.Descriptor</a> </h4>
+                            </li>
+                    }
+                 }
+                     </ul>
+                </div>
+           
 </div>
+        </div>
+    </div>
+
+
+ @*<li>
+                        <h4 class="industry-item-title"><a href="javascript:void(0)" class="popup-trigger" searchcontext="entity.search">@entity.Descriptor</a></h4>
+                        <p><span class="item-total">entity.CurrentTimeFrameNewsVolume</span><span class="item-total-type">@Html.DJ().Token("articlesLabel")</span></p>
+                    </li>*@
