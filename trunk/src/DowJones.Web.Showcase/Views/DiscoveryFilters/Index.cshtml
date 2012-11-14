@@ -5,6 +5,10 @@
                     var dataObj = getDiscoveryFiltersData();
                         DJ.add(""DiscoveryFilters"", {
                             container: ""discoveryFiltersContainer"",
+                            options: {
+                                roundHitCount: true,
+                                truncationLength: 10
+                            },
                             data: dataObj
                         }).done(function (comp) {
                             // Attach handler for headline click event
@@ -20,8 +24,10 @@
                    ";
     DJ.ScriptRegistry().OnDocumentReady(script);
 }
-<link href="@Url.Content("./styles/css/DiscoveryFilters/DiscoveryFilters.css")" rel="stylesheet" /><script type="text/javascript" src="@Url.Content("./content/js/DiscoveryFilters.js")"></script>
-<!-- required file! DJ.add won't work without "common.js" being available -->
+<link href="@Url.Content("./styles/css/DiscoveryFilters/DiscoveryFilters.css")" rel="stylesheet" />
+<script type="text/javascript" src="@Url.Content("./content/js/DiscoveryFilters.js")"></script>
+<!-- required file! DJ.add won't work without "common.js" being available -->
+
      <div id="discoveryFiltersContainer" style="width:240px;"></div>
 
     <script type="text/javascript">
