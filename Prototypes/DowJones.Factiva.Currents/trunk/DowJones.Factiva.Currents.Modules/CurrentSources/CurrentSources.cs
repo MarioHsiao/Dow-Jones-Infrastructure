@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Web.UI.WebResourceAttribute("DowJones.Factiva.Currents.Modules.CurrentSources.CurrentSourcesModule.js", "text/javascript")]
+[assembly: System.Web.UI.WebResourceAttribute("DowJones.Factiva.Currents.Modules.CurrentSources.CurrentSources.js", "text/javascript")]
 
 namespace DowJones.Factiva.Currents.Modules.CurrentSources
 {
@@ -24,8 +24,8 @@ namespace DowJones.Factiva.Currents.Modules.CurrentSources
     using DowJones.Factiva.Currents.Models;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 11/05/2012 04:26 PM
-    [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Factiva.Currents.Modules.CurrentSources.CurrentSourcesModule.js", ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Factiva.Currents.Modules.CurrentSources.CurrentSources))]
+    // Last Generated Timestamp: 11/14/2012 06:47 PM
+    [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Factiva.Currents.Modules.CurrentSources.CurrentSources.js", ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Factiva.Currents.Modules.CurrentSources.CurrentSources))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.27108")]
     public class CurrentSources : DowJones.Web.Mvc.UI.CompositeComponent<CurrentSourcesModel>
     {

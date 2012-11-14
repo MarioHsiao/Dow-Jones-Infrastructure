@@ -29,11 +29,20 @@
 		</div>
 	</section>
 
-  <section class="row">
+<section class="row">
+	<div class="span12">
+		@if (Model.TrendingNewsPageModuleServiceResult != null)
+		{
+			@Html.DJ().Render(Mapper.Map<TrendingModel>(Model.TrendingNewsPageModuleServiceResult))
+		}
+	</div>
+</section>
+
+ <section class="row">
         <div class="span12">
-            @if (Model.TrendingNewsPageModuleServiceResult != null)
+            @if (Model.RegionalMapNewsPageModuleServiceResult != null)
             {
-			    @Html.DJ().Render(Mapper.Map<TrendingModel>(Model.TrendingNewsPageModuleServiceResult))
+			    @Html.DJ().Render(Mapper.Map<RegionalMapModel>(Model.RegionalMapNewsPageModuleServiceResult))
             }
 		</div>
 	</section>

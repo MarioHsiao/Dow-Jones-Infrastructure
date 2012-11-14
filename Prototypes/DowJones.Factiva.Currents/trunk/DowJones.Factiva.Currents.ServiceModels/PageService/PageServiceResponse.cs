@@ -1,6 +1,7 @@
 ﻿using DowJones.Factiva.Currents.ServiceModels.PageService.Modules.CustomTopics.Results;
 using DowJones.Factiva.Currents.ServiceModels.PageService.Modules.Newsstand.Results;
 using DowJones.Factiva.Currents.ServiceModels.PageService.Modules.Radar.Results;
+using DowJones.Factiva.Currents.ServiceModels.PageService.Modules.RegionalMap.Results;
 using DowJones.Factiva.Currents.ServiceModels.PageService.Modules.Sources.Results;
 using DowJones.Factiva.Currents.ServiceModels.PageService.Modules.Summary.Results;
 using DowJones.Factiva.Currents.ServiceModels.PageService.Modules.Trending.Results;
@@ -21,5 +22,7 @@ namespace DowJones.Factiva.Currents.ServiceModels.PageService
 		public CustomTopicsNewsPageModuleServiceResult CustomTopicsNewsPageModuleServiceResult { get; set; }
 
         public TrendingNewsPageModuleServiceResult TrendingNewsPageModuleServiceResult { get; set; }
+
+		public RegionalMapNewsPageModuleServiceResult RegionalMapNewsPageModuleServiceResult { get; set; }
 	}
 }

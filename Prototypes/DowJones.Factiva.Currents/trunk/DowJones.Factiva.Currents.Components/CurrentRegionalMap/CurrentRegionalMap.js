@@ -139,6 +139,10 @@ DJ.UI.CurrentRegionalMap = DJ.UI.Component.extend({
         this._super(element, $.extend({ name: "CurrentRegionalMap" }, meta));
 
         this._initializeChart();
+        
+        if(data) {
+            this.setData(data);
+        }
     },
 
     _initializeDelegates: function () {

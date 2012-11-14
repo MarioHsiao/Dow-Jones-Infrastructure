@@ -2,7 +2,7 @@
  * CustomTopicCanvasModule
  */
 
-    DJ.UI.CustomTopics = DJ.UI.AbstractCanvasModule.extend({
+    DJ.UI.CustomTopics = DJ.UI.CompositeComponent.extend({
 
         init: function (element, meta) {
             var $meta = $.extend({ name: "CustomTopics" }, meta);

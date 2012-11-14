@@ -2,7 +2,7 @@
  * TrendingCanvasModule
  */
 
-    DJ.UI.TrendingCanvasModule = DJ.UI.AbstractCanvasModule.extend({
+    DJ.UI.TrendingCanvasModule = DJ.UI.CompositeComponent.extend({
 
         init: function (element, meta) {
             var $meta = $.extend({ name: "Trending" }, meta);

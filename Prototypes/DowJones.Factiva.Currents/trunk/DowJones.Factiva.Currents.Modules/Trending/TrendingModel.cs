@@ -1,20 +1,15 @@
 using DowJones.Factiva.Currents.ServiceModels.PageService.Modules.Trending.Results;
 using DowJones.Mapping;
 using DowJones.Web.Mvc.UI;
-using DowJones.Web.Mvc.UI.Canvas;
-using DowJones.Web.Mvc.UI.Canvas.Editors;
-using DowJones.Web.Mvc.UI.Canvas.Models;
 using System.Linq;
 using System.Collections.Generic;
 using DowJones.Models.Common;
-using DowJones.Factiva.Currents.ServiceModels.PageService.Modules.Trending.Packages;
-using System.Collections;
 using System.Web.Mvc;
 using DowJones.Formatters;
 
 namespace DowJones.Factiva.Currents.Models
 {
-	public class TrendingModel :Module
+	public class TrendingModel : CompositeComponentModel
 	{
 
         public IEnumerable<TrendingEntities> TrendingTopEntitiesPackageModel;

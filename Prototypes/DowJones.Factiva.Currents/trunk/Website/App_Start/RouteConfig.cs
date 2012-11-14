@@ -1,7 +1,5 @@
 ﻿using System.Web.Mvc;
 using System.Web.Routing;
-using AttributeRouting.Web.Mvc;
-using DowJones.Factiva.Currents.Website.Controllers;
 using DowJones.Infrastructure;
 
 namespace DowJones.Factiva.Currents.Website.App_Start

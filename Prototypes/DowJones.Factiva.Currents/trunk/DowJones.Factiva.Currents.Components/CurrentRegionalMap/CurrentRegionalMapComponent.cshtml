@@ -1,6 +1,29 @@
 ﻿@model DowJones.Factiva.Currents.Components.CurrentRegionalMap.CurrentRegionalMapModel
 @ClientPlugin dj_CurrentRegionalMap
-@ScriptResource RelativeResourceName=CurrentRegionalMap.js, DependsOn=world-map-shapes;highcharts
+@ScriptResource RelativeResourceName=CurrentRegionalMap.js, DependsOn=world-map-shapes
 @{ CssClass = "dj_CurrentRegionalMap"; }
 
-<div class="mapContainer"></div>
+<div class="module">
+    <header>
+        <i class="icon-globe icon-white"></i>
+        <span>Regional Map</span>
+    </header>
+    <div class="content">
+        <div class="row">
+            <div class="mapContainer">
+                <ul>
+                    @foreach (var region in Model.Data.RegionNewsVolume)
+                    {
+                        <li>
+                            <h4><a href="@region.Descriptor">There are @region.CurrentTimeFrameNewsVolume.Text.Value
+                                Articles for @(region.Descriptor ?? region.Code) region.</a>
+                            </h4>
+                            <span>@(region.PercentVolumeChange.Value > 0 ? "+" : "")@region.PercentVolumeChange.Text.Value
+                                Change</span>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

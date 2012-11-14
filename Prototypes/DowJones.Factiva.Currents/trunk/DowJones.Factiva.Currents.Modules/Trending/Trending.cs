@@ -24,7 +24,7 @@ namespace DowJones.Factiva.Currents.Modules.Trending
     using DowJones.Factiva.Currents.Models;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 11/14/2012 02:06 PM
+    // Last Generated Timestamp: 11/14/2012 06:42 PM
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Factiva.Currents.Modules.Trending.Trending.js", ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Factiva.Currents.Modules.Trending.Trending))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.27108")]
     public class Trending : DowJones.Web.Mvc.UI.CompositeComponent<TrendingModel>
@@ -57,85 +57,88 @@ WriteLiteral("\r\n");
     CssClass += " dj_Trending";
 
 
-WriteLiteral("  \r\n<div class=\"module\">\r\n    <header>\r\n        <i class=\"icon-tasks icon-white\">" +
-"</i>\r\n        <span>Trending</span>\r\n    </header>\r\n    ");
+WriteLiteral("\r\n<div class=\"module\">\r\n    <header>\r\n        <i class=\"icon-signal icon-white\"><" +
+"/i>\r\n        <span>Trending</span>\r\n    </header>\r\n    ");
 
 
 
-WriteLiteral("\r\n    <div class=\"content\">\r\n        <div class=\"row\">\r\n          \r\n             " +
-"   <div class=\"span4\">\r\n                     <ul>\r\n");
+WriteLiteral("\r\n    <div class=\"content\">\r\n        <div class=\"row\">\r\n\r\n            <div class=" +
+"\"span4\">\r\n                <ul>\r\n");
 
 
-                  foreach (var trendingEntities in Model.TrendingTopEntitiesPackageModel)
-                 {
-                    
-                     foreach (var entity in trendingEntities.TrendingTopEntitiesPackageModel)
+                     foreach (var trendingEntities in Model.TrendingTopEntitiesPackageModel)
                     {
 
-WriteLiteral("                        <li><h4 class=\"industry-item-title\"><a href=\"javascript:v" +
-"oid(0)\" class=\"popup-trigger\" searchContext=\' + entity.SearchContextRef +\'>");
+                        foreach (var entity in trendingEntities.TrendingTopEntitiesPackageModel)
+                        {
+
+WriteLiteral("                        <li>\r\n                            <h4 class=\"industry-ite" +
+"m-title\"><a href=\"javascript:void(0)\" class=\"popup-trigger\"\r\n                   " +
+"             searchcontext=\' + entity.SearchContextRef +\'>");
 
 
-                                                                                                                                                       Write(entity.Descriptor);
+                                                                        Write(entity.Descriptor);
 
-WriteLiteral("</a> </h4>\r\n                            </li>\r\n");
+WriteLiteral("</a> </h4>\r\n                        </li>\r\n");
 
+
+                        }
 
                     }
-                        
-                 }
 
-WriteLiteral("                          </ul>\r\n                </div>\r\n                 <div cl" +
-"ass=\"span4\">\r\n                     <ul>\r\n");
+WriteLiteral("                </ul>\r\n            </div>\r\n            <div class=\"span4\">\r\n     " +
+"           <ul>\r\n");
 
 
-                 foreach (var trendingEntities in Model.TrendingUpModel)
-                {
-                    foreach (var entity in trendingEntities.TrendingUpDownPackageModel)
+                     foreach (var trendingEntities in Model.TrendingUpModel)
                     {
+                        foreach (var entity in trendingEntities.TrendingUpDownPackageModel)
+                        {
 
-WriteLiteral("                      <li><h4 class=\"industry-item-title\"><a href=\"javascript:voi" +
-"d(0)\" class=\"popup-trigger\" searchContext=\' + entity.SearchContextRef +\'>");
-
-
-                                                                                                                                                     Write(entity.Descriptor);
-
-WriteLiteral("</a> </h4>\r\n                        ");
+WriteLiteral("                        <li>\r\n                            <h4 class=\"industry-ite" +
+"m-title\"><a href=\"javascript:void(0)\" class=\"popup-trigger\"\r\n                   " +
+"             searchcontext=\' + entity.SearchContextRef +\'>");
 
 
+                                                                        Write(entity.Descriptor);
 
-WriteLiteral("\r\n\r\n                      </li>\r\n");
+WriteLiteral("</a> </h4>\r\n                            ");
 
 
-                        
 
-                                                                                
+WriteLiteral("\r\n\r\n                        </li>\r\n");
+
+
+
+
+                                                        
+                        }
                     }
-                }
 
-WriteLiteral("                         </ul>\r\n                  </div>\r\n                 <div c" +
-"lass=\"span4\">\r\n                     <ul>\r\n");
+WriteLiteral("                </ul>\r\n            </div>\r\n            <div class=\"span4\">\r\n     " +
+"           <ul>\r\n");
 
 
-                  foreach (var trendingEntities in Model.TrendingDownModel)
-                 {
-                    foreach (var entity in trendingEntities.TrendingUpDownPackageModel)
+                     foreach (var trendingEntities in Model.TrendingDownModel)
                     {
+                        foreach (var entity in trendingEntities.TrendingUpDownPackageModel)
+                        {
 
-WriteLiteral("                        <li><h4 class=\"industry-item-title\"><a href=\"javascript:v" +
-"oid(0)\" class=\"popup-trigger\" searchContext=\' + entity.SearchContextRef +\'>");
-
-
-                                                                                                                                                       Write(entity.Descriptor);
-
-WriteLiteral("</a> </h4>\r\n                            </li>\r\n");
+WriteLiteral("                        <li>\r\n                            <h4 class=\"industry-ite" +
+"m-title\"><a href=\"javascript:void(0)\" class=\"popup-trigger\"\r\n                   " +
+"             searchcontext=\' + entity.SearchContextRef +\'>");
 
 
+                                                                        Write(entity.Descriptor);
+
+WriteLiteral("</a> </h4>\r\n                        </li>\r\n");
+
+
+                        }
                     }
-                 }
 
-WriteLiteral("                     </ul>\r\n                </div>\r\n           \r\n</div>\r\n        " +
-"</div>\r\n    </div>\r\n\r\n\r\n ");
+WriteLiteral("                </ul>\r\n            </div>\r\n\r\n        </div>\r\n    </div>\r\n</div>\r\n" +
+"\r\n\r\n");
 
 
 

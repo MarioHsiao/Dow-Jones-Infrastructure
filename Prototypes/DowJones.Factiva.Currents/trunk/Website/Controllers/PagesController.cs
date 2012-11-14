@@ -7,7 +7,6 @@ namespace DowJones.Factiva.Currents.Website.Controllers
 {
 	using Contracts;
 
-	[RoutePrefix("Pages")]
 	public class PagesController : ControllerBase
 	{
 		private readonly IPageAssetProvider _pageAssetProvider;
@@ -17,7 +16,6 @@ namespace DowJones.Factiva.Currents.Website.Controllers
 			_pageAssetProvider = pageAssetProvider;
 		}
 
-		[Route("{name}")]
 		public ActionResult Index(string name)
 		{
 			var canonicalName = name.Replace("-", " ");

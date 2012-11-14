@@ -1,0 +1,8 @@
+﻿@model DowJones.Factiva.Currents.Models.RegionalMapModel
+@ClientPlugin dj_CurrentRegionalMap
+@ScriptResource RelativeResourceName=CurrentRegionalMap.js
+@{ CssClass = "dj_CurrentRegionalMap"; }
+
+<section class="currentRegionalMapContainer">
+    @Html.DJ().Render(Model.CurrentRegionalMap)
+</section>

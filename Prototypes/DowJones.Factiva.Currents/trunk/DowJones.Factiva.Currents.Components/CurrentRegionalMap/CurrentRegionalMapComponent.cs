@@ -22,10 +22,9 @@ namespace DowJones.Factiva.Currents.Components.CurrentRegionalMap
     using System.Web.UI;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 11/13/2012 01:43 PM
+    // Last Generated Timestamp: 11/14/2012 06:39 PM
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Factiva.Currents.Components.CurrentRegionalMap.CurrentRegionalMap.js", DependsOn=new string[] {
-            "world-map-shapes",
-            "highcharts"}, ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Factiva.Currents.Components.CurrentRegionalMap.CurrentRegionalMapComponent))]
+            "world-map-shapes"}, ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Factiva.Currents.Components.CurrentRegionalMap.CurrentRegionalMapComponent))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.27108")]
     public class CurrentRegionalMapComponent : DowJones.Web.Mvc.UI.ViewComponentBase<DowJones.Factiva.Currents.Components.CurrentRegionalMap.CurrentRegionalMapModel>
     {
@@ -49,7 +48,45 @@ namespace DowJones.Factiva.Currents.Components.CurrentRegionalMap
 
    CssClass = "dj_CurrentRegionalMap"; 
 
-WriteLiteral("\r\n<div class=\"mapContainer\"></div>");
+WriteLiteral("\r\n<div class=\"module\">\r\n    <header>\r\n        <i class=\"icon-globe icon-white\"></" +
+"i>\r\n        <span>Regional Map</span>\r\n    </header>\r\n    <div class=\"content\">\r" +
+"\n        <div class=\"row\">\r\n            <div class=\"mapContainer\">\r\n            " +
+"    <ul>\r\n");
+
+
+                     foreach (var region in Model.Data.RegionNewsVolume)
+                    {
+
+WriteLiteral("                        <li>\r\n                            <h4><a href=\"");
+
+
+                                    Write(region.Descriptor);
+
+WriteLiteral("\">There are ");
+
+
+                                                                  Write(region.CurrentTimeFrameNewsVolume.Text.Value);
+
+WriteLiteral("\r\n                                Articles for ");
+
+
+                                         Write(region.Descriptor ?? region.Code);
+
+WriteLiteral(" region.</a>\r\n                            </h4>\r\n                            <spa" +
+"n>");
+
+
+                              Write(region.PercentVolumeChange.Value > 0 ? "+" : "");
+
+
+                                                                               Write(region.PercentVolumeChange.Text.Value);
+
+WriteLiteral("\r\n                                Change</span>\r\n                        </li>\r\n");
+
+
+                    }
+
+WriteLiteral("                </ul>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n");
 
 
         }

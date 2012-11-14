@@ -1,14 +1,14 @@
 using DowJones.Factiva.Currents.Components.CurrentsHeadline;
 using DowJones.Factiva.Currents.ServiceModels.PageService.Modules.CustomTopics.Results;
 using DowJones.Mapping;
-using DowJones.Web.Mvc.UI.Canvas;
+using DowJones.Web.Mvc.UI;
 using DowJones.Web.Mvc.UI.Components.PortalHeadlineList;
 using System.Linq;
 using System.Collections.Generic;
 
 namespace DowJones.Factiva.Currents.Models
 {
-    public class CustomTopicsModel : Module
+	public class CustomTopicsModel : CompositeComponentModel
     {
         public IEnumerable<CurrentsHeadlineModel> CurrentsHeadlines { get; set; }
     }
