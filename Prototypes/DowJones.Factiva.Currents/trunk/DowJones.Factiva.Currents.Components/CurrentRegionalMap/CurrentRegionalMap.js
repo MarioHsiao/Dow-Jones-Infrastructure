@@ -11,7 +11,7 @@ DJ.UI.CurrentRegionalMap = DJ.UI.Component.extend({
             borderWidth: 0
         },
 
-        tooltip: { enabled: true },
+        tooltip: { enabled: false },
 
         plotOptions: {
             series: {
@@ -37,15 +37,29 @@ DJ.UI.CurrentRegionalMap = DJ.UI.Component.extend({
             {
                 id: 'bubbles',
                 type: 'scatter',
+                dataLabels: {
+                    enabled: true,
+                    y: 0,
+                    color: 'white',
+                    formatter: function () {
+                        return '<span style="font-family: Arial; text-align: center; display:inline-block;">'
+                                + Highcharts.numberFormat(this.y, 0)
+                                + '</strong><br/>Articles'
+                                + '<div style="color:black; padding-top: 10px; font-weight:bold">'
+                                + this.point.percentValueChange
+                                + ' Change</div></span>';
+                    },
+                    useHTML: true
+                },
                 marker: {
                     symbol: 'circle',
-                    fillColor: 'yellow',
-                    lineColor: 'rgba(24,90,169,.75)',
-                    lineWidth: 1,
-                    color: 'rgba(24,90,169,1)',
+                    fillColor: 'rgba(10,10,10,.5)',
+
                     states: {
                         hover: {
-                            enabled: false
+                            fillColor: 'rgba(10,10,10,.85)',
+                            lineColor: 'rgb(127,127,127)',
+                            lineWidth: 2
                         }
                     }
                 }
@@ -57,67 +71,67 @@ DJ.UI.CurrentRegionalMap = DJ.UI.Component.extend({
         NAMZ: {
             id: "NAMZ",
             name: "<%= Token('northAmerica') %>",
-            posX: 1663,
-            posY: 2702
+            posX: 1863,
+            posY: 2002
         },
-        /*CAMZ: {
+        CAMZ: {
             id: "CAMZ",
             name: "<%= Token('centralAmerica') %>",
-            posX: 21.5,
-            posY: 52.27
+            posX: 2303,
+            posY: 3166
         },
         SAMZ: {
             id: "SAMZ",
             name: "<%= Token('southAmerica') %>",
-            posX: 31.5,
-            posY: 75.09
+            posX: 3095,
+            posY: 4182
         },
         EURZ: {
             id: "EURZ",
             name: "<%= Token('europe') %>",
-            posX: 50.25,
-            posY: 32.55
+            posX: 4823,
+            posY: 2038
         },
         MEASTZ: {
             id: "MEASTZ",
             name: "<%= Token('middleEast') %>",
-            posX: 57.75,
-            posY: 44.186
+            posX: 5659,
+            posY: 2678
         },
         ASIAZ: {
             id: "ASIAZ",
             name: "<%= Token('asia') %>",
-            posX: 82,
-            posY: 32,
+            posX: 7907,
+            posY: 2282,
             tooltipAlign: 'left'
         },
         AUSNZ: {
             id: "AUSNZ",
             name: "<%= Token('countryName9Aus') %>",
-            posX: 87.125,
-            posY: 81,
+            posX: 8231,
+            posY: 4262,
             tooltipAlign: 'left'
         },
         RUSS: {
             id: "RUSS",
             name: "<%= Token('s2regionRussia') %>",
-            posX: 70,
-            posY: 16,
+            posX: 6535,
+            posY: 1802,
             tooltipAlign: 'left'
-        },*/
+        },
         AFRICAZ: {
             id: "AFRICAZ",
             name: "<%= Token('africa') %>",
-            posX: 5127,
+            posX: 5027,
             posY: 3494
-        },/*
+        },
         INDSUBZ: {
             id: "INDSUBZ",
             name: "<%= Token('countryName9Ind') %>",
-            posX: 70,
-            posY: 46,
+            posX: 6631,
+            posY: 2750,
             tooltipAlign: 'left'
-        }*/
+        }
     },
 
     init: function (element, meta) {
@@ -170,7 +184,7 @@ DJ.UI.CurrentRegionalMap = DJ.UI.Component.extend({
         this.minMarkerRadius = this._getDiagonalLength(this.mapConfig.chart.height, this.mapConfig.chart.width) * 0.02;
 
         // 9% of diagonal length
-        this.maxMarkerRadius = this._getDiagonalLength(this.mapConfig.chart.height, this.mapConfig.chart.width) * 0.07;
+        this.maxMarkerRadius = this._getDiagonalLength(this.mapConfig.chart.height, this.mapConfig.chart.width) * 0.06;
 
         if (this.chart) this.chart.destroy();
 
@@ -207,15 +221,19 @@ DJ.UI.CurrentRegionalMap = DJ.UI.Component.extend({
 
                 if (regionConfig) {
                     var radius = this._getSafeRadius(region.currentTimeFrameNewsVolume.value, maxVolume);
-                    
+
                     chartData.push({
-                        //x: this.chart.xAxis[0].translate(regionConfig.posX, true) - radius,
-                        //y: this.chart.yAxis[0].translate(regionConfig.posY, true) - radius,
                         x: regionConfig.posX,
                         y: regionConfig.posY,
                         marker: {
-                            radius: radius
-                        }
+                            radius: radius,
+                            states: {
+                                hover: {
+                                    radius: radius
+                                }
+                            }
+                        },
+                        percentValueChange: region.percentVolumeChange.value > 0 ? "+" + region.percentVolumeChange.displayText.value : region.percentVolumeChange.displayText.value
                     });
 
                 } else {
