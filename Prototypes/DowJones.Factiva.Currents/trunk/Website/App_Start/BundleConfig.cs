@@ -23,7 +23,8 @@ namespace DowJones.Factiva.Currents.Website.App_Start
 				.Include("~/Content/bootstrap.css")
 				.Include("~/Content/bootstrap-responsive.css")
 				.Include("~/Content/site.css")
-				.Include("~/Content/canvas.css"));
+				.Include("~/Content/canvas.css")
+				.Include("~/Content/portalHeadlineList.css"));
 		}
 	}
 }

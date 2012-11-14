@@ -31,3 +31,7 @@
   line-height: normal;
   text-transform: uppercase;
 }
+/* line 32, ../sass/portalHeadlineList.scss */
+.article-meta .article-source {
+  font-weight: bold;
+}
