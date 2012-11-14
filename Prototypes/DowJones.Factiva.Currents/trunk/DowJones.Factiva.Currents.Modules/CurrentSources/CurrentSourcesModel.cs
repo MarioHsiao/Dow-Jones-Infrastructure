@@ -20,10 +20,15 @@ namespace DowJones.Factiva.Currents.Models
 			return new CurrentSourcesModel
 				{
 					CurrentsHeadlines = source.PartResults
-											  .Select(p => 
+											  .Select(p =>
 												  new CurrentsHeadlineModel(
-													new PortalHeadlineListModel(p.Package.Result))),
-					
+													new PortalHeadlineListModel(p.Package.Result)
+														{
+															MaxNumHeadlinesToShow = 5, 
+															ShowSource = true,
+															ShowPublicationDateTime = true
+														})),
+
 				};
 		}
 	}
