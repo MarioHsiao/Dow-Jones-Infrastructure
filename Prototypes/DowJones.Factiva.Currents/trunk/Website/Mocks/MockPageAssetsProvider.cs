@@ -7,6 +7,7 @@ using DowJones.Factiva.Currents.ServiceModels.PageService;
 using DowJones.Factiva.Currents.ServiceModels.PageService.Modules.CustomTopics.Packages;
 using DowJones.Factiva.Currents.ServiceModels.PageService.Modules.CustomTopics.Results;
 using DowJones.Factiva.Currents.Website.Contracts;
+using DowJones.Factiva.Currents.Website.Models;
 using DowJones.Formatters;
 using DowJones.Web.Mvc.UI.Components.PortalHeadlineList;
 
@@ -42,6 +43,11 @@ namespace DowJones.Factiva.Currents.Website.Mocks
 				}
 			};
 
+		}
+
+		public IEnumerable<PageListModel> GetPages()
+		{
+			throw new NotImplementedException();
 		}
 
 		#endregion

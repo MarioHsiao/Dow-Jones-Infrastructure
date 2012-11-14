@@ -1,0 +1,18 @@
+﻿@model IEnumerable<DowJones.Factiva.Currents.Website.Models.PageListModel>
+
+@{
+    ViewBag.Title = "Pages";
+}
+
+<h2>Available Pages</h2>
+
+<nav>
+    <ul>
+        @foreach (var page in Model)
+        {
+			<li>
+				<a href="@Url.Action("Index", "Pages", new RouteValueDictionary { { "name", page.FriendlyTitle } })" title="@page.Title">@page.Title</a>
+			</li>
+        }
+    </ul>
+</nav>

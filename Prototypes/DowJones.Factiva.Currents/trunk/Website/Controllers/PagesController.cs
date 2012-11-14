@@ -17,15 +17,13 @@ namespace DowJones.Factiva.Currents.Website.Controllers
 			_pageAssetProvider = pageAssetProvider;
 		}
 
-		[Route("{type}/{name}")]
-		public ActionResult Index(string type, string name)
+		[Route("{name}")]
+		public ActionResult Index(string name)
 		{
 			var canonicalName = name.Replace("-", " ");
 			var modules = _pageAssetProvider.GetPageByName(canonicalName);
 
 			return View(modules);
 		}
-
-		
 	}
 }

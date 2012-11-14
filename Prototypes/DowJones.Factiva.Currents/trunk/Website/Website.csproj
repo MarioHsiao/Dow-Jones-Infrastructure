@@ -184,6 +184,8 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Models\PageListModel.cs" />
     <Compile Include="Controllers\HeadlineController.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="DashRouteHandler.cs" />
@@ -242,7 +244,6 @@
     <Folder Include="Content\themes\base\images\" />
     <Folder Include="Content\themes\base\minified\images\" />
     <Folder Include="Filters\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -276,9 +277,10 @@
   <ItemGroup>
     <None Include="Properties\PublishProfiles\montana.pubxml" />
     <Content Include="Views\Modules\_Sources.cshtml" />
-    <Content Include="Views\Pages\Index.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Headline\Index.cshtml" />
     <Content Include="Views\Test\Index.cshtml" />
+    <Content Include="Views\Pages\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

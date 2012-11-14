@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using DowJones.Factiva.Currents.ServiceModels.PageService;
 using DowJones.Factiva.Currents.Website.Contracts;
-using DowJones.Web.Mvc.UI.Canvas;
+using DowJones.Factiva.Currents.Website.Models;
 using RestSharp;
 using System.Linq;
 
@@ -43,15 +43,21 @@ namespace DowJones.Factiva.Currents.Website.Providers
 			return pageServiceResponse;
 		}
 
-		#endregion
-
-		protected string MapPageNameToId(string name)
+		public IEnumerable<PageListModel> GetPages()
 		{
 			var client = new RestClient(ServiceUrl);
 			var request = new RestRequest("/json", Method.GET);
 			var response = client.Execute<NewsPagesListServiceResult>(request);
 
-			return response.Data.Package.NewsPages.First(p => p.Title.Equals(name, StringComparison.OrdinalIgnoreCase)).ID;
+			return  response.Data.Package.NewsPages.Select(Mapper.Map<PageListModel>);
+		}
+
+		#endregion
+
+		protected string MapPageNameToId(string name)
+		{
+			var pageList = GetPages();
+			return pageList.First(p => p.Title.Equals(name, StringComparison.OrdinalIgnoreCase)).Id;
 		}
 	}
 }
