@@ -64,3 +64,8 @@ header .navbar .navbar-inner .factivaLogo {
   height: 23px;
   background: url("images/logo_factiva.png") no-repeat;
 }
+
+/* line 69, ../sass/Site.scss */
+.row {
+  margin-bottom: 20px;
+}
