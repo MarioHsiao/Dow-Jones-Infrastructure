@@ -10,7 +10,7 @@ namespace DowJones.Factiva.Currents.Models
 {
     public class CustomTopicsModel : Module
     {
-        public IEnumerable<CurrentsHeadlineModel> CurrentHeadlines { get; set; }
+        public IEnumerable<CurrentsHeadlineModel> CurrentsHeadlines { get; set; }
     }
 
     public class CustomTopicsModelMapper : TypeMapper<CustomTopicsNewsPageModuleServiceResult, CustomTopicsModel>
@@ -19,7 +19,7 @@ namespace DowJones.Factiva.Currents.Models
         {
             return new CustomTopicsModel
             {
-                CurrentHeadlines = customTopicSource.PartResults
+                CurrentsHeadlines = customTopicSource.PartResults
                                         .Select(p => new CurrentsHeadlineModel(new PortalHeadlineListModel(p.Package.Result)))
             };
         }
