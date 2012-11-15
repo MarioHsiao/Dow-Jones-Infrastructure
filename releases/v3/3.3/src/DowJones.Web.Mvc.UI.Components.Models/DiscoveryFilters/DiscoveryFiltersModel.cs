@@ -15,6 +15,12 @@ namespace DowJones.Web.Mvc.UI.Components.DiscoveryFilters
         public bool RoundHitCount { get; set; }
 
         /// <summary>
+        /// Specifies the max length for the chart item label. The rest of the string will be truncated.
+        /// </summary>
+        [ClientProperty]
+        public int TruncationLength { get; set; }
+
+        /// <summary>
         /// Client Data
         /// </summary>
         [ClientData]

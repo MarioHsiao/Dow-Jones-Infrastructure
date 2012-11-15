@@ -1,21 +1,35 @@
 ﻿@using System.Configuration
 @{
     ViewBag.Title = "Discovery Filters";
+    var script = @"
+                    var dataObj = getDiscoveryFiltersData();
+                        DJ.add(""DiscoveryFilters"", {
+                            container: ""discoveryFiltersContainer"",
+                            options: {
+                                roundHitCount: true,
+                                truncationLength: 10
+                            },
+                            data: dataObj
+                        }).done(function (comp) {
+                            // Attach handler for headline click event
+                            comp.on(""exportClick.dj.DiscoveryFilters"", function () {
+                                alert(""Export Clicked!!!"");
+                            });
+                            comp.on(""itemClick.dj.DiscoveryFilters"", function() {
+                                alert(""Item Click!!!"");
+                            });
+                        }).fail(function(comp){
+                            console.log('failed');
+                        }); 
+                   ";
+    DJ.ScriptRegistry().OnDocumentReady(script);
 }
-<link href="@ConfigurationManager.AppSettings["InfrastructureShowcase.BasePath"]/styles/css/DiscoveryFilters/DiscoveryFilters.css" rel="stylesheet" /><script type="text/javascript" src="@ConfigurationManager.AppSettings["InfrastructureShowcase.BasePath"]/content/js/DiscoveryFilters.js"></script>
-<!-- required file! DJ.add won't work without "common.js" being available -->
-    <script src="@ConfigurationManager.AppSettings["InfrastructureShowcase.BasePath"]/common.js" type="text/javascript"></script>
+<link href="@Url.Content("./styles/css/DiscoveryFilters/DiscoveryFilters.css")" rel="stylesheet" />
+<script type="text/javascript" src="@Url.Content("./content/js/DiscoveryFilters.js")"></script>
+<!-- required file! DJ.add won't work without "common.js" being available -->
+
      <div id="discoveryFiltersContainer" style="width:240px;"></div>
 
     <script type="text/javascript">
-        var dataObj = getDiscoveryFiltersData();
-        DJ.add("DiscoveryFilters", {
-            container: "discoveryFiltersContainer",
-            data: dataObj
-        }).done(function (comp) {
-            // Attach handler for headline click event
-            comp.on("exportClick.dj.DiscoveryFilters", function () {
-                alert("Export Clicked!!!");
-            });
-        }); 
+        
     </script>
