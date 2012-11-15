@@ -245,7 +245,6 @@ DJ.UI.CurrentRegionalMap = DJ.UI.Component.extend({
                 }
             }
         }
-        $dj.warn(chartData);
         return chartData;
     },
 
