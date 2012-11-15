@@ -10,25 +10,34 @@ namespace DowJones.Factiva.Currents.Models
 {
 	public class CurrentSourcesModel : CompositeComponentModel 
 	{
-		public IEnumerable<CurrentsHeadlineModel> CurrentsHeadlines { get; set; }
+        public IEnumerable<CurrentSource> CurrentsHeadlines { get; set; }
 	}
 
 	public class CurrentSourcesModelMapper : TypeMapper<SourcesNewsPageModuleServiceResult, CurrentSourcesModel>
 	{
 		public override CurrentSourcesModel Map(SourcesNewsPageModuleServiceResult source)
 		{
-			return new CurrentSourcesModel
-				{
-					CurrentsHeadlines = source.PartResults
-											  .Select(p =>
-												  new CurrentsHeadlineModel(new PortalHeadlineListModel(p.Package.Result))
-												  {
-													  MaxNumHeadlinesToShow = 5,
-													  ShowSource = true,
-													  ShowPublicationDateTime = true
-												  }),
 
-				};
+            return new CurrentSourcesModel
+                {
+                    CurrentsHeadlines = source.PartResults
+                                              .Select(p =>
+                                                  new CurrentSource()
+                                                  {
+                                                      LogoUrl = p.Package.SourceLogoUrl,
+                                                      Title = p.Package.SourceName,
+                                                      CurrentHeadline = new CurrentsHeadlineModel(new PortalHeadlineListModel(p.Package.Result))
+                                                  })
+                };
 		}
 	}
+
+    public class CurrentSource
+    {
+        public string LogoUrl {get;set;}
+
+        public string Title { get; set; }
+
+        public CurrentsHeadlineModel CurrentHeadline { get; set; }
+    }
 }

@@ -11,8 +11,29 @@
             this._super(element, $meta);
 
             // TODO: Add custom initialization code
-        }
+        },
 
+        _onSourceLogoLoad: function (idx) {
+        var att = this.sourceTitles[idx];
+        if (att) {
+            $(att).hide();
+            var at = this.sourceLogos[idx];
+            if (at) {
+                $(at).show();
+            }
+        }
+    },
+
+    _onSourceLogoError: function (idx, sourceName) {
+        var att = this.sourceTitles[idx];
+        if (att) {
+            $(att).html(sourceName).show();
+            var at = this.sourceLogos[idx];
+            if (at) {
+                $(at).hide();
+            }
+        }
+    }
     });
 
 

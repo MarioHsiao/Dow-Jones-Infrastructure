@@ -24,7 +24,7 @@ namespace DowJones.Factiva.Currents.Modules.CurrentSources
     using DowJones.Factiva.Currents.Models;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 11/14/2012 06:47 PM
+    // Last Generated Timestamp: 11/15/2012 02:28 PM
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Factiva.Currents.Modules.CurrentSources.CurrentSources.js", ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Factiva.Currents.Modules.CurrentSources.CurrentSources))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.27108")]
     public class CurrentSources : DowJones.Web.Mvc.UI.CompositeComponent<CurrentSourcesModel>
@@ -65,12 +65,37 @@ WriteLiteral("\r\n<div class=\"module\">\r\n    <header>\r\n        <i class=\"i
  			foreach(var headline in Model.CurrentsHeadlines.Take(3))
 			{
 
-WriteLiteral("\t\t\t\t<div class=\"span4\">");
+WriteLiteral(@"				<div class=""span4"">
+                     <div class=""module-col-source-logo-wrap"">
+                            <h3 class=""module-col-title module-col-source-logo"">
+                                <img class=""module-col-source-img"" 
+                                    alt=""");
 
 
-                  Write(Html.DJ().Render(headline));
+                                    Write(headline.Title);
 
-WriteLiteral("</div>\r\n");
+WriteLiteral("\" title=\"");
+
+
+                                                            Write(headline.Title);
+
+WriteLiteral("\" src=\"");
+
+
+                                                                                  Write(headline.LogoUrl);
+
+WriteLiteral(@""" 
+                                 onerror=""if(DJ && DJ.jQuery)DJ.jQuery(this).hide().next().text(this.title);"" />
+                                <span class=""module-col-title-source-icon-text""></span>
+                            </h3>
+                        </div>
+                    <div class=""article-group"">
+                        ");
+
+
+                   Write(Html.DJ().Render(headline.CurrentHeadline));
+
+WriteLiteral("\r\n                    </div>\r\n                 </div>\r\n");
 
 
 			}
