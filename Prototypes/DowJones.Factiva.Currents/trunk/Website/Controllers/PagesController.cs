@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.Globalization;
+using System.Web.Mvc;
 using AttributeRouting;
 using DowJones.Extensions;
 using DowJones.Web.Mvc.Routing;
@@ -19,7 +20,7 @@ namespace DowJones.Factiva.Currents.Website.Controllers
 
 		public ActionResult Index(string name)
 		{
-			var canonicalName = name.Replace("-", " ");
+			var canonicalName = CultureInfo.InvariantCulture.TextInfo.ToTitleCase(name.Replace("-", " "));
 			var modules = _pageAssetProvider.GetPageByName(canonicalName);
 
 			ViewBag.Title = "Dow Jones Current:: {0}".FormatWith(canonicalName);

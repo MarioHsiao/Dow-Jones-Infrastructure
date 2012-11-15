@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -15,7 +16,7 @@ namespace DowJones.Factiva.Currents.Website.Controllers
         {
 	        var pubDate = new DateTime(year, month, day);
 
-	        ViewBag.Title = name.Replace('-', ' ');
+	        ViewBag.Title = CultureInfo.InvariantCulture.TextInfo.ToTitleCase(name.Replace('-', ' '));
 	        ViewBag.PublicationDate = pubDate;
 	        ViewBag.AccessionNumber = an;
 

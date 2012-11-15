@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web.Mvc;
 using System.Web.WebPages;
 using DowJones.Ajax.PortalHeadlineList;
@@ -65,13 +66,44 @@ namespace DowJones.Factiva.Currents.Components.CurrentsHeadline
 		public string GetHeadlineUrl(PortalHeadlineInfo headline, UrlHelper urlHelper)
 		{
 			if (!headline.ContentCategoryDescriptor.Equals("external"))
-				return urlHelper.Content("~/headlines/{0}?an={1}".FormatWith(
-					headline
-					.Title
-					.ToLowerInvariant()
-					.Replace(' ', '-'), headline.Reference.guid));
+				return urlHelper.Content("~/headlines/{0}".FormatWith(headline.GenerateSeoUrl()));
 
 			return headline.HeadlineUrl;
+		}
+	}
+
+	public static class PortalHeadlineInfoExtensions
+	{
+		static readonly Regex WhiteListRegex = new Regex(@"[^\w\d\s]");
+		static readonly Regex NormalizeSpacesRegex = new Regex(@"\s+");
+
+		public static string GenerateSeoUrl(this PortalHeadlineInfo headline)
+		{
+			const string format = "{0}/{1}/{2}/{3}/{4}";
+
+			return format
+				.FormatWith(
+					headline.PublicationDateTime.Year,
+					headline.PublicationDateTime.Month,
+					headline.PublicationDateTime.Day,
+					Canonicalize(Sanitize(headline.Title)), 
+					headline.Reference.guid
+				);
+		}
+
+		private static string Sanitize(string input)
+		{
+			return WhiteListRegex.Replace(input, string.Empty);
+		}
+
+		private static string Canonicalize(string input)
+		{
+			return Normalize(input).Replace(" ", "-").ToLowerInvariant();
+		}
+
+		private static string Normalize(string input)
+		{
+			return NormalizeSpacesRegex.Replace(input, " ").Trim();
 		}
 	}
 }
