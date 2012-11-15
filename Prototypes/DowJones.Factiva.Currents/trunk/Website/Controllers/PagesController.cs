@@ -1,5 +1,6 @@
 ﻿using System.Web.Mvc;
 using AttributeRouting;
+using DowJones.Extensions;
 using DowJones.Web.Mvc.Routing;
 using ControllerBase = DowJones.Web.Mvc.ControllerBase;
 
@@ -21,6 +22,7 @@ namespace DowJones.Factiva.Currents.Website.Controllers
 			var canonicalName = name.Replace("-", " ");
 			var modules = _pageAssetProvider.GetPageByName(canonicalName);
 
+			ViewBag.Title = "Dow Jones Current:: {0}".FormatWith(canonicalName);
 			return View(modules);
 		}
 	}
