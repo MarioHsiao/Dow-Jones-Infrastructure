@@ -1,4 +1,4 @@
-﻿@using DowJones
+@using DowJones
 @using DowJones.Factiva.Currents.Models
 @model DowJones.Factiva.Currents.ServiceModels.PageService.PageServiceResponse
 
@@ -14,11 +14,11 @@
             }
 		</div>
 	</section>
-@*<section class="row">
+<section class="row">
         <div class="span12">
-			@Html.DJ().Render(Mapper.Map<NewsstandModel>(Model.NewsstandNewsPageModuleServiceResult))
+        @Html.DJ().Render(Mapper.Map<CurrentNewsStandModel>(Model.NewsstandNewsPageModuleServiceResult))
 		</div>
-	</section>*@
+</section>
 
     <section class="row">
         <div class="span12">
