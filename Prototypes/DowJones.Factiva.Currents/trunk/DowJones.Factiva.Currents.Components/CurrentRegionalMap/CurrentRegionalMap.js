@@ -140,8 +140,8 @@ DJ.UI.CurrentRegionalMap = DJ.UI.Component.extend({
 
         this._initializeChart();
         
-        if(data) {
-            this.setData(data);
+        if(this.data) {
+            this.setData(this.data);
         }
     },
 

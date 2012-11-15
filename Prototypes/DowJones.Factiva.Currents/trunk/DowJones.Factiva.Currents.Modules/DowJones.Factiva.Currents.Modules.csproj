@@ -208,7 +208,7 @@
     <EmbeddedResource Include="CustomTopics\CustomTopics.js" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="RegionalMap\CurrentRegionalMap.js" />
+    <EmbeddedResource Include="RegionalMap\CurrentRegionalMapModule.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

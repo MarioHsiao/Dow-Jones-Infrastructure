@@ -2,7 +2,7 @@
  * RegionalMap
  */
 
-    DJ.UI.CurrentRegionalMap = DJ.UI.CompositeComponent.extend({
+    DJ.UI.CurrentRegionalMapModule = DJ.UI.CompositeComponent.extend({
 
         init: function (element, meta) {
             // Call the base constructor
@@ -34,4 +34,4 @@
 
 
     // Declare this class as a jQuery plugin
-    $.plugin('dj_CurrentRegionalMap', DJ.UI.CurrentRegionalMap);
+    $.plugin('dj_CurrentRegionalMapModule', DJ.UI.CurrentRegionalMapModule);

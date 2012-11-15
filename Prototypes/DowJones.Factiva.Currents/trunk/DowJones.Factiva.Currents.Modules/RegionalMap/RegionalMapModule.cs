@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Web.UI.WebResourceAttribute("DowJones.Factiva.Currents.Modules.RegionalMap.CurrentRegionalMap.js", "text/javascript")]
+[assembly: System.Web.UI.WebResourceAttribute("DowJones.Factiva.Currents.Modules.RegionalMap.CurrentRegionalMapModule.js", "text/javascript")]
 
 namespace DowJones.Factiva.Currents.Modules.RegionalMap
 {
@@ -22,10 +22,10 @@ namespace DowJones.Factiva.Currents.Modules.RegionalMap
     using System.Web.UI;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 11/14/2012 06:52 PM
-    [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Factiva.Currents.Modules.RegionalMap.CurrentRegionalMap.js", ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Factiva.Currents.Modules.RegionalMap.RegionalMapModule))]
+    // Last Generated Timestamp: 11/14/2012 06:59 PM
+    [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Factiva.Currents.Modules.RegionalMap.CurrentRegionalMapModule.js", ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Factiva.Currents.Modules.RegionalMap.RegionalMapModule))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.27108")]
-    public class RegionalMapModule : DowJones.Web.Mvc.UI.ViewComponentBase<DowJones.Factiva.Currents.Models.RegionalMapModel>
+    public class RegionalMapModule : DowJones.Web.Mvc.UI.ViewComponentBase<DowJones.Factiva.Currents.Models.CurrentRegionalMapModule>
     {
 #line hidden
 

@@ -36,3 +36,8 @@ ul, ol {
 .module .content [class*="span"] {
   margin-left: 20px;
 }
+
+/* line 45, ../sass/Canvas.scss */
+.dj_CurrentRegionalMap .module .content {
+  height: 538px;
+}

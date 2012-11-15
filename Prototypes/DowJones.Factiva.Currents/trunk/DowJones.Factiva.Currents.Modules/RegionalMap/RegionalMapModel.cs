@@ -7,19 +7,19 @@ using DowJones.Web.Mvc.UI;
 
 namespace DowJones.Factiva.Currents.Models
 {
-	public class RegionalMapModel : CompositeComponentModel
+	public class CurrentRegionalMapModule : CompositeComponentModel
 	{
 		public CurrentRegionalMapModel CurrentRegionalMap { get; set; }
 	}
 
-	public class RegionalMapModelMapper : TypeMapper<RegionalMapNewsPageModuleServiceResult, RegionalMapModel>
+	public class CurrentRegionalMapModuleMapper : TypeMapper<RegionalMapNewsPageModuleServiceResult, CurrentRegionalMapModule>
 	{
-		public override RegionalMapModel Map(RegionalMapNewsPageModuleServiceResult source)
+		public override CurrentRegionalMapModule Map(RegionalMapNewsPageModuleServiceResult source)
 		{
 			if (!source.PartResults.Any())
 				return null;
 
-			return new RegionalMapModel
+			return new CurrentRegionalMapModule
 				{
 					CurrentRegionalMap = new CurrentRegionalMapModel
 						{
