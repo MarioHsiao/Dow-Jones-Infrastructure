@@ -12,7 +12,10 @@
 </section>
 <section class="row">
     <div class="span12">
-        @Html.DJ().Render(Mapper.Map<CurrentNewsStandModel>(Model.NewsstandNewsPageModuleServiceResult))
+        @if (Model.NewsstandNewsPageModuleServiceResult != null)
+        {
+            @Html.DJ().Render(Mapper.Map<CurrentNewsStandModel>(Model.NewsstandNewsPageModuleServiceResult))
+        }
     </div>
 </section>
 
