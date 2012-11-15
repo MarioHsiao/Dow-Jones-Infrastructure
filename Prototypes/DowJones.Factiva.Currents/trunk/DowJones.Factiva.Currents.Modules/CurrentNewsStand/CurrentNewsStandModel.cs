@@ -9,16 +9,16 @@ using DowJones.Factiva.Currents.ServiceModels.PageService.Modules.Newsstand.Pack
 
 namespace DowJones.Factiva.Currents.Models
 {
-	public class NewsstandModel : CompositeComponentModel
+	public class CurrentNewsStandModel : CompositeComponentModel
 	{
 		public IEnumerable<CurrentsHeadlineModel> CurrentHeadlines { get; set; }
 	}
 
-	public class NewsstandModelMapper : TypeMapper<NewsstandNewsPageModuleServiceResult, NewsstandModel>
+	public class NewsstandModelMapper : TypeMapper<NewsstandNewsPageModuleServiceResult, CurrentNewsStandModel>
 	{
-		public override NewsstandModel Map(NewsstandNewsPageModuleServiceResult newstandSource)
+		public override CurrentNewsStandModel Map(NewsstandNewsPageModuleServiceResult newstandSource)
 		{
-			return new NewsstandModel
+			return new CurrentNewsStandModel
 				{
 					CurrentHeadlines = newstandSource.PartResults
 											.Where(pr => pr.Package is NewsstandHeadlinesPackage)

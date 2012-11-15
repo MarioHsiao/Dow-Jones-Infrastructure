@@ -135,13 +135,13 @@
       <DependentUpon>CustomTopics.cshtml</DependentUpon>
     </Compile>
     <Compile Include="CustomTopics\CustomTopicsModel.cs" />
-    <Compile Include="Newsstand\Newsstand.cs">
-      <DependentUpon>Newsstand.cshtml</DependentUpon>
+    <Compile Include="CurrentNewsStand\CurrentNewsStand.cs">
+      <DependentUpon>CurrentNewsStand.cshtml</DependentUpon>
       <SubType>Code</SubType>
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
-    <Compile Include="Newsstand\NewsstandModel.cs">
+    <Compile Include="CurrentNewsStand\CurrentNewsStandModel.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -168,10 +168,10 @@
       <Generator>RazorViewComponentClassGenerator</Generator>
       <LastGenOutput>CustomTopics.cs</LastGenOutput>
     </None>
-    <None Include="Newsstand\Newsstand.cshtml">
+    <None Include="CurrentNewsStand\CurrentNewsStand.cshtml">
       <SubType>Code</SubType>
       <Generator>RazorViewComponentClassGenerator</Generator>
-      <LastGenOutput>Newsstand.cs</LastGenOutput>
+      <LastGenOutput>CurrentNewsStand.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
     <None Include="CurrentSources\CurrentSources.cshtml">
@@ -189,7 +189,7 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="CurrentSources\CurrentSources.js" />
-    <EmbeddedResource Include="Newsstand\Newsstand.js" />
+    <EmbeddedResource Include="CurrentNewsStand\CurrentNewsStand.js" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DowJones.Factiva.Currents.Components\DowJones.Factiva.Currents.Components.csproj">

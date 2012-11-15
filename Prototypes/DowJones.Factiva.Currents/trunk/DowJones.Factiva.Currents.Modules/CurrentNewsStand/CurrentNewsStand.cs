@@ -8,9 +8,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Web.UI.WebResourceAttribute("DowJones.Factiva.Currents.Modules.Newsstand.Newsstand.js", "text/javascript")]
+[assembly: System.Web.UI.WebResourceAttribute("DowJones.Factiva.Currents.Modules.CurrentNewsStand.CurrentNewsStand.js", "text/javascript")]
 
-namespace DowJones.Factiva.Currents.Modules.Newsstand
+namespace DowJones.Factiva.Currents.Modules.CurrentNewsStand
 {
     using System;
     using System.Collections.Generic;
@@ -24,21 +24,21 @@ namespace DowJones.Factiva.Currents.Modules.Newsstand
     using DowJones.Factiva.Currents.Models;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 11/13/2012 10:17 AM
-    [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Factiva.Currents.Modules.Newsstand.Newsstand.js", ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Factiva.Currents.Modules.Newsstand.Newsstand))]
+    // Last Generated Timestamp: 11/15/2012 10:39 AM
+    [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Factiva.Currents.Modules.CurrentNewsStand.CurrentNewsStand.js", ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Factiva.Currents.Modules.CurrentNewsStand.CurrentNewsStand))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.27108")]
-    public class Newsstand : DowJones.Web.Mvc.UI.CompositeComponent<NewsstandModel>
+    public class CurrentNewsStand : DowJones.Web.Mvc.UI.CompositeComponent<CurrentNewsStandModel>
     {
 #line hidden
 
-        public Newsstand()
+        public CurrentNewsStand()
         {
         }
         public override string ClientPluginName
         {
             get
             {
-                return "dj_Newsstand";
+                return "dj_CurrentNewsStand";
             }
         }
         public override void ExecuteTemplate()
@@ -58,8 +58,8 @@ WriteLiteral("\r\n");
 
 
 WriteLiteral("\r\n<div class=\"module\">\r\n    <header>\r\n        <i class=\"icon-tasks icon-white\"></" +
-"i>\r\n        <span>Newsstand</span>\r\n    </header>\r\n    <div class=\"content\">\r\n\t\t" +
-"<div class=\"row\">\r\n");
+"i>\r\n        <span>News Stand</span>\r\n    </header>\r\n    <div class=\"content\">\r\n\t" +
+"\t<div class=\"row\">\r\n");
 
 
  			foreach(var headline in Model.CurrentHeadlines.Take(3))

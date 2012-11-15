@@ -2,10 +2,10 @@
  * Newsstand Module
  */
 
-    DJ.UI.Newsstand = DJ.UI.CompositeComponent.extend({
+    DJ.UI.CurrentNewsStand = DJ.UI.CompositeComponent.extend({
 
         init: function (element, meta) {
-            var $meta = $.extend({ name: "Newsstand" }, meta);
+            var $meta = $.extend({ name: "CurrentNewsStand" }, meta);
 
             // Call the base constructor
             this._super(element, $meta);
@@ -17,6 +17,6 @@
 
 
     // Declare this class as a jQuery plugin
-    $.plugin('dj_Newsstand', DJ.UI.NewsstandCanvasModule);
+    $.plugin('dj_CurrentNewsStand', DJ.UI.CurrentNewsStand);
 
-    $dj.debug('Registered DJ.UI.Newsstand as Newsstand');
+    $dj.debug('Registered DJ.UI.CurrentNewsStand as dj_CurrentNewsStand');
