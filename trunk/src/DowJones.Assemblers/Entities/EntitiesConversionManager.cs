@@ -137,7 +137,7 @@ namespace DowJones.Assemblers.Entities
                                     newsEntities.Add(objNewsEntity);
                                 }
                                 parentNewsEntity.NewsEntities = newsEntities;
-                                parentNewsEntity.Title = "${date}";
+                                parentNewsEntity.Title = ResourceText.GetString("date");
                                 switch (objNavigator.Id)
                                 {
                                     case "py":
@@ -204,7 +204,7 @@ namespace DowJones.Assemblers.Entities
                                     newsEntities.Add(objNewsEntity);
                                 }
                                 parentNewsEntity.NewsEntities = newsEntities;
-                                parentNewsEntity.Title = "${sources}";
+                                parentNewsEntity.Title = ResourceText.GetString("sources");
                                 switch (objNavigator.Id)
                                 {
                                     case "sc":
@@ -285,42 +285,42 @@ namespace DowJones.Assemblers.Entities
                                 {
                                     case "co":
                                         {
-                                            parentNewsEntity.Title = "${companies}";
+                                            parentNewsEntity.Title = ResourceText.GetString("companies");
                                             parentNewsEntity.Type = EntityType.Company;
                                             entities.CompanyNewsEntities = parentNewsEntity;
                                             break;
                                         }
                                     case "in":
                                         {
-                                            parentNewsEntity.Title = "${industries}";
+                                            parentNewsEntity.Title = ResourceText.GetString("industries");
                                             parentNewsEntity.Type = EntityType.Industry;
                                             entities.IndustryNewsEntities = parentNewsEntity;
                                             break;
                                         }
                                     case "ns":
                                         {
-                                            parentNewsEntity.Title = "${newsSubjects}";
+                                            parentNewsEntity.Title = ResourceText.GetString("newsSubjects");
                                             parentNewsEntity.Type = EntityType.NewsSubject;
                                             entities.SubjectNewsEntities = parentNewsEntity;
                                             break;
                                         }
                                     case "pe":
                                         {
-                                            parentNewsEntity.Title = "${executives}";
+                                            parentNewsEntity.Title = ResourceText.GetString("executives");
                                             parentNewsEntity.Type = EntityType.Person;
                                             entities.PersonNewsEntities = parentNewsEntity;
                                             break;
                                         }
                                     case "re":
                                         {
-                                            parentNewsEntity.Title = "${regions}";
+                                            parentNewsEntity.Title = ResourceText.GetString("regions");
                                             parentNewsEntity.Type = EntityType.Region;
                                             entities.RegionNewsEntities = parentNewsEntity;
                                             break;
                                         }
                                     case "au":
                                         {
-                                            parentNewsEntity.Title = "${authors}";
+                                            parentNewsEntity.Title = ResourceText.GetString("authors");
                                             parentNewsEntity.Type = EntityType.Author;
                                             entities.AuthorNewsEntities = parentNewsEntity;
                                             break;

@@ -166,94 +166,98 @@ DJ.UI.DiscoveryFilters = DJ.UI.Component.extend({
 		var discoveryLi;
 		//Build the Discovery Entity Lists
 		_.each(discoveryEntityObj, function (entitiesObj) {
-			var categoryArr = [],
+			if (entitiesObj == null) {
+
+			} else {
+				var categoryArr = [],
 				seriesDataArr = [],
 				discoveryEntityObjArr = entitiesObj.newsEntities;
-			//Expand Collapse the div based on the isExpanded property
-			/*
-			if (entitiesObj.isExpanded) {
-			var container = $this.$element.find('.dj_discoveryFilters-listItem-' + index);
-			var collapseBtn = $($this.selectors.collapseBtn, container);
-			$this._expandCollapse(collapseBtn, true);
-			}
-			*/
-
-			//Set the height for each hc container based on no. of entities
-			//var discoveryLi = $this.$element.find('.dj_discoveryFilters-listItem-' + index);
-			//discoveryLi = $this.$element.find('.dj_discoveryFilters-listItem-' + index);
-
-			//$($this.selectors.chartContainer, discoveryLi).css('height', 27 * (discoveryEntityObjArr.length) + '');
-
-			//Construct the graph for the discovery entity objects
-			var idx = 0;
-			_.each(discoveryEntityObjArr, function (entity) {
-				var dataObj = {};
-				dataObj.y = entity.currentTimeFrameNewsVolume.value;
-				//dataObj.y = (this.options.roundHitCount ? entity.currentTimeFrameRoundedNewsVolume : entity.currentTimeFrameNewsVolume.value);
-				dataObj.jsonObj = entity;
-				seriesDataArr.push(dataObj);
-				if (_.indexOf([15, 16, 17, 18], entitiesObj.type) >= 0) {   //Date Navigator
-					/*if (idx==0) {
-					categoryArr[categoryArr.length] = entity.startDateFormattedString;  //Start
-					} else if (idx == discoveryEntityObjArr.length - 1){
-					categoryArr[categoryArr.length] = entity.endDateFormattedString;    //End
-					} else {
-					categoryArr[categoryArr.length] = "";   //skip the dates in the middle
-					}*/
-					categoryArr.push([entity.startDateFormattedString, entity.endDateFormattedString]);
+				//Expand Collapse the div based on the isExpanded property
+				/*
+				if (entitiesObj.isExpanded) {
+				var container = $this.$element.find('.dj_discoveryFilters-listItem-' + index);
+				var collapseBtn = $($this.selectors.collapseBtn, container);
+				$this._expandCollapse(collapseBtn, true);
 				}
-				else {
-					if ($this.options.truncationLength > 0) {
-						categoryArr.push([entity.descriptor.substring(0, $this.options.truncationLength - 3) + "...", entity.descriptor]);
-					} else {
-						categoryArr.push([entity.descriptor, entity.descriptor]);
+				*/
+
+				//Set the height for each hc container based on no. of entities
+				//var discoveryLi = $this.$element.find('.dj_discoveryFilters-listItem-' + index);
+				//discoveryLi = $this.$element.find('.dj_discoveryFilters-listItem-' + index);
+
+				//$($this.selectors.chartContainer, discoveryLi).css('height', 27 * (discoveryEntityObjArr.length) + '');
+
+				//Construct the graph for the discovery entity objects
+				var idx = 0;
+				_.each(discoveryEntityObjArr, function (entity) {
+					var dataObj = {};
+					dataObj.y = entity.currentTimeFrameNewsVolume.value;
+					//dataObj.y = (this.options.roundHitCount ? entity.currentTimeFrameRoundedNewsVolume : entity.currentTimeFrameNewsVolume.value);
+					dataObj.jsonObj = entity;
+					seriesDataArr.push(dataObj);
+					if (_.indexOf([15, 16, 17, 18], entitiesObj.type) >= 0) {   //Date Navigator
+						/*if (idx==0) {
+						categoryArr[categoryArr.length] = entity.startDateFormattedString;  //Start
+						} else if (idx == discoveryEntityObjArr.length - 1){
+						categoryArr[categoryArr.length] = entity.endDateFormattedString;    //End
+						} else {
+						categoryArr[categoryArr.length] = "";   //skip the dates in the middle
+						}*/
+						categoryArr.push([entity.startDateFormattedString, entity.endDateFormattedString]);
 					}
+					else {
+						if ($this.options.truncationLength > 0) {
+							categoryArr.push([entity.descriptor.substring(0, $this.options.truncationLength - 3) + "...", entity.descriptor]);
+						} else {
+							categoryArr.push([entity.descriptor, entity.descriptor]);
+						}
+					}
+					idx++;
+				});
+				discoveryData.title = entitiesObj.title;
+				discoveryData.position = entitiesObj.position;
+				discoveryData.categories = categoryArr;
+				discoveryData.seriesData = seriesDataArr;
+				discoveryData.entityType = entitiesObj.type;
+				discoveryData.isExpanded = entitiesObj.isExpanded;
+
+				//discoveryData.DiscoveryLi = discoveryLi;
+				//EntityType at Infrastructure
+				//DateYearly = 15
+				//DateMonthly = 16
+				//DateWeekly = 17
+				//DateDaily = 18
+
+
+				if (_.indexOf([15, 16, 17, 18], entitiesObj.type) >= 0) {   // Date Navigator
+					//$($this.selectors.chartContainer, discoveryLi).css('height', 160 + ''); //Fix height for column chart
+					//var chartTitle = '${distribution}: '
+					var chartTitle;
+					switch (entitiesObj.type) {
+						case 15:
+							chartTitle = 'yearly';
+							break;
+						case 16:
+							chartTitle = 'monthly';
+							break;
+						case 17:
+							chartTitle = 'weekly';
+							break;
+						case 18:
+							chartTitle = 'daily';
+							break;
+					}
+					discoveryData.chartTitle = chartTitle;  //entitiesObj.newsEntities[0].typeDescriptor;
+					//$this._renderDiscoveryDateFilters(discoveryData, index);
+				} else {
+					//$($this.selectors.chartContainer, discoveryLi).css('height', 27 * (discoveryEntityObjArr.length) + '');  //calucate the height for bar chart, height is depended on the num of items
+					//$this._renderDiscoveryFilters(discoveryData, index);
 				}
-				idx++;
-			});
-			discoveryData.title = entitiesObj.title;
-			discoveryData.position = entitiesObj.position;
-			discoveryData.categories = categoryArr;
-			discoveryData.seriesData = seriesDataArr;
-			discoveryData.entityType = entitiesObj.type;
-			discoveryData.isExpanded = entitiesObj.isExpanded;
 
-			//discoveryData.DiscoveryLi = discoveryLi;
-			//EntityType at Infrastructure
-			//DateYearly = 15
-			//DateMonthly = 16
-			//DateWeekly = 17
-			//DateDaily = 18
+				discoveryDataArr[discoveryDataArr.length] = _.clone(discoveryData); //Has to clone the discoveryData since it's the object reference. If you don't clone it, the whole array will have the value of the last discoveryData
 
-
-			if (_.indexOf([15, 16, 17, 18], entitiesObj.type) >= 0) {   // Date Navigator
-				//$($this.selectors.chartContainer, discoveryLi).css('height', 160 + ''); //Fix height for column chart
-				//var chartTitle = '${distribution}: '
-				var chartTitle;
-				switch (entitiesObj.type) {
-					case 15:
-						chartTitle = 'yearly';
-						break;
-					case 16:
-						chartTitle = 'monthly';
-						break;
-					case 17:
-						chartTitle = 'weekly';
-						break;
-					case 18:
-						chartTitle = 'daily';
-						break;
-				}
-				discoveryData.chartTitle = chartTitle;  //entitiesObj.newsEntities[0].typeDescriptor;
-				//$this._renderDiscoveryDateFilters(discoveryData, index);
-			} else {
-				//$($this.selectors.chartContainer, discoveryLi).css('height', 27 * (discoveryEntityObjArr.length) + '');  //calucate the height for bar chart, height is depended on the num of items
-				//$this._renderDiscoveryFilters(discoveryData, index);
+				index++;
 			}
-
-			discoveryDataArr[discoveryDataArr.length] = _.clone(discoveryData); //Has to clone the discoveryData since it's the object reference. If you don't clone it, the whole array will have the value of the last discoveryData
-
-			index++;
 		});
 
 
