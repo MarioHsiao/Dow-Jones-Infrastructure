@@ -17,8 +17,13 @@ namespace DowJones.Factiva.Currents.Website.App_Start
 			_routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
 			_routes.Add(
+				new Route("headlines/{year}/{month}/{day}/{name}/{an}",
+					new RouteValueDictionary(new { controller = "Headlines", action = "Index", an = "" }),
+					new DashRouteHandler()));
+
+			_routes.Add(
 				new Route("pages/{name}",
-					new RouteValueDictionary( new { controller = "Pages", action = "Index", name = "" }),
+					new RouteValueDictionary( new { controller = "Pages", action = "Index" }),
 					new DashRouteHandler()));
 
 			_routes.MapRoute(
