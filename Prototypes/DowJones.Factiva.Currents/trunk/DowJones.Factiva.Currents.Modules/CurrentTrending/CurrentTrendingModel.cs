@@ -9,7 +9,7 @@ using DowJones.Formatters;
 
 namespace DowJones.Factiva.Currents.Models
 {
-	public class TrendingModel : CompositeComponentModel
+    public class CurrentTrendingModel : CompositeComponentModel
 	{
 
         public IEnumerable<TrendingEntities> TrendingTopEntitiesPackageModel;
@@ -90,7 +90,7 @@ namespace DowJones.Factiva.Currents.Models
     /// <summary>
     /// The TopNewsModule Mapper class
     /// </summary>
-    public class TrendingModuleMapper : TypeMapper<TrendingNewsPageModuleServiceResult, TrendingModel>
+    public class TrendingModuleMapper : TypeMapper<TrendingNewsPageModuleServiceResult, CurrentTrendingModel>
     {
         #region Public Methods
 
@@ -103,9 +103,9 @@ namespace DowJones.Factiva.Currents.Models
         /// <returns>
         /// A IModule object.   
         /// </returns>
-        public override TrendingModel Map(TrendingNewsPageModuleServiceResult trendingSource)
+        public override CurrentTrendingModel Map(TrendingNewsPageModuleServiceResult trendingSource)
         {
-            return new TrendingModel()
+            return new CurrentTrendingModel()
             {
                 TrendingTopEntitiesPackageModel = trendingSource
                                                     .PartResults

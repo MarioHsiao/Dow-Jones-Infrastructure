@@ -2,10 +2,10 @@
  * TrendingCanvasModule
  */
 
-    DJ.UI.TrendingCanvasModule = DJ.UI.CompositeComponent.extend({
+    DJ.UI.CurrentTrending = DJ.UI.CompositeComponent.extend({
 
         init: function (element, meta) {
-            var $meta = $.extend({ name: "Trending" }, meta);
+            var $meta = $.extend({ name: "CurrentTrending" }, meta);
 
             // Call the base constructor
             this._super(element, $meta);
@@ -17,6 +17,6 @@
 
 
     // Declare this class as a jQuery plugin
-    $.plugin('dj_Trending', DJ.UI.TrendingCanvasModule);
+    $.plugin('dj_CurrentTrending', DJ.UI.TrendingCanvasModule);
 
-    $dj.debug('Registered DJ.UI.TrendingCanvasModule as dj_Trending');
+    $dj.debug('Registered DJ.UI.CurrentTrending as dj_CurrentTrending');

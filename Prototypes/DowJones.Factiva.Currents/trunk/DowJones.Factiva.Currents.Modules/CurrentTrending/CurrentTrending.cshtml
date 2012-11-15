@@ -1,12 +1,12 @@
 ﻿@using Web.Mvc.Extensions
 @using DowJones.Factiva.Currents.Models
 
-@inherits DowJones.Web.Mvc.UI.CompositeComponent<TrendingModel>
+@inherits DowJones.Web.Mvc.UI.CompositeComponent<CurrentTrendingModel>
 @ClientPlugin dj_Trending
-@ScriptResource RelativeResourceName=Trending.js
+@ScriptResource RelativeResourceName=CurrentTrending.js
 
 @{ 
-    CssClass += " dj_Trending";
+    CssClass += " dj_CurrentTrending";
 }
 
 <div class="module">

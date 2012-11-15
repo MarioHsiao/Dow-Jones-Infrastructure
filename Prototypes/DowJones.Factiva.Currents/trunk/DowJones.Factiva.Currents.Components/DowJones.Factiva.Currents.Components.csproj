@@ -132,12 +132,6 @@
     </Compile>
     <Compile Include="EmbeddedResources\EmbeddedResources.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Trending\TrendingComponentModel.cs" />
-    <Compile Include="Trending\TrendingComponent.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>TrendingComponent.cshtml</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="CurrentRegionalMap\CurrentRegionalMapComponent.cshtml">
@@ -149,10 +143,6 @@
       <LastGenOutput>CurrentsHeadlineComponent.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
-    <None Include="Trending\TrendingComponent.cshtml">
-      <Generator>RazorViewComponentClassGenerator</Generator>
-      <LastGenOutput>TrendingComponent.cs</LastGenOutput>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="CurrentsHeadline\CurrentsHeadline.js" />
@@ -163,9 +153,6 @@
   <ItemGroup>
     <EmbeddedResource Include="EmbeddedResources\js\highchartsMap\highchartsMap.js" />
     <EmbeddedResource Include="EmbeddedResources\js\highchartsMap\world.map.shapes.js" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Trending\Trending.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

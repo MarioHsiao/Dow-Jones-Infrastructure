@@ -8,9 +8,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Web.UI.WebResourceAttribute("DowJones.Factiva.Currents.Modules.Trending.Trending.js", "text/javascript")]
+[assembly: System.Web.UI.WebResourceAttribute("DowJones.Factiva.Currents.Modules.CurrentTrending.CurrentTrending.js", "text/javascript")]
 
-namespace DowJones.Factiva.Currents.Modules.Trending
+namespace DowJones.Factiva.Currents.Modules.CurrentTrending
 {
     using System;
     using System.Collections.Generic;
@@ -24,21 +24,21 @@ namespace DowJones.Factiva.Currents.Modules.Trending
     using DowJones.Factiva.Currents.Models;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 11/14/2012 06:42 PM
-    [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Factiva.Currents.Modules.Trending.Trending.js", ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Factiva.Currents.Modules.Trending.Trending))]
+    // Last Generated Timestamp: 11/15/2012 10:49 AM
+    [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Factiva.Currents.Modules.CurrentTrending.CurrentTrending.js", ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Factiva.Currents.Modules.CurrentTrending.CurrentTrending))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.27108")]
-    public class Trending : DowJones.Web.Mvc.UI.CompositeComponent<TrendingModel>
+    public class CurrentTrending : DowJones.Web.Mvc.UI.CompositeComponent<CurrentTrendingModel>
     {
 #line hidden
 
-        public Trending()
+        public CurrentTrending()
         {
         }
         public override string ClientPluginName
         {
             get
             {
-                return "dj_Trending";
+                return "dj_CurrentTrending";
             }
         }
         public override void ExecuteTemplate()
@@ -54,7 +54,7 @@ WriteLiteral("\r\n");
 
 
    
-    CssClass += " dj_Trending";
+    CssClass += " dj_CurrentTrending";
 
 
 WriteLiteral("\r\n<div class=\"module\">\r\n    <header>\r\n        <i class=\"icon-signal icon-white\"><" +

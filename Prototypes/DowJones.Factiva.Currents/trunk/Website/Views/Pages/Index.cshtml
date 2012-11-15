@@ -33,7 +33,7 @@
 	<div class="span12">
 		@if (Model.TrendingNewsPageModuleServiceResult != null)
 		{
-			@Html.DJ().Render(Mapper.Map<TrendingModel>(Model.TrendingNewsPageModuleServiceResult))
+			@Html.DJ().Render(Mapper.Map<CurrentTrendingModel>(Model.TrendingNewsPageModuleServiceResult))
 		}
 	</div>
 </section>
@@ -43,6 +43,15 @@
             @if (Model.RegionalMapNewsPageModuleServiceResult != null)
             {
 			    @Html.DJ().Render(Mapper.Map<CurrentRegionalMapModule>(Model.RegionalMapNewsPageModuleServiceResult))
+            }
+		</div>
+	</section>
+
+ <section class="row">
+        <div class="span12">
+            @if (Model.TopNewsNewsPageModuleServiceResult != null)
+            {
+			    @Html.DJ().Render(Mapper.Map<CurrentTopNewsModel>(Model.TopNewsNewsPageModuleServiceResult))
             }
 		</div>
 	</section>

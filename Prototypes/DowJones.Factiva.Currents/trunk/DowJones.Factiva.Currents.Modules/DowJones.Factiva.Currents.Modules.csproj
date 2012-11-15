@@ -129,6 +129,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CurrentSources\CurrentSourcesModel.cs" />
+    <Compile Include="CurrentTrending\CurrentTrending.cs" />
+    <Compile Include="CurrentTrending\CurrentTrendingModel.cs" />
     <Compile Include="CustomTopics\CustomTopics.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -156,14 +158,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>RegionalMapModule.cshtml</DependentUpon>
     </Compile>
-    <Compile Include="Trending\Trending.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Trending.cshtml</DependentUpon>
-    </Compile>
-    <Compile Include="Trending\TrendingModel.cs" />
+    <Compile Include="CurrentTopNews\CurrentTopNewsModel.cs" />
+    <Compile Include="CurrentTopNews\CurrentTopNews.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="CurrentTrending\CurrentTrending.cshtml" />
     <None Include="CustomTopics\CustomTopics.cshtml">
       <Generator>RazorViewComponentClassGenerator</Generator>
       <LastGenOutput>CustomTopics.cs</LastGenOutput>
@@ -182,10 +181,7 @@
       <Generator>RazorViewComponentClassGenerator</Generator>
       <LastGenOutput>RegionalMapModule.cs</LastGenOutput>
     </None>
-    <None Include="Trending\Trending.cshtml">
-      <Generator>RazorViewComponentClassGenerator</Generator>
-      <LastGenOutput>Trending.cs</LastGenOutput>
-    </None>
+    <None Include="CurrentTopNews\CurrentTopNews.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="CurrentSources\CurrentSources.js" />
@@ -202,13 +198,17 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Trending\Trending.js" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="CustomTopics\CustomTopics.js" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="RegionalMap\CurrentRegionalMapModule.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="CurrentTrending\CurrentTrending.js" />
+    <Content Include="CurrentTopNews\CurrentTopNews.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Trending\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
