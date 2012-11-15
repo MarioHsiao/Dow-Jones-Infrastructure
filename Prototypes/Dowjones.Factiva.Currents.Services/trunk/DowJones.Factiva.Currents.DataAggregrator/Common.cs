@@ -362,7 +362,9 @@ namespace DowJones.Factiva.Currents.Aggregrator
             {
                 var webRequest = WebRequest.Create(new Uri(url));
                 webRequest.Headers.Add("X-Requested-With", "XMLHttpRequest");
-                webRequest.Headers.Add("preferences", "{\"interfaceLanguage\":\"en\",\"contentLanguages\":[\"en\"]}");
+                webRequest.Headers.Add("preferences", "{\"clockType\":1,\"interfaceLanguage\":\"en\",\"contentLanguages\":[\"en\"],\"timeZone\":\"on, -05:00|1, on\"}");
+
+                
                 webRequest.Method = "GET";
                 
                 WebResponse response = webRequest.GetResponse();
