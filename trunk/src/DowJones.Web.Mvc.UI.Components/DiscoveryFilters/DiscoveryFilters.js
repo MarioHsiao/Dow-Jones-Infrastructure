@@ -13,6 +13,8 @@
 *
 */
 
+"use strict";
+
 DJ.UI.DiscoveryFilters = DJ.UI.Component.extend({
 
 	// Default options
@@ -35,7 +37,7 @@ DJ.UI.DiscoveryFilters = DJ.UI.Component.extend({
 	selectors: {
 		discoveryFiltersList: 'ul.dj_discoveryFilters-list',
 		chartContainer: 'div.dj_hc-container',
-		export: 'span.dj_df-export a.export',
+		exportLink: 'span.dj_df-export a.export',
 		expandBtn: 'a.dj_df-expand',
 		collapseBtn: 'a.dj_df-collapse',
 		expandDiv: 'div.cd_div_expand',
@@ -79,6 +81,7 @@ DJ.UI.DiscoveryFilters = DJ.UI.Component.extend({
 			$dj.warn("bindOnSuccess:: called with empty data object");
 			return;
 		}
+		
 		var discoveryFiltersMarkUp = this.templates.success(data);
 		$(this.$element).html(discoveryFiltersMarkUp);
 
@@ -110,7 +113,7 @@ DJ.UI.DiscoveryFilters = DJ.UI.Component.extend({
 	//Initialize Expand/Collapse Discovery
 	_initializeExpandCollapse: function () {
 		var self = this;
-		$(this.selectors.collapseBtn).bind('click', function () {
+		$(this.selectors.collapseBtn).on('click', function () {
 			self._expandCollapse(this, true); /*alert('Expanding!');*/return false;
 		});
 	},
@@ -118,19 +121,19 @@ DJ.UI.DiscoveryFilters = DJ.UI.Component.extend({
 	//Expand/Collapse function
 	_expandCollapse: function (el, expand) {
 		var self = this;
-		var ContainerLi = $(el).closest('li');
+		var containerLi = $(el).closest('li');
 		if (expand) {
 			$(el).removeClass('dj_df-collapse').addClass('dj_df-expand').unbind('click').bind('click', function () {
 				self._expandCollapse(this, false); return false;
 			});
-			$(this.selectors.collapseDiv, ContainerLi).removeClass('cd_div_collapse').addClass('cd_div_expand');
-			$(this.selectors.export, ContainerLi).removeClass('hide').addClass('show');
+			$(this.selectors.collapseDiv, containerLi).removeClass('cd_div_collapse').addClass('cd_div_expand');
+			$(this.selectors.exportLink, containerLi).removeClass('hide').addClass('show');
 		} else {
 			$(el).removeClass('dj_df-expand').addClass('dj_df-collapse').unbind('click').bind('click', function () {
 				self._expandCollapse(this, true); return false;
 			});
-			$(this.selectors.expandDiv, ContainerLi).removeClass('cd_div_expand').addClass('cd_div_collapse');
-			$(this.selectors.export, ContainerLi).removeClass('show').addClass('hide');
+			$(this.selectors.expandDiv, containerLi).removeClass('cd_div_expand').addClass('cd_div_collapse');
+			$(this.selectors.exportLink, containerLi).removeClass('show').addClass('hide');
 		}
 	},
 
@@ -153,19 +156,19 @@ DJ.UI.DiscoveryFilters = DJ.UI.Component.extend({
 	_initializeDelegates: function () {
 		$.extend(this._delegates, {
 			OnItemClicked: $dj.delegate(this, this._onItemClicked),
-			OnExportClicked: $dj.delegate(this.selectors.export, 'click', this._onExportClicked)
+			OnExportClicked: $dj.delegate(this.selectors.exportLink, 'click', this._onExportClicked)
 		});
 	},
 
 	//Initialize Discovery Filters
 	_initializeDiscoveryFilters: function (discoveryEntityObj) {
 		var $this = this,
-		index = 0,
-		discoveryDataArr = [],
-		discoveryData = {};
-		var discoveryLi;
+			discoveryDataArr = [],
+			discoveryLi;
+		
 		//Build the Discovery Entity Lists
 		_.each(discoveryEntityObj, function (entitiesObj) {
+			var discoveryData = {};
 			if (entitiesObj == null) {
 
 			} else {
@@ -190,11 +193,12 @@ DJ.UI.DiscoveryFilters = DJ.UI.Component.extend({
 				//Construct the graph for the discovery entity objects
 				var idx = 0;
 				_.each(discoveryEntityObjArr, function (entity) {
-					var dataObj = {};
-					dataObj.y = entity.currentTimeFrameNewsVolume.value;
-					//dataObj.y = (this.options.roundHitCount ? entity.currentTimeFrameRoundedNewsVolume : entity.currentTimeFrameNewsVolume.value);
-					dataObj.jsonObj = entity;
+					var dataObj = {
+						y : entity.currentTimeFrameNewsVolume.value,
+						jsonObj : entity
+					};
 					seriesDataArr.push(dataObj);
+
 					if (_.indexOf([15, 16, 17, 18], entitiesObj.type) >= 0) {   //Date Navigator
 						/*if (idx==0) {
 						categoryArr[categoryArr.length] = entity.startDateFormattedString;  //Start
@@ -232,7 +236,7 @@ DJ.UI.DiscoveryFilters = DJ.UI.Component.extend({
 				if (_.indexOf([15, 16, 17, 18], entitiesObj.type) >= 0) {   // Date Navigator
 					//$($this.selectors.chartContainer, discoveryLi).css('height', 160 + ''); //Fix height for column chart
 					//var chartTitle = '${distribution}: '
-					var chartTitle;
+					var chartTitle = "";
 					switch (entitiesObj.type) {
 						case 15:
 							chartTitle = 'yearly';
@@ -254,9 +258,7 @@ DJ.UI.DiscoveryFilters = DJ.UI.Component.extend({
 					//$this._renderDiscoveryFilters(discoveryData, index);
 				}
 
-				discoveryDataArr[discoveryDataArr.length] = _.clone(discoveryData); //Has to clone the discoveryData since it's the object reference. If you don't clone it, the whole array will have the value of the last discoveryData
-
-				index++;
+				discoveryDataArr.push(discoveryData); 
 			}
 		});
 
@@ -293,19 +295,18 @@ DJ.UI.DiscoveryFilters = DJ.UI.Component.extend({
 	//On Discovery Item Click Event Handler
 	_onItemClicked: function (evt) {
 		var self = this;
-		$dj.info(self.events.itemClick + " Event clicked");
 		self.publish(self.events.itemClick, { "data": evt.point.options.jsonObj });
 	},
 
 	//On Discovery Filters Export Click
 	_onExportClicked: function (evt) {
 		var self = this;
-		$dj.info(self.events.exportClick + " Event clicked");
 		self.publish(self.events.exportClick, { "data": "test export" });
 	},
 
 	//Get discovery Filter Config
 	_getDiscoveryFiltersConfig: function () {
+		var self = this;
 		//BEGIN: Discovery Filters Configuration
 		return {
 			chart: { type: 'bar' },
@@ -341,7 +342,8 @@ DJ.UI.DiscoveryFilters = DJ.UI.Component.extend({
 					groupPadding: 0,
 					borderWidth: 0,
 					pointPadding: 0,
-					shadow: false
+					shadow: false,
+					point: {events: {click: self._delegates.OnItemClicked } }
 				}
 			},
 			legend: { enabled: false },
@@ -354,6 +356,7 @@ DJ.UI.DiscoveryFilters = DJ.UI.Component.extend({
 	//Get discovery Filter Date Chart Config
 	_getDiscoveryFiltersDateChartConfig: function () {
 		//BEGIN: Discovery Filters Configuration
+		var self = this;
 		return {
 			chart: {
 				defaultSeriesType: "column",
@@ -435,7 +438,8 @@ DJ.UI.DiscoveryFilters = DJ.UI.Component.extend({
 				column: {
 					color: "#5bb4e5",
 					shadow: false,
-					cursor: 'pointer'
+					cursor: 'pointer',
+					point: { events: { click: self._delegates.OnItemClicked } }
 				},
 				series: {
 					borderWidth: 1,
@@ -452,34 +456,41 @@ DJ.UI.DiscoveryFilters = DJ.UI.Component.extend({
 		var actualDataArr = [], tweakedDataArr = [];
 		_.each(seriesData, function (obj) {
 			//Construct original series array
-			actualDataArr[actualDataArr.length] = {
+			actualDataArr.push({
 				dataLabels: {
 					style: {
 						display: 'none'
 					}
 				},
+				jsonObj : obj.jsonObj, 
 				y: obj.y
-			};
+			});
 
 			//Contruct tweaked series data
-			tweakedDataArr[tweakedDataArr.length] = {
+			tweakedDataArr.push({
 				y: seriesData[0].y,
 				color: 'transparent',
-				dataLabels: { x: -25, y: 1, formatter: function () { return obj.y; } }
-			}
+				jsonObj: obj.jsonObj,
+				dataLabels: { x: -25, y: 1, formatter: function() { return obj.y; } }
+			});
 		});
 		return { "actual": actualDataArr, "tweaked": tweakedDataArr };
 	},
 
 	_extractDateSeriesData: function (seriesData) {
-		var DateDataArr = [];
+		var dateDataArr = [];
 		_.each(seriesData, function (obj) {
 			//Construct original series array
 			var displayVal = obj.jsonObj.currentTimeFrameNewsVolume.displayText.value;
 			//var displayVal = (this.options.roundHitCount ? obj.jsonObj.currentTimeFrameRoundedNewsVolume.value : obj.jsonObj.currentTimeFrameNewsVolume.displayText.value);
-			DateDataArr[DateDataArr.length] = [displayVal, obj.y];
+		    //dateDataArr.push([displayVal, obj.y]);
+		    dateDataArr.push({
+		        name: displayVal,
+		        y: obj.y,
+		        jsonObj: obj.jsonObj
+		    });
 		});
-		return DateDataArr;
+		return dateDataArr;
 	},
 
 	//Render Discovery Filters Chart
@@ -526,8 +537,8 @@ DJ.UI.DiscoveryFilters = DJ.UI.Component.extend({
 		var seriesData = this._extractDateSeriesData(discoveryData.seriesData);
 		return new Highcharts.Chart($.extend(true, {}, this.discoveryFitlersDateChartConfig, {
 			chart: {
-				renderTo: chartContainer[0]
-				//width: $(chartContainer[0]).width()
+				renderTo: chartContainer[0],
+				width: $(chartContainer[0]).width()
 			},
 			xAxis: {
 				categories: discoveryData.categories,
@@ -539,14 +550,11 @@ DJ.UI.DiscoveryFilters = DJ.UI.Component.extend({
 				formatter: function () {
 					var tooltipStr;
 					if (discoveryData.chartTitle == 'daily') {
-						tooltipStr = '${date}: ' + this.x[0]
+						tooltipStr = '${date}: ' + this.x[0];
 					} else {
-						tooltipStr = '${startDate}: ' + this.x[0] + '<br/>${endDate}: ' + this.x[1]
+						tooltipStr = '${startDate}: ' + this.x[0] + '<br/>${endDate}: ' + this.x[1];
 					}
 					return tooltipStr + '<br/>${numHits}: ' + Highcharts.numberFormat(this.y, 0);
-
-					//return /*this.series.name + */'${startDate}: <b>'+ this.x[0] + '${endDate}: <b>'+ this.x[1]
-					//	 +'</b><br/>${numHits}: '+ Highcharts.numberFormat(this.y, 0);
 
 				},
 				style: {

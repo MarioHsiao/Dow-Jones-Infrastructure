@@ -37,7 +37,7 @@ namespace DowJones.Assemblers.Session
             get { return GetRequestValue("Password", _password); }
             set { _password = value; }
         }
-        private string _password = "apichecker";
+        private string _password = "integration";
 
         public string ProductId
         {

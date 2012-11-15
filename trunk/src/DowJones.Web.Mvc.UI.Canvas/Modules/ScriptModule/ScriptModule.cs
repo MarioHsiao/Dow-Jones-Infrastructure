@@ -62,14 +62,13 @@ namespace DowJones.Web.Mvc.UI.Canvas.Modules.ScriptModule
                 _scriptModuleTemplateManager = scriptModuleTemplateManager;
             }
 
-            public override IModule Map(DowJones.Pages.Modules.ScriptModule source)
+            public override IModule Map(Pages.Modules.ScriptModule source)
             {
-                var canEdit = true;
                 var template = _scriptModuleTemplateManager.GetTemplate(source.TemplateId);
                     template = template ?? new ScriptModuleTemplate();
 
                 return new ScriptModule {
-                    CanEdit = canEdit,
+                    CanEdit = true,
                     ColumnSpan = source.ColumnSpan,
                     Editor = CreateEditor(source, template) ?? new ScriptModuleEditor(),
                     ExternalIncludes = template.ExternalIncludes ?? Enumerable.Empty<string>(),
