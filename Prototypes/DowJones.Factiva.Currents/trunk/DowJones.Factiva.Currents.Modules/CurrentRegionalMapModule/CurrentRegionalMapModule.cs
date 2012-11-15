@@ -8,9 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Web.UI.WebResourceAttribute("DowJones.Factiva.Currents.Modules.RegionalMap.CurrentRegionalMapModule.js", "text/javascript")]
+[assembly: System.Web.UI.WebResourceAttribute("DowJones.Factiva.Currents.Modules.CurrentRegionalMapModule.CurrentRegionalMapModu" +
+    "le.js", "text/javascript")]
 
-namespace DowJones.Factiva.Currents.Modules.RegionalMap
+namespace DowJones.Factiva.Currents.Modules.CurrentRegionalMapModule
 {
     using System;
     using System.Collections.Generic;
@@ -22,21 +23,22 @@ namespace DowJones.Factiva.Currents.Modules.RegionalMap
     using System.Web.UI;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 11/14/2012 06:59 PM
-    [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Factiva.Currents.Modules.RegionalMap.CurrentRegionalMapModule.js", ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Factiva.Currents.Modules.RegionalMap.RegionalMapModule))]
+    // Last Generated Timestamp: 11/15/2012 12:21 PM
+    [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Factiva.Currents.Modules.CurrentRegionalMapModule.CurrentRegionalMapModu" +
+        "le.js", ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Factiva.Currents.Modules.CurrentRegionalMapModule.CurrentRegionalMapModule))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.27108")]
-    public class RegionalMapModule : DowJones.Web.Mvc.UI.ViewComponentBase<DowJones.Factiva.Currents.Models.CurrentRegionalMapModule>
+    public class CurrentRegionalMapModule : DowJones.Web.Mvc.UI.ViewComponentBase<DowJones.Factiva.Currents.Models.CurrentRegionalMapModule>
     {
 #line hidden
 
-        public RegionalMapModule()
+        public CurrentRegionalMapModule()
         {
         }
         public override string ClientPluginName
         {
             get
             {
-                return "dj_CurrentRegionalMap";
+                return "dj_CurrentRegionalMapModule";
             }
         }
         public override void ExecuteTemplate()
@@ -45,7 +47,7 @@ namespace DowJones.Factiva.Currents.Modules.RegionalMap
 
 
 
-   CssClass = "dj_CurrentRegionalMap"; 
+   CssClass = "dj_CurrentRegionalMapModule"; 
 
 WriteLiteral("\r\n<section class=\"currentRegionalMapContainer\">\r\n    ");
 

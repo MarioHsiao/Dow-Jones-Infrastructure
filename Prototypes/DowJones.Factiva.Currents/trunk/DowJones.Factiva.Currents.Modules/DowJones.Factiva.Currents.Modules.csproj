@@ -129,11 +129,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CurrentSources\CurrentSourcesModel.cs" />
-	  <Compile Include="CurrentTrending\CurrentTrending.cs" >
-		  <AutoGen>True</AutoGen>
-		  <DesignTime>True</DesignTime>
-		  <DependentUpon>CurrentTrending.cshtml</DependentUpon>
-	  </Compile>
+    <Compile Include="CurrentTrending\CurrentTrending.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CurrentTrending.cshtml</DependentUpon>
+    </Compile>
     <Compile Include="CurrentTrending\CurrentTrendingModel.cs" />
     <Compile Include="CustomTopics\CustomTopics.cs">
       <AutoGen>True</AutoGen>
@@ -156,18 +156,18 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CurrentSources.cshtml</DependentUpon>
     </Compile>
-    <Compile Include="RegionalMap\RegionalMapModel.cs" />
-    <Compile Include="RegionalMap\RegionalMapModule.cs">
+    <Compile Include="CurrentRegionalMapModule\CurrentRegionalMapModuleModel.cs" />
+    <Compile Include="CurrentRegionalMapModule\CurrentRegionalMapModule.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>RegionalMapModule.cshtml</DependentUpon>
+      <DependentUpon>CurrentRegionalMapModule.cshtml</DependentUpon>
     </Compile>
     <Compile Include="CurrentTopNews\CurrentTopNewsModel.cs" />
-	  <Compile Include="CurrentTopNews\CurrentTopNews.cs" >
-		  <DependentUpon>CurrentTopNews.cshtml</DependentUpon>
-		  <AutoGen>True</AutoGen>
-		  <DesignTime>True</DesignTime>
-	  </Compile>
+    <Compile Include="CurrentTopNews\CurrentTopNews.cs">
+      <DependentUpon>CurrentTopNews.cshtml</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="CurrentTrending\CurrentTrending.cshtml" />
@@ -185,9 +185,9 @@
       <Generator>RazorViewComponentClassGenerator</Generator>
       <LastGenOutput>CurrentSources.cs</LastGenOutput>
     </None>
-    <None Include="RegionalMap\RegionalMapModule.cshtml">
+    <None Include="CurrentRegionalMapModule\CurrentRegionalMapModule.cshtml">
       <Generator>RazorViewComponentClassGenerator</Generator>
-      <LastGenOutput>RegionalMapModule.cs</LastGenOutput>
+      <LastGenOutput>CurrentRegionalMapModule.cs</LastGenOutput>
     </None>
     <None Include="CurrentTopNews\CurrentTopNews.cshtml" />
   </ItemGroup>
@@ -209,11 +209,11 @@
     <EmbeddedResource Include="CustomTopics\CustomTopics.js" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="RegionalMap\CurrentRegionalMapModule.js" />
+    <EmbeddedResource Include="CurrentRegionalMapModule\CurrentRegionalMapModule.js" />
   </ItemGroup>
   <ItemGroup>
-	  <EmbeddedResource Include="CurrentTrending\CurrentTrending.js" />
-	  <EmbeddedResource Include="CurrentTopNews\CurrentTopNews.js" />
+    <EmbeddedResource Include="CurrentTrending\CurrentTrending.js" />
+    <EmbeddedResource Include="CurrentTopNews\CurrentTopNews.js" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Trending\" />
