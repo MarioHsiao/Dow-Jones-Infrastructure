@@ -24,7 +24,7 @@ namespace DowJones.Factiva.Currents.Modules.CustomTopics
     using DowJones.Factiva.Currents.Models;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 11/15/2012 12:01 PM
+    // Last Generated Timestamp: 11/15/2012 12:04 PM
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Factiva.Currents.Modules.CustomTopics.CustomTopics.js", ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Factiva.Currents.Modules.CustomTopics.CustomTopics))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.27108")]
     public class CustomTopics : DowJones.Web.Mvc.UI.CompositeComponent<CustomTopicsModel>
@@ -38,7 +38,7 @@ namespace DowJones.Factiva.Currents.Modules.CustomTopics
         {
             get
             {
-                return "dj_CustomTopic";
+                return "dj_CustomTopics";
             }
         }
         public override void ExecuteTemplate()
