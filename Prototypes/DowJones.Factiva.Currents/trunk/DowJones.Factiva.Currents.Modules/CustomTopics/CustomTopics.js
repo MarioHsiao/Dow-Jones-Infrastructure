@@ -17,6 +17,6 @@
 
 
     // Declare this class as a jQuery plugin
-    $.plugin('dj_CustomTopics', DJ.UI.CustomTopicCanvasModule);
+    $.plugin('dj_CustomTopics', DJ.UI.CustomTopics);
 
-    $dj.debug('Registered DJ.UI.CustomTopic as dj_CustomTopics');
+    $dj.debug('Registered DJ.UI.CustomTopics as dj_CustomTopics');
