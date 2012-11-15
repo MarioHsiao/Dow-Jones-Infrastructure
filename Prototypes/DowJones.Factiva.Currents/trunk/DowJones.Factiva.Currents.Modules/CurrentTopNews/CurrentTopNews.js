@@ -17,6 +17,6 @@
 
 
     // Declare this class as a jQuery plugin
-    $.plugin('dj_CurrentTopNews', DJ.UI.TopNewsModule);
+    $.plugin('dj_CurrentTopNews', DJ.UI.CurrentTopNews);
 
     $dj.debug('Registered DJ.UI.CurrentTopNews as dj_CurrentTopNews');

@@ -17,6 +17,6 @@
 
 
     // Declare this class as a jQuery plugin
-    $.plugin('dj_CurrentTrending', DJ.UI.TrendingCanvasModule);
+    $.plugin('dj_CurrentTrending', DJ.UI.CurrentTrending);
 
     $dj.debug('Registered DJ.UI.CurrentTrending as dj_CurrentTrending');
