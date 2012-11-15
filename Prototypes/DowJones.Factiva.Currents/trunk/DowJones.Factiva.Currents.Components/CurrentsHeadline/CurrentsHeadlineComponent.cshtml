@@ -12,7 +12,7 @@
 			<li class="dj_entry @Model.GetSelectionStatus(headline) @headline.ContentCategoryDescriptor @headline.ContentSubCategoryDescriptor">
 				<div class="article-wrap">
 					<h4 class="article-headline">
-					    <a href="@Model.GetHeadlineUrl(headline, Url)" class="article-view-trigger" target="_blank">@headline.Title</a>
+					    <a href="@Model.GetHeadlineUrl(headline, Url)" class="article-view-trigger" target="_blank">@(headline.TruncatedTitle ?? headline.Title)</a>
 					</h4>
 					@if (Model.ShouldShowSource(headline) || Model.ShouldShowPublicationDateTime(headline))
 					{
