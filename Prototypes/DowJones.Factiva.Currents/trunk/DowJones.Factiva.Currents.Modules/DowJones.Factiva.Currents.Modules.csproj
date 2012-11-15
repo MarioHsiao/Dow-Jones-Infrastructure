@@ -129,7 +129,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CurrentSources\CurrentSourcesModel.cs" />
-    <Compile Include="CurrentTrending\CurrentTrending.cs" />
+	  <Compile Include="CurrentTrending\CurrentTrending.cs" >
+		  <AutoGen>True</AutoGen>
+		  <DesignTime>True</DesignTime>
+		  <DependentUpon>CurrentTrending.cshtml</DependentUpon>
+	  </Compile>
     <Compile Include="CurrentTrending\CurrentTrendingModel.cs" />
     <Compile Include="CustomTopics\CustomTopics.cs">
       <AutoGen>True</AutoGen>
@@ -159,7 +163,11 @@
       <DependentUpon>RegionalMapModule.cshtml</DependentUpon>
     </Compile>
     <Compile Include="CurrentTopNews\CurrentTopNewsModel.cs" />
-    <Compile Include="CurrentTopNews\CurrentTopNews.cs" />
+	  <Compile Include="CurrentTopNews\CurrentTopNews.cs" >
+		  <DependentUpon>CurrentTopNews.cshtml</DependentUpon>
+		  <AutoGen>True</AutoGen>
+		  <DesignTime>True</DesignTime>
+	  </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="CurrentTrending\CurrentTrending.cshtml" />
@@ -204,8 +212,8 @@
     <EmbeddedResource Include="RegionalMap\CurrentRegionalMapModule.js" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="CurrentTrending\CurrentTrending.js" />
-    <Content Include="CurrentTopNews\CurrentTopNews.js" />
+	  <EmbeddedResource Include="CurrentTrending\CurrentTrending.js" />
+	  <EmbeddedResource Include="CurrentTopNews\CurrentTopNews.js" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Trending\" />
