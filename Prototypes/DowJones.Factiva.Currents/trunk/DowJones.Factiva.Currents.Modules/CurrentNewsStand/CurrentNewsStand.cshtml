@@ -6,7 +6,7 @@
 @ScriptResource RelativeResourceName=CurrentNewsStand.js
 
 @{ 
-    CssClass += " dj_Newsstand";
+    CssClass += " dj_CurrentNewsStand";
 }
 
 <div class="module">
@@ -15,11 +15,23 @@
         <span>News Stand</span>
     </header>
     <div class="content">
-		<div class="row">
-			@foreach(var headline in Model.CurrentHeadlines.Take(3))
-			{
-				<div class="span4">@Html.DJ().Render(headline)</div>
-			}
-		</div>
+        <div class="row">
+            @foreach (var source in Model.CurrentSources.Take(3))
+            {
+                <div class="span4">
+                    <div class="module-col-source-logo-wrap">
+                        <h3 class="module-col-title module-col-source-logo">
+							<img class="module-col-source-img" 
+								 alt="@source.Title" title="@source.Title" src="@source.LogoUrl" 
+                                 onerror="if(DJ && DJ.jQuery)DJ.jQuery(this).hide().next().text(this.title);" />
+                            <span class="module-col-title-source-icon-text"></span>
+                        </h3>
+                    </div>
+                    <div class="article-group">
+                        @Html.DJ().Render(source.CurrentHeadline)
+                    </div>
+                </div>
+            }
+        </div>
     </div>
 </div>

@@ -11,7 +11,7 @@ namespace DowJones.Factiva.Currents.Models
 {
 	public class CurrentNewsStandModel : CompositeComponentModel
 	{
-		public IEnumerable<CurrentsHeadlineModel> CurrentHeadlines { get; set; }
+		public IEnumerable<NewsStandSource> CurrentSources { get; set; }
 	}
 
 	public class NewsstandModelMapper : TypeMapper<NewsstandNewsPageModuleServiceResult, CurrentNewsStandModel>
@@ -20,10 +20,27 @@ namespace DowJones.Factiva.Currents.Models
 		{
 			return new CurrentNewsStandModel
 				{
-					CurrentHeadlines = newstandSource.PartResults
+					CurrentSources = newstandSource.PartResults
 											.Where(pr => pr.Package is NewsstandHeadlinesPackage)
-											.Select(p => new CurrentsHeadlineModel(new PortalHeadlineListModel(p.Package.Result)))
+											.Select(p => p.Package)
+											.Cast<NewsstandHeadlinesPackage>()
+											.SelectMany(p => p.NewsstandSections)
+											.Select(p => new NewsStandSource
+												{
+													LogoUrl = p.SourceLogoUrl,
+													Title = p.SourceTitle,
+													CurrentHeadline = new CurrentsHeadlineModel(new PortalHeadlineListModel(p.Result))
+												}
+											)
 				};
 		}
+	}
+
+	public class NewsStandSource
+	{
+		public string LogoUrl { get; set; }
+		public string Title { get; set; }
+		public CurrentsHeadlineModel CurrentHeadline { get; set; }
+
 	}
 }

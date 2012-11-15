@@ -24,7 +24,7 @@ namespace DowJones.Factiva.Currents.Modules.CurrentNewsStand
     using DowJones.Factiva.Currents.Models;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 11/15/2012 10:39 AM
+    // Last Generated Timestamp: 11/15/2012 11:40 AM
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Factiva.Currents.Modules.CurrentNewsStand.CurrentNewsStand.js", ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Factiva.Currents.Modules.CurrentNewsStand.CurrentNewsStand))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.27108")]
     public class CurrentNewsStand : DowJones.Web.Mvc.UI.CompositeComponent<CurrentNewsStandModel>
@@ -54,28 +54,51 @@ WriteLiteral("\r\n");
 
 
    
-    CssClass += " dj_Newsstand";
+    CssClass += " dj_CurrentNewsStand";
 
 
 WriteLiteral("\r\n<div class=\"module\">\r\n    <header>\r\n        <i class=\"icon-tasks icon-white\"></" +
-"i>\r\n        <span>News Stand</span>\r\n    </header>\r\n    <div class=\"content\">\r\n\t" +
-"\t<div class=\"row\">\r\n");
+"i>\r\n        <span>News Stand</span>\r\n    </header>\r\n    <div class=\"content\">\r\n " +
+"       <div class=\"row\">\r\n");
 
 
- 			foreach(var headline in Model.CurrentHeadlines.Take(3))
-			{
+             foreach (var source in Model.CurrentSources.Take(3))
+            {
 
-WriteLiteral("\t\t\t\t<div class=\"span4\">");
-
-
-                  Write(Html.DJ().Render(headline));
-
-WriteLiteral("</div>\r\n");
+WriteLiteral("                <div class=\"span4\">\r\n                    <div class=\"module-col-s" +
+"ource-logo-wrap\">\r\n                        <h3 class=\"module-col-title module-co" +
+"l-source-logo\">\r\n\t\t\t\t\t\t\t<img class=\"module-col-source-img\" \r\n\t\t\t\t\t\t\t\t alt=\"");
 
 
-			}
+         Write(source.Title);
 
-WriteLiteral("\t\t</div>\r\n    </div>\r\n</div>");
+WriteLiteral("\" title=\"");
+
+
+                               Write(source.Title);
+
+WriteLiteral("\" src=\"");
+
+
+                                                   Write(source.LogoUrl);
+
+WriteLiteral(@""" 
+                                 onerror=""if(DJ && DJ.jQuery)DJ.jQuery(this).hide().next().text(this.title);"" />
+                            <span class=""module-col-title-source-icon-text""></span>
+                        </h3>
+                    </div>
+                    <div class=""article-group"">
+                        ");
+
+
+                   Write(Html.DJ().Render(source.CurrentHeadline));
+
+WriteLiteral("\r\n                    </div>\r\n                </div>\r\n");
+
+
+            }
+
+WriteLiteral("        </div>\r\n    </div>\r\n</div>\r\n");
 
 
         }
