@@ -1,0 +1,9 @@
+﻿@using DowJones.Factiva.Currents.Components.CurrentsHeadline
+@using DowJones.Web.Mvc.UI.Components.PortalHeadlineList
+@model DowJones.Ajax.PortalHeadlineList.PortalHeadlineListDataResult
+
+@{
+	ViewBag.Title = "Headlines";
+}
+
+@Html.DJ().Render(new CurrentsHeadlineModel(new PortalHeadlineListModel(Model)))

@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Configuration;
+using DowJones.Extensions;
 using DowJones.Factiva.Currents.ServiceModels.PageService;
 using DowJones.Factiva.Currents.Website.Contracts;
 using DowJones.Factiva.Currents.Website.Models;
@@ -12,12 +14,14 @@ namespace DowJones.Factiva.Currents.Website.Providers
 	{
 		private readonly IPageServiceResponseParser _pageServiceResponseParser;
 
-		// TODO: Refactor to read from config
-		private const string ServiceUrl = "http://fdevweb3/data.factiva.com/PageService.svc";
+		private readonly string _serviceUrl;
 
 		public PageAssetProvider(IPageServiceResponseParser pageServiceResponseParser)
 		{
 			_pageServiceResponseParser = pageServiceResponseParser;
+			_serviceUrl = "{0}/{1}".FormatWith(
+							ConfigurationManager.AppSettings.Get("DataServiceUrl").Trim('/'), 
+							ConfigurationManager.AppSettings.Get("PageServiceEndpoint"));
 		}
 
 		#region Implementation of IPageAssetProvider
@@ -32,7 +36,7 @@ namespace DowJones.Factiva.Currents.Website.Providers
 
 		public PageServiceResponse GetPageById(string pageId)
 		{
-			var client = new RestClient(ServiceUrl);
+			var client = new RestClient(_serviceUrl);
 			var request = new RestRequest("id/json", Method.GET);
 			request.AddParameter("pageid", pageId);
 
@@ -45,7 +49,7 @@ namespace DowJones.Factiva.Currents.Website.Providers
 
 		public IEnumerable<PageListModel> GetPages()
 		{
-			var client = new RestClient(ServiceUrl);
+			var client = new RestClient(_serviceUrl);
 			var request = new RestRequest("/json", Method.GET);
 			var response = client.Execute<NewsPagesListServiceResult>(request);
 

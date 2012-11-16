@@ -48,6 +48,8 @@ namespace DowJones.Factiva.Currents.Website
 												typeof(Pages.Tag).Assembly,
  												typeof(SummaryNewspageModule).Assembly  
 											});
+
+			Bind<ISearchContext>().To<SearchContextManager>();
 		}
 	}
 }

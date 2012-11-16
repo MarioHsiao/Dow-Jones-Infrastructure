@@ -9,9 +9,6 @@ namespace DowJones.Factiva.Currents.Website.Controllers
 {
     public class ArticleController : Controller
     {
-        //
-        // GET: /Headline/
-
         public ActionResult Index(int year, int month, int day, string name, string an)
         {
 	        var pubDate = new DateTime(year, month, day);

@@ -1,4 +1,5 @@
-﻿@model DowJones.Factiva.Currents.Components.CurrentRegionalMap.CurrentRegionalMapModel
+﻿@using System.Web.Routing
+@model DowJones.Factiva.Currents.Components.CurrentRegionalMap.CurrentRegionalMapModel
 @ClientPlugin dj_CurrentRegionalMap
 @ScriptResource RelativeResourceName=CurrentRegionalMap.js, DependsOn=world-map-shapes
 @{ CssClass = "dj_CurrentRegionalMap"; }
@@ -15,7 +16,8 @@
                     @foreach (var region in Model.Data.RegionNewsVolume)
                     {
                         <li>
-                            <h4><a href="@region.Descriptor">There are @region.CurrentTimeFrameNewsVolume.Text.Value
+                            <h4><a href="@Url.Action("Index", "Headlines", new RouteValueDictionary { { "sc", region.SearchContextRef } })">
+                                There are @region.CurrentTimeFrameNewsVolume.Text.Value
                                 Articles for @(region.Descriptor ?? region.Code) region.</a>
                             </h4>
                             <span>@(region.PercentVolumeChange.Value > 0 ? "+" : "")@region.PercentVolumeChange.Text.Value

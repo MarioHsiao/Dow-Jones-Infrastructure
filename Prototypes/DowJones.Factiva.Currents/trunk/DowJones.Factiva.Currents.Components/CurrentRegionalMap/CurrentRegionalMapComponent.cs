@@ -20,9 +20,10 @@ namespace DowJones.Factiva.Currents.Components.CurrentRegionalMap
     using System.Web;
     using System.Web.Security;
     using System.Web.UI;
+    using System.Web.Routing;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 11/14/2012 06:39 PM
+    // Last Generated Timestamp: 11/16/2012 01:43 PM
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Factiva.Currents.Components.CurrentRegionalMap.CurrentRegionalMap.js", DependsOn=new string[] {
             "world-map-shapes"}, ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Factiva.Currents.Components.CurrentRegionalMap.CurrentRegionalMapComponent))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.27108")]
@@ -46,6 +47,7 @@ namespace DowJones.Factiva.Currents.Components.CurrentRegionalMap
 
 
 
+
    CssClass = "dj_CurrentRegionalMap"; 
 
 WriteLiteral("\r\n<div class=\"module\">\r\n    <header>\r\n        <i class=\"icon-globe icon-white\"></" +
@@ -60,12 +62,12 @@ WriteLiteral("\r\n<div class=\"module\">\r\n    <header>\r\n        <i class=\"i
 WriteLiteral("                        <li>\r\n                            <h4><a href=\"");
 
 
-                                    Write(region.Descriptor);
+                                    Write(Url.Action("Index", "Headlines", new RouteValueDictionary { { "sc", region.SearchContextRef } }));
 
-WriteLiteral("\">There are ");
+WriteLiteral("\">\r\n                                There are ");
 
 
-                                                                  Write(region.CurrentTimeFrameNewsVolume.Text.Value);
+                                     Write(region.CurrentTimeFrameNewsVolume.Text.Value);
 
 WriteLiteral("\r\n                                Articles for ");
 
