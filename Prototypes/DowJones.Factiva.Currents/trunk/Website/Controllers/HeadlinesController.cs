@@ -24,5 +24,10 @@ namespace DowJones.Factiva.Currents.Website.Controllers
 			return View(headlines);
         }
 
+	    public ActionResult ViewAll(string sc)
+	    {
+		    ViewBag.SearchContext = sc;
+		    return View();
+	    }
     }
 }

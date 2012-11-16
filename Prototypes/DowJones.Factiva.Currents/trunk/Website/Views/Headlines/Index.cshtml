@@ -1,9 +1,15 @@
-﻿@using DowJones.Factiva.Currents.Components.CurrentsHeadline
-@using DowJones.Web.Mvc.UI.Components.PortalHeadlineList
-@model DowJones.Ajax.PortalHeadlineList.PortalHeadlineListDataResult
+﻿@model DowJones.Factiva.Currents.Website.Models.Headlines
 
 @{
-	ViewBag.Title = "Headlines";
+    ViewBag.Title = "Headlines";
 }
 
-@Html.DJ().Render(new CurrentsHeadlineModel(new PortalHeadlineListModel(Model)))
+<section id="headlines">
+    @Html.DJ().Render(Model.CurrentsHeadline)
+</section>
+<p>
+	@Html.ActionLink(Html.DJ().Token("viewAll").ToString(),
+            "ViewAll",
+            new RouteValueDictionary { { "sc", Model.ViewAllSearchContext } },
+            new Dictionary<string, object> {{"class", "label label-info"}})
+</p>

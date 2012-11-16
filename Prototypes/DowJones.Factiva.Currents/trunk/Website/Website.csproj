@@ -188,6 +188,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Contracts\ISearchContext.cs" />
+    <Compile Include="Models\Headlines.cs" />
     <Compile Include="Providers\SearchContextManager.cs" />
     <Compile Include="Controllers\HeadlinesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -288,6 +289,7 @@
     <Content Include="Views\Test\Index.cshtml" />
     <Content Include="Views\Pages\Index.cshtml" />
     <Content Include="Views\Headlines\Index.cshtml" />
+    <Content Include="Views\Headlines\ViewAll.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
