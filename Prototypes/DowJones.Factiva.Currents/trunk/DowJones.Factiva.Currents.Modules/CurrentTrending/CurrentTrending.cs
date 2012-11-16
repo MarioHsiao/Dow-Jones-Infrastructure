@@ -65,7 +65,8 @@ WriteLiteral("\r\n<div class=\"module\">\r\n    <header>\r\n        <i class=\"i
 WriteLiteral("\r\n    <div class=\"content\">\r\n        <div class=\"row\">\r\n\r\n            <div class=" +
 "\"span4\">\r\n                <ul>\r\n");
 
-
+WriteLiteral("                        <li>\r\n                            <h4 class=\"industry-ite" +
+"m-title\">Top 5 Mentioned</h4>");
                      foreach (var trendingEntities in Model.TrendingTopEntitiesPackageModel)
                     {
 
@@ -90,6 +91,8 @@ WriteLiteral("                </ul>\r\n            </div>\r\n            <div cl
 "           <ul>\r\n");
 
 
+WriteLiteral("                        <li>\r\n                            <h4 class=\"industry-ite" +
+"m-title\">Trending Up</h4>");
                      foreach (var trendingEntities in Model.TrendingUpModel)
                     {
                         foreach (var entity in trendingEntities.TrendingUpDownPackageModel)
@@ -118,7 +121,8 @@ WriteLiteral("\r\n\r\n                        </li>\r\n");
 WriteLiteral("                </ul>\r\n            </div>\r\n            <div class=\"span4\">\r\n     " +
 "           <ul>\r\n");
 
-
+WriteLiteral("                        <li>\r\n                            <h4 class=\"industry-ite" +
+"m-title\">Trending Down</h4>");
                      foreach (var trendingEntities in Model.TrendingDownModel)
                     {
                         foreach (var entity in trendingEntities.TrendingUpDownPackageModel)
