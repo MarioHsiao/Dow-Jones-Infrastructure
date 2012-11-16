@@ -189,7 +189,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Models\PageListModel.cs" />
-    <Compile Include="Controllers\HeadlinesController.cs" />
+    <Compile Include="Controllers\ArticleController.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="DashRouteHandler.cs" />
     <Compile Include="Mocks\MockPageAssetsProvider.cs" />
@@ -281,7 +281,7 @@
     <None Include="Properties\PublishProfiles\montana.pubxml" />
     <Content Include="Views\Modules\_Sources.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Headlines\Index.cshtml" />
+    <Content Include="Views\Article\Index.cshtml" />
     <Content Include="Views\Test\Index.cshtml" />
     <Content Include="Views\Pages\Index.cshtml" />
   </ItemGroup>

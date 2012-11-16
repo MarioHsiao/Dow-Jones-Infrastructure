@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace DowJones.Factiva.Currents.Website.Controllers
 {
-    public class HeadlinesController : Controller
+    public class ArticleController : Controller
     {
         //
         // GET: /Headline/

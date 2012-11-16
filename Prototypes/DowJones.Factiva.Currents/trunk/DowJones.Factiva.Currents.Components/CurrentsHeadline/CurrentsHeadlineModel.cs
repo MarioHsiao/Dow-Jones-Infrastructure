@@ -65,8 +65,10 @@ namespace DowJones.Factiva.Currents.Components.CurrentsHeadline
 
 		public string GetHeadlineUrl(PortalHeadlineInfo headline, UrlHelper urlHelper)
 		{
+			// TODO: Refactor to remove hardcoded controller name from the Url
+
 			if (!headline.ContentCategoryDescriptor.Equals("external"))
-				return urlHelper.Content("~/headlines/{0}".FormatWith(headline.GenerateSeoUrl()));
+				return urlHelper.Content("~/article/{0}".FormatWith(headline.GenerateSeoUrl()));
 
 			return headline.HeadlineUrl;
 		}
