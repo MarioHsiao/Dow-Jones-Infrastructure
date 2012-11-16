@@ -50,7 +50,7 @@ WriteLiteral("\r\n");
 
 
 WriteLiteral("\r\n<div class=\"module\">\r\n    <header>\r\n         <i class=\"icon-time icon-white\"></" +
-"i>\r\n        <span>TopNews</span>\r\n    </header>\r\n    <div class=\"content\">\r\n\t\t<d" +
+"i>\r\n        <span>Factiva Picks</span>\r\n    </header>\r\n    <div class=\"content\">\r\n\t\t<d" +
 "iv class=\"row\">\r\n");
 
 
