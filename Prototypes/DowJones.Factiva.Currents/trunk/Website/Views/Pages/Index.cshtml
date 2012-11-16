@@ -2,14 +2,7 @@
 @using DowJones.Factiva.Currents.Models
 @model DowJones.Factiva.Currents.ServiceModels.PageService.PageServiceResponse
 
-<section class="row">
-    <div class="span12">
-        @if (Model.SourcesNewsPageModuleServiceResult != null)
-        {
-            @Html.DJ().Render(Mapper.Map<CurrentSourcesModel>(Model.SourcesNewsPageModuleServiceResult))
-        }
-    </div>
-</section>
+
 <section class="row">
     <div class="span12">
         @if (Model.NewsstandNewsPageModuleServiceResult != null)
@@ -27,7 +20,14 @@
         }
     </div>
 </section>
-
+<section class="row">
+    <div class="span12">
+        @if (Model.SourcesNewsPageModuleServiceResult != null)
+        {
+            @Html.DJ().Render(Mapper.Map<CurrentSourcesModel>(Model.SourcesNewsPageModuleServiceResult))
+        }
+    </div>
+</section>
 <section class="row">
     <div class="span12">
         @if (Model.TrendingNewsPageModuleServiceResult != null)
