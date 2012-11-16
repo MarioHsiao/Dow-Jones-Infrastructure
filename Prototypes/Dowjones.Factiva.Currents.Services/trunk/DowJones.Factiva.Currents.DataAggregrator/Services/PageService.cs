@@ -42,5 +42,17 @@ namespace DowJones.Factiva.Currents.Aggregrator.Services
           //  ApiLog.Logger.Info(ApiLog.LogPrefix.End);
             return stream;
         }
+
+
+        public Stream GetHeadlines(string format, string searchContextRef)
+        {
+            //  ApiLog.Logger.Info(ApiLog.LogPrefix.Start);
+            string result = Common.GetHeadlines(format, searchContextRef);
+            byte[] byteArray = Encoding.Default.GetBytes(result);
+            MemoryStream stream = new MemoryStream(byteArray);
+            CurrentUtilities.Web.SetResponseHeaders(EnumConverter<RequestFormat>.ConvertStringToEnum(format));
+            //  ApiLog.Logger.Info(ApiLog.LogPrefix.End);
+            return stream;
+        }
     }
 }

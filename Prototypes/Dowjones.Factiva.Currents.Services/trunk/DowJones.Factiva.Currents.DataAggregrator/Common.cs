@@ -91,6 +91,22 @@ namespace DowJones.Factiva.Currents.Aggregrator
             return GetData(url);
         }
 
+        public static string GetHeadlines(string format, string searchContextRef)
+        {
+            int firstResultToReturn = 0;
+            
+            string url =
+                string.Format(
+                    "{0}/Headlines/1.0/list/" + format + "?encryptedToken={1}&searchContextRef={2}&firstResultToReturn={3}&maxResultsToReturn={4}",
+                    basePath,
+                    enToken,
+                    searchContextRef,
+                    firstResultToReturn,
+                    maxResultsToReturn
+                  );
+            return GetData(url);
+        }
+
         private static string GetSerializedPagesModulesForJson(Dictionary<string, string> pageModuleList)
         {
             if (pageModuleList.Count > 0)

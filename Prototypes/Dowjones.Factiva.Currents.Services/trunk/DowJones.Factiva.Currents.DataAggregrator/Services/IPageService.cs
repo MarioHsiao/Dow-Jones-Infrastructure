@@ -6,6 +6,7 @@ using System.Linq;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
+using DowJones.Ajax.PortalHeadlineList;
 
 namespace DowJones.Factiva.Currents.Aggregrator.Services
 {
@@ -23,5 +24,10 @@ namespace DowJones.Factiva.Currents.Aggregrator.Services
         [OperationContract(Name = "GetPageList")]
         //[FaultContract(typeof(ErrorResponse))]
         Stream GetPageList(string format);
+
+        [Description("Get Headlines")]
+        [WebGet(UriTemplate = "/headlines/{format}?searchContextRef={searchContextRef}", BodyStyle = WebMessageBodyStyle.Bare)]
+        [OperationContract(Name = "GetHeadlines")]
+        Stream GetHeadlines(string format, string searchContextRef);
     }
 }
