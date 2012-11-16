@@ -33,7 +33,7 @@ namespace DowJones.Factiva.Currents.Website.Controllers
         private string GenerateXml(IEnumerable<PageListModel> pages)
         {
             XmlDocument xmlDoc = new XmlDocument();
-            XmlElement root = xmlDoc.CreateElement("urlset");
+            XmlElement root = xmlDoc.CreateElement("urlset", "http://www.sitemaps.org/schemas/sitemap/0.9");
             xmlDoc.AppendChild(root);
             UrlHelper urlHelper = new UrlHelper(Request.RequestContext);
            
