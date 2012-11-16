@@ -35,22 +35,23 @@ namespace DowJones.Factiva.Currents.Website.Controllers
             XmlDocument xmlDoc = new XmlDocument();
             XmlElement root = xmlDoc.CreateElement("urlset");
             xmlDoc.AppendChild(root);
-
+            UrlHelper urlHelper = new UrlHelper(Request.RequestContext);
+           
             IEnumerator<PageListModel> model = pages.GetEnumerator();
             while (model.MoveNext())
             {
                 var pageListModel = model.Current;
                 XmlElement url = xmlDoc.CreateElement("url");
-
                 XmlElement loc = xmlDoc.CreateElement("loc");
                 if (!string.IsNullOrEmpty(Request.Url.OriginalString) && pageListModel != null)
                 {
-                    loc.InnerText = Request.Url.OriginalString.Remove(Request.Url.OriginalString.IndexOf("SiteMap")) + "pages/" + pageListModel.FriendlyTitle;
+                    var protocol =  HttpContext.Request.Url.Scheme;
+                    loc.InnerText = urlHelper.Action(pageListModel.FriendlyTitle, "Pages", null, protocol);
                 }
                 url.AppendChild(loc);
 
                 XmlElement lastMod = xmlDoc.CreateElement("lastmod");
-                lastMod.InnerText = System.DateTime.Now.ToUniversalTime().ToString();
+                lastMod.InnerText = System.DateTime.Now.ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ");
                 url.AppendChild(lastMod);
                 XmlElement changeFreq = xmlDoc.CreateElement("changefreq");
                 changeFreq.InnerText = "hourly";
