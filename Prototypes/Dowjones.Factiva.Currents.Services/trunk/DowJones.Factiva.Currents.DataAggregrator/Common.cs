@@ -104,7 +104,7 @@ namespace DowJones.Factiva.Currents.Aggregrator
                     firstResultToReturn,
                     maxResultsToReturn
                   );
-            return GetData(url);
+            return GetData(url,false);
         }
 
         private static string GetSerializedPagesModulesForJson(Dictionary<string, string> pageModuleList)
@@ -371,14 +371,17 @@ namespace DowJones.Factiva.Currents.Aggregrator
             }
         }
 
-        public static string GetData(string url)
+        public static string GetData(string url,bool addPreference = true)
         {
             string result = string.Empty;
             try
             {
                 var webRequest = WebRequest.Create(new Uri(url));
                 webRequest.Headers.Add("X-Requested-With", "XMLHttpRequest");
-                webRequest.Headers.Add("preferences", "{\"clockType\":1,\"interfaceLanguage\":\"en\",\"contentLanguages\":[\"en\"],\"timeZone\":\"on, -05:00|1, on\"}");
+                if (addPreference)
+                {
+                    webRequest.Headers.Add("preferences", "{\"clockType\":1,\"interfaceLanguage\":\"en\",\"contentLanguages\":[\"en\"],\"timeZone\":\"on, -05:00|1, on\"}");
+                }
 
                 
                 webRequest.Method = "GET";
