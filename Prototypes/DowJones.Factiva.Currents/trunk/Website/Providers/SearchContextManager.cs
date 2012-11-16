@@ -2,7 +2,9 @@ using System;
 using System.Configuration;
 using DowJones.Ajax.PortalHeadlineList;
 using DowJones.Extensions;
+using DowJones.Factiva.Currents.ServiceModels.PageService;
 using RestSharp;
+using Newtonsoft.Json;
 
 namespace DowJones.Factiva.Currents.Website.Contracts
 {
@@ -25,7 +27,13 @@ namespace DowJones.Factiva.Currents.Website.Contracts
 			var request = new RestRequest("headlines/json", Method.GET);
 			request.AddParameter("searchContextRef", searchContext);
 
-			return client.Execute<PortalHeadlineListDataResult>(request).Data;
+			var response = client.Execute(request).Content;
+
+			var portalHeadlineListDataResult = JsonConvert
+													.DeserializeObject<PortalHeadlinesServiceResult>(response)
+													.Package
+													.Result;
+			return portalHeadlineListDataResult;
 		}
 
 		#endregion

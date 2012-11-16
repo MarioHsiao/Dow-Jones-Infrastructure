@@ -1,5 +1,6 @@
 ﻿using System.Xml.Schema;
 using System.Xml.Serialization;
+using DowJones.Factiva.Currents.ServiceModels.PageService.Common.Headlines.Packages;
 using DowJones.Pages;
 using Newtonsoft.Json;
 using System.Runtime.Serialization;

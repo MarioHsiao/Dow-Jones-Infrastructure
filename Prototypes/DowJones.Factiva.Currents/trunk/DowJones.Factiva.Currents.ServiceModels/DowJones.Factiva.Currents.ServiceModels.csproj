@@ -81,10 +81,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PageService\AbstractHeadlinePackage.cs" />
+    <Compile Include="PageService\Common\Headlines\Packages\AbstractHeadlinePackage.cs" />
     <Compile Include="PageService\AbstractServicePartResult.cs" />
     <Compile Include="PageService\AbstractServiceResult.cs" />
     <Compile Include="PageService\Audit.cs" />
+    <Compile Include="PageService\Common\Headlines\Packages\PortalHeadlinesPackage.cs" />
     <Compile Include="PageService\Interfaces\IPackage.cs" />
     <Compile Include="PageService\Interfaces\IPortalHeadlines.cs" />
     <Compile Include="PageService\Interfaces\IServicePartResult.cs" />
@@ -158,6 +159,7 @@
     <Compile Include="PageService\NewsPagesListPackage.cs" />
     <Compile Include="PageService\NewsPagesListServiceResult.cs" />
     <Compile Include="PageService\PageServiceResponse.cs" />
+    <Compile Include="PageService\PortalHeadlinesServiceResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RelativeNameSerializationBinder.cs" />
     <Compile Include="TypeNameResolver.cs" />

@@ -1,4 +1,5 @@
 ﻿using System.Runtime.Serialization;
+using DowJones.Factiva.Currents.ServiceModels.PageService.Common.Headlines.Packages;
 using DowJones.Factiva.Currents.ServiceModels.PageService.Interfaces;
 
 namespace DowJones.Factiva.Currents.ServiceModels.PageService.Modules.Newsstand.Packages

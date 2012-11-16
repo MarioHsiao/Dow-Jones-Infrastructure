@@ -5,6 +5,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System.Runtime.Serialization;
+using DowJones.Factiva.Currents.ServiceModels.PageService.Common.Headlines.Packages;
 
 namespace DowJones.Factiva.Currents.ServiceModels.PageService.Modules.TopNews.Packages
 {
