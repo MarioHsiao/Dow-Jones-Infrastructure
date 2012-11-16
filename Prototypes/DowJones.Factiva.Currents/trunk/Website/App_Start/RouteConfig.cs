@@ -17,14 +17,20 @@ namespace DowJones.Factiva.Currents.Website.App_Start
 			_routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
 			_routes.Add(
-				new Route("article/{year}/{month}/{day}/{name}/{an}",
-					new RouteValueDictionary(new { controller = "Article", action = "Index", an = "" }),
+                new Route("article/{year}/{month}/{day}/{name}/{an}",
+                    new RouteValueDictionary(new { controller = "Article", action = "Index", an = "" }),
 					new DashRouteHandler()));
 
 			_routes.Add(
 				new Route("pages/{name}",
 					new RouteValueDictionary( new { controller = "Pages", action = "Index" }),
 					new DashRouteHandler()));
+
+            _routes.MapRoute(
+                name: "SiteMaps",
+                url: "SiteMap",
+                defaults: new { controller = "Home", action = "SiteMap", id = UrlParameter.Optional }
+            );
 
 			_routes.MapRoute(
 				name: "Default",
