@@ -4,7 +4,8 @@ var model = self,
 %>
 
  <ul class="dj_discoveryFilters-list">
- <%_.each(model, function(val, key) { %>
+ <%_.each(model, function(val, key) { 
+    if (val!= null){%>
     <li class="dj_discoveryFilters-listItem-<%= index++ %>">
         <!-- Discovery container -->
         <div class="dj_df-div">
@@ -23,6 +24,5 @@ var model = self,
             </div>
         </div>
     </li>
-    <% }); %>
+    <% }}); %>
 </ul>
-<span class="morebutton"></span><span class="lessbutton lessbutton-inactive"></span><span class="loading hide"><img src="../img/ajax-loader-flat.gif"></span>

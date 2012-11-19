@@ -4,6 +4,48 @@ function getDiscoveryFiltersData() {
 
 		"discovery": {
 
+			"authorNewsEntities": {
+				"title": "${authors}",
+				"position": 4,
+				"isExpanded": false,
+				"newsEntities": [
+			{
+				"type": 12,
+				"typeDescriptor": "Author",
+				"currentTimeFrameNewsVolume": {
+					"displayText": {
+						"value": "291"
+					},
+					"value": 291.0
+				},
+				"currentTimeFrameRoundedNewsVolume": "291",
+				"code": "170924",
+				"descriptor": "Christopher Lim",
+				"searchContextRef": null
+			}, {
+				"type": 12,
+				"typeDescriptor": "Author",
+				"currentTimeFrameNewsVolume": {
+					"displayText": {
+						"value": "249"
+					},
+					"value": 249.0
+				},
+				"currentTimeFrameRoundedNewsVolume": "249",
+				"code": "278079",
+				"descriptor": "Oo Gin Lee",
+				"searchContextRef": null
+			}
+		],
+				"type": 12,
+				"typeDescriptor": null,
+				"currentTimeFrameNewsVolume": null,
+				"currentTimeFrameRoundedNewsVolume": null,
+				"code": null,
+				"descriptor": null,
+				"searchContextRef": null
+			},
+
 			"industryNewsEntities": {
 				"title": "${industries}",
 				"position": 5,
@@ -85,86 +127,19 @@ function getDiscoveryFiltersData() {
 				"searchContextRef": null
 			},
 
-			"personNewsEntities": {
-				"title": "${executives}",
-				"position": 0,
-				"isExpanded": false,
-				"newsEntities": [
-			{
-				"type": 2,
-				"typeDescriptor": "Person",
-				"currentTimeFrameNewsVolume": {
-					"displayText": {
-						"value": "1,969"
-					},
-					"value": 1969.0
-				},
-				"currentTimeFrameRoundedNewsVolume": "1,969",
-				"code": "52739196",
-				"descriptor": "Steve Jobs",
-				"searchContextRef": null
-			}, {
-				"type": 2,
-				"typeDescriptor": "Person",
-				"currentTimeFrameNewsVolume": {
-					"displayText": {
-						"value": "1,594"
-					},
-					"value": 1594.0
-				},
-				"currentTimeFrameRoundedNewsVolume": "1,594",
-				"code": "57037611",
-				"descriptor": "Barack Obama",
-				"searchContextRef": null
-			}, {
-				"type": 2,
-				"typeDescriptor": "Person",
-				"currentTimeFrameNewsVolume": {
-					"displayText": {
-						"value": "1,501"
-					},
-					"value": 1501.0
-				},
-				"currentTimeFrameRoundedNewsVolume": "1,501",
-				"code": "12301914",
-				"descriptor": "Timothy D Cook",
-				"searchContextRef": null
-			}, {
-				"type": 2,
-				"typeDescriptor": "Person",
-				"currentTimeFrameNewsVolume": {
-					"displayText": {
-						"value": "1,025"
-					},
-					"value": 1025.0
-				},
-				"currentTimeFrameRoundedNewsVolume": "1,025",
-				"code": "12301916",
-				"descriptor": "Philip W Schiller",
-				"searchContextRef": null
-			}, {
-				"type": 2,
-				"typeDescriptor": "Person",
-				"currentTimeFrameNewsVolume": {
-					"displayText": {
-						"value": "715"
-					},
-					"value": 715.0
-				},
-				"currentTimeFrameRoundedNewsVolume": "715",
-				"code": "54609059",
-				"descriptor": "Brad Davis",
-				"searchContextRef": null
-			}
-		],
-				"type": 2,
-				"typeDescriptor": null,
-				"currentTimeFrameNewsVolume": null,
-				"currentTimeFrameRoundedNewsVolume": null,
-				"code": null,
-				"descriptor": null,
-				"searchContextRef": null
-			},
+"personNewsEntities": {
+	"title": "${executives}",
+	"position": 0,
+	"isExpanded": false,
+	"newsEntities": [],
+	"type": 2,
+	"typeDescriptor": null,
+	"currentTimeFrameNewsVolume": null,
+	"currentTimeFrameRoundedNewsVolume": null,
+	"code": null,
+	"descriptor": null,
+	"searchContextRef": null
+},
 
 			"subjectNewsEntities": {
 				"title": "${newsSubjects}",
@@ -247,47 +222,7 @@ function getDiscoveryFiltersData() {
 				"searchContextRef": null
 			},
 
-			"authorNewsEntities": {
-				"title": "${authors}",
-				"position": 4,
-				"isExpanded": false,
-				"newsEntities": [
-			{
-				"type": 12,
-				"typeDescriptor": "Author",
-				"currentTimeFrameNewsVolume": {
-					"displayText": {
-						"value": "291"
-					},
-					"value": 291.0
-				},
-				"currentTimeFrameRoundedNewsVolume": "291",
-				"code": "170924",
-				"descriptor": "Christopher Lim",
-				"searchContextRef": null
-			}, {
-				"type": 12,
-				"typeDescriptor": "Author",
-				"currentTimeFrameNewsVolume": {
-					"displayText": {
-						"value": "249"
-					},
-					"value": 249.0
-				},
-				"currentTimeFrameRoundedNewsVolume": "249",
-				"code": "278079",
-				"descriptor": "Oo Gin Lee",
-				"searchContextRef": null
-			}
-		],
-				"type": 12,
-				"typeDescriptor": null,
-				"currentTimeFrameNewsVolume": null,
-				"currentTimeFrameRoundedNewsVolume": null,
-				"code": null,
-				"descriptor": null,
-				"searchContextRef": null
-			},
+			"regionNewsEntities": null,
 
 			"sourceNewsEntities": {
 				"title": "${sources}",
