@@ -80,7 +80,8 @@ WriteLiteral("                        <li>\r\n                            <h4 cl
 
                                                                         Write(entity.Descriptor);
 
-WriteLiteral("</a> </h4>\r\n                        </li>\r\n");
+WriteLiteral("</a> </h4>  <p><span class=\"news-volume-previous\">");
+Write(entity.CurrentTimeFrameNewsVolume.Text.Value); WriteLiteral("</span><span class=\"item-total-type\"> Articles </span></p>\r\n                        </li>\r\n");
 
 
                         }
@@ -97,6 +98,15 @@ WriteLiteral("                        <li>\r\n                            <h4 cl
                     {
                         foreach (var entity in trendingEntities.TrendingUpDownPackageModel)
                         {
+                             var percentOrNew = string.Empty;
+                             if(entity.PercentVolumeChange != null)
+                                    {
+                                        percentOrNew =  entity.PercentVolumeChange.Text.Value + "Vol" ;
+                                    }
+                                    else
+                                    {
+                                        percentOrNew  = "New" ;
+                                    }
 
 WriteLiteral("                        <li>\r\n                            <h4 class=\"industry-ite" +
 "m-title\"><a href=\"javascript:void(0)\" class=\"popup-trigger\"\r\n                   " +
@@ -105,11 +115,17 @@ WriteLiteral("                        <li>\r\n                            <h4 cl
 
                                                                         Write(entity.Descriptor);
 
-WriteLiteral("</a> </h4>\r\n                            ");
+WriteLiteral("</a> </h4>\r\n  <p><span class=\"news-volume-previous\">");
 
+Write(entity.PreviousTimeFrameNewsVolume.Text.Value);
 
+WriteLiteral("</span>\r\r\r<span class=\"fi fi_arrow-green-small\"></span><span class=\"news-volume-current\">");
+Write(entity.CurrentTimeFrameNewsVolume.Text.Value);
 
-WriteLiteral("\r\n\r\n                        </li>\r\n");
+WriteLiteral("\r\n\r\n </span><span class=\"news-volume-percentage increase\">");
+Write(percentOrNew);
+
+WriteLiteral("\r\n\r\n</span></p>              </li>\r\n");
 
 
 
@@ -135,7 +151,17 @@ WriteLiteral("                        <li>\r\n                            <h4 cl
 
                                                                         Write(entity.Descriptor);
 
-WriteLiteral("</a> </h4>\r\n                        </li>\r\n");
+WriteLiteral("</a> </h4>\r\n  <p><span class=\"news-volume-previous\">");
+
+Write(entity.PreviousTimeFrameNewsVolume.Text.Value);
+
+WriteLiteral("</span>\r\r\r<span class=\"fi fi_arrow-green-small\"></span><span class=\"news-volume-current\">");
+Write(entity.CurrentTimeFrameNewsVolume.Text.Value);
+
+WriteLiteral("\r\n\r\n </span><span class=\"news-volume-percentage increase\">");
+Write(entity.PercentVolumeChange.Text.Value);
+
+WriteLiteral(" Vol\r\n\r\n</span></p>              </li>\r\n");
 
 
                         }
