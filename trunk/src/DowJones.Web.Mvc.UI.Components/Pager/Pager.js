@@ -7,7 +7,7 @@
 
     DJ.UI.Pager = DJ.UI.Component.extend({
 
-        options: {
+        defaults: {
             activePage: 1,
             totalPages: 1,
             pagerClass: "module-pager",
