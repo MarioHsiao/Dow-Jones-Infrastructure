@@ -18,7 +18,6 @@ function getDiscoveryFiltersData() {
 					},
 					"value": 291.0
 				},
-				"currentTimeFrameRoundedNewsVolume": "291",
 				"code": "170924",
 				"descriptor": "Christopher Lim",
 				"searchContextRef": null
@@ -31,7 +30,6 @@ function getDiscoveryFiltersData() {
 					},
 					"value": 249.0
 				},
-				"currentTimeFrameRoundedNewsVolume": "249",
 				"code": "278079",
 				"descriptor": "Oo Gin Lee",
 				"searchContextRef": null
@@ -40,7 +38,6 @@ function getDiscoveryFiltersData() {
 				"type": 12,
 				"typeDescriptor": null,
 				"currentTimeFrameNewsVolume": null,
-				"currentTimeFrameRoundedNewsVolume": null,
 				"code": null,
 				"descriptor": null,
 				"searchContextRef": null
@@ -60,7 +57,6 @@ function getDiscoveryFiltersData() {
 					},
 					"value": 9721.0
 				},
-				"currentTimeFrameRoundedNewsVolume": "9,721",
 				"code": "itablcm",
 				"descriptor": "Tablet Computers",
 				"searchContextRef": null
@@ -73,7 +69,6 @@ function getDiscoveryFiltersData() {
 					},
 					"value": 5617.0
 				},
-				"currentTimeFrameRoundedNewsVolume": "5,617",
 				"code": "icomp",
 				"descriptor": "Computing",
 				"searchContextRef": null
@@ -86,7 +81,6 @@ function getDiscoveryFiltersData() {
 					},
 					"value": 4244.0
 				},
-				"currentTimeFrameRoundedNewsVolume": "4,244",
 				"code": "ismart",
 				"descriptor": "Smart Phones",
 				"searchContextRef": null
@@ -99,7 +93,6 @@ function getDiscoveryFiltersData() {
 					},
 					"value": 4206.0
 				},
-				"currentTimeFrameRoundedNewsVolume": "4,206",
 				"code": "i3302",
 				"descriptor": "Computers/Electronics",
 				"searchContextRef": null
@@ -112,7 +105,6 @@ function getDiscoveryFiltersData() {
 					},
 					"value": 1988.0
 				},
-				"currentTimeFrameRoundedNewsVolume": "1,988",
 				"code": "iconssv",
 				"descriptor": "Consumer Services",
 				"searchContextRef": null
@@ -121,7 +113,6 @@ function getDiscoveryFiltersData() {
 				"type": 4,
 				"typeDescriptor": null,
 				"currentTimeFrameNewsVolume": null,
-				"currentTimeFrameRoundedNewsVolume": null,
 				"code": null,
 				"descriptor": null,
 				"searchContextRef": null
@@ -135,7 +126,6 @@ function getDiscoveryFiltersData() {
 	"type": 2,
 	"typeDescriptor": null,
 	"currentTimeFrameNewsVolume": null,
-	"currentTimeFrameRoundedNewsVolume": null,
 	"code": null,
 	"descriptor": null,
 	"searchContextRef": null
@@ -151,11 +141,10 @@ function getDiscoveryFiltersData() {
 				"typeDescriptor": "NewsSubject",
 				"currentTimeFrameNewsVolume": {
 					"displayText": {
-						"value": "24,425"
+					    "value": "24.4K"
 					},
 					"value": 24425.0
 				},
-				"currentTimeFrameRoundedNewsVolume": "24.4K",
 				"code": "ccat",
 				"descriptor": "Corporate/Industrial News",
 				"searchContextRef": null
@@ -168,7 +157,6 @@ function getDiscoveryFiltersData() {
 					},
 					"value": 7610.0
 				},
-				"currentTimeFrameRoundedNewsVolume": "7,610",
 				"code": "npress",
 				"descriptor": "Press Release",
 				"searchContextRef": null
@@ -181,7 +169,6 @@ function getDiscoveryFiltersData() {
 					},
 					"value": 5474.0
 				},
-				"currentTimeFrameRoundedNewsVolume": "5,474",
 				"code": "gcat",
 				"descriptor": "Political/General News",
 				"searchContextRef": null
@@ -194,7 +181,6 @@ function getDiscoveryFiltersData() {
 					},
 					"value": 4867.0
 				},
-				"currentTimeFrameRoundedNewsVolume": "4,867",
 				"code": "m11",
 				"descriptor": "Equity Markets",
 				"searchContextRef": null
@@ -207,7 +193,6 @@ function getDiscoveryFiltersData() {
 					},
 					"value": 4828.0
 				},
-				"currentTimeFrameRoundedNewsVolume": "4,828",
 				"code": "c22",
 				"descriptor": "New Products/Services",
 				"searchContextRef": null
@@ -216,7 +201,6 @@ function getDiscoveryFiltersData() {
 				"type": 5,
 				"typeDescriptor": null,
 				"currentTimeFrameNewsVolume": null,
-				"currentTimeFrameRoundedNewsVolume": null,
 				"code": null,
 				"descriptor": null,
 				"searchContextRef": null
@@ -328,11 +312,11 @@ function getDiscoveryFiltersData() {
 					},
 					"value": 95.0
 				},
-				"currentTimeFrameRoundedNewsVolume": "95",
 				"code": "20120811",
 				"descriptor": null,
 				"searchContextRef": null
-			}, {
+}, 
+            {
 				"startDate": "\/Date(1344744000000-0400)\/",
 				"startDateFormattedString": "12-Aug-2012",
 				"endDate": "\/Date(1344744000000-0400)\/",
@@ -345,7 +329,6 @@ function getDiscoveryFiltersData() {
 					},
 					"value": 616.0
 				},
-				"currentTimeFrameRoundedNewsVolume": "616",
 				"code": "20120812",
 				"descriptor": null,
 				"searchContextRef": null
@@ -362,7 +345,6 @@ function getDiscoveryFiltersData() {
 					},
 					"value": 483.0
 				},
-				"currentTimeFrameRoundedNewsVolume": "483",
 				"code": "20120813",
 				"descriptor": null,
 				"searchContextRef": null
@@ -379,7 +361,6 @@ function getDiscoveryFiltersData() {
 					},
 					"value": 585.0
 				},
-				"currentTimeFrameRoundedNewsVolume": "585",
 				"code": "20120814",
 				"descriptor": null,
 				"searchContextRef": null
@@ -396,7 +377,6 @@ function getDiscoveryFiltersData() {
 					},
 					"value": 1224.0
 				},
-				"currentTimeFrameRoundedNewsVolume": "1,224",
 				"code": "20120815",
 				"descriptor": null,
 				"searchContextRef": null
@@ -413,7 +393,6 @@ function getDiscoveryFiltersData() {
 					},
 					"value": 674.0
 				},
-				"currentTimeFrameRoundedNewsVolume": "674",
 				"code": "20120816",
 				"descriptor": null,
 				"searchContextRef": null
@@ -430,7 +409,6 @@ function getDiscoveryFiltersData() {
 					},
 					"value": 907.0
 				},
-				"currentTimeFrameRoundedNewsVolume": "907",
 				"code": "20120817",
 				"descriptor": null,
 				"searchContextRef": null
@@ -447,7 +425,6 @@ function getDiscoveryFiltersData() {
 					},
 					"value": 251.0
 				},
-				"currentTimeFrameRoundedNewsVolume": "251",
 				"code": "20120818",
 				"descriptor": null,
 				"searchContextRef": null
@@ -464,7 +441,6 @@ function getDiscoveryFiltersData() {
 					},
 					"value": 224.0
 				},
-				"currentTimeFrameRoundedNewsVolume": "224",
 				"code": "20120819",
 				"descriptor": null,
 				"searchContextRef": null
@@ -481,7 +457,6 @@ function getDiscoveryFiltersData() {
 					},
 					"value": 549.0
 				},
-				"currentTimeFrameRoundedNewsVolume": "549",
 				"code": "20120820",
 				"descriptor": null,
 				"searchContextRef": null
@@ -498,7 +473,6 @@ function getDiscoveryFiltersData() {
 					},
 					"value": 601.0
 				},
-				"currentTimeFrameRoundedNewsVolume": "601",
 				"code": "20120821",
 				"descriptor": null,
 				"searchContextRef": null
@@ -515,7 +489,6 @@ function getDiscoveryFiltersData() {
 					},
 					"value": 826.0
 				},
-				"currentTimeFrameRoundedNewsVolume": "826",
 				"code": "20120822",
 				"descriptor": null,
 				"searchContextRef": null
@@ -532,7 +505,6 @@ function getDiscoveryFiltersData() {
 					},
 					"value": 821.0
 				},
-				"currentTimeFrameRoundedNewsVolume": "821",
 				"code": "20120823",
 				"descriptor": null,
 				"searchContextRef": null
@@ -549,7 +521,6 @@ function getDiscoveryFiltersData() {
 					},
 					"value": 571.0
 				},
-				"currentTimeFrameRoundedNewsVolume": "571",
 				"code": "20120824",
 				"descriptor": null,
 				"searchContextRef": null
@@ -566,7 +537,6 @@ function getDiscoveryFiltersData() {
 					},
 					"value": 412.0
 				},
-				"currentTimeFrameRoundedNewsVolume": "412",
 				"code": "20120825",
 				"descriptor": null,
 				"searchContextRef": null
@@ -583,7 +553,6 @@ function getDiscoveryFiltersData() {
 					},
 					"value": 326.0
 				},
-				"currentTimeFrameRoundedNewsVolume": "326",
 				"code": "20120826",
 				"descriptor": null,
 				"searchContextRef": null
@@ -600,7 +569,6 @@ function getDiscoveryFiltersData() {
 					},
 					"value": 1194.0
 				},
-				"currentTimeFrameRoundedNewsVolume": "1,194",
 				"code": "20120827",
 				"descriptor": null,
 				"searchContextRef": null
@@ -617,7 +585,6 @@ function getDiscoveryFiltersData() {
 					},
 					"value": 927.0
 				},
-				"currentTimeFrameRoundedNewsVolume": "927",
 				"code": "20120828",
 				"descriptor": null,
 				"searchContextRef": null
@@ -634,7 +601,6 @@ function getDiscoveryFiltersData() {
 					},
 					"value": 960.0
 				},
-				"currentTimeFrameRoundedNewsVolume": "960",
 				"code": "20120829",
 				"descriptor": null,
 				"searchContextRef": null
@@ -651,7 +617,6 @@ function getDiscoveryFiltersData() {
 					},
 					"value": 768.0
 				},
-				"currentTimeFrameRoundedNewsVolume": "768",
 				"code": "20120830",
 				"descriptor": null,
 				"searchContextRef": null
@@ -668,7 +633,6 @@ function getDiscoveryFiltersData() {
 					},
 					"value": 464.0
 				},
-				"currentTimeFrameRoundedNewsVolume": "464",
 				"code": "20120831",
 				"descriptor": null,
 				"searchContextRef": null
@@ -685,7 +649,6 @@ function getDiscoveryFiltersData() {
 					},
 					"value": 505.0
 				},
-				"currentTimeFrameRoundedNewsVolume": "505",
 				"code": "20120901",
 				"descriptor": null,
 				"searchContextRef": null
@@ -702,7 +665,6 @@ function getDiscoveryFiltersData() {
 					},
 					"value": 237.0
 				},
-				"currentTimeFrameRoundedNewsVolume": "237",
 				"code": "20120902",
 				"descriptor": null,
 				"searchContextRef": null
@@ -719,7 +681,6 @@ function getDiscoveryFiltersData() {
 					},
 					"value": 334.0
 				},
-				"currentTimeFrameRoundedNewsVolume": "334",
 				"code": "20120903",
 				"descriptor": null,
 				"searchContextRef": null
@@ -736,7 +697,6 @@ function getDiscoveryFiltersData() {
 					},
 					"value": 838.0
 				},
-				"currentTimeFrameRoundedNewsVolume": "838",
 				"code": "20120904",
 				"descriptor": null,
 				"searchContextRef": null
@@ -753,7 +713,6 @@ function getDiscoveryFiltersData() {
 					},
 					"value": 901.0
 				},
-				"currentTimeFrameRoundedNewsVolume": "901",
 				"code": "20120905",
 				"descriptor": null,
 				"searchContextRef": null
@@ -770,7 +729,6 @@ function getDiscoveryFiltersData() {
 					},
 					"value": 1386.0
 				},
-				"currentTimeFrameRoundedNewsVolume": "1,386",
 				"code": "20120906",
 				"descriptor": null,
 				"searchContextRef": null
@@ -787,7 +745,6 @@ function getDiscoveryFiltersData() {
 					},
 					"value": 1057.0
 				},
-				"currentTimeFrameRoundedNewsVolume": "1,057",
 				"code": "20120907",
 				"descriptor": null,
 				"searchContextRef": null
@@ -804,7 +761,6 @@ function getDiscoveryFiltersData() {
 					},
 					"value": 423.0
 				},
-				"currentTimeFrameRoundedNewsVolume": "423",
 				"code": "20120908",
 				"descriptor": null,
 				"searchContextRef": null
@@ -821,7 +777,6 @@ function getDiscoveryFiltersData() {
 					},
 					"value": 188.0
 				},
-				"currentTimeFrameRoundedNewsVolume": "188",
 				"code": "20120909",
 				"descriptor": null,
 				"searchContextRef": null
@@ -838,7 +793,6 @@ function getDiscoveryFiltersData() {
 					},
 					"value": 560.0
 				},
-				"currentTimeFrameRoundedNewsVolume": "560",
 				"code": "20120910",
 				"descriptor": null,
 				"searchContextRef": null
@@ -855,7 +809,6 @@ function getDiscoveryFiltersData() {
 					},
 					"value": 603.0
 				},
-				"currentTimeFrameRoundedNewsVolume": "603",
 				"code": "20120911",
 				"descriptor": null,
 				"searchContextRef": null
@@ -872,7 +825,6 @@ function getDiscoveryFiltersData() {
 					},
 					"value": 1215.0
 				},
-				"currentTimeFrameRoundedNewsVolume": "1,215",
 				"code": "20120912",
 				"descriptor": null,
 				"searchContextRef": null
@@ -889,7 +841,6 @@ function getDiscoveryFiltersData() {
 					},
 					"value": 595.0
 				},
-				"currentTimeFrameRoundedNewsVolume": "595",
 				"code": "20120913",
 				"descriptor": null,
 				"searchContextRef": null
@@ -906,7 +857,6 @@ function getDiscoveryFiltersData() {
 					},
 					"value": 1086.0
 				},
-				"currentTimeFrameRoundedNewsVolume": "1,086",
 				"code": "20120914",
 				"descriptor": null,
 				"searchContextRef": null
@@ -923,7 +873,6 @@ function getDiscoveryFiltersData() {
 					},
 					"value": 474.0
 				},
-				"currentTimeFrameRoundedNewsVolume": "474",
 				"code": "20120915",
 				"descriptor": null,
 				"searchContextRef": null
@@ -1880,6 +1829,7 @@ function getDiscoveryFiltersData() {
 				"descriptor": null,
 				"searchContextRef": null
 			}
+            
 		],
 				"type": 18,
 				"typeDescriptor": null,
