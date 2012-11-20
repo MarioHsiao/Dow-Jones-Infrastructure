@@ -20,7 +20,7 @@ namespace DowJones.Tools.ClientResourceAliasMapper.Mappings
             var nameAttribute = element.Attribute(NameAttributeName);
             var dependencyLevelAttribute = element.Attribute(DependencyLevelAttributeName);
             var directoryAttribute = element.Attribute(DirectoryAttributeName);
-            var dependsOnAttribute = element.Attribute(DependsAttributeValue);
+            var dependsOnAttribute1 = element.Element(DependsAttributeValue);
 
             var mapping = new ClientResourceMapping();
 
@@ -33,8 +33,8 @@ namespace DowJones.Tools.ClientResourceAliasMapper.Mappings
             if (dependencyLevelAttribute != null && !string.IsNullOrEmpty(dependencyLevelAttribute.Value))
                 mapping.DependencyLevel = dependencyLevelAttribute.Value;
 
-            if (dependsOnAttribute != null && !string.IsNullOrEmpty(dependsOnAttribute.Value))
-                mapping.DependsOn = dependsOnAttribute.Value;
+            if (dependsOnAttribute1 != null && !string.IsNullOrEmpty(dependsOnAttribute1.Value))
+                mapping.DependsOn = dependsOnAttribute1.Value;
 
             return mapping;
         }
@@ -53,7 +53,7 @@ namespace DowJones.Tools.ClientResourceAliasMapper.Mappings
                 element.Add(new XAttribute(DependencyLevelAttributeName, mapping.DependencyLevel));
 
             if (!string.IsNullOrEmpty(mapping.DependsOn))
-                element.Add(new XAttribute(DependsAttributeValue, mapping.DependsOn));
+                element.Add(new XElement(DependsAttributeValue, mapping.DependsOn));
 
             return element;
         }
