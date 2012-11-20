@@ -95,7 +95,7 @@ namespace DowJones.Assemblers.Entities
                                     objNewsEntity.Code = objBucket.Id;
                                     objNewsEntity.Descriptor = objBucket.Value;
                                     objNewsEntity.CurrentTimeFrameNewsVolume = new Formatters.WholeNumber(objBucket.HitCount);
-                                    objNewsEntity.CurrentTimeFrameRoundedNewsVolume = GetRoundedHitCount(objBucket.HitCount);
+                                    objNewsEntity.CurrentTimeFrameNewsVolume.Text.Value = GetRoundedHitCount(objBucket.HitCount);
                                     switch (objNavigator.Id)
                                     {
                                         case "py":
@@ -180,7 +180,7 @@ namespace DowJones.Assemblers.Entities
                                     objNewsEntity.Code = objBucket.Id;
                                     objNewsEntity.Descriptor = objBucket.Value;
                                     objNewsEntity.CurrentTimeFrameNewsVolume = new Formatters.WholeNumber(objBucket.HitCount);
-                                    objNewsEntity.CurrentTimeFrameRoundedNewsVolume = GetRoundedHitCount(objBucket.HitCount);
+                                    objNewsEntity.CurrentTimeFrameNewsVolume.Text.Value = GetRoundedHitCount(objBucket.HitCount);
                                     switch (objNavigator.Id)
                                     {
                                         case "sc":
@@ -236,7 +236,7 @@ namespace DowJones.Assemblers.Entities
                                     objNewsEntity.Code = objBucket.Id;
                                     objNewsEntity.Descriptor = objBucket.Value;
                                     objNewsEntity.CurrentTimeFrameNewsVolume = new Formatters.WholeNumber(objBucket.HitCount);
-                                    objNewsEntity.CurrentTimeFrameRoundedNewsVolume = GetRoundedHitCount(objBucket.HitCount);
+                                    objNewsEntity.CurrentTimeFrameNewsVolume.Text.Value = GetRoundedHitCount(objBucket.HitCount);
                                     switch (objNavigator.Id)
                                     {
                                         case "co":
@@ -342,20 +342,16 @@ namespace DowJones.Assemblers.Entities
 
         public static string GetRoundedHitCount(int count)
         {
-            if (count < 10000)
-            {
+            if (count < 10000) {
                 return new NumberFormatter().Format(count, NumberFormatType.Whole);
             }
-            if (count <= 99999)
-            {
+            if (count <= 99999) {
                 return String.Format("{0:##.0K}", Math.Round((double)count / 1000, 1));
             }
-            if (count <= 999999)
-            {
+            if (count <= 999999) {
                 return String.Format("{0:###K}", Math.Round((double)count / 1000));
             }
-            //if (count <= 9999999)
-            //{
+            //if (count <= 9999999) {
             //    return String.Format("{0:#.0M}", Math.Round((double)count / 1000000,1));
             //}
             return String.Format("{0}M", new NumberFormatter().Format(Math.Round((double)count / 1000000, 1), NumberFormatType.Precision));

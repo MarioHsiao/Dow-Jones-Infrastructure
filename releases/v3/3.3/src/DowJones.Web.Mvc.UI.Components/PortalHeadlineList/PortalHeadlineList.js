@@ -42,8 +42,8 @@ DJ.UI.PortalHeadlineList = DJ.UI.Component.extend({
         pageIndexChanged: "pageIndexChanged.dj.PortalHeadlineList",
         // componentRendered is raised when the component is done rendering
         componentRendered: "componentRendered.dj.PortalHeadlineList",
-		// appendDataRendered - raised when appended data is rendered, returns currentPageIndex, pageCount and data
-		appendDataRendered: "appendDataRendered.dj.PortalHeadlineList"
+        // appendDataRendered - raised when appended data is rendered, returns currentPageIndex, pageCount and data
+        appendDataRendered: "appendDataRendered.dj.PortalHeadlineList"
     },
 
     init: function (element, meta) {
@@ -60,46 +60,51 @@ DJ.UI.PortalHeadlineList = DJ.UI.Component.extend({
         this._setData(this.data);
     },
 
-    _initializeHeadlineList: function (data, $container, disablePaginationSetup) {
-		$container = $container || this.$element;
+    _initializeHeadlineList: function (data, $container, disablePaginationSetup, onCompleted) {
+        $container = $container || this.$element;
         var items = $(this.selectors.headlineEntry, $container);
         var me = this;
         _.each(_.first(data, items.length), function (headline, i) {
-			me._initializeHeadlineEntry(items.get(i), headline);
+            me._initializeHeadlineEntry(items.get(i), headline);
         }, this);
 
         if (!disablePaginationSetup && this._isPaginationOn()) {
-            this._setupPagination();
+            this._setupPagination(onCompleted);
+        }
+        else {
+            if (onCompleted) {
+                onCompleted();
+            }
         }
     },
-	
-	_initializeHeadlineEntry: function(tLi, headline) {
-		var me = this;
-		// Set the data to the li
-		$(tLi).data("headline", headline);
 
-		// Set the tooltip (snippets)
-		// SnippetDisplayType = Hover
-		if ((me.options.displaySnippets === 3) && headline.snippets && headline.snippets.length > 0) {
-			me._renderSnippets(headline, tLi);
-		}
+    _initializeHeadlineEntry: function (tLi, headline) {
+        var me = this;
+        // Set the data to the li
+        $(tLi).data("headline", headline);
 
-		else { // SnippetDisplayType = HybridHover
-			if ((me.options.displaySnippets === 4) && headline.snippets && headline.snippets.length > 0) {
-				if (i != 0) {
-					me._renderSnippets(headline, tLi);
-				}
-				else {
-					var snippetStr = "";
-					_.each(headline.snippets, function (snippet, s) {
-						snippetStr += snippet;
-					});
-					var inlineSnippetHtml = '<p class="article-snip">' + snippetStr + '</p>';
-					$('div.article-wrap', tLi).append(inlineSnippetHtml);
-				}
-			}
-		}
-	},
+        // Set the tooltip (snippets)
+        // SnippetDisplayType = Hover
+        if ((me.options.displaySnippets === 3) && headline.snippets && headline.snippets.length > 0) {
+            me._renderSnippets(headline, tLi);
+        }
+
+        else { // SnippetDisplayType = HybridHover
+            if ((me.options.displaySnippets === 4) && headline.snippets && headline.snippets.length > 0) {
+                if (i != 0) {
+                    me._renderSnippets(headline, tLi);
+                }
+                else {
+                    var snippetStr = "";
+                    _.each(headline.snippets, function (snippet) {
+                        snippetStr += snippet;
+                    });
+                    var inlineSnippetHtml = '<p class="article-snip">' + snippetStr + '</p>';
+                    $('div.article-wrap', tLi).append(inlineSnippetHtml);
+                }
+            }
+        }
+    },
 
     _isPaginationOn: function () {
         return this.options.allowPagination && this.options.pageSize > 0;
@@ -128,15 +133,14 @@ DJ.UI.PortalHeadlineList = DJ.UI.Component.extend({
         });
     },
 
-    _setupPagination: function () {
-        var me = this;
+    _setupPagination: function (onCompleted) {
         this.$carousel = this.$element.find(".dj_Carousel");
         this.$carouselInner = this.$carousel.find(".dj_Carousel-inner");
         this.$pages = this.$carouselInner.find(".slidePanel");
         this.currentPageIndex = 0;
         var containerWidth = this.$element.width();
         this.$pages.width(containerWidth);
-        this._resizeCarousel(true);
+        this._resizeCarousel(true, false, onCompleted);
     },
 
     goToPage: function (pageIndex, disableAnimation, disableEvent) {
@@ -227,7 +231,7 @@ DJ.UI.PortalHeadlineList = DJ.UI.Component.extend({
         }
     },
 
-    _resizeCarousel: function (disableAnimation, imagesAreLoaded) {
+    _resizeCarousel: function (disableAnimation, imagesAreLoaded, onCompleted) {
         var me = this;
         var $currentPage = this.getPageByIndex(this.currentPageIndex);
 
@@ -236,7 +240,7 @@ DJ.UI.PortalHeadlineList = DJ.UI.Component.extend({
             var $images = this.$element.find("img");
             if ($images.length > 0) {
                 this.$element.imagesLoaded(function () {
-                    me._resizeCarousel(disableAnimation, true);
+                    me._resizeCarousel(disableAnimation, true, onCompleted);
                 });
                 return;
             }
@@ -244,10 +248,10 @@ DJ.UI.PortalHeadlineList = DJ.UI.Component.extend({
 
         // if there are hidden parents, need to recalculate everything 
         var $hiddenParents = this.$element.parents(":hidden");
+        var containerWidth;
         if ($hiddenParents.length > 0) {
             $hiddenParents.addClass("dj_show");
-
-            var containerWidth = this.$element.width();
+            containerWidth = this.$element.width();
             this.$pages.width(containerWidth);
             this.$carouselInner.width(this._getCarouselWidth(containerWidth));
             this._setCarouselWidthAndHeight($currentPage.width(), $currentPage.height(), disableAnimation);
@@ -255,9 +259,13 @@ DJ.UI.PortalHeadlineList = DJ.UI.Component.extend({
             $hiddenParents.removeClass("dj_show");
         }
         else {
-            var containerWidth = this.$element.width();
+            containerWidth = this.$element.width();
             this.$carouselInner.width(this._getCarouselWidth(containerWidth));
             this._setCarouselWidthAndHeight($currentPage.width(), $currentPage.height(), disableAnimation);
+        }
+
+        if (onCompleted) {
+            onCompleted();
         }
     },
 
@@ -289,7 +297,7 @@ DJ.UI.PortalHeadlineList = DJ.UI.Component.extend({
     //Render snippets
     _renderSnippets: function (headline, tLi) {
         var snippetStr = "";
-        _.each(headline.snippets, function (snippet, s) {
+        _.each(headline.snippets, function (snippet) {
             snippetStr += "<div>" + snippet + "</div>";
         });
         $(this.selectors.headline, tLi).attr("title", snippetStr);
@@ -306,8 +314,7 @@ DJ.UI.PortalHeadlineList = DJ.UI.Component.extend({
     },
 
     _initializeEventHandlers: function () {
-        var $parentContainer = this.$element
-                , me = this;
+        var me = this;
 
         this.$element.delegate(this.selectors.headline, 'click', function () {
             me.publish(me.events.headlineClick, { headline: $(this).closest('li').data("headline") });
@@ -338,6 +345,7 @@ DJ.UI.PortalHeadlineList = DJ.UI.Component.extend({
     },
 
     bindOnSuccess: function (data) {
+        var me = this;
         this.publish(this.events.dataAssociated,
                          {
                              data: data
@@ -384,7 +392,14 @@ DJ.UI.PortalHeadlineList = DJ.UI.Component.extend({
                 this.$element.append(headlineMarkup);
 
                 // bind events and perform other wiring up
-                this._initializeHeadlineList(data.headlines);
+                this._initializeHeadlineList(data.headlines, null, false, function () {
+                    me.publish(me.events.componentRendered,
+                             {
+                                 currentPageIndex: 0,
+                                 pagesCount: me.pagesCount || 0,
+                                 data: data
+                             });
+                });
 
             }
             else {
@@ -394,72 +409,79 @@ DJ.UI.PortalHeadlineList = DJ.UI.Component.extend({
                 if (!this.options.displayNoResultsToken) {
                     $(this.selectors.noResultSpan, this.$element).hide();
                 }
-            }
-            this.publish(this.events.componentRendered,
+                this.publish(this.events.componentRendered,
                              {
                                  currentPageIndex: 0,
                                  pagesCount: this.pagesCount || 0,
                                  data: data
                              });
+            }
         } catch (e) {
             $dj.error('Error in PortalHeadlineList.bindOnSuccess:', e);
         }
     },
 
-	appendData: function (data) {
-		var resultSet = data.resultSet;
-		if (!resultSet || !resultSet.count || resultSet.count.value <= 0 || !resultSet.headlines) {
-			return;
-		}
-		if (this._isPaginationOn()) {
-			// TODO: appendData for pagination
-			// Check if last page is full or not
-			var $lastPage = this.$carouselInner.find(".slidePanel").last();
-			var availableSlotsOnLastPage = this.options.pageSize - $lastPage.find(this.selectors.headlineEntry).length;
-			// if last page is not full, fill it up first
-			if (availableSlotsOnLastPage > 0) {
-				var $lastPageHeadlineList = $(this.selectors.headlineList, $lastPage);
-				for (var i = 0; i < Math.min(availableSlotsOnLastPage, resultSet.headlines.length); i++) {
-					var headline = resultSet.headlines[i];
-					var $headlineEntry = $(this.templates.successHeadlineEntry(headline));
-					this._initializeHeadlineEntry($headlineEntry, headline);
-					$lastPageHeadlineList.append($headlineEntry);					
-				}
-			}
-			
-			// create new paging pages for the remaining headlines
-			if (availableSlotsOnLastPage < resultSet.headlines.length) {
-				var pageIndex = this.$pages.length;
-				for (var i = availableSlotsOnLastPage; i < resultSet.headlines.length; i += this.options.pageSize, pageIndex++) {
-					var newPageHeadlines = resultSet.headlines.slice(i, i + this.options.pageSize);
-					var $newPage = $(this.templates.paginationPage({index: pageIndex, headlines: newPageHeadlines}));
-					this._initializeHeadlineList(newPageHeadlines, $newPage, true);
-					this.$carouselInner.append($newPage);
-				}
-				// Update $pages variable
-				this.$pages = this.$carouselInner.find(".slidePanel");
-				this.pagesCount = this.$pages.length;
-			}
-			this._resizeCarousel(false);
-		}
-		else {
-			var $headlineList = $(this.selectors.headlineList, this.$element);
-			for (var i = 0; i < resultSet.headlines.length; i++) {
-				var headline = resultSet.headlines[i];
-				var $headlineEntry = $(this.templates.successHeadlineEntry(headline));
-				this._initializeHeadlineEntry($headlineEntry, headline);
-				$headlineList.append($headlineEntry);
-			}
-		}
-		
-		this.publish(this.events.componentRendered,
-						 {
-							 currentPageIndex: this.currentPageIndex,
-							 pagesCount: this.pagesCount || 0,
-							 data: data
-						 });
-	},
-	
+    appendData: function (data) {
+        var resultSet = data.resultSet;
+        var me = this;
+        var i, headline, $headlineEntry;
+        if (!resultSet || !resultSet.count || resultSet.count.value <= 0 || !resultSet.headlines) {
+            return;
+        }
+        if (this._isPaginationOn()) {
+            // Check if last page is full or not
+            var $lastPage = this.$carouselInner.find(".slidePanel").last();
+            var availableSlotsOnLastPage = this.options.pageSize - $lastPage.find(this.selectors.headlineEntry).length;
+            // if last page is not full, fill it up first
+            if (availableSlotsOnLastPage > 0) {
+                var $lastPageHeadlineList = $(this.selectors.headlineList, $lastPage);
+                for (i = 0; i < Math.min(availableSlotsOnLastPage, resultSet.headlines.length); i++) {
+                    headline = resultSet.headlines[i];
+                    $headlineEntry = $(this.templates.successHeadlineEntry(headline));
+                    this._initializeHeadlineEntry($headlineEntry, headline);
+                    $lastPageHeadlineList.append($headlineEntry);
+                }
+            }
+
+            // create new paging pages for the remaining headlines
+            if (availableSlotsOnLastPage < resultSet.headlines.length) {
+                var pageIndex = this.$pages.length;
+                for (i = availableSlotsOnLastPage; i < resultSet.headlines.length; i += this.options.pageSize, pageIndex++) {
+                    var newPageHeadlines = resultSet.headlines.slice(i, i + this.options.pageSize);
+                    var $newPage = $(this.templates.paginationPage({ index: pageIndex, headlines: newPageHeadlines }));
+                    this._initializeHeadlineList(newPageHeadlines, $newPage, true);
+                    this.$carouselInner.append($newPage);
+                }
+                // Update $pages variable
+                this.$pages = this.$carouselInner.find(".slidePanel");
+                this.pagesCount = this.$pages.length;
+            }
+            this._resizeCarousel(false, false, function () {
+                me.publish(me.events.appendDataRendered,
+						   {
+						       currentPageIndex: me.currentPageIndex,
+						       pagesCount: me.pagesCount || 0,
+						       data: data
+						   });
+            });
+        }
+        else {
+            var $headlineList = $(this.selectors.headlineList, this.$element);
+            for (i = 0; i < resultSet.headlines.length; i++) {
+                headline = resultSet.headlines[i];
+                $headlineEntry = $(this.templates.successHeadlineEntry(headline));
+                this._initializeHeadlineEntry($headlineEntry, headline);
+                $headlineList.append($headlineEntry);
+            }
+            me.publish(me.events.appendDataRendered,
+					   {
+					       currentPageIndex: me.currentPageIndex,
+					       pagesCount: me.pagesCount || 0,
+					       data: data
+					   });
+        }
+    },
+
     bindOnError: function (data) {
         try {
             this.$element.html("");
