@@ -469,10 +469,11 @@ DJ.UI.PortalHeadlineList = DJ.UI.Component.extend({
             }
         }
 
-        this.publish(this.events.componentRendered,
+        var me = this;
+        me.publish(me.events.appendDataRendered,
 						 {
-						     currentPageIndex: this.currentPageIndex,
-						     pagesCount: this.pagesCount || 0,
+						     currentPageIndex: me.currentPageIndex,
+						     pagesCount: me.pagesCount || 0,
 						     data: data
 						 });
     },
