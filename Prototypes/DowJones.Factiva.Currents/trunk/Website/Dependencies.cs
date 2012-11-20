@@ -36,7 +36,8 @@ namespace DowJones.Factiva.Currents.Website
 					TypeNameHandling = TypeNameHandling.Objects,
 				});
 
-			Bind<IPageAssetProvider>().To<PageAssetProvider>().InRequestScope();
+			Bind(typeof(ICacheProvider<>)).To(typeof(HttpContextCacheProvider<>)).InRequestScope();
+			Bind<IPageAssetProvider>().To<CachedPageAssetProvider>().InRequestScope();
 
 			Bind<IScriptModuleTemplateManager>().To<MockScriptModuleTemplateManager>();
 

@@ -26,7 +26,7 @@ namespace DowJones.Factiva.Currents.Website.Providers
 
 		#region Implementation of IPageAssetProvider
 
-		public PageServiceResponse GetPageByName(string pageName)
+		public virtual PageServiceResponse GetPageByName(string pageName)
 		{
 			var pageId = MapPageNameToId(pageName);
 
@@ -34,7 +34,7 @@ namespace DowJones.Factiva.Currents.Website.Providers
 
 		}
 
-		public PageServiceResponse GetPageById(string pageId)
+		public virtual PageServiceResponse GetPageById(string pageId)
 		{
 			var client = new RestClient(_serviceUrl);
 			var request = new RestRequest("id/json", Method.GET);
@@ -47,7 +47,7 @@ namespace DowJones.Factiva.Currents.Website.Providers
 			return pageServiceResponse;
 		}
 
-		public IEnumerable<PageListModel> GetPages()
+		public virtual IEnumerable<PageListModel> GetPages()
 		{
 			var client = new RestClient(_serviceUrl);
 			var request = new RestRequest("/json", Method.GET);
