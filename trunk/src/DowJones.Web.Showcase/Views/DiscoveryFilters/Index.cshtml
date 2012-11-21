@@ -7,9 +7,10 @@
                             container: ""discoveryFiltersContainer"",
                             options: {
                                 roundHitCount: true,
-                                truncationLength: 10/*,
-                                isDatePointWidthSpecified:true,
+                                truncationLength: 20,
+                                /*isDatePointWidthSpecified:true,
                                 datePointWidth:10*/
+                                barChartDataLabelWidth:""150px""
                             },
                             tokens:{
                                 noResultsTkn:""No Result""
@@ -17,11 +18,14 @@
                             data: dataObj
                         }).done(function (comp) {
                             // Attach handler for headline click event
-                            comp.on(""exportClick.dj.DiscoveryFilters"", function () {
-                                alert(""Export Clicked!!!"");
+                            comp.on(""exportClick.dj.DiscoveryFilters"", function (args) {
+                                alert(args.data);
                             });
-                            comp.on(""itemClick.dj.DiscoveryFilters"", function() {
-                                alert(""Item Click!!!"");
+                            comp.on(""itemExcludeClick.dj.DiscoveryFilters"", function (args) {
+                                alert(args.data);
+                            });
+                            comp.on(""itemClick.dj.DiscoveryFilters"", function(args) {
+                                alert(args.data);
                             });
                         }).fail(function(comp){
                             console.log('failed');
