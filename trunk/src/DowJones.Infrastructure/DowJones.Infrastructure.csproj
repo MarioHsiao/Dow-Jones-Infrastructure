@@ -154,6 +154,7 @@
     <Compile Include="Caching\Properties\Settings.cs" />
     <Compile Include="Converters\JsonEnumConverter.cs" />
     <Compile Include="Extensions\EnumExtensions.cs" />
+    <Compile Include="Extensions\NumberExtensions.cs" />
     <Compile Include="GeoLocation\Country.cs" />
     <Compile Include="GeoLocation\DatabaseInfo.cs" />
     <Compile Include="GeoLocation\Location.cs" />

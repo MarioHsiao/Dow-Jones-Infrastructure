@@ -20,14 +20,14 @@ namespace DowJones.Formatters.Numerical
         /// <summary>
         /// Data Source Number Format
         /// </summary>
-        private readonly NumberFormatInfo dataSourceNumberFormat;
+        private readonly NumberFormatInfo _dataSourceNumberFormat;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="NumberFormatter"/> class.
         /// </summary>
         public NumberFormatter()
         {
-            dataSourceNumberFormat = new NumberFormatInfo
+            _dataSourceNumberFormat = new NumberFormatInfo
                                           {
                                               NumberDecimalDigits = 2
                                           };
@@ -56,37 +56,39 @@ namespace DowJones.Formatters.Numerical
         public void Format(Number number)
         {
             double value;
-            string currency;
             var exp = number.Exp;
 
-            if (number is LongNumber)
+            var longNumber = number as LongNumber;
+            if (longNumber != null)
             {
-                value = ((LongNumber)number).Value;
+                value = longNumber.Value;
                 value = value * Math.Pow(10, exp);
 
                 if (IsValid(value))
                 {
-                    number.Text = GetFormattedText(value, NumberFormatType.Raw);
-                    number.RawText = GetFormattedText(value, NumberFormatType.Raw);
-                    number.IsPositive = value >= 0;
-                    dataSourceNumberFormat.NumberDecimalDigits = 0;
-                    ((LongNumber)number).Value = long.Parse(number.Text.Value, dataSourceNumberFormat);
+                    longNumber.Text = GetFormattedText(value, NumberFormatType.Raw);
+                    longNumber.RawText = GetFormattedText(value, NumberFormatType.Raw);
+                    longNumber.IsPositive = value >= 0;
+                    _dataSourceNumberFormat.NumberDecimalDigits = 0;
+                    longNumber.Value = long.Parse(longNumber.Text.Value, _dataSourceNumberFormat);
                 }
 
-                number.Exp = 0;
+                longNumber.Exp = 0;
             }
             else if (number is WholeNumber)
             {
-                value = number.Value;
-                number.Value = value = value * Math.Pow(10, exp);
+                var num = number as WholeNumber;
+
+                value = num.Value;
+                num.Value = value = value * Math.Pow(10, exp);
                 if (IsValid(value))
                 {
-                    number.Text = GetFormattedText(value, NumberFormatType.Whole);
-                    number.RawText = GetFormattedText(value, NumberFormatType.Raw);
-                    number.IsPositive = value >= 0;
+                    num.Text = GetFormattedText(value, NumberFormatType.Whole);
+                    num.RawText = GetFormattedText(value, NumberFormatType.Raw);
+                    num.IsPositive = value >= 0;
                 }
 
-                number.Exp = 0;
+                num.Exp = 0;
             }
             else if (number is DoubleNumber)
             {
@@ -129,107 +131,120 @@ namespace DowJones.Formatters.Numerical
 
                 number.Exp = 0;
             }
-            else if (number is PrecisionNumber)
-            {
-                value = number.Value;
-                number.Value = value = value * Math.Pow(10, exp);
-                
-                var precision = ((PrecisionNumber)number).Precision;
-                if (IsValid(value))
-                {
-                    number.Text = new Text
-                                      {
-                                          Value = GetFormattedString(value, NumberFormatType.Precision, precision)
-                                      };
-                    number.RawText = GetFormattedText(value, NumberFormatType.Raw);
-                    number.IsPositive = value >= 0;
-                }
-            }
-            else if (number is DoubleMoney)
-            {
-                value = number.Value;
-                currency = ((DoubleMoney)number).Currency;
-                number.Value = value = value * Math.Pow(10, exp);
-                
-                if (IsValid(value))
-                {
-                    number.Text = new Text
-                                      {
-                                          Value = GetFormattedStringByCurrency(value, currency)
-                                      };
-                    number.RawText = GetFormattedText(value, NumberFormatType.Raw);
-                    dataSourceNumberFormat.NumberDecimalDigits = 6;
-                    value = double.Parse(number.Text.Value, dataSourceNumberFormat);
-                    number.IsPositive = value >= 0;
-                }
-
-                number.Exp = 0;
-            }
-            else if (number is DoubleMoneyCurrency)
-            {
-                value = number.Value;
-                currency = ((DoubleMoneyCurrency)number).Currency;
-                number.Value = value = value * Math.Pow(10, exp);
-                
-                if (IsValid(value))
-                {
-                    number.Text = new Text
-                                      {
-                                          Value = GetFormattedStringWithCurrency(value, currency)
-                                      };
-                    number.RawText = GetFormattedText(value, NumberFormatType.Raw);
-                    number.IsPositive = value >= 0;
-                }
-
-                number.Exp = 0;
-            }
-            else if (number is Percent)
-            {
-                value = number.Value;
-                number.Value = value = value * Math.Pow(10, exp);
-                
-                if (IsValid(value))
-                {
-                    number.Text = GetFormattedText(value, NumberFormatType.Percentage);
-                    number.RawText = GetFormattedText(value, NumberFormatType.Raw);
-                    number.IsPositive = value >= 0;
-                }
-
-                number.Exp = 0;
-            }
-            else if (number is PercentStock)
-            {
-                value = number.Value;
-                number.Value = value = value * Math.Pow(10, exp);
-                
-                if (IsValid(value))
-                {
-                    number.Text = GetFormattedText(value, NumberFormatType.PercentageStock);
-                    number.RawText = GetFormattedText(value, NumberFormatType.Raw);
-                    number.IsPositive = value >= 0;
-                }
-
-                number.Exp = 0;
-            }
             else
             {
-                if (number.Text == null || string.IsNullOrEmpty(number.Text.Value))
+                var precisionNumber = number as PrecisionNumber;
+                if (precisionNumber != null)
                 {
-                    return;
+                    value = precisionNumber.Value;
+                    precisionNumber.Value = value = value * Math.Pow(10, exp);
+                
+                    var precision = precisionNumber.Precision;
+                    if (IsValid(value))
+                    {
+                        precisionNumber.Text = new Text
+                                          {
+                                              Value = GetFormattedString(value, NumberFormatType.Precision, precision)
+                                          };
+                        precisionNumber.RawText = GetFormattedText(value, NumberFormatType.Raw);
+                        precisionNumber.IsPositive = value >= 0;
+                    }
                 }
-
-                var text = number.Text.Value;
-                dataSourceNumberFormat.NumberDecimalDigits = 6;
-                value = double.Parse(text, dataSourceNumberFormat);
-                value = value * Math.Pow(10, exp);
-                if (IsValid(value))
+                else
                 {
-                    number.Text = GetFormattedText(value, NumberFormatType.Raw);
-                    number.RawText = GetFormattedText(value, NumberFormatType.Raw);
-                    number.IsPositive = value > 0;
-                }
+                    string currency;
+                    var money = number as DoubleMoney;
+                    if (money != null)
+                    {
+                        value = money.Value;
+                        currency = money.Currency;
+                        money.Value = value = value * Math.Pow(10, exp);
+                
+                        if (IsValid(value))
+                        {
+                            money.Text = new Text
+                                              {
+                                                  Value = GetFormattedStringByCurrency(value, currency)
+                                              };
+                            money.RawText = GetFormattedText(value, NumberFormatType.Raw);
+                            _dataSourceNumberFormat.NumberDecimalDigits = 6;
+                            value = double.Parse(money.Text.Value, _dataSourceNumberFormat);
+                            money.IsPositive = value >= 0;
+                        }
 
-                number.Exp = 0;
+                        money.Exp = 0;
+                    }
+                    else
+                    {
+                        var moneyCurrency = number as DoubleMoneyCurrency;
+                        if (moneyCurrency != null)
+                        {
+                            value = moneyCurrency.Value;
+                            currency = moneyCurrency.Currency;
+                            moneyCurrency.Value = value = value * Math.Pow(10, exp);
+                
+                            if (IsValid(value))
+                            {
+                                moneyCurrency.Text = new Text
+                                                  {
+                                                      Value = GetFormattedStringWithCurrency(value, currency)
+                                                  };
+                                moneyCurrency.RawText = GetFormattedText(value, NumberFormatType.Raw);
+                                moneyCurrency.IsPositive = value >= 0;
+                            }
+
+                            moneyCurrency.Exp = 0;
+                        }
+                        else if (number is Percent)
+                        {
+                            value = number.Value;
+                            number.Value = value = value * Math.Pow(10, exp);
+                
+                            if (IsValid(value))
+                            {
+                                number.Text = GetFormattedText(value, NumberFormatType.Percentage);
+                                number.RawText = GetFormattedText(value, NumberFormatType.Raw);
+                                number.IsPositive = value >= 0;
+                            }
+
+                            number.Exp = 0;
+                        }
+                        else if (number is PercentStock)
+                        {
+                            value = number.Value;
+                            number.Value = value = value * Math.Pow(10, exp);
+                
+                            if (IsValid(value))
+                            {
+                                number.Text = GetFormattedText(value, NumberFormatType.PercentageStock);
+                                number.RawText = GetFormattedText(value, NumberFormatType.Raw);
+                                number.IsPositive = value >= 0;
+                            }
+
+                            number.Exp = 0;
+                        }
+                        else
+                        {
+                            if (number.Text == null || string.IsNullOrEmpty(number.Text.Value))
+                            {
+                                return;
+                            }
+
+                            var text = number.Text.Value;
+                            _dataSourceNumberFormat.NumberDecimalDigits = 6;
+                            value = double.Parse(text, _dataSourceNumberFormat);
+                            value = value * Math.Pow(10, exp);
+                            if (IsValid(value))
+                            {
+                                number.Text = GetFormattedText(value, NumberFormatType.Raw);
+                                number.RawText = GetFormattedText(value, NumberFormatType.Raw);
+                                number.IsPositive = value > 0;
+                            }
+
+                            number.Exp = 0;
+                        }
+                    }
+                }
             }
         }
 
@@ -317,6 +332,21 @@ namespace DowJones.Formatters.Numerical
             return text;
         }
 
+         /// <summary>
+        /// Gets the formatted Text.
+        /// </summary>
+        /// <param name="number">The number.</param>
+        /// <returns>The formatted string.</returns>
+        public static Text GetFormattedRoundedText(double number)
+        {
+            var text = new Text
+                           {
+                               Value = GetRoundedHitCount(number)
+                           };
+            return text;
+        }
+
+
         /// <summary>
         /// Gets the formatted string.
         /// </summary>
@@ -324,7 +354,7 @@ namespace DowJones.Formatters.Numerical
         /// <param name="numberFormatType">Type of the number format.</param>
         /// <param name="precision">The precision.</param>
         /// <returns>The formatted string.</returns>
-        internal static string GetFormattedString(double value, NumberFormatType numberFormatType, int precision)
+        internal static string GetFormattedString(double value, NumberFormatType numberFormatType, int precision = 0)
         {
             var nf = new NumberFormatInfo
                          {
@@ -333,9 +363,9 @@ namespace DowJones.Formatters.Numerical
 
             var raw = value.ToString("#.################", nf);
             byte decimalDigits = 0;
-            if (raw.IndexOf(".") >= 0)
+            if (raw.IndexOf(".", StringComparison.Ordinal) >= 0)
             {
-                decimalDigits = (byte)(raw.Length - (raw.IndexOf(".") + 1));
+                decimalDigits = (byte)(raw.Length - (raw.IndexOf(".", StringComparison.Ordinal) + 1));
             }
 
             nf.NumberDecimalDigits = decimalDigits;
@@ -371,6 +401,38 @@ namespace DowJones.Formatters.Numerical
 
             return value.ToString("N", nf);
         }
+
+        internal static string GetRoundedHitCount(double value)
+        {
+
+            if (value >= 100000000) // > billion
+            {
+                return GetFormattedString(value / 1000000, NumberFormatType.Precision, 1) + "B";
+            }
+
+            if (value >= 10000000) // > ten million
+            {
+                return GetFormattedString(value / 1000000, NumberFormatType.Precision, 1) + "M";
+            }
+
+            if (value >= 1000000) // > ten million
+            {
+                return GetFormattedString(value / 1000000, NumberFormatType.Precision, 0) + "M";
+            }
+
+            if (value >= 100000) // > hundred thousand
+            {
+                return GetFormattedString(value / 1000, NumberFormatType.Precision, 0) + "K";
+            }
+
+            if (value >= 10000) // > ten thousand
+            {
+                return GetFormattedString(value / 1000, NumberFormatType.Precision, 1) + "K";
+            }
+
+            return GetFormattedString(value, NumberFormatType.Whole);
+        }
+ 
 
         /// <summary>
         /// Gets the formatted string by currency.
