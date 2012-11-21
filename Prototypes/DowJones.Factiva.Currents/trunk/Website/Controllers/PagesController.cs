@@ -18,6 +18,7 @@ namespace DowJones.Factiva.Currents.Website.Controllers
 			_pageAssetProvider = pageAssetProvider;
 		}
 
+		[OutputCache(CacheProfile = "PageCache")]
 		public ActionResult Index(string name)
 		{
 			var canonicalName = CultureInfo.InvariantCulture.TextInfo.ToTitleCase(name.Replace("-", " "));

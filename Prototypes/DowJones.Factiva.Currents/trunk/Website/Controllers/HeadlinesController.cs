@@ -17,6 +17,7 @@ namespace DowJones.Factiva.Currents.Website.Controllers
 		    _searchContextProvider = searchContextProvider;
 	    }
 
+		[OutputCache(CacheProfile = "HeadlineCache")]
 	    public ActionResult Index(string sc)
 	    {
 		    var headlines = _searchContextProvider.GetHeadlines(sc);
@@ -24,6 +25,7 @@ namespace DowJones.Factiva.Currents.Website.Controllers
 			return View(headlines);
         }
 
+		[OutputCache(CacheProfile = "HeadlineCache")]
 	    public ActionResult ViewAll(string sc)
 	    {
 		    ViewBag.SearchContext = sc;
