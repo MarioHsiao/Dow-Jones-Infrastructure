@@ -452,8 +452,9 @@ DJ.UI.DiscoveryFilters = DJ.UI.Component.extend({
 	_extractSeriesData: function (seriesData) {
 		var returnData = [[], []];
 		if (typeof (seriesData) !== 'undefined') {
-			for (var i = 0; i < seriesData.length; i++) {
-				returnData[0][i] = { y: (seriesData[0].y - seriesData[i].y), name: seriesData[i].y };
+		    for (var i = 0; i < seriesData.length; i++) {
+
+		        returnData[0][i] = { y: (seriesData[0].y - seriesData[i].y), name: ((this.options.roundHitCount) ? seriesData[i].entityData.currentTimeFrameNewsVolume.displayText.value : seriesData[i].y) };
 				returnData[1][i] = { y: seriesData[i].y, entityData: seriesData[i].entityData };
 			}
 		}
@@ -567,7 +568,8 @@ DJ.UI.DiscoveryFilters = DJ.UI.Component.extend({
 					} else {
 						tooltipStr = self.tokens.startDateTkn + ': ' + this.x[0] + '<br/>' + self.tokens.endDateTkn + ': ' + this.x[1];
 					}
-					return tooltipStr + '<br/>' + self.tokens.numHitsTkn + ': ' + Highcharts.numberFormat(this.y, 0);
+
+					return tooltipStr + '<br/>' + self.tokens.numHitsTkn + ': ' + ((self.options.roundHitCount)?this.point.name:Highcharts.numberFormat(this.y, 0));
 
 				},
 				style: {
