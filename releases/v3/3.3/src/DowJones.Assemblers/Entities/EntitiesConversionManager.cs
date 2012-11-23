@@ -9,15 +9,16 @@ using DowJones.Formatters.Numerical;
 using DowJones.Globalization;
 using DowJones.Models.Common;
 using DowJones.Search.Core.ISO8601;
+using DowJones.Extensions;
 using Factiva.Gateway.Messages.Search.V2_0;
 
 namespace DowJones.Assemblers.Entities
 {
     public class EntitiesConversionManager : IAssembler<Models.Common.Entities, NavigatorSet>
     {
-        private readonly DateTimeFormatter dateTimeFormatter;
-        private readonly NumberFormatter numberFormatter;
-        private readonly IResourceTextManager resources;
+        private readonly DateTimeFormatter _dateTimeFormatter;
+        private readonly NumberFormatter _numberFormatter;
+        private readonly IResourceTextManager _resources;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="EntitiesConversionManager"/> class.
@@ -38,26 +39,26 @@ namespace DowJones.Assemblers.Entities
 
         public EntitiesConversionManager(DateTimeFormatter dateTimeFormatter, NumberFormatter numberFormatter, IResourceTextManager resources)
         {
-            this.dateTimeFormatter = dateTimeFormatter ?? new DateTimeFormatter("en");
-            this.numberFormatter = numberFormatter ?? new NumberFormatter();
-            this.resources = resources ?? ServiceLocator.Resolve<IResourceTextManager>();
+            _dateTimeFormatter = dateTimeFormatter ?? new DateTimeFormatter("en");
+            _numberFormatter = numberFormatter ?? new NumberFormatter();
+            _resources = resources ?? ServiceLocator.Resolve<IResourceTextManager>();
         }
 
         #region Properties
 
         public DateTimeFormatter DateTimeFormatter
         {
-            get { return dateTimeFormatter; }
+            get { return _dateTimeFormatter; }
         }
 
         public NumberFormatter NumberFormatter
         {
-            get { return numberFormatter; }
+            get { return _numberFormatter; }
         }
 
         public IResourceTextManager ResourceText
         {
-            get { return resources; }
+            get { return _resources; }
         }
 
         #endregion
@@ -70,7 +71,7 @@ namespace DowJones.Assemblers.Entities
         public Models.Common.Entities Convert(NavigatorSet navigatorSet, List<string> expandedChartList)
         {
             int index = 0;
-            Models.Common.Entities entities = new Models.Common.Entities();
+            var entities = new Models.Common.Entities();
             if (navigatorSet.NavigatorCollection != null)
             {
                 foreach (Navigator objNavigator in navigatorSet.NavigatorCollection)
@@ -82,20 +83,24 @@ namespace DowJones.Assemblers.Entities
                         case "pw":
                         case "pd":
                             {
-                                ParentDateNewsEntity parentNewsEntity = new ParentDateNewsEntity();
-                                parentNewsEntity.Position = index;
+                                var parentNewsEntity = new ParentDateNewsEntity
+                                                           {
+                                                               Position = index
+                                                           };
                                 if (expandedChartList != null && IsInExpandedList(objNavigator.Id, expandedChartList))
                                 {
                                     parentNewsEntity.IsExpanded = true;
                                 }
-                                DateNewsEntities newsEntities = new DateNewsEntities();
+                                var newsEntities = new DateNewsEntities();
                                 foreach (Bucket objBucket in objNavigator.BucketCollection)
                                 {
-                                    DateNewsEntity objNewsEntity = new DateNewsEntity();
-                                    objNewsEntity.Code = objBucket.Id;
-                                    objNewsEntity.Descriptor = objBucket.Value;
-                                    objNewsEntity.CurrentTimeFrameNewsVolume = new Formatters.WholeNumber(objBucket.HitCount);
-                                    objNewsEntity.CurrentTimeFrameNewsVolume.Text.Value = GetRoundedHitCount(objBucket.HitCount);
+                                    var objNewsEntity = new DateNewsEntity
+                                                            {
+                                                                Code = objBucket.Id,
+                                                                Descriptor = objBucket.Value,
+                                                                CurrentTimeFrameNewsVolume = new WholeNumber(objBucket.HitCount)
+                                                            };
+                                    objNewsEntity.CurrentTimeFrameNewsVolume.UpdateWithAbbreviatedText();
                                     switch (objNavigator.Id)
                                     {
                                         case "py":
@@ -167,20 +172,24 @@ namespace DowJones.Assemblers.Entities
                         case "sf":
                         case "sc":
                             {
-                                ParentSourceNewsEntity parentNewsEntity = new ParentSourceNewsEntity();
-                                parentNewsEntity.Position = index;
+                                var parentNewsEntity = new ParentSourceNewsEntity
+                                                           {
+                                                               Position = index
+                                                           };
                                 if (expandedChartList != null && IsInExpandedList(objNavigator.Id, expandedChartList))
                                 {
                                     parentNewsEntity.IsExpanded = true;
                                 }
-                                SourceNewsEntities newsEntities = new SourceNewsEntities();
+                                var newsEntities = new SourceNewsEntities();
                                 foreach (Bucket objBucket in objNavigator.BucketCollection)
                                 {
-                                    SourceNewsEntity objNewsEntity = new SourceNewsEntity();
-                                    objNewsEntity.Code = objBucket.Id;
-                                    objNewsEntity.Descriptor = objBucket.Value;
-                                    objNewsEntity.CurrentTimeFrameNewsVolume = new Formatters.WholeNumber(objBucket.HitCount);
-                                    objNewsEntity.CurrentTimeFrameNewsVolume.Text.Value = GetRoundedHitCount(objBucket.HitCount);
+                                    var objNewsEntity = new SourceNewsEntity
+                                                            {
+                                                                Code = objBucket.Id,
+                                                                Descriptor = objBucket.Value,
+                                                                CurrentTimeFrameNewsVolume = new WholeNumber(objBucket.HitCount)
+                                                            };
+                                    objNewsEntity.CurrentTimeFrameNewsVolume.UpdateWithAbbreviatedText();
                                     switch (objNavigator.Id)
                                     {
                                         case "sc":
@@ -223,20 +232,24 @@ namespace DowJones.Assemblers.Entities
                             }
                         default:
                             {
-                                ParentNewsEntity parentNewsEntity = new ParentNewsEntity();
-                                parentNewsEntity.Position = index;
+                                var parentNewsEntity = new ParentNewsEntity
+                                                           {
+                                                               Position = index
+                                                           };
                                 if (expandedChartList != null && IsInExpandedList(objNavigator.Id, expandedChartList))
                                 {
                                     parentNewsEntity.IsExpanded = true;
                                 }
-                                Models.Common.NewsEntities newsEntities = new Models.Common.NewsEntities();
+                                var newsEntities = new Models.Common.NewsEntities();
                                 foreach (Bucket objBucket in objNavigator.BucketCollection)
                                 {
-                                    NewsEntity objNewsEntity = new NewsEntity();
-                                    objNewsEntity.Code = objBucket.Id;
-                                    objNewsEntity.Descriptor = objBucket.Value;
-                                    objNewsEntity.CurrentTimeFrameNewsVolume = new Formatters.WholeNumber(objBucket.HitCount);
-                                    objNewsEntity.CurrentTimeFrameNewsVolume.Text.Value = GetRoundedHitCount(objBucket.HitCount);
+                                    var objNewsEntity = new NewsEntity
+                                                            {
+                                                                Code = objBucket.Id,
+                                                                Descriptor = objBucket.Value,
+                                                                CurrentTimeFrameNewsVolume = new WholeNumber(objBucket.HitCount)
+                                                            };
+                                    objNewsEntity.CurrentTimeFrameNewsVolume.UpdateWithAbbreviatedText();
                                     switch (objNavigator.Id)
                                     {
                                         case "co":

@@ -1,5 +1,5 @@
 ﻿body { font-family: Arial,Helvetica,sans-serif; }
-.dj_discoveryFilters-list { list-style-type: none; margin: 0; padding: 0; }
+/*.dj_discoveryFilters-list { list-style-type: none; margin: 0; padding: 0; }
 .dj_discoveryFilters-list li.dj_discoveryFilters-listItem { margin: 0 5px 5px 5px; padding: 5px; }
 .dj_discoveryFilters-list .fdtWrapper div.open span.dj_cd-export { display: block !important; }
 .dj_discoveryFilters-list .dj_df-div .dj_hc-container { width: 220px; margin: 0 10px; }
@@ -12,9 +12,70 @@
 .dj_discoveryFilters-list .dj_df-export a { display: -moz-inline-stack; display: inline-block; height: 15px; line-height: 15px; padding: 0 0 0 4px; background-image: url('http://global.int.factiva.com/img/facelift/facelift-icon-sprite.png?51.1.0?53.2.0'); background-repeat: no-repeat; background-position: 0 -1280px; vertical-align: middle; }
 .dj_discoveryFilters-list .dj_df-export span { background-repeat: no-repeat; background-position: right -1295px; display: -moz-inline-stack; display: inline-block; height: 14px; color: #333; line-height: 14px; text-align: center; padding: 0 8px 1px 4px; vertical-align: top; border: solid 1px #ccc; border-radius: 4px; }
 .dj_discoveryFilters-list .dj_df-header { color: #666; text-decoration: none; }
-.dj_discoveryFilters-list .dj_cd-title { position: relative; font-weight: bold; margin: 0; padding: 2px 3px 9px 41px; cursor: move; color: #333; /*font-size: 1.1em;*/ background: url('http://global.int.factiva.com/img/facelift/facelift-icon-sprite.png?51.1.0?53.2.0') no-repeat scroll 0 -659px transparent; }
+.dj_discoveryFilters-list .dj_cd-title { position: relative; font-weight: bold; margin: 0; padding: 2px 3px 9px 41px; cursor: move; color: #333; background: url('http://global.int.factiva.com/img/facelift/facelift-icon-sprite.png?51.1.0?53.2.0') no-repeat scroll 0 -659px transparent; }
 .dj_discoveryFilters-list .hide{display:none;}
 .dj_discoveryFilters-list .show{display:block;}
+*/
+.dj_most-mentioned .dj_discoveryFilters-list {
+                margin-left: 12px;
+                width: 171px;
+}
+
+
+.dj_most-mentioned .dj_discoveryFilters-list .dj_df-header .side-section-title {
+                padding-left: 12px;
+}
+
+.dj_most-mentioned .dj_discoveryFilters-list .dj_df-header .side-section-title .fi-two {
+                width: 8px;
+                height: 8px;
+                position: absolute;
+                left: 0;
+                top: 2px;
+}
+
+
+.dj_most-mentioned .dj_discoveryFilters-list .dj_df-header .fi_export {
+                float: right;
+                margin-right: 7px;
+                text-indent: 100%;
+                overflow: hidden;
+                white-space: nowrap;
+}
+
+.dj_most-mentioned .dj_discoveryFilters-list .dj_df-header.open .fi_export {
+                display: none;
+}
+
+.dj_most-mentioned .dj_discovery-filters .dj_df-more-less span{
+                text-indent: 100%;
+                overflow: hidden;
+                white-space: nowrap;
+}
+
+.category
+{
+    position:relative;
+}
+
+.discovery-chart {
+    display: inline-block;
+    position: relative;
+    vertical-align: bottom;
+    cursor: pointer;
+}
+
+.dj_df-not {
+    background: url("http://sierra.dev.us.factiva.com/dotcom/img/dj_discovery-pane-not.jpg") no-repeat scroll 0 0 transparent;
+    cursor: pointer;
+    height: 12px;
+    left: -12px;
+    position: absolute;
+    top:4px;
+    width: 12px;
+    display:none;
+}
+
 
 /*Draggable Styles*/
 .ui-state-highlight { height: 1.5em; line-height: 1.2em; }

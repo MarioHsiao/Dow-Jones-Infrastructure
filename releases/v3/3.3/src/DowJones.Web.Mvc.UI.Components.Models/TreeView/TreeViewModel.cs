@@ -8,6 +8,9 @@ namespace DowJones.Web.Mvc.UI.Components.TreeView
         #region ..:: Client Properties ::..
         [ClientProperty("enableCheckboxes")]
         public bool EnableCheckboxes { get; set; }
+
+        [ClientProperty("expandAll")]
+        public bool ExpandAll { get; set; }
         #endregion
 
 

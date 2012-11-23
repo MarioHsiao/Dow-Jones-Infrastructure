@@ -41,11 +41,10 @@
     },
 
     _initializeEventHandlers: function () {
-        var $parentContainer = this.$element
-                , me = this;
+        var me = this;
 
         this.$element
-			.delegate(this.selectors.checkbox, 'click', function() {
+			.on("click", this.selectors.checkbox, function () {
 				var $node = $(this).closest(me.selectors.node);
 				
 				if ($node.hasClass(me.classNames.unchecked)) {
@@ -56,7 +55,7 @@
 				}
 				return false;
 			})
-			.delegate(this.selectors.toggle, "click", function() {
+			.on("click", this.selectors.toggle, function () {
 				var $node = $(this).closest(me.selectors.node);
 				if ($node.hasClass(me.classNames.leaf)) {
 					// do nothing

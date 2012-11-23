@@ -52,10 +52,6 @@ DJ.UI.PortalHeadlineList = DJ.UI.Component.extend({
         // Call the base constructor
         this._super(element, $meta);
 
-        if (this._isPaginationOn()) {
-            this._initializePagination();
-        }
-
         // Initialize component if we got data from server
         this._setData(this.data);
     },
@@ -316,32 +312,38 @@ DJ.UI.PortalHeadlineList = DJ.UI.Component.extend({
     _initializeEventHandlers: function () {
         var me = this;
 
-        this.$element.delegate(this.selectors.headline, 'click', function () {
+        this.$element.on('click', this.selectors.headline, function () {
             me.publish(me.events.headlineClick, { headline: $(this).closest('li').data("headline") });
             // prevent browser from handling the click
             return false;
         });
 
         if (this.options.sourceClickable) {
-            this.$element.delegate(this.selectors.source, 'click', function () {
+            this.$element.on('click', this.selectors.source, function () {
                 me.publish(me.events.sourceClick, { sourceCode: $(this).attr("rel") });
                 return false;
             });
         }
 
         if (this.options.authorClickable) {
-            this.$element.delegate(this.selectors.author, 'click', function () {
+            this.$element.on('click', this.selectors.author, function () {
                 me.publish(me.events.authorClick, { authorCode: $(this).attr("rel") });
                 return false;
             });
         }
+
+        if (this._isPaginationOn()) {
+            this._initializePagination();
+        }
     },
 
     _setData: function (data) {
+   
         if (data && data.resultSet)
             this.bindOnSuccess(data.resultSet);
         else
             this.bindOnSuccess({});
+
     },
 
     bindOnSuccess: function (data) {
