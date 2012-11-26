@@ -16,9 +16,9 @@ using DowJones.Exceptions;
 using DowJones.Extensions;
 using DowJones.Managers.Search;
 using DowJones.Managers.Search.Requests;
-using Factiva.Gateway.Messages.Archive.V1_0;
+using Factiva.Gateway.Messages.Archive.V2_0;
 using Factiva.Gateway.Messages.Search.V2_0;
-using Factiva.Gateway.Services.V1_0;
+using Factiva.Gateway.Services.V2_0;
 using Factiva.Gateway.V1_0;
 using ControlData = Factiva.Gateway.Utils.V1_0.ControlData;
 using ControlDataManager = Factiva.Gateway.Managers.ControlDataManager;
@@ -29,8 +29,8 @@ namespace DowJones.Web.Handlers.Article
 {
     public class ImageCacheItem
     {
-        public byte[] bytes { get; set; }
-        public string mimeType { get; set; }
+        public byte[] Bytes { get; set; }
+        public string MimeType { get; set; }
     }
 
     /// <summary>
@@ -119,14 +119,17 @@ namespace DowJones.Web.Handlers.Article
                 var imageType = context.Request["imageType"] ?? string.Empty;
                 var mimeType = context.Request["mimetype"] ?? string.Empty;
                 var redirect = context.Request["redirect"] ?? string.Empty;
-                
+
                 var formState = new FormState(string.Empty);
                 var sessionRequestDto = (SessionRequestDTO) formState.Accept(typeof (SessionRequestDTO), false);
                 var retrieveBlobItem = isBlob.ToLowerInvariant() == "y";
                 var redirectToWebSiteUrl = redirect.ToLowerInvariant() == "y";
 
-                _controlData = (sessionRequestDto.SessionID.IsNullOrEmpty() && sessionRequestDto.EncryptedToken.IsNullOrEmpty())
-                                   ? ControlDataManager.GetLightWeightUserControlData(sessionRequestDto.UserID, sessionRequestDto.Password, sessionRequestDto.ProductID)
+                _controlData = (sessionRequestDto.SessionID.IsNullOrEmpty() &&
+                                sessionRequestDto.EncryptedToken.IsNullOrEmpty())
+                                   ? ControlDataManager.GetLightWeightUserControlData(sessionRequestDto.UserID,
+                                                                                      sessionRequestDto.Password,
+                                                                                      sessionRequestDto.ProductID)
                                    : sessionRequestDto.GetControlData();
 
                 var infrsControlData = DowJones.Session.ControlDataManager.Convert(_controlData);
@@ -152,15 +155,17 @@ namespace DowJones.Web.Handlers.Article
                 if (retrieveBlobItem)
                 {
                     // Check cache
-                    var cacheItem = (ImageCacheItem) context.Cache.Get(string.Format(Keyformat, origAccessionNo, imageType.ToLowerInvariant()));
+                    var cacheItem =
+                        (ImageCacheItem)
+                        context.Cache.Get(string.Format(Keyformat, origAccessionNo, imageType.ToLowerInvariant()));
 
                     if (cacheItem != null)
                     {
-                        context.Response.ContentType = cacheItem.mimeType;
-                        context.Response.BinaryWrite(cacheItem.bytes);
+                        context.Response.ContentType = cacheItem.MimeType;
+                        context.Response.BinaryWrite(cacheItem.Bytes);
                         return;
                     }
-                    
+
                     var sm = new SearchManager(infrsControlData, new Preferences.Preferences("en"));
                     var dto = new AccessionNumberSearchRequestDTO
                                   {
@@ -179,9 +184,12 @@ namespace DowJones.Web.Handlers.Article
                     dto.MetaDataController.ReturnCollectionCounts = false;
                     dto.MetaDataController.ReturnKeywordsSet = false;
                     dto.MetaDataController.TimeNavigatorMode = TimeNavigatorMode.None;
-                    dto.SearchCollectionCollection.AddRange(Enum.GetValues(typeof (SearchCollection)).Cast<SearchCollection>());
+                    dto.SearchCollectionCollection.AddRange(
+                        Enum.GetValues(typeof (SearchCollection)).Cast<SearchCollection>());
 
-                    var sr = sm.GetPerformContentSearchResponse<PerformContentSearchRequest, PerformContentSearchResponse>(dto);
+                    var sr =
+                        sm.GetPerformContentSearchResponse<PerformContentSearchRequest, PerformContentSearchResponse>(
+                            dto);
                     if (sr != null &&
                         sr.ContentSearchResult != null &&
                         sr.ContentSearchResult.ContentHeadlineResultSet != null)
@@ -207,70 +215,38 @@ namespace DowJones.Web.Handlers.Article
 
                 #endregion
 
-                var request = new GetBinaryRequest
-                                  {
-                                      accessionNumber = accessionNo,
-                                      reference = reference,
-                                      mimeType = mimeType,
-                                      imageType = imageType
-                                  };
-
-                var archiveResponse = ArchiveService.GetBinary(_controlData, request);
-                object objResponse;
-                archiveResponse.GetResponse(ServiceResponse.ResponseFormat.Object, out objResponse);
-
-                var binaryResponse = (GetBinaryResponse) objResponse;
-                try
+                if (imageType.ToLower() == "thumbnail" ||
+                    imageType.ToLower() == "fingernail")
                 {
-                    switch (mimeType)
+                    HandleBillableRequest(new GetBinaryRequest
+                                              {
+                                                  accessionNumber = accessionNo,
+                                                  reference = reference,
+                                                  mimeType = mimeType,
+                                                  imageType = imageType
+                                              },
+                                          context,
+                                          retrieveBlobItem,
+                                          origAccessionNo);
+                }
+
+                else
+                {
+                    HandleNonBillableRequest(new GetBinaryInternalRequest
                     {
-                        case "image/gif":
-                        case "image/jpeg":
-                        case "image/png":
-                            //HandleContent(context.Response, tempErrorNum, "image/png", ImageFormat.Png, ERROR_IMAGE_WIDTH, ERROR_IMAGE_HEIGHT);
-                            context.Response.ContentType = mimeType;
-                            context.Response.BinaryWrite(binaryResponse.binaryData);
-                            // add the item to cache to free up the space
-                            if (retrieveBlobItem)
-                            {
-                                context.Cache.Add(
-                                    string.Format(Keyformat, origAccessionNo, imageType.ToLowerInvariant()),
-                                    new ImageCacheItem
-                                        {
-                                            bytes = binaryResponse.binaryData,
-                                            mimeType = mimeType,
-                                        },
-                                    null,
-                                    Cache.NoAbsoluteExpiration,
-                                    TimeSpan.FromHours(SlidingCache),
-                                    CacheItemPriority.Normal,
-                                    null);
-                            }
-                            break;
-                        case "application/msexcel":
-                        case "application/msword":
-                        case "application/mspowerpoint":
-                        case "application/pdf":
-                        case "text/html":
-                            HandleContent(context.Response, mimeType, binaryResponse.binaryData);
-                            break;
-                        default:
-                            context.Response.StatusCode = (int) HttpStatusCode.InternalServerError;
-                            break;
-                    }
-                }
-                catch (DowJonesUtilitiesException ex)
-                {
-                    HandleErrorImage(context.Response, ex.ReturnCode, "image/png", ImageFormat.Png, ErrorImageWidth, ErrorImageHeight);
-                }
-                catch (Exception)
-                {
-                    HandleErrorImage(context.Response, -1, "image/png", ImageFormat.Png, ErrorImageWidth, ErrorImageHeight);
+                        accessionNumber = accessionNo,
+                        reference = reference,
+                        mimeType = mimeType,
+                        imageType = imageType
+                    },
+                                          context,
+                                          retrieveBlobItem,
+                                          origAccessionNo);
                 }
             }
             catch
             {
-                context.Response.StatusCode = (int) HttpStatusCode.InternalServerError;
+                context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
             }
             finally
             {
@@ -278,6 +254,120 @@ namespace DowJones.Web.Handlers.Article
             }
         }
 
+        private void HandleBillableRequest(GetBinaryRequest billableRequest, HttpContext context, bool retrieveBlobItem, string origAccessionNo)
+        {
+            var archiveResponse = ArchiveService.GetBinary(_controlData, billableRequest);
+
+            object objResponse;
+            archiveResponse.GetResponse(ServiceResponse.ResponseFormat.Object, out objResponse);
+
+            var binaryResponse = (GetBinaryResponse) objResponse;
+            try
+            {
+                switch (billableRequest.mimeType)
+                {
+                    case "image/gif":
+                    case "image/jpeg":
+                    case "image/png":
+                        //HandleContent(context.Response, tempErrorNum, "image/png", ImageFormat.Png, ERROR_IMAGE_WIDTH, ERROR_IMAGE_HEIGHT);
+                        context.Response.ContentType = billableRequest.mimeType;
+                        context.Response.BinaryWrite(binaryResponse.binaryData);
+                        // add the item to cache to free up the space
+                        if (retrieveBlobItem)
+                        {
+                            context.Cache.Add(
+                                string.Format(Keyformat, origAccessionNo, billableRequest.imageType.ToLowerInvariant()),
+                                new ImageCacheItem
+                                    {
+                                        Bytes = binaryResponse.binaryData,
+                                        MimeType = billableRequest.mimeType,
+                                    },
+                                null,
+                                Cache.NoAbsoluteExpiration,
+                                TimeSpan.FromHours(SlidingCache),
+                                CacheItemPriority.Normal,
+                                null);
+                        }
+                        break;
+                    case "application/msexcel":
+                    case "application/msword":
+                    case "application/mspowerpoint":
+                    case "application/pdf":
+                    case "text/html":
+                        HandleContent(context.Response, billableRequest.mimeType, binaryResponse.binaryData);
+                        break;
+                    default:
+                        context.Response.StatusCode = (int) HttpStatusCode.InternalServerError;
+                        break;
+                }
+            }
+            catch (DowJonesUtilitiesException ex)
+            {
+                HandleErrorImage(context.Response, ex.ReturnCode, "image/png", ImageFormat.Png, ErrorImageWidth, ErrorImageHeight);
+            }
+            catch (Exception)
+            {
+                HandleErrorImage(context.Response, -1, "image/png", ImageFormat.Png, ErrorImageWidth, ErrorImageHeight);
+            }
+        }
+
+        private void HandleNonBillableRequest(GetBinaryInternalRequest nonBillableRequest, HttpContext context, bool retrieveBlobItem, string origAccessionNo)
+        {
+            var archiveResponse = ArchiveService.GetBinaryInternal(_controlData, nonBillableRequest);
+
+            object objResponse;
+            archiveResponse.GetResponse(ServiceResponse.ResponseFormat.Object, out objResponse);
+
+            var binaryResponse = (GetBinaryInternalResponse)objResponse;
+            try
+            {
+                switch (nonBillableRequest.mimeType)
+                {
+                    case "image/gif":
+                    case "image/jpeg":
+                    case "image/png":
+                        //HandleContent(context.Response, tempErrorNum, "image/png", ImageFormat.Png, ERROR_IMAGE_WIDTH, ERROR_IMAGE_HEIGHT);
+                        context.Response.ContentType = nonBillableRequest.mimeType;
+                        context.Response.BinaryWrite(binaryResponse.binaryData);
+                        // add the item to cache to free up the space
+                        if (retrieveBlobItem)
+                        {
+                            context.Cache.Add(
+                                string.Format(Keyformat, origAccessionNo, nonBillableRequest.imageType.ToLowerInvariant()),
+                                new ImageCacheItem
+                                {
+                                    Bytes = binaryResponse.binaryData,
+                                    MimeType = nonBillableRequest.mimeType,
+                                },
+                                null,
+                                Cache.NoAbsoluteExpiration,
+                                TimeSpan.FromHours(SlidingCache),
+                                CacheItemPriority.Normal,
+                                null);
+                        }
+                        break;
+                    case "application/msexcel":
+                    case "application/msword":
+                    case "application/mspowerpoint":
+                    case "application/pdf":
+                    case "text/html":
+                        HandleContent(context.Response, nonBillableRequest.mimeType, binaryResponse.binaryData);
+                        break;
+                    default:
+                        context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                        break;
+                }
+            }
+            catch (DowJonesUtilitiesException ex)
+            {
+                HandleErrorImage(context.Response, ex.ReturnCode, "image/png", ImageFormat.Png, ErrorImageWidth, ErrorImageHeight);
+            }
+            catch (Exception)
+            {
+                HandleErrorImage(context.Response, -1, "image/png", ImageFormat.Png, ErrorImageWidth, ErrorImageHeight);
+            }
+        }
+        
         public ContentItem GetThumbNailItem(ContentHeadline contentHeadline, string imageType)
         {
             if (contentHeadline.ContentItems.ItemCollection == null || contentHeadline.ContentItems.ItemCollection.Count == 0)
