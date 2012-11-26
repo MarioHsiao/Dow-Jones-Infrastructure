@@ -497,7 +497,6 @@ DJ.UI.DiscoveryFilters = DJ.UI.Component.extend({
         }
         this.discoveryFiltersConfig = this._getDiscoveryFiltersConfig();
         if (self.options.enableExcludeItems) {
-            this.discoveryFiltersConfig.chart.marginLeft = 15;
             this.discoveryFiltersConfig.plotOptions.series.point = {
                 events:
 				{
@@ -505,10 +504,7 @@ DJ.UI.DiscoveryFilters = DJ.UI.Component.extend({
 				        var excludeItem = $(self.selectors.excludeItem);
 				        excludeItem.data("entityData", event.target.entityData);
 				        excludeItem.css({
-				            'top': chartContainer[0].offsetTop + event.target.clientX + 14
-				        });
-				        excludeItem.css({
-				            'left': '5px'
+				            'top': chartContainer[0].offsetTop + event.target.clientX + 12
 				        });
 				        excludeItem.show();
 				    }
