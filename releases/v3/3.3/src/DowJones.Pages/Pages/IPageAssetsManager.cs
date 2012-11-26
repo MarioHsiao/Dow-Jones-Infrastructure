@@ -30,6 +30,7 @@ namespace DowJones.Pages
         int ExtractModuleId(string moduleId);
         PageListInfoExCollection GetSubscribablePages(PageType pageType, IEnumerable<Factiva.Gateway.Messages.Assets.Pages.V1_0.AccessQualifier> accessQualifiers, MetadataFilter metadataFilter);
         void SetPageShareProperties(string pageRef, ShareProperties shareProperties);
+        void SetPageShareProperties(string pageRef, ShareProperties shareProperties, bool updateModule, ShareProperties moduleShareProperties);
         void MakePageModulesPublic(IEnumerable<GWModule> moduleCollection);
         void MakePageModulesPrivate(IEnumerable<GWModule> moduleCollection);
         AccessControlScope GetRootAccessControlScope(int pageId, ShareProperties properties, Factiva.Gateway.Messages.Assets.Pages.V1_0.AccessQualifier accessQualifier);

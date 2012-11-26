@@ -1419,21 +1419,19 @@ namespace DowJones.Pages
                 );
         }
 
-        /// <summary>
-        /// The set page share properties.
-        /// </summary>
-        /// <param name="pageRef">
-        /// The page id.
-        /// </param>
-        /// <param name="shareProperties">
-        /// The share properties.
-        /// </param>
         public void SetPageShareProperties(string pageRef, ShareProperties shareProperties)
+        {
+            SetPageShareProperties(pageRef, shareProperties, false, null);
+        }
+
+        public void SetPageShareProperties(string pageRef, ShareProperties shareProperties, bool updateModule, ShareProperties moduleShareProperties)
         {
             var request = new SetPageSharePropertiesRequest
             {
                 PageID = ExtractPageId(pageRef),
-                ShareProperties = shareProperties
+                ShareProperties = shareProperties,
+                UpdateModule = updateModule,
+                ModuleShareProperties = moduleShareProperties
             };
             Process<SetPageSharePropertiesResponse>(request);
         }
