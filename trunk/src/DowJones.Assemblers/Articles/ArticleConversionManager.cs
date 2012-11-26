@@ -44,7 +44,7 @@ namespace DowJones.Assemblers.Articles
         public const string DefaultFileHandlerUrl = "~/DowJones.Web.Handlers.Article.ContentHandler.ashx";
         internal readonly string LogoSiteUrl = Properties.Settings.Default.LogosSiteUrl;
         private static readonly ILog log = LogManager.GetLogger(typeof (ArticleConversionManager));
-
+                
         private readonly IControlData _controlData;
         private readonly DateTimeFormatter _dateTimeFormatter;
         private readonly SearchManager _manager;
@@ -165,12 +165,12 @@ namespace DowJones.Assemblers.Articles
             // To generate a possible External Url
             articleResult.ExternalUri = GetExternalUrl(articleResult, article);
 
-            if (!CheckCodeSN(Codes.PD.ToString()))
+            if (!CheckCodeSn(Codes.PD.ToString()))
             {
                 articleResult.PublicationDate = GetDate(article.publicationDate, article.publicationTime, article.publicationTimeSpecified);
             }
 
-            if (!CheckCodeSN(Codes.ET.ToString()))
+            if (!CheckCodeSn(Codes.ET.ToString()))
             {
                 articleResult.PublicationTime = GetTime(article.publicationDate, article.publicationTime);
             }
@@ -310,7 +310,7 @@ namespace DowJones.Assemblers.Articles
         /// </summary>
         /// <param name = "notProcessedRefAccessionNumbers">The un processed ref accession numbers.</param>
         /// <returns>An array of strings</returns>
-        private static IEnumerable<string> ReturnANArray(ICollection<ElinkReferences> notProcessedRefAccessionNumbers)
+        private static IEnumerable<string> ReturnAnArray(ICollection<ElinkReferences> notProcessedRefAccessionNumbers)
         {
             var arrAccessionNumbers = new string[notProcessedRefAccessionNumbers.Count];
             var index = -1;
@@ -599,7 +599,7 @@ namespace DowJones.Assemblers.Articles
             }
 
             // Process unprocessed ANs
-            var accessNos = ReturnANArray(_unProcessedRefAccessionNumbers);
+            var accessNos = ReturnAnArray(_unProcessedRefAccessionNumbers);
             ProcessContent(accessNos, articleResult);
         }
 
@@ -615,93 +615,99 @@ namespace DowJones.Assemblers.Articles
             var renderItems = new List<RenderItem>();
             foreach (var item in items)
             {
-                if (item is HighlightedText)
+                var highlightedText = item as HighlightedText;
+                if (highlightedText != null )
                 {
-                    var highlight = (HighlightedText) item;
-                    if (highlight.text != null && highlight.text.Value != null)
+                    if (highlightedText.text != null && highlightedText.text.Value != null)
                     {
-                        renderItems.Add(new RenderItem {ItemMarkUp = MarkUpType.ArticleHighlight, ItemText = highlight.text.Value});
-                    }
-                }
-                else if (item is ELink)
-                {
-                    var entityLink = (ELink) item;
-                    RenderEntityLink(entityLink, renderItems, accessionNumber);
-                }
-                else if (item is EntityReference)
-                {
-                    var entityReference = (EntityReference) item;
-                    if (entityReference.Items != null && entityReference.Items.Length > 0)
-                    {
-                        var len = entityReference.Items.Count();
-                        var name = string.Join(string.Empty, entityReference.Items);
-                        for (var i = 0; i < len; i++)
-                        {
-                            var entityText = entityReference.Items[i];
-                            var entityElementName = entityReference.entityElementName[i];
-
-                            if (ShowCompanyEntityReference || ShowExecutiveEntityReference)
-                            {
-                                if (ShowCompanyEntityReference && entityReference.category.Equals(Codes.co.ToString(), StringComparison.InvariantCultureIgnoreCase))
-                                {
-                                    if ((_postProcessing == PostProcessing.UnSpecified) && ShowCompanyEntityReference)
-                                    {
-                                        BuildEntityLink(name, entityReference.code, Category.company.ToString(), entityText, renderItems, entityElementName == EntityReferenceType.hlt);
-                                    }
-                                    else
-                                    {
-                                        renderItems.Add(new RenderItem
-                                        {
-                                            ItemMarkUp = (entityElementName == EntityReferenceType.hlt) ? MarkUpType.ArticleHighlight : MarkUpType.Span,
-                                            ItemText = entityText,
-                                        });
-                                    }
-                                }
-                                else if (ShowExecutiveEntityReference && entityReference.category.Equals(Codes.pe.ToString(), StringComparison.InvariantCultureIgnoreCase))
-                                {
-                                    if ((_postProcessing == PostProcessing.UnSpecified) && ShowCompanyEntityReference)
-                                    {
-                                        BuildEntityLink(name, entityReference.code, Category.executive.ToString(), entityText, renderItems, entityElementName == EntityReferenceType.hlt);
-                                    }
-                                    else
-                                    {
-                                        renderItems.Add(new RenderItem
-                                        {
-                                            ItemMarkUp = (entityElementName == EntityReferenceType.hlt) ? MarkUpType.ArticleHighlight : MarkUpType.Span,
-                                            ItemText = entityText,
-                                        });
-                                    }
-                                }
-                                else
-                                {
-                                    renderItems.Add(new RenderItem
-                                                        {
-                                                            ItemMarkUp = MarkUpType.Plain, 
-                                                            ItemText = entityText,
-                                                        });
-                                }
-                            }
-                            else
-                            {
-                                renderItems.Add(new RenderItem
-                                                    {
-                                                        ItemMarkUp = MarkUpType.Plain,
-                                                        ItemText = entityText,
-                                                    });
-                            }    
-                        }
+                        renderItems.Add(new RenderItem { ItemMarkUp = MarkUpType.ArticleHighlight, ItemText = highlightedText.text.Value });
                     }
                 }
                 else
                 {
-                    var text = (Text) item;
-                    if (text.Value != null)
+                    var entityLink = item as ELink;
+                    if (entityLink != null)
                     {
-                        renderItems.Add(new RenderItem
+                        RenderEntityLink(entityLink, renderItems, accessionNumber);
+                    }
+                    else
+                    {
+                        var entityReference = item as EntityReference;
+                        if (entityReference != null)
+                        {
+                            if (entityReference.Items != null && entityReference.Items.Length > 0)
+                            {
+                                var len = entityReference.Items.Count();
+                                var name = string.Join(string.Empty, entityReference.Items);
+                                for (var i = 0; i < len; i++)
+                                {
+                                    var entityText = entityReference.Items[i];
+                                    var entityElementName = entityReference.entityElementName[i];
+
+                                    if (ShowCompanyEntityReference || ShowExecutiveEntityReference)
+                                    {
+                                        if (ShowCompanyEntityReference && entityReference.category.Equals(Codes.co.ToString(), StringComparison.InvariantCultureIgnoreCase))
+                                        {
+                                            if ((_postProcessing == PostProcessing.UnSpecified) && ShowCompanyEntityReference)
                                             {
-                                                ItemMarkUp = MarkUpType.Plain,
-                                                ItemText = text.Value
-                                            });
+                                                BuildEntityLink(name, entityReference.code, Category.company.ToString(), entityText, renderItems, entityElementName == EntityReferenceType.hlt);
+                                            }
+                                            else
+                                            {
+                                                renderItems.Add(new RenderItem
+                                                                    {
+                                                                        ItemMarkUp = (entityElementName == EntityReferenceType.hlt) ? MarkUpType.ArticleHighlight : MarkUpType.Span,
+                                                                        ItemText = entityText,
+                                                                    });
+                                            }
+                                        }
+                                        else if (ShowExecutiveEntityReference && entityReference.category.Equals(Codes.pe.ToString(), StringComparison.InvariantCultureIgnoreCase))
+                                        {
+                                            if ((_postProcessing == PostProcessing.UnSpecified) && ShowCompanyEntityReference)
+                                            {
+                                                BuildEntityLink(name, entityReference.code, Category.executive.ToString(), entityText, renderItems, entityElementName == EntityReferenceType.hlt);
+                                            }
+                                            else
+                                            {
+                                                renderItems.Add(new RenderItem
+                                                                    {
+                                                                        ItemMarkUp = (entityElementName == EntityReferenceType.hlt) ? MarkUpType.ArticleHighlight : MarkUpType.Span,
+                                                                        ItemText = entityText,
+                                                                    });
+                                            }
+                                        }
+                                        else
+                                        {
+                                            renderItems.Add(new RenderItem
+                                                                {
+                                                                    ItemMarkUp = MarkUpType.Plain, 
+                                                                    ItemText = entityText,
+                                                                });
+                                        }
+                                    }
+                                    else
+                                    {
+                                        renderItems.Add(new RenderItem
+                                                            {
+                                                                ItemMarkUp = MarkUpType.Plain,
+                                                                ItemText = entityText,
+                                                            });
+                                    }    
+                                }
+                            }
+                        }
+                        else
+                        {
+                            var text = (Text) item;
+                            if (text.Value != null)
+                            {
+                                renderItems.Add(new RenderItem
+                                                    {
+                                                        ItemMarkUp = MarkUpType.Plain,
+                                                        ItemText = text.Value
+                                                    });
+                            }
+                        }
                     }
                 }
             }
@@ -815,9 +821,10 @@ namespace DowJones.Assemblers.Articles
             {
                 foreach (var eLinkItem in elink.Items)
                 {
-                    if (eLinkItem is HighlightedText)
+                    var e = eLinkItem as HighlightedText;
+                    if (e != null)
                     {
-                        var heText = (HighlightedText) eLinkItem;
+                        var heText = e;
                         if (heText.text != null)
                         {
                             elinkItems.Add(new RenderElinkItem
@@ -875,7 +882,7 @@ namespace DowJones.Assemblers.Articles
             renderItem.Add(new RenderItem {ItemClass = "dj_article_entity", ItemMarkUp = MarkUpType.SpanAnchor, ItemEntityData = new EntityLinkData {Code = code ?? string.Empty, Name = name ?? string.Empty, Category = category}});
         }
 
-        private static bool CheckCodeSN(string code)
+        private static bool CheckCodeSn(string code)
         {
             return code.Equals(Codes.SN.ToString(), StringComparison.InvariantCultureIgnoreCase) &&
                    Equals(PostProcessing.Print, StringComparison.InvariantCultureIgnoreCase);
@@ -1226,9 +1233,9 @@ namespace DowJones.Assemblers.Articles
                     item.ItemText = ExtractHtml(encoding.GetString(binaryResponse.binaryData));
                     return item;
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-
+                    log.Error("Caught Exception", ex);
                 }
             }
             return null;

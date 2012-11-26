@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using DowJones.Ajax.Article;
 using DowJones.Ajax.PortalArticle;
@@ -12,7 +13,7 @@ namespace DowJones.Assemblers.Articles
 {
 	public class PortalArticleConversionManager : TypeMapper<ArticleResultset, PortalArticleResultSet>
 	{
-		IResourceTextManager _resourceTextManager;
+	    readonly IResourceTextManager _resourceTextManager;
 
 		public PortalArticleConversionManager(IResourceTextManager resourceTextManager)
 		{
@@ -114,11 +115,14 @@ namespace DowJones.Assemblers.Articles
 
 			var largeImageItem = portalArticleResultSet.Head.FirstOrDefault(h => h.ImageSize == ImageSize.Large);
 			if (largeImageItem != null)
-				portalArticleResultSet.LargeImageUrl = largeImageItem.Text;
-
-
+			{
+			    portalArticleResultSet.LargeImageUrl = largeImageItem.Text;
+			}
+            
 			if (articleResultSet.Status != 0)
-				portalArticleResultSet.StatusMessage = _resourceTextManager.GetErrorMessage(articleResultSet.Status.ToString());
+			{
+			    portalArticleResultSet.StatusMessage = _resourceTextManager.GetErrorMessage(articleResultSet.Status.ToString(CultureInfo.InvariantCulture));
+			}
 
 			return portalArticleResultSet;
 		}
