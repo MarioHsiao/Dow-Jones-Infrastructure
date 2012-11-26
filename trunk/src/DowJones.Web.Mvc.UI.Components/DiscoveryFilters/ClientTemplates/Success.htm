@@ -6,7 +6,7 @@ var model = self,
  <ul class="dj_discoveryFilters-list">
  <%_.each(model, function(val, key) { 
     if (val!= null){%>
-    <li class="dj_discoveryFilters-listItem-<%= index++ %>">
+    <li class="dj_discoveryFilters-listItem-<%= index++ %>" data-type="<%=key%>">
         <div class="dj_df-div">
             <div class="dj_df-header">
                 <h4 class="side-section-title" title="<%= Token('moduleDrag') %>"><span class="fi-two fi_d-arrow-drk-blue"></span></h4>
