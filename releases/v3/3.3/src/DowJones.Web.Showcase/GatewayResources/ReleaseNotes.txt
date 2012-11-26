@@ -1172,3 +1172,13 @@ Release Version 7.5.0.98
 =============================================================================================================================
 10/29/2012 Divya: Updated NewsPages asset to add assignedLists to shareproperties.
 11/01/2012 Himmat: Fixed issues with GetNestedGroupInfoRequest and Response.
+11/05/2012 Divya: Added new transaction GetBinaryInternal in Archive V2_0
+
+Release Version 7.5.0.99
+=============================================================================================================================
+11/10/2012 Himmat: Added FactivaExpertSearchGroupingPreferenceItem.
+Release Version 7.5.0.100
+=============================================================================================================================
+11/20/2012 Divya: Added new transactions GetDocument and GetDocumentWithDelayedBilling in Archive V2_0
+11/23/2012 Divya: Added NewsstandSourcesNewspageModule to Pages asset.
+11/23/2012 Divya: Added ModuleShareProperties and UpdateModule in SetPageSharePropertiesRequest.

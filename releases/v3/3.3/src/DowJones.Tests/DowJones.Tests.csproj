@@ -62,17 +62,17 @@
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="factiva.gateway.messages, Version=7.5.0.98, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="factiva.gateway.messages, Version=7.5.0.100, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Factiva.Gateway.7.5.0.98\lib\factiva.gateway.messages.dll</HintPath>
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.100\lib\factiva.gateway.messages.dll</HintPath>
     </Reference>
     <Reference Include="FactivaGateway, Version=1.6.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Factiva.Gateway.7.5.0.98\lib\FactivaGateway.dll</HintPath>
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.100\lib\FactivaGateway.dll</HintPath>
     </Reference>
     <Reference Include="Interop.FCMLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <EmbedInteropTypes>False</EmbedInteropTypes>
       <Private>True</Private>
-      <HintPath>..\packages\Factiva.Gateway.7.5.0.98\lib\Interop.FCMLib.dll</HintPath>
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.100\lib\Interop.FCMLib.dll</HintPath>
     </Reference>
     <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
       <HintPath>..\packages\log4net.1.2.99\lib\2.0\log4net.dll</HintPath>
@@ -250,11 +250,17 @@
     <Content Include="GatewayResources\Xslt\archive\GetArticleWithLimit2_Response.xslt" />
     <Content Include="GatewayResources\Xslt\archive\GetArticle_V2_0_Response.xslt" />
     <Content Include="GatewayResources\Xslt\archive\GetAutoCodeXmlMessageResponse.xslt" />
+    <Content Include="GatewayResources\Xslt\archive\GetDocuments_PubType_Section.xslt" />
+    <Content Include="GatewayResources\Xslt\archive\GetDocuments_Response.xslt" />
+    <Content Include="GatewayResources\Xslt\archive\GetDocuments_WebType_Section.xslt" />
+    <Content Include="GatewayResources\Xslt\archive\GetDocumentWithDelayedBilling_Response.xslt" />
     <Content Include="GatewayResources\Xslt\archive\GetPrivateArticle2_Response.xslt" />
     <Content Include="GatewayResources\Xslt\archive\GetRawArticleResponse.xslt" />
     <Content Include="GatewayResources\Xslt\archive\GetValidateAndBillingDataResponse.xslt" />
     <Content Include="GatewayResources\Xslt\archive\GetWebArticleUrl.xslt" />
     <Content Include="GatewayResources\Xslt\archive\GetWebArticleUrlResponse.xslt" />
+    <Content Include="GatewayResources\Xslt\archive\GroupDocumentResults.xslt" />
+    <Content Include="GatewayResources\Xslt\archive\GroupDocumentWithDelayedBillingResults.xslt" />
     <Content Include="GatewayResources\Xslt\archive\New\GetArchiveEmailWithLimit_V2_0_Response.xslt" />
     <Content Include="GatewayResources\Xslt\archive\New\GetArchiveWithLimit_V2_0_Response.xslt" />
     <Content Include="GatewayResources\Xslt\archive\New\GetArticleResponse.xslt" />
