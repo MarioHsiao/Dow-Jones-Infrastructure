@@ -282,6 +282,11 @@ namespace DowJones.Web.Showcase.Mocks
             throw new NotImplementedException();
         }
 
+        public void SetPageShareProperties(string pageRef, ShareProperties shareProperties, bool updateModule, ShareProperties moduleShareProperties)
+        {
+            throw new NotImplementedException();
+        }
+
         public void MakePageModulesPublic(IEnumerable<Module> moduleCollection)
         {
             throw new NotImplementedException();
