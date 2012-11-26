@@ -9,7 +9,7 @@
             title = (options.showTruncatedTitle && $.trim(x.truncatedTitle)) || x.title;
             multimediaMode = options.multimediaMode && (x.contentCategoryDescriptor && x.contentCategoryDescriptor === 'multimedia');
     %>
-    <li class="dj_entry">
+    <li class="dj_entry  <%=x.contentCategoryDescriptor%> <%=x.contentSubCategoryDescriptor%> <%=x.baseLanguage%>">
         <div class="article-wrap">
             <% if (showAuthor) { %>
                 <h3 class="author-meta">
