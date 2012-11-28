@@ -75,8 +75,6 @@ DJ.UI.DiscoveryFilters = DJ.UI.Component.extend({
 		moduleDragTkn: "<%= Token('moduleDrag') %>"
 	},
 
-	//Must match the order of DowJones.Pages.Common enum otherwise saving filters for page and module will not work
-	//correctly
 	periodType: {
 		DateYearly: 15,
 		DateMonthly: 16,
@@ -311,12 +309,18 @@ DJ.UI.DiscoveryFilters = DJ.UI.Component.extend({
 					x: 1,
 					y: 12,
 					formatter: function () {
-						if (self.options.truncationLength > 0 && this.value.length > self.options.truncationLength) {
-							return this.value.substring(0, self.options.truncationLength - 3) + "..."
-						} else {
-							return this.value
+//						if (self.options.truncationLength > 0 && this.value.length > self.options.truncationLength) {
+//							return this.value.substring(0, self.options.truncationLength - 3) + "..."
+//						} else {
+//							return this.value
+//						}
+                        var truncatedLabel = this.value;
+                        if (self.options.truncationLength > 0 && this.value.length > self.options.truncationLength) {
+							truncatedLabel = this.value.substring(0, self.options.truncationLength - 3) + "...";
 						}
+						return "<div title='" + this.value + "'>" + truncatedLabel + "</div>";
 					},
+                    useHTML: true,
 					style: {
 						width: self.options.barChartDataLabelWidth
 					}
@@ -511,12 +515,13 @@ DJ.UI.DiscoveryFilters = DJ.UI.Component.extend({
 			xAxis: {
 				categories: discoveryData.categories
 			},
-			tooltip: {
 
+			tooltip: {
+			    //enable: false
+                
 				formatter: function () {
 					//return this.x;
-					//return "<div style='max-width:160px;white-space:normal;'>" + this.x + "</div>";
-					return "<div style='white-space:normal;'>" + this.x + "</div>";
+					return "<div style='white-space:normal;max-width:140px;'>" + this.x + "</div>";
 				},
 
 				style: {
@@ -524,11 +529,15 @@ DJ.UI.DiscoveryFilters = DJ.UI.Component.extend({
 					fontSize: self.options.fontSize,
 					padding: '2px'
 				},
-
+	            borderWidth: 2,
+                shadow: true,
+				
 				useHTML: true
-				//pointFormat: '<div style="width:100px;white-space:normal;">{point.x}</div>'
+				//headerFormat: '<table><tr><td style="white-space:normal;max-width:160px;">{point.key}<td><tr></table>',
+				//pointFormat: '',
+				//footerFormat: ''
 			},
-
+			
 			series: [{
 				name: "faux",
 				color: "#ffffff",
