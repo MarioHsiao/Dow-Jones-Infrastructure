@@ -93,18 +93,18 @@ namespace DowJones.Dash.DataSourcesServer.Module
                     new DataSourceConfig
                         {
                             Site = Site.WsjIndonesia,
-                            Host = "online.wsj.com",
+                            Host = "indo.wsj.com",
                             Domain = "indo.wsj.com",
-                            Path = "indo.wsj.com/home-page",
+                            Path = string.Empty,
                             GomezCountryCode = GomezCountryCode.Indonesia,
 							MapType = MapType.Country
                         },
                     new DataSourceConfig
                         {
                             Site = Site.WsjKorea,
-                            Host = "online.wsj.com",
+                            Host = "kr.wsj.com",
                             Domain = "kr.wsj.com",
-                            Path = "kr.wsj.com/home-page",
+                            Path = string.Empty,
                             GomezCountryCode = GomezCountryCode.Korea,
 							MapType = MapType.Country
                         }
