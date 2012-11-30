@@ -110,7 +110,7 @@ DJ.UI.DiscoveryFilters = DJ.UI.Component.extend({
     },
 
     _bindOnNoData: function () {
-        this.templates.nodata(); //TODO
+        this.templates.noData(); //TODO
         return;
     },
 
