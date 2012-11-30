@@ -1,4 +1,8 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Reflection;
+using System.Resources;
+using System.Text.RegularExpressions;
+using System.Threading;
+using DowJones.Globalization;
 using DowJones.Mocks;
 using DowJones.Token;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
