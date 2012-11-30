@@ -943,5 +943,8 @@
   <ItemGroup>
     <EmbeddedResource Include="TreeView\ClientTemplates\TreeView.htm" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="DiscoveryFilters\ClientTemplates\NoData.htm" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

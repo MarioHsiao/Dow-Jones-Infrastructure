@@ -134,8 +134,6 @@ DJ.UI.PortalHeadlineList = DJ.UI.Component.extend({
         this.$carouselInner = this.$carousel.find(".dj_Carousel-inner");
         this.$pages = this.$carouselInner.find(".slidePanel");
         this.currentPageIndex = 0;
-        var containerWidth = this.$element.width();
-        this.$pages.width(containerWidth);
         this._resizeCarousel(true, false, onCompleted);
     },
 
@@ -251,11 +249,11 @@ DJ.UI.PortalHeadlineList = DJ.UI.Component.extend({
             this.$pages.width(containerWidth);
             this.$carouselInner.width(this._getCarouselWidth(containerWidth));
             this._setCarouselWidthAndHeight($currentPage.width(), $currentPage.height(), disableAnimation);
-
             $hiddenParents.removeClass("dj_show");
         }
         else {
             containerWidth = this.$element.width();
+            this.$pages.width(containerWidth);
             this.$carouselInner.width(this._getCarouselWidth(containerWidth));
             this._setCarouselWidthAndHeight($currentPage.width(), $currentPage.height(), disableAnimation);
         }

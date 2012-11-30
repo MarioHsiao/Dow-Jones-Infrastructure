@@ -14,6 +14,8 @@
                                 barColor:""red"",
                                 columnColor:""green"",
                                 barChartPointWidth:5,
+                                enableExcludeItems: true,
+                                sortable : false
                             },
                             tokens:{
                                 noResultsTkn:""No Result""
@@ -28,9 +30,6 @@
                                 alert(args.data);
                             });
                             comp.on(""itemClick.dj.DiscoveryFilters"", function(args) {
-                                alert(args.data);
-                            });
-                            comp.on(""expandCollapseClick.dj.DiscoveryFilters"", function(args) {
                                 alert(args.data);
                             });
                         }).fail(function(comp){

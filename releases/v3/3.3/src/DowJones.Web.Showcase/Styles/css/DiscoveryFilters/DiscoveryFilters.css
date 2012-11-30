@@ -36,33 +36,21 @@
 
 
 .dj_most-mentioned .dj_discoveryFilters-list .dj_df-header .fi_export {
-                float: right;
-                margin-right: 7px;
-                text-indent: 100%;
-                overflow: hidden;
-                white-space: nowrap;
+    float: right;
+    margin-right: 7px;
+    text-indent: 100%;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 .dj_most-mentioned .dj_discoveryFilters-list .dj_df-header.open .fi_export {
-                display: none;
+    display: none;
 }
 
 .dj_most-mentioned .dj_discovery-filters .dj_df-more-less span{
-                text-indent: 100%;
-                overflow: hidden;
-                white-space: nowrap;
-}
-
-.category
-{
-    position:relative;
-}
-
-.discovery-chart {
-    display: inline-block;
-    position: relative;
-    vertical-align: bottom;
-    cursor: pointer;
+    text-indent: 100%;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 .dj_df-not {
@@ -76,6 +64,19 @@
     display:none;
 }
 
+
+.dj_df-chart 
+{
+    position: relative;
+    zoom: 1;
+}
+
+
+.dj_discoveryFilters-list li
+{
+    position: relative;
+    zoom: 1;
+}
 
 /*Draggable Styles*/
 .ui-state-highlight { height: 1.5em; line-height: 1.2em; }
