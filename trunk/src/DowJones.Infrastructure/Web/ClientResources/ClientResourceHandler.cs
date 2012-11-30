@@ -139,7 +139,7 @@ namespace DowJones.Web
 			var baseUrl = new StringBuilder();
 			baseUrl.Append(context.GetExternalUrl(Settings.Default.ClientResourceHandlerPath));
 			baseUrl.Append("?");
-            baseUrl.AppendFormat("{0}={1}", LanguageKey, MapLanguageKey(culture));
+			baseUrl.AppendFormat("{0}={1}", LanguageKey, MapLanguageKey(culture));
 			baseUrl.AppendFormat("&{0}={1}", CachingTokenKey, CacheTokenFactory());
 
 			if (debug == true || context.DebugEnabled())
@@ -254,7 +254,7 @@ namespace DowJones.Web
 			return isModified;
 		}
 
-		private static ProcessedClientResource ProcessClientResource(IEnumerable<IClientResourceProcessor> clientResourceProcessors, 
+		private static ProcessedClientResource ProcessClientResource(IEnumerable<IClientResourceProcessor> clientResourceProcessors,
 			HttpContextBase context, ClientResource resource)
 		{
 			var processedResource = new ProcessedClientResource(resource);
@@ -349,9 +349,19 @@ namespace DowJones.Web
 			}
 
 			var processors = ClientResourceProcessors.ToArray();
+			var lang = context.Request[LanguageKey];
+
 			try
 			{
-				Task.WaitAll(clientResources.Select(clientResource => factory.StartNew(() => queue.Enqueue(ProcessClientResource(processors, context, clientResource)))).ToArray());
+				Task.WaitAll(
+					clientResources.Select(
+					clientResource => factory.StartNew(
+						() =>
+						{
+							SetRequestLanguage(lang);
+							queue.Enqueue(ProcessClientResource(processors, context, clientResource));
+						})).ToArray());
+
 				return queue.ToList();
 			}
 			catch (AggregateException aggregateException)
