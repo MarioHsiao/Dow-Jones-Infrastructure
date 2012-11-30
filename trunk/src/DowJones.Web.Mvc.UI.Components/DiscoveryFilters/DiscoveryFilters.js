@@ -32,8 +32,9 @@ DJ.UI.DiscoveryFilters = DJ.UI.Component.extend({
         barChartDataLabelWidth: '100px',
         barColor: '#5BB4E5',
         columnColor: '#5BB4E5',
-        enableExcludeItems: true,
-        useHTML: false
+        enableExcludeItems: false, //for this, useHTML needs to be true
+        useHTML: false,
+        enableTooltip: true
         // ,name: value     // add more defaults here separated by comma
     },
 
@@ -53,8 +54,9 @@ DJ.UI.DiscoveryFilters = DJ.UI.Component.extend({
         expandCollapseBtn: '.dj_df-header .side-section-title',
         headerContainer: '.dj_df-header',
         dataContainer: '.dj_df-chart',
-        excludeItem: '#excludeItem',
-        mainContainer: '.dj_df-div'
+        mainContainer: '.dj_df-div',
+        barChartHtmlDataLabel: '.dj_discoveryFilters-dataLabel',
+        excludeItem: '.dj_df-not'
     },
 
     // Localization/Templating tokens
@@ -72,7 +74,8 @@ DJ.UI.DiscoveryFilters = DJ.UI.Component.extend({
         dailyTkn: "<%= Token('daily') %>",
         numHitsTkn: "<%= Token('numHits') %>",
         noResultsTkn: "<%= Token('noResults') %>",
-        moduleDragTkn: "<%= Token('moduleDrag') %>"
+        moduleDragTkn: "<%= Token('moduleDrag') %>",
+        notTitleTkn: "<%=Token('notTitleTkn')%>"
     },
 
     periodType: {
@@ -116,8 +119,6 @@ DJ.UI.DiscoveryFilters = DJ.UI.Component.extend({
 
     // Bind the data to the component on Success
     _bindOnSuccess: function (data) {
-        //this.discoveryFiltersConfig = this._getDiscoveryFiltersConfig();
-        //this.discoveryFiltersDateChartConfig = this._getDiscoveryFiltersDateChartConfig();
 
         var discoveryDataArr = this._sortDiscoveryFilters(data);
 
@@ -140,10 +141,14 @@ DJ.UI.DiscoveryFilters = DJ.UI.Component.extend({
         //			$(this).parent().toggleClass('open');
         //		});
         var self = this;
-        $("." + this.options.cssClass).on("mouseleave", function (event) {
-            $(self.selectors.excludeItem).hide();
-            $(self.selectors.excludeItem).data("entityData", "");
-        });
+        if (self.options.enableExcludeItems) {
+            this.$element.on('mouseover', this.selectors.barChartHtmlDataLabel, function () {
+                $(this).toggleClass("dj_discoveryFilters-dataLabel-hover");
+            });
+            this.$element.on('mouseout', this.selectors.barChartHtmlDataLabel, function () {
+                $(this).toggleClass("dj_discoveryFilters-dataLabel-hover");
+            });
+        }
         this.$element.on('click', this.selectors.excludeItem, this._delegates.OnItemExcludeClicked);
     },
 
@@ -189,7 +194,7 @@ DJ.UI.DiscoveryFilters = DJ.UI.Component.extend({
                         if (_.indexOf([self.periodType.DateDaily, self.periodType.DateWeekly, self.periodType.DateMonthly, self.periodType.DateYearly], entitiesObj.type) >= 0) {   //Date Navigator
                             categoryArr.push([entity.startDateFormattedString, entity.endDateFormattedString]);
                         } else {
-                            categoryArr.push(entity.descriptor);
+                            categoryArr.push(entity);
                         }
 
                     });
@@ -272,8 +277,8 @@ DJ.UI.DiscoveryFilters = DJ.UI.Component.extend({
     //On Discovery Item Click Event Handler
     _onItemExcludeClicked: function (evt) {
         var self = this;
-        var excludeItem = $(self.selectors.excludeItem);
-        self.publish(self.events.itemExcludeClick, { "data": excludeItem.data("entityData") });
+        //var excludeItem = $(self.selectors.excludeItem);
+        self.publish(self.events.itemExcludeClick, { "data": self.data("entity") });
     },
 
     //On Discovery Filters Export Click
@@ -310,18 +315,27 @@ DJ.UI.DiscoveryFilters = DJ.UI.Component.extend({
                     x: 1,
                     y: 12,
                     formatter: function () {
-                        //						if (self.options.truncationLength > 0 && this.value.length > self.options.truncationLength) {
-                        //							return this.value.substring(0, self.options.truncationLength - 3) + "..."
-                        //						} else {
-                        //							return this.value
-                        //						}
-                        var truncatedLabel = this.value;
-                        if (self.options.truncationLength > 0 && this.value.length > self.options.truncationLength) {
-                            truncatedLabel = this.value.substring(0, self.options.truncationLength - 3) + "...";
+                        var label = this.value.descriptor;
+                        if (self.options.useHTML) {
+                            var exludeItemHTML = "";
+                            var dataLabelTooltip = "";
+                            if (self.options.enableExcludeItems) {
+                                //exludeItemHTML = "<span class=\"dj_df-not\" title=\"" + self.tokens.notTitleTkn + "\" data-entity='" + JSON.stringify(this.value) + "'></span>";
+                                exludeItemHTML = "<span class=\"dj_df-not\" title=\"" + self.tokens.notTitleTkn + "\"><span></span></span>";
+                            }
+                            if (self.options.enableTooltip) {
+                                dataLabelTooltip = label;
+                            }
+                            return "<div class=\"dj_discoveryFilters-dataLabel\">" + exludeItemHTML + "<span class=\"ellipsis\" title=\"" + dataLabelTooltip + "\" >" + label + "</span></div>";
+                        } else {
+                            var truncatedLabel = label;
+                            if (self.options.truncationLength > 0 && label.length > self.options.truncationLength) {
+                                truncatedLabel = label.substring(0, self.options.truncationLength - 3) + "...";
+                            }
+                            return truncatedLabel;
                         }
-                        return "<div title='" + this.value + "'>" + truncatedLabel + "</div>";
                     },
-                    useHTML: true,
+                    useHTML: self.options.useHTML,
                     style: {
                         width: self.options.barChartDataLabelWidth
                     }
@@ -467,7 +481,7 @@ DJ.UI.DiscoveryFilters = DJ.UI.Component.extend({
         if (typeof (seriesData) !== 'undefined') {
             for (var i = 0; i < seriesData.length; i++) {
 
-                returnData[0][i] = { y: (seriesData[0].y - seriesData[i].y), name: ((this.options.roundHitCount) ? seriesData[i].entityData.currentTimeFrameNewsVolume.displayText.value : seriesData[i].y) };
+                returnData[0][i] = { y: (seriesData[0].y - seriesData[i].y), name: ((this.options.roundHitCount) ? seriesData[i].entityData.currentTimeFrameNewsVolume.displayText.value : seriesData[i].y), entityData: seriesData[i].entityData };
                 returnData[1][i] = { y: seriesData[i].y, entityData: seriesData[i].entityData };
             }
         }
@@ -489,24 +503,8 @@ DJ.UI.DiscoveryFilters = DJ.UI.Component.extend({
             return;
         }
         if (self.options.enableExcludeItems) {
-            this.discoveryFiltersConfig.chart.marginLeft = 15;
-            this.discoveryFiltersConfig.plotOptions.series.point = {
-                events:
-				{
-				    mouseOver: function (event) {
-				        var excludeItem = $(self.selectors.excludeItem);
-				        excludeItem.data("entityData", event.target.entityData);
-				        excludeItem.css({
-				            'top': chartContainer[0].offsetTop + event.target.clientX + 14
-				        });
-				        excludeItem.css({
-				            'left': '5px'
-				        });
-				        excludeItem.show();
-				    }
-				}
-            }
-
+            //this.discoveryFiltersConfig.chart.marginLeft = 10;
+            this.discoveryFiltersConfig.chart.spacingLeft = 15;
         }
         return new Highcharts.Chart($.extend(true, {}, this.discoveryFiltersConfig, {
             chart: {
@@ -518,11 +516,10 @@ DJ.UI.DiscoveryFilters = DJ.UI.Component.extend({
             },
 
             tooltip: {
-                //enable: false
-
+                enabled: (self.options.enableTooltip && !self.options.useHTML),
                 formatter: function () {
-                    //return this.x;
-                    return "<div style='white-space:normal;max-width:140px;'>" + this.x + "</div>";
+                    return this.x;
+                    //return "<div style='white-space:normal;max-width:140px;'>" + this.x + "</div>";
                 },
 
                 style: {
@@ -531,9 +528,9 @@ DJ.UI.DiscoveryFilters = DJ.UI.Component.extend({
                     padding: '2px'
                 },
                 borderWidth: 2,
-                shadow: true,
+                shadow: true
 
-                useHTML: true
+                //useHTML: self.options.useHTML
                 //headerFormat: '<table><tr><td style="white-space:normal;max-width:160px;">{point.key}<td><tr></table>',
                 //pointFormat: '',
                 //footerFormat: ''
