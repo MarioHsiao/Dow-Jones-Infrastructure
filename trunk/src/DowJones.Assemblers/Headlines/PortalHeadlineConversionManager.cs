@@ -83,6 +83,7 @@ namespace DowJones.Assemblers.Headlines
                                                                  MediaLength = info.time,
                                                                  IsFree = info.isFree,
                                                                  IsValid = info.isValid,
+                                                                 DocumentVector = info.documentVector
                 });
             }
 

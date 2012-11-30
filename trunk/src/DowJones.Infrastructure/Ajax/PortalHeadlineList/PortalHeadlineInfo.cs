@@ -123,6 +123,10 @@ namespace DowJones.Ajax.PortalHeadlineList
         [JsonProperty("snippets")]
         public SnippetCollection Snippets { get; set; }
 
+        [DataMember(Name = "documentVector")]
+        [JsonProperty("documentVector")]
+        public string DocumentVector { get; set; }
+
         [DataMember(Name = "contentCategoryDescriptor")]
         [JsonProperty("contentCategoryDescriptor")]
         public string ContentCategoryDescriptor { get; set; }
