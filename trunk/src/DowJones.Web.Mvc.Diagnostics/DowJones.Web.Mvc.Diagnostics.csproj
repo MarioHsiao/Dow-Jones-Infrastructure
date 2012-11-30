@@ -59,9 +59,6 @@
     <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CommonServiceLocator.NinjectAdapter">
-      <HintPath>..\packages\Ninject.2.2.0.0\lib\.NetFramework 4.0\extensions\CommonServiceLocator.NinjectAdapter.dll</HintPath>
-    </Reference>
     <Reference Include="factiva.gateway.messages, Version=7.5.0.100, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Factiva.Gateway.7.5.0.100\lib\factiva.gateway.messages.dll</HintPath>

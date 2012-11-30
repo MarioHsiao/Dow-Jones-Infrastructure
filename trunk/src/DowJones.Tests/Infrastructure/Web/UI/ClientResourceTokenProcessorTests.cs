@@ -1,4 +1,8 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Reflection;
+using System.Resources;
+using System.Text.RegularExpressions;
+using System.Threading;
+using DowJones.Globalization;
 using DowJones.Mocks;
 using DowJones.Token;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -121,5 +125,28 @@ namespace DowJones.Web.UI
                 );
         }
 
+		[TestMethod]
+		public void ShouldReplaceTokenWithCustomCulture()
+		{
+			const string content = "Russian for search is: <%= Token(\"search\") %>";
+
+			//_tokenRegistry.Setup(x => x.Get("TOKEN1")).Returns("Поиск");
+
+			var processor = new ClientResourceTokenProcessor(
+				new TokenRegistry(
+					new ResourceTextManager(new ResourceManager("UINewspagesResources", Assembly.Load("UINewspagesResources"))), null));
+
+			var culture = CultureManager.GetCultureInfoFromInterfaceLanguage("ru");
+			Thread.CurrentThread.CurrentCulture = culture;
+			Thread.CurrentThread.CurrentUICulture = culture;
+
+			var resource = new ProcessedClientResource(_clientResource, content);
+			processor.Process(resource);
+
+			Assert.AreEqual(
+					"Russian for search is: Поиск",
+					resource.Content
+				);
+		}
     }
 }
