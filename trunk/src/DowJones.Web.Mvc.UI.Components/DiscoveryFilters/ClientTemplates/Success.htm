@@ -1,5 +1,6 @@
 ﻿<% 
 var model = self,
+    options = this.options,
     index = 0;
 %>
 
@@ -10,7 +11,9 @@ var model = self,
         <div class="dj_df-div">
             <div class="dj_df-header">
                 <h4 class="side-section-title"><span class="fi-two fi_d-arrow-drk-blue"></span></h4>
+                <% if (options.enableExport) { %>
                 <a href="javascript:void(0)" class="fi-two fi_export" title="<%= Token('export') %>"><%= Token('export') %></a>
+                <% } %>
             </div>
             <div class="dj_df-chart">
                 <div id="hc-container" class="dj_hc-container"></div>

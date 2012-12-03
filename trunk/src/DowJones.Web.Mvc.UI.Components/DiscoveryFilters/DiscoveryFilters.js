@@ -34,7 +34,8 @@ DJ.UI.DiscoveryFilters = DJ.UI.Component.extend({
         columnColor: '#5BB4E5',
         enableExcludeItems: false, //for this, useHTML needs to be true
         useHTML: false,
-        enableTooltip: true
+        enableTooltip: true,
+        enableExport: false
         // ,name: value     // add more defaults here separated by comma
     },
 
@@ -56,7 +57,9 @@ DJ.UI.DiscoveryFilters = DJ.UI.Component.extend({
         dataContainer: '.dj_df-chart',
         mainContainer: '.dj_df-div',
         barChartHtmlDataLabel: '.dj_discoveryFilters-dataLabel',
-        excludeItem: '.dj_df-not'
+        excludeItem: '.dj_df-not',
+        itemLabel: '.dj_df-label',
+        itemCount: '.dj_df-count'
     },
 
     // Localization/Templating tokens
@@ -148,8 +151,10 @@ DJ.UI.DiscoveryFilters = DJ.UI.Component.extend({
             this.$element.on('mouseout', this.selectors.barChartHtmlDataLabel, function () {
                 $(this).toggleClass("dj_discoveryFilters-dataLabel-hover");
             });
+            this.$element.on('mouseup', this.selectors.excludeItem, this._delegates.OnItemExcludeClicked);
         }
-        this.$element.on('click', this.selectors.excludeItem, this._delegates.OnItemExcludeClicked);
+        this.$element.on('mouseup', this.selectors.itemLabel, this._delegates.OnItemLabelClicked);
+        this.$element.on('mouseup', this.selectors.itemCount, this._delegates.OnItemCountClicked);
     },
 
     //Initialize Sortable
@@ -165,6 +170,8 @@ DJ.UI.DiscoveryFilters = DJ.UI.Component.extend({
     _initializeDelegates: function () {
         $.extend(this._delegates, {
             OnItemClicked: $dj.delegate(this, this._onItemClicked),
+            OnItemLabelClicked: $dj.delegate(this, this._onItemLabelClicked),
+            OnItemCountClicked: $dj.delegate(this, this._onItemCountClicked),
             OnExportClicked: $dj.delegate(this, this._onExportClicked),
             OnItemExcludeClicked: $dj.delegate(this, this._onItemExcludeClicked),
             OnExpandCollapseClicked: $dj.delegate(this, this._onExpandCollapseClicked)
@@ -274,11 +281,11 @@ DJ.UI.DiscoveryFilters = DJ.UI.Component.extend({
         self.publish(self.events.itemClick, { "data": evt.point.options.entityData });
     },
 
-    //On Discovery Item Click Event Handler
+    //On Discovery Item Notting Click Event Handler
     _onItemExcludeClicked: function (evt) {
         var self = this;
-        //var excludeItem = $(self.selectors.excludeItem);
-        self.publish(self.events.itemExcludeClick, { "data": self.data("entity") });
+        var excludeItem = $(evt.target).parent();
+        self.publish(self.events.itemExcludeClick, { "data": excludeItem.data("entity") });
     },
 
     //On Discovery Filters Export Click
@@ -296,6 +303,18 @@ DJ.UI.DiscoveryFilters = DJ.UI.Component.extend({
         var type = $(evt.target).closest("li").data("type");
         var expandCollapseData = { type: type, expand: ($(evt.target).parent().hasClass("open")) ? false : true };
         self.publish(self.events.expandCollapseClick, { "data": expandCollapseData });
+    },
+
+    _onItemLabelClicked: function (evt) {
+        var self = this;
+        var labelItem = $(evt.target).parent();
+        self.publish(self.events.itemClick, { "data": labelItem.data("entity") });
+    },
+    
+    _onItemCountClicked: function (evt) {
+        var self = this;
+        var countItem = $(evt.target);
+        self.publish(self.events.itemClick, { "data": countItem.data("entity") });
     },
 
     //Get Discovery Filter Config
@@ -321,12 +340,12 @@ DJ.UI.DiscoveryFilters = DJ.UI.Component.extend({
                             var dataLabelTooltip = "";
                             if (self.options.enableExcludeItems) {
                                 //exludeItemHTML = "<span class=\"dj_df-not\" title=\"" + self.tokens.notTitleTkn + "\" data-entity='" + JSON.stringify(this.value) + "'></span>";
-                                exludeItemHTML = "<span class=\"dj_df-not\" title=\"" + self.tokens.notTitleTkn + "\"><span></span></span>";
+                                exludeItemHTML = "<span class=\"dj_df-not\" title=\"" + self.tokens.notTitleTkn + "\"></span>";
                             }
                             if (self.options.enableTooltip) {
                                 dataLabelTooltip = label;
                             }
-                            return "<div class=\"dj_discoveryFilters-dataLabel\">" + exludeItemHTML + "<span class=\"ellipsis\" title=\"" + dataLabelTooltip + "\" >" + label + "</span></div>";
+                            return "<div class='dj_discoveryFilters-dataLabel' data-entity='" + JSON.stringify(this.value) + "'>" + exludeItemHTML + "<span class='dj_df-label ellipsis' title='" + dataLabelTooltip + "'>" + label + "</span></div>";
                         } else {
                             var truncatedLabel = label;
                             if (self.options.truncationLength > 0 && label.length > self.options.truncationLength) {
@@ -337,7 +356,8 @@ DJ.UI.DiscoveryFilters = DJ.UI.Component.extend({
                     },
                     useHTML: self.options.useHTML,
                     style: {
-                        width: self.options.barChartDataLabelWidth
+                        width: self.options.barChartDataLabelWidth,
+                        cursor: 'pointer'
                     }
                 },
                 tickWidth: 0,
@@ -545,9 +565,18 @@ DJ.UI.DiscoveryFilters = DJ.UI.Component.extend({
                     align: "right",
                     y: 12,
                     color: "#a6a6a6",
-                    formatter: function () {
-                        return this.point.name;
+                    style: {
+                        cursor: 'pointer'
                     },
+                    formatter: function () {
+                        if (self.options.useHTML) {
+                            return "<span class='dj_df-count' data-entity='" + JSON.stringify(this.point.entityData) + "'>" + this.point.name + "</span>";
+                        }
+                        else {
+                            return this.point.name;
+                        }
+                    },
+                    useHTML: self.options.useHTML,
                     padding: 6
                 },
                 data: seriesData[0]

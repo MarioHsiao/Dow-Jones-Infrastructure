@@ -96,6 +96,12 @@
     width: 150px;
 }
 
+.dj_df-count
+{
+    cursor: pointer;
+}
+
+
 
 /*Draggable Styles*/
 .ui-state-highlight { height: 1.5em; line-height: 1.2em; }
