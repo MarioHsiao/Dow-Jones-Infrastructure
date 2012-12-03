@@ -215,10 +215,10 @@ namespace DowJones.Web.Handlers.Article
 
                 #endregion
 
-                if (imageType.ToLower() == "thumbnail" ||
-                    imageType.ToLower() == "fingernail")
+                if (imageType.ToLower() == "tnail" ||
+                    imageType.ToLower() == "fnainail")
                 {
-                    HandleBillableRequest(new GetBinaryRequest
+                    HandleNonBillableRequest(new GetBinaryInternalRequest
                                               {
                                                   accessionNumber = accessionNo,
                                                   reference = reference,
@@ -232,7 +232,7 @@ namespace DowJones.Web.Handlers.Article
 
                 else
                 {
-                    HandleNonBillableRequest(new GetBinaryInternalRequest
+                    HandleBillableRequest(new GetBinaryRequest
                     {
                         accessionNumber = accessionNo,
                         reference = reference,
@@ -262,8 +262,13 @@ namespace DowJones.Web.Handlers.Article
             archiveResponse.GetResponse(ServiceResponse.ResponseFormat.Object, out objResponse);
 
             var binaryResponse = (GetBinaryResponse) objResponse;
+            
             try
             {
+                if (archiveResponse.ReturnCode != 0)
+                {
+                    throw new DowJonesUtilitiesException(archiveResponse.ReturnCode);
+                }
                 switch (billableRequest.mimeType)
                 {
                     case "image/gif":
@@ -318,9 +323,13 @@ namespace DowJones.Web.Handlers.Article
             object objResponse;
             archiveResponse.GetResponse(ServiceResponse.ResponseFormat.Object, out objResponse);
 
-            var binaryResponse = (GetBinaryInternalResponse)objResponse;
+            var binaryResponse = (GetBinaryResponse)objResponse;
             try
             {
+                if (archiveResponse.ReturnCode != 0)
+                {
+                    throw new DowJonesUtilitiesException(archiveResponse.ReturnCode);
+                }
                 switch (nonBillableRequest.mimeType)
                 {
                     case "image/gif":
