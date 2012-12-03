@@ -23,7 +23,7 @@ namespace DowJones.Factiva.Currents.Components.CurrentsHeadline
     using CurrentsHeadline;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 11/15/2012 05:08 PM
+    // Last Generated Timestamp: 12/03/2012 02:44 PM
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Factiva.Currents.Components.CurrentsHeadline.CurrentsHeadline.js", ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Factiva.Currents.Components.CurrentsHeadline.CurrentsHeadlineComponent))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.27108")]
     public class CurrentsHeadlineComponent : DowJones.Web.Mvc.UI.ViewComponentBase<CurrentsHeadlineModel>
@@ -136,15 +136,30 @@ WriteLiteral("\t\t\t\t\t\t\t\t\t<br />\r\n");
 
  							if (Model.ShouldShowPublicationDateTime(headline))
 							{
+                                if (@headline.PublicationDateDescriptor != null)
+                                {
 
-WriteLiteral("\t\t\t\t\t\t\t\t<span class=\"date-stamp\">");
+WriteLiteral("\t\t\t\t\t\t\t\t    <span class=\"date-stamp\">");
 
 
-                            Write(headline.PublicationDateDescriptor);
+                                Write(headline.PublicationDateDescriptor);
 
 WriteLiteral(" </span>\r\n");
 
 
+                                }   
+                                else
+                                {
+
+WriteLiteral("                                     <span class=\"date-stamp\">");
+
+
+                                                         Write(headline.PublicationDateTimeDescriptor);
+
+WriteLiteral(" </span>\r\n");
+
+
+                                } 
 							} 
 
 WriteLiteral("\t\t\t\t\t\t</div>\r\n");

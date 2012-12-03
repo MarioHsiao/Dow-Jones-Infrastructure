@@ -59,8 +59,12 @@ namespace DowJones.Factiva.Currents.Components.CurrentsHeadline
 
 		public bool ShouldShowPublicationDateTime(PortalHeadlineInfo headline)
 		{
-			return ShowPublicationDateTime
-					&& !headline.PublicationDateDescriptor.IsEmpty();
+            if(headline.PublicationDateDescriptor != null)
+			    return ShowPublicationDateTime
+                        && !headline.PublicationDateDescriptor.IsEmpty();
+            else
+                return ShowPublicationDateTime
+                     && !headline.PublicationDateTimeDescriptor.IsEmpty();
 		}
 
 		public string GetHeadlineUrl(PortalHeadlineInfo headline, UrlHelper urlHelper)
