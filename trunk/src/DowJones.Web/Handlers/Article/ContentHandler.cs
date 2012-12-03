@@ -16,6 +16,7 @@ using DowJones.Exceptions;
 using DowJones.Extensions;
 using DowJones.Managers.Search;
 using DowJones.Managers.Search.Requests;
+using Factiva.Gateway.Messages.Archive;
 using Factiva.Gateway.Messages.Archive.V2_0;
 using Factiva.Gateway.Messages.Search.V2_0;
 using Factiva.Gateway.Services.V2_0;
@@ -218,30 +219,31 @@ namespace DowJones.Web.Handlers.Article
                 if (imageType.ToLower() == "tnail" ||
                     imageType.ToLower() == "fnainail")
                 {
-                    HandleNonBillableRequest(new GetBinaryInternalRequest
-                                              {
-                                                  accessionNumber = accessionNo,
-                                                  reference = reference,
-                                                  mimeType = mimeType,
-                                                  imageType = imageType
-                                              },
-                                          context,
-                                          retrieveBlobItem,
-                                          origAccessionNo);
+                    HandleRequest<GetBinaryInternalRequest, GetBinaryInternalResponse>(new GetBinaryInternalRequest
+                                                                                           {
+                                                                                               accessionNumber =
+                                                                                                   accessionNo,
+                                                                                               reference = reference,
+                                                                                               mimeType = mimeType,
+                                                                                               imageType = imageType
+                                                                                           },
+                                                                                       context,
+                                                                                       retrieveBlobItem,
+                                                                                       origAccessionNo);
                 }
 
                 else
                 {
-                    HandleBillableRequest(new GetBinaryRequest
-                    {
-                        accessionNumber = accessionNo,
-                        reference = reference,
-                        mimeType = mimeType,
-                        imageType = imageType
-                    },
-                                          context,
-                                          retrieveBlobItem,
-                                          origAccessionNo);
+                    HandleRequest<GetBinaryRequest, GetBinaryResponse>(new GetBinaryRequest
+                                                                           {
+                                                                               accessionNumber = accessionNo,
+                                                                               reference = reference,
+                                                                               mimeType = mimeType,
+                                                                               imageType = imageType
+                                                                           },
+                                                                       context,
+                                                                       retrieveBlobItem,
+                                                                       origAccessionNo);
                 }
             }
             catch
@@ -254,6 +256,77 @@ namespace DowJones.Web.Handlers.Article
             }
         }
 
+        private void HandleRequest<TRequest, TResponse>(TRequest request, HttpContext context, bool retrieveBlobItem, string origAccessionNo)
+            where TRequest : IBinaryRequest, new()
+            where TResponse : IBinaryResponse, new()
+        {
+            var gatewayResponse = FactivaServices.Invoke<TResponse>(_controlData, request);
+
+            object objResponse;
+            gatewayResponse.GetResponse(ServiceResponse.ResponseFormat.Object, out objResponse);
+
+            var response = (IBinaryResponse)objResponse;
+
+            try
+            {
+                if (gatewayResponse.ReturnCode != 0)
+                {
+                    throw new DowJonesUtilitiesException(gatewayResponse.ReturnCode);
+                }
+
+                var binaryData = (response is GetBinaryResponse)
+                                     ? ((GetBinaryResponse) response).binaryData
+                                     : ((GetBinaryInternalResponse) response).binaryData;
+
+                switch (request.mimeType)
+                {
+                    case "image/gif":
+                    case "image/jpeg":
+                    case "image/png":
+                        //HandleContent(context.Response, tempErrorNum, "image/png", ImageFormat.Png, ERROR_IMAGE_WIDTH, ERROR_IMAGE_HEIGHT);
+                        context.Response.ContentType = request.mimeType;
+                        context.Response.BinaryWrite(binaryData);
+                        // add the item to cache to free up the space
+                        if (retrieveBlobItem)
+                        {
+                            context.Cache.Add(
+                                string.Format(Keyformat, origAccessionNo, request.imageType.ToLowerInvariant()),
+                                new ImageCacheItem
+                                {
+                                    Bytes = binaryData,
+                                    MimeType = request.mimeType,
+                                },
+                                null,
+                                Cache.NoAbsoluteExpiration,
+                                TimeSpan.FromHours(SlidingCache),
+                                CacheItemPriority.Normal,
+                                null);
+                        }
+                        break;
+                    case "application/msexcel":
+                    case "application/msword":
+                    case "application/mspowerpoint":
+                    case "application/pdf":
+                    case "text/html":
+                        HandleContent(context.Response, request.mimeType, binaryData);
+                        break;
+                    default:
+                        context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                        break;
+                }
+            }
+            catch (DowJonesUtilitiesException ex)
+            {
+                HandleErrorImage(context.Response, ex.ReturnCode, "image/png", ImageFormat.Png, ErrorImageWidth, ErrorImageHeight);
+            }
+            catch (Exception)
+            {
+                HandleErrorImage(context.Response, -1, "image/png", ImageFormat.Png, ErrorImageWidth, ErrorImageHeight);
+            }
+        }
+
+
+
         private void HandleBillableRequest(GetBinaryRequest billableRequest, HttpContext context, bool retrieveBlobItem, string origAccessionNo)
         {
             var archiveResponse = ArchiveService.GetBinary(_controlData, billableRequest);
@@ -262,7 +335,7 @@ namespace DowJones.Web.Handlers.Article
             archiveResponse.GetResponse(ServiceResponse.ResponseFormat.Object, out objResponse);
 
             var binaryResponse = (GetBinaryResponse) objResponse;
-            
+
             try
             {
                 if (archiveResponse.ReturnCode != 0)
