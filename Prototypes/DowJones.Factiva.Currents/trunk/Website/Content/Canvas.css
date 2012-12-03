@@ -57,3 +57,10 @@ ul, ol {
   max-height: 40px;
   max-width: 300px;
 }
+
+/* line 69, ../sass/Canvas.scss */
+.module-col-title {
+  position: relative;
+  font-size: 138.5%;
+  margin: 10px 10px 5px;
+}
