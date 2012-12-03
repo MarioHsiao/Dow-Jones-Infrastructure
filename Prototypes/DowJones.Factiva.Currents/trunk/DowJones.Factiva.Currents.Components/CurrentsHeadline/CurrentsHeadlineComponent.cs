@@ -23,7 +23,7 @@ namespace DowJones.Factiva.Currents.Components.CurrentsHeadline
     using CurrentsHeadline;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 12/03/2012 02:44 PM
+    // Last Generated Timestamp: 12/03/2012 05:13 PM
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Factiva.Currents.Components.CurrentsHeadline.CurrentsHeadline.js", ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Factiva.Currents.Components.CurrentsHeadline.CurrentsHeadlineComponent))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.27108")]
     public class CurrentsHeadlineComponent : DowJones.Web.Mvc.UI.ViewComponentBase<CurrentsHeadlineModel>
@@ -161,6 +161,71 @@ WriteLiteral(" </span>\r\n");
 
                                 } 
 							} 
+
+
+                             if (Model.ShouldShowAuthor(headline))
+							{
+                                if (@headline.CodedAuthors != null)
+                                {
+                                      for (int j = 0, jCnt = @headline.CodedAuthors.Count; j < jCnt; j++)
+                                      {
+                                            var author = @headline.CodedAuthors[j];
+                                            for (int k = 0, kcnt = @author.items.Count; k < kcnt; k++)
+                                            {
+                                                var item = @author.items[k];
+                                                switch (@item.EntityType.ToString().ToLower())
+                                                {
+                                                    case "person":
+                                                    case "author":
+
+WriteLiteral("                                                        <br/>\r\n");
+
+
+
+WriteLiteral("                                                        <span class=\"article-auth" +
+"or article-clickable\">");
+
+
+                                                                                                  Write(item.value);
+
+WriteLiteral("</span>\r\n");
+
+
+                                                         break;
+                                                    case "textual":
+                                                    default:
+
+WriteLiteral("                                                        <br/>\r\n");
+
+
+
+WriteLiteral("                                                        <span class=\"article-auth" +
+"or\">");
+
+
+                                                                                Write(item.value);
+
+WriteLiteral("</span>\r\n");
+
+
+                                                        break;
+                                                }
+                                            }
+                                      }
+                                }
+                                else
+                                {
+
+WriteLiteral("                                    <span class=\"author\">");
+
+
+                                                    Write(headline.Authors.Aggregate((a,b)=> a+","+b));
+
+WriteLiteral("</span>\r\n");
+
+
+                                } 
+							}
 
 WriteLiteral("\t\t\t\t\t\t</div>\r\n");
 

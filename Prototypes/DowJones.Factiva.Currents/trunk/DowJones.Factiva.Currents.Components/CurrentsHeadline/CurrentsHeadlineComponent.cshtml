@@ -41,6 +41,37 @@
                                      <span class="date-stamp">@headline.PublicationDateTimeDescriptor </span>
                                 } 
 							} 
+                            @if (Model.ShouldShowAuthor(headline))
+							{
+                                if (@headline.CodedAuthors != null)
+                                {
+                                      for (int j = 0, jCnt = @headline.CodedAuthors.Count; j < jCnt; j++)
+                                      {
+                                            var author = @headline.CodedAuthors[j];
+                                            for (int k = 0, kcnt = @author.items.Count; k < kcnt; k++)
+                                            {
+                                                var item = @author.items[k];
+                                                switch (@item.EntityType.ToString().ToLower())
+                                                {
+                                                    case "person":
+                                                    case "author":
+                                                        <br/>
+                                                        <span class="article-author article-clickable">@item.value</span>
+                                                         break;
+                                                    case "textual":
+                                                    default:
+                                                        <br/>
+                                                        <span class="article-author">@item.value</span>
+                                                        break;
+                                                }
+                                            }
+                                      }
+                                }
+                                else
+                                {
+                                    <span class="author">@headline.Authors.Aggregate((a,b)=> a+","+b)</span>
+                                } 
+							}
 						</div>
 					}
 				</div>

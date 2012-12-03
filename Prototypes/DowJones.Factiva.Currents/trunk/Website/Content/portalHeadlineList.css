@@ -22,7 +22,7 @@
   text-transform: none;
 }
 /* line 22, ../sass/portalHeadlineList.scss */
-.article-meta .article-source, .article-meta .time-stamp, .article-meta .date-stamp, .article-meta .media-length, .article-meta .fi, .article-meta .author, .article-meta .byline, .article-meta .author {
+.article-meta .article-source, .article-author, .article-meta .time-stamp, .article-meta .date-stamp, .article-meta .media-length, .article-meta .fi, .article-meta .author, .article-meta .byline, .article-meta .author {
   display: -moz-inline-stack;
   display: inline-block;
   vertical-align: top;

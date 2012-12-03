@@ -31,8 +31,10 @@ namespace DowJones.Factiva.Currents.Components.CurrentsHeadline
 		public string SelectedGuid { get; set; }
 		public bool ShowSource { get; set; }
 		public bool ShowPublicationDateTime { get; set; }
+        public bool ShowAuthor { get; set; }
 
 		public bool SourceClickable { get; set; }
+        public bool AuthorClickable { get; set; }
 
 		public CurrentsHeadlineModel(PortalHeadlineListModel portalHeadlineList)
 		{
@@ -41,6 +43,7 @@ namespace DowJones.Factiva.Currents.Components.CurrentsHeadline
 			MaxNumHeadlinesToShow = _portalHeadlineList.MaxNumHeadlinesToShow;
 			ShowSource = _portalHeadlineList.ShowSource;
 			ShowPublicationDateTime = _portalHeadlineList.ShowPublicationDateTime;
+            ShowAuthor = _portalHeadlineList.ShowAuthor;
 		}
 
 
@@ -56,6 +59,14 @@ namespace DowJones.Factiva.Currents.Components.CurrentsHeadline
 					&& !headline.SourceCode.IsEmpty()
 					&& !headline.SourceDescriptor.IsEmpty();
 		}
+
+        public bool ShouldShowAuthor(PortalHeadlineInfo headline)
+        {
+            return ShowAuthor
+                    && headline.Authors != null
+                    && headline.Authors.Count > 0;
+            
+        }
 
 		public bool ShouldShowPublicationDateTime(PortalHeadlineInfo headline)
 		{
