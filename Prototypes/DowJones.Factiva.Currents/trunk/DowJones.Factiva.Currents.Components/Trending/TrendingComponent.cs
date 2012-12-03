@@ -23,7 +23,7 @@ namespace DowJones.Factiva.Currents.Components.Trending
     using Trending;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 11/13/2012 04:13 PM
+    // Last Generated Timestamp: 12/03/2012 03:55 PM
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Factiva.Currents.Components.Trending.Trending.js", ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Factiva.Currents.Components.Trending.TrendingComponent))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.27108")]
     public class TrendingComponent : DowJones.Web.Mvc.UI.ViewComponentBase<TrendingComponentModel>
@@ -72,16 +72,17 @@ WriteLiteral("  ");
 
                                                                               Write(topEntity.Descriptor);
 
-WriteLiteral("\">\r\n\t\t\t\t<div class=\"article-wrap\">\r\n\t\t\t\t\t<h4 class=\"article-headline\">\r\n\t\t\t\t\t    " +
-"<a href=\"");
+WriteLiteral("\">\r\n\t\t\t\t<div class=\"article-wrap\">\r\n\t\t\t\t\t<h3 class=\"module-col-title\">Trending Up" +
+" <span class=\"fi fi_arrow-increase-green\"></span></h3>\r\n\t\t\t\t\t<h4 class=\"article-" +
+"headline\">\r\n\t\t\t\t\t\t<a href=\"");
 
 
-             Write(Model.GetTrendingUrl(topEntity, Url));
+          Write(Model.GetTrendingUrl(topEntity, Url));
 
 WriteLiteral("\" class=\"article-view-trigger\" target=\"_blank\">");
 
 
-                                                                                                 Write(topEntity.Descriptor);
+                                                                                              Write(topEntity.Descriptor);
 
 WriteLiteral("</a>\r\n\t\t\t\t\t</h4>\r\n\t\t\t\t</div>\r\n\r\n\t\t\t</li>\r\n");
 
