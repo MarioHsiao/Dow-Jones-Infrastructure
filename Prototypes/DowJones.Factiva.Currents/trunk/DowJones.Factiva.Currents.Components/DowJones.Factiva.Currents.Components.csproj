@@ -132,6 +132,8 @@
     </Compile>
     <Compile Include="EmbeddedResources\EmbeddedResources.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Trending\TrendingComponent.cs" />
+    <Compile Include="Trending\TrendingComponentModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="CurrentRegionalMap\CurrentRegionalMapComponent.cshtml">
@@ -143,6 +145,7 @@
       <LastGenOutput>CurrentsHeadlineComponent.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
+    <None Include="Trending\TrendingComponent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="CurrentsHeadline\CurrentsHeadline.js" />
@@ -153,6 +156,9 @@
   <ItemGroup>
     <EmbeddedResource Include="EmbeddedResources\js\highchartsMap\highchartsMap.js" />
     <EmbeddedResource Include="EmbeddedResources\js\highchartsMap\world.map.shapes.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Trending\Trending.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
