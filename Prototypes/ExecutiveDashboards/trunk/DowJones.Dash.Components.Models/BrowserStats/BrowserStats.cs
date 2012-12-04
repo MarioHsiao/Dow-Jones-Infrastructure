@@ -1,6 +1,7 @@
+using DowJones.Web.Mvc.UI.Canvas;
 namespace DowJones.Dash.Components.Models.BrowserStats
 {
-	public class BrowserStatsModel : Web.Mvc.UI.ViewComponentModel
+    public class BrowserStatsModel : Module
 	{
 		// TODO:  Add properties
 	}

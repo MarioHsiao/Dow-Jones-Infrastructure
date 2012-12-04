@@ -2,7 +2,7 @@
  * BrowserStats
  */
 
-DJ.UI.BrowserStats = DJ.UI.CompositeComponent.extend({
+DJ.UI.BrowserStats = DJ.UI.DashboardComponent.extend({
 
     defaults: {
         zones: {

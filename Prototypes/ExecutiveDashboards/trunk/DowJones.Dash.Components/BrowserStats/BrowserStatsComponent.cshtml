@@ -1,6 +1,6 @@
-﻿@model Models.BrowserStats.BrowserStatsModel
-@ClientPlugin dj_BrowserStats
+﻿@ClientPlugin dj_BrowserStats
 @ScriptResource RelativeResourceName=BrowserStats.js, DependsOn=jquery-counter
+@inherits  DowJones.Dash.Components.DashboardComponent<DowJones.Dash.Components.Models.BrowserStats.BrowserStatsModel>
 @ClientTemplate RelativeResourceName=ClientTemplates.container.html, TemplateId=container
 @ClientTemplate RelativeResourceName=ClientTemplates.statBars.html, TemplateId=statBars
 @ClientTemplate RelativeResourceName=ClientTemplates.navPills.html, TemplateId=navPills
