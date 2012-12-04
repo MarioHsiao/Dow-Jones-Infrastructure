@@ -1,5 +1,4 @@
-﻿@using Web.Mvc.Extensions
-@using DowJones.Factiva.Currents.Models
+﻿@using DowJones.Factiva.Currents.Models
 
 @inherits DowJones.Web.Mvc.UI.CompositeComponent<CurrentTrendingModel>
 @ClientPlugin dj_CurrentTrending
@@ -14,68 +13,86 @@
         <i class="icon-signal icon-white"></i>
         <span>Trending</span>
     </header>
-    @*<div class="span12">*@
     <div class="content">
         <div class="row">
-
             <div class="span4">
+                <div class="top-five-mentioned">
+                    <h3 class="module-col-title">@DJ.Token("top5Mentioned")</h3>
+                    <span class="module-col-secondary-title">@DJ.Token("basedOnNewsVolume")</span>
+                </div>
                 <ul>
-                    @foreach (var trendingEntities in Model.TrendingTopEntitiesPackageModel)
+                    @foreach (var entity in Model.TrendingTopEntities)
                     {
-
-                        foreach (var entity in trendingEntities.TrendingTopEntitiesPackageModel)
-                        {
                         <li>
-                            <h4 class="industry-item-title"><a href="javascript:void(0)" class="popup-trigger"
-                                searchcontext=' + entity.SearchContextRef +'>@entity.Descriptor</a> </h4>
+                            <h4 class="industry-item-title">
+                                <a href="javascript:void(0)" class="popup-trigger"
+								   searchcontext="@entity.SearchContextRef">@entity.Descriptor</a>
+                            </h4>
+                            <p>
+                                <span class="item-total">@entity.CurrentTimeFrameNewsVolume.Text.Value</span>
+                                <span class="item-total-type">@DJ.Token("articlesLabel")</span>
+                            </p>
                         </li>
-                        }
-
                     }
                 </ul>
             </div>
             <div class="span4">
+                <div class="trending-up">
+                    <h3 class="module-col-title">@DJ.Token("trendingUp") <span class="fi fi_arrow-increase-green">
+                    </span></h3>
+                    <span class="module-col-secondary-title">@DJ.Token("increaseInNewsVolume")</span>
+                </div>
                 <ul>
-                    @foreach (var trendingEntities in Model.TrendingUpModel)
+                    @foreach (var entity in Model.TrendingUp)
                     {
-                        foreach (var entity in trendingEntities.TrendingUpDownPackageModel)
-                        {
                         <li>
-                            <h4 class="industry-item-title"><a href="javascript:void(0)" class="popup-trigger"
-                                searchcontext=' + entity.SearchContextRef +'>@entity.Descriptor</a> </h4>
-                            @*  <p><span class="news-volume-previous">@entity.CurrentTimeFrameNewsVolume</span>
-                              <span class="fi fi_arrow-green-small"></span>
-                              <span class="news-volume-current">@entity.CurrentTimeFrameNewsVolume.displayText.value</span>
-                              <span class="news-volume-percentage increase">percentOrNew</span>
-                          </p>*@
-
+                            <h4 class="industry-item-title">
+                                <a href="javascript:void(0)" class="popup-trigger"
+								   searchcontext="@entity.SearchContextRef">@entity.Descriptor</a>
+                            </h4>
+                            <p>
+                                <span class="news-volume-previous">@entity.PreviousTimeFrameNewsVolume.Text.Value</span>
+                                <span class="fi fi_arrow-green-small"></span>
+								<span class="news-volume-current">@entity.CurrentTimeFrameNewsVolume.Text.Value</span>
+								<span class="news-volume-percentage increase">
+									@(entity.NewEntrant 
+                                            ? DJ.Token("newEntry").ToHtmlString() 
+                                            : entity.PercentVolumeChange.Text.Value + DJ.Token("vol").ToHtmlString())
+								</span>
+                            </p>
                         </li>
-@*<li><div class="span4">@entity.Descriptor</div></li>*@
-                        }
                     }
                 </ul>
             </div>
             <div class="span4">
-                <ul>
-                    @foreach (var trendingEntities in Model.TrendingDownModel)
-                    {
-                        foreach (var entity in trendingEntities.TrendingUpDownPackageModel)
+                <div class="trending-down">
+                    <h3 class="module-col-title industry-group-title">@DJ.Token("trendingDown") <span
+                        class="fi fi_arrow-decrease-red"></span></h3>
+                    <span class="module-col-secondary-title">@DJ.Token("decreaseInNewsVolume")</span>
+                    <ul>
+                        @foreach (var entity in Model.TrendingDown)
                         {
-                        <li>
-                            <h4 class="industry-item-title"><a href="javascript:void(0)" class="popup-trigger"
-                                searchcontext=' + entity.SearchContextRef +'>@entity.Descriptor</a> </h4>
-                        </li>
+                            <li>
+								<h4 class="industry-item-title">
+									<a href="javascript:void(0)" class="popup-trigger"
+									   searchcontext="@entity.SearchContextRef">@entity.Descriptor</a>
+								</h4>
+                                <p>
+                                <span class="news-volume-previous">@entity.PreviousTimeFrameNewsVolume.Text.Value</span>
+                                <span class="fi fi_arrow-red-small"></span>
+								<span class="news-volume-current">@entity.CurrentTimeFrameNewsVolume.Text.Value</span>
+								<span class="news-volume-percentage decrease">
+									@(entity.NewEntrant 
+                                            ? DJ.Token("newEntry").ToHtmlString() 
+                                            : entity.PercentVolumeChange.Text.Value + DJ.Token("vol").ToHtmlString())
+								</span>
+                            </p>
+                            </li>
                         }
-                    }
-                </ul>
+                    </ul>
+                </div>
             </div>
 
         </div>
     </div>
 </div>
-
-
-@*<li>
-                        <h4 class="industry-item-title"><a href="javascript:void(0)" class="popup-trigger" searchcontext="entity.search">@entity.Descriptor</a></h4>
-                        <p><span class="item-total">entity.CurrentTimeFrameNewsVolume</span><span class="item-total-type">@Html.DJ().Token("articlesLabel")</span></p>
-                    </li>*@

@@ -48,6 +48,15 @@ ul, ol {
 	}
 }
 
+.module-col { 
+	.standard-padding {
+		padding: 0 14px;
+	}
+	.module-col-wrap {
+		position: relative;
+	}
+}
+
 .module-col-source-logo-wrap {
 	
 	margin-bottom: 4px;
@@ -65,9 +74,114 @@ ul, ol {
 	}
 }
 
- .module-col-title
-	{
-		position:relative;
-		font-size:138.5%;
-		margin:10px 10px 5px
+.module-col-title {
+	position: relative;
+	font-size: 138.5%;
+	margin: 0 0 14px;
+}
+
+.module-col-secondary-title {
+	font-size: 85%;
+	color: #666;
+	display: block;
+	margin-bottom: 15px;
+}
+
+.fi {
+	display: inline-block;
+	background: transparent url('images/factiva-icons.png?v0.1')  no-repeat 0 0;
+	cursor: pointer;
+
+	&.fi_arrow-increase-green, &.fi_arrow-decrease-red {
+		position: absolute;
+		top: 2px;
+		right: 0;
+		margin-left: 4px;
 	}
+
+	&.fi_arrow-increase-green {
+		width: 14px;
+		height: 16px;
+		background-position: 0 -1000px;
+	}
+
+	&.fi_arrow-decrease-red {
+		width: 14px;
+		height: 16px;
+		background-position: 0 -1030px;
+	}
+
+	&.fi_arrow-green-small {
+		width: 8px;
+		height: 7px;
+		background-position: 0 -1060px;
+	}
+
+	&.fi.fi_arrow-red-small {
+		width: 8px;
+		height: 7px;
+		background-position: 0 -1080px;
+	}
+}
+
+
+
+.dj_CurrentTrending {
+	.module-col-title {
+		position: relative;
+		color: #666;
+		display: inline;
+		padding-right: 18px;
+		margin-bottom: 0;
+	}
+
+	.industry-item-title {
+		font-size: 93%;
+		font-weight: bold;
+		color: #4B9DC8;
+	}
+
+	.trending-up .fi, .trending-down .fi {
+		cursor: default;
+	}
+
+	.news-volume-percentage {
+		&.increase {
+			color: #11A106;
+		}
+
+		&.decrease {
+			color: #B90202;
+		}
+	}
+
+	.item-total, .item-total-type, .news-volume-previous, .news-volume-current, .news-volume-percentage {
+		display: inline-block;
+		display: -moz-inline-stack;
+		color: #999;
+		font-size: 85%;
+		font-weight: bold;
+		vertical-align: middle;
+		padding-right: 5px;
+	}
+
+	.news-volume-current {
+		padding-left: 5px;
+	}
+
+	.trending-up , .trending-down {
+		ul li {
+			margin-bottom: 10px;
+		}
+	}
+
+	ul {
+		margin: 0;
+	}
+
+	li {
+		line-height: 1.23;
+	}
+}
+
+
