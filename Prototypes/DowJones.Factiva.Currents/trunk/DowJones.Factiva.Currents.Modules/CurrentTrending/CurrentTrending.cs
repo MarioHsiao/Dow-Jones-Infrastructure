@@ -20,10 +20,11 @@ namespace DowJones.Factiva.Currents.Modules.CurrentTrending
     using System.Web;
     using System.Web.Security;
     using System.Web.UI;
+    using System.Web.Routing;
     using DowJones.Factiva.Currents.Models;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 12/04/2012 04:30 PM
+    // Last Generated Timestamp: 12/04/2012 05:25 PM
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Factiva.Currents.Modules.CurrentTrending.CurrentTrending.js", ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Factiva.Currents.Modules.CurrentTrending.CurrentTrending))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.27108")]
     public class CurrentTrending : DowJones.Web.Mvc.UI.CompositeComponent<CurrentTrendingModel>
@@ -42,6 +43,7 @@ namespace DowJones.Factiva.Currents.Modules.CurrentTrending
         }
         public override void ExecuteTemplate()
         {
+
 
 WriteLiteral("\r\n");
 
@@ -82,16 +84,21 @@ WriteLiteral("</span>\r\n                </div>\r\n                <ul>\r\n");
                     {
 
 WriteLiteral("                        <li>\r\n                            <h4 class=\"industry-ite" +
-"m-title\">\r\n                                <a href=\"javascript:void(0)\" class=\"p" +
-"opup-trigger\"\r\n\t\t\t\t\t\t\t\t   searchcontext=\"");
+"m-title\">\r\n                                <a href=\"");
 
 
-                     Write(entity.SearchContextRef);
+                                    Write(Url.Action("Index", "Headlines", new RouteValueDictionary { { "sc", entity.SearchContextRef } }));
+
+WriteLiteral("\" \r\n\t\t\t\t\t\t\t\t\t   class=\"popup-trigger\"\r\n                                        se" +
+"archcontext=\"");
+
+
+                                                  Write(entity.SearchContextRef);
 
 WriteLiteral("\">");
 
 
-                                               Write(entity.Descriptor);
+                                                                            Write(entity.Descriptor);
 
 WriteLiteral("</a>\r\n                            </h4>\r\n                            <p>\r\n       " +
 "                         <span class=\"item-total\">");
@@ -129,16 +136,21 @@ WriteLiteral("</span>\r\n                </div>\r\n                <ul>\r\n");
                     {
 
 WriteLiteral("                        <li>\r\n                            <h4 class=\"industry-ite" +
-"m-title\">\r\n                                <a href=\"javascript:void(0)\" class=\"p" +
-"opup-trigger\"\r\n\t\t\t\t\t\t\t\t   searchcontext=\"");
+"m-title\">\r\n                                <a href=\"");
 
 
-                     Write(entity.SearchContextRef);
+                                    Write(Url.Action("Index", "Headlines", new RouteValueDictionary { { "sc", entity.SearchContextRef } }));
+
+WriteLiteral("\" \r\n\t\t\t\t\t\t\t\t\t   class=\"popup-trigger\"\r\n                                        se" +
+"archcontext=\"");
+
+
+                                                  Write(entity.SearchContextRef);
 
 WriteLiteral("\">");
 
 
-                                               Write(entity.Descriptor);
+                                                                            Write(entity.Descriptor);
 
 WriteLiteral("</a>\r\n                            </h4>\r\n                            <p>\r\n       " +
 "                         <span class=\"news-volume-previous\">");
@@ -185,16 +197,21 @@ WriteLiteral("</span>\r\n                    <ul>\r\n");
                         {
 
 WriteLiteral("                            <li>\r\n\t\t\t\t\t\t\t\t<h4 class=\"industry-item-title\">\r\n\t\t\t\t\t" +
-"\t\t\t\t<a href=\"javascript:void(0)\" class=\"popup-trigger\"\r\n\t\t\t\t\t\t\t\t\t   searchcontex" +
-"t=\"");
+"\t\t\t\t<a href=\"");
 
 
-                      Write(entity.SearchContextRef);
+             Write(Url.Action("Index", "Headlines", new RouteValueDictionary { { "sc", entity.SearchContextRef } }));
+
+WriteLiteral("\" \r\n\t\t\t\t\t\t\t\t\t   class=\"popup-trigger\"\r\n                                        se" +
+"archcontext=\"");
+
+
+                                                  Write(entity.SearchContextRef);
 
 WriteLiteral("\">");
 
 
-                                                Write(entity.Descriptor);
+                                                                            Write(entity.Descriptor);
 
 WriteLiteral("</a>\r\n\t\t\t\t\t\t\t\t</h4>\r\n                                <p>\r\n                       " +
 "         <span class=\"news-volume-previous\">");

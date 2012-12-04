@@ -1,4 +1,5 @@
-﻿@using DowJones.Factiva.Currents.Models
+﻿@using System.Web.Routing
+@using DowJones.Factiva.Currents.Models
 
 @inherits DowJones.Web.Mvc.UI.CompositeComponent<CurrentTrendingModel>
 @ClientPlugin dj_CurrentTrending
@@ -25,8 +26,9 @@
                     {
                         <li>
                             <h4 class="industry-item-title">
-                                <a href="javascript:void(0)" class="popup-trigger"
-								   searchcontext="@entity.SearchContextRef">@entity.Descriptor</a>
+                                <a href="@Url.Action("Index", "Headlines", new RouteValueDictionary { { "sc", entity.SearchContextRef } })" 
+									   class="popup-trigger"
+                                        searchcontext="@entity.SearchContextRef">@entity.Descriptor</a>
                             </h4>
                             <p>
                                 <span class="item-total">@entity.CurrentTimeFrameNewsVolume.Text.Value</span>
@@ -47,8 +49,9 @@
                     {
                         <li>
                             <h4 class="industry-item-title">
-                                <a href="javascript:void(0)" class="popup-trigger"
-								   searchcontext="@entity.SearchContextRef">@entity.Descriptor</a>
+                                <a href="@Url.Action("Index", "Headlines", new RouteValueDictionary { { "sc", entity.SearchContextRef } })" 
+									   class="popup-trigger"
+                                        searchcontext="@entity.SearchContextRef">@entity.Descriptor</a>
                             </h4>
                             <p>
                                 <span class="news-volume-previous">@entity.PreviousTimeFrameNewsVolume.Text.Value</span>
@@ -74,8 +77,9 @@
                         {
                             <li>
 								<h4 class="industry-item-title">
-									<a href="javascript:void(0)" class="popup-trigger"
-									   searchcontext="@entity.SearchContextRef">@entity.Descriptor</a>
+									<a href="@Url.Action("Index", "Headlines", new RouteValueDictionary { { "sc", entity.SearchContextRef } })" 
+									   class="popup-trigger"
+                                        searchcontext="@entity.SearchContextRef">@entity.Descriptor</a>
 								</h4>
                                 <p>
                                 <span class="news-volume-previous">@entity.PreviousTimeFrameNewsVolume.Text.Value</span>
