@@ -1,0 +1,31 @@
+﻿@model HandleErrorInfo
+@{
+    ViewBag.Title = "Page Not Found";
+}
+
+<h1 class="error">Page Not Found</h1>
+
+<h2>Oops! Server Returned a 404.</h2>
+<section class="errorBody">
+    <p>
+        In English, it means the Page, Address, URL you are looking for has moved without
+        leaving a forwarding
+			address! 
+    </p>
+
+    @if (Request.IsLocal && Model != null)
+    {
+        <p>
+            <h4>Exception was:</h4>
+            <pre>@Model.Exception</pre>
+        </p>
+    }
+
+</section>
+<p>
+    We have reported this error to the Administrator.
+</p>
+<p>
+    @Html.RouteLink("← Return to Home page", "Default", new { controller = "Home" })
+</p>
+<hr />

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Net;
 using DowJones.Extensions;
 using DowJones.Factiva.Currents.ServiceModels.PageService;
 using DowJones.Factiva.Currents.Website.Contracts;
@@ -42,6 +43,10 @@ namespace DowJones.Factiva.Currents.Website.Providers
 
 			var rawResponse = client.Execute(request);
 
+			if (rawResponse.StatusCode != HttpStatusCode.OK)
+				throw new ApplicationException("Unable to retrieve page details", rawResponse.ErrorException);
+
+
 			var pageServiceResponse = _pageServiceResponseParser.Parse(rawResponse.Content);
 
 			return pageServiceResponse;
@@ -52,6 +57,9 @@ namespace DowJones.Factiva.Currents.Website.Providers
 			var client = new RestClient(_serviceUrl);
 			var request = new RestRequest("/json", Method.GET);
 			var response = client.Execute<NewsPagesListServiceResult>(request);
+
+			if(response.StatusCode != HttpStatusCode.OK || response.Data == null)
+				throw new ApplicationException("Unable to retrieve list of pages", response.ErrorException);
 
 			return  response.Data.Package.NewsPages.Select(Mapper.Map<PageListModel>);
 		}

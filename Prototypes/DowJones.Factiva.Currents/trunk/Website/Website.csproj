@@ -188,6 +188,8 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Contracts\ISearchContext.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
+    <Compile Include="GlobalErrorHandler.cs" />
     <Compile Include="Models\Headlines.cs" />
     <Compile Include="Providers\SearchContextManager.cs" />
     <Compile Include="Controllers\HeadlinesController.cs" />
@@ -241,7 +243,7 @@
     </Content>
     <Content Include="Scripts\_references.js" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\GenericError.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
@@ -290,6 +292,7 @@
     <Content Include="Views\Pages\Index.cshtml" />
     <Content Include="Views\Headlines\Index.cshtml" />
     <Content Include="Views\Headlines\ViewAll.cshtml" />
+    <Content Include="Views\Shared\NotFound.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

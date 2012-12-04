@@ -1,6 +1,9 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web;
+using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using DowJones.Factiva.Currents.Website.Controllers;
 
 namespace DowJones.Factiva.Currents.Website
 {
@@ -14,6 +17,15 @@ namespace DowJones.Factiva.Currents.Website
 		protected new void Application_Start()
 		{
 			AreaRegistration.RegisterAllAreas();
+		}
+
+		protected void Application_Error(object sender, EventArgs e)
+		{
+			var exception = Server.GetLastError();
+			var httpException = exception as HttpException;
+			// TODO: Log this exception with your logger
+
+			GlobalErrorHandler.HandleError(((HttpApplication)sender).Context, Server.GetLastError(), new ErrorController());
 		}
 	}
 }
