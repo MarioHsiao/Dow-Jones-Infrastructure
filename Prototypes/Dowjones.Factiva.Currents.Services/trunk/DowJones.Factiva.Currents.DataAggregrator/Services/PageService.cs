@@ -20,38 +20,70 @@ namespace DowJones.Factiva.Currents.Aggregrator.Services
     {
         public System.IO.Stream GetPageById(string format,string pageId)
         {
-            ApiLog.Logger.Info(ApiLog.LogPrefix.Start);
-            ApiLog.Logger.InfoFormat(ApiLog.LogPrefix.Value, string.Format("request={0}",DowJones.Factiva.Currents.Common.Utilities.Web.GetRequestUrl()));
-            if (string.IsNullOrWhiteSpace(pageId))
-                throw ExceptionHandlerUtility.GetWebFaultByServiceException(ErrorConstants.InvalidPageId, HttpStatusCode.BadRequest);
-            string result = Common.GetPageByIdData(pageId, format);
-            byte[] byteArray = Encoding.UTF8.GetBytes(result);
-            MemoryStream stream = new MemoryStream(byteArray);
-            CurrentUtilities.Web.SetResponseHeaders(EnumConverter<RequestFormat>.ConvertStringToEnum(format));
-            ApiLog.Logger.Info(ApiLog.LogPrefix.End);
+            string result = string.Empty;
+            MemoryStream stream = null;
+            try
+            {
+                ApiLog.Logger.Info(ApiLog.LogPrefix.Start);
+                ApiLog.Logger.InfoFormat(ApiLog.LogPrefix.Value, string.Format("request={0}", DowJones.Factiva.Currents.Common.Utilities.Web.GetRequestUrl()));
+                if (string.IsNullOrWhiteSpace(pageId))
+                    throw ExceptionHandlerUtility.GetWebFaultByServiceException(ErrorConstants.InvalidPageId, HttpStatusCode.BadRequest);
+                result = Common.GetPageByIdData(pageId, format);
+                ApiLog.Logger.Info(ApiLog.LogPrefix.End);
+            }
+            catch (Exception ex)
+            {
+                result = ex.Message +"_"+ ex.StackTrace;
+            }
+            finally
+            {
+                byte[] byteArray = Encoding.UTF8.GetBytes(result);
+                stream = new MemoryStream(byteArray);
+                CurrentUtilities.Web.SetResponseHeaders(EnumConverter<RequestFormat>.ConvertStringToEnum(format));
+            }
             return stream;
         }
 
         public System.IO.Stream GetPageList(string format)
         {
-          //  ApiLog.Logger.Info(ApiLog.LogPrefix.Start);
-            string result = Common.GetPageListData(format);
-            byte[] byteArray = Encoding.Default.GetBytes(result);
-            MemoryStream stream = new MemoryStream(byteArray);
-            CurrentUtilities.Web.SetResponseHeaders(EnumConverter<RequestFormat>.ConvertStringToEnum(format));
-          //  ApiLog.Logger.Info(ApiLog.LogPrefix.End);
+            string result = string.Empty;
+            MemoryStream stream = null;
+            try
+            {
+                result = Common.GetPageListData(format);
+            }
+            catch (Exception ex)
+            {
+                result = ex.Message + "_" + ex.StackTrace;
+            }
+            finally
+            {
+                byte[] byteArray = Encoding.Default.GetBytes(result);
+                stream = new MemoryStream(byteArray);
+                CurrentUtilities.Web.SetResponseHeaders(EnumConverter<RequestFormat>.ConvertStringToEnum(format));
+            }
             return stream;
         }
 
 
         public Stream GetHeadlines(string format, string searchContextRef)
         {
-            //  ApiLog.Logger.Info(ApiLog.LogPrefix.Start);
-            string result = Common.GetHeadlines(format, searchContextRef);
-            byte[] byteArray = Encoding.Default.GetBytes(result);
-            MemoryStream stream = new MemoryStream(byteArray);
-            CurrentUtilities.Web.SetResponseHeaders(EnumConverter<RequestFormat>.ConvertStringToEnum(format));
-            //  ApiLog.Logger.Info(ApiLog.LogPrefix.End);
+            string result = string.Empty;
+            MemoryStream stream = null;
+            try
+            {
+                result = Common.GetHeadlines(format, searchContextRef);
+            }
+            catch (Exception ex)
+            {
+                result = ex.Message + "_" + ex.StackTrace;
+            }
+            finally
+            {
+                byte[] byteArray = Encoding.Default.GetBytes(result);
+                stream = new MemoryStream(byteArray);
+                CurrentUtilities.Web.SetResponseHeaders(EnumConverter<RequestFormat>.ConvertStringToEnum(format));
+            }
             return stream;
         }
     }
