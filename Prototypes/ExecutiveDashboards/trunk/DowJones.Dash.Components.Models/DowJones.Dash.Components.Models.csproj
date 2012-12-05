@@ -47,21 +47,12 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\DowJones.Infrastructure.3.3.75\lib\DowJones.Infrastructure.dll</HintPath>
     </Reference>
-    <Reference Include="DowJones.Pages">
-      <HintPath>..\packages\DowJones.Pages.3.3.75\lib\DowJones.Pages.dll</HintPath>
-    </Reference>
     <Reference Include="DowJones.Parallel">
       <HintPath>..\packages\DowJones.Parallel.1.0.0\lib\DowJones.Parallel.dll</HintPath>
     </Reference>
     <Reference Include="DowJones.Web.Mvc, Version=3.3.75.31546, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\DowJones.Web.Mvc.3.3.75\lib\DowJones.Web.Mvc.dll</HintPath>
-    </Reference>
-    <Reference Include="DowJones.Web.Mvc.UI.Canvas">
-      <HintPath>..\packages\DowJones.Web.Mvc.UI.Canvas.3.3.75\lib\DowJones.Web.Mvc.UI.Canvas.dll</HintPath>
-    </Reference>
-    <Reference Include="DowJones.Web.Mvc.UI.Components">
-      <HintPath>..\packages\DowJones.Web.Mvc.UI.Components.3.3.75\lib\DowJones.Web.Mvc.UI.Components.dll</HintPath>
     </Reference>
     <Reference Include="DowJones.Web.Mvc.UI.Components.Models, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
