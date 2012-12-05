@@ -153,7 +153,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ConcurrentVisits.cshtml</DependentUpon>
     </Compile>
-    <Compile Include="DashboardComponent\DashboardComponent.cs" />
+    <Compile Include="DashboardComponent\Dashboard.cs" />
+    <Compile Include="DashboardComponent\DashboardComponent.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DashboardComponent.cshtml</DependentUpon>
+    </Compile>
     <Compile Include="EmbeddedResources\EmbeddedResources.cs" />
     <Compile Include="Sparkline\Sparkline.cs">
       <AutoGen>True</AutoGen>
@@ -216,6 +221,10 @@
     <None Include="ConcurrentVisits\ConcurrentVisits.cshtml">
       <Generator>RazorViewComponentClassGenerator</Generator>
       <LastGenOutput>ConcurrentVisits.cs</LastGenOutput>
+    </None>
+    <None Include="DashboardComponent\DashboardComponent.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>DashboardComponent.cs</LastGenOutput>
     </None>
     <None Include="ThemeManager\ThemeManager.cshtml">
       <Generator>RazorViewComponentClassGenerator</Generator>
@@ -376,7 +385,11 @@
     <EmbeddedResource Include="EmbeddedResources\js\highchartsMap\asia.pacific.map.shapes.js" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="DashboardComponent\DashboardComponent.js" />
+    <EmbeddedResource Include="DashboardComponent\Dashboard.js" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="DashboardComponent\ClientTemplates\container.html" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

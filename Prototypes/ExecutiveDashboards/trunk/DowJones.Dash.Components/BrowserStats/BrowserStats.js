@@ -2,7 +2,7 @@
  * BrowserStats
  */
 
-DJ.UI.BrowserStats = DJ.UI.DashboardComponent.extend({
+DJ.UI.BrowserStats = DJ.UI.Dashboard.extend({
 
     defaults: {
         zones: {
@@ -213,12 +213,12 @@ DJ.UI.BrowserStats = DJ.UI.DashboardComponent.extend({
     
     _showComingSoon: function () {
         this.$element.find(this.selectors.contentContainer).hide('fast');
-        this.$element.find(this.selectors.noDataContainer).show('fast');
+        this.showNoData();
     },
     
     _showContent: function () {
         this.$element.find(this.selectors.contentContainer).show('fast');
-        this.$element.find(this.selectors.noDataContainer).hide('fast');
+        this.hideNoData();
     },
 
     setPills: function (pills) {

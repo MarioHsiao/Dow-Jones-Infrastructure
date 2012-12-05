@@ -107,7 +107,6 @@
     <Compile Include="BrowserShare\BrowserShare.cs" />
     <Compile Include="BrowserStats\BrowserStats.cs" />
     <Compile Include="ConcurrentVisits\ConcurrentVisitsModel.cs" />
-    <Compile Include="Dashboard\Dashboard.cs" />
     <Compile Include="ThemeManager\ThemeManagerModel.cs" />
     <Compile Include="Sparkline\Sparkline.cs" />
     <Compile Include="PlatformStats\PlatformStatsModel.cs" />

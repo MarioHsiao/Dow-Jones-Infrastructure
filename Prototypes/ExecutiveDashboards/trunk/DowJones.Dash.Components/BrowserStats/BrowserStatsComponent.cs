@@ -32,7 +32,7 @@ namespace DowJones.Dash.Components.BrowserStats
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Dash.Components.BrowserStats.ClientTemplates.statBars.html", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="statBars", DeclaringType=typeof(DowJones.Dash.Components.BrowserStats.BrowserStatsComponent))]
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Dash.Components.BrowserStats.ClientTemplates.navPills.html", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="navPills", DeclaringType=typeof(DowJones.Dash.Components.BrowserStats.BrowserStatsComponent))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.27108")]
-    public class BrowserStatsComponent : DowJones.Dash.Components.DashboardComponent<DowJones.Dash.Components.Models.BrowserStats.BrowserStatsModel>
+    public class BrowserStatsComponent : DowJones.Dash.Components.Dashboard<DowJones.Dash.Components.Models.BrowserStats.BrowserStatsModel>
     {
 #line hidden
 
