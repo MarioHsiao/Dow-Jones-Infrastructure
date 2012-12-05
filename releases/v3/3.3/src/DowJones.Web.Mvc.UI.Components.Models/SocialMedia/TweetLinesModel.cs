@@ -10,6 +10,13 @@ namespace DowJones.Web.Mvc.UI.Components.SocialMedia
         [ClientProperty("maxTweetsToShow")]
         public uint MaxTweetsToShow { get; set; }
 
+		/// <summary>
+		/// Adds fancy iOS style scrollbars
+		/// </summary>
+		/// <remarks>Only affects non IE browsers</remarks>
+		[ClientProperty("ronBars")]
+		public bool RonBars { get; set; }
+
         /// <summary>
         /// No. of times you can click 'load more' before it is disabled.
         /// </summary>
@@ -27,6 +34,7 @@ namespace DowJones.Web.Mvc.UI.Components.SocialMedia
         {
             MaxTweetsToShow = DefaultMaxTweets;
             Tweets = new List<Tweet>();
+	        RonBars = true;
         }
     }
 }

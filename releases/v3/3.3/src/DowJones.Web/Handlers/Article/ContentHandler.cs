@@ -217,7 +217,7 @@ namespace DowJones.Web.Handlers.Article
                 #endregion
 
                 if (imageType.ToLower() == "tnail" ||
-                    imageType.ToLower() == "fnainail")
+                    imageType.ToLower() == "fnail")
                 {
                     HandleRequest<GetBinaryInternalRequest, GetBinaryInternalResponse>(new GetBinaryInternalRequest
                                                                                            {
