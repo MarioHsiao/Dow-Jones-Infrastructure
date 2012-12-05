@@ -8,16 +8,24 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Web.UI.WebResourceAttribute("DowJones.Factiva.Currents.Modules.TopNews.CurrentTopNews.js", "text/javascript")]
+[assembly: System.Web.UI.WebResourceAttribute("DowJones.Factiva.Currents.Modules.CurrentTopNews.CurrentTopNews.js", "text/javascript")]
 
 namespace DowJones.Factiva.Currents.Modules.CurrentTopNews
 {
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
     using System.Linq;
+    using System.Net;
+    using System.Web;
+    using System.Web.Security;
+    using System.Web.UI;
     using Web.Mvc.Extensions;
     using DowJones.Factiva.Currents.Models;
-
-    // Last Generated Timestamp: 11/15/2012 10:27 AM
-    [DowJones.Web.ScriptResourceAttribute(null, ResourceName = "DowJones.Factiva.Currents.Modules.CurrentTopNews.CurrentTopNews.js", ResourceKind = DowJones.Web.ClientResourceKind.Script, DeclaringType = typeof(CurrentTopNews))]
+    using DowJones.Web.Mvc.Extensions;
+    
+    // Last Generated Timestamp: 12/05/2012 04:16 PM
+    [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Factiva.Currents.Modules.CurrentTopNews.CurrentTopNews.js", ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Factiva.Currents.Modules.CurrentTopNews.CurrentTopNews))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.27108")]
     public class CurrentTopNews : DowJones.Web.Mvc.UI.CompositeComponent<CurrentTopNewsModel>
     {
@@ -50,24 +58,30 @@ WriteLiteral("\r\n");
 
 
 WriteLiteral("\r\n<div class=\"module\">\r\n    <header>\r\n         <i class=\"icon-time icon-white\"></" +
-"i>\r\n        <span>Factiva Picks</span>\r\n    </header>\r\n    <div class=\"content\">\r\n\t\t<d" +
-"iv class=\"row\">\r\n");
+"i>\r\n        <span>Factiva Picks</span>\r\n    </header>\r\n    <div class=\"content\">" +
+"\r\n\t\t<div class=\"row\">\r\n");
 
 
- 			foreach(var headline in Model.CurrentsHeadlines.Take(3))
+ 			foreach (var headline in Model.CurrentsHeadlines.Take(3))
 			{
 
-WriteLiteral("\t\t\t\t<div class=\"span4\">");
+WriteLiteral("                <div class=\"span4\">\r\n                    <h3 class=\"module-col-ti" +
+"tle article-group-title\">\r\n                        ");
 
 
-                  Write(Html.DJ().Render(headline));
+                   Write(headline.Title);
 
-WriteLiteral("</div>\r\n");
+WriteLiteral("\r\n                    </h3>\r\n                     ");
+
+
+                Write(Html.DJ().Render(headline.CurrentHeadline));
+
+WriteLiteral("\r\n               </div>\r\n");
 
 
 			}
 
-WriteLiteral("\t\t</div>\r\n    </div>\r\n</div>");
+WriteLiteral("            </div>\r\n\t\t</div>\r\n</div>");
 
 
         }

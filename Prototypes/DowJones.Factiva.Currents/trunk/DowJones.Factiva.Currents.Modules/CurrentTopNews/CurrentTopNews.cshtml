@@ -18,8 +18,13 @@
 		<div class="row">
 			@foreach (var headline in Model.CurrentsHeadlines.Take(3))
 			{
-				<div class="span4">@Html.DJ().Render(headline)</div>
+                <div class="span4">
+                    <h3 class="module-col-title article-group-title">
+                        @headline.Title
+                    </h3>
+                     @Html.DJ().Render(headline.CurrentHeadline)
+               </div>
 			}
+            </div>
 		</div>
-    </div>
 </div>

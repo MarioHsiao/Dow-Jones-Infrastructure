@@ -129,6 +129,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CurrentSources\CurrentSourcesModel.cs" />
+    <Compile Include="CurrentTopNews\CurrentTopNews.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CurrentTopNews.cshtml</DependentUpon>
+    </Compile>
     <Compile Include="CurrentTrending\CurrentTrending.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -163,11 +168,6 @@
       <DependentUpon>CurrentRegionalMapModule.cshtml</DependentUpon>
     </Compile>
     <Compile Include="CurrentTopNews\CurrentTopNewsModel.cs" />
-    <Compile Include="CurrentTopNews\CurrentTopNews.cs">
-      <DependentUpon>CurrentTopNews.cshtml</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="CurrentTrending\CurrentTrending.cshtml">
@@ -192,7 +192,10 @@
       <Generator>RazorViewComponentClassGenerator</Generator>
       <LastGenOutput>CurrentRegionalMapModule.cs</LastGenOutput>
     </None>
-    <None Include="CurrentTopNews\CurrentTopNews.cshtml" />
+    <None Include="CurrentTopNews\CurrentTopNews.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>CurrentTopNews.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="CurrentSources\CurrentSources.js" />

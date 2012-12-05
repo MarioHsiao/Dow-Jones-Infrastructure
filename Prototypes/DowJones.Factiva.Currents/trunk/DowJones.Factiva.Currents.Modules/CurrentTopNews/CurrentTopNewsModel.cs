@@ -11,7 +11,7 @@ namespace DowJones.Factiva.Currents.Models
 {
     public class CurrentTopNewsModel : CompositeComponentModel
     {
-        public IEnumerable<CurrentsHeadlineModel> CurrentsHeadlines { get; set; }
+        public IEnumerable<CurrentTopNews> CurrentsHeadlines { get; set; }
     }
 
     public class TopNewsModelMapper : TypeMapper<TopNewsNewsPageModuleServiceResult, CurrentTopNewsModel>
@@ -22,9 +22,20 @@ namespace DowJones.Factiva.Currents.Models
             {
                 CurrentsHeadlines = topNewsResult.PartResults
                                           .Select(p =>
-                                              new CurrentsHeadlineModel(new PortalHeadlineListModel(p.Package.Result)))
+                                              new CurrentTopNews()
+                                              {
+                                                  Title = p.Package.Title,
+                                                  CurrentHeadline = new CurrentsHeadlineModel(new PortalHeadlineListModel(p.Package.Result))
+                                              })
 
             };
         }
+    }
+
+    public class CurrentTopNews
+    {
+        public string Title { get; set; }
+
+        public CurrentsHeadlineModel CurrentHeadline { get; set; }
     }
 }
