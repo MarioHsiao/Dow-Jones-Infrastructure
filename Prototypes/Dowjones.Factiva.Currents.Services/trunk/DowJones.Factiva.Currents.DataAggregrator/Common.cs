@@ -20,6 +20,7 @@ namespace DowJones.Factiva.Currents.Aggregrator
 {
     public class Common
     {
+        static CacheManager cacheManager = new CacheManager();
         static string enToken = System.Configuration.ConfigurationManager.AppSettings["EncryptedToken"];
         static string basePath = System.Configuration.ConfigurationManager.AppSettings["DasboardApiBasePath"];
         static int maxResultsToReturn = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["MaxResultsToReturn"]);
@@ -36,7 +37,6 @@ namespace DowJones.Factiva.Currents.Aggregrator
         public static string GetQueryStringRequest(string name, WebOperationContext webContext = null)
         {
             var value = String.Empty;
-
             WebOperationContext context = null;
 
             if (WebOperationContext.Current != null)
@@ -56,55 +56,103 @@ namespace DowJones.Factiva.Currents.Aggregrator
 
         public static string GetPageByIdData(string pageId, string format)
         {
-            string url =
-                string.Format(
-                    "{0}/Pages/1.0/id/" + format + "?pageId={1}&encryptedToken={2}",                   
-                    basePath,
-                    pageId,
-                    enToken
-                  );
+            try
+            {
+                string key = pageId + "_" + format + "_" + enToken;
+                string cahceData = cacheManager.GetCache(key) != null ? cacheManager.GetCache(key).ToString() : null;
+                if (!string.IsNullOrEmpty(cahceData))
+                {
+                    return cahceData;
+                }
 
-            Dictionary<string, string> pageModuleList = new Dictionary<string, string>();
-            string pageData = GetData(url);
-            pageModuleList.Add("newsPage", pageData);
-            if (format.Equals(RequestFormat.Json.ToString(), StringComparison.CurrentCultureIgnoreCase))
-            {
-                GetModuleDataForJson(pageModuleList, pageId);
-                return GetSerializedPagesModulesForJson(pageModuleList);
+                string url =
+                    string.Format(
+                        "{0}/Pages/1.0/id/" + format + "?pageId={1}&encryptedToken={2}",
+                        basePath,
+                        pageId,
+                        enToken
+                      );
+
+                Dictionary<string, string> pageModuleList = new Dictionary<string, string>();
+                string pageData = GetData(url);
+                pageModuleList.Add("newsPage", pageData);
+                string data = string.Empty;
+                if (format.Equals(RequestFormat.Json.ToString(), StringComparison.CurrentCultureIgnoreCase))
+                {
+                    GetModuleDataForJson(pageModuleList, pageId);
+                    data =  GetSerializedPagesModulesForJson(pageModuleList);
+                    cacheManager.Add(key,data);
+                   
+                }
+                else
+                {
+                    GetModuleDataForXml(pageModuleList, pageId);
+                    data = GetSerializedPagesModulesForXml(pageModuleList);
+                    cacheManager.Add(key, data);
+                }
+                return data;
             }
-            else
+            catch (Exception ex)
             {
-                GetModuleDataForXml(pageModuleList, pageId);
-                return GetSerializedPagesModulesForXml(pageModuleList);
+                throw ex;
             }
-          
         }
 
         public static string GetPageListData(string format)
         {
-            string url =
-                string.Format(
-                    "{0}/Pages/1.0/list/"+format+"?encryptedToken={1}",
-                    basePath,
-                    enToken
-                  );
-            return GetData(url);
+            try
+            {
+                string key = format + "_" + enToken;
+                string cahceData = cacheManager.GetCache(key) != null ? cacheManager.GetCache(key).ToString() : null;
+                if (!string.IsNullOrEmpty(cahceData))
+                {
+                    return cahceData;
+                }
+                string url =
+                    string.Format(
+                        "{0}/Pages/1.0/list/" + format + "?encryptedToken={1}",
+                        basePath,
+                        enToken
+                      );
+                string data = GetData(url);
+                cacheManager.Add(key, data);
+                return data;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+          
         }
 
         public static string GetHeadlines(string format, string searchContextRef)
         {
-            int firstResultToReturn = 0;
-            
-            string url =
-                string.Format(
-                    "{0}/Headlines/1.0/list/" + format + "?encryptedToken={1}&searchContextRef={2}&firstResultToReturn={3}&maxResultsToReturn={4}",
-                    basePath,
-                    enToken,
-                    searchContextRef,
-                    firstResultToReturn,
-                    maxResultsToReturn
-                  );
-            return GetData(url,false);
+            try
+            {
+                int firstResultToReturn = 0;
+                string key = format + "_" + enToken + "_" + searchContextRef;
+                string cahceData = cacheManager.GetCache(key) != null ? cacheManager.GetCache(key).ToString() : null;
+                if (!string.IsNullOrEmpty(cahceData))
+                {
+                    return cahceData;
+                }
+                string url =
+                    string.Format(
+                        "{0}/Headlines/1.0/list/" + format + "?encryptedToken={1}&searchContextRef={2}&firstResultToReturn={3}&maxResultsToReturn={4}",
+                        basePath,
+                        enToken,
+                        searchContextRef,
+                        firstResultToReturn,
+                        maxResultsToReturn
+                      );
+                string data = GetData(url,false);
+                cacheManager.Add(key, data);
+                return data;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         private static string GetSerializedPagesModulesForJson(Dictionary<string, string> pageModuleList)
@@ -400,18 +448,24 @@ namespace DowJones.Factiva.Currents.Aggregrator
             }
             catch (WebException ex)
             {
-                using (var stream = ex.Response.GetResponseStream())
-                using (var reader = new StreamReader(stream))
+                if (ex.Response != null)
                 {
-                    result = reader.ReadToEnd();
+                    using (var stream = ex.Response.GetResponseStream())
+                    {
+                        using (var reader = new StreamReader(stream))
+                        {
+                            result += reader.ReadToEnd();
+                        }
+                    }
+                }
+                else
+                {
+                    result = ex.Status +" "+ ex.Message;
                 }
             }
             catch (Exception ex)
             {
-                // Something more serious happened
-                // like for example you don't have network access
-                // we cannot talk about a server exception here as
-                // the server probably was never reached
+                throw ex;
             }
             
             return result;
