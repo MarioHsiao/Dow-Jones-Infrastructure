@@ -323,7 +323,8 @@ DJ.UI.DiscoveryFilters = DJ.UI.Component.extend({
         //BEGIN: Discovery Filters Configuration
         return {
             chart: {
-                defaultSeriesType: 'bar'
+                defaultSeriesType: 'bar',
+                marginTop: -10
             },
             title: { text: null },
             subtitle: { text: null },
