@@ -295,7 +295,9 @@ DJ.UI.PortalHeadlineList = DJ.UI.Component.extend({
 			snippetStr += "<div>" + snippet + "</div>";
 		});
 		$(this.selectors.headline, tLi).attr("title", snippetStr);
-		$(this.selectors.headline, tLi).dj_simpleTooltip("tooltip");
+	    
+        // to handle Arabic content via CSS, add language css class
+		$(this.selectors.headline, tLi).dj_simpleTooltip("tooltip dj_" + headline.baseLanguage);
 	},
 
 	_includePagingCssStyles: function () {
