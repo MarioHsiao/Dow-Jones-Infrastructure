@@ -18,7 +18,8 @@ DJ.UI.TagCloud = DJ.UI.Component.extend({
     },
     defaults: {
         debug: false,
-        cssClass: 'TagCloud'
+        cssClass: 'TagCloud',
+        tagCloudCssPrefix: 'dj_tag_cloud-weight'
     },
 
 
