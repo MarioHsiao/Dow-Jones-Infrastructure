@@ -17,7 +17,7 @@
     <div class="content">
 		<div class="row">
 
-            @foreach(var headline in Model.CurrentsHeadlines.Take(3))
+            @foreach (var headline in Model.CurrentsHeadlines.Where(c => c.CurrentHeadline.Headlines.Count() > 0).Take(3))
 			{
 				<div class="span4">
                      <div class="module-col-wrap">

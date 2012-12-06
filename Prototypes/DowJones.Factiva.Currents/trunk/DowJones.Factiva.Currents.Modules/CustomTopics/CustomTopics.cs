@@ -24,7 +24,7 @@ namespace DowJones.Factiva.Currents.Modules.CustomTopics
     using DowJones.Factiva.Currents.Models;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 11/16/2012 01:20 PM
+    // Last Generated Timestamp: 12/06/2012 02:42 PM
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Factiva.Currents.Modules.CustomTopics.CustomTopics.js", ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Factiva.Currents.Modules.CustomTopics.CustomTopics))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.27108")]
     public class CustomTopics : DowJones.Web.Mvc.UI.CompositeComponent<CustomTopicsModel>
@@ -62,7 +62,7 @@ WriteLiteral("\r\n<div class=\"module\">\r\n    <header>\r\n        <i class=\"i
 "t\">\r\n\t\t<div class=\"row\">\r\n\r\n");
 
 
-             foreach(var headline in Model.CurrentsHeadlines.Take(3))
+             foreach (var headline in Model.CurrentsHeadlines.Where(c => c.CurrentHeadline.Headlines.Count() > 0).Take(3))
 			{
 
 WriteLiteral("\t\t\t\t<div class=\"span4\">\r\n                     <div class=\"module-col-wrap\">\r\n    " +
