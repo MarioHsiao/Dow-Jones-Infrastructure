@@ -28,7 +28,7 @@
 
 
     <Target Name="GenerateVersionInfo" BeforeTargets="BeforeLabel">
-        <MSBuild Projects="$(DowJonesMSBuildProjectFile)"
+		<MSBuild Projects="$(DowJonesMSBuildProjectFile)"
                  BuildInParallel="true" StopOnFirstFailure="false"
                  Targets="UpdateSolutionInfo"
                  Properties="
@@ -36,7 +36,8 @@
                     SolutionRoot=$(SolutionRoot);
                     SolutionInfoFile=$(SolutionInfoFile)
                 "
-        />
+        >
+		</MSBuild>
 
         <MSBuild Projects="$(DowJonesMSBuildProjectFile)"
                  BuildInParallel="true" StopOnFirstFailure="false"
@@ -65,7 +66,6 @@
         </ConfigurationToBuild>
 
         <SolutionToBuild Include="$(SolutionRoot)\src\Framework.sln" />
-        <SolutionToBuild Include="$(SolutionRoot)\src\DowJones.Tools.Razor\RazorViewComponentClassGenerator.sln" />
     </ItemGroup>
 
 
