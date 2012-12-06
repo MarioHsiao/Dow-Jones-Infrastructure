@@ -77,12 +77,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Log4Net.config" />
-    <None Include="Web.Debug.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </None>
-    <None Include="Web.Release.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
@@ -92,6 +86,10 @@
       <Project>{16ffcb66-80a8-4d9a-8a03-8a02d38988eb}</Project>
       <Name>DowJones.Factiva.Currents.Aggregrator</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Web.Integration.config" />
+    <None Include="Web.Production.config" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
