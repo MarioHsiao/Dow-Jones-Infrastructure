@@ -23,6 +23,7 @@ namespace DowJones.Factiva.Currents.Aggregrator
         static CacheManager cacheManager = new CacheManager();
         static string enToken = System.Configuration.ConfigurationManager.AppSettings["EncryptedToken"];
         static string basePath = System.Configuration.ConfigurationManager.AppSettings["DasboardApiBasePath"];
+        static string restAPIBasePath = System.Configuration.ConfigurationManager.AppSettings["RestApiBasePath"];
         static int maxResultsToReturn = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["MaxResultsToReturn"]);
         static int maxEntitiesToReturn = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["MaxEntitiesToReturn"]);
         static int maxPartsToReturn = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["MaxPartsToReturn"]);
@@ -146,6 +147,34 @@ namespace DowJones.Factiva.Currents.Aggregrator
                         maxResultsToReturn
                       );
                 string data = GetData(url,false);
+                cacheManager.Add(key, data);
+                return data;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public static string GetHeadlinesByAccessionNumber(string accessionNumber, string format)
+        {
+            try
+            {
+                string key = format + "_" + enToken + "_" + accessionNumber;
+                string cahceData = cacheManager.GetCache(key) != null ? cacheManager.GetCache(key).ToString() : null;
+                if (!string.IsNullOrEmpty(cahceData))
+                {
+                    return cahceData;
+                }
+                string url =
+                    string.Format(
+                        "{0}/Content/headlines/" + format + "?searchString={1}&encryptedToken={2}&searchmode={3}",
+                        restAPIBasePath,
+                        "an="+accessionNumber,
+                        enToken,
+                        "traditional"
+                      );
+                string data = GetData(url, false);
                 cacheManager.Add(key, data);
                 return data;
             }
@@ -448,6 +477,7 @@ namespace DowJones.Factiva.Currents.Aggregrator
             }
             catch (WebException ex)
             {
+               // isError = true;
                 if (ex.Response != null)
                 {
                     using (var stream = ex.Response.GetResponseStream())
@@ -465,6 +495,7 @@ namespace DowJones.Factiva.Currents.Aggregrator
             }
             catch (Exception ex)
             {
+               // isError = true;
                 throw ex;
             }
             
