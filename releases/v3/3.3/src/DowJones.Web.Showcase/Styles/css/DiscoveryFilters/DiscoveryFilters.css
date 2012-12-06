@@ -16,24 +16,41 @@
 .dj_discoveryFilters-list .hide{display:none;}
 .dj_discoveryFilters-list .show{display:block;}
 */
-.dj_most-mentioned .dj_discoveryFilters-list {
+.dj_discoveryFilters-list {
                 margin-left: 12px;
                 width: 171px;
 }
 
-
-.dj_most-mentioned .dj_discoveryFilters-list .dj_df-header .side-section-title {
-                padding-left: 12px;
+.open .side-title .fi-two, .open .side-section-title .fi-two {
+	background-position: -10px -10px;
 }
 
-.dj_most-mentioned .dj_discoveryFilters-list .dj_df-header .side-section-title .fi-two {
-                width: 8px;
+.dj_discoveryFilters-list .dj_df-header .side-section-title {
+                padding-left: 12px;
+                cursor: pointer;
+}
+
+.dj_discoveryFilters-list .dj_df-header .side-section-title .fi-two {
+                /*width: 8px;
                 height: 8px;
+                background-position:-20px 0;*/
                 position: absolute;
                 left: 0;
                 top: 2px;
+                display: -moz-inline-stack;
+	display: inline-block;
+	zoom: 1;
+	*display: inline;
+	vertical-align: middle;
+	background: transparent url(http://montana.dev.us.factiva.com/DevSnapshot/Content/styles/images/factiva-icons2.png?1.1.0) no-repeat 0 0;
+	cursor: pointer;
 }
 
+.fi-two.fi_d-arrow-drk-blue {
+	width: 8px;
+	height: 8px;
+	background-position: -20px 0;
+}
 
 .dj_most-mentioned .dj_discoveryFilters-list .dj_df-header .fi_export {
     float: right;
@@ -96,9 +113,21 @@
     width: 150px;
 }
 
-.dj_df-count
-{
+.dj_most-mentioned .dj_discoveryFilters-list .dj_df-count {
+    display: -moz-inline-stack;
+    display: inline-block;
+    zoom: 1;
+    *display: inline;
+    color: #999;
+    margin-top: 2px;
     cursor: pointer;
+}
+
+.dj_most-mentioned .dj_discoveryFilters-list .dj_df-label {
+    color: #999;
+    margin-top: 2px;
+    width:100px;
+    display:inline-block;
 }
 
 

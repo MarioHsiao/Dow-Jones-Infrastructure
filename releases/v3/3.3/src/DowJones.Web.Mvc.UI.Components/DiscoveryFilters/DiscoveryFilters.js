@@ -297,8 +297,8 @@ DJ.UI.DiscoveryFilters = DJ.UI.Component.extend({
     _onExpandCollapseClicked: function (evt) {
         var self = this;
         //$(evt.target).parent().next('.dj_df-chart').slideToggle('slow');
-        $(evt.target).parent().next('.dj_df-chart').toggle();
-        $(evt.target).parent().toggleClass('open');
+        $(evt.target).closest('div').next('.dj_df-chart').toggle();
+        $(evt.target).closest('div').toggleClass('open');
         //Find the entity
         var type = $(evt.target).closest("li").data("type");
         var expandCollapseData = { type: type, expand: ($(evt.target).parent().hasClass("open")) ? false : true };
