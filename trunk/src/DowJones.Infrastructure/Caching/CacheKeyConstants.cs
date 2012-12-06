@@ -26,6 +26,7 @@
         public const string Enviroment = "e";
         public const string EntityType = "et";
         public const string ShareScopeCollection = "ssc";
+        public const string Date = "d";
 
 
         public static int DefaultCacheExpirationTime
