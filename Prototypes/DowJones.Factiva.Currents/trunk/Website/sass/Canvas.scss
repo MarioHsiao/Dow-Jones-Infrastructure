@@ -51,10 +51,9 @@ ul, ol {
 .module-col { 
 	.standard-padding {
 		padding: 0 14px;
+		padding-left:30px;
 	}
-	.module-col-wrap {
-		position: relative;
-	}
+	
 }
 
 .module-col-source-logo-wrap {
@@ -75,9 +74,14 @@ ul, ol {
 }
 
 .module-col-title {
-	position: relative;
-	font-size: 138.5%;
-	margin: 0 0 14px;
+  position: relative;
+  font-size: 138.5%;
+  margin: 0 0 14px;
+}
+
+.article-headline {
+  font-size: 93%;
+  line-height: 16px;
 }
 
 .module-col-secondary-title {
@@ -87,6 +91,17 @@ ul, ol {
 	margin-bottom: 15px;
 }
 
+.article-group-title {
+  font-size: 108%;
+  text-transform: uppercase;
+}
+
+.article-group .article-wrap {
+  margin-bottom: 5px;
+}
+.dj_entry .article-wrap {
+  line-height: 18px;
+}
 .fi {
 	display: inline-block;
 	background: transparent url('images/factiva-icons.png?v0.1')  no-repeat 0 0;

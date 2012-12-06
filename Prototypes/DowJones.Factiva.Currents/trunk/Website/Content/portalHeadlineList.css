@@ -20,9 +20,15 @@
 /* line 18, ../sass/portalHeadlineList.scss */
 .article-meta .date-stamp {
   text-transform: none;
+  display: -moz-inline-stack;
+  display: inline-block;
+  vertical-align: top;
+  color: #999;
+  font-size: 85%;
+  line-height: normal;
 }
-/* line 22, ../sass/portalHeadlineList.scss */
-.article-meta .article-source, .article-author, .article-meta .time-stamp, .article-meta .date-stamp, .article-meta .media-length, .article-meta .fi, .article-meta .author, .article-meta .byline, .article-meta .author {
+/* line 28, ../sass/portalHeadlineList.scss */
+.article-meta .article-source, .article-meta .time-stamp, .article-meta .media-length, .article-meta .fi, .article-meta .author, .article-meta .byline, .article-meta .author {
   display: -moz-inline-stack;
   display: inline-block;
   vertical-align: top;
@@ -31,7 +37,7 @@
   line-height: normal;
   text-transform: uppercase;
 }
-/* line 32, ../sass/portalHeadlineList.scss */
+/* line 38, ../sass/portalHeadlineList.scss */
 .article-meta .article-source {
   font-weight: bold;
 }

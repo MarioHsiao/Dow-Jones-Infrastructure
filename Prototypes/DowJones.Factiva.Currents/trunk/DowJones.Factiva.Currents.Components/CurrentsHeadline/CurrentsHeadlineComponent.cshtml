@@ -22,23 +22,28 @@
 								if (Model.SourceClickable)
 								{
 									<span class="article-source source-clickable" rel="@headline.SourceCode ">@headline.SourceDescriptor </span>
-									<br />
 								}
 								else
 								{
 									<span class="article-source">@headline.SourceDescriptor </span>
-									<br />
 								}
 							} 
-							@if (Model.ShouldShowPublicationDateTime(headline))
+                            </div>
+         
+							if (Model.ShouldShowPublicationDateTime(headline))
 							{
-								<span class="date-stamp">@(headline.PublicationDateDescriptor != null ?
-                                    headline.PublicationDateDescriptor :headline.PublicationDateTimeDescriptor) </span>
+                                <div class="article-meta">
+								    <span class="date-stamp">@(headline.PublicationDateDescriptor != null ?
+                                        headline.PublicationDateDescriptor :headline.PublicationDateTimeDescriptor) </span>
+                                </div>
                             }
-                            @if (Model.ShouldShowAuthor(headline))
+              
+                            if (Model.ShouldShowAuthor(headline))
 							{
-                                if (@headline.CodedAuthors != null)
+                                  <div class="article-meta">
+                                @if (@headline.CodedAuthors != null)
                                 {
+                                   
                                       for (int j = 0, jCnt = @headline.CodedAuthors.Count; j < jCnt; j++)
                                       {
                                             var author = @headline.CodedAuthors[j];
@@ -49,12 +54,10 @@
                                                 {
                                                     case "person":
                                                     case "author":
-                                                        <br/>
                                                         <span class="article-author article-clickable">@item.value</span>
                                                          break;
                                                     case "textual":
                                                     default:
-                                                        <br/>
                                                         <span class="article-author">@item.value</span>
                                                         break;
                                                 }
@@ -65,10 +68,10 @@
                                 {
                                     <span class="author">@headline.Authors.Aggregate((a,b)=> a+","+b)</span>
                                 } 
+                                          </div>
 							}
-                            @if (Model.IsMultimediaContent(headline))
+                            if (Model.IsMultimediaContent(headline))
                             {
-                                <br/>
                                <div class="article-meta">
                                    @if(@headline.ContentSubCategoryDescriptor == "video")
                                    { 
@@ -82,7 +85,6 @@
                                 <span class="media-length">[@headline.MediaLength]</span>
                             </div>
                             }
-						</div>
 					}
 				</div>
 			</li>

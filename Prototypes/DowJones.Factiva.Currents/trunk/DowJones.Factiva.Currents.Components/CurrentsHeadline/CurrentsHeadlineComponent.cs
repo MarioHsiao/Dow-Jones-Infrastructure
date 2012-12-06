@@ -23,7 +23,7 @@ namespace DowJones.Factiva.Currents.Components.CurrentsHeadline
     using CurrentsHeadline;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 12/05/2012 10:24 PM
+    // Last Generated Timestamp: 12/06/2012 01:26 PM
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Factiva.Currents.Components.CurrentsHeadline.CurrentsHeadline.js", ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Factiva.Currents.Components.CurrentsHeadline.CurrentsHeadlineComponent))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.27108")]
     public class CurrentsHeadlineComponent : DowJones.Web.Mvc.UI.ViewComponentBase<CurrentsHeadlineModel>
@@ -110,10 +110,6 @@ WriteLiteral(" \">");
 WriteLiteral(" </span>\r\n");
 
 
-
-WriteLiteral("\t\t\t\t\t\t\t\t\t<br />\r\n");
-
-
 								}
 								else
 								{
@@ -126,33 +122,37 @@ WriteLiteral("\t\t\t\t\t\t\t\t\t<span class=\"article-source\">");
 WriteLiteral(" </span>\r\n");
 
 
-
-WriteLiteral("\t\t\t\t\t\t\t\t\t<br />\r\n");
-
-
 								}
 							} 
 
+WriteLiteral("                            </div>\r\n");
 
- 							if (Model.ShouldShowPublicationDateTime(headline))
+
+         
+							if (Model.ShouldShowPublicationDateTime(headline))
 							{
 
-WriteLiteral("\t\t\t\t\t\t\t\t<span class=\"date-stamp\">");
+WriteLiteral("                                <div class=\"article-meta\">\r\n\t\t\t\t\t\t\t\t    <span cla" +
+"ss=\"date-stamp\">");
 
 
-                             Write(headline.PublicationDateDescriptor != null ?
-                                    headline.PublicationDateDescriptor :headline.PublicationDateTimeDescriptor);
+                                 Write(headline.PublicationDateDescriptor != null ?
+                                        headline.PublicationDateDescriptor :headline.PublicationDateTimeDescriptor);
 
-WriteLiteral(" </span>\r\n");
+WriteLiteral(" </span>\r\n                                </div>\r\n");
 
 
                             }
-
-
-                             if (Model.ShouldShowAuthor(headline))
+              
+                            if (Model.ShouldShowAuthor(headline))
 							{
-                                if (@headline.CodedAuthors != null)
+
+WriteLiteral("                                  <div class=\"article-meta\">\r\n");
+
+
+                                 if (@headline.CodedAuthors != null)
                                 {
+                                   
                                       for (int j = 0, jCnt = @headline.CodedAuthors.Count; j < jCnt; j++)
                                       {
                                             var author = @headline.CodedAuthors[j];
@@ -163,10 +163,6 @@ WriteLiteral(" </span>\r\n");
                                                 {
                                                     case "person":
                                                     case "author":
-
-WriteLiteral("                                                        <br/>\r\n");
-
-
 
 WriteLiteral("                                                        <span class=\"article-auth" +
 "or article-clickable\">");
@@ -180,10 +176,6 @@ WriteLiteral("</span>\r\n");
                                                          break;
                                                     case "textual":
                                                     default:
-
-WriteLiteral("                                                        <br/>\r\n");
-
-
 
 WriteLiteral("                                                        <span class=\"article-auth" +
 "or\">");
@@ -211,15 +203,13 @@ WriteLiteral("</span>\r\n");
 
 
                                 } 
+
+WriteLiteral("                                          </div>\r\n");
+
+
 							}
-
-
-                             if (Model.IsMultimediaContent(headline))
+                            if (Model.IsMultimediaContent(headline))
                             {
-
-WriteLiteral("                                <br/>\r\n");
-
-
 
 WriteLiteral("                               <div class=\"article-meta\">\r\n");
 
@@ -249,10 +239,6 @@ WriteLiteral("]</span>\r\n                            </div>\r\n");
 
 
                             }
-
-WriteLiteral("\t\t\t\t\t\t</div>\r\n");
-
-
 					}
 
 WriteLiteral("\t\t\t\t</div>\r\n\t\t\t</li>\r\n");

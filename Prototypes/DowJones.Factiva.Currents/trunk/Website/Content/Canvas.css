@@ -45,36 +45,39 @@ ul, ol {
 /* line 52, ../sass/Canvas.scss */
 .module-col .standard-padding {
   padding: 0 14px;
-}
-/* line 55, ../sass/Canvas.scss */
-.module-col .module-col-wrap {
-  position: relative;
+  padding-left: 30px;
 }
 
-/* line 60, ../sass/Canvas.scss */
+/* line 59, ../sass/Canvas.scss */
 .module-col-source-logo-wrap {
   margin-bottom: 4px;
 }
-/* line 64, ../sass/Canvas.scss */
+/* line 63, ../sass/Canvas.scss */
 .module-col-source-logo-wrap .module-col-source-logo {
   color: #676767;
   min-height: 40px;
   margin: 0;
 }
-/* line 70, ../sass/Canvas.scss */
+/* line 69, ../sass/Canvas.scss */
 .module-col-source-logo-wrap .module-col-source-logo img {
   max-height: 40px;
   max-width: 300px;
 }
 
-/* line 77, ../sass/Canvas.scss */
+/* line 76, ../sass/Canvas.scss */
 .module-col-title {
   position: relative;
   font-size: 138.5%;
   margin: 0 0 14px;
 }
 
-/* line 83, ../sass/Canvas.scss */
+/* line 82, ../sass/Canvas.scss */
+.article-headline {
+  font-size: 93%;
+  line-height: 16px;
+}
+
+/* line 87, ../sass/Canvas.scss */
 .module-col-secondary-title {
   font-size: 85%;
   color: #666;
@@ -82,57 +85,73 @@ ul, ol {
   margin-bottom: 15px;
 }
 
-/* line 90, ../sass/Canvas.scss */
+/* line 94, ../sass/Canvas.scss */
+.article-group-title {
+  font-size: 108%;
+  text-transform: uppercase;
+}
+
+/* line 99, ../sass/Canvas.scss */
+.article-group .article-wrap {
+  margin-bottom: 5px;
+}
+
+/* line 102, ../sass/Canvas.scss */
+.dj_entry .article-wrap {
+  line-height: 18px;
+}
+
+/* line 105, ../sass/Canvas.scss */
 .fi {
   display: inline-block;
   background: transparent url("images/factiva-icons.png?v0.1") no-repeat 0 0;
   cursor: pointer;
 }
-/* line 96, ../sass/Canvas.scss */
+/* line 111, ../sass/Canvas.scss */
 .fi.fi_video {
   width: 17px;
   height: 10px;
   background-position: 0 -680px;
 }
-/* line 102, ../sass/Canvas.scss */
+/* line 117, ../sass/Canvas.scss */
 .fi.fi_audio {
   width: 15px;
   height: 14px;
   background-position: 0 -720px;
 }
-/* line 108, ../sass/Canvas.scss */
+/* line 123, ../sass/Canvas.scss */
 .fi.fi_arrow-increase-green, .fi.fi_arrow-decrease-red {
   position: absolute;
   top: 2px;
   right: 0;
   margin-left: 4px;
 }
-/* line 115, ../sass/Canvas.scss */
+/* line 130, ../sass/Canvas.scss */
 .fi.fi_arrow-increase-green {
   width: 14px;
   height: 16px;
   background-position: 0 -1000px;
 }
-/* line 121, ../sass/Canvas.scss */
+/* line 136, ../sass/Canvas.scss */
 .fi.fi_arrow-decrease-red {
   width: 14px;
   height: 16px;
   background-position: 0 -1030px;
 }
-/* line 127, ../sass/Canvas.scss */
+/* line 142, ../sass/Canvas.scss */
 .fi.fi_arrow-green-small {
   width: 8px;
   height: 7px;
   background-position: 0 -1060px;
 }
-/* line 133, ../sass/Canvas.scss */
+/* line 148, ../sass/Canvas.scss */
 .fi.fi.fi_arrow-red-small {
   width: 8px;
   height: 7px;
   background-position: 0 -1080px;
 }
 
-/* line 143, ../sass/Canvas.scss */
+/* line 158, ../sass/Canvas.scss */
 .dj_CurrentTrending .module-col-title {
   position: relative;
   color: #666;
@@ -140,25 +159,25 @@ ul, ol {
   padding-right: 18px;
   margin-bottom: 0;
 }
-/* line 151, ../sass/Canvas.scss */
+/* line 166, ../sass/Canvas.scss */
 .dj_CurrentTrending .industry-item-title {
   font-size: 93%;
   font-weight: bold;
   color: #4B9DC8;
 }
-/* line 157, ../sass/Canvas.scss */
+/* line 172, ../sass/Canvas.scss */
 .dj_CurrentTrending .trending-up .fi, .dj_CurrentTrending .trending-down .fi {
   cursor: default;
 }
-/* line 162, ../sass/Canvas.scss */
+/* line 177, ../sass/Canvas.scss */
 .dj_CurrentTrending .news-volume-percentage.increase {
   color: #11A106;
 }
-/* line 166, ../sass/Canvas.scss */
+/* line 181, ../sass/Canvas.scss */
 .dj_CurrentTrending .news-volume-percentage.decrease {
   color: #B90202;
 }
-/* line 171, ../sass/Canvas.scss */
+/* line 186, ../sass/Canvas.scss */
 .dj_CurrentTrending .item-total, .dj_CurrentTrending .item-total-type, .dj_CurrentTrending .news-volume-previous, .dj_CurrentTrending .news-volume-current, .dj_CurrentTrending .news-volume-percentage {
   display: inline-block;
   display: -moz-inline-stack;
@@ -168,19 +187,19 @@ ul, ol {
   vertical-align: middle;
   padding-right: 5px;
 }
-/* line 181, ../sass/Canvas.scss */
+/* line 196, ../sass/Canvas.scss */
 .dj_CurrentTrending .news-volume-current {
   padding-left: 5px;
 }
-/* line 186, ../sass/Canvas.scss */
+/* line 201, ../sass/Canvas.scss */
 .dj_CurrentTrending .trending-up ul li, .dj_CurrentTrending .trending-down ul li {
   margin-bottom: 10px;
 }
-/* line 191, ../sass/Canvas.scss */
+/* line 206, ../sass/Canvas.scss */
 .dj_CurrentTrending ul {
   margin: 0;
 }
-/* line 195, ../sass/Canvas.scss */
+/* line 210, ../sass/Canvas.scss */
 .dj_CurrentTrending li {
   line-height: 1.23;
 }

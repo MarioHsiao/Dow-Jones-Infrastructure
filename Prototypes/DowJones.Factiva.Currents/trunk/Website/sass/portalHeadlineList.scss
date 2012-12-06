@@ -17,9 +17,15 @@
   
   .date-stamp {
     text-transform: none; 
+	display: -moz-inline-stack;
+	display: inline-block;
+	vertical-align: top;
+	color: #999;
+	font-size: 85%;
+	line-height: normal;
   }
   
-  .article-source, .time-stamp, .date-stamp, .media-length, .fi, .author, .byline, .author {
+  .article-source, .time-stamp,.media-length, .fi, .author, .byline, .author {
     display: -moz-inline-stack;
     display: inline-block;
     vertical-align: top;
