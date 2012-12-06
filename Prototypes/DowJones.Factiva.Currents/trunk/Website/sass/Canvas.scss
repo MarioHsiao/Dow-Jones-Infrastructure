@@ -4,7 +4,7 @@ ul, ol {
  
 .ui-component {
 	ul, ol {
-		margin: 0 0 10px 10px;
+		margin: 0 0 0 0;
 	}
 }
 
@@ -73,10 +73,15 @@ ul, ol {
 	}
 }
 
+
 .module-col-title {
   position: relative;
   font-size: 138.5%;
   margin: 0 0 14px;
+}
+
+.article-group-title {
+  text-transform: uppercase;
 }
 
 .article-headline {
@@ -91,10 +96,7 @@ ul, ol {
 	margin-bottom: 15px;
 }
 
-.article-group-title {
-  font-size: 108%;
-  text-transform: uppercase;
-}
+
 
 .article-group .article-wrap {
   margin-bottom: 5px;
