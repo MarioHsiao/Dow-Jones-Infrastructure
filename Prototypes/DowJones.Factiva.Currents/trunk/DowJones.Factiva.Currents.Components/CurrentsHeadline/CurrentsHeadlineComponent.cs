@@ -23,7 +23,7 @@ namespace DowJones.Factiva.Currents.Components.CurrentsHeadline
     using CurrentsHeadline;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 12/03/2012 05:13 PM
+    // Last Generated Timestamp: 12/05/2012 10:24 PM
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Factiva.Currents.Components.CurrentsHeadline.CurrentsHeadline.js", ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Factiva.Currents.Components.CurrentsHeadline.CurrentsHeadlineComponent))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.27108")]
     public class CurrentsHeadlineComponent : DowJones.Web.Mvc.UI.ViewComponentBase<CurrentsHeadlineModel>
@@ -136,31 +136,17 @@ WriteLiteral("\t\t\t\t\t\t\t\t\t<br />\r\n");
 
  							if (Model.ShouldShowPublicationDateTime(headline))
 							{
-                                if (@headline.PublicationDateDescriptor != null)
-                                {
 
-WriteLiteral("\t\t\t\t\t\t\t\t    <span class=\"date-stamp\">");
+WriteLiteral("\t\t\t\t\t\t\t\t<span class=\"date-stamp\">");
 
 
-                                Write(headline.PublicationDateDescriptor);
-
-WriteLiteral(" </span>\r\n");
-
-
-                                }   
-                                else
-                                {
-
-WriteLiteral("                                     <span class=\"date-stamp\">");
-
-
-                                                         Write(headline.PublicationDateTimeDescriptor);
+                             Write(headline.PublicationDateDescriptor != null ?
+                                    headline.PublicationDateDescriptor :headline.PublicationDateTimeDescriptor);
 
 WriteLiteral(" </span>\r\n");
 
 
-                                } 
-							} 
+                            }
 
 
                              if (Model.ShouldShowAuthor(headline))
@@ -226,6 +212,43 @@ WriteLiteral("</span>\r\n");
 
                                 } 
 							}
+
+
+                             if (Model.IsMultimediaContent(headline))
+                            {
+
+WriteLiteral("                                <br/>\r\n");
+
+
+
+WriteLiteral("                               <div class=\"article-meta\">\r\n");
+
+
+                                    if(@headline.ContentSubCategoryDescriptor == "video")
+                                   { 
+
+WriteLiteral("                                       <span class=\"fi fi_video\"> </span> \r\n");
+
+
+                                   }
+                                   else if(headline.ContentSubCategoryDescriptor == "audio")
+                                   {
+
+WriteLiteral("                                        <span class=\"fi fi_audio\"> </span>\r\n");
+
+
+                                   }
+
+WriteLiteral("                                \r\n                                <span class=\"me" +
+"dia-length\">[");
+
+
+                                                       Write(headline.MediaLength);
+
+WriteLiteral("]</span>\r\n                            </div>\r\n");
+
+
+                            }
 
 WriteLiteral("\t\t\t\t\t\t</div>\r\n");
 

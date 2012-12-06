@@ -35,6 +35,7 @@ namespace DowJones.Factiva.Currents.Components.CurrentsHeadline
 
 		public bool SourceClickable { get; set; }
         public bool AuthorClickable { get; set; }
+        public bool MultimediaMode { get; set; }
 
 		public CurrentsHeadlineModel(PortalHeadlineListModel portalHeadlineList)
 		{
@@ -44,6 +45,7 @@ namespace DowJones.Factiva.Currents.Components.CurrentsHeadline
 			ShowSource = _portalHeadlineList.ShowSource;
 			ShowPublicationDateTime = _portalHeadlineList.ShowPublicationDateTime;
             ShowAuthor = _portalHeadlineList.ShowAuthor;
+            MultimediaMode = true;//_portalHeadlineList.MultimediaMode;
 		}
 
 
@@ -66,6 +68,13 @@ namespace DowJones.Factiva.Currents.Components.CurrentsHeadline
                     && headline.Authors != null
                     && headline.Authors.Count > 0;
             
+        }
+
+        public bool IsMultimediaContent(PortalHeadlineInfo headline)
+        {
+            return MultimediaMode
+                    && !string.IsNullOrEmpty(headline.ContentCategoryDescriptor)
+                    && headline.ContentCategoryDescriptor.Equals("multimedia",StringComparison.CurrentCultureIgnoreCase);
         }
 
 		public bool ShouldShowPublicationDateTime(PortalHeadlineInfo headline)

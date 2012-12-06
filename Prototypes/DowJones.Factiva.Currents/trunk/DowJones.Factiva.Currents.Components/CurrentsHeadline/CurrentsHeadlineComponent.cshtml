@@ -32,15 +32,9 @@
 							} 
 							@if (Model.ShouldShowPublicationDateTime(headline))
 							{
-                                if (@headline.PublicationDateDescriptor != null)
-                                {
-								    <span class="date-stamp">@headline.PublicationDateDescriptor </span>
-                                }   
-                                else
-                                {
-                                     <span class="date-stamp">@headline.PublicationDateTimeDescriptor </span>
-                                } 
-							} 
+								<span class="date-stamp">@(headline.PublicationDateDescriptor != null ?
+                                    headline.PublicationDateDescriptor :headline.PublicationDateTimeDescriptor) </span>
+                            }
                             @if (Model.ShouldShowAuthor(headline))
 							{
                                 if (@headline.CodedAuthors != null)
@@ -72,6 +66,22 @@
                                     <span class="author">@headline.Authors.Aggregate((a,b)=> a+","+b)</span>
                                 } 
 							}
+                            @if (Model.IsMultimediaContent(headline))
+                            {
+                                <br/>
+                               <div class="article-meta">
+                                   @if(@headline.ContentSubCategoryDescriptor == "video")
+                                   { 
+                                       <span class="fi fi_video"> </span> 
+                                   }
+                                   else if(headline.ContentSubCategoryDescriptor == "audio")
+                                   {
+                                        <span class="fi fi_audio"> </span>
+                                   }
+                                
+                                <span class="media-length">[@headline.MediaLength]</span>
+                            </div>
+                            }
 						</div>
 					}
 				</div>

@@ -88,39 +88,51 @@ ul, ol {
   background: transparent url("images/factiva-icons.png?v0.1") no-repeat 0 0;
   cursor: pointer;
 }
-/* line 95, ../sass/Canvas.scss */
+/* line 96, ../sass/Canvas.scss */
+.fi.fi_video {
+  width: 17px;
+  height: 10px;
+  background-position: 0 -680px;
+}
+/* line 102, ../sass/Canvas.scss */
+.fi.fi_audio {
+  width: 15px;
+  height: 14px;
+  background-position: 0 -720px;
+}
+/* line 108, ../sass/Canvas.scss */
 .fi.fi_arrow-increase-green, .fi.fi_arrow-decrease-red {
   position: absolute;
   top: 2px;
   right: 0;
   margin-left: 4px;
 }
-/* line 102, ../sass/Canvas.scss */
+/* line 115, ../sass/Canvas.scss */
 .fi.fi_arrow-increase-green {
   width: 14px;
   height: 16px;
   background-position: 0 -1000px;
 }
-/* line 108, ../sass/Canvas.scss */
+/* line 121, ../sass/Canvas.scss */
 .fi.fi_arrow-decrease-red {
   width: 14px;
   height: 16px;
   background-position: 0 -1030px;
 }
-/* line 114, ../sass/Canvas.scss */
+/* line 127, ../sass/Canvas.scss */
 .fi.fi_arrow-green-small {
   width: 8px;
   height: 7px;
   background-position: 0 -1060px;
 }
-/* line 120, ../sass/Canvas.scss */
+/* line 133, ../sass/Canvas.scss */
 .fi.fi.fi_arrow-red-small {
   width: 8px;
   height: 7px;
   background-position: 0 -1080px;
 }
 
-/* line 130, ../sass/Canvas.scss */
+/* line 143, ../sass/Canvas.scss */
 .dj_CurrentTrending .module-col-title {
   position: relative;
   color: #666;
@@ -128,25 +140,25 @@ ul, ol {
   padding-right: 18px;
   margin-bottom: 0;
 }
-/* line 138, ../sass/Canvas.scss */
+/* line 151, ../sass/Canvas.scss */
 .dj_CurrentTrending .industry-item-title {
   font-size: 93%;
   font-weight: bold;
   color: #4B9DC8;
 }
-/* line 144, ../sass/Canvas.scss */
+/* line 157, ../sass/Canvas.scss */
 .dj_CurrentTrending .trending-up .fi, .dj_CurrentTrending .trending-down .fi {
   cursor: default;
 }
-/* line 149, ../sass/Canvas.scss */
+/* line 162, ../sass/Canvas.scss */
 .dj_CurrentTrending .news-volume-percentage.increase {
   color: #11A106;
 }
-/* line 153, ../sass/Canvas.scss */
+/* line 166, ../sass/Canvas.scss */
 .dj_CurrentTrending .news-volume-percentage.decrease {
   color: #B90202;
 }
-/* line 158, ../sass/Canvas.scss */
+/* line 171, ../sass/Canvas.scss */
 .dj_CurrentTrending .item-total, .dj_CurrentTrending .item-total-type, .dj_CurrentTrending .news-volume-previous, .dj_CurrentTrending .news-volume-current, .dj_CurrentTrending .news-volume-percentage {
   display: inline-block;
   display: -moz-inline-stack;
@@ -156,19 +168,19 @@ ul, ol {
   vertical-align: middle;
   padding-right: 5px;
 }
-/* line 168, ../sass/Canvas.scss */
+/* line 181, ../sass/Canvas.scss */
 .dj_CurrentTrending .news-volume-current {
   padding-left: 5px;
 }
-/* line 173, ../sass/Canvas.scss */
+/* line 186, ../sass/Canvas.scss */
 .dj_CurrentTrending .trending-up ul li, .dj_CurrentTrending .trending-down ul li {
   margin-bottom: 10px;
 }
-/* line 178, ../sass/Canvas.scss */
+/* line 191, ../sass/Canvas.scss */
 .dj_CurrentTrending ul {
   margin: 0;
 }
-/* line 182, ../sass/Canvas.scss */
+/* line 195, ../sass/Canvas.scss */
 .dj_CurrentTrending li {
   line-height: 1.23;
 }

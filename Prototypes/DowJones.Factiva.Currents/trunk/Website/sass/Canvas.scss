@@ -92,6 +92,19 @@ ul, ol {
 	background: transparent url('images/factiva-icons.png?v0.1')  no-repeat 0 0;
 	cursor: pointer;
 
+
+	&.fi_video {
+		width:17px;
+		height:10px;
+		background-position: 0 -680px;
+	}
+
+	&.fi_audio {
+		width:15px;
+		height:14px;
+		background-position: 0 -720px;
+	}
+
 	&.fi_arrow-increase-green, &.fi_arrow-decrease-red {
 		position: absolute;
 		top: 2px;
