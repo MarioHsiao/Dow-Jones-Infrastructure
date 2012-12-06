@@ -24,11 +24,10 @@ namespace DowJones.Web.Mvc.UI.Components.DiscoveryFilters
     using System.Web.UI;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 11/30/2012 12:32 PM
+    // Last Generated Timestamp: 12/06/2012 10:45 AM
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.DiscoveryFilters.DiscoveryFilters.js", DependsOn=new string[] {
             "highcharts",
             "service-proxy",
-            "jquery-tools",
             "jquery-ui-interactions"}, ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.DiscoveryFilters.DiscoveryFilters))]
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.DiscoveryFilters.ClientTemplates.Success.htm", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="success", DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.DiscoveryFilters.DiscoveryFilters))]
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.DiscoveryFilters.ClientTemplates.NoData.htm", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="noData", DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.DiscoveryFilters.DiscoveryFilters))]
