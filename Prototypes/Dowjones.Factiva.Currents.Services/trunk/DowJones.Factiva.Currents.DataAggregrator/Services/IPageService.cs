@@ -24,15 +24,5 @@ namespace DowJones.Factiva.Currents.Aggregrator.Services
         [OperationContract(Name = "GetPageList")]
         //[FaultContract(typeof(ErrorResponse))]
         Stream GetPageList(string format);
-
-        [Description("Get Headlines")]
-        [WebGet(UriTemplate = "/headlines/{format}?searchContextRef={searchContextRef}", BodyStyle = WebMessageBodyStyle.Bare)]
-        [OperationContract(Name = "GetHeadlines")]
-        Stream GetHeadlines(string format, string searchContextRef);
-
-        [Description("Get Headlines By AccessionNumber")]
-        [WebGet(UriTemplate = "/headlines/an/{format}?an={accessionNumber}", BodyStyle = WebMessageBodyStyle.Bare)]
-        [OperationContract(Name = "GetHeadlinesByAccessionNumber")]
-        Stream GetHeadlinesByAccessionNumber(string accessionNumber, string format);
     }
 }
