@@ -63,6 +63,7 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content.svc" />
     <Content Include="PageService.svc" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
