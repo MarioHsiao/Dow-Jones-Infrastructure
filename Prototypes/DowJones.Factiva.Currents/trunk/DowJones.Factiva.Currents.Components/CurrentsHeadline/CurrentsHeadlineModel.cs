@@ -36,6 +36,8 @@ namespace DowJones.Factiva.Currents.Components.CurrentsHeadline
 		public bool SourceClickable { get; set; }
         public bool AuthorClickable { get; set; }
         public bool MultimediaMode { get; set; }
+       
+        public bool ShowSnippet { get; set; }
 
 		public CurrentsHeadlineModel(PortalHeadlineListModel portalHeadlineList)
 		{
@@ -48,6 +50,13 @@ namespace DowJones.Factiva.Currents.Components.CurrentsHeadline
             MultimediaMode = true;//_portalHeadlineList.MultimediaMode;
 		}
 
+        public bool ShouldShowSnippet(PortalHeadlineInfo headline)
+        {
+            return ShowSnippet 
+                && headline.Snippets != null 
+                && headline.Snippets.Count > 0 
+                && !headline.Snippets.First().IsEmpty();
+        }
 
 		// view helpers
 		public string GetSelectionStatus(PortalHeadlineInfo headline)

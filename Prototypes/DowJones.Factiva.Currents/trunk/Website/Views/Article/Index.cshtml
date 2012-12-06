@@ -1,8 +1,15 @@
-﻿@model dynamic
+﻿@model DowJones.Factiva.Currents.Website.Models.Headlines
 
-<h3>View Article</h3>
-<p>
+@{
+    ViewBag.Title = "Headlines";
+}
+
+<section id="headlines">
+    @Html.DJ().Render(Model.CurrentsHeadline)
+</section>
+
+@*<p>
 	This page will show article for "@ViewBag.Title" having accession number: {@ViewBag.AccessionNumber}
 	published on @ViewBag.PublicationDate.ToString("D").
-</p>
+</p>*@
 <hr />

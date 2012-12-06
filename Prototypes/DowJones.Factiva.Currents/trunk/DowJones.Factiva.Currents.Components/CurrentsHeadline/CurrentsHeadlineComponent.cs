@@ -23,7 +23,7 @@ namespace DowJones.Factiva.Currents.Components.CurrentsHeadline
     using CurrentsHeadline;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 12/06/2012 01:26 PM
+    // Last Generated Timestamp: 12/06/2012 05:53 PM
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Factiva.Currents.Components.CurrentsHeadline.CurrentsHeadline.js", ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Factiva.Currents.Components.CurrentsHeadline.CurrentsHeadlineComponent))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.27108")]
     public class CurrentsHeadlineComponent : DowJones.Web.Mvc.UI.ViewComponentBase<CurrentsHeadlineModel>
@@ -238,6 +238,24 @@ WriteLiteral("                                \r\n                              
 WriteLiteral("]</span>\r\n                            </div>\r\n");
 
 
+                            }
+                            if (Model.ShouldShowSnippet(headline))
+                            {
+
+WriteLiteral("                               <br />\r\n");
+
+
+
+WriteLiteral("                               <div class=\"article-meta\">\r\n                      " +
+"             <span class=\"article-author\">");
+
+
+                                                           Write(headline.Snippets.First());
+
+WriteLiteral("</span>\r\n                                </div>\r\n");
+
+
+                           
                             }
 					}
 
