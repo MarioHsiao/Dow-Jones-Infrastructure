@@ -4,17 +4,17 @@ $.iDevices = {
     iPad: (navigator.userAgent.indexOf('iPad') !== -1)
 };
 
-$.fn.djOverlay = function (options) {
+$.fn.overlay = function (options) {
     if (!this.selector) { return; }
 
-    options = $.extend({}, $.fn.djOverlay._defaults, (options || {}));
+    options = $.extend({}, $.fn.overlay._defaults, (options || {}));
 
     if ($(this.selector).length > 1) {
         $dj.debug('Selector must result in a unique DOM Element.');
         return;
     }
 
-    var overlayIds = $.fn.djOverlay._getIds(this.selector);
+    var overlayIds = $.fn.overlay._getIds(this.selector);
     options.overlayIds = overlayIds;
 
     if (options.background === true) {
@@ -25,21 +25,21 @@ $.fn.djOverlay = function (options) {
     }
 
     //load the overlay div element;
-    if ($('#' + overlayIds.djOverlay).length === 0) {
-        $(document.body).append('<div id="' + overlayIds.djOverlay + '"></div>');
-        $('#' + overlayIds.djOverlay).append($(this.selector));
-        $('#' + overlayIds.djOverlay).css({ 'position': ($.browser.msie && $.browser.version === 6) ? 'absolute' : 'fixed', 'display': 'none' });
+    if ($('#' + overlayIds.overlay).length === 0) {
+        $(document.body).append('<div id="' + overlayIds.overlay + '"></div>');
+        $('#' + overlayIds.overlay).append($(this.selector));
+        $('#' + overlayIds.overlay).css({ 'position': ($.browser.msie && $.browser.version === 6) ? 'absolute' : 'fixed', 'display': 'none' });
     }
     $(this.selector).css({ "display": "block", "visibility": "visible" });
 
     $(this.selector).data("overlayoptions", options);
 
-    $().djOverlay.show(this.selector);
+    $().overlay.show(this.selector);
 
     return this;
 };
 
-$.fn.djOverlay._defaults = {
+$.fn.overlay._defaults = {
     background: true,
     bgcolor: '#000000',
     closeOnEsc: false,
@@ -50,7 +50,7 @@ $.fn.djOverlay._defaults = {
     onHide: null,
     autoScroll: true
 };
-$.fn.djOverlay._getIds = function (selector) {
+$.fn.overlay._getIds = function (selector) {
     if (selector && $(selector).length > 0) {
         var ids = {};
         var selectorId = $(selector).attr("id");
@@ -59,16 +59,16 @@ $.fn.djOverlay._getIds = function (selector) {
         }
 
         ids.background = '__djBackground';
-        ids.djOverlay = selectorId + '__djoverlay';
+        ids.overlay = selectorId + '__djoverlay';
         return ids;
     }
 };
-$.fn.djOverlay._activeOverlays = [];
-$.fn.djOverlay._position = function (selector) {
+$.fn.overlay._activeOverlays = [];
+$.fn.overlay._position = function (selector) {
     var selectorJObj = $(selector);
     var options = selectorJObj.data("overlayoptions");
 
-    $('#' + options.overlayIds.djOverlay).width("auto");
+    $('#' + options.overlayIds.overlay).width("auto");
     selectorJObj.show();
     var intHeight = selectorJObj.outerHeight(true);
     var intWidth = selectorJObj.outerWidth(true);
@@ -101,30 +101,30 @@ $.fn.djOverlay._position = function (selector) {
 
     css = { 'height': intHeight, 'width': intWidth, 'top': t, 'left': l, 'position': position };
 
-    $('#' + options.overlayIds.djOverlay).css(css);
+    $('#' + options.overlayIds.overlay).css(css);
 
     if (options.background && $('#' + options.overlayIds.background).length > 0) {
         $('#' + options.overlayIds.background).css({ 'height': ($(document).height() - 1), 'width': $(window).width() });
     }
 };
-$.fn.djOverlay.hide = function (selector, callback) {
+$.fn.overlay.hide = function (selector, callback) {
     if (!selector) { return; }
 
     var options = $(selector).data("overlayoptions");
-    if (!options || $('#' + options.overlayIds.djOverlay).length === 0) { return; }
+    if (!options || $('#' + options.overlayIds.overlay).length === 0) { return; }
 
-    $('#' + options.overlayIds.djOverlay).fadeOut(options.fadeOutTime, function () {
-        $('#' + options.overlayIds.djOverlay).css("display", "none");
+    $('#' + options.overlayIds.overlay).fadeOut(options.fadeOutTime, function () {
+        $('#' + options.overlayIds.overlay).css("display", "none");
         callback = callback || options.onHide;
         if (callback && $.isFunction(callback)) {
             callback.apply(this);
         }
     });
 
-    $.fn.djOverlay._activeOverlays = $.grep($.fn.djOverlay._activeOverlays, function (val) { return val !== selector; });
-    if ($.fn.djOverlay._activeOverlays.length > 0) {
-        var prevOverlay = $.fn.djOverlay._activeOverlays[$.fn.djOverlay._activeOverlays.length - 1];
-        $().djOverlay.show(prevOverlay, true);
+    $.fn.overlay._activeOverlays = $.grep($.fn.overlay._activeOverlays, function (val) { return val !== selector; });
+    if ($.fn.overlay._activeOverlays.length > 0) {
+        var prevOverlay = $.fn.overlay._activeOverlays[$.fn.overlay._activeOverlays.length - 1];
+        $().overlay.show(prevOverlay, true);
     }
     else {
 
@@ -137,23 +137,23 @@ $.fn.djOverlay.hide = function (selector, callback) {
             });
         }
 
-        $(document).unbind("keyup.djOverlay");
-        $(window).unbind("scroll.djOverlay");
-        $(window).unbind("resize.djOverlay");
+        $(document).unbind("keyup.overlay");
+        $(window).unbind("scroll.overlay");
+        $(window).unbind("resize.overlay");
     }
 };
 
-$.fn.djOverlay.rePosition = function () {
-    $(window).trigger("scroll.djOverlay");
+$.fn.overlay.rePosition = function () {
+    $(window).trigger("scroll.overlay");
 };
 
-$.fn.djOverlay.show = function (selector, retainBackground) {
+$.fn.overlay.show = function (selector, retainBackground) {
     if (!selector) { return; }
 
     var options = $(selector).data("overlayoptions");
 
     if (options.background) {
-        if ($.fn.djOverlay._activeOverlays.length > 0) {
+        if ($.fn.overlay._activeOverlays.length > 0) {
             if (options.bgcolor !== 'transparent') {
                 $('#' + options.overlayIds.background).css('z-index', ++$dj.maxZIndex);
             }
@@ -163,17 +163,17 @@ $.fn.djOverlay.show = function (selector, retainBackground) {
         }
     }
 
-    $('#' + options.overlayIds.djOverlay).css('z-index', ++$dj.maxZIndex);
+    $('#' + options.overlayIds.overlay).css('z-index', ++$dj.maxZIndex);
 
     //Hide all the select dropdowns on the page except the current overlay container
     if (options.hideSelect && $.browser.msie && $.browser.version === 6) {
         $("select").css("visibility", "hidden");
-        $('#' + options.overlayIds.djOverlay).find("select").css("visibility", "visible");
+        $('#' + options.overlayIds.overlay).find("select").css("visibility", "visible");
     }
 
     if (!retainBackground) {
         if (options.background) {
-            if ($.fn.djOverlay._activeOverlays.length > 0) {
+            if ($.fn.overlay._activeOverlays.length > 0) {
                 if (options.bgcolor !== 'transparent') {
                     $('#' + options.overlayIds.background).css({ 'background': options.bgcolor, 'opacity': '0.5' }).fadeIn(options.fadeInTime);
                 }
@@ -188,7 +188,7 @@ $.fn.djOverlay.show = function (selector, retainBackground) {
             }
         }
 
-        $('#' + options.overlayIds.djOverlay).fadeIn(options.fadeInTime, options.onShow);
+        $('#' + options.overlayIds.overlay).fadeIn(options.fadeInTime, options.onShow);
     }
     else {
         if (options.background) {
@@ -201,36 +201,36 @@ $.fn.djOverlay.show = function (selector, retainBackground) {
         }
     }
 
-    $.fn.djOverlay._position(selector);
+    $.fn.overlay._position(selector);
 
-    $(document).unbind("keyup.djOverlay");
-    $(window).unbind("scroll.djOverlay").unbind("resize.djOverlay").bind("resize.djOverlay", function () {
-        $.fn.djOverlay._position(selector);
+    $(document).unbind("keyup.overlay");
+    $(window).unbind("scroll.overlay").unbind("resize.overlay").bind("resize.overlay", function () {
+        $.fn.overlay._position(selector);
     });
     if (options.autoScroll) {
-        $(window).bind("scroll.djOverlay", function () {
-            $.fn.djOverlay._position(selector);
+        $(window).bind("scroll.overlay", function () {
+            $.fn.overlay._position(selector);
         });
     }
 
     if (options.closeOnEsc) {
-        $(document).bind("keyup.djOverlay", function (e) {
+        $(document).bind("keyup.overlay", function (e) {
             if (e.keyCode === 27) {
                 //To fix FF issue which fires this event when we close the fullscreen mode
                 if (typeof $dj !== 'undefined' && $dj.videoPlayerInFullScreen) { return; }
-                $().djOverlay.hide(selector);
+                $().overlay.hide(selector);
             }
         });
     }
 
     if (!retainBackground) {
-        $.fn.djOverlay._activeOverlays = $.grep($.fn.djOverlay._activeOverlays, function (val) { return val !== selector; });
-        $.fn.djOverlay._activeOverlays.push(selector);
-    }    
+        $.fn.overlay._activeOverlays = $.grep($.fn.overlay._activeOverlays, function (val) { return val !== selector; });
+        $.fn.overlay._activeOverlays.push(selector);
+    }
 
-    if ($.fn.djOverlay._activeOverlays.length === 0 && !options.background && $('#' + options.overlayIds.background).length > 0) {
+    if ($.fn.overlay._activeOverlays.length === 0 && !options.background && $('#' + options.overlayIds.background).length > 0) {
         $('#' + options.overlayIds.background).hide();
     }
 
-    $('#' + options.overlayIds.djOverlay).focus();
+    $('#' + options.overlayIds.overlay).focus();
 };

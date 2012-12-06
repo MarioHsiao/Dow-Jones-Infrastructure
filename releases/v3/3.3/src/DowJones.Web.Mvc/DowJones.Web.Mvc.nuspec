@@ -11,8 +11,7 @@
         <projectUrl>http://dowjones.com</projectUrl>
         <licenseUrl>http://dowjones.com</licenseUrl>
         <dependencies>
-            <dependency id="DowJones.Infrastructure" version="$version$" />
-            <dependency id="Ninject.MVC3" version="2.2.0.0" />
+            <dependency id="DowJones.Infrastructure" version="$version$" />            
         </dependencies>
     </metadata>
     <files>
