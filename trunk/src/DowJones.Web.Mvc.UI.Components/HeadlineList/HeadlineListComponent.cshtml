@@ -33,7 +33,14 @@
                     <img src="@headline.ThumbnailUrl" alt="@headline.TruncatedTitle" />
                 </div>
             }
+            
+            @if (Model.HeadlineClickable){
             <a class="title" href="javascript:void(0)" rel="@headline.ExternalUrl" title="@Model.GetHoverSnippet(headline.Snippet, i)" >@headline.Title</a>
+            }
+            else{
+            <a class="title" rel="@headline.ExternalUrl" title="@Model.GetHoverSnippet(headline.Snippet, i)" >@headline.Title</a>
+            } 
+                
             @if (Model.ShowPressClip && headline.IsPressClipArticle)
             {
                 <span class="dj_badge-pressclips">@Html.DJ().Token("pressClipping")</span>        

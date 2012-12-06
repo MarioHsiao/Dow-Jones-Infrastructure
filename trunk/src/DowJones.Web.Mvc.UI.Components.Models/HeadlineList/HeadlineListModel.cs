@@ -50,6 +50,8 @@ namespace DowJones.Web.Mvc.UI.Components.HeadlineList
         [ClientProperty("showThumbnail")]
         public ThumbnailDisplayType ShowThumbnail { get; set; }
 
+        [ClientProperty("headlineClickable")]
+        public bool HeadlineClickable { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether NLA press clips are enabled.
