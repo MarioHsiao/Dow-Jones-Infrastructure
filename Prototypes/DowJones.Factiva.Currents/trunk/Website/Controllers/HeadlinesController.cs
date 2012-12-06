@@ -10,17 +10,17 @@ namespace DowJones.Factiva.Currents.Website.Controllers
 {
     public class HeadlinesController : Controller
     {
-	    private readonly ISearchContext _searchContextProvider;
+	    private readonly IContentProvider _contentProvider;
 
-	    public HeadlinesController(ISearchContext searchContextProvider)
+        public HeadlinesController(IContentProvider contentProvider)
 	    {
-		    _searchContextProvider = searchContextProvider;
+            _contentProvider = contentProvider;
 	    }
 
 		[OutputCache(CacheProfile = "HeadlineCache")]
 	    public ActionResult Index(string sc)
 	    {
-		    var headlines = _searchContextProvider.GetHeadlines(sc);
+		    var headlines = _contentProvider.GetHeadlines(sc);
 
 			return View(headlines);
         }
