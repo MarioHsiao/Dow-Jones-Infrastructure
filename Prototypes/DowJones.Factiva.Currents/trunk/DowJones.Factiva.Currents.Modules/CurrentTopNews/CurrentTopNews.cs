@@ -24,7 +24,7 @@ namespace DowJones.Factiva.Currents.Modules.CurrentTopNews
     using DowJones.Factiva.Currents.Models;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 12/05/2012 04:16 PM
+    // Last Generated Timestamp: 12/05/2012 09:14 PM
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Factiva.Currents.Modules.CurrentTopNews.CurrentTopNews.js", ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Factiva.Currents.Modules.CurrentTopNews.CurrentTopNews))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.27108")]
     public class CurrentTopNews : DowJones.Web.Mvc.UI.CompositeComponent<CurrentTopNewsModel>
@@ -64,21 +64,27 @@ WriteLiteral("\r\n<div class=\"module\">\r\n    <header>\r\n         <i class=\"
 
  			foreach (var headline in Model.CurrentsHeadlines.Take(3))
 			{
+                
 
-WriteLiteral("                <div class=\"span4\">\r\n                    <h3 class=\"module-col-ti" +
-"tle article-group-title\">\r\n                        ");
+                                                                  
 
-
-                   Write(headline.Title);
-
-WriteLiteral("\r\n                    </h3>\r\n                     ");
+WriteLiteral("                    <div class=\"span4\">\r\n                        <h3 class=\"modul" +
+"e-col-title article-group-title\">\r\n                            ");
 
 
-                Write(Html.DJ().Render(headline.CurrentHeadline));
+                       Write(headline.Title);
 
-WriteLiteral("\r\n               </div>\r\n");
+WriteLiteral("\r\n                        </h3>\r\n                         ");
 
 
+                    Write(Html.DJ().Render(headline.CurrentHeadline));
+
+WriteLiteral("\r\n                   </div>\r\n");
+
+
+                
+
+                          
 			}
 
 WriteLiteral("            </div>\r\n\t\t</div>\r\n</div>");
