@@ -32,6 +32,7 @@ DJ.UI.HeadlineList plugin
             showDuplicates: false,
             showCheckboxes: false,
             showSortOptions: false,
+            headlineClickable: true,
             sortOption: 0,
             showAuthorOptions: false,
             showSourceOptions: false,
