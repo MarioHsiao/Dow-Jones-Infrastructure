@@ -59,7 +59,11 @@
                     <% if (options.showCheckboxes) { %>
                         <input class="chk-headline" type="checkbox" value="<%= headline.AccessionNumber %>" />
                     <% } %>
+                    <% if(options.headlineClickable) { %>
                     <a class="title" href="#" rel="<%= headline.ExternalUrl %>"><%= headline.Title %></a>
+                    <% } else { %>
+                    <a class="title" rel="<%= headline.ExternalUrl %>"><%= headline.Title %></a>
+                    <% } %>
                 </h4>
                 <div class="meta">
                     <span class="source" data-djid="<%= headline.SourceCode %>"><%= headline.Source %></span> |
