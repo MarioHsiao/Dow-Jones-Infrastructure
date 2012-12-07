@@ -187,11 +187,11 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Contracts\ISearchContext.cs" />
+    <Compile Include="Contracts\IContentProvider.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="GlobalErrorHandler.cs" />
     <Compile Include="Models\Headlines.cs" />
-    <Compile Include="Providers\SearchContextManager.cs" />
+    <Compile Include="Providers\ContentProvider.cs" />
     <Compile Include="Controllers\HeadlinesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Models\PageListModel.cs" />
@@ -309,16 +309,16 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
-          <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>0</DevelopmentServerPort>
-          <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:41599/</IISUrl>
-          <NTLMAuthentication>False</NTLMAuthentication>
-          <UseCustomServer>False</UseCustomServer>
-          <CustomServerUrl>
-          </CustomServerUrl>
-          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+			<UseIIS>True</UseIIS>
+			<AutoAssignPort>True</AutoAssignPort>
+			<DevelopmentServerPort>0</DevelopmentServerPort>
+			<DevelopmentServerVPath>/</DevelopmentServerVPath>
+			<IISUrl>http://localhost:41599/</IISUrl>
+			<NTLMAuthentication>False</NTLMAuthentication>
+			<UseCustomServer>False</UseCustomServer>
+			<CustomServerUrl>
+			</CustomServerUrl>
+			<SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
     </VisualStudio>
