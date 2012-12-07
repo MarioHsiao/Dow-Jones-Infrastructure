@@ -1,6 +1,7 @@
 ﻿DJ.UI.TreeView = DJ.UI.Component.extend({
     defaults: {
         enableCheckboxes: false,
+        setParentToCheckedIfAllChildrenAreChecked: true,
         expandAll: false
     },
 
@@ -91,8 +92,12 @@
 			else if (checkedChildrenCount < $children.length) {
 				this._setCheckedClass($parentNodes.first(), this.classNames.undetermined, false);
 			}
-			else {
-				this._setCheckedClass($parentNodes.first(), this.classNames.checked, false);
+            else {
+                if (this.options.setParentToCheckedIfAllChildrenAreChecked) {
+                    this._setCheckedClass($parentNodes.first(), this.classNames.checked, false);
+                } else {
+                    this._setCheckedClass($parentNodes.first(), this.classNames.undetermined, false);
+                }
 			}
 		}
 	},
@@ -137,11 +142,17 @@
 						break;
 				}
 			}
-			
-			if (checkedChildrenCount === node.children.length) {
-				node.isChecked = true;
-				node.checkedStatus = "checked";
-				node.checkedClass = " "  + this.classNames.checked;
+
+            if (checkedChildrenCount === node.children.length) {
+                if (this.options.setParentToCheckedIfAllChildrenAreChecked) {
+                    node.isChecked = true;
+                    node.checkedStatus = "checked";
+                    node.checkedClass = " " + this.classNames.checked;
+                } else {
+                    node.isChecked = false;
+                    node.checkedStatus = "undetermined";
+                    node.checkedClass = " " + this.classNames.undetermined;
+                }
 			}
 			else if (uncheckedChildrenCount === node.children.length){
 				node.isChecked = false;
