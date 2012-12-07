@@ -33,8 +33,7 @@
 							if (Model.ShouldShowPublicationDateTime(headline))
 							{
                                 <div class="article-meta">
-								    <span class="date-stamp">@(headline.PublicationDateDescriptor != null ?
-                                        headline.PublicationDateDescriptor :headline.PublicationDateTimeDescriptor) </span>
+								    <span class="date-stamp">@headline.PublicationDateTimeDescriptor </span>
                                 </div>
                             }
               

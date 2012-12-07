@@ -23,7 +23,7 @@ namespace DowJones.Factiva.Currents.Components.CurrentsHeadline
     using CurrentsHeadline;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 12/06/2012 05:53 PM
+    // Last Generated Timestamp: 12/07/2012 09:09 AM
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Factiva.Currents.Components.CurrentsHeadline.CurrentsHeadline.js", ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Factiva.Currents.Components.CurrentsHeadline.CurrentsHeadlineComponent))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.27108")]
     public class CurrentsHeadlineComponent : DowJones.Web.Mvc.UI.ViewComponentBase<CurrentsHeadlineModel>
@@ -136,8 +136,7 @@ WriteLiteral("                                <div class=\"article-meta\">\r\n\t
 "ss=\"date-stamp\">");
 
 
-                                 Write(headline.PublicationDateDescriptor != null ?
-                                        headline.PublicationDateDescriptor :headline.PublicationDateTimeDescriptor);
+                                Write(headline.PublicationDateTimeDescriptor);
 
 WriteLiteral(" </span>\r\n                                </div>\r\n");
 

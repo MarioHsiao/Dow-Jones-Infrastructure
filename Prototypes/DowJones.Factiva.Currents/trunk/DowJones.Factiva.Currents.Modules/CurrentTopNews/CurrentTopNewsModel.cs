@@ -25,7 +25,7 @@ namespace DowJones.Factiva.Currents.Models
                                               new CurrentTopNews()
                                               {
                                                   Title = p.Package != null ? p.Package.Title : string.Empty,
-                                                  CurrentHeadline = p.Package != null ? new CurrentsHeadlineModel(new PortalHeadlineListModel(p.Package.Result)) : null
+                                                  CurrentHeadline = p.Package != null ? new CurrentsHeadlineModel(new PortalHeadlineListModel(p.Package.Result) { ShowAuthor = false }) : null
                                               })
 
             };

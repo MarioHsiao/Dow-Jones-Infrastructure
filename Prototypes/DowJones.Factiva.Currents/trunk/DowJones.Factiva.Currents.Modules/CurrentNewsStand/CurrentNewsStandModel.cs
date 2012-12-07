@@ -18,21 +18,21 @@ namespace DowJones.Factiva.Currents.Models
 	{
 		public override CurrentNewsStandModel Map(NewsstandNewsPageModuleServiceResult newstandSource)
 		{
-			return new CurrentNewsStandModel
-				{
-					CurrentSources = newstandSource.PartResults
-											.Where(pr => pr.Package is NewsstandHeadlinesPackage)
-											.Select(p => p.Package)
-											.Cast<NewsstandHeadlinesPackage>()
-											.SelectMany(p => p.NewsstandSections)
-											.Select(p => new NewsStandSource
-												{
-													LogoUrl = p.SourceLogoUrl,
-													Title = p.SourceTitle,
-													CurrentHeadline = new CurrentsHeadlineModel(new PortalHeadlineListModel(p.Result))
-												}
-											)
-				};
+            return new CurrentNewsStandModel
+                {
+                    CurrentSources = newstandSource.PartResults
+                                            .Where(pr => pr.Package is NewsstandHeadlinesPackage)
+                                            .Select(p => p.Package)
+                                            .Cast<NewsstandHeadlinesPackage>()
+                                            .SelectMany(p => p.NewsstandSections)
+                                            .Select(p => new NewsStandSource
+                                                {
+                                                    LogoUrl = p.SourceLogoUrl,
+                                                    Title = p.SourceTitle,
+                                                    CurrentHeadline = new CurrentsHeadlineModel(new PortalHeadlineListModel(p.Result)) { ShowSource = false}
+                                                }
+                                            )
+                };
 		}
 	}
 

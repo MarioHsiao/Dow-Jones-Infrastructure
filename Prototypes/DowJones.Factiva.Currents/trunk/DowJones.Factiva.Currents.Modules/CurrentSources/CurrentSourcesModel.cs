@@ -26,7 +26,7 @@ namespace DowJones.Factiva.Currents.Models
                                                   {
                                                       LogoUrl = p.Package.SourceLogoUrl,
                                                       Title = p.Package.SourceName,
-                                                      CurrentHeadline = new CurrentsHeadlineModel(new PortalHeadlineListModel(p.Package.Result))
+                                                      CurrentHeadline = new CurrentsHeadlineModel(new PortalHeadlineListModel(p.Package.Result) { ShowSource = false })
                                                   })
                 };
 		}

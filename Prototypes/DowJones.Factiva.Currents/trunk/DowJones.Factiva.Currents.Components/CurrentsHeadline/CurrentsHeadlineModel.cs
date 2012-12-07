@@ -86,15 +86,11 @@ namespace DowJones.Factiva.Currents.Components.CurrentsHeadline
                     && headline.ContentCategoryDescriptor.Equals("multimedia",StringComparison.CurrentCultureIgnoreCase);
         }
 
-		public bool ShouldShowPublicationDateTime(PortalHeadlineInfo headline)
-		{
-            if(headline.PublicationDateDescriptor != null)
-			    return ShowPublicationDateTime
-                        && !headline.PublicationDateDescriptor.IsEmpty();
-            else
-                return ShowPublicationDateTime
-                     && !headline.PublicationDateTimeDescriptor.IsEmpty();
-		}
+        public bool ShouldShowPublicationDateTime(PortalHeadlineInfo headline)
+        {
+            return ShowPublicationDateTime
+                 && !headline.PublicationDateTimeDescriptor.IsEmpty();
+        }
 
 		public string GetHeadlineUrl(PortalHeadlineInfo headline, UrlHelper urlHelper)
 		{
