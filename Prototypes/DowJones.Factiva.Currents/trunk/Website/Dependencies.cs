@@ -41,10 +41,10 @@ namespace DowJones.Factiva.Currents.Website
 			{
 				Bind<IPageAssetProvider>().To<PageAssetProvider>().InRequestScope();
 			}
-			else
+            else
 			{
-				Bind(typeof(ICacheProvider<>)).To(typeof(HttpContextCacheProvider<>)).InRequestScope();
-				Bind<IPageAssetProvider>().To<CachedPageAssetProvider>().InRequestScope();
+                Bind(typeof(ICacheProvider<>)).To(typeof(HttpContextCacheProvider<>)).InRequestScope();
+                Bind<IPageAssetProvider>().To<CachedPageAssetProvider>().InRequestScope();
 			}
 
 			Bind<IScriptModuleTemplateManager>().To<MockScriptModuleTemplateManager>();
@@ -58,7 +58,7 @@ namespace DowJones.Factiva.Currents.Website
  												typeof(SummaryNewspageModule).Assembly  
 											});
 
-			Bind<ISearchContext>().To<SearchContextManager>();
+			Bind<IContentProvider>().To<ContentProvider>();
 		}
 	}
 }
