@@ -1,11 +1,12 @@
-﻿using DowJones.Factiva.Currents.Website.Models;
+﻿using DowJones.Ajax.PortalHeadlineList;
+using DowJones.Factiva.Currents.ServiceModels.PageService;
 
 namespace DowJones.Factiva.Currents.Website.Contracts
 {
     public interface IContentProvider
 	{
-		Headlines GetHeadlines(string searchContext);
+		PortalHeadlinesServiceResult GetHeadlines(string searchContext);
 
-        Headlines GetHeadlinesByAccessionNumber(string accessionNumber);
+		PortalHeadlineInfo GetHeadlineByAccessionNumber(string accessionNumber);
 	}
 }

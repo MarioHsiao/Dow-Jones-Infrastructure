@@ -1,5 +1,7 @@
+using System.Collections.Generic;
 using System.Configuration;
 //using DowJones.Extensions;
+using System.Linq;
 using DowJones.Factiva.Currents.Components.CurrentsHeadline;
 using DowJones.Factiva.Currents.ServiceModels.PageService;
 using DowJones.Factiva.Currents.Website.Contracts;
@@ -29,24 +31,17 @@ namespace DowJones.Factiva.Currents.Website.Providers
 
 		#region Implementation of ISearchContext
 
-		public Headlines GetHeadlines(string searchContext)
+		public PortalHeadlinesServiceResult GetHeadlines(string searchContext)
 		{
 			var client = new RestClient(_serviceUrl);
 			var request = new RestRequest("headlines/json", Method.GET);
 			request.AddParameter("searchContextRef", searchContext);
 
 			var response = client.Execute(request).Content;
-
-			var portalHeadlineListResult = JsonConvert.DeserializeObject<PortalHeadlinesServiceResult>(response);
-
-			return new Headlines
-				{
-					ViewAllSearchContext = portalHeadlineListResult.Package.ViewAllSearchContextRef,
-					CurrentsHeadline = new CurrentsHeadlineModel(new PortalHeadlineListModel(portalHeadlineListResult.Package.Result)),
-				};
+			return JsonConvert.DeserializeObject<PortalHeadlinesServiceResult>(response);
 		}
 
-        public Headlines GetHeadlinesByAccessionNumber(string accessionNumber)
+	    public PortalHeadlineInfo GetHeadlineByAccessionNumber(string accessionNumber)
         {
             var client = new RestClient(_serviceUrl);
             var request = new RestRequest("headlines/an/json", Method.GET);
@@ -56,13 +51,12 @@ namespace DowJones.Factiva.Currents.Website.Providers
 
             var portalHeadlineObject = (JObject) JsonConvert.DeserializeObject(response);
 
-            var portalHeadlineListResult = portalHeadlineObject.GetValue("portalHeadlineListDataResult").ToObject<PortalHeadlineListDataResult>();
-
-            return new Headlines
-            {
-                //ViewAllSearchContext = portalHeadlineListResult.ResultSet.ViewAllSearchContextRef,
-                CurrentsHeadline = new CurrentsHeadlineModel(new PortalHeadlineListModel(portalHeadlineListResult)),
-            };
+            return portalHeadlineObject.GetValue("portalHeadlineListDataResult")
+					.ToObject<PortalHeadlineListDataResult>()
+					.ResultSet
+					.Headlines
+					.FirstOrDefault();
+            
         }
 
 		#endregion

@@ -1,19 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
+using DowJones.Ajax.PortalHeadlineList;
 using DowJones.Factiva.Currents.Components.CurrentsHeadline;
 
 namespace DowJones.Factiva.Currents.Website.Models
 {
-	public class Headlines
+	public class HeadlinePreview
+	{
+		public PortalHeadlineInfo Headline { get; set; }
+	}
+
+	// TODO: figure out a better name
+	public class HeadlineList
 	{
 		public string ViewAllSearchContext { get; set; }
 
-		public CurrentsHeadlineModel CurrentsHeadline { get; set; }
-
-        public string LogInUrl { get; set; }
-
-        public string SignUpUrl { get; set; }
+		public CurrentsHeadlineModel Headlines { get; set; }
 	}
 }

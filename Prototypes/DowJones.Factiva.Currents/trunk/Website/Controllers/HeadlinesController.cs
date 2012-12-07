@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
+using DowJones.Factiva.Currents.Components.CurrentsHeadline;
 using DowJones.Factiva.Currents.Website.Contracts;
+using DowJones.Factiva.Currents.Website.Models;
+using DowJones.Web.Mvc.UI.Components.PortalHeadlineList;
 
 namespace DowJones.Factiva.Currents.Website.Controllers
 {
@@ -19,10 +17,17 @@ namespace DowJones.Factiva.Currents.Website.Controllers
 
 		[OutputCache(CacheProfile = "HeadlineCache")]
 	    public ActionResult Index(string sc)
-	    {
-		    var headlines = _contentProvider.GetHeadlines(sc);
+		{
+			
+		    var headlineResult = _contentProvider.GetHeadlines(sc);
 
-			return View(headlines);
+			var model = new HeadlineList
+				{
+					ViewAllSearchContext = headlineResult.Package.ViewAllSearchContextRef,
+					Headlines = new CurrentsHeadlineModel(new PortalHeadlineListModel(headlineResult.Package.Result)),
+				};
+			
+			return View(model);
         }
 
 		[OutputCache(CacheProfile = "HeadlineCache")]

@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Linq;
 using System.Configuration;
 using System.Globalization;
 using System.Web.Mvc;
 using DowJones.Factiva.Currents.Website.Contracts;
+using DowJones.Factiva.Currents.Website.Models;
 
 namespace DowJones.Factiva.Currents.Website.Controllers
 {
@@ -22,24 +24,20 @@ namespace DowJones.Factiva.Currents.Website.Controllers
 		[OutputCache(CacheProfile = "ArticleCache")]
 		public ActionResult Index(int year, int month, int day, string name, string an)
 		{
-			var pubDate = new DateTime(year, month, day);
-
-			ViewBag.Title = CultureInfo.InvariantCulture.TextInfo.ToTitleCase(name.Replace('-', ' '));
-			ViewBag.PublicationDate = pubDate;
 			ViewBag.AccessionNumber = an;
+            var headline = _contentProvider.GetHeadlineByAccessionNumber(an);
 
-            var headlines = _contentProvider.GetHeadlinesByAccessionNumber(an);
-            if (headlines.CurrentsHeadline != null)
-            {
-                headlines.CurrentsHeadline.ShowLanguage = true;
-                headlines.CurrentsHeadline.ShowWordCount = true;
-                headlines.CurrentsHeadline.ShowSnippet = true;
-                headlines.CurrentsHeadline.ShowSourceCode = true;
-            }
+			if (headline == null)
+				return View();
 
-            headlines.LogInUrl =_loginUrl;
-            headlines.SignUpUrl = _signUpUrl;
-            return View(headlines);
+
+
+			var model = new HeadlinePreview
+				{
+					Headline = headline,
+				};
+
+            return View(model);
 		}
 
 	}
