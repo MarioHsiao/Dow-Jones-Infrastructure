@@ -41,3 +41,34 @@
 .article-meta .article-source {
   font-weight: bold;
 }
+
+/* line 43, ../sass/portalHeadlineList.scss */
+.dj_article_hd {
+  color: #2F90B3;
+  font-weight: bold;
+  line-height: normal;
+  margin-bottom: 12px;
+  width: 400px;
+}
+
+/* line 51, ../sass/portalHeadlineList.scss */
+.dj_modal-article .dj_article-container .dj_article_meta .meta .dj_article_section {
+  display: -moz-inline-stack;
+  display: inline-block;
+  zoom: 1;
+  *display: inline;
+  vertical-align: middle;
+}
+
+/* line 59, ../sass/portalHeadlineList.scss */
+.dj_article_lp, .dj_article_tp, .dj_article_tf, .dj_article_an {
+  margin: 10px 0;
+}
+
+/* line 63, ../sass/portalHeadlineList.scss */
+.dj_article-container .dj_article_meta {
+  position: relative;
+  min-height: 200px;
+  color: #444;
+  width: 550px;
+}

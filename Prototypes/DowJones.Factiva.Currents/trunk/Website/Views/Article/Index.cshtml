@@ -1,15 +1,107 @@
 ﻿@model DowJones.Factiva.Currents.Website.Models.Headlines
+@using System.Linq;
 
 @{
     ViewBag.Title = "Headlines";
 }
 
-<section id="headlines">
-    @Html.DJ().Render(Model.CurrentsHeadline)
-</section>
+@{
+    var headline = @Model.CurrentsHeadline.Headlines.Count() > 0 ? @Model.CurrentsHeadline.Headlines.First() : null;
+}
 
-@*<p>
-	This page will show article for "@ViewBag.Title" having accession number: {@ViewBag.AccessionNumber}
-	published on @ViewBag.PublicationDate.ToString("D").
-</p>*@
+<section id="headlines">
+    @if(headline != null)
+    {
+     <div class="article-group article-wrap">
+
+          <h4 class="dj_article_hd dj_article_section headline">
+					@headline.Title
+			</h4>
+        
+    	<span class="dj_article_sn dj_article_section">
+							@if (Model.CurrentsHeadline.ShouldShowSource(headline))
+							{
+							    <span class="article-source">@headline.SourceDescriptor </span>
+							}
+                            </span>
+                            @if (Model.CurrentsHeadline.ShouldShowAuthor(headline))
+							{
+                                <div>
+                                 <span class="dj_article_by dj_article_section">
+                                   @if (headline.CodedAuthors != null)
+                                    {
+                                         for (int j = 0, jCnt = @headline.CodedAuthors.Count; j < jCnt; j++)
+                                          {
+                                               var author = headline.CodedAuthors[j];
+                                                for (int l = 0, kcnt = @author.items.Count; l < kcnt; l++)
+                                                {
+                                                    var item = author.items[l];
+                                                    switch (item.EntityType.ToString().ToLower())
+                                                    {
+                                                        case "person":
+                                                        case "author":
+                                                            <span class="article-author article-clickable">@item.value</span>
+                                                             break;
+                                                        case "textual":
+                                                        default:
+                                                            <span class="article-author">@item.value</span>
+                                                            break;
+                                                    }
+                                                }
+                                          }
+                                    }
+                                    else
+                                    {
+                                        <span class="author">@headline.Authors.Aggregate((a,b)=> a+","+b)</span>
+                                    } 
+                                </span>
+                                </div>
+							}
+                            @if (Model.CurrentsHeadline.ShouldShowPublicationDateTime(headline))
+                            { 
+                                <div>
+                                <span class="date-stamp dj_article_pd dj_article_section">
+								        <span class="date-stamp"> @Model.CurrentsHeadline.FormattedDateTime(headline)</span>
+                                 </span>
+                                    </div>
+                            }
+                            @if (Model.CurrentsHeadline.ShouldShowWordCount(headline))
+                            {
+                                <div>
+                               <span class="dj_article_wc dj_article_section">
+                                  @headline.WordCountDescriptor
+                                </span>
+                                    </div>
+                            }
+                            @if (Model.CurrentsHeadline.ShouldShowLangauage(headline))
+                            {
+                                <div>
+                                   <span class="dj_article_la dj_article_section">
+                                      @headline.BaseLanguageDescriptor
+                                    </span>
+                                </div>
+                            }
+                            @if (Model.CurrentsHeadline.ShouldShowSourceCode(headline))
+                            {
+                                 <div>
+                                   <span class="dj_article_sc dj_article_section">
+                                      @headline.SourceCode
+                                    </span>
+                                 </div>
+                            }
+                            @if (Model.CurrentsHeadline.ShouldShowSnippet(headline))
+                            {
+                               <br />
+                               <span class="dj_article_lp dj_article_section">
+                                   @headline.Snippets.First()
+                                </span>
+                            }
+      </div>
+    }
+</section>
+<div class="form-actions">
+    <a href="@Model.LogInUrl" class="link-secondary">Log In</a>
+    &nbsp;
+    <a href="@Model.SignUpUrl" class="link-secondary">New User? Sign up!</a>
+</div>
 <hr />

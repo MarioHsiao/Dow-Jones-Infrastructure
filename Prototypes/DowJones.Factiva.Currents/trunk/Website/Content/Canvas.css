@@ -202,3 +202,17 @@ ul, ol {
 .dj_CurrentTrending li {
   line-height: 1.23;
 }
+
+/* line 217, ../sass/Canvas.scss */
+.dj_modal-article .dj_article-container .dj_article_meta .meta .dj_article_section {
+  display: -moz-inline-stack;
+  display: inline-block;
+  zoom: 1;
+  *display: inline;
+  vertical-align: middle;
+}
+
+/* line 225, ../sass/Canvas.scss */
+.dj_article_lp, .dj_article_tp, .dj_article_tf, .dj_article_an {
+  margin: 10px 0;
+}

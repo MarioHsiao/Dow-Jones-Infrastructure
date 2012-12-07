@@ -11,5 +11,9 @@ namespace DowJones.Factiva.Currents.Website.Models
 		public string ViewAllSearchContext { get; set; }
 
 		public CurrentsHeadlineModel CurrentsHeadline { get; set; }
+
+        public string LogInUrl { get; set; }
+
+        public string SignUpUrl { get; set; }
 	}
 }

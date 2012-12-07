@@ -69,3 +69,17 @@ header .navbar .navbar-inner .factivaLogo {
 .row {
   margin-bottom: 20px;
 }
+
+/* line 73, ../sass/Site.scss */
+.dj_modal-article .dj_article-container .dj_article_meta .meta .dj_article_section {
+  display: -moz-inline-stack;
+  display: inline-block;
+  zoom: 1;
+  *display: inline;
+  vertical-align: middle;
+}
+
+/* line 81, ../sass/Site.scss */
+.dj_article_lp, .dj_article_tp, .dj_article_tf, .dj_article_an {
+  margin: 10px 0;
+}
