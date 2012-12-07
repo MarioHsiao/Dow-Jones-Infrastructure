@@ -24,7 +24,7 @@ namespace DowJones.Factiva.Currents.Modules.CurrentTrending
     using DowJones.Factiva.Currents.Models;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 12/04/2012 05:25 PM
+    // Last Generated Timestamp: 12/07/2012 04:08 PM
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Factiva.Currents.Modules.CurrentTrending.CurrentTrending.js", ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Factiva.Currents.Modules.CurrentTrending.CurrentTrending))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.27108")]
     public class CurrentTrending : DowJones.Web.Mvc.UI.CompositeComponent<CurrentTrendingModel>
@@ -87,7 +87,7 @@ WriteLiteral("                        <li>\r\n                            <h4 cl
 "m-title\">\r\n                                <a href=\"");
 
 
-                                    Write(Url.Action("Index", "Headlines", new RouteValueDictionary { { "sc", entity.SearchContextRef } }));
+                                    Write(Url.Action("Index", "Headlines", new RouteValueDictionary { { "sc", entity.SearchContextRef },{"title",entity.Descriptor} }));
 
 WriteLiteral("\" \r\n\t\t\t\t\t\t\t\t\t   class=\"popup-trigger\"\r\n                                        se" +
 "archcontext=\"");
@@ -139,7 +139,7 @@ WriteLiteral("                        <li>\r\n                            <h4 cl
 "m-title\">\r\n                                <a href=\"");
 
 
-                                    Write(Url.Action("Index", "Headlines", new RouteValueDictionary { { "sc", entity.SearchContextRef } }));
+                                    Write(Url.Action("Index", "Headlines", new RouteValueDictionary { { "sc", entity.SearchContextRef },{"title",entity.Descriptor} }));
 
 WriteLiteral("\" \r\n\t\t\t\t\t\t\t\t\t   class=\"popup-trigger\"\r\n                                        se" +
 "archcontext=\"");
@@ -200,7 +200,7 @@ WriteLiteral("                            <li>\r\n\t\t\t\t\t\t\t\t<h4 class=\"in
 "\t\t\t\t<a href=\"");
 
 
-             Write(Url.Action("Index", "Headlines", new RouteValueDictionary { { "sc", entity.SearchContextRef } }));
+             Write(Url.Action("Index", "Headlines", new RouteValueDictionary { { "sc", entity.SearchContextRef },{"title",entity.Descriptor} }));
 
 WriteLiteral("\" \r\n\t\t\t\t\t\t\t\t\t   class=\"popup-trigger\"\r\n                                        se" +
 "archcontext=\"");

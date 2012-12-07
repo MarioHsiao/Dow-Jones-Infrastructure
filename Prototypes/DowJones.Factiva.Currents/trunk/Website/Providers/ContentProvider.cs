@@ -39,8 +39,6 @@ namespace DowJones.Factiva.Currents.Website.Providers
 
 			var portalHeadlineListResult = JsonConvert.DeserializeObject<PortalHeadlinesServiceResult>(response);
 
-            
-
 			return new Headlines
 				{
 					ViewAllSearchContext = portalHeadlineListResult.Package.ViewAllSearchContextRef,
@@ -55,15 +53,6 @@ namespace DowJones.Factiva.Currents.Website.Providers
             request.AddParameter("an", accessionNumber);
 
             var response = client.Execute(request).Content;
-
-            var settings = new JsonSerializerSettings
-                    {
-                        NullValueHandling = NullValueHandling.Ignore,
-                        ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
-                        ContractResolver = new CamelCasePropertyNamesContractResolver(),
-                        Converters = new[] { new StringEnumConverter() },
-                        TypeNameHandling = TypeNameHandling.Objects,
-                    };
 
             var portalHeadlineObject = (JObject) JsonConvert.DeserializeObject(response);
 

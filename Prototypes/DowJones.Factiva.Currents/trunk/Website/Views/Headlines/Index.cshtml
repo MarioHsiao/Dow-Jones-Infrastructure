@@ -4,6 +4,9 @@
     ViewBag.Title = "Headlines";
 }
 
+<h3 class="dj_article_hd dj_article_section headline">
+    @Request.QueryString["title"]
+</h3>
 <section id="headlines">
     @Html.DJ().Render(Model.CurrentsHeadline)
 </section>
