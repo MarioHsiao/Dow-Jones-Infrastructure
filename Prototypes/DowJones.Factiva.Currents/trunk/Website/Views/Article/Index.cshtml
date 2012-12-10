@@ -2,7 +2,14 @@
 @using System.Linq;
 
 @{
-    ViewBag.Title = Model.Headline.Title;
+     if (Model == null)
+     {
+         ViewBag.Title = "Headline info";
+     }
+     else
+     {
+        ViewBag.Title = Model.Headline.Title;
+     }
 }
 
 
