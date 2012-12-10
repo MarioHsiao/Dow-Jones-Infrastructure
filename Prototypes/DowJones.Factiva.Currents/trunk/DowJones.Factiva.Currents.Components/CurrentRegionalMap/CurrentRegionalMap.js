@@ -62,6 +62,15 @@ DJ.UI.CurrentRegionalMap = DJ.UI.Component.extend({
                             lineWidth: 2
                         }
                     }
+                },
+                cursor: 'pointer',
+                point: {
+                    events: {
+                        click: function () {
+                            var url = '../Headlines?sc=' + encodeURIComponent(this.searchContextRef);
+                            window.open(url, "RegionalMapBubbleHeadline");
+                        }
+                    }
                 }
             }
         ]
@@ -237,7 +246,8 @@ DJ.UI.CurrentRegionalMap = DJ.UI.Component.extend({
                                 }
                             }
                         },
-                        percentValueChange: region.percentVolumeChange.value > 0 ? "+" + region.percentVolumeChange.displayText.value : region.percentVolumeChange.displayText.value
+                        percentValueChange: region.percentVolumeChange.value > 0 ? "+" + region.percentVolumeChange.displayText.value : region.percentVolumeChange.displayText.value,
+                        searchContextRef: region.searchContextRef
                     });
 
                 } else {
