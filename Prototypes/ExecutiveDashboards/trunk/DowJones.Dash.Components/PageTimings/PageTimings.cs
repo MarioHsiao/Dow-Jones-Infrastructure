@@ -9,7 +9,6 @@
 //------------------------------------------------------------------------------
 
 [assembly: System.Web.UI.WebResourceAttribute("DowJones.Dash.Components.PageTimings.PageTimings.js", "text/javascript")]
-[assembly: System.Web.UI.WebResourceAttribute("DowJones.Dash.Components.PageTimings.ClientTemplates.container.html", "text/html")]
 [assembly: System.Web.UI.WebResourceAttribute("DowJones.Dash.Components.PageTimings.ClientTemplates.success.html", "text/html")]
 
 namespace DowJones.Dash.Components.PageTimings
@@ -24,13 +23,12 @@ namespace DowJones.Dash.Components.PageTimings
     using System.Web.UI;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 09/25/2012 09:51 AM
+    // Last Generated Timestamp: 12/10/2012 02:48 PM
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Dash.Components.PageTimings.PageTimings.js", DependsOn=new string[] {
             "DJ.UI.Sparkline"}, ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Dash.Components.PageTimings.PageTimings))]
-    [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Dash.Components.PageTimings.ClientTemplates.container.html", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="container", DeclaringType=typeof(DowJones.Dash.Components.PageTimings.PageTimings))]
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Dash.Components.PageTimings.ClientTemplates.success.html", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="success", DeclaringType=typeof(DowJones.Dash.Components.PageTimings.PageTimings))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.27108")]
-    public class PageTimings : DowJones.Web.Mvc.UI.ViewComponentBase<DowJones.Dash.Components.Models.PageTimings.PageTimingsModel>
+    public class PageTimings : DowJones.Dash.Components.DashboardComponent<DowJones.Dash.Components.Models.PageTimings.PageTimingsModel>
     {
 #line hidden
 
@@ -46,7 +44,6 @@ namespace DowJones.Dash.Components.PageTimings
         }
         public override void ExecuteTemplate()
         {
-
 
 
 

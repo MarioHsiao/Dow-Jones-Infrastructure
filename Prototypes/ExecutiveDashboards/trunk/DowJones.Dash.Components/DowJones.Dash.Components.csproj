@@ -154,11 +154,6 @@
       <DependentUpon>ConcurrentVisits.cshtml</DependentUpon>
     </Compile>
     <Compile Include="DashboardComponent\Dashboard.cs" />
-    <Compile Include="DashboardComponent\DashboardComponent.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DashboardComponent.cshtml</DependentUpon>
-    </Compile>
     <Compile Include="EmbeddedResources\EmbeddedResources.cs" />
     <Compile Include="Sparkline\Sparkline.cs">
       <AutoGen>True</AutoGen>
@@ -221,10 +216,6 @@
     <None Include="ConcurrentVisits\ConcurrentVisits.cshtml">
       <Generator>RazorViewComponentClassGenerator</Generator>
       <LastGenOutput>ConcurrentVisits.cs</LastGenOutput>
-    </None>
-    <None Include="DashboardComponent\DashboardComponent.cshtml">
-      <Generator>RazorViewComponentClassGenerator</Generator>
-      <LastGenOutput>DashboardComponent.cs</LastGenOutput>
     </None>
     <None Include="ThemeManager\ThemeManager.cshtml">
       <Generator>RazorViewComponentClassGenerator</Generator>
@@ -299,9 +290,6 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="DashGauge\DashGauge.js" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="PageTimings\ClientTemplates\container.html" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="PageTimings\PageTimings.js" />
@@ -385,11 +373,11 @@
     <EmbeddedResource Include="EmbeddedResources\js\highchartsMap\asia.pacific.map.shapes.js" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="DashboardComponent\Dashboard.js" />
+    <EmbeddedResource Include="DashboardComponent\DashboardComponent.js" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Content Include="DashboardComponent\ClientTemplates\container.html" />
+    <EmbeddedResource Include="DashboardComponent\ClientTemplates\baseContainer.html" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

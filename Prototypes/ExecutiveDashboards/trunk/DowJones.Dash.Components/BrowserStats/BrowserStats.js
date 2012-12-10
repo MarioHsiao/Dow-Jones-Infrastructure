@@ -2,7 +2,7 @@
  * BrowserStats
  */
 
-DJ.UI.BrowserStats = DJ.UI.Dashboard.extend({
+DJ.UI.BrowserStats = DJ.UI.DashboardComponent.extend({
 
     defaults: {
         zones: {
@@ -25,9 +25,7 @@ DJ.UI.BrowserStats = DJ.UI.Dashboard.extend({
         shareChartContainer: '.shareChartContainer',
         barContainer: '.barContainer',
         pillContainer: '.pillContainer',
-        noDataContainer: '.noData',
-        contentContainer: '.content',
-        pill: '.dj-pills > li'
+        pill: '.dj-pills > li',
     },
 
     init: function (element, meta) {
@@ -37,6 +35,7 @@ DJ.UI.BrowserStats = DJ.UI.Dashboard.extend({
         if (this.data) {
             this.setData(this.data);
         }
+        this.$element.addClass("dj_BrowserStats");
     },
 
     _initializeDelegates: function () {
@@ -47,7 +46,8 @@ DJ.UI.BrowserStats = DJ.UI.Dashboard.extend({
     },
 
     _initializeElements: function (ctx) {
-        ctx.html(this.templates.container());
+        this._super(ctx);
+        this.$container.html(this.templates.container());
         this.barContainer = ctx.find(this.selectors.barContainer);
         this.pillContainer = ctx.find(this.selectors.pillContainer);
     },
@@ -55,8 +55,7 @@ DJ.UI.BrowserStats = DJ.UI.Dashboard.extend({
     _initializeEventHandlers: function () {
         $dj.subscribe('data.BrowserStats', this._delegates.setData);
         $dj.subscribe('data.BasicHostConfiguration', this._delegates.domainChanged);
-
-
+        
         var self = this;
         this.$element.on('click', this.selectors.pill, function () {
             var el = $(this);
@@ -212,13 +211,13 @@ DJ.UI.BrowserStats = DJ.UI.Dashboard.extend({
     },
     
     _showComingSoon: function () {
-        this.$element.find(this.selectors.contentContainer).hide('fast');
-        this.showNoData();
+       // this.$element.find(this.selectors.contentContainer).hide('fast');
+        this.hideContent();
     },
     
     _showContent: function () {
-        this.$element.find(this.selectors.contentContainer).show('fast');
-        this.hideNoData();
+        //this.$element.find(this.selectors.contentContainer).show('fast');
+        this.showContent();
     },
 
     setPills: function (pills) {

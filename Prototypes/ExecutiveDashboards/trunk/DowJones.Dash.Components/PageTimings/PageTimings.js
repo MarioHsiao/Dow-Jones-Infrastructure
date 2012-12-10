@@ -2,7 +2,7 @@
  * TopReferrer
  */
 
-DJ.UI.PageTimings = DJ.UI.CompositeComponent.extend({
+DJ.UI.PageTimings = DJ.UI.DashboardComponent.extend({
 
     defaults: {
         zones: {
@@ -22,17 +22,16 @@ DJ.UI.PageTimings = DJ.UI.CompositeComponent.extend({
     },
     
     selectors: {
-        timingsContainer: '.dj_pageTimings .content',
-        noDataContainer: '.noData',
-        contentContainer: '.content',
         avg: '.pageTimings .avg-stamp .value',
         min: '.pageTimings .min-stamp .value',
         max: '.pageTimings .max-stamp .value',
-        sparklineTooltip: '.sparklineTooltip'
+        sparklineTooltip: '.sparklineTooltip',
     },
 
     init: function (element, meta) {
         this._super(element, $.extend({ name: "PageTimings" }, meta));
+
+        this.$element.addClass("dj_pageTimings");
         this._initPortalHeadlines();
         this._showContent();
     },
@@ -51,9 +50,8 @@ DJ.UI.PageTimings = DJ.UI.CompositeComponent.extend({
         });
     },
 
-    _initializeElements: function () {
-        this.$element.html(this.templates.container());
-        this._timingsContainer = this.$element.find(this.selectors.timingsContainer);
+    _initializeElements: function (ctx) {
+        this._super(ctx);
     },
 
     _initializeEventHandlers: function () {
@@ -66,7 +64,7 @@ DJ.UI.PageTimings = DJ.UI.CompositeComponent.extend({
         var self = this;
         self.domain = data.domain;
         self._destroySparklines();
-        self._timingsContainer.html("");
+        self.$container.html("");
         self.isPageTimingsListSeeded = false;
         self.isSparklinesSeeded = false;
         this._mapZones(data.performanceZones);
@@ -222,13 +220,11 @@ DJ.UI.PageTimings = DJ.UI.CompositeComponent.extend({
     },
     
     _showComingSoon: function () {
-        this.$element.find(this.selectors.contentContainer).hide('fast');
-        this.$element.find(this.selectors.noDataContainer).show('fast');
+        this.hideContent();
     },
 
     _showContent: function () {
-        this.$element.find(this.selectors.contentContainer).show('fast');
-        this.$element.find(this.selectors.noDataContainer).hide('fast');
+        this.showContent();
     },
     
     _updateTimings: function (data) {
@@ -250,7 +246,7 @@ DJ.UI.PageTimings = DJ.UI.CompositeComponent.extend({
                 });
             }
 
-            self._timingsContainer.html(self.templates.success(pageTimings));
+            self.$container.html(self.templates.success(pageTimings));
             self.isPageTimingsListSeeded = true;
             self.$element.find(".tip").tooltip();
         }
