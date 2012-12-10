@@ -2,14 +2,7 @@
 @using System.Linq;
 
 @{
-     if (Model == null)
-     {
-         ViewBag.Title = "Headline info";
-     }
-     else
-     {
-        ViewBag.Title = Model.Headline.Title;
-     }
+	ViewBag.Title = Model == null ? "Headline info" : Model.Headline.Title;
 }
 
 
@@ -64,8 +57,12 @@
             </span>
         </div>
 
-        <hr />
+        
     }
-    @Html.Partial("FactivaLoginBar")
+	
+    <hr />
+
+    @Html.Partial("_LoginPartial")
+
 </section>
 <hr />

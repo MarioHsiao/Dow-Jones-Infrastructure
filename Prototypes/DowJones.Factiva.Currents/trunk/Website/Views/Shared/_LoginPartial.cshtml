@@ -1,4 +1,11 @@
-﻿@if (Request.IsAuthenticated) {
+﻿@using System.Configuration
+
+@{
+	var loginUrl = ConfigurationManager.AppSettings.Get("LoginUrl").Trim('/');
+    var signUpUrl = ConfigurationManager.AppSettings.Get("SignupUrl").Trim('/');
+}
+
+@if (Request.IsAuthenticated) {
     <text>
         Hello, @Html.ActionLink(User.Identity.Name, "Manage", "Account", routeValues: null, htmlAttributes: new { @class = "username", title = "Manage" })!
         @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" })) {
@@ -8,7 +15,7 @@
     </text>
 } else {
     <ul>
-        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+        <li><a href="@loginUrl" class="dj_login">Log In</a></li>
+        <li><a href="@signUpUrl" class="dj_signUp">Sign up</a></li>
     </ul>
 }

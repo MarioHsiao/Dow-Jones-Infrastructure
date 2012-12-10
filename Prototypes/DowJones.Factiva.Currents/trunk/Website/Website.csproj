@@ -294,7 +294,7 @@
     <Content Include="Views\Headlines\Index.cshtml" />
     <Content Include="Views\Headlines\ViewAll.cshtml" />
     <Content Include="Views\Shared\NotFound.cshtml" />
-    <Content Include="Views\Article\FactivaLoginBar.cshtml" />
+    <Content Include="Views\Article\Video.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
