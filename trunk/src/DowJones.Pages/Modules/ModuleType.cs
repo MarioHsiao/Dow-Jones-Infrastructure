@@ -75,7 +75,7 @@ namespace DowJones.Pages.Modules
         CommunicatorChartsModule,
 
         [EnumMember]
-        //[IRTCode("tobedecided")]
+        [IRTCode("mnws")]
         NewsstandSourcesNewspageModule,
     }
 }
