@@ -37,11 +37,6 @@ namespace DowJones.Factiva.Currents.Components.CurrentsHeadline
         public bool AuthorClickable { get; set; }
         public bool MultimediaMode { get; set; }
        
-        public bool ShowSnippet { get; set; }
-        public bool ShowWordCount { get; set; }
-        public bool ShowLanguage { get; set; }
-        public bool ShowSourceCode { get; set; }
-
 		public CurrentsHeadlineModel(PortalHeadlineListModel portalHeadlineList)
 		{
 			Guard.IsNotNull(portalHeadlineList, "portalHeadlineList");
@@ -52,22 +47,6 @@ namespace DowJones.Factiva.Currents.Components.CurrentsHeadline
             ShowAuthor = _portalHeadlineList.ShowAuthor;
             MultimediaMode = true;//_portalHeadlineList.MultimediaMode;
 		}
-
-        public string FormattedDateTime(PortalHeadlineInfo headline)
-        {
-            if(headline.PublicationTimeDescriptor.HasValue())
-                return headline.PublicationDateTime.ToLocalTime().ToString("hh:mm")+","+headline.PublicationDateDescriptor;
-            else
-                return headline.PublicationDateTimeDescriptor;
-        }
-
-        public bool ShouldShowSnippet(PortalHeadlineInfo headline)
-        {
-            return ShowSnippet 
-                && headline.Snippets != null 
-                && headline.Snippets.Count > 0 
-                && !headline.Snippets.First().IsEmpty();
-        }
 
 		// view helpers
 		public string GetSelectionStatus(PortalHeadlineInfo headline)
@@ -87,24 +66,6 @@ namespace DowJones.Factiva.Currents.Components.CurrentsHeadline
             return ShowAuthor
                     && headline.Authors != null
                     && headline.Authors.Count > 0;
-        }
-
-        public bool ShouldShowSourceCode(PortalHeadlineInfo headline)
-        {
-            return ShowSourceCode
-                    && !headline.SourceCode.IsEmpty();
-        }
-
-        public bool ShouldShowWordCount(PortalHeadlineInfo headline)
-        {
-            return ShowWordCount
-                    && !headline.WordCountDescriptor.IsEmpty();
-        }
-
-        public bool ShouldShowLangauage(PortalHeadlineInfo headline)
-        {
-            return ShowLanguage
-                    && !headline.BaseLanguageDescriptor.IsEmpty();
         }
 
         public bool IsMultimediaContent(PortalHeadlineInfo headline)
