@@ -33,7 +33,7 @@ namespace DowJones.Factiva.Currents.Aggregrator.Services
             }
             finally
             {
-                byte[] byteArray = Encoding.Default.GetBytes(result);
+                byte[] byteArray = Encoding.UTF8.GetBytes(result);
                 stream = new MemoryStream(byteArray);
                 CurrentUtilities.Web.SetResponseHeaders(EnumConverter<RequestFormat>.ConvertStringToEnum(format));
             }
@@ -54,7 +54,7 @@ namespace DowJones.Factiva.Currents.Aggregrator.Services
             }
             finally
             {
-                byte[] byteArray = Encoding.Default.GetBytes(result);
+                byte[] byteArray = Encoding.UTF8.GetBytes(result);
                 stream = new MemoryStream(byteArray);
                 CurrentUtilities.Web.SetResponseHeaders(EnumConverter<RequestFormat>.ConvertStringToEnum(format));
             }
