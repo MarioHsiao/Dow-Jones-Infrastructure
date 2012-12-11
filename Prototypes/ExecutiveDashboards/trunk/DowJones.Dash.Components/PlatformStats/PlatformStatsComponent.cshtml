@@ -1,4 +1,5 @@
 ﻿@model Models.PlatformStats.PlatformStatsModel
+@inherits DowJones.Dash.Components.DashboardComponent<DowJones.Dash.Components.Models.PageTimings.PageTimingsModel>
 @ClientPlugin dj_PlatformStats
 @ScriptResource RelativeResourceName=PlatformStats.js
 @ClientTemplate RelativeResourceName=ClientTemplates.container.html, TemplateId=container

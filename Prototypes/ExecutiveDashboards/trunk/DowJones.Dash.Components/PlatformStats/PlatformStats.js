@@ -2,7 +2,7 @@
  * PlatformStatsModel
  */
 
-DJ.UI.PlatformStats = DJ.UI.CompositeComponent.extend({
+DJ.UI.PlatformStats = DJ.UI.DashboardComponent.extend({
 
     selectors: {
         mobileContainer: 'div.platformContainer div.mobile span.val',
