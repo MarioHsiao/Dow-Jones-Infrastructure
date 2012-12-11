@@ -68,27 +68,35 @@ namespace DowJones.Managers.Alert
                     {
                         case "au":
                             _newsFilters.author = GetFilterItem(filter.Filter);
+                            //_newsFilters.authorExclude = GetFilterItem(filter.ExcludeFilter);
                             break;
                         case "fds":
                             _newsFilters.company = GetFilterItem(filter.Filter);
+                            //_newsFilters.companyExclude = GetFilterItem(filter.ExcludeFilter);
                             break;
                         case "pe":
                             _newsFilters.executive = GetFilterItem(filter.Filter);
+                            //_newsFilters.executiveExclude = GetFilterItem(filter.ExcludeFilter);
                             break;
                         case "in":
                             _newsFilters.industry = GetFilterItem(filter.Filter);
+                            //_newsFilters.industryExclude = GetFilterItem(filter.ExcludeFilter);
                             break;
                         case "ns":
                             _newsFilters.newsSubject = GetFilterItem(filter.Filter);
+                            //_newsFilters.newsSubjectExclude = GetFilterItem(filter.ExcludeFilter);
                             break;
                         case "re":
                             _newsFilters.region = GetFilterItem(filter.Filter);
+                            //_newsFilters.regionExclude = GetFilterItem(filter.ExcludeFilter);
                             break;
                         case "sc":
                             _newsFilters.source = GetFilterSourceItem(filter.Filter);
+                            //_newsFilters.sourceExclude = GetFilterItem(filter.ExcludeFilter);
                             break;
                         case "key":
                             _newsFilters.keywords = GetKeywordFilterItem(filter.Filter);
+                            
                             break;
                     }
                 }

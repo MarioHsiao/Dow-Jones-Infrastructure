@@ -19,6 +19,9 @@ namespace DowJones.Utilities.Search.Core
 
         [JsonProperty("filter")]
         public List<FilterItem> Filter { get; set; }
+
+        [JsonProperty("excludeFilter")]
+        public List<FilterItem> ExcludeFilter { get; set; }
     }
 
     public class FilterItem : IFilterItem
