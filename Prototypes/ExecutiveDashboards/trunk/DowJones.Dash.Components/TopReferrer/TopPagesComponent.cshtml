@@ -1,4 +1,5 @@
 ﻿@model DowJones.Dash.Components.Models.TopReferrer.TopReferrerModel
+@inherits DowJones.Dash.Components.DashboardComponent<DowJones.Dash.Components.Models.PageTimings.PageTimingsModel>
 @ClientPlugin dj_TopReferrer
 @ScriptResource RelativeResourceName=TopReferrer.js, DependsOn=highcharts-more
 @ClientTemplate RelativeResourceName=ClientTemplates.container.html, TemplateId=container

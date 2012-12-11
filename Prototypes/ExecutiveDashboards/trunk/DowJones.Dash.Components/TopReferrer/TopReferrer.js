@@ -2,7 +2,7 @@
  * TopReferrer
  */
 
-DJ.UI.TopReferrer = DJ.UI.CompositeComponent.extend({
+DJ.UI.TopReferrer = DJ.UI.DashboardComponent.extend({
 
     selectors: {
         portalHeadlineListContainer: '.portalHeadlineListContainer'

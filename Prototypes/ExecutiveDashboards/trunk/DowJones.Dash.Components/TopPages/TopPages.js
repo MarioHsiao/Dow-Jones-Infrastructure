@@ -2,7 +2,7 @@
  * TopPages
  */
 
-DJ.UI.TopPages = DJ.UI.CompositeComponent.extend({
+DJ.UI.TopPages = DJ.UI.DashboardComponent.extend({
 
     selectors: {
         portalHeadlineListContainer: '.portalHeadlineListContainer'

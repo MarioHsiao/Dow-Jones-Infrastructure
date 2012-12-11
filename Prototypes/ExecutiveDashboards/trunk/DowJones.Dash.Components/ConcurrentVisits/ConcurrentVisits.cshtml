@@ -1,4 +1,5 @@
 ﻿@model Models.ConcurrentVisits.ConcurrentVisitsModel
+@inherits DowJones.Dash.Components.DashboardComponent<DowJones.Dash.Components.Models.PageTimings.PageTimingsModel>
 @ClientPlugin dj_ConcurrentVisits
 @ScriptResource RelativeResourceName=ConcurrentVisits.js, DependsOn=highcharts;jquery-counter;jquery-ui-effects
 @ClientTemplate RelativeResourceName=ClientTemplates.container.html, TemplateId=container

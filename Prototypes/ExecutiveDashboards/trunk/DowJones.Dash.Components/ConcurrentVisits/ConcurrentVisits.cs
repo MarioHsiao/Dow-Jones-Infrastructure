@@ -8,9 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Web.UI.WebResourceAttribute("DowJones.Dash.Components.ConcurrentVisits.ConcurrentVisits.js", "text/javascript")]
-[assembly: System.Web.UI.WebResourceAttribute("DowJones.Dash.Components.ConcurrentVisits.ClientTemplates.container.html", "text/html")]
-
 namespace DowJones.Dash.Components.ConcurrentVisits
 {
     using System;
@@ -23,14 +20,14 @@ namespace DowJones.Dash.Components.ConcurrentVisits
     using System.Web.UI;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 10/31/2012 05:59 PM
+    // Last Generated Timestamp: 12/11/2012 11:25 AM
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Dash.Components.ConcurrentVisits.ConcurrentVisits.js", DependsOn=new string[] {
             "highcharts",
             "jquery-counter",
             "jquery-ui-effects"}, ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Dash.Components.ConcurrentVisits.ConcurrentVisits))]
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Dash.Components.ConcurrentVisits.ClientTemplates.container.html", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="container", DeclaringType=typeof(DowJones.Dash.Components.ConcurrentVisits.ConcurrentVisits))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.27108")]
-    public class ConcurrentVisits : DowJones.Web.Mvc.UI.ViewComponentBase<Models.ConcurrentVisits.ConcurrentVisitsModel>
+    public class ConcurrentVisits : DowJones.Dash.Components.DashboardComponent<DowJones.Dash.Components.Models.PageTimings.PageTimingsModel>
     {
 #line hidden
 
@@ -46,6 +43,7 @@ namespace DowJones.Dash.Components.ConcurrentVisits
         }
         public override void ExecuteTemplate()
         {
+
 
 
 

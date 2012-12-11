@@ -2,7 +2,7 @@
  * ConcurrentVisitsModel
  */
 
-DJ.UI.ConcurrentVisits = DJ.UI.CompositeComponent.extend({
+DJ.UI.ConcurrentVisits = DJ.UI.DashboardComponent.extend({
 
     selectors: {
         concurrentVisitsCounter: '.concurrentVisitsCounter',
