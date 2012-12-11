@@ -2,7 +2,7 @@
  * UsersStatsModel
  */
 
-DJ.UI.UsersStats = DJ.UI.CompositeComponent.extend({
+DJ.UI.UsersStats = DJ.UI.DashboardComponent.extend({
 
     selectors: {
         percentEngaged: '.counter'

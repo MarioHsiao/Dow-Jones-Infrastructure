@@ -8,9 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Web.UI.WebResourceAttribute("DowJones.Dash.Components.UsersStats.UsersStats.js", "text/javascript")]
-[assembly: System.Web.UI.WebResourceAttribute("DowJones.Dash.Components.UsersStats.ClientTemplates.container.html", "text/html")]
-
 namespace DowJones.Dash.Components.UsersStats
 {
     using System;
@@ -23,12 +20,12 @@ namespace DowJones.Dash.Components.UsersStats
     using System.Web.UI;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 09/13/2012 04:23 PM
+    // Last Generated Timestamp: 12/11/2012 11:21 AM
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Dash.Components.UsersStats.UsersStats.js", DependsOn=new string[] {
             "DJ.UI.DashGauge"}, ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Dash.Components.UsersStats.UsersStatsComponent))]
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Dash.Components.UsersStats.ClientTemplates.container.html", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="container", DeclaringType=typeof(DowJones.Dash.Components.UsersStats.UsersStatsComponent))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.27108")]
-    public class UsersStatsComponent : DowJones.Web.Mvc.UI.ViewComponentBase<Models.UsersStats.UsersStatsModel>
+    public class UsersStatsComponent : DowJones.Dash.Components.DashboardComponent<DowJones.Dash.Components.Models.PageTimings.PageTimingsModel>
     {
 #line hidden
 
@@ -44,6 +41,7 @@ namespace DowJones.Dash.Components.UsersStats
         }
         public override void ExecuteTemplate()
         {
+
 
 
 
