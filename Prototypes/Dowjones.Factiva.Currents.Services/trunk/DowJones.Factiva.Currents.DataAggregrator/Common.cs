@@ -147,7 +147,7 @@ namespace DowJones.Factiva.Currents.Aggregrator
                         firstResultToReturn,
                         maxResultsToReturn
                       );
-                string data = GetData(url,false);
+                string data = GetData(url,true);
                 cacheManager.Add(key, data);
                 return data;
             }

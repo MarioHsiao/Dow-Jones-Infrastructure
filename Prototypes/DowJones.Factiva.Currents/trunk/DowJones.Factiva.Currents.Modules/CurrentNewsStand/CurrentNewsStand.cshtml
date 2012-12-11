@@ -16,7 +16,7 @@
     </header>
     <div class="content">
         <div class="row">
-            @foreach (var source in Model.CurrentSources.Take(3))
+            @foreach (var source in Model.CurrentSources.Where(c => c.CurrentHeadline.Headlines.Count() > 0).Take(3))
             {
                 <div class="span4">
                     <div class="module-col-source-logo-wrap">

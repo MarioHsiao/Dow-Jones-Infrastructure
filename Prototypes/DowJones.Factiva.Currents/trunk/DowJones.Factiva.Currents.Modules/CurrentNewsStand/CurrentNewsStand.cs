@@ -24,7 +24,7 @@ namespace DowJones.Factiva.Currents.Modules.CurrentNewsStand
     using DowJones.Factiva.Currents.Models;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 11/15/2012 11:40 AM
+    // Last Generated Timestamp: 12/11/2012 01:19 PM
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Factiva.Currents.Modules.CurrentNewsStand.CurrentNewsStand.js", ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Factiva.Currents.Modules.CurrentNewsStand.CurrentNewsStand))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.27108")]
     public class CurrentNewsStand : DowJones.Web.Mvc.UI.CompositeComponent<CurrentNewsStandModel>
@@ -62,7 +62,7 @@ WriteLiteral("\r\n<div class=\"module\">\r\n    <header>\r\n        <i class=\"i
 "       <div class=\"row\">\r\n");
 
 
-             foreach (var source in Model.CurrentSources.Take(3))
+             foreach (var source in Model.CurrentSources.Where(c => c.CurrentHeadline.Headlines.Count() > 0).Take(3))
             {
 
 WriteLiteral("                <div class=\"span4\">\r\n                    <div class=\"module-col-s" +
