@@ -43,7 +43,7 @@ DJ.UI.CurrentRegionalMap = DJ.UI.Component.extend({
                     color: 'white',
                     formatter: function () {
                         return '<span style="font-family: Arial; text-align: center; display:inline-block;">'
-                                + Highcharts.numberFormat(this.y, 0)
+                                + this.point.currentTimeFrameNewsVolumeDisplayText
                                 + '</strong><br/>Articles'
                                 + '<div style="color:black; padding-top: 10px; font-weight:bold">'
                                 + this.point.percentValueChange
@@ -246,6 +246,7 @@ DJ.UI.CurrentRegionalMap = DJ.UI.Component.extend({
                                 }
                             }
                         },
+                        currentTimeFrameNewsVolumeDisplayText: region.currentTimeFrameNewsVolume.displayText.value,
                         percentValueChange: region.percentVolumeChange.value > 0 ? "+" + region.percentVolumeChange.displayText.value : region.percentVolumeChange.displayText.value,
                         searchContextRef: region.searchContextRef
                     });
