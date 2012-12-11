@@ -1,0 +1,52 @@
+﻿@using System.Configuration
+@{
+    ViewBag.Title = "Discovery Filters";
+    var script = @"
+                    var dataObj = getDiscoveryFiltersData();
+                        DJ.add(""DiscoveryFilters"", {
+                            container: ""discoveryFiltersContainer"",
+                            options: {
+                                roundHitCount: true,
+                                truncationLength: 20,
+                                isColumnChartPointWidthSpecified:true,
+                                columnChartPointWidth:10,
+                                barChartDataLabelWidth:""150px"",
+                                barColor:""red"",
+                                columnColor:""green"",
+                                barChartPointWidth:5,
+                                enableExcludeItems: true,
+                                sortable : false,
+                                enableTooltip : true,
+                                useHTML : true,
+                                enableExport : false
+                            },
+                            tokens:{
+                                noResultsTkn:""No Result""
+                            },
+                            data: dataObj
+                        }).done(function (comp) {
+                            // Attach handler for headline click event
+                            comp.on(""exportClick.dj.DiscoveryFilters"", function (args) {
+                                alert(args.data);
+                            });
+                            comp.on(""itemExcludeClick.dj.DiscoveryFilters"", function (args) {
+                                alert(args.data);
+                            });
+                            comp.on(""itemClick.dj.DiscoveryFilters"", function(args) {
+                                alert(args.data);
+                            });
+                        }).fail(function(comp){
+                            console.log('failed');
+                        }); 
+                   ";
+    DJ.ScriptRegistry().OnDocumentReady(script);
+}
+<link href="@Url.Content("./styles/css/DiscoveryFilters/DiscoveryFilters.css")" rel="stylesheet" />
+<script type="text/javascript" src="@Url.Content("./content/js/DiscoveryFilters.js")"></script>
+<!-- required file! DJ.add won't work without "common.js" being available -->
+
+     <div id="discoveryFiltersContainer" style="width:240px;"></div>
+
+    <script type="text/javascript">
+        
+    </script>

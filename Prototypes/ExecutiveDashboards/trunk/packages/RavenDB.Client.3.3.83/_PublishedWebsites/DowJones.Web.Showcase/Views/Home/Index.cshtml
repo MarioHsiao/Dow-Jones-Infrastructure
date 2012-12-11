@@ -1,0 +1,10 @@
+﻿@Html.Partial("_HomepageContent")
+
+<div class="browser-info">
+    You are browsing from a plain old browser.
+</div>
+
+<section class="client-ui-validation">
+    <h2>Validation</h2>
+    @DJ.Render(new DowJones.Web.Mvc.UI.Components.Diagnostics.ValidateClientUI())
+</section>
