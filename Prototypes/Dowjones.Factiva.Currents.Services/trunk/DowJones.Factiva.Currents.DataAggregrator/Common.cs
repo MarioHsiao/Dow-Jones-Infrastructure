@@ -171,7 +171,7 @@ namespace DowJones.Factiva.Currents.Aggregrator
                 string url =
                     string.Format(
                         "{0}/Content/headlines/" + format + "?searchString={1}&encryptedToken={2}&searchmode={3}&sourceGenre={4}&daysRange={5}",
-                        restAPIPublicBasePath,
+                        restAPIBasePath,
                         "an="+accessionNumber,
                         enToken,
                         "traditional",

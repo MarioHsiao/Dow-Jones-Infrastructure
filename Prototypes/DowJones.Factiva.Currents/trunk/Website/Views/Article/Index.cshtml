@@ -38,17 +38,19 @@
             </div>
             <div>
                 <span class="dj_article_wc dj_article_section">
-                    @Model.Headline.WordCountDescriptor
+                    @*TODO @Model.Headline.WordCountDescriptor*@
+                    @Model.Headline.WordCount.Value words
                 </span>
             </div>
             <div>
                 <span class="dj_article_la dj_article_section">
-                    @Model.Headline.BaseLanguageDescriptor
+                    @* TODO @Model.Headline.BaseLanguageDescriptor *@
+                    English
                 </span>
             </div>
             <div>
                 <span class="dj_article_sc dj_article_section">
-                    @Model.Headline.SourceCode
+                    @Model.Headline.SourceCode.ToUpper()
                 </span>
             </div>
             <br />
