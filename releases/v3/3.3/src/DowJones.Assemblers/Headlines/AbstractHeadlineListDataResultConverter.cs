@@ -120,23 +120,25 @@ namespace DowJones.Assemblers.Headlines
 
             headlineInfo.documentVector = contentHeadline.DocumentVector;
 
+            
             // update publication date/time information
             headlineInfo.publicationDateTime = contentHeadline.PublicationDate;
-            headlineInfo.publicationDateTimeDescriptor = DateTimeFormatter.FormatLongDate(headlineInfo.publicationDateTime);
-
+            
             headlineInfo.modificationDateTime = DateTimeFormatter.Merge(contentHeadline.ModificationDate, contentHeadline.ModificationTime);
             headlineInfo.modificationDateTimeDescriptor = DateTimeFormatter.FormatLongDateTime(headlineInfo.modificationDateTime);
             headlineInfo.modificationDateDescriptor = DateTimeFormatter.FormatLongDate(headlineInfo.modificationDateTime);
             headlineInfo.modificationTimeDescriptor = DateTimeFormatter.FormatTime(headlineInfo.modificationDateTime);
 
+            headlineInfo.publicationDateDescriptor = DateTimeFormatter.FormatLongDate(contentHeadline.PublicationDate);
+          
             if (contentHeadline.PublicationTime > DateTime.MinValue)
             {
                 headlineInfo.hasPublicationTime = true;
-                // Combine from response
+                // Combine from response  
+                headlineInfo.publicationTimeDescriptor = DateTimeFormatter.FormatTime(headlineInfo.publicationDateTime);
                 headlineInfo.publicationDateTime = DateTimeFormatter.Merge(contentHeadline.PublicationDate, contentHeadline.PublicationTime);
                 headlineInfo.publicationDateTimeDescriptor = DateTimeFormatter.FormatLongDateTime(headlineInfo.publicationDateTime);
                 headlineInfo.publicationDateDescriptor = DateTimeFormatter.FormatLongDate(headlineInfo.publicationDateTime);
-                headlineInfo.publicationTimeDescriptor = DateTimeFormatter.FormatTime(headlineInfo.publicationDateTime);
             }
 
             headlineInfo.wordCount = contentHeadline.WordCount;
