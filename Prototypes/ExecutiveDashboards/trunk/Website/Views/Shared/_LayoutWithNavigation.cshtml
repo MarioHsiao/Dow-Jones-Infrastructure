@@ -1,0 +1,57 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section styles{
+    @RenderSection("styles", false)
+}
+
+<header>
+    <table border="0">
+        <tr>
+            <td class="djtech">
+                <img src="~/Content/images/djtech.png" /><br />
+                <td class="logo">
+                    <h1><a href="@Url.Content("~")">Dash</a></h1>
+                    <br />
+                    Executive Dashboard</td>
+        </tr>
+    </table>
+    <a href="#module-gallery" class="cog pull-right" role="button" data-toggle="modal"
+        data-original-title=""></a>
+
+</header>
+
+<div class="navbar navbar-fixed-top hidden-desktop hidden-tablet">
+    @Html.Partial("_MainNavigation")
+</div>
+<div class="main-nav-wrapper hidden-phone">
+    <div class="navbar navbar-top main-nav">
+        @Html.Partial("_MainNavigation")
+    </div>
+</div>
+
+<div class="container-fluid">
+    @RenderBody()
+</div>
+<div class="container-fluid">
+    <br />
+</div>
+
+<div class="modal hide fade" id="dashAlertModal" tabindex="-1" role="dialog" aria-labelledby="dashAlertModalLabel"
+    aria-hidden="true" data-backdrop="static" data-keyboard="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">�</button>
+        <h3 id="dashAlertModalLabel">Alert</h3>
+    </div>
+    <div class="modal-body">
+        <p></p>
+    </div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Ok</button>
+    </div>
+</div>
+
+@section scripts{
+    @RenderSection("scripts", false)
+}

@@ -69,9 +69,10 @@
 
         _initializeInfoIcons: function () {
             $('.dj_module-title')
-                .after('<i class="icon-info-sign icon-white"/>');
+                .before('<i class="icon-share icon-white dj_icon-pop-out" title="Pop out this module to its own page" />')
+                .after('<i class="icon-info-sign icon-white dj_icon-info"/>');
 
-            $('.dj_module-title + i.icon-info-sign')
+            $('.dj_module-title + .dj_icon-info')
                 .each(function () {
                     var el = $(this),
                         tooltipAttached = el.data('tooltipAttached');
@@ -85,6 +86,20 @@
                         el.data('tooltipAttached', true);
                     }
                 });
+            
+             $('.dj_icon-pop-out')
+                .click(function () {
+                    var el = $(this),
+                        title = el.next('.dj_module-title').text(),
+                        moduleId = el.closest('.dj_module').data('module-id'),
+                        pageId = DJ.UI.Canvas.find().get_canvasId(),
+                        url = location.href + "/Popup?pid=" + pageId + "&mid=" +moduleId;
+
+                    if (pageId && moduleId) {
+                        window.open(url, title, "resizable=no,scrollbars=no,status=no,height=460,width=400,location=no");
+                    }
+                });
+
 
         },
 

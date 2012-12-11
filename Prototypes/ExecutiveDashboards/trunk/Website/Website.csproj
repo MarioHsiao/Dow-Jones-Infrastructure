@@ -274,6 +274,7 @@
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="App_Start\DataSourcesInitializationTask.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
+    <Compile Include="Controllers\PopupController.cs" />
     <Compile Include="DataSourceConfig.cs" />
     <Compile Include="DataSources.cs" />
     <Compile Include="Dependencies.cs" />
@@ -405,6 +406,8 @@
     <Content Include="Views\Error\NotFound.cshtml">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="Views\Popup\Canvas.cshtml" />
+    <Content Include="Views\Shared\_LayoutWithNavigation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
