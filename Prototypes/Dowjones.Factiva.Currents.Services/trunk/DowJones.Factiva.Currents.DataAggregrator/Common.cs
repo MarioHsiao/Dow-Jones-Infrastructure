@@ -30,6 +30,7 @@ namespace DowJones.Factiva.Currents.Aggregrator
         static string timeFrame = Convert.ToString(System.Configuration.ConfigurationManager.AppSettings["TimeFrame"]);
         static string entityType = Convert.ToString(System.Configuration.ConfigurationManager.AppSettings["EntityType"]);
         static string sourceGenre = Convert.ToString(System.Configuration.ConfigurationManager.AppSettings["SourceGenre"]);
+        static string daysRange = Convert.ToString(System.Configuration.ConfigurationManager.AppSettings["DaysRange"]);
 
         /// <summary>
         /// Gets the query string request.
@@ -169,14 +170,15 @@ namespace DowJones.Factiva.Currents.Aggregrator
                 }
                 string url =
                     string.Format(
-                        "{0}/Content/headlines/" + format + "?searchString={1}&encryptedToken={2}&searchmode={3}&sourceGenre={4}",
-                        restAPIBasePath,
+                        "{0}/Content/headlines/" + format + "?searchString={1}&encryptedToken={2}&searchmode={3}&sourceGenre={4}&daysRange={5}",
+                        restAPIPublicBasePath,
                         "an="+accessionNumber,
                         enToken,
                         "traditional",
-                         sourceGenre
+                         sourceGenre,
+                         daysRange
                       );
-                string data = GetData(url, false);
+                string data = GetData(url, true);
                 cacheManager.Add(key, data);
                 return data;
             }
