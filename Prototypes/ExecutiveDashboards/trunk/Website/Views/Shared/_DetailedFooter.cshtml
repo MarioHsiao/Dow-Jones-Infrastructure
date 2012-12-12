@@ -15,5 +15,5 @@
             </p>
         </div>
     </div>
-    <div id="state"></div>
+    <div id="state" class="@(User.Identity.IsAdmin() ? "" : "hide")"></div>
 </footer>

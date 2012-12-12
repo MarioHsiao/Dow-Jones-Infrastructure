@@ -285,6 +285,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Hubs\DashboardHub.cs" />
+    <Compile Include="IdentityExtensions.cs" />
     <Compile Include="RavenDB\RavenDbDashboardMessageCache.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RavenDB\RavenDbDocumentStoreFactory.cs" />
@@ -365,6 +366,9 @@
     </Content>
     <Content Include="Content\platformStats.css">
       <DependentUpon>platformStats.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\popup.css">
+      <DependentUpon>popup.scss</DependentUpon>
     </Content>
     <Content Include="Content\StatsMap.css">
       <DependentUpon>StatsMap.scss</DependentUpon>
@@ -459,6 +463,7 @@
     <Content Include="Content\layout-responsive.scss" />
     <Content Include="Content\pageTimings.scss" />
     <Content Include="Content\platformStats.scss" />
+    <Content Include="Content\popup.scss" />
     <None Include="Properties\PublishProfiles\edash.pubxml" />
     <None Include="Properties\PublishProfiles\montana.pubxml" />
     <Content Include="Views\Dashboard\_Gallery.cshtml" />
