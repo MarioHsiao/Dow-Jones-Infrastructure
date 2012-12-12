@@ -65,6 +65,7 @@
             $('.dj_module-refresh').remove();
 
             this._initializeInfoIcons();
+            this._initializePopout();
         },
 
         _initializeInfoIcons: function () {
@@ -86,8 +87,10 @@
                         el.data('tooltipAttached', true);
                     }
                 });
-            
-             $('.dj_icon-pop-out')
+        },
+        
+        _initializePopout: function() {
+            $('.dj_icon-pop-out')
                 .click(function () {
                     var el = $(this),
                         title = el.next('.dj_module-title').text(),
@@ -99,8 +102,6 @@
                         window.open(url, title, "resizable=no,scrollbars=no,status=no,height=460,width=400,location=no");
                     }
                 });
-
-
         },
 
         _initializeTabs: function () {

@@ -408,6 +408,9 @@
     </Content>
     <Content Include="Views\Popup\Canvas.cshtml" />
     <Content Include="Views\Shared\_LayoutWithNavigation.cshtml" />
+    <Content Include="Views\Shared\_DetailedFooter.cshtml" />
+    <Content Include="Views\Shared\_Footer.cshtml" />
+    <Content Include="Views\Shared\_ThemeManager.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />

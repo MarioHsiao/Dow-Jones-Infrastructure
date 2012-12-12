@@ -14,6 +14,26 @@ namespace DowJones.Dash.Website.App_Start
 
         public static void RegisterBundles(BundleCollection bundles)
         {
+	        bundles.Add(new StyleBundle("~/css/core")
+		                    .Include(
+								"~/Content/bootstrap.css",
+								"~/Content/bootstrap-responsive.css",
+								"~/Content/layout.css",
+								"~/Content/layout-responsive.css"));
+
+			bundles.Add(new StyleBundle("~/css/dashboard")
+							.Include(
+								"~/Content/dashboard.css"
+								,"~/Content/statsMap.css"
+								,"~/Content/platformStats.css"
+								,"~/Content/gallery.css"
+								,"~/Content/browserShare.css"
+								,"~/Content/concurrentVisits.css"
+								,"~/Content/perfGauge.css"
+								,"~/Content/topPages.css"
+								,"~/Content/pageTimings.css"
+						));
+
             bundles.Add(new ScriptBundle("~/bundles/core").Include(
                 "~/Scripts/bootstrap.*",
                 "~/Scripts/jquery.signalR-{version}.js"

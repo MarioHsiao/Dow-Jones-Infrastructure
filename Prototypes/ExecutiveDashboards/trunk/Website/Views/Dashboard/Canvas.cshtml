@@ -1,4 +1,5 @@
-﻿@using DowJones.Dash.Components.Models.ThemeManager
+﻿@using System.Web.Optimization
+@using DowJones.Dash.Components.Models.ThemeManager
 @{
     ViewBag.Title = "Dash - Executive Dashboard";
 
@@ -6,13 +7,7 @@
 }
 
 @section styles {
-    <link href="~/Content/dashboard.css" rel="stylesheet" />
-    <link href="~/Content/gallery.css" rel="stylesheet" />
-    <link href="~/Content/browserShare.css" rel="stylesheet" />
-    <link href="~/Content/concurrentVisits.css" rel="stylesheet" />
-    <link href="~/Content/perfGauge.css" rel="stylesheet" />
-    <link href="~/Content/topPages.css" rel="stylesheet" />
-    <link href="~/Content/pageTimings.css" rel="stylesheet" />
+    @Styles.Render("~/css/dashboard")
 }
 <section id="world-map-module-container" class="row-fluid">
     <div id="world-map-module-inner">
