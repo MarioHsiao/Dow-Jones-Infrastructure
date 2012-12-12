@@ -34,30 +34,5 @@ namespace DowJones.Infrastructure.Alert
         public List<Source> Source { get; set; }
     }
 
-    public class AlertNewsFilters
-    {
-        [JsonProperty("author")]
-        public FilterList<FilterItem> Author { get; set; }
-
-        [JsonProperty("executive")]
-        public FilterList<FilterItem> Executive { get; set; }
-
-        [JsonProperty("industry")]
-        public FilterList<FilterItem> Industry { get; set; }
-
-        [JsonProperty("newssubject")]
-        public FilterList<FilterItem> Subject { get; set; }
-
-        [JsonProperty("region")]
-        public FilterList<FilterItem> Region { get; set; }
-
-        [JsonProperty("company")]
-        public FilterList<FilterItem> Company { get; set; }
-
-        [JsonProperty("companyoccur")]
-        public FilterList<FilterItem> CompanyOccur { get; set; }
-
-        [JsonProperty("source")]
-        public FilterList<FilterItem> Source { get; set; }
-    }
+   
 }
