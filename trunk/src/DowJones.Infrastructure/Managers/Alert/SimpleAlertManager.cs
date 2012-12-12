@@ -68,31 +68,31 @@ namespace DowJones.Managers.Alert
                     {
                         case "au":
                             _newsFilters.author = GetFilterItem(filter.Filter);
-                            //_newsFilters.authorExclude = GetFilterItem(filter.ExcludeFilter);
+                            _newsFilters.authorExcluded = GetFilterItem(filter.ExcludeFilter);
                             break;
                         case "fds":
                             _newsFilters.company = GetFilterItem(filter.Filter);
-                            //_newsFilters.companyExclude = GetFilterItem(filter.ExcludeFilter);
+                            _newsFilters.companyExcluded = GetFilterItem(filter.ExcludeFilter);
                             break;
                         case "pe":
                             _newsFilters.executive = GetFilterItem(filter.Filter);
-                            //_newsFilters.executiveExclude = GetFilterItem(filter.ExcludeFilter);
+                            _newsFilters.executiveExcluded = GetFilterItem(filter.ExcludeFilter);
                             break;
                         case "in":
                             _newsFilters.industry = GetFilterItem(filter.Filter);
-                            //_newsFilters.industryExclude = GetFilterItem(filter.ExcludeFilter);
+                            _newsFilters.industryExcluded = GetFilterItem(filter.ExcludeFilter);
                             break;
                         case "ns":
                             _newsFilters.newsSubject = GetFilterItem(filter.Filter);
-                            //_newsFilters.newsSubjectExclude = GetFilterItem(filter.ExcludeFilter);
+                            _newsFilters.newsSubjectExcluded = GetFilterItem(filter.ExcludeFilter);
                             break;
                         case "re":
                             _newsFilters.region = GetFilterItem(filter.Filter);
-                            //_newsFilters.regionExclude = GetFilterItem(filter.ExcludeFilter);
+                            _newsFilters.regionExcluded = GetFilterItem(filter.ExcludeFilter);
                             break;
                         case "sc":
                             _newsFilters.source = GetFilterSourceItem(filter.Filter);
-                            //_newsFilters.sourceExclude = GetFilterItem(filter.ExcludeFilter);
+                            _newsFilters.sourceExcluded = GetFilterSourceItem(filter.ExcludeFilter);
                             break;
                         case "key":
                             _newsFilters.keywords = GetKeywordFilterItem(filter.Filter);
@@ -166,7 +166,7 @@ namespace DowJones.Managers.Alert
             throw new DowJonesUtilitiesException(serviceResponse.rc);
         }
 
-        private DeduplicationLevel MapDedupLevel(RemoveDuplicate removeDuplicate)
+        private static DeduplicationLevel MapDedupLevel(RemoveDuplicate removeDuplicate)
         {
             switch (removeDuplicate)
             {
@@ -284,27 +284,21 @@ namespace DowJones.Managers.Alert
 
         }
 
-        private TrackFilterItem[] GetFilterItem(IEnumerable<Utilities.Search.Core.FilterItem> newsFilter)
+        private static TrackFilterItem[] GetFilterItem(IEnumerable<Utilities.Search.Core.FilterItem> newsFilter)
         {
-            var lstFilters = new List<TrackFilterItem>();
-            foreach (var filter in newsFilter)
-            {
-                lstFilters.Add(new TrackFilterItem { code = filter.Code, name = filter.Desc });
-            }
-            return lstFilters.ToArray();
+            if (newsFilter == null || newsFilter.Count() == 0)
+                return null;
+            return newsFilter.Select(filter => new TrackFilterItem {code = filter.Code, name = filter.Desc}).ToArray();
         }
 
-        private TrackFilterSourceItem[] GetFilterSourceItem(IEnumerable<Utilities.Search.Core.FilterItem> newsFilter)
+        private static TrackFilterSourceItem[] GetFilterSourceItem(IEnumerable<Utilities.Search.Core.FilterItem> newsFilter)
         {
-            var lstFilters = new List<TrackFilterSourceItem>();
-            foreach (var filter in newsFilter)
-            {
-                lstFilters.Add(new TrackFilterSourceItem { code = filter.Code, name = filter.Desc, type = filter.Type });
-            }
-            return lstFilters.ToArray();
+            if (newsFilter == null || newsFilter.Count() == 0)
+                return null;
+            return newsFilter.Select(filter => new TrackFilterSourceItem {code = filter.Code, name = filter.Desc, type = filter.Type}).ToArray();
         }
 
-        private string[] GetKeywordFilterItem(IEnumerable<Utilities.Search.Core.FilterItem> newsFilter)
+        private static string[] GetKeywordFilterItem(IEnumerable<Utilities.Search.Core.FilterItem> newsFilter)
         {
             var lstFilters = new List<string>();
             foreach (var filter in newsFilter)
@@ -443,19 +437,19 @@ namespace DowJones.Managers.Alert
             return sb.ToString();
         }
 
-        private bool IsOnlyExcluded(SourceList sourceList)
+        private static bool IsOnlyExcluded(SourceList sourceList)
         {
             return (sourceList != null && (sourceList.CodeIncluded == null || sourceList.CodeIncluded.Count == 0) && (sourceList.CodeExcluded != null && sourceList.CodeExcluded.Count > 0));
         }
 
-        private bool IsNull(SourceList sourceList)
+        private static bool IsNull(SourceList sourceList)
         {
             return (sourceList == null
                 || ((sourceList.CodeExcluded == null || sourceList.CodeExcluded.Count == 0)
                     && (sourceList.CodeIncluded == null || sourceList.CodeIncluded.Count == 0)));
         }
 
-        private void AppendFiiListDescString(ref StringBuilder sb, string str2)
+        private static void AppendFiiListDescString(ref StringBuilder sb, string str2)
         {
             if (!string.IsNullOrEmpty(str2))
             {
@@ -467,7 +461,7 @@ namespace DowJones.Managers.Alert
             }
         }
 
-        private string GetItemId(PreferenceItem preferenceItem)
+        private static string GetItemId(PreferenceItem preferenceItem)
         {
             if (preferenceItem != null && !string.IsNullOrEmpty(preferenceItem.ItemID))
             {
@@ -478,7 +472,7 @@ namespace DowJones.Managers.Alert
             return null;
         }
 
-        private string GetSourceListString(SourceList sourceList)
+        private static string GetSourceListString(SourceList sourceList)
         {
             if (sourceList == null)
                 return null;
@@ -519,7 +513,7 @@ namespace DowJones.Managers.Alert
             return sb.ToString();
         }
 
-        private string GetSourceListDescString(SourceList sourceList)
+        private static string GetSourceListDescString(SourceList sourceList)
         {
             if (sourceList == null)
                 return null;
@@ -537,7 +531,7 @@ namespace DowJones.Managers.Alert
             return sb.ToString();
         }
 
-        private string GetSourceListDescString(CodeList codeList, string prefix, string sourceName)
+        private static string GetSourceListDescString(CodeList codeList, string prefix, string sourceName)
         {
             if (codeList == null)
                 return null;
@@ -565,7 +559,7 @@ namespace DowJones.Managers.Alert
             return sb.ToString();
         }
 
-        private bool IsValidSourceCode(string code)
+        private static bool IsValidSourceCode(string code)
         {
             return !(code == null || SearchUtility.IsUiSourceCode(code));
         }
