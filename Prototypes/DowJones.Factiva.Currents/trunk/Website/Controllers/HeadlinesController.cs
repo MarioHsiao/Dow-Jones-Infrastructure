@@ -26,7 +26,7 @@ namespace DowJones.Factiva.Currents.Website.Controllers
 					ViewAllSearchContext = headlineResult.Package.ViewAllSearchContextRef,
 					Headlines = new CurrentsHeadlineModel(new PortalHeadlineListModel(headlineResult.Package.Result)),
 				};
-			
+		    model.Headlines.MaxNumHeadlinesToShow = 20;
 			return View(model);
         }
 

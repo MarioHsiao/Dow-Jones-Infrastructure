@@ -25,6 +25,8 @@ namespace DowJones.Factiva.Currents.Aggregrator
         static string basePath = System.Configuration.ConfigurationManager.AppSettings["DasboardApiBasePath"];
         static string restAPIBasePath = System.Configuration.ConfigurationManager.AppSettings["RestApiBasePath"];
         static int maxResultsToReturn = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["MaxResultsToReturn"]);
+        static int maxHeadlinesToReturn = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["MaxHeadlinesToReturn"]);
+        
         static int maxEntitiesToReturn = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["MaxEntitiesToReturn"]);
         static int maxPartsToReturn = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["MaxPartsToReturn"]);
         static string timeFrame = Convert.ToString(System.Configuration.ConfigurationManager.AppSettings["TimeFrame"]);
@@ -146,7 +148,7 @@ namespace DowJones.Factiva.Currents.Aggregrator
                         enToken,
                         searchContextRef,
                         firstResultToReturn,
-                        maxResultsToReturn
+                        maxHeadlinesToReturn
                       );
                 string data = GetData(url,true);
                 cacheManager.Add(key, data);
