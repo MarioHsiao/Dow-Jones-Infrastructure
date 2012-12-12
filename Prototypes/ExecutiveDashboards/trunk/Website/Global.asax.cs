@@ -9,8 +9,7 @@ namespace DowJones.Dash.Website
     {
         private readonly static ILog Logger = LogManager.GetLogger(typeof (MvcApplication));
 
-        public static Lazy<string> Version = 
-            new Lazy<string>(typeof(MvcApplication).Assembly.GetName().Version.ToString);
+        public static Lazy<string> Version = new Lazy<string>(typeof(MvcApplication).Assembly.GetName().Version.ToString);
 
 
         protected new void Application_Start()

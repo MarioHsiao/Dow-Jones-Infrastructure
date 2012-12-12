@@ -4,6 +4,7 @@ using DowJones.Dash.Caching;
 using DowJones.Dash.Common.DependencyResolver;
 using DowJones.Dash.Serializer;
 using DowJones.Dash.Website.App_Start;
+using DowJones.Dash.Website.Connections;
 using DowJones.Infrastructure.Common;
 using DowJones.Pages;
 using DowJones.Pages.Modules;
@@ -56,7 +57,7 @@ namespace DowJones.Dash.Website
                 })).InRequestScope();
 
 
-            Bind<HubClientConnection>().To<HubClientConnection>().InSingletonScope();
+            Bind<DataSourcesServiceConnection>().To<DataSourcesServiceConnection>().InSingletonScope();
 
             GlobalHost.DependencyResolver = new NinjectDependencyResolver(Kernel);
             RouteTable.Routes.MapHubs();

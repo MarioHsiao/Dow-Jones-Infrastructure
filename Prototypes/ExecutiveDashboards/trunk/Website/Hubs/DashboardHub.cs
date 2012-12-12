@@ -10,16 +10,17 @@ using log4net;
 
 namespace DowJones.Dash.Website.Hubs
 {
-    public class Dashboard : Hub
+    [HubName("dashboard")]
+    public class DashboardHub : Hub
     {
-        private static readonly ILog Log = LogManager.GetLogger(typeof (Dashboard));
+        private static readonly ILog Log = LogManager.GetLogger(typeof (DashboardHub));
         private static  IDashboardMessageCache _cache;
         internal static IDashboardMessageCache Cache
         {
             get { return _cache ?? (_cache = ServiceLocator.Current.Resolve<IDashboardMessageCache>()); }
         }
 
-        public Dashboard(IDashboardMessageCache cache)
+        public DashboardHub(IDashboardMessageCache cache)
         {
             if (_cache == null)
             {
@@ -68,26 +69,6 @@ namespace DowJones.Dash.Website.Hubs
             });
         }
 
-        public static void Publish(DashboardMessage message)
-        {
-            if (message == null)
-                return;
-
-            Log.DebugFormat("Publishing {0}", message.EventName);
-
-            var context = GlobalHost.ConnectionManager.GetHubContext<Dashboard>();
-            var subscribers = context.Clients;
-
-            if (!string.IsNullOrWhiteSpace(message.Source))
-            {
-                subscribers = subscribers[message.Source];
-                subscribers.messageReceived(message);
-            }
-
-            if (!(message is DashboardErrorMessage))
-            {
-                Cache.Add(message);
-            }
-        }
+       
     }
 }

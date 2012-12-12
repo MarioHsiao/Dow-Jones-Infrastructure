@@ -3,6 +3,7 @@ using System.Linq;
 using System.Web.Mvc;
 using DowJones.Dash.DataGenerators;
 using DowJones.Dash.Website.App_Start;
+using DowJones.Dash.Website.Connections;
 using DowJones.Pages.Common;
 using DowJones.Pages.Modules;
 using DowJones.Pages.Modules.Templates;
@@ -19,13 +20,11 @@ namespace DowJones.Dash.Website.Controllers
     {
         private readonly PageGenerator _pageGenerator;
         private readonly IScriptModuleTemplateManager _templateManager;
-        private readonly HubClientConnection _clientConnection;
 
-        public DashboardController(PageGenerator pageGenerator, IScriptModuleTemplateManager templateManager, HubClientConnection clientConnection)
+        public DashboardController(PageGenerator pageGenerator, IScriptModuleTemplateManager templateManager)
         {
             _pageGenerator = pageGenerator;
             _templateManager = templateManager;
-            _clientConnection = clientConnection;
         }
 
         [Authorize]
@@ -51,14 +50,14 @@ namespace DowJones.Dash.Website.Controllers
         [Authorize]
         public ActionResult Start()
         {
-            _clientConnection.Start();
+            DataSourcesServiceConnection.Instance.Start();
             return RedirectToAction("Index");
         }
 
         [Authorize]
         public ActionResult Stop()
         {
-            _clientConnection.Stop();
+            DataSourcesServiceConnection.Instance.Stop();
             return RedirectToAction("Index");
         }
 
@@ -67,9 +66,8 @@ namespace DowJones.Dash.Website.Controllers
         {
             var username = User.Identity.Name;
 
-            var page =
-                PageRepository.GetPages(SortBy.Position, SortOrder.Ascending)
-                    .FirstOrDefault(x => x.OwnerUserId == username);
+            var page = PageRepository.GetPages(SortBy.Position, SortOrder.Ascending)
+                                     .FirstOrDefault(x => x.OwnerUserId == username);
 
             if (page != null)
             {

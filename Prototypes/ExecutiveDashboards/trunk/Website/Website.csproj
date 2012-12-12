@@ -268,7 +268,7 @@
   <ItemGroup>
     <Compile Include="App_Start\BundlesConfig.cs" />
     <Compile Include="App_Start\GlobalFilterRegistrationTask.cs" />
-    <Compile Include="App_Start\HubClientConnection.cs" />
+    <Compile Include="Connections\DataSourcesServiceConnection.cs" />
     <Compile Include="App_Start\RouteRegistrationTask.cs" />
     <Compile Include="App_Start\ScriptModuleTemplatesInitializer.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
@@ -284,7 +284,7 @@
     <Compile Include="Global.asax.generated.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Hubs\Dashboard.cs" />
+    <Compile Include="Hubs\DashboardHub.cs" />
     <Compile Include="RavenDB\RavenDbDashboardMessageCache.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RavenDB\RavenDbDocumentStoreFactory.cs" />
