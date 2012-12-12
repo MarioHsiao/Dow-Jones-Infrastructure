@@ -194,6 +194,7 @@
     <Compile Include="Controllers\CompositeComponentController.cs" />
     <Compile Include="Controllers\NavBarController.cs" />
     <Compile Include="Controllers\ShareChartController.cs" />
+    <Compile Include="Controllers\SimpleAlertController.cs" />
     <Compile Include="Controllers\SocialButtonsController.cs" />
     <Compile Include="Controllers\SocialMediaController.cs" />
     <Compile Include="Controllers\StockKioskController.cs" />
@@ -259,6 +260,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Content Include="Content\js\DiscoveryFilters.js" />
+    <Content Include="Content\js\SimpleAlert.js" />
     <Content Include="GatewayResources\ReleaseNotes.txt" />
     <Content Include="GatewayResources\Xslt\archive\CreateBillingRecord_Response.xslt" />
     <Content Include="GatewayResources\Xslt\archive\GetArchiveEmailWithLimit_V2_0_Response.xslt" />
@@ -1311,6 +1313,7 @@
     <Content Include="Views\SocialButtons\Index.cshtml" />
     <Content Include="Views\TrendingNews\TrendingNews.cshtml" />
     <Content Include="Views\ShareChart\Index.cshtml" />
+    <Content Include="Views\SimpleAlert\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Browsers\Devices\" />
