@@ -19,7 +19,7 @@
     <%= this.templates.section({indexCode: "LP", items: model.leadParagraphs}) %>
     <%= this.templates.section({indexCode: "TD", items: model.tailParagraphs}) %>
     
-    <% if (options.articleDisplayOptions !== "Headline") {
+    <% if (options.articleDisplayOption !== "Headline") {
         if (model.contact) %> <%= this.templates.section({indexCode: "CT", items: [model.contact]}) %>
 
         <%= this.templates.section({indexCode: "RF", items: model.notes}) %>

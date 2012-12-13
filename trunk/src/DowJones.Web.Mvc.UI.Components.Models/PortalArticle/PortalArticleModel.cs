@@ -17,14 +17,14 @@ namespace DowJones.Web.Mvc.UI.Components.PortalArticle
 		{
 			get
 			{
-				return ArticleDisplayOptions == DisplayOptions.Indexing
-					   || ArticleDisplayOptions == DisplayOptions.Headline;
+				return ArticleDisplayOption == DisplayOptions.Indexing
+					   || ArticleDisplayOption == DisplayOptions.Headline;
 			}
 		}
 
 		[ClientProperty("articleDisplayOption")]
 		[JsonConverter(typeof(StringEnumConverter))]
-		public DisplayOptions ArticleDisplayOptions { get; set; }
+		public DisplayOptions ArticleDisplayOption { get; set; }
 
 		[ClientProperty("postProcessingOptionsWithToken")]
 		public IEnumerable<PostProcessingOptionItem> PostProcessingOptionsWithToken { get; set; }
@@ -112,7 +112,7 @@ namespace DowJones.Web.Mvc.UI.Components.PortalArticle
 
 		public bool HasLeadParagraphs { get { return !Result.LeadParagraphs.IsNullOrEmpty(); } }
 
-		public bool RenderTailParagraphs { get { return !Result.TailParagraphs.IsNullOrEmpty() && ArticleDisplayOptions != DisplayOptions.Headline; } }
+		public bool RenderTailParagraphs { get { return !Result.TailParagraphs.IsNullOrEmpty() && ArticleDisplayOption != DisplayOptions.Headline; } }
 
 		public bool HasNotes { get { return !Result.Notes.IsNullOrEmpty(); } }
 
