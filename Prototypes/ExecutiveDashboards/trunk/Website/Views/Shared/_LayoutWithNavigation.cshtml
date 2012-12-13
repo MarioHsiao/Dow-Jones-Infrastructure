@@ -1,9 +1,9 @@
-﻿@using DowJones.Dash.Website
-@{
+﻿@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 @section styles{
+    @Styles.Render("~/css/core-responsive")
     @RenderSection("styles", false)
 }
 

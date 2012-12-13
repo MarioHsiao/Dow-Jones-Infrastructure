@@ -18,8 +18,11 @@ namespace DowJones.Dash.Website.App_Start
 			bundles.Add(new StyleBundle("~/css/core")
 							.Include(
 								"~/Content/bootstrap.css",
+								"~/Content/layout.css"));
+
+			bundles.Add(new StyleBundle("~/css/core-responsive")
+							.Include(
 								"~/Content/bootstrap-responsive.css",
-								"~/Content/layout.css",
 								"~/Content/layout-responsive.css"));
 
 			bundles.Add(new StyleBundle("~/css/dashboard")

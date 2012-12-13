@@ -94,12 +94,19 @@
                 .click(function () {
                     var el = $(this),
                         title = el.next('.dj_module-title').text(),
-                        moduleId = el.closest('.dj_module').data('module-id'),
+                        module = el.closest('.dj_module'),
+                        moduleId = module.data('module-id'),
+                        moduleHeight = module.outerHeight(true),
+                        moduleWidth = module.outerWidth(true),
+                        footerHeight = 46 + 20,  /* keep this in sync with _Footer.cshtml's rendered height + margin */
+                        height = moduleHeight + footerHeight,
                         pageId = DJ.UI.Canvas.find().get_canvasId(),
-                        url = location.href + "/Popup?pid=" + pageId + "&mid=" +moduleId;
+                        url = location.href + "/Popup?pid=" + pageId + "&mid=" + moduleId,
+                        features = "resizable=no,scrollbars=no,status=no,location=no,height=" 
+                                    + height + ",width=" + moduleWidth;
 
                     if (pageId && moduleId) {
-                        window.open(url, title, "resizable=no,scrollbars=no,status=no,height=460,width=400,location=no");
+                        window.open(url, title, features);
                     }
                 });
         },
@@ -208,6 +215,8 @@
                         }
                     });
             }
+
+            window.domain = domain;
         },
         
         stateChanged: function (change) {
