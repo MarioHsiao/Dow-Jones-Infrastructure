@@ -23,7 +23,7 @@ namespace DowJones.Factiva.Currents.Components.CurrentRegionalMap
     using System.Web.Routing;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 11/16/2012 01:43 PM
+    // Last Generated Timestamp: 12/12/2012 12:59 PM
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Factiva.Currents.Components.CurrentRegionalMap.CurrentRegionalMap.js", DependsOn=new string[] {
             "world-map-shapes"}, ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Factiva.Currents.Components.CurrentRegionalMap.CurrentRegionalMapComponent))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.27108")]

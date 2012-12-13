@@ -42,12 +42,12 @@ DJ.UI.CurrentRegionalMap = DJ.UI.Component.extend({
                     y: 0,
                     color: 'white',
                     formatter: function () {
-                        return '<span style="font-family: Arial; text-align: center; display:inline-block;">'
-                                + this.point.currentTimeFrameNewsVolumeDisplayText
-                                + '</strong><br/>Articles'
-                                + '<div style="color:black; padding-top: 10px; font-weight:bold">'
-                                + this.point.percentValueChange
-                                + ' Change</div></span>';
+                        return '<span class="regional-map-data-label dj_regionalMapDataLabel" data-sc-ref="' + JSON.stringify(this.point.searchContextRef) + '">'
+                            + this.point.currentTimeFrameNewsVolumeDisplayText
+                            + '</strong><br/>Articles'
+                            + '<div style="color:black; padding-top: 10px; font-weight:bold">'
+                            + this.point.percentValueChange
+                            + ' Change</div></span>';
                     },
                     useHTML: true
                 },
@@ -66,10 +66,7 @@ DJ.UI.CurrentRegionalMap = DJ.UI.Component.extend({
                 cursor: 'pointer',
                 point: {
                     events: {
-                        click: function () {
-                            var url = '../Headlines?sc=' + encodeURIComponent(this.searchContextRef);
-                            window.open(url, "RegionalMapBubbleHeadline");
-                        }
+
                     }
                 }
             }
@@ -143,13 +140,18 @@ DJ.UI.CurrentRegionalMap = DJ.UI.Component.extend({
         }
     },
 
+    selectors: {
+        regionalMapDataBubble: ".dj_regionalMapDataLabel"
+
+    },
+
     init: function (element, meta) {
         // Call the base constructor
         this._super(element, $.extend({ name: "CurrentRegionalMap" }, meta));
 
         this._initializeChart();
-        
-        if(this.data) {
+
+        if (this.data) {
             this.setData(this.data);
         }
     },
@@ -164,10 +166,19 @@ DJ.UI.CurrentRegionalMap = DJ.UI.Component.extend({
     },
 
     _initializeEventHandlers: function () {
+        
+        
     },
 
     _initializeChart: function () {
         this._initializingChart = true;
+
+        var self = this;
+        this.mapConfig.series[1].point.events = {
+            click: function () {
+                self._displayHeadlines(this.searchContextRef);
+            }
+        };
 
         var map = Highcharts.Maps['world'];
         for (var i = 0; i < map.territories.length; i++) {
@@ -206,12 +217,28 @@ DJ.UI.CurrentRegionalMap = DJ.UI.Component.extend({
         this._initializingChart = false;
     },
 
+    _displayHeadlines: function (searchContextRef) {
+        var url = '../Headlines?sc=' + encodeURIComponent(searchContextRef);
+        window.open(url, "RegionalMapBubbleHeadline");
+    },
+    
+    _attachHighchartPointClicks: function () {
+        var self = this;
+        this.$element.find(".highcharts-data-labels > div").click(function () {
+            self._displayHeadlines($(this).find(self.selectors.regionalMapDataBubble).data('sc-ref'));
+        });
+    },
+    
     setData: function (data) {
         if (!data || !data.regionNewsVolume)
             return;
 
         var chartData = this.mapChartData(data.regionNewsVolume);
         this.chart.series[1].setData(chartData);
+        
+        // Highcharts suppress any event that is not directly attached to the DOM element,
+        // hence this workaround (instead of .on)
+        this._attachHighchartPointClicks();
     },
 
     mapChartData: function (regionNewsVolume) {
