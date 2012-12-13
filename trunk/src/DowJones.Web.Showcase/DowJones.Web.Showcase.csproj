@@ -259,6 +259,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Content Include="Content\css\components\SimpleAlert\SimpleAlert.css" />
     <Content Include="Content\js\DiscoveryFilters.js" />
     <Content Include="Content\js\SimpleAlert.js" />
     <Content Include="GatewayResources\ReleaseNotes.txt" />

@@ -1,0 +1,32 @@
+﻿.filterbar {
+  font-size:11px;
+  line-height:20px;
+  margin-top:10px;
+}
+.filterLabel{float: left;padding: 0px 5px;}
+.filter{
+    -moz-border-radius: 5px;
+    background-color: #FFE3AC;
+    display: block;
+    float: left;
+    line-height: 20px;
+    margin-right: 5px;
+    border-radius:5px;
+    padding-left: 5px;
+}
+.filter .label {
+    float: left;
+    line-height: 20px;
+}
+.filter .icon-close {
+    background-image: url("../images/icon_filter_close.png");
+    background-position: center top;
+    cursor: pointer;
+    display: block;
+    float: left;
+    height: 20px;
+    width: 20px;
+}
+.filter .icon-close:hover {
+    background-position: center bottom;
+}
