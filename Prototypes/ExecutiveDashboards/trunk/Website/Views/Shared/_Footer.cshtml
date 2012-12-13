@@ -1,1 +1,16 @@
-﻿
+﻿@using DowJones.Dash.Website
+<footer>
+    <div class="container-fluid">
+		<div class="row-fluid">
+			<table>
+				<tr><td class="copyright" >&copy;@DateTime.Now.Year Factiva, Inc. All rights reserved.</td><td><img src="@Url.Content("~/content/images/djtech.png")" alt="DowJones Logo" width="30%"/></td></tr>
+			</table>
+		</div>
+        <div class="row-fluid">
+            <p class="username pull-left">@User.Identity.Name</p>
+            <p class="version pull-right">
+                Version: @MvcApplication.Version.Value
+            </p>
+        </div>
+    </div>
+</footer>

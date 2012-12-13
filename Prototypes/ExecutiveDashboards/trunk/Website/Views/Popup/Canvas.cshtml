@@ -2,34 +2,29 @@
     ViewBag.Title = "Dash - Executive Dashboard";
     Layout = "~/Views/Shared/_Layout.cshtml";
 
-    DJ.ScriptRegistry().OnDocumentReady(@"window['Dash'] = new DJ.UI.Dash($('body'), window['meta']).start(window['domain']);");
+    DJ.ScriptRegistry().OnDocumentReady("onReady();");
 }
 
 @section styles {
-    <link href="~/Content/dashboard.css" rel="stylesheet" />
-    <link href="~/Content/gallery.css" rel="stylesheet" />
-    <link href="~/Content/browserShare.css" rel="stylesheet" />
-    <link href="~/Content/concurrentVisits.css" rel="stylesheet" />
-    <link href="~/Content/perfGauge.css" rel="stylesheet" />
-    <link href="~/Content/topPages.css" rel="stylesheet" />
-    <link href="~/Content/pageTimings.css" rel="stylesheet" />
+    @Styles.Render("~/css/dashboard")
+    @Styles.Render("~/css/popup")
 }
 <section id="dashboard" class="row-fluid">
-
     @DJ.Render(Model)
 </section>
-
-<script src="@Url.Content("~/signalr/hubs")" type="text/javascript"></script>
-<script src="@Url.Content("~/scripts/dashboard.js")" type="text/javascript"></script>
-
-<script type="text/javascript">
-    DJ.$dj.require(['$dj'], function ($dj) {
-        window.meta = { options: { moduleResizeUrl: '@Url.Content("~/dashboard/modules/resize/")' } };
-        window.activeTab = $('.dashNav li.active');
-        window.domain = { source: activeTab.data('source'), map: activeTab.data('map') };
-    })();
-</script>
+@section footer{
+    @Html.Partial("_Footer")
+}
 
 @section scripts{
- 
+
+    <script src="@Url.Content("~/signalr/hubs")" type="text/javascript"></script>
+    <script src="@Url.Content("~/scripts/popup.js")" type="text/javascript"></script>
+    <script type="text/javascript">
+        function onReady() {
+            window['DashPopup'] = new DJ.UI.DashPopup($('body'), {})
+                                        .start(window.opener.domain);
+        }
+    </script>
+
 }

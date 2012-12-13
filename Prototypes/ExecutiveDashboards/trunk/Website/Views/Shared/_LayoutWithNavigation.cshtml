@@ -1,4 +1,5 @@
-﻿@{
+﻿@using DowJones.Dash.Website
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -39,18 +40,22 @@
 </div>
 
 <div class="modal hide fade" id="dashAlertModal" tabindex="-1" role="dialog" aria-labelledby="dashAlertModalLabel"
-    aria-hidden="true" data-backdrop="static" data-keyboard="true">
-    <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">�</button>
-        <h3 id="dashAlertModalLabel">Alert</h3>
-    </div>
-    <div class="modal-body">
-        <p></p>
-    </div>
-    <div class="modal-footer">
-        <button class="btn" data-dismiss="modal" aria-hidden="true">Ok</button>
-    </div>
+	 aria-hidden="true" data-backdrop="static" data-keyboard="true">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">�</button>
+		<h3 id="dashAlertModalLabel">Alert</h3>
+	</div>
+	<div class="modal-body">
+		<p></p>
+	</div>
+	<div class="modal-footer">
+		<button class="btn" data-dismiss="modal" aria-hidden="true">Ok</button>
+	</div>
 </div>
+
+@section footer{
+	@Html.Partial("_DetailedFooter")
+}
 
 @section scripts{
     @RenderSection("scripts", false)

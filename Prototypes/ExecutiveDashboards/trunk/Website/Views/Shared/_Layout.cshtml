@@ -1,9 +1,8 @@
-﻿@using System.Web.Optimization
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
-    <title>DASH: Executive Dashboard</title>
+    <title>@ViewBag.Title</title>
 
     <!-- Common -->
     <meta name="HandheldFriendly" content="True">
@@ -27,12 +26,17 @@
 
     @Scripts.Render("~/bundles/core")
 </head>
-	<body>
-		@Html.Partial("_ThemeManager")
-		@RenderBody()
-		@Html.Partial("_DetailedFooter")
-	</body>
-@DJ.ScriptRegistry().Render()
-@DJ.StylesheetRegistry().Render()
-@RenderSection("scripts", false)
+<body>
+    @Html.Partial("_ThemeManager")
+    @RenderBody()
+    
+    @RenderSection("footer", false)
+
+    @DJ.StylesheetRegistry().Render()
+    @DJ.ScriptRegistry().Render()
+
+    @RenderSection("scripts", false)
+</body>
+
+
 </html>

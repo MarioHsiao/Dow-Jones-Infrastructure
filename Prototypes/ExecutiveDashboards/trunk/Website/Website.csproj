@@ -385,6 +385,7 @@
     <EmbeddedResource Include="Scripts\jquery.counter.js" />
     <Content Include="Scripts\jquery.signalR-0.5.3.js" />
     <Content Include="Scripts\jquery.signalR-0.5.3.min.js" />
+    <Content Include="Scripts\popup.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
