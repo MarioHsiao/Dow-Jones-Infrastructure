@@ -942,5 +942,11 @@
   <ItemGroup>
     <EmbeddedResource Include="DiscoveryFilters\ClientTemplates\NoData.htm" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="SimpleAlert\ClientTemplates\NewsFilterEx.htm" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="SimpleAlert\ClientTemplates\Layout.htm" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

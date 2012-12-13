@@ -1,0 +1,27 @@
+﻿<ul class="DJIIFilterList">
+<% $.each(self.filterItems, function(i, filterItem) { 
+    if(filterItem && filterItem.filter && filterItem.filter.length > 0) { %>
+        <li class="beta"><%= filterItem.filterName %>: </li>
+         <% $.each(filterItem.filter, function(j, filter) { %>
+        <li class="connectionAndPillWrap">
+            <div class="filterPillWrap addPillOptions">
+                <div style="cursor: pointer;" class="pill">
+                    <span class="filterText"><%= filter.desc %></span>
+                    <span class="fi-two fi_d-arrow-drk-gray"></span>
+                </div>
+            </div>
+        </li>
+        <% }); %>
+    <% } %>
+<% }); %>
+ </ul>
+
+ <div id="fl_pillscontextmenu" class="overlaypillscontextmenu " style="z-index: 10010; display: block; top: 307px; left: 338.5px;"><div class="pillOptionsList"> <div style="cursor: pointer" pilloption="Not" class="pillOption not"><span><%= Token("not")%></span></div> <div style="cursor: pointer" pilloption="Remove" class="pillOption remove"><span><%= Token("remove")%></span></div></div></div>
+
+
+                
+                
+                
+                
+        
+ 

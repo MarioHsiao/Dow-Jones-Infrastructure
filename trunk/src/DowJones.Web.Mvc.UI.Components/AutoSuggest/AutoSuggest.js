@@ -29,13 +29,12 @@
         events: {
             // jQuery events are namespaced as <event>.<namespace>
             itemSelect: "itemSelect.dj.AutoSuggest",
+            viewAllClick: "viewAllClick.dj.AutoSuggest",
             viewMorePrivateMarketsClick: "viewMorePrivateMarketsClick.dj.AutoSuggest",
             infoClick: "infoClick.dj.AutoSuggest",
             promoteClick: "promoteClick.dj.AutoSuggest",
             notClick: "notClick.dj.AutoSuggest",
-            discontClick: "discontClick.dj.AutoSuggest",
-            viewAll: "viewAll.dj.AutoSuggest",
-            viewMorePrivateMarketsClick: "viewMorePrivateMarketsClick.dj.AutoSuggest"
+            discontClick: "discontClick.dj.AutoSuggest"
         },
 
         // Localization/Templating tokens
@@ -143,7 +142,6 @@
             privatemarketcompany: "companyName",
             privatemarketindustry: "industryName",
             privatemarketregion: "regionName",
-            company: "Data",
             region: "descriptor",
             newssubject: "descriptor",
             industry: "descriptor",
@@ -219,18 +217,18 @@
             var t = [];
             var tokens = settings.tokens;
             var extraTknInfo = row[getValueByAutoSuggestType[row.controlType.toLowerCase()]];
-            var newInfoTitleTkn;
+            var infoTitleTknArrPreVal, infoTitleTknArrPostVal, newInfoTitleTkn;
             if ((tokens.infoTitleTknPre != undefined) && (tokens.infoTitleTknPost != undefined) && (tokens.infoTitleTknPre != null) && (tokens.infoTitleTknPost != null)) {
                 var infoTitleTknStr = new String(tokens.infoTitleTkn);
                 var infoTitleTknArr = infoTitleTknStr.split('|');
                 if (tokens.infoTitleTkn != undefined) {
-                    infoTitleTknArr[0] = (infoTitleTknArr[0] != undefined) ? infoTitleTknArr[0] : "";
-                    infoTitleTknArr[1] = (infoTitleTknArr[2] != undefined) ? infoTitleTknArr[2] : "";
+                    infoTitleTknArrPreVal = (infoTitleTknArr[0] != undefined) ? infoTitleTknArr[0] : "";
+                    infoTitleTknArrPostVal = (infoTitleTknArr[2] != undefined) ? infoTitleTknArr[2] : "";
                     if (infoTitleTknArr[1] === "true") {
-                        newInfoTitleTkn = infoTitleTknArr[0] + " " + extraTknInfo + " " + infoTitleTknArr[2];
+                        newInfoTitleTkn = infoTitleTknArrPreVal + " " + extraTknInfo + " " + infoTitleTknArrPostVal;
                     }
                     else {
-                        newInfoTitleTkn = infoTitleTknArr[0] + " " + infoTitleTknArr[2];
+                        newInfoTitleTkn = infoTitleTknArrPreVal + " " + infoTitleTknArrPostVal;
                     }
                 }
                 else {
@@ -567,15 +565,14 @@
 
             //Event handlers
             //OnItemSelect EventHandler
-            suggestControl._djResult(function(e, result) {
-                suggestControl.data('autosuggest', result);
+            $("#" + settings.controlId)._djResult(function(e, result) {
                 self.publish(self.events.itemSelect, result);
                 e.stopPropagation();
                 return false;
             });
 
             //onViewAll EventHandler
-            suggestControl._djViewAll(function(e, result) {
+            $("#" + settings.controlId)._djViewAll(function(e, result) {
                 if (result) {
                     result.autocompletionType = self.globalSettingsObj.autocompletionType;
                     result.options = self.globalSettingsObj.options;
