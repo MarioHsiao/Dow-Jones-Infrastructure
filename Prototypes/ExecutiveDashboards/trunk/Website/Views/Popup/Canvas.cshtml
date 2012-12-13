@@ -22,7 +22,6 @@
     <script src="@Url.Content("~/scripts/popup.js")" type="text/javascript"></script>
     <script type="text/javascript">
         function onReady() {
-            debugger;
             window['DashPopup'] = new DJ.UI.DashPopup($('body'), {})
                                         .start(window.opener.domain);
         }
