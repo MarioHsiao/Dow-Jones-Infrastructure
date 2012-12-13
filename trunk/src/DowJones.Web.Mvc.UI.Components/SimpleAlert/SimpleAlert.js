@@ -19,6 +19,9 @@ DJ.UI.SimpleAlert = DJ.UI.Component.extend({
         newsFilterContainer: 'td:last',
         filterLabel: 'span.filterLabel',
         filterClose: 'span.icon-close',
+        filterNot: '.pillOption.not',
+        filterAnd: '.pillOption.and',
+        filterRemove: '.pillOption.remove',
         filter: 'span.filter',
         selectedOption: 'option:selected'
     },
