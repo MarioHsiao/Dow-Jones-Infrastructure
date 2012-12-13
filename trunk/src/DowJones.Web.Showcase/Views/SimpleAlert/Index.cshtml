@@ -5,7 +5,7 @@
         var dataObj = getSimpleAlertData();
         DJ.add(""SimpleAlert"", {
             container: ""divSimpleAlert"",
-            options: { enableExclude: true },
+            options: { enableExclude: false },
             data: dataObj 
         }); 
         ";
@@ -13,10 +13,7 @@
 }
 
 <link href="@Url.Content("./Content/css/components/SimpleAlert/SimpleAlert.css")" rel="stylesheet" />
-<script type="text/javascript" src="@Url.Content("./content/js/SimpleAlert.js")"></script>
-
-<!-- required file! DJ.add won't work without "common.js" being available -->
-<!--<script src="@ConfigurationManager.AppSettings["InfrastructureShowcase.BasePath"]/common.js" type="text/javascript"></script>-->
+<script type="text/javascript" src="@Url.Content("./content/js/SimpleAlert.js")"></script>
 <div class="dj_advanced-filters">
     <div id="divSimpleAlert" class="dj_news-filters" style="width:550px;"></div>
 </div>
