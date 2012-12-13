@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using DowJones.Dash.Common.DataSources;
 using DowJones.Dash.Common.DependencyResolver;
 using DowJones.Dash.DataSourcesServer.Module;
 using Ninject;
@@ -39,8 +41,8 @@ namespace DowJones.Dash.DataSourcesServer
             }
 
             // Start the DataSources
-            var initializationTask = kernel.Get<DataSourcesManger>();
-            initializationTask.Start();
+            DataSourcesManger.Instance.Initialize(kernel.GetAll<IDataSource>());
+            DataSourcesManger.Instance.Start();
 
             while(true)
             {

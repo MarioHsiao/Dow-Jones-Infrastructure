@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ServiceProcess;
+using DowJones.Dash.Common.DataSources;
 using DowJones.Dash.Common.DependencyResolver;
 using DowJones.Dash.DataSourcesServer;
 using DowJones.Dash.DataSourcesServer.Module;
@@ -36,8 +38,6 @@ namespace DowJones.Dash.DataSourcesService
             // Map connections
             _server.MapHubs();
 
-            // Start the DataSources
-            _dataSourcesManager = _kernel.Get<DataSourcesManger>();
 		}
 
 		protected override void OnStart(string[] args)
@@ -56,7 +56,8 @@ namespace DowJones.Dash.DataSourcesService
                 }
 
                 // Start the DataSources
-                _dataSourcesManager.Start();
+                DataSourcesManger.Instance.Initialize(_kernel.GetAll<IDataSource>());
+                DataSourcesManger.Instance.Start();
             }
 			catch(Exception ex)
 			{
@@ -69,7 +70,7 @@ namespace DowJones.Dash.DataSourcesService
             try
             {
                 _server.Stop();
-                _dataSourcesManager.Suspend();
+                DataSourcesManger.Instance.Suspend();
             }
             catch(Exception ex)
             {

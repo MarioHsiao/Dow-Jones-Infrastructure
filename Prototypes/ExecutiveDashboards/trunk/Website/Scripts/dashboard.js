@@ -154,7 +154,8 @@
                 }
             });
 
-            $('#world-map-module .actions-container .fi .icon-remove').click(this._delegates.worldViewClick);
+            $('#world-map-module .actions-contain' +
+                'er .fi .icon-remove').click(this._delegates.worldViewClick);
         },
         
         _initializeBrowserShare: function () {
@@ -175,7 +176,7 @@
         init: function (meta) {
             this._super(meta);
             $.connection.dashboard.messageReceived = this._delegates.messageReceived;
-
+            $.connection.dashboard.ping = this._delegates.ping;
         },
 
         changeDomain: function (domain) {
@@ -315,10 +316,15 @@
 
         _initializeDelegates: function () {
             this._delegates = {
-                messageReceived: $dj.delegate(this, this._messageReceived)
+                messageReceived: $dj.delegate(this, this._messageReceived),
+                ping: $dj.delegate(this._ping)
             };
         },
-
+        
+        _ping: function(data) {
+            console.log(data);
+        },
+        
         _messageReceived: function (message) {
             var self = this,
                 o = self.options,

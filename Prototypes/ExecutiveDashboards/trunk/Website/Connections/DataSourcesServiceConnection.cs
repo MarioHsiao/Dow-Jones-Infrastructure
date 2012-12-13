@@ -15,8 +15,6 @@ namespace DowJones.Dash.Website.Connections
         private readonly static Lazy<DataSourcesServiceConnection> PrivateInstance = new Lazy<DataSourcesServiceConnection>(() => new DataSourcesServiceConnection());
         private static readonly string Url = Properties.Settings.Default.DataSourcesHubUrl;
         private static readonly ILog Log = LogManager.GetLogger(typeof (DataSourcesServiceConnection));
-        private static Timer _timer;
-        private const int _updateInterval = 300; //ms
         private HubConnection _connection;
         private IHubProxy _hubProxy;
 
@@ -37,29 +35,6 @@ namespace DowJones.Dash.Website.Connections
         private IHubContext DashboardHub
         {
             get { return _clientsInstance.Value; }
-        }
-
-        public void Ping(object sender, ElapsedEventArgs args)
-        {
-            if (_hubProxy != null)
-            {
-                _hubProxy.Invoke<ICollection<DashboardMessage>>("Pickup").ContinueWith(interiorTask =>
-                    {
-                        if (interiorTask.IsFaulted)
-                        {
-                            if (interiorTask.Exception != null) Log.ErrorFormat((string) "An error occurred during the method call {0}", (object) interiorTask.Exception.GetBaseException());
-                        }
-                        else
-                        {
-                            Log.InfoFormat("Successfully called Pickup");
-                            foreach (var dashboardMessage in interiorTask.Result)
-                            {
-                                Log.InfoFormat("Publishing Message {0}", dashboardMessage.Source);
-                                Publish(dashboardMessage);
-                            }
-                        }
-                    });
-            }
         }
 
         public void Start()
@@ -94,32 +69,10 @@ namespace DowJones.Dash.Website.Connections
                                 }
                             }).Wait();
 
-                        // Do the first pickup of data
-                        _hubProxy.Invoke<ICollection<DashboardMessage>>("Pickup").ContinueWith(interiorTask =>
-                            {
-                                if (interiorTask.IsFaulted)
-                                {
-                                    if (interiorTask.Exception != null) Log.ErrorFormat("An error occurred during the method call {0}", interiorTask.Exception.GetBaseException());
-                                }
-                                else
-                                {
-                                    Log.InfoFormat("Successfully called Pickup");
-                                    foreach (var dashboardMessage in interiorTask.Result)
-                                    {
-                                        Log.InfoFormat("Publishing Message {0}", dashboardMessage.Source);
-                                        Publish(dashboardMessage);
-                                    }
-                                }
-                            }).Wait();
+                        _hubProxy.On<DashboardMessage>("Message", Publish);
 
-                        // Set up the timer to pick it up
-                        _timer = new Timer(_updateInterval);
-                        _timer.Elapsed += Ping;
-                        _timer.AutoReset = true;
-                        _timer.Start();
                     }
                 }).Wait();
-           
         }
 
         public void Publish(DashboardMessage message)
@@ -128,6 +81,7 @@ namespace DowJones.Dash.Website.Connections
                 return;
 
             Log.DebugFormat("Publishing {0}", message.EventName);
+            //DashboardHub.Clients.ping(message.Source);
 
             if (!string.IsNullOrWhiteSpace(message.Source))
             {
@@ -150,11 +104,6 @@ namespace DowJones.Dash.Website.Connections
             }
 
             _hubProxy = null;
-
-            if (_timer == null) return;
-            _timer.Stop();
-            _timer.Dispose();
-            _timer = null;
         }
     }
 }
