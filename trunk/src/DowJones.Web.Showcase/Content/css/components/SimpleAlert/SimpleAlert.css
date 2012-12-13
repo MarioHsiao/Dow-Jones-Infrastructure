@@ -19,7 +19,7 @@
     line-height: 20px;
 }
 .filter .icon-close {
-    background-image: url("../images/icon_filter_close.png");
+    background-image: url("http://snapshot.int.factiva.com/Content/styles/images/icon_filter_close.png");
     background-position: center top;
     cursor: pointer;
     display: block;

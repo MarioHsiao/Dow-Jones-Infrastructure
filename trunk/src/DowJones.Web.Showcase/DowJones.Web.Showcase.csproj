@@ -1107,6 +1107,7 @@
     <Content Include="Styles\images\email.gif" />
     <Content Include="Styles\images\factiva-icons-comm.png" />
     <Content Include="Styles\images\factiva-icons.png" />
+    <Content Include="Styles\images\factiva-icons2.png" />
     <Content Include="Styles\images\factiva.logos.png" />
     <Content Include="Styles\images\filter_arrow.png" />
     <Content Include="Styles\images\icon-sprite.png" />

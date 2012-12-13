@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Web.Mvc;
 using DowJones.Ajax.HeadlineList;
+using DowJones.Ajax.PortalHeadlineList;
 using DowJones.Assemblers.Headlines;
 using DowJones.Extensions;
 using DowJones.Managers.Search;
@@ -115,7 +116,7 @@ namespace DowJones.Web.Showcase.Controllers
                                     ShowAuthor = true,
                                     ShowSource = true,
                                     ShowPublicationDateTime = true,
-                                    ShowTruncatedTitle = false,
+                                    ShowTruncatedTitle = true,
                                     AuthorClickable = true,
                                     SourceClickable = true,
                                     DisplaySnippets = SnippetDisplayType.Hover,
@@ -205,7 +206,7 @@ namespace DowJones.Web.Showcase.Controllers
             
             var results = _searchManager.PerformContentSearch<PerformContentSearchResponse>(request);
             var headlineListDataResult =  _headlineListManager.Process( results );
-            var portalHeadlineListDataResult = PortalHeadlineConversionManager.Convert( headlineListDataResult );
+            var portalHeadlineListDataResult = PortalHeadlineConversionManager.Convert( headlineListDataResult, TruncationType.Small );
 
             return new PortalHeadlineListModel
             {
@@ -214,7 +215,7 @@ namespace DowJones.Web.Showcase.Controllers
                 ShowAuthor = true,
                 ShowSource = true,
                 ShowPublicationDateTime = true,
-                ShowTruncatedTitle = false,
+                ShowTruncatedTitle = true,
                 AuthorClickable = true,
                 SourceClickable = true,
                 DisplaySnippets = SnippetDisplayType.Hover, 
