@@ -93,7 +93,7 @@
             $('.dj_icon-pop-out')
                 .click(function () {
                     var el = $(this),
-                        title = el.next('.dj_module-title').text(),
+                        name = el.next('.dj_module-title').text(),
                         module = el.closest('.dj_module'),
                         moduleId = module.data('module-id'),
                         moduleHeight = module.outerHeight(true),
@@ -101,12 +101,14 @@
                         footerHeight = 46 + 20,  /* keep this in sync with _Footer.cshtml's rendered height + margin */
                         height = moduleHeight + footerHeight,
                         pageId = DJ.UI.Canvas.find().get_canvasId(),
-                        url = location.href + "/Popup?pid=" + pageId + "&mid=" + moduleId,
+                        url = location.href + "Popup?pid=" + pageId + "&mid=" + moduleId,
                         features = "resizable=no,scrollbars=no,status=no,location=no,height=" 
                                     + height + ",width=" + moduleWidth;
 
                     if (pageId && moduleId) {
-                        window.open(url, title, features);
+                        // IE doesn't support custom names
+                        if ($.browser.msie) name = "_blank";
+                        window.open(url, name, features);
                     }
                 });
         },
