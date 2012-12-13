@@ -8,10 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Web.UI.WebResourceAttribute("DowJones.Dash.Components.StatsMap.StatsMap.js", "text/javascript")]
-[assembly: System.Web.UI.WebResourceAttribute("DowJones.Dash.Components.StatsMap.ClientTemplates.container.html", "text/html")]
-[assembly: System.Web.UI.WebResourceAttribute("DowJones.Dash.Components.StatsMap.ClientTemplates.navPills.html", "text/html")]
-
 namespace DowJones.Dash.Components.StatsMap
 {
     using System;
@@ -24,7 +20,7 @@ namespace DowJones.Dash.Components.StatsMap
     using System.Web.UI;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 10/22/2012 04:25 PM
+    // Last Generated Timestamp: 12/13/2012 11:49 AM
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Dash.Components.StatsMap.StatsMap.js", DependsOn=new string[] {
             "highcharts-map",
             "us-map-shapes",
@@ -36,7 +32,7 @@ namespace DowJones.Dash.Components.StatsMap
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Dash.Components.StatsMap.ClientTemplates.container.html", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="container", DeclaringType=typeof(DowJones.Dash.Components.StatsMap.StatsMapComponent))]
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Dash.Components.StatsMap.ClientTemplates.navPills.html", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="navPills", DeclaringType=typeof(DowJones.Dash.Components.StatsMap.StatsMapComponent))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.27108")]
-    public class StatsMapComponent : DowJones.Web.Mvc.UI.ViewComponentBase<DowJones.Dash.Components.Model.StatsMap.StatsMapModel>
+    public class StatsMapComponent : DowJones.Dash.Components.DashboardComponent<DowJones.Dash.Components.Models.PageTimings.PageTimingsModel>
     {
 #line hidden
 
@@ -52,6 +48,7 @@ namespace DowJones.Dash.Components.StatsMap
         }
         public override void ExecuteTemplate()
         {
+
 
 
 

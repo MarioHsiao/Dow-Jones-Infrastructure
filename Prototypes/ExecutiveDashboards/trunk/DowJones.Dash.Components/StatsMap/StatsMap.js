@@ -2,7 +2,7 @@
  * StatsMap
  */
 
-DJ.UI.StatsMap = DJ.UI.Component.extend({
+DJ.UI.StatsMap = DJ.UI.DashboardComponent.extend({
 
     defaults: {
         mapType: 'country',
@@ -12,8 +12,6 @@ DJ.UI.StatsMap = DJ.UI.Component.extend({
     selectors: {
         pillContainer: '.pillContainer',
         pill: '.dj-pills > li',
-        noDataContainer: '.noData',
-        contentContainer: '.content',
         worldViewToggler: '.worldViewToggler'
     },
 
@@ -89,10 +87,10 @@ DJ.UI.StatsMap = DJ.UI.Component.extend({
     init: function (element, meta) {
         // Call the base constructor
         this._super(element, $.extend({ name: 'StatsMap' }, meta));
-
+        this.$element.addClass("dj_statMap");
         this._initializeMapData();
         this._initializeChart();
-
+      
         this._showContent();
         if (this.data) {
             this.setData(this.data);
@@ -108,7 +106,8 @@ DJ.UI.StatsMap = DJ.UI.Component.extend({
     },
 
     _initializeElements: function (ctx) {
-        this.$element.html(this.templates.container());
+        this._super(ctx);
+        this.$container.html(this.templates.container());
         this.pillContainer = ctx.find(this.selectors.pillContainer);
         this.mapContainer = ctx.find('.mapContainer');
 
@@ -355,13 +354,13 @@ DJ.UI.StatsMap = DJ.UI.Component.extend({
     },
 
     _showComingSoon: function () {
-        this.$element.find(this.selectors.contentContainer).addClass('visuallyHidden');
-        this.$element.find(this.selectors.noDataContainer).show('fast');
+        this.$container.addClass('visuallyHidden');
+        this.hideContent();
     },
 
     _showContent: function () {
-        this.$element.find(this.selectors.contentContainer).removeClass('visuallyHidden');
-        this.$element.find(this.selectors.noDataContainer).hide('fast');
+        this.$container.removeClass('visuallyHidden');
+        this.showContent();
     }
 });
 

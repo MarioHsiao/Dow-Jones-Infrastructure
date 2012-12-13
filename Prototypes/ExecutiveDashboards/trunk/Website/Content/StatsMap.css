@@ -10,6 +10,8 @@
 .dj_statMap .mapContainer {
   min-height: 280px;
   min-width: 260px;
+  height: 266px;
+  width: 367px;
   margin: 0 auto; }
 .dj_statMap .highcharts-series path {
   /*fill: #ccc !important;*/ }
