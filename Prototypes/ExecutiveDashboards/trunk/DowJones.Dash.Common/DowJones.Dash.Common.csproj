@@ -44,24 +44,51 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DowJones.Infrastructure, Version=3.3.83.38366, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\DowJones.Infrastructure.3.3.83\lib\DowJones.Infrastructure.dll</HintPath>
+      <Reference Include="log4net">
+      <HintPath>..\packages\log4net.1.2.99\lib\2.0\log4net.dll</HintPath>
     </Reference>
-    <Reference Include="DowJones.Pages, Version=3.3.83.38366, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Ninject">
+      <HintPath>..\packages\Ninject.2.2.1.4\lib\net40-Full\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="DowJones.Infrastructure, Version=3.3.86.23025, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\DowJones.Pages.3.3.83\lib\DowJones.Pages.dll</HintPath>
+      <HintPath>..\packages\DowJones.Infrastructure.3.3.86\lib\DowJones.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="DowJones.Pages, Version=3.3.86.23025, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DowJones.Pages.3.3.86\lib\DowJones.Pages.dll</HintPath>
+    </Reference>
+    <Reference Include="DowJones.Pages.Modules">
+      <HintPath>..\packages\DowJones.Pages.Modules.3.3.78\lib\DowJones.Pages.Modules.dll</HintPath>
+    </Reference>
+    <Reference Include="DowJones.Web.Mvc">
+      <HintPath>..\packages\DowJones.Web.Mvc.3.3.86\lib\DowJones.Web.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="DowJones.Parallel">
       <HintPath>..\packages\DowJones.Parallel.1.0.0\lib\DowJones.Parallel.dll</HintPath>
     </Reference>
-    <Reference Include="factiva.gateway.messages, Version=7.5.0.101, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="DowJones.Web.Mvc.UI.Canvas">
+      <HintPath>..\packages\DowJones.Web.Mvc.UI.Canvas.3.3.86\lib\DowJones.Web.Mvc.UI.Canvas.dll</HintPath>
+    </Reference>
+    <Reference Include="DowJones.Web.Mvc.UI.Canvas.Modules">
+      <HintPath>..\packages\DowJones.Web.Mvc.UI.Canvas.Modules.3.3.78\lib\DowJones.Web.Mvc.UI.Canvas.Modules.dll</HintPath>
+    </Reference>
+    <Reference Include="DowJones.Web.Mvc.UI.Canvas.Modules.Models">
+      <HintPath>..\packages\DowJones.Web.Mvc.UI.Canvas.Modules.Models.3.3.78\lib\DowJones.Web.Mvc.UI.Canvas.Modules.Models.dll</HintPath>
+    </Reference>
+    <Reference Include="DowJones.Web.Mvc.UI.Components">
+      <HintPath>..\packages\DowJones.Web.Mvc.UI.Components.3.3.86\lib\DowJones.Web.Mvc.UI.Components.dll</HintPath>
+    </Reference>
+    <Reference Include="DowJones.Web.Mvc.UI.Components.Models">
+      <HintPath>..\packages\DowJones.Web.Mvc.UI.Components.Models.3.3.86\lib\DowJones.Web.Mvc.UI.Components.Models.dll</HintPath>
+    </Reference>
+    <Reference Include="factiva.gateway.messages, Version=7.5.0.104, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Factiva.Gateway.7.5.0.101\lib\factiva.gateway.messages.dll</HintPath>
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.104\lib\factiva.gateway.messages.dll</HintPath>
     </Reference>
     <Reference Include="FactivaGateway, Version=1.6.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Factiva.Gateway.7.5.0.101\lib\FactivaGateway.dll</HintPath>
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.104\lib\FactivaGateway.dll</HintPath>
     </Reference>
     <Reference Include="Hammock">
       <HintPath>..\packages\Hammock.1.2.9\lib\4.0\Hammock.dll</HintPath>
@@ -70,18 +97,12 @@
       <HintPath>..\packages\Hammock.1.2.9\lib\4.0\Hammock.ClientProfile.dll</HintPath>
     </Reference>
     <Reference Include="Interop.FCMLib">
-      <HintPath>..\packages\Factiva.Gateway.7.5.0.101\lib\Interop.FCMLib.dll</HintPath>
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.104\lib\Interop.FCMLib.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
-    </Reference>
-    <Reference Include="log4net">
-      <HintPath>..\packages\log4net.1.2.99\lib\2.0\log4net.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="Ninject">
-      <HintPath>..\packages\Ninject.2.2.1.4\lib\net40-Full\Ninject.dll</HintPath>
     </Reference>
     <Reference Include="SignalR, Version=0.5.1.10822, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -133,6 +154,12 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DowJones.Dash.Modules.Models\DowJones.Dash.Modules.Models.csproj">
+      <Project>{53aa1be1-d4aa-4769-adf4-6fb23d768139}</Project>
+      <Name>DowJones.Dash.Modules.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

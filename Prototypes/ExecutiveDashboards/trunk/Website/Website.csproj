@@ -428,7 +428,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DowJones.Dash.Common\DowJones.Dash.Common.csproj">
-      <Project>{0FC55532-400C-44E6-9392-563FF4600842}</Project>
+      <Project>{0fc55532-400c-44e6-9392-563ff4600842}</Project>
       <Name>DowJones.Dash.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\DowJones.Dash.Components.Models\DowJones.Dash.Components.Models.csproj">
@@ -438,6 +438,14 @@
     <ProjectReference Include="..\DowJones.Dash.Components\DowJones.Dash.Components.csproj">
       <Project>{973b633a-e26b-4990-bf22-95847cdb1b40}</Project>
       <Name>DowJones.Dash.Components</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DowJones.Dash.Modules.Models\DowJones.Dash.Modules.Models.csproj">
+      <Project>{53aa1be1-d4aa-4769-adf4-6fb23d768139}</Project>
+      <Name>DowJones.Dash.Modules.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DowJones.Dash.Modules\DowJones.Dash.Modules.csproj">
+      <Project>{4a1b1d49-2843-4bf9-853f-add55213034a}</Project>
+      <Name>DowJones.Dash.Modules</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

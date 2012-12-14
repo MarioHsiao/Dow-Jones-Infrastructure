@@ -2,7 +2,7 @@
  * StatsMap
  */
 
-DJ.UI.StatsMap = DJ.UI.DashboardComponent.extend({
+DJ.UI.StatsMap = DJ.UI.Component.extend({
 
     defaults: {
         mapType: 'country',
@@ -100,14 +100,13 @@ DJ.UI.StatsMap = DJ.UI.DashboardComponent.extend({
 
     _initializeDelegates: function () {
         this._delegates = $.extend(this._delegates, {
-            setData: $dj.delegate(this, this.setData),
-            domainChanged: $dj.delegate(this, this._domainChanged)
+            setData: $dj.delegate(this, this.setData)
         });
     },
 
     _initializeElements: function (ctx) {
         this._super(ctx);
-        this.$container.html(this.templates.container());
+        this.$element.html(this.templates.container());
         this.pillContainer = ctx.find(this.selectors.pillContainer);
         this.mapContainer = ctx.find('.mapContainer');
 
@@ -116,14 +115,7 @@ DJ.UI.StatsMap = DJ.UI.DashboardComponent.extend({
     },
 
     _initializeEventHandlers: function () {
-        if (this.options.mapType !== 'world') {
-            $dj.subscribe('data.PageLoadDetailsByType', this._delegates.setData);
-        }
-        else {
-            $dj.subscribe('data.PageLoadDetailsByTypeForWorld', this._delegates.setData);
-        }
-
-        $dj.subscribe('data.BasicHostConfiguration', this._delegates.domainChanged);
+        
         var self = this;
 
         this.$element.on('click', this.selectors.pill, function () {
@@ -169,23 +161,6 @@ DJ.UI.StatsMap = DJ.UI.DashboardComponent.extend({
         this.currentStateCodes = this.stateCodes[map];
     },
 
-    _domainChanged: function (data) {
-        if (!data)
-            return;
-
-        if (this.options.mapType !== 'world') {
-            this._initializeMapData(data.map);
-        }
-
-        this._initializeChart(data.performanceZones);
-
-        this._showContent();
-
-        this.activePillId = null;
-
-        //this.mapContainer.hide();
-
-    },
 
     _initializeChart: function (performanceZones) {
         this._initializingChart = true;
@@ -354,13 +329,17 @@ DJ.UI.StatsMap = DJ.UI.DashboardComponent.extend({
     },
 
     _showComingSoon: function () {
-        this.$container.addClass('visuallyHidden');
-        this.hideContent();
+        //this.$element.addClass('visuallyHidden');
+        //this.hideContent();
+        this.$element.find('.content').hide();
+        this.$element.find('.noData').show();
     },
 
     _showContent: function () {
-        this.$container.removeClass('visuallyHidden');
-        this.showContent();
+        //this.$element.removeClass('visuallyHidden');
+        //this.showContent();
+        this.$element.find('.noData').hide();
+        this.$element.find('.content').show();
     }
 });
 

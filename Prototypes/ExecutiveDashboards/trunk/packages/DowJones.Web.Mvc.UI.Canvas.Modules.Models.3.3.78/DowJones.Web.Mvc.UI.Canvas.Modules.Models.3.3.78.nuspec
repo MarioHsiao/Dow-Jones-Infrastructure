@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>DowJones.Web.Mvc.UI.Canvas.Modules.Models</id>
+    <version>3.3.78</version>
+    <title>Dow Jones ASP.NET MVC Canvas Module Models v3</title>
+    <authors>Dow Jones Platform Integration Team</authors>
+    <owners>Dow Jones Platform Integration Team</owners>
+    <licenseUrl>http://dowjones.com</licenseUrl>
+    <projectUrl>http://dowjones.com</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Dow Jones ASP.NET MVC Canvas Module Models</description>
+    <language>en-US</language>
+    <tags>DowJones</tags>
+    <dependencies>
+      <dependency id="DowJones.Pages.Modules" version="3.3.78" />
+      <dependency id="DowJones.Infrastructure" version="3.0.9" />
+      <dependency id="DowJones.Pages" version="3.0.9" />
+      <dependency id="DowJones.Web.Mvc" version="3.0.9" />
+      <dependency id="DowJones.Web.Mvc.UI.Canvas" version="3.0.9" />
+      <dependency id="Factiva.Gateway" version="7.5.0.66" />
+    </dependencies>
+  </metadata>
+</package>
