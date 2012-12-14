@@ -106,6 +106,7 @@ DJ.UI.SimpleAlert = DJ.UI.Component.extend({
 
     _bindNewsFilterEx: function () {
         var me = this;
+        $(me.$element).newsFilterPillMenuEx({ 'removeFilter': me._onFilterRemove, 'excludeFilter': me._onFilterExclude, 'includeFilter': me._onFilterInclude });
         if (me.data.newsFilter && me.data.newsFilter.length > 0) {
             this.$newsFilterContainer
                 .html(this.templates.newsFilterEx({ filterItems: me.data.newsFilter }))
@@ -288,6 +289,18 @@ DJ.UI.SimpleAlert = DJ.UI.Component.extend({
             }
         }
         $filter.remove();
+    },
+
+    _onFilterRemove: function (elem) {
+        console.log('remove clicked!!');
+    },
+
+    _onFilterInclude: function (elem) {
+        console.log('include clicked!!');
+    },
+
+    _onFilterExclude: function (elem) {
+        console.log('exclude clicked!!');
     },
 
     _onDeliveryTimeChange: function () {

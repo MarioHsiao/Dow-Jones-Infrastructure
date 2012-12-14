@@ -26,12 +26,14 @@ namespace DowJones.Web.Mvc.UI.Components.SimpleAlert
     using System.Web.UI;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 12/13/2012 01:55 PM
+    // Last Generated Timestamp: 12/14/2012 01:23 PM
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.SimpleAlert.ClientTemplates.Layout.htm", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="layout", DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.SimpleAlert.SimpleAlertComponent))]
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.SimpleAlert.ClientTemplates.Options.htm", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="options", DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.SimpleAlert.SimpleAlertComponent))]
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.SimpleAlert.ClientTemplates.NewsFilter.htm", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="newsFilter", DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.SimpleAlert.SimpleAlertComponent))]
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.SimpleAlert.ClientTemplates.NewsFilterEx.htm", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="newsFilterEx", DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.SimpleAlert.SimpleAlertComponent))]
-    [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.SimpleAlert.SimpleAlert.js", ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.SimpleAlert.SimpleAlertComponent))]
+    [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.SimpleAlert.SimpleAlert.js", DependsOn=new string[] {
+            "newsfilterPillMenu-plugin",
+            ""}, ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.SimpleAlert.SimpleAlertComponent))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.27108")]
     public class SimpleAlertComponent : DowJones.Web.Mvc.UI.ViewComponentBase<SimpleAlertModel>
     {

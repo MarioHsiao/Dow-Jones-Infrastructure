@@ -284,6 +284,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ShareChartComponent.cshtml</DependentUpon>
     </Compile>
+    <Compile Include="SimpleAlert\EmbeddedResources.cs" />
     <Compile Include="SimpleAlert\SimpleAlertComponent.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -948,6 +949,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="SimpleAlert\ClientTemplates\Layout.htm" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="SimpleAlert\scripts\newsFilterPillMenuEx.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
