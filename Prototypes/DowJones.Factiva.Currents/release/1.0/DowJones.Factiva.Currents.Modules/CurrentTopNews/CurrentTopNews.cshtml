@@ -1,0 +1,31 @@
+﻿@using Web.Mvc.Extensions
+@using DowJones.Factiva.Currents.Models
+
+@inherits DowJones.Web.Mvc.UI.CompositeComponent<CurrentTopNewsModel>
+@ClientPlugin dj_CurrentTopNews
+@ScriptResource RelativeResourceName=CurrentTopNews.js
+
+@{ 
+    CssClass += " dj_CurrentTopNews";
+}
+
+<div class="module">
+    <header>
+         <i class="icon-time icon-white"></i>
+        <span>Factiva Picks</span>
+    </header>
+    <div class="content">
+		<div class="row">
+			@foreach (var headline in Model.CurrentsHeadlines.Where(c => c.CurrentHeadline.Headlines.Count() > 0).Take(3))
+			{
+                    <div class="span4">
+                            <h3 class="module-col-title article-group-title">
+                                @headline.Title
+                            </h3>
+                             @Html.DJ().Render(headline.CurrentHeadline)
+                   </div>
+           
+			}
+            </div>
+		</div>
+</div>

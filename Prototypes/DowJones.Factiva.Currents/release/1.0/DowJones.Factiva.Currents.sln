@@ -1,0 +1,65 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Website", "Website\Website.csproj", "{0C497985-DC29-4E03-861C-300DE0FC2B4C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DowJones.Factiva.Currents.Components", "DowJones.Factiva.Currents.Components\DowJones.Factiva.Currents.Components.csproj", "{A2E7CBA8-9918-4F80-9167-27077599E230}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DowJones.Factiva.Currents.Modules", "DowJones.Factiva.Currents.Modules\DowJones.Factiva.Currents.Modules.csproj", "{5EA6A5EE-F6EE-4624-B9B5-3976DF026C19}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DowJones.Factiva.Currents.Tests", "DowJones.Factiva.Currents.Tests\DowJones.Factiva.Currents.Tests.csproj", "{B92514B6-63E4-4CC8-AAB1-612156376694}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DowJones.Factiva.Currents.ServiceModels", "DowJones.Factiva.Currents.ServiceModels\DowJones.Factiva.Currents.ServiceModels.csproj", "{10335CD8-FEE9-4736-9863-357C1DD3EBBE}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 6
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://sbknwstfs1:8080/tfs/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = Website\\Website.csproj
+		SccProjectName1 = Website
+		SccLocalPath1 = Website
+		SccProjectUniqueName2 = DowJones.Factiva.Currents.Components\\DowJones.Factiva.Currents.Components.csproj
+		SccProjectName2 = DowJones.Factiva.Currents.Components
+		SccLocalPath2 = DowJones.Factiva.Currents.Components
+		SccProjectUniqueName3 = DowJones.Factiva.Currents.Modules\\DowJones.Factiva.Currents.Modules.csproj
+		SccProjectName3 = DowJones.Factiva.Currents.Modules
+		SccLocalPath3 = DowJones.Factiva.Currents.Modules
+		SccProjectUniqueName4 = DowJones.Factiva.Currents.Tests\\DowJones.Factiva.Currents.Tests.csproj
+		SccProjectName4 = DowJones.Factiva.Currents.Tests
+		SccLocalPath4 = DowJones.Factiva.Currents.Tests
+		SccProjectUniqueName5 = DowJones.Factiva.Currents.ServiceModels\\DowJones.Factiva.Currents.ServiceModels.csproj
+		SccProjectName5 = DowJones.Factiva.Currents.ServiceModels
+		SccLocalPath5 = DowJones.Factiva.Currents.ServiceModels
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0C497985-DC29-4E03-861C-300DE0FC2B4C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C497985-DC29-4E03-861C-300DE0FC2B4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C497985-DC29-4E03-861C-300DE0FC2B4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C497985-DC29-4E03-861C-300DE0FC2B4C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2E7CBA8-9918-4F80-9167-27077599E230}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2E7CBA8-9918-4F80-9167-27077599E230}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2E7CBA8-9918-4F80-9167-27077599E230}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2E7CBA8-9918-4F80-9167-27077599E230}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5EA6A5EE-F6EE-4624-B9B5-3976DF026C19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5EA6A5EE-F6EE-4624-B9B5-3976DF026C19}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5EA6A5EE-F6EE-4624-B9B5-3976DF026C19}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5EA6A5EE-F6EE-4624-B9B5-3976DF026C19}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B92514B6-63E4-4CC8-AAB1-612156376694}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B92514B6-63E4-4CC8-AAB1-612156376694}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B92514B6-63E4-4CC8-AAB1-612156376694}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B92514B6-63E4-4CC8-AAB1-612156376694}.Release|Any CPU.Build.0 = Release|Any CPU
+		{10335CD8-FEE9-4736-9863-357C1DD3EBBE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10335CD8-FEE9-4736-9863-357C1DD3EBBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10335CD8-FEE9-4736-9863-357C1DD3EBBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10335CD8-FEE9-4736-9863-357C1DD3EBBE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,57 @@
+﻿@using DowJones
+@using DowJones.Factiva.Currents.Models
+@model DowJones.Factiva.Currents.ServiceModels.PageService.PageServiceResponse
+
+
+<section class="row">
+    <div class="span12">
+        @if (Model.NewsstandNewsPageModuleServiceResult != null)
+        {
+            @Html.DJ().Render(Mapper.Map<CurrentNewsStandModel>(Model.NewsstandNewsPageModuleServiceResult))
+        }
+    </div>
+</section>
+
+<section class="row">
+    <div class="span12">
+        @if (Model.CustomTopicsNewsPageModuleServiceResult != null)
+        {
+            @Html.DJ().Render(Mapper.Map<CustomTopicsModel>(Model.CustomTopicsNewsPageModuleServiceResult))
+        }
+    </div>
+</section>
+<section class="row">
+    <div class="span12">
+        @if (Model.SourcesNewsPageModuleServiceResult != null)
+        {
+            @Html.DJ().Render(Mapper.Map<CurrentSourcesModel>(Model.SourcesNewsPageModuleServiceResult))
+        }
+    </div>
+</section>
+<section class="row">
+    <div class="span12">
+        @if (Model.TrendingNewsPageModuleServiceResult != null)
+        {
+            @Html.DJ().Render(Mapper.Map<CurrentTrendingModel>(Model.TrendingNewsPageModuleServiceResult))
+        }
+    </div>
+</section>
+
+<section class="row">
+    <div class="span12">
+        @if (Model.RegionalMapNewsPageModuleServiceResult != null)
+        {
+            @Html.DJ().Render(Mapper.Map<CurrentRegionalMapModule>(Model.RegionalMapNewsPageModuleServiceResult))
+        }
+    </div>
+</section>
+
+<section class="row">
+    <div class="span12">
+        @if (Model.TopNewsNewsPageModuleServiceResult != null)
+        {
+            @Html.DJ().Render(Mapper.Map<CurrentTopNewsModel>(Model.TopNewsNewsPageModuleServiceResult))
+        }
+    </div>
+</section>
+

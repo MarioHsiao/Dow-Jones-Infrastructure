@@ -1,0 +1,18 @@
+﻿@model DowJones.Factiva.Currents.Website.Models.HeadlineList
+
+@{
+    ViewBag.Title = "Headlines";
+}
+
+<h3 class="dj_article_hd dj_article_section headline">
+    @Request.QueryString["title"]
+</h3>
+<section id="headlines">
+    @Html.DJ().Render(Model.Headlines)
+</section>
+@*<p>
+	@Html.ActionLink(DJ.Token("viewAll").ToString(),
+            "ViewAll",
+            new RouteValueDictionary { { "sc", Model.ViewAllSearchContext } },
+            new Dictionary<string, object> {{"class", "label label-info"}})
+</p>*@

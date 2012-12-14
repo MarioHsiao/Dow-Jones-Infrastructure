@@ -1,0 +1,164 @@
+﻿@using DowJones.Factiva.Currents.Components.CurrentRegionalMap
+@model IEnumerable<DowJones.Models.Common.NewsEntityNewsVolumeVariation>
+
+@{
+    ViewBag.Title = "Test";
+}
+
+<style>
+    .mapContainer {
+        width: 988px;
+        height: 538px;
+        
+    }
+</style>
+
+
+
+@Html.DJ().Render(new CurrentRegionalMapModel())
+
+@section scripts {
+	<script type="text/javascript">
+	    var regionalMapData = {
+	        "regionNewsVolume": [
+	            {
+	                "code": "AFRICAZ",
+	                "currentTimeFrameNewsVolume": {
+	                    "displayText": {
+	                        "value": "7,191"
+	                    },
+	                    "value": 7191
+	                },
+	                "percentVolumeChange": {"displayText":{"value":"-36.36%"},"value":-36.363636363636353}
+	            },
+	            {
+	                "code": "APACZ",
+	                "currentTimeFrameNewsVolume": {
+	                    "displayText": {
+	                        "value": "82,528"
+	                    },
+	                    "value": 82528
+	                },
+	                "percentVolumeChange": {"displayText":{"value":"36.36%"},"value":36.363636363636353}
+	            },
+	            {
+	                "code": "AUSTR",
+	                "currentTimeFrameNewsVolume": {
+	                    "displayText": {
+	                        "value": "9,352"
+	                    },
+	                    "value": 9352
+	                },
+	                "percentVolumeChange": {"displayText":{"value":"-36.36%"},"value":-36.363636363636353}
+	            },
+	            {
+	                "code": "CAMZ",
+	                "currentTimeFrameNewsVolume": {
+	                    "displayText": {
+	                        "value": "6,163"
+	                    },
+	                    "value": 6163
+	                },
+	                "percentVolumeChange": {"displayText":{"value":"-36.36%"},"value":-36.363636363636353}
+	            },
+	            {
+	                "code": "EURZ",
+	                "currentTimeFrameNewsVolume": {
+	                    "displayText": {
+	                        "value": "149,062"
+	                    },
+	                    "value": 149062
+	                },
+	                "percentVolumeChange": {"displayText":{"value":"36.36%"},"value":36.363636363636353}
+	            },
+	            {
+	                "code": "INDIA",
+	                "currentTimeFrameNewsVolume": {
+	                    "displayText": {
+	                        "value": "10,601"
+	                    },
+	                    "value": 10601
+	                },
+	                "percentVolumeChange": {"displayText":{"value":"-36.36%"},"value":-36.363636363636353}
+	            },
+	            {
+	                "code": "MEASTZ",
+	                "currentTimeFrameNewsVolume": {
+	                    "displayText": {
+	                        "value": "13,638"
+	                    },
+	                    "value": 13638
+	                },
+	                "percentVolumeChange": {"displayText":{"value":"36.36%"},"value":36.363636363636353}
+	            },
+	            {
+	                "code": "NAMZ",
+	                "currentTimeFrameNewsVolume": {
+	                    "displayText": {
+	                        "value": "352,527"
+	                    },
+	                    "value": 352527
+	                },
+	                "percentVolumeChange": {"displayText":{"value":"-36.36%"},"value":-36.363636363636353}
+	            },
+	            {
+	                "code": "RUSS",
+	                "currentTimeFrameNewsVolume": {
+	                    "displayText": {
+	                        "value": "9,469"
+	                    },
+	                    "value": 9469
+	                },
+	                "percentVolumeChange": {"displayText":{"value":"36.36%"},"value":36.363636363636353}
+	            },
+	            {
+	                "code": "SAMZ",
+	                "currentTimeFrameNewsVolume": {
+	                    "displayText": {
+	                        "value": "10,057"
+	                    },
+	                    "value": 10057
+	                },
+	                "percentVolumeChange": {"displayText":{"value":"-36.36%"},"value":-36.363636363636353}
+	            },
+	            {
+	                "code": "AUSNZ",
+	                "currentTimeFrameNewsVolume": {
+	                    "displayText": {
+	                        "value": "8,057"
+	                    },
+	                    "value": 8057
+	                },
+	                "percentVolumeChange": {"displayText":{"value":"36.36%"},"value":36.363636363636353}
+	            },
+	            {
+	                "code": "INDSUBZ",
+	                "currentTimeFrameNewsVolume": {
+	                    "displayText": {
+	                        "value": "1,057"
+	                    },
+	                    "value": 1057
+	                },
+	                "percentVolumeChange": {"displayText":{"value":"-36.36%"},"value":-36.363636363636353}
+	            },
+	            {
+	                "code": "ASIAZ",
+	                "currentTimeFrameNewsVolume": {
+	                    "displayText": {
+	                        "value": "857"
+	                    },
+	                    "value": 857
+	                },
+	                "percentVolumeChange": {"displayText":{"value":"36.36%"},"value":36.363636363636353}
+	            }
+	        ]
+	    };
+
+	    DJ.jQuery(function() {
+	        DJ.$dj.require(['DJ.UI.CurrentRegionalMap'], function() {
+	            var comp = $('.dj_CurrentRegionalMap').findComponent(DJ.UI.Component);
+	            comp.setData(regionalMapData);
+	        });
+	    });
+	</script>
+}

@@ -1,0 +1,85 @@
+/* line 1, ../sass/Site.scss */
+document, body {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* normalize */
+/* line 8, ../sass/Site.scss */
+body {
+  background-color: #F2FAFD;
+  font: 13px/1.231 arial, helvetica, clean, sans-serif;
+}
+
+/* line 13, ../sass/Site.scss */
+body, select, input, textarea {
+  color: #444;
+}
+
+/* line 17, ../sass/Site.scss */
+h4 {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+}
+
+/* line 28, ../sass/Site.scss */
+a {
+  color: #39C;
+  text-decoration: none;
+  color: #39C;
+  text-decoration: none;
+}
+/* line 32, ../sass/Site.scss */
+a:active, a:visited, a:active, a:visited {
+  color: #39C;
+  text-decoration: none;
+}
+
+/* !end normalize */
+/* line 44, ../sass/Site.scss */
+header .navbar {
+  height: 60px;
+  background: url("images/header-bg.png") no-repeat;
+}
+/* line 48, ../sass/Site.scss */
+header .navbar .navbar-inner {
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+}
+/* line 53, ../sass/Site.scss */
+header .navbar .navbar-inner .container {
+  padding-top: 18px;
+}
+/* line 57, ../sass/Site.scss */
+header .navbar .navbar-inner .factivaLogo {
+  display: inline-block;
+  width: 210px;
+  height: 23px;
+  background: url("images/logo_factiva.png") no-repeat;
+}
+
+/* line 69, ../sass/Site.scss */
+.row {
+  margin-bottom: 20px;
+}
+
+/* line 73, ../sass/Site.scss */
+.dj_modal-article .dj_article-container .dj_article_meta .meta .dj_article_section {
+  display: -moz-inline-stack;
+  display: inline-block;
+  zoom: 1;
+  *display: inline;
+  vertical-align: middle;
+}
+
+/* line 81, ../sass/Site.scss */
+.dj_article_lp, .dj_article_tp, .dj_article_tf, .dj_article_an {
+  margin: 10px 0;
+}

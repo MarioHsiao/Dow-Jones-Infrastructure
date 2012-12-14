@@ -1,0 +1,28 @@
+﻿@model HandleErrorInfo
+@{
+    ViewBag.Title = "Generic Error";
+}
+
+<h1 class="error">Generic Error</h1>
+<h2 class="error">An error occurred while processing your request.</h2>
+@if (Request.IsLocal)
+{
+    if (Model != null && Model.Exception != null)
+    {
+    <h4>Exception was:</h4>
+    <pre>@Model.Exception.Message</pre>
+    <h4>Stack Trace:</h4>
+    <pre>@Model.Exception.StackTrace</pre>
+    }
+    else
+    {
+    <p>There are no details for this error at this point of time.</p>
+    }
+}
+<p>
+    We have reported this error to the Administrator.
+</p>
+<p>
+    @Html.RouteLink("← Return to Home page", "Default", new { controller = "Home" })
+</p>
+<hr />

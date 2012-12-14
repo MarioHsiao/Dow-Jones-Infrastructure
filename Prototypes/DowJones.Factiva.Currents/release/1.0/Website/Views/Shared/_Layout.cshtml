@@ -1,0 +1,42 @@
+﻿@using DowJones.Factiva.Currents.Website
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width" />
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    
+    @RenderSection("styles", false)
+    @DJ.ScriptRegistry().RenderHead()
+
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a href="@Url.Content("~")" title="Dow Jones Currents" alt="logo" class="logo"><span
+                        class="factivaLogo"></span></a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="container">
+        @RenderBody()
+        <footer>
+            <p class="dj_page-footer-copyright">
+                Copyright ©@DateTime.Now.Year <span>Factiva, Inc.</span> All rights reserved. <a
+                    href="http://global.factiva.com/factivalogin/privacypolicy/privacypolicy_en.html"
+                    title="Privacy Policy" target="_blank">Privacy Policy</a>
+            </p>
+        </footer>
+    </div>
+    @DJ.ScriptRegistry().Render()
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

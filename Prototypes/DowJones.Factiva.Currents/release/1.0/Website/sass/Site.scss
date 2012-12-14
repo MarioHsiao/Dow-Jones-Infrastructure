@@ -1,0 +1,83 @@
+document, body {
+	width: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+/* normalize */
+body {
+	background-color: #F2FAFD;
+	font: 13px/1.231 arial,helvetica,clean,sans-serif;
+}
+
+body, select, input, textarea {
+	color: #444;
+}
+
+h4 {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+	background: transparent;
+}
+
+
+a {
+  color: #39C;
+  text-decoration: none;
+
+  &:active, &:visited, &:active, &:visited {
+    color: #39C;
+    text-decoration: none; 
+  }
+  
+  color: #39C;
+  text-decoration: none; 
+}
+
+/* !end normalize */
+
+header {
+	.navbar {
+		height: 60px;
+		background: url("images/header-bg.png") no-repeat;
+
+		.navbar-inner {
+			background: transparent;
+			border: 0;
+			border-radius: 0;
+
+			.container {
+				padding-top: 18px;
+			}
+
+			.factivaLogo {
+				display: inline-block;
+				width: 210px;
+				height: 23px;
+				background: url("images/logo_factiva.png") no-repeat;
+			}
+
+		}
+
+	}
+}
+
+.row {
+	margin-bottom: 20px;
+}
+
+.dj_modal-article .dj_article-container .dj_article_meta .meta .dj_article_section {
+  display: -moz-inline-stack;
+  display: inline-block;
+  zoom: 1;
+  *display: inline;
+  vertical-align: middle;
+}
+
+.dj_article_lp, .dj_article_tp, .dj_article_tf, .dj_article_an {
+  margin: 10px 0;
+}

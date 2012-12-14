@@ -1,0 +1,96 @@
+﻿@using CurrentsHeadline
+@model CurrentsHeadlineModel
+@ClientPlugin dj_CurrentsHeadline
+@ScriptResource RelativeResourceName=CurrentsHeadline.js
+@{ CssClass = "dj_CurrentsHeadline"; }
+
+<ul class="dj_CurrentsHeadline items">
+	@if (Model.HasData)
+	{
+		foreach (var headline in Model.Headlines)
+		{
+			<li class="dj_entry @Model.GetSelectionStatus(headline) @headline.ContentCategoryDescriptor @headline.ContentSubCategoryDescriptor">
+				<div class="article-wrap">
+					<h4 class="article-headline">
+					    <a href="@Model.GetHeadlineUrl(headline, Url)" class="article-view-trigger">@(headline.TruncatedTitle ?? headline.Title)</a>
+					</h4>
+					@if (Model.ShouldShowSource(headline) || Model.ShouldShowPublicationDateTime(headline))
+					{
+						<div class="article-meta">
+							@if (Model.ShouldShowSource(headline))
+							{
+								if (Model.SourceClickable)
+								{
+									<span class="article-source source-clickable" rel="@headline.SourceCode ">@headline.SourceDescriptor </span>
+								}
+								else
+								{
+									<span class="article-source">@headline.SourceDescriptor </span>
+								}
+							} 
+                            </div>
+         
+							if (Model.ShouldShowPublicationDateTime(headline))
+							{
+                                <div class="article-meta">
+								    <span class="date-stamp">@headline.PublicationDateTimeDescriptor </span>
+                                </div>
+                            }
+              
+                            if (Model.ShouldShowAuthor(headline))
+							{
+                                  <div class="article-meta">
+                                @if (@headline.CodedAuthors != null)
+                                {
+                                   
+                                      for (int j = 0, jCnt = @headline.CodedAuthors.Count; j < jCnt; j++)
+                                      {
+                                            var author = @headline.CodedAuthors[j];
+                                            for (int k = 0, kcnt = @author.items.Count; k < kcnt; k++)
+                                            {
+                                                var item = @author.items[k];
+                                                switch (@item.EntityType.ToString().ToLower())
+                                                {
+                                                    case "person":
+                                                    case "author":
+                                                        <span class="article-author article-clickable">@item.value</span>
+                                                         break;
+                                                    case "textual":
+                                                    default:
+                                                        <span class="article-author">@item.value</span>
+                                                        break;
+                                                }
+                                            }
+                                      }
+                                }
+                                else
+                                {
+                                    <span class="author">@headline.Authors.Aggregate((a,b)=> a+","+b)</span>
+                                } 
+                                          </div>
+							}
+                            if (Model.IsMultimediaContent(headline))
+                            {
+                               <div class="article-meta">
+                                   @if(@headline.ContentSubCategoryDescriptor == "video")
+                                   { 
+                                       <span class="fi fi_video"> </span> 
+                                   }
+                                   else if(headline.ContentSubCategoryDescriptor == "audio")
+                                   {
+                                        <span class="fi fi_audio"> </span>
+                                   }
+                                
+                                <span class="media-length">[@headline.MediaLength]</span>
+                            </div>
+                            }
+					}
+				</div>
+			</li>
+		}
+	}
+	else
+		  {
+			  <li><span class="dj_noResults">@DJ.Token("noResults")</span></li>
+		  }
+</ul>
