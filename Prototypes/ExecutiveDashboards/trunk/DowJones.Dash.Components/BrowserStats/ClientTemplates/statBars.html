@@ -10,7 +10,7 @@
         version = (bar.browser === 'msie' || (bar.browser === 'firefox' && bar.browserVersion < 4)) ? bar.browserVersion : '';
     %>
     <li class="dj-trafficBar">
-        <span class="visitors"><%= bar.visitors %></span>
+        <span class="visitors"><%= bar.visitors %>%</span>
         <div class="browser"><i class="dj-logo-<%= broswerLogo %>"></i></div>
         <div class="bar <%= bar.temperature %>">
             <div class="gauge" style="width: <%= bar.percent %>%">&nbsp;</div>
