@@ -71,12 +71,12 @@
     <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="factiva.gateway.messages, Version=7.5.0.103, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="factiva.gateway.messages, Version=7.5.0.104, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Factiva.Gateway.7.5.0.103\lib\factiva.gateway.messages.dll</HintPath>
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.104\lib\factiva.gateway.messages.dll</HintPath>
     </Reference>
     <Reference Include="FactivaGateway, Version=1.6.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Factiva.Gateway.7.5.0.103\lib\FactivaGateway.dll</HintPath>
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.104\lib\FactivaGateway.dll</HintPath>
     </Reference>
     <Reference Include="Glimpse.Core">
       <HintPath>..\packages\Glimpse.0.86\lib\net40\Glimpse.Core.dll</HintPath>
@@ -87,9 +87,10 @@
     <Reference Include="Glimpse.Mvc3">
       <HintPath>..\packages\Glimpse.Mvc3.0.86\lib\net40\Glimpse.Mvc3.dll</HintPath>
     </Reference>
-    <Reference Include="Interop.FCMLib">
-      <HintPath>..\packages\Factiva.Gateway.7.5.0.103\lib\Interop.FCMLib.dll</HintPath>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
+    <Reference Include="Interop.FCMLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+      <Private>True</Private>
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.104\lib\Interop.FCMLib.dll</HintPath>
     </Reference>
     <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
       <HintPath>..\packages\log4net.1.2.99\lib\2.0\log4net.dll</HintPath>
@@ -194,6 +195,7 @@
     <Compile Include="Controllers\CompositeComponentController.cs" />
     <Compile Include="Controllers\NavBarController.cs" />
     <Compile Include="Controllers\ShareChartController.cs" />
+    <Compile Include="Controllers\SimpleAlertController.cs" />
     <Compile Include="Controllers\SocialButtonsController.cs" />
     <Compile Include="Controllers\SocialMediaController.cs" />
     <Compile Include="Controllers\StockKioskController.cs" />
@@ -258,7 +260,9 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Content Include="Content\css\components\SimpleAlert\SimpleAlert.css" />
     <Content Include="Content\js\DiscoveryFilters.js" />
+    <Content Include="Content\js\SimpleAlert.js" />
     <Content Include="GatewayResources\ReleaseNotes.txt" />
     <Content Include="GatewayResources\Xslt\archive\CreateBillingRecord_Response.xslt" />
     <Content Include="GatewayResources\Xslt\archive\GetArchiveEmailWithLimit_V2_0_Response.xslt" />
@@ -1104,6 +1108,7 @@
     <Content Include="Styles\images\email.gif" />
     <Content Include="Styles\images\factiva-icons-comm.png" />
     <Content Include="Styles\images\factiva-icons.png" />
+    <Content Include="Styles\images\factiva-icons2.png" />
     <Content Include="Styles\images\factiva.logos.png" />
     <Content Include="Styles\images\filter_arrow.png" />
     <Content Include="Styles\images\icon-sprite.png" />
@@ -1311,6 +1316,7 @@
     <Content Include="Views\SocialButtons\Index.cshtml" />
     <Content Include="Views\TrendingNews\TrendingNews.cshtml" />
     <Content Include="Views\ShareChart\Index.cshtml" />
+    <Content Include="Views\SimpleAlert\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Browsers\Devices\" />

@@ -10,6 +10,12 @@
         [ClientProperty("title")]
         public string Title { get; set; }
 
+        /// <summary>
+        /// Gets or sets the enable exclude.
+        /// </summary>
+        [ClientProperty("enableExclude")]
+        public string EnableExclude { get; set; }
+
         [ClientData]
         public SimpleAlertData Data
         {
