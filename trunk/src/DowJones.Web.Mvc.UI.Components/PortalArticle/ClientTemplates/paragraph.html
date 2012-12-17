@@ -51,7 +51,7 @@
             <% break; 
             case "EntityLink": %>
                 <a class="dj_article_entity <%= item.highLight ? 'dj_article_highlight' : '' %> <%= item.entityCategory %>" 
-                    href="javascript:void(0);" data-entity="<%= item.entityData %>"><%= item.text %></a>
+                    href="javascript:void(0);" data-entity='<%= item.entityData %>'><%= item.text %></a>
             <% break; 
             case "SpanAnchor": %>
                 <span>
