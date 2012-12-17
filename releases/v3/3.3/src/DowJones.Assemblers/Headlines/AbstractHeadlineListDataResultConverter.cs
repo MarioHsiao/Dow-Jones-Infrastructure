@@ -135,8 +135,12 @@ namespace DowJones.Assemblers.Headlines
                 // Combine from response  
                 headlineInfo.publicationTimeDescriptor = DateTimeFormatter.FormatTime(headlineInfo.publicationDateTime);
                 headlineInfo.publicationDateTime = DateTimeFormatter.Merge(contentHeadline.PublicationDate, contentHeadline.PublicationTime);
+                headlineInfo.publicationDateTimeDescriptor = DateTimeFormatter.FormatLongDateTime(headlineInfo.publicationDateTime);
             }
-            headlineInfo.publicationDateTimeDescriptor = DateTimeFormatter.FormatLongDateTime(headlineInfo.publicationDateTime);
+            else
+            {
+                headlineInfo.publicationDateTimeDescriptor = DateTimeFormatter.FormatLongDate(headlineInfo.publicationDateTime);
+            }
             headlineInfo.publicationDateDescriptor = DateTimeFormatter.FormatLongDate(headlineInfo.publicationDateTime);
 
             headlineInfo.wordCount = contentHeadline.WordCount;

@@ -5,7 +5,7 @@
 @ClientTemplate RelativeResourceName=ClientTemplates.Options.htm, TemplateId=options
 @ClientTemplate RelativeResourceName=ClientTemplates.NewsFilter.htm, TemplateId=newsFilter
 @ClientTemplate RelativeResourceName=ClientTemplates.NewsFilterEx.htm, TemplateId=newsFilterEx
-@ScriptResource RelativeResourceName=SimpleAlert.js
+@ScriptResource RelativeResourceName=SimpleAlert.js,DependsOn=newsfilterPillMenu-plugin;
 @{ 
     CssClass = "dj_SimpleAlert";
     Html.DJ().ScriptRegistry();
