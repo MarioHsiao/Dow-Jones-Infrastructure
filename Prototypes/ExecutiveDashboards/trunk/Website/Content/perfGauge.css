@@ -1,9 +1,8 @@
 .browser {
-  background: url(images/browser-sprites.png) no-repeat; }
-  .browser.question-mark {
-    background-position: 0 -250px;
-    width: 32px;
-    height: 32px; }
+  background: url(images/browser-sprites.png) no-repeat;
+  background-position: 0 -250px;
+  width: 32px;
+  height: 32px; }
   .browser.chrome {
     background-position: 0 0;
     width: 36px;
