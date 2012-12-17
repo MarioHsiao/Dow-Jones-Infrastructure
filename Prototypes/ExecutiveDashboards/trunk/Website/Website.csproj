@@ -355,7 +355,7 @@
     <Content Include="Content\images\sprite-source\aol.png" />
     <Content Include="Content\images\sprite-source\apple_safari.png" />
     <Content Include="Content\images\sprite-source\atratus web explorer.png" />
-    <Content Include="Content\images\sprite-source\bagel 1.png" />
+    <Content Include="Content\images\sprite-source\bagel.png" />
     <Content Include="Content\images\sprite-source\bagel2.png" />
     <Content Include="Content\images\sprite-source\Beonex-icon.png" />
     <Content Include="Content\images\sprite-source\blackberry-32.png" />
@@ -370,6 +370,8 @@
     <Content Include="Content\images\sprite-source\docomo1.png" />
     <Content Include="Content\images\sprite-source\dolphin.png" />
     <Content Include="Content\images\sprite-source\Domino.png" />
+    <Content Include="Content\images\sprite-source\Domino1.png" />
+    <Content Include="Content\images\sprite-source\Donzilla.png" />
     <Content Include="Content\images\sprite-source\Donzilla1_gif.gif" />
     <Content Include="Content\images\sprite-source\e-capsule.png" />
     <Content Include="Content\images\sprite-source\epiphany-browser.png" />
@@ -382,16 +384,20 @@
     <Content Include="Content\images\sprite-source\flock.png" />
     <Content Include="Content\images\sprite-source\galeon.png" />
     <Content Include="Content\images\sprite-source\Gian.png" />
+    <Content Include="Content\images\sprite-source\googlebot.jpg" />
     <Content Include="Content\images\sprite-source\GoogleBot.png" />
     <Content Include="Content\images\sprite-source\iCab.png" />
     <Content Include="Content\images\sprite-source\iceweasel.png" />
     <Content Include="Content\images\sprite-source\Ideal.png" />
     <Content Include="Content\images\sprite-source\ie8_32.png" />
     <Content Include="Content\images\sprite-source\ie9.png" />
+    <Content Include="Content\images\sprite-source\itunes-icon-32.png" />
     <Content Include="Content\images\sprite-source\itunes32.png" />
     <Content Include="Content\images\sprite-source\K-Ninja-Samurai-209536.gif" />
-    <Content Include="Content\images\sprite-source\KDE.png" />
+    <Content Include="Content\images\sprite-source\KDE.jpg" />
+    <Content Include="Content\images\sprite-source\KDE2.png" />
     <Content Include="Content\images\sprite-source\kmeleon.png" />
+    <Content Include="Content\images\sprite-source\kmeleon2.png" />
     <Content Include="Content\images\sprite-source\konqueror.png" />
     <Content Include="Content\images\sprite-source\kubuntu-logo-only_32.png" />
     <Content Include="Content\images\sprite-source\mandriva-32.png" />
@@ -404,6 +410,7 @@
     <Content Include="Content\images\sprite-source\Netscape.png" />
     <Content Include="Content\images\sprite-source\nokia.png" />
     <Content Include="Content\images\sprite-source\Nook.png" />
+    <Content Include="Content\images\sprite-source\Nook2.png" />
     <Content Include="Content\images\sprite-source\Nook_Icon_thumb.jpg" />
     <Content Include="Content\images\sprite-source\omniweb.png" />
     <Content Include="Content\images\sprite-source\opera-mini.png" />
@@ -413,22 +420,25 @@
     <Content Include="Content\images\sprite-source\Phonix.png" />
     <Content Include="Content\images\sprite-source\playstation.png" />
     <Content Include="Content\images\sprite-source\QtWeb.png" />
+    <Content Include="Content\images\sprite-source\QtWeb2.png" />
+    <Content Include="Content\images\sprite-source\question-mark.png" />
     <Content Include="Content\images\sprite-source\redhat.png" />
     <Content Include="Content\images\sprite-source\seamonkey-icon-32.png" />
     <Content Include="Content\images\sprite-source\shark.jpeg" />
     <Content Include="Content\images\sprite-source\silk.png" />
     <Content Include="Content\images\sprite-source\Skyfire.png" />
     <Content Include="Content\images\sprite-source\slackware.png" />
-    <Content Include="Content\images\sprite-source\smartfox.jpg" />
+    <Content Include="Content\images\sprite-source\smartfox.png" />
     <Content Include="Content\images\sprite-source\sunrise.png" />
     <Content Include="Content\images\sprite-source\suse.png" />
     <Content Include="Content\images\sprite-source\sylera.jpg" />
+    <Content Include="Content\images\sprite-source\teashark-32.png" />
     <Content Include="Content\images\sprite-source\teashark.jpg" />
     <Content Include="Content\images\sprite-source\ubuntu.png" />
-    <Content Include="Content\images\sprite-source\ucweb.gif" />
+    <Content Include="Content\images\sprite-source\ucweb.png" />
     <Content Include="Content\images\sprite-source\uzard.PNG" />
     <Content Include="Content\images\sprite-source\vine linux.png" />
-    <Content Include="Content\images\sprite-source\vodaphone.jpg" />
+    <Content Include="Content\images\sprite-source\vodafone.png" />
     <Content Include="Content\images\sprite-source\webos.png" />
     <Content Include="Content\images\sprite-source\wmp-32.png" />
     <Content Include="Content\images\sprites.png" />
@@ -537,9 +547,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\perfGauge.scss" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Content\bootstrap.scss" />
   </ItemGroup>
   <ItemGroup>
@@ -561,6 +568,7 @@
     <Content Include="Content\pageTimings.scss" />
     <Content Include="Content\platformStats.scss" />
     <Content Include="Content\popup.scss" />
+    <Content Include="Content\perfGauge.scss" />
     <None Include="Properties\PublishProfiles\edash.pubxml" />
     <None Include="Properties\PublishProfiles\montana.pubxml" />
     <Content Include="Views\Dashboard\_Gallery.cshtml" />
