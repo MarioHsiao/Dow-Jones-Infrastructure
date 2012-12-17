@@ -1,61 +1,407 @@
 $browserBackground: url(images/browser-sprites.png) no-repeat;
-
-.dj-logo-chrome {
-  background: $browserBackground;
-  background-position: 0 0;
-  width: 36px;
-  height: 33px; }
+$width: 32px;
+$height:32px;
 
 
-.dj-logo-firefox {
-  background: $browserBackground;
-  background-position: -42px 0;
-  width: 36px;
-  height: 33px; }
+.browser{
+	background: $browserBackground;
+	&.question-mark {
+	  background-position: 0 -250px;
+	  width: $width;
+	  height: $height;
+	}
+
+	&.chrome {
+	  background-position: 0 0;
+	  width: 36px;
+	  height: 33px;
+	}
+
+	&.firefox {
+	  background-position: -50px 0;
+	  width: 36px;
+	  height: 33px;
+	}
+
+	&.msie9,&.msie10 {
+	  background-position: -100px 0;
+	  width: 36px;
+	  height: 33px;
+	}
+
+	&.safari {
+	  background-position: -150px 0;
+	  width: 36px;
+	  height: 33px;
+	}
+	&.android {
+	  background-position: -200px -100px;
+	  width: $width;
+	  height: $height;
+	}
+	&.aol {
+	  background-position: -250px -2px;
+	  width: $width;
+	  height: $height;
+	}
+
+	&.atratus-web explorer {
+		background-position: -300px 0;
+		width: $width;
+		height: $height;
+	}
+	
+	&.bagel {
+	  background-position: -350px 0;
+	  width: $width;
+	  height: $height;
+	}
+
+	&.blackberry {
+	  background-position: -500px 0;
+	  width: $width;
+	  height: $height;
+	}
+
+	&.bolt {
+	  background-position: -550px 0;
+	  width: $width;
+	  height: $height;
+	}
+
+	&.camino {
+	  background-position: -600px 0;
+	  width: $width;
+	  height: $height;
+	}
 
 
-.dj-logo-safari {
-  background: $browserBackground;
-  background-position: -84px 0;
-  width: 36px;
-  height: 33px; }
+	&.chimera {
+	  background-position: 0 -50px;
+	  width: $width;
+	  height: $height;
+	}
+
+	&.crawler {
+	  background-position: -50px -50px;
+	  width: $width;
+	  height: $height;
+	}
+
+	&.danger {
+	  background-position: -201px -1px;
+	  width: $width;
+	  height: $height;
+	}
+
+	&.docomo {
+	  background-position: -150px -50px;
+	  width: $width;
+	  height: $height;
+	}
+
+	&.dolphin {
+	  background-position: -200px -50px;
+	  width: $width;
+	  height: $height;
+	}
+
+	&.Domino {
+	  background-position: -250px -50px;
+	  width: $width;
+	  height: $height;
+	}
+
+	&.Donzilla {
+	  background-position: -300px -50px;
+	  width: 30px;
+	  height: 30px;
+	}
+
+	&.e-capsule {
+	  background-position: -350px -50px;
+	  width: $width;
+	  height: $height;
+	}
+
+	&.epiphany-browser {
+	  background-position: -400px -50px;
+	  width: $width;
+	  height: $height;
+	}
+
+	&.fedora_mini {
+	  background-position: -450px -50px;
+	  width: $width;
+	  height: $height;
+	}
+
+	&.fennac {
+	  background-position: -500px -50px;
+	  width: $width;
+	  height: $height;
+	}
+
+	&.firebird {
+	  background-position: -550px -50px;
+	  width: $width;
+	  height: $height;
+	}
+
+	&.flock {
+	  background-position: -600px -50px;
+	  width: $width;
+	  height: $height;
+	}
+
+	&.galeon {
+	  background-position: 0 -100px;
+	  width: $width;
+	  height: $height;
+	}
+
+	&.Gian {
+	  background-position: -50px -100px;
+	  width: $width;
+	  height: $height;
+	}
+
+	&.googlebot {
+	  background-position: -150px -100px;
+	  width: $width;
+	  height: $height;
+	}
+
+	&.iCab {
+	  background-position: -250px -100px;
+	  width: $width;
+	  height: $height;
+	}
+
+	&.iceweasel {
+	  background-position: -300px -100px;
+	  width: $width;
+	  height: $height;
+	}
+
+	&.Ideal {
+	  background-position: -350px -100px;
+	  width: $width;
+	  height: $height;
+	}
+
+	&.msie8,&.msie7 {
+	  background-position: -100px -100px;
+	  width: $width;
+	  height: $height;
+	}
+
+	.KDE {
+	  background-position: -400px -100px;
+	  width: $width;
+	  height: $height;
+	}
+
+	&.kmeleon {
+	  background-position: -450px -100px;
+	  width: $width;
+	  height: $height;
+	}
+
+	&.K-Ninja-Samurai-209536 {
+	  background-position: -500px -100px;
+	  width: $width;
+	  height: $height;
+	}
+
+	&.konqueror {
+	  background-position: -550px -100px;
+	  width: $width;
+	  height: $height;
+	}
+
+	&.kubuntu-logo-only_32 {
+	  background-position: -600px -100px;
+	  width: $width;
+	  height: $height;
+	}
+
+	&.mandriva-32 {
+	  background-position: 0 -150px;
+	  width: $width;
+	  height: $height;
+	}
+
+	&.Maxthon {
+	  background-position: -50px -150px;
+	  width: $width;
+	  height: $height;
+	}
+
+	&.minefield {
+	  background-position: -100px -150px;
+	  width: $width;
+	  height: $height;
+	}
+
+	&.moblin {
+	  background-position: -150px -150px;
+	  width: $width;
+	  height: $height;
+	}
+
+	&.multizilla {
+	  background-position: -200px -150px;
+	  width: $width;
+	  height: $height;
+	}
+
+	&.Netscape {
+	  background-position: -250px -150px;
+	  width: $width;
+	  height: $height;
+	}
+
+	&.nokia {
+	  background-position: -300px -150px;
+	  width: $width;
+	  height: $height;
+	}
 
 
-.dj-logo-msie9, .dj-logo-msie10 {
-  background: $browserBackground;
-  background-position: -126px 0;
-  width: 36px;
-  height: 33px; }
+	&.Nook {
+	  background-position: -350px -150px;
+	  width: 27px;
+	  height: 28px;
+	}
 
+	&.omniweb {
+	  background-position: -400px -150px;
+	  width: $width;
+	  height: $height;
+	}
 
-.dj-logo-opera {
-  background: $browserBackground;
-  background-position: -168px 0;
-  width: 32px;
-  height: 32px; }
+	&.other {
+	  background-position: -500px -150px;
+	  width: $width;
+	  height: $height;
+	}
 
+	&.Phonix {
+	  background-position: -550px -150px;
+	  width: $width;
+	  height: $height;
+	}
 
-.dj-logo-msie8, .dj-logo-msie7 {
-  background: $browserBackground;
-  background-position: -210px 0;
-  width: 32px;
-  height: 32px; }
+	&.playstation {
+	  background-position: -600px -150px;
+	  width: $width;
+	  height: $height;
+	}
 
-  .dj-logo-android {
-  background: $browserBackground;
-  background-position: -253px 0;
-  width: 32px;
-  height: 32px; }
+	&.QtWeb {
+	  background-position: 0 -200px;
+	  width: $width;
+	  height: $height;
+	}
 
+	&.seamonkey-icon-32 {
+	  background-position: -100px -200px;
+	  width: $width;
+	  height: $height;
+	}
 
-.dj-perfGaugeItems {
-  font-size: 16px;
-  color: #999;
-  text-shadow: 0px 3px 8px #2A2A2A;
+	&.shark {
+	  background-position: -150px -200px;
+	  width: $width;
+	  height: $height;
+	}
 
-  .visitors {
-    font-weight: bold; } }
+	&.Skyfire {
+	  background-position: -250px -200px;
+	  width: $width;
+	  height: $height;
+	}
 
+	&.slackware {
+	  background-position: -300px -200px;
+	  width: $width;
+	  height: $height;
+	}
+
+	&.sunrise {
+	  background-position: -400px -200px;
+	  width: $width;
+	  height: $height;
+	}
+
+	&.suse {
+	  background-position: -450px -200px;
+	  width: $width;
+	  height: $height;
+	}
+
+	&.sylera {
+	  background-position: -500px -200px;
+	  width: $width;
+	  height: $height;
+	}
+
+	&.teashark-32 {
+	  background-position: -550px -200px;
+	  width: $width;
+	  height: $height;
+	}
+
+	&.ubuntu {
+	  background-position: -600px -200px;
+	  width: $width;
+	  height: $height;
+	}
+
+	&.ucweb, &.ucweb8 {
+	  background-position: -100px -50px;
+	  width: $width;
+	  height: $height;
+	}
+
+	&.uzard {
+	  background-position: -450px 0;
+	  width: $width;
+	  height: $height;
+	}
+
+	&.vodafone {
+	  background-position: -199px -200px;
+	  width: $width;
+	  height: $height;
+	}
+
+	&.smartfox {
+	  background-position: -350px -200px;
+	  width: $width;
+	  height: $height;
+	}
+
+	&.Beonex-icon {
+	  background-position: -400px 0;
+	  width: 34px;
+	  height: 33px;
+	}
+
+	&.redhat {
+	  background-position: -50px -199px;
+	  width: $width;
+	  height: $height;
+	}
+
+	&.opera {
+	  background-position: -450px -150px;
+	  width: 26px;
+	  height: 31px;
+	}
+
+}
 
 .dj-trafficBar {
   position: relative;
@@ -78,7 +424,7 @@ $browserBackground: url(images/browser-sprites.png) no-repeat;
         text-align: right;
          } } }
 
-  .browser {
+  .browserBackground {
     height: 42px;
     width: 42px;
     border-radius: 22px;
