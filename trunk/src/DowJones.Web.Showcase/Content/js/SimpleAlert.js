@@ -1149,31 +1149,36 @@ function getSimpleAlertData() {
 	    "selectedDuplicate": 2,
 	    "newsFilter": [
 		{
-		    "filterName": "Company",
-		    "filterKey": "fds",
+		    "filterName": "Region",
+		    "filterKey": "re",
 		    "filter": [
 				{
-				    "code": "applc",
-				    "desc": "Apple Computer Inc",
-				    "type": "Company"
+				    "code": "usa",
+				    "codeType": "Region",
+				    "desc": "United States"
+				}, {
+				    "code": "usca",
+				    "codeType": "Region",
+				    "desc": "California"
+				}, {
+				    "code": "usw",
+				    "codeType": "Region",
+				    "desc": "Western U.S."
 				}
 			],
 		    "excludeFilter": [
 				{
-				    "code": "tmobil",
-				    "desc": "T Mobile International AG",
-				    "type": "Company"
-				}
-			]
-		}, {
-		    "filterName": "Source",
-		    "filterKey": "sc",
-		    "filter": [
-				{
-				    "code": "SFDJNW",
-				    "codeType": "family",
-				    "desc": "Dow Jones Newswires - All sources",
-				    "type": "Source"
+				    "code": "uswa",
+				    "codeType": "Region",
+				    "desc": "Washington"
+				}, {
+				    "code": "uss",
+				    "codeType": "Region",
+				    "desc": "Southern U.S."
+				}, {
+				    "code": "cana",
+				    "codeType": "Region",
+				    "desc": "Canada"
 				}
 			]
 		}
