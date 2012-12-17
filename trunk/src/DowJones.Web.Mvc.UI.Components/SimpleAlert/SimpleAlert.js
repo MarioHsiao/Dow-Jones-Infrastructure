@@ -27,7 +27,8 @@ DJ.UI.SimpleAlert = DJ.UI.Component.extend({
     },
 
     defaults: {
-        enableExclude: false
+        enableExclude: false,
+        cssClass: 'dj_SimpleAlert'
     },
 
     events: {
@@ -291,16 +292,96 @@ DJ.UI.SimpleAlert = DJ.UI.Component.extend({
         $filter.remove();
     },
 
-    _onFilterRemove: function (elem) {
-        console.log('remove clicked!!');
+    _onFilterRemove: function (elem, args) {
+        var $simpleAlertContainer = $(elem).closest('.dj_SimpleAlert'),
+            alertData = $simpleAlertContainer.data("data"),
+            mode = $(elem).attr('mode'),
+            $gearBtn = $('span.fi_d-gear', elem),
+            $alertSource = ($(elem).closest('li')).prev('li.dj_alert-source'),
+            $connectAnddPillWrap = $(elem).closest('li.connectionAndPillWrap'),
+            fIndex = parseInt($gearBtn.attr("fIndex")),
+            iIndex = parseInt($gearBtn.attr("iIndex")),
+            filterLength = 0,
+            excludeFilterLength = 0;
+
+        switch (mode.toLowerCase()) {
+            case "and":
+                alertData.newsFilter[fIndex].filter.splice(iIndex, 1);
+                break;
+            case "not":
+                alertData.newsFilter[fIndex].excludeFilter.splice(iIndex, 1);
+                break;
+        }
+
+        if (alertData.newsFilter[fIndex] && alertData.newsFilter[fIndex].filter) {
+            filterLength = alertData.newsFilter[fIndex].filter.length
+        }
+
+        if (alertData.newsFilter[fIndex] && alertData.newsFilter[fIndex].excludeFilter) {
+            excludeFilterLength = alertData.newsFilter[fIndex].excludeFilter.length
+        }
+
+        if (filterLength === 0 && excludeFilterLength === 0) {
+            alertData.newsFilter.splice(fIndex, 1)
+            $alertSource.remove();
+            //Reset the source index
+            var nextGearItems = $('span.fi_d-gear', $connectAnddPillWrap.nextAll('li.connectionAndPillWrap'));
+            $.each(nextGearItems, function (idx, val) {
+                var newFIndex = parseInt($(val).attr('findex')) - 1;
+                $(val).attr('findex', newFIndex + "");
+            });
+        }
+        $connectAnddPillWrap.remove();
+        $simpleAlertContainer.data("data", alertData);
     },
 
     _onFilterInclude: function (elem) {
-        console.log('include clicked!!');
+        var $simpleAlertContainer = $(elem).closest('.dj_SimpleAlert'),
+            alertData = $simpleAlertContainer.data("data"),
+            mode = $(elem).attr('mode'),
+            $gearBtn = $('span.fi_d-gear', elem),
+            $alertSource = ($(elem).closest('li')).prev('li.dj_alert-source'),
+            $filterConnection = $(elem).siblings("span.filterConnection"),
+            $connectAnddPillWrap = $(elem).closest('li.connectionAndPillWrap'),
+            $gearBtn = $('span.fi_d-gear', elem),
+            fIndex = parseInt($gearBtn.attr("fIndex")),
+            iIndex = parseInt($gearBtn.attr("iIndex"));
+
+        if (!alertData.newsFilter[fIndex].filter) {
+            alertData.newsFilter[fIndex].filter = [];
+        }
+        alertData.newsFilter[fIndex].filter.splice(iIndex, 0, alertData.newsFilter[fIndex].excludeFilter[iIndex])
+        alertData.newsFilter[fIndex].excludeFilter.splice(iIndex, 1);
+
+        $(elem).attr('mode', 'and');
+        $filterConnection.remove();
+
+        $simpleAlertContainer.data("data", alertData);
     },
 
     _onFilterExclude: function (elem) {
-        console.log('exclude clicked!!');
+        var $simpleAlertContainer = $(elem).closest('.dj_SimpleAlert'),
+            alertData = $simpleAlertContainer.data("data"),
+            mode = $(elem).attr('mode'),
+            $gearBtn = $('span.fi_d-gear', elem),
+            $alertSource = ($(elem).closest('li')).prev('li.dj_alert-source'),
+            $filterConnectionHtml = "<span class='filterConnection'>" +
+                                    "<span class='connectionText connectionTextNot'><%= Token('notLabel') %></span>" +
+                                    "</span>";
+        $connectAnddPillWrap = $(elem).closest('li.connectionAndPillWrap'),
+            $gearBtn = $('span.fi_d-gear', elem),
+            fIndex = parseInt($gearBtn.attr("fIndex")),
+            iIndex = parseInt($gearBtn.attr("iIndex"));
+        if (!alertData.newsFilter[fIndex].excludeFilter) {
+            alertData.newsFilter[fIndex].excludeFilter = [];
+        }
+        alertData.newsFilter[fIndex].excludeFilter.splice(iIndex, 0, alertData.newsFilter[fIndex].filter[iIndex]);
+        alertData.newsFilter[fIndex].filter.splice(iIndex, 1);
+
+        $(elem).attr('mode', 'not');
+        $connectAnddPillWrap.prepend($filterConnectionHtml);
+
+        $simpleAlertContainer.data("data", alertData);
     },
 
     _onDeliveryTimeChange: function () {

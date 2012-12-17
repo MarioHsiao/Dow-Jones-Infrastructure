@@ -71,15 +71,15 @@
                     switch ($(this).attr('pilloption')) {
                         case 'Remove':
                             if (menu.settings.removeFilter && typeof (menu.settings.removeFilter) == 'function')
-                                menu.settings.removeFilter.call(this, $ele.data());
+                                menu.settings.removeFilter.call(this, $ele);
                             break;
                         case 'And':
                             if (menu.settings.includeFilter && typeof (menu.settings.includeFilter) == 'function')
-                                menu.settings.includeFilter.call(this, $ele.data());
+                                menu.settings.includeFilter.call(this, $ele);
                             break;
                         case 'Not':
                             if (menu.settings.excludeFilter && typeof (menu.settings.excludeFilter) == 'function')
-                                menu.settings.excludeFilter.call(this, $ele.data());
+                                menu.settings.excludeFilter.call(this, $ele);
                             break;
                     }
 
