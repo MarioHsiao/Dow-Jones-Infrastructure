@@ -254,14 +254,14 @@ $height:32px;
 	  height: $height;
 	}
 
-	&.Netscape {
-	  background-position: -250px -150px;
+	&.netscape {
+	  background-position: -248px -150px;
 	  width: $width;
 	  height: $height;
 	}
 
 	&.nokia {
-	  background-position: -300px -150px;
+	  background-position: -298px -150px;
 	  width: $width;
 	  height: $height;
 	}
@@ -358,7 +358,7 @@ $height:32px;
 	}
 
 	&.ucweb, &.ucweb8 {
-	  background-position: -100px -50px;
+	  background-position: -97px -50px;
 	  width: $width;
 	  height: $height;
 	}
@@ -423,14 +423,15 @@ $height:32px;
          } } }
 
   .browserBackground {
-    height: 42px;
-    width: 42px;
-    border-radius: 22px;
-    background-color: #F7F7F7;
-    border: solid 1px #DDD;
-    left: 40px;
-    position: absolute;
-    z-index: 10; }
+		height: 42px;
+		width: 42px;
+		border-radius: 22px;
+		background-color: #F7F7F7;
+		border: solid 1px #DDD;
+		left: 40px;
+		position: absolute;
+		z-index: 10; 
+	}
 
   .browserVersion {
     position: absolute;

@@ -167,12 +167,12 @@
     background-position: -200px -150px;
     width: 32px;
     height: 32px; }
-  .browser.Netscape {
-    background-position: -250px -150px;
+  .browser.netscape {
+    background-position: -248px -150px;
     width: 32px;
     height: 32px; }
   .browser.nokia {
-    background-position: -300px -150px;
+    background-position: -298px -150px;
     width: 32px;
     height: 32px; }
   .browser.Nook {
@@ -236,7 +236,7 @@
     width: 32px;
     height: 32px; }
   .browser.ucweb, .browser.ucweb8 {
-    background-position: -100px -50px;
+    background-position: -97px -50px;
     width: 32px;
     height: 32px; }
   .browser.uzard {
