@@ -441,7 +441,6 @@
     <Content Include="Content\images\sprite-source\vodafone.png" />
     <Content Include="Content\images\sprite-source\webos.png" />
     <Content Include="Content\images\sprite-source\wmp-32.png" />
-    <Content Include="Content\images\sprites.png" />
     <Content Include="Content\images\tabsBG.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
