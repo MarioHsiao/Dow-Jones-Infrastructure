@@ -1,11 +1,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using DowJones.Pages;
-using DowJones.Pages.Layout;
 using DowJones.Pages.Modules;
 using DowJones.Pages.Modules.Templates;
+using DowJones.Web.Mvc.UI.Canvas;
 using Factiva.Gateway.Messages.DJComm.BriefingBook.V1_0;
 using log4net;
+using Module = DowJones.Pages.Modules.Module;
+using ZoneLayout = DowJones.Pages.Layout.ZoneLayout;
 
 namespace DowJones.Dash.DataGenerators
 {
@@ -14,13 +16,16 @@ namespace DowJones.Dash.DataGenerators
         private static readonly ILog Log = LogManager.GetLogger(typeof (PageGenerator));
 
         private readonly IScriptModuleTemplateManager _templateManager;
+	    private readonly IPageTemplateManager _pageTemplateManager;
 
-        public PageGenerator(IScriptModuleTemplateManager templateManager)
+
+	    public PageGenerator(IScriptModuleTemplateManager templateManager, IPageTemplateManager pageTemplateManager)
         {
-            _templateManager = templateManager;
+	        _templateManager = templateManager;
+	        _pageTemplateManager = pageTemplateManager;
         }
 
-        public Page GeneratePage(string userId)
+	    public Page GeneratePage(string userId)
         {
             Log.DebugFormat("Generating new page for {0}", userId);
 
@@ -36,7 +41,9 @@ namespace DowJones.Dash.DataGenerators
                             TemplateId = template.Id,
                             Title = template.Title,
                         }
-                ).ToArray();
+				)
+				.Union(_pageTemplateManager.GetDefaultModules())
+				.ToArray();
 
 
             var zones = GetZones(3, modules).ToArray();
@@ -51,7 +58,7 @@ namespace DowJones.Dash.DataGenerators
             return page;
         }
 
-        private static IEnumerable<ZoneLayout.Zone> GetZones(int zoneCount, IEnumerable<ScriptModule> modules)
+        private static IEnumerable<ZoneLayout.Zone> GetZones(int zoneCount, IEnumerable<Module> modules)
         {
             var moduleArray = modules.ToArray();
 

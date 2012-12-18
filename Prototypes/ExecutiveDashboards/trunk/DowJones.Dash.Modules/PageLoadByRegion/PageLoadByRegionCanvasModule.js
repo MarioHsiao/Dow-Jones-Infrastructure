@@ -4,14 +4,26 @@
 
 DJ.UI.PageLoadByRegionCanvasModule = DJ.UI.AbstractCanvasModule.extend({
 
+    selectors: {
+        statsMap: '.dj_StatsMap'    
+    },
+    
+
     init: function (element, meta) {
         var $meta = $.extend({ name: "PageLoadByRegionCanvasModule" }, meta);
 
         // Call the base constructor
         this._super(element, $meta);
 
-        // TODO: Add custom initialization code
     },
+    
+
+    _initializeElements: function (ctx) {
+        this._super(ctx);
+        this.$statsMap = ctx.find(this.selectors.statsMap);
+        this.statsMap = this.$statsMap.findComponent(DJ.UI.StatsMap);
+    },
+    
 
     _initializeDelegates: function () {
         this._delegates = $.extend(this._delegates, {
@@ -38,20 +50,19 @@ DJ.UI.PageLoadByRegionCanvasModule = DJ.UI.AbstractCanvasModule.extend({
             return;
 
         if (this.options.mapType !== 'world') {
-            this._initializeMapData(data.map);
+            this.statsMap._initializeMapData(data.map);
         }
 
-        this._initializeChart(data.performanceZones);
+        this.statsMap._initializeChart(data.performanceZones);
 
-        this._showContent();
+        //this._showContent();
 
         this.activePillId = null;
-
-        //this.mapContainer.hide();
-
     },
 
-    setData: function () {
+    setData: function (data) {
+
+        this.statsMap.setData(data);
         this.showContentArea();
     }
 });

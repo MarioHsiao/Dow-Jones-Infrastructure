@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Web.Routing;
 using DowJones.Dash.Caching;
 using DowJones.Dash.Common.DependencyResolver;
+using DowJones.Dash.DataGenerators;
 using DowJones.Dash.Serializer;
 using DowJones.Dash.Website.App_Start;
 using DowJones.Dash.Website.Connections;
@@ -46,6 +47,7 @@ namespace DowJones.Dash.Website
 
             Bind<IPageRepository>().To<RavenDbPageRepository>().InRequestScope();
             Bind<IScriptModuleTemplateManager>().To<RavenDbScriptModuleTemplateRepository>().InRequestScope();
+			Bind<IPageTemplateManager>().To<PageTemplateManager>().InRequestScope();
             Bind<IDashboardMessageCache>().To<DashboardMessageCache>().InSingletonScope();
             Bind<IJsonSerializer>().ToMethod(x => new CustomJsonNetSerializer(new JsonSerializerSettings
                 {

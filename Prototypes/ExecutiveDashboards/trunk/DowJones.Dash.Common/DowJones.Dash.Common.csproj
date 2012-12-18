@@ -44,7 +44,7 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-      <Reference Include="log4net">
+    <Reference Include="log4net">
       <HintPath>..\packages\log4net.1.2.99\lib\2.0\log4net.dll</HintPath>
     </Reference>
     <Reference Include="Ninject">
@@ -123,7 +123,9 @@
     <Compile Include="Caching\DashboardMessageCache.cs" />
     <Compile Include="Caching\IDashboardMessageCache.cs" />
     <Compile Include="Caching\IDashboardMessageQueue.cs" />
+    <Compile Include="IPageTemplateManager.cs" />
     <Compile Include="DataGenerators\PageGenerator.cs" />
+    <Compile Include="DataGenerators\PageTemplateManager.cs" />
     <Compile Include="DataGenerators\ScriptModuleTemplatesGenerator.cs" />
     <Compile Include="DataSources\ChartBeatApiDataSource.cs" />
     <Compile Include="DataSources\ConfigurationDataSource.cs" />

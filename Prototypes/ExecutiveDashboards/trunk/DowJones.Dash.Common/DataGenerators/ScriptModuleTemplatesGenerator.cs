@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
@@ -16,16 +17,15 @@ namespace DowJones.Dash.DataGenerators
 
         public IEnumerable<ScriptModuleTemplate> GenerateScripModuleTemplates()
         {
-            var dashboardComponents = new[] {
-                new { Title = "Concurrent Visits",         Description = "Number of users currently visiting the site",        Component = "ConcurrentVisits" },
-                new { Title = "Engagement",                Description = "How users are interacting with the site",            Component = "UsersStats" },
+			var dashboardComponents = new[] {
+				new { Title = "Concurrent Visits",         Description = "Number of users currently visiting the site",        Component = "ConcurrentVisits" },
+				new { Title = "Engagement",                Description = "How users are interacting with the site",            Component = "UsersStats" },
 				new { Title = "Platform Stats",            Description = "Desktop vs. Mobile user usage",                       Component = "PlatformStats" },
-                new { Title = "Page Load",                 Description = "Current and historical average page load times",                 Component = "PageTimings" },
-                new { Title = "Page Load By Browser",      Description = "Percentage of users and page load times by browser", Component = "BrowserStats" },
-                new { Title = "Page Load By Region",       Description = "Average page load times, broken down by state",      Component = "StatsMap" },
-                new { Title = "Top Pages",                 Description = "Top most visited pages on the site",                 Component = "TopPages" },
-                new { Title = "Top Referrers",             Description = "Top external domains referring the most visitors to the site", Component = "TopReferrer" },
-            };
+				new { Title = "Page Load",                 Description = "Current and historical average page load times",                 Component = "PageTimings" },
+				new { Title = "Page Load By Browser",      Description = "Percentage of users and page load times by browser", Component = "BrowserStats" },
+				new { Title = "Top Pages",                 Description = "Top most visited pages on the site",                 Component = "TopPages" },
+				new { Title = "Top Referrers",             Description = "Top external domains referring the most visitors to the site", Component = "TopReferrer" },
+			};
 
             return dashboardComponents.Select(component => 
                 new ScriptModuleTemplate {

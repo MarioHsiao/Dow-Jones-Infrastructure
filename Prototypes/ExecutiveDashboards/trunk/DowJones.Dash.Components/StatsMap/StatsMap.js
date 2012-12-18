@@ -161,7 +161,6 @@ DJ.UI.StatsMap = DJ.UI.Component.extend({
         this.currentStateCodes = this.stateCodes[map];
     },
 
-
     _initializeChart: function (performanceZones) {
         this._initializingChart = true;
 
@@ -200,7 +199,6 @@ DJ.UI.StatsMap = DJ.UI.Component.extend({
 
         this._initializingChart = false;
     },
-
 
     _configureValueRanges: function (zones) {
         var valueRanges = [{ color: '#ddd' }], key, zone;
@@ -266,7 +264,6 @@ DJ.UI.StatsMap = DJ.UI.Component.extend({
 
         var self = this;
 
-
         // from a simple array, map it to an associative array
         // with the state abbreviation as the key. this makes subsequent lookups o(1) operation.
         var stateMap = {};
@@ -285,7 +282,6 @@ DJ.UI.StatsMap = DJ.UI.Component.extend({
         else {
             $dj.warn("Mapping for states to codes not found for country code: '", this.mapSource, "'. Blank map will be shown.");
         }
-
 
         var chartData = [];
         for (var i = 0, len = this.territories.length; i < len; i++) {

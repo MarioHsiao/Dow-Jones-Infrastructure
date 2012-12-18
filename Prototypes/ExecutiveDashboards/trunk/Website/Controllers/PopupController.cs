@@ -23,6 +23,8 @@ namespace DowJones.Dash.Website.Controllers
 		[Authorize]
 		public ActionResult Index(string pid, int mid)
 		{
+			return Demo();
+
 			var module = PageRepository.GetModule(pid, mid) as ScriptModule;
 			var page = new Page
 			{
