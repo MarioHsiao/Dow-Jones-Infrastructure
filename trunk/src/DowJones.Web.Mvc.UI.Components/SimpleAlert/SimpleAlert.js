@@ -19,9 +19,6 @@ DJ.UI.SimpleAlert = DJ.UI.Component.extend({
         newsFilterContainer: 'td:last',
         filterLabel: 'span.filterLabel',
         filterClose: 'span.icon-close',
-        filterNot: '.pillOption.not',
-        filterAnd: '.pillOption.and',
-        filterRemove: '.pillOption.remove',
         filter: 'span.filter',
         selectedOption: 'option:selected'
     },
@@ -109,12 +106,7 @@ DJ.UI.SimpleAlert = DJ.UI.Component.extend({
         var me = this;
         $(me.$element).newsFilterPillMenuEx({ 'removeFilter': me._onFilterRemove, 'excludeFilter': me._onFilterExclude, 'includeFilter': me._onFilterInclude });
         if (me.data.newsFilter && me.data.newsFilter.length > 0) {
-            this.$newsFilterContainer
-                .html(this.templates.newsFilterEx({ filterItems: me.data.newsFilter }))
-                .find(this.selectors.filterClose)
-                .bind('click', function () {
-                    me._onFilterClose(this);
-                });
+            this.$newsFilterContainer.html(this.templates.newsFilterEx({ filterItems: me.data.newsFilter }));
             this.$newsFilter.show();
         }
     },
@@ -298,9 +290,9 @@ DJ.UI.SimpleAlert = DJ.UI.Component.extend({
             mode = $(elem).attr('mode'),
             $gearBtn = $('span.fi_d-gear', elem),
             $alertSource = ($(elem).closest('li')).prev('li.dj_alert-source'),
-            $connectAnddPillWrap = $(elem).closest('li.connectionAndPillWrap'),
-            pillWrap = $('.filterPillWrap[mode="' + mode + '"]', $connectAnddPillWrap.nextAll('li.connectionAndPillWrap')),
-            nextGearItems = $('span.fi_d-gear', $connectAnddPillWrap.nextAll('li.connectionAndPillWrap')),
+            $connectAndPillWrap = $(elem).closest('li.connectionAndPillWrap'),
+            pillWrap = $('.filterPillWrap[mode="' + mode + '"]', $connectAndPillWrap.nextAll('li.connectionAndPillWrap')),
+            nextGearItems = $('span.fi_d-gear', $connectAndPillWrap.nextAll('li.connectionAndPillWrap')),
             fIndex = parseInt($gearBtn.attr("fIndex")),
             iIndex = parseInt($gearBtn.attr("iIndex")),
             filterLength = 0,
@@ -340,7 +332,7 @@ DJ.UI.SimpleAlert = DJ.UI.Component.extend({
                 $(val).closest('li.connectionAndPillWrap').attr('findex', newFIndex + "");
             });
         }
-        $connectAnddPillWrap.remove();
+        $connectAndPillWrap.remove();
         $simpleAlertContainer.data("data", alertData);
     },
 
@@ -419,7 +411,7 @@ DJ.UI.SimpleAlert = DJ.UI.Component.extend({
             $(currentLi).attr('iindex', idx + "");
         });
 
-        $(elem).attr('mode', 'not').attr('iindex', exFilterLength);
+        $('.fi_d-gear', elem).attr('iindex', exFilterLength);
         $connectAndPillWrap.attr('mode', 'not').attr('iindex', exFilterLength);
         $connectAndPillWrap.prepend($filterConnectionHtml);
         $connectAndPillWrap.insertAfter($connectAndPillWrap.nextAll('li.connectionAndPillWrap[findex="' + fIndex + '"]').last());
