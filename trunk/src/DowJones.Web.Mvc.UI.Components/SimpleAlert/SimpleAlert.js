@@ -318,6 +318,7 @@ DJ.UI.SimpleAlert = DJ.UI.Component.extend({
         $.each($("span[findex=" + fIndex + "]", pillWrap), function (idx, val) {
             var newIIndex = parseInt($(val).attr('iindex')) - 1;
             $(val).attr('iindex', newIIndex + "");
+            $(val).closest('li.connectionAndPillWrap').attr('iindex', newIIndex + "");
         });
 
         if (alertData.newsFilter[fIndex] && alertData.newsFilter[fIndex].filter) {
@@ -336,6 +337,7 @@ DJ.UI.SimpleAlert = DJ.UI.Component.extend({
             $.each(nextGearItems, function (idx, val) {
                 var newFIndex = parseInt($(val).attr('findex')) - 1;
                 $(val).attr('findex', newFIndex + "");
+                $(val).closest('li.connectionAndPillWrap').attr('findex', newFIndex + "");
             });
         }
         $connectAnddPillWrap.remove();
@@ -349,7 +351,7 @@ DJ.UI.SimpleAlert = DJ.UI.Component.extend({
             $gearBtn = $('span.fi_d-gear', elem),
             $alertSource = ($(elem).closest('li')).prev('li.dj_alert-source'),
             $filterConnection = $(elem).siblings("span.filterConnection"),
-            $connectAnddPillWrap = $(elem).closest('li.connectionAndPillWrap'),
+            $connectAndPillWrap = $(elem).closest('li.connectionAndPillWrap'),
             $gearBtn = $('span.fi_d-gear', elem),
             fIndex = parseInt($gearBtn.attr("fIndex")),
             iIndex = parseInt($gearBtn.attr("iIndex"));
@@ -357,19 +359,25 @@ DJ.UI.SimpleAlert = DJ.UI.Component.extend({
         if (!alertData.newsFilter[fIndex].filter) {
             alertData.newsFilter[fIndex].filter = [];
         }
-        alertData.newsFilter[fIndex].filter.splice(iIndex, 0, alertData.newsFilter[fIndex].excludeFilter[iIndex])
+        alertData.newsFilter[fIndex].filter.splice(alertData.newsFilter[fIndex].filter.length, 0, alertData.newsFilter[fIndex].excludeFilter[iIndex])
         alertData.newsFilter[fIndex].excludeFilter.splice(iIndex, 1);
 
+
         $(elem).attr('mode', 'and');
-        pillWrapAnd = $('.filterPillWrap[mode="and"]', $connectAnddPillWrap.nextAll('li.connectionAndPillWrap'));
-        pillWrapNot = $('.filterPillWrap[mode="not"]', $connectAnddPillWrap.nextAll('li.connectionAndPillWrap'));
+        $connectAndPillWrap.attr('mode', 'and');
+        pillWrapAnd = $('li.connectionAndPillWrap[mode="and"][findex="' + fIndex + '"]', $(elem).closest('.dj_SimpleAlert'));
+        pillWrapNot = $('li.connectionAndPillWrap[mode="not"][findex="' + fIndex + '"]', $(elem).closest('.dj_SimpleAlert'));
         $.each($("span[findex=" + fIndex + "]", pillWrapAnd), function (idx, val) {
-            var newIIndex = parseInt($(val).attr('iindex')) - 1;
-            $(val).attr('iindex', newIIndex + "");
+            $(val).attr('iindex', idx + "");
+            var currentLi = $(val).closest('li.connectionAndPillWrap');
+            $(currentLi).attr('iindex', idx + "");
+            if (idx === alertData.newsFilter[fIndex].filter.length - 1) {
+                $(currentLi).insertAfter($(currentLi).prevAll('li[mode="and"]').first());
+            }
         });
         $.each($("span[findex=" + fIndex + "]", pillWrapNot), function (idx, val) {
-            var newIIndex = parseInt($(val).attr('iindex')) - 1;
-            $(val).attr('iindex', newIIndex + "");
+            $(val).attr('iindex', idx + "");
+            $(val).closest('li.connectionAndPillWrap').attr('iindex', idx + "");
         });
 
         $filterConnection.remove();
@@ -382,7 +390,7 @@ DJ.UI.SimpleAlert = DJ.UI.Component.extend({
             alertData = $simpleAlertContainer.data("data"),
             mode = $(elem).attr('mode'),
             $gearBtn = $('span.fi_d-gear', elem),
-            $connectAnddPillWrap = $(elem).closest('li.connectionAndPillWrap'),
+            $connectAndPillWrap = $(elem).closest('li.connectionAndPillWrap'),
             $alertSource = ($(elem).closest('li')).prev('li.dj_alert-source'),
             $filterConnectionHtml = "<span class='filterConnection'>" +
                                     "<span class='connectionText connectionTextNot'><%= Token('notLabel') %></span>" +
@@ -393,22 +401,27 @@ DJ.UI.SimpleAlert = DJ.UI.Component.extend({
         if (!alertData.newsFilter[fIndex].excludeFilter) {
             alertData.newsFilter[fIndex].excludeFilter = [];
         }
-        alertData.newsFilter[fIndex].excludeFilter.splice(iIndex, 0, alertData.newsFilter[fIndex].filter[iIndex]);
+        alertData.newsFilter[fIndex].excludeFilter.splice(alertData.newsFilter[fIndex].excludeFilter.length, 0, alertData.newsFilter[fIndex].filter[iIndex]);
         alertData.newsFilter[fIndex].filter.splice(iIndex, 1);
 
         $(elem).attr('mode', 'not');
-        pillWrapAnd = $('.filterPillWrap[mode="and"]', $connectAnddPillWrap.nextAll('li.connectionAndPillWrap'));
-        pillWrapNot = $('.filterPillWrap[mode="not"]', $connectAnddPillWrap.nextAll('li.connectionAndPillWrap'));
+        $connectAndPillWrap.attr('mode', 'not');
+        pillWrapAnd = $('li.connectionAndPillWrap[mode="and"][findex="' + fIndex + '"]', $(elem).closest('.dj_SimpleAlert'));
+        pillWrapNot = $('li.connectionAndPillWrap[mode="not"][findex="' + fIndex + '"]', $(elem).closest('.dj_SimpleAlert'));
         $.each($("span[findex=" + fIndex + "]", pillWrapAnd), function (idx, val) {
-            var newIIndex = parseInt($(val).attr('iindex')) - 1;
-            $(val).attr('iindex', newIIndex + "");
+            $(val).attr('iindex', idx + "");
+            $(val).closest('li.connectionAndPillWrap').attr('iindex', idx + "");
         });
         $.each($("span[findex=" + fIndex + "]", pillWrapNot), function (idx, val) {
-            var newIIndex = parseInt($(val).attr('iindex')) - 1;
-            $(val).attr('iindex', newIIndex + "");
+            $(val).attr('iindex', idx + "");
+            var currentLi = $(val).closest('li.connectionAndPillWrap');
+            $(currentLi).attr('iindex', idx + "");
+            if (idx === alertData.newsFilter[fIndex].excludeFilter.length - 1) {
+                $(currentLi).insertAfter($(currentLi).prevAll('li[mode="not"]').first());
+            }
         });
 
-        $connectAnddPillWrap.prepend($filterConnectionHtml);
+        $connectAndPillWrap.prepend($filterConnectionHtml);
 
         $simpleAlertContainer.data("data", alertData);
     },
