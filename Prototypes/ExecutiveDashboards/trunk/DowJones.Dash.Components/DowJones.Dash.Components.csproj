@@ -350,9 +350,6 @@
     <EmbeddedResource Include="StatsMap\marker_rounded_yellow_orange.png" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="StatsMap\ClientTemplates\navPills.html" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="ThemeManager\ThemeManager.js" />
   </ItemGroup>
   <ItemGroup>

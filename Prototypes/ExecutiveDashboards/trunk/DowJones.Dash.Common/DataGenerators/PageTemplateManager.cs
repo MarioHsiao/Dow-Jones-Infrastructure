@@ -10,7 +10,7 @@ namespace DowJones.Dash.DataGenerators
 
 		public IEnumerable<Module> GetDefaultModules()
 		{
-			return new List<Module>
+			return new []
 				{
 					new PageLoadByRegionNewspageModule  { Title = "Page Load By Region", Description = "Average page load times, broken down by state" },
 				};

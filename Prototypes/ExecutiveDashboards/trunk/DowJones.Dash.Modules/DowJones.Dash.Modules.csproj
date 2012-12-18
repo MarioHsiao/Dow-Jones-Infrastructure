@@ -102,13 +102,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="PageLoadByRegion\PageLoadByRegionCanvasModule.cshtml">
+    <None Include="PageLoadByRegionCanvasModule\PageLoadByRegionCanvasModule.cshtml">
       <Generator>RazorViewComponentClassGenerator</Generator>
       <LastGenOutput>PageLoadByRegionCanvasModule.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PageLoadByRegion\PageLoadByRegionCanvasModule.cs">
+    <Compile Include="PageLoadByRegionCanvasModule\PageLoadByRegionCanvasModule.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>PageLoadByRegionCanvasModule.cshtml</DependentUpon>
@@ -119,7 +119,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="PageLoadByRegion\PageLoadByRegionCanvasModule.js" />
+    <EmbeddedResource Include="PageLoadByRegionCanvasModule\ClientTemplates\navPills.html" />
+    <Content Include="PageLoadByRegionCanvasModule\PageLoadByRegionCanvasModule.js" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DowJones.Dash.Components.Models\DowJones.Dash.Components.Models.csproj">

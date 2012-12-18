@@ -8,9 +8,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Web.UI.WebResourceAttribute("DowJones.Dash.Modules.PageLoadByRegion.PageLoadByRegionCanvasModule.js", "text/javascript")]
+[assembly: System.Web.UI.WebResourceAttribute("DowJones.Dash.Modules.PageLoadByRegionCanvasModule.PageLoadByRegionCanvasModule.j" +
+    "s", "text/javascript")]
+[assembly: System.Web.UI.WebResourceAttribute("DowJones.Dash.Modules.PageLoadByRegionCanvasModule.ClientTemplates.navPills.html", "text/html")]
 
-namespace DowJones.Dash.Modules.PageLoadByRegion
+namespace DowJones.Dash.Modules.PageLoadByRegionCanvasModule
 {
     using System;
     using System.Collections.Generic;
@@ -24,8 +26,10 @@ namespace DowJones.Dash.Modules.PageLoadByRegion
     using Web.Mvc.Extensions;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 12/14/2012 02:36 PM
-    [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Dash.Modules.PageLoadByRegion.PageLoadByRegionCanvasModule.js", ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Dash.Modules.PageLoadByRegion.PageLoadByRegionCanvasModule))]
+    // Last Generated Timestamp: 12/18/2012 11:20 AM
+    [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Dash.Modules.PageLoadByRegionCanvasModule.PageLoadByRegionCanvasModule.j" +
+        "s", ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Dash.Modules.PageLoadByRegionCanvasModule.PageLoadByRegionCanvasModule))]
+    [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Dash.Modules.PageLoadByRegionCanvasModule.ClientTemplates.navPills.html", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="navPills", DeclaringType=typeof(DowJones.Dash.Modules.PageLoadByRegionCanvasModule.PageLoadByRegionCanvasModule))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.27108")]
     public class PageLoadByRegionCanvasModule : DowJones.Web.Mvc.UI.Canvas.AbstractCanvasModule<DowJones.Dash.Modules.PageLoadByRegionModuleModel>
     {
@@ -47,6 +51,7 @@ namespace DowJones.Dash.Modules.PageLoadByRegion
 
 
 WriteLiteral("\r\n");
+
 
 
 

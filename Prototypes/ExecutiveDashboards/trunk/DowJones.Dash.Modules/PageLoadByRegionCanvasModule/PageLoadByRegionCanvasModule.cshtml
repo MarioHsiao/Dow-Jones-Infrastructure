@@ -4,6 +4,7 @@
 
 @ClientPlugin dj_PageLoadByRegionCanvasModule
 @ScriptResource RelativeResourceName=PageLoadByRegionCanvasModule.js
+@ClientTemplate RelativeResourceName=ClientTemplates.navPills.html, TemplateId=navPills
 
 @section ContentArea {
     @(Html.DJ().RenderComponent<StatsMapComponent>(Model.StatsMap))

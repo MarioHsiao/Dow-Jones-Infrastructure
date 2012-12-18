@@ -30,7 +30,12 @@ namespace DowJones.Dash.Modules
 		{
 			return new PageLoadByRegionModuleModel
 				{
-					StatsMap = new StatsMapModel()
+					StatsMap = new StatsMapModel(),
+					ModuleId = source.Id,
+					Title = source.Title,
+					Description = source.Description,
+					CanEdit = true,
+					
 				};
 		}
 	}

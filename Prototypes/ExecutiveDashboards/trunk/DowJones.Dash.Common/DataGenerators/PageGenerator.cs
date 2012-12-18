@@ -11,81 +11,83 @@ using ZoneLayout = DowJones.Pages.Layout.ZoneLayout;
 
 namespace DowJones.Dash.DataGenerators
 {
-    public class PageGenerator
-    {
-        private static readonly ILog Log = LogManager.GetLogger(typeof (PageGenerator));
+	public class PageGenerator
+	{
+		private static readonly ILog Log = LogManager.GetLogger(typeof(PageGenerator));
 
-        private readonly IScriptModuleTemplateManager _templateManager;
-	    private readonly IPageTemplateManager _pageTemplateManager;
-
-
-	    public PageGenerator(IScriptModuleTemplateManager templateManager, IPageTemplateManager pageTemplateManager)
-        {
-	        _templateManager = templateManager;
-	        _pageTemplateManager = pageTemplateManager;
-        }
-
-	    public Page GeneratePage(string userId)
-        {
-            Log.DebugFormat("Generating new page for {0}", userId);
-
-            var templates = _templateManager.GetTemplates();
-
-            var moduleId = 0;
-            var modules =
-                (
-                    from template in templates
-                    select new ScriptModule
-                        {
-                            Id = moduleId += 1,
-                            TemplateId = template.Id,
-                            Title = template.Title,
-                        }
-				)
-				.Union(_pageTemplateManager.GetDefaultModules())
-				.ToArray();
+		private readonly IScriptModuleTemplateManager _templateManager;
+		private readonly IPageTemplateManager _pageTemplateManager;
 
 
-            var zones = GetZones(3, modules).ToArray();
+		public PageGenerator(IScriptModuleTemplateManager templateManager, IPageTemplateManager pageTemplateManager)
+		{
+			_templateManager = templateManager;
+			_pageTemplateManager = pageTemplateManager;
+		}
 
-            var page = new Page
-                {
-                    OwnerUserId = userId,
-                    Layout = new ZoneLayout(zones),
-                    ModuleCollection = new List<Module>(modules),
-                };
+		public Page GeneratePage(string userId)
+		{
+			Log.DebugFormat("Generating new page for {0}", userId);
 
-            return page;
-        }
+			var templates = _templateManager.GetTemplates();
 
-        private static IEnumerable<ZoneLayout.Zone> GetZones(int zoneCount, IEnumerable<Module> modules)
-        {
-            var moduleArray = modules.ToArray();
+			var moduleId = 0;
+			var scriptModules =
+				(
+					from template in templates
+					select new ScriptModule
+						{
+							Id = moduleId += 1,
+							TemplateId = template.Id,
+							Title = template.Title,
+						}
+				);
 
-            // generate three zones
-            var zone1 = new ZoneLayout.Zone(new[] {moduleArray[0].Id, moduleArray[1].Id, moduleArray[2].Id});
-            yield return zone1;
+			var canvasModules = _pageTemplateManager.GetDefaultModules()
+									.Select(m => { m.Id = moduleId += 1; return m; });
 
-            var zone2 = new ZoneLayout.Zone(new[] { moduleArray[3].Id, moduleArray[4].Id});
-            yield return zone2;
+			var modules = scriptModules.Union(canvasModules).ToArray();
 
-            var zone3 = new ZoneLayout.Zone(new[] { moduleArray[5].Id, moduleArray[6].Id, moduleArray[7].Id });
-            yield return zone3;
-            
-            /*
-            for (var zoneIndex = 1; zoneIndex <= zoneCount; zoneIndex++)
-            {
-                var zone = new ZoneLayout.Zone();
+			var zones = GetZones(3, modules).ToArray();
 
-                var moduleIndex = 0;
+			var page = new Page
+				{
+					OwnerUserId = userId,
+					Layout = new ZoneLayout(zones),
+					ModuleCollection = new List<Module>(modules),
+				};
 
-                zone.AddRange(
-                    from module in moduleArray
-                    where ((moduleIndex += 1) % zoneIndex) == 0
-                    select module.Id);
+			return page;
+		}
 
-                yield return zone;
-            }*/
-        }
-    }
+		private static IEnumerable<ZoneLayout.Zone> GetZones(int zoneCount, IEnumerable<Module> modules)
+		{
+			var moduleArray = modules.ToArray();
+
+			// generate three zones
+			var zone1 = new ZoneLayout.Zone(new[] { moduleArray[0].Id, moduleArray[1].Id, moduleArray[2].Id });
+			yield return zone1;
+
+			var zone2 = new ZoneLayout.Zone(new[] { moduleArray[3].Id, moduleArray[4].Id });
+			yield return zone2;
+
+			var zone3 = new ZoneLayout.Zone(new[] { moduleArray[5].Id, moduleArray[6].Id, moduleArray[7].Id });
+			yield return zone3;
+
+			/*
+			for (var zoneIndex = 1; zoneIndex <= zoneCount; zoneIndex++)
+			{
+				var zone = new ZoneLayout.Zone();
+
+				var moduleIndex = 0;
+
+				zone.AddRange(
+					from module in moduleArray
+					where ((moduleIndex += 1) % zoneIndex) == 0
+					select module.Id);
+
+				yield return zone;
+			}*/
+		}
+	}
 }
