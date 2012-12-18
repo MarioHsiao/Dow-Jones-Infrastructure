@@ -372,7 +372,7 @@ DJ.UI.SimpleAlert = DJ.UI.Component.extend({
             var currentLi = $(val).closest('li.connectionAndPillWrap');
             $(currentLi).attr('iindex', idx + "");
             if (idx === alertData.newsFilter[fIndex].filter.length - 1) {
-                $(currentLi).insertAfter($(currentLi).prevAll('li[mode="and"]').first());
+                $(currentLi).insertAfter($(currentLi).siblings('li[mode="and"][findex="' + fIndex + '"]').last());
             }
         });
         $.each($("span[findex=" + fIndex + "]", pillWrapNot), function (idx, val) {
@@ -401,11 +401,12 @@ DJ.UI.SimpleAlert = DJ.UI.Component.extend({
         if (!alertData.newsFilter[fIndex].excludeFilter) {
             alertData.newsFilter[fIndex].excludeFilter = [];
         }
-        alertData.newsFilter[fIndex].excludeFilter.splice(alertData.newsFilter[fIndex].excludeFilter.length, 0, alertData.newsFilter[fIndex].filter[iIndex]);
+        var exFilterLength = alertData.newsFilter[fIndex].excludeFilter.length;
+        alertData.newsFilter[fIndex].excludeFilter.splice(exFilterLength, 0, alertData.newsFilter[fIndex].filter[iIndex]);
         alertData.newsFilter[fIndex].filter.splice(iIndex, 1);
 
-        $(elem).attr('mode', 'not');
-        $connectAndPillWrap.attr('mode', 'not');
+        $(elem).attr('mode', 'temp');
+        $connectAndPillWrap.attr('mode', 'temp');
         pillWrapAnd = $('li.connectionAndPillWrap[mode="and"][findex="' + fIndex + '"]', $(elem).closest('.dj_SimpleAlert'));
         pillWrapNot = $('li.connectionAndPillWrap[mode="not"][findex="' + fIndex + '"]', $(elem).closest('.dj_SimpleAlert'));
         $.each($("span[findex=" + fIndex + "]", pillWrapAnd), function (idx, val) {
@@ -416,13 +417,12 @@ DJ.UI.SimpleAlert = DJ.UI.Component.extend({
             $(val).attr('iindex', idx + "");
             var currentLi = $(val).closest('li.connectionAndPillWrap');
             $(currentLi).attr('iindex', idx + "");
-            if (idx === alertData.newsFilter[fIndex].excludeFilter.length - 1) {
-                $(currentLi).insertAfter($(currentLi).prevAll('li[mode="not"]').first());
-            }
         });
 
+        $(elem).attr('mode', 'not').attr('iindex', exFilterLength);
+        $connectAndPillWrap.attr('mode', 'not').attr('iindex', exFilterLength);
         $connectAndPillWrap.prepend($filterConnectionHtml);
-
+        $connectAndPillWrap.insertAfter($connectAndPillWrap.nextAll('li.connectionAndPillWrap[findex="' + fIndex + '"]').last());
         $simpleAlertContainer.data("data", alertData);
     },
 
