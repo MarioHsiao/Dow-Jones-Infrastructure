@@ -4,7 +4,7 @@
         <li class="beta dj_alert-source"><%= filterItem.filterName %>: </li>
         <%if (filterItem.filter && filterItem.filter.length > 0) {
             $.each(filterItem.filter, function(j, filter) { %>
-            <li class="connectionAndPillWrap">
+            <li class="connectionAndPillWrap" fIndex="<%= i %>" iIndex="<%= j %>" mode="and">
                 <div class="filterPillWrap addPillOptions" data-filter="<%= JSON.stringify(filter) %>" mode="and">
                     <div style="cursor: pointer;" class="pill">
                         <span class="filterText"><%= filter.desc %></span>
@@ -16,7 +16,7 @@
         }
         if (filterItem.excludeFilter && filterItem.excludeFilter.length > 0) {
             $.each(filterItem.excludeFilter, function(j, filter) { %>
-            <li class="connectionAndPillWrap">
+            <li class="connectionAndPillWrap" fIndex="<%= i %>" iIndex="<%= j %>" mode="not">
                 <span class="filterConnection">
                     <span class="connectionText connectionTextNot"><%= Token('notLabel') %></span>
                 </span>
