@@ -401,6 +401,15 @@ $height:32px;
 
 }
 
+.dj-perfGaugeItems {
+  font-size: 16px;
+  color: #999;
+  text-shadow: 0px 3px 8px #2A2A2A;
+
+  .visitors {
+    font-weight: bold; } 
+}
+
 .dj-trafficBar {
   position: relative;
   width: 98%;
