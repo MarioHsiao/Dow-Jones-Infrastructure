@@ -120,7 +120,7 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="PageLoadByRegionCanvasModule\ClientTemplates\navPills.html" />
-    <Content Include="PageLoadByRegionCanvasModule\PageLoadByRegionCanvasModule.js" />
+    <EmbeddedResource Include="PageLoadByRegionCanvasModule\PageLoadByRegionCanvasModule.js" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DowJones.Dash.Components.Models\DowJones.Dash.Components.Models.csproj">
