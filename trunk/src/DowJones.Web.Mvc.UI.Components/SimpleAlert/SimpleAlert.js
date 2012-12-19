@@ -333,6 +333,10 @@ DJ.UI.SimpleAlert = DJ.UI.Component.extend({
             });
         }
         $connectAndPillWrap.remove();
+        //Delete the whole NewsFilter <tr> when there is no more news filter
+        if (alertData.newsFilter.length === 0) {
+            $('tr.newsFilter').hide();
+        }
         $simpleAlertContainer.data("data", alertData);
     },
 
@@ -340,17 +344,17 @@ DJ.UI.SimpleAlert = DJ.UI.Component.extend({
         var $simpleAlertContainer = $(elem).closest('.dj_SimpleAlert'),
             alertData = $simpleAlertContainer.data("data"),
             mode = $(elem).attr('mode'),
-            $gearBtn = $('span.fi_d-gear', elem),
             $alertSource = ($(elem).closest('li')).prev('li.dj_alert-source'),
-            $filterConnection = $(elem).siblings("span.filterConnection"),
             $connectAndPillWrap = $(elem).closest('li.connectionAndPillWrap'),
+            $filterConnection = $(elem).siblings("span.filterConnection"),
             $gearBtn = $('span.fi_d-gear', elem),
-            fIndex = parseInt($gearBtn.attr("fIndex")),
-            iIndex = parseInt($gearBtn.attr("iIndex"));
+            fIndex = parseInt($gearBtn.attr("findex")),
+            iIndex = parseInt($gearBtn.attr("iindex"));
 
         if (!alertData.newsFilter[fIndex].filter) {
             alertData.newsFilter[fIndex].filter = [];
         }
+        //Insert and Remove from filter and excludeFilter
         alertData.newsFilter[fIndex].filter.splice(alertData.newsFilter[fIndex].filter.length, 0, alertData.newsFilter[fIndex].excludeFilter[iIndex])
         alertData.newsFilter[fIndex].excludeFilter.splice(iIndex, 1);
 
@@ -381,19 +385,20 @@ DJ.UI.SimpleAlert = DJ.UI.Component.extend({
         var $simpleAlertContainer = $(elem).closest('.dj_SimpleAlert'),
             alertData = $simpleAlertContainer.data("data"),
             mode = $(elem).attr('mode'),
-            $gearBtn = $('span.fi_d-gear', elem),
-            $connectAndPillWrap = $(elem).closest('li.connectionAndPillWrap'),
             $alertSource = ($(elem).closest('li')).prev('li.dj_alert-source'),
+            $connectAndPillWrap = $(elem).closest('li.connectionAndPillWrap'),
             $filterConnectionHtml = "<span class='filterConnection'>" +
                                     "<span class='connectionText connectionTextNot'><%= Token('notLabel') %></span>" +
                                     "</span>";
-        $gearBtn = $('span.fi_d-gear', elem),
-            fIndex = parseInt($gearBtn.attr("fIndex")),
-            iIndex = parseInt($gearBtn.attr("iIndex"));
+            $gearBtn = $('span.fi_d-gear', elem),
+            fIndex = parseInt($gearBtn.attr("findex")),
+            iIndex = parseInt($gearBtn.attr("iindex"));
+
         if (!alertData.newsFilter[fIndex].excludeFilter) {
             alertData.newsFilter[fIndex].excludeFilter = [];
         }
         var exFilterLength = alertData.newsFilter[fIndex].excludeFilter.length;
+        //Insert and Remove from excludeFilter and filter
         alertData.newsFilter[fIndex].excludeFilter.splice(exFilterLength, 0, alertData.newsFilter[fIndex].filter[iIndex]);
         alertData.newsFilter[fIndex].filter.splice(iIndex, 1);
 
@@ -411,8 +416,9 @@ DJ.UI.SimpleAlert = DJ.UI.Component.extend({
             $(currentLi).attr('iindex', idx + "");
         });
 
-        $(elem).attr('mode', 'not').attr('iindex', exFilterLength);
+        $(elem).attr('mode', 'not');
         $connectAndPillWrap.attr('mode', 'not').attr('iindex', exFilterLength);
+        $gearBtn.attr('iindex', exFilterLength);
         $connectAndPillWrap.prepend($filterConnectionHtml);
         $connectAndPillWrap.insertAfter($connectAndPillWrap.nextAll('li.connectionAndPillWrap[findex="' + fIndex + '"]').last());
         $simpleAlertContainer.data("data", alertData);
