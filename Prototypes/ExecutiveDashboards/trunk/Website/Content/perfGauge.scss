@@ -2,16 +2,18 @@ $browserBackground: url(images/browser-sprites.png) no-repeat;
 
 
 .dj-browser-logo {
-	height: 42px;
-	width: 42px;
-	border-radius: 22px;
-	background-color: #F7F7F7;
-	border: solid 1px #DDD;
-	left: 40px;
-	position: absolute;
-	z-index: 10; 
+	&.dj-browser{
+		height: 42px;
+		width: 42px;
+		border-radius: 22px;
+		background-color: #F7F7F7;
+		border: solid 1px #DDD;
+		left: 40px;
+		position: absolute;
+		z-index: 10; 
+	}
 
-	i {
+	&.i {
 		background: $browserBackground;
 		background-position: 0 -250px;
 		width: 32px;
@@ -47,7 +49,7 @@ $browserBackground: url(images/browser-sprites.png) no-repeat;
 		  background-position: -250px -2px;
 		}
 
-		&.dj-browser-logo-atratus-web explorer {
+		&.dj-browser-logo-atratus {
 			background-position: -300px 0;
 		}
 	
@@ -88,11 +90,11 @@ $browserBackground: url(images/browser-sprites.png) no-repeat;
 		  background-position: -200px -50px;
 		}
 
-		&.dj-browser-logo-Domino {
+		&.dj-browser-logo-domino {
 		  background-position: -250px -50px;
 		}
 
-		&.dj-browser-logo-Donzilla {
+		&.dj-browser-logo-donzilla {
 		  background-position: -300px -50px;
 		  width: 30px;
 		  height: 30px;
@@ -102,11 +104,11 @@ $browserBackground: url(images/browser-sprites.png) no-repeat;
 		  background-position: -350px -50px;
 		}
 
-		&.dj-browser-logo-epiphany-browser {
+		&.dj-browser-logo-epiphany {
 		  background-position: -400px -50px;
 		}
 
-		&.dj-browser-logo-fedora_mini {
+		&.dj-browser-logo-fedora {
 		  background-position: -450px -50px;
 		}
 
@@ -142,23 +144,26 @@ $browserBackground: url(images/browser-sprites.png) no-repeat;
 		  background-position: -300px -100px;
 		}
 
-		&.dj-browser-logo-Ideal {
+		&.dj-browser-logo-ideal {
 		  background-position: -350px -100px;
 		}
 
-		&.dj-browser-logo-msie8,&.dj-browser-logo-msie7 {
+		&.dj-browser-logo-msie8,
+		&.dj-browser-logo-msie7,
+		&.dj-browser-logo-msie6,
+		&.dj-browser-logo-msie5 {
 		  background-position: -100px -100px;
 		}
 
-		&.dj-browser-logo-KDE {
+		&.dj-browser-logo-kde {
 		  background-position: -400px -100px;
 		}
 
-		&.dj-browser-logo-kmeleon {
+		&.dj-browser-logo-k-meleon {
 		  background-position: -450px -100px;
 		}
 
-		&.dj-browser-logo-K-Ninja-Samurai-209536 {
+		&.dj-browser-logo-k-ninja {
 		  background-position: -500px -100px;
 		}
 
@@ -166,15 +171,15 @@ $browserBackground: url(images/browser-sprites.png) no-repeat;
 		  background-position: -550px -100px;
 		}
 
-		&.dj-browser-logo-kubuntu-logo-only_32 {
+		&.dj-browser-logo-kubuntu {
 		  background-position: -600px -100px;
 		}
 
-		&.dj-browser-logo-mandriva-32 {
+		&.dj-browser-logo-mandriva {
 		  background-position: 0 -150px;
 		}
 
-		&.dj-browser-logo-Maxthon {
+		&.dj-browser-logo-maxthon {
 		  background-position: -50px -150px;
 		}
 
@@ -209,11 +214,7 @@ $browserBackground: url(images/browser-sprites.png) no-repeat;
 		  background-position: -400px -150px;
 		}
 
-		&.dj-browser-logo-other {
-		  background-position: -500px -150px;
-		}
-
-		&.dj-browser-logo-Phonix {
+		&.dj-browser-logo-phonix {
 		  background-position: -550px -150px;
 		}
 
@@ -221,11 +222,11 @@ $browserBackground: url(images/browser-sprites.png) no-repeat;
 		  background-position: -600px -150px;
 		}
 
-		&.dj-browser-logo-QtWeb {
+		&.dj-browser-logo-qtweb {
 		  background-position: 0 -200px;
 		}
 
-		&.dj-browser-logo-seamonkey-icon-32 {
+		&.dj-browser-logo-seamonkey{
 		  background-position: -100px -200px;
 		}
 
@@ -233,7 +234,7 @@ $browserBackground: url(images/browser-sprites.png) no-repeat;
 		  background-position: -150px -200px;
 		}
 
-		&.dj-browser-logo-Skyfire {
+		&.dj-browser-logo-skyfire {
 		  background-position: -250px -200px;
 		}
 
@@ -253,7 +254,7 @@ $browserBackground: url(images/browser-sprites.png) no-repeat;
 		  background-position: -500px -200px;
 		}
 
-		&.dj-browser-logo-teashark-32 {
+		&.dj-browser-logo-teashark {
 		  background-position: -550px -200px;
 		}
 
@@ -261,7 +262,7 @@ $browserBackground: url(images/browser-sprites.png) no-repeat;
 		  background-position: -600px -200px;
 		}
 
-		&.dj-browser-logo-ucweb, &.dj-browser-logo-ucweb8 {
+		&.dj-browser-logo-ucweb, &.dj-browser-logo-ucweb8, &.dj-browser-logo-ucweb7 {
 		  background-position: -97px -50px;
 		}
 
@@ -277,7 +278,7 @@ $browserBackground: url(images/browser-sprites.png) no-repeat;
 		  background-position: -350px -200px;
 		}
 
-		&.dj-browser-logo-Beonex-icon {
+		&.dj-browser-logo-beonex {
 		  background-position: -400px 0;
 		  width: 34px;
 		  height: 33px;
@@ -432,7 +433,7 @@ $browserBackground: url(images/browser-sprites.png) no-repeat;
 
 @media (max-width: 1132px) {
 	.dj-trafficBar {
-		.dj-browser-logo {
+		.dj-browser-logo dj-browser {
 			left: 35px;
 		}
 

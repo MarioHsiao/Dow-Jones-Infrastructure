@@ -1,4 +1,4 @@
-.dj-browser-logo {
+.dj-browser-logo.dj-browser {
   height: 42px;
   width: 42px;
   border-radius: 22px;
@@ -7,155 +7,153 @@
   left: 40px;
   position: absolute;
   z-index: 10; }
-  .dj-browser-logo i {
-    background: url(images/browser-sprites.png) no-repeat;
-    background-position: 0 -250px;
-    width: 32px;
-    height: 32px; }
-    .dj-browser-logo i.dj-browser-logo-chrome {
-      background-position: 0 0;
-      width: 36px;
-      height: 33px; }
-    .dj-browser-logo i.dj-browser-logo-firefox {
-      background-position: -50px 0;
-      width: 36px;
-      height: 33px; }
-    .dj-browser-logo i.dj-browser-logo-msie9, .dj-browser-logo i.dj-browser-logo-msie10 {
-      background-position: -100px 0;
-      width: 36px;
-      height: 33px; }
-    .dj-browser-logo i.dj-browser-logo-safari {
-      background-position: -150px 0;
-      width: 36px;
-      height: 33px; }
-    .dj-browser-logo i.dj-browser-logo-android {
-      background-position: -200px -100px; }
-    .dj-browser-logo i.dj-browser-logo-aol {
-      background-position: -250px -2px; }
-    .dj-browser-logo i.dj-browser-logo-atratus-web explorer {
-      background-position: -300px 0; }
-    .dj-browser-logo i.dj-browser-logo-bagel {
-      background-position: -350px 0; }
-    .dj-browser-logo i.dj-browser-logo-blackberry {
-      background-position: -500px 0; }
-    .dj-browser-logo i.dj-browser-logo-bolt {
-      background-position: -550px 0; }
-    .dj-browser-logo i.dj-browser-logo-camino {
-      background-position: -600px 0; }
-    .dj-browser-logo i.dj-browser-logo-chimera {
-      background-position: 0 -50px; }
-    .dj-browser-logo i.dj-browser-logo-crawler {
-      background-position: -50px -50px; }
-    .dj-browser-logo i.dj-browser-logo-danger {
-      background-position: -201px -1px; }
-    .dj-browser-logo i.dj-browser-logo-docomo {
-      background-position: -150px -50px; }
-    .dj-browser-logo i.dj-browser-logo-dolphin {
-      background-position: -200px -50px; }
-    .dj-browser-logo i.dj-browser-logo-Domino {
-      background-position: -250px -50px; }
-    .dj-browser-logo i.dj-browser-logo-Donzilla {
-      background-position: -300px -50px;
-      width: 30px;
-      height: 30px; }
-    .dj-browser-logo i.dj-browser-logo-e-capsule {
-      background-position: -350px -50px; }
-    .dj-browser-logo i.dj-browser-logo-epiphany-browser {
-      background-position: -400px -50px; }
-    .dj-browser-logo i.dj-browser-logo-fedora_mini {
-      background-position: -450px -50px; }
-    .dj-browser-logo i.dj-browser-logo-fennac {
-      background-position: -500px -50px; }
-    .dj-browser-logo i.dj-browser-logo-firebird {
-      background-position: -550px -50px; }
-    .dj-browser-logo i.dj-browser-logo-flock {
-      background-position: -600px -50px; }
-    .dj-browser-logo i.dj-browser-logo-galeon {
-      background-position: 0 -100px; }
-    .dj-browser-logo i.dj-browser-logo-Gian {
-      background-position: -50px -100px; }
-    .dj-browser-logo i.dj-browser-logo-googlebot {
-      background-position: -150px -100px; }
-    .dj-browser-logo i.dj-browser-logo-iCab {
-      background-position: -250px -100px; }
-    .dj-browser-logo i.dj-browser-logo-iceweasel {
-      background-position: -300px -100px; }
-    .dj-browser-logo i.dj-browser-logo-Ideal {
-      background-position: -350px -100px; }
-    .dj-browser-logo i.dj-browser-logo-msie8, .dj-browser-logo i.dj-browser-logo-msie7 {
-      background-position: -100px -100px; }
-    .dj-browser-logo i.dj-browser-logo-KDE {
-      background-position: -400px -100px; }
-    .dj-browser-logo i.dj-browser-logo-kmeleon {
-      background-position: -450px -100px; }
-    .dj-browser-logo i.dj-browser-logo-K-Ninja-Samurai-209536 {
-      background-position: -500px -100px; }
-    .dj-browser-logo i.dj-browser-logo-konqueror {
-      background-position: -550px -100px; }
-    .dj-browser-logo i.dj-browser-logo-kubuntu-logo-only_32 {
-      background-position: -600px -100px; }
-    .dj-browser-logo i.dj-browser-logo-mandriva-32 {
-      background-position: 0 -150px; }
-    .dj-browser-logo i.dj-browser-logo-Maxthon {
-      background-position: -50px -150px; }
-    .dj-browser-logo i.dj-browser-logo-minefield {
-      background-position: -100px -150px; }
-    .dj-browser-logo i.dj-browser-logo-moblin {
-      background-position: -150px -150px; }
-    .dj-browser-logo i.dj-browser-logo-multizilla {
-      background-position: -200px -150px; }
-    .dj-browser-logo i.dj-browser-logo-netscape {
-      background-position: -248px -150px; }
-    .dj-browser-logo i.dj-browser-logo-nokia {
-      background-position: -298px -150px; }
-    .dj-browser-logo i.dj-browser-logo-Nook {
-      background-position: -350px -150px;
-      width: 27px;
-      height: 28px; }
-    .dj-browser-logo i.dj-browser-logo-omniweb {
-      background-position: -400px -150px; }
-    .dj-browser-logo i.dj-browser-logo-other {
-      background-position: -500px -150px; }
-    .dj-browser-logo i.dj-browser-logo-Phonix {
-      background-position: -550px -150px; }
-    .dj-browser-logo i.dj-browser-logo-playstation {
-      background-position: -600px -150px; }
-    .dj-browser-logo i.dj-browser-logo-QtWeb {
-      background-position: 0 -200px; }
-    .dj-browser-logo i.dj-browser-logo-seamonkey-icon-32 {
-      background-position: -100px -200px; }
-    .dj-browser-logo i.dj-browser-logo-shark {
-      background-position: -150px -200px; }
-    .dj-browser-logo i.dj-browser-logo-Skyfire {
-      background-position: -250px -200px; }
-    .dj-browser-logo i.dj-browser-logo-slackware {
-      background-position: -300px -200px; }
-    .dj-browser-logo i.dj-browser-logo-sunrise {
-      background-position: -400px -200px; }
-    .dj-browser-logo i.dj-browser-logo-suse {
-      background-position: -450px -200px; }
-    .dj-browser-logo i.dj-browser-logo-sylera {
-      background-position: -500px -200px; }
-    .dj-browser-logo i.dj-browser-logo-teashark-32 {
-      background-position: -550px -200px; }
-    .dj-browser-logo i.dj-browser-logo-ubuntu {
-      background-position: -600px -200px; }
-    .dj-browser-logo i.dj-browser-logo-ucweb, .dj-browser-logo i.dj-browser-logo-ucweb8 {
-      background-position: -97px -50px; }
-    .dj-browser-logo i.dj-browser-logo-uzard {
-      background-position: -450px 0; }
-    .dj-browser-logo i.dj-browser-logo-vodafone {
-      background-position: -199px -200px; }
-    .dj-browser-logo i.dj-browser-logo-smartfox {
-      background-position: -350px -200px; }
-    .dj-browser-logo i.dj-browser-logo-Beonex-icon {
-      background-position: -400px 0;
-      width: 34px;
-      height: 33px; }
-    .dj-browser-logo i.dj-browser-logo-redhat {
-      background-position: -50px -199px; }
-    .dj-browser-logo i.dj-browser-logo-opera {
-      background-position: -449px -150px; }
+.dj-browser-logo.i {
+  background: url(images/browser-sprites.png) no-repeat;
+  background-position: 0 -250px;
+  width: 32px;
+  height: 32px; }
+  .dj-browser-logo.i.dj-browser-logo-chrome {
+    background-position: 0 0;
+    width: 36px;
+    height: 33px; }
+  .dj-browser-logo.i.dj-browser-logo-firefox {
+    background-position: -50px 0;
+    width: 36px;
+    height: 33px; }
+  .dj-browser-logo.i.dj-browser-logo-msie9, .dj-browser-logo.i.dj-browser-logo-msie10 {
+    background-position: -100px 0;
+    width: 36px;
+    height: 33px; }
+  .dj-browser-logo.i.dj-browser-logo-safari {
+    background-position: -150px 0;
+    width: 36px;
+    height: 33px; }
+  .dj-browser-logo.i.dj-browser-logo-android {
+    background-position: -200px -100px; }
+  .dj-browser-logo.i.dj-browser-logo-aol {
+    background-position: -250px -2px; }
+  .dj-browser-logo.i.dj-browser-logo-atratus {
+    background-position: -300px 0; }
+  .dj-browser-logo.i.dj-browser-logo-bagel {
+    background-position: -350px 0; }
+  .dj-browser-logo.i.dj-browser-logo-blackberry {
+    background-position: -500px 0; }
+  .dj-browser-logo.i.dj-browser-logo-bolt {
+    background-position: -550px 0; }
+  .dj-browser-logo.i.dj-browser-logo-camino {
+    background-position: -600px 0; }
+  .dj-browser-logo.i.dj-browser-logo-chimera {
+    background-position: 0 -50px; }
+  .dj-browser-logo.i.dj-browser-logo-crawler {
+    background-position: -50px -50px; }
+  .dj-browser-logo.i.dj-browser-logo-danger {
+    background-position: -201px -1px; }
+  .dj-browser-logo.i.dj-browser-logo-docomo {
+    background-position: -150px -50px; }
+  .dj-browser-logo.i.dj-browser-logo-dolphin {
+    background-position: -200px -50px; }
+  .dj-browser-logo.i.dj-browser-logo-domino {
+    background-position: -250px -50px; }
+  .dj-browser-logo.i.dj-browser-logo-donzilla {
+    background-position: -300px -50px;
+    width: 30px;
+    height: 30px; }
+  .dj-browser-logo.i.dj-browser-logo-e-capsule {
+    background-position: -350px -50px; }
+  .dj-browser-logo.i.dj-browser-logo-epiphany {
+    background-position: -400px -50px; }
+  .dj-browser-logo.i.dj-browser-logo-fedora {
+    background-position: -450px -50px; }
+  .dj-browser-logo.i.dj-browser-logo-fennac {
+    background-position: -500px -50px; }
+  .dj-browser-logo.i.dj-browser-logo-firebird {
+    background-position: -550px -50px; }
+  .dj-browser-logo.i.dj-browser-logo-flock {
+    background-position: -600px -50px; }
+  .dj-browser-logo.i.dj-browser-logo-galeon {
+    background-position: 0 -100px; }
+  .dj-browser-logo.i.dj-browser-logo-Gian {
+    background-position: -50px -100px; }
+  .dj-browser-logo.i.dj-browser-logo-googlebot {
+    background-position: -150px -100px; }
+  .dj-browser-logo.i.dj-browser-logo-iCab {
+    background-position: -250px -100px; }
+  .dj-browser-logo.i.dj-browser-logo-iceweasel {
+    background-position: -300px -100px; }
+  .dj-browser-logo.i.dj-browser-logo-ideal {
+    background-position: -350px -100px; }
+  .dj-browser-logo.i.dj-browser-logo-msie8, .dj-browser-logo.i.dj-browser-logo-msie7, .dj-browser-logo.i.dj-browser-logo-msie6, .dj-browser-logo.i.dj-browser-logo-msie5 {
+    background-position: -100px -100px; }
+  .dj-browser-logo.i.dj-browser-logo-kde {
+    background-position: -400px -100px; }
+  .dj-browser-logo.i.dj-browser-logo-k-meleon {
+    background-position: -450px -100px; }
+  .dj-browser-logo.i.dj-browser-logo-k-ninja {
+    background-position: -500px -100px; }
+  .dj-browser-logo.i.dj-browser-logo-konqueror {
+    background-position: -550px -100px; }
+  .dj-browser-logo.i.dj-browser-logo-kubuntu {
+    background-position: -600px -100px; }
+  .dj-browser-logo.i.dj-browser-logo-mandriva {
+    background-position: 0 -150px; }
+  .dj-browser-logo.i.dj-browser-logo-maxthon {
+    background-position: -50px -150px; }
+  .dj-browser-logo.i.dj-browser-logo-minefield {
+    background-position: -100px -150px; }
+  .dj-browser-logo.i.dj-browser-logo-moblin {
+    background-position: -150px -150px; }
+  .dj-browser-logo.i.dj-browser-logo-multizilla {
+    background-position: -200px -150px; }
+  .dj-browser-logo.i.dj-browser-logo-netscape {
+    background-position: -248px -150px; }
+  .dj-browser-logo.i.dj-browser-logo-nokia {
+    background-position: -298px -150px; }
+  .dj-browser-logo.i.dj-browser-logo-Nook {
+    background-position: -350px -150px;
+    width: 27px;
+    height: 28px; }
+  .dj-browser-logo.i.dj-browser-logo-omniweb {
+    background-position: -400px -150px; }
+  .dj-browser-logo.i.dj-browser-logo-phonix {
+    background-position: -550px -150px; }
+  .dj-browser-logo.i.dj-browser-logo-playstation {
+    background-position: -600px -150px; }
+  .dj-browser-logo.i.dj-browser-logo-qtweb {
+    background-position: 0 -200px; }
+  .dj-browser-logo.i.dj-browser-logo-seamonkey {
+    background-position: -100px -200px; }
+  .dj-browser-logo.i.dj-browser-logo-shark {
+    background-position: -150px -200px; }
+  .dj-browser-logo.i.dj-browser-logo-skyfire {
+    background-position: -250px -200px; }
+  .dj-browser-logo.i.dj-browser-logo-slackware {
+    background-position: -300px -200px; }
+  .dj-browser-logo.i.dj-browser-logo-sunrise {
+    background-position: -400px -200px; }
+  .dj-browser-logo.i.dj-browser-logo-suse {
+    background-position: -450px -200px; }
+  .dj-browser-logo.i.dj-browser-logo-sylera {
+    background-position: -500px -200px; }
+  .dj-browser-logo.i.dj-browser-logo-teashark {
+    background-position: -550px -200px; }
+  .dj-browser-logo.i.dj-browser-logo-ubuntu {
+    background-position: -600px -200px; }
+  .dj-browser-logo.i.dj-browser-logo-ucweb, .dj-browser-logo.i.dj-browser-logo-ucweb8, .dj-browser-logo.i.dj-browser-logo-ucweb7 {
+    background-position: -97px -50px; }
+  .dj-browser-logo.i.dj-browser-logo-uzard {
+    background-position: -450px 0; }
+  .dj-browser-logo.i.dj-browser-logo-vodafone {
+    background-position: -199px -200px; }
+  .dj-browser-logo.i.dj-browser-logo-smartfox {
+    background-position: -350px -200px; }
+  .dj-browser-logo.i.dj-browser-logo-beonex {
+    background-position: -400px 0;
+    width: 34px;
+    height: 33px; }
+  .dj-browser-logo.i.dj-browser-logo-redhat {
+    background-position: -50px -199px; }
+  .dj-browser-logo.i.dj-browser-logo-opera {
+    background-position: -449px -150px; }
 
 .dj-perfGaugeItems {
   font-size: 16px;
@@ -269,7 +267,7 @@
         background-image: linear-gradient(top, #ffcc33, #c3900b); }
 
 @media (max-width: 1132px) {
-  .dj-trafficBar .dj-browser-logo {
+  .dj-trafficBar .dj-browser-logo dj-browser {
     left: 35px; }
   .dj-trafficBar .bar {
     left: 74px; } }
