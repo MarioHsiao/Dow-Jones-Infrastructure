@@ -411,7 +411,7 @@ DJ.UI.SimpleAlert = DJ.UI.Component.extend({
             $(currentLi).attr('iindex', idx + "");
         });
 
-        $('.fi_d-gear', elem).attr('iindex', exFilterLength);
+        $(elem).attr('mode', 'not').attr('iindex', exFilterLength);
         $connectAndPillWrap.attr('mode', 'not').attr('iindex', exFilterLength);
         $connectAndPillWrap.prepend($filterConnectionHtml);
         $connectAndPillWrap.insertAfter($connectAndPillWrap.nextAll('li.connectionAndPillWrap[findex="' + fIndex + '"]').last());
