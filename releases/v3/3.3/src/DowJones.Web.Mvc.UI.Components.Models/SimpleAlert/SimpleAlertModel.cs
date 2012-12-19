@@ -14,7 +14,7 @@
         /// Gets or sets the enable exclude.
         /// </summary>
         [ClientProperty("enableExclude")]
-        public string EnableExclude { get; set; }
+        public bool EnableExclude { get; set; }
 
         [ClientData]
         public SimpleAlertData Data

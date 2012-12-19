@@ -4,11 +4,11 @@
         <li class="beta dj_alert-source"><%= filterItem.filterName %>: </li>
         <%if (filterItem.filter && filterItem.filter.length > 0) {
             $.each(filterItem.filter, function(j, filter) { %>
-            <li class="connectionAndPillWrap" fIndex="<%= i %>" iIndex="<%= j %>" mode="and">
+            <li class="connectionAndPillWrap" findex="<%= i %>" iindex="<%= j %>" mode="and">
                 <div class="filterPillWrap addPillOptions" data-filter="<%= JSON.stringify(filter) %>" mode="and">
                     <div style="cursor: pointer;" class="pill">
                         <span class="filterText"><%= filter.desc %></span>
-                        <span class="fi-two fi_d-arrow-drk-gray fi_d-gear" fIndex="<%= i %>" iIndex="<%= j %>"></span>
+                        <span class="fi-two fi_d-arrow-drk-gray fi_d-gear" findex="<%= i %>" iindex="<%= j %>"></span>
                     </div>
                 </div>
             </li>
@@ -16,14 +16,14 @@
         }
         if (filterItem.excludeFilter && filterItem.excludeFilter.length > 0) {
             $.each(filterItem.excludeFilter, function(j, filter) { %>
-            <li class="connectionAndPillWrap" fIndex="<%= i %>" iIndex="<%= j %>" mode="not">
+            <li class="connectionAndPillWrap" findex="<%= i %>" iindex="<%= j %>" mode="not">
                 <span class="filterConnection">
                     <span class="connectionText connectionTextNot"><%= Token('notLabel') %></span>
                 </span>
                 <div class="filterPillWrap addPillOptions" data-exFilter="<%= JSON.stringify(filter) %>" mode="not">
                     <div style="cursor: pointer;" class="pill">
                         <span class="filterText"><%= filter.desc %></span>
-                        <span class="fi-two fi_d-arrow-drk-gray fi_d-gear" fIndex="<%= i %>" iIndex="<%= j %>"></span>
+                        <span class="fi-two fi_d-arrow-drk-gray fi_d-gear" findex="<%= i %>" iindex="<%= j %>"></span>
                     </div>
                 </div>
             </li>
