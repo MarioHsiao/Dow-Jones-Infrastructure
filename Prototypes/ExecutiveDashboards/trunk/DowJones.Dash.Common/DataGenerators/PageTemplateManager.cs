@@ -13,6 +13,7 @@ namespace DowJones.Dash.DataGenerators
 			return new []
 				{
 					new PageLoadByRegionNewspageModule  { Title = "Page Load By Region", Description = "Average page load times, broken down by state" },
+					new PageLoadByRegionNewspageModule  { Title = "Page Load By Region", Description = "Average page load times, broken down by state", MapType = PageLoadByRegionMapType.World },
 				};
 		}
 

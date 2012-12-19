@@ -60,7 +60,11 @@
             });
 
             $('.minimize').append($('<i class="icon-chevron-up icon-white"/>'));
-            $('.maximize').append($('<i class="icon-chevron-down icon-white"/>'));
+
+            $('.maximize')
+                .before('<i class="icon-share icon-white dj_icon-pop-out" title="Pop out this module to its own page" />')
+                .append($('<i class="icon-chevron-down icon-white"/>'));
+            
             $('.dj_module .hide').append($('<i class="icon-remove icon-white"/>')).removeClass('hide');
             $('.dj_module-refresh').remove();
 
@@ -70,7 +74,6 @@
 
         _initializeInfoIcons: function () {
             $('.dj_module-title')
-                .before('<i class="icon-share icon-white dj_icon-pop-out" title="Pop out this module to its own page" />')
                 .after('<i class="icon-info-sign icon-white dj_icon-info"/>');
 
             $('.dj_module-title + .dj_icon-info')
@@ -89,7 +92,8 @@
                 });
         },
         
-        _initializePopout: function() {
+        _initializePopout: function () {
+            var self = this;
             $('.dj_icon-pop-out')
                 .click(function () {
                     var el = $(this),
@@ -101,7 +105,7 @@
                         footerHeight = 46 + 20,  /* keep this in sync with _Footer.cshtml's rendered height + margin */
                         height = moduleHeight + footerHeight,
                         pageId = DJ.UI.Canvas.find().get_canvasId(),
-                        url = location.href + "Popup?pid=" + pageId + "&mid=" + moduleId,
+                        url = self.options.popUpUrl + "?pid=" + pageId + "&mid=" + moduleId,
                         features = "resizable=no,scrollbars=no,status=no,location=no,height=" 
                                     + height + ",width=" + moduleWidth;
 
@@ -145,7 +149,7 @@
         },
         
         _initializeWorldStatsMap: function () {
-            DJ.add("StatsMap", {
+            DJ.add("PageLoadByRegionCanvasModule", {
                 container: $('.worldMapContainer')[0],
                 options: {
                     allowHostConfigurationChange: false,  /* do not respond to domain change events on tab switching */
@@ -154,8 +158,7 @@
                 }
             });
 
-            $('#world-map-module .actions-contain' +
-                'er .fi .icon-remove').click(this._delegates.worldViewClick);
+            $('#world-map-module .actions-container .fi .icon-remove').click(this._delegates.worldViewClick);
         },
         
         _initializeBrowserShare: function () {

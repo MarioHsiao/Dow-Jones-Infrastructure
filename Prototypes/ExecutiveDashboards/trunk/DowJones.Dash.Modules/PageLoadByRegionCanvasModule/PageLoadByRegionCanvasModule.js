@@ -29,8 +29,10 @@ DJ.UI.PageLoadByRegionCanvasModule = DJ.UI.AbstractCanvasModule.extend({
 
         // Call the base constructor
         this._super(element, $meta);
+
+        var map = this.options.mapType === 'world' ? 'world' : this.options.map;
         
-        this.currentStateCodes = this.stateCodes[this.options.map];
+        this.currentStateCodes = this.stateCodes[map];
     },
 
 

@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "Dash - Executive Dashboard";
 
-    DJ.ScriptRegistry().OnDocumentReady(@"window['Dash'] = new DJ.UI.Dash($('body'), window['meta']).start(window['domain']);");
+    DJ.ScriptRegistry().OnDocumentReady("onReady();");
 }
 
 @section styles {
@@ -60,6 +60,11 @@
         window.activeTab = $('.dashNav li.active');
         window.domain = { source: activeTab.data('source'), map: activeTab.data('map') };
     })();
+    
+    function onReady() {
+        window['Dash'] = new DJ.UI.Dash($('body'), window['meta']).start(window['domain']);
+        window.Dash.options.popUpUrl = "@Url.Content("~/Popup")";
+    }
 </script>
 
 @section scripts{

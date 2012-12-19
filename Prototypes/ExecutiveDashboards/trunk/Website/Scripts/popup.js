@@ -178,8 +178,7 @@
                 'DeviceTrafficMobile',
                 'PageLoadHistoricalDetails',
                 'PageTimings',
-                'PageLoadDetailsByType',
-                'PageLoadDetailsByTypeForWorld'
+                'PageLoadDetailsByType'
             ];
 
             var events = [];

@@ -148,7 +148,7 @@ DJ.UI.StatsMap = DJ.UI.Component.extend({
         this.mapConfig.series = this.mapConfig.series || [{ type: 'map', data: [] }];
 
         if (performanceZones)
-            this.mapConfig.plotOptions.map.valueRanges = this._configureValueRanges(performanceZones);
+            this.mapConfig.plotOptions.map.valueRanges = this.configureValueRanges(performanceZones);
 
         for (var i = 0; i < this.territories.length; i++) {
             var key = this.territories[i];
@@ -180,7 +180,7 @@ DJ.UI.StatsMap = DJ.UI.Component.extend({
         this._initializingChart = false;
     },
 
-    _configureValueRanges: function (zones) {
+    configureValueRanges: function (zones) {
         var valueRanges = [{ color: '#ddd' }], key, zone;
 
         for (key in zones) {
