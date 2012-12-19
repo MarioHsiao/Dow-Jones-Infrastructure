@@ -1,268 +1,161 @@
-.browser {
-  background: url(images/browser-sprites.png) no-repeat;
-  background-position: 0 -250px;
-  width: 32px;
-  height: 32px; }
-  .browser.chrome {
-    background-position: 0 0;
-    width: 36px;
-    height: 33px; }
-  .browser.firefox {
-    background-position: -50px 0;
-    width: 36px;
-    height: 33px; }
-  .browser.msie9, .browser.msie10 {
-    background-position: -100px 0;
-    width: 36px;
-    height: 33px; }
-  .browser.safari {
-    background-position: -150px 0;
-    width: 36px;
-    height: 33px; }
-  .browser.android {
-    background-position: -200px -100px;
+.dj-browser-logo {
+  height: 42px;
+  width: 42px;
+  border-radius: 22px;
+  background-color: #F7F7F7;
+  border: solid 1px #DDD;
+  left: 40px;
+  position: absolute;
+  z-index: 10; }
+  .dj-browser-logo i {
+    background: url(images/browser-sprites.png) no-repeat;
+    background-position: 0 -250px;
     width: 32px;
     height: 32px; }
-  .browser.aol {
-    background-position: -250px -2px;
-    width: 32px;
-    height: 32px; }
-  .browser.atratus-web explorer {
-    background-position: -300px 0;
-    width: 32px;
-    height: 32px; }
-  .browser.bagel {
-    background-position: -350px 0;
-    width: 32px;
-    height: 32px; }
-  .browser.blackberry {
-    background-position: -500px 0;
-    width: 32px;
-    height: 32px; }
-  .browser.bolt {
-    background-position: -550px 0;
-    width: 32px;
-    height: 32px; }
-  .browser.camino {
-    background-position: -600px 0;
-    width: 32px;
-    height: 32px; }
-  .browser.chimera {
-    background-position: 0 -50px;
-    width: 32px;
-    height: 32px; }
-  .browser.crawler {
-    background-position: -50px -50px;
-    width: 32px;
-    height: 32px; }
-  .browser.danger {
-    background-position: -201px -1px;
-    width: 32px;
-    height: 32px; }
-  .browser.docomo {
-    background-position: -150px -50px;
-    width: 32px;
-    height: 32px; }
-  .browser.dolphin {
-    background-position: -200px -50px;
-    width: 32px;
-    height: 32px; }
-  .browser.Domino {
-    background-position: -250px -50px;
-    width: 32px;
-    height: 32px; }
-  .browser.Donzilla {
-    background-position: -300px -50px;
-    width: 30px;
-    height: 30px; }
-  .browser.e-capsule {
-    background-position: -350px -50px;
-    width: 32px;
-    height: 32px; }
-  .browser.epiphany-browser {
-    background-position: -400px -50px;
-    width: 32px;
-    height: 32px; }
-  .browser.fedora_mini {
-    background-position: -450px -50px;
-    width: 32px;
-    height: 32px; }
-  .browser.fennac {
-    background-position: -500px -50px;
-    width: 32px;
-    height: 32px; }
-  .browser.firebird {
-    background-position: -550px -50px;
-    width: 32px;
-    height: 32px; }
-  .browser.flock {
-    background-position: -600px -50px;
-    width: 32px;
-    height: 32px; }
-  .browser.galeon {
-    background-position: 0 -100px;
-    width: 32px;
-    height: 32px; }
-  .browser.Gian {
-    background-position: -50px -100px;
-    width: 32px;
-    height: 32px; }
-  .browser.googlebot {
-    background-position: -150px -100px;
-    width: 32px;
-    height: 32px; }
-  .browser.iCab {
-    background-position: -250px -100px;
-    width: 32px;
-    height: 32px; }
-  .browser.iceweasel {
-    background-position: -300px -100px;
-    width: 32px;
-    height: 32px; }
-  .browser.Ideal {
-    background-position: -350px -100px;
-    width: 32px;
-    height: 32px; }
-  .browser.msie8, .browser.msie7 {
-    background-position: -100px -100px;
-    width: 32px;
-    height: 32px; }
-  .browser .KDE {
-    background-position: -400px -100px;
-    width: 32px;
-    height: 32px; }
-  .browser.kmeleon {
-    background-position: -450px -100px;
-    width: 32px;
-    height: 32px; }
-  .browser.K-Ninja-Samurai-209536 {
-    background-position: -500px -100px;
-    width: 32px;
-    height: 32px; }
-  .browser.konqueror {
-    background-position: -550px -100px;
-    width: 32px;
-    height: 32px; }
-  .browser.kubuntu-logo-only_32 {
-    background-position: -600px -100px;
-    width: 32px;
-    height: 32px; }
-  .browser.mandriva-32 {
-    background-position: 0 -150px;
-    width: 32px;
-    height: 32px; }
-  .browser.Maxthon {
-    background-position: -50px -150px;
-    width: 32px;
-    height: 32px; }
-  .browser.minefield {
-    background-position: -100px -150px;
-    width: 32px;
-    height: 32px; }
-  .browser.moblin {
-    background-position: -150px -150px;
-    width: 32px;
-    height: 32px; }
-  .browser.multizilla {
-    background-position: -200px -150px;
-    width: 32px;
-    height: 32px; }
-  .browser.netscape {
-    background-position: -248px -150px;
-    width: 32px;
-    height: 32px; }
-  .browser.nokia {
-    background-position: -298px -150px;
-    width: 32px;
-    height: 32px; }
-  .browser.Nook {
-    background-position: -350px -150px;
-    width: 27px;
-    height: 28px; }
-  .browser.omniweb {
-    background-position: -400px -150px;
-    width: 32px;
-    height: 32px; }
-  .browser.other {
-    background-position: -500px -150px;
-    width: 32px;
-    height: 32px; }
-  .browser.Phonix {
-    background-position: -550px -150px;
-    width: 32px;
-    height: 32px; }
-  .browser.playstation {
-    background-position: -600px -150px;
-    width: 32px;
-    height: 32px; }
-  .browser.QtWeb {
-    background-position: 0 -200px;
-    width: 32px;
-    height: 32px; }
-  .browser.seamonkey-icon-32 {
-    background-position: -100px -200px;
-    width: 32px;
-    height: 32px; }
-  .browser.shark {
-    background-position: -150px -200px;
-    width: 32px;
-    height: 32px; }
-  .browser.Skyfire {
-    background-position: -250px -200px;
-    width: 32px;
-    height: 32px; }
-  .browser.slackware {
-    background-position: -300px -200px;
-    width: 32px;
-    height: 32px; }
-  .browser.sunrise {
-    background-position: -400px -200px;
-    width: 32px;
-    height: 32px; }
-  .browser.suse {
-    background-position: -450px -200px;
-    width: 32px;
-    height: 32px; }
-  .browser.sylera {
-    background-position: -500px -200px;
-    width: 32px;
-    height: 32px; }
-  .browser.teashark-32 {
-    background-position: -550px -200px;
-    width: 32px;
-    height: 32px; }
-  .browser.ubuntu {
-    background-position: -600px -200px;
-    width: 32px;
-    height: 32px; }
-  .browser.ucweb, .browser.ucweb8 {
-    background-position: -97px -50px;
-    width: 32px;
-    height: 32px; }
-  .browser.uzard {
-    background-position: -450px 0;
-    width: 32px;
-    height: 32px; }
-  .browser.vodafone {
-    background-position: -199px -200px;
-    width: 32px;
-    height: 32px; }
-  .browser.smartfox {
-    background-position: -350px -200px;
-    width: 32px;
-    height: 32px; }
-  .browser.Beonex-icon {
-    background-position: -400px 0;
-    width: 34px;
-    height: 33px; }
-  .browser.redhat {
-    background-position: -50px -199px;
-    width: 32px;
-    height: 32px; }
-  .browser.opera {
-    background-position: -449px -150px;
-    width: 32px;
-    height: 32px; }
+    .dj-browser-logo i.dj-browser-logo-chrome {
+      background-position: 0 0;
+      width: 36px;
+      height: 33px; }
+    .dj-browser-logo i.dj-browser-logo-firefox {
+      background-position: -50px 0;
+      width: 36px;
+      height: 33px; }
+    .dj-browser-logo i.dj-browser-logo-msie9, .dj-browser-logo i.dj-browser-logo-msie10 {
+      background-position: -100px 0;
+      width: 36px;
+      height: 33px; }
+    .dj-browser-logo i.dj-browser-logo-safari {
+      background-position: -150px 0;
+      width: 36px;
+      height: 33px; }
+    .dj-browser-logo i.dj-browser-logo-android {
+      background-position: -200px -100px; }
+    .dj-browser-logo i.dj-browser-logo-aol {
+      background-position: -250px -2px; }
+    .dj-browser-logo i.dj-browser-logo-atratus-web explorer {
+      background-position: -300px 0; }
+    .dj-browser-logo i.dj-browser-logo-bagel {
+      background-position: -350px 0; }
+    .dj-browser-logo i.dj-browser-logo-blackberry {
+      background-position: -500px 0; }
+    .dj-browser-logo i.dj-browser-logo-bolt {
+      background-position: -550px 0; }
+    .dj-browser-logo i.dj-browser-logo-camino {
+      background-position: -600px 0; }
+    .dj-browser-logo i.dj-browser-logo-chimera {
+      background-position: 0 -50px; }
+    .dj-browser-logo i.dj-browser-logo-crawler {
+      background-position: -50px -50px; }
+    .dj-browser-logo i.dj-browser-logo-danger {
+      background-position: -201px -1px; }
+    .dj-browser-logo i.dj-browser-logo-docomo {
+      background-position: -150px -50px; }
+    .dj-browser-logo i.dj-browser-logo-dolphin {
+      background-position: -200px -50px; }
+    .dj-browser-logo i.dj-browser-logo-Domino {
+      background-position: -250px -50px; }
+    .dj-browser-logo i.dj-browser-logo-Donzilla {
+      background-position: -300px -50px;
+      width: 30px;
+      height: 30px; }
+    .dj-browser-logo i.dj-browser-logo-e-capsule {
+      background-position: -350px -50px; }
+    .dj-browser-logo i.dj-browser-logo-epiphany-browser {
+      background-position: -400px -50px; }
+    .dj-browser-logo i.dj-browser-logo-fedora_mini {
+      background-position: -450px -50px; }
+    .dj-browser-logo i.dj-browser-logo-fennac {
+      background-position: -500px -50px; }
+    .dj-browser-logo i.dj-browser-logo-firebird {
+      background-position: -550px -50px; }
+    .dj-browser-logo i.dj-browser-logo-flock {
+      background-position: -600px -50px; }
+    .dj-browser-logo i.dj-browser-logo-galeon {
+      background-position: 0 -100px; }
+    .dj-browser-logo i.dj-browser-logo-Gian {
+      background-position: -50px -100px; }
+    .dj-browser-logo i.dj-browser-logo-googlebot {
+      background-position: -150px -100px; }
+    .dj-browser-logo i.dj-browser-logo-iCab {
+      background-position: -250px -100px; }
+    .dj-browser-logo i.dj-browser-logo-iceweasel {
+      background-position: -300px -100px; }
+    .dj-browser-logo i.dj-browser-logo-Ideal {
+      background-position: -350px -100px; }
+    .dj-browser-logo i.dj-browser-logo-msie8, .dj-browser-logo i.dj-browser-logo-msie7 {
+      background-position: -100px -100px; }
+    .dj-browser-logo i.dj-browser-logo-KDE {
+      background-position: -400px -100px; }
+    .dj-browser-logo i.dj-browser-logo-kmeleon {
+      background-position: -450px -100px; }
+    .dj-browser-logo i.dj-browser-logo-K-Ninja-Samurai-209536 {
+      background-position: -500px -100px; }
+    .dj-browser-logo i.dj-browser-logo-konqueror {
+      background-position: -550px -100px; }
+    .dj-browser-logo i.dj-browser-logo-kubuntu-logo-only_32 {
+      background-position: -600px -100px; }
+    .dj-browser-logo i.dj-browser-logo-mandriva-32 {
+      background-position: 0 -150px; }
+    .dj-browser-logo i.dj-browser-logo-Maxthon {
+      background-position: -50px -150px; }
+    .dj-browser-logo i.dj-browser-logo-minefield {
+      background-position: -100px -150px; }
+    .dj-browser-logo i.dj-browser-logo-moblin {
+      background-position: -150px -150px; }
+    .dj-browser-logo i.dj-browser-logo-multizilla {
+      background-position: -200px -150px; }
+    .dj-browser-logo i.dj-browser-logo-netscape {
+      background-position: -248px -150px; }
+    .dj-browser-logo i.dj-browser-logo-nokia {
+      background-position: -298px -150px; }
+    .dj-browser-logo i.dj-browser-logo-Nook {
+      background-position: -350px -150px;
+      width: 27px;
+      height: 28px; }
+    .dj-browser-logo i.dj-browser-logo-omniweb {
+      background-position: -400px -150px; }
+    .dj-browser-logo i.dj-browser-logo-other {
+      background-position: -500px -150px; }
+    .dj-browser-logo i.dj-browser-logo-Phonix {
+      background-position: -550px -150px; }
+    .dj-browser-logo i.dj-browser-logo-playstation {
+      background-position: -600px -150px; }
+    .dj-browser-logo i.dj-browser-logo-QtWeb {
+      background-position: 0 -200px; }
+    .dj-browser-logo i.dj-browser-logo-seamonkey-icon-32 {
+      background-position: -100px -200px; }
+    .dj-browser-logo i.dj-browser-logo-shark {
+      background-position: -150px -200px; }
+    .dj-browser-logo i.dj-browser-logo-Skyfire {
+      background-position: -250px -200px; }
+    .dj-browser-logo i.dj-browser-logo-slackware {
+      background-position: -300px -200px; }
+    .dj-browser-logo i.dj-browser-logo-sunrise {
+      background-position: -400px -200px; }
+    .dj-browser-logo i.dj-browser-logo-suse {
+      background-position: -450px -200px; }
+    .dj-browser-logo i.dj-browser-logo-sylera {
+      background-position: -500px -200px; }
+    .dj-browser-logo i.dj-browser-logo-teashark-32 {
+      background-position: -550px -200px; }
+    .dj-browser-logo i.dj-browser-logo-ubuntu {
+      background-position: -600px -200px; }
+    .dj-browser-logo i.dj-browser-logo-ucweb, .dj-browser-logo i.dj-browser-logo-ucweb8 {
+      background-position: -97px -50px; }
+    .dj-browser-logo i.dj-browser-logo-uzard {
+      background-position: -450px 0; }
+    .dj-browser-logo i.dj-browser-logo-vodafone {
+      background-position: -199px -200px; }
+    .dj-browser-logo i.dj-browser-logo-smartfox {
+      background-position: -350px -200px; }
+    .dj-browser-logo i.dj-browser-logo-Beonex-icon {
+      background-position: -400px 0;
+      width: 34px;
+      height: 33px; }
+    .dj-browser-logo i.dj-browser-logo-redhat {
+      background-position: -50px -199px; }
+    .dj-browser-logo i.dj-browser-logo-opera {
+      background-position: -449px -150px; }
 
 .dj-perfGaugeItems {
   font-size: 16px;
@@ -285,15 +178,6 @@
     .dj-trafficBar:first-child div:last-child {
       float: right;
       text-align: right; }
-  .dj-trafficBar .browserBackground {
-    height: 42px;
-    width: 42px;
-    border-radius: 22px;
-    background-color: #F7F7F7;
-    border: solid 1px #DDD;
-    left: 40px;
-    position: absolute;
-    z-index: 10; }
   .dj-trafficBar .browserVersion {
     position: absolute;
     left: 65px;
@@ -385,7 +269,7 @@
         background-image: linear-gradient(top, #ffcc33, #c3900b); }
 
 @media (max-width: 1132px) {
-  .dj-trafficBar .browser {
+  .dj-trafficBar .dj-browser-logo {
     left: 35px; }
   .dj-trafficBar .bar {
     left: 74px; } }
