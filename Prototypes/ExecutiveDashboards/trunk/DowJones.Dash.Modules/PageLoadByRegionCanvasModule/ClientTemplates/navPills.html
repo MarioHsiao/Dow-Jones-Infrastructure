@@ -1,9 +1,0 @@
-﻿<% var pills = self, i, pill; %>
-<ul class="nav nav-pills dj-pills">
-    <% for (i = 0; i < pills.length; i++) { 
-    pill = pills[i]; %>
-    <li class="<%= pill.active ? 'active' : '' %>" data-id="<%= pill.id %>">
-        <a href="javascript:void(0)"><%= pill.name %></a>
-    </li>
-    <% } %>
-</ul>
