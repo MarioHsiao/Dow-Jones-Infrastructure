@@ -6,7 +6,7 @@
         var popupId = "";
         var defaults =
         {
-            popupId: 'fl_pillscontextmenu',
+            popupId: 'fl_pillscontextmenuex',
             removeFilter: null,
             excludeFilter: null,
             includeFilter: null
@@ -30,12 +30,12 @@
             var maxZindex = getMaxZIndex() + 10;
             $(popupId).css("z-index", maxZindex);
 
-            $element.delegate(".addPillOptions", 'mouseout', function () { setTimeout(function () { hideContextMnu(); }, 800); contextMnuSelected = false; });
-            $element.delegate(".addPillOptions", 'mouseover', function () { contextMnuSelected = true; });
-            $element.delegate(".addPillOptions", 'click', function () { return pillOnClick(this); });
+            $element.delegate(".addPillOptionsEx", 'mouseout', function () { setTimeout(function () { hideContextMnu(); }, 800); contextMnuSelected = false; });
+            $element.delegate(".addPillOptionsEx", 'mouseover', function () { contextMnuSelected = true; });
+            $element.delegate(".addPillOptionsEx", 'click', function () { return menu.pillOnClick(this); });
         }
 
-        pillOnClick = function (ele) {
+        menu.pillOnClick = function (ele) {
 
             var $ele = $(ele);
             var arrHtml = [];
