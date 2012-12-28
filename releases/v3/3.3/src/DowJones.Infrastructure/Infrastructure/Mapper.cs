@@ -19,7 +19,7 @@ namespace DowJones
         }
         private volatile static IMapper instance;
 
-        internal TypeMapperCollection TypeMappers
+        public TypeMapperCollection TypeMappers
         {
             get { return _typeMappers; }
         }
