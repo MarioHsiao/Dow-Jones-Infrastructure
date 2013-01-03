@@ -107,7 +107,6 @@ namespace DowJones.Infrastructure.Alert
             return lstSearchString;
         }
 
-
         private static void GetCompanies(FilterItem[] companies, IControlData controlData, ref List<FilterItem> aboutCompanies, ref List<FilterItem> occurCompanies)
         {
             if (companies == null || companies.Length <= 0) return;
