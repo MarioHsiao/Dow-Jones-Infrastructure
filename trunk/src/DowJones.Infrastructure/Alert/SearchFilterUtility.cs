@@ -71,7 +71,7 @@ namespace DowJones.Infrastructure.Alert
                 }
                 if (newsFilter.source != null)
                 {
-                    lstSearchString.Add(CreateSearchString("sc", GetFilterValue(newsFilter.source), SearchMode.Any, SearchType.Controlled));
+                    lstSearchString.Add(CreateSearchString("rst", GetFilterValue(newsFilter.source), SearchMode.Any, SearchType.Controlled));
                 }
                 if (newsFilter.keywords != null)
                 {
@@ -100,7 +100,7 @@ namespace DowJones.Infrastructure.Alert
                 }
                 if (newsFilter.sourceExcluded != null)
                 {
-                    lstSearchString.Add(CreateSearchString("sc", GetFilterValue(newsFilter.sourceExcluded), SearchMode.None, SearchType.Controlled));
+                    lstSearchString.Add(CreateSearchString("rst", GetFilterValue(newsFilter.sourceExcluded), SearchMode.None, SearchType.Controlled));
                 }
                 
             }
@@ -136,110 +136,16 @@ namespace DowJones.Infrastructure.Alert
                     if (company.ResultCompany.CompanyStatus.IsNewsCoded)
                     {
                         //About company
-                        aboutCompanies.Add( new FilterItem() { code = company.ResultCompany.Code });
+                        aboutCompanies.Add( new FilterItem { code = company.ResultCompany.Code });
                     }
                     else if (company.ResultCompany.CompanyStatus.IsOccurrenceCoded)
                     {
                         //Occur company
-                        occurCompanies.Add(new FilterItem() { code = company.ResultCompany.Code });
+                        occurCompanies.Add(new FilterItem { code = company.ResultCompany.Code });
                     }
                 }
             }
         }
-       
-        #region Old Code
-        /*
-        public static List<SearchString> ProcessNewsFilters(NewsFilters newsFilter, IControlData controlData)
-        {
-            var lstSearchString = new List<SearchString>();
-            if (newsFilter != null)
-            {
-                if (newsFilter.author != null)
-                {
-                    lstSearchString.Add(CreateSearchString("au", GetFilterValue(newsFilter.author), SearchMode.All, SearchType.Controlled));
-                }
-                if (newsFilter.company != null)
-                {
-                    var listFCodes = new List<string>();
-                    foreach (var comp in newsFilter.company)
-                    {
-                        if (comp != null && !string.IsNullOrEmpty(comp.code))
-                        {
-                            listFCodes.Add(comp.code);
-                        }
-                    }
-                    //Seperate out the occur and about compaines
-                    var request = new GetCompaniesRequest();
-                    request.CodeCollection.AddRange(listFCodes);
-                    request.CodeType = CompanyCodeType.FactivaCompany;
-                    request.ElementsToReturnCollection = new CompanyElementsToReturnCollection();
-                    request.ElementsToReturnCollection.Add(CompanyElements.Status);
-                    var serviceResponse = SymbologyCompanyService.GetCompanies(ControlDataManager.Convert(controlData), request);
-                    if (serviceResponse.rc != 0)
-                        throw new DowJonesUtilitiesException(serviceResponse.rc);
-
-                    var occurCompanies = new List<FilterItem>();
-                    var aboutCompanies = new List<FilterItem>();
-
-                    if (serviceResponse != null)
-                    {
-                        object responseObj;
-                        serviceResponse.GetResponse(ServiceResponse.ResponseFormat.Object, out responseObj);
-                        var companyResponse = (GetCompaniesResponse)responseObj;
-                        if (companyResponse != null && companyResponse.CompanyResultSet != null)
-                        {
-                            foreach (var company in companyResponse.CompanyResultSet.CompanyResultCollection)
-                            {
-                                if (company != null && company.ResultCompany != null && company.ResultCompany.CompanyStatus != null)
-                                {
-                                    if (company.ResultCompany.CompanyStatus.IsNewsCoded)
-                                    {
-                                        //About company
-                                        aboutCompanies.Add(new FilterItem() { code = company.ResultCompany.Code });
-                                    }
-                                    else if (company.ResultCompany.CompanyStatus.IsOccurrenceCoded)
-                                    {
-                                        //Occur company
-                                        occurCompanies.Add(new FilterItem() { code = company.ResultCompany.Code });
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    if (occurCompanies != null && occurCompanies.Count > 0)
-                    {
-                        lstSearchString.Add(CreateSearchString("fds:occur", GetFilterValue(occurCompanies.ToArray()), SearchMode.All, SearchType.Controlled));
-                    }
-                    if (aboutCompanies != null && aboutCompanies.Count > 0)
-                    {
-                        lstSearchString.Add(CreateSearchString("fds", GetFilterValue(aboutCompanies.ToArray()), SearchMode.All, SearchType.Controlled));
-                    }
-                }
-                if (newsFilter.executive != null)
-                {
-                    lstSearchString.Add(CreateSearchString("pe", GetFilterValue(newsFilter.executive), SearchMode.All, SearchType.Controlled));
-                }
-                if (newsFilter.industry != null)
-                {
-                    lstSearchString.Add(CreateSearchString("in", GetFilterValue(newsFilter.industry), SearchMode.All, SearchType.Controlled));
-                }
-                if (newsFilter.newsSubject != null)
-                {
-                    lstSearchString.Add(CreateSearchString("ns", GetFilterValue(newsFilter.newsSubject), SearchMode.All, SearchType.Controlled));
-                }
-                if (newsFilter.source != null)
-                {
-                    lstSearchString.Add(CreateSearchString("sc", GetFilterValue(newsFilter.source), SearchMode.Any, SearchType.Controlled));
-                }
-                if (newsFilter.keywords != null)
-                {
-                    lstSearchString.Add(CreateSearchString("keyword", string.Join(" ", newsFilter.keywords), SearchMode.Simple, SearchType.Free));
-                }
-            }
-            return lstSearchString;
-        }
-         * */
-        #endregion
 
         public static SearchString GetFreeText(string freeText)
         {
