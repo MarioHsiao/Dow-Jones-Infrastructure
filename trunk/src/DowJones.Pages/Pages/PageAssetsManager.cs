@@ -892,9 +892,14 @@ namespace DowJones.Pages
             {
                 PageID = ExtractPageId(pageId),
                 ModulePositionToReplace = new ModulePosition { Id = ExtractModuleId(moduleIdToRemove) },
-                ModuleToReplaceWith = moduleToReplaceWith,
-                RootIDOfNewModule = ExtractPageId(rootIDOfNewModule)
+                ModuleToReplaceWith = moduleToReplaceWith
             };
+
+            if (!string.IsNullOrWhiteSpace(rootIDOfNewModule))
+            {
+                replaceModulesOnPageRequest.RootIDOfNewModule = ExtractModuleId(rootIDOfNewModule);
+            }
+
             var response = Process<ReplaceModuleOnPageResponse>(replaceModulesOnPageRequest);
             return response.Id.ToString();
         }
