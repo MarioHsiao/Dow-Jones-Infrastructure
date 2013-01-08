@@ -59,10 +59,7 @@ namespace DowJones.Infrastructure.Common
 
         public int CompareTo(Product other)
         {
-            if (ReferenceEquals(other, null)) 
-                return default(int);
-
-            return StringComparer.OrdinalIgnoreCase.Compare(Id, other.Id);
+            return ReferenceEquals(other, null) ? default(int) : StringComparer.OrdinalIgnoreCase.Compare(Id, other.Id);
         }
 
         public bool Equals(Product other)

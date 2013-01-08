@@ -16,10 +16,11 @@ using DowJones.Exceptions;
 using DowJones.Extensions;
 using DowJones.Managers.Search;
 using DowJones.Managers.Search.Requests;
+using DowJones.Session;
 using Factiva.Gateway.Messages.Archive;
 using Factiva.Gateway.Messages.Archive.V2_0;
+using Factiva.Gateway.Messages.Search;
 using Factiva.Gateway.Messages.Search.V2_0;
-using Factiva.Gateway.Services.V2_0;
 using Factiva.Gateway.V1_0;
 using ControlData = Factiva.Gateway.Utils.V1_0.ControlData;
 using ControlDataManager = Factiva.Gateway.Managers.ControlDataManager;
@@ -35,7 +36,6 @@ namespace DowJones.Web.Handlers.Article
     }
 
     /// <summary>
-    /// 
     /// </summary>
     public class ContentHandler : Page, IHttpAsyncHandler
     {
@@ -58,7 +58,7 @@ namespace DowJones.Web.Handlers.Article
             // Request Hosting permissions
             new AspNetHostingPermission(AspNetHostingPermissionLevel.Minimal).Demand();
 
-            var handlerType = typeof (BaseContentHandler);
+            Type handlerType = typeof (BaseContentHandler);
             IHttpHandler handler;
             try
             {
@@ -108,23 +108,23 @@ namespace DowJones.Web.Handlers.Article
             try
             {
                 string origAccessionNo;
-                var accessionNo = origAccessionNo = context.Request["accessno"] ?? string.Empty;
+                string accessionNo = origAccessionNo = context.Request["accessno"] ?? string.Empty;
                 if (string.IsNullOrEmpty(accessionNo))
                 {
                     context.Response.StatusCode = (int) HttpStatusCode.BadRequest;
                     return;
                 }
 
-                var isBlob = context.Request["isblob"] ?? string.Empty;
-                var reference = context.Request["reference"] ?? string.Empty;
-                var imageType = context.Request["imageType"] ?? string.Empty;
-                var mimeType = context.Request["mimetype"] ?? string.Empty;
-                var redirect = context.Request["redirect"] ?? string.Empty;
+                string isBlob = context.Request["isblob"] ?? string.Empty;
+                string reference = context.Request["reference"] ?? string.Empty;
+                string imageType = context.Request["imageType"] ?? string.Empty;
+                string mimeType = context.Request["mimetype"] ?? string.Empty;
+                string redirect = context.Request["redirect"] ?? string.Empty;
 
                 var formState = new FormState(string.Empty);
                 var sessionRequestDto = (SessionRequestDTO) formState.Accept(typeof (SessionRequestDTO), false);
-                var retrieveBlobItem = isBlob.ToLowerInvariant() == "y";
-                var redirectToWebSiteUrl = redirect.ToLowerInvariant() == "y";
+                bool retrieveBlobItem = isBlob.ToLowerInvariant() == "y";
+                bool redirectToWebSiteUrl = redirect.ToLowerInvariant() == "y";
 
                 _controlData = (sessionRequestDto.SessionID.IsNullOrEmpty() &&
                                 sessionRequestDto.EncryptedToken.IsNullOrEmpty())
@@ -133,11 +133,11 @@ namespace DowJones.Web.Handlers.Article
                                                                                       sessionRequestDto.ProductID)
                                    : sessionRequestDto.GetControlData();
 
-                var infrsControlData = DowJones.Session.ControlDataManager.Convert(_controlData);
+                IControlData infrsControlData = DowJones.Session.ControlDataManager.Convert(_controlData);
                 if (redirectToWebSiteUrl)
                 {
                     var service = new ArticleService(infrsControlData, new Preferences.Preferences("en"));
-                    var webArticeUrl = service.GetWebArticleUrl(accessionNo);
+                    string webArticeUrl = service.GetWebArticleUrl(accessionNo);
 
                     context.Response.Buffer = true;
                     //context.Response.Status = "302 Object moved";
@@ -188,18 +188,19 @@ namespace DowJones.Web.Handlers.Article
                     dto.SearchCollectionCollection.AddRange(
                         Enum.GetValues(typeof (SearchCollection)).Cast<SearchCollection>());
 
-                    var sr =
+                    IPerformContentSearchResponse sr =
                         sm.GetPerformContentSearchResponse<PerformContentSearchRequest, PerformContentSearchResponse>(
                             dto);
                     if (sr != null &&
                         sr.ContentSearchResult != null &&
                         sr.ContentSearchResult.ContentHeadlineResultSet != null)
                     {
-                        var temp = sr.ContentSearchResult.ContentHeadlineResultSet.ContentHeadlineCollection;
+                        ContentHeadlineCollection temp =
+                            sr.ContentSearchResult.ContentHeadlineResultSet.ContentHeadlineCollection;
                         if (temp.Count > 0)
                         {
-                            var contentHeadline = temp.First();
-                            var item = GetThumbNailItem(contentHeadline, imageType);
+                            ContentHeadline contentHeadline = temp.First();
+                            ContentItem item = GetThumbNailItem(contentHeadline, imageType);
                             if (item != null)
                             {
                                 accessionNo = reference;
@@ -248,7 +249,7 @@ namespace DowJones.Web.Handlers.Article
             }
             catch
             {
-                context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                context.Response.StatusCode = (int) HttpStatusCode.InternalServerError;
             }
             finally
             {
@@ -256,16 +257,17 @@ namespace DowJones.Web.Handlers.Article
             }
         }
 
-        private void HandleRequest<TRequest, TResponse>(TRequest request, HttpContext context, bool retrieveBlobItem, string origAccessionNo)
+        private void HandleRequest<TRequest, TResponse>(TRequest request, HttpContext context, bool retrieveBlobItem,
+                                                        string origAccessionNo)
             where TRequest : IBinaryRequest, new()
             where TResponse : IBinaryResponse, new()
         {
-            var gatewayResponse = FactivaServices.Invoke<TResponse>(_controlData, request);
+            ServiceResponse<TResponse> gatewayResponse = FactivaServices.Invoke<TResponse>(_controlData, request);
 
             object objResponse;
             gatewayResponse.GetResponse(ServiceResponse.ResponseFormat.Object, out objResponse);
 
-            var response = (IBinaryResponse)objResponse;
+            var response = (IBinaryResponse) objResponse;
 
             try
             {
@@ -274,9 +276,9 @@ namespace DowJones.Web.Handlers.Article
                     throw new DowJonesUtilitiesException(gatewayResponse.ReturnCode);
                 }
 
-                var binaryData = (response is GetBinaryResponse)
-                                     ? ((GetBinaryResponse) response).binaryData
-                                     : ((GetBinaryInternalResponse) response).binaryData;
+                byte[] binaryData = (response is GetBinaryResponse)
+                                        ? ((GetBinaryResponse) response).binaryData
+                                        : ((GetBinaryInternalResponse) response).binaryData;
 
                 switch (request.mimeType)
                 {
@@ -292,10 +294,10 @@ namespace DowJones.Web.Handlers.Article
                             context.Cache.Add(
                                 string.Format(Keyformat, origAccessionNo, request.imageType.ToLowerInvariant()),
                                 new ImageCacheItem
-                                {
-                                    Bytes = binaryData,
-                                    MimeType = request.mimeType,
-                                },
+                                    {
+                                        Bytes = binaryData,
+                                        MimeType = request.mimeType,
+                                    },
                                 null,
                                 Cache.NoAbsoluteExpiration,
                                 TimeSpan.FromHours(SlidingCache),
@@ -311,77 +313,14 @@ namespace DowJones.Web.Handlers.Article
                         HandleContent(context.Response, request.mimeType, binaryData);
                         break;
                     default:
-                        context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-                        break;
-                }
-            }
-            catch (DowJonesUtilitiesException ex)
-            {
-                HandleErrorImage(context.Response, ex.ReturnCode, "image/png", ImageFormat.Png, ErrorImageWidth, ErrorImageHeight);
-            }
-            catch (Exception)
-            {
-                HandleErrorImage(context.Response, -1, "image/png", ImageFormat.Png, ErrorImageWidth, ErrorImageHeight);
-            }
-        }
-
-
-
-        private void HandleBillableRequest(GetBinaryRequest billableRequest, HttpContext context, bool retrieveBlobItem, string origAccessionNo)
-        {
-            var archiveResponse = ArchiveService.GetBinary(_controlData, billableRequest);
-
-            object objResponse;
-            archiveResponse.GetResponse(ServiceResponse.ResponseFormat.Object, out objResponse);
-
-            var binaryResponse = (GetBinaryResponse) objResponse;
-
-            try
-            {
-                if (archiveResponse.ReturnCode != 0)
-                {
-                    throw new DowJonesUtilitiesException(archiveResponse.ReturnCode);
-                }
-                switch (billableRequest.mimeType)
-                {
-                    case "image/gif":
-                    case "image/jpeg":
-                    case "image/png":
-                        //HandleContent(context.Response, tempErrorNum, "image/png", ImageFormat.Png, ERROR_IMAGE_WIDTH, ERROR_IMAGE_HEIGHT);
-                        context.Response.ContentType = billableRequest.mimeType;
-                        context.Response.BinaryWrite(binaryResponse.binaryData);
-                        // add the item to cache to free up the space
-                        if (retrieveBlobItem)
-                        {
-                            context.Cache.Add(
-                                string.Format(Keyformat, origAccessionNo, billableRequest.imageType.ToLowerInvariant()),
-                                new ImageCacheItem
-                                    {
-                                        Bytes = binaryResponse.binaryData,
-                                        MimeType = billableRequest.mimeType,
-                                    },
-                                null,
-                                Cache.NoAbsoluteExpiration,
-                                TimeSpan.FromHours(SlidingCache),
-                                CacheItemPriority.Normal,
-                                null);
-                        }
-                        break;
-                    case "application/msexcel":
-                    case "application/msword":
-                    case "application/mspowerpoint":
-                    case "application/pdf":
-                    case "text/html":
-                        HandleContent(context.Response, billableRequest.mimeType, binaryResponse.binaryData);
-                        break;
-                    default:
                         context.Response.StatusCode = (int) HttpStatusCode.InternalServerError;
                         break;
                 }
             }
             catch (DowJonesUtilitiesException ex)
             {
-                HandleErrorImage(context.Response, ex.ReturnCode, "image/png", ImageFormat.Png, ErrorImageWidth, ErrorImageHeight);
+                HandleErrorImage(context.Response, ex.ReturnCode, "image/png", ImageFormat.Png, ErrorImageWidth,
+                                 ErrorImageHeight);
             }
             catch (Exception)
             {
@@ -389,77 +328,20 @@ namespace DowJones.Web.Handlers.Article
             }
         }
 
-        private void HandleNonBillableRequest(GetBinaryInternalRequest nonBillableRequest, HttpContext context, bool retrieveBlobItem, string origAccessionNo)
-        {
-            var archiveResponse = ArchiveService.GetBinaryInternal(_controlData, nonBillableRequest);
-
-            object objResponse;
-            archiveResponse.GetResponse(ServiceResponse.ResponseFormat.Object, out objResponse);
-
-            var binaryResponse = (GetBinaryResponse)objResponse;
-            try
-            {
-                if (archiveResponse.ReturnCode != 0)
-                {
-                    throw new DowJonesUtilitiesException(archiveResponse.ReturnCode);
-                }
-                switch (nonBillableRequest.mimeType)
-                {
-                    case "image/gif":
-                    case "image/jpeg":
-                    case "image/png":
-                        //HandleContent(context.Response, tempErrorNum, "image/png", ImageFormat.Png, ERROR_IMAGE_WIDTH, ERROR_IMAGE_HEIGHT);
-                        context.Response.ContentType = nonBillableRequest.mimeType;
-                        context.Response.BinaryWrite(binaryResponse.binaryData);
-                        // add the item to cache to free up the space
-                        if (retrieveBlobItem)
-                        {
-                            context.Cache.Add(
-                                string.Format(Keyformat, origAccessionNo, nonBillableRequest.imageType.ToLowerInvariant()),
-                                new ImageCacheItem
-                                {
-                                    Bytes = binaryResponse.binaryData,
-                                    MimeType = nonBillableRequest.mimeType,
-                                },
-                                null,
-                                Cache.NoAbsoluteExpiration,
-                                TimeSpan.FromHours(SlidingCache),
-                                CacheItemPriority.Normal,
-                                null);
-                        }
-                        break;
-                    case "application/msexcel":
-                    case "application/msword":
-                    case "application/mspowerpoint":
-                    case "application/pdf":
-                    case "text/html":
-                        HandleContent(context.Response, nonBillableRequest.mimeType, binaryResponse.binaryData);
-                        break;
-                    default:
-                        context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-                        break;
-                }
-            }
-            catch (DowJonesUtilitiesException ex)
-            {
-                HandleErrorImage(context.Response, ex.ReturnCode, "image/png", ImageFormat.Png, ErrorImageWidth, ErrorImageHeight);
-            }
-            catch (Exception)
-            {
-                HandleErrorImage(context.Response, -1, "image/png", ImageFormat.Png, ErrorImageWidth, ErrorImageHeight);
-            }
-        }
-        
         public ContentItem GetThumbNailItem(ContentHeadline contentHeadline, string imageType)
         {
-            if (contentHeadline.ContentItems.ItemCollection == null || contentHeadline.ContentItems.ItemCollection.Count == 0)
+            if (contentHeadline.ContentItems.ItemCollection == null ||
+                contentHeadline.ContentItems.ItemCollection.Count == 0)
             {
                 return null;
             }
-            return contentHeadline.ContentItems.ItemCollection.FirstOrDefault(item => (item.Mimetype.IsNotEmpty() && item.Ref.IsNotEmpty() && item.Type.ToLower() == imageType));
+            return
+                contentHeadline.ContentItems.ItemCollection.FirstOrDefault(
+                    item => (item.Mimetype.IsNotEmpty() && item.Ref.IsNotEmpty() && item.Type.ToLower() == imageType));
         }
 
-        private static void HandleErrorImage(HttpResponse response, long errorNum, string mimeType, ImageFormat imageFormat, int width, int height)
+        private static void HandleErrorImage(HttpResponse response, long errorNum, string mimeType,
+                                             ImageFormat imageFormat, int width, int height)
         {
             response.Clear();
 
@@ -467,7 +349,7 @@ namespace DowJones.Web.Handlers.Article
             {
                 try
                 {
-                    using (var g = Graphics.FromImage(bmp))
+                    using (Graphics g = Graphics.FromImage(bmp))
                     {
                         var errorMessageRect = new Rectangle(5, 30, width - 10, 40);
                         var errorCodeRect = new Rectangle(5, height - 18, width - 10, 15);
@@ -477,9 +359,14 @@ namespace DowJones.Web.Handlers.Article
                         g.DrawRectangle(Pens.Gray, 2, 2, width - 3, height - 3);
                         g.DrawRectangle(Pens.Black, 0, 0, width, height);
                         g.FillRectangle(new SolidBrush(Color.FromArgb(0, 0, 0)), 3, 3, width - 6, 20);
-                        g.DrawString(Resources.GetString("error"), new Font("Arial", 9, FontStyle.Bold), new SolidBrush(Color.FromArgb(255, 255, 255)), new PointF(5, 5));
-                        g.DrawString(Resources.GetErrorMessage(errorNum.ToString(CultureInfo.InvariantCulture)), new Font("Arial", 8, FontStyle.Bold), new SolidBrush(Color.FromArgb(102, 97, 97)), errorMessageRect);
-                        g.DrawString(errorNum.ToString(CultureInfo.InvariantCulture), new Font("Arial", 8, FontStyle.Bold), new SolidBrush(Color.FromArgb(102, 97, 97)), errorCodeRect);
+                        g.DrawString(Resources.GetString("error"), new Font("Arial", 9, FontStyle.Bold),
+                                     new SolidBrush(Color.FromArgb(255, 255, 255)), new PointF(5, 5));
+                        g.DrawString(Resources.GetErrorMessage(errorNum.ToString(CultureInfo.InvariantCulture)),
+                                     new Font("Arial", 8, FontStyle.Bold), new SolidBrush(Color.FromArgb(102, 97, 97)),
+                                     errorMessageRect);
+                        g.DrawString(errorNum.ToString(CultureInfo.InvariantCulture),
+                                     new Font("Arial", 8, FontStyle.Bold), new SolidBrush(Color.FromArgb(102, 97, 97)),
+                                     errorCodeRect);
                     }
                 }
                 catch (Exception)
@@ -503,7 +390,7 @@ namespace DowJones.Web.Handlers.Article
 
 
             response.ContentType = GetContentType(mimeType);
-            var contentDisposition = GetContentDisposition(mimeType);
+            string contentDisposition = GetContentDisposition(mimeType);
             if (!String.IsNullOrEmpty(contentDisposition))
             {
                 response.AddHeader("Content-Disposition", contentDisposition);

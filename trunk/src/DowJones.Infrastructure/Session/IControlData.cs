@@ -117,6 +117,8 @@ namespace DowJones.Session
 
         IDictionary<string, string> Metrics { get; set; }
 
+        IDictionary<string, string> Bag { get; set; }
+
         /// <summary>
         /// Gets or sets the product ID [i.e. namespace].
         /// </summary>
