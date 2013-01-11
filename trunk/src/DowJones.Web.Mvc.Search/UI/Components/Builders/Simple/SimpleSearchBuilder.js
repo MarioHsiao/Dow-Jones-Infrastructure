@@ -43,7 +43,7 @@
                     resultsOverClass: "dj_emg_autosuggest_over",
                     selectFirst: false,
                     fillInputOnKeyUpDown: true,
-                    useSessionId: DJ.config.credentials.sessionId,
+                    useSessionId: DJ.config.credentials.token,
                     onItemSelect: function (item) {
                         $dj.publish('autoCompleteItemSelect.dj.SearchBuilder', { keyword: item.word });
                     }
