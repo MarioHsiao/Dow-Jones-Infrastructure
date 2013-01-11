@@ -378,7 +378,7 @@
             }
 
             var queryParams = {
-                sessionId: DJ.config.credentials.sessionId,
+                sessionId: DJ.config.credentials.token,
                 searchString: keyword,
                 Offset: (offset || 0),
                 Records: this._maxLookUpRecords,
@@ -459,7 +459,7 @@
             listContainer.html(this._loadingText).slideDown(100, this._delegates.OnResize);
 
             var queryParams = {
-                sessionId: DJ.config.credentials.sessionId,
+                sessionId: DJ.config.credentials.token,
                 codes: (code || "root"),
                 parts: isChild ? "childcodes" : "",
                 language: (DJ.config.preferences.interfaceLanguage || 'en')

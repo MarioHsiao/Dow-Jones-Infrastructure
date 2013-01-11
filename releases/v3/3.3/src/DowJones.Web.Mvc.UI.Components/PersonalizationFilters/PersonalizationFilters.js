@@ -416,7 +416,7 @@
                     selectFirst: true,
                     fillInputOnKeyUpDown: true,
                     options: this._getSearchOptions(type),
-                    useSessionId: DJ.config.credentials.sessionId,
+                    useSessionId: DJ.config.credentials.token,
                     onItemSelect: this._delegates.OnAutoSuggestItemSelect
                 };
 

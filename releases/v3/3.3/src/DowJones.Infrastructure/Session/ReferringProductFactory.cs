@@ -22,7 +22,6 @@ namespace DowJones.Session
             var accessPointCode = _request[AccessPointCodeKey].GetValueOrDefault();
             var productPrefix = _request[ProductPrefixKey].GetValueOrDefault();
 
-
             if (_request.Headers["credentials"].HasValue())
             {
                 var credentials = JsonConvert.DeserializeObject<ReferringProductCredentials>(_request.Headers["credentials"]); 

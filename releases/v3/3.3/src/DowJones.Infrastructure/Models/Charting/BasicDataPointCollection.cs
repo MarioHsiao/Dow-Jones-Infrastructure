@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 
 namespace DowJones.Models.Charting
 {
-    [DataContract]
+    [CollectionDataContract]
     public class BasicDataPointCollection : List<BasicDataPoint>
     {
     }

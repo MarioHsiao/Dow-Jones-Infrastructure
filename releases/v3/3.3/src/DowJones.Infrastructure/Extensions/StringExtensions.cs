@@ -12,7 +12,9 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Xml;
@@ -21,7 +23,6 @@ using System.Xml.XPath;
 using DowJones.Attributes;
 using DowJones.DependencyInjection;
 using DowJones.Globalization;
-using DowJones.Search;
 
 namespace DowJones.Extensions
 {
@@ -670,8 +671,10 @@ namespace DowJones.Extensions
         {
             var enumValue = defaultValue;
 
-            if(source.HasValue())
+            if (source.HasValue())
+            {
                 Enum.TryParse(source, true, out enumValue);
+            }
 
             return enumValue;
         }
@@ -692,6 +695,72 @@ namespace DowJones.Extensions
             }
 
             return strToken;
+        }
+
+        public static string CalculateMd5Hash(this string input, bool forceUppercase = true)
+        {
+            // step 1, calculate MD5 hash from input
+            var md5 = MD5.Create();
+            var inputBytes = Encoding.ASCII.GetBytes(input);
+            var hash = md5.ComputeHash(inputBytes);
+
+            // step 2, convert byte array to hex string
+            var sb = new StringBuilder();
+            for (var i = 0; i < hash.Length; i++)
+            {
+                sb.Append(hash[i].ToString((forceUppercase) ? "X2" : "x2"));
+            }
+            return sb.ToString();
+        }
+
+        /// <summary>
+        /// Compresses the string.
+        /// </summary>
+        /// <param name="text">The text.</param>
+        /// <returns></returns>
+        public static string CompressString(this string text)
+        {
+            var buffer = Encoding.UTF8.GetBytes(text);
+            var memoryStream = new MemoryStream();
+            using (var gZipStream = new GZipStream(memoryStream, CompressionMode.Compress, true))
+            {
+                gZipStream.Write(buffer, 0, buffer.Length);
+            }
+
+            memoryStream.Position = 0;
+
+            var compressedData = new byte[memoryStream.Length];
+            memoryStream.Read(compressedData, 0, compressedData.Length);
+
+            var gZipBuffer = new byte[compressedData.Length + 4];
+            Buffer.BlockCopy(compressedData, 0, gZipBuffer, 4, compressedData.Length);
+            Buffer.BlockCopy(BitConverter.GetBytes(buffer.Length), 0, gZipBuffer, 0, 4);
+            return Convert.ToBase64String(gZipBuffer);
+        }
+
+        /// <summary>
+        /// Decompresses the string.
+        /// </summary>
+        /// <param name="compressedText">The compressed text.</param>
+        /// <returns></returns>
+        public static string DecompressString(this string compressedText)
+        {
+            var gZipBuffer = Convert.FromBase64String(compressedText);
+            using (var memoryStream = new MemoryStream())
+            {
+                var dataLength = BitConverter.ToInt32(gZipBuffer, 0);
+                memoryStream.Write(gZipBuffer, 4, gZipBuffer.Length - 4);
+
+                var buffer = new byte[dataLength];
+
+                memoryStream.Position = 0;
+                using (var gZipStream = new GZipStream(memoryStream, CompressionMode.Decompress))
+                {
+                    gZipStream.Read(buffer, 0, buffer.Length);
+                }
+
+                return Encoding.UTF8.GetString(buffer);
+            }
         }
     }
 }

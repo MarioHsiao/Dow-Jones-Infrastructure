@@ -133,13 +133,12 @@ namespace DowJones.Security
         public NameValueCollection Decrypt(string data, string key)
         {
             var nameValueCollection = new NameValueCollection();
-            string[] values;
 
             var tempData = data.Replace(" ", "+");
             var decryptedData = DecryptData(tempData, key);
             if (!string.IsNullOrEmpty(decryptedData) && !string.IsNullOrEmpty(decryptedData.Trim()))
             {
-                values = decryptedData.Split('|');
+                var values = decryptedData.Split('|');
 
                 for (var i = 0; i < values.Length - 1; i++)
                 {
@@ -155,7 +154,6 @@ namespace DowJones.Security
         {
             key = "!$?" + key + "#$a54?3?&$908";
             byte[] iv = { 10, 20, 30, 40, 50, 60, 70, 80 };
-            byte[] inputByteArray; // Convert.ToByte(stringToEncrypt.Length)
 
             try
             {
@@ -165,7 +163,7 @@ namespace DowJones.Security
                                   Mode = CipherMode.CBC
                               };
 
-                inputByteArray = Encoding.UTF8.GetBytes(data);
+                var inputByteArray = Encoding.UTF8.GetBytes(data); // Convert.ToByte(stringToEncrypt.Length)
                 byte[] cipherTextBytes;
                 using (var encryptor = des.CreateEncryptor(encryptionKey, iv))
                 {

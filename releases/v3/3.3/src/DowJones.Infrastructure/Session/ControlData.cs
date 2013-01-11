@@ -100,8 +100,9 @@ namespace DowJones.Session
         [ParameterName("ipa")]
         public string IpAddress { get; set; }
 
-        [ParameterName("ns")]
         public IDictionary<string, string> Metrics { get; set; }
+
+        public IDictionary<string, string> Bag { get; set; }
 
         /// <summary>
         /// Gets or sets the product ID [i.e. namespace].
@@ -158,6 +159,7 @@ namespace DowJones.Session
         {
             IpAddress = "127.0.0.1";
             Metrics = new Dictionary<string, string>();
+            Bag = new Dictionary<string, string>();
         }
 
 

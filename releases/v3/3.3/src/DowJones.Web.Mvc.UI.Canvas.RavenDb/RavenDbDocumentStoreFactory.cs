@@ -25,6 +25,7 @@ namespace DowJones.Web.Mvc.UI.Canvas.RavenDb
             }
 
             documentStore.Conventions.AllowQueriesOnId = true;
+            documentStore.Conventions.SaveEnumsAsIntegers = true;
 
             return documentStore;
         }

@@ -1,5 +1,6 @@
 using System;
 using System.Xml.Serialization;
+using DowJones.Extensions;
 
 namespace DowJones.Configuration
 {
@@ -11,12 +12,17 @@ namespace DowJones.Configuration
     [Serializable]
     public class LightWeightUser
     {
-        private const string DEFAULT_CONTENT_SERVER_ADDRESS = "0";
-        private const string DEFAULT_IP_ADDRESS = "127.0.0.1";
+        private const string DefaultContentServerAddress = "0";
+
+        private const string DefaultIpAddress = "127.0.0.1";
+
+        private string _ipAddress = DefaultIpAddress;
+        private string _contentServerAddress = DefaultContentServerAddress;
 
         /// <summary>
         /// Gets or sets the user id associated with the setting.
         /// </summary>
+        [XmlElement("userId", Namespace = "")]
         public string userId { get; set; }
 
         /// <summary>
@@ -47,16 +53,46 @@ namespace DowJones.Configuration
         /// <summary>
         /// Content server address associated with the setting.
         /// </summary>
-        public string contentServerAddress = DEFAULT_CONTENT_SERVER_ADDRESS;
+        public string contentServerAddress
+        {
+            get
+            {
+                return _contentServerAddress;
+            }
+
+            set { 
+                if (value.IsNullOrEmpty())
+                {
+                    return;
+                }
+                _contentServerAddress = value;
+            }
+        }
+
 
         /// <summary>
         /// IP address associated with the setting.
         /// </summary>
-        public string ipAddress = DEFAULT_IP_ADDRESS;
+        public string ipAddress {
+            get
+            {
+                return _ipAddress;
+            }
+
+            set { 
+                if (value.IsNullOrEmpty())
+                {
+                    return;
+                }
+                _ipAddress = value;
+            }
+        }
+
+
 
         /// <summary>
         /// ByPass Client billing flag associated with the setting.
         /// </summary>
-        public bool byPassClientBilling;
+        public bool byPassClientBilling { get; set; }
     }
 }
