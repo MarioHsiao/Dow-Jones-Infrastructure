@@ -39,6 +39,10 @@ namespace DowJones.Ajax.Article
 
         public List<RenderItem> Credit { get; set; }
 
+        public List<RenderItem> ColumnName { get; set; }
+
+        public List<RenderItem> SectionName { get; set; }
+
         public string PublicationDate { get; set; }
 
         public string PublicationTime { get; set; }
@@ -88,6 +92,7 @@ namespace DowJones.Ajax.Article
         public string SubType;
 
         public string MediaLength { get; set; }
+        
         public string MediaTitle { get; set; }
     }
 }

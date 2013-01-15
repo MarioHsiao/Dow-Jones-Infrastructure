@@ -170,7 +170,7 @@ namespace DowJones.Assemblers.Articles
                 articleResult.PublicationDate = GetDate(article.publicationDate, article.publicationTime, article.publicationTimeSpecified);
             }
 
-            if (!CheckCodeSn(Codes.ET.ToString()))
+            if (!CheckCodeSn(Codes.ET.ToString()) && article.publicationTime > DateTime.MinValue) 
             {
                 articleResult.PublicationTime = GetTime(article.publicationDate, article.publicationTime);
             }
@@ -192,6 +192,16 @@ namespace DowJones.Assemblers.Articles
             if (article.credit != null && article.credit.Items != null)
             {
                 articleResult.Credit = GetRenderItems(article.credit.Items, article.accessionNo);
+            }
+
+            if (article.sectionName != null && article.sectionName.Items != null)
+            {
+                articleResult.SectionName = GetRenderItems(article.sectionName.Items, article.accessionNo);
+            }
+
+            if (article.columnName != null && article.columnName.Items != null)
+            {
+                articleResult.ColumnName = GetRenderItems(article.columnName.Items, article.accessionNo);
             }
 
             if (article.notes != null && article.notes.Items != null)
