@@ -194,6 +194,16 @@ namespace DowJones.Assemblers.Articles
                 articleResult.Credit = GetRenderItems(article.credit.Items, article.accessionNo);
             }
 
+            if (article.sectionName != null && article.sectionName.Items != null)
+            {
+                articleResult.SectionName = GetRenderItems(article.sectionName.Items, article.accessionNo);
+            }
+
+            if (article.columnName != null && article.columnName.Items != null)
+            {
+                articleResult.ColumnName = GetRenderItems(article.columnName.Items, article.accessionNo);
+            }
+
             if (article.notes != null && article.notes.Items != null)
             {
                 var dictionaryItem = new Dictionary<string, List<RenderItem>>
