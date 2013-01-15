@@ -170,7 +170,7 @@ namespace DowJones.Assemblers.Articles
                 articleResult.PublicationDate = GetDate(article.publicationDate, article.publicationTime, article.publicationTimeSpecified);
             }
 
-            if (!CheckCodeSn(Codes.ET.ToString()))
+            if (!CheckCodeSn(Codes.ET.ToString()) && article.publicationTime > DateTime.MinValue) 
             {
                 articleResult.PublicationTime = GetTime(article.publicationDate, article.publicationTime);
             }
