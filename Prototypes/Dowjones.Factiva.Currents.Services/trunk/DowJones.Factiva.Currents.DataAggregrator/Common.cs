@@ -397,17 +397,19 @@ namespace DowJones.Factiva.Currents.Aggregrator
                         );
                     pageModuleList.Add(type, GetData(url));
                     break;
-                case "newsstandNewspageModule":
+                case "newsstandSourcesNewspageModule":
                     parts = "Headlines|Counts|DiscoveredEntities";
                     url =
                       string.Format(
-                          "{0}/Modules/NewsStand/1.0/data/" + format + "?pageid={1}&moduleId={2}&parts={3}&firstResultToReturn={4}&maxResultsToReturn={5}&encryptedToken={6}",
+                          "{0}/Modules/NewsstandSources/1.0/data/" + format + "?pageid={1}&moduleId={2}&parts={3}&firstResultToReturn={4}&maxResultsToReturn={5}&firstPartToReturn={6}&maxPartsToReturn={7}&encryptedToken={8}",
                           basePath,
                           pageId,
                           moduleId,
                           parts,
                           firstResultToReturn,
                           maxResultsToReturn,
+                          firstPartToReturn,
+                          maxPartsToReturn,
                           enToken
                         );
                     pageModuleList.Add(type, GetData(url));
