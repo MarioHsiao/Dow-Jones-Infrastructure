@@ -106,7 +106,7 @@ namespace DowJones.Factiva.Currents.Components.CurrentsHeadline
 					headline.PublicationDateTime.Year,
 					headline.PublicationDateTime.Month,
 					headline.PublicationDateTime.Day,
-					Canonicalize(Sanitize(headline.Title)), 
+					Canonicalize(Sanitize(headline.Title.Substring(0,150))), 
 					headline.Reference.guid
 				);
 		}
