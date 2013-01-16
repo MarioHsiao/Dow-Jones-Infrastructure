@@ -106,13 +106,15 @@ namespace DowJones.Factiva.Currents.Components.CurrentsHeadline
 					headline.PublicationDateTime.Year,
 					headline.PublicationDateTime.Month,
 					headline.PublicationDateTime.Day,
-					Canonicalize(Sanitize(headline.Title.Substring(0,150))), 
+					Canonicalize(Sanitize(headline.Title)), 
 					headline.Reference.guid
 				);
 		}
 
 		private static string Sanitize(string input)
 		{
+		    if (input.Length > 150)
+		        input = input.Substring(0, 150);
 			return WhiteListRegex.Replace(input, string.Empty);
 		}
 
