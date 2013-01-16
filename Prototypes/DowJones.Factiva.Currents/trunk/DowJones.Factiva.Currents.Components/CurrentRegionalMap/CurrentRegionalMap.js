@@ -42,7 +42,8 @@ DJ.UI.CurrentRegionalMap = DJ.UI.Component.extend({
                     y: 0,
                     color: 'white',
                     formatter: function () {
-                        return '<span class="regional-map-data-label dj_regionalMapDataLabel" data-scref="' + JSON.stringify(this.point.searchContextRef) + '">'
+                        
+                        return '<span class="regional-map-data-label dj_regionalMapDataLabel" data-scref=' + this.point.searchContextRef + '>'
                             + this.point.currentTimeFrameNewsVolumeDisplayText
                             + '</strong><br/>Articles'
                             + '<div style="color:black; padding-top: 10px; font-weight:bold">'
@@ -227,7 +228,7 @@ DJ.UI.CurrentRegionalMap = DJ.UI.Component.extend({
     _attachHighchartPointClicks: function () {
         var self = this;
         this.$element.find(".highcharts-data-labels > div").click(function () {
-            self._displayHeadlines($(this).find(self.selectors.regionalMapDataBubble).data('scref'));
+            self._displayHeadlines(JSON.stringify($(this).find(self.selectors.regionalMapDataBubble).data('scref')));
         });
     },
     
