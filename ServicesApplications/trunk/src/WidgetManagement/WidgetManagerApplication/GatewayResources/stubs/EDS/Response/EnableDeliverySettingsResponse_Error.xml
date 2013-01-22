@@ -1,0 +1,10 @@
+<EnableDeliveryResponse>
+  <Status value="232"/>
+  <userid></userid>
+  <productid></productid>
+  <Resultset count="1">
+    <Result DeliveryID="">
+      <ErrorCode>3</ErrorCode>
+    </Result>
+  </Resultset>
+</EnableDeliveryResponse>

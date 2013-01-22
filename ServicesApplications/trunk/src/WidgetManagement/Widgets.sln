@@ -1,0 +1,41 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WidgetManagerApplication", "WidgetManagerApplication\WidgetManagerApplication.csproj", "{D803758B-58AD-4135-BDE6-52481B6B7474}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 2
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://sbknwstfs1:8080/tfs/defaultcollection
+		SccProjectUniqueName0 = WidgetManagerApplication\\WidgetManagerApplication.csproj
+		SccProjectName0 = WidgetManagerApplication
+		SccLocalPath0 = WidgetManagerApplication
+		SccLocalPath1 = .
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug web|Any CPU = Debug web|Any CPU
+		Debug|Any CPU = Debug|Any CPU
+		REALEASE_FULL|Any CPU = REALEASE_FULL|Any CPU
+		Release.Automation|Any CPU = Release.Automation|Any CPU
+		Release|Any CPU = Release|Any CPU
+		UnitTest|Any CPU = UnitTest|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D803758B-58AD-4135-BDE6-52481B6B7474}.Debug web|Any CPU.ActiveCfg = Debug|Any CPU
+		{D803758B-58AD-4135-BDE6-52481B6B7474}.Debug web|Any CPU.Build.0 = Debug|Any CPU
+		{D803758B-58AD-4135-BDE6-52481B6B7474}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D803758B-58AD-4135-BDE6-52481B6B7474}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D803758B-58AD-4135-BDE6-52481B6B7474}.REALEASE_FULL|Any CPU.ActiveCfg = Release|Any CPU
+		{D803758B-58AD-4135-BDE6-52481B6B7474}.REALEASE_FULL|Any CPU.Build.0 = Release|Any CPU
+		{D803758B-58AD-4135-BDE6-52481B6B7474}.Release.Automation|Any CPU.ActiveCfg = Release|Any CPU
+		{D803758B-58AD-4135-BDE6-52481B6B7474}.Release.Automation|Any CPU.Build.0 = Release|Any CPU
+		{D803758B-58AD-4135-BDE6-52481B6B7474}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D803758B-58AD-4135-BDE6-52481B6B7474}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D803758B-58AD-4135-BDE6-52481B6B7474}.UnitTest|Any CPU.ActiveCfg = UnitTest|Any CPU
+		{D803758B-58AD-4135-BDE6-52481B6B7474}.UnitTest|Any CPU.Build.0 = UnitTest|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GetActiveUserFrequencyResponse ver="String" xsi:schemaLocation="getActiveUserFrequency GetActiveUserFrequencyResponse.xsd" xmlns="" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<status value="0">teststatus</status>
+	<requestInfo>
+		<accountScope>ALL</accountScope>
+		<beginDate>2009-01-01</beginDate>
+		<endDate>2009-03-31</endDate>
+	</requestInfo>
+	<activeUserFrequencyList first="0" count="0" total="0">
+		<activeUserFrequency sessionUserCount="4122" emailUserCount="679" activeUserPercent="0" uniqueUserCount="4364">
+			<activeUserType>Total Active Users</activeUserType>
+		</activeUserFrequency>
+		<activeUserFrequency sessionUserCount="2301" emailUserCount="379" activeUserPercent="56" uniqueUserCount="2436">
+			<activeUserType>Power Users</activeUserType>
+		</activeUserFrequency>
+		<activeUserFrequency sessionUserCount="777" emailUserCount="128" activeUserPercent="19" uniqueUserCount="822">
+			<activeUserType>Regular Users</activeUserType>
+		</activeUserFrequency>
+		<activeUserFrequency sessionUserCount="1045" emailUserCount="172" activeUserPercent="25" uniqueUserCount="1106">
+			<activeUserType>Occasional Users</activeUserType>
+		</activeUserFrequency>
+	</activeUserFrequencyList>
+</GetActiveUserFrequencyResponse>
