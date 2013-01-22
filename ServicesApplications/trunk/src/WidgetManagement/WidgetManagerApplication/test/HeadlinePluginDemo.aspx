@@ -1,1 +1,0 @@
-<%@ Page AspCompat="true" Language="C#" CodeBehind="HeadlinePluginDemo.aspx.cs" Inherits="emg.widgets.ui.demo.HeadlinePluginDemo" ValidateRequest="false" AutoEventWireup="true" EnableSessionState="false" EnableViewStateMac="false" Buffer="true" %>

@@ -1,3 +1,0 @@
-<%@ AspCompat="true" Language="C#" ValidateRequest="false" AutoEventWireup="true" EnableSessionState="false" EnableViewStateMac="false" Buffer="true" %>
-<% Response.Write("int_widgets - widgets.beta.factiva.com"); %>
-<% Response.Write(HttpContext.Current.Server.MachineName); %>

@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-<SearchByAccountRequest>
-  <accountList fcstype="list">
-    <accountId>9FAC000</accountId>
-  </accountList>
-  <stemSearch>Y</stemSearch>
-  <maxRows>4</maxRows>
-</SearchByAccountRequest>
