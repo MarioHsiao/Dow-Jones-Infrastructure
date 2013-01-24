@@ -45,7 +45,7 @@ DJ.UI.Radar = DJ.UI.Component.extend({
     */
 
     setData: function (radarData) {
-        this.data = this._validateAndCorrectData(radarData);
+        this.data = radarData;
         this._renderRadar();
     },
 
@@ -61,6 +61,7 @@ DJ.UI.Radar = DJ.UI.Component.extend({
         var $moduleFooter = $('.module-footer', el.parents('.dj_module-core')).empty();
 
         if (self.data) {
+            self.data = this._validateAndCorrectData(self.data);
             var now = new Date();
             // radar
             var $radarContainer = $("<div class='radar-container'></div>").appendTo(el);
