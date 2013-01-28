@@ -69,7 +69,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Dependencies\EMG.Utility.dll</HintPath>
     </Reference>
-    <Reference Include="encryption, Version=1.0.3140.25185, Culture=neutral" />
+    <Reference Include="encryption, Version=1.0.2271.24121, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\encryption.dll</HintPath>
+    </Reference>
     <Reference Include="factiva.gateway.messages, Version=7.5.0.6, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Dependencies\factiva.gateway.messages.dll</HintPath>
