@@ -26,7 +26,6 @@ using EMG.Utility.Handlers.Syndication.Podcast.Core;
 using EMG.Utility.OperationalData.AssetActivity;
 using EMG.Utility.Url;
 using EMG.widgets.Managers;
-using EMG.widgets.ui.Attributes.AOP;
 using EMG.widgets.ui.delegates.core;
 using EMG.widgets.ui.delegates.core.alertHeadline;
 using EMG.widgets.ui.delegates.core.discovery;
@@ -396,8 +395,6 @@ namespace EMG.widgets.ui.delegates.output.syndication
         /// </summary>
         /// <param name="token">The token.</param>
         /// <param name="integrationTarget">Type of the integration.</param>
-        [IncrementPerformanceCounter(PerformaceCounterInitializer.CATEGORY_NAME, PerformaceCounterInitializer.ALERT_DELEGATE_FILL_COUNTER)]
-        [TimePerformanceCounter(PerformaceCounterInitializer.CATEGORY_NAME, PerformaceCounterInitializer.ALERT_DELEGATE_FILL_AVERAGE_TIME)]
         public override void Fill(string token, IntegrationTarget integrationTarget)
         {
             using (var logger = new TransactionLogger(m_Log, MethodBase.GetCurrentMethod()))
@@ -1226,7 +1223,7 @@ namespace EMG.widgets.ui.delegates.output.syndication
         /// <returns></returns>
         private List<Folder> GetFolders(List<int> ids, Dictionary<int, string> dictExternalHasKeys, string proxyUserId, string proxyNamespace)
         {
-            List<Folder> buffer = new List<Folder>();
+            var buffer = new List<Folder>();
             if (ids.Count > 0)
             {
                 List<string> exHashKeys = new List<string>();
@@ -1241,10 +1238,10 @@ namespace EMG.widgets.ui.delegates.output.syndication
                 var trackManager = new TrackManager(ControlDataManager.GetLightWeightUserControlData("RSSFEED1", "RSSFEED1", "16"), m_SessionData.InterfaceLanguage);
 
                 // Fire transaction to get the response
-                GetAlertHeadlinesForRss2Response response = null;
+                GetAlertHeadlinesForRssResponse response = null;
                 try
                 {
-                    response = trackManager.GetMultipleAlertRSS2Headlines(ids, 20, exHashKeys, proxyUserId, proxyNamespace, true);
+                    response = trackManager.GetMultipleAlertRSSHeadlines(ids, 20, exHashKeys, proxyUserId, proxyNamespace, true);
                 }
                 catch (FactivaBusinessLogicException fbe)
                 {
@@ -1328,7 +1325,7 @@ namespace EMG.widgets.ui.delegates.output.syndication
                 var groupFolders = GetGroupFolders();
 
                 // Fire transaction to get the response
-                var response = trackManager.GetAlertHeadlines2WithSearch20Response(exSearchDTO, true);
+                var response = trackManager.GetAlertHeadlinesWithSearch20Response(exSearchDTO, true);
 
                 if (response != null &&
                     response.folderHeadlinesResponse != null &&

@@ -12,14 +12,13 @@
 
 using System;
 using System.Diagnostics;
+using System.Linq;
 using System.Web;
 using EMG.widgets.ui.exception;
 using Factiva.BusinessLayerLogic.Configuration;
-using Factiva.Gateway.Logging.V1_0;
 using Factiva.Gateway.Utils.V1_0;
 using Factiva.Gateway.V1_0;
 using log4net;
-using EMG.widgets.ui.Properties;
 using Factiva.Gateway.Services.V1_0;
 using EMG.Utility.Managers.Track;
 using Factiva.Gateway.Messages.Track.V1_0;
@@ -59,25 +58,23 @@ namespace EMG.widgets.ui
                 };
 
                 if (Log.IsDebugEnabled) Log.Debug("Global >> LoadTrackDeletedFolders: Retrieving Deleted Folders.");
-                ServiceResponse serviceResponse = TrackService.DeletedFolders(controlData.Clone(), new DeletedFoldersRequest());
-                DeletedFoldersResponse deletedFoldersResponse = null;
-                if (serviceResponse.rc == 0)
-                {
-                    object responseObj;
-                    serviceResponse.GetResponse(ServiceResponse.ResponseFormat.Object, out responseObj);
-                    deletedFoldersResponse = (DeletedFoldersResponse)responseObj;
-
-                    if (deletedFoldersResponse != null && deletedFoldersResponse.DeletedFolders.Count > 0)
-                    {
-                        var deletedFolderManager = new TrackDeletedFoldersCacheManager(controlData.Clone(), "en");
-                        deletedFolderManager.Load(deletedFoldersResponse.DeletedFolders);
-                        if (Log.IsDebugEnabled) Log.Debug("Global >> LoadTrackDeletedFolders: Successfully Retreived Deleted Folders.");
-                    }
-                }
-                else
+                var serviceResponse = TrackService.DeletedFolders(controlData.Clone(), new DeletedFoldersRequest());
+                if (serviceResponse.rc != 0)
                 {
                     throw new EmgWidgetsUIException(serviceResponse.ReturnCode);
                 }
+                object responseObj;
+                serviceResponse.GetResponse(ServiceResponse.ResponseFormat.Object, out responseObj);
+
+                var deletedFoldersResponse = (DeletedFoldersResponse) responseObj;
+                if (deletedFoldersResponse == null || deletedFoldersResponse.DeletedFolders.Count <= 0)
+                {
+                    return;
+                }
+
+                var deletedFolderManager = new TrackDeletedFoldersCacheManager(controlData.Clone(), "en");
+                deletedFolderManager.Load(deletedFoldersResponse.DeletedFolders);
+                if (Log.IsDebugEnabled) Log.Debug("Global >> LoadTrackDeletedFolders: Successfully Retreived Deleted Folders.");
             }
             catch (Exception ex)
             {
@@ -156,10 +153,10 @@ namespace EMG.widgets.ui
     /// </summary>
     public class PerfmormanceMonitor
     {
-        private readonly CounterCreationDataCollection counters = new CounterCreationDataCollection();
-        private readonly string categoryName = string.Empty;
-        private readonly string categoryHelp = string.Empty;
-        private static readonly ILog logger = LogManager.GetLogger(typeof(PerfmormanceMonitor));
+        private readonly CounterCreationDataCollection _counters = new CounterCreationDataCollection();
+        private readonly string _categoryName = string.Empty;
+        private readonly string _categoryHelp = string.Empty;
+        private static readonly ILog Logger = LogManager.GetLogger(typeof(PerfmormanceMonitor));
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PerfmormanceMonitor"/> class.
@@ -169,8 +166,8 @@ namespace EMG.widgets.ui
         /// <param name="categoryHelp">The category help.</param>
         public PerfmormanceMonitor(string categoryName, string categoryHelp)
         {
-            this.categoryName = categoryName;
-            this.categoryHelp = categoryHelp;
+            _categoryName = categoryName;
+            _categoryHelp = categoryHelp;
         }
 
         /// <summary>
@@ -181,22 +178,19 @@ namespace EMG.widgets.ui
         /// </returns>
         public bool HasCounters()
         {
-            if (!PerformanceCounterCategory.Exists(categoryName))
+            if (!PerformanceCounterCategory.Exists(_categoryName))
             {
                 return false;
             }
 
-            foreach (CounterCreationData counter in counters)
+            if (_counters.Cast<CounterCreationData>().Any(counter => !PerformanceCounterCategory.CounterExists(counter.CounterName, _categoryName)))
             {
-                if (!PerformanceCounterCategory.CounterExists(counter.CounterName, categoryName))
-                {
-                    return false;
-                }    
+                return false;
             }
 
-            if (logger.IsInfoEnabled)
+            if (Logger.IsInfoEnabled)
             {
-                logger.Info("All counters and category exists");
+                Logger.Info("All counters and category exists");
             }
 
             return true;
@@ -207,12 +201,12 @@ namespace EMG.widgets.ui
         /// </summary>
         public void CreateCounters()
         {
-            if (logger.IsInfoEnabled)
+            if (Logger.IsInfoEnabled)
             {
-                logger.Info("Creating the counters");
+                Logger.Info("Creating the counters");
             }
 
-            PerformanceCounterCategory.Create(this.categoryName, this.categoryHelp, PerformanceCounterCategoryType.Unknown, this.counters);
+            PerformanceCounterCategory.Create(_categoryName, _categoryHelp, PerformanceCounterCategoryType.Unknown, _counters);
         }
 
         /// <summary>
@@ -223,9 +217,9 @@ namespace EMG.widgets.ui
         /// <param name="type">The counter type.</param>
         public void AddCounter(string name, string helpText, PerformanceCounterType type)
         {
-            if (logger.IsInfoEnabled)
+            if (Logger.IsInfoEnabled)
             {
-                logger.InfoFormat("Adding Counter {0}", name);
+                Logger.InfoFormat("Adding Counter {0}", name);
             }
 
             var ccd = new CounterCreationData
@@ -235,39 +229,45 @@ namespace EMG.widgets.ui
                               CounterType = type
                           };
 
-            this.counters.Add(ccd);
+            _counters.Add(ccd);
         }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public class PerformaceCounterInitializer
     {
         /// <summary>
         /// Category Name
         /// </summary>
-        public const string CATEGORY_NAME = "WidgetPlatform";
+        public const string CategoryName = "WidgetPlatform";
               
         /// <summary>
         /// Alert Headline Widget Delegate Fill Counter Name
         /// </summary>
-        public const string ALERT_DELEGATE_FILL_COUNTER = "# alert_headline_widget_delegate fill commands executed";
-        public const string ALERT_DELEGATE_FILL_AVERAGE_TIME = "average time per alert_headline_widget_delegate fill command";
+        public const string AlertDelegateFillCounter = "# alert_headline_widget_delegate fill commands executed";
+        /// <summary>
+        /// 
+        /// </summary>
+        public const string AlertDelegateFillAverageTime = "average time per alert_headline_widget_delegate fill command";
         
         private const string CategoryHelp = "Consumer Widget Platform Category";
-        private static readonly ILog logger = LogManager.GetLogger(typeof(PerformaceCounterInitializer));
+        private static readonly ILog Logger = LogManager.GetLogger(typeof(PerformaceCounterInitializer));
 
         /// <summary>
         /// Creates the counters.
         /// </summary>
         public static void CreateCounters()
         {
-            if (logger.IsInfoEnabled)
+            if (Logger.IsInfoEnabled)
             {
-                logger.Info("Creating the counters");
+                Logger.Info("Creating the counters");
             }
 
-            var monitor = new PerfmormanceMonitor(CATEGORY_NAME, CategoryHelp);
-            monitor.AddCounter(ALERT_DELEGATE_FILL_COUNTER, "Total number of AlertHeadlineDelegate's fill commands", PerformanceCounterType.NumberOfItems64);
-            monitor.AddCounter(ALERT_DELEGATE_FILL_AVERAGE_TIME, "Average duration per operation of alert_headline_widget_delegate fill command", PerformanceCounterType.NumberOfItems64);
+            var monitor = new PerfmormanceMonitor(CategoryName, CategoryHelp);
+            monitor.AddCounter(AlertDelegateFillCounter, "Total number of AlertHeadlineDelegate's fill commands", PerformanceCounterType.NumberOfItems64);
+            monitor.AddCounter(AlertDelegateFillAverageTime, "Average duration per operation of alert_headline_widget_delegate fill command", PerformanceCounterType.NumberOfItems64);
             
             /*monitor.AddCounter("# logfiles parsed", "Total number of logfiles parsed", PerformanceCounterType.NumberOfItems64);
             monitor.AddCounter("# operations / sec", "Number of operations executed per second", PerformanceCounterType.RateOfCountsPerSecond32);

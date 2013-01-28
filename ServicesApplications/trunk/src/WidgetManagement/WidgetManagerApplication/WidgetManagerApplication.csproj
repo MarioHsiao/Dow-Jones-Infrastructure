@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -19,9 +20,13 @@
     </FileUpgradeFlags>
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
-    <OldToolsVersion>3.5</OldToolsVersion>
+    <OldToolsVersion>4.0</OldToolsVersion>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <UseIISExpress>false</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -69,6 +74,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Dependencies\factiva.gateway.messages.dll</HintPath>
     </Reference>
+    <Reference Include="factiva.nextgen.ui, Version=18.3.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\factiva.nextgen.ui.dll</HintPath>
+    </Reference>
     <Reference Include="FactivaBusinessLayerLogic, Version=16.3.0.31881, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Dependencies\FactivaBusinessLayerLogic.dll</HintPath>
@@ -89,8 +98,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>lib\emg\log4net.dll</HintPath>
     </Reference>
-    <Reference Include="PostSharp, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL" />
-    <Reference Include="PostSharp.Laos, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL" />
     <Reference Include="Simplicit.Net.Lzo, Version=1.0.0.0, Culture=neutral">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\Simplicit.Net.Lzo.dll</HintPath>
@@ -121,6 +128,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Default.aspx" />
+    <Content Include="GatewayResources\stubs\track\Request\DeletedFoldersRequest.xml" />
+    <Content Include="GatewayResources\stubs\track\Response\DeletedFoldersResponse.xml" />
+    <Content Include="GatewayResources\Xslt\archive\GetDocuments_PubType_Section.xslt" />
+    <Content Include="GatewayResources\Xslt\archive\GetDocuments_Response.xslt" />
+    <Content Include="GatewayResources\Xslt\archive\GetDocuments_WebType_Section.xslt" />
+    <Content Include="GatewayResources\Xslt\archive\GetDocumentWithDelayedBilling_Response.xslt" />
+    <Content Include="GatewayResources\Xslt\archive\GroupDocumentResults.xslt" />
+    <Content Include="GatewayResources\Xslt\archive\GroupDocumentWithDelayedBillingResults.xslt" />
     <Content Include="iworks\bvd\config.xml" />
     <Content Include="iworks\bvd\config_bc.xml" />
     <Content Include="iworks\bvd\config_beta.xml" />
@@ -146,6 +161,15 @@
     <Content Include="iworks\wsj\config_beta.xml" />
     <Content Include="iworks\wsj\config_integration.xml" />
     <Content Include="iworks\wsj\config_production.xml" />
+    <Content Include="lib\factiva.nextgen.ui.dll" />
+    <Content Include="lib\FactivaBusinessLayerLogic.dll" />
+    <Content Include="lib\FactivaBusinessLayerLogic.XmlSerializers.dll" />
+    <Content Include="lib\FactivaCharting.dll" />
+    <Content Include="lib\Interop.FCMLib.dll" />
+    <Content Include="lib\itextsharp.dll" />
+    <Content Include="lib\log4net.dll" />
+    <Content Include="lib\Newtonsoft.Json.dll" />
+    <Content Include="lib\Svg.dll" />
     <Content Include="Render.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -167,6 +191,7 @@
     <Compile Include="controls\preview\PreviewControl.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="delegates\output\syndication\AbstractWidgetDelegate.cs" />
     <Compile Include="delegates\cache\WidgetDefinitionCacheDelegate.cs" />
@@ -193,6 +218,7 @@
     <Compile Include="dto\request\ReadspeakerContentDTO.cs" />
     <Compile Include="du\ManageWidgets.aspx.cs">
       <DependentUpon>ManageWidgets.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="encryption\AbstractTokenProperties.cs" />
     <Compile Include="encryption\ArticleTokenGenerator.cs" />
@@ -209,6 +235,7 @@
     <Compile Include="dto\WidgetsDTOKeyMapper.cs" />
     <Compile Include="du\CreateWidget.aspx.cs">
       <DependentUpon>CreateWidget.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="encryption\WidgetTokenGenerator.cs" />
     <Compile Include="exception\EMG_WidgetsUIException.cs" />
@@ -216,7 +243,9 @@
     <Compile Include="Managers\ControlDataManager.cs" />
     <Compile Include="Managers\HexEncoding.cs" />
     <Compile Include="Managers\SecurityManager.cs" />
-    <Compile Include="page\BasePage.cs" />
+    <Compile Include="page\BasePage.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="page\Enums.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
@@ -229,6 +258,7 @@
     <Compile Include="proxy\core\ProxyHelpers.cs" />
     <Compile Include="Render.aspx.cs">
       <DependentUpon>Render.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="syndication\RenderAsyncOperation.cs" />
     <Compile Include="services\ajax\TokenItem.cs" />
@@ -267,6 +297,7 @@
     </Compile>
     <Compile Include="tools\Encryption.aspx.cs">
       <DependentUpon>Encryption.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="utility\Enum.cs" />
     <Compile Include="utility\headline\HeadlineUtility.cs" />
@@ -275,9 +306,11 @@
     <Compile Include="utility\Utility.cs" />
     <Compile Include="widgetManagement\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="widgetManagement\Manage.aspx.cs">
       <DependentUpon>Manage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -869,7 +902,6 @@
     <Content Include="lib\CordaNetEmbedder.dll" />
     <Content Include="lib\EMG.Charting.dll" />
     <Content Include="lib\EMG.Toolkit.Web.dll" />
-    <Content Include="lib\EMG.Toolkit.Web.pdb" />
     <Content Include="lib\EMG.Utility.dll" />
     <Content Include="img\branding\djFactiva.gif">
     </Content>
@@ -949,7 +981,6 @@
     <Content Include="lib\factiva.dowjonesinsider.ui.control.dll" />
     <Content Include="lib\factiva.gateway.messages.dll">
     </Content>
-    <Content Include="lib\factiva.gateway.messages.pdb" />
     <Content Include="lib\factiva.gateway.messages.XML" />
     <Content Include="lib\FactivaGateway.dll">
     </Content>
@@ -957,11 +988,6 @@
     <Content Include="lib\nStuff.JavaScript.dll" />
     <Compile Include="ajax\controls\WidgetDesigner\WidgetDesignerDesigner.cs" />
     <Compile Include="ajax\controls\WidgetDesigner\WidgetDesignerExtender.cs" />
-    <Compile Include="attributes\AOP\IncrementPerformanceCounterAttribute.cs" />
-    <Compile Include="attributes\AOP\PerformanceCounterAttribute.cs" />
-    <Compile Include="attributes\AOP\TimePerformanceCounterAttribute.cs" />
-    <Compile Include="attributes\AOP\TraceAttribute.cs" />
-    <Compile Include="attributes\AOP\TraceVerboseAttribute.cs" />
     <Compile Include="attributes\EnhancedClientScript.cs" />
     <Compile Include="controls\AbstractWidgetDesignerControl.cs" />
     <Compile Include="controls\design\manualNewsletterWorkspace\DesignControl.cs" />
@@ -987,9 +1013,11 @@
     <Compile Include="dto\request\HeadlinePluginWidgetRequestDTO.cs" />
     <Compile Include="du\EditWidget.aspx.cs">
       <DependentUpon>EditWidget.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="du\PublishWidget.aspx.cs">
       <DependentUpon>PublishWidget.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="GalleryConfiguration\GalleryConfiguration.cs">
       <DependentUpon>GalleryConfiguration.xsd</DependentUpon>
@@ -1010,13 +1038,12 @@
     <Compile Include="Modules\Compression\ServiceResources.cs" />
     <Compile Include="Modules\Compression\Util.cs" />
     <Compile Include="Modules\Compression\WebResourceCompressionModule.cs" />
-    <Compile Include="page\AbstractBasePage.cs" />
+    <Compile Include="page\AbstractBasePage.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="services\ajax\WidgetDesignerManager.AlertHeadlineWidget.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Content Include="lib\PostSharp\PostSharp.dll" />
-    <Content Include="lib\PostSharp\PostSharp.Laos.dll" />
-    <Content Include="lib\PostSharp\PostSharp.xml" />
     <Content Include="syndication\integration\templates\BaseJavaScript.txt" />
     <Content Include="syndication\integration\templates\BloggerIntegration.xml" />
     <Content Include="syndication\integration\templates\LiveDotComRss.xml" />
@@ -1230,7 +1257,9 @@
     <Content Include="GatewayResources\Config\Symbology.TaxonomyService.config" />
     <Content Include="GatewayResources\Config\Tools.TinyURL.config" />
     <Content Include="GatewayResources\Config\TopicCenterAndSMSManagementService.config" />
-    <Content Include="GatewayResources\Config\TrackService.config" />
+    <Content Include="GatewayResources\Config\TrackService.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="GatewayResources\Config\Triggers.config" />
     <Content Include="GatewayResources\Config\UserEventRecorderService.config" />
     <None Include="Properties\Settings.settings">
@@ -1289,14 +1318,13 @@
     <Content Include="widgets_integration_not_on_this_servier.txt" />
     <EmbeddedResource Include="syndication\podcast\ContentReader.xslt" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\Search Two Dev Projects\Search Two Dev Post 2010 July\IWorks_Post_2010_Jul_Soln\SearchTwoWebApp\SearchTwoWebApp.csproj">
-      <Project>{9BA4F6ED-0F5E-4EA0-B35A-6DA00FD076D7}</Project>
-      <Name>SearchTwoWebApp</Name>
-    </ProjectReference>
-  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
@@ -1312,7 +1340,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>49573</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost/widgetsproj</IISUrl>
+          <IISUrl>http://localhost/consumer.widget.management.app</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

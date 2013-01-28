@@ -10,7 +10,7 @@ namespace EMG.widgets.ui.delegates.core.manualNewsletterWorkspace
         /// <summary>
         /// id of the alert.
         /// </summary>
-        public int Id;
+        public long Id;
 
         /// <summary>
         /// name of alert
@@ -51,7 +51,7 @@ namespace EMG.widgets.ui.delegates.core.manualNewsletterWorkspace
         /// <summary>
         /// 
         /// </summary>
-        public int Id;
+        public long Id;
 
 
         /// <summary>

@@ -270,11 +270,11 @@ namespace EMG.widgets.ui.delegates.output
                                 widgetDiscoveryTab.Id = "industries";
                                 widgetDiscoveryTab.DisplayCheckbox = true;
                                 break;
-                            case TabType.Regions:
+                          /*  case TabType.Regions:
                                 widgetDiscoveryTab.Text = ResourceText.GetInstance.GetString("regions");
                                 widgetDiscoveryTab.Id = "regions";
                                 widgetDiscoveryTab.DisplayCheckbox = true;
-                                break;
+                                break;*/
                             case TabType.NewSubjects:
                                 widgetDiscoveryTab.Text = ResourceText.GetInstance.GetString("newsSubjects");
                                 widgetDiscoveryTab.Id = "subjects";

@@ -256,6 +256,25 @@
           <xsl:apply-templates select="AUTH_MATRIX/OPENACCESS/*" />
         </openAccess>
       </xsl:if>
+
+      <xsl:for-each select="AUTH_MATRIX/*">
+        <authMatrixService>
+          <serviceName>
+            <xsl:value-of select="name(.)"/>
+          </serviceName>
+          <xsl:apply-templates select="."/>
+          <xsl:for-each select="./*">
+            <nvp>
+              <Key>
+                <xsl:value-of select="name(.)"/>
+              </Key>
+              <Value>
+                <xsl:value-of select="."/>
+              </Value>
+            </nvp>
+          </xsl:for-each>
+        </authMatrixService>
+      </xsl:for-each>
     </authorizationMatrix>
 
     <emailLoginConversionAllowed>
@@ -291,7 +310,7 @@
     </externalReaderFlag>
 
   </xsl:template>
-
+  
   <xsl:template match="AC1">
     <ac1>
       <xsl:value-of select="." />

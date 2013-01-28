@@ -1,17 +1,19 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WidgetManagerApplication", "WidgetManagerApplication\WidgetManagerApplication.csproj", "{D803758B-58AD-4135-BDE6-52481B6B7474}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dependencies", "Dependencies", "{8A77921E-8C26-40B5-ABFA-F93730B69B0A}"
 EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
 		SccNumberOfProjects = 2
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = http://sbknwstfs1:8080/tfs/defaultcollection
-		SccProjectUniqueName0 = WidgetManagerApplication\\WidgetManagerApplication.csproj
-		SccProjectName0 = WidgetManagerApplication
-		SccLocalPath0 = WidgetManagerApplication
-		SccLocalPath1 = .
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = WidgetManagerApplication\\WidgetManagerApplication.csproj
+		SccProjectName1 = WidgetManagerApplication
+		SccLocalPath1 = WidgetManagerApplication
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug web|Any CPU = Debug web|Any CPU

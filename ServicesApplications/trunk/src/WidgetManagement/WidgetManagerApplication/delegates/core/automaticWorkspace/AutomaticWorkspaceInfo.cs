@@ -9,7 +9,7 @@ namespace EMG.widgets.ui.delegates.core.automaticWorkspace
         /// <summary>
         /// id of the alert.
         /// </summary>
-        public int Id;
+        public long Id;
 
         /// <summary>
         /// name of alert

@@ -26,9 +26,7 @@ function contains(a, b) {
 
 $.widget("ui.sortable", $.extend({}, $.ui.mouse, {
 	init: function() {
-
-		var o = this.options;
-		this.containerCache = {};
+        this.containerCache = {};
 		this.element.addClass("ui-sortable");
 	
 		//Get the items
@@ -43,10 +41,11 @@ $.widget("ui.sortable", $.extend({}, $.ui.mouse, {
 
 		//Initialize mouse events for interaction
 		this.mouseInit();
-		
 	},
+	
 	plugins: {},
-	ui: function(inst) {
+
+	ui: function (inst) {
 		return {
 			helper: (inst || this)["helper"],
 			placeholder: (inst || this)["placeholder"] || $([]),
@@ -58,11 +57,13 @@ $.widget("ui.sortable", $.extend({}, $.ui.mouse, {
 			sender: inst ? inst.element : null
 		};		
 	},
+	
 	propagate: function(n,e,inst, noPropagation) {
 		$.ui.plugin.call(this, n, [e, this.ui(inst)]);
 		if(!noPropagation) this.element.triggerHandler(n == "sort" ? n : "sort"+n, [e, this.ui(inst)], this.options[n]);
 	},
-	serialize: function(o) {
+
+	serialize: function (o) {
 
 		var items = ($.isFunction(this.options.items) ? this.options.items.call(this.element) : $(this.options.items, this.element)).not('.ui-sortable-helper'); //Only the items of the sortable itself
 		var str = []; o = o || {};
@@ -73,17 +74,16 @@ $.widget("ui.sortable", $.extend({}, $.ui.mouse, {
 		});
 		
 		return str.join('&');
-		
 	},
-	toArray: function(attr) {
-		
-		var items = ($.isFunction(this.options.items) ? this.options.items.call(this.element) : $(this.options.items, this.element)).not('.ui-sortable-helper'); //Only the items of the sortable itself
+
+	toArray: function (attr) {
+	    var items = ($.isFunction(this.options.items) ? this.options.items.call(this.element) : $(this.options.items, this.element)).not('.ui-sortable-helper'); //Only the items of the sortable itself
 		var ret = [];
 
 		items.each(function() { ret.push($(this).attr(attr || 'id')); });
 		return ret;
-		
 	},
+	
 	/* Be careful with the following core functions */
 	intersectsWith: function(item) {
 		
@@ -95,15 +95,13 @@ $.widget("ui.sortable", $.extend({}, $.ui.mouse, {
 		if(this.options.tolerance == "pointer" || this.options.forcePointerForContainers || (this.options.tolerance == "guess" && this.helperProportions[this.floating ? 'width' : 'height'] > item[this.floating ? 'width' : 'height'])) {
 			return (y1 + this.offset.click.top > t && y1 + this.offset.click.top < b && x1 + this.offset.click.left > l && x1 + this.offset.click.left < r);
 		} else {
-		
-			return (l < x1 + (this.helperProportions.width / 2) // Right Half
+		    return (l < x1 + (this.helperProportions.width / 2) // Right Half
 				&& x2 - (this.helperProportions.width / 2) < r // Left Half
 				&& t < y1 + (this.helperProportions.height / 2) // Bottom Half
 				&& y2 - (this.helperProportions.height / 2) < b ); // Top Half
-		
 		}
-		
 	},
+	
 	intersectsWithEdge: function(item) {	
 		var x1 = this.positionAbs.left, x2 = x1 + this.helperProportions.width,
 			y1 = this.positionAbs.top, y2 = y1 + this.helperProportions.height;
@@ -112,18 +110,18 @@ $.widget("ui.sortable", $.extend({}, $.ui.mouse, {
 
 		if(this.options.tolerance == "pointer" || (this.options.tolerance == "guess" && this.helperProportions[this.floating ? 'width' : 'height'] > item[this.floating ? 'width' : 'height'])) {
 
-			if(!(y1 + this.offset.click.top > t && y1 + this.offset.click.top < b && x1 + this.offset.click.left > l && x1 + this.offset.click.left < r)) return false;
-			
-			if(this.floating) {
+		    if (!(y1 + this.offset.click.top > t && y1 + this.offset.click.top < b && x1 + this.offset.click.left > l && x1 + this.offset.click.left < r)) {
+                return false;
+		    }
+
+		    if(this.floating) {
 				if(x1 + this.offset.click.left > l && x1 + this.offset.click.left < l + item.width/2) return 2;
 				if(x1 + this.offset.click.left > l+item.width/2 && x1 + this.offset.click.left < r) return 1;
 			} else {
 				if(y1 + this.offset.click.top > t && y1 + this.offset.click.top < t + item.height/2) return 2;
 				if(y1 + this.offset.click.top > t+item.height/2 && y1 + this.offset.click.top < b) return 1;
 			}
-
 		} else {
-		
 			if (!(l < x1 + (this.helperProportions.width / 2) // Right Half
 				&& x2 - (this.helperProportions.width / 2) < r // Left Half
 				&& t < y1 + (this.helperProportions.height / 2) // Bottom Half
@@ -136,26 +134,24 @@ $.widget("ui.sortable", $.extend({}, $.ui.mouse, {
 				if(y2 > t && y1 < t) return 1; //Crosses top edge
 				if(y1 < b && y2 > b) return 2; //Crosses bottom edge
 			}
-		
 		}
 		
 		return false;
-		
 	},
+	
 	refresh: function() {
 		this.refreshItems();
 		this.refreshPositions();
 	},
-	refreshItems: function() {
-		
+
+	refreshItems: function () {
 		this.items = [];
 		this.containers = [this];
 		var items = this.items;
-		var self = this;
 		var queries = [[$.isFunction(this.options.items) ? this.options.items.call(this.element, null, { options: this.options, item: this.currentItem }) : $(this.options.items, this.element), this]];
-	
-		if(this.options.connectWith) {
-			for (var i = this.options.connectWith.length - 1; i >= 0; i--){
+	    var i;
+	    if(this.options.connectWith) {
+			for (i = this.options.connectWith.length - 1; i >= 0; i--){
 				var cur = $(this.options.connectWith[i]);
 				for (var j = cur.length - 1; j >= 0; j--){
 					var inst = $.data(cur[j], 'sortable');
@@ -167,7 +163,7 @@ $.widget("ui.sortable", $.extend({}, $.ui.mouse, {
 			};
 		}
 
-		for (var i = queries.length - 1; i >= 0; i--){
+		for (i = queries.length - 1; i >= 0; i--){
 			queries[i][0].each(function() {
 				$.data(this, 'sortable-item', queries[i][1]); // Data for target checking (mouse manager)
 				items.push({
@@ -187,8 +183,8 @@ $.widget("ui.sortable", $.extend({}, $.ui.mouse, {
 			var po = this.offsetParent.offset();
 			this.offset.parent = { top: po.top + this.offsetParentBorders.top, left: po.left + this.offsetParentBorders.left };
 		}
-
-		for (var i = this.items.length - 1; i >= 0; i--){		
+	    var i, p;
+	    for (i = this.items.length - 1; i >= 0; i--){		
 			
 			//We ignore calculating positions of all connected containers when we're not over them
 			if(this.items[i].instance != this.currentContainer && this.currentContainer && this.items[i].item[0] != this.currentItem[0])
@@ -200,9 +196,8 @@ $.widget("ui.sortable", $.extend({}, $.ui.mouse, {
 				this.items[i].width = t[0].offsetWidth;
 				this.items[i].height = t[0].offsetHeight;
 			}
-			
-			var p = t.offset();
-			this.items[i].left = p.left;
+	        p = t.offset();
+	        this.items[i].left = p.left;
 			this.items[i].top = p.top;
 			
 		};
@@ -210,9 +205,9 @@ $.widget("ui.sortable", $.extend({}, $.ui.mouse, {
 		if(this.options.custom && this.options.custom.refreshContainers) {
 			this.options.custom.refreshContainers.call(this);
 		} else {
-			for (var i = this.containers.length - 1; i >= 0; i--){
-				var p =this.containers[i].element.offset();
-				this.containers[i].containerCache.left = p.left;
+			for (i = this.containers.length - 1; i >= 0; i--){
+			    p = this.containers[i].element.offset();
+			    this.containers[i].containerCache.left = p.left;
 				this.containers[i].containerCache.top = p.top;
 				this.containers[i].containerCache.width	= this.containers[i].element.outerWidth();
 				this.containers[i].containerCache.height = this.containers[i].element.outerHeight();

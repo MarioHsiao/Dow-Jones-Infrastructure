@@ -11,6 +11,8 @@
       <xsl:copy-of select="//lastName"/>
       <xsl:copy-of select="//accountId"/>
       <xsl:copy-of select="//companyName"/>
+      <xsl:copy-of select="//isoCountryCode"/>
+      <xsl:copy-of select="//state"/>
     </xsl:element>
 	</xsl:template>
 	

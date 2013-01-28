@@ -10,7 +10,9 @@
 using System;
 using System.Collections;
 using System.Collections.Specialized;
+using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
@@ -32,15 +34,15 @@ namespace EMG.widgets.ui.page
     /// </summary>
     public class BasePage : AbstractBasePage
     {
-        private const string BASE_JAVASCRIPT_VARIABLES = "<script language='javascript' type='text/javascript'>var accessPointCode = \"{0}\";var debugLevel = {1};var interfaceLanguage = \"{2}\";var sessionStateParamName = \"{3}\"; var formStateParamName = \"{4}\";var sa_from=\"{5}\";</script>";
-        private readonly string DESIGNER_CSS_FILE = "~/du/r.ashx?d=css&n=designer&t=css&v=" + utility.Utility.GetVersion();
+        private const string BaseJavascriptVariables = "<script language='javascript' type='text/javascript'>var accessPointCode = \"{0}\";var debugLevel = {1};var interfaceLanguage = \"{2}\";var sessionStateParamName = \"{3}\"; var formStateParamName = \"{4}\";var sa_from=\"{5}\";</script>";
+        private readonly string _designerCssFile = "~/du/r.ashx?d=css&n=designer&t=css&v=" + utility.Utility.GetVersion();
         //private readonly string FIREBUG_LITE_JS_FILE = "~/du/r.ashx?d=js%2Ffirebug&n=firebug&t=js&v=" + utility.Utility.GetVersion();
-        private const string FIREBUG_LITE_JS_FILE = "~/js/firebug/firebug.js";
-        private const string OMNITURE_LIBRARY_FILE = "~/js/omniture/library.js";
-        private const string OMNITURE_HELPER_FILE = "~/js/omniture/helper.js";
-        private readonly string GLOBAL_CSS_FILE = "~/du/r.ashx?d=css&n=globalv2&t=css&v=" + utility.Utility.GetVersion();
-        private readonly string MAIN_JSA_FILE = "~/du/r.ashx?d=jsa&n=core&t=js&v=" + utility.Utility.GetVersion();
-        private static readonly ILog _log = LogManager.GetLogger(typeof(BasePage));
+        private const string FirebugLiteJsFile = "~/js/firebug/firebug.js";
+        private const string OmnitureLibraryFile = "~/js/omniture/library.js";
+        private const string OmnitureHelperFile = "~/js/omniture/helper.js";
+        private readonly string _globalCssFile = "~/du/r.ashx?d=css&n=globalv2&t=css&v=" + utility.Utility.GetVersion();
+        private readonly string _mainJsaFile = "~/du/r.ashx?d=jsa&n=core&t=js&v=" + utility.Utility.GetVersion();
+        private static readonly ILog Log = LogManager.GetLogger(typeof(BasePage));
         private readonly HtmlHead _mHeader;
         private readonly ColumnsContainerControl _columnsContainerControl;
         private ControlCollection _controls;
@@ -128,13 +130,17 @@ namespace EMG.widgets.ui.page
         /// </summary>
         public BasePage()
         {
-            Form = new BaseForm();
-            Form.ID = "PageBaseForm";
+            Form = new BaseForm
+                       {
+                           ID = "PageBaseForm"
+                       };
             _mHeader = new HtmlHead("head");
             _siteHeader = new HeaderControl();
             _footer = new FooterControl();
-            AjaxToolkitHiddenControlsContainer = new HtmlGenericControl("div");
-            AjaxToolkitHiddenControlsContainer.ID = "AjaxToolKitItemsHiddenItems";
+            AjaxToolkitHiddenControlsContainer = new HtmlGenericControl("div")
+                                                     {
+                                                         ID = "AjaxToolKitItemsHiddenItems"
+                                                     };
 
             AjaxContainer = new HtmlGenericControl("div");
             _scriptTokens = new StringCollection();
@@ -169,17 +175,17 @@ namespace EMG.widgets.ui.page
             Error += base.Page_Error;
 
             // Register Basic [Stylesheet|Script] files
-            RegisterStyleSheet(GLOBAL_CSS_FILE);
-            RegisterStyleSheet(DESIGNER_CSS_FILE);
-            RegisterClientScriptFile(MAIN_JSA_FILE);
-            RegisterClientScriptFile(FIREBUG_LITE_JS_FILE);
-            RegisterClientScriptFile(OMNITURE_LIBRARY_FILE);
-            RegisterClientScriptFile(OMNITURE_HELPER_FILE);
+            RegisterStyleSheet(_globalCssFile);
+            RegisterStyleSheet(_designerCssFile);
+            RegisterClientScriptFile(_mainJsaFile);
+            RegisterClientScriptFile(FirebugLiteJsFile);
+            RegisterClientScriptFile(OmnitureLibraryFile);
+            RegisterClientScriptFile(OmnitureHelperFile);
 
             RegisterClientScriptTokens(typeof(GlobalTokens));
 
             var stylesheetAttributes = (StylesheetAttribute[]) Attribute.GetCustomAttributes(GetType(), typeof(StylesheetAttribute));
-            if (stylesheetAttributes != null && stylesheetAttributes.Length > 0)
+            if (stylesheetAttributes.Length > 0)
             {
                 Array.Sort(stylesheetAttributes);
                 foreach (var stylesheet in stylesheetAttributes)
@@ -189,7 +195,7 @@ namespace EMG.widgets.ui.page
             }
 
             var clientScriptAttributes = (ClientScriptAttribute[]) Attribute.GetCustomAttributes(GetType(), typeof(ClientScriptAttribute));
-            if (clientScriptAttributes == null || clientScriptAttributes.Length <= 0)
+            if (clientScriptAttributes.Length <= 0)
             {
                 return;
             }
@@ -294,7 +300,7 @@ namespace EMG.widgets.ui.page
 
                 //// sm- changed so that the redirection happens in case of a invalid session-5/24.
                 //// HandleError(ex);
-                HandleError(ex.ReturnCodeFromFactivaService.ToString());
+                HandleError(ex.ReturnCodeFromFactivaService.ToString(CultureInfo.InvariantCulture));
                 Response.End();
                 return;
             }
@@ -321,9 +327,9 @@ namespace EMG.widgets.ui.page
                 }
             }
 
-            if (_log.IsInfoEnabled)
+            if (Log.IsInfoEnabled)
             {
-                _log.Info("Start OnInit ");
+                Log.Info("Start OnInit ");
             }
         }
 
@@ -376,9 +382,9 @@ namespace EMG.widgets.ui.page
         /// <param name="e">The <see cref="T:System.EventArgs"/> object that contains the event data.</param>
         protected override void OnLoad(EventArgs e)
         {
-            if (_log.IsInfoEnabled)
+            if (Log.IsInfoEnabled)
             {
-                _log.Info("Start OnLoad ");
+                Log.Info("Start OnLoad ");
             }
 
             // flush header
@@ -407,9 +413,9 @@ namespace EMG.widgets.ui.page
             _columnsContainerControl.Controls.Add(ContentRight);
             
             base.OnLoad(e);
-            if (_log.IsInfoEnabled)
+            if (Log.IsInfoEnabled)
             {
-                _log.Info("End OnLoad ");
+                Log.Info("End OnLoad ");
             }
         }
 
@@ -504,9 +510,9 @@ namespace EMG.widgets.ui.page
         /// <param name="writer">The <see cref="T:System.Web.UI.HtmlTextWriter"/> object that receives the rendered content.</param>
         protected override void RenderChildren(HtmlTextWriter writer)
         {
-            if (_log.IsInfoEnabled)
+            if (Log.IsInfoEnabled)
             {
-                _log.Info("Start RenderChilderen ");
+                Log.Info("Start RenderChilderen ");
             }
 
             if (AjaxContainer.Controls.Count > 0)
@@ -528,8 +534,8 @@ namespace EMG.widgets.ui.page
         /// </summary>
         private void FlushHeader(bool flushAll)
         {
-            StringWriter sw = new StringWriter();
-            HtmlTextWriter writer = new HtmlTextWriter(sw);
+            var sw = new StringWriter();
+            var writer = new HtmlTextWriter(sw);
             writer.WriteLine(
                 "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">");
             writer.WriteLine("<html>");
@@ -556,16 +562,12 @@ namespace EMG.widgets.ui.page
 
 
             // add css files additional files
-            foreach (Control c in Header.Controls)
+            foreach (HtmlLink htmlLink in Header.Controls.OfType<HtmlLink>())
             {
-                HtmlLink l = c as HtmlLink;
-                if (null != l)
-                {
-                    l.RenderControl(writer);
-                }
+                htmlLink.RenderControl(writer);
             }
 
-            StringEnumerator senumr = _stylesheets.GetEnumerator();
+            var senumr = _stylesheets.GetEnumerator();
             while (senumr.MoveNext())
             {
                 writer.WriteLine("	<link rel=\"stylesheet\" type=\"text/css\" media=\"all\" href=\"{0}\"/>", WebUtility.MakeAbsoluteUrl(senumr.Current));
@@ -581,13 +583,13 @@ namespace EMG.widgets.ui.page
             
             if (flushAll)
             {
-                writer.WriteLine(BASE_JAVASCRIPT_VARIABLES,
-                                 SessionData.Instance().AccessPointCode,
-                                 SessionData.Instance().DebugLevel,
-                                 SessionData.Instance().InterfaceLanguage,
+                writer.WriteLine(BaseJavascriptVariables,
+                                 (SessionData.Instance()!= null) ? SessionData.Instance().AccessPointCode : string.Empty,
+                                 (SessionData.Instance()!= null) ? SessionData.Instance().DebugLevel : 0,
+                                 (SessionData.Instance()!= null) ? SessionData.Instance().InterfaceLanguage: string.Empty,
                                  factiva.nextgen.ui.formstate.FormState.FORM_KEY_SESS_STATE,
                                  factiva.nextgen.ui.formstate.FormState.FORM_KEY_STATE,
-                                 SessionData.Instance().ProductPrefix
+                                 (SessionData.Instance()!= null) ? SessionData.Instance().ProductPrefix : string.Empty
                     );
             }
 
@@ -618,12 +620,12 @@ namespace EMG.widgets.ui.page
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         new protected void Page_Error(object sender, EventArgs e)
         {
-            FactivaBusinessLogicException uiException = Server.GetLastError() as FactivaBusinessLogicException;
+            var uiException = Server.GetLastError() as FactivaBusinessLogicException;
             if (uiException != null)
             {
-                HandleError(uiException.ReturnCodeFromFactivaService.ToString());
+                HandleError(uiException.ReturnCodeFromFactivaService.ToString(CultureInfo.InvariantCulture));
             }
-            else if (Server.GetLastError().Message.IndexOf(ERR_INVALID_SESSION) > -1)
+            else if (Server.GetLastError().Message.IndexOf(ERR_INVALID_SESSION, StringComparison.Ordinal) > -1)
             {
                 HandleError(ERR_INVALID_SESSION);
             }
@@ -639,8 +641,8 @@ namespace EMG.widgets.ui.page
         /// <param name="errorNumber">The error number.</param>
         public override void RenderErrorMessage(string errorNumber)
         {
-            StringWriter sw = new StringWriter();
-            HtmlTextWriter writer = new HtmlTextWriter(sw);
+            var sw = new StringWriter();
+            var writer = new HtmlTextWriter(sw);
 
             writer.WriteLine("<div style=\"margin:100px auto;width:250px;font-face:Verdana, Arial, Helvetica, sans-serif\">");
             writer.WriteLine("<div style=\"background-color:#54559B;color:#FFF;padding:5px;\"><b>{0}</b></div>",
@@ -670,11 +672,11 @@ namespace EMG.widgets.ui.page
         /// <param name="showOkButton">if set to <c>true</c> [show ok button].</param>
         protected void RenderErrorMessageWithOkButton(string errorNumber, string redirectUrl, bool showOkButton)
         {
-            StringWriter sw = new StringWriter();
-            HtmlTextWriter writer = new HtmlTextWriter(sw);
+            var sw = new StringWriter();
+            var writer = new HtmlTextWriter(sw);
 
             writer.WriteLine("	<link rel=\"stylesheet\" type=\"text/css\" media=\"all\" href=\"{0}\"/>",
-                             WebUtility.MakeAbsoluteUrl(GLOBAL_CSS_FILE));
+                             WebUtility.MakeAbsoluteUrl(_globalCssFile));
             writer.WriteLine(
                 "<div style=\"margin:100px auto;width:250px;font-face:Verdana, Arial, Helvetica, sans-serif\">");
             writer.WriteLine("<div style=\"background-color:#54559B;color:#FFF;padding:5px;\"><b>{0}</b></div>",
@@ -768,9 +770,9 @@ namespace EMG.widgets.ui.page
             }
 
             var tmpArr = pipeDelimitedTokens.Split('|');
-            for (var i = 0; i < tmpArr.Length; i++)
+            foreach (var t in tmpArr)
             {
-                _scriptTokens.Add(tmpArr[i]);
+                _scriptTokens.Add(t);
             }
         }
 

@@ -3,7 +3,6 @@ using System.Configuration;
 using System.Web;
 using System.Web.Caching;
 using EMG.widgets.ui.dto.request;
-using EMG.widgets.ui.gallery;
 
 namespace EMG.widgets.ui.utility
 {
@@ -24,23 +23,20 @@ namespace EMG.widgets.ui.utility
         /// Gets the gallery settings from cache or the xml config file.
         /// </summary>
         /// <returns></returns>
-        public static GalleryConfiguration GetGallerySettings()
+        public static GalleryConfiguration.GalleryConfiguration GetGallerySettings()
         {
-            GalleryConfiguration gallerySettings = (GalleryConfiguration)HttpContext.Current.Cache["GallerySettings"];
+            var gallerySettings = (GalleryConfiguration.GalleryConfiguration)HttpContext.Current.Cache["GallerySettings"];
 
             // If the GalleryConfiguration isn't cached, load it from the XML file and add it into the cache.
             if (gallerySettings == null)
             {
                 // Create the dataset
-                gallerySettings = new GalleryConfiguration();
+                gallerySettings = new GalleryConfiguration.GalleryConfiguration();
 
-                string galleryConfigFile = string.Empty;
                 // Retrieve the location of the XML configuration file
-                if (string.IsNullOrEmpty(ConfigurationManager.AppSettings["galleryConfigFile"]))
-                    galleryConfigFile = HttpContext.Current.Server.MapPath("~/GalleryConfiguration/data/GalleryConfiguration.xml");
-                else
-                    galleryConfigFile = HttpContext.Current.Server.MapPath(ConfigurationManager.AppSettings["galleryConfigFile"]);
 
+                var galleryConfigFile = HttpContext.Current.Server.MapPath(string.IsNullOrEmpty(ConfigurationManager.AppSettings["galleryConfigFile"]) ? "~/GalleryConfiguration/data/GalleryConfiguration.xml" : ConfigurationManager.AppSettings["galleryConfigFile"]);
+                
                 // Set the AutoIncrement property to true for easier adding of rows
                 gallerySettings.Portal.PortalIdColumn.AutoIncrement = true;
                 gallerySettings.ModuleDefinition.ModuleDefIdColumn.AutoIncrement = true;
@@ -61,41 +57,36 @@ namespace EMG.widgets.ui.utility
     /// </summary>
     public class GallerySettings
     {
-        public ModuleDetail[] moduleDetails = null;
+        /// <summary>
+        /// 
+        /// </summary>
+        public ModuleDetail[] ModuleDetails = null;
+        /// <summary>
+        /// 
+        /// </summary>
         public PortalSettings portalSettings = new PortalSettings();
-        
-        private bool _foundPortal = false;
-        private WidgetManagementDTO _widgetManagementDTO;
+
         private readonly ArrayList _temp = new ArrayList();
 
         /// <summary>
         /// Gets or sets a value indicating whether [found portal].
         /// </summary>
         /// <value><c>true</c> if [found portal]; otherwise, <c>false</c>.</value>
-        public bool FoundPortal
-        {
-            get { return _foundPortal; }
-            set { _foundPortal = value; }
-        }
+        public bool FoundPortal { get; set; }
 
         /// <summary>
         /// Gets the widget referer product.
         /// </summary>
         /// <value>The widget referer product.</value>
-        public WidgetManagementDTO WidgetManagementDTO
-        {
-            get { return _widgetManagementDTO; }
-            set { _widgetManagementDTO = value; }
-        }
+        public WidgetManagementDTO WidgetManagementDTO { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="GallerySettings"/> class.
         /// </summary>
         /// <param name="widgetManagementDTO">The widget referer product.</param>
-        public GallerySettings(WidgetManagementDTO widgetManagementDTO)
-            : this((int)widgetManagementDTO.refererProduct)
+        public GallerySettings(WidgetManagementDTO widgetManagementDTO) : this((int)widgetManagementDTO.refererProduct)
         {
-            _widgetManagementDTO = widgetManagementDTO;
+            WidgetManagementDTO = widgetManagementDTO;
         }
 
 
@@ -105,51 +96,60 @@ namespace EMG.widgets.ui.utility
         /// <param name="portalId">The portal id.</param>
         public GallerySettings(int portalId)
         {
+            FoundPortal = false;
             // Gets the config data from cache or xml document
-            GalleryConfiguration gallerySettings = GalleryConfig.GetGallerySettings();
+            GalleryConfiguration.GalleryConfiguration gallerySettings = GalleryConfig.GetGallerySettings();
 
             // Read the ModuleDefinitions and add them to the 
-            foreach (GalleryConfiguration.ModuleDefinitionRow moduleDefinitionRow in gallerySettings.ModuleDefinition.Select("", "ModuleDefId"))
+            foreach (GalleryConfiguration.GalleryConfiguration.ModuleDefinitionRow moduleDefinitionRow in gallerySettings.ModuleDefinition.Select("", "ModuleDefId"))
             {
-                if (moduleDefinitionRow != null)
+                if (moduleDefinitionRow == null)
                 {
-                    ModuleDetail moduleDetail = new ModuleDetail();
-                    moduleDetail.moduleId = moduleDefinitionRow.ModuleDefId;
-                    moduleDetail.moduleName = moduleDefinitionRow.ModuleName;
-                    moduleDetail.moduleType = moduleDefinitionRow.ModuleType;
-                    
-                    _temp.Add(moduleDetail);
+                    continue;
                 }
+                var moduleDetail = new ModuleDetail
+                                       {
+                                           moduleId = moduleDefinitionRow.ModuleDefId, 
+                                           moduleName = moduleDefinitionRow.ModuleName, 
+                                           moduleType = moduleDefinitionRow.ModuleType
+                                       };
+
+                _temp.Add(moduleDetail);
             }
             if (_temp.Count > 0)
             {
-                moduleDetails = (ModuleDetail[]) _temp.ToArray(typeof (ModuleDetail));
+                ModuleDetails = (ModuleDetail[]) _temp.ToArray(typeof (ModuleDetail));
             }
             _temp.Clear();
 
-            GalleryConfiguration.PortalRow portalRow =
-                (GalleryConfiguration.PortalRow) gallerySettings.Portal.Rows.Find(new object[]{portalId});
-            if (portalRow != null)
+            var portalRow = (GalleryConfiguration.GalleryConfiguration.PortalRow)gallerySettings.Portal.Rows.Find(new object[] { portalId });
+            if (portalRow == null)
             {
-                portalSettings.portalId = portalRow.PortalId;
-                portalSettings.portalName = portalRow.PortalName;
-                GalleryConfiguration.ModuleRow[] moduleRows = portalRow.GetModuleRows();
-                _foundPortal = true;
-                foreach (GalleryConfiguration.ModuleRow moduleRow in moduleRows)
-                {
-                    ModuleSettings moduleSettings = new ModuleSettings();
-                    moduleSettings.moduleId = moduleRow.ModuleId;
-                    moduleSettings.targetControl = moduleRow.TargetControl;
-                    
-                    ModuleDetail moduleDetail = new ModuleDetail();
-                    moduleDetail.moduleId = moduleRow.ModuleDefinitionRow.ModuleDefId;
-                    moduleDetail.moduleName = moduleRow.ModuleDefinitionRow.ModuleName;
-                    moduleDetail.moduleType = moduleRow.ModuleDefinitionRow.ModuleType;
+                return;
+            }
 
-                    moduleSettings.moduleDetail = moduleDetail;
+            portalSettings.portalId = portalRow.PortalId;
+            portalSettings.portalName = portalRow.PortalName;
+            
+            var moduleRows = portalRow.GetModuleRows();
+            FoundPortal = true;
+            foreach (var moduleRow in moduleRows)
+            {
+                var moduleSettings = new ModuleSettings
+                                         {
+                                             moduleId = moduleRow.ModuleId, 
+                                             targetControl = moduleRow.TargetControl
+                                         };
 
-                    portalSettings.modules.Add(moduleSettings);
-                }
+                var moduleDetail = new ModuleDetail
+                                       {
+                                           moduleId = moduleRow.ModuleDefinitionRow.ModuleDefId, 
+                                           moduleName = moduleRow.ModuleDefinitionRow.ModuleName, 
+                                           moduleType = moduleRow.ModuleDefinitionRow.ModuleType
+                                       };
+
+                moduleSettings.moduleDetail = moduleDetail;
+                portalSettings.modules.Add(moduleSettings);
             }
         }
 

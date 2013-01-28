@@ -30,7 +30,7 @@ EMG.widgets.ui.ajax.controls.WidgetDesigner.WidgetDesignerBehavior = function(el
     // Handlers
     this._widgetDesignerUpdateHandler = null;
     this._toggleCheckboxHandler = null;
-}
+};
 
 EMG.widgets.ui.ajax.controls.WidgetDesigner.WidgetDesignerBehavior.prototype = {
 
@@ -130,19 +130,19 @@ EMG.widgets.ui.ajax.controls.WidgetDesigner.WidgetDesignerBehavior.prototype = {
             {
                 Sys.UI.DomElement.addCssClass(listItem, "ui-sortable-state-disabled");
             }
-
+            var checkbox;
             if (currentTab.DisplayCheckbox == true)
             {
                 // add a checkbox if needed and determine whether it should be checked
-                var checkbox = document.createElement("input");
-                    checkbox.type = "checkbox";
+                checkbox = document.createElement("input");
+                checkbox.type = "checkbox";
                     if (currentTab.Active == true)
                         checkbox.defaultChecked = true;
                     Sys.UI.DomElement.addCssClass(checkbox, "ui-sortable-checkbox");
                     $addHandler(checkbox, "click", this._toggleCheckboxHandler);
             } else {
-                var checkbox = document.createElement("input");
-                    checkbox.type = "checkbox";
+                checkbox = document.createElement("input");
+                checkbox.type = "checkbox";
                     checkbox.style.display = "block";
                     checkbox.style.visibility = "hidden";
                     checkbox.style.margin = "0px 2px 0px 2px";
@@ -299,8 +299,7 @@ EMG.widgets.ui.ajax.controls.WidgetDesigner.WidgetDesignerBehavior.prototype = {
     
     _dummy : function() {
     }
-}
-
+};
 EMG.widgets.ui.ajax.controls.WidgetDesigner.WidgetDesignerBehavior.registerClass('EMG.widgets.ui.ajax.controls.WidgetDesigner.WidgetDesignerBehavior', AjaxControlToolkit.BehaviorBase);
 
 EMG.widgets.ui.ajax.controls.WidgetDesigner.DiscoveryTab = function() {
@@ -308,8 +307,7 @@ EMG.widgets.ui.ajax.controls.WidgetDesigner.DiscoveryTab = function() {
     this.DisplayCheckbox = null;
     this.Id = null;
     this.Text = null;    
-}
-
+};
 EMG.widgets.ui.ajax.controls.WidgetDesigner.DiscoveryTab.prototype = {
 
     dispose : function() {
@@ -349,5 +347,5 @@ EMG.widgets.ui.ajax.controls.WidgetDesigner.DiscoveryTab.prototype = {
     
     _dummy : function() {
     }
-}
+};
 EMG.widgets.ui.ajax.controls.WidgetDesigner.DiscoveryTab.registerClass('EMG.widgets.ui.ajax.controls.WidgetDesigner.DiscoveryTab', null, Sys.IDisposable);
