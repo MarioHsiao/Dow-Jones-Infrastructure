@@ -1,0 +1,290 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+    <title>Portal Headline List Mock Test Page</title>
+    <link href="../../../DowJones.Web.Showcase/areas/factiva/content/ux-temp/styles/css/dashboard.article-group.css"
+        type="text/css" rel="stylesheet">
+    <link href="../../../DowJones.Web.Showcase/areas/factiva/content/ux-temp/styles/css/reset.css"
+        type="text/css" rel="stylesheet">
+    <link href="../../../DowJones.Web.Showcase/areas/factiva/content/ux-temp/styles/css/global.css"
+        type="text/css" rel="stylesheet">
+</head>
+<body>
+    <div id="PortalHeadlineListControl-0" class="dj_headlineListContainer dj_headlineList">
+    </div>
+    <script type="text/javascript">
+        function OnHeadlineClickHandler(event, args) {
+            // sender: args.sender
+            // headline: args.headline
+            $dj.debug('OnHeadlineClick triggered');
+        }
+        function OnHeadlineClickSubscriber(sender, headline) {
+            $dj.debug('Received OnHeadlineClick');
+        }
+    </script>
+    <script type="text/javascript">
+//<![CDATA[
+        function phlNoDataTemplate(obj) { var __p = [], print = function () { __p.push.apply(__p, arguments); }; with (obj || {}) { __p.push('<span class="dj_noResults">', noResultsTkn, '</span>'); } return __p.join(''); }
+//]]>
+    </script>
+    <script type="text/javascript">
+//<![CDATA[
+        function phlSuccessTemplate(obj) { var __p = [], print = function () { __p.push.apply(__p, arguments); }; with (obj || {}) { __p.push('<ul class="article-list">\r\n    '); for (var i = 0, len = Math.min(headlines.length, options.maxNumHeadlinesToShow); i < len; i++) { x = headlines[i]; showSource = options.showSource && x.sourceCode && x.sourceDescriptor; showPublicationDateTime = options.showSource && options.showPublicationDateTime; showAuthor = options.showAuthor && x.author; __p.push('\r\n    <li class="dj_entry">\r\n        <div class="article-wrap">\r\n            '); if (showSource || showPublicationDateTime) { __p.push('\r\n            <div class="article-meta">\r\n                '); if (showSource) { __p.push('\r\n                    <span class="article-source" rel="', x.sourceCode, '">', x.sourceDescriptor, '</span>\r\n                '); } if (showSource && showPublicationDateTime) { __p.push('\r\n                    <span> - </span>\r\n                '); } if (showPublicationDateTime) { __p.push('\r\n                    <span class="date-stamp">', x.publicationDateTimeDescriptor, '</span>\r\n                '); } __p.push('\r\n            </div>\r\n            '); } __p.push('\r\n            <h4 class="article-headline">\r\n                <a href="', x.headlineUrl, '" class="article-view-trigger" title="', x.toolTip, '">\r\n                    ', x.title, '</a>\r\n                '); if (x.contentCategoryDescriptor === "external") { __p.push('\r\n                    <span class="fi"></span>\r\n                '); } __p.push('\r\n            </h4>\r\n            '); if (showAuthor) { __p.push('\r\n            <div class="article-meta">\r\n                <span class="byline">By:</span><span class="author">', x.author.value, '</span>\r\n            </div>\r\n            '); }               /* if we have a snippet and mode is anything but none, render the first snippet only if mode is hybrid; else render all snippets if mode is inline */if (x.snippets && (options.displaySnippets === 1 || (options.displaySnippets === 2 && index === 0))) { for (var j = 0, cnt = x.snippets.length; j < cnt; j++) { __p.push('\r\n                      <p class="article-snip">\r\n                          <span class="dj_text" rel="">', x.snippets[j], '</span>\r\n                      </p>\r\n            '); } } __p.push('\r\n        </div>\r\n    </li>\r\n    '); } __p.push('\r\n</ul>'); } return __p.join(''); }
+//]]>
+    </script>
+    <script type="text/javascript">
+//<![CDATA[
+        function phlErrorTemplate(obj) { var __p = [], print = function () { __p.push.apply(__p, arguments); }; with (obj || {}) { __p.push('<span class="dj_error">', Code, ': ', Message, '</span>'); } return __p.join(''); }
+//]]>
+    </script>
+    <script type="text/javascript">
+//<![CDATA[
+        function phlAddNewContentTemplate(obj) { var __p = [], print = function () { __p.push.apply(__p, arguments); }; with (obj || {}) { __p.push('<div class="add-module-content">\r\n    <a href="#">Add New Content</a>\r\n</div>\r\n'); } return __p.join(''); }
+//]]>
+    </script>
+    <script src="../../../DowJones.Web.Mvc/Resources/js/jquery.js"></script>
+    <script src="../../../DowJones.Web.Mvc/Resources/js/common.js"></script>
+    <script src="../../../DowJones.Web.Mvc/Resources/js/underscore.js"></script>
+    <script src="../../../DowJones.Web.Mvc.UI.Components/PortalHeadlineList/PortalHeadlineList.js"></script>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $dj.debugEnabled = true;
+
+            $dj.subscribe('dj.PortalHeadlineList.headlineClick', OnHeadlineClickSubscriber);
+
+            customObj = {};
+            customObj.HeadlineClickSubscriber = function (sender, headline) {
+                // sender: li
+                // headline: headline data
+                $dj.debug('customObj.HeadlineClickSubscriber: Received OnHeadlineClick');
+            };
+            customObj.HeadlineClickHandler = function (event, args) {
+                // sender: args.sender
+                // headline: args.headline
+                $dj.debug('customObj.HeadlineClickSubscriber: OnHeadlineClick triggered');
+            };
+
+            superCustomObj = {}; superCustomObj.obj = {};
+            superCustomObj.obj.HeadlineClickHandler = function (event, args) {
+                // sender: args.sender
+                // headline: args.headline
+                $dj.debug('superCustomObj.obj.HeadlineClickHandler: OnHeadlineClick triggered');
+            };
+
+            $('#PortalHeadlineListControl-0').dj_PortalHeadlineList({
+                "options": {
+                    "maxNumHeadlinesToShow": 5,
+                    "displaySnippets": 0,
+                    "displayNoResultsToken": false,
+                    "truncationType": 0,
+                    "debug": false
+                },
+                "tokens": {},
+                "eventHandlers": {
+                    //"dj.PortalHeadlineList.headlineClick": "superCustomObj.obj.HeadlineClickHandler"
+                    //"dj.PortalHeadlineList.headlineClick": "customObj.HeadlineClickHandler"
+                    "dj.PortalHeadlineList.headlineClick": "OnHeadlineClickHandler"
+                }
+            });
+            $('#PortalHeadlineListControl-0').findComponent(DJ.UI.PortalHeadlineList).bindOnSuccess(
+            {
+                "count": {
+                    "exp": 0,
+                    "isPositive": true,
+                    "rawText": {
+                        "Value": "8"
+                    },
+                    "text": {
+                        "Value": "8"
+                    },
+                    "value": 8
+                },
+                "headlines": [
+                {
+                    "sourceDescriptor": "Dow Jones Global Press Release Wire",
+                    "title": "<span class=\"\">Mediachase</span><span class=\"\">Announces Guidance Solutions</span><span class=\"dj_space\">...</span>",
+                    "headlineUrl": "javascript:void(0)",
+                    "publicationDateTimeDescriptor": "Tuesday, 21 December 2010 2:00 PM GMT",
+                    "author": [
+                        {
+                            "guid": "guid_text",
+                            "class": "dj_text",
+                            "value": "author_text"
+                        },
+                        {
+                            "guid": "guid_highlight",
+                            "class": "dj_highlight",
+                            "value": "author_highlight"
+                        },
+                        {
+                            "guid": "guid_Company",
+                            "class": "dj_company",
+                            "value": "author_Company"
+                        },
+                        {
+                            "guid": "guid_Person",
+                            "class": "dj_person",
+                            "value": "author_Person"
+                        }
+                    ],
+                    "reference": {
+                        "type": "accessionNo",
+                        "guid": "DJGPRW0020101221e6cl0libj",
+                        "mimetype": "text/xml"
+                    },
+                    "snippet": {
+                        "value": "...and choice by including <b>source code</b> and engaging developer communities with each of its software platforms. The flagship"
+                    }
+                },
+                {
+                    "sourceDescriptor": "PR Newswire (U.S.)",
+                    "title": "<span class=\"\">Servant Systems Upgrades Franchisee</span><span class=\"dj_space\">...</span>",
+                    "headlineUrl": "javascript:void(0)",
+                    "publicationDateTimeDescriptor": "Tuesday, 21 December 2010 5:54 PM GMT",
+                    "author": [
+                        {
+                            "guid": "guid_text",
+                            "class": "dj_text",
+                            "value": "author_text"
+                        },
+                        {
+                            "guid": "guid_highlight",
+                            "class": "dj_highlight",
+                            "value": "author_highlight"
+                        },
+                        {
+                            "guid": "guid_Company",
+                            "class": "dj_company",
+                            "value": "author_Company"
+                        },
+                        {
+                            "guid": "guid_Person",
+                            "class": "dj_person",
+                            "value": "author_Person"
+                        }
+                    ],
+                    "reference": {
+                        "type": "accessionNo",
+                        "guid": "PRN0000020101221e6cl000ae",
+                        "mimetype": "text/xml"
+                    },
+                    "snippet": {
+                        "value": "...product options and pricing to better serve the needs of customers in their local areas. The site runs on Microsoft's"
+                    }
+                },
+                {
+                    "sourceDescriptor": "Business Wire",
+                    "title": "<span class=\"\">GrapeCity Announces ActiveReports</span><span class=\"dj_space\">...</span>",
+                    "headlineUrl": "javascript:void(0)",
+                    "publicationDateTimeDescriptor": "Friday, 17 December 2010 4:04 PM GMT",
+                    "author": [
+                        {
+                            "guid": "guid_text",
+                            "class": "dj_text",
+                            "value": "author_text"
+                        },
+                        {
+                            "guid": "guid_highlight",
+                            "class": "dj_highlight",
+                            "value": "author_highlight"
+                        },
+                        {
+                            "guid": "guid_Company",
+                            "class": "dj_company",
+                            "value": "author_Company"
+                        },
+                        {
+                            "guid": "guid_Person",
+                            "class": "dj_person",
+                            "value": "author_Person"
+                        }
+                    ],
+                    "reference": {
+                        "type": "accessionNo",
+                        "guid": "BWR0000020101217e6ch00086",
+                        "mimetype": "text/xml"
+                    },
+                    "snippet": {
+                        "value": "...New release makes ActiveReports the only .NET reporting tool to offer report viewers for Windows,"
+                    }
+                },
+                {
+                    "sourceDescriptor": "Dow Jones Global Press Release Wire",
+                    "title": "<span class=\"\">ORM and Business App Frameworks</span><span class=\"dj_space\">...</span>",
+                    "headlineUrl": "javascript:void(0)",
+                    "publicationDateTimeDescriptor": "Friday, 17 December 2010 9:01 PM GMT",
+                    "author": [
+                        {
+                            "guid": "guid_text",
+                            "class": "dj_text",
+                            "value": "author_text"
+                        },
+                        {
+                            "guid": "guid_highlight",
+                            "class": "dj_highlight",
+                            "value": "author_highlight"
+                        },
+                        {
+                            "guid": "guid_Company",
+                            "class": "dj_company",
+                            "value": "author_Company"
+                        },
+                        {
+                            "guid": "guid_Person",
+                            "class": "dj_person",
+                            "value": "author_Person"
+                        }
+                    ],
+                    "reference": {
+                        "type": "accessionNo",
+                        "guid": "DJGPRW0020101217e6ch0ljj5",
+                        "mimetype": "text/xml"
+                    },
+                    "snippet": {
+                        "value": "... -- Actions in Detail View Layout --"
+                    }
+                },
+                {
+                    "sourceDescriptor": "Business Wire",
+                    "title": "<span class=\"\">GrapeCity Announces ActiveReports</span><span class=\"dj_space\">...</span>",
+                    "headlineUrl": "javascript:void(0)",
+                    "publicationDateTimeDescriptor": "Friday, 17 December 2010 4:04 PM GMT",
+                    "author": [
+                        {
+                            "guid": "guid_text",
+                            "class": "dj_text",
+                            "value": "author_text"
+                        },
+                        {
+                            "guid": "guid_highlight",
+                            "class": "dj_highlight",
+                            "value": "author_highlight"
+                        },
+                        {
+                            "guid": "guid_Company",
+                            "class": "dj_company",
+                            "value": "author_Company"
+                        },
+                        {
+                            "guid": "guid_Person",
+                            "class": "dj_person",
+                            "value": "author_Person"
+                        }
+                    ],
+                    "reference": {
+                        "type": "accessionNo",
+                        "guid": "BWRFIN0020101217e6ch000b5",
+                        "mimetype": "text/xml"
+                    },
+                    "snippet": {
+                        "value": "...The new release makes ActiveReports 6 the only .NET reporting tool to provide report viewers for Windows,"
+                    }
+                }
+            ]
+            });
+            $dj.subscribe('dj.PortalHeadlineList.headlineClick', customObj.HeadlineClickSubscriber);
+        });
+    </script>
+</body>
+</html>

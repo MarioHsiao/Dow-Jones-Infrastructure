@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>DowJones.Web.Mvc.Search</id>
+        <version>$version$</version>
+        <title>Dow Jones Search - ASP.NET MVC components</title>
+        <description>Dow Jones Search - ASP.NET MVC components</description>
+        <authors>Dow Jones Platform Integration Team</authors>
+        <tags>DowJones</tags>
+        <language>en-US</language>
+        <projectUrl>http://dowjones.com</projectUrl>
+        <licenseUrl>http://dowjones.com</licenseUrl>
+        <dependencies>
+            <dependency id="DowJones.Infrastructure" version="$version$" />
+            <dependency id="DowJones.Web.Mvc" version="$version$" />
+            <dependency id="DowJones.Web.Mvc.UI.Components" version="$version$" />
+            <dependency id="DowJones.Web.Mvc.UI.Components.Models" version="$version$" />
+        </dependencies>
+    </metadata>
+    <files>
+        <file src="DowJones.Web.Mvc.Search.dll" target="lib" />
+        <file src="DowJones.Web.Mvc.Search.pdb" target="lib" />
+    </files>
+</package>

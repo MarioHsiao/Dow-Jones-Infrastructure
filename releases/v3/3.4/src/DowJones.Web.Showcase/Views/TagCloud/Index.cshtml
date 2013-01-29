@@ -1,0 +1,44 @@
+﻿@{
+    ViewBag.Title = "Tag Cloud";
+}
+
+<script type="text/javascript">
+    function OnTagItemClick(e, d) {
+        alert('TagWeight:' + d.data.tagWeight.displayText.value);
+        alert(d.data.text);
+        alert(d.data.navigateUrl);
+        alert(d.data.code);
+        alert(d.data.type);
+        alert(d.data.distributionIndex);
+    }
+
+    function tagItemClick(e, d) {
+        alert('TagWeight:' + d.data.tagWeight.displayText.value);
+        alert(d.data.text);
+        alert(d.data.navigateUrl);
+        alert(d.data.code);
+        alert(d.data.type);
+        alert(d.data.distributionIndex);
+    }
+
+    function OnTagItemClick1(e, d) {
+        alert(d.data.tagWeight.displayText.value);
+        alert(d.data.text);
+        alert(d.data.navigateUrl);
+        alert(d.data.code);
+        alert(d.data.type);
+        alert(d.data.distributionIndex);
+    
+    }
+</script>
+<div class="code ui-code ui-widget ui-widget-content ui-corner-all divwidth">
+    <div id="demo1" class="demo" runat="server">
+        @(Html.DJ().Render(Model.TagCloud1))
+    </div>
+
+   <div id="demo2" class="demo" runat="server">
+        @(Html.DJ().Render(Model.TagCloud2))
+    </div>
+</div>
+@Html.DJ().ScriptRegistry().Include("~/Scripts/TagCloud.js")
+@Html.DJ().StylesheetRegistry().Include("~/Content/css/base.css")

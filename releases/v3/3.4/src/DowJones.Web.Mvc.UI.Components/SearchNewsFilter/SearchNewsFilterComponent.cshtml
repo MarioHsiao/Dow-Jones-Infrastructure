@@ -1,0 +1,79 @@
+﻿@using DowJones.Search
+@using DowJones.Web.Mvc.Extensions
+@model SearchNewsFilterModel
+@ClientPlugin dj_SearchNewsFilter
+@ScriptResource RelativeResourceName=SearchNewsFilter.js
+@{ 
+    CssClass = "dj_SearchNewsFilter";
+    if (Model.Filters != null)
+    {
+        string removeFilter = DJ.Token("removeFilter").ToString();
+        var filterCategories = new[] { NewsFilterCategory.Company, NewsFilterCategory.Executive, NewsFilterCategory.Author, 
+        NewsFilterCategory.Industry, NewsFilterCategory.Subject, NewsFilterCategory.Region, NewsFilterCategory.Source,
+        NewsFilterCategory.DateRange, NewsFilterCategory.Keyword };
+        
+        <ul class="dj_pill-list yellow clearfix js_pill-list">
+        @{
+        foreach (var category in filterCategories)
+        {
+            if (category == NewsFilterCategory.Keyword)
+            {
+                if (Model.Filters.Keyword != null && Model.Filters.Keyword.Count() > 0)
+                {
+                    <li class="filter-group" data-type="@(((int)NewsFilterCategory.Keyword).ToString())">
+                        <span class="section-category">@Html.DJ().Token(Model.GetToken(NewsFilterCategory.Keyword, Model.Filters.Keyword.Count())):</span>
+                        <ul class="filter-list">
+                        @{
+                            foreach (var keyword in Model.Filters.Keyword)
+                            {
+                                <li class="dj_pill">
+                                    <span class="filter ellipsis">@keyword</span>
+                                    <span class="remove" tooltip="@removeFilter"></span>
+                                </li>
+                            }
+                        }
+                        </ul>
+                    </li>
+                }
+            }
+            else if (category == NewsFilterCategory.DateRange)
+            {
+                if (Model.Filters.DateRange != null )
+                {
+                    <li class="filter-group" data-type="@(((int)NewsFilterCategory.DateRange).ToString())">
+                        <span class="section-category">@Html.DJ().Token(Model.GetToken(NewsFilterCategory.DateRange, 0)):</span>
+                        <ul class="filter-list">
+                            <li class="dj_pill" data-code="@(Model.Filters.DateRange.Code)">
+                                <span class="filter ellipsis">@Model.Filters.DateRange.Desc</span>
+                                <span class="remove" tooltip="@removeFilter"></span>
+                            </li>
+                        </ul>
+                    </li>
+                }
+            }
+            else
+            {
+                var filters = Model.GetFilters(category);
+                if (filters != null && filters.Count() > 0)
+                {
+                    <li class="filter-group" data-type="@(((int)category).ToString())">
+                        <span class="section-category">@Html.DJ().Token(Model.GetToken(category, filters.Count())):</span>
+                        <ul class="filter-list">
+                        @{
+                            foreach (var filter in filters)
+                            {
+                                <li class="dj_pill" data-code="@filter.Code" data-codetype="@filter.CodeType">
+                                    <span class="filter ellipsis">@filter.Desc</span>
+                                    <span class="remove" tooltip="@removeFilter"></span>
+                                </li>
+                            }
+                        }
+                        </ul>
+                    </li>
+                }
+            }
+        }
+        }
+        </ul>
+    }
+}

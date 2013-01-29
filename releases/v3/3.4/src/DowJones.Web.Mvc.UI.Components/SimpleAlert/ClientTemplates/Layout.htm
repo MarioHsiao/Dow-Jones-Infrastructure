@@ -1,0 +1,76 @@
+﻿
+<div>
+    <div class="title"></div>
+    <table cellspacing="0" cellpadding="0" width="100%">
+        <tbody>
+            <tr>
+                <td class="first"><%= Token("enterFldrName")%>:
+                </td>
+                <td>
+                    <input type="text" class="folderName" maxlength="25" />
+                </td>
+            </tr>
+            <tr>
+                <td class="first"><%= Token("sources")%>:
+                </td>
+                <td>
+                    <select class="sourceList">
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td class="first"><%= Token("searchCriteria")%>:
+                </td>
+                <td>
+                    <input type="text" size="30" maxlength="500" class="searchText" />
+                </td>
+            </tr>
+            <tr class="newsFilter">
+                <td class="first">
+                    <span class="newsFilter"><%= Token("newsFilters")%></span>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="first"><%= Token("enterEmail")%>:
+                </td>
+                <td>
+                    <input type="text" disabled="disabled" class="emailAddress" />
+                </td>
+            </tr>
+            <tr>
+                <td class="first"><%= Token("emailFmt")%>:
+                </td>
+                <td>
+                    <select class="emailFormat">
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td class="first"><%= Token("selectDeliveryTime")%>:
+                </td>
+                <td>
+                    <select class="deliveryTime">
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td class="first"><%= Token("removeDuplicateArticles")%>:
+                </td>
+                <td>
+                    <select class="removeDuplicate">
+                    </select>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="buttons">
+        <ul class="dc_list">
+            <li class="dc_item"><a href="javascript:void(0);" class="dashboard-control dc_btn dc_btn-3"><%= Token("cancel")%></a>
+            </li>
+            <li class="dc_item"><a href="javascript:void(0);" class="dashboard-control dc_btn dc_btn-1"><%= Token("startTracking")%></a>
+            </li>
+        </ul>
+        <div class="clear"></div>
+    </div>
+</div>
