@@ -169,5 +169,10 @@ namespace DowJones.Session
                 || EncryptedToken.HasValue()
                 || (ProxyUserId.HasValue() && ProxyProductId.HasValue());
         }
+
+        internal virtual bool IsNotValid()
+        {
+            return IsValid() == false;
+        }
     }
 }

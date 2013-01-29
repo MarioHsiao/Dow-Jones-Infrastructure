@@ -157,10 +157,7 @@ namespace DowJones.Assemblers.Session
 
         private static string DecodeUserId(string userId)
         {
-            if (userId == null)
-                return null;
-
-            return HttpCookieManager.DecodeAspValueString(userId);
+            return userId == null ? null : HttpCookieManager.DecodeAspValueString(userId);
         }
 
         private static string DecodeSessionId(string sid)
@@ -236,6 +233,12 @@ namespace DowJones.Assemblers.Session
             {
                 var ser = new JavaScriptSerializer();
                 var cred = ser.Deserialize<Credentials>(credentials);
+
+                if (cred.CredentialType == CredentialType.EncryptedToken)
+                {
+                    userSession.LightWeightLoginToken = cred.Token;
+                }
+
                 userSession.ProxyUserId = cred.ProxyUserId;
                 userSession.ProxyNamespace = cred.ProxyUserNamespace;
                 return true;
@@ -258,8 +261,7 @@ namespace DowJones.Assemblers.Session
 
                 if (doc.Root == null) return false;
 
-                IEnumerable<XElement> populatedNodes =
-                    doc.Root.Descendants().Where(x => !string.IsNullOrWhiteSpace(x.Value)).ToArray();
+                IEnumerable<XElement> populatedNodes = doc.Root.Descendants().Where(x => !string.IsNullOrWhiteSpace(x.Value)).ToArray();
 
                 userSession.ProxyUserId =
                     populatedNodes.Where(x => x.Name == "proxyUserId")

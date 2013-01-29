@@ -1,6 +1,7 @@
 using System.Web;
 using DowJones.Infrastructure;
 using DowJones.Session;
+using DowJones.Extensions;
 
 namespace DowJones.Assemblers.Session
 {
@@ -32,8 +33,13 @@ namespace DowJones.Assemblers.Session
                 SessionID = Session.SessionId,
                 ProductID = Session.ProductId,
                 ProxyUserId = Session.IsProxySession ? Session.ProxyUserId : null,
-                ProxyProductId = Session.IsProxySession ? Session.ProxyNamespace : null
+                ProxyProductId = Session.IsProxySession ? Session.ProxyNamespace : null,
             };
+
+            if (controlData.IsNotValid() && Session.LightWeightLoginToken.IsNotEmpty())
+            {
+                controlData.EncryptedToken = Session.LightWeightLoginToken;
+            }
 
             return controlData;
         }

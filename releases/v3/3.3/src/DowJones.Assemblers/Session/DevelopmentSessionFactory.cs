@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Web;
 using System.Xml.Linq;
+using DowJones.Extensions;
 using DowJones.Session;
 using DowJones.Web;
 
@@ -13,8 +14,7 @@ namespace DowJones.Assemblers.Session
     /// </summary>
     public class DevelopmentSessionFactory : UserSessionFactory
     {
-        private const string UrlFormat =
-            "http://{0}/api/1.0/Session/login/xml?userid={1}&password={2}&namespace={3}";
+        private const string UrlFormat = "http://{0}/api/1.0/Session/login/xml?userid={1}&password={2}&namespace={3}";
 
         public static string LoginServerHostName
         {
@@ -60,18 +60,30 @@ namespace DowJones.Assemblers.Session
                 throw new ApplicationException("Refusing to allow the DevelopmentSessionFactory outside of debug mode!");
 
             // If a session id was passed in the request, use that
-            var sessionId = GetRequestValue("session") ?? GetRequestValue("sessionid");
-            if (sessionId != null)
+            var sessionId = GetRequestValue("session") ?? GetRequestValue("sessionid") ?? GetRequestValue("sid");
+            if (sessionId.IsNotEmpty())
+            {
                 return new UserSession { UserId = UserId, SessionId = sessionId, ProductId = ProductId };
+            }
 
             // See if the standard cookie-based approach works...
             var session = (UserSession)base.Create();
 
             if (string.IsNullOrWhiteSpace(session.UserId))
+            {
                 session.UserId = UserId;
+            }
+
+            var encToken = GetRequestValue("etoken");
+            if (encToken.IsNotEmpty())
+            {
+                session.LightWeightLoginToken = encToken;
+            }
             
-            if(session.IsValid())
+            if (session.IsValid())
+            {
                 return session;
+            }
 
             // Otherwise, request a session directly
             session.SessionId = GenerateSessionID();

@@ -16,10 +16,8 @@ using DowJones.Exceptions;
 using DowJones.Extensions;
 using DowJones.Managers.Search;
 using DowJones.Managers.Search.Requests;
-using DowJones.Session;
 using Factiva.Gateway.Messages.Archive;
 using Factiva.Gateway.Messages.Archive.V2_0;
-using Factiva.Gateway.Messages.Search;
 using Factiva.Gateway.Messages.Search.V2_0;
 using Factiva.Gateway.V1_0;
 using ControlData = Factiva.Gateway.Utils.V1_0.ControlData;
@@ -58,7 +56,7 @@ namespace DowJones.Web.Handlers.Article
             // Request Hosting permissions
             new AspNetHostingPermission(AspNetHostingPermissionLevel.Minimal).Demand();
 
-            Type handlerType = typeof (BaseContentHandler);
+            var handlerType = typeof (BaseContentHandler);
             IHttpHandler handler;
             try
             {
@@ -108,23 +106,23 @@ namespace DowJones.Web.Handlers.Article
             try
             {
                 string origAccessionNo;
-                string accessionNo = origAccessionNo = context.Request["accessno"] ?? string.Empty;
+                var accessionNo = origAccessionNo = context.Request["accessno"] ?? string.Empty;
                 if (string.IsNullOrEmpty(accessionNo))
                 {
                     context.Response.StatusCode = (int) HttpStatusCode.BadRequest;
                     return;
                 }
 
-                string isBlob = context.Request["isblob"] ?? string.Empty;
-                string reference = context.Request["reference"] ?? string.Empty;
-                string imageType = context.Request["imageType"] ?? string.Empty;
-                string mimeType = context.Request["mimetype"] ?? string.Empty;
-                string redirect = context.Request["redirect"] ?? string.Empty;
+                var isBlob = context.Request["isblob"] ?? string.Empty;
+                var reference = context.Request["reference"] ?? string.Empty;
+                var imageType = context.Request["imageType"] ?? string.Empty;
+                var mimeType = context.Request["mimetype"] ?? string.Empty;
+                var redirect = context.Request["redirect"] ?? string.Empty;
 
                 var formState = new FormState(string.Empty);
                 var sessionRequestDto = (SessionRequestDTO) formState.Accept(typeof (SessionRequestDTO), false);
-                bool retrieveBlobItem = isBlob.ToLowerInvariant() == "y";
-                bool redirectToWebSiteUrl = redirect.ToLowerInvariant() == "y";
+                var retrieveBlobItem = isBlob.ToLowerInvariant() == "y";
+                var redirectToWebSiteUrl = redirect.ToLowerInvariant() == "y";
 
                 _controlData = (sessionRequestDto.SessionID.IsNullOrEmpty() &&
                                 sessionRequestDto.EncryptedToken.IsNullOrEmpty())
@@ -133,11 +131,11 @@ namespace DowJones.Web.Handlers.Article
                                                                                       sessionRequestDto.ProductID)
                                    : sessionRequestDto.GetControlData();
 
-                IControlData infrsControlData = DowJones.Session.ControlDataManager.Convert(_controlData);
+                var infrsControlData = DowJones.Session.ControlDataManager.Convert(_controlData);
                 if (redirectToWebSiteUrl)
                 {
                     var service = new ArticleService(infrsControlData, new Preferences.Preferences("en"));
-                    string webArticeUrl = service.GetWebArticleUrl(accessionNo);
+                    var webArticeUrl = service.GetWebArticleUrl(accessionNo);
 
                     context.Response.Buffer = true;
                     //context.Response.Status = "302 Object moved";
@@ -188,19 +186,16 @@ namespace DowJones.Web.Handlers.Article
                     dto.SearchCollectionCollection.AddRange(
                         Enum.GetValues(typeof (SearchCollection)).Cast<SearchCollection>());
 
-                    IPerformContentSearchResponse sr =
-                        sm.GetPerformContentSearchResponse<PerformContentSearchRequest, PerformContentSearchResponse>(
-                            dto);
+                    var sr =sm.GetPerformContentSearchResponse<PerformContentSearchRequest, PerformContentSearchResponse>(dto);
                     if (sr != null &&
                         sr.ContentSearchResult != null &&
                         sr.ContentSearchResult.ContentHeadlineResultSet != null)
                     {
-                        ContentHeadlineCollection temp =
-                            sr.ContentSearchResult.ContentHeadlineResultSet.ContentHeadlineCollection;
+                        var temp = sr.ContentSearchResult.ContentHeadlineResultSet.ContentHeadlineCollection;
                         if (temp.Count > 0)
                         {
-                            ContentHeadline contentHeadline = temp.First();
-                            ContentItem item = GetThumbNailItem(contentHeadline, imageType);
+                            var contentHeadline = temp.First();
+                            var item = GetThumbNailItem(contentHeadline, imageType);
                             if (item != null)
                             {
                                 accessionNo = reference;
@@ -217,13 +212,11 @@ namespace DowJones.Web.Handlers.Article
 
                 #endregion
 
-                if (imageType.ToLower() == "tnail" ||
-                    imageType.ToLower() == "fnail")
+                if (imageType.ToLower() == "tnail" || imageType.ToLower() == "fnail")
                 {
                     HandleRequest<GetBinaryInternalRequest, GetBinaryInternalResponse>(new GetBinaryInternalRequest
                                                                                            {
-                                                                                               accessionNumber =
-                                                                                                   accessionNo,
+                                                                                               accessionNumber = accessionNo,
                                                                                                reference = reference,
                                                                                                mimeType = mimeType,
                                                                                                imageType = imageType
@@ -232,7 +225,6 @@ namespace DowJones.Web.Handlers.Article
                                                                                        retrieveBlobItem,
                                                                                        origAccessionNo);
                 }
-
                 else
                 {
                     HandleRequest<GetBinaryRequest, GetBinaryResponse>(new GetBinaryRequest
@@ -262,11 +254,9 @@ namespace DowJones.Web.Handlers.Article
             where TRequest : IBinaryRequest, new()
             where TResponse : IBinaryResponse, new()
         {
-            ServiceResponse<TResponse> gatewayResponse = FactivaServices.Invoke<TResponse>(_controlData, request);
-
+            var gatewayResponse = FactivaServices.Invoke<TResponse>(_controlData, request);
             object objResponse;
             gatewayResponse.GetResponse(ServiceResponse.ResponseFormat.Object, out objResponse);
-
             var response = (IBinaryResponse) objResponse;
 
             try
@@ -276,7 +266,7 @@ namespace DowJones.Web.Handlers.Article
                     throw new DowJonesUtilitiesException(gatewayResponse.ReturnCode);
                 }
 
-                byte[] binaryData = (response is GetBinaryResponse)
+                var binaryData = (response is GetBinaryResponse)
                                         ? ((GetBinaryResponse) response).binaryData
                                         : ((GetBinaryInternalResponse) response).binaryData;
 
@@ -390,7 +380,7 @@ namespace DowJones.Web.Handlers.Article
 
 
             response.ContentType = GetContentType(mimeType);
-            string contentDisposition = GetContentDisposition(mimeType);
+            var contentDisposition = GetContentDisposition(mimeType);
             if (!String.IsNullOrEmpty(contentDisposition))
             {
                 response.AddHeader("Content-Disposition", contentDisposition);
