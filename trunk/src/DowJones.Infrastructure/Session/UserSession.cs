@@ -67,7 +67,7 @@ namespace DowJones.Session
         /// </value>
         public virtual bool IsProxySession
         {
-            get { return ProxyUserId.HasValue() && ProxyNamespace.HasValue(); }
+            get { return ProxyUserId.HasValue() && ProxyNamespace.HasValue() && (SessionId.HasValue() || LightWeightLoginToken.HasValue()); }
         }
 
         /// <summary>
@@ -161,7 +161,7 @@ namespace DowJones.Session
         /// </returns>
         public virtual bool IsValid()
         {
-            return _isInvalid || IsProxySession || SessionId.HasValue();
+            return _isInvalid || IsProxySession || SessionId.HasValue() || LightWeightLoginToken.HasValue();
         }
 
         /// <summary>
