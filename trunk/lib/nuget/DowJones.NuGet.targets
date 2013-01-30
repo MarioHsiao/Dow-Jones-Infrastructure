@@ -5,7 +5,7 @@
 
     <PropertyGroup >
       <NuGetExe Condition="'$(NuGetExe)' == ''">nuget.exe</NuGetExe>
-      <NuSpecFilenames Condition="'$(NuSpecFilenames)' == ''">**\*.nuspec</NuSpecFilenames>
+      <NuSpecFilenames Condition="'$(NuSpecFilenames)' == ''">**\DowJones.*\*.nuspec</NuSpecFilenames>
       <NuGetBasePath Condition="'$(NuGetBasePath)' == ''">$(DeploymentDestination)\</NuGetBasePath>
     </PropertyGroup>
 
