@@ -1198,3 +1198,39 @@ Release Version 7.5.0.104
 =============================================================================================================================
 12/12/2012 Pramod: Added country code and state code for SendEmailToUserRequest and ValidateTokenResponse under the 
 					namespace Factiva.Gateway.Messages.Membership.ExternalReader.V1_0
+Release Version 7.5.0.105
+=============================================================================================================================
+12/17/2012 Pramod: Added AddItemToGroup and RemoveItemFromGroup transctions under Factiva.Gateway.Messages.Preferences.V1_0
+Release Version 7.5.0.106
+=============================================================================================================================
+12/27/2012 Pramod: Enahancements to PAM Assets
+					Item Asset:
+					•	Created new item types NLSyndicationItem and BookmarkItem
+					Workspace Asset:
+					•	Added new field “FreeText” in NewsletterProperties 
+					Edition Asset:
+					•	Added new field “FreeText” in EditionProperties 
+
+Release Version 7.5.0.107
+=============================================================================================================================
+1/4/2013   Pramod: Changed countryCode to isoCountryCode in SendEmailToUser and ValidateToken External reader transactions
+
+Release Version 7.5.0.108
+=============================================================================================================================
+1/14/2013 Pramod: Changed the type of id from int to long for Editions, templates, workspace and other pam assets.
+1/14/2013 Pramod: Added new syndicationaggreagationservice transactions - CreateSyndicationItemEx, UpdateSyndicationItemEx, DeleteSyndicationItemEx, GetSyndicationItemExById
+					GetSyndicationItemExList
+Release Version 7.5.0.109
+=============================================================================================================================
+
+1/21/2013 Divya: Implemented the new ChartsNewspageModule change in Newspages in Page Asset
+1/21/2013 Divya: Enahancement in PAM Assets				 
+				 Item Asset: Created new item type ChartItem
+1/24/2013 Pramod: Added RssHeadlineUrl to Pam Asset Common.LinkType
+Release Version 7.5.0.110
+=============================================================================================================================
+1/25/2013 Divya: Added new transaction GetSubscribableItems in Asset Item Service
+1/25/2013 Divya: Added new enum value to DisseminatedAssetSortBy in ASsets Common-Workspace
+Release Version 7.5.0.111
+=============================================================================================================================
+1/29/2013 Divya: Added new aggregate transaction GetSubscribableSyndicationItemsEx in PCMSyndicationService.
