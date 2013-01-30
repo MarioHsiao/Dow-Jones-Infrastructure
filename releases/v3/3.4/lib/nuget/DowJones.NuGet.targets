@@ -5,7 +5,7 @@
 
     <PropertyGroup >
       <NuGetExe Condition="'$(NuGetExe)' == ''">nuget.exe</NuGetExe>
-      <NuSpecFilenames Condition="'$(NuSpecFilenames)' == ''">**\*.nuspec</NuSpecFilenames>
+      <NuSpecFilenames Condition="'$(NuSpecFilenames)' == ''">**\DowJones.*\*.nuspec</NuSpecFilenames>
       <NuGetBasePath Condition="'$(NuGetBasePath)' == ''">$(DeploymentDestination)\</NuGetBasePath>
     </PropertyGroup>
 
@@ -22,7 +22,7 @@
     <MakeDir Directories="$(NuGetOutputPath)" />
 
     <Message Text="Creating NuGet packages in directory: $(NuGetOutputPath)" />
-    <Message Importance="low" Text="NuSpec files: @(NuSpecFiles->'%(FullPath)', ',')" />
+    <Message Text="NuSpec files: @(NuSpecFiles->'%(FullPath)', ',')" />
 
     <Exec Command="(set EnableNuGetPackageRestore=true) &amp; &quot;$(NuGetExe)&quot; pack -BasePath &quot;$(NuGetBasePath)&quot; -OutputDirectory &quot;$(NuGetOutputPath)&quot; -Version &quot;$(NuGetPackageVersion)&quot; &quot;%(NuSpecFiles.FullPath)&quot;"  />
   </Target>
