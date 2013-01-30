@@ -1,0 +1,50 @@
+﻿@model IEnumerable<DowJones.Web.Mvc.UI.Components.AutoSuggest.AutoSuggestModel>
+@using System.Configuration
+
+@{
+    ViewBag.Title = "AutoSuggest";
+    Layout = null;
+}
+<style type="text/css">
+    body { font: 12px/18px "Lucida Grande" , "Lucida Sans Unicode" , Helvetica, Arial, Verdana, sans-serif; }
+    .suggest-table { margin: 10px; }
+    .suggest-table tr td { height: 30px; line-height: 30px; }
+	.AutoSuggestComponent{margin-left:10px; width: 300px;}
+</style>
+@*<table class="suggest-table">
+    @foreach (var mdl in Model)
+    { 
+        <tr>
+            <td>@mdl.AutocompletionType
+            </td>
+            <td>@Html.DJ().Render(mdl, new { id = mdl.ControlId })
+            </td>
+        </tr>
+    }
+</table>*@
+
+    <link href="@ConfigurationManager.AppSettings["InfrastructureShowcase.BasePath"]/styles/css/AutoSuggest/AutoSuggest.css" rel="stylesheet" />
+    <!-- required file! DJ.add won't work without "common.js" being available -->
+    <script src="@ConfigurationManager.AppSettings["InfrastructureShowcase.BasePath"]/common.js" type="text/javascript"></script>
+     <div id="autoSuggestContainer">
+            </div>
+
+    <script type="text/javascript">
+    var authTypeToken = "@ConfigurationManager.AppSettings["SuggestAuthTypeToken"]";
+    var suggestServiceURl = "@ConfigurationManager.AppSettings["SuggestServiceUrl"]";
+
+    DJ.add("AutoSuggest", {
+        container: "autoSuggestContainer",
+        options: { 
+            suggestServiceUrl: suggestServiceURl,
+            autocompletionType: "Keyword",
+            controlId: "djKeywordAutoSuggest",
+            authType: "SuggestContext",
+            authTypeValue: authTypeToken,            
+            selectFirst: true,
+            fillInputOnKeyUpDown: true,
+            showHelp: false,
+            showViewAll: false
+        }
+    }); 
+    </script>

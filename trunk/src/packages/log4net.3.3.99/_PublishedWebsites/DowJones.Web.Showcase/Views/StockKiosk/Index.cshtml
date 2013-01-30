@@ -1,0 +1,12 @@
+﻿@model DowJones.Web.Showcase.Models.StockKioskControllerModel
+@{
+    Layout = "~/Views/Shared/_SignalR.cshtml";
+    ViewBag.Title = "Stock Kiosk";
+    Html.DJ().StylesheetRegistry()
+            .Include("~/styles/css/stockkiosk.css");
+}
+
+<div id="tempContent">
+    <div class="top">@Html.DJ().Render( Model.Top, new { id = "djStockKioskTop"} )</div>
+    <div class="bottom">@Html.DJ().Render( Model.Bottom, new { id = "djStockKioskBottom"} )</div>
+</div>
