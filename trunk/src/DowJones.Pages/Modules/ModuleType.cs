@@ -5,7 +5,7 @@ namespace DowJones.Pages.Modules
     /// <remarks>
     /// TODO: Move this to class definitions (or something)
     /// Enums are not extensible
-    /// </<remarks>>
+    /// </remarks>
     public enum ModuleType
     {
         [EnumMember]
@@ -77,5 +77,8 @@ namespace DowJones.Pages.Modules
         [EnumMember]
         [IRTCode("mnws")]
         NewsstandSourcesNewspageModule,
+
+        [EnumMember]
+        ChartsNewspageModule
     }
 }
