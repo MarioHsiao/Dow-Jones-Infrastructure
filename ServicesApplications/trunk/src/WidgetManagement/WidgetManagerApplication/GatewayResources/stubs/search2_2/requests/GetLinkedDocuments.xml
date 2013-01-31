@@ -1,8 +1,0 @@
-<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sear="http://types.factiva.com/search">
-  <soapenv:Header/>
-  <soapenv:Body>
-    <sear:GetLinkedDocuments>
-      <sear:linkage>1234</sear:linkage>
-    </sear:GetLinkedDocuments>
-  </soapenv:Body>
-</soapenv:Envelope>

@@ -1,5 +1,0 @@
-#include "..\js\renderManager.js";
-#include "..\js\designer.js";
-#include "..\js\designer.alertHeadlineWidget.js";
-#include "..\js\designer.automaticWorkspaceWidget.js";
-#include "..\js\designer.manualNewsletterWorkspaceWidget.js";
