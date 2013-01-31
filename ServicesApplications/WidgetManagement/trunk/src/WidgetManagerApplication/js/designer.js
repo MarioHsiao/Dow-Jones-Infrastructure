@@ -192,12 +192,11 @@ function getAudience() {
 function getAuthScheme() {
     var tForm = getBForm();
     var authSchemeList = tForm.elements["authScheme"];
-    
-                
-                
-    for(var i=0; i<authSchemeList.length; i++) {
-        if (authSchemeList[i].checked) {
-            return authSchemeList[i].value;
+    if (authSchemeList && authSchemeList.length) {
+        for (var i = 0; i < authSchemeList.length; i++) {
+            if (authSchemeList[i].checked) {
+                return authSchemeList[i].value;
+            }
         }
     }
     return "0";
