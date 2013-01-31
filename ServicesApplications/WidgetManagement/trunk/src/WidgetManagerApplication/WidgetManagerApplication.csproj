@@ -134,6 +134,7 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bin\lzo.dll" />
     <Content Include="Default.aspx" />
     <Content Include="GatewayResources\stubs\track\Request\DeletedFoldersRequest.xml" />
     <Content Include="GatewayResources\stubs\track\Response\DeletedFoldersResponse.xml" />
@@ -1359,6 +1360,7 @@
     <Content Include="widgets_integration_not_on_this_servier.txt" />
     <EmbeddedResource Include="syndication\podcast\ContentReader.xslt" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
