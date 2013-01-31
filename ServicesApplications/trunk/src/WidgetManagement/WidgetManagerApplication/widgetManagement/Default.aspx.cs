@@ -650,7 +650,7 @@ namespace EMG.widgets.ui.widgetManagement
             sb.AppendFormat("DJOmniture.Property.{0} = \"{1}\";", "FullURL", Request.Url);
             sb.AppendFormat("DJOmniture.Property.{0} = \"{1}_{2}\";", "UserId_Ns", SessionData.UserId, SessionData.ProductId);
             sb.AppendFormat("DJOmniture.Property.{0} = \"{1}\";", "AccountId", SessionData.AccountId);
-            sb.AppendFormat("DJOmniture.Property.{0} = \"{1}\";", "AccessCode", SessionData.FactivaAccessObject.AccessCode);
+            sb.AppendFormat("DJOmniture.Property.{0} = \"{1}\";", "AccessCode", SessionData.AccessPointCode);
             sb.AppendFormat("DJOmniture.Property.{0} = \"{1}\";", "sessionId", SessionData.SessionId);
             sb.Append("DJOmniture.log();");
             sb.Append("}catch (ex) {}");

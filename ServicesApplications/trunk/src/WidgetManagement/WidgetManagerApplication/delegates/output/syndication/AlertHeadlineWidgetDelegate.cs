@@ -1099,7 +1099,10 @@ namespace EMG.widgets.ui.delegates.output.syndication
         /// <returns></returns>
         private List<AlertInfo> GetHeadlineWidgetDataForPreview(List<int> ids)
         {
+            FactivaBusinessLogicException fex = null;
+            Exception bex = null;
             List<AlertInfo> buffer = new List<AlertInfo>();
+
             if (ids != null && ids.Count > 0)
             {
                 GetWidgetDataDelegate dataDelegate = PopulateHeadlineWidgetDataForPreview;
@@ -1112,6 +1115,7 @@ namespace EMG.widgets.ui.delegates.output.syndication
                         asyncResults.Add(dataDelegate.BeginInvoke(chunckedIds, null, null));
                     }
                 }
+                
                 foreach (IAsyncResult asyncResult in asyncResults)
                 {
                     if (!asyncResult.AsyncWaitHandle.WaitOne(m_Delegate_Timeout, true)) // Blocks util thread is completed/Timeouts.
@@ -1126,12 +1130,30 @@ namespace EMG.widgets.ui.delegates.output.syndication
                             buffer.AddRange(temp);
                         }
                     }
+                    catch (FactivaBusinessLogicException fbex)
+                    {
+                        fex = fbex;
+                        m_Log.Error("unable to retrieve preview headlines", fbex);
+                    }
                     catch (Exception ex)
                     {
+                        bex = ex;
                         m_Log.Error("unable to retrieve preview headlines", ex);
                     }
                 }
+                if (asyncResults.Count == 1)
+                {
+                    if (fex != null)
+                    {
+                        throw fex;
+                    }
+                    if (bex != null)
+                    {
+                        throw bex;
+                    }
+                }
             }
+         
             return buffer;
         }
 
@@ -1139,9 +1161,9 @@ namespace EMG.widgets.ui.delegates.output.syndication
         /// Gets the group folders.
         /// </summary>
         /// <returns></returns>
-        private List<int> GetGroupFolders()
+        private List<long> GetGroupFolders()
         {
-            List<int> groupFolders = new List<int>();
+            List<long> groupFolders = new List<long>();
 
             GetItemsByClassIDRequest request = new GetItemsByClassIDRequest();
             request.ClassID = new PreferenceClassID[1];
@@ -1154,9 +1176,9 @@ namespace EMG.widgets.ui.delegates.output.syndication
                 {
                     foreach (GroupFolderPreferenceItem item in preferenceResponse.GroupFolder)
                     {
-                        if (item.ItemValue != null)
+                        if (!item.ItemValue.IsNullOrEmpty())
                         {
-                            groupFolders.Add(Convert.ToInt32(item.ItemValue));
+                            groupFolders.Add(Convert.ToInt64(item.ItemValue));
                         }
                     }
                 }    
@@ -1238,7 +1260,7 @@ namespace EMG.widgets.ui.delegates.output.syndication
                 var trackManager = new TrackManager(ControlDataManager.GetLightWeightUserControlData("RSSFEED1", "RSSFEED1", "16"), m_SessionData.InterfaceLanguage);
 
                 // Fire transaction to get the response
-                GetAlertHeadlinesForRssResponse response = null;
+                GetAlertHeadlinesForRss2Response response = null;
                 try
                 {
                     response = trackManager.GetMultipleAlertRSSHeadlines(ids, 20, exHashKeys, proxyUserId, proxyNamespace, true);

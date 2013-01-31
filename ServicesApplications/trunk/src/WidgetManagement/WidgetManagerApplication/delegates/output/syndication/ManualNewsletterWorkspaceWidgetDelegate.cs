@@ -98,7 +98,7 @@ namespace EMG.widgets.ui.delegates.output.syndication
         /// <param name="assetIds">The asset ids.</param>
         public void FillPreview(List<int> assetIds)
         {
-            using (TransactionLogger logger = new TransactionLogger(m_Log, MethodBase.GetCurrentMethod()))
+            using (var logger = new TransactionLogger(m_Log, MethodBase.GetCurrentMethod()))
             {
                 m_WidgetManager = new WidgetManager(m_SessionData.SessionBasedControlDataEx, m_SessionData.InterfaceLanguage);
                 m_WorkspaceManager = new WorkspaceManager(SessionData.SessionBasedControlDataEx, SessionData.InterfaceLanguage);
@@ -172,7 +172,7 @@ namespace EMG.widgets.ui.delegates.output.syndication
         /// <param name="widgetId">The widget id.</param>
         public void FillPreview(string widgetId)
         {
-            using (TransactionLogger logger = new TransactionLogger(m_Log, MethodBase.GetCurrentMethod()))
+            using (var logger = new TransactionLogger(m_Log, MethodBase.GetCurrentMethod()))
             {
                 m_WidgetManager = new WidgetManager(m_SessionData.SessionBasedControlDataEx, m_SessionData.InterfaceLanguage);
                 m_WorkspaceManager = new WorkspaceManager(SessionData.SessionBasedControlDataEx, SessionData.InterfaceLanguage);
@@ -180,10 +180,10 @@ namespace EMG.widgets.ui.delegates.output.syndication
 
                 try
                 {
-                    Widget widget = m_WidgetManager.GetCachedWidgetById(widgetId);
+                    var widget = m_WidgetManager.GetCachedWidgetById(widgetId);
                     if (widget != null)
                     {
-                        ManualWorkspaceWidget manualWorkspaceWidget = widget as ManualWorkspaceWidget;
+                        var manualWorkspaceWidget = widget as ManualWorkspaceWidget;
                         if (manualWorkspaceWidget != null)
                         {
                             PopulateLiterals();
@@ -196,9 +196,9 @@ namespace EMG.widgets.ui.delegates.output.syndication
                                 manualWorkspaceWidget.Component.WorkspacesCollection != null &&
                                 manualWorkspaceWidget.Component.WorkspacesCollection.Count > 0)
                             {
-                                List<int> assetIds = new List<int>();
+                                var assetIds = new List<int>();
 
-                                foreach (WorkspaceItem item in manualWorkspaceWidget.Component.WorkspacesCollection)
+                                foreach (var item in manualWorkspaceWidget.Component.WorkspacesCollection)
                                 {
                                     int temp;
                                     if (Int32.TryParse(item.ItemId, out temp) &&
@@ -253,33 +253,41 @@ namespace EMG.widgets.ui.delegates.output.syndication
         /// </summary>
         public void PopulateLiterals()
         {
-            Literals = new ManualNewsletterWorkspaceWidgetLiterals();
-            Literals.CopyRight = string.Format("&copy;&nbsp;{0}&nbsp;{1}", DateTime.Now.Year, ResourceText.GetString("copyRightPhrase"));
-            Literals.NoResults = ResourceText.GetString("noResults");
-            Literals.ViewLess = ResourceText.GetString("viewLess");
-            Literals.ViewMore = ResourceText.GetString("viewMore");
-            Literals.ViewAll = ResourceText.GetString("viewAll");
-            Literals.Next = ResourceText.GetString("next");
-            Literals.Previous = ResourceText.GetString("previous");
-            Literals.New = ResourceText.GetString("flagNew");
-            Literals.Hot = ResourceText.GetString("flagHot");
-            Literals.MustRead = ResourceText.GetString("flagMustRead");
+            Literals = new ManualNewsletterWorkspaceWidgetLiterals
+                           {
+                               CopyRight = string.Format("&copy;&nbsp;{0}&nbsp;{1}", DateTime.Now.Year, ResourceText.GetString("copyRightPhrase")),
+                               NoResults = ResourceText.GetString("noResults"),
+                               ViewLess = ResourceText.GetString("viewLess"),
+                               ViewMore = ResourceText.GetString("viewMore"),
+                               ViewAll = ResourceText.GetString("viewAll"),
+                               Next = ResourceText.GetString("next"),
+                               Previous = ResourceText.GetString("previous"),
+                               New = ResourceText.GetString("flagNew"),
+                               Hot = ResourceText.GetString("flagHot"),
+                               MustRead = ResourceText.GetString("flagMustRead"),
+                               MarketingSiteUrl = m_Marketing_Site_Url,
+                               MarketingSiteTitle = m_Marketing_Site_Title
+                           };
 
             // Link-out urls
-            Literals.MarketingSiteUrl = m_Marketing_Site_Url;
-            Literals.MarketingSiteTitle = m_Marketing_Site_Title;
 
             // Site absolute urls
-            BaseUrlBuilder builder = new BaseUrlBuilder("~/img/branding/djicon.gif");
-            builder.OutputType = BaseUrlBuilder.UrlOutputType.Absolute;
+            var builder = new BaseUrlBuilder("~/img/branding/djicon.gif")
+                              {
+                                  OutputType = BaseUrlBuilder.UrlOutputType.Absolute
+                              };
             Literals.Icon = builder.ToString();
 
-            builder = new BaseUrlBuilder("~/img/branding/djFactiva.gif");
-            builder.OutputType = BaseUrlBuilder.UrlOutputType.Absolute;
+            builder = new BaseUrlBuilder("~/img/branding/djFactiva.gif")
+                          {
+                              OutputType = BaseUrlBuilder.UrlOutputType.Absolute
+                          };
             Literals.BrandingBadge = builder.ToString();
 
-            builder = new BaseUrlBuilder("~/img/syndication/hl/flag.gif");
-            builder.OutputType = BaseUrlBuilder.UrlOutputType.Absolute;
+            builder = new BaseUrlBuilder("~/img/syndication/hl/flag.gif")
+                          {
+                              OutputType = BaseUrlBuilder.UrlOutputType.Absolute
+                          };
             Literals.ImportanceFlagUrl = builder.ToString();
 
         }
@@ -290,22 +298,20 @@ namespace EMG.widgets.ui.delegates.output.syndication
         /// <param name="assetId">The asset id.</param>
         private void ProcessAssetInfo(int assetId)
         {
-            Workspace workspace = m_WorkspaceManager.GetCachedWorkspaceById(assetId);
-            if (workspace != null)
-            {
-                ManualWorkspace manualWorkspace = workspace as ManualWorkspace;
-                ProcessAssetInfo(assetId, manualWorkspace);
-            }
+            var workspace = m_WorkspaceManager.GetCachedWorkspaceById(assetId);
+            if (workspace == null) return;
+            var manualWorkspace = workspace as ManualWorkspace;
+            ProcessAssetInfo(assetId, manualWorkspace);
         }
 
         /// <summary>
         /// Processes the asset info.
         /// </summary>
         /// <param name="assetId">The asset id.</param>
-        /// <param name="CheckIfIsWorkspaceIdAssociatedWithDissemenatedWidget">if set to <c>true</c> [check if is workspace id associated with dissemenated widget].</param>
-        private void ProcessAssetInfo(int assetId, bool CheckIfIsWorkspaceIdAssociatedWithDissemenatedWidget)
+        /// <param name="checkIfIsWorkspaceIdAssociatedWithDissemenatedWidget">if set to <c>true</c> [check if is workspace id associated with dissemenated widget].</param>
+        private void ProcessAssetInfo(int assetId, bool checkIfIsWorkspaceIdAssociatedWithDissemenatedWidget)
         {
-            if (CheckIfIsWorkspaceIdAssociatedWithDissemenatedWidget && m_WorkspaceManager.IsWorkspaceIdAssociatedWithDissemenatedWidget(assetId))
+            if (checkIfIsWorkspaceIdAssociatedWithDissemenatedWidget && m_WorkspaceManager.IsWorkspaceIdAssociatedWithDissemenatedWidget(assetId))
             {
                 throw new EmgWidgetsUIException(EmgWidgetsUIException.WORKSPACE_HAS_BEEN_DISSEMINATED);
             }
@@ -349,11 +355,13 @@ namespace EMG.widgets.ui.delegates.output.syndication
         {
             if (widget == null) return;
 
-            Definition = new ManualNewsletterWorkspaceWidgetDefinition();
-            Definition.Id = widget.Id;
-            Definition.Name = widget.Properties.Name;
-            Definition.Description = widget.Properties.Description;
-            Definition.Language = widget.Properties.Language;
+            Definition = new ManualNewsletterWorkspaceWidgetDefinition
+                             {
+                                 Id = widget.Id,
+                                 Name = widget.Properties.Name,
+                                 Description = widget.Properties.Description,
+                                 Language = widget.Properties.Language
+                             };
             MergeWidgetDefinition(widget, Definition);
 
             if (!string.IsNullOrEmpty(overridenInterfaceLanguage))
@@ -371,38 +379,40 @@ namespace EMG.widgets.ui.delegates.output.syndication
         /// <returns></returns>
         private ManualNewsletterWorkspaceInfo GetManualNewsletterWorkspaceData(ManualWorkspace manualWorkspace)
         {
-            ManualNewsletterWorkspaceInfo workspaceInfo = new ManualNewsletterWorkspaceInfo();
+            var workspaceInfo = new ManualNewsletterWorkspaceInfo();
             workspaceInfo.Id = manualWorkspace.Id;
             workspaceInfo.Name = manualWorkspace.Properties.Name;
             try
             {
-                List<ManualNewsletterWorkspaceSection> sectionCollection = new List<ManualNewsletterWorkspaceSection>();
+                var sectionCollection = new List<ManualNewsletterWorkspaceSection>();
                 if (manualWorkspace.SectionCollection.Count > 0)
                 {
-                    HeadlineUtility headlineUtility = new HeadlineUtility(m_SessionData, ResourceText);
-                    ContentHeadlineStruct contentHeadlineStruct = new ContentHeadlineStruct();
-                    contentHeadlineStruct.distributionType = Definition.DistributionType;
-                    contentHeadlineStruct.accountId = m_SessionData.AccountId;
-                    contentHeadlineStruct.accountNamespace = m_SessionData.ProductId;
+                    var headlineUtility = new HeadlineUtility(m_SessionData, ResourceText);
+                    var contentHeadlineStruct = new ContentHeadlineStruct
+                                                    {
+                                                        distributionType = Definition.DistributionType,
+                                                        accountId = m_SessionData.AccountId,
+                                                        accountNamespace = m_SessionData.ProductId
+                                                    };
 
                     Dictionary<string, AccessionNumberBasedContentItem> dict = GetManualNewsletterWorkspaceItems(manualWorkspace);
 
                     foreach (Section section in manualWorkspace.SectionCollection)
                     {
-                        ManualNewsletterWorkspaceSection manualNewsletterWorkspaceSection = new ManualNewsletterWorkspaceSection();
+                        var manualNewsletterWorkspaceSection = new ManualNewsletterWorkspaceSection();
                         manualNewsletterWorkspaceSection.Id = section.Id;
                         if (string.IsNullOrEmpty(section.Name)) 
                             section.Name = string.Empty;
                         manualNewsletterWorkspaceSection.Name = section.Name;
-                        List<HeadlineInfo> headlineInfos = new List<HeadlineInfo>();
-                        foreach (Item item in section.ItemCollection)
+                        var headlineInfos = new List<HeadlineInfo>();
+                        foreach (var item in section.ItemCollection)
                         {
                             if (item is ArticleItem)
                             {
-                                ArticleItem articleItem = item as ArticleItem;
+                                var articleItem = item as ArticleItem;
  
                                 // Get AccessNumberBasedContentItem
-                                AccessionNumberBasedContentItem contentItem = dict[articleItem.AccessionNumber];
+                                var contentItem = dict[articleItem.AccessionNumber];
                                 if (contentItem != null && contentItem.HasBeenFound)
                                 {
                                     headlineInfos.Add(GetHeadlineInfoForArticleItem(
@@ -416,17 +426,13 @@ namespace EMG.widgets.ui.delegates.output.syndication
                             {
                                 if (item is LinkItem)
                                 {
-                                    LinkItem linkItem = item as LinkItem;
-                                    headlineInfos.Add(GetHeadlineInfoForLinkItem(
-                                        headlineUtility,
-                                        linkItem));
+                                    var linkItem = item as LinkItem;
+                                    headlineInfos.Add(GetHeadlineInfoForLinkItem(headlineUtility, linkItem));
                                 }
                                 else if (item is ImageItem)
                                 {
-                                    ImageItem imageItem = item as ImageItem;
-                                    headlineInfos.Add(GetHeadlineInfoForImageItem(
-                                        headlineUtility,
-                                        imageItem));
+                                    var imageItem = item as ImageItem;
+                                    headlineInfos.Add(GetHeadlineInfoForImageItem(headlineUtility, imageItem));
                                 }
                             }
                         }
@@ -445,7 +451,7 @@ namespace EMG.widgets.ui.delegates.output.syndication
             catch (Exception ex)
             {
                 // Instantiate FactivaBusinessLogicException to write messages to log.
-                FactivaBusinessLogicException fbe = new FactivaBusinessLogicException(ex, -1);
+                var fbe = new FactivaBusinessLogicException(ex, -1);
                 ReturnCode = fbe.ReturnCodeFromFactivaService;
                 StatusMessage = ResourceText.GetErrorMessage(fbe.ReturnCodeFromFactivaService.ToString());
             }

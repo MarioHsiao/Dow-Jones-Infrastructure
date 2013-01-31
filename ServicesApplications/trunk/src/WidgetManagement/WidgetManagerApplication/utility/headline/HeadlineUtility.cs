@@ -10,7 +10,6 @@ using EMG.Utility.Formatters;
 using EMG.Utility.Formatters.Globalization;
 using EMG.Utility.Formatters.Numerical;
 using EMG.Utility.OperationalData.EntryPoint;
-using EMG.Utility.Search.Attributes;
 using EMG.widgets.ui.delegates.core;
 using EMG.widgets.ui.delegates.core.alertHeadline;
 using EMG.widgets.ui.delegates.core.automaticWorkspace;
@@ -69,15 +68,15 @@ namespace EMG.widgets.ui.utility.headline
     /// </summary>
     public class HeadlineUtility
     {
-        private const string EID4_TTL_PROXY_KEY = "FRGKA8384";
-        private const string EXTERNAL_READER_PUBLIC_KEY = "3x4e10e4";
-        private const int MAX_REFERRER_SIZE = 255;
+        private const string Eid4TtlProxyKey = "FRGKA8384";
+        private const string ExternalReaderPublicKey = "3x4e10e4";
+        private const int MaxReferrerSize = 255;
 
 
-        protected static readonly ILog m_Log = LogManager.GetLogger(typeof (HeadlineUtility));
-        private readonly DateTimeFormatter dateTimeFormatter;
-        private readonly ResourceText m_ResourceText;
-        private readonly NumberFormatter numberFormatter;
+        protected static readonly ILog Log = LogManager.GetLogger(typeof (HeadlineUtility));
+        private readonly DateTimeFormatter _dateTimeFormatter;
+        private readonly ResourceText _resourceText;
+        private readonly NumberFormatter _numberFormatter;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="HeadlineUtility"/> class.
@@ -86,9 +85,9 @@ namespace EMG.widgets.ui.utility.headline
         /// <param name="resourceText">The resource text.</param>
         public HeadlineUtility(SessionData sessionData, ResourceText resourceText)
         {
-            m_ResourceText = resourceText;
-            numberFormatter = new NumberFormatter();
-            dateTimeFormatter = new DateTimeFormatter(sessionData.InterfaceLanguage);
+            _resourceText = resourceText;
+            _numberFormatter = new NumberFormatter();
+            _dateTimeFormatter = new DateTimeFormatter(sessionData.InterfaceLanguage);
         }
 
         /// <summary>
@@ -98,7 +97,7 @@ namespace EMG.widgets.ui.utility.headline
         /// <returns></returns>
         public AlertHeadlineInfo ConvertToAlertHeadlineInfo(ContentHeadlineStruct contentHeadlineStruct)
         {
-            AlertHeadlineInfo headlineInfo = new AlertHeadlineInfo();
+            var headlineInfo = new AlertHeadlineInfo();
             Convert(headlineInfo, contentHeadlineStruct);
 
             headlineInfo.InternalDmmArticle = IsInternalWebPage(contentHeadlineStruct.contentHeadline);
@@ -111,12 +110,12 @@ namespace EMG.widgets.ui.utility.headline
             if (contentHeadlineStruct.contentHeadline.PublicationTime > DateTime.MinValue && !headlineInfo.InternalDmmArticle)
             {
                 headlineInfo.PublicationDateTime =  DateTimeFormatter.Merge(contentHeadlineStruct.contentHeadline.PublicationDate, contentHeadlineStruct.contentHeadline.PublicationTime);
-                headlineInfo.PubDateTime = dateTimeFormatter.FormatLongDateTime(headlineInfo.PublicationDateTime);
+                headlineInfo.PubDateTime = _dateTimeFormatter.FormatLongDateTime(headlineInfo.PublicationDateTime);
             }
             else
             {
                 headlineInfo.PublicationDateTime = contentHeadlineStruct.contentHeadline.PublicationDate;
-                headlineInfo.PubDateTime = dateTimeFormatter.FormatLongDate(contentHeadlineStruct.contentHeadline.PublicationDate);
+                headlineInfo.PubDateTime = _dateTimeFormatter.FormatLongDate(contentHeadlineStruct.contentHeadline.PublicationDate);
             }
             return headlineInfo;
         }
@@ -168,7 +167,7 @@ namespace EMG.widgets.ui.utility.headline
         /// <returns></returns>
         public HeadlineInfo ConvertToHeadlineInfo(LinkItem linkItem)
         {
-            HeadlineInfo headlineInfo = new HeadlineInfo();
+            var headlineInfo = new HeadlineInfo();
             Convert(headlineInfo, linkItem);
             return headlineInfo;
         }
@@ -200,12 +199,13 @@ namespace EMG.widgets.ui.utility.headline
         protected static void Convert(HeadlineInfo headlineInfo, LinkItem item)
         {
             headlineInfo.PublicationDateTime = item.CreationDate;
+            headlineInfo.ByLine = item.Author;
             //headlineInfo.PubDateTime = dateTimeFormatter.FormatLongDate(headlineInfo.PublicationDateTime);
             headlineInfo.Text = item.Title;
             headlineInfo.Comment = item.Comment;
             headlineInfo.Importance = item.Importance;
             headlineInfo.WordCount = string.Empty;
-            headlineInfo.Snippet = item.Description;
+            headlineInfo.Snippet = (item.Type == LinkType.RssHeadlineUrl) ? string.Empty : item.Description;
             headlineInfo.Url = item.Uri;
             headlineInfo.IsFactivaContent = false;
         }
@@ -241,7 +241,7 @@ namespace EMG.widgets.ui.utility.headline
             }
 
             headlineInfo.PublicationDateTime = contentHeadlineStruct.contentHeadline.PublicationDate;
-            headlineInfo.PubDateTime = dateTimeFormatter.FormatLongDate(headlineInfo.PublicationDateTime);
+            headlineInfo.PubDateTime = _dateTimeFormatter.FormatLongDate(headlineInfo.PublicationDateTime);
             headlineInfo.Snippet = ParseParagraphsV2(contentHeadlineStruct.contentHeadline.Snippet, true).Trim();
             headlineInfo.SrcCode = contentHeadlineStruct.contentHeadline.SourceCode;
             headlineInfo.SrcName = contentHeadlineStruct.contentHeadline.SourceName;
@@ -255,14 +255,14 @@ namespace EMG.widgets.ui.utility.headline
             if (contentHeadlineStruct.contentHeadline.PublicationTime > DateTime.MinValue)
             {
                 headlineInfo.PublicationDateTime = DateTimeFormatter.Merge(contentHeadlineStruct.contentHeadline.PublicationDate, contentHeadlineStruct.contentHeadline.PublicationTime);
-                headlineInfo.PubDateTime = dateTimeFormatter.FormatLongDateTime(headlineInfo.PublicationDateTime);
+                headlineInfo.PubDateTime = _dateTimeFormatter.FormatLongDateTime(headlineInfo.PublicationDateTime);
             }
             
             if (contentHeadlineStruct.contentHeadline.WordCount > 0)
             {
                 headlineInfo.WordCount = string.Format("{0} {1}",
-                                                       numberFormatter.Format(contentHeadlineStruct.contentHeadline.WordCount, NumberFormatType.Whole),
-                                                       m_ResourceText.GetString("words"));
+                                                       _numberFormatter.Format(contentHeadlineStruct.contentHeadline.WordCount, NumberFormatType.Whole),
+                                                       _resourceText.GetString("words"));
             }
 
             if (articleItem == null)
@@ -400,8 +400,8 @@ namespace EMG.widgets.ui.utility.headline
             if (String.IsNullOrEmpty(headlineStr))
                 return headlineStr;
 
-            if (m_Log.IsInfoEnabled)
-                m_Log.InfoFormat("Truncate Utility:Truncate with size:{0}", size);
+            if (Log.IsInfoEnabled)
+                Log.InfoFormat("Truncate Utility:Truncate with size:{0}", size);
 
             if (size > 0 && headlineStr.Length >= size)
                 headlineStr = String.Format("{0} ...", headlineStr.Substring(0, size).Trim());
@@ -647,7 +647,7 @@ namespace EMG.widgets.ui.utility.headline
             nvp.Add("ppid", tokenProperties.NameSpace);
             nvp.Add("puid", tokenProperties.UserId);
             nvp.Add("cpid", profileId);
-            return encryption.encrypt(nvp, EXTERNAL_READER_PUBLIC_KEY);
+            return encryption.encrypt(nvp, ExternalReaderPublicKey);
         }
 
         /// <summary>
@@ -662,7 +662,7 @@ namespace EMG.widgets.ui.utility.headline
             NameValueCollection nvp = new NameValueCollection(1);
             nvp.Add("an", accessionNumber);
             nvp.Add("proxyxsid", TTLProxyToken);
-            return encryption.encrypt(nvp, EID4_TTL_PROXY_KEY);
+            return encryption.encrypt(nvp, Eid4TtlProxyKey);
         }
 
         /// <summary>
@@ -677,7 +677,7 @@ namespace EMG.widgets.ui.utility.headline
             NameValueCollection nvp = new NameValueCollection(1);
             nvp.Add("fid", alertId);
             nvp.Add("proxyxsid", TTLProxyToken);
-            return encryption.encrypt(nvp, EID4_TTL_PROXY_KEY);
+            return encryption.encrypt(nvp, Eid4TtlProxyKey);
         }
 
         /// <summary>
@@ -837,7 +837,7 @@ namespace EMG.widgets.ui.utility.headline
                     string referrer = (context.Request.UrlReferrer != null) ? context.Request.UrlReferrer.Host : context.Request.Url.Host;
                     if (referrer.Length > 255)
                     {
-                        referrer = referrer.Substring(0, MAX_REFERRER_SIZE);
+                        referrer = referrer.Substring(0, MaxReferrerSize);
                     }
                     return referrer;
             }
@@ -934,8 +934,8 @@ namespace EMG.widgets.ui.utility.headline
         {
             if (paras == null)
                 return string.Empty;
-            StringBuilder sb = new StringBuilder();
-            foreach (XmlNode para in paras)
+            var sb = new StringBuilder();
+            foreach (var para in paras)
             {
                 if (para == null || !para.HasChildNodes)
                     continue;
@@ -1017,7 +1017,7 @@ namespace EMG.widgets.ui.utility.headline
                     AssignedToken assignedToken = (AssignedToken) Attribute.GetCustomAttribute(fieldInfo, typeof (AssignedToken));
                     if (assignedToken != null)
                     {
-                        return m_ResourceText.GetString(assignedToken.Token);
+                        return _resourceText.GetString(assignedToken.Token);
                     }
                 }
             }

@@ -16,6 +16,11 @@ namespace EMG.widgets.ui.delegates.core
         public string AccessionNumber;
 
         /// <summary>
+        /// Acession Number.
+        /// </summary>
+        public string ByLine;
+
+        /// <summary>
         /// 
         /// </summary>
         public ContentLanguage ContentLanguage;

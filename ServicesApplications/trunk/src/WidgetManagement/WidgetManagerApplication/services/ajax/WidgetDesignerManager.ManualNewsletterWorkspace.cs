@@ -101,7 +101,7 @@ namespace EMG.widgets.services
             using (new TransactionLogger(Log, MethodBase.GetCurrentMethod()))
             {
                 //SetHeaderCacheDuration(m_CacheDuration);
-                ManualNewsletterWorkspaceWidgetDelegate manualNewsletterWorkspaceWidgetDelegate = new ManualNewsletterWorkspaceWidgetDelegate();
+                var manualNewsletterWorkspaceWidgetDelegate = new ManualNewsletterWorkspaceWidgetDelegate();
                 if (string.IsNullOrEmpty(widgetId) || string.IsNullOrEmpty(widgetId.Trim()))
                 {
                     throw new ArgumentNullException("widgetId", "parameter is null or empty.");

@@ -73,7 +73,7 @@ namespace EMG.widgets.ui.du
                 {
                     WorkspaceManager workspaceManager = new WorkspaceManager(SessionData.Instance().SessionBasedControlDataEx, SessionData.Instance().InterfaceLanguage);
                     // Find if there is a corresponding asset else perform a create
-                    int temp;
+                    long temp;
                     if (workspaceManager.IsWorkspaceIdAssociatedWithDissemenatedWidget(m_WidgetManagementDTO.assetIds[0], out temp))
                     {
                         m_WidgetManagementDTO.widgetId = temp.ToString();

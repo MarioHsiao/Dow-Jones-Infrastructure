@@ -50,6 +50,7 @@ namespace EMG.widgets.ui
         {
             try
             {
+
                 var controlData = new ControlData
                 {
                     UserID = ConfigurationManager.GetLightWeightUser("RssFeed1LightWeightUser").userId,
@@ -57,6 +58,7 @@ namespace EMG.widgets.ui
                     ProductID = ConfigurationManager.GetLightWeightUser("RssFeed1LightWeightUser").productId
                 };
 
+                /*
                 if (Log.IsDebugEnabled) Log.Debug("Global >> LoadTrackDeletedFolders: Retrieving Deleted Folders.");
                 var serviceResponse = TrackService.DeletedFolders(controlData.Clone(), new DeletedFoldersRequest());
                 if (serviceResponse.rc != 0)
@@ -70,10 +72,12 @@ namespace EMG.widgets.ui
                 if (deletedFoldersResponse == null || deletedFoldersResponse.DeletedFolders.Count <= 0)
                 {
                     return;
-                }
+                }*/
 
+                var deletedFoldersResponse = new DeletedFoldersResponse();
                 var deletedFolderManager = new TrackDeletedFoldersCacheManager(controlData.Clone(), "en");
                 deletedFolderManager.Load(deletedFoldersResponse.DeletedFolders);
+                
                 if (Log.IsDebugEnabled) Log.Debug("Global >> LoadTrackDeletedFolders: Successfully Retreived Deleted Folders.");
             }
             catch (Exception ex)
