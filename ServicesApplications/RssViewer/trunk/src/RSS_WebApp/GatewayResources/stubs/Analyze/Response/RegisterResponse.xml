@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <soap:Body>
+    <RegisterResponse xmlns="urn:dowjones:emg:analyze:v1_0">
+      <registerContentResponse serverIPAddress="172.26.99.42">
+        <registerContentResult firstResult="1">
+          <resultStatus>Success</resultStatus>
+          <resultMessage />
+        </registerContentResult>
+        <baseRegisterResponse>
+          <buttonInstanceID>155f1c05369d4e66ae1525ac8c52b76a</buttonInstanceID>
+        </baseRegisterResponse>
+      </registerContentResponse>
+    </RegisterResponse>
+  </soap:Body>
+</soap:Envelope>

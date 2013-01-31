@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<configSections>
+		<section name="GatewaySettings" type="Factiva.Gateway.Config.V1_0.GatewaySectionHandler, FactivaGateway"/>
+	</configSections>
+	<GatewaySettings>
+		<commonSettings>
+			<preferedTransport>RTS</preferedTransport>
+			<gatewayResourcePath>GatewayResources</gatewayResourcePath>
+		</commonSettings>
+		<serviceSettings>
+			<service name="Asset.FCPService" namespace="Factiva.Gateway.Services.1_0" configFile="GatewayResources\config\redi\Asset.FCPService.config"/>
+			<service name="Asset.NewsPageService" namespace="Factiva.Gateway.Services.1_0" configFile="GatewayResources\config\redi\Asset.NewsPageService.config"/>
+			<service name="TrackService" namespace="Factiva.Gateway.Services.1_0" configFile="GatewayResources\config\redi\TrackService.config"/>
+			<service name="BillingAndAuthorizationService" namespace="Factiva.Gateway.Services.1_0" configFile="GatewayResources\config\BillingAndAuthorizationService.config"/>
+			<service name="OnDemandEmailService" namespace="Factiva.Gateway.Services.1_0" configFile="GatewayResources\config\OnDemandEmailService.config"/>
+			<service name="ArchiveService" namespace="Factiva.Gateway.Services.1_0" configFile="GatewayResources\config\ArchiveService.config"/>
+		</serviceSettings>
+	</GatewaySettings>
+</configuration>

@@ -1,0 +1,94 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "D:\...\FactivaRSS\", "..\FactivaRSS", "{99B3A0D5-DC68-4110-BF4F-D4E3BAF85D20}"
+	ProjectSection(WebsiteProperties) = preProject
+		SccProjectName = ""$/FactivaRSS/FactivaRSS", IWYYAAAA"
+		SccAuxPath = ""
+		SccLocalPath = "."
+		SccProvider = "MSSCCI:Microsoft Visual SourceSafe"
+		ProjectReferences = "{91880552-D382-490A-80E2-4C5E85FE7CD7}|FactivaRssManager.dll;"
+		Debug.AspNetCompiler.VirtualPath = "/FactivaRSS"
+		Debug.AspNetCompiler.PhysicalPath = "..\FactivaRSS\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\FactivaRSS\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/FactivaRSS"
+		Release.AspNetCompiler.PhysicalPath = "..\FactivaRSS\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\FactivaRSS\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "4868"
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FactivaRssManager", "..\FactivaRssManager\FactivaRssManager.csproj", "{91880552-D382-490A-80E2-4C5E85FE7CD7}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "FactivaRssSetup2.0", "..\FactivaRssSetup2.0\FactivaRssSetup2.0.vdproj", "{1E5972E6-F6F8-43EE-B60F-18EE7CFC4590}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SourceCodeControl) = preSolution
+		SccNumberOfProjects = 3
+		SccLocalPath0 = .
+		CanCheckoutShared = false
+		SccProjectUniqueName1 = ..\\FactivaRssManager\\FactivaRssManager.csproj
+		SccProjectName1 = \u0022$/dotcom22sln/DataAccess/DataAccess/Preferences\u0022,\u0020RBDMAAAA
+		SccLocalPath1 = ..\\FactivaRssManager
+		CanCheckoutShared = false
+		SccWebProject2 = true
+		SccProjectUniqueName2 = .
+		SccLocalPath2 = D:\\Apps\\FactivaRSS2.0\\FactivaRSS
+		CanCheckoutShared = false
+		SccProjectEnlistmentChoice2 = 2
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|.NET = Debug|.NET
+		Debug|Any CPU = Debug|Any CPU
+		Debug|Mixed Platforms = Debug|Mixed Platforms
+		Release|.NET = Release|.NET
+		Release|Any CPU = Release|Any CPU
+		Release|Mixed Platforms = Release|Mixed Platforms
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{99B3A0D5-DC68-4110-BF4F-D4E3BAF85D20}.Debug|.NET.ActiveCfg = Debug|.NET
+		{99B3A0D5-DC68-4110-BF4F-D4E3BAF85D20}.Debug|.NET.Build.0 = Debug|.NET
+		{99B3A0D5-DC68-4110-BF4F-D4E3BAF85D20}.Debug|Any CPU.ActiveCfg = Debug|.NET
+		{99B3A0D5-DC68-4110-BF4F-D4E3BAF85D20}.Debug|Mixed Platforms.ActiveCfg = Debug|.NET
+		{99B3A0D5-DC68-4110-BF4F-D4E3BAF85D20}.Debug|Mixed Platforms.Build.0 = Debug|.NET
+		{99B3A0D5-DC68-4110-BF4F-D4E3BAF85D20}.Release|.NET.ActiveCfg = Debug|.NET
+		{99B3A0D5-DC68-4110-BF4F-D4E3BAF85D20}.Release|.NET.Build.0 = Debug|.NET
+		{99B3A0D5-DC68-4110-BF4F-D4E3BAF85D20}.Release|Any CPU.ActiveCfg = Debug|.NET
+		{99B3A0D5-DC68-4110-BF4F-D4E3BAF85D20}.Release|Mixed Platforms.ActiveCfg = Debug|.NET
+		{99B3A0D5-DC68-4110-BF4F-D4E3BAF85D20}.Release|Mixed Platforms.Build.0 = Debug|.NET
+		{91880552-D382-490A-80E2-4C5E85FE7CD7}.Debug|.NET.ActiveCfg = Debug|Any CPU
+		{91880552-D382-490A-80E2-4C5E85FE7CD7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91880552-D382-490A-80E2-4C5E85FE7CD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91880552-D382-490A-80E2-4C5E85FE7CD7}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{91880552-D382-490A-80E2-4C5E85FE7CD7}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{91880552-D382-490A-80E2-4C5E85FE7CD7}.Release|.NET.ActiveCfg = Release|Any CPU
+		{91880552-D382-490A-80E2-4C5E85FE7CD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91880552-D382-490A-80E2-4C5E85FE7CD7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{91880552-D382-490A-80E2-4C5E85FE7CD7}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{91880552-D382-490A-80E2-4C5E85FE7CD7}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{1E5972E6-F6F8-43EE-B60F-18EE7CFC4590}.Debug|.NET.ActiveCfg = Debug
+		{1E5972E6-F6F8-43EE-B60F-18EE7CFC4590}.Debug|Any CPU.ActiveCfg = Debug
+		{1E5972E6-F6F8-43EE-B60F-18EE7CFC4590}.Debug|Mixed Platforms.ActiveCfg = Debug
+		{1E5972E6-F6F8-43EE-B60F-18EE7CFC4590}.Release|.NET.ActiveCfg = Release
+		{1E5972E6-F6F8-43EE-B60F-18EE7CFC4590}.Release|Any CPU.ActiveCfg = Release
+		{1E5972E6-F6F8-43EE-B60F-18EE7CFC4590}.Release|Mixed Platforms.ActiveCfg = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

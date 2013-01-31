@@ -1,0 +1,40 @@
+﻿This report shows the steps taken to convert your Web application from ASP.NET 1.1 to ASP.NET 2.0. 
+There may be some unresolved conversion issues you will need to manually fix. 
+For more information, please refer to http://go.microsoft.com/fwlink/?LinkId=46995 or search for the help topic "Converting from Visual Studio .NET 2002 or 2003".
+Conversion Started on project file FactivaRSS.csproj at February 19 2008, 10:34:44.
+
+=========================ERRORS===================
+ERROR: Unable to convert project reference FactivaRssManager.
+ERROR: The following files were not migrated because they were not found in the project file or the associated 'BuildAction' is set to 'None'.
+You may need to exclude these files from the project after the conversion process in order to compile your web site: 
+File List == generaterss.cs,test1.aspx.cs,
+factivarssdeployment\setup\factivarssdeployment\setup\factivarssdeployment\setup\factivarssdeployment\setup\factivarssdeployment\setup\headlines.aspx,data.cs,eid1.aspx.cs,
+factivarssdeployment\setup\factivarssdeployment\setup\factivarssdeployment\setup\factivarssdeployment\setup\factivarssdeployment\setup\initrts.aspx,encryptsample.aspx.cs,eid1.aspx,
+factivarssdeployment\setup\factivarssdeployment\setup\factivarssdeployment\setup\factivarssdeployment\setup\factivarssdeployment\setup\version.aspx,test1.aspx,encryptsample.aspx,
+factivarssdeployment\setup\factivarssdeployment\setup\factivarssdeployment\setup\factivarssdeployment\setup\factivarssdeployment\setup\global.asax,dataretriever.cs,dataretrieverbase.cs.
+
+=========================WARNINGS=================
+Warning: This web project was converted as a file-based web application. If your site contained any IIS meta-information, e.g. sub-folders marked as virtual directories, it is recommended that you close this web site and re-open it using the Open Web Site command and selecting the Local IIS tab.
+
+=========================COMMENTS=================
+Web.Config: Added 'xhtmlConformance' attribute.
+Removed attribute AutoEventWireup from file decrypt.aspx.
+Removed attribute Codebehind from file decrypt.aspx.
+Warning: Access level of 'Page_Load' changed to 'protected' in file decrypt.aspx.cs (Line 33).
+Removed attribute Codebehind from file Global.asax.
+Removed attribute AutoEventWireup from file headlines.aspx.
+Removed attribute Codebehind from file headlines.aspx.
+Warning: Access level of 'Page_Load' changed to 'protected' in file headlines.aspx.cs (Line 38).
+Removed attribute AutoEventWireup from file version.aspx.
+Removed attribute Codebehind from file version.aspx.
+Warning: Access level of 'Page_Load' changed to 'protected' in file version.aspx.cs (Line 20).
+Added folder App_Code.
+Moved file Global.asax.cs to the App_Code\ directory.
+Moved file AssemblyInfo.cs to the App_Code\ directory.
+Warning: Renamed folder Web References\ to App_WebReferences.
+Changed HTML validation schema for all projects to 'Internet Explorer 6.0'.
+Removed file Bin\FactivaRSS.dll.
+Removed file Bin\FactivaRSS.pdb.
+Removed file FactivaRSS.csproj.
+Removed file FactivaRSS.csproj.webinfo.
+Project FactivaRSS.csproj has been converted successfully at February 19 2008, 10:34:54.

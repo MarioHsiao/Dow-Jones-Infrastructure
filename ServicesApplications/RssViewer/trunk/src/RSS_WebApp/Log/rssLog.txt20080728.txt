@@ -1,0 +1,218 @@
+2008-07-28 10:33:06,174 [4636] INFO  - FactivaRSS::headlines.aspx.cs::Page_Load Entering ...
+2008-07-28 10:33:06,284 [4636] INFO  - FactivaRSS::headlines.aspx.cs::after LoadXML EIDs ...
+2008-07-28 10:33:06,299 [4636] INFO  - FactivaRSS::headlines.aspx.cs::validate:Entering validate ... 
+2008-07-28 10:33:06,299 [4636] INFO  - FactivaRSS::headlines.aspx.cs::validate:before getDecryptKey 
+2008-07-28 10:33:06,330 [4636] INFO  - FactivaRSS::headlines.aspx.cs::getDecryptKey: Entering ...
+2008-07-28 10:33:06,346 [4636] DEBUG - FactivaRSS::headlines.aspx.cs::getDecryptKey: Exiting ...
+2008-07-28 10:33:06,362 [4636] INFO  - FactivaRSS::headlines.aspx.cs::validate:after getDecryptKey
+2008-07-28 10:33:06,362 [4636] INFO  - FactivaRSS::headlines.aspx.cs::validate:before decrypt
+2008-07-28 10:33:06,377 [4636] INFO  - FactivaRSS::headlines.aspx.cs::validate:from -pcast
+2008-07-28 10:33:06,377 [4636] INFO  - Entering loadComponentVersions::headlines.aspx.cs:: eidName -eid3from - pcast
+2008-07-28 10:33:06,393 [4636] INFO  - FactivaRSS::headlines.aspx.cs::validate:verRssManager - 2
+2008-07-28 10:33:06,393 [4636] INFO  - FactivaRSS::headlines.aspx.cs::validate:before loadConfigXML ...
+2008-07-28 10:33:06,424 [4636] INFO  - FactivaRSS::headlines.aspx.cs::validate:after loadConfigXML ...
+2008-07-28 10:33:06,440 [4636] INFO  - FactivaRSS::headlines.aspx.cs::validate:URL validation passed.
+2008-07-28 10:33:06,455 [4636] INFO  - FactivaRSS::headlines.aspx.cs::before retrieveData ...
+2008-07-28 10:33:06,612 [4636] INFO  - FCL::getPocast 
+2008-07-28 10:33:06,627 [4636] INFO  - FCL::GetCacheData foldername 27
+2008-07-28 10:33:07,440 [4636] ERROR - FCL::GetCacheDataSystem.Net.WebException: The remote name could not be resolved: 'cache.int.factiva.com'
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at System.Web.Services.Protocols.SoapHttpClientProtocol.Invoke(String methodName, Object[] parameters)
+   at Caching.FactivaCaching1.GenericCache.GetItem(Int32 ns, String id)
+   at FactivaRssManager_2_0.DataRetriever.GetCacheData(String foldername, Int32 nameSpace) in C:\Inetpub\wwwroot\FactivaRssManager\DataRetriever.cs:line 987
+2008-07-28 10:33:07,518 [4636] INFO  - FCL::getPocast 27 
+2008-07-28 10:33:07,518 [4636] DEBUG - FactivaServices::Invoke <<
+2008-07-28 10:33:07,534 [4636] DEBUG - Controller::BeginInvoke <<
+2008-07-28 10:33:07,534 [4636] DEBUG - ServiceResponse::ServiceResponse <<
+2008-07-28 10:33:07,534 [4636] DEBUG - ServiceResponse::ServiceResponse >>
+2008-07-28 10:33:07,627 [4636] DEBUG - GatewaySectionHandler::Create <<
+2008-07-28 10:33:07,768 [4636] DEBUG - ServiceSectionHandler::Create <<
+2008-07-28 10:33:07,784 [4636] DEBUG - ServiceSectionHandler::Create >>
+2008-07-28 10:33:07,799 [4636] DEBUG - ServiceSectionHandler::Create <<
+2008-07-28 10:33:07,815 [4636] DEBUG - ServiceSectionHandler::Create >>
+2008-07-28 10:33:07,831 [4636] DEBUG - ServiceSectionHandler::Create <<
+2008-07-28 10:33:07,831 [4636] DEBUG - ServiceSectionHandler::Create >>
+2008-07-28 10:33:07,862 [4636] DEBUG - ServiceSectionHandler::Create <<
+2008-07-28 10:33:07,862 [4636] DEBUG - ServiceSectionHandler::Create >>
+2008-07-28 10:33:07,893 [4636] DEBUG - ServiceSectionHandler::Create <<
+2008-07-28 10:33:07,893 [4636] DEBUG - ServiceSectionHandler::Create >>
+2008-07-28 10:33:07,893 [4636] DEBUG - ServiceSectionHandler::Create <<
+2008-07-28 10:33:07,893 [4636] DEBUG - ServiceSectionHandler::Create >>
+2008-07-28 10:33:07,909 [4636] DEBUG - ServiceSectionHandler::Create <<
+2008-07-28 10:33:07,909 [4636] DEBUG - ServiceSectionHandler::Create >>
+2008-07-28 10:33:07,924 [4636] DEBUG - ServiceSectionHandler::Create <<
+2008-07-28 10:33:07,924 [4636] DEBUG - ServiceSectionHandler::Create >>
+2008-07-28 10:33:07,940 [4636] DEBUG - ServiceSectionHandler::Create <<
+2008-07-28 10:33:07,940 [4636] DEBUG - ServiceSectionHandler::Create >>
+2008-07-28 10:33:07,956 [4636] DEBUG - ServiceSectionHandler::Create <<
+2008-07-28 10:33:07,956 [4636] DEBUG - ServiceSectionHandler::Create >>
+2008-07-28 10:33:07,956 [4636] DEBUG - ServiceSectionHandler::Create <<
+2008-07-28 10:33:07,956 [4636] DEBUG - ServiceSectionHandler::Create >>
+2008-07-28 10:33:07,971 [4636] DEBUG - ServiceSectionHandler::Create <<
+2008-07-28 10:33:07,971 [4636] DEBUG - ServiceSectionHandler::Create >>
+2008-07-28 10:33:07,987 [4636] DEBUG - ServiceSectionHandler::Create <<
+2008-07-28 10:33:07,987 [4636] DEBUG - ServiceSectionHandler::Create >>
+2008-07-28 10:33:08,018 [4636] DEBUG - ServiceSectionHandler::Create <<
+2008-07-28 10:33:08,018 [4636] DEBUG - ServiceSectionHandler::Create >>
+2008-07-28 10:33:08,034 [4636] DEBUG - ServiceSectionHandler::Create <<
+2008-07-28 10:33:08,034 [4636] DEBUG - ServiceSectionHandler::Create >>
+2008-07-28 10:33:08,065 [4636] DEBUG - ServiceSectionHandler::Create <<
+2008-07-28 10:33:08,065 [4636] DEBUG - ServiceSectionHandler::Create >>
+2008-07-28 10:33:08,096 [4636] DEBUG - ServiceSectionHandler::Create <<
+2008-07-28 10:33:08,112 [4636] DEBUG - ServiceSectionHandler::Create >>
+2008-07-28 10:33:08,127 [4636] DEBUG - ServiceSectionHandler::Create <<
+2008-07-28 10:33:08,127 [4636] DEBUG - ServiceSectionHandler::Create >>
+2008-07-28 10:33:08,143 [4636] DEBUG - ServiceSectionHandler::Create <<
+2008-07-28 10:33:08,143 [4636] DEBUG - ServiceSectionHandler::Create >>
+2008-07-28 10:33:08,159 [4636] DEBUG - ServiceSectionHandler::Create <<
+2008-07-28 10:33:08,159 [4636] DEBUG - ServiceSectionHandler::Create >>
+2008-07-28 10:33:08,174 [4636] DEBUG - ServiceSectionHandler::Create <<
+2008-07-28 10:33:08,174 [4636] DEBUG - ServiceSectionHandler::Create >>
+2008-07-28 10:33:08,206 [4636] DEBUG - ServiceSectionHandler::Create <<
+2008-07-28 10:33:08,206 [4636] DEBUG - ServiceSectionHandler::Create >>
+2008-07-28 10:33:08,221 [4636] DEBUG - ServiceSectionHandler::Create <<
+2008-07-28 10:33:08,221 [4636] DEBUG - ServiceSectionHandler::Create >>
+2008-07-28 10:33:08,252 [4636] DEBUG - ServiceSectionHandler::Create <<
+2008-07-28 10:33:08,252 [4636] DEBUG - ServiceSectionHandler::Create >>
+2008-07-28 10:33:08,284 [4636] DEBUG - ServiceSectionHandler::Create <<
+2008-07-28 10:33:08,284 [4636] DEBUG - ServiceSectionHandler::Create >>
+2008-07-28 10:33:09,331 [4636] DEBUG - ServiceSectionHandler::Create <<
+2008-07-28 10:33:09,331 [4636] DEBUG - ServiceSectionHandler::Create >>
+2008-07-28 10:33:09,549 [4636] DEBUG - GatewaySectionHandler::Create >>
+2008-07-28 10:33:09,549 [4636] DEBUG - Controller::PostRequest <<
+2008-07-28 10:33:09,596 [4636] DEBUG - SOAPMessage::Serialize <<
+2008-07-28 10:33:11,049 [4636] DEBUG - SOAPMessage::Serialize >>
+2008-07-28 10:33:11,049 [4636] DEBUG - Util::SerializeStreamToString <<
+2008-07-28 10:33:11,581 [4636] DEBUG - Util::SerializeStreamToString >>
+2008-07-28 10:33:11,581 [4636] INFO  - 
+Request Message --> (<soap-env:Envelope xmlns:soap-env="http://schemas.xmlsoap.org/soap/envelope/"><soap-env:Body><GetContainerById xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="urn:factiva:assets:itemContainer:v1_0"><id>27</id></GetContainerById></soap-env:Body></soap-env:Envelope>)
+2008-07-28 10:33:11,581 [4636] INFO  - 
+Applying Request filters to urn:factiva:assets:itemcontainer:data:v1_0:GetContainerById transaction -->
+2008-07-28 10:33:11,581 [4636] DEBUG - Controller::ProcessFilters <<
+2008-07-28 10:33:11,596 [4636] DEBUG - Util::SerializeStreamToString <<
+2008-07-28 10:33:11,596 [4636] DEBUG - Util::SerializeStreamToString >>
+2008-07-28 10:33:11,596 [4636] INFO  - 
+Message Before Filter:
+ (<soap-env:Envelope xmlns:soap-env="http://schemas.xmlsoap.org/soap/envelope/"><soap-env:Body><GetContainerById xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="urn:factiva:assets:itemContainer:v1_0"><id>27</id></GetContainerById></soap-env:Body></soap-env:Envelope>)
+2008-07-28 10:33:11,596 [4636] DEBUG - Controller::ProcessFilters >>
+2008-07-28 10:33:11,596 [4636] DEBUG - Router::PostRequest <<
+2008-07-28 10:33:11,596 [4636] DEBUG - Router::GetTransport <<
+2008-07-28 10:33:11,596 [4636] DEBUG - Router::GetTransport >>
+2008-07-28 10:33:11,612 [4636] DEBUG - ControlData::SerializeToString <<
+2008-07-28 10:33:12,003 [4636] DEBUG - ControlData::SerializeToString >>
+2008-07-28 10:33:12,003 [4636] INFO  - 
+Router::PostRequest --> Transaction:(urn:factiva:assets:itemcontainer:data:v1_0:GetContainerById) -->
+ControlData:(<?xml version="1.0"?>
+<controlData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="urn:factiva:fcs:v1_0">
+  <token name="userID">pcastfeed1</token>
+  <token name="userPassword">Pa55wd</token>
+  <token name="productID">16</token>
+  <token name="clientType">D</token>
+  <token name="accessPointCode">p</token>
+  <token name="contentServerAddress">0</token>
+  <token name="ipAddress">127.0.0.1</token>
+  <token name="FSS_PROXY_USER_ID">naren</token>
+  <token name="FSS_PROXY_NAMESPACE">16</token>
+</controlData>), 
+RequestData:(<soap-env:Envelope xmlns:soap-env="http://schemas.xmlsoap.org/soap/envelope/"><soap-env:Body><GetContainerById xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="urn:factiva:assets:itemContainer:v1_0"><id>27</id></GetContainerById></soap-env:Body></soap-env:Envelope>)
+2008-07-28 10:33:12,018 [4636] DEBUG - RTSTransport::PostRequest <<
+2008-07-28 10:33:12,065 [4636] INFO  - Error(-2147221164): RTSTransport::PostRequest --> ErrorMessage: Retrieving the COM class factory for component with CLSID {82918E29-D5B0-11D3-94CA-00C04F7CD250} failed due to the following error: 80040154.
+2008-07-28 10:33:12,065 [4636] DEBUG - RTSTransport::PostRequest >>
+2008-07-28 10:33:12,065 [4636] DEBUG - Router::PostRequest >>
+2008-07-28 10:33:12,065 [4636] DEBUG - Controller::PostRequest >>
+2008-07-28 10:33:12,065 [4636] INFO  - Error(-2147221164): Controller::BeginInvoke --> Failed in PostRequest
+2008-07-28 10:33:12,065 [4636] DEBUG - Controller::BeginInvoke >>
+2008-07-28 10:33:12,065 [4636] DEBUG - Controller::EndInvoke <<
+2008-07-28 10:33:12,065 [4636] DEBUG - Controller::EndIRawnvoke <<
+2008-07-28 10:33:12,065 [4636] DEBUG - Controller::EndRawInvoke >>
+2008-07-28 10:33:12,065 [4636] DEBUG - FactivaServices::Invoke >>
+2008-07-28 10:33:12,065 [4636] DEBUG - ServiceResponse::GetResponse <<
+2008-07-28 10:33:12,065 [4636] DEBUG - ServiceResponse::GetResponse >>
+2008-07-28 10:33:12,065 [4636] ERROR - getPodcast Error - [50016] System.NullReferenceException: Object reference not set to an instance of an object.
+   at FactivaRssManager_2_0.DataRetriever.getPocast(InputData inputData, ConfigData configData) in C:\Inetpub\wwwroot\FactivaRssManager\DataRetriever.cs:line 540
+2008-07-28 10:33:12,096 [4636] INFO  - FactivaRSS::headlines.aspx.cs::Error(550000):retrieveData - Root element is missing.
+2008-07-28 10:33:12,284 [4636] INFO  - FactivaRSS::headlines.aspx.cs::Error(550001):buildRssRequest - Thread was being aborted.
+2008-07-28 10:33:12,456 [4636] ERROR - FactivaRSS::headlines.aspx.cs::Error(550002):getRSS - System.Threading.ThreadAbortException: Thread was being aborted.
+   at FactivaRSS.headlines.Page_Load(Object sender, EventArgs e)
+2008-07-28 10:33:12,628 [4636] INFO  - FactivaRSS::headlines.aspx.cs::Page_Load Entering ...
+2008-07-28 10:33:12,643 [4636] INFO  - FactivaRSS::headlines.aspx.cs::after LoadXML EIDs ...
+2008-07-28 10:33:12,659 [4636] INFO  - FactivaRSS::headlines.aspx.cs::validate:Entering validate ... 
+2008-07-28 10:33:13,065 [4636] INFO  - FactivaRSS::headlines.aspx.cs::validate:before getDecryptKey 
+2008-07-28 10:33:13,081 [4636] INFO  - FactivaRSS::headlines.aspx.cs::getDecryptKey: Entering ...
+2008-07-28 10:33:13,081 [4636] DEBUG - FactivaRSS::headlines.aspx.cs::getDecryptKey: Exiting ...
+2008-07-28 10:33:13,096 [4636] INFO  - FactivaRSS::headlines.aspx.cs::validate:after getDecryptKey
+2008-07-28 10:33:13,096 [4636] INFO  - FactivaRSS::headlines.aspx.cs::validate:before decrypt
+2008-07-28 10:33:13,112 [4636] INFO  - FactivaRSS::headlines.aspx.cs::validate:from -pcast
+2008-07-28 10:33:13,159 [4636] INFO  - Entering loadComponentVersions::headlines.aspx.cs:: eidName -eid3from - pcast
+2008-07-28 10:33:13,237 [4636] INFO  - FactivaRSS::headlines.aspx.cs::validate:verRssManager - 2
+2008-07-28 10:33:13,237 [4636] INFO  - FactivaRSS::headlines.aspx.cs::validate:before loadConfigXML ...
+2008-07-28 10:33:13,237 [4636] INFO  - FactivaRSS::headlines.aspx.cs::validate:after loadConfigXML ...
+2008-07-28 10:33:13,253 [4636] INFO  - FactivaRSS::headlines.aspx.cs::validate:URL validation passed.
+2008-07-28 10:33:13,253 [4636] INFO  - FactivaRSS::headlines.aspx.cs::before retrieveData ...
+2008-07-28 10:33:13,253 [4636] INFO  - FCL::getPocast 
+2008-07-28 10:33:13,284 [4636] INFO  - FCL::GetCacheData foldername 27
+2008-07-28 10:33:13,284 [4636] ERROR - FCL::GetCacheDataSystem.Net.WebException: The remote name could not be resolved: 'cache.int.factiva.com'
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at System.Web.Services.Protocols.SoapHttpClientProtocol.Invoke(String methodName, Object[] parameters)
+   at Caching.FactivaCaching1.GenericCache.GetItem(Int32 ns, String id)
+   at FactivaRssManager_2_0.DataRetriever.GetCacheData(String foldername, Int32 nameSpace) in C:\Inetpub\wwwroot\FactivaRssManager\DataRetriever.cs:line 987
+2008-07-28 10:33:13,299 [4636] INFO  - FCL::getPocast 27 
+2008-07-28 10:33:13,299 [4636] DEBUG - FactivaServices::Invoke <<
+2008-07-28 10:33:13,299 [4636] DEBUG - Controller::BeginInvoke <<
+2008-07-28 10:33:13,299 [4636] DEBUG - ServiceResponse::ServiceResponse <<
+2008-07-28 10:33:13,299 [4636] DEBUG - ServiceResponse::ServiceResponse >>
+2008-07-28 10:33:13,299 [4636] DEBUG - Controller::PostRequest <<
+2008-07-28 10:33:13,299 [4636] DEBUG - SOAPMessage::Serialize <<
+2008-07-28 10:33:13,299 [4636] DEBUG - SOAPMessage::Serialize >>
+2008-07-28 10:33:13,299 [4636] DEBUG - Util::SerializeStreamToString <<
+2008-07-28 10:33:13,299 [4636] DEBUG - Util::SerializeStreamToString >>
+2008-07-28 10:33:13,299 [4636] INFO  - 
+Request Message --> (<soap-env:Envelope xmlns:soap-env="http://schemas.xmlsoap.org/soap/envelope/"><soap-env:Body><GetContainerById xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="urn:factiva:assets:itemContainer:v1_0"><id>27</id></GetContainerById></soap-env:Body></soap-env:Envelope>)
+2008-07-28 10:33:13,299 [4636] INFO  - 
+Applying Request filters to urn:factiva:assets:itemcontainer:data:v1_0:GetContainerById transaction -->
+2008-07-28 10:33:13,299 [4636] DEBUG - Controller::ProcessFilters <<
+2008-07-28 10:33:13,299 [4636] DEBUG - Util::SerializeStreamToString <<
+2008-07-28 10:33:13,299 [4636] DEBUG - Util::SerializeStreamToString >>
+2008-07-28 10:33:13,299 [4636] INFO  - 
+Message Before Filter:
+ (<soap-env:Envelope xmlns:soap-env="http://schemas.xmlsoap.org/soap/envelope/"><soap-env:Body><GetContainerById xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="urn:factiva:assets:itemContainer:v1_0"><id>27</id></GetContainerById></soap-env:Body></soap-env:Envelope>)
+2008-07-28 10:33:13,299 [4636] DEBUG - Controller::ProcessFilters >>
+2008-07-28 10:33:13,299 [4636] DEBUG - Router::PostRequest <<
+2008-07-28 10:33:13,299 [4636] DEBUG - Router::GetTransport <<
+2008-07-28 10:33:13,299 [4636] DEBUG - Router::GetTransport >>
+2008-07-28 10:33:13,299 [4636] DEBUG - ControlData::SerializeToString <<
+2008-07-28 10:33:13,299 [4636] DEBUG - ControlData::SerializeToString >>
+2008-07-28 10:33:13,299 [4636] INFO  - 
+Router::PostRequest --> Transaction:(urn:factiva:assets:itemcontainer:data:v1_0:GetContainerById) -->
+ControlData:(<?xml version="1.0"?>
+<controlData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="urn:factiva:fcs:v1_0">
+  <token name="userID">pcastfeed1</token>
+  <token name="userPassword">Pa55wd</token>
+  <token name="productID">16</token>
+  <token name="clientType">D</token>
+  <token name="accessPointCode">p</token>
+  <token name="contentServerAddress">0</token>
+  <token name="ipAddress">127.0.0.1</token>
+  <token name="FSS_PROXY_USER_ID">naren</token>
+  <token name="FSS_PROXY_NAMESPACE">16</token>
+</controlData>), 
+RequestData:(<soap-env:Envelope xmlns:soap-env="http://schemas.xmlsoap.org/soap/envelope/"><soap-env:Body><GetContainerById xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="urn:factiva:assets:itemContainer:v1_0"><id>27</id></GetContainerById></soap-env:Body></soap-env:Envelope>)
+2008-07-28 10:33:13,299 [4636] DEBUG - RTSTransport::PostRequest <<
+2008-07-28 10:33:13,299 [4636] INFO  - Error(-2147221164): RTSTransport::PostRequest --> ErrorMessage: Retrieving the COM class factory for component with CLSID {82918E29-D5B0-11D3-94CA-00C04F7CD250} failed due to the following error: 80040154.
+2008-07-28 10:33:13,299 [4636] DEBUG - RTSTransport::PostRequest >>
+2008-07-28 10:33:13,299 [4636] DEBUG - Router::PostRequest >>
+2008-07-28 10:33:13,299 [4636] DEBUG - Controller::PostRequest >>
+2008-07-28 10:33:13,299 [4636] INFO  - Error(-2147221164): Controller::BeginInvoke --> Failed in PostRequest
+2008-07-28 10:33:13,299 [4636] DEBUG - Controller::BeginInvoke >>
+2008-07-28 10:33:13,299 [4636] DEBUG - Controller::EndInvoke <<
+2008-07-28 10:33:13,299 [4636] DEBUG - Controller::EndIRawnvoke <<
+2008-07-28 10:33:13,299 [4636] DEBUG - Controller::EndRawInvoke >>
+2008-07-28 10:33:13,299 [4636] DEBUG - FactivaServices::Invoke >>
+2008-07-28 10:33:13,299 [4636] DEBUG - ServiceResponse::GetResponse <<
+2008-07-28 10:33:13,299 [4636] DEBUG - ServiceResponse::GetResponse >>
+2008-07-28 10:33:13,299 [4636] ERROR - getPodcast Error - [50016] System.NullReferenceException: Object reference not set to an instance of an object.
+   at FactivaRssManager_2_0.DataRetriever.getPocast(InputData inputData, ConfigData configData) in C:\Inetpub\wwwroot\FactivaRssManager\DataRetriever.cs:line 540
+2008-07-28 10:33:13,315 [4636] INFO  - FactivaRSS::headlines.aspx.cs::Error(550000):retrieveData - Root element is missing.
+2008-07-28 10:33:13,440 [4636] INFO  - FactivaRSS::headlines.aspx.cs::Error(550001):buildRssRequest - Thread was being aborted.
+2008-07-28 10:33:13,581 [4636] ERROR - FactivaRSS::headlines.aspx.cs::Error(550002):getRSS - System.Threading.ThreadAbortException: Thread was being aborted.
+   at FactivaRSS.headlines.Page_Load(Object sender, EventArgs e)

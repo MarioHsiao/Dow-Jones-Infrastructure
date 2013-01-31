@@ -1,0 +1,149 @@
+using System;
+using System.Collections;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Web;
+using System.Web.SessionState;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Web.UI.HtmlControls;
+using System.Text;
+
+namespace FactivaRSS
+{
+	/// <summary>
+	/// Summary description for test1.
+	/// </summary>
+	public class test1 : System.Web.UI.Page
+	{
+		private void Page_Load(object sender, System.EventArgs e)
+		{
+			getFolderHeadlines();
+         }
+
+		protected string getFolderHeadlines()
+		{
+			//Log(Debug,"FCL::isSessionValid sessionID - " + sessionID);
+
+			try
+			{
+				SortedList control = new    SortedList();
+				SortedList request = new    SortedList();
+
+				control.Add("FCS_CD_NETWORK_PARTNER_ID","");
+				control.Add("FCS_CD_CLIENT_TYPE","M");
+				control.Add("FCS_CD_ACCESS_POINT_CODE","");
+				control.Add("FCS_CD_USER_ID","RSSFEED1");
+				control.Add("FCS_CD_USER_PASSWORD","RSSFEED1");
+				control.Add("FCS_CD_PRODUCT_ID","16");
+				control.Add("FCS_CD_IP_ADDRESS",Request.ServerVariables["REMOTE_HOST"]);
+
+				request.Add("FolderID" , "100071465");
+				request.Add("HeadlineFormat","headline");
+				request.Add("HeadlineCount","10");
+				request.Add("BookMark","");
+				request.Add("SessionMark","");
+				request.Add("ViewType","all");
+				request.Add("ResetSessionMark","no");
+				request.Add("SortBy","deliverydate");
+				request.Add("SortOrder","descending");
+
+				request.Add("Preview","yes");
+				request.Add("ProgressDisclose","false");
+				request.Add("ChunkSize","10");
+				request.Add("ContentType","all");
+				request.Add("PostStatus","");
+
+
+				request.Add("ProductId","16");
+				request.Add("UserId","modules4");
+
+				string xmlRequest="";
+				xmlRequest=createXMLRequest("UER_RSSRequest","1.0",control,request);
+				//xmlRequest=createXMLRequest("CLIP_OLH_HEADLINE","",control,request);
+
+				FCMLib.ContentManagerClass fcm = new FCMLib.ContentManagerClass();
+
+				string response=fcm.XMLQueryString(xmlRequest,"","");
+				//Response.Write(response);
+				return response.ToString();
+
+			}
+			catch(Exception e)
+			{
+				//Log(Information,"FCL::isSessionValid Error - " + e.Message);
+				throw e;
+			}
+		}
+
+
+		protected string createXMLRequest(string tranName,string version,SortedList control,SortedList request)
+		{
+			//Log(Debug,"FCL::createXMLRequest tranName - " + tranName + " version - " + version);
+
+			StringBuilder requestXML = new StringBuilder();
+			try
+			{
+				requestXML.Append(@"<?xml version='1.0' encoding='utf-8'?>");
+				requestXML.Append(@"<" + tranName  +@" version='1.0' xml:lang='en'>");
+				requestXML.Append(@"<Control>");
+				requestXML.Append(@"<FCS_CD>");
+				for(int i=0;i<control.Count;i++)
+				{
+					requestXML.Append(@"<" + control.GetKey(i).ToString()  + ">");
+					requestXML.Append(control.GetByIndex(i).ToString());
+					requestXML.Append(@"</" + control.GetKey(i).ToString() + ">");
+				}
+				requestXML.Append(@"</FCS_CD>");
+				requestXML.Append(@"</Control>");
+				requestXML.Append(@"<Request>");
+				for(int i=0;i<request.Count;i++)
+				{
+					requestXML.Append(@"<" + request.GetKey(i).ToString()  + ">");
+					requestXML.Append(request.GetByIndex(i).ToString());
+					if  ( request.GetKey(i).ToString().IndexOf(" ") > 0 )
+					{
+						string endTag="";
+						string tag=request.GetKey(i).ToString();
+						endTag =   tag.Substring(0,tag.IndexOf(" "));
+						requestXML.Append(@"</" + endTag + ">");
+					}
+					else
+					{
+						requestXML.Append(@"</" + request.GetKey(i).ToString() + ">");
+					}
+				}
+				requestXML.Append(@"</Request>");
+				requestXML.Append(@"</" + tranName + ">");
+
+				return requestXML.ToString();
+			}
+			catch(Exception e)
+			{
+				//Log(Information,"FCL::createXMLRequest Error - " + e.Message);
+				throw e;
+			}
+		}
+
+		#region Web Form Designer generated code
+		override protected void OnInit(EventArgs e)
+		{
+			//
+			// CODEGEN: This call is required by the ASP.NET Web Form Designer.
+			//
+			InitializeComponent();
+			base.OnInit(e);
+		}
+		
+		/// <summary>
+		/// Required method for Designer support - do not modify
+		/// the contents of this method with the code editor.
+		/// </summary>
+		private void InitializeComponent()
+		{    
+			this.Load += new System.EventHandler(this.Page_Load);
+		}
+		#endregion
+	}
+}

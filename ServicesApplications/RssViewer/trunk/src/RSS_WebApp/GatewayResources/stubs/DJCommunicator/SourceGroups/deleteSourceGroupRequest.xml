@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<deleteSourceGroupRequest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="urn:factiva:Communicator:SourceGroupsService:v1_0">
+  <sourceGroupID>110</sourceGroupID>
+</deleteSourceGroupRequest>
