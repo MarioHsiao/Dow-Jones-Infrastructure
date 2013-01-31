@@ -60,12 +60,18 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AjaxControlToolkit, Version=1.0.20229.20821, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL" />
+    <Reference Include="AjaxControlToolkit, Version=3.0.30930.28736, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\AjaxControlToolkit.dll</HintPath>
+    </Reference>
     <Reference Include="Argotic.Common, Version=2008.0.0.0, Culture=neutral, PublicKeyToken=84b2ce808fb02469, processorArchitecture=MSIL" />
     <Reference Include="Argotic.Core, Version=2008.0.0.0, Culture=neutral, PublicKeyToken=84b2ce808fb02469, processorArchitecture=MSIL" />
     <Reference Include="Argotic.Extensions, Version=2008.0.0.0, Culture=neutral, PublicKeyToken=84b2ce808fb02469, processorArchitecture=MSIL" />
     <Reference Include="Argotic.Web, Version=2008.0.0.0, Culture=neutral, PublicKeyToken=84b2ce808fb02469, processorArchitecture=MSIL" />
-    <Reference Include="EMG.Toolkit.Web, Version=1.1.13.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="EMG.Toolkit.Web, Version=1.2.0.10, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\EMG.Toolkit.Web.dll</HintPath>
+    </Reference>
     <Reference Include="EMG.Utility, Version=3.6.0.4, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Dependencies\EMG.Utility.dll</HintPath>
@@ -162,34 +168,28 @@
     <Content Include="iworks\wsj\config_beta.xml" />
     <Content Include="iworks\wsj\config_integration.xml" />
     <Content Include="iworks\wsj\config_production.xml" />
+    <Content Include="lib\Argotic.Common.dll" />
+    <Content Include="lib\Argotic.Common.xml" />
+    <Content Include="lib\Argotic.Core.dll" />
+    <Content Include="lib\Argotic.Core.xml" />
+    <Content Include="lib\Argotic.Extensions.dll" />
+    <Content Include="lib\Argotic.Extensions.xml" />
     <Content Include="lib\de\AjaxControlToolkit.resources.dll" />
     <Content Include="lib\de\WidgetUiResources.resources.dll" />
-    <Content Include="lib\emg\CachingWrapper.dll" />
-    <Content Include="lib\emg\DJInsiderResources.dll" />
-    <Content Include="lib\emg\EMG.Utility.dll" />
-    <Content Include="lib\emg\EMG.Utility.pdb" />
-    <Content Include="lib\emg\encryption.dll" />
-    <Content Include="lib\emg\factiva.dowjonesinsider.ui.control.dll" />
-    <Content Include="lib\emg\factiva.gateway.messages.dll" />
-    <Content Include="lib\emg\factiva.gateway.messages.pdb" />
-    <Content Include="lib\emg\factiva.nextgen.ui.dll" />
-    <Content Include="lib\emg\factiva.nextgen.ui.pdb" />
-    <Content Include="lib\emg\FactivaBusinessLayerLogic.dll" />
-    <Content Include="lib\emg\FactivaBusinessLayerLogic.XmlSerializers.dll" />
-    <Content Include="lib\emg\FactivaCharting.dll" />
-    <Content Include="lib\emg\FactivaGateway.dll" />
-    <Content Include="lib\emg\FactivaGateway.pdb" />
-    <Content Include="lib\emg\FactivaServices.dll" />
-    <Content Include="lib\emg\FactivaServices.pdb" />
-    <Content Include="lib\emg\Interop.FCMLib.dll" />
-    <Content Include="lib\emg\log4net.dll" />
-    <Content Include="lib\emg\Simplicit.Net.Lzo.dll" />
+    <Content Include="lib\EMG.Toolkit.Web.pdb" />
+    <Content Include="lib\EMG.Utility.pdb" />
     <Content Include="lib\es\AjaxControlToolkit.resources.dll" />
     <Content Include="lib\es\WidgetUiResources.resources.dll" />
+    <Content Include="lib\factiva.gateway.messages.pdb" />
     <Content Include="lib\factiva.nextgen.ui.dll" />
+    <Content Include="lib\factiva.nextgen.ui.pdb" />
     <Content Include="lib\FactivaBusinessLayerLogic.dll" />
     <Content Include="lib\FactivaBusinessLayerLogic.pdb" />
     <Content Include="lib\FactivaCharting.dll" />
+    <Content Include="lib\FactivaCharting.pdb" />
+    <Content Include="lib\FactivaServices.dll" />
+    <Content Include="lib\FactivaServices.pdb" />
+    <Content Include="lib\FactivaServices.xml" />
     <Content Include="lib\fr\AjaxControlToolkit.resources.dll" />
     <Content Include="lib\fr\WidgetUiResources.resources.dll" />
     <Content Include="lib\Interop.FCMLib.dll" />
@@ -209,7 +209,9 @@
     <Content Include="lib\zh-cn\WidgetUiResources.resources.dll" />
     <Content Include="lib\zh-tw\WidgetUiResources.resources.dll" />
     <Content Include="Render.aspx" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ajax\controls\WidgetPreview\WidgetPreviewDesigner.cs" />
@@ -1301,9 +1303,6 @@
     <Content Include="GatewayResources\Config\Triggers.config" />
     <Content Include="GatewayResources\Config\UserEventRecorderService.config" />
     <Content Include="lib\FactivaBusinessLayerLogic.dll.config" />
-    <Content Include="lib\emg\EMG.Utility.dll.config" />
-    <Content Include="lib\emg\factiva.nextgen.ui.dll.config" />
-    <Content Include="lib\emg\FactivaBusinessLayerLogic.dll.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

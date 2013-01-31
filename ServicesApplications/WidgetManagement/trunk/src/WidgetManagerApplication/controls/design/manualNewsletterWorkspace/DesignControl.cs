@@ -172,7 +172,7 @@ namespace EMG.widgets.ui.controls.design.manualNewsletterWorkspace
             ColorPickerExtender extender = new ColorPickerExtender();
             extender.ID = id + "_extender";
             extender.TargetControlID = id + "_input";
-            extender.onColorPickerUpdate = "onColorPickerUpdate";
+            extender.OnColorPickerUpdate = "onColorPickerUpdate";
             extender.AttachToBodyNode = true;
             extender.BehaviorID = id + "_input_behavior";
             tContainer.Controls.Add(extender);
