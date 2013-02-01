@@ -25,8 +25,6 @@
     <Move SourceFiles="$(YourSourceDirectory)\lib\it\WidgetUiResources.resources.dll" DestinationFiles="$(YourSourceDirectory)\bin\it\WidgetUiResources.resources.dll" />
     <Move SourceFiles="$(YourSourceDirectory)\lib\ja\WidgetUiResources.resources.dll" DestinationFiles="$(YourSourceDirectory)\bin\ja\WidgetUiResources.resources.dll" />
     <Move SourceFiles="$(YourSourceDirectory)\lib\ru\WidgetUiResources.resources.dll" DestinationFiles="$(YourSourceDirectory)\bin\ru\WidgetUiResources.resources.dll" />
-    <Move SourceFiles="$(YourSourceDirectory)\lib\zh-CHS\WidgetUiResources.resources.dll" DestinationFiles="$(YourSourceDirectory)\bin\zh-CHS\WidgetUiResources.resources.dll" />
-    <Move SourceFiles="$(YourSourceDirectory)\lib\zh-CHT\WidgetUiResources.resources.dll" DestinationFiles="$(YourSourceDirectory)\bin\zh-CHT\WidgetUiResources.resources.dll" />
     <Move SourceFiles="$(YourSourceDirectory)\lib\zh-cn\WidgetUiResources.resources.dll" DestinationFiles="$(YourSourceDirectory)\bin\zh-cn\WidgetUiResources.resources.dll" />
     <Move SourceFiles="$(YourSourceDirectory)\lib\zh-tw\WidgetUiResources.resources.dll" DestinationFiles="$(YourSourceDirectory)\bin\zh-tw\WidgetUiResources.resources.dll" />
   </Target>
