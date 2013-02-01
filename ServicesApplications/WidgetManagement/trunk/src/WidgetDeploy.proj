@@ -9,7 +9,6 @@
     <IISServerName>$(IISServer)</IISServerName>
     <AppPoolName>$(AppPool)</AppPoolName>
     <VersionNumber>$(ProductVersion)</VersionNumber>
-    <PreStagingBaseLocation>$(PreStagingRootlocation)</PreStagingBaseLocation>
   </PropertyGroup>
   
 
