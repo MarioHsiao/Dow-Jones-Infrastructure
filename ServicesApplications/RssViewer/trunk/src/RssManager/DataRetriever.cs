@@ -1629,7 +1629,7 @@ namespace FactivaRssManager_2_0
                                     documentCollection.Add(new document
                                                            {
                                                                headline = linkItem.Title,
-                                                               snippet = linkItem.Description,
+                                                               snippet = (linkItem.Type == LinkType.RssHeadlineUrl) ? string.Empty : linkItem.Description,
                                                                uri = linkItem.Uri,
                                                                position = linkItem.Position
                                                            });
