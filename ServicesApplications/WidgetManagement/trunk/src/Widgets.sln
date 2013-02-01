@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WidgetManagerApplication", "WidgetManagerApplication\WidgetManagerApplication.csproj", "{D803758B-58AD-4135-BDE6-52481B6B7474}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dependencies", "Dependencies", "{8A77921E-8C26-40B5-ABFA-F93730B69B0A}"

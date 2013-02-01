@@ -355,19 +355,13 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="cmd\BetaRename.cmd">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="cmd\BetaRename.cmd" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="cmd\IntegrationRename.cmd">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="cmd\IntegrationRename.cmd" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="cmd\ProductionRename.cmd">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="cmd\ProductionRename.cmd" />
     <Content Include="config.xml" />
     <Content Include="config_bc.xml" />
     <Content Include="config_beta.xml" />
@@ -872,12 +866,8 @@
     <Content Include="img\cross.png">
     </Content>
     <Content Include="crossdomain.xml" />
-    <Content Include="css\round-button.css">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="css\style.css">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="css\round-button.css" />
+    <Content Include="css\style.css" />
     <Content Include="du\EditWidget.aspx" />
     <Content Include="du\PublishWidget.aspx" />
     <Content Include="favicon.ico" />
@@ -1142,12 +1132,8 @@
     </Content>
     <Content Include="jsa\core.jsa">
     </Content>
-    <Content Include="css\designer.css">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="css\globalv2.css">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="css\designer.css" />
+    <Content Include="css\globalv2.css" />
     <Content Include="du\CreateWidget.aspx" />
     <Content Include="FactivaServices\xslt\commonDistDocElements.xslt" />
     <Content Include="FactivaServices\xslt\ReplyItem.xslt" />

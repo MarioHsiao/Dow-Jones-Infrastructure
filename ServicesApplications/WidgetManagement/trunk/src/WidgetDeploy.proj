@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="CopyLocation" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+<Project DefaultTargets="MoveConfig" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
 
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\TeamBuild\Microsoft.TeamFoundation.Build.targets" />
   <PropertyGroup>
@@ -16,14 +16,22 @@
 
   <!-- Because TFS Build needs it -->
   <Target Name="Clean" />
-  <!--
+  
   <Target Name="MoveConfig">
-    <Move SourceFiles="$(YourSourceDirectory)\cfg\config.xml_nevada" DestinationFiles="$(YourSourceDirectory)\cfg\config.xml" />
-    <Move SourceFiles="$(YourSourceDirectory)\config.xml_nevada" DestinationFiles="$(YourSourceDirectory)\config.xml" />
-    <Move SourceFiles="$(YourSourceDirectory)\Web.config_nevada" DestinationFiles="$(YourSourceDirectory)\Web.config" />
+    <Move SourceFiles="$(YourSourceDirectory)\lib\WidgetUiResources.dll" DestinationFiles="$(YourSourceDirectory)\bin\WidgetUiResources.dll" />
+    <Move SourceFiles="$(YourSourceDirectory)\lib\de\WidgetUiResources.resources.dll" DestinationFiles="$(YourSourceDirectory)\bin\de\WidgetUiResources.resources.dll" />
+    <Move SourceFiles="$(YourSourceDirectory)\lib\es\WidgetUiResources.resources.dll" DestinationFiles="$(YourSourceDirectory)\bin\es\WidgetUiResources.resources.dll" />
+    <Move SourceFiles="$(YourSourceDirectory)\lib\fr\WidgetUiResources.resources.dll" DestinationFiles="$(YourSourceDirectory)\bin\fr\WidgetUiResources.resources.dll" />
+    <Move SourceFiles="$(YourSourceDirectory)\lib\it\WidgetUiResources.resources.dll" DestinationFiles="$(YourSourceDirectory)\bin\it\WidgetUiResources.resources.dll" />
+    <Move SourceFiles="$(YourSourceDirectory)\lib\ja\WidgetUiResources.resources.dll" DestinationFiles="$(YourSourceDirectory)\bin\ja\WidgetUiResources.resources.dll" />
+    <Move SourceFiles="$(YourSourceDirectory)\lib\ru\WidgetUiResources.resources.dll" DestinationFiles="$(YourSourceDirectory)\bin\ru\WidgetUiResources.resources.dll" />
+    <Move SourceFiles="$(YourSourceDirectory)\lib\zh-CHS\WidgetUiResources.resources.dll" DestinationFiles="$(YourSourceDirectory)\bin\zh-CHS\WidgetUiResources.resources.dll" />
+    <Move SourceFiles="$(YourSourceDirectory)\lib\zh-CHT\WidgetUiResources.resources.dll" DestinationFiles="$(YourSourceDirectory)\bin\zh-CHT\WidgetUiResources.resources.dll" />
+    <Move SourceFiles="$(YourSourceDirectory)\lib\zh-cn\WidgetUiResources.resources.dll" DestinationFiles="$(YourSourceDirectory)\bin\zh-cn\WidgetUiResources.resources.dll" />
+    <Move SourceFiles="$(YourSourceDirectory)\lib\zh-tw\WidgetUiResources.resources.dll" DestinationFiles="$(YourSourceDirectory)\bin\zh-tw\WidgetUiResources.resources.dll" />
   </Target>
 
-  <Target Name="SiteBuilder" AfterTargets="MoveConfig">
+  <!--<Target Name="SiteBuilder" AfterTargets="MoveConfig">
     <RemoveDir Directories="D:\StagingBuild\Dotcom" />
     <Exec Command="&quot;$(SolutionRoot)\src\Dotcom\lib\CruiseSiteBuilder.exe&quot; &quot;D:\StagingBuild\Dotcom&quot; &quot;$(YourSourceDirectory)&quot; &quot;$(YourSourceDirectory)\templates&quot; $(VersionNumber) en,fr,de,es,it,ja,ru,zhcn,zhtw  http://translate.factiva.com/V2/data/fp0000/LITERALS.XML false UiGlobalResources Minifier true false">
     </Exec>
@@ -35,7 +43,7 @@
              Value="%(RTSConfigUpdates.value)"/>
   </Target>-->
 
-  <Target Name="CopyLocation">
+  <Target Name="CopyLocation" AfterTargets="MoveConfig">
     <CreateItem Include="$(YourSourceDirectory)\**\*.*">
       <Output TaskParameter="Include" ItemName="YourFilesToCopy" />
     </CreateItem>
