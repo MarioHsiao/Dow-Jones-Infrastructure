@@ -18,6 +18,7 @@ using EMG.Utility.Managers.Search.Responses;
 using EMG.Utility.Managers.CacheService;
 using Factiva.BusinessLayerLogic.Exceptions;
 using Factiva.BusinessLayerLogic.Managers.V2_0;
+using Factiva.Gateway.Messages.Assets.Common.V2_0;
 using Factiva.Gateway.Messages.Assets.Newsletter.V1_0;
 using Factiva.Gateway.Messages.Assets.Workspaces.V2_0;
 using Factiva.Gateway.Messages.Search.V2_0;
@@ -32,6 +33,7 @@ using Common_V2 = Factiva.Gateway.Messages.Assets.Common.V2_0;
 using SearchManager=EMG.Utility.Managers.Search.SearchManager;
 using EMG.Utility.Managers.Track;
 using PerformContentSearchRequest = Factiva.Gateway.Messages.Search.V2_0.PerformContentSearchRequest;
+using SortBy = EMG.Utility.Managers.Search.Requests.SortBy;
 
 //using Factiva.Gateway
 
@@ -977,7 +979,7 @@ namespace FactivaRssManager_2_0
                                     var document = new document
                                                         {
                                                             headline = linkItem.Title,
-                                                            snippet = linkItem.Description,
+                                                            snippet = (linkItem.Type == LinkType.RssHeadlineUrl) ? string.Empty : linkItem.Description,
                                                             uri = linkItem.Uri
                                                         };
 

@@ -20,8 +20,9 @@
     <OldToolsVersion>3.5</OldToolsVersion>
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
-    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <UseIISExpress>false</UseIISExpress>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -51,14 +52,16 @@
     <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
-    <Reference Include="System.Web.Extensions, Version=1.0.61025.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
     <Reference Include="System.Web.Mobile" />
+    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="config.xml" />
@@ -70,6 +73,10 @@
     <Content Include="encrypt.aspx" />
     <Content Include="encrypt.xml" />
     <Content Include="FactivaRSS.sln" />
+    <Content Include="FileReferences\factiva.gateway.messages.pdb" />
+    <Content Include="FileReferences\factiva.gateway.messages.XML" />
+    <Content Include="FileReferences\FactivaGateway.pdb" />
+    <Content Include="FileReferences\Interop.FCMLib.dll" />
     <Content Include="FileReferences\log4net.dll" />
     <Content Include="getNewsLetterHeadlines.xml" />
     <Content Include="getPreference.xml" />
@@ -88,7 +95,9 @@
     <Content Include="UpgradeLog.XML" />
     <Content Include="UpgradeLog2.XML" />
     <Content Include="version.aspx" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="decrypt.aspx.cs">
