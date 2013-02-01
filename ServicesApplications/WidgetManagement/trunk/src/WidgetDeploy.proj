@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="CopyLocation" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\TeamBuild\Microsoft.TeamFoundation.Build.targets" />
+  <PropertyGroup>
+    <YourDestinationDirectory>$(PreStagingWebsiteLocation)</YourDestinationDirectory>
+    <YourSourceDirectory>$(OutDir)WidgetManagerApplication</YourSourceDirectory>
+    <YourBackupDirectory>$(PreStagingBackupWebsiteLocation)</YourBackupDirectory>
+    <IISServerName>$(IISServer)</IISServerName>
+    <AppPoolName>$(AppPool)</AppPoolName>
+    <VersionNumber>$(ProductVersion)</VersionNumber>
+    <PreStagingBaseLocation>$(PreStagingRootlocation)</PreStagingBaseLocation>
+  </PropertyGroup>
+  
+
+
+  <!-- Because TFS Build needs it -->
+  <Target Name="Clean" />
+  <!--
+  <Target Name="MoveConfig">
+    <Move SourceFiles="$(YourSourceDirectory)\cfg\config.xml_nevada" DestinationFiles="$(YourSourceDirectory)\cfg\config.xml" />
+    <Move SourceFiles="$(YourSourceDirectory)\config.xml_nevada" DestinationFiles="$(YourSourceDirectory)\config.xml" />
+    <Move SourceFiles="$(YourSourceDirectory)\Web.config_nevada" DestinationFiles="$(YourSourceDirectory)\Web.config" />
+  </Target>
+
+  <Target Name="SiteBuilder" AfterTargets="MoveConfig">
+    <RemoveDir Directories="D:\StagingBuild\Dotcom" />
+    <Exec Command="&quot;$(SolutionRoot)\src\Dotcom\lib\CruiseSiteBuilder.exe&quot; &quot;D:\StagingBuild\Dotcom&quot; &quot;$(YourSourceDirectory)&quot; &quot;$(YourSourceDirectory)\templates&quot; $(VersionNumber) en,fr,de,es,it,ja,ru,zhcn,zhtw  http://translate.factiva.com/V2/data/fp0000/LITERALS.XML false UiGlobalResources Minifier true false">
+    </Exec>
+  </Target>
+
+  <Target Name="UpdateXml" AfterTargets="SiteBuilder">
+    <XmlPoke XmlInputPath="D:\StagingBuild\Dotcom\GatewayResources\Config\FactivaGateway.config"
+             Query="%(RTSConfigUpdates.XPath)"
+             Value="%(RTSConfigUpdates.value)"/>
+  </Target>-->
+
+  <Target Name="CopyLocation">
+    <CreateItem Include="$(YourSourceDirectory)\**\*.*">
+      <Output TaskParameter="Include" ItemName="YourFilesToCopy" />
+    </CreateItem>
+    <CreateItem Include="$(YourDestinationDirectory)\**\*.*">
+      <Output TaskParameter="Include" ItemName="YourBackupFilesToCopy" />
+    </CreateItem>
+    <Message Text="Your Source Directory: $(YourSourceDirectory)" />
+    <Message Text="Your Destination Directory: $(YourDestinationDirectory)" />
+    <Message Text="Output Dir: $(OutDir)" />
+    <Message Importance="high" Text="copying" />
+
+    <!--<RemoveDir Directories="$(YourBackupDirectory)" />
+    <Copy SourceFiles="@(YourBackupFilesToCopy)"
+                       DestinationFiles="@(YourBackupFilesToCopy->'$(YourBackupDirectory)\%(RecursiveDir)%(Filename)%(Extension)')" />-->
+
+
+    <!--<Exec Command="&quot;c:\windows\system32\cmd.exe&quot;  /c cscript d:\BuildUtilities\StartStopAppPool.vbs $(IISServerName) $(AppPoolName) Stop">
+    </Exec>-->
+
+    <RemoveDir Directories="$(YourDestinationDirectory)" />
+
+    <Copy SourceFiles="@(YourFilesToCopy)"
+                    DestinationFiles="@(YourFilesToCopy->'$(YourDestinationDirectory)\%(RecursiveDir)%(Filename)%(Extension)')" />
+
+    <!--
+    <Exec Command="&quot;c:\windows\system32\cmd.exe&quot;  /c cscript d:\BuildUtilities\StartStopAppPool.vbs $(IISServerName) $(AppPoolName) Start">
+    </Exec>-->
+  </Target>
+
+</Project>
