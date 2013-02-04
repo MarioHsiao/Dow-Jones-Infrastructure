@@ -87,9 +87,6 @@
     <Content Include="initrts.asp" />
     <Content Include="initrts.aspx" />
     <Content Include="int_rss.aspx" />
-    <Content Include="Log\rssLog.txt" />
-    <Content Include="Log\rssLog.txt20080728.txt" />
-    <Content Include="Log\rssLog.txt20090121.txt" />
     <Content Include="MyxmlParser.xml" />
     <Content Include="rss.aspx" />
     <Content Include="UpgradeLog.XML" />
