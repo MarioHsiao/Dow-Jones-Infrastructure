@@ -6,7 +6,7 @@
   <UsingTask TaskName="MSBuild.ExtensionPack.Compression.Zip" AssemblyFile="$(MSBuildStartupDirectory)\lib\MSBuildExtensionPack\MSBuild.ExtensionPack.dll" />
   <PropertyGroup>
     <YourDestinationDirectory>$(PreStagingWebsiteLocation)</YourDestinationDirectory>
-    <YourSourceDirectory>$(OutDir)WidgetManagerApplication</YourSourceDirectory>
+    <YourSourceDirectory>$(OutDir)RSS_WebApp</YourSourceDirectory>
     <YourBackupDirectory>$(PreStagingBackupWebsiteLocation)</YourBackupDirectory>
     <IISServerName>$(IISServer)</IISServerName>
     <AppPoolName>$(AppPool)</AppPoolName>
