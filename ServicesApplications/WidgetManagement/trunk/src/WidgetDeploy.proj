@@ -3,6 +3,7 @@
 
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\TeamBuild\Microsoft.TeamFoundation.Build.targets" />
   <UsingTask TaskName="Zip" AssemblyFile="$(MSBuildStartupDirectory)\lib\MSBuildCommunityTasks\MSBuild.Community.Tasks.dll" />
+  <UsingTask TaskName="MSBuild.ExtensionPack.Compression.Zip" AssemblyFile="$(MSBuildStartupDirectory)\lib\MSBuildExtensionPack\MSBuild.ExtensionPack.dll" />
   <PropertyGroup>
     <YourDestinationDirectory>$(PreStagingWebsiteLocation)</YourDestinationDirectory>
     <YourSourceDirectory>$(OutDir)WidgetManagerApplication</YourSourceDirectory>
