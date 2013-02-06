@@ -54,6 +54,10 @@ namespace DowJones.Web.Mvc.UI.Components.PostProcessing
         Listen,
         [AssignedToken("translate")]
         Translate,
+        [AssignedToken("downloadAsPDF")]
+        PDF,
+        [AssignedToken("downloadAsRTF")]
+        RTF,
     }
 
     public enum HeadlineSaveOptions
