@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FactivaRssManager", "RssManager\FactivaRssManager.csproj", "{91880552-D382-490A-80E2-4C5E85FE7CD7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RSS_WebApp", "RSS_WebApp\RSS_WebApp.csproj", "{04B31DEE-FB21-44D7-BCF0-004B665433A5}"
