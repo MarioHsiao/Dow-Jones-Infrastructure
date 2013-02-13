@@ -316,7 +316,7 @@ namespace DowJones.Factiva.Currents.Aggregrator
                     parts = "EditorsChoice|VideoAndAudio|OpinionAndAnalysis";
                     url =
                       string.Format(
-                          "{0}/Modules/Sources/1.0/data/" + format + "?pageid={1}&moduleId={2}&firstPartToReturn={3}&maxPartsToReturn={4}&firstResultToReturn={5}&maxResultsToReturn={6}&encryptedToken={7}",
+                          "{0}/Modules/Sources/1.0/data/" + format + "?pageid={1}&moduleId={2}&firstPartToReturn={3}&maxPartsToReturn={4}&firstResultToReturn={5}&maxResultsToReturn={6}&encryptedToken={7}&cacheState=forcerefresh",
                           basePath,
                           pageId,
                           moduleId,
@@ -465,7 +465,7 @@ namespace DowJones.Factiva.Currents.Aggregrator
                 webRequest.Headers.Add("X-Requested-With", "XMLHttpRequest");
                 if (addPreference)
                 {
-                    webRequest.Headers.Add("preferences", "{\"clockType\":1,\"interfaceLanguage\":\"en\",\"contentLanguages\":[\"en\"],\"timeZone\":\"on, -05:00|1, on\"}");
+                    webRequest.Headers.Add("preferences", "{\"clockType\":1,\"interfaceLanguage\":\"en\",\"contentLanguages\":[],\"timeZone\":\"on, -05:00|1, on\"}");
                 }
 
                 

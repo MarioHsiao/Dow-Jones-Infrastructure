@@ -71,7 +71,7 @@ namespace DowJones.Assemblers.Headlines
                                                                  Title = string.Join(" ", ProcessParas(info.title)),
                                                                  Authors = new AuthorCollection(Truncate(ProcessParas(info.byline).ToArray())),
                                                                  CodedAuthors = info.codedAuthors,
-                                                                 CopyRight = info.copyright,
+                                                                 CopyRight = ProcessParas(info.copyright),
                                                                  Reference = info.reference,
                                                                  Snippets = new SnippetCollection(ProcessParas(info.snippet).ToArray()),
                                                                  ContentCategoryDescriptor = info.contentCategoryDescriptor,
