@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using DowJones.Exceptions;
 using DowJones.Search;
@@ -38,6 +39,10 @@ namespace DowJones.Managers.Search
                 foreach (var keyValuePair in CodesDict)
                 {
                     request.StructuredSearch.Query.MetadataCollectionCollection.Add(MapItem(keyValuePair.Key));
+                    if (keyValuePair.Key == NewsFilterCategory.Source)
+                    {
+                        request.StructuredSearch.Query.MetadataCollectionCollection.Add(MetadataCollection.Group);
+                    }
                     fcodes.AddRange(keyValuePair.Value);
                 }
                 request.StructuredSearch.Query.SearchStringCollection.Add(new MetadataSearchString
@@ -46,7 +51,6 @@ namespace DowJones.Managers.Search
                                                                                   Scope = "fcode",
                                                                                   Value = String.Join(" ", fcodes)
                                                                               });
-
                 #endregion
 
                 #region ---- Build the response ----
@@ -122,6 +126,8 @@ namespace DowJones.Managers.Search
                     return NewsFilterCategory.Region;
                 case MetadataCollection.Source:
                     return NewsFilterCategory.Source;
+                case MetadataCollection.Group://For GroupSource
+                    return NewsFilterCategory.Group;
             }
             return NewsFilterCategory.Unknown;
         }

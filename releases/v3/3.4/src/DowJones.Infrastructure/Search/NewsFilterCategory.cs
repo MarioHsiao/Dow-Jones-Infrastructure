@@ -34,6 +34,9 @@ namespace DowJones.Search
         DateRange,
 
         [AssignedToken("keywords")]
-        Keyword
+        Keyword,
+
+        [AssignedToken("group")]
+        Group,
     }
 }
