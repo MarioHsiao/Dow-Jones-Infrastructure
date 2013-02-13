@@ -103,6 +103,10 @@ namespace DowJones.Ajax.PortalHeadlineList
         [JsonProperty( "codedAuthors" )]
         public List<Para> CodedAuthors { get; set; }
 
+        [DataMember(Name = "copyRight")]
+        [JsonProperty("copyRight")]
+        public List<string> CopyRight { get; set; }
+
         [DataMember( Name = "authors" )]
         [JsonProperty( "authors" )]
         public AuthorCollection Authors
