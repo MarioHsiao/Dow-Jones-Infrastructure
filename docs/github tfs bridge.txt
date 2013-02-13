@@ -1,0 +1,38 @@
+title TFS GitHub bridge
+
+participant TFS
+participant github as gh
+participant TfsSyncApp as tsa
+
+TFS->TFS: One time setup - Clone the folder structure of the git repo.
+TFS->TFS: Check in the folder structure in TFS.
+
+gh->gh: Goto repo, authorize TFS sync app
+
+user->gh: Commits code
+gh->tsa: Push notification with commit id
+tsw->gh: git pull
+tsw->tfs: merge the pulled changes
+tsw->tfs: resolve conflicts by overwriting TFS copy with GIT copy always.
+tsw->tfs: Commit
+tfs->tfs: Fire CI build or follow regular process after check in.
+
+
+====================
+
+title TfsSyncApp
+
+participant GitHub as gh
+participant githubHook as ghh
+participant "Messaging\n(Message queue/\nServiceBus/\nNamed Pipes)" as m
+participant "TfsSyncWorker\n(Windows Service)" as tsw
+
+
+
+gh->ghh: Push notification with commit id
+ghh->m: new message {commitId,...}
+tsw->m: pickup message
+tsw->gh: git pull
+tsw->tfs: merge the pulled changes
+tsw->tfs: resolve conflicts by overwriting TFS copy with GIT copy always.
+tsw->tfs: Commit
