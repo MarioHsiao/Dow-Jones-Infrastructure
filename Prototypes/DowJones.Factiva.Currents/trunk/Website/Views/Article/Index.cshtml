@@ -1,5 +1,6 @@
 ﻿@model DowJones.Factiva.Currents.Website.Models.HeadlinePreview
 @using System.Linq;
+@using DowJones.Ajax.HeadlineList
 
 @{
 	ViewBag.Title = Model == null ? "Headline info" : Model.Headline.Title;
@@ -44,8 +45,7 @@
             </div>
             <div>
                 <span class="dj_article_la dj_article_section">
-                    @* TODO @Model.Headline.BaseLanguageDescriptor *@
-                    English
+                    @Model.Headline.BaseLanguageDescriptor
                 </span>
             </div>
             <div>
@@ -53,10 +53,29 @@
                     @Model.Headline.SourceCode.ToUpper()
                 </span>
             </div>
+             <div>
+                <span class="dj_article_by dj_article_section">
+                    @if (Model.Headline.CopyRight != null && Model.Headline.CopyRight.Count > 0)
+                    {
+                        string copyRight = string.Empty;
+                        foreach (string item in  Model.Headline.CopyRight)
+                        {
+                            copyRight = copyRight.IsNullOrEmpty() ? item : string.Join(copyRight, ",", item);
+                        }
+                        <span class="copyright">
+                            @copyRight
+                        </span>
+                    }
+                </span>
+            </div>
             <br />
             <span class="dj_article_lp dj_article_section">
                 @Model.Headline.Snippets.FirstOrDefault()
             </span>
+            <span class="dj_article_lp dj_article_section">
+                @Model.Headline..FirstOrDefault()
+            </span>
+            
         </div>
 
         
