@@ -110,6 +110,9 @@
     <Compile Include="Ajax\SocialMedia\UserDetails.cs" />
     <Compile Include="Alert\AlertProperties.cs" />
     <Compile Include="Alert\AlertRequest.cs" />
+    <Compile Include="Alert\AlertRequestBinderAttribute.cs" />
+    <Compile Include="Alert\CustomExtensions.cs" />
+    <Compile Include="Alert\DeliveryContentType.cs" />
     <Compile Include="Alert\SearchFilterUtility.cs" />
     <Compile Include="Alert\SimpleAlertRequest.cs" />
     <Compile Include="Articles\ArticleDataResult.cs" />

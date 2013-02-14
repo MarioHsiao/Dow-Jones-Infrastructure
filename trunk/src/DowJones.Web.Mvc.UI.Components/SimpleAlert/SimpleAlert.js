@@ -20,7 +20,8 @@ DJ.UI.SimpleAlert = DJ.UI.Component.extend({
         filterLabel: 'span.filterLabel',
         filterClose: 'span.icon-close',
         filter: 'span.filter',
-        selectedOption: 'option:selected'
+        selectedOption: 'option:selected',
+        includeSM: 'input.includeSM'
     },
 
     defaults: {
@@ -64,7 +65,8 @@ DJ.UI.SimpleAlert = DJ.UI.Component.extend({
             emailAddress: $(this.selectors.emailAddress, this.$element),
             emailFormat: $(this.selectors.emailFormat, this.$element),
             deliveryTime: $(this.selectors.deliveryTime, this.$element),
-            removeDuplicate: $(this.selectors.removeDuplicate, this.$element)
+            removeDuplicate: $(this.selectors.removeDuplicate, this.$element),
+            includeSM: $(this.selectors.includeSM, this.$element)
         }
         this.$title = $(this.selectors.title, this.$element);
         this.$newsFilter = $(this.selectors.newsFilter, this.$element);
@@ -144,6 +146,11 @@ DJ.UI.SimpleAlert = DJ.UI.Component.extend({
 
             //Duplicates
             this.$input.removeDuplicate.append(this.templates.options({ items: d.duplicates }));
+
+            //Include Social Media
+            if (d.includeSocialMedia) {
+                this.$input.includeSM.attr("checked", "checked");
+            }
 
             if (!this.options.enableExclude) {
                 //News Fitler
@@ -243,7 +250,8 @@ DJ.UI.SimpleAlert = DJ.UI.Component.extend({
                 selectedDeliveryTime: this.$input.deliveryTime.val(),
                 selectedDuplicate: this.$input.removeDuplicate.val(),
                 selectedSource: this.$input.sourceList.val(),
-                selectedSourceDesc: this.$input.sourceList.find(this.selectors.selectedOption).text()
+                selectedSourceDesc: this.$input.sourceList.find(this.selectors.selectedOption).text(),
+                includeSocialMedia: this.$input.includeSM.is(':checked')
             };
 
             //Trigger the save event and pass the data
@@ -390,7 +398,7 @@ DJ.UI.SimpleAlert = DJ.UI.Component.extend({
             $filterConnectionHtml = "<span class='filterConnection'>" +
                                     "<span class='connectionText connectionTextNot'><%= Token('notLabel') %></span>" +
                                     "</span>";
-            $gearBtn = $('span.fi_d-gear', elem),
+        $gearBtn = $('span.fi_d-gear', elem),
             fIndex = parseInt($gearBtn.attr("findex")),
             iIndex = parseInt($gearBtn.attr("iindex"));
 

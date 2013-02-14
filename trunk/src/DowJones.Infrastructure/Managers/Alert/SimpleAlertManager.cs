@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Xml.Serialization;
 using DowJones.Exceptions;
+using DowJones.Infrastructure.Alert;
 using DowJones.Managers.Search.CodedNewsQueries;
 using DowJones.Preferences;
 using DowJones.Search.Core;
@@ -16,8 +18,6 @@ using Factiva.Gateway.V1_0;
 using TrackFilterItem = Factiva.Gateway.Messages.Track.V1_0.FilterItem;
 using TrackFilterSourceItem = Factiva.Gateway.Messages.Track.V1_0.FilterSourceItem;
 using TrackNewsFilters = Factiva.Gateway.Messages.Track.V1_0.NewsFilters;
-using DowJones.Infrastructure.Alert;
-using System.IO;
 
 namespace DowJones.Managers.Alert
 {
@@ -45,16 +45,17 @@ namespace DowJones.Managers.Alert
                                   {
                                       productType = ProductType.Iff,
                                       folderName = request.AlertName,
-                                      deliveryMethod = request.DeliveryMethod, 
-                                      deliveryTimes = request.DeliveryTime, 
-                                      deliveryTimesSpecified = true, 
-                                      email = request.EmailAddress, 
-                                      documentFormat = request.EmailFormat, 
-                                      documentFormatSpecified = true, 
-                                      documentType = DocumentType.FULL, 
-                                      documentTypeSpecified = true, 
-                                      deduplicationLevel = MapDedupLevel(request.RemoveDuplicate), 
-                                      trackUserData = new TrackUserData()
+                                      deliveryMethod = request.DeliveryMethod,
+                                      deliveryTimes = request.DeliveryTime,
+                                      deliveryTimesSpecified = true,
+                                      email = request.EmailAddress,
+                                      documentFormat = request.EmailFormat,
+                                      documentFormatSpecified = true,
+                                      documentType = DocumentType.FULL,
+                                      documentTypeSpecified = true,
+                                      deduplicationLevel = MapDedupLevel(request.RemoveDuplicate),
+                                      trackUserData = new TrackUserData(),
+                                      deliveryContentType = GetDeliveryContentType(request.DeliveryContentType)
                                   };
             #endregion
 
@@ -96,7 +97,7 @@ namespace DowJones.Managers.Alert
                             break;
                         case "key":
                             _newsFilters.keywords = GetKeywordFilterItem(filter.Filter);
-                            
+
                             break;
                     }
                 }
@@ -109,11 +110,12 @@ namespace DowJones.Managers.Alert
                                {
                                    allWords = request.SearchText,
                                    newsFilters = _newsFilters,
-                                   srchUIVer = "2", 
-                                   rl = "1", 
-                                   languageList = "custom", 
-                                   searchType = "Simple", 
-                                   sortBy = "date"
+                                   srchUIVer = "2",
+                                   rl = "1",
+                                   languageList = "custom",
+                                   searchType = "Simple",
+                                   sortBy = "date",
+                                   allowMMContent = request.AllowMMContent
                                };
             if (request.DeliveryMethod == DeliveryMethod.Batch)
             {
@@ -188,7 +190,7 @@ namespace DowJones.Managers.Alert
             Stream objStream;
             var searchRequest = new PerformContentSearchRequest
                                     {
-                                        StructuredSearch = new StructuredSearch {Query = query}
+                                        StructuredSearch = new StructuredSearch { Query = query }
                                     };
             searchRequest.Serialize(out objStream);
             using (var reader = new StreamReader(objStream))
@@ -288,14 +290,14 @@ namespace DowJones.Managers.Alert
         {
             if (newsFilter == null || newsFilter.Count() == 0)
                 return null;
-            return newsFilter.Select(filter => new TrackFilterItem {code = filter.Code, name = filter.Desc}).ToArray();
+            return newsFilter.Select(filter => new TrackFilterItem { code = filter.Code, name = filter.Desc }).ToArray();
         }
 
         private static TrackFilterSourceItem[] GetFilterSourceItem(IEnumerable<Utilities.Search.Core.FilterItem> newsFilter)
         {
             if (newsFilter == null || newsFilter.Count() == 0)
                 return null;
-            return newsFilter.Select(filter => new TrackFilterSourceItem {code = filter.Code, name = filter.Desc, type = filter.Type}).ToArray();
+            return newsFilter.Select(filter => new TrackFilterSourceItem { code = filter.Code, name = filter.Desc, type = filter.Type }).ToArray();
         }
 
         private static string[] GetKeywordFilterItem(IEnumerable<Utilities.Search.Core.FilterItem> newsFilter)
@@ -562,6 +564,17 @@ namespace DowJones.Managers.Alert
         private static bool IsValidSourceCode(string code)
         {
             return !(code == null || SearchUtility.IsUiSourceCode(code));
+        }
+
+        private static string GetDeliveryContentType(IEnumerable<DowJones.Infrastructure.Alert.DeliveryContentType> deliveryContentType)
+        {
+            string[] contentTypes =
+                (
+                    from ct in deliveryContentType
+                    select ct.GetAttributeValue<AlertRequestBinderAttribute, string>(x => x.TranslateTo)
+                ).ToArray<string>();
+
+            return String.Join("|", contentTypes);
         }
 
         /*
