@@ -3,8 +3,6 @@ using DowJones.Managers.Search.CodedNewsQueries;
 using DowJones.Utilities.Search.Core;
 using Factiva.Gateway.Messages.Preferences.V1_0;
 using Factiva.Gateway.Messages.Track.V1_0;
-using Newtonsoft.Json;
-using FilterItem = DowJones.Utilities.Search.Core.FilterItem;
 
 namespace DowJones.Infrastructure.Alert
 {
@@ -21,6 +19,8 @@ namespace DowJones.Infrastructure.Alert
         public SelectedSources SelectedSources { get; set; }
         public bool AdjustToDaylightSavingsTime { get; set; }
         public string TimeZoneOffset { get; set; }
+        public List<DeliveryContentType> DeliveryContentType { get; set; }
+        public bool AllowMMContent { get; set; }
     }
 
     public class Source : SourceList
@@ -34,5 +34,4 @@ namespace DowJones.Infrastructure.Alert
         public List<Source> Source { get; set; }
     }
 
-   
 }

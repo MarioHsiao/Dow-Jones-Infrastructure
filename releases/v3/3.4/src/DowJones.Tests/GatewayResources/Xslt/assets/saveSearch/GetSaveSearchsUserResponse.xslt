@@ -16,28 +16,15 @@
   <xsl:template match="/*/ResultSet">
     <xsl:for-each select="Result/RESPONSE_LIST">
       <itemInfo>
-        <xsl:for-each select="child::*">
-          <xsl:choose>
-            <xsl:when test="local-name() = 'ITEM_ID'">
-              <id>
-                <xsl:value-of select="."/>
-              </id>
-            </xsl:when>
-            <xsl:when test="local-name() = 'ITEM_INSTANCE_NAME'">
-              <name>
-                <xsl:value-of select="."/>
-              </name>
-            </xsl:when>
-            <xsl:when test="local-name() = 'ITEM_BLOB'">
-              <xsl:value-of select="CLASS/ITEM/VALUE"/>
-            </xsl:when>
-          </xsl:choose>
-        </xsl:for-each>
-        <type>USER</type>
-        <!--<xsl:choose>
-            <xsl:when test="count(GROUP_NAME) > 0">ACCOUNT</xsl:when>
-            <xsl:otherwise >USER</xsl:otherwise>
-          </xsl:choose>-->
+           <id><xsl:value-of select="ITEM_ID"/></id>
+           <name><xsl:value-of select="ITEM_INSTANCE_NAME"/></name>
+           <type>
+            <xsl:choose>
+              <xsl:when test="string-length(normalize-space(GROUP_NAME)) &gt; 0">ACCOUNT</xsl:when>
+              <xsl:otherwise>USER</xsl:otherwise>
+            </xsl:choose>
+           </type>
+        
       </itemInfo>
     </xsl:for-each>
   </xsl:template>

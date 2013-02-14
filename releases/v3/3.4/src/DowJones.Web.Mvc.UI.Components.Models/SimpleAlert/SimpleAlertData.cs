@@ -152,6 +152,12 @@ namespace DowJones.Web.Mvc.UI.Components.SimpleAlert
         [JsonProperty("alertName")]
         public string AlertName { get; set; }
 
+        /// <summary>
+        /// Get or Sets the include social media checkbox
+        /// </summary>
+        [JsonProperty("includeSocialMedia")]
+        public bool IncludeSocialMedia { get; set; }
+
         public SimpleAlertData(IResourceTextManager resources = null)
         {
             _resources = resources ?? ServiceLocator.Resolve<IResourceTextManager>();

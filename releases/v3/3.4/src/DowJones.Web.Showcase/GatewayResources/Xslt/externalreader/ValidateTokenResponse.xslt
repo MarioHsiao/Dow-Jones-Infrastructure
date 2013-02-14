@@ -11,11 +11,14 @@
       <xsl:copy-of select="//lastName"/>
       <xsl:copy-of select="//accountId"/>
       <xsl:copy-of select="//companyName"/>
-      <xsl:copy-of select="//isoCountryCode"/>
+      <xsl:if test="//isoCountryCode != 'ZZ'">
+        <xsl:copy-of select="//isoCountryCode"/>
+      </xsl:if>
+      <xsl:if test="//state != 'ZZ'">
       <xsl:copy-of select="//state"/>
+      </xsl:if>
     </xsl:element>
 	</xsl:template>
-	
 	<xsl:template name="GetError">
 		<xsl:element name="ERROR_CODE">
 			<xsl:value-of select="//ERROR_CODE"/>

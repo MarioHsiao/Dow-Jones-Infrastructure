@@ -15,38 +15,17 @@
 
   <xsl:template match="/*/ResultSet">
     <xsl:for-each select="Result/ITEM">
-      <itemInfo>
-        <xsl:for-each select="child::*">
-          <xsl:choose>
+      
+        <itemInfo>
+          <id>
+            <xsl:value-of select="ITEM_ID"/>
+          </id>
+          <name>
+            <xsl:value-of select="ITEM_INSTANCE_NAME"/>
+          </name>
+          <type>ACCOUNT</type>
+        </itemInfo>
 
-            <xsl:when test="local-name() = 'ITEM_ID'">
-              <id>
-                <xsl:value-of select="."/>
-              </id>
-            </xsl:when>
-
-            <xsl:when test="local-name() = 'ITEM_INSTANCE_NAME'">
-              <name>
-                <xsl:value-of select="."/>
-              </name>
-            </xsl:when>
-            
-            <xsl:when test="local-name() = 'ITEM_TYPE'">
-              <type>
-                <xsl:choose>
-                  <xsl:when test=". = 'USER'">USER</xsl:when>
-                  <xsl:otherwise >ACCOUNT</xsl:otherwise>
-                </xsl:choose>
-              </type>
-            </xsl:when>
-            <xsl:when test="local-name() = 'ITEM_BLOB'">
-                <xsl:value-of select="CLASS/ITEM/VALUE"/>
-            </xsl:when>
-
-          </xsl:choose>
-        </xsl:for-each>
-
-      </itemInfo>
     </xsl:for-each>
   </xsl:template>
 
