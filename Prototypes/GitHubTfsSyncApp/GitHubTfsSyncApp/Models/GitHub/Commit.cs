@@ -11,5 +11,10 @@ namespace GitHubTfsSyncApp.Models.GitHub
 		public string Message { get; set; }
 		public DateTime Timestamp { get; set; }
 		public List<string> Added { get; set; }
+
+		public Author Committer { get; set; }
+		public bool Distinct { get; set; }
+		public List<string> Modified { get; set; }
+		public List<string> Removed { get; set; }
 	}
 }

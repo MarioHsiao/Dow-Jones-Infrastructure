@@ -1,4 +1,6 @@
-﻿namespace GitHubTfsSyncApp.Models.GitHub
+﻿using System;
+
+namespace GitHubTfsSyncApp.Models.GitHub
 {
 	public class Repository
 	{
@@ -10,5 +12,17 @@
 
 		public int Private { get; set; }
 		public Owner Owner { get; set; }
+
+
+		public DateTime CreatedAt { get; set; }
+		public bool Fork { get; set; }
+		public bool HasDownloads { get; set; }
+		public bool HasIssues { get; set; }
+		public bool HasWiki { get; set; }
+		public int Id { get; set; }
+		public int OpenIssues { get; set; }
+		public DateTime PushedAt { get; set; }
+		public int Size { get; set; }
+		public int Stargazers { get; set; }
 	}
 }
