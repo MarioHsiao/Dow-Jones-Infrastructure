@@ -1,5 +1,6 @@
 ﻿using System;
 using GitHubTfsSyncApp.Controllers;
+using GitHubTfsSyncApp.Providers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace GitHubTfsSyncApp.Tests

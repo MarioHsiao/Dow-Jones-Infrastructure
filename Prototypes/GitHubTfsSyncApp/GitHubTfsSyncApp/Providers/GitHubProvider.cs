@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
+using GitHubTfsSyncApp.Controllers;
 using GitHubTfsSyncApp.Models.GitHub;
 
-namespace GitHubTfsSyncApp.Controllers
+namespace GitHubTfsSyncApp.Providers
 {
 	public class GitHubProvider
 	{

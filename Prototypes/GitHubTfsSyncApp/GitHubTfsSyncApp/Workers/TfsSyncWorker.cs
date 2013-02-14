@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using GitHubTfsSyncApp.Controllers;
 using GitHubTfsSyncApp.Helpers;
 using GitHubTfsSyncApp.Models.GitHub;
+using GitHubTfsSyncApp.Providers;
 
-namespace GitHubTfsSyncApp.Controllers
+namespace GitHubTfsSyncApp.Workers
 {
 	public class TfsSyncWorker
 	{

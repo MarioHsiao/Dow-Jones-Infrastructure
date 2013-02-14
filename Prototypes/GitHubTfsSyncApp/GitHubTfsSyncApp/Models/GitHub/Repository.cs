@@ -1,6 +1,4 @@
-﻿using Newtonsoft.Json;
-
-namespace GitHubTfsSyncApp.Models.GitHub
+﻿namespace GitHubTfsSyncApp.Models.GitHub
 {
 	public class Repository
 	{
@@ -10,8 +8,7 @@ namespace GitHubTfsSyncApp.Models.GitHub
 		public int Watchers { get; set; }
 		public int Forks { get; set; }
 
-		[JsonProperty("private")]
-		public int IsPrivate { get; set; }
+		public int Private { get; set; }
 		public Owner Owner { get; set; }
 	}
 }

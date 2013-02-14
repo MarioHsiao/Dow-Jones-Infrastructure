@@ -2,11 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using GitHubTfsSyncApp.Helpers;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
 using RestSharp;
 
-namespace GitHubTfsSyncApp.Controllers
+namespace GitHubTfsSyncApp.Providers
 {
 	public interface IRestApiProvider
 	{

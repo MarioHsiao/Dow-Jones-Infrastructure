@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using GitHubTfsSyncApp.Models.GitHub;
+using GitHubTfsSyncApp.Workers;
 
 namespace GitHubTfsSyncApp.Controllers
 {
