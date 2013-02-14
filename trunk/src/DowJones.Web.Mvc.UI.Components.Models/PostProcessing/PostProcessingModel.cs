@@ -54,9 +54,9 @@ namespace DowJones.Web.Mvc.UI.Components.PostProcessing
         Listen,
         [AssignedToken("translate")]
         Translate,
-        [AssignedToken("downloadAsPDF")]
+        [AssignedToken("downloadPDF")]
         PDF,
-        [AssignedToken("downloadAsRTF")]
+        [AssignedToken("downloadRTF")]
         RTF,
     }
 
