@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace GitHubTfsSyncApp.Models.GitHub
 {
@@ -8,7 +9,7 @@ namespace GitHubTfsSyncApp.Models.GitHub
 		public string Url { get; set; }
 		public Author Author { get; set; }
 		public string Message { get; set; }
-		public string Timestamp { get; set; }
-		public IEnumerable<string> Added { get; set; }
+		public DateTime Timestamp { get; set; }
+		public List<string> Added { get; set; }
 	}
 }

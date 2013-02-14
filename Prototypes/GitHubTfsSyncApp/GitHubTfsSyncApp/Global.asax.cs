@@ -6,6 +6,8 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using AttributeRouting.Web.Http.WebHost;
+using log4net.Config;
 
 namespace GitHubTfsSyncApp
 {
@@ -22,6 +24,8 @@ namespace GitHubTfsSyncApp
 			FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
 			RouteConfig.RegisterRoutes(RouteTable.Routes);
 			BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+			XmlConfigurator.Configure();
 		}
 	}
 }
