@@ -199,14 +199,15 @@ DJ.UI.Radar = DJ.UI.Component.extend({
     },
 
     _validateAndCorrectData: function (data) {
-        var newsEntityRef = this._getNewsEntityReference(data);
+        var newsEntityRef = this._getNewsEntityReference(data), newsEntity;
         for (var i = 0; i < data.parentNewsEntities.length; i++) {
             if (data.parentNewsEntities[i].newsEntities.length == newsEntityRef.length) {
                 continue;
             }
+            newsEntity = data.parentNewsEntities[i].newsEntities;
             for (j = 0; j < newsEntityRef.length; j++) {
-                if (!data.parentNewsEntities[i].newsEntities[j] || data.parentNewsEntities[i].newsEntities[j].code != newsEntityRef[j].code) {
-                    data.parentNewsEntities[i].newsEntities.splice(j, 0, $.extend(newsEntityRef[j], { currentTimeFrameNewsVolume: { displayText: { value: "0" }, value: 0} }));
+                if (!newsEntity[j] || newsEntity[j].code != newsEntityRef[j].code) {
+                    newsEntity.splice(j, 0, $.extend({}, newsEntityRef[j], { currentTimeFrameNewsVolume: { displayText: { value: "0" }, value: 0} }));
                 }
             }
         }
