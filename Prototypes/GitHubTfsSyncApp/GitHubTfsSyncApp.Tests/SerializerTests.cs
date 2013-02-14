@@ -1,9 +1,8 @@
-﻿using System;
-using System.Net;
+﻿using System.IO;
 using GitHubTfsSyncApp.Models.GitHub;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using RestSharp;
-using RestSharp.Deserializers;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 
 namespace GitHubTfsSyncApp.Tests
 {
@@ -13,20 +12,16 @@ namespace GitHubTfsSyncApp.Tests
 		[TestMethod]
 		public void CanDeserializeWebHookResponse()
 		{
-			const string sampleResponse = "{ \"before\": \"5aef35982fb2d34e9d9d4502f6ede1072793222d\", \"repository\": { \"url\": \"http://github.com/defunkt/github\", \"name\": \"github\", \"description\": \"You're lookin' at it.\", \"watchers\": 5, \"forks\": 2, \"private\": 1, \"owner\": { \"email\": \"chris@ozmm.org\", \"name\": \"defunkt\" } }, \"commits\": [ { \"id\": \"41a212ee83ca127e3c8cf465891ab7216a705f59\", \"url\": \"http://github.com/defunkt/github/commit/41a212ee83ca127e3c8cf465891ab7216a705f59\", \"author\": { \"email\": \"chris@ozmm.org\", \"name\": \"Chris Wanstrath\" }, \"message\": \"okay i give in\", \"timestamp\": \"2008-02-15T14:57:17-08:00\", \"added\": [\"filepath.rb\"] }, { \"id\": \"de8251ff97ee194a289832576287d6f8ad74e3d0\", \"url\": \"http://github.com/defunkt/github/commit/de8251ff97ee194a289832576287d6f8ad74e3d0\", \"author\": { \"email\": \"chris@ozmm.org\", \"name\": \"Chris Wanstrath\" }, \"message\": \"update pricing a tad\", \"timestamp\": \"2008-02-15T14:36:34-08:00\" } ], \"after\": \"de8251ff97ee194a289832576287d6f8ad74e3d0\", \"ref\": \"refs/heads/master\" }";
-			var jsonDeserializer = new JsonDeserializer();
+			const string sampleResponse = "{ \"after\": \"9a272ff0768f0179acc292c7c2ffbe5f2d04b320\", \"before\": \"fb0f2c12540a559a948afc54eeb9b661cff5333c\", \"commits\": [ { \"added\": [ \"CheckinTest.md\" ], \"author\": { \"email\": \"hrusikesh.panda@dowjones.com\", \"name\": \"pandah\", \"username\": \"pandah\" }, \"committer\": { \"email\": \"hrusikesh.panda@dowjones.com\", \"name\": \"pandah\", \"username\": \"pandah\" }, \"distinct\": true, \"id\": \"69d262f60a946c426e4ece7bd25f9235fbc30af0\", \"message\": \"Create CheckinTest.md\", \"modified\": [], \"removed\": [], \"timestamp\": \"2013-02-14T21:29:44+00:00\", \"url\": \"https://github.dowjones.net/pandah/TfsSyncDemo/commit/69d262f60a946c426e4ece7bd25f9235fbc30af0\" }, { \"added\": [], \"author\": { \"email\": \"hrusikesh.panda@dowjones.com\", \"name\": \"pandah\", \"username\": \"pandah\" }, \"committer\": { \"email\": \"hrusikesh.panda@dowjones.com\", \"name\": \"pandah\", \"username\": \"pandah\" }, \"distinct\": true, \"id\": \"9a272ff0768f0179acc292c7c2ffbe5f2d04b320\", \"message\": \"Update CheckinTest.md\", \"modified\": [ \"CheckinTest.md\" ], \"removed\": [], \"timestamp\": \"2013-02-14T21:30:24+00:00\", \"url\": \"https://github.dowjones.net/pandah/TfsSyncDemo/commit/9a272ff0768f0179acc292c7c2ffbe5f2d04b320\" } ], \"compare\": \"https://github.dowjones.net/pandah/TfsSyncDemo/compare/fb0f2c12540a...9a272ff0768f\", \"created\": false, \"deleted\": false, \"forced\": false, \"head_commit\": { \"added\": [], \"author\": { \"email\": \"hrusikesh.panda@dowjones.com\", \"name\": \"pandah\", \"username\": \"pandah\" }, \"committer\": { \"email\": \"hrusikesh.panda@dowjones.com\", \"name\": \"pandah\", \"username\": \"pandah\" }, \"distinct\": true, \"id\": \"9a272ff0768f0179acc292c7c2ffbe5f2d04b320\", \"message\": \"Update CheckinTest.md\", \"modified\": [ \"CheckinTest.md\" ], \"removed\": [], \"timestamp\": \"2013-02-14T21:30:24+00:00\", \"url\": \"https://github.dowjones.net/pandah/TfsSyncDemo/commit/9a272ff0768f0179acc292c7c2ffbe5f2d04b320\" }, \"hook_callpath\": \"new\", \"pusher\": { \"name\": \"none\" }, \"ref\": \"refs/heads/master\", \"repository\": { \"created_at\": \"2013-02-14T15:54:52+00:00\", \"description\": \"Demo Repository to show how Github TFS bridge will work.\", \"fork\": false, \"forks\": 0, \"has_downloads\": true, \"has_issues\": true, \"has_wiki\": true, \"id\": 1148, \"name\": \"TfsSyncDemo\", \"open_issues\": 0, \"owner\": { \"email\": \"hrusikesh.panda@dowjones.com\", \"name\": \"pandah\" }, \"private\": false, \"pushed_at\": \"2013-02-14T21:30:26+00:00\", \"size\": 152, \"stargazers\": 0, \"url\": \"https://github.dowjones.net/pandah/TfsSyncDemo\", \"watchers\": 0 } }";
 
-			var response = new RestResponse
+			var serializerSettings = new JsonSerializerSettings
 				{
-					Content = sampleResponse,
-					ContentLength = sampleResponse.Length,
-					ContentType = "application/json",
-					ResponseStatus = ResponseStatus.Completed,
-					StatusCode = HttpStatusCode.OK,
+					ContractResolver = new CamelCasePropertyNamesContractResolver(),
 				};
+			var jsonDeserializer = JsonSerializer.Create(serializerSettings);
 
-			var deserializedResponse = jsonDeserializer.Deserialize<WebHookResponse>(response) ;
-			Assert.AreEqual(deserializedResponse.Before, "5aef35982fb2d34e9d9d4502f6ede1072793222d");
+			var deserializedResponse = jsonDeserializer.Deserialize<WebHookResponse>(new JsonTextReader(new StringReader(sampleResponse)));
+			Assert.AreEqual(deserializedResponse.After, "9a272ff0768f0179acc292c7c2ffbe5f2d04b320");
 		}
 	}
 }
