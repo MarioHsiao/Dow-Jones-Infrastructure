@@ -178,16 +178,24 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\GitHubAccessConfiguration.cs" />
+    <Compile Include="Controllers\GitHubProvider.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Controllers\RestApiProvider.cs" />
+    <Compile Include="Controllers\TfsSyncWorker.cs" />
+    <Compile Include="Controllers\NewCommitController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\GitHubAccessConfigurationGenerator.cs" />
+    <Compile Include="Helpers\JsonNetSerializer.cs" />
+    <Compile Include="Models\GitHub\App.cs" />
     <Compile Include="Models\GitHub\Author.cs" />
+    <Compile Include="Models\GitHub\AuthorizationResponse.cs" />
     <Compile Include="Models\GitHub\Commit.cs" />
     <Compile Include="Models\GitHub\Owner.cs" />
     <Compile Include="Models\GitHub\Repository.cs" />
-    <Compile Include="Models\GitHub\RootObject.cs" />
+    <Compile Include="Models\GitHub\WebHookResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

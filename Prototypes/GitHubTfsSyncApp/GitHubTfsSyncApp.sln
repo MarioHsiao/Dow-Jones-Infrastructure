@@ -3,15 +3,20 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitHubTfsSyncApp", "GitHubTfsSyncApp\GitHubTfsSyncApp.csproj", "{862B54F1-5A25-4E1A-889F-8087A36DD7A0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitHubTfsSyncApp.Tests", "GitHubTfsSyncApp.Tests\GitHubTfsSyncApp.Tests.csproj", "{84D1338A-2A38-4813-87CA-A012A145FE2E}"
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 2
+		SccNumberOfProjects = 3
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = http://sbknwstfs1:8080/tfs
 		SccLocalPath0 = .
 		SccProjectUniqueName1 = GitHubTfsSyncApp\\GitHubTfsSyncApp.csproj
 		SccProjectName1 = GitHubTfsSyncApp
 		SccLocalPath1 = GitHubTfsSyncApp
+		SccProjectUniqueName2 = GitHubTfsSyncApp.Tests\\GitHubTfsSyncApp.Tests.csproj
+		SccProjectName2 = GitHubTfsSyncApp.Tests
+		SccLocalPath2 = GitHubTfsSyncApp.Tests
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -22,6 +27,10 @@ Global
 		{862B54F1-5A25-4E1A-889F-8087A36DD7A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{862B54F1-5A25-4E1A-889F-8087A36DD7A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{862B54F1-5A25-4E1A-889F-8087A36DD7A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84D1338A-2A38-4813-87CA-A012A145FE2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84D1338A-2A38-4813-87CA-A012A145FE2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84D1338A-2A38-4813-87CA-A012A145FE2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84D1338A-2A38-4813-87CA-A012A145FE2E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

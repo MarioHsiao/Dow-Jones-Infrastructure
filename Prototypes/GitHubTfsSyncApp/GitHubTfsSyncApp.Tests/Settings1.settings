@@ -1,0 +1,18 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="GitHubTfsSyncApp.Tests" GeneratedClassName="Settings1">
+  <Profiles />
+  <Settings>
+    <Setting Name="GitHubApiEndPoint" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">https://github.dowjones.net/api/v3</Value>
+    </Setting>
+    <Setting Name="GitHubClientId" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">589fce3225be45d1d731</Value>
+    </Setting>
+    <Setting Name="GitHubClientSecret" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">502958ed1a947d1662b34aa3d2ac04ac591a4145</Value>
+    </Setting>
+    <Setting Name="GitHubCredentials" Type="System.String" Scope="Application">
+      <Value Profile="(Default)" />
+    </Setting>
+  </Settings>
+</SettingsFile>
