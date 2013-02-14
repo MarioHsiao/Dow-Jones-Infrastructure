@@ -197,6 +197,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Helpers\GithubModelBinder.cs" />
     <Compile Include="Models\GitHub\GitHubAccessConfiguration.cs" />
     <Compile Include="Models\GitHub\Pusher.cs" />
     <Compile Include="Providers\GitHubProvider.cs" />

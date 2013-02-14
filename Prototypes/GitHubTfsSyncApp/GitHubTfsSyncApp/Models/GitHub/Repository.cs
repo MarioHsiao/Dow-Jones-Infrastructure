@@ -21,6 +21,7 @@ namespace GitHubTfsSyncApp.Models.GitHub
 		public bool HasWiki { get; set; }
 		public int Id { get; set; }
 		public int OpenIssues { get; set; }
+
 		public DateTime PushedAt { get; set; }
 		public int Size { get; set; }
 		public int Stargazers { get; set; }
