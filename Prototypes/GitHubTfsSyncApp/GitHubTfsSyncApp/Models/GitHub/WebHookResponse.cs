@@ -1,7 +1,10 @@
 ﻿using System.Collections.Generic;
+using System.Web.Http.ModelBinding;
+using GitHubTfsSyncApp.Helpers;
 
 namespace GitHubTfsSyncApp.Models.GitHub
 {
+	[ModelBinder(typeof(WebHookResponseModelBinderProvider))]
 	public class WebHookResponse
 	{
 		public string Before { get; set; }

@@ -1,13 +1,6 @@
-﻿using System.Linq;
-using System.Net.Http.Formatting;
-using System.Threading.Tasks;
-using System.Web.Http;
-using AttributeRouting;
-using AttributeRouting.Web.Http;
+﻿using System.Web.Http;
 using GitHubTfsSyncApp.Helpers;
 using GitHubTfsSyncApp.Models.GitHub;
-using GitHubTfsSyncApp.Workers;
-using Newtonsoft.Json;
 using log4net;
 
 namespace GitHubTfsSyncApp.Controllers
@@ -17,18 +10,18 @@ namespace GitHubTfsSyncApp.Controllers
 		private readonly ILog _log = LogManager.GetLogger(typeof(NewCommitController));
 
 
-		public void Post(FormDataCollection formData)
+		public void Post(WebHookResponse response)
 		{
-			var payload = formData.Get("payload");
-			// TODO: should log or do some other error handling. For demo, return will suffice.
-			if (payload == null)
-				return;
-
-			var resp = JsonConvert.DeserializeObject<WebHookResponse>(payload);
 			var ser = new JsonNetSerializer();
+			// TODO: should log or do some other error handling. For demo, return will suffice.
+			if (!ModelState.IsValid)
+			{
+				_log.Error("ModelState not valid. Dump begins:\n");
+				_log.Error(ser.Serialize(ModelState));
+				return;
+			}
 
-			_log.Debug(payload);
-			_log.Debug(ser.Serialize(resp));
+			_log.Debug(ser.Serialize(response));
 
 			// TODO: Use IoC.
 			//var worker = new TfsSyncWorker();
