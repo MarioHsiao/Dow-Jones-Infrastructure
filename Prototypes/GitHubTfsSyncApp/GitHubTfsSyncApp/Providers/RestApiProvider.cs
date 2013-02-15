@@ -43,5 +43,29 @@ namespace GitHubTfsSyncApp.Providers
 
 			return response.Data;
 		}
+
+		public T Get<T>(string resource, IDictionary<string, string> headers = null) where T : new()
+		{
+			return Get<T>(new Uri(_url + resource));
+		}
+
+		public T Get<T>(Uri uri, IDictionary<string, string> headers = null) where T : new()
+		{
+			var client = new RestClient(uri.GetBaseUrl());
+
+			var request = new RestRequest(uri, Method.GET)
+			{
+				RequestFormat = DataFormat.Json,
+			};
+
+			if (headers != null && headers.Any())
+				foreach (var header in headers)
+					request.AddHeader(header.Key, header.Value);
+
+			var response = client.Execute<T>(request);
+
+			return response.Data;
+
+		}
 	}
 }

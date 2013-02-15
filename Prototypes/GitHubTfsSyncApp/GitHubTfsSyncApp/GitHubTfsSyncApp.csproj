@@ -211,6 +211,7 @@
     <Compile Include="Providers\GitHubProvider.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Providers\RestApiProvider.cs" />
+    <Compile Include="Providers\UriExtensions.cs" />
     <Compile Include="Workers\TfsManager.cs" />
     <Compile Include="Workers\TfsSyncWorker.cs" />
     <Compile Include="Controllers\NewCommitController.cs" />
