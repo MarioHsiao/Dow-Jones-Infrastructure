@@ -14,6 +14,13 @@ namespace GitHubTfsSyncApp.Workers
 {
 	public class TfsSyncWorker
 	{
+		private readonly string _tfsUri;
+
+		public TfsSyncWorker(string tfsUri)
+		{
+			_tfsUri = tfsUri;
+		}
+
 		public void Process(IEnumerable<Commit> commits, Repository repository)
 		{
 			EnsureRepositoryIsQueryAble(repository);
