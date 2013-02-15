@@ -40,16 +40,17 @@ namespace GitHubTfsSyncApp.Providers
 			return response;
 		}
 
-		public TreeCollection GetTrees(string sha, string repo, string owner)
+		public TreeCollection GetTrees(Uri uri)
 		{
 			// GET /repos/:owner/:repo/git/trees/:sha
+			var response = RestApiProvider.Get<TreeCollection>(uri, new Dictionary<string, string> { { "Authorization", _gitHubAccesConfiguration.Credentials } });
 
-			var resource = string.Format("/repos/{0}/{1}/git/trees/{2}", owner, repo, sha);
+			return response;
+		}
 
-			var restApiProvider = new RestApiProvider(_gitHubAccesConfiguration.EndPoint);
-
-			var response = restApiProvider.Get<TreeCollection>(resource, new Dictionary<string, string> { { "Authorization", _gitHubAccesConfiguration.Credentials } });
-
+		public Blob GetBlob(Uri uri)
+		{
+			var response = RestApiProvider.Get<Blob>(uri, new Dictionary<string, string> { { "Authorization", _gitHubAccesConfiguration.Credentials } });
 			return response;
 		}
 
@@ -57,40 +58,5 @@ namespace GitHubTfsSyncApp.Providers
 		{
 			throw new NotImplementedException();
 		}
-	}
-
-	public class CommitDetails
-	{
-		public Author Committer { get; set; }
-		public List<GitPointer> Parents { get; set; }
-		public string Message { get; set; }
-		public string Sha { get; set; }
-		public GitPointer Tree { get; set; }
-		public string Url { get; set; }
-		public Author Author { get; set; }
-	}
-
-	public class GitPointer
-	{
-		public string Sha { get; set; }
-		public string Url { get; set; }
-
-	}
-
-	public class Tree
-	{
-		public string Type { get; set; }
-		public string Sha { get; set; }
-		public string Url { get; set; }
-		public int Size { get; set; }
-		public string Path { get; set; }
-		public string Mode { get; set; }
-	}
-
-	public class TreeCollection
-	{
-		public List<Tree> Tree { get; set; }
-		public string Sha { get; set; }
-		public string Url { get; set; }
 	}
 }

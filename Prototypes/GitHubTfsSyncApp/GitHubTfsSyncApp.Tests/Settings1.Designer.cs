@@ -52,7 +52,7 @@ namespace GitHubTfsSyncApp.Tests {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Basic cGFuZGFoOkNyYzIyNDgx")]
         public string GitHubCredentials {
             get {
                 return ((string)(this["GitHubCredentials"]));

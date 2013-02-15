@@ -62,7 +62,7 @@ namespace GitHubTfsSyncApp.Tests
 			Assert.IsNotNull(response, "Couldn't fetch Commit Details");
 			Assert.IsNotNull(response.Tree, "Couldn't fetch Commit Detail Tree");
 
-			var trees = provider.GetTrees(response.Tree.Sha, "TfsSyncDemo", "pandah");
+			var trees = provider.GetTrees(new Uri(response.Tree.Url));
 
 			Assert.IsNotNull(trees, "Couldn't fetch Trees");
 			Assert.AreEqual("4e6aec65517ddf1ea29d3ef335ac8c6775775174", trees.Sha);

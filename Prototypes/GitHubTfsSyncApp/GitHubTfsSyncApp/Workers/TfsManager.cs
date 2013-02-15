@@ -38,7 +38,7 @@ namespace GitHubTfsSyncApp.Workers
 			_versionControl = new Lazy<VersionControlServer>(() => _teamProjectCollection.Value.GetService<VersionControlServer>());
 		}
 
-		public void CreateCheckin(Commit[] commits)
+		public void CreateCheckin(CommitSpec[] commits)
 		{
 			// do not parallelize this.
 			// keeping it sequential is essentially same as git rebasing. 

@@ -12,7 +12,7 @@
       <Value Profile="(Default)">502958ed1a947d1662b34aa3d2ac04ac591a4145</Value>
     </Setting>
     <Setting Name="GitHubCredentials" Type="System.String" Scope="Application">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">Basic cGFuZGFoOkNyYzIyNDgx</Value>
     </Setting>
   </Settings>
 </SettingsFile>

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using GitHubTfsSyncApp.Helpers;
 using RestSharp;
 
 namespace GitHubTfsSyncApp.Providers
@@ -10,13 +9,14 @@ namespace GitHubTfsSyncApp.Providers
 	{
 		T Post<T>(string resource, object body = null, IDictionary<string, string> headers = null)
 			where T : new();
+
+		T Get<T>(string resource, IDictionary<string, string> headers = null) where T : new();
+		T Get<T>(Uri uri, IDictionary<string, string> headers = null) where T : new();
 	}
 
 	public class RestApiProvider : IRestApiProvider
 	{
 		private readonly string _url;
-
-		private readonly Lazy<JsonNetSerializer> _jsonSerializer = new Lazy<JsonNetSerializer>(() => new JsonNetSerializer());
 
 		public RestApiProvider(string url)
 		{
@@ -49,7 +49,12 @@ namespace GitHubTfsSyncApp.Providers
 			return Get<T>(new Uri(_url + resource));
 		}
 
-		public T Get<T>(Uri uri, IDictionary<string, string> headers = null) where T : new()
+		T IRestApiProvider.Get<T>(Uri uri, IDictionary<string, string> headers)
+		{
+			return Get<T>(uri, headers);
+		}
+
+		public static T Get<T>(Uri uri, IDictionary<string, string> headers = null) where T : new()
 		{
 			var client = new RestClient(uri.GetBaseUrl());
 

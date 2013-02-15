@@ -1,6 +1,9 @@
-﻿using System.Web.Http;
+﻿using System.Configuration;
+using System.Threading.Tasks;
+using System.Web.Http;
 using GitHubTfsSyncApp.Helpers;
 using GitHubTfsSyncApp.Models.GitHub;
+using GitHubTfsSyncApp.Workers;
 using log4net;
 
 namespace GitHubTfsSyncApp.Controllers
@@ -24,9 +27,12 @@ namespace GitHubTfsSyncApp.Controllers
 			_log.Debug(ser.Serialize(response));
 
 			// TODO: Use IoC.
-			//var worker = new TfsSyncWorker();
+			var worker = new TfsSyncWorker(
+									ConfigurationManager.AppSettings.Get("TFS:Url"),
+									ConfigurationManager.AppSettings.Get("TFS:Project"), 
+									ConfigurationManager.AppSettings.Get("TFS:LocalWorkspace"));
 
-			//new Task(() => worker.Process(response.Commits, response.Repository)).Start();
+			new Task(() => worker.Process(response.Commits, response.Repository)).Start();
 		}
 	}
 }
