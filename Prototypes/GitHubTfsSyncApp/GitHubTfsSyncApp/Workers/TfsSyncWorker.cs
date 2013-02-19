@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net;
 using AttributeRouting.Helpers;
 using GitHubTfsSyncApp.Helpers;
 using GitHubTfsSyncApp.Models.GitHub;
@@ -14,12 +15,14 @@ namespace GitHubTfsSyncApp.Workers
 		private readonly string _tfsUri;
 		private readonly string _teamProject;
 		private readonly string _localWorkspaceRootDir;
+		private readonly ICredentials _credentials;
 
-		public TfsSyncWorker(string tfsUri, string teamProject, string localWorkspaceRootDir)
+		public TfsSyncWorker(string tfsUri, string teamProject, string localWorkspaceRootDir, ICredentials credentials)
 		{
 			_tfsUri = tfsUri;
 			_teamProject = teamProject;
 			_localWorkspaceRootDir = localWorkspaceRootDir;
+			_credentials = credentials;
 		}
 
 		public void Process(IEnumerable<Commit> commits, Repository repository)
@@ -45,7 +48,7 @@ namespace GitHubTfsSyncApp.Workers
 				}
 			}
 
-			var manager = new TfsManager(_tfsUri, _teamProject, new DirectoryInfo(_localWorkspaceRootDir));
+			var manager = new TfsManager(_tfsUri, _teamProject, new DirectoryInfo(_localWorkspaceRootDir), _credentials);
 
 			manager.CreateCheckin(commitSpecs.ToArray());
 		}
@@ -58,18 +61,7 @@ namespace GitHubTfsSyncApp.Workers
 			{
 				stream.Write(bytes, 0, bytes.Length);
 			}
-		}
-
-		private void EnsureRepositoryIsQueryAble(Repository repository)
-		{
-			if (repository == null)
-				throw new ArgumentNullException("repository", "repository object cannot be null");
-
-			var provider = new GitHubProvider(GitHubAccessConfigurationGenerator.CreateFromWebConfig());
-
-			if (!provider.CanQueryRepo(repository.Url))
-				throw new Exception("Repository is not reachable. Check your settings. For more info: http://developer.github.com/v3/oauth/#non-web-application-flow");
-		}
+		}	
 	}
 
 	public class CommitSpec : Commit

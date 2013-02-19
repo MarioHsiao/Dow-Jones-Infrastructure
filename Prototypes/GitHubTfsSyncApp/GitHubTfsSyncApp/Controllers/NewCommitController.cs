@@ -1,4 +1,5 @@
 ﻿using System.Configuration;
+using System.Net;
 using System.Threading.Tasks;
 using System.Web.Http;
 using GitHubTfsSyncApp.Helpers;
@@ -30,7 +31,8 @@ namespace GitHubTfsSyncApp.Controllers
 			var worker = new TfsSyncWorker(
 									ConfigurationManager.AppSettings.Get("TFS:Url"),
 									ConfigurationManager.AppSettings.Get("TFS:Project"), 
-									ConfigurationManager.AppSettings.Get("TFS:LocalWorkspace"));
+									ConfigurationManager.AppSettings.Get("TFS:LocalWorkspace"),
+									new NetworkCredential(ConfigurationManager.AppSettings.Get("TFS:Username"), ConfigurationManager.AppSettings.Get("TFS:Password")));
 
 			new Task(() => worker.Process(response.Commits, response.Repository)).Start();
 		}

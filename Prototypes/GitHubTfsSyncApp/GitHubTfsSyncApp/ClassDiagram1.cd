@@ -1,0 +1,351 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="GitHubTfsSyncApp.AttributeRoutingHttp" Collapsed="true">
+    <Position X="6.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>App_Start\AttributeRoutingHttp.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GitHubTfsSyncApp.BundleConfig" Collapsed="true">
+    <Position X="13.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>App_Start\BundleConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GitHubTfsSyncApp.FilterConfig" Collapsed="true">
+    <Position X="4.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>App_Start\FilterConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GitHubTfsSyncApp.RouteConfig" Collapsed="true">
+    <Position X="8.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>App_Start\RouteConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GitHubTfsSyncApp.TraceConfig" Collapsed="true">
+    <Position X="3" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>App_Start\TraceConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GitHubTfsSyncApp.WebApiConfig" Collapsed="true">
+    <Position X="11.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>App_Start\WebApiConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GitHubTfsSyncApp.JsonFormatterConfig" Collapsed="true">
+    <Position X="6.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>App_Start\WebApiConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GitHubTfsSyncApp.WebApiApplication" Collapsed="true">
+    <Position X="10" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAA=</HashCode>
+      <FileName>Global.asax.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GitHubTfsSyncApp.Areas.HelpPage.ApiDescriptionExtensions" Collapsed="true">
+    <Position X="3" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAA=</HashCode>
+      <FileName>Areas\HelpPage\ApiDescriptionExtensions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GitHubTfsSyncApp.Areas.HelpPage.HelpPageConfig" Collapsed="true">
+    <Position X="6.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Areas\HelpPage\App_Start\HelpPageConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GitHubTfsSyncApp.Areas.HelpPage.HelpPageConfigurationExtensions" Collapsed="true">
+    <Position X="8.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAABAICACAAAAAAECAAAAADAAAAAEMAAAAAAEA=</HashCode>
+      <FileName>Areas\HelpPage\HelpPageConfigurationExtensions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GitHubTfsSyncApp.Areas.HelpPage.HelpPageSampleGenerator" Collapsed="true">
+    <Position X="10" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAARQAQAAEAJgAAAQAAgAAAAgBAAAAABAAAAI=</HashCode>
+      <FileName>Areas\HelpPage\SampleGeneration\HelpPageSampleGenerator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GitHubTfsSyncApp.Areas.HelpPage.HelpPageSampleKey" Collapsed="true">
+    <Position X="11.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAABAAAgAgAAAAAAAAAAAAICQAAAEAAAAAAA=</HashCode>
+      <FileName>Areas\HelpPage\SampleGeneration\HelpPageSampleKey.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GitHubTfsSyncApp.Areas.HelpPage.ImageSample" Collapsed="true">
+    <Position X="3" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEgAAAAAAAAAAAAIAAAAIAAAAAAAA=</HashCode>
+      <FileName>Areas\HelpPage\SampleGeneration\ImageSample.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GitHubTfsSyncApp.Areas.HelpPage.InvalidSample" Collapsed="true">
+    <Position X="4.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAAAAEgAAAAAAAAAAAAIAAAAAAAAAAAAA=</HashCode>
+      <FileName>Areas\HelpPage\SampleGeneration\InvalidSample.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GitHubTfsSyncApp.Areas.HelpPage.ObjectGenerator" Collapsed="true">
+    <Position X="11.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABDAoAAAAAACAEAICAAAYAAACAAAAAAgCAgAAAAIA=</HashCode>
+      <FileName>Areas\HelpPage\SampleGeneration\ObjectGenerator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GitHubTfsSyncApp.Areas.HelpPage.TextSample" Collapsed="true">
+    <Position X="10" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEgAAAAAAAAAAAAIAAAAAACAAAAAA=</HashCode>
+      <FileName>Areas\HelpPage\SampleGeneration\TextSample.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GitHubTfsSyncApp.Areas.HelpPage.XmlDocumentationProvider" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="6.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAIAAAAQAAABIAAAAAAAAAAAAAAAAAAAAAAAEg=</HashCode>
+      <FileName>Areas\HelpPage\XmlDocumentationProvider.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="GitHubTfsSyncApp.Areas.HelpPage.HelpPageAreaRegistration" Collapsed="true">
+    <Position X="4.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Areas\HelpPageAreaRegistration.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GitHubTfsSyncApp.Areas.HelpPage.Controllers.HelpController" Collapsed="true">
+    <Position X="13.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAEAAAAgAAA=</HashCode>
+      <FileName>Areas\HelpPage\Controllers\HelpController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GitHubTfsSyncApp.Areas.HelpPage.Models.HelpPageApiModel" Collapsed="true">
+    <Position X="3" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAGBAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAA=</HashCode>
+      <FileName>Areas\HelpPage\Models\HelpPageApiModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GitHubTfsSyncApp.Controllers.HomeController" Collapsed="true">
+    <Position X="13.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\HomeController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GitHubTfsSyncApp.Controllers.NewCommitController" Collapsed="true">
+    <Position X="10" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAEAAAAAAAAAACAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\NewCommitController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GitHubTfsSyncApp.Controllers.GitHubAccessConfiguration" Collapsed="true">
+    <Position X="6.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAQAAAgAAAAAAAAAgEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\GitHub\GitHubAccessConfiguration.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GitHubTfsSyncApp.Helpers.GitHubAccessConfigurationGenerator" Collapsed="true">
+    <Position X="8.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Helpers\GitHubAccessConfigurationGenerator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GitHubTfsSyncApp.Helpers.JsonNetSerializer" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="8.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAACAALAAAAAAQAAAAAAA=</HashCode>
+      <FileName>Helpers\JsonNetSerializer.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="GitHubTfsSyncApp.Helpers.WebHookResponseModelBinder" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="3" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Helpers\WebHookResponseModelBinder.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="GitHubTfsSyncApp.Helpers.WebHookResponseModelBinderProvider" Collapsed="true">
+    <Position X="4.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Helpers\WebHookResponseModelBinder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GitHubTfsSyncApp.Models.GitHub.App" Collapsed="true">
+    <Position X="4.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAACAAAAAAAAAA=</HashCode>
+      <FileName>Models\GitHub\App.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GitHubTfsSyncApp.Models.GitHub.Author" Collapsed="true">
+    <Position X="8.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\GitHub\Author.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GitHubTfsSyncApp.Models.GitHub.AuthorizationResponse" Collapsed="true">
+    <Position X="10" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAACAAAAAAAACCAAACAAAAAAAAAAAAAACAAAAAEhAAA=</HashCode>
+      <FileName>Models\GitHub\AuthorizationResponse.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GitHubTfsSyncApp.Models.GitHub.Commit" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAgAAAAACEAAgBACAEAAAAAAAAAACAAAIAAAAAA=</HashCode>
+      <FileName>Models\GitHub\Commit.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GitHubTfsSyncApp.Models.GitHub.Owner" Collapsed="true">
+    <Position X="13.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\GitHub\Owner.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GitHubTfsSyncApp.Models.GitHub.Pusher" Collapsed="true">
+    <Position X="3" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\GitHub\Pusher.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GitHubTfsSyncApp.Models.GitHub.Repository" Collapsed="true">
+    <Position X="4.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAACCACAAAAggDAAACAAAAQAEAAAAAAACJAgBAIAAAA=</HashCode>
+      <FileName>Models\GitHub\Repository.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GitHubTfsSyncApp.Models.GitHub.WebHookResponse" Collapsed="true">
+    <Position X="13.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAgAAAAAAEAAAQAYAAAQAAABAAAUIQAA=</HashCode>
+      <FileName>Models\GitHub\WebHookResponse.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GitHubTfsSyncApp.Providers.Blob" Collapsed="true">
+    <Position X="11.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAgAAAAAAAAAAAgAAAAAAACACAAAAAAAA=</HashCode>
+      <FileName>Providers\Blob.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GitHubTfsSyncApp.Providers.CommitDetails" Collapsed="true">
+    <Position X="3" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAACAAAAAgAAAAAAAAAAAAAAACACAIAAIAAA=</HashCode>
+      <FileName>Providers\CommitDetails.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GitHubTfsSyncApp.Providers.GitHubProvider" Collapsed="true">
+    <Position X="10" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQBAAEAAAAAAAAAEAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>Providers\GitHubProvider.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GitHubTfsSyncApp.Providers.GitPointer" Collapsed="true">
+    <Position X="11.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACACAAAAAAAA=</HashCode>
+      <FileName>Providers\GitPointer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GitHubTfsSyncApp.Providers.RestApiProvider" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="6.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAEBAAAAAAAAACAQAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Providers\RestApiProvider.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="GitHubTfsSyncApp.Providers.TreeCollection" Collapsed="true">
+    <Position X="4.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAAAAAAAAAAAAAAAAAAACACAAAAAAAA=</HashCode>
+      <FileName>Providers\TreeCollection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GitHubTfsSyncApp.Providers.TreeNode" Collapsed="true">
+    <Position X="6.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAgAIAAAAAAAAAAAAAAAAACQCAAAAAAAA=</HashCode>
+      <FileName>Providers\TreeNode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GitHubTfsSyncApp.Providers.UriExtensions" Collapsed="true">
+    <Position X="8.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAA=</HashCode>
+      <FileName>Providers\UriExtensions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GitHubTfsSyncApp.Workers.TfsManager" Collapsed="true">
+    <Position X="11.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAGgAAAQIAAAAAABIAAAAIAAAACAAAAAIBA=</HashCode>
+      <FileName>Workers\TfsManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GitHubTfsSyncApp.Workers.TfsSyncWorker" Collapsed="true">
+    <Position X="13.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAEAAAAAAAEAAAAoAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>Workers\TfsSyncWorker.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GitHubTfsSyncApp.Workers.CommitSpec" Collapsed="true">
+    <Position X="0.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAEAAEAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Workers\TfsSyncWorker.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="GitHubTfsSyncApp.Providers.IRestApiProvider" Collapsed="true">
+    <Position X="3" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAAAAAAAACAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Providers\RestApiProvider.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="GitHubTfsSyncApp.Areas.HelpPage.SampleDirection" Collapsed="true">
+    <Position X="3" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Areas\HelpPage\SampleGeneration\SampleDirection.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

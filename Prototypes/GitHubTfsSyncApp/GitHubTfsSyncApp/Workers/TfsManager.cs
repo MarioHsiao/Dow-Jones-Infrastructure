@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.Security;
 using System.Web;
 using AttributeRouting.Helpers;
 using GitHubTfsSyncApp.Models.GitHub;
@@ -18,8 +20,10 @@ namespace GitHubTfsSyncApp.Workers
 		private readonly string _tfsUrl;
 		private readonly string _teamProjectPath;
 		private readonly DirectoryInfo _workingDir;
-		private readonly Lazy<TfsTeamProjectCollection> _teamProjectCollection;
-		private readonly Lazy<VersionControlServer> _versionControl;
+		//private readonly Lazy<TfsTeamProjectCollection> _teamProjectCollection;
+		//private readonly Lazy<VersionControlServer> _versionControl;
+		private readonly TfsTeamProjectCollection _teamProjectCollection;
+		private readonly VersionControlServer _versionControl;
 
 
 		/// <summary>
@@ -28,14 +32,15 @@ namespace GitHubTfsSyncApp.Workers
 		/// <param name="tfsUrl">The TFS URL. E.g. http://sbknwstfs1:8080/tfs </param>
 		/// <param name="teamProjectPath">The team project path. E.g. $/Dow Jones Infrastructure </param>
 		/// <param name="workingDir">Local working directory. E.g. C:\Workspaces </param>
-		public TfsManager(string tfsUrl, string teamProjectPath, DirectoryInfo workingDir)
+		/// <param name="credentials">Credentials to access TFS</param>
+		public TfsManager(string tfsUrl, string teamProjectPath, DirectoryInfo workingDir, ICredentials credentials)
 		{
 			_tfsUrl = tfsUrl;
 			_teamProjectPath = teamProjectPath;
 			_workingDir = workingDir;
 
-			_teamProjectCollection = new Lazy<TfsTeamProjectCollection>(() => new TfsTeamProjectCollection(new Uri(_tfsUrl)));
-			_versionControl = new Lazy<VersionControlServer>(() => _teamProjectCollection.Value.GetService<VersionControlServer>());
+			_teamProjectCollection = new TfsTeamProjectCollection(new Uri(_tfsUrl), credentials);
+			_versionControl = _teamProjectCollection.GetService<VersionControlServer>();
 		}
 
 		public void CreateCheckin(CommitSpec[] commits)
@@ -46,28 +51,56 @@ namespace GitHubTfsSyncApp.Workers
 				ProcessCommit(commit);
 		}
 
-		private void ProcessCommit(Commit commit)
+		private void ProcessCommit(CommitSpec commit)
 		{
-			var workspace = InitializeWorkspace(commit.Id);
 			var incomingDir = Path.Combine(_workingDir.FullName, "incoming", commit.Id);
+			var workspaceName = "Workspace_{0}".FormatWith(commit.Id);
+			var workspaceMappedFolderPath = Path.Combine(_workingDir.FullName, workspaceName);
 
-			foreach (var fileName in commit.Added)
-				workspace.PendAdd(Path.Combine(incomingDir, fileName));
 
-			foreach (var fileName in commit.Modified)
-				workspace.PendEdit(Path.Combine(incomingDir, fileName));
+			var workspace = InitializeWorkspace(workspaceName, workspaceMappedFolderPath);
 
-			foreach (var fileName in commit.Removed)
-				workspace.PendDelete(Path.Combine(incomingDir, fileName));
+			try
+			{
+				foreach (var fileName in commit.Added)
+				{
+					File.Copy(Path.Combine(incomingDir, fileName), Path.Combine(workspaceMappedFolderPath, fileName));
+					workspace.PendAdd(Path.Combine(workspaceMappedFolderPath, fileName));
+				}
 
-			ResolveConflicts(workspace);
+				foreach (var fileName in commit.Modified)
+				{
+					// checkout file first
+					workspace.PendEdit(Path.Combine(workspaceMappedFolderPath, fileName));
 
-			var pendingChanges = workspace.GetPendingChanges();
+					// apply external changes
+					File.Copy(Path.Combine(incomingDir, fileName), Path.Combine(workspaceMappedFolderPath, fileName), true);
+				}
 
-			var checkinMessage = CreateCheckinMessage(commit);
-			var changesetNumber = workspace.CheckIn(pendingChanges, checkinMessage);
+				foreach (var fileName in commit.Removed)
+				{
+					workspace.PendDelete(Path.Combine(workspaceMappedFolderPath, fileName));
+				}
 
-			_logger.Info("Checked in changeset# {0}.\nCheckin Summary: {1}".FormatWith(changesetNumber, checkinMessage));
+				ResolveConflicts(workspace);
+
+				var pendingChanges = workspace.GetPendingChanges();
+
+				var checkinMessage = commit.ToSummary();
+				var changesetNumber = workspace.CheckIn(pendingChanges, checkinMessage);
+
+				_logger.Info("Checked in changeset# {0}.\nCheckin Summary: {1}".FormatWith(changesetNumber, checkinMessage));
+
+			}
+			catch (Exception ex)
+			{
+				_logger.Error("Error processing commit #{0}".FormatWith(commit.Id), ex);
+			}
+			finally
+			{
+				// cleanup
+				workspace.Delete();
+			}
 		}
 
 		private void ResolveConflicts(Workspace workspace)
@@ -81,33 +114,12 @@ namespace GitHubTfsSyncApp.Workers
 			}
 		}
 
-		private static string CreateCheckinMessage(Commit commit)
+		private Workspace InitializeWorkspace(string name, string mappedFolderPath)
 		{
-			const string template = "Automated checkin created by TfsSyncApp.\n\n"
-									+ "Message: {0}\n\n"
-									+ "{1} additions, {2} modifications, {3} deletions\n"
-									+ "Timestamp: {4}\n"
-									+ "Author: {5}\n"
-									+ "Committer: {6}\n"
-									+ "Url: {7}";
-
-			return template.FormatWith(template,
-								commit.Message,
-								commit.Added.Count(),
-								commit.Modified.Count(),
-								commit.Removed.Count(),
-								commit.Timestamp.ToString(),
-								commit.Author.Email,
-								commit.Committer.Email,
-								commit.Url);
-		}
-
-		private Workspace InitializeWorkspace(string name)
-		{
-			var versionControl = _versionControl.Value;
+			var versionControl = _versionControl;
 			var workspace = versionControl.CreateWorkspace(name, versionControl.AuthorizedUser);
 
-			workspace.Map(_teamProjectPath, _workingDir.FullName);
+			workspace.Map(_teamProjectPath, mappedFolderPath);
 			workspace.Get();
 
 			return workspace;
