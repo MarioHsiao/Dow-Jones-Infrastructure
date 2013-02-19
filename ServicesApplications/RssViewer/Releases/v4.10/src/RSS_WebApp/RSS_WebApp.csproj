@@ -24,6 +24,10 @@
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <UseIISExpress>false</UseIISExpress>
     <TargetFrameworkProfile />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -48,8 +52,6 @@
       <HintPath>..\RssManager\resources\CachingWrapper.dll</HintPath>
     </Reference>
     <Reference Include="encryption, Version=1.0.2949.19938, Culture=neutral" />
-    <Reference Include="FactivaBusinessLayerLogic, Version=13.10.0.20721, Culture=neutral, processorArchitecture=MSIL" />
-    <Reference Include="FactivaServices, Version=13.3.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Data" />

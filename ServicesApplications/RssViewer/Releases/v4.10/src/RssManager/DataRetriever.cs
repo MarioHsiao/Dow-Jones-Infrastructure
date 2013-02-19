@@ -758,8 +758,8 @@ namespace FactivaRssManager_2_0
                     _controlData = ControlDataManager.AddProxyCredentialsToControlData(_controlData, inputData.getItem("userID"), inputData.getItem("namespace"));
 
                     GetContainerByIdRequest _getContainerByIdRequest = new GetContainerByIdRequest();
-                    _getContainerByIdRequest.Id = int.Parse(inputData.getItem("contid"));
-                    Log(Logger.Level.INFO, string.Format("FCL::getPocast {0} ", int.Parse(inputData.getItem("contid"))));
+                    _getContainerByIdRequest.Id = long.Parse(inputData.getItem("contid"));
+                    Log(Logger.Level.INFO, string.Format("FCL::getPocast {0} ", long.Parse(inputData.getItem("contid"))));
 
                     serviceResponse = DataContainersService.GetContainerById(_controlData, _getContainerByIdRequest);
                     object _getContainerByIdResp;
@@ -923,7 +923,7 @@ namespace FactivaRssManager_2_0
 
                         var getEditionRequest = new Factiva.Gateway.Messages.Assets.Editions.V2_0.GetEditionByIdRequest
                                                     {
-                                                        Id = int.Parse(strEditionID),
+                                                        Id = long.Parse(strEditionID),
                                                         ReturnEditionSections = true
                                                     };
                         serviceResponse = Factiva.Gateway.Services.V2_0.EditionService.GetEditionById(cloneControlData(_controlData), getEditionRequest);
@@ -933,7 +933,7 @@ namespace FactivaRssManager_2_0
                         var workspaceID = getEditionIdResponse.Edition.Properties.ParentWorkspaceId.ToString();
 
                         var workspaceManager = new WorkspaceManager(cloneControlData(_controlData), "en");
-                        var manualWorkspace = workspaceManager.GetManualWorkspaceById(int.Parse(workspaceID));
+                        var manualWorkspace = workspaceManager.GetManualWorkspaceById(long.Parse(workspaceID));
                        
                         var workspaceAudience = manualWorkspace.Properties.Audience;
                         var audienceObject = serialize(workspaceAudience);
@@ -1573,7 +1573,7 @@ namespace FactivaRssManager_2_0
                 _controlData.AccessPointCode = configData.getItem("//transactionParams/AccessPointCode");
 
                 var workspaceManager = new WorkspaceManager(_controlData, "en");
-                var manualWorkspace = workspaceManager.GetManualWorkspaceById(int.Parse(inputData.getItem("WSID")));
+                var manualWorkspace = workspaceManager.GetManualWorkspaceById(long.Parse(inputData.getItem("WSID")));
 
                 var workspaceAudience = manualWorkspace.Properties.Audience;
                 var audienceObject = serialize(workspaceAudience);
@@ -1687,7 +1687,7 @@ namespace FactivaRssManager_2_0
                 controlData.AccessPointCode = configData.getItem("//transactionParams/AccessPointCode");
 
                 var workspaceManager = new WorkspaceManager(controlData, "en");
-                var automaticWorkspace = workspaceManager.GetAutomaticWorkspaceById(int.Parse(inputData.getItem("wsid")));
+                var automaticWorkspace = workspaceManager.GetAutomaticWorkspaceById(long.Parse(inputData.getItem("wsid")));
 
                 if (automaticWorkspace.Properties.AreFeedsActive == false)
                     return "<HeadlineInfo></HeadlineInfo>";
