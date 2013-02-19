@@ -1,0 +1,123 @@
+// Register Gadget namespace
+registerNamespace("emgDowJones");
+
+// Constructor definition
+emgDowJones.{0} = function(p_elSource, p_args, p_namespace) {{
+	// Call initializeBase before anything else
+	emgDowJones.{0}.initializeBase(this, arguments);
+	
+	// Setup private variables
+	var m_this = this;
+	var m_el = p_elSource;
+	var m_module = p_args.module;
+	var m_tkn = "{0}";
+	var m_counter = 0;
+	
+	this.updateMainScript = function() {{
+		var d = document;
+		var scriptId = "insertWidgetScript";
+		var inforScript = d.getElementById(scriptId);
+		if (!inforScript) {{
+			var head = d.getElementsByTagName("head").item(0);
+			getWidgetInfoScript = d.createElement("script");
+			getWidgetInfoScript.setAttribute("src", "{1}");
+			getWidgetInfoScript.setAttribute("id", scriptId);
+			getWidgetInfoScript.type = "text/javascript";
+			head.appendChild(getWidgetInfoScript);
+			return;
+		}}				
+	}}
+	
+	this.writeContainer = function() {{
+		var myContainer = document.createElement("div");
+		myContainer.id = m_tkn + "_div";
+		myContainer.style.padding = '0';
+		myContainer.style.float   = 'left';
+		myContainer.style.margin  = '0';
+		myContainer.style.width   = '100%';
+		myContainer.style.border  = '0';
+		m_el.appendChild( myContainer );
+	}}
+	
+	this.writeWidget = function() {{
+	    var parentNodeId = m_tkn + "_div";
+	    this.importJS("{1}",null, "FACTIVA_WIDGET_MGR" ,function() {{
+	        FACTIVA_WIDGET_MGR.loadJSLibrary("{2}", "" + new Date().getTime(),"FactivaWidgetRenderManager",function() {{
+                FACTIVA_WIDGET_MGR.insertWidget("{3}",parentNodeId);
+            }});
+        }});
+        
+	    //FACTIVA_WIDGET_MGR.loadJSLibrary('{2}',new Date().getTime());
+	    //FACTIVA_WIDGET_MGR.insertWidget('{3}',parentNodeId);		
+	}}                    
+	
+	this.getHeadElement = function() {{
+        var head=document.getElementsByTagName("head");
+        if (head){{
+            return head[0];
+        }} 
+        return null;
+    }}
+    
+	this.importJS = function(url, token, look_for, onload) {{
+        var script = document.createElement('script'); 
+        script.src= (token) ? url + "?appver=" + token : url; // sets the scripts source to the specified url
+        script.type="text/javascript";
+        script.charset = "utf-8";
+                    
+        var head = this.getHeadElement();
+        if (head){{
+            head.appendChild(script);// appends the tag to the head       
+        }}
+        else {{
+            document.body.appendChild(script);// appends the tag to the head       
+        }}
+        if (onload) {{this.wait_for_script_load(look_for, onload);}}     
+    }}
+        
+	this.wait_for_script_load = function(look_for, callback) {{
+        var interval = setInterval(function() {{
+            if (eval("typeof " + look_for) != 'undefined') {{
+                clearInterval(interval);
+                callback();
+            }}
+        }}, 50);
+    }}
+	
+	this.customResize = function() {{
+        var interval = setInterval(function() {{
+            if (this.m_counter == 100) {{    
+                clearInterval(interval);
+                m_module.resize();
+                return;
+            }}
+            this.m_counter++;
+        }}, 50);
+    }}
+		
+	this.initialize = function(p_objScope) {{
+		emgDowJones.{0}.getBaseMethod( this, "initialize", "Web.Bindings.Base").call(this, p_objScope);
+		m_el.style.padding = '0';
+		m_el.style.float   = 'left';
+		m_el.style.margin  = '0';
+		m_el.style.width   = '100%';
+		//this.updateMainScript();
+		this.writeContainer();
+		this.writeWidget();
+		m_module.resize();
+		window.onresize = function() {{
+			m_module.resize();
+		}}
+	}}
+
+	this.dispose = function(p_blnUnload) {{
+		m_this = m_el = m_module = null;
+		emgDowJones.{0}.getBaseMethod( this, "dispose", "Web.Bindings.Base").call(this, p_blnUnload);
+		emgDowJones.{0}.registerBaseMethod(this, "dispose");
+	}}
+
+	this.resize = function() {{
+			m_module.resize();
+	}}
+}}
+emgDowJones.{0}.registerClass("emgDowJones.{0}", "Web.Bindings.Base");
