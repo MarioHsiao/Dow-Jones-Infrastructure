@@ -6,6 +6,7 @@ using System.Net;
 using System.Security;
 using System.Web;
 using AttributeRouting.Helpers;
+using GitHubTfsSyncApp.Extensions;
 using GitHubTfsSyncApp.Models;
 using GitHubTfsSyncApp.Models.GitHub;
 using Microsoft.TeamFoundation.Client;
@@ -54,31 +55,31 @@ namespace GitHubTfsSyncApp.Workers
 		{
 			var incomingDir = Path.Combine(_workingDir.FullName, "incoming", commit.Id);
 			var workspaceName = "Workspace_{0}".FormatWith(commit.Id);
-			var workspaceMappedFolderPath = Path.Combine(_workingDir.FullName, workspaceName);
+			var workspaceMappedPath = Path.Combine(_workingDir.FullName, workspaceName);
 
 
-			var workspace = InitializeWorkspace(workspaceName, workspaceMappedFolderPath);
+			var workspace = InitializeWorkspace(workspaceName, workspaceMappedPath);
 
 			try
 			{
 				foreach (var fileName in commit.Added)
 				{
-					File.Copy(Path.Combine(incomingDir, fileName), Path.Combine(workspaceMappedFolderPath, fileName));
-					workspace.PendAdd(Path.Combine(workspaceMappedFolderPath, fileName));
+					File.Copy(Path.Combine(incomingDir, fileName), Path.Combine(workspaceMappedPath, fileName));
+					workspace.PendAdd(Path.Combine(workspaceMappedPath, fileName));
 				}
 
 				foreach (var fileName in commit.Modified)
 				{
 					// checkout file first
-					workspace.PendEdit(Path.Combine(workspaceMappedFolderPath, fileName));
+					workspace.PendEdit(Path.Combine(workspaceMappedPath, fileName));
 
 					// apply external changes
-					File.Copy(Path.Combine(incomingDir, fileName), Path.Combine(workspaceMappedFolderPath, fileName), true);
+					File.Copy(Path.Combine(incomingDir, fileName), Path.Combine(workspaceMappedPath, fileName), true);
 				}
 
 				foreach (var fileName in commit.Removed)
 				{
-					workspace.PendDelete(Path.Combine(workspaceMappedFolderPath, fileName));
+					workspace.PendDelete(Path.Combine(workspaceMappedPath, fileName));
 				}
 
 				ResolveConflicts(workspace);
@@ -99,7 +100,8 @@ namespace GitHubTfsSyncApp.Workers
 			{
 				// cleanup
 				workspace.Delete();
-				Directory.Delete(workspaceMappedFolderPath, true);
+				new DirectoryInfo(incomingDir).ForceDelete();
+				new DirectoryInfo(workspaceMappedPath).ForceDelete();
 			}
 		}
 
