@@ -1,0 +1,160 @@
+<?xml version="1.0"?>
+<IndexSearchResponse ver="01.0">
+	<Control>
+		<Stamp type="NdxRxd" date="20070725" time="13502380"/>
+		<Stamp type="NdxTxd" date="20070725" time="13502452" elapsed="72"/>
+		<FCS_CD><FCS_CD_TRAN_TYPE><![CDATA[INDEX_Search_NOCACHE_1.0]]></FCS_CD_TRAN_TYPE><FCS_CD_SERVICE_TYPE><![CDATA[117]]></FCS_CD_SERVICE_TYPE><FCS_CD_MAJOR_SERVICE_VER><![CDATA[1]]></FCS_CD_MAJOR_SERVICE_VER><FCS_CD_MINOR_SERVICE_VER><![CDATA[0]]></FCS_CD_MINOR_SERVICE_VER><FCS_CD_FUNCTION_TYPE><![CDATA[8510]]></FCS_CD_FUNCTION_TYPE><FCS_CD_SOURCE_ID><![CDATA[26890]]></FCS_CD_SOURCE_ID><FCS_CD_SEQUENCE_NO><![CDATA[0]]></FCS_CD_SEQUENCE_NO><FCS_CD_CONTEXT_ID><![CDATA[0]]></FCS_CD_CONTEXT_ID><FCS_CD_TRAN_ID><![CDATA[10205]]></FCS_CD_TRAN_ID><FCS_CD_FLAGS><![CDATA[0]]></FCS_CD_FLAGS><FCS_CD_MORE_DATA><![CDATA[FALSE]]></FCS_CD_MORE_DATA><FCS_CD_CHUNKING><![CDATA[FALSE]]></FCS_CD_CHUNKING><FCS_CD_SESSION_ID/><FCS_CD_TIME_STAMP><![CDATA[1185371423]]></FCS_CD_TIME_STAMP><FCS_CD_DATA_LENGTH><![CDATA[10491]]></FCS_CD_DATA_LENGTH><FCS_CD_MESSAGE_TYPE><![CDATA[1]]></FCS_CD_MESSAGE_TYPE><FCS_CD_NETWORK_PARTNER_ID/><FCS_CD_COMPOSITE_ID><![CDATA[00000000000000000000]]></FCS_CD_COMPOSITE_ID><FCS_CD_IP_ADDRESS><![CDATA[172.25.8.21]]></FCS_CD_IP_ADDRESS><FCS_CD_CLIENT_TYPE><![CDATA[D]]></FCS_CD_CLIENT_TYPE><FCS_CD_ACCESS_POINT_CODE><![CDATA[2]]></FCS_CD_ACCESS_POINT_CODE><FCS_CD_CONTENT_SERVER_ADDRESS><![CDATA[30057]]></FCS_CD_CONTENT_SERVER_ADDRESS><FCS_CD_CONTENT_SERVER_PORTID><![CDATA[0]]></FCS_CD_CONTENT_SERVER_PORTID><FCS_CD_DELIVERY_SERVICE><![CDATA[Factiva.OCPChannelDS.1]]></FCS_CD_DELIVERY_SERVICE><FCS_CD_TRANSACTION_ROUTER><![CDATA[Factiva.TransactionRouter.1]]></FCS_CD_TRANSACTION_ROUTER><FCS_CD_TRANSACTION_ROUTER_FMT><![CDATA[5]]></FCS_CD_TRANSACTION_ROUTER_FMT><FCS_CD_STATUS><![CDATA[0]]></FCS_CD_STATUS><FCS_CD_REQUEST_NAMESPACE/><FCS_CD_RESPONSE_NAMESPACE/><FCS_CD_FILE_SAVE/><FCS_CD_FILE_OPEN/><FCS_CD_USER_ID/><FCS_CD_USER_PASSWORD/><FCS_CD_PRODUCT_ID/><FCS_CD_USER_FLAVOR><![CDATA[F]]></FCS_CD_USER_FLAVOR><FCS_CD_ENCRYPTED_LOGIN><![CDATA[B01%bcBJ%e2%be%9eb%7b]]></FCS_CD_ENCRYPTED_LOGIN><FCS_CD_CLIENT_CODE/><FCS_CD_HOP/><FCS_CD_HOP_SPECIFIC_DATA/><FCS_CD_ANALYSIS_INFO/><FCS_CD_SUPPLEMENTAL_DATA/><FCS_CD_CALLING_URL><![CDATA[http://rss.factiva.com]]></FCS_CD_CALLING_URL><FCS_CD_REFERRING_URL><![CDATA[rss.factiva.com]]></FCS_CD_REFERRING_URL><CacheKey/><CacheScope/><CacheExpirationTime/><CacheRefreshInterval/><CacheExpirationPolicy/><ForceCacheRefresh/></FCS_CD></Control>
+	<Status value="0">
+	</Status>
+	<ContContextString>
+T|abilrn0020070627e38d0000r N|an O|: T|abilrn0020070627e38d0000k N|an O|: O|, T|fb00000020070710e37n00005 N|an O|: O|, T|fb00000020070710e37n00003 N|an O|: O|, T|aprs000020070716e37g00009 N|an O|: O|, T|article N|fmt O|c O|+||y||mdy||dj||1||10101||99991231||50=5,||
+</ContContextString>
+	<CanonicalString>
+T|abilrn0020070627e38d0000r N|an O|: T|abilrn0020070627e38d0000k N|an O|: O|, T|fb00000020070710e37n00005 N|an O|: O|, T|fb00000020070710e37n00003 N|an O|: O|, T|aprs000020070716e37g00009 N|an O|: O|, T|article N|fmt O|c O|+
+</CanonicalString>
+	<ResultSet count="005" first="0000000000" total="0000000005">
+		<Result accessionno="ABILRN0020070627e38d0000r" relscore="1000">
+			<ReplyItem lang="en">
+				<BaseLang fid="la" value="en"/>
+				<IPDocId fid="id">0813 SP LC CO billy fred</IPDocId>
+				<AccessionNo fid="an" value="ABILRN0020070627e38d0000r"/>
+				<Num fid="wc" value="814"/><Date fid="pd" value="20070813"/>
+				<SrcCode fid="sc" value="abilrn"/>
+				<AttribCode fid="atr" value="abilrn"/>
+				<SrcName fid="sn">Abilene Reporter-News</SrcName><Fingerprint><Fpe fid="fpe">2CCD 4B81 A597 4094 7FF7 BFC2 691E C6F0 40B1 6765</Fpe><Fph fid="fph">0175 AC4D 2983 06F6 8E4F CD94 5844 A65F 2991 05A9 +
+1CEE D6E6 1F61 D707 490A 557F D4F2 5991 0F7A 63D6 +
+DDEF 3A01 0CCF 681C 4941 9006 0E90 338B 4D21 7C7B +
+5E33 0CF8 DD58 AE71 F876 5BB4 8189 BD47 F0F9 C3BB +
+49B6 9C76 F3F4 B17E EEC6 AB87 05CA F249 5146 16AD +
+A245 5AF1 1793 16E0 E42A 1DFD E256 3205 CBDE ACDC +
+C16D 881C 1A13 F952 20B8 5FEC 69D5 5CCE FCB9 EAFC +
+51C8 17AB 85E3 C10C 1544 CBE7 4EC1 1063 57AD 59F5 +
+5BFA 1070 B9BE 6360 57C7 38DC AA87 02F1 F9DD A89C +
+1792 B499 F99F 7BCC 276A 3065 AE5C E42C 847A 7A86</Fph><Fps fid="fps"></Fps></Fingerprint><Title fid="hl">
+					<SectionName fid="se">Sports LC COLUMNS</SectionName>
+					<Headline fid="hd"><Para lang="en">Celebrating a golden marriage  </Para>
+					</Headline>
+				</Title>
+				<Snippet><Para>Sports smorgasbord, wondering how she ever has put up with me for 50 years:  </Para><Para>* Today's episode is not about sports, but about a great sport - my wife, Linda, as of this coming Thursday will have been my helpmate since 1956, although there ...</Para></Snippet><Byline fid="by">Bill Hart  </Byline>
+				<Credit fid="cr"></Credit>
+				<Copyright fid="cy">Copyright 2007 Scripps Howard Publishing, Inc. All Rights Reserved.  </Copyright>
+			</ReplyItem><AdocTOC adoctype="article"><Item type="arttext" size="4857" ref="distdoc:archive/ArchiveDoc::Article"></Item>
+				<Item type="invtext" size="13529" ref="distdoc:archive/InvertText"></Item>
+			</AdocTOC></Result><Result accessionno="ABILRN0020070627e38d0000k" relscore="1000">
+			<ReplyItem lang="en">
+				<BaseLang fid="la" value="en"/>
+				<IPDocId fid="id">0813 OP CO mcneely</IPDocId>
+				<AccessionNo fid="an" value="ABILRN0020070627e38d0000k"/>
+				<Num fid="wc" value="748"/><Date fid="pd" value="20070813"/>
+				<SrcCode fid="sc" value="abilrn"/>
+				<AttribCode fid="atr" value="abilrn"/>
+				<SrcName fid="sn">Abilene Reporter-News</SrcName><Fingerprint><Fpe fid="fpe">F32A 9ED1 CAE5 8E62 5E0E DA0C 0748 9F39 4641 2C54</Fpe><Fph fid="fph">D245 6525 B20A 026A 3DFA E43E 8427 A798 4910 5F91 +
+8E7E 0A52 75B3 BE36 745F 5D78 EA89 C8AC 15BE 698F +
+13B1 9874 8F6B C002 9042 3FA6 5AC9 0618 744F D8D3 +
+BEE4 5451 AE78 0B3F EF48 50C1 C9AC FBBD DDF2 02C6 +
+7A27 C279 A92C E496 F9A2 2922 DB83 1884 8F86 B472 +
+C3EE B1D7 9BA6 287B F305 3956 B5FE 93C1 BD61 F625 +
+9944 E866 5346 64E6 636A 425D 110D 1ECC 6EF1 93CD +
+7709 287F 9AF8 8ABB 8622 C287 C94B 1DC2 2D6C 9198 +
+CBD2 79F4 1096 CADA 7487 FBA3 3AB3 6476 9500 090A +
+A229 FD8B 0656 5E3B EF4E 1CB8 2029 2AE7 8714 71A9</Fph><Fps fid="fps"></Fps></Fingerprint><Title fid="hl">
+					<SectionName fid="se">Opinion COLUMNS</SectionName>
+					<Headline fid="hd"><Para lang="en">It's past time to take Gore's 'warming' message seriously  </Para>
+					</Headline>
+				</Title>
+				<Snippet><Para>Ozone Man ... ''This guy is so far out in the environmental extreme we'll be up to our necks in owls and out of work for every American.'' - President George H. W. Bush about vice presidential candidate Al Gore in 1992  </Para></Snippet><Byline fid="by">Dave McNeely  </Byline>
+				<Credit fid="cr"></Credit>
+				<Copyright fid="cy">Copyright 2007 Scripps Howard Publishing, Inc. All Rights Reserved.  </Copyright>
+			</ReplyItem><AdocTOC adoctype="article"><Item type="arttext" size="5133" ref="distdoc:archive/ArchiveDoc::Article"></Item>
+				<Item type="invtext" size="13214" ref="distdoc:archive/InvertText"></Item>
+			</AdocTOC></Result><Result accessionno="FB00000020070710e37n00005" relscore="1000">
+			<ReplyItem lang="en">
+				<BaseLang fid="la" value="en"/>
+				<IPDocId fid="id">FB00000020070710e37n00005</IPDocId>
+				<AccessionNo fid="an" value="FB00000020070710e37n00005"/>
+				<Num fid="wc" value="973"/><Date fid="pd" value="20070723"/>
+				<SrcCode fid="sc" value="fb"/>
+				<AttribCode fid="atr" value="fb2"/>
+				<SrcName fid="sn">Forbes</SrcName><TruncRules>
+					<XS value="27"/>
+					<S value="59"/>
+				</TruncRules>
+				<Fingerprint><Fpe fid="fpe">F7E3 2E78 8DF2 EAB4 F0A3 F2AA 457C F860 3D97 69E9</Fpe><Fph fid="fph">C61C 0961 6221 8157 C745 C9BA 7E47 D587 D2AF DAA5 +
+E1BE 684D 6732 74BC 65A0 7C20 CD03 0606 230D AE77 +
+21F0 0870 E651 58FD 598B 5BA3 DF35 912E D7CF 65D7 +
+CC7F 4E6A 5CC4 E792 23DF 1D46 3174 D48D F615 B316 +
+8C2C 61C8 B3FA 20F1 8178 9E5E EE01 B2B9 381D 85E2 +
+794F 826B 201A 7CDF 4C90 A865 AC71 1C72 92A5 1AEE +
+2922 EB6E E1E7 B9CC C721 2418 A428 A50A ABA1 558F +
+BBC8 5ADA 361E 66F9 77C1 FB27 B342 85A2 0CFC 8AA2 +
+1059 B9E8 9801 88F6 3708 2A4A 9185 DA50 978E 421E +
+9D34 4730 1148 1DFD AC19 3212 E1A1 BD40 E673 9B96</Fph><Fps fid="fps"></Fps></Fingerprint><Title fid="hl">
+					<SectionName fid="se">Current Events</SectionName>
+					<Headline fid="hd"><Para lang="en">The Washington Tax Mess; on ways Washington can fix the tax mess.   </Para>
+					</Headline>
+				</Title>
+				<Snippet><Para>Over the next few months Washington will almost certainly pass a massive tax bill to maintain the alternative minimum tax at roughly current levels. Without a new bill inflation and income growth will cause the AMT to automatically expand ...</Para></Snippet><Byline fid="by">David Malpass   </Byline>
+				<Credit fid="cr"></Credit>
+				<Copyright fid="cy">(c) 2007 Forbes Inc.   </Copyright>
+			</ReplyItem><AdocTOC adoctype="article"><Item type="arttext" size="6668" ref="distdoc:archive/ArchiveDoc::Article"></Item>
+				<Item type="invtext" size="16810" ref="distdoc:archive/InvertText"></Item>
+			</AdocTOC></Result><Result accessionno="FB00000020070710e37n00003" relscore="1000">
+			<ReplyItem lang="en">
+				<BaseLang fid="la" value="en"/>
+				<IPDocId fid="id">FB00000020070710e37n00003</IPDocId>
+				<AccessionNo fid="an" value="FB00000020070710e37n00003"/>
+				<Num fid="wc" value="1869"/><Date fid="pd" value="20070723"/>
+				<SrcCode fid="sc" value="fb"/>
+				<AttribCode fid="atr" value="fb2"/>
+				<SrcName fid="sn">Forbes</SrcName><TruncRules>
+					<XS value="28"/>
+				</TruncRules>
+				<Fingerprint><Fpe fid="fpe">6A8D 63E3 6864 24B2 A6C4 6B64 251D 2130 33F8 7D7E</Fpe><Fph fid="fph">9DB7 ED64 7532 A41F 88C5 ADFD 1183 85B5 7EEC F08D +
+9885 1097 1E3F 335A 40D2 7C17 9B4A 3041 54A5 F76B +
+22D5 3C6D F85C 6075 4086 0CC3 BC29 DB97 073E 8490 +
+B491 3B7F D545 6CF5 2CD8 E366 0C9A 3B5F 2956 0F98 +
+1AAE 1A82 4D03 F409 EA7A B2F0 2242 AED1 27C6 FA8D +
+9F52 1424 44C9 BA0B AEBF CAB8 7AEF 8E60 24D5 11D4 +
+D4A6 11D3 5BA8 44A0 C16E 2172 4FC3 CB99 701A 2CCE +
+1DE8 CFC1 DCE4 C93D 3E7A 07D7 29D9 16A1 42F6 824F +
+2A49 E1A9 92DB BF6A 27A1 C696 070F E2CE 60A5 37A2 +
+4FFB 5F45 F2F4 E9E0 34A9 A9B6 946A FBD0 DE0E 110E</Fph><Fps fid="fps"></Fps></Fingerprint><Title fid="hl">
+					<SectionName fid="se">Fact and Comment</SectionName>
+					<Headline fid="hd"><Para lang="en">Bush's Big One; says the U.S. can stop Iran's nuclear ambitions.   </Para>
+					</Headline>
+				</Title>
+				<Snippet><Para>George W. Bush's presidential legacy will ultimately depend on a decision he has yet to make: Iran. Even European skeptics can no longer doubt that Iran's regime is working toward producing nuclear weapons. Sure, Iran has had setbacks, but ...</Para></Snippet><Byline fid="by">Steve Forbes   </Byline>
+				<Credit fid="cr"></Credit>
+				<Copyright fid="cy">(c) 2007 Forbes Inc.   </Copyright>
+			</ReplyItem><AdocTOC adoctype="article"><Item type="arttext" size="12569" ref="distdoc:archive/ArchiveDoc::Article"></Item>
+				<Item type="invtext" size="34035" ref="distdoc:archive/InvertText"></Item>
+			</AdocTOC></Result><Result accessionno="APRS000020070716e37g00009" relscore="1000">
+			<ReplyItem lang="en">
+				<BaseLang fid="la" value="en"/>
+				<IPDocId fid="id">20070716newsbrief</IPDocId>
+				<AccessionNo fid="an" value="APRS000020070716e37g00009"/>
+				<Num fid="wc" value="822"/><Date fid="pd" value="20070716"/>
+				<Time fid="et" value="234408"/>
+				<SrcCode fid="sc" value="aprs"/>
+				<AttribCode fid="atr" value="aprs"/>
+				<SrcName fid="sn">Associated Press Newswires</SrcName><Fingerprint><Fpe fid="fpe">484A 9DAE D5C9 C588 A039 507C 36F2 FF68 5BFF DB74</Fpe><Fph fid="fph">1BE7 A308 54A2 8EAA 8B2E 5644 E7DF 518C DEF9 07BD +
+58CC 92DD 80F8 8902 F5D5 B33A 1BEF E2E8 9CD4 CCD2 +
+D274 4511 1C58 B6EA B583 FFC4 56E3 A537 4310 E0F2 +
+FDC1 E1F7 E16D 5067 1DFB 0629 D43F EC93 AEAB F93D +
+4770 3325 1CF4 63DF 1589 701A 3FAC 2227 A25D 4C94 +
+86D3 D0E3 17F9 C0AC 9FE5 0899 B4EC 2BA3 E8A7 4338 +
+E523 F74B 87EE 1CAA 03C7 A473 BF6C 3998 022D 2361 +
+0784 F359 4C2A 897C 82BF E424 AD38 3C4C 0CD6 12EB +
+C451 D85C 39CF ABC1 7142 2289 9605 28A0 27ED 7417 +
+0109 547D 2CCE 8A93 AF42 D8A4 85B9 EFD9 6918 CF9F</Fph><Fps fid="fps"></Fps></Fingerprint><Title fid="hl">
+					<Headline fid="hd"><Para lang="en">AP Top News at 7:43 p.m. EDT   </Para>
+					</Headline>
+				</Title>
+				<Snippet><Para>Democrats Vow All-Night Session on Iraq   </Para><Para>WASHINGTON (AP) -- The Senate this week will pull its first all-night debate on the Iraq war in advance of a vote on whether to bring home all combat troops by next spring, Democrats said Monday. ...</Para></Snippet><Byline fid="by"></Byline>
+				<Credit fid="cr"></Credit>
+				<Copyright fid="cy">TEST (c) 2007.  The Associated Press.  All Rights Reserved.   </Copyright>
+			</ReplyItem><AdocTOC adoctype="article"><Item type="arttext" size="5764" ref="distdoc:archive/ArchiveDoc::Article"></Item>
+				<Item type="invtext" size="14861" ref="distdoc:archive/InvertText"></Item>
+			</AdocTOC></Result></ResultSet>
+</IndexSearchResponse>
+

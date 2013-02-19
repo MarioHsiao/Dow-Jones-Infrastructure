@@ -1,0 +1,238 @@
+using System;
+using System.Collections;
+using System.Collections.Specialized;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Web;
+using System.Web.SessionState;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Web.UI.HtmlControls;
+using System.Xml;
+using FactivaEncryption;
+using Data;
+using System.Web.Caching;
+
+namespace FactivaRSS
+{
+	/// <summary>
+	/// Summary description for eid1.
+	/// </summary>
+	public class eid1 : System.Web.UI.Page
+	{
+		FactivaRssManager_2_0.RssManager rssManager2 = new FactivaRssManager_2_0.RssManager(); 
+
+		FactivaEncryption.encryption  e = new  FactivaEncryption.encryption();
+
+		private InputData inputData = new  InputData();
+		
+		private ConfigData eidData = new ConfigData();
+
+		#region << Logger >>
+		FCSLogger.Logger logger ;
+		const uint APP_LOGGER_CATEGORY		= 1;
+		const uint APP_COMPONENT_ID 		= 1024;
+
+		public new const uint Trace       = 0;
+		public const uint Debug           = 1;
+		public const uint Information     = 2;
+		public const uint Warning         = 3;
+		public new const uint Error       = 4;
+		protected System.Web.UI.WebControls.Label Label1;
+		public const uint CriticalError   = 5;
+		string Encryptionkey  = "&)LJ(E@&@#MLU(&HDS";
+		#endregion
+
+		private void Page_Load(object sender, System.EventArgs e)
+		{
+			// Put user code to initialize the page here
+		   
+			//CreateRssForError("1000","Invalid parameters supplied");
+			Log(Debug,"FactivaRSS::headlines.aspx.cs::Page_Load Entering ...");
+
+			logger = new FCSLogger.Logger(APP_COMPONENT_ID, APP_LOGGER_CATEGORY,0);
+			eidData.LoadXML(GetXMLFromCache("EIDs.xml","EIDSCache","EIDs.xml"))   ;      //Cache["EIDSCache"].ToString());
+			Log(Debug,"FactivaRSS::headlines.aspx.cs::after LoadXML EIDs ...");
+
+			if (validate())
+			{
+			}
+			else
+			{
+				Log(Debug,"FactivaRSS::headlines.aspx.cs::Error(550003) - Validation failed.");
+
+				CreateRssForError("550003","Validation failed.",false);
+			}
+			
+			
+			
+
+		}
+		private bool validate()
+		{
+			string decryptKey = "";
+			string eidName	  = "";
+			string eidValue	  = "";
+			bool   status	  = false;
+			string[] data = new string[6];
+
+			
+			Log(Debug,"FactivaRSS::eid1.aspx.cs::validate:Entering validate ... ");
+
+			Log(Debug,"FactivaRSS::eid1.aspx.cs::validate:before getDecryptKey ");
+			getDecryptKey(ref decryptKey,ref eidName , ref eidValue);
+
+
+			return status;
+		}
+
+		private void getDecryptKey(ref string decryptKey,ref string eidName,ref string eidValue)
+		{
+			try
+			{
+
+			
+				Log(Debug,"FactivaRSS::eid1.cs::getDecryptKey: Entering ...");
+				string StrRedirect= "";
+				string[] data = new string[5];
+				string eid1 = "";
+				string StrAppend = "";
+				NameValueCollection nvRequestKeysData = new NameValueCollection();
+				if (Request["eid1"] == null & Request["eid3"] == null)
+				{
+					foreach(string strrequest in Request.QueryString)
+					{
+
+						nvRequestKeysData.Add(strrequest,Request.Params[strrequest]);
+						StrAppend = StrAppend +  strrequest + "=" + Request.Params[strrequest] + "&";
+					}
+					nvRequestKeysData.Add("from","g3");
+
+					StrRedirect = "http://rss.dev.factiva.com/headlines.aspx?" + StrAppend + "eid3=";
+				}
+
+			
+				if (Request["feed"] != null & Request["eid3"] != null)
+				{
+					eidValue = Request["eid3"].ToString();
+					decryptKey = Encryptionkey;
+					eid1 = GenerateRss.rss.Decrypt(eidValue,decryptKey);
+					data = eid1.Split('|');
+
+					nvRequestKeysData.Add("userID",data[0]);
+					nvRequestKeysData.Add("feed",data[1]);
+					nvRequestKeysData.Add("accountid",data[2]);
+					nvRequestKeysData.Add("namespace",data[3]);
+					nvRequestKeysData.Add("from","g3");
+					StrRedirect = "http://rss.dev.factiva.com/headlines.aspx?feed=" + data[1] + "&eid3=";
+
+				}
+
+				else if (Request["folderid"] != null & Request["eid3"] != null)
+				{
+
+					eidValue = Request["eid3"].ToString();
+					decryptKey = Encryptionkey;
+					eid1 = GenerateRss.rss.Decrypt(eidValue,decryptKey);
+					data = eid1.Split('|');
+
+					nvRequestKeysData.Add("userID",data[0]);
+					nvRequestKeysData.Add("folderid",data[1]);
+					nvRequestKeysData.Add("fname",data[2]);
+					nvRequestKeysData.Add("accountid",data[3]);
+					nvRequestKeysData.Add("namespace",data[4]);
+					nvRequestKeysData.Add("from","g1");
+					StrRedirect = "http://rss.dev.factiva.com/headlines.aspx?folderid=" + data[1] + "&eid3=";
+
+				}
+	
+
+				encryption E = new encryption();
+				string eToken = "";
+				eToken = E.encrypt(nvRequestKeysData,eidData.getItem("//eid3/@key"));
+				Response.Redirect(StrRedirect + Server.UrlEncode(eToken));
+			}
+			catch (Exception ex)
+			{
+				Log(Debug,"FactivaRSS::eid1.aspx.cs::validate: after encryption " +  ex.Message + " " + ex.Source);
+			}
+
+		
+
+		}
+
+
+		private void CreateRssForError (string errorCode, string errorDescription,bool displayError)
+		{
+		
+			try
+			{
+				FactivaRssManager.RssErrorManager oRssError = new FactivaRssManager.RssErrorManager();
+				oRssError.loadErrorConfigXML(GetXMLFromCache("config.xml","ConfigCache","config.xml"));
+				oRssError.ErrorCode = errorCode;
+				oRssError.ErrorDescription = errorDescription;
+				if (Request.QueryString["debug"] == null)
+					oRssError.DisplayError=displayError;
+				else
+					oRssError.DisplayError=true;
+				Response.Clear();
+				Response.ContentType = "text/xml";
+				Response.Write(oRssError.createRssError(oRssError.errorData));
+				Response.End();
+			}
+			catch (Exception ex)
+			{
+				//
+			}
+		
+			
+			
+
+		}
+		private string GetXMLFromCache(string filename, string cacheItemName, string dependencyFileName)
+		{
+			if(Cache[cacheItemName] == null)
+			{
+				XmlDocument x = new XmlDocument();
+				x.Load(Server.MapPath(filename));
+				Cache.Insert(cacheItemName,x.InnerXml,new CacheDependency(Server.MapPath(dependencyFileName)));
+			}	
+			return Cache[cacheItemName].ToString();
+		}
+		 
+		protected void Log(uint level,string logMsg)
+		{
+			if ( logger != null)
+			{
+				logger.Log(level,1,logMsg);				
+			}
+			else
+			{
+				FCSLogger.Logger logger1 = new FCSLogger.Logger(APP_COMPONENT_ID, APP_LOGGER_CATEGORY,0);
+				logger1.Log(level,1,logMsg);
+			}
+		}
+
+		#region Web Form Designer generated code
+		override protected void OnInit(EventArgs e)
+		{
+			//
+			// CODEGEN: This call is required by the ASP.NET Web Form Designer.
+			//
+			InitializeComponent();
+			base.OnInit(e);
+		}
+		
+		/// <summary>
+		/// Required method for Designer support - do not modify
+		/// the contents of this method with the code editor.
+		/// </summary>
+		private void InitializeComponent()
+		{    
+			this.Load += new System.EventHandler(this.Page_Load);
+
+		}
+		#endregion
+	}
+}

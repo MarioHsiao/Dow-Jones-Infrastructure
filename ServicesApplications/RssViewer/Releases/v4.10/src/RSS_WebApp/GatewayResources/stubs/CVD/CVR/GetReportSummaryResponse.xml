@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GetReportSummaryResponse xsi:noNamespaceSchemaLocation="GetReportSummaryResponse.xsd" xmlns:common="common" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <status value="0"></status>
+  <accountDetails accountNum="ABC1234">
+    <accountName>Dow Jones</accountName>
+  </accountDetails>
+  <reportDetails>
+    <reportName>ArticleViewDesktop</reportName>
+    <reportCode>AVDESK</reportCode>
+    <reportStatus>RELEASED_EXTERNAL</reportStatus>
+    <reportDate>2010-11-30</reportDate>
+  </reportDetails>
+  <reportMetadataSummaryList>
+    <metadataSummary name="Alerts" >
+      <columnSummary name="CountOfUserIds" count="275"/>
+      <columnSummary name="CountOfAV" count="754"/>
+    </metadataSummary>
+    <metadataSummary name="Newsletters">
+      <columnSummary name="CountOfUserIds" count="245"/>
+      <columnSummary name="CountOfAV" count="456"/>
+    </metadataSummary>
+  </reportMetadataSummaryList>
+</GetReportSummaryResponse>

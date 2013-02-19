@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!--Container-->
+<!--
+<Encrypt key="DFJHG4586">
+  <Param  name="feed" value ="food">
+    <value name="accountid">9FAC000700</value>
+    <value name="userID">joyful</value>
+    <value name="namespace">16</value>
+    <value name="from">g3</value>
+    <value name="contid"></value>
+    <value name="fname"></value>
+    <value name="feed">food</value>
+    <value name="type">pcast</value>
+    <value name="od">V2K8%2bu6fXIp2gC4O3hc26%2fvg%3d%3d%7c2</value>
+  </Param>
+</Encrypt>
+-->
+<Encrypt key="EGQEJ9876">
+  <Param  name="nlid" value ="12345">
+    <value name="accountid">9FAC000700</value>
+    <value name="userID">joyful</value>
+    <value name="ns">16</value>
+    <value name="from">nl2</value>
+    <value name="nlid">12345</value>
+    <value name="od">V2K8%2bu6fXIp2gC4O3hc26%2fvg%3d%3d%7c2</value>
+  </Param>
+</Encrypt>
+
+

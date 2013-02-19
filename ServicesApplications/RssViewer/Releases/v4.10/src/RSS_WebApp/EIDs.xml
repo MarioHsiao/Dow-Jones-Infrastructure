@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<eids>
+	<eid1 key='DFJHG4586'>
+		<products>
+		   <!-- Track Folders -->
+			<product version='fce1'>
+				<rssManager>2</rssManager>
+				<configFile>config.xml</configFile>
+			</product>
+		</products>
+	</eid1>
+	<eid2 key='#$12!??3R%223'>
+		<products>
+		<!-- Search 2.0 -->
+			<product version='g2'>
+				<rssManager>2</rssManager>
+				<configFile>config.xml</configFile>
+			</product>
+		</products>
+	</eid2>
+	<eid3 key='DFJHG4586'>
+		<products>
+		   <!-- Track Folders -->
+			<product version='fce1'>
+				<rssManager>2</rssManager>
+				<configFile>config.xml</configFile>
+			</product>
+			<!-- Personal choice -->
+			<product version='g1'>
+				<rssManager>2</rssManager>
+				<configFile>config.xml</configFile>
+			</product>
+			<!-- Editors Choice -->
+			<product version='g3'>
+				<rssManager>2</rssManager>
+				<configFile>config.xml</configFile>
+			</product>
+			<!-- News Letter -->
+			<product version='nl1'>
+				<rssManager>2</rssManager>
+				<configFile>config.xml</configFile>
+			</product>
+			<!-- FDK  -->
+			<product version='fdk'>
+				<rssManager>2</rssManager>
+				<configFile>config.xml</configFile>
+			</product>
+			<product version='pcast'>
+				<rssManager>2</rssManager>
+				<configFile>config.xml</configFile>
+			</product>
+		</products>
+	</eid3>
+  <!-- Skipped EID4 since its used up Redirector -->
+  <eid5 key='EGQEJ9876'>
+    <products>
+      <!-- Newsletters -->
+      <product version='nl2'>
+			<rssManager>2</rssManager>
+			<configFile>config.xml</configFile>
+      </product>
+
+		<!-- Newsletters Podcast-->
+		<product version='nl2pcast'>
+			<rssManager>2</rssManager>
+			<configFile>config.xml</configFile>
+		</product>
+
+
+		<!-- Workspaces-->
+	  <product version='ws1'>
+		  <rssManager>2</rssManager>
+		  <configFile>config.xml</configFile>
+	  </product>
+
+
+		<!-- Workspaces Podcast-->
+		<product version='ws1pcast'>
+			<rssManager>2</rssManager>
+			<configFile>config.xml</configFile>
+		</product>
+		
+	  </products>
+  </eid5>
+</eids>

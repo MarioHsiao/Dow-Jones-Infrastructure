@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GetTopEntryPointDeliveryTypeAssetsResponse ver="1.0" xsi:noNamespaceSchemaLocation="GetTopEntryPointDeliveryTypeAssetsResponse.xsd"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <status value="0">Success</status>
+  <requestInfo>
+    <accountScope>All</accountScope>
+    <beginDate>2009-01-01</beginDate>
+    <endDate>2009-02-01</endDate>
+    <deliveryMethod>RSS</deliveryMethod>
+    <assetTypeList>Alert</assetTypeList>
+  </requestInfo>
+  <assetSummaryList first="1" count="2" total="15">
+    <assetSummary assetId="123" contentAssetType="AL" entryPointCount="450">
+      <assetName>Google</assetName>
+      <monthlySummary month="01" year="2009" entryPointCount="300"></monthlySummary>
+      <monthlySummary month="02" year="2009" entryPointCount="150"></monthlySummary>
+    </assetSummary>
+    <assetSummary assetId="321" contentAssetType="AL" entryPointCount="400">
+      <assetName>Yahoo</assetName>
+      <monthlySummary month="01" year="2009" entryPointCount="100"></monthlySummary>
+      <monthlySummary month="02" year="2009" entryPointCount="300"></monthlySummary>
+    </assetSummary>
+  </assetSummaryList>
+</GetTopEntryPointDeliveryTypeAssetsResponse>
