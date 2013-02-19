@@ -1530,6 +1530,17 @@ namespace FactivaRssManager_2_0
                     if (articleItem != null && !accessionNos.Contains(articleItem.AccessionNumber))
                     {
                         accessionNos.Add(articleItem.AccessionNumber);
+                    }                   
+                }
+                foreach (var subSection in section.SubSectionCollection)
+                {
+                    foreach (var SubItem in subSection.ItemCollection)
+                    {
+                        var SubArticleItem = SubItem as Common_V2.ArticleItem;
+                        if (SubArticleItem != null && !accessionNos.Contains(SubArticleItem.AccessionNumber))
+                        {
+                            accessionNos.Add(SubArticleItem.AccessionNumber);
+                        }
                     }
                 }
             }
@@ -1547,6 +1558,17 @@ namespace FactivaRssManager_2_0
                     if (articleItem != null && !accessionNos.Contains(articleItem.AccessionNumber))
                     {
                         accessionNos.Add(articleItem.AccessionNumber);
+                    }
+                }
+                foreach (var subSection in section.SubSectionCollection)
+                {
+                    foreach (var SubItem in subSection.ItemCollection)
+                    {
+                        var SubArticleItem = SubItem as Common_V2.ArticleItem;
+                        if (SubArticleItem != null && !accessionNos.Contains(SubArticleItem.AccessionNumber))
+                        {
+                            accessionNos.Add(SubArticleItem.AccessionNumber);
+                        }
                     }
                 }
             }
@@ -1643,6 +1665,35 @@ namespace FactivaRssManager_2_0
                                                                    uri = imageItem.PostbackUri,
                                                                    position = imageItem.Position
                                                                });
+                                }
+                            }
+                            foreach (var subSection in section.SubSectionCollection)
+                            {
+                                foreach (var contentItem in subSection.ItemCollection)
+                                {
+                                    object objGetItem = contentItem;
+
+                                    if (objGetItem.GetType().ToString().Contains("LinkItem"))
+                                    {
+                                        var linkItem = (Factiva.Gateway.Messages.Assets.Common.V2_0.LinkItem)contentItem;
+                                        documentCollection.Add(new document
+                                        {
+                                            headline = linkItem.Title,
+                                            snippet = (linkItem.Type == LinkType.RssHeadlineUrl) ? string.Empty : linkItem.Description,
+                                            uri = linkItem.Uri,
+                                            position = linkItem.Position
+                                        });
+                                    }
+                                    else if (objGetItem.GetType().ToString().Contains("ImageItem"))
+                                    {
+                                        var imageItem = (Factiva.Gateway.Messages.Assets.Common.V2_0.ImageItem)contentItem;
+                                        documentCollection.Add(new document
+                                        {
+                                            headline = imageItem.Title,
+                                            uri = imageItem.PostbackUri,
+                                            position = imageItem.Position
+                                        });
+                                    }
                                 }
                             }
                         }

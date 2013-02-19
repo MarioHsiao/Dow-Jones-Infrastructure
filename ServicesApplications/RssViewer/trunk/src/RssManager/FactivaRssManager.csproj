@@ -124,17 +124,17 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>FileReferences\encryption.dll</HintPath>
     </Reference>
-    <Reference Include="factiva.gateway.messages, Version=7.5.0.6, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="factiva.gateway.messages, Version=7.5.0.114, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Dependency\factiva.gateway.messages.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Factiva Web UI\trunk\src\Dotcom\Dotcom\GatewayResources\bin\factiva.gateway.messages.dll</HintPath>
     </Reference>
     <Reference Include="FactivaBusinessLayerLogic, Version=13.10.0.20721, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Dependency\FactivaBusinessLayerLogic.dll</HintPath>
     </Reference>
-    <Reference Include="FactivaGateway, Version=1.5.0.2, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="FactivaGateway, Version=1.6.0.1, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Dependency\FactivaGateway.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Factiva Web UI\trunk\src\Dotcom\Dotcom\GatewayResources\bin\FactivaGateway.dll</HintPath>
     </Reference>
     <Reference Include="FactivaServices, Version=13.3.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -232,12 +232,9 @@
     <Content Include="resources\CachingWrapper.dll" />
     <Content Include="resources\encryption.dll" />
     <Content Include="resources\factiva.gateway.messages.dll" />
-    <Content Include="resources\factiva.gateway.messages.pdb" />
-    <Content Include="resources\factiva.gateway.messages.XML" />
     <Content Include="resources\FactivaBusinessLayerLogic.dll" />
     <Content Include="resources\FactivaBusinessLayerLogic.XmlSerializers.dll" />
     <Content Include="resources\FactivaGateway.dll" />
-    <Content Include="resources\FactivaGateway.pdb" />
     <Content Include="resources\FactivaServices.dll" />
     <Content Include="resources\FactivaServices.xml" />
     <Content Include="resources\FCSLogger.dll" />
