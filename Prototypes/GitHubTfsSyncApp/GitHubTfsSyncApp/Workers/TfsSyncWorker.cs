@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net;
-using AttributeRouting.Helpers;
 using GitHubTfsSyncApp.Helpers;
+using GitHubTfsSyncApp.Models;
 using GitHubTfsSyncApp.Models.GitHub;
 using GitHubTfsSyncApp.Providers;
 using System.IO;
@@ -37,20 +37,37 @@ namespace GitHubTfsSyncApp.Workers
 				var details = provider.GetCommitDetails(commit, repository.Name, repository.Owner.Name);
 				var trees = provider.GetTrees(new Uri(details.Tree.Url));
 
-				foreach (var node in trees.Tree.Where(x => x.Type == "blob"))
-				{
-					var blob = provider.GetBlob(new Uri(node.Url));
-					var filepath = Path.Combine(localDir.FullName, node.Path);
-
-					SaveBlobToFileSystem(blob, filepath);
-
-					commitSpecs.Add(new CommitSpec(commit) { LocalFilePath = filepath });
-				}
+				ProcessTree(trees, provider, localDir, commitSpecs, commit);
 			}
 
 			var manager = new TfsManager(_tfsUri, _teamProject, new DirectoryInfo(_localWorkspaceRootDir), _credentials);
 
 			manager.CreateCheckin(commitSpecs.ToArray());
+		}
+
+		private void ProcessTree(TreeCollection trees, GitHubProvider provider, DirectoryInfo localDir, List<CommitSpec> commitSpecs,
+		                         Commit commit)
+		{
+			foreach (var node in trees.Tree)
+			{
+				if (node.Type == "blob")
+				{
+					var blob = provider.GetBlob(new Uri(node.Url));
+
+					var filepath = Path.Combine(localDir.FullName, node.Path);
+
+					SaveBlobToFileSystem(blob, filepath);
+
+					commitSpecs.Add(new CommitSpec(commit) {LocalFilePath = filepath});
+				}
+				else if (node.Type == "tree")
+				{
+					var subDir = Directory.CreateDirectory(Path.Combine(localDir.FullName, node.Path));
+					var subTrees = provider.GetTrees(new Uri(node.Url));
+
+					ProcessTree(subTrees, provider, subDir, commitSpecs, commit);
+				}
+			}
 		}
 
 		private void SaveBlobToFileSystem(Blob blob, string fileName)
@@ -61,45 +78,6 @@ namespace GitHubTfsSyncApp.Workers
 			{
 				stream.Write(bytes, 0, bytes.Length);
 			}
-		}	
-	}
-
-	public class CommitSpec : Commit
-	{
-		public CommitSpec(Commit commit)
-		{
-			Added = commit.Added;
-			Author = commit.Author;
-			Committer = commit.Committer;
-			Distinct = commit.Distinct;
-			Id = commit.Id;
-			Message = commit.Message;
-			Modified = commit.Modified;
-			Removed = commit.Removed;
-			Timestamp = commit.Timestamp;
-			Url = commit.Url;
-		}
-
-		public string LocalFilePath { get; set; }
-
-		public string ToSummary()
-		{
-			const string template = "Message: {0}\n\n"
-									+ "{1} additions, {2} modifications, {3} deletions\n"
-									+ "Timestamp: {4}\n"
-									+ "Author: {5}\n"
-									+ "Committer: {6}\n"
-									+ "Url: {7}";
-
-			return template.FormatWith(template,
-									   Message,
-									   Added.Count(),
-									   Modified.Count(),
-									   Removed.Count(),
-									   Timestamp.ToString(),
-									   Author.Email,
-									   Committer.Email,
-									   Url);
 		}
 	}
 }

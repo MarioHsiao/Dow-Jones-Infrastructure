@@ -217,6 +217,7 @@
     <Compile Include="Providers\TreeCollection.cs" />
     <Compile Include="Providers\TreeNode.cs" />
     <Compile Include="Providers\UriExtensions.cs" />
+    <Compile Include="Models\CommitSpec.cs" />
     <Compile Include="Workers\TfsManager.cs" />
     <Compile Include="Workers\TfsSyncWorker.cs" />
     <Compile Include="Controllers\NewCommitController.cs" />

@@ -6,6 +6,7 @@ using System.Net;
 using System.Security;
 using System.Web;
 using AttributeRouting.Helpers;
+using GitHubTfsSyncApp.Models;
 using GitHubTfsSyncApp.Models.GitHub;
 using Microsoft.TeamFoundation.Client;
 using Microsoft.TeamFoundation.VersionControl.Client;
@@ -20,8 +21,6 @@ namespace GitHubTfsSyncApp.Workers
 		private readonly string _tfsUrl;
 		private readonly string _teamProjectPath;
 		private readonly DirectoryInfo _workingDir;
-		//private readonly Lazy<TfsTeamProjectCollection> _teamProjectCollection;
-		//private readonly Lazy<VersionControlServer> _versionControl;
 		private readonly TfsTeamProjectCollection _teamProjectCollection;
 		private readonly VersionControlServer _versionControl;
 
@@ -86,7 +85,7 @@ namespace GitHubTfsSyncApp.Workers
 
 				var pendingChanges = workspace.GetPendingChanges();
 
-				var checkinMessage = commit.ToSummary();
+				var checkinMessage = commit.Summary;
 				var changesetNumber = workspace.CheckIn(pendingChanges, checkinMessage);
 
 				_logger.Info("Checked in changeset# {0}.\nCheckin Summary: {1}".FormatWith(changesetNumber, checkinMessage));
@@ -100,6 +99,7 @@ namespace GitHubTfsSyncApp.Workers
 			{
 				// cleanup
 				workspace.Delete();
+				Directory.Delete(workspaceMappedFolderPath, true);
 			}
 		}
 
