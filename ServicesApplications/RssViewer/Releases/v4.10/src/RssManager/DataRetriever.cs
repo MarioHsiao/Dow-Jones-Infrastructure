@@ -1583,9 +1583,10 @@ namespace FactivaRssManager_2_0
                 inputData.data.Add("newsletterName", manualWorkspace.Properties.Name);
 
                 if (manualWorkspace.Properties.AreFeedsActive == false)
+                {
                     return "<HeadlineInfo></HeadlineInfo>";
-
-
+                }
+                
                 var cacheManualWorkspaceForNewsLetterRss = GetCacheData("WSID_" + inputData.getItem("WSID") + "_en", 4);
                 if (cacheManualWorkspaceForNewsLetterRss != "")
                 {
