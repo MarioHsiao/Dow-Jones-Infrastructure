@@ -11,6 +11,7 @@ using System.Web;
 using System.Xml;
 using System.Xml.Schema;
 using System.Xml.Serialization;
+using System.Xml.Xsl;
 using Data;
 using EMG.Utility.Formatters.Globalization;
 using EMG.Utility.Managers.Search.Requests;
@@ -1034,17 +1035,18 @@ namespace FactivaRssManager_2_0
             try
             {
                 var xmlDoc = new XmlDocument();
-                var xml = new DOMDocument26Class();
-                var xsl = new DOMDocument26Class();
-                xml.async = false;
-                //load the XML string
-                xml.loadXML(rtnValue);
+                var resultString = new StringBuilder();
+                using (var xmlWriter = new XmlTextWriter(new StringWriter(resultString)))
+                {
+                    using (var xmlReader = new XmlTextReader(new StringReader(rtnValue)))
+                    {
+                        var xslTransform = new XslCompiledTransform();
+                        xslTransform.Load(HttpContext.Current.Request.MapPath(configData.getItem("//StyleSheet/name")));
+                        xslTransform.Transform(xmlReader, xmlWriter);
+                    }
+                    xmlDoc.LoadXml(resultString.ToString());
+                }
 
-                // Load the XSL
-                xsl.async = false;
-                xsl.load(HttpContext.Current.Request.MapPath(configData.getItem("//StyleSheet/name")));
-
-                xmlDoc.LoadXml(xml.transformNode(xsl));
                 rtnValue = xmlDoc.OuterXml;
             }
             catch (Exception ex)
