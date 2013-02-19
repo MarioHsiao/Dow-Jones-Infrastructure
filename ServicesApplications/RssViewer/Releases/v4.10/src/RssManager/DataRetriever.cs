@@ -29,7 +29,6 @@ using Factiva.Gateway.Utils.V1_0;
 using Factiva.Gateway.V1_0;
 using FactivaRssManager;
 using FCMLib;
-using MSXML2;
 using Common_V2 = Factiva.Gateway.Messages.Assets.Common.V2_0;
 using SearchManager=EMG.Utility.Managers.Search.SearchManager;
 using EMG.Utility.Managers.Track;
