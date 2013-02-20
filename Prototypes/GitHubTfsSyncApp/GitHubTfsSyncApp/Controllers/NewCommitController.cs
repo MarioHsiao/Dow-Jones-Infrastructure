@@ -1,6 +1,8 @@
-﻿using System.Configuration;
+﻿using System;
+using System.Configuration;
 using System.Net;
 using System.Threading.Tasks;
+using System.Web.Hosting;
 using System.Web.Http;
 using GitHubTfsSyncApp.Helpers;
 using GitHubTfsSyncApp.Models.GitHub;
@@ -27,11 +29,13 @@ namespace GitHubTfsSyncApp.Controllers
 
 			_log.Debug(ser.Serialize(response));
 
+			var localWorkspace = HostingEnvironment.MapPath("~\\StagingArea");
+
 			// TODO: Use IoC.
 			var worker = new TfsSyncWorker(
 									ConfigurationManager.AppSettings.Get("TFS:Url"),
-									ConfigurationManager.AppSettings.Get("TFS:Project"), 
-									ConfigurationManager.AppSettings.Get("TFS:LocalWorkspace"),
+									ConfigurationManager.AppSettings.Get("TFS:Project"),
+									localWorkspace,
 									new NetworkCredential(ConfigurationManager.AppSettings.Get("TFS:Username"), ConfigurationManager.AppSettings.Get("TFS:Password")));
 
 			new Task(() => worker.Process(response.Commits, response.Repository)).Start();
