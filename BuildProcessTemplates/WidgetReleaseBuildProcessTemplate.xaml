@@ -39,14 +39,14 @@
   <this:Process.Metadata>
     <mtbw:ProcessParameterMetadataCollection />
   </this:Process.Metadata>
-  <sap:VirtualizedContainerService.HintSize>1495,14896</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1495,14872</sap:VirtualizedContainerService.HintSize>
   <mva:VisualBasic.Settings>Assembly references and imported namespaces serialized as XML namespaces</mva:VisualBasic.Settings>
   <sap:WorkflowViewStateService.ViewState>
     <scg:Dictionary x:TypeArguments="x:String, x:Object">
       <x:Boolean x:Key="ShouldExpandAll">True</x:Boolean>
     </scg:Dictionary>
   </sap:WorkflowViewStateService.ViewState>
-  <Sequence sad:XamlDebuggerXmlReader.FileName="C:\Projects\Dow Jones Infrastructure\BuildProcessTemplates\WidgetBuildProcessTemplate.xaml" sap:VirtualizedContainerService.HintSize="1455,14856" mtbwt:BuildTrackingParticipant.Importance="None" mva:VisualBasic.Settings="Assembly references and imported namespaces serialized as XML namespaces">
+  <Sequence sad:XamlDebuggerXmlReader.FileName="C:\Projects\Dow Jones Infrastructure\BuildProcessTemplates\WidgetReleaseBuildProcessTemplate.xaml" sap:VirtualizedContainerService.HintSize="1455,14832" mtbwt:BuildTrackingParticipant.Importance="None" mva:VisualBasic.Settings="Assembly references and imported namespaces serialized as XML namespaces">
     <Sequence.Variables>
       <Variable x:TypeArguments="mtbc:IBuildDetail" Name="BuildDetail" />
     </Sequence.Variables>
@@ -104,7 +104,7 @@
         </If.Then>
       </If>
     </Sequence>
-    <mtbwa:AgentScope DisplayName="Run On Agent" sap:VirtualizedContainerService.HintSize="1433,13134" MaxExecutionTime="[AgentSettings.MaxExecutionTime]" MaxWaitTime="[AgentSettings.MaxWaitTime]" ReservationSpec="[AgentSettings.GetAgentReservationSpec()]" mva:VisualBasic.Settings="Assembly references and imported namespaces serialized as XML namespaces">
+    <mtbwa:AgentScope DisplayName="Run On Agent" sap:VirtualizedContainerService.HintSize="1433,13110" MaxExecutionTime="[AgentSettings.MaxExecutionTime]" MaxWaitTime="[AgentSettings.MaxWaitTime]" ReservationSpec="[AgentSettings.GetAgentReservationSpec()]" mva:VisualBasic.Settings="Assembly references and imported namespaces serialized as XML namespaces">
       <mtbwa:AgentScope.Variables>
         <Variable x:TypeArguments="mtbc:IBuildAgent" Name="BuildAgent" />
         <Variable x:TypeArguments="mtvc1:Workspace" Name="Workspace" />
@@ -118,7 +118,7 @@
         <Variable x:TypeArguments="x:String" Name="variable1" />
         <Variable x:TypeArguments="x:String" Name="variable2" />
       </mtbwa:AgentScope.Variables>
-      <Sequence DisplayName="Initialize Variables" sap:VirtualizedContainerService.HintSize="1411,1060" mtbwt:BuildTrackingParticipant.Importance="Low">
+      <Sequence DisplayName="Initialize Variables" sap:VirtualizedContainerService.HintSize="1411,1046" mtbwt:BuildTrackingParticipant.Importance="Low">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -130,14 +130,14 @@
         <Assign x:TypeArguments="x:String" DisplayName="Initialize Sources Directory" sap:VirtualizedContainerService.HintSize="464,22" mtbwt:BuildTrackingParticipant.Importance="Low" To="[SourcesDirectory]" Value="[String.Format(&quot;{0}\Sources&quot;, BuildDirectory)]" />
         <Assign x:TypeArguments="x:String" DisplayName="Initialize Binaries Directory" sap:VirtualizedContainerService.HintSize="464,22" mtbwt:BuildTrackingParticipant.Importance="Low" To="[BinariesDirectory]" Value="[String.Format(&quot;{0}\Binaries&quot;, BuildDirectory)]" />
         <Assign x:TypeArguments="x:String" DisplayName="Initialize TestResults Directory" sap:VirtualizedContainerService.HintSize="464,22" mtbwt:BuildTrackingParticipant.Importance="Low" To="[TestResultsDirectory]" Value="[String.Format(&quot;{0}\TestResults&quot;, BuildDirectory)]" />
-        <If Condition="[Not BuildSettings.HasPlatformConfigurations]" DisplayName="If Not BuildSettings.HasPlatformConfigurations" sap:VirtualizedContainerService.HintSize="464,208" mtbwt:BuildTrackingParticipant.Importance="Low">
+        <If Condition="[Not BuildSettings.HasPlatformConfigurations]" DisplayName="If Not BuildSettings.HasPlatformConfigurations" sap:VirtualizedContainerService.HintSize="464,201" mtbwt:BuildTrackingParticipant.Importance="Low">
           <If.Then>
-            <AddToCollection x:TypeArguments="mtbwa:PlatformConfiguration" Collection="[BuildSettings.PlatformConfigurations]" DisplayName="Use Default Platform Configuration" sap:VirtualizedContainerService.HintSize="200,22" mtbwt:BuildTrackingParticipant.Importance="Low" Item="[Microsoft.TeamFoundation.Build.Workflow.Activities.PlatformConfiguration.Default]" />
+            <AddToCollection x:TypeArguments="mtbwa:PlatformConfiguration" Collection="[BuildSettings.PlatformConfigurations]" DisplayName="Use Default Platform Configuration" sap:VirtualizedContainerService.HintSize="269,100" mtbwt:BuildTrackingParticipant.Importance="Low" Item="[Microsoft.TeamFoundation.Build.Workflow.Activities.PlatformConfiguration.Default]" />
           </If.Then>
         </If>
-        <If Condition="[WorkspaceName.Length &gt; Microsoft.TeamFoundation.VersionControl.Common.RepositoryConstants.MaxWorkspaceNameSize]" DisplayName="If WorkspaceName &gt; MaxSize" sap:VirtualizedContainerService.HintSize="464,316" mtbwt:BuildTrackingParticipant.Importance="Low">
+        <If Condition="[WorkspaceName.Length &gt; Microsoft.TeamFoundation.VersionControl.Common.RepositoryConstants.MaxWorkspaceNameSize]" DisplayName="If WorkspaceName &gt; MaxSize" sap:VirtualizedContainerService.HintSize="464,309" mtbwt:BuildTrackingParticipant.Importance="Low">
           <If.Then>
-            <Sequence sap:VirtualizedContainerService.HintSize="222,208" mtbwt:BuildTrackingParticipant.Importance="None">
+            <Sequence sap:VirtualizedContainerService.HintSize="281,208" mtbwt:BuildTrackingParticipant.Importance="None">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -222,7 +222,7 @@
         </If>
         <mtbwa:SyncWorkspace DisplayName="Get Workspace" sap:VirtualizedContainerService.HintSize="818,22" mva:VisualBasic.Settings="Assembly references and imported namespaces serialized as XML namespaces" VersionOverride="[GetVersion]" Workspace="[Workspace]" />
       </Sequence>
-      <If Condition="[CreateLabel]" DisplayName="If CreateLabel" sap:VirtualizedContainerService.HintSize="1411,314" mtbwt:BuildTrackingParticipant.Importance="Low">
+      <If Condition="[CreateLabel]" DisplayName="If CreateLabel" sap:VirtualizedContainerService.HintSize="1411,309" mtbwt:BuildTrackingParticipant.Importance="Low">
         <If.Then>
           <mtbwa:InvokeForReason DisplayName="Create and Set Label for non-Shelveset Builds" sap:VirtualizedContainerService.HintSize="281,208" Reason="Manual, IndividualCI, BatchedCI, Schedule, ScheduleForced, UserCreated">
             <mtbwa:LabelWorkspace Comment="[&quot;Label Created by Team Build&quot;]" DisplayName="Create Label" sap:VirtualizedContainerService.HintSize="200,22" Name="[LabelName]" Scope="[String.Format(&quot;$/{0}&quot;, BuildDetail.BuildDefinition.TeamProject)]" mva:VisualBasic.Settings="Assembly references and imported namespaces serialized as XML namespaces" Workspace="[Workspace]" />
@@ -230,9 +230,9 @@
           </mtbwa:InvokeForReason>
         </If.Then>
       </If>
-      <TryCatch DisplayName="Try Compile, Test, and Associate Changesets and Work Items" sap:VirtualizedContainerService.HintSize="1411,6005" mtbwt:BuildTrackingParticipant.Importance="Low">
+      <TryCatch DisplayName="Try Compile, Test, and Associate Changesets and Work Items" sap:VirtualizedContainerService.HintSize="1411,6000" mtbwt:BuildTrackingParticipant.Importance="Low">
         <TryCatch.Finally>
-          <Sequence DisplayName="Revert Workspace and Copy Files to Drop Location" sap:VirtualizedContainerService.HintSize="1393,516" mtbwt:BuildTrackingParticipant.Importance="Low">
+          <Sequence DisplayName="Revert Workspace and Copy Files to Drop Location" sap:VirtualizedContainerService.HintSize="1393,511" mtbwt:BuildTrackingParticipant.Importance="Low">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -241,7 +241,7 @@
             <mtbwa:InvokeForReason DisplayName="Revert Workspace for Shelveset Builds" sap:VirtualizedContainerService.HintSize="464,146" Reason="ValidateShelveset, CheckInShelveset">
               <mtbwa:RevertWorkspace DisplayName="Revert Workspace" sap:VirtualizedContainerService.HintSize="200,22" Workspace="[Workspace]" />
             </mtbwa:InvokeForReason>
-            <If Condition="[DropBuild AndAlso Not String.IsNullOrEmpty(BuildDetail.DropLocation)]" DisplayName="If DropBuild And DropLocation is Set" sap:VirtualizedContainerService.HintSize="464,206" mtbwt:BuildTrackingParticipant.Importance="Low">
+            <If Condition="[DropBuild AndAlso Not String.IsNullOrEmpty(BuildDetail.DropLocation)]" DisplayName="If DropBuild And DropLocation is Set" sap:VirtualizedContainerService.HintSize="464,201" mtbwt:BuildTrackingParticipant.Importance="Low">
               <If.Then>
                 <mtbwa:CopyDirectory Destination="[BuildDetail.DropLocation]" DisplayName="Copy Files to Drop Location" sap:VirtualizedContainerService.HintSize="269,100" Source="[BinariesDirectory]" />
               </If.Then>
@@ -263,7 +263,7 @@
             <Parallel DisplayName="Compile, Test, and Associate Changesets and Work Items" sap:VirtualizedContainerService.HintSize="1371,3357">
               <TryCatch DisplayName="Try Compile and Test" sap:VirtualizedContainerService.HintSize="753,3311" mtbwt:BuildTrackingParticipant.Importance="Low">
                 <TryCatch.Try>
-                  <Sequence DisplayName="Compile and Test" sap:VirtualizedContainerService.HintSize="735,2933">
+                  <Sequence DisplayName="Compile and Test" sap:VirtualizedContainerService.HintSize="735,2923">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -365,12 +365,12 @@
                         </Sequence>
                       </ActivityAction>
                     </ForEach>
-                    <If Condition="[BuildDetail.CompilationStatus = Microsoft.TeamFoundation.Build.Client.BuildPhaseStatus.Unknown]" DisplayName="If CompilationStatus = Unknown" sap:VirtualizedContainerService.HintSize="713,206" mtbwt:BuildTrackingParticipant.Importance="Low">
+                    <If Condition="[BuildDetail.CompilationStatus = Microsoft.TeamFoundation.Build.Client.BuildPhaseStatus.Unknown]" DisplayName="If CompilationStatus = Unknown" sap:VirtualizedContainerService.HintSize="713,201" mtbwt:BuildTrackingParticipant.Importance="Low">
                       <If.Then>
                         <mtbwa:SetBuildProperties CompilationStatus="[Microsoft.TeamFoundation.Build.Client.BuildPhaseStatus.Succeeded]" DisplayName="Set CompilationStatus to Succeeded" sap:VirtualizedContainerService.HintSize="269,100" mtbwt:BuildTrackingParticipant.Importance="Low" PropertiesToSet="CompilationStatus" />
                       </If.Then>
                     </If>
-                    <If Condition="[BuildDetail.TestStatus = Microsoft.TeamFoundation.Build.Client.BuildPhaseStatus.Unknown]" DisplayName="If TestStatus = Unknown" sap:VirtualizedContainerService.HintSize="713,206" mtbwt:BuildTrackingParticipant.Importance="Low">
+                    <If Condition="[BuildDetail.TestStatus = Microsoft.TeamFoundation.Build.Client.BuildPhaseStatus.Unknown]" DisplayName="If TestStatus = Unknown" sap:VirtualizedContainerService.HintSize="713,201" mtbwt:BuildTrackingParticipant.Importance="Low">
                       <If.Then>
                         <mtbwa:SetBuildProperties DisplayName="Set TestStatus to Succeeded" sap:VirtualizedContainerService.HintSize="269,100" mtbwt:BuildTrackingParticipant.Importance="Low" PropertiesToSet="TestStatus" TestStatus="[Microsoft.TeamFoundation.Build.Client.BuildPhaseStatus.Succeeded]" />
                       </If.Then>
@@ -497,7 +497,7 @@
           <Assign x:TypeArguments="x:String" DisplayName="Initialize LogFile Drop Location" sap:VirtualizedContainerService.HintSize="269,100" mtbwt:BuildTrackingParticipant.Importance="Low" To="[logFileDropLocation1]" Value="[BuildDetail.DropLocation + &quot;\logs&quot;]" />
         </If.Then>
       </If>
-      <mtbwa:MSBuild CommandLineArguments="[String.Format(&quot;/p:SkipInvalidConfigurations=true {0} {1}&quot;, MSBuildArguments, &quot;/p:PreStagingWebsiteLocation=&quot; + PreStagingRootLocation + PreStagingWebsiteLocation + &quot;;PreStagingBackupWebsiteLocation=&quot; + PreStagingRootLocation + PreStagingBackupWebsiteLocation + &quot;;IISServer=&quot; + IISServer + &quot;;ProductVersion=&quot; + ProductVersion + &quot;;AppPool=&quot; + AppPoolName)]" DisplayName="Run MSBuild for Project" GenerateVSPropsFile="[True]" sap:VirtualizedContainerService.HintSize="1411,22" LogFileDropLocation="[logFileDropLocation1]" OutDir="[BuildAgent.GetExpandedBuildDirectory(BuildDetail.BuildDefinition) + &quot;\Binaries\_PublishedWebsites&quot;]" Project="[BuildAgent.GetExpandedBuildDirectory(BuildDetail.BuildDefinition) + &quot;\Sources\ServicesApplications\WidgetManagement\trunk\src\&quot; + CustomProject]" RunCodeAnalysis="[RunCodeAnalysis]" mva:VisualBasic.Settings="Assembly references and imported namespaces serialized as XML namespaces" TargetsNotLogged="[New String() {&quot;GetNativeManifest&quot;, &quot;GetCopyToOutputDirectoryItems&quot;, &quot;GetTargetPath&quot;}]" ToolPlatform="[MSBuildPlatform]" Verbosity="[Verbosity]" />
+      <mtbwa:MSBuild CommandLineArguments="[String.Format(&quot;/p:SkipInvalidConfigurations=true {0} {1}&quot;, MSBuildArguments, &quot;/p:PreStagingWebsiteLocation=&quot; + PreStagingRootLocation + PreStagingWebsiteLocation + &quot;;PreStagingBackupWebsiteLocation=&quot; + PreStagingRootLocation + PreStagingBackupWebsiteLocation + &quot;;IISServer=&quot; + IISServer + &quot;;ProductVersion=&quot; + ProductVersion + &quot;;AppPool=&quot; + AppPoolName)]" DisplayName="Run MSBuild for Project" GenerateVSPropsFile="[True]" sap:VirtualizedContainerService.HintSize="1411,22" LogFileDropLocation="[logFileDropLocation1]" OutDir="[BuildAgent.GetExpandedBuildDirectory(BuildDetail.BuildDefinition) + &quot;\Binaries\_PublishedWebsites&quot;]" Project="[BuildAgent.GetExpandedBuildDirectory(BuildDetail.BuildDefinition) + &quot;\Sources\ServicesApplications\WidgetManagement\Releases\v4.27\src\&quot; + CustomProject]" RunCodeAnalysis="[RunCodeAnalysis]" mva:VisualBasic.Settings="Assembly references and imported namespaces serialized as XML namespaces" TargetsNotLogged="[New String() {&quot;GetNativeManifest&quot;, &quot;GetCopyToOutputDirectoryItems&quot;, &quot;GetTargetPath&quot;}]" ToolPlatform="[MSBuildPlatform]" Verbosity="[Verbosity]" />
       <If Condition="[Not DisableTests]" DisplayName="If Not DisableTests" sap:VirtualizedContainerService.HintSize="1411,3335">
         <If.Then>
           <TryCatch DisplayName="TryCatch -Custom Publishing activities" sap:VirtualizedContainerService.HintSize="927,3234">
