@@ -55,11 +55,7 @@ namespace DowJones.Web
                 return;
             }
 
-            var resolvedResource = GlobalResourceManager.GetClientResource(resource);
-
-            if (resolvedResource == null)
-                resolvedResource = resource;
-
+            var resolvedResource = GlobalResourceManager.GetClientResource(resource) ?? resource;
             _resources.Add(resolvedResource);
             OnRegistered(resolvedResource);
         }

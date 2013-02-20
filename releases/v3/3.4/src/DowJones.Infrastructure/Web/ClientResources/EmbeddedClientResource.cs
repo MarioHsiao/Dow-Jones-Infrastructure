@@ -9,13 +9,7 @@ namespace DowJones.Web
     {
         internal static IDictionary<Type, IEnumerable<ClientResource>> ClientResourcesCache
         {
-            get
-            {
-                if (clientResourcesCache == null)
-                    clientResourcesCache = new Dictionary<Type, IEnumerable<ClientResource>>();
-
-                return clientResourcesCache;
-            }
+            get { return clientResourcesCache ?? (clientResourcesCache = new Dictionary<Type, IEnumerable<ClientResource>>()); }
             set { clientResourcesCache = value; }
         }
         private volatile static IDictionary<Type, IEnumerable<ClientResource>> clientResourcesCache;
@@ -71,7 +65,7 @@ namespace DowJones.Web
                 clientResourceAttributes
                     .Where(r => r.ResourceKind == ClientResourceKind.ClientTemplate)
                     .Reverse() // Reverse the order so the anscestors are first
-                    .Select(x => x.ToClientResource(declaringType));
+                    .Select(x => x.ToClientResource(declaringType)).ToArray();
 
             ClientResourcesCache.Add(declaringType, resources);
 

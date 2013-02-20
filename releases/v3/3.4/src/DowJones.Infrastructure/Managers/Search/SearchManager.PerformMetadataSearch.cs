@@ -38,7 +38,7 @@ namespace DowJones.Managers.Search
                 var fcodes = new List<string>();
                 foreach (var keyValuePair in CodesDict)
                 {
-                    request.StructuredSearch.Query.MetadataCollectionCollection.Add(MapItem(keyValuePair.Key));
+                    request.StructuredSearch.Query.MetadataCollectionCollection.Add(MapNewsFilterCategoryToMetadataType(keyValuePair.Key));
                     if (keyValuePair.Key == NewsFilterCategory.Source)
                     {
                         request.StructuredSearch.Query.MetadataCollectionCollection.Add(MetadataCollection.Group);
@@ -64,17 +64,21 @@ namespace DowJones.Managers.Search
                     && response.MetadataSearchResult.MetadataResultSet.MetadataInfoCollection.Count > 0)
                 {
                     var dict = new Dictionary<NewsFilterCategory, Dictionary<string, string>>();
-                    NewsFilterCategory filterCategory;
-                    foreach (
-                        MetadataInfo metadataInfo in
-                            response.MetadataSearchResult.MetadataResultSet.MetadataInfoCollection)
+                    foreach (var keyValuePair in CodesDict)
                     {
-                        filterCategory = MapMetadataTypeToNewsFilterCategory(metadataInfo.Collection);
-                        if (!dict.ContainsKey(filterCategory))
+                        foreach (var code in keyValuePair.Value)
                         {
-                            dict[filterCategory] = new Dictionary<string, string>();
+                            var metadataInfo = GetMetadataInfoByType(response.MetadataSearchResult.MetadataResultSet.MetadataInfoCollection, keyValuePair.Key, code);
+                            if (!dict.ContainsKey(keyValuePair.Key))
+                            {
+                                dict[keyValuePair.Key] = new Dictionary<string, string>();
+                            }
+
+                            if (metadataInfo != null)
+                            {
+                                dict[keyValuePair.Key].Add(metadataInfo.Id.ToLower(), metadataInfo.Name);
+                            }
                         }
-                        dict[filterCategory].Add(metadataInfo.Id.ToLower(), metadataInfo.Name);
                     }
                     return dict;
                 }
@@ -86,7 +90,12 @@ namespace DowJones.Managers.Search
             return null;
         }
 
-        private MetadataCollection MapItem(NewsFilterCategory key)
+        private MetadataInfo GetMetadataInfoByType(MetadataInfoCollection metadataInfoCollection, NewsFilterCategory category, string code)
+        {
+            return metadataInfoCollection.Where(m => m.Collection == MapNewsFilterCategoryToMetadataType(category) && m.Id.ToLower() == code.ToLower()).FirstOrDefault();
+        }
+
+        private MetadataCollection MapNewsFilterCategoryToMetadataType(NewsFilterCategory key)
         {
             switch (key)
             {
@@ -106,30 +115,6 @@ namespace DowJones.Managers.Search
                     return MetadataCollection.NewsSubject;
             }
             throw new NotSupportedException("Not supported key:" + key);
-        }
-
-        private NewsFilterCategory MapMetadataTypeToNewsFilterCategory(MetadataCollection type)
-        {
-            switch (type)
-            {
-                case MetadataCollection.Company:
-                    return NewsFilterCategory.Company;
-                case MetadataCollection.Author:
-                    return NewsFilterCategory.Author;
-                case MetadataCollection.People:
-                    return NewsFilterCategory.Executive;
-                case MetadataCollection.NewsSubject:
-                    return NewsFilterCategory.Subject;
-                case MetadataCollection.Industry:
-                    return NewsFilterCategory.Industry;
-                case MetadataCollection.Region:
-                    return NewsFilterCategory.Region;
-                case MetadataCollection.Source:
-                    return NewsFilterCategory.Source;
-                case MetadataCollection.Group://For GroupSource
-                    return NewsFilterCategory.Group;
-            }
-            return NewsFilterCategory.Unknown;
         }
     }
 }

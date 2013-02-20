@@ -99,7 +99,7 @@ namespace DowJones.Web.Mvc.UI
                 componentType
                     .GetClientResourceAttributes()
                     .Select(x => x.ToClientResource(componentType))
-                    .Where(x => x.ResourceKind == ClientResourceKind.Script);
+                    .Where(x => x.ResourceKind == ClientResourceKind.Script).ToArray();
 
             foreach (var resource in clientResources)
                 _scriptRegistry.Register(resource);

@@ -14,16 +14,11 @@ namespace DowJones.Globalization
         protected static readonly ILog Log = LogManager.GetLogger(typeof (ResourceTextManagerFactory));
 
         private static readonly Lazy<ResourceManager> Manager = 
-            new Lazy<ResourceManager>(CreateFromResourceAssembly);
+            new Lazy<ResourceManager>(() => CreateFromResourceAssembly());
 
         public override IResourceTextManager Create()
         {
             return new ResourceTextManager(Manager.Value);
-        }
-
-        public static ResourceManager CreateFromResourceAssembly()
-        {
-            return CreateFromResourceAssembly(null, null);
         }
 
         public static ResourceManager CreateFromResourceAssembly(string assemblyName = null, string resourceName = null)
