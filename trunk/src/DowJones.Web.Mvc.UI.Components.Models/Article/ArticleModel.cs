@@ -143,6 +143,12 @@ namespace DowJones.Web.Mvc.UI.Components.Article
         public bool ShowPostProcessing { get; set; }
 
         /// <summary>
+        /// Gets or sets a value indicating whether ShowPostProcessing.
+        /// </summary>
+        [ClientProperty("showHoverTextOnPostProcessingIcons")]
+        public bool ShowHoverTextOnPostProcessingIcons { get; set; }
+
+        /// <summary>
         /// Gets or sets the post processing options.
         /// </summary>
         /// <value>

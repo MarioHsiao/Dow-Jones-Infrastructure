@@ -14,11 +14,10 @@
 {
     var showIndexing = Model.ArticleDisplayOptions == DisplayOptions.Indexing || Model.ArticleDisplayOptions == DisplayOptions.Headline;
     if (Model.ArticleDataSet.Status == 0)
-        
     {
     <div class="dj_article-container dj_article_display_@(Model.ArticleDisplayOptions.ToString()) dj_article_lang_@(Model.ArticleDataSet.LanguageCode.ToLower())" data-ref="@Model.ArticleRef.ToJson().EscapeForHtml()">
         
-        @if(Model != null && Model.VideoPlayer != null) 
+        @if (Model != null && Model.VideoPlayer != null)
         {
              <div class="multimediaPlayer">
                 <div class="player">
@@ -48,7 +47,7 @@
 @*Begin logo section*@
             <div class="dj_article_image article-logo">
                 @{
-                    var largeImgUrl = (Model.ArticleDataSet.Head.FirstOrDefault(h => h.ItemMarkUp == MarkUpType.HeadImageLarge) ?? new RenderItem()).ItemText;
+            var largeImgUrl = (Model.ArticleDataSet.Head.FirstOrDefault(h => h.ItemMarkUp == MarkUpType.HeadImageLarge) ?? new RenderItem()).ItemText;
                 }
 
                 @foreach (var renderItem in Model.ArticleDataSet.Head)
@@ -133,10 +132,10 @@
                             {
                                 case MarkUpType.Plain:
                                     @renderItem.ItemText
-                                    break;
+                               break;
                                 case MarkUpType.Anchor:
                                     <a class="dj_article_headline_link" href="javascript:void(0)">@renderItem.ItemText</a>
-                                    break;
+                                                                                             break;
                             }
                         }
                     </h4>
@@ -157,10 +156,10 @@
                                     {
                                         case MarkUpType.EntityLink:
                                             <span class="dj_article_source" data-entity="@renderItem.ItemEntityData.ToJson().EscapeForHtml()">@renderItem.ItemEntityData.Name</span>
-                                            break;
+                                                                                                                                         break;
                                         case MarkUpType.Span:
                                             @renderItem.ItemText
-                                            break;
+                                       break;
                                     }
                                 </span>
                             }
@@ -314,9 +313,20 @@
                         }
                             
                         <ul class="dj_PostProcessing actions clearfix">
-                            @foreach (var item in tList)
+                            @if (Model.ShowHoverTextOnPostProcessingIcons)
                             {
-                                <li class="@(item.ToString().ToLower()) action" data-ref="@(item.ToString().ToLower())"><i class="dj_icon dj_icon-@(item.ToString().ToLower())"></i><span data-workflow="@(item.ToString().ToLower())">@(DJ.Token(DJ.GetAssignedAttribute<PostProcessingOptions>(item.ToString())))</span></li>
+                                foreach (var item in tList)
+                                {
+                                    var text = DJ.Token(DJ.GetAssignedAttribute<PostProcessingOptions>(item.ToString()));
+                                    <li class="@(item.ToString().ToLower()) action" data-ref="@(item.ToString().ToLower())"><i class="dj_icon dj_icon-@(item.ToString().ToLower())" title="@(text)"></i><span data-workflow="@(item.ToString().ToLower())">@(text)</span></li>
+                                }
+                            }
+                            else
+                            {
+                                foreach (var item in tList)
+                                {
+                                    <li class="@(item.ToString().ToLower()) action" data-ref="@(item.ToString().ToLower())"><i class="dj_icon dj_icon-@(item.ToString().ToLower())"></i><span data-workflow="@(item.ToString().ToLower())">@(DJ.Token(DJ.GetAssignedAttribute<PostProcessingOptions>(item.ToString())))</span></li>
+                                }
                             }
                         </ul>
                     }
