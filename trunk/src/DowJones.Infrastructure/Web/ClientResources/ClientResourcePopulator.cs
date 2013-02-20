@@ -136,14 +136,11 @@ namespace DowJones.Web
 				Path.Combine(websiteDirectory, "..", assemblyName,
 							 resourceNameWithoutAssembly.Substring(0, fileExtensionIndex).Replace('.', '\\'));
 
-			string filename = resourceNameWithoutAssembly.Substring(fileExtensionIndex + 1);
+			var filename = resourceNameWithoutAssembly.Substring(fileExtensionIndex + 1);
 
 			var fullServerPath = Path.Combine(rootServerPath, filename);
 
-			if (File.Exists(fullServerPath))
-				return File.OpenRead(fullServerPath);
-
-			return null;
+			return File.Exists(fullServerPath) ? File.OpenRead(fullServerPath) : null;
 		}
 
 		protected internal virtual Stream RetrieveExternalWebResourceStream(ClientResource clientResource)
@@ -152,7 +149,7 @@ namespace DowJones.Web
 
 			Log.DebugFormat("Retrieving remote resource {0}...", clientResource.Url);
 
-			WebRequest request = WebRequest.Create(clientResource.Url);
+			var request = WebRequest.Create(clientResource.Url);
 
 			var response = request.GetResponse();
 			if (response.ContentLength > 0)
@@ -180,15 +177,8 @@ namespace DowJones.Web
 			if (string.IsNullOrWhiteSpace(url) || !(url.StartsWith("~/") || url.StartsWith("/")))
 				throw new ClientResourcePopulationException("Invalid local resource path: " + url);
 
-			string relativePath;
-
-			if (clientResource.IsAbsoluteUrl())
-				relativePath = url;
-			else
-				relativePath = VirtualPathUtility.ToAbsolute(url);
-
-			string filename = HttpContext.Server.MapPath(relativePath);
-
+		    var relativePath = clientResource.IsAbsoluteUrl() ? url : VirtualPathUtility.ToAbsolute(url);
+			var filename = HttpContext.Server.MapPath(relativePath);
 			var fileInfo = new FileInfo(filename);
 
 			if (!fileInfo.Exists)

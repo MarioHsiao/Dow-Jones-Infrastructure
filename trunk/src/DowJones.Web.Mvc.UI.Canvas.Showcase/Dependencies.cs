@@ -16,7 +16,7 @@ namespace DowJones.DegreasedDashboards.Website
         {
             Bind<IControlData>().ToConstant(new ControlData());
             Bind<IUserSession>().ToConstant(new UserSession { SessionId = "1234567890" });
-            Bind<IPreferences>().ToMethod(x => new DowJones.Preferences.Preferences("en"));
+            Bind<IPreferences>().ToMethod(x => new Preferences.Preferences("en"));
             Bind<IPrinciple>().ToConstant(new Principle());
             Bind<Product>().ToConstant(new GlobalProduct());
             Bind<IPageSubscriptionManager>().To<InMemoryPageSubscriptionManager>().InSingletonScope();

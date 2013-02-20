@@ -29,13 +29,7 @@ namespace DowJones.Web.Mvc.UI
 
         internal static IDictionary<Type, IEnumerable<ClientResource>> ClientResourcesCache
         {
-            get
-            {
-                if (clientResourcesCache == null)
-                    clientResourcesCache = new Dictionary<Type, IEnumerable<ClientResource>>();
-
-                return clientResourcesCache;
-            }
+            get { return clientResourcesCache ?? (clientResourcesCache = new Dictionary<Type, IEnumerable<ClientResource>>()); }
             set { clientResourcesCache = value; }
         }
         private volatile static IDictionary<Type, IEnumerable<ClientResource>> clientResourcesCache;
@@ -338,7 +332,7 @@ namespace DowJones.Web.Mvc.UI
             var clientResources = 
                 componentType
                     .GetClientResourceAttributes()
-                    .Select(x => x.ToClientResource(componentType));
+                    .Select(x => x.ToClientResource(componentType)).ToArray();
 
             _clientResources.AddRange(clientResources);
         }
@@ -484,7 +478,7 @@ namespace DowJones.Web.Mvc.UI
             // Reverse the order so the anscestors are first
             clientResourceAttributes = clientResourceAttributes.Reverse();
 
-            var resources = clientResourceAttributes.Select(x => x.ToClientResource(declaringType));
+            var resources = clientResourceAttributes.Select(x => x.ToClientResource(declaringType)).ToArray();
 
             ClientResourcesCache.Add(declaringType, resources);
 

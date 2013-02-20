@@ -6,6 +6,7 @@
 
 using System;
 using System.IO;
+using System.Reflection;
 using System.Xml;
 using System.Xml.Serialization;
 using DowJones.DependencyInjection;
@@ -31,21 +32,21 @@ namespace DowJones.Managers.Abstract
         protected AbstractAggregationManager(IControlData controlData)
         {
             ControlData = controlData;
-            
+            /*
             if (Log != null && TransactionLogger == null)
             {
                 TransactionLogger = new TransactionLogger(Log);
-            }
+            }*/
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AbstractAggregationManager"/> class.
         /// </summary>
-        /// <param name="sessionID">The session id.</param>
+        /// <param name="sessionId">The session id.</param>
         /// <param name="clientTypeCode">The client type code.</param>
         /// <param name="accessPointCode">The access point code.</param>
-        protected AbstractAggregationManager(string sessionID, string clientTypeCode, string accessPointCode)
-            : this(new ControlData{SessionID = sessionID, ClientType = clientTypeCode, AccessPointCode = accessPointCode})
+        protected AbstractAggregationManager(string sessionId, string clientTypeCode, string accessPointCode)
+            : this(new ControlData{SessionID = sessionId, ClientType = clientTypeCode, AccessPointCode = accessPointCode})
         {
         }
         
@@ -59,7 +60,7 @@ namespace DowJones.Managers.Abstract
         /// <value>The control data.</value>
         public IControlData ControlData { get; protected internal set; }
         
-        /// <summary>
+        /*/// <summary>
         /// Gets or sets the Transaction logger.
         /// </summary>
         /// <value>
@@ -67,7 +68,7 @@ namespace DowJones.Managers.Abstract
         /// </value>
         [Inject("Injected to avoid a base constructor call in derived classes")]
         internal TransactionLogger TransactionLogger { get; set; }
-
+*/
         /// <summary>
         /// Gets the log.
         /// </summary>
@@ -86,35 +87,40 @@ namespace DowJones.Managers.Abstract
         /// <returns></returns>
         public ServiceResponse<T> Invoke<T>(object request, IControlData baseControlData = null, bool copyContentServerAddress = false)
         {
-            TransactionLogger.Reset();
-            var controlData = ControlData;
-            if (baseControlData != null)
+            using (new TransactionLogger(Log, MethodBase.GetCurrentMethod()))
             {
-                controlData = baseControlData;
+                if (Log.IsInfoEnabled)
+                {
+                    Log.InfoFormat("Request Name: {0}", request.GetType().FullName);
+                }
+
+                var controlData = ControlData;
+                if (baseControlData != null)
+                {
+                    controlData = baseControlData;
+                }
+
+                var response = FactivaServices.Invoke<T>(ControlDataManager.Convert(controlData, copyContentServerAddress), request);
+
+                if (response == null)
+                {
+                    throw new DowJonesUtilitiesException(new NullReferenceException("ServiceResponse is null"), -1);
+                }
+
+                var responseControlData = response.GetControlData();
+                LastRawResponse = response.RawResponse as string;
+                LastTransactionControlData = ControlDataManager.Convert(responseControlData);
+
+                if (response.rc != 0)
+                {
+                    DeleteFromCache(responseControlData.CacheKey, responseControlData.CacheScope, controlData);
+                    var message = string.Format("\n   RequestType: {0}\n   ResponseControlData.TransactionType: {1}",
+                                                request.GetType().FullName,
+                                                responseControlData.TransactionType);
+                    throw new DowJonesUtilitiesException(message, response.rc);
+                }
+                return response;
             }
-
-            var response = FactivaServices.Invoke<T>(ControlDataManager.Convert(controlData, copyContentServerAddress), request);
-
-            if (response == null)
-            {
-                throw new DowJonesUtilitiesException(new NullReferenceException("ServiceResponse is null"), -1);
-            }
-
-            var responseControlData = response.GetControlData();
-            LastRawResponse = response.RawResponse as string;
-            LastTransactionControlData = ControlDataManager.Convert(responseControlData);
-
-            if (response.rc != 0)
-            {
-                DeleteFromCache(responseControlData.CacheKey, responseControlData.CacheScope, controlData);
-                var message = string.Format("\n   RequestType: {0}\n   ResponseControlData.TransactionType: {1}",
-                                            request.GetType().FullName,
-                                            responseControlData.TransactionType);
-                throw new DowJonesUtilitiesException(message, response.rc);
-            }
-
-            TransactionLogger.LogTimeSpentSinceReset("Invoke");
-            return response;
         }
         
 

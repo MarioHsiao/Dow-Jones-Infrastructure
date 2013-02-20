@@ -33,9 +33,8 @@ namespace DowJones.Web.ClientResources
                 from attributeGroup in resourceAttributesByType
                 from attribute in attributeGroup.attributes
                 select attribute.ToClientResource(attributeGroup.type);
-	        
 
-	        return resources;
+	        return resources.ToArray();
         }
     }
 }

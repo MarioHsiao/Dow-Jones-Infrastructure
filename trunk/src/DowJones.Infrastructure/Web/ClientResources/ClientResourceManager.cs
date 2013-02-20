@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Linq.Expressions;
+using DowJones.DependencyInjection;
 using DowJones.Extensions;
 using DowJones.Web.ClientResources;
 
@@ -26,7 +27,7 @@ namespace DowJones.Web
 
         public Func<string, CultureInfo, string> UrlResolver { get; set; }
 
-
+        [Inject("")]
         public ClientResourceManager(IEnumerable<IClientResourceRepository> repositories, ClientResourceConfiguration config)
             :this(repositories, config.Aliases)
         {

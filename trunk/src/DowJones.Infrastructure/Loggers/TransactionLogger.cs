@@ -7,6 +7,7 @@ using System;
 using System.Diagnostics;
 using System.Reflection;
 using log4net;
+using DowJones.Extensions;
 
 namespace DowJones.Loggers
 {
@@ -18,27 +19,27 @@ namespace DowJones.Loggers
         /// <summary>
         /// The logger.
         /// </summary>
-        private readonly ILog log;
+        private readonly ILog _log;
 
         /// <summary>
         /// The method base.
         /// </summary>
-        private readonly MethodBase methodBase;
+        private readonly MethodBase _methodBase;
 
         /// <summary>
         /// The startup watch.
         /// </summary>
-        private readonly Stopwatch startupWatch;
+        private readonly Stopwatch _startupWatch;
 
         /// <summary>
         /// The is disposed.
         /// </summary>
-        private bool isDisposed;
+        private bool _isDisposed;
 
         /// <summary>
         /// The running watch.
         /// </summary>
-        private Stopwatch runningWatch;
+        private Stopwatch _runningWatch;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TransactionLogger"/> class.
@@ -48,15 +49,15 @@ namespace DowJones.Loggers
         /// </param>
         public TransactionLogger(ILog log)
         {
-            isDisposed = false;
-            startupWatch = new Stopwatch();
-            runningWatch = new Stopwatch();
-            startupWatch.Start();
-            runningWatch.Start();
-            this.log = log;
-            if (this.log.IsInfoEnabled)
+            _isDisposed = false;
+            _startupWatch = new Stopwatch();
+            _runningWatch = new Stopwatch();
+            _startupWatch.Start();
+            _runningWatch.Start();
+            _log = log;
+            if (_log.IsInfoEnabled)
             {
-                this.log.Info("\n**** <- Start Of TransactionLogger -> ****");
+                _log.Info("\nStart Of TransactionLogger");
             }
         }
 
@@ -67,16 +68,16 @@ namespace DowJones.Loggers
         /// <param name="methodBase">The method base.</param>
         public TransactionLogger(ILog log, MethodBase methodBase)
         {
-            this.methodBase = methodBase;
-            startupWatch = new Stopwatch();
-            runningWatch = new Stopwatch();
-            startupWatch.Start();
-            runningWatch.Start();
+            _methodBase = methodBase;
+            _startupWatch = new Stopwatch();
+            _runningWatch = new Stopwatch();
+            _startupWatch.Start();
+            _runningWatch.Start();
 
-            this.log = log;
-            if (this.log.IsInfoEnabled)
+            _log = log;
+            if (_log.IsInfoEnabled)
             {
-                this.log.InfoFormat("\n**** <- Start Of TransactionLogger for method {0} of {1}  -> ****", methodBase.Name, methodBase.ReflectedType.Name);
+                _log.InfoFormat("\nStart Of TransactionLogger for method {0} of {1}", methodBase.Name, methodBase.ReflectedType.Name);
             }
         }
 
@@ -94,7 +95,7 @@ namespace DowJones.Loggers
         /// <value>The elapsed time since invocation.</value>
         public int ElapsedTimeSinceInvocation
         {
-            get { return startupWatch.Elapsed.Milliseconds; }
+            get { return _startupWatch.Elapsed.Milliseconds; }
         }
 
         /// <summary>
@@ -115,12 +116,12 @@ namespace DowJones.Loggers
         /// </remarks>
         public void Reset()
         {
-            if (runningWatch.IsRunning)
+            if (_runningWatch.IsRunning)
             {
-                runningWatch.Stop();
+                _runningWatch.Stop();
             }
 
-            runningWatch = Stopwatch.StartNew();
+            _runningWatch = Stopwatch.StartNew();
         }
 
         /// <summary>
@@ -135,37 +136,37 @@ namespace DowJones.Loggers
         /// Log the time spent to perform the transaction to the logging target.
         /// </summary>
         /// <param name="message">
-        /// Tranasction Name
+        /// Transaction Name
         /// </param>
         /// <remarks>
         /// Used to get the time spent to perform the back end transaction.
         /// </remarks>
         public void LogTimeSpentSinceReset(string message)
         {
-            if (!log.IsInfoEnabled || !runningWatch.IsRunning)
+            if (!_log.IsInfoEnabled || !_runningWatch.IsRunning)
             {
                 return;
             }
 
-            if (methodBase != null && !string.IsNullOrEmpty(message))
+            if (_methodBase != null && !string.IsNullOrEmpty(message))
             {
-                log.InfoFormat("\nLogTimeSpentSinceReset: {0} of {1} took {2}\nMessage: {3}", methodBase.Name, methodBase.ReflectedType.Name, runningWatch.Elapsed, message);
+                _log.InfoFormat("\nLogTimeSpentSinceReset: {0} of {1} took {2}\nMessage: {3}", _methodBase.Name, _methodBase.ReflectedType.Name, _runningWatch.Elapsed, message);
                 return;
             }
 
             if (!string.IsNullOrEmpty(message))
             {
-                log.InfoFormat("\nLogTimeSpentSinceReset: {0}\nMessage: {1}", runningWatch.Elapsed, message);
+                _log.InfoFormat("\nLogTimeSpentSinceReset: {0}\nMessage: {1}", _runningWatch.Elapsed, message);
                 return;
             }
 
-            if (methodBase != null)
+            if (_methodBase != null)
             {
-                log.InfoFormat("\nLogTimeSpentSinceReset: {0} of {1} took {2}", methodBase.Name, methodBase.ReflectedType.Name, runningWatch.Elapsed);
+                _log.InfoFormat("\nLogTimeSpentSinceReset: {0} of {1} took {2}", _methodBase.Name, _methodBase.ReflectedType.Name, _runningWatch.Elapsed);
                 return;
             }
 
-            log.InfoFormat("\nLogTimeSpentSinceReset took {0}", runningWatch.Elapsed);
+            _log.InfoFormat("\nLogTimeSpentSinceReset took {0}", _runningWatch.Elapsed);
         }
 
         /// <summary>
@@ -176,6 +177,12 @@ namespace DowJones.Loggers
             LogTimeSinceInvocation(null);
         }
 
+
+        private string GetTypeName()
+        {
+            return _methodBase.DeclaringType != null ? _methodBase.DeclaringType.Name : _methodBase.ReflectedType.Name;
+        }
+
         /// <summary>
         /// Logs the time since invocation.
         /// </summary>
@@ -184,30 +191,30 @@ namespace DowJones.Loggers
         /// </param>
         public void LogTimeSinceInvocation(string message)
         {
-            if (!log.IsInfoEnabled || !startupWatch.IsRunning)
+            if (!_log.IsInfoEnabled || !_startupWatch.IsRunning)
             {
                 return;
             }
-
-            if (methodBase != null && !string.IsNullOrEmpty(message))
+            
+            if (_methodBase != null && !string.IsNullOrEmpty(message))
             {
-                log.InfoFormat("\nLogTimeSinceInvocation: {0} of {1} took {2}\nMessage: {3}", methodBase.Name, methodBase.ReflectedType.Name, startupWatch.Elapsed, message);
+                _log.InfoFormat("\nLogTimeSinceInvocation: {0} of {1} took {2}\nMessage: {3}", _methodBase.Name, GetTypeName(), _startupWatch.Elapsed, message);
                 return;
             }
 
             if (!string.IsNullOrEmpty(message))
             {
-                log.InfoFormat("\nLogTimeSinceInvocation: {0}\nMessage: {1}", startupWatch.Elapsed, message);
+                _log.InfoFormat("\nLogTimeSinceInvocation: {0}\nMessage: {1}", _startupWatch.Elapsed, message);
                 return;
             }
 
-            if (methodBase != null)
+            if (_methodBase != null)
             {
-                log.InfoFormat("\nLogTimeSinceInvocation: {0} of {1} took {2}", methodBase.Name, methodBase.ReflectedType.Name, startupWatch.Elapsed);
+                _log.InfoFormat("\nLogTimeSinceInvocation: {0} of {1} took {2}", _methodBase.Name, GetTypeName(), _startupWatch.Elapsed);
                 return;
             }
 
-            log.InfoFormat("\nLogTimeSinceInvocation took {0}", startupWatch.Elapsed);
+            _log.InfoFormat("\nLogTimeSinceInvocation took {0}", _startupWatch.Elapsed);
         }
 
         /// <summary>
@@ -218,30 +225,28 @@ namespace DowJones.Loggers
         /// </param>
         protected virtual void Dispose(bool disposing)
         {
-            if (!isDisposed)
+            if (!_isDisposed)
             {
                 if (disposing)
                 {
-                    // Stop the StopWatches
-                    if (runningWatch.IsRunning)
-                    {
-                        runningWatch.Stop();
-                    }
-
-                    if (startupWatch.IsRunning)
-                    {
-                        startupWatch.Stop();
-                    }
-
                     // Write to the log if active
                     LogTimeSinceInvocation();
 
-                    // Code to dispose managed resources held by the class
+                    // Stop the StopWatches
+                    if (_runningWatch.IsRunning)
+                    {
+                        _runningWatch.Stop();
+                    }
+
+                    if (_startupWatch.IsRunning)
+                    {
+                        _startupWatch.Stop();
+                    }
                 }
             }
 
             // Code to dispose unmanaged resources held by the class
-            isDisposed = true;
+            _isDisposed = true;
         }
     }
 }

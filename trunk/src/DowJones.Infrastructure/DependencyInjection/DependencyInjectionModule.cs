@@ -45,7 +45,7 @@ namespace DowJones.DependencyInjection
         /// </example>
         public void AutoBind<T>(Func<Type, bool> predicate = null, Action<IBindingWhenInNamedWithOrOnSyntax<T>> bindingAction = null)
         {
-            IEnumerable<Type> targetTypes =
+            var targetTypes =
                 AssemblyRegistry.GetConcreteTypesDerivingFrom<T>();
 
             if (predicate != null)
