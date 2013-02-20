@@ -1,14 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net;
-using System.Security;
-using System.Web;
 using AttributeRouting.Helpers;
 using GitHubTfsSyncApp.Extensions;
 using GitHubTfsSyncApp.Models;
-using GitHubTfsSyncApp.Models.GitHub;
 using Microsoft.TeamFoundation.Client;
 using Microsoft.TeamFoundation.VersionControl.Client;
 using log4net;
@@ -41,6 +36,12 @@ namespace GitHubTfsSyncApp.Workers
 
 			_teamProjectCollection = new TfsTeamProjectCollection(new Uri(_tfsUrl), credentials);
 			_versionControl = _teamProjectCollection.GetService<VersionControlServer>();
+			_versionControl.NonFatalError += OnVersionControlOnNonFatalError;
+		}
+
+		private void OnVersionControlOnNonFatalError(object o, ExceptionEventArgs args)
+		{
+			_logger.Error(args.Failure.Message, args.Exception);
 		}
 
 		public void CreateCheckin(CommitSpec[] commits)
@@ -53,12 +54,15 @@ namespace GitHubTfsSyncApp.Workers
 
 		private void ProcessCommit(CommitSpec commit)
 		{
-			var incomingDir = Path.Combine(_workingDir.FullName, "incoming", commit.Id);
+			//TODO: Get these paths via ctor (IOW, eliminate magic strings) 
+			var incomingDir = Path.Combine(_workingDir.FullName, "Incoming", commit.Id);
 			var workspaceName = "Workspace_{0}".FormatWith(commit.Id);
 			var workspaceMappedPath = Path.Combine(_workingDir.FullName, workspaceName);
 
 
 			var workspace = InitializeWorkspace(workspaceName, workspaceMappedPath);
+
+			if (workspace == null) return;
 
 			try
 			{
@@ -125,6 +129,7 @@ namespace GitHubTfsSyncApp.Workers
 			workspace.Get();
 
 			return workspace;
+
 		}
 	}
 }

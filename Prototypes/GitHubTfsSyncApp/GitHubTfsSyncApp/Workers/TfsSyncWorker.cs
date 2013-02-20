@@ -7,6 +7,7 @@ using GitHubTfsSyncApp.Models.GitHub;
 using GitHubTfsSyncApp.Providers;
 using System.IO;
 using System.Linq;
+using log4net;
 
 namespace GitHubTfsSyncApp.Workers
 {
@@ -16,6 +17,8 @@ namespace GitHubTfsSyncApp.Workers
 		private readonly string _teamProject;
 		private readonly string _localWorkspaceRootDir;
 		private readonly ICredentials _credentials;
+		private readonly ILog _logger = LogManager.GetLogger(typeof(TfsManager));
+
 
 		public TfsSyncWorker(string tfsUri, string teamProject, string localWorkspaceRootDir, ICredentials credentials)
 		{
@@ -30,23 +33,33 @@ namespace GitHubTfsSyncApp.Workers
 			var commitSpecs = new List<CommitSpec>();
 			var provider = new GitHubProvider(GitHubAccessConfigurationGenerator.CreateFromWebConfig());
 
-			foreach (var commit in commits)
+			try
 			{
-				var localDir = Directory.CreateDirectory(Path.Combine(_localWorkspaceRootDir, "incoming", commit.Id));
+				foreach (var commit in commits)
+				{
+					//TODO: Get these paths via ctor (IOW, eliminate magic strings)
+					var localDir = Directory.CreateDirectory(Path.Combine(_localWorkspaceRootDir, "Incoming", commit.Id));
 
-				var details = provider.GetCommitDetails(commit, repository.Name, repository.Owner.Name);
-				var trees = provider.GetTrees(new Uri(details.Tree.Url));
+					var details = provider.GetCommitDetails(commit, repository.Name, repository.Owner.Name);
+					var trees = provider.GetTrees(new Uri(details.Tree.Url));
 
-				ProcessTree(trees, provider, localDir, commitSpecs, commit);
+					ProcessTree(trees, provider, localDir, commitSpecs, commit);
+				}
+
+				var manager = new TfsManager(_tfsUri, _teamProject, new DirectoryInfo(_localWorkspaceRootDir), _credentials);
+
+				manager.CreateCheckin(commitSpecs.ToArray());
+
+			}
+			catch (Exception ex)
+			{
+				_logger.Error(ex.Message, ex);
 			}
 
-			var manager = new TfsManager(_tfsUri, _teamProject, new DirectoryInfo(_localWorkspaceRootDir), _credentials);
-
-			manager.CreateCheckin(commitSpecs.ToArray());
 		}
 
-		private void ProcessTree(TreeCollection trees, GitHubProvider provider, DirectoryInfo localDir, List<CommitSpec> commitSpecs,
-		                         Commit commit)
+		private void ProcessTree(TreeCollection trees, GitHubProvider provider, DirectoryInfo localDir,
+								 ICollection<CommitSpec> commitSpecs, Commit commit)
 		{
 			foreach (var node in trees.Tree)
 			{
@@ -58,7 +71,7 @@ namespace GitHubTfsSyncApp.Workers
 
 					SaveBlobToFileSystem(blob, filepath);
 
-					commitSpecs.Add(new CommitSpec(commit) {LocalFilePath = filepath});
+					commitSpecs.Add(new CommitSpec(commit) { LocalFilePath = filepath });
 				}
 				else if (node.Type == "tree")
 				{
