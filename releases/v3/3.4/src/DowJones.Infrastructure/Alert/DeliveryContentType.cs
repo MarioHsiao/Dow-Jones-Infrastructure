@@ -40,8 +40,8 @@ namespace DowJones.Infrastructure.Alert
         [AlertRequestBinder("ablog")]
         ABlog,
         /// <summary/>
-        [AlertRequestBinder("extendedmedia")]
-        ExtendedMedia,
+        [AlertRequestBinder("mscblog")]
+        TwitterAndFlickr,
         /// <summary/>
         [AlertRequestBinder("tailblog")]
         TailBlog,

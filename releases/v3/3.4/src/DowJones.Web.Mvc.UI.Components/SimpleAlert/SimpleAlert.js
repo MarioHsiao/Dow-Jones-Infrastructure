@@ -21,7 +21,8 @@ DJ.UI.SimpleAlert = DJ.UI.Component.extend({
         filterClose: 'span.icon-close',
         filter: 'span.filter',
         selectedOption: 'option:selected',
-        includeSM: 'input.includeSM'
+        includeSM: 'input.includeSM',
+        filterCloseEx: 'span.fi-two.fi_remove.fi_d-gear'
     },
 
     defaults: {
@@ -108,7 +109,13 @@ DJ.UI.SimpleAlert = DJ.UI.Component.extend({
         var me = this;
         $(me.$element).newsFilterPillMenuEx({ 'removeFilter': me._onFilterRemove, 'excludeFilter': me._onFilterExclude, 'includeFilter': me._onFilterInclude });
         if (me.data.newsFilter && me.data.newsFilter.length > 0) {
-            this.$newsFilterContainer.html(this.templates.newsFilterEx({ filterItems: me.data.newsFilter }));
+            this.$newsFilterContainer
+                .html(this.templates.newsFilterEx({ filterItems: me.data.newsFilter }))
+                .find(this.selectors.filterCloseEx)
+                .bind('click', function () {
+                    var $el = $(this).closest('div').parent();
+                    me._onFilterRemove($el);
+                });
             this.$newsFilter.show();
         }
     },
@@ -308,6 +315,7 @@ DJ.UI.SimpleAlert = DJ.UI.Component.extend({
 
         switch (mode.toLowerCase()) {
             case "and":
+            case "remove":
                 alertData.newsFilter[fIndex].filter.splice(iIndex, 1);
                 break;
             case "not":
