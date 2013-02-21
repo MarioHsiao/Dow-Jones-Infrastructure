@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using System.Web.Script.Serialization;
 using System.Xml.Serialization;
@@ -399,45 +400,8 @@ namespace EMG.widgets.ui.delegates.output.syndication
 
                     foreach (Section section in manualWorkspace.SectionCollection)
                     {
-                        var manualNewsletterWorkspaceSection = new ManualNewsletterWorkspaceSection();
-                        manualNewsletterWorkspaceSection.Id = section.Id;
-                        if (string.IsNullOrEmpty(section.Name)) 
-                            section.Name = string.Empty;
-                        manualNewsletterWorkspaceSection.Name = section.Name;
-                        var headlineInfos = new List<HeadlineInfo>();
-                        foreach (var item in section.ItemCollection)
-                        {
-                            if (item is ArticleItem)
-                            {
-                                var articleItem = item as ArticleItem;
- 
-                                // Get AccessNumberBasedContentItem
-                                var contentItem = dict[articleItem.AccessionNumber];
-                                if (contentItem != null && contentItem.HasBeenFound)
-                                {
-                                    headlineInfos.Add(GetHeadlineInfoForArticleItem(
-                                        headlineUtility,
-                                        contentHeadlineStruct,
-                                        contentItem,
-                                        articleItem));
-                                }
-                            }
-                            else if (!(item is SeparatorItem))
-                            {
-                                if (item is LinkItem)
-                                {
-                                    var linkItem = item as LinkItem;
-                                    headlineInfos.Add(GetHeadlineInfoForLinkItem(headlineUtility, linkItem));
-                                }
-                                else if (item is ImageItem)
-                                {
-                                    var imageItem = item as ImageItem;
-                                    headlineInfos.Add(GetHeadlineInfoForImageItem(headlineUtility, imageItem));
-                                }
-                            }
-                        }
-                        manualNewsletterWorkspaceSection.Headlines = headlineInfos.ToArray();
-                        sectionCollection.Add(manualNewsletterWorkspaceSection);
+                        sectionCollection.Add(ProcessNewsletterSections(section, ref headlineUtility, ref contentHeadlineStruct, ref dict, SectionType.Main));
+                        sectionCollection.AddRange(section.SubSectionCollection.Select(subSection => ProcessNewsletterSections(subSection, ref headlineUtility, ref contentHeadlineStruct, ref dict, SectionType.Sub)));
                     }
                 }
                 workspaceInfo.Sections = sectionCollection.ToArray();
@@ -457,6 +421,50 @@ namespace EMG.widgets.ui.delegates.output.syndication
             }
 
             return workspaceInfo;
+        }
+
+        private ManualNewsletterWorkspaceSection ProcessNewsletterSections(Section section, ref HeadlineUtility headlineUtility, ref ContentHeadlineStruct contentHeadlineStruct, ref Dictionary<string, AccessionNumberBasedContentItem> dict, SectionType type)
+        {
+            var manualNewsletterWorkspaceSection = new ManualNewsletterWorkspaceSection();
+            manualNewsletterWorkspaceSection.Id = section.Id;
+            if (string.IsNullOrEmpty(section.Name))
+                section.Name = string.Empty;
+            manualNewsletterWorkspaceSection.Name = section.Name;
+            var headlineInfos = new List<HeadlineInfo>();
+            foreach (var item in section.ItemCollection)
+            {
+                if (item is ArticleItem)
+                {
+                    var articleItem = item as ArticleItem;
+
+                    // Get AccessNumberBasedContentItem
+                    var contentItem = dict[articleItem.AccessionNumber];
+                    if (contentItem != null && contentItem.HasBeenFound)
+                    {
+                        headlineInfos.Add(GetHeadlineInfoForArticleItem(
+                            headlineUtility,
+                            contentHeadlineStruct,
+                            contentItem,
+                            articleItem));
+                    }
+                }
+                else if (!(item is SeparatorItem))
+                {
+                    if (item is LinkItem)
+                    {
+                        var linkItem = item as LinkItem;
+                        headlineInfos.Add(GetHeadlineInfoForLinkItem(headlineUtility, linkItem));
+                    }
+                    else if (item is ImageItem)
+                    {
+                        var imageItem = item as ImageItem;
+                        headlineInfos.Add(GetHeadlineInfoForImageItem(headlineUtility, imageItem));
+                    }
+                }
+            }
+            manualNewsletterWorkspaceSection.Headlines = headlineInfos.ToArray();
+            manualNewsletterWorkspaceSection.Type = type;
+            return manualNewsletterWorkspaceSection;
         }
 
         /// <summary>
@@ -536,6 +544,18 @@ namespace EMG.widgets.ui.delegates.output.syndication
                     if (articleItem != null && !accessionNos.Contains(articleItem.AccessionNumber))
                     {
                         accessionNos.Add(articleItem.AccessionNumber);
+                    }
+                }
+
+                foreach (SubSection subSection in section.SubSectionCollection)
+                {
+                    foreach (Item item in subSection.ItemCollection)
+                    {
+                        ArticleItem articleItem = item as ArticleItem;
+                        if (articleItem != null && !accessionNos.Contains(articleItem.AccessionNumber))
+                        {
+                            accessionNos.Add(articleItem.AccessionNumber);
+                        }
                     }
                 }
             }
