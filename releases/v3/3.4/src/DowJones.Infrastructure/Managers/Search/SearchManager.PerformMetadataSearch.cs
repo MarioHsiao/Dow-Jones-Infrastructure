@@ -69,14 +69,21 @@ namespace DowJones.Managers.Search
                         foreach (var code in keyValuePair.Value)
                         {
                             var metadataInfo = GetMetadataInfoByType(response.MetadataSearchResult.MetadataResultSet.MetadataInfoCollection, keyValuePair.Key, code);
-                            if (!dict.ContainsKey(keyValuePair.Key))
+                            var key = (keyValuePair.Key == NewsFilterCategory.Source && metadataInfo.Collection == MetadataCollection.Group) 
+                                        ? NewsFilterCategory.Group : keyValuePair.Key;
+                            if (!dict.ContainsKey(key))
                             {
-                                dict[keyValuePair.Key] = new Dictionary<string, string>();
+                                dict[key] = new Dictionary<string, string>();
                             }
-
                             if (metadataInfo != null)
                             {
-                                dict[keyValuePair.Key].Add(metadataInfo.Id.ToLower(), metadataInfo.Name);
+                                try
+                                {
+                                    dict[key].Add(metadataInfo.Id.ToLower(), metadataInfo.Name);
+                                }
+                                catch (Exception)
+                                {
+                                }
                             }
                         }
                     }
