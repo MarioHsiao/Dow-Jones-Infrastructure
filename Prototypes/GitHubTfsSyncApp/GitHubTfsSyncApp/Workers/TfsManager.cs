@@ -44,69 +44,53 @@ namespace GitHubTfsSyncApp.Workers
 			_logger.Error(args.Failure.Message, args.Exception);
 		}
 
-		public void CreateCheckin(CommitSpec[] commits)
+		public void CreateCheckin(ChangedItems changedItems, string workspaceName, string checkinMessage)
 		{
-			// do not parallelize this.
-			// keeping it sequential is essentially same as git rebasing. 
-			foreach (var commit in commits)
-				ProcessCommit(commit);
-		}
-
-		private void ProcessCommit(CommitSpec commit)
-		{
-			//TODO: Get these paths via ctor (IOW, eliminate magic strings) 
-			var incomingDir = Path.Combine(_workingDir.FullName, "Incoming", commit.Id);
-			var workspaceName = "Workspace_{0}".FormatWith(commit.Id);
 			var workspaceMappedPath = Path.Combine(_workingDir.FullName, workspaceName);
-
-
 			var workspace = InitializeWorkspace(workspaceName, workspaceMappedPath);
 
 			if (workspace == null) return;
 
-			try
+			CommitInWorkspace(changedItems, workspace, workspaceMappedPath);
+			ResolveConflicts(workspace);
+
+			var pendingChanges = workspace.GetPendingChanges();
+
+			if (pendingChanges.Length == 0)
+				_logger.Info("No changes to checkin");
+			else
 			{
-				foreach (var fileName in commit.Added)
-				{
-					File.Copy(Path.Combine(incomingDir, fileName), Path.Combine(workspaceMappedPath, fileName));
-					workspace.PendAdd(Path.Combine(workspaceMappedPath, fileName));
-				}
-
-				foreach (var fileName in commit.Modified)
-				{
-					// checkout file first
-					workspace.PendEdit(Path.Combine(workspaceMappedPath, fileName));
-
-					// apply external changes
-					File.Copy(Path.Combine(incomingDir, fileName), Path.Combine(workspaceMappedPath, fileName), true);
-				}
-
-				foreach (var fileName in commit.Removed)
-				{
-					workspace.PendDelete(Path.Combine(workspaceMappedPath, fileName));
-				}
-
-				ResolveConflicts(workspace);
-
-				var pendingChanges = workspace.GetPendingChanges();
-
-				var checkinMessage = commit.Summary;
 				var changesetNumber = workspace.CheckIn(pendingChanges, checkinMessage);
+				
+				_logger.Info(changesetNumber == 0
+					             ? "No new changes."
+					             : "Checked in changeset {0}.\nCheckin Summary: {1}".FormatWith(changesetNumber, checkinMessage));
+			}
 
-				_logger.Info("Checked in changeset# {0}.\nCheckin Summary: {1}".FormatWith(changesetNumber, checkinMessage));
+			workspace.Delete();
+			new DirectoryInfo(workspaceMappedPath).ForceDelete();
+		}
 
-			}
-			catch (Exception ex)
+		private void CommitInWorkspace(ChangedItems changedItems, Workspace workspace, string workspaceMappedPath)
+		{
+			foreach (var item in changedItems.Added)
 			{
-				_logger.Error("Error processing commit #{0}".FormatWith(commit.Id), ex);
+				File.Copy(item.IncomingFilePath, Path.Combine(workspaceMappedPath, item.GitPath), true);
+				workspace.PendAdd(Path.Combine(workspaceMappedPath, item.GitPath));
 			}
-			finally
+
+			foreach (var item in changedItems.Modified)
 			{
-				// cleanup
-				workspace.Delete();
-				new DirectoryInfo(incomingDir).ForceDelete();
-				new DirectoryInfo(workspaceMappedPath).ForceDelete();
+				// checkout file first
+				workspace.PendEdit(Path.Combine(workspaceMappedPath, item.GitPath));
+
+				// apply external changes
+				File.Copy(item.IncomingFilePath, Path.Combine(workspaceMappedPath, item.GitPath), true);
 			}
+
+			foreach (var item in changedItems.Deleted)
+				workspace.PendDelete(Path.Combine(workspaceMappedPath, item.GitPath));
+			
 		}
 
 		private void ResolveConflicts(Workspace workspace)
@@ -120,9 +104,12 @@ namespace GitHubTfsSyncApp.Workers
 			}
 		}
 
-		private Workspace InitializeWorkspace(string name, string mappedFolderPath)
+		public Workspace InitializeWorkspace(string name, string mappedFolderPath)
 		{
 			var versionControl = _versionControl;
+
+			EnsureWorkspaceIsNotStale(versionControl, name);
+
 			var workspace = versionControl.CreateWorkspace(name, versionControl.AuthorizedUser);
 
 			workspace.Map(_teamProjectPath, mappedFolderPath);
@@ -130,6 +117,22 @@ namespace GitHubTfsSyncApp.Workers
 
 			return workspace;
 
+		}
+
+		private void EnsureWorkspaceIsNotStale(VersionControlServer versionControl, string name)
+		{
+			try
+			{
+				var existingWorkspace = versionControl.GetWorkspace(name, versionControl.AuthorizedUser);
+
+				// if it got here, it means the workspace exists
+				existingWorkspace.Delete();
+			}
+			catch (WorkspaceNotFoundException)
+			{
+				// do nothing
+				// could have been much better if the API allowed some query to check for existing workspace
+			}
 		}
 	}
 }

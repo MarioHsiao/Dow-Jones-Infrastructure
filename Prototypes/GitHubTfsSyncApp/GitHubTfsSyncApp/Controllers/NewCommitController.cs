@@ -29,7 +29,8 @@ namespace GitHubTfsSyncApp.Controllers
 
 			_log.Debug(ser.Serialize(response));
 
-			var localWorkspace = HostingEnvironment.MapPath("~\\StagingArea");
+			//var localWorkspace = HostingEnvironment.MapPath("~\\StagingArea");
+			var localWorkspace = ConfigurationManager.AppSettings.Get("TFS:LocalWorkspace");
 
 			// TODO: Use IoC.
 			var worker = new TfsSyncWorker(
