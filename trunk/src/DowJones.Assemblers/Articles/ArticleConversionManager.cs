@@ -454,12 +454,24 @@ namespace DowJones.Assemblers.Articles
                 {
                     try
                     {
-                        var text = (Text) item;
-                        tempItem.Add(new RenderItem
-                                         {
-                                             ItemMarkUp = MarkUpType.Plain,
-                                             ItemText = text.Value.Replace("By ", String.Empty)
-                                         });
+                        if (item is Text)
+                        {
+                            var text = (Text)item;
+                            tempItem.Add(new RenderItem
+                            {
+                                ItemMarkUp = MarkUpType.Plain,
+                                ItemText = text.Value.Replace("By ", String.Empty)
+                            });
+                        }
+                        else if (item is HighlightedText)
+                        {
+                            var text = (HighlightedText)item;
+                            tempItem.Add(new RenderItem
+                            {
+                                ItemMarkUp = MarkUpType.ArticleHighlight,
+                                ItemText = text.text.Value.Replace("By ", String.Empty)
+                            });
+                        }
                     }
                     catch (Exception ex)
                     {
