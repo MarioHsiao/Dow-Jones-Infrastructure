@@ -76,7 +76,7 @@ namespace GitHubTfsSyncApp.Workers
 				{
 					Added = ProcessNodes(localDirPath, realizedNodes, commit.Added),
 					Modified = ProcessNodes(localDirPath, realizedNodes, commit.Modified),
-					Deleted = ProcessNodes(localDirPath, realizedNodes, commit.Removed),
+					Deleted = commit.Removed.Select(x => new WorkspaceItem { GitPath = x }),
 				};
 
 			return changedItems;
