@@ -92,7 +92,7 @@ namespace DowJones.Managers.Search
 
         private MetadataInfo GetMetadataInfoByType(MetadataInfoCollection metadataInfoCollection, NewsFilterCategory category, string code)
         {
-            return metadataInfoCollection.Where(m => m.Collection == MapNewsFilterCategoryToMetadataType(category) && m.Id.ToLower() == code.ToLower()).FirstOrDefault();
+            return metadataInfoCollection.Where(m => (m.Collection == MapNewsFilterCategoryToMetadataType(category) || (category == NewsFilterCategory.Source && (m.Collection == MetadataCollection.Group || m.Collection == MetadataCollection.Source))) && m.Id.ToLower() == code.ToLower()).FirstOrDefault();
         }
 
         private MetadataCollection MapNewsFilterCategoryToMetadataType(NewsFilterCategory key)
@@ -113,6 +113,8 @@ namespace DowJones.Managers.Search
                     return MetadataCollection.Source;
                 case NewsFilterCategory.Subject:
                     return MetadataCollection.NewsSubject;
+                case NewsFilterCategory.Group:
+                    return MetadataCollection.Group;
             }
             throw new NotSupportedException("Not supported key:" + key);
         }
