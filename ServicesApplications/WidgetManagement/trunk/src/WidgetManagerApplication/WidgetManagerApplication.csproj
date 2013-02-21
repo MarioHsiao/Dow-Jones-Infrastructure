@@ -80,9 +80,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>lib\encryption.dll</HintPath>
     </Reference>
-    <Reference Include="factiva.gateway.messages, Version=7.5.0.6, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="factiva.gateway.messages, Version=7.5.0.112, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Dependencies\factiva.gateway.messages.dll</HintPath>
+      <HintPath>lib\factiva.gateway.messages.dll</HintPath>
     </Reference>
     <Reference Include="factiva.nextgen.ui, Version=18.3.4.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -96,9 +96,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Dependencies\FactivaCharting.dll</HintPath>
     </Reference>
-    <Reference Include="FactivaGateway, Version=1.4.0.1, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="FactivaGateway, Version=1.6.0.1, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Dependencies\FactivaGateway.dll</HintPath>
+      <HintPath>lib\FactivaGateway.dll</HintPath>
     </Reference>
     <Reference Include="FactivaServices, Version=13.13.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -181,13 +181,14 @@
     <Content Include="lib\EMG.Utility.pdb" />
     <Content Include="lib\es\AjaxControlToolkit.resources.dll" />
     <Content Include="lib\es\WidgetUiResources.resources.dll" />
-    <Content Include="lib\factiva.gateway.messages.pdb" />
+    <Content Include="lib\factiva.gateway.messages.dll" />
     <Content Include="lib\factiva.nextgen.ui.dll" />
     <Content Include="lib\factiva.nextgen.ui.pdb" />
     <Content Include="lib\FactivaBusinessLayerLogic.dll" />
     <Content Include="lib\FactivaBusinessLayerLogic.pdb" />
     <Content Include="lib\FactivaCharting.dll" />
     <Content Include="lib\FactivaCharting.pdb" />
+    <Content Include="lib\FactivaGateway.dll" />
     <Content Include="lib\FactivaServices.dll" />
     <Content Include="lib\FactivaServices.pdb" />
     <Content Include="lib\FactivaServices.xml" />
@@ -1010,12 +1011,6 @@
     <Content Include="lib\argotic\Argotic.Web.dll" />
     <Content Include="lib\argotic\Argotic.Web.xml" />
     <Content Include="lib\factiva.dowjonesinsider.ui.control.dll" />
-    <Content Include="lib\factiva.gateway.messages.dll">
-    </Content>
-    <Content Include="lib\factiva.gateway.messages.XML" />
-    <Content Include="lib\FactivaGateway.dll">
-    </Content>
-    <Content Include="lib\FactivaGateway.pdb" />
     <Content Include="lib\nStuff.JavaScript.dll" />
     <Compile Include="ajax\controls\WidgetDesigner\WidgetDesignerDesigner.cs" />
     <Compile Include="ajax\controls\WidgetDesigner\WidgetDesignerExtender.cs" />

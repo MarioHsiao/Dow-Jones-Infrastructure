@@ -53,10 +53,29 @@ namespace EMG.widgets.ui.delegates.core.manualNewsletterWorkspace
         /// </summary>
         public long Id;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public SectionType Type;
 
         /// <summary>
         /// 
         /// </summary>
         public HeadlineInfo[] Headlines;
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public enum SectionType
+    {
+        /// <summary>
+        /// 
+        /// </summary>
+        Main,
+        /// <summary>
+        /// 
+        /// </summary>
+        Sub,
     }
 }
