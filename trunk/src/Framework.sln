@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DowJones.Web.Mvc", "DowJones.Web.Mvc\DowJones.Web.Mvc.csproj", "{3E440D53-ACA6-422A-8FC8-778D505AD1E9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DowJones.Web.Mvc.Diagnostics", "DowJones.Web.Mvc.Diagnostics\DowJones.Web.Mvc.Diagnostics.csproj", "{DC6F4246-50E5-4E2E-A90B-70E4BECA1EB6}"
