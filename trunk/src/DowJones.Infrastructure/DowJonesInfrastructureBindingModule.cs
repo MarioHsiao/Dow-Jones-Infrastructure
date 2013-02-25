@@ -75,7 +75,7 @@ namespace DowJones
             
             Bind<IClientSideObjectWriterFactory>().To<ClientSideObjectWriterFactory>().InSingletonScope();
 
-            BindToFactory<ClientConfiguration, ClientConfigurationFactory>().InSingletonScope();
+            BindToFactory<ClientConfiguration, ClientConfigurationFactory>().InRequestScope();
 
             Bind<IContentCache>().To<WebContentCache>();
 
