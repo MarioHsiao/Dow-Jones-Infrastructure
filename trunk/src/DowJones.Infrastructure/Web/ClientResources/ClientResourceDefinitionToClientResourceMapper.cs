@@ -22,11 +22,11 @@ namespace DowJones.Web
             }
             else if (definition.HasResourceName)
             {
-                resource = GetEmbeddedResource(definition, resource);
+                resource = GetEmbeddedResource(definition, null);
             }
 
             if (resource == null)
-                return resource;
+                return null;
 
             resource.DependencyLevel = GetDependencyLevel(definition);
             resource.DependsOn = definition.DependsOn ?? Enumerable.Empty<string>();
@@ -80,12 +80,12 @@ namespace DowJones.Web
 
         private static Assembly GetDeclaringAssembly(string declaringAssembly)
         {
-           /* Assembly tempAssembly;
+            Assembly tempAssembly;
 
             if (FoundAssemblies.TryGetValue(declaringAssembly, out tempAssembly))
             {
                 return tempAssembly;
-            }*/
+            }
 
             var logger = LogManager.GetLogger(typeof(ClientResource));
             if (logger.IsDebugEnabled)
@@ -93,8 +93,8 @@ namespace DowJones.Web
                 logger.DebugFormat("Attempting to load assembly: {0}", declaringAssembly);
             }
 
-            var tempAssembly = Assembly.Load(new AssemblyName(declaringAssembly));
-            //FoundAssemblies.TryAdd(declaringAssembly, tempAssembly);
+            tempAssembly = Assembly.Load(new AssemblyName(declaringAssembly));
+            FoundAssemblies.TryAdd(declaringAssembly, tempAssembly);
             return tempAssembly;
         }
 

@@ -46,9 +46,9 @@ namespace DowJones.Extensions
             IEnumerable<object > customAttributes =
                 member.GetCustomAttributes(inherit);
 
-            IEnumerable<T> customAttributesOfRequestedType = 
+            var customAttributesOfRequestedType = 
                 customAttributes
-                    .Where(x => typeof(T).IsAssignableFrom(x.GetType()))
+                    .Where(x => x is T)
                     .Cast<T>();
             
             return customAttributesOfRequestedType;

@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-// for string extensions methods
 using System.Text.RegularExpressions;
 using DowJones.Extensions;
 
@@ -74,8 +70,8 @@ namespace DowJones.Web.UI
 
         private static string ConditionalEnd(Match m)
         {
-            const string end = "';}out+='";
-            return end;
+            const string End = "';}out+='";
+            return End;
         }
 
         protected string CStart
@@ -211,7 +207,7 @@ namespace DowJones.Web.UI
         /// </returns>
         public string Parse(string html, string functionName = null)
         {
-            const string whiteSpacePattern = @"\s*<!\[CDATA\[\s*|\s*\]\]>\s*|[\r\n\t]|(\/\*[\s\S]*?\*\/)";
+            const string WhiteSpacePattern = @"\s*<!\[CDATA\[\s*|\s*\]\]>\s*|[\r\n\t]|(\/\*[\s\S]*?\*\/)";
 
             // resolve defs not supported. not required in our scenario
             // var str = (!string.IsNullOrEmpty(UsePattern) || !string.IsNullOrEmpty(DefinePattern)) ? ResolveDefs(html) : html;
@@ -220,7 +216,7 @@ namespace DowJones.Web.UI
 
             
             if (StripWhitespace)
-                str = str.ReplaceWith(whiteSpacePattern, String.Empty);
+                str = str.ReplaceWith(WhiteSpacePattern, String.Empty);
 
             // yes you can combine many str statements togetehr, but know that debugging becomes increasingly difficult
             str = str.Replace(@"\", @"\\")

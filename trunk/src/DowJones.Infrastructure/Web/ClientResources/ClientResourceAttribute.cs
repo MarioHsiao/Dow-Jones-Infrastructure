@@ -120,7 +120,7 @@ namespace DowJones.Web
 
 		}
 
-		private void DiscoverDerivedDependendantResources(ClientResourceDefinition definition)
+		private static void DiscoverDerivedDependendantResources(ClientResourceDefinition definition)
 		{
 			if (!definition.HasDeclaringType || definition.DeclaringType.BaseType == null)
 				return;
@@ -131,10 +131,7 @@ namespace DowJones.Web
 
 			var dependants = baseClientResources.Select(r => r.Name).ToArray();
 			
-			if (definition.DependsOn == null)
-				definition.DependsOn = dependants;
-			else
-				definition.DependsOn = definition.DependsOn.Union(dependants).ToArray();
+			definition.DependsOn = definition.DependsOn == null ? dependants : definition.DependsOn.Union(dependants).ToArray();
 		}
 
 
@@ -143,8 +140,8 @@ namespace DowJones.Web
 			if (RequiresDeclaringAssembly)
 				DeclaringType = declaringType;
 
-			ClientResourceDefinition definition = ToClientResourceDefinition();
-			ClientResource resource = Mapper.Map<ClientResource>(definition);
+			var definition = ToClientResourceDefinition();
+			var resource = Mapper.Map<ClientResource>(definition);
 
 			return resource;
 		}

@@ -43,7 +43,7 @@ namespace DowJones.Web.ClientResources
 
         private IEnumerable<ClientResource> GetSpecificMappedResources()
         {
-            return _config.Resources.Select(Mapper.Map<ClientResource>);
+            return _config.Resources.Select(Mapper.Map<ClientResource>).ToArray();
         }
 
         private IEnumerable<ClientResource> GetDirectoryMappedResources()

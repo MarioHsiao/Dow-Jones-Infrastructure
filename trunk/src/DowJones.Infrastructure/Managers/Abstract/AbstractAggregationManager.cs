@@ -114,7 +114,8 @@ namespace DowJones.Managers.Abstract
                 if (response.rc != 0)
                 {
                     DeleteFromCache(responseControlData.CacheKey, responseControlData.CacheScope, controlData);
-                    var message = string.Format("\n   RequestType: {0}\n   ResponseControlData.TransactionType: {1}",
+                    var message = string.Format("\n   ReturnCode: {0}\n   RequestType: {1}\n   ResponseControlData.TransactionType: {2}",
+                                                response.ReturnCode,
                                                 request.GetType().FullName,
                                                 responseControlData.TransactionType);
                     throw new DowJonesUtilitiesException(message, response.rc);
