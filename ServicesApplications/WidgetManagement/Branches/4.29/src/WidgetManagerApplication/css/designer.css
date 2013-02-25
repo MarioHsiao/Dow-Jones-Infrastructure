@@ -648,7 +648,88 @@ del.button-behavior-hover span, del.button:hover span{
 	
 }
 
+.discovery-wrapper 
+{
+font-size: 11px;
+padding-bottom: 5px;
+border-bottom: 1px solid #f0f0f0;
+position: relative;
+}
 
+.discovery-items {
+line-height: 13px;
+zoom: 1;
+}
+
+ul {
+list-style: none;
+}
+
+.discovery-items li.cItem {
+position: relative;
+margin-bottom: 3px;
+padding-bottom: 6px;
+width: 186px;
+padding-left: 25px;
+height: 13px;
+}
+.discovery-items li.cItem .dj_not
+{
+    width: 12px;
+    height: 12px;
+    display: block;
+    position: absolute;
+    top: 6px;
+    left: 8px;
+    background: no-repeat url("../img/dj_discovery-pane-not.jpg");
+    display: none;
+    cursor: pointer;
+}
+.discovery-items .discovery-chart {
+display: -moz-inline-stack;
+display: inline-block;
+zoom: 1;
+vertical-align: top;
+position: relative;
+}
+.discovery-chart img.plot {
+height: 4px;
+zoom: 1;
+vertical-align: top;
+}
+
+.discovery-chart div.plot 
+{
+ background-image: url(../img/plotdot.png);
+ background-repeat: no-repeat;
+height: 4px;
+zoom: 1;
+vertical-align: top;
+}
+.discovery-items .ellipsis {
+width: 140px;
+color: #004c70;
+text-align: left;
+margin-right: 3px;
+margin-top: 2px;
+display: -moz-inline-stack;
+display: inline-block;
+zoom: 1;
+hasLayout: 1;
+white-space:nowrap;
+text-overflow:ellipsis;
+overflow:hidden;
+}
+.discovery-items .chart-value {
+color: #999;
+margin-top: 2px;
+font-size: 10px;
+text-align: right;
+display: inline-block;
+clear: right;
+zoom: 1;
+height: 12px;
+}
 
 
 /*Optional hack for IE6 to simulate :hover selector*/

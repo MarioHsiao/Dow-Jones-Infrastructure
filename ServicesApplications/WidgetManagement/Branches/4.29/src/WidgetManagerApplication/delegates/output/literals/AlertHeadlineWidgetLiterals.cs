@@ -105,5 +105,10 @@ namespace EMG.widgets.ui.delegates.output.literals
         /// Right carousel button image location
         /// </summary>
         public string CarouselRight;
+
+        /// <summary>
+        /// Chart Image
+        /// </summary>
+        public string ChartImage;
     }
 }
