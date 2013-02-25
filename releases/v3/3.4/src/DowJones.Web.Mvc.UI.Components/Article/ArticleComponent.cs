@@ -30,7 +30,7 @@ namespace DowJones.Web.Mvc.UI.Components.Article
     using PostProcessingOptions = PostProcessing.PostProcessingOptions;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 02/20/2013 11:44 AM
+    // Last Generated Timestamp: 02/21/2013 03:43 PM
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.Article.Article.js", ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.Article.ArticleComponent))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.27108")]
     public class ArticleComponent : DowJones.Web.Mvc.UI.ViewComponentBase<ArticleModel>
@@ -469,12 +469,17 @@ WriteLiteral("</span>\r\n                                    </span>\r\n");
                             {
                                 foreach (var renderItem in Model.ArticleDataSet.ByLine)
                                 {
+                                    var highlight = renderItem.ItemMarkUp == MarkUpType.ArticleHighlight ? " highlight" : "";
 
-WriteLiteral("                                    <span class=\"value author drop-down-button\" d" +
-"ata-dd-type=\"author\">");
+WriteLiteral("                                    <span class=\"value author drop-down-button");
 
 
-                                                                                                 Write(renderItem.ItemText.Trim());
+                                                                          Write(highlight);
+
+WriteLiteral("\" data-dd-type=\"author\">");
+
+
+                                                                                                             Write(renderItem.ItemText.Trim());
 
 WriteLiteral("</span>");
 
@@ -545,21 +550,19 @@ WriteLiteral("\r\n                        <div class=\"date-stamp dj_article_pd 
 "\">\r\n");
 
 
-                             if (!string.IsNullOrEmpty(Model.ArticleDataSet.PublicationTime))
-                            {
-                                
-                            Write(string.Format("{0},", Model.ArticleDataSet.PublicationTime));
-
-                                                                                              
-                            }
-
-
                              if (!string.IsNullOrEmpty(Model.ArticleDataSet.PublicationDate))
                             {
                                 
                             Write(string.Format("{0}", Model.ArticleDataSet.PublicationDate));
 
                                                                                              
+                                if (!string.IsNullOrEmpty(Model.ArticleDataSet.PublicationTime))
+                                {
+                                    
+                                Write(string.Format(" {0}", Model.ArticleDataSet.PublicationTime));
+
+                                                                                                  
+                                }
                             }
 WriteLiteral("<span class=\"dj_article_comma\">, </span>\r\n                        </div>\r\n\r\n");
 

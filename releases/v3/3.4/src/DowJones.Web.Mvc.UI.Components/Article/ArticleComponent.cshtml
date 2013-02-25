@@ -199,7 +199,8 @@
                             {
                                 foreach (var renderItem in Model.ArticleDataSet.ByLine)
                                 {
-                                    <span class="value author drop-down-button" data-dd-type="author">@renderItem.ItemText.Trim()</span><span class="dj_article_comma">, </span>  
+                                    var highlight = renderItem.ItemMarkUp == MarkUpType.ArticleHighlight ? " highlight" : "";
+                                    <span class="value author drop-down-button@(highlight)" data-dd-type="author">@renderItem.ItemText.Trim()</span><span class="dj_article_comma">, </span>  
                                 }
                             }
                         </div>
@@ -227,13 +228,13 @@
                         }
 
                         <div class="date-stamp dj_article_pd dj_article_section">
-                            @if (!string.IsNullOrEmpty(Model.ArticleDataSet.PublicationTime))
-                            {
-                                @(string.Format("{0},", Model.ArticleDataSet.PublicationTime))
-                            }
                             @if (!string.IsNullOrEmpty(Model.ArticleDataSet.PublicationDate))
                             {
                                 @(string.Format("{0}", Model.ArticleDataSet.PublicationDate))
+                                if (!string.IsNullOrEmpty(Model.ArticleDataSet.PublicationTime))
+                                {
+                                    @(string.Format(" {0}", Model.ArticleDataSet.PublicationTime))
+                                }
                             }<span class="dj_article_comma">, </span>
                         </div>
 
