@@ -4,6 +4,7 @@
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\TeamBuild\Microsoft.TeamFoundation.Build.targets" />
   <UsingTask TaskName="Zip" AssemblyFile="$(MSBuildStartupDirectory)\lib\MSBuildCommunityTasks\MSBuild.Community.Tasks.dll" />
   <UsingTask TaskName="MSBuild.ExtensionPack.Compression.Zip" AssemblyFile="$(MSBuildStartupDirectory)\lib\MSBuildExtensionPack\MSBuild.ExtensionPack.dll" />
+  <UsingTask TaskName="Sleep" AssemblyFile="$(MSBuildStartupDirectory)\lib\MSBuildCommunityTasks\MSBuild.Community.Tasks.dll" />
   <PropertyGroup>
     <YourDestinationDirectory>$(PreStagingWebsiteLocation)</YourDestinationDirectory>
     <YourSourceDirectory>$(OutDir)WidgetManagerApplication</YourSourceDirectory>
@@ -60,17 +61,20 @@
                        DestinationFiles="@(YourBackupFilesToCopy->'$(YourBackupDirectory)\%(RecursiveDir)%(Filename)%(Extension)')" />-->
 
 
-    <!--<Exec Command="&quot;c:\windows\system32\cmd.exe&quot;  /c cscript d:\BuildUtilities\StartStopAppPool.vbs $(IISServerName) $(AppPoolName) Stop">
-    </Exec>-->
+    <Exec Command="&quot;c:\windows\system32\cmd.exe&quot;  /c cscript d:\BuildUtilities\StartStopAppPool.vbs $(IISServerName) $(AppPoolName) Stop">
+    </Exec>
+
+    <Message Text="Sleep: 310000"/>
+    <Sleep Milliseconds="30000" />
 
     <RemoveDir Directories="$(YourDestinationDirectory)" />
 
     <Copy SourceFiles="@(YourFilesToCopy)"
                     DestinationFiles="@(YourFilesToCopy->'$(YourDestinationDirectory)\%(RecursiveDir)%(Filename)%(Extension)')" />
 
-    <!--
+    
     <Exec Command="&quot;c:\windows\system32\cmd.exe&quot;  /c cscript d:\BuildUtilities\StartStopAppPool.vbs $(IISServerName) $(AppPoolName) Start">
-    </Exec>-->
+    </Exec>
     <ItemGroup>
       <!-- All files from build -->
       <ZipFiles Include="$(YourDestinationDirectory)\**\*.*" Exclude="*.zip">
