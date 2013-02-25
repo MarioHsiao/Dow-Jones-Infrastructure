@@ -11,6 +11,7 @@ using System.Web;
 using System.Xml;
 using System.Xml.Schema;
 using System.Xml.Serialization;
+using System.Xml.Xsl;
 using Data;
 using EMG.Utility.Formatters.Globalization;
 using EMG.Utility.Managers.Search.Requests;
@@ -28,7 +29,6 @@ using Factiva.Gateway.Utils.V1_0;
 using Factiva.Gateway.V1_0;
 using FactivaRssManager;
 using FCMLib;
-using MSXML2;
 using Common_V2 = Factiva.Gateway.Messages.Assets.Common.V2_0;
 using SearchManager=EMG.Utility.Managers.Search.SearchManager;
 using EMG.Utility.Managers.Track;
@@ -758,8 +758,8 @@ namespace FactivaRssManager_2_0
                     _controlData = ControlDataManager.AddProxyCredentialsToControlData(_controlData, inputData.getItem("userID"), inputData.getItem("namespace"));
 
                     GetContainerByIdRequest _getContainerByIdRequest = new GetContainerByIdRequest();
-                    _getContainerByIdRequest.Id = int.Parse(inputData.getItem("contid"));
-                    Log(Logger.Level.INFO, string.Format("FCL::getPocast {0} ", int.Parse(inputData.getItem("contid"))));
+                    _getContainerByIdRequest.Id = long.Parse(inputData.getItem("contid"));
+                    Log(Logger.Level.INFO, string.Format("FCL::getPocast {0} ", long.Parse(inputData.getItem("contid"))));
 
                     serviceResponse = DataContainersService.GetContainerById(_controlData, _getContainerByIdRequest);
                     object _getContainerByIdResp;
@@ -923,7 +923,7 @@ namespace FactivaRssManager_2_0
 
                         var getEditionRequest = new Factiva.Gateway.Messages.Assets.Editions.V2_0.GetEditionByIdRequest
                                                     {
-                                                        Id = int.Parse(strEditionID),
+                                                        Id = long.Parse(strEditionID),
                                                         ReturnEditionSections = true
                                                     };
                         serviceResponse = Factiva.Gateway.Services.V2_0.EditionService.GetEditionById(cloneControlData(_controlData), getEditionRequest);
@@ -933,7 +933,7 @@ namespace FactivaRssManager_2_0
                         var workspaceID = getEditionIdResponse.Edition.Properties.ParentWorkspaceId.ToString();
 
                         var workspaceManager = new WorkspaceManager(cloneControlData(_controlData), "en");
-                        var manualWorkspace = workspaceManager.GetManualWorkspaceById(int.Parse(workspaceID));
+                        var manualWorkspace = workspaceManager.GetManualWorkspaceById(long.Parse(workspaceID));
                        
                         var workspaceAudience = manualWorkspace.Properties.Audience;
                         var audienceObject = serialize(workspaceAudience);
@@ -1034,17 +1034,18 @@ namespace FactivaRssManager_2_0
             try
             {
                 var xmlDoc = new XmlDocument();
-                var xml = new DOMDocument26Class();
-                var xsl = new DOMDocument26Class();
-                xml.async = false;
-                //load the XML string
-                xml.loadXML(rtnValue);
+                var resultString = new StringBuilder();
+                using (var xmlWriter = new XmlTextWriter(new StringWriter(resultString)))
+                {
+                    using (var xmlReader = new XmlTextReader(new StringReader(rtnValue)))
+                    {
+                        var xslTransform = new XslCompiledTransform();
+                        xslTransform.Load(HttpContext.Current.Request.MapPath(configData.getItem("//StyleSheet/name")));
+                        xslTransform.Transform(xmlReader, xmlWriter);
+                    }
+                    xmlDoc.LoadXml(resultString.ToString());
+                }
 
-                // Load the XSL
-                xsl.async = false;
-                xsl.load(HttpContext.Current.Request.MapPath(configData.getItem("//StyleSheet/name")));
-
-                xmlDoc.LoadXml(xml.transformNode(xsl));
                 rtnValue = xmlDoc.OuterXml;
             }
             catch (Exception ex)
@@ -1594,7 +1595,7 @@ namespace FactivaRssManager_2_0
                 _controlData.AccessPointCode = configData.getItem("//transactionParams/AccessPointCode");
 
                 var workspaceManager = new WorkspaceManager(_controlData, "en");
-                var manualWorkspace = workspaceManager.GetManualWorkspaceById(int.Parse(inputData.getItem("WSID")));
+                var manualWorkspace = workspaceManager.GetManualWorkspaceById(long.Parse(inputData.getItem("WSID")));
 
                 var workspaceAudience = manualWorkspace.Properties.Audience;
                 var audienceObject = serialize(workspaceAudience);
@@ -1604,9 +1605,10 @@ namespace FactivaRssManager_2_0
                 inputData.data.Add("newsletterName", manualWorkspace.Properties.Name);
 
                 if (manualWorkspace.Properties.AreFeedsActive == false)
+                {
                     return "<HeadlineInfo></HeadlineInfo>";
-
-
+                }
+                
                 var cacheManualWorkspaceForNewsLetterRss = GetCacheData("WSID_" + inputData.getItem("WSID") + "_en", 4);
                 if (cacheManualWorkspaceForNewsLetterRss != "")
                 {
@@ -1737,7 +1739,7 @@ namespace FactivaRssManager_2_0
                 controlData.AccessPointCode = configData.getItem("//transactionParams/AccessPointCode");
 
                 var workspaceManager = new WorkspaceManager(controlData, "en");
-                var automaticWorkspace = workspaceManager.GetAutomaticWorkspaceById(int.Parse(inputData.getItem("wsid")));
+                var automaticWorkspace = workspaceManager.GetAutomaticWorkspaceById(long.Parse(inputData.getItem("wsid")));
 
                 if (automaticWorkspace.Properties.AreFeedsActive == false)
                     return "<HeadlineInfo></HeadlineInfo>";

@@ -1,18 +1,10 @@
 using System;
 using System.Xml;
-using System.Collections.Specialized;
-using MSXML2;
 using Data;
 using System.Text;
-using System.Collections;
-using System.Web.UI;
-
 
 namespace FactivaRssManager
 {
-	
-
-
 	public class RssManager
 	{
 		protected string _from = "";
