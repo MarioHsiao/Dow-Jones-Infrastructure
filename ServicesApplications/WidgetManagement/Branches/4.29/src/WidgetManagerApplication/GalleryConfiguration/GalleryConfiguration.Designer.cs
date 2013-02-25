@@ -377,7 +377,7 @@ namespace EMG.widgets.ui.GalleryConfiguration {
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class PortalDataTable : global::System.Data.TypedTableBase<PortalRow> {
+        public partial class PortalDataTable : global::System.Data.DataTable, global::System.Collections.IEnumerable {
             
             private global::System.Data.DataColumn columnPortalId;
             
@@ -484,6 +484,12 @@ namespace EMG.widgets.ui.GalleryConfiguration {
             public PortalRow FindByPortalId(int PortalId) {
                 return ((PortalRow)(this.Rows.Find(new object[] {
                             PortalId})));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public virtual global::System.Collections.IEnumerator GetEnumerator() {
+                return this.Rows.GetEnumerator();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -651,7 +657,7 @@ namespace EMG.widgets.ui.GalleryConfiguration {
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class ModuleDataTable : global::System.Data.TypedTableBase<ModuleRow> {
+        public partial class ModuleDataTable : global::System.Data.DataTable, global::System.Collections.IEnumerable {
             
             private global::System.Data.DataColumn columnModuleId;
             
@@ -775,6 +781,12 @@ namespace EMG.widgets.ui.GalleryConfiguration {
             public ModuleRow FindByModuleId(int ModuleId) {
                 return ((ModuleRow)(this.Rows.Find(new object[] {
                             ModuleId})));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public virtual global::System.Collections.IEnumerator GetEnumerator() {
+                return this.Rows.GetEnumerator();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -947,7 +959,7 @@ namespace EMG.widgets.ui.GalleryConfiguration {
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class ModuleDefinitionDataTable : global::System.Data.TypedTableBase<ModuleDefinitionRow> {
+        public partial class ModuleDefinitionDataTable : global::System.Data.DataTable, global::System.Collections.IEnumerable {
             
             private global::System.Data.DataColumn columnModuleDefId;
             
@@ -1065,6 +1077,12 @@ namespace EMG.widgets.ui.GalleryConfiguration {
             public ModuleDefinitionRow FindByModuleDefId(int ModuleDefId) {
                 return ((ModuleDefinitionRow)(this.Rows.Find(new object[] {
                             ModuleDefId})));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public virtual global::System.Collections.IEnumerator GetEnumerator() {
+                return this.Rows.GetEnumerator();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

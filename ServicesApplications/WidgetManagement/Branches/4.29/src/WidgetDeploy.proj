@@ -11,7 +11,7 @@
     <IISServerName>$(IISServer)</IISServerName>
     <AppPoolName>$(AppPool)</AppPoolName>
     <VersionNumber>$(ProductVersion)</VersionNumber>
-    <BuildDir>\\sbkntsfap05.dowjones.net\Client_Share\WidgetManageBuilds\builds\</BuildDir>
+    <BuildDir>\\sbkntsfap05.dowjones.net\Client_Share\WidgetManageBuilds\builds\Releases\</BuildDir>
   </PropertyGroup>
   
 

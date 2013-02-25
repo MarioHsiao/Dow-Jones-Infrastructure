@@ -142,7 +142,10 @@ namespace EMG.widgets.ui.page
                                                          ID = "AjaxToolKitItemsHiddenItems"
                                                      };
 
-            AjaxContainer = new HtmlGenericControl("div");
+            AjaxContainer = new HtmlGenericControl("div")
+                                {
+                                    ID = "tempId",
+                                };
             _scriptTokens = new StringCollection();
 
             ScriptManager = new ToolkitScriptManager
@@ -514,15 +517,17 @@ namespace EMG.widgets.ui.page
             {
                 Log.Info("Start RenderChilderen ");
             }
+            
+            Form.Controls.Add(_footer);
+            base.RenderChildren(writer);
 
             if (AjaxContainer.Controls.Count > 0)
             {
-                AjaxContainer.ID = string.Empty;
+                AjaxContainer.ID = "tempId";
                 AjaxContainer.RenderControl(writer);
             }
 
-            Form.Controls.Add(_footer);
-            base.RenderChildren(writer);
+           
             //// _footer.RenderControl(writer);
             new LiteralControl("</body>\n</html>").RenderControl(writer);
         }
