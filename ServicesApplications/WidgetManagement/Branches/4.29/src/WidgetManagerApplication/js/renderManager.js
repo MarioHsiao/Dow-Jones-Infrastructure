@@ -1496,7 +1496,7 @@ if (!window.FactivaWidgetRenderManager) {
                 return t.join("");
             };
             this.sayswho = function () {
-                debugger;
+      
                 var N = navigator.appName, ua = navigator.userAgent, tem;
                 var M = ua.match(/(opera|chrome|safari|firefox|msie)\/?\s*(\.?\d+(\.\d+)*)/i);
                 if (M && (tem = ua.match(/version\/([\.\d]+)/i)) != null) M[2] = tem[1];
@@ -1504,7 +1504,7 @@ if (!window.FactivaWidgetRenderManager) {
                 return M;
             };
             this.addSampleImage = function (chartsubject) {
-                debugger;
+           
                 var imageurl;
                 switch (chartsubject) {
 
@@ -1531,7 +1531,7 @@ if (!window.FactivaWidgetRenderManager) {
 
             };
             this.addDiscoveryChart = function (chartdata) {
-                debugger;
+           
                 var isIE = false;
                 var browserN = this.sayswho()[0];
                 if (browserN == "msie" || browserN == "MSIE") {
@@ -1638,7 +1638,7 @@ if (!window.FactivaWidgetRenderManager) {
 
 
             this.getAlertCompaniesPanel = function (tEle, result, showTitle, integrateFontCSS) {
-                debugger;
+             
                 if (result != null && result.Definition != null) {
                     var mColor = result.Definition.MainColor;
                     var mFontColor = result.Definition.MainFontColor;
@@ -1675,7 +1675,7 @@ if (!window.FactivaWidgetRenderManager) {
                                 aFontColor,
                                 fontFamily);
                             if (_alert.CompaniesChart != null) {
-                                debugger;
+                              
                                 //  t[t.length] = this.addDiscoveryChart(_alert.CompaniesChart.Chart);
                                 t[t.length] = this.addSampleImage("companies");
                                 if (result.Data.Alerts[i].IsGroupFolder == false) {
@@ -2406,7 +2406,7 @@ var DiscoveryChart = (function () {
     }
 
     function GetCharttemplate(tmpl, c, def) {
-        debugger;
+       
         c = c || templateSettings;
         var cstart = c.append ? "'+(" : "';out+=(", // optimal choice depends on platform/size of templates
 		    cend = c.append ? ")+'" : ");out+='";
@@ -2490,7 +2490,7 @@ var DiscoveryChart = (function () {
 
     return {
         RenderDiscoveryChart: function (chartdata, isIE) {
-            debugger;
+        
             var parsedTemplate;
             if (isIE) {
                 parsedTemplate = GetCharttemplate(templateIE);

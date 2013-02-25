@@ -1059,7 +1059,7 @@ if (!window.FactivaWidgetRenderManager) {
             };
 
             this.getHeadline = function (bgColor, fontFamily, fontSize, fontColor, auxInfoColor, snippetColor, headline, showHeadline, showSnippet, literals) {
-                debugger;
+       
                 var sb = [];
                 sb[sb.length] = "<div class=\"fctv_headlineCont\" style=\"display:" + ((showHeadline && showHeadline == true) ? "block" : "none") + "\">";
                 var tImg = "";
@@ -1475,7 +1475,7 @@ if (!window.FactivaWidgetRenderManager) {
                 return t.join("");
             };
             this.sayswho = function () {
-                debugger;
+           
                 var N = navigator.appName, ua = navigator.userAgent, tem;
                 var M = ua.match(/(opera|chrome|safari|firefox|msie)\/?\s*(\.?\d+(\.\d+)*)/i);
                 if (M && (tem = ua.match(/version\/([\.\d]+)/i)) != null) M[2] = tem[1];
@@ -1483,7 +1483,7 @@ if (!window.FactivaWidgetRenderManager) {
                 return M;
             };
             this.addDiscoveryChart = function (chartdata, chartimage) {
-                debugger;
+         
                 var isIE = false;
                 var browserN = this.sayswho()[0];
                 if (browserN == "msie" || browserN == "MSIE") {
@@ -1525,7 +1525,7 @@ if (!window.FactivaWidgetRenderManager) {
             };
 
             this.addFlashImage = function (chartdata) {
-                debugger;
+           
                 if (chartdata != null && chartdata.data.length > 0) {
                     if (typeof (FlashObject) != 'undefined') {
                         var fo = new FlashObject(chartdata.chartUri, "temp_swf", chartdata.width, chartdata.height, chartdata.version);
@@ -1594,7 +1594,7 @@ if (!window.FactivaWidgetRenderManager) {
             };
 
             this.getAlertCompaniesPanel = function (tEle, result, showTitle, integrateFontCSS) {
-                debugger;
+              
                 if (result != null && result.Definition != null) {
                     var mColor = result.Definition.MainColor;
                     var mFontColor = result.Definition.MainFontColor;
@@ -2374,7 +2374,7 @@ var DiscoveryChart = (function (chartimage) {
     }
 
     function GetCharttemplate(tmpl, c, def) {
-        debugger;
+     
         c = c || templateSettings;
         var cstart = c.append ? "'+(" : "';out+=(", // optimal choice depends on platform/size of templates
 		    cend = c.append ? ")+'" : ");out+='";
@@ -2457,7 +2457,7 @@ var DiscoveryChart = (function (chartimage) {
 
     return {
         RenderDiscoveryChart: function (chartdata, isIE) {
-            debugger;
+   
             var parsedTemplate;
             if (isIE) {
                 parsedTemplate = GetCharttemplate(templateIE);
