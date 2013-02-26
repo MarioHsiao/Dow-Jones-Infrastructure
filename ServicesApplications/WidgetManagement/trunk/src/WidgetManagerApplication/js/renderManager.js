@@ -614,9 +614,9 @@ if (!window.FactivaWidgetRenderManager) {
                                         _curDivCntrId);
                                 }
                                 if (result.Data.ManualNewsletterWorkspaceInfo.Sections[i].Type == "1")
-                                    sb[sb.length] = "</div></div>";
+                                    sb[sb.length] = "</br></div></div>";
                                 else
-                                    sb[sb.length] = "</div>";
+                                    sb[sb.length] = "</br></div>";
                             }
                         }
                         else if (result.Literals != null && result.Literals.NoResults != null) {
