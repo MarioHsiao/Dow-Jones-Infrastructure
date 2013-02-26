@@ -1493,7 +1493,7 @@ if (!window.FactivaWidgetRenderManager) {
                 if (chartdata != null && chartdata.data.length > 0) {
 
                     var t = [];
-                    var discoveryChart = new DiscoveryChart();
+                    var discoveryChart = new DiscoveryChart(chartimage);
                     var htmldata = discoveryChart.RenderDiscoveryChart(chartdata.data, isIE);
                     if (xIE4Up) {
                         t[t.length] = "<div id=\"discoveryChart\" class=\"cd_cont discovery-wrapper\"style=\"margin:10px auto 10px auto" +
