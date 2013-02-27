@@ -11,6 +11,7 @@ namespace DowJones.Web
     public class ClientResourceDefinitionToClientResourceMapper : TypeMapper<ClientResourceDefinition, ClientResource>
     {
         private static readonly ConcurrentDictionary<string, Assembly> FoundAssemblies = new ConcurrentDictionary<string, Assembly>();
+        private readonly ILog logger = LogManager.GetLogger(typeof(ClientResourceDefinitionToClientResourceMapper));
   
         public override ClientResource Map(ClientResourceDefinition definition)
         {
@@ -37,7 +38,6 @@ namespace DowJones.Web
             return resource;
         }
 
-
         private static ClientResourceDependencyLevel GetDependencyLevel(ClientResourceDefinition definition)
         {
             if (definition.DependencyLevel != null)
@@ -53,7 +53,7 @@ namespace DowJones.Web
             return ClientResourceDependencyLevel.Component;
         }
 
-        private static ClientResource GetEmbeddedResource(ClientResourceDefinition definition, ClientResource resource)
+        private ClientResource GetEmbeddedResource(ClientResourceDefinition definition, ClientResource resource)
         {
             if (definition.DeclaringType == null && definition.DeclaringAssembly == null)
             {
@@ -64,30 +64,24 @@ namespace DowJones.Web
 
             }
 
-            Assembly resourceAssembly;
-
-            if (definition.DeclaringAssembly == null )
-            {
-                resourceAssembly = definition.DeclaringType.Assembly;
-            }
-            else
-            {
-                resourceAssembly = GetDeclaringAssembly(definition.DeclaringAssembly);
-            }
+            var resourceAssembly = definition.DeclaringAssembly == null ? definition.DeclaringType.Assembly : GetDeclaringAssembly(definition.DeclaringAssembly);
 
             return new EmbeddedClientResource(resourceAssembly, definition.ResourceName, definition.DeclaringType);
         }
 
-        private static Assembly GetDeclaringAssembly(string declaringAssembly)
+        private Assembly GetDeclaringAssembly(string declaringAssembly)
         {
             Assembly tempAssembly;
+            if (logger.IsInfoEnabled)
+            {
+                logger.InfoFormat("Getting declaring assembly: {0}", declaringAssembly);
+            }
 
             if (FoundAssemblies.TryGetValue(declaringAssembly, out tempAssembly))
             {
                 return tempAssembly;
             }
-
-            var logger = LogManager.GetLogger(typeof(ClientResource));
+            
             if (logger.IsDebugEnabled)
             {
                 logger.DebugFormat("Attempting to load assembly: {0}", declaringAssembly);

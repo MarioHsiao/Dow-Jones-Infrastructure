@@ -90,10 +90,10 @@ DJ.UI.Gauge = DJ.UI.Component.extend({
             var axis = this.chart.yAxis[0];
             var plotBand = this._getSpedometerBands()[0];
             if (this.data < this.options.min) {
-                plotBand = $.extend(true, plotBand, { to: this.options.ming });
+                plotBand = $.extend(true, plotBand, { to: this.options.min });
             }
             else if (this.data > this.options.max) {
-                plotBand = $.extend(true, plotBand, { to: this.options.ming });
+                plotBand = $.extend(true, plotBand, { to: this.options.max });
             }
             axis.removePlotBand("speed1");
             axis.addPlotBand(plotBand);
