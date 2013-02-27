@@ -117,8 +117,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>FileReferences\CachingWrapper.dll</HintPath>
     </Reference>
-    <Reference Include="EMG.Utility">
-      <HintPath>..\Dependency\EMG.Utility.dll</HintPath>
+    <Reference Include="EMG.Utility, Version=3.6.0.36, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>resources\EMG.Utility.dll</HintPath>
     </Reference>
     <Reference Include="encryption, Version=1.0.2949.19938, Culture=neutral">
       <SpecificVersion>False</SpecificVersion>
@@ -223,6 +224,7 @@
     <Content Include="resources\Argotic.Extensions.dll" />
     <Content Include="resources\Argotic.Web.dll" />
     <Content Include="resources\CachingWrapper.dll" />
+    <Content Include="resources\EMG.Utility.dll" />
     <Content Include="resources\encryption.dll" />
     <Content Include="resources\factiva.gateway.messages.dll" />
     <Content Include="resources\FactivaBusinessLayerLogic.dll" />
