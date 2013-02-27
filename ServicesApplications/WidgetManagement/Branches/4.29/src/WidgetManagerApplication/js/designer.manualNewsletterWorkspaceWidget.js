@@ -122,7 +122,7 @@ function initDesignerForManualNewsletterWorkspaceWidget() {
     modalPopupBehavior.set_Y(100);
     modalPopupBehavior.show(); 
     
-    $get("mPopHeader").innerHTML = translate("widgetDesigner");
+    $get("mPopHeader").innerHTML = _translate("widgetDesigner");
     CommonToolkitScripts.setVisible($get("codeLoadingCntr"), true);
     CommonToolkitScripts.setVisible($get("codeUpdatingCntr"), false);
     CommonToolkitScripts.setVisible($get("codeCntr"), false);
@@ -347,7 +347,7 @@ function fireUpdateManualNewsletterWorkspaceWidgetAndGetScriptCode (){
         // Fill in the widgetId for update
         var wIdHiddenInput = $get("wid");
         if (wIdHiddenInput) {
-            $get("mPopHeader").innerHTML = translate("displayCode");
+            $get("mPopHeader").innerHTML = _translate("displayCode");
             CommonToolkitScripts.setVisible($get("codeLoadingCntr"), false);
             CommonToolkitScripts.setVisible($get("codeUpdatingCntr"), true);        
             CommonToolkitScripts.setVisible($get("codeCntr"), false);
@@ -368,7 +368,7 @@ function fireUpdateManualNewsletterWorkspaceWidgetAndGetScriptCode (){
                 null);  
             return;
         }
-        showError(translate("noWidgetIdFound"));
+        showError(_translate("noWidgetIdFound"));
     }
     
 }
@@ -381,7 +381,7 @@ function fireCreateManualNewsletterWorkspaceHeadlineWidget() {
     console.log("result:"+result);
     
     if (fillManualNewsletterWorkspaceWidgetDelegate(delegate,result)) {
-        $get("mPopHeader").innerHTML = translate("saveWidgetDesignNow");
+        $get("mPopHeader").innerHTML = _translate("saveWidgetDesignNow");
         CommonToolkitScripts.setVisible($get("codeLoadingCntr"), false);
         CommonToolkitScripts.setVisible($get("codeUpdatingCntr"), true);                
         CommonToolkitScripts.setVisible($get("codeCntr"), false);
@@ -411,7 +411,7 @@ function fireUpdateManualNewsletterWorkspaceHeadlineWidget() {
     console.log(result);
     
     if (fillManualNewsletterWorkspaceWidgetDelegate(delegate,result,true)) {
-        $get("mPopHeader").innerHTML = translate("saveWidgetDesignNow");
+        $get("mPopHeader").innerHTML = _translate("saveWidgetDesignNow");
         CommonToolkitScripts.setVisible($get("codeLoadingCntr"), false);
         CommonToolkitScripts.setVisible($get("codeUpdatingCntr"), true);                
         CommonToolkitScripts.setVisible($get("codeCntr"), false);
