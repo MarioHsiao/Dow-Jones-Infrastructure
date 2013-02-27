@@ -118,7 +118,7 @@
       <HintPath>FileReferences\CachingWrapper.dll</HintPath>
     </Reference>
     <Reference Include="EMG.Utility">
-      <HintPath>..\Dependency\EMG.Utility.dll</HintPath>
+      <HintPath>resources\EMG.Utility.dll</HintPath>
     </Reference>
     <Reference Include="encryption, Version=1.0.2949.19938, Culture=neutral">
       <SpecificVersion>False</SpecificVersion>
