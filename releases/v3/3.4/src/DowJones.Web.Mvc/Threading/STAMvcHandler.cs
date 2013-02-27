@@ -18,33 +18,34 @@ namespace DowJones.Web.Mvc.Threading
             if (requestContext == null)
                 throw new ArgumentNullException("requestContext");
 
-            this.RequestContext = requestContext;
+            RequestContext = requestContext;
         }
 
 
         protected override void OnInit(EventArgs e)
         {
-            ControllerBuilder controllerBuilder = ControllerBuilder.Current;
-
-            string requiredString = this.RequestContext.RouteData.GetRequiredString("controller");
-            IControllerFactory factory = controllerBuilder.GetControllerFactory();
-            IController controller = factory.CreateController(this.RequestContext, requiredString);
+            var controllerBuilder = ControllerBuilder.Current;
+            var requiredString = RequestContext.RouteData.GetRequiredString("controller");
+            var factory = controllerBuilder.GetControllerFactory();
+            var controller = factory.CreateController(RequestContext, requiredString);
             
             if (controller == null)
+            {
                 throw new InvalidOperationException("Could not find controller: " + requiredString);
+            }
 
             RemoveOptionalRoutingParameters();
 
             try
             {
-                controller.Execute(this.RequestContext);
+                controller.Execute(RequestContext);
             }
             finally
             {
                 factory.ReleaseController(controller);
             }
 
-            this.Context.ApplicationInstance.CompleteRequest();
+            Context.ApplicationInstance.CompleteRequest();
         }
 
         public override void ProcessRequest(HttpContext httpContext)
@@ -54,12 +55,12 @@ namespace DowJones.Web.Mvc.Threading
 
         public IAsyncResult BeginProcessRequest(HttpContext context, AsyncCallback cb, object extraData)
         {
-            return this.AspCompatBeginProcessRequest(context, cb, extraData);
+            return AspCompatBeginProcessRequest(context, cb, extraData);
         }
 
         public void EndProcessRequest(IAsyncResult result)
         {
-            this.AspCompatEndProcessRequest(result);
+            AspCompatEndProcessRequest(result);
         }
 
 
@@ -70,15 +71,15 @@ namespace DowJones.Web.Mvc.Threading
 
         private void RemoveOptionalRoutingParameters()
         {
-            RouteValueDictionary rvd = RequestContext.RouteData.Values;
+            var rvd = RequestContext.RouteData.Values;
 
             // Get all keys for which the corresponding value is 'Optional'.
             // ToArray() necessary so that we don't manipulate the dictionary while enumerating.
-            string[] matchingKeys = (from entry in rvd
+            var matchingKeys = (from entry in rvd
                                      where entry.Value == UrlParameter.Optional
                                      select entry.Key).ToArray();
 
-            foreach (string key in matchingKeys)
+            foreach (var key in matchingKeys)
             {
                 rvd.Remove(key);
             }

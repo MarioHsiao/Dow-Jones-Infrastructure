@@ -275,8 +275,6 @@ namespace DowJones.Exceptions
             LogException();
         }
 
-        
-
         public virtual ILog Logger
         {
             get { return Log; }

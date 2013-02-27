@@ -25,7 +25,9 @@ namespace DowJones.Web.ClientResources
             var module = resourceName;
 
             if (module.EndsWith(".js"))
+            {
                 module = module.Substring(0, resourceName.Length - 3);
+            }
 
             return module;
         }

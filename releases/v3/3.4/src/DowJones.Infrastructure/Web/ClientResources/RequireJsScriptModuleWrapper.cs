@@ -54,7 +54,7 @@ namespace DowJones.Web
             );
         }
 
-        private void RenderIndependentScript(ProcessedClientResource resource)
+        private static void RenderIndependentScript(ProcessedClientResource resource)
         {
             resource.Content = string.Format("DJ.$dj.define('{0}');\r\n{1}", 
                                              new ClientResourceModuleName(resource.Name),

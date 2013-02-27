@@ -63,23 +63,19 @@ namespace DowJones.Web.Mvc
 
         private void RegisterCustomRouteAttributes()
         {
-            if (!_customRoutesInitialized)
+            if (_customRoutesInitialized) return;
+            lock (RouteTable.Routes)
             {
-                lock (RouteTable.Routes)
+                if (_customRoutesInitialized) return;
+                var routeGenerator = ServiceLocator.Resolve<IRouteGenerator>();
+                var customRoutes = routeGenerator.Generate();
+
+                foreach (var route in customRoutes)
                 {
-                    if (!_customRoutesInitialized)
-                    {
-                        var routeGenerator = ServiceLocator.Resolve<IRouteGenerator>();
-                        var customRoutes = routeGenerator.Generate();
-
-                        foreach (var route in customRoutes)
-                        {
-                            RouteTable.Routes.Insert(0, route);
-                        }
-
-                        _customRoutesInitialized = true;
-                    }
+                    RouteTable.Routes.Insert(0, route);
                 }
+
+                _customRoutesInitialized = true;
             }
         }
     }

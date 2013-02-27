@@ -64,7 +64,7 @@ namespace DowJones.Web
             var resources = 
                 clientResourceAttributes
                     .Where(r => r.ResourceKind == ClientResourceKind.ClientTemplate)
-                    .Reverse() // Reverse the order so the anscestors are first
+                    .Reverse() // Reverse the order so the ancestors are first
                     .Select(x => x.ToClientResource(declaringType)).ToArray();
 
             ClientResourcesCache.Add(declaringType, resources);

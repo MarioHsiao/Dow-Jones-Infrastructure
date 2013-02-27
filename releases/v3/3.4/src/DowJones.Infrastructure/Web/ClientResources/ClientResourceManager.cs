@@ -87,7 +87,7 @@ namespace DowJones.Web
             return registeredResources.Union(unregisteredResources).ToArray();
         }
 
-        private IEnumerable<ClientResource> GetUnregisteredResources(IEnumerable<string> resourceNames, IEnumerable<ClientResource> registeredResources)
+        private static IEnumerable<ClientResource> GetUnregisteredResources(IEnumerable<string> resourceNames, IEnumerable<ClientResource> registeredResources)
         {
             var unresolvedResourceNames = resourceNames.Except(registeredResources.Select(x => x.Name));
             var unregisteredResources =
@@ -110,11 +110,9 @@ namespace DowJones.Web
                 return Enumerable.Empty<string>();
 
             IEnumerable<string> parts = serializedResourceNames.Split(ResourceNameDelimiter);
-            IEnumerable<string> dealiasedNames = parts.Select(Dealias);
-
-            IEnumerable<string> resolvedResources = dealiasedNames.Where(x => !x.Contains(ResourceNameDelimiter));
-
-            IEnumerable<string> recursiveAliases = dealiasedNames.Except(resolvedResources).SelectMany(ParseClientResourceNames);
+            IEnumerable<string> dealiasedNames = parts.Select(Dealias).ToArray();
+            IEnumerable<string> resolvedResources = dealiasedNames.Where(x => !x.Contains(ResourceNameDelimiter)).ToArray();
+            IEnumerable<string> recursiveAliases = dealiasedNames.Except(resolvedResources).SelectMany(ParseClientResourceNames).ToArray();
 
             return resolvedResources.Union(recursiveAliases).ToArray();
         }
@@ -142,10 +140,10 @@ namespace DowJones.Web
             if (cache.TryGetValue(key, out cachedValue))
                 return cachedValue;
 
-            string value = key;
+            var value = key;
 
             // Cycle through the list to resolve multiple levels
-            string tempValue = key;
+            var tempValue = key;
             do
             {
                 tempValue =

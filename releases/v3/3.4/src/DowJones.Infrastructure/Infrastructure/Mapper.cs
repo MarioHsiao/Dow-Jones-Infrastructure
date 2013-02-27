@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using DowJones.Exceptions;
 using DowJones.Infrastructure;
+using DowJones.Loggers;
 using DowJones.Mapping;
 using log4net;
 
@@ -138,19 +139,27 @@ namespace DowJones
                 }
             }
 
-            if(mappers.Count() > 1)
+            if (mappers.Count() > 1)
+            {
                 throw new DowJonesUtilitiesException(string.Format("Found multiple mappers for {0} => {1} mapping", sourceType, targetType));
+            }
 
             var mapper = mappers.Single().Mapper;
 
             Log.Debug(string.Format("Found registered type mapper {0} for {1} => {2} mapping", mapper.GetType(), sourceType, targetType));
-            
-            var result = mapper.Map(source);
 
-            // Yes, there is a possibility that the mapped result
-            // is not a T... That's fine - just let the framework throw
-            // an invalid cast exception!
-            returnValue = result;
+            using (new TransactionLogger(Log))
+            {
+                // Yes, there is a possibility that the mapped result
+                // is not a T... That's fine - just let the framework throw
+                // an invalid cast exception!
+                returnValue = mapper.Map(source);
+            }
+
+            
+
+            
+            //returnValue = result;
 
             return true;
         }

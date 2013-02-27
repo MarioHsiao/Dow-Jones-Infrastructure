@@ -65,10 +65,9 @@ namespace DowJones.Web.Mvc.UI
 
         protected IEnumerable<string> GenerateUrls(IEnumerable<ClientResource> resources)
         {
-            if (ClientResourceCombiner != null)  
-                return ClientResourceCombiner.GenerateCombinedResourceUrls(resources);
-            else
-                return resources.Select(x => ClientResourceManager.GenerateUrl(x, Culture));
+            return ClientResourceCombiner != null ? 
+                ClientResourceCombiner.GenerateCombinedResourceUrls(resources) : 
+                resources.Select(x => ClientResourceManager.GenerateUrl(x, Culture));
         }
 
         public virtual void Render(IScriptRegistry scriptRegistry, TextWriter writer)
@@ -112,7 +111,10 @@ namespace DowJones.Web.Mvc.UI
 
         protected virtual void RenderRequireConfiguration(TextWriter writer)
         {
-            var requireConfig = new RequireJsConfiguration	() { BaseUrl = ClientResourceHandler.GenerateRequireJsBaseUrl(Culture) };
+            var requireConfig = new RequireJsConfiguration
+                                    {
+                                        BaseUrl = ClientResourceHandler.GenerateRequireJsBaseUrl(Culture)
+                                    };
             requireConfig.WriteTo(writer);
         }
 
@@ -123,7 +125,7 @@ namespace DowJones.Web.Mvc.UI
             // If script combining is disabled then Require.js will
             // handle getting everything individually.
             // If it is enabled, write the combined scripts out to
-            // "prefetch" the combined module definitions within them
+            // "pre-fetch" the combined module definitions within them
             if (Settings.Default.ClientResourceCombiningEnabled && !IsPartialRequest)
             {
                 var modules = scriptResources.Where(ModuleFilter);
@@ -152,20 +154,23 @@ namespace DowJones.Web.Mvc.UI
             var onDocumentReadyStatements = Unrendered(scriptRegistry.OnDocumentReadyStatements.WhereNotNullOrEmpty().ToArray());
             var onWindowUnloadStatements = Unrendered(scriptRegistry.OnWindowUnloadStatements.WhereNotNullOrEmpty().ToArray());
             var cleanUpScripts = Unrendered(scriptRegistry.GetCleanupStatements().WhereNotNullOrEmpty().ToArray());
-
-            bool shouldWriteOnWindowUnload = onWindowUnloadStatements.Any() || cleanUpScripts.Any();
+            var upScripts = cleanUpScripts as string[] ?? cleanUpScripts.ToArray();
+            var windowUnloadStatements = onWindowUnloadStatements as string[] ?? onWindowUnloadStatements.ToArray();
+            var shouldWriteOnWindowUnload = windowUnloadStatements.Any() || upScripts.Any();
 
             if (renderScriptBlock)
+            {
                 htmlWriter.OpenScriptBlock();
+            }
 
             WriteOnDocumentReadyFunctionStart(scriptRegistry, writer);
 
-            foreach (string statement in initializationStatements)
+            foreach (var statement in initializationStatements)
             {
                 writer.WriteLine(statement);
             }
 
-            foreach (string statement in onDocumentReadyStatements)
+            foreach (var statement in onDocumentReadyStatements)
             {
                 writer.Write(statement);
             }
@@ -175,12 +180,12 @@ namespace DowJones.Web.Mvc.UI
             {
                 WriteOnWindowUnloadFunctionStart(writer);
 
-                foreach (string statement in onWindowUnloadStatements)
+                foreach (var statement in windowUnloadStatements)
                 {
                     writer.Write(statement);
                 }
 
-                foreach (string statement in cleanUpScripts)
+                foreach (var statement in upScripts)
                 {
                     writer.WriteLine(statement);
                 }
@@ -245,7 +250,9 @@ namespace DowJones.Web.Mvc.UI
                     .ToArray();
 
             foreach (var item in unrendered)
+            {
                 _renderedItems.Add(item);
+            }
 
             return unrendered;
         }
