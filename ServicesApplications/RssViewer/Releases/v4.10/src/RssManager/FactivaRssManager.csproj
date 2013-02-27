@@ -223,6 +223,7 @@
     <Content Include="resources\Argotic.Extensions.dll" />
     <Content Include="resources\Argotic.Web.dll" />
     <Content Include="resources\CachingWrapper.dll" />
+    <Content Include="resources\EMG.Utility.dll" />
     <Content Include="resources\encryption.dll" />
     <Content Include="resources\factiva.gateway.messages.dll" />
     <Content Include="resources\factiva.gateway.messages.pdb" />
