@@ -1474,7 +1474,7 @@ if (!window.FactivaWidgetRenderManager) {
                 t[t.length] = "</div>";
                 return t.join("");
             };
-            this.sayswho = function () {
+            this.findbrowser = function () {
            
                 var N = navigator.appName, ua = navigator.userAgent, tem;
                 var M = ua.match(/(opera|chrome|safari|firefox|msie)\/?\s*(\.?\d+(\.\d+)*)/i);
@@ -1485,7 +1485,7 @@ if (!window.FactivaWidgetRenderManager) {
             this.addDiscoveryChart = function (chartdata, chartimage) {
          
                 var isIE = false;
-                var browserN = this.sayswho()[0];
+                var browserN = this.findbrowser()[0];
                 if (browserN == "msie" || browserN == "MSIE") {
                     isIE = true;
                 }
@@ -1863,7 +1863,7 @@ if (!window.FactivaWidgetRenderManager) {
                                 aFontColor,
                                 fontFamily);
                             if (_alert.RegionsChart != null) {
-                                t[t.length] = this.addFlashImage(_alert.RegionsChart.Chart);
+                                t[t.length] = this.addDiscoveryChart(_alert.RegionsChart.Chart, result.Literals.ChartImage);
                                 if (result.Data.Alerts[i].IsGroupFolder == false) {
                                     if (result.Definition.DistributionType == 0 || result.Definition.DistributionType == 1)
                                         t[t.length] = this.addGetThisAlertUrl(_alert.RegionsChart.GetThisAlertUrl
