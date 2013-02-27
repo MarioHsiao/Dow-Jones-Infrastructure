@@ -942,9 +942,9 @@ namespace EMG.widgets.ui.utility.headline
 
                 foreach (XmlNode node in para.ChildNodes)
                 {
-                    if (node.NodeType == XmlNodeType.Element && node.Name == "hlt")
+                    if (node.NodeType == XmlNodeType.Element && (node.Name == "hlt" || node.Name == "en"))
                     {
-                        if (node.PreviousSibling != null && node.PreviousSibling.NodeType == XmlNodeType.Element && node.PreviousSibling.Name == "hlt")
+                        if (node.PreviousSibling != null && node.PreviousSibling.NodeType == XmlNodeType.Element && (node.PreviousSibling.Name == "hlt" || node.Name == "en"))
                         {
                             sb.Append(" ");
                         }
