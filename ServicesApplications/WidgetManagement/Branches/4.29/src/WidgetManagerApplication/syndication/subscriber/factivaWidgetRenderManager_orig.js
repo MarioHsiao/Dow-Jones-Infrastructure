@@ -1495,31 +1495,17 @@ if (!window.FactivaWidgetRenderManager) {
                     var t = [];
                     var discoveryChart = new DiscoveryChart(chartimage);
                     var htmldata = discoveryChart.RenderDiscoveryChart(chartdata.data, isIE);
-                    if (xIE4Up) {
+                    
                         t[t.length] = "<div id=\"discoveryChart\" class=\"cd_cont discovery-wrapper\"style=\"margin:10px auto 10px auto" +
                                 ";position:relative" +
                                 ";text-align:center" +
                                 ";font-size: 11px;" +
 ";padding-bottom: 5px;" +
 "border-bottom: 1px solid #f0f0f0;" +
-"position: relative" +
+"width:211px;" + 
                                 ";\">" + htmldata + "</div>";
-                    } else {
-                        t[t.length] = "<div id=\"discoveryChart\" class=\"cd_cont discovery-wrapper\"style=\"margin:10px auto 10px auto" +
-                                ";position:relative" + ";font-size: 11px;" +
-";padding-bottom: 5px;" +
-"border-bottom: 1px solid #f0f0f0" +
-                                ";width:" + chartdata.width + "px" +
-                                ";\">" + htmldata + "</div>";
-                    }
-
-                    //Apply ellipsis only in Firefox browser
-                    //                    if ($.browser.mozilla) {
-                    //                        var ver = parseFloat($.browser.version);
-                    //                        if (ver >= 2 && ver < 7) {
-                    //                            t[t.length].find('.ellipsis').ellipsis({ intervalDelay: 0 });
-                    //                        }
-                    //                    }
+                   
+                    
                     return t.join("");
                 }
             };
@@ -2439,12 +2425,12 @@ var DiscoveryChart = (function (chartimage) {
                             '{{ var data = it, mw = 1;',
                                 'for (var x=0, w=0, c=0, i = 0, len = data.length;i < len; i++) { ',
                                 'x = data[i];w=((i != 0)?((x.value/data[0].value)*170):170); if(w < mw) w=mw; c = x.GT=="sf"? "cItem source-family":"cItem";}}',
-                                '<li class="{{=c}}" style="position: relative;margin-bottom: 3px;padding-bottom: 6px;width: 186px;padding-left: 25px;height: 13px;" data-di="{{=i}}" title="{{=x.name }}">', //background change for source family 
+                                '<li class="{{=c}}" style="position: relative;margin-bottom: 3px;padding-bottom: 6px;width: 186px;padding-left: 0px;height: 13px;" data-di="{{=i}}" title="{{=x.name }}">', //background change for source family 
                                     '<span class="dj_not" style=" width: 12px;height: 12px;display: block;position: absolute;top: 6px;left: 8px; display: none; cursor: pointer;"title="{{="notTitleTkn"}}"><span></span></span>',
-                                    '<span class="discovery-chart" style="display: -moz-inline-stack;display: inline-block;zoom: 1;vertical-align: top;position: relative;">',
-                                        '<img  class="plot" src="' + chartimage + '" style="float:left;height:4px;zoom: 1;vertical-align: top;width: {{=w}}px;" />', '<br />',
-                                        '<span class="ellipsis" style="float:left;margin-bottom:2px;width: 140px;color: #004c70;text-align: left;margin-right: 3px;margin-top: 2px;display: -moz-inline-stack;display: inline-block;zoom: 1;hasLayout: 1;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;">{{=x.name}}</span>',
-                                        '<span class="chart-value" style="color: #999;margin-top: 2px;font-size: 10px;text-align: right;display: inline-block;clear: right;zoom: 1;height: 12px;">{{=x.value}}</span>',
+                                    '<span class="discovery-chart" style="min-width:186px;display: -moz-inline-stack;display: inline-block;zoom: 1;vertical-align: top;position: relative;height:19px;">',
+                                        '<img  class="plot" src="' + chartimage + '" style="float:left;height:4px;zoom: 1;vertical-align: top;width: {{=w}}px;clear:right;" />',
+                                        '<span class="ellipsis" style="clear:left;float:left;margin-bottom:2px;width: 140px;color: #004c70;text-align: left;margin-top: 2px;display: -moz-inline-stack;display:block;zoom: 1;hasLayout: 1;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;">{{=x.name}}</span>',
+                                        '<span class="chart-value" style="color: #999;margin-top: 2px;font-size: 10px;text-align: right;display: inline-block;float:right;zoom: 1;height: 12px;">{{=x.value}}</span>',
                                     '</span>',
                                 '</li>',
                             '{{ } }}',
