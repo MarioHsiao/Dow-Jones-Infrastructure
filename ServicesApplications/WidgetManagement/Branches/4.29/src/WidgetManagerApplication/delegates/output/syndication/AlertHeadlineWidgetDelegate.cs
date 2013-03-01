@@ -1047,7 +1047,7 @@ namespace EMG.widgets.ui.delegates.output.syndication
             builder = new BaseUrlBuilder();
             builder.OutputType = BaseUrlBuilder.UrlOutputType.Absolute;
             builder.BaseUrl = "~/img/plotdot.png";
-            Literals.ChartImage = builder.ToString();
+            Literals.DiscoveryChartImage = builder.ToString();
         }
 
         /// <summary>

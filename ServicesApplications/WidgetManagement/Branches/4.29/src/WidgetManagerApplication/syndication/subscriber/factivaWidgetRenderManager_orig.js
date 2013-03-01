@@ -1474,28 +1474,14 @@ if (!window.FactivaWidgetRenderManager) {
                 t[t.length] = "</div>";
                 return t.join("");
             };
-            this.findbrowser = function () {
-           
-                var N = navigator.appName, ua = navigator.userAgent, tem;
-                var M = ua.match(/(opera|chrome|safari|firefox|msie)\/?\s*(\.?\d+(\.\d+)*)/i);
-                if (M && (tem = ua.match(/version\/([\.\d]+)/i)) != null) M[2] = tem[1];
-                M = M ? [M[1], M[2]] : [N, navigator.appVersion, '-?'];
-                return M;
-            };
-            this.addDiscoveryChart = function (chartdata, chartimage) {
-         
-                var isIE = false;
-                var browserN = this.findbrowser()[0];
-                if (browserN == "msie" || browserN == "MSIE") {
-                    isIE = true;
-                }
+            
+            this.addDiscoveryChart = function (chartdata, chartimage) {      
+                
 
                 if (chartdata != null && chartdata.data.length > 0) {
-
                     var t = [];
                     var discoveryChart = new DiscoveryChart(chartimage);
-                    var htmldata = discoveryChart.RenderDiscoveryChart(chartdata.data, isIE);
-                    
+                    var htmldata = discoveryChart.RenderDiscoveryChart(chartdata.data);                    
                         t[t.length] = "<div id=\"discoveryChart\" class=\"cd_cont discovery-wrapper\"style=\"margin:10px auto 10px auto" +
                                 ";position:relative" +
                                 ";text-align:center" +
@@ -1503,34 +1489,13 @@ if (!window.FactivaWidgetRenderManager) {
 ";padding-bottom: 5px;" +
 "border-bottom: 1px solid #f0f0f0;" +
 "width:211px;" + 
-                                ";\">" + htmldata + "</div>";
-                   
+                                ";\">" + htmldata + "</div>";                   
                     
                     return t.join("");
                 }
             };
 
-            this.addFlashImage = function (chartdata) {
-           
-                if (chartdata != null && chartdata.data.length > 0) {
-                    if (typeof (FlashObject) != 'undefined') {
-                        var fo = new FlashObject(chartdata.chartUri, "temp_swf", chartdata.width, chartdata.height, chartdata.version);
-                        var t = [];
-                        if (xIE4Up) {
-                            t[t.length] = "<div style=\"margin:10px auto 10px auto" +
-                                ";position:relative" +
-                                ";text-align:center" +
-                                ";\">" + fo.getFlashHTML() + "</div>";
-                        } else {
-                            t[t.length] = "<div style=\"margin:10px auto 10px auto" +
-                                ";position:relative" +
-                                ";width:" + chartdata.width + "px" +
-                                ";\">" + fo.getFlashHTML() + "</div>";
-                        }
-                        return t.join("");
-                    }
-                }
-            };
+            
 
             this.addGetThisAlertUrl = function (url, token, mColor) {
                 if (url != null) {
@@ -1617,7 +1582,7 @@ if (!window.FactivaWidgetRenderManager) {
                                 aFontColor,
                                 fontFamily);
                             if (_alert.CompaniesChart != null) {
-                                t[t.length] = this.addDiscoveryChart(_alert.CompaniesChart.Chart, result.Literals.ChartImage);
+                                t[t.length] = this.addDiscoveryChart(_alert.CompaniesChart.Chart, result.Literals.DiscoveryChartImage);
                                 if (result.Data.Alerts[i].IsGroupFolder == false) {
                                     if (result.Definition.DistributionType == 0 || result.Definition.DistributionType == 1)
                                         t[t.length] = this.addGetThisAlertUrl(_alert.CompaniesChart.GetThisAlertUrl
@@ -1675,7 +1640,7 @@ if (!window.FactivaWidgetRenderManager) {
                                 aFontColor,
                                 fontFamily);
                             if (_alert.SubjectsChart != null) {
-                                t[t.length] = this.addDiscoveryChart(_alert.SubjectsChart.Chart, result.Literals.ChartImage);
+                                t[t.length] = this.addDiscoveryChart(_alert.SubjectsChart.Chart, result.Literals.DiscoveryChartImage);
                                 if (result.Data.Alerts[i].IsGroupFolder == false) {
                                     if (result.Definition.DistributionType == 0 || result.Definition.DistributionType == 1)
                                         t[t.length] = this.addGetThisAlertUrl(_alert.SubjectsChart.GetThisAlertUrl
@@ -1733,7 +1698,7 @@ if (!window.FactivaWidgetRenderManager) {
                                 aFontColor,
                                 fontFamily);
                             if (_alert.IndustriesChart != null) {
-                                t[t.length] = this.addDiscoveryChart(_alert.IndustriesChart.Chart, result.Literals.ChartImage);
+                                t[t.length] = this.addDiscoveryChart(_alert.IndustriesChart.Chart, result.Literals.DiscoveryChartImage);
                                 if (result.Data.Alerts[i].IsGroupFolder == false) {
                                     if (result.Definition.DistributionType == 0 || result.Definition.DistributionType == 1)
                                         t[t.length] = this.addGetThisAlertUrl(_alert.IndustriesChart.GetThisAlertUrl
@@ -1791,7 +1756,7 @@ if (!window.FactivaWidgetRenderManager) {
                                 aFontColor,
                                 fontFamily);
                             if (_alert.ExecutivesChart != null) {
-                                t[t.length] = this.addDiscoveryChart(_alert.ExecutivesChart.Chart, result.Literals.ChartImage);
+                                t[t.length] = this.addDiscoveryChart(_alert.ExecutivesChart.Chart, result.Literals.DiscoveryChartImage);
                                 if (result.Data.Alerts[i].IsGroupFolder == false) {
                                     if (result.Definition.DistributionType == 0 || result.Definition.DistributionType == 1)
                                         t[t.length] = this.addGetThisAlertUrl(_alert.ExecutivesChart.GetThisAlertUrl
@@ -1849,7 +1814,7 @@ if (!window.FactivaWidgetRenderManager) {
                                 aFontColor,
                                 fontFamily);
                             if (_alert.RegionsChart != null) {
-                                t[t.length] = this.addDiscoveryChart(_alert.RegionsChart.Chart, result.Literals.ChartImage);
+                                t[t.length] = this.addDiscoveryChart(_alert.RegionsChart.Chart, result.Literals.DiscoveryChartImage);
                                 if (result.Data.Alerts[i].IsGroupFolder == false) {
                                     if (result.Definition.DistributionType == 0 || result.Definition.DistributionType == 1)
                                         t[t.length] = this.addGetThisAlertUrl(_alert.RegionsChart.GetThisAlertUrl
@@ -2402,26 +2367,8 @@ var DiscoveryChart = (function (chartimage) {
     };
 
 
+    
     var template = ['<ul class="discovery-items" style="line-height: 13px;zoom: 1;list-style: none;">',
-                            '{{ var data = it, mw = 1;',
-                                'for (var x=0, w=0, c=0, i = 0, len = data.length;i < len; i++) { ',
-                                'x = data[i];w=((i != 0)?((x.value/data[0].value)*170):170); if(w < mw) w=mw; c = x.GT=="sf"? "cItem source-family":"cItem";}}',
-                                '<li class="{{=c}}" style="position: relative;margin-bottom: 3px;padding-bottom: 6px;width: 186px;padding-left: 25px;height: 13px;" data-di="{{=i}}" title="{{=x.name }}">', //background change for source family 
-                                    '<span class="dj_not" style=" width: 12px;height: 12px;display: block;position: absolute;top: 6px;left: 8px; display: none; cursor: pointer;"title="{{="notTitleTkn"}}"><span></span></span>',
-                                    '<span class="discovery-chart" style="display: -moz-inline-stack;display: inline-block;zoom: 1;vertical-align: top;position: relative;">',
-                                        '<img  class="plot" src="' + chartimage + '" style="height:4px;zoom: 1;vertical-align: top;width: {{=w}}px;" />', '<br />',
-                                        '<span class="ellipsis" style="width: 140px;color: #004c70;text-align: left;margin-right: 3px;margin-top: 2px;display: -moz-inline-stack;display: inline-block;zoom: 1;hasLayout: 1;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;">{{=x.name}}</span>',
-                                        '<span class="chart-value" style="color: #999;margin-top: 2px;font-size: 10px;text-align: right;display: inline-block;clear: right;zoom: 1;height: 12px;">{{=x.value}}</span>',
-                                    '</span>',
-                                '</li>',
-                            '{{ } }}',
-                        '</ul>',
-                        '<span class="morebutton"></span>',
-                        '<span class="lessbutton lessbutton-inactive"></span>'
-    //Pramod loading symbol if required handle it.
-    // , '<span class="loading hide"><img src="../ChartPOC/img/ajax-loader-flat.gif" /></span>'
-		    ].join('');
-    var templateIE = ['<ul class="discovery-items" style="line-height: 13px;zoom: 1;list-style: none;">',
                             '{{ var data = it, mw = 1;',
                                 'for (var x=0, w=0, c=0, i = 0, len = data.length;i < len; i++) { ',
                                 'x = data[i];w=((i != 0)?((x.value/data[0].value)*170):170); if(w < mw) w=mw; c = x.GT=="sf"? "cItem source-family":"cItem";}}',
@@ -2434,25 +2381,18 @@ var DiscoveryChart = (function (chartimage) {
                                     '</span>',
                                 '</li>',
                             '{{ } }}',
-                        '</ul>',
-                        '<span class="morebutton"></span>',
-                        '<span class="lessbutton lessbutton-inactive"></span>'
-    //Pramod loading symbol if required handle it.
-    // , '<span class="loading hide"><img src="../ChartPOC/img/ajax-loader-flat.gif" /></span>'
+                        '</ul>'
+                       
 		    ].join('');
 
     return {
-        RenderDiscoveryChart: function (chartdata, isIE) {
+        RenderDiscoveryChart: function (chartdata) {
    
-            var parsedTemplate;
-            if (isIE) {
-                parsedTemplate = GetCharttemplate(templateIE);
-            }
-            else {
-                parsedTemplate = GetCharttemplate(template);
-            }
+            var parsedTemplate;          
+            
+           parsedTemplate = GetCharttemplate(template);            
             return (parsedTemplate(chartdata));
-            // var $container = container.html(parsedTemplate(sampleJson));
+           
 
         }
     };

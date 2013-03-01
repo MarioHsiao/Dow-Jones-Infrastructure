@@ -147,7 +147,7 @@
     <Content Include="img\CompaniesChart.png" />
     <Content Include="img\ExecutivesChart.png" />
     <Content Include="img\IndustriesChart.png" />
-    <Content Include="img\RegionsChart.png" />
+    <Content Include="img\RegionsChart.PNG" />
     <Content Include="img\SubjectsChart.png" />
     <Content Include="iworks\bvd\config.xml" />
     <Content Include="iworks\bvd\config_bc.xml" />

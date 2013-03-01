@@ -109,6 +109,6 @@ namespace EMG.widgets.ui.delegates.output.literals
         /// <summary>
         /// Chart Image
         /// </summary>
-        public string ChartImage;
+        public string DiscoveryChartImage;
     }
 }
