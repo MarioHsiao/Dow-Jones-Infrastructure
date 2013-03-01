@@ -71,12 +71,12 @@
     <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="factiva.gateway.messages, Version=7.5.0.114, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="factiva.gateway.messages, Version=7.5.0.117, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Factiva.Gateway.7.5.0.114\lib\factiva.gateway.messages.dll</HintPath>
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.117\lib\factiva.gateway.messages.dll</HintPath>
     </Reference>
     <Reference Include="FactivaGateway, Version=1.6.0.1, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Factiva.Gateway.7.5.0.114\lib\FactivaGateway.dll</HintPath>
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.117\lib\FactivaGateway.dll</HintPath>
     </Reference>
     <Reference Include="Glimpse.Core">
       <HintPath>..\packages\Glimpse.0.86\lib\net40\Glimpse.Core.dll</HintPath>
@@ -90,7 +90,7 @@
     <Reference Include="Interop.FCMLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <EmbedInteropTypes>False</EmbedInteropTypes>
       <Private>True</Private>
-      <HintPath>..\packages\Factiva.Gateway.7.5.0.114\lib\Interop.FCMLib.dll</HintPath>
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.117\lib\Interop.FCMLib.dll</HintPath>
     </Reference>
     <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
       <HintPath>..\packages\log4net.1.2.99\lib\2.0\log4net.dll</HintPath>
@@ -888,86 +888,86 @@
     <Content Include="Areas\Sandbox\Views\Web.config" />
     <Content Include="Areas\Sandbox\_viewstart.cshtml" />
     <Content Include="Areas\Sandbox\Views\Shared\_Layout.cshtml" />
-    <Content Include="GatewayResources\config\Analyze.config" />
-    <Content Include="GatewayResources\config\ArchiveService.config" />
-    <Content Include="GatewayResources\config\Asset.CompanyList.config" />
-    <Content Include="GatewayResources\config\Asset.Edition.config" />
-    <Content Include="GatewayResources\config\Asset.FCPService.config" />
-    <Content Include="GatewayResources\config\Asset.Items.config" />
-    <Content Include="GatewayResources\config\Asset.Lists.config" />
-    <Content Include="GatewayResources\config\Asset.NewsletterContentService.config" />
-    <Content Include="GatewayResources\config\Asset.NewsletterTemplateService.config" />
-    <Content Include="GatewayResources\config\Asset.NewsPageService.config" />
-    <Content Include="GatewayResources\config\Asset.Pages.config" />
-    <Content Include="GatewayResources\config\Asset.Queries.config" />
-    <Content Include="GatewayResources\config\Asset.SaveSearch.config" />
-    <Content Include="GatewayResources\config\Asset.SourceList.config" />
-    <Content Include="GatewayResources\config\Asset.WebService.config" />
-    <Content Include="GatewayResources\config\Asset.Workflow.config" />
-    <Content Include="GatewayResources\config\Asset.Workspaces.config" />
-    <Content Include="GatewayResources\config\BillingAndAuthorizationService.config" />
-    <Content Include="GatewayResources\config\Brokers.CompliantWorkspace.config" />
-    <Content Include="GatewayResources\config\Brokers.Job.config" />
-    <Content Include="GatewayResources\config\Brokers.Query.config" />
-    <Content Include="GatewayResources\config\CVDService.config" />
-    <Content Include="GatewayResources\config\DJComm.Activity.config" />
-    <Content Include="GatewayResources\config\DJComm.Author.config" />
-    <Content Include="GatewayResources\config\DJComm.BriefingBook.config" />
-    <Content Include="GatewayResources\config\DJComm.EntityList.config" />
-    <Content Include="GatewayResources\config\DJComm.Metrics.config" />
-    <Content Include="GatewayResources\config\DJComm.Outlet.config" />
-    <Content Include="GatewayResources\config\DJComm.ProprietaryInfo.config" />
-    <Content Include="GatewayResources\config\DJComm.SourceGroups.config" />
-    <Content Include="GatewayResources\config\DJComm.User.config" />
-    <Content Include="GatewayResources\config\DJInsightService.config" />
-    <Content Include="GatewayResources\config\DnbService.config" />
-    <Content Include="GatewayResources\config\EmailDeliverySettingsService.config" />
-    <Content Include="GatewayResources\config\EventCalendarService.config" />
-    <Content Include="GatewayResources\config\ExternalReaderService.config" />
-    <Content Include="GatewayResources\config\FactivaGateway.config" />
-    <Content Include="GatewayResources\config\GovernmentService.config" />
-    <Content Include="GatewayResources\config\HeatMapService.config" />
-    <Content Include="GatewayResources\config\IndexService.config" />
-    <Content Include="GatewayResources\config\MarketDataService.config" />
-    <Content Include="GatewayResources\config\MembershipService.config" />
-    <Content Include="GatewayResources\config\MetaDataService.config" />
-    <Content Include="GatewayResources\config\MetricsService.config" />
-    <Content Include="GatewayResources\config\NewsstandService.config" />
-    <Content Include="GatewayResources\config\OnDemandEmailService.config" />
-    <Content Include="GatewayResources\config\OnDemandEmailService_v2.config" />
-    <Content Include="GatewayResources\config\OperationalDataService.config" />
-    <Content Include="GatewayResources\config\PCM.RealTimeSearchDiscoveryService.config" />
-    <Content Include="GatewayResources\config\PCM.RegionalMapService.config" />
-    <Content Include="GatewayResources\config\PCM.SearchService.config" />
-    <Content Include="GatewayResources\config\PCM.SummaryRegionalMapService.config" />
-    <Content Include="GatewayResources\config\PCM.SyndicationService.config" />
-    <Content Include="GatewayResources\config\PIMService.config" />
-    <Content Include="GatewayResources\config\PlatformCacheService.config" />
-    <Content Include="GatewayResources\config\PMDealsService.config" />
-    <Content Include="GatewayResources\config\PreferenceService.config" />
-    <Content Include="GatewayResources\config\RegistrationService.config" />
-    <Content Include="GatewayResources\config\RelationshipMapping.config" />
-    <Content Include="GatewayResources\config\RoleBasedPlatform.TrackCodingService.config" />
-    <Content Include="GatewayResources\config\RTQueueService.config" />
-    <Content Include="GatewayResources\config\ScreeningService.config" />
-    <Content Include="GatewayResources\config\SearchService.config" />
-    <Content Include="GatewayResources\config\SegmentationService.config" />
-    <Content Include="GatewayResources\config\SemanticService.config" />
-    <Content Include="GatewayResources\config\SessionCacheService.config" />
-    <Content Include="GatewayResources\config\SourcesService.config" />
-    <Content Include="GatewayResources\config\SuggestService.config" />
-    <Content Include="GatewayResources\config\Symbology.CompanyService.config" />
-    <Content Include="GatewayResources\config\Symbology.ExchangeService.config" />
-    <Content Include="GatewayResources\config\Symbology.InstrumentService.config" />
-    <Content Include="GatewayResources\config\Symbology.ListService.config" />
-    <Content Include="GatewayResources\config\Symbology.NameListService.config" />
-    <Content Include="GatewayResources\config\Symbology.Person.config" />
-    <Content Include="GatewayResources\config\Symbology.TaxonomyService.config" />
-    <Content Include="GatewayResources\config\Tools.TinyURL.config" />
-    <Content Include="GatewayResources\config\TopicCenterAndSMSManagementService.config" />
-    <Content Include="GatewayResources\config\TrackService.config" />
-    <Content Include="GatewayResources\config\Triggers.config" />
     <Content Include="GatewayResources\config\UserEventRecorderService.config" />
+    <Content Include="GatewayResources\config\Triggers.config" />
+    <Content Include="GatewayResources\config\TrackService.config" />
+    <Content Include="GatewayResources\config\TopicCenterAndSMSManagementService.config" />
+    <Content Include="GatewayResources\config\Tools.TinyURL.config" />
+    <Content Include="GatewayResources\config\Symbology.TaxonomyService.config" />
+    <Content Include="GatewayResources\config\Symbology.Person.config" />
+    <Content Include="GatewayResources\config\Symbology.NameListService.config" />
+    <Content Include="GatewayResources\config\Symbology.ListService.config" />
+    <Content Include="GatewayResources\config\Symbology.InstrumentService.config" />
+    <Content Include="GatewayResources\config\Symbology.ExchangeService.config" />
+    <Content Include="GatewayResources\config\Symbology.CompanyService.config" />
+    <Content Include="GatewayResources\config\SuggestService.config" />
+    <Content Include="GatewayResources\config\SourcesService.config" />
+    <Content Include="GatewayResources\config\SessionCacheService.config" />
+    <Content Include="GatewayResources\config\SemanticService.config" />
+    <Content Include="GatewayResources\config\SegmentationService.config" />
+    <Content Include="GatewayResources\config\SearchService.config" />
+    <Content Include="GatewayResources\config\ScreeningService.config" />
+    <Content Include="GatewayResources\config\RTQueueService.config" />
+    <Content Include="GatewayResources\config\RoleBasedPlatform.TrackCodingService.config" />
+    <Content Include="GatewayResources\config\RelationshipMapping.config" />
+    <Content Include="GatewayResources\config\RegistrationService.config" />
+    <Content Include="GatewayResources\config\PreferenceService.config" />
+    <Content Include="GatewayResources\config\PMDealsService.config" />
+    <Content Include="GatewayResources\config\PlatformCacheService.config" />
+    <Content Include="GatewayResources\config\PIMService.config" />
+    <Content Include="GatewayResources\config\PCM.SyndicationService.config" />
+    <Content Include="GatewayResources\config\PCM.SummaryRegionalMapService.config" />
+    <Content Include="GatewayResources\config\PCM.SearchService.config" />
+    <Content Include="GatewayResources\config\PCM.RegionalMapService.config" />
+    <Content Include="GatewayResources\config\PCM.RealTimeSearchDiscoveryService.config" />
+    <Content Include="GatewayResources\config\OperationalDataService.config" />
+    <Content Include="GatewayResources\config\OnDemandEmailService_v2.config" />
+    <Content Include="GatewayResources\config\OnDemandEmailService.config" />
+    <Content Include="GatewayResources\config\NewsstandService.config" />
+    <Content Include="GatewayResources\config\MetricsService.config" />
+    <Content Include="GatewayResources\config\MetaDataService.config" />
+    <Content Include="GatewayResources\config\MembershipService.config" />
+    <Content Include="GatewayResources\config\MarketDataService.config" />
+    <Content Include="GatewayResources\config\IndexService.config" />
+    <Content Include="GatewayResources\config\HeatMapService.config" />
+    <Content Include="GatewayResources\config\GovernmentService.config" />
+    <Content Include="GatewayResources\config\FactivaGateway.config" />
+    <Content Include="GatewayResources\config\ExternalReaderService.config" />
+    <Content Include="GatewayResources\config\EventCalendarService.config" />
+    <Content Include="GatewayResources\config\EmailDeliverySettingsService.config" />
+    <Content Include="GatewayResources\config\DnbService.config" />
+    <Content Include="GatewayResources\config\DJInsightService.config" />
+    <Content Include="GatewayResources\config\DJComm.User.config" />
+    <Content Include="GatewayResources\config\DJComm.SourceGroups.config" />
+    <Content Include="GatewayResources\config\DJComm.ProprietaryInfo.config" />
+    <Content Include="GatewayResources\config\DJComm.Outlet.config" />
+    <Content Include="GatewayResources\config\DJComm.Metrics.config" />
+    <Content Include="GatewayResources\config\DJComm.EntityList.config" />
+    <Content Include="GatewayResources\config\DJComm.BriefingBook.config" />
+    <Content Include="GatewayResources\config\DJComm.Author.config" />
+    <Content Include="GatewayResources\config\DJComm.Activity.config" />
+    <Content Include="GatewayResources\config\CVDService.config" />
+    <Content Include="GatewayResources\config\Brokers.Query.config" />
+    <Content Include="GatewayResources\config\Brokers.Job.config" />
+    <Content Include="GatewayResources\config\Brokers.CompliantWorkspace.config" />
+    <Content Include="GatewayResources\config\BillingAndAuthorizationService.config" />
+    <Content Include="GatewayResources\config\Asset.Workspaces.config" />
+    <Content Include="GatewayResources\config\Asset.Workflow.config" />
+    <Content Include="GatewayResources\config\Asset.WebService.config" />
+    <Content Include="GatewayResources\config\Asset.SourceList.config" />
+    <Content Include="GatewayResources\config\Asset.SaveSearch.config" />
+    <Content Include="GatewayResources\config\Asset.Queries.config" />
+    <Content Include="GatewayResources\config\Asset.Pages.config" />
+    <Content Include="GatewayResources\config\Asset.NewsPageService.config" />
+    <Content Include="GatewayResources\config\Asset.NewsletterTemplateService.config" />
+    <Content Include="GatewayResources\config\Asset.NewsletterContentService.config" />
+    <Content Include="GatewayResources\config\Asset.Lists.config" />
+    <Content Include="GatewayResources\config\Asset.Items.config" />
+    <Content Include="GatewayResources\config\Asset.FCPService.config" />
+    <Content Include="GatewayResources\config\Asset.Edition.config" />
+    <Content Include="GatewayResources\config\Asset.CompanyList.config" />
+    <Content Include="GatewayResources\config\ArchiveService.config" />
+    <Content Include="GatewayResources\config\Analyze.config" />
     <None Include="MockRESTServices\modules\CustomTopics\GET_data.json" />
     <None Include="MockRESTServices\modules\NewsStand\GET_data.json" />
     <None Include="MockRESTServices\modules\RegionalMap\GET_data.json" />

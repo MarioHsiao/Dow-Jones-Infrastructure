@@ -1239,5 +1239,16 @@ Release Version 7.5.0.112
 2/4/2013 Pramod: Fix for PCMSyndicationService masteritem creation bug.
 Release Version 7.5.0.114
 =============================================================================================================================
-2/6/2012 Pramod: Workaround at the gateway side for ValidateTokenResponse for the invalid "ZZ" state and country code passed from membership.
-2/12/2012 Pramod: Added allowMMContent flag to Track UserData
+2/06/2013 Pramod: Workaround at the gateway side for ValidateTokenResponse for the invalid "ZZ" state and country code passed from membership.
+2/12/2013 Pramod: Added allowMMContent flag to Track UserData
+2/13/2013 Divya: Added new objects Asset common and Workspaces
+Release Version 7.5.0.115
+=============================================================================================================================
+2/18/2013 Divya: Updated GenerateODE to remove 'NL' from ContentTypeForContentByID enumeration and appending new item in ContentByID
+2/22/2013 Divya: Enahancements in PAM Asset - Workspace
+			     Modfied ManualWorkspace and related objects according th new schema. 
+				 Added new trasactions (Create, Update, Get & Delete) for NewsletterDelivery 
+
+Release Version 7.5.0.116
+=============================================================================================================================
+2/26/2013 Himmat: Updated  StartDay, DateInterval, DatePeriod enums with None enum value. 
