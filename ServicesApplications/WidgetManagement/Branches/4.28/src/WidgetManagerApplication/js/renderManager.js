@@ -1931,7 +1931,7 @@ if (!window.FactivaWidgetRenderManager) {
             this.getSectionTitle = function (_section, bgColor, fontSize, fontColor, fontFamily) {
                 var t = [];
                 if (_section.Type == "1") {
-                    t[t.length] = "<div style=\"padding-left:20px;\"><div id=\"fctv_AlertTitle\" style=\"" +
+                    t[t.length] = "<div style=\"padding-left:20px;padding-right:20px;\"><div id=\"fctv_AlertTitle\" style=\"" +
                         "background-color:" + bgColor +
                         ";padding:3px 5px" +
                         ";color:" + fontColor +
