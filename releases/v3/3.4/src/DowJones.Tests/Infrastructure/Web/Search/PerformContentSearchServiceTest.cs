@@ -1,4 +1,5 @@
-﻿using DowJones.Managers.Search;
+﻿using DowJones.Loggers;
+using DowJones.Managers.Search;
 using DowJones.Managers.Search.Preference;
 using DowJones.Managers.SearchContext;
 using DowJones.Preferences;
@@ -14,9 +15,10 @@ namespace DowJones.Infrastructure.Web.Search
     [TestClass]
     public class PerformContentSearchServiceTest : UnitTestFixtureBase<ContentSearchService>
     {
-        private IControlData _controlData = new ControlData { UserID = "commsu8", UserPassword = "passwd", ProductID = "16" };
-        private ITokenRegistry _tokenRegistry = new Mock<ITokenRegistry>().Object;
-        private IPreferences _preferences = new DowJones.Preferences.Preferences("en");
+        private readonly IControlData _controlData = new ControlData { UserID = "commsu8", UserPassword = "passwd", ProductID = "16" };
+        private readonly ITokenRegistry _tokenRegistry = new Mock<ITokenRegistry>().Object;
+        private readonly ITransactionTimer _timer = new BasicTransactionTimer();
+        private readonly IPreferences _preferences = new DowJones.Preferences.Preferences("en");
 
         protected ContentSearchService Provider
         {
@@ -42,7 +44,7 @@ namespace DowJones.Infrastructure.Web.Search
         protected override ContentSearchService CreateUnitUnderTest()
         {
       
-            var searchManager = new SearchManager(_controlData, _preferences);
+            var searchManager = new SearchManager(_controlData, _timer, _preferences);
             var sourceGroupConfigurationManager = new ProductSourceGroupConfigurationManager(_controlData, _tokenRegistry);
             var searchQueryResourceManager = new SearchQueryResourceManager(_controlData, sourceGroupConfigurationManager);
             var builder = new SearchQueryBuilder(_preferences, searchQueryResourceManager, new SearchPreferenceService(), new SearchContextManager(_controlData, _preferences));

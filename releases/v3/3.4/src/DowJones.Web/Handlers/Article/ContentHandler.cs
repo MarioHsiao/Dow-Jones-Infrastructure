@@ -14,6 +14,7 @@ using DowJones.DTO.Web;
 using DowJones.DTO.Web.Request;
 using DowJones.Exceptions;
 using DowJones.Extensions;
+using DowJones.Loggers;
 using DowJones.Managers.Search;
 using DowJones.Managers.Search.Requests;
 using Factiva.Gateway.Messages.Archive;
@@ -134,7 +135,7 @@ namespace DowJones.Web.Handlers.Article
                 var infrsControlData = DowJones.Session.ControlDataManager.Convert(_controlData);
                 if (redirectToWebSiteUrl)
                 {
-                    var service = new ArticleService(infrsControlData, new Preferences.Preferences("en"));
+                    var service = new ArticleService(infrsControlData, new BasicTransactionTimer(), new Preferences.Preferences("en"));
                     var webArticeUrl = service.GetWebArticleUrl(accessionNo);
 
                     context.Response.Buffer = true;
@@ -165,7 +166,7 @@ namespace DowJones.Web.Handlers.Article
                         return;
                     }
 
-                    var sm = new SearchManager(infrsControlData, new Preferences.Preferences("en"));
+                    var sm = new SearchManager(infrsControlData, new BasicTransactionTimer(), new Preferences.Preferences("en"));
                     var dto = new AccessionNumberSearchRequestDTO
                                   {
                                       SortBy = SortBy.FIFO,

@@ -3,6 +3,7 @@ using System.Net;
 using System.Web.Mvc;
 using DowJones.DependencyInjection;
 using DowJones.Infrastructure.Common;
+using DowJones.Loggers;
 using DowJones.Preferences;
 using DowJones.Security;
 using DowJones.Security.Interfaces;
@@ -24,6 +25,12 @@ namespace DowJones.Web.Mvc
             set { ViewBag.ControlData = value; }
         }
 
+        [Inject("Injected to avoid a base constructor call in derived classes")]
+        protected ITransactionTimer TransactionTimer
+        {
+            get { return ViewBag.ITransactionTimer; }
+            set { ViewBag.ITransactionTimer = value; }
+        }
         [Inject("Injected to avoid a base constructor call in derived classes")]
         protected ILog Log
         {

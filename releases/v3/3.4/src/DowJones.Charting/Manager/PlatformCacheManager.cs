@@ -1,4 +1,5 @@
-﻿using DowJones.Managers.Abstract;
+﻿using DowJones.Loggers;
+using DowJones.Managers.Abstract;
 using DowJones.Session;
 using Factiva.Gateway.Messages.Cache.PlatformCache.V1_0;
 using log4net;
@@ -10,7 +11,7 @@ namespace DowJones.Charting.Manager
 
         private static readonly ILog _log = LogManager.GetLogger(typeof(PlatformCacheManager));
 
-        public PlatformCacheManager(IControlData controlData) : base(controlData)
+        public PlatformCacheManager(IControlData controlData, ITransactionTimer transactionTimer) : base(controlData, transactionTimer)
         {
         }
 

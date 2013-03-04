@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using DowJones.Extensions;
+using DowJones.Loggers;
 using DowJones.Mapping;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using DowJones.Managers.Search;
@@ -18,11 +19,12 @@ namespace DowJones.Infrastructure
 
         private IControlData m_ControlData = new ControlData { UserID = "joyful", UserPassword = "joyful", ProductID = "16" };
         private IPreferences m_preferences = new DowJones.Preferences.Preferences("en");
+        private ITransactionTimer m_Timer = new BasicTransactionTimer();
 
         public void PerformAccessionNumberSearch()
         {
 
-            SearchManager manager = new SearchManager(m_ControlData, m_preferences);
+            SearchManager manager = new SearchManager(m_ControlData, m_Timer, m_preferences);
             AccessionNumberSearchRequestDTO requestDTO = new AccessionNumberSearchRequestDTO();
             requestDTO.AccessionNumbers = GetAccessionNumbers().ToArray();
             requestDTO.SortBy = SortBy.FIFO;

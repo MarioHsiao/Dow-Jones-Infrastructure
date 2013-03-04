@@ -19,6 +19,7 @@ using DowJones.Extensions;
 using DowJones.Globalization;
 using DowJones.Infrastructure;
 using DowJones.Infrastructure.Common;
+using DowJones.Loggers;
 using DowJones.Managers.Abstract;
 using DowJones.Pages.Caching;
 using DowJones.Pages.DataAccess.Managers;
@@ -95,8 +96,8 @@ namespace DowJones.Pages
         /// The product.
         /// </param>
         [Inject("Disambiguating multiple constructors")]
-        public PageAssetsManager(IControlData controlData, IPreferences preferences, Product product)
-            : base(controlData)
+        public PageAssetsManager(IControlData controlData, ITransactionTimer transactionTimer, IPreferences preferences, Product product)
+            : base(controlData, transactionTimer)
         {
             Guard.IsNotNull(controlData, "controlData");
             Guard.IsNotNull(preferences, "preferences");

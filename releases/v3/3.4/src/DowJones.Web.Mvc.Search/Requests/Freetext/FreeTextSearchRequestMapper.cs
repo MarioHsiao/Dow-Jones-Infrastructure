@@ -3,6 +3,7 @@ using System.Linq;
 using DowJones.DependencyInjection;
 using DowJones.Formatters.Globalization.DateTime;
 using DowJones.Infrastructure.Common;
+using DowJones.Loggers;
 using DowJones.Managers.Search;
 using DowJones.Mapping;
 using DowJones.Preferences;
@@ -54,6 +55,12 @@ namespace DowJones.Web.Mvc.Search.Requests.Freetext
             get { return (IControlData)ServiceLocator.Resolve(typeof(IControlData)); }
         }
 
+        [Inject("Injecting TransactionTimer")]
+        public ITransactionTimer _transactionTimer
+        {
+            get { return (ITransactionTimer)ServiceLocator.Resolve(typeof(ITransactionTimer)); }
+        }
+
         [Inject("Injecting Source list service")]
         public ISourceListService SourceLstService { get; set; }
 
@@ -95,7 +102,7 @@ namespace DowJones.Web.Mvc.Search.Requests.Freetext
                 if (codesDict.Count > 0)
                 {
                     #region ---- Make a PerformMetaDataSearch service call to get the description ----
-                    var searchManager = new SearchManager(_controlData, _prefrences);
+                    var searchManager = new SearchManager(_controlData, _transactionTimer, _prefrences);
                     codeDescDict = searchManager.GetDescriptorsByCode(codesDict);
 
                     #endregion

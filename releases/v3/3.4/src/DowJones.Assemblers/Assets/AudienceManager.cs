@@ -8,6 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System.Collections.Specialized;
+using DowJones.Loggers;
 using DowJones.Managers.Abstract;
 using DowJones.Managers.Assets;
 using DowJones.Properties;
@@ -34,7 +35,8 @@ namespace DowJones.Assemblers.Assets
         /// <param name="sessionId">The session ID.</param>
         /// <param name="clientTypeCode">The client type code.</param>
         /// <param name="accessPointCode">The access point code.</param>
-        public AudienceManager(string sessionId, string clientTypeCode, string accessPointCode) : base(sessionId, clientTypeCode, accessPointCode)
+        public AudienceManager(string sessionId, string clientTypeCode, string accessPointCode, ITransactionTimer transactionTimer)
+            : base(sessionId, clientTypeCode, accessPointCode, transactionTimer)
         {
         }
 
@@ -43,7 +45,8 @@ namespace DowJones.Assemblers.Assets
         /// </summary>
         /// <param name="controlData">The control data.</param>
         /// <param name="interfaceLanguage">The interface language.</param>
-        public AudienceManager(IControlData controlData, string interfaceLanguage) : base(controlData)
+        public AudienceManager(IControlData controlData, ITransactionTimer transactionTimer, string interfaceLanguage)
+            : base(controlData, transactionTimer)
         {
         }
            

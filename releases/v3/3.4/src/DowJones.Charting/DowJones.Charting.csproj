@@ -41,17 +41,17 @@
     <Reference Include="CordaNetEmbedder">
       <HintPath>..\packages\Corda.Embedder.7.0.0\lib\CordaNetEmbedder.dll</HintPath>
     </Reference>
-    <Reference Include="factiva.gateway.messages, Version=7.5.0.117, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="factiva.gateway.messages, Version=7.5.0.118, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Factiva.Gateway.7.5.0.117\lib\factiva.gateway.messages.dll</HintPath>
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.118\lib\factiva.gateway.messages.dll</HintPath>
     </Reference>
     <Reference Include="FactivaGateway, Version=1.6.0.1, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Factiva.Gateway.7.5.0.117\lib\FactivaGateway.dll</HintPath>
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.118\lib\FactivaGateway.dll</HintPath>
     </Reference>
     <Reference Include="Interop.FCMLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <EmbedInteropTypes>False</EmbedInteropTypes>
       <Private>True</Private>
-      <HintPath>..\packages\Factiva.Gateway.7.5.0.117\lib\Interop.FCMLib.dll</HintPath>
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.118\lib\Interop.FCMLib.dll</HintPath>
     </Reference>
     <Reference Include="itextsharp, Version=5.2.0.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -85,6 +85,7 @@
     <Compile Include="..\SolutionInfo.cs">
       <Link>Properties\SolutionInfo.cs</Link>
     </Compile>
+    <Compile Include="Highcharts\HighChartsExporterHttpHandler.cs" />
     <Compile Include="Highcharts\SaveImageHttpHandler.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
@@ -93,7 +94,7 @@
     </Compile>
     <Compile Include="Highcharts\ExportChart.cs" />
     <Compile Include="Highcharts\Exporter.cs" />
-    <Compile Include="Highcharts\ExporterHttpHandler.cs" />
+    <Compile Include="Highcharts\NativeExporterHttpHandler.cs" />
     <Compile Include="Manager\ChartFormatType.cs" />
     <Compile Include="Manager\ChartingManager.cs" />
     <Compile Include="Manager\ChartTemplate.cs" />

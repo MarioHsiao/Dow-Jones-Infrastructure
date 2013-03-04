@@ -71,12 +71,12 @@
     <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="factiva.gateway.messages, Version=7.5.0.117, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="factiva.gateway.messages, Version=7.5.0.118, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Factiva.Gateway.7.5.0.117\lib\factiva.gateway.messages.dll</HintPath>
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.118\lib\factiva.gateway.messages.dll</HintPath>
     </Reference>
     <Reference Include="FactivaGateway, Version=1.6.0.1, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Factiva.Gateway.7.5.0.117\lib\FactivaGateway.dll</HintPath>
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.118\lib\FactivaGateway.dll</HintPath>
     </Reference>
     <Reference Include="Glimpse.Core">
       <HintPath>..\packages\Glimpse.0.86\lib\net40\Glimpse.Core.dll</HintPath>
@@ -88,9 +88,9 @@
       <HintPath>..\packages\Glimpse.Mvc3.0.86\lib\net40\Glimpse.Mvc3.dll</HintPath>
     </Reference>
     <Reference Include="Interop.FCMLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <EmbedInteropTypes>False</EmbedInteropTypes>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
       <Private>True</Private>
-      <HintPath>..\packages\Factiva.Gateway.7.5.0.117\lib\Interop.FCMLib.dll</HintPath>
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.118\lib\Interop.FCMLib.dll</HintPath>
     </Reference>
     <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
       <HintPath>..\packages\log4net.1.2.99\lib\2.0\log4net.dll</HintPath>
@@ -168,6 +168,7 @@
     <Compile Include="Controllers\CalendarEventListController.cs" />
     <Compile Include="Controllers\CanvasController.cs" />
     <Compile Include="Controllers\CanvasControllerBase.cs" />
+    <Compile Include="Controllers\ChartingController.cs" />
     <Compile Include="Controllers\ClientUIController.cs" />
     <Compile Include="Controllers\CompanyProfileController.cs" />
     <Compile Include="Controllers\DiscoveryFiltersController.cs" />
@@ -260,6 +261,225 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Content Include="Content\codemirror\addon\dialog\dialog.css" />
+    <Content Include="Content\codemirror\addon\dialog\dialog.js" />
+    <Content Include="Content\codemirror\addon\edit\closebrackets.js" />
+    <Content Include="Content\codemirror\addon\edit\closetag.js" />
+    <Content Include="Content\codemirror\addon\edit\continuecomment.js" />
+    <Content Include="Content\codemirror\addon\edit\continuelist.js" />
+    <Content Include="Content\codemirror\addon\edit\matchbrackets.js" />
+    <Content Include="Content\codemirror\addon\fold\collapserange.js" />
+    <Content Include="Content\codemirror\addon\fold\foldcode.js" />
+    <Content Include="Content\codemirror\addon\format\formatting.js" />
+    <Content Include="Content\codemirror\addon\hint\javascript-hint.js" />
+    <Content Include="Content\codemirror\addon\hint\pig-hint.js" />
+    <Content Include="Content\codemirror\addon\hint\python-hint.js" />
+    <Content Include="Content\codemirror\addon\hint\show-hint.css" />
+    <Content Include="Content\codemirror\addon\hint\show-hint.js" />
+    <Content Include="Content\codemirror\addon\hint\simple-hint.css" />
+    <Content Include="Content\codemirror\addon\hint\simple-hint.js" />
+    <Content Include="Content\codemirror\addon\hint\xml-hint.js" />
+    <Content Include="Content\codemirror\addon\lint\javascript-lint.js" />
+    <Content Include="Content\codemirror\addon\lint\json-lint.js" />
+    <Content Include="Content\codemirror\addon\lint\lint.css" />
+    <Content Include="Content\codemirror\addon\lint\lint.js" />
+    <Content Include="Content\codemirror\addon\mode\loadmode.js" />
+    <Content Include="Content\codemirror\addon\mode\multiplex.js" />
+    <Content Include="Content\codemirror\addon\mode\overlay.js" />
+    <Content Include="Content\codemirror\addon\runmode\colorize.js" />
+    <Content Include="Content\codemirror\addon\runmode\runmode-standalone.js" />
+    <Content Include="Content\codemirror\addon\runmode\runmode.js" />
+    <Content Include="Content\codemirror\addon\runmode\runmode.node.js" />
+    <Content Include="Content\codemirror\addon\search\match-highlighter.js" />
+    <Content Include="Content\codemirror\addon\search\search.js" />
+    <Content Include="Content\codemirror\addon\search\searchcursor.js" />
+    <Content Include="Content\codemirror\addon\selection\active-line.js" />
+    <Content Include="Content\codemirror\addon\selection\mark-selection.js" />
+    <Content Include="Content\codemirror\demo\activeline.html" />
+    <Content Include="Content\codemirror\demo\bidi.html" />
+    <Content Include="Content\codemirror\demo\btree.html" />
+    <Content Include="Content\codemirror\demo\buffers.html" />
+    <Content Include="Content\codemirror\demo\changemode.html" />
+    <Content Include="Content\codemirror\demo\closebrackets.html" />
+    <Content Include="Content\codemirror\demo\closetag.html" />
+    <Content Include="Content\codemirror\demo\collapserange.html" />
+    <Content Include="Content\codemirror\demo\complete.html" />
+    <Content Include="Content\codemirror\demo\emacs.html" />
+    <Content Include="Content\codemirror\demo\folding.html" />
+    <Content Include="Content\codemirror\demo\formatting.html" />
+    <Content Include="Content\codemirror\demo\fullscreen.html" />
+    <Content Include="Content\codemirror\demo\lint.html" />
+    <Content Include="Content\codemirror\demo\loadmode.html" />
+    <Content Include="Content\codemirror\demo\marker.html" />
+    <Content Include="Content\codemirror\demo\markselection.html" />
+    <Content Include="Content\codemirror\demo\matchhighlighter.html" />
+    <Content Include="Content\codemirror\demo\multiplex.html" />
+    <Content Include="Content\codemirror\demo\mustache.html" />
+    <Content Include="Content\codemirror\demo\preview.html" />
+    <Content Include="Content\codemirror\demo\resize.html" />
+    <Content Include="Content\codemirror\demo\runmode.html" />
+    <Content Include="Content\codemirror\demo\search.html" />
+    <Content Include="Content\codemirror\demo\theme.html" />
+    <Content Include="Content\codemirror\demo\variableheight.html" />
+    <Content Include="Content\codemirror\demo\vim.html" />
+    <Content Include="Content\codemirror\demo\visibletabs.html" />
+    <Content Include="Content\codemirror\demo\widget.html" />
+    <Content Include="Content\codemirror\demo\xmlcomplete.html" />
+    <Content Include="Content\codemirror\keymap\emacs.js" />
+    <Content Include="Content\codemirror\keymap\vim.js" />
+    <Content Include="Content\codemirror\lib\codemirror.css" />
+    <Content Include="Content\codemirror\lib\codemirror.js" />
+    <Content Include="Content\codemirror\mode\apl\apl.js" />
+    <Content Include="Content\codemirror\mode\apl\index.html" />
+    <Content Include="Content\codemirror\mode\asterisk\asterisk.js" />
+    <Content Include="Content\codemirror\mode\asterisk\index.html" />
+    <Content Include="Content\codemirror\mode\clike\clike.js" />
+    <Content Include="Content\codemirror\mode\clike\index.html" />
+    <Content Include="Content\codemirror\mode\clike\scala.html" />
+    <Content Include="Content\codemirror\mode\clojure\clojure.js" />
+    <Content Include="Content\codemirror\mode\clojure\index.html" />
+    <Content Include="Content\codemirror\mode\coffeescript\coffeescript.js" />
+    <Content Include="Content\codemirror\mode\coffeescript\index.html" />
+    <Content Include="Content\codemirror\mode\commonlisp\commonlisp.js" />
+    <Content Include="Content\codemirror\mode\commonlisp\index.html" />
+    <Content Include="Content\codemirror\mode\css\css.js" />
+    <Content Include="Content\codemirror\mode\css\index.html" />
+    <Content Include="Content\codemirror\mode\css\test.js" />
+    <Content Include="Content\codemirror\mode\diff\diff.js" />
+    <Content Include="Content\codemirror\mode\diff\index.html" />
+    <Content Include="Content\codemirror\mode\d\d.js" />
+    <Content Include="Content\codemirror\mode\d\index.html" />
+    <Content Include="Content\codemirror\mode\ecl\ecl.js" />
+    <Content Include="Content\codemirror\mode\ecl\index.html" />
+    <Content Include="Content\codemirror\mode\erlang\erlang.js" />
+    <Content Include="Content\codemirror\mode\erlang\index.html" />
+    <Content Include="Content\codemirror\mode\gfm\gfm.js" />
+    <Content Include="Content\codemirror\mode\gfm\index.html" />
+    <Content Include="Content\codemirror\mode\gfm\test.js" />
+    <Content Include="Content\codemirror\mode\go\go.js" />
+    <Content Include="Content\codemirror\mode\go\index.html" />
+    <Content Include="Content\codemirror\mode\groovy\groovy.js" />
+    <Content Include="Content\codemirror\mode\groovy\index.html" />
+    <Content Include="Content\codemirror\mode\haskell\haskell.js" />
+    <Content Include="Content\codemirror\mode\haskell\index.html" />
+    <Content Include="Content\codemirror\mode\haxe\haxe.js" />
+    <Content Include="Content\codemirror\mode\haxe\index.html" />
+    <Content Include="Content\codemirror\mode\htmlembedded\htmlembedded.js" />
+    <Content Include="Content\codemirror\mode\htmlembedded\index.html" />
+    <Content Include="Content\codemirror\mode\htmlmixed\htmlmixed.js" />
+    <Content Include="Content\codemirror\mode\htmlmixed\index.html" />
+    <Content Include="Content\codemirror\mode\http\http.js" />
+    <Content Include="Content\codemirror\mode\http\index.html" />
+    <Content Include="Content\codemirror\mode\javascript\index.html" />
+    <Content Include="Content\codemirror\mode\javascript\javascript.js" />
+    <Content Include="Content\codemirror\mode\javascript\typescript.html" />
+    <Content Include="Content\codemirror\mode\jinja2\index.html" />
+    <Content Include="Content\codemirror\mode\jinja2\jinja2.js" />
+    <Content Include="Content\codemirror\mode\less\index.html" />
+    <Content Include="Content\codemirror\mode\less\less.js" />
+    <Content Include="Content\codemirror\mode\lua\index.html" />
+    <Content Include="Content\codemirror\mode\lua\lua.js" />
+    <Content Include="Content\codemirror\mode\markdown\index.html" />
+    <Content Include="Content\codemirror\mode\markdown\markdown.js" />
+    <Content Include="Content\codemirror\mode\markdown\test.js" />
+    <Content Include="Content\codemirror\mode\meta.js" />
+    <Content Include="Content\codemirror\mode\mysql\index.html" />
+    <Content Include="Content\codemirror\mode\mysql\mysql.js" />
+    <Content Include="Content\codemirror\mode\ntriples\index.html" />
+    <Content Include="Content\codemirror\mode\ntriples\ntriples.js" />
+    <Content Include="Content\codemirror\mode\ocaml\index.html" />
+    <Content Include="Content\codemirror\mode\ocaml\ocaml.js" />
+    <Content Include="Content\codemirror\mode\pascal\index.html" />
+    <Content Include="Content\codemirror\mode\pascal\pascal.js" />
+    <Content Include="Content\codemirror\mode\perl\index.html" />
+    <Content Include="Content\codemirror\mode\perl\perl.js" />
+    <Content Include="Content\codemirror\mode\php\index.html" />
+    <Content Include="Content\codemirror\mode\php\php.js" />
+    <Content Include="Content\codemirror\mode\pig\index.html" />
+    <Content Include="Content\codemirror\mode\pig\pig.js" />
+    <Content Include="Content\codemirror\mode\plsql\index.html" />
+    <Content Include="Content\codemirror\mode\plsql\plsql.js" />
+    <Content Include="Content\codemirror\mode\properties\index.html" />
+    <Content Include="Content\codemirror\mode\properties\properties.js" />
+    <Content Include="Content\codemirror\mode\python\index.html" />
+    <Content Include="Content\codemirror\mode\python\LICENSE.txt" />
+    <Content Include="Content\codemirror\mode\python\python.js" />
+    <Content Include="Content\codemirror\mode\q\index.html" />
+    <Content Include="Content\codemirror\mode\q\q.js" />
+    <Content Include="Content\codemirror\mode\rpm\changes\changes.js" />
+    <Content Include="Content\codemirror\mode\rpm\changes\index.html" />
+    <Content Include="Content\codemirror\mode\rpm\spec\index.html" />
+    <Content Include="Content\codemirror\mode\rpm\spec\spec.css" />
+    <Content Include="Content\codemirror\mode\rpm\spec\spec.js" />
+    <Content Include="Content\codemirror\mode\rst\index.html" />
+    <Content Include="Content\codemirror\mode\rst\rst.js" />
+    <Content Include="Content\codemirror\mode\ruby\index.html" />
+    <Content Include="Content\codemirror\mode\ruby\ruby.js" />
+    <Content Include="Content\codemirror\mode\rust\index.html" />
+    <Content Include="Content\codemirror\mode\rust\rust.js" />
+    <Content Include="Content\codemirror\mode\r\index.html" />
+    <Content Include="Content\codemirror\mode\r\r.js" />
+    <Content Include="Content\codemirror\mode\sass\index.html" />
+    <Content Include="Content\codemirror\mode\sass\sass.js" />
+    <Content Include="Content\codemirror\mode\scheme\index.html" />
+    <Content Include="Content\codemirror\mode\scheme\scheme.js" />
+    <Content Include="Content\codemirror\mode\shell\index.html" />
+    <Content Include="Content\codemirror\mode\shell\shell.js" />
+    <Content Include="Content\codemirror\mode\sieve\index.html" />
+    <Content Include="Content\codemirror\mode\sieve\sieve.js" />
+    <Content Include="Content\codemirror\mode\smalltalk\index.html" />
+    <Content Include="Content\codemirror\mode\smalltalk\smalltalk.js" />
+    <Content Include="Content\codemirror\mode\smarty\index.html" />
+    <Content Include="Content\codemirror\mode\smarty\smarty.js" />
+    <Content Include="Content\codemirror\mode\sparql\index.html" />
+    <Content Include="Content\codemirror\mode\sparql\sparql.js" />
+    <Content Include="Content\codemirror\mode\sql\index.html" />
+    <Content Include="Content\codemirror\mode\sql\sql.js" />
+    <Content Include="Content\codemirror\mode\stex\index.html" />
+    <Content Include="Content\codemirror\mode\stex\stex.js" />
+    <Content Include="Content\codemirror\mode\stex\test.js" />
+    <Content Include="Content\codemirror\mode\tiddlywiki\index.html" />
+    <Content Include="Content\codemirror\mode\tiddlywiki\tiddlywiki.css" />
+    <Content Include="Content\codemirror\mode\tiddlywiki\tiddlywiki.js" />
+    <Content Include="Content\codemirror\mode\tiki\index.html" />
+    <Content Include="Content\codemirror\mode\tiki\tiki.css" />
+    <Content Include="Content\codemirror\mode\tiki\tiki.js" />
+    <Content Include="Content\codemirror\mode\turtle\index.html" />
+    <Content Include="Content\codemirror\mode\turtle\turtle.js" />
+    <Content Include="Content\codemirror\mode\vbscript\index.html" />
+    <Content Include="Content\codemirror\mode\vbscript\vbscript.js" />
+    <Content Include="Content\codemirror\mode\vb\index.html" />
+    <Content Include="Content\codemirror\mode\vb\LICENSE.txt" />
+    <Content Include="Content\codemirror\mode\vb\vb.js" />
+    <Content Include="Content\codemirror\mode\velocity\index.html" />
+    <Content Include="Content\codemirror\mode\velocity\velocity.js" />
+    <Content Include="Content\codemirror\mode\verilog\index.html" />
+    <Content Include="Content\codemirror\mode\verilog\verilog.js" />
+    <Content Include="Content\codemirror\mode\xml\index.html" />
+    <Content Include="Content\codemirror\mode\xml\xml.js" />
+    <Content Include="Content\codemirror\mode\xquery\index.html" />
+    <Content Include="Content\codemirror\mode\xquery\test.js" />
+    <Content Include="Content\codemirror\mode\xquery\xquery.js" />
+    <Content Include="Content\codemirror\mode\yaml\index.html" />
+    <Content Include="Content\codemirror\mode\yaml\yaml.js" />
+    <Content Include="Content\codemirror\mode\z80\index.html" />
+    <Content Include="Content\codemirror\mode\z80\z80.js" />
+    <Content Include="Content\codemirror\theme\ambiance-mobile.css" />
+    <Content Include="Content\codemirror\theme\ambiance.css" />
+    <Content Include="Content\codemirror\theme\blackboard.css" />
+    <Content Include="Content\codemirror\theme\cobalt.css" />
+    <Content Include="Content\codemirror\theme\eclipse.css" />
+    <Content Include="Content\codemirror\theme\elegant.css" />
+    <Content Include="Content\codemirror\theme\erlang-dark.css" />
+    <Content Include="Content\codemirror\theme\lesser-dark.css" />
+    <Content Include="Content\codemirror\theme\monokai.css" />
+    <Content Include="Content\codemirror\theme\neat.css" />
+    <Content Include="Content\codemirror\theme\night.css" />
+    <Content Include="Content\codemirror\theme\rubyblue.css" />
+    <Content Include="Content\codemirror\theme\solarized.css" />
+    <Content Include="Content\codemirror\theme\twilight.css" />
+    <Content Include="Content\codemirror\theme\vibrant-ink.css" />
+    <Content Include="Content\codemirror\theme\xq-dark.css" />
     <Content Include="Content\css\components\SimpleAlert\SimpleAlert.css" />
     <Content Include="Content\js\DiscoveryFilters.js" />
     <Content Include="Content\js\SimpleAlert.js" />
@@ -676,6 +896,13 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\codemirror\mode\coffeescript\LICENSE" />
+    <Content Include="Content\codemirror\mode\pascal\LICENSE" />
+    <Content Include="Content\codemirror\mode\perl\LICENSE" />
+    <Content Include="Content\codemirror\mode\ruby\LICENSE" />
+    <Content Include="Content\codemirror\mode\r\LICENSE" />
+    <Content Include="Content\codemirror\mode\sieve\LICENSE" />
+    <Content Include="Content\codemirror\mode\xquery\LICENSE" />
     <None Include="Content\css\components\DiscoveryGraph\discoveryGraph.scss" />
     <Content Include="Content\css\components\DiscoveryGraph\discoveryGraph.css">
       <DependentUpon>discoveryGraph.scss</DependentUpon>
@@ -1305,6 +1532,7 @@
     <Content Include="Styles\css\article.scss" />
     <Content Include="Views\Gauge\Index.cshtml" />
     <Content Include="Views\DiscoveryFilters\Index.cshtml" />
+    <Content Include="Views\Charting\Index.cshtml" />
     <None Include="Views\NewsRadar\sample.json" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -1330,6 +1558,10 @@
     <ProjectReference Include="..\DowJones.Assemblers\DowJones.Assemblers.csproj">
       <Project>{2E7ABB0C-DFDE-451E-AFD4-41D2894399BF}</Project>
       <Name>DowJones.Assemblers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DowJones.Charting\DowJones.Charting.csproj">
+      <Project>{a8bbd7ec-67e5-48e8-a283-3547a059ed83}</Project>
+      <Name>DowJones.Charting</Name>
     </ProjectReference>
     <ProjectReference Include="..\DowJones.Infrastructure\DowJones.Infrastructure.csproj">
       <Project>{095DE252-E183-4AE6-824A-B4504AE737C1}</Project>

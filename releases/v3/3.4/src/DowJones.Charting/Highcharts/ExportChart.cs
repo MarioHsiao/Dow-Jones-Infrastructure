@@ -122,7 +122,7 @@ namespace DowJones.Charting.Highcharts
         Guard.IsNotZeroOrNegative(width, "width");
 
         var cacheKey = RandomKeyGenerator.GetRandomKey(16, RandomKeyGenerator.CharacterSet.AlphaNumeric);
-        var platformCacheManager = new PlatformCacheManager(Exporter.GetControlData(context));
+        var platformCacheManager = new PlatformCacheManager(Exporter.GetControlData(context), Exporter.GetTransactionTimer());
         var itemRequest = new StoreItemRequest
                               {
                                   Item = new CacheItem

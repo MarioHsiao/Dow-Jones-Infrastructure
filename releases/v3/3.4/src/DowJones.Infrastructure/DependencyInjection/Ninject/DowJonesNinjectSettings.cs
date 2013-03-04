@@ -35,14 +35,13 @@ namespace DowJones.DependencyInjection.Ninject
 
         private static IEnumerable<string> GetAutoLoadedAssemblyFilePatterns()
         {
-            string configurationSetting =
-                Settings.Default.DependencyInjectionAutoLoadedAssemblyPatterns;
+            var configurationSetting = Settings.Default.DependencyInjectionAutoLoadedAssemblyPatterns;
 
             if (string.IsNullOrWhiteSpace(configurationSetting))
                 throw new ApplicationException("Please provide a comma-delimited list of assemblies to be auto-loaded in the DowJones.Properties.Settings.DependencyInjectionAutoLoadedAssemblyPatterns configuration setting");
 
             IEnumerable<string> autoLoadedAssemblyFilePatterns = 
-                configurationSetting.Split(new[] { ',', ';' });
+                configurationSetting.Split(new[] { ',', ';' }, StringSplitOptions.RemoveEmptyEntries);
 
             return autoLoadedAssemblyFilePatterns;
         }

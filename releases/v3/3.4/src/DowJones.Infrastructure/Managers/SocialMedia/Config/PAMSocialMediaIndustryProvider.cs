@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using DowJones.Loggers;
 using log4net;
 using DowJones.Managers.Abstract;
 using Factiva.Gateway.Messages.Assets.Lists.V1_0;
@@ -17,8 +18,8 @@ namespace DowJones.Managers.SocialMedia.Config
     public class PAMSocialMediaIndustryProvider : AbstractAggregationManager, ISocialMediaIndustryProvider
     {
         IDictionary<string, string> _mappings;
-        public PAMSocialMediaIndustryProvider(IControlData controlData)
-            : base(controlData)
+        public PAMSocialMediaIndustryProvider(IControlData controlData, ITransactionTimer transactionTimer)
+            : base(controlData, transactionTimer)
         {
             _mappings = LoadMappings();
         }

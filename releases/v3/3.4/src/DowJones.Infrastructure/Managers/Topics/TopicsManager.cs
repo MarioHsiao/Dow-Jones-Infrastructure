@@ -1,5 +1,6 @@
 ﻿using DowJones.Caching;
 using DowJones.Infrastructure.Common;
+using DowJones.Loggers;
 using DowJones.Managers.Abstract;
 using DowJones.Managers.Topics.Caching;
 using DowJones.Session;
@@ -14,11 +15,11 @@ namespace DowJones.Managers.Topics
     public class TopicsManager : AbstractAggregationManager
     {
         private static readonly ILog Logger = LogManager.GetLogger(typeof(TopicsManager));
-        //private readonly IPreferences preferences;
+        //private read-only IPreferences preferences;
         private readonly Product product;
 
-        public TopicsManager(IControlData controlData, Product product = null)//, IPreferences preferences, Product product)
-            : base(controlData)
+        public TopicsManager(IControlData controlData, ITransactionTimer transactionTimer, Product product = null) //, IPreferences preferences, Product product)
+            : base(controlData, transactionTimer)
         {
             //this.preferences = preferences;
             this.product = product;

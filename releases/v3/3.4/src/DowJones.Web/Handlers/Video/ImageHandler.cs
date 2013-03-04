@@ -1,6 +1,5 @@
 ﻿using DowJones.Properties;
 using System;
-using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
@@ -17,24 +16,24 @@ namespace DowJones.Web.Handlers.Video
         private const string ImageHeightParameterName = "height";
         private const string ImageAspectRationParameterName = "ar";
 
-        private string m_ImageUrl;
-        private int? m_Width;
-        private int? m_Height;
-        private AspectRatio m_Ratio;
+        private string _imageUrl;
+        private int? _width;
+        private int? _height;
+        private AspectRatio _ratio;
 
         public override void HandleRequest(HttpContext context)
         {
             try
             {
-                Image image = GetImage(m_ImageUrl);
-                Size size = CalculateSize(m_Width, m_Height, image.Width, image.Height);
+                var image = GetImage(_imageUrl);
+                var size = CalculateSize(_width, _height, image.Width, image.Height);
 
-                context.Response.ContentType = GetContentType(GetFileExtension(m_ImageUrl));
+                context.Response.ContentType = GetContentType(GetFileExtension(_imageUrl));
                 context.Response.Clear();
 
-                using (Bitmap bitmap = new Bitmap(image, size))
+                using (var bitmap = new Bitmap(image, size))
                 {
-                    using (MemoryStream stream = new MemoryStream())
+                    using (var stream = new MemoryStream())
                     {
                         bitmap.Save(stream, ImageFormat.Jpeg);
                         context.Response.BinaryWrite(stream.ToArray());
@@ -68,32 +67,22 @@ namespace DowJones.Web.Handlers.Video
 
         public override bool ValidateParameters(HttpContext context)
         {
-            m_ImageUrl = GetImageUrl(context);
-            m_Width = GetWidth(context);
-            m_Height = GetHeight(context);
-            m_Ratio = GetAspectRatio(context);
+            _imageUrl = GetImageUrl(context);
+            _width = GetWidth(context);
+            _height = GetHeight(context);
+            _ratio = GetAspectRatio(context);
 
-            if (string.IsNullOrEmpty(m_ImageUrl))
+            if (string.IsNullOrEmpty(_imageUrl))
             {
                 return false;
             }
 
-            if (!m_Width.HasValue && !m_Height.HasValue)
+            if (!_width.HasValue && !_height.HasValue)
             {
                 return false;
             }
 
-            if ((m_Width.HasValue && m_Height.HasValue) && m_Ratio == AspectRatio.locked)
-            {
-                return false;
-            }
-
-            if ((!m_Width.HasValue && !m_Height.HasValue) && m_Ratio == AspectRatio.unlocked)
-            {
-                return false;
-            }
-
-            return true;
+            return (!_width.HasValue || !_height.HasValue) || _ratio != AspectRatio.locked;
         }
 
         public override bool RequiresAuthentication
@@ -103,53 +92,45 @@ namespace DowJones.Web.Handlers.Video
 
         public override string ContentMimeType
         {
-            get { return GetContentType(GetFileExtension(m_ImageUrl)); }
+            get { return GetContentType(GetFileExtension(_imageUrl)); }
         }
 
         private static Image GetImage(string imageUrl)
         {
-            WebRequest request = WebRequest.Create(imageUrl);
+            var request = WebRequest.Create(imageUrl);
 
             if (!String.IsNullOrEmpty(Settings.Default.WebResourcesProxy))
-                request.Proxy = new WebProxy(Settings.Default.WebResourcesProxy);
-
-            Image image;
-            using (WebResponse response = request.GetResponse())
             {
-                image = Image.FromStream(response.GetResponseStream());
+                request.Proxy = new WebProxy(Settings.Default.WebResourcesProxy);
             }
 
-            return image;
+            using (var response = request.GetResponse())
+            {
+                return  Image.FromStream(response.GetResponseStream());
+            }
         }
 
         private static string GetFileExtension(string imageUrl)
         {
-            Uri uri = new Uri(imageUrl);
-
-            string absolutePath = uri.AbsolutePath;
-
-            string extension = Path.GetExtension(absolutePath);
-
+            var uri = new Uri(imageUrl);
+            var absolutePath = uri.AbsolutePath;
+            var extension = Path.GetExtension(absolutePath);
             return extension;
         }
 
         private static string GetContentType(string extension)
         {
-            RegistryKey rootKey = Registry.ClassesRoot;
-
+            var rootKey = Registry.ClassesRoot;
             rootKey = rootKey.OpenSubKey(extension);
 
-            if (rootKey == null) return null;
-
-            return rootKey.GetValue("Content Type").ToString();
+            return rootKey == null ? null : rootKey.GetValue("Content Type").ToString();
         }
 
         private static Size CalculateSize(int? width, int? height, int originalWidth, int originalHeight)
         {
-            Debug.Assert(height.HasValue || width.HasValue);
-
-            int calculatedWidth;
-            int calculatedHeight;
+            
+            var calculatedWidth = 0;
+            var calculatedHeight = 0;
 
             if (height.HasValue && width.HasValue)
             {
@@ -159,17 +140,13 @@ namespace DowJones.Web.Handlers.Video
             else if (height.HasValue)
             {
                 calculatedHeight = height.Value;
-
-                float multiplier = (height.Value / (float)originalHeight);
-
+                var multiplier = (height.Value / (float)originalHeight);
                 calculatedWidth = CalculateDimension(originalWidth, multiplier);
             }
-            else
+            else if (width.HasValue)
             {
                 calculatedWidth = width.Value;
-
-                float multiplier = (width.Value / (float)originalWidth);
-
+                var multiplier = (width.Value / (float)originalWidth);
                 calculatedHeight = (int)(originalHeight * multiplier);
             }
 
@@ -214,15 +191,12 @@ namespace DowJones.Web.Handlers.Video
 
         private static AspectRatio GetAspectRatio(HttpContext context)
         {
-            AspectRatio ratio = AspectRatio.unlocked;
+            var ratio = AspectRatio.unlocked;
             try
             {
                 ratio = (AspectRatio)Enum.Parse(typeof(AspectRatio), context.Request.QueryString[ImageAspectRationParameterName]);
             }
-            catch
-            {
-
-            }
+            catch (Exception) {}
 
             return ratio;
 

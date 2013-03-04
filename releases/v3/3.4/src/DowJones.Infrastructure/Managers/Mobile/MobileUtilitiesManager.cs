@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Specialized;
 using DowJones.Exceptions;
+using DowJones.Loggers;
 using DowJones.Preferences;
 using DowJones.Session;
 using DowJones.Utilities;
@@ -13,12 +14,12 @@ namespace DowJones.Managers.Mobile
     public class MobileUtilitiesManager : AbstractAggregationManager
     {
         private static readonly ILog _log = LogManager.GetLogger(typeof(MobileUtilitiesManager));
-        private IPreferences preferences;
+        private IPreferences _preferences;
 
-        public MobileUtilitiesManager(IControlData controlData, IPreferences preferences = null)
-            : base(controlData)
+        public MobileUtilitiesManager(IControlData controlData, ITransactionTimer transactionTimer, IPreferences preferences = null)
+            : base(controlData, transactionTimer)
         {
-            this.preferences = preferences;
+            _preferences = preferences;
         }
 
         public string GetMobileLoginToken()

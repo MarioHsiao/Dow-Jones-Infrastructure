@@ -29,14 +29,11 @@ namespace DowJones.Managers.Abstract
         /// Initializes a new instance of the <see cref="AbstractAggregationManager"/> class.
         /// </summary>
         /// <param name="controlData">The control data.</param>
-        protected AbstractAggregationManager(IControlData controlData)
+        /// <param name="transactionTimer"></param>
+        protected AbstractAggregationManager(IControlData controlData, ITransactionTimer transactionTimer)
         {
             ControlData = controlData;
-            /*
-            if (Log != null && TransactionLogger == null)
-            {
-                TransactionLogger = new TransactionLogger(Log);
-            }*/
+            TransactionTimer = transactionTimer;
         }
 
         /// <summary>
@@ -45,8 +42,9 @@ namespace DowJones.Managers.Abstract
         /// <param name="sessionId">The session id.</param>
         /// <param name="clientTypeCode">The client type code.</param>
         /// <param name="accessPointCode">The access point code.</param>
-        protected AbstractAggregationManager(string sessionId, string clientTypeCode, string accessPointCode)
-            : this(new ControlData{SessionID = sessionId, ClientType = clientTypeCode, AccessPointCode = accessPointCode})
+        /// <param name="transactionTimer"></param>
+        protected AbstractAggregationManager(string sessionId, string clientTypeCode, string accessPointCode, ITransactionTimer transactionTimer)
+            : this(new ControlData{SessionID = sessionId, ClientType = clientTypeCode, AccessPointCode = accessPointCode}, transactionTimer)
         {
         }
         
@@ -59,6 +57,8 @@ namespace DowJones.Managers.Abstract
         /// </summary>
         /// <value>The control data.</value>
         public IControlData ControlData { get; protected internal set; }
+
+        public ITransactionTimer TransactionTimer { get; protected internal set; }
         
         /*/// <summary>
         /// Gets or sets the Transaction logger.
@@ -87,7 +87,7 @@ namespace DowJones.Managers.Abstract
         /// <returns></returns>
         public ServiceResponse<T> Invoke<T>(object request, IControlData baseControlData = null, bool copyContentServerAddress = false)
         {
-            using (new TransactionLogger(Log, MethodBase.GetCurrentMethod()))
+            using (TransactionTimer.Start(Log, MethodBase.GetCurrentMethod()))
             {
                 if (Log.IsInfoEnabled)
                 {
@@ -154,10 +154,9 @@ namespace DowJones.Managers.Abstract
                 controlData = ControlData;
             }
 
-            ServiceResponse<T> sr;
             try
             {
-                sr = Invoke<T>(requestObject, controlData, copyContentServerAddress);
+                var sr = Invoke<T>(requestObject, controlData, copyContentServerAddress);
                 return sr.ObjectResponse;
             }
             catch (DowJonesUtilitiesException)

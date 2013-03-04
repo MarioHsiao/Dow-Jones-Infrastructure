@@ -6,6 +6,7 @@ using System.Net;
 using System.Xml;
 using DowJones.Exceptions;
 using DowJones.Extensions;
+using DowJones.Loggers;
 using DowJones.Managers.Abstract;
 using DowJones.Properties;
 using DowJones.Session;
@@ -40,8 +41,8 @@ namespace DowJones.Managers.Multimedia
         /// Constructor for 
         /// </summary>
         /// <param name="controlData"></param>
-        public MultimediaManager(IControlData controlData)
-            : base(controlData)
+        public MultimediaManager(IControlData controlData, ITransactionTimer transactionTimer)
+            : base(controlData, transactionTimer)
         {
         }
 
