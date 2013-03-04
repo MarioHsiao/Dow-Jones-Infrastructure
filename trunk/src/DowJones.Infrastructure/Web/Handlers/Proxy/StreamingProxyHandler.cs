@@ -28,6 +28,7 @@ namespace DowJones.Web.Handlers.Proxy
         private Stream _responseStream;
 
         protected bool IncludeContentDisposition { get; set; }
+        protected string DefinedUrl { get; set; }
 
         #region IHttpAsyncHandler Members
 
@@ -109,6 +110,12 @@ namespace DowJones.Web.Handlers.Proxy
             get { return false; }
         }
 
+        public StreamingProxyHandler()
+        {
+            IncludeContentDisposition = true;
+        }
+
+
         /// <summary>
         /// Initiates an asynchronous call to the HTTP handler.
         /// </summary>
@@ -118,11 +125,11 @@ namespace DowJones.Web.Handlers.Proxy
         /// <returns>
         /// An <see cref="T:System.IAsyncResult"/> that contains information about the status of the process.
         /// </returns>
-        public IAsyncResult BeginProcessRequest(HttpContext context, AsyncCallback cb, object extraData)
+        public virtual IAsyncResult BeginProcessRequest(HttpContext context, AsyncCallback cb, object extraData)
         {
             var origRequest = context.Request;
+            var url = DefinedUrl ?? origRequest["url"];
 
-            var url = origRequest["url"];
             var cacheDuration = Convert.ToInt32(origRequest["cache"] ?? "0");
 
             if (cacheDuration > 0)
@@ -418,7 +425,7 @@ namespace DowJones.Web.Handlers.Proxy
                 context.Response.AppendHeader("Content-Disposition", contentDisposition);
             }
 
-            context.Response.ContentType = response.ContentType;
+            context.Response.ContentType = response.ContentType.Split(new [] { ";" }, StringSplitOptions.RemoveEmptyEntries)[0];
 
             context.Response.AppendHeader("x-Served-By", "StreamingProxy on {0}".FormatWith(Environment.MachineName));
         }

@@ -85,7 +85,7 @@
     <Compile Include="..\SolutionInfo.cs">
       <Link>Properties\SolutionInfo.cs</Link>
     </Compile>
-    <Compile Include="Highcharts\HighChartsExporterHttpHandler.cs" />
+    <Compile Include="Highcharts\ExporterHttpHandler.cs" />
     <Compile Include="Highcharts\SaveImageHttpHandler.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
