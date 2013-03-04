@@ -11,7 +11,6 @@ using System.Xml;
 using DowJones.Ajax;
 using DowJones.Ajax.HeadlineList;
 using DowJones.DependencyInjection;
-using DowJones.Exceptions;
 using DowJones.Extensions;
 using DowJones.Formatters;
 using DowJones.Formatters.Globalization.DateTime;
@@ -534,7 +533,7 @@ namespace DowJones.Assemblers.Headlines
                 case "picture":
                     return ContentSubCategory.Graphic;
                 case "multimedia":
-                    foreach (ContentItem item in contentHeadline.ContentItems.ItemCollection)
+                    foreach (var item in contentHeadline.ContentItems.ItemCollection)
                     {
                         switch (item.Type.ToLower())
                         {
@@ -546,6 +545,16 @@ namespace DowJones.Assemblers.Headlines
                     }
                     return ContentSubCategory.Multimedia;
                 case "article":
+                    foreach (var item in contentHeadline.ContentItems.ItemCollection)
+                    {
+                        switch (item.Mimetype.ToLower())
+                        {
+                            case "image/gif":
+                            case "image/jpeg":
+                            case "image/png":
+                                return ContentSubCategory.Graphic;
+                        }
+                    }
                     return ContentSubCategory.Article;
                 case "summary":
                     return ContentSubCategory.Summary;

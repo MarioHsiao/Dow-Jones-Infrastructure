@@ -1430,7 +1430,7 @@ namespace DowJones.Assemblers.Articles
                 case "picture":
                     return ContentSubCategory.Graphic;
                 case "multimedia":
-                    foreach (Part item in article.contentParts.parts)
+                    foreach (var item in article.contentParts.parts)
                     {
                         switch (item.type.ToLower())
                         {
@@ -1442,6 +1442,16 @@ namespace DowJones.Assemblers.Articles
                     }
                     return ContentSubCategory.Multimedia;
                 case "article":
+                    foreach (var item in article.contentParts.parts)
+                    {
+                        switch (item.type.ToLower())
+                        {
+                            case "audio":
+                                return ContentSubCategory.Audio;
+                            case "video":
+                                return ContentSubCategory.Video;
+                        }
+                    }
                     return ContentSubCategory.Article;
                 case "summary":
                     return ContentSubCategory.Summary;
