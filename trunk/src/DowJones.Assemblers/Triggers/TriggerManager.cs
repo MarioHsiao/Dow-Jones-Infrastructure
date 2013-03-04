@@ -1,5 +1,6 @@
 using System;
 using DowJones.Exceptions;
+using DowJones.Loggers;
 using DowJones.Managers.Abstract;
 using DowJones.Session;
 using Factiva.Gateway.Messages.Trigger.Definition.V1_1;
@@ -22,9 +23,9 @@ namespace DowJones.Assemblers.Triggers
         /// <param name="sessionId">The session id.</param>
         /// <param name="clientTypeCode">The client type code.</param>
         /// <param name="accessPointCode">The access point code.</param>
-        /// <param name="interfaceLangugage">The interface langugage.</param>
-        public TriggerManager(string sessionId, string clientTypeCode, string accessPointCode, string interfaceLangugage)
-            : base(sessionId, clientTypeCode, accessPointCode)
+        /// <param name="interfaceLanguage">The interface language.</param>
+        public TriggerManager(string sessionId, string clientTypeCode, string accessPointCode, string interfaceLanguage, ITransactionTimer transactionTimer)
+            : base(sessionId, clientTypeCode, accessPointCode, transactionTimer)
         {
         }
 
@@ -33,8 +34,8 @@ namespace DowJones.Assemblers.Triggers
         /// </summary>
         /// <param name="controlData">The control data.</param>
         /// <param name="interfaceLanguage">The interface language.</param>
-        public TriggerManager(IControlData controlData, string interfaceLanguage)
-            : base(controlData)
+        public TriggerManager(IControlData controlData, ITransactionTimer transactionTimer, string interfaceLanguage)
+            : base(controlData, transactionTimer)
         {
         }
 

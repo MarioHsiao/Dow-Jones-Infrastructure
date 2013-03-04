@@ -1,5 +1,6 @@
 ﻿using System;
 using DowJones.Exceptions;
+using DowJones.Loggers;
 using DowJones.Managers.Abstract;
 using DowJones.Session;
 using Factiva.Gateway.Messages.RTQueue.V1_0;
@@ -26,8 +27,8 @@ namespace DowJones.Assemblers.Headlines
         /// </summary>
         /// <param name="controlData"></param>
         /// <param name="interfaceLanguage"></param>
-        public RealtimeHeadlineListManager(IControlData controlData, string interfaceLanguage)
-            : base(controlData)
+        public RealtimeHeadlineListManager(IControlData controlData, ITransactionTimer transactionTimer, string interfaceLanguage)
+            : base(controlData, transactionTimer)
         {
         }
 
@@ -38,8 +39,8 @@ namespace DowJones.Assemblers.Headlines
         /// <param name="clientTypeCode"></param>
         /// <param name="accessPointCode"></param>
         /// <param name="interfaceLangugage"></param>
-        public RealtimeHeadlineListManager(string sessionID, string clientTypeCode, string accessPointCode, string interfaceLangugage)
-            : base(sessionID, clientTypeCode, accessPointCode)
+        public RealtimeHeadlineListManager(string sessionID, string clientTypeCode, string accessPointCode, string interfaceLangugage, ITransactionTimer transactionTimer)
+            : base(sessionID, clientTypeCode, accessPointCode, transactionTimer)
         {
         }
 

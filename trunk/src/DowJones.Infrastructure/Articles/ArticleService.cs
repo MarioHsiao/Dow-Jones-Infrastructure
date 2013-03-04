@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using DowJones.Exceptions;
 using DowJones.Extensions;
+using DowJones.Loggers;
 using DowJones.Managers.Abstract;
 using DowJones.Managers.Search;
 using DowJones.Managers.Search.Requests;
@@ -22,8 +23,8 @@ namespace DowJones.Articles
         private readonly ILog _log = LogManager.GetLogger(typeof(ArticleService)); 
         private readonly IPreferences _preferences;
 
-        public ArticleService( IControlData controlData, IPreferences preferences )
-            : base(controlData)
+        public ArticleService( IControlData controlData, ITransactionTimer transactionTimer, IPreferences preferences )
+            : base(controlData, transactionTimer)
         {
             _preferences = preferences;
         }            
@@ -154,7 +155,7 @@ namespace DowJones.Articles
 
             if (request.ArticleReferences != null && request.ArticleReferences.Any())
             {
-                foreach (ArticleReference reference in request.ArticleReferences)
+                foreach (var reference in request.ArticleReferences)
                 {
                     if (IsArticleDocument(reference.ContentType))
                     {
@@ -191,7 +192,7 @@ namespace DowJones.Articles
             #region TASK 2
             if (searchAns.Count > 0)
             {
-                var sm = new SearchManager(ControlData, _preferences);
+                var sm = new SearchManager(ControlData, TransactionTimer, _preferences);
                 var dto = new AccessionNumberSearchRequestDTO
                               {
                                   SortBy = SortBy.FIFO,

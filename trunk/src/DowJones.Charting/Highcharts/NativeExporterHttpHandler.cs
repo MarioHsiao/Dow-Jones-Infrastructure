@@ -46,7 +46,7 @@ namespace DowJones.Charting.Highcharts
   /// <summary>
   /// ASP.NET HttpHandler for exporting Highcharts JS JavaScript charts.
   /// </summary>
-  public class ExporterHttpHandler : IHttpHandler
+  public class NativeExporterHttpHandler : IHttpHandler
   {
     /// <summary>
     /// Gets a value indicating whether another request can use the 

@@ -1,4 +1,5 @@
-﻿using DowJones.Managers.Abstract;
+﻿using DowJones.Loggers;
+using DowJones.Managers.Abstract;
 using Factiva.Gateway.Messages.Cache.SessionCache.V1_0;
 using log4net;
 
@@ -15,9 +16,9 @@ namespace DowJones.Session
         /// <param name="sessionId">The session id.</param>
         /// <param name="clientTypeCode">The client type code.</param>
         /// <param name="accessPointCode">The access point code.</param>
-        /// <param name="interfaceLangugage">The interface langugage.</param>
-        public SessionCacheManager(string sessionId, string clientTypeCode, string accessPointCode, string interfaceLangugage)
-            : base(sessionId, clientTypeCode, accessPointCode)
+        /// <param name="interfaceLanguage">The interface language.</param>
+        public SessionCacheManager(string sessionId, string clientTypeCode, string accessPointCode, string interfaceLanguage, ITransactionTimer transactionTimer)
+            : base(sessionId, clientTypeCode, accessPointCode, transactionTimer)
         {
         }
 
@@ -26,8 +27,8 @@ namespace DowJones.Session
         /// </summary>
         /// <param name="controlData">The control data.</param>
         /// <param name="interfaceLanguage">The interface language.</param>
-        public SessionCacheManager(IControlData controlData, string interfaceLanguage)
-            : base(controlData)
+        public SessionCacheManager(IControlData controlData, ITransactionTimer transactionTimer, string interfaceLanguage)
+            : base(controlData, transactionTimer)
         {
         }
 

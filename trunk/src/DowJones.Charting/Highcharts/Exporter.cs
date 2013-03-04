@@ -42,6 +42,7 @@ using System.Web;
 using DowJones.Charting.Manager;
 using DowJones.Charting.Properties;
 using DowJones.Extensions;
+using DowJones.Loggers;
 using DowJones.Session;
 using Factiva.Gateway.Messages.Cache.PlatformCache.V1_0;
 using iTextSharp.text;
@@ -85,12 +86,12 @@ namespace DowJones.Charting.Highcharts
                     throw new ArgumentException(
                         string.Format("Invalid type specified: '{0}'.", type));
             }
-            Svg = GetSvg(cacheKey, GetControlData(context));
+            Svg = GetSvg(cacheKey, GetControlData(context), GetTransactionTimer());
         }
 
-        internal string GetSvg(string cacheKey, IControlData controlData)
+        internal string GetSvg(string cacheKey, IControlData controlData, ITransactionTimer transactionTimer)
         {
-            var manager = new PlatformCacheManager(controlData);
+            var manager = new PlatformCacheManager(controlData, transactionTimer);
             var getItemRequest = new GetItemRequest
                                      {
                                          Key = cacheKey,
@@ -283,7 +284,7 @@ namespace DowJones.Charting.Highcharts
                         pdfDoc.SetMargins(0f, 0f, 0f, 0f);
 
                         // Create PDF writer to write to response stream.
-                        using (PdfWriter pdfWriter = PdfWriter.GetInstance(
+                        using (var pdfWriter = PdfWriter.GetInstance(
                             pdfDoc,
                             outputStream))
                         {
@@ -300,7 +301,7 @@ namespace DowJones.Charting.Highcharts
                             pdfDoc.NewPage();
 
                             // Create image element from SVG image.
-                            Image image = Image.GetInstance(svgDoc.Draw(), ImageFormat.Bmp);
+                            var image = Image.GetInstance(svgDoc.Draw(), ImageFormat.Bmp);
                             image.CompressionLevel = PdfStream.DEFAULT_COMPRESSION;
 
                             // Must match scaling performed when setting page size.
@@ -344,6 +345,11 @@ namespace DowJones.Charting.Highcharts
             };
 
             return cd;
+        }
+
+        internal static ITransactionTimer GetTransactionTimer()
+        {
+            return new BasicTransactionTimer();
         }
     }
 }

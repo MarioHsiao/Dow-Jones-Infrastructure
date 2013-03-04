@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using DowJones.Loggers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using DowJones.Managers.SocialMedia.Config;
 using DJSession = DowJones.Session;
@@ -31,7 +32,7 @@ namespace DowJones.Infrastructure.Managers.SocialMedia
         [TestCategory("Integration")]
         public void GetPAMConfigChannelFromIndustryCode()
         {
-            var p = new PAMSocialMediaIndustryProvider(new DJSession.ControlData { UserID = "snap_proxy", UserPassword = "pa55w0rd", ProductID = "16" });
+            var p = new PAMSocialMediaIndustryProvider(new DJSession.ControlData { UserID = "snap_proxy", UserPassword = "pa55w0rd", ProductID = "16" }, new BasicTransactionTimer());
             Assert.AreEqual("accounting-consulting", p.GetChannelFromIndustryCode("iacc"));
         }
 

@@ -10,7 +10,7 @@ namespace DowJones.Web.Mvc
 {
     public class HttpApplication : DowJonesHttpApplication
     {
-        private static bool _customRoutesInitialized;
+        private static bool customRoutesInitialized;
 
         [Inject("No access to constructor injection")]
         public IDependencyResolver CustomDependencyResolver { get; set; }
@@ -28,12 +28,17 @@ namespace DowJones.Web.Mvc
             RegisterDefaultRoutingRules(RouteTable.Routes);
 
             var dataAnnotationsValidator = ModelValidatorProviders.Providers.OfType<DataAnnotationsModelValidatorProvider>().SingleOrDefault();
-            if(dataAnnotationsValidator != null)
-                ModelValidatorProviders.Providers.Remove(dataAnnotationsValidator);
-
             var filterProvider = FilterProviders.Providers.OfType<FilterAttributeFilterProvider>().SingleOrDefault();
-            if(filterProvider != null)
+
+            if (dataAnnotationsValidator != null)
+            {
+                ModelValidatorProviders.Providers.Remove(dataAnnotationsValidator);
+            }
+
+            if (filterProvider != null)
+            {
                 FilterProviders.Providers.Remove(filterProvider);
+            }
 
             DependencyResolver.SetResolver(CustomDependencyResolver);
 
@@ -63,10 +68,10 @@ namespace DowJones.Web.Mvc
 
         private void RegisterCustomRouteAttributes()
         {
-            if (_customRoutesInitialized) return;
+            if (customRoutesInitialized) return;
             lock (RouteTable.Routes)
             {
-                if (_customRoutesInitialized) return;
+                if (customRoutesInitialized) return;
                 var routeGenerator = ServiceLocator.Resolve<IRouteGenerator>();
                 var customRoutes = routeGenerator.Generate();
 
@@ -75,7 +80,7 @@ namespace DowJones.Web.Mvc
                     RouteTable.Routes.Insert(0, route);
                 }
 
-                _customRoutesInitialized = true;
+                customRoutesInitialized = true;
             }
         }
     }

@@ -9,6 +9,7 @@
 
 using System;
 using DowJones.Exceptions;
+using DowJones.Loggers;
 using DowJones.Managers.Abstract;
 using DowJones.Managers.Search.Requests;
 using DowJones.Preferences;
@@ -32,9 +33,10 @@ namespace DowJones.Managers.Search
         /// Initializes a new instance of the <see cref="SearchManager" /> class.
         /// </summary>
         /// <param name="controlData">The control data.</param>
+        /// <param name="transactionTimer"></param>
         /// <param name="preferences">The preferences.</param>
-        public SearchManager(IControlData controlData, IPreferences preferences)
-            : base(controlData)
+        public SearchManager(IControlData controlData, ITransactionTimer transactionTimer, IPreferences preferences)
+            : base(controlData, transactionTimer)
         {
             _preferences = preferences;
         }

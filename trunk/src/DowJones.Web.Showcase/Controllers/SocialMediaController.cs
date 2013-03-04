@@ -4,6 +4,7 @@ using System.Web.Mvc;
 using DowJones.Ajax.SocialMedia;
 using DowJones.Infrastructure;
 using DowJones.Infrastructure.Common;
+using DowJones.Loggers;
 using DowJones.Managers.SocialMedia.TweetRiver;
 using DowJones.Web.Mvc.UI.Components.SocialMedia;
 using DowJones.Web.Showcase.Models;
@@ -24,7 +25,7 @@ namespace DowJones.Web.Showcase.Controllers
 
             IControlData controlData = new ControlData { UserID = "snap_proxy", UserPassword = "pa55w0rd", ProductID = "16" };
             Product product = new Product("test", "test", null, true);
-            var response = new SocialMediaService(new TweetRiverProvider(), new PAMSocialMediaIndustryProvider(controlData), controlData, product).GetTweetsByIndustry(i);
+            var response = new SocialMediaService(new TweetRiverProvider(), new PAMSocialMediaIndustryProvider(controlData, new BasicTransactionTimer()), controlData, product).GetTweetsByIndustry(i);
 
             var socialMediaViewModel = new SocialMediaViewModel
             {

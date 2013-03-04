@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using System.Text;
 using System.Web;
 using System.Net;
@@ -25,22 +26,23 @@ namespace DowJones.Web.Handlers.Proxy.Core
         /// Creates the scalable HTTP web request.
         /// </summary>
         /// <param name="url">The URL.</param>
+        /// <param name="origRequest"></param>
         /// <returns></returns>
         public static HttpWebRequest CreateScalableHttpWebRequest(string url, HttpRequest origRequest)
         {
-            StringBuilder urlBuilder = new StringBuilder();
+            var urlBuilder = new StringBuilder();
 
             urlBuilder.AppendFormat("{0}{1}", url, url.EndsWith("?") ? "" : "?");
 
             // copy query string params
             // skip the first one as it's the target URL itself
-            for (int i = 1; i < origRequest.QueryString.Keys.Count; i++)
+            for (var i = 1; i < origRequest.QueryString.Keys.Count; i++)
             {
                 urlBuilder.AppendFormat("{0}={1}&", origRequest.QueryString.Keys[i], origRequest.QueryString[i]);
             }
 
             var timeoutMilliseconds = (int)TimeSpan.FromSeconds(HttpWebRequestTimeoutInSeconds).TotalMilliseconds;
-            HttpWebRequest request = WebRequest.Create(urlBuilder.ToString().TrimEnd("?&".ToCharArray())) as HttpWebRequest;
+            var request = WebRequest.Create(urlBuilder.ToString().TrimEnd("?&".ToCharArray())) as HttpWebRequest;
             if (request != null)
             {
                 request.Headers["Accept-Language"] = "en-US";
@@ -100,6 +102,11 @@ namespace DowJones.Web.Handlers.Proxy.Core
         /// 
         /// </summary>
         public string ContentLength;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string ContentDisposition;
         /// <summary>
         /// 
         /// </summary>
@@ -173,16 +180,16 @@ namespace DowJones.Web.Handlers.Proxy.Core
     /// </summary>
     public static class Logger
     {
-        private static readonly ILog m_log = LogManager.GetLogger(typeof(Logger));
+        private static readonly ILog Log = LogManager.GetLogger(typeof(Logger));
         /// <summary>
         /// Writes the entry.
         /// </summary>
         /// <param name="msg">The MSG.</param>
         public static void WriteEntry(string msg)
         {
-            if (m_log.IsDebugEnabled)
+            if (Log.IsDebugEnabled)
             {
-                m_log.Debug(msg);
+                Log.Debug(msg);
             }
         }
     }
@@ -192,8 +199,13 @@ namespace DowJones.Web.Handlers.Proxy.Core
     /// </summary>
     public class TimedLog : IDisposable
     {
-        private readonly string m_Message;
-        private readonly DateTime m_Start;
+        private readonly string _message;
+        private readonly Stopwatch _startupWatch;
+
+        /// <summary>
+        /// The is disposed.
+        /// </summary>
+        private bool _isDisposed;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TimedLog"/> class.
@@ -201,9 +213,10 @@ namespace DowJones.Web.Handlers.Proxy.Core
         /// <param name="msg">The MSG.</param>
         public TimedLog(string msg)
         {
-            m_Message = msg;
-            m_Start = DateTime.Now;
+            _message = msg;
+            _startupWatch = Stopwatch.StartNew();
         }
+
         #region IDisposable Members
 
         /// <summary>
@@ -211,9 +224,41 @@ namespace DowJones.Web.Handlers.Proxy.Core
         /// </summary>
         public void Dispose()
         {
-            DateTime end = DateTime.Now;
-            TimeSpan duration = end - m_Start;
-            Logger.WriteEntry(duration.TotalMilliseconds + "\t" + m_Message + "\n");
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        /// <summary>
+        /// The dispose.
+        /// </summary>
+        /// <param name="disposing">
+        /// The disposing.
+        /// </param>
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!_isDisposed)
+            {
+                if (disposing)
+                {
+                    Logger.WriteEntry(_startupWatch.Elapsed+ "\t" + _message + "\n");
+
+                    if (_startupWatch.IsRunning)
+                    {
+                        _startupWatch.Stop();
+                    }
+                }
+            }
+
+            // Code to dispose unmanaged resources held by the class
+            _isDisposed = true;
+        }
+
+         /// <summary>
+        /// Finalizes an instance of the <see cref="TimedLog"/> class. 
+        /// </summary>
+        ~TimedLog()
+        {
+            Dispose(false);
         }
 
         #endregion

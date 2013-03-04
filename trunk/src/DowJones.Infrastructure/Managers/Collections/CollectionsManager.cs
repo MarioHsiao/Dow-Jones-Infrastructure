@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using DowJones.Caching;
+using DowJones.Loggers;
 using DowJones.Managers.Abstract;
 using DowJones.Preferences;
 using DowJones.Session;
@@ -23,8 +24,10 @@ namespace DowJones.Managers.Collections
         ///   Initializes a new instance of the <see cref = "CollectionsManager" /> class.
         /// </summary>
         /// <param name = "controlData">The control data.</param>
+        /// <param name="transactionTimer">The class used for timng the transaction</param>
         /// <param name = "preferences">The preferences.</param>
-        public CollectionsManager(IControlData controlData, IPreferences preferences) : base(controlData)
+        public CollectionsManager(IControlData controlData, ITransactionTimer transactionTimer, IPreferences preferences)
+            : base(controlData, transactionTimer)
         {
             _preferences = preferences;
         }

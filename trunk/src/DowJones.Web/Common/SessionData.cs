@@ -22,6 +22,7 @@ using DowJones.Exceptions;
 using DowJones.Formatters.Globalization.DateTime;
 using DowJones.Formatters.Numerical;
 using DowJones.Globalization;
+using DowJones.Loggers;
 using DowJones.Managers.Abstract;
 using DowJones.Properties;
 using Factiva.Gateway.Messages.Membership.Authorization.V1_0;
@@ -463,7 +464,7 @@ namespace DowJones.Session
             GetUserAuthorizationsNoCacheResponse authorizationsNoCacheResponse = null;
 
             var profileUserType = UserType.Unspecified;
-            var profileManager = new ProfileManager(SessionBasedControlData);
+            var profileManager = new ProfileManager(SessionBasedControlData, new BasicTransactionTimer());
 
             if ((!string.IsNullOrEmpty(SessionId) &&
                  !string.IsNullOrEmpty(_clientTypeCode) &&
@@ -1123,8 +1124,8 @@ namespace DowJones.Session
             /// Initializes a new instance of the <see cref="ProfileManager"/> class.
             /// </summary>
             /// <param name="controlData">The control data.</param>
-            public ProfileManager(IControlData controlData)
-                : base(controlData)
+            public ProfileManager(IControlData controlData, ITransactionTimer transactionTimer)
+                : base(controlData, transactionTimer)
             {
             }
 
@@ -1134,8 +1135,8 @@ namespace DowJones.Session
             /// <param name="sessionID">The session ID.</param>
             /// <param name="clientTypeCode">The client type code.</param>
             /// <param name="accessPointCode">The access point code.</param>
-            public ProfileManager(string sessionID, string clientTypeCode, string accessPointCode)
-                : base(sessionID, clientTypeCode, accessPointCode)
+            public ProfileManager(string sessionID, string clientTypeCode, string accessPointCode, ITransactionTimer transactionTimer)
+                : base(sessionID, clientTypeCode, accessPointCode, transactionTimer)
             {
             }
 

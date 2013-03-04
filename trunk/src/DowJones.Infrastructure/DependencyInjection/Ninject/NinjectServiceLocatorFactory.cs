@@ -42,7 +42,7 @@ namespace DowJones.DependencyInjection.Ninject
 
         private IAssemblyRegistry CreateAssemblyRegistry()
         {
-            IEnumerable<string> filePatterns =
+            var filePatterns =
                 Settings.AutoLoadedAssemblyFilePatterns
                     .Select(x => x.Replace("*", string.Empty).Replace(".dll", string.Empty));
 

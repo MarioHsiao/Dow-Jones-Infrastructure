@@ -70,7 +70,7 @@
 			<section id="header">
 				<div class="page-header"><h1>@(ViewBag.Title)</h1></div>
 			</section>
-			<div class="row"><span class="span6">@RenderBody()</span></div>
+			@RenderBody()
        
             
 			@if (IsSectionDefined("SomeContent"))

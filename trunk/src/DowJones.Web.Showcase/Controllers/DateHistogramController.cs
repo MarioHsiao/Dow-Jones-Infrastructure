@@ -93,7 +93,7 @@ namespace DowJones.Web.Showcase.Controllers
 
         private DateHistogramModel GetBasicModel()
         {
-            var manager = new SearchManager(this.ControlData, this.Preferences);   
+            var manager = new SearchManager(this.ControlData, this.TransactionTimer, this.Preferences);   
             var request = new PerformContentSearchRequest();
             var result  = manager.PerformContentSearch<PerformContentSearchResponse>(GetPerformContentSearchRequest("obama"));
 

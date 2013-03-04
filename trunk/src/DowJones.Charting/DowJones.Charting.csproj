@@ -85,6 +85,7 @@
     <Compile Include="..\SolutionInfo.cs">
       <Link>Properties\SolutionInfo.cs</Link>
     </Compile>
+    <Compile Include="Highcharts\HighChartsExporterHttpHandler.cs" />
     <Compile Include="Highcharts\SaveImageHttpHandler.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
@@ -93,7 +94,7 @@
     </Compile>
     <Compile Include="Highcharts\ExportChart.cs" />
     <Compile Include="Highcharts\Exporter.cs" />
-    <Compile Include="Highcharts\ExporterHttpHandler.cs" />
+    <Compile Include="Highcharts\NativeExporterHttpHandler.cs" />
     <Compile Include="Manager\ChartFormatType.cs" />
     <Compile Include="Manager\ChartingManager.cs" />
     <Compile Include="Manager\ChartTemplate.cs" />

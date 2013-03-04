@@ -24,8 +24,10 @@ namespace DowJones.Web.Handlers.Proxy
     {
         private const int BufferSize = 8 * 1024;
 
-        private PipeStream pipeStream;
-        private Stream responseStream;
+        private PipeStream _pipeStream;
+        private Stream _responseStream;
+
+        protected bool IncludeContentDisposition { get; set; }
 
         #region IHttpAsyncHandler Members
 
@@ -33,12 +35,15 @@ namespace DowJones.Web.Handlers.Proxy
         /// Enables processing of HTTP Web requests by a custom HttpHandler that implements the <see cref="T:System.Web.IHttpHandler"/> interface.
         /// </summary>
         /// <param name="context">An <see cref="T:System.Web.HttpContext"/> object that provides references to the intrinsic server objects (for example, Request, Response, Session, and Server) used to service HTTP requests.</param>
-        public void ProcessRequest(HttpContext context)
+        public virtual void ProcessRequest(HttpContext context)
         {
             var origRequest = context.Request;
 
             var url = origRequest["url"];
             var cacheDuration = Convert.ToInt32(origRequest["cache"] ?? "0");
+
+            // See if the user wants to add the content-disposition attribute to the header.
+            IncludeContentDisposition = bool.Parse(context.Request["iDisposition"] ?? "true");
 
             Logger.WriteEntry("--- " + url + " ----");
 
@@ -77,17 +82,19 @@ namespace DowJones.Web.Handlers.Proxy
 
                 if (origRequest.HttpMethod != "GET")
                 {
-                    byte[] requestBytes = Encoding.UTF8.GetBytes(origRequest.InputStream.GetReader().ReadToEnd());
-                    using (Stream requestStream = proxyRequest.GetRequestStream())
+                    var requestBytes = Encoding.UTF8.GetBytes(origRequest.InputStream.GetReader().ReadToEnd());
+                    using (var requestStream = proxyRequest.GetRequestStream())
                     {
                         requestStream.Write(requestBytes, 0, requestBytes.Length);
                     }
                 }
 
                 using (new TimedLog("StreamingProxy\tTotal GetResponse and transmit data"))
-                using (var response = proxyRequest.GetResponse() as HttpWebResponse)
                 {
-                    DownloadData(proxyRequest, response, context, cacheDuration);
+                    using (var response = proxyRequest.GetResponse() as HttpWebResponse)
+                    {
+                        DownloadData(proxyRequest, response, context, cacheDuration);
+                    }
                 }
             }
         }
@@ -250,7 +257,8 @@ namespace DowJones.Web.Handlers.Proxy
                     {
                         string contentLength;
                         string contentEncoding;
-                        ProduceResponseHeader(response, context, cacheDuration, out contentLength, out contentEncoding);
+                        string contentDisposition;
+                        ProduceResponseHeader(response, context, cacheDuration, out contentLength, out contentEncoding, out contentDisposition);
 
                         var totalBytesWritten = TransmitDataAsynchronously(context, readStream, responseBuffer);
 
@@ -264,8 +272,9 @@ namespace DowJones.Web.Handlers.Proxy
                                             {
                                                 Content = responseBuffer,
                                                 ContentEncoding = contentEncoding,
+                                                ContentDisposition = contentDisposition,
                                                 ContentLength = contentLength,
-                                                ContentType = response.ContentType
+                                                ContentType = response.ContentType,
                                             };
 
                             context.Cache.Insert(
@@ -301,9 +310,9 @@ namespace DowJones.Web.Handlers.Proxy
         /// <returns></returns>
         private int TransmitDataAsynchronously(HttpContext context, Stream readStream, Stream responseBuffer)
         {
-            responseStream = readStream;
+            _responseStream = readStream;
 
-            pipeStream = new PipeStreamBlock(10000);
+            _pipeStream = new PipeStreamBlock(10000);
 
             var buffer = new byte[BufferSize];
 
@@ -320,10 +329,10 @@ namespace DowJones.Web.Handlers.Proxy
             using (new TimedLog("StreamingProxy\tTotal read and write"))
             {
                 int dataReceived;
-                while ((dataReceived = pipeStream.Read(buffer, 0, BufferSize)) > 0)
+                while ((dataReceived = _pipeStream.Read(buffer, 0, BufferSize)) > 0)
                 {
                     // if about to overflow, transmit the response buffer and restart
-                    int bufferSpaceLeft = BufferSize - responseBufferPos;
+                    var bufferSpaceLeft = BufferSize - responseBufferPos;
 
                     if (bufferSpaceLeft < dataReceived)
                     {
@@ -360,9 +369,9 @@ namespace DowJones.Web.Handlers.Proxy
                 }
             }
 
-            Logger.WriteEntry("StreamingProxy\tSocket read " + pipeStream.TotalWrite + " bytes and response written " + totalBytesWritten + " bytes");
+            Logger.WriteEntry("StreamingProxy\tSocket read " + _pipeStream.TotalWrite + " bytes and response written " + totalBytesWritten + " bytes");
 
-            pipeStream.Dispose();
+            _pipeStream.Dispose();
 
             return totalBytesWritten;
         }
@@ -375,7 +384,8 @@ namespace DowJones.Web.Handlers.Proxy
         /// <param name="cacheDuration">The cache duration.</param>
         /// <param name="contentLength">Length of the content.</param>
         /// <param name="contentEncoding">The content encoding.</param>
-        private static void ProduceResponseHeader(HttpWebResponse response, HttpContext context, int cacheDuration, out string contentLength, out string contentEncoding)
+        /// <param name="contentDisposition"></param>
+        private void ProduceResponseHeader(HttpWebResponse response, HttpContext context, int cacheDuration, out string contentLength, out string contentEncoding, out string contentDisposition)
         {
             // produce cache headers for response caching
             if (response.StatusCode == HttpStatusCode.OK && cacheDuration > 0)
@@ -401,6 +411,13 @@ namespace DowJones.Web.Handlers.Proxy
                 context.Response.AppendHeader("Content-Encoding", contentEncoding);
             }
 
+            // If downloaded data is compressed, Content-Encoding will have either gzip or deflate
+            contentDisposition = response.GetResponseHeader("Content-Disposition");
+            if (!string.IsNullOrEmpty(contentDisposition) && IncludeContentDisposition)
+            {
+                context.Response.AppendHeader("Content-Disposition", contentDisposition);
+            }
+
             context.Response.ContentType = response.ContentType;
 
             context.Response.AppendHeader("x-Served-By", "StreamingProxy on {0}".FormatWith(Environment.MachineName));
@@ -416,9 +433,9 @@ namespace DowJones.Web.Handlers.Proxy
                 try
                 {
                     int dataReceived;
-                    while ((dataReceived = responseStream.Read(buffer, 0, BufferSize)) > 0)
+                    while ((dataReceived = _responseStream.Read(buffer, 0, BufferSize)) > 0)
                     {
-                        pipeStream.Write(buffer, 0, dataReceived);
+                        _pipeStream.Write(buffer, 0, dataReceived);
                         totalBytesFromSocket += dataReceived;
                     }
                 }
@@ -429,8 +446,8 @@ namespace DowJones.Web.Handlers.Proxy
                 finally
                 {
                     Logger.WriteEntry("Total bytes read from socket " + totalBytesFromSocket + " bytes");
-                    responseStream.Dispose();
-                    pipeStream.Flush();
+                    _responseStream.Dispose();
+                    _pipeStream.Flush();
                 }
             }
         }

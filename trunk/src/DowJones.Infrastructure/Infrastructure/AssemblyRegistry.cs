@@ -21,7 +21,7 @@ namespace DowJones.Infrastructure
         {
             get
             {
-                IEnumerable<Type> concreteTypes =
+                var concreteTypes =
                     ExportedTypes
                         .Where(type => !type.IsAbstract)
                         .Where(type => !type.IsInterface);
@@ -34,7 +34,7 @@ namespace DowJones.Infrastructure
         {
             get
             {
-                IEnumerable<ManifestResourceInfo> resources =
+                var resources =
                     from assembly in Assemblies
                     from resource in assembly.GetManifestResourceNames()
                     select assembly.GetManifestResourceInfo(resource);
@@ -64,7 +64,7 @@ namespace DowJones.Infrastructure
 
         public IEnumerable<Type> GetConcreteTypesDerivingFrom(Type baseType)
         {
-            IEnumerable<Type> concreteDerivedTypes =
+            var concreteDerivedTypes =
                 ConcreteTypes.Where(baseType.IsAssignableFrom);
 
             return concreteDerivedTypes;
@@ -75,10 +75,7 @@ namespace DowJones.Infrastructure
         {
             filePatterns = filePatterns ?? DefaultFilePatterns;
 
-            if (HttpContext.Current == null)
-                return CreateFromAssemblyReferences(Assembly.GetEntryAssembly(), filePatterns);
-            else
-                return CreateFromBuildManager(filePatterns);
+            return HttpContext.Current == null ? CreateFromAssemblyReferences(Assembly.GetEntryAssembly(), filePatterns) : CreateFromBuildManager(filePatterns);
         }
 
         public static AssemblyRegistry CreateFromBuildManager(IEnumerable<string> filePatterns = null)

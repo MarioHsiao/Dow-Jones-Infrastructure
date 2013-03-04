@@ -8,6 +8,7 @@ using DowJones.DependencyInjection;
 using DowJones.Extensions.Web;
 using DowJones.Globalization;
 using DowJones.Infrastructure;
+using DowJones.Loggers;
 using DowJones.Managers.Alert;
 using DowJones.Managers.Search;
 using DowJones.Managers.Search.Preference;
@@ -41,6 +42,8 @@ namespace DowJones
             Bind<IArticleService>().To<ArticleService>().InRequestScope();
             
             Bind<IPreferenceService>().To<PreferenceService>().InRequestScope();
+
+            Bind<ITransactionTimer>().To<BasicTransactionTimer>().InSingletonScope();
 
             Bind<IUserContext>().To<UserContext>().InTransientScope();
             
