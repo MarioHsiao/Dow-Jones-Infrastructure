@@ -1446,10 +1446,10 @@ namespace DowJones.Assemblers.Articles
                     {
                         switch (item.type.ToLower())
                         {
-                            case "audio":
-                                return ContentSubCategory.Audio;
-                            case "video":
-                                return ContentSubCategory.Video;
+                            case "image/gif":
+                            case "image/jpeg":
+                            case "image/png":
+                                return ContentSubCategory.Graphic;
                         }
                     }
                     return ContentSubCategory.Article;
