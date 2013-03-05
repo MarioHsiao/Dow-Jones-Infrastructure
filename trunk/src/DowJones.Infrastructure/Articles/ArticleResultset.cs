@@ -94,5 +94,7 @@ namespace DowJones.Ajax.Article
         public string MediaLength { get; set; }
         
         public string MediaTitle { get; set; }
+
+        public List<Ajax.HeadlineList.HeadlineContentItem> ContentItems { get; set; }
     }
 }

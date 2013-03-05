@@ -44,7 +44,7 @@ namespace DowJones.Assemblers.Headlines
         {
         }
 
-        protected AbstractHeadlineListDataResultSetConverter(DateTimeFormatter dateTimeFormatter, NumberFormatter numberFormatter, IResourceTextManager resources)
+        protected AbstractHeadlineListDataResultSetConverter(DateTimeFormatter dateTimeFormatter, NumberFormatter numberFormatter, IResourceTextManager resource)
         {
             this.dateTimeFormatter = dateTimeFormatter ?? new DateTimeFormatter("en");
             this.numberFormatter = numberFormatter ?? new NumberFormatter();
@@ -67,7 +67,8 @@ namespace DowJones.Assemblers.Headlines
         {
             get { return resources; }
         }
-
+        
+        public bool EnableContentItemsMapping { get; set; }
         #endregion
 
         protected internal GenerateExternalUrlForHeadlineInfo GenerateExternalUrlForHeadlineInfo { get; set; }
@@ -365,8 +366,25 @@ namespace DowJones.Assemblers.Headlines
         /// </summary>
         /// <param name="info">The info.</param>
         /// <param name="headline">The headline.</param>
-        protected internal static void MapExtraReferenceInformation(HeadlineInfo info, ContentHeadline headline)
+        protected internal void MapExtraReferenceInformation(HeadlineInfo info, ContentHeadline headline)
         {
+            if (EnableContentItemsMapping && headline.ContentItems != null && headline.ContentItems.ItemCollection != null)
+            {
+                info.reference.contentItems = new List<HeadlineContentItem>();
+                foreach (var item in headline.ContentItems.ItemCollection.WhereNotNull())
+                {
+                    info.reference.contentItems.Add(new HeadlineContentItem
+                                                        {
+                                                            mimeType = item.Mimetype,
+                                                            reference = item.Ref,
+                                                            size = item.Size,
+                                                            subType = item.Subtype,
+                                                            type = item.Type
+                                                        });
+                }
+                
+            }
+
             switch (info.contentCategory)
             {
                 case ContentCategory.Picture:
@@ -545,7 +563,7 @@ namespace DowJones.Assemblers.Headlines
                     }
                     return ContentSubCategory.Multimedia;
                 case "article":
-                    foreach (var item in contentHeadline.ContentItems.ItemCollection)
+                    foreach (var item in contentHeadline.ContentItems.ItemCollection.Where(i => i.Mimetype.IsNotEmpty()))
                     {
                         switch (item.Mimetype.ToLower())
                         {
