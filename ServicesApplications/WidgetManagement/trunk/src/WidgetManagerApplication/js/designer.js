@@ -96,7 +96,7 @@ function initManagement() {
 
     modalPopupBehavior.set_Y(100);
     modalPopupBehavior.show(); 
-    $get("mPopHeader").innerHTML = translate("widgetManagement");
+    $get("mPopHeader").innerHTML = _translate("widgetManagement");
     CommonToolkitScripts.setVisible($get("codeLoadingCntr"), true);
     CommonToolkitScripts.setVisible($get("codeUpdatingCntr"), false);        
     CommonToolkitScripts.setVisible($get("codeCntr"), false);
@@ -249,7 +249,7 @@ function updateBadgets(result) {
         var IEndPoint = result.IntegrationEndPoints[i];
                 
         _badge_sb.append("<div class=\"iBadge\">");
-        _badge_sb.append("<a href=\"" + IEndPoint.IntegrationUrl + "\" onclick=\"xWinOpen(this.href);return false;\" title=\"" + translate("integrate") + "\">");
+        _badge_sb.append("<a href=\"" + IEndPoint.IntegrationUrl + "\" onclick=\"xWinOpen(this.href);return false;\" title=\"" + _translate("integrate") + "\">");
         if (IEndPoint.HasIcon) _badge_sb.append("<img class=\"iIcon\" src=\"" + IEndPoint.Icon + "\"/>");
         _badge_sb.append("<span class=\"iBadge\">" + IEndPoint.Title + "</span>"); 
         _badge_sb.append("</a>");
@@ -276,13 +276,13 @@ function updateAccordionPanes(result) {
         
         _content_sb.append("<div class=\"bContents\">");
         _content_sb.append("<div class=\"bInstructions\">");
-        _content_sb.append(translate("getPortalWidgetIntructions"));
+        _content_sb.append(_translate("getPortalWidgetIntructions"));
         _content_sb.append("</div>");
         _content_sb.append("<div class=\"bLink\">");
-        _content_sb.append("<a href=\"" + IEndPoint.IntegrationUrl + "\" onclick=\"xWinOpen(this.href);return false;\"><span class=\"iBadge\" title=\"" + translate("integrate") + "\">" + IEndPoint.Title +  "</span></a>");
+        _content_sb.append("<a href=\"" + IEndPoint.IntegrationUrl + "\" onclick=\"xWinOpen(this.href);return false;\"><span class=\"iBadge\" title=\"" + _translate("integrate") + "\">" + IEndPoint.Title +  "</span></a>");
         _content_sb.append("</div>");  
          _content_sb.append("<div class=\"bInstructions\">");
-        _content_sb.append(translate("getUrlToPortalWidgetIntructions"));
+        _content_sb.append(_translate("getUrlToPortalWidgetIntructions"));
         _content_sb.append("</div>");   
         _content_sb.append("<div class=\"bLink\">");
         _content_sb.append("<input name=\"integration_" + i + "\" style=\"width:90%\" value=\"" + IEndPoint.IntegrationUrl + "\" />");
@@ -377,7 +377,7 @@ function showError(message){
      
      var errorMessageDiv = $get("errorMsg");
      var errorLabel = $get('errorLbl');
-     errorLabel.innerHTML = translate("error"); 
+     errorLabel.innerHTML = _translate("error"); 
      errorMessageDiv.innerHTML = message;
      modalErrorPopupBehavior.set_Y(100);
      modalErrorPopupBehavior.show(); 
@@ -388,7 +388,7 @@ function showWarning(message){
      modalPopupBehavior.hide();
      var errorMessageDiv = $get("errorMsg");
      var errorLabel = $get('errorLbl');     
-     errorLabel.innerHTML = translate("warning");     
+     errorLabel.innerHTML = _translate("warning");     
      errorMessageDiv.innerHTML = message;
      modalPopupBehavior.set_Y(100);
      modalPopupBehavior.show(); 
@@ -400,7 +400,7 @@ function showPreview(result,userContext){
      modalPopupBehavior.hide();
      var errorMessageDiv = $get("errorMsg");
      var errorLabel = $get('errorLbl');     
-     errorLabel.innerHTML = translate("preview"); 
+     errorLabel.innerHTML = _translate("preview"); 
      FactivaWidgetRenderManager.getInstance().xBuildAlertWidget(errorMessageDiv,result,true); 
      
      modalPopupBehavior.set_Y(100);
@@ -412,7 +412,7 @@ function showMessage(message){
      modalPopupBehavior.hide();
      var errorMessageDiv = $get("errorMsg");
      var errorLabel = $get('errorLbl');     
-     errorLabel.innerHTML = translate("message");     
+     errorLabel.innerHTML = _translate("message");     
      errorMessageDiv.innerHTML = message;
      modalPopupBehavior.set_Y(100);     
      modalPopupBehavior.show(); 
@@ -748,7 +748,7 @@ function createWidget_success(result, userContext, methodName) {
         }
         var modalPopupBehavior = $find('programmaticModalPopupBehavior');
         modalPopupBehavior.hide();
-        //showMessage(translate("widgetHasBeenCreated"));
+        //showMessage(_translate("widgetHasBeenCreated"));
         return;
     }
     else {
@@ -769,7 +769,7 @@ function updateWidget_success(result, userContext, methodName) {
     else if (result != null && result.ReturnCode == 0) {
         var modalPopupBehavior = $find('programmaticModalPopupBehavior');
         modalPopupBehavior.hide();
-        //showMessage(translate("widgetHasBeenUpdated"));
+        //showMessage(_translate("widgetHasBeenUpdated"));
     }
     else {
         showFrameworkError();
@@ -813,7 +813,7 @@ function getScriptCode_success(result, userContext, methodName) {
         var pubArea = $get("publishingContainer");        
         //var http = $get("http");
         //var https = $get("https");
-        $get("mPopHeader").innerHTML = translate("displayCode");
+        $get("mPopHeader").innerHTML = _translate("displayCode");
         CommonToolkitScripts.setVisible($get("codeLoadingCntr"), false);
         CommonToolkitScripts.setVisible($get("codeUpdatingCntr"), false);        
         CommonToolkitScripts.setVisible($get("codeCntr"), true);
@@ -881,7 +881,7 @@ function clientSideValidation() {
 function getUpdatePopup() {
     // Check to see if application is initialized.
     if (!FactivaWidgetRenderManager.getInstance().getInitialized()) {
-        showError(translate("applicationInitializationError"));
+        showError(_translate("applicationInitializationError"));
         return;
     }
     
@@ -902,7 +902,7 @@ function getUpdatePopup() {
 function getCreatePopup() {
     // Check to see if application is initialized.
     if (!FactivaWidgetRenderManager.getInstance().getInitialized()) {
-        showError(translate("applicationInitializationError"));
+        showError(_translate("applicationInitializationError"));
         return;
     }  
 
@@ -926,7 +926,7 @@ function getCreatePopup() {
 
 function getProxyCredentialsPopup(errorMessage) {
     if (!FactivaWidgetRenderManager.getInstance().getInitialized()) {
-        showError(translate("applicationInitializationError"));
+        showError(_translate("applicationInitializationError"));
         return;
     }
     
@@ -1005,7 +1005,7 @@ function closeUpdate() {
     // Fill in the widgetId for update
     var wIdHiddenInput = $get("wid");
     if (wIdHiddenInput) {
-        $get("mPopHeader").innerHTML = translate("displayCode");
+        $get("mPopHeader").innerHTML = _translate("displayCode");
         CommonToolkitScripts.setVisible($get("codeLoadingCntr"), true);
         CommonToolkitScripts.setVisible($get("codeUpdatingCntr"), false);        
         CommonToolkitScripts.setVisible($get("codeCntr"), false);
@@ -1027,7 +1027,7 @@ function closeUpdate() {
         return;
     }    
     
-    showError(translate("noWidgetIdFound"));
+    showError(_translate("noWidgetIdFound"));
 }
 
 function closeProxyCredModal() {
@@ -1066,7 +1066,7 @@ function openUpdateWidgetModal() {
 
 function getCodeGenerationPopup() {
     if (!FactivaWidgetRenderManager.getInstance().getInitialized()) {
-        showError(translate("applicationInitializationError"));
+        showError(_translate("applicationInitializationError"));
         return;
     }
     
@@ -1113,7 +1113,7 @@ function confirmDeletePopupOK() {
     var confirmDeletePopupBehavior = $find('modalConfirmDeleteButtonBehavior');
     confirmDeletePopupBehavior.hide();
     
-    $get("mPopHeader").innerHTML = translate("delete");
+    $get("mPopHeader").innerHTML = _translate("delete");
     CommonToolkitScripts.setVisible($get("codeLoadingCntr"), false);
     CommonToolkitScripts.setVisible($get("codeUpdatingCntr"), true);                
     CommonToolkitScripts.setVisible($get("codeCntr"), false);
@@ -1191,7 +1191,7 @@ function onWidgetPublish(sender, eventArgs) {
     var wDelegate = eventArgs.get_WidgetDelegate();
     if (wDelegate) {
         // Get the preview url from the server.  
-        $get("mPopHeader").innerHTML = translate("displayCode");
+        $get("mPopHeader").innerHTML = _translate("displayCode");
         CommonToolkitScripts.setVisible($get("codeLoadingCntr"), true);
         CommonToolkitScripts.setVisible($get("codeUpdatingCntr"), false);        
         CommonToolkitScripts.setVisible($get("codeCntr"), false);
@@ -1221,7 +1221,7 @@ function onWidgetPreview(sender,eventArgs) {
     CommonToolkitScripts.setVisible($get("sortWidgetsByCntr"), false);
     
     
-    $get("mPopHeader").innerHTML = translate("preview");
+    $get("mPopHeader").innerHTML = _translate("preview");
     CommonToolkitScripts.setVisible($get("codeLoadingCntr"), true);
     CommonToolkitScripts.setVisible($get("codeUpdatingCntr"), false);                
     CommonToolkitScripts.setVisible($get("codeCntr"), false);

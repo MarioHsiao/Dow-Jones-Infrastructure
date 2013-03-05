@@ -122,7 +122,7 @@ function initDesignerForAutomaticWorkspaceWidget() {
     modalPopupBehavior.set_Y(100);
     modalPopupBehavior.show(); 
     
-    $get("mPopHeader").innerHTML = translate("widgetDesigner");
+    $get("mPopHeader").innerHTML = _translate("widgetDesigner");
     CommonToolkitScripts.setVisible($get("codeLoadingCntr"), true);
     CommonToolkitScripts.setVisible($get("codeUpdatingCntr"), false);
     CommonToolkitScripts.setVisible($get("codeCntr"), false);
@@ -350,7 +350,7 @@ function fireCreateAutomaticWorkspaceHeadlineWidget() {
     console.log(result);
     
     if (fillAutomaticWorkspaceWidgetDelegate(delegate,result)) {
-        $get("mPopHeader").innerHTML = translate("saveWidgetDesignNow");
+        $get("mPopHeader").innerHTML = _translate("saveWidgetDesignNow");
         CommonToolkitScripts.setVisible($get("codeLoadingCntr"), false);
         CommonToolkitScripts.setVisible($get("codeUpdatingCntr"), true);                
         CommonToolkitScripts.setVisible($get("codeCntr"), false);
@@ -380,7 +380,7 @@ function fireUpdateAutomaticWorkspaceWidgetAndGetScriptCode (){
         // Fill in the widgetId for update
         var wIdHiddenInput = $get("wid");
         if (wIdHiddenInput) {
-            $get("mPopHeader").innerHTML = translate("displayCode");
+            $get("mPopHeader").innerHTML = _translate("displayCode");
             CommonToolkitScripts.setVisible($get("codeLoadingCntr"), false);
             CommonToolkitScripts.setVisible($get("codeUpdatingCntr"), true);        
             CommonToolkitScripts.setVisible($get("codeCntr"), false);
@@ -401,7 +401,7 @@ function fireUpdateAutomaticWorkspaceWidgetAndGetScriptCode (){
                 null);  
             return;
         }
-        showError(translate("noWidgetIdFound"));
+        showError(_translate("noWidgetIdFound"));
     }
     
 }
@@ -414,7 +414,7 @@ function fireUpdateAutomaticWorkspaceHeadlineWidget() {
     console.log(result);
     
     if (fillAutomaticWorkspaceWidgetDelegate(delegate,result,true)) {
-        $get("mPopHeader").innerHTML = translate("saveWidgetDesignNow");
+        $get("mPopHeader").innerHTML = _translate("saveWidgetDesignNow");
         CommonToolkitScripts.setVisible($get("codeLoadingCntr"), false);
         CommonToolkitScripts.setVisible($get("codeUpdatingCntr"), true);                
         CommonToolkitScripts.setVisible($get("codeCntr"), false);

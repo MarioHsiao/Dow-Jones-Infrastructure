@@ -1059,6 +1059,7 @@ if (!window.FactivaWidgetRenderManager) {
             };
 
             this.getHeadline = function (bgColor, fontFamily, fontSize, fontColor, auxInfoColor, snippetColor, headline, showHeadline, showSnippet, literals) {
+       
                 var sb = [];
                 sb[sb.length] = "<div class=\"fctv_headlineCont\" style=\"display:" + ((showHeadline && showHeadline == true) ? "block" : "none") + "\">";
                 var tImg = "";
@@ -1080,20 +1081,20 @@ if (!window.FactivaWidgetRenderManager) {
                 // Add Importance                    
                 if (literals && this.xStr(literals.ImportanceFlagUrl) && literals.ImportanceFlagUrl != null && literals.ImportanceFlagUrl.length > 0) {
                     switch (headline.Importance) {
-                        // Normal      
+                        // Normal            
                         case 0:
                         default:
                             //sb[sb.length] = "<span class=\"fctv_importance\" style=\"padding-right:0.8em;padding-left:0.3em;font-weight:bold;background:url(" + literals.ImportanceFlagUrl + ") #e5e5e0 no-repeat right 50%; padding-bottom:0.1em;color:#30332d;padding-top:0.1em;\">" + literals.Hot +  "</span>&nbsp;";     
                             break;
-                        // Hot      
+                        // Hot            
                         case 1:
                             sb[sb.length] = "<span class=\"fctv_importance\" style=\"border: solid 1px #000; padding-right:0.3em;padding-left:0.3em;font-weight:bold; padding-bottom:0.1em;color:#30332d;padding-top:0.1em;\">" + literals.Hot + "</span>&nbsp;";
                             break;
-                        // New      
+                        // New            
                         case 2:
                             sb[sb.length] = "<span class=\"fctv_importance\" style=\"border: solid 1px #000; padding-right:0.3em;padding-left:0.3em;font-weight:bold; padding-bottom:0.1em;color:#30332d;padding-top:0.1em;\">" + literals.New + "</span>&nbsp;";
                             break;
-                        // MustRead      
+                        // MustRead            
                         case 3:
                             sb[sb.length] = "<span class=\"fctv_importance\" style=\"border: solid 1px #000; padding-right:0.3em;padding-left:0.3em;font-weight:bold; padding-bottom:0.1em;color:#30332d;padding-top:0.1em;\">" + literals.MustRead + "</span>&nbsp;";
                             break;
@@ -1473,27 +1474,28 @@ if (!window.FactivaWidgetRenderManager) {
                 t[t.length] = "</div>";
                 return t.join("");
             };
+            
+            this.addDiscoveryChart = function (chartdata, chartimage) {      
+                
 
-            this.addFlashImage = function (chartdata) {
                 if (chartdata != null && chartdata.data.length > 0) {
-                    if (typeof (FlashObject) != 'undefined') {
-                        var fo = new FlashObject(chartdata.chartUri, "temp_swf", chartdata.width, chartdata.height, chartdata.version);
-                        var t = [];
-                        if (xIE4Up) {
-                            t[t.length] = "<div style=\"margin:10px auto 10px auto" +
+                    var t = [];
+                    var discoveryChart = new DiscoveryChart(chartimage);
+                    var htmldata = discoveryChart.RenderDiscoveryChart(chartdata.data);                    
+                        t[t.length] = "<div id=\"discoveryChart\" class=\"cd_cont discovery-wrapper\"style=\"margin:10px auto 10px auto" +
                                 ";position:relative" +
                                 ";text-align:center" +
-                                ";\">" + fo.getFlashHTML() + "</div>";
-                        } else {
-                            t[t.length] = "<div style=\"margin:10px auto 10px auto" +
-                                ";position:relative" +
-                                ";width:" + chartdata.width + "px" +
-                                ";\">" + fo.getFlashHTML() + "</div>";
-                        }
-                        return t.join("");
-                    }
+                                ";font-size: 11px;" +
+";padding-bottom: 5px;" +
+"border-bottom: 1px solid #f0f0f0;" +
+"width:211px;" + 
+                                ";\">" + htmldata + "</div>";                   
+                    
+                    return t.join("");
                 }
             };
+
+            
 
             this.addGetThisAlertUrl = function (url, token, mColor) {
                 if (url != null) {
@@ -1525,7 +1527,7 @@ if (!window.FactivaWidgetRenderManager) {
 
                     /*
                     t[t.length] = "<a id=\"getAlert\" href=\"javascript:void(0)\"" + 
-                    " onclick=\"alert(translate('featureIsDisabled'));return false;\"title=\"" + token + "\"" +
+                    " onclick=\"alert(_translate('featureIsDisabled'));return false;\"title=\"" + token + "\"" +
                     " onmouseover=\"FactivaWidgetRenderManager.getInstance().setMouseOver(this);return false;\"" +
                     " onmouseout=\"FactivaWidgetRenderManager.getInstance().setMouseOut(this);return false;\"" +
                     " style=\"color:" + mColor + 
@@ -1543,6 +1545,7 @@ if (!window.FactivaWidgetRenderManager) {
             };
 
             this.getAlertCompaniesPanel = function (tEle, result, showTitle, integrateFontCSS) {
+              
                 if (result != null && result.Definition != null) {
                     var mColor = result.Definition.MainColor;
                     var mFontColor = result.Definition.MainFontColor;
@@ -1567,7 +1570,7 @@ if (!window.FactivaWidgetRenderManager) {
                     this.xInnerHtml(tEle, result.ReturnCode + ": " + result.StatusMessage);
                     return;
                 }
-
+                var chartimage = result.Literals.ChartImage;
                 if (result.Data != null && result.Data.Count > 0) {
                     for (var i = 0; i < result.Data.Count; i++) {
                         var _alert = result.Data.Alerts[i];
@@ -1579,7 +1582,7 @@ if (!window.FactivaWidgetRenderManager) {
                                 aFontColor,
                                 fontFamily);
                             if (_alert.CompaniesChart != null) {
-                                t[t.length] = this.addFlashImage(_alert.CompaniesChart.Chart);
+                                t[t.length] = this.addDiscoveryChart(_alert.CompaniesChart.Chart, result.Literals.DiscoveryChartImage);
                                 if (result.Data.Alerts[i].IsGroupFolder == false) {
                                     if (result.Definition.DistributionType == 0 || result.Definition.DistributionType == 1)
                                         t[t.length] = this.addGetThisAlertUrl(_alert.CompaniesChart.GetThisAlertUrl
@@ -1637,7 +1640,7 @@ if (!window.FactivaWidgetRenderManager) {
                                 aFontColor,
                                 fontFamily);
                             if (_alert.SubjectsChart != null) {
-                                t[t.length] = this.addFlashImage(_alert.SubjectsChart.Chart);
+                                t[t.length] = this.addDiscoveryChart(_alert.SubjectsChart.Chart, result.Literals.DiscoveryChartImage);
                                 if (result.Data.Alerts[i].IsGroupFolder == false) {
                                     if (result.Definition.DistributionType == 0 || result.Definition.DistributionType == 1)
                                         t[t.length] = this.addGetThisAlertUrl(_alert.SubjectsChart.GetThisAlertUrl
@@ -1695,7 +1698,7 @@ if (!window.FactivaWidgetRenderManager) {
                                 aFontColor,
                                 fontFamily);
                             if (_alert.IndustriesChart != null) {
-                                t[t.length] = this.addFlashImage(_alert.IndustriesChart.Chart);
+                                t[t.length] = this.addDiscoveryChart(_alert.IndustriesChart.Chart, result.Literals.DiscoveryChartImage);
                                 if (result.Data.Alerts[i].IsGroupFolder == false) {
                                     if (result.Definition.DistributionType == 0 || result.Definition.DistributionType == 1)
                                         t[t.length] = this.addGetThisAlertUrl(_alert.IndustriesChart.GetThisAlertUrl
@@ -1753,7 +1756,7 @@ if (!window.FactivaWidgetRenderManager) {
                                 aFontColor,
                                 fontFamily);
                             if (_alert.ExecutivesChart != null) {
-                                t[t.length] = this.addFlashImage(_alert.ExecutivesChart.Chart);
+                                t[t.length] = this.addDiscoveryChart(_alert.ExecutivesChart.Chart, result.Literals.DiscoveryChartImage);
                                 if (result.Data.Alerts[i].IsGroupFolder == false) {
                                     if (result.Definition.DistributionType == 0 || result.Definition.DistributionType == 1)
                                         t[t.length] = this.addGetThisAlertUrl(_alert.ExecutivesChart.GetThisAlertUrl
@@ -1811,7 +1814,7 @@ if (!window.FactivaWidgetRenderManager) {
                                 aFontColor,
                                 fontFamily);
                             if (_alert.RegionsChart != null) {
-                                t[t.length] = this.addFlashImage(_alert.RegionsChart.Chart);
+                                t[t.length] = this.addDiscoveryChart(_alert.RegionsChart.Chart, result.Literals.DiscoveryChartImage);
                                 if (result.Data.Alerts[i].IsGroupFolder == false) {
                                     if (result.Definition.DistributionType == 0 || result.Definition.DistributionType == 1)
                                         t[t.length] = this.addGetThisAlertUrl(_alert.RegionsChart.GetThisAlertUrl
@@ -1899,7 +1902,7 @@ if (!window.FactivaWidgetRenderManager) {
                     "<a href=\"" + _alert.ViewAllUri + "\" style=\"color:" + fontColor + "; text-decoration:none;\" onmouseover=\"FactivaWidgetRenderManager.getInstance().setMouseOver(this);return false;\" onmouseout=\"FactivaWidgetRenderManager.getInstance().setMouseOut(this);return false;\" onclick=\"if(FactivaWidgetRenderManager && FactivaWidgetRenderManager.getInstance()) {FactivaWidgetRenderManager.getInstance().xWinOpen(this.href);return false;}\" title=\"" + _literals.ViewAll + "\">" + _alert.Name + "</a>" :
                     "<a href=\"" + _alert.ViewAllUri + "\" style=\"color:" + fontColor + "; text-decoration:none;\" onmouseover=\"FactivaWidgetRenderManager.getInstance().setMouseOver(this);return false;\" onmouseout=\"FactivaWidgetRenderManager.getInstance().setMouseOut(this);return false;\" target=\"_new\" title=\"" + _literals.ViewAll + "\">" + _alert.Name + "</a>");
                 /*
-                t[t.length] = "<a href=\"javascript:void(0)\" style=\"color:" + fontColor + "; text-decoration:none;\" onmouseover=\"FactivaWidgetRenderManager.getInstance().setMouseOver(this);return false;\" onmouseout=\"FactivaWidgetRenderManager.getInstance().setMouseOut(this);return false;\" onclick=\"alert(translate('featureIsDisabled'));return false;\" title=\"" + _literals.ViewAll + "\">" + _alert.Name + "</a>";
+                t[t.length] = "<a href=\"javascript:void(0)\" style=\"color:" + fontColor + "; text-decoration:none;\" onmouseover=\"FactivaWidgetRenderManager.getInstance().setMouseOver(this);return false;\" onmouseout=\"FactivaWidgetRenderManager.getInstance().setMouseOut(this);return false;\" onclick=\"alert(_translate('featureIsDisabled'));return false;\" title=\"" + _literals.ViewAll + "\">" + _alert.Name + "</a>";
                 */
                 t[t.length] = "</div>";
                 return t.join("");
@@ -2091,7 +2094,7 @@ if (!window.FactivaWidgetRenderManager) {
                     "<a href=\"" + _alert.ViewAllUri + "\" style=\"color:" + fontColor + "; text-decoration:none;\" onclick=\"if(FactivaWidgetRenderManager && FactivaWidgetRenderManager.getInstance()) {FactivaWidgetRenderManager.getInstance().xWinOpen(this.href);return false;}\" title=\"" + _literals.ViewAll + "\" onmouseover=\"FactivaWidgetRenderManager.getInstance().setMouseOver(this);return false;\" onmouseout=\"FactivaWidgetRenderManager.getInstance().setMouseOut(this);return false;\">" + _literals.ViewAll + "</a>" :
                     "<a href=\"" + _alert.ViewAllUri + "\" style=\"color:" + fontColor + "; text-decoration:none;\" target=\"_new\" onmouseover=\"FactivaWidgetRenderManager.getInstance().setMouseOver(this);return false;\" onmouseout=\"FactivaWidgetRenderManager.getInstance().setMouseOut(this);return false;\" title=\"" + _literals.ViewAll + "\">" + _literals.ViewAll + "</a>");
                     /*
-                    t[t.length] = "<span class=\"fPipe\" style=\"color:#999999\">&nbsp;|&nbsp;</span><a href=\"javascript:void(0)\" style=\"color:" + fontColor + "; text-decoration:none;\" onclick=\"alert(translate('featureIsDisabled'));return false;\" title=\"" + _literals.ViewAll + "\" onmouseover=\"FactivaWidgetRenderManager.getInstance().setMouseOver(this);return false;\" onmouseout=\"FactivaWidgetRenderManager.getInstance().setMouseOut(this);return false;\">" + _literals.ViewAll + "</a>";
+                    t[t.length] = "<span class=\"fPipe\" style=\"color:#999999\">&nbsp;|&nbsp;</span><a href=\"javascript:void(0)\" style=\"color:" + fontColor + "; text-decoration:none;\" onclick=\"alert(_translate('featureIsDisabled'));return false;\" title=\"" + _literals.ViewAll + "\" onmouseover=\"FactivaWidgetRenderManager.getInstance().setMouseOver(this);return false;\" onmouseout=\"FactivaWidgetRenderManager.getInstance().setMouseOut(this);return false;\">" + _literals.ViewAll + "</a>";
                     */
                 }
                 t[t.length] = "</div>";
@@ -2255,7 +2258,7 @@ if (!window.FactivaWidgetRenderManager) {
                             ";font-size:" + fontSize +
                             ";font-family:" + fontFamily +
                             ";font-weight:bold" +
-                            "\">" + ((typeof (folderName) == "undefined" || folderName == null) ? translate("error") : folderName) + "</div><div id=\"fctv_Error\" style=\"" +
+                            "\">" + ((typeof (folderName) == "undefined" || folderName == null) ? _translate("error") : folderName) + "</div><div id=\"fctv_Error\" style=\"" +
                             "background-color:" + bgColor +
                             ";padding:3px 5px" +
                             ";color:" + fontColor +
@@ -2285,3 +2288,112 @@ if (!window.FactivaWidgetRenderManager) {
         };
     })();
 };
+var DiscoveryChart = (function (chartimage) {
+
+    var templateSettings = {
+        evaluate: /\{\{([\s\S]+?)\}\}/g,
+        interpolate: /\{\{=([\s\S]+?)\}\}/g,
+        encode: /\{\{!([\s\S]+?)\}\}/g,
+        use: /\{\{#([\s\S]+?)\}\}/g, //compile time evaluation
+        define: /\{\{##\s*([\w\.$]+)\s*(\:|=)([\s\S]+?)#\}\}/g, //compile time defs
+        conditionalStart: /\{\{\?([\s\S]+?)\}\}/g,
+        conditionalEnd: /\{\{\?\}\}/g,
+        varname: 'it',
+        strip: true,
+        append: true
+    };
+
+    function resolveDefs(c, block, def) {
+        return ((typeof block === 'string') ? block : block.toString())
+		.replace(c.define, function (match, code, assign, value) {
+		    if (code.indexOf('def.') === 0) {
+		        code = code.substring(4);
+		    }
+		    if (!(code in def)) {
+		        if (assign === ':') {
+		            def[code] = value;
+		        } else {
+		            eval("def[code]=" + value);
+		        }
+		    }
+		    return '';
+		})
+		.replace(c.use, function (match, code) {
+		    var v = eval(code);
+		    return v ? resolveDefs(c, v, def) : v;
+		});
+    }
+
+    function GetCharttemplate(tmpl, c, def) {
+     
+        c = c || templateSettings;
+        var cstart = c.append ? "'+(" : "';out+=(", // optimal choice depends on platform/size of templates
+		    cend = c.append ? ")+'" : ");out+='";
+        var str = (c.use || c.define) ? resolveDefs(c, tmpl, def || {}) : tmpl;
+
+        str = ("var out='" +
+			((c.strip) ? str.replace(/\s*<!\[CDATA\[\s*|\s*\]\]>\s*|[\r\n\t]|(\/\*[\s\S]*?\*\/)/g, '') : str)
+			.replace(/\\/g, '\\\\')
+			.replace(/'/g, "\\'")
+			.replace(c.interpolate, function (match, code) {
+			    return cstart + code.replace(/\\'/g, "'").replace(/\\\\/g, "\\").replace(/[\r\t\n]/g, ' ') + cend;
+			})
+			.replace(c.encode, function (match, code) {
+			    return cstart + code.replace(/\\'/g, "'").replace(/\\\\/g, "\\").replace(/[\r\t\n]/g, ' ') + ").toString().replace(/&(?!\\w+;)/g, '&#38;').split('<').join('&#60;').split('>').join('&#62;').split('" + '"' + "').join('&#34;').split(" + '"' + "'" + '"' + ").join('&#39;').split('/').join('&#47;'" + cend;
+			})
+			.replace(c.conditionalEnd, function (match, expression) {
+			    return "';}out+='";
+			})
+			.replace(c.conditionalStart, function (match, expression) {
+			    var code = "if(" + expression + "){";
+			    return "';" + code.replace(/\\'/g, "'").replace(/\\\\/g, "\\").replace(/[\r\t\n]/g, ' ') + "out+='";
+			})
+			.replace(c.evaluate, function (match, code) {
+			    return "';" + code.replace(/\\'/g, "'").replace(/\\\\/g, "\\").replace(/[\r\t\n]/g, ' ') + "out+='";
+			})
+			+ "';return out;")
+			.replace(/\n/g, '\\n')
+			.replace(/\t/g, '\\t')
+			.replace(/\r/g, '\\r')
+			.split("out+='';").join('')
+			.split("var out='';out+=").join('var out=');
+
+        try {
+            return new Function(c.varname, str);
+        } catch (e) {
+            if (typeof console !== 'undefined') console.log("Could not create a template function: " + str);
+            throw e;
+        }
+    };
+
+
+    
+    var template = ['<ul class="discovery-items" style="line-height: 13px;zoom: 1;list-style: none;">',
+                            '{{ var data = it, mw = 1;',
+                                'for (var x=0, w=0, c=0, i = 0, len = data.length;i < len; i++) { ',
+                                'x = data[i];w=((i != 0)?((x.value/data[0].value)*170):170); if(w < mw) w=mw; c = x.GT=="sf"? "cItem source-family":"cItem";}}',
+                                '<li class="{{=c}}" style="position: relative;margin-bottom: 3px;padding-bottom: 6px;width: 186px;padding-left: 0px;height: 13px;" data-di="{{=i}}" title="{{=x.name }}">', //background change for source family 
+                                    '<span class="dj_not" style=" width: 12px;height: 12px;display: block;position: absolute;top: 6px;left: 8px; display: none; cursor: pointer;"title="{{="notTitleTkn"}}"><span></span></span>',
+                                    '<span class="discovery-chart" style="min-width:186px;display: -moz-inline-stack;display: inline-block;zoom: 1;vertical-align: top;position: relative;height:19px;">',
+                                        '<img  class="plot" src="' + chartimage + '" style="float:left;height:4px;zoom: 1;vertical-align: top;width: {{=w}}px;clear:right;" />',
+                                        '<span class="ellipsis" style="clear:left;float:left;margin-bottom:2px;width: 140px;color: #004c70;text-align: left;margin-top: 2px;display: -moz-inline-stack;display:block;zoom: 1;hasLayout: 1;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;">{{=x.name}}</span>',
+                                        '<span class="chart-value" style="color: #999;margin-top: 2px;font-size: 10px;text-align: right;display: inline-block;float:right;zoom: 1;height: 12px;">{{=x.value}}</span>',
+                                    '</span>',
+                                '</li>',
+                            '{{ } }}',
+                        '</ul>'
+                       
+		    ].join('');
+
+    return {
+        RenderDiscoveryChart: function (chartdata) {
+   
+            var parsedTemplate;          
+            
+           parsedTemplate = GetCharttemplate(template);            
+            return (parsedTemplate(chartdata));
+           
+
+        }
+    };
+});

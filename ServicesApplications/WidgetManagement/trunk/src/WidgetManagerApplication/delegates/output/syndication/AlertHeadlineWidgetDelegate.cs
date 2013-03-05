@@ -1043,6 +1043,11 @@ namespace EMG.widgets.ui.delegates.output.syndication
             builder.OutputType = BaseUrlBuilder.UrlOutputType.Absolute;
             builder.BaseUrl = "~/img/tabs/carouselRight.png";
             Literals.CarouselRight = builder.ToString();
+
+            builder = new BaseUrlBuilder();
+            builder.OutputType = BaseUrlBuilder.UrlOutputType.Absolute;
+            builder.BaseUrl = "~/img/plotdot.png";
+            Literals.DiscoveryChartImage = builder.ToString();
         }
 
         /// <summary>

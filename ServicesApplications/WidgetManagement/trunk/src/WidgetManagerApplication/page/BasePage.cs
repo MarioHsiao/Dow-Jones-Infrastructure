@@ -718,7 +718,7 @@ namespace EMG.widgets.ui.page
 
             sb.Append(@"<script type=""text/javascript"">");
             sb.Append("\n<!--\n");
-            sb.Append("function translate(token) {\n");
+            sb.Append("function _translate(token) {\n");
             sb.Append("var rsrcTxt={");
 
             var index = 0;

@@ -1105,20 +1105,20 @@ if (!window.FactivaWidgetRenderManager) {
                 // Add Importance                    
                 if (literals && this.xStr(literals.ImportanceFlagUrl) && literals.ImportanceFlagUrl != null && literals.ImportanceFlagUrl.length > 0) {
                     switch (headline.Importance) {
-                        // Normal          
+                        // Normal                      
                         case 0:
                         default:
                             //sb[sb.length] = "<span class=\"fctv_importance\" style=\"padding-right:0.8em;padding-left:0.3em;font-weight:bold;background:url(" + literals.ImportanceFlagUrl + ") #e5e5e0 no-repeat right 50%; padding-bottom:0.1em;color:#30332d;padding-top:0.1em;\">" + literals.Hot +  "</span>&nbsp;";     
                             break;
-                        // Hot          
+                        // Hot                      
                         case 1:
                             sb[sb.length] = "<span class=\"fctv_importance\" style=\"border: solid 1px #000; padding-right:0.3em;padding-left:0.3em;font-weight:bold; padding-bottom:0.1em;color:#30332d;padding-top:0.1em;\">" + literals.Hot + "</span>&nbsp;";
                             break;
-                        // New          
+                        // New                      
                         case 2:
                             sb[sb.length] = "<span class=\"fctv_importance\" style=\"border: solid 1px #000; padding-right:0.3em;padding-left:0.3em;font-weight:bold; padding-bottom:0.1em;color:#30332d;padding-top:0.1em;\">" + literals.New + "</span>&nbsp;";
                             break;
-                        // MustRead          
+                        // MustRead                      
                         case 3:
                             sb[sb.length] = "<span class=\"fctv_importance\" style=\"border: solid 1px #000; padding-right:0.3em;padding-left:0.3em;font-weight:bold; padding-bottom:0.1em;color:#30332d;padding-top:0.1em;\">" + literals.MustRead + "</span>&nbsp;";
                             break;
@@ -1498,27 +1498,35 @@ if (!window.FactivaWidgetRenderManager) {
                 t[t.length] = "</div>";
                 return t.join("");
             };
+            
+            this.addSampleImage = function (chartsubject) {
+           
+                var imageurl;
+                switch (chartsubject) {
 
-            this.addFlashImage = function (chartdata) {
-                if (chartdata != null && chartdata.data.length > 0) {
-                    if (typeof (FlashObject) != 'undefined') {
-                        var fo = new FlashObject(chartdata.chartUri, "temp_swf", chartdata.width, chartdata.height, chartdata.version);
-                        var t = [];
-                        if (xIE4Up) {
-                            t[t.length] = "<div style=\"margin:10px auto 10px auto" +
+                    case "companies": imageurl = '..\\img\\CompaniesChart.png';
+                        break;
+                    case "executives": imageurl = '..\\img\\ExecutivesChart.png';
+                        break;
+                    case "industries": imageurl = '..\\img\\IndustriesChart.png';
+                        break;
+                    case "regions": imageurl = '..\\img\\RegionsChart.png';
+                        break;
+                    case "subjects": imageurl = '..\\img\\SubjectsChart.png';
+                        break;
+
+                }
+
+
+                var t = [];
+                t[t.length] = "<div id=\"discoveryChart\" class=\"cd_cont discovery-wrapper\"style=\"margin:10px auto 10px auto" +
                                 ";position:relative" +
                                 ";text-align:center" +
-                                ";\">" + fo.getFlashHTML() + "</div>";
-                        } else {
-                            t[t.length] = "<div style=\"margin:10px auto 10px auto" +
-                                ";position:relative" +
-                                ";width:" + chartdata.width + "px" +
-                                ";\">" + fo.getFlashHTML() + "</div>";
-                        }
-                        return t.join("");
-                    }
-                }
+                                ";\">" + '<img src="' + imageurl + '"></img>' + "</div>";
+                return t.join("");
+
             };
+            
 
             this.addGetThisAlertUrl = function (url, token, mColor) {
                 if (url != null) {
@@ -1552,7 +1560,7 @@ if (!window.FactivaWidgetRenderManager) {
                     */
 
                     t[t.length] = "<a id=\"getAlert\" href=\"javascript:void(0)\"" +
-                        " onclick=\"alert(translate('featureIsDisabled'));return false;\"title=\"" + token + "\"" +
+                        " onclick=\"alert(_translate('featureIsDisabled'));return false;\"title=\"" + token + "\"" +
                         " onmouseover=\"FactivaWidgetRenderManager.getInstance().setMouseOver(this);return false;\"" +
                         " onmouseout=\"FactivaWidgetRenderManager.getInstance().setMouseOut(this);return false;\"" +
                         " style=\"color:" + mColor +
@@ -1568,7 +1576,7 @@ if (!window.FactivaWidgetRenderManager) {
                 }
             };
 
-            this.getAlertCompaniesPanel = function (tEle, result, showTitle, integrateFontCSS) {
+            this.getAlertCompaniesPanel = function(tEle, result, showTitle, integrateFontCSS) {
                 if (result != null && result.Definition != null) {
                     var mColor = result.Definition.MainColor;
                     var mFontColor = result.Definition.MainFontColor;
@@ -1605,7 +1613,9 @@ if (!window.FactivaWidgetRenderManager) {
                                 aFontColor,
                                 fontFamily);
                             if (_alert.CompaniesChart != null) {
-                                t[t.length] = this.addFlashImage(_alert.CompaniesChart.Chart);
+                              
+                                //  t[t.length] = this.addDiscoveryChart(_alert.CompaniesChart.Chart);
+                                t[t.length] = this.addSampleImage("companies");
                                 if (result.Data.Alerts[i].IsGroupFolder == false) {
                                     if (result.Definition.DistributionType == 0 || result.Definition.DistributionType == 1)
                                         t[t.length] = this.addGetThisAlertUrl(_alert.CompaniesChart.GetThisAlertUrl
@@ -1663,7 +1673,8 @@ if (!window.FactivaWidgetRenderManager) {
                                 aFontColor,
                                 fontFamily);
                             if (_alert.SubjectsChart != null) {
-                                t[t.length] = this.addFlashImage(_alert.SubjectsChart.Chart);
+                                t[t.length] = this.addSampleImage("subjects");
+                                // t[t.length] = this.addSampleImage("companies");
                                 if (result.Data.Alerts[i].IsGroupFolder == false) {
                                     if (result.Definition.DistributionType == 0 || result.Definition.DistributionType == 1)
                                         t[t.length] = this.addGetThisAlertUrl(_alert.SubjectsChart.GetThisAlertUrl
@@ -1721,7 +1732,8 @@ if (!window.FactivaWidgetRenderManager) {
                                 aFontColor,
                                 fontFamily);
                             if (_alert.IndustriesChart != null) {
-                                t[t.length] = this.addFlashImage(_alert.IndustriesChart.Chart);
+                                // t[t.length] = this.addDiscoveryChart(_alert.IndustriesChart.Chart);
+                                t[t.length] = this.addSampleImage("industries");
                                 if (result.Data.Alerts[i].IsGroupFolder == false) {
                                     if (result.Definition.DistributionType == 0 || result.Definition.DistributionType == 1)
                                         t[t.length] = this.addGetThisAlertUrl(_alert.IndustriesChart.GetThisAlertUrl
@@ -1779,7 +1791,8 @@ if (!window.FactivaWidgetRenderManager) {
                                 aFontColor,
                                 fontFamily);
                             if (_alert.ExecutivesChart != null) {
-                                t[t.length] = this.addFlashImage(_alert.ExecutivesChart.Chart);
+                                //  t[t.length] = this.addDiscoveryChart(_alert.ExecutivesChart.Chart);
+                                t[t.length] = this.addSampleImage("executives");
                                 if (result.Data.Alerts[i].IsGroupFolder == false) {
                                     if (result.Definition.DistributionType == 0 || result.Definition.DistributionType == 1)
                                         t[t.length] = this.addGetThisAlertUrl(_alert.ExecutivesChart.GetThisAlertUrl
@@ -1837,7 +1850,8 @@ if (!window.FactivaWidgetRenderManager) {
                                 aFontColor,
                                 fontFamily);
                             if (_alert.RegionsChart != null) {
-                                t[t.length] = this.addFlashImage(_alert.RegionsChart.Chart);
+                                // t[t.length] = this.addDiscoveryChart(_alert.RegionsChart.Chart);
+                                t[t.length] = this.addSampleImage("regions");
                                 if (result.Data.Alerts[i].IsGroupFolder == false) {
                                     if (result.Definition.DistributionType == 0 || result.Definition.DistributionType == 1)
                                         t[t.length] = this.addGetThisAlertUrl(_alert.RegionsChart.GetThisAlertUrl
@@ -1923,7 +1937,7 @@ if (!window.FactivaWidgetRenderManager) {
                 "<a href=\"" + _alert.ViewAllUri +  "\" style=\"color:" + fontColor + "; text-decoration:none;\" onmouseover=\"FactivaWidgetRenderManager.getInstance().setMouseOver(this);return false;\" onmouseout=\"FactivaWidgetRenderManager.getInstance().setMouseOut(this);return false;\" onclick=\"if(FactivaWidgetRenderManager && FactivaWidgetRenderManager.getInstance()) {FactivaWidgetRenderManager.getInstance().xWinOpen(this.href);return false;}\" title=\"" + _literals.ViewAll + "\">" + _alert.Name + "</a>" :
                 "<a href=\"" + _alert.ViewAllUri +  "\" style=\"color:" + fontColor + "; text-decoration:none;\" onmouseover=\"FactivaWidgetRenderManager.getInstance().setMouseOver(this);return false;\" onmouseout=\"FactivaWidgetRenderManager.getInstance().setMouseOut(this);return false;\" target=\"_new\" title=\"" + _literals.ViewAll + "\">" + _alert.Name + "</a>");
                 */
-                t[t.length] = "<a href=\"javascript:void(0)\" style=\"color:" + fontColor + "; text-decoration:none;\" onmouseover=\"FactivaWidgetRenderManager.getInstance().setMouseOver(this);return false;\" onmouseout=\"FactivaWidgetRenderManager.getInstance().setMouseOut(this);return false;\" onclick=\"alert(translate('featureIsDisabled'));return false;\" title=\"" + _literals.ViewAll + "\">" + _alert.Name + "</a>";
+                t[t.length] = "<a href=\"javascript:void(0)\" style=\"color:" + fontColor + "; text-decoration:none;\" onmouseover=\"FactivaWidgetRenderManager.getInstance().setMouseOver(this);return false;\" onmouseout=\"FactivaWidgetRenderManager.getInstance().setMouseOut(this);return false;\" onclick=\"alert(_translate('featureIsDisabled'));return false;\" title=\"" + _literals.ViewAll + "\">" + _alert.Name + "</a>";
                 t[t.length] = "</div>";
                 return t.join("");
             };
@@ -2111,7 +2125,7 @@ if (!window.FactivaWidgetRenderManager) {
                     "<a href=\"" + _alert.ViewAllUri + "\" style=\"color:" + fontColor + "; text-decoration:none;\" onclick=\"if(FactivaWidgetRenderManager && FactivaWidgetRenderManager.getInstance()) {FactivaWidgetRenderManager.getInstance().xWinOpen(this.href);return false;}\" title=\"" + _literals.ViewAll + "\" onmouseover=\"FactivaWidgetRenderManager.getInstance().setMouseOver(this);return false;\" onmouseout=\"FactivaWidgetRenderManager.getInstance().setMouseOut(this);return false;\">" + _literals.ViewAll + "</a>" :
                     "<a href=\"" + _alert.ViewAllUri +  "\" style=\"color:" + fontColor + "; text-decoration:none;\" target=\"_new\" onmouseover=\"FactivaWidgetRenderManager.getInstance().setMouseOver(this);return false;\" onmouseout=\"FactivaWidgetRenderManager.getInstance().setMouseOut(this);return false;\" title=\"" + _literals.ViewAll + "\">" + _literals.ViewAll + "</a>");
                     */
-                    t[t.length] = "<span class=\"fPipe\" style=\"color:#999999\">&nbsp;|&nbsp;</span><a href=\"javascript:void(0)\" style=\"color:" + fontColor + "; text-decoration:none;\" onclick=\"alert(translate('featureIsDisabled'));return false;\" title=\"" + _literals.ViewAll + "\" onmouseover=\"FactivaWidgetRenderManager.getInstance().setMouseOver(this);return false;\" onmouseout=\"FactivaWidgetRenderManager.getInstance().setMouseOut(this);return false;\">" + _literals.ViewAll + "</a>";
+                    t[t.length] = "<span class=\"fPipe\" style=\"color:#999999\">&nbsp;|&nbsp;</span><a href=\"javascript:void(0)\" style=\"color:" + fontColor + "; text-decoration:none;\" onclick=\"alert(_translate('featureIsDisabled'));return false;\" title=\"" + _literals.ViewAll + "\" onmouseover=\"FactivaWidgetRenderManager.getInstance().setMouseOver(this);return false;\" onmouseout=\"FactivaWidgetRenderManager.getInstance().setMouseOut(this);return false;\">" + _literals.ViewAll + "</a>";
                 }
                 t[t.length] = "</div>";
                 t[t.length] = "</div>";
@@ -2274,7 +2288,7 @@ if (!window.FactivaWidgetRenderManager) {
                             ";font-size:" + fontSize +
                             ";font-family:" + fontFamily +
                             ";font-weight:bold" +
-                            "\">" + ((typeof (folderName) == "undefined" || folderName == null) ? translate("error") : folderName) + "</div><div id=\"fctv_Error\" style=\"" +
+                            "\">" + ((typeof (folderName) == "undefined" || folderName == null) ? _translate("error") : folderName) + "</div><div id=\"fctv_Error\" style=\"" +
                             "background-color:" + bgColor +
                             ";padding:3px 5px" +
                             ";color:" + fontColor +
@@ -2304,3 +2318,4 @@ if (!window.FactivaWidgetRenderManager) {
         };
     })();
 };
+

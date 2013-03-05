@@ -48,7 +48,7 @@ function fireCreateAlertHeadlineWidget() {
     var result = FactivaWidgetRenderManager.getInstance().getData();    
     
     if (fillAlertHeadlineWidgetDelegate(delegate,result)) {
-        $get("mPopHeader").innerHTML = translate("saveWidgetDesignNow");
+        $get("mPopHeader").innerHTML = _translate("saveWidgetDesignNow");
         CommonToolkitScripts.setVisible($get("codeLoadingCntr"), false);
         CommonToolkitScripts.setVisible($get("codeUpdatingCntr"), true);                
         CommonToolkitScripts.setVisible($get("codeCntr"), false);
@@ -77,7 +77,7 @@ function fireUpdateAlertHeadlineWidget() {
 
     if (fillAlertHeadlineWidgetDelegate(delegate,result,true)) {
         
-        $get("mPopHeader").innerHTML = translate("updateWidgetDesign");
+        $get("mPopHeader").innerHTML = _translate("updateWidgetDesign");
         CommonToolkitScripts.setVisible($get("codeLoadingCntr"), false);
         CommonToolkitScripts.setVisible($get("codeUpdatingCntr"), true);        
         CommonToolkitScripts.setVisible($get("codeCntr"), false);
@@ -107,7 +107,7 @@ function fireUpdateAlertHeadlineWidgetScriptCode() {
         // Fill in the widgetId for update
         var wIdHiddenInput = $get("wid");
         if (wIdHiddenInput) {
-            $get("mPopHeader").innerHTML = translate("displayCode");
+            $get("mPopHeader").innerHTML = _translate("displayCode");
             CommonToolkitScripts.setVisible($get("codeLoadingCntr"), false);
             CommonToolkitScripts.setVisible($get("codeUpdatingCntr"), true);        
             CommonToolkitScripts.setVisible($get("codeCntr"), false);
@@ -128,7 +128,7 @@ function fireUpdateAlertHeadlineWidgetScriptCode() {
                 null);  
             return;
         }
-        showError(translate("noWidgetIdFound"));
+        showError(_translate("noWidgetIdFound"));
     }
 }
 
@@ -185,7 +185,7 @@ function fillAlertHeadlineWidgetDelegate(delegate,result,fillWidgetId) {
             
             // Validate Name
             if (delegate.name == null || delegate.name.length == 0) { 
-                 showError(translate("nameIsNotProvided"));
+                 showError(_translate("nameIsNotProvided"));
                  return false;
             }            
             
@@ -195,25 +195,25 @@ function fillAlertHeadlineWidgetDelegate(delegate,result,fillWidgetId) {
                 switch(delegate.authenticationScheme) {
                     case "0": // userid
                         if (delegate.proxyUserId == null || delegate.proxyUserId.length == 0) {
-                            getProxyCredentialsPopup(translate("editUserID"));
+                            getProxyCredentialsPopup(_translate("editUserID"));
                             return false;
                         }
                         if (delegate.proxyPassword == null || delegate.proxyPassword.length == 0) {
-                            getProxyCredentialsPopup(translate("editPassword"));
+                            getProxyCredentialsPopup(_translate("editPassword"));
                             return false;
                         }
                         if (delegate.proxyNamespace == null || delegate.proxyNamespace.length == 0) {
-                            getProxyCredentialsPopup(translate("editNameSpace"));
+                            getProxyCredentialsPopup(_translate("editNameSpace"));
                             return false;
                         }
                         break;
                     case "1": // email
                         if (delegate.proxyEmailAddress == null || delegate.proxyEmailAddress.length == 0) {
-                            getProxyCredentialsPopup(translate("editEmailAddress"));
+                            getProxyCredentialsPopup(_translate("editEmailAddress"));
                             return false;
                         }
                         if (delegate.proxyPassword == null || delegate.proxyPassword.length == 0) {
-                            getProxyCredentialsPopup(translate("editPassword"));
+                            getProxyCredentialsPopup(_translate("editPassword"));
                             return false;
                         }
                         break;
@@ -223,7 +223,7 @@ function fillAlertHeadlineWidgetDelegate(delegate,result,fillWidgetId) {
             
          }
          else {
-            showError(translate("noAlertsFound"));  
+            showError(_translate("noAlertsFound"));  
             return false;
          }
     }    
@@ -280,7 +280,7 @@ function initDesignerForAlertHeadlineWidget() {
     modalPopupBehavior.set_Y(100);
     modalPopupBehavior.show(); 
 
-    $get("mPopHeader").innerHTML = translate("widgetDesigner");
+    $get("mPopHeader").innerHTML = _translate("widgetDesigner");
     CommonToolkitScripts.setVisible($get("codeLoadingCntr"), true);
     CommonToolkitScripts.setVisible($get("codeUpdatingCntr"), false);
     CommonToolkitScripts.setVisible($get("codeCntr"), false);
