@@ -1442,14 +1442,14 @@ namespace DowJones.Assemblers.Articles
                     }
                     return ContentSubCategory.Multimedia;
                 case "article":
-                    foreach (var item in article.contentParts.parts)
+                    foreach (var item in article.contentParts.parts.Where(i => i.mimeType.IsNotEmpty()))
                     {
-                        switch (item.type.ToLower())
+                        switch (item.mimeType.ToLower())
                         {
-                            case "audio":
-                                return ContentSubCategory.Audio;
-                            case "video":
-                                return ContentSubCategory.Video;
+                            case "image/gif":
+                            case "image/jpeg":
+                            case "image/png":
+                                return ContentSubCategory.Graphic;
                         }
                     }
                     return ContentSubCategory.Article;
@@ -1475,6 +1475,24 @@ namespace DowJones.Assemblers.Articles
         /// <param name="article">The article.</param>
         protected internal static void MapExtraReferenceInformation(ArticleResultset articleResultset, Article article)
         {
+            if (article.leadParagraph != null && article.contentParts.parts != null)
+            {
+                articleResultset.ContentItems = new List<Ajax.HeadlineList.HeadlineContentItem>();
+                foreach (var item in article.contentParts.parts.WhereNotNull())
+                {
+                    articleResultset.ContentItems.Add(new Ajax.HeadlineList.HeadlineContentItem
+                    {
+                        mimeType = item.mimeType,
+                        reference = item.reference,
+                        size = item.size.ToString(),
+                        subType = item.subType,
+                        type = item.type
+                    });
+                }
+
+            }
+
+
             switch (articleResultset.ContentCategory)
             {
                 case ContentCategory.Picture:

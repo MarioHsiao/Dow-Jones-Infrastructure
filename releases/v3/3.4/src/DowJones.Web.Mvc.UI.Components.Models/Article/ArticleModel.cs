@@ -115,6 +115,10 @@ namespace DowJones.Web.Mvc.UI.Components.Article
             get;
             set;
         }
+
+        [DataMember(Name = "contentItems")]
+        [JsonProperty("contentItems")]
+        public List<Ajax.HeadlineList.HeadlineContentItem> ContentItems { get; set; }
     }
 
     /// <summary>
@@ -240,7 +244,8 @@ namespace DowJones.Web.Mvc.UI.Components.Article
                         ExternalUri = ArticleDataSet.ExternalUri,
                         MimeType = ArticleDataSet.MimeType,
                         @ref = ArticleDataSet.Ref,
-                        SubType = ArticleDataSet.SubType
+                        SubType = ArticleDataSet.SubType,
+                        ContentItems = ArticleDataSet.ContentItems
                     };
                 }
 

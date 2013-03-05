@@ -132,6 +132,18 @@ namespace DowJones.Ajax.HeadlineList
         /// </summary>
         [DataMember]
         public string contentSubCategoryDescriptor;
+
+        [DataMember(Name = "contentItems")] public List<HeadlineContentItem> contentItems;
+    }
+
+    [DataContract(Name = "contentItem", Namespace = "")]
+    public class HeadlineContentItem
+    {
+        [DataMember] public string mimeType;
+        [DataMember] public string reference;
+        [DataMember] public string size;
+        [DataMember] public string subType;
+        [DataMember] public string type;
     }
 
     /// <summary>
