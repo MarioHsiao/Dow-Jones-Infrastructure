@@ -23,7 +23,7 @@ namespace DowJones.Web.Mvc.UI.Components.Article
     using Ajax.Article;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 02/25/2013 11:18 AM
+    // Last Generated Timestamp: 03/06/2013 01:55 PM
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.27108")]
     public class ParagraphComponent : DowJones.Web.Mvc.UI.ViewComponentBase<Article.ParagraphModel>
     {
@@ -56,142 +56,152 @@ namespace DowJones.Web.Mvc.UI.Components.Article
 {
     switch(renderItem.ItemMarkUp){
         case MarkUpType.ArticleHighlight:
+            {
+                {
+WriteLiteral("<span class=\"dj_article_highlight\">");
 
-WriteLiteral("            <span class=\"dj_article_highlight\">");
 
-
-                                           Write(renderItem.ItemText);
+                                                Write(renderItem.ItemText);
 
 WriteLiteral("</span>");
 
 
-                                                                            break;
+                                                                                 }
+            }
+            break;
         case MarkUpType.Image:
+            {
+WriteLiteral("<img alt=\"\" src=\"");
 
-WriteLiteral("            <img alt=\"\" src=\"");
 
-
-                         Write(renderItem.ItemValue);
+                          Write(renderItem.ItemValue);
 
 WriteLiteral("\" />");
 
 
-                                                        break;
+                                                         }
+            break;
         case MarkUpType.ImageFigure:
-                   if (!string.IsNullOrEmpty(renderItem.EnlargedImageUrl)){ 
+			if (!string.IsNullOrEmpty(renderItem.EnlargedImageUrl))
+				{
+WriteLiteral("<div class=\"figure\"><div class=\"figImages\"><img alt=\"");
 
-WriteLiteral("                <div class=\"figure\"><div class=\"figImages\"><img alt=\"");
 
-
-                                                                 Write(renderItem.Title.EscapeForHtml());
+                                                      Write(renderItem.Title.EscapeForHtml());
 
 WriteLiteral("\" src=\"");
 
 
-                                                                                                           Write(renderItem.ItemValue);
+                                                                                                Write(renderItem.ItemValue);
 
 WriteLiteral("\" title=\"");
 
 
-                                                                                                                                           Write(renderItem.Title.EscapeForHtml());
+                                                                                                                                Write(renderItem.Title.EscapeForHtml());
 
 WriteLiteral("\" /><a class=\"dj_article_enlargeImg_link\" href=\"javascript:void(0)\" data-href=\"");
 
 
-                                                                                                                                                                                                                                                             Write(renderItem.EnlargedImageUrl);
+                                                                                                                                                                                                                                                  Write(renderItem.EnlargedImageUrl);
 
 WriteLiteral("\">Enlarge</a></div><div class=\"figCredit\">");
 
 
-                                                                                                                                                                                                                                                                                                                                     Write(renderItem.Credit);
+                                                                                                                                                                                                                                                                                                                          Write(renderItem.Credit);
 
 WriteLiteral("</div><div class=\"figSource\">");
 
 
-                                                                                                                                                                                                                                                                                                                                                                                      Write(renderItem.Source);
+                                                                                                                                                                                                                                                                                                                                                                           Write(renderItem.Source);
 
 WriteLiteral("</div><div class=\"figCaption\">");
 
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                        Write(renderItem.Caption);
+                                                                                                                                                                                                                                                                                                                                                                                                                             Write(renderItem.Caption);
 
 WriteLiteral("</div></div>");
 
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                             }else{
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                  }
+			else
+				{
+WriteLiteral("<div class=\"figure\"><img alt=\"");
 
-WriteLiteral("                <div class=\"figure\"><img alt=\"");
 
-
-                                          Write(renderItem.Title.EscapeForHtml());
+                               Write(renderItem.Title.EscapeForHtml());
 
 WriteLiteral("\" src=\"");
 
 
-                                                                                    Write(renderItem.ItemValue);
+                                                                         Write(renderItem.ItemValue);
 
 WriteLiteral("\" title=\"");
 
 
-                                                                                                                    Write(renderItem.Title.EscapeForHtml());
+                                                                                                         Write(renderItem.Title.EscapeForHtml());
 
 WriteLiteral("\" /><div class=\"figCredit\">");
 
 
-                                                                                                                                                                                  Write(renderItem.Credit);
+                                                                                                                                                                       Write(renderItem.Credit);
 
 WriteLiteral("</div><div class=\"figSource\">");
 
 
-                                                                                                                                                                                                                                   Write(renderItem.Source);
+                                                                                                                                                                                                                        Write(renderItem.Source);
 
 WriteLiteral("</div><div class=\"figCaption\">");
 
 
-                                                                                                                                                                                                                                                                                     Write(renderItem.Caption);
+                                                                                                                                                                                                                                                                          Write(renderItem.Caption);
 
 WriteLiteral("</div></div>");
 
 
-                                                                                                                                                                                                                                                                                                                          }break;
+                                                                                                                                                                                                                                                                                                               }
+			break;
         case MarkUpType.PostProcessing:
             switch (renderItem.ItemPostProcessData.Type)
             {
                 case PostProcessing.Print:
+					{
 WriteLiteral("<span class=\'dj_article_colorLinks\'>");
 
 
-                                                                          Write(renderItem.ItemPostProcessData.ElinkValue);
+                                      Write(renderItem.ItemPostProcessData.ElinkValue);
 
 WriteLiteral(" [");
 
 
-                                                                                                                        Write(renderItem.ItemPostProcessData.ElinkText);
+                                                                                    Write(renderItem.ItemPostProcessData.ElinkText);
 
 WriteLiteral("]</span>");
 
 
-                                                                                                                                                                               break;
+                                                                                                                                           }
+					break;
                 case PostProcessing.Save:
-                                     Write(renderItem.ItemPostProcessData.ElinkValue);
+					
+ Write(renderItem.ItemPostProcessData.ElinkValue);
 
-                                                                                      
-                                                                                  Write(renderItem.ItemPostProcessData.ElinkText);
+                                                  
+                                              Write(renderItem.ItemPostProcessData.ElinkText);
 
-                                                                                                                                 break;
+                                                                                             break;
             }
             break;
         case MarkUpType.Html:
+            {
+WriteLiteral("<div class=\"embededHtml\">");
 
-WriteLiteral("            <div class=\"embededHtml\">");
 
-
-                                 Write(Html.Raw(renderItem.ItemText));
+                                  Write(Html.Raw(renderItem.ItemText));
 
 WriteLiteral("</div>");
 
 
-                                                                           break;
+                                                                            }
+			break;
         case MarkUpType.ArticleElink:
             var elinkItemText = "";
             if (renderItem.ElinkItems.Count > 0)
@@ -199,130 +209,142 @@ WriteLiteral("</div>");
                 foreach (var elinkItem in renderItem.ElinkItems)
                 {
                     if (elinkItem.ItemMarkUp == MarkUpType.ArticleElinkHighlight)
-                    { elinkItemText = elinkItemText + "<span class='dj_article_highlight'>" + elinkItem.ItemText + "</span>"; }
+                    {
+						elinkItemText = elinkItemText + "<span class='dj_article_highlight'>" + elinkItem.ItemText + "</span>";
+					}
                     else if (elinkItem.ItemMarkUp == MarkUpType.Plain)
-                    { elinkItemText = elinkItemText + elinkItem.ItemText; }
+                    {
+						elinkItemText = elinkItemText + elinkItem.ItemText;
+					}
                 }
             }
-            else { elinkItemText = renderItem.ItemText; }
+            else
+			{
+				elinkItemText = renderItem.ItemText;
+			}
+            {
+WriteLiteral("<a class=\"dj_article_elink\" href=\"javascript:void(0)\" data-href=\"");
 
-WriteLiteral("            <a class=\"dj_article_elink\" href=\"javascript:void(0)\" data-href=\"");
 
-
-                                                                        Write(renderItem.ItemValue.EscapeForHtml());
+                                                                         Write(renderItem.ItemValue.EscapeForHtml());
 
 WriteLiteral("\">");
 
 
-                                                                                                               Write(elinkItemText);
+                                                                                                                Write(elinkItemText);
 
 WriteLiteral("</a>");
 
 
-                                                                                                                                      break;
+                                                                                                                                       }
+			break;
         case MarkUpType.Plain:
+            {
+WriteLiteral("<span class=\"dj_article_plain\">");
 
-WriteLiteral("            <span class=\"dj_article_plain\">");
 
-
-                                       Write(renderItem.ItemText);
+                                        Write(renderItem.ItemText);
 
 WriteLiteral("</span>");
 
 
-                                                                        break;
+                                                                         }
+			break;
         case MarkUpType.EntityLink:
-            if (renderItem.Highlight){
+            if (renderItem.Highlight)
+				{
 WriteLiteral("<a class=\"dj_article_entity dj_article_highlight ");
 
 
-                                                                                  Write(renderItem.ItemEntityData.Category);
+                                                 Write(renderItem.ItemEntityData.Category);
 
 WriteLiteral("\" href=\"javascript:void(0);\" data-entity=\"");
 
 
-                                                                                                                                                               Write(renderItem.ItemEntityData.ToJson().EscapeForHtml());
+                                                                                                                              Write(renderItem.ItemEntityData.ToJson().EscapeForHtml());
 
 WriteLiteral("\">");
 
 
-                                                                                                                                                                                                                     Write(renderItem.ItemText);
+                                                                                                                                                                                    Write(renderItem.ItemText);
 
 WriteLiteral("</a>");
 
 
-                                                                                                                                                                                                                                                   }
-            else {
-WriteLiteral(" <a class=\"dj_article_entity ");
+                                                                                                                                                                                                                  }
+            else
+				{
+WriteLiteral("<a class=\"dj_article_entity ");
 
 
-                                          Write(renderItem.ItemEntityData.Category);
+                            Write(renderItem.ItemEntityData.Category);
 
 WriteLiteral("\" href=\"javascript:void(0);\" data-entity=\"");
 
 
-                                                                                                                       Write(renderItem.ItemEntityData.ToJson().EscapeForHtml());
+                                                                                                         Write(renderItem.ItemEntityData.ToJson().EscapeForHtml());
 
 WriteLiteral("\">");
 
 
-                                                                                                                                                                             Write(renderItem.ItemText);
+                                                                                                                                                               Write(renderItem.ItemText);
 
 WriteLiteral("</a>");
 
 
-                                                                                                                                                                                                           }break;
+                                                                                                                                                                                             }
+			break;
         case MarkUpType.SpanAnchor:
+            {
+WriteLiteral("<span><a class=\"dj_article_entity\" href=\"javascript:void(0);\" data-entity=\"");
 
-WriteLiteral("            <span><a class=\"dj_article_entity\" href=\"javascript:void(0);\" data-en" +
-"tity=\"");
 
-
-                                                                                   Write(renderItem.ItemEntityData.ToJson().EscapeForHtml());
+                                                                                    Write(renderItem.ItemEntityData.ToJson().EscapeForHtml());
 
 WriteLiteral("\">");
 
 
-                                                                                                                                          Write(renderItem.ItemEntityData.Name);
+                                                                                                                                           Write(renderItem.ItemEntityData.Name);
 
 WriteLiteral("</a></span>");
 
 
-                                                                                                                                                                                          break;                                                                                                                              break;
+                                                                                                                                                                                           }
+			break;
         case MarkUpType.Anchor:
+            {
+WriteLiteral("<span><a class=\"dj_article_anchor\" href=\"javascript:void(0);\" data-href=\"");
 
-WriteLiteral("            <span><a class=\"dj_article_anchor\" href=\"javascript:void(0);\" data-hr" +
-"ef=\"");
 
-
-                                                                                 Write(renderItem.ItemValue.EscapeForHtml());
+                                                                                  Write(renderItem.ItemValue.EscapeForHtml());
 
 WriteLiteral("\">");
 
 
-                                                                                                                          Write(renderItem.ItemText);
+                                                                                                                           Write(renderItem.ItemText);
 
 WriteLiteral("</a></span>");
 
 
-                                                                                                                                                               break;                                                                                                              break;
+                                                                                                                                                                }break;
         case MarkUpType.Unknown:
+            {
+WriteLiteral("<span><a class=\"dj_article_accessionNum\" href=\"javascript:void(0);\" data-accessio" +
+"nNum=\"");
 
-WriteLiteral("            <span><a class=\"dj_article_accessionNum\" href=\"javascript:void(0);\" d" +
-"ata-accessionNum=\"");
 
-
-                                                                                               Write(renderItem.ItemValue.EscapeForHtml());
+                                                                                                Write(renderItem.ItemValue.EscapeForHtml());
 
 WriteLiteral("\">");
 
 
-                                                                                                                                        Write(renderItem.ItemText);
+                                                                                                                                         Write(renderItem.ItemText);
 
 WriteLiteral("</a></span>");
 
 
-                                                                                                                                                                             break;
+                                                                                                                                                                              }
+			break;
      }
 }
 WriteLiteral("     ");
