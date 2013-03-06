@@ -342,10 +342,25 @@ namespace EMG.widgets.ui.delegates.output.syndication
 
             if (tabCollection != null && tabCollection.Count > 0)
             {
+                var foundHeadline = false;
                 foreach (Tab tab in tabCollection)
                 {
                     if (tab != null)
                     {
+                        //Bug fix for possible incorrect data where Headlines tab comes in twice.
+                        if (tab.Type.Equals(TabType.Headlines))
+                        {
+                            if (foundHeadline)
+                            {
+                                tab.Type = TabType.Regions;
+                            }
+                            else
+                            {
+                                foundHeadline = true;
+                            }
+                        }
+                        //End of Bug fix
+
                         // Insert the tab at the position specified by the Tab object
                         widgetDiscoveryTabCollection.Insert(tab.Position, MapDiscoveryTab(tab));
                     }
@@ -407,11 +422,11 @@ namespace EMG.widgets.ui.delegates.output.syndication
                     widgetDiscoveryTab.Id = "industries";
                     widgetDiscoveryTab.DisplayCheckbox = true;
                     break;
-               /* case TabType.Regions:
+                case TabType.Regions:
                     widgetDiscoveryTab.Text = ResourceText.GetInstance.GetString("regions");
                     widgetDiscoveryTab.Id = "regions";
                     widgetDiscoveryTab.DisplayCheckbox = true;
-                    break;*/
+                    break;
                 case TabType.NewSubjects:
                     widgetDiscoveryTab.Text = ResourceText.GetInstance.GetString("newsSubjects");
                     widgetDiscoveryTab.Id = "subjects";
