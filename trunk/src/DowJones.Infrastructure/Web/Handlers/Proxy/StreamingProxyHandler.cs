@@ -425,7 +425,7 @@ namespace DowJones.Web.Handlers.Proxy
                 context.Response.AppendHeader("Content-Disposition", contentDisposition);
             }
 
-            context.Response.ContentType = response.ContentType.Split(new [] { ";" }, StringSplitOptions.RemoveEmptyEntries)[0];
+            context.Response.ContentType = response.ContentType;
 
             context.Response.AppendHeader("x-Served-By", "StreamingProxy on {0}".FormatWith(Environment.MachineName));
         }

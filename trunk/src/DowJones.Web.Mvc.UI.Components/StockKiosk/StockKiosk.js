@@ -325,13 +325,10 @@ DJ.UI.StockKiosk = DJ.UI.Component.extend({
         var self = this;
 
         if (self.data) {
-            self.$element.html(this.templates.success(data));                  
+            self.$element.html(this.templates.success());                  
         }
         else {
-            self.$element.html("<span class='no-results'><%= Token(";
-            noStockKioskResults;
-            ") %></span>");
-            ; 
+            self.$element.html("<span class='no-results'><%= Token('noStockKioskResults') %></span>");; 
             return;           
         } 
     },
@@ -433,10 +430,7 @@ DJ.UI.StockKiosk = DJ.UI.Component.extend({
         var self = this;
         try {
             if (graphDataModel.objStockSeries.length == 0) {
-                chartContainer.html("<span class='no-results'><%= Token(";
-                noChartResults;
-                ") %></span>");
-                ; 
+                chartContainer.html("<span class='no-results'><%= Token('noChartResults') %></span>");
                 if (this.chart) {
                     this.chart = null;
                 }

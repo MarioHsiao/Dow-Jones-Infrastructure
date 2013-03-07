@@ -18,7 +18,7 @@ namespace DowJones.Formatters.Globalization.TimeZone
         /// <summary>
         /// The dictionary mapping time zones with their names.
         /// </summary>
-        private readonly Dictionary<string, System.TimeZone> nameMap;
+        private readonly Dictionary<string, System.TimeZone> _nameMap;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TimeZoneCollection"/> class.
@@ -27,28 +27,28 @@ namespace DowJones.Formatters.Globalization.TimeZone
         internal TimeZoneCollection(RegistryKey data) : base(new List<System.TimeZone>())
         {
             var subKeyNames = data.GetSubKeyNames();
-            nameMap = new Dictionary<string, System.TimeZone>();
+            _nameMap = new Dictionary<string, System.TimeZone>();
             foreach (var name in subKeyNames)
             {
                 using (var key = data.OpenSubKey(name))
                 {
                     var item = new UITimeZone(name, key);
                     Items.Add(item);
-                    nameMap.Add(item.StandardName, item);
+                    _nameMap.Add(item.StandardName, item);
                 }
             }
         }
 
         internal TimeZoneCollection() : base(new List<System.TimeZone>())
         {
-            nameMap = new Dictionary<string, System.TimeZone>();
+            _nameMap = new Dictionary<string, System.TimeZone>();
         }
 
         internal void Add(UITimeZone timeZone)
         {
             Items.Add(timeZone);
-            nameMap.Add(timeZone.StandardName, timeZone);
-            nameMap.Add(timeZone.FactivaCode, timeZone);
+            _nameMap.Add(timeZone.StandardName, timeZone);
+            _nameMap.Add(timeZone.FactivaCode, timeZone);
         }
 
         /// <summary>
@@ -58,7 +58,7 @@ namespace DowJones.Formatters.Globalization.TimeZone
         public System.TimeZone this[string name]
         {
             [System.Diagnostics.DebuggerStepThrough]
-            get { return nameMap[name]; }
+            get { return _nameMap[name]; }
         }
     }
 }

@@ -14,7 +14,7 @@ namespace DowJones.Web.Mvc.Diagnostics.Mapping
                 return Content("Mapper is not of type DowJones.Mapper - I don't know how to handle that!");
             
             var mapper = (Mapper)Mapper.Instance;
-            var typeMappers = mapper.TypeMappers.OrderBy(x => x.SourceType.FullName);
+            var typeMappers = mapper.TypeMappers.ToList().OrderBy(x => x.SourceType.FullName);
             var viewModel = new MapperDebuggerViewModel(typeMappers);
 
             return new DiagnosticsViewAction<MapperDebuggerView>(viewModel);
