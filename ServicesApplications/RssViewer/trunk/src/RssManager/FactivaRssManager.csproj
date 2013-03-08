@@ -99,60 +99,74 @@
   <ItemGroup>
     <Reference Include="Argotic.Common, Version=2008.0.0.0, Culture=neutral, PublicKeyToken=84b2ce808fb02469, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>FileReferences\Argotic.Common.dll</HintPath>
+      <HintPath>..\Dependency\Argotic.Common.dll</HintPath>
     </Reference>
     <Reference Include="Argotic.Core, Version=2008.0.0.0, Culture=neutral, PublicKeyToken=84b2ce808fb02469, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>FileReferences\Argotic.Core.dll</HintPath>
+      <HintPath>..\Dependency\Argotic.Core.dll</HintPath>
     </Reference>
     <Reference Include="Argotic.Extensions, Version=2008.0.0.0, Culture=neutral, PublicKeyToken=84b2ce808fb02469, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>FileReferences\Argotic.Extensions.dll</HintPath>
+      <HintPath>..\Dependency\Argotic.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="Argotic.Web, Version=2008.0.0.0, Culture=neutral, PublicKeyToken=84b2ce808fb02469, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>FileReferences\Argotic.Web.dll</HintPath>
+      <HintPath>..\Dependency\Argotic.Web.dll</HintPath>
     </Reference>
     <Reference Include="CachingWrapper, Version=1.5.2526.21130, Culture=neutral">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>FileReferences\CachingWrapper.dll</HintPath>
+      <HintPath>..\Dependency\CachingWrapper.dll</HintPath>
     </Reference>
     <Reference Include="EMG.Utility, Version=3.6.0.36, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>resources\EMG.Utility.dll</HintPath>
+      <HintPath>..\Dependency\EMG.Utility.dll</HintPath>
     </Reference>
     <Reference Include="encryption, Version=1.0.2949.19938, Culture=neutral">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>FileReferences\encryption.dll</HintPath>
+      <HintPath>..\Dependency\encryption.dll</HintPath>
     </Reference>
     <Reference Include="factiva.gateway.messages, Version=7.5.0.114, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\Factiva Web UI\trunk\src\Dotcom\Dotcom\GatewayResources\bin\factiva.gateway.messages.dll</HintPath>
+      <HintPath>..\Dependency\factiva.gateway.messages.dll</HintPath>
     </Reference>
-    <Reference Include="FactivaBusinessLayerLogic, Version=13.10.0.20721, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="FactivaBusinessLayerLogic, Version=20.1.0.24266, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Dependency\FactivaBusinessLayerLogic.dll</HintPath>
     </Reference>
     <Reference Include="FactivaGateway, Version=1.6.0.1, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\Factiva Web UI\trunk\src\Dotcom\Dotcom\GatewayResources\bin\FactivaGateway.dll</HintPath>
+      <HintPath>..\Dependency\FactivaGateway.dll</HintPath>
     </Reference>
-    <Reference Include="FactivaServices, Version=13.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="FactivaServices, Version=13.13.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Dependency\FactivaServices.dll</HintPath>
     </Reference>
     <Reference Include="FCSLogger, Version=1.0.1724.17573, Culture=neutral">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>FileReferences\FCSLogger.dll</HintPath>
+      <HintPath>..\Dependency\FCSLogger.dll</HintPath>
     </Reference>
     <Reference Include="GenerateRss, Version=1.0.1956.22368, Culture=neutral">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>FileReferences\GenerateRss.dll</HintPath>
+      <HintPath>..\Dependency\GenerateRss.dll</HintPath>
     </Reference>
-    <Reference Include="Interop.FCMLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
-    <Reference Include="Interop.FCSUTILLib, Version=1.0.0.0, Culture=neutral" />
+    <Reference Include="Interop.FCMLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\Dependency\Interop.FCMLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Interop.FCSUTILLib, Version=1.0.0.0, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\Dependency\Interop.FCSUTILLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Interop.Scripting, Version=1.0.0.0, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\Dependency\Interop.Scripting.dll</HintPath>
+    </Reference>
     <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
-      <Private>True</Private>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dependency\log4net.dll</HintPath>
     </Reference>
     <Reference Include="System">
       <Name>System</Name>
@@ -175,13 +189,6 @@
     <Reference Include="System.Xml">
       <Name>System.XML</Name>
     </Reference>
-    <COMReference Include="Scripting">
-      <Guid>{420B2830-E718-11CF-893D-00A0C9054228}</Guid>
-      <VersionMajor>1</VersionMajor>
-      <VersionMinor>0</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>tlbimp</WrapperTool>
-    </COMReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs">
@@ -217,30 +224,6 @@
     <Compile Include="RssRequestBase.cs">
       <SubType>Code</SubType>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="resources\Argotic.Common.dll" />
-    <Content Include="resources\Argotic.Core.dll" />
-    <Content Include="resources\Argotic.Extensions.dll" />
-    <Content Include="resources\Argotic.Web.dll" />
-    <Content Include="resources\CachingWrapper.dll" />
-    <Content Include="resources\EMG.Utility.dll" />
-    <Content Include="resources\encryption.dll" />
-    <Content Include="resources\factiva.gateway.messages.dll" />
-    <Content Include="resources\FactivaBusinessLayerLogic.dll" />
-    <Content Include="resources\FactivaBusinessLayerLogic.XmlSerializers.dll" />
-    <Content Include="resources\FactivaGateway.dll" />
-    <Content Include="resources\FactivaServices.dll" />
-    <Content Include="resources\FactivaServices.xml" />
-    <Content Include="resources\FCSLogger.dll" />
-    <Content Include="resources\GenerateRss.dll" />
-    <Content Include="resources\Interop.FactivaModules.dll" />
-    <Content Include="resources\Interop.FCMLib.dll" />
-    <Content Include="resources\Interop.FCSUTILLib.dll" />
-    <Content Include="resources\Interop.MSXML2.dll" />
-    <Content Include="resources\Interop.Scripting.dll" />
-    <Content Include="resources\log4net.dll" />
-    <Content Include="resources\Simplicit.Net.Lzo.dll" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

@@ -1,11 +1,58 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FactivaRssManager", "RssManager\FactivaRssManager.csproj", "{91880552-D382-490A-80E2-4C5E85FE7CD7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RSS_WebApp", "RSS_WebApp\RSS_WebApp.csproj", "{04B31DEE-FB21-44D7-BCF0-004B665433A5}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dependency", "Dependency", "{73B7EA64-091F-4AB5-B3D8-3B5A7E912FF1}"
+	ProjectSection(SolutionItems) = preProject
+		Dependency\Argotic.Common.dll = Dependency\Argotic.Common.dll
+		Dependency\Argotic.Core.dll = Dependency\Argotic.Core.dll
+		Dependency\Argotic.Extensions.dll = Dependency\Argotic.Extensions.dll
+		Dependency\Argotic.Web.dll = Dependency\Argotic.Web.dll
+		Dependency\CachingWrapper.dll = Dependency\CachingWrapper.dll
+		Dependency\CordaNetEmbedder.dll = Dependency\CordaNetEmbedder.dll
+		Dependency\EMG.Utility.dll = Dependency\EMG.Utility.dll
+		Dependency\EMG.Utility.pdb = Dependency\EMG.Utility.pdb
+		Dependency\encryption.dll = Dependency\encryption.dll
+		Dependency\factiva.gateway.messages.dll = Dependency\factiva.gateway.messages.dll
+		Dependency\factiva.gateway.messages.pdb = Dependency\factiva.gateway.messages.pdb
+		Dependency\factiva.gateway.messages.xml = Dependency\factiva.gateway.messages.xml
+		Dependency\FactivaBusinessLayerLogic.dll = Dependency\FactivaBusinessLayerLogic.dll
+		Dependency\FactivaBusinessLayerLogic.XmlSerializers.dll = Dependency\FactivaBusinessLayerLogic.XmlSerializers.dll
+		Dependency\FactivaGateway.dll = Dependency\FactivaGateway.dll
+		Dependency\FactivaGateway.pdb = Dependency\FactivaGateway.pdb
+		Dependency\FactivaServices.dll = Dependency\FactivaServices.dll
+		Dependency\FactivaServices.pdb = Dependency\FactivaServices.pdb
+		Dependency\FactivaServices.xml = Dependency\FactivaServices.xml
+		Dependency\FCSLogger.dll = Dependency\FCSLogger.dll
+		Dependency\GenerateRss.dll = Dependency\GenerateRss.dll
+		Dependency\Interop.FactivaModules.dll = Dependency\Interop.FactivaModules.dll
+		Dependency\Interop.FCMLib.dll = Dependency\Interop.FCMLib.dll
+		Dependency\Interop.FCSUTILLib.dll = Dependency\Interop.FCSUTILLib.dll
+		Dependency\Interop.MSXML2.dll = Dependency\Interop.MSXML2.dll
+		Dependency\Interop.Scripting.dll = Dependency\Interop.Scripting.dll
+		Dependency\log4net.dll = Dependency\log4net.dll
+		Dependency\Simplicit.Net.Lzo.dll = Dependency\Simplicit.Net.Lzo.dll
+	EndProjectSection
+EndProject
 Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 2
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://sbknwstfs1:8080/tfs/defaultcollection
+		SccProjectUniqueName0 = RssManager\\FactivaRssManager.csproj
+		SccProjectName0 = RssManager
+		SccAuxPath0 = http://sbknwstfs1:8080/tfs/defaultcollection
+		SccLocalPath0 = RssManager
+		SccProvider0 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccProjectUniqueName1 = RSS_WebApp\\RSS_WebApp.csproj
+		SccProjectName1 = RSS_WebApp
+		SccAuxPath1 = http://sbknwstfs1:8080/tfs/defaultcollection
+		SccLocalPath1 = RSS_WebApp
+		SccProvider1 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|.NET = Debug|.NET
 		Debug|Any CPU = Debug|Any CPU
