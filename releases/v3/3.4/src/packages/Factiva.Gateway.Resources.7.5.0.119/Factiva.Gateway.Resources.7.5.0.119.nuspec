@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>Factiva.Gateway.Resources</id>
+    <version>7.5.0.119</version>
+    <authors>Factiva Gateway Team</authors>
+    <owners>Factiva Gateway Team</owners>
+    <licenseUrl>http://dowjones.com</licenseUrl>
+    <projectUrl>http://dowjones.com</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Factiva Gateway resources</description>
+    <language>en-US</language>
+    <references />
+  </metadata>
+</package>

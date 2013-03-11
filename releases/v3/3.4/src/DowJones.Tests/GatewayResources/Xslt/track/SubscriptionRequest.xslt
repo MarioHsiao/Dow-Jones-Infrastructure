@@ -74,8 +74,11 @@
 			<xsl:when test=".='Afternoon'">
 				<xsl:element name="DeliveryTimes">afternoon</xsl:element>
 			</xsl:when>
+      <xsl:when test=".='EarlyMorning'">
+        <xsl:element name="DeliveryTimes">e</xsl:element>
+      </xsl:when>
 			<xsl:when test=".='Both'">
-				<xsl:element name="DeliveryTimes">both</xsl:element>
+				<xsl:element name="DeliveryTimes">b</xsl:element>
 			</xsl:when>
 		</xsl:choose>
 	</xsl:template>

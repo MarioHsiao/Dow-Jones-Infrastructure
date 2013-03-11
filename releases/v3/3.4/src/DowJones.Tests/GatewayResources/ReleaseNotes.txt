@@ -1252,3 +1252,13 @@ Release Version 7.5.0.115
 Release Version 7.5.0.116
 =============================================================================================================================
 2/26/2013 Himmat: Updated  StartDay, DateInterval, DatePeriod enums with None enum value. 
+03/01/2013 Divya: Added subject to DeliveryInfo Object in Workspaces asset.
+
+Release Version 7.5.0.118
+=============================================================================================================================
+3/4/2013 Himmat: Added TopSources and  TopNewsSubjects enum in metric type for media analytic charts. 
+
+Release Version 7.5.0.119
+=============================================================================================================================
+3/7/2012 Pramod: Added Bug fix for ReviseSubscribeFolderReqeust deliverytimes.
+3/8/2013 Nam: Added HomePageRedirectPreferenceItem
