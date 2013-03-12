@@ -240,7 +240,12 @@ DJ.UI.AbstractCanvasModule = DJ.UI.CompositeComponent.extend({
         this.hideLoadingArea();
         this.$contentArea.show.apply(this.$contentArea, arguments);
     },
-
+    
+    showContentAreaHideMsgArea: function () {
+        this.hideMessageArea();
+        this.showContentArea();
+    },
+    
     showEditArea: function () {
         if (!this.hasEditor) { return; }
 
