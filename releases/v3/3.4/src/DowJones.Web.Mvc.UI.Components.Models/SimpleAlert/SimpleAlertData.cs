@@ -90,6 +90,7 @@ namespace DowJones.Web.Mvc.UI.Components.SimpleAlert
                 {
                     _deliveryTimes = new List<Option>();
                     _deliveryTimes.Add(new Option { Id = ((int)Factiva.Gateway.Messages.Track.V1_0.DeliveryTimes.None).ToString(), Name = _resources.GetString("none") });
+                    _deliveryTimes.Add(new Option { Id = ((int)Factiva.Gateway.Messages.Track.V1_0.DeliveryTimes.EarlyMorning).ToString(), Name = _resources.GetString("earlymorning") });
                     _deliveryTimes.Add(new Option { Id = ((int)Factiva.Gateway.Messages.Track.V1_0.DeliveryTimes.Morning).ToString(), Name = _resources.GetString("morning") });
                     _deliveryTimes.Add(new Option { Id = ((int)Factiva.Gateway.Messages.Track.V1_0.DeliveryTimes.Afternoon).ToString(), Name = _resources.GetString("afternoon") });
                     _deliveryTimes.Add(new Option { Id = ((int)Factiva.Gateway.Messages.Track.V1_0.DeliveryTimes.Both).ToString(), Name = _resources.GetString("mornAndAft") });
