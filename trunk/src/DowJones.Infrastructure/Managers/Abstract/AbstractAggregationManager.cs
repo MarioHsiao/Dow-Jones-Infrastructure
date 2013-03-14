@@ -30,10 +30,10 @@ namespace DowJones.Managers.Abstract
         /// </summary>
         /// <param name="controlData">The control data.</param>
         /// <param name="transactionTimer"></param>
-        protected AbstractAggregationManager(IControlData controlData, ITransactionTimer transactionTimer)
+        protected AbstractAggregationManager(IControlData controlData, ITransactionTimer transactionTimer = null)
         {
             ControlData = controlData;
-            TransactionTimer = transactionTimer;
+            TransactionTimer = transactionTimer ?? new BasicTransactionTimer();
         }
 
         /// <summary>
