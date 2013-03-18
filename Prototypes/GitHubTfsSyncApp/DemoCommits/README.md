@@ -3,4 +3,4 @@ GithubTfsSyncDemo
 
 GithubTfsSyncDemo
 
-Testing GithubTfsSyncDemo2
+Testing GithubTfsSyncDemo1
