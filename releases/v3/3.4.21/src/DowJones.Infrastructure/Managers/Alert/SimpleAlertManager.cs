@@ -584,13 +584,17 @@ namespace DowJones.Managers.Alert
 
         private static string GetDeliveryContentType(IEnumerable<DowJones.Infrastructure.Alert.DeliveryContentType> deliveryContentType)
         {
-            string[] contentTypes =
-                (
-                    from ct in deliveryContentType
-                    select ct.GetAttributeValue<AlertRequestBinderAttribute, string>(x => x.TranslateTo)
-                ).ToArray<string>();
+            if (deliveryContentType != null && deliveryContentType.Count() > 0)
+            {
+                string[] contentTypes =
+                    (
+                        from ct in deliveryContentType
+                        select ct.GetAttributeValue<AlertRequestBinderAttribute, string>(x => x.TranslateTo)
+                    ).ToArray<string>();
 
-            return String.Join("|", contentTypes);
+                return String.Join("|", contentTypes);
+            }
+            return null;
         }
 
         /*
