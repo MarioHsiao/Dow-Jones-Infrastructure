@@ -58,5 +58,50 @@ namespace GitHubTfsSyncApp.Tests {
                 return ((string)(this["GitHubCredentials"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://sbknwstfs1:8080/tfs")]
+        public string TFSUrl {
+            get {
+                return ((string)(this["TFSUrl"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\GitHubTfsSyncAppStaging\\")]
+        public string TFSLocalWorkspace {
+            get {
+                return ((string)(this["TFSLocalWorkspace"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("$/Dow Jones Infrastructure/Prototypes/GitHubTfsSyncApp/DemoCommits")]
+        public string TFSProject {
+            get {
+                return ((string)(this["TFSProject"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("goyalr")]
+        public string TFSUsername {
+            get {
+                return ((string)(this["TFSUsername"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string TFSPassword {
+            get {
+                return ((string)(this["TFSPassword"]));
+            }
+        }
     }
 }

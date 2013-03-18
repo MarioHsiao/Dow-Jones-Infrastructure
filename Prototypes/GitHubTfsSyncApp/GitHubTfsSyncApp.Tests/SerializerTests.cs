@@ -1,4 +1,7 @@
 ﻿using System.IO;
+using System.Net;
+using GitHubTfsSyncApp.Controllers;
+using GitHubTfsSyncApp.Helpers;
 using GitHubTfsSyncApp.Models.GitHub;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
@@ -22,6 +25,30 @@ namespace GitHubTfsSyncApp.Tests
 
 			var deserializedResponse = jsonDeserializer.Deserialize<WebHookResponse>(new JsonTextReader(new StringReader(sampleResponse)));
 			Assert.AreEqual(deserializedResponse.After, "9a272ff0768f0179acc292c7c2ffbe5f2d04b320");
+
+		    var gitHubAccessConfiguration = new GitHubAccessConfiguration
+		        {
+		            ClientId = Settings1.Default.GitHubClientId,
+		            Credentials = Settings1.Default.GitHubCredentials,
+		            ClientSecret = Settings1.Default.GitHubClientSecret,
+		            EndPoint = Settings1.Default.GitHubApiEndPoint
+		        };
+
+
+            //var config = new TfsAccessConfiguration
+            //    {
+            //        Url = Settings1.Default.TFSUrl,
+            //        Project = Settings1.Default.TFSProject,
+            //        LocalWorkspace = Settings1.Default.TFSLocalWorkspace,
+            //        Credentials =
+            //            new NetworkCredential()
+            //                {
+            //                    UserName = Settings1.Default.TFSUsername,
+            //                    Password = Settings1.Default.TFSPassword
+            //                }
+            //    };
+            //var controller = new NewCommitController();
+           // controller.Post(deserializedResponse, config, gitHubAccessConfiguration);
 		}
 	}
 }
