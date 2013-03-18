@@ -1,0 +1,6239 @@
+﻿
+/*
+	===>>> LOADED CSS <<<===
+	/~blago/newspages.html/dashboard/styles/less/jquery.jscrollpane.less
+*/
+
+.jspContainer .jspPane { position:absolute; }
+.jspContainer .jspVerticalBar .jspCap, .jspContainer .jspHorizontalBar .jspCap { display:none; }
+.jspContainer .jspVerticalBar .jspTrack, .jspContainer .jspHorizontalBar .jspTrack {
+  position:relative;
+  padding:0;
+  background:#464646;
+  -webkit-border-radius:20px;
+  -moz-border-radius:20px;
+  border-radius:20px;
+}
+.jspContainer .jspVerticalBar .jspDrag, .jspContainer .jspHorizontalBar .jspDrag {
+  position:relative;
+  top:0;
+  width:11px;
+  background:#8b8b8b;
+  -webkit-border-radius:20px;
+  -moz-border-radius:20px;
+  border-radius:20px;
+  cursor:pointer;
+}
+.jspContainer .jspVerticalBar .jspArrow.jspDisabled, .jspContainer .jspHorizontalBar .jspArrow.jspDisabled {
+  pointer-events:none;
+  opacity:0.3;
+}
+.jspContainer .jspVerticalBar .jspArrow:focus, .jspContainer .jspHorizontalBar .jspArrow:focus { outline:none; }
+.jspContainer .jspVerticalBar .jspArrow, .jspContainer .jspHorizontalBar .jspArrow {
+  display:block;
+  margin:0;
+  padding:0;
+  background:#50506d;
+  text-indent:-9999px;
+  cursor:pointer;
+}
+.jspContainer .jspVerticalBar, .jspContainer .jspHorizontalBar {
+  position:absolute;
+  background-color:transparent;
+}
+.jspContainer .jspVerticalBar .jspArrow { height:16px; }
+.jspContainer .jspVerticalBar .jspArrowUp { background:transparent url('../img/scrollbar_arrow_up.png') center center no-repeat; }
+.jspContainer .jspVerticalBar .jspArrowDown { background:transparent url('../img/scrollbar_arrow_down.png') center center no-repeat; }
+.jspContainer .jspVerticalBar {
+  top:0;
+  right:0;
+  width:11px;
+  height:50px;
+}
+.jspContainer .jspHorizontalBar .jspCap, .jspContainer .jspHorizontalBar .jspTrack, .jspContainer .jspHorizontalBar .jspDrag, .jspContainer .jspHorizontalBar .jspArrow { float:left; }
+.jspContainer .jspHorizontalBar .jspTrack, .jspContainer .jspHorizontalBar .jspDrag, .jspContainer .jspHorizontalBar .jspArrow { height:100%; }
+.jspContainer .jspHorizontalBar .jspDrag {
+  margin:2px 0;
+  height:12px;
+}
+.jspContainer .jspHorizontalBar .jspArrow { width:16px; }
+.jspContainer .jspHorizontalBar {
+  bottom:0;
+  left:0;
+  width:100%;
+  height:16px;
+}
+.jspContainer .jspCorner {
+  float:left;
+  height:100%;
+  background:#eeeef4;
+}
+.jspContainer {
+  position:relative;
+  overflow:hidden;
+}
+
+
+
+/*
+	===>>> LOADED CSS <<<===
+	/~blago/newspages.html/dashboard/styles/libs/jquery.autocomplete.css
+*/
+.ac_results {
+	padding: 0px;
+	border: 1px solid black;
+	background-color: white;
+	overflow: hidden;
+	z-index: 99999;
+}
+
+.ac_results ul {
+	width: 100%;
+	list-style-position: outside;
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.ac_results li {
+	margin: 0px;
+	padding: 2px 5px;
+	cursor: default;
+	display: block;
+	/* 
+	if width will be 100% horizontal scrollbar will apear 
+	when scroll mode will be used
+	*/
+	/*width: 100%;*/
+	font: menu;
+	font-size: 12px;
+	/* 
+	it is very important, if line-height not setted or setted 
+	in relative units scroll will be broken in firefox
+	*/
+	line-height: 16px;
+	overflow: hidden;
+}
+
+/*@TODO: is this class used? image does not exist ...*/
+.ac_loading {
+	/*background: white url('/~blago/newspages.html/dashboard/styles/libs/indicator.gif') right center no-repeat;*/
+}
+
+.ac_odd {
+	background-color: #eee;
+}
+
+.ac_over {
+	background-color: #0A246A;
+	color: white;
+}
+
+
+
+/*
+	===>>> LOADED CSS <<<===
+	/~blago/newspages.html/dashboard/styles/css/reset.css
+*/
+/* 
+  html5doctor.com Reset Stylesheet (Eric Meyer's Reset Reloaded + HTML5 baseline)
+  v1.4 2009-07-27 | Authors: Eric Meyer & Richard Clark
+  html5doctor.com/html-5-reset-stylesheet/
+*/
+/*
+	Modifed by Ron Edgecomb II - 12/23/2010
+	- set ul and ol to list-style: none
+	- added reset for :focus pseudo class
+*/
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code,
+del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var,
+b, i,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+}                  
+
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section { 
+    display: block;
+}
+
+ol, ul {
+	list-style: none;
+}
+
+blockquote, q {
+	quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content:none;
+}
+
+a {
+	margin: 0;
+	padding: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+	background:transparent;
+}
+
+/* remember to define focus styles! */
+:focus {
+	outline: 0;
+}
+
+ins {
+	background-color: #ff9;
+	color: #000;
+	text-decoration: none;
+}
+
+mark {
+	background-color: #ff9;
+	color: #000;
+	font-style: italic;
+	font-weight: bold;
+}
+
+del {
+	text-decoration: line-through;
+}
+
+abbr[title], dfn[title] {
+	border-bottom: 1px dotted;
+	cursor:help;
+}
+
+/* tables still need cellspacing="0" in the markup */
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+hr {
+	display: block;
+	height: 1px;
+	border: 0;
+	border-top: 1px solid #ccc;
+	margin: 1em 0;
+	padding: 0;
+}
+
+input, select {
+	vertical-align: middle;
+}
+
+
+/*
+	===>>> LOADED CSS <<<===
+	/~blago/newspages.html/dashboard/styles/css/global.css
+*/
+/*
+
+	-- -- -- -- -- -- --
+	global.css
+
+	includes various global css assest to setup and normalize styles
+	modeled to html5boilerplate.com concepts
+	-- -- -- -- -- -- --
+	
+*/
+
+
+/* =Font Sizes >> YUI Library font.css
+----------------------------------------------------------------------------------------------------*/
+/*
+	src: yui.yahooapis.com/3.2.0/build/cssfonts/fonts.css
+	
+	notes: refer to developer.yahoo.com/yui/3/cssfonts/ for font sizing percentages
+*/
+body {
+	font: 13px/1.231 arial, helvetica, clean, sans-serif;
+	*font-size: small; /* for IE */
+	*font: x-small; /* for IE in quirks mode */
+	min-width: 990px;
+}
+
+select,
+input,
+button,
+textarea {
+	font: 99% arial, helvetica, clean, sans-serif;
+}
+
+table {
+	font-size: inherit;
+	font: 100%;
+}
+
+pre,
+code,
+kbd,
+samp,
+tt {
+	font-family: monospace;
+	*font-size: 108%; /* back to 13px */
+	line-height: 100%;
+}
+
+/* =Helper Classes >> Non-semantic helper classes
+----------------------------------------------------------------------------------------------------*/
+/* TODO: this needs a home, will leave here for now...*/
+.dj-bubblechart{
+	position:relative;
+}
+
+/* remove padding */
+.no-padding {
+	padding: 0 !important;
+}
+	.no-top-padding {
+		padding-top: 0 !important;
+	}
+
+	.no-right-padding {
+		padding-right: 0 !important;
+	}
+
+	.no-bottom-padding {
+		padding-bottom: 0 !important;
+	}
+
+	.no-left-padding {
+		padding-left: 0 !important;
+	}
+
+
+/* no margin */
+.no-margin {
+	margin: 0 !important;
+}
+	.no-top-margin {
+		margin-top: 0 !important;
+	}
+
+	.no-right-margin {
+		margin-right: 0 !important;
+	}
+
+	.no-bottom-margin {
+		padding-bottom: 0 !important;
+	}
+
+	.no-left-margin {
+		margin-left: 0 !important;
+	}
+
+/* for image replacement */
+.ir {
+	display: block;
+	text-indent: -999em;
+	overflow: hidden;
+	background-repeat: no-repeat;
+	text-align: left;
+	direction: ltr;
+}
+
+/* Hide for both screenreaders and browsers
+   css-discuss.incutio.com/wiki/Screenreader_Visibility */
+.hide,
+.hidden,
+.clear br,
+.clear hr {
+	display: none !important; /* Joe: I say we put important here.  I doubt it will break any other instances of this class used elsewhere and it's necessary for one I need */
+	visibility: hidden;
+} 
+
+/* Hide only visually, but have it available for screenreaders 
+   www.webaim.org/techniques/css/invisiblecontent/  &  j.mp/visuallyhidden  */
+.visuallyhidden {
+	position: absolute !important;    
+	clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+	clip: rect(1px, 1px, 1px, 1px);
+}
+
+/* Hide visually and from screenreaders, but maintain layout */
+.invisible {
+	visibility: hidden;
+}
+
+/* >> The Magnificent CLEARFIX: Updated to prevent margin-collapsing on child elements << j.mp/bestclearfix */
+.clear:before,
+.clear:after,
+.clearfix:before,
+.clearfix:after {
+	content: "\0020";
+	display: block;
+	height: 0;
+	visibility: hidden;	
+} 
+
+.clear:after,
+.clearfix:after {
+	clear: both;
+}
+/* Fix clearfix: blueprintcss.lighthouseapp.com/projects/15318/tickets/5-extra-margin-padding-bottom-of-page */
+.ie7 .clear,
+.ie7 .clearfix {
+	zoom: 1;
+}
+.ie6 .clear,
+.ie6 .clearfix {
+	height:1%;
+}
+
+.ellipsis {
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    -o-text-overflow:ellipsis;
+    -moz-binding:url('/~blago/newspages.html/dashboard/styles/css/ellipsis.xml#ellipsis');
+}
+.ie6 .ellipsis,
+.ie7 .ellipsis,
+.ie8 .ellipsis {
+    white-space:normal;
+}
+
+/* =Print Sytles >> Basic print styles, inlined to avoid required HTTP connection www.phpied.com/delay-loading-your-print-css/ 
+----------------------------------------------------------------------------------------------------*/
+@media print {
+	* {
+		background: transparent !important;
+		color: #444 !important;
+		text-shadow: none !important;
+	}
+	a,
+	a:visited {
+		color: #444 !important;
+		text-decoration: underline;
+	}
+	a:after {
+		content: " (" attr(href) ")";
+	} 
+	abbr:after {
+		content: " (" attr(title) ")";
+	}
+	.ir a:after {
+		content: "";
+	}  /* Don't show links for images */
+	pre,
+	blockquote {
+		border: 1px solid #999;
+		page-break-inside: avoid;
+	}
+	thead {
+		display: table-header-group; /* css-discuss.incutio.com/wiki/Printing_Tables */ 
+	}
+	tr,
+	img {
+		page-break-inside: avoid;
+	}
+	@page {
+		margin: 0.5cm;
+	}
+	p,
+	h2,
+	h3 {
+		orphans: 3;
+		widows: 3;
+	}
+	h2,
+	h3{
+		page-break-after: avoid;
+	}
+}
+
+
+
+/*
+	===>>> LOADED CSS <<<===
+	/~blago/newspages.html/dashboard/styles/css/grid.990.9-col.css
+*/
+/*
+	960 Grid System ~ Core CSS.
+	Learn more ~ http://960.gs/
+
+	Licensed under GPL and MIT.
+*/
+
+/*
+	Forces backgrounds to span full width,
+	even if there is horizontal scrolling.
+	Increase this if your layout is wider.
+
+	Note: IE6 works fine without this fix.
+*/
+
+/*
+	Modifed by Ron Edgecomb II - 9/28/2010
+	- replaced underscrore '_' with dash '-' in naming conventions
+	- added wrap 2, 4, 8 and 16 (it is implied that wrap 2, 4, 8, 16 and 24 will be nested in a container 24 though it is not required)
+	- added= in section label naming conventions
+*/
+
+/*
+	Variable Grid System.
+	Learn more ~ http://www.spry-soft.com/grids/
+	Based on 960 Grid System - http://960.gs/
+
+	Licensed under GPL and MIT.
+*/
+
+
+/* Containers
+----------------------------------------------------------------------------------------------------*/
+.container_9 {
+	margin-left: auto;
+	margin-right: auto;
+	width: 990px;
+}
+
+/* =Wrappers >> Global
+----------------------------------------------------------------------------------------------------*/
+/*.wrap-2,
+.wrap-4,
+.wrap-8,
+.wrap-16,
+.wrap-24*/
+.wrap-9 {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+/*.wrap-2 {
+	width: 80px;
+}
+.wrap-4 {
+	width: 160px;
+}
+.wrap-8 {
+	width: 320px;
+}
+.wrap-16 {
+	width: 640px;
+}
+.wrap-24 {
+	width: 960px;
+}*/
+
+.wrap-9 {
+	width: 990px;
+}
+
+/* Grid >> Global
+----------------------------------------------------------------------------------------------------*/
+.grid_1,
+.grid_2,
+.grid_3,
+.grid_4,
+.grid_5,
+.grid_6,
+.grid_7,
+.grid_8,
+.grid_9 {
+	display:inline;
+	float: left;
+	position: relative;
+	margin-left: 15px;
+	margin-right: 15px;
+}
+
+/* Grid >> Children (Alpha ~ First, Omega ~ Last)
+----------------------------------------------------------------------------------------------------*/
+.alpha {
+	margin-left: 0;
+}
+
+.omega {
+	margin-right: 0;
+}
+
+/* Grid >> 9 Columns
+----------------------------------------------------------------------------------------------------*/
+.container_9 .grid_1 {
+	width:80px;
+}
+
+.container_9 .grid_2 {
+	width:190px;
+}
+
+.container_9 .grid_3 {
+	width:300px;
+}
+
+.container_9 .grid_4 {
+	width:410px;
+}
+
+.container_9 .grid_5 {
+	width:520px;
+}
+
+.container_9 .grid_6 {
+	width:630px;
+}
+
+.container_9 .grid_7 {
+	width:740px;
+}
+
+.container_9 .grid_8 {
+	width:850px;
+}
+
+.container_9 .grid_9 {
+	width:960px;
+}
+
+
+
+/* Prefix Extra Space >> 9 Columns
+----------------------------------------------------------------------------------------------------*/
+.container_9 .prefix_1 {
+	padding-left:110px;
+}
+
+.container_9 .prefix_2 {
+	padding-left:220px;
+}
+
+.container_9 .prefix_3 {
+	padding-left:330px;
+}
+
+.container_9 .prefix_4 {
+	padding-left:440px;
+}
+
+.container_9 .prefix_5 {
+	padding-left:550px;
+}
+
+.container_9 .prefix_6 {
+	padding-left:660px;
+}
+
+.container_9 .prefix_7 {
+	padding-left:770px;
+}
+
+.container_9 .prefix_8 {
+	padding-left:880px;
+}
+
+
+
+/* Suffix Extra Space >> 9 Columns
+----------------------------------------------------------------------------------------------------*/
+.container_9 .suffix_1 {
+	padding-right:110px;
+}
+
+.container_9 .suffix_2 {
+	padding-right:220px;
+}
+
+.container_9 .suffix_3 {
+	padding-right:330px;
+}
+
+.container_9 .suffix_4 {
+	padding-right:440px;
+}
+
+.container_9 .suffix_5 {
+	padding-right:550px;
+}
+
+.container_9 .suffix_6 {
+	padding-right:660px;
+}
+
+.container_9 .suffix_7 {
+	padding-right:770px;
+}
+
+.container_9 .suffix_8 {
+	padding-right:880px;
+}
+
+
+
+/* Push Space >> 9 Columns
+----------------------------------------------------------------------------------------------------*/
+.container_9 .push_1 {
+	left:110px;
+}
+
+.container_9 .push_2 {
+	left:220px;
+}
+
+.container_9 .push_3 {
+	left:330px;
+}
+
+.container_9 .push_4 {
+	left:440px;
+}
+
+.container_9 .push_5 {
+	left:550px;
+}
+
+.container_9 .push_6 {
+	left:660px;
+}
+
+.container_9 .push_7 {
+	left:770px;
+}
+
+.container_9 .push_8 {
+	left:880px;
+}
+
+
+
+/* Pull Space >> 9 Columns
+----------------------------------------------------------------------------------------------------*/
+.container_9 .pull_1 {
+	left:-110px;
+}
+
+.container_9 .pull_2 {
+	left:-220px;
+}
+
+.container_9 .pull_3 {
+	left:-330px;
+}
+
+.container_9 .pull_4 {
+	left:-440px;
+}
+
+.container_9 .pull_5 {
+	left:-550px;
+}
+
+.container_9 .pull_6 {
+	left:-660px;
+}
+
+.container_9 .pull_7 {
+	left:-770px;
+}
+
+.container_9 .pull_8 {
+	left:-880px;
+}
+
+
+/*
+	===>>> LOADED CSS <<<===
+	/~blago/newspages.html/NewsPages/styles/css/style.css
+*/
+/*
+
+	-- -- -- -- -- -- --
+	Description: Base Project Styles
+	Version: 0.1
+	Last Update: 3/17/2011
+	Author: Ron Edgecomb
+	Company: Dow Jones & Company Inc.
+	Copyright 2011 Dow Jones & Company Inc.
+	
+	Dependencies
+	 - 
+	-- -- -- -- -- -- --
+	
+*/
+
+/* =Base Styles >> Basic global styles for common html elements
+----------------------------------------------------------------------------------------------------*/
+body {
+	background-color: #f2fafd;
+}
+
+body, 
+select, 
+input, 
+textarea { 
+  color: #444; 
+}
+
+html {
+	overflow-y: scroll; /* always force a scrollbar in non-IE */
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-weight: bold;
+}
+ 
+a:hover,
+a:active {
+	outline: none;
+}
+
+a, 
+a:active,
+a:visited {
+	color: #2f90b3;
+	text-decoration:none;
+}
+	a:hover { 
+		color: #006ca2;
+	}
+
+small {
+	font-size: 85%; /* 11px */
+}
+
+strong,
+th {
+	font-weight: bold;
+}
+
+td,
+td img {
+	vertical-align: top;
+} 
+
+sub {
+	vertical-align: sub;
+	font-size: smaller;
+}
+
+sup {
+	vertical-align: super;
+	font-size: smaller;
+}
+
+abbr,
+acronym {
+	cursor: help;
+	border-color: #ccc;
+}
+
+pre { 
+  padding: 15px; 
+  /* www.pathf.com/blogs/2008/05/formatting-quoted-code-in-blog-posts-css21-white-space-pre-wrap/ */
+  white-space: pre; /* CSS2 */
+  white-space: pre-wrap; /* CSS 2.1 */
+  white-space: pre-line; /* CSS 3 (and 2.1 as well, actually) */
+  word-wrap: break-word; /* IE */
+}
+ 
+textarea {
+	overflow: auto;
+} /* thnx ivannikolic! www.sitepoint.com/blogs/2010/08/20/ie-remove-textarea-scrollbars/ */
+
+.ie6 legend,
+.ie7 legend {
+	margin-left: -7px;
+} /* thnx ivannikolic! */
+
+label,
+input[type=button],
+input[type=submit],
+button {
+	cursor: pointer;
+}
+ 
+button,
+input,
+select,
+textarea {
+	margin: 0;
+}
+
+/* bicubic resizing for non-native sized IMG: 
+   code.flickr.com/blog/2008/11/12/on-ui-quality-the-little-things-client-side-image-resizing/ */
+.ie7 img {
+	-ms-interpolation-mode: bicubic;
+}
+
+
+/*
+	===>>> LOADED CSS <<<===
+	/~blago/newspages.html/dashboard/styles/css/popup.css
+*/
+.dj-popup-window {
+    position:absolute;
+    top:0;
+    left:0;
+    border:1px solid #bfbfc1;
+    border:1px solid #ccc; /* IE fix */
+    border:1px solid rgba(0,0,0,0.3);
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.2);
+    -webkit-box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.2);
+    display:none;
+    z-index:2000;
+}
+
+.dj-popup-window.visible {
+    display:block;
+}
+
+.dj-popup-window .dj-popup-header {
+    background-color:#262626;
+    background-image:url('window_header_bg.png');
+    background-repeat:repeat-x;
+    -moz-border-radius-topright:4px;
+    -webkit-border-top-right-radius:4px;
+    border-top-left-radius:4px;
+    -moz-border-radius-topleft:4px;
+    -webkit-border-top-right-radius:4px;
+}
+
+.dj-popup-window .dj-popup-body,
+.dj-popup-window .dj-popup-title {
+    width:260px;
+    padding-left:20px;
+    padding-right:20px;
+}
+
+.dj-popup-window .dj-popup-title {
+    height:36px;
+    color: #fff;
+    line-height:36px;
+    font-size:138.5%; /* 18px */
+    font-weight:bold;
+}
+
+.dj-popup-window .dj-popup-body {
+	height: 320px;
+    padding-top:10px;
+    padding-bottom:15px;
+    background-color:#FFF;
+    -moz-border-radius-bottomright:4px;
+    -webkit-border-bottom-right-radius:4px;
+    border-bottom-left-radius:4px;
+    -moz-border-radius-bottomleft:4px;
+    -webkit-border-bottom-right-radius:4px;
+}
+
+.dj-popup-window.dj-loading .dj-popup-body {
+    background:#FFF url('icon_module.col.loading.gif') center center no-repeat;
+}
+
+.dj-popup-window .dj-popup-arrow {
+    display:none;
+    position:absolute;
+    width:12px;
+    height:26px;
+}
+
+.dj-popup-window .dj-popup-arrow-right {
+    display:block;
+    right:-12px;
+    background-image:url('menu_outer_arrow_right.png');
+}
+
+.dj-popup-window .dj-popup-arrow-left {
+    display:block;
+    left:-12px;
+    background-image:url('menu_outer_arrow_left.png');
+}
+
+
+
+/*
+	===>>> LOADED CSS <<<===
+	/~blago/newspages.html/dashboard/styles/css/factiva.icons.css
+*/
+/*
+
+	-- -- -- -- -- -- --
+	Dependencies
+	 - css/reset.css
+	 - css/global.css
+	 - css/../img/factiva-icons.png
+	
+	-- -- -- -- -- -- --
+	
+*/
+
+/* =Generic Factiva Icon Class .fi
+----------------------------------------------------------------------------------------------------*/
+.fi {
+	display:inline-block;
+	background: transparent url('factiva-icons.png') no-repeat 0 0;
+	cursor:pointer;
+}
+
+/* =Target specific Icons by Class Name .fi_[YOUR CLASS] >> 
+----------------------------------------------------------------------------------------------------*/
+
+.fi.fi_r-arrow { 
+	width:9px;
+	height:8px;
+	background-position: 0 0;
+}
+
+.fi.fi_close-w {
+	width:17px;
+	height:18px;
+	background-position: 0 -40px;
+}
+
+.fi.fi_close-g {
+	width:17px;
+	height:18px;
+	background-position: 0 -280px;
+}
+
+.fi.fi_circle-plus {
+	width:16px;
+	height:17px;
+	background-position: 0 -120px;
+}
+
+.fi.fi_d-double-arrow {
+	width:16px;
+	height:17px;
+	background-position: 0 -160px;
+}
+
+.fi.fi_gear {
+	width:16px;
+	height:16px;
+	background-position: 0 -80px;
+}
+
+.fi.fi_gear {
+	background-position: 0 -80px;
+}
+
+.fi.fi_expand {
+	width:12px;
+	height:11px;
+	background-position: 0 -920px;
+}
+
+.fi.fi_collapse {
+	width:12px;
+	height:11px;
+	background-position: 0 -880px;
+}
+
+.fi.fi_reload-white {
+	width:17px;
+	height:19px;
+	background-position: 0 -320px;
+}
+
+.fi.fi_d-arrow-g {
+	width:7px;
+	height:7px;
+	background-position: 0 -360px;
+}
+
+.fi.fi_u-arrow-g {
+	width:7px;
+	height:7px;
+	background-position: 0 -400px;
+}
+
+.fi.fi_external-link {
+	width:10px;
+	height:10px;
+	background-position: 0 -440px;
+}
+
+.fi.fi_btn-prev-active {
+	width:18px;
+	height:18px;
+	background-position: 0 -520px;
+}
+
+.fi.fi_btn-next-active {
+	width:18px;
+	height:18px;
+	background-position: 0 -560px;
+}
+
+.fi.fi_btn-prev-inactive {
+	width:18px;
+	height:18px;
+	background-position: 0 -600px;
+}
+
+.fi.fi_btn-next-inactive {
+	width:18px;
+	height:18px;
+	background-position: 0 -640px;
+}
+
+.fi.fi_video {
+	width:17px;
+	height:10px;
+	background-position: 0 -680px;
+}
+
+.fi.fi_audio {
+	width:15px;
+	height:14px;
+	background-position: 0 -720px;
+}
+
+.fi.fi_close-b {
+	width:12px;
+	height:14px;
+	background-position: 0 -760px;
+}
+
+.fi.fi_mail {
+	width:13px;
+	height:8px;
+	background-position: 0 -800px;
+}
+
+.fi.fi_close-white-large {
+	width:18px;
+	height:17px;
+	background-position: 0 -840px;
+}
+
+.fi.fi_arrow-increase-green {
+	width:14px;
+	height:16px;
+	background-position: 0 -1000px;
+}
+
+.fi.fi_arrow-decrease-red {
+	width:14px;
+	height:16px;
+	background-position: 0 -1030px;
+}
+
+.fi.fi_arrow-green-small {
+	width:8px;
+	height:7px;
+	background-position: 0 -1060px;
+}
+
+.fi.fi_arrow-red-small {
+	width:8px;
+	height:7px;
+	background-position: 0 -1080px;
+}
+
+.fi.fi_next-green {
+	width:18px;
+	height:18px;
+	background-position: 0 -1100px;
+}
+
+.fi.fi_prev-green {
+	width:18px;
+	height:18px;
+	background-position: 0 -1140px;
+}
+
+.fi.fi_next-gray {
+	width:18px;
+	height:18px;
+	background-position: 0 -1180px;
+}
+
+.fi.fi_prev-gray {
+	width:18px;
+	height:18px;
+	background-position: 0 -1220px;
+}
+
+.fi.fi_add-blue-large {
+	width:18px;
+	height:17px;
+	background-position: 0 -1260px;
+}
+
+.fi.fi_arrow-blue-small {
+	width:12px;
+	height:11px;
+	background-position: 0 -1295px;
+}
+
+
+/*
+	===>>> LOADED CSS <<<===
+	/~blago/newspages.html/dashboard/styles/css/jquery.menu.css
+*/
+/* Hidden Tabs
+----------------------------------------------------------------------------------------------------*/
+.menu{
+    font-family: Helvetica, Arial, sans-serif;
+    font-size:11px;
+    font-weight:bold;
+    display:inline;
+    position:absolute;
+    border:1px solid #bfbfc1;
+    border:1px solid rgba(0,0,0,0.3);
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.2);
+    -webkit-box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.2);
+	z-index:2000; 
+	display:none;
+}
+
+/*@TODO: is this class used?*/
+.menu .balloon-arrow-left{
+    position:absolute;
+    width:12px;
+    height:26px;
+    margin-left:-11px;
+    margin-top:10px;
+    /*background-image:url('../img/balloon_arrow_left.png');*/
+}
+
+.menu ul, .menu li{
+    list-style:none;
+    margin:0px;
+    padding:0px;
+}
+
+.menu .menuitems{
+    padding:2px;
+    background-color:#FFF;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+}
+.menu .menuitems.exceeding{
+	-moz-border-radius-topright:0px;
+    -webkit-border-top-right-radius:0px;
+    border-top-left-radius:0px;
+    -moz-border-radius-topleft:0px;
+    -webkit-border-top-right-radius:0px;
+    border-top-left-radius:0px;
+	background-color: #e3e3e3;
+	border-top:1px solid #d4d4d4;
+}
+.menu .menuitems.normal{
+	-moz-border-radius-bottomright:0px;
+    -webkit-border-bottom-right-radius:0px;
+    border-bottom-left-radius:0px;
+    -moz-border-radius-bottomleft:0px;
+    -webkit-border-bottom-right-radius:0px;
+    border-bottom-left-radius:0px;
+}
+
+
+.menu .menuitem{
+    line-height:22px;
+    padding-left:8px;
+    padding-right:8px;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    padding-top:2px;
+    cursor:default;
+}
+
+.menu .menuitem.disabled{
+	color: #ccc;
+}
+
+.menu .menuitem:hover{
+    background-color: #0079d6;
+    color:#FFF;
+    text-shadow:0px 1px 0px #0058af;
+    background-image:url('option_hover.png');
+    background-repeat:repeat-x;
+}
+
+.menu .menuitem.disabled:hover{
+	background-color: transparent;
+	color: #ccc;
+	text-shadow:0px 1px 0px transparent;
+	background-image:none;
+}
+
+.menu .separator:hover{
+    background-color:transparent;
+    background-image:none;
+}
+
+.menu .separator{
+    border-bottom:1px solid #f0f0f0;
+    margin-bottom:2px;
+    line-height:1px;
+}
+
+.menu .label{
+	white-space:nowrap;
+}
+
+.menu.iconified .label{
+	padding-left:20px;
+}
+
+.menu .menuitem.checked .label{
+    background-repeat:no-repeat;
+    background-image:url('option_selected.png');
+    background-repeat:no-repeat;
+    background-position:0px 2px;
+}
+
+.menu .menuitem.checked:hover .label{
+    background-position:0px -38px ;
+}
+
+
+
+/*
+	===>>> LOADED CSS <<<===
+	/~blago/newspages.html/dashboard/styles/css/jquery.scrollabletabbar.css
+*/
+.scrollabletabbar{
+	height:40px;
+}
+
+.scrollabletabbar .tabs-container{
+	overflow:hidden;
+	float:left;
+	position:relative;
+	display:none;
+}
+
+.scrollabletabbar .tabs-container .floating-actionitems{
+	float:left;
+}
+
+.scrollabletabbar .actionitems-container{
+	float:right;
+	display:none;
+}
+
+.scrollabletabbar .actionitems-container.actionitems-container-left{
+	float:left;
+}
+
+.scrollabletabbar .tabs{
+	height:40px;
+	float:left;
+}
+
+.scrollabletabbar .actionitems-container{
+	
+}
+
+.scrollabletabbar .tabs .tab-container, .scrollabletabbar .actionitems .actionitem-container{
+	display: -moz-inline-stack; /* required for ff2 */
+	display: inline-block;
+	vertical-align: middle;
+	float:left;
+	position: relative;
+	padding-right:4px;
+}
+
+.scrollabletabbar .tabs .tab, .scrollabletabbar .actionitems .actionitem, .scrollabletabbar .floating-actionitems .actionitem{
+	height: 40px;
+	line-height: 40px;
+	display: -moz-inline-stack; /* required for ff2 */
+	display: inline-block;
+	vertical-align: middle;
+	color: #999;
+	font-size: 15px;
+	overflow: visible;
+	text-decoration: none;
+	background-color:#3e3e3e;
+	box-shadow: inset 0px 1px 0px #666666;
+    -webkit-box-shadow: inset 0px 1px 0px #666666;
+    -moz-box-shadow: inset 0px 1px 0px #666666;
+	cursor: pointer;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	background: -webkit-gradient(linear, left top, left bottom, from(#3e3e3e), to(#2e2e2e));
+	-moz-border-radius-topleft: 5px;
+	-moz-border-radius-topright: 5px;
+	background: -moz-linear-gradient(top,  #3e3e3e,  #2e2e2e);
+	text-shadow: 0px -1px 0px #202020
+}
+
+.scrollabletabbar .tab .tab-content, .scrollabletabbar .actionitem .actionitem-content{
+	padding-left:12px;
+	padding-right:12px;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	-moz-border-radius-topleft: 5px;
+	-moz-border-radius-topright: 5px;
+	background-repeat:no-repeat;
+	background-position:right -75px;
+	height:40px;
+}
+
+.scrollabletabbar .tab-container.active .tab-content{
+	background-position:top right;
+}
+
+.scrollabletabbar .tab-container.published .tab-content{
+	background-image:url('../img/tab_published.png');
+}
+
+.scrollabletabbar .tab-container.subscribed .tab-content{
+	background-image:url('../img/tab_subscribed.png');
+}
+
+.scrollabletabbar .tabs .tab .icon{
+	display:none;
+}
+
+.scrollabletabbar .tabs .tab-container.active .tab, .scrollabletabbar .actionitem-container.active .actionitem{
+	color:#666;
+	background:#f2fafd;
+	border-bottom:none;
+	box-shadow: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+	text-shadow: 0px -1px 0px transparent;
+}
+
+.scrollabletabbar .tabs .tab-container .tab .label, .scrollabletabbar .actionitem .label{
+	font-weight:bold;
+	white-space:nowrap;
+	float:left;
+}
+
+.scrollabletabbar .tabs .tab-container.active .tab .label{
+	display:block;
+	white-space:nowrap;
+}
+
+.scrollabletabbar .tabs .tab-container.active .tab .icon, .scrollabletabbar .actionitem .icon{
+	display:block;
+	float:left;
+	margin-top:3px;
+	margin-left:5px;
+	height:40px;
+	width:16px;
+	line-height:40px;
+}
+
+.scrollabletabbar .no-label .actionitem .icon{
+	margin-left:0px;
+}
+
+.scrollabletabbar .tabs .tab-container.active .tab .icon .fi{
+	position:absolute;
+	margin-top:8px;
+	cursor:pointer;
+}
+
+
+.scrollabletabbar .actionitem .icon .fi{
+	position:absolute;
+	margin-top:8px;
+	cursor:pointer;
+}
+
+.scrollabletabbar .tabs-fade-left{
+	height:40px;
+	width:20px;
+	background-image:url('../img/tabbar_fade_left.png');
+	background-position:top;
+	position:absolute;
+	z-index:2000;
+	cursor:pointer;
+	display:none;
+}
+
+.scrollabletabbar .tabs-fade-left:hover{
+	background-position:0px -40px;
+}
+
+.scrollabletabbar .tabs-fade-right{
+	height:40px;
+	width:20px;
+	background-image:url('../img/tabbar_fade_right.png');
+	background-position:top;
+	position:absolute;
+	z-index:2000;
+	cursor:pointer;
+	display:none;
+}
+
+.scrollabletabbar .tabs-fade-right:hover{
+	background-position:0px -40px;
+}
+
+
+/*
+	===>>> LOADED CSS <<<===
+	/~blago/newspages.html/dashboard/styles/less/canvas.icons.less
+*/
+
+.dj_icon.dj_icon-r-arrow {
+  width:9px;
+  height:8px;
+}
+.dj_icon.dj_icon-close-w {
+  width:17px;
+  height:18px;
+  background-position:0 -40px;
+}
+.dj_icon.dj_icon-close-g {
+  width:17px;
+  height:18px;
+  background-position:0 -280px;
+}
+.dj_icon.dj_icon-circle-plus {
+  width:16px;
+  height:17px;
+  background-position:0 -120px;
+}
+.dj_icon.dj_icon-d-double-arrow {
+  width:16px;
+  height:17px;
+  background-position:0 -160px;
+}
+.dj_icon.dj_icon-gear {
+  width:16px;
+  height:16px;
+  background-position:0 -80px;
+}
+.dj_icon.dj_icon-expand {
+  width:12px;
+  height:11px;
+  background-position:0 -920px;
+}
+.dj_icon.dj_icon-collapse {
+  width:12px;
+  height:11px;
+  background-position:0 -880px;
+}
+.dj_icon.dj_icon-reload-white {
+  width:17px;
+  height:19px;
+  background-position:0 -320px;
+}
+.dj_icon.dj_icon-d-arrow-g {
+  width:7px;
+  height:7px;
+  background-position:0 -360px;
+}
+.dj_icon.dj_icon-u-arrow-g {
+  width:7px;
+  height:7px;
+  background-position:0 -400px;
+}
+.dj_icon.dj_icon-external-link {
+  width:10px;
+  height:10px;
+  background-position:0 -440px;
+}
+.dj_icon.dj_icon-video {
+  width:17px;
+  height:10px;
+  background-position:0 -680px;
+}
+.dj_icon.dj_icon-audio {
+  width:15px;
+  height:14px;
+  background-position:0 -720px;
+}
+.dj_icon.dj_icon-close-b {
+  width:12px;
+  height:14px;
+  background-position:0 -760px;
+}
+.dj_icon.dj_icon-mail {
+  width:13px;
+  height:8px;
+  background-position:0 -800px;
+}
+.dj_icon.dj_icon-close-white-large {
+  width:18px;
+  height:17px;
+  background-position:0 -840px;
+}
+.dj_icon.dj_icon-arrow-increase-green {
+  width:14px;
+  height:16px;
+  background-position:0 -1000px;
+}
+.dj_icon.dj_icon-arrow-decrease-red {
+  width:14px;
+  height:16px;
+  background-position:0 -1030px;
+}
+.dj_icon.dj_icon-arrow-green-small {
+  width:8px;
+  height:7px;
+  background-position:0 -1060px;
+}
+.dj_icon.dj_icon-arrow-red-small {
+  width:8px;
+  height:7px;
+  background-position:0 -1080px;
+}
+.dj_icon.dj_icon-info {
+  width:15px;
+  height:15px;
+  background-position:0 -1340px;
+  margin:5px 0 0 5px;
+}
+.dj_icon {
+  display:-moz-inline-stack;
+  display:inline-block;
+  zoom:1;
+  *display:inline;
+  vertical-align:top;
+  background:transparent url('../img/factiva-icons.png') no-repeat 0 0;
+}
+
+
+
+/*
+	===>>> LOADED CSS <<<===
+	/~blago/newspages.html/dashboard/styles/less/canvas.buttons.less
+*/
+
+.dj_btn.dj_btn-square {
+  -webkit-border-radius:0;
+  -moz-border-radius:0;
+  border-radius:0;
+  border-top:1px solid #5ccaea;
+  background-color:#04addf;
+  background:-webkit-gradient(linear,0 0,0 100%,from(#04addf),to(#0195d4));
+  background:-moz-linear-gradient(top,#04addf,#0195d4);
+  -webkit-box-shadow:0px 1px 0px rgba(0,0,0,0.1);
+  -moz-box-shadow:0px 1px 0px rgba(0,0,0,0.1);
+  box-shadow:0px 1px 0px rgba(0,0,0,0.1);
+  font-size:11px;
+  padding-top:2px;
+  padding-bottom:2px;
+  padding-left:16px;
+  padding-right:16px;
+  font-weight:normal;
+  height:auto;
+}
+.dj_btn.dj_btn-blue { background-color:#02a2db; }
+.dj_btn.dj_btn-gray, .dj_btn.dj_btn-grey { background-color:#cccccc; }
+.dj_btn.dj_btn-red { background-color:#cc3e33; }
+.dj_btn.no-bg {
+  color:#a3a3a3;
+  background:none;
+  padding:0;
+}
+.dj_btn.dj_btn-lrg { font-size:108%; }
+.dj_btn.dj_btn-xlrg { font-size:123.1%; }
+.dj_btn.dj_btn-add-module .dj_icon {
+  width:17px;
+  height:17px;
+  position:absolute;
+  top:1em;
+  right:12px;
+  background-position:0 -120px;
+  cursor:pointer;
+}
+.dj_btn.dj_btn-add-module {
+  height:48px;
+  color:#999999;
+  font-size:123.1%;
+  line-height:48px;
+  padding-right:40px;
+  background-color:#3e3e3e;
+  background:-webkit-gradient(linear,0 0,0 100%,from(#3e3e3e),to(#2c2c2c));
+  background:-moz-linear-gradient(top,#3e3e3e,#2c2c2c);
+  border-top:1px solid #222222;
+  border-color:#696969 #222222 #121212;
+  -webkit-border-radius:5px;
+  -moz-border-radius:5px;
+  border-radius:5px;
+}
+.dj_btn:hover.dj_btn-blue { background-color:#006ca2; }
+.dj_btn:hover.dj_btn-gray, .dj_btn:hover.dj_btn-grey { background-color:#999999; }
+.dj_btn:hover.dj_btn-red { background-color:#b9382e; }
+.dj_btn:hover.no-bg { background:none; }
+.dj_btn:hover.dj_btn-add-module { background-color:#2c2c2c; }
+.dj_btn:hover {
+  color:#ffffff !important;
+  background-color:#79ae23;
+}
+.dj_btn:active {
+  top:1px;
+  left:1px;
+  color:#ffffff !important;
+}
+.dj_btn:visited {
+  color:#ffffff !important;
+  text-decoration:none;
+}
+.dj_btn.no-margin { margin:0; }
+.dj_btn {
+  height:1.75em;
+  position:relative;
+  display:-moz-inline-stack;
+  display:inline-block;
+  zoom:1;
+  *display:inline;
+  vertical-align:top;
+  -moz-box-sizing:border-box;
+  -webkit-box-sizing:border-box;
+  box-sizing:border-box;
+  color:#ffffff !important;
+  font-size:85%;
+  line-height:1.75em;
+  font-weight:bold;
+  text-decoration:none;
+  padding:0 1.125em;
+  margin:0 8px 0 0;
+  background-color:#8fbb49;
+  border-width:0;
+  -webkit-border-radius:1em;
+  -moz-border-radius:1em;
+  border-radius:1em;
+  cursor:pointer;
+  outline:none;
+}
+.dj_btn-group-lrg .dj_btn { font-size:108%; }
+.dj_btn-group-xlrg .dj_btn { font-size:123.1%; }
+.ie7 .dj_btn.dj_btn-add-module, .ie8 .dj_btn.dj_btn-add-module { border-color:#222222; }
+.ie7 .dj_btn, .ie8 .dj_btn {
+  width:auto;
+  overflow:visible;
+}
+
+
+
+/*
+	===>>> LOADED CSS <<<===
+	/~blago/newspages.html/dashboard/styles/less/canvas.nav.less
+*/
+
+#dj_canvas_nav #tabbar #header-toggle .actionitem .icon .fi {
+  position:absolute;
+  margin-top:3px;
+}
+#dj_canvas_nav #tabbar #header-toggle .actionitem {
+  height:20px;
+  width:20px;
+  line-height:20px;
+  margin-top:20px;
+}
+#dj_canvas_nav #tabbar #header-toggle.actionitem-container { padding-right:0px; }
+#dj_canvas_nav #tabbar #header-toggle .actionitem-content {
+  margin:0px;
+  padding:0px;
+  padding-left:4px;
+  margin-top:-2px;
+}
+#dj_canvas_nav #tabbar {
+  position:absolute;
+  top:-40px;
+}
+#dj_canvas_nav { position:relative; }
+
+
+
+/*
+	===>>> LOADED CSS <<<===
+	/~blago/newspages.html/NewsPages/styles/less/header.less
+*/
+
+#dj_header #dj_header-wrap.no-tabs { padding-bottom:20px; }
+#dj_header #dj_header-wrap {
+  padding:0 0 60px;
+  background:url('bg_header-wrap.png') repeat-x center bottom;
+}
+#dj_header #dj_header-top #dj_header-top-wrap #welcome-nav li a, #dj_header #dj_header-top #dj_header-top-wrap #user-nav li a {
+  height:35px;
+  display:-moz-inline-stack;
+  display:inline-block;
+  vertical-align:top;
+  color:#f4f4f4;
+  font-size:85%;
+  line-height:35px;
+  text-decoration:none;
+  padding:0 15px;
+}
+#dj_header #dj_header-top #dj_header-top-wrap #welcome-nav li, #dj_header #dj_header-top #dj_header-top-wrap #user-nav li {
+  float:left;
+  display:-moz-inline-stack;
+  display:inline-block;
+  vertical-align:top;
+  border-left:1px solid #111110;
+  border-right:1px solid #2c2c2c;
+}
+#dj_header #dj_header-top #dj_header-top-wrap #welcome-nav, #dj_header #dj_header-top #dj_header-top-wrap #user-nav {
+  border-right:1px solid #111110;
+  border-left:1px solid #2c2c2c;
+}
+#dj_header #dj_header-top #dj_header-top-wrap #welcome-nav li:first-child a { border-left:none; }
+#dj_header #dj_header-top #dj_header-top-wrap #welcome-nav.ipad-coming-soon li a {
+  font-size:100%;
+  color:#8fbb49;
+  padding:0;
+}
+#dj_header #dj_header-top #dj_header-top-wrap #welcome-nav.ipad-coming-soon li {
+  font-size:108%;
+  color:#8fbb49;
+  line-height:35px;
+  padding:0 10px 0 40px;
+  border-right:none;
+  background:url('/~blago/newspages.html/NewsPages/styles/images/bg_ipad-coming-soon.png') no-repeat 19px 2px;
+}
+#dj_header #dj_header-top #dj_header-top-wrap #welcome-nav.ipad-coming-soon { border-right:none; }
+#dj_header #dj_header-top #dj_header-top-wrap #welcome-nav { float:left; }
+#dj_header #dj_header-top #dj_header-top-wrap #user-nav { float:right; }
+#dj_header #dj_header-top #dj_header-top-wrap { position:relative; }
+#dj_header #dj_header-top {
+  height:35px;
+  background-color:#252525;
+  background:-webkit-gradient(linear,0 0,0 100%,from(#252525),to(#1a1a19));
+  background:-moz-linear-gradient(top,#252525,#1a1a19);
+  border-bottom:1px solid #272726;
+}
+#dj_header #dj_header-bottom #dj_header-bottom-wrap { position:relative; }
+#dj_header #dj_header-bottom #dj_header-content #dj_header-logo {
+  height:23px;
+  width:210px;
+  float:left;
+  text-indent:-9999px;
+  margin-top:26px;
+  background:transparent url('logo_factiva.png') no-repeat 0 0; 
+}
+#dj_header #dj_header-bottom #dj_header-content #dj_header-search .header-search-dym .dym-title { margin-right:5px; }
+#dj_header #dj_header-bottom #dj_header-content #dj_header-search .header-search-dym .icon-close {
+  height:14px;
+  width:14px;
+  margin-left:5px;
+  background-image:url('icon_close_small.png') no-repeat 0 0;
+  cursor:pointer;
+}
+#dj_header #dj_header-bottom #dj_header-content #dj_header-search .header-search-dym .keywords:hover { color:#3399cc; }
+#dj_header #dj_header-bottom #dj_header-content #dj_header-search .header-search-dym .keywords {
+  font-weight:bold;
+  cursor:pointer;
+}
+#dj_header #dj_header-bottom #dj_header-content #dj_header-search .header-search-dym .suggestion-simple div {
+  display:-moz-inline-stack;
+  display:inline-block;
+  zoom:1;
+  *display:inline;
+  vertical-align:top;
+}
+#dj_header #dj_header-bottom #dj_header-content #dj_header-search .header-search-dym .suggestion-advanced .category { color:#f6ba4a; }
+#dj_header #dj_header-bottom #dj_header-content #dj_header-search .header-search-dym .suggestion-advanced input { margin-right:5px; }
+#dj_header #dj_header-bottom #dj_header-content #dj_header-search .header-search-dym .suggestion-advanced { display:none; }
+#dj_header #dj_header-bottom #dj_header-content #dj_header-search .header-search-dym {
+  color:#ffffff;
+  padding-top:10px;
+  padding-bottom:20px;
+}
+#dj_header #dj_header-bottom #dj_header-content #dj_header-search {
+  width:694px;
+  float:right;
+  padding-top:20px;
+}
+#dj_header #dj_header-bottom #dj_header-content.expanded #dj_header-logo {
+  float:none;
+  margin:27px auto 14px;
+}
+#dj_header #dj_header-bottom #dj_header-content.expanded #dj_header-search {
+  float:none;
+  margin:0 auto;
+  padding-top:17px;
+}
+#dj_header #dj_header-bottom #dj_header-content.expanded { padding-bottom:24px; }
+#dj_header #dj_header-bottom { border-top:1px solid #121212; }
+#dj_header {
+  position:relative;
+  background:#232323 url('bg_header.png') no-repeat center 0;
+}
+
+
+
+/*
+	===>>> LOADED CSS <<<===
+	/~blago/newspages.html/NewsPages/styles/less/header.message.less
+*/
+
+.dj_message .dj_message-wrap p a {
+  color:#a5e7fe;
+  text-decoration:underline;
+}
+.dj_message .dj_message-wrap p {
+  color:#ffffff;
+  line-height:25px;
+}
+.dj_message .dj_message-wrap {
+  height:25px;
+  position:relative;
+}
+.dj_message {
+  background:#3695b7;
+  background:-webkit-gradient(linear,0 0,0 100%,from(#3695b7),to(#247ea4));
+  background:-moz-linear-gradient(top,#3695b7,#247ea4);
+  border-bottom:1px solid #5097b5;
+  background-color:#3695b7;
+}
+
+
+
+/*
+	===>>> LOADED CSS <<<===
+	/~blago/newspages.html/NewsPages/styles/less/footer.less
+*/
+
+#dj_footer #dj_footer-wrap { position:relative; }
+#dj_footer #dj_footer-top #dj_footer-top-wrap #dj_footer-logo {
+  height:26px;
+  width:210px;
+  float:left;
+  margin:35px 0 0;
+  text-indent:-9999px;
+  background:url('logo_factiva.png') no-repeat 0 0;
+}
+#dj_footer #dj_footer-top #dj_footer-top-wrap #dj_footer-search {
+  width:694px;
+  float:right;
+  padding-top:28px;
+}
+#dj_footer #dj_footer-top #dj_footer-top-wrap { padding-bottom:35px; }
+#dj_footer #dj_footer-top { border-bottom:1px solid #626262; }
+#dj_footer #dj_footer-copyright #dj_footer-copyright-wrap { position:relative; }
+#dj_footer #dj_footer-copyright .dj_footer-copyright-left { float:left; }
+#dj_footer #dj_footer-copyright .dj_footer-copyright-right { float:right; }
+#dj_footer #dj_footer-copyright p {
+  color:#969595;
+  font-size:85%;
+  line-height:68px;
+}
+#dj_footer #dj_footer-copyright a { color:#969595; }
+#dj_footer #dj_footer-copyright a:hover { color:#ffffff; }
+#dj_footer #dj_footer-copyright {
+  height:68px;
+  border-top:1px solid #1d1d1d;
+}
+#dj_footer {
+  background-color:#404040;
+  background:-webkit-gradient(linear,0 0,0 100%,from(#404040),to(#2b2b2b));
+  background:-moz-linear-gradient(top,#404040,#2b2b2b);
+}
+
+
+
+/*
+	===>>> LOADED CSS <<<===
+	/~blago/newspages.html/dashboard/styles/less/ominpresent.search.less
+*/
+
+.dj_omnipresent_search .dj_omnipresent_search-field.focus { color:#222222; }
+.dj_omnipresent_search .dj_omnipresent_search-field {
+  width:578px;
+  height:36px;
+  display:-moz-inline-stack;
+  display:inline-block;
+  vertical-align:top;
+  zoom:1;
+  *display:inline;
+  float:left;
+  color:#aaaaaa;
+  font-size:108%;
+  line-height:36px;
+  margin:0;
+  padding:0 8px;
+  border:0;
+  outline:none;
+}
+.dj_omnipresent_search .dj_omnipresent_search-submit {
+  height:36px;
+  width:100px;
+  display:-moz-inline-stack;
+  display:inline-block;
+  vertical-align:top;
+  zoom:1;
+  *display:inline;
+  float:left;
+  color:#ffffff;
+  text-align:center;
+  letter-spacing:.1em;
+  padding:0;
+  border:0;
+  outline:none;
+  overflow:visible;
+  background-color:#04addf;
+  background:-webkit-gradient(linear,0 0,0 100%,from(#04addf),to(#0195d3));
+  background:-moz-linear-gradient(top,#04addf,#0195d3);
+}
+
+
+
+/*
+	===>>> LOADED CSS <<<===
+	/~blago/newspages.html/dashboard/styles/css/dashboard.css
+*/
+/*
+
+	-- -- -- -- -- -- --
+	Description: Global dashboard specific layout and style rules
+	Version: 0.1
+	Last Update: 11/9/2010
+	Author: Ron Edgecomb II
+	Company: Dow Jones & Company Inc.
+	Copyright 2010 Dow Jones & Company Inc.
+	
+	Dependencies
+	 - css/reset.css
+	-- -- -- -- -- -- --
+	
+*/
+
+/* =Dashboard Layout >> General layout
+----------------------------------------------------------------------------------------------------*/
+#dashboard {
+	margin: 20px 0 20px;	
+}
+
+/* =Dashboard Logo >> Dow Jones Communicator Logo
+----------------------------------------------------------------------------------------------------*/
+#dj-logo {
+	position: absolute;
+	top: 0; left: 0;
+}
+
+/* =Client Logo >> Logo for client
+----------------------------------------------------------------------------------------------------*/
+#client-logo {
+	position: absolute;
+	top: 37px; left: 0;
+}
+
+
+/*
+	===>>> LOADED CSS <<<===
+	/~blago/newspages.html/dashboard/styles/css/dashboard.content.css
+*/
+/*
+
+	-- -- -- -- -- -- --
+	Description: Styles for general dashboard content
+	Version: 0.1
+	Last Update: 2/10/2011
+	Author: Ron Edgecomb II
+	Company: Dow Jones & Company Inc.
+	Copyright 2011 Dow Jones & Company Inc.
+	-- -- -- -- -- -- --
+	
+*/
+
+/* =Breadcrumb >> Dashboard breadcrumb styles
+----------------------------------------------------------------------------------------------------*/
+#dj_dashboard-breadcrumb {
+	padding-bottom: 10px;
+}
+
+#dj_dashboard-breadcrumb li {
+	display: inline;
+	font-size: 108%; /* 14px */
+	padding-left: 15px;
+	background: url('/~blago/newspages.html/components/styles/images/sidebar_toggle_arrow.png') no-repeat -4px -18px;
+}
+
+#dj_dashboard-breadcrumb li:first-child {
+	padding-left: 0;
+	background: none;
+}
+
+#dj_dashboard-breadcrumb .current {
+	color: #050505;
+	font-weight: bold;
+}
+
+/* =Title >> Dashboard title styles
+----------------------------------------------------------------------------------------------------*/
+#dj_dashboard-title {
+	color: #666;
+	font-size: 182%; /* 24px */
+	line-height: 30px;
+	padding-bottom: 10px;
+}
+
+/* =Content >> Dashboard content styles
+----------------------------------------------------------------------------------------------------*/
+#dj_dashboard-content .dashboard-content {
+	color: #666;
+	font-size: 93%; /* 12px */
+	line-height: 16px;
+	padding: 0 15px;
+}
+
+#dj_dashboard-content .dashboard-content h3 {
+	font-size: 153.9%; /* 20px */
+	line-height: 30px;
+	padding-bottom: 8px;
+}
+
+#dj_dashboard-content .dashboard-content p {
+	padding-bottom: 8px;
+}
+
+
+/*
+	===>>> LOADED CSS <<<===
+	/~blago/newspages.html/dashboard/styles/css/dashboard.forms.css
+*/
+/*
+	Asset: Dashboards CSS Form Library
+	Description: Library of CSS for a variety of html form elements.
+	Version: 0.1
+	Last Update: 2/2/2011
+	Author: Lauren Carriker
+	Company: Dow Jones & Company Inc.
+	Copyright 2010 Dow Jones & Company Inc.
+	
+	Note: Styles for page and modals need to be consolidated. Working version of this file.
+		
+*/
+
+/* General Form Styles */
+
+.dj_page .dj_form fieldset {
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#f8f8f8'); /* for IE */
+	background-image: -webkit-gradient(  linear,  left bottom,  left top,  color-stop(0, rgb(248,248,248)),  color-stop(1, rgb(255,255,255))  );
+	background-image: -moz-linear-gradient(  center bottom,  rgb(248,248,248) 0%,  rgb(255,255,255) 100%  );
+	border-radius:         5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius:    5px;
+	-o-border-radius:      5px;
+	-khtml-border-radius:  5px;
+	border:1px solid #e7e7e7;
+
+	width: 770px;
+	margin: 20px auto;
+	padding: 20px 0;
+
+}
+
+.dj_page .dj_form legend {
+	font-size:16px; 
+	color: #999; 
+	margin:0 10px; 
+	padding:0 5px; 
+}
+
+.dj_page .dj_form-field {padding-bottom:20px;}
+.dj_page .dj_form-field.haschild {padding-bottom:5px;}
+.dj_page .dj_form-or .dj_form-field.first {padding-bottom:0px;}
+
+.dj_page .dj_form label, 
+.dj_page .dj_form-label {
+	font-weight:bold; 
+	width: 215px;
+	text-align: right;
+	padding:0 10px;
+	display: -moz-inline-stack; /* required for ff2 */
+	display:inline-block;
+	line-height:15px;
+}
+.dj_page .dj_form-label { }
+
+.dj_page .dj_form .dj_form-field.long label {
+	vertical-align: middle;
+}
+.dj_page .dj_form .dj_form-field.x-long label {
+	vertical-align: top;
+}
+.dj_page .dj_form input,.dj_form textarea {
+	border: 1px solid #7d7d7d;
+	border-color: #7d7d7d #d3d3d3 #dadada #9a9a9a;
+}
+/* Text Styles*/
+.dj_page .dj_form-note {
+	font-weight: normal;
+	font-size: 12px;
+	color:aaa;
+	display:block;
+}
+.dj_page .dj_form-example {
+	font-weight: normal;
+	font-size: 12px;
+	color:aaa;
+	display:block;
+	margin: 8px 0 0 235px;
+}
+.dj_page .dj_form .dj_form-hide {display:none;}
+.dj_page .dj_form-hide + select {margin-left: 10px;}
+
+/* Text Input Form Styles */
+
+.dj_page .dj_form input { 
+	width: 290px;
+	padding: 0 5px;
+	height: 25px;
+	font-size:12px;
+	display: -moz-inline-stack; /* required for ff2 */
+	display:inline-block;
+}
+.dj_page .dj_form input.zipcode, .page .dj_form .short input { width:180px;}
+.dj_page .dj_form .x-short input { width:70px;}
+
+.dj_page .dj_form .input-txt input {border:0; background-color:#fff;}
+
+/* Telephone Styles */
+.dj_page .dj_form .telephone label {display:none;}
+.dj_page .dj_form .telephone .area, .dj_form .telephone .pre { width: 55px; margin-right: 5px;}
+.dj_page .dj_form .telephone input.ext { width: 55px; }
+.dj_page .dj_form .telephone label.ext { display:inline-block; padding: 0 0 0 5px; width:auto; text-align:left; font-weight:normal;}
+.dj_page .dj_form .telephone .pre {margin:0 5px;}
+.dj_page .dj_form .telephone .suf { width: 80px; margin-left: 5px;}
+
+/* Text Area Styles */
+
+.dj_page .dj_form .textarea label {vertical-align: top;}
+.dj_page .dj_form textarea { 
+	width: 295px;
+	padding: 0 0 0 5px;
+	font-size:12px;
+	display: -moz-inline-stack; /* required for ff2 */
+	display:inline-block;
+}
+
+/* BTN Arrows */
+
+.dj_page .dj_form-btn-arrows {
+	width:22px;
+	padding:0 4px;
+	display:inline-block;	
+}
+.dj_page .dj_form-btn-arrows li a{ text-indent:-1000px; height: 18px; width:22px; display:block;  background-repeat:no-repeat;}
+.dj_page .dj_form-btn-arrows a:link, .page .dj_form-btn-arrows a:visited {background-position:0 0;}
+.dj_page .dj_form-btn-arrows a:hover, .page .dj_form-btn-arrows a:active {background-position:0 -18px;}
+.dj_page .dj_form-btn-arrows .add { background-image: url('/~blago/newspages.html/dashboard/styles/../../MADE/styles/images/btn-multi-select-left.gif');}
+.dj_page .dj_form-btn-arrows .remove {background-image: url('/~blago/newspages.html/dashboard/styles/../../MADE/styles/images/btn-multi-select-right.gif'); margin-top:5px;}
+
+
+/* Select Styles */
+
+.dj_page .select-multi label {vertical-align: top;}
+.dj_page .select-multi select{
+	width: 295px; 
+	padding:0;
+	}
+.dj_page .select-multi.group {
+	margin-left:125px;
+}
+.dj_page .select-multi.group label {
+	display: block;
+	margin:0;
+	text-align:left;
+}
+.dj_page .select-multi.group select{
+	padding:0;
+}
+
+.dj_page .dj_form .toggle {
+	display:inline-block;	
+}
+.dj_page .dj_form .toggle label {
+	padding:0 0 5px;
+	line-height:20px;
+	
+}
+
+
+/* OR styles */
+.dj_page div.dj_form-or {
+	border-top:1px solid #e7e7e7;
+	border-bottom:1px solid #e7e7e7;
+	margin: 0px 15px 16px;
+	padding: 14px 0 0 ;
+}
+
+
+.dj_page div.dj_form-or label{width:200px;}
+.dj_page span.dj_form_or {
+	display:block; 
+	margin: 15px 0 0 240px;
+	text-align:left;
+	font-weight:bold;
+	font-size:12px;
+	line-height:20px;
+	text-transform:uppercase; 
+	color:#aaa;
+}
+.dj_page div.dj_form-or span.dj_form_or {
+	margin: 0 531px 0 0;
+	text-align:right;
+	line-height:auto;
+}
+
+/* Check Box or Radio Styling */
+
+.dj_page .dj_form-field.checkbox input {
+	margin: 0 0 0 238px;
+	height:auto;
+	width: auto;
+}
+.dj_page .dj_form-field.checkbox .dj_form-group-inline input, 
+.dj_page .dj_form-field.checkbox .dj_form-group input {
+	margin: 0;
+}
+
+
+
+.dj_page .dj_form-field.checkbox .dj_form-group-inline {
+	display:inline-block;
+}
+.dj_page .dj_form-field.checkbox input + label,
+.dj_page .dj_form-field.checkbox .dj_form-group-inline label, 
+.dj_page .dj_form-field.checkbox .dj_form-group label {
+	width: auto;
+	text-align: left;
+	padding:0 20px 0 10px;
+	display:inline-block;
+	font-weight: normal;
+	line-height:20px;
+	vertical-align: middle;
+}
+.dj_page .dj_form-field.checkbox.single label {
+	width: auto;
+	text-align: left;
+	padding:0 20px 0 10px;
+	display:inline-block;
+	font-weight: normal;
+	line-height:20px;
+	vertical-align: middle;
+}
+
+.dj_page .dj_form-field.checkbox .dj_form-group ul label {
+	white-space: normal;
+	vertical-align: top;
+	
+}
+.dj_page .dj_form-group ul {
+	width: 150px;
+	margin:0;
+	padding-right: 15px;
+	display: inline-block;
+	white-space: nowrap; /* For no line breaks between labels and check boxes */
+	vertical-align: top;
+}
+
+.dj_page .dj_form-group ul.first {
+	padding:0;
+}
+.dj_page .dj_form-group ul.last {
+	padding: 0 0 0 0;
+}
+.dj_page .dj_form-group ul li{
+	padding: 0 0 5px;
+}
+
+
+.dj_page .dj_form-group {
+	border-radius:         5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius:    5px;
+	-o-border-radius:      5px;
+	-khtml-border-radius:  5px;
+	border:1px solid #e7e7e7;
+	
+	margin: 0 15px 15px 223px;
+	padding: 15px;
+	
+	}
+	
+/* Radio Box Styling */
+.dj_page .dj_form-field.radio input {
+	margin: 0 0 0 238px;
+	height:auto;
+	width: auto;
+}
+.dj_page .dj_form-field.radio .dj_form-group-inline input, 
+.dj_page .dj_form-field.radio .dj_form-group input {
+	margin: 0;
+}
+
+
+
+.dj_form-field.radio .dj_form-group-inline {
+	display:inline-block;
+}
+.dj_page .dj_form-field.radio .dj_form-group-inline label, 
+.dj_page .dj_form-field.radio .dj_form-group label {
+	width: auto;
+	text-align: left;
+	padding:0 20px 0 10px;
+	display:inline-block;
+	font-weight: normal;
+	line-height:20px;
+	vertical-align: middle;
+}
+.dj_page .dj_form-field.radio.single label {
+	width: auto;
+	text-align: left;
+	padding:0 20px 0 10px;
+	display:inline-block;
+	font-weight: normal;
+	line-height:20px;
+	vertical-align: middle;
+}
+
+.dj_page .dj_form-field.radio .dj_form-group ul label {
+	white-space: normal;
+	vertical-align: top;
+	
+}
+/*General Field Styling */
+
+.dj_page .dj_form div.dj_form-hasChildFld {
+	min-height: 0;
+	padding-bottom: 5px;
+}
+.dj_page .dj_form-isChildFld
+{
+	
+}
+.dj_page .dj_form-field.has-intr label {}
+.dj_page .dj_form-label-intr {
+	text-align: left;
+	padding:0 10px 0 0;
+	margin: 0 0 0 0;
+	display:inline-block;
+}
+
+
+
+
+/*
+	Asset: Dashboards CSS Form Library
+	Description: Library of CSS for a variety of html form elements.
+	Version: 0.1
+	Last Update: 2/2/2011
+	Author: Ron Edgecomb II
+	Company: Dow Jones & Company Inc.
+	Copyright 2010 Dow Jones & Company Inc.
+		
+*/
+
+/* =Form >> Containers
+----------------------------------------------------------------------------------------------------*/
+
+.dj_modal .dj_form legend {
+	display: none;
+}
+
+/* --->>> Form Fields <<<--- */
+/* field label */
+.dj_modal .dj_form-label,
+.dj_modal .dj_form-group-label {
+	width: 210px;
+	min-height: 17px;
+	display: -moz-inline-stack; /* required for ff2 */
+	display: inline-block;
+	vertical-align: top;
+	
+	font-size: 93%; /* 12px */
+	font-weight: bold;
+	text-align: right;
+	
+	margin-top: 3px;
+	
+}
+	.dj_modal .dj_form-radio-field .dj_form-label,
+	.dj_modal .dj_form-plain-text-field .dj_form-label {
+		margin-top: 0;
+	}
+	
+.dj_modal .micro-indent .dj_form-label,
+.dj_modal .micro-indent .dj_form-group-label {
+	width: 60px;
+}
+.dj_modal .sm-indent .dj_form-label,
+.dj_modal .sm-indent .dj_form-group-label {
+	width: 110px;
+}
+.dj_modal .lrg-indent .dj_form-label,
+.dj_modal .lrg-indent .dj_form-group-label {
+	width: 310px;
+}
+
+/* single line form elements */
+.dj_modal .micro-indent .dj_form-inline-label,
+.dj_modal .sm-indent .dj_form-inline-label,
+.dj_modal .dj_form-inline-label,
+.dj_modal .lrg-indent .dj_form-inline-label {
+	width: 320px;
+	font-weight: normal;
+	text-align: left;
+}
+
+.dj_modal .no-indent .dj_form-inline-label {
+	width: 400px;
+}
+
+
+.dj_modal .dj_form-radio-field .dj_form-label,
+.dj_modal .dj_form-checkbox-field .dj_form-label {
+	margin-left: 12px;
+}
+
+
+.dj_modal .dj_form-label-help {
+	display: block;
+	
+	font-size: 77%; /* 10px */
+	font-weight: normal;
+	font-style: italic;
+	text-align: right;
+}
+
+/* form fields */
+.dj_modal .dj_form-field {
+	margin-bottom: 10px;
+}
+
+.dj_modal .dj_form-input,
+.dj_modal .dj_form-select,
+.dj_modal .dj_form-textarea,
+.dj_modal .dj_form-field-group,
+.dj_modal .dj_form-radio,
+.dj_modal .dj_form-checkbox,
+.dj_modal .dj_form-plain-text {
+	width: 280px;
+	min-height: 18px;
+	display: -moz-inline-stack; /* required for ff2, breaks validation */
+	display: inline-block;
+	vertical-align: top;
+	
+	color: #666;
+	font-size: 93%; /* 12px */
+	
+	padding: 3px;
+	margin-left: 10px;
+	
+}
+
+.dj_modal .dj_form-input,
+.dj_modal .dj_form-textarea {
+	background-color: #fefefe;
+	border: 1px solid #7d7d7d;
+	border-color: #7d7d7d #d3d3d3 #dadada #9a9a9a;
+	box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+
+	/*Safari Opera Chrome*/
+	background: -webkit-gradient(linear, left top, left bottom, from(#e8e8e8), to(#fefefe));
+	-webkit-box-shadow: inset 0 0 rgba(0, 0, 0, 0.2);
+
+	/*FireFox*/
+	background: -moz-linear-gradient(top,  #e8e8e8,  #fefefe);
+	-moz-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+/* checkbox sizes */
+.dj_modal .dj_form-radio,
+.dj_modal .dj_form-checkbox {
+	width: auto;
+	min-height: auto;
+	margin-left: 0;
+}
+
+/* input sizes */
+.dj_modal .dj_form-input.micro {
+	width: 60px;
+}
+.dj_modal .dj_form-input.sm {
+	width: 120px;
+}
+.dj_modal .dj_form-input.lrg {
+	width: 370px;
+}
+
+/* select menu sizes with width correction */
+.dj_modal .dj_form-select.micro {
+	width: 68px;
+}
+.dj_modal .dj_form-select.sm {
+	width: 128px;
+}
+.dj_modal .dj_form-select {
+	width: 248px;
+} 
+.dj_modal .dj_form-select.lrg {
+	width: 378px;
+}
+
+/* multiple select menu sizes */
+.dj_modal .dj_form-select.multi.short {
+	height: 58px;
+}
+.dj_modal .dj_form-select.multi {
+	height: 118px;
+}
+.dj_modal .dj_form-select.multi.tall {
+	height: 178px;
+}
+
+/* textarea sizes */
+.dj_modal .dj_form-textarea.micro {
+	width: 160px;
+}
+.dj_modal .dj_form-textarea.sm {
+	width: 240px;
+}
+.dj_modal .dj_form-textarea {
+	width: 320px;
+}	
+.dj_modal .dj_form-textarea.lrg {
+	width: 400px;
+}
+
+.dj_modal .dj_form-textarea.short {
+	height: 58px;
+}
+
+.dj_modal .dj_form-textarea {
+	height: 118px;
+}
+
+.dj_modal .dj_form-textarea.tall {
+	height: 178px;
+}
+
+/* group fields - radio and checkboxes */
+.dj_modal .dj_form-plain-text {
+	padding: 0;
+}
+
+.dj_modal .dj_form-field-group {
+	width: auto;
+	margin-left: 0;
+	padding: 0;
+}
+
+/* indent items */
+.dj_modal .no-indent .dj_form-checkbox,
+.dj_modal .no-indent .dj_form-radio {
+	margin-left: 0;
+}
+
+.dj_modal .micro-indent .dj_form-checkbox,
+.dj_modal .micro-indent .dj_form-radio {
+	margin-left: 45px;
+}
+
+.dj_modal .sm-indent .dj_form-checkbox,
+.dj_modal .sm-indent .dj_form-radio {
+	margin-left: 95px;
+}
+
+.dj_modal .dj_form-checkbox,
+.dj_modal .dj_form-radio{
+	margin-left: 195px;
+}
+
+.dj_modal .lrg-indent .dj_form-checkbox,
+.dj_modal .lrg-indent .dj_form-radio{
+	margin-left: 295px;
+}
+
+.dj_modal .no-indent .dj_form-no-label,
+.dj_modal .no-indent .dj_form-submit-buttons,
+.dj_modal .no-indent .dj_form-indent {
+	margin-left: 0;
+}
+
+.dj_modal .micro-indent .dj_form-no-label,
+.dj_modal .micro-indent .dj_form-submit-buttons,
+.dj_modal .micro-indent .dj_form-indent {
+	margin-left: 65px; /* based on size of label + 10px padding */
+}
+
+.dj_modal .sm-indent .dj_form-no-label,
+.dj_modal .sm-indent .dj_form-submit-buttons,
+.dj_modal .sm-indent .dj_form-indent {
+	margin-left: 115px; /* based on size of label + 10px padding */
+}
+
+.dj_modal .dj_form-no-label,
+.dj_modal .dj_form-submit-buttons,
+.dj_modal .dj_form-indent {
+	margin-left: 215px; /* based on size of label + 10px padding */
+}
+
+.dj_modal .lrg-indent .dj_form-no-label,
+.dj_modal .lrg-indent .dj_form-submit-buttons,
+.dj_modal .lrg-indent .dj_form-indent {
+	margin-left: 315px; /* based on size of label + 10px padding */
+}
+
+.dj_modal .dj_form-no-indent,
+.dj_modal .micro-indent .dj_form-no-indent,
+.dj_modal .sm-indent .dj_form-no-indent,
+.dj_modal .lrg-indent .dj_form-no-indent {
+	margin-left: 0;
+}
+
+
+/*
+	===>>> LOADED CSS <<<===
+	/~blago/newspages.html/dashboard/styles/css/dashboard.notice.css
+*/
+/*
+
+	-- -- -- -- -- -- --
+	Description: Styles for all page notice areas
+	Version: 0.1
+	Last Update: 2/2/2011
+	Author: Ryan Schoch
+			Ron Edgecomb
+	Company: Dow Jones & Company Inc.
+	Copyright 2010 Dow Jones & Company Inc.
+	
+	
+*/
+
+/* =Dashboard Notice - Global dashboard notice styles
+----------------------------------------------------------------------------------------------------*/
+.dj_dashboard-notice {
+	background: #e3f5fb;
+	padding: 38px 26px;
+	border: 1px solid #e6e6e6;
+}
+
+.dj_dashboard-notice-title {
+	color: #333;
+	font-size: 153.9%; /* 20px */
+	font-weight: bold;
+	margin-bottom: 20px;
+}
+
+.dj_dashboard-notice-body {
+	width: 535px;
+	font-size: 108%; /* 14px */
+	color: #333;
+	line-height: 18px;
+}
+	.dj_dashboard-notice-body p {
+		margin-bottom: 20px;
+	}
+
+
+/*
+	===>>> LOADED CSS <<<===
+	/~blago/newspages.html/dashboard/styles/less/dashboard.edit.less
+*/
+
+.dj_edit-box h3 {
+  font-size:20px;
+  line-height:20px;
+}
+.dj_edit-box .link {
+  color:#3399cc;
+  cursor:pointer;
+}
+.dj_edit-box .link.valign-h3 { line-height:20px; }
+.dj_edit-box .link:hover { color:#006ca2; }
+.dj_edit-box .button-pane {
+  border-top:1px solid #caebf9;
+  -webkit-box-shadow:inset 0 1px 0 #ffffff rgba(0,0,0,0.5);
+  -moz-box-shadow:inset 0 1px 0 #ffffff rgba(0,0,0,0.5);
+  box-shadow:inset 0 1px 0 #ffffff rgba(0,0,0,0.5);
+  padding-top:15px;
+  clear:both;
+}
+.dj_edit-box .edit-details {
+  padding-bottom:15px;
+  margin-bottom:15px;
+  border-bottom:1px solid #ffffff;
+  -webkit-box-shadow:inset 0 -1px 0 #caebf9 rgba(0,0,0,0.5);
+  -moz-box-shadow:inset 0 -1px 0 #caebf9 rgba(0,0,0,0.5);
+  box-shadow:inset 0 -1px 0 #caebf9 rgba(0,0,0,0.5);
+}
+.dj_edit-box .dj_edit-title {
+  color:#333333;
+  font-weight:500;
+  font-size:153.9%;
+  line-height:1;
+  margin-bottom:10px;
+}
+.dj_edit-box .dj_edit-description {
+  color:#333333;
+  font-size:108%;
+  line-height:18px;
+  margin-bottom:16px;
+}
+.dj_edit-box .dj_edit-input-wrap { margin:0 0 15px; }
+.dj_edit-box label.dj_edit-label {
+  display:-moz-inline-stack;
+  display:inline-block;
+  vertical-align:baseline;
+  color:#666666;
+  font-size:153.9%;
+  font-weight:500;
+  line-height:1;
+}
+.dj_edit-box .dj_edit-input-wrap label.dj_edit-label { margin-bottom:8px; }
+.dj_edit-box .dj_max-char-note {
+  display:-moz-inline-stack;
+  display:inline-block;
+  vertical-align:baseline;
+  color:#999999;
+  font-size:85%;
+  line-height:1;
+  margin-bottom:5px;
+}
+.dj_edit-box .dj_text-element-wrapper.error {
+  background-color:#fdd7d7;
+  background-color:#ecc6c6;
+  border:1px solid #906a6a;
+  background:-webkit-gradient(linear,0 0,0 100%,from(#ecc6c6),to(#fdd7d7));
+  background:-moz-linear-gradient(top,#ecc6c6,#fdd7d7);
+}
+.dj_edit-box .dj_text-element-wrapper input, .dj_edit-box .dj_text-element-wrapper textarea {
+  width:278px;
+  background:none;
+  padding:5px 10px;
+  border:0;
+  outline:none;
+}
+.dj_edit-box .dj_text-element-wrapper input { height:16px; }
+.dj_edit-box .dj_text-element-wrapper textarea { height:71px; }
+.dj_edit-box .dj_text-element-wrapper {
+  width:298px;
+  border-top:1px solid #7d7d7d;
+  border-right:1px solid #d3d3d3;
+  border-bottom:1px solid #dadada;
+  border-left:1px solid #9a9a9a;
+  margin-bottom:16px;
+  -webkit-box-shadow:inset 0 0 5px 0 rgba(0,0,0,0.2);
+  -moz-box-shadow:inset 0 0 5px 0 rgba(0,0,0,0.2);
+  box-shadow:inset 0 0 5px 0 rgba(0,0,0,0.2);
+  background-color:#e8e8e8;
+  background:-webkit-gradient(linear,0 0,0 100%,from(#e8e8e8),to(#fefefe));
+  background:-moz-linear-gradient(top,#e8e8e8,#fefefe);
+}
+.dj_edit-box .dj_edit-pg-add-btn-margin { margin-top:11px; }
+.dj_edit-box .dj_edit-lists-overflow {
+  height:146px;
+  overflow:auto;
+  margin-top:5px;
+  padding-top:10px;
+  border-top:1px solid #caebf9;
+  -webkit-box-shadow:inset 0 1px 0 #ffffff rgba(0,0,0,0.5);
+  -moz-box-shadow:inset 0 1px 0 #ffffff rgba(0,0,0,0.5);
+  box-shadow:inset 0 1px 0 #ffffff rgba(0,0,0,0.5);
+}
+.dj_edit-box .dj_edit-lists { padding-bottom:10px; }
+.dj_edit-box .sortable-item .label {
+  cursor:pointer;
+  display:block;
+  margin-left:30px;
+}
+.dj_edit-box .sortable-item .controls {
+  padding-top:5px;
+  padding-bottom:5px;
+}
+.dj_edit-box .sortable-item input, .dj_edit-box .sortable-item .label {
+  width:535px;
+  display:inline-block;
+}
+.dj_edit-box .sortable-item .reorder-icon {
+  background-repeat:no-repeat;
+  background-position:center bottom;
+  display:inline-block;
+  display:none;
+  position:relative;
+  line-height:20px;
+  width:30px;
+  height:14px;
+  background-image:url('reorder_icon.png');
+  cursor:move;
+}
+.dj_edit-box .sortable-item.warning {
+  background-image:url('icon_warning.png');
+  background-position:34px 2px;
+  background-repeat:no-repeat;
+}
+.dj_edit-box .sortable-item.hover .label, .dj_edit-box .sortable-item.focus .label { margin-left:0px; }
+.dj_edit-box .sortable-item.hover .reorder-icon, .dj_edit-box .sortable-item.focus .reorder-icon { display:inline-block; }
+.dj_edit-box .sortable-item.hover, .dj_edit-box .sortable-item.focus {
+  border:1px dashed #ffffff;
+  background-color:#caebf9;
+}
+.dj_edit-box .sortable-item {
+  line-height:20px;
+  border:1px solid transparent;
+}
+.dj_edit-box .drop-placeholder {
+  height:20px;
+  background-color:#ffffff;
+  border:1px dashed #caebf9;
+}
+.dj_edit-box {
+  background-color:#e3f5fb;
+  padding:15px;
+  border:1px solid #e6e6e6;
+}
+.dj_create-custom-pg .dj_edit-description { margin-bottom:19px; }
+.dj_create-custom-pg {
+  border:1px solid #caebf9;
+  margin-bottom:20px;
+}
+.dj_edit-pg .dj_edit-pg-creation-date, .dj_edit-pg .dj_edit-pg-change-note { display:-moz-inline-stack;
+  display:inline-block; }
+.dj_edit-pg .dj_edit-pg-creation-date, .dj_edit-pg .dj_edit-pg-change-note {
+  display:block;
+  font-size:93%;
+}
+.dj_edit-pg .dj_edit-pg-creation-date { color:#333333; }
+.dj_edit-pg .dj_edit-pg-change-note {
+  color:#999999;
+  line-height:16px;
+  margin-bottom:16px;
+}
+.dj_edit-pg .dj_edit-col {
+  width:300px;
+  height:188px;
+  float:left;
+  margin-right:30px;
+}
+.dj_edit-col:first-child {
+  padding-left:0;
+  border-left:none;
+  -webkit-box-shadow:none;
+  -moz-box-shadow:none;
+  box-shadow:none;
+}
+.dj_edit-col.two-thirds {
+  padding-right:0;
+  width:625px;
+}
+.dj_edit-col {
+  width:300px;
+  min-height:200px;
+  float:left;
+  padding:0 15px;
+  margin-bottom:15px;
+  border-left:1px solid #caebf9;
+  -webkit-box-shadow:inset 1px 0 0 #ffffff rgba(0,0,0,0.5);
+  -moz-box-shadow:inset 1px 0 0 #ffffff rgba(0,0,0,0.5);
+  box-shadow:inset 1px 0 0 #ffffff rgba(0,0,0,0.5);
+}
+.dj_edit-list-empty-msg { font-style:italic; }
+.dj_edit-lists-add-controls .new-item-box {
+  padding-left:60px;
+  margin-bottom:15px;
+}
+.dj_edit-lists-add-controls .new-item-box input {
+  width:550px;
+  margin-bottom:5px;
+}
+.dj_edit-lists-add-controls .list-message { font-style:italic; }
+.dj_edit-lists-add-controls {
+  padding:10px 0 0;
+  border-top:1px solid #caebf9;
+  -webkit-box-shadow:inset 0 1px 0 #ffffff rgba(0,0,0,0.5);
+  -moz-box-shadow:inset 0 1px 0 #ffffff rgba(0,0,0,0.5);
+  box-shadow:inset 0 1px 0 #ffffff rgba(0,0,0,0.5);
+}
+.add-new-list-item label.dj_edit-label {
+  font-size:108%;
+  vertical-align:middle;
+  margin:0 5px 0 0;
+}
+.add-new-list-item select.user-alerts-list { margin-right:5px; }
+.module-edit-options .dj_edit-box {
+  padding-top:30px;
+  border:none;
+}
+.curated-module .dj_edit-label-wrap .dj_edit-lens-row .dj_edit-label {
+  width:90px;
+  font-size:108%;
+}
+.curated-module .dj_edit-label-wrap .dj_edit-lens-row input[type="radio"] { margin:0 5px 0 0; }
+.curated-module .dj_edit-label-wrap .dj_edit-lens-row select { width:190px; }
+.curated-module .dj_edit-label-wrap .dj_edit-lens-row { margin:0 0 15px; }
+.curated-module .dj_edit-label-wrap { margin:0 0 8px; }
+.module-edit-options .add-company-wrap.approved .validation { color:#339900; }
+.module-edit-options .add-company-wrap.approved { border:1px solid #339900; }
+.module-edit-options .add-company-wrap.denied .validation { color:#ff0000; }
+.module-edit-options .add-company-wrap.denied { border:1px solid #ff0000; }
+.module-edit-options .add-company-wrap .validation {
+  display:-moz-inline-stack;
+  display:inline-block;
+  position:absolute;
+  top:5px;
+  left:305px;
+  font-size:108%;
+  font-family:Helvetica, Arial, sans-serif;
+  font-weight:bold;
+  text-transform:uppercase;
+}
+.module-edit-options .add-company-wrap .error-msg {
+  color:#ff0000;
+  font-size:85%;
+}
+.module-edit-options .add-company-wrap {
+  position:relative;
+  margin-bottom:5px;
+}
+
+
+
+/*
+	===>>> LOADED CSS <<<===
+	/~blago/newspages.html/dashboard/styles/css/dashboard.modal.css
+*/
+/*
+
+	-- -- -- -- -- -- --
+	Description: Basic Modal Style Rules
+	Version: 0.1
+	Last Update: 2/2/2011
+	Author: Ryan Schoch
+			Philippe Arcand
+			Ron Edgecomb
+	Company: Dow Jones & Company Inc.
+	Copyright 2010 Dow Jones & Company Inc.
+	
+	Dependencies
+	 - css/reset.css
+	 - css/lib/modules.css
+	-- -- -- -- -- -- --
+	
+*/
+
+#dj_modal-overlay {
+	background-color: #000;
+}
+
+/*overlay box*/
+.dj_modal {
+	/*width: 520px;*/
+	display: none;
+	padding: 0 0 20px;
+	background-color: #fff;	
+	
+	box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+
+	border-radius: 5px;
+	-webkit-box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+
+	-moz-border-radius: 5px;
+	-moz-box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+/*wrapper for overlay header*/
+.dj_modal-header {
+	height: 39px;
+	position: relative;
+	margin: 0 0 20px;	
+	background-color: #272727;
+	border: 1px solid #6b6b6b;
+	border-bottom: none;
+		
+	/*Safari Opera Chrome*/
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	background: -webkit-gradient(linear, left top, left bottom, from(#454545), to(#272727));
+	
+	/*FireFox*/
+	-moz-border-radius-topleft: 5px;
+	-moz-border-radius-topright: 5px;
+	background: -moz-linear-gradient(top,  #444444,  #272727);
+	
+}
+	
+/*Overlay title*/
+.dj_modal-title {
+	color: #fff;
+	font-size: 138.5%; /* 18px */
+	line-height: 39px;
+	font-weight: bold;
+	padding: 0 20px;
+}
+	
+.dj_modal-header .dj_modal-close {
+    height: 18px;
+    width: 17px;
+	position: absolute;
+	top: 10px; right: 15px;
+	line-height: 18px;
+	text-indent: -9999px;
+    background: url('factiva-icons.png') no-repeat 0 -840px;
+	border: none;
+	cursor: pointer;
+}
+
+
+/*wrapper for overlay body*/	
+.dj_modal-content {
+	/*width: 480px;
+	height: 358px;*/ /* 358px = 500px web safe - 62px gray box border and padding - 40px header - 40px content margin */
+	color: #666;
+	margin: 0 20px;
+	/*overflow: auto;*/
+}
+	
+
+.dj_modal-content h4 {
+	font-size: 123.1%; /* 16px */
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+
+.dj_modal-content p {
+    font-size: 93%; /* 12px */
+	margin-bottom: 10px;
+}
+
+.dj_modal-controls {
+	padding-top: 10px;
+}
+
+.dj_modal .clear.br {
+	margin: 10px 0;
+	border-bottom: 1px solid #e6e6e6;
+}
+
+/* Publish Page Alerts */
+#dj_modal-publish-alerts {
+	height: 125px;
+	
+	color: #999;
+	font-size: 108%; /* 14px */
+    
+	padding: 0 20px;
+	margin-bottom: 10px;
+	border: 1px solid #ccc;
+	overflow: auto;
+}
+
+	#dj_modal-publish-alerts li {
+		padding: 5px 0;
+	}
+
+.dj_modal-content .dj_output-table td {
+	padding:3px;
+}
+
+
+
+/*
+	===>>> LOADED CSS <<<===
+	/~blago/newspages.html/dashboard/styles/less/dashboard.modal.article.less
+*/
+
+.dj_modal-article .dj_modal-wrap {
+  padding:0 0 20px;
+  margin:0 auto;
+  background-color:#ffffff;
+  -webkit-border-radius:5px;
+  -moz-border-radius:5px;
+  border-radius:5px;
+  -webkit-box-shadow:0 5px 8px rgba(0,0,0,0.2);
+  -moz-box-shadow:0 5px 8px rgba(0,0,0,0.2);
+  box-shadow:0 5px 8px rgba(0,0,0,0.2);
+}
+.dj_modal-article .dj_modal-header .dj_modal-nav li {
+  height:39px;
+  float:left;
+  display:-moz-inline-stack;
+  display:inline-block;
+  vertical-align:top;
+  border-right:1px solid #212121;
+  border-left:1px solid #333333;
+}
+.dj_modal-article .dj_modal-header .dj_modal-nav li.first a { padding-left:0px; }
+.dj_modal-article .dj_modal-header .dj_modal-nav li.first { border-left:none; }
+.dj_modal-article .dj_modal-header .dj_modal-nav li a {
+  display:block;
+  color:#f4f4f4;
+  font-size:93%;
+  line-height:39px;
+  text-decoration:none;
+  padding:0 20px;
+}
+.dj_modal-article .dj_modal-header .dj_modal-nav li.dj_modal-close {
+  height:18px;
+  width:17px;
+  position:absolute;
+  top:10px;
+  right:15px;
+  line-height:18px;
+  text-indent:-9999px;
+  background:url('factiva-icons.png') no-repeat 0 -840px;
+  border:none;
+  cursor:pointer;
+}
+.dj_modal-article .dj_modal-header .dj_modal-nav {
+  height:39px;
+  float:left;
+  display:-moz-inline-stack;
+  display:inline-block;
+  zoom:1;
+  *display:inline;
+  vertical-align:top;
+  border-right:1px solid #333333;
+}
+.dj_modal-article .dj_modal-header {
+  height:39px;
+  position:relative;
+  color:#999999;
+  margin:0 0 20px;
+  border:1px solid #6b6b6b;
+  border-bottom:none;
+  background-color:#444444;
+  background:-webkit-gradient(linear,0 0,0 100%,from(#444444),to(#272727));
+  background:-moz-linear-gradient(top,#444444,#272727);
+  -webkit-border-top-left-radius:5px;
+  -moz-border-radius-topleft:5px;
+  border-top-left-radius:5px;
+  -webkit-border-top-right-radius:5px;
+  -moz-border-radius-topright:5px;
+  border-top-right-radius:5px;
+}
+.dj_modal-article .dj_modal-content .dj_modal-meta .article-meta-source {
+  text-transform:uppercase;
+  font-weight:bold;
+}
+.dj_modal-article .dj_modal-content .dj_modal-meta {
+  font-size:85%;
+  color:#999999;
+}
+.dj_modal-article .dj_modal-content .dj_modal-title a {
+  color:#2f90b3;
+  font-weight:bold;
+}
+.dj_modal-article .dj_modal-content .dj_modal-title {
+  font-size:123.1%;
+  line-height:18px;
+  margin-bottom:10px;
+}
+.dj_modal-article .dj_modal-content .dj_modal-body p {
+  line-height:16px;
+  margin-bottom:21px;
+}
+.dj_modal-article .dj_modal-content .dj_modal-body {
+  color:#666666;
+  font-size:93%;
+}
+.dj_modal-article .dj_modal-content { margin:0 20px; }
+.dj_modal-article {
+  display:none;
+  position:relative;
+}
+
+
+
+/*
+	===>>> LOADED CSS <<<===
+	/~blago/newspages.html/dashboard/styles/css/dashboard.controls.css
+*/
+/*
+
+	-- -- -- -- -- -- --
+	Description: Styles for various buttons used within modules
+	Version: 0.1
+	Last Update: 11/12/2010
+	Author: Ron Edgecomb II, Philippe Arcand, and Pete McGrath
+	Company: Dow Jones & Company Inc.
+	Copyright 2010 Dow Jones & Company Inc.
+
+	
+	Dependencies
+	 - css/reset.css
+	 - css/global.css
+	-- -- -- -- -- -- --
+	
+*/
+
+/* =Dashboard Controls >> Global Style Rules
+----------------------------------------------------------------------------------------------------*/
+
+.dc_list {
+	height: 18px;
+	display: -moz-inline-stack; /* required for ff2 */
+	display: inline-block;
+	vertical-align: middle;
+	line-height: 18px;
+}
+	.dc_list-fl {
+		float: left;
+	}
+	.dc_list-fr {
+		float: right;
+	}
+
+.dc_list .dc_item {
+	height: 18px;
+	display: -moz-inline-stack; /* required for ff2 */
+	display: inline-block;
+	vertical-align: top;
+	float: left;
+	position:relative;
+	margin:0 8px 0 0;
+	cursor:pointer;
+}
+	.dc_list-fr .dc_item {
+		margin:0 0 0 8px;
+	}
+	
+	.dc_list .dc_item.hide {
+		display: none;
+	}
+
+.dc_list .dc_item .dashboard-control {
+	height: 18px;
+	display: -moz-inline-stack; /* required for ff2 */
+	display: inline-block;
+	vertical-align: top;
+	color: #a3a3a3;
+	font-size: 85%; /* 11px */
+	line-height: 18px;
+	text-decoration: none;
+}
+
+/* =Dashboard Controls >> larger verion
+----------------------------------------------------------------------------------------------------*/
+.dc_list-lg {
+	height: 24px;
+	line-height: 24px;
+}
+
+.dc_list-lg .dc_item {
+	height: 24px;
+}
+
+.dc_list-lg .dc_item .dashboard-control {
+	height: 24px;
+	color: #a3a3a3;
+	font-size: 108%; /* 14px */
+	line-height: 24px;
+}
+
+/* =Dashboard Controls >> Button styles
+----------------------------------------------------------------------------------------------------*/
+/*Button Default*/
+.dc_list .dc_item .dc_btn {
+    width: auto;
+	padding: 0 12px;
+    margin: 0;
+	color: #fff;
+    overflow: visible;
+	-webkit-box-sizing: content-box;
+	-moz-box-sizing: content-box;
+	border: 0;
+	border-radius: 9px;
+	-moz-border-radius: 9px;
+	-webkit-border-radius: 9px;
+}
+	
+	/*IE*/
+	.ie6 .dc_list .dc_item input.dc_btn,
+	.ie7 .dc_list .dc_item .dc_btn,
+	.ie8 .dc_list .dc_item .dc_btn {
+		height:16px; /*IE buttons have borders.. need to subtract 2 pixels from height*/
+		line-height:16px; /*IE buttons have borders.. need to subtract 2 pixels from line-height*/
+	}
+	
+/* =Dashboard Controls >> larger button verion
+----------------------------------------------------------------------------------------------------*/
+.dc_list-lg .dc_item .dc_btn {
+	border-radius: 11px;
+	-moz-border-radius: 11px;
+	-webkit-border-radius: 11px;
+}
+
+	/*IE*/
+	.ie6 .dc_list-lg .dc_item input.dc_btn,
+	.ie7 .dc_list-lg .dc_item .dc_btn,
+	.ie8 .dc_list-lg .dc_item .dc_btn {
+		height:22px; /*IE buttons have borders.. need to subtract 2 pixels from height*/
+		line-height:22px; /*IE buttons have borders.. need to subtract 2 pixels from line-height*/
+	}
+
+/* =Dashboard Controls >> add a module button version
+----------------------------------------------------------------------------------------------------*/
+.dc_add-module .dc_item .dc_btn {
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+}
+
+	/*IE*/
+	.ie6 .dc_add-module .dc_item input.dc_btn,
+	.ie7 .dc_add-module .dc_item .dc_btn,
+	.ie8 .dc_add-module .dc_item .dc_btn {
+		height:48px; /*IE buttons have borders.. need to subtract 2 pixels from height*/
+		line-height:48px; /*IE buttons have borders.. need to subtract 2 pixels from line-height*/
+	}
+	
+/* =button versions	 >> Green Button styles
+----------------------------------------------------------------------------------------------------*/
+
+.dc_list .dc_item .dc_btn-1 {
+	background:#93be4e;
+}
+	
+	/*IE*/
+	.ie6 .dc_list .dc_item .dc_btn-1,
+	.ie7 .dc_list .dc_item .dc_btn-1,
+	.ie8 .dc_list .dc_item .dc_btn-1 {
+		border:1px solid #7aac31;
+	}
+	
+/*Green Button Hover*/
+.dc_list .dc_item .dc_btn-1:hover {
+	background:#7aac31;
+}
+	
+/* =button versions	 >> Blue Button styles
+----------------------------------------------------------------------------------------------------*/
+
+.dc_list .dc_item .dc_btn-2 {
+	background:#02a2db;
+	background: -webkit-gradient(linear, left top, left bottom, from(#5aabc9), to(#4397bb));
+	background: -moz-linear-gradient(top,  #5aabc9,  #4397bb);
+}
+	
+	/*IE*/
+	.ie6 .dc_list .dc_item .dc_btn-2,
+	.ie7 .dc_list .dc_item .dc_btn-2,
+	.ie8 .dc_list .dc_item .dc_btn-2 {
+		border:1px solid #4397bb;
+	}
+	
+/*Green Button Hover*/
+.dc_list .dc_item .dc_btn-2:hover {
+	background:#4397bb;
+}
+	
+/* =button versions	 >> Gray Button styles
+----------------------------------------------------------------------------------------------------*/
+
+.dc_list .dc_item .dc_btn-3 {
+	color:#FFF;
+	background-color:#cccccc;
+}
+	
+	/*IE*/
+	.ie6 .dc_list .dc_item .dc_btn-3,
+	.ie7 .dc_list .dc_item .dc_btn-3,
+	.ie8 .dc_list .dc_item .dc_btn-3 {
+		border:1px solid #ccc;
+	}
+	
+/*Gray Button Hover*/
+.dc_list .dc_item .dc_btn-3:hover {
+	background:#999;
+}
+
+/* =button versions	 >> Red Button styles
+----------------------------------------------------------------------------------------------------*/
+
+.dc_list .dc_item .dc_btn-5 {
+	color: #fff;
+	background-color: #cc3e33;
+}
+	
+	/*IE*/
+	.ie6 .dc_list .dc_item .dc_btn-5,
+	.ie7 .dc_list .dc_item .dc_btn-5,
+	.ie8 .dc_list .dc_item .dc_btn-5 {
+		border: 1px solid #cc3e33;
+	}
+	
+/*Gray Button Hover*/
+.dc_list .dc_item .dc_btn-5:hover {
+	background: #b9382e;
+}
+
+
+
+/* =Add a module Button
+----------------------------------------------------------------------------------------------------*/
+.dc_add-module {
+	height: 50px;
+	line-height: 50px;
+}
+
+.dc_add-module .dc_item {
+	height: 50px;
+	position:relative;
+}
+
+.dc_add-module .dc_item .dashboard-control {
+	height: 48px;
+	color:#999;
+	font-size: 123.1%; /* 16px */
+	font-weight:500;
+	line-height: 48px;
+	background-color:#3e3e3e;
+	background: -webkit-gradient(linear, left top, left bottom, from(#3e3e3e), to(#2c2c2c));
+	background: -moz-linear-gradient(top,  #3e3e3e,  #2c2c2c);
+	border-top:1px solid #696969;
+	border-right:1px solid #222;
+	border-bottom:1px solid #121212;
+	border-left:1px solid #222;
+	padding-right: 40px;
+}
+
+	/*IE*/
+	.ie6 .dc_list .dc_item .dc_btn-3,
+	.ie7 .dc_list .dc_item .dc_btn-3,
+	.ie8 .dc_list .dc_item .dc_btn-3 {
+		border:1px solid #222; /*IE gets a uniform color border */
+	}
+	
+/*black Button Hover*/
+.dc_list .dc_item .dc_btn-4:hover {
+	background:#2c2c2c;
+}
+
+.dc_add-module .dc_item .fi {
+	position:absolute;
+	top:17px; right:14px;
+}
+
+/* =button versions	 >> Green '+' Circular Button
+----------------------------------------------------------------------------------------------------*/
+/*adding an absolute class so I can control the exact position of the add button within the dj_module-garden-item container --J.Miller */
+.dc_list.absolute {
+	position:absolute;
+	top:90px; 
+	right:0;
+}
+
+.dc_btn-green-plus {
+	margin:0; 
+	padding:0; 
+	width:19px; 
+	height:18px; 
+	background:url('icon_add_green.png') top left no-repeat;
+	text-indent:-9999px;
+}
+
+
+
+
+
+/*
+	===>>> LOADED CSS <<<===
+	/~blago/newspages.html/dashboard/styles/css/dashboard.article-group.css
+*/
+/*
+
+	-- -- -- -- -- -- --
+	Description: Styles for various buttons used within modules
+	Version: 0.1
+	Last Update: 11/12/2010
+	Author: Ron Edgecomb II, Philippe Arcand, and Pete McGrath
+	Company: Dow Jones & Company Inc.
+	Copyright 2010 Dow Jones & Company Inc.
+	
+	Dependencies
+	 - css/reset.css
+	 - css/global.css
+	-- -- -- -- -- -- --
+	
+*/
+
+/* =Article Group
+----------------------------------------------------------------------------------------------------*/
+.article-group .module-controls { 
+	float:none;
+}
+
+.article-group .article-wrap {
+	margin-bottom:10px;
+}
+
+/* =Article Group >> Article Group Title
+----------------------------------------------------------------------------------------------------*/
+.article-group-title {
+	font-size: 108%; /* 14px */
+	text-transform: uppercase;
+}
+
+.article-group-title .article-group-title-img,
+.article-group-title .fi {
+	display: -moz-inline-stack; /* required for ff2 */
+	display: inline-block;
+	vertical-align: center;
+}
+
+.article-group-title a {
+}
+
+.article-group-title-img {
+	height: 16px;
+	width: 16px;
+	background: #eee;
+	border: 0;
+}
+
+.article-group-title .fi {
+}
+	.article-group-title .fi_r-arrow {
+		margin-top:4px;
+	}
+	
+/* =Article Group >> Article Metadata
+----------------------------------------------------------------------------------------------------*/
+.article-meta {
+	line-height:1;
+	margin-bottom:1px;
+	color:#999;
+}
+
+.article-meta .article-source,
+.article-meta .time-stamp,
+.article-meta .date-stamp,
+.article-meta .media-length,
+.article-meta .fi,
+.article-meta .author,
+.article-meta .byline,
+.article-meta .author	{
+	display: -moz-inline-stack; /* required for ff2 */
+	display: inline-block;
+	vertical-align: top;
+	color:#999;
+	font-size:85%;
+	line-height:normal;
+	text-transform: uppercase;
+}
+
+.article-meta .article-source,
+.article-meta .news-event {
+	font-weight:bold;
+}
+.article-meta .byline {
+	font-size:93%;
+	text-transform:none;
+	margin-right:3px;
+}
+
+.author {
+	font-size: 116%;
+}
+
+.author a {
+	color:#2f90b3;
+}
+
+.article-meta .author {
+	font-size:93%;
+	text-transform:none;
+}
+.article-meta .date-stamp {
+	text-transform: none;
+}
+
+.article-meta .fi_video {
+	margin-top:2px;
+}
+.article-meta .fi_audio {
+	margin-top:1px;
+}
+.article-meta .media-length {
+	height:16px;
+	line-height:16px;
+	vertical-align: middle;
+	color:#666;
+}
+/* =Article Group >> Primary article image
+----------------------------------------------------------------------------------------------------*/
+
+.article-img-wrap .article-img {
+	width:100%;
+}
+
+
+/* =Article Group >> av player
+----------------------------------------------------------------------------------------------------*/
+
+.av-player-wrap {
+	background-color:#f3f3f3;
+	margin-bottom:20px;
+}
+
+.av-player-wrap .video-box {
+	width:301px; 
+	height:169px;
+}
+
+.av-player-wrap .error {
+	 display:block;
+	 color:#999;
+	 font-size:108%; 
+	 text-align:center; 
+	 line-height: 80px;
+}
+
+/* =Article Group >> headlines
+----------------------------------------------------------------------------------------------------*/
+
+.article-headline {
+	font-size:93%;
+	line-height:16px;
+	margin-bottom: 3px;
+}
+
+.article-headline a {
+	color:#2f90b3;
+}
+
+.primary-article .article-headline {
+	font-size:123.1%;
+	line-height:18px;
+}
+
+.primary-article .article-headline a {
+}
+
+/* =Article Group >> snippet
+----------------------------------------------------------------------------------------------------*/
+
+.primary-article .article-snip {
+	font-size: 93%;
+	line-height: 16px;
+	color: #666666;
+}
+
+.primary-article .article-snip .article-full {
+	color:#2f90b3;
+	font-weight: bold;
+}
+
+
+
+/*
+	===>>> LOADED CSS <<<===
+	/~blago/newspages.html/dashboard/styles/css/dashboard.nav-tabs.css
+*/
+/*
+
+	-- -- -- -- -- -- --
+	Description: Primary navigation tabs used within the page header
+	Version: 0.1
+	Last Update: 11/9/2010
+	Author: Ron Edgecomb II
+	Company: Dow Jones & Company Inc.
+	Copyright 2010 Dow Jones & Company Inc.
+	
+	Dependencies
+	 - css/reset.css
+	 - css/libs/../img/sprite_tabs.png
+	-- -- -- -- -- -- --
+	
+*/
+
+
+/* =Dashboard Navigation >> Primary navigation structure and style
+----------------------------------------------------------------------------------------------------*/
+
+#dashboard-nav {
+	float:left;
+	display: -moz-inline-stack; /* required for ff2 */
+	display: inline-block;
+}
+
+#header-actions {
+	float:right;
+	display: -moz-inline-stack; /* required for ff2 */
+	display: inline-block;
+}
+
+#dashboard-nav li,
+#header-actions li {
+	height:52px;
+	display: -moz-inline-stack; /* required for ff2 */
+	display: inline-block;
+	vertical-align: middle;
+	float:left;
+	position: relative;
+	margin:0 4px 0 0;
+}
+#header-actions li {
+	float:right;
+	margin:0 0 0 4px;
+}
+
+#dashboard-nav li.last {
+	margin-right: 0px;
+}
+#header-actions li.last {
+	margin-left: 0px;
+}
+
+#dashboard-nav li,
+#header-actions li {
+	height: 51px;
+	display: -moz-inline-stack; /* required for ff2 */
+	display: inline-block;
+	vertical-align: middle;
+	color: #999;
+	font-size: 108%; /* 14px */
+	line-height: 51px;
+	overflow: visible;
+	text-decoration: none;
+	background-color:#3e3e3e;
+	padding: 0;
+	box-shadow: inset 0px 1px 0px #666666;
+    -webkit-box-shadow: inset 0px 1px 0px #666666;
+    -moz-box-shadow: inset 0px 1px 0px #666666;
+	/*border-top:1px solid #696969;
+	border-right:1px solid #252525;
+	border-left:1px solid #454545;*/
+	cursor: pointer;
+	/*width:250px;*/
+	
+}
+
+#header-actions li {
+	line-height:normal;
+}
+
+	/*Safari Opera Chrome*/
+	#dashboard-nav li,
+	#header-actions li {
+		border-top-left-radius: 5px;
+		border-top-right-radius: 5px;
+		background: -webkit-gradient(linear, left top, left bottom, from(#3e3e3e), to(#2e2e2e));
+	}
+	
+	/*FireFox*/
+	#dashboard-nav li,
+	#header-actions li {
+		-moz-border-radius-topleft: 5px;
+		-moz-border-radius-topright: 5px;
+		background: -moz-linear-gradient(top,  #3e3e3e,  #2e2e2e);
+	}
+	
+#dashboard-nav li .tab,
+#header-actions li .tab{
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	-moz-border-radius-topleft: 5px;
+	-moz-border-radius-topright: 5px;
+	background-repeat:no-repeat;
+	background-position:right -75px;
+	display:block;
+	padding:0px 10px;
+}	
+
+#dashboard-nav li.active-project .tab,
+#header-actions li.active-project .tab{
+	background-position:top right;
+}
+
+#dashboard-nav li.published .tab,
+#header-actions li.published .tab{
+	background-image:url('../img/tab_published.png');
+}
+
+#dashboard-nav li.subscribed .tab,
+#header-actions li.subscribed .tab{
+	background-image:url('../img/tab_subscribed.png');
+}
+
+#dashboard-nav li .tab .tab-text,
+#header-actions li .tab .tab-text {
+	float:left;
+	color:#999;
+	font-size:123.1%;
+	font-weight:bold;
+	/*line-height:51px;*/
+	overflow:hidden;
+	text-overflow:ellipsis;
+	white-space:nowrap;
+}
+#dashboard-nav li .tab .tab-text {
+	width:243px;
+}
+
+#dashboard-nav li .tab .action,
+#header-actions li .tab .action  {
+	float:left;
+	height:40px;
+	width:16px;
+	margin-left:6px;
+	margin-right:2px;
+}
+#dashboard-nav li .tab .action .fi_gear {
+	margin-top:18px;
+	display:none;
+}
+
+#dashboard-nav li.active-project .tab .action .fi_gear {
+	display:block;
+}
+
+#dashboard-nav li .tab .action .fi_close-g,
+#dashboard-nav li .tab .action .fi_close-w {
+	margin-top:11px;
+}
+#dashboard-nav li .tab .action .fi_circle-plus,
+#dashboard-nav li .tab .action .fi_d-double-arrow {
+	margin-top:11px;
+}
+
+#dashboard-nav li.dj-hidden{
+	display:none;
+}
+
+
+/* active project */	
+#dashboard-nav li.active-project {
+	color:#666;
+	background:#f2fafd;
+	/*border:1px solid #f2fafd;*/
+	border-bottom:none;
+	box-shadow: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+}
+
+#dashboard-nav li.active-project .tab:hover {
+}
+
+#dashboard-nav li .tab .tab-text,
+#header-actions li .tab .tab-text {
+	color:#666;
+}
+
+
+/* =Navigation Tabs >> Add a page
+----------------------------------------------------------------------------------------------------*/
+
+#header-actions li .tab .action .fi_circle-plus {
+	margin-top:18px;
+}
+
+
+/* =Navigation Tabs >> header toggle
+----------------------------------------------------------------------------------------------------*/
+
+
+#header-actions li.header-toggle {
+	width:18px;
+	height:18px;
+	background:#3e3e3e;
+	margin-top:32px;
+	padding:0;
+	border-top:1px solid #696969;
+	border-right:1px solid #494949;
+	border-left:1px solid #494949;
+	cursor:pointer;
+}
+
+	/*Safari Opera Chrome*/
+	#header-actions li.header-toggle {
+		border-top-left-radius: 3px;
+		border-top-right-radius: 3px;
+		background: -webkit-gradient(linear, left top, left bottom, from(#3e3e3e), to(#2e2e2e));
+	}
+	
+	/*FireFox*/
+	#header-actions li.header-toggle {
+		-moz-border-radius-topleft: 3px;
+		-moz-border-radius-topright: 3px;
+		background: -moz-linear-gradient(top,  #3e3e3e,  #2e2e2e);
+	}
+
+#header-actions li.header-toggle .fi {
+	margin:3px 3px 0;
+	cursor:pointer;
+}
+
+/* Hidden Tabs
+----------------------------------------------------------------------------------------------------*/
+#header-actions li#header-hiddentabs-bt {
+	display:none;
+}
+
+#header-actions li#header-hiddentabs-bt .tab .action .fi_d-double-arrow {
+	margin-top:18px;
+}
+
+
+/* =Tab Action >> Tab Actions
+----------------------------------------------------------------------------------------------------*/
+#dashboard-nav li a.tab-action {
+	width: 15px;
+	height: 15px;
+	position: absolute;
+	top: 1px; 
+	right: 16px;
+	text-indent: -9999px;
+	margin: 0; padding: 0; /* redefine from tab styling */
+	background: none; /* redefine from tab styling */
+}
+
+/* Hidden Tabs
+----------------------------------------------------------------------------------------------------*/
+.dj-contextmenu{
+    
+    font-family: Helvetica, Arial, sans-serif;
+    font-size:11px;
+    font-weight:bold;
+    display:inline;
+    position:absolute;
+    border:1px solid #bfbfc1;
+    border:1px solid rgba(0,0,0,0.3);
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.2);
+    -webkit-box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.2);
+	z-index:2000;/*
+	right:40px;*/
+	margin-top:40px;
+	display:none;
+}
+
+/* @todo - is this class used? */
+.dj-contextmenu .dj-balloon-arrow-left{
+    position:absolute;
+    width:12px;
+    height:26px;
+    margin-left:-11px;
+    margin-top:10px;
+    /*background-image:url('../img/balloon_arrow_left.png');*/
+}
+
+.dj-contextmenu ul, .dj-contextmenu li{
+    list-style:none;
+    margin:0px;
+    padding:0px;
+}
+
+.dj-contextmenu .dj-menuitems{
+    padding:2px;
+    background-color:#FFF;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+}
+.dj-contextmenu .dj-menuitems.exceeding{
+	-moz-border-radius-topright:0px;
+    -webkit-border-top-right-radius:0px;
+    border-top-left-radius:0px;
+    -moz-border-radius-topleft:0px;
+    -webkit-border-top-right-radius:0px;
+    border-top-left-radius:0px;
+	background-color: #e3e3e3;
+	border-top:1px solid #d4d4d4;
+}
+.dj-contextmenu .dj-menuitems.normal{
+	-moz-border-radius-bottomright:0px;
+    -webkit-border-bottom-right-radius:0px;
+    border-bottom-left-radius:0px;
+    -moz-border-radius-bottomleft:0px;
+    -webkit-border-bottom-right-radius:0px;
+    border-bottom-left-radius:0px;
+}
+
+
+.dj-contextmenu .dj-menuitem{
+    line-height:22px;
+    padding-left:8px;
+    padding-right:8px;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    padding-top:2px;
+    cursor:default;
+	white-space:nowrap;
+}
+
+.dj-contextmenu .dj-menuitem:hover{
+    background-color: #0079d6;
+    color:#FFF;
+    text-shadow:0px 1px 0px #0058af;
+    background-image:url('../img/option_hover.png');
+    background-repeat:repeat-x;
+}
+
+.dj-contextmenu .dj-separator:hover{
+    background-color:transparent;
+    background-image:none;
+}
+
+.dj-contextmenu .dj-separator{
+    border-bottom:1px solid #f0f0f0;
+    margin-bottom:2px;
+    line-height:1px;
+}
+
+.dj-contextmenu .dj-label{
+    padding-left:20px;
+}
+
+.dj-contextmenu .dj-menuitem.selected .dj-label{
+    background-repeat:no-repeat;
+    background-image:url('../img/option_selected.png');
+    background-repeat:no-repeat;
+    background-position:0px 2px;
+}
+
+.dj-contextmenu .dj-menuitem.selected:hover .dj-label{
+    background-position:0px -38px ;
+}
+
+
+
+
+/*
+	===>>> LOADED CSS <<<===
+	/~blago/newspages.html/dashboard/styles/less/page.less
+*/
+
+.dj_page header h2 {
+  margin:0 14px;
+  color:#666666;
+  font-size:182%;
+}
+.dj_page header h3 {
+  margin:0 14px;
+  color:#666666;
+  font-size:108%;
+}
+.dj_page form h3 {
+  margin:30px auto 0;
+  width:770px;
+  line-height:20px;
+  text-transform:uppercase;
+}
+.dj_page .dj_standard-content p { margin-bottom:10px; }
+.dj_page .dj_standard-content h3 {
+  color:#666666;
+  font-size:153.9%;
+  margin-bottom:10px;
+}
+.dj_page .dj_standard-content { margin:0 14px; }
+.dj_page .dj_page-title span { font-weight:normal; }
+.dj_page .dj_page-title {
+  font-size:167%;
+  margin:20px 0 0 15px;
+}
+.dj_page .dj_page-row-title {
+  margin:0 0 15px;
+  font-size:153.9%;
+}
+.dj_page .dj_page-col-title {
+  margin:0 0 14px;
+  font-size:138.5%;
+}
+.dj_page .dj_page-col-source-logo-wrap {
+  position:relative;
+  margin:0 0 15px;
+  height:40px;
+}
+.dj_page .dj_page-col-source-logo {
+  position:absolute;
+  bottom:0;
+  left:0;
+  margin-bottom:0;
+  font-size:138.5%;
+}
+.dj_page .dj_page-row.remove-top-padding { padding-top:0; }
+.dj_page .dj_page-row.remove-bottom-padding { padding-bottom:0; }
+.dj_page .dj_page-row .dj_page-col .dj_page-col-wrap .view-all-btn {
+  position:absolute;
+  bottom:0;
+  left:14px;
+}
+.dj_page .dj_page-row .dj_page-col .dj_page-col-wrap a:hover { color:#006ca2; }
+.dj_page .dj_page-row .dj_page-col .dj_page-col-wrap a:active, .dj_page .dj_page-row .dj_page-col .dj_page-col-wrap a:visited { color:#3399cc; }
+.dj_page .dj_page-row .dj_page-col .dj_page-col-wrap a {
+  color:#3399cc;
+  text-decoration:none;
+}
+.dj_page .dj_page-row .dj_page-col .dj_page-col-wrap {
+  position:relative;
+  display:block;
+  margin:0;
+  padding:0;
+  min-height:1px;
+}
+.dj_page .dj_page-row .dj_page-col .standard-padding { padding:0 14px; }
+.dj_page .dj_page-row .dj_page-col {
+  float:left;
+  display:block;
+  margin:0;
+  padding:0;
+}
+.dj_page .dj_page-row .one-third { width:329px; }
+.dj_page .dj_page-row .two-thirds { width:659px; }
+.dj_page .dj_page-row .full { width:988px; }
+.dj_page .dj_page-row {
+  display:block;
+  margin:0;
+  padding:0;
+  padding:20px 0;
+}
+.dj_page .ie6 .dj_page-col .dj_page-col-wrap { height:300px; }
+.dj_page .dj_page-expand-collapse { display:none; }
+.dj_page .dj_expand_content .dj_expand_content-tab .dj_expand_content-label .dj_comm-icon {
+  position:absolute;
+  top:0;
+  left:0;
+}
+.dj_page .dj_expand_content .dj_expand_content-tab .dj_expand_content-label {
+  position:relative;
+  font-size:93%;
+  font-weight:bold;
+  color:#02a3db;
+  padding-left:18px;
+}
+.dj_page .dj_expand_content .dj_expand_content-tab {
+  position:absolute;
+  bottom:-1px;
+  right:15px;
+  cursor:pointer;
+  padding:10px;
+  background-color:#ffffff;
+  -moz-box-shadow:0 -1px 1px #eeeeee, -1px 0 0 #f6f6f6, 1px 0 0 #f6f6f6;
+  -webkit-box-shadow:0 -1px 1px #dddddd;
+  box-shadow:0 -1px 1px #dddddd;
+  -webkit-border-top-right-radius:5px;
+  -moz-border-radius-topright:5px;
+  border-top-right-radius:5px;
+  -webkit-border-top-left-radius:5px;
+  -moz-border-radius-topleft:5px;
+  border-top-left-radius:5px;
+  border-top:1px solid #dddddd;
+  border-left:1px solid #eeeeee;
+  border-right:1px solid #eeeeee;
+}
+.dj_page .dj_expand_content {
+  height:1px;
+  position:relative;
+  margin:0;
+  border-top:1px solid #f9f9f9;
+  background-color:#eeeeee;
+  border-bottom:1px solid #dddddd;
+}
+.dj_page .dj_form .dj_expand_content .dj_expand_content-tab { right:108px; }
+.dj_page .dj_form .dj_expand_content { margin:55px 0 30px 0; }
+.dj_page .dj_collapse_content .dj_collapse_content-tab .dj_expand_content-label .dj_comm-icon {
+  position:absolute;
+  top:0;
+  left:0;
+}
+.dj_page .dj_collapse_content .dj_collapse_content-tab .dj_expand_content-label {
+  position:relative;
+  font-size:93%;
+  font-weight:bold;
+  color:#02a3db;
+  padding-left:18px;
+}
+.dj_page .dj_collapse_content .dj_collapse_content-tab {
+  position:absolute;
+  bottom:-1px;
+  right:15px;
+  cursor:pointer;
+  padding:10px;
+  background-color:#ffffff;
+  background-color:#fafafa;
+  -moz-box-shadow:inset 0 1px 1px #eeeeee, inset 0 1px 2px #f1f1f1, inset -1px 0 0 #f6f6f6, inset 1px 0 0 #f6f6f6;
+  -webkit-box-shadow:inset 0 1px 1px #eeeeee, inset 0 1px 2px #f1f1f1, inset -1px 0 0 #f6f6f6, inset 1px 0 0 #f6f6f6;
+  box-shadow:inset 0 1px 1px #eeeeee, inset 0 1px 2px #f1f1f1, inset -1px 0 0 #f6f6f6, inset 1px 0 0 #f6f6f6;
+  background:-webkit-gradient(linear,0 0,0 100%,from(#fafafa),to(#ffffff));
+  background:-moz-linear-gradient(top,#fafafa,#ffffff);
+  border-top:1px solid #dddddd;
+  border-left:1px solid #eeeeee;
+  border-right:1px solid #eeeeee;
+  -webkit-border-top-right-radius:5px;
+  -moz-border-radius-topright:5px;
+  border-top-right-radius:5px;
+  -webkit-border-top-left-radius:5px;
+  -moz-border-radius-topleft:5px;
+  border-top-left-radius:5px;
+}
+.dj_page .dj_collapse_content {
+  height:1px;
+  border-top:2px solid #d9d9d9;
+  border-top:1px solid #dddddd;
+  position:relative;
+  margin:0;
+  display:none;
+  background-color:#eeeeee;
+  border-bottom:1px solid #f9f9f9;
+}
+.dj_page .dj_form .dj_collapse_content .dj_collapse_content-tab { right:108px; }
+.dj_page .dj_form .dj_collapse_content { margin:55px 0 30px 0; }
+.dj_page .dj_form .dj_page-expand-collapse fieldset.remove-top-margin { margin-top:0; }
+.dj_page {
+  position:relative;
+  display:block;
+  margin:0;
+  margin:0 auto;
+  padding:0;
+  width:988px;
+  vertical-align:top;
+  background:#ffffff;
+  border:1px solid #dddddd;
+  -webkit-border-radius:5px;
+  -moz-border-radius:5px;
+  border-radius:5px;
+  color:#444444;
+}
+.dj_navbar .dj_breadcrumb li a:hover { color:#006ca2; }
+.dj_navbar .dj_breadcrumb li a:active, .dj_navbar .dj_breadcrumb li a:visited { color:#3399cc; }
+.dj_navbar .dj_breadcrumb li a {
+  color:#02a3db;
+  text-decoration:none;
+}
+.dj_navbar .dj_breadcrumb li.current {
+  background:none;
+  color:#999999;
+}
+.dj_navbar .dj_breadcrumb li {
+  display:-moz-inline-stack;
+  display:inline-block;
+  zoom:1;
+  *display:inline;
+  vertical-align:top;
+  padding-right:10px;
+  background:url('breadcrumb-arrow.icon.png') right center no-repeat;
+}
+.dj_navbar .dj_breadcrumb {
+  display:-moz-inline-stack;
+  display:inline-block;
+  zoom:1;
+  *display:inline;
+  vertical-align:top;
+  margin:0 0 0 14px;
+  font-size:85%;
+  list-style:none;
+}
+.dj_navbar { margin:13px 0; }
+.ie7 .dj_navbar .dj_breadcrumb li { margin-right:4px; }
+
+
+
+/*
+	===>>> LOADED CSS <<<===
+	/~blago/newspages.html/dashboard/styles/css/module.css
+*/
+/*
+
+	-- -- -- -- -- -- --
+	Description: Global dashboard modules layout rules
+	Version: 0.1
+	Last Update: 11/12/2010
+	Author: Ron Edgecomb II, Philippe Arcand, and Pete McGrath
+	Company: Dow Jones & Company Inc.
+	Copyright 2010 Dow Jones & Company Inc.
+	
+	Dependencies
+	 - css/reset.css
+	 - css/global.css
+	 - css/libs/i/bg_module_header.png
+	 - css/libs/i/icon_edit_module.png
+	 - css/libs/i/bg_module_footer.png
+	-- -- -- -- -- -- --
+	
+*/
+
+/* =module >> General module rules
+----------------------------------------------------------------------------------------------------*/
+.module {
+	display: -moz-inline-stack; /* required for ff2 */
+	display: inline-block;
+	vertical-align: top;	
+	float: left;
+	margin-bottom: 20px;
+	position: relative;
+}
+
+/* =module Header >> General module header rules
+----------------------------------------------------------------------------------------------------*/
+.module-header {
+	height: 39px;
+	position: relative;
+	color: #999;
+	text-decoration: none;
+	background-color:#272727;
+	padding:0 15px;
+	border:1px solid #7e7e7e;
+	border-bottom:none;
+}
+
+	/*Safari Opera Chrome*/
+	.module-header {
+		border-top-left-radius: 5px;
+		border-top-right-radius: 5px;
+		background: -webkit-gradient(linear, left top, left bottom, from(#444444), to(#272727));
+	}
+	
+	/*FireFox*/
+	.module-header {
+		-moz-border-radius-topleft: 5px;
+		-moz-border-radius-topright: 5px;
+		background: -moz-linear-gradient(top,  #444444,  #272727);
+	}
+
+.module-title {
+	height: 39px;
+	display: -moz-inline-stack; /* required for ff2 */
+	display: inline-block;
+	vertical-align: middle;
+	float: left;
+	color: #fff;
+	line-height: 39px;
+	font-size: 138.5%; /* 18px */
+	padding: 0 10px 0 0;
+}
+
+.module-header .dc_list {
+	margin-top: 10px;
+	padding-left: 10px;
+}
+
+.module-header .dc_list-fl {
+    -moz-box-shadow: 1px 0 0 #000 inset;
+	-webkit-box-shadow:inset 1px 0px 0px #000;
+	box-shadow:inset 1px 0px 0px #000;
+    border-left: 1px solid #535353;
+}
+
+.module-header .dc_list-fl .dc_item {
+	margin-right: 20px;
+}
+.module-header .dc_list-fr .dc_item {
+	margin-left: 20px;
+}
+
+/*UPDATED Markup Styles*/
+.scope-container,
+.actions-container {
+	display: -moz-inline-stack; /* required for ff2 */
+	display: inline-block;
+	margin-top:10px;
+}
+.scope-container {
+	float:left;
+}
+.actions-container {
+	float:right;
+}
+
+.scope-container .scope {
+	display: -moz-inline-stack; /* required for ff2 */
+	display: inline-block;
+	float:left;
+    -moz-box-shadow: 1px 0 0 #000 inset;
+	-webkit-box-shadow:inset 1px 0px 0px #000;
+	box-shadow:inset 1px 0px 0px #000;
+    border-left: 1px solid #535353;
+	padding-left:10px;
+}
+
+.scope-container .scope .dj_btn {
+	margin-right:10px;
+}
+
+
+.actions-container span {
+	margin-left:10px;
+}
+
+
+/* =module Controls >> module controls layout and style
+----------------------------------------------------------------------------------------------------*/
+.module-header-divider {
+	height: 20px;
+	display: -moz-inline-stack; /* required for ff2 */
+	display: inline-block;
+	vertical-align: top;
+	float: left;
+	line-height: 20px;
+	margin: 8px 10px 0;
+	border-left: 1px solid #4c4c4c;
+	border-right: 1px solid #161616;
+}
+
+.module-controls {
+	height: 20px;
+	line-height: 20px;
+	margin-top: 8px;
+	padding-left:8px;
+}
+
+.module-controls .mc_item {
+	height: 20px;
+	display: -moz-inline-stack; /* required for ff2 */
+	display: inline-block;
+	vertical-align: top;
+	float: left;
+	position:relative;
+	text-transform: uppercase;
+	margin:0 8px 0 0;
+	cursor:pointer;
+}
+
+.mc_edit .mc_item {
+	margin:0 0 0 8px;
+}
+
+.module-controls .mc_item .control-wrap,
+.module-controls .mc_item .control-content {
+	height: 20px;
+	display: -moz-inline-stack; /* required for ff2 */
+	display: inline-block;
+	vertical-align: top;
+	color: #a3a3a3;
+	font-size: 85%; /* 11px */
+	line-height: 20px; /* same size as pill buttons */
+	text-decoration: none;
+}
+
+.module-controls .mc_item .mc_dropdown {
+	display:none;	
+}
+
+.module-controls .mc_item-open .mc_dropdown { /*class added by jquery*/
+	display:block;
+	width: 150px;
+	position:absolute;
+	top:20px;
+	background-color:#fff;
+	border:1px solid #ccc;
+	z-index:100;
+}
+
+.module-controls .drop-open-left .mc_dropdown {
+	right:0;
+}
+.module-controls .drop-open-right .mc_dropdown {
+	left:0;
+}
+
+.module-controls .mc_dropdown .mc_dropdown-item {
+	position:relative;
+}
+
+.module-controls .mc_dropdown .mc_dropdown-content {
+	font-size: 85%; /* 11px */
+	padding:0 5px 0 20px;	
+}
+
+.module-controls .mc_dropdown .mc_dropdown-content:hover {
+	background-color:#f0f0f0;
+}
+
+.module-controls .mc_dropdown .fi {
+	position:absolute;
+	top:0; left:6px;
+}
+
+/* =module Content >> module content options
+----------------------------------------------------------------------------------------------------*/
+.module-content {
+	position: relative;
+	background: #fff;
+	border-left: 1px solid #ddd;
+	border-right: 1px solid #ddd;	
+}
+
+.module-content.no-footer {
+	border-bottom: 1px solid #ddd;
+	
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+
+	-moz-border-radius-bottomleft: 5px;
+	-moz-border-radius-bottomright: 5px;
+	
+	-webkit-border-bottom-left-radius: 5px;
+	-webkit-border-bottom-right-radius: 5px;
+}
+
+	.ie6 .module-content,
+	.ie7 .module-content {
+		float: left;
+	}
+
+.module-content .blockMsg .dj-loading {
+    width: 100%;
+    height: 24px;
+    background: transparent url('icon_loading.dark.gif') center center no-repeat;
+}
+
+/* =module Columns >> default styles
+----------------------------------------------------------------------------------------------------*/
+.module-content .module-row {
+	width: 988px;
+	padding: 18px 0 0;
+}
+
+.module-content .article-row {
+	padding: 25px 0 25px;
+}
+
+.module-content .has-no-padding {
+	width: 988px;
+	padding:0;
+} 
+
+.module-content .add-border {
+	border-bottom: 1px solid #ddd;
+}
+
+.module-col {
+	float: left;
+}
+	.module-col .module-col-wrap {
+		position: relative;
+	}
+	.ie6 .module-col .module-col-wrap {
+		height:300px;
+	}
+	
+.module-row .one-third {
+	width: 329px;
+} 
+.module-row .two-thirds {
+	width: 659px;
+}
+.module-row .three-thirds {
+	width: 988px;
+}
+
+.module-col-loading {
+	background: url('icon_loading.dark.gif') no-repeat center center;
+}
+
+
+/* =Module Col Wrap Standard padding 
+----------------------------------------------------------------------------------------------------*/
+.module-col .standard-padding {
+	padding:0 14px;
+}
+
+/* =Module Col Wrap with an absolute positioned view all button
+----------------------------------------------------------------------------------------------------*/
+
+.article-row .module-col .module-col-wrap {
+	padding-bottom:25px;
+}
+
+.article-row .module-col .module-col-wrap .view-all-btn {
+	position: absolute;
+	bottom: 0; left: 14px;
+}
+
+
+/* =module Footer >> General module header rules
+----------------------------------------------------------------------------------------------------*/
+
+.module-footer {
+	clear: both;
+	min-height: 5px;
+	text-align: center;
+	background-color: #fff;
+	padding: 9px 15px;
+	border-right: 1px solid #ddd;
+	border-bottom: 1px solid #ddd;
+	border-left: 1px solid #ddd;
+	
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+
+	-moz-border-radius-bottomleft: 5px;
+	-moz-border-radius-bottomright: 5px;
+	
+	-webkit-border-bottom-left-radius: 5px;
+	-webkit-border-bottom-right-radius: 5px;
+}
+
+	.ie6 .module-footer {
+		height: 5px; /* ie6 to act as min-height */		
+	}
+
+.module-pager {
+	height: 8px;
+	overflow: hidden;
+}
+
+.module-pager .pager-link {
+	width: 8px;
+	height: 8px;
+	background-image: url('nav_dots.png');
+	background-position: 0px 0px;
+	display: -moz-inline-stack; /* required for ff2 */
+	display: inline-block;
+	vertical-align: top;
+	margin-right: 4px;
+	margin-left: 4px;
+	cursor: pointer;
+}
+
+.module-pager .pager-link.pager-active {
+	background-position: 0px -8px;
+}
+
+/* =module add content to empty section
+----------------------------------------------------------------------------------------------------*/
+.add-module-content {
+	height: 100%;
+	text-align: center;
+	padding-top: 158px; /* 158 = 330px (min height) / 2 - 7px (half of font size) */ 
+}
+
+.add-module-content a {
+	display: -moz-inline-stack; /* required for ff2 */
+	display: inline-block;
+	vertical-align: middle;
+	color: #ccc;
+	font-size: 108%;
+	margin: 0 auto;
+	padding-left: 20px;
+	background: transparent url('img/factiva-icons.png') no-repeat 0 -480px;
+}
+
+.add-module-content a:hover {
+	color: #7f7f7f;
+	background-position: 0 -120px;
+}
+
+
+
+/*
+	===>>> LOADED CSS <<<===
+	/~blago/newspages.html/dashboard/styles/less/module.style.less
+*/
+
+.module-col-header {
+  margin:0 19px;
+  padding:0 0 2px;
+}
+.module-row-title {
+  font-size:153.9%;
+  margin:0 0 15px;
+}
+.module-col-title {
+  position:relative;
+  font-size:138.5%;
+  margin:0 0 14px;
+}
+.module-col-title a {
+  color:#676767;
+  font-weight:bold;
+}
+.module-col-title a:hover { color:#666666; }
+.module-col-source-logo-wrap .module-col-source-logo img {
+  max-height:40px;
+  max-width:300px;
+}
+.module-col-source-logo-wrap .module-col-source-logo {
+  color:#676767;
+  min-height:40px;
+  margin:0;
+}
+.module-col-source-logo-wrap { margin-bottom:4px; }
+.module-col-section-title {
+  font-size:85%;
+  color:#999999;
+  text-transform:uppercase;
+  margin-bottom:15px;
+}
+.module-col-title-source-icon {
+  font-size:108%;
+  text-transform:uppercase;
+}
+.module-col-title-source-icon { padding-left:20px; }
+.module-col-title-source-icon-text { vertical-align:middle; }
+.module-col-title-source-img {
+  height:16px;
+  width:16px;
+  position:absolute;
+  top:1px;
+  left:0;
+  background:#eeeeee;
+  border:0;
+  vertical-align:middle;
+}
+.module-meta { font-weight:bold; }
+.module-meta .meta-label { font-weight:normal; }
+.item-meta, .module-meta {
+  font-size:85%;
+  line-height:1.45;
+}
+.item-meta span, .module-meta span { color:#9a9a9a; }
+
+
+
+/*
+	===>>> LOADED CSS <<<===
+	/~blago/newspages.html/dashboard/styles/css/module.buttons.css
+*/
+/*
+
+	-- -- -- -- -- -- --
+	Description: Styles for various buttons used within modules
+	Version: 0.1
+	Last Update: 11/12/2010
+	Author: Ron Edgecomb II, Philippe Arcand, and Pete McGrath
+	Company: Dow Jones & Company Inc.
+	Copyright 2010 Dow Jones & Company Inc.
+
+	Notes: md prefix is short for module :-)
+	
+	Dependencies
+	 - css/reset.css
+	 - css/global.css
+	-- -- -- -- -- -- --
+	
+*/
+
+/* =module Buttons >> Global Style Rules
+----------------------------------------------------------------------------------------------------*/
+.md-btn,
+.md-btn .control-content {
+	background: url('../img/sprite_buttons.png') no-repeat 0 0;
+}
+
+.md-btn {
+	font-size: 85%; /* 11px */
+	color: #797979;
+	text-align: center;
+	text-decoration: none;
+}
+
+/* =Pill Style >> Sliding Door Buttons
+----------------------------------------------------------------------------------------------------*/
+.module-controls .mc_item .md-btn,
+.module-controls .mc_item .md-btn .control-content {
+	height: 20px;
+	display: -moz-inline-stack; /* required for ff2 */
+	display: inline-block;
+	vertical-align: middle;
+	color:#fff;
+	position: relative;
+	left: 10px;
+	line-height: 20px;
+	margin-right: 10px;
+	padding: 0;
+	border: 0;
+	cursor: pointer;
+	overflow: visible;
+}
+
+.module-controls .mc_item .md-btn .control-content {
+    left: -10px;
+	margin: 0;
+	padding: 0 0 0 10px;
+	vertical-align: top;
+}
+
+/* default style */
+.md-btn {
+	background-position: right 0;
+	border: none;
+}
+	.md-btn:hover,
+	.md-btn:focus,
+	.md-btn-hover,
+	.md-btn-focus {
+		background-color: transparent;
+		background-position: right -50px;
+	}
+
+.md-btn .control-content {
+	background-position: 0 0;
+}
+	.md-btn:hover .control-content,
+	.md-btn:focus .control-content,
+	.md-btn-hover .control-content,
+	.md-btn-focus .control-content {
+		background-color: transparent;
+		background-position: 0 -50px;
+	}
+
+/* alternate style */
+.module-controls .mc_item .md-btn-2 {
+	background-position: right -100px;
+	border: none;
+}
+	.module-controls .mc_item .md-btn-2:hover,
+	.module-controls .mc_item .md-btn-2:focus,
+	.module-controls .mc_item .md-btn-2-hover,
+	.module-controls .mc_item .md-btn-2-focus {
+		background-color: transparent;
+		background-position: right -150px;
+	}
+
+.module-controls .mc_item .md-btn-2 .control-content {
+	background-position: 0 -100px;
+}
+	.module-controls .mc_item .md-btn-2:hover .control-content,
+	.module-controls .mc_item .md-btn-2:focus .control-content,
+	.module-controls .mc_item .md-btn-2-hover .control-content,
+	.module-controls .mc_item .md-btn-2-focus .control-content {
+		background-color: transparent; 
+		background-position: 0 -150px;
+			color:#fefefe;
+	}
+		
+/* alternate style */
+.module-controls .mc_item .md-btn-3 {
+	background-position: right -200px;
+	border: none;
+}
+	
+	.module-controls .mc_item .md-btn-3-hover,
+	.module-controls .mc_item .md-btn-3-focus {
+		background-color: transparent;
+		background-position: right -250px;
+	}
+
+.module-controls .mc_item .md-btn-3 .control-content {
+	background-position: 0 -200px;
+}
+	.module-controls .mc_item .md-btn-3:hover .control-content,
+	.module-controls .mc_item .md-btn-3:focus .control-content,
+	.module-controls .mc_item .md-btn-3-hover .control-content,
+	.module-controls .mc_item .md-btn-3-focus .control-content {
+		background-color: transparent; 
+		background-position: 0 -250px;
+		color:#fefefe;
+	}
+
+
+
+/*
+	===>>> LOADED CSS <<<===
+	/~blago/newspages.html/dashboard/styles/css/module.edit-options.css
+*/
+/*
+
+	-- -- -- -- -- -- --
+	Description: Styles for all module edit panels
+	Version: 0.1
+	Last Update: 11/12/2010
+	Author: Ron Edgecomb II, Philippe Arcand, and Pete McGrath
+	Company: Dow Jones & Company Inc.
+	Copyright 2010 Dow Jones & Company Inc.
+	
+	Dependencies
+	 - css/reset.css
+	 - css/global.css
+	-- -- -- -- -- -- --
+	
+*/
+
+/* =module Edit >> module edit options main structure
+----------------------------------------------------------------------------------------------------*/
+
+.module-edit-options {
+    display:none;
+	width:988px;
+	position: absolute;
+	top: 40px;
+	left: 0;
+	background-color:#E0F3FF;
+	border:1px solid #caebf9;
+	border-top:none;
+	z-index: 3000;
+}
+
+.module-edit-options-open {
+    display:block;
+}
+
+.module-edit-options-header {
+	padding:0 0 5px;
+	border-bottom:1px solid #ddd;
+}
+
+.module-edit-options-content {
+	padding:5px 0;
+}
+
+.module-edit-options-footer {
+	padding:5px 0 0;
+	border-top:1px solid #ddd;
+}
+	
+/* =module Edit Header >> 
+----------------------------------------------------------------------------------------------------*/
+
+.mc_actions {
+	float:right;
+}
+.mc_actions .mc_item .control-content {
+	color:#333;
+	padding:0 3px 0 0;
+}
+
+/*adjust specifc icons in dropdown*/
+.mc_actions .mc_item .mc_dropdown-item .fi_u-arrow-g,
+.mc_actions .mc_item .mc_dropdown-item .fi_d-arrow-g {
+	margin:6px 0 0 0;
+}
+
+
+/* =module Edit Content >> 
+----------------------------------------------------------------------------------------------------*/
+.edit-module-name-wrap {
+}
+
+.edit-module-name-wrap .edit-module-name-label {
+}
+.edit-module-name-wrap .edit-module-name-label label {
+	color:#555;
+}
+.edit-module-name-wrap .edit-module-name-textbox {
+	background-color:#fff;
+	margin-top: 5px;
+	padding:2px 0;
+	border:1px solid #3CF;
+}
+.edit-module-name-wrap .edit-module-name-textbox input {
+    width:100%;
+	background:none;
+	border:0;
+}
+
+
+/* =module Edit Footer >> 
+----------------------------------------------------------------------------------------------------*/
+.module-edit-options-footer .mc_save-cancel {
+	padding:0;
+}
+
+
+/*
+	===>>> LOADED CSS <<<===
+	/~blago/newspages.html/components/styles/css/module.search.css
+*/
+/*
+
+	-- -- -- -- -- -- --
+	Description: Styles for various buttons used within modules
+	Version: 0.1
+	Last Update: 11/12/2010
+	Author: Ron Edgecomb II, Philippe Arcand, and Pete McGrath
+	Company: Dow Jones & Company Inc.
+	Copyright 2010 Dow Jones & Company Inc.
+
+	Notes: md prefix is short for module :-)
+	
+	Dependencies
+	 - css/reset.css
+	 - css/global.css
+	-- -- -- -- -- -- --
+	
+*/
+
+/* =module search 
+----------------------------------------------------------------------------------------------------*/
+.module-search {
+	padding:20px 0 11px;
+}
+
+.module-search .module-search-title,
+.module-search .module-search-form,
+.module-search .module-search-form {
+	float: left;
+	display: -moz-inline-stack; /* required for ff2 */
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.module-search .module-search-title {
+	font-size: 182%; /* 24px */
+	line-height: 24px;
+	color: #999999;
+	margin-left: 14px;
+}
+.module-search .module-search-form {
+	float: right;
+	margin-right: 14px;
+}
+
+.module-search-textbox,
+.module-search-submit {
+	float:left;
+	display: -moz-inline-stack; /* required for ff2 */
+	display: inline-block;
+	vertical-align: top;
+}
+
+.module-search-submit {
+	height:21px;
+	margin: 3px 0 0 15px;
+}
+
+	.module-search-submit a {
+		height:18px;
+		display:block;
+		color:#fff;
+		font-size: 93%; /* 12px */
+		line-height:18px;
+		text-align:center;
+		background:#02a2db;
+		padding:0 12px;
+		border-radius: 9px;
+		-moz-border-radius: 9px;
+		-webkit-border-radius: 9px;
+	}
+
+.module-search-textbox {
+	height:22px;
+	background:#fefefe;
+	border-top:1px solid #7d7d7d;
+	border-right:1px solid #d3d3d3;
+	border-bottom:1px solid #dadada;
+	border-left:1px solid #9a9a9a;
+}
+
+/*Safari Opera Chrome*/
+.module-search-textbox {
+	background: -webkit-gradient(linear, left top, left bottom, from(#e9e9e9), to(#fefefe));
+}
+
+/*FireFox*/
+.module-search-textbox {
+	background: -moz-linear-gradient(top,  #e9e9e9,  #fefefe);
+}
+
+	.module-search-textbox input {
+		height:22px;
+		width:224px;
+		line-height:22px;
+		color:#333;
+		background:none;
+		padding:0;
+		border:0 none;
+	}
+	
+
+
+/*
+	===>>> LOADED CSS <<<===
+	/~blago/newspages.html/dashboard/styles/css/module.content.articles.css
+*/
+/*
+
+	-- -- -- -- -- -- --
+	Description: Articles Content Style Rules
+	Version: 0.1
+	Last Update: 11/17/2010
+	Author: Ron Edgecomb II
+	Company: Dow Jones & Company Inc.
+	Copyright 2010 Dow Jones & Company Inc.
+	
+	Dependencies
+	 - css/reset.css
+	 - css/lib/modules.css
+	-- -- -- -- -- -- --
+	
+*/
+
+/* =Articles Content >> General style runes for article content in modules
+----------------------------------------------------------------------------------------------------*/
+.articles-content .module-col {
+	padding-bottom: 30px;
+}
+
+.articles-content .module-item {
+	padding: 10px 19px;
+}
+
+	.articles-content .module-item:hover,
+	.articles-content .module-item-hover,
+	.articles-content .module-item-active {
+		background-color: #daeff7;
+	}
+
+.articles-content .module-item-title {
+	font-size: 93%; /* 12px */
+	line-height: 1.33; /* rounds up to 16px */
+	font-weight: bold;
+}
+
+.articles-content .item-meta .source,
+.articles-content .item-meta .author,
+.articles-content .module-meta .source,
+.articles-content .module-meta .author {
+	color: #333;
+	font-weight: bold;
+}
+
+/* continue link - (eg. view all, read more) */
+.articles-content .continue {
+	position: absolute;
+	bottom: 5px; right: 0;
+	margin: 0 19px;
+}
+
+.articles-content .continue a {
+	display: -moz-inline-stack; /* required for ff2 */
+	display: inline-block;
+	vertical-align: middle;
+	font-size: 93%; /* 12px */
+	padding: 0 10px 0 0;	
+	background: url('/~blago/newspages.html/components/styles/images/bg_r-arrow-blue.png') no-repeat right center;
+}
+
+.articles-content .continue a,
+.articles-content .continue a:link,
+.articles-content .continue a:visited {
+	color: #239bcf;
+	font-weight: bold;
+	text-decoration: none;
+}
+	.articles-content .continue a:hover {
+		text-decoration: underline;
+	}
+
+.category-title{
+	font-size:85%; /* 11px */
+	text-transform:uppercase;
+	color:#666;
+	border-bottom:1px solid #dddddd;
+	margin-bottom:5px;
+}
+
+.topic{
+	font-size:138.5%; /* 18px */
+	font-weight:bold;
+}
+
+.topics{
+	margin-bottom:10px;
+}
+
+
+
+
+/*
+	===>>> LOADED CSS <<<===
+	/~blago/newspages.html/dashboard/styles/css/module.col.headline.css
+*/
+/*
+
+	-- -- -- -- -- -- --
+	Description: Headline module Column Style Rules
+	Version: 0.1
+	Last Update: 11/17/2010
+	Author: Ron Edgecomb II
+	Company: Dow Jones & Company Inc.
+	Copyright 2010 Dow Jones & Company Inc.
+	
+	Dependencies
+	 - css/reset.css
+	 - css/lib/modules.css
+	-- -- -- -- -- -- --
+	
+*/
+
+/* =Headline Column >> General module rules
+----------------------------------------------------------------------------------------------------*/
+.headline-col .headline-items {
+	border-top: 1px solid #ddd;
+}
+
+.headline-col .headline-items .module-item {
+	border-bottom: 1px solid #ddd;
+}
+
+.headline-col .headline-items .item-excerpt {
+	font-size: 93%; /* 12px */
+}
+
+
+
+/*
+	===>>> LOADED CSS <<<===
+	/~blago/newspages.html/dashboard/styles/css/module.col.article.css
+*/
+/*
+
+	-- -- -- -- -- -- --
+	Description: Article module Column Style Rules
+	Version: 0.1
+	Last Update: 11/17/2010
+	Author: Ron Edgecomb II
+	Company: Dow Jones & Company Inc.
+	Copyright 2010 Dow Jones & Company Inc.
+	
+	Dependencies
+	 - css/reset.css
+	 - css/lib/modules.css
+	-- -- -- -- -- -- --
+	
+*/
+
+/* =Article Column >> General module rules
+----------------------------------------------------------------------------------------------------*/
+.article-col .article-content {
+	margin: 0 19px;
+}
+
+.article-col .article-content p {
+	font-size: 93%; /* 12px */
+	margin-bottom: 1em;
+}
+
+.article-col .topic-highlight {
+	display: -moz-inline-stack; /* required for ff2 */
+	display: inline-block;
+	vertical-align: top;
+	font-weight: bold;
+	background: #daeff7;
+}
+
+
+
+
+/*
+	===>>> LOADED CSS <<<===
+	/~blago/newspages.html/dashboard/styles/css/jquery.popupballoon.css
+*/
+.popup-balloon {
+    position:absolute;
+    top:0;
+    left:0;
+	background-color:#ccc; /*IE FIX*/
+	background-color:rgba(0,0,0,0.3);
+	padding:1px;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.2);
+    -webkit-box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.2);
+    display:none;
+    z-index:2000;
+}
+
+.popup-balloon.visible {
+    display:block;
+}
+
+.popup-balloon .header {
+    background-color:#262626;
+    background-image:url('window_header_bg.png');
+    background-repeat:repeat-x;
+    -moz-border-radius-topright:4px;
+    -webkit-border-top-right-radius:4px;
+    border-top-left-radius:4px;
+    -moz-border-radius-topleft:4px;
+    -webkit-border-top-right-radius:4px;
+}
+
+.popup-balloon .popup-body,
+.popup-balloon .title {
+    width:260px;
+    padding-left:15px;
+    padding-right:15px;
+}
+
+.popup-balloon .title {
+    height:36px;
+    color: #fff;
+    line-height:36px;
+    font-size:138.5%; /* 18px */
+    font-weight:bold;
+}
+
+.popup-balloon .popup-body {
+    padding:15px;
+    background-color:#FFF;
+    -moz-border-radius:4px;
+    -webkit-border-radius:4px;
+    border-radius:4px;
+    -moz-border-radius:4px;
+    -webkit-border-radius:4px;
+	overflow:hidden;
+	overflow-y: auto;
+}
+
+.popup-balloon.with-title .popup-body{
+	-moz-border-radius-topright:0px;
+    -webkit-border-top-right-radius:0px;
+    border-top-left-radius:0px;
+    -moz-border-radius-topleft:0px;
+    -webkit-border-top-right-radius:0px;
+}
+
+.popup-balloon.dj-loading .content {
+    background:#FFF url('icon_module.col.loading.gif') center center no-repeat;
+}
+
+.popup-balloon .balloon-arrow {
+    position:absolute;
+    width:12px;
+    height:26px;
+}
+
+.popup-balloon .arrow-right {
+    display:block;
+    right:-11px;
+    background-image:url('menu_outer_arrow_right.png');
+}
+
+.popup-balloon .arrow-left {
+    display:block;
+    left:-11px;
+    background-image:url('menu_outer_arrow_left.png');
+}
+
+/* = Tooltip
+----------------------------------------------------------------------------------------------------*/
+.popup-balloon.tooltip{
+	 border-radius: 0px;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+}
+
+.popup-balloon.tooltip .popup-body {
+	padding:2px;
+	background-color: #ffffc4;
+	color: #000;
+	font-size:11px;
+	font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	 border-radius: 0px;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+	width:auto;
+}
+
+.popup-balloon.tooltip .balloon-arrow {
+	display:none;
+}
+
+
+
+/*
+	===>>> LOADED CSS <<<===
+	/~blago/newspages.html/components/styles/less/module.page-garden.less
+*/
+
+.outer-text h1 {
+  font-size:20px;
+  margin-bottom:15px;
+}
+.outer-text {
+  padding-left:10px;
+  padding-right:10px;
+  padding-bottom:10px;
+}
+#page-garden .pg-tabs li a {
+  color:#333333;
+  line-height:30px;
+  font-weight:bold;
+  padding:0 15px;
+}
+#page-garden .pg-tabs li a:hover { color:#333333; }
+#page-garden .pg-tabs li.ui-tabs-selected a, #page-garden .pg-tabs li.ui-tabs-selected a:hover { color:#ffffff; }
+#page-garden .pg-tabs li.ui-tabs-selected { background-color:#4b4b4b; }
+#page-garden .pg-tabs li.edit.ui-tabs-selected a, #page-garden .pg-tabs li.edit.ui-tabs-selected a:hover { color:#333333; }
+#page-garden .pg-tabs li.edit.ui-tabs-selected { background-color:#e3f5fc; }
+#page-garden .pg-tabs li {
+  display:-moz-inline-stack;
+  display:inline-block;
+  vertical-align:bottom;
+  zoom:1;
+  *display:inline;
+  float:left;
+  margin:0 1px 0 0;
+  background-color:#999999;
+  -webkit-border-top-left-radius:5px;
+  -moz-border-radius-topleft:5px;
+  border-top-left-radius:5px;
+  -webkit-border-top-right-radius:5px;
+  -moz-border-radius-topright:5px;
+  border-top-right-radius:5px;
+}
+#page-garden .pg-tabs {
+  position:relative;
+  bottom:-1px;
+}
+#page-garden .pg-content.ui-tabs-hide { display:none; }
+#page-garden .pg-content {
+  min-height:100px;
+  background-color:#4b4b4b;
+  padding:0;
+}
+#page-garden { margin-bottom:15px; }
+
+
+
+/*
+	===>>> LOADED CSS <<<===
+	/~blago/newspages.html/NewsPages/styles/css/module.garden.css
+*/
+/*
+
+	-- -- -- -- -- -- --
+	Description: Module Garden
+	Version: 0.1
+	Last Update: 1/28/2011
+	Author: Pete McGrath
+	Company: Dow Jones & Company Inc.
+	Copyright 2010 Dow Jones & Company Inc.
+	
+	
+*/
+
+/* =Module Garden Styles
+----------------------------------------------------------------------------------------------------*/
+.select-a-module .module-core {
+	background-color:#FFF;
+}
+
+.select-a-module .module-content,
+.select-a-module .module-footer {
+	background:none;
+}
+
+.select-a-module .module-col .module-col-wrap {
+	min-height:0;
+}
+
+.dj_module-garden {
+	width:958px;
+	overflow: auto;
+	background-color:#fff;
+/*	border:1px solid #e6e6e6;*/
+}
+.dj_module-garden-content { 
+	width: 4000px; 
+	float: left; 
+	background-color:#fff;
+	margin-bottom:26px;
+	padding:0 17px 0 16px;
+/*	padding: 33px 17px 30px 16px; */
+}
+.dj_module-garden-item {
+	position:relative !important; 
+	float:left;
+	width: 192px; 
+	margin: 0 20px 0 20px; 
+/*	margin-left:auto;*/
+/*	margin-right:auto;*/
+}
+.dj_module-thumb {
+	width: 192px; 
+	border:1px solid #e6e6e6;
+	margin-bottom:15px;
+	margin-top:10px;
+}
+.dj_module-title {
+	display:block;
+	font-size:108%;
+	font-weight: bold;
+    line-height: normal;
+    margin-bottom: 4px;
+}
+.dj_module-description {
+	font-size:85%;
+	margin-bottom:10px;
+}
+
+/*scroll bar*/
+.dj_module-garden .jspHorizontalBar {
+	height:18px;
+    background-color:none;
+	padding:0 !important;
+}
+
+.dj_module-garden .jspTrack {
+	height:18px;
+	border-radius: 20px;
+	-moz-border-radius: 20px;
+	-webkit-border-radius: 20px;
+    background-color:#464646;} 
+
+.dj_module-garden .jspDrag{
+	border-radius: 20px;
+	-moz-border-radius: 20px;
+	-webkit-border-radius: 20px;
+    background-color: #8b8b8b;
+}
+
+.dj_module-garden .jspHorizontalBar .jspCap
+{
+	width: 15px;
+	height: 100%;
+	display:block;
+}
+
+
+
+/*
+	===>>> LOADED CSS <<<===
+	/~blago/newspages.html/dashboard/styles/libs/jquery.ui.core.css
+*/
+/*
+ * jQuery UI CSS Framework 1.8.10
+ *
+ * Copyright 2011, AUTHORS.txt (http://jqueryui.com/about)
+ * Dual licensed under the MIT or GPL Version 2 licenses.
+ * http://jquery.org/license
+ *
+ * http://docs.jquery.com/UI/Theming/API
+ */
+
+/* Layout helpers
+----------------------------------*/
+.ui-helper-hidden { display: none; }
+.ui-helper-hidden-accessible { position: absolute !important; clip: rect(1px 1px 1px 1px); clip: rect(1px,1px,1px,1px); }
+.ui-helper-reset { margin: 0; padding: 0; border: 0; outline: 0; line-height: 1.3; text-decoration: none; font-size: 100%; list-style: none; }
+.ui-helper-clearfix:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
+.ui-helper-clearfix { display: inline-block; }
+/* required comment for clearfix to work in Opera \*/
+* html .ui-helper-clearfix { height:1%; }
+.ui-helper-clearfix { display:block; }
+/* end clearfix */
+.ui-helper-zfix { width: 100%; height: 100%; top: 0; left: 0; position: absolute; opacity: 0; filter:Alpha(Opacity=0); }
+
+
+/* Interaction Cues
+----------------------------------*/
+.ui-state-disabled { cursor: default !important; }
+
+
+/* Icons
+----------------------------------*/
+
+/* states and images */
+.ui-icon { display: block; text-indent: -99999px; overflow: hidden; background-repeat: no-repeat; }
+
+
+/* Misc visuals
+----------------------------------*/
+
+/* Overlays */
+.ui-widget-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+
+
+
+/*
+	===>>> LOADED CSS <<<===
+	/~blago/newspages.html/dashboard/styles/libs/jquery.ui.tabs.css
+*/
+/*
+ * jQuery UI Tabs 1.8.10
+ *
+ * Copyright 2011, AUTHORS.txt (http://jqueryui.com/about)
+ * Dual licensed under the MIT or GPL Version 2 licenses.
+ * http://jquery.org/license
+ *
+ * http://docs.jquery.com/UI/Tabs#theming
+ */
+.ui-tabs { position: relative; padding: .2em; zoom: 1; } /* position: relative prevents IE scroll bug (element with position: relative inside container with overflow: auto appear as "fixed") */
+.ui-tabs .ui-tabs-nav { margin: 0; padding: .2em .2em 0; }
+.ui-tabs .ui-tabs-nav li { list-style: none; float: left; position: relative; top: 1px; margin: 0 .2em 1px 0; border-bottom: 0 !important; padding: 0; white-space: nowrap; }
+.ui-tabs .ui-tabs-nav li a { float: left; padding: .5em 1em; text-decoration: none; }
+.ui-tabs .ui-tabs-nav li.ui-tabs-selected { margin-bottom: 0; padding-bottom: 1px; }
+.ui-tabs .ui-tabs-nav li.ui-tabs-selected a, .ui-tabs .ui-tabs-nav li.ui-state-disabled a, .ui-tabs .ui-tabs-nav li.ui-state-processing a { cursor: text; }
+.ui-tabs .ui-tabs-nav li a, .ui-tabs.ui-tabs-collapsible .ui-tabs-nav li.ui-tabs-selected a { cursor: pointer; } /* first selector in group seems obsolete, but required to overcome bug in Opera applying cursor: text overall if defined elsewhere... */
+.ui-tabs .ui-tabs-panel { display: block; border-width: 0; padding: 1em 1.4em; background: none; }
+.ui-tabs .ui-tabs-hide { display: none !important; }
+
+
+
+/*
+	===>>> LOADED CSS <<<===
+	/~blago/newspages.html/components/styles/less/module.search-results.less
+*/
+
+.search-results-module {
+  background-color:#ffffff;
+  padding:10px;
+  padding-top:15px;
+}
+.left { float:left; }
+.right { float:right; }
+.navbar { margin-bottom:20px; }
+.navbar .prev-bt {
+  display:inline-block;
+  margin-right:20px;
+}
+.navbar .next-bt {
+  display:inline-block;
+  margin-left:20px;
+}
+.breadcrumb { font-size:14px; }
+.breadcrumb .branch {
+  background-image:url('bread_crumb_arrow.png');
+  background-repeat:no-repeat;
+  background-position:right center;
+  padding-right:14px;
+}
+.breadcrumb .leaf { font-weight:bold; }
+.breadcrumb .leaf .keywords { font-weight:normal; }
+.dym {
+  margin-top:15px;
+  font-size:11px;
+  line-height:14px;
+}
+.dym .button-pane {
+  margin-top:-30px;
+  height:30px;
+  margin-bottom:10px;
+  text-align:right;
+}
+.dym-wrap {
+  background-color:#f0f0f0;
+  color:#666666;
+  padding:10px;
+}
+.dym-wrap .col { padding-right:20px; }
+.dym-wrap .col input { position:absolute; }
+.dym-wrap .col .item-name {
+  display:block;
+  max-width:180px;
+  padding-left:20px;
+  padding-bottom:6px;
+}
+.dym-title {
+  font-weight:bold;
+  color:#000000;
+}
+.dym-category-name {
+  font-weight:bold;
+  margin-bottom:5px;
+}
+.filterbar {
+  font-size:11px;
+  line-height:20px;
+  margin-top:10px;
+}
+.filter {
+  background-color:#ffe3ac;
+  line-height:20px;
+  display:inline-block;
+  padding-left:5px;
+  border-radius:5px;
+  -moz-border-radius:5px;
+  -webkit-border-radius:5px;
+  cursor:pointer;
+}
+.filter .label { line-height:20px; }
+.filter .icon-close {
+  display:inline-block;
+  height:20px;
+  width:20px;
+  cursor:pointer;
+  background-image:url('/~blago/newspages.html/components/styles/images/icon_filter_close.png');
+  background-position:top;
+  float:right;
+}
+.filter .icon-close:hover { background-position:bottom; }
+.content .sidebar { width:200px; }
+.article-page .content .sidebar {
+  width:280px;
+  border:1px solid #f3f3f3;
+  padding:10px;
+  font-size:12px;
+  margin-top:15px;
+  margin-bottom:15px;
+}
+.article-page .content .sidebar h2 {
+  font-size:16px;
+  margin:0px;
+  margin-bottom:10px;
+}
+.article-page .content .sidebar h3 {
+  font-size:12px;
+  font-weight:normal;
+  margin:0px;
+  margin-bottom:10px;
+}
+.article-page .content .sidebar .details { color:#999999; }
+.article-page .content .sidebar li { margin-bottom:10px; }
+.discovery { margin-top:8px; }
+.discovery-group {
+  font-size:11px;
+}
+.discovery-group.expanded .toggle { background-position:top; }
+.discovery-group .name {
+  color:#4f4f4f;
+  font-weight:bold;
+}
+.discovery-group .count { color:#afafaf; }
+.discovery-group .actions {
+  color:#d2d2d2;
+  display:none;
+  float:right;
+}
+.discovery-group.expanded .actions { display:inline-block; }
+.discovery-group .discovery-items {
+  width:210px;
+}
+.discovery-chart { width:80px; }
+ .discovery-items .discovery-chart .chart-value {
+  color:#666666;
+}
+.discovery-items .discovery-chart .chart-bar {
+  background-color:#97c7d9;
+}
+.dj_emg_djc_keyword_item10 a{color:#3695B7}
+.dj_emg_djc_keyword_item9 A{color:#3695B7}
+.dj_emg_djc_keyword_item8 a{color:#000}
+.dj_emg_djc_keyword_item7 a{color:#000}
+.dj_emg_djc_keyword_item6 a{color:#000}
+.dj_emg_djc_keyword_item5 a{color:#000}
+.dj_emg_djc_keyword_item4 a{color:#000}
+.dj_emg_djc_keyword_item3 a{color:#000}
+.dj_emg_djc_keyword_item2 a{color:#000}
+.dj_emg_djc_keyword_item1 a{color:#000}
+.content .results { width:750px; }
+.content .results .navbar {
+  font-size:11px;
+  padding:10px;
+  margin-bottom:0px;
+}
+.content .result-item {
+  line-height:18px;
+  border-top:1px solid transparent;
+  padding:10px;
+}
+.content .result-item:hover {
+  border-top:1px solid #efefef;
+  background-color:#f3f3f3;
+}
+.content .result-item .data { width:600px; }
+.content .result-item .actions {
+  display:none;
+  width:16px;
+}
+.content .result-item .actions li { margin-bottom:8px; }
+.content .result-item:hover .actions { display:block; }
+.content .result-item .headline {
+  font-size:16px;
+  font-weight:bold;
+}
+.content .result-item .details { color:#999999; }
+.content .result-item .actions .icon-email {
+  background-image:url('/~blago/newspages.html/components/styles/images/icon_email.png');
+  width:16px;
+  height:16px;
+  display:block;
+}
+.content .result-item .actions .icon-pdf {
+  background-image:url('/~blago/newspages.html/components/styles/images/icon_pdf.png');
+  width:16px;
+  height:16px;
+  display:block;
+}
+.content .result-item .actions .icon-print {
+  background-image:url('/~blago/newspages.html/components/styles/images/icon_print.png');
+  width:16px;
+  height:16px;
+  display:block;
+}
+.content .results .tabs > ul li .article-count { font-size:10px; }
+.content .results .tabs > ul li a {
+  color:#666666;
+  display:block;
+  padding:0.5em 1em;
+}
+.content .results .tabs > ul li a:hover { color:#212121; }
+.content .results .tabs > ul li.ui-state-active a { color:#212121; }
+.content .results .tabs > ul li.ui-state-active {
+  background-color:#ffffff;
+  border-color:#e6e6e6 #e6e6e6 #ffffff;
+}
+.content .results .tabs > ul li {
+  display:-moz-inline-stack;
+  display:inline-block;
+  vertical-align:top;
+  zoom:1;
+  *display:inline;
+  float:left;
+  font-size:93%;
+  margin:0 0.2em -1px 0;
+  background-color:#f0f0f0;
+  -webkit-border-top-left-radius:5px;
+  -moz-border-radius-topleft:5px;
+  border-top-left-radius:5px;
+  -webkit-border-top-right-radius:5px;
+  -moz-border-radius-topright:5px;
+  border-top-right-radius:5px;
+  border:1px solid #f0f0f0;
+}
+.content .results .tabs > ul {
+  padding:0.2em 0.2em 0;
+  border-bottom:1px solid #e6e6e6;
+}
+.content .results .tabs > div a { color:#3399cc; }
+.content .results .tabs > div a:hover { color:#006ca2; }
+.content .results .tabs > div {
+  padding:0px;
+  padding-top:15px;
+}
+.article-page .article { width:650px; }
+.article h2 { font-size:18px; }
+.article p {
+  color:#666666;
+  font-size:12px;
+  margin-bottom:16px;
+  line-height:18px;
+}
+.article .article-details {
+  font-size:12px;
+  line-height:16px;
+  color:#999999;
+  margin-bottom:16px;
+}
+.article-details .author { font-size:12px; }
+.article .actions {
+  text-align:right;
+  margin-top:10px;
+}
+.article .actions .icon-email {
+  background-image:url('/~blago/newspages.html/components/styles/images/icon_email.png');
+  width:16px;
+  height:16px;
+  display:inline-block;
+  margin-left:5px;
+}
+.article .actions .icon-pdf {
+  background-image:url('/~blago/newspages.html/components/styles/images/icon_pdf.png');
+  width:16px;
+  height:16px;
+  display:inline-block;
+  margin-left:5px;
+}
+.article .actions .icon-print {
+  background-image:url('/~blago/newspages.html/components/styles/images/icon_print.png');
+  width:16px;
+  height:16px;
+  display:inline-block;
+  margin-left:5px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* =module Content >> General module content rules
+----------------------------------------------------------------------------------------------------*/
+.page-content {
+    /*height:600px;*/
+    border-left: 1px solid #DDD;
+    border-right: 1px solid #DDD;
+    background-color:#FFF;
+    padding-bottom: 25px; /*for fixed footer*/
+}
+    .page-content-box {
+        /*height:100%;*/
+        /*height auto;*/
+        position: relative;
+        overflow: hidden;
+        overflow: visible;
+        zoom: 1;
+        clear: both;
+    }
+    .page-content-box-column {
+       height:100%;
+    }
+    .page-content .page-content-box-left {
+        width: 240px;
+        margin-right:0;
+    }
+    .page-content .page-content-box-center {
+        width: 350px;
+        margin-left:0;
+    }
+    .page-content .page-content-box-right {
+        width: 367px;
+        margin-left:0;
+        margin-right: 0px;
+    }
+    .page-content-box-column-content {
+        position:relative;
+        /*height:100%;*/
+        /*overflow:auto;*/
+        overflow: hidden;
+    }
+    .page-content-box-center .page-content-box-column-content {
+        border-left:1px solid #DDD;
+        border-right: 1px solid #DDD;
+    }
+    .module-loading .module-content {
+        background:#FFF url(loading.gif) center center no-repeat;
+    }
+
+
+/* autocomplete */
+#dj_header,
+#dj_footer {
+    z-index:2;
+}
+#dj_header-search,
+#dj_footer-search {
+    position:relative;
+}
+#dj_header-search .results,
+#dj_footer-search .results {
+    width:592px;
+    border: 1px solid #AEAEAE;
+    z-index:2;
+}
+#dj_header-search .results {
+    top:56px;
+}
+#dj_footer-search .results {
+    bottom:36px;
+}
+#dj_header-search .results li,
+#dj_footer-search .results li {
+    height:23px;
+    text-indent: 10px;
+    line-height: 23px;
+}
+
+
+/* Simple Tooltip */
+#dj_tooltip {background:#B2BAC5; overflow:hidden; padding: 5px; border:1px solid #1A1A1A; -webkit-border-radius:6px; -moz-border-radius:6px;}
+#dj_snippetTooltip { width:300px; background:#f0f0f0; overflow:hidden; padding: 5px; border:1px solid #1A1A1A; -webkit-border-radius:6px; -moz-border-radius:6px; color:#333;}
+#dj_snippetTooltip .dj_title .dj_text { color:#1A1A1A; font-weight:bold; }
+#dj_snippetTooltip .dj_highlight {color:#465280; font-weight:bold; font-style:italic;}
+#dj_snippetTooltip .dj_company {background-color:#465280; padding:0 3px; color:#f0f0f0; border:1px solid #465280; -webkit-border-radius:6px; -moz-border-radius:6px;}
+#dj_snippetTooltip .dj_person {background-color:#4D5063;  color:#f0f0f0; border:1px solid #4D5063; -webkit-border-radius:6px; -moz-border-radius:6px;}
+#dj_snippetTooltip img {display:none;}
+#dj_snippetTooltip .dj_image img {display:inline;}
+#dj_snippetTooltip .dj_image { background:#FFFFFF none repeat scroll 0 0; border:1px solid #BBBBBB; float:left; margin:3px 10px 3px 0; padding:4px; }
+/* End HeadlineList */
+
+/* My Articles */
+	.my-articles-drag-icon
+	{
+		height: 50px;
+		width: 50px;
+		border: 1px solid silver;
+		background-color: #2E8EB0;
+	}
+	.my-articles-clipboard
+	{
+		position: relative;
+		height: 30px;
+		text-align: left;
+	}
+	.my-articles-clipboard .clipboard-title
+	{
+		line-height: 25px;
+		color: 000;
+		font-weight: bold;
+		display: none;
+	}
+	.my-articles-clipboard li
+	{
+		color: #333;
+	}
+	.my-articles-clipboard li input[type=checkbox]
+	{
+		display:none;
+	}	
+	.my-articles-clipboard .article-store
+	{
+		display:none;
+	}
+	
+	.my-articles-clipboard-open
+	{
+		text-align: left;
+		padding: 5px;
+		position: relative;
+		height: 300px;
+		bottom: 310px;
+		background-color: #d0d0d0;		
+	}
+	.my-articles-clipboard-open .clipboard-title
+	{
+		display: block;
+	}
+	.my-articles-clipboard-open .article-store
+	{
+		display: block;
+	}
+	.my-articles-clipboard-open .article-store li 
+	{
+		position: relative;
+		width: 45%;	
+		margin: 3px;
+	}
+	.my-articles-clipboard-open .article-store li .remove-article
+	{
+		position :absolute;
+		top: 6px;
+		right: 8px;
+		color: maroon;
+		cursor: pointer;
+	}
+	.my-articles-clipboard-open .article-store li .remove-article:hover
+	{
+		color: red;
+	}
+	.my-articles-clipboard-open .article-store li .wrap
+	{
+		border: 1px solid #2E8EB0;
+		padding: 4px 8px 4px 4px;
+		background-color: #ddd;
+			
+		color: #666;
+	}
+	.my-articles
+	{
+		position: absolute;
+		right: 0px;
+		bottom: 0px;
+		line-height: 30px;		
+		color: #fff;		
+		width: 140px;
+		height: 30px;
+		text-align: left;
+		overflow: hidden;
+		}
+	.my-articles .articles-open
+	{
+		text-align: left;
+		cursor: pointer;
+		padding-left: 15px;
+	}	
+	.my-articles .article-folder
+	{
+		border: 1px solid transparent;		
+		margin: 0 10px;
+		position: relative;
+		text-align: center;
+		line-height: 20px;
+		}
+	.my-articles .article-folder li
+	{
+		cursor: pointer;
+	}
+	.my-articles-active
+	{
+		background-color: black;
+		border: 1px solid black;
+		top: auto;		
+		bottom: 0px;
+		height: auto;
+		overflow: show;
+	}
+	.my-articles-active #article-store
+	{
+		display: block;
+		height: auto;
+		border: 1px solid black;
+	}
+	.my-articles-droppable
+	{
+		background-color: #666;
+		border: 1px solid #000;
+	}
+	.my-articles-active #article-store
+	{
+		min-height: 125px;
+		border: 1px solid red;
+		}
+
+
+/* end My Articles */
+
+/* headlines cp */
+
+.dj_HeadlineList .headlines-cp{
+	padding: 3px;
+	background-color: purple;
+}
+.dj_HeadlineList .select-all
+{ 
+	color: #2F90B3
+}
+
+
+/*end headlines cp*/
+
+.dj_article_entity
+{
+    color: #2F90B3
+    }
+.dj_article_entity .wrap
+{  
+    min-height: 560px;
+    }
+.dj_Article .related
+{
+    position: absolute;
+    top: 20px;
+    bottom: 0px;
+    right: -204px;
+    float: right;
+    width: 200px;
+}    
+.dj_Article .related ul
+{    
+    margin: 0;
+    }
+.dj_Article .related ul li
+{
+    padding: 5px;
+}    
+.dj_Article .related h4.list-header    
+{
+    line-height: 20px;
+    
+    }

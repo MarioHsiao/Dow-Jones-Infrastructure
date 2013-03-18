@@ -1,0 +1,122 @@
+/*  Site.css:  Global site styles */
+
+html, body, #container
+{
+    height: 100%;
+}
+
+#container
+{
+    min-height: 100%;
+}
+
+header, nav, #main, footer
+{
+    clear: both;
+    display: block;
+}
+
+#gl-navContainer
+{
+    height: 4em !important;
+}
+
+#main
+{
+    width: 70em;
+    margin: auto;
+    height: auto;
+    min-height: 80%;
+}
+
+nav
+{
+}
+    nav ul
+    {
+        width: auto !important;
+    }
+    nav li
+    {
+        display: inline;
+        padding: 0 20px 0 0;
+    }
+
+/* Superfish menu overrides */    
+    nav .sf-menu li
+    {
+        border: none;
+        background-color: transparent;
+        background-clip: none;
+    }
+    nav .sf-menu a
+    {
+        border: none;
+    }
+
+footer
+{
+    min-height: 3em;
+    margin: 10px 0 0 0;
+    padding: .5em;
+    background: #4C4C4C;
+    text-align: center;
+    color: #ccc;
+}
+
+h1, h2
+{
+    padding-bottom: 0.25em;
+}
+
+h1
+{
+    margin: 1em 0;
+    padding-bottom: 0.25em;
+    border-bottom: 1px ridge;
+    font-size: 130%;
+}
+
+h2
+{
+    margin: .5em 0;
+    font-size: 120%;
+}
+
+.hide { display: none; }
+
+
+
+/* Styles for validation helpers
+-----------------------------------------------------------*/
+.field-validation-error
+{
+    color: #ff0000;
+}
+
+.field-validation-valid
+{
+    display: none;
+}
+
+.input-validation-error
+{
+    border: 1px solid #ff0000;
+    background-color: #ffeeee;
+}
+
+.validation-summary-errors
+{
+    font-weight: bold;
+    color: #ff0000;
+}
+
+.validation-summary-valid
+{
+    display: none;
+}
+
+.client-ui-validation {
+    width: 400px;
+    margin-left: 20px;
+}

@@ -1,0 +1,8 @@
+﻿<div class="dj_Carousel <%= this.options.pageDirection.toLowerCase() %>">
+    <div class="dj_Carousel-inner">
+        <% var headlinePages = self;
+            for (var i = 0; i < headlinePages.length; i++) { %>
+            <%= this.templates.paginationPage({index: i, headlines: headlinePages[i]}) %>
+        <% } %>
+    </div>
+</div>

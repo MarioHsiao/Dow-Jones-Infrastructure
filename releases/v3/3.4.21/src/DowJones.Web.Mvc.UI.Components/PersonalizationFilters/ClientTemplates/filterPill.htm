@@ -1,0 +1,13 @@
+﻿<%  var filterClass = (self.disabled)?"dj_pill-list disabled yellow clearfix":"dj_pill-list yellow clearfix",
+        filter = self.filter ;
+%>
+<ul class="<%= filterClass %>">
+    <li class="filter-group">
+        <ul class="filter-list">
+            <li class="dj_pill" code="<%= filter.code %>" filterType="<%= filter.type %>">
+	            <span class="label"><%= filter.desc %></span>
+	            <span class="remove" title="<%= Token("removeFilter")%>">&nbsp;</span>
+            </li>
+        </ul>
+    </li>
+</ul>

@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>To bind or not</title>
+    <script src="http://mybox.dev.us.factiva.com/oldshowcase/common.js"></script>
+</head>
+<body>
+
+</body>
+<script>
+    $(function () {
+        var maxHeadlines = [4, 6, 10, 5, 3, 1];
+
+        for (var i = 0; i < maxHeadlines.length; i++) {
+            var maxNumHeadlines = maxHeadlines[i],
+                h4 = $('<h4>').html('Should show ' + maxNumHeadlines + ' headlines'),
+                container = $('<div>').attr('id', 'headlines' + maxNumHeadlines);
+
+            $('body')
+                .append(h4)
+                .append(container);
+
+            DJ.add('PortalHeadlineList', {
+                container: 'headlines' + maxNumHeadlines,
+                options: {
+                    maxNumHeadlinesToShow: maxNumHeadlines,
+                    layout: 2
+                },
+                data: { resultSet: { "count": { "value": 10 }, "headlines": [{ "title": "Business News, Finance News, World, Political & Sports News from The Wall Street Journal - Wsj.com", "headlineUrl": "http://online.wsj.com/home-page", "modificationTimeDescriptor": "30,780" }, { "title": "Live: Apple Press Event - Digits - WSJ", "headlineUrl": "http://blogs.wsj.com/digits/2012/10/23/live-apple-press-event/", "modificationTimeDescriptor": "8,922" }, { "title": "Opinion & Commentary - Wall Street Journal - Wsj.com", "headlineUrl": "http://online.wsj.com/public/page/news-opinion-commentary.html", "modificationTimeDescriptor": "1,789" }, { "title": "Stocks, Commodities Slump - WSJ.com", "headlineUrl": "http://online.wsj.com/article/SB10001424052970203406404578074151221809878.html", "modificationTimeDescriptor": "1,331" }, { "title": "Stock Market News - Financial News - Wall Street Journal - Wsj.com", "headlineUrl": "http://online.wsj.com/public/page/news-financial-markets-stock.html", "modificationTimeDescriptor": "1,031" }, { "title": "Can't Decide Where to Retire? - WSJ.com", "headlineUrl": "http://online.wsj.com/article/SB10000872396390443720204578004131575356160.html", "modificationTimeDescriptor": "1,007" }, { "title": "McGurn: John McCain Saw It Coming - WSJ.com", "headlineUrl": "http://online.wsj.com/article/SB10001424052970203406404578073013600102492.html", "modificationTimeDescriptor": "969" }, { "title": "Obama, Romney Face Off in Final Debate on Foreign Policy - WSJ.com", "headlineUrl": "http://online.wsj.com/article/SB10001424052970203406404578072592934794944.html", "modificationTimeDescriptor": "744" }, { "title": "Asia Edition - Wall Street Journal - Latest News, Breaking Stories, Top Headlines - Wsj.com", "headlineUrl": "http://asia.wsj.com/home-page", "modificationTimeDescriptor": "667" }, { "title": "US Business News - Latest Headlines, Top Stories, Breaking News - Wall Street Journal - Wsj.com", "headlineUrl": "http://online.wsj.com/public/page/news-business-us.html", "modificationTimeDescriptor": "648" }] } }
+            });
+        }
+    });
+
+</script>
+</html>

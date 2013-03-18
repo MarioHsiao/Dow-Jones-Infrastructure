@@ -1,0 +1,162 @@
+﻿<script src="../template.js"></script>
+<script>
+    include('../../DowJones.Web.Mvc.UI.Canvas/AbstractCanvas.js');
+    setTargetScript('../../DowJones.Web.Mvc.UI.Canvas/AbstractCanvasModule.js');
+
+    $(document).ready(function () {
+
+        // Create mock web service
+        $dj.registerNamespace("DJ.Services");
+
+        function getMockWebService() {
+            var mockWebService = {
+                lastCall: {},
+
+                DeleteCanvasModuleFromCanvas: function (obj, credentials, callback) {
+                    $dj.debug("CanvasRenderingManagerDataService.DeleteCanvasModuleFromCanvas called");
+                    lastCall = { name: arguments.callee.toString(), obj: obj, credentials: credentials };
+                    callback(this);
+                },
+                UpdateCanvasModulesProperties: function (obj, credentials) {
+                    $dj.debug("CanvasRenderingManagerDataService.UpdateCanvasModulesProperties called");
+                    lastCall = { name: arguments.callee.toString(), obj: obj, credentials: credentials };
+                },
+                UpdateCanvasModuleState: function (obj, credentials) {
+                    $dj.debug("CanvasRenderingManagerDataService.UpdateCanvasModuleState called");
+                    lastCall = { name: arguments.callee.toString(), obj: obj, credentials: credentials };
+                }
+            };
+
+            return mockWebService;
+        }
+
+        DJ.Services.CanvasRenderingManagerDataService = function () { return getMockWebService(); }
+
+
+        function createCanvas() {
+            var canvas = new DJ.UI.AbstractCanvas(createjQueryTestElement().addClass('dj_Canvas'));
+            return canvas;
+        }
+
+        function createTestModule() {
+            var canvas = createCanvas();
+            var testElement = createjQueryTestElement("module").appendTo(canvas.element);
+            var module = new DJ.UI.AbstractCanvasModule(testElement, { owner: canvas });
+            return module;
+        }
+
+
+        module('Core');
+
+        test('DJ.UI.AbstractCanvasModule should exist', function () {
+            ok(DJ.UI.AbstractCanvasModule);
+        });
+
+        test('should be able to execute constructor', function () {
+            var module = new DJ.UI.AbstractCanvasModule(createjQueryTestElement(), {});
+            ok(module);
+        });
+
+        test('should set the canvas when it is a component', function () {
+            var canvas = createCanvas();
+            var testElement = createjQueryTestElement("module").appendTo(canvas.element);
+
+            var module = new DJ.UI.AbstractCanvasModule(testElement, { owner: canvas });
+
+            equals(module._canvas, canvas);
+        });
+
+        test('should set the canvas when it is a jQuery wrapper around a the canvas component', function () {
+            var canvas = createCanvas();
+            var testElement = createjQueryTestElement("module").appendTo(canvas.element);
+
+            var module = new DJ.UI.AbstractCanvasModule(testElement, { owner: canvas });
+
+            equals(module._canvas, canvas);
+        });
+
+
+        module('Event handling');
+
+        test('fireCollapseRequest should trigger server-side update', function () {
+            var mockWebService = getMockWebService();
+            var module = createTestModule();
+
+            module.fireCollapseRequest();
+
+            ok("UpdateCanvasModuleState", mockWebService.lastCall.name);
+        });
+
+        test('fireOnCollapseTrigger should trigger server-side update', function () {
+            var mockWebService = getMockWebService();
+            var module = createTestModule();
+
+            module.fireOnCollapseTrigger();
+
+            ok("UpdateCanvasModuleState", mockWebService.lastCall.name);
+        });
+
+        test('fireOnRemoveTrigger should trigger server-side delete', function () {
+            var mockWebService = getMockWebService();
+            var realConfirm = window.confirm;
+            window.confirm = function () { return true; }
+
+            var module = createTestModule();
+
+            module.fireOnRemoveTrigger();
+
+            ok("DeleteCanvasModuleFromCanvas", mockWebService.lastCall.name);
+
+            window.confirm = realConfirm;
+        });
+
+        test('fireOnRemoveSuccess should publish a success event when remove succeeds', function () {
+            var publishedEventName = null;
+
+            var module = createTestModule();
+            module._publish = function (eventName, message) { publishedEventName = eventName; };
+
+            module.fireOnRemoveSuccess();
+
+            ok("CanvasModule.RemoveModuleSuccess", publishedEventName);
+        });
+
+        test('fireOnRemoveSuccess should publish a failure event when remove fails', function () {
+            var publishedEventName = null;
+
+            var module = createTestModule();
+            module._publish = function (eventName, message) { publishedEventName = eventName; };
+
+            module.fireOnRemoveSuccess({ ReturnCode: -1 });
+
+            ok("CanvasModule.RemoveModuleFailure", publishedEventName);
+        });
+
+        test('saveProperties should send updated data to server', function () {
+            var expectedProperties = { test: 1234 };
+            var actualRequest = null;
+
+            var module = createTestModule();
+            module._moduleId = 'test-module-1234';
+            module._canvas._canvasId = 'test-canvas-1234';
+
+            var mockWebService = module.get_WebService();
+            mockWebService.UpdateCanvasModulesProperties = function (request) {
+                actualRequest = request;
+            };
+
+
+            module.saveProperties(expectedProperties);
+
+            equals(module.get_ModuleId(), actualRequest.moduleId);
+            equals(module.get_CanvasId(), actualRequest.canvasId);
+            equals(expectedProperties, actualRequest.properties);
+        });
+
+    });
+
+</script>
+
+<script id="module-template" type="text/html">
+
+</script>
