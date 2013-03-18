@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Net;
 using AttributeRouting.Helpers;
+using GitHubTfsSyncApp.Controllers;
 using GitHubTfsSyncApp.Helpers;
 using GitHubTfsSyncApp.Models;
 using GitHubTfsSyncApp.Models.GitHub;
@@ -24,17 +25,16 @@ namespace GitHubTfsSyncApp.Workers
 		private readonly GitHubProvider _gitHubProvider;
 		private readonly TfsManager _tfsManager;
 
+        public TfsSyncWorker(string tfsUri, string teamProject, string localWorkspaceRootDir, ICredentials credentials)
+        {
+            _tfsUri = tfsUri;
+            _teamProject = teamProject;
+            _localWorkspaceRootDir = localWorkspaceRootDir;
+            _credentials = credentials;
 
-		public TfsSyncWorker(string tfsUri, string teamProject, string localWorkspaceRootDir, ICredentials credentials)
-		{
-			_tfsUri = tfsUri;
-			_teamProject = teamProject;
-			_localWorkspaceRootDir = localWorkspaceRootDir;
-			_credentials = credentials;
-
-			_gitHubProvider = new GitHubProvider(GitHubAccessConfigurationGenerator.CreateFromWebConfig());
-			_tfsManager = new TfsManager(_tfsUri, _teamProject, new DirectoryInfo(_localWorkspaceRootDir), _credentials);
-		}
+            _gitHubProvider = new GitHubProvider(GitHubAccessConfigurationGenerator.CreateFromWebConfig());
+            _tfsManager = new TfsManager(_tfsUri, _teamProject, new DirectoryInfo(_localWorkspaceRootDir), _credentials);
+        }
 
 		public void Process(IEnumerable<Commit> commits, Repository repository)
 		{
@@ -44,18 +44,22 @@ namespace GitHubTfsSyncApp.Workers
 				{
 					//TODO: eliminate magic strings
 					var localDir = Directory.CreateDirectory(Path.Combine(_localWorkspaceRootDir, "Incoming", commit.Id));
-
+                    _logger.Info("Getting Commit details from Github");
 					var details = _gitHubProvider.GetCommitDetails(commit, repository.Name, repository.Owner.Name);
 
+                    _logger.Info("Getting Tree details from Github");
 					// get tree/subtrees in one shot
 					var trees = _gitHubProvider.GetTrees(new Uri(details.Tree.Url + "?recursive=1"));
 
 					// save blobs, figure out changes
+                    _logger.Info("Process Tree from Github");
 					var changes = ProcessTree(trees.Tree, localDir.FullName, commit);
 
 					// checkin those changes
+                    _logger.Info("Creating Checkin in TFS");
 					_tfsManager.CreateCheckin(changes, "Workspace_{0}".FormatWith(commit.Id), commit.Summary);
 
+                    _logger.Info("Deleting local workspace");
 					// cleanup
 					localDir.ForceDelete();
 				}
