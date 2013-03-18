@@ -8,8 +8,8 @@ namespace DowJones.Tools.Charting.Highcharts.UI
     {
         private readonly Regex _reg = new Regex(@"\""(function\(event\)\{.*?\})\""", RegexOptions.Multiline);
 
-        protected readonly static string Script = "{[@Appearance] credits: { enabled: [@ShowCredits] }, [@Colors] [@PlotOptions] [@Title] [@Subtitle]" +
-                                                    "[@Legend] [@Exporting] [@XAxis] [@YAxis] [@ToolTip] [@Series]}";
+        protected readonly static string Script = "{[@Appearance]credits: { enabled: [@ShowCredits] },[@Colors][@PlotOptions][@Title][@Subtitle]" +
+                                                    "[@Legend][@Exporting][@XAxis][@YAxis][@ToolTip][@Series]}";
 
 
         public Chart(string clientId, RenderType renderType)

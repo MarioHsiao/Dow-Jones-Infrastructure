@@ -13,14 +13,28 @@ namespace DowJones.Tools.Charting.Highcharts.Core
             Text = titleText;
         }
 
+        public Title()
+        {
+            Text = string.Empty;
+        }
+
         public Align? Align { get; set; }
+
         public int? Floating { get; set; }
+        
         public int? Margin { get; set; }
+        
         public CSSObject Style { get; set; }
+        
         public string Text { get; set; }
-        public bool? UseHTML { get; set; }
+        
+        [JsonProperty("useHTML")]
+        public bool? UseHtml { get; set; }
+        
         public VerticalAlign? VerticalAlign { get; set; }
+        
         public int? X { get; set; }
+        
         public int? Y { get; set; }
 
         internal void ApplyTheme(CSSObject themeConfiguration)

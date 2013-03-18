@@ -11,6 +11,8 @@ namespace DowJones.Tools.Charting.Highcharts.Core
         {
         }
 
+        public SubTitle() {}
+
         public override string ToString()
         {
             if (string.IsNullOrEmpty(Text))

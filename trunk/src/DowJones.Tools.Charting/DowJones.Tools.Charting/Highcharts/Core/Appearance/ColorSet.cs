@@ -29,11 +29,13 @@ namespace DowJones.Tools.Charting.Highcharts.Core.Appearance
             {
                 return string.Empty;
             }
-            string ignored = JsonConvert.SerializeObject(this, Formatting.None, new JsonSerializerSettings
+            
+            var ignored = JsonConvert.SerializeObject(this, Formatting.None, new JsonSerializerSettings
                                                                                     {
                                                                                         NullValueHandling = NullValueHandling.Ignore,
                                                                                         ContractResolver = new CamelCasePropertyNamesContractResolver()
                                                                                     });
+
             return ignored.Replace("{", string.Empty).Replace("}", string.Empty) + ",";
         }
     }

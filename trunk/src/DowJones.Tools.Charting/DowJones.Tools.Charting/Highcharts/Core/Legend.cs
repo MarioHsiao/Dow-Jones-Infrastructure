@@ -58,17 +58,15 @@ namespace DowJones.Tools.Charting.Highcharts.Core
             }
             set { _formatter = value; }
         }
-
         
-
         public override string ToString()
         {
-            string ignored = JsonConvert.SerializeObject(this, Formatting.None, new JsonSerializerSettings
+            var ignored = JsonConvert.SerializeObject(this, Formatting.None, new JsonSerializerSettings
                                                                                     {
                                                                                         NullValueHandling = NullValueHandling.Ignore,
                                                                                         ContractResolver = new CamelCasePropertyNamesContractResolver(),
                                                                                     });
-            return string.Format("legend: {0},", ignored);
+            return ignored == "{\"enabled\":true}" ? string.Empty : string.Format("legend: {0},", ignored);
         }
 
         internal void ApplyTheme(LegendStyle themeConfiguration)

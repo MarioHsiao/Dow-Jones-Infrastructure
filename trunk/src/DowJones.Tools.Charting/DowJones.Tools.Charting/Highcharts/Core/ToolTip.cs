@@ -56,7 +56,8 @@ namespace DowJones.Tools.Charting.Highcharts.Core
                                                                                  NullValueHandling = NullValueHandling.Ignore,
                                                                                  ContractResolver = new CamelCasePropertyNamesContractResolver(),
                                                                              });
-            return string.Format("tooltip: {0} ,", tmp);
+
+            return tmp.Equals("{}", StringComparison.InvariantCultureIgnoreCase) ? string.Empty : string.Format("tooltip: {0},", tmp);
         }
     }
 }
