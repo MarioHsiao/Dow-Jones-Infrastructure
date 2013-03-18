@@ -1,5 +1,6 @@
 ﻿using DowJones.Tools.Charting.Highcharts.Core.Appearance;
 using DowJones.Tools.Charting.Highcharts.UI;
+using DowJones.Tools.Charting.Highcharts.UI.Generators;
 
 namespace DowJones.Tools.Charting.Highcharts.Core.PlotOptions
 {
@@ -11,7 +12,7 @@ namespace DowJones.Tools.Charting.Highcharts.Core.PlotOptions
             YAxis = new YAxis();
             Series = new SerieCollection();
             Appearance = new Appearance.Appearance();
-            Lang = new Localization();
+            Lang = new LocalizationScriptGenerator();
             Exporting = new Exporting();
             Colors = new ColorSet();
             Legend = new Legend();
@@ -21,7 +22,7 @@ namespace DowJones.Tools.Charting.Highcharts.Core.PlotOptions
 
         public string ClientId { get; set; }
 
-        public Localization Lang { get; set; }
+        public LocalizationScriptGenerator Lang { get; set; }
 
         public Appearance.Appearance Appearance { get; set; }
 

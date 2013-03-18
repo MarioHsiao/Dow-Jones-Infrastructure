@@ -1,27 +1,36 @@
 ﻿using System.Text.RegularExpressions;
 using DowJones.Tools.Charting.Highcharts.Core;
 using DowJones.Tools.Charting.Highcharts.Core.Appearance;
+using DowJones.Tools.Charting.Highcharts.Core.PlotOptions;
 
 namespace DowJones.Tools.Charting.Highcharts.UI
 {
-    public class Chart : GenericChart, IJsonObject
+    public class Chart<T> : GenericChart, IJsonObject where T : PlotOptionsSeries, new()
     {
         private readonly Regex _reg = new Regex(@"\""(function\(event\)\{.*?\})\""", RegexOptions.Multiline);
 
         protected readonly static string Script = "{[@Appearance]credits: { enabled: [@ShowCredits] },[@Colors][@PlotOptions][@Title][@Subtitle]" +
                                                     "[@Legend][@Exporting][@XAxis][@YAxis][@ToolTip][@Series]}";
 
+        private T _plotOptions;
 
-        public Chart(string clientId, RenderType renderType)
+        protected Chart(string clientId, RenderType renderType)
         {
             ClientId = clientId;
             RenderType = renderType;
             Appearance = new Appearance {RenderTo = clientId};
         }
 
-        public string ClientId { get; set; }
+        public T PlotOptions
+        {
+            get { return _plotOptions ?? (_plotOptions = new T()); }
+            set { _plotOptions = value; }
+        }
 
-        public virtual string ToJson()
+        public string ClientId { get; set; }
+        
+
+        public string ToJson()
         {
             var tScript = Script.Replace("[@Id]", ClientId);
             Appearance.RenderTo = ClientId;
@@ -29,6 +38,7 @@ namespace DowJones.Tools.Charting.Highcharts.UI
 
             tScript = tScript.Replace("[@Colors]", Colors.ToString());
             tScript = tScript.Replace("[@Appearance]", Appearance.ToString());
+            tScript = tScript.Replace("[@PlotOptions]", PlotOptions.ToString());
             tScript = tScript.Replace("[@RenderType]", RenderType.ToString());
             tScript = tScript.Replace("[@Legend]", Legend.ToString());
             tScript = tScript.Replace("[@Exporting]", Exporting.ToString());
@@ -39,7 +49,6 @@ namespace DowJones.Tools.Charting.Highcharts.UI
             tScript = tScript.Replace("[@YAxis]", YAxis.ToString());
             tScript = tScript.Replace("[@XAxis]", XAxis.ToString());
             tScript = tScript.Replace("[@Series]", Series.ToString());
-
 
             // handle special case for events, such as point click, mouseover etc
             // see PointEvents.cs for examples

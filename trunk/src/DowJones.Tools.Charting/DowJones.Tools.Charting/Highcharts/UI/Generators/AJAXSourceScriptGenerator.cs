@@ -1,6 +1,6 @@
-﻿using System;
+using System;
 
-namespace DowJones.Tools.Charting.Highcharts.UI
+namespace DowJones.Tools.Charting.Highcharts.UI.Generators
 {
     [Serializable]
     public class AJAXSourceScriptGenerator : IScriptGenerator

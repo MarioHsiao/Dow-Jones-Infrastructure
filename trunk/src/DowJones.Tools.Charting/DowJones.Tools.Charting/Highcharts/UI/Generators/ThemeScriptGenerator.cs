@@ -1,4 +1,4 @@
-﻿namespace DowJones.Tools.Charting.Highcharts.UI
+namespace DowJones.Tools.Charting.Highcharts.UI.Generators
 {
     public class ThemeScriptGenerator: IScriptGenerator
     {

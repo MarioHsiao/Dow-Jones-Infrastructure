@@ -1,5 +1,6 @@
 ﻿using DowJones.Tools.Charting.Highcharts.Core;
 using DowJones.Tools.Charting.Highcharts.Core.Appearance;
+using DowJones.Tools.Charting.Highcharts.UI.Generators;
 
 namespace DowJones.Tools.Charting.Highcharts.UI
 {
@@ -9,7 +10,7 @@ namespace DowJones.Tools.Charting.Highcharts.UI
         private Appearance _appearance;
         private ColorSet _colors;
         private Exporting _exporting;
-        private Localization _lang;
+        private LocalizationScriptGenerator _lang;
         private Legend _legend;
         private SerieCollection _series;
         private SubTitle _subTitle;
@@ -28,9 +29,9 @@ namespace DowJones.Tools.Charting.Highcharts.UI
             set { _colors = value; }
         }
 
-        /*public virtual Localization Lang
+        /*public virtual LocalizationScriptGenerator Lang
         {
-            get { return _lang ?? (_lang = new Localization()); }
+            get { return _lang ?? (_lang = new LocalizationScriptGenerator()); }
             set { _lang = value; }
         }*/
 

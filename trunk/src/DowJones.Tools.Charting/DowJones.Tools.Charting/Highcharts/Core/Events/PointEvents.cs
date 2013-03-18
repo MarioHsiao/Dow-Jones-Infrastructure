@@ -15,16 +15,18 @@ namespace DowJones.Tools.Charting.Highcharts.Core.Events
         [JsonIgnore] private string _select;
         [JsonIgnore] private string _unselect;
         [JsonIgnore] private string _update;
+        [JsonIgnore] private string _legendItemClick;
 
         public PointEvents()
         {
-            Click = String.Empty;
-            MouseOver = String.Empty;
-            MouseOut = String.Empty;
-            Remove = String.Empty;
-            Select = String.Empty;
-            Unselect = String.Empty;
-            Update = String.Empty;
+            Click = string.Empty;
+            MouseOver = string.Empty;
+            MouseOut = string.Empty;
+            Remove = string.Empty;
+            Select = string.Empty;
+            Unselect = string.Empty;
+            Update = string.Empty;
+            LegendItemClick = string.Empty;
         }
 
         public string Click
@@ -38,6 +40,13 @@ namespace DowJones.Tools.Charting.Highcharts.Core.Events
             get { return !string.IsNullOrEmpty(_mouseOver) ? string.Format("function(event){{ {{0}} }}", _mouseOver) : null; }
             set { _mouseOver = value; }
         }
+
+        public string LegendItemClick
+        {
+            get { return !string.IsNullOrEmpty(_legendItemClick) ? string.Format("function(event){{ {0} }}", _legendItemClick) : null; }
+            set { _legendItemClick = value; }
+        }
+
 
         public string MouseOut
         {

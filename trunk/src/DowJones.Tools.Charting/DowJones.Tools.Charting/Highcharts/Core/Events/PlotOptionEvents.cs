@@ -17,12 +17,12 @@ namespace DowJones.Tools.Charting.Highcharts.Core.Events
 
         public PlotOptionEvents()
         {
-            Click = String.Empty;
-            Hide = String.Empty;
-            LegendItemClick = String.Empty;
-            MouseOver = String.Empty;
-            MouseOut = String.Empty;
-            Show = String.Empty;
+            Click = string.Empty;
+            Hide = string.Empty;
+            LegendItemClick = string.Empty;
+            MouseOver = string.Empty;
+            MouseOut = string.Empty;
+            Show = string.Empty;
         }
 
         public string Click

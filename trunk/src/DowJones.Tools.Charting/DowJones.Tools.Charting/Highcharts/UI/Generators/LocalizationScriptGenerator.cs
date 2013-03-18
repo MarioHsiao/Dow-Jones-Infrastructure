@@ -2,11 +2,11 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 
-namespace DowJones.Tools.Charting.Highcharts.Core.Appearance
+namespace DowJones.Tools.Charting.Highcharts.UI.Generators
 {
     [Serializable]
     [JsonObject(MemberSerialization.OptOut)]
-    public class Localization
+    public class LocalizationScriptGenerator : IScriptGenerator
     {
         public string DecimalPoint;
         public string DownloadJpeg;
@@ -54,9 +54,9 @@ namespace DowJones.Tools.Charting.Highcharts.Core.Appearance
             Weekdays = new[] {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
         }
 
-        public override string ToString()
+        public string RenderScript()
         {
-            string ignored = JsonConvert.SerializeObject(this, Formatting.None, new JsonSerializerSettings
+            var ignored = JsonConvert.SerializeObject(this, Formatting.None, new JsonSerializerSettings
                                                                                     {
                                                                                         NullValueHandling = NullValueHandling.Ignore,
                                                                                         ContractResolver = new CamelCasePropertyNamesContractResolver()

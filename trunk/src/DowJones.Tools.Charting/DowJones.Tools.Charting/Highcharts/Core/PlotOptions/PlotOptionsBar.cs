@@ -8,6 +8,7 @@ namespace DowJones.Tools.Charting.Highcharts.Core.PlotOptions
     public class PlotOptionsBar : PlotOptionsSeries
     {
         public string BorderColor { get; set; }
+        public string BackgroundColor { get; set; }
         public int? BorderRadius { get; set; }
         public int? BorderWidth { get; set; }
         public bool? ColorByPoint { get; set; }
