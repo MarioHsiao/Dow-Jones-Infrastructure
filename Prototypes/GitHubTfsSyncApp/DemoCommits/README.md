@@ -1,4 +1,6 @@
-TfsSyncDemo
-===========
+GithubTfsSyncDemo
+=================
 
-Demo Repository to show how Github TFS bridge will work.
+GithubTfsSyncDemo
+
+Testing
