@@ -14,10 +14,14 @@ namespace DowJones.Tools.Charting.Highcharts.Core
         }
 
         public Align? Align { get; set; }
+        public int? Floating { get; set; }
         public int? Margin { get; set; }
-        public int? Rotation { get; set; }
         public CSSObject Style { get; set; }
         public string Text { get; set; }
+        public bool? UseHTML { get; set; }
+        public VerticalAlign? VerticalAlign { get; set; }
+        public int? X { get; set; }
+        public int? Y { get; set; }
 
         internal void ApplyTheme(CSSObject themeConfiguration)
         {
@@ -26,7 +30,7 @@ namespace DowJones.Tools.Charting.Highcharts.Core
 
         public override string ToString()
         {
-            string ignored = JsonConvert.SerializeObject(this, Formatting.None, new JsonSerializerSettings
+            var ignored = JsonConvert.SerializeObject(this, Formatting.None, new JsonSerializerSettings
                                                                                     {
                                                                                         NullValueHandling = NullValueHandling.Ignore, 
                                                                                         DefaultValueHandling = DefaultValueHandling.Ignore,

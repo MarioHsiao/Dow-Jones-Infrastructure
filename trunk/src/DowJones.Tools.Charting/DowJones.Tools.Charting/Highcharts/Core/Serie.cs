@@ -15,8 +15,9 @@ namespace DowJones.Tools.Charting.Highcharts.Core.Data.Chart
         public int? InnerSize;
         public string Name;
         public int? Size;
+        
         // Added stacking, but it isn't valid for all serie types. Should it be here?
-        public Stacking? Stack;
+        public object Stack;
         
         [JsonConverter(typeof (StringEnumConverter))] 
         public RenderType? Type;

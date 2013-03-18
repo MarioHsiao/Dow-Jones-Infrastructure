@@ -2,6 +2,7 @@
 using DowJones.Tools.Charting.Highcharts.Core.Appearance;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
 
 namespace DowJones.Tools.Charting.Highcharts.Core
 {
@@ -62,7 +63,11 @@ namespace DowJones.Tools.Charting.Highcharts.Core
 
         public override string ToString()
         {
-            string ignored = JsonConvert.SerializeObject(this, Formatting.None, new JsonSerializerSettings {NullValueHandling = NullValueHandling.Ignore});
+            string ignored = JsonConvert.SerializeObject(this, Formatting.None, new JsonSerializerSettings
+                                                                                    {
+                                                                                        NullValueHandling = NullValueHandling.Ignore,
+                                                                                        ContractResolver = new CamelCasePropertyNamesContractResolver(),
+                                                                                    });
             return string.Format("legend: {0},", ignored);
         }
 

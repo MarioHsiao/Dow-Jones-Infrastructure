@@ -17,7 +17,8 @@ namespace DowJones.Tools.Charting.Highcharts.Core
             {
                 return string.Empty;
             }
-            string ignored = JsonConvert.SerializeObject(this, Formatting.None, new JsonSerializerSettings
+
+            var ignored = JsonConvert.SerializeObject(this, Formatting.None, new JsonSerializerSettings
                                                                                     {
                                                                                         NullValueHandling = NullValueHandling.Ignore, 
                                                                                         DefaultValueHandling = DefaultValueHandling.Ignore,

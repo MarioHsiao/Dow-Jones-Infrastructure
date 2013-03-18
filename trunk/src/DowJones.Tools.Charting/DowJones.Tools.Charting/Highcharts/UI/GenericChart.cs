@@ -3,9 +3,9 @@ using DowJones.Tools.Charting.Highcharts.Core.Appearance;
 
 namespace DowJones.Tools.Charting.Highcharts.UI
 {
+   
     public abstract class GenericChart
     {
-        private AJAXSource _ajaxDataSource;
         private Appearance _appearance;
         private ColorSet _colors;
         private Exporting _exporting;
@@ -18,6 +18,7 @@ namespace DowJones.Tools.Charting.Highcharts.UI
         private XAxis _xAxis;
         private YAxis _yAxis;
 
+       
         /// <summary>
         ///     An array containing the default colors for the chart's series.
         /// </summary>
@@ -27,16 +28,16 @@ namespace DowJones.Tools.Charting.Highcharts.UI
             set { _colors = value; }
         }
 
-        public virtual Localization Lang
+        /*public virtual Localization Lang
         {
             get { return _lang ?? (_lang = new Localization()); }
             set { _lang = value; }
-        }
+        }*/
 
-        /// <summary>
+        /*/// <summary>
         ///     By default, you can set: "skies", "grid", "gray", "dark-blue", "pink-floral" or "dark-green";
         /// </summary>
-        public virtual string Theme { get; set; }
+        public virtual string Theme { get; set; }*/
 
         public Appearance Appearance
         {
@@ -73,12 +74,12 @@ namespace DowJones.Tools.Charting.Highcharts.UI
             get { return _xAxis ?? (_xAxis = new XAxis()); }
             set { _xAxis = value; }
         }
-
+/*
         public virtual AJAXSource AjaxDataSource
         {
             get { return _ajaxDataSource ?? (_ajaxDataSource = new AJAXSource()); }
             set { _ajaxDataSource = value; }
-        }
+        }*/
 
         /// <summary>
         ///     Whether to show the credits text. Defaults to false.
@@ -87,18 +88,17 @@ namespace DowJones.Tools.Charting.Highcharts.UI
 
         public virtual Title Title
         {
-            get { return _title ?? (_title = null); }
+            get { return _title ?? (_title = new Title(string.Empty)); }
             set { _title = value; }
         }
 
         public virtual SubTitle SubTitle
         {
-            get { return _subTitle ?? (_subTitle = null); }
+            get { return _subTitle ?? (_subTitle = new SubTitle(string.Empty)); }
             set { _subTitle = value; }
         }
 
         public RenderType RenderType { get; set; }
-
 
         public virtual SerieCollection Series
         {

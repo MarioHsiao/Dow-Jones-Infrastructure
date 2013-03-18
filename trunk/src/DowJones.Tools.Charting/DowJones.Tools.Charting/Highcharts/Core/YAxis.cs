@@ -9,15 +9,18 @@ namespace DowJones.Tools.Charting.Highcharts.Core
     [Serializable]
     public class YAxis : List<YAxisItem>
     {
+        public YAxis(){}
+
+        public YAxis(IEnumerable<YAxisItem> items) : base(items) {}
+
         public override string ToString()
         {
-            string serialize = string.Join(",", this.Select(axis => JsonConvert.SerializeObject(axis, Formatting.None, new JsonSerializerSettings
+            var serialize = string.Join(",", this.Select(axis => JsonConvert.SerializeObject(axis, Formatting.None, new JsonSerializerSettings
                                                                                                                            {
                                                                                                                                NullValueHandling = NullValueHandling.Ignore,
                                                                                                                                ContractResolver = new CamelCasePropertyNamesContractResolver()
                                                                                                                            })).ToArray());
-            return string.Format("yAxis: [{0}],", serialize);
-            //return string.Format("yAxis: [{0}],", ignored);
+            return string.IsNullOrEmpty(serialize) ? serialize : string.Format("yAxis: [{0}],", serialize);
         }
     }
 }

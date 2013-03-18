@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using DowJones.Tools.Charting.Highcharts.Core.Appearance;
 using DowJones.Tools.Charting.Highcharts.Core.PlotOptions;
 using Newtonsoft.Json;

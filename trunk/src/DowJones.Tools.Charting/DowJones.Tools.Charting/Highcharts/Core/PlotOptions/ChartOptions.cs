@@ -1,4 +1,5 @@
 ﻿using DowJones.Tools.Charting.Highcharts.Core.Appearance;
+using DowJones.Tools.Charting.Highcharts.UI;
 
 namespace DowJones.Tools.Charting.Highcharts.Core.PlotOptions
 {
@@ -14,7 +15,6 @@ namespace DowJones.Tools.Charting.Highcharts.Core.PlotOptions
             Exporting = new Exporting();
             Colors = new ColorSet();
             Legend = new Legend();
-            AjaxDataSource = new AJAXSource();
             Tooltip = new ToolTip();
             ClientId = "";
         }
@@ -48,9 +48,7 @@ namespace DowJones.Tools.Charting.Highcharts.Core.PlotOptions
         public SerieCollection Series { get; set; }
 
         public string Theme { get; set; }
-
-        public AJAXSource AjaxDataSource { get; set; }
-
+        
         public PlotOptionsSeries PlotOptions { get; set; }
     }
 }

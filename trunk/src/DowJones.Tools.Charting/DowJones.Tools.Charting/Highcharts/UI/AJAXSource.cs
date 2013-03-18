@@ -1,19 +1,11 @@
 ﻿using System;
 
-namespace DowJones.Tools.Charting.Highcharts.Core
+namespace DowJones.Tools.Charting.Highcharts.UI
 {
     [Serializable]
-    public class AJAXSource
+    public class AJAXSourceScriptGenerator : IScriptGenerator
     {
-        public AJAXSource()
-        {
-            Delay = 500;
-            ClearAll = false;
-            OnlyOnce = false;
-            Shift = false;
-        }
-
-        public AJAXSource(string source)
+        public AJAXSourceScriptGenerator(string source)
         {
             Source = source;
             Delay = 500;
@@ -22,7 +14,7 @@ namespace DowJones.Tools.Charting.Highcharts.Core
             Shift = false;
         }
 
-        public AJAXSource(string source, int uSeconds)
+        public AJAXSourceScriptGenerator(string source, int uSeconds)
         {
             Source = source;
             Delay = uSeconds;
@@ -31,7 +23,7 @@ namespace DowJones.Tools.Charting.Highcharts.Core
             Shift = false;
         }
 
-        public AJAXSource(string source, int uSeconds, bool clearAll, bool onlyOnce, bool shift)
+        public AJAXSourceScriptGenerator(string source, int uSeconds, bool clearAll, bool onlyOnce, bool shift)
         {
             Source = source;
             Delay = uSeconds;
@@ -48,7 +40,7 @@ namespace DowJones.Tools.Charting.Highcharts.Core
         public bool Shift { get; set; }
         public string CustomFunction { get; set; }
 
-        public override string ToString()
+        public string RenderScript()
         {
             string script;
 
@@ -105,6 +97,7 @@ namespace DowJones.Tools.Charting.Highcharts.Core
             }, " + Delay + ");";
             }
 
+            script = script.Replace("@Id", ClientId);
             return !string.IsNullOrEmpty(Source) ? script.Replace("[@DataSource]", Source) : "";
         }
     }

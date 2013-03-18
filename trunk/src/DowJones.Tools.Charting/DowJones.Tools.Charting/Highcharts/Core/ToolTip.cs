@@ -48,7 +48,7 @@ namespace DowJones.Tools.Charting.Highcharts.Core
         public int? Snap { get; set; }
 
         public CSSObject Style { get; set; }
-
+        
         public override string ToString()
         {
             var tmp = JsonConvert.SerializeObject(this, Formatting.None, new JsonSerializerSettings

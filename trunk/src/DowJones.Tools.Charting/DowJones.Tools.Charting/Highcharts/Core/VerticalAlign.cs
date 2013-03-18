@@ -3,6 +3,7 @@
     public enum VerticalAlign
     {
         top,
+        middle,
         bottom
     }
 }

@@ -9,6 +9,10 @@ namespace DowJones.Tools.Charting.Highcharts.Core
     [Serializable]
     public class XAxis : List<XAxisItem>
     {
+        public XAxis() {}
+
+        public XAxis(IEnumerable<XAxisItem> items) : base(items) {}
+
         public override string ToString()
         {
             var serialize = string.Join(",", this.Select(axis => JsonConvert.SerializeObject(axis, Formatting.None, new JsonSerializerSettings
@@ -16,7 +20,7 @@ namespace DowJones.Tools.Charting.Highcharts.Core
                                                                                                                                NullValueHandling = NullValueHandling.Ignore, 
                                                                                                                                ContractResolver = new CamelCasePropertyNamesContractResolver()
                                                                                                                            })).ToArray());
-            return string.Format("xAxis: [{0}],", serialize);
+            return string.IsNullOrEmpty(serialize) ? serialize : string.Format("xAxis: [{0}],", serialize);
         }
     }
 }

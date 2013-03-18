@@ -1,4 +1,5 @@
 ﻿using System;
+using DowJones.Tools.Charting.Highcharts.Core.PlotOptions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 
@@ -13,6 +14,11 @@ namespace DowJones.Tools.Charting.Highcharts.Core
         }
 
         public bool? Enabled { get; set; }
+        public ChartOptions ChartOptions { get; set; }
+        public string Filename { get; set; }
+        public string Type { get; set; }
+        public string Url { get; set; }
+        public int? Width { get; set; }
 
         public override string ToString()
         {

@@ -22,11 +22,17 @@ namespace DowJones.Tools.Charting.Highcharts.Core
     [Serializable]
     public class SerieCollection : List<Serie>
     {
+        public SerieCollection()
+        {
+        }
+
+        public SerieCollection(IEnumerable<Serie> series) : base(series){ }
+
         public DataLabels DataLabels { get; set; }
         
         public override string ToString()
         {
-            string serialize = string.Format("series: [{0}[@DataLabels]]", string.Join(",", this.Select(serie => JsonConvert.SerializeObject(serie, Formatting.None, new JsonSerializerSettings
+            var serialize = string.Format("series: [{0}[@DataLabels]]", string.Join(",", this.Select(serie => JsonConvert.SerializeObject(serie, Formatting.None, new JsonSerializerSettings
                                                                                                                                                                          {
                                                                                                                                                                              NullValueHandling = NullValueHandling.Ignore,
                                                                                                                                                                              ContractResolver = new CamelCasePropertyNamesContractResolver(),
