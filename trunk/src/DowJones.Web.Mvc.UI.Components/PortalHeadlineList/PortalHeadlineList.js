@@ -312,22 +312,22 @@ DJ.UI.PortalHeadlineList = DJ.UI.Component.extend({
 	_initializeEventHandlers: function () {
 		var me = this;
 
-		this.$element.on('click', this.selectors.headline, function () {
-			me.publish(me.events.headlineClick, { headline: $(this).closest('li').data("headline") });
+		this.$element.on('click', this.selectors.headline, function (e) {
+		    me.publish(me.events.headlineClick, { event: e, headline: $(this).closest('li').data("headline") });
 			// prevent browser from handling the click
 			return false;
 		});
 
 		if (this.options.sourceClickable) {
-			this.$element.on('click', this.selectors.source, function () {
-				me.publish(me.events.sourceClick, { sourceCode: $(this).attr("rel") });
+			this.$element.on('click', this.selectors.source, function (e) {
+				me.publish(me.events.sourceClick, { event: e, sourceCode: $(this).attr("rel") });
 				return false;
 			});
 		}
 
 		if (this.options.authorClickable) {
-			this.$element.on('click', this.selectors.author, function () {
-				me.publish(me.events.authorClick, { authorCode: $(this).attr("rel") });
+			this.$element.on('click', this.selectors.author, function (e) {
+			    me.publish(me.events.authorClick, { event: e, authorCode: $(this).attr("rel") });
 				return false;
 			});
 		}
