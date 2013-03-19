@@ -815,17 +815,6 @@ namespace DowJones.Pages
         /// <param name="alertIds">
         /// The alert ids.
         /// </param>
-        public void MakeSaveSearchesPublic(IEnumerable<string> savedSearchIds)
-        {
-           //
-        }
-
-        /// <summary>
-        /// The make personal alerts public.
-        /// </summary>
-        /// <param name="alertIds">
-        /// The alert ids.
-        /// </param>
         public void MakePersonalAlertsPublic(IEnumerable<int> alertIds)
         {
             if (alertIds == null || !alertIds.Any())
@@ -860,16 +849,14 @@ namespace DowJones.Pages
         /// <param name="personalAlertIds">
         /// The personal alert ids.
         /// </param>
-        public void PublishPage(string pageId, IEnumerable<int> personalAlertIds = null, IEnumerable<string> personalSavedSearches = null )
+        public void PublishPage(string pageId, IEnumerable<int> personalAlertIds)
         {
             var page = GetPage(pageId, false, false);
 
             if (page != null && page.ModuleCollection != null)
             {
-                //  Use TPL to minimize this 
                 MakePageModulesPublic(page.ModuleCollection);
                 MakePersonalAlertsPublic(personalAlertIds);
-                MakeSaveSearchesPublic(personalSavedSearches);
             }
 
             SetPageShareProperties(
