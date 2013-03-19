@@ -94,6 +94,7 @@
     <Compile Include="AutoSuggest\AutoSuggestModel.cs" />
     <Compile Include="CalendarEventList\CalendarEventListModel.cs" />
     <Compile Include="CalloutPopup\CalloutPopupModel.cs" />
+    <Compile Include="CompanyInfo\CompanyInfoModel.cs" />
     <Compile Include="CompositeAuthor\CompositeAuthorModel.cs" />
     <Compile Include="CompositeOutlet\CompositeOutletModel.cs" />
     <Compile Include="TreeView\TreeViewModel.cs" />

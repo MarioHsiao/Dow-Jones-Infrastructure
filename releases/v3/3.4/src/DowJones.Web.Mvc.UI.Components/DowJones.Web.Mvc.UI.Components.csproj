@@ -167,6 +167,11 @@
     </Compile>
     <Compile Include="CalloutPopup\CalloutPopupHelper.cs" />
     <EmbeddedResource Include="CompanySparkline\ClientTemplates\PillContents.htm" />
+    <Compile Include="CompanyInfo\CompanyInfoComponent.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CompanyInfoComponent.cshtml</DependentUpon>
+    </Compile>
     <Compile Include="CompanySparkline\CompaniesSparklinesComponent.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -581,6 +586,10 @@
       <Generator>RazorViewComponentClassGenerator</Generator>
       <LastGenOutput>CompanySparklineComponent.cs</LastGenOutput>
     </None>
+    <None Include="CompanyInfo\CompanyInfoComponent.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>CompanyInfoComponent.cs</LastGenOutput>
+    </None>
     <None Include="CompositeAuthor\CompositeAuthorComponent.cshtml">
       <Generator>RazorViewComponentClassGenerator</Generator>
       <LastGenOutput>CompositeAuthorComponent.cs</LastGenOutput>
@@ -952,6 +961,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="SimpleAlert\scripts\newsFilterPillMenuEx.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="CompanyInfo\ClientTemplates\Error.htm" />
+    <EmbeddedResource Include="CompanyInfo\ClientTemplates\NoData.htm" />
+    <EmbeddedResource Include="CompanyInfo\ClientTemplates\Success.htm" />
+    <EmbeddedResource Include="CompanyInfo\CompanyInfo.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
