@@ -1260,5 +1260,10 @@ Release Version 7.5.0.118
 
 Release Version 7.5.0.119
 =============================================================================================================================
-3/7/2012 Pramod: Added Bug fix for ReviseSubscribeFolderReqeust deliverytimes.
+3/7/2013 Pramod: Added Bug fix for ReviseSubscribeFolderReqeust deliverytimes.
 3/8/2013 Nam: Added HomePageRedirectPreferenceItem
+3/11/2013 Divya: Added EmailCommand to ContentByData class in ODE v2.
+Release Version 7.5.0.120
+=============================================================================================================================
+3/13/2013 Divya: Added includeSnippet to NewsletterWorkspaceProperties and EditionProperties in Edition and wrokspace asset
+3/13/2013 Divya: Added createdByNamespace and createdByAccountId elements to ItemProperties in Item asset
