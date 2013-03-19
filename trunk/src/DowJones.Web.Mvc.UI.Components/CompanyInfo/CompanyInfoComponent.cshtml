@@ -1,0 +1,9 @@
+@model CompanyInfoModel
+@ClientPlugin dj_CompanyInfo
+@ClientTemplate RelativeResourceName=ClientTemplates.Error.htm, TemplateId=error
+@ClientTemplate RelativeResourceName=ClientTemplates.Success.htm, TemplateId=success
+@ClientTemplate RelativeResourceName=ClientTemplates.NoData.htm, TemplateId=noData
+@ScriptResource RelativeResourceName=CompanyInfo.js
+@{ 
+    CssClass = "dj_CompanyInfo";
+}
