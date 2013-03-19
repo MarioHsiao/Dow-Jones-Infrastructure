@@ -30,7 +30,7 @@ namespace DowJones.Web.Mvc.UI.Components.Article
     using PostProcessingOptions = PostProcessing.PostProcessingOptions;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 02/21/2013 03:43 PM
+    // Last Generated Timestamp: 03/19/2013 11:49 AM
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.Article.Article.js", ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.Article.ArticleComponent))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.27108")]
     public class ArticleComponent : DowJones.Web.Mvc.UI.ViewComponentBase<ArticleModel>
@@ -252,12 +252,29 @@ WriteLiteral("                        <div class=\"dj_article_index\">CLM</div>\
 WriteLiteral("                    <div class=\"dj_article_clm dj_article_section\">\r\n");
 
 
-                         foreach (var renderItem in Model.ArticleDataSet.ColumnName.Where(renderItem => renderItem.ItemMarkUp == MarkUpType.Plain))
+                         foreach (var renderItem in Model.ArticleDataSet.ColumnName)
                         {
-                            
-                       Write(renderItem.ItemText);
+                            switch (renderItem.ItemMarkUp)
+                            {
+                                case MarkUpType.Plain:
+                                    {
+                                Write(renderItem.ItemText);
 
-                                                
+                                                         }
+                                    break;
+                                case MarkUpType.ArticleHighlight:
+                                    {
+WriteLiteral("<span class=\"highlight\">");
+
+
+                                                        Write(renderItem.ItemText);
+
+WriteLiteral("</span>");
+
+
+                                                                                        }
+                                    break;
+                            }
                         }
 
 WriteLiteral("                    </div>\r\n");
@@ -281,12 +298,29 @@ WriteLiteral("                        <div class=\"dj_article_index\">SE</div>\r
 WriteLiteral("                    <div class=\"dj_article_se dj_article_section\">\r\n");
 
 
-                         foreach (var renderItem in Model.ArticleDataSet.SectionName.Where(renderItem => renderItem.ItemMarkUp == MarkUpType.Plain))
+                         foreach (var renderItem in Model.ArticleDataSet.SectionName)
                         {
-                            
-                       Write(renderItem.ItemText);
+                            switch (renderItem.ItemMarkUp)
+                            {
+                                case MarkUpType.Plain:
+                                    {
+                                Write(renderItem.ItemText);
 
-                                                
+                                                         }
+                                    break;
+                                case MarkUpType.ArticleHighlight:
+                                    {
+WriteLiteral("<span class=\"highlight\">");
+
+
+                                                        Write(renderItem.ItemText);
+
+WriteLiteral("</span>");
+
+
+                                                                                        }
+                                    break;
+                            }
                         }
 
 WriteLiteral("                    </div>\r\n");

@@ -97,9 +97,17 @@
                         <div class="dj_article_index">CLM</div>
                     }
                     <div class="dj_article_clm dj_article_section">
-                        @foreach (var renderItem in Model.ArticleDataSet.ColumnName.Where(renderItem => renderItem.ItemMarkUp == MarkUpType.Plain))
+                        @foreach (var renderItem in Model.ArticleDataSet.ColumnName)
                         {
-                            @renderItem.ItemText
+                            switch (renderItem.ItemMarkUp)
+                            {
+                                case MarkUpType.Plain:
+                                    {@renderItem.ItemText}
+                                    break;
+                                case MarkUpType.ArticleHighlight:
+                                    {<span class="highlight">@renderItem.ItemText</span>}
+                                    break;
+                            }
                         }
                     </div>
                 }
@@ -111,9 +119,17 @@
                         <div class="dj_article_index">SE</div>
                     }
                     <div class="dj_article_se dj_article_section">
-                        @foreach (var renderItem in Model.ArticleDataSet.SectionName.Where(renderItem => renderItem.ItemMarkUp == MarkUpType.Plain))
+                        @foreach (var renderItem in Model.ArticleDataSet.SectionName)
                         {
-                            @renderItem.ItemText
+                            switch (renderItem.ItemMarkUp)
+                            {
+                                case MarkUpType.Plain:
+                                    {@renderItem.ItemText}
+                                    break;
+                                case MarkUpType.ArticleHighlight:
+                                    {<span class="highlight">@renderItem.ItemText</span>}
+                                    break;
+                            }
                         }
                     </div>
                 }
