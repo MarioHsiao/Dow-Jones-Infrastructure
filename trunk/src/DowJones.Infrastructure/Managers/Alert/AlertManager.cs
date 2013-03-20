@@ -6,6 +6,7 @@ using System.Xml;
 using System.Xml.Serialization;
 using DowJones.AlertEditor;
 using DowJones.Extensions;
+using DowJones.Managers.Abstract;
 using DowJones.Managers.Search;
 using DowJones.Preferences;
 using DowJones.Search;
@@ -15,6 +16,7 @@ using Factiva.Gateway.Messages.Search.V2_0;
 using Factiva.Gateway.Messages.Track.V1_0;
 using Factiva.Gateway.Services.V1_0;
 using Factiva.Gateway.V1_0;
+using log4net;
 
 namespace DowJones.Managers.Alert
 {
@@ -23,20 +25,27 @@ namespace DowJones.Managers.Alert
     /// </summary>
     /// 
 
-    public class AlertManager
+    public class AlertManager : AbstractAggregationManager
     {
-        private readonly IControlData _controlData;
+        private static readonly ILog _log = LogManager.GetLogger(typeof(SearchManager));
+
+        //private readonly IControlData _controlData;
         private readonly IPreferences _preferences;
         private readonly SearchQueryBuilder _queryBuilder;
 
         private const char TimezoneSeparator = '|';
 
 
-        public AlertManager(IControlData controlData, IPreferences preferences, SearchQueryBuilder queryBuilder)
+        public AlertManager(IControlData controlData, IPreferences preferences, SearchQueryBuilder queryBuilder) : base(controlData)
         {
-            _controlData = controlData;
+            //_controlData = controlData;
             _preferences = preferences;
             _queryBuilder = queryBuilder;
+        }
+
+        protected override ILog Log
+        {
+            get { return _log; }
         }
 
         public FolderIDResponse CreateAlert(AlertRequestBase alertRequestBase)
@@ -76,8 +85,11 @@ namespace DowJones.Managers.Alert
             return RevieseAlert(updateRequest);
         }
 
-
-
+        public void SetFolderShareProperties(SetFolderSharePropertiesRequest request)
+        {
+            Process<SetFolderSharePropertiesResponse>(request);
+        }
+        
         public AlertDetails GetAlert(string alertId)
         {
             var folderDetails = GetAlertDetails(alertId);
@@ -290,14 +302,14 @@ namespace DowJones.Managers.Alert
 
         private FolderIDResponse CreateAlert(CreateFolderRequest createFolderRequest)
         {
-            ServiceResponse serviceResponse = TrackService.CreateFolder(ControlDataManager.Convert(_controlData), createFolderRequest);
+            ServiceResponse serviceResponse = TrackService.CreateFolder(ControlDataManager.Convert(ControlData), createFolderRequest);
             var response = serviceResponse.GetObject<CreateFolderResponse>();
             return response != null ? response.folderIDResponse : null;
         }
 
         private FolderIDResponse RevieseAlert(ReviseFolderRequest reviseFolder)
         {
-            ServiceResponse serviceResponse = TrackService.ReviseFolder(ControlDataManager.Convert(_controlData), reviseFolder);
+            ServiceResponse serviceResponse = TrackService.ReviseFolder(ControlDataManager.Convert(ControlData), reviseFolder);
             var response = serviceResponse.GetObject<ReviseFolderResponse>();
             return response != null ? response.folderIDResponse : null;
         }
@@ -306,9 +318,12 @@ namespace DowJones.Managers.Alert
         {
             var getAlertRequest = new GetFolderRequest();
             getAlertRequest.folderID = alertId;
-            ServiceResponse serviceResponse = TrackService.GetFolder(ControlDataManager.Convert(_controlData), getAlertRequest);
+            ServiceResponse serviceResponse = TrackService.GetFolder(ControlDataManager.Convert(ControlData), getAlertRequest);
             var response = serviceResponse.GetObject<GetFolderResponse>();
             return (response != null && response.folderResponse != null) ? response.folderResponse.folderDetails : null;
         }
+
+        
+        
     }
 }

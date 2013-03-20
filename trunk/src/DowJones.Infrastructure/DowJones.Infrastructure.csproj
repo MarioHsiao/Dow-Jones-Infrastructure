@@ -77,6 +77,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.EnterpriseServices" />
     <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
@@ -171,6 +172,8 @@
     <Compile Include="Managers\Multimedia\MultimediaPackage.cs" />
     <Compile Include="Managers\Multimedia\MultiMediaRequest.cs" />
     <Compile Include="Managers\Multimedia\MultiMediaResponse.cs" />
+    <Compile Include="Managers\PAL\PALServiceManager.cs" />
+    <Compile Include="Managers\PAM\ItemManager.cs" />
     <Compile Include="Models\Common\DateNewsEntities.cs" />
     <Compile Include="Models\Common\DateNewsEntity.cs" />
     <Compile Include="Models\Common\Entities.cs" />
@@ -180,6 +183,12 @@
     <Compile Include="Models\Common\SourceNewsEntities.cs" />
     <Compile Include="Models\Common\SourceNewsEntity.cs" />
     <Compile Include="Models\TreeView\TreeViewNode.cs" />
+    <Compile Include="Utilities\ServiceFactory.cs" />
+    <Compile Include="Web References\PALService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
     <Compile Include="Web\ClientResources\EmbeddedClientResourceRepository.cs" />
     <Compile Include="Web\ClientResources\EmbeddedClientResourceValidator.cs" />
     <Compile Include="Web\ClientResources\IClientResourceRepository.cs" />
@@ -1006,6 +1015,40 @@
       <Generator>PublicSettingsSingleFileGenerator</Generator>
       <LastGenOutput>SocialMedia.Designer.cs</LastGenOutput>
     </None>
+    <None Include="Web References\PALService\FunctionDispatcher.wsdl" />
+    <None Include="Web References\PALService\PALService.wsdl" />
+    <None Include="Web References\PALService\PALService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\PALService\PALService0.wsdl" />
+    <None Include="Web References\PALService\PALService0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\PALService\PALService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\PALService\PALService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\PALService\PALService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\PALService\PALService4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\PALService\PALService5.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\PALService\PALService6.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\PALService\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\PALService\StructuredSearchResult.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Managers\Query\Cache\" />
@@ -1016,6 +1059,22 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="http://fdevweb3.win.dowjones.net/PALService%3fwsdl">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\PALService\</RelPath>
+      <UpdateFromURL>http://fdevweb3.win.dowjones.net/PALService%3fwsdl</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>DowJones_Infrastructure_PALService_FunctionDispatcher</CachedSettingsPropName>
+    </WebReferenceUrl>
   </ItemGroup>
   <PropertyGroup>
     <DontImportPostSharp>True</DontImportPostSharp>

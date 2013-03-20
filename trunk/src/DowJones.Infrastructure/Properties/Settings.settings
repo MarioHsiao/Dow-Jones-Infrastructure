@@ -143,5 +143,17 @@
     <Setting Name="LoginConfigFile" Type="System.String" Scope="Application">
       <Value Profile="(Default)">~/Config.xml</Value>
     </Setting>
+    <Setting Name="DowJones_Infrastructure_PALService_FunctionDispatcher" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://fdevweb3.win.dowjones.net/PALService</Value>
+    </Setting>
+    <Setting Name="ProxyPageTransportType" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">rts</Value>
+    </Setting>
+    <Setting Name="ProxyPageKeyNameExtension" Type="System.String" Scope="Application">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="ProxyPageUrl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://localhost/ServiceProxy/1.0/ServiceProxy.aspx</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
