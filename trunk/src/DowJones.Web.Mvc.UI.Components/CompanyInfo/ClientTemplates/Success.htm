@@ -1,14 +1,13 @@
-﻿<% var companyInfo = self; %>
+﻿<% var companyInfo = self.data, options = self.options; %>
 <% if(companyInfo != null) {
  if(companyInfo.quoteData != null) {
     var quoteData =  companyInfo.quoteData;
-    var csLink = (companyInfo.companySnapshotLink != null && companyInfo.companySnapshotLink != '') ? companyInfo.companySnapshotLink : "javascript:void(0);";
 %>
 <div class="company-overview">
     <div class="market-snapshot">
         <span class="ticker-symbol"><%= (quoteData.tickerSymbol && quoteData.tickerSymbol != '') ? quoteData.tickerSymbol : "" %></span>
         <span class="stock-exchange"><%= (quoteData.stockExchange && quoteData.stockExchange != '') ? quoteData.stockExchange : "" %></span>
-        <a class="company-snapshot" href="<%= csLink %>"><%= Token('companySnapshot') %></a>
+        <% if(options.enableCompanySnapshotLink) { %><a class="company-snapshot" href="javascript:void(0);"><%= Token('companySnapshot') %></a> <% } %>
     </div>
     <div class="stock-value">
         <span class="current positive"><%= (quoteData.currentValue && quoteData.currentValue != '') ? quoteData.currentValue : "--" %></span>
@@ -16,7 +15,10 @@
         <span class="percentage <%= (quoteData.differencePercentage && quoteData.differencePercentage > 0)?"positive":"negative" %>"><%= (quoteData.differencePercentage && quoteData.differencePercentage != '') ? quoteData.differencePercentage + "%" : "--" %></span>
     </div>
 </div>
-<% }
+<% }else if(options.enableCompanySnapshotLink) { %>
+    <div class="company-overview">
+        <a class="company-snapshot" href="javascript:void(0);"><%= Token('companySnapshot') %></a>
+    </div><%}
 if(companyInfo.keyFinancialData != null) { 
     var keyFinancialData = companyInfo.keyFinancialData;
 %>

@@ -23,11 +23,13 @@ DJ.UI.CompanyInfo = DJ.UI.Component.extend({
         this.$element.html("");
         if (data) {
             var me = this;
-            this.$element.append(this.templates.success(data));
+            this.$element.append(this.templates.success({ data: data, options: this.options }));
             //Attach event handler
-            this.$element.find('.company-snapshot').click(function () {
-                me.publish(me.events.companySnapshotClick);
-            });
+            if (this.options.enableCompanySnapshotLink) {
+                this.$element.find('.company-snapshot').click(function () {
+                    me.publish(me.events.companySnapshotClick, data.companyCode);
+                });
+            }
         }
         else {
             this.$element.append(this.templates.noData());

@@ -7,12 +7,15 @@ namespace DowJones.Web.Mvc.UI.Components.CompanyInfo
         [ClientData]
         public CompanyInfoData Data { get; set; }
 
-        [ClientProperty("companySnapshotLink")]
-        public string CompanySnapshotLink { get; set; }
+        [ClientProperty("enableCompanySnapshotLink")]
+        public bool EnableCompanySnapshotLink { get; set; }
     }
 
     public class CompanyInfoData
     {
+        [JsonProperty("companyCode")]
+        public string CompanyCode { get; set; }
+
         [JsonProperty("quoteData")]
         public Quote QuoteData { get; set; }
 
