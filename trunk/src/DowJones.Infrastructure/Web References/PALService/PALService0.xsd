@@ -17,6 +17,7 @@
   <xs:element name="ArrayOfStructuredSearchContainer" nillable="true" type="tns:ArrayOfStructuredSearchContainer" />
   <xs:complexType name="StructuredSearchContainer">
     <xs:sequence>
+      <xs:element minOccurs="0" name="GroupName" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="SavedSearchId" type="xs:long" />
       <xs:element minOccurs="0" name="SavedSearchName" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Status" nillable="true" type="tns:Error" />
@@ -40,7 +41,6 @@
   <xs:complexType name="ItemList">
     <xs:sequence>
       <xs:element xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Id" nillable="true" type="q2:ArrayOflong" />
-      <xs:element minOccurs="0" name="IncludeChildAsset" type="xs:boolean" />
       <xs:element minOccurs="0" name="ItemClassId" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
