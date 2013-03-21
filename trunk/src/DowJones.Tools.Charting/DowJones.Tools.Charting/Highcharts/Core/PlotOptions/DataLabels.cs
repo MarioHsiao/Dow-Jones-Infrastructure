@@ -23,6 +23,7 @@ namespace DowJones.Tools.Charting.Highcharts.Core.PlotOptions
             return JsonConvert.SerializeObject(this, Formatting.None, new JsonSerializerSettings
                                                                           {
                                                                               NullValueHandling = NullValueHandling.Ignore,
+                                                                              DefaultValueHandling = DefaultValueHandling.Include,
                                                                               ContractResolver = new CamelCasePropertyNamesContractResolver()
                                                                           });
         }

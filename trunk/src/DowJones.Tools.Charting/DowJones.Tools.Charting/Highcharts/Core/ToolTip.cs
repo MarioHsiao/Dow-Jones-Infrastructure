@@ -20,16 +20,13 @@ namespace DowJones.Tools.Charting.Highcharts.Core
             Formatter = format;
         }
 
+        [JsonProperty("useHTML")]
+        public bool? UseHtml { get; set; }
         public string BackgroundColor { get; set; }
-
         public string BorderColor { get; set; }
-
         public int? BorderRadius { get; set; }
-
         public int? BorderWidth { get; set; }
-
         public bool? Crosshairs { get; set; }
-
         public bool? Enabled { get; set; }
 
         public string Formatter

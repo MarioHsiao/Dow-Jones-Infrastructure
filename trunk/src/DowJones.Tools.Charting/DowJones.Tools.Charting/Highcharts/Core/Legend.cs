@@ -19,6 +19,9 @@ namespace DowJones.Tools.Charting.Highcharts.Core
         [JsonConverter(typeof (StringEnumConverter))]
         public Align? Align { get; set; }
 
+        [JsonProperty("useHTML")]
+        public bool? UseHtml { get; set; }
+
         public string BackgroundColor { get; set; }
         public string BorderColor { get; set; }
         public int? BorderRadius { get; set; }
