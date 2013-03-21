@@ -10401,8 +10401,14 @@ Chart.prototype = {
 				chart.containerHeight = height;
 			}
 		}
-		addEvent(win, 'resize', reflow);
-		addEvent(chart, 'destroy', function () {
+
+	    try {
+	        addEvent(win, 'resize', reflow);
+	    }
+	    catch (ex) {
+	    }
+
+	    addEvent(chart, 'destroy', function () {
 			removeEvent(win, 'resize', reflow);
 		});
 	},
