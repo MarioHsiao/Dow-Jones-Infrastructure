@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Security.AccessControl;
 using System.Web.Providers.Entities;
@@ -46,8 +47,16 @@ namespace GitHubTfsSyncApp.Workers
 
 		private void OnVersionControlOnNonFatalError(object o, ExceptionEventArgs args)
 		{
-            if (args != null && args.Failure != null)
-			    _logger.Error(args.Failure.Message, args.Exception);
+		    try
+		    {
+		        _logger.Error(args.Exception);
+                 if (args.Failure != null)
+                    _logger.Error(args.Failure.Message, args.Exception);
+		    }
+		    catch (Exception ex)
+		    {
+                _logger.Info("error in OnVersionControlOnNonFatalError"+ex);
+		    }
 		}
 
 		public void CreateCheckin(ChangedItems changedItems, string workspaceName, string checkinMessage)
@@ -56,7 +65,7 @@ namespace GitHubTfsSyncApp.Workers
 		    {
 		        var workspaceMappedPath = Path.Combine(_workingDir.FullName, workspaceName);
 		        var workspace = InitializeWorkspace(workspaceName, workspaceMappedPath);
-                
+               
 		        if (workspace == null) return;
 
                 _logger.Info("Commiting workspace");
@@ -80,10 +89,10 @@ namespace GitHubTfsSyncApp.Workers
                     _logger.Info(changesetNumber);
 		        }
                 _logger.Info("delting workspace");
-		        workspace.Delete();
+                workspace.Delete();
                 _logger.Info("workspace deleted");
                 _logger.Info(workspaceMappedPath);
-		        new DirectoryInfo(workspaceMappedPath).ForceDelete();
+                new DirectoryInfo(workspaceMappedPath).ForceDelete();
 		    }
 		    catch (Exception exception)
 		    {
@@ -98,16 +107,19 @@ namespace GitHubTfsSyncApp.Workers
 	    {
 	        // Get a FileSecurity object that represents the 
 	        // current security settings.
-	        FileSecurity fSecurity = File.GetAccessControl(fileName);
+	        if (File.Exists(fileName))
+	        {
+	            FileSecurity fSecurity = File.GetAccessControl(fileName);
 
-	        // Add the FileSystemAccessRule to the security settings.
-	        fSecurity.AddAccessRule(new FileSystemAccessRule(account,
-	                                                         rights, controlType));
+	            // Add the FileSystemAccessRule to the security settings.
+	            fSecurity.AddAccessRule(new FileSystemAccessRule(account,
+	                                                             rights, controlType));
 
-	        // Set the new access settings.
-	        File.SetAccessControl(fileName, fSecurity);
-            //removing readonly attribute of file
-            File.SetAttributes(fileName,FileAttributes.Normal);
+	            // Set the new access settings.
+	            File.SetAccessControl(fileName, fSecurity);
+	            //removing readonly attribute of file
+	            File.SetAttributes(fileName, FileAttributes.Normal);
+	        }
 
 	    }
 
@@ -115,15 +127,18 @@ namespace GitHubTfsSyncApp.Workers
 		{
 	        try
 	        {
+                _logger.Info("workspaceMappedPath" + workspaceMappedPath);
 			    foreach (var item in changedItems.Added)
 			    {
-                    _logger.Info("adding file security");
-                    //Giving full permissions to the user for copying the file
-                    AddFileSecurity(Path.Combine(workspaceMappedPath, item.GitPath),_credential.Domain+"\\"+_credential.UserName, FileSystemRights.Read | FileSystemRights.ReadAndExecute | FileSystemRights.Write | FileSystemRights.FullControl, AccessControlType.Allow);
-                    _logger.Info("copying files");
+			        string filePath = Path.Combine(workspaceMappedPath, item.GitPath);
+			        string directory = Path.GetDirectoryName(filePath);
+                    if (directory != null && !Directory.Exists(directory))
+                        Directory.CreateDirectory(directory);
+
 				    File.Copy(item.IncomingFilePath, Path.Combine(workspaceMappedPath, item.GitPath), true);
-                    _logger.Info("workspace add");
-				    workspace.PendAdd(Path.Combine(workspaceMappedPath, item.GitPath));
+			        Workstation.Current.EnsureUpdateWorkspaceInfoCache(_versionControl, _credential.UserName);
+                  
+				    workspace.PendAdd(new[]{Path.Combine(workspaceMappedPath, item.GitPath)},true,"",LockLevel.None);
 			    }
 
 			    foreach (var item in changedItems.Modified)
@@ -138,16 +153,35 @@ namespace GitHubTfsSyncApp.Workers
 				    File.Copy(item.IncomingFilePath, Path.Combine(workspaceMappedPath, item.GitPath), true);
 			    }
 
-			    foreach (var item in changedItems.Deleted)
-				    workspace.PendDelete(Path.Combine(workspaceMappedPath, item.GitPath));
-            }
+	            foreach (var item in changedItems.Deleted)
+	            {
+                    _logger.Info("adding file security");
+                    AddFileSecurity(Path.Combine(workspaceMappedPath, item.GitPath), _credential.Domain + "\\" + _credential.UserName, FileSystemRights.Read | FileSystemRights.ReadAndExecute | FileSystemRights.Write | FileSystemRights.FullControl, AccessControlType.Allow);
+                    string filePath = Path.Combine(workspaceMappedPath, item.GitPath);
+                 
+                    _logger.Info("deleting files");
+	                workspace.PendDelete(Path.Combine(workspaceMappedPath, item.GitPath));
+
+                    //TODO deleting folder when there are no files
+                    //_logger.Info("deleting folders");
+                    //if (IsDirectoryEmpty(Path.GetDirectoryName(filePath)))
+                    //{
+                    //    workspace.PendDelete(Path.GetDirectoryName(filePath));
+                    //}
+	            }
+	        }
             catch (Exception ex)
             {
-                _logger.Info("Error while comminting");
-                _logger.Error(ex);
+                _logger.Info("Error while commiting "+ex);
+                _logger.Info(ex);
                 throw;
             }
 		}
+
+        private bool IsDirectoryEmpty(string path)
+        {
+            return !Directory.EnumerateFileSystemEntries(path).Any();
+        }
 
 		private void ResolveConflicts(Workspace workspace)
 		{
@@ -170,7 +204,8 @@ namespace GitHubTfsSyncApp.Workers
 
 			workspace.Map(_teamProjectPath, mappedFolderPath);
 			workspace.Get();
-            
+            _logger.Info("_teamProjectPath:" + _teamProjectPath);
+            _logger.Info("mappedFolderPath:" + mappedFolderPath);
 			return workspace;
 
 		}
@@ -180,12 +215,14 @@ namespace GitHubTfsSyncApp.Workers
 			try
 			{
 				var existingWorkspace = versionControl.GetWorkspace(name, versionControl.AuthorizedUser);
-
+                _logger.Info("workspace name in EnsureWorkspaceIsNotStale:" + name);
 				// if it got here, it means the workspace exists
 				existingWorkspace.Delete();
+                _logger.Info("workspace deleted");
 			}
 			catch (WorkspaceNotFoundException)
 			{
+                _logger.Info("WorkspaceNotFoundException");
 				// do nothing
 				// could have been much better if the API allowed some query to check for existing workspace
 			}
