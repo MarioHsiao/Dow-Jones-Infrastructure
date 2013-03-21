@@ -39,6 +39,11 @@ namespace DowJones.Tools.Charting.Highcharts.Core.Appearance
         /// </summary>
         public string FontFamily { get; set; }
 
+        /// <summary>
+        ///     Specifies the font family for text
+        /// </summary>
+        public string WhiteSpace { get; set; }
+
         public void CopyStyles(CSSObject model)
         {
             CopyStyles(model, false);

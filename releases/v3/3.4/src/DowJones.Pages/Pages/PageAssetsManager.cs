@@ -12,6 +12,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Threading.Tasks;
 using DowJones.Caching;
 using DowJones.DependencyInjection;
 using DowJones.Exceptions;
@@ -22,6 +23,7 @@ using DowJones.Infrastructure.Common;
 using DowJones.Loggers;
 using DowJones.Managers.Abstract;
 using DowJones.Pages.Caching;
+using DowJones.Pages.Common;
 using DowJones.Pages.DataAccess.Managers;
 using DowJones.Pages.Modules;
 using DowJones.Preferences;
@@ -31,6 +33,7 @@ using Factiva.Gateway.Messages.Assets.V1_0;
 using Factiva.Gateway.Messages.Cache.SessionCache.V1_0;
 using Factiva.Gateway.Messages.Track.V1_0;
 using log4net;
+using AssetType = Factiva.Gateway.Messages.Assets.Pages.V1_0.AssetType;
 using CacheScope = Factiva.Gateway.Messages.Cache.SessionCache.V1_0.CacheScope;
 using FactivaModuleType = Factiva.Gateway.Messages.Assets.Pages.V1_0.ModuleType;
 using GWPage = Factiva.Gateway.Messages.Assets.Pages.V1_0.Page;
@@ -42,6 +45,7 @@ using ShareScope = Factiva.Gateway.Messages.Assets.V1_0.ShareScope;
 using SortBy = Factiva.Gateway.Messages.Assets.Pages.V1_0.SortBy;
 using SortOrder = Factiva.Gateway.Messages.Assets.Common.V2_0.SortOrder;
 using GWModule = Factiva.Gateway.Messages.Assets.Pages.V1_0.Module;
+using QueryFilters = Factiva.Gateway.Messages.Assets.Pages.V1_0.QueryFilters;
 
 namespace DowJones.Pages
 {
@@ -840,6 +844,31 @@ namespace DowJones.Pages
             Process<SetFolderSharePropertiesResponse>(request);
         }
 
+
+        public void ShareAdditonalPageAssets(AssetsToShare[] assetsToShare)
+        {
+            var taskFactory = new TaskFactory();
+            var tasks = (from asset in assetsToShare
+                         select taskFactory.StartNew(() => asset.ShareAssets(ControlData), TaskCreationOptions.None)).ToList();
+            Task.WaitAll(tasks.ToArray());
+        }
+
+
+        /// <summary>
+        /// The make personal alerts public.
+        /// </summary>
+        /// <param name="alertIds">
+        /// The alert ids.
+        /// </param>
+        public void MakePersonalSavedSearchesPublic(IEnumerable<int> savedSearchIds)
+        {
+            if (savedSearchIds == null || !savedSearchIds.Any())
+                return;
+
+
+        }
+
+
         /// <summary>
         /// Publish the user news page
         /// </summary>
@@ -872,6 +901,31 @@ namespace DowJones.Pages
                     });
         }
 
+
+
+        public void PublishPage(string pageId, AssetsToShare[] additionalAssets)
+        {
+            var page = GetPage(pageId, false, false);
+
+            if (page != null && page.ModuleCollection != null)
+            {
+                MakePageModulesPublic(page.ModuleCollection);
+                ShareAdditonalPageAssets(additionalAssets);
+                //MakePersonalAlertsPublic(personalAlertIds);
+            }
+
+            SetPageShareProperties(
+                pageId,
+                new ShareProperties
+                {
+                    AccessControlScope = AccessControlScope.Account,
+                    ListingScope = Factiva.Gateway.Messages.Assets.Pages.V1_0.ShareScope.Personal,
+                    /* Since the Listing Scope setting was not allowing us to un-publish admin page and remove the page from user's or admin's list, the AccountAdmin got introduced
+                                           and so, the page should be @ Account level to get into the page garden*/
+                    AssignedScope = Factiva.Gateway.Messages.Assets.Pages.V1_0.ShareScope.Personal,
+                    SharePromotion = Factiva.Gateway.Messages.Assets.Pages.V1_0.ShareScope.Personal
+                });
+        }
         /// <summary>
         /// Removes an assigned page from the user's list. This is when user is dismissing a page from his/her list.
         ///   Not an admin action
@@ -956,6 +1010,28 @@ namespace DowJones.Pages
                         AssignedScope = Factiva.Gateway.Messages.Assets.Pages.V1_0.ShareScope.Personal,
                         SharePromotion = Factiva.Gateway.Messages.Assets.Pages.V1_0.ShareScope.Personal
                     });
+        }
+
+        public void UnpublishPage(string pageId, AssetsToShare[] additionalAssets)
+        {
+            // get the page, and make he modules private...
+            var page = GetPage(pageId, false, false);
+
+            if (page != null && page.ModuleCollection != null)
+            {
+                MakePageModulesPrivate(page.ModuleCollection);
+                ShareAdditonalPageAssets(additionalAssets);
+            }
+
+            SetPageShareProperties(
+                pageId,
+                new ShareProperties
+                {
+                    AccessControlScope = AccessControlScope.Personal,
+                    ListingScope = Factiva.Gateway.Messages.Assets.Pages.V1_0.ShareScope.Personal,
+                    AssignedScope = Factiva.Gateway.Messages.Assets.Pages.V1_0.ShareScope.Personal,
+                    SharePromotion = Factiva.Gateway.Messages.Assets.Pages.V1_0.ShareScope.Personal
+                });
         }
 
         /// <summary>

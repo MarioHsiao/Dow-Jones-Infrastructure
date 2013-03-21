@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
@@ -45,6 +46,7 @@ namespace DowJones.Tools.Charting.Highcharts.Core.Data.Chart
                                                                           {
                                                                               NullValueHandling = NullValueHandling.Ignore,
                                                                               ContractResolver = new CamelCasePropertyNamesContractResolver(),
+                                                                              Converters = new List<JsonConverter>( new[] {new JavaScriptDateTimeConverter()} ),
                                                                           });
         }
     }

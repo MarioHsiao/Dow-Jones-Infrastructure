@@ -8,7 +8,7 @@ using NUnit.Framework;
 namespace DowJones.Tools.Charting.Tests
 {
     [TestFixture]
-    public class ChartUnitTest
+    public class GeneralUiChartsUnitTest
     {
         [Test]
         public void ColumnChart()
@@ -17,11 +17,11 @@ namespace DowJones.Tools.Charting.Tests
                             {
                                 Title = new Title {Text = "Stacked Column Chart"},
                                 XAxis = new XAxis(new[] {new XAxisItem {Categories = new object[] {"One", "Two", "Three", "Four", "Five"}}}),
-                                PlotOptions = 
-                                {
-                                    Stacking = Stacking.normal, 
-                                    Events = new PlotOptionEvents() { Click = "alert('hi dave');" } 
-                                },
+                                PlotOptions =
+                                    {
+                                        Stacking = Stacking.normal,
+                                        Events = new PlotOptionEvents {Click = "alert('hi dave');"}
+                                    },
                                 Tooltip = {Formatter = null},
                                 Series = new SerieCollection(new[]
                                                                  {
@@ -53,6 +53,54 @@ namespace DowJones.Tools.Charting.Tests
         }
 
         [Test]
+        public void DateTimeLineChart()
+        {
+            var chart = new DateTimeLineChart("container")
+                                    {
+                                        Appearance =
+                                            {
+                                                Height = 150,
+                                                Width = 325,
+                                            },
+                                        PlotOptions =
+                                            {
+                                                Cursor = "pointer",
+                                                ShowInLegend = false,
+                                                PointStart = new DateTime(2013,1,1),
+                                                PointInterval = 24*3600*1000*7,
+                                            },
+                                        Title =
+                                            {
+                                                Text = ""
+                                            },
+                                        Legend =
+                                            {
+                                                Enabled = false
+                                            },
+                                        XAxis = new XAxis(new[]
+                                                              {
+                                                                  new XAxisItem
+                                                                      {
+                                                                          Type = AxisDataType.datetime,
+                                                                          GridLineWidth = 1,
+                                                                          TickPixelInterval = 25,
+                                                                          Title = new Title(""),
+                                                                      }
+                                                              }),
+
+                                        Series = new SerieCollection(new[]
+                                                                 {
+                                                                     new Serie
+                                                                         {
+                                                                             Type = RenderType.line,
+                                                                             Data = new object[] {715.63,700.01,737.97,739.99,704.51,753.67,775.6,785.37,792.89,799.71,806.19,831.52,814.302,807.79},
+                                                                         }
+                                                                 }),
+                                    };
+            Console.Write(chart.ToJson());
+        }
+
+        [Test]
         public void LineChart()
         {
             var chart = new LineChart("container")
@@ -67,10 +115,11 @@ namespace DowJones.Tools.Charting.Tests
                                                 X = -20,
                                             },
                                 Tooltip = {Formatter = null},
+
                             };
 
             Console.Write(chart.ToJson());
-            Assert.AreEqual(chart.ToJson(),"{chart: {\"renderTo\":\"container\",\"defaultSeriesType\":\"line\",\"marginRight\":130,\"marginBottom\":25},credits: { enabled: false },plotOptions: { series: {} },title: {\"text\":\"Monthly Average Temperature\",\"x\":-20},exporting: {\"enabled\":false},series: []}");
+            Assert.AreEqual(chart.ToJson(), "{chart: {\"renderTo\":\"container\",\"defaultSeriesType\":\"line\",\"marginRight\":130,\"marginBottom\":25},credits: { enabled: false },plotOptions: { series: {} },title: {\"text\":\"Monthly Average Temperature\",\"x\":-20},exporting: {\"enabled\":false},series: []}");
         }
     }
 }

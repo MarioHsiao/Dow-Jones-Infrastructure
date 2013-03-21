@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="urn:factiva:PAL:PreferenceItemScopeService:V1_0" elementFormDefault="qualified" targetNamespace="urn:factiva:PAL:PreferenceItemScopeService:V1_0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://fdevweb3.win.dowjones.net/PALService?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/PALService.Model" />
+  <xs:element name="PreferenceItemScopeRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/PALService.Model" minOccurs="0" name="Item" nillable="true" type="q1:ArrayOfItemList" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PreferenceItemScopeResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdatePreferenceItemScopeRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/PALService.Model" minOccurs="0" name="Item" nillable="true" type="q2:ArrayOfUpdateItemList" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

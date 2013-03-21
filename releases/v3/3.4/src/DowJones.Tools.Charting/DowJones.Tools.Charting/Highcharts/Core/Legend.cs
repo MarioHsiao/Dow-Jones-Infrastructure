@@ -9,8 +9,7 @@ namespace DowJones.Tools.Charting.Highcharts.Core
     [Serializable]
     public class Legend
     {
-        [JsonIgnore] 
-        private string _formatter;
+        [JsonIgnore] private string _formatter;
 
         public Legend()
         {
@@ -20,12 +19,13 @@ namespace DowJones.Tools.Charting.Highcharts.Core
         [JsonConverter(typeof (StringEnumConverter))]
         public Align? Align { get; set; }
 
+        [JsonProperty("useHTML")]
+        public bool? UseHtml { get; set; }
+
         public string BackgroundColor { get; set; }
         public string BorderColor { get; set; }
-
         public int? BorderRadius { get; set; }
         public int? BorderWidth { get; set; }
-
         public bool? Enabled { get; set; }
         public bool? Floating { get; set; }
         public ItemStyle ItemHiddenStyle { get; set; }
@@ -39,13 +39,12 @@ namespace DowJones.Tools.Charting.Highcharts.Core
         public CSSObject Style { get; set; }
         public int? SymbolPadding { get; set; }
         public int? SymbolWidth { get; set; }
-
-        [JsonConverter(typeof(StringEnumConverter))]
-        public VerticalAlign? VerticalAlign { get; set; }
-
         public int? Width { get; set; }
         public int? X { get; set; }
         public int? Y { get; set; }
+
+        [JsonConverter(typeof (StringEnumConverter))]
+        public VerticalAlign? VerticalAlign { get; set; }
 
 
         [JsonConverter(typeof (StringEnumConverter))]
@@ -53,12 +52,10 @@ namespace DowJones.Tools.Charting.Highcharts.Core
 
         public string LabelFormatter
         {
-            get {
-                return string.IsNullOrEmpty(_formatter) ? null : String.Format("function(event){{ var tmp = {0}; if(typeof(tmp) == 'function'){{return tmp(this);}}else{{ return tmp;}} }}", _formatter);
-            }
+            get { return string.IsNullOrEmpty(_formatter) ? null : String.Format("function(event){{ var tmp = {0}; if(typeof(tmp) == 'function'){{return tmp(this);}}else{{ return tmp;}} }}", _formatter); }
             set { _formatter = value; }
         }
-        
+
         public override string ToString()
         {
             var ignored = JsonConvert.SerializeObject(this, Formatting.None, new JsonSerializerSettings

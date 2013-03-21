@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using DowJones.Tools.Charting.Highcharts.Core.Appearance;
 using DowJones.Tools.Charting.Highcharts.Core.PlotOptions;
 using Newtonsoft.Json;
@@ -44,7 +43,7 @@ namespace DowJones.Tools.Charting.Highcharts.Core
 
         public int? MinorGridLineWidth { get; set; }
         public string MinorTickColor { get; set; }
-        public int? MinorTickInterval { get; set; }
+        public string MinorTickInterval { get; set; }
         public int? MinorTickLength { get; set; }
 
         [JsonConverter(typeof (StringEnumConverter))]

@@ -20,7 +20,17 @@ namespace DowJones.Tools.Charting.Highcharts.Core
         public Align? Align { get; set; }
 
         public bool Enabled { get; set; }
+        public string Color { get; set; }
+        public string BackgroundColor { get; set; }
+        public string BorderColor { get; set; }
+        public int? BorderRadius { get; set; }
+        public int? BorderWidth { get; set; }
         public int? Rotation { get; set; }
+        public bool? Crop { get; set; }
+        public bool? Shadow { get; set; }
+        public bool? UseHTML { get; set; }
+        public int? zIndex { get; set; }
+
         public CSSObject Style { get; set; }
 
         public string Formatter
@@ -30,10 +40,7 @@ namespace DowJones.Tools.Charting.Highcharts.Core
             }
             set { _formatter = value; }
         }
-
-       
-
-
+        
         public int? StaggerLines { get; set; }
         public int? Step { get; set; }
 
@@ -49,6 +56,7 @@ namespace DowJones.Tools.Charting.Highcharts.Core
             var ignored = JsonConvert.SerializeObject(this, Formatting.None, new JsonSerializerSettings
                                                                                     {
                                                                                         NullValueHandling = NullValueHandling.Ignore,
+                                                                                        DefaultValueHandling = DefaultValueHandling.Include,
                                                                                         ContractResolver = new CamelCasePropertyNamesContractResolver(),
                                                                                     });
             //return string.Format("legend: {0},", ignored);
