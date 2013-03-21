@@ -7,9 +7,10 @@ namespace DowJones.Tools.Charting.Highcharts.UI
 {
     public class Chart<T> : GenericChart, IJsonObject where T : PlotOptionsSeries, new()
     {
-        private readonly Regex _reg = new Regex(@"\""(function\(event\)\{.*?\})\""", RegexOptions.Multiline);
+        private readonly Regex _functionRegex = new Regex(@"\""(function\(event\)\{.*?\})\""", RegexOptions.Multiline);
+        private readonly Regex _dateRegex = new Regex(@"(new Date\((.*?)\))", RegexOptions.Multiline);
 
-        protected readonly static string Script = "{[@Appearance]credits: { enabled: [@ShowCredits] },[@Colors][@PlotOptions][@Title][@Subtitle]" +
+        protected readonly string Script = "{[@Appearance]credits: { enabled: [@ShowCredits] },[@Colors][@PlotOptions][@Title][@Subtitle]" +
                                                     "[@Legend][@Exporting][@XAxis][@YAxis][@ToolTip][@Series]}";
 
         private T _plotOptions;
@@ -52,7 +53,8 @@ namespace DowJones.Tools.Charting.Highcharts.UI
 
             // handle special case for events, such as point click, mouseover etc
             // see PointEvents.cs for examples
-            tScript = _reg.Replace(tScript, "$1");
+            tScript = _functionRegex.Replace(tScript, "$1");
+            tScript = _dateRegex.Replace(tScript, "$2"); // ort Script = _dateRegex.Replace(tScript, "$1.ToDate()")
 
             return tScript;
         }

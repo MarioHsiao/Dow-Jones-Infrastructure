@@ -150,6 +150,16 @@ namespace DowJones.Tools.Charting.Highcharts.Core.Appearance
         public int? PlotBorderWidth { get; set; }
 
         /// <summary>
+        ///     The pixel width of the plot area border. Defaults to 0.
+        /// </summary>
+        public int? Height { get; set; }
+        
+        /// <summary>
+        ///     The pixel width of the plot area border. Defaults to 0.
+        /// </summary>
+        public int? Width { get; set; }
+
+        /// <summary>
         ///     Whether to apply a drop shadow to the plot area. Requires that plotBackgroundColor be set. Defaults to false.
         /// </summary>
         public bool? PlotShadow { get; set; }
@@ -161,7 +171,7 @@ namespace DowJones.Tools.Charting.Highcharts.Core.Appearance
 
         public override string ToString()
         {
-            string ignored = JsonConvert.SerializeObject(this, Formatting.None, new JsonSerializerSettings
+            var ignored = JsonConvert.SerializeObject(this, Formatting.None, new JsonSerializerSettings
                                                                                     {
                                                                                         NullValueHandling = NullValueHandling.Ignore,
                                                                                         ContractResolver = new CamelCasePropertyNamesContractResolver()

@@ -22,10 +22,8 @@ namespace DowJones.Tools.Charting.Highcharts.Core
 
         public string BackgroundColor { get; set; }
         public string BorderColor { get; set; }
-
         public int? BorderRadius { get; set; }
         public int? BorderWidth { get; set; }
-
         public bool? Enabled { get; set; }
         public bool? Floating { get; set; }
         public ItemStyle ItemHiddenStyle { get; set; }
@@ -39,13 +37,12 @@ namespace DowJones.Tools.Charting.Highcharts.Core
         public CSSObject Style { get; set; }
         public int? SymbolPadding { get; set; }
         public int? SymbolWidth { get; set; }
-
-        [JsonConverter(typeof(StringEnumConverter))]
-        public VerticalAlign? VerticalAlign { get; set; }
-
         public int? Width { get; set; }
         public int? X { get; set; }
         public int? Y { get; set; }
+
+        [JsonConverter(typeof(StringEnumConverter))]
+        public VerticalAlign? VerticalAlign { get; set; }
 
 
         [JsonConverter(typeof (StringEnumConverter))]

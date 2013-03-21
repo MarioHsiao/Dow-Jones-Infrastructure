@@ -25,7 +25,7 @@ namespace DowJones.Tools.Charting.Highcharts.Core.PlotOptions
         public Marker Marker { get; set; }
         public PlotPointEvents Point { get; set; }
         public int? PointStart { get; set; }
-        public int? PointInterval { get; set; }
+        public long? PointInterval { get; set; }
         public bool? Shadow { get; set; }
         public bool? ShowInLegend { get; set; }
 

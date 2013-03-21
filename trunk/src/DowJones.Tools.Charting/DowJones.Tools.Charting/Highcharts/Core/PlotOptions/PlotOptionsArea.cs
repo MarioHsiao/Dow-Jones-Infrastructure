@@ -24,4 +24,10 @@ namespace DowJones.Tools.Charting.Highcharts.Core.PlotOptions
             return !string.IsNullOrEmpty(ignored) ? string.Format("plotOptions: {{ series: {0} }},", ignored) : string.Empty;
         }
     }
+
+    public class PlotOptionsAreaPointStart: PlotOptionsSeries
+    {
+            
+    }
+
 }

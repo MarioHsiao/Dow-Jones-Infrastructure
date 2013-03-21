@@ -105,6 +105,7 @@
     <Compile Include="Highcharts\Core\XAxisItem.cs" />
     <Compile Include="Highcharts\Core\YAxis.cs" />
     <Compile Include="Highcharts\Core\YAxisItem.cs" />
+    <Compile Include="Highcharts\UI\PieChart - Copy.cs" />
     <Compile Include="Highcharts\UI\Generators\AJAXSourceScriptGenerator.cs" />
     <Compile Include="Highcharts\UI\Generators\HighchartsScriptGenerator.cs" />
     <Compile Include="Highcharts\UI\Generators\IScriptGenerator.cs" />
@@ -119,7 +120,7 @@
     <Compile Include="Highcharts\UI\ColumnChart.cs" />
     <Compile Include="Highcharts\UI\GenericChart.cs" />
     <Compile Include="Highcharts\UI\LineChart.cs" />
-    <Compile Include="Highcharts\UI\PieChart.cs" />
+    <Compile Include="Highcharts\UI\DateTimeLineChart.cs" />
     <Compile Include="Highcharts\UI\ScatterChart.cs" />
   </ItemGroup>
   <ItemGroup>
