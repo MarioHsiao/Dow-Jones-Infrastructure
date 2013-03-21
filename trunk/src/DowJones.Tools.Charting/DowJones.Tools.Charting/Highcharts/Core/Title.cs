@@ -19,6 +19,7 @@ namespace DowJones.Tools.Charting.Highcharts.Core
             Text = string.Empty;
         }
 
+        [JsonConverter(typeof(StringEnumConverter))]
         public Align? Align { get; set; }
 
         public int? Floating { get; set; }

@@ -54,7 +54,7 @@ namespace DowJones.Tools.Charting.Highcharts.UI
             // handle special case for events, such as point click, mouseover etc
             // see PointEvents.cs for examples
             tScript = _functionRegex.Replace(tScript, "$1");
-            tScript = _dateRegex.Replace(tScript, "$2"); // ort Script = _dateRegex.Replace(tScript, "$1.ToDate()")
+            tScript = _dateRegex.Replace(tScript, "$2"); // or t Script = _dateRegex.Replace(tScript, "$1.ToDate()")
 
             return tScript;
         }
