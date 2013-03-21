@@ -9,8 +9,7 @@ namespace DowJones.Tools.Charting.Highcharts.Core
     [Serializable]
     public class Legend
     {
-        [JsonIgnore] 
-        private string _formatter;
+        [JsonIgnore] private string _formatter;
 
         public Legend()
         {
@@ -41,7 +40,7 @@ namespace DowJones.Tools.Charting.Highcharts.Core
         public int? X { get; set; }
         public int? Y { get; set; }
 
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof (StringEnumConverter))]
         public VerticalAlign? VerticalAlign { get; set; }
 
 
@@ -50,12 +49,10 @@ namespace DowJones.Tools.Charting.Highcharts.Core
 
         public string LabelFormatter
         {
-            get {
-                return string.IsNullOrEmpty(_formatter) ? null : String.Format("function(event){{ var tmp = {0}; if(typeof(tmp) == 'function'){{return tmp(this);}}else{{ return tmp;}} }}", _formatter);
-            }
+            get { return string.IsNullOrEmpty(_formatter) ? null : String.Format("function(event){{ var tmp = {0}; if(typeof(tmp) == 'function'){{return tmp(this);}}else{{ return tmp;}} }}", _formatter); }
             set { _formatter = value; }
         }
-        
+
         public override string ToString()
         {
             var ignored = JsonConvert.SerializeObject(this, Formatting.None, new JsonSerializerSettings

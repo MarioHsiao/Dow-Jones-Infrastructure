@@ -1,6 +1,7 @@
 ﻿using System;
 using DowJones.Tools.Charting.Highcharts.Core.Appearance;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
 
 namespace DowJones.Tools.Charting.Highcharts.Core
@@ -30,7 +31,8 @@ namespace DowJones.Tools.Charting.Highcharts.Core
         
         [JsonProperty("useHTML")]
         public bool? UseHtml { get; set; }
-        
+
+        [JsonConverter(typeof(StringEnumConverter))]
         public VerticalAlign? VerticalAlign { get; set; }
         
         public int? X { get; set; }
