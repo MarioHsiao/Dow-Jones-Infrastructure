@@ -10,7 +10,7 @@ namespace DowJones.Tools.Charting.Highcharts.UI
         private readonly Regex _functionRegex = new Regex(@"\""(function\(event\)\{.*?\})\""", RegexOptions.Multiline);
         private readonly Regex _dateRegex = new Regex(@"(new Date\((.*?)\))", RegexOptions.Multiline);
 
-        protected readonly string Script = "{[@Appearance]credits: { enabled: [@ShowCredits] },[@Colors][@PlotOptions][@Title][@Subtitle]" +
+        protected readonly string Script = "{[@Appearance][@Credits][@Colors][@PlotOptions][@Title][@Subtitle]" +
                                                     "[@Legend][@Exporting][@XAxis][@YAxis][@ToolTip][@Series]}";
 
         private T _plotOptions;
@@ -38,6 +38,7 @@ namespace DowJones.Tools.Charting.Highcharts.UI
             Appearance.DefaultSeriesType = RenderType.ToString();
 
             tScript = tScript.Replace("[@Colors]", Colors.ToString());
+            tScript = tScript.Replace("[@Credits]", Credits.ToString());
             tScript = tScript.Replace("[@Appearance]", Appearance.ToString());
             tScript = tScript.Replace("[@PlotOptions]", PlotOptions.ToString());
             tScript = tScript.Replace("[@RenderType]", RenderType.ToString());

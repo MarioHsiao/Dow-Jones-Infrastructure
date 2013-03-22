@@ -63,6 +63,13 @@ namespace DowJones.Tools.Charting.Tests
                                                 Height = 150,
                                                 Width = 325,
                                             },
+                                        Credits =
+                                            {
+                                                Enabled = true,
+                                                Text = "Highcharts.dave"
+                                                
+                                            },
+
                                         PlotOptions =
                                             {
                                                 Cursor = "pointer",
@@ -75,8 +82,8 @@ namespace DowJones.Tools.Charting.Tests
                                                     },
                                                 Point = new PlotPointEvents
                                                 {
-                                                   Events =  new PointEvents()
-                                                       {
+                                                   Events =  new PointEvents
+                                                                 {
                                                            Click = "triggerCount(event.point.id);return false",
                                                            LegendItemClick = "triggerCount(event.target.options.id);return false;"
                                                        }
