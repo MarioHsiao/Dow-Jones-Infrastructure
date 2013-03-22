@@ -62,6 +62,7 @@
     <Compile Include="Highcharts\Core\AxisDataType.cs" />
     <Compile Include="Highcharts\Core\AxisType.cs" />
     <Compile Include="Highcharts\Core\Background.cs" />
+    <Compile Include="Highcharts\Core\Credits.cs" />
     <Compile Include="Highcharts\Core\DashStyle.cs" />
     <Compile Include="Highcharts\Core\Events\ChartEvents.cs" />
     <Compile Include="Highcharts\Core\Events\PlotEvents.cs" />

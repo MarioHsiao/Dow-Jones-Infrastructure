@@ -10403,12 +10403,12 @@ Chart.prototype = {
 		}
 
 	    try {
-	        addEvent(win, 'resize', reflow);
+		addEvent(win, 'resize', reflow);
 	    }
 	    catch (ex) {
 	    }
 
-	    addEvent(chart, 'destroy', function () {
+		addEvent(chart, 'destroy', function () {
 			removeEvent(win, 'resize', reflow);
 		});
 	},

@@ -13,7 +13,7 @@ namespace DowJones.Managers.Search.Preference
         [Inject("Avoiding constructor injection in abstract class")]
         protected IPreferenceService Service { get; set; }
 
-        public virtual IEnumerable<PreferenceClassID> PreferenceClassId
+        public virtual IEnumerable<PreferenceClassID> PreferenceClassIds
         {
             get { return Enumerable.Empty<PreferenceClassID>(); }
         }
@@ -33,7 +33,7 @@ namespace DowJones.Managers.Search.Preference
 
         private void Load()
         {
-            _preferenceResponse = Service.GetItemsByClassId(PreferenceClassId) ?? new PreferenceResponse();
+            _preferenceResponse = Service.GetItemsByClassId(PreferenceClassIds) ?? new PreferenceResponse();
         }
     }
 }

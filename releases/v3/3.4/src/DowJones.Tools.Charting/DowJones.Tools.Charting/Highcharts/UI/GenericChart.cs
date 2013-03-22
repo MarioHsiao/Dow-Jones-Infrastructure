@@ -8,6 +8,7 @@ namespace DowJones.Tools.Charting.Highcharts.UI
     public abstract class GenericChart
     {
         private Appearance _appearance;
+        private Credits _credits;
         private ColorSet _colors;
         private Exporting _exporting;
         private LocalizationScriptGenerator _lang;
@@ -44,6 +45,12 @@ namespace DowJones.Tools.Charting.Highcharts.UI
         {
             get { return _appearance ?? (_appearance = new Appearance()); }
             set { _appearance = value; }
+        }
+
+        public Credits Credits
+        {
+            get { return _credits ?? (_credits = new Credits()); }
+            set { _credits = value; }
         }
 
         public virtual Legend Legend

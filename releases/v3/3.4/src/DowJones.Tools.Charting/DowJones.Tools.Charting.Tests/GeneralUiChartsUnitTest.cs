@@ -2,6 +2,7 @@
 using DowJones.Tools.Charting.Highcharts.Core;
 using DowJones.Tools.Charting.Highcharts.Core.Data.Chart;
 using DowJones.Tools.Charting.Highcharts.Core.Events;
+using DowJones.Tools.Charting.Highcharts.Core.PlotOptions;
 using DowJones.Tools.Charting.Highcharts.UI;
 using NUnit.Framework;
 
@@ -62,12 +63,31 @@ namespace DowJones.Tools.Charting.Tests
                                                 Height = 150,
                                                 Width = 325,
                                             },
+                                        Credits =
+                                            {
+                                                Enabled = true,
+                                                Text = "Highcharts.dave"
+                                                
+                                            },
+
                                         PlotOptions =
                                             {
                                                 Cursor = "pointer",
-                                                ShowInLegend = false,
+                                                ShowInLegend = true,
                                                 PointStart = new DateTime(2013,1,1),
                                                 PointInterval = 24*3600*1000*7,
+                                                DataLabels = new DataLabels
+                                                    {
+                                                        Enabled = false
+                                                    },
+                                                Point = new PlotPointEvents
+                                                {
+                                                   Events =  new PointEvents
+                                                                 {
+                                                           Click = "triggerCount(event.point.id);return false",
+                                                           LegendItemClick = "triggerCount(event.target.options.id);return false;"
+                                                       }
+                                                }
                                             },
                                         Title =
                                             {
@@ -75,7 +95,8 @@ namespace DowJones.Tools.Charting.Tests
                                             },
                                         Legend =
                                             {
-                                                Enabled = false
+                                                Enabled = true,
+                                                UseHtml = true,
                                             },
                                         XAxis = new XAxis(new[]
                                                               {

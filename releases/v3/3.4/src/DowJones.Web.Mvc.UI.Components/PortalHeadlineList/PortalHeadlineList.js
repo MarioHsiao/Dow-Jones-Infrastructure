@@ -34,6 +34,8 @@ DJ.UI.PortalHeadlineList = DJ.UI.Component.extend({
 		headlineClick: "headlineClick.dj.PortalHeadlineList",
 		sourceClick: "sourceClick.dj.PortalHeadlineList",
 		authorClick: "authorClick.dj.PortalHeadlineList",
+        headlineEntryClick: "headlineEntryClick.dj.PortalHeadlineList",
+
 
 		// 08/24/2012 NN - these 2 events are currently only thrown when pagination is on right now
 		// dataAssociated - returns data object
@@ -312,8 +314,14 @@ DJ.UI.PortalHeadlineList = DJ.UI.Component.extend({
 	_initializeEventHandlers: function () {
 		var me = this;
 
-		this.$element.on('click', this.selectors.headline, function (e) {
-		    me.publish(me.events.headlineClick, { event: e, headline: $(this).closest('li').data("headline") });
+        this.$element.on('click', this.selectors.headline, function (e) {
+            me.publish(me.events.headlineClick, { event: e, headline: $(this).closest('li').data("headline") });
+            // prevent browser from handling the click
+            return false;
+        });
+
+        this.$element.on('click', this.selectors.headlineEntry, function (e) {
+            me.publish(me.events.headlineEntryClick, { event: e, headline: $(this).closest('li').data("headline") });
 			// prevent browser from handling the click
 			return false;
 		});
