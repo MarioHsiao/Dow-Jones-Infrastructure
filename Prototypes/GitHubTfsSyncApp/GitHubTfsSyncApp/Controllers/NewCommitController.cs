@@ -4,6 +4,7 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Web.Hosting;
 using System.Web.Http;
+using System.Web.Http.ModelBinding;
 using GitHubTfsSyncApp.Helpers;
 using GitHubTfsSyncApp.Models.GitHub;
 using GitHubTfsSyncApp.Workers;
@@ -15,7 +16,8 @@ namespace GitHubTfsSyncApp.Controllers
 	{
 		private readonly ILog _log = LogManager.GetLogger(typeof(NewCommitController));
 
-        public void Post(WebHookResponse response)
+        public void Post([ModelBinder(typeof(WebHookResponseModelBinderProvider))] WebHookResponse response, [FromUri]string projectName)
+        //public void Post(WebHookResponse response)
         {
             var ser = new JsonNetSerializer();
             // TODO: should log or do some other error handling. For demo, return will suffice.
@@ -34,7 +36,8 @@ namespace GitHubTfsSyncApp.Controllers
             // TODO: Use IoC.
             var worker = new TfsSyncWorker(
                                     ConfigurationManager.AppSettings.Get("TFS:Url"),
-                                    ConfigurationManager.AppSettings.Get("TFS:Project"),
+                                    projectName,
+                                    //ConfigurationManager.AppSettings.Get("TFS:Project"),
                                     localWorkspace,
                                     new NetworkCredential(ConfigurationManager.AppSettings.Get("TFS:Username"), ConfigurationManager.AppSettings.Get("TFS:Password")));
 
