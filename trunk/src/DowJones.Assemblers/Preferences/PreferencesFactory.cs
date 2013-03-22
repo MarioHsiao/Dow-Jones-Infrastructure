@@ -1,4 +1,5 @@
-﻿using DowJones.Exceptions;
+﻿using System.Linq;
+using DowJones.Exceptions;
 using DowJones.Formatters.Globalization.DateTime;
 using DowJones.Infrastructure;
 using DowJones.Preferences;
@@ -43,25 +44,27 @@ namespace DowJones.Assemblers.Preferences
             }
 
             // Clock type
-            if (preferencesResponse.TimeFormat != null && preferencesResponse.TimeFormat.TimeFormat == PreferenceTimeFormat.HOURS12)
-                preferences.ClockType = ClockType.TwelveHours;
-
-            // Time Zone
-            if (preferencesResponse.TimeZone != null)
-                preferences.TimeZone = preferencesResponse.TimeZone.ToString();
-
-            // Content Languages
-            if (preferencesResponse.SearchLanguage != null && !string.IsNullOrWhiteSpace(preferencesResponse.SearchLanguage.SearchLanguage))
+            if (preferencesResponse != null)
             {
-                foreach (var language in preferencesResponse.SearchLanguage.SearchLanguage.Split(','))
+                if (preferencesResponse.TimeFormat != null && preferencesResponse.TimeFormat.TimeFormat == PreferenceTimeFormat.HOURS12)
+                    preferences.ClockType = ClockType.TwelveHours;
+
+                // Time Zone
+                if (preferencesResponse.TimeZone != null)
+                    preferences.TimeZone = preferencesResponse.TimeZone.ToString();
+
+                // Content Languages
+                if (preferencesResponse.SearchLanguage != null && !string.IsNullOrWhiteSpace(preferencesResponse.SearchLanguage.SearchLanguage))
                 {
-                    var lang = language.Trim().ToLower();
-                    if (lang == "all")
+                    foreach (var lang in preferencesResponse.SearchLanguage.SearchLanguage.Split(',').Select(language => language.Trim().ToLower()))
                     {
-                        preferences.ContentLanguages.Clear();
-                        break;
+                        if (lang == "all")
+                        {
+                            preferences.ContentLanguages.Clear();
+                            break;
+                        }
+                        preferences.ContentLanguages.Add(lang);
                     }
-                    preferences.ContentLanguages.Add(lang);
                 }
             }
 

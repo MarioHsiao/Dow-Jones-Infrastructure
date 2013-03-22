@@ -6,7 +6,7 @@ namespace DowJones.Managers.Search.Preference
 {
     public interface IPreferencesLoader
     {
-        IEnumerable<PreferenceClassID> PreferenceClassId { get; }
+        IEnumerable<PreferenceClassID> PreferenceClassIds { get; }
         PreferenceResponse PreferenceResponse { get; set; }
     }
 

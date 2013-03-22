@@ -10,7 +10,7 @@ namespace DowJones.Web.Mvc.Search.Managers.Preferences
 {
     public class SearchBuilderPreferences : AbstractPreferenceLoader, ISearchBuilderPreferences
     {
-        public override IEnumerable<PreferenceClassID> PreferenceClassId
+        public override IEnumerable<PreferenceClassID> PreferenceClassIds
         {
             get
             {

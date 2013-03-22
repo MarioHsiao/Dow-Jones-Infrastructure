@@ -109,7 +109,9 @@ namespace DowJones.Web.Session
 
             // If there was any problem retrieving the session, create and return a new one
             if (response.rc != 0)
+            {
                 return CreateNewStoreData(context, Timeout);
+            }
 
             var items = DeserializeSessionData(response.ObjectResponse.Item.StringData);
 

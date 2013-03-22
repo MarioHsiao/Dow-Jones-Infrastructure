@@ -12,7 +12,7 @@ namespace DowJones.Managers.Search.Preference
     {
         private const int _defaultPageSize = 20;
 
-        public override IEnumerable<PreferenceClassID> PreferenceClassId
+        public override IEnumerable<PreferenceClassID> PreferenceClassIds
         {
             get
             {
