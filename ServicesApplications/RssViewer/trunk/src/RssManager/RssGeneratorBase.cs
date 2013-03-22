@@ -676,6 +676,11 @@ namespace FactivaRssManager
 
                 item.Title = title;
                 item.Description = description;
+                if (!string.IsNullOrEmpty(articleURL))
+                {
+                    if (!articleURL.Contains("http:"))
+                        articleURL = "http://" + articleURL;
+                }
                 item.Link = new EscapedUri(articleURL);
                 item.Author = source;
 
