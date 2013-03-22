@@ -19,7 +19,7 @@ namespace DowJones.Tools.Charting.Highcharts.Core
         [JsonConverter(typeof (StringEnumConverter))]
         public Align? Align { get; set; }
 
-        public bool Enabled { get; set; }
+        public bool? Enabled { get; set; }
         public string Color { get; set; }
         public string BackgroundColor { get; set; }
         public string BorderColor { get; set; }
