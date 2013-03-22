@@ -33,8 +33,8 @@ if(companyInfo.keyFinancialData != null) {
     <tbody>
         <% if(keyFinancialData.reportCurrency && keyFinancialData.reportCurrency != '')
     { %>
-        <tr class="has-bg">
-            <td>
+        <tr>
+            <td class="label">
                 <%= Token('currencyColon') %>:
             </td>
             <td class="value">
@@ -44,7 +44,7 @@ if(companyInfo.keyFinancialData != null) {
         <% }
         if(keyFinancialData.sales && keyFinancialData.sales != '') { %>
         <tr>
-            <td>
+            <td class="label">
                 <%= Token('sales') %>:
             </td>
             <td class="value">
@@ -53,8 +53,8 @@ if(companyInfo.keyFinancialData != null) {
         </tr>
         <% }
         if(keyFinancialData.salesGrowth && keyFinancialData.salesGrowth != '') { %>
-        <tr class="has-bg">
-            <td>
+        <tr>
+            <td class="label">
                 <%= Token('salesGrowth1year') %>:
             </td>
             <td class="value">
@@ -64,7 +64,7 @@ if(companyInfo.keyFinancialData != null) {
         <% }
         if(keyFinancialData.employees && keyFinancialData.employees != '') { %>
         <tr>
-            <td>
+            <td class="label">
                 <%= Token('lastReportedEmployees')%><br />
                 <% if(keyFinancialData.fiscalYearEndDate){ %>(<%= Token('date') %>):<% } %>
             </td>
@@ -75,8 +75,8 @@ if(companyInfo.keyFinancialData != null) {
         </tr>
         <% }
         if(keyFinancialData.employeesGrowth && keyFinancialData.employeesGrowth != '') { %>
-        <tr class="has-bg">
-            <td>
+        <tr>
+            <td class="label">
                 <%= Token('employeesGrowth1year') %>:
             </td>
            <td class="value">
@@ -86,19 +86,19 @@ if(companyInfo.keyFinancialData != null) {
         <% }
         if(keyFinancialData.lastReportedAuditor && keyFinancialData.lastReportedAuditor != '') { %>
         <tr>
-            <td>
+            <td class="label">
                 <%= Token('lastReportedAuditor')%><br />
                 <% if(keyFinancialData.fiscalYearEndDate){ %>(<%= Token('date') %>):<% } %>
             </td>
             <td class="value">
-                <%= keyFinancialData.lastReportedAuditor %><br />
+                <span class="auditor ellipsis" title="<%= keyFinancialData.lastReportedAuditor %>"><%= keyFinancialData.lastReportedAuditor %></span><br />
                 <% if(keyFinancialData.fiscalYearEndDate){ %>(<%= keyFinancialData.fiscalYearEndDate %>)<% } %>
             </td>
         </tr>
         <% }
         if(keyFinancialData.marketCapitalization && keyFinancialData.marketCapitalization != '') { %>
-        <tr class="has-bg">
-            <td>
+        <tr>
+            <td class="label">
                 <%= Token('marketCapitalization') %><% if(keyFinancialData.reportCurrency){ %> (<%= keyFinancialData.reportCurrency %>)<% } %>:
             </td>
             <td class="value">
@@ -109,7 +109,7 @@ if(companyInfo.keyFinancialData != null) {
         <% }
         if(keyFinancialData.netIncome && keyFinancialData.netIncome != '') { %>
         <tr>
-            <td>
+            <td class="label">
                 <%= Token('netIncomeLabel') %>:
             </td>
             <td class="value">
@@ -118,8 +118,8 @@ if(companyInfo.keyFinancialData != null) {
         </tr>
         <% }
         if(keyFinancialData.netProfitMargin && keyFinancialData.netProfitMargin != '') { %>
-        <tr class="has-bg">
-            <td>
+        <tr>
+            <td class="label">
                 <%= Token('netProfitMargin') %>:
             </td>
             <td class="value">
@@ -129,7 +129,7 @@ if(companyInfo.keyFinancialData != null) {
         <% }
         if(keyFinancialData.eps && keyFinancialData.eps != '') { %>
         <tr>
-            <td>
+            <td class="label">
                 <%= Token('earningPerShare') %>:
             </td>
             <td class="value">
@@ -138,8 +138,8 @@ if(companyInfo.keyFinancialData != null) {
         </tr>
         <% }
         if(keyFinancialData.fiscalYearEndDate && keyFinancialData.fiscalYearEndDate != '') { %>
-        <tr class="has-bg">
-            <td>
+        <tr>
+            <td class="label">
                 <%= Token('fiscalYearEndDate') %>:
             </td>
             <td class="value">
