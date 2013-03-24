@@ -449,15 +449,6 @@ namespace DowJones.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://fdevweb3.win.dowjones.net/PALService")]
-        public string DowJones_Infrastructure_PALService_FunctionDispatcher {
-            get {
-                return ((string)(this["DowJones_Infrastructure_PALService_FunctionDispatcher"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("rts")]
         public string ProxyPageTransportType {
             get {
@@ -480,6 +471,16 @@ namespace DowJones.Properties {
         public string ProxyPageUrl {
             get {
                 return ((string)(this["ProxyPageUrl"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://fdevweb3.win.dowjones.net/PALService")]
+        public string DowJones_Infrastructure_PALService_FunctionDispatcher {
+            get {
+                return ((string)(this["DowJones_Infrastructure_PALService_FunctionDispatcher"]));
             }
         }
     }

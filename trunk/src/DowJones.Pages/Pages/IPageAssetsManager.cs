@@ -8,13 +8,16 @@ using System;
 using System.Collections.Generic;
 using DowJones.Managers.Abstract;
 using DowJones.Pages.Caching;
+using DowJones.Pages.Common;
 using DowJones.Pages.Modules;
-using Factiva.Gateway.Messages.Assets.Common.V2_0;
 using Factiva.Gateway.Messages.Assets.Pages.V1_0;
+using AssetType = Factiva.Gateway.Messages.Assets.Pages.V1_0.AssetType;
 using GWModule = Factiva.Gateway.Messages.Assets.Pages.V1_0.Module;
 using ModuleState = Factiva.Gateway.Messages.Assets.Pages.V1_0.ModuleState;
 using SortBy = Factiva.Gateway.Messages.Assets.Pages.V1_0.SortBy;
 using GWPage = Factiva.Gateway.Messages.Assets.Pages.V1_0.Page;
+using QueryFilters = Factiva.Gateway.Messages.Assets.Pages.V1_0.QueryFilters;
+using SortOrder = Factiva.Gateway.Messages.Assets.Common.V2_0.SortOrder;
 
 namespace DowJones.Pages
 {
@@ -60,6 +63,7 @@ namespace DowJones.Pages
         PageListInfoCollection GetPageListInfoCollection(IEnumerable<PageType> pageTypes, SortOrder sortOrder, SortBy sortBy);
         void MakePersonalAlertsPublic(IEnumerable<int> alertIds);
         void PublishPage(string pageId, IEnumerable<int> personalAlertIds);
+        void PublishPage(string pageId, IEnumerable<IShareAssets> assetsToShare);
         bool RemoveAssignedPage(string pageId);
         string ReplaceModuleOnPage(string pageId, string rootIDOfNewModule, GWModule moduleToReplaceWith, string moduleIdToRemove);
         string SubscribeToPage(string pageId, int pagePosition);

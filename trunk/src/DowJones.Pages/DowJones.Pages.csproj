@@ -74,8 +74,12 @@
       <Link>Properties\SolutionInfo.cs</Link>
     </Compile>
     <Compile Include="Caching\Properties\Settings.cs" />
-    <Compile Include="Common\AssetsToShare.cs" />
+    <Compile Include="Common\AbstractShareAssets.cs" />
+    <Compile Include="Common\AlertShareAssets.cs" />
     <Compile Include="Common\AssetType.cs" />
+    <Compile Include="Common\ChartItemShareAssets.cs" />
+    <Compile Include="Common\IShareAssets.cs" />
+    <Compile Include="Common\SavedSearchShareAssets.cs" />
     <Compile Include="Common\SortBy.cs" />
     <Compile Include="Common\SortOrder.cs" />
     <Compile Include="Mappers\AssetTypeMapper.cs" />

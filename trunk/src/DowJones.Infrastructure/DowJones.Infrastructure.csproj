@@ -173,6 +173,8 @@
     <Compile Include="Managers\Multimedia\MultimediaPackage.cs" />
     <Compile Include="Managers\Multimedia\MultiMediaRequest.cs" />
     <Compile Include="Managers\Multimedia\MultiMediaResponse.cs" />
+    <Compile Include="Managers\PAL\IPALPreferenceServiceProvider.cs" />
+    <Compile Include="Managers\PAL\PALPreferenceServiceProvider.cs" />
     <Compile Include="Managers\PAL\PALServiceManager.cs" />
     <Compile Include="Managers\PAM\ItemManager.cs" />
     <Compile Include="Models\Common\DateNewsEntities.cs" />
