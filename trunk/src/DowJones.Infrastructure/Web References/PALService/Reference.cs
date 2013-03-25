@@ -27,6 +27,7 @@ namespace DowJones.PALService {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Web.Services.WebServiceBindingAttribute(Name="SavedSearchService", Namespace="http://tempuri.org/")]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(ItemList))]
     public partial class SavedSearchService : System.Web.Services.Protocols.SoapHttpClientProtocol {
         
         private ControlData controlDataValueField;
@@ -144,11 +145,10 @@ namespace DowJones.PALService {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Web.Services.WebServiceBindingAttribute(Name="PreferenceItemScopeService", Namespace="http://tempuri.org/")]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(ItemList))]
     public partial class PreferenceItemScopeService : System.Web.Services.Protocols.SoapHttpClientProtocol {
         
         private ControlData controlDataValueField;
-        
-        private System.Threading.SendOrPostCallback GetPreferenceItemScopeOperationCompleted;
         
         private System.Threading.SendOrPostCallback UpdatePreferenceItemScopeOperationCompleted;
         
@@ -200,64 +200,30 @@ namespace DowJones.PALService {
         }
         
         /// <remarks/>
-        public event GetPreferenceItemScopeCompletedEventHandler GetPreferenceItemScopeCompleted;
-        
-        /// <remarks/>
         public event UpdatePreferenceItemScopeCompletedEventHandler UpdatePreferenceItemScopeCompleted;
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapHeaderAttribute("ControlDataValue", Direction=System.Web.Services.Protocols.SoapHeaderDirection.InOut)]
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:factiva:PAL:PreferenceItemScopeService:V1_0:GetPreferenceItemScope", RequestElementName="PreferenceItemScopeRequest", RequestNamespace="urn:factiva:PAL:PreferenceItemScopeService:V1_0", ResponseElementName="PreferenceItemScopeResponse", ResponseNamespace="urn:factiva:PAL:PreferenceItemScopeService:V1_0", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        [return: System.Xml.Serialization.XmlElementAttribute("Result", IsNullable=true)]
-        public ItemScopeResult GetPreferenceItemScope([System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)] [System.Xml.Serialization.XmlArrayItemAttribute(Namespace="http://schemas.datacontract.org/2004/07/PALService.Model")] ItemList[] Item) {
-            object[] results = this.Invoke("GetPreferenceItemScope", new object[] {
-                        Item});
-            return ((ItemScopeResult)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void GetPreferenceItemScopeAsync(ItemList[] Item) {
-            this.GetPreferenceItemScopeAsync(Item, null);
-        }
-        
-        /// <remarks/>
-        public void GetPreferenceItemScopeAsync(ItemList[] Item, object userState) {
-            if ((this.GetPreferenceItemScopeOperationCompleted == null)) {
-                this.GetPreferenceItemScopeOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetPreferenceItemScopeOperationCompleted);
-            }
-            this.InvokeAsync("GetPreferenceItemScope", new object[] {
-                        Item}, this.GetPreferenceItemScopeOperationCompleted, userState);
-        }
-        
-        private void OnGetPreferenceItemScopeOperationCompleted(object arg) {
-            if ((this.GetPreferenceItemScopeCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.GetPreferenceItemScopeCompleted(this, new GetPreferenceItemScopeCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapHeaderAttribute("ControlDataValue", Direction=System.Web.Services.Protocols.SoapHeaderDirection.InOut)]
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:factiva:PAL:PreferenceItemScopeService:V1_0:UpdatePreferenceItemScope", RequestElementName="UpdatePreferenceItemScopeRequest", RequestNamespace="urn:factiva:PAL:PreferenceItemScopeService:V1_0", ResponseElementName="PreferenceItemScopeResponse", ResponseNamespace="urn:factiva:PAL:PreferenceItemScopeService:V1_0", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute("Result", IsNullable=true)]
-        public ItemScopeResult UpdatePreferenceItemScope([System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)] [System.Xml.Serialization.XmlArrayItemAttribute(Namespace="http://schemas.datacontract.org/2004/07/PALService.Model")] UpdateItemList[] Item) {
+        public ItemScopeResult UpdatePreferenceItemScope([System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)] [System.Xml.Serialization.XmlArrayItemAttribute(Namespace="http://schemas.datacontract.org/2004/07/PALService.Model")] UpdateItemList[] UpdateItemList) {
             object[] results = this.Invoke("UpdatePreferenceItemScope", new object[] {
-                        Item});
+                        UpdateItemList});
             return ((ItemScopeResult)(results[0]));
         }
         
         /// <remarks/>
-        public void UpdatePreferenceItemScopeAsync(UpdateItemList[] Item) {
-            this.UpdatePreferenceItemScopeAsync(Item, null);
+        public void UpdatePreferenceItemScopeAsync(UpdateItemList[] UpdateItemList) {
+            this.UpdatePreferenceItemScopeAsync(UpdateItemList, null);
         }
         
         /// <remarks/>
-        public void UpdatePreferenceItemScopeAsync(UpdateItemList[] Item, object userState) {
+        public void UpdatePreferenceItemScopeAsync(UpdateItemList[] UpdateItemList, object userState) {
             if ((this.UpdatePreferenceItemScopeOperationCompleted == null)) {
                 this.UpdatePreferenceItemScopeOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUpdatePreferenceItemScopeOperationCompleted);
             }
             this.InvokeAsync("UpdatePreferenceItemScope", new object[] {
-                        Item}, this.UpdatePreferenceItemScopeOperationCompleted, userState);
+                        UpdateItemList}, this.UpdatePreferenceItemScopeOperationCompleted, userState);
         }
         
         private void OnUpdatePreferenceItemScopeOperationCompleted(object arg) {
@@ -5859,32 +5825,6 @@ namespace DowJones.PALService {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((StructuredSearchResult)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
-    public delegate void GetPreferenceItemScopeCompletedEventHandler(object sender, GetPreferenceItemScopeCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class GetPreferenceItemScopeCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal GetPreferenceItemScopeCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public ItemScopeResult Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((ItemScopeResult)(this.results[0]));
             }
         }
     }
