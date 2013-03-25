@@ -1,10 +1,11 @@
 ﻿using System;
+using System.Collections;
 using System.Configuration;
 using System.Net;
-using System.Threading.Tasks;
-using System.Web.Hosting;
 using System.Web.Http;
 using System.Web.Http.ModelBinding;
+using System.Web.Mvc;
+using GitHubTfsSyncApp.Configuration;
 using GitHubTfsSyncApp.Helpers;
 using GitHubTfsSyncApp.Models.GitHub;
 using GitHubTfsSyncApp.Workers;
@@ -12,12 +13,11 @@ using log4net;
 
 namespace GitHubTfsSyncApp.Controllers
 {
-	public class NewCommitController : ApiController
-	{
-		private readonly ILog _log = LogManager.GetLogger(typeof(NewCommitController));
+    public class NewCommitController : ApiController
+    {
+        private readonly ILog _log = LogManager.GetLogger(typeof(NewCommitController));
 
-        public void Post([ModelBinder(typeof(WebHookResponseModelBinderProvider))] WebHookResponse response, [FromUri]string projectName)
-        //public void Post(WebHookResponse response)
+        public void Post(WebHookResponse response)
         {
             var ser = new JsonNetSerializer();
             // TODO: should log or do some other error handling. For demo, return will suffice.
@@ -29,6 +29,7 @@ namespace GitHubTfsSyncApp.Controllers
             }
 
             _log.Debug(ser.Serialize(response));
+           
 
             //var localWorkspace = HostingEnvironment.MapPath("~\\StagingArea");
             var localWorkspace = ConfigurationManager.AppSettings.Get("TFS:LocalWorkspace");
@@ -36,13 +37,29 @@ namespace GitHubTfsSyncApp.Controllers
             // TODO: Use IoC.
             var worker = new TfsSyncWorker(
                                     ConfigurationManager.AppSettings.Get("TFS:Url"),
-                                    projectName,
-                                    //ConfigurationManager.AppSettings.Get("TFS:Project"),
+                                    GetTfsProjectName(response.Repository),
                                     localWorkspace,
                                     new NetworkCredential(ConfigurationManager.AppSettings.Get("TFS:Username"), ConfigurationManager.AppSettings.Get("TFS:Password")));
 
             worker.Process(response.Commits, response.Repository);
             //new Task(() => worker.Process(response.Commits, response.Repository)).Start();
         }
-	}
+
+        private string GetTfsProjectName(Repository repository)
+        {
+            if (Config.GithubTFSConfigSectionInstance.Projects != null)
+            {
+                IEnumerator iEnumerator = Config.GithubTFSConfigSectionInstance.Projects.GetEnumerator();
+                while (iEnumerator.MoveNext())
+                {
+                    if (((ProjectMapping)iEnumerator.Current).GitHubProjectName.Equals(repository.Name,
+                                                                                            StringComparison.CurrentCultureIgnoreCase))
+                    {
+                        return ((ProjectMapping)iEnumerator.Current).TfsProjectName;
+                    }
+                }
+            }
+            return string.Empty;
+        }
+    }
 }

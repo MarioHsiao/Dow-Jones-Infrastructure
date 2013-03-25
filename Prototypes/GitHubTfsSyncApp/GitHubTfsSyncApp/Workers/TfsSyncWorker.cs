@@ -27,6 +27,10 @@ namespace GitHubTfsSyncApp.Workers
 
         public TfsSyncWorker(string tfsUri, string teamProject, string localWorkspaceRootDir, ICredentials credentials)
         {
+            if (string.IsNullOrEmpty(teamProject))
+            {
+                throw new Exception("TFS Project is not defined. Please define the mapping between Github and TFS Project");
+            }
             _tfsUri = tfsUri;
             _teamProject = teamProject;
             _localWorkspaceRootDir = localWorkspaceRootDir;

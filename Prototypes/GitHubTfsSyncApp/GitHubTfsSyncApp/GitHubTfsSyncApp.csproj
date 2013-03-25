@@ -216,6 +216,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Configuration\GithubTfsConfigSection.cs" />
     <Compile Include="Extensions\DirectoryInfoExtensions.cs" />
     <Compile Include="Helpers\WebHookResponseModelBinder.cs" />
     <Compile Include="Models\GitHub\GitHubAccessConfiguration.cs" />
