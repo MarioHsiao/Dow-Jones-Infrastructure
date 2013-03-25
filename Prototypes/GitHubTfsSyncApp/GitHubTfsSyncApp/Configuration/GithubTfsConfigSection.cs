@@ -21,7 +21,7 @@ namespace GitHubTfsSyncApp.Configuration
 
     #region ControlData Element
 
-    public class ProjectMapping : ConfigurationElement
+    public class ProjectDetails : ConfigurationElement
     {
         [ConfigurationProperty("gitHubProjectName")]
         public string GitHubProjectName
@@ -36,6 +36,55 @@ namespace GitHubTfsSyncApp.Configuration
             get { return (string)this["tfsProjectName"]; }
             set { this["tfsProjectName"] = value; }
         }
+
+        [ConfigurationProperty("gitHubCredentials")]
+        public string GitHubCredentials
+        {
+            get { return (string)this["gitHubCredentials"]; }
+            set { this["gitHubCredentials"] = value; }
+        }
+
+        [ConfigurationProperty("gitHubClientSecret")]
+        public string GitHubClientSecret
+        {
+            get { return (string)this["gitHubClientSecret"]; }
+            set { this["gitHubClientSecret"] = value; }
+        }
+
+        [ConfigurationProperty("gitHubClientId")]
+        public string GitHubClientId
+        {
+            get { return (string)this["gitHubClientId"]; }
+            set { this["gitHubClientId"] = value; }
+        }
+
+        [ConfigurationProperty("tfsLocalWorkspace")]
+        public string TfsLocalWorkspace
+        {
+            get { return (string)this["tfsLocalWorkspace"]; }
+            set { this["tfsLocalWorkspace"] = value; }
+        }
+
+        [ConfigurationProperty("tfsUserName")]
+        public string TfsUserName
+        {
+            get { return (string)this["tfsUserName"]; }
+            set { this["tfsUserName"] = value; }
+        }
+
+        [ConfigurationProperty("tfsPassword")]
+        public string TfsPassword
+        {
+            get { return (string)this["tfsPassword"]; }
+            set { this["tfsPassword"] = value; }
+        }
+
+        [ConfigurationProperty("tfsUrl")]
+        public string TfsUrl
+        {
+            get { return (string)this["tfsUrl"]; }
+            set { this["tfsUrl"] = value; }
+        }
     }
 
     public class ProjectsCollection : ConfigurationElementCollection
@@ -47,11 +96,11 @@ namespace GitHubTfsSyncApp.Configuration
             set { this["key"] = value; }
         }
 
-        public ProjectMapping this[int index]
+        public ProjectDetails this[int index]
         {
             get
             {
-                return base.BaseGet(index) as ProjectMapping;
+                return base.BaseGet(index) as ProjectDetails;
             }
             set
             {
@@ -65,12 +114,12 @@ namespace GitHubTfsSyncApp.Configuration
 
         protected override ConfigurationElement CreateNewElement()
         {
-            return new ProjectMapping();
+            return new ProjectDetails();
         }
 
         protected override object GetElementKey(ConfigurationElement element)
         {
-            return ((ProjectMapping)element).GitHubProjectName;
+            return ((ProjectDetails)element).GitHubProjectName;
         }
     }
     #endregion

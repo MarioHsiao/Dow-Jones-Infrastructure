@@ -30,36 +30,42 @@ namespace GitHubTfsSyncApp.Controllers
 
             _log.Debug(ser.Serialize(response));
            
-
-            //var localWorkspace = HostingEnvironment.MapPath("~\\StagingArea");
-            var localWorkspace = ConfigurationManager.AppSettings.Get("TFS:LocalWorkspace");
-
+            ProjectDetails projDetails = GetGithubTfsConfig(response.Repository);
+            if (projDetails == null)
+            {
+                throw new Exception("TFS Project is not defined. Please define the mapping between Github and TFS Project");
+            }
             // TODO: Use IoC.
             var worker = new TfsSyncWorker(
-                                    ConfigurationManager.AppSettings.Get("TFS:Url"),
-                                    GetTfsProjectName(response.Repository),
-                                    localWorkspace,
-                                    new NetworkCredential(ConfigurationManager.AppSettings.Get("TFS:Username"), ConfigurationManager.AppSettings.Get("TFS:Password")));
+                                    projDetails.TfsUrl,
+                                    projDetails.TfsProjectName,
+                                    projDetails.TfsLocalWorkspace,
+                                    GitHubAccessConfigurationGenerator.CreateFromWebConfig(projDetails.GitHubCredentials,
+                                    projDetails.GitHubClientId,
+                                    projDetails.GitHubClientSecret,
+                                    ConfigurationManager.AppSettings.Get("GitHub:ApiEndPoint")),
+                                    new NetworkCredential(projDetails.TfsUserName, projDetails.TfsPassword)
+                                  );
 
             worker.Process(response.Commits, response.Repository);
             //new Task(() => worker.Process(response.Commits, response.Repository)).Start();
         }
 
-        private string GetTfsProjectName(Repository repository)
+        private ProjectDetails GetGithubTfsConfig(Repository repository)
         {
             if (Config.GithubTFSConfigSectionInstance.Projects != null)
             {
                 IEnumerator iEnumerator = Config.GithubTFSConfigSectionInstance.Projects.GetEnumerator();
                 while (iEnumerator.MoveNext())
                 {
-                    if (((ProjectMapping)iEnumerator.Current).GitHubProjectName.Equals(repository.Name,
+                    if (((ProjectDetails)iEnumerator.Current).GitHubProjectName.Equals(repository.Name,
                                                                                             StringComparison.CurrentCultureIgnoreCase))
                     {
-                        return ((ProjectMapping)iEnumerator.Current).TfsProjectName;
+                        return ((ProjectDetails)iEnumerator.Current);
                     }
                 }
             }
-            return string.Empty;
+            return null;
         }
     }
 }

@@ -25,18 +25,14 @@ namespace GitHubTfsSyncApp.Workers
 		private readonly GitHubProvider _gitHubProvider;
 		private readonly TfsManager _tfsManager;
 
-        public TfsSyncWorker(string tfsUri, string teamProject, string localWorkspaceRootDir, ICredentials credentials)
+        public TfsSyncWorker(string tfsUri, string teamProject, string localWorkspaceRootDir,GitHubAccessConfiguration gitHubAccessConfiguration, ICredentials credentials)
         {
-            if (string.IsNullOrEmpty(teamProject))
-            {
-                throw new Exception("TFS Project is not defined. Please define the mapping between Github and TFS Project");
-            }
             _tfsUri = tfsUri;
             _teamProject = teamProject;
             _localWorkspaceRootDir = localWorkspaceRootDir;
             _credentials = credentials;
 
-            _gitHubProvider = new GitHubProvider(GitHubAccessConfigurationGenerator.CreateFromWebConfig());
+            _gitHubProvider = new GitHubProvider(gitHubAccessConfiguration);
             _tfsManager = new TfsManager(_tfsUri, _teamProject, new DirectoryInfo(_localWorkspaceRootDir), _credentials);
         }
 
