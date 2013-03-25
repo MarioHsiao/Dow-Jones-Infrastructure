@@ -161,7 +161,12 @@ namespace DowJones.Security.Services
             MaxFoldersForGlobal = GetNumberOfAlertFolders("G");
             MaxFoldersForSelectHeadline = GetNumberOfAlertFolders("H");
             MaxFoldersForSelectFullText = GetNumberOfAlertFolders("T");
-            MaxFoldersForFastAlert = GetNumberOfAlertFolders("F");
+            //Begin Changes Team 2 Sprint 7
+            //Changed the product code to "I" instead of "F" because
+            //as per Track Spec, "F" is not valid and "I" indicates IFF folders.
+            //In UI we are checking for this property to enable simple search alerts so needed to make this change.
+            MaxFoldersForFastAlert = GetNumberOfAlertFolders("I");
+            //End Changes Team 2 Sprint 7
             MaxFoldersForCompaniesAndExecutives = GetNumberOfAlertFolders("P");
             MaxFolderForDmm = GetNumberOfAlertFolders("M");
             MaxFolderForTrigger = GetNumberOfAlertFolders("Y");
