@@ -1,0 +1,1 @@
+<%@ Page AspCompat="true" Language="C#" CodeBehind="Corda.aspx.cs" Inherits="EMG.widgets.ui.test.Corda" ValidateRequest="false" AutoEventWireup="true" EnableSessionState="false" EnableViewStateMac="false" Buffer="true" %>
