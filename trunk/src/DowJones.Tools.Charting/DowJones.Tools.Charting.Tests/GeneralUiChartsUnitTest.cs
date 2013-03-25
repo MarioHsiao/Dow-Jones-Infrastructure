@@ -1,5 +1,6 @@
 ﻿using System;
 using DowJones.Tools.Charting.Highcharts.Core;
+using DowJones.Tools.Charting.Highcharts.Core.Appearance;
 using DowJones.Tools.Charting.Highcharts.Core.Data.Chart;
 using DowJones.Tools.Charting.Highcharts.Core.Events;
 using DowJones.Tools.Charting.Highcharts.Core.PlotOptions;
@@ -62,31 +63,32 @@ namespace DowJones.Tools.Charting.Tests
                                             {
                                                 Height = 150,
                                                 Width = 325,
+                                                Style = new CSSObject { Cursor = "pointer"}
                                             },
                                         Credits =
                                             {
                                                 Enabled = true,
                                                 Text = "Highcharts.dave"
-                                                
+
                                             },
 
                                         PlotOptions =
                                             {
                                                 Cursor = "pointer",
                                                 ShowInLegend = true,
-                                                PointStart = new DateTime(2013,1,1),
-                                                PointInterval = 24*3600*1000*7,
+                                                PointStart = new DateTime(2013, 1, 1),
+                                                PointInterval = 24 * 3600 * 1000 * 7,
                                                 DataLabels = new DataLabels
                                                     {
                                                         Enabled = false
                                                     },
                                                 Point = new PlotPointEvents
                                                 {
-                                                   Events =  new PointEvents
-                                                                 {
-                                                           Click = "triggerCount(event.point.id);return false",
-                                                           LegendItemClick = "triggerCount(event.target.options.id);return false;"
-                                                       }
+                                                    Events = new PointEvents
+                                                                  {
+                                                                      Click = "triggerCount(event.point.id);return false",
+                                                                      LegendItemClick = "triggerCount(event.target.options.id);return false;"
+                                                                  }
                                                 }
                                             },
                                         Title =
