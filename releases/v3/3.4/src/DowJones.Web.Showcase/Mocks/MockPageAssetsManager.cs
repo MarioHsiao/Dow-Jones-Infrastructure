@@ -468,5 +468,11 @@ namespace DowJones.Web.Showcase.Mocks
         }
 
         #endregion
+
+
+        public void PublishPage(string pageId, IEnumerable<Pages.Common.IShareAssets> assetsToShare)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

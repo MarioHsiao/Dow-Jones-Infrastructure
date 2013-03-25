@@ -568,10 +568,6 @@ namespace DowJones.PALService {
         
         private long[] idField;
         
-        private bool includeChildAssetField;
-        
-        private bool includeChildAssetFieldSpecified;
-        
         private int itemClassIdField;
         
         private bool itemClassIdFieldSpecified;
@@ -585,27 +581,6 @@ namespace DowJones.PALService {
             }
             set {
                 this.idField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public bool IncludeChildAsset {
-            get {
-                return this.includeChildAssetField;
-            }
-            set {
-                this.includeChildAssetField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool IncludeChildAssetSpecified {
-            get {
-                return this.includeChildAssetFieldSpecified;
-            }
-            set {
-                this.includeChildAssetFieldSpecified = value;
             }
         }
         
@@ -2560,6 +2535,8 @@ namespace DowJones.PALService {
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://schemas.datacontract.org/2004/07/PALService.Model")]
     public partial class StructuredSearchContainer {
         
+        private string groupNameField;
+        
         private long savedSearchIdField;
         
         private bool savedSearchIdFieldSpecified;
@@ -2569,6 +2546,17 @@ namespace DowJones.PALService {
         private Error statusField;
         
         private StructuredSearch structuredSearchField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string GroupName {
+            get {
+                return this.groupNameField;
+            }
+            set {
+                this.groupNameField = value;
+            }
+        }
         
         /// <remarks/>
         public long SavedSearchId {

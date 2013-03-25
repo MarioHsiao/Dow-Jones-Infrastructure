@@ -845,12 +845,21 @@ namespace DowJones.Pages
         }
 
 
-        public void ShareAdditonalPageAssets(AssetsToShare[] assetsToShare)
+        public void ShareAdditonalPageAssets(IEnumerable<IShareAssets> assetsToShare)
         {
-            var taskFactory = new TaskFactory();
-            var tasks = (from asset in assetsToShare
-                         select taskFactory.StartNew(() => asset.ShareAssets(ControlData), TaskCreationOptions.None)).ToList();
-            Task.WaitAll(tasks.ToArray());
+            try
+            {
+                var taskFactory = new TaskFactory();
+                var tasks = (from asset in assetsToShare
+                             select taskFactory.StartNew(() => asset.Share(), TaskCreationOptions.None)).ToList();
+                Task.WaitAll(tasks.ToArray());
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+           
         }
 
 
@@ -903,14 +912,14 @@ namespace DowJones.Pages
 
 
 
-        public void PublishPage(string pageId, AssetsToShare[] additionalAssets)
+        public void PublishPage(string pageId, IEnumerable<IShareAssets> assetsToShare)
         {
             var page = GetPage(pageId, false, false);
 
             if (page != null && page.ModuleCollection != null)
             {
                 MakePageModulesPublic(page.ModuleCollection);
-                ShareAdditonalPageAssets(additionalAssets);
+                ShareAdditonalPageAssets(assetsToShare);
                 //MakePersonalAlertsPublic(personalAlertIds);
             }
 
@@ -1012,7 +1021,7 @@ namespace DowJones.Pages
                     });
         }
 
-        public void UnpublishPage(string pageId, AssetsToShare[] additionalAssets)
+        public void UnpublishPage(string pageId, IEnumerable<IShareAssets> assetsToShare)
         {
             // get the page, and make he modules private...
             var page = GetPage(pageId, false, false);
@@ -1020,7 +1029,7 @@ namespace DowJones.Pages
             if (page != null && page.ModuleCollection != null)
             {
                 MakePageModulesPrivate(page.ModuleCollection);
-                ShareAdditonalPageAssets(additionalAssets);
+                ShareAdditonalPageAssets(assetsToShare);
             }
 
             SetPageShareProperties(

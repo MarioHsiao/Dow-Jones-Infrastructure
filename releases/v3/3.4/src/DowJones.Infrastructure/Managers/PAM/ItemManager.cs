@@ -11,12 +11,13 @@ using log4net;
 
 namespace DowJones.Managers.PAM
 {
-    public class ItemManager : AbstractAggregationManager 
+    public class ItemManager : AbstractAggregationManager
     {
         private static readonly ILog _log = LogManager.GetLogger(typeof(ItemManager));
-        public ItemManager(IControlData controlData, ITransactionTimer transactionTimer) : base(controlData, transactionTimer)
+        public ItemManager(IControlData controlData, ITransactionTimer transactionTimer)
+            : base(controlData, transactionTimer)
         {
-            
+
         }
         protected override ILog Log
         {
@@ -43,9 +44,9 @@ namespace DowJones.Managers.PAM
                 {
                     Log.Warn("Error setting Item share properties for Item " + itemId, ex);
                 }
-                
+
             }
-            
+
         }
 
         public SetSharePropertiesResponse SetShareProperties(SetSharePropertiesRequest request)
@@ -53,7 +54,7 @@ namespace DowJones.Managers.PAM
             return Process<SetSharePropertiesResponse>(request);
         }
 
-       
+
         private AccessControlScope MapShareScope(GWShareScope gatewayShareScope)
         {
             switch (gatewayShareScope)

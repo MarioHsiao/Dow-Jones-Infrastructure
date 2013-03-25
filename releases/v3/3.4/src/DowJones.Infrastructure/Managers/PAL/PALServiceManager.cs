@@ -14,34 +14,32 @@ using GWShareScope = Factiva.Gateway.Messages.Assets.Pages.V1_0.ShareScope;
 
 namespace DowJones.Managers.PAL
 {
-    public class PALServiceManager : AbstractAggregationManager
+    public class PALServiceManager
     {
         private static readonly ILog _log = LogManager.GetLogger(typeof(PALServiceManager));
-        public PALServiceManager(IControlData controlData, ITransactionTimer transactionTimer = null)
-            : base(controlData, transactionTimer)
+        private const int SAVED_SEARCH_CLASS_ID = 58;
+        private IPALPreferenceServiceProvider Provider { get; set; }
+        public PALServiceManager(IPALPreferenceServiceProvider provider)
         {
-
+            Provider = provider;
         }
-        protected override ILog Log
+        protected ILog Log
         {
             get { return _log; }
         }
 
         public void UpdateSavedSearchScope(IEnumerable<long> savedSearchIds, GWShareScope shareScope)
         {
-            using (var service = ServiceFactory<ServiceObjects.PreferenceItemScopeService>.Create(ControlData))
-            {
-                var itemList = new UpdateItemList();
-                itemList.Id = savedSearchIds.ToArray();
-                itemList.Scope = MapShareScope(shareScope);
-                itemList.ScopeSpecified = true;
-                itemList.IncludeChildAsset = true;
-                itemList.IncludeChildAssetSpecified = true;
-                itemList.ItemClassId = 58;
-                itemList.ItemClassIdSpecified = true;
-                var itemListArr = new UpdateItemList[] {itemList};
-                service.UpdatePreferenceItemScope(itemListArr);
-            }
+
+            var itemList = new UpdateItemList();
+            itemList.Id = savedSearchIds.ToArray();
+            itemList.Scope = MapShareScope(shareScope);
+            itemList.ScopeSpecified = true;
+            itemList.ItemClassId = SAVED_SEARCH_CLASS_ID;
+            itemList.ItemClassIdSpecified = true;
+            var itemListArr = new UpdateItemList[] { itemList };
+            Provider.UpdatePreferenceItemScope(itemListArr);
+
         }
 
 
@@ -71,6 +69,6 @@ namespace DowJones.Managers.PAL
     }
 
 
-    
-    
+
+
 }

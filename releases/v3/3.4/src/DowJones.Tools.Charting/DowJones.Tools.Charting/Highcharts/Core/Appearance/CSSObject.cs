@@ -40,9 +40,14 @@ namespace DowJones.Tools.Charting.Highcharts.Core.Appearance
         public string FontFamily { get; set; }
 
         /// <summary>
-        ///     Specifies the font family for text
+        ///     Specifies the WhiteSpace for text
         /// </summary>
         public string WhiteSpace { get; set; }
+
+        /// <summary>
+        /// Specifies the Cursor
+        /// </summary>
+        public string Cursor { get; set; }
 
         public void CopyStyles(CSSObject model)
         {
@@ -79,6 +84,11 @@ namespace DowJones.Tools.Charting.Highcharts.Core.Appearance
             if (string.IsNullOrEmpty(FontFamily) || overrideValues)
             {
                 FontFamily = model.FontFamily;
+            }
+
+            if (string.IsNullOrEmpty(Cursor) || overrideValues)
+            {
+                Cursor = model.Cursor;
             }
         }
     }
