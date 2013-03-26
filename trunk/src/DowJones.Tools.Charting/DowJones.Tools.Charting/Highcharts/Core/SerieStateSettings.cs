@@ -9,6 +9,9 @@ namespace DowJones.Tools.Charting.Highcharts.Core
     public class SerieStateSettings
     {
         [JsonProperty]
+        public double? Brightness { get; set; }
+
+        [JsonProperty]
         public bool? Enabled { get; set; }
 
         [JsonProperty]
