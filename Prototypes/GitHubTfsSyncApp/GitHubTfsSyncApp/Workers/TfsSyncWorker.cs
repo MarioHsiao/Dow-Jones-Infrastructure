@@ -12,6 +12,7 @@ using System.IO;
 using System.Linq;
 using log4net;
 using GitHubTfsSyncApp.Extensions;
+using GitHubTfsSyncApp.Configuration;
 
 namespace GitHubTfsSyncApp.Workers
 {
@@ -25,7 +26,8 @@ namespace GitHubTfsSyncApp.Workers
 		private readonly GitHubProvider _gitHubProvider;
 		private readonly TfsManager _tfsManager;
 
-        public TfsSyncWorker(string tfsUri, string teamProject, string localWorkspaceRootDir,GitHubAccessConfiguration gitHubAccessConfiguration, ICredentials credentials)
+        public TfsSyncWorker(string tfsUri, string teamProject, string localWorkspaceRootDir,
+                            GitHubAccessConfiguration gitHubAccessConfiguration,FiltersCollection filters, ICredentials credentials)
         {
             _tfsUri = tfsUri;
             _teamProject = teamProject;
@@ -33,7 +35,7 @@ namespace GitHubTfsSyncApp.Workers
             _credentials = credentials;
 
             _gitHubProvider = new GitHubProvider(gitHubAccessConfiguration);
-            _tfsManager = new TfsManager(_tfsUri, _teamProject, new DirectoryInfo(_localWorkspaceRootDir), _credentials);
+            _tfsManager = new TfsManager(_tfsUri, _teamProject, new DirectoryInfo(_localWorkspaceRootDir), filters, _credentials);
         }
 
 		public void Process(IEnumerable<Commit> commits, Repository repository)

@@ -1,12 +1,10 @@
 ﻿using System;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Security.AccessControl;
-using System.Web.Providers.Entities;
 using AttributeRouting.Helpers;
+using GitHubTfsSyncApp.Configuration;
 using GitHubTfsSyncApp.Extensions;
-using GitHubTfsSyncApp.Helpers;
 using GitHubTfsSyncApp.Models;
 using Microsoft.TeamFoundation.Client;
 using Microsoft.TeamFoundation.VersionControl.Client;
@@ -24,21 +22,24 @@ namespace GitHubTfsSyncApp.Workers
 		private readonly TfsTeamProjectCollection _teamProjectCollection;
 		private readonly VersionControlServer _versionControl;
         private readonly NetworkCredential _credential;
+        private readonly FiltersCollection _filter;
 
 
-		/// <summary>
-		/// Initializes a new instance of the <see cref="TfsManager"/> class.
-		/// </summary>
-		/// <param name="tfsUrl">The TFS URL. E.g. http://sbknwstfs1:8080/tfs </param>
-		/// <param name="teamProjectPath">The team project path. E.g. $/Dow Jones Infrastructure </param>
-		/// <param name="workingDir">Local working directory. E.g. C:\Workspaces </param>
-		/// <param name="credentials">Credentials to access TFS</param>
-        public TfsManager(string tfsUrl, string teamProjectPath, DirectoryInfo workingDir, ICredentials credentials)
+	    /// <summary>
+	    /// Initializes a new instance of the <see cref="TfsManager"/> class.
+	    /// </summary>
+	    /// <param name="tfsUrl">The TFS URL. E.g. http://sbknwstfs1:8080/tfs </param>
+	    /// <param name="teamProjectPath">The team project path. E.g. $/Dow Jones Infrastructure </param>
+	    /// <param name="workingDir">Local working directory. E.g. C:\Workspaces </param>
+	    /// <param name="filter"></param>
+	    /// <param name="credentials">Credentials to access TFS</param>
+	    public TfsManager(string tfsUrl, string teamProjectPath, DirectoryInfo workingDir,FiltersCollection filter, ICredentials credentials)
         {
             _tfsUrl = tfsUrl;
             _teamProjectPath = teamProjectPath;
             _workingDir = workingDir;
             _credential = (NetworkCredential)credentials;
+		    _filter = filter;
             _teamProjectCollection = new TfsTeamProjectCollection(new Uri(_tfsUrl), _credential);
             _versionControl = _teamProjectCollection.GetService<VersionControlServer>();
             _versionControl.NonFatalError += OnVersionControlOnNonFatalError;
@@ -130,11 +131,14 @@ namespace GitHubTfsSyncApp.Workers
                 _logger.Info("workspaceMappedPath" + workspaceMappedPath);
 			    foreach (var item in changedItems.Added)
 			    {
+                    if (_filter != null && _filter.Count > 0 && !IsFilterItem(item))
+                        continue;
 			        string filePath = Path.Combine(workspaceMappedPath, item.GitPath);
 			        string directory = Path.GetDirectoryName(filePath);
                     if (directory != null && !Directory.Exists(directory))
                         Directory.CreateDirectory(directory);
 
+                    AddFileSecurity(Path.Combine(workspaceMappedPath, item.GitPath), _credential.Domain + "\\" + _credential.UserName, FileSystemRights.Read | FileSystemRights.ReadAndExecute | FileSystemRights.Write | FileSystemRights.FullControl, AccessControlType.Allow);
 				    File.Copy(item.IncomingFilePath, Path.Combine(workspaceMappedPath, item.GitPath), true);
 			        Workstation.Current.EnsureUpdateWorkspaceInfoCache(_versionControl, _credential.UserName);
                   
@@ -143,6 +147,8 @@ namespace GitHubTfsSyncApp.Workers
 
 			    foreach (var item in changedItems.Modified)
 			    {
+                    if (_filter != null && _filter.Count > 0 && !IsFilterItem(item))
+                        continue;
                     _logger.Info("adding file security");
                     AddFileSecurity(Path.Combine(workspaceMappedPath, item.GitPath), _credential.Domain + "\\" + _credential.UserName, FileSystemRights.Read | FileSystemRights.ReadAndExecute | FileSystemRights.Write | FileSystemRights.FullControl, AccessControlType.Allow);
                     _logger.Info("editing files");
@@ -155,10 +161,10 @@ namespace GitHubTfsSyncApp.Workers
 
 	            foreach (var item in changedItems.Deleted)
 	            {
+                    if (_filter != null && _filter.Count > 0 && !IsFilterItem(item))
+                        continue;
                     _logger.Info("adding file security");
                     AddFileSecurity(Path.Combine(workspaceMappedPath, item.GitPath), _credential.Domain + "\\" + _credential.UserName, FileSystemRights.Read | FileSystemRights.ReadAndExecute | FileSystemRights.Write | FileSystemRights.FullControl, AccessControlType.Allow);
-                    string filePath = Path.Combine(workspaceMappedPath, item.GitPath);
-                 
                     _logger.Info("deleting files");
 	                workspace.PendDelete(Path.Combine(workspaceMappedPath, item.GitPath));
 
@@ -178,9 +184,31 @@ namespace GitHubTfsSyncApp.Workers
             }
 		}
 
-        private bool IsDirectoryEmpty(string path)
+        /// <summary>
+        /// If filter items are configured then user can checkin only against these items and
+        /// for each filtered item there is a corresponding TFS item
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
+        private bool IsFilterItem(Models.WorkspaceItem item)
         {
-            return !Directory.EnumerateFileSystemEntries(path).Any();
+            bool isFilterItemConfigured = false;
+            if (item != null && _filter != null && _filter.Count > 0)
+            {
+                foreach (FilterDetail filterItem in _filter)
+                {
+                    if (filterItem.GitSource.Equals(Path.GetDirectoryName(item.GitPath),
+                                                                     StringComparison.CurrentCultureIgnoreCase))
+                    {
+                        _logger.Info("item is getting filtered " + filterItem.GitSource);
+                        _logger.Info("item is getting filtered " + filterItem.TfsTarget);
+                        item.GitPath = item.GitPath.Replace(filterItem.GitSource, filterItem.TfsTarget);
+                        isFilterItemConfigured = true;
+                        break;
+                    }
+                }
+            }
+            return isFilterItemConfigured;
         }
 
 		private void ResolveConflicts(Workspace workspace)

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Net;
 using System.Web.Http;
@@ -44,8 +45,9 @@ namespace GitHubTfsSyncApp.Controllers
                                     projDetails.GitHubClientId,
                                     projDetails.GitHubClientSecret,
                                     ConfigurationManager.AppSettings.Get("GitHub:ApiEndPoint")),
+                                    projDetails.Filters,
                                     new NetworkCredential(projDetails.TfsUserName, projDetails.TfsPassword)
-                                  );
+                                  ); 
 
             worker.Process(response.Commits, response.Repository);
             //new Task(() => worker.Process(response.Commits, response.Repository)).Start();

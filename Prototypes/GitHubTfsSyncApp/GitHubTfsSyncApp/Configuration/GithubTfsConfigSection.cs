@@ -85,6 +85,72 @@ namespace GitHubTfsSyncApp.Configuration
             get { return (string)this["tfsUrl"]; }
             set { this["tfsUrl"] = value; }
         }
+
+        [ConfigurationProperty("filters")]
+        public FiltersCollection Filters
+        {
+            get { return (FiltersCollection)this["filters"]; }
+        }
+    }
+
+    public class FilterDetail:ConfigurationElement
+    {
+        [ConfigurationProperty("type")]
+        public string Type
+        {
+            get { return (string)this["type"]; }
+            set { this["type"] = value; }
+        }
+
+        [ConfigurationProperty("gitSource")]
+        public string GitSource
+        {
+            get { return (string)this["gitSource"]; }
+            set { this["gitSource"] = value; }
+        }
+
+        [ConfigurationProperty("tfsTarget")]
+        public string TfsTarget
+        {
+            get { return (string)this["tfsTarget"]; }
+            set { this["tfsTarget"] = value; }
+        }
+    }
+
+    public class FiltersCollection : ConfigurationElementCollection
+    {
+        [ConfigurationProperty("key", IsRequired = true)]
+        public string Key
+        {
+            get { return (string)this["key"]; }
+            set { this["key"] = value; }
+        }
+
+        public FilterDetail this[int index]
+        {
+            get
+            {
+                return base.BaseGet(index) as FilterDetail;
+            }
+            set
+            {
+                if (base.BaseGet(index) != null)
+                {
+                    base.BaseRemoveAt(index);
+                }
+                this.BaseAdd(index, value);
+            }
+        }
+
+        protected override ConfigurationElement CreateNewElement()
+        {
+            return new FilterDetail();
+        }
+
+        protected override object GetElementKey(ConfigurationElement element)
+        {
+            return ((FilterDetail)element).GitSource;
+        }
     }
 
     public class ProjectsCollection : ConfigurationElementCollection
