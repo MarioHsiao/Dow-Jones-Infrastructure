@@ -32,22 +32,12 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Error" nillable="true" type="tns:Error" />
-  <xs:complexType name="ArrayOfUpdateItemList">
+  <xs:complexType name="ArrayOfItemList">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="UpdateItemList" nillable="true" type="tns:UpdateItemList" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ItemList" nillable="true" type="tns:ItemList" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="ArrayOfUpdateItemList" nillable="true" type="tns:ArrayOfUpdateItemList" />
-  <xs:complexType name="UpdateItemList">
-    <xs:complexContent mixed="false">
-      <xs:extension base="tns:ItemList">
-        <xs:sequence>
-          <xs:element minOccurs="0" name="Scope" type="tns:ItemScope" />
-        </xs:sequence>
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:element name="UpdateItemList" nillable="true" type="tns:UpdateItemList" />
+  <xs:element name="ArrayOfItemList" nillable="true" type="tns:ArrayOfItemList" />
   <xs:complexType name="ItemList">
     <xs:sequence>
       <xs:element xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Id" nillable="true" type="q2:ArrayOflong" />
@@ -55,14 +45,6 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ItemList" nillable="true" type="tns:ItemList" />
-  <xs:simpleType name="ItemScope">
-    <xs:restriction base="xs:string">
-      <xs:enumeration value="Personal" />
-      <xs:enumeration value="Account" />
-      <xs:enumeration value="Everyone" />
-    </xs:restriction>
-  </xs:simpleType>
-  <xs:element name="ItemScope" nillable="true" type="tns:ItemScope" />
   <xs:complexType name="ItemScopeResult">
     <xs:sequence>
       <xs:element minOccurs="0" name="ResultSet" nillable="true" type="tns:ArrayOfItem" />
@@ -89,4 +71,28 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Item" nillable="true" type="tns:Item" />
+  <xs:simpleType name="ItemScope">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Personal" />
+      <xs:enumeration value="Account" />
+      <xs:enumeration value="Everyone" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="ItemScope" nillable="true" type="tns:ItemScope" />
+  <xs:complexType name="ArrayOfUpdateItemList">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="UpdateItemList" nillable="true" type="tns:UpdateItemList" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfUpdateItemList" nillable="true" type="tns:ArrayOfUpdateItemList" />
+  <xs:complexType name="UpdateItemList">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ItemList">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Scope" type="tns:ItemScope" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="UpdateItemList" nillable="true" type="tns:UpdateItemList" />
 </xs:schema>

@@ -24,17 +24,29 @@
   <wsdl:message name="StructuredSearchResponse_Headers">
     <wsdl:part xmlns:q4="urn:emg:platform:v1_0" name="ControlData" element="q4:ControlData" />
   </wsdl:message>
-  <wsdl:message name="UpdatePreferenceItemScopeRequest">
-    <wsdl:part xmlns:q5="urn:factiva:PAL:PreferenceItemScopeService:V1_0" name="parameters" element="q5:UpdatePreferenceItemScopeRequest" />
+  <wsdl:message name="PreferenceItemScopeRequest">
+    <wsdl:part xmlns:q5="urn:factiva:PAL:PreferenceItemScopeService:V1_0" name="parameters" element="q5:PreferenceItemScopeRequest" />
   </wsdl:message>
-  <wsdl:message name="UpdatePreferenceItemScopeRequest_Headers">
+  <wsdl:message name="PreferenceItemScopeRequest_Headers">
     <wsdl:part xmlns:q6="urn:emg:platform:v1_0" name="ControlData" element="q6:ControlData" />
   </wsdl:message>
-  <wsdl:message name="PreferenceItemScopeResponse">
-    <wsdl:part xmlns:q7="urn:factiva:PAL:PreferenceItemScopeService:V1_0" name="parameters" element="q7:PreferenceItemScopeResponse" />
+  <wsdl:message name="GetPreferenceItemScopeResponse">
+    <wsdl:part xmlns:q7="urn:factiva:PAL:PreferenceItemScopeService:V1_0" name="parameters" element="q7:GetPreferenceItemScopeResponse" />
   </wsdl:message>
-  <wsdl:message name="PreferenceItemScopeResponse_Headers">
+  <wsdl:message name="GetPreferenceItemScopeResponse_Headers">
     <wsdl:part xmlns:q8="urn:emg:platform:v1_0" name="ControlData" element="q8:ControlData" />
+  </wsdl:message>
+  <wsdl:message name="UpdatePreferenceItemScopeRequest">
+    <wsdl:part xmlns:q9="urn:factiva:PAL:PreferenceItemScopeService:V1_0" name="parameters" element="q9:UpdatePreferenceItemScopeRequest" />
+  </wsdl:message>
+  <wsdl:message name="UpdatePreferenceItemScopeRequest_Headers">
+    <wsdl:part xmlns:q10="urn:emg:platform:v1_0" name="ControlData" element="q10:ControlData" />
+  </wsdl:message>
+  <wsdl:message name="UpdatePreferenceItemScopeResponse">
+    <wsdl:part xmlns:q11="urn:factiva:PAL:PreferenceItemScopeService:V1_0" name="parameters" element="q11:UpdatePreferenceItemScopeResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdatePreferenceItemScopeResponse_Headers">
+    <wsdl:part xmlns:q12="urn:emg:platform:v1_0" name="ControlData" element="q12:ControlData" />
   </wsdl:message>
   <wsdl:portType name="ISavedSearchService">
     <wsdl:operation name="GetStructuredSearch">
@@ -43,9 +55,13 @@
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="IPreferenceItemScopeService">
+    <wsdl:operation name="GetPreferenceItemScope">
+      <wsdl:input wsaw:Action="urn:factiva:PAL:PreferenceItemScopeService:V1_0:GetPreferenceItemScope" name="PreferenceItemScopeRequest" message="tns:PreferenceItemScopeRequest" />
+      <wsdl:output wsaw:Action="urn:factiva:PAL/IPreferenceItemScopeService/GetPreferenceItemScopeResponse" name="GetPreferenceItemScopeResponse" message="tns:GetPreferenceItemScopeResponse" />
+    </wsdl:operation>
     <wsdl:operation name="UpdatePreferenceItemScope">
       <wsdl:input wsaw:Action="urn:factiva:PAL:PreferenceItemScopeService:V1_0:UpdatePreferenceItemScope" name="UpdatePreferenceItemScopeRequest" message="tns:UpdatePreferenceItemScopeRequest" />
-      <wsdl:output wsaw:Action="urn:factiva:PAL/IPreferenceItemScopeService/UpdatePreferenceItemScopeResponse" name="PreferenceItemScopeResponse" message="tns:PreferenceItemScopeResponse" />
+      <wsdl:output wsaw:Action="urn:factiva:PAL/IPreferenceItemScopeService/UpdatePreferenceItemScopeResponse" name="UpdatePreferenceItemScopeResponse" message="tns:UpdatePreferenceItemScopeResponse" />
     </wsdl:operation>
   </wsdl:portType>
 </wsdl:definitions>
