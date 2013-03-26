@@ -107,7 +107,7 @@
                 }
             }
 
-            $(document).mousemove(function (e) {
+            $(document).unbind('mousemove.popup-balloon').bind('mousemove.popup-balloon', function (e) {
                 self.mouseX = e.pageX;
                 self.mouseY = e.pageY;
 
@@ -130,9 +130,10 @@
             });
 
             window.setTimeout(function () {
-                $("body").bind('mousedown', function (e) {
+                $("body").unbind('mousedown.popup-balloon').bind('mousedown.popup-balloon', function (e) {
                     if (!$(e.target).data("popbox")) {
-                        self.hide();
+                        $('.popup-balloon').remove();
+                        $("body").unbind('mousedown.popup-balloon');
                     }
                     e.stopPropagation();
                 });
@@ -335,6 +336,9 @@
                 popbox.addClass('with-arrow');
             }
 
+            //Hide previously opened popups
+            $('.popup-balloon').remove();
+
             $('body').append(popbox);
 
             // Calculate/Fix Size
@@ -432,7 +436,7 @@
                 var $selector = $('.popup-balloon');
             }
 
-            if ($selector) {
+            if ($selector.length) {
 
                 // Remove all menu instances
                 if (o.animateHideEnabled && !hideAll) {
@@ -444,7 +448,6 @@
                         $(this).data("controller").popupBalloon("hide");
                     });
                 }
-
             }
         },
 
