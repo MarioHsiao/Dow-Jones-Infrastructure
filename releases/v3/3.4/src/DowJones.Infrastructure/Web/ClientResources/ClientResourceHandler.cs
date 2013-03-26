@@ -270,7 +270,7 @@ namespace DowJones.Web
 
 			var processors = clientResourceProcessors
 				.OrderBy(x => x.Order)
-				.ThenBy(x => x.ProcessorKind).ToArray();
+				.OrderBy(x => x.ProcessorKind).ToArray();
 
 			foreach (var processor in processors)
 			{
