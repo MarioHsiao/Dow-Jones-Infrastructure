@@ -89,7 +89,16 @@ namespace DowJones.Tools.Charting.Tests
                                                                       Click = "triggerCount(event.point.id);return false",
                                                                       LegendItemClick = "triggerCount(event.target.options.id);return false;"
                                                                   }
+                                                },
+                                                States = new SerieStates
+                                                {
+                                                    Hover = new SerieStateSettings
+                                                    {
+                                                        Brightness = 0.5
+                                                    }
                                                 }
+
+
                                             },
                                         Title =
                                             {
@@ -99,6 +108,8 @@ namespace DowJones.Tools.Charting.Tests
                                             {
                                                 Enabled = true,
                                                 UseHtml = true,
+                                                ItemMarginBottom = 10,
+                                                ItemMarginTop = 10
                                             },
                                         XAxis = new XAxis(new[]
                                                               {
