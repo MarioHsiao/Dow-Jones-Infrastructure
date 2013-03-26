@@ -13185,26 +13185,29 @@ Series.prototype = {
 	/**
 	 * Initialize and perform group inversion on series.group and series.trackerGroup
 	 */
-	invertGroups: function () {
-		var series = this,
-			chart = series.chart;
-		
-		// A fixed size is needed for inversion to work
-		function setInvert() {			
-			var size = {
-				width: series.yAxis.len,
-				height: series.xAxis.len
-			};
-			
-			each(['group', 'trackerGroup', 'markerGroup'], function (groupName) {
-				if (series[groupName]) {
-					series[groupName].attr(size).invert();
-				}
-			});
-		}
+	invertGroups: function() {
+	    var series = this,
+	        chart = series.chart;
 
-		addEvent(chart, 'resize', setInvert); // do it on resize
-		addEvent(series, 'destroy', function () {
+	    // A fixed size is needed for inversion to work
+
+	    function setInvert() {
+	        var size = {
+	            width: series.yAxis.len,
+	            height: series.xAxis.len
+	        };
+
+	        each(['group', 'trackerGroup', 'markerGroup'], function(groupName) {
+	            if (series[groupName]) {
+	                series[groupName].attr(size).invert();
+	            }
+	        });
+	    }
+
+	    try {
+	        addEvent(chart, 'resize', setInvert); // do it on resize
+	    } catch(e) {}
+	    addEvent(series, 'destroy', function () {
 			removeEvent(chart, 'resize', setInvert);
 		});
 
