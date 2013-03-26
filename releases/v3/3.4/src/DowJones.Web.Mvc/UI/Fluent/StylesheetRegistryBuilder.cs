@@ -17,7 +17,7 @@ namespace DowJones.Web.Mvc.UI
 
         public virtual StylesheetRegistryBuilder Add(string selector, string style)
         {
-            PageStyle pageStyle = new PageStyle { Selector = selector, Style = style };
+            var pageStyle = new PageStyle { Selector = selector, Style = style };
             _stylesheetRegistry.AddPageStyle(pageStyle);
             return this;
         }

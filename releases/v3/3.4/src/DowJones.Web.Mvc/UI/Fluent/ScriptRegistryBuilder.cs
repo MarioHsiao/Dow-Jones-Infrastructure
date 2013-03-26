@@ -46,7 +46,7 @@ namespace DowJones.Web.Mvc.UI
         {
             var resourceDependencyLevel = dependencyLevel.GetValueOrDefault(ClientResourceDependencyLevel.Independent);
 
-            EmbeddedClientResource clientResource = new EmbeddedClientResource(targetAssembly, resourceName, ClientResourceKind.Script, resourceDependencyLevel);
+            var clientResource = new EmbeddedClientResource(targetAssembly, resourceName, ClientResourceKind.Script, resourceDependencyLevel);
 
             return Include(clientResource);
         }
@@ -177,7 +177,7 @@ namespace DowJones.Web.Mvc.UI
             return this;
         }
 
-        [Obsolete("Moved to common.js - explicit inclue no longer required")]
+        [Obsolete("Moved to common.js - explicit include no longer required")]
         public virtual ScriptRegistryBuilder WithDateFormat(bool enabled = true)
         {
             return this;

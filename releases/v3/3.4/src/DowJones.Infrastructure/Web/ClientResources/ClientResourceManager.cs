@@ -62,11 +62,9 @@ namespace DowJones.Web
 
         public string GenerateUrl(IEnumerable<ClientResource> resources, CultureInfo culture)
         {
-            IEnumerable<string> aliases = resources.Select(resource => this.Alias(resource));
-            string combinedAliases = string.Join(ResourceNameDelimiter, aliases);
-
-            string url = UrlResolver(combinedAliases, culture);
-
+            var aliases = resources.Select(resource => this.Alias(resource));
+            var combinedAliases = string.Join(ResourceNameDelimiter, aliases);
+            var url = UrlResolver(combinedAliases, culture);
             return url;
         }
 
@@ -159,7 +157,8 @@ namespace DowJones.Web
             if (value != key)
             {
                 try { cache.Add(key, value); }
-                catch { }
+                catch
+                { }
             }
 
             return value;

@@ -35,9 +35,9 @@ namespace DowJones.Web
 		public static Func<HttpContextBase, bool> IsClientCachingEnabled =
 			context => !context.DebugEnabled();
 
-		public static Func<string> CacheTokenFactory = () => _cachingToken.Value;
+		public static Func<string> CacheTokenFactory = () => CachingToken.Value;
 
-		private static readonly Lazy<string> _cachingToken = new Lazy<string>(GetCachingToken);
+		private static readonly Lazy<string> CachingToken = new Lazy<string>(GetCachingToken);
 
 		/// <summary>
 		/// Function used to determine the LastModifiedTimestamp of a request
@@ -98,17 +98,27 @@ namespace DowJones.Web
 			if (!resourceId.Contains(";"))
 			{
 				if (resourceId.StartsWith("http", true, culture))
-					return resourceId;
+				{
+				    return resourceId;
+				}
+
 				if (resourceId.StartsWith("~/"))
-					return VirtualPathUtility.ToAbsolute(resourceId);
+				{
+				    return string.Format("{0}?{1}={2}",
+				                         VirtualPathUtility.ToAbsolute(resourceId),
+				                         CachingTokenKey,
+				                         CacheTokenFactory()
+				        );
+				}
 			}
 
+		    var tResourceId = HttpUtility.UrlEncode(resourceId);
 			var relativeUrl = string.Format("{0}?{1}={2}&{3}={4}&{5}={6}",
-									Settings.Default.ClientResourceHandlerPath,
-									LanguageKey, MapLanguageKey(culture),
-									ClientResourceIDKey, HttpUtility.UrlEncode(resourceId).Replace("%3b", ";"),
-									CachingTokenKey, CacheTokenFactory()
-								);
+			                                Settings.Default.ClientResourceHandlerPath,
+			                                LanguageKey, MapLanguageKey(culture),
+			                                ClientResourceIDKey, tResourceId != null ? tResourceId.Replace("%3b", ";") : string.Empty,
+			                                CachingTokenKey, CacheTokenFactory()
+			    );
 
 			if (debug == true || context.DebugEnabled())
 				relativeUrl += "&debug=true";
@@ -179,7 +189,6 @@ namespace DowJones.Web
 
 			context.Response.Clear();
 			context.Response.Buffer = true;
-
 			RenderClientResources(context, resourceId, culture);
 		}
 
@@ -261,7 +270,7 @@ namespace DowJones.Web
 
 			var processors = clientResourceProcessors
 				.OrderBy(x => x.Order)
-				.OrderBy(x => x.ProcessorKind).ToArray();
+				.ThenBy(x => x.ProcessorKind).ToArray();
 
 			foreach (var processor in processors)
 			{

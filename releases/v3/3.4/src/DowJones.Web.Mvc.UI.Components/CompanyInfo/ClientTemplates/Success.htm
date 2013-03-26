@@ -17,7 +17,7 @@
 </div>
 <% } else if(options.enableCompanySnapshotLink) { %>
     <div class="company-overview">
-        <% if(companyInfo.keyFinancialData == null) { %><%= Token('companySnapshotPre') %> <% } %><a class="company-snapshot" href="javascript:void(0);"><%= Token('companySnapshot') %></a><% if(companyInfo.keyFinancialData == null) { %> <%= Token('companySnapshotPost') %><% } %>
+        <a class="company-snapshot" href="javascript:void(0);"><%= Token('companySnapshot') %></a>
     </div><% }
 if(companyInfo.keyFinancialData != null) { 
     var keyFinancialData = companyInfo.keyFinancialData;
