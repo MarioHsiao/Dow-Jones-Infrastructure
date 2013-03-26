@@ -45,6 +45,40 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ItemList" nillable="true" type="tns:ItemList" />
+  <xs:complexType name="ItemScopeResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ResultSet" nillable="true" type="tns:ArrayOfItem" />
+      <xs:element minOccurs="0" name="Status" nillable="true" type="tns:Error" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ItemScopeResult" nillable="true" type="tns:ItemScopeResult" />
+  <xs:complexType name="ArrayOfItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Item" nillable="true" type="tns:Item" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfItem" nillable="true" type="tns:ArrayOfItem" />
+  <xs:complexType name="Item">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChildItem" nillable="true" type="tns:ArrayOfItem" />
+      <xs:element minOccurs="0" name="GroupName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" type="xs:long" />
+      <xs:element minOccurs="0" name="IsAccountItem" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ItemClassId" type="xs:int" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Scope" type="tns:ItemScope" />
+      <xs:element minOccurs="0" name="Status" nillable="true" type="tns:Error" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Item" nillable="true" type="tns:Item" />
+  <xs:simpleType name="ItemScope">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Personal" />
+      <xs:enumeration value="Account" />
+      <xs:enumeration value="Everyone" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="ItemScope" nillable="true" type="tns:ItemScope" />
   <xs:complexType name="ArrayOfUpdateItemList">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="UpdateItemList" nillable="true" type="tns:UpdateItemList" />
@@ -61,12 +95,4 @@
     </xs:complexContent>
   </xs:complexType>
   <xs:element name="UpdateItemList" nillable="true" type="tns:UpdateItemList" />
-  <xs:simpleType name="ItemScope">
-    <xs:restriction base="xs:string">
-      <xs:enumeration value="Personal" />
-      <xs:enumeration value="Account" />
-      <xs:enumeration value="Everyone" />
-    </xs:restriction>
-  </xs:simpleType>
-  <xs:element name="ItemScope" nillable="true" type="tns:ItemScope" />
 </xs:schema>

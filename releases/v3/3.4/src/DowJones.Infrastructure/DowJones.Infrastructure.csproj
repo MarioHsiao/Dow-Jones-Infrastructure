@@ -1019,6 +1019,9 @@
       <LastGenOutput>SocialMedia.Designer.cs</LastGenOutput>
     </None>
     <None Include="Web References\PALService\FunctionDispatcher.wsdl" />
+    <None Include="Web References\PALService\ItemScopeResult.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
     <None Include="Web References\PALService\PALService.wsdl" />
     <None Include="Web References\PALService\PALService.xsd">
       <SubType>Designer</SubType>

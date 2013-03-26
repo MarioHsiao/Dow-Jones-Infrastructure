@@ -1,5 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://Factiva.ServiceModel" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://Factiva.ServiceModel" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
-  <wsdl:types />
-  <wsdl:portType name="IFactivaServiceRequestProcessor" />
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="urn:factiva:PAL" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:factiva:PAL" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="urn:factiva:PAL/Imports">
+      <xsd:import schemaLocation="http://fdevweb3.win.dowjones.net/PALService?xsd=xsd0" namespace="urn:factiva:PAL:SavedSearchService:V1_0" />
+      <xsd:import schemaLocation="http://fdevweb3.win.dowjones.net/PALService?xsd=xsd3" namespace="urn:emg:platform:v1_0" />
+      <xsd:import schemaLocation="http://fdevweb3.win.dowjones.net/PALService?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://fdevweb3.win.dowjones.net/PALService?xsd=xsd2" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import schemaLocation="http://fdevweb3.win.dowjones.net/PALService?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/Factiva.ServiceModel" />
+      <xsd:import schemaLocation="http://fdevweb3.win.dowjones.net/PALService?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/PALService.Model" />
+      <xsd:import schemaLocation="http://fdevweb3.win.dowjones.net/PALService?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/Factiva.Gateway.Messages.Search.V2_0" />
+      <xsd:import schemaLocation="http://fdevweb3.win.dowjones.net/PALService?xsd=xsd7" namespace="urn:factiva:PAL:PreferenceItemScopeService:V1_0" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="StructuredSearchRequest">
+    <wsdl:part xmlns:q1="urn:factiva:PAL:SavedSearchService:V1_0" name="parameters" element="q1:StructuredSearchRequest" />
+  </wsdl:message>
+  <wsdl:message name="StructuredSearchRequest_Headers">
+    <wsdl:part xmlns:q2="urn:emg:platform:v1_0" name="ControlData" element="q2:ControlData" />
+  </wsdl:message>
+  <wsdl:message name="StructuredSearchResponse">
+    <wsdl:part xmlns:q3="urn:factiva:PAL:SavedSearchService:V1_0" name="parameters" element="q3:StructuredSearchResponse" />
+  </wsdl:message>
+  <wsdl:message name="StructuredSearchResponse_Headers">
+    <wsdl:part xmlns:q4="urn:emg:platform:v1_0" name="ControlData" element="q4:ControlData" />
+  </wsdl:message>
+  <wsdl:message name="PreferenceItemScopeRequest">
+    <wsdl:part xmlns:q5="urn:factiva:PAL:PreferenceItemScopeService:V1_0" name="parameters" element="q5:PreferenceItemScopeRequest" />
+  </wsdl:message>
+  <wsdl:message name="PreferenceItemScopeRequest_Headers">
+    <wsdl:part xmlns:q6="urn:emg:platform:v1_0" name="ControlData" element="q6:ControlData" />
+  </wsdl:message>
+  <wsdl:message name="GetPreferenceItemScopeResponse">
+    <wsdl:part xmlns:q7="urn:factiva:PAL:PreferenceItemScopeService:V1_0" name="parameters" element="q7:GetPreferenceItemScopeResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPreferenceItemScopeResponse_Headers">
+    <wsdl:part xmlns:q8="urn:emg:platform:v1_0" name="ControlData" element="q8:ControlData" />
+  </wsdl:message>
+  <wsdl:message name="UpdatePreferenceItemScopeRequest">
+    <wsdl:part xmlns:q9="urn:factiva:PAL:PreferenceItemScopeService:V1_0" name="parameters" element="q9:UpdatePreferenceItemScopeRequest" />
+  </wsdl:message>
+  <wsdl:message name="UpdatePreferenceItemScopeRequest_Headers">
+    <wsdl:part xmlns:q10="urn:emg:platform:v1_0" name="ControlData" element="q10:ControlData" />
+  </wsdl:message>
+  <wsdl:message name="UpdatePreferenceItemScopeResponse">
+    <wsdl:part xmlns:q11="urn:factiva:PAL:PreferenceItemScopeService:V1_0" name="parameters" element="q11:UpdatePreferenceItemScopeResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdatePreferenceItemScopeResponse_Headers">
+    <wsdl:part xmlns:q12="urn:emg:platform:v1_0" name="ControlData" element="q12:ControlData" />
+  </wsdl:message>
+  <wsdl:portType name="ISavedSearchService">
+    <wsdl:operation name="GetStructuredSearch">
+      <wsdl:input wsaw:Action="urn:factiva:PAL:SavedSearchService:V1_0:GetStructuredSearch" name="StructuredSearchRequest" message="tns:StructuredSearchRequest" />
+      <wsdl:output wsaw:Action="urn:factiva:PAL/ISavedSearchService/GetStructuredSearchResponse" name="StructuredSearchResponse" message="tns:StructuredSearchResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="IPreferenceItemScopeService">
+    <wsdl:operation name="GetPreferenceItemScope">
+      <wsdl:input wsaw:Action="urn:factiva:PAL:PreferenceItemScopeService:V1_0:GetPreferenceItemScope" name="PreferenceItemScopeRequest" message="tns:PreferenceItemScopeRequest" />
+      <wsdl:output wsaw:Action="urn:factiva:PAL/IPreferenceItemScopeService/GetPreferenceItemScopeResponse" name="GetPreferenceItemScopeResponse" message="tns:GetPreferenceItemScopeResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePreferenceItemScope">
+      <wsdl:input wsaw:Action="urn:factiva:PAL:PreferenceItemScopeService:V1_0:UpdatePreferenceItemScope" name="UpdatePreferenceItemScopeRequest" message="tns:UpdatePreferenceItemScopeRequest" />
+      <wsdl:output wsaw:Action="urn:factiva:PAL/IPreferenceItemScopeService/UpdatePreferenceItemScopeResponse" name="UpdatePreferenceItemScopeResponse" message="tns:UpdatePreferenceItemScopeResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
 </wsdl:definitions>
