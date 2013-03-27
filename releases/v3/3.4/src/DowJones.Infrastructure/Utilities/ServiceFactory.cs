@@ -56,7 +56,16 @@ namespace DowJones.Utilities
                 UserCredentialData = new UserCredentialData
                 {
                     SessionId = tempControlData.SessionID,
-                }
+                    UserId = tempControlData.UserID,
+                    AccountId = tempControlData.AccountId,
+                    Namespace =  tempControlData.ProductID,
+                    IpAddress =  tempControlData.IpAddress
+                },
+                UserCommerceData = new UserCommerceData
+                {
+                    ClientType = tempControlData.ClientType,
+                    AccessPointCode = tempControlData.AccessPointCode
+                },
             };
 
             if (!string.IsNullOrWhiteSpace(tempControlData.CacheKey))
