@@ -680,6 +680,7 @@
                 return;
             }
             var self = this,
+
 	            popupOffset = $callout.offset(),
 	            popupHeight = $callout.outerHeight(),
 	            winH = $(window).height(),
