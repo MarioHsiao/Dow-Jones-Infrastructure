@@ -675,8 +675,11 @@
         },
 
         scrollDocument: function (callback) {
+            var $callout = this.popbox;
+            if (!$callout.is(':visible')) {
+                return;
+            }
             var self = this,
-				$callout = this.popbox,
 	            popupOffset = $callout.offset(),
 	            popupHeight = $callout.outerHeight(),
 	            winH = $(window).height(),
