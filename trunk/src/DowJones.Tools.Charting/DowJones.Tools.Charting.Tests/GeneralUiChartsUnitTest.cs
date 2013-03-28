@@ -63,7 +63,7 @@ namespace DowJones.Tools.Charting.Tests
                                             {
                                                 Height = 150,
                                                 Width = 325,
-                                                Style = new CSSObject { Cursor = "pointer"}
+                                                Style = new CSSObject { Cursor = "pointer", LineHeight = "12"}
                                             },
                                         Credits =
                                             {
