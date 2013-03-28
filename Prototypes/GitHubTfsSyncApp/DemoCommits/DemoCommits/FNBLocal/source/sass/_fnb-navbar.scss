@@ -1,0 +1,59 @@
+// FNB Main Navbar
+//---
+
+.fnb-navbar {
+	margin: 0;
+	border-bottom: solid 5px $factivaBlue;
+
+	.brand{
+		text-transform: uppercase;
+		text-shadow: none;
+		color: #fff;
+		@include font-sans(14px, semibold, $baseLineHeight, 1px);
+		padding: 8px 6px 9px 0;
+		float: left;
+		&:hover{
+			text-decoration: none;
+		}
+		span{
+			@include font-family-sans-light();
+			margin-left: 4px;
+			position: relative; 
+			top: -1px;
+		}
+	}
+	
+	.newsletter-name {
+		@include font-sans(14px, light, $baseLineHeight, 1px);
+		float: left;
+		display: block;
+		padding: 8px 0 9px 0;
+	}
+		
+	.navbar-inner {
+		background: #232323;
+		@include reset-filter();
+		border: none;
+		@include border-radius(0);
+		color: #fff;
+		min-height: auto;
+	}
+	
+	.main-menu {
+		margin-right: 10px;
+		.btn {
+			border: solid 1px $black;
+			background: #343434;
+			padding: 3px 6px 1px;
+			margin-top: 5px;
+		}
+		&.open > .btn {
+			background-color: $factivaBlue;
+		}
+
+	}
+}
+
+.welcome-pg .fnb-navbar {
+	border: none;
+}

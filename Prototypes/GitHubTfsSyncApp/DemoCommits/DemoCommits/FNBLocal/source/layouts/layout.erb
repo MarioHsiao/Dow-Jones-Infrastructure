@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7]><html class="no-js iem7 oldie"><![endif]-->
+<!--[if lt IE 7]><html class="no-js lt-ie7 oldie" lang="en"><![endif]-->
+<!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie8 oldie" lang="en"><![endif]-->
+<!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9 oldie" lang="en"><![endif]-->
+<!--[if gt IE 8]><html class="no-js" lang="en"><!--<![endif]-->
+<!--[if (gte IE 9)|(gt IEMobile 7)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+	<head>
+    <!-- Global head tags -->
+    <meta charset='utf-8' />
+    <meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible' />
+    
+    <!-- Page title is defined per page -->
+    <title><%= current_page.data.pageTitle %></title>
+    
+    <!-- Page descrtiption is defined per page -->
+    <meta content="<%= current_page.data.pageDesc %>" name='description' />
+	  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Begin Global Factiva javascripts -->
+    <%= javascript_include_tag "vendor/modernizr-2.6.2.min" %>
+    
+    <!-- Global Template Styles -->
+    <%= stylesheet_link_tag "http://snapshot.factiva.com/Content/styles/css/GlobalLayout.min.css","http://global.factiva.com/css/newheader.css" %>
+    
+    <!-- Project specific styles -->
+    <%= stylesheet_link_tag "fnb-styles" %>
+        
+    <!--[if IE 7]><%= stylesheet_link_tag "font-awesome-ie7.min.css" %><![endif]-->
+  </head>
+  <body class="<%= current_page.data.bodyClass %>">
+	  <!--[if lt IE 7]>
+	      <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+	  <![endif]-->
+  	
+  	<!-- WSJ Hat -->
+  	<%= partial "layouts/partials/global/hat" %>
+  	
+  	<!-- Factiva Global Header -->
+  	<%= partial "layouts/partials/global/header" %>
+  	
+    <!-- Begin Factiva Main Content -->
+    <%= yield %>
+  	
+  	<!-- Global Footer -->
+  	<%= partial "layouts/partials/global/footer" %>
+
+    <!-- Define project-specific scripts at the end of the footer -->
+    
+    <!-- End Factiva Main Content -->
+
+    <!-- Include jQuery from google cdn -->
+    <%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js" %>
+    <!-- if cdn fails, include jQuery from local directory -->
+    <script type='text/javascript'>
+      //<![CDATA[
+        window.jQuery || document.write('<script src="../javascripts/vendor/jquery-1.9.0.min.js"><\/script>')
+      //]]>
+    </script>
+    <!-- Include jQuery UI Custom Build -->
+    <%= javascript_include_tag "vendor/jquery-ui-1.10.1.custom.min" %>
+    <!-- Debug script -->
+    <%= javascript_include_tag "plugins" %>
+    <!-- Project specific scripts -->
+    <%= javascript_include_tag "application" %>
+    <%= yield_content :scripts %>
+  </body>
+</html>

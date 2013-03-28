@@ -1,0 +1,13 @@
+// Prototype Specific Styles
+//---
+
+.welcome-pg {
+	.brand span,
+	.newsletter-name,
+	.nav {
+		display: none;
+	}
+	.fnb-navbar {
+		border: none;
+	}
+}

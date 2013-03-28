@@ -1,0 +1,92 @@
+---
+pageTitle: "Factiva Newsletter Builder" #string
+pageDesc: "This is a page description" #string
+bodyClass: "welcome-pg" #string
+---
+
+<%= partial "layouts/partials/navbar" %>
+
+<% content_for :scripts do %>
+  <%= javascript_include_tag 'welcome-pg' %>
+<% end %>
+
+<!-- Main Create Area -->
+<section role="main">
+	<div class="front-door">
+		<div class="container">
+			<h1>Build <span>/</span> Send a Newsletter</h1>
+			<div class="row">
+				<div class="span6 offset5 build-options-wrap">
+					<!-- Choose Existing Newsletter -->
+					<div class="build-option clearfix">
+						<div class="btn-group pull-left">
+						  <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"><span class="pull-left">Choose an Existing Newsletter </span><i class="icon-chevron-down icon-large pull-right"></i></a>
+						  <ul class="dropdown-menu">
+					    	<li><a href="#">Dow Jones Today this is a really long name for a newsletter</a></li>
+					    	<li><a href="#">Daily News U.S.</a></li>
+					    	<li><a href="#">Morning News</a></li>
+					    	<li><a href="#">All Industries</a></li>
+					    	<li><a href="#">Latest</a></li>
+					    	<li><a href="#">Dow Jones Today</a></li>
+					    	<li><a href="#">Daily News U.S.</a></li>
+					    	<li><a href="#">Daily News U.S.</a></li>
+					    	<li><a href="#">Morning News</a></li>
+					    	<li><a href="#">All Industries</a></li>
+					    	<li><a href="#">Latest</a></li>
+					    	<li><a href="#">Dow Jones Today</a></li>
+					    	<li><a href="#">Daily News U.S.</a></li>
+						  </ul>
+						</div>
+					  <button class="btn btn-primary pull-right" href="#">Next <i class="icon-caret-right"></i></button>
+					</div>
+					<p>or</p>
+					<!-- Create a New One -->
+					<div class="build-option clearfix">
+						<form name="create-new">
+							<input type="text" placeholder="Create a New Newsletter" class="pull-left">
+						  <button type="submit" class="btn btn-primary pull-right" href="#fnb-create-share-modal" role="button" data-toggle="modal">Create <i class="icon-caret-right"></i></button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- Secondary Navigation Links -->
+<nav>
+	<div class="side-doors">
+		<div class="container">
+			<ul class="clearfix">
+				<li class="span6">
+					<div class="clearfix">
+						<i class="icon-folder-open icon-2x pull-left"></i>
+						<h3 class="pull-left">Manage Newsletter</h3>
+						<button class="btn btn-primary pull-right" href="#">Go <i class="icon-caret-right"></i></button>
+					</div>
+				</li>
+				<li class="span6">
+					<div class="clearfix">
+						<i class="icon-picture icon-2x pull-left"></i>
+						<h3 class="pull-left">Templates &amp; Images</h3>
+						<button class="btn btn-primary pull-right" href="#">Go <i class="icon-caret-right"></i></button>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+</nav>
+
+<!-- Share Options Modal -->
+<div class="modal no-show fade" id="fnb-create-share-modal" role="dialog" aria-labelledby="share-modal" tabindex="-1" aria-hidden="true">
+	<div class="modal-body">
+		<h3>Would you like to enable other Newsletter Administrators on your account to edit and publish this newsletter?</h3>
+		<p>Sharing this newsletter with other Newsletter Administrators enables simultaneous collaboration of your newsletter across a team.</p>
+		<label>Please select an option:</label>
+		<label class="radio"><input type="radio" name="admin-share-option" value="true" checked>Yes, I wish to share this newsletter with the other Administrators.</label>
+		<label class="radio"><input type="radio" name="admin-share-option" value="false">No, I wish to keep this newsletter private for my use only.</label>
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-primary">Create <i class="icon-caret-right"></i></button>
+	</div>
+</div>

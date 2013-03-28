@@ -1,0 +1,52 @@
+//FNB Modals
+//---
+
+.modal {
+	@include border-radius(0);
+}
+
+.modal-backdrop,
+.modal-backdrop.fade.in {
+  @include opacity(50);
+}
+
+.no-show {
+	display: none;
+}
+
+.modal-body {
+	padding: 30px;
+	h3 {
+		@include font-sans(17px, semibold, 26px);
+		margin: 0 0 20px 0;
+	}
+	p {
+		font-size: 13px;
+		margin-bottom: 20px;
+	}
+	label {
+		@include font-sans(14px, semibold);
+		&.radio {
+			font-size: 12px;
+		}
+	}
+}
+
+.modal-footer {
+	border: none;
+	background-color: $white;
+	padding: 0 30px 30px 30px;
+}
+// Specific Modal Styles
+//---
+
+// Admin Share
+#fnb-create-share-modal {
+	width: 470px;
+	margin-left: -235px;
+	
+	.btn {
+		padding: 7px 12px;
+	}
+	
+}

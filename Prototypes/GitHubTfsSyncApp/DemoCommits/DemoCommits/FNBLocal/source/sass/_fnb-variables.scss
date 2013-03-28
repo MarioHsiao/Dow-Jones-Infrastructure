@@ -1,0 +1,65 @@
+// FNB Variables
+
+
+// Color Definitions
+
+// Grays
+// -------------------------
+$black:                 #000 !default;
+$grayDarker:            #232323;
+$grayDark:              #333 !default;
+$gray:                  #ccc !default;
+$grayMid:								#ddd !default;
+$grayLight:             #999 !default;
+$grayLighter:           #f5f5f5;
+$white:                 #fff !default;
+
+
+// Accent colors
+// -------------------------
+$blue:                  #049cdb !default;
+$blueDark:              #0064cd !default;
+$green:                 #149734;
+$red:                   #9d261d !default;
+$yellow:                #ffc40d !default;
+$orange:                #f89406 !default;
+$pink:                  #c3325f !default;
+$purple:                #7a43b6 !default;
+$factivaBlue:						#00a2de !default;
+$factivaBlueDarker:			#0093c9 !default;
+
+// Links
+// -------------------------
+$linkColor:             $factivaBlue;
+//$linkColorHover:        darken($linkColor, 15%) !default;
+
+// Bootstrap Overrides
+$gridColumns: 16;
+$gridColumnWidth:60px;
+$gridGutterWidth:2px;
+$gridColumnWidth1200:60px;
+$gridGutterWidth1200:2px;
+//$fluidGridGutterWidth:0%;
+//$fluidGridGutterWidth1200:0%;
+
+$sansFontFamily: "OpenSansRegular", "Helvetica Neue", Helvetica, Arial, sans-serif !default;
+$headingsFontFamily: "OpenSansSemiBold", "Helvetica Neue", Helvetica, Arial, sans-serif !default;
+
+$baseFontSize:12px;
+//$baseLineHeight:16px;
+
+$baseBorderRadius:3px;
+$borderRadiusSmall:2px;
+
+$btnBackground: $white;
+$btnBackgroundHighlight: $factivaBlue;
+$btnPrimaryBackground: $green;
+$btnInverseBackground: $grayDarker;
+$btnInverseBackgroundHighlight: $factivaBlue;
+
+
+// Article Tree
+// -------------------------
+$treeBasePadding:				30px;
+$treePaddingIncrement:	20px;
+$treeToggleBaseLeft:		8px;

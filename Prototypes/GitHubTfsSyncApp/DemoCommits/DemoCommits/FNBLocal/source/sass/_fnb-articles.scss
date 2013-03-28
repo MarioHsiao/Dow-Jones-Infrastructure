@@ -1,0 +1,446 @@
+// Article Styles
+
+.article-list-base	{
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	.fi-two {
+		float: left;
+		margin-right: 6px;
+	}
+	h5 {
+		font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+		margin: 0 0 2px 0;
+		line-height: 18px;
+		&> a {
+			&:hover {
+				text-decoration: none;
+				color: $linkColor;
+			}
+		}
+	}
+	
+	p {
+		&.article-meta {
+			color: $grayLight;
+		}	
+		&.article-snip {
+			margin: 0;
+		}
+	}	
+}
+
+//-- Content Side
+.results-list {
+	background: $grayLighter;
+
+	.article-list	{
+		@extend .article-list-base;
+		height: 400px;
+		overflow: auto;
+		margin: 0;
+		
+		li { 
+			border-bottom: solid 1px $gray;
+			padding: 0;
+			position: relative;
+			&.selected { background-color: #ecfff1;}
+			&.dropzone{display: none !important;}
+			
+			.article-wrap {
+				padding: 20px;
+				margin-right: 35px;
+				float: left;
+			}
+			
+			.drag-handle {
+				position: absolute;
+				right: 0;
+				height: 100%;
+				color: $gray;
+				text-shadow: 0 1px 0 $white;
+				
+				[class^="icon"] {
+					display: block;
+					visibility: hidden;
+					position: relative;
+					top: 50%;
+					margin-top: -50%;
+				}
+				
+				&:hover {
+					cursor: pointer;
+					border-left: dotted 1px $gray;
+					background: #eee;
+					[class^="icon"] {
+						visibility: visible;
+					}
+				}
+				
+			}
+			// Style the drag helper
+			&.ui-sortable-helper {
+				background-color: $white;
+				height: auto !important;
+				border: solid 1px $gray;
+				.article-wrap {
+					padding: 10px;
+				}
+				p.article-snip {
+					display: none;
+				}
+			}
+			
+		}
+		
+		h5 {
+			line-height: 18px;
+			
+			&> a {
+				color: $linkColorHover;
+			}
+		}
+		
+		p {
+			line-height: 16px;
+			font-size: 12px;
+			
+			&.article-meta {
+				margin-bottom: 2px;
+			}
+		
+		}
+			
+	}
+}
+
+//-- Selections Side
+.selections-list {
+	background: $grayLighter;
+	position: relative;
+
+	.article-list	{
+		@extend .article-list-base;
+		height: 416px;
+		overflow: auto;
+		
+		.fi-two{
+			margin-top: -3px;
+		}
+		
+		li { 
+			padding: 0;
+			position: relative;
+			//&:hover { background-color: #f0f0f0; }
+			
+			.sort-container{
+				padding-right: 10px;
+			}
+			
+			// !Related Article Icon
+			&.related-article .tree-toggle {
+				display: none;
+			}
+			
+			.sort-container > [class^="icon"] {
+				display: none;
+			}
+			
+			&.related-article > .sort-container > [class^="icon"] {
+				display: inline-block;
+				position: absolute;
+				left: $treeToggleBaseLeft + $treePaddingIncrement;
+				color: $gray;
+				top: -50%;
+				margin-top: 5px;
+				height: 100%;
+				@include scaleY(-1);
+			}
+			
+			&.section .related-article > .sort-container > [class^="icon"] {
+				left: $treeToggleBaseLeft + $treePaddingIncrement*2;
+			}
+			
+			&.subsection .related-article > .sort-container > [class^="icon"] {
+				left: $treeToggleBaseLeft + $treePaddingIncrement*3;
+			}
+
+			.article-wrap {
+				padding: 10px 0 10px 10px;
+				float: left;
+				width: 100%;
+			}
+			
+			&.ui-sortable-helper {
+				background-color: $white;
+				border: solid 1px $gray;
+			}
+
+			.drag-handle {
+				display: none; //for testing
+				position: absolute;
+				left: 0;
+				height: 100%;
+				color: $gray;
+				text-shadow: 0 1px 0 $white;
+				
+				[class^="icon"] {
+					display: block;
+					visibility: hidden;
+					position: relative;
+					top: 50%;
+					margin-top: -10px;
+					padding: 0 4px;
+				}
+				
+				&:hover {
+					cursor: pointer;
+					border-right: dotted 1px $gray;
+					background: #eee;
+					[class^="icon"] {
+						visibility: visible;
+					}
+				}
+				
+			}
+		}
+		
+		h5 {
+			font-size: 12px;
+			line-height: 16px;
+			margin: 0;
+			
+			&> a {
+				color: darken($linkColor, 5%);
+			}
+		}
+		
+		p {
+			line-height: 16px;
+			font-size: 11px;
+			margin: 0;
+			
+			&.article-meta {
+				margin-bottom: 0;
+			}
+		
+		}
+					
+	}
+}
+
+
+//-- Selections List - Section, Subsection (Style the content in the tree)
+.selections-list .article-list {
+	
+	li.section,
+	li.subsection {
+
+		.article-wrap {
+			padding-left: 0;
+		}
+		
+		h3, h4 {
+			padding: 10px 10px 10px 2px;
+			margin: 0;
+			float: left;
+			font-size: 14px;
+			line-height: normal;
+			min-width: 100px;
+		}
+		
+		.section-title-edit-wrap {
+			float: left;
+			padding: 5px 0 6px 0;
+			input {
+				@include font-sans(14px, semibold);
+				color: $grayDarker;
+				margin: 0;
+				&.error{
+					border: solid 1px red;
+				}
+			}
+		}
+	}
+
+	li.subsection {
+	// Any differences for subsections goes here
+	}
+}
+
+//-- Selections Tree (Style the tree itself)
+.article-tree{
+	margin: 8px;
+	
+	ul {
+		list-style-type: none;
+		margin: 0;
+	}
+	
+	&> li {
+		border: solid 1px $gray;
+		background: $white;
+		margin-bottom: 8px;
+		list-style-type: none;
+		
+		&> ul li {
+			border-top: solid 1px $grayLighter;
+		}
+	}
+	
+	li.dropzone {
+		border: dotted 1px $gray;
+		min-height: 60px;
+		background: transparent;
+		&.fnb-error{
+			background-color: tint(red,80%);
+		}
+	}
+	
+	.tree-toggle {
+		position: absolute;
+		left: $treeToggleBaseLeft;
+		top: 7px;
+		color: $grayDarker;
+		&:hover {
+			text-decoration: none;
+		}
+	}
+		
+	// Loose article branch
+	li.article.fnb-branch {
+		.sort-container {
+			padding-left: $treeBasePadding;
+		}
+		.article-wrap {
+			padding-left: 0;
+		}
+		&>ul > li.article {
+			.sort-container{
+				padding-left: $treeBasePadding + $treePaddingIncrement;				
+			}
+		}
+	}
+
+	// !Tree Section
+	li.section {
+
+		&> .sort-container {
+			padding-left: $treeBasePadding;
+			
+			.tree-toggle {
+				top: 9px;
+			}
+		}
+
+		
+		&> ul > li.article {
+			.sort-container {
+				padding-left: $treeBasePadding;
+			}
+		}
+
+		&> ul > li.article.fnb-branch {
+			
+			&> .sort-container {
+				padding-left: $treeBasePadding + $treePaddingIncrement;
+			}
+			
+			.tree-toggle {
+				left: $treeToggleBaseLeft + $treePaddingIncrement;
+			}
+			
+			&> ul > li.article {
+				&> .sort-container {
+					padding-left: $treeBasePadding + $treePaddingIncrement*2;
+				}
+			}
+			
+		}
+	}
+	
+	// Empty section
+	li.section.fnb-leaf {
+		&> .sort-container {
+			padding-left: 10px;
+		}
+	}
+
+	// !Tree Subsection
+	li.subsection {
+	
+		&> .sort-container {
+			padding-left: $treeBasePadding + $treePaddingIncrement;
+			.tree-toggle {
+				top: 9px;
+				left: $treeToggleBaseLeft + $treePaddingIncrement;
+			}
+		}
+		
+
+		&> ul > li.article {
+			.sort-container {
+				padding-left: $treeBasePadding + $treePaddingIncrement;
+			}
+		}
+
+		&> ul > li.article.fnb-branch {
+			
+			&> .sort-container {
+				padding-left: $treeBasePadding + $treePaddingIncrement*2;
+				.tree-toggle {
+					left: $treeToggleBaseLeft + $treePaddingIncrement*2;
+				}
+			}			
+			
+			&> ul > li.article {
+				&> .sort-container {
+					padding-left: $treeBasePadding + $treePaddingIncrement*3;
+				}
+			}
+			
+		}
+	}
+	
+	// Empty subsection
+	li.subsection.fnb-leaf {
+		&> .sort-container {
+			padding-left: $treeBasePadding;
+		}
+	}
+	
+	
+	.fnb-leaf {
+		& > div.sort-container .tree-toggle {
+			display: none;
+		}
+	}
+	
+	.fnb-branch {
+		
+		&.fnb-expanded {
+			& > div.sort-container i.icon-caret-right {
+				display: none;
+			}
+		}
+		
+		&.fnb-collapsed {
+			& > div.sort-container i.icon-caret-down {
+				display: none;
+			}
+		}
+		
+	}
+
+}
+
+
+.fnb-collapsed > ul {display: none;}
+
+
+.hide-snippets {
+	p.article-snip {
+		display: none;
+	}
+	p.article-meta {
+		margin: 0;
+	}
+}

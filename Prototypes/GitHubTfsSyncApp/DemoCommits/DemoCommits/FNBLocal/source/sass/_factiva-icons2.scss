@@ -1,0 +1,315 @@
+/**
+ *  Factiva icon styles (2)
+ *
+ * @category   Component
+ * @author     Ryan Schoch <ryan.schoch@dowjones.com>
+ * @copyright  2012 Dow Jones & Company Inc.
+ */
+
+/* =Generic Factiva Icon Class .fi-two
+----------------------------------------------------------------------------------------------------*/
+.fi-two {
+	display: -moz-inline-stack;
+	display: inline-block;
+	zoom: 1; /* zoom and *display = ie7 hack for display:inline-block */
+	*display: inline;
+	vertical-align: middle;
+	background: transparent url(../images/factiva-icons2.png) no-repeat 0 0;
+	cursor: pointer;
+}
+
+/* =Target specific Icons by Class Name .fi_[YOUR CLASS] >> 
+----------------------------------------------------------------------------------------------------*/
+.fi-two.fi_d-arrow-white {
+	width: 8px;
+	height: 6px;
+	background-position: 0 0;
+}
+
+.fi-two.fi_r-arrow-black {
+	width: 8px;
+	height: 8px;
+	background-position: 0 -10px;
+}
+
+.fi-two.fi_d-arrow-light-blue {
+	width: 8px;
+	height: 6px;
+	background-position: -10px 0;
+}
+
+.fi-two.fi_d-arrow-drk-blue {
+	width: 8px;
+	height: 8px;
+	background-position: -20px 0;
+}
+
+.fi-two.fi_d-arrow-drk-gray {
+	width: 7px;
+	height: 6px;
+	background-position: -30px 0;
+}
+
+.fi-two.fi_r-arrow-white {
+	width: 6px;
+	height: 8px;
+	background-position: 0 -10px;
+}
+
+.fi-two.fi_r-arrow-drk-blue {
+	width: 6px;
+	height: 8px;
+	background-position: -10px -10px;
+}
+
+.fi-two.fi_mag-glass {
+	width: 16px;
+	height: 16px;
+	background-position: 0 -20px;
+}
+
+.fi-two.fi_d-arrow-thick-gray {
+	width: 11px;
+	height: 7px;
+	background-position: 0 -40px;
+}
+
+.fi-two.fi_d-arrow-thick-drk-gray {
+	width: 11px;
+	height: 7px;
+	background-position: -30px -40px;
+}
+
+.fi-two.fi_d-arrow-thick-white {
+	width: 11px;
+	height: 7px;
+	background-position: -15px -40px;
+}
+
+.fi-two.fi_circle-plus {
+	width: 15px;
+	height: 15px;
+	background-position: 0 -50px;
+}
+
+.fi-two.fi_cog {
+	width: 12px;
+	height: 12px;
+	background-position: 0 -70px;
+}
+
+.fi-two.fi_settings {
+	width: 20px;
+	height: 19px;
+	background-position: -15px -70px;
+}
+
+.fi-two.fi_support {
+	width: 20px;
+	height: 19px;
+	background-position: -65px -70px;
+}
+
+.fi-two.fi_phone {
+	width: 23px;
+	height: 26px;
+	background-position: 0 -115px;
+}
+
+.fi-two.fi_mail {
+	width: 25px;
+	height: 19px;
+	background-position: 0 -90px;
+}
+
+.fi-two.fi_chat {
+	width: 24px;
+	height: 25px;
+	background-position: 0 -145px;
+}
+
+.fi-two.fi_call-back {
+	width: 24px;
+	height: 26px;
+	background-position: 0 -175px;
+}
+
+.fi-two.fi_laptop {
+	width: 30px;
+	height: 23px;
+	background-position: 0 -205px;
+}
+
+.fi-two.fi_calendar {
+	width: 13px;
+	height: 13px;
+	background-position: 0 -235px;
+}
+
+.fi-two.fi_play-lg {
+	width: 44px;
+	height: 45px;
+	background-position: 0 -470px;
+}
+
+.fi-two.fi_listen-lg {
+	width: 44px;
+	height: 45px;
+	background-position: -50px -470px;
+}
+
+.fi-two.fi_play-sm {
+	width: 24px;
+	height: 24px;
+	background-position: -100px -470px;
+}
+
+.fi-two.fi_listen-sm {
+	width: 24px;
+	height: 24px;
+	background-position: -130px -470px;
+}
+
+.fi-two.fi_classic-view {
+	width: 26px;
+	height: 26px;
+	background-position: 0 -315px;
+}
+
+.fi-two.fi_contemporary-view {
+	width: 26px;
+	height: 26px;
+	background-position: -30px -315px;
+}
+
+.fi-two.fi_save {
+	width: 26px;
+	height: 26px;
+	background-position: -60px -315px;
+}
+
+.fi-two.fi_email {
+	width: 26px;
+	height: 26px;
+	background-position: -90px -315px;
+}
+
+.fi-two.fi_download {
+	width: 26px;
+	height: 26px;
+	background-position: -120px -315px;
+}
+
+.fi-two.fi_print {
+	width: 26px;
+	height: 26px;
+	background-position: -150px -315px;
+}
+
+.fi-two.fi_twitter {
+	width: 17px;
+	height: 17px;
+	background-position: 0 -400px;
+}
+
+.fi-two.fi_prev-lg {
+	width: 37px;
+	height: 37px;
+	background-position: 0 -420px;
+}
+
+.fi-two.fi_next-lg {
+	width: 37px;
+	height: 37px;
+	background-position: -120px -420px;
+}
+
+.fi-two.fi_btn-prev-sm {
+	width: 21px;
+	height: 21px;
+	background-position: 0 -570px;
+}
+
+.fi-two.fi_btn-next-sm {
+	width: 21px;
+	height: 21px;
+	background-position: -75px -570px;
+}
+
+.fi-two.fi_f-article {
+	width: 17px;
+	height: 17px;
+	background-position: 0 -380px;
+}
+
+.fi-two.fi_blog 
+{
+    width: 16px;
+    height: 15px;
+    background-position: -20px -400px;
+}
+
+.fi-two.fi_f-image {
+	width: 17px;
+	height: 17px;
+	background-position: -20px -380px;
+}
+
+.fi-two.fi_f-html {
+	width: 17px;
+	height: 17px;
+	background-position: -40px -380px;
+}
+
+.fi-two.fi_f-pdf {
+	width: 17px;
+	height: 17px;
+	background-position: -60px -380px;
+}
+
+.fi-two.fi_f-video {
+	width: 17px;
+	height: 17px;
+	background-position: -80px -380px;
+}
+
+.fi-two.fi_f-audio {
+	width: 17px;
+	height: 17px;
+	background-position: -100px -380px;
+}
+
+.fi-two.fi_export {
+	width: 39px;
+	height: 15px;
+	background-position: 0 -520px;
+}
+
+.fi-two.fi_plus {
+	width: 12px;
+	height: 12px;
+	background-position: -44px -520px;
+}
+
+.fi-two.fi_plus.disabled {
+	cursor: default;
+	background-position: -60px -520px;
+}
+
+.fi-two.fi_minus {
+	width: 12px;
+	height: 12px;
+	background-position: -76px -520px;
+}
+
+.fi-two.fi_minus.disabled {
+	cursor: default;
+	background-position: -92px -520px;
+}
+
+.fi-two.fi_remove {
+	height: 11px;
+	width: 11px;
+	background-position: -45px -40px;
+}
+

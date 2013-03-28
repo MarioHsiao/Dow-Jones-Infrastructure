@@ -1,0 +1,180 @@
+// FNB Welcome Page Styles
+//---
+
+
+// Front Door
+//---
+.front-door {
+	padding: 84px 0;
+	background: $factivaBlueDarker url(../images/welcome-pg-bg.jpg) center bottom no-repeat;
+	border-bottom: solid 1px darken($factivaBlueDarker, 5%);
+	h1,
+	p {
+		color: $white;
+		text-transform: uppercase;
+		@include font-sans(36px, normal, auto, 2px);
+		text-align: center;
+		margin-top: 0;
+		span {
+			@include font-family-sans-light();
+		}
+	}
+	h1 {
+		margin-bottom: 15px
+	}
+	p {
+		font-size: 18px;
+		margin: 20px 0;
+	}
+}
+
+// Build Options
+//---
+.build-options-wrap {
+	padding-top: 50px;
+	border-top: solid 3px $white;
+}
+
+.build-option {
+	background-color: $white;
+	padding-right: 8px;
+	.btn-group {
+		.btn.dropdown-toggle {
+			color: $grayDarker;
+			text-transform: none;
+			@include font-sans(14px, semibold);
+			@include border-radius(0);
+			padding: 14px 12px;
+			vertical-align: top;
+			text-align: left;
+			width: 250px;
+			&:hover {
+				color: $grayDarker;
+				background-color: $white;
+			}
+			span {
+				max-width: 220px;
+				overflow: hidden;
+			}
+			[class^="icon"] {
+				margin-top: 4px;
+			}
+		}
+		
+		&.open .btn.dropdown-toggle {
+			@include box-shadow(0 5px 10px rgba(0, 0, 0, 0.2));
+			background-color: $white;
+			border: solid 1px $grayDarker;
+			padding: 13px 11px;
+		}
+	}
+	
+	.dropdown-menu {
+		width: 100%;
+		background-color: $grayDarker;
+		max-height: 308px;
+		overflow: auto;
+		&> li > a {
+			@include font-sans(14px, semibold);
+			color: $white;
+			padding: 12px;
+			white-space: normal;
+			&:hover {
+				background-image: none;
+				background-color: lighten($grayDarker, 12%);
+				@include reset-filter();
+			}
+		}
+	}
+	
+	.btn-primary {
+		width: 80px;
+		padding: 7px 0;
+		margin-top: 7px;
+		@include font-sans(12px, semibold, $baseLineHeight, 1px);
+	}
+	
+	input {
+		color: $grayDarker;
+		text-transform: none;
+		@include font-sans(14px, semibold);
+		@include border-radius(0);
+		padding: 14px 12px;
+		margin: 0;
+		border: none;
+		width: 250px;
+		@include placeholder($gray);
+		&.placeholder {
+			color: $gray;
+		}
+		&:focus {
+			@include box-shadow(none);
+		}
+	}
+}
+
+
+// Side Doors
+//---
+.side-doors {
+	background-color: $grayMid;
+	
+	ul {
+		margin: 0;
+		padding: 34px 0;
+		&> li {
+			@include border-radius($baseBorderRadius);
+			background-color: $white;
+			color: lighten($grayDarker, 12%);
+			margin: 0 27px;
+			&:first-child {
+				margin-left: 98px;
+			}
+			
+			&> div {
+				padding: 19px 24px;
+			}
+			
+			h3 {
+				@include font-sans(18px, normal, 38px, 1px);
+				text-transform: uppercase;
+				margin: 0;
+			}
+			
+			[class^="icon"] {
+				margin-top: 7px;
+			}
+			
+			.btn {
+				padding: 7px 12px;
+				margin-top: 2px;
+			}
+			
+			// Target 'Settings' Door
+			&+ li + li {
+				&> h3 {
+					line-height: 40px;
+				}
+			}
+		}
+	}
+}
+
+// IE-Specific Styles
+//---
+.lt-ie8 {
+	.front-door .btn,
+	.side-doors .btn {
+		line-height: 16px;
+		overflow: visible;
+	}
+	.side-doors .btn {
+		padding-right: 0;
+	}
+	
+	.build-option .btn-group .dropdown-toggle {
+		&.btn [class^="icon-"] {
+			margin-top: -5px;
+		}
+	}
+}

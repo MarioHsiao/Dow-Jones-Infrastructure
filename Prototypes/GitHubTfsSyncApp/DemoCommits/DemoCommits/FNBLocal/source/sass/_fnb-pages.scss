@@ -1,0 +1,43 @@
+// FNB Default Shared Styles
+//---
+
+body {
+	background-color: $grayDarker;
+}
+
+.tab-content {
+	background-color: #ddd;
+	border-top: solid 1px #ccc;
+	&> div {background-color: $white;}
+}
+
+.tab-pane{min-height: 500px;}
+
+input[type="text"].input-small{height: 16px;}
+
+
+
+.singlecheck > li i{visibility: hidden;}
+.singlecheck > li.checked i{visibility: visible;}
+.singlecheck > li > a {padding-left: 10px;}
+
+.results-list .pagination{margin-top: 1px; margin-bottom: 0;}
+
+
+
+// Main FNB Toolbar
+.fnb-toolbar {
+	padding: 8px 0;
+	background-color: $grayLighter;
+	border-bottom: solid 1px darken($grayLighter, 20%);
+}
+
+// Outer Content/Selections Panes
+#selections-pane,
+#content-pane {
+	border-left: solid 1px #ccc;
+	border-right: solid 1px #ccc;
+	box-sizing: border-box;
+}
+
+

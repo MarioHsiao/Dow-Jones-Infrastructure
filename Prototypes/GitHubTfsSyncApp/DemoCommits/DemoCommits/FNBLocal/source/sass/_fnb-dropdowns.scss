@@ -1,0 +1,27 @@
+// FNB Dropdown Menus
+
+.dropdown-menu {
+	@include border-radius(0);
+	margin: 0;
+	padding: 0;
+	border: none;
+}
+
+.dropdown-submenu > .dropdown-menu {
+	@include border-radius(0);
+}
+
+// Star Ratings
+.content-picker .dropdown-menu > li > a > [class^="icon"] {
+	margin-left: -10px;
+	color: $gray;
+}
+
+.content-picker .dropdown-menu > li.favorite > a > [class^="icon"] {
+	margin-left: -10px;
+	color: $grayDarker;
+}
+
+.content-picker .dropdown-menu > li > a:hover > [class^="icon"] {
+	color: $white;
+}

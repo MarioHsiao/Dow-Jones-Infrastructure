@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7]><html class="no-js iem7 oldie"><![endif]-->
+<!--[if lt IE 7]><html class="no-js lt-ie7 oldie" lang="en"><![endif]-->
+<!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie8 oldie" lang="en"><![endif]-->
+<!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9 oldie" lang="en"><![endif]-->
+<!--[if gt IE 8]><html class="no-js" lang="en"><!--<![endif]-->
+<!--[if (gte IE 9)|(gt IEMobile 7)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+	<head>
+    <!-- Global head tags -->
+    <meta charset='utf-8' />
+    <meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible' />
+    
+    <!-- Page title is defined per page -->
+    <title>Factiva Newsletter Builder</title>
+    
+    <!-- Page descrtiption is defined per page -->
+    <meta content="This is a page description" name='description' />
+	  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Begin Global Factiva javascripts -->
+    <script src="javascripts/vendor/modernizr-2.6.2.min.js" type="text/javascript"></script>
+    
+    <!-- Global Template Styles -->
+    <link href="http://snapshot.factiva.com/Content/styles/css/GlobalLayout.min.css" media="screen" rel="stylesheet" type="text/css" />
+<link href="http://global.factiva.com/css/newheader.css" media="screen" rel="stylesheet" type="text/css" />
+    
+    <!-- Project specific styles -->
+    <link href="stylesheets/fnb-styles.css" media="screen" rel="stylesheet" type="text/css" />
+        
+    <!--[if IE 7]><link href="stylesheets/font-awesome-ie7.min.css" media="screen" rel="stylesheet" type="text/css" /><![endif]-->
+  </head>
+  <body class="welcome-pg">
+	  <!--[if lt IE 7]>
+	      <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+	  <![endif]-->
+  	
+  	<!-- WSJ Hat -->
+  	<div class='wsjHatContainer no-feature-bar new-header' id='wsjHatContainer'>
+  <script type='text/javascript'>
+    //<![CDATA[
+      document.write('<script src="http://global.factiva.com/factivalogin/WSJPartyHat.ashx?&amp;sa_from=GL&amp;&amp;v=11.10.0&amp;cid=wsjHatContainer"><\/script>')
+    //]]>
+  </script>
+</div>
+<!-- End Global Factiva Hat -->
+
+  	
+  	<!-- Factiva Global Header -->
+  	<div class='dj_new-header en' id='dj_new-header'>
+  <div class='dj_header-wrap clearfix' id='dj_header-wrap'>
+    <a href='http://global.factiva.com/sb/SimpleSearch.aspx?NAPC=p'>
+      <h1 class='header-logo'></h1>
+    </a>
+    <ul class='user-nav dj_header-nav'>
+      <li id='navmbm0' tabindex='0'>
+        <a class='selected' href='http://Snapshot.factiva.com/du/Index?sa_from=GL' tabindex='0' title='Search'>Search</a>
+        <ul class='dropdown-menu'>
+          <li>
+            <a href='http://Snapshot.factiva.com/du/Index?sa_from=GL' tabindex='0' title='Simple Search'>
+              Simple
+              Search
+            </a>
+          </li>
+          <li>
+            <a class='selected' href='http://global.factiva.com/sb/default.aspx?NAPC=S' tabindex='0' title='Search Builder'>
+              Search
+              Builder
+            </a>
+          </li>
+          <li>
+            <a href='http://global.factiva.com/mss/default.aspx?NAPC=G&amp;frS=results' tabindex='0' title='Saved Searches'>
+              Saved
+              Searches
+            </a>
+          </li>
+          <li class='directlink'>
+            <a data-a='directLink' href='#' title='Direct Link'>
+              Direct
+              Link
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li id='navmbm1' tabindex='0'>
+        <a href='http://global.factiva.com/ht/default.aspx?NAPC=T' tabindex='0' title='Alerts'>Alerts</a>
+        <ul class='dropdown-menu'>
+          <li>
+            <a class='selected' href='http://global.factiva.com/ht/default.aspx?NAPC=T' tabindex='0' title='View Alerts'>
+              View
+              Alerts
+            </a>
+          </li>
+          <li>
+            <a href='http://global.factiva.com/mt/default.aspx?NAPC=T' tabindex='0' title='Manage Alerts'>
+              Manage
+              Alerts
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li id='navmbm2' tabindex='0'>
+        <a href='http://global.factiva.com/np/default.aspx?NAPC=P' tabindex='0' title='News Pages'>
+          News
+          Pages
+        </a>
+        <ul class='dropdown-menu'>
+          <li>
+            <a href='http://global.factiva.com/pnp/default.aspx?NAPC=p&amp;inpt=Search20Personal' tabindex='0' title='Mobile News Pages'>
+              Mobile
+              News Pages
+            </a>
+          </li>
+          <li>
+            <a href='http://global.factiva.com/np/default.aspx?NAPC=P&amp;inpt=Personal' tabindex='0' title='Personal Pages'>
+              Personal
+              Pages
+            </a>
+          </li>
+          <li>
+            <a href='http://global.factiva.com/np/default.aspx?NAPC=P&amp;inpt=Group' tabindex='0' title='Group Pages'>
+              Group
+              Pages
+            </a>
+          </li>
+          <li>
+            <a class='selected' href='http://global.factiva.com/np/default.aspx?NAPC=P&amp;inpt=Factiva' tabindex='0' title='Factiva Pages'>
+              Factiva
+              Pages
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li id='navmbm3' tabindex='0'>
+        <a href='http://global.factiva.com/cq/default.aspx?NAPC=Q' tabindex='0' title='Companies/Markets'>Companies/Markets</a>
+        <ul class='dropdown-menu'>
+          <li>
+            <a class='selected' href='http://global.factiva.com/cq/default.aspx?NAPC=Q' tabindex='0' title='Quotes'>Quotes</a>
+          </li>
+          <li>
+            <a href='http://global.factiva.com/chrt/default.aspx?NAPC=A' tabindex='0' title='Charting'>Charting</a>
+          </li>
+          <li>
+            <a href='http://global.factiva.com/cof/default.aspx?NAPC=K' tabindex='0' title='Company'>Company</a>
+          </li>
+          <li>
+            <a href='http://global.factiva.com/ins/default.aspx?NAPC=J' tabindex='0' title='Industry'>Industry</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <ul class='dj_header-nav utility-nav no-left-margin'>
+      <li tabindex='0'>
+        <a class='settings' data-a='settings' href='#' tabindex='0' title='Settings/Tools'>
+          <span class='fi-two fi_settings'></span>
+          <span class='fi-two fi_d-arrow-thick-gray'></span>&nbsp;
+        </a>
+        <div class='dj_callout-select-wrap settings'>
+          <ul class='callout-select'>
+            <li>
+              <a class='tools selected' data-a='ecList' href='#' tabindex='0' title='Tools'><span class='fi-two fi_d-arrow-white'></span>Tools
+              </a>
+              <ul>
+                <li>
+                  <a data-a='appendDoneUrl' href='http://global.factiva.com/newsletter/default.aspx?napc=2&amp;sa_from=GL' tabindex='0' title='Newsletter'>Newsletter</a>
+                </li>
+                <li>
+                  <a data-a='appendReturnUrl' href='http://widgets.factiva.com/du/manageWidgets.aspx?SA_FROM=GL&amp;awt=0&amp;napc=9' tabindex='0' title='Widgets'>Widgets</a>
+                </li>
+                <li>
+                  <a data-a='appendDoneUrl' href='http://global.factiva.com/workspace/managews.aspx?napc=B&amp;sa_from=GL' tabindex='0' title='Workspaces'>Workspaces</a>
+                </li>
+                <li>
+                  <a href='http://global.factiva.com/du/ewb.aspx?doneurl=http%3a%2f%2fglobal.factiva.com%2fgen%2fnav.aspx%3fforExternalProduct%3d1%26includeSearchBar%3d1%26menuId%3dmbm0%26subMenuId%3dmbm0-0%26sa_from%3dGL' tabindex='0' title='Editorial Workbench'>
+                    Editorial
+                    Workbench
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a class='lists' data-a='ecList' href='#' tabindex='0' title='Lists'><span class='fi-two fi_r-arrow-black'></span>Lists
+              </a>
+              <ul style='display:none;'>
+                <li>
+                  <a href='http://global.factiva.com/ml/default.aspx?mode=s' tabindex='0' title='Source Lists'>
+                    Source
+                    Lists
+                  </a>
+                </li>
+                <li>
+                  <a href='http://global.factiva.com/ml/default.aspx?mode=c' tabindex='0' title='Company Lists'>
+                    Company
+                    Lists
+                  </a>
+                </li>
+                <li>
+                  <a href='http://global.factiva.com/mql/default.aspx?napc=E&amp;pa=0' tabindex='0' title='Quote Lists'>
+                    Quote
+                    Lists
+                  </a>
+                </li>
+                <li>
+                  <a href='http://global.factiva.com/syr/sourcesyouhaverated.aspx' tabindex='0' title="Sources You've Rated">
+                    Sources
+                    You've Rated
+                  </a>
+                </li>
+                <li>
+                  <a href='http://global.factiva.com/rss/editorsChoice.aspx?NAPC=9&amp;fcpil=en' tabindex='0' title="Editor's Choice">
+                    Editor's
+                    Choice
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a class='language' data-a='ecList' href='#' tabindex='0' title='Interface Language'><span class='fi-two fi_r-arrow-black'></span>Language
+              </a>
+              <ul style='display:none;'>
+                <li>
+                  <a class='currentLanguage' data-a='changeLanguage' data-d='en' href='http://global.factiva.com#' tabindex='0' title='English'>English</a>
+                </li>
+                <li>
+                  <a data-a='changeLanguage' data-d='fr' href='http://global.factiva.com#' tabindex='0' title='Français'>Français</a>
+                </li>
+                <li>
+                  <a data-a='changeLanguage' data-d='de' href='http://global.factiva.com#' tabindex='0' title='Deutsch'>Deutsch</a>
+                </li>
+                <li>
+                  <a data-a='changeLanguage' data-d='es' href='http://global.factiva.com#' tabindex='0' title='Español'>Español</a>
+                </li>
+                <li>
+                  <a data-a='changeLanguage' data-d='it' href='http://global.factiva.com#' tabindex='0' title='Italiano'>Italiano</a>
+                </li>
+                <li>
+                  <a data-a='changeLanguage' data-d='ja' href='http://global.factiva.com#' tabindex='0' title='日本語'>日本語</a>
+                </li>
+                <li>
+                  <a data-a='changeLanguage' data-d='ru' href='http://global.factiva.com#' tabindex='0' title='Русский'>Русский</a>
+                </li>
+                <li>
+                  <a data-a='changeLanguage' data-d='zhcn' href='http://global.factiva.com#' tabindex='0' title='中文 (简体)'>
+                    中文
+                    (简体)
+                  </a>
+                </li>
+                <li>
+                  <a data-a='changeLanguage' data-d='zhtw' href='http://global.factiva.com#' tabindex='0' title='中文(繁體)'>中文(繁體)</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a class='settings' data-a='ecList' href='#' tabindex='0' title='Settings'><span class='fi-two fi_r-arrow-black'></span>Settings
+              </a>
+              <ul style='display:none;'>
+                <li>
+                  <a data-a='preferences' href='http://global.factiva.com/mp/default.aspx?napc=R' tabindex='0' title='Preferences'>Preferences</a>
+                </li>
+                <li>
+                  <a href='http://global.factiva.com/mp/default.aspx?ipst=Password&amp;napc=9' tabindex='0' title='Login Info'>
+                    Login
+                    Info
+                  </a>
+                </li>
+                <li>
+                  <a href='http://global.factiva.com/mp/default.aspx?ipst=Profile&amp;napc=9' tabindex='0' title='Profile'>Profile</a>
+                </li>
+                <li>
+                  <a data-a='mobileCookie' href='http://global.factiva.com/factivalogin/mcemail/default.aspx' tabindex='0' title='Enable Mobile Login'>
+                    Enable
+                    Mobile Login
+                  </a>
+                </li>
+                <li>
+                  <a data-a='newWindow' href='http://customer.factiva.com/en/custSvc/CSMain.aspx?id=5569' tabindex='0' title='Read Tools FAQs'>
+                    Read
+                    Tools FAQs
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a class='account' data-a='ecList' href='#' tabindex='0' title='Account'><span class='fi-two fi_r-arrow-black'></span>Account
+              </a>
+              <ul style='display:none;'>
+                <li>
+                  <a data-a='clientBilling' data-d='costCentre' href='http://global.factiva.com/cc/default.aspx?NAPC=9&amp;FCPIL=en' tabindex='0' title='Client Billing'>
+                    Client
+                    Billing
+                  </a>
+                </li>
+                <li>
+                  <a href='http://global.factiva.com/ur/default.aspx?napc=7' tabindex='0' title='Usage Reports'>
+                    Usage
+                    Reports
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a class='whatsNewFeature no-children' data-a='whatsNewFeature' href='http://global.factiva.com#' tabindex='0' title="What's New">
+                What's
+                New
+              </a>
+            </li>
+            <li class='logout no-children'>
+              <a class='logout no-children' data-a='logout' href='http://global.factiva.com#' tabindex='0' title='Logout'>Logout</a>
+            </li>
+          </ul>
+        </div>
+      </li>
+      <li tabindex='0'>
+        <a class='support' data-a='support' href='#' tabindex='0' title='Support'>
+          <span class='fi-two fi_support'></span>
+          <span class='fi-two fi_d-arrow-thick-gray'></span>&nbsp;
+        </a>
+        <div class='dj_callout-select-wrap support'>
+          <ul class='callout-select'>
+            <li>
+              <a class='fi_laptop' data-a='newWindow' href='http://customer.factiva.com/en/Support/Supportmain.asp?SA_FROM=GL&amp;APC=9' tabindex='0' title=''>
+                <span class='fi-two fi_laptop'></span>
+                <div><h3>Online Resources</h3>Product help and Account Maintenance
+                </div>
+              </a>
+            </li>
+            <li>
+              <a class='fi_mail' data-a='newWindow' href='http://customer.factiva.com/en/custsvc/csmain.aspx?id=EF&amp;SA_FROM=GL&amp;APC=9' tabindex='0' title=''>
+                <span class='fi-two fi_mail'></span>
+                <div><h3>Email</h3>Send Customer Service an Email
+                </div>
+              </a>
+            </li>
+            <li>
+              <a class='fi_chat' data-a='newWindow' href='http://customer.factiva.com/en/custsvc/webchat.aspx?SA_FROM=GL&amp;APC=9' tabindex='0' title=''>
+                <span class='fi-two fi_chat'></span>
+                <div><h3>Web Chat</h3>Chat with a Customer Service representative
+                </div>
+              </a>
+            </li>
+            <li>
+              <a class='fi_call-back' data-a='newWindow' href='http://customer.factiva.com/en/custsvc/callme.aspx?SA_FROM=GL&amp;APC=9' tabindex='0' title=''>
+                <span class='fi-two fi_call-back'></span>
+                <div><h3>Call Me</h3>Request a call from Customer Service
+                </div>
+              </a>
+            </li>
+            <li class='last'>
+              <a class='fi_phone' data-a='newWindow' href='http://www.factiva.com/en/cp/LEADERSHIP_telephone.html' tabindex='0' title=''>
+                <span class='fi-two fi_phone'></span>
+                <div><h3>Phone Numbers</h3>Speak directly to a Customer Service
+                  representative
+                </div>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+<!-- End Factiva Header -->
+
+  	
+    <!-- Begin Factiva Main Content -->
+    <nav class="fnb-navbar" role="navigation">
+  <div class="navbar-inner">
+  	<div class="container">
+			<div class="dropdown main-menu pull-left">
+			  <!-- Link or button to toggle dropdown -->
+			  <a class="btn btn-mini btn-inverse" data-toggle="dropdown"><i class="icon-reorder icon-large"></i></a>
+			  <ul class="dropdown-menu" role="menu" aria-labelledby="mainMenu">
+			    <li><a tabindex="-1" href="index.html"><i class="icon-home"></i> Build / Send a Newsletter</a></li>
+			    <li><a tabindex="-1" href="#"><i class="icon-folder-open"></i> Manage Newsletter</a></li>
+			    <li><a tabindex="-1" href="#"><i class="icon-picture"></i> Templates &amp; Images</a></li>
+			  </ul>
+			</div>
+			
+				<a class="brand" href="#">Newsletter</a>
+			
+		</div>
+	</div>
+</nav>
+
+<!-- Main Create Area -->
+<section role="main">
+	<div class="front-door">
+		<div class="container">
+			<h1>Build <span>/</span> Send a Newsletter</h1>
+			<div class="row">
+				<div class="span6 offset5 build-options-wrap">
+					<!-- Choose Existing Newsletter -->
+					<div class="build-option clearfix">
+						<div class="btn-group pull-left">
+						  <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"><span class="pull-left">Choose an Existing Newsletter </span><i class="icon-chevron-down icon-large pull-right"></i></a>
+						  <ul class="dropdown-menu">
+					    	<li><a href="#">Dow Jones Today this is a really long name for a newsletter</a></li>
+					    	<li><a href="#">Daily News U.S.</a></li>
+					    	<li><a href="#">Morning News</a></li>
+					    	<li><a href="#">All Industries</a></li>
+					    	<li><a href="#">Latest</a></li>
+					    	<li><a href="#">Dow Jones Today</a></li>
+					    	<li><a href="#">Daily News U.S.</a></li>
+					    	<li><a href="#">Daily News U.S.</a></li>
+					    	<li><a href="#">Morning News</a></li>
+					    	<li><a href="#">All Industries</a></li>
+					    	<li><a href="#">Latest</a></li>
+					    	<li><a href="#">Dow Jones Today</a></li>
+					    	<li><a href="#">Daily News U.S.</a></li>
+						  </ul>
+						</div>
+					  <button class="btn btn-primary pull-right" href="#">Next <i class="icon-caret-right"></i></button>
+					</div>
+					<p>or</p>
+					<!-- Create a New One -->
+					<div class="build-option clearfix">
+						<form name="create-new">
+							<input type="text" placeholder="Create a New Newsletter" class="pull-left">
+						  <button type="submit" class="btn btn-primary pull-right" href="#fnb-create-share-modal" role="button" data-toggle="modal">Create <i class="icon-caret-right"></i></button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- Secondary Navigation Links -->
+<nav>
+	<div class="side-doors">
+		<div class="container">
+			<ul class="clearfix">
+				<li class="span6">
+					<div class="clearfix">
+						<i class="icon-folder-open icon-2x pull-left"></i>
+						<h3 class="pull-left">Manage Newsletter</h3>
+						<button class="btn btn-primary pull-right" href="#">Go <i class="icon-caret-right"></i></button>
+					</div>
+				</li>
+				<li class="span6">
+					<div class="clearfix">
+						<i class="icon-picture icon-2x pull-left"></i>
+						<h3 class="pull-left">Templates &amp; Images</h3>
+						<button class="btn btn-primary pull-right" href="#">Go <i class="icon-caret-right"></i></button>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+</nav>
+
+<!-- Share Options Modal -->
+<div class="modal no-show fade" id="fnb-create-share-modal" role="dialog" aria-labelledby="share-modal" tabindex="-1" aria-hidden="true">
+	<div class="modal-body">
+		<h3>Would you like to enable other Newsletter Administrators on your account to edit and publish this newsletter?</h3>
+		<p>Sharing this newsletter with other Newsletter Administrators enables simultaneous collaboration of your newsletter across a team.</p>
+		<label>Please select an option:</label>
+		<label class="radio"><input type="radio" name="admin-share-option" value="true" checked>Yes, I wish to share this newsletter with the other Administrators.</label>
+		<label class="radio"><input type="radio" name="admin-share-option" value="false">No, I wish to keep this newsletter private for my use only.</label>
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-primary">Create <i class="icon-caret-right"></i></button>
+	</div>
+</div>
+  	
+  	<!-- Global Footer -->
+  	<footer class='dj_page-footer'>
+  <div class='dj_page-footer-content container_9 clearfix'>
+    <p class='dj_page-footer-copyright'>
+      Copyright ©2013
+      <span>Factiva, Inc. All rights reserved.</span>
+      <a href='javascript:void(0);' onclick="return DJGlobal.NewWindow({ url:'http://global.factiva.com/factivalogin/privacypolicy/privacypolicy_en.html', windowName: 'privacyPolicyWin' });" title='Privacy Policy'>
+        Privacy Policy
+      </a>
+    </p>
+  </div>
+</footer>
+<!-- End Factiva Footer -->
+
+
+    <!-- Define project-specific scripts at the end of the footer -->
+    
+    <!-- End Factiva Main Content -->
+
+    <!-- Include jQuery from google cdn -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js" type="text/javascript"></script>
+    <!-- if cdn fails, include jQuery from local directory -->
+    <script type='text/javascript'>
+      //<![CDATA[
+        window.jQuery || document.write('<script src="../javascripts/vendor/jquery-1.9.0.min.js"><\/script>')
+      //]]>
+    </script>
+    <!-- Include jQuery UI Custom Build -->
+    <script src="javascripts/vendor/jquery-ui-1.10.1.custom.min.js" type="text/javascript"></script>
+    <!-- Debug script -->
+    <script src="javascripts/plugins.js" type="text/javascript"></script>
+    <!-- Project specific scripts -->
+    <script src="javascripts/application.js" type="text/javascript"></script>
+      <script src="javascripts/welcome-pg.js" type="text/javascript"></script>
+
+  </body>
+</html>

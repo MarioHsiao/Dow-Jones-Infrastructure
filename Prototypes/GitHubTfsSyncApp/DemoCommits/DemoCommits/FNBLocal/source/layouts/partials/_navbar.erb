@@ -1,0 +1,27 @@
+<nav class="fnb-navbar" role="navigation">
+  <div class="navbar-inner">
+  	<div class="container">
+			<div class="dropdown main-menu pull-left">
+			  <!-- Link or button to toggle dropdown -->
+			  <a class="btn btn-mini btn-inverse" data-toggle="dropdown"><i class="icon-reorder icon-large"></i></a>
+			  <ul class="dropdown-menu" role="menu" aria-labelledby="mainMenu">
+			    <li><a tabindex="-1" href="index.html"><i class="icon-home"></i> Build / Send a Newsletter</a></li>
+			    <li><a tabindex="-1" href="#"><i class="icon-folder-open"></i> Manage Newsletter</a></li>
+			    <li><a tabindex="-1" href="#"><i class="icon-picture"></i> Templates &amp; Images</a></li>
+			    <li><a tabindex="-1" href="#"><i class="icon-cog"></i> Settings</a></li>
+			  </ul>
+			</div>
+			<% if current_page.data.bodyClass == "welcome-pg" then %>
+				<a class="brand" href="#">Newsletter</a>
+			<% else %>
+				<a class="brand" href="#">Newsletter<span>:</span></a>
+				<span class="newsletter-name">Dow Jones Today</span>
+				<ul class="nav nav-tabs pull-right">
+				  <li class="active"><a href="#tab1" data-toggle="tab"><span class="tab-number">1</span>Select Content</a></li>
+				  <li><a href="#tab2" data-toggle="tab"><span class="tab-number">2</span>Preview | Select Output</a></li>
+				  <li><a href="#tab3" data-toggle="tab"><span class="tab-number">3</span>Add Recipients | Send</a></li>
+				</ul>
+			<% end %>
+		</div>
+	</div>
+</nav>

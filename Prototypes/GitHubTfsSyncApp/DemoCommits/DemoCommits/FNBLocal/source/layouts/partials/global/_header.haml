@@ -1,0 +1,219 @@
+#dj_new-header.dj_new-header.en
+  #dj_header-wrap.dj_header-wrap.clearfix
+    %a{:href => "http://global.factiva.com/sb/SimpleSearch.aspx?NAPC=p"}
+      %h1.header-logo
+    %ul.user-nav.dj_header-nav
+      %li#navmbm0{:tabindex => "0"}
+        %a.selected{:href => "http://Snapshot.factiva.com/du/Index?sa_from=GL", :tabindex => "0", :title => "Search"} Search
+        %ul.dropdown-menu
+          %li
+            %a{:href => "http://Snapshot.factiva.com/du/Index?sa_from=GL", :tabindex => "0", :title => "Simple Search"}
+              Simple
+              Search
+          %li
+            %a.selected{:href => "http://global.factiva.com/sb/default.aspx?NAPC=S", :tabindex => "0", :title => "Search Builder"}
+              Search
+              Builder
+          %li
+            %a{:href => "http://global.factiva.com/mss/default.aspx?NAPC=G&frS=results", :tabindex => "0", :title => "Saved Searches"}
+              Saved
+              Searches
+          %li.directlink
+            %a{"data-a" => "directLink", :href => "#", :title => "Direct Link"}
+              Direct
+              Link
+      %li#navmbm1{:tabindex => "0"}
+        %a{:href => "http://global.factiva.com/ht/default.aspx?NAPC=T", :tabindex => "0", :title => "Alerts"} Alerts
+        %ul.dropdown-menu
+          %li
+            %a.selected{:href => "http://global.factiva.com/ht/default.aspx?NAPC=T", :tabindex => "0", :title => "View Alerts"}
+              View
+              Alerts
+          %li
+            %a{:href => "http://global.factiva.com/mt/default.aspx?NAPC=T", :tabindex => "0", :title => "Manage Alerts"}
+              Manage
+              Alerts
+      %li#navmbm2{:tabindex => "0"}
+        %a{:href => "http://global.factiva.com/np/default.aspx?NAPC=P", :tabindex => "0", :title => "News Pages"}
+          News
+          Pages
+        %ul.dropdown-menu
+          %li
+            %a{:href => "http://global.factiva.com/pnp/default.aspx?NAPC=p&inpt=Search20Personal", :tabindex => "0", :title => "Mobile News Pages"}
+              Mobile
+              News Pages
+          %li
+            %a{:href => "http://global.factiva.com/np/default.aspx?NAPC=P&inpt=Personal", :tabindex => "0", :title => "Personal Pages"}
+              Personal
+              Pages
+          %li
+            %a{:href => "http://global.factiva.com/np/default.aspx?NAPC=P&inpt=Group", :tabindex => "0", :title => "Group Pages"}
+              Group
+              Pages
+          %li
+            %a.selected{:href => "http://global.factiva.com/np/default.aspx?NAPC=P&inpt=Factiva", :tabindex => "0", :title => "Factiva Pages"}
+              Factiva
+              Pages
+      %li#navmbm3{:tabindex => "0"}
+        %a{:href => "http://global.factiva.com/cq/default.aspx?NAPC=Q", :tabindex => "0", :title => "Companies/Markets"} Companies/Markets
+        %ul.dropdown-menu
+          %li
+            %a.selected{:href => "http://global.factiva.com/cq/default.aspx?NAPC=Q", :tabindex => "0", :title => "Quotes"} Quotes
+          %li
+            %a{:href => "http://global.factiva.com/chrt/default.aspx?NAPC=A", :tabindex => "0", :title => "Charting"} Charting
+          %li
+            %a{:href => "http://global.factiva.com/cof/default.aspx?NAPC=K", :tabindex => "0", :title => "Company"} Company
+          %li
+            %a{:href => "http://global.factiva.com/ins/default.aspx?NAPC=J", :tabindex => "0", :title => "Industry"} Industry
+    %ul.dj_header-nav.utility-nav.no-left-margin
+      %li{:tabindex => "0"}
+        %a.settings{"data-a" => "settings", :href => "#", :tabindex => "0", :title => "Settings/Tools"}
+          %span.fi-two.fi_settings
+          = succeed "&nbsp;" do
+            %span.fi-two.fi_d-arrow-thick-gray
+        .dj_callout-select-wrap.settings
+          %ul.callout-select
+            %li
+              %a.tools.selected{"data-a" => "ecList", :href => "#", :tabindex => "0", :title => "Tools"}
+                %span.fi-two.fi_d-arrow-white>
+                Tools
+              %ul
+                %li
+                  %a{"data-a" => "appendDoneUrl", :href => "http://global.factiva.com/newsletter/default.aspx?napc=2&sa_from=GL", :tabindex => "0", :title => "Newsletter"} Newsletter
+                %li
+                  %a{"data-a" => "appendReturnUrl", :href => "http://widgets.factiva.com/du/manageWidgets.aspx?SA_FROM=GL&awt=0&napc=9", :tabindex => "0", :title => "Widgets"} Widgets
+                %li
+                  %a{"data-a" => "appendDoneUrl", :href => "http://global.factiva.com/workspace/managews.aspx?napc=B&sa_from=GL", :tabindex => "0", :title => "Workspaces"} Workspaces
+                %li
+                  %a{:href => "http://global.factiva.com/du/ewb.aspx?doneurl=http%3a%2f%2fglobal.factiva.com%2fgen%2fnav.aspx%3fforExternalProduct%3d1%26includeSearchBar%3d1%26menuId%3dmbm0%26subMenuId%3dmbm0-0%26sa_from%3dGL", :tabindex => "0", :title => "Editorial Workbench"}
+                    Editorial
+                    Workbench
+            %li
+              %a.lists{"data-a" => "ecList", :href => "#", :tabindex => "0", :title => "Lists"}
+                %span.fi-two.fi_r-arrow-black>
+                Lists
+              %ul{:style => "display:none;"}
+                %li
+                  %a{:href => "http://global.factiva.com/ml/default.aspx?mode=s", :tabindex => "0", :title => "Source Lists"}
+                    Source
+                    Lists
+                %li
+                  %a{:href => "http://global.factiva.com/ml/default.aspx?mode=c", :tabindex => "0", :title => "Company Lists"}
+                    Company
+                    Lists
+                %li
+                  %a{:href => "http://global.factiva.com/mql/default.aspx?napc=E&pa=0", :tabindex => "0", :title => "Quote Lists"}
+                    Quote
+                    Lists
+                %li
+                  %a{:href => "http://global.factiva.com/syr/sourcesyouhaverated.aspx", :tabindex => "0", :title => "Sources You've Rated"}
+                    Sources
+                    You've Rated
+                %li
+                  %a{:href => "http://global.factiva.com/rss/editorsChoice.aspx?NAPC=9&fcpil=en", :tabindex => "0", :title => "Editor's Choice"}
+                    Editor's
+                    Choice
+            %li
+              %a.language{"data-a" => "ecList", :href => "#", :tabindex => "0", :title => "Interface Language"}
+                %span.fi-two.fi_r-arrow-black>
+                Language
+              %ul{:style => "display:none;"}
+                %li
+                  %a.currentLanguage{"data-a" => "changeLanguage", "data-d" => "en", :href => "http://global.factiva.com#", :tabindex => "0", :title => "English"} English
+                %li
+                  %a{"data-a" => "changeLanguage", "data-d" => "fr", :href => "http://global.factiva.com#", :tabindex => "0", :title => "Français"} Français
+                %li
+                  %a{"data-a" => "changeLanguage", "data-d" => "de", :href => "http://global.factiva.com#", :tabindex => "0", :title => "Deutsch"} Deutsch
+                %li
+                  %a{"data-a" => "changeLanguage", "data-d" => "es", :href => "http://global.factiva.com#", :tabindex => "0", :title => "Español"} Español
+                %li
+                  %a{"data-a" => "changeLanguage", "data-d" => "it", :href => "http://global.factiva.com#", :tabindex => "0", :title => "Italiano"} Italiano
+                %li
+                  %a{"data-a" => "changeLanguage", "data-d" => "ja", :href => "http://global.factiva.com#", :tabindex => "0", :title => "日本語"} 日本語
+                %li
+                  %a{"data-a" => "changeLanguage", "data-d" => "ru", :href => "http://global.factiva.com#", :tabindex => "0", :title => "Русский"} Русский
+                %li
+                  %a{"data-a" => "changeLanguage", "data-d" => "zhcn", :href => "http://global.factiva.com#", :tabindex => "0", :title => "中文 (简体)"}
+                    中文
+                    (简体)
+                %li
+                  %a{"data-a" => "changeLanguage", "data-d" => "zhtw", :href => "http://global.factiva.com#", :tabindex => "0", :title => "中文(繁體)"} 中文(繁體)
+            %li
+              %a.settings{"data-a" => "ecList", :href => "#", :tabindex => "0", :title => "Settings"}
+                %span.fi-two.fi_r-arrow-black>
+                Settings
+              %ul{:style => "display:none;"}
+                %li
+                  %a{"data-a" => "preferences", :href => "http://global.factiva.com/mp/default.aspx?napc=R", :tabindex => "0", :title => "Preferences"} Preferences
+                %li
+                  %a{:href => "http://global.factiva.com/mp/default.aspx?ipst=Password&napc=9", :tabindex => "0", :title => "Login Info"}
+                    Login
+                    Info
+                %li
+                  %a{:href => "http://global.factiva.com/mp/default.aspx?ipst=Profile&napc=9", :tabindex => "0", :title => "Profile"} Profile
+                %li
+                  %a{"data-a" => "mobileCookie", :href => "http://global.factiva.com/factivalogin/mcemail/default.aspx", :tabindex => "0", :title => "Enable Mobile Login"}
+                    Enable
+                    Mobile Login
+                %li
+                  %a{"data-a" => "newWindow", :href => "http://customer.factiva.com/en/custSvc/CSMain.aspx?id=5569", :tabindex => "0", :title => "Read Tools FAQs"}
+                    Read
+                    Tools FAQs
+            %li
+              %a.account{"data-a" => "ecList", :href => "#", :tabindex => "0", :title => "Account"}
+                %span.fi-two.fi_r-arrow-black>
+                Account
+              %ul{:style => "display:none;"}
+                %li
+                  %a{"data-a" => "clientBilling", "data-d" => "costCentre", :href => "http://global.factiva.com/cc/default.aspx?NAPC=9&FCPIL=en", :tabindex => "0", :title => "Client Billing"}
+                    Client
+                    Billing
+                %li
+                  %a{:href => "http://global.factiva.com/ur/default.aspx?napc=7", :tabindex => "0", :title => "Usage Reports"}
+                    Usage
+                    Reports
+            %li
+              %a.whatsNewFeature.no-children{"data-a" => "whatsNewFeature", :href => "http://global.factiva.com#", :tabindex => "0", :title => "What's New"}
+                What's
+                New
+            %li.logout.no-children
+              %a.logout.no-children{"data-a" => "logout", :href => "http://global.factiva.com#", :tabindex => "0", :title => "Logout"} Logout
+      %li{:tabindex => "0"}
+        %a.support{"data-a" => "support", :href => "#", :tabindex => "0", :title => "Support"}
+          %span.fi-two.fi_support
+          = succeed "&nbsp;" do
+            %span.fi-two.fi_d-arrow-thick-gray
+        .dj_callout-select-wrap.support
+          %ul.callout-select
+            %li
+              %a.fi_laptop{"data-a" => "newWindow", :href => "http://customer.factiva.com/en/Support/Supportmain.asp?SA_FROM=GL&APC=9", :tabindex => "0", :title => ""}
+                %span.fi-two.fi_laptop
+                %div
+                  %h3> Online Resources
+                  Product help and Account Maintenance
+            %li
+              %a.fi_mail{"data-a" => "newWindow", :href => "http://customer.factiva.com/en/custsvc/csmain.aspx?id=EF&SA_FROM=GL&APC=9", :tabindex => "0", :title => ""}
+                %span.fi-two.fi_mail
+                %div
+                  %h3> Email
+                  Send Customer Service an Email
+            %li
+              %a.fi_chat{"data-a" => "newWindow", :href => "http://customer.factiva.com/en/custsvc/webchat.aspx?SA_FROM=GL&APC=9", :tabindex => "0", :title => ""}
+                %span.fi-two.fi_chat
+                %div
+                  %h3> Web Chat
+                  Chat with a Customer Service representative
+            %li
+              %a.fi_call-back{"data-a" => "newWindow", :href => "http://customer.factiva.com/en/custsvc/callme.aspx?SA_FROM=GL&APC=9", :tabindex => "0", :title => ""}
+                %span.fi-two.fi_call-back
+                %div
+                  %h3> Call Me
+                  Request a call from Customer Service
+            %li.last
+              %a.fi_phone{"data-a" => "newWindow", :href => "http://www.factiva.com/en/cp/LEADERSHIP_telephone.html", :tabindex => "0", :title => ""}
+                %span.fi-two.fi_phone
+                %div
+                  %h3> Phone Numbers
+                  Speak directly to a Customer Service
+                  representative
+/End Factiva Header

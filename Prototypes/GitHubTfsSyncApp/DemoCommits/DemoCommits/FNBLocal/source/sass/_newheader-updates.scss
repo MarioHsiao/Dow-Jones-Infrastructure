@@ -1,0 +1,32 @@
+// New Header Updates for Bootstrap Compatibility
+//---
+
+.dj_new-header {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.dj_new-header .dj_header-wrap {
+    min-width: 1000px;
+    width: 990px !important;
+    margin: 0 auto;
+    height: 46px;
+}
+
+.dj_new-header .dj_header-wrap .header-logo {
+	margin: 0;
+}
+
+.dj_new-header .dj_header-wrap .dj_header-nav {
+	margin-bottom: 0;
+}
+
+.dj_new-header .dj_header-wrap .dj_header-nav li .dropdown-menu {
+	padding: 0;
+	border: none;
+	@include box-shadow(none);
+}
+
+.dj_new-header .dj_header-wrap .dj_header-nav li .dropdown-menu li a:focus,
+.dj_new-header .dj_header-wrap .dj_header-nav li .dropdown-menu li a:hover {
+    background-image: none;
+}

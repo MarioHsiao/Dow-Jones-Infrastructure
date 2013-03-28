@@ -1,0 +1,402 @@
+// FNB Buttons
+
+// Core
+.btn {
+  display: inline-block;
+  @include ie7-inline-block();
+  padding: 4px 12px;
+  margin-bottom: 0; // For input.btn
+  font-size: $baseFontSize;
+  line-height: $baseLineHeight;
+  text-transform: uppercase;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  @include buttonBackgroundFlat($btnBackground, $linkColor, none);
+  border: none;
+  *border: 0; // Remove the border to prevent IE7's black border on input:focus
+  @include border-radius($baseBorderRadius);
+  @include ie7-restore-left-whitespace(); // Give IE7 some love
+  @include box-shadow(none);
+  background-image: none;
+
+  // Hover/focus state
+  &:hover,
+  &:focus {
+    color: $grayDark;
+    text-decoration: none;
+    background-image: none;
+    background-color: $factivaBlue;
+    background-position: inherit;
+
+    // transition is only when going to hover/focus, otherwise the background
+    // behind the gradient (there for IE<=9 fallback) gets mismatched
+   @include transition(none);
+  }
+
+  // Focus state for keyboard and accessibility
+  &:focus {
+    @include tab-focus();
+  }
+
+  // Active state
+  &.active {
+    outline: 0;
+  }
+  &:active {
+    background-image: none;
+    outline: 0;
+    @include box-shadow(none);
+    background-color: darken($factivaBlue, 20%);
+  }
+
+  // Disabled state
+  &.disabled,
+  &[disabled] {
+    cursor: default;
+    background-image: none;
+    @include opacity(65);
+    @include box-shadow(none);
+  }
+  
+	[class^="icon"] {
+		margin-left: 2px;
+	}
+
+
+}
+
+
+// Override button backgrounds
+// -------------------------
+.btn-primary {
+  @include buttonBackgroundFlat($btnPrimaryBackground, $white, none);
+}
+// Warning appears are orange
+.btn-warning {
+  @include buttonBackgroundFlat($btnWarningBackground, $white, none);
+}
+// Danger and error appear as red
+.btn-danger {
+  @include buttonBackgroundFlat($btnDangerBackground, $white, none);
+}
+// Success appears as green
+.btn-success {
+  @include buttonBackgroundFlat($btnSuccessBackground, $white, none);
+}
+// Info appears as a neutral blue
+.btn-info {
+  @include buttonBackgroundFlat($btnInfoBackground, $white, none);
+}
+// Inverse appears as dark gray
+.btn-inverse {
+  @include buttonBackgroundFlat($btnInverseBackground, $white, none);
+}
+.btn-secondary {
+	@extend .btn-primary;
+	background-color: tint($btnPrimaryBackground, 40%);
+}
+
+//buttonBackground(startcolor, endcolor, textcolor, textshadow)
+
+.btn-group > .btn {
+	margin-left: 0;
+}
+
+
+// !Display Options
+.display-options > .btn {
+	border-left: solid 1px $black;
+	border-right: solid 1px lighten($grayDarker, 10%);
+	@include buttonBackgroundFlat($grayDarker, $grayDarker, none);
+	padding: 4px 8px 3px 8px;
+	
+	&:first-child {
+		border-left: none;
+	}
+	
+	&:last-child, &.last-child{
+		border-right: none;
+	}
+
+	&:hover {
+		background-color: $factivaBlue;
+	}
+	
+	&:active {
+		background-color: darken($factivaBlue, 10%);
+	}
+
+	&.active {
+		background-color: $factivaBlue;
+	}
+	
+	&> span {
+		border: solid 1px $grayDarker;
+		display: inline-block;
+		height: 15px;
+		&> i {
+			background: $white;
+			border: solid 1px $white;
+			//border-bottom: none;
+			border-top: solid 4px $white;
+			display: block;
+		}
+		
+		&> .separator {
+			position: absolute;
+			left: 50%;
+			top: 5px;
+			margin-left: -1px;
+			width: 1px;
+			height: 15px;
+			border-left: solid 1px $white;
+		}
+	}
+}
+
+// Fluid Grid Overrides
+.row-fluid [class^="span"] {margin-left: 0;}
+.row-fluid .span12 {width: 75%; }
+.row-fluid .span10 {width: 62.5%; }
+.row-fluid .span8 {width: 50%; }
+.row-fluid .span6 {width: 37.5%; }
+.row-fluid .span4 {width: 25%; }
+
+
+// !Organizational Tools (Selections Pane)
+.org-tools {
+	background: $grayDarker;
+
+	.btn {
+		@include font-sans(10px, normal);
+		@include border-radius(0px);
+		@include buttonBackgroundFlat($grayDarker, $white, none);
+		border-left: solid 1px $black;
+		border-right: solid 1px lighten($grayDarker, 10%);
+		margin: 0;
+		padding: 6px 12px 5px;
+		
+		[class^="icon-"] {
+			display: block;
+			line-height: 11px;
+		}
+		
+		&:hover {
+			background-color: $factivaBlue;
+		}
+
+		&:active {
+			background-color: darken($factivaBlue, 10%);
+		}
+		
+		&.active {
+			background-color: $linkColor;
+		}
+	}
+	
+	&> .btn:first-child {
+		border-left: none;
+	}
+	
+	&> .btn-group {
+		margin-left: 0;
+		&> .btn {
+			@include border-radius(0px);
+			border-left: solid 1px $black;
+			border-right: none;
+		}
+		&:first-child > .btn {
+			border-left: none;
+		}
+	}
+}
+
+// !Content Selection & Search
+.content-tools {
+	@extend .org-tools;
+	
+	.btn {
+		&.dropdown-toggle {
+			font-size: 12px;
+			text-align: left;
+			border-left: none;
+			border-right: solid 1px lighten($grayDarker, 10%);
+			padding-top: 0;
+			padding-bottom: 0;
+			line-height: 42px;
+			[class^="icon-"] {
+				margin-top: 13px;
+			}
+
+		}
+
+		[class^="icon-"] {
+			display: inline-block;
+			line-height: normal;
+		}
+		
+	}
+	
+	.form-search {
+		margin: 0;
+
+		.search-input-wrap {
+			border-left: solid 1px $black;
+		}
+		
+		input {
+			@include placeholder($white);
+			@include border-radius(0px);
+			@include font-sans(12px, normal);
+			background: $grayDarker;
+			border: none;
+			height: 34px;
+			width: 100%;
+			color: $white;
+			@include transition(background-color .1s linear);
+			&:focus {
+				background-color: lighten($grayDarker, 20%);
+			}
+		}
+		
+		.btn {
+			@include border-radius(0px);
+			border: none;
+			height: 42px;
+		}
+	}
+}
+
+
+// !Results Tools (Sort, Snippets, Pagination)
+.results-tools {
+	border-top: solid 1px $gray;
+	border-bottom: solid 1px $gray;
+	
+	.btn-group {
+		margin: 0;
+	}
+	
+	.btn-group > .btn {
+		@include border-radius(0px);
+		font-size: 11px;
+		border-right: solid 1px #ccc;
+		text-align: left;
+		[class^="icon-"] {
+			color: $grayDarker;
+			margin-top: 4px;
+		}
+
+	}
+	
+	.results-options.span16 > .btn-group.span8 + .btn-group.span8 > .btn {
+		border-right: none;
+	}
+	
+	.pagination {
+		line-height: 30px;
+		margin: 0;
+		background: $grayLighter;
+		text-align: center;
+		
+		.results-count {
+			@include font-sans(12px, normal);
+			color: #999;
+			span {
+				color: $factivaBlue;
+			}
+		}
+		
+		a {
+			padding: 0 12px;
+			color: $grayDarker;
+			&:hover {
+				text-decoration: none;
+				color: $factivaBlue;
+			}
+		}
+		
+		&.span16 {
+			border-top: solid 1px $gray;
+		}
+	}
+}
+
+
+// Section Tools (Edit, Add Subsection, Delete)
+.section-tools {
+	margin: 8px 8px 0 0;
+	display: none;
+	.btn {
+		padding: 0;
+		width: 20px;
+		@include border-radius(20px);
+		margin-left: 6px;
+		&:hover {
+			background-color: $linkColor;
+		}
+	}
+}
+
+.section > .sort-container:hover {
+	background-color: tint($green, 70%);
+	.section-tools {
+		display: block;
+	}
+}
+
+.section.ui-sortable-helper > .sort-container:hover {
+	background-color: transparent;
+	.section-tools {
+		display: none;
+	}
+}
+
+
+// !Inline Modal Panels (Add section/link)
+
+#add-panels {
+	position: absolute;
+	width: 100%;
+	z-index: 1;
+}
+
+.inline-modal {
+	display: none;
+	padding: 8px;
+	background-color: $white;
+	border-top: solid 4px $factivaBlue;
+	@include box-shadow(0px 4px 6px rgba(0,0,0,0.4));
+	
+	.inline-modal-inner {
+		border: solid 1px $green;
+		padding: 6px;
+		position: relative;
+		
+		.input-wrap {
+			margin-right: 136px;
+		}
+		
+		.btn-wrap {
+			position: absolute;
+			top: 6px;
+			right: 6px;
+		}
+		
+		form {
+			margin: 0;
+		}
+		
+		input {
+			margin: 0;
+			@include font-sans(14px, light);
+			@include box-shadow(none);
+			border: none;
+			width: 100%;
+			color: $grayDarker;
+		}
+		
+	}
+	
+}

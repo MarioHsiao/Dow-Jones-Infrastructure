@@ -1,0 +1,26 @@
+// FNB Mixins and Overrides
+
+// Flat Button backgrounds
+// ------------------
+
+
+@mixin buttonBackgroundFlat($bgColor, $textColor: #fff, $textShadow: 0 -1px 0 rgba(0,0,0,.25)) {
+  background-color: $bgColor;
+  color: $textColor;
+  text-shadow: $textShadow;
+  *background-color: $bgColor; /* Darken IE7 buttons by default so they stand out more given they won't have borders */
+
+  // in these cases the gradient won't cover the background, so we override
+  &:hover, &:focus, &:active, &.active, &.disabled, &[disabled] {
+    color: $textColor;
+    background-color: darken($bgColor, 5%);
+    *background-color: darken($bgColor, 5%);
+    background-image: none;
+  }
+
+  // IE 7 + 8 can't handle box-shadow to show active, so we darken a bit ourselves
+  &:active,
+  &.active {
+    background-color: darken($bgColor, 10%) \9;
+  }
+}
