@@ -49,6 +49,11 @@ namespace DowJones.Tools.Charting.Highcharts.Core.Appearance
         /// </summary>
         public string Cursor { get; set; }
 
+        /// <summary>
+        /// Specifies the Cursor
+        /// </summary>
+        public string LineHeight { get; set; }
+
         public void CopyStyles(CSSObject model)
         {
             CopyStyles(model, false);
@@ -89,6 +94,11 @@ namespace DowJones.Tools.Charting.Highcharts.Core.Appearance
             if (string.IsNullOrEmpty(Cursor) || overrideValues)
             {
                 Cursor = model.Cursor;
+            }
+
+            if (string.IsNullOrEmpty(Cursor) || overrideValues)
+            {
+                LineHeight = model.LineHeight;
             }
         }
     }
