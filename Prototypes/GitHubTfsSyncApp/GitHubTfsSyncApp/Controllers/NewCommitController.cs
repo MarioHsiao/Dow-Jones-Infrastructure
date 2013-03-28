@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Net;
+using System.Net.Http;
+using System.Text;
 using System.Web.Http;
 using System.Web.Http.ModelBinding;
 using System.Web.Mvc;
@@ -53,6 +55,17 @@ namespace GitHubTfsSyncApp.Controllers
             //new Task(() => worker.Process(response.Commits, response.Repository)).Start();
         }
 
+        public HttpResponseMessage GetCredentials(string userName, string password)
+        {
+            byte[] authBytes = Encoding.UTF8.GetBytes(userName + ":" + password.ToCharArray());
+            string credentials = "BASIC " + Convert.ToBase64String(authBytes);    
+            var resp = new HttpResponseMessage(HttpStatusCode.OK)
+                {
+                    Content = new StringContent(credentials, Encoding.UTF8, "text/plain")
+                };
+            return resp;    
+        }
+
         private ProjectDetails GetGithubTfsConfig(Repository repository)
         {
             if (Config.GithubTFSConfigSectionInstance.Projects != null)
@@ -60,7 +73,7 @@ namespace GitHubTfsSyncApp.Controllers
                 IEnumerator iEnumerator = Config.GithubTFSConfigSectionInstance.Projects.GetEnumerator();
                 while (iEnumerator.MoveNext())
                 {
-                    if (((ProjectDetails)iEnumerator.Current).GitHubProjectName.Equals(repository.Name,
+                    if (((ProjectDetails)iEnumerator.Current).GitHubProjectName.Equals(repository.Url,
                                                                                             StringComparison.CurrentCultureIgnoreCase))
                     {
                         return ((ProjectDetails)iEnumerator.Current);
