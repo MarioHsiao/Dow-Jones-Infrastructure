@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Configuration;
 using System.IO;
 using System.Net;
+using System.Net.Mail;
 using System.Security.AccessControl;
 using AttributeRouting.Helpers;
 using GitHubTfsSyncApp.Configuration;
@@ -141,8 +143,8 @@ namespace GitHubTfsSyncApp.Workers
                     AddFileSecurity(Path.Combine(workspaceMappedPath, item.GitPath), _credential.Domain + "\\" + _credential.UserName, FileSystemRights.Read | FileSystemRights.ReadAndExecute | FileSystemRights.Write | FileSystemRights.FullControl, AccessControlType.Allow);
 				    File.Copy(item.IncomingFilePath, Path.Combine(workspaceMappedPath, item.GitPath), true);
 			        Workstation.Current.EnsureUpdateWorkspaceInfoCache(_versionControl, _credential.UserName);
-                  
-				    workspace.PendAdd(new[]{Path.Combine(workspaceMappedPath, item.GitPath)},true,"",LockLevel.None);
+
+                    workspace.PendAdd(new[] { filePath }, true, "", LockLevel.None);
 			    }
 
 			    foreach (var item in changedItems.Modified)
@@ -202,7 +204,15 @@ namespace GitHubTfsSyncApp.Workers
                     {
                         _logger.Info("item is getting filtered " + filterItem.GitSource);
                         _logger.Info("item is getting filtered " + filterItem.TfsTarget);
-                        item.GitPath = item.GitPath.Replace(filterItem.GitSource, filterItem.TfsTarget);
+                        if (string.IsNullOrEmpty(filterItem.GitSource) && 
+                            string.IsNullOrEmpty(Path.GetDirectoryName(item.GitPath)))
+                        {
+                            item.GitPath =  filterItem.TfsTarget + "\\" + item.GitPath;
+                        }
+                        else
+                        {
+                            item.GitPath = item.GitPath.Replace("/","\\").Replace(filterItem.GitSource, filterItem.TfsTarget);    
+                        }
                         isFilterItemConfigured = true;
                         break;
                     }
@@ -255,5 +265,7 @@ namespace GitHubTfsSyncApp.Workers
 				// could have been much better if the API allowed some query to check for existing workspace
 			}
 		}
+
+        
 	}
 }
