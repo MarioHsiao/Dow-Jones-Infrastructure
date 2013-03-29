@@ -7,6 +7,7 @@ using System.Security.AccessControl;
 using AttributeRouting.Helpers;
 using GitHubTfsSyncApp.Configuration;
 using GitHubTfsSyncApp.Extensions;
+using GitHubTfsSyncApp.Helpers;
 using GitHubTfsSyncApp.Models;
 using Microsoft.TeamFoundation.Client;
 using Microsoft.TeamFoundation.VersionControl.Client;
@@ -53,8 +54,12 @@ namespace GitHubTfsSyncApp.Workers
 		    try
 		    {
 		        _logger.Error(args.Exception);
-                 if (args.Failure != null)
-                    _logger.Error(args.Failure.Message, args.Exception);
+		        if (args.Failure != null)
+		        {
+                    SendMail(args.Failure.Message + "<Br/>" + args.Exception);
+		            _logger.Error(args.Failure.Message, args.Exception);
+		        }
+
 		    }
 		    catch (Exception ex)
 		    {
@@ -62,45 +67,47 @@ namespace GitHubTfsSyncApp.Workers
 		    }
 		}
 
-		public void CreateCheckin(ChangedItems changedItems, string workspaceName, string checkinMessage)
+        public void CreateCheckin(ChangedItems changedItems, string workspaceName,string checkinMessage)
 		{
 		    try
 		    {
 		        var workspaceMappedPath = Path.Combine(_workingDir.FullName, workspaceName);
 		        var workspace = InitializeWorkspace(workspaceName, workspaceMappedPath);
-               
+
 		        if (workspace == null) return;
 
-                _logger.Info("Commiting workspace");
+		        _logger.Info("Commiting workspace");
 		        CommitInWorkspace(changedItems, workspace, workspaceMappedPath);
-                _logger.Info("Resolving conflict");
+		        _logger.Info("Resolving conflict");
 		        ResolveConflicts(workspace);
-                _logger.Info("Getting pending changes");
+		        _logger.Info("Getting pending changes");
 		        var pendingChanges = workspace.GetPendingChanges();
 
 		        if (pendingChanges.Length == 0)
 		            _logger.Info("No changes to checkin");
 		        else
 		        {
-                    _logger.Info("checkin workspaces");
+		            _logger.Info("checkin workspaces");
 		            var changesetNumber = workspace.CheckIn(pendingChanges, checkinMessage);
 
 		            _logger.Info(changesetNumber == 0
 		                             ? "No new changes."
 		                             : "Checked in changeset {0}.\nCheckin Summary: {1}".FormatWith(changesetNumber,
 		                                                                                            checkinMessage));
-                    _logger.Info(changesetNumber);
+		            _logger.Info(changesetNumber);
 		        }
-                _logger.Info("delting workspace");
-                workspace.Delete();
-                _logger.Info("workspace deleted");
-                _logger.Info(workspaceMappedPath);
-                new DirectoryInfo(workspaceMappedPath).ForceDelete();
+		        _logger.Info("delting workspace");
+		        workspace.Delete();
+		        _logger.Info("workspace deleted");
+		        _logger.Info(workspaceMappedPath);
+		        new DirectoryInfo(workspaceMappedPath).ForceDelete();
 		    }
 		    catch (Exception exception)
 		    {
+		        SendMail(exception.Message+"<Br/>"+exception.StackTrace);
 		        _logger.Info("Error while checkin");
-                 _logger.Error(exception);
+		        _logger.Error(exception);
+                _logger.Error(exception.StackTrace);
 		        throw;
 		    }
 		}
@@ -266,6 +273,55 @@ namespace GitHubTfsSyncApp.Workers
 			}
 		}
 
-        
+        public void SendMail(string mailMessage)
+        {
+            try
+            {
+                _logger.Info("sending mail");
+                var server = new SmtpClient(ConfigurationManager.AppSettings.Get("SmtpServer"))
+                {
+                    Port = 587,
+                    EnableSsl = false,
+                    Credentials = new NetworkCredential(_credential.UserName, _credential.Password),
+                    Timeout = 5000,
+                    UseDefaultCredentials = false
+                };
+                using (var message = new MailMessage())
+                {
+                    string mailTo = ConfigurationManager.AppSettings.Get("MailTo");
+                    string mailToUsers = ConfigurationManager.AppSettings.Get("MailToUsers");
+                    message.From = new MailAddress(ConfigurationManager.AppSettings.Get("MailFrom"));
+                    string[] mailToList = !string.IsNullOrEmpty(mailTo) ? mailTo.Split(';') : null;
+                    string[] mailToUsersList = !string.IsNullOrEmpty(mailToUsers) ? mailToUsers.Split(';') : null;
+                    if (mailToList != null && mailToList.Length > 0)
+                    {
+                        foreach (var item in mailToList)
+                        {
+                            message.To.Add(new MailAddress(item));
+                        }
+                    }
+
+                    if (mailToUsersList != null && mailToUsersList.Length > 0)
+                    {
+                        foreach (var item in mailToUsersList)
+                        {
+                            message.To.Add(new MailAddress(item));
+                        }
+                    }
+
+                    message.Subject = ConfigurationManager.AppSettings.Get("MailSubject");
+                    message.Body =
+                        "There is an error while check-in changes in TFS. Please find the Description of error as below:<BR/><BR/>";
+                    message.Body += mailMessage + "<Br/>" + "Please do not respond to this email.";
+                    message.IsBodyHtml = true;
+                    server.Send(message);
+                    _logger.Info("mail sent");
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.Error("error while sending mail" + ex);
+            }
+        }
 	}
 }
