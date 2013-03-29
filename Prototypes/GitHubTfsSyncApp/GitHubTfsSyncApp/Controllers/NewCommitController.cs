@@ -34,21 +34,22 @@ namespace GitHubTfsSyncApp.Controllers
             _log.Debug(ser.Serialize(response));
            
             ProjectDetails projDetails = GetGithubTfsConfig(response.Repository);
+            ProjectsCollection projects = Config.GithubTFSConfigSectionInstance.Projects;
             if (projDetails == null)
             {
                 throw new Exception("TFS Project is not defined. Please define the mapping between Github and TFS Project");
             }
             // TODO: Use IoC.
             var worker = new TfsSyncWorker(
-                                    projDetails.TfsUrl,
+                                    projects.TfsUrl,
                                     projDetails.TfsProjectName,
-                                    projDetails.TfsLocalWorkspace,
+                                    projects.TfsLocalWorkspace,
                                     GitHubAccessConfigurationGenerator.CreateFromWebConfig(projDetails.GitHubCredentials,
-                                    projDetails.GitHubClientId,
-                                    projDetails.GitHubClientSecret,
+                                    projects.GitHubClientId,
+                                    projects.GitHubClientSecret,
                                     ConfigurationManager.AppSettings.Get("GitHub:ApiEndPoint")),
                                     projDetails.Filters,
-                                    new NetworkCredential(projDetails.TfsUserName, projDetails.TfsPassword)
+                                    new NetworkCredential(projects.TfsUserName, projects.TfsPassword)
                                   ); 
 
             worker.Process(response.Commits, response.Repository);
