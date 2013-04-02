@@ -474,5 +474,11 @@ namespace DowJones.Web.Showcase.Mocks
         {
             throw new NotImplementedException();
         }
+
+
+        public void UnpublishPage(string pageId, IEnumerable<Pages.Common.IShareAssets> assetsToUnShare)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
