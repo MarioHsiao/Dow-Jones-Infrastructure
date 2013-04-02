@@ -667,38 +667,84 @@ namespace EMG.widgets.ui.delegates.output.syndication
                 if (Data.Alerts[i].CompaniesChart != null)
                 {
                     Data.Alerts[i].CompaniesChart.GetThisAlertUrl = getAlertUrl;
-                    
-                    // NOTE: fsr - use "fsd" for companies rather than "co"
-                    for (int j = 0; j < Data.Alerts[i].CompaniesChart.Chart.data.Count; j++)
+
+                    if (Data.Alerts[i].CompaniesChart.Chart != null)
                     {
-                        Data.Alerts[i].CompaniesChart.Chart.data[j].uri = DiscoveryUtility.GenerateCycloneDiscoveryChartItemLink(Definition, Data.Alerts[i], tokenProperties, Definition.DistributionType, integrationTarget, interfaceLanguage, "fds|" + Data.Alerts[i].CompaniesChart.Chart.data[j].code, "cod");
+                        // NOTE: fsr - use "fsd" for companies rather than "co"
+                        for (int j = 0; j < Data.Alerts[i].CompaniesChart.Chart.data.Count; j++)
+                        {
+                            Data.Alerts[i].CompaniesChart.Chart.data[j].uri =
+                                DiscoveryUtility.GenerateCycloneDiscoveryChartItemLink(Definition, Data.Alerts[i],
+                                                                                       tokenProperties,
+                                                                                       Definition.DistributionType,
+                                                                                       integrationTarget,
+                                                                                       interfaceLanguage,
+                                                                                       "fds|" +
+                                                                                       Data.Alerts[i].CompaniesChart.
+                                                                                           Chart.data[j].code, "cod");
+                        }
                     }
                 }
 
                 if (Data.Alerts[i].ExecutivesChart != null)
                 {
                     Data.Alerts[i].ExecutivesChart.GetThisAlertUrl = getAlertUrl;
-                    for (var j = 0; j < Data.Alerts[i].ExecutivesChart.Chart.data.Count; j++)
+
+                    if (Data.Alerts[i].ExecutivesChart.Chart != null)
                     {
-                        Data.Alerts[i].ExecutivesChart.Chart.data[j].uri = DiscoveryUtility.GenerateCycloneDiscoveryChartItemLink(Definition, Data.Alerts[i], tokenProperties, Definition.DistributionType, integrationTarget, interfaceLanguage, "pe|" + Data.Alerts[i].ExecutivesChart.Chart.data[j].code, "exd");
+                        for (var j = 0; j < Data.Alerts[i].ExecutivesChart.Chart.data.Count; j++)
+                        {
+                            Data.Alerts[i].ExecutivesChart.Chart.data[j].uri =
+                                DiscoveryUtility.GenerateCycloneDiscoveryChartItemLink(Definition, Data.Alerts[i],
+                                                                                       tokenProperties,
+                                                                                       Definition.DistributionType,
+                                                                                       integrationTarget,
+                                                                                       interfaceLanguage,
+                                                                                       "pe|" +
+                                                                                       Data.Alerts[i].ExecutivesChart.
+                                                                                           Chart.data[j].code, "exd");
+                        }
                     }
                 }
-                
+
                 if (Data.Alerts[i].IndustriesChart != null)
                 {
                     Data.Alerts[i].IndustriesChart.GetThisAlertUrl = getAlertUrl;
-                    for (var j = 0; j < Data.Alerts[i].IndustriesChart.Chart.data.Count; j++)
+
+                    if (Data.Alerts[i].IndustriesChart.Chart != null)
                     {
-                        Data.Alerts[i].IndustriesChart.Chart.data[j].uri = DiscoveryUtility.GenerateCycloneDiscoveryChartItemLink(Definition, Data.Alerts[i], tokenProperties, Definition.DistributionType, integrationTarget, interfaceLanguage, "in|" + Data.Alerts[i].IndustriesChart.Chart.data[j].code, "ind");
+                        for (var j = 0; j < Data.Alerts[i].IndustriesChart.Chart.data.Count; j++)
+                        {
+                            Data.Alerts[i].IndustriesChart.Chart.data[j].uri =
+                                DiscoveryUtility.GenerateCycloneDiscoveryChartItemLink(Definition, Data.Alerts[i],
+                                                                                       tokenProperties,
+                                                                                       Definition.DistributionType,
+                                                                                       integrationTarget,
+                                                                                       interfaceLanguage,
+                                                                                       "in|" +
+                                                                                       Data.Alerts[i].IndustriesChart.
+                                                                                           Chart.data[j].code, "ind");
+                        }
                     }
                 }
 
                 if (Data.Alerts[i].RegionsChart != null)
                 {
                     Data.Alerts[i].RegionsChart.GetThisAlertUrl = getAlertUrl;
-                    for (var j = 0; j < Data.Alerts[i].RegionsChart.Chart.data.Count; j++)
+                    if (Data.Alerts[i].RegionsChart.Chart != null)
                     {
-                        Data.Alerts[i].RegionsChart.Chart.data[j].uri = DiscoveryUtility.GenerateCycloneDiscoveryChartItemLink(Definition, Data.Alerts[i], tokenProperties, Definition.DistributionType, integrationTarget, interfaceLanguage, "re|" + Data.Alerts[i].RegionsChart.Chart.data[j].code, "red");
+                        for (var j = 0; j < Data.Alerts[i].RegionsChart.Chart.data.Count; j++)
+                        {
+                            Data.Alerts[i].RegionsChart.Chart.data[j].uri =
+                                DiscoveryUtility.GenerateCycloneDiscoveryChartItemLink(Definition, Data.Alerts[i],
+                                                                                       tokenProperties,
+                                                                                       Definition.DistributionType,
+                                                                                       integrationTarget,
+                                                                                       interfaceLanguage,
+                                                                                       "re|" +
+                                                                                       Data.Alerts[i].RegionsChart.Chart
+                                                                                           .data[j].code, "red");
+                        }
                     }
                 }
 
@@ -708,6 +754,9 @@ namespace EMG.widgets.ui.delegates.output.syndication
                 }
 
                 Data.Alerts[i].SubjectsChart.GetThisAlertUrl = getAlertUrl;
+
+                if (Data.Alerts[i].SubjectsChart.Chart == null){continue;}
+
                 for (var j = 0; j < Data.Alerts[i].SubjectsChart.Chart.data.Count; j++)
                 {
                     Data.Alerts[i].SubjectsChart.Chart.data[j].uri = DiscoveryUtility.GenerateCycloneDiscoveryChartItemLink(Definition, Data.Alerts[i], tokenProperties, Definition.DistributionType, integrationTarget, interfaceLanguage, "ns|" + Data.Alerts[i].SubjectsChart.Chart.data[j].code, "nsd");
