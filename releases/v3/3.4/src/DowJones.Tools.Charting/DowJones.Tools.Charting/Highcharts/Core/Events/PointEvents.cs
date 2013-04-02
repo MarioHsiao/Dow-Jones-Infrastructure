@@ -37,7 +37,7 @@ namespace DowJones.Tools.Charting.Highcharts.Core.Events
 
         public string MouseOver
         {
-            get { return !string.IsNullOrEmpty(_mouseOver) ? string.Format("function(event){{ {{0}} }}", _mouseOver) : null; }
+            get { return !string.IsNullOrEmpty(_mouseOver) ? string.Format("function(event){{ {0} }}", _mouseOver) : null; }
             set { _mouseOver = value; }
         }
 
@@ -50,31 +50,31 @@ namespace DowJones.Tools.Charting.Highcharts.Core.Events
 
         public string MouseOut
         {
-            get { return !string.IsNullOrEmpty(_mouseOut) ? string.Format("function(event){{ {{0}} }}", _mouseOut) : null; }
+            get { return !string.IsNullOrEmpty(_mouseOut) ? string.Format("function(event){{ {0} }}", _mouseOut) : null; }
             set { _mouseOut = value; }
         }
 
         public string Remove
         {
-            get { return !string.IsNullOrEmpty(_remove) ? string.Format("function(event){{ {{0}} }}", _remove) : null; }
+            get { return !string.IsNullOrEmpty(_remove) ? string.Format("function(event){{ {0} }}", _remove) : null; }
             set { _remove = value; }
         }
 
         public string Select
         {
-            get { return !string.IsNullOrEmpty(_select) ? string.Format("function(event){{ {{0}} }}", _select) : null; }
+            get { return !string.IsNullOrEmpty(_select) ? string.Format("function(event){{ {0} }}", _select) : null; }
             set { _select = value; }
         }
 
         public string Unselect
         {
-            get { return !string.IsNullOrEmpty(_unselect) ? string.Format("function(event){{ {{0}} }}", _unselect) : null; }
+            get { return !string.IsNullOrEmpty(_unselect) ? string.Format("function(event){{ {0} }}", _unselect) : null; }
             set { _unselect = value; }
         }
 
         public string Update
         {
-            get { return !string.IsNullOrEmpty(_update) ? string.Format("function(event){{ {{0}} }}", _update) : null; }
+            get { return !string.IsNullOrEmpty(_update) ? string.Format("function(event){{ {0} }}", _update) : null; }
             set { _update = value; }
         }
 

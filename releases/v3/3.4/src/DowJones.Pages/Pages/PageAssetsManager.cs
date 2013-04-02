@@ -857,7 +857,7 @@ namespace DowJones.Pages
             catch (Exception ex)
             {
 
-                throw ex;
+                throw;
             }
            
         }
@@ -1021,7 +1021,7 @@ namespace DowJones.Pages
                     });
         }
 
-        public void UnpublishPage(string pageId, IEnumerable<IShareAssets> assetsToShare)
+        public void UnpublishPage(string pageId, IEnumerable<IShareAssets> assetsToUnShare)
         {
             // get the page, and make he modules private...
             var page = GetPage(pageId, false, false);
@@ -1029,7 +1029,7 @@ namespace DowJones.Pages
             if (page != null && page.ModuleCollection != null)
             {
                 MakePageModulesPrivate(page.ModuleCollection);
-                ShareAdditonalPageAssets(assetsToShare);
+                ShareAdditonalPageAssets(assetsToUnShare);
             }
 
             SetPageShareProperties(

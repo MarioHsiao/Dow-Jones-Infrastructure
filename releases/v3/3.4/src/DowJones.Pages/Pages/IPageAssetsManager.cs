@@ -76,6 +76,7 @@ namespace DowJones.Pages
         void UpdatePagePositions(IEnumerable<PagePosition> pagePositions);
         void UpdateTitleDescription(Page page);
         void UnpublishPage(string pageId);
+        void UnpublishPage(string pageId, IEnumerable<IShareAssets> assetsToUnShare);
         void UnsubscribeToPage(string pageId);
         void SetRootModuleId(string moduleId, string rootModuleId);
         void UpdateQueryFilter(string id, AssetType assetType, QueryFilters queryFilters);

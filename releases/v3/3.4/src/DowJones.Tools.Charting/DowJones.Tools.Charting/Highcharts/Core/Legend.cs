@@ -31,6 +31,8 @@ namespace DowJones.Tools.Charting.Highcharts.Core
         public ItemStyle ItemHiddenStyle { get; set; }
         public ItemStyle ItemHoverStyle { get; set; }
         public ItemStyle ItemStyle { get; set; }
+        public int? ItemMarginTop { get; set; }
+        public int? ItemMarginBottom { get; set; }
         public int? ItemWidth { get; set; }
         public int? LineHeight { get; set; }
         public int? Margin { get; set; }
