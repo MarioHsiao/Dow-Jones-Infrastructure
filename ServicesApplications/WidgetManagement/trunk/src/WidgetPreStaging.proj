@@ -3,9 +3,9 @@
 
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\TeamBuild\Microsoft.TeamFoundation.Build.targets" />
   <PropertyGroup>
-    <YourDestinationDirectory>$(PreStagingWebsiteLocation)</YourDestinationDirectory>    
+    <YourDestinationDirectory>$(PreStagingRootlocation)$(PreStagingWebsiteLocation)</YourDestinationDirectory>    
     <YourSourceDirectory>$(OutDir)\WidgetManagerApplication</YourSourceDirectory>
-    <YourBackupDirectory>$(PreStagingBackupWebsiteLocation)</YourBackupDirectory>
+    <YourBackupDirectory>$(PreStagingRootlocation)$(PreStagingBackupWebsiteLocation)</YourBackupDirectory>
     <IISServerName>$(IISServer)</IISServerName>
     <AppPoolName>$(AppPool)</AppPoolName>
     <VersionNumber>$(ProductVersion)</VersionNumber>
