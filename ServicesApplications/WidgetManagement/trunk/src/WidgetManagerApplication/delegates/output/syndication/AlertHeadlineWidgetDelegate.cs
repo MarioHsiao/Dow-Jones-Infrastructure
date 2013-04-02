@@ -22,6 +22,8 @@ using EMG.Tools.Charting.Data;
 using EMG.Tools.Charting.Discovery;
 using EMG.Tools.Managers.Charting;
 using EMG.Utility.Exceptions;
+using EMG.Utility.Formatters;
+using EMG.Utility.Formatters.Numerical;
 using EMG.Utility.Handlers.Syndication.Podcast.Core;
 using EMG.Utility.OperationalData.AssetActivity;
 using EMG.Utility.Url;
@@ -250,7 +252,8 @@ namespace EMG.widgets.ui.delegates.output.syndication
                     {
                         ProcessAlertInfos(assetIds);
                         // added http context to determine if ssl retrieval is neccessary
-                        GenerateCordaChartUrls(true, true);
+                        //This is not required after switching to HTML chart
+                        //GenerateCordaChartUrls(true, true);
                         UpdateIcons();
                     }
 
@@ -354,7 +357,8 @@ namespace EMG.widgets.ui.delegates.output.syndication
                                 if (alertIds.Count > 0)
                                 {
                                     ProcessAlertInfos(alertIds);
-                                    GenerateCordaChartUrls(true, true);
+                                    //This is not required after switching to HTML chart
+                                    //GenerateCordaChartUrls(true, true);
                                     UpdateIcons();
                                 }
                                 
@@ -439,7 +443,8 @@ namespace EMG.widgets.ui.delegates.output.syndication
                                     // Update Urls based ResponseFormat()
                                     UpdateUrls(m_TokenProperties, integrationTarget, interfaceLanguage);
                                     UpdateDiscoveryChartUrls(m_TokenProperties, integrationTarget, interfaceLanguage);
-                                    GenerateCordaChartUrls(false, true);
+                                    //This is not required after switching to HTML chart
+                                    //GenerateCordaChartUrls(false, true);
                                     FireMetricsEnvelope(GetOperationData(integrationTarget));
                                     NullOutAuthenticationCredentials();
                                     ElapsedTime = logger.LogTimeSinceInvocation();
@@ -460,7 +465,10 @@ namespace EMG.widgets.ui.delegates.output.syndication
                             // Update Urls based ResponseFormat()
                             UpdateUrls(m_TokenProperties, integrationTarget, interfaceLanguage);
                             UpdateDiscoveryChartUrls(m_TokenProperties, integrationTarget, interfaceLanguage);
-                            GenerateCordaChartUrls(false, true);
+
+                            //This is not required after switching to HTML chart
+                            //GenerateCordaChartUrls(false, true);
+
                             FireMetricsEnvelope(GetOperationData(integrationTarget));
                             NullOutAuthenticationCredentials();
                             ElapsedTime = logger.LogTimeSinceInvocation();
@@ -937,6 +945,29 @@ namespace EMG.widgets.ui.delegates.output.syndication
             }
         }
 
+
+        /// <summary>
+        /// Gets the rounded hit count.
+        /// </summary>
+        /// <param name="count">The count.</param>
+        /// <returns></returns>
+        private static string GetRoundedHitCount(int count)
+        {
+            if (count < 10000)
+            {
+                return new NumberFormatter().Format(count, NumberFormatType.Whole);
+            }
+            if (count <= 99999)
+            {
+                return String.Format("{0:##.0K}", Math.Round((double)count / 1000, 1));
+            }
+            if (count <= 999999)
+            {
+                return String.Format("{0:###K}", Math.Round((double)count / 1000));
+            }
+            return String.Format("{0}M", new NumberFormatter().Format(Math.Round((double)count / 1000000, 1), NumberFormatType.Precision));
+        }
+
         /// <summary>
         /// Retrieves the chart over SSL if neccessary.
         /// </summary>
@@ -1364,7 +1395,7 @@ namespace EMG.widgets.ui.delegates.output.syndication
             foreach (Bucket bucket in navigator.BucketCollection)
             {
                 // Add the Name, Value, Empty Cyclone Url, and Code to the ChartDataItem
-                discoveryChartInfo.data.Add(new ChartDataItem(bucket.Value, bucket.HitCount.ToString(), string.Empty, bucket.Id));
+                discoveryChartInfo.data.Add(new ChartDataItem(bucket.Value, GetRoundedHitCount(bucket.HitCount), string.Empty, bucket.Id));
             }
             
             return discoveryChartInfo;
