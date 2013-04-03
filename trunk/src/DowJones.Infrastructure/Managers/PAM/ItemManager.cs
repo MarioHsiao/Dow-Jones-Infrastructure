@@ -43,6 +43,7 @@ namespace DowJones.Managers.PAM
                 catch (Exception ex)
                 {
                     Log.Warn("Error setting Item share properties for Item " + itemId, ex);
+                    throw;
                 }
 
             }

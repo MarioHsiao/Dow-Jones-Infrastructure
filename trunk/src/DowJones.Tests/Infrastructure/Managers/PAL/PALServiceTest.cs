@@ -17,7 +17,8 @@ namespace DowJones.Infrastructure.Managers.PAL
     [TestClass]
     public class PALServiceTest : UnitTestFixtureBase<PALServiceManager>
     {
-        private Mock<StubPALPreferenceProvider> _mockPALPreferencesSource;
+        //private Mock<StubPALPreferenceProvider> _mockPALPreferencesSource;
+        private Mock<PALPreferenceServiceProvider> _mockPALPreferencesSource;
         
         protected PALServiceManager ServiceManager
         {
@@ -59,7 +60,8 @@ namespace DowJones.Infrastructure.Managers.PAL
 
         protected override PALServiceManager CreateUnitUnderTest()
         {
-            _mockPALPreferencesSource = new Mock<StubPALPreferenceProvider>();
+            //_mockPALPreferencesSource = new Mock<StubPALPreferenceProvider>();
+            _mockPALPreferencesSource = new Mock<PALPreferenceServiceProvider>();
 
             return new PALServiceManager(_mockPALPreferencesSource.Object);
 
