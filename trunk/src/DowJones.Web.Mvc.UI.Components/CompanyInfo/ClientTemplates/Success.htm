@@ -9,11 +9,15 @@
         <span class="stock-exchange"><%= (quoteData.stockExchange && quoteData.stockExchange != '') ? quoteData.stockExchange : "" %></span>
         <% if(options.enableCompanySnapshotLink) { %><a class="company-snapshot" href="javascript:void(0);"><%= Token('companySnapshot') %></a> <% } %>
     </div>
+    <%if((quoteData.currentValue && quoteData.currentValue != '') ||
+            (quoteData.differenceValue && quoteData.differenceValue != '') ||
+            (quoteData.differencePercentage && quoteData.differencePercentage != '')) { %>
     <div class="stock-value">
         <span class="current positive"><%= (quoteData.currentValue && quoteData.currentValue != '') ? quoteData.currentValue : "--" %></span>
         <span class="difference <%= (quoteData.differenceValue && quoteData.differenceValue > 0)?"positive":"negative" %>"><%= (quoteData.differenceValue && quoteData.differenceValue != '') ? quoteData.differenceValue : "--" %></span>
         <span class="percentage <%= (quoteData.differencePercentage && quoteData.differencePercentage > 0)?"positive":"negative" %>"><%= (quoteData.differencePercentage && quoteData.differencePercentage != '') ? quoteData.differencePercentage + "%" : "--" %></span>
     </div>
+    <% } %>
 </div>
 <% } else if(options.enableCompanySnapshotLink) { %>
     <div class="company-overview">
@@ -149,4 +153,18 @@ if(companyInfo.keyFinancialData != null) {
         <% } %>
     </tbody>
 </table>
-<% } } %>
+<% if(keyFinancialData.provider && !$.isEmptyObject(keyFinancialData.provider)) { 
+    var source = []; 
+    $.each(keyFinancialData.provider, function() { 
+        var p = this;
+        if(p.providerURL && p.providerURL != '') { 
+            source.push("<a target='_blank' title='"+ p.providerTooltip +"' href='"+ p.providerURL +"'>"+ p.providerName +"</a>");
+        } else { 
+            source.push(p.providerName); 
+        } 
+    }); %>
+    <div>
+        <span><%= Token('dataSource') %>:</span>
+        <span><%= source.join(", ") %></span>
+    </div>
+<% } } } %>
