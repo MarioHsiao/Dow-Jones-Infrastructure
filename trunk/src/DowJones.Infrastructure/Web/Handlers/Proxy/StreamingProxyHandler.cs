@@ -28,7 +28,7 @@ namespace DowJones.Web.Handlers.Proxy
         private Stream _responseStream;
 
         protected bool IncludeContentDisposition { get; set; }
-        protected string DefinedUrl { get; set; }
+        protected string DefinedTargetUrl { get; set; }
 
         #region IHttpAsyncHandler Members
 
@@ -128,8 +128,7 @@ namespace DowJones.Web.Handlers.Proxy
         public virtual IAsyncResult BeginProcessRequest(HttpContext context, AsyncCallback cb, object extraData)
         {
             var origRequest = context.Request;
-            var url = DefinedUrl ?? origRequest["url"];
-
+            var url = DefinedTargetUrl ?? origRequest["url"];
             var cacheDuration = Convert.ToInt32(origRequest["cache"] ?? "0");
 
             if (cacheDuration > 0)

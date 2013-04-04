@@ -21,7 +21,7 @@
         
         <div class="span7">
             <div>
-            <form id="exportForm" action="@Url.Content("~/dowjones.charting.handler.exporter.ashx")" method="POST">
+            <form id="exportForm" action="@Url.Content("~/DowJones.Web.Handlers.HighCharts.ExportHandler.ashx")" method="POST">
                 <h5>Use this section to experiment with the different options.</h5>
                 <br />
                 <label for="options" class="radio">
@@ -251,6 +251,7 @@ function(chart) {
         <div class="span5">
             <h5>Description of POST parameters</h5>
             <dl class="dl-horizontal">
+                <dt>content</dt><dd>The <B>options</B> type.Can be one of Highcharts config object(JSON) or SVG(XML).</dd>
                 <dt>svg</dt><dd>The string representation of a SVG file you want to export. Can be overridden by the <b>options</b> parameter.</dd>
                 <dt>options</dt><dd>Use this parameter if you want to create a graph out of a Highcharts configuration. The options are sent as a JSON string. This parameter overrides the <b>svg</b> option</dd>
                 <dt>type</dt><dd>The content-type of the file to output. Can be one of 'image/png', 'image/jpeg', 'application/pdf', or 'image/svg+xml'.</dd>
