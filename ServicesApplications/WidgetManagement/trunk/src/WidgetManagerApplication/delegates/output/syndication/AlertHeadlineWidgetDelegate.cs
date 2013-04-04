@@ -1301,9 +1301,10 @@ namespace EMG.widgets.ui.delegates.output.syndication
                 {
                     foreach (GroupFolderPreferenceItem item in preferenceResponse.GroupFolder)
                     {
-                        if (item.ItemValue != null)
+                        int folder;
+                        if (!string.IsNullOrEmpty(item.ItemValue) && Int32.TryParse(item.ItemValue, out folder))
                         {
-                            groupFolders.Add(Convert.ToInt32(item.ItemValue));
+                            groupFolders.Add(Convert.ToInt32(folder));
                         }
                     }
                 }

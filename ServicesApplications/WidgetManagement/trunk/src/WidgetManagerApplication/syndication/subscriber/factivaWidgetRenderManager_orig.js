@@ -1486,9 +1486,7 @@ if (!window.FactivaWidgetRenderManager) {
                                 ";position:relative" +
                                 ";text-align:center" +
                                 ";font-size: 11px;" +
-";padding-bottom: 5px;" +
-"border-bottom: 1px solid #f0f0f0;" +
-"width:211px;" +
+                                "width:100%;" +
                                 ";\">" + htmldata + "</div>";
 
                     return t.join("");
@@ -2363,7 +2361,7 @@ var DiscoveryChart = (function (chartimage) {
             throw e;
         }
     };
-    var template = ['<ul class="discovery-items" style="line-height: 13px;zoom: 1;list-style: none;">',
+    var template = ['<ul class="discovery-items" style="line-height: 13px;zoom: 1;list-style: none;display:inline-table;padding:0px;">',
                             '{{ var data = it, mw = 1;',
                                 'for (var x=0, w=0, c=0, i = 0, len = data.length;i < len; i++) { ',
                                 'x = data[i];w=((i != 0)?((x.value/data[0].value)*170):170); if(w < mw) w=mw; c = x.GT=="sf"? "cItem source-family":"cItem";}}',
