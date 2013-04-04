@@ -1,0 +1,38 @@
+﻿@model dynamic
+@{ ViewBag.Title = "An Error Occurred!"; }
+<style>
+    #main { text-align: center; }
+    .error-details { text-align: left; }
+    .error-details fieldset h3 { margin: 1.5em 0 0.5em 0; }
+</style>
+
+<img src="@Url.Content("~/content/images/error.png")" width="200px" />
+
+<h1>Uh oh... something bad happened!</h1>
+
+<div>
+    There was a problem processing your request.
+    If you're interested, check out the details below.
+</div>
+<br/>
+@if (Model != null) {
+<a href="#" onclick="$('.error-details').show(); $(this).hide(); return false;">Show Error Details...</a>
+<div class="error-details" style="display: none;">
+    <h2>Error Details</h2>
+    <fieldset>
+      
+        <h3>Controller</h3>
+        <span>@Model.ControllerName</span>
+
+        <h3>Action</h3>
+        <span>@Model.ActionName</span>
+
+        <h3>Message</h3>
+        <span>@Model.Exception.Message</span>
+
+        <h3>Stack Trace</h3>
+        <pre>@Model.Exception.StackTrace</pre>
+
+    </fieldset>
+</div>
+}

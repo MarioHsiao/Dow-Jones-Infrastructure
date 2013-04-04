@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="DowJones.Charting.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="ExporterEncryptedToken" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">S00ZGF91tNqYWRyMTZyMTMpN9AsODUvOHmm5DN9RcF0WEbBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB</Value>
+    </Setting>
+    <Setting Name="CacheKeyNamespace" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">REST_API</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

@@ -1,0 +1,93 @@
+﻿@model TranslateArticleModel
+
+@ClientPlugin dj_TranslateArticle
+@ScriptResource RelativeResourceName=TranslateArticle.js
+@ScriptResource RelativeResourceName=js.jquery.ui.stars.js, DependsOn=jquery-ui-widgets
+@ScriptResource RelativeResourceName=js.jquery.uni-form.js, DependsOn=jquery-ui-widgets
+
+@{ CssClass = "dj_TranslateArticle"; }
+
+
+<div class="article">
+    <table class="dj_translate_title" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+            <td class="dj_translate_title_langcode">@Model.Tokens.Langcode
+            </td>
+            <td class="dj_translate_title_langtext">@Model.Tokens.LangText
+            </td>
+            <td class="dj_translate_title_rating_td">
+                <div class="dj_translate_title_rating">
+                    <div class="multiField" id="starify">
+                        <label for="vote1" class="blockLabel">
+                            <input  type="radio" name="vote" id="vote1" value="@Model.Tokens.TranslationVeryDifficult"/>
+                        </label>
+                        <label for="vote2" class="blockLabel">
+                            <input  type="radio" name="vote" id="vote2" value="@Model.Tokens.TranslationSomewhatDifficult" />
+                        </label>
+                        <label for="vote3" class="blockLabel">
+                            <input  type="radio" name="vote" id="vote3" value="@Model.Tokens.TranslationGeneralUnderstanding" />
+                        </label>
+                        <label for="vote4" class="blockLabel">
+                            <input  type="radio" name="vote" id="vote4" value="@Model.Tokens.TranslationSomewhatEasy"  />
+                        </label>
+                        <label for="vote5" class="blockLabel">
+                            <input  type="radio" name="vote" id="vote5" value="@Model.Tokens.TranslationVeryEasy"  />
+                        </label>
+                    </div>
+                    <div id="dj_translate_ratestatus">
+                        @Model.Tokens.RateTranslationReadability &nbsp; &nbsp;
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </table>
+    <div class="dj_translate_disclaimer">
+        <div class="dj_translate_disclaimer_text" id="translateDisclaimer">
+            @Model.Tokens.ArticleTranslateDisclaimer
+            <a href="javascript:void(0)" class="dj_translate_disclaimer_link">@Model.Tokens.ClickForFullDisclaimer</a>
+        </div>
+        <div class="dj_translate_disclaimer_text" id="translateDisclaimerFull" style="display: none">
+            @Model.Tokens.ArticleTranslateDisclaimerFull
+        </div>
+        <br />
+        <br />
+        <div class="dj_translate_disclaimer_translator">
+            @Model.Tokens.TranslatedByPre &nbsp;LanguageWeaver Inc.&nbsp;@Model.Tokens.TranslatedByPost&nbsp;
+            @Model.ArticleObject.sourceName
+            &nbsp;@Model.Tokens.TranslatedByPostPost&nbsp;&nbsp;[@Model.Tokens.FCPBeta]
+        </div>
+    </div>
+    <div id="originalContent" style="display: none">
+        <div>
+            <div id="hd">
+                @Model.RenderArticleTitle()
+            </div>
+             @Model.RenderRemainingArticleTitle()
+              
+    </div>
+    <div id="translatedContent">
+    </div>
+    <div id="translatingMessage" class="dj_translate_translatingmsg" style="display: none">
+        <b>@Model.Tokens.TranslationInProgress...</b>
+    </div>
+    <div id="translatingMessageLargeArticle" class="dj_translate_translatingmsg" style="display: none">@Model.Tokens.LargeArticleTranslationMsg</div>
+    <div id="translateButtons" class="dj_translate_buttons" style="display: none">
+        <a href="javascript:void(0)" class="dj_translate_TranslateMore">@Model.Tokens.TranslateMore
+            >></a>&nbsp;|&nbsp; <a href="javascript:void(0)" class="dj_translate_TranslateAll">@Model.Tokens.TranslateAll
+                >></a>
+    </div>
+    <div class="dj_translate_copyright_ruler">
+    </div>
+</div>
+<div style="display: none">
+    <span id="InputFormat">HTML</span> <span id="PP">@Model.ProductPrefix</span> <span id="WordCount">@Model.ArticleObject.wordCount
+    </span><span id="SourceName">@Model.ArticleObject.sourceName</span> <span id="AccessionNo">@Model.ArticleObject.accessionNo</span>
+</div>
+<script type="text/javascript">
+    sourceLanguage ='@Model.SourceLanguage'; 
+    TargetLanguage ='@Model.TargetLanguage'; 
+    wordCount=@Model.ArticleObject.wordCount;
+    sourceName='@Model.ArticleObject.sourceName';
+    accessionNo='@Model.ArticleObject.accessionNo';
+    sourceCode='@Model.ArticleObject.sourceCode'
+</script>

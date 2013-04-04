@@ -1,0 +1,49 @@
+	.dj_ModuleGallery.tabs-left > .nav-tabs { 
+		border-right: none;
+		margin-right: 0;
+	}
+
+
+.dj_ModuleGallery {
+    background: #fff;
+    vertical-align: top;
+
+	.heading {
+		text-align: center;
+		text-decoration: underline;
+		margin: 0;
+	}
+
+	.modules {
+		float: left;
+		min-height: 175px;
+		width: 175px;
+		margin-left: 5px;
+	}
+
+	.modules, .new-module-info {
+		padding-top: 10px;
+	}
+
+	.new-module-info {
+		vertical-align: top;
+		padding-left: 10px; 
+		border-left: 1px solid #DDD;
+		
+
+		.editor {
+			display: none;
+
+			input[type=text], textarea { width: 90%; }
+		}
+
+		.editor.active {
+			display: block;
+		}
+
+		fieldset {
+			border: 0;
+			vertical-align: top;
+		}
+	}
+}

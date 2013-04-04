@@ -1,0 +1,67 @@
+﻿@using DowJones.Web.Mvc.Extensions
+@using DowJones.Web.Mvc.UI.Components.HeadlineList
+
+@inherits DowJones.Web.Mvc.UI.CompositeComponent<CompositeHeadlineModel>
+@ClientPlugin dj_CompositeHeadline
+@ScriptResource RelativeResourceName=CompositeHeadline.js
+@{ CssClass = "dj_CompositeHeadline"; }
+<div class="dj_HeadlineOptions ui-component">
+    <div class="dj_paging">
+        <span class="dj_comm-icon pagination-arrow prevs @(Model.CanPagePrevious ? "dj_prev" : "disabled")" title="@DJ.Token("previousItem")">
+        </span><strong>@Format(Model.FirstResultIndex + 1)
+            - @Format(Model.LastResultIndex)</strong> @DJ.Token("of")
+        @Format(Model.TotalResultCount)
+        <span class="dj_comm-icon pagination-arrow next @(Model.CanPageNext ? "dj_next" : "disabled")" title="@DJ.Token("nextItem")"></span>
+
+        @if (Model.TotalDuplicateCount > 0){
+            <span class="duplicate-label">@DJ.Token("dupsSoFar"): </span><span class="duplicate-count">@Model.TotalDuplicateCount</span>
+        }
+        else if (Model.DuplicateCount > 0)
+        {
+            <span class="duplicate-label">@DJ.Token("totalDupOnPageRefresh"): </span><span class="duplicate-count">@Model.DuplicateCount</span>
+        }
+       
+    </div>
+    @if (Model.ShowHeadlineViewOptions)
+    {
+        <div class="controls">
+            <div class="drop-down-button sort">
+                <div class="selected-option">
+                    <span class="">@DJ.Token("options")</span> <span class="dj_icon dj_icon-d-arrow-g">
+                    </span>
+                    <div class="options sort-options dj_options">
+                        <label class="select-prompt">@DJ.Token("sortOptions"):</label>
+                        @Html.RadioButtonList("order", Model.HeadlineSortOptions, HtmlHelpers.ListType.Ordered, "select-options")
+                        
+                        @if (Model.EnableDuplicateOption)
+                        {
+                        <!-- dj_search-builder_filters-category_toolbar -->
+                        <div class="dj_search-builder_filters-category_toolbar">
+                            <div class="select-duplicates">
+                                <label class="select-prompt inline" for="option_show_duplicates">@DJ.Token("showDuplicates"):</label>
+                                <!-- .dj_toggle-switch -->
+                                <div class="dj_toggle-switch clearfix">
+                                    <span class="switch @(Model.ShowDuplicates == ShowDuplicates.Off ? "on" : "")" data-state="@Model.ShowDuplicates.ToString().ToLower()">@DJ.Token(Model.ShowDuplicates.ToString().ToLower())</span>
+                                    <div class="text-behind">
+                                        <span class="tb-left">@DJ.Token("on")</span> <span class="tb-right">@DJ.Token("off")</span>
+                                    </div>
+                                </div>
+                                <!-- end: .dj_toggle-switch -->
+                            </div>
+                        </div>
+                        }
+                        <input class="button dj_optionsOk" type="button" value="@DJ.Token("ok")">
+                    </div>
+                </div>
+                <!-- end: .selected-option -->
+            </div>
+            <!-- end: .drop-down-button -->
+        </div>
+        <!-- end: .controls -->
+    }
+</div>
+@if (Model.ShowPostProcessing)
+{
+    @DJ.Render(Model.PostProcessing)
+}
+@DJ.Render(Model.HeadlineList)

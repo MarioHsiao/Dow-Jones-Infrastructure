@@ -1,0 +1,14 @@
+/***  AlertsCanvasModule  ***/
+
+.AlertsCanvasModule
+{
+
+}
+.page-active
+{
+    display:block;
+}
+.page-inactive
+{
+    display:none;
+}

@@ -1,0 +1,37 @@
+﻿<script src="../template.js"></script> 
+<script>
+    setTargetScript('../../DowJones.Web.Mvc.UI.Components/InlineMp3Player/InlineMp3PlayerBehavior.js');
+
+    $(document).ready(function () {
+        // add tests here
+
+        function getSampleMetaData() {
+            return $.extend({}, {
+                options: { showDownloadLink: false, mp3PlayerType: 5, autoStart: false, autoReplay: false, volume: 50, showTime: false, randomPlay: false, noPointer: false, enableTransparency: true, backgroundColor: "FFFFFF", mp3PlayerUrl: "http://localhost/WebResource.axd?d=cL9wNGuHWWB_TyYv2f7EU7A1dIzATfTl0YhwmyvWWtFi_T37m0r544u-H1WfqSiqwbbK8y6mDYlhprdPJLMk7do0jL_dRpLGpoCuBzMvJixyrWFQcvq2qUm98L0BQGs9OTW02pAsoC4xa1fmHLlOOknuke5-QjRimGxkIzGrqf08v1Ur4Vy6ISmnXnLoB5YDicByWcXt-DpF1PHs8SBDpTVNhBs1&t=634275131010876696", flashPlayerWidth: 240, flashPlayerHeight: 20, flashPlayerVersion: "7", dewplayerVersion: "1.5", mp3FilesUrls: "http%3a%2f%2flocalhost%2fMDST000020100506e659000io.mp3%3ftkn%3d9lqW0VRwuX1Vy8wElyjuGlQnuO5rd42YIqe8DUknG7ucAXG553GSEh6I2PX_2Fm4YWvkfywGSwJMqPRtviag_2BLR575z_2FYApg9qdJ2QucC8X2vDjEawPmJnKhwVuuNuOH0casEDDNOSCxR_2F4vXwSy00YoyrTeOHKc2ex5f3rSwj8DmjsqVB51UZ6R0aqP7FKtYIw57UUYrTBNs_3D_7C2", downloadUrl: "http%3a%2f%2flocalhost%2fMDST000020100506e659000io.mp3%3ftkn%3d9lqW0VRwuX1Vy8wElyjuGlQnuO5rd42YIqe8DUknG7ucAXG553GSEh6I2PX_2Fm4YWvkfywGSwJMp5vOyMwklFnkd_2B7dnkjKVzD6fbGhdcubCozRljcHQF9UWs6qXPifpSI3QktsXQLJCYP8Wm2kGHXRkLTXvuyUgH0R_2F9V1pppW5UYHmy6DgllvH_2BbzX3wedCtex4iwMs0_2FY_3D_7C2", speakerImageUrl: "http://localhost/WebResource.axd?d=pJIt2IngYfrUNUKdN0Ca_Jw5Vqbnrgy9qiKAgGfHnuvVnTGoa8pslKoq3y2rRgDDFxaj4wcShkSDlcoujZ_rniZhWqzk7PuOYU_G2aBptRojjStGKmBiw0GX95SO-AvEkFEo3oMWpfYlRjRyD_ojCgKpsytMlyD9qhlPy4Jo51FUg-WN0&t=634275131010876696", debug: false },
+                tokens: { listenToArticleToken: "${listentoarticle}", downloadToken: "${download}", attributionToken: "${attribution}" },
+                data: null
+            });
+        }
+
+        test("has $.fn.dj_InlineMp3PlayerBehavior", function () {
+            ok($.fn.dj_InlineMp3PlayerBehavior);
+            ok(createjQueryTestElement('spkrTest').dj_InlineMp3PlayerBehavior);
+        });
+
+        test("should create new Read Speaker control", function () {
+            var readSpeaker = createjQueryTestElement('readSpkr').dj_InlineMp3PlayerBehavior(getSampleMetaData());
+            ok(readSpeaker);
+
+        });
+
+        test("created speaker button", function () {
+            var spkrButton = createjQueryTestElement('readSpkr').dj_InlineMp3PlayerBehavior();
+
+            equals($('.emg_speaker_button', spkrButton).length, 1);
+        });
+
+
+        // end of tests
+
+    });        // end $(document).ready
+</script>

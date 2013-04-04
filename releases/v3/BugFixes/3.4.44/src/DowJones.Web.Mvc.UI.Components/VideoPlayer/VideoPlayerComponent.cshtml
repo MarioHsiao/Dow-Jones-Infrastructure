@@ -1,0 +1,9 @@
+﻿@using DowJones.Web.Mvc.Extensions
+@model VideoPlayerModel
+@ClientPlugin dj_VideoPlayer
+@ScriptResource RelativeResourceName=js.VideoPlayer.js, DependsOn=video-player-scrollable;video-player-flowplayer-combined
+@ClientTemplate RelativeResourceName=ClientTemplates.Success.htm, TemplateId=success
+@{ 
+    CssClass = "dj_VideoPlayer";
+}
+

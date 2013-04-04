@@ -1,0 +1,30 @@
+﻿<script src="../template.js"></script> 
+<script>
+    setTargetScript('../../DowJones.Web.Mvc.UI.Components/PortalViewer/PortalViewer.js');
+
+    $(document).ready(function () {
+        // add tests here
+
+        function getSampleMetaData() {
+            return $.extend({}, {
+                options: { "debug": false, "maxNumHeadlinesToShow": -1, "displaySnippets": 0, "displayIconography": false, "displayNumbering": false, "displayHeadlineTooltip": true, "truncationType": 0, "extension": "" }
+            });
+        }
+
+        test("has $.fn.dj_PortalViewer", function () {
+            ok($.fn.dj_PortalViewer);
+            ok(createjQueryTestElement('PortalViewer').dj_PortalViewer);
+        });
+
+        test("should create new Portal Viewer control", function () {
+            var portalViewer = createjQueryTestElement('PortalViewer').dj_PortalViewer(getSampleMetaData());
+            ok(portalViewer);
+
+        });
+
+        
+
+        // end of tests
+
+    });        // end $(document).ready
+</script>
