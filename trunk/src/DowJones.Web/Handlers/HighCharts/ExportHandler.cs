@@ -5,6 +5,8 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
+using DowJones.Exceptions;
+using DowJones.Web.Handlers.Proxy.Core;
 using DowJones.Web.Properties;
 
 namespace DowJones.Web.Handlers.HighCharts
@@ -42,7 +44,6 @@ namespace DowJones.Web.Handlers.HighCharts
 
     public class ExportHandler : AbstractAsyncHandler
     {
-        
         protected override Task ProcessRequestAsync(HttpContext context)
         {
             return Task.Factory.StartNew(() => Process(context));
@@ -105,9 +106,15 @@ namespace DowJones.Web.Handlers.HighCharts
                 }
                 process.Close();
             }
+            catch (DowJonesUtilitiesException dex)
+            {
+                Logger.WriteEntry("Error while exporting chart :"+dex.InnerException);
+                throw new HttpException(((int)HttpStatusCode.InternalServerError), string.Concat("Unable to export chart. [", dex.ReturnCode, "]"));
+            }
             catch (Exception exception)
             {
-                context.Response.StatusCode = (int) HttpStatusCode.InternalServerError;
+                Logger.WriteEntry("Error while exporting chart :" + exception);
+                throw new HttpException(((int)HttpStatusCode.InternalServerError), "General chart export error");
             }
             finally
             {
@@ -213,7 +220,7 @@ namespace DowJones.Web.Handlers.HighCharts
             FileStream fs = File.OpenRead(fullFilePath);
             try
             {
-                byte[] bytes = new byte[fs.Length];
+                var bytes = new byte[fs.Length];
                 fs.Read(bytes, 0, Convert.ToInt32(fs.Length));
                 fs.Close();
                 return bytes;
