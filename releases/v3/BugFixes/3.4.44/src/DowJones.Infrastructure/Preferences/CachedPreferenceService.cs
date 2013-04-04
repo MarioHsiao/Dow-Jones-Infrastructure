@@ -155,10 +155,14 @@ namespace DowJones.Preferences
             if (preferences == null || preferences.rc != 0)
                 return;
 
-            if(CachedResponse == null)
+            if (CachedResponse == null)
                 CachedResponse = new CachedPreferenceResponse(preferences);
             else
+            {
+                if (!preferences.isPopulated)
+                    preferences.PopulatePreferenceCollection();
                 CachedResponse.prefCollection.Merge(preferences.prefCollection, replaceExisting: true);
+            }
         }
 
         protected void SaveToCache(IEnumerable<PreferenceItem> preferences)
