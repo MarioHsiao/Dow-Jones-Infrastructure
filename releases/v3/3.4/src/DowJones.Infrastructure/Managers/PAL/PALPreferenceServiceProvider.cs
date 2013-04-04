@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using DowJones.Exceptions;
 using DowJones.PALService;
 using DowJones.Session;
 using DowJones.Utilities;
@@ -20,7 +21,15 @@ namespace DowJones.Managers.PAL
         }
         void IPALPreferenceServiceProvider.UpdatePreferenceItemScope(PALService.UpdateItemList[] item)
         {
-            service.UpdatePreferenceItemScope(item);
+
+            var itemScopeResult =  service.UpdatePreferenceItemScope(item);
+            if (itemScopeResult.Status != null && !String.IsNullOrEmpty(itemScopeResult.Status.Code))
+            {
+                long errorCode = 0;
+                if (Int64.TryParse(itemScopeResult.Status.Code, out errorCode) && errorCode != 0 )
+                    throw new DowJonesUtilitiesException(errorCode);
+            }
+
         }
 
         void IDisposable.Dispose()

@@ -851,13 +851,18 @@ namespace DowJones.Pages
             {
                 var taskFactory = new TaskFactory();
                 var tasks = (from asset in assetsToShare
-                             select taskFactory.StartNew(() => asset.Share(), TaskCreationOptions.None)).ToList();
+                             let task = taskFactory.StartNew(() => asset.Share(), TaskCreationOptions.None)
+                             select task).ToList();
                 Task.WaitAll(tasks.ToArray());
             }
-            catch (Exception ex)
+            catch (AggregateException ae)
             {
-
-                throw;
+                foreach (var ex in ae.Flatten().InnerExceptions)
+                {
+                    Log.Error("ShareAddtionalAsset failed with exception : {0}", ex);
+                }
+                //Throwing only first exception.
+                throw ae.Flatten().InnerExceptions[0];
             }
            
         }
@@ -1741,8 +1746,23 @@ namespace DowJones.Pages
 
         public void SetModuleShareProperties(IEnumerable<GWModule> modules, ShareProperties shareProperties)
         {
-            foreach (var module in modules)
-                SetModuleShareProperties(module.Id, shareProperties);
+            try
+            {
+                var taskFactory = new TaskFactory();
+                var tasks = (from module in modules
+                             let task = taskFactory.StartNew(() => SetModuleShareProperties(module.Id, shareProperties), TaskCreationOptions.None)
+                             select task).ToList();
+                Task.WaitAll(tasks.ToArray());
+            }
+            catch (AggregateException ae)
+            {
+                foreach (var ex in ae.Flatten().InnerExceptions)
+                {
+                    Log.Error("ShareAddtionalAsset failed with exception : {0}", ex);
+                }
+                //Throwing only first exception.
+                throw ae.Flatten().InnerExceptions[0];
+            }
         }
 
         public void SetModuleShareProperties(int moduleId, ShareProperties shareProperties)

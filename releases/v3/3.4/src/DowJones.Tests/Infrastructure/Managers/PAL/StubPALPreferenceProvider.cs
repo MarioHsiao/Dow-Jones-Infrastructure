@@ -10,6 +10,7 @@ namespace DowJones.Infrastructure.Managers.PAL
     {
         public void UpdatePreferenceItemScope(PALService.UpdateItemList[] item)
         {
+
             return;
         }
     }
