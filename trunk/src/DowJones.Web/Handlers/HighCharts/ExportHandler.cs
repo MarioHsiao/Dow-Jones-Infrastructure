@@ -8,6 +8,7 @@ using System.Web;
 using DowJones.Exceptions;
 using DowJones.Web.Handlers.Proxy.Core;
 using DowJones.Web.Properties;
+using log4net;
 
 namespace DowJones.Web.Handlers.HighCharts
 {
@@ -38,19 +39,27 @@ namespace DowJones.Web.Handlers.HighCharts
 
         public void EndProcessRequest(IAsyncResult result)
         {
-            ((Task)result).Dispose();
+            var output = (Task) result;
+            if (output.Exception != null && output.Exception.InnerExceptions != null && output.Exception.InnerExceptions.Count > 0)
+            {
+                throw output.Exception.InnerExceptions[0];
+            }
+            //((Task)result).Dispose();
         }
     }
 
     public class ExportHandler : AbstractAsyncHandler
     {
+        private static readonly ILog Log = LogManager.GetLogger(typeof(ExportHandler));
         protected override Task ProcessRequestAsync(HttpContext context)
         {
+            Log.Debug("inside process");
             return Task.Factory.StartNew(() => Process(context));
         }
        
         private void Process(HttpContext context)
         {
+            Log.Debug("inside process1");
             var exportParams = new ExportParams
             {
                 Options = context.Request["options"] ?? string.Empty,
@@ -63,6 +72,7 @@ namespace DowJones.Web.Handlers.HighCharts
                 ContentType = context.Request["content"] ?? string.Empty,
                 FileName = context.Request["filename"] ?? "chart"
             };
+            Process process = null;
             try
             {
                 if (string.IsNullOrEmpty(exportParams.Options) && string.IsNullOrEmpty(exportParams.Svg))
@@ -88,7 +98,7 @@ namespace DowJones.Web.Handlers.HighCharts
                         RedirectStandardInput = true,
                         WorkingDirectory = context.Request.MapPath(@"~\Scripts\PhantomJs")
                     };
-                var process = new Process
+                process = new Process
                     {
                         StartInfo = startInfo,
                         EnableRaisingEvents = true
@@ -100,11 +110,18 @@ namespace DowJones.Web.Handlers.HighCharts
                 process.WaitForExit(10000);
                 if (process.HasExited)
                 {
-                    context.Response.BinaryWrite(GetBytesFromFile(context.Request.MapPath(@"~\Scripts\PhantomJs\" + exportParams.OutputFile)));
-                    context.Response.ContentType =  exportParams.FileType;
-                    context.Response.Headers.Add("Content-Disposition", "attachment; filename=" + exportParams.FileName + "." + extension);
+                    var imageData = GetBytesFromFile(context.Request.MapPath(@"~\Scripts\PhantomJs\" + exportParams.OutputFile));
+                    if (imageData != null)
+                    {
+                        context.Response.BinaryWrite(GetBytesFromFile(context.Request.MapPath(@"~\Scripts\PhantomJs\" + exportParams.OutputFile)));
+                        context.Response.ContentType = exportParams.FileType;
+                        context.Response.Headers.Add("Content-Disposition", "attachment; filename=" + exportParams.FileName + "." + extension);
+                    }
+                    else
+                    {
+                        throw new HttpException(((int)HttpStatusCode.InternalServerError), "Unable to export chart. Chart data is not valid.");
+                    }
                 }
-                process.Close();
             }
             catch (DowJonesUtilitiesException dex)
             {
@@ -114,10 +131,14 @@ namespace DowJones.Web.Handlers.HighCharts
             catch (Exception exception)
             {
                 Logger.WriteEntry("Error while exporting chart :" + exception);
-                throw new HttpException(((int)HttpStatusCode.InternalServerError), "General chart export error");
+                throw new HttpException(((int)HttpStatusCode.InternalServerError), "General chart export error",exception);
             }
             finally
             {
+                if (process != null)
+                {
+                    process.Close();
+                }
                 context.ApplicationInstance.CompleteRequest();
                 if (File.Exists(exportParams.InputFileAbsolutePath))
                     File.Delete(exportParams.InputFileAbsolutePath);
@@ -130,6 +151,7 @@ namespace DowJones.Web.Handlers.HighCharts
 
         private static void CreateInputAndCallbackFile(HttpContext context, ExportParams exportParams)
         {
+            
             if (exportParams.ContentType.Equals("options", StringComparison.CurrentCultureIgnoreCase))
             {
                 exportParams.InputFile += ".json";
@@ -216,20 +238,22 @@ namespace DowJones.Web.Handlers.HighCharts
         private static byte[] GetBytesFromFile(string fullFilePath)
         {
             // this method is limited to 2^32 byte files (4.2 GB)
-
-            FileStream fs = File.OpenRead(fullFilePath);
-            try
+            if (File.Exists(fullFilePath))
             {
-                var bytes = new byte[fs.Length];
-                fs.Read(bytes, 0, Convert.ToInt32(fs.Length));
-                fs.Close();
-                return bytes;
+                FileStream fs = File.OpenRead(fullFilePath);
+                try
+                {
+                    var bytes = new byte[fs.Length];
+                    fs.Read(bytes, 0, Convert.ToInt32(fs.Length));
+                    fs.Close();
+                    return bytes;
+                }
+                finally
+                {
+                    fs.Close();
+                }
             }
-            finally
-            {
-                fs.Close();
-            }
-
+            return null;
         }
 
         private class ExportParams
