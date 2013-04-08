@@ -44,7 +44,7 @@ namespace DowJones.Web.Handlers.HighCharts
             {
                 throw output.Exception.InnerExceptions[0];
             }
-            //((Task)result).Dispose();
+            ((Task)result).Dispose();
         }
     }
 
@@ -64,7 +64,8 @@ namespace DowJones.Web.Handlers.HighCharts
             {
                 Options = context.Request["options"] ?? string.Empty,
                 Svg = context.Request["svg"] ?? string.Empty,
-                FileType = context.Request["type"] ?? string.Empty,
+                FileType = !string.IsNullOrEmpty(context.Request["type"]) ? context.Request["type"] :
+                            (!string.IsNullOrEmpty(context.Request["mimeType"]) ? context.Request["mimeType"] : string.Empty),
                 Width = context.Request["width"] ?? string.Empty,
                 Scale = context.Request["scale"] ?? string.Empty,
                 Constructor = context.Request["constr"] ?? string.Empty,
@@ -122,6 +123,10 @@ namespace DowJones.Web.Handlers.HighCharts
                         throw new HttpException(((int)HttpStatusCode.InternalServerError), "Unable to export chart. Chart data is not valid.");
                     }
                 }
+                else
+                {
+                    throw new HttpException(((int)HttpStatusCode.InternalServerError), "Unable to export chart. Chart data is not valid.");
+                }
             }
             catch (DowJonesUtilitiesException dex)
             {
@@ -151,6 +156,13 @@ namespace DowJones.Web.Handlers.HighCharts
 
         private static void CreateInputAndCallbackFile(HttpContext context, ExportParams exportParams)
         {
+            if (string.IsNullOrEmpty(exportParams.ContentType))
+            {
+                if (!string.IsNullOrEmpty(exportParams.Options))
+                    exportParams.ContentType = "options";
+                else if (!string.IsNullOrEmpty(exportParams.Svg))
+                    exportParams.ContentType = "svg";
+            }
             
             if (exportParams.ContentType.Equals("options", StringComparison.CurrentCultureIgnoreCase))
             {
