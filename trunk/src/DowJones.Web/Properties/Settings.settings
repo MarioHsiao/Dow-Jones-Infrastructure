@@ -5,5 +5,14 @@
     <Setting Name="PhantomJsExePath" Type="System.String" Scope="Application">
       <Value Profile="(Default)">phantomjs.exe</Value>
     </Setting>
+    <Setting Name="UserName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">newswires_tfsservice</Value>
+    </Setting>
+    <Setting Name="Password" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Service0</Value>
+    </Setting>
+    <Setting Name="Domain" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">DJNAMERICAS</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
