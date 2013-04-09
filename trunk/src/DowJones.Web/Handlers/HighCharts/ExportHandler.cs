@@ -151,7 +151,8 @@ namespace DowJones.Web.Handlers.HighCharts
                     File.Delete(exportParams.InputFileAbsolutePath);
                 if (File.Exists(exportParams.OutputFileAbsolutePath))
                     File.Delete(exportParams.OutputFileAbsolutePath);
-                if (File.Exists(exportParams.CallbackFileAbsolutePath))
+                if (File.Exists(exportParams.CallbackFileAbsolutePath) && !exportParams.CallbackFileAbsolutePath.Equals
+                                                                (context.Request.MapPath(@"~\Scripts\PhantomJs\tmp\callback.json"),StringComparison.CurrentCultureIgnoreCase))
                     File.Delete(exportParams.CallbackFileAbsolutePath);
             }
         }
@@ -214,6 +215,7 @@ namespace DowJones.Web.Handlers.HighCharts
                     writer.Close();
                 }
 
+                string path = context.Request.MapPath(@"~\Scripts\PhantomJs\tmp\callback.json");
                 if (!string.IsNullOrEmpty(exportParams.Callback.Trim('\r').Trim('\t').Trim('\n')))
                 {
                     exportParams.CallbackFile = exportParams.InputFile + ".js";
@@ -223,6 +225,12 @@ namespace DowJones.Web.Handlers.HighCharts
                     writer.Write(exportParams.Callback);
                     writer.Close();
                 }
+                else if (File.Exists(path))
+                {
+                    exportParams.CallbackFile = "tmp\\callback.json";
+                    exportParams.CallbackFileAbsolutePath = path;
+                }
+               
             }
             catch (Exception ex)
             {
