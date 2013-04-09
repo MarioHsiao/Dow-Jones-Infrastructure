@@ -50,7 +50,7 @@
     <Reference Include="DowJones.Parallel">
       <HintPath>..\packages\DowJones.Parallel.1.0.0\lib\DowJones.Parallel.dll</HintPath>
     </Reference>
-    <Reference Include="DowJones.Web, Version=1.0.0.27283, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="DowJones.Web, Version=1.0.0.23885, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\trunk\src\DowJones.Web\bin\Debug\DowJones.Web.dll</HintPath>
     </Reference>
@@ -813,9 +813,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\PublishProfiles\fdevweb3.pubxml" />
+    <Content Include="Charting\Index.cshtml" />
+    <Content Include="Scripts\PhantomJs\tmp\callback.json" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Scripts\PhantomJs\tmp\" />
+    <Folder Include="Views\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
