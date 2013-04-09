@@ -158,61 +158,75 @@ namespace DowJones.Web.Handlers.HighCharts
 
         public static void AddUsersAndPermissions(string directoryName, string userAccount, FileSystemRights userRights, AccessControlType accessType)
         {
-            // Create a DirectoryInfo object.
-            DirectoryInfo directoryInfo = new DirectoryInfo(directoryName);
+            try
+            {
+                // Create a DirectoryInfo object.
+                var directoryInfo = new DirectoryInfo(directoryName);
 
-            // Get security settings.
-            DirectorySecurity dirSecurity = directoryInfo.GetAccessControl();
-            var identity = "NETWORK SERVICE";
-            var accessRule = new FileSystemAccessRule(identity,
-                          FileSystemRights.Modify,
-                          InheritanceFlags.ContainerInherit | InheritanceFlags.ObjectInherit,
-                          PropagationFlags.InheritOnly,
-                          AccessControlType.Allow);
+                // Get security settings.
+                DirectorySecurity dirSecurity = directoryInfo.GetAccessControl();
+                var identity = "NETWORK SERVICE";
+                var accessRule = new FileSystemAccessRule(identity,
+                              FileSystemRights.Modify,
+                              InheritanceFlags.ContainerInherit | InheritanceFlags.ObjectInherit,
+                              PropagationFlags.InheritOnly,
+                              AccessControlType.Allow);
 
-            // Add the FileSystemAccessRule to the security settings. 
-            dirSecurity.AddAccessRule(accessRule);
-            // Set the access settings.
-            directoryInfo.SetAccessControl(dirSecurity);
+                // Add the FileSystemAccessRule to the security settings. 
+                dirSecurity.AddAccessRule(accessRule);
+                // Set the access settings.
+                directoryInfo.SetAccessControl(dirSecurity);
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteEntry("Error while giving permission to directory :" + ex.InnerException);    
+            }
         }
 
-        private static void CreateInputAndCallbackFile(HttpContext context, ExportParams exportParams,NetworkCredential _credential)
+        private static void CreateInputAndCallbackFile(HttpContext context, ExportParams exportParams,NetworkCredential credential)
         {
-            if (string.IsNullOrEmpty(exportParams.ContentType))
+            try
             {
-                if (!string.IsNullOrEmpty(exportParams.Options))
-                    exportParams.ContentType = "options";
-                else if (!string.IsNullOrEmpty(exportParams.Svg))
-                    exportParams.ContentType = "svg";
-            }
+                if (string.IsNullOrEmpty(exportParams.ContentType))
+                {
+                    if (!string.IsNullOrEmpty(exportParams.Options))
+                        exportParams.ContentType = "options";
+                    else if (!string.IsNullOrEmpty(exportParams.Svg))
+                        exportParams.ContentType = "svg";
+                }
 
-            if (exportParams.ContentType.Equals("options", StringComparison.CurrentCultureIgnoreCase))
-            {
-                exportParams.InputFile += ".json";
-                exportParams.InputFileAbsolutePath = context.Request.MapPath(@"~\Scripts\PhantomJs\" + exportParams.InputFile);
-                StreamWriter writer = File.CreateText(exportParams.InputFileAbsolutePath);
-                AddUsersAndPermissions(exportParams.InputFileAbsolutePath, _credential.Domain +"\\"+_credential.UserName, FileSystemRights.Read | FileSystemRights.ReadAndExecute | FileSystemRights.Write | FileSystemRights.FullControl, AccessControlType.Allow);
-                writer.Write(exportParams.Options);
-                writer.Close();
-            }
-            else if (exportParams.ContentType.Equals("svg", StringComparison.CurrentCultureIgnoreCase))
-            {
-                exportParams.InputFile += ".svg";
-                exportParams.InputFileAbsolutePath = context.Request.MapPath(@"~\Scripts\PhantomJs\" + exportParams.InputFile);
-                StreamWriter writer = File.CreateText(exportParams.InputFileAbsolutePath);
-                AddUsersAndPermissions(exportParams.InputFileAbsolutePath, _credential.Domain + "\\" + _credential.UserName, FileSystemRights.Read | FileSystemRights.ReadAndExecute | FileSystemRights.Write | FileSystemRights.FullControl, AccessControlType.Allow);
-                writer.Write(exportParams.Svg);
-                writer.Close();
-            }
+                if (exportParams.ContentType.Equals("options", StringComparison.CurrentCultureIgnoreCase))
+                {
+                    exportParams.InputFile += ".json";
+                    exportParams.InputFileAbsolutePath = context.Request.MapPath(@"~\Scripts\PhantomJs\" + exportParams.InputFile);
+                    StreamWriter writer = File.CreateText(exportParams.InputFileAbsolutePath);
+                    AddUsersAndPermissions(exportParams.InputFileAbsolutePath, credential.Domain + "\\" + credential.UserName, FileSystemRights.Read | FileSystemRights.ReadAndExecute | FileSystemRights.Write | FileSystemRights.FullControl, AccessControlType.Allow);
+                    writer.Write(exportParams.Options);
+                    writer.Close();
+                }
+                else if (exportParams.ContentType.Equals("svg", StringComparison.CurrentCultureIgnoreCase))
+                {
+                    exportParams.InputFile += ".svg";
+                    exportParams.InputFileAbsolutePath = context.Request.MapPath(@"~\Scripts\PhantomJs\" + exportParams.InputFile);
+                    StreamWriter writer = File.CreateText(exportParams.InputFileAbsolutePath);
+                    AddUsersAndPermissions(exportParams.InputFileAbsolutePath, credential.Domain + "\\" + credential.UserName, FileSystemRights.Read | FileSystemRights.ReadAndExecute | FileSystemRights.Write | FileSystemRights.FullControl, AccessControlType.Allow);
+                    writer.Write(exportParams.Svg);
+                    writer.Close();
+                }
 
-            if (!string.IsNullOrEmpty(exportParams.Callback.Trim('\r').Trim('\t').Trim('\n')))
+                if (!string.IsNullOrEmpty(exportParams.Callback.Trim('\r').Trim('\t').Trim('\n')))
+                {
+                    exportParams.CallbackFile = exportParams.InputFile + ".js";
+                    exportParams.CallbackFileAbsolutePath = context.Request.MapPath(@"~\Scripts\PhantomJs\" + exportParams.CallbackFile);
+                    StreamWriter writer = File.CreateText(exportParams.CallbackFileAbsolutePath);
+                    AddUsersAndPermissions(exportParams.InputFileAbsolutePath, credential.Domain + "\\" + credential.UserName, FileSystemRights.Read | FileSystemRights.ReadAndExecute | FileSystemRights.Write | FileSystemRights.FullControl, AccessControlType.Allow);
+                    writer.Write(exportParams.Callback);
+                    writer.Close();
+                }
+            }
+            catch (Exception ex)
             {
-                exportParams.CallbackFile = exportParams.InputFile + ".js";
-                exportParams.CallbackFileAbsolutePath = context.Request.MapPath(@"~\Scripts\PhantomJs\" + exportParams.CallbackFile);
-                StreamWriter writer = File.CreateText(exportParams.CallbackFileAbsolutePath);
-                AddUsersAndPermissions(exportParams.InputFileAbsolutePath, _credential.Domain + "\\" + _credential.UserName, FileSystemRights.Read | FileSystemRights.ReadAndExecute | FileSystemRights.Write | FileSystemRights.FullControl, AccessControlType.Allow);
-                writer.Write(exportParams.Callback);
-                writer.Close();
+                Logger.WriteEntry("Error while creating input and callback file :" + ex.InnerException);
             }
         }
 
