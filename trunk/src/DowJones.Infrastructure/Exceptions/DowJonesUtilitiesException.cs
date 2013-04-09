@@ -119,6 +119,7 @@ namespace DowJones.Exceptions
         public const long TrendingEntityTypeNotSupported = 585265;
         public const long ControlDataIsNull = 585266;
         public const long SearchContextTypeIsInvalid = 585267;
+        public const long InvalidChartItem = 585268;
 
         // Page Asset Manager Section (585276 - 585300)
         public const long BasePageAssetsManagerError = 585275;
