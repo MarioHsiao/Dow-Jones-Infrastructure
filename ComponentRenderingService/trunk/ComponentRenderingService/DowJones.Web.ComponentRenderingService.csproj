@@ -50,7 +50,7 @@
     <Reference Include="DowJones.Parallel">
       <HintPath>..\packages\DowJones.Parallel.1.0.0\lib\DowJones.Parallel.dll</HintPath>
     </Reference>
-    <Reference Include="DowJones.Web, Version=1.0.0.23680, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="DowJones.Web, Version=1.0.0.27283, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\trunk\src\DowJones.Web\bin\Debug\DowJones.Web.dll</HintPath>
     </Reference>
