@@ -218,7 +218,7 @@ namespace GitHubTfsSyncApp.Workers
                         }
                         else
                         {
-                            item.GitPath = item.GitPath.Replace("/","\\").Replace(filterItem.GitSource, filterItem.TfsTarget);    
+                            item.GitPath = item.GitPath.Replace("/","\\").Replace(filterItem.GitSource, filterItem.TfsTarget).Trim('\\');    
                         }
                         isFilterItemConfigured = true;
                         break;

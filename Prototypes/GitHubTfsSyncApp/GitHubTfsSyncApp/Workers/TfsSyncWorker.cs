@@ -59,8 +59,7 @@ namespace GitHubTfsSyncApp.Workers
 
 					// checkin those changes
                     _logger.Info("Creating Checkin in TFS");
-				    string commitMsg = string.Format("{0} :{1} :{2}","From Git",commit.Committer.Name,commit.Message);
-                    _tfsManager.CreateCheckin(changes, "Workspace_{0}".FormatWith(commit.Id), commitMsg);
+                    _tfsManager.CreateCheckin(changes, "Workspace_{0}".FormatWith(commit.Id), commit.Summary);
 
                     _logger.Info("Deleting local workspace");
 					// cleanup
