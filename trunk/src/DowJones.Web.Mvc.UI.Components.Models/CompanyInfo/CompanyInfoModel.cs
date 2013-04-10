@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using DowJones.Ajax.PortalHeadlineList;
 using Newtonsoft.Json;
 
 namespace DowJones.Web.Mvc.UI.Components.CompanyInfo
@@ -22,6 +23,9 @@ namespace DowJones.Web.Mvc.UI.Components.CompanyInfo
 
         [JsonProperty("keyFinancialData")]
         public KeyFinancial KeyFinancialData { get; set; }
+
+        [JsonProperty("investorReportHeadlinesData")]
+        public PortalHeadlineListDataResult InvestorReportHeadlinesData { get; set; }
     }
 
     public class Quote
