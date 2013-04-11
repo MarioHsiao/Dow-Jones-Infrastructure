@@ -11,6 +11,9 @@ namespace DowJones.Web.Mvc.UI.Components.CompanyInfo
 
         [ClientProperty("enableCompanySnapshotLink")]
         public bool EnableCompanySnapshotLink { get; set; }
+
+        [ClientProperty("contentTypeImageUrl")]
+        public bool ContentTypeImageUrl { get; set; }
     }
 
     public class CompanyInfoData
