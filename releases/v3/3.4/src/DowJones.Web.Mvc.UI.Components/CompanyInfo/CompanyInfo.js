@@ -55,15 +55,22 @@ DJ.UI.CompanyInfo = DJ.UI.Component.extend({
 
     renderReportHeadlines: function (data) {
         var self = this;
+        var healineListOptions = {
+            displaySnippets: 3, // Hover
+            maxNumHeadlinesToShow: 3,
+            showAuthor: false,
+            showSource: false,
+            showPublicationDateTime: true,
+            showTruncatedTitle: true
+        };
+        //Extend the phl options
+        $.extend(this.options, healineListOptions);
         DJ.add("PortalHeadlineList", {
             container: "investor-report-headlines",
-            options: {
-                displaySnippets: 3, // Hover
-                maxNumHeadlinesToShow: 3,
-                showAuthor: false,
-                showSource: false,
-                showPublicationDateTime: false,
-                showTruncatedTitle: true
+            options: healineListOptions,
+            templates: {
+                successHeadline: self.templates.reportHeadline,
+                successHeadlineEntry: self.templates.reportHeadlineEntry
             }
         }).done(function (comp) {
             // Attach handler for headline click event

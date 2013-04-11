@@ -968,5 +968,11 @@
     <EmbeddedResource Include="CompanyInfo\ClientTemplates\Success.htm" />
     <EmbeddedResource Include="CompanyInfo\CompanyInfo.js" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="CompanyInfo\ClientTemplates\ReportHeadline.htm" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="CompanyInfo\ClientTemplates\ReportHeadlineEntry.htm" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
