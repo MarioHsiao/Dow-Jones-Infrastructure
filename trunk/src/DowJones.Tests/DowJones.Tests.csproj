@@ -69,7 +69,7 @@
       <HintPath>..\packages\Factiva.Gateway.7.5.0.120\lib\FactivaGateway.dll</HintPath>
     </Reference>
     <Reference Include="Interop.FCMLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
       <Private>True</Private>
       <HintPath>..\packages\Factiva.Gateway.7.5.0.120\lib\Interop.FCMLib.dll</HintPath>
     </Reference>
