@@ -123,6 +123,10 @@ namespace DowJones.Security.Services
 
         public bool IsMyDowJonesFactiva { get; private set; }
 
+        public bool IsMctUser { get; private set; }
+
+        public bool IsNewsletterAdmin { get; private set; }
+
         public bool IsAllowMobileCookieEmailLinkDA { get; private set; }
 
         public bool IsDULinkEnabled { get; private set; }
@@ -200,7 +204,7 @@ namespace DowJones.Security.Services
             IsSalesWorkLiteNavigation = _matrixInterfaceService.ac3.ContainsAtAnyIndex("6");
             IsDJCESalesUser = _matrixInterfaceService.ac3.ContainsAtAnyIndex("7");
             IsEnhancedDJCEUser = _matrixInterfaceService.ac3.ContainsAtAnyIndex("8");
-            string rcs = _matrixInterfaceService.ac4.FirstOrDefault(x => x.HasValue());
+            var rcs = _matrixInterfaceService.ac4.FirstOrDefault(x => x.HasValue());
             if(!string.IsNullOrEmpty(rcs))
             IsRecentCompanySearches = rcs.IndexOf("rcs") == -1;
             IsInterfaceAC5On = !_matrixInterfaceService.ac5.ContainsAtAnyIndex("OFF");
@@ -230,6 +234,8 @@ namespace DowJones.Security.Services
             IsAjaxEnabled = _matrixInterfaceService.da7 != "1";
             IsDowJonesInsider = _matrixInterfaceService.insider != "OFF";
             IsMyDowJonesFactiva = _matrixInterfaceService.IsMyDJFactivaEnabled;
+            IsMctUser = _matrixInterfaceService.ac5 == "MCT";
+            IsNewsletterAdmin = _matrixInterfaceService.ac4.Contains("NLE"); 
             IsAllowMobileCookieEmailLinkDA = _matrixInterfaceService.mcemail != "OFF";
             IsDULinkEnabled = _matrixInterfaceService.duLink != "OFF";
             IsTranslateArticleAllowed = _matrixInterfaceService.IsTranslateDAEnabled;
