@@ -28,6 +28,7 @@ DJ.UI.CompanyInfo = DJ.UI.Component.extend({
 
             //Render Report Headlines
             if (data.investorReportHeadlinesData) {
+                $('.investex-reports', this.$element).removeClass("hide");
                 me.renderReportHeadlines(data.investorReportHeadlinesData);
             }
 
@@ -56,7 +57,7 @@ DJ.UI.CompanyInfo = DJ.UI.Component.extend({
     renderReportHeadlines: function (data) {
         var self = this;
         var healineListOptions = {
-            displaySnippets: 3, // Hover
+            displaySnippets: 0, // Hover
             maxNumHeadlinesToShow: 3,
             showAuthor: false,
             showSource: false,
