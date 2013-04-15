@@ -263,13 +263,6 @@ WriteLiteral("                    <div class=\"dj_article_clm dj_article_section
                                                          }
                                     break;
                                 case MarkUpType.ArticleHighlight:
-                        {
-WriteLiteral("<span class=\"highlight\">");
-
-                            
-                                                         }
-                                    break;
-                                case MarkUpType.ArticleHighlight:
                                     {
 WriteLiteral("<span class=\"highlight\">");
 
