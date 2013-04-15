@@ -50,5 +50,23 @@ namespace DowJones.Charting.Properties {
                 return ((string)(this["HighChartsExportService"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://montana.dev.us.factiva.com")]
+        public string BaseUrl {
+            get {
+                return ((string)(this["BaseUrl"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("OldShowCase/dowjones.charting.handler.exporter.ashx")]
+        public string Resource {
+            get {
+                return ((string)(this["Resource"]));
+            }
+        }
     }
 }
