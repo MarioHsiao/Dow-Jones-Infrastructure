@@ -887,6 +887,13 @@
     <Content Include="GatewayResources\xslt\triggers\GetDetailResponse.xsl" />
     <Content Include="GatewayResources\xslt\triggers\PerformTriggerSearchResponse.xsl" />
     <Content Include="GatewayResources\xslt\utility\PerformContentSearchResponse.xslt" />
+    <Content Include="Scripts\PhantomJs\highcharts-convert.js" />
+    <Content Include="Scripts\PhantomJs\highcharts-more.js" />
+    <Content Include="Scripts\PhantomJs\highcharts.js" />
+    <Content Include="Scripts\PhantomJs\highcharts.src.js" />
+    <Content Include="Scripts\PhantomJs\highstock.js" />
+    <Content Include="Scripts\PhantomJs\jquery-1.8.2.min.js" />
+    <Content Include="Scripts\PhantomJs\phantomjs.exe" />
     <Content Include="Scripts\views\articleClientSide.js" />
     <Compile Include="Services\Charting\ChartService.cs" />
     <Compile Include="Services\Charting\StockDataService.cs" />
@@ -1553,6 +1560,7 @@
     <Folder Include="Areas\Sandbox\Models\" />
     <Folder Include="Areas\Sandbox\Scripts\" />
     <Folder Include="Data\" />
+    <Folder Include="Scripts\PhantomJs\tmp\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DowJones.Assemblers\DowJones.Assemblers.csproj">

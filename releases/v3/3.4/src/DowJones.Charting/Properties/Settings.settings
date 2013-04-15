@@ -8,5 +8,8 @@
     <Setting Name="CacheKeyNamespace" Type="System.String" Scope="Application">
       <Value Profile="(Default)">REST_API</Value>
     </Setting>
+    <Setting Name="HighChartsExportService" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://export.highcharts.com/</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

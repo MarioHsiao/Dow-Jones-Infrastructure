@@ -89,6 +89,8 @@ namespace DowJones.Security.Services
 
         public int NumberOfPersonalNewspages { get; private set; }
 
+        public bool IsMctUser { get; private set; }
+
         #endregion
 
         #region Service Initialization Method
@@ -110,6 +112,7 @@ namespace DowJones.Security.Services
             {
                 IsNewspagesSubscribeOnly = _matrixPAMService.ac1.ContainsAtAnyIndex("newspage:0");
             }
+
             if (IsNewspagesSubscribeOnly || NumberOfPersonalNewspages > 0)
             {
                 HasNewspages = true;

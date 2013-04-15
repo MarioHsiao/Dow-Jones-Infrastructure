@@ -28,7 +28,7 @@ namespace DowJones.DependencyInjection
 
         public static object Resolve(Type targetType)
         {
-            IServiceLocator serviceLocator = Current;
+            var serviceLocator = Current;
 
             EnsureServiceLocatorInitialized(serviceLocator);
 
@@ -37,7 +37,7 @@ namespace DowJones.DependencyInjection
 
         public static T Resolve<T>()
         {
-            IServiceLocator serviceLocator = Current;
+            var serviceLocator = Current;
 
             EnsureServiceLocatorInitialized(serviceLocator);
 
@@ -46,7 +46,7 @@ namespace DowJones.DependencyInjection
 
         public static T Resolve<T>(string name)
         {
-            IServiceLocator serviceLocator = Current;
+            var serviceLocator = Current;
 
             EnsureServiceLocatorInitialized(serviceLocator);
 
@@ -55,18 +55,20 @@ namespace DowJones.DependencyInjection
 
         public static T Resolve<T>(Type targetType)
         {
-            object target = Resolve(targetType);
-
+            var target = Resolve(targetType);
             if (target is T)
+            {
                 return (T)target;
-            else
-                return default(T);
+            }
+            return default(T);
         }
 
         private static void EnsureServiceLocatorInitialized(IServiceLocator serviceLocator)
         {
-            if(serviceLocator == null)
+            if (serviceLocator == null)
+            {
                 throw new ServiceLocatorNotInitializedException();
+            }
         }
 
         internal class ServiceLocatorNotInitializedException : Exception
