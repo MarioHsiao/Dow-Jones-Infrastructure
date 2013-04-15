@@ -1,17 +1,16 @@
-﻿using System.Net;
-using System.Web;
-using DowJones.Extensions;
+﻿using System;
+using DowJones.Charting.Properties;
 using DowJones.Web.Handlers.Proxy;
 
 namespace DowJones.Charting.Highcharts
 {
     public class ExporterHttpHandler : StreamingProxyHandler
     {
-        private const string DefinedUrlValue = "http://export.highcharts.com/";
+        private readonly Lazy<string> _definedTargetUrl = new Lazy<string>(()=> Settings.Default.HighChartsExportService);
 
         public ExporterHttpHandler()
         {
-            DefinedUrl = DefinedUrlValue;
+            DefinedTargetUrl = _definedTargetUrl.Value;
         }
     }
 }

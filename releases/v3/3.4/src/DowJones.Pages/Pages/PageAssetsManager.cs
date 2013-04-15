@@ -894,14 +894,15 @@ namespace DowJones.Pages
         /// </param>
         public void PublishPage(string pageId, IEnumerable<int> personalAlertIds)
         {
-            var page = GetPage(pageId, false, false);
+            //var page = GetPage(pageId, false, false);
 
-            if (page != null && page.ModuleCollection != null)
-            {
-                MakePageModulesPublic(page.ModuleCollection);
-                MakePersonalAlertsPublic(personalAlertIds);
-            }
-
+            //if (page != null && page.ModuleCollection != null)
+            //{
+            //    //MakePageModulesPublic(page.ModuleCollection);
+            //    MakePersonalAlertsPublic(personalAlertIds);
+            //}
+            //[HD: Updated to reduce number of PAM transactions to share the page]
+            MakePersonalAlertsPublic(personalAlertIds);
             SetPageShareProperties(
                 pageId,
                 new ShareProperties
@@ -912,6 +913,14 @@ namespace DowJones.Pages
                                                and so, the page should be @ Account level to get into the page garden*/
                         AssignedScope = Factiva.Gateway.Messages.Assets.Pages.V1_0.ShareScope.Personal,
                         SharePromotion = Factiva.Gateway.Messages.Assets.Pages.V1_0.ShareScope.Personal
+                    }, 
+                true,
+                new ShareProperties
+                    {
+                        AccessControlScope = AccessControlScope.Account,
+                        ListingScope = Factiva.Gateway.Messages.Assets.Pages.V1_0.ShareScope.Personal,
+                        AssignedScope = Factiva.Gateway.Messages.Assets.Pages.V1_0.ShareScope.Personal,
+                        SharePromotion = Factiva.Gateway.Messages.Assets.Pages.V1_0.ShareScope.Personal
                     });
         }
 
@@ -919,15 +928,17 @@ namespace DowJones.Pages
 
         public void PublishPage(string pageId, IEnumerable<IShareAssets> assetsToShare)
         {
-            var page = GetPage(pageId, false, false);
+            //var page = GetPage(pageId, false, false);
 
-            if (page != null && page.ModuleCollection != null)
-            {
-                MakePageModulesPublic(page.ModuleCollection);
-                ShareAdditonalPageAssets(assetsToShare);
-                //MakePersonalAlertsPublic(personalAlertIds);
-            }
+            //if (page != null && page.ModuleCollection != null)
+            //{
+            //    MakePageModulesPublic(page.ModuleCollection);
+            //    ShareAdditonalPageAssets(assetsToShare);
+            //    //MakePersonalAlertsPublic(personalAlertIds);
+            //}
 
+            //[HD: Updated to reduce number of PAM transactions to share the page]
+            ShareAdditonalPageAssets(assetsToShare);
             SetPageShareProperties(
                 pageId,
                 new ShareProperties
@@ -938,7 +949,15 @@ namespace DowJones.Pages
                                            and so, the page should be @ Account level to get into the page garden*/
                     AssignedScope = Factiva.Gateway.Messages.Assets.Pages.V1_0.ShareScope.Personal,
                     SharePromotion = Factiva.Gateway.Messages.Assets.Pages.V1_0.ShareScope.Personal
-                });
+                },
+                true,
+                new ShareProperties
+                    {
+                        AccessControlScope = AccessControlScope.Account,
+                        ListingScope = Factiva.Gateway.Messages.Assets.Pages.V1_0.ShareScope.Personal,
+                        AssignedScope = Factiva.Gateway.Messages.Assets.Pages.V1_0.ShareScope.Personal,
+                        SharePromotion = Factiva.Gateway.Messages.Assets.Pages.V1_0.ShareScope.Personal
+                    });
         }
         /// <summary>
         /// Removes an assigned page from the user's list. This is when user is dismissing a page from his/her list.
@@ -1008,15 +1027,24 @@ namespace DowJones.Pages
         public void UnpublishPage(string pageId)
         {
             // get the page, and make he modules private...
-            var page = GetPage(pageId, false, false);
+            //var page = GetPage(pageId, false, false);
 
-            if (page != null && page.ModuleCollection != null)
-            {
-                MakePageModulesPrivate(page.ModuleCollection);
-            }
+            //if (page != null && page.ModuleCollection != null)
+            //{
+            //    MakePageModulesPrivate(page.ModuleCollection);
+            //}
 
+            //[HD: Updated to reduce number of PAM transactions to unshare the page]
             SetPageShareProperties(
                 pageId,
+                new ShareProperties
+                    {
+                        AccessControlScope = AccessControlScope.Personal,
+                        ListingScope = Factiva.Gateway.Messages.Assets.Pages.V1_0.ShareScope.Personal,
+                        AssignedScope = Factiva.Gateway.Messages.Assets.Pages.V1_0.ShareScope.Personal,
+                        SharePromotion = Factiva.Gateway.Messages.Assets.Pages.V1_0.ShareScope.Personal
+                    },
+                true,
                 new ShareProperties
                     {
                         AccessControlScope = AccessControlScope.Personal,
@@ -1028,15 +1056,16 @@ namespace DowJones.Pages
 
         public void UnpublishPage(string pageId, IEnumerable<IShareAssets> assetsToUnShare)
         {
-            // get the page, and make he modules private...
-            var page = GetPage(pageId, false, false);
+            //// get the page, and make he modules private...
+            //var page = GetPage(pageId, false, false);
 
-            if (page != null && page.ModuleCollection != null)
-            {
-                MakePageModulesPrivate(page.ModuleCollection);
-                ShareAdditonalPageAssets(assetsToUnShare);
-            }
-
+            //if (page != null && page.ModuleCollection != null)
+            //{
+            //    MakePageModulesPrivate(page.ModuleCollection);
+            //    ShareAdditonalPageAssets(assetsToUnShare);
+            //}
+            //[HD: Updated to reduce number of PAM transactions to unshare the page]
+            ShareAdditonalPageAssets(assetsToUnShare);
             SetPageShareProperties(
                 pageId,
                 new ShareProperties
@@ -1045,7 +1074,21 @@ namespace DowJones.Pages
                     ListingScope = Factiva.Gateway.Messages.Assets.Pages.V1_0.ShareScope.Personal,
                     AssignedScope = Factiva.Gateway.Messages.Assets.Pages.V1_0.ShareScope.Personal,
                     SharePromotion = Factiva.Gateway.Messages.Assets.Pages.V1_0.ShareScope.Personal
-                });
+                },
+                true,
+                new ShareProperties
+                    {
+                        AccessControlScope = AccessControlScope.Personal,
+                        ListingScope = Factiva.Gateway.Messages.Assets.Pages.V1_0.ShareScope.Personal,
+                        AssignedScope = Factiva.Gateway.Messages.Assets.Pages.V1_0.ShareScope.Personal,
+                        SharePromotion = Factiva.Gateway.Messages.Assets.Pages.V1_0.ShareScope.Personal
+                    });
+        }
+
+
+        public void SetPageAndModuleShareProperties()
+        {
+            
         }
 
         /// <summary>

@@ -378,46 +378,40 @@
 
                        
 @*Start body Section*@ 
-            <div class="dj_article_article_body">
-                @if (!Model.ArticleDataSet.Correction.IsNullOrEmpty())
-                {
-                    foreach (KeyValuePair<string, List<RenderItem>> kvc in Model.ArticleDataSet.Correction.SelectMany(dci => dci))
-                    {
-                        @(kvc.Key.Equals("pre") ? CreateChildControl<ParagraphComponent>(Model.GetParagraphModel(kvc.Value, "pre", "dj_article_paragraph"))
-                                                    : CreateChildControl<ParagraphComponent>(Model.GetParagraphModel(kvc.Value, "p", "dj_article_paragraph")))
-                    }
-                }
-                @if (!Model.ArticleDataSet.LeadParagraph.IsNullOrEmpty())
-                {
-                    if (showIndexing)
-                    {
-                    <div class="dj_article_index">LP</div>
-                    }                    
-                    <div class="dj_article_lp dj_article_section">
-                        @if (!Model.ArticleDataSet.LeadParagraph.IsNullOrEmpty())
-                        {
-                            foreach (var kvc in Model.ArticleDataSet.LeadParagraph.SelectMany(dci => dci))
-                            {
-                                @(kvc.Key.Equals("pre") ? CreateChildControl<ParagraphComponent>(Model.GetParagraphModel(kvc.Value, "pre", "dj_article_paragraph"))
-                                               : CreateChildControl<ParagraphComponent>(Model.GetParagraphModel(kvc.Value, "p", "dj_article_paragraph")))
-                            }
-                        }
-                    </div>
-                }
-                @if (!Model.ArticleDataSet.TailParagraphs.IsNullOrEmpty() && Model.ArticleDisplayOptions != DisplayOptions.Headline)
-                {
-                    if (showIndexing)
-                    {
-                    <div class="dj_article_index">TD</div>
-                    }
-                    <div class="dj_article_td dj_article_section">
-                        @foreach (var kvc in Model.ArticleDataSet.TailParagraphs.SelectMany(dci => dci))
-                        {
-                            @(kvc.Key.Equals("pre") ? CreateChildControl<ParagraphComponent>(Model.GetParagraphModel(kvc.Value, "pre", "dj_article_paragraph"))
-                                           : CreateChildControl<ParagraphComponent>(Model.GetParagraphModel(kvc.Value, "p", "dj_article_paragraph")))
-                        }
-                    </div>
-                }
+<div class="dj_article_article_body">
+@if (!Model.ArticleDataSet.Correction.IsNullOrEmpty())
+{
+foreach (KeyValuePair<string, List<RenderItem>> kvc in Model.ArticleDataSet.Correction.SelectMany(dci => dci))
+{@(kvc.Key.Equals("pre") ? CreateChildControl<ParagraphComponent>(Model.GetParagraphModel(kvc.Value, "pre", "dj_article_paragraph"))
+                                : CreateChildControl<ParagraphComponent>(Model.GetParagraphModel(kvc.Value, "p", "dj_article_paragraph")))}
+}
+@if (!Model.ArticleDataSet.LeadParagraph.IsNullOrEmpty())
+{
+if (showIndexing)
+{
+<div class="dj_article_index">LP</div>
+}                    
+<div class="dj_article_lp dj_article_section">
+    @if (!Model.ArticleDataSet.LeadParagraph.IsNullOrEmpty())
+    {
+        foreach (var kvc in Model.ArticleDataSet.LeadParagraph.SelectMany(dci => dci))
+        {@(kvc.Key.Equals("pre") ? CreateChildControl<ParagraphComponent>(Model.GetParagraphModel(kvc.Value, "pre", "dj_article_paragraph"))
+                            : CreateChildControl<ParagraphComponent>(Model.GetParagraphModel(kvc.Value, "p", "dj_article_paragraph")))}
+    }
+</div>
+}
+@if (!Model.ArticleDataSet.TailParagraphs.IsNullOrEmpty() && Model.ArticleDisplayOptions != DisplayOptions.Headline)
+{
+if (showIndexing)
+{
+<div class="dj_article_index">TD</div>
+}
+<div class="dj_article_td dj_article_section">
+    @foreach (var kvc in Model.ArticleDataSet.TailParagraphs.SelectMany(dci => dci))
+    {@(kvc.Key.Equals("pre") ? CreateChildControl<ParagraphComponent>(Model.GetParagraphModel(kvc.Value, "pre", "dj_article_paragraph"))
+                        : CreateChildControl<ParagraphComponent>(Model.GetParagraphModel(kvc.Value, "p", "dj_article_paragraph")))}
+</div>
+}
            
 @* Tail Fields *@
                 @if (Model.ArticleDisplayOptions != DisplayOptions.Headline)

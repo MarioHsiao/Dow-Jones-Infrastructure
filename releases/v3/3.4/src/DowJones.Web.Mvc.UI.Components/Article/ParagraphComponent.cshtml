@@ -5,14 +5,18 @@
 @{
     TagName = Model.TagName.IsNullOrEmpty() ? "p" : Model.TagName;
     CssClass = Model.ClassName;
+    /// Note all html based content must be aligned to the left to produce accurate "Pre" tag formatted  content"
 }
-@foreach(IRenderItem renderItem in Model.Items)
+@if (TagName.ToLowerInvariant() == "pre")
 {
-    switch(renderItem.ItemMarkUp){
+    Write("\n");
+}
+@foreach(var renderItem in Model.Items)
+{
+    switch(renderItem.ItemMarkUp)
+{
         case MarkUpType.ArticleHighlight:
-            {
                 {<span class="dj_article_highlight">@(renderItem.ItemText)</span>}
-            }
             break;
         case MarkUpType.Image:
             {<img alt="" src="@(renderItem.ItemValue)" />}
@@ -30,36 +34,41 @@
 					{<span class='dj_article_colorLinks'>@(renderItem.ItemPostProcessData.ElinkValue) [@(renderItem.ItemPostProcessData.ElinkText)]</span>}
 					break;
                 case PostProcessing.Save:
-					@(renderItem.ItemPostProcessData.ElinkValue) @(renderItem.ItemPostProcessData.ElinkText)break;
+                    {@(renderItem.ItemPostProcessData.ElinkValue) @(renderItem.ItemPostProcessData.ElinkText)}
+                    break;
             }
             break;
         case MarkUpType.Html:
             {<div class="embededHtml">@(Html.Raw(renderItem.ItemText))</div>}
 			break;
         case MarkUpType.ArticleElink:
-            var elinkItemText = "";
+            var elinkItemText = string.Empty;
             if (renderItem.ElinkItems.Count > 0)
             {
                 foreach (var elinkItem in renderItem.ElinkItems)
                 {
-                    if (elinkItem.ItemMarkUp == MarkUpType.ArticleElinkHighlight)
+                    switch (elinkItem.ItemMarkUp)
                     {
+                        case MarkUpType.ArticleElinkHighlight:
+                            {
 						elinkItemText = elinkItemText + "<span class='dj_article_highlight'>" + elinkItem.ItemText + "</span>";
 					}
-                    else if (elinkItem.ItemMarkUp == MarkUpType.Plain)
+                            break;
+                        case MarkUpType.Plain:
                     {
 						elinkItemText = elinkItemText + elinkItem.ItemText;
 					}
+                            break;
+                    }
                 }
-                }
+            }
             else
 			{
 				elinkItemText = renderItem.ItemText;
-            }
-            {<a class="dj_article_elink" href="javascript:void(0)" data-href="@renderItem.ItemValue.EscapeForHtml()">@elinkItemText</a>}
+<a class="dj_article_elink" href="javascript:void(0)" data-href="@renderItem.ItemValue.EscapeForHtml()">@elinkItemText</a>
+			}
 			break;
-        case MarkUpType.Plain:
-            {<span class="dj_article_plain">@(renderItem.ItemText)</span>}
+case MarkUpType.Plain:{<span class="dj_article_plain">@(renderItem.ItemText)</span>}
 			break;
         case MarkUpType.EntityLink:
             if (renderItem.Highlight)
@@ -71,7 +80,8 @@
             {<span><a class="dj_article_entity" href="javascript:void(0);" data-entity="@(renderItem.ItemEntityData.ToJson().EscapeForHtml())">@(renderItem.ItemEntityData.Name)</a></span>}
 			break;
         case MarkUpType.Anchor:
-            {<span><a class="dj_article_anchor" href="javascript:void(0);" data-href="@(renderItem.ItemValue.EscapeForHtml())">@(renderItem.ItemText)</a></span>}break;
+            {<span><a class="dj_article_anchor" href="javascript:void(0);" data-href="@(renderItem.ItemValue.EscapeForHtml())">@(renderItem.ItemText)</a></span>}
+            break;
         case MarkUpType.Unknown:
             {<span><a class="dj_article_accessionNum" href="javascript:void(0);" data-accessionNum="@(renderItem.ItemValue.EscapeForHtml())">@(renderItem.ItemText)</a></span>}
 			break;

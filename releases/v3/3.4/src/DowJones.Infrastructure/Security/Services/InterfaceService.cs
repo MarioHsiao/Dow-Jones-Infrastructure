@@ -234,7 +234,7 @@ namespace DowJones.Security.Services
             IsAjaxEnabled = _matrixInterfaceService.da7 != "1";
             IsDowJonesInsider = _matrixInterfaceService.insider != "OFF";
             IsMyDowJonesFactiva = _matrixInterfaceService.IsMyDJFactivaEnabled;
-            IsMctUser = _matrixInterfaceService.ac5 == "MCT";
+            IsMctUser = _matrixInterfaceService.ac5.Contains("MCT");
             IsNewsletterAdmin = _matrixInterfaceService.ac4.Contains("NLE"); 
             IsAllowMobileCookieEmailLinkDA = _matrixInterfaceService.mcemail != "OFF";
             IsDULinkEnabled = _matrixInterfaceService.duLink != "OFF";
