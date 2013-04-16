@@ -1,0 +1,16 @@
+﻿<%  var d, ctype, gType, data = self.data;
+    for(var i = 0;i < data.length;i++){ 
+        d = data[i];
+        ctype = d.ChildrenTypes || "source";
+        gType = d.GroupType;
+%>
+    <li>
+        <div>
+            <% if(d.HasChildren){ %>
+            <span class="dj_icon dj_browse-tree-toggle"></span>
+            <% } %>
+            <div class="browse-item" data-gtype="<%= gType %>" data-ctype="<%= ctype %>" 
+                data-code="<%= d.Code.toLowerCase() %>"><%= (d.Name || d.Code) %></div>
+        </div>
+    </li>
+<% } %>

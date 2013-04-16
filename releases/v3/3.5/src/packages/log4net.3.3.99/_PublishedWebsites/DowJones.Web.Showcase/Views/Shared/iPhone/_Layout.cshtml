@@ -1,0 +1,42 @@
+﻿@{
+	ViewBag.Title = ViewBag.Title ?? "Dow Jones iPhone Portal";
+
+	Html.DJ().ScriptRegistry()
+		.Include("~/content/superfish/superfish.js")
+		.OnDocumentReady("$('ul.sf-menu').superfish()");
+	
+	Html.DJ().StylesheetRegistry()
+		.Include("~/content/site.css")
+		.Include("~/content/superfish/superfish.css")
+		.Include("~/content/iPhone.css");
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+	<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
+	@Html.DJ().StylesheetRegistry().RenderHead()
+	@Html.DJ().ScriptRegistry().RenderHead()
+</head>
+<body>
+
+	<div id="container">
+		<header>
+			@Html.Partial("_FactivaHeader") 
+		</header>
+
+		<div id="main">
+			@RenderBody()
+		</div>
+    
+		<footer>
+			<p>Last rendered at: @DateTime.Now  (@{ Html.RenderAction("ExecutionTime", "Home"); })</p>
+		</footer>
+	</div>
+
+	@Html.DJ().StylesheetRegistry().Render()
+	@Html.DJ().ScriptRegistry().Render()
+</body>
+</html>

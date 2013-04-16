@@ -1,0 +1,1 @@
+msbuild ..\src\default.proj /t:MimicBuildServerFrameworkBuild;CreateNuGetPackages /p:NuGetOutputDir="\\sbkntsfap05.dowjones.net\client_share\DJ Infrastructure\packages" %*

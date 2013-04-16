@@ -1,0 +1,9 @@
+﻿@model NewsMatrix.NewsMatrixModel
+@ClientPlugin dj_NewsMatrix
+@ClientTemplate RelativeResourceName=ClientTemplates.Container.htm, TemplateId=container
+@ClientTemplate RelativeResourceName=ClientTemplates.Error.htm, TemplateId=error
+@ClientTemplate RelativeResourceName=ClientTemplates.Success.htm, TemplateId=success
+@ScriptResource RelativeResourceName=NewsMatrix.js, DependsOn=jquery-tools;jquery-tooltip
+@{ 
+    CssClass = "dj_newsMatrix";
+}

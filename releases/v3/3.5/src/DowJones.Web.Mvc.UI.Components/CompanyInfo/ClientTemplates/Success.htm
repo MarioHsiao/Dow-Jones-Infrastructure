@@ -1,0 +1,174 @@
+﻿<% var companyInfo = self.data, options = self.options; %>
+<% if(companyInfo != null) {
+ if(companyInfo.quoteData != null) {
+    var quoteData =  companyInfo.quoteData;
+%>
+<div class="company-overview">
+    <div class="market-snapshot">
+        <span class="ticker-symbol"><%= (quoteData.tickerSymbol && quoteData.tickerSymbol != '') ? quoteData.tickerSymbol : "" %></span>
+        <span class="stock-exchange"><%= (quoteData.stockExchange && quoteData.stockExchange != '') ? quoteData.stockExchange : "" %></span>
+        <% if(options.enableCompanySnapshotLink) { %><a class="company-snapshot" href="javascript:void(0);"><%= Token('companySnapshot') %></a> <% } %>
+    </div>
+    <%if((quoteData.currentValue && quoteData.currentValue != '') ||
+            (quoteData.differenceValue && quoteData.differenceValue != '') ||
+            (quoteData.differencePercentage && quoteData.differencePercentage != '')) { %>
+    <div class="stock-value">
+        <span class="current positive"><%= (quoteData.currentValue && quoteData.currentValue != '') ? quoteData.currentValue : "--" %></span>
+        <span class="difference <%= (quoteData.differenceValue && quoteData.differenceValue > 0)?"positive":"negative" %>"><%= (quoteData.differenceValue && quoteData.differenceValue != '') ? quoteData.differenceValue : "--" %></span>
+        <span class="percentage <%= (quoteData.differencePercentage && quoteData.differencePercentage > 0)?"positive":"negative" %>"><%= (quoteData.differencePercentage && quoteData.differencePercentage != '') ? quoteData.differencePercentage + "%" : "--" %></span>
+    </div>
+    <% } %>
+</div>
+<% } else if(options.enableCompanySnapshotLink) { %>
+    <div class="company-overview">
+        <a class="company-snapshot" href="javascript:void(0);"><%= Token('companySnapshot') %></a>
+    </div><% }
+if(companyInfo.keyFinancialData != null) { 
+    var keyFinancialData = companyInfo.keyFinancialData;
+%>
+<table class="key-financials">
+    <thead>
+        <tr>
+            <th colspan="2">
+                <%= Token('keyFinancials') %>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <% if(keyFinancialData.reportCurrency && keyFinancialData.reportCurrency != '')
+    { %>
+        <tr>
+            <td class="label">
+                <%= Token('currencyColon') %>:
+            </td>
+            <td class="value">
+                <%= keyFinancialData.reportCurrency %>
+            </td>
+        </tr>
+        <% }
+        if(keyFinancialData.sales && keyFinancialData.sales != '') { %>
+        <tr>
+            <td class="label">
+                <%= Token('sales') %>:
+            </td>
+            <td class="value">
+                <%= keyFinancialData.sales %> <%= Token('millionsM') %>
+            </td>
+        </tr>
+        <% }
+        if(keyFinancialData.salesGrowth && keyFinancialData.salesGrowth != '') { %>
+        <tr>
+            <td class="label">
+                <%= Token('salesGrowth1year') %>:
+            </td>
+            <td class="value">
+                <%= keyFinancialData.salesGrowth %>%
+            </td>
+        </tr>
+        <% }
+        if(keyFinancialData.employees && keyFinancialData.employees != '') { %>
+        <tr>
+            <td class="label">
+                <%= Token('lastReportedEmployees')%><br />
+                <% if(keyFinancialData.fiscalYearEndDate){ %>(<%= Token('date') %>):<% } %>
+            </td>
+            <td class="value">
+                <%= keyFinancialData.employees %><br />
+                <% if(keyFinancialData.fiscalYearEndDate){ %>(<%= keyFinancialData.fiscalYearEndDate %>)<% } %>
+            </td>
+        </tr>
+        <% }
+        if(keyFinancialData.employeesGrowth && keyFinancialData.employeesGrowth != '') { %>
+        <tr>
+            <td class="label">
+                <%= Token('employeesGrowth1year') %>:
+            </td>
+           <td class="value">
+                <%= keyFinancialData.employeesGrowth %>%
+            </td>
+        </tr>
+        <% }
+        if(keyFinancialData.lastReportedAuditor && keyFinancialData.lastReportedAuditor != '') { %>
+        <tr>
+            <td class="label">
+                <%= Token('lastReportedAuditor')%><br />
+                <% if(keyFinancialData.fiscalYearEndDate){ %>(<%= Token('date') %>):<% } %>
+            </td>
+            <td class="value">
+                <span class="auditor ellipsis" title="<%= keyFinancialData.lastReportedAuditor %>"><%= keyFinancialData.lastReportedAuditor %></span><br />
+                <% if(keyFinancialData.fiscalYearEndDate){ %>(<%= keyFinancialData.fiscalYearEndDate %>)<% } %>
+            </td>
+        </tr>
+        <% }
+        if(keyFinancialData.marketCapitalization && keyFinancialData.marketCapitalization != '') { %>
+        <tr>
+            <td class="label">
+                <%= Token('marketCapitalization') %><% if(keyFinancialData.reportCurrency){ %> (<%= keyFinancialData.reportCurrency %>)<% } %>:
+            </td>
+            <td class="value">
+                <%= keyFinancialData.marketCapitalization %> <%= Token('millionsM') %><br />
+                <% if(keyFinancialData.marketCapitalizationDate){ %>(<%= keyFinancialData.marketCapitalizationDate %>)<% } %>
+            </td>
+        </tr>
+        <% }
+        if(keyFinancialData.netIncome && keyFinancialData.netIncome != '') { %>
+        <tr>
+            <td class="label">
+                <%= Token('netIncomeLabel') %>:
+            </td>
+            <td class="value">
+                <%= keyFinancialData.netIncome %> <%= Token('millionsM') %>
+            </td>
+        </tr>
+        <% }
+        if(keyFinancialData.netProfitMargin && keyFinancialData.netProfitMargin != '') { %>
+        <tr>
+            <td class="label">
+                <%= Token('netProfitMargin') %>:
+            </td>
+            <td class="value">
+                <%= keyFinancialData.netProfitMargin %>%
+            </td>
+        </tr>
+        <% }
+        if(keyFinancialData.eps && keyFinancialData.eps != '') { %>
+        <tr>
+            <td class="label">
+                <%= Token('earningPerShare') %>:
+            </td>
+            <td class="value">
+                <%= keyFinancialData.eps %>
+            </td>
+        </tr>
+        <% }
+        if(keyFinancialData.fiscalYearEndDate && keyFinancialData.fiscalYearEndDate != '') { %>
+        <tr>
+            <td class="label">
+                <%= Token('fiscalYearEndDate') %>:
+            </td>
+            <td class="value">
+                <%= keyFinancialData.fiscalYearEndDate %>
+            </td>
+        </tr>
+        <% } %>
+    </tbody>
+</table>
+<% if(keyFinancialData.provider && !$.isEmptyObject(keyFinancialData.provider)) { 
+    var source = []; 
+    $.each(keyFinancialData.provider, function() { 
+        var p = this;
+        if(p.providerURL && p.providerURL != '') { 
+            source.push("<a target='_blank' title='"+ p.providerTooltip +"' href='"+ p.providerURL +"'>"+ p.providerName +"</a>");
+        } else { 
+            source.push(p.providerName); 
+        } 
+    }); %>
+    <div class="source">
+        <span><%= Token('dataSource') %>:</span>
+        <span class="source-name"><%= source.join(", ") %></span>
+    </div>
+    <div class="investex-reports hide">
+        <h4 class="side-section-title"><%= Token('investextReports') %></h4>
+        <div id="investor-report-headlines"></div>
+    </div>
+<% } } } %>

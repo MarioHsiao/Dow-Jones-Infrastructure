@@ -1,0 +1,44 @@
+﻿<ul class="dj_pill-list yellow clearfix js_pill-list">
+    <% 
+        var fArr = ["company", "author", "executive", "subject", "industry", "region", "source", "language", "keyword", "dateRange"];
+        var f, fDetailsIndex, title, code, desc, tempFilter, fDetails = self.fDetails; 
+        $.each(fArr, function(i, item){
+            f = self.filters[item];
+            if(f && f.length > 0){
+                if(item == "keyword"){
+                    title = fDetails[i].text;
+                    tempFilter = [];
+                    $.each(f, function(){
+                        tempFilter.push({ code: escape(this), desc: this });
+                    });
+                    f = tempFilter;
+                }
+                else if(item == "dateRange"){
+                    f = f;
+                }
+                else{
+                    title = fDetails[i][(f.length == 1 ?"text":"pluralText")];
+                }
+    %>
+                <li class="filter-group" data-type="<%= item %>">
+                    <span class="section-category"><%= title %>:</span>
+                    <ul class="filter-list">
+                        <%
+                            $.each(f, function(){
+                                code = this.code;
+                                desc = this.desc;
+                        %>
+                                <li class="dj_pill" data-code="<%= code %>">
+	                                <span class="filter"><%= desc %></span>
+	                                <span class="remove" title="<%= Token("removeFilter")%>">&nbsp;</span>
+                                </li>
+                        <%
+                            });
+                        %>
+                    </ul>
+                </li>
+    <%
+            }
+        });    
+    %>
+</ul>
