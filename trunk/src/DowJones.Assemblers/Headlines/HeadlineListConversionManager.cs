@@ -18,6 +18,7 @@ using DowJones.Formatters.Globalization.DateTime;
 using DowJones.Mapping;
 using DowJones.Url;
 using Factiva.Gateway.Messages.PCM.Search.V1_0;
+using Factiva.Gateway.Messages.Screening.V1_1;
 using Factiva.Gateway.Messages.Search;
 using Factiva.Gateway.Messages.Search.V2_0;
 using Factiva.Gateway.Messages.Trigger.V1_1;
@@ -31,7 +32,8 @@ namespace DowJones.Assemblers.Headlines
     public class HeadlineListConversionManager :
         ITypeMapper<PerformContentSearchResponse, HeadlineListDataResult>,
         ITypeMapper<IPerformContentSearchResponse, HeadlineListDataResult>,
-        ITypeMapper<AccessionNumberSearchResponse, HeadlineListDataResult>
+        ITypeMapper<AccessionNumberSearchResponse, HeadlineListDataResult>,
+        ITypeMapper<ReportsType, HeadlineListDataResult> 
     {
         protected static readonly ILog Log = LogManager.GetLogger(typeof(HeadlineListConversionManager));
         private readonly DateTimeFormatter _datetimeFormatter;
@@ -332,5 +334,27 @@ namespace DowJones.Assemblers.Headlines
 
             throw new NotSupportedException();
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="reportsResponse"></param>
+        /// <returns></returns>
+        public HeadlineListDataResult Process(ReportsType reportsResponse)
+        {
+            var converter = new ReportListHeadlinesConverter(reportsResponse, _datetimeFormatter);
+            return (HeadlineListDataResult)converter.Process();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="source"></param>
+        /// <returns></returns>
+        public HeadlineListDataResult Map(ReportsType source)
+        {
+            return Process(source);
+        }
+
     }
 }
