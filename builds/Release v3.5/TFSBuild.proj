@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- DO NOT EDIT the project element - the ToolsVersion specified here does not prevent the solutions 
+     and projects in the SolutionToBuild item group from targeting other versions of the .NET framework. 
+     -->
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+
+    <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\TeamBuild\Microsoft.TeamFoundation.Build.targets" />
+
+    <ProjectExtensions>
+        <ProjectFileVersion>2</ProjectFileVersion>
+        <Description>This is the Dow Jones Infrastructure nightly Build</Description>
+        <BuildMachine>SBK053LAB07NWS</BuildMachine>
+    </ProjectExtensions>
+
+    <PropertyGroup>
+        <DowJonesMSBuildProjectFile>$(SolutionRoot)\src\default.proj</DowJonesMSBuildProjectFile>
+        <DJInfrastructureOutputRoot>\\sbkntsfap05.dowjones.net\Client_Share\DJ Infrastructure</DJInfrastructureOutputRoot>
+        <IncrementalGet>true</IncrementalGet>
+        <ReleaseDeploymentDestination>$(DropLocation)\..\..\Binaries\$(VersionNumber)</ReleaseDeploymentDestination>
+        <RunCodeAnalysis>Default</RunCodeAnalysis>
+        <RunTest>true</RunTest>
+        <SkipWorkItemCreation>true</SkipWorkItemCreation>
+        <SolutionInfoFile>$(SolutionRoot)\src\SolutionInfo.cs</SolutionInfoFile>
+        <TreatTestFailureAsBuildFailure>true</TreatTestFailureAsBuildFailure>
+        <ToolsDeploymentDir>$(DJInfrastructureOutputRoot)\Tools</ToolsDeploymentDir>
+        <UpdateAssociatedWorkItemsOnBuildBreak>false</UpdateAssociatedWorkItemsOnBuildBreak>
+    </PropertyGroup>
+
+
+    <Target Name="GenerateVersionInfo" BeforeTargets="BeforeLabel">
+		<MSBuild Projects="$(DowJonesMSBuildProjectFile)"
+                 BuildInParallel="true" StopOnFirstFailure="false"
+                 Targets="UpdateSolutionInfo"
+                 Properties="
+                    FrameworkVersionFile=$(FrameworkVersionFile);
+                    SolutionRoot=$(SolutionRoot);
+                    SolutionInfoFile=$(SolutionInfoFile)
+                "
+        >
+		</MSBuild>
+
+        <MSBuild Projects="$(DowJonesMSBuildProjectFile)"
+                 BuildInParallel="true" StopOnFirstFailure="false"
+                 Targets="GetDowJonesFrameworkVersion"
+                 Properties="SolutionRoot=$(SolutionRoot)"
+        >
+            <Output TaskParameter="TargetOutputs" PropertyName="DowJonesFrameworkVersion" />
+        </MSBuild>
+
+        <Error Condition="'$(DowJonesFrameworkVersion)' == ''"
+               Text="The DowJonesFrameworkVersion property cannot be empty" />
+
+        <CreateProperty Value ="Release build $(LabelName)">
+            <Output PropertyName ="LabelComment" TaskParameter="Value"/>
+        </CreateProperty>
+        
+        <CreateProperty Value ="$(DowJonesFrameworkVersion)">
+            <Output TaskParameter="Value" PropertyName ="LabelName" />
+        </CreateProperty>
+    </Target>
+
+    <ItemGroup>
+        <ConfigurationToBuild Include="Release|Any CPU">
+            <FlavorToBuild>Release</FlavorToBuild>
+            <PlatformToBuild>Any CPU</PlatformToBuild>
+        </ConfigurationToBuild>
+
+        <SolutionToBuild Include="$(SolutionRoot)\src\Framework.sln" />
+    </ItemGroup>
+
+
+    <Target Name="DeployNuGetPackages" AfterTargets="AfterCompile">
+        <Message Text="Deploying NuGet packages to $(NuGetOutputDir)" />
+
+        <MSBuild Projects="$(DowJonesMSBuildProjectFile)"
+                 BuildInParallel="true" StopOnFirstFailure="false"
+                 Targets="CreateNuGetPackages"
+                 Properties="
+                     NuGetOutputPath=$(NuGetOutputPath);
+                     SolutionRoot=$(SolutionRoot);
+                     DeploymentDestination=$(OutDir)
+                 "
+        />
+    </Target>
+
+    <Target Name="CleanArchivedNuGetPackages" AfterTargets="DeployNuGetPackages">
+        <Exec WorkingDirectory="$(NuGetOutputPath)" Command="$(NuGetOutputPath)\__RUN_ME_TO_ARCHIVE_PACKAGES__.exe" />
+    </Target>
+
+	<Target Name="BeforeGet">
+		<Message Text="Marking NuGet.exe as readonly: $(SolutionRoot)\lib\nuget\nuget.exe" />
+		<Exec Command="attrib +R &quot;$(SolutionRoot)\lib\nuget\nuget.exe&quot;" />
+	</Target>
+
+</Project>
