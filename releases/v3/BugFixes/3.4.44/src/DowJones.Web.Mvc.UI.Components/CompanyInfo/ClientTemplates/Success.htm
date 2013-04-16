@@ -52,7 +52,7 @@ if(companyInfo.keyFinancialData != null) {
                 <%= Token('sales') %>:
             </td>
             <td class="value">
-                <%= keyFinancialData.sales %> <%= Token('millionsM') %>
+                <%= keyFinancialData.sales %>
             </td>
         </tr>
         <% }
@@ -106,7 +106,7 @@ if(companyInfo.keyFinancialData != null) {
                 <%= Token('marketCapitalization') %><% if(keyFinancialData.reportCurrency){ %> (<%= keyFinancialData.reportCurrency %>)<% } %>:
             </td>
             <td class="value">
-                <%= keyFinancialData.marketCapitalization %> <%= Token('millionsM') %><br />
+                <%= keyFinancialData.marketCapitalization %><br />
                 <% if(keyFinancialData.marketCapitalizationDate){ %>(<%= keyFinancialData.marketCapitalizationDate %>)<% } %>
             </td>
         </tr>
@@ -117,7 +117,7 @@ if(companyInfo.keyFinancialData != null) {
                 <%= Token('netIncomeLabel') %>:
             </td>
             <td class="value">
-                <%= keyFinancialData.netIncome %> <%= Token('millionsM') %>
+                <%= keyFinancialData.netIncome %>
             </td>
         </tr>
         <% }
