@@ -122,6 +122,7 @@
     <Compile Include="Headlines\PCMAccessionNumberSearchResponseConverter.cs" />
     <Compile Include="Headlines\HeadlineUtility.cs" />
     <Compile Include="Headlines\PortalHeadlineConversionManager.cs" />
+    <Compile Include="Headlines\ReportListHeadlinesConverter.cs" />
     <Compile Include="IAssembler.cs" />
     <Compile Include="IListDataResultConverter.cs" />
     <Compile Include="JSON\JSONArray.cs" />
