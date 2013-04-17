@@ -125,8 +125,6 @@ namespace DowJones.Security.Services
 
         public bool IsMctUser { get; private set; }
 
-        public bool IsNewsletterAdmin { get; private set; }
-
         public bool IsAllowMobileCookieEmailLinkDA { get; private set; }
 
         public bool IsDULinkEnabled { get; private set; }
@@ -235,7 +233,6 @@ namespace DowJones.Security.Services
             IsDowJonesInsider = _matrixInterfaceService.insider != "OFF";
             IsMyDowJonesFactiva = _matrixInterfaceService.IsMyDJFactivaEnabled;
             IsMctUser = _matrixInterfaceService.ac5.Contains("MCT");
-            IsNewsletterAdmin = _matrixInterfaceService.ac4.Contains("NLE"); 
             IsAllowMobileCookieEmailLinkDA = _matrixInterfaceService.mcemail != "OFF";
             IsDULinkEnabled = _matrixInterfaceService.duLink != "OFF";
             IsTranslateArticleAllowed = _matrixInterfaceService.IsTranslateDAEnabled;
