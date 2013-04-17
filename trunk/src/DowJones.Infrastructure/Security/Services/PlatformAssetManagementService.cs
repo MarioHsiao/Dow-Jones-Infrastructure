@@ -91,6 +91,8 @@ namespace DowJones.Security.Services
 
         public bool IsMctUser { get; private set; }
 
+        public bool IsNewsletterAdmin { get; private set; }
+
         #endregion
 
         #region Service Initialization Method
@@ -117,7 +119,7 @@ namespace DowJones.Security.Services
             {
                 HasNewspages = true;
             }
-            
+            IsNewsletterAdmin = _matrixPAMService.ac4.Contains("NLE"); 
             //DA's
         }
 
