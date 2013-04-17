@@ -93,7 +93,7 @@ namespace DowJones.Web.Showcase.Mocks
             return 3.ToString();
         }
 
-        public AccessControlScope GetRootAccessControlScope(int pageId, ShareProperties properties, Factiva.Gateway.Messages.Assets.Pages.V1_0.AccessQualifier accessQualifier)
+        public AccessControlScope GetRootAccessControlScope(int pageId, Factiva.Gateway.Messages.Assets.Pages.V1_0.ShareProperties properties, Factiva.Gateway.Messages.Assets.Pages.V1_0.AccessQualifier accessQualifier)
         {
             throw new NotImplementedException();
         }
@@ -103,7 +103,7 @@ namespace DowJones.Web.Showcase.Mocks
             throw new NotImplementedException();
         }
 
-        public EnableDisable EnableDisablePage(string pageRef, EnableDisable action)
+        public Factiva.Gateway.Messages.Assets.Pages.V1_0.EnableDisable EnableDisablePage(string pageRef, Factiva.Gateway.Messages.Assets.Pages.V1_0.EnableDisable action)
         {
             throw new NotImplementedException();
         }
@@ -277,12 +277,12 @@ namespace DowJones.Web.Showcase.Mocks
             throw new NotImplementedException();
         }
 
-        public void SetPageShareProperties(string pageRef, ShareProperties shareProperties)
+        public void SetPageShareProperties(string pageRef, Factiva.Gateway.Messages.Assets.Pages.V1_0.ShareProperties shareProperties)
         {
             throw new NotImplementedException();
         }
 
-        public void SetPageShareProperties(string pageRef, ShareProperties shareProperties, bool updateModule, ShareProperties moduleShareProperties)
+        public void SetPageShareProperties(string pageRef, Factiva.Gateway.Messages.Assets.Pages.V1_0.ShareProperties shareProperties, bool updateModule, Factiva.Gateway.Messages.Assets.Pages.V1_0.ShareProperties moduleShareProperties)
         {
             throw new NotImplementedException();
         }
