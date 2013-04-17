@@ -38,9 +38,6 @@
     </DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CordaNetEmbedder">
-      <HintPath>..\packages\Corda.Embedder.7.0.0\lib\CordaNetEmbedder.dll</HintPath>
-    </Reference>
     <Reference Include="factiva.gateway.messages, Version=7.5.0.120, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Factiva.Gateway.7.5.0.120\lib\factiva.gateway.messages.dll</HintPath>
     </Reference>
