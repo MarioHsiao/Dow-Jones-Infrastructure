@@ -5,5 +5,6 @@ namespace DowJones.Security.Interfaces
         bool HasNewspages { get; }
         bool IsNewspagesSubscribeOnly { get; }
         int NumberOfPersonalNewspages { get; }
+        bool IsNewsletterAdmin { get; }
     }
 }
