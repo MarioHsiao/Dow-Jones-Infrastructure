@@ -44,5 +44,6 @@ namespace DowJones.Security.Interfaces
         string SalesworksPartner { get; }
         bool IsTestExecMarkupInArticleUser { get; }
         bool IsDowJonesTabEnabled { get; }
+        bool IsMctUser { get; }
     }
 }
