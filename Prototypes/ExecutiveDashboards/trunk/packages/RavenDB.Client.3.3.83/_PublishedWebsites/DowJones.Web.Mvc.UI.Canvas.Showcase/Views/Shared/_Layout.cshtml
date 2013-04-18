@@ -1,0 +1,133 @@
+﻿@using System.Configuration
+@{
+    DJ.ScriptRegistry()
+        .WithJQueryUIWidgets();
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>@ViewBag.Title</title>
+
+    <script type="text/javascript">
+        var DJ = { config: { debug: true } };
+    </script>
+    
+    @DJ.ScriptRegistry().RenderHead()
+    <script type="text/javascript">
+        jQuery = $ = DJ.jQuery, _ = DJ.underscore;
+    </script>
+
+    @DJ.StylesheetRegistry().RenderHead()
+
+    <script type="text/javascript" src="@Url.Content("~/scripts/bootstrap.min.js")"></script>
+    <link rel="stylesheet" href="@Url.Content("~/content/bootstrap.min.css")"/>
+    <link rel="stylesheet" href="@Url.Content("~/content/bootstrap-responsive.min.css")"/>
+
+    <style>
+        body { padding-top: 40px;}
+        
+        .page-header {
+            clear: both;
+        }
+            .page-header h2 {
+                margin-right: 20px;
+                width: 300px;
+            }
+            .page-header .actions {
+                margin: 15px 0;
+            }
+
+        .main-content {
+            min-height: 600px;
+            margin-bottom: 45px;    /* Rise above the footer */
+        }
+
+        footer {
+            position: fixed;
+            bottom: 0px;
+            width: 100%;
+            height: 35px;
+            font-size: 70%;
+            background: #fff;
+        }
+            footer hr {
+                margin: 0 0 5px 0;
+            }
+            footer p {
+                padding: 0 20px; 
+            }
+
+
+    </style>
+</head>
+<body>
+    <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
+                @Html.ActionLink("Dow Jones UI Framework :: Dashboards", "Index", "Pages", null, new { @class = "brand"})
+                <div class="nav-collapse">
+                    <ul class="nav">
+                    </ul>
+                </div><!--/.nav-collapse -->
+
+                <div class="btn-group pull-right">
+                    <button class="btn btn-mini dropdown-toggle" data-toggle="dropdown">
+                        Administration
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li>@Html.ActionLink("Module Templates", "Index", "ScriptModule", null, new { @class=""})</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-content container-fluid">
+    
+        <div class="row-fluid">
+            <div class="span12 well well-small page-header">
+                <h2 class="pull-left">@ViewBag.Title</h2>
+                <div class="actions">
+                    @RenderSection("Header", false)
+                </div>
+            </div>
+        </div>
+        
+        
+        @* Success Message area (if applicable) *@
+        @if (@TempData["SuccessMessage"] != null)
+        {
+            <div class="row-fluid">
+                <div class="span12">
+                    <div class="alert alert-success">
+                        <a class="close" data-dismiss="alert" href="#">×</a>
+                        @TempData["SuccessMessage"]
+                    </div>
+                </div>
+            </div>
+        }
+
+
+        @RenderBody()
+
+    </div>
+    
+    <footer>
+        <hr>
+        <p>
+            <a href="@ConfigurationManager.ConnectionStrings["RavenDb"].ConnectionString.Replace("Url=", string.Empty)" target="ravendb">©</a>
+            @DateTime.Now.Year <a href="http://www.dowjones.com">Dow Jones &amp; Company Inc.</a>
+            All Rights Reserved
+        </p>
+    </footer>
+    
+    @DJ.ScriptRegistry().Render()
+    
+</body>
+</html>

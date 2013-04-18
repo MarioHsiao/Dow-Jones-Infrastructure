@@ -1,0 +1,11 @@
+﻿@{ ViewBag.Title = "Composite Headline List";
+   Html.DJ().StylesheetRegistry()
+            .Include("~/styles/css/canvas.icons.css")
+            .Include("~/styles/css/search.headline-list.css")
+            .Include("~/styles/css/search.headline-options.css")
+            .Include("~/styles/css/search.headline-post-processing.css")
+            .Include("~/styles/css/dashboard.modal.css")
+            .Include("~/styles/css/toggle-switch.css");
+}
+
+@Html.DJ().Render(Model)
