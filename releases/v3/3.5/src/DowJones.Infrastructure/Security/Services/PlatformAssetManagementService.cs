@@ -119,6 +119,7 @@ namespace DowJones.Security.Services
             {
                 HasNewspages = true;
             }
+
             IsNewsletterAdmin = _matrixPAMService.ac4.Contains("NLE"); 
             //DA's
         }
