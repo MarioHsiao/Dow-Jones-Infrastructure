@@ -163,8 +163,8 @@ if(companyInfo.keyFinancialData != null) {
             source.push(p.providerName); 
         } 
     }); %>
-    <div>
+    <div class="source">
         <span><%= Token('dataSource') %>:</span>
-        <span><%= source.join(", ") %></span>
+        <span class="source-name"><%= source.join(", ") %></span>
     </div>
 <% } } } %>
