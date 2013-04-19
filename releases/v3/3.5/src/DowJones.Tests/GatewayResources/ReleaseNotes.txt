@@ -1267,3 +1267,27 @@ Release Version 7.5.0.120
 =============================================================================================================================
 3/13/2013 Divya: Added includeSnippet to NewsletterWorkspaceProperties and EditionProperties in Edition and wrokspace asset
 3/13/2013 Divya: Added createdByNamespace and createdByAccountId elements to ItemProperties in Item asset
+Release Version 7.5.0.121
+=============================================================================================================================
+3/18/2013 Divya: Added bugfix for includesnippet propertry in Edition and Workspace property complex types.
+
+Release Version 7.5.0.122
+=============================================================================================================================
+3/20/2013 Divya: Added new boolean field to NavigationControl object in search service.
+
+3/25/2013 Divya: Added new trasactions (SubscribeWorkspace, GetSubscribableWorkspaces, SetAssignedWorkspaceStatus, SetWorkspaceShareProperties & UnSubscribeWorkspace) in Workspaces asset.
+				 Removed using Factiva.Gateway.Messages.Assets.Common.V2_0 and added using SortOrder = Factiva.Gateway.Messages.Assets.Common.V2_0.SortOrder 
+				 in NewsPagesModule.cs, Pages.cs to fix ambiguity issues
+
+3/27/2013 Divya: Added missing request fields to SubscribeFolder transaction request in track service
+
+Release Version 7.5.0.123
+=============================================================================================================================
+4/08/2013 Divya: Added shareProperties to WorkspacePropertiesItem in Workspace asset
+4/15/2013 Divya: Added new transaction ShareTemplate to Templates asset
+				 Added new transaction GetEditionFromNewsletter in EDitions asset
+			     Modfied the DeliveryINfo object to add new items to it.
+
+Release Version 7.5.0.125
+=============================================================================================================================
+4/18/2013 Divya: Added new transactions AddSubItemsToItem and DeleteSubItemsOnItem in Asset Item.

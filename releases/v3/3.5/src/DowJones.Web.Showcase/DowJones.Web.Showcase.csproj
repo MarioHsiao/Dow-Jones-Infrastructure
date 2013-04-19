@@ -71,11 +71,12 @@
     <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="factiva.gateway.messages">
-      <HintPath>..\packages\Factiva.Gateway.7.5.0.124\lib\factiva.gateway.messages.dll</HintPath>
+    <Reference Include="factiva.gateway.messages, Version=7.5.0.125, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.125\lib\factiva.gateway.messages.dll</HintPath>
     </Reference>
-    <Reference Include="FactivaGateway">
-      <HintPath>..\packages\Factiva.Gateway.7.5.0.124\lib\FactivaGateway.dll</HintPath>
+    <Reference Include="FactivaGateway, Version=1.6.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.125\lib\FactivaGateway.dll</HintPath>
     </Reference>
     <Reference Include="Glimpse.Core">
       <HintPath>..\packages\Glimpse.0.86\lib\net40\Glimpse.Core.dll</HintPath>
@@ -87,7 +88,7 @@
       <HintPath>..\packages\Glimpse.Mvc3.0.86\lib\net40\Glimpse.Mvc3.dll</HintPath>
     </Reference>
     <Reference Include="Interop.FCMLib">
-      <HintPath>..\packages\Factiva.Gateway.7.5.0.124\lib\Interop.FCMLib.dll</HintPath>
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.125\lib\Interop.FCMLib.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
@@ -1620,11 +1621,11 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>23221</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost/DowJones.Web.Showcase</IISUrl>
+          <IISUrl>http://localhost/DowJones.Web.Showcase</IISUrl>          
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
