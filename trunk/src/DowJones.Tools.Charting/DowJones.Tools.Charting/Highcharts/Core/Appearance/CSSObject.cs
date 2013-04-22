@@ -54,6 +54,11 @@ namespace DowJones.Tools.Charting.Highcharts.Core.Appearance
         /// </summary>
         public string LineHeight { get; set; }
 
+        /// <summary>
+        /// Specifies the width
+        /// </summary>
+        public string Width { get; set; }
+
         public void CopyStyles(CSSObject model)
         {
             CopyStyles(model, false);
@@ -91,14 +96,24 @@ namespace DowJones.Tools.Charting.Highcharts.Core.Appearance
                 FontFamily = model.FontFamily;
             }
 
+            if (string.IsNullOrEmpty(WhiteSpace) || overrideValues)
+            {
+                WhiteSpace = model.WhiteSpace;
+            }
+
             if (string.IsNullOrEmpty(Cursor) || overrideValues)
             {
                 Cursor = model.Cursor;
             }
 
-            if (string.IsNullOrEmpty(Cursor) || overrideValues)
+            if (string.IsNullOrEmpty(LineHeight) || overrideValues)
             {
                 LineHeight = model.LineHeight;
+            }
+
+            if (string.IsNullOrEmpty(Width) || overrideValues)
+            {
+                Width = model.Width;
             }
         }
     }
