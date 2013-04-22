@@ -30,7 +30,7 @@ namespace DowJones.Managers.Search.Requests
     [XmlRoot(ElementName = "AccessionNumberSearchRequestDTO", Namespace = Declarations.SchemaVersion), Serializable]
     public class AccessionNumberSearchRequestDTO : IRequestDTO, ISearchRequest
     {
-        internal const int MaxReturnableResults = 100;
+        internal const int MaxReturnableResults = 1000;
         internal string[] UniqueAccessionNumbers;
 
         private readonly List<string> accessionNumbersList = new List<string>();
