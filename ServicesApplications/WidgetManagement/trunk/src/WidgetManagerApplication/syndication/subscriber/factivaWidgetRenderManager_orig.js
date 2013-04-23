@@ -1081,20 +1081,20 @@ if (!window.FactivaWidgetRenderManager) {
                 // Add Importance                    
                 if (literals && this.xStr(literals.ImportanceFlagUrl) && literals.ImportanceFlagUrl != null && literals.ImportanceFlagUrl.length > 0) {
                     switch (headline.Importance) {
-                        // Normal             
+                        // Normal              
                         case 0:
                         default:
                             //sb[sb.length] = "<span class=\"fctv_importance\" style=\"padding-right:0.8em;padding-left:0.3em;font-weight:bold;background:url(" + literals.ImportanceFlagUrl + ") #e5e5e0 no-repeat right 50%; padding-bottom:0.1em;color:#30332d;padding-top:0.1em;\">" + literals.Hot +  "</span>&nbsp;";     
                             break;
-                        // Hot             
+                        // Hot              
                         case 1:
                             sb[sb.length] = "<span class=\"fctv_importance\" style=\"border: solid 1px #000; padding-right:0.3em;padding-left:0.3em;font-weight:bold; padding-bottom:0.1em;color:#30332d;padding-top:0.1em;\">" + literals.Hot + "</span>&nbsp;";
                             break;
-                        // New             
+                        // New              
                         case 2:
                             sb[sb.length] = "<span class=\"fctv_importance\" style=\"border: solid 1px #000; padding-right:0.3em;padding-left:0.3em;font-weight:bold; padding-bottom:0.1em;color:#30332d;padding-top:0.1em;\">" + literals.New + "</span>&nbsp;";
                             break;
-                        // MustRead             
+                        // MustRead              
                         case 3:
                             sb[sb.length] = "<span class=\"fctv_importance\" style=\"border: solid 1px #000; padding-right:0.3em;padding-left:0.3em;font-weight:bold; padding-bottom:0.1em;color:#30332d;padding-top:0.1em;\">" + literals.MustRead + "</span>&nbsp;";
                             break;
@@ -1580,6 +1580,7 @@ if (!window.FactivaWidgetRenderManager) {
                                 aFontColor,
                                 fontFamily);
                             if (_alert.CompaniesChart != null) {
+                                debugger;
                                 t[t.length] = this.addDiscoveryChart(_alert.CompaniesChart.Chart, result.Literals.DiscoveryChartImage);
                                 if (result.Data.Alerts[i].IsGroupFolder == false) {
                                     if (result.Definition.DistributionType == 0 || result.Definition.DistributionType == 1)
@@ -2323,12 +2324,11 @@ var DiscoveryChart = (function (chartimage) {
     }
 
     function GetCharttemplate(tmpl, c, def) {
-
         c = c || templateSettings;
-        var cstart = c.append ? "'+(" : "';out+=(", 
+        var cstart = c.append ? "'+(" : "';out+=(",
 		    cend = c.append ? ")+'" : ");out+='";
         var str = (c.use || c.define) ? resolveDefs(c, tmpl, def || {}) : tmpl;
-       
+
         str = ("var out='" +
 			((c.strip) ? str.replace(/\s*<!\[CDATA\[\s*|\s*\]\]>\s*|[\r\n\t]|(\/\*[\s\S]*?\*\/)/g, '') : str)
 			.replace(/\\/g, '\\\\').replace("/" + "'/g", "\\'")
@@ -2339,12 +2339,12 @@ var DiscoveryChart = (function (chartimage) {
             .replace(c.encode, function (match, code) {
                 return cstart + code.replace(/\\'/g, "'")
             .replace(/\\\\/g, "\\").replace(/[\r\t\n]/g, ' ') + ").toString().replace(/&(?!\\w+;)/g, '&#38;').split('<').join('&#60;').split('>').join('&#62;').split('" + '"' + "').join('&#34;').split(" + '"' + "'" + '"' + ").join('&#39;').split('/').join('&#47;'" + cend;
-			}).replace(c.conditionalEnd, function (match, expression) {
-			    return "';}out+='";
-			}).replace(c.conditionalStart, function (match, expression) {
-			    var code = "if(" + expression + "){";
-			    return "';" + code.replace(/\\'/g, "'").replace(/\\\\/g, "\\").replace(/[\r\t\n]/g, ' ') + "out+='";
-			})
+            }).replace(c.conditionalEnd, function (match, expression) {
+                return "';}out+='";
+            }).replace(c.conditionalStart, function (match, expression) {
+                var code = "if(" + expression + "){";
+                return "';" + code.replace(/\\'/g, "'").replace(/\\\\/g, "\\").replace(/[\r\t\n]/g, ' ') + "out+='";
+            })
 			.replace(c.evaluate, function (match, code) {
 			    return "';" + code.replace(/\\'/g, "'").replace(/\\\\/g, "\\").replace(/[\r\t\n]/g, ' ') + "out+='";
 			})
@@ -2361,11 +2361,12 @@ var DiscoveryChart = (function (chartimage) {
             throw e;
         }
     };
+
     var template = ['<ul class="discovery-items" style="line-height: 13px;zoom: 1;list-style: none;display:inline-table;padding:0px;">',
                             '{{ var data = it, mw = 1;',
                                 'for (var x=0, w=0, c=0, i = 0, len = data.length;i < len; i++) { ',
                                 'x = data[i];w=((i != 0)?((x.value/data[0].value)*170):170); if(w < mw) w=mw; c = x.GT=="sf"? "cItem source-family":"cItem";}}',
-                                '<li class="{{=c}}" style="position: relative;margin-bottom: 3px;padding-bottom: 6px;width: 186px;padding-left: 0px;height: 13px;" data-di="{{=i}}" title="{{=x.name }}">', 
+                                '<li class="{{=c}}" style="position: relative;margin-bottom: 3px;cursor:pointer;padding-bottom: 6px;width: 186px;padding-left: 0px;height: 13px;" data-di="{{=i}}" title="{{=x.name }}" onclick="javascript:void FactivaWidgetRenderManager.getInstance().xWinOpen(&apos;{{=x.uri}}&apos;);">',
                                     '<span class="dj_not" style=" width: 12px;height: 12px;display: block;position: absolute;top: 6px;left: 8px; display: none; cursor: pointer;"title="{{="notTitleTkn"}}"><span></span></span>',
                                     '<span class="discovery-chart" style="min-width:186px;display: -moz-inline-stack;display: inline-block;zoom: 1;vertical-align: top;position: relative;height:19px;">',
                                         '<img  class="plot" src="' + chartimage + '" style="float:left;height:4px;zoom: 1;vertical-align: top;width: {{=w}}px;clear:right;" />',
