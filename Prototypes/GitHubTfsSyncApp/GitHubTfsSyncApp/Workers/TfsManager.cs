@@ -7,10 +7,10 @@ using System.Security.AccessControl;
 using AttributeRouting.Helpers;
 using GitHubTfsSyncApp.Configuration;
 using GitHubTfsSyncApp.Extensions;
-using GitHubTfsSyncApp.Helpers;
 using GitHubTfsSyncApp.Models;
 using Microsoft.TeamFoundation.Client;
 using Microsoft.TeamFoundation.VersionControl.Client;
+using Microsoft.TeamFoundation.VersionControl.Common;
 using log4net;
 
 namespace GitHubTfsSyncApp.Workers
@@ -81,14 +81,26 @@ namespace GitHubTfsSyncApp.Workers
 		        _logger.Info("Resolving conflict");
 		        ResolveConflicts(workspace);
 		        _logger.Info("Getting pending changes");
-		        var pendingChanges = workspace.GetPendingChanges();
+
+                // Finally check-in, don't trigger a Continuous Integration build and override gated check-in.
+                var pendingChanges = workspace.GetPendingChanges();
+
+              
 
 		        if (pendingChanges.Length == 0)
 		            _logger.Info("No changes to checkin");
 		        else
 		        {
 		            _logger.Info("checkin workspaces");
-		            var changesetNumber = workspace.CheckIn(pendingChanges, checkinMessage);
+
+                    var wip = new WorkspaceCheckInParameters(pendingChanges, checkinMessage)
+                    {
+                        // Enable the override of gated check-in when the server supports gated check-ins.
+                        OverrideGatedCheckIn = ((CheckInOptions2)_versionControl.SupportedFeatures & CheckInOptions2.OverrideGatedCheckIn) == CheckInOptions2.OverrideGatedCheckIn,
+                        PolicyOverride = new PolicyOverrideInfo("Check-in from the build.", null)
+                    };
+
+                    var changesetNumber = workspace.CheckIn(wip);
 
 		            _logger.Info(changesetNumber == 0
 		                             ? "No new changes."
@@ -154,6 +166,7 @@ namespace GitHubTfsSyncApp.Workers
                     workspace.PendAdd(new[] { filePath }, true, "", LockLevel.None);
 			    }
 
+               
 			    foreach (var item in changedItems.Modified)
 			    {
                     if (_filter != null && _filter.Count > 0 && !IsFilterItem(item))
