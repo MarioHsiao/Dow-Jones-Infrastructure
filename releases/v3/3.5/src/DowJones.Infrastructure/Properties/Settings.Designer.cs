@@ -483,5 +483,14 @@ namespace DowJones.Properties {
                 return ((string)(this["DowJones_Infrastructure_PALService_FunctionDispatcher"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("240")]
+        public int RSS_FEEDS_MAX_LIMIT {
+            get {
+                return ((int)(this["RSS_FEEDS_MAX_LIMIT"]));
+            }
+        }
     }
 }

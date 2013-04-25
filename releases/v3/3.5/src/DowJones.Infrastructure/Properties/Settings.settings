@@ -155,5 +155,8 @@
     <Setting Name="DowJones_Infrastructure_PALService_FunctionDispatcher" Type="(Web Service URL)" Scope="Application">
       <Value Profile="(Default)">http://fdevweb3.win.dowjones.net/PALService</Value>
     </Setting>
+    <Setting Name="RSS_FEEDS_MAX_LIMIT" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">240</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
