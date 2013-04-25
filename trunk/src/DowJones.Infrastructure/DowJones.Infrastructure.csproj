@@ -176,6 +176,8 @@
     <Compile Include="Managers\PAL\PALPreferenceServiceProvider.cs" />
     <Compile Include="Managers\PAL\PALServiceManager.cs" />
     <Compile Include="Managers\PAM\ItemManager.cs" />
+    <Compile Include="Managers\Rss\RssItem.cs" />
+    <Compile Include="Managers\Rss\RssManager.cs" />
     <Compile Include="Models\Common\DateNewsEntities.cs" />
     <Compile Include="Models\Common\DateNewsEntity.cs" />
     <Compile Include="Models\Common\Entities.cs" />
