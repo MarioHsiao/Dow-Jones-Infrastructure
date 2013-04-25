@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using DowJones.DependencyInjection;
+using DowJones.Properties;
 using Factiva.Gateway.Messages.Assets.Item.V1_0;
 using Factiva.Gateway.Messages.PCM.Syndication.V1_0;
 using Factiva.Gateway.Services.V1_0;
@@ -99,9 +100,7 @@ namespace DowJones.Managers.Rss
 
         public GetSyndicationItemExListResponse GetSyndicationItemList()
         {
-
-            var getRequest = new GetSyndicationItemExListRequest();
-            getRequest.MaxResultsToReturn = MAX_ITEMS_TO_GET;
+            var getRequest = new GetSyndicationItemExListRequest {MaxResultsToReturn = Settings.Default.RSS_FEEDS_MAX_LIMIT};
 
             return SyndicationAggregationService.GetSyndicationItemExList(ControlData, getRequest);
         }
