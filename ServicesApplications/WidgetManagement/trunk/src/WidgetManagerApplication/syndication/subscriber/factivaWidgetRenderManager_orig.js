@@ -1580,7 +1580,6 @@ if (!window.FactivaWidgetRenderManager) {
                                 aFontColor,
                                 fontFamily);
                             if (_alert.CompaniesChart != null) {
-                                debugger;
                                 t[t.length] = this.addDiscoveryChart(_alert.CompaniesChart.Chart, result.Literals.DiscoveryChartImage);
                                 if (result.Data.Alerts[i].IsGroupFolder == false) {
                                     if (result.Definition.DistributionType == 0 || result.Definition.DistributionType == 1)
