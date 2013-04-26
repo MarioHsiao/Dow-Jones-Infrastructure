@@ -2365,7 +2365,7 @@ var DiscoveryChart = (function (chartimage) {
                             '{{ var data = it, mw = 1;',
                                 'for (var x=0, w=0, c=0, i = 0, len = data.length;i < len; i++) { ',
                                 'x = data[i];w=((i != 0)?((x.value/data[0].value)*170):170); if(w < mw) w=mw; c = x.GT=="sf"? "cItem source-family":"cItem";}}',
-                                '<li class="{{=c}}" style="position: relative;margin-bottom: 3px;cursor:pointer;padding-bottom: 6px;width: 186px;padding-left: 0px;height: 13px;" data-di="{{=i}}" title="{{=x.name }}" onclick="javascript:void FactivaWidgetRenderManager.getInstance().xWinOpen(&apos;{{=x.uri}}&apos;);">',
+                                '<li class="{{=c}}" style="position: relative;margin-bottom: 3px;cursor:pointer;padding-bottom: 6px;width: 186px;padding-left: 0px;height: 13px;" data-di="{{=i}}" title="{{=x.name }}" onclick="javascript:void FactivaWidgetRenderManager.getInstance().xWinOpen(&quot;{{=x.uri}}&quot;);">',
                                     '<span class="dj_not" style=" width: 12px;height: 12px;display: block;position: absolute;top: 6px;left: 8px; display: none; cursor: pointer;"title="{{="notTitleTkn"}}"><span></span></span>',
                                     '<span class="discovery-chart" style="min-width:186px;display: -moz-inline-stack;display: inline-block;zoom: 1;vertical-align: top;position: relative;height:19px;">',
                                         '<img  class="plot" src="' + chartimage + '" style="float:left;height:4px;zoom: 1;vertical-align: top;width: {{=w}}px;clear:right;" />',
