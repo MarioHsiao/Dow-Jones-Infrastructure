@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using DowJones.DependencyInjection;
 using DowJones.Properties;
 using Factiva.Gateway.Messages.Assets.Item.V1_0;
@@ -15,6 +18,12 @@ namespace DowJones.Managers.Rss
     {
         [Inject("Injecting ControlData")]
         private Factiva.Gateway.Utils.V1_0.ControlData ControlData { get; set; }
+
+        // If we ask for more, the service will throw error
+        private readonly int MAX_ITEMS_TO_GET = Convert.ToInt32(ConfigurationManager.AppSettings["RSS_FEEDS_MAX_LIMIT"] ?? "240");
+
+        // Number of concurrent operations to create syndication items
+        private readonly int MAX_PARALLEL_TASKS_TO_CREATE_SYNDICATION_ITEMS = Convert.ToInt32(ConfigurationManager.AppSettings["MAX_PARALLEL_TASKS_TO_CREATE_SYNDICATION_ITEMS"] ?? "-1");
 
         public CreateSyndicationItemExResponse CreateSyndicationItem(RssItem rssItem)
         {
@@ -55,11 +64,20 @@ namespace DowJones.Managers.Rss
         {
             if (lstRssItem == null || lstRssItem.Count() == 0) return null;
 
-            var lstResponse = new List<CreateSyndicationItemExResponse>();
-            foreach (var rssItem in lstRssItem)
+            //LeiH: change to multi-tasking for performnace gain
+            //var _cancellation = new CancellationTokenSource(); //Todo: in case abort is needed
+            var po = new ParallelOptions
             {
-
-                //TODO: Add logic to fork multiple tasks
+                //CancellationToken = _cancellation.Token,
+                MaxDegreeOfParallelism = MAX_PARALLEL_TASKS_TO_CREATE_SYNDICATION_ITEMS
+            };
+            var cdResponse = new ConcurrentDictionary<int, CreateSyndicationItemExResponse>();
+            var count = lstRssItem.Count();
+            Parallel.For(0, count, po, (i, loopState)=>
+                                                    {
+                                                        var rssItem = lstRssItem.ElementAt(i);
+                                                     //if (_cancellation.IsCancellationRequested)
+                                                     //    loopState.Stop();
 
                 CategoryCollection categoryCollection = null;
                 if (!string.IsNullOrEmpty(rssItem.Category))
@@ -89,10 +107,19 @@ namespace DowJones.Managers.Rss
                                   {
                                       SyndicationItemEx = itemEx
                                   };
-
-                lstResponse.Add(SyndicationAggregationService.CreateSyndicationItemEx(ControlData, request));
+                                                        var res = SyndicationAggregationService.CreateSyndicationItemEx(ControlData, request);
+                                                     cdResponse.AddOrUpdate(i, res, (key, oldvalue) => res);
+                                                 });
+            if (!cdResponse.IsEmpty)
+            {
+                var lstResponse = new List<CreateSyndicationItemExResponse>(count);
+                for (var i = 0; i < count; i++)
+                {
+                    lstResponse.Add(cdResponse[i]);
             }
             return lstResponse;
+        }
+            return null;
         }
 
         public GetSyndicationItemExListResponse GetSyndicationItemList()

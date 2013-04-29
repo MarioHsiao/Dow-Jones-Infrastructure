@@ -90,7 +90,7 @@ namespace DowJones.Assemblers.Headlines
             }
 
             result.HitCount = new WholeNumber(syndicationCollection.TotalRecords);
-            result.ResultSet.First = new WholeNumber(syndicationCollection.FirstResult);
+            result.ResultSet.First = new WholeNumber(syndicationCollection.FirstResult <= 0 ? 0 : syndicationCollection.FirstResult-1);
             result.ResultSet.Count = new WholeNumber(syndicationCollection.Channel.ItemCollection.Count);
 
             return result;
