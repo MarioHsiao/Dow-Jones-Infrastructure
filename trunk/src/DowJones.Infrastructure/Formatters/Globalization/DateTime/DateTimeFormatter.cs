@@ -1319,5 +1319,115 @@ namespace DowJones.Formatters.Globalization.DateTime
         }
 
         #endregion
+
+        //
+        public string FormatFullDate(System.DateTime dt, bool usePreference)
+        {
+            var temp = ConvertToUtc(dt);
+            if (TimeZoneBuilder.ConvertToLocalTime && usePreference)
+            {
+                temp = TimeZoneBuilder.UITimeZone.ToLocalTime(temp, TimeZoneBuilder.AdjustToDaylightSavingsTime);
+                return temp.ToString(_regionalCulture.FullDatePattern, _cultureInfo);
+            }
+
+            return temp.ToString(_regionalCulture.FullDatePattern, _cultureInfo);
+        }
+
+        public string FormatFullDateTime(System.DateTime dt, bool usePreference)
+        {
+            var temp = ConvertToUtc(dt);
+            if (TimeZoneBuilder.ConvertToLocalTime && usePreference)
+            {
+                temp = TimeZoneBuilder.UITimeZone.ToLocalTime(temp, TimeZoneBuilder.AdjustToDaylightSavingsTime);
+                return temp.ToString(_regionalCulture.FullDateTimePattern, _cultureInfo);
+            }
+
+            return temp.ToString(_regionalCulture.FullDateTimePattern, _cultureInfo);
+        }
+
+        public string FormatMonthDayYear(System.DateTime dt, bool usePreference)
+        {
+            var temp = ConvertToUtc(dt);
+            if (TimeZoneBuilder.ConvertToLocalTime && usePreference)
+            {
+                temp = TimeZoneBuilder.UITimeZone.ToLocalTime(temp, TimeZoneBuilder.AdjustToDaylightSavingsTime);
+                return temp.ToString(_regionalCulture.MonthDayCommaYearPattern, _cultureInfo);
+            }
+
+            return temp.ToString(_regionalCulture.MonthDayCommaYearPattern, _cultureInfo);
+        }
+
+        public string FormatMonthDay(System.DateTime dt, bool usePreference)
+        {
+            var temp = ConvertToUtc(dt);
+            if (TimeZoneBuilder.ConvertToLocalTime && usePreference)
+            {
+                temp = TimeZoneBuilder.UITimeZone.ToLocalTime(temp, TimeZoneBuilder.AdjustToDaylightSavingsTime);
+                return temp.ToString(_regionalCulture.MonthDayPattern, _cultureInfo);
+            }
+
+            return temp.ToString(_regionalCulture.MonthDayPattern, _cultureInfo);
+        }
+
+        public string FormatDayMonthYear(System.DateTime dt, bool usePreference)
+        {
+            var temp = ConvertToUtc(dt);
+            if (TimeZoneBuilder.ConvertToLocalTime && usePreference)
+            {
+                temp = TimeZoneBuilder.UITimeZone.ToLocalTime(temp, TimeZoneBuilder.AdjustToDaylightSavingsTime);
+                return temp.ToString(_regionalCulture.DayMonthCommaYearPattern, _cultureInfo);
+            }
+
+            return temp.ToString(_regionalCulture.DayMonthCommaYearPattern, _cultureInfo);
+        }
+
+        public string FormatDayMonth(System.DateTime dt, bool usePreference)
+        {
+            var temp = ConvertToUtc(dt);
+            if (TimeZoneBuilder.ConvertToLocalTime && usePreference)
+            {
+                temp = TimeZoneBuilder.UITimeZone.ToLocalTime(temp, TimeZoneBuilder.AdjustToDaylightSavingsTime);
+                return temp.ToString(_regionalCulture.DayMonthPattern, _cultureInfo);
+            }
+
+            return temp.ToString(_regionalCulture.DayMonthPattern, _cultureInfo);
+        }
+
+        public string FormatMMDDYY(System.DateTime dt, bool usePreference)
+        {
+            var temp = ConvertToUtc(dt);
+            if (TimeZoneBuilder.ConvertToLocalTime && usePreference)
+            {
+                temp = TimeZoneBuilder.UITimeZone.ToLocalTime(temp, TimeZoneBuilder.AdjustToDaylightSavingsTime);
+                return temp.ToString(_regionalCulture.MMDDYYYYPattern, _cultureInfo);
+            }
+
+            return temp.ToString(_regionalCulture.MMDDYYYYPattern, _cultureInfo);
+        }
+
+        public string FormatYYYYMMDD(System.DateTime dt, bool usePreference)
+        {
+            var temp = ConvertToUtc(dt);
+            if (TimeZoneBuilder.ConvertToLocalTime && usePreference)
+            {
+                temp = TimeZoneBuilder.UITimeZone.ToLocalTime(temp, TimeZoneBuilder.AdjustToDaylightSavingsTime);
+                return temp.ToString(_regionalCulture.YYYYMMDDPattern, _cultureInfo);
+            }
+
+            return temp.ToString(_regionalCulture.YYYYMMDDPattern, _cultureInfo);
+        }
+
+        public string FormatDateWeekMonthDayYear(System.DateTime dt, bool usePreference)
+        {
+            var temp = ConvertToUtc(dt);
+            if (TimeZoneBuilder.ConvertToLocalTime && usePreference)
+            {
+                temp = TimeZoneBuilder.UITimeZone.ToLocalTime(temp, TimeZoneBuilder.AdjustToDaylightSavingsTime);
+                return temp.ToString(_regionalCulture.DWMonthDayYearPattern, _cultureInfo);
+            }
+
+            return temp.ToString(_regionalCulture.DWMonthDayYearPattern, _cultureInfo);
+        }
+        //
     }
 }

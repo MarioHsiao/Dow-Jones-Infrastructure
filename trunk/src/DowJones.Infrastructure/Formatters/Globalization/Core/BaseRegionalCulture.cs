@@ -4,8 +4,6 @@ namespace DowJones.Formatters.Globalization.Core
 {
     public abstract class BaseRegionalCulture : ISupportedRegionalCulture
     {
-       
-
         public string Name
         {
             get { return string.Format("{0}-{1}", TwoLetterISOLanguageName, RegionCode); }
@@ -317,5 +315,77 @@ namespace DowJones.Formatters.Globalization.Core
         public abstract string LanguageName { get; }
 
         #endregion
+
+        /// <summary>
+        /// Full Date (aka Month Day, Year)
+        /// </summary>
+        public virtual string FullDatePattern
+        {
+            get { return "MMMM d, yyyy"; }
+        }
+
+        /// <summary>
+        /// Full Date & Time
+        /// </summary>
+        public virtual string FullDateTimePattern
+        {
+            get { return string.Format("{0} {1}", FullDatePattern, timeTwelveHourClockPattern); }
+        }
+
+        /// <summary>
+        /// Month Day, Year (aka Full Date)
+        /// </summary>
+        public virtual string MonthDayCommaYearPattern
+        {
+            get { return FullDatePattern; }
+        }
+
+        /// <summary>
+        /// Month Day
+        /// </summary>
+        public virtual string MonthDayPattern
+        {
+            get { return "MMMM d"; }
+        }
+
+        /// <summary>
+        /// Day Month, Year
+        /// </summary>
+        public virtual string DayMonthCommaYearPattern
+        {
+            get { return "d MMMM, yyyy"; }
+        }
+
+        /// <summary>
+        /// Day Month
+        /// </summary>
+        public virtual string DayMonthPattern
+        {
+            get { return "d MMMM"; }
+        }
+
+        /// <summary>
+        /// MM/DD/YYYY
+        /// </summary>
+        public virtual string MMDDYYYYPattern
+        {
+            get { return "MM/dd/yyyy"; }
+        }
+
+        /// <summary>
+        /// YYYYMMDD (ISO)
+        /// </summary>
+        public virtual string YYYYMMDDPattern
+        {
+            get { return "yyyymmdd"; }
+        }
+
+        /// <summary>
+        /// Date of Week, Month Day, Year
+        /// </summary>
+        public virtual string DWMonthDayYearPattern
+        {
+            get { return "dddd, MMMM d, yyyy"; }
+        }
     }
 }
