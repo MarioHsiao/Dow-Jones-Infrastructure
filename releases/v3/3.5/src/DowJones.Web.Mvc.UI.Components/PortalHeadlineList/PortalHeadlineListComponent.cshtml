@@ -12,5 +12,5 @@
 @ClientTemplate RelativeResourceName=ClientTemplates.PaginationPage.htm, TemplateId=paginationPage
 @ScriptResource RelativeResourceName=PortalHeadlineList.js, DependsOn=jquery-imagesLoaded
 @{ 
-    CssClass = "dj_headlineListContainer article-group";
+    CssClass = "dj_headlineListContainer article-group " + Model.ExtraCssClass;
 }

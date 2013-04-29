@@ -179,6 +179,15 @@ namespace DowJones.Web.Mvc.UI.Components.PortalHeadlineList
 		[ClientProperty("pageNextSelector")]
 		public string PageNextSelector { get; set; }
 
+        /// <summary>
+        /// Gets or sets the additional css class.
+        /// </summary>
+        /// <value>
+        /// The additional css class.
+        /// </value>
+        [ClientProperty("extraCssClass")]
+        public string ExtraCssClass { get; set; }
+
         #endregion
 
 
@@ -236,6 +245,7 @@ namespace DowJones.Web.Mvc.UI.Components.PortalHeadlineList
             SourceClickable = true;
             AuthorClickable = true;
             DisplaySnippets = SnippetDisplayType.Hover;
+            ExtraCssClass = "";
         }
 
         public PortalHeadlineListModel()
