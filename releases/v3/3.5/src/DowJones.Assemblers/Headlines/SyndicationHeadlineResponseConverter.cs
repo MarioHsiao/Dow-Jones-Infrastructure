@@ -13,6 +13,7 @@ using System.Text.RegularExpressions;
 using DowJones.Ajax;
 using DowJones.Ajax.HeadlineList;
 using DowJones.Ajax.PortalHeadlineList;
+using DowJones.Extensions;
 using DowJones.Formatters;
 using DowJones.Formatters.Globalization.DateTime;
 using Factiva.Gateway.Messages.PCM.Syndication.V1_0;
@@ -23,20 +24,17 @@ namespace DowJones.Assemblers.Headlines
     public class SyndicationHeadlineResponseConverter : AbstractHeadlineListDataResultSetConverter
     {
         protected static readonly ILog Log = LogManager.GetLogger(typeof(SyndicationHeadlineResponseConverter));
-        private readonly GetSyndicationHeadlinesResponse getSyndicationHeadlinesResponse;
-        private readonly GetSyndicationHeadlinesRequest getSyndicationHeadlinesRequest;
+        private readonly GetSyndicationHeadlinesResponse _getSyndicationHeadlinesResponse;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RssFeedConverter"/> class.
         /// </summary>
         /// <param name="getSyndicationHeadlinesResponse">The get syndication headlines response.</param>
         /// <param name="interfaceLanguage">The interface language.</param>
-        /// <param name="getSyndicationHeadlinesRequest">The get syndication headlines request.</param>
-        public SyndicationHeadlineResponseConverter(GetSyndicationHeadlinesResponse getSyndicationHeadlinesResponse, string interfaceLanguage,GetSyndicationHeadlinesRequest getSyndicationHeadlinesRequest)
+        public SyndicationHeadlineResponseConverter(GetSyndicationHeadlinesResponse getSyndicationHeadlinesResponse, string interfaceLanguage)
             : base(interfaceLanguage)
         {
-            this.getSyndicationHeadlinesResponse = getSyndicationHeadlinesResponse;
-            this.getSyndicationHeadlinesRequest = getSyndicationHeadlinesRequest;
+            _getSyndicationHeadlinesResponse = getSyndicationHeadlinesResponse;
         }
 
         /// <summary>
@@ -44,56 +42,56 @@ namespace DowJones.Assemblers.Headlines
         /// </summary>
         /// <param name="getSyndicationHeadlinesResponse">The get syndication headlines response.</param>
         /// <param name="dateTimeFormatter">The date time formatter.</param>
-        /// <param name="getSyndicationHeadlinesRequest">The get syndication headlines request.</param>
-        public SyndicationHeadlineResponseConverter(GetSyndicationHeadlinesResponse getSyndicationHeadlinesResponse, DateTimeFormatter dateTimeFormatter,GetSyndicationHeadlinesRequest getSyndicationHeadlinesRequest)
+        public SyndicationHeadlineResponseConverter(GetSyndicationHeadlinesResponse getSyndicationHeadlinesResponse, DateTimeFormatter dateTimeFormatter)
             : base(dateTimeFormatter)
         {
-            this.getSyndicationHeadlinesResponse = getSyndicationHeadlinesResponse;
-            this.getSyndicationHeadlinesRequest = getSyndicationHeadlinesRequest;
+            _getSyndicationHeadlinesResponse = getSyndicationHeadlinesResponse;
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RssFeedConverter"/> class.
         /// </summary>
         /// <param name="getSyndicationHeadlinesResponse">The get syndication headlines response.</param>
-        /// <param name="getSyndicationHeadlinesRequest">The get syndication headlines request.</param>
-        public SyndicationHeadlineResponseConverter(GetSyndicationHeadlinesResponse getSyndicationHeadlinesResponse,GetSyndicationHeadlinesRequest getSyndicationHeadlinesRequest)
-            : this(getSyndicationHeadlinesResponse, "en",getSyndicationHeadlinesRequest)
+        public SyndicationHeadlineResponseConverter(GetSyndicationHeadlinesResponse getSyndicationHeadlinesResponse)
+            : this(getSyndicationHeadlinesResponse, "en")
         {
+        }
+
+        public override IListDataResult Process()
+        {
+            return Process(0);
         }
 
         /// <summary>
         /// Processes the specified response.
         /// </summary>
         /// <returns>A Data Result Obj</returns>
-        public override IListDataResult Process()
+        public IListDataResult Process(int index)
         {
-            if (getSyndicationHeadlinesResponse == null)
+            if (_getSyndicationHeadlinesResponse == null || 
+                _getSyndicationHeadlinesResponse.SyndicationItemCollection == null ||
+                _getSyndicationHeadlinesResponse.SyndicationItemCollection.Count == 0 ||
+                _getSyndicationHeadlinesResponse.SyndicationItemCollection[0].Channel == null ||
+                _getSyndicationHeadlinesResponse.SyndicationItemCollection[0].Channel.ItemCollection == null ||
+                _getSyndicationHeadlinesResponse.SyndicationItemCollection[0].Channel.ItemCollection.Count == 0)
             {
                 return null;
             }
 
+            var syndicationCollection = _getSyndicationHeadlinesResponse.SyndicationItemCollection[0];
+
             // Process RSS format specific information
-            var result = new PortalHeadlineListDataResult
+            var result = new PortalHeadlineListDataResult();
+            var language = GetLanguageFromFeed(_getSyndicationHeadlinesResponse);
+
+            foreach (var item in syndicationCollection.Channel.ItemCollection)
             {
-                ResultSet = 
-                {
-                    First = new WholeNumber(getSyndicationHeadlinesRequest.FirstResultToReturn)
-                }
-            };
-
-            var language = GetLanguageFromFeed(getSyndicationHeadlinesResponse);
-
-            var i = 0;
-            foreach (var item in getSyndicationHeadlinesResponse.SyndicationItemCollection[0].Channel.ItemCollection)
-            {
-
-               result.ResultSet.Headlines.Add(Convert(item, ++i, language));
+               result.ResultSet.Headlines.Add(Convert(item, ++index, language));
             }
 
-            result.HitCount = new WholeNumber(result.ResultSet.Headlines.Count);
-            result.ResultSet.First = new WholeNumber(getSyndicationHeadlinesRequest.FirstResultToReturn);
-            result.ResultSet.Count = new WholeNumber(result.ResultSet.Headlines.Count);
+            result.HitCount = new WholeNumber(syndicationCollection.TotalRecords);
+            result.ResultSet.First = new WholeNumber(syndicationCollection.FirstResult);
+            result.ResultSet.Count = new WholeNumber(syndicationCollection.Channel.ItemCollection.Count);
 
             return result;
         }
@@ -146,21 +144,24 @@ namespace DowJones.Assemblers.Headlines
                 headlineInfo.ContentCategoryDescriptor = ContentCategory.External.ToString().ToLower();
                 headlineInfo.ContentSubCategoryDescriptor = ContentSubCategory.Rss.ToString().ToLower();
                 headlineInfo.HeadlineUrl = item.Link;
-                new AuthorCollection(new List<string>{item.Author});
-                headlineInfo.CodedAuthors = new List<Para>
-                                           {
-                                               new Para
-                                                   {
-                                                       items = new List<MarkupItem>
-                                                                   {
-                                                                       new MarkupItem
-                                                                           {
-                                                                               EntityType = EntityType.Textual,
-                                                                               value = item.Author
-                                                                           }
-                                                                   }
-                                                   }
-                                           };
+                if (item.Author.IsNotEmpty())
+                {
+                    headlineInfo.Authors = new AuthorCollection(new List<string> {item.Author});
+                    headlineInfo.CodedAuthors = new List<Para>
+                                                    {
+                                                        new Para
+                                                            {
+                                                                items = new List<MarkupItem>
+                                                                            {
+                                                                                new MarkupItem
+                                                                                    {
+                                                                                        EntityType = EntityType.Textual,
+                                                                                        value = item.Author
+                                                                                    }
+                                                                            }
+                                                            }
+                                                    };
+                }
             }
 
             return headlineInfo;
