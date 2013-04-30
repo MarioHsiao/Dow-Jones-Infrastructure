@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 using DowJones.DependencyInjection;
 using DowJones.Properties;
@@ -21,9 +19,6 @@ namespace DowJones.Managers.Rss
 
         // If we ask for more, the service will throw error
         private readonly int MAX_ITEMS_TO_GET = Convert.ToInt32(ConfigurationManager.AppSettings["RSS_FEEDS_MAX_LIMIT"] ?? "240");
-
-        // Number of concurrent operations to create syndication items
-        private readonly int MAX_PARALLEL_TASKS_TO_CREATE_SYNDICATION_ITEMS = Convert.ToInt32(ConfigurationManager.AppSettings["MAX_PARALLEL_TASKS_TO_CREATE_SYNDICATION_ITEMS"] ?? "-1");
 
         public CreateSyndicationItemExResponse CreateSyndicationItem(RssItem rssItem)
         {
@@ -60,18 +55,17 @@ namespace DowJones.Managers.Rss
             return SyndicationAggregationService.CreateSyndicationItemEx(ControlData, request);
         }
 
-        public List<CreateSyndicationItemExResponse> CreateSyndicationItems(IEnumerable<RssItem> lstRssItem)
+        public void CreateSyndicationItems(List<RssItem> lstRssItem)
         {
-            if (lstRssItem == null || lstRssItem.Count() == 0) return null;
+            if (lstRssItem == null || lstRssItem.Count() == 0) return;
 
             //LeiH: change to multi-tasking for performnace gain
             //var _cancellation = new CancellationTokenSource(); //Todo: in case abort is needed
             var po = new ParallelOptions
             {
                 //CancellationToken = _cancellation.Token,
-                MaxDegreeOfParallelism = MAX_PARALLEL_TASKS_TO_CREATE_SYNDICATION_ITEMS
+                MaxDegreeOfParallelism = Settings.Default.MAX_PARALLEL_TASKS_TO_CREATE_SYNDICATION_ITEMS
             };
-            var cdResponse = new ConcurrentDictionary<int, CreateSyndicationItemExResponse>();
             var count = lstRssItem.Count();
             Parallel.For(0, count, po, (i, loopState)=>
                                                     {
@@ -79,47 +73,44 @@ namespace DowJones.Managers.Rss
                                                      //if (_cancellation.IsCancellationRequested)
                                                      //    loopState.Stop();
 
-                CategoryCollection categoryCollection = null;
-                if (!string.IsNullOrEmpty(rssItem.Category))
-                {
-                    categoryCollection = new CategoryCollection {rssItem.Category};
-                }
-                var itemEx = new SyndicationItemEx()
-                                 {
-                                     Properties = new SyndicationItemProperties()
-                                                      {
-                                                          SyndicationItemType = SyndicationItemType.RSS,
-                                                          Name = rssItem.Name,
-                                                          Value = rssItem.Url,
-                                                          Aggregation = GetAggregation(rssItem.AggregationDays),
-                                                          CategoryCollection = categoryCollection
-                                                      },
-                                     ShareProperties = new ShareProperties
-                                                           {
-                                                               AccessControlScope = AccessControlScope.Personal,
-                                                               AssignedScope = ShareScope.Personal,
-                                                               ListingScope = ShareScope.Personal,
-                                                               SharePromotion = ShareScope.Personal
-                                                           }
-                                 };
+                                                     CategoryCollection categoryCollection = null;
+                                                     if (!string.IsNullOrEmpty(rssItem.Category))
+                                                     {
+                                                         categoryCollection = new CategoryCollection {rssItem.Category};
+                                                     }
+                                                     var itemEx = new SyndicationItemEx
+                                                                      {
+                                                                          Properties = new SyndicationItemProperties
+                                                                                           {
+                                                                                               SyndicationItemType = SyndicationItemType.RSS,
+                                                                                               Name = rssItem.Name,
+                                                                                               Value = rssItem.Url,
+                                                                                               Aggregation = GetAggregation(rssItem.AggregationDays),
+                                                                                               CategoryCollection = categoryCollection
+                                                                                           },
+                                                                          ShareProperties = new ShareProperties
+                                                                                                {
+                                                                                                    AccessControlScope = AccessControlScope.Personal,
+                                                                                                    AssignedScope = ShareScope.Personal,
+                                                                                                    ListingScope = ShareScope.Personal,
+                                                                                                    SharePromotion = ShareScope.Personal
+                                                                                                }
+                                                                      };
 
-                var request = new CreateSyndicationItemExRequest()
-                                  {
-                                      SyndicationItemEx = itemEx
-                                  };
-                                                        var res = SyndicationAggregationService.CreateSyndicationItemEx(ControlData, request);
-                                                     cdResponse.AddOrUpdate(i, res, (key, oldvalue) => res);
+                                                     var request = new CreateSyndicationItemExRequest
+                                                                       {
+                                                                           SyndicationItemEx = itemEx
+                                                                       };
+                                                     var res = SyndicationAggregationService.CreateSyndicationItemEx(ControlData, request);
+
+                                                     //update the rssItem with response code 
+                                                     if (res != null)
+                                                     {
+                                                         rssItem.FeedId = res.ItemId;
+                                                         rssItem.SyndicationId = res.SyndicationId;
+                                                         rssItem.ErrorCode = res.Rc;
+                                                     }
                                                  });
-            if (!cdResponse.IsEmpty)
-            {
-                var lstResponse = new List<CreateSyndicationItemExResponse>(count);
-                for (var i = 0; i < count; i++)
-                {
-                    lstResponse.Add(cdResponse[i]);
-            }
-            return lstResponse;
-        }
-            return null;
         }
 
         public GetSyndicationItemExListResponse GetSyndicationItemList()
