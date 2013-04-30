@@ -22,10 +22,7 @@ namespace DowJones.Managers.Rss
         // If we ask for more, the service will throw error
         private readonly int MAX_ITEMS_TO_GET = Convert.ToInt32(ConfigurationManager.AppSettings["RSS_FEEDS_MAX_LIMIT"] ?? "240");
 
-        // Number of concurrent operations to create syndication items
-        private readonly int MAX_PARALLEL_TASKS_TO_CREATE_SYNDICATION_ITEMS = Convert.ToInt32(ConfigurationManager.AppSettings["MAX_PARALLEL_TASKS_TO_CREATE_SYNDICATION_ITEMS"] ?? "-1");
-
-        public CreateSyndicationItemExResponse CreateSyndicationItem(RssItem rssItem)
+        public RssItem CreateSyndicationItem(RssItem rssItem)
         {
             if (rssItem == null) return null;
             CategoryCollection categoryCollection = null;
@@ -57,10 +54,15 @@ namespace DowJones.Managers.Rss
                 SyndicationItemEx = itemEx
             };
 
-            return SyndicationAggregationService.CreateSyndicationItemEx(ControlData, request);
+            var response = SyndicationAggregationService.CreateSyndicationItemEx(ControlData, request);
+            if (response != null)
+                rssItem.ErrorCode = response.Rc;
+            return rssItem;
+
+            return null;
         }
 
-        public List<CreateSyndicationItemExResponse> CreateSyndicationItems(IEnumerable<RssItem> lstRssItem)
+        public List<RssItem> CreateSyndicationItems(IEnumerable<RssItem> lstRssItem)
         {
             if (lstRssItem == null || lstRssItem.Count() == 0) return null;
 
@@ -69,7 +71,7 @@ namespace DowJones.Managers.Rss
             var po = new ParallelOptions
             {
                 //CancellationToken = _cancellation.Token,
-                MaxDegreeOfParallelism = MAX_PARALLEL_TASKS_TO_CREATE_SYNDICATION_ITEMS
+                MaxDegreeOfParallelism = Settings.Default.MAX_PARALLEL_TASKS_TO_CREATE_SYNDICATION_ITEMS
             };
             var cdResponse = new ConcurrentDictionary<int, CreateSyndicationItemExResponse>();
             var count = lstRssItem.Count();
@@ -112,10 +114,12 @@ namespace DowJones.Managers.Rss
                                                  });
             if (!cdResponse.IsEmpty)
             {
-                var lstResponse = new List<CreateSyndicationItemExResponse>(count);
+                var lstResponse = new List<RssItem>(count);
                 for (var i = 0; i < count; i++)
                 {
-                    lstResponse.Add(cdResponse[i]);
+                    var rssItem = lstRssItem.ElementAt(i);
+                    rssItem.ErrorCode = cdResponse[i].Rc;
+                    lstResponse.Add(rssItem);
                 }
                 return lstResponse;
             }

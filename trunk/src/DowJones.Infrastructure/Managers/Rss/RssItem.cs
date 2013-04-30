@@ -10,5 +10,6 @@ namespace DowJones.Managers.Rss
         public string Url { get; set; }
         public string Category { get; set; }
         public ushort AggregationDays { get; set; }
+        public long ErrorCode { get; set; }
     }
 }
