@@ -56,8 +56,13 @@ namespace DowJones.Managers.Rss
 
             var response = SyndicationAggregationService.CreateSyndicationItemEx(ControlData, request);
             if (response != null)
-                rssItem.ErrorCode = response.Rc;
-            return rssItem;
+            {
+                var ret = rssItem;
+                ret.FeedId = response.ItemId;
+                ret.SyndicationId = response.SyndicationId;
+                ret.ErrorCode = response.Rc;
+                return ret;
+            }
 
             return null;
         }
@@ -118,6 +123,8 @@ namespace DowJones.Managers.Rss
                 for (var i = 0; i < count; i++)
                 {
                     var rssItem = lstRssItem.ElementAt(i);
+                    rssItem.FeedId = cdResponse[i].ItemId;
+                    rssItem.SyndicationId = cdResponse[i].SyndicationId;
                     rssItem.ErrorCode = cdResponse[i].Rc;
                     lstResponse.Add(rssItem);
                 }
