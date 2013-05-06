@@ -62,7 +62,8 @@ DJ.UI.CompanyInfo = DJ.UI.Component.extend({
             showAuthor: false,
             showSource: false,
             showPublicationDateTime: true,
-            showTruncatedTitle: true
+            showTruncatedTitle: true,
+            allowPagination: false
         };
         //Extend the phl options
         $.extend(this.options, healineListOptions);
@@ -70,8 +71,7 @@ DJ.UI.CompanyInfo = DJ.UI.Component.extend({
             container: "investor-report-headlines",
             options: healineListOptions,
             templates: {
-                successHeadline: self.templates.reportHeadline,
-                successHeadlineEntry: self.templates.reportHeadlineEntry
+                successHeadline: self.templates.reportHeadline
             }
         }).done(function (comp) {
             // Attach handler for headline click event
