@@ -550,8 +550,7 @@ if (!window.FactivaWidgetRenderManager) {
                                 var _count = result.Data.ManualNewsletterWorkspaceInfo.Sections[i].Headlines.length;
                                 var _headlines = result.Data.ManualNewsletterWorkspaceInfo.Sections[i].Headlines;
                                 var _curDivCntrId = "manualNewsletterWorkspace_" + randomnumber;
-
-
+                                
                                 sb[sb.length] = "<div id=\"" + _curDivCntrId + "\" class=\"fctv_MnlWrkSpcHeadlineCont\" style=\"" + this.getInnerContainerStyle(bgColor,
                                     fontFamily,
                                     contentFontSize,

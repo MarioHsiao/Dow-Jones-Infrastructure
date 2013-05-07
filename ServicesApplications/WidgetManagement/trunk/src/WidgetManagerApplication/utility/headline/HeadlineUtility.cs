@@ -198,13 +198,15 @@ namespace EMG.widgets.ui.utility.headline
         /// <param name="item">The item.</param>
         protected static void Convert(HeadlineInfo headlineInfo, LinkItem item)
         {
-            headlineInfo.PublicationDateTime = item.CreationDate;
+            headlineInfo.PublicationDateTime = item.PublicationDate.ToUniversalTime;
             headlineInfo.ByLine = item.Author;
-            //headlineInfo.PubDateTime = dateTimeFormatter.FormatLongDate(headlineInfo.PublicationDateTime);
+            headlineInfo.PubDateTime = dateTimeFormatter.FormatLongDate(headlineInfo.PublicationDateTime);
             headlineInfo.Text = item.Title;
             headlineInfo.Comment = item.Comment;
             headlineInfo.Importance = item.Importance;
-            headlineInfo.WordCount = string.Empty;
+            headlineInfo.Lang = item.language;
+            headlineInfo.SrcCode = "custom";
+            headlineInfo.SrcName = item.sourceName;
             headlineInfo.Snippet = (item.Type == LinkType.RssHeadlineUrl) ? string.Empty : item.Description;
             headlineInfo.Url = item.Uri;
             headlineInfo.IsFactivaContent = false;
