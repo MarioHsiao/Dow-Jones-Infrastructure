@@ -23,7 +23,7 @@ namespace DowJones.Web
 	public class ClientResourceHandler : HttpHandlerBase
 	{
 		public const string CachingTokenKey = "t";
-		public const string ClientResourceIDKey = "id";
+		public const string ClientResourceIdKey = "id";
 		public const string ClientTokenFilename = "~/ClientToken.txt";
 		public static readonly Encoding DefaultEncoding = Encoding.UTF8;
 		public const string LanguageKey = "lang";
@@ -46,17 +46,17 @@ namespace DowJones.Web
 		{
 			get
 			{
-				if (_lastModifiedCalculator == null)
+				if (lastModifiedCalculator == null)
 				{
 					var timestamp = typeof(ClientResourceHandler).Assembly.GetAssemblyTimestamp();
 					return context => timestamp;
 				}
 
-				return _lastModifiedCalculator;
+				return lastModifiedCalculator;
 			}
-			set { _lastModifiedCalculator = value; }
+			set { lastModifiedCalculator = value; }
 		}
-		private volatile static Func<HttpContextBase, DateTime> _lastModifiedCalculator;
+		private volatile static Func<HttpContextBase, DateTime> lastModifiedCalculator;
 
 		[Inject("Cannot use constructor injection on HttpHandlers")]
 		protected internal ILog Log { get; set; }
@@ -116,7 +116,7 @@ namespace DowJones.Web
 			var relativeUrl = string.Format("{0}?{1}={2}&{3}={4}&{5}={6}",
 			                                Settings.Default.ClientResourceHandlerPath,
 			                                LanguageKey, MapLanguageKey(culture),
-			                                ClientResourceIDKey, tResourceId != null ? tResourceId.Replace("%3b", ";") : string.Empty,
+			                                ClientResourceIdKey, tResourceId != null ? tResourceId.Replace("%3b", ";") : string.Empty,
 			                                CachingTokenKey, CacheTokenFactory()
 			    );
 
@@ -165,7 +165,7 @@ namespace DowJones.Web
 		{
 			var culture = SetRequestLanguage(context.Request[LanguageKey]);
 
-			var resourceId = context.Request[ClientResourceIDKey];
+			var resourceId = context.Request[ClientResourceIdKey];
 
 			if (string.IsNullOrWhiteSpace(resourceId))
 			{

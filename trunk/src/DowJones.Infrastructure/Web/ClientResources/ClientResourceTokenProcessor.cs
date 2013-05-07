@@ -1,4 +1,6 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Globalization;
+using System.Text.RegularExpressions;
+using System.Threading;
 using System.Web;
 using DowJones.Infrastructure;
 using DowJones.Token;
@@ -9,6 +11,11 @@ namespace DowJones.Web
     {
         private static readonly Regex TokenExpression =
             new Regex(@"\<%\s*=\s*Token\s*\(\s*['""]([^'""]*)['""]\s*\)\s*%>",
+                      RegexOptions.Compiled | RegexOptions.IgnoreCase |
+                      RegexOptions.IgnorePatternWhitespace | RegexOptions.CultureInvariant);
+
+        private static readonly Regex LocaleExpression =
+            new Regex(@"\<%\s*=\s*Locale\s*\(\)\s*%>",
                       RegexOptions.Compiled | RegexOptions.IgnoreCase |
                       RegexOptions.IgnorePatternWhitespace | RegexOptions.CultureInvariant);
 
@@ -43,6 +50,12 @@ namespace DowJones.Web
                     resource.Content, 
                     ReplaceTokenMatch
                 );
+
+            resource.Content =
+                LocaleExpression.Replace(
+                    resource.Content,
+                    ReplaceLocaleMatch
+                );
         }
 
         private string ReplaceTokenMatch(Match tokenMatch)
@@ -52,6 +65,24 @@ namespace DowJones.Web
             var tokenValue = _tokenRegistry.Get(tokenName);
 
             return tokenValue;
+        }
+
+        private string ReplaceLocaleMatch(Match localeMatch)
+        {
+            return MapLanguageKey(Thread.CurrentThread.CurrentCulture);
+        }
+
+        public static string MapLanguageKey(CultureInfo culture)
+        {
+            switch (culture.ThreeLetterWindowsLanguageName)
+            {
+                case "CHT":
+                    return "zhtw";
+                case "CHS":
+                    return "zhcn";
+                default:
+                    return culture.TwoLetterISOLanguageName;
+            }
         }
     }
 }
