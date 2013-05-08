@@ -42,7 +42,9 @@ if (window['JSON']) {
 }
     // Otherwise - if this is an ancient browser - grab a JSON implementation
 else {
-    dj_require(['JSON']);
+    dj_require(['JSON'], function (json) {
+        window['JSON'] = json;
+    });
 }
 
 // define bind, if not existing. Used in fixing scope of templates
