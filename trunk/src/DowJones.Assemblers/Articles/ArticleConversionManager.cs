@@ -916,7 +916,7 @@ namespace DowJones.Assemblers.Articles
             if (publicationTimeSpecified)
                 tempararyPublicationDate = DateTimeFormatter.Merge(publicationDate, publicationTime);
 
-            return _dateTimeFormatter.FormatDate(tempararyPublicationDate);
+            return _dateTimeFormatter.FormatStandardDate(tempararyPublicationDate, true);
         }
 
         private string GetTime(DateTime publicationDate, DateTime publicationTime)
