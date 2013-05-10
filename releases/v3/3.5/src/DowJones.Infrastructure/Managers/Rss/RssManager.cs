@@ -19,9 +19,6 @@ namespace DowJones.Managers.Rss
         [Inject("Injecting ControlData")]
         private Factiva.Gateway.Utils.V1_0.ControlData ControlData { get; set; }
 
-        [InjectAttribute("Logger")]
-        private ILog Logger { get; set; }
-
         // If we ask for more, the service will throw error
         private readonly int MAX_ITEMS_TO_GET = Convert.ToInt32(ConfigurationManager.AppSettings["RSS_FEEDS_MAX_LIMIT"] ?? "240");
 
@@ -72,29 +69,21 @@ namespace DowJones.Managers.Rss
                 MaxDegreeOfParallelism = Settings.Default.MAX_PARALLEL_TASKS_TO_CREATE_SYNDICATION_ITEMS
             };
 
-            Parallel.ForEach(lstRssItem, po, (rssItem, loopState)=>
-                                                {
-                                                     //if (_cancellation.IsCancellationRequested)
-                                                     //    loopState.Stop();
-                                                    var t = Thread.CurrentThread;
-                                                    Logger.Debug(
-                                                        String.Format(
-                                                            "Running Task..., Thread ID={0}, AptState ={1}, IsPool={2}",
-                                                            t.ManagedThreadId,
-                                                            t.GetApartmentState(),
-                                                            t.IsThreadPoolThread)
-                                                    );
-                                                    
-                                                    var res = CreateSyndicationItem(rssItem);
+            Parallel.ForEach(lstRssItem, po, (rssItem, loopState) =>
+                                        {
+                                            //if (_cancellation.IsCancellationRequested)
+                                            //    loopState.Stop();
+                                            var res = CreateSyndicationItem(rssItem);
 
-                                                    //update the rssItem with response code 
-                                                    if (res != null)
-                                                    {
-                                                        rssItem.FeedId = res.ItemId;
-                                                        rssItem.SyndicationId = res.SyndicationId;
-                                                        rssItem.ErrorCode = res.Rc;
-                                                    }
-                                                });
+                                            //update the rssItem with response code 
+                                            if (res != null)
+                                            {
+                                                rssItem.FeedId = res.ItemId;
+                                                rssItem.SyndicationId = res.SyndicationId;
+                                                rssItem.ErrorCode = res.Rc;
+                                            }
+                                        });
+            
         }
 
         public GetSyndicationItemExListResponse GetSyndicationItemList()
