@@ -152,6 +152,8 @@ namespace DowJones.Session
         /// </summary>
         string UserPassword { get; set; }
 
+        bool? KeepSessionAlive { get; set; }
+
         bool IsValid();
     }
 }

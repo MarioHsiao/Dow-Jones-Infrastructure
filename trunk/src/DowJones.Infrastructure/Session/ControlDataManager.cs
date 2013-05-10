@@ -173,6 +173,8 @@ namespace DowJones.Session
                 CacheScope = source.CacheScope,
                 ForceCacheRefresh = source.ForceCacheRefresh,
                 AccountID = source.AccountId,
+
+                KeepSessionAlive = source.KeepSessionAlive
             };
 
             controlData.AddRange(source.Metrics);
@@ -211,7 +213,8 @@ namespace DowJones.Session
                 CacheWait = source.CacheWait,
                 CacheScope = source.CacheScope,
                 ForceCacheRefresh = source.ForceCacheRefresh,
-                AccountId = source.AccountID
+                AccountId = source.AccountID,
+                KeepSessionAlive = source.KeepSessionAlive
             };
             return controlData;
         }
