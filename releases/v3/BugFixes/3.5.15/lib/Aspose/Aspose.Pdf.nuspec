@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>Aspose.Pdf</id>
+        <version>$version$</version>
+        <title>Aspose PDF Generator</title>
+        <description>Aspose PDF Generator</description>
+        <authors>Aspose</authors>
+        <tags>DowJones</tags>
+        <language>en-US</language>
+        <projectUrl>http://www.aspose.com/</projectUrl>
+        <licenseUrl>http://www.aspose.com/</licenseUrl>
+    </metadata>
+    <files>
+        <file src="Aspose.Pdf.dll" target="lib"/>
+    </files>
+</package>

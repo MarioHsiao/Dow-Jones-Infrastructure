@@ -1,0 +1,28 @@
+﻿@inherits AbstractCanvasModuleEditor<Modules.ScriptModule.Editor.ScriptModuleEditor>
+@ClientPlugin dj_CanvasModuleEditor
+@{ CssClass += " dj_ScriptModuleEditor"; }
+
+<input type="hidden" name="moduleId" value="@Model.ModuleId"/>
+<input type="hidden" name="templateId" value="@Model.TemplateId"/>
+
+<fieldset>
+    <p>
+        @Model.Description
+    </p>
+    <p>
+        <label>@DJ.Token("title")</label>
+        <textarea name="title" class="title">@Model.Title</textarea>
+    </p>
+    
+    @{ var i = 0; }
+    @foreach(var option in Model.Options)
+    {
+        <p class="option">
+            <label>@option.DisplayName</label>
+            <input type="hidden" name="options[@(i)].Name" value="@option.Name" />
+            <textarea name="options[@(i)].Value">@option.DefaultValue</textarea>
+        </p>
+                        
+        i++;
+    }
+</fieldset>

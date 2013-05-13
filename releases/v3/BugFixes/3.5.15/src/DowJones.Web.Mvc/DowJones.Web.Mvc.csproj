@@ -1,0 +1,486 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{3E440D53-ACA6-422A-8FC8-778D505AD1E9}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DowJones.Web.Mvc</RootNamespace>
+    <AssemblyName>DowJones.Web.Mvc</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\src\</SolutionDir>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <NoWarn>1762</NoWarn>
+    <DocumentationFile>
+    </DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'TestsOnly|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\TestsOnly\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Debug\DowJones.Web.Mvc.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;C:\Program Files\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="factiva.gateway.messages, Version=7.5.0.125, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.125\lib\factiva.gateway.messages.dll</HintPath>
+    </Reference>
+    <Reference Include="FactivaGateway, Version=1.6.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.125\lib\FactivaGateway.dll</HintPath>
+    </Reference>
+    <Reference Include="Interop.FCMLib">
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.125\lib\Interop.FCMLib.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.1.2.99\lib\2.0\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.4.5.10\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject, Version=2.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.2.2.1.4\lib\net40-Full\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Web.Mvc, Version=2.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Ninject.MVC3.2.2.2.0\lib\net40-Full\Ninject.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Web.Helpers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\System.Web.WebPages.1.0.0.0\lib\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\lib\aspnetmvc\System.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\System.Web.WebPages.1.0.0.0\lib\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\System.Web.WebPages.1.0.0.0\lib\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\System.Web.WebPages.1.0.0.0\lib\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.XML" />
+    <Reference Include="WebActivator">
+      <HintPath>..\packages\WebActivator.1.4.4\lib\net40\WebActivator.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ActionFilters\RequireAuthenticationAttribute.cs" />
+    <Compile Include="ActionFilters\SessionTimeoutExceptionFilter.cs" />
+    <Compile Include="ActionFilters\SetThreadCultureToInterfaceLanguageFilter.cs" />
+    <Compile Include="ActionResults\NewtonSoftJsonResult.cs" />
+    <Compile Include="ActionResults\RedirectToAuthenticationServerActionResult.cs" />
+    <Compile Include="ActionResults\XmlResult.cs" />
+    <Compile Include="ModelBinders\XmlModelBinder.cs" />
+    <Compile Include="Properties\Controllers\AuthenticationControllerBase.cs" />
+    <Compile Include="Extensions\HtmlExtensions.cs" />
+    <Compile Include="Extensions\HtmlHelperExtensions.cs" />
+    <Compile Include="Extensions\DropDownListHelpers.cs" />
+    <Compile Include="Extensions\UrlHelperExtensions.cs" />
+    <Compile Include="Extensions\ViewDataExtensions.cs" />
+    <Compile Include="Infrastructure\ControllerActionAttributeInfo.cs" />
+    <Compile Include="Infrastructure\ControllerRegistry.cs" />
+    <Compile Include="CoreMvcFrameworkBindingModule.cs" />
+    <Compile Include="..\SolutionInfo.cs">
+      <Link>Properties\SolutionInfo.cs</Link>
+    </Compile>
+    <Compile Include="Mappings\ViewComponentModelMapper.cs" />
+    <Compile Include="ModelBinders\JsonModelBinder.cs" />
+    <Compile Include="ModelBinders\JsonValueProviderFactory.cs" />
+    <Compile Include="ModelBinders\CommaStringSplitModelBinder.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Routing\NotEqualConstraint.cs" />
+    <Compile Include="Routing\RouteGenerator.cs" />
+    <Compile Include="Routing\IRouteGenerator.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.cs">
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Threading\AspCompatControllerBase.cs" />
+    <Compile Include="Properties\Controllers\ControllerBase.cs" />
+    <Compile Include="Mobile\MobileDeviceInformationFilter.cs" />
+    <Compile Include="Mobile\MobileDeviceInformationViewDataExtensions.cs" />
+    <Compile Include="Resources\EmbeddedResources.cs" />
+    <Compile Include="Threading\AspCompatAttribute.cs" />
+    <Compile Include="Routing\RouteAttribute.cs" />
+    <Compile Include="Routing\RouteInfo.cs" />
+    <Compile Include="Threading\STAMvcHandler.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Threading\STAMvcRouteHandler.cs" />
+    <Compile Include="HttpApplication.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UI\Components\JsonpResult.cs" />
+    <Compile Include="UI\Components\JsonpViewComponentResult.cs" />
+    <Compile Include="UI\Components\CompositeComponentModel.cs" />
+    <Compile Include="Infrastructure\CoreJsHandler.cs" />
+    <Compile Include="UI\RequireJsConfiguration.cs" />
+    <Compile Include="UI\Exceptions\AmbiguousComponentTypeException.cs" />
+    <Compile Include="UI\ClientState\ClientDataAttribute.cs" />
+    <Compile Include="UI\ClientState\ClientEventHandlerAttribute.cs" />
+    <Compile Include="UI\ClientState\ClientPropertyAttribute.cs" />
+    <Compile Include="UI\ClientState\ClientState.cs" />
+    <Compile Include="UI\ClientState\ClientStateAttribute.cs" />
+    <Compile Include="UI\ClientState\ClientStateMapper.cs" />
+    <Compile Include="UI\ClientState\ClientTokenAttribute.cs" />
+    <Compile Include="UI\Components\CompositeComponent.cs" />
+    <Compile Include="UI\Components\ContentContainer.cs" />
+    <Compile Include="UI\Components\ContentContainerModel.cs" />
+    <Compile Include="UI\Exceptions\DuplicateRazorSectionDefinitionException.cs" />
+    <Compile Include="UI\FrameworkResourceAttribute.cs" />
+    <Compile Include="UI\Components\IComponent.cs" />
+    <Compile Include="UI\DowJonesRazorViewEngine.cs" />
+    <Compile Include="UI\Fluent\ComponentBuilderBase.cs" />
+    <Compile Include="UI\IRenderable.cs" />
+    <Compile Include="UI\Fluent\ScriptRegistryBuilder.cs" />
+    <Compile Include="UI\IScriptRegistry.cs" />
+    <Compile Include="UI\IScriptRegistryWriter.cs" />
+    <Compile Include="UI\IViewComponent.cs" />
+    <Compile Include="UI\IViewComponentModel.cs" />
+    <Compile Include="UI\IViewComponentRegistry.cs" />
+    <Compile Include="UI\RazorTemplateBase.cs" />
+    <Compile Include="UI\ScriptRegistryWriter.cs" />
+    <Compile Include="UI\Exceptions\SectionNotImplementedException.cs" />
+    <Compile Include="UI\EnumSelectList.cs" />
+    <Compile Include="UI\StylesheetRegistry.cs" />
+    <Compile Include="UI\ScriptRegistry.cs" />
+    <Compile Include="UI\Fluent\StylesheetRegistryBuilder.cs" />
+    <Compile Include="UI\Exceptions\UnknownComponentTypeException.cs" />
+    <Compile Include="UI\Components\ViewComponentBase.cs" />
+    <Compile Include="UI\Fluent\ViewComponentBuilderBase.cs" />
+    <Compile Include="UI\Components\ViewComponentClientResourceRegistry.cs" />
+    <Compile Include="UI\Components\ViewComponentDefinition.cs" />
+    <Compile Include="UI\Components\ViewComponentRegistry.cs" />
+    <Compile Include="UI\Components\ViewComponentFactory.cs" />
+    <Compile Include="Mappings\ViewComponentModelMappingRegistration.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UI\Components\ViewComponentModel.cs" />
+    <Compile Include="UI\Components\ViewComponentViewResult.cs" />
+    <Compile Include="UI\WebViewPage.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\images\hl\article.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\images\hl\atom.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\images\hl\audio.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\images\hl\clipIcon.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\images\hl\clipIconGhost.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\images\hl\delete.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\images\hl\flag.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\images\hl\graphic.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\images\hl\html.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\images\hl\multimedia.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\images\hl\pdf.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\images\hl\rss.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\images\hl\video.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\js\common.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="DowJones.Web.Mvc.nuspec">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Mobile\Extensions\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\js\service-proxy.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\js\jquery-ui.core.js" />
+    <EmbeddedResource Include="Resources\js\jquery-ui.core.min.js">
+      <DependentUpon>jquery-ui.core.js</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\js\jquery-ui.effects.js" />
+    <EmbeddedResource Include="Resources\js\jquery-ui.interactions.js" />
+    <EmbeddedResource Include="Resources\js\jquery-ui.widgets.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\js\underscore.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\js\highcharts.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\js\jquery-vsdoc.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\js\jquery-json.js" />
+    <EmbeddedResource Include="Resources\js\jquery.blockui.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\js\jquery.cycle.all.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\js\error-manager.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\js\window-manager.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\js\pubsub.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\js\composite-component.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\js\color-picker.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DowJones.Infrastructure\DowJones.Infrastructure.csproj">
+      <Project>{095DE252-E183-4AE6-824A-B4504AE737C1}</Project>
+      <Name>DowJones.Infrastructure</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\js\jquery.jscrollpane.js" />
+    <EmbeddedResource Include="Resources\js\jquery.popupballoon.js" />
+    <EmbeddedResource Include="Resources\js\jquery.touchwipe.min.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\js\jquery.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\js\require.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\js\dj-jquery-ext.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\js\overlay.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\js\crossdomain.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\js\jquery.tools.min.js">
+      <DependentUpon>jquery.tools.js</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\js\jquery.timeago.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\js\ellipsis.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\js\json2.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\js\ODSManager.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\js\jquery.jcarousel.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\js\highcharts-more.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\js\jquery.min.js">
+      <DependentUpon>jquery.js</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\js\jquery.cycle.all.min.js">
+      <DependentUpon>jquery.cycle.all.js</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\js\jquery-ui.effects.min.js">
+      <DependentUpon>jquery-ui.effects.js</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\js\jquery-ui.interactions.min.js">
+      <DependentUpon>jquery-ui.interactions.js</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\js\jquery-ui.widgets.min.js">
+      <DependentUpon>jquery-ui.widgets.js</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\js\jquery-json.min.js">
+      <DependentUpon>jquery-json.js</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\js\error-manager.min.js">
+      <DependentUpon>error-manager.js</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\js\ellipsis.min.js">
+      <DependentUpon>ellipsis.js</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\js\crossdomain.min.js">
+      <DependentUpon>crossdomain.js</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\js\color-picker.min.js">
+      <DependentUpon>color-picker.js</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\js\highcharts-more.min.js">
+      <DependentUpon>highcharts-more.js</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\js\jquery.jcarousel.min.js">
+      <DependentUpon>jquery.jcarousel.js</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\js\jquery.jscrollpane.min.js">
+      <DependentUpon>jquery.jscrollpane.js</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\js\jquery.timeago.min.js">
+      <DependentUpon>jquery.timeago.js</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\js\jquery.popupballoon.min.js">
+      <DependentUpon>jquery.popupballoon.js</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\js\require.min.js">
+      <DependentUpon>require.js</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\js\underscore.min.js">
+      <DependentUpon>underscore.js</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\js\json2.min.js">
+      <DependentUpon>json2.js</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\js\tmpload.js" />
+    <EmbeddedResource Include="Resources\js\tmpload.min.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\js\domReady.js" />
+    <EmbeddedResource Include="Resources\js\text.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\js\highcharts.min.js" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

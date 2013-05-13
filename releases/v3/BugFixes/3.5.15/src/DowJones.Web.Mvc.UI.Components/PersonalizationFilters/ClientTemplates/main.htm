@@ -1,0 +1,36 @@
+﻿<div class="dj_edit-col-detail">
+	<h3><%= self.headingToken %> <%= Token('filters') %> <span class="dj_note">(<%= Token('optional') %>)</span></h3>
+
+	<div class="dj_instructions">
+		<div><%= self.filterInstructions %></div>
+	</div>
+</div>
+	
+<div class="dj_edit-input-wrap dj_filter_industry">
+	<label class="dj_edit-label"><span class="dj_name"></span></label>
+	<div class="dj_text-element-wrapper dj_autocomplete-wrap">
+		<input type="text" class="ac_input blur dj_autocomplete" actype="industry" value="" autocomplete="off">
+		<span class="validation hide"></span>
+	</div>
+</div>
+<div class="dj_edit-input-wrap dj_filter_region">
+	<label class="dj_edit-label"><span class="dj_name"></span></label>
+	<div class="dj_text-element-wrapper dj_autocomplete-wrap">
+		<input type="text" class="ac_input blur dj_autocomplete" actype="region" value="" autocomplete="off">
+		<span class="validation hide"></span>
+	</div>
+</div>
+<div class="dj_edit-input-wrap dj_filter_company">
+	<label class="dj_edit-label"><span class="dj_name"><%= Token('companyLabel') %></span></label>
+	<div class="dj_text-element-wrapper dj_autocomplete-wrap">
+		<input type="text" class="ac_input blur dj_autocomplete" actype="company" value="" autocomplete="off">
+		<span class="validation hide"></span>
+	</div>
+</div>
+<div class="dj_edit-input-wrap dj_filter_keyword">
+	<label class="dj_edit-label"><span class="dj_name"><%= Token('keywords') %></span><span class="dj_note right"><%= Token('max250Chars') %></span></label>
+	<div class="dj_text-element-wrapper dj_autocomplete-wrap">
+        <input type="text" class="ac_input blur dj_autocomplete" actype="keyword" value="" maxlength="250" autocomplete="off" />
+        <span class="validation hide"></span>
+    </div>
+</div>

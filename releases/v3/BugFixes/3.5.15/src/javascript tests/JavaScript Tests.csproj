@@ -1,0 +1,213 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{5F9466C5-EBCA-464F-8EE4-4868BBF6D126}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DowJones.Web.Mvc</RootNamespace>
+    <AssemblyName>JavaScript Tests</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\src\</SolutionDir>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <NoWarn>
+    </NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Control n Showcase|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Control n Showcase\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Debug\JavaScript Tests.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;C:\Program Files\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release %28IIS6%29|AnyCPU'">
+    <OutputPath>bin\Release %28IIS6%29\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Release\JavaScript Tests.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;C:\Program Files\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug %28IIS6%29|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug %28IIS6%29\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Debug\JavaScript Tests.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;C:\Program Files\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'TestsOnly|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\TestsOnly\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Debug\JavaScript Tests.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;C:\Program Files\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+  </PropertyGroup>
+  <ItemGroup>
+    <CodeAnalysisDependentAssemblyPaths Condition=" '$(VS100COMNTOOLS)' != '' " Include="$(VS100COMNTOOLS)..\IDE\PrivateAssemblies">
+      <Visible>False</Visible>
+    </CodeAnalysisDependentAssemblyPaths>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DowJones.Web.Mvc.UI.Canvas\AbstractCanvas.html" />
+    <Content Include="DowJones.Web.Mvc.UI.Canvas\Factiva.htm" />
+    <Content Include="DowJones.Web.Mvc.UI.Canvas\PubSub.htm" />
+    <Content Include="DowJones.Web.Mvc.UI.Controls\ArticleTest.html" />
+    <Content Include="DowJones.Web.Mvc.UI.Controls\CompanyProfileGraph\ControlTest.htm" />
+    <Content Include="DowJones.Web.Mvc.UI.Controls\Ellipsis\Ellip.js" />
+    <Content Include="DowJones.Web.Mvc.UI.Controls\Ellipsis\ellipsis.css" />
+    <Content Include="DowJones.Web.Mvc.UI.Controls\Ellipsis\Ellipsis.htm" />
+    <Content Include="DowJones.Web.Mvc.UI.Controls\Ellipsis\ellipsis.xml" />
+    <Content Include="DowJones.Web.Mvc.UI.Controls\Ellipsis\E.htm" />
+    <Content Include="DowJones.Web.Mvc.UI.Controls\Ellipsis\jquery.js" />
+    <Content Include="DowJones.Web.Mvc.UI.Controls\HeadlineListCarouselTest.html" />
+    <Content Include="DowJones.Web.Mvc.UI.Controls\CalloutPopupTestPage.htm" />
+    <Content Include="DowJones.Web.Mvc.UI.Controls\HeadlineList.html" />
+    <Content Include="DowJones.Web.Mvc.UI.Controls\HeadlineListCarouselTest.html" />
+    <Content Include="DowJones.Web.Mvc.UI.Controls\HeadlineListCarousel\MockTestPage.htm" />
+    <Content Include="DowJones.Web.Mvc.UI.Controls\InlineMp3PlayerTest.htm" />
+    <Content Include="DowJones.Web.Mvc.UI.Controls\ArticleTranslatorTestPage.htm" />
+    <Content Include="DowJones.Web.Mvc.UI.Controls\HeadlineCarouselTest.htm" />
+    <Content Include="DowJones.Web.Mvc.UI.Controls\NavBar\MvcMock.htm" />
+    <Content Include="DowJones.Web.Mvc.UI.Controls\NavBar\MockPage.htm" />
+    <Content Include="DowJones.Web.Mvc.UI.Controls\NavBar\MockPE.htm" />
+    <Content Include="DowJones.Web.Mvc.UI.Controls\NewsStandTickerTest.htm" />
+    <Content Include="DowJones.Web.Mvc.UI.Controls\Pager\PagerTest.htm" />
+    <Content Include="DowJones.Web.Mvc.UI.Controls\Pager\css\module.css" />
+    <Content Include="DowJones.Web.Mvc.UI.Controls\PortalHeadlineList\MockTestPage.htm" />
+    <Content Include="DowJones.Web.Mvc.UI.Controls\PortalHeadlineList\NamedJsonElementsBug.htm" />
+    <Content Include="DowJones.Web.Mvc.UI.Controls\PortalViewerTest.htm" />
+    <Content Include="DowJones.Web.Mvc.UI.Controls\SocialBehaviorTest.htm" />
+    <Content Include="DowJones.Web.Mvc.UI.Controls\StockKiosk\self.htm" />
+    <Content Include="DowJones.Web.Mvc.UI.Controls\StockKiosk\StockKiosk.htm" />
+    <Content Include="DowJones.Web.Mvc.UI.Controls\StockKiosk\StockMockData.js" />
+    <Content Include="DowJones.Web.Mvc.UI.Controls\StockKiosk\StockQuotesTest.htm" />
+    <Content Include="DowJones.Web.Mvc.UI.Controls\TweetLines\ExpertsMockFeedData.js" />
+    <Content Include="DowJones.Web.Mvc.UI.Controls\TweetLines\TemplateReturn.js" />
+    <Content Include="DowJones.Web.Mvc.UI.Controls\TweetLines\MockFeedData.js" />
+    <Content Include="DowJones.Web.Mvc.UI.Controls\TweetLines\phoenixbundle.css" />
+    <Content Include="DowJones.Web.Mvc.UI.Controls\TweetLines\sprite-icons.png" />
+    <Content Include="DowJones.Web.Mvc.UI.Controls\TweetLines\Experts.htm" />
+    <Content Include="DowJones.Web.Mvc.UI.Controls\TweetLines\TweetLinesMock.htm" />
+    <Content Include="DowJones.Web.Mvc.UI.Controls\TweetLines\TweetLinesTemplate.htm" />
+    <Content Include="DowJones.Web.Mvc.UI.Controls\TweetLines\test.htm" />
+    <Content Include="DowJones.Web.Mvc.UI.Controls\TwitterExpertsTest.htm" />
+    <Content Include="DowJones.Web.Mvc.UI.Controls\TwitterProfileTest.htm" />
+    <Content Include="DowJones.Web.Mvc.UI.Controls\widget_bg.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DowJones.Web.Mvc\BindRebind.html" />
+    <Content Include="DowJones.Web.Mvc\common.html" />
+    <Content Include="DowJones.Web.Mvc.UI.Canvas\AbstractCanvasModule.html" />
+    <Content Include="DowJones.Web.Mvc\ErrorManager.html" />
+    <Content Include="DowJones.Web.Mvc\serviceproxy.html" />
+    <Content Include="Index.html">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Index.tt</DependentUpon>
+    </Content>
+    <Content Include="template.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="factiva.gateway.messages">
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.125\lib\factiva.gateway.messages.dll</HintPath>
+    </Reference>
+    <Reference Include="FactivaGateway">
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.125\lib\FactivaGateway.dll</HintPath>
+    </Reference>
+    <Reference Include="Interop.FCMLib">
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.125\lib\Interop.FCMLib.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\packages\log4net.1.2.99\lib\2.0\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.4.5.10\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Index.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Index.html</LastGenOutput>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="DowJones.Web.Mvc.UI.Controls\Pager\images\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,96 @@
+﻿@{
+    Layout = "~/Views/Shared/_SignalR.cshtml";
+    ViewBag.Title = "NewsFeed";
+    Html.DJ().ScriptRegistry().OnDocumentReady("init();");
+}
+
+<h2>POC</h2>
+    <div> 
+         <form>
+            <label>Channel:</label>
+            <select id="channel" name="">
+                <option value="IB_LN_ALL_IND">IB_LN_ALL_IND</option>
+                <option value="IB_LN_ENERGY">IB_LN_ENERGY</option>
+                <option value="IB_LN_ALL_IND_NAM">IB_LN_ALL_IND_NAM</option>
+            </select>
+            <input type="button" id="subscribe" value="subscribe" />
+            <input type="button" id="suspend" value="suspend" />
+            <input type="button" id="resume" value="resume" />
+        </form>
+    </div>
+    <div>
+        @DJ.Render(Model)
+    </div>
+    
+    <ul id="messages"></ul>    
+    <script src="@Url.Content( "~/Scripts/jquery.signalR.js" )"></script>
+    <script src="@Url.Content( "~/signalr/hubs" )"></script>  
+
+    <script type="text/javascript">
+
+    
+        "use strict";
+        var connection = $.connection("@Url.Content( "~/RealTimeAlertsConnection" )"),
+            $messages = $('#messages'),
+            $channel = $('#channel'),
+            $subscribe = $('#subscribe'),
+            $suspend = $('#suspend'),
+            $resume = $('#resume');
+
+        var headlineBuffer = null, _portalHeadlineControl = null;
+
+        var start = function () {
+            _portalHeadlineControl = $('#PortalHeadlineListControl-0').findComponent(DJ.UI.PortalHeadlineList);
+            connection.start({ transport: 'longPolling' },function () {
+                    subscribe();
+                        var t = $("<li/>").html("starting connection");
+                        $messages.prepend(t);
+                          
+                }
+            );
+        }
+
+        connection.received(function (packet) {
+                   $("li", $messages).slice(10).remove();
+                    var t = $("<li/>").html(window.JSON.stringify(packet)); 
+                    $messages.prepend(t);
+
+                switch(packet.messageType) {
+                    case 5: 
+                        headlineBuffer = packet.data.resultSet;
+                        _portalHeadlineControl.bindOnSuccess(headlineBuffer);
+                        break;
+                    case 4:
+                        if (packet.data.resultSet.count.value > 0)
+                        {
+                            var len = packet.data.resultSet.headlines.length;
+                            var temp = packet.data.resultSet.headlines.reverse();
+                        
+                            for (var i=0; i < len; i++) {
+                                headlineBuffer.headlines.unshift(temp[i]);
+                            };
+
+                            if (headlineBuffer.headlines.length > 10) {
+                                headlineBuffer.headlines = headlineBuffer.headlines.slice(0, 10);
+                            }                        
+                            headlineBuffer.count.value = headlineBuffer.headlines.length;
+                            _portalHeadlineControl.bindOnSuccess(headlineBuffer);
+                        } 
+                        break;
+                }    
+            });
+
+        function subscribe() {
+            connection.send(window.JSON.stringify({ messageType: 0, value: $channel.val() }));
+        }
+
+        function unsubscribe() {}
+        
+        function  suspend() {}
+
+        function resume() {}    
+
+        function init() {            
+            start();           
+        }
+    </script>

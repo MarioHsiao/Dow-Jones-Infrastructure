@@ -1,0 +1,17 @@
+<VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Item">
+  <TemplateData>
+    <DefaultName>BootstrapperTask</DefaultName>
+    <Name>Dow Jones Bootstrapper Task</Name>
+    <Description>
+		Class template for a boostrapper task that gets executed on application start
+	</Description>
+    <ProjectType>CSharp</ProjectType>
+    <SortOrder>10</SortOrder>
+    <Icon>__TemplateIcon.png</Icon>
+    <PreviewImage>__PreviewImage.png</PreviewImage>
+  </TemplateData>
+  <TemplateContent>
+    <References />
+    <ProjectItem TargetFileName="$fileinputname$.cs" ReplaceParameters="true">BootstrapperTask.cs</ProjectItem>
+  </TemplateContent>
+</VSTemplate>
